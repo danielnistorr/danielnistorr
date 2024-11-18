@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Nistor Liviu Daniel</h1>
-<h3 align="center">Hello, I'm Daniel. I am based in Italy and I am Management Engineering student and a Software Developer.</h3>
+<h3 align="center">Hello, I'm Daniel. I am based in Italy and I am a Management Engineering student and a Software Developer.</h3>
 
 - 🔭 I’m currently working on **Estrella**
 
