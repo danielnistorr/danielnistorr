@@ -400,6 +400,7 @@ STRISCIA = [
     ('15531', 'Imballaggio', 'Etichette Made in Italy', '28 x 8, 5000 pezzi · Cod. 15531', '/catalogo/#imballaggio'),
 ]
 CELLA = (312, 288, 264)
+FINE = {'14932', '9978'}        # oggetti sottili (calibro, coltello): ingranditi nella loro cella
 
 CSS_STRISCIA = (
     # binario: scorre di lato con aggancio alle schede; il primo bordo è allineato alla griglia di 1280, la fine sborda
@@ -407,11 +408,12 @@ CSS_STRISCIA = (
     'scrollbar-width:none;padding-left:max(48px,calc((100% - 1280px)/2))!important;'
     'scroll-padding-left:max(48px,calc((100% - 1280px)/2))}'
     '.bv-strip .bv-track::-webkit-scrollbar{display:none}'
-    ".bv-strip .bv-track::after{content:'';flex:0 0 max(48px,calc((100% - 1280px)/2))}"
+    ".bv-strip .bv-track::after{content:'';flex:0 0 max(48px,calc(100% - 1280px))}"
     '.bv-strip .bv-track>*{scroll-snap-align:start}'
     '.bv-strip .bv-img{overflow:hidden}'
     '.bv-strip .bv-img img{display:block;width:100%;height:auto;transition:transform .4s ease}'
     '.bv-strip .bv-card:hover .bv-img img{transform:scale(1.04)}'
+    '.bv-strip .bv-fine img{transform:scale(1.3)}.bv-strip .bv-card:hover .bv-fine img{transform:scale(1.35)}'
     '.bv-strip .bv-card:hover .bv-name,.bv-strip .bv-card:hover .bv-name .elementor-heading-title'
     '{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}'
     f'.bv-strip .bv-card:focus-visible,.bv-strip .bv-track:focus-visible{{outline:2px solid {ROSSO};outline-offset:-3px}}'
@@ -466,7 +468,7 @@ def striscia_catalogo():
     schede = []
     for pid, famiglia, nome, dettaglio, link in STRISCIA:
         schede.append(C(
-            C(I(img(f'prodotto-{pid}.jpg'), nome), pad=(24, 24, 24), bg=BIANCO, css='bv-img'),
+            C(I(img(f'prodotto-{pid}.jpg'), nome), pad=(24, 24, 24), bg=BIANCO, css='bv-img bv-fine' if pid in FINE else 'bv-img'),
             C(T(f'<p>{famiglia}</p>', style='micro', color=TESTO2),
               H(nome, 'h3', style='nome', color=NERO, mt=8, css='bv-name'),
               T(f'<p>{dettaglio}</p>', style='meta', color=TESTO2, mt=6),
@@ -475,7 +477,7 @@ def striscia_catalogo():
             css='bv-card'))
     binario = C(cella_testo, *schede, dir='row', wrap=False, gap='0', pad='0', css='bv-track')
     return C(binario, RAW(HTML_COMANDI + f'<script>{JS_STRISCIA}</script>', css=CSS_STRISCIA), bg=BIANCO, boxed=False,
-             pad=((0, 0, 0), (0, 0, 0), ('sezione', 'sezione', 'sezione'), (0, 0, 0)), gap='0', tag='section',
+             pad=((0, 0, 0), (0, 0, 0), (160, 120, 64), (0, 0, 0)), gap='0', tag='section',
              css='bv-strip')
 
 
@@ -501,7 +503,8 @@ def vibram_al_banco():
     righe = ''.join(f'<a class="bv-row" href="/vibram/#{slug}"><span class="bv-row__n">{nome}</span>'
                     f'<span class="bv-row__d" aria-hidden="true"></span><span class="bv-row__c">{FAM[slug]["n"]}</span>'
                     f'<span class="bv-row__a" aria-hidden="true">&rarr;</span></a>' for nome, slug in famiglie)
-    foto = C(w=(50, 50, 100), min_h=(0, 0, 390), img=img('espositore-vibram.jpg'), alt='Espositore Vibram al banco Benvegnù',
+    foto = C(w=(50, 50, 100), min_h=(0, 0, 390), img=img('espositore-vibram.jpg'), img_pos='center left',
+             alt='Espositore Vibram al banco Benvegnù',
              mt=(-40, -32, 0), mb=(-40, -32, 0), z=2)
     pannello = C(
         T('<p>Rivenditore autorizzato Vibram</p>', style='label', color=SU_NERO2, css='bv-kicker'),
@@ -520,9 +523,9 @@ def vibram_al_banco():
 def per_chi_lavoriamo():
     """S3: una dichiarazione semplice accanto ai marchi del banco, in una griglia 2x2 con filetti interni (Lampo)."""
     marchi = [('vibram', 'Vibram', 'Suole, lastre, tacchi', '/vibram/', (52, 46, 44)),
-              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (36, 32, 30)),
-              ('girba', 'Girba', 'Tinture e finissaggio', '/catalogo/#prodotti-chimici', (60, 52, 48)),
-              ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi', '/marchi/', (60, 52, 48))]
+              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (40, 36, 32)),
+              ('girba', 'Girba', 'Tinture e finissaggio', '/catalogo/#prodotti-chimici', (64, 56, 50)),
+              ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi', '/marchi/', (48, 42, 38))]
     bordi = [dict(border_right=1, border_bottom=1), dict(border_bottom=1), dict(border_right=1), {}]
     celle = []
     for (slug, nome, etichetta, link, h), b in zip(marchi, bordi):
@@ -534,19 +537,22 @@ def per_chi_lavoriamo():
     css = (CSS_KICKER +
            f'.bv-logo:hover .bv-logo-label p,.bv-logo:focus-visible .bv-logo-label p{{color:{NERO};text-decoration:underline;'
            'text-underline-offset:4px}')
-    sinistra = C(
+    css += '.bv-who .elementor-widget-text-editor p:last-child{margin-bottom:0!important}'
+    testa = C(
         T('<p>Per chi lavoriamo</p>', style='label', color=TESTO2, css='bv-kicker'),
         H('Molti dei nostri clienti<br>producono per<br>i marchi del lusso', 'h2', style='h2m', mt=32),
         T('<p>Calzaturifici, pelletterie e modellisti, ma anche calzolai e negozi di calzature. Al banco trovano gli stessi '
           'marchi che usano ogni giorno in produzione e in riparazione.</p>', style='lead', color=TESTO2, max_w=560, mt=24),
-        link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32),
-        RAW('', css=css), w=(55, 55, 100), gap='0')
+        RAW('', css=css), gap='0')
+    # lo spazio in più va solo tra il testo e il link: il link chiude alla stessa altezza della griglia dei marchi
+    sinistra = C(testa, link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32), w=(55, 50, 100), gap='0',
+                 justify='between')
     destra = C(
         T('<p>I marchi al banco</p>', style='label', color=TESTO2, mb=20),
         C(*celle, dir='row', wrap=True, gap='0'),
-        w=(40, 40, 100), gap='0', mt=(0, 0, 48))
+        w=(42.5, 45.8, 100), gap='0', mt=(0, 0, 48), justify='between')
     return sezione(sinistra, destra, pad=((160, 120, 64), 'lato', (120, 88, 64), 'lato'), dir='row', dir_m='column',
-                   justify='between', align=('end', 'end', 'stretch'), gap='0')
+                   justify='between', align=('stretch', 'stretch', 'stretch'), gap='0', css='bv-who')
 
 
 CSS_CHIUSURA = (
