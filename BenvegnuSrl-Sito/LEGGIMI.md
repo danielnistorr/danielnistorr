@@ -127,7 +127,7 @@ WordPress 7.1.2 in locale (italiano), Elementor 4.3.3, Hello Elementor 3.5.1, Ul
 - Redirect: le 14 regole importate in Redirection, verificato il 301 su indirizzi vecchi di prodotti e famiglie.
 - Pagine fotografate a 1440, 1024 e 390 px, controllate senza scorrimento orizzontale: `screenshot/elementor/`.
 - Fallback HTML fotografato alle stesse larghezze: `screenshot/fallback/`.
-- L'import dal pulsante vero dell'interfaccia (con le immagini scaricate da GitHub) l'ho provato su una versione precedente dello stesso generatore e dello stesso formato.
+- Import dal pulsante vero dell'interfaccia (Playwright, con i due avvisi "Continua" e "Importa senza abilitare") di `bvg-01-home.json` così com'è nel repository: 155 elementi su 155, le 15 immagini scaricate da GitHub nella libreria media, nessun riquadro grigio, nessun link residuo a GitHub.
 
 ## Da confermare con il cliente prima di pubblicare
 
