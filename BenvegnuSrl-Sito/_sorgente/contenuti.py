@@ -471,9 +471,10 @@ def catalogo():
     righe = []
     for i, (slug, foto, esempi) in enumerate(ORDINE_FAMIGLIE, 1):
         f = FAM[slug]
+        # senza foto prodotto (i chimici Girba non ne hanno): il logo del marchio nella stessa cornice quadrata
         miniatura = (C(I(img(f'prodotto-{foto}.jpg'), f['nome']), border=1, border_color=LINEA, bg=BIANCO)
-                     if foto else C(T('<p>Prodotti Girba<br>per il finissaggio</p>', style='label', color=TESTO2, align='center'),
-                                    min_h=(180, 160, 140), justify='center', bg=GRIGIO))
+                     if foto else C(I(img('marchio-girba.png'), 'Logo Girba', height=(84, 80, 64), fit='contain'),
+                                    min_h=(218, 211, 175), justify='center', border=1, border_color=LINEA, bg=BIANCO))
         righe.append(C(
             H(f'{i:02d}', 'p', style='num', color=ROSSO, fisso=True, w_px=(64, 56, None)),
             C(miniatura, w=(17, 22, 50), fisso=True),
