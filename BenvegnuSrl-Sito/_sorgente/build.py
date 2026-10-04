@@ -67,8 +67,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--base', default=c.BASE_PREDEFINITA, help='URL base delle immagini (con / finale)')
     ap.add_argument('--out', default=RADICE, help='cartella di uscita')
+    ap.add_argument('--url-sito', default='', help='dominio finale (es. https://www.benvegnusrl.it): rende assoluti i link interni')
     a = ap.parse_args()
     c.imposta_base(a.base)
+    m.SITO = a.url_sito
 
     dirs = {k: os.path.join(a.out, k) for k in ('elementor-json', 'html-fallback', 'anteprima')}
     for d in dirs.values():
@@ -105,6 +107,13 @@ def main():
         tpl = m.template_json(f'Benvegnu: {pg["titolo"]}', [s for _, s in sezioni], kind='page', page_settings=page_settings)
         with open(os.path.join(dirs['elementor-json'], f'bvg-{pg["slug"]}.json'), 'w', encoding='utf-8') as f:
             f.write(m.json_dump(tpl))
+        # variante per chi non ha Elementor Pro: header e footer dentro la pagina, modello Canvas
+        completa = m.template_json(f'Benvegnu: {pg["titolo"]} (pagina completa)', [header] + [s for _, s in sezioni] + [footer],
+                                   kind='page', page_settings={'template': 'elementor_canvas', 'hide_title': 'yes'})
+        os.makedirs(os.path.join(dirs['elementor-json'], 'pagine-complete-senza-pro'), exist_ok=True)
+        with open(os.path.join(dirs['elementor-json'], 'pagine-complete-senza-pro', f'bvg-{pg["slug"]}-completa.json'), 'w',
+                  encoding='utf-8') as f:
+            f.write(m.json_dump(completa))
         blocchi = [header_html]
         for i, (nome, s) in enumerate(sezioni, 1):
             scope = f'bvg-{pg["slug"][3:]}-{nome}'
@@ -116,7 +125,19 @@ def main():
         with open(os.path.join(dirs['anteprima'], f'{pg["slug"]}.html'), 'w', encoding='utf-8') as f:
             f.write(m.pagina_html(f'{pg["titolo_seo"]}', blocchi, pg.get('descrizione', '')))
 
-    # la stessa verifica sui file scritti, per sicurezza
+    # la stessa verifica sui file scritti, per sicurezza, più i controlli tecnici sul formato
+    for root, _, files in os.walk(os.path.join(a.out, 'elementor-json')):
+        for fn in files:
+            txt = open(os.path.join(root, fn), encoding='utf-8').read()
+            for vietato in ('__globals__', '"_animation"', '"animation"', 'custom_css', 'motion_fx', '"sticky"'):
+                if vietato in txt:
+                    problemi.append(f'{fn}: chiave vietata {vietato}')
+            if re.search(r'"(size|top|right|bottom|left|column|row)": "?[a-z]{1,3}"?[,}]', txt.replace('"size": "md"', '')):
+                problemi.append(f'{fn}: valore di spaziatura non numerico')
+    for root, _, files in os.walk(os.path.join(a.out, 'html-fallback')):
+        for fn in files:
+            if re.search(r':[a-z]+px', open(os.path.join(root, fn), encoding='utf-8').read()):
+                problemi.append(f'{fn}: valore CSS non numerico')
     for root, _, files in os.walk(a.out):
         if '_sorgente' in root or 'assets' in root or 'screenshot' in root:
             continue

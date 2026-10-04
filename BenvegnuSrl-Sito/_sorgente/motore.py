@@ -34,12 +34,14 @@ BP_MOBILE = 767
 
 # stili di testo: famiglia, peso, dimensioni (desktop, tablet, mobile), interlinea (em), spaziatura lettere (px), maiuscolo
 STILI = {
-    'display': dict(f=FONT_TITOLI, w='700', s=(96, 76, 54), lh=0.92, ls=0, up=True),
-    'h1':      dict(f=FONT_TITOLI, w='700', s=(80, 64, 46), lh=0.95, ls=0, up=True),
-    'h2':      dict(f=FONT_TITOLI, w='700', s=(60, 48, 38), lh=0.98, ls=0, up=True),
-    'h3':      dict(f=FONT_TITOLI, w='700', s=(32, 28, 26), lh=1.05, ls=0.3, up=True),
-    'h4':      dict(f=FONT_TESTO, w='700', s=(20, 19, 18), lh=1.3, ls=0, up=False),
-    'num':     dict(f=FONT_TITOLI, w='700', s=(72, 60, 52), lh=0.9, ls=0, up=False),
+    'display': dict(f=FONT_TITOLI, w='700', s=(84, 66, 44), lh=0.94, ls=0, up=True),
+    'h1':      dict(f=FONT_TITOLI, w='700', s=(72, 56, 40), lh=0.96, ls=0, up=True),
+    'h2':      dict(f=FONT_TITOLI, w='700', s=(52, 42, 34), lh=1.0, ls=0, up=True),
+    'h3':      dict(f=FONT_TITOLI, w='700', s=(28, 26, 22), lh=1.08, ls=0.3, up=True),
+    'h4':      dict(f=FONT_TESTO, w='700', s=(19, 18, 17), lh=1.3, ls=0, up=False),
+    'num':     dict(f=FONT_TITOLI, w='700', s=(64, 54, 44), lh=0.9, ls=0, up=False),
+    'num_s':   dict(f=FONT_TITOLI, w='700', s=(40, 36, 30), lh=0.95, ls=0, up=False),
+    'tel':     dict(f=FONT_TITOLI, w='700', s=(60, 52, 40), lh=1.0, ls=0, up=False),
     'lead':    dict(f=FONT_TESTO, w='400', s=(22, 20, 19), lh=1.5, ls=0, up=False),
     'body':    dict(f=FONT_TESTO, w='400', s=(18, 17, 17), lh=1.6, ls=0, up=False),
     'small':   dict(f=FONT_TESTO, w='400', s=(15, 15, 15), lh=1.55, ls=0, up=False),
@@ -50,7 +52,7 @@ STILI = {
 
 # spaziature (desktop, tablet, mobile): una sola scala per tutto il sito
 SPAZI = {
-    'sezione': (112, 88, 64),   # padding verticale delle sezioni
+    'sezione': (104, 80, 64),   # padding verticale delle sezioni
     'lato':    (40, 32, 20),    # padding laterale delle sezioni
     'xl':      (64, 48, 40),
     'l':       (48, 36, 28),
@@ -66,10 +68,10 @@ def rv(v):
     if isinstance(v, str) and v in SPAZI:
         return SPAZI[v]
     if isinstance(v, (tuple, list)):
-        if len(v) == 3:
-            return tuple(v)
         if len(v) == 2:
-            return (v[0], v[1], v[1])
+            v = (v[0], v[1], v[1])
+        # ogni voce può essere un numero o il nome di una spaziatura, preso al breakpoint corrispondente
+        return tuple(SPAZI[x][i] if isinstance(x, str) and x in SPAZI else x for i, x in enumerate(v))
     return (v, v, v)
 
 
@@ -126,6 +128,12 @@ def LINEA_H(color=LINEA, weight=1, **p):
     return N('divider', color=color, weight=weight, **p)
 
 
+def ARTICOLI(statici, numero=5, **p):
+    """Ultimi articoli del blog WordPress: in Elementor è il widget gratuito "Articoli recenti" (dinamico),
+    nel fallback HTML un elenco statico con gli stessi esempi."""
+    return N('posts', statici=statici, numero=numero, **p)
+
+
 def RAW(html, css='', **p):
     """HTML grezzo: usato solo dove la versione gratuita non ha un widget adatto."""
     return N('html', html=html, css=css, **p)
@@ -177,13 +185,49 @@ def _tipografia(settings, stile, prefix='typography'):
     settings[f'{prefix}_text_transform'] = 'uppercase' if st['up'] else 'none'
 
 
+# Dominio del sito: se impostato (build.py --url-sito) i link interni diventano assoluti
+SITO = ''
+
+
+def url_finale(url):
+    return SITO.rstrip('/') + url if SITO and url.startswith('/') else url
+
+
 def _link(url):
-    ext = 'on' if url.startswith('http') and 'benvegnusrl.it' not in url else ''
+    url = url_finale(url)
+    ext = 'on' if url.startswith('http') and 'benvegnusrl.it' not in url and (not SITO or not url.startswith(SITO)) else ''
     return {'url': url, 'is_external': ext, 'nofollow': '', 'custom_attributes': ''}
 
 
+# ID numerico finto ma stabile per ogni immagine: Elementor lo usa per riconoscere la stessa immagine
+# nello stesso import (anche da ZIP) e così non la scarica due volte. Deve essere unico per URL.
+_ID_IMMAGINI = {}
+
+
+def id_immagine(src):
+    nome = src.rsplit('/', 1)[-1]
+    n = 9001 + int(hashlib.md5(nome.encode()).hexdigest(), 16) % 80000
+    altro = _ID_IMMAGINI.get(n)
+    if altro and altro != nome:
+        raise ValueError(f'collisione di id immagine: {nome} e {altro}')
+    _ID_IMMAGINI[n] = nome
+    return n
+
+
 def _img(src, alt=''):
-    return {'url': src, 'id': '', 'size': '', 'alt': alt, 'source': 'library'}
+    return {'url': src, 'id': id_immagine(src), 'size': '', 'alt': alt, 'source': 'library'}
+
+
+# Bottoni: (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover).
+# In hover il bottone si inverte e resta sempre visibile sul fondo della sezione: mai dissolvenza.
+BOTTONI = {
+    'primario':         (BIANCO, ROSSO, ROSSO, BIANCO, NERO, NERO),          # su bianco
+    'contorno':         (NERO, BIANCO, NERO, BIANCO, NERO, NERO),            # su bianco
+    'primario-su-nero': (BIANCO, ROSSO, ROSSO, NERO, BIANCO, BIANCO),        # su nero
+    'contorno-bianco':  (BIANCO, NERO, BIANCO, NERO, BIANCO, BIANCO),        # su nero
+    'bianco':           (NERO, BIANCO, BIANCO, BIANCO, NERO, NERO),          # su rosso
+    'contorno-su-rosso': (BIANCO, ROSSO, BIANCO, ROSSO, BIANCO, BIANCO),     # su rosso
+}
 
 
 ALLINEA_FLEX = {'start': 'flex-start', 'center': 'center', 'end': 'flex-end', 'stretch': 'stretch',
@@ -199,17 +243,22 @@ def el_settings(n, inner):
         if boxed:
             s['boxed_width'] = _slider('px', p.get('boxed_width', LARGHEZZA))
         if 'w' in p:
-            _resp(s, 'width', rv(p['w']), lambda v: _slider('%', v))
+            # Elementor non eredita la larghezza mobile da quella tablet (container.php, "not inherited"):
+            # la scrivo sempre su tutti e tre i breakpoint
+            for suf, v in zip(SUFFISSI, rv(p['w'])):
+                s['width' + suf] = _slider('%', v)
         if p.get('grow'):
+            # "grow" di Elementor imposta anche flex-shrink 0 e schiaccia i vicini: uso cresci + restringi
+            s['_flex_size'] = 'custom'
             s['_flex_grow'] = 1
-            s['_flex_size'] = 'grow'
+            s['_flex_shrink'] = 1
         s['flex_direction'] = p.get('dir', 'column')
         if p.get('dir_t'):
             s['flex_direction_tablet'] = p['dir_t']
         if p.get('dir_m'):
             s['flex_direction_mobile'] = p['dir_m']
         if p.get('wrap'):
-            s['flex_wrap'] = 'wrap'
+            _resp(s, 'flex_wrap', rv(p['wrap']), lambda v: 'wrap' if v else 'nowrap')
         if p.get('justify'):
             _resp(s, 'flex_justify_content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
         if p.get('align'):
@@ -257,6 +306,13 @@ def el_settings(n, inner):
             s['overflow'] = 'hidden'
         if p.get('css'):
             s['css_classes'] = p['css']
+        if p.get('hide'):
+            for bp in p['hide']:
+                s[f'hide_{bp}'] = 'hidden-' + bp
+        if p.get('mt') or p.get('mb'):
+            mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
+            for i, suf in enumerate(SUFFISSI):
+                s['margin' + suf] = _dims(mt[i], 0, mb[i], 0)
         return s
 
     if n.kind == 'heading':
@@ -287,14 +343,7 @@ def el_settings(n, inner):
         s['size'] = 'md'
         _tipografia(s, 'btn')
         v = p['variant']
-        colori = {
-            # variante: (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover)
-            'primario':      (BIANCO, ROSSO, ROSSO, BIANCO, NERO, NERO),
-            'nero':          (BIANCO, NERO, NERO, BIANCO, ROSSO, ROSSO),
-            'contorno':      (NERO, BIANCO, NERO, BIANCO, NERO, NERO),
-            'contorno-bianco': (BIANCO, NERO, BIANCO, NERO, BIANCO, BIANCO),
-            'bianco':        (NERO, BIANCO, BIANCO, BIANCO, NERO, NERO),
-        }[v]
+        colori = BOTTONI[v]
         s['button_text_color'] = colori[0]
         s['background_background'] = 'classic'
         s['background_color'] = colori[1]
@@ -312,7 +361,11 @@ def el_settings(n, inner):
     elif n.kind == 'image':
         s['image'] = _img(p['src'], p.get('alt', ''))
         s['image_size'] = 'full'
-        s['width'] = _slider('%', 100)
+        if p.get('w_img'):
+            _resp(s, 'width', rv(p['w_img']), lambda v: _slider('px', v))
+            s['align'] = 'left'
+        else:
+            s['width'] = _slider('%', 100)
         s['max_width'] = _slider('%', 100)
         if p.get('height'):
             _resp(s, 'height', rv(p['height']), lambda v: _slider('px', v))
@@ -335,6 +388,19 @@ def el_settings(n, inner):
         s['gap'] = _slider('px', 2)
     elif n.kind == 'html':
         s['html'] = (f'<style>{p["css"]}</style>' if p.get('css') else '') + p['html']
+    elif n.kind == 'posts':
+        s['wp'] = {'title': '', 'number': str(p['numero']), 'show_date': 'on'}
+    # larghezza fissa in px (None = automatica) e crescita nel contenitore flex
+    if p.get('w_px'):
+        vals = rv(p['w_px'])
+        s['_element_width'] = 'initial'
+        _resp(s, '_element_custom_width', vals, lambda v: _slider('px', v) if v else _slider('%', 100))
+    if p.get('grow'):
+        s['_flex_size'] = 'custom'
+        s['_flex_grow'] = 1
+        s['_flex_shrink'] = 1
+    if p.get('fisso'):
+        s['_flex_size'] = 'none'   # larghezza del contenuto, non si restringe
     # spaziature esterne dei widget
     if p.get('mt') or p.get('mb'):
         mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
@@ -347,7 +413,7 @@ def el_settings(n, inner):
 
 
 WIDGET = {'heading': 'heading', 'text': 'text-editor', 'button': 'button', 'image': 'image',
-          'map': 'google_maps', 'divider': 'divider', 'html': 'html'}
+          'map': 'google_maps', 'divider': 'divider', 'html': 'html', 'posts': 'wp-widget-recent-posts'}
 
 
 def to_elementor(n, inner=False):
@@ -418,7 +484,7 @@ def to_html(n, css, scope, inner=False):
         attrs = f' class="bvg-con {c}"'
         if p.get('link'):
             ext = p['link'].startswith('http') and 'benvegnusrl.it' not in p['link']
-            attrs += f' href="{_html.escape(p["link"])}"' + (' target="_blank" rel="noopener"' if ext else '')
+            attrs += f' href="{_html.escape(url_finale(p["link"]))}"' + (' target="_blank" rel="noopener"' if ext else '')
         if p.get('anchor'):
             attrs += f' id="{p["anchor"]}"'
         d = ['display:flex;position:relative;box-sizing:border-box;']
@@ -453,6 +519,14 @@ def to_html(n, css, scope, inner=False):
             d.append('overflow:hidden;')
         if tag == 'a':
             d.append('text-decoration:none;color:inherit;')
+        if p.get('mt') or p.get('mb'):
+            _resp_css(css, sel, 'margin-top', rv(p.get('mt', 0)), _px)
+            _resp_css(css, sel, 'margin-bottom', rv(p.get('mb', 0)), _px)
+        if p.get('hide'):
+            mq = {'desktop': f'@media (min-width:{BP_TABLET + 1}px)', 'tablet': f'@media (min-width:{BP_MOBILE + 1}px) and (max-width:{BP_TABLET}px)',
+                  'mobile': f'@media (max-width:{BP_MOBILE}px)'}
+            for bp in p['hide']:
+                css.d.append(f'{mq[bp]}{{{sel}{{display:none !important;}}}}')
         # direzione, gap, allineamenti: sul contenitore interno se boxed
         inner_sel = f'{sel} > .bvg-inner' if boxed else sel
         dirs = (p.get('dir', 'column'), p.get('dir_t') or p.get('dir', 'column'),
@@ -461,7 +535,7 @@ def to_html(n, css, scope, inner=False):
         _resp_css(css, f'{inner_sel} > .bvg-w', 'width', dirs, lambda v: 'auto' if v == 'row' else '100%')
         _resp_css(css, inner_sel, 'gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
         if p.get('wrap'):
-            css.add(inner_sel, 'flex-wrap:wrap;')
+            _resp_css(css, inner_sel, 'flex-wrap', rv(p['wrap']), lambda v: 'wrap' if v else 'nowrap')
         if p.get('justify'):
             _resp_css(css, inner_sel, 'justify-content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
         if p.get('align'):
@@ -473,7 +547,14 @@ def to_html(n, css, scope, inner=False):
             kids = f'<div class="bvg-inner">{kids}</div>'
         return f'<{tag}{attrs}>{kids}</{tag}>'
 
-    margin = ''
+    if p.get('w_px'):
+        vals = rv(p['w_px'])
+        _resp_css(css, sel, 'width', vals, lambda v: f'{v}px' if v else '100%')
+        _resp_css(css, sel, 'flex-shrink', vals, lambda v: '0' if v else '1')
+    if p.get('grow'):
+        css.add(sel, 'flex-grow:1;flex-shrink:1;min-width:0;')
+    if p.get('fisso'):
+        css.add(sel, 'flex-grow:0;flex-shrink:0;')
     if p.get('mt') or p.get('mb'):
         mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
         _resp_css(css, sel, 'margin-top', mt, _px)
@@ -492,7 +573,7 @@ def to_html(n, css, scope, inner=False):
         txt = p['text']
         if p.get('link'):
             css.add(f'{sel} a', 'color:inherit;text-decoration:none;')
-            txt = f'<a href="{_html.escape(p["link"])}">{txt}</a>'
+            txt = f'<a href="{_html.escape(url_finale(p["link"]))}">{txt}</a>'
         return f'<{p["level"]} class="bvg-w {c}">{txt}</{p["level"]}>'
     if n.kind == 'text':
         base, sizes = _css_tipo(p['style'])
@@ -510,13 +591,7 @@ def to_html(n, css, scope, inner=False):
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
     if n.kind == 'button':
         base, _ = _css_tipo('btn')
-        col = {
-            'primario':      (BIANCO, ROSSO, ROSSO, BIANCO, NERO, NERO),
-            'nero':          (BIANCO, NERO, NERO, BIANCO, ROSSO, ROSSO),
-            'contorno':      (NERO, BIANCO, NERO, BIANCO, NERO, NERO),
-            'contorno-bianco': (BIANCO, NERO, BIANCO, NERO, BIANCO, BIANCO),
-            'bianco':        (NERO, BIANCO, BIANCO, BIANCO, NERO, NERO),
-        }[p['variant']]
+        col = BOTTONI[p['variant']]
         al = rv(p['align'])
         css.add(sel, 'display:flex;' + f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[0], "flex-start")};',
                 f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[1], "flex-start")};' if al[1] != al[0] else '',
@@ -528,16 +603,18 @@ def to_html(n, css, scope, inner=False):
         if p.get('full_m'):
             css.add(f'{sel} a', '', '', 'display:block;width:100%;text-align:center;box-sizing:border-box;')
         ext = p['url'].startswith('http') and 'benvegnusrl.it' not in p['url']
-        return (f'<div class="bvg-w {c}"><a href="{_html.escape(p["url"])}"'
+        return (f'<div class="bvg-w {c}"><a href="{_html.escape(url_finale(p["url"]))}"'
                 + (' target="_blank" rel="noopener"' if ext else '') + f'>{p["text"]}</a></div>')
     if n.kind == 'image':
         css.add(sel, 'line-height:0;')
         css.add(f'{sel} img', 'display:block;width:100%;max-width:100%;' + (f'object-fit:{p["fit"]};object-position:{p["pos"]};' if p.get('height') else 'height:auto;'))
+        if p.get('w_img'):
+            _resp_css(css, f'{sel} img', 'width', rv(p['w_img']), lambda v: f'{v}px')
         if p.get('height'):
             _resp_css(css, f'{sel} img', 'height', rv(p['height']), lambda v: f'{v}px')
         img = f'<img src="{_html.escape(p["src"])}" alt="{_html.escape(p.get("alt", ""))}" loading="lazy">'
         if p.get('link'):
-            img = f'<a href="{_html.escape(p["link"])}">{img}</a>'
+            img = f'<a href="{_html.escape(url_finale(p["link"]))}">{img}</a>'
         return f'<div class="bvg-w {c}">{img}</div>'
     if n.kind == 'map':
         hh = rv(p['height'])
@@ -553,6 +630,16 @@ def to_html(n, css, scope, inner=False):
         if p.get('css'):
             css.d.append(p['css'])
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
+    if n.kind == 'posts':
+        base, sizes = _css_tipo('h3')
+        css.add(f'{sel} ul', 'list-style:none;margin:0;padding:0;')
+        css.add(f'{sel} li', f'border-top:1px solid {LINEA};padding:20px 0;')
+        css.add(f'{sel} a', base + f'color:{NERO};text-decoration:none;')
+        css.add(f'{sel} a:hover', f'color:{ROSSO};')
+        b2, _ = _css_tipo('small')
+        css.add(f'{sel} .bvg-data', b2 + f'display:block;color:{NERO_75};margin-top:6px;')
+        voci = ''.join(f'<li><a href="{_html.escape(u)}">{t}</a><span class="bvg-data">{d}</span></li>' for t, u, d in p['statici'])
+        return f'<div class="bvg-w {c}"><ul>{voci}</ul></div>'
     raise ValueError(n.kind)
 
 
