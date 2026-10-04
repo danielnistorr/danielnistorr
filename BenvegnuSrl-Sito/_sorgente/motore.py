@@ -403,7 +403,11 @@ def el_settings(n, inner):
             s['link'] = _link(p['link'])
     elif n.kind == 'text':
         # sottolineatura inline: il widget Testo non ha un controllo per text-decoration e temi come Hello la tolgono
-        html = p['html'].replace('<a href=', '<a style="text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px" href=')
+        html = p['html']
+        if p.get('sottolinea', True):
+            html = html.replace('<a href=', '<a style="text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px" href=')
+        else:
+            html = html.replace('<a href=', '<a style="text-decoration:none" href=')
         s['editor'] = html
         _resp(s, 'align', rv(p['align']), lambda v: v)
         s['text_color'] = p['color']
@@ -727,10 +731,15 @@ def to_html(n, css, scope, inner=False):
         _resp_css(css, sel, 'text-align', rv(p['align']), lambda v: v)
         css.add(f'{sel} p', 'margin:0 0 0.9em;')
         css.add(f'{sel} p:last-child', 'margin-bottom:0;')
-        css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;')
+        if p.get('sottolinea', True):
+            css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;')
+        else:
+            css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:none;')
         css.add(f'{sel} a:hover,{sel} a:focus', f'color:{p.get("link_hover", ROSSO if p["link_color"] != ROSSO else NERO)};')
-        css.add(f'{sel} ul', 'margin:0;padding:0 0 0 1.1em;')
-        css.add(f'{sel} li', 'margin:0 0 0.35em;')
+        # elenchi senza pallini: righe separate da un filetto, come una scheda tecnica
+        css.add(f'{sel} ul', 'margin:0;padding:0;list-style:none;')
+        css.add(f'{sel} li', f'margin:0;padding:10px 0;border-top:1px solid {LINEA};')
+        css.add(f'{sel} li:last-child', f'border-bottom:1px solid {LINEA};')
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
     if n.kind == 'button':
         bf = BOTTONE_FORMA

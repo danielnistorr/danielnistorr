@@ -97,7 +97,7 @@ def img(nome):
 # ---------------------------------------------------------------------------------------------
 # Dati aziendali (un solo posto da aggiornare)
 # ---------------------------------------------------------------------------------------------
-TEL = '049 983 0202'
+TEL = '049\u00a0983\u00a00202'             # spazi indivisibili: il numero non va mai a capo
 TEL_LINK = 'tel:+390499830202'
 FAX = '049 983 1177'
 EMAIL = 'commerciale@benvegnusrl.it'
@@ -106,11 +106,12 @@ INDIRIZZO = 'Via del Lavoro 48'
 CITTA = '30030 Vigonovo (VE)'
 ZONA = 'Zona industriale Tombelle'
 ZONA_MIN = 'zona industriale Tombelle'
-ORARI = 'Dal lunedì al venerdì, 8:30-12:30 e 14:30-18:30'
-ORARI_BREVE = 'Lun-ven 8:30-12:30 e 14:30-18:30'
+WJ = '\u2060'                                # word joiner: niente a capo dentro gli intervalli orari
+ORARI = f'Dal lunedì al venerdì, 8:30{WJ}-{WJ}12:30 e 14:30{WJ}-{WJ}18:30'
+ORARI_BREVE = f'Lun{WJ}-{WJ}ven 8:30{WJ}-{WJ}12:30 e 14:30{WJ}-{WJ}18:30'
 CHIUSURA = 'Sabato e domenica chiuso'
 PIVA = '02326850282'
-REA = 'PD-222933'
+REA = f'PD{WJ}-{WJ}222933'
 SEDE_LEGALE = 'Piazzetta Primo Modin 12, 35129 Padova'
 MAPS = ('https://www.google.com/maps/search/?api=1&query=Benvegn%C3%B9%20Via%20del%20Lavoro%2048%20Vigonovo'
         '&query_place_id=ChIJCYLIGbDFfkcRl5iSbyMPyb4')
@@ -209,18 +210,36 @@ def riga_indice(numero, titolo, testo, destra=None, colore=NERO, colore_testo=TE
              border_color=linea, align=('baseline', 'baseline', 'start'), link=link, anchor=ancora)
 
 
-def scheda_prodotto(pid, nome, famiglia, nota, link=None, w=(23.5, 48, 47)):
-    """Scheda prodotto alla maniera dei siti di marca: foto su bianco, famiglia in piccolo, nome, una riga."""
-    return C(
-        C(I(img(f'prodotto-{pid}.jpg'), nome), bg=BIANCO, border=1, border_color=LINEA),
-        T(f'<p>{famiglia}</p>', style='label', color=TESTO2, mt='xs'),
-        H(nome, 'h4', style='h4'),
-        T(f'<p>{nota}</p>', style='small', color=TESTO2),
-        w=w, gap='xxs', link=link)
+# larghezze esatte delle griglie: (contenuto - spazi) / colonne, così l'ultima scheda arriva al bordo della colonna
+W4 = (23.59, 48.9, 100)      # 4 per riga su desktop (1280 - 3x24), 2 su tablet (960 - 20), una per riga su telefono
+W3 = (32.0, 31.9, 100)       # 3 per riga su desktop e tablet
+
+# scheda prodotto: la foto si ingrandisce appena al passaggio, dentro la sua cornice (niente dissolvenze)
+CSS_SCHEDE = (
+    '.bvg-scheda .bvg-foto{overflow:hidden}'
+    '.bvg-scheda img{transition:transform .5s ease}'
+    '.bvg-scheda:hover img,.bvg-scheda:focus-visible img{transform:scale(1.045)}'
+    f'.bvg-scheda:hover h4,.bvg-scheda:hover .elementor-heading-title{{color:{ROSSO}}}'
+)
+
+
+def scheda_prodotto(pid, nome, famiglia, nota, link=None, w=W4):
+    """Scheda prodotto alla maniera dei siti di marca: foto su bianco, famiglia in piccolo, nome, una riga.
+    Su telefono diventa una riga (foto a sinistra, testo a destra): niente schede orfane in una griglia a due."""
+    foto = C(I(img(f'prodotto-{pid}.jpg'), nome), bg=BIANCO, border=1, border_color=LINEA, w=(100, 100, 34), fisso=True,
+             css='bvg-foto')
+    testo = C(T(f'<p>{famiglia}</p>', style='label', color=TESTO2),
+              H(nome, 'h4', style='h4'),
+              T(f'<p>{nota}</p>', style='small', color=TESTO2),
+              gap='xxs', w=(100, 100, 62), mt=('xs', 'xs', 0))
+    return C(foto, testo, w=w, gap=('xxs', 'xxs', 's'), dir='column', dir_m='row', align=('stretch', 'stretch', 'center'),
+             link=link, css='bvg-scheda')
 
 
 def griglia_schede(schede):
-    return C(*schede, dir='row', wrap=True, justify='start', gap='col', gap_r='l')
+    # il widget con il CSS sta fuori dalla griglia: dentro occuperebbe un posto e manderebbe a capo una riga vuota
+    return C(C(*schede, dir='row', wrap=True, justify='start', gap='col', gap_r=('l', 'l', 's')), RAW('', css=CSS_SCHEDE),
+             gap='0')
 
 
 def blocco_banco(titolo='Vieni al banco', pulsante=None):
@@ -254,6 +273,9 @@ CSS_BASE = (
     # su tablet e telefono il menu chiuso resta impaginato (invisibile) e sporge a destra: lo taglio in orizzontale,
     # in verticale la tendina aperta scende normalmente
     '.bvg-testata{overflow-x:clip}'
+    '.elementor-widget-text-editor ul{list-style:none;margin:0;padding:0}'
+    f'.elementor-widget-text-editor li{{margin:0;padding:10px 0;border-top:1px solid {LINEA}}}'
+    f'.elementor-widget-text-editor li:last-child{{border-bottom:1px solid {LINEA}}}'
 )
 
 
@@ -266,7 +288,7 @@ def header():
         T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='small', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2,
           align='right', hide=['desktop', 'tablet']),
         dir='row', justify='between', align='center', gap='s', pad=(9, 'lato'), bg=NERO, boxed=True)
-    marchio = C(I(img('logo-benvegnu.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 156, 136), fisso=True),
+    marchio = C(I(img('logo-benvegnu-nero.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 156, 136), fisso=True),
                 dir='row', align='center', w=(30, 50, 55))
     azioni = C(
         T(f'<p><a href="{TEL_LINK}">Chiama</a></p>', style='link', color=NERO, link_color=NERO, link_hover=ROSSO,
@@ -274,17 +296,18 @@ def header():
         MENU(VOCI_MENU, colore=NERO, accento=ROSSO, fondo_menu=BIANCO, linea=LINEA, stile='nav', stile_mobile='nav_m',
              spazio=32, pad_v=8, distanza=12, align_menu='right', fisso=True, larg=(None, 40, 40)),
         B('Chiedi disponibilità', '/contatti/#modulo', variant='contorno', hide=['tablet', 'mobile'], fisso=True),
-        RAW('', css=CSS_BASE, solo_elementor=True),
         dir='row', align='center', justify='end', gap=('l', 's', 's'), w=(70, 50, 45))
     testata = C(marchio, azioni, dir='row', justify='between', align='center', gap='m', min_h=(84, 72, 64),
                 pad=(10, 'lato'), bg=BIANCO, border_bottom=1, border_color=LINEA, boxed=True)
-    return C(barra, testata, pad='0', boxed=False, tag='header', bg=BIANCO, css='bvg-testata')
+    return C(barra, testata, RAW('', css=CSS_BASE, solo_elementor=True), pad='0', boxed=False, tag='header', bg=BIANCO,
+             css='bvg-testata')
 
 
 def footer():
     def colonna(titolo, html):
         return C(T(f'<p>{titolo}</p>', style='label', color=SU_NERO2),
-                 T(html, style='dati', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2), gap='s', w=(22, 46, 100))
+                 T(html, style='dati', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, sottolinea=False), gap='s',
+                 w=(22, 46, 100))
     pagine = ''.join(f'<a href="{u}">{t}</a><br>' for t, u in VOCI_MENU)
     righe = C(
         C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 160, 150)),
@@ -298,7 +321,7 @@ def footer():
     legale = C(
         T(f'<p>© 2026 Benvegnù S.r.l. · P.IVA {PIVA} · REA {REA} · Sede legale {SEDE_LEGALE}</p>', style='small', color=SU_NERO2),
         T(f'<p><a href="/privacy/">Privacy</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/cookie/">Cookie</a>&nbsp;&nbsp;·&nbsp;&nbsp;'
-          f'<a href="{FACEBOOK}">Facebook</a></p>', style='small', color=SU_NERO2, link_color=SU_NERO2, link_hover=BIANCO,
+          f'<a href="{FACEBOOK}">Facebook</a></p>', style='small', color=SU_NERO2, link_color=SU_NERO2, link_hover=BIANCO, sottolinea=False,
           align=('right', 'right', 'left')),
         dir='row', dir_m='column', justify='between', gap='s', pad=('m', '0', '0', '0'), border_top=1, border_color=LINEA_SCURA)
     return C(righe, legale, gap='xl', pad=('xl', 'lato', 'l', 'lato'), bg=NERO, tag='footer')
@@ -311,7 +334,7 @@ def home():
     n_tomaia = FAM['filati-elastici']['n'] + FAM['modelleria-riparazione']['n']
     n_cura = sum(FAM[k]['n'] for k in ('prodotti-chimici', 'esposizione-cura', 'igiene-sicurezza', 'imballaggio'))
     apertura = hero_divisa(
-        'Forniture per calzaturifici, pelletterie e calzolai',
+        'Forniture per calzaturifici, pelletterie e\u00a0calzolai',
         'Suole e lastre Vibram, filati, utensili e prodotti per la rifinitura del fondo e della tomaia. '
         'Al banco di Vigonovo, nella Riviera del Brenta, dal 1980.',
         [B('Sfoglia il catalogo', '/catalogo/', variant='bianco', full_m=True),
@@ -503,7 +526,7 @@ def vibram():
             griglia_schede(schede), gap='l', anchor=slug,
             **({'border_top': 1, 'border_color': LINEA} if bordo else {}))
 
-    w3 = (32, 48, 47)
+    w3 = W3
     suole = blocco('Suole', 'vibram-suole', sottocategorie('vibram-suole') + '.', [
         scheda_prodotto('80075', '2600 Liverpool', 'Gumlite', 'Suola da città e tempo libero, monoblocco, disegno a onde', w=w3),
         scheda_prodotto('85109', '0056C Winter City', 'Gomma monocolore', 'Suola da città e tempo libero da uomo', w=w3),
@@ -515,7 +538,7 @@ def vibram():
     lastre = blocco('Lastre', 'vibram-lastre', sottocategorie('vibram-lastre') + '. Da tagliare a misura per suole, '
                                                  'riparazioni e costruzioni ortopediche.', [
         scheda_prodotto('82268', '7106 Crepe', 'Compatte', 'Lastra in gomma morbida', w=w3),
-        scheda_prodotto('84305', '7107 Crepe cardata', 'Compatte', 'Lastra in gomma compatta', w=w3),
+        scheda_prodotto('84952', '8281 Diflex', 'Espanse', 'Lastra per ortesi plantari', w=w3),
         scheda_prodotto('84413', '7130 New Boulder', 'Compatte', 'Lastra per arrampicata e bouldering, mescola extra morbida', w=w3),
     ])
     tacchi = blocco('Mezzesuole e tacchi', 'vibram-mezzesuole-tacchi', sottocategorie('vibram-mezzesuole-tacchi') + '.', [
@@ -790,5 +813,6 @@ PAGINE = [
      'titolo_seo': 'Novità e avvisi | Benvegnù', 'descrizione': 'Chiusure, nuovi arrivi e novità dai marchi.'},
     {'slug': '07-contatti', 'titolo': 'Contatti', 'sezioni': contatti,
      'titolo_seo': 'Contatti | Benvegnù, Via del Lavoro 48, Vigonovo',
-     'descrizione': f'{INDIRIZZO}, {CITTA}. {ORARI}. Tel. {TEL}. Richiesta di disponibilità online.'},
+     'descrizione': f'{INDIRIZZO}, {CITTA}. {ORARI}. Tel. {TEL}. Richiesta di disponibilità online.'.replace(WJ, '')
+                    .replace('\u00a0', ' ')},
 ]
