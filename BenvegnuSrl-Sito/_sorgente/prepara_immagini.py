@@ -4,14 +4,14 @@ Prepara le immagini del sito in assets/web/.
 - foto di sede e magazzino: bianco e nero neutro, curva a S leggera (neri profondi, luci pulite), ritagli per l'uso
   (hero a tutta altezza, blocchi foto del catalogo); mai ingrandite oltre 2x i pixel reali
 - foto prodotto: a colori (il colore di un filo o di una suola è informazione), 800x800 su bianco, oggetto centrato
-- logo: originale per la testata, versione bianca per le parti nere; loghi dei marchi in scala di grigi (trasparenza
-  intatta), così stanno con le foto in bianco e nero invece di fare quattro macchie di colore
+- logo: originale per la testata, versione bianca per le parti nere; loghi dei marchi a un solo colore (#111111),
+  così stanno con le foto in bianco e nero invece di fare quattro macchie di colore; logo Benvegnù piatto nero per la testata
 Uso: python3 prepara_immagini.py
 """
 import json
 import os
 
-from PIL import Image, ImageEnhance, ImageFilter, ImageOps
+from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 
 QUI = os.path.dirname(os.path.abspath(__file__))
 ASSET = os.path.join(os.path.dirname(QUI), 'assets')
@@ -128,11 +128,16 @@ def logo_colore(src, dst, colore):
     out.save(dst, optimize=True)
 
 
-def logo_grigio(src, dst):
+def logo_monocolore(src, dst, colore='#111111'):
+    """Logo di marchio a un solo colore, come nelle versioni monocromatiche ufficiali: le parti scure restano piene,
+    i fondi chiari (l'ottagono giallo Vibram) diventano trasparenti, i colori medi (blu Girba, rosso Zucchini) pieni."""
     logo = Image.open(src).convert('RGBA')
-    a = logo.getchannel('A')
-    g = ImageOps.grayscale(logo.convert('RGB'))
-    out = Image.merge('RGBA', (g, g, g, a))
+    lum = ImageOps.grayscale(logo.convert('RGB'))
+    copertura = lum.point(lambda v: int(max(0.0, min(1.0, (0.85 - v / 255.0) / 0.45)) * 255))
+    a = ImageChops.darker(copertura, logo.getchannel('A'))
+    r, g, b = Image.new('RGB', (1, 1), colore).getpixel((0, 0))
+    out = Image.new('RGBA', logo.size, (r, g, b, 0))
+    out.putalpha(a)
     out.save(dst, optimize=True)
 
 
@@ -149,8 +154,10 @@ def main():
         prodotto(os.path.join(ORIG, per_id[pid]), os.path.join(WEB, f'prodotto-{pid}.jpg'))
     Image.open(os.path.join(ORIG, 'logo-benvegnu.png')).save(os.path.join(WEB, 'logo-benvegnu.png'), optimize=True)
     logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-bianco.png'), '#FFFFFF')
+    # versione piatta nera per la testata: la sfera sfumata dell'originale stona su un sito tutto piatto
+    logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-nero.png'), '#111111')
     for m in ('vibram', 'gutermann', 'girba', 'fratelli-zucchini'):
-        logo_grigio(os.path.join(ORIG, f'marchio-{m}.png'), os.path.join(WEB, f'marchio-{m}.png'))
+        logo_monocolore(os.path.join(ORIG, f'marchio-{m}.png'), os.path.join(WEB, f'marchio-{m}.png'))
     print(len(os.listdir(WEB)), 'immagini in', WEB)
 
 
