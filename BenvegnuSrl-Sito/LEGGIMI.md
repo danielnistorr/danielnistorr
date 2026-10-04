@@ -146,7 +146,8 @@ WordPress 7.1.2 in locale (italiano), Elementor 4.3.3, Hello Elementor 3.5.1, Ul
 10. Logo **vettoriale** (oggi c'è solo un PNG 295x72) e le foto originali dei banner a risoluzione più alta.
 11. Pagine **Privacy** e **Cookie** (linkate nel footer e nel consenso del modulo) da scrivere.
 12. **"Molti dei nostri clienti producono per i marchi del lusso"** (Home, "Per chi lavoriamo"): è un'affermazione pubblica, va approvata dal cliente.
-13. **Codici nella striscia della Home** (14932, 9978, 15752, 14563, 7995, 15531): sono i codici del catalogo online; confermare che al banco si usano gli stessi.
+13. **Codici nella striscia della Home** (14932, 9978, 15752, 14563, 7995, 15531): sono i codici del catalogo online; confermare che al banco si usano gli stessi. Confermare anche le unità in mm del coltello C.Dick (270 x 20) e delle etichette (28 x 8).
+14. **Foto dell'espositore Vibram** (Home, "Vibram al banco"): l'unica disponibile è un ritaglio di 470 px, mostrato a circa 800 px; serve una foto dell'espositore di almeno 1600 px sul lato corto. Lo stesso vale per la foto del banco nella pagina Vibram.
 
 ## Foto da fare (brief breve)
 
