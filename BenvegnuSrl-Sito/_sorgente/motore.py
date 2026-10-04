@@ -134,9 +134,11 @@ def ARTICOLI(statici, numero=5, **p):
     return N('posts', statici=statici, numero=numero, **p)
 
 
-def RAW(html, css='', **p):
-    """HTML grezzo: usato solo dove la versione gratuita non ha un widget adatto."""
-    return N('html', html=html, css=css, **p)
+def RAW(html, css='', solo_elementor=False, **p):
+    """HTML grezzo: usato solo dove la versione gratuita non ha un widget adatto.
+    solo_elementor=True: serve solo nel template Elementor (per esempio lo stile del widget Articoli recenti),
+    nel fallback HTML non viene scritto."""
+    return N('html', html=html, css=css, solo_elementor=solo_elementor, **p)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -627,6 +629,8 @@ def to_html(n, css, scope, inner=False):
         css.add(sel, f'border-top:{p["weight"]}px solid {p["color"]};width:100%;height:0;')
         return f'<div class="bvg-w {c}" role="separator"></div>'
     if n.kind == 'html':
+        if p.get('solo_elementor'):
+            return ''
         if p.get('css'):
             css.d.append(p['css'])
         return f'<div class="bvg-w {c}">{p["html"]}</div>'

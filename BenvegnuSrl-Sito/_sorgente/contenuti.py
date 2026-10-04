@@ -9,7 +9,7 @@ import os
 from urllib.parse import quote
 
 import motore as m
-from motore import C, H, T, B, I, MAPPA, LINEA_H, ARTICOLI
+from motore import C, H, T, B, I, MAPPA, LINEA_H, ARTICOLI, RAW
 
 QUI = os.path.dirname(os.path.abspath(__file__))
 
@@ -573,6 +573,21 @@ ARTICOLI_ESEMPIO = [
 ]
 
 
+# Il widget gratuito "Articoli recenti" di WordPress non ha controlli di stile in Elementor e prende i colori del tema:
+# questo CSS vale solo dentro il contenitore con classe bvg-articoli.
+STILE_ARTICOLI = (
+    '.bvg-articoli h5,.bvg-articoli .widget-title,.bvg-articoli .wp-block-heading{display:none}'
+    '.bvg-articoli ul{list-style:none;margin:0;padding:0}'
+    f'.bvg-articoli li{{border-top:1px solid {m.LINEA};padding:20px 0;margin:0}}'
+    f'.bvg-articoli li:last-child{{border-bottom:1px solid {m.LINEA}}}'
+    f".bvg-articoli li a{{font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;font-size:28px;line-height:1.08;"
+    f"letter-spacing:.3px;text-transform:uppercase;color:{m.NERO};text-decoration:none}}"
+    f'.bvg-articoli li a:hover,.bvg-articoli li a:focus{{color:{m.ROSSO}}}'
+    f".bvg-articoli .post-date{{display:block;font-family:'Barlow',Arial,sans-serif;font-size:15px;color:{m.NERO_75};margin-top:6px}}"
+    '@media (max-width:767px){.bvg-articoli li a{font-size:22px}}'
+)
+
+
 def novita():
     apertura = sezione(
         intestazione('Novità e avvisi', 'Chiusure, nuovi arrivi e novità dai marchi. Ogni avviso ha una data.'),
@@ -587,7 +602,8 @@ def novita():
         pad=('0', 'lato', 'l', 'lato'))
     elenco = sezione(
         C(H('Ultime novità', 'h2'), w=(34, 100, 100)),
-        C(ARTICOLI(ARTICOLI_ESEMPIO, numero=6), w=(66, 100, 100)),
+        C(ARTICOLI(ARTICOLI_ESEMPIO, numero=6), RAW('', css=STILE_ARTICOLI, solo_elementor=True), w=(66, 100, 100),
+          css='bvg-articoli'),
         dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
     return [('apertura', apertura), ('avvisi', avvisi), ('elenco', elenco), ('banco', blocco_banco())]
 

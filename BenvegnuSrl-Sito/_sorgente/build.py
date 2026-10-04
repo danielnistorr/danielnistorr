@@ -53,6 +53,14 @@ def testi_visibili(node):
     return out
 
 
+def alt_immagini(node, out):
+    if node.kind == 'image':
+        out[node.p['src'].rsplit('/', 1)[-1]] = node.p.get('alt', '')
+    for ch in node.children:
+        alt_immagini(ch, out)
+    return out
+
+
 def immagini(node):
     out = []
     for k in ('src', 'img'):
@@ -146,6 +154,20 @@ def main():
                 txt = open(os.path.join(root, fn), encoding='utf-8').read()
                 if '—' in txt or '\\u2014' in txt:
                     problemi.append(f'{fn}: trattino lungo nel file')
+
+    # elenco dei testi alternativi: Elementor li perde all'import, vanno compilati nella libreria media
+    alts = {}
+    for nodo in (header, footer):
+        alt_immagini(nodo, alts)
+    for pg in c.PAGINE:
+        for _, sez in pg['sezioni']():
+            alt_immagini(sez, alts)
+    with open(os.path.join(dirs['elementor-json'], 'testi-alternativi-immagini.txt'), 'w', encoding='utf-8') as f:
+        f.write('Testo alternativo da compilare nella libreria media dopo l\'import (Elementor non lo importa)\n\n')
+        for nome in sorted(alts):
+            f.write(f'{nome}: {alts[nome]}\n')
+            if not alts[nome]:
+                problemi.append(f'{nome}: immagine senza testo alternativo')
 
     if problemi:
         print('PROBLEMI:')
