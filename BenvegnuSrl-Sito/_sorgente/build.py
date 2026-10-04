@@ -87,7 +87,7 @@ def main():
             f.write(m.sezione_html(sezione, scope) + '\n')
 
     # header e footer: template di tipo "section", importabili anche senza Elementor Pro
-    for nodo, slug, titolo in ((header, '00-header', 'Benvegnu - Header'), (footer, '99-footer', 'Benvegnu - Footer')):
+    for nodo, slug, titolo in ((header, '00-header', 'Benvegnu: Header'), (footer, '99-footer', 'Benvegnu: Footer')):
         with open(os.path.join(dirs['elementor-json'], f'bvg-{slug}.json'), 'w', encoding='utf-8') as f:
             f.write(m.json_dump(m.template_json(titolo, [nodo], kind='section')))
         scrivi_fallback(slug, f'01-{slug[3:]}', nodo, f'bvg-{slug[3:]}')
@@ -102,7 +102,7 @@ def main():
         for i, (nome, s) in enumerate(sezioni):
             m.assegna_id(s, f'bvg-{pg["slug"]}-{nome}')
         page_settings = {'template': 'elementor_header_footer', 'hide_title': 'yes'}
-        tpl = m.template_json(f'Benvegnu - {pg["titolo"]}', [s for _, s in sezioni], kind='page', page_settings=page_settings)
+        tpl = m.template_json(f'Benvegnu: {pg["titolo"]}', [s for _, s in sezioni], kind='page', page_settings=page_settings)
         with open(os.path.join(dirs['elementor-json'], f'bvg-{pg["slug"]}.json'), 'w', encoding='utf-8') as f:
             f.write(m.json_dump(tpl))
         blocchi = [header_html]

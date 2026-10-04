@@ -273,6 +273,9 @@ def el_settings(n, inner):
         s['editor'] = html
         _resp(s, 'align', rv(p['align']), lambda v: v)
         s['text_color'] = p['color']
+        s['link_color'] = p['link_color']
+        s['link_hover_color'] = p.get('link_hover', ROSSO if p['link_color'] != ROSSO else NERO)
+        s['paragraph_spacing'] = _slider('em', 0.9)
         _tipografia(s, p['style'])
         if p.get('max_w'):
             _resp(s, '_element_custom_width', rv(p['max_w']), lambda v: _slider('px', v))
@@ -420,8 +423,6 @@ def to_html(n, css, scope, inner=False):
             attrs += f' id="{p["anchor"]}"'
         d = ['display:flex;position:relative;box-sizing:border-box;']
         pad = pad4(p.get('pad', '0'))
-        for i, (dd, sink) in enumerate(((0, 'd'), (1, 't'), (2, 'm'))):
-            pass
         pv = [f'padding:{_px(pad[0][i])} {_px(pad[1][i])} {_px(pad[2][i])} {_px(pad[3][i])};' for i in range(3)]
         css.add(sel, pv[0], pv[1] if pv[1] != pv[0] else '', pv[2] if pv[2] != pv[1] else '')
         if 'w' in p:
@@ -453,11 +454,11 @@ def to_html(n, css, scope, inner=False):
         if tag == 'a':
             d.append('text-decoration:none;color:inherit;')
         # direzione, gap, allineamenti: sul contenitore interno se boxed
-        flex = Css()
         inner_sel = f'{sel} > .bvg-inner' if boxed else sel
         dirs = (p.get('dir', 'column'), p.get('dir_t') or p.get('dir', 'column'),
                 p.get('dir_m') or p.get('dir_t') or p.get('dir', 'column'))
         _resp_css(css, inner_sel, 'flex-direction', dirs, lambda v: v)
+        _resp_css(css, f'{inner_sel} > .bvg-w', 'width', dirs, lambda v: 'auto' if v == 'row' else '100%')
         _resp_css(css, inner_sel, 'gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
         if p.get('wrap'):
             css.add(inner_sel, 'flex-wrap:wrap;')
@@ -501,6 +502,7 @@ def to_html(n, css, scope, inner=False):
         css.add(f'{sel} p', 'margin:0 0 0.9em;')
         css.add(f'{sel} p:last-child', 'margin-bottom:0;')
         css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-underline-offset:3px;')
+        css.add(f'{sel} a:hover,{sel} a:focus', f'color:{p.get("link_hover", ROSSO if p["link_color"] != ROSSO else NERO)};')
         css.add(f'{sel} ul', 'margin:0;padding:0 0 0 1.1em;')
         css.add(f'{sel} li', 'margin:0 0 0.35em;')
         if p.get('max_w'):
