@@ -53,6 +53,19 @@ def testi_visibili(node):
     return out
 
 
+def link_annidati(node, dentro=False, dove=''):
+    """Un contenitore-link non può contenere altri link: il browser chiude il primo <a> e la griglia si rompe."""
+    out = []
+    ha_link = bool(node.p.get('link') or node.p.get('url') or node.kind in ('navmenu', 'posts', 'map')
+                   or '<a ' in str(node.p.get('html', '')) or '<a ' in str(node.p.get('text', '')))
+    if dentro and ha_link:
+        out.append(f'{dove}: link dentro un blocco già cliccabile ({node.kind})')
+    entra = dentro or (node.kind == 'container' and bool(node.p.get('link')))
+    for ch in node.children:
+        out.extend(link_annidati(ch, entra, dove))
+    return out
+
+
 def alt_immagini(node, out):
     if node.kind == 'image':
         out[node.p['src'].rsplit('/', 1)[-1]] = node.p.get('alt', '')
@@ -128,6 +141,7 @@ def main():
             scrivi_fallback(pg['slug'], f'{i:02d}-{nome}', s, scope)
             blocchi.append(m.sezione_html(s, scope, fonts=False))
             problemi += controlla_testi(' '.join(testi_visibili(s)), f'{pg["slug"]}/{nome}')
+            problemi += link_annidati(s, dove=f'{pg["slug"]}/{nome}')
             tutte_img += immagini(s)
         blocchi.append(footer_html)
         with open(os.path.join(dirs['anteprima'], f'{pg["slug"]}.html'), 'w', encoding='utf-8') as f:

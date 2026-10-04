@@ -108,6 +108,12 @@ def rv(v):
     return (v, v, v)
 
 
+def _rgba(hex_, a):
+    h = hex_.lstrip('#')
+    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    return f'rgba({r},{g},{b},{a})'
+
+
 def pad4(v):
     """Padding: scalare/nome (tutti i lati), (vert, oriz) o (top, right, bottom, left); ogni voce può essere responsive."""
     if not isinstance(v, (tuple, list)) or len(v) == 3 and all(not isinstance(x, (tuple, list, str)) for x in v):
@@ -300,6 +306,8 @@ def el_settings(n, inner):
             s['_flex_size'] = 'custom'
             s['_flex_grow'] = 1
             s['_flex_shrink'] = 1
+        elif p.get('fisso'):
+            s['_flex_size'] = 'none'   # tiene la larghezza impostata, non si restringe per far posto ai vicini
         s['flex_direction'] = p.get('dir', 'column')
         if p.get('dir_t'):
             s['flex_direction_tablet'] = p['dir_t']
@@ -339,7 +347,18 @@ def el_settings(n, inner):
             s['background_hover_background'] = 'classic'
             s['background_hover_color'] = p['bg_hover']
             s['background_hover_transition'] = _slider('px', 0.15)
-        if p.get('overlay') is not None:
+        if p.get('scrim'):
+            # velatura sfumata: trasparente in alto, scura in basso, dove sta il testo
+            da, a_alto, a_basso = p['scrim']
+            s['background_overlay_background'] = 'gradient'
+            s['background_overlay_color'] = _rgba(p.get('overlay_color', NERO), a_alto)
+            s['background_overlay_color_stop'] = _slider('%', da)
+            s['background_overlay_color_b'] = _rgba(p.get('overlay_color', NERO), a_basso)
+            s['background_overlay_color_b_stop'] = _slider('%', 100)
+            s['background_overlay_gradient_type'] = 'linear'
+            s['background_overlay_gradient_angle'] = {'unit': 'deg', 'size': 180, 'sizes': []}
+            s['background_overlay_opacity'] = _slider('px', 1)
+        elif p.get('overlay') is not None:
             s['background_overlay_background'] = 'classic'
             s['background_overlay_color'] = p.get('overlay_color', NERO)
             s['background_overlay_opacity'] = _slider('px', p['overlay'])
@@ -477,7 +496,10 @@ def el_settings(n, inner):
             'color_dropdown_item_active': p.get('accento', ROSSO), 'background_color_dropdown_item_active': p.get('fondo_menu', BIANCO),
             'padding_horizontal_dropdown_item': _slider('px', 20), 'padding_vertical_dropdown_item': _slider('px', 16),
             'distance_from_menu': _slider('px', p.get('distanza', 18)),
-            'toggle_color': p.get('colore', NERO), 'toggle_hover_color': p.get('accento', ROSSO),
+            'toggle_color': p.get('colore', NERO), 'toggle_hover_color': p.get('colore', NERO),
+            # icone semplici al posto di quelle predefinite (fa-align-justify e fa-window-close, il quadrato con la X)
+            'dropdown_icon': {'value': 'fas fa-bars', 'library': 'fa-solid'},
+            'dropdown_close_icon': {'value': 'fas fa-times', 'library': 'fa-solid'},
             'toggle_size': _slider('px', 22), 'toggle_border_width': _slider('px', 0), 'toggle_border_radius': _slider('px', 0),
             'dropdown_border_border': 'solid', 'dropdown_border_width': _dims(1, 0, 1, 0), 'dropdown_border_color': p.get('linea', LINEA),
         })
@@ -491,13 +513,19 @@ def el_settings(n, inner):
         vals = rv(p['w_px'])
         s['_element_width'] = 'initial'
         _resp(s, '_element_custom_width', vals, lambda v: _slider('px', v) if v else _slider('%', 100))
+    if p.get('larg'):
+        # larghezza in px solo su alcuni breakpoint (None = larghezza automatica del contenuto)
+        for suf, v in zip(SUFFISSI, p['larg']):
+            s['_element_width' + suf] = 'initial' if v else 'auto'
+            if v:
+                s['_element_custom_width' + suf] = _slider('px', v)
     if p.get('grow'):
         s['_flex_size'] = 'custom'
         s['_flex_grow'] = 1
         s['_flex_shrink'] = 1
     if p.get('fisso'):
         s['_flex_size'] = 'none'   # larghezza del contenuto, non si restringe
-    if p.get('css'):
+    if p.get('css') and n.kind != 'html':     # per RAW, css è il foglio di stile, non una classe
         s['_css_classes'] = p['css']
     # spaziature esterne dei widget
     if p.get('mt') or p.get('mb'):
@@ -596,7 +624,7 @@ def to_html(n, css, scope, inner=False):
             d.append('width:100%;')
         if p.get('grow'):
             d.append('flex-grow:1;')
-        d.append('flex-shrink:1;min-width:0;')
+        d.append('flex-shrink:0;' if p.get('fisso') and not p.get('grow') else 'flex-shrink:1;min-width:0;')
         if p.get('min_h'):
             _resp_css(css, sel, 'min-height', rv(p['min_h']), lambda v: f'{v}px')
         bgs = []
@@ -605,7 +633,13 @@ def to_html(n, css, scope, inner=False):
         if p.get('img'):
             d.append(f'background-image:url("{p["img"]}");background-size:cover;'
                      f'background-position:{p.get("img_pos", "center center")};background-repeat:no-repeat;')
-        if p.get('overlay') is not None:
+        if p.get('scrim'):
+            da, a_alto, a_basso = p['scrim']
+            col = p.get('overlay_color', NERO)
+            css.add(f'{sel}::before', f'content:"";position:absolute;inset:0;pointer-events:none;'
+                                      f'background:linear-gradient(180deg,{_rgba(col, a_alto)} {da}%,{_rgba(col, a_basso)} 100%);')
+            css.add(f'{sel} > *', 'position:relative;z-index:1;')
+        elif p.get('overlay') is not None:
             css.add(f'{sel}::before', f'content:"";position:absolute;inset:0;background:{p.get("overlay_color", NERO)};'
                                       f'opacity:{p["overlay"]};pointer-events:none;')
             css.add(f'{sel} > *', 'position:relative;z-index:1;')
@@ -654,12 +688,14 @@ def to_html(n, css, scope, inner=False):
             kids = f'<div class="bvg-inner">{kids}</div>'
         return f'<{tag}{attrs}>{kids}</{tag}>'
 
+    # selettore rinforzato: deve battere la regola generica ".riga > .bvg-w {width:auto}" dei contenitori in riga
+    sel_w = f'{sel}.bvg-w.bvg-w'
     if p.get('max_w') and not p.get('w_px'):
-        _resp_css(css, sel, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
+        _resp_css(css, sel_w, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
     if p.get('w_px'):
         vals = rv(p['w_px'])
-        _resp_css(css, sel, 'width', vals, lambda v: f'{v}px' if v else '100%')
-        _resp_css(css, sel, 'flex-shrink', vals, lambda v: '0' if v else '1')
+        _resp_css(css, sel_w, 'width', vals, lambda v: f'{v}px' if v else '100%')
+        _resp_css(css, sel_w, 'flex-shrink', vals, lambda v: '0' if v else '1')
     if p.get('grow'):
         css.add(sel, 'flex-grow:1;flex-shrink:1;min-width:0;')
     if p.get('fisso'):
@@ -751,7 +787,11 @@ def to_html(n, css, scope, inner=False):
             css.d.append(p['css'])
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
     if n.kind == 'shortcode':
-        return f'<div class="bvg-w {c}">{p["alternativa_html"]}</div>' if p['alternativa_html'] else ''
+        if not p['alternativa_html']:
+            return ''
+        css.add(f'{sel} a', f'color:{NERO};text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;')
+        css.add(f'{sel} a:hover,{sel} a:focus', f'color:{ROSSO};')
+        return f'<div class="bvg-w {c}">{p["alternativa_html"]}</div>'
     if n.kind == 'navmenu':
         base, sizes = _css_tipo(p.get('stile', 'nav'))
         col, acc, fondo, linea = p.get('colore', NERO), p.get('accento', ROSSO), p.get('fondo_menu', BIANCO), p.get('linea', LINEA)

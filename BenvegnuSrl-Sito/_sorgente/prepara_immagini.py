@@ -1,27 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-Prepara le immagini del sito in assets/web/ (direzione "Atelier").
-- foto di sede e magazzino: monocromia calda grafite a tre punti, grana leggera, ritagli da "tavola" (21:9, 4:3, 3:2, 4:5, 1:1);
-  mai ingrandite oltre 2x i pixel reali
-- foto prodotto: stesso tono grafite, fondo portato esattamente al colore della tessera (avorio), oggetto centrato
-- logo: originale per la testata e versione avorio per il footer scuro; loghi dei marchi invariati
+Prepara le immagini del sito in assets/web/.
+- foto di sede e magazzino: bianco e nero neutro, curva a S leggera (neri profondi, luci pulite), ritagli per l'uso
+  (hero a tutta altezza, blocchi foto del catalogo); mai ingrandite oltre 2x i pixel reali
+- foto prodotto: a colori (il colore di un filo o di una suola è informazione), 800x800 su bianco, oggetto centrato
+- logo: originale per la testata, versione bianca per le parti nere; loghi dei marchi in scala di grigi (trasparenza
+  intatta), così stanno con le foto in bianco e nero invece di fare quattro macchie di colore
 Uso: python3 prepara_immagini.py
 """
 import json
 import os
 
-from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
 QUI = os.path.dirname(os.path.abspath(__file__))
 ASSET = os.path.join(os.path.dirname(QUI), 'assets')
 ORIG = os.path.join(ASSET, 'originali')
 EST = os.path.join(ASSET, 'esterne')
 WEB = os.path.join(ASSET, 'web')
-
-# toni della foto (non usati nell'interfaccia): ombre, medi, luci
-OMBRE, MEDI, LUCI = '#1F1C1A', '#827A71', '#EDE7DE'
-TESSERA = '#FBF8F3'          # avorio: fondo delle tessere prodotto
-LOGO_FOOTER = '#EDE7DE'      # logo sul footer scuro
 
 FACCIATA = os.path.join(EST, 'google-business-proprietario-01.jpg')
 SLIDE = {
@@ -35,20 +31,20 @@ SLIDE = {
     'espositore': 'home-slider-suole-scarpe-ginnastica-vibram-benvegnu-padova-venezia-25.jpg',
 }
 
-# nome web: (sorgente, rapporto, larghezza in uscita, fuoco x, fuoco y)
-TAVOLE = {
-    'sede-21x9.jpg': (FACCIATA, '21:9', 2048, 0.50, 0.36),
-    'sede-4x3.jpg': (FACCIATA, '4:3', 1200, 0.62, 0.50),
-    'sede-3x2.jpg': (FACCIATA, '3:2', 1600, 0.55, 0.50),
-    'sede-4x5.jpg': (FACCIATA, '4:5', 1088, 0.78, 0.50),
-    'rotoli-4x5.jpg': (SLIDE['rotoli'], '4:5', 752, 0.55, 0.50),
-    'banco-3x2.jpg': (SLIDE['banco'], '3:2', 1120, 0.50, 0.50),
-    'espositore-4x5.jpg': (SLIDE['espositore'], '4:5', 752, 0.60, 0.50),
-    'corsia-4x5.jpg': (SLIDE['corsia'], '4:5', 752, 0.50, 0.50),
-    'colle-4x5.jpg': (SLIDE['colle'], '4:5', 752, 0.75, 0.50),
-    'lastre-3x2.jpg': (SLIDE['lastre'], '3:2', 1120, 0.50, 0.50),
-    'tacchi-1x1.jpg': (SLIDE['tacchi'], '1:1', 940, 0.50, 0.50),
-    'solette-1x1.jpg': (SLIDE['solette'], '1:1', 940, 0.50, 0.50),
+# nome web: (sorgente, rapporto o None per l'intera foto, larghezza in uscita, fuoco x, fuoco y)
+FOTO = {
+    'sede-hero.jpg': (FACCIATA, '9:10', 1240, 0.70, 0.45),        # metà destra della hero, a tutta altezza
+    'sede-hero-mobile.jpg': (FACCIATA, '4:3', 1200, 0.66, 0.42),
+    'sede-larga.jpg': (FACCIATA, '21:9', 2048, 0.50, 0.36),
+    'blocco-vibram.jpg': (SLIDE['banco'], '4:3', 750, 0.45, 0.55),
+    'blocco-utensili.jpg': (SLIDE['colle'], '4:3', 750, 0.62, 0.50),
+    'blocco-tomaia.jpg': (SLIDE['rotoli'], '4:3', 750, 0.50, 0.50),
+    'blocco-cura.jpg': (SLIDE['solette'], '4:3', 750, 0.60, 0.50),
+    'espositore-vibram.jpg': (SLIDE['espositore'], '1:1', 940, 0.55, 0.50),
+    'banco-suole.jpg': (SLIDE['banco'], None, 750, 0.5, 0.5),
+    'magazzino-corsia.jpg': (SLIDE['corsia'], None, 750, 0.5, 0.5),
+    'magazzino-lastre.jpg': (SLIDE['lastre'], None, 750, 0.5, 0.5),
+    'magazzino-tacchi.jpg': (SLIDE['tacchi'], None, 750, 0.5, 0.5),
 }
 
 # articoli scelti dal catalogo per rappresentare famiglie e modelli (productid del sito attuale)
@@ -65,7 +61,10 @@ PRODOTTI = [
 ]
 
 
-def ritaglia(im, rw, rh, fx=0.5, fy=0.5):
+def ritaglia(im, ratio, fx=0.5, fy=0.5):
+    if not ratio:
+        return im
+    rw, rh = map(int, ratio.split(':'))
     w, h = im.size
     target = rw / rh
     nw, nh = (int(h * target), h) if w / h > target else (w, int(w / target))
@@ -74,39 +73,44 @@ def ritaglia(im, rw, rh, fx=0.5, fy=0.5):
     return im.crop((x, y, x + nw, y + nh))
 
 
-def tono(src, dst, out_w, ratio, fx=0.5, fy=0.5, grana=7):
-    rw, rh = map(int, ratio.split(':'))
-    im = ritaglia(Image.open(src).convert('RGB'), rw, rh, fx, fy)
-    out_w = min(out_w, im.size[0] * 2)                 # mai oltre 2x i pixel reali
-    out_h = round(out_w * rh / rw)
+def bianco_nero(im):
+    g = ImageOps.grayscale(im)
+    g = ImageOps.autocontrast(g, cutoff=(0.8, 0.4))
+    lut = []
+    for i in range(256):
+        x = i / 255.0
+        y = x * x * (3 - 2 * x)          # curva a S leggera
+        y = 0.55 * y + 0.45 * x
+        lut.append(int(round(y * 255)))
+    g = g.point(lut)
+    return g.convert('RGB')
+
+
+def foto(src, dst, ratio, out_w, fx, fy):
+    im = ritaglia(Image.open(src).convert('RGB'), ratio, fx, fy)
+    out_w = min(out_w, im.size[0] * 2)
+    out_h = round(out_w * im.size[1] / im.size[0])
     up = out_w > im.size[0]
     im = im.resize((out_w, out_h), Image.LANCZOS)
     if up:
-        im = im.filter(ImageFilter.UnsharpMask(radius=1.0, percent=45, threshold=3))
-    g = ImageOps.grayscale(im)
-    g = ImageOps.autocontrast(g, cutoff=(1, 0.5))
-    g = ImageEnhance.Contrast(g).enhance(1.06)
-    g = g.point(lambda v: round(255 * (v / 255) ** 1.04))
-    col = ImageOps.colorize(g, black=OMBRE, mid=MEDI, white=LUCI, midpoint=118)
-    n = Image.effect_noise((out_w, out_h), grana if up else grana * 0.7).filter(ImageFilter.GaussianBlur(0.5))
-    col = ImageChops.add(col, Image.merge('RGB', (n, n, n)), scale=1.0, offset=-128)
-    col.save(dst, 'JPEG', quality=84, optimize=True, progressive=True)
-    return col.size
+        im = im.filter(ImageFilter.UnsharpMask(radius=1.0, percent=40, threshold=3))
+    else:
+        im = ImageEnhance.Sharpness(im).enhance(1.1)
+    bianco_nero(im).save(dst, 'JPEG', quality=84, optimize=True, progressive=True)
+    return out_w, out_h
 
 
-def prodotto(src, dst, lato=600):
+def prodotto(src, dst, lato=800):
     im = Image.open(src).convert('RGB')
-    g = ImageOps.autocontrast(ImageOps.grayscale(im), cutoff=(0.5, 0))
-    g = ImageEnhance.Contrast(g).enhance(1.04)
-    col = ImageOps.colorize(g, black=OMBRE, mid=MEDI, white=TESSERA, midpoint=120)
-    bbox = ImageOps.invert(g).point(lambda v: 255 if v > 12 else 0).getbbox() or (0, 0) + im.size
-    obj = col.crop(bbox)
-    lim = int(lato * 0.76)
+    g = ImageOps.grayscale(im)
+    bbox = ImageOps.invert(g).point(lambda v: 255 if v > 14 else 0).getbbox() or (0, 0) + im.size
+    obj = im.crop(bbox)
+    lim = int(lato * 0.78)
     scala = min(lim / obj.size[0], lim / obj.size[1])
     if max(im.size) <= 400:
-        scala = min(scala, 1.5)       # le foto Vibram sono 400x400: ingrandimento contenuto
+        scala = min(scala, 1.6)           # le foto Vibram sono 400x400: ingrandimento contenuto
     obj = obj.resize((max(1, int(obj.size[0] * scala)), max(1, int(obj.size[1] * scala))), Image.LANCZOS)
-    out = Image.new('RGB', (lato, lato), TESSERA)
+    out = Image.new('RGB', (lato, lato), 'white')
     out.paste(obj, ((lato - obj.size[0]) // 2, (lato - obj.size[1]) // 2))
     out.save(dst, 'JPEG', quality=86, optimize=True, progressive=True)
 
@@ -115,7 +119,8 @@ def logo_colore(src, dst, colore):
     logo = Image.open(src).convert('RGBA')
     r, g, b = Image.new('RGB', (1, 1), colore).getpixel((0, 0))
     out = Image.new('RGBA', logo.size, (r, g, b, 0))
-    out.putalpha(logo.getchannel('A'))
+    a = logo.getchannel('A')
+    out.putalpha(a)
     px = out.load()
     for y in range(logo.size[1]):
         for x in range(logo.size[0]):
@@ -123,22 +128,29 @@ def logo_colore(src, dst, colore):
     out.save(dst, optimize=True)
 
 
+def logo_grigio(src, dst):
+    logo = Image.open(src).convert('RGBA')
+    a = logo.getchannel('A')
+    g = ImageOps.grayscale(logo.convert('RGB'))
+    out = Image.merge('RGBA', (g, g, g, a))
+    out.save(dst, optimize=True)
+
+
 def main():
     os.makedirs(WEB, exist_ok=True)
-    # via le immagini della versione precedente: restano solo quelle usate
     for f in os.listdir(WEB):
         os.remove(os.path.join(WEB, f))
-    for nome, (src, ratio, w, fx, fy) in TAVOLE.items():
+    for nome, (src, ratio, w, fx, fy) in FOTO.items():
         src = src if os.path.isabs(src) else os.path.join(ORIG, src)
-        print(nome, tono(src, os.path.join(WEB, nome), w, ratio, fx, fy))
+        print(nome, foto(src, os.path.join(WEB, nome), ratio, w, fx, fy))
     catalogo = json.load(open(os.path.join(QUI, 'catalogo.json'), encoding='utf-8'))
     per_id = {a['id']: a['foto'] for f in catalogo['famiglie'] for s in f['sottocategorie'] for a in s['articoli'] if a['foto']}
     for pid in PRODOTTI:
         prodotto(os.path.join(ORIG, per_id[pid]), os.path.join(WEB, f'prodotto-{pid}.jpg'))
     Image.open(os.path.join(ORIG, 'logo-benvegnu.png')).save(os.path.join(WEB, 'logo-benvegnu.png'), optimize=True)
-    logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-avorio.png'), LOGO_FOOTER)
+    logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-bianco.png'), '#FFFFFF')
     for m in ('vibram', 'gutermann', 'girba', 'fratelli-zucchini'):
-        Image.open(os.path.join(ORIG, f'marchio-{m}.png')).save(os.path.join(WEB, f'marchio-{m}.png'), optimize=True)
+        logo_grigio(os.path.join(ORIG, f'marchio-{m}.png'), os.path.join(WEB, f'marchio-{m}.png'))
     print(len(os.listdir(WEB)), 'immagini in', WEB)
 
 
