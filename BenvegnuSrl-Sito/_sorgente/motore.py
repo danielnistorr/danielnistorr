@@ -1,0 +1,588 @@
+# -*- coding: utf-8 -*-
+"""
+Motore del generatore: una pagina descritta una volta sola (albero di nodi) produce
+  A) il template Elementor .json (solo widget della versione gratuita, nessun riferimento ai globali del kit)
+  B) l'HTML+CSS autosufficiente per il widget HTML di Elementor, un file per sezione
+  C) l'anteprima HTML completa della pagina.
+
+Target dichiarato: Elementor 4.3.3 (versione gratuita), contenitori flexbox, WordPress 7.1, tema Hello Elementor 3.5.
+Il formato del file è quello prodotto da "Esporta template" (chiavi content, page_settings, version, title, type).
+"""
+import hashlib
+import html as _html
+import json
+
+# ---------------------------------------------------------------------------------------------
+# Design token: palette, font, scala tipografica e spaziature. Tutto passa da qui.
+# ---------------------------------------------------------------------------------------------
+NERO = '#111111'
+BIANCO = '#FFFFFF'
+ROSSO = '#9F2E29'          # il rosso cuoio già usato dal sito attuale (site.css)
+NERO_75 = '#4A4A4A'        # nero al 75% su bianco, per i testi secondari (contrasto 8.9:1)
+BIANCO_70 = '#C9C9C9'      # bianco al 70% su nero, per i testi secondari su fondo nero (contrasto 11:1)
+LINEA = '#D6D6D6'          # nero al 16%, solo per filetti e bordi
+LINEA_SCURA = '#3A3A3A'    # filetti su fondo nero
+
+FONT_TITOLI = 'Barlow Condensed'
+FONT_TESTO = 'Barlow'
+GOOGLE_FONTS = ('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700'
+                '&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap')
+
+LARGHEZZA = 1280           # larghezza del contenuto nei contenitori "boxed"
+BP_TABLET = 1024           # breakpoint Elementor di default
+BP_MOBILE = 767
+
+# stili di testo: famiglia, peso, dimensioni (desktop, tablet, mobile), interlinea (em), spaziatura lettere (px), maiuscolo
+STILI = {
+    'display': dict(f=FONT_TITOLI, w='700', s=(96, 76, 54), lh=0.92, ls=0, up=True),
+    'h1':      dict(f=FONT_TITOLI, w='700', s=(80, 64, 46), lh=0.95, ls=0, up=True),
+    'h2':      dict(f=FONT_TITOLI, w='700', s=(60, 48, 38), lh=0.98, ls=0, up=True),
+    'h3':      dict(f=FONT_TITOLI, w='700', s=(32, 28, 26), lh=1.05, ls=0.3, up=True),
+    'h4':      dict(f=FONT_TESTO, w='700', s=(20, 19, 18), lh=1.3, ls=0, up=False),
+    'num':     dict(f=FONT_TITOLI, w='700', s=(72, 60, 52), lh=0.9, ls=0, up=False),
+    'lead':    dict(f=FONT_TESTO, w='400', s=(22, 20, 19), lh=1.5, ls=0, up=False),
+    'body':    dict(f=FONT_TESTO, w='400', s=(18, 17, 17), lh=1.6, ls=0, up=False),
+    'small':   dict(f=FONT_TESTO, w='400', s=(15, 15, 15), lh=1.55, ls=0, up=False),
+    'label':   dict(f=FONT_TESTO, w='600', s=(14, 14, 13), lh=1.3, ls=1.6, up=True),
+    'btn':     dict(f=FONT_TESTO, w='700', s=(15, 15, 15), lh=1.2, ls=1.2, up=True),
+    'nav':     dict(f=FONT_TESTO, w='600', s=(15, 15, 15), lh=1.2, ls=1.0, up=True),
+}
+
+# spaziature (desktop, tablet, mobile): una sola scala per tutto il sito
+SPAZI = {
+    'sezione': (112, 88, 64),   # padding verticale delle sezioni
+    'lato':    (40, 32, 20),    # padding laterale delle sezioni
+    'xl':      (64, 48, 40),
+    'l':       (48, 36, 28),
+    'm':       (32, 24, 20),
+    's':       (16, 16, 12),
+    'xs':      (8, 8, 8),
+    '0':       (0, 0, 0),
+}
+
+
+def rv(v):
+    """Valore responsive: accetta uno scalare, una tupla (d, t, m) o il nome di una spaziatura."""
+    if isinstance(v, str) and v in SPAZI:
+        return SPAZI[v]
+    if isinstance(v, (tuple, list)):
+        if len(v) == 3:
+            return tuple(v)
+        if len(v) == 2:
+            return (v[0], v[1], v[1])
+    return (v, v, v)
+
+
+def pad4(v):
+    """Padding: scalare/nome (tutti i lati), (vert, oriz) o (top, right, bottom, left); ogni voce può essere responsive."""
+    if not isinstance(v, (tuple, list)) or len(v) == 3 and all(not isinstance(x, (tuple, list, str)) for x in v):
+        x = rv(v)
+        return [x, x, x, x]
+    if len(v) == 2:
+        a, b = rv(v[0]), rv(v[1])
+        return [a, b, a, b]
+    return [rv(x) for x in v]
+
+
+# ---------------------------------------------------------------------------------------------
+# Nodi
+# ---------------------------------------------------------------------------------------------
+class N:
+    def __init__(self, kind, children=None, **p):
+        self.kind = kind
+        self.children = list(children or [])
+        self.p = p
+        self.id = None
+
+
+def C(*children, **p):
+    """Contenitore flexbox. Opzioni principali:
+    dir/dir_t/dir_m, gap, pad, bg, img (src), overlay (opacità 0-1), boxed (bool), w (% responsive),
+    align, justify, wrap, min_h, tag, link, anchor, border_top, border_bottom, border (colore), grow."""
+    return N('container', children, **p)
+
+
+def H(text, level='h2', style=None, color=NERO, align='left', link=None, **p):
+    return N('heading', text=text, level=level, style=style or level, color=color, align=align, link=link, **p)
+
+
+def T(html, style='body', color=NERO, align='left', link_color=None, **p):
+    return N('text', html=html, style=style, color=color, align=align, link_color=link_color or color, **p)
+
+
+def B(text, url, variant='primario', align='left', **p):
+    return N('button', text=text, url=url, variant=variant, align=align, **p)
+
+
+def I(src, alt='', height=None, fit='cover', pos='center center', **p):
+    return N('image', src=src, alt=alt, height=height, fit=fit, pos=pos, **p)
+
+
+def MAPPA(address, height=420, zoom=15, **p):
+    return N('map', address=address, height=height, zoom=zoom, **p)
+
+
+def LINEA_H(color=LINEA, weight=1, **p):
+    return N('divider', color=color, weight=weight, **p)
+
+
+def RAW(html, css='', **p):
+    """HTML grezzo: usato solo dove la versione gratuita non ha un widget adatto."""
+    return N('html', html=html, css=css, **p)
+
+
+# ---------------------------------------------------------------------------------------------
+# ID deterministici (Elementor li rigenera comunque quando inserisci il template in una pagina)
+# ---------------------------------------------------------------------------------------------
+def assegna_id(node, seed, path='0'):
+    node.id = hashlib.md5(f'{seed}/{path}'.encode()).hexdigest()[:7]
+    for i, c in enumerate(node.children):
+        assegna_id(c, seed, f'{path}.{i}')
+
+
+# ---------------------------------------------------------------------------------------------
+# A) Emettitore Elementor
+# ---------------------------------------------------------------------------------------------
+SUFFISSI = ('', '_tablet', '_mobile')
+
+
+def _slider(unit, size):
+    return {'unit': unit, 'size': size, 'sizes': []}
+
+
+def _dims(t, r, b, l, unit='px'):
+    linked = t == r == b == l
+    return {'unit': unit, 'top': str(t), 'right': str(r), 'bottom': str(b), 'left': str(l), 'isLinked': linked}
+
+
+def _resp(settings, key, values, make):
+    """Scrive key, key_tablet, key_mobile, saltando i breakpoint che ripetono il valore precedente."""
+    prev = object()
+    for suf, v in zip(SUFFISSI, values):
+        if v is None:
+            continue
+        if v != prev:
+            settings[key + suf] = make(v)
+        prev = v
+
+
+def _tipografia(settings, stile, prefix='typography'):
+    st = STILI[stile]
+    settings[f'{prefix}_typography'] = 'custom'
+    settings[f'{prefix}_font_family'] = st['f']
+    _resp(settings, f'{prefix}_font_size', st['s'], lambda v: _slider('px', v))
+    settings[f'{prefix}_font_weight'] = st['w']
+    settings[f'{prefix}_line_height'] = _slider('em', st['lh'])
+    settings[f'{prefix}_letter_spacing'] = _slider('px', st['ls'])
+    settings[f'{prefix}_text_transform'] = 'uppercase' if st['up'] else 'none'
+
+
+def _link(url):
+    ext = 'on' if url.startswith('http') and 'benvegnusrl.it' not in url else ''
+    return {'url': url, 'is_external': ext, 'nofollow': '', 'custom_attributes': ''}
+
+
+def _img(src, alt=''):
+    return {'url': src, 'id': '', 'size': '', 'alt': alt, 'source': 'library'}
+
+
+ALLINEA_FLEX = {'start': 'flex-start', 'center': 'center', 'end': 'flex-end', 'stretch': 'stretch',
+                'between': 'space-between'}
+
+
+def el_settings(n, inner):
+    p = n.p
+    s = {}
+    if n.kind == 'container':
+        boxed = p.get('boxed', not inner)
+        s['content_width'] = 'boxed' if boxed else 'full'
+        if boxed:
+            s['boxed_width'] = _slider('px', p.get('boxed_width', LARGHEZZA))
+        if 'w' in p:
+            _resp(s, 'width', rv(p['w']), lambda v: _slider('%', v))
+        if p.get('grow'):
+            s['_flex_grow'] = 1
+            s['_flex_size'] = 'grow'
+        s['flex_direction'] = p.get('dir', 'column')
+        if p.get('dir_t'):
+            s['flex_direction_tablet'] = p['dir_t']
+        if p.get('dir_m'):
+            s['flex_direction_mobile'] = p['dir_m']
+        if p.get('wrap'):
+            s['flex_wrap'] = 'wrap'
+        if p.get('justify'):
+            _resp(s, 'flex_justify_content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
+        if p.get('align'):
+            _resp(s, 'flex_align_items', rv(p['align']), lambda v: ALLINEA_FLEX[v])
+        gap = rv(p.get('gap', '0'))
+        _resp(s, 'flex_gap', gap, lambda v: {'column': str(v), 'row': str(v), 'isLinked': True, 'unit': 'px', 'size': v})
+        pad = pad4(p.get('pad', '0'))
+        for i, suf in enumerate(SUFFISSI):
+            s['padding' + suf] = _dims(pad[0][i], pad[1][i], pad[2][i], pad[3][i])
+        if p.get('min_h'):
+            mh = rv(p['min_h'])
+            _resp(s, 'min_height', mh, lambda v: _slider('px', v))
+        if p.get('bg') or p.get('img'):
+            s['background_background'] = 'classic'
+            if p.get('bg'):
+                s['background_color'] = p['bg']
+            if p.get('img'):
+                s['background_image'] = _img(p['img'], p.get('alt', ''))
+                s['background_position'] = p.get('img_pos', 'center center')
+                s['background_size'] = 'cover'
+                s['background_repeat'] = 'no-repeat'
+        if p.get('overlay') is not None:
+            s['background_overlay_background'] = 'classic'
+            s['background_overlay_color'] = p.get('overlay_color', NERO)
+            s['background_overlay_opacity'] = _slider('px', p['overlay'])
+        borders = {k: p.get(k) for k in ('border_top', 'border_bottom', 'border_left', 'border_right')}
+        if p.get('border') or any(borders.values()):
+            col = p.get('border_color', LINEA)
+            if p.get('border'):
+                t = r = b = l = p['border']
+            else:
+                t, r, b, l = (borders['border_top'] or 0, borders['border_right'] or 0,
+                              borders['border_bottom'] or 0, borders['border_left'] or 0)
+            s['border_border'] = 'solid'
+            s['border_width'] = _dims(t, r, b, l)
+            s['border_color'] = col
+        if p.get('tag'):
+            s['html_tag'] = p['tag']
+        if p.get('link'):
+            s['html_tag'] = 'a'
+            s['link'] = _link(p['link'])
+        if p.get('anchor'):
+            s['_element_id'] = p['anchor']
+        if p.get('overflow'):
+            s['overflow'] = 'hidden'
+        if p.get('css'):
+            s['css_classes'] = p['css']
+        return s
+
+    if n.kind == 'heading':
+        s['title'] = p['text']
+        s['header_size'] = p['level']
+        _resp(s, 'align', rv(p['align']), lambda v: v)
+        s['title_color'] = p['color']
+        _tipografia(s, p['style'])
+        if p.get('link'):
+            s['link'] = _link(p['link'])
+    elif n.kind == 'text':
+        # sottolineatura inline: il widget Testo non ha un controllo per text-decoration e temi come Hello la tolgono
+        html = p['html'].replace('<a href=', '<a style="text-decoration:underline;text-underline-offset:3px" href=')
+        s['editor'] = html
+        _resp(s, 'align', rv(p['align']), lambda v: v)
+        s['text_color'] = p['color']
+        _tipografia(s, p['style'])
+        if p.get('max_w'):
+            _resp(s, '_element_custom_width', rv(p['max_w']), lambda v: _slider('px', v))
+            s['_element_width'] = 'initial'
+    elif n.kind == 'button':
+        s['text'] = p['text']
+        s['link'] = _link(p['url'])
+        _resp(s, 'align', rv(p['align']), lambda v: v)
+        s['size'] = 'md'
+        _tipografia(s, 'btn')
+        v = p['variant']
+        colori = {
+            # variante: (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover)
+            'primario':      (BIANCO, ROSSO, ROSSO, BIANCO, NERO, NERO),
+            'nero':          (BIANCO, NERO, NERO, BIANCO, ROSSO, ROSSO),
+            'contorno':      (NERO, BIANCO, NERO, BIANCO, NERO, NERO),
+            'contorno-bianco': (BIANCO, NERO, BIANCO, NERO, BIANCO, BIANCO),
+            'bianco':        (NERO, BIANCO, BIANCO, BIANCO, NERO, NERO),
+        }[v]
+        s['button_text_color'] = colori[0]
+        s['background_background'] = 'classic'
+        s['background_color'] = colori[1]
+        s['border_border'] = 'solid'
+        s['border_width'] = _dims(2, 2, 2, 2)
+        s['border_color'] = colori[2]
+        s['hover_color'] = colori[3]
+        s['button_background_hover_background'] = 'classic'
+        s['button_background_hover_color'] = colori[4]
+        s['button_hover_border_color'] = colori[5]
+        s['border_radius'] = _dims(0, 0, 0, 0)
+        s['text_padding'] = _dims(18, 28, 18, 28)
+        if p.get('full_m'):
+            s['align_mobile'] = 'justify'
+    elif n.kind == 'image':
+        s['image'] = _img(p['src'], p.get('alt', ''))
+        s['image_size'] = 'full'
+        s['width'] = _slider('%', 100)
+        s['max_width'] = _slider('%', 100)
+        if p.get('height'):
+            _resp(s, 'height', rv(p['height']), lambda v: _slider('px', v))
+            s['object-fit'] = p['fit']
+            if p['fit'] == 'cover':
+                s['object-position'] = p['pos']
+        s['caption_source'] = 'none'
+        s['link_to'] = 'custom' if p.get('link') else 'none'
+        if p.get('link'):
+            s['link'] = _link(p['link'])
+    elif n.kind == 'map':
+        s['address'] = p['address']
+        s['zoom'] = _slider('px', p['zoom'])
+        _resp(s, 'height', rv(p['height']), lambda v: _slider('px', v))
+    elif n.kind == 'divider':
+        s['style'] = 'solid'
+        s['weight'] = _slider('px', p['weight'])
+        s['color'] = p['color']
+        s['width'] = _slider('%', 100)
+        s['gap'] = _slider('px', 2)
+    elif n.kind == 'html':
+        s['html'] = (f'<style>{p["css"]}</style>' if p.get('css') else '') + p['html']
+    # spaziature esterne dei widget
+    if p.get('mt') or p.get('mb'):
+        mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
+        for i, suf in enumerate(SUFFISSI):
+            s['_margin' + suf] = _dims(mt[i], 0, mb[i], 0)
+    if p.get('hide'):
+        for bp in p['hide']:
+            s[f'hide_{bp}'] = 'hidden-' + bp
+    return s
+
+
+WIDGET = {'heading': 'heading', 'text': 'text-editor', 'button': 'button', 'image': 'image',
+          'map': 'google_maps', 'divider': 'divider', 'html': 'html'}
+
+
+def to_elementor(n, inner=False):
+    if n.kind == 'container':
+        return {'id': n.id, 'elType': 'container', 'isInner': inner, 'settings': el_settings(n, inner),
+                'elements': [to_elementor(c, True) for c in n.children]}
+    return {'id': n.id, 'elType': 'widget', 'widgetType': WIDGET[n.kind], 'isInner': False,
+            'settings': el_settings(n, inner), 'elements': []}
+
+
+def template_json(title, sections, kind='page', page_settings=None):
+    return {
+        'content': [to_elementor(s) for s in sections],
+        'page_settings': page_settings if page_settings is not None else [],
+        'version': '0.4',
+        'title': title,
+        'type': kind,
+    }
+
+
+# ---------------------------------------------------------------------------------------------
+# B) Emettitore HTML (CSS con prefisso per sezione, resiste agli stili del tema)
+# ---------------------------------------------------------------------------------------------
+def _px(v):
+    return f'{v}px' if v else '0'
+
+
+def _css_tipo(stile):
+    st = STILI[stile]
+    base = (f"font-family:'{st['f']}',Arial,sans-serif;font-weight:{st['w']};font-size:{st['s'][0]}px;"
+            f"line-height:{st['lh']};letter-spacing:{st['ls']}px;text-transform:{'uppercase' if st['up'] else 'none'};")
+    return base, st['s']
+
+
+class Css:
+    def __init__(self):
+        self.d, self.t, self.m = [], [], []
+
+    def add(self, sel, d='', t='', m=''):
+        if d:
+            self.d.append(f'{sel}{{{d}}}')
+        if t:
+            self.t.append(f'{sel}{{{t}}}')
+        if m:
+            self.m.append(f'{sel}{{{m}}}')
+
+    def out(self):
+        s = ''.join(self.d)
+        if self.t:
+            s += f'@media (max-width:{BP_TABLET}px){{{"".join(self.t)}}}'
+        if self.m:
+            s += f'@media (max-width:{BP_MOBILE}px){{{"".join(self.m)}}}'
+        return s
+
+
+def _resp_css(css, sel, prop, values, fmt):
+    d, t, m = values
+    css.add(sel, f'{prop}:{fmt(d)};', f'{prop}:{fmt(t)};' if t != d else '', f'{prop}:{fmt(m)};' if m != t else '')
+
+
+def to_html(n, css, scope, inner=False):
+    p = n.p
+    c = f'b{n.id}'
+    sel = f'.{scope} .{c}'
+    if n.kind == 'container':
+        boxed = p.get('boxed', not inner)
+        tag = 'a' if p.get('link') else p.get('tag', 'div')
+        attrs = f' class="bvg-con {c}"'
+        if p.get('link'):
+            ext = p['link'].startswith('http') and 'benvegnusrl.it' not in p['link']
+            attrs += f' href="{_html.escape(p["link"])}"' + (' target="_blank" rel="noopener"' if ext else '')
+        if p.get('anchor'):
+            attrs += f' id="{p["anchor"]}"'
+        d = ['display:flex;position:relative;box-sizing:border-box;']
+        pad = pad4(p.get('pad', '0'))
+        for i, (dd, sink) in enumerate(((0, 'd'), (1, 't'), (2, 'm'))):
+            pass
+        pv = [f'padding:{_px(pad[0][i])} {_px(pad[1][i])} {_px(pad[2][i])} {_px(pad[3][i])};' for i in range(3)]
+        css.add(sel, pv[0], pv[1] if pv[1] != pv[0] else '', pv[2] if pv[2] != pv[1] else '')
+        if 'w' in p:
+            _resp_css(css, sel, 'width', rv(p['w']), lambda v: f'{v}%')
+        else:
+            d.append('width:100%;')
+        if p.get('grow'):
+            d.append('flex-grow:1;')
+        d.append('flex-shrink:1;min-width:0;')
+        if p.get('min_h'):
+            _resp_css(css, sel, 'min-height', rv(p['min_h']), lambda v: f'{v}px')
+        bgs = []
+        if p.get('bg'):
+            d.append(f'background-color:{p["bg"]};')
+        if p.get('img'):
+            d.append(f'background-image:url("{p["img"]}");background-size:cover;'
+                     f'background-position:{p.get("img_pos", "center center")};background-repeat:no-repeat;')
+        if p.get('overlay') is not None:
+            css.add(f'{sel}::before', f'content:"";position:absolute;inset:0;background:{p.get("overlay_color", NERO)};'
+                                      f'opacity:{p["overlay"]};pointer-events:none;')
+            css.add(f'{sel} > *', 'position:relative;z-index:1;')
+        if p.get('border'):
+            d.append(f'border:{p["border"]}px solid {p.get("border_color", LINEA)};')
+        for side in ('top', 'bottom', 'left', 'right'):
+            if p.get(f'border_{side}'):
+                d.append(f'border-{side}:{p[f"border_{side}"]}px solid {p.get("border_color", LINEA)};')
+        if p.get('overflow'):
+            d.append('overflow:hidden;')
+        if tag == 'a':
+            d.append('text-decoration:none;color:inherit;')
+        # direzione, gap, allineamenti: sul contenitore interno se boxed
+        flex = Css()
+        inner_sel = f'{sel} > .bvg-inner' if boxed else sel
+        dirs = (p.get('dir', 'column'), p.get('dir_t') or p.get('dir', 'column'),
+                p.get('dir_m') or p.get('dir_t') or p.get('dir', 'column'))
+        _resp_css(css, inner_sel, 'flex-direction', dirs, lambda v: v)
+        _resp_css(css, inner_sel, 'gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
+        if p.get('wrap'):
+            css.add(inner_sel, 'flex-wrap:wrap;')
+        if p.get('justify'):
+            _resp_css(css, inner_sel, 'justify-content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
+        if p.get('align'):
+            _resp_css(css, inner_sel, 'align-items', rv(p['align']), lambda v: ALLINEA_FLEX[v])
+        css.add(sel, ''.join(d))
+        kids = ''.join(to_html(k, css, scope, True) for k in n.children)
+        if boxed:
+            css.add(f'{sel} > .bvg-inner', f'display:flex;width:100%;max-width:{p.get("boxed_width", LARGHEZZA)}px;margin:0 auto;')
+            kids = f'<div class="bvg-inner">{kids}</div>'
+        return f'<{tag}{attrs}>{kids}</{tag}>'
+
+    margin = ''
+    if p.get('mt') or p.get('mb'):
+        mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
+        _resp_css(css, sel, 'margin-top', mt, _px)
+        _resp_css(css, sel, 'margin-bottom', mb, _px)
+    if p.get('hide'):
+        mq = {'desktop': f'@media (min-width:{BP_TABLET + 1}px)', 'tablet': f'@media (min-width:{BP_MOBILE + 1}px) and (max-width:{BP_TABLET}px)',
+              'mobile': f'@media (max-width:{BP_MOBILE}px)'}
+        for bp in p['hide']:
+            css.d.append(f'{mq[bp]}{{{sel}{{display:none !important;}}}}')
+
+    if n.kind == 'heading':
+        base, sizes = _css_tipo(p['style'])
+        css.add(sel, base + f'color:{p["color"]};margin:0;padding:0;')
+        _resp_css(css, sel, 'font-size', sizes, lambda v: f'{v}px')
+        _resp_css(css, sel, 'text-align', rv(p['align']), lambda v: v)
+        txt = p['text']
+        if p.get('link'):
+            css.add(f'{sel} a', 'color:inherit;text-decoration:none;')
+            txt = f'<a href="{_html.escape(p["link"])}">{txt}</a>'
+        return f'<{p["level"]} class="bvg-w {c}">{txt}</{p["level"]}>'
+    if n.kind == 'text':
+        base, sizes = _css_tipo(p['style'])
+        css.add(sel, base + f'color:{p["color"]};')
+        _resp_css(css, sel, 'font-size', sizes, lambda v: f'{v}px')
+        _resp_css(css, sel, 'text-align', rv(p['align']), lambda v: v)
+        css.add(f'{sel} p', 'margin:0 0 0.9em;')
+        css.add(f'{sel} p:last-child', 'margin-bottom:0;')
+        css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-underline-offset:3px;')
+        css.add(f'{sel} ul', 'margin:0;padding:0 0 0 1.1em;')
+        css.add(f'{sel} li', 'margin:0 0 0.35em;')
+        if p.get('max_w'):
+            _resp_css(css, sel, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
+        return f'<div class="bvg-w {c}">{p["html"]}</div>'
+    if n.kind == 'button':
+        base, _ = _css_tipo('btn')
+        col = {
+            'primario':      (BIANCO, ROSSO, ROSSO, BIANCO, NERO, NERO),
+            'nero':          (BIANCO, NERO, NERO, BIANCO, ROSSO, ROSSO),
+            'contorno':      (NERO, BIANCO, NERO, BIANCO, NERO, NERO),
+            'contorno-bianco': (BIANCO, NERO, BIANCO, NERO, BIANCO, BIANCO),
+            'bianco':        (NERO, BIANCO, BIANCO, BIANCO, NERO, NERO),
+        }[p['variant']]
+        al = rv(p['align'])
+        css.add(sel, 'display:flex;' + f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[0], "flex-start")};',
+                f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[1], "flex-start")};' if al[1] != al[0] else '',
+                f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[2], "flex-start")};' if al[2] != al[1] else '')
+        css.add(f'{sel} a', base + f'display:inline-block;color:{col[0]};background:{col[1]};border:2px solid {col[2]};'
+                f'padding:18px 28px;border-radius:0;text-decoration:none;transition:background-color .2s,color .2s,border-color .2s;')
+        css.add(f'{sel} a:hover,{sel} a:focus-visible', f'color:{col[3]};background:{col[4]};border-color:{col[5]};')
+        css.add(f'{sel} a:focus-visible', f'outline:3px solid {ROSSO};outline-offset:3px;')
+        if p.get('full_m'):
+            css.add(f'{sel} a', '', '', 'display:block;width:100%;text-align:center;box-sizing:border-box;')
+        ext = p['url'].startswith('http') and 'benvegnusrl.it' not in p['url']
+        return (f'<div class="bvg-w {c}"><a href="{_html.escape(p["url"])}"'
+                + (' target="_blank" rel="noopener"' if ext else '') + f'>{p["text"]}</a></div>')
+    if n.kind == 'image':
+        css.add(sel, 'line-height:0;')
+        css.add(f'{sel} img', 'display:block;width:100%;max-width:100%;' + (f'object-fit:{p["fit"]};object-position:{p["pos"]};' if p.get('height') else 'height:auto;'))
+        if p.get('height'):
+            _resp_css(css, f'{sel} img', 'height', rv(p['height']), lambda v: f'{v}px')
+        img = f'<img src="{_html.escape(p["src"])}" alt="{_html.escape(p.get("alt", ""))}" loading="lazy">'
+        if p.get('link'):
+            img = f'<a href="{_html.escape(p["link"])}">{img}</a>'
+        return f'<div class="bvg-w {c}">{img}</div>'
+    if n.kind == 'map':
+        hh = rv(p['height'])
+        _resp_css(css, f'{sel} iframe', 'height', hh, lambda v: f'{v}px')
+        css.add(f'{sel} iframe', 'display:block;width:100%;border:0;')
+        q = _html.escape(p['address'])
+        return (f'<div class="bvg-w {c}"><iframe loading="lazy" title="Mappa: {q}" '
+                f'src="https://maps.google.com/maps?q={q.replace(" ", "+")}&amp;t=m&amp;z={p["zoom"]}&amp;output=embed&amp;iwloc=near"></iframe></div>')
+    if n.kind == 'divider':
+        css.add(sel, f'border-top:{p["weight"]}px solid {p["color"]};width:100%;height:0;')
+        return f'<div class="bvg-w {c}" role="separator"></div>'
+    if n.kind == 'html':
+        if p.get('css'):
+            css.d.append(p['css'])
+        return f'<div class="bvg-w {c}">{p["html"]}</div>'
+    raise ValueError(n.kind)
+
+
+RESET = (
+    "{s}{{margin:0;padding:0;box-sizing:border-box;font-family:'Barlow',Arial,sans-serif;color:" + NERO + ";"
+    "-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}}"
+    "{s} *,{s} *::before,{s} *::after{{box-sizing:border-box;}}"
+    "{s} img{{border:0;border-radius:0;box-shadow:none;}}"
+    "{s} a{{transition:none;}}"
+    "{s} h1,{s} h2,{s} h3,{s} h4,{s} p{{margin-top:0;}}"
+    "{s} .bvg-w{{width:100%;max-width:100%;}}"
+)
+
+
+def sezione_html(section, scope, fonts=True):
+    """Una sezione come blocco autosufficiente: <link> ai font + <style> con prefisso + markup."""
+    css = Css()
+    body = to_html(section, css, scope)
+    style = RESET.format(s='.' + scope) + css.out()
+    head = f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">' if fonts else ''
+    return f'{head}<style>{style}</style><div class="{scope}">{body}</div>'
+
+
+def pagina_html(title, blocks, description=''):
+    return ('<!doctype html><html lang="it"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<title>{_html.escape(title)}</title>'
+            + (f'<meta name="description" content="{_html.escape(description)}">' if description else '') +
+            f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">'
+            '<style>html,body{margin:0;padding:0;background:#FFFFFF;}</style></head><body>'
+            + ''.join(blocks) + '</body></html>')
+
+
+def json_dump(obj):
+    return json.dumps(obj, ensure_ascii=False, indent=1)
