@@ -134,6 +134,18 @@ def ARTICOLI(statici, numero=5, **p):
     return N('posts', statici=statici, numero=numero, **p)
 
 
+def MENU(voci, slug='menu-principale', **p):
+    """Menu di navigazione. In Elementor è il widget "Navigation Menu" del plugin gratuito Ultimate Addons for Elementor
+    (header-footer-elementor), che legge il menu WordPress con questo slug e su tablet e mobile diventa un menu a scomparsa.
+    Nel fallback HTML: link in riga su desktop, <details> apribile su tablet e mobile (nessun JavaScript)."""
+    return N('navmenu', voci=voci, slug=slug, **p)
+
+
+def SHORTCODE(codice, alternativa_html='', **p):
+    """Widget Shortcode (gratuito). Nel fallback HTML gli shortcode non funzionano: si scrive alternativa_html."""
+    return N('shortcode', codice=codice, alternativa_html=alternativa_html, **p)
+
+
 def RAW(html, css='', solo_elementor=False, **p):
     """HTML grezzo: usato solo dove la versione gratuita non ha un widget adatto.
     solo_elementor=True: serve solo nel template Elementor (per esempio lo stile del widget Articoli recenti),
@@ -392,6 +404,31 @@ def el_settings(n, inner):
         s['html'] = (f'<style>{p["css"]}</style>' if p.get('css') else '') + p['html']
     elif n.kind == 'posts':
         s['wp'] = {'title': '', 'number': str(p['numero']), 'show_date': 'on'}
+    elif n.kind == 'shortcode':
+        s['shortcode'] = p['codice']
+    elif n.kind == 'navmenu':
+        st_nav = p.get('stile', 'nav')
+        s.update({
+            'menu': p['slug'], 'layout': 'horizontal', 'navmenu_align': p.get('align_menu', 'right'),
+            'dropdown': 'tablet', 'resp_align': 'left', 'full_width_dropdown': 'yes',
+            'pointer': 'underline', 'animation_line': 'fade',
+            'padding_horizontal_menu_item': _slider('px', p.get('pad_h', 0)),
+            'padding_vertical_menu_item': _slider('px', p.get('pad_v', 8)),
+            'menu_space_between': _slider('px', p.get('spazio', 32)),
+            'color_menu_item': p.get('colore', NERO), 'color_menu_item_hover': p.get('colore_hover', NERO),
+            'pointer_color_menu_item_hover': p.get('accento', ROSSO),
+            'color_menu_item_active': p.get('colore', NERO), 'pointer_color_menu_item_active': p.get('accento', ROSSO),
+            'color_dropdown_item': p.get('colore', NERO), 'background_color_dropdown_item': p.get('fondo_menu', BIANCO),
+            'color_dropdown_item_hover': p.get('accento', ROSSO), 'background_color_dropdown_item_hover': p.get('fondo_menu', BIANCO),
+            'color_dropdown_item_active': p.get('accento', ROSSO), 'background_color_dropdown_item_active': p.get('fondo_menu', BIANCO),
+            'padding_horizontal_dropdown_item': _slider('px', 20), 'padding_vertical_dropdown_item': _slider('px', 16),
+            'distance_from_menu': _slider('px', p.get('distanza', 18)),
+            'toggle_color': p.get('colore', NERO), 'toggle_hover_color': p.get('accento', ROSSO),
+            'toggle_size': _slider('px', 22), 'toggle_border_width': _slider('px', 0), 'toggle_border_radius': _slider('px', 0),
+            'dropdown_border_border': 'solid', 'dropdown_border_width': _dims(1, 0, 1, 0), 'dropdown_border_color': p.get('linea', LINEA),
+        })
+        _tipografia(s, st_nav, prefix='menu_typography')
+        _tipografia(s, p.get('stile_mobile', st_nav), prefix='dropdown_typography')
     # larghezza fissa in px (None = automatica) e crescita nel contenitore flex
     if p.get('w_px'):
         vals = rv(p['w_px'])
@@ -415,7 +452,8 @@ def el_settings(n, inner):
 
 
 WIDGET = {'heading': 'heading', 'text': 'text-editor', 'button': 'button', 'image': 'image',
-          'map': 'google_maps', 'divider': 'divider', 'html': 'html', 'posts': 'wp-widget-recent-posts'}
+          'map': 'google_maps', 'divider': 'divider', 'html': 'html', 'posts': 'wp-widget-recent-posts',
+          'navmenu': 'navigation-menu', 'shortcode': 'shortcode'}
 
 
 def to_elementor(n, inner=False):
@@ -634,6 +672,30 @@ def to_html(n, css, scope, inner=False):
         if p.get('css'):
             css.d.append(p['css'])
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
+    if n.kind == 'shortcode':
+        return f'<div class="bvg-w {c}">{p["alternativa_html"]}</div>' if p['alternativa_html'] else ''
+    if n.kind == 'navmenu':
+        base, sizes = _css_tipo(p.get('stile', 'nav'))
+        col, acc, fondo, linea = p.get('colore', NERO), p.get('accento', ROSSO), p.get('fondo_menu', BIANCO), p.get('linea', LINEA)
+        voci = ''.join(f'<li><a href="{_html.escape(url_finale(u))}">{t}</a></li>' for t, u in p['voci'])
+        css.add(f'{sel}', 'position:relative;')
+        css.add(f'{sel} ul', 'list-style:none;margin:0;padding:0;')
+        css.add(f'{sel} .bvg-nav-l', f'display:flex;flex-wrap:nowrap;gap:{p.get("spazio", 32)}px;justify-content:flex-end;align-items:center;',
+                'display:none;')
+        css.add(f'{sel} a', base + f'color:{col};text-decoration:none;display:inline-block;padding:{p.get("pad_v", 8)}px 0;'
+                'border-bottom:1px solid transparent;transition:border-color .2s;')
+        css.add(f'{sel} .bvg-nav-l a:hover,{sel} .bvg-nav-l a:focus-visible', f'border-bottom-color:{acc};')
+        css.add(f'{sel} details', 'display:none;', 'display:block;')
+        css.add(f'{sel} summary', base + f'list-style:none;cursor:pointer;color:{col};display:inline-flex;align-items:center;gap:10px;padding:10px 0;')
+        css.add(f'{sel} summary::-webkit-details-marker', 'display:none;')
+        css.add(f'{sel} summary .bvg-ico', f'display:inline-block;width:22px;height:14px;border-top:2px solid {col};border-bottom:2px solid {col};position:relative;')
+        css.add(f'{sel} summary .bvg-ico::after', f'content:"";position:absolute;left:0;right:0;top:4px;border-top:2px solid {col};')
+        css.add(f'{sel} details ul', f'position:absolute;left:0;right:0;top:100%;z-index:50;background:{fondo};border-top:1px solid {linea};'
+                f'border-bottom:1px solid {linea};margin-top:{p.get("distanza", 18)}px;')
+        css.add(f'{sel} details li a', 'display:block;padding:16px 20px;')
+        css.add(f'{sel} details li a:hover', f'color:{acc};')
+        return (f'<nav class="bvg-w {c}" aria-label="Menu principale"><ul class="bvg-nav-l">{voci}</ul>'
+                f'<details><summary><span class="bvg-ico" aria-hidden="true"></span>Menu</summary><ul>{voci}</ul></details></nav>')
     if n.kind == 'posts':
         base, sizes = _css_tipo('h3')
         css.add(f'{sel} ul', 'list-style:none;margin:0;padding:0;')
