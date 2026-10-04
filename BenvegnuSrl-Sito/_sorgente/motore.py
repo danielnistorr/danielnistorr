@@ -157,8 +157,9 @@ def MAPPA(address, height=420, zoom=15, **p):
     return N('map', address=address, height=height, zoom=zoom, **p)
 
 
-def LINEA_H(color=LINEA, weight=1, **p):
-    return N('divider', color=color, weight=weight, **p)
+def LINEA_H(color=None, weight=1, stile='solid', larghezza=None, **p):
+    """Divisore: stile solid, double, dashed, dotted; larghezza in px (responsive) o piena."""
+    return N('divider', color=color or LINEA, weight=weight, stile=stile, larghezza=larghezza, **p)
 
 
 def ARTICOLI(statici, numero=5, **p):
@@ -278,7 +279,7 @@ BOTTONI = {
 
 
 ALLINEA_FLEX = {'start': 'flex-start', 'center': 'center', 'end': 'flex-end', 'stretch': 'stretch',
-                'between': 'space-between'}
+                'between': 'space-between', 'baseline': 'baseline'}
 
 
 def el_settings(n, inner):
@@ -304,14 +305,21 @@ def el_settings(n, inner):
             s['flex_direction_tablet'] = p['dir_t']
         if p.get('dir_m'):
             s['flex_direction_mobile'] = p['dir_m']
-        if p.get('wrap'):
-            _resp(s, 'flex_wrap', rv(p['wrap']), lambda v: 'wrap' if v else 'nowrap')
+        # a capo esplicito su tutti i breakpoint: Elementor su mobile manda a capo per default, il fallback HTML no
+        for suf, v in zip(SUFFISSI, rv(p.get('wrap', False))):
+            s['flex_wrap' + suf] = 'wrap' if v else 'nowrap'
         if p.get('justify'):
             _resp(s, 'flex_justify_content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
         if p.get('align'):
             _resp(s, 'flex_align_items', rv(p['align']), lambda v: ALLINEA_FLEX[v])
         gap = rv(p.get('gap', '0'))
-        _resp(s, 'flex_gap', gap, lambda v: {'column': str(v), 'row': str(v), 'isLinked': True, 'unit': 'px', 'size': v})
+        if p.get('gap_r') is not None:
+            # spaziatura diversa tra righe (a capo) e colonne
+            gr = rv(p['gap_r'])
+            for i, suf in enumerate(SUFFISSI):
+                s['flex_gap' + suf] = {'column': str(gap[i]), 'row': str(gr[i]), 'isLinked': False, 'unit': 'px', 'size': gap[i]}
+        else:
+            _resp(s, 'flex_gap', gap, lambda v: {'column': str(v), 'row': str(v), 'isLinked': True, 'unit': 'px', 'size': v})
         pad = pad4(p.get('pad', '0'))
         for i, suf in enumerate(SUFFISSI):
             s['padding' + suf] = _dims(pad[0][i], pad[1][i], pad[2][i], pad[3][i])
@@ -327,6 +335,10 @@ def el_settings(n, inner):
                 s['background_position'] = p.get('img_pos', 'center center')
                 s['background_size'] = 'cover'
                 s['background_repeat'] = 'no-repeat'
+        if p.get('bg_hover'):
+            s['background_hover_background'] = 'classic'
+            s['background_hover_color'] = p['bg_hover']
+            s['background_hover_transition'] = _slider('px', 0.15)
         if p.get('overlay') is not None:
             s['background_overlay_background'] = 'classic'
             s['background_overlay_color'] = p.get('overlay_color', NERO)
@@ -372,7 +384,7 @@ def el_settings(n, inner):
             s['link'] = _link(p['link'])
     elif n.kind == 'text':
         # sottolineatura inline: il widget Testo non ha un controllo per text-decoration e temi come Hello la tolgono
-        html = p['html'].replace('<a href=', '<a style="text-decoration:underline;text-underline-offset:3px" href=')
+        html = p['html'].replace('<a href=', '<a style="text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px" href=')
         s['editor'] = html
         _resp(s, 'align', rv(p['align']), lambda v: v)
         s['text_color'] = p['color']
@@ -380,9 +392,6 @@ def el_settings(n, inner):
         s['link_hover_color'] = p.get('link_hover', ROSSO if p['link_color'] != ROSSO else NERO)
         s['paragraph_spacing'] = _slider('em', 0.9)
         _tipografia(s, p['style'])
-        if p.get('max_w'):
-            _resp(s, '_element_custom_width', rv(p['max_w']), lambda v: _slider('px', v))
-            s['_element_width'] = 'initial'
     elif n.kind == 'button':
         s['text'] = p['text']
         s['link'] = _link(p['url'])
@@ -429,11 +438,21 @@ def el_settings(n, inner):
         s['address'] = p['address']
         s['zoom'] = _slider('px', p['zoom'])
         _resp(s, 'height', rv(p['height']), lambda v: _slider('px', v))
+        if p.get('grigia'):
+            s['css_filters_css_filter'] = 'custom'
+            s['css_filters_saturate'] = _slider('px', 0)
+            s['css_filters_contrast'] = _slider('px', 95)
+            s['css_filters_brightness'] = _slider('px', 102)
     elif n.kind == 'divider':
-        s['style'] = 'solid'
+        s['style'] = p['stile']
         s['weight'] = _slider('px', p['weight'])
         s['color'] = p['color']
-        s['width'] = _slider('%', 100)
+        if p.get('larghezza'):
+            for suf, v in zip(SUFFISSI, rv(p['larghezza'])):
+                s['width' + suf] = _slider('px', v)
+            s['align'] = 'left'
+        else:
+            s['width'] = _slider('%', 100)
         s['gap'] = _slider('px', 2)
     elif n.kind == 'html':
         s['html'] = (f'<style>{p["css"]}</style>' if p.get('css') else '') + p['html']
@@ -464,7 +483,10 @@ def el_settings(n, inner):
         })
         _tipografia(s, st_nav, prefix='menu_typography')
         _tipografia(s, p.get('stile_mobile', st_nav), prefix='dropdown_typography')
-    # larghezza fissa in px (None = automatica) e crescita nel contenitore flex
+    # larghezza massima (testi e titoli) e larghezza fissa in px (None = automatica)
+    if p.get('max_w') and not p.get('w_px'):
+        _resp(s, '_element_custom_width', rv(p['max_w']), lambda v: _slider('px', v))
+        s['_element_width'] = 'initial'
     if p.get('w_px'):
         vals = rv(p['w_px'])
         s['_element_width'] = 'initial'
@@ -475,6 +497,8 @@ def el_settings(n, inner):
         s['_flex_shrink'] = 1
     if p.get('fisso'):
         s['_flex_size'] = 'none'   # larghezza del contenuto, non si restringe
+    if p.get('css'):
+        s['_css_classes'] = p['css']
     # spaziature esterne dei widget
     if p.get('mt') or p.get('mb'):
         mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
@@ -592,6 +616,11 @@ def to_html(n, css, scope, inner=False):
                 d.append(f'border-{side}:{p[f"border_{side}"]}px solid {p.get("border_color", LINEA)};')
         if p.get('overflow'):
             d.append('overflow:hidden;')
+        if p.get('bg_hover'):
+            d.append('transition:background-color .15s;')
+            css.add(f'{sel}:hover', f'background-color:{p["bg_hover"]};')
+        if p.get('hover_titolo'):
+            css.add(f'{sel}:hover h3,{sel}:hover h2', f'color:{p["hover_titolo"]} !important;')
         if tag == 'a':
             d.append('text-decoration:none;color:inherit;')
         if p.get('mt') or p.get('mb'):
@@ -608,9 +637,12 @@ def to_html(n, css, scope, inner=False):
                 p.get('dir_m') or p.get('dir_t') or p.get('dir', 'column'))
         _resp_css(css, inner_sel, 'flex-direction', dirs, lambda v: v)
         _resp_css(css, f'{inner_sel} > .bvg-w', 'width', dirs, lambda v: 'auto' if v == 'row' else '100%')
-        _resp_css(css, inner_sel, 'gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
-        if p.get('wrap'):
-            _resp_css(css, inner_sel, 'flex-wrap', rv(p['wrap']), lambda v: 'wrap' if v else 'nowrap')
+        if p.get('gap_r') is not None:
+            _resp_css(css, inner_sel, 'column-gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
+            _resp_css(css, inner_sel, 'row-gap', rv(p['gap_r']), lambda v: f'{v}px')
+        else:
+            _resp_css(css, inner_sel, 'gap', rv(p.get('gap', '0')), lambda v: f'{v}px')
+        _resp_css(css, inner_sel, 'flex-wrap', rv(p.get('wrap', False)), lambda v: 'wrap' if v else 'nowrap')
         if p.get('justify'):
             _resp_css(css, inner_sel, 'justify-content', rv(p['justify']), lambda v: ALLINEA_FLEX[v])
         if p.get('align'):
@@ -622,6 +654,8 @@ def to_html(n, css, scope, inner=False):
             kids = f'<div class="bvg-inner">{kids}</div>'
         return f'<{tag}{attrs}>{kids}</{tag}>'
 
+    if p.get('max_w') and not p.get('w_px'):
+        _resp_css(css, sel, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
     if p.get('w_px'):
         vals = rv(p['w_px'])
         _resp_css(css, sel, 'width', vals, lambda v: f'{v}px' if v else '100%')
@@ -657,12 +691,10 @@ def to_html(n, css, scope, inner=False):
         _resp_css(css, sel, 'text-align', rv(p['align']), lambda v: v)
         css.add(f'{sel} p', 'margin:0 0 0.9em;')
         css.add(f'{sel} p:last-child', 'margin-bottom:0;')
-        css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-underline-offset:3px;')
+        css.add(f'{sel} a', f'color:{p["link_color"]};text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;')
         css.add(f'{sel} a:hover,{sel} a:focus', f'color:{p.get("link_hover", ROSSO if p["link_color"] != ROSSO else NERO)};')
         css.add(f'{sel} ul', 'margin:0;padding:0 0 0 1.1em;')
         css.add(f'{sel} li', 'margin:0 0 0.35em;')
-        if p.get('max_w'):
-            _resp_css(css, sel, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
     if n.kind == 'button':
         bf = BOTTONE_FORMA
@@ -697,13 +729,21 @@ def to_html(n, css, scope, inner=False):
     if n.kind == 'map':
         hh = rv(p['height'])
         _resp_css(css, f'{sel} iframe', 'height', hh, lambda v: f'{v}px')
-        css.add(f'{sel} iframe', 'display:block;width:100%;border:0;')
+        css.add(f'{sel} iframe', 'display:block;width:100%;border:0;' + ('filter:saturate(0) contrast(.95) brightness(1.02);' if p.get('grigia') else ''))
         q = _html.escape(p['address'])
         return (f'<div class="bvg-w {c}"><iframe loading="lazy" title="Mappa: {q}" '
                 f'src="https://maps.google.com/maps?q={q.replace(" ", "+")}&amp;t=m&amp;z={p["zoom"]}&amp;output=embed&amp;iwloc=near"></iframe></div>')
     if n.kind == 'divider':
-        css.add(sel, f'border-top:{p["weight"]}px solid {p["color"]};width:100%;height:0;')
-        return f'<div class="bvg-w {c}" role="separator"></div>'
+        st = p['stile']
+        css.add(sel, f'padding:2px 0;')
+        if st == 'double':
+            linea = f'border-top:{max(1, p["weight"] // 3)}px solid {p["color"]};border-bottom:{max(1, p["weight"] // 3)}px solid {p["color"]};height:{p["weight"]}px;'
+        else:
+            linea = f'border-top:{p["weight"]}px {st} {p["color"]};height:0;'
+        css.add(f'{sel} span', 'display:block;' + linea)
+        if p.get('larghezza'):
+            _resp_css(css, f'{sel} span', 'width', rv(p['larghezza']), lambda v: f'{v}px')
+        return f'<div class="bvg-w {c}" role="separator"><span></span></div>'
     if n.kind == 'html':
         if p.get('solo_elementor'):
             return ''

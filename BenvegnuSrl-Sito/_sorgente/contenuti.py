@@ -1,17 +1,87 @@
 # -*- coding: utf-8 -*-
 """
-Contenuti del sito Benvegnù S.r.l.: testi, struttura delle pagine e immagini.
-Fonti dei testi: sito attuale (testi verbatim ripuliti dai refusi), catalogo online (874 articoli, crawl del
-4 ottobre 2026), Registro Imprese, scheda Google. Ogni dato da far confermare al cliente è elencato in LEGGIMI.md.
+Contenuti del sito Benvegnù S.r.l., direzione "Atelier": la sala campionario di una modelleria della Riviera del Brenta.
+Carta avorio, inchiostro grafite (dal logo), il rosso storico di Benvegnù solo come impuntura e segno, Bodoni Moda diritto
+per titoli e numeri, Schibsted Grotesk per testo e dati, foto come tavole numerate in passe-partout.
+Fonti dei testi: sito attuale ripulito, catalogo online (874 articoli, crawl del 4 ottobre 2026), Registro Imprese, scheda Google.
 """
 import json
 import os
 from urllib.parse import quote
 
 import motore as m
-from motore import C, H, T, B, I, MAPPA, LINEA_H, ARTICOLI, RAW
+from motore import C, H, T, B, I, MAPPA, LINEA_H, ARTICOLI, RAW, MENU, SHORTCODE
 
 QUI = os.path.dirname(os.path.abspath(__file__))
+
+# ---------------------------------------------------------------------------------------------
+# Tema "Atelier"
+# ---------------------------------------------------------------------------------------------
+CARTA = '#F5F0E8'          # fondo di tutte le pagine
+AVORIO = '#FBF8F3'         # superfici: passe-partout, tessere, pannello modulo
+PERGAMENA = '#ECE5D9'      # una sola banda per pagina
+INCHIOSTRO = '#262320'     # testo, titoli, pulsante primario, filetti forti (dal grafite del logo)
+GRAFITE = '#5E574F'        # testo secondario da 14 px in su (6,3:1 su carta)
+FILETTO = '#D8CFC2'        # filetti decorativi
+FILETTO_FORTE = '#8A8176'  # bordi dei campi del modulo (3,4:1)
+CUOIO = '#9F2E29'          # il rosso storico di Benvegnù: impuntura, hover, voce attiva, focus. Mai campiture
+CUOIO_SCURO = '#7E2621'
+NOTTE = '#262320'          # footer
+SABBIA = '#BDB3A6'         # testo secondario solo su notte (7,6:1)
+FILETTO_NOTTE = '#4A443E'
+TRASPARENTE = 'rgba(0,0,0,0)'
+
+BODONI = 'Bodoni Moda'
+GROTESK = 'Schibsted Grotesk'
+
+
+def _st(f, w, s, lh, ls=0.0, up=False):
+    return dict(f=f, w=w, s=s, lh=lh, ls=ls, up=up)
+
+
+TEMA = {
+    'nome': 'Atelier',
+    'fondo': CARTA, 'superficie': AVORIO, 'inchiostro': INCHIOSTRO, 'testo2': GRAFITE, 'accento': CUOIO,
+    'filetto': FILETTO, 'filetto_scuro': FILETTO_NOTTE, 'su_scuro2': SABBIA,
+    'scuro': NOTTE, 'su_scuro': CARTA, 'su_accento': CARTA,
+    'font_titoli': BODONI, 'font_testo': GROTESK, 'larghezza': 1200,
+    # stessa API che usa Elementor (css v1): Bodoni Moda arriva con la grandezza ottica da testo, più robusta
+    'google_fonts': 'https://fonts.googleapis.com/css?family=Bodoni+Moda:400,500%7CSchibsted+Grotesk:400,500,600&display=swap',
+    'stili': {
+        'display': _st(BODONI, '400', (64, 52, 34), 1.07, -0.6),
+        'h1':      _st(BODONI, '400', (52, 44, 32), 1.12, -0.3),
+        'h2':      _st(BODONI, '400', (40, 34, 28), 1.2),
+        'h3':      _st(BODONI, '500', (26, 24, 21), 1.24),
+        'h3s':     _st(BODONI, '500', (21, 20, 19), 1.25),
+        'num':     _st(BODONI, '400', (40, 36, 30), 1.1),
+        'cifra':   _st(BODONI, '400', (52, 44, 40), 1.08),
+        'anno':    _st(BODONI, '400', (56, 48, 40), 1.07),
+        'tel':     _st(BODONI, '400', (44, 40, 32), 1.1),
+        'frase':   _st(BODONI, '400', (30, 28, 24), 1.27),
+        'nav_m':   _st(BODONI, '400', (24, 24, 24), 1.33),
+        'label':   _st(GROTESK, '500', (12, 12, 12), 1.33, 1.68, True),
+        'lead':    _st(GROTESK, '400', (20, 19, 18), 1.6),
+        'body':    _st(GROTESK, '400', (17, 17, 16), 1.65),
+        'small':   _st(GROTESK, '400', (14, 14, 14), 1.57, 0.14),
+        'dati':    _st(GROTESK, '400', (15, 15, 15), 1.6),
+        'link':    _st(GROTESK, '500', (15, 15, 15), 1.6),
+        'nav':     _st(GROTESK, '500', (13, 13, 13), 1.23, 1.56, True),
+        'btn':     _st(GROTESK, '600', (13, 13, 13), 1.23, 1.56, True),
+    },
+    'spazi': {
+        'sezione': (128, 96, 64), 'aps': (96, 64, 48), 'apg': (64, 48, 32), 'lato': (40, 32, 20),
+        'xl': (64, 48, 32), 'l': (48, 40, 32), 'm': (32, 24, 24), 's': (24, 20, 16), 'xs': (12, 12, 12),
+        'xxs': (8, 8, 8), 'col': (32, 24, 16), '0': (0, 0, 0),
+    },
+    # (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover): in hover il pulsante cambia colore, mai trasparenza
+    'bottoni': {
+        'primario': (CARTA, INCHIOSTRO, INCHIOSTRO, CARTA, CUOIO, CUOIO),
+        'contorno': (INCHIOSTRO, TRASPARENTE, INCHIOSTRO, CARTA, INCHIOSTRO, INCHIOSTRO),
+        'su-notte': (INCHIOSTRO, CARTA, CARTA, CARTA, TRASPARENTE, CARTA),
+    },
+    'bottone': {'raggio': 0, 'pad': (16, 28, 16, 28), 'bordo': 1, 'stile': 'btn'},
+}
+m.applica_tema(TEMA)
 
 # Le immagini vengono scaricate da Elementor nella libreria media al momento dell'import.
 BASE_PREDEFINITA = 'https://raw.githubusercontent.com/danielnistorr/danielnistorr/claude/benvegnu-sito/BenvegnuSrl-Sito/assets/web/'
@@ -37,10 +107,10 @@ EMAIL = 'commerciale@benvegnusrl.it'
 PEC = 'info@pec.benvegnusrl.it'
 INDIRIZZO = 'Via del Lavoro 48'
 CITTA = '30030 Vigonovo (VE)'
-ZONA = 'Zona industriale Tombelle'
-ORARI = 'Dal lunedì al venerdì, 8:30-12:30 e 14:30-18:30'
-ORARI_BREVE = 'Lun-ven 8:30-12:30 e 14:30-18:30'
-CHIUSURA = 'Sabato e domenica chiuso'
+ZONA = 'zona industriale Tombelle'
+ORARI = 'dal lunedì al venerdì, 8:30-12:30 e 14:30-18:30'
+ORARI_BREVE = 'lun-ven 8:30-12:30 e 14:30-18:30'
+CHIUSURA = 'sabato e domenica chiuso'
 PIVA = '02326850282'
 REA = 'PD-222933'
 SEDE_LEGALE = 'Piazzetta Primo Modin 12, 35129 Padova'
@@ -48,6 +118,11 @@ MAPS = ('https://www.google.com/maps/search/?api=1&query=Benvegn%C3%B9%20Via%20d
         '&query_place_id=ChIJCYLIGbDFfkcRl5iSbyMPyb4')
 CONDIZIONI_PDF = 'https://www.benvegnusrl.it/condizioni-di-vendita-Benvegnusrl.pdf'
 FACEBOOK = 'https://www.facebook.com/benvegnusrl'
+CF7 = '[contact-form-7 title="Richiesta disponibilità"]'
+
+
+def cap(s):
+    return s[0].upper() + s[1:]
 
 
 def mailto(oggetto, corpo=''):
@@ -62,7 +137,6 @@ FAM = {f['slug']: f for f in CATALOGO['famiglie']}
 TOTALE = CATALOGO['totale']                                            # 874
 N_VIBRAM = sum(FAM[k]['n'] for k in ('vibram-suole', 'vibram-lastre', 'vibram-mezzesuole-tacchi'))   # 329
 
-# nomi delle sottocategorie ripuliti (il sito attuale usa abbreviazioni)
 NOMI_SUB = {
     'Nastri x timbr.caldo': 'nastri per timbratura a caldo', 'Pinze / Tronchesi': 'pinze e tronchesi',
     'Pennarelli e refil': 'pennarelli e refill', 'Metallizz.ritorto': 'metallizzato ritorto',
@@ -80,236 +154,365 @@ def sottocategorie(slug, con_numeri=True):
             continue
         nome = NOMI_SUB.get(s['nome'], s['nome']).strip()
         nome = nome[0].lower() + nome[1:] if not nome.startswith(('Gumlite', 'PU')) else nome
-        voci.append(f'{nome} ({s["n"]})' if con_numeri else nome)
-    testo = ', '.join(voci)
-    return testo[0].upper() + testo[1:]
+        voci.append(f'{nome} {s["n"]}' if con_numeri else nome)
+    return cap(', '.join(voci))
 
 
 # ---------------------------------------------------------------------------------------------
-# Componenti riusati
+# Componenti della direzione Atelier
 # ---------------------------------------------------------------------------------------------
-def sezione(*children, bg=m.BIANCO, pad=('sezione', 'lato'), **p):
+def sezione(*children, bg=CARTA, pad=('sezione', 'lato'), **p):
     return C(*children, bg=bg, pad=pad, tag='section', **p)
 
 
-def intestazione(titolo, lead, livello='h1', stile='h1', colore=m.NERO, colore_lead=m.NERO_75, max_w=760):
+def impuntura(**p):
+    """La cucitura: divisore tratteggiato cuoio di 56 px. Massimo due per pagina."""
+    return LINEA_H(CUOIO, 2, 'dashed', larghezza=(56, 56, 48), **p)
+
+
+def doppio(**p):
+    return LINEA_H(INCHIOSTRO, 3, 'double', **p)
+
+
+def riga_inchiostro(**p):
+    return LINEA_H(INCHIOSTRO, 1, **p)
+
+
+def link_testo(testo, url, colore=INCHIOSTRO, **p):
+    return T(f'<p><a href="{url}">{testo}</a></p>', style='link', color=colore, link_color=colore, link_hover=CUOIO, **p)
+
+
+def tav(numero):
+    return (f'<span style="font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:{INCHIOSTRO};'
+            f'margin-right:14px">Tav. {numero:02d}</span>')
+
+
+def tavola(foto, alt, numero, didascalia, w=None, hide=None, **p):
+    """Foto montata come una stampa: passe-partout avorio con filetto, didascalia numerata sotto."""
+    extra = {'w': w} if w else {}
     return C(
-        H(titolo, livello, style=stile, color=colore),
-        T(f'<p>{lead}</p>', style='lead', color=colore_lead, max_w=max_w),
-        gap='m')
+        C(I(img(foto), alt), pad=(16, 12, 10), bg=AVORIO, border=1, border_color=FILETTO),
+        T(f'<p>{tav(numero)}{didascalia}</p>', style='small', color=GRAFITE),
+        gap='xs', hide=hide, **extra, **p)
 
 
-def blocco_banco(titolo='Vieni al banco'):
-    """L'unico blocco rosso pieno della pagina: indirizzo, orari, telefono."""
+def testata(titolo, link=None, url=None):
+    figli = [H(titolo, 'h2', grow=True)]
+    if link:
+        figli.append(link_testo(f'{link}&nbsp;&nbsp;→', url, fisso=True))
+    return C(*figli, dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='s',
+             pad=('0', '0', 20, '0'), border_bottom=1, border_color=INCHIOSTRO)
+
+
+def registro_cifre(voci, colonne=4):
+    """Registro a doppio filetto con cifre in Bodoni: apre il doppio filetto, chiude la riga d'inchiostro."""
+    w = {4: (23, 48, 47.5), 3: (31, 31, 100)}[colonne]
+    celle = [C(H(c, 'p', style='cifra'), T(f'<p>{d}</p>', style='small', color=GRAFITE), gap='xxs', w=w,
+               pad=('s', '0', 's', '0')) for c, d in voci]
+    return C(doppio(), C(*celle, dir='row', wrap=True, justify='between', gap='0'), riga_inchiostro(), gap='0')
+
+
+def riga_registro(numero, titolo, testo, quantita=None, link=None, ancora=None):
+    """Riga di indice: numero Bodoni, titolo e descrizione, quantità a destra. In hover si schiarisce (avorio)."""
+    centro = C(H(titolo, 'h3'), T(f'<p>{testo}</p>', style='small', color=GRAFITE), gap='xxs', grow=True)
+    figli = [H(numero, 'p', style='num', fisso=True, w_px=(72, 64, None)), centro]
+    if quantita:
+        figli.append(T(f'<p>{quantita}</p>', style='dati', color=INCHIOSTRO, align=('right', 'right', 'left'), fisso=True))
+    extra = dict(bg_hover=AVORIO, hover_titolo=CUOIO, css='bvg-riga') if link else {}
+    return C(*figli, dir='row', dir_m='column', gap=('s', 's', 'xxs'), pad=(28, 12, 28, '0'), border_bottom=1,
+             border_color=FILETTO, align=('baseline', 'baseline', 'start'), link=link, anchor=ancora, **extra)
+
+
+def riga_dato(etichetta, valore, colore_etichetta=GRAFITE, colore=INCHIOSTRO, linea=FILETTO):
+    return C(T(f'<p>{etichetta}</p>', style='label', color=colore_etichetta, w_px=(140, 140, None)),
+             T(f'<p>{valore}</p>', style='body', color=colore, link_color=colore, link_hover=CUOIO, grow=True),
+             dir='row', dir_m='column', gap=('s', 's', 'xxs'), pad=('s', '0', 's', '0'), border_bottom=1, border_color=linea,
+             align=('baseline', 'baseline', 'start'))
+
+
+def registro_dati(righe):
+    return C(doppio(), *[riga_dato(e, v) for e, v in righe], gap='0')
+
+
+def tessera_prodotto(pid, titolo, testo, w=(31, 48, 47)):
+    return C(C(I(img(f'prodotto-{pid}.jpg'), titolo), bg=AVORIO, border=1, border_color=FILETTO),
+             H(titolo, 'h3', style='h3s', mt='xs'), T(f'<p>{testo}</p>', style='small', color=GRAFITE),
+             w=w, gap='xxs')
+
+
+def griglia_tessere(tessere):
+    return C(*tessere, dir='row', wrap=True, justify='start', gap='col', gap_r='l')
+
+
+def apertura_interna(titolo, lead, destra=None, w_testo=(56.9, 100, 100), allinea=('end', 'start', 'start')):
+    testo = C(H(titolo, 'h1'), impuntura(mt='m'), T(f'<p>{lead}</p>', style='lead', color=INCHIOSTRO, max_w=640, mt='s'),
+              w=w_testo, gap='0')
+    figli = [testo] + ([destra] if destra else [])
+    return sezione(*figli, dir='row', dir_t='column', justify='between', align=allinea, gap='xl',
+                   pad=('aps', 'lato', 'apg', 'lato'))
+
+
+def blocco_banco(pulsante=None):
+    """Il banco di Via del Lavoro 48: registro della visita e tavola della corsia. Su tutte le pagine tranne Contatti."""
+    b1 = pulsante or B('Apri in Google Maps', MAPS, variant='primario')
     return sezione(
-        C(
-            H(titolo, 'h2', color=m.BIANCO),
-            T(f'<p>{INDIRIZZO}, {ZONA.lower()}, {CITTA}. Parcheggio clienti davanti al negozio.</p>'
-              f'<p>{ORARI}. {CHIUSURA}.</p>', style='lead', color=m.BIANCO, link_color=m.BIANCO, link_hover=m.NERO),
-            w=(55, 55, 100), gap='m'),
-        C(
-            T('<p>Telefono</p>', style='label', color=m.BIANCO),
-            H(TEL, 'p', style='tel', color=m.BIANCO, link=TEL_LINK),
-            T(f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>', style='body', color=m.BIANCO, link_color=m.BIANCO, link_hover=m.NERO),
-            C(B('Apri in Google Maps', MAPS, variant='bianco'), B('Scrivi una email', mailto('Richiesta informazioni'), variant='contorno-su-rosso'),
-              dir='row', dir_m='column', gap='s', mt=('s', 's', 'xs')),
-            w=(45, 45, 100), gap='s'),
-        bg=m.ROSSO, dir='row', dir_m='column', gap='xl', align=('end', 'end', 'start'), anchor='banco')
-
-
-def riga_indice(numero, titolo, testo, destra=None, colore=m.NERO, colore_testo=m.NERO_75, colore_num=m.ROSSO,
-                linea=m.LINEA, link=None, ancora=None):
-    """Riga di un indice numerato: numero, titolo, testo, dato a destra; filetto sopra."""
-    centro = C(H(titolo, 'h3', color=colore), T(f'<p>{testo}</p>', style='body', color=colore_testo), gap='xs', grow=True)
-    figli = [H(numero, 'p', style='num_s', color=colore_num, fisso=True), centro]
-    if destra:
-        figli.append(T(f'<p>{destra}</p>', style='label', color=colore, align=('right', 'right', 'left'), fisso=True))
-    return C(*figli, dir='row', dir_m='column', gap=('l', 'm', 'xs'), pad=('m', '0', 'm', '0'), border_top=1,
-             border_color=linea, align=('start', 'start', 'start'), link=link, anchor=ancora)
-
-
-def card_prodotto(pid, titolo, testo, sotto=None):
-    return C(
-        I(img(f'prodotto-{pid}.jpg'), titolo, height=(260, 220, 120), fit='contain'),
-        C(H(titolo, 'h4', style='h4'), T(f'<p>{testo}</p>', style='small', color=m.NERO_75),
-          *([T(f'<p>{sotto}</p>', style='label', color=m.ROSSO)] if sotto else []), gap='xs'),
-        w=(33.33, 33.33, 100), gap='s', pad='m', border=1, border_color=m.LINEA)
-
-
-def griglia(*cards, per_riga=3):
-    righe = []
-    for i in range(0, len(cards), per_riga):
-        righe.append(C(*cards[i:i + per_riga], dir='row', dir_m='column', gap='m'))
-    return C(*righe, gap='m')
+        C(H('Il banco di Via del Lavoro 48', 'h2'),
+          registro_dati([
+              ('Indirizzo', f'{INDIRIZZO}, {ZONA}, {CITTA}'),
+              ('Orari', f'{cap(ORARI)}. {cap(CHIUSURA)}.'),
+              ('Telefono', f'<a href="{TEL_LINK}">{TEL}</a>'),
+              ('Email', f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
+              ('Parcheggio', 'Posti per i clienti davanti al negozio'),
+          ]),
+          C(b1, link_testo(f'Chiama {TEL}', TEL_LINK), dir='row', dir_m='column', gap='m', align=('center', 'center', 'start')),
+          w=(56.9, 100, 100), gap='m'),
+        tavola('corsia-4x5.jpg', 'Corsia del magazzino Benvegnù', 9, 'La corsia del magazzino, dietro al banco.',
+               w=(32, 50, 100)),
+        dir='row', dir_t='column', justify='between', gap='xl', anchor='banco', border_top=1, border_color=FILETTO)
 
 
 # ---------------------------------------------------------------------------------------------
-# Header e footer (template separati, tipo "section")
+# Header e footer (template separati, tipo "section"; con Ultimate Addons diventano header e footer di tutto il sito)
 # ---------------------------------------------------------------------------------------------
 VOCI_MENU = [('Catalogo', '/catalogo/'), ('Vibram', '/vibram/'), ('Marchi', '/marchi/'), ('Azienda', '/azienda/'),
              ('Novità', '/novita/'), ('Contatti', '/contatti/')]
 
+# Piccolo CSS di base, caricato una volta dall'header: niente corsivi, focus visibile, titolo della riga in cuoio in hover.
+CSS_BASE = (
+    'em,i,cite{font-style:normal}'
+    f'a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{{outline:2px solid {CUOIO};outline-offset:3px}}'
+    f'.bvg-riga:hover .elementor-heading-title{{color:{CUOIO}}}'
+    '.elementor-heading-title{font-variant-numeric:lining-nums tabular-nums}'
+)
+
 
 def header():
-    barra = C(
-        T(f'<p>Banco aperto {ORARI_BREVE.lower()}</p>', style='small', color=m.BIANCO_70, hide=['mobile']),
-        T(f'<p>{ORARI_BREVE}</p>', style='small', color=m.BIANCO_70, hide=['desktop', 'tablet']),
-        T(f'<p><a href="{TEL_LINK}">{TEL}</a><span class="sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><a href="mailto:{EMAIL}">{EMAIL}</a></p>',
-          style='small', color=m.BIANCO, link_color=m.BIANCO, link_hover=m.BIANCO_70, align='right', hide=['mobile']),
-        T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='small', color=m.BIANCO, link_color=m.BIANCO,
-          link_hover=m.BIANCO_70, align='right', hide=['desktop', 'tablet']),
-        dir='row', justify='between', align='center', gap='s', pad=(10, 'lato'), bg=m.NERO)
-    voci = [H(t, 'div', style='nav', link=u) for t, u in VOCI_MENU]
+    servizio = C(
+        T(f'<p>Banco aperto {ORARI_BREVE}</p>', style='small', color=GRAFITE),
+        T(f'<p><a href="{TEL_LINK}">{TEL}</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{MAPS}">{INDIRIZZO}, Vigonovo</a></p>',
+          style='small', color=INCHIOSTRO, link_color=INCHIOSTRO, link_hover=CUOIO, align='right'),
+        dir='row', justify='between', align='center', gap='s', pad=(8, 'lato'), bg=CARTA, border_bottom=1,
+        border_color=FILETTO, hide=['mobile'], boxed=True)
     marchio = C(
-        I(img('logo-benvegnu.png'), 'Benvegnù S.r.l.', link='/', w_img=(210, 190, 170)),
-        T('<p>Componenti per calzatura e pelletteria<br>Vigonovo, dal 1980</p>', style='label', color=m.NERO_75,
-          hide=['tablet', 'mobile']),
-        dir='row', align='center', gap='m', w=(38, 100, 100))
-    menu = C(*voci, B(f'Chiama {TEL}', TEL_LINK, variant='primario', hide=['mobile']),
-             dir='row', align='center', gap=('m', 'm', 's'), wrap=(False, True, True), justify=('end', 'start', 'start'),
-             w=(62, 100, 100))
-    testata = C(marchio, menu, dir='row', dir_t='column', justify=('between', 'start', 'start'), align=('center', 'start', 'start'),
-                gap=('m', 's', 's'), pad=(18, 'lato'), bg=m.BIANCO, border_bottom=1, border_color=m.LINEA)
-    return C(barra, testata, pad='0', boxed=False, tag='header')
+        I(img('logo-benvegnu.png'), 'Benvegnù S.r.l.', link='/', w_img=(168, 148, 128), fisso=True),
+        C(T('<p>Vigonovo<br>dal 1980</p>', style='label', color=GRAFITE), pad=('0', '0', '0', 20), border_left=1,
+          border_color=FILETTO, hide=['tablet', 'mobile'], fisso=True),
+        dir='row', align='center', gap='m', w=(34, 50, 60))
+    azioni = C(
+        link_testo('Chiama', TEL_LINK, hide=['desktop'], fisso=True),
+        MENU(VOCI_MENU, colore=INCHIOSTRO, accento=CUOIO, fondo_menu=CARTA, linea=FILETTO, stile='nav', stile_mobile='nav_m',
+             spazio=30, pad_v=8, distanza=22, align_menu='right', fisso=True),
+        B('Chiedi disponibilità', '/contatti/#modulo', variant='contorno', hide=['tablet', 'mobile'], fisso=True),
+        RAW('', css=CSS_BASE, solo_elementor=True),
+        dir='row', align='center', justify='end', gap=('m', 's', 's'), w=(66, 50, 40))
+    testata_ = C(marchio, azioni, dir='row', justify='between', align='center', gap='m', min_h=(88, 72, 64),
+                 pad=(12, 'lato'), bg=CARTA, border_bottom=1, border_color=FILETTO, boxed=True)
+    return C(servizio, testata_, pad='0', boxed=False, tag='header', bg=CARTA)
 
 
 def footer():
-    def colonna(titolo, html, w):
-        return C(T(f'<p>{titolo}</p>', style='label', color=m.BIANCO),
-                 T(html, style='small', color=m.BIANCO_70, link_color=m.BIANCO, link_hover=m.BIANCO_70), gap='s', w=w)
+    def colonna(titolo, html):
+        return C(T(f'<p>{titolo}</p>', style='label', color=SABBIA),
+                 T(html, style='dati', color=CARTA, link_color=CARTA, link_hover=SABBIA), gap='xs', w=(23, 48, 100))
     pagine = ''.join(f'<a href="{u}">{t}</a><br>' for t, u in VOCI_MENU)
-    righe = C(
-        C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(190, 180, 170)),
-          T('<p>Componenti, accessori e utensili per calzatura e pelletteria. Vigonovo, dal 1980.</p>',
-            style='small', color=m.BIANCO_70), gap='m', w=(31, 46, 100)),
-        colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{ZONA}</p><p>{ORARI_BREVE}<br>{CHIUSURA}</p>', (23, 46, 100)),
-        colonna('Contatti', f'<p>Tel. <a href="{TEL_LINK}">{TEL}</a><br>Fax {FAX}<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>'
-                            f'PEC {PEC}</p>', (23, 46, 100)),
-        colonna('Pagine', f'<p>{pagine}<a href="{CONDIZIONI_PDF}">Condizioni di vendita (PDF)</a><br>'
-                          f'<a href="{FACEBOOK}">Facebook</a></p>', (23, 46, 100)),
-        dir='row', dir_m='column', wrap=(False, True, False), gap='l')
-    legale = C(
-        T(f'<p>© 2026 Benvegnù S.r.l. · P.IVA {PIVA} · REA {REA} · Sede legale {SEDE_LEGALE}</p>', style='small', color=m.BIANCO_70),
-        T('<p><a href="/privacy/">Privacy</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/cookie/">Cookie</a></p>', style='small',
-          color=m.BIANCO_70, link_color=m.BIANCO_70, link_hover=m.BIANCO, align=('right', 'right', 'left')),
-        dir='row', dir_m='column', justify='between', gap='s', pad=('m', '0', '0', '0'), border_top=1, border_color=m.LINEA_SCURA)
-    return C(righe, legale, gap='xl', pad=(('xl'), 'lato', 'l', 'lato'), bg=m.NERO, tag='footer')
+    apertura = C(
+        I(img('logo-benvegnu-avorio.png'), 'Benvegnù S.r.l.', link='/', w_img=(148, 148, 128)),
+        H('Componenti, accessori e utensili per calzatura e pelletteria. Vigonovo, dal 1980.', 'p', style='frase', color=CARTA,
+          max_w=640),
+        gap='m', pad=('0', '0', 'xl', '0'))
+    colonne = C(
+        colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{cap(ZONA)}</p><p>{cap(ORARI_BREVE)}<br>{cap(CHIUSURA)}</p>'),
+        colonna('Contatti', f'<p>Tel. <a href="{TEL_LINK}">{TEL}</a><br>Fax {FAX}<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>PEC {PEC}</p>'),
+        colonna('Pagine', f'<p>{pagine}</p>'),
+        colonna('Documenti', f'<p><a href="{CONDIZIONI_PDF}">Condizioni di vendita (PDF)</a><br><a href="/privacy/">Privacy</a><br>'
+                             f'<a href="/cookie/">Cookie</a><br><a href="{FACEBOOK}">Facebook</a></p>'),
+        dir='row', dir_m='column', wrap=(False, True, False), justify='between', gap=('0', 'm', 'm'),
+        pad=('m', '0', '0', '0'), border_top=1, border_color=FILETTO_NOTTE)
+    legale = C(T(f'<p>© 2026 Benvegnù S.r.l. · P.IVA {PIVA} · REA {REA} · Sede legale {SEDE_LEGALE}</p>', style='small',
+                 color=SABBIA),
+               pad=('s', '0', '0', '0'), border_top=1, border_color=FILETTO_NOTTE, mt='xl')
+    return C(apertura, colonne, legale, gap='0', pad=((96, 64, 48), 'lato', (40, 32, 24), 'lato'), bg=NOTTE, tag='footer')
 
 
 # ---------------------------------------------------------------------------------------------
 # HOME
 # ---------------------------------------------------------------------------------------------
-def tile(numero, titolo, testo, conteggio, foto, alt, link):
-    """Blocco grande con foto come navigazione (dal PMF): la foto senza testo sopra, la didascalia sotto,
-    tutto il blocco è un link."""
-    return C(
-        I(img(foto), alt, height=(380, 300, 220)),
-        C(H(numero, 'p', style='num_s', color=m.ROSSO, fisso=True),
-          C(H(titolo, 'h3'), T(f'<p>{testo}</p>', style='small', color=m.NERO_75), gap='xs', grow=True),
-          T(f'<p>{conteggio}&nbsp;&nbsp;→</p>', style='label', color=m.NERO, align=('right', 'right', 'left'), fisso=True),
-          dir='row', dir_m='column', gap=('m', 's', 'xs'), pad=('m', 'm', 'm', 'm'), align='start'),
-        w=(50, 50, 100), gap='0', border=1, border_color=m.NERO, link=link, overflow=True)
-
-
 def home():
     n_tomaia = FAM['filati-elastici']['n'] + FAM['modelleria-riparazione']['n']
     n_cura = sum(FAM[k]['n'] for k in ('prodotti-chimici', 'esposizione-cura', 'igiene-sicurezza', 'imballaggio'))
     apertura = sezione(
-        C(H('Forniture per calzaturifici, pelletterie e calzolai', 'h1', style='display'),
-          T('<p>Suole e lastre Vibram, filati, utensili e prodotti per la rifinitura del fondo e della tomaia. '
-            'Al banco di Vigonovo, nella Riviera del Brenta, dal 1980.</p>', style='lead', color=m.NERO_75, max_w=620),
-          C(B('Sfoglia il catalogo', '/catalogo/', variant='primario'), B('Come arrivare', MAPS, variant='contorno'),
-            dir='row', dir_m='column', gap='s'),
-          w=(56, 56, 100), gap='l', justify='center'),
-        C(I(img('sede-esterno-verticale.jpg'), 'La sede Benvegnù in Via del Lavoro 48 a Vigonovo', height=(600, 480, 300)),
-          T('<p>La sede di Via del Lavoro 48, zona industriale Tombelle</p>', style='small', color=m.NERO_75),
-          w=(44, 44, 100), gap='s'),
-        dir='row', dir_m='column', gap='xl', align='center', pad=('l', 'lato', 'l', 'lato'))
+        C(C(H('Componenti e accessori per la calzatura, dal 1980.', 'h1', style='display'), impuntura(mt='m'),
+            w=(65.3, 100, 100), gap='0'),
+          C(T('<p>Suole e lastre Vibram, filati, adesivi, prodotti di finitura e utensili per calzaturifici, pelletterie, '
+              'modellisti e calzolai. Al banco di Vigonovo, nella Riviera del Brenta.</p>', style='lead', color=INCHIOSTRO),
+            C(B('Sfoglia il catalogo', '/catalogo/', variant='primario'), link_testo('Vieni al banco', '#banco'),
+              dir='row', wrap=True, gap='m', align='center'),
+            w=(32, 75, 100), gap='m'),
+          dir='row', dir_t='column', justify='between', align=('end', 'start', 'start'), gap='l'),
+        tavola('sede-21x9.jpg', 'La sede Benvegnù in Via del Lavoro 48 a Vigonovo', 1,
+               'La sede di Via del Lavoro 48, zona industriale di Tombelle, Vigonovo.', hide=['mobile'], mt='xl'),
+        tavola('sede-4x3.jpg', 'La sede Benvegnù in Via del Lavoro 48 a Vigonovo', 1,
+               'La sede di Via del Lavoro 48, zona industriale di Tombelle, Vigonovo.', hide=['desktop', 'tablet'], mt='xl'),
+        C(registro_cifre([('1980', 'Inizio dell’attività a Vigonovo'), (str(TOTALE), 'Articoli nel catalogo online'),
+                          (str(N_VIBRAM), 'Articoli Vibram tra suole, lastre e tacchi'), ('10', 'Famiglie di prodotto')]),
+          mt='xl'),
+        gap='0', pad=('aps', 'lato', 'sezione', 'lato'))
 
-    catalogo = sezione(
-        C(H('Il catalogo', 'h2'),
-          C(T(f'<p>{TOTALE} articoli in 10 famiglie. Quello che non trovi online, chiedilo al banco.</p>', style='body',
-              color=m.NERO_75),
-            T('<p><a href="/catalogo/">Tutte le famiglie</a>&nbsp;&nbsp;→</p>', style='label', color=m.NERO, link_color=m.NERO),
-            gap='xs', w=(40, 50, 100)),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='m'),
-        C(tile('01', 'Vibram', 'Suole, lastre, mezzesuole e tacchi', f'{N_VIBRAM} articoli', 'banco-suole-vibram.jpg',
-               'Suole Vibram sul banco del negozio', '/vibram/'),
-          tile('02', 'Utensili', 'Forbici, coltelli, lesine, punzoni, martelli, mole, strumenti di misura, torchi',
-               f'{FAM["utensili"]["n"]} articoli', 'magazzino-colle-abrasivi.jpg', 'Scaffali con mole, nastri e barattoli',
-               '/catalogo/#utensili'),
-          dir='row', dir_m='column', gap='m'),
-        C(tile('03', 'Tomaia e modelleria', 'Filati, elastici, allungaforme, alzi, materiali per modelleria e riparazione',
-               f'{n_tomaia} articoli', 'magazzino-rotoli.jpg', 'Rotoli di materiali in magazzino', '/catalogo/#filati-elastici'),
-          tile('04', 'Cura, esposizione e imballo', 'Prodotti Girba, cura della scarpa, calzanti, guanti, nastri ed etichette',
-               f'{n_cura} articoli', 'magazzino-solette-cura.jpg', 'Scaffali con solette e prodotti per la cura',
-               '/catalogo/#esposizione-cura'),
-          dir='row', dir_m='column', gap='m'),
-        gap='l', anchor='catalogo')
+    indice = sezione(
+        tavola('rotoli-4x5.jpg', 'Rotoli di rinforzi e materiali in magazzino', 2,
+               'Rotoli di rinforzi e materiali per tomaia in magazzino.', w=(32, 50, 100)),
+        C(testata('Il campionario in dieci famiglie', 'Tutte le famiglie', '/catalogo/'),
+          riga_registro('01', 'Vibram', 'Suole, lastre, mezzesuole e tacchi', f'{N_VIBRAM} articoli', link='/vibram/'),
+          riga_registro('02', 'Utensili', 'Forbici, coltelli, lesine, punzoni, mole, strumenti di misura, torchi',
+                        f'{FAM["utensili"]["n"]} articoli', link='/catalogo/#utensili'),
+          riga_registro('03', 'Tomaia e modelleria', 'Filati, elastici, allungaforme, alzi, materiali per modelleria e riparazione',
+                        f'{n_tomaia} articoli', link='/catalogo/#filati-elastici'),
+          riga_registro('04', 'Finitura, cura e imballo', 'Prodotti Girba, cura della scarpa, esposizione, guanti, nastri ed etichette',
+                        f'{n_cura} articoli', link='/catalogo/#prodotti-chimici'),
+          w=(56.9, 100, 100), gap='0'),
+        dir='row', dir_t='column', justify='between', gap='xl', pad=('0', 'lato', 'sezione', 'lato'))
 
-    righe_v = [riga_indice(f'{i:02d}', t, x, destra=f'{n} articoli', colore=m.BIANCO, colore_testo=m.BIANCO_70,
-                           colore_num=m.BIANCO, linea=m.LINEA_SCURA)
-               for i, (t, x, n) in enumerate([
-                   ('Suole', sottocategorie('vibram-suole', False), FAM['vibram-suole']['n']),
-                   ('Lastre', sottocategorie('vibram-lastre', False), FAM['vibram-lastre']['n']),
-                   ('Mezzesuole e tacchi', sottocategorie('vibram-mezzesuole-tacchi', False), FAM['vibram-mezzesuole-tacchi']['n'])], 1)]
     vibram = sezione(
-        C(H('Vibram al banco', 'h2', color=m.BIANCO),
-          T(f'<p>Siamo rivenditori autorizzati Vibram. In catalogo ci sono {N_VIBRAM} articoli Vibram, per chi produce '
-            'e per chi ripara.</p>', style='lead', color=m.BIANCO_70, max_w=560),
-          C(*righe_v, gap='0', mt=('xs', 'xs', '0')),
-          C(B('La pagina Vibram', '/vibram/', variant='primario-su-nero'), mt='xs'),
-          w=(55, 55, 100), gap='m'),
-        C(I(img('banco-espositore-vibram.jpg'), 'Espositore Vibram nel negozio Benvegnù', height=(560, 460, 260)),
-          w=(45, 45, 100)),
-        bg=m.NERO, dir='row', dir_m='column', gap='xl', align='center')
+        C(H('Vibram al banco', 'h2'), impuntura(mt='s'),
+          T('<p>Suole in gomma, Gumlite e PU, lastre compatte ed espanse, mezzesuole e tacchi. Per chi produce e per chi '
+            'ripara.</p>', style='lead', color=INCHIOSTRO, mt='s'),
+          C(registro_cifre([(str(FAM['vibram-suole']['n']), 'Suole'), (str(FAM['vibram-lastre']['n']), 'Lastre'),
+                            (str(FAM['vibram-mezzesuole-tacchi']['n']), 'Mezzesuole e tacchi')], colonne=3), mt='m'),
+          C(B('La pagina Vibram', '/vibram/', variant='primario'), mt='m'),
+          w=(40.4, 100, 100), gap='0'),
+        tavola('banco-3x2.jpg', 'Suole e mezzesuole Vibram sul banco del negozio', 3,
+               'Suole e mezzesuole Vibram sul banco del negozio.', w=(48.6, 100, 100)),
+        bg=PERGAMENA, dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='xl')
+
+    marchi_ = sezione(testata('Quattro marchi, tenuti a magazzino', 'La pagina marchi', '/marchi/'),
+                      griglia_marchi(), gap='l')
 
     passi = [
-        ('01', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Se hai il codice dell’articolo facciamo prima: '
-                                      'lo trovi nel catalogo.'),
-        ('02', 'Verifichiamo disponibilità e varianti', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello e '
+        ('01', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Con il codice dell’articolo la richiesta è più '
+                                      'rapida: lo trovi nel catalogo.'),
+        ('02', 'Verifichiamo disponibilità e varianti', 'Colore, misura, formato e quantità. Per Vibram partiamo da modello e '
                                                         'misura, per i filati da articolo e colore.'),
-        ('03', 'Ritiri al banco o spediamo', f'Ritiri in {INDIRIZZO} a Vigonovo, con parcheggio davanti al negozio. Per gli ordini '
-                                             'da lontano spediamo con corriere, alle condizioni di vendita per le aziende.'),
-        ('04', 'Per il riordino basta il codice', 'Tieni codice e colore dell’articolo: il riordino si fa con una telefonata '
-                                                  'o una email.'),
+        ('03', 'Ritiri al banco o spediamo', f'Si ritira in {INDIRIZZO} a Vigonovo, con parcheggio davanti al negozio. Per gli '
+                                             'ordini da lontano spediamo con corriere, alle condizioni di vendita per le aziende.'),
+        ('04', 'Per il riordino basta il codice', 'Codice e colore dell’articolo bastano per riordinare con una telefonata o '
+                                                  'una email.'),
     ]
     come = sezione(
         C(H('Come si lavora con noi', 'h2'),
-          T('<p>Che tu passi al banco o ordini da lontano, i passaggi sono questi.</p>', style='body', color=m.NERO_75),
-          w=(34, 100, 100), gap='m'),
-        C(*[riga_indice(n, t, x) for n, t, x in passi], C(LINEA_H(m.LINEA)), w=(66, 100, 100), gap='0'),
-        dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
+          T('<p>Che si passi al banco o si ordini da lontano, i passaggi sono questi.</p>', style='body', color=GRAFITE),
+          w=(32, 100, 100), gap='s'),
+        C(doppio(), *[riga_registro(n, t, x) for n, t, x in passi], w=(56.9, 100, 100), gap='0'),
+        dir='row', dir_t='column', justify='between', gap='xl', pad=('0', 'lato', 'sezione', 'lato'))
 
-    marchi = sezione(
-        C(H('I marchi', 'h2'),
-          T('<p>Teniamo a magazzino i prodotti di questi marchi. <a href="/marchi/">Cosa trovi di ciascuno</a>.</p>',
-            style='body', color=m.NERO_75, link_color=m.NERO),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='m'),
-        striscia_marchi(),
-        gap='l', border_top=1, border_color=m.LINEA)
-
-    return [('apertura', apertura), ('catalogo', catalogo), ('vibram', vibram), ('come-si-lavora', come),
-            ('marchi', marchi), ('banco', blocco_banco())]
+    return [('apertura', apertura), ('campionario', indice), ('vibram', vibram), ('marchi', marchi_),
+            ('come-si-lavora', come), ('banco', blocco_banco())]
 
 
 MARCHI = [
-    ('vibram', 'Vibram', 'Suole, lastre, mezzesuole e tacchi', 'https://www.vibram.com/it/'),
-    ('gutermann', 'Gütermann', 'Filati per cucire Mara e Tera', 'https://www.guetermann.com/'),
-    ('girba', 'Girba', 'Tinture e prodotti per il finissaggio', 'https://www.girbasrl.it/it/'),
-    ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi per calzatura', 'https://www.zucchini.it/it/'),
+    ('vibram', 'Vibram', 'Suole, lastre, mezzesuole e tacchi', 'https://www.vibram.com/it/', (64, 56, 44)),
+    ('gutermann', 'A&amp;E Gütermann', 'Filati per cucire Mara e Tera', 'https://www.guetermann.com/', (44, 40, 32)),
+    ('girba', 'Girba', 'Tinture, creme e prodotti di finitura', 'https://www.girbasrl.it/it/', (80, 72, 56)),
+    ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi e primer per calzatura', 'https://www.zucchini.it/it/', (80, 72, 56)),
 ]
 
 
-def striscia_marchi():
+def griglia_marchi():
     tessere = []
-    for slug, nome, famiglia, _ in MARCHI:
+    for slug, nome, famiglia, _, alt_logo in MARCHI:
         tessere.append(C(
-            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=(90, 80, 64), fit='contain'), min_h=(120, 110, 90),
-              justify='center'),
-            H(nome, 'h3', style='h4'), T(f'<p>{famiglia}</p>', style='small', color=m.NERO_75),
-            w=(25, 50, 50), gap='xs', pad=('m', 'm', 'm', 'm'), border_right=1, border_bottom=1, border_color=m.LINEA))
-    return C(*tessere, dir='row', wrap=True, gap='0', border_top=1, border_left=1, border_color=m.LINEA)
+            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=alt_logo, fit='contain'), min_h=(184, 150, 112),
+              justify='center', pad=('m', 'm', 'm', 'm'), bg=AVORIO, border=1, border_color=FILETTO),
+            T(f'<p>{nome}</p>', style='label', color=INCHIOSTRO, mt='s'),
+            T(f'<p>{famiglia}</p>', style='small', color=GRAFITE),
+            w=(22.75, 48, 47), gap='xxs'))
+    return C(*tessere, dir='row', wrap=True, justify='start', gap='col', gap_r='l')
+
+
+# ---------------------------------------------------------------------------------------------
+# AZIENDA
+# ---------------------------------------------------------------------------------------------
+def azienda():
+    apertura = apertura_interna(
+        'Dal 1980 a Vigonovo',
+        'Benvegnù vende dal 1980 componenti, accessori e materiali di finitura per calzatura e pelletteria, la piccola '
+        'utensileria e le suole e lastre in gomma Vibram. Al nostro banco si riforniscono calzaturifici, pelletterie, '
+        'modellisti e calzolai.')
+    sede = sezione(tavola('sede-3x2.jpg', 'La sede Benvegnù in Via del Lavoro 48, Vigonovo', 1,
+                          'La sede di Via del Lavoro 48, zona industriale di Tombelle.', w=(66.6, 100, 100)),
+                   align=('end', 'start', 'start'), pad=('0', 'lato', 'sezione', 'lato'))
+
+    clienti = [
+        ('Calzaturifici', 'Suole e lastre Vibram, filati, elastici, adesivi e prodotti per il fondo e la tomaia.'),
+        ('Pelletterie', 'Filati, utensili da taglio, punzoni, tinture per bordi e prodotti di finitura.'),
+        ('Modellisti e designer', 'Materiali per modelleria, alzi e allungaforme, compassi, strumenti di misura.'),
+        ('Calzolai', 'Mezzesuole, tacchi e lastre Vibram per la riparazione, colle e utensili da banco.'),
+    ]
+    chi = sezione(
+        testata('Lavoriamo per chi fa le scarpe e per chi le ripara'),
+        C(*[C(H(t, 'h3'), T(f'<p>{x}</p>', style='body', color=GRAFITE), gap='xs', w=(48, 48, 100),
+              pad=('s', '0', 's', '0'), border_top=1, border_color=INCHIOSTRO) for t, x in clienti],
+          dir='row', wrap=True, justify='between', gap='col', gap_r='m'),
+        gap='l', pad=('0', 'lato', 'sezione', 'lato'))
+
+    voci = ['Suole e lastre in gomma Vibram', 'Filo in poliestere ed elastico per tomaia', 'Lacci in poliestere e cuoio',
+            'Cerniere in nylon e metallo', 'Tallonette coprichiodi', 'Piccola utensileria per la calzatura',
+            'Nastri abrasivi e tamponi SIA', 'Pennelli a mano e spazzole', 'Chiodi e semenze in ferro e ottone',
+            'Prodotti per la rifinitura della suola e della tomaia', 'Adesivi Fratelli Zucchini', 'Rinforzi per tomaia in tessuto',
+            'Occhielli, agraffi e rivetti', 'Tessuti sintetici per la tomaia']
+    meta = (len(voci) + 1) // 2
+
+    def colonna_voci(lista):
+        return C(*[C(T(f'<p>{v}</p>', style='body'), pad=(14, '0', 14, '0'), border_bottom=1, border_color=FILETTO)
+                   for v in lista], w=(48, 48, 100), gap='0')
+    cosa = sezione(
+        C(H('Cosa vendiamo', 'h2'),
+          T(f'<p>Il catalogo online ha {TOTALE} articoli in 10 famiglie. Al banco trovi anche le famiglie che non sono online.</p>',
+            style='body', color=GRAFITE),
+          C(B('Sfoglia il catalogo', '/catalogo/', variant='contorno'), mt='xs'), w=(32, 100, 100), gap='s'),
+        C(colonna_voci(voci[:meta]), colonna_voci(voci[meta:]), dir='row', dir_m='column', justify='between', gap='0',
+          w=(56.9, 100, 100), border_top=3, border_color=INCHIOSTRO),
+        dir='row', dir_t='column', justify='between', gap='xl', pad=('0', 'lato', 'sezione', 'lato'))
+
+    tappe = [
+        ('1980', 'Inizio dell’attività', 'A Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'),
+        ('1990', 'Nasce Benvegnù S.r.l.', 'Iscrizione alla Camera di Commercio di Padova, 24 ottobre 1990.'),
+        ('2014', 'Il catalogo online', f'La sezione prodotti va online il 16 aprile 2014. Oggi: {TOTALE} articoli in 10 famiglie.'),
+        ('2026', 'Il nuovo sito', 'Catalogo, marchi e banco consultabili anche da telefono.'),
+    ]
+    righe = [C(H(a, 'p', style='anno', fisso=True, w_px=(160, 140, None)), C(H(t, 'h3'), w=(30, 30, 100)),
+               T(f'<p>{d}</p>', style='body', color=GRAFITE, grow=True),
+               dir='row', dir_m='column', gap=('m', 's', 'xxs'), pad=('m', '0', 'm', '0'), border_bottom=1, border_color=FILETTO,
+               align=('baseline', 'baseline', 'start'))
+             for a, t, d in tappe]
+    storia = sezione(
+        testata('Dal 1980'),
+        C(*righe, riga_inchiostro(), gap='0'),
+        T('<p>Le date che possiamo documentare: l’anno di inizio dichiarato dall’azienda, il Registro Imprese, il sito.</p>',
+          style='small', color=GRAFITE, mt='xs'),
+        gap='0', pad=('0', 'lato', 'sezione', 'lato'))
+
+    distretto = sezione(
+        C(H('Nel distretto della Riviera del Brenta', 'h2'), impuntura(mt='s'),
+          T('<p>Siamo a Vigonovo, uno dei comuni del distretto calzaturiero della Riviera del Brenta con Stra, Fiesso d’Artico, '
+            'Dolo e Fossò. Qui lavorano oltre 500 imprese della filiera e si producono circa 20 milioni di paia di scarpe '
+            'l’anno, molte per le case del lusso.</p><p>Per chi lavora nel distretto il banco è a pochi chilometri: si passa, '
+            'si guarda il materiale, si ritira.</p>', style='body', color=INCHIOSTRO, mt='s'),
+          T('<p>Fonti: Unioncamere, “Le calzature della Riviera del Brenta”; FashionUnited, 7 novembre 2024.</p>',
+            style='small', color=GRAFITE, mt='s'),
+          w=(48.6, 100, 100), gap='0'),
+        tavola('rotoli-4x5.jpg', 'Rotoli di materiali nel magazzino Benvegnù', 2, 'Materiali per tomaia in rotolo.',
+               w=(32, 50, 100)),
+        bg=PERGAMENA, dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='xl')
+
+    condizioni = sezione(
+        C(H('Condizioni di vendita', 'h3'),
+          T('<p>Per le aziende con partita IVA valgono le condizioni generali di vendita: ordine minimo, pagamento e '
+            'spedizione sono indicati nel documento.</p>', style='body', color=GRAFITE), w=(56.9, 100, 100), gap='xs'),
+        C(B('Scarica il PDF', CONDIZIONI_PDF, variant='contorno'), w=(32, 100, 100), align=('end', 'start', 'start')),
+        dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='m',
+        pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=FILETTO, anchor='condizioni')
+    return [('apertura', apertura), ('sede', sede), ('per-chi', chi), ('cosa-vendiamo', cosa), ('dal-1980', storia),
+            ('distretto', distretto), ('condizioni', condizioni), ('banco', blocco_banco())]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -338,230 +541,173 @@ ORDINE_FAMIGLIE = [
 
 
 def catalogo():
-    indice = ''.join(f'<a href="#{slug}">{FAM[slug]["nome"]}</a>&nbsp;&nbsp;&nbsp; ' for slug, _, _ in ORDINE_FAMIGLIE)
-    apertura = sezione(
-        intestazione('Catalogo', f'{TOTALE} articoli in 10 famiglie, dagli utensili alle suole Vibram. Per disponibilità, '
-                                 'colori e misure chiedi al banco o telefona negli orari di apertura.'),
-        T(f'<p>{indice}</p>', style='nav', color=m.NERO, link_color=m.NERO, mt=('xs', 'xs', '0')),
-        gap='l', pad=('l', 'lato', 'l', 'lato'), border_bottom=1, border_color=m.LINEA)
+    apertura = apertura_interna(
+        'Catalogo',
+        f'{TOTALE} articoli in 10 famiglie, dagli utensili alle suole Vibram. Per disponibilità, colori e misure chiedi al banco '
+        'o telefona negli orari di apertura.',
+        destra=C(H(str(TOTALE), 'p', style='cifra'), T('<p>articoli nel catalogo online</p>', style='small', color=GRAFITE),
+                 w=(32, 100, 100), gap='xxs', pad=('s', '0', 's', '0'), border_top=3, border_color=INCHIOSTRO))
+    gruppi = ORDINE_FAMIGLIE[:5], ORDINE_FAMIGLIE[5:]
+    indice_ancore = sezione(
+        C(T('<p>Indice</p>', style='label', color=GRAFITE), w=(32, 100, 100)),
+        C(*[T('<p>' + ''.join(f'<a href="#{s}">{FAM[s]["nome"]}</a><br>' for s, _, _ in grp) + '</p>', style='link',
+              color=INCHIOSTRO, link_color=INCHIOSTRO, link_hover=CUOIO, w=(48, 48, 100)) for grp in gruppi],
+          dir='row', dir_m='column', justify='between', gap='s', w=(56.9, 100, 100)),
+        dir='row', dir_t='column', justify='between', gap='s', pad=('0', 'lato', 'xl', 'lato'))
 
     righe = []
     for i, (slug, foto, esempi) in enumerate(ORDINE_FAMIGLIE, 1):
         f = FAM[slug]
-        miniatura = (I(img(f'prodotto-{foto}.jpg'), f['nome'], height=(150, 130, 120), fit='contain')
-                     if foto else C(T('<p>Prodotti Girba<br>per il finissaggio</p>', style='label', color=m.NERO_75,
-                                      align='center'), min_h=(150, 130, 120), justify='center', bg=m.BIANCO,
-                                    border=1, border_color=m.LINEA))
+        tessera = (C(I(img(f'prodotto-{foto}.jpg'), f['nome']), bg=AVORIO, border=1, border_color=FILETTO)
+                   if foto else C(T('<p>Prodotti Girba per la finitura</p>', style='label', color=GRAFITE, align='center'),
+                                  min_h=(160, 140, 120), justify='center', bg=AVORIO, border=1, border_color=FILETTO, pad='s'))
         righe.append(C(
-            H(f'{i:02d}', 'p', style='num_s', color=m.ROSSO, fisso=True),
-            C(miniatura, w=(16, 20, 40)),
+            H(f'{i:02d}', 'p', style='num', fisso=True, w_px=(72, 64, None)),
             C(H(f['nome'], 'h3'),
-              T(f'<p>{sottocategorie(slug)}</p>', style='body', color=m.NERO_75),
-              T('<p>' + '<br>'.join(esempi) + '</p>', style='small', color=m.NERO),
-              gap='s', grow=True),
-            C(T(f'<p>{f["n"]} articoli</p>', style='label', color=m.NERO, align=('right', 'right', 'left')),
-              T(f'<p><a href="{mailto("Disponibilità: " + f["nome"])}">Chiedi disponibilità</a></p>', style='small',
-                color=m.ROSSO, link_color=m.ROSSO, link_hover=m.NERO, align=('right', 'right', 'left')),
-              gap='xs', w=(18, 20, 100)),
-            dir='row', dir_m='column', gap=('l', 'm', 's'), pad=('l', '0', 'l', '0'), border_top=1, border_color=m.LINEA,
-            anchor=slug))
-    famiglie = sezione(*righe, C(LINEA_H(m.LINEA)), gap='0', pad=('m', 'lato', 'sezione', 'lato'))
+              T(f'<p>{sottocategorie(slug)}</p>', style='small', color=GRAFITE),
+              T('<p>' + '<br>'.join(esempi) + '</p>', style='dati', color=INCHIOSTRO, mt='xxs'),
+              gap='xxs', grow=True),
+            C(tessera,
+              T(f'<p>{f["n"]} articoli</p>', style='dati', color=INCHIOSTRO, mt='xxs'),
+              link_testo('Chiedi disponibilità', mailto('Disponibilità: ' + f['nome'])),
+              w=(19, 22, 60), gap='xxs'),
+            dir='row', dir_m='column', gap=('m', 's', 's'), pad=('m', '0', 'm', '0'), border_bottom=1, border_color=FILETTO,
+            align='start', anchor=slug))
+    famiglie = sezione(doppio(), *righe, riga_inchiostro(), gap='0', pad=('0', 'lato', 'sezione', 'lato'))
 
-    non_online = sezione(
-        C(H('Al banco c’è anche quello che non è online', 'h2'),
-          T(f'<p>Il catalogo online non comprende tutte le famiglie che vendiamo. Chiedi al banco o chiama il {TEL}.</p>',
-            style='body', color=m.NERO_75),
-          C(B('Chiedi un articolo', mailto('Richiesta articolo non in catalogo'), variant='primario'), mt='xs'),
-          w=(40, 100, 100), gap='m'),
-        C(T('<ul><li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-            '<li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>', style='body'),
-          T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per l’incollaggio Fratelli Zucchini</li>'
-            '<li>Rinforzi per tomaia in tessuto</li><li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per tomaia</li></ul>',
-            style='body'),
-          dir='row', dir_m='column', gap='l', w=(60, 100, 100)),
-        dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
-    return [('apertura', apertura), ('famiglie', famiglie), ('non-online', non_online), ('banco', blocco_banco())]
+    fuori = sezione(
+        C(H('Al banco c’è anche quello che non è online', 'h2'), impuntura(mt='s'),
+          T('<p>Il catalogo online non comprende tutte le famiglie che vendiamo. Chiedi al banco o al telefono.</p>',
+            style='body', color=INCHIOSTRO, mt='s'),
+          C(*[C(T(f'<p>{v}</p>', style='body'), pad=(12, '0', 12, '0'), border_bottom=1, border_color=FILETTO) for v in [
+              'Lacci in poliestere e cuoio', 'Cerniere in nylon e metallo', 'Chiodi e semenze in ferro e ottone',
+              'Occhielli, agraffi e rivetti', 'Rinforzi e tessuti per tomaia', 'Adesivi Fratelli Zucchini',
+              'Nastri abrasivi e tamponi SIA']], gap='0', mt='m', border_top=1, border_color=INCHIOSTRO),
+          C(B(f'Chiama {TEL}', TEL_LINK, variant='primario'), mt='m'),
+          w=(48.6, 100, 100), gap='0'),
+        tavola('lastre-3x2.jpg', 'Scaffali di lastre nel magazzino', 4, 'Lastre per suole e sottopiedi in magazzino.',
+               w=(40.4, 100, 100)),
+        bg=PERGAMENA, dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='xl')
+
+    condizioni = sezione(
+        C(H('Condizioni per le aziende', 'h2'), T('<p>Dalle condizioni generali di vendita pubblicate.</p>', style='body',
+                                                  color=GRAFITE), w=(32, 100, 100), gap='s'),
+        C(registro_dati([
+            ('Clienti', 'Aziende e titolari di partita IVA, con fattura, per gli ordini a distanza'),
+            ('Ordine minimo', '200 euro di merce, IVA esclusa'),
+            ('Pagamento', 'Bonifico anticipato'),
+            ('Evasione', 'Entro 7 giorni lavorativi dal pagamento, per il materiale a magazzino'),
+            ('Trasporto', 'Corriere Benvegnù oppure corriere del cliente in porto assegnato'),
+          ]), link_testo('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF, mt='s'), w=(56.9, 100, 100), gap='0'),
+        dir='row', dir_t='column', justify='between', gap='xl')
+    return [('apertura', apertura), ('indice', indice_ancore), ('famiglie', famiglie), ('fuori-catalogo', fuori),
+            ('condizioni', condizioni), ('banco', blocco_banco())]
 
 
 # ---------------------------------------------------------------------------------------------
 # VIBRAM
 # ---------------------------------------------------------------------------------------------
 def vibram():
-    apertura = sezione(
-        C(H('Vibram a Vigonovo', 'h1', color=m.BIANCO),
-          T(f'<p>Benvegnù è rivenditore autorizzato Vibram. Nel catalogo ci sono {N_VIBRAM} articoli: suole da città, '
-            'montagna e lavoro, lastre compatte ed espanse, mezzesuole e tacchi. Servono a chi produce e a chi ripara.</p>',
-            style='lead', color=m.BIANCO_70, max_w=600),
-          C(B('Chiedi disponibilità', mailto('Disponibilità Vibram', 'Modello:\nMisura:\nColore:\nQuantità:\n'),
-              variant='primario-su-nero'),
-            B(f'Chiama {TEL}', TEL_LINK, variant='contorno-bianco'), dir='row', dir_m='column', gap='s'),
-          w=(52, 52, 100), gap='l'),
-        C(I(img('banco-suole-vibram.jpg'), 'Suole e mezzesuole Vibram sul banco', height=(520, 420, 260)), w=(48, 48, 100)),
-        bg=m.NERO, dir='row', dir_m='column', gap='xl', align='center', pad=('sezione', 'lato'))
+    apertura = apertura_interna(
+        'Vibram a Vigonovo',
+        f'Benvegnù è rivenditore autorizzato Vibram. Nel catalogo ci sono {N_VIBRAM} articoli: suole da città, montagna e lavoro, '
+        'lastre compatte ed espanse, mezzesuole e tacchi. Servono a chi produce e a chi ripara.',
+        destra=C(C(I(img('marchio-vibram.png'), 'Logo Vibram', height=(64, 56, 48), fit='contain'), min_h=(150, 130, 110),
+                   justify='center', pad='m', bg=AVORIO, border=1, border_color=FILETTO),
+                 tavola('espositore-4x5.jpg', 'Espositore Vibram nel negozio Benvegnù', 1, 'L’espositore Vibram al banco.'),
+                 w=(32, 60, 100), gap='m'),
+        allinea=('center', 'start', 'start'))
+    cifre = sezione(registro_cifre([(str(N_VIBRAM), 'Articoli Vibram nel catalogo'), (str(FAM['vibram-suole']['n']), 'Suole'),
+                                    (str(FAM['vibram-lastre']['n']), 'Lastre'),
+                                    (str(FAM['vibram-mezzesuole-tacchi']['n']), 'Mezzesuole e tacchi')]),
+                    pad=('0', 'lato', 'sezione', 'lato'))
 
-    def blocco(titolo, slug, intro, cards, bordo=True):
+    def blocco(titolo, slug, intro, tessere):
         return sezione(
-            C(H(titolo, 'h2'), T(f'<p>{intro}</p>', style='body', color=m.NERO_75, max_w=520),
-              T(f'<p>{FAM[slug]["n"]} articoli</p>', style='label', align=('right', 'right', 'left')),
-              dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='m'),
-            griglia(*cards), gap='l', anchor=slug, **({'border_top': 1, 'border_color': m.LINEA} if bordo else {}))
+            testata(titolo),
+            C(T(f'<p>{intro}</p>', style='body', color=GRAFITE, max_w=640),
+              T(f'<p>{FAM[slug]["n"]} articoli</p>', style='dati', align=('right', 'right', 'left'), fisso=True),
+              dir='row', dir_m='column', justify='between', gap='s', mt='s'),
+            C(griglia_tessere(tessere), mt='l'),
+            gap='0', anchor=slug, pad=('0', 'lato', 'sezione', 'lato'))
 
     suole = blocco('Suole', 'vibram-suole', sottocategorie('vibram-suole') + '.', [
-        card_prodotto('80075', '2600 Liverpool', 'Suola da città e tempo libero, monoblocco, disegno a onde'),
-        card_prodotto('85109', '0056C Winter City', 'Suola da città e tempo libero da uomo'),
-        card_prodotto('82768', '2603 Gumblock', 'Suola da città e tempo libero a tacco staccato, disegno Carrarmato'),
-        card_prodotto('83137', '2609 Athena Gumlite', 'Suola per applicazioni ortopediche a dima extra large'),
-        card_prodotto('85014', '4303 Betulla tranciata', 'Suola da città e tempo libero, monoblocco, disegno Carrarmato'),
-        card_prodotto('83169', 'V.0121P Fourà PU', 'Suola in PU, nero e grigio, in più misure'),
-    ], bordo=False)
+        tessera_prodotto('80075', '2600 Liverpool', 'Suola da città e tempo libero, monoblocco, disegno a onde'),
+        tessera_prodotto('85109', '0056C Winter City', 'Suola da città e tempo libero da uomo'),
+        tessera_prodotto('82768', '2603 Gumblock', 'Suola a tacco staccato, disegno Carrarmato'),
+        tessera_prodotto('83137', '2609 Athena Gumlite', 'Suola per applicazioni ortopediche a dima extra large'),
+        tessera_prodotto('85014', '4303 Betulla tranciata', 'Suola da città e tempo libero, disegno Carrarmato'),
+        tessera_prodotto('83169', 'V.0121P Fourà PU', 'Suola in PU, nero e grigio, in più misure'),
+    ])
     lastre = blocco('Lastre', 'vibram-lastre', sottocategorie('vibram-lastre') + '. Da tagliare a misura per suole, '
-                                                 'riparazioni e costruzioni ortopediche.', [
-        card_prodotto('82268', '7106 Crepe', 'Lastra in gomma morbida'),
-        card_prodotto('84305', '7107 Crepe cardata', 'Lastra in gomma compatta'),
-        card_prodotto('84413', '7130 New Boulder', 'Lastra per arrampicata e bouldering, mescola extra morbida'),
-        card_prodotto('84952', '8281 Diflex', 'Lastra per ortesi plantari, per sottopiedi e zeppe'),
-    ][:3])
+                                                'riparazioni e costruzioni ortopediche.', [
+        tessera_prodotto('82268', '7106 Crepe', 'Lastra in gomma morbida'),
+        tessera_prodotto('84305', '7107 Crepe cardata', 'Lastra in gomma compatta'),
+        tessera_prodotto('84413', '7130 New Boulder', 'Lastra per arrampicata e bouldering, mescola extra morbida'),
+    ])
     tacchi = blocco('Mezzesuole e tacchi', 'vibram-mezzesuole-tacchi', sottocategorie('vibram-mezzesuole-tacchi') + '.', [
-        card_prodotto('83255', '2023 Wellness', 'Mezza suola in gomma compatta'),
-        card_prodotto('83263', '2025 Sebastian', 'Mezza suola invernale in gomma compatta'),
-        card_prodotto('80751', '1100T Montagna', 'Tacco 20,5 mm da montagna e sportivo, mescola Vibram Mont'),
+        tessera_prodotto('83255', '2023 Wellness', 'Mezza suola in gomma compatta'),
+        tessera_prodotto('83263', '2025 Sebastian', 'Mezza suola invernale in gomma compatta'),
+        tessera_prodotto('80751', '1100T Montagna', 'Tacco 20,5 mm da montagna e sportivo, mescola Vibram Mont'),
     ])
     chi = sezione(
-        C(H('Per chi produce', 'h3'),
-          T('<p>Calzaturifici e suolifici: scegli modello, mescola e misure, poi verifichiamo insieme formati e quantità '
-            'disponibili.</p>', style='body', color=m.NERO_75), w=(50, 50, 100), gap='s', pad=('l', 'l', 'l', '0'),
-          border_top=4, border_color=m.NERO),
-        C(H('Per chi ripara', 'h3'),
-          T('<p>Calzolai: mezzesuole, tacchi e lastre da tagliare per risuolare scarpe da città, da lavoro e da montagna.</p>',
-            style='body', color=m.NERO_75), w=(50, 50, 100), gap='s', pad=('l', 'l', 'l', '0'), border_top=4,
-          border_color=m.NERO),
-        dir='row', dir_m='column', gap='l', pad=('0', 'lato', 'sezione', 'lato'))
-    return [('apertura', apertura), ('suole', suole), ('lastre', lastre), ('mezzesuole-tacchi', tacchi),
-            ('per-chi', chi), ('banco', blocco_banco('Chiedi un modello Vibram'))]
+        C(C(H('Per chi produce', 'h3'),
+            T('<p>Il calzaturificio sceglie modello, mescola e misure; insieme verifichiamo formati e quantità disponibili.</p>',
+              style='body', color=INCHIOSTRO), gap='xs', pad=('s', '0', '0', '0'), border_top=1, border_color=INCHIOSTRO),
+          C(H('Per chi ripara', 'h3'),
+            T('<p>Il calzolaio trova mezzesuole, tacchi e lastre da tagliare per risuolare scarpe da città, da lavoro e da '
+              'montagna.</p>', style='body', color=INCHIOSTRO), gap='xs', pad=('s', '0', '0', '0'), border_top=1,
+            border_color=INCHIOSTRO, mt='m'),
+          w=(40.4, 100, 100), gap='0'),
+        tavola('tacchi-1x1.jpg', 'Scaffali di tacchi e mezzesuole', 2, 'Tacchi e mezzesuole a scaffale.', w=(40.4, 60, 100)),
+        bg=PERGAMENA, dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='xl')
+    pulsante = B('Chiedi un modello Vibram', mailto('Disponibilità Vibram', 'Modello:\nMisura:\nColore:\nQuantità:\n'),
+                 variant='primario')
+    return [('apertura', apertura), ('cifre', cifre), ('suole', suole), ('lastre', lastre), ('mezzesuole-tacchi', tacchi),
+            ('per-chi', chi), ('banco', blocco_banco(pulsante))]
 
 
 # ---------------------------------------------------------------------------------------------
-# MARCHI (dal "sponsor" del PMF: chi c'è e cosa porta)
+# MARCHI
 # ---------------------------------------------------------------------------------------------
 def marchi():
-    apertura = sezione(
-        intestazione('Marchi', 'I marchi che trovi al banco e cosa c’è di ciascuno. Nel catalogo compaiono anche utensili '
-                               'e materiali di altri produttori.'),
-        pad=('l', 'lato', 'l', 'lato'))
+    apertura = apertura_interna('I marchi al banco', 'I marchi di cui teniamo a magazzino i prodotti, con le famiglie che '
+                                                     'trovi al banco e nel catalogo.')
     schede = [
-        ('vibram', 'Vibram', f'Suole, mezzesuole, tacchi e lastre in gomma, per produzione e riparazione. È il marchio più '
-                             f'presente nel nostro catalogo: {N_VIBRAM} articoli.', [('La pagina Vibram', '/vibram/')]),
-        ('gutermann', 'Gütermann', 'Filati industriali per cucire. Per pelle e calzatura teniamo i filati in poliestere ritorto '
-                                   'Mara e Tera, in più colori.', [('Filati ed elastici nel catalogo', '/catalogo/#filati-elastici')]),
-        ('girba', 'Girba', 'Prodotti chimici per il finissaggio di calzatura e pelletteria: tinture e prodotti per tomaia e '
-                           'bordi. Nel catalogo online: Bordobrill, Iris, Lederpolish, Nubio, Tingileder.',
-         [('Prodotti chimici nel catalogo', '/catalogo/#prodotti-chimici')]),
-        ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi e prodotti per l’incollaggio in calzatura. Non sono ancora nel '
-                                                   'catalogo online: chiedi al banco quali formati sono disponibili.',
-         [('Chiedi gli adesivi', mailto('Adesivi Fratelli Zucchini'))]),
+        ('vibram', 'Vibram', f'Suole, mezzesuole, tacchi e lastre in gomma, per produzione e riparazione. È il marchio più presente '
+                             f'nel catalogo: {N_VIBRAM} articoli.', [('La pagina Vibram', '/vibram/')], (72, 64, 52)),
+        ('gutermann', 'A&amp;E Gütermann', 'Filati industriali per cucire. Per pelle e calzatura teniamo i filati in poliestere '
+                                          'ritorto Mara e Tera, in più colori.',
+         [('Filati ed elastici nel catalogo', '/catalogo/#filati-elastici')], (64, 56, 48)),
+        ('girba', 'Girba', 'Prodotti chimici per la finitura di calzatura e pelletteria: tinture, creme e cere per tomaia, tinture '
+                           'per bordi. Nel catalogo online: Bordobrill, Iris, Lederpolish, Nubio, Tingileder.',
+         [('Prodotti chimici nel catalogo', '/catalogo/#prodotti-chimici')], (80, 72, 60)),
+        ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi e primer per calzatura. Non sono ancora nel catalogo online: '
+                                                   'chiedi al banco quali formati sono disponibili.',
+         [('Chiedi gli adesivi', mailto('Adesivi Fratelli Zucchini'))], (80, 72, 60)),
     ]
-    sito = {s: u for s, _, _, u in MARCHI}
+    sito = {s: u for s, _, _, u, _ in MARCHI}
     righe = []
-    for i, (slug, nome, testo, links) in enumerate(schede, 1):
-        lk = ''.join(f'<a href="{u}">{t}</a>&nbsp;&nbsp;→<br>' for t, u in links) + f'<a href="{sito[slug]}">Sito ufficiale {nome}</a>&nbsp;&nbsp;↗'
+    for i, (slug, nome, testo, links, alt_logo) in enumerate(schede, 1):
+        lk = ''.join(f'<a href="{u}">{t}</a>&nbsp;&nbsp;→<br>' for t, u in links) + \
+            f'<a href="{sito[slug]}">Sito ufficiale {nome}</a>&nbsp;&nbsp;↗'
         righe.append(C(
-            C(C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=(110, 100, 80), fit='contain'), justify='center',
-                min_h=(200, 180, 140), pad='m', border=1, border_color=m.LINEA), w=(30, 34, 100)),
-            C(H(f'{i:02d}', 'p', style='num_s', color=m.ROSSO), H(nome, 'h2', style='h3'),
-              T(f'<p>{testo}</p>', style='body', color=m.NERO_75, max_w=620),
-              T(f'<p>{lk}</p>', style='small', color=m.NERO, link_color=m.NERO), gap='s', grow=True),
-            dir='row', dir_m='column', gap=('xl', 'l', 'm'), pad=('l', '0', 'l', '0'), border_top=1, border_color=m.LINEA,
-            align='start'))
-    elenco = sezione(*righe, C(LINEA_H(m.LINEA)), gap='0', pad=('0', 'lato', 'sezione', 'lato'))
+            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=alt_logo, fit='contain'), justify='center',
+              min_h=(240, 200, 150), pad='m', bg=AVORIO, border=1, border_color=FILETTO, w=(40.4, 40.4, 100)),
+            C(H(f'{i:02d}', 'p', style='num'), H(nome, 'h2'), T(f'<p>{testo}</p>', style='body', color=GRAFITE, max_w=560),
+              T(f'<p>{lk}</p>', style='link', color=INCHIOSTRO, link_color=INCHIOSTRO, link_hover=CUOIO), gap='s',
+              w=(48.6, 52, 100)),
+            dir='row', dir_m='column', justify='between', gap=('xl', 'l', 'm'), pad=('xl', '0', 'xl', '0'), border_bottom=1,
+            border_color=FILETTO, align='center'))
+    elenco = sezione(doppio(), *righe, gap='0', pad=('0', 'lato', 'sezione', 'lato'))
     altri = sezione(
-        C(H('Negli articoli del catalogo trovi anche', 'h2', style='h3'), w=(34, 100, 100)),
+        C(H('Altri nomi nel catalogo', 'h2'), impuntura(mt='s'), w=(32, 100, 100), gap='0'),
         C(T('<p>Olfa, Mozart, Mark, Lariz, Kai, Wiss, C.Dick, Norton, Pentel, Marvy, Mitsubishi, Stanley, Dremel, Einhell, '
-            'Luxoro, 3M, Marigold, Sperian, Coats.</p>', style='lead', color=m.NERO),
-          T('<p>Sono i marchi che compaiono nei nomi degli articoli del catalogo online. Per un marchio che non vedi, chiedi.</p>',
-            style='small', color=m.NERO_75), w=(66, 100, 100), gap='s'),
-        dir='row', dir_t='column', gap='l', border_top=1, border_color=m.LINEA)
-    return [('apertura', apertura), ('elenco', elenco), ('altri-marchi', altri), ('banco', blocco_banco())]
-
-
-# ---------------------------------------------------------------------------------------------
-# AZIENDA (chi siamo + tabella "Dal 1980", dal pattern risultati del PMF)
-# ---------------------------------------------------------------------------------------------
-def azienda():
-    apertura = sezione(
-        intestazione('Dal 1980 a Vigonovo', 'Benvegnù nasce nel 1980 a Vigonovo, nell’area calzaturiera della Riviera del '
-                     'Brenta. Vendiamo componenti e accessori per calzature e pelletterie, in particolare i materiali per la '
-                     'rifinitura del fondo e della tomaia, e tutta la piccola utensileria. Siamo specializzati in suole e '
-                     'lastre in gomma Vibram.', max_w=820),
-        I(img('sede-esterno.jpg'), 'La sede Benvegnù in Via del Lavoro 48, zona industriale Tombelle, Vigonovo',
-          height=(520, 400, 220)),
-        gap='l', pad=('l', 'lato', 'sezione', 'lato'))
-
-    cosa = sezione(
-        C(H('Cosa vendiamo', 'h2'),
-          T(f'<p>Il catalogo online ha {TOTALE} articoli in 10 famiglie. Al banco trovi anche le famiglie che non sono '
-            'online.</p>', style='body', color=m.NERO_75),
-          C(B('Sfoglia il catalogo', '/catalogo/', variant='primario'), mt='xs'),
-          w=(34, 100, 100), gap='m'),
-        C(T('<ul><li>Suole e lastre in gomma Vibram</li><li>Filo in poliestere ed elastico per tomaia</li>'
-            '<li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-            '<li>Piccola utensileria per la calzatura</li><li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>',
-            style='body'),
-          T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per la rifinitura della suola e della tomaia</li>'
-            '<li>Prodotti per l’incollaggio Fratelli Zucchini</li><li>Rinforzi per tomaia in tessuto</li>'
-            '<li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per la tomaia</li></ul>', style='body'),
-          dir='row', dir_m='column', gap='l', w=(66, 100, 100)),
-        dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
-
-    tappe = [
-        ('1980', 'Inizio dell’attività', 'A Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'),
-        ('1990', 'Nasce Benvegnù S.r.l.', 'Iscrizione alla Camera di Commercio di Padova il 24 ottobre 1990.'),
-        ('2014', 'Il catalogo va online', f'Dal 16 aprile 2014 i prodotti sono sul sito. Oggi sono {TOTALE} articoli in 10 famiglie.'),
-        ('2026', 'Il nuovo sito', 'Il catalogo si consulta anche da telefono, con codici e famiglie.'),
-    ]
-    righe = [C(H(a, 'p', style='num', color=m.ROSSO, fisso=True), C(H(t, 'h3'), w=(30, 34, 100)),
-               T(f'<p>{d}</p>', style='body', color=m.NERO_75, grow=True),
-               dir='row', dir_m='column', gap=('l', 'm', 'xs'), pad=('m', '0', 'm', '0'), border_top=1, border_color=m.LINEA,
-               align=('center', 'center', 'start'))
-             for a, t, d in tappe]
-    storia = sezione(
-        C(H('Dal 1980', 'h2'), T('<p>Le date che possiamo documentare.</p>', style='body', color=m.NERO_75),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='s'),
-        C(*righe, C(LINEA_H(m.LINEA)), gap='0'),
-        gap='l', border_top=1, border_color=m.LINEA)
-
-    distretto = sezione(
-        C(I(img('magazzino-corsia.jpg'), 'Corsia del magazzino Benvegnù', height=(460, 380, 240)), w=(50, 50, 100)),
-        C(H('Nel distretto della Riviera del Brenta', 'h2'),
-          T('<p>Vigonovo è uno dei comuni del distretto calzaturiero della Riviera del Brenta, con Stra, Fiesso d’Artico, Dolo e '
-            'Fossò. Nel distretto lavorano oltre 500 imprese della filiera e si producono circa 20 milioni di paia di scarpe '
-            'l’anno.</p><p>Per chi lavora qui, il banco è a pochi chilometri: si passa, si guarda il materiale, si ritira.</p>',
-            style='body', color=m.NERO_75),
-          T('<p>Fonti: Unioncamere, “Le calzature della Riviera del Brenta”; FashionUnited, 7 novembre 2024.</p>',
-            style='small', color=m.NERO_75),
-          w=(50, 50, 100), gap='m'),
-        dir='row', dir_m='column', gap='xl', align='center', bg=m.BIANCO, border_top=1, border_color=m.LINEA)
-
-    clienti = [
-        ('Calzaturifici', 'Suole e lastre Vibram, filati, elastici, prodotti per il fondo e la tomaia.'),
-        ('Pelletterie', 'Filati, utensili da taglio, punzoni, tinture per bordi, prodotti per il finissaggio.'),
-        ('Calzolai', 'Mezzesuole, tacchi e lastre Vibram per la riparazione, colle, utensili.'),
-        ('Stilisti e modellisti', 'Materiali per modelleria, alzi e allungaforme, compassi, strumenti di misura.'),
-        ('Negozi di calzature', 'Calzanti, tendiscarpe, prodotti per la cura, calze monouso per la prova.'),
-    ]
-    per_chi = sezione(
-        C(H('Per chi lavoriamo', 'h2'), w=(34, 100, 100)),
-        C(*[riga_indice(f'{i:02d}', t, x) for i, (t, x) in enumerate(clienti, 1)], C(LINEA_H(m.LINEA)), w=(66, 100, 100),
-          gap='0'),
-        dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
-
-    condizioni = sezione(
-        C(H('Condizioni di vendita', 'h3'),
-          T('<p>Per le aziende con partita IVA valgono le condizioni generali di vendita: ordine minimo, pagamento e spedizione '
-            'sono indicati nel documento.</p>', style='body', color=m.NERO_75), w=(60, 60, 100), gap='s'),
-        C(B('Scarica il PDF', CONDIZIONI_PDF, variant='contorno'), w=(40, 40, 100), align=('end', 'end', 'start')),
-        dir='row', dir_m='column', gap='l', align='center', pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=m.LINEA)
-    return [('apertura', apertura), ('cosa-vendiamo', cosa), ('dal-1980', storia), ('distretto', distretto),
-            ('per-chi', per_chi), ('condizioni', condizioni), ('banco', blocco_banco())]
+            'Luxoro, 3M, Marigold, Sperian, Coats.</p>', style='lead', color=INCHIOSTRO),
+          T('<p>Sono i produttori che compaiono nei nomi degli articoli del catalogo online, senza loghi. Per un marchio che '
+            'non vedi, chiedi al banco.</p>', style='small', color=GRAFITE), w=(56.9, 100, 100), gap='s'),
+        bg=PERGAMENA, dir='row', dir_t='column', justify='between', gap='xl')
+    return [('apertura', apertura), ('elenco', elenco), ('altri-nomi', altri), ('banco', blocco_banco())]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -572,113 +718,119 @@ ARTICOLI_ESEMPIO = [
     (f'Il catalogo online: {TOTALE} articoli in 10 famiglie', '/catalogo/', 'Catalogo'),
 ]
 
-
-# Il widget gratuito "Articoli recenti" di WordPress non ha controlli di stile in Elementor e prende i colori del tema:
-# questo CSS vale solo dentro il contenitore con classe bvg-articoli.
-STILE_ARTICOLI = (
-    '.bvg-articoli h5,.bvg-articoli .widget-title,.bvg-articoli .wp-block-heading{display:none}'
-    '.bvg-articoli ul{list-style:none;margin:0;padding:0}'
-    f'.bvg-articoli li{{border-top:1px solid {m.LINEA};padding:20px 0;margin:0}}'
-    f'.bvg-articoli li:last-child{{border-bottom:1px solid {m.LINEA}}}'
-    f".bvg-articoli li a{{font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;font-size:28px;line-height:1.08;"
-    f"letter-spacing:.3px;text-transform:uppercase;color:{m.NERO};text-decoration:none}}"
-    f'.bvg-articoli li a:hover,.bvg-articoli li a:focus{{color:{m.ROSSO}}}'
-    f".bvg-articoli .post-date{{display:block;font-family:'Barlow',Arial,sans-serif;font-size:15px;color:{m.NERO_75};margin-top:6px}}"
-    '@media (max-width:767px){.bvg-articoli li a{font-size:22px}}'
+# Il widget gratuito "Articoli recenti" di WordPress non ha controlli di stile in Elementor: CSS solo per il contenitore .bvg-news
+STILE_NEWS = (
+    '.bvg-news h5,.bvg-news .widget-title,.bvg-news .wp-block-heading{display:none}'
+    '.bvg-news ul{list-style:none;margin:0;padding:0}'
+    f'.bvg-news li{{display:grid;grid-template-columns:160px 1fr;column-gap:32px;align-items:baseline;padding:24px 0;'
+    f'border-bottom:1px solid {FILETTO};margin:0}}'
+    f".bvg-news li a{{grid-column:2;grid-row:1;font-family:'{BODONI}',Georgia,serif;font-weight:400;font-size:24px;line-height:30px;"
+    f"color:{INCHIOSTRO};text-decoration:none}}"
+    f'.bvg-news li a:hover,.bvg-news li a:focus{{color:{CUOIO}}}'
+    f".bvg-news .post-date{{grid-column:1;grid-row:1;font-family:'{GROTESK}',Arial,sans-serif;font-weight:500;font-size:12px;"
+    f'line-height:16px;letter-spacing:.14em;text-transform:uppercase;color:{GRAFITE}}}'
+    '@media (max-width:767px){.bvg-news li{grid-template-columns:1fr}.bvg-news li a,.bvg-news .post-date{grid-column:1;grid-row:auto}'
+    '.bvg-news .post-date{margin-top:8px}}'
 )
 
 
 def novita():
-    apertura = sezione(
-        intestazione('Novità e avvisi', 'Chiusure, nuovi arrivi e novità dai marchi. Ogni avviso ha una data.'),
-        pad=('l', 'lato', 'l', 'lato'))
-    avvisi = sezione(
-        C(C(T('<p>Orari del banco</p>', style='label', color=m.ROSSO),
-            H(ORARI, 'p', style='h3'),
-            T(f'<p>{CHIUSURA}. Le chiusure per ferie e festività le pubblichiamo qui, con le date di inizio e di fine.</p>',
-              style='body', color=m.NERO_75), gap='s', w=(66, 100, 100)),
-          C(B(f'Chiama {TEL}', TEL_LINK, variant='primario'), w=(34, 100, 100), align=('end', 'start', 'start')),
-          dir='row', dir_t='column', gap='l', pad='l', border=1, border_color=m.NERO, align=('center', 'start', 'start')),
-        pad=('0', 'lato', 'l', 'lato'))
+    apertura = apertura_interna('Novità', 'Avvisi del banco, nuovi arrivi e chiusure per ferie, con la data di ogni avviso.')
     elenco = sezione(
-        C(H('Ultime novità', 'h2'), w=(34, 100, 100)),
-        C(ARTICOLI(ARTICOLI_ESEMPIO, numero=6), RAW('', css=STILE_ARTICOLI, solo_elementor=True), w=(66, 100, 100),
-          css='bvg-articoli'),
-        dir='row', dir_t='column', gap='xl', border_top=1, border_color=m.LINEA)
-    return [('apertura', apertura), ('avvisi', avvisi), ('elenco', elenco), ('banco', blocco_banco())]
+        C(doppio(), ARTICOLI(ARTICOLI_ESEMPIO, numero=10), RAW('', css=STILE_NEWS, solo_elementor=True), gap='0',
+          css='bvg-news'),
+        C(riga_dato('Arrivi', f'Per sapere se un articolo è arrivato: <a href="{TEL_LINK}">{TEL}</a>, negli orari del banco.'),
+          riga_dato('Orari', f'{cap(ORARI)}. {cap(CHIUSURA)}.'), mt='l', gap='0'),
+        gap='0', pad=('0', 'lato', 'sezione', 'lato'))
+    return [('apertura', apertura), ('elenco', elenco), ('banco', blocco_banco())]
 
 
 # ---------------------------------------------------------------------------------------------
 # CONTATTI
 # ---------------------------------------------------------------------------------------------
+STILE_CF7 = (
+    f".bvg-modulo .wpcf7 label,.bvg-modulo .bvg-scelta{{display:block;margin:0 0 24px;font:500 12px/16px '{GROTESK}',Arial,sans-serif;"
+    f'letter-spacing:.14em;text-transform:uppercase;color:{GRAFITE}}}'
+    '.bvg-modulo .wpcf7 p{margin:0}.bvg-modulo .wpcf7 br{display:none}'
+    '.bvg-modulo .wpcf7-form-control-wrap{display:block}'
+    '.bvg-modulo input[type=text],.bvg-modulo input[type=email],.bvg-modulo input[type=tel],.bvg-modulo select,'
+    f'.bvg-modulo textarea{{display:block;width:100%;margin-top:8px;background:{AVORIO};border:1px solid {FILETTO_FORTE};'
+    f"border-radius:0;box-shadow:none;padding:14px 16px;font:400 17px/24px '{GROTESK}',Arial,sans-serif;letter-spacing:0;"
+    f'text-transform:none;color:{INCHIOSTRO}}}'
+    '.bvg-modulo textarea{min-height:150px;resize:vertical}'
+    f'.bvg-modulo input:focus,.bvg-modulo textarea:focus{{border-color:{INCHIOSTRO};outline:2px solid {CUOIO};outline-offset:2px}}'
+    f".bvg-modulo input[type=submit]{{background:{INCHIOSTRO};color:{CARTA};border:1px solid {INCHIOSTRO};border-radius:0;"
+    f"padding:16px 28px;font:600 13px/16px '{GROTESK}',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;"
+    'transition:background-color .12s linear,border-color .12s linear}'
+    f'.bvg-modulo input[type=submit]:hover{{background:{CUOIO};border-color:{CUOIO}}}'
+    f'.bvg-modulo input[type=checkbox],.bvg-modulo input[type=radio]{{accent-color:{CUOIO};width:18px;height:18px;margin:0 8px 0 0;vertical-align:-3px}}'
+    '.bvg-modulo .wpcf7-list-item{display:block;margin:10px 0 0}'
+    f'.bvg-modulo .wpcf7-list-item-label,.bvg-modulo .wpcf7-acceptance{{text-transform:none;letter-spacing:0;font-size:15px;color:{INCHIOSTRO}}}'
+    f'.bvg-modulo .wpcf7-not-valid-tip{{color:{CUOIO_SCURO};font-size:14px;margin-top:6px;text-transform:none;letter-spacing:0}}'
+    f'.bvg-modulo .wpcf7 form .wpcf7-response-output{{margin:24px 0 0;padding:14px 16px;border:1px solid {INCHIOSTRO};font-size:15px}}'
+    '@media (max-width:767px){.bvg-modulo input[type=submit]{width:100%}}'
+)
+
+
 def contatti():
-    def dato(etichetta, html):
-        return C(T(f'<p>{etichetta}</p>', style='label', color=m.NERO_75, w_px=(130, 130, None)),
-                 T(f'<p>{html}</p>', style='body', color=m.NERO, link_color=m.NERO, grow=True),
-                 dir='row', dir_m='column', gap=('m', 'm', 'xs'), pad=('s', '0', 's', '0'), border_top=1,
-                 border_color=m.LINEA)
-    apertura = sezione(
-        intestazione('Contatti', f'Il banco è a Vigonovo, in {INDIRIZZO}, {ZONA.lower()}. Rispondiamo al telefono negli orari '
-                                 'di apertura.'),
-        pad=('l', 'lato', 'l', 'lato'))
-    dati = sezione(
-        C(dato('Indirizzo', f'{INDIRIZZO}<br>{CITTA}<br>{ZONA}'),
-          dato('Orari', f'{ORARI}<br>{CHIUSURA}'),
-          dato('Telefono', f'<a href="{TEL_LINK}">{TEL}</a>'),
-          dato('Fax', FAX),
-          dato('Email', f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
-          dato('PEC', PEC),
-          dato('Parcheggio', 'Per i clienti, davanti al negozio'),
-          C(LINEA_H(m.LINEA)),
-          C(B('Apri in Google Maps', MAPS, variant='primario'), B('Scrivi una email', mailto('Richiesta informazioni'),
-                                                                   variant='contorno'),
-            dir='row', dir_m='column', gap='s', mt=('m', 'm', 's')),
-          w=(42, 100, 100), gap='0'),
-        C(MAPPA(f'Benvegnù, {INDIRIZZO}, {CITTA}', height=(560, 420, 320), zoom=15), w=(58, 100, 100)),
-        dir='row', dir_t='column', gap='xl', pad=('0', 'lato', 'sezione', 'lato'))
+    apertura = apertura_interna('Contatti', 'Il banco è aperto dal lunedì al venerdì. Per una richiesta precisa, indica il codice '
+                                            'dell’articolo.')
     corpo = ('Codice o nome articolo:\nColore, misura o formato:\nQuantità:\nRitiro al banco o spedizione:\n'
              'Ragione sociale e partita IVA:\nTelefono:\n')
-    richiesta = sezione(
-        C(H('Richiesta di disponibilità', 'h2', color=m.BIANCO),
-          T(f'<p>Scrivi a <a href="mailto:{EMAIL}">{EMAIL}</a>. Il pulsante apre una email già impostata con le voci che ci '
-            'servono.</p>', style='lead', color=m.BIANCO, link_color=m.BIANCO, link_hover=m.NERO),
-          C(B('Scrivi la richiesta', mailto('Richiesta disponibilità', corpo), variant='bianco'), mt='xs'),
-          w=(50, 50, 100), gap='m'),
-        C(T('<p>Cosa indicare</p>', style='label', color=m.BIANCO),
-          T('<ul><li>Codice o nome dell’articolo, come nel catalogo</li><li>Colore, misura o formato</li><li>Quantità</li>'
-            '<li>Ritiro al banco o spedizione</li><li>Ragione sociale e partita IVA, se ordini come azienda</li></ul>',
-            style='body', color=m.BIANCO),
-          w=(50, 50, 100), gap='s'),
-        bg=m.ROSSO, dir='row', dir_m='column', gap='xl')
-    societari = sezione(
-        C(H('Dati societari', 'h3'), w=(34, 100, 100)),
-        C(T(f'<p>Benvegnù S.r.l.<br>P.IVA e codice fiscale {PIVA}<br>REA {REA}<br>Sede legale: {SEDE_LEGALE}<br>PEC {PEC}</p>',
-            style='body', color=m.NERO_75),
-          T(f'<p><a href="{CONDIZIONI_PDF}">Condizioni generali di vendita (PDF)</a></p>', style='body', color=m.NERO,
-            link_color=m.NERO), w=(66, 100, 100), gap='s'),
-        dir='row', dir_t='column', gap='l', pad=('l', 'lato', 'l', 'lato'))
-    return [('apertura', apertura), ('dati-mappa', dati), ('richiesta', richiesta), ('dati-societari', societari)]
+    alternativa = (f'<p style="margin:0 0 16px">Scrivi a <a href="mailto:{EMAIL}">{EMAIL}</a> indicando codice o nome '
+                   'dell’articolo, colore, misura o formato, quantità, ritiro al banco o spedizione.</p>'
+                   f'<p style="margin:0"><a href="{mailto("Richiesta disponibilità", corpo)}">Scrivi la richiesta</a></p>')
+    dati = sezione(
+        C(registro_dati([
+            ('Indirizzo', f'{INDIRIZZO}<br>{cap(ZONA)}<br>{CITTA}'),
+            ('Orari', f'{cap(ORARI)}<br>{cap(CHIUSURA)}'),
+            ('Telefono', f'<a href="{TEL_LINK}">{TEL}</a>'),
+            ('Fax', FAX),
+            ('Email', f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
+            ('PEC', PEC),
+            ('Parcheggio', 'Posti per i clienti davanti al negozio'),
+            ('Sede legale', SEDE_LEGALE),
+          ]),
+          C(tavola('sede-4x5.jpg', 'Ingresso della sede Benvegnù', 1, 'L’ingresso di Via del Lavoro 48.'), w=(60, 50, 100), mt='l'),
+          w=(48.6, 100, 100), gap='0'),
+        C(H('Chiedi disponibilità', 'h2'),
+          T('<p>Rispondiamo nei giorni di apertura del banco.</p>', style='small', color=GRAFITE),
+          C(SHORTCODE(CF7, alternativa_html=alternativa), RAW('', css=STILE_CF7, solo_elementor=True), mt='s', css='bvg-modulo'),
+          w=(48.6, 100, 100), gap='xs', pad=('l', 'l', 'l', 'l'), bg=AVORIO, border=1, border_color=FILETTO, anchor='modulo'),
+        dir='row', dir_t='column', justify='between', align='start', gap='xl', pad=('0', 'lato', 'sezione', 'lato'))
+    mappa = sezione(
+        C(MAPPA(f'Benvegnù, {INDIRIZZO}, {CITTA}', height=(480, 400, 320), zoom=15, grigia=True), pad=(16, 12, 10), bg=AVORIO,
+          border=1, border_color=FILETTO),
+        pad=('0', 'lato', 'sezione', 'lato'))
+    condizioni = sezione(
+        C(H('Condizioni di vendita', 'h3'),
+          T('<p>Per le aziende con partita IVA valgono le condizioni generali di vendita.</p>', style='body', color=GRAFITE),
+          w=(56.9, 100, 100), gap='xs'),
+        C(link_testo('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF), w=(32, 100, 100), align=('end', 'start', 'start')),
+        dir='row', dir_t='column', justify='between', align=('center', 'start', 'start'), gap='m', bg=PERGAMENA,
+        pad=('xl', 'lato', 'xl', 'lato'))
+    return [('apertura', apertura), ('dati-modulo', dati), ('mappa', mappa), ('condizioni', condizioni)]
 
 
 PAGINE = [
     {'slug': '01-home', 'titolo': 'Home', 'sezioni': home,
-     'titolo_seo': 'Benvegnù | Forniture per calzaturifici, pelletterie e calzolai a Vigonovo',
-     'descrizione': 'Suole e lastre Vibram, filati, utensili e prodotti per fondo e tomaia. Al banco di Vigonovo, Riviera del Brenta, dal 1980.'},
+     'titolo_seo': 'Benvegnù | Componenti e accessori per calzatura e pelletteria a Vigonovo, dal 1980',
+     'descrizione': 'Suole e lastre Vibram, filati Gütermann, prodotti Girba, adesivi Fratelli Zucchini e utensili. Il banco di Vigonovo nella Riviera del Brenta, dal 1980.'},
     {'slug': '02-azienda', 'titolo': 'Azienda', 'sezioni': azienda,
      'titolo_seo': 'Azienda | Benvegnù, Vigonovo dal 1980',
-     'descrizione': 'Benvegnù nasce nel 1980 a Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'},
+     'descrizione': 'Dal 1980 a Vigonovo, nel distretto calzaturiero della Riviera del Brenta: per chi fa le scarpe e per chi le ripara.'},
     {'slug': '03-catalogo', 'titolo': 'Catalogo', 'sezioni': catalogo,
      'titolo_seo': f'Catalogo | {TOTALE} articoli per calzatura e pelletteria | Benvegnù',
-     'descrizione': 'Utensili, filati ed elastici, modelleria, prodotti chimici, esposizione e cura, suole e lastre Vibram.'},
+     'descrizione': 'Utensili, filati ed elastici, modelleria, prodotti chimici, esposizione e cura, suole, lastre, mezzesuole e tacchi Vibram.'},
     {'slug': '04-vibram', 'titolo': 'Vibram', 'sezioni': vibram,
      'titolo_seo': 'Vibram | Suole, lastre, mezzesuole e tacchi | Benvegnù Vigonovo',
-     'descrizione': f'Rivenditore autorizzato Vibram: {N_VIBRAM} articoli tra suole, lastre, mezzesuole e tacchi.'},
+     'descrizione': f'Rivenditore autorizzato Vibram: {N_VIBRAM} articoli tra suole, lastre, mezzesuole e tacchi, per produzione e riparazione.'},
     {'slug': '05-marchi', 'titolo': 'Marchi', 'sezioni': marchi,
      'titolo_seo': 'Marchi | Vibram, Gütermann, Girba, Fratelli Zucchini | Benvegnù',
-     'descrizione': 'I marchi che trovi al banco di Benvegnù e cosa c’è di ciascuno.'},
+     'descrizione': 'I marchi che teniamo a magazzino e cosa trovi di ciascuno, al banco e nel catalogo.'},
     {'slug': '06-novita', 'titolo': 'Novità', 'sezioni': novita,
-     'titolo_seo': 'Novità e avvisi | Benvegnù', 'descrizione': 'Chiusure, nuovi arrivi e novità dai marchi.'},
+     'titolo_seo': 'Novità e avvisi | Benvegnù', 'descrizione': 'Avvisi del banco, nuovi arrivi e chiusure per ferie.'},
     {'slug': '07-contatti', 'titolo': 'Contatti', 'sezioni': contatti,
      'titolo_seo': 'Contatti | Benvegnù, Via del Lavoro 48, Vigonovo',
-     'descrizione': f'{INDIRIZZO}, {CITTA}. {ORARI}. Tel. {TEL}.'},
+     'descrizione': f'{INDIRIZZO}, {CITTA}. Aperto {ORARI}. Tel. {TEL}. Richiesta di disponibilità online.'},
 ]
