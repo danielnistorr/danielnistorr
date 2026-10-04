@@ -40,7 +40,7 @@ FOTO = {
     'blocco-utensili.jpg': (SLIDE['colle'], '4:3', 750, 0.62, 0.50),
     'blocco-tomaia.jpg': (SLIDE['rotoli'], '4:3', 750, 0.50, 0.50),
     'blocco-cura.jpg': (SLIDE['solette'], '4:3', 750, 0.60, 0.50),
-    'espositore-vibram.jpg': (SLIDE['espositore'], '1:1', 940, 0.55, 0.50),
+    'espositore-vibram.jpg': (SLIDE['espositore'], '1:1', 940, 0.50, 0.50),    # tiene intera la scritta 'vibram' a sinistra
     'banco-suole.jpg': (SLIDE['banco'], None, 750, 0.5, 0.5),
     'magazzino-corsia.jpg': (SLIDE['corsia'], None, 750, 0.5, 0.5),
     'magazzino-lastre.jpg': (SLIDE['lastre'], None, 750, 0.5, 0.5),

@@ -388,7 +388,7 @@ def el_settings(n, inner):
         if p.get('anchor'):
             s['_element_id'] = p['anchor']
         if p.get('overflow'):
-            s['overflow'] = 'hidden'
+            s['overflow'] = 'auto' if p['overflow'] == 'auto' else 'hidden'
         if p.get('css'):
             s['css_classes'] = p['css']
         if p.get('hide'):
@@ -464,6 +464,8 @@ def el_settings(n, inner):
         s['link_to'] = 'custom' if p.get('link') else 'none'
         if p.get('link'):
             s['link'] = _link(p['link'])
+            if p.get('link_label'):
+                s['link']['custom_attributes'] = 'aria-label|' + p['link_label']
     elif n.kind == 'map':
         s['address'] = p['address']
         s['zoom'] = _slider('px', p['zoom'])
@@ -680,7 +682,7 @@ def _to_html(n, css, scope, inner=False):
             if p.get(f'border_{side}'):
                 d.append(f'border-{side}:{p[f"border_{side}"]}px solid {p.get("border_color", LINEA)};')
         if p.get('overflow'):
-            d.append('overflow:hidden;')
+            d.append('overflow:auto;' if p['overflow'] == 'auto' else 'overflow:hidden;')
         if p.get('bg_hover'):
             d.append('transition:background-color .15s;')
             css.add(f'{sel}:hover', f'background-color:{p["bg_hover"]};')
@@ -745,7 +747,9 @@ def _to_html(n, css, scope, inner=False):
 
     if n.kind == 'heading':
         base, sizes = _css_tipo(p['style'])
-        css.add(sel, base + f'color:{p["color"]};margin:0;padding:0;')
+        # margin:0 solo se il titolo non ha mt/mb: altrimenti azzererebbe i margini scritti sopra
+        css.add(sel, base + f'color:{p["color"]};' + ('margin-left:0;margin-right:0;' if (p.get('mt') or p.get('mb')) else 'margin:0;')
+                + 'padding:0;')
         _resp_css(css, sel, 'font-size', sizes, lambda v: f'{v}px')
         _resp_css(css, sel, 'text-align', rv(p['align']), lambda v: v)
         txt = p['text']
@@ -783,7 +787,7 @@ def _to_html(n, css, scope, inner=False):
                 f'padding:{pt}px {pr}px {pb}px {pl}px;border-radius:{bf["raggio"]}px;text-decoration:none;'
                 'transition:background-color .2s,color .2s,border-color .2s;')
         css.add(f'{sel} a:hover,{sel} a:focus-visible', f'color:{col[3]};background:{col[4]};border-color:{col[5]};')
-        css.add(f'{sel} a:focus-visible', f'outline:3px solid {ROSSO};outline-offset:3px;')
+        css.add(f'{sel} a:focus-visible', f'outline:3px solid {BIANCO if p["variant"] in ("bianco", "contorno-bianco") else ROSSO};outline-offset:3px;')
         if p.get('full_m'):
             css.add(f'{sel} a', '', '', 'display:block;width:100%;text-align:center;box-sizing:border-box;')
         ext = p['url'].startswith('http') and 'benvegnusrl.it' not in p['url']
@@ -798,7 +802,8 @@ def _to_html(n, css, scope, inner=False):
             _resp_css(css, f'{sel} img', 'height', rv(p['height']), lambda v: f'{v}px')
         img = f'<img src="{_html.escape(p["src"])}" alt="{_html.escape(p.get("alt", ""))}" loading="lazy">'
         if p.get('link'):
-            img = f'<a href="{_html.escape(url_finale(p["link"]))}">{img}</a>'
+            lab = f' aria-label="{_html.escape(p["link_label"])}"' if p.get('link_label') else ''
+            img = f'<a href="{_html.escape(url_finale(p["link"]))}"{lab}>{img}</a>'
         return f'<div class="bvg-w {c}">{img}</div>'
     if n.kind == 'map':
         hh = rv(p['height'])
@@ -827,6 +832,9 @@ def _to_html(n, css, scope, inner=False):
     if n.kind == 'shortcode':
         if not p['alternativa_html']:
             return ''
+        base, sizes = _css_tipo(p.get('stile', 'body'))
+        css.add(f'{sel} p', base + f'color:{p.get("colore", NERO)};')
+        _resp_css(css, f'{sel} p', 'font-size', sizes, lambda v: f'{v}px')
         css.add(f'{sel} a', f'color:{NERO};text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;')
         css.add(f'{sel} a:hover,{sel} a:focus', f'color:{ROSSO};')
         return f'<div class="bvg-w {c}">{p["alternativa_html"]}</div>'
@@ -842,16 +850,22 @@ def _to_html(n, css, scope, inner=False):
                 'border-bottom:1px solid transparent;transition:border-color .2s;')
         css.add(f'{sel} .bvg-nav-l a:hover,{sel} .bvg-nav-l a:focus-visible', f'border-bottom-color:{acc};')
         css.add(f'{sel} details', 'display:none;', 'display:block;')
-        css.add(f'{sel} summary', base + f'list-style:none;cursor:pointer;color:{col};display:inline-flex;align-items:center;gap:10px;padding:10px 0;')
+        css.add(f'{sel} summary', f'list-style:none;cursor:pointer;color:{col};display:inline-flex;align-items:center;'
+                'justify-content:flex-end;min-width:44px;min-height:44px;padding:0;')
         css.add(f'{sel} summary::-webkit-details-marker', 'display:none;')
-        css.add(f'{sel} summary .bvg-ico', f'display:inline-block;width:22px;height:14px;border-top:2px solid {col};border-bottom:2px solid {col};position:relative;')
-        css.add(f'{sel} summary .bvg-ico::after', f'content:"";position:absolute;left:0;right:0;top:4px;border-top:2px solid {col};')
+        css.add(f'{sel} summary .bvg-ico', f'display:inline-block;width:20px;height:17px;border-top:3px solid {col};border-bottom:3px solid {col};position:relative;')
+        css.add(f'{sel} summary .bvg-ico::after', f'content:"";position:absolute;left:0;right:0;top:4px;border-top:3px solid {col};')
+        css.add(f'{sel} .bvg-nav-l a[aria-current=page]', f'border-bottom:3px solid {acc};padding-bottom:{max(0, p.get("pad_v", 8) - 2)}px;')
+        css.add(f'{sel} details li a[aria-current=page]', f'color:{acc};')
         css.add(f'{sel} details ul', f'position:absolute;left:0;right:0;top:100%;z-index:50;background:{fondo};border-top:1px solid {linea};'
                 f'border-bottom:1px solid {linea};margin-top:{p.get("distanza", 18)}px;')
         css.add(f'{sel} details li a', 'display:block;padding:16px 20px;')
         css.add(f'{sel} details li a:hover', f'color:{acc};')
         return (f'<nav class="bvg-w {c}" aria-label="Menu principale"><ul class="bvg-nav-l">{voci}</ul>'
-                f'<details><summary><span class="bvg-ico" aria-hidden="true"></span>Menu</summary><ul>{voci}</ul></details></nav>')
+                f'<details><summary aria-label="Menu"><span class="bvg-ico" aria-hidden="true"></span></summary><ul>{voci}</ul></details>'
+                # voce della pagina corrente: il fallback è incollato pagina per pagina, la riconosce dall'indirizzo
+                f"<script>document.querySelectorAll('.{scope} .{c} a').forEach(function(a){{if(a.pathname===location.pathname)"
+                "a.setAttribute('aria-current','page')}})</script></nav>")
     if n.kind == 'posts':
         base, sizes = _css_tipo('h3')
         css.add(f'{sel} ul', 'list-style:none;margin:0;padding:0;')
@@ -874,6 +888,8 @@ def _reset():
     "{s} a{{transition:none;}}"
     "{s} h1,{s} h2,{s} h3,{s} h4,{s} p{{margin-top:0;}}"
     "{s} .bvg-w{{width:100%;max-width:100%;}}"
+    "{s} h1,{s} h2,{s} h3{{text-wrap:balance;}}{s} p{{text-wrap:pretty;}}"
+    "{s} .screen-reader-text{{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}}"
     )
 
 

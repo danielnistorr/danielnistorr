@@ -173,29 +173,31 @@ def sezione(*children, bg=BIANCO, pad=('sezione', 'lato'), **p):
 
 def link_freccia(testo, url, colore=NERO, hover=ROSSO, **p):
     """Link testuale in maiuscolo con freccia, come i "Scopri" dei siti di marca."""
+    classi = ('bv-tap ' + p.pop('css', '')).strip()
     return T(f'<p><a href="{url}">{testo}&nbsp;&nbsp;→</a></p>', style='link', color=colore, link_color=colore,
-             link_hover=hover, **p)
+             link_hover=hover, css=classi, **p)
 
 
-def intestazione(titolo, lead, max_w=760):
+def intestazione(titolo, lead, max_w=760, filetto=True):
+    # senza filetto quando la sezione dopo apre con una riga che ha già il suo filetto (niente doppie linee)
     return sezione(
         C(H(titolo, 'h1'), T(f'<p>{lead}</p>', style='lead', color=TESTO2, max_w=max_w), gap='m'),
-        pad=('xl', 'lato', 'l', 'lato'), border_bottom=1, border_color=LINEA)
+        pad=('xl', 'lato', 'l', 'lato'), anchor='content', **({'border_bottom': 1, 'border_color': LINEA} if filetto else {}))
 
 
-def hero_divisa(titolo, lead, pulsanti, foto, alt, foto_mobile=None, livello='h1', stile='display'):
+def hero_divisa(titolo, lead, pulsanti, foto, alt, foto_mobile=None, livello='h1', stile='display', min_h=680):
     """Hero divisa: pannello nero con il titolo a sinistra, foto a tutta altezza a destra (Mastrotto, Santoni)."""
     testo = C(H(titolo, livello, style=stile, color=BIANCO),
               T(f'<p>{lead}</p>', style='lead', color=SU_NERO2, max_w=520),
               C(*pulsanti, dir='row', dir_m='column', gap='s', mt='xs'),
-              w=(50, 100, 100), gap='m', justify='center', pad=('xl', 'xl', 'xl', 'hero_lato'), min_h=(680, 0, 0),
+              w=(50, 100, 100), gap='m', justify='center', pad=('xl', 'xl', 'xl', 'hero_lato'), min_h=(min_h, 0, 0),
               bg=NERO)
     # foto come sfondo del contenitore: riempie sempre l'altezza del pannello nero, qualunque sia la lunghezza del testo
-    immagine = C(w=(50, 100, 100), min_h=(680, 520, 300), img=img(foto), alt=alt, hide=['mobile'] if foto_mobile else None)
+    immagine = C(w=(50, 100, 100), min_h=(min_h, 520, 300), img=img(foto), alt=alt, hide=['mobile'] if foto_mobile else None)
     figli = [testo, immagine]
     if foto_mobile:
         figli.append(C(w=(100, 100, 100), min_h=(300, 300, 280), img=img(foto_mobile), alt=alt, hide=['desktop', 'tablet']))
-    return C(*figli, dir='row', dir_t='column', boxed=False, pad='0', gap='0', bg=NERO, tag='section')
+    return C(*figli, dir='row', dir_t='column', boxed=False, pad='0', gap='0', bg=NERO, tag='section', anchor='content')
 
 
 def blocco_foto(titolo, testo, conteggio, foto, link):
@@ -286,6 +288,18 @@ CSS_BASE = (
     '.elementor-widget-text-editor ul{list-style:none;margin:0;padding:0}'
     f'.elementor-widget-text-editor li{{margin:0;padding:10px 0;border-top:1px solid {LINEA}}}'
     f'.elementor-widget-text-editor li:last-child{{border-bottom:1px solid {LINEA}}}'
+    '.elementor-widget-heading .elementor-heading-title{text-wrap:balance}.elementor-widget-text-editor p{text-wrap:pretty}'
+    # come nel fallback: l'ultimo paragrafo di un testo non aggiunge 0,9em di spazio sotto
+    '.elementor-widget-text-editor p:last-child{margin-block-end:0!important;margin-bottom:0!important}'
+    f"a.hfe-skip-link:focus{{background:{NERO};color:{BIANCO};border-radius:0;box-shadow:none;outline:2px solid {BIANCO};"
+    f"outline-offset:-4px;font:600 14px/1 '{BARLOW}',Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase;"
+    'text-decoration:none;padding:16px 24px}'
+)
+
+# aree di tocco: i link testuali restano uguali a vista ma si toccano su circa 40 px
+CSS_TAP = (
+    '.bv-tap a{display:inline-block;padding:12px 0;margin:-12px 0}'
+    '@media (max-width:1024px){.bv-tap-lista p{line-height:40px}.bv-tap-lista a{display:inline-block}}'
 )
 
 
@@ -294,33 +308,36 @@ def header():
         T(f'<p>Banco aperto {ORARI_BREVE.lower()}</p>', style='small', color=SU_NERO2, hide=['mobile']),
         T(f'<p>{ORARI_BREVE}</p>', style='small', color=SU_NERO2, hide=['desktop', 'tablet']),
         T(f'<p><a href="{TEL_LINK}">{TEL}</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="mailto:{EMAIL}">{EMAIL}</a></p>', style='small',
-          color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, align='right', hide=['mobile']),
+          color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, align='right', hide=['mobile'], css='bv-tap'),
         T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='small', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2,
-          align='right', hide=['desktop', 'tablet']),
+          align='right', hide=['desktop', 'tablet'], css='bv-tap'),
         dir='row', justify='between', align='center', gap='s', pad=(9, 'lato'), bg=NERO, boxed=True)
-    marchio = C(I(img('logo-benvegnu-nero.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 156, 136), fisso=True),
+    marchio = C(I(img('logo-benvegnu-nero.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 156, 136), fisso=True,
+                  link_label='Benvegnù S.r.l. pagina iniziale'),
                 dir='row', align='center', w=(30, 50, 55))
     azioni = C(
         T(f'<p><a href="{TEL_LINK}">Chiama</a></p>', style='link', color=NERO, link_color=NERO, link_hover=ROSSO,
-          hide=['desktop'], fisso=True),
+          hide=['desktop'], fisso=True, css='bv-tap'),
         MENU(VOCI_MENU, colore=NERO, accento=ROSSO, fondo_menu=BIANCO, linea=LINEA, stile='nav', stile_mobile='nav_m',
              spazio=32, pad_v=8, distanza=12, align_menu='right', fisso=True, larg=(None, 40, 40)),
         B('Chiedi disponibilità', '/contatti/#modulo', variant='contorno', hide=['tablet', 'mobile'], fisso=True),
         dir='row', align='center', justify='end', gap=('l', 's', 's'), w=(70, 50, 45))
     testata = C(marchio, azioni, dir='row', justify='between', align='center', gap='m', min_h=(84, 72, 64),
                 pad=(10, 'lato'), bg=BIANCO, border_bottom=1, border_color=LINEA, boxed=True)
-    return C(barra, testata, RAW('', css=CSS_BASE, solo_elementor=True), pad='0', boxed=False, tag='header', bg=BIANCO,
-             css='bvg-testata')
+    return C(barra, testata, RAW('', css=CSS_BASE, solo_elementor=True), RAW('', css=CSS_TAP), pad='0', boxed=False,
+             tag='header', bg=BIANCO, css='bvg-testata')
 
 
 def footer():
     def colonna(titolo, html):
         return C(T(f'<p>{titolo}</p>', style='label', color=SU_NERO2),
-                 T(html, style='dati', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, sottolinea=False), gap='s',
+                 T(html, style='dati', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, sottolinea=False,
+                   css='bv-tap-lista'), gap='s',
                  w=(22, 46, 100))
     pagine = ''.join(f'<a href="{u}">{t}</a><br>' for t, u in VOCI_MENU)
     righe = C(
-        C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 160, 150)),
+        C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 160, 150),
+            link_label='Benvegnù S.r.l. pagina iniziale'),
           T('<p>Componenti, accessori e utensili per calzatura e pelletteria. Vigonovo, dal 1980.</p>', style='dati',
             color=SU_NERO2, max_w=300), gap='m', w=(28, 46, 100)),
         colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{ZONA}</p>'),   # gli orari sono già nella barra in alto
@@ -332,7 +349,7 @@ def footer():
         T(f'<p>© 2026 Benvegnù S.r.l. · P.IVA {PIVA} · REA {REA} · Sede legale {SEDE_LEGALE}</p>', style='small', color=SU_NERO2),
         T(f'<p><a href="/privacy/">Privacy</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/cookie/">Cookie</a>&nbsp;&nbsp;·&nbsp;&nbsp;'
           f'<a href="{FACEBOOK}">Facebook</a></p>', style='small', color=SU_NERO2, link_color=SU_NERO2, link_hover=BIANCO, sottolinea=False,
-          align=('right', 'right', 'left')),
+          align=('right', 'right', 'left'), fisso=True, css='bv-tap'),
         dir='row', dir_m='column', justify='between', gap='s', pad=('m', '0', '0', '0'), border_top=1, border_color=LINEA_SCURA)
     return C(righe, legale, gap='xl', pad=('xl', 'lato', 'l', 'lato'), bg=NERO, tag='footer')
 
@@ -390,32 +407,35 @@ STRISCIA = [
     ('1895', 'Utensili', 'Forbici Lariz lame curve', 'Da lavoro, 4 misure', '/catalogo/#utensili'),
     ('1030', 'Filati ed elastici', 'Gütermann Tera', 'Poliestere ritorto, 7 varianti', '/catalogo/#filati-elastici'),
     ('82268', 'Lastre Vibram', '7106 Crepe', 'Gomma morbida, 90 x 60 cm, 4 colori', '/vibram/#vibram-lastre'),
-    ('14932', 'Utensili', 'Calibro digitale', 'Portata 200 mm, 0,01 mm · Cod. 14932', '/catalogo/#utensili'),
+    ('14932', 'Utensili', 'Calibro digitale', 'Portata 200 mm, risoluzione 0,01 mm · Cod. 14932', '/catalogo/#utensili'),
     ('80751', 'Tacchi Vibram', '1100T Montagna', 'Tacco 20,5 mm, mescola Vibram Mont', '/vibram/#vibram-mezzesuole-tacchi'),
     ('15887', 'Filati ed elastici', 'Gütermann Mara', 'Poliestere ritorto, 6 varianti', '/catalogo/#filati-elastici'),
-    ('9978', 'Utensili', 'Coltello C.Dick Original', '270 x 20 · Cod. 9978', '/catalogo/#utensili'),
-    ('15752', 'Esposizione e cura', 'Tendiscarpa in cedro', 'European · Cod. 15752', '/catalogo/#esposizione-cura'),
+    ('9978', 'Utensili', 'Coltello C.Dick Original', 'Misura 270 x 20 mm · Cod. 9978', '/catalogo/#utensili'),
+    ('15752', 'Esposizione e cura', 'Tendiscarpa in cedro', 'Modello European · Cod. 15752', '/catalogo/#esposizione-cura'),
     ('14563', 'Modelleria e riparazione', 'Forma allargascarpe 2Way', 'Dasco · Cod. 14563', '/catalogo/#modelleria-riparazione'),
     ('7995', 'Esposizione e cura', 'Calzante Longuette GT', 'Anatomico · Cod. 7995', '/catalogo/#esposizione-cura'),
-    ('15531', 'Imballaggio', 'Etichette Made in Italy', '28 x 8, 5000 pezzi · Cod. 15531', '/catalogo/#imballaggio'),
+    ('15531', 'Imballaggio', 'Etichette Made in Italy', '28 x 8 mm, 5000 pezzi · Cod. 15531', '/catalogo/#imballaggio'),
 ]
-CELLA = (312, 288, 264)
+CELLA = (312, 288, 300)
 FINE = {'14932', '9978'}        # oggetti sottili (calibro, coltello): ingranditi nella loro cella
 
 CSS_STRISCIA = (
     # binario: scorre di lato con aggancio alle schede; il primo bordo è allineato alla griglia di 1280, la fine sborda
     '.bv-strip .bv-track{flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden;scroll-snap-type:x mandatory;'
-    'scrollbar-width:none;padding-left:max(48px,calc((100% - 1280px)/2))!important;'
+    'scrollbar-width:thin;scrollbar-color:#111111 #E2E2E2;padding-left:max(48px,calc((100% - 1280px)/2))!important;'
     'scroll-padding-left:max(48px,calc((100% - 1280px)/2))}'
-    '.bv-strip .bv-track::-webkit-scrollbar{display:none}'
+    # con JavaScript ci sono frecce e barra rossa: la barra di scorrimento del browser si nasconde
+    '.bv-strip.bv-js .bv-track{scrollbar-width:none}.bv-strip.bv-js .bv-track::-webkit-scrollbar{display:none}'
     ".bv-strip .bv-track::after{content:'';flex:0 0 max(48px,calc(100% - 1280px))}"
     '.bv-strip .bv-track>*{scroll-snap-align:start}'
     '.bv-strip .bv-img{overflow:hidden}'
     '.bv-strip .bv-img img{display:block;width:100%;height:auto;transition:transform .4s ease}'
-    '.bv-strip .bv-card:hover .bv-img img{transform:scale(1.04)}'
-    '.bv-strip .bv-fine img{transform:scale(1.3)}.bv-strip .bv-card:hover .bv-fine img{transform:scale(1.35)}'
+    '.bv-strip .bv-fine img{transform:scale(1.3)}'
+    '@media (hover:hover){.bv-strip .bv-card:hover .bv-img img{transform:scale(1.04)}'
+    '.bv-strip .bv-card:hover .bv-fine img{transform:scale(1.35)}'
     '.bv-strip .bv-card:hover .bv-name,.bv-strip .bv-card:hover .bv-name .elementor-heading-title'
-    '{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}'
+    '{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}'
+    '@media (prefers-reduced-motion:reduce){.bv-strip .bv-img img{transition:none}}'
     f'.bv-strip .bv-card:focus-visible,.bv-strip .bv-track:focus-visible{{outline:2px solid {ROSSO};outline-offset:-3px}}'
     # comandi: barra di avanzamento rossa sottile e due frecce quadrate (si riempiono di nero, mai dissolvenze)
     '.bv-strip .bv-ctrl{max-width:1280px;margin:32px auto 0;padding:0 48px;box-sizing:content-box;display:flex;align-items:center;gap:24px}'
@@ -425,8 +445,9 @@ CSS_STRISCIA = (
     '.bv-strip .bv-btns{display:flex;gap:8px}'
     f".bv-strip .bv-ctrl .bv-btn{{width:48px;height:48px;padding:0;border:1px solid {NERO};border-radius:0;background:{BIANCO};"
     f"color:{NERO};font:400 18px/1 '{BARLOW}',Arial,sans-serif;cursor:pointer;box-shadow:none;transition:background-color .2s,color .2s}}"
-    f'.bv-strip .bv-ctrl .bv-btn:hover:not(:disabled),.bv-strip .bv-ctrl .bv-btn:focus-visible{{background:{NERO};color:{BIANCO};border-color:{NERO}}}'
-    f'.bv-strip .bv-ctrl .bv-btn:disabled,.bv-strip .bv-ctrl .bv-btn:disabled:hover{{background:{BIANCO};border-color:#CFCFCF;color:#BDBDBD;cursor:default}}'
+    f'.bv-strip .bv-ctrl .bv-btn:hover:not([aria-disabled=true]),.bv-strip .bv-ctrl .bv-btn:focus-visible{{background:{NERO};color:{BIANCO};border-color:{NERO}}}'
+    f'.bv-strip .bv-ctrl .bv-btn[aria-disabled=true],.bv-strip .bv-ctrl .bv-btn[aria-disabled=true]:hover{{background:{BIANCO};border-color:#CFCFCF;color:#BDBDBD;cursor:default}}'
+    f'.bv-strip .bv-ctrl .bv-btn[aria-disabled=true]:focus-visible{{outline:2px solid {ROSSO};outline-offset:2px}}'
     '@media (max-width:1024px){.bv-strip .bv-track{padding-left:32px!important;scroll-padding-left:32px}'
     '.bv-strip .bv-track::after{flex-basis:32px}.bv-strip .bv-ctrl{padding:0 32px}}'
     '@media (max-width:767px){.bv-strip .bv-track{padding-left:20px!important;scroll-padding-left:20px}'
@@ -439,13 +460,20 @@ JS_STRISCIA = (
     "(function(){function go(){document.querySelectorAll('.bv-strip').forEach(function(w){"
     "var s=w.querySelector('.bv-track'),c=w.querySelector('.bv-ctrl');if(!s||!c||c.dataset.ok)return;c.dataset.ok=1;"
     "var t=c.querySelector('.bv-thumb'),p=c.querySelector('.bv-prev'),n=c.querySelector('.bv-next');c.hidden=false;"
+    "w.classList.add('bv-js');"
     "s.setAttribute('tabindex','0');s.setAttribute('role','region');s.setAttribute('aria-label','Articoli dal catalogo');"
-    "var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;"
+    "var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,bh=rm?'auto':'smooth';"
     "function st(){var k=s.children[1]||s.children[0];return k?k.getBoundingClientRect().width:300}"
     "function up(){var m=s.scrollWidth-s.clientWidth,v=s.clientWidth/s.scrollWidth,r=m>0?s.scrollLeft/m:0;"
-    "t.style.width=(v*100)+'%';t.style.left=(r*(1-v)*100)+'%';p.disabled=s.scrollLeft<=2;n.disabled=s.scrollLeft>=m-2}"
-    "p.addEventListener('click',function(){s.scrollBy({left:-st(),behavior:rm?'auto':'smooth'})});"
-    "n.addEventListener('click',function(){s.scrollBy({left:st(),behavior:rm?'auto':'smooth'})});"
+    "t.style.width=(v*100)+'%';t.style.left=(r*(1-v)*100)+'%';"
+    "p.setAttribute('aria-disabled',s.scrollLeft<=2);n.setAttribute('aria-disabled',s.scrollLeft>=m-2)}"
+    "p.addEventListener('click',function(){if(this.getAttribute('aria-disabled')==='true')return;s.scrollBy({left:-st(),behavior:bh})});"
+    "n.addEventListener('click',function(){if(this.getAttribute('aria-disabled')==='true')return;s.scrollBy({left:st(),behavior:bh})});"
+    "s.addEventListener('focusin',function(e){var k=e.target.closest&&e.target.closest('.bv-card');if(!k)return;"
+    "var a=k.getBoundingClientRect(),b=s.getBoundingClientRect(),pl=parseFloat(getComputedStyle(s).scrollPaddingLeft)||0;"
+    "if(a.left<b.left+pl-1||a.right>b.right+1){s.scrollTo({left:s.scrollLeft+a.left-b.left-pl,behavior:bh})}});"
+    "s.addEventListener('keydown',function(e){if(e.target!==s)return;if(e.key==='Home'||e.key==='End'){e.preventDefault();"
+    "s.scrollTo({left:e.key==='Home'?0:s.scrollWidth,behavior:bh})}});"
     "s.addEventListener('scroll',up,{passive:true});window.addEventListener('resize',up);up()})}"
     "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',go)}else{go()}})();"
 )
@@ -458,13 +486,17 @@ HTML_COMANDI = (
 
 def striscia_catalogo():
     """S1: striscia di articoli tra filetti neri, aperta da una cella di testo nera; scorre di lato (Valextra, Edward Green)."""
-    cella_testo = C(
-        C(T('<p>Dal catalogo</p>', style='label', color=SU_NERO2, css='bv-kicker'),
-          H('Col codice facciamo prima', 'h2', style='h2card', color=BIANCO, mt=24),
-          T('<p>Ogni articolo del catalogo ha un codice. Con codice e colore, o misura, il riordino si fa con una '
-            'telefonata o una email.</p>', style='testo15', color=SU_NERO2, mt=20), gap='0'),
-        link_freccia('Sfoglia il catalogo', '/catalogo/', colore=BIANCO, hover=BIANCO),
-        larg_px=CELLA, bg=NERO, pad=(32, 28, 24), justify='between', gap='m', border=1, border_color=NERO)
+    def testo_cella():
+        return [C(T('<p>Dal catalogo</p>', style='label', color=SU_NERO2, css='bv-kicker'),
+                  H('Col codice facciamo prima', 'h2', style='h2card', color=BIANCO, mt=24),
+                  T('<p>Per riordinare servono il codice o il nome dell’articolo, più il colore o la misura. Basta una '
+                    'telefonata o una email.</p>', style='testo15', color=SU_NERO2, mt=20), gap='0'),
+                link_freccia('Sfoglia il catalogo', '/catalogo/', colore=BIANCO, hover=SU_NERO2)]
+    # desktop e tablet: prima cella della striscia; telefono: blocco nero sopra la striscia, così la prima scheda si vede intera
+    cella_testo = C(*testo_cella(), larg_px=CELLA, bg=NERO, pad=(32, 28, 24), justify='between', gap='m', border=1,
+                    border_color=NERO, hide=['mobile'])
+    blocco_mobile = C(C(*testo_cella(), bg=NERO, pad=(32, 24, 32, 24), gap='m', justify='between'), pad=(0, 20, 0, 20),
+                      hide=['desktop', 'tablet'])
     schede = []
     for pid, famiglia, nome, dettaglio, link in STRISCIA:
         schede.append(C(
@@ -475,8 +507,9 @@ def striscia_catalogo():
               pad=((4, 4, 4), (24, 24, 20), (24, 24, 20), (24, 24, 20)), min_h=(112, 112, 104), gap='0'),
             larg_px=CELLA, bg=BIANCO, link=link, gap='0', border_top=1, border_right=1, border_bottom=1, border_color=NERO,
             css='bv-card'))
-    binario = C(cella_testo, *schede, dir='row', wrap=False, gap='0', pad='0', css='bv-track')
-    return C(binario, RAW(HTML_COMANDI + f'<script>{JS_STRISCIA}</script>', css=CSS_STRISCIA), bg=BIANCO, boxed=False,
+    # overflow anche nel JSON: se il widget HTML perdesse il suo CSS, la striscia scorrerebbe comunque
+    binario = C(cella_testo, *schede, dir='row', wrap=False, gap='0', pad='0', css='bv-track', overflow='auto')
+    return C(blocco_mobile, binario, RAW(HTML_COMANDI + f'<script>{JS_STRISCIA}</script>', css=CSS_STRISCIA), bg=BIANCO, boxed=False,
              pad=((0, 0, 0), (0, 0, 0), (160, 120, 64), (0, 0, 0)), gap='0', tag='section',
              css='bv-strip')
 
@@ -484,16 +517,17 @@ def striscia_catalogo():
 CSS_RIGHE = (
     CSS_KICKER +
     '.bv-rows{margin-top:32px}'
-    f'.bv-rows .bv-row{{display:flex;align-items:baseline;height:52px;color:{BIANCO};text-decoration:none}}'
+    f'.bv-rows .bv-row{{display:flex;align-items:baseline;height:52px;padding:15px 8px 15px 0;color:{BIANCO};text-decoration:none}}'
     f".bv-rows .bv-row__n,.bv-rows .bv-row__c{{font:600 22px/1 '{CONDENSED}',Arial,sans-serif;text-transform:uppercase;color:{BIANCO}}}"
     '.bv-rows .bv-row__c{font-weight:500;font-variant-numeric:tabular-nums}'
     '.bv-rows .bv-row__d{flex:1;margin:0 16px;border-bottom:1px dotted rgba(255,255,255,.35);transform:translateY(-6px)}'
     f".bv-rows .bv-row__a{{margin-left:16px;font:400 16px/1 '{BARLOW}',Arial,sans-serif;color:{SU_NERO2};transition:transform .2s,color .2s}}"
     f'.bv-rows .bv-row:hover .bv-row__d,.bv-rows .bv-row:focus-visible .bv-row__d{{border-bottom-style:solid;border-color:{BIANCO}}}'
     f'.bv-rows .bv-row:hover .bv-row__a,.bv-rows .bv-row:focus-visible .bv-row__a{{transform:translateX(4px);color:{BIANCO}}}'
-    f'.bv-rows .bv-row:focus-visible{{outline:2px solid {ROSSO};outline-offset:3px}}'
-    '@media (max-width:1024px){.bv-rows .bv-row{height:48px}.bv-rows .bv-row__n,.bv-rows .bv-row__c{font-size:20px}}'
-    '@media (max-width:767px){.bv-rows .bv-row{height:52px}}'
+    f'.bv-rows .bv-row:focus-visible{{outline:2px solid {BIANCO};outline-offset:0}}'
+    '@media (max-width:1024px){.bv-rows .bv-row{height:48px;padding:14px 8px 14px 0}.bv-rows .bv-row__n,.bv-rows .bv-row__c{font-size:20px}}'
+    '@media (max-width:767px){.bv-rows .bv-row{height:52px;padding:16px 8px 16px 0}}'
+    '@media (prefers-reduced-motion:reduce){.bv-rows .bv-row__a{transition:none}}'
 )
 
 
@@ -517,13 +551,14 @@ def vibram_al_banco():
         w=(50, 50, 100), pad=((72, 56, 56), (80, 32, 20), (72, 56, 64), (96, 40, 20)), justify='center', gap='0')
     riga = C(foto, pannello, dir='row', dir_m='column', align='stretch', gap='0', min_h=(720, 600, 0), pad='0',
              boxed=True, boxed_width=1600)
-    return C(riga, bg=NERO, boxed=False, pad='0', gap='0', tag='section')
+    # e-no-lazyload: Elementor non differisce lo sfondo (senza JavaScript la foto resterebbe nera)
+    return C(riga, bg=NERO, boxed=False, pad='0', gap='0', tag='section', css='e-no-lazyload')
 
 
 def per_chi_lavoriamo():
     """S3: una dichiarazione semplice accanto ai marchi del banco, in una griglia 2x2 con filetti interni (Lampo)."""
     marchi = [('vibram', 'Vibram', 'Suole, lastre, tacchi', '/vibram/', (52, 46, 44)),
-              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (40, 36, 32)),
+              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (48, 44, 40)),
               ('girba', 'Girba', 'Tinture e finissaggio', '/catalogo/#prodotti-chimici', (64, 56, 50)),
               ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi', '/marchi/', (48, 42, 38))]
     bordi = [dict(border_right=1, border_bottom=1), dict(border_bottom=1), dict(border_right=1), {}]
@@ -531,13 +566,16 @@ def per_chi_lavoriamo():
     for (slug, nome, etichetta, link, h), b in zip(marchi, bordi):
         celle.append(C(
             C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=h, fit='contain'), min_h=(64, 56, 52), justify='center'),
-            T(f'<p>{etichetta}</p>', style='micro', color=TESTO2, align='center', css='bv-logo-label'),
+            T(f'<p><span class="screen-reader-text">{nome}: </span>{etichetta}</p>', style='micro', color=TESTO2, align='center',
+              css='bv-logo-label'),
             w=(50, 50, 50), min_h=(176, 150, 140), justify='center', align='stretch', gap=(20, 16, 16), link=link,
-            css='bv-logo', border_color=NERO, **b))
+            pad=(0, (16, 12, 10), 0, (16, 12, 10)), css='bv-logo', border_color=NERO, **b))
     css = (CSS_KICKER +
            f'.bv-logo:hover .bv-logo-label p,.bv-logo:focus-visible .bv-logo-label p{{color:{NERO};text-decoration:underline;'
            'text-underline-offset:4px}')
-    css += '.bv-who .elementor-widget-text-editor p:last-child{margin-bottom:0!important}'
+    css += ('@media (max-width:1024px){.bv-logo-label p{letter-spacing:1.2px}}'
+            f'@media (min-width:768px) and (max-width:1024px){{.bv-logo{{width:25%!important;border-bottom:0!important;'
+            f'border-right:1px solid {NERO}!important}}.bv-logo:last-child{{border-right:0!important}}}}')
     testa = C(
         T('<p>Per chi lavoriamo</p>', style='label', color=TESTO2, css='bv-kicker'),
         H('Molti dei nostri clienti<br>producono per<br>i marchi del lusso', 'h2', style='h2m', mt=32),
@@ -545,13 +583,13 @@ def per_chi_lavoriamo():
           'marchi che usano ogni giorno in produzione e in riparazione.</p>', style='lead', color=TESTO2, max_w=560, mt=24),
         RAW('', css=css), gap='0')
     # lo spazio in più va solo tra il testo e il link: il link chiude alla stessa altezza della griglia dei marchi
-    sinistra = C(testa, link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32), w=(55, 50, 100), gap='0',
+    sinistra = C(testa, link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32), w=(55, 100, 100), gap='0',
                  justify='between')
     destra = C(
         T('<p>I marchi al banco</p>', style='label', color=TESTO2, mb=20),
         C(*celle, dir='row', wrap=True, gap='0'),
-        w=(42.5, 45.8, 100), gap='0', mt=(0, 0, 48), justify='between')
-    return sezione(sinistra, destra, pad=((160, 120, 64), 'lato', (120, 88, 64), 'lato'), dir='row', dir_m='column',
+        w=(42.5, 100, 100), gap='0', mt=(0, 56, 48), justify='between')
+    return sezione(sinistra, destra, pad=((160, 120, 64), 'lato', (120, 88, 64), 'lato'), dir='row', dir_t='column', dir_m='column',
                    justify='between', align=('stretch', 'stretch', 'stretch'), gap='0', css='bv-who')
 
 
@@ -646,29 +684,30 @@ def catalogo():
           T(f'<p>{TOTALE} articoli in 10 famiglie, dagli utensili alle suole Vibram. Per disponibilità, colori e misure chiedi al '
             'banco o telefona negli orari di apertura.</p>', style='lead', color=TESTO2, max_w=760), gap='m'),
         indice,
-        gap='l', pad=('xl', 'lato', 'l', 'lato'), border_bottom=1, border_color=LINEA)
+        gap='l', pad=('xl', 'lato', 'l', 'lato'), anchor='content')
 
     righe = []
     for i, (slug, foto, esempi) in enumerate(ORDINE_FAMIGLIE, 1):
         f = FAM[slug]
         # senza foto prodotto (i chimici Girba non ne hanno): il logo del marchio nella stessa cornice quadrata
         miniatura = (C(I(img(f'prodotto-{foto}.jpg'), f['nome']), border=1, border_color=LINEA, bg=BIANCO)
-                     if foto else C(I(img('marchio-girba.png'), 'Logo Girba', height=(84, 80, 64), fit='contain'),
-                                    min_h=(218, 211, 175), justify='center', border=1, border_color=LINEA, bg=BIANCO))
+                     if foto else C(I(img('marchio-girba.png'), 'Logo Girba', height=(84, 80, 44), fit='contain'),
+                                    min_h=(218, 211, 105), justify='center', border=1, border_color=LINEA, bg=BIANCO))
         righe.append(C(
-            H(f'{i:02d}', 'p', style='num', color=ROSSO, fisso=True, w_px=(64, 56, None)),
-            C(miniatura, w=(17, 22, 50), fisso=True),
-            C(H(f['nome'], 'h3'),
+            H(f'{i:02d}', 'p', style='num', color=ROSSO, fisso=True, w_px=(64, 56, None), hide=['mobile']),
+            C(miniatura, w=(17, 22, 30), fisso=True),
+            C(T(f'<p>{i:02d}</p>', style='label', color=ROSSO, hide=['desktop', 'tablet']),
+              H(f['nome'], 'h3'),
               T(f'<p>{sottocategorie(slug)}</p>', style='body', color=TESTO2),
               T('<p>' + '<br>'.join(esempi) + '</p>', style='small', color=NERO),
-              gap='s', grow=True),
+              gap='s', grow=True, w=(40, 40, 62)),
             C(T(f'<p>{f["n"]} articoli</p>', style='label', color=NERO, align=('right', 'right', 'left')),
               T(f'<p><a href="{mailto("Disponibilità: " + f["nome"])}">Chiedi disponibilità&nbsp;&nbsp;→</a></p>',
                 style='link', color=NERO, link_color=NERO, link_hover=ROSSO, align=('right', 'right', 'left')),
               gap='xs', w=(20, 22, 100), fisso=True),
-            dir='row', dir_m='column', gap=('l', 'm', 's'), pad=('l', '0', 'l', '0'), border_top=1, border_color=LINEA,
+            dir='row', wrap=(False, False, True), gap=('l', 'm', 's'), pad=('l', '0', 'l', '0'), border_top=1, border_color=LINEA,
             anchor=slug, align='start'))
-    famiglie = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('m', 'lato', 'sezione', 'lato'))
+    famiglie = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('xl', 'lato', 'sezione', 'lato'))
 
     non_online = sezione(
         C(H('Al banco c’è anche quello che non è online', 'h2'),
@@ -676,13 +715,13 @@ def catalogo():
             style='body', color=TESTO2),
           C(B('Chiedi un articolo', mailto('Richiesta articolo non in catalogo'), variant='primario'), mt='xs'),
           w=(40, 100, 100), gap='m'),
-        C(T('<ul><li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-            '<li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>', style='body'),
-          T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per l’incollaggio Fratelli Zucchini</li>'
-            '<li>Rinforzi per tomaia in tessuto</li><li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per tomaia</li></ul>',
-            style='body'),
+        C(C(T('<ul><li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
+              '<li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>', style='body'), w=(50, 50, 100)),
+          C(T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per l’incollaggio Fratelli Zucchini</li>'
+              '<li>Rinforzi per tomaia in tessuto</li><li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per tomaia</li></ul>',
+              style='body'), w=(50, 50, 100)),
           dir='row', dir_m='column', gap='l', w=(54, 100, 100)),
-        bg=GRIGIO, dir='row', dir_t='column', justify='between', gap='xl')
+        bg=BIANCO, pad=('0', 'lato', 'sezione', 'lato'), dir='row', dir_t='column', justify='between', gap='xl')
     return [('apertura', apertura), ('famiglie', famiglie), ('non-online', non_online), ('banco', blocco_banco())]
 
 
@@ -697,7 +736,7 @@ def vibram():
         [B('Chiedi disponibilità', mailto('Disponibilità Vibram', 'Modello:\nMisura:\nColore:\nQuantità:\n'), variant='bianco',
            full_m=True),
          B(f'Chiama {TEL}', TEL_LINK, variant='contorno-bianco', full_m=True)],
-        'banco-suole.jpg', 'Suole e mezzesuole Vibram sul banco', livello='h1', stile='h1')
+        'banco-suole.jpg', 'Suole e mezzesuole Vibram sul banco', livello='h1', stile='h1', min_h=520)
 
     def blocco(titolo, slug, intro, schede, bordo=True):
         return sezione(
@@ -746,12 +785,12 @@ def vibram():
 # ---------------------------------------------------------------------------------------------
 def marchi():
     apertura = intestazione('Marchi', 'I marchi che trovi al banco e cosa c’è di ciascuno. Nel catalogo compaiono anche '
-                                      'utensili e materiali di altri produttori.')
+                                      'utensili e materiali di altri produttori.', filetto=False)
     schede = [
         ('vibram', 'Vibram', f'Suole, mezzesuole, tacchi e lastre in gomma, per produzione e riparazione. È il marchio più '
                              f'presente nel nostro catalogo: {N_VIBRAM} articoli.', [('La pagina Vibram', '/vibram/')], (96, 84, 72)),
         ('gutermann', 'Gütermann', 'Filati industriali per cucire. Per pelle e calzatura teniamo i filati in poliestere ritorto '
-                                   'Mara e Tera, in più colori.', [('Filati ed elastici', '/catalogo/#filati-elastici')], (52, 48, 40)),
+                                   'Mara e Tera, in più colori.', [('Filati ed elastici', '/catalogo/#filati-elastici')], (60, 52, 44)),
         ('girba', 'Girba', 'Prodotti chimici per il finissaggio di calzatura e pelletteria: tinture e prodotti per tomaia e '
                            'bordi. Nel catalogo online: Bordobrill, Iris, Lederpolish, Nubio, Tingileder.',
          [('Prodotti chimici', '/catalogo/#prodotti-chimici')], (104, 92, 80)),
@@ -772,14 +811,14 @@ def marchi():
               gap='s', w=(54, 54, 100)),
             dir='row', dir_m='column', justify='between', gap=('xl', 'l', 'm'), pad=('l', '0', 'l', '0'), border_top=1,
             border_color=LINEA, align='center'))
-    elenco = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('m', 'lato', 'sezione', 'lato'))
+    elenco = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('xl', 'lato', 'sezione', 'lato'))
     altri = sezione(
-        C(H('Negli articoli del catalogo trovi anche', 'h3'), w=(32, 100, 100)),
+        C(H('Nel catalogo trovi anche', 'h3'), w=(32, 100, 100)),
         C(T('<p>Olfa, Mozart, Mark, Lariz, Kai, Wiss, C.Dick, Norton, Pentel, Marvy, Mitsubishi, Stanley, Dremel, Einhell, '
             'Luxoro, 3M, Marigold, Sperian, Coats.</p>', style='lead', color=NERO),
           T('<p>Sono i marchi che compaiono nei nomi degli articoli del catalogo online. Per un marchio che non vedi, chiedi.</p>',
-            style='small', color=TESTO2), w=(60, 100, 100), gap='s'),
-        bg=GRIGIO, dir='row', dir_t='column', justify='between', gap='l')
+            style='small', color=TESTO2), w=(54, 100, 100), gap='s'),
+        bg=BIANCO, pad=('0', 'lato', 'sezione', 'lato'), dir='row', dir_t='column', justify='between', gap='l')
     return [('apertura', apertura), ('elenco', elenco), ('altri-marchi', altri), ('banco', blocco_banco())]
 
 
@@ -794,8 +833,8 @@ def azienda():
             'tutta la piccola utensileria. Siamo specializzati in suole e lastre in gomma Vibram.</p>', style='lead',
             color=TESTO2, max_w=820), gap='m'),
         I(img('sede-larga.jpg'), 'La sede Benvegnù in Via del Lavoro 48, zona industriale Tombelle, Vigonovo',
-          height=(560, 420, 240)),
-        gap='xl', pad=('xl', 'lato', 'sezione', 'lato'))
+          height=(560, 420, 240), pos='center right'),   # su telefono resta inquadrata l'insegna
+        gap='xl', pad=('xl', 'lato', 'sezione', 'lato'), anchor='content')
 
     cosa = sezione(
         C(H('Cosa vendiamo', 'h2'),
@@ -803,13 +842,13 @@ def azienda():
             'online.</p>', style='body', color=TESTO2),
           C(B('Sfoglia il catalogo', '/catalogo/', variant='primario'), mt='xs'),
           w=(32, 100, 100), gap='m'),
-        C(T('<ul><li>Suole e lastre in gomma Vibram</li><li>Filo in poliestere ed elastico per tomaia</li>'
-            '<li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-            '<li>Piccola utensileria per la calzatura</li><li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>',
-            style='body'),
-          T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per la rifinitura della suola e della tomaia</li>'
-            '<li>Prodotti per l’incollaggio Fratelli Zucchini</li><li>Rinforzi per tomaia in tessuto</li>'
-            '<li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per la tomaia</li></ul>', style='body'),
+        C(C(T('<ul><li>Suole e lastre in gomma Vibram</li><li>Filo in poliestere ed elastico per tomaia</li>'
+              '<li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
+              '<li>Piccola utensileria per la calzatura</li><li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>',
+              style='body'), w=(50, 50, 100)),
+          C(T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per la rifinitura della suola e della tomaia</li>'
+              '<li>Prodotti per l’incollaggio Fratelli Zucchini</li><li>Rinforzi per tomaia in tessuto</li>'
+              '<li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per la tomaia</li></ul>', style='body'), w=(50, 50, 100)),
           dir='row', dir_m='column', gap='l', w=(60, 100, 100)),
         dir='row', dir_t='column', justify='between', gap='xl', border_top=1, border_color=LINEA)
 
@@ -817,16 +856,14 @@ def azienda():
         ('1980', 'Inizio dell’attività', 'A Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'),
         ('1990', 'Nasce Benvegnù S.r.l.', 'Iscrizione alla Camera di Commercio di Padova il 24 ottobre 1990.'),
         ('2014', 'Il catalogo va online', f'Dal 16 aprile 2014 i prodotti sono sul sito. Oggi sono {TOTALE} articoli in 10 famiglie.'),
-        ('2026', 'Il nuovo sito', 'Il catalogo si consulta anche da telefono, con codici e famiglie.'),
     ]
-    righe = [C(H(a, 'p', style='cifra', color=NERO, fisso=True, w_px=(170, 150, None)), C(H(t, 'h3'), w=(30, 30, 100)),
+    righe = [C(H(a, 'p', style='cifra', color=NERO, fisso=True, w_px=(170, 150, None)), C(H(t, 'h3'), w=(30, 30, 100), fisso=True),
                T(f'<p>{d}</p>', style='body', color=TESTO2, grow=True),
                dir='row', dir_m='column', gap=('l', 'm', 'xs'), pad=('m', '0', 'm', '0'), border_top=1, border_color=LINEA,
-               align=('center', 'center', 'start'))
+               align=('baseline', 'baseline', 'start'))
              for a, t, d in tappe]
     storia = sezione(
-        C(H('Le date', 'h2'), T('<p>Quelle che possiamo documentare.</p>', style='body', color=TESTO2),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='s'),
+        H('Le date', 'h2'),
         C(*righe, C(LINEA_H(LINEA)), gap='0'),
         gap='l', border_top=1, border_color=LINEA)
 
@@ -925,8 +962,9 @@ STILE_CF7 = (
     f"padding:18px 34px;font:600 13px/16px '{BARLOW}',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;"
     'transition:background-color .15s,color .15s}'
     f'.bvg-modulo input[type=submit]:hover{{background:transparent;color:{NERO}}}'
-    f'.bvg-modulo input[type=checkbox],.bvg-modulo input[type=radio]{{accent-color:{NERO};width:18px;height:18px;margin:0 8px 0 0;vertical-align:-3px}}'
-    '.bvg-modulo .wpcf7-list-item{display:block;margin:10px 0 0}'
+    f'.bvg-modulo input[type=checkbox],.bvg-modulo input[type=radio]{{accent-color:{NERO};flex:0 0 20px;width:20px;height:20px;margin:1px 0 0}}'
+    '.bvg-modulo .wpcf7-list-item{display:block;margin:0}'
+    '.bvg-modulo .wpcf7-list-item label{display:flex;align-items:flex-start;gap:10px;margin:0;min-height:44px;padding:11px 0;line-height:22px}'
     f'.bvg-modulo .wpcf7-list-item-label,.bvg-modulo .wpcf7-acceptance{{text-transform:none;letter-spacing:0;font-size:15px;color:{NERO}}}'
     f'.bvg-modulo .wpcf7-not-valid-tip{{color:{ROSSO};font-size:14px;margin-top:6px;text-transform:none;letter-spacing:0}}'
     f'.bvg-modulo .wpcf7 form .wpcf7-response-output{{margin:24px 0 0;padding:14px 16px;border:1px solid {NERO};font-size:15px}}'
@@ -941,11 +979,11 @@ def contatti():
                  dir='row', dir_m='column', gap=('m', 'm', 'xxs'), pad=('s', '0', 's', '0'), border_top=1, border_color=LINEA,
                  align=('baseline', 'baseline', 'start'))
     apertura = intestazione('Contatti', f'Il banco è a Vigonovo, in {INDIRIZZO}, {ZONA_MIN}. Rispondiamo al telefono negli '
-                                        'orari di apertura.')
+                                        'orari di apertura.', filetto=False)
     corpo = ('Codice o nome articolo:\nColore, misura o formato:\nQuantità:\nRitiro al banco o spedizione:\n'
              'Ragione sociale e partita IVA:\nTelefono:\n')
-    alternativa = (f'<p style="margin:0 0 16px">Scrivi a <a href="mailto:{EMAIL}">{EMAIL}</a> indicando codice o nome '
-                   'dell’articolo, colore, misura o formato, quantità, ritiro al banco o spedizione.</p>'
+    alternativa = (f'<p style="margin:0 0 24px">Scrivi a <a href="mailto:{EMAIL}">{EMAIL}</a>: il pulsante qui sotto apre '
+                   'una email con i campi già pronti da compilare.</p>'
                    f'<p style="margin:0"><a href="{mailto("Richiesta disponibilità", corpo)}" style="display:inline-block;'
                    f'background:{NERO};color:{BIANCO};border:1px solid {NERO};padding:18px 34px;font:600 13px/16px \'{BARLOW}\','
                    'Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;text-decoration:none">Scrivi la richiesta</a></p>')
@@ -958,36 +996,37 @@ def contatti():
           dato('PEC', PEC),
           dato('Parcheggio', 'Per i clienti, davanti al negozio'),
           C(LINEA_H(LINEA)),
-          C(MAPPA(f'Benvegnù, {INDIRIZZO}, {CITTA}', height=(360, 340, 300), zoom=15, grigia=True), mt='l'),
+          C(MAPPA(f'Benvegnù, {INDIRIZZO}, {CITTA}', height=(650, 340, 300), zoom=15, grigia=True), mt='l'),
           w=(46, 100, 100), gap='0'),
         C(H('Richiesta di disponibilità', 'h2'),
           T('<p>Indica il codice o il nome dell’articolo: ti rispondiamo negli orari del banco.</p>', style='body', color=TESTO2),
-          C(SHORTCODE(CF7, alternativa_html=alternativa), RAW('', css=STILE_CF7, solo_elementor=True), mt='s', css='bvg-modulo'),
+          C(SHORTCODE(CF7, alternativa_html=alternativa, colore=TESTO2), RAW('', css=STILE_CF7, solo_elementor=True), mt='s',
+            css='bvg-modulo'),
           w=(46, 100, 100), gap='s', pad='l', bg=GRIGIO, anchor='modulo'),
-        dir='row', dir_t='column', justify='between', align='start', gap='xl', pad=('l', 'lato', 'sezione', 'lato'))
+        dir='row', dir_t='column', justify='between', align='start', gap='xl', pad=('xl', 'lato', 'sezione', 'lato'))
     societari = sezione(
         C(H('Dati societari', 'h3'), w=(32, 100, 100)),
         C(T(f'<p>Benvegnù S.r.l.<br>P.IVA e codice fiscale {PIVA}<br>REA {REA}<br>Sede legale: {SEDE_LEGALE}<br>PEC {PEC}</p>',
             style='body', color=TESTO2),
-          link_freccia('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF), w=(60, 100, 100), gap='s'),
+          link_freccia('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF), w=(48.67, 100, 100), gap='s'),
         dir='row', dir_t='column', justify='between', gap='l', pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=LINEA)
     # le fasi del lavoro (pattern "processo in fasi" del brief): quattro colonne con filetto, numeri piccoli in grigio
     fasi = [
-        ('Fase 1', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Con il codice dell’articolo facciamo prima: '
-                                         'lo trovi nel catalogo.'),
-        ('Fase 2', 'Verifichiamo varianti e disponibilità', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello '
-                                                            'e misura, per i filati da articolo e colore.'),
+        ('Fase 1', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Se l’articolo ha un codice, indicalo: '
+                                         'è nella sua scheda del catalogo.'),
+        ('Fase 2', 'Verifichiamo le varianti', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello '
+                                               'e misura, per i filati da articolo e colore.'),
         ('Fase 3', 'Ritiri al banco o spediamo', 'Ritiro a Vigonovo con parcheggio davanti al negozio. Per gli ordini da lontano '
                                                  'spediamo con corriere, alle condizioni di vendita per le aziende.'),
-        ('Fase 4', 'Per il riordino basta il codice', 'Tieni codice e colore dell’articolo: il riordino si fa con una telefonata '
-                                                      'o una email.'),
+        ('Fase 4', 'Riordino col codice', 'Annota codice e colore, o misura, degli articoli che usi: per riordinare basta '
+                                          'dettarceli al telefono o per email.'),
     ]
     come = sezione(
         H('Come si lavora con noi', 'h2', max_w=(760, 760, 600)),
         C(*[C(T(f'<p>{n}</p>', style='label', color=TESTO2), H(t, 'h3', mt=12), T(f'<p>{x}</p>', style='body', color=TESTO2, mt=8),
               w=(23, 48, 100), border_top=1, border_color=NERO, pad=(20, 0, 0, 0), gap='0') for n, t, x in fasi],
           dir='row', wrap=True, justify='between', gap='0', gap_r=(40, 40, 32)),
-        gap='l', pad=('l', 'lato', 'sezione', 'lato'), border_top=1, border_color=LINEA)
+        gap='l', pad=('sezione', 'lato', 'sezione', 'lato'), border_top=1, border_color=LINEA)
     return [('apertura', apertura), ('dati-modulo', dati), ('come-si-lavora', come), ('dati-societari', societari)]
 
 
