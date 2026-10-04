@@ -106,7 +106,9 @@ Il formato dei template Elementor ha ID e versioni dei widget che Elementor gene
 11. **Larghezze su mobile**: Elementor non eredita la larghezza mobile dei contenitori da quella tablet. L'ho scritta esplicitamente su tutti i breakpoint; se modifichi un blocco dall'editor, controlla anche le viste tablet e mobile.
 12. **Link interni** relativi (`/catalogo/`): funzionano se WordPress è nella radice del dominio. Se è in una sottocartella o vuoi link assoluti: `python3 _sorgente/build.py --url-sito https://www.benvegnusrl.it`.
 13. **Mappa Google** (widget gratuito, iframe, resa in grigio con un filtro CSS): imposta cookie di terze parti. Va gestita con il banner cookie del sito.
-14. **Il PDF delle condizioni di vendita** punta ancora al sito attuale: caricalo nella libreria media e aggiorna il link (Footer, Azienda, Contatti).
+14. **Il PDF delle condizioni di vendita** punta ancora al sito attuale: caricalo nella libreria media e aggiorna il link (Footer, Azienda, Contatti, Home).
+15. **Striscia "Dal catalogo" in Home**: è fatta di normali contenitori Elementor (le foto entrano nella libreria media come le altre); lo scorrimento, le frecce e la barra rossa stanno in un widget HTML con poco CSS e JavaScript. Senza JavaScript la striscia scorre lo stesso e le frecce restano nascoste. Se un plugin di ottimizzazione rimanda o unisce gli script in linea, escludi quel widget e controlla che le frecce funzionino.
+16. **Sovrapposizioni in Home**: la foto Vibram che esce dalla fascia nera e il titolo "Vieni al banco" sopra la facciata funzionano finché a quei contenitori non si dà un indice z o "Overflow nascosto". Se modifichi quelle sezioni dall'editor, lascia questi due campi vuoti.
 
 Se un template non entra o arriva rotto, usa il Formato B per quella pagina.
 
@@ -121,7 +123,8 @@ Differenze rispetto al Formato A: i testi si modificano solo nel codice; il menu
 ## Collaudo fatto
 
 WordPress 7.1.2 in locale (italiano), Elementor 4.3.3, Hello Elementor 3.5.1, Ultimate Addons 2.9.5, Contact Form 7 6.1.7, Redirection 5.10.1, PHP 8.3.
-- Import dei 9 template con la stessa funzione del pulsante *Importa template* (`Source_Local::import_template`), libreria media svuotata prima: tutti entrati, **elementi salvati uguali a quelli del file** (Home 155, Catalogo 158, Vibram 119, Azienda 96, Marchi 64, Contatti 43, Novità 29, header 14, footer 17), **45 immagini scaricate** su 45, nessun riquadro grigio.
+- Import dei 9 template con la stessa funzione del pulsante *Importa template* (`Source_Local::import_template`), libreria media svuotata prima: tutti entrati, **elementi salvati uguali a quelli del file**, **tutte le immagini scaricate**, nessun riquadro grigio.
+- Striscia della Home provata a 1440 e 390 px, in Elementor e nel fallback: ogni freccia sposta di una scheda, la barra segue, le frecce si spengono agli estremi, la pagina non scorre mai di lato; senza JavaScript le frecce spariscono e lo scorrimento resta.
 - Header e footer globali creati con Ultimate Addons dai template importati; menu "Menu principale" con 6 voci; menu orizzontale su desktop, a scomparsa su tablet e telefono (aperto e fotografato).
 - Modulo Contact Form 7 creato dal file in `plugin/` e mostrato nella pagina Contatti.
 - Redirect: le 14 regole importate in Redirection, verificato il 301 su indirizzi vecchi di prodotti e famiglie.
@@ -142,6 +145,8 @@ WordPress 7.1.2 in locale (italiano), Elementor 4.3.3, Hello Elementor 3.5.1, Ul
 9. Famiglie non online (lacci, cerniere, chiodi, occhielli, rinforzi, adesivi Zucchini): sono ancora a magazzino?
 10. Logo **vettoriale** (oggi c'è solo un PNG 295x72) e le foto originali dei banner a risoluzione più alta.
 11. Pagine **Privacy** e **Cookie** (linkate nel footer e nel consenso del modulo) da scrivere.
+12. **"Molti dei nostri clienti producono per i marchi del lusso"** (Home, "Per chi lavoriamo"): è un'affermazione pubblica, va approvata dal cliente.
+13. **Codici nella striscia della Home** (14932, 9978, 15752, 14563, 7995, 15531): sono i codici del catalogo online; confermare che al banco si usano gli stessi.
 
 ## Foto da fare (brief breve)
 

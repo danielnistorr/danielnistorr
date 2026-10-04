@@ -301,6 +301,13 @@ def el_settings(n, inner):
             # la scrivo sempre su tutti e tre i breakpoint
             for suf, v in zip(SUFFISSI, rv(p['w'])):
                 s['width' + suf] = _slider('%', v)
+        if p.get('larg_px'):
+            # larghezza fissa in px (schede di una striscia scorrevole): non si allarga e non si restringe
+            for suf, v in zip(SUFFISSI, rv(p['larg_px'])):
+                s['width' + suf] = _slider('px', v)
+            s['_flex_size'] = 'none'
+        if p.get('z') is not None:
+            s['z_index'] = p['z']
         if p.get('grow'):
             # "grow" di Elementor imposta anche flex-shrink 0 e schiaccia i vicini: uso cresci + restringi
             s['_flex_size'] = 'custom'
@@ -531,6 +538,8 @@ def el_settings(n, inner):
         s['_flex_size'] = 'none'   # larghezza del contenuto, non si restringe
     if p.get('css') and n.kind != 'html':     # per RAW, css è il foglio di stile, non una classe
         s['_css_classes'] = p['css']
+    if p.get('z') is not None:
+        s['_z_index'] = p['z']
     # spaziature esterne dei widget
     if p.get('mt') or p.get('mb'):
         mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
@@ -606,6 +615,18 @@ def _resp_css(css, sel, prop, values, fmt):
 
 
 def to_html(n, css, scope, inner=False):
+    out = _to_html(n, css, scope, inner)
+    extra = n.p.get('css') if n.kind != 'html' else None
+    if extra and out:
+        c = f'b{n.id}'
+        for pre in (f'class="bvg-con {c}"', f'class="bvg-w {c}"'):
+            if pre in out:
+                out = out.replace(pre, pre[:-1] + f' {extra}"', 1)
+                break
+    return out
+
+
+def _to_html(n, css, scope, inner=False):
     p = n.p
     c = f'b{n.id}'
     sel = f'.{scope} .{c}'
@@ -622,13 +643,19 @@ def to_html(n, css, scope, inner=False):
         pad = pad4(p.get('pad', '0'))
         pv = [f'padding:{_px(pad[0][i])} {_px(pad[1][i])} {_px(pad[2][i])} {_px(pad[3][i])};' for i in range(3)]
         css.add(sel, pv[0], pv[1] if pv[1] != pv[0] else '', pv[2] if pv[2] != pv[1] else '')
-        if 'w' in p:
+        if p.get('larg_px'):
+            _resp_css(css, sel, 'width', rv(p['larg_px']), lambda v: f'{v}px')
+            d.append('flex-grow:0;flex-shrink:0;')
+        elif 'w' in p:
             _resp_css(css, sel, 'width', rv(p['w']), lambda v: f'{v}%')
         else:
             d.append('width:100%;')
+        if p.get('z') is not None:
+            d.append(f'z-index:{p["z"]};')
         if p.get('grow'):
             d.append('flex-grow:1;')
-        d.append('flex-shrink:0;' if p.get('fisso') and not p.get('grow') else 'flex-shrink:1;min-width:0;')
+        if not p.get('larg_px'):
+            d.append('flex-shrink:0;' if p.get('fisso') and not p.get('grow') else 'flex-shrink:1;min-width:0;')
         if p.get('min_h'):
             _resp_css(css, sel, 'min-height', rv(p['min_h']), lambda v: f'{v}px')
         bgs = []
@@ -708,6 +735,8 @@ def to_html(n, css, scope, inner=False):
         mt, mb = rv(p.get('mt', 0)), rv(p.get('mb', 0))
         _resp_css(css, sel, 'margin-top', mt, _px)
         _resp_css(css, sel, 'margin-bottom', mb, _px)
+    if p.get('z') is not None:
+        css.add(sel, f'position:relative;z-index:{p["z"]};')
     if p.get('hide'):
         mq = {'desktop': f'@media (min-width:{BP_TABLET + 1}px)', 'tablet': f'@media (min-width:{BP_MOBILE + 1}px) and (max-width:{BP_TABLET}px)',
               'mobile': f'@media (max-width:{BP_MOBILE}px)'}

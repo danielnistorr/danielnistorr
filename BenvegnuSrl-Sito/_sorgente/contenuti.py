@@ -55,6 +55,16 @@ TEMA = {
         'num':     _st(CONDENSED, '500', (36, 32, 28), 1.0),
         'cifra':   _st(CONDENSED, '600', (64, 52, 44), 0.95),
         'tel':     _st(CONDENSED, '600', (56, 48, 40), 1.0),
+        'tel2':    _st(CONDENSED, '600', (40, 36, 36), 1.0),
+        'mega':    _st(CONDENSED, '600', (168, 140, 120), 0.8, -1.0),      # l'unico numero grande della pagina
+        'chiusura': _st(CONDENSED, '600', (144, 96, 72), 0.85, 0, True),   # "Vieni al banco" sopra la facciata
+        'h2m':     _st(CONDENSED, '600', (56, 44, 34), 1.0, 0, True),
+        'h2s':     _st(CONDENSED, '600', (32, 28, 26), 1.0, 0, True),
+        'h2card':  _st(CONDENSED, '600', (40, 36, 36), 0.95, 0, True),
+        'nome':    _st(CONDENSED, '600', (20, 20, 20), 1.1, 0, True),
+        'micro':   _st(BARLOW, '500', (11, 11, 11), 1.3, 2.0, True),
+        'testo15': _st(BARLOW, '400', (15, 15, 15), 1.55),
+        'meta':    _st(BARLOW, '400', (13, 13, 13), 1.4),
         'nav_m':   _st(CONDENSED, '600', (24, 24, 24), 1.3, 0.5, True),
         'label':   _st(BARLOW, '500', (12, 12, 12), 1.3, 2.2, True),
         'lead':    _st(BARLOW, '300', (22, 20, 19), 1.5),
@@ -313,7 +323,7 @@ def footer():
         C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 160, 150)),
           T('<p>Componenti, accessori e utensili per calzatura e pelletteria. Vigonovo, dal 1980.</p>', style='dati',
             color=SU_NERO2, max_w=300), gap='m', w=(28, 46, 100)),
-        colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{ZONA}</p><p>{ORARI_BREVE}<br>{CHIUSURA}</p>'),
+        colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{ZONA}</p>'),   # gli orari sono già nella barra in alto
         colonna('Contatti', f'<p>Tel. <a href="{TEL_LINK}">{TEL}</a><br>Fax {FAX}<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>'
                             f'PEC {PEC}</p>'),
         colonna('Pagine', f'<p>{pagine}<a href="{CONDIZIONI_PDF}">Condizioni di vendita (PDF)</a></p>'),
@@ -357,58 +367,222 @@ def home():
           dir='row', wrap=True, justify='between', gap='col', gap_r='col'),
         gap='l', anchor='catalogo')
 
-    righe_v = [riga_indice(f'{i:02d}', t, x, destra=f'{n} articoli', colore=BIANCO, colore_testo=SU_NERO2,
-                           colore_num=SU_NERO2, linea=LINEA_SCURA)
-               for i, (t, x, n) in enumerate([
-                   ('Suole', sottocategorie('vibram-suole', False), FAM['vibram-suole']['n']),
-                   ('Lastre', sottocategorie('vibram-lastre', False), FAM['vibram-lastre']['n']),
-                   ('Mezzesuole e tacchi', sottocategorie('vibram-mezzesuole-tacchi', False), FAM['vibram-mezzesuole-tacchi']['n'])], 1)]
-    vibram = sezione(
-        C(H('Vibram al banco', 'h2', color=BIANCO),
-          T(f'<p>Siamo rivenditori autorizzati Vibram. In catalogo ci sono {N_VIBRAM} articoli Vibram, per chi produce '
-            'e per chi ripara.</p>', style='lead', color=SU_NERO2, max_w=540),
-          C(*righe_v, gap='0', mt='xs'),
-          C(B('La pagina Vibram', '/vibram/', variant='bianco'), mt='s'),
-          w=(52, 100, 100), gap='m'),
-        C(I(img('espositore-vibram.jpg'), 'Espositore Vibram nel negozio Benvegnù', height=(600, 520, 320)), w=(42, 100, 100)),
-        bg=NERO, dir='row', dir_t='column', justify='between', gap='xl', align='center')
+    return [('apertura', apertura), ('catalogo', catalogo), ('dal-catalogo', striscia_catalogo()),
+            ('vibram', vibram_al_banco()), ('per-chi-lavoriamo', per_chi_lavoriamo()), ('banco', chiusura_banco())]
 
-    prodotti = sezione(
-        C(H('Dal catalogo', 'h2'), link_freccia('Tutte le famiglie', '/catalogo/'),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='s'),
-        griglia_schede([
-            scheda_prodotto('80075', '2600 Liverpool', 'Suole Vibram', 'Suola da città e tempo libero, disegno a onde', '/vibram/#vibram-suole'),
-            scheda_prodotto('82268', '7106 Crepe', 'Lastre Vibram', 'Lastra in gomma morbida', '/vibram/#vibram-lastre'),
-            scheda_prodotto('1895', 'Forbici da lavoro Lariz', 'Utensili', 'Forbici con lame curve', '/catalogo/#utensili'),
-            scheda_prodotto('15887', 'Filato Mara', 'Filati ed elastici', 'Poliestere ritorto Gütermann', '/catalogo/#filati-elastici'),
-        ]),
-        bg=GRIGIO, gap='l')
 
-    passi = [
-        ('01', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Se hai il codice dell’articolo facciamo prima: '
-                                      'lo trovi nel catalogo.'),
-        ('02', 'Verifichiamo disponibilità e varianti', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello e '
-                                                        'misura, per i filati da articolo e colore.'),
-        ('03', 'Ritiri al banco o spediamo', f'Ritiri in {INDIRIZZO} a Vigonovo, con parcheggio davanti al negozio. Per gli ordini '
-                                             'da lontano spediamo con corriere, alle condizioni di vendita per le aziende.'),
-        ('04', 'Per il riordino basta il codice', 'Tieni codice e colore dell’articolo: il riordino si fa con una telefonata '
-                                                  'o una email.'),
-    ]
-    come = sezione(
-        C(H('Come si lavora con noi', 'h2', max_w=(400, 600, 600)),
-          T('<p>Che tu passi al banco o ordini da lontano, i passaggi sono questi.</p>', style='body', color=TESTO2, max_w=360),
-          w=(36, 100, 100), gap='m'),
-        C(*[riga_indice(n, t, x) for n, t, x in passi], C(LINEA_H(LINEA)), w=(58, 100, 100), gap='0'),
-        dir='row', dir_t='column', justify='between', gap='xl')
+# ---------------------------------------------------------------------------------------------
+# Home sotto il catalogo: quattro sezioni, ognuna con un'idea e un gesto
+# (ricerca su siti reali: striscia di Valextra con cella di testo di Edward Green; fascia nera di Edward Green e
+# Gruppo Mastrotto con la foto che esce dalla fascia; dichiarazione con i loghi come contesto di Lampo; titolo grande
+# appoggiato sulla foto della fascia sostenibilità di Mastrotto e righe d'indice di Ernest Wright e Vitsoe)
+# ---------------------------------------------------------------------------------------------
+CSS_KICKER = (
+    '.bv-kicker p{display:flex;align-items:center;gap:16px;margin:0}'
+    ".bv-kicker p::before{content:'';flex:0 0 48px;height:1px;background:currentColor}"
+)
 
-    marchi_ = sezione(
-        C(H('I marchi', 'h2'), link_freccia('Cosa trovi di ciascuno', '/marchi/'),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='s'),
-        striscia_marchi(),
-        gap='l', border_top=1, border_color=LINEA)
+# articoli della striscia: (id foto, famiglia, nome, dettaglio verificato sul catalogo, link)
+# dettagli dalle varianti del sito attuale: Liverpool 4 colori x 7 misure, Crepe 4 colori 90x60, Tera 7, Mara 6, Lariz 4;
+# "Cod." solo dove il catalogo ha un codice articolo (gli altri numeri sono id di pagina, non codici)
+STRISCIA = [
+    ('80075', 'Suole Vibram', '2600 Liverpool', 'Gumlite, 4 colori, 7 misure', '/vibram/#vibram-suole'),
+    ('1895', 'Utensili', 'Forbici Lariz lame curve', 'Da lavoro, 4 misure', '/catalogo/#utensili'),
+    ('1030', 'Filati ed elastici', 'Gütermann Tera', 'Poliestere ritorto, 7 varianti', '/catalogo/#filati-elastici'),
+    ('82268', 'Lastre Vibram', '7106 Crepe', 'Gomma morbida, 90 x 60 cm, 4 colori', '/vibram/#vibram-lastre'),
+    ('14932', 'Utensili', 'Calibro digitale', 'Portata 200 mm, 0,01 mm · Cod. 14932', '/catalogo/#utensili'),
+    ('80751', 'Tacchi Vibram', '1100T Montagna', 'Tacco 20,5 mm, mescola Vibram Mont', '/vibram/#vibram-mezzesuole-tacchi'),
+    ('15887', 'Filati ed elastici', 'Gütermann Mara', 'Poliestere ritorto, 6 varianti', '/catalogo/#filati-elastici'),
+    ('9978', 'Utensili', 'Coltello C.Dick Original', '270 x 20 · Cod. 9978', '/catalogo/#utensili'),
+    ('15752', 'Esposizione e cura', 'Tendiscarpa in cedro', 'European · Cod. 15752', '/catalogo/#esposizione-cura'),
+    ('14563', 'Modelleria e riparazione', 'Forma allargascarpe 2Way', 'Dasco · Cod. 14563', '/catalogo/#modelleria-riparazione'),
+    ('7995', 'Esposizione e cura', 'Calzante Longuette GT', 'Anatomico · Cod. 7995', '/catalogo/#esposizione-cura'),
+    ('15531', 'Imballaggio', 'Etichette Made in Italy', '28 x 8, 5000 pezzi · Cod. 15531', '/catalogo/#imballaggio'),
+]
+CELLA = (312, 288, 264)
 
-    return [('apertura', apertura), ('catalogo', catalogo), ('vibram', vibram), ('dal-catalogo', prodotti),
-            ('come-si-lavora', come), ('marchi', marchi_), ('banco', blocco_banco())]
+CSS_STRISCIA = (
+    # binario: scorre di lato con aggancio alle schede; il primo bordo è allineato alla griglia di 1280, la fine sborda
+    '.bv-strip .bv-track{flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden;scroll-snap-type:x mandatory;'
+    'scrollbar-width:none;padding-left:max(48px,calc((100% - 1280px)/2))!important;'
+    'scroll-padding-left:max(48px,calc((100% - 1280px)/2))}'
+    '.bv-strip .bv-track::-webkit-scrollbar{display:none}'
+    ".bv-strip .bv-track::after{content:'';flex:0 0 max(48px,calc((100% - 1280px)/2))}"
+    '.bv-strip .bv-track>*{scroll-snap-align:start}'
+    '.bv-strip .bv-img{overflow:hidden}'
+    '.bv-strip .bv-img img{display:block;width:100%;height:auto;transition:transform .4s ease}'
+    '.bv-strip .bv-card:hover .bv-img img{transform:scale(1.04)}'
+    '.bv-strip .bv-card:hover .bv-name,.bv-strip .bv-card:hover .bv-name .elementor-heading-title'
+    '{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}'
+    f'.bv-strip .bv-card:focus-visible,.bv-strip .bv-track:focus-visible{{outline:2px solid {ROSSO};outline-offset:-3px}}'
+    # comandi: barra di avanzamento rossa sottile e due frecce quadrate (si riempiono di nero, mai dissolvenze)
+    '.bv-strip .bv-ctrl{max-width:1280px;margin:32px auto 0;padding:0 48px;box-sizing:content-box;display:flex;align-items:center;gap:24px}'
+    '.bv-strip .bv-ctrl[hidden]{display:none}'
+    '.bv-strip .bv-bar{flex:1;height:1px;background:#CFCFCF;position:relative}'
+    f'.bv-strip .bv-thumb{{position:absolute;top:-1px;left:0;height:3px;width:30%;background:{ROSSO}}}'
+    '.bv-strip .bv-btns{display:flex;gap:8px}'
+    f".bv-strip .bv-ctrl .bv-btn{{width:48px;height:48px;padding:0;border:1px solid {NERO};border-radius:0;background:{BIANCO};"
+    f"color:{NERO};font:400 18px/1 '{BARLOW}',Arial,sans-serif;cursor:pointer;box-shadow:none;transition:background-color .2s,color .2s}}"
+    f'.bv-strip .bv-ctrl .bv-btn:hover:not(:disabled),.bv-strip .bv-ctrl .bv-btn:focus-visible{{background:{NERO};color:{BIANCO};border-color:{NERO}}}'
+    f'.bv-strip .bv-ctrl .bv-btn:disabled,.bv-strip .bv-ctrl .bv-btn:disabled:hover{{background:{BIANCO};border-color:#CFCFCF;color:#BDBDBD;cursor:default}}'
+    '@media (max-width:1024px){.bv-strip .bv-track{padding-left:32px!important;scroll-padding-left:32px}'
+    '.bv-strip .bv-track::after{flex-basis:32px}.bv-strip .bv-ctrl{padding:0 32px}}'
+    '@media (max-width:767px){.bv-strip .bv-track{padding-left:20px!important;scroll-padding-left:20px}'
+    '.bv-strip .bv-track::after{flex-basis:20px}.bv-strip .bv-ctrl{margin-top:24px;padding:0 20px}'
+    '.bv-strip .bv-ctrl .bv-btn{width:44px;height:44px}}'
+)
+
+# frecce e barra: senza JavaScript restano nascoste (lo scorrimento a mano e l'aggancio funzionano comunque)
+JS_STRISCIA = (
+    "(function(){function go(){document.querySelectorAll('.bv-strip').forEach(function(w){"
+    "var s=w.querySelector('.bv-track'),c=w.querySelector('.bv-ctrl');if(!s||!c||c.dataset.ok)return;c.dataset.ok=1;"
+    "var t=c.querySelector('.bv-thumb'),p=c.querySelector('.bv-prev'),n=c.querySelector('.bv-next');c.hidden=false;"
+    "s.setAttribute('tabindex','0');s.setAttribute('role','region');s.setAttribute('aria-label','Articoli dal catalogo');"
+    "var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;"
+    "function st(){var k=s.children[1]||s.children[0];return k?k.getBoundingClientRect().width:300}"
+    "function up(){var m=s.scrollWidth-s.clientWidth,v=s.clientWidth/s.scrollWidth,r=m>0?s.scrollLeft/m:0;"
+    "t.style.width=(v*100)+'%';t.style.left=(r*(1-v)*100)+'%';p.disabled=s.scrollLeft<=2;n.disabled=s.scrollLeft>=m-2}"
+    "p.addEventListener('click',function(){s.scrollBy({left:-st(),behavior:rm?'auto':'smooth'})});"
+    "n.addEventListener('click',function(){s.scrollBy({left:st(),behavior:rm?'auto':'smooth'})});"
+    "s.addEventListener('scroll',up,{passive:true});window.addEventListener('resize',up);up()})}"
+    "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',go)}else{go()}})();"
+)
+HTML_COMANDI = (
+    '<div class="bv-ctrl" hidden><div class="bv-bar"><span class="bv-thumb"></span></div><div class="bv-btns">'
+    '<button type="button" class="bv-btn bv-prev" aria-label="Articoli precedenti">&larr;</button>'
+    '<button type="button" class="bv-btn bv-next" aria-label="Articoli successivi">&rarr;</button></div></div>'
+)
+
+
+def striscia_catalogo():
+    """S1: striscia di articoli tra filetti neri, aperta da una cella di testo nera; scorre di lato (Valextra, Edward Green)."""
+    cella_testo = C(
+        C(T('<p>Dal catalogo</p>', style='label', color=SU_NERO2, css='bv-kicker'),
+          H('Col codice facciamo prima', 'h2', style='h2card', color=BIANCO, mt=24),
+          T('<p>Ogni articolo del catalogo ha un codice. Con codice e colore, o misura, il riordino si fa con una '
+            'telefonata o una email.</p>', style='testo15', color=SU_NERO2, mt=20), gap='0'),
+        link_freccia('Sfoglia il catalogo', '/catalogo/', colore=BIANCO, hover=BIANCO),
+        larg_px=CELLA, bg=NERO, pad=(32, 28, 24), justify='between', gap='m', border=1, border_color=NERO)
+    schede = []
+    for pid, famiglia, nome, dettaglio, link in STRISCIA:
+        schede.append(C(
+            C(I(img(f'prodotto-{pid}.jpg'), nome), pad=(24, 24, 24), bg=BIANCO, css='bv-img'),
+            C(T(f'<p>{famiglia}</p>', style='micro', color=TESTO2),
+              H(nome, 'h3', style='nome', color=NERO, mt=8, css='bv-name'),
+              T(f'<p>{dettaglio}</p>', style='meta', color=TESTO2, mt=6),
+              pad=((4, 4, 4), (24, 24, 20), (24, 24, 20), (24, 24, 20)), min_h=(112, 112, 104), gap='0'),
+            larg_px=CELLA, bg=BIANCO, link=link, gap='0', border_top=1, border_right=1, border_bottom=1, border_color=NERO,
+            css='bv-card'))
+    binario = C(cella_testo, *schede, dir='row', wrap=False, gap='0', pad='0', css='bv-track')
+    return C(binario, RAW(HTML_COMANDI + f'<script>{JS_STRISCIA}</script>', css=CSS_STRISCIA), bg=BIANCO, boxed=False,
+             pad=((0, 0, 0), (0, 0, 0), ('sezione', 'sezione', 'sezione'), (0, 0, 0)), gap='0', tag='section',
+             css='bv-strip')
+
+
+CSS_RIGHE = (
+    CSS_KICKER +
+    '.bv-rows{margin-top:32px}'
+    f'.bv-rows .bv-row{{display:flex;align-items:baseline;height:52px;color:{BIANCO};text-decoration:none}}'
+    f".bv-rows .bv-row__n,.bv-rows .bv-row__c{{font:600 22px/1 '{CONDENSED}',Arial,sans-serif;text-transform:uppercase;color:{BIANCO}}}"
+    '.bv-rows .bv-row__c{font-weight:500;font-variant-numeric:tabular-nums}'
+    '.bv-rows .bv-row__d{flex:1;margin:0 16px;border-bottom:1px dotted rgba(255,255,255,.35);transform:translateY(-6px)}'
+    f".bv-rows .bv-row__a{{margin-left:16px;font:400 16px/1 '{BARLOW}',Arial,sans-serif;color:{SU_NERO2};transition:transform .2s,color .2s}}"
+    f'.bv-rows .bv-row:hover .bv-row__d,.bv-rows .bv-row:focus-visible .bv-row__d{{border-bottom-style:solid;border-color:{BIANCO}}}'
+    f'.bv-rows .bv-row:hover .bv-row__a,.bv-rows .bv-row:focus-visible .bv-row__a{{transform:translateX(4px);color:{BIANCO}}}'
+    f'.bv-rows .bv-row:focus-visible{{outline:2px solid {ROSSO};outline-offset:3px}}'
+    '@media (max-width:1024px){.bv-rows .bv-row{height:48px}.bv-rows .bv-row__n,.bv-rows .bv-row__c{font-size:20px}}'
+    '@media (max-width:767px){.bv-rows .bv-row{height:52px}}'
+)
+
+
+def vibram_al_banco():
+    """S2: fascia nera, la foto dell'espositore esce sopra e sotto la fascia; un solo numero grande; righe a puntini."""
+    famiglie = [('Suole', 'vibram-suole'), ('Lastre', 'vibram-lastre'), ('Mezzesuole e tacchi', 'vibram-mezzesuole-tacchi')]
+    righe = ''.join(f'<a class="bv-row" href="/vibram/#{slug}"><span class="bv-row__n">{nome}</span>'
+                    f'<span class="bv-row__d" aria-hidden="true"></span><span class="bv-row__c">{FAM[slug]["n"]}</span>'
+                    f'<span class="bv-row__a" aria-hidden="true">&rarr;</span></a>' for nome, slug in famiglie)
+    foto = C(w=(50, 50, 100), min_h=(0, 0, 390), img=img('espositore-vibram.jpg'), alt='Espositore Vibram al banco Benvegnù',
+             mt=(-40, -32, 0), mb=(-40, -32, 0), z=2)
+    pannello = C(
+        T('<p>Rivenditore autorizzato Vibram</p>', style='label', color=SU_NERO2, css='bv-kicker'),
+        H(str(N_VIBRAM), 'p', style='mega', color=BIANCO, mt=32),
+        H('Articoli Vibram al banco', 'h2', style='h2s', color=BIANCO, mt=12),
+        T('<p>Per chi produce e per chi ripara. Partiamo da modello e misura, poi verifichiamo colore e disponibilità.</p>',
+          style='body', color=SU_NERO2, max_w=440, mt=16),
+        RAW(f'<nav class="bv-rows" aria-label="Famiglie Vibram">{righe}</nav>', css=CSS_RIGHE),
+        B('La pagina Vibram', '/vibram/', variant='bianco', full_m=True, mt=32),
+        w=(50, 50, 100), pad=((72, 56, 56), (80, 32, 20), (72, 56, 64), (96, 40, 20)), justify='center', gap='0')
+    riga = C(foto, pannello, dir='row', dir_m='column', align='stretch', gap='0', min_h=(720, 600, 0), pad='0',
+             boxed=True, boxed_width=1600)
+    return C(riga, bg=NERO, boxed=False, pad='0', gap='0', tag='section')
+
+
+def per_chi_lavoriamo():
+    """S3: una dichiarazione semplice accanto ai marchi del banco, in una griglia 2x2 con filetti interni (Lampo)."""
+    marchi = [('vibram', 'Vibram', 'Suole, lastre, tacchi', '/vibram/', (52, 46, 44)),
+              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (36, 32, 30)),
+              ('girba', 'Girba', 'Tinture e finissaggio', '/catalogo/#prodotti-chimici', (60, 52, 48)),
+              ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi', '/marchi/', (60, 52, 48))]
+    bordi = [dict(border_right=1, border_bottom=1), dict(border_bottom=1), dict(border_right=1), {}]
+    celle = []
+    for (slug, nome, etichetta, link, h), b in zip(marchi, bordi):
+        celle.append(C(
+            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=h, fit='contain'), min_h=(64, 56, 52), justify='center'),
+            T(f'<p>{etichetta}</p>', style='micro', color=TESTO2, align='center', css='bv-logo-label'),
+            w=(50, 50, 50), min_h=(176, 150, 140), justify='center', align='stretch', gap=(20, 16, 16), link=link,
+            css='bv-logo', border_color=NERO, **b))
+    css = (CSS_KICKER +
+           f'.bv-logo:hover .bv-logo-label p,.bv-logo:focus-visible .bv-logo-label p{{color:{NERO};text-decoration:underline;'
+           'text-underline-offset:4px}')
+    sinistra = C(
+        T('<p>Per chi lavoriamo</p>', style='label', color=TESTO2, css='bv-kicker'),
+        H('Molti dei nostri clienti<br>producono per<br>i marchi del lusso', 'h2', style='h2m', mt=32),
+        T('<p>Calzaturifici, pelletterie e modellisti, ma anche calzolai e negozi di calzature. Al banco trovano gli stessi '
+          'marchi che usano ogni giorno in produzione e in riparazione.</p>', style='lead', color=TESTO2, max_w=560, mt=24),
+        link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32),
+        RAW('', css=css), w=(55, 55, 100), gap='0')
+    destra = C(
+        T('<p>I marchi al banco</p>', style='label', color=TESTO2, mb=20),
+        C(*celle, dir='row', wrap=True, gap='0'),
+        w=(40, 40, 100), gap='0', mt=(0, 0, 48))
+    return sezione(sinistra, destra, pad=((160, 120, 64), 'lato', (120, 88, 64), 'lato'), dir='row', dir_m='column',
+                   justify='between', align=('end', 'end', 'stretch'), gap='0')
+
+
+CSS_CHIUSURA = (
+    '.bv-chiusura .bv-facade img{display:block;width:100%!important;height:auto!important;max-width:100%;'
+    'aspect-ratio:2048/877;object-fit:cover;object-position:50% 50%}'
+    '@media (max-width:767px){.bv-chiusura .bv-facade img{aspect-ratio:7/5;object-position:78% 50%}}'
+)
+
+
+def chiusura_banco():
+    """S4: "Vieni al banco" grande appoggiato sul cielo della facciata, poi quattro colonne con filetto (Mastrotto, Ernest Wright)."""
+    corpo = ('Codice o nome articolo:\nColore, misura o formato:\nQuantità:\nRitiro al banco o spedizione:\n')
+    def colonna(etichetta, valore, nota, link=None, telefono=False):
+        figli = [T(f'<p>{etichetta}</p>', style='label', color=TESTO2)]
+        if telefono:
+            figli.append(H(TEL, 'p', style='tel2', color=NERO, link=TEL_LINK, mt=12))
+        else:
+            figli.append(T(f'<p>{valore}</p>', style='body', color=NERO, link_color=NERO, link_hover=ROSSO, mt=12))
+        figli.append(T(f'<p>{nota}</p>', style='testo15', color=TESTO2, mt=8))
+        if link:
+            figli.append(link_freccia(link[0], link[1], mt=16))
+        return C(*figli, w=(23, 48, 100), border_top=1, border_color=NERO, pad=(20, 0, 0, 0), gap='0')
+    indice = C(
+        colonna('Indirizzo', f'{INDIRIZZO}, {ZONA_MIN}, 30030\u00a0Vigonovo\u00a0(VE)', 'Parcheggio clienti davanti al negozio.',
+                ('Apri in Google Maps', MAPS)),
+        colonna('Orari del banco', ORARI, f'{CHIUSURA}.'),
+        colonna('Telefono', None, 'Per disponibilità, colori e misure.', telefono=True),
+        colonna('Email e spedizioni', f'<a href="{mailto("Richiesta disponibilità", corpo)}">{EMAIL}</a>',
+                'Verifichiamo varianti e disponibilità. Per gli ordini da lontano spediamo con corriere, alle condizioni '
+                'di vendita per le aziende.', ('Condizioni di vendita (PDF)', CONDIZIONI_PDF)),
+        dir='row', wrap=True, justify='between', gap='0', gap_r=(40, 40, 32), mt=(56, 56, 40))
+    return sezione(
+        H('Vieni al\u00a0banco', 'h2', style='chiusura', mb=(-58, -38, -26), z=2),
+        I(img('sede-larga.jpg'), 'La sede Benvegnù in Via del Lavoro 48, zona industriale Tombelle, Vigonovo', css='bv-facade', z=1),
+        indice, RAW('', css=CSS_CHIUSURA),
+        bg=GRIGIO, pad=((120, 88, 64), 'lato', (120, 88, 64), 'lato'), gap='0', anchor='banco', css='bv-chiusura')
 
 
 MARCHI = [
@@ -791,7 +965,24 @@ def contatti():
             style='body', color=TESTO2),
           link_freccia('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF), w=(60, 100, 100), gap='s'),
         dir='row', dir_t='column', justify='between', gap='l', pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=LINEA)
-    return [('apertura', apertura), ('dati-modulo', dati), ('dati-societari', societari)]
+    # le fasi del lavoro (pattern "processo in fasi" del brief): quattro colonne con filetto, numeri piccoli in grigio
+    fasi = [
+        ('Fase 1', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Con il codice dell’articolo facciamo prima: '
+                                         'lo trovi nel catalogo.'),
+        ('Fase 2', 'Verifichiamo varianti e disponibilità', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello '
+                                                            'e misura, per i filati da articolo e colore.'),
+        ('Fase 3', 'Ritiri al banco o spediamo', 'Ritiro a Vigonovo con parcheggio davanti al negozio. Per gli ordini da lontano '
+                                                 'spediamo con corriere, alle condizioni di vendita per le aziende.'),
+        ('Fase 4', 'Per il riordino basta il codice', 'Tieni codice e colore dell’articolo: il riordino si fa con una telefonata '
+                                                      'o una email.'),
+    ]
+    come = sezione(
+        H('Come si lavora con noi', 'h2', max_w=(760, 760, 600)),
+        C(*[C(T(f'<p>{n}</p>', style='label', color=TESTO2), H(t, 'h3', mt=12), T(f'<p>{x}</p>', style='body', color=TESTO2, mt=8),
+              w=(23, 48, 100), border_top=1, border_color=NERO, pad=(20, 0, 0, 0), gap='0') for n, t, x in fasi],
+          dir='row', wrap=True, justify='between', gap='0', gap_r=(40, 40, 32)),
+        gap='l', pad=('l', 'lato', 'sezione', 'lato'), border_top=1, border_color=LINEA)
+    return [('apertura', apertura), ('dati-modulo', dati), ('come-si-lavora', come), ('dati-societari', societari)]
 
 
 PAGINE = [

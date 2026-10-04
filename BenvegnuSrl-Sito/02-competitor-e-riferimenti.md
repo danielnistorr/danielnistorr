@@ -57,6 +57,19 @@ Benvegnù vende ai calzaturifici e alle pelletterie della Riviera del Brenta, ch
 - Barlow Condensed 600 maiuscolo per titoli e numeri, Barlow per il testo: una sola famiglia, due larghezze, come Mastrotto e Santoni usano un solo senza grazie;
 - foto d'ambiente in bianco e nero e prodotti a colori.
 
+### 2.3 Home sotto il catalogo: ricerca dal vivo (4 ottobre 2026)
+
+Dopo il "molto meglio" del cliente, la parte sotto il catalogo è stata ristrutturata guardando cosa mettono dopo la navigazione per categorie 20 siti reali, visitati da desktop e da telefono: Gruppo Mastrotto, Rino Mastrotto, Rubelli, Oerlikon Riri, Lampo, Vibram, John Lobb, Church's, Valextra, Fratelli Rossetti, Edward Green, Gaziano & Girling, Crockett & Jones, Labour and Wait, Dictum, Rocky Mountain Leather Supply, Buckleguy, Vitsoe, Ernest Wright (Santoni e Berluti bloccano l'accesso automatico). Tre proposte (prodotti protagonisti, banco protagonista, poche sezioni forti) sono state valutate su sette criteri; ha vinto la terza, con innesti dalle altre due.
+
+| Sezione | Riferimento reale | Cosa abbiamo preso |
+|---|---|---|
+| Striscia "Dal catalogo" | [Valextra](https://www.valextra.com/), [Edward Green](https://www.edwardgreen.com/), [Crockett & Jones](https://www.crockettandjones.com/) | fila di schede unite da filetti neri che sborda a destra con l'ultima tagliata; prima cella di solo testo al posto del titolo; frecce piccole e barra di avanzamento sottile |
+| Vibram al banco | Edward Green, [Gruppo Mastrotto](https://www.mastrotto.com/) ("Express") | fascia piena divisa a metà con un solo elemento fuori scala; la foto esce dalla fascia sopra e sotto |
+| Per chi lavoriamo | [Lampo](https://www.lampo.eu/) | una dichiarazione semplice con i loghi come contesto, non come "si fidano di noi" |
+| Vieni al banco | Gruppo Mastrotto (fascia sostenibilità), [Ernest Wright](https://www.ernestwright.co.uk/), [Vitsoe](https://www.vitsoe.com/) | titolo grande che morde il bordo della foto; chiusura calma a colonne aperte da un filetto |
+
+Scartato: liste numerate, statistiche animate, caroselli automatici, effetti allo scorrimento, foto mostrate oltre la loro risoluzione reale.
+
 ### 2.2 Riferimenti funzionali (dalla prima analisi, ancora validi)
 
 | Riferimento | Cosa abbiamo preso | Dove nel sito |
