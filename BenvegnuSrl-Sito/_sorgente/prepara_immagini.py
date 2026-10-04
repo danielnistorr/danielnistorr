@@ -46,6 +46,26 @@ PRODOTTI = [
 ]
 
 
+def duotono(im, ombra='#1E1C19', luce='#F3EEE6', grana=0.0, contrasto=1.0):
+    """Monocromia calda a due toni (ombre e luci con i colori del tema), più morbida del bianco e nero puro.
+    grana: rumore uniforme 0..1 per mascherare la compressione delle foto piccole."""
+    g = ImageOps.grayscale(im)
+    g = ImageOps.autocontrast(g, cutoff=1)
+    if contrasto != 1.0:
+        g = ImageEnhance.Contrast(g).enhance(contrasto)
+    if grana:
+        import random
+        rnd = random.Random(7)
+        px = g.load()
+        w, h = g.size
+        amp = int(grana * 18)
+        for y in range(h):
+            for x in range(w):
+                v = px[x, y] + rnd.randint(-amp, amp)
+                px[x, y] = 0 if v < 0 else 255 if v > 255 else v
+    return ImageOps.colorize(g, black=ombra, white=luce, mid=None).convert('RGB')
+
+
 def bianco_nero(im):
     g = ImageOps.grayscale(im)
     g = ImageOps.autocontrast(g, cutoff=1)

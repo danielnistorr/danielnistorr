@@ -63,6 +63,39 @@ SPAZI = {
 }
 
 
+# Ruoli di colore (i nomi storici NERO/BIANCO/ROSSO restano come alias dei ruoli)
+FONDO = BIANCO
+TEMA_ATTIVO = 'base'
+
+
+def applica_tema(t):
+    """Sostituisce palette, font, scala tipografica e spaziature con quelli di un tema (dizionario)."""
+    g = globals()
+    mappa = {'inchiostro': 'NERO', 'superficie': 'BIANCO', 'accento': 'ROSSO', 'testo2': 'NERO_75', 'su_scuro2': 'BIANCO_70',
+             'filetto': 'LINEA', 'filetto_scuro': 'LINEA_SCURA', 'fondo': 'FONDO'}
+    for k, nome in mappa.items():
+        if k in t:
+            g[nome] = t[k]
+    for k in ('SCURO', 'SU_SCURO', 'SU_ACCENTO', 'FONT_TITOLI', 'FONT_TESTO', 'GOOGLE_FONTS', 'LARGHEZZA'):
+        if k.lower() in t:
+            g[k] = t[k.lower()]
+    if 'stili' in t:
+        g['STILI'] = t['stili']
+    if 'spazi' in t:
+        g['SPAZI'] = t['spazi']
+    if 'bottoni' in t:
+        g['BOTTONI'] = t['bottoni']
+    if 'bottone' in t:
+        g['BOTTONE_FORMA'] = t['bottone']
+    g['TEMA_ATTIVO'] = t.get('nome', 'tema')
+
+
+SCURO = NERO
+SU_SCURO = BIANCO
+SU_ACCENTO = BIANCO
+BOTTONE_FORMA = {'raggio': 0, 'pad': (18, 28, 18, 28), 'bordo': 2, 'stile': 'btn'}
+
+
 def rv(v):
     """Valore responsive: accetta uno scalare, una tupla (d, t, m) o il nome di una spaziatura."""
     if isinstance(v, str) and v in SPAZI:
@@ -355,21 +388,23 @@ def el_settings(n, inner):
         s['link'] = _link(p['url'])
         _resp(s, 'align', rv(p['align']), lambda v: v)
         s['size'] = 'md'
-        _tipografia(s, 'btn')
+        _tipografia(s, BOTTONE_FORMA.get('stile', 'btn'))
         v = p['variant']
         colori = BOTTONI[v]
         s['button_text_color'] = colori[0]
         s['background_background'] = 'classic'
         s['background_color'] = colori[1]
+        bf = BOTTONE_FORMA
         s['border_border'] = 'solid'
-        s['border_width'] = _dims(2, 2, 2, 2)
+        s['border_width'] = _dims(bf['bordo'], bf['bordo'], bf['bordo'], bf['bordo'])
         s['border_color'] = colori[2]
         s['hover_color'] = colori[3]
         s['button_background_hover_background'] = 'classic'
         s['button_background_hover_color'] = colori[4]
         s['button_hover_border_color'] = colori[5]
-        s['border_radius'] = _dims(0, 0, 0, 0)
-        s['text_padding'] = _dims(18, 28, 18, 28)
+        r = bf['raggio']
+        s['border_radius'] = _dims(r, r, r, r)
+        s['text_padding'] = _dims(*bf['pad'])
         if p.get('full_m'):
             s['align_mobile'] = 'justify'
     elif n.kind == 'image':
@@ -630,14 +665,17 @@ def to_html(n, css, scope, inner=False):
             _resp_css(css, sel, 'max-width', rv(p['max_w']), lambda v: f'{v}px')
         return f'<div class="bvg-w {c}">{p["html"]}</div>'
     if n.kind == 'button':
-        base, _ = _css_tipo('btn')
+        bf = BOTTONE_FORMA
+        base, _ = _css_tipo(bf.get('stile', 'btn'))
         col = BOTTONI[p['variant']]
         al = rv(p['align'])
         css.add(sel, 'display:flex;' + f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[0], "flex-start")};',
                 f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[1], "flex-start")};' if al[1] != al[0] else '',
                 f'justify-content:{ {"left": "flex-start", "center": "center", "right": "flex-end"}.get(al[2], "flex-start")};' if al[2] != al[1] else '')
-        css.add(f'{sel} a', base + f'display:inline-block;color:{col[0]};background:{col[1]};border:2px solid {col[2]};'
-                f'padding:18px 28px;border-radius:0;text-decoration:none;transition:background-color .2s,color .2s,border-color .2s;')
+        pt, pr, pb, pl = bf['pad']
+        css.add(f'{sel} a', base + f'display:inline-block;color:{col[0]};background:{col[1]};border:{bf["bordo"]}px solid {col[2]};'
+                f'padding:{pt}px {pr}px {pb}px {pl}px;border-radius:{bf["raggio"]}px;text-decoration:none;'
+                'transition:background-color .2s,color .2s,border-color .2s;')
         css.add(f'{sel} a:hover,{sel} a:focus-visible', f'color:{col[3]};background:{col[4]};border-color:{col[5]};')
         css.add(f'{sel} a:focus-visible', f'outline:3px solid {ROSSO};outline-offset:3px;')
         if p.get('full_m'):
@@ -709,22 +747,23 @@ def to_html(n, css, scope, inner=False):
     raise ValueError(n.kind)
 
 
-RESET = (
-    "{s}{{margin:0;padding:0;box-sizing:border-box;font-family:'Barlow',Arial,sans-serif;color:" + NERO + ";"
+def _reset():
+    return (
+    "{s}{{margin:0;padding:0;box-sizing:border-box;font-family:'" + FONT_TESTO + "',Arial,sans-serif;color:" + NERO + ";"
     "-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}}"
     "{s} *,{s} *::before,{s} *::after{{box-sizing:border-box;}}"
     "{s} img{{border:0;border-radius:0;box-shadow:none;}}"
     "{s} a{{transition:none;}}"
     "{s} h1,{s} h2,{s} h3,{s} h4,{s} p{{margin-top:0;}}"
     "{s} .bvg-w{{width:100%;max-width:100%;}}"
-)
+    )
 
 
 def sezione_html(section, scope, fonts=True):
     """Una sezione come blocco autosufficiente: <link> ai font + <style> con prefisso + markup."""
     css = Css()
     body = to_html(section, css, scope)
-    style = RESET.format(s='.' + scope) + css.out()
+    style = _reset().format(s='.' + scope) + css.out()
     head = f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">' if fonts else ''
     return f'{head}<style>{style}</style><div class="{scope}">{body}</div>'
 
@@ -735,7 +774,7 @@ def pagina_html(title, blocks, description=''):
             f'<title>{_html.escape(title)}</title>'
             + (f'<meta name="description" content="{_html.escape(description)}">' if description else '') +
             f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">'
-            '<style>html,body{margin:0;padding:0;background:#FFFFFF;}</style></head><body>'
+            f'<style>html,body{{margin:0;padding:0;background:{FONDO};}}</style></head><body>'
             + ''.join(blocks) + '</body></html>')
 
 
