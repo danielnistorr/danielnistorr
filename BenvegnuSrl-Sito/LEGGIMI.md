@@ -19,13 +19,21 @@ Direzione grafica: bianco e nero, foto vere del magazzino e della sede in bianco
 | `elementor-json/pagine-complete-senza-pro/` | le stesse 7 pagine con header e footer già dentro e modello *Canvas* |
 | `elementor-json/testi-alternativi-immagini.txt` | testi alternativi da incollare nella libreria media (Elementor li perde all'import) |
 | `html-fallback/` | **Formato B**: una cartella per pagina, un file `.html` per sezione, più `00-header/` e `99-footer/` |
-| `anteprima/` | le 7 pagine complete in HTML, da aprire nel browser con doppio clic |
+| `anteprima/` | le 7 pagine complete in HTML, da aprire nel browser: doppio clic su `anteprima/index.html` (vedi "Vedere il sito subito") |
 | `plugin/contact-form-7-richiesta-disponibilita.txt` | il modulo "Richiesta disponibilità" da incollare in Contact Form 7 (campi ed email) |
 | `plugin/redirect-301.csv` | 14 regole di redirect dal sito attuale, da importare nel plugin Redirection |
 | `assets/web/` | le 53 immagini preparate per il sito (foto in bianco e nero, prodotti a colori, loghi) |
 | `assets/originali/` | tutte le immagini scaricate dal sito attuale, con `manifest.json` |
 | `screenshot/` | le pagine dopo l'import in Elementor e il fallback HTML, a 1440, 1024 e 390 px |
 | `_sorgente/` | il generatore: `contenuti.py` (testi e pagine), `motore.py`, `build.py`, `prepara_immagini.py`, `redirect.py` |
+
+## Vedere il sito subito
+
+Senza installare niente: scarica il ramo `claude/benvegnu-sito` (su GitHub: *Code > Download ZIP*), scompatta e apri con doppio clic `BenvegnuSrl-Sito/anteprima/index.html`. Le 7 pagine sono collegate tra loro e le immagini sono quelle della cartella `assets/web`, quindi funziona anche senza internet (servono solo i font Google e la mappa).
+
+Se preferisci un indirizzo `localhost`: apri un terminale nella cartella `BenvegnuSrl-Sito` e lancia `python3 -m http.server 8000`, poi vai su http://localhost:8000/anteprima/
+
+L'anteprima è la versione HTML (Formato B): a vista è uguale a quella Elementor, con tre differenze. Al posto del modulo Contact Form 7 c'è un pulsante che apre un'email già compilata; la lista "Ultime novità" è fissa; il menu su telefono è un elenco semplice invece della tendina di Ultimate Addons.
 
 ## Versioni e plugin
 

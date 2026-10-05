@@ -865,7 +865,7 @@ def _to_html(n, css, scope, inner=False):
                 f'<details><summary aria-label="Menu"><span class="bvg-ico" aria-hidden="true"></span></summary><ul>{voci}</ul></details>'
                 # voce della pagina corrente: il fallback è incollato pagina per pagina, la riconosce dall'indirizzo
                 f"<script>document.querySelectorAll('.{scope} .{c} a').forEach(function(a){{if(a.pathname===location.pathname)"
-                "a.setAttribute('aria-current','page')}})</script></nav>")
+                "a.setAttribute('aria-current','page')})</script></nav>")
     if n.kind == 'posts':
         base, sizes = _css_tipo('h3')
         css.add(f'{sel} ul', 'list-style:none;margin:0;padding:0;')

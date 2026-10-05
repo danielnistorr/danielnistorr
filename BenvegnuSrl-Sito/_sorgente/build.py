@@ -84,6 +84,20 @@ def immagini(node):
     return out
 
 
+def anteprima_locale(html, base, immagini_relative):
+    """L'anteprima si apre con un doppio clic (o da un server locale): link tra le pagine verso i file .html accanto,
+    immagini dalla cartella assets/web del repository invece che dal web."""
+    pagine = {('/' if p['slug'].endswith('home') else f'/{p["slug"][3:]}/'): f'{p["slug"]}.html' for p in c.PAGINE}
+
+    def sost(mo):
+        f = pagine.get(mo.group(1))
+        return f'href="{f}{mo.group(2) or ""}"' if f else mo.group(0)
+    html = re.sub(r'href="(/[a-z]*/?)(#[^"]*)?"', sost, html)
+    if immagini_relative:
+        html = html.replace(base, '../assets/web/')
+    return html
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--base', default=c.BASE_PREDEFINITA, help='URL base delle immagini (con / finale)')
@@ -145,7 +159,14 @@ def main():
             tutte_img += immagini(s)
         blocchi.append(footer_html)
         with open(os.path.join(dirs['anteprima'], f'{pg["slug"]}.html'), 'w', encoding='utf-8') as f:
-            f.write(m.pagina_html(f'{pg["titolo_seo"]}', blocchi, pg.get('descrizione', '')))
+            pagina = m.pagina_html(f'{pg["titolo_seo"]}', blocchi, pg.get('descrizione', ''))
+            # nel repository le immagini sono in ../assets/web: l'anteprima funziona anche senza internet
+            f.write(anteprima_locale(pagina, c.BASE, os.path.abspath(a.out) == os.path.abspath(RADICE)))
+
+    # index.html: aprendo la cartella dell'anteprima (o http://localhost:8000/anteprima/) si arriva alla Home
+    with open(os.path.join(dirs['anteprima'], 'index.html'), 'w', encoding='utf-8') as f:
+        f.write('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=01-home.html">'
+                '<title>Benvegnù: anteprima</title></head><body><a href="01-home.html">Apri la Home</a></body></html>\n')
 
     # la stessa verifica sui file scritti, per sicurezza, più i controlli tecnici sul formato
     for root, _, files in os.walk(os.path.join(a.out, 'elementor-json')):
