@@ -22,6 +22,7 @@ Direzione grafica: bianco e nero, foto vere del magazzino e della sede in bianco
 | `anteprima/` | le 7 pagine complete in HTML, da aprire nel browser: doppio clic su `anteprima/index.html` (vedi "Vedere il sito subito") |
 | `plugin/contact-form-7-richiesta-disponibilita.txt` | il modulo "Richiesta disponibilità" da incollare in Contact Form 7 (campi ed email) |
 | `plugin/redirect-301.csv` | 14 regole di redirect dal sito attuale, da importare nel plugin Redirection |
+| `plugin/benvegnu-installer.zip` | plugin che installa e configura tutto il sito su un WordPress pulito (vedi "Installazione automatica") |
 | `assets/web/` | le 53 immagini preparate per il sito (foto in bianco e nero, prodotti a colori, loghi) |
 | `assets/originali/` | tutte le immagini scaricate dal sito attuale, con `manifest.json` |
 | `screenshot/` | le pagine dopo l'import in Elementor e il fallback HTML, a 1440, 1024 e 390 px |
@@ -34,6 +35,15 @@ Senza installare niente: scarica il ramo `claude/benvegnu-sito` (su GitHub: *Cod
 Se preferisci un indirizzo `localhost`: apri un terminale nella cartella `BenvegnuSrl-Sito` e lancia `python3 -m http.server 8000`, poi vai su http://localhost:8000/anteprima/
 
 L'anteprima è la versione HTML (Formato B): a vista è uguale a quella Elementor, con tre differenze. Al posto del modulo Contact Form 7 c'è un pulsante che apre un'email già compilata; la lista "Ultime novità" è fissa; il menu su telefono è un elenco semplice invece della tendina di Ultimate Addons.
+
+## Installazione automatica su un WordPress pulito
+
+`plugin/benvegnu-installer.zip` fa tutto il lavoro del paragrafo "Come importare" da solo. È così che il sito è stato messo su https://benvegnu.evoxconsulting.it (sito di prova, non indicizzato) il 5 ottobre 2026.
+1. Su un WordPress appena installato: *Plugin > Aggiungi nuovo > Carica plugin*, scegli lo zip, *Installa*, *Attiva*.
+2. *Strumenti > Installa Benvegnù*: apri i passi uno alla volta, nell'ordine (plugin e tema, prima attivazione, impostazioni, i 9 template, pagine, header/footer e menu, modulo, articoli di esempio, verifica). Ogni passo stampa cosa ha fatto.
+3. Alla fine disattiva ed elimina il plugin di installazione.
+
+Il passo "impostazioni" imposta il sito come **non indicizzabile** (va bene per la prova): per la messa online definitiva togli la spunta in *Impostazioni > Lettura*. Il passo "articoli di esempio" crea due articoli per la pagina Novità: sul sito definitivo saltalo. Per rigenerare lo zip dopo una modifica: `python3 _sorgente/build.py` e poi `python3 _sorgente/crea_installer.py`.
 
 ## Versioni e plugin
 
