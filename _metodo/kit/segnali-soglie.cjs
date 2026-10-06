@@ -100,7 +100,7 @@ const LISTA = ['Inter', 'Inter Tight', 'Roboto', 'Roboto Slab', 'Open Sans', 'La
     // 16. divieti controllabili dalla pagina
     const div = [];
     const all = [...document.querySelectorAll('body *')].filter(vis);
-    if ((document.body.innerText || '').includes('—')) div.push('trattino lungo nel testo');
+    if ((document.body.innerText || '').includes(String.fromCharCode(0x2014))) div.push('trattino lungo nel testo');
     const emojiRe = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u; if (heads.some(h => emojiRe.test(txt(h)))) div.push('emoji in un titolo');
     let grad = 0, gradTxt = 0, glass = 0, leftBorder = 0, lucide = 0, fade = 0;
     for (const el of all) {
