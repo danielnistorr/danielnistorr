@@ -1279,7 +1279,8 @@ def banco_apertura():
               *([T(f'<p>{nota}</p>', style='meta', color=TESTO2, mt='xs')] if nota else []),
               gap='0', border_top=2, border_color=INK, pad=('xs', 0, 0, 0), mt='s'),
             w=(20, 20, 33.33), gap='0', pad=(0, (24, 16, 12), 0, 0), link=f'#{ancora(cod)}', css='wrm-cl'))
-    fila = C(*celle, dir='row', wrap=(False, False, True), gap='0', gap_r=(0, 0, 'l'), align='start', css='wrm-fila')
+    fila = C(*celle, dir='row', wrap=(False, False, True), gap='0', gap_r=(0, 0, 'l'), align='start', css='wrm-fila',
+             anchor='wirpress')
     testo = C(
         C(T('<p>WirPress e WirStrip</p>', style='kicker', color=TESTO2),
           H('Macchine da banco', 'h1', color=INK, mt='s'), w=(50, 100, 100), gap='0', pad=(0, (48, 0, 0), 0, 0)),
