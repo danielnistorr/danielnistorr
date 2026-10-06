@@ -185,7 +185,8 @@ def main():
             if re.search(r':[a-z]+px', open(os.path.join(root, fn), encoding='utf-8').read()):
                 problemi.append(f'{fn}: valore CSS non numerico')
     for root, _, files in os.walk(a.out):
-        if '_sorgente' in root or 'assets' in root or 'screenshot' in root:
+        # solo i file generati: fuori i sorgenti, le immagini, gli screenshot e le prove (_prova contiene pagine scaricate)
+        if os.path.relpath(root, a.out).split(os.sep)[0] in ('_sorgente', 'assets', 'screenshot', '_prova'):
             continue
         for fn in files:
             if fn.endswith(('.json', '.html')):

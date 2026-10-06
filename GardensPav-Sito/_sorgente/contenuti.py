@@ -369,7 +369,8 @@ CSS_COMUNE = (
     f'.gpv-tabella thead th{{font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:{TESTO2};'
     f'height:auto;padding-top:0!important;padding-bottom:8px!important;border-bottom-color:{GRAFITE}!important;vertical-align:bottom}}'
     f'.gpv-tabella tr.gpv-evid>*{{background:{EVIDENZA}!important}}'
-    f".gpv-tabella .gpv-infoto{{font-weight:500;font-size:12px;letter-spacing:1px;color:{ARANCIO_SCURO};margin-left:8px}}"
+    f".gpv-tabella .gpv-infoto{{font-weight:500;font-size:12px;letter-spacing:1px;color:{ARANCIO_SCURO};margin-left:8px;"
+    'white-space:nowrap}'
     f'.gpv-tabella-scura{{color:{BIANCO}}}.gpv-tabella-scura tr>*{{border-bottom-color:{LINEA_SCURA}!important}}'
     f'.gpv-tabella-scura thead th{{color:{SU_GRAFITE2};border-bottom-color:{SU_GRAFITE2}!important}}'
     f".gpv-tab-note{{margin:16px 0 0!important;font:400 14px/1.55 '{ARCHIVO}',Arial,sans-serif;color:{TESTO2}}}"
@@ -1404,7 +1405,7 @@ def dep_prima_pioggia():
         capo_scheda('06', 'Impianti di prima pioggia', f'Da 400 a 10.000{NBSP}mq'),
         H('Impianti di prima pioggia', 'h2', hide=['desktop', 'tablet'], mb='m'),
         C(render_box('render-prima-pioggia.jpg', 'Render in sezione dell’impianto di prima pioggia: pozzetto scolmatore, '
-                     'vasca di accumulo con elettropompa, separatore oli e pozzetto di prelievo', (W[7], W[6], 100)),
+                     'vasca di accumulo con elettropompa, separatore oli e pozzetto in uscita', (W[7], W[6], 100)),
           C(H('Impianti di prima pioggia', 'h2', hide=['mobile']),
             testo('<p>Vengono considerate acque di prima pioggia “quelle corrispondenti per ogni evento meteorico ad una '
                   'precipitazione di 5 mm uniformemente distribuita sull’intera superficie scolante servita dalla rete di '
@@ -1421,7 +1422,7 @@ def dep_biologici():
     return scheda(
         'depuratori-biologici', '07', 'Depuratori biologici', 'Ossidazione totale a fanghi attivi',
         [render_box('render-depuratore-biologico-cls.jpg', 'Render in sezione del depuratore biologico a ossidazione '
-                    'totale, con il compressore nel quadro sopra la vasca', (78, 100, 88))],
+                    'totale, con il quadro delle apparecchiature sopra la vasca', (78, 100, 88))],
         [testo('<p>Gli impianti di depurazione biologica ad ossidazione totale a fanghi attivi trattano le acque reflue di '
                'case sparse, lottizzazioni private, campeggi, villaggi turistici, ristoranti, ospedali, scuole e altre '
                'attività non servite da rete fognaria. Sono escluse dal trattamento le acque di attività artigianali e le '
