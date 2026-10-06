@@ -12,13 +12,12 @@ const [,, OUT, NAME, URL, W] = process.argv;
 const width = parseInt(W || '1440');
 
 // caratteri da non usare come voce principale (CARATTERI-E-SEGNALI-IA.md, paragrafo b)
-const LISTA = ['Inter', 'Inter Tight', 'Roboto', 'Roboto Slab', 'Roboto Condensed', 'Open Sans', 'Lato', 'Arial', 'Helvetica', 'Poppins',
-  'Montserrat', 'Raleway', 'Geist', 'Geist Mono', 'Manrope', 'Cardo', 'Space Grotesk', 'Space Mono', 'Instrument Serif', 'Instrument Sans',
+const LISTA = ['Inter', 'Inter Tight', 'Roboto', 'Roboto Slab', 'Open Sans', 'Lato', 'Arial', 'Poppins',
+  'Montserrat', 'Geist', 'Geist Mono', 'Manrope', 'Cardo', 'Space Grotesk', 'Space Mono', 'Instrument Serif', 'Instrument Sans',
   'Syne', 'Fraunces', 'IBM Plex Sans', 'IBM Plex Sans Condensed', 'IBM Plex Serif', 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code',
   'Bricolage Grotesque', 'Newsreader', 'Playfair Display', 'Playfair', 'Crimson Pro', 'Crimson Text', 'Source Sans 3', 'Source Sans Pro',
   'DM Sans', 'DM Serif Display', 'DM Mono', 'Plus Jakarta Sans', 'Outfit', 'Sora', 'Unbounded', 'Cormorant', 'Cormorant Garamond',
-  'Satoshi', 'Clash Display', 'Cabinet Grotesk', 'Josefin Sans', 'Work Sans'].map(s => s.toLowerCase());
-// Work Sans, Raleway e Josefin Sans: liste SEO copiate dai generatori; qui contano solo come voce principale o dei titoli
+  'Satoshi', 'Clash Display', 'Cabinet Grotesk'].map(s => s.toLowerCase());
 
 (async () => {
   const infoPath = path.join(OUT, `${NAME}-${width}-info.json`);
