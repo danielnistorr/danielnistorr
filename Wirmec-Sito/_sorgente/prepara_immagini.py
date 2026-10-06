@@ -229,7 +229,10 @@ def pagine_prodotto():
     g = g.crop((23, 34, W - 36, H - 34)).point(lambda v: 255 if v > 232 else v)
     salva(g, 'pianta-am310.png', src, im0.size)
     salva(g.crop((0, 0, 760, g.height)), 'pianta-am310-stazioni.png', src, im0.size)
-    # AM600 Vantage, il gruppo del doppio cavo: il ritaglio si decide con la pagina /automatiche/ (fase successiva)
+    # AM600 Vantage, il gruppo del doppio cavo: ritaglio sul gruppo (via il bordo destro con i tubi), 800 x 462
+    src = o('pdf-am600-dettaglio-doppio-cavo.jpg')
+    im0 = Image.open(src)
+    salva(riduci(im0.crop((0, 40, 2420, 1438)), maxw=800), 'am600-doppio-cavo.jpg', src, im0.size)
 
 
 def pdf_e_copertine():
@@ -250,11 +253,26 @@ def pdf_e_copertine():
 
 
 def mappe():
-    if not os.path.isdir(SVG_LUOGO):
+    """Mappe vettoriali della direzione "luogo" (scritte già in tracciati). Le piccole Italie restano SVG (finiscono
+    in linea nel widget dei referenti); Europa e sede diventano anche PNG al doppio della misura, perché Elementor
+    non importa gli SVG nella libreria media senza "upload non filtrati"."""
+    if os.path.isdir(SVG_LUOGO):
+        for f in sorted(os.listdir(SVG_LUOGO)):
+            if f.endswith('.svg') and (f.startswith(('europa', 'mappa-sede', 'italia'))):
+                shutil.copy(os.path.join(SVG_LUOGO, f), os.path.join(WEB, f))
+    if not shutil.which('node'):
+        print('node non trovato: PNG delle mappe non rifatti')
         return
-    for f in sorted(os.listdir(SVG_LUOGO)):
-        if f.endswith('.svg') and (f.startswith(('europa', 'mappa-sede', 'italia'))):
-            shutil.copy(os.path.join(SVG_LUOGO, f), os.path.join(WEB, f))
+    for f in ('europa-desktop', 'europa-mobile', 'mappa-sede-desktop', 'mappa-sede-mobile'):
+        svg, png = os.path.join(WEB, f + '.svg'), os.path.join(WEB, f + '.png')
+        subprocess.run(['node', os.path.join(QUI, 'svg_png.mjs'), svg, png, '2'], check=True, capture_output=True)
+        im = Image.open(png)
+        nat = (im.width // 2, im.height // 2)
+        # pochi colori piatti: la tavolozza a 256 colori (octree, tiene il rosso del punto della sede) riduce il peso
+        im = im.quantize(colors=256, method=Image.Quantize.FASTOCTREE)
+        im.save(png, optimize=True)
+        misure[f + '.png'] = {'origine': os.path.relpath(svg, RADICE), 'nativa': list(nat), 'web': list(Image.open(png).size),
+                              'kb': round(os.path.getsize(png) / 1024)}
 
 
 if __name__ == '__main__':
