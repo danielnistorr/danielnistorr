@@ -59,12 +59,12 @@ Il segno comune a tutte le pagine è il **capo di sezione**: etichetta in monosp
 
 ### Realizzazioni
 1. Apertura con la mappa (le linee arancio partono da Legnaro e arrivano ai 36 cantieri) e l'elenco dei luoghi, che accende il punto sulla mappa.
-2. **I cantieri**, divisi per regione e paese: foto di copertina (lightbox), luogo e sigla, tipo di attività dal titolo del sito, modelli citati nelle didascalie del sito, numero di foto. Nessun nome di cliente.
+2. **I cantieri**, divisi per regione (Valle d'Aosta con Piemonte e Lazio con Puglia, che hanno un cantiere o due) e fuori dall'Italia: foto di copertina (lightbox), luogo e sigla, tipo di attività dal titolo del sito, modelli citati nelle didascalie del sito. Nessun nome di cliente.
 3. Ufficio tecnico.
 
 ### Azienda
-1. Apertura: chi è Gardens Pav (testo dell'azienda), foto delle vasche caricate.
-2. **Il calcestruzzo** (fondo grafite): "C35/45" grande, l'impianto computerizzato, Rck 45, S4, B450C, copriferro 3 cm.
+1. Apertura: chi è Gardens Pav (testo dell'azienda), foto della posa di una vasca nello scavo.
+2. **Il calcestruzzo** (fondo grafite): "C35/45" grande con sotto esposizione, armatura, consistenza e getto; l'impianto computerizzato, Rck 45, S4, B450C, copriferro 3 cm, una foto di vasche in cantiere.
 3. **Norme di riferimento** [elenco da confermare col cliente].
 4. **Dati societari**: ragione sociale, sede, P.IVA e C.F., REA, capitale, PEC, codice SDI, recapiti.
 5. Ufficio tecnico.
@@ -75,7 +75,7 @@ Il segno comune a tutte le pagine è il **capo di sezione**: etichetta in monosp
 
 ## Navigazione
 
-Menu: Vasche, Depurazione, Piattaforme per autolavaggi, Realizzazioni, Azienda, Contatti (menu WordPress "Menu principale", widget Navigation Menu di Ultimate Addons). Voce attiva in arancio scuro con sottolineatura arancio. Su tablet e telefono diventa un menu a tendina a tutta larghezza; accanto restano "Chiama" e, dentro la tendina, telefono, email e "Richiedi informazioni".
+Menu: Vasche, Depurazione, Piattaforme per autolavaggi, Realizzazioni, Azienda, Contatti (menu WordPress "Menu principale", widget Navigation Menu di Ultimate Addons). Voce attiva in arancio scuro con sottolineatura arancio. Su tablet e telefono diventa un menu a tendina a tutta larghezza; accanto resta "Chiama" (la voce Contatti porta al modulo).
 
 Per `ciclo.sh`:
 ```
