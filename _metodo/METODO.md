@@ -154,3 +154,12 @@ E inoltre:
 - **Proxy**: la porta del proxy cambia; usa sempre `$HTTPS_PROXY`. Il WordPress di prova prende le immagini da
   `http://127.0.0.1:<porta>/assets/` (link simbolico), quindi non serve la rete per importare.
 - **Container**: un riavvio ferma i server PHP. Rilancia `avvia-wp.sh`.
+
+## 5. Lezione dal 6 ottobre 2026: "premium" non vuol dire la stessa cosa in ogni settore
+Il committente ha approvato le home degli hotel e bocciato quelle industriali (Wirmec, Gardens Pav) come troppo scarne e fuori contesto.
+Le regole "premium" (molto spazio, poche parole, niente dati in home) vanno bene per ospitalità e cibo. Per l'industria B2B sono sbagliate:
+chi compra una macchina o una vasca vuole vedere subito famiglie di prodotto, modelli, 2-3 numeri chiave per modello, applicazioni,
+prove (brevetti, certificazioni, cantieri, distributori, fiere con data), schede e brochure scaricabili, assistenza, contatto per zona.
+Il riferimento sono i costruttori veri del censimento (Komax, Zünd, Hermle, Trumpf, Hadrian): densi di contenuto, ma puliti.
+Per l'industria quindi: niente "vestito da scheda tecnica" (monospazio, filetti ovunque, frecce), ma molta informazione vera, ordinata.
+Conceria e oreficeria (Conceria Europa, Di Bi) stanno a metà: l'impianto editoriale funziona, ma servono settori, certificazioni e prove.
