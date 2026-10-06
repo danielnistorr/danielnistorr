@@ -26,7 +26,9 @@ gli screenshot finali. Quando un punto qui è ambiguo, si guarda come è stato f
   screenshot/fallback/           gli stessi presi dall'anteprima HTML
 ```
 
-`_prova/` (build di prova e screenshot grezzi) è ignorata da git.
+`_prova/` (build di prova e screenshot grezzi) è ignorata da git. Anche `assets/originali/` e le immagini di `assets/esterne/`
+restano fuori dal repository (pesano decine di MB per azienda): si riscaricano dalle fonti elencate in `manifest.json`
+e in 01. In git vanno `assets/web/` e tutto il resto, quindi `build.py` funziona anche da un clone pulito.
 
 ## 2. Le fasi
 
