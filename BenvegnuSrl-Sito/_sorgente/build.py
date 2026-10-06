@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Genera tutto il materiale del sito Benvegnù a partire da contenuti.py:
+Genera tutto il materiale del sito a partire da contenuti.py (prefisso e nome da c.PREFISSO e c.NOME_SITO):
   elementor-json/   template importabili da Template > Template salvati > Importa template
   html-fallback/    una sezione per file, da incollare in un widget HTML di Elementor
   anteprima/        le pagine complete in HTML, da aprire nel browser
@@ -18,6 +18,9 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import motore as m          # noqa: E402
 import contenuti as c       # noqa: E402
+
+PX = getattr(c, 'PREFISSO', 'bvg')            # prefisso di file, classi e ancore
+NOME = getattr(c, 'NOME_SITO', 'Benvegnù')     # prefisso dei titoli dei template
 
 QUI = os.path.dirname(os.path.abspath(__file__))
 RADICE = os.path.dirname(QUI)
@@ -115,8 +118,8 @@ def main():
 
     problemi, tutte_img = [], []
     header, footer = c.header(), c.footer()
-    m.assegna_id(header, 'bvg-header')
-    m.assegna_id(footer, 'bvg-footer')
+    m.assegna_id(header, f'{PX}-header')
+    m.assegna_id(footer, f'{PX}-footer')
 
     def scrivi_fallback(cartella, nome, sezione, scope):
         os.makedirs(os.path.join(dirs['html-fallback'], cartella), exist_ok=True)
@@ -124,34 +127,34 @@ def main():
             f.write(m.sezione_html(sezione, scope) + '\n')
 
     # header e footer: template di tipo "section", importabili anche senza Elementor Pro
-    for nodo, slug, titolo in ((header, '00-header', 'Benvegnù: Header'), (footer, '99-footer', 'Benvegnù: Footer')):
-        with open(os.path.join(dirs['elementor-json'], f'bvg-{slug}.json'), 'w', encoding='utf-8') as f:
+    for nodo, slug, titolo in ((header, '00-header', f'{NOME}: Header'), (footer, '99-footer', f'{NOME}: Footer')):
+        with open(os.path.join(dirs['elementor-json'], f'{PX}-{slug}.json'), 'w', encoding='utf-8') as f:
             f.write(m.json_dump(m.template_json(titolo, [nodo], kind='section')))
-        scrivi_fallback(slug, f'01-{slug[3:]}', nodo, f'bvg-{slug[3:]}')
+        scrivi_fallback(slug, f'01-{slug[3:]}', nodo, f'{PX}-{slug[3:]}')
         problemi += controlla_testi(' '.join(testi_visibili(nodo)), slug)
         tutte_img += immagini(nodo)
 
-    header_html = m.sezione_html(header, 'bvg-header', fonts=False)
-    footer_html = m.sezione_html(footer, 'bvg-footer', fonts=False)
+    header_html = m.sezione_html(header, f'{PX}-header', fonts=False)
+    footer_html = m.sezione_html(footer, f'{PX}-footer', fonts=False)
 
     for pg in c.PAGINE:
         sezioni = pg['sezioni']()
         for i, (nome, s) in enumerate(sezioni):
-            m.assegna_id(s, f'bvg-{pg["slug"]}-{nome}')
+            m.assegna_id(s, f'{PX}-{pg["slug"]}-{nome}')
         page_settings = {'template': 'elementor_header_footer', 'hide_title': 'yes'}
-        tpl = m.template_json(f'Benvegnù: {pg["titolo"]}', [s for _, s in sezioni], kind='page', page_settings=page_settings)
-        with open(os.path.join(dirs['elementor-json'], f'bvg-{pg["slug"]}.json'), 'w', encoding='utf-8') as f:
+        tpl = m.template_json(f'{NOME}: {pg["titolo"]}', [s for _, s in sezioni], kind='page', page_settings=page_settings)
+        with open(os.path.join(dirs['elementor-json'], f'{PX}-{pg["slug"]}.json'), 'w', encoding='utf-8') as f:
             f.write(m.json_dump(tpl))
         # variante per chi non ha Elementor Pro: header e footer dentro la pagina, modello Canvas
-        completa = m.template_json(f'Benvegnù: {pg["titolo"]} (pagina completa)', [header] + [s for _, s in sezioni] + [footer],
+        completa = m.template_json(f'{NOME}: {pg["titolo"]} (pagina completa)', [header] + [s for _, s in sezioni] + [footer],
                                    kind='page', page_settings={'template': 'elementor_canvas', 'hide_title': 'yes'})
         os.makedirs(os.path.join(dirs['elementor-json'], 'pagine-complete-senza-pro'), exist_ok=True)
-        with open(os.path.join(dirs['elementor-json'], 'pagine-complete-senza-pro', f'bvg-{pg["slug"]}-completa.json'), 'w',
+        with open(os.path.join(dirs['elementor-json'], 'pagine-complete-senza-pro', f'{PX}-{pg["slug"]}-completa.json'), 'w',
                   encoding='utf-8') as f:
             f.write(m.json_dump(completa))
         blocchi = [header_html]
         for i, (nome, s) in enumerate(sezioni, 1):
-            scope = f'bvg-{pg["slug"][3:]}-{nome}'
+            scope = f'{PX}-{pg["slug"][3:]}-{nome}'
             scrivi_fallback(pg['slug'], f'{i:02d}-{nome}', s, scope)
             blocchi.append(m.sezione_html(s, scope, fonts=False))
             problemi += controlla_testi(' '.join(testi_visibili(s)), f'{pg["slug"]}/{nome}')
@@ -166,7 +169,7 @@ def main():
     # index.html: aprendo la cartella dell'anteprima (o http://localhost:8000/anteprima/) si arriva alla Home
     with open(os.path.join(dirs['anteprima'], 'index.html'), 'w', encoding='utf-8') as f:
         f.write('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=01-home.html">'
-                '<title>Benvegnù: anteprima</title></head><body><a href="01-home.html">Apri la Home</a></body></html>\n')
+                f'<title>{NOME}: anteprima</title></head><body><a href="01-home.html">Apri la Home</a></body></html>\n')
 
     # la stessa verifica sui file scritti, per sicurezza, più i controlli tecnici sul formato
     for root, _, files in os.walk(os.path.join(a.out, 'elementor-json')):
