@@ -136,11 +136,18 @@ def mailto(oggetto, corpo=''):
     return url
 
 
+# opzioni del campo Linea del modulo (plugin/contact-form-7-richiesta-offerta.txt): Contact Form 7 confronta il valore
+# di ?linea= con l'etichetta dell'opzione, non con il valore dopo la barra
+LINEA_MODULO = {'wiram': 'WirAM, automatiche', 'accessori': 'Accessori per automatiche',
+                'wirpress': 'WirPress, presse e spela aggraffa', 'wirstrip': 'WirStrip, taglio e sguainatura',
+                'wirtool': 'WirTool, applicatori', 'wirtest': 'WirTest, controllo qualità', 'altro': 'Non lo so ancora'}
+
+
 def richiesta(linea='', modello=''):
     """Link al modulo di Contatti con la linea (e il modello) già scelti (specifica 5.1 e 13)."""
     q = []
     if linea:
-        q.append('linea=' + linea)
+        q.append('linea=' + quote(LINEA_MODULO[linea]))
     if modello:
         q.append('modello=' + quote(modello))
     return '/contatti/' + ('?' + '&'.join(q) if q else '') + '#richiesta'
@@ -187,6 +194,8 @@ CSS_COMUNE = (
     # testo forte nelle didascalie
     f'.wrm-meta strong{{font-weight:600;color:{INK}}}'
     '@media (prefers-reduced-motion:reduce){.wrm-fr{transition:none}}'
+    f'.wrm-df{{border-top:1px solid {FILETTO};padding-top:12px;box-sizing:border-box}}'
+    f'.wrm-df-g{{border-top-color:{FILETTO_G}}}.wrm-df-s{{border-top-color:{FILETTO_S}}}'
     # testi che non vanno mai a capo (codice W 1500, telefono grande): sui tablet stretti e sui telefoni piccoli
     # la misura scende con la larghezza della finestra invece di uscire dalla colonna
     '@media (min-width:768px) and (max-width:1024px){.wrm-codice,.wrm-codice .elementor-heading-title'
@@ -261,6 +270,13 @@ def nome(testo, colore=INK, livello='p', **p):
 
 def didascalia(html, colore=TESTO2, **p):
     return T(f'<p>{html}</p>', style='meta', color=colore, css='wrm-meta', **p)
+
+
+def dida_filetto(html, larghezze, fil='', **p):
+    """Didascalia con il filetto sopra, larga quanto la foto: la larghezza sta sul widget (un contenitore la ignora).
+    fil: '' su bianco, 'g' sul grigio, 's' su ardesia."""
+    return T(f'<p>{html}</p>', style='meta', color=SU_SCURO2 if fil == 's' else TESTO2, max_w=larghezze,
+             css=f'wrm-meta wrm-df {"wrm-df-" + fil if fil else ""}'.strip(), **p)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -880,7 +896,7 @@ def tabella(scope, titolo, testa_col, righe, bg=BIANCO, fil=FILETTO, prima=(220,
         f'{t} td a{{font:600 15px/1.4 {F_SANS};color:{ROSSO_SCURO};text-decoration:underline;text-decoration-thickness:1px;'
         'text-underline-offset:4px}'
         f'{t} td a:hover,{t} td a:focus-visible{{color:{INK};text-decoration-thickness:2px}}'
-        f'{t} th:first-child{{position:sticky;left:0;z-index:1;width:{prima[0]}px}}'
+        f'{t} th:first-child{{position:sticky;left:0;z-index:1;width:{prima[0]}px;padding-left:0!important}}'
         f'@media (max-width:1024px){{{t} thead th{{font-size:21px}}{t} th:first-child{{width:{prima[1]}px}}{t} .wrm-tab-nome{{font-size:21px}}}}'
         f'@media (max-width:767px){{{t} th,{t} td{{padding:12px!important}}{t} table{{min-width:{prima[2] + n * min_col}px}}'
         f'{t} th:first-child{{width:{prima[2]}px;min-width:{prima[2]}px;box-shadow:inset -1px 0 0 {fil}}}'
@@ -932,11 +948,23 @@ CSS_DL2 = (
     f'.wrm-dl2 dd{{margin:4px 0 0;font:500 17px/1.3 {F_MONO};color:{INK};text-wrap:balance}}'
     '@media (min-width:768px) and (max-width:1024px){.wrm-dl2 dl{grid-template-columns:1fr 1fr 1fr}}'
     '@media (max-width:767px){.wrm-dl2 dl{column-gap:16px}.wrm-dl2 dd{font-size:16px}}'
+    '.wrm-dd-v{white-space:nowrap}'
+    f'.wrm-dd-n{{display:block;margin-top:2px;font:400 13px/1.4 {F_SANS};color:{TESTO2};text-wrap:pretty}}'
 )
 
 
+def valore(v):
+    """Valore di una scheda: "n.d." in grigio; "valore|nota" mette la nota (a richiesta, macchina base...) sotto."""
+    if v == 'n.d.':
+        return nd()
+    if '|' in v:
+        a, b = v.split('|', 1)
+        return f'<span class="wrm-dd-v">{a}</span><span class="wrm-dd-n">{b}</span>'
+    return f'<span class="wrm-dd-v">{v}</span>'
+
+
 def dl2(coppie, **p):
-    righe = ''.join(f'<div><dt>{k}</dt><dd>{nd() if v == "n.d." else v}</dd></div>' for k, v in coppie)
+    righe = ''.join(f'<div><dt>{k}</dt><dd>{valore(v)}</dd></div>' for k, v in coppie)
     return T(f'<dl>{righe}</dl>', style='label', color=TESTO2, css='wrm-dl2', **p)
 
 
@@ -979,13 +1007,13 @@ WIRAM_SCHEDE = [
          testo='Molto compatta, per cavi molto sottili fino a 34 AWG. Ha di serie lo svolgitore della bobina e il '
                'prealimentatore integrato, che porta il cavo all’alimentatore senza stirarlo; la guida filo si cambia con '
                'un innesto rapido.',
-         dati=['n.d.', '16–34 AWG', 'n.d.', f'3{NB}m/s', f'700{NB}kg, macchina base', f'1900 x 900 x 1500{NB}mm'],
+         dati=['n.d.', '16–34 AWG', 'n.d.', f'3{NB}m/s', f'700{NB}kg|macchina base', f'1900 x 900 x 1500{NB}mm'],
          foto='am210-futura.jpg'),
     dict(nome='AM310 quattro', sotto='Taglia spela aggraffa, fino a 5 stazioni',
          testo='Pensata per lavorazioni del cavo molto diverse tra loro. Di serie: alimentatore a cinghie, testa di taglio '
                'programmabile, raddrizzatori con posizione memorizzabile, PC con monitor da 21 pollici, connessione Wi-Fi, '
                'Ethernet e USB, protezione apribile verso l’alto, conformità CE.',
-         dati=['fino a 5', f'0,13–2,5{NA} (4{NA} a richiesta)', f'1–20{NB}mm (oltre a richiesta)', f'8,5{NB}m/s',
+         dati=['fino a 5', f'0,13–2,5{NA}|4{NA} a richiesta', f'1–20{NB}mm|oltre a richiesta', f'8,5{NB}m/s',
                f'800{NB}kg', f'3000 x 1400 x 2000{NB}mm'],
          foto='am310-quattro-riga.jpg', pdf=('am310quattro.pdf', '1,8')),
     dict(nome='AM350 quattro', sotto='Per cavo flat e Nily',
@@ -994,25 +1022,25 @@ WIRAM_SCHEDE = [
     dict(nome='AM400 quattro', sotto='Taglia spela aggraffa, fino a 5 stazioni',
          testo='Con la testa di taglio a sei lame e un sistema avanzato di alimentazione del cavo, lavora le piccole sezioni '
                'con una produttività molto alta.',
-         dati=['fino a 5', f'0,13–4{NA} (6{NA} a richiesta)', f'1–15{NB}mm', f'8{NB}m/s', f'1100{NB}kg', 'n.d.'],
+         dati=['fino a 5', f'0,13–4{NA}|6{NA} a richiesta', f'1–15{NB}mm', f'8{NB}m/s', f'1100{NB}kg', 'n.d.'],
          foto='am400-quattro-riga.jpg', pdf=('am400quattro_eng_0.pdf', '2,9')),
     dict(nome='AM460 Sintesi', sotto='Taglia spela aggraffa, fino a 5 stazioni e 3 aggraffatrici',
          testo='Porta in un telaio compatto la tecnica delle macchine di fascia superiore. Di serie: accatastatore con nastro '
                'trasportatore di 2 m, alimentatore a 4 rulli convertibile a cinghie, salvataggio dei codici di lavorazione, '
                'pannello remoto per i parametri del lato 1.',
-         dati=['fino a 5', f'0,13–6{NA} (26–10 AWG)', f'0,1–15{NB}mm (fino a 30 a richiesta)', f'8,5{NB}m/s',
-               f'circa 750{NB}kg, macchina base', f'3400 x 1400 x 2000{NB}mm'],
+         dati=['fino a 5', f'0,13–6{NA}|26–10 AWG', f'0,1–15{NB}mm|fino a 30 a richiesta', f'8,5{NB}m/s',
+               f'circa 750{NB}kg|macchina base', f'3400 x 1400 x 2000{NB}mm'],
          foto='am460-riga.jpg'),
     dict(nome='AM500 Vantage', sotto='Taglia spela aggraffa, fino a 6 stazioni',
          testo='Completamente automatica, pensata per un utilizzo facile e una manutenzione ridotta. A richiesta: '
                'regolazione elettronica dell’altezza di aggraffatura, misura integrata dell’altezza, prova di trazione '
                'integrata.',
-         dati=['fino a 6', f'0,13–6{NA} (10{NA} a richiesta)', f'0,1–15{NB}mm (fino a 30 a richiesta)', f'12{NB}m/s',
+         dati=['fino a 6', f'0,13–6{NA}|10{NA} a richiesta', f'0,1–15{NB}mm|fino a 30 a richiesta', f'12{NB}m/s',
                f'1300{NB}kg', 'n.d.'],
          foto='am500-vantage.jpg', pdf=('am500vantage_eng_0.pdf', '0,8')),
     dict(nome='AM600 Vantage', sotto='Taglia spela aggraffa, 6 stazioni, doppio cavo',
          testo='Lavora due cavi diversi sulla stessa macchina, con il sistema a doppio cavo brevettato.',
-         dati=['6', f'0,13–2,5{NA}, 6{NA} con cavo doppio', f'0,1–15{NB}mm (fino a 30 a richiesta)', f'12{NB}m/s',
+         dati=['6', f'0,13–2,5{NA}|6{NA} con cavo doppio', f'0,1–15{NB}mm|fino a 30 a richiesta', f'12{NB}m/s',
                f'1300{NB}kg', 'n.d.'],
          foto='am600-doppio-cavo.jpg', dida='Il gruppo del doppio cavo, dalla brochure.', pdf=('am600vantage_eng_0.pdf', '1,6')),
 ]
@@ -1022,7 +1050,7 @@ ETICHETTE_WIRAM = ['Stazioni', 'Sezione cavo', 'Lunghezza spelatura', 'Velocità
 def riga_wiram(m):
     if m.get('foto'):
         alt = m['nome'] + (', il gruppo del doppio cavo' if m.get('dida') else ', taglia spela aggraffa automatica')
-        foto = C(C(I(img(m['foto']), alt, height=(178, 168, 230), fit='contain'), bg=BIANCO, pad=16, gap='0'),
+        foto = C(C(I(img(m['foto']), alt, height=(178, 168, 190), fit='contain'), bg=BIANCO, pad=16, gap='0'),
                  *([didascalia(m['dida'], mt='xs')] if m.get('dida') else []),
                  w=(22, 30, 100), gap='0')
     else:
@@ -1188,7 +1216,7 @@ def scheda_accessorio(a):
                        mt='s'))
     figli = []
     if a.get('foto'):
-        figli.append(C(I(img(a['foto']), f'{a["codice"]}, {a["nome"][0].lower() + a["nome"][1:]}', height=(220, 240, 220),
+        figli.append(C(I(img(a['foto']), f'{a["codice"]}, {a["nome"][0].lower() + a["nome"][1:]}', height=(220, 240, 170),
                          fit='contain'),
                        w=(34, 100, 100), gap='0', pad=(0, (24, 0, 0), 0, 0), css='wrm-acc-foto'))
     figli.append(C(*corpo, w=(66 if a.get('foto') else 100, 100, 100), gap='0', mt=(0, 's', 's') if a.get('foto') else 0))
@@ -1322,8 +1350,7 @@ def banco_spela():
             ('WSC 25', 'Per terminali preisolati e ferrules blu, rossi e gialli cambiando solo l’applicatore '
                        f'<a href="/applicatori/#wb-14">WB{NB}14</a>; lavora anche terminali aperti.')]
     foto = C(I(img('wsc15.jpg'), 'WSC 15, spela aggraffa elettropneumatica', w_img=(400, 400, 350)),
-             C(didascalia(f'WSC{NB}15, dalla brochure Wirmec.'), border_top=1, border_color=FILETTO, pad=('xs', 0, 0, 0),
-               mt='s', max_w=(400, 400, 350)),
+             dida_filetto(f'WSC{NB}15, dalla brochure Wirmec.', (400, 400, 350), mt='s'),
              w=(33.33, 100, 100), gap='0')
     destra = C(
         C(*[C(H(unito(c), 'p', style='nome', color=INK, w_px=(120, 120, None), fisso=True),
@@ -1460,7 +1487,7 @@ def applicatori_apertura():
             (390, 390, 179)),
         dir='row', justify='between', align='end', gap='0', w=(58.33, 100, 100), mt=(0, 'xl', 'xl'))
     return sezione(
-        C(sinistra, destra, dir='row', dir_t='column', align=('end', 'stretch', 'stretch'), gap='0'),
+        C(sinistra, destra, dir='row', dir_t='column', align=('center', 'stretch', 'stretch'), gap='0'),
         indice([('Applicatori', codici_link('wirtool', qui=True))], mt='xl'),
         bg=GRIGIO, pad=((72, 56, 40), 'lato', 'sezione', 'lato'), css='wrm-app-apre', anchor='content',
         stile_extra=CSS_INDICE + CSS_W1500)
@@ -1562,7 +1589,7 @@ def qualita_apertura():
         B("Richiedi un’offerta", richiesta('wirtest'), variant='primario', full_m=True, mt='l'),
         indice([('Strumenti', codici_link('wirtest', qui=True, codici=['W200', 'W100', 'W125']))], scuro=True, mt='xl'),
         w=(60.3, 100, 100), gap='0', pad=(0, 0, 0, (64, 0, 0)))
-    letture = [('10 AWG', 'sezione del cavo'), ('2,57', 'altezza'), ('3,83', 'larghezza')]
+    letture = [('10<span class="wrm-unita">&nbsp;AWG</span>', 'sezione del cavo'), ('2,57', 'altezza'), ('3,83', 'larghezza')]
     foto = C(
         I(img('sezione-10awg.jpg'), 'Sezione al micrografo di un’aggraffatura su cavo 10 AWG, altezza 2,57, larghezza 3,83',
           w_img=(508, 508, 350)),
@@ -1575,7 +1602,7 @@ def qualita_apertura():
         w=(39.7, 52.9, 100), gap='0', mt=(0, 'xl', 'l'))
     return sezione(C(testo, foto, dir='row-reverse', dir_t='column', align=('center', 'start', 'stretch'), gap='0'),
                    bg=ARDESIA, pad=((72, 56, 40), 'lato', 'sezione', 'lato'), css='wrm-qual-apre wrm-scuro',
-                   anchor='content', stile_extra=CSS_INDICE + CSS_SCURO)
+                   anchor='content', stile_extra=CSS_INDICE + CSS_SCURO + '.wrm-unita{font-size:.42em;letter-spacing:0}')
 
 
 def qualita_w200():
@@ -1597,8 +1624,7 @@ def qualita_w200():
     destra = C(
         I(img('w200.jpg'), 'W200, laboratorio di micrografia', w_img=(640, 480, 350)),
         C(I(img('w202.jpg'), 'W202, la penna fornita con il W200', w_img=(300, 300, 280)),
-          C(didascalia('W202, la penna fornita con il W200.'), border_top=1, border_color=FILETTO, pad=('xs', 0, 0, 0),
-            mt='s', max_w=(300, 300, 280)),
+          dida_filetto('W202, la penna fornita con il W200.', (300, 300, 280), mt='s'),
           gap='0', mt='l'),
         w=(50, 100, 100), gap='0', mt=(0, 'xl', 'l'))
     return sezione(C(sinistra, destra, dir='row', dir_t='column', align='start', gap='0'), css='wrm-w200', anchor='w200')
@@ -1634,8 +1660,7 @@ def qualita_dinamometri():
 def qualita_terminale():
     """D4: il risultato del lavoro delle altre macchine, un terminale su un cavo sottile accanto al righello."""
     foto = C(I(img('righello.jpg'), 'Terminale aggraffato su cavo sottile accanto a un righello', w_img=(560, 480, 350)),
-             C(didascalia('Foto della scheda AM210 futura.'), border_top=1, border_color=FILETTO, pad=('xs', 0, 0, 0),
-               mt='s', max_w=(560, 480, 350)),
+             dida_filetto('Foto della scheda AM210 futura.', (560, 480, 350), mt='s'),
              w=(58.33, 100, 100), gap='0', pad=(0, (48, 0, 0), 0, 0))
     testo = C(
         *titolo_h2('Il terminale, da vicino'),
@@ -1713,7 +1738,7 @@ def azienda_linee():
             C(H(nm, 'h3', color=INK, link=url, css='wrm-linea-t'),
               T(f'<p>{sotto}</p>', style='small', color=TESTO2, mt='xxs'),
               w=(25, 30, 100), gap='0', pad=(0, (24, 24, 0), 0, 0)),
-            C(T(f'<p>{desc}</p>', style='small', color=INK, w=(46.67, 100, 100)),
+            C(C(T(f'<p>{desc}</p>', style='small', color=INK), w=(46.67, 100, 100), gap='0', pad=(0, (32, 0, 0), 0, 0)),
               C(T(f'<p>{links}</p>', style='dato_s', color=INK, link_color=INK, link_hover=ROSSO_SCURO, sottolinea=False,
                   css='wrm-indice-c'), w=(53.33, 100, 100), gap='0', mt=(0, 's', 's')),
               dir='row', dir_t='column', gap='0', w=(75, 70, 100), mt=(0, 0, 's'), css='wrm-linea-r'),
@@ -1723,9 +1748,7 @@ def azienda_linee():
                                                 'dove c’è.', stile_lead='body'),
         C(*righe, gap='0', border_top=2, border_color=INK, mt='xl'),
         bg=GRIGIO, css='wrm-az-linee', anchor='linee',
-        stile_extra=CSS_INDICE + '@media (min-width:1025px){.wrm-linea-r>.wrm-w:first-child,.wrm-linea-r>.elementor-widget:first-child'
-                                 '{padding-right:32px}}'
-                    f'.wrm-linea-t a:hover,.wrm-linea-t a:focus-visible,.wrm-linea-t .elementor-heading-title a:hover'
+        stile_extra=CSS_INDICE + f'.wrm-linea-t a:hover,.wrm-linea-t a:focus-visible,.wrm-linea-t .elementor-heading-title a:hover'
                     f'{{color:{ROSSO_SCURO}!important}}')
 
 
@@ -1790,8 +1813,8 @@ def azienda_brevetti():
     righe = []
     for cod, url, fatto, fonte, foto in voci:
         righe.append(C(
-            T(f'<p><a href="{url}">{unito(cod)}</a></p>', style='dato', color=INK, link_color=INK, link_hover=ROSSO_SCURO,
-              css='wrm-link', w=(15, 15, 100)),
+            C(T(f'<p><a href="{url}">{unito(cod)}</a></p>', style='dato', color=INK, link_color=INK, link_hover=ROSSO_SCURO,
+                css='wrm-link'), w=(15, 15, 100), gap='0'),
             C(T(f'<p>{fatto}</p>', style='body', color=INK), didascalia(fonte, mt='xs'), w=(60, 55, 100), gap='0',
               pad=(0, (32, 32, 0), 0, (0, 0, 0)), mt=(0, 0, 'xs')),
             C(*([I(img(foto[0]), foto[1], w_img=(foto[2], foto[2], foto[2]))] if foto else []), w=(25, 30, 100), gap='0',
@@ -1818,6 +1841,7 @@ CORPO_MAIL = ('Nome e cognome:\nAzienda:\nTelefono:\nProvincia o paese:\nLinea e
 
 STILE_CF7 = (
     '.wrm-modulo .wpcf7 p{margin:0}.wrm-modulo .wpcf7 br{display:none}'
+    '.wrm-campi>p:not(.wrm-nota){display:contents}'
     '.wrm-campi{display:grid;grid-template-columns:1fr 1fr;gap:20px}'
     '.wrm-campi .wrm-largo{grid-column:1/-1}'
     '@media (max-width:767px){.wrm-campi{grid-template-columns:100%}}'
@@ -1974,7 +1998,7 @@ def contatti_italia():
                  '</select></div><p class="wrm-zone-esito" aria-live="polite"></p></div>')
     righe = ''
     for z, nm, reg, tel, link, mail in ZONE:
-        usi = ''.join(f'<use href="#wrm-it-{i}" fill="{ARDESIA if i in zone[z] else "#D5D9DC"}"/>' for i in range(n))
+        usi = ''.join(f'<use href="#wrm-it-{i}" fill="{ARDESIA if i in zone[z] else "#C3C9CE"}"/>' for i in range(n))
         mappa = (f'<svg viewBox="0 0 240 283" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-width="0.9" '
                  f'stroke-linejoin="round">{usi}</g><circle cx="106.6" cy="50.5" r="5" fill="{ROSSO}" stroke="#FFFFFF" '
                  'stroke-width="1.6"/></svg>')
@@ -2021,27 +2045,26 @@ def contatti_arrivare():
     gmaps = ('https://www.google.com/maps/search/?api=1&amp;query=Viale%20Europa%2016%2C%2035020%20Ponte%20San%20Nicol%C3%B2')
     osm = 'https://www.openstreetmap.org/?mlat=45.35601&amp;mlon=11.93173#map=15/45.35601/11.93173'
     testo = C(
-        C(filetto_rosso(24), T('<p>45°21′22″ N · 11°55′54″ E</p>', style='dato_s', color=SU_SCURO2),
-          dir='row', align='center', gap=12),
+        T('<p><span class="wrm-coord-f" aria-hidden="true"></span>45°21′22″ N · 11°55′54″ E</p>', style='dato_s',
+          color=SU_SCURO2),
         H(f'{INDIRIZZO}, Ponte San Nicolò', 'h2', color=BIANCO, mt='s'),
         T('<p>Nel comune di Ponte San Nicolò, a sud-est di Padova. Dall’autostrada si esce a Padova Zona Industriale, '
           'sull’A13.</p>', style='body', color=SU_SCURO2, mt='m'),
         dati_dl([('Casello A13 Padova Zona Industriale', f'6,9{NB}km'), ('Stazione di Padova', f'10,5{NB}km'),
                  ('Centro di Padova, in linea d’aria', f'7,3{NB}km')], 'wrm-dl-scuro', colore_et=SU_SCURO2, stile='small',
                 mt='l'),
-        dati_dl([('Telefono', f'<a href="{TEL_LINK}">{TEL}</a>'), ('Fax', FAX),
-                 ('Email', f'<a href="mailto:{EMAIL}">{EMAIL}</a>')], 'wrm-dl-scuro', colore_et=SU_SCURO3, mt='m'),
         C(link_freccia('Apri in Google Maps', gmaps, scuro=True, fisso=True),
           link_freccia('Apri in OpenStreetMap', osm, scuro=True, fisso=True),
           dir='row', dir_m='column', wrap=True, gap=(32, 32, 12), mt='l'),
         didascalia('Distanze su strada (OSRM) e in linea d’aria calcolate su OpenStreetMap, ottobre 2026. Mappa disegnata '
                    'da dati © OpenStreetMap contributors, ODbL. Il punto è quello della via: il civico non è mappato.',
                    colore=SU_SCURO3, mt='l'),
-        w=(41.67, 50, 100), gap='0', pad=(('sezione', 'sezione', 'sezione'), (0, 32, 20), ('sezione', 'sezione', 'l'),
-                                           (64, 32, 20)), css='wrm-arr-testo')
+        w=(41.67, 50, 100), gap='0', pad=(('xl', 'xl', 'sezione'), (0, 32, 20), ('xl', 'xl', 'l'), (64, 32, 20)),
+        css='wrm-arr-testo')
     return sezione(C(mappa, testo, dir='row', dir_m='column-reverse', align='center', gap='0'), bg=ARDESIA, pad=0,
                    boxed=False, css='wrm-ct-arrivare wrm-scuro', anchor='come-arrivare',
                    stile_extra=CSS_SCURO + '@media (min-width:1025px){.wrm-arr-testo{padding-right:max(48px,calc((100% - 1280px) / 2))!important}}'
+                               f'.wrm-coord-f{{display:inline-block;width:24px;height:3px;margin:0 12px 0 0;vertical-align:middle;background:{ROSSO}}}'
                                f'.wrm-dl-scuro dd a{{text-decoration:none!important}}'
                                f'.wrm-dl-scuro dd a:hover,.wrm-dl-scuro dd a:focus-visible{{text-decoration:underline!important;'
                                'text-underline-offset:4px}')

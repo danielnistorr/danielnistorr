@@ -9,7 +9,7 @@ Richiesta offerta
 <label>Email * [email* email autocomplete:email]</label>
 <label>Telefono [tel telefono autocomplete:tel]</label>
 <label>Provincia o paese [text luogo placeholder "es. Vicenza, oppure Polonia"]</label>
-<label>Linea [select linea default:get include_blank "WirAM, automatiche|wiram" "Accessori per automatiche|accessori" "WirPress, presse e spela aggraffa|wirpress" "WirStrip, taglio e sguainatura|wirstrip" "WirTool, applicatori|wirtool" "WirTest, controllo qualità|wirtest" "Non lo so ancora|altro"]</label>
+<label>Linea [select linea default:get first_as_label "Scegli la linea" "WirAM, automatiche|wiram" "Accessori per automatiche|accessori" "WirPress, presse e spela aggraffa|wirpress" "WirStrip, taglio e sguainatura|wirstrip" "WirTool, applicatori|wirtool" "WirTest, controllo qualità|wirtest" "Non lo so ancora|altro"]</label>
 <label>Modello [text modello default:get placeholder "es. W 1500, AM460 Sintesi"]</label>
 <label>Terminale e cavo [text terminale placeholder "codice del terminale, sezione in mm² o AWG"]</label>
 <label class="wrm-largo">Quantità o volumi [text volumi placeholder "es. pezzi al giorno"]</label>
@@ -48,7 +48,8 @@ Devi accettare i termini e le condizioni: Serve il consenso per poter rispondere
 Si è verificato un errore durante l'invio: La richiesta non è partita. Scrivi a info@wirmec.com o chiama il +39 049 718 464.
 
 Note:
-- "default:get" preseleziona Linea e Modello dai link delle pagine prodotto (/contatti/?linea=wirpress&modello=W%201500#richiesta).
+- "default:get" preseleziona Linea e Modello dai link delle pagine (per esempio /contatti/?linea=WirPress%2C%20presse%20e%20spela%20aggraffa&modello=W%201500#richiesta). Contact Form 7 confronta ?linea= con il testo dell'opzione (prima della barra): se cambi il testo di un'opzione, cambia anche LINEA_MODULO in _sorgente/contenuti.py e rigenera i template. Il valore dopo la barra (wiram, wirpress...) è quello che arriva nella mail.
+- "first_as_label": la prima voce, "Scegli la linea", è solo un'etichetta (valore vuoto).
 - Il destinatario info@wirmec.com è da confermare con Wirmec.
 - Per consegnare davvero le email serve un plugin SMTP (per esempio WP Mail SMTP) configurato con la casella aziendale.
 - L'allegato arriva nella mail come file: Contact Form 7 lo cancella dal server dopo l'invio.
