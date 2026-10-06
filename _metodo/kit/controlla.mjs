@@ -45,7 +45,7 @@ for (const [pth, nome] of coppie) {
             if (!clip) { out.push(`esce a destra: <${e.tagName.toLowerCase()} class="${(e.className && e.className.baseVal === undefined ? e.className : '').toString().slice(0, 60)}"> right=${Math.round(r.right)}`); }
           }
         }
-        if (document.body.innerText.includes('—')) out.push('trattino lungo nel testo');
+        if (document.body.innerText.includes(String.fromCharCode(0x2014))) out.push('trattino lungo nel testo');
         const interni = [...document.querySelectorAll('a[href^="/"]')].map(a => a.getAttribute('href').split('#')[0]);
         return { out: [...new Set(out)].slice(0, 12), interni: [...new Set(interni)] };
       }, w);

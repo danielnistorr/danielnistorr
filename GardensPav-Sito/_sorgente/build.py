@@ -34,7 +34,7 @@ PAROLE_VIETATE = [
 
 def controlla_testi(testo, dove):
     problemi = []
-    if '—' in testo:
+    if '\u2014' in testo:
         problemi.append(f'{dove}: trattino lungo (U+2014)')
     if re.search(r'\s–\s', testo):
         problemi.append(f'{dove}: trattino medio usato come lineetta (U+2013)')
@@ -191,7 +191,7 @@ def main():
         for fn in files:
             if fn.endswith(('.json', '.html')):
                 txt = open(os.path.join(root, fn), encoding='utf-8').read()
-                if '—' in txt or '\\u2014' in txt:
+                if '\u2014' in txt or '\\u2014' in txt:
                     problemi.append(f'{fn}: trattino lungo nel file')
 
     # elenco dei testi alternativi: Elementor li perde all'import, vanno compilati nella libreria media
