@@ -846,7 +846,11 @@ def tab(nome, titolo, evidenzia=None, scura=False, note=True, righe=None):
 
 def tabella_voci(righe, nome, scura=False):
     """Tabella a due colonne con testo: codice in monospazio a sinistra, descrizione che va a capo."""
-    tr = ''.join(f'<tr><th scope="row">{a}</th><td>{b}</td></tr>' for a, b in righe)
+    import re
+
+    def codice(a):
+        return re.sub(r'([^ <>]+-[^ <>]+)', r'<span class="gpv-nowrap">\1</span>', a)
+    tr = ''.join(f'<tr><th scope="row">{codice(a)}</th><td>{b}</td></tr>' for a, b in righe)
     return (f'<table class="gpv-tabella gpv-tab-voci{" gpv-tabella-scura" if scura else ""}" aria-label="{nome}">'
             f'<tbody>{tr}</tbody></table>')
 
@@ -908,6 +912,7 @@ CSS_PAGINE = (
     'padding-top:12px!important;padding-bottom:12px!important}'
     f'.gpv-tab-voci tbody tr:first-child>*{{border-top:1px solid {GRAFITE}!important}}'
     '.gpv-tab-voci th{font-weight:500!important;width:36%;padding-right:16px!important}'
+    '.gpv-voci-corte th{width:22%}'
     f".gpv-tab-voci td{{font-family:'{ARCHIVO}',Arial,sans-serif!important;font-size:15px!important;line-height:1.5!important;"
     'padding-left:0!important;font-variant-numeric:normal}'
     '@media (max-width:767px){.gpv-tab-voci td{font-size:14px!important}.gpv-tab-voci th{width:40%}}'
@@ -916,8 +921,9 @@ CSS_PAGINE = (
     # codici 01-07 in arancio scuro
     f".gpv-cod{{font-family:'{MONO}',monospace;font-weight:500;color:{ARANCIO_SCURO};margin-right:16px;"
     'font-variant-numeric:tabular-nums}'
-    f".gpv-sigla-t{{font-family:'{MONO}',monospace;font-weight:400;font-size:.72em;letter-spacing:1px;color:{TESTO2};"
-    'margin-left:8px}'
+    '@media (min-width:1025px){.gpv-sticky{position:sticky!important;top:32px;align-self:flex-start}}'
+    f".gpv-sigla-t{{font-family:'{MONO}',monospace;font-weight:400;font-size:.72em;line-height:1;letter-spacing:1px;"
+    f'color:{TESTO2};margin-left:8px}}'
 )
 
 
@@ -942,7 +948,7 @@ def vasche_apertura():
         indice([('Rettangolari', f'11 misure, da 2,40 a 50{NBSP}mc', '#rettangolari'),
                 ('Circolari', f'6 misure, da 2,30 a 9,80{NBSP}mc', '#circolari'),
                 ('Con resine epossidiche', '15 misure', '#resine')], mt='l'),
-        gap='0', css='gpv-filo-int')
+        gap='0')
     sinistra = C(testo_col, w=(50, 100, 100), pad=(0, ('xl', 'lato', 'lato'), 0, 'lato'), gap='0', css='gpv-filo-sx')
     destra = C(I(img(foto), alt, css='gpv-ar43 gpv-ar169-t'),
                didascalia('Vasche circolari sul piazzale', pad=(0, 0, 0, 24)),
@@ -1070,7 +1076,7 @@ def vasche_rettangolari():
         C(gamma_vasche(), mt='l'),
         C(foto, C(RAW(tabella_html), w=w(8, 7)), dir='row', dir_m='column', justify='between', align='start',
           gap=('col', 'col', 'l'), mt='l'),
-        anchor='rettangolari')
+        pad=(0, 'lato', 'sezione', 'lato'), anchor='rettangolari')
 
 
 def vasche_circolari():
@@ -1093,23 +1099,28 @@ def vasche_circolari():
 
 CSS_DETTAGLI = (
     '.gpv-dettagli summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;padding:10px 0;'
-    f"font:600 15px/1.4 '{ARCHIVO}',Arial,sans-serif;color:{BIANCO};text-decoration:underline;text-decoration-thickness:1px;"
-    'text-underline-offset:5px}'
+    f"font:600 15px/1.4 '{ARCHIVO}',Arial,sans-serif;color:{ARANCIO_SCURO}}}"
+    '.gpv-dettagli summary span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}'
     '.gpv-dettagli summary::-webkit-details-marker{display:none}'
-    f".gpv-dettagli summary::after{{content:'+';font:500 16px/1 '{MONO}',monospace;text-decoration:none;"
-    f'display:inline-block;width:20px;height:20px;line-height:18px;text-align:center;border:1px solid {SU_GRAFITE2}}}'
+    f".gpv-dettagli summary::after{{content:'+';font:500 16px/1 '{MONO}',monospace;"
+    f'display:inline-block;width:20px;height:20px;line-height:18px;text-align:center;border:1px solid currentColor}}'
     ".gpv-dettagli[open] summary::after{content:'\\2212'}"
-    f'.gpv-dettagli summary:hover{{color:{ARANCIO}}}'
+    f'.gpv-dettagli summary:hover{{color:{GRAFITE}}}'
     '.gpv-dettagli .gpv-dettagli-c{padding-top:16px}'
-    f'.gpv-dettagli .gpv-tab-note{{color:{SU_GRAFITE2}}}'
+    f'.gpv-scuro .gpv-dettagli summary{{color:{BIANCO}}}.gpv-scuro .gpv-dettagli summary:hover{{color:{ARANCIO}}}'
+    f'.gpv-scuro .gpv-dettagli .gpv-tab-note{{color:{SU_GRAFITE2}}}'
 )
+
+
+def dettagli(sommario, contenuto, **p):
+    """Dinamica 8: <details> nativo, nessun JavaScript; sommario con il segno + e il segno meno in monospazio."""
+    return RAW(f'<details class="gpv-dettagli"><summary><span>{sommario}</span></summary>'
+               f'<div class="gpv-dettagli-c">{contenuto}</div></details>', css=CSS_DETTAGLI, **p)
 
 
 def vasche_resine():
     """V4: l'unico colore pieno del materiale, il rosso della resina, su grafite. Foto in due misure, allineate in alto."""
     righe_tab = tab('resine', 'Vasche trattate con resine epossidiche', scura=True)
-    dettagli = (f'<details class="gpv-dettagli"><summary>Le 15 misure</summary><div class="gpv-dettagli-c">{righe_tab}</div>'
-                '</details>')
     foto1 = C(I(img('resina-circolare.jpg'), 'Interno di una vasca circolare trattato con resina epossidica rossa, '
                 'visto dall’alto', css='gpv-ar169-t'),
               didascalia('Vasca circolare, interno in resina epossidica', colore=SU_GRAFITE2),
@@ -1122,7 +1133,7 @@ def vasche_resine():
         H('Le stesse vasche, con l’interno trattato.', 'h2', color=BIANCO),
         T(f'<p>Circolari e rettangolari da 250{NBSP}×{NBSP}240 in su: le stesse misure, pesi e volumi della tabella, da '
           f'2,30 a 50{NBSP}mc.</p>', style='body', color=SU_GRAFITE2, mt='m'),
-        RAW(dettagli, css=CSS_DETTAGLI, mt='m'),
+        dettagli('Le 15 misure', righe_tab, mt='m'),
         w=(W[4], 100, 100), gap='0')
     return sezione(
         capo('Vasche trattate con resine epossidiche', '15 misure', scuro=True),
@@ -1135,10 +1146,10 @@ def vasche_calcestruzzo():
     """V5: il materiale delle vasche, parola per parola, e la tabella delle classi di esposizione."""
     classi = tabella_voci([
         ('XC4', 'Corrosione delle armature indotta da carbonatazione'),
-        ('<span class="gpv-nowrap">XS1-XD2</span>', 'Corrosione delle armature indotta da cloruri, anche di provenienza marina'),
+        ('XS1-XD2', 'Corrosione delle armature indotta da cloruri, anche di provenienza marina'),
         ('XF1', 'Cicli di gelo e disgelo, con o senza disgelanti'),
         ('XA2', 'Ambienti chimici aggressivi nel suolo naturale e nell’acqua presente nel terreno'),
-    ], 'Classi di esposizione')
+    ], 'Classi di esposizione').replace('gpv-tab-voci', 'gpv-tab-voci gpv-voci-corte', 1)
     return sezione(
         capo('Calcestruzzo e armature', 'UNI EN 206-1 · D.M. 17.01.2018'),
         C(C(testo('<p>Le vasche sono gettate in cassero e vibrate con vibratore ad immersione ad alta frequenza, in '
@@ -1177,7 +1188,7 @@ def depurazione_apertura():
             H(f'<span class="gpv-cod">{cod}</span>{nome}', 'p', style='h4', color=GRAFITE, css='gpv-nome'),
             T('<p><span class="gpv-freccia" aria-hidden="true">→</span></p>', style='label', color=TESTO2, fisso=True),
             dir='row', justify='between', align='center', gap='s', min_h=48, pad=(12, 0), border_bottom=1,
-            border_color=LINEA, link=f'#{ancora}', w=(48.7, 48.7, 100), css=f'gpv-riga gpv-ind-{i + 1}'))
+            border_color=LINEA, link=f'#{ancora}', w=(47.5, 47.5, 100), css=f'gpv-riga gpv-ind-{i + 1}'))
     css = (f'.gpv-indice-n>.gpv-ind-1,.gpv-indice-n>.gpv-ind-2{{border-top:1px solid {GRAFITE}!important}}'
            f'@media (max-width:767px){{.gpv-indice-n>.gpv-ind-2{{border-top:0!important}}}}'
            '.gpv-indice-n .gpv-cod{font-size:14px}')
@@ -1215,7 +1226,7 @@ def scheda(ancora, codice, nome, nota, immagine, corpo, bg=BIANCO, lato='sx', ti
     """Scheda d'impianto: capo con codice e nome, render da un lato, dall'altro titolo, testo, tabella.
     Al telefono: titolo, immagine, testo, tabella."""
     titolo = titolo or nome
-    img_col = C(*immagine, w=w(5), gap='m', align='center')
+    img_col = C(*immagine, w=w(5), gap='m', align='center', css='gpv-sticky')
     testo_col = C(H(titolo, 'h2', hide=['mobile']), *corpo, w=w(7), gap='0')
     figli = (img_col, testo_col) if lato == 'sx' else (testo_col, img_col)
     return sezione(
@@ -1223,7 +1234,7 @@ def scheda(ancora, codice, nome, nota, immagine, corpo, bg=BIANCO, lato='sx', ti
         H(titolo, 'h2', hide=['desktop', 'tablet'], mb='m'),
         C(*figli, dir='row', dir_m='column' if lato == 'sx' else 'column-reverse', justify='between', align='start',
           gap=('col', 'col', 'l')),
-        bg=bg, anchor=ancora)
+        bg=bg, anchor=ancora, pad=('xl', 'lato'))
 
 
 CSS_TAB = (
@@ -1243,6 +1254,8 @@ CSS_TAB = (
     '.gpv-tab:not(.gpv-js) [role=tabpanel][hidden]{display:block}'
     '.gpv-tab:not(.gpv-js) [role=tabpanel]+[role=tabpanel]{margin-top:40px}'
     f'.gpv-tab [role=tabpanel]:focus-visible{{outline:2px solid {ARANCIO_SCURO};outline-offset:4px}}'
+    '@media (max-width:767px){.gpv-tab-l{display:grid;grid-template-columns:1fr 1fr}'
+    '.gpv-tab-l button,.gpv-tab-l button:focus{padding:10px 8px!important;letter-spacing:.5px}}'
 )
 
 JS_TAB = (
@@ -1290,7 +1303,7 @@ def dep_dissabbiatore():
                'corredata all’interno di un deflettore in pvc posto nel foro d’ingresso che rallenta il flusso dell’acqua. '
                'Qui il materiale pesante, fanghi e sabbie, si deposita sul fondo, lasciando defluire l’acqua e i liquidi '
                'leggeri verso l’uscita.</p>', color=TESTO2, mt='m'),
-         C(RAW(tab('dissabbiatore', 'Dissabbiatore statico')), mt='l')],
+         dettagli('Le 15 misure, circolari e rettangolari', tab('dissabbiatore', 'Dissabbiatore statico'), mt='m')],
         bg=CLS)
 
 
@@ -1401,7 +1414,7 @@ def dep_prima_pioggia():
         tre,
         C(RAW(tabella_html), mt='xl'),
         chiusura_ut(mt='l'),
-        anchor='prima-pioggia')
+        pad=('xl', 'lato'), anchor='prima-pioggia')
 
 
 def dep_biologici():
@@ -1542,12 +1555,19 @@ MODELLI_SCHEDE = [
 ]
 
 
-def scheda_modello(ancora, nome, disegno, dati, larghezze):
-    righe = '<br>'.join(d.replace(' ', NBSP) if len(d) < 30 else d for d in dati.split(' · '))
+def _misura_unita(testo_m):
+    """Spazi indivisibili attorno a × e prima delle unità: la misura non va a capo, la frase sì."""
+    import re
+    testo_m = testo_m.replace(' × ', f'{NBSP}×{NBSP}')
+    return re.sub(r' (cm|h|t)\b', NBSP + r'\1', testo_m)
+
+
+def scheda_modello(ancora, nome, disegno, dati, larghezze, gruppo):
+    righe = '<br>'.join(_misura_unita(d) for d in dati.split(' · '))
     misura = dati.split(' · ')[0]
     alt = f'Disegno in pianta della piattaforma {nome}, {misura}'
     return C(
-        C(I(img(disegno), alt), w=(100, 100, 39.8)),
+        C(I(img(disegno), alt, css=f'gpv-dis gpv-dis-{gruppo}'), w=(100, 100, 39.8)),
         C(H(nome.replace('Mod. ', f'Mod.{NBSP}'), 'h3', style='h3m', css='gpv-nome'),
           T(f'<p>{righe}</p>', style='mono13', color=GRAFITE), gap='xs', w=(100, 100, 55)),
         w=larghezze, dir='column', dir_m='row', gap=('s', 's', 's'), align='start', border_top=1, border_color=GRAFITE,
@@ -1556,8 +1576,11 @@ def scheda_modello(ancora, nome, disegno, dati, larghezze):
 
 def piattaforme_modelli():
     """P4: i disegni in pianta dell'azienda, ciascuno con i suoi numeri; il passo cambia a metà sezione."""
-    pista = [scheda_modello(a, n, d, x, (W[4], W[4], 100)) for g, a, n, d, x in MODELLI_SCHEDE if g == 'pista']
-    portale = [scheda_modello(a, n, d, x, (17.9, W[4], 100)) for g, a, n, d, x in MODELLI_SCHEDE if g == 'portale']
+    pista = [scheda_modello(a, n, d, x, (W[4], W[4], 100), g) for g, a, n, d, x in MODELLI_SCHEDE if g == 'pista']
+    portale = [scheda_modello(a, n, d, x, (17.9, W[4], 100), g) for g, a, n, d, x in MODELLI_SCHEDE if g == 'portale']
+    css = ('@media (min-width:1025px){.gpv-h2-largo{max-width:843px}}'
+           '.gpv-dis img{width:100%!important;height:auto!important;object-fit:contain;object-position:left center}'
+           '.gpv-dis-pista img{aspect-ratio:61/31}.gpv-dis-portale img{aspect-ratio:2/1}')
     return sezione(
         capo('Modelli', 'Pista self 3 · portale 5'),
         H('Otto piattaforme, dalla pista self al portale con prelavaggio.', 'h2', mb='l', css='gpv-h2-largo'),
@@ -1568,7 +1591,7 @@ def piattaforme_modelli():
           f'3,8{NBSP}×{NBSP}3,8{NBSP}cm.</p>', style='small', color=TESTO2, mt='m', max_w=733),
         etichetta('Portale · 5 modelli', mb='s', mt='xl'),
         C(*portale, dir='row', dir_m='column', wrap=True, justify='start', gap='col', gap_r=('l', 'l', 'm')),
-        RAW('', css='@media (min-width:1025px){.gpv-h2-largo{max-width:843px}}'),
+        RAW('', css=css),
         anchor='modelli')
 
 
@@ -1594,7 +1617,7 @@ def piattaforme_fornitura():
                    gap='xs', border_top=1, border_color=GRAFITE, pad=(16, 0, 0, 0)),
                  gap='m', **p)
     sinistra = C(
-        H('Cosa arriva in cantiere, e cosa resta all’impresa', 'h2'),
+        H('Cosa arriva in cantiere, e cosa resta all’impresa.', 'h2'),
         testo('<p>Dal disegno delle fasi alla posa dei pannelli con il nostro personale. Restano fuori le opere edili.</p>',
               color=TESTO2, mt='m'),
         blocchi(mt='l', hide=['mobile']),
@@ -1627,8 +1650,8 @@ def piattaforme_posa():
            '@media (max-width:767px){.gpv-strati .gpv-mis{font-size:13px}}')
     return sezione(
         capo('Esempio di posa', 'Sezione'),
-        C(C(I(img('esempio-di-posa.jpg'), 'Esempio di posa della piattaforma: sezione con vasca sottopista, pietrisco e '
-              'cordolo di magrone'), w=(89.7, 100, 100)),
+        C(C(C(I(img('esempio-di-posa.jpg'), 'Esempio di posa della piattaforma: sezione con vasca sottopista, pietrisco e '
+                'cordolo di magrone'), w=(89.7, 100, 100)), w=w(6)),
           C(H('Dal magrone al grigliato.', 'h2'),
             T(f'<ul>{lis}</ul>', style='small', color=GRAFITE, css='gpv-elenco gpv-strati', mt='m'),
             RAW('', css=css), w=w(6), gap='0'),
@@ -1651,7 +1674,8 @@ def piattaforme_personalizzazione():
     celle = []
     for f, nome, nota, alt, ancora in tessere:
         p = {'anchor': ancora} if ancora else {}
-        celle.append(C(I(img(f), alt, css='gpv-ar11'), H(nome, 'h3', style='h4s', mt='xs'), didascalia(nota),
+        did = didascalia(nota, hide=['mobile'] if nota == 'Ossidi di ferro' else None)
+        celle.append(C(I(img(f), alt, css='gpv-ar11'), H(nome, 'h3', style='h4s', mt='xs'), did,
                        w=(14.5, W[4], 30), gap='xs', **p))
     riga1 = C(
         C(H('Colori e accessori', 'h3'), w=w(5, 5)),
@@ -1866,7 +1890,8 @@ CSS_MAPPA = (
     '.gpv-mappa-box .gpv-l.gpv-on{stroke-width:3.5px}'
     f".gpv-mappa-box figcaption{{margin-top:12px;font:400 12px/1.5 '{MONO}',monospace;letter-spacing:.7px;"
     f'text-transform:uppercase;color:{TESTO2}}}'
-    '@media (min-width:768px) and (max-width:1024px){.gpv-mappa-box{max-width:640px;margin:0 auto}}'
+    '@media (min-width:768px) and (max-width:1024px){.gpv-mappa-box{max-width:640px;margin-left:auto!important;'
+    'margin-right:auto!important}}'
     '@media (max-width:767px){.gpv-mappa-box .gpv-mt{font-size:30px}.gpv-mappa-box .gpv-mt-l{font-size:34px}'
     '.gpv-mappa-box .gpv-l{stroke-width:2.5px}.gpv-mappa-box .gpv-p{r:9px}.gpv-mappa-box .gpv-p.gpv-on{r:13px}}'
 )
@@ -1915,7 +1940,9 @@ def realizzazioni_apertura():
         pad=('xl', 'lato', 'sezione', 'lato'), anchor='content')
 
 
-REGIONI = ['Veneto', 'Valle d’Aosta', 'Piemonte', 'Lombardia', 'Emilia-Romagna', 'Toscana', 'Lazio', 'Puglia']
+GRUPPI = [('Veneto', ['Veneto']), ('Valle d’Aosta e Piemonte', ['Valle d’Aosta', 'Piemonte']),
+          ('Lombardia', ['Lombardia']), ('Emilia-Romagna', ['Emilia-Romagna']), ('Toscana', ['Toscana']),
+          ('Lazio e Puglia', ['Lazio', 'Puglia']), ('Fuori dall’Italia', list(ESTERE))]
 
 
 def scheda_cantiere(c):
@@ -1932,13 +1959,9 @@ def scheda_cantiere(c):
 def realizzazioni_cantieri():
     """R2: il luogo piccolo sopra, la foto vera, i modelli citati dall'azienda (Jensen, Godelmann)."""
     gruppi = []
-    for regione in REGIONI + ['estere']:
-        if regione == 'estere':
-            elenco = [c for c in CANTIERI if c['regione'] in ESTERE]
-            nome = 'Fuori dall’Italia'
-        else:
-            elenco = sorted((c for c in CANTIERI if c['regione'] == regione), key=lambda c: c['luogo'])
-            nome = regione
+    for nome, regioni in GRUPPI:
+        elenco = sorted((c for c in CANTIERI if c['regione'] in regioni),
+                        key=lambda c: (regioni.index(c['regione']), c['luogo'] if c['regione'] not in ESTERE else ''))
         gruppi.append(C(
             etichetta(f'{nome} · {len(elenco)}', colore=GRAFITE, mb='s'),
             C(*[scheda_cantiere(c) for c in elenco], dir='row', wrap=True, justify='start', gap=('col', 'col', 16),
@@ -1963,7 +1986,8 @@ def realizzazioni():
 # ---------------------------------------------------------------------------------------------
 def azienda_apertura():
     foto = 'vasche-autoarticolato.jpg'
-    alt = 'Vasche rettangolari in calcestruzzo caricate con la gru sul semirimorchio di un autoarticolato'
+    alt = ('Vasca rettangolare aperta, appesa alle fasce di sollevamento, calata nello scavo accanto alle vasche già posate '
+           'e coperte')
     sinistra = C(
         etichetta('Azienda'),
         H('Gardens Pav S.r.l., opere in calcestruzzo a Legnaro.', 'h1', mt=24),
@@ -1975,7 +1999,7 @@ def azienda_apertura():
         indice([('Vasche monoblocco', '17 misure', '/vasche/'), ('Depurazione', '7 impianti', '/depurazione/'),
                 ('Piattaforme per autolavaggi', '8 modelli', '/piattaforme-autolavaggi/')], mt='l'),
         w=w(6), gap='0')
-    destra = figura(foto, alt, 'Vasche rettangolari in carico con la gru', w=w(6), hide=['mobile'])
+    destra = figura(foto, alt, 'Posa di una vasca rettangolare nello scavo', w=w(6), hide=['mobile'])
     return sezione(
         C(sinistra, destra, dir='row', dir_m='column', justify='between', align='start', gap='col'),
         pad=('xl', 'lato', 'sezione', 'lato'), anchor='content')
@@ -1987,6 +2011,12 @@ def azienda_calcestruzzo():
         capo('Il calcestruzzo', 'UNI EN 206-1', scuro=True),
         C(C(H('C35/45', 'p', style='mega', color=BIANCO, css='gpv-nowrap'),
             didascalia(f'Classe di resistenza a compressione · Rck 45{NBSP}N/mm²', colore=SU_GRAFITE2, mt='m'),
+            C(*[riga_dato(l, T(f'<p>{v}</p>', style='small', color=BIANCO), larg=150, linea=LINEA_SCURA,
+                          col_lab=SU_GRAFITE2, pad_v=14)
+                for l, v in (('Esposizione', 'XC4 · <span class="gpv-nowrap">XS1-XD2</span> · XF1 · XA2'),
+                             ('Armatura', f'Acciaio B450C, copriferro 3{NBSP}cm'), ('Consistenza', 'S4'),
+                             ('Getto', 'In cassero, con vibratore ad immersione ad alta frequenza'))],
+              gap='0', border_top=1, border_color=LINEA_SCURA, mt='xl', w=(80, 100, 100)),
             w=w(7, 6), gap='0'),
           C(T(f'<p>L’impianto di calcestruzzo computerizzato, a standard controllati elettronicamente, miscela inerti, '
               f'cemento, acqua e additivi chimici: ne esce un calcestruzzo con resistenza caratteristica cubica Rck 45{NBSP}'
@@ -2064,8 +2094,12 @@ STILE_CF7 = (
     f"border-radius:0;box-shadow:none;padding:12px 14px;font:400 16px/22px '{ARCHIVO}',Arial,sans-serif;letter-spacing:0;"
     f'text-transform:none;color:{GRAFITE};box-sizing:border-box}}'
     '.gpv-modulo textarea{height:auto;min-height:120px;resize:vertical}'
-    '.gpv-modulo input[type=file]{display:block;width:100%;padding:10px 0;font:400 15px/1.4 inherit;text-transform:none;'
-    'letter-spacing:0}'
+    f".gpv-modulo input[type=file]{{display:block;width:100%;padding:8px 0;font:400 14px/1.4 '{ARCHIVO}',Arial,sans-serif;"
+    f'text-transform:none;letter-spacing:0;color:{TESTO2}}}'
+    f".gpv-modulo input[type=file]::file-selector-button{{margin-right:16px;padding:10px 16px;border:1px solid {GRAFITE};"
+    f"border-radius:0;background:{BIANCO};color:{GRAFITE};font:600 14px/1.2 '{ARCHIVO}',Arial,sans-serif;cursor:pointer;"
+    'transition:background-color .15s,color .15s}'
+    f'.gpv-modulo input[type=file]::file-selector-button:hover{{background:{GRAFITE};color:{BIANCO}}}'
     f'.gpv-modulo input:focus,.gpv-modulo select:focus,.gpv-modulo textarea:focus{{border:2px solid {ARANCIO_SCURO};'
     'outline:0;padding:11px 13px}'
     f".gpv-modulo input[type=submit]{{background:{ARANCIO};color:{GRAFITE};border:1px solid {ARANCIO};border-radius:0;"
@@ -2121,7 +2155,7 @@ def contatti_recapiti():
           'di posa.</p>', style='small', color=TESTO2, mt='s'),
         C(SHORTCODE(CF7, alternativa_html=alternativa, colore=TESTO2, stile='small'),
           RAW('', css=STILE_CF7, solo_elementor=True), RAW('', css=css_alt), mt='m', css='gpv-modulo', gap='0'),
-        w=w(7, 7), gap='0', bg=CLS, pad=('l', 'l', 'l', 'l'), anchor='richiesta')
+        w=w(7, 7), gap='0', bg=CLS, pad=(('l', 'l', 'm'), ('l', 'l', 'm')), anchor='richiesta')
     return sezione(
         C(sinistra, destra, dir='row', dir_m='column', justify='between', align='start', gap=('col', 'col', 'xl')),
         pad=('xl', 'lato', 'sezione', 'lato'), anchor='content')

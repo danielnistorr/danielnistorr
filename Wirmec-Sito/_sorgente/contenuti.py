@@ -862,7 +862,8 @@ def nd():
     return '<span class="wrm-nd">n.d.</span>'
 
 
-def tabella(scope, titolo, testa_col, righe, bg=BIANCO, fil=FILETTO, prima=(220, 180, 130), min_col=132, scorre=True):
+def tabella(scope, titolo, testa_col, righe, bg=BIANCO, fil=FILETTO, prima=(220, 180, 130), min_col=132, scorre=True,
+            testa_piccola=False):
     """Tabella tecnica (5.2): <table> vera in un widget HTML, filetto forte sopra i nomi, prima colonna ferma quando
     scorre di lato (solo sotto i 768 px). testa_col: [(testo, id)]; righe: [(intestazione, id, [celle])],
     una cella può essere ('html', colspan). scope: classe della sezione (lo stile vale solo lì)."""
@@ -904,6 +905,9 @@ def tabella(scope, titolo, testa_col, righe, bg=BIANCO, fil=FILETTO, prima=(220,
         f'.{scope} .wrm-tab-scorri{{display:none;margin:0 0 10px!important;font:400 13px/1.45 {F_SANS};color:{TESTO2}}}'
         f'@media (max-width:767px){{.{scope} .wrm-tab-scorri{{display:block}}}}'
     )
+    if testa_piccola:
+        # modelli in riga: le testate sono grandezze, scritte come etichette (non come nomi di modello)
+        css += f'{t} thead th,{t} thead th:first-child{{font:500 13px/1.3 {F_SANS}!important;color:{TESTO2}}}'
     return RAW(html, css=css)
 
 
@@ -957,10 +961,12 @@ def valore(v):
     """Valore di una scheda: "n.d." in grigio; "valore|nota" mette la nota (a richiesta, macchina base...) sotto."""
     if v == 'n.d.':
         return nd()
+    # intervalli e misure brevi non vanno a capo; gli ingombri (con " x ") sì, sui telefoni stretti
+    cl = lambda x: 'wrm-dd-v' if ' x ' not in x else 'wrm-dd-x'
     if '|' in v:
         a, b = v.split('|', 1)
-        return f'<span class="wrm-dd-v">{a}</span><span class="wrm-dd-n">{b}</span>'
-    return f'<span class="wrm-dd-v">{v}</span>'
+        return f'<span class="{cl(a)}">{a}</span><span class="wrm-dd-n">{b}</span>'
+    return f'<span class="{cl(v)}">{v}</span>'
 
 
 def dl2(coppie, **p):
@@ -1196,7 +1202,6 @@ ACCESSORI = [
 
 CSS_ACC = (
     '.wrm-acc .wrm-dis{max-width:300px!important}'
-    '@media (max-width:1024px){.wrm-acc .wrm-acc-foto img{object-position:left center}}'
 )
 
 
@@ -1325,7 +1330,7 @@ def banco_presse():
     piu = C(
         T('<p>In più, per modello</p>', style='label', color=TESTO2),
         C(*[C(H(c, 'p', style='nome', color=INK, w_px=(220, 180, None), fisso=True),
-              T(f'<p>{x}</p>', style='small', color=INK, grow=True, max_w=(760, 760, 600)),
+              T(f'<p>{x}</p>', style='small', color=INK, grow=True),
               dir='row', dir_m='column', gap=('s', 's', 'xxs'), align=('baseline', 'baseline', 'start'),
               pad=(14, 0, 14, 0), border_bottom=1, border_color=FILETTO_G) for c, x in in_piu],
           gap='0', border_top=1, border_color=FILETTO_G, mt='xs'),
@@ -1398,7 +1403,8 @@ def banco_spela():
         testa('Spela aggraffa', 'Spelano, aggraffano e, sulla WSC 31, inseriscono il gommino in un solo ciclo. Montano '
                                 'applicatori side feed ed end feed.'),
         C(foto, destra, dir='row', dir_t='column', align='start', gap='0', mt='xl'),
-        C(tabella('wrm-spela', 'spela aggraffa', testa_col, righe, prima=(240, 200, 150), min_col=120), gap='0', mt='xl'),
+        C(tabella('wrm-spela', 'spela aggraffa', testa_col, righe, prima=(240, 200, 150), min_col=110, testa_piccola=True),
+          gap='0', mt='xl'),
         didascalia('Cavo min: lunghezza minima del cavo, sotto i 20 mm a richiesta. n.d.: dato non pubblicato nella '
                    'scheda.', mt='s'),
         C(brevetti, wsc31, dir='row', dir_t='column', gap='0', border_top=2, border_color=INK, pad=('l', 0, 0, 0),
@@ -1485,7 +1491,7 @@ def applicatori_apertura():
         app('wb10.jpg', 'WB 10', 'WB 10, applicatore side feed', 'Side feed, meccanico', (390, 390, 179)),
         app('wpb10.jpg', 'WPB 10', 'WPB 10, applicatore side feed pneumatico', 'Side feed, alimentazione pneumatica',
             (390, 390, 179)),
-        dir='row', justify='between', align='end', gap='0', w=(58.33, 100, 100), mt=(0, 'xl', 'xl'))
+        dir='row', justify='between', align='start', gap='0', w=(58.33, 100, 100), mt=(0, 'xl', 'xl'))
     return sezione(
         C(sinistra, destra, dir='row', dir_t='column', align=('center', 'stretch', 'stretch'), gap='0'),
         indice([('Applicatori', codici_link('wirtool', qui=True))], mt='xl'),
@@ -1602,7 +1608,7 @@ def qualita_apertura():
         w=(39.7, 52.9, 100), gap='0', mt=(0, 'xl', 'l'))
     return sezione(C(testo, foto, dir='row-reverse', dir_t='column', align=('center', 'start', 'stretch'), gap='0'),
                    bg=ARDESIA, pad=((72, 56, 40), 'lato', 'sezione', 'lato'), css='wrm-qual-apre wrm-scuro',
-                   anchor='content', stile_extra=CSS_INDICE + CSS_SCURO + '.wrm-unita{font-size:.42em;letter-spacing:0}')
+                   anchor='content', stile_extra=CSS_INDICE + CSS_SCURO + '.wrm-unita{font-size:.42em;letter-spacing:0;line-height:0}')
 
 
 def qualita_w200():
