@@ -83,7 +83,11 @@ $K/avvia-wp.sh <slug> <porta>                              # dopo un riavvio del
 $K/wpc.sh <scratchpad>/wp-<slug> <comando wp-cli>          # wp-cli su quell'istanza
 $K/wpc.sh <scratchpad>/wp-<slug> eval-file $K/cf7.php "<titolo>" <modulo.txt> <email>   # modulo di contatto
 python3 $K/slice.py <png> 1600 1440 <outdir>               # taglia uno screenshot lungo per guardarlo a pezzi
+node $K/controlla.mjs <porta> "/:01-home /chi-siamo/:02-chi-siamo"   # sbordamenti, immagini rotte o ingrandite, link, a 4 larghezze
+python3 $K/esporta.py <cartella-sito>                      # _prova/shots/*.png -> screenshot/elementor|fallback/*.jpg
 ```
+Una striscia a scorrimento orizzontale va marcata con `data-scorre` (o scroll-snap): `shoot.mjs` allora fotografa
+con un viewport alto invece della cattura a pagina intera, che la farebbe scattare.
 `ciclo.sh` fa: build di prova, import dei template, pagine, header/footer/menu, screenshot in `_prova/shots/`.
 Le pagine si chiamano come lo slug senza numero (`02-chi-siamo` diventa `/chi-siamo/`).
 

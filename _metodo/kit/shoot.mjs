@@ -11,7 +11,8 @@ await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 });
 await page.evaluate(() => document.querySelectorAll('iframe[loading=lazy],img[loading=lazy]').forEach(f => { f.loading = 'eager'; }));
 await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 450) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 220)); } window.scrollTo(0, 0); });
 await page.waitForFunction(() => [...document.images].filter(i => i.offsetParent !== null).every(i => i.complete && i.naturalWidth > 0), null, { timeout: 30000 }).catch(() => console.log('immagini non tutte caricate'));
-const nIframe = await page.locator('iframe, .bv-track').count();
+const nIframe = await page.evaluate(() => document.querySelectorAll('iframe, .bv-track, [data-scorre]').length
+  + [...document.querySelectorAll('body *')].filter(e => getComputedStyle(e).scrollSnapType !== 'none').length);
 if (nIframe) {
   // anche la striscia scorrevole: la cattura "a pagina intera" di Chrome la fa scattare di una scheda
   // gli iframe di altri domini (Google Maps) escono bianchi nello screenshot a pagina intera:
