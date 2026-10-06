@@ -167,7 +167,7 @@ Uscita dopo la revisione: Chivo (Formlabs, EFLA). Il suo riferimento Supreme non
 
 | ruolo | Sofia Sans | Hanken Grotesk |
 |---|---|---|
-| display | Sofia 700 · 112/80/50 · 0,96 · -0,02 | Hanken 400 · 128/88/52 · 0,94 · -0,035 |
+| display | Sofia 700 · 96/76/48 · 0,98 · -0,02 | Hanken 400 · 128/88/52 · 0,94 · -0,035 |
 | h1 | Sofia 700 · 64/52/36 · 1,02 · -0,015 | Hanken 500 · 64/50/36 · 1,04 · -0,02 |
 | h2 | Sofia 700 · 44/36/30 · 1,08 · -0,01 | Hanken 500 · 42/34/28 · 1,1 · -0,015 |
 | h3 | Sofia 600 · 22/21/20 · 1,25 · 0 | Hanken 500 · 22/21/20 · 1,3 · 0 |
@@ -450,7 +450,7 @@ didascalie dell'ovvio, testi, foto peggiore in apertura).
 | Hermle (hermle.de/en) | 1, uscita 1 | 2 Roboto (lista b) | H2 di una misura, 6 fasce |
 | TRUMPF (trumpf.com/it_IT) | 1, uscita 1 | 16 parole da brochure ("soluzione", "soluzioni", "innovazione") | H2 di due misure, 3 numeri grandi |
 | Tavole 03, 05, 07 | 0, uscita 0 | nessuna | "famiglie" (per forza: due o tre scelte e la cornice), H2 |
-| Tavole 01, 02, 04, 06 | 1, uscita 1 | solo 1, area foto: 26,3 %, 33,7 %, 26,6 %, 22,0 % | come sopra; nella 04 anche i titoli in 800 (il caso dichiarato del Leon d'Oro) |
+| Tavole 01, 02, 04, 06 | 1, uscita 1 | solo 1, area foto: 21,1 %, 33,7 %, 25,3 %, 22,0 % | come sopra; nella 04 anche i titoli in 800 (il caso dichiarato del Leon d'Oro) |
 
 Le pagine di prova di un revisore (`critica-fatti/prova/`) danno quello che devono: la dissolvenza con `@keyframes` da opacità 0
 viene trovata, tre citazioni «» non contano come frecce, il pannello fuori schermo e i suoi campi non contano come filetti né
@@ -572,7 +572,7 @@ Una riga per rilievo.
 
 - **G1.** Lo stesso schema in tutte le varianti: tre aperture diverse (campo nel colore della casa, titolo grande sopra la foto a filo, titolo sulla foto), titoli da 84 a 128 px.
 - **G2.** Il nome scritto al posto del logo: loghi veri per Wirmec, Gardens Pav, Albergo Vescovi, Hotel Garibaldi, rosyGarbo, Salumificio Fontana; gli altri non hanno un logo pulito nel repository.
-- **G3.** Foto chiuse in riquadri: foto a filo e file di foto a tutta larghezza; area foto delle tavole fra 22 e 38 %.
+- **G3.** Foto chiuse in riquadri: foto a filo e file di foto a tutta larghezza; area foto delle tavole fra 21 e 37 %.
 - **G4.** Le foto peggiori in apertura: in apertura la sala con le travi, l'autogru col logo, la neve, la reception con le poltrone rosse; via postazione scontornata, baccalà, sauna rosa, lettino viola, cucina col frigo, sposa tagliata.
 - **G5.** Menu maiuscolo spaziato e bottone scuro ovunque: menu in minuscolo salvo Schwarzschmied e Frankel, bottoni nel colore della casa.
 - **G6.** Scala timida: aperture da 84 a 128 px.
