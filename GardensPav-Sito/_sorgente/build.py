@@ -95,7 +95,7 @@ def anteprima_locale(html, base, immagini_relative):
     def sost(mo):
         f = pagine.get(mo.group(1))
         return f'href="{f}{mo.group(2) or ""}"' if f else mo.group(0)
-    html = re.sub(r'href="(/[a-z]*/?)(#[^"]*)?"', sost, html)
+    html = re.sub(r'href="(/[a-z-]*/?)(#[^"]*)?"', sost, html)
     if immagini_relative:
         html = html.replace(base, '../assets/web/')
     return html

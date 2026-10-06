@@ -1,0 +1,54 @@
+Titolo del modulo (deve essere esattamente questo, il sito lo cerca per titolo):
+Richiesta offerta
+
+=== Scheda "Modulo": incolla tutto quello che c'è tra le due righe ===
+-----
+<div class="wrm-campi">
+<label>Nome e cognome * [text* nome autocomplete:name]</label>
+<label>Azienda * [text* azienda autocomplete:organization]</label>
+<label>Email * [email* email autocomplete:email]</label>
+<label>Telefono [tel telefono autocomplete:tel]</label>
+<label>Provincia o paese [text luogo placeholder "es. Vicenza, oppure Polonia"]</label>
+<label>Linea [select linea default:get include_blank "WirAM, automatiche|wiram" "Accessori per automatiche|accessori" "WirPress, presse e spela aggraffa|wirpress" "WirStrip, taglio e sguainatura|wirstrip" "WirTool, applicatori|wirtool" "WirTest, controllo qualità|wirtest" "Non lo so ancora|altro"]</label>
+<label>Modello [text modello default:get placeholder "es. W 1500, AM460 Sintesi"]</label>
+<label>Terminale e cavo [text terminale placeholder "codice del terminale, sezione in mm² o AWG"]</label>
+<label class="wrm-largo">Quantità o volumi [text volumi placeholder "es. pezzi al giorno"]</label>
+<label class="wrm-largo">Messaggio [textarea messaggio x5]</label>
+<label class="wrm-largo">Allegato, se serve: disegno del cablaggio o scheda del terminale [file allegato limit:5mb filetypes:pdf|jpg|jpeg|png]</label>
+<div class="wrm-largo">[acceptance privacy] Ho letto l’<a href="/privacy/">informativa sulla privacy</a> e acconsento al trattamento dei dati per ricevere una risposta alla richiesta. [/acceptance]</div>
+<div class="wrm-largo">[submit "Invia la richiesta"]</div>
+<p class="wrm-largo wrm-nota">* Campi obbligatori. La richiesta non è impegnativa.</p>
+</div>
+-----
+
+=== Scheda "Mail" ===
+A: info@wirmec.com
+Da: [_site_title] <wordpress@IL-TUO-DOMINIO>
+Oggetto: Richiesta offerta: [linea] [modello]
+Header aggiuntivi: Reply-To: [email]
+Corpo del messaggio:
+Nome e cognome: [nome]
+Azienda: [azienda]
+Email: [email]
+Telefono: [telefono]
+Provincia o paese: [luogo]
+Linea: [linea]
+Modello: [modello]
+Terminale e cavo: [terminale]
+Quantità o volumi: [volumi]
+Messaggio:
+[messaggio]
+File allegati: [allegato]
+
+=== Scheda "Messaggi": sostituisci questi cinque ===
+Il messaggio è stato inviato: Grazie, la richiesta è arrivata. Ti rispondiamo da Ponte San Nicolò.
+Il campo è obbligatorio: Questo campo serve per rispondere.
+L'indirizzo email non è valido: Controlla l'indirizzo email.
+Devi accettare i termini e le condizioni: Serve il consenso per poter rispondere.
+Si è verificato un errore durante l'invio: La richiesta non è partita. Scrivi a info@wirmec.com o chiama il +39 049 718 464.
+
+Note:
+- "default:get" preseleziona Linea e Modello dai link delle pagine prodotto (/contatti/?linea=wirpress&modello=W%201500#richiesta).
+- Il destinatario info@wirmec.com è da confermare con Wirmec.
+- Per consegnare davvero le email serve un plugin SMTP (per esempio WP Mail SMTP) configurato con la casella aziendale.
+- L'allegato arriva nella mail come file: Contact Form 7 lo cancella dal server dopo l'invio.

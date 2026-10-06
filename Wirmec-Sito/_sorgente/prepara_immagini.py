@@ -226,7 +226,7 @@ def pagine_prodotto():
     im0 = Image.open(src).convert('RGBA')
     g = su_bianco(im0).convert('L')
     W, H = g.size
-    g = g.crop((23, 34, W - 36, H - 34)).point(lambda v: 255 if v > 232 else v)
+    g = g.crop((28, 34, W - 36, H - 34)).point(lambda v: 255 if v > 232 else v)   # via anche il filo della cornice a sinistra
     salva(g, 'pianta-am310.png', src, im0.size)
     salva(g.crop((0, 0, 760, g.height)), 'pianta-am310-stazioni.png', src, im0.size)
     # AM600 Vantage, il gruppo del doppio cavo: ritaglio sul gruppo (via il bordo destro con i tubi), 800 x 462
