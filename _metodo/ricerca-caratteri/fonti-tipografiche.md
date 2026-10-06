@@ -24,8 +24,8 @@ famiglia (pagina del carattere, controllata il 6/10/2026). I dati scaricati stan
    ([font matrix](https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix),
    [Pimp my Type](https://pimpmytype.com/bad-font-pair-hacks/)).
 3. Il problema dei siti generati non è il carattere ma il default. Inter compare in 34 siti del giorno di
-   Typewolf, e in 33 di questi è affiancato da un carattere di titolo non Google, con molta personalità
-   (Reckless, Roslindale, GT Super, Editorial New...) ([Typewolf, Inter](https://www.typewolf.com/inter)).
+   Typewolf, e in 33 di questi è affiancato da almeno un carattere non Google, di solito un serif o un display
+   con molta personalità (Reckless, Roslindale, GT Super, Editorial New...) ([Typewolf, Inter](https://www.typewolf.com/inter)).
    I modelli invece usano "la media del web": "Almost always Inter is their primary type choice"
    ([Pimp my Type, 2026](https://pimpmytype.com/about-ai-design/)).
 4. Il default che ci riguarda direttamente: il kit di Elementor nasce con Roboto (primario, testo, accento) e
@@ -150,7 +150,8 @@ Archivio indipendente di lavori reali, filtrabile per formato (Web) e settore (F
 Health...). Prevalgono stampa e identità, quindi i conteggi misurano la presenza nei lavori curati, non la
 diffusione sul web.
 
-- In 1438 lavori legati alle 131 famiglie controllate, 118 usano solo Google Fonts (elenco nella sezione 5).
+- Nei 1438 lavori elencati sulle pagine delle 131 famiglie controllate (per le famiglie più usate la pagina ne
+  mostra 59), 118 usano solo Google Fonts (selezione nella sezione 5, elenco completo in appendice).
 - Critica utile su Aeon magazine: "All the webfonts in use are freebies from Google's repository... they feel
   like placeholders, waiting to be replaced with the real thing." Il rischio non è il catalogo ma la scelta
   fatta per comodità. [Aeon magazine](https://fontsinuse.com/uses/3730/aeon-magazine)
@@ -186,9 +187,11 @@ diffusione sul web.
 ### 1.6 Fonderie libere e come servirle con Elementor gratuito
 
 - **The League of Moveable Type** (2009): "the first open-source type foundry", nata "to raise the design
-  standards of the web" ([manifesto](https://www.theleagueofmoveabletype.com/manifesto)). Su Google Fonts ci
-  sono League Gothic (revival di Alternate Gothic), League Spartan, Sorts Mill Goudy, Fanwood Text, Linden Hill,
-  Raleway ([schede google/fonts](https://github.com/google/fonts/tree/main/ofl/leaguegothic)).
+  standards of the web" ([manifesto](https://www.theleagueofmoveabletype.com/manifesto)). Del loro catalogo
+  ([theleagueofmoveabletype.com](https://www.theleagueofmoveabletype.com/)) sono su Google Fonts, fra gli altri,
+  League Gothic (revival di Alternate Gothic), League Spartan, Sorts Mill Goudy, Fanwood Text, Linden Hill,
+  Goudy Bookletter 1911, Prociono e Raleway
+  ([scheda League Gothic](https://github.com/google/fonts/blob/main/ofl/leaguegothic/DESCRIPTION.en_us.html)).
 - **Velvetyne** (Francia): associazione dal 2010, caratteri con licenze libere; 397 lavori su Fonts In Use
   (Sporting Grotesque, Tiny, Le Murmure, Pilowlava, Avara, Compagnon). Quasi tutti espressivi, adatti a cultura
   ed eventi, non a una carpenteria. [Velvetyne su Fonts In Use](https://fontsinuse.com/foundry/1853/velvetyne)
@@ -365,7 +368,7 @@ peso il testo non scorre; assi `wdth` 75-125 e `wght` 100-900
 etichette, alimentare. Lavori: Carrs Pasties ([FIU](https://fontsinuse.com/uses/48812/carrs-pasties-brand-refresh));
 FIU 2. Limiti: tono amichevole e commerciale.
 
-**19. Saira** (Omnibus-Type). Sistema con `wdth` 50-125 e `wght` 100-900, quattro larghezze
+**19. Saira** (Omnibus-Type). Sistema con `wdth` 50-125 e `wght` 100-900, dall'Extra Condensed all'espanso
 ([scheda](https://github.com/google/fonts/blob/main/ofl/saira/DESCRIPTION.en_us.html)). Titoli tecnici per
 costruttori di macchine. Lavori: Afrikamera ([FIU](https://fontsinuse.com/uses/71538/afrikamera)); FIU 1.
 Limiti: forme squadrate che scivolano nel cliché sportivo o automobilistico; pochi lavori.
@@ -474,7 +477,7 @@ della famiglia DM.
 | Elementor (kit globale) | Roboto 600 primario, Roboto Slab 400 secondario, Roboto 400 testo, Roboto 500 accento | [global-typography.php](https://github.com/elementor/elementor/blob/main/core/kits/documents/tabs/global-typography.php) |
 | WordPress Twenty Twenty-Four | Inter (testo), Cardo (titoli) | [theme.json](https://github.com/WordPress/twentytwentyfour/blob/trunk/theme.json) |
 | WordPress Twenty Twenty-Five | Manrope, Fira Code | [theme.json](https://github.com/WordPress/twentytwentyfive/blob/trunk/theme.json) |
-| Next.js `create-next-app` (base di v0 e Vercel) | Geist, Geist Mono | [layout.tsx](https://github.com/vercel/next.js/blob/canary/packages/create-next-app/templates/app-tw/ts/app/layout.tsx) |
+| Next.js `create-next-app` (Vercel; v0 lavora con Next.js, Tailwind e shadcn/ui) | Geist, Geist Mono | [layout.tsx](https://github.com/vercel/next.js/blob/canary/packages/create-next-app/templates/app-tw/ts/app/layout.tsx), [v0 docs](https://v0.app/docs) |
 | bolt.diy (prompt di sistema) | nessun nome: "Modern, readable fonts", "premium typography"; il modello riempie con la sua media | [prompts.ts](https://github.com/stackblitz-labs/bolt.diy/blob/main/app/lib/common/prompts/prompts.ts) |
 | Lovable, Framer | non ho trovato una fonte primaria che fissi il carattere; fonti secondarie parlano di Tailwind e Inter | [rapidevelopers](https://www.rapidevelopers.com/md/lovable-integration/tailwind), [aiskill.market](https://aiskill.market/blog/banning-inter-the-font-tell) |
 
@@ -530,8 +533,8 @@ Instrument Serif è il serif della "serif renaissance" dei marchi IA, con il cor
 ### 3.6 Perché il problema è il default e non il carattere
 
 - Gli stessi caratteri, scelti con una ragione, stanno in lavori pubblicati: Inter in 141 lavori su Fonts In Use
-  ([FIU](https://fontsinuse.com/typefaces/93554/inter)) e in 34 siti del giorno Typewolf, quasi sempre sotto un
-  titolo non Google ([Typewolf](https://www.typewolf.com/inter)); Montserrat accanto a Eczar per uno studio
+  ([FIU](https://fontsinuse.com/typefaces/93554/inter)) e in 34 siti del giorno Typewolf, quasi sempre accanto a
+  un carattere non Google ([Typewolf](https://www.typewolf.com/inter)); Montserrat accanto a Eczar per uno studio
   ortopedico ([FIU](https://fontsinuse.com/uses/55445/orthopaedie-kreuzberg)); Fraunces con Overpass per
   sostituire un'identità ferma ai default di Calibri ([FIU](https://fontsinuse.com/uses/56266/bitesize-learning-rebrand)).
 - Il generato si riconosce dal pacchetto: stesso carattere, stessi tre pesi, stessa scala, stesso layout,
@@ -572,8 +575,9 @@ Instrument Serif è il serif della "serif renaissance" dei marchi IA, con il cor
 ### 4.2 Scala
 
 - Usare una scala limitata di intervalli e non inventare un corpo per ogni blocco ("Don't compose without a
-  scale", [webtypography.net 3.1.1](http://webtypography.net/3.1.1); la scala classica ha 16, 18, 24, 36 tra i
-  suoi gradi).
+  scale", "limit yourself, at first, to a modest set of distinct and related intervals",
+  [webtypography.net 3.1.1](http://webtypography.net/3.1.1); l'esempio della pagina usa 36, 24, 18, 14 e 12 px
+  presi dalla scala tradizionale).
 - Titoli: pochi livelli; ingrandire il minimo necessario; lo spazio fa più del corpo
   ([Butterick](https://practicaltypography.com/headings.html)).
 - Diffidare dei salti estremi (pesi 100 contro 900, corpi tre volte più grandi): è proprio la ricetta del prompt
@@ -581,14 +585,16 @@ Instrument Serif è il serif della "serif renaissance" dei marchi IA, con il cor
 
 ### 4.3 Corpo, interlinea, riga
 
-- Corpo del testo 15-25 px ([Butterick](https://practicaltypography.com/summary-of-key-rules.html)); in pratica
-  17-19 px con caratteri dalla x media.
+- Corpo del testo 15-25 px ([Butterick](https://practicaltypography.com/summary-of-key-rules.html)); a parità di
+  corpo i caratteri con la x alta sembrano più grandi e chiedono meno interlinea
+  ([Butterick, line spacing](https://practicaltypography.com/line-spacing.html)).
 - Interlinea 1,2-1,45 ([Butterick](https://practicaltypography.com/line-spacing.html)) o 1,15-1,5
   ([Google Fonts Knowledge](https://fonts.google.com/knowledge/using_type/choosing_a_suitable_line_height));
   titoli grandi 0,9-1,0; su mobile più stretta; più aria per serif e righe lunghe.
 - Riga 45-75 caratteri, 66 ideale ([webtypography.net 2.1.2](http://webtypography.net/2.1.2)), 45-90 per
-  Butterick ([line length](https://practicaltypography.com/line-length.html)); in Elementor una larghezza massima
-  del contenitore intorno a 34-38 em per il testo corrente.
+  Butterick ([line length](https://practicaltypography.com/line-length.html)), che propone anche la prova
+  pratica: tra due e tre alfabeti minuscoli per riga. In Elementor si traduce in una larghezza massima del blocco
+  di testo, da tarare con quella prova su ogni carattere (indicazione nostra).
 
 ### 4.4 Maiuscolo e spaziatura
 
@@ -654,7 +660,7 @@ Instrument Serif è il serif della "serif renaissance" dei marchi IA, con il cor
 | # | Accoppiata (ruoli dove noti) | Lavoro | Settore, luogo |
 |---|---|---|---|
 | 1 | Eczar (titoli) + Montserrat (testo e dati) | [Orthopädie Kreuzberg](https://fontsinuse.com/uses/55445/orthopaedie-kreuzberg) | studio medico, Berlino; identità e sito |
-| 2 | Newsreader + Atkinson Hyperlegible | [Daylit Studio website](https://fontsinuse.com/uses/79109/daylit-studio-website) | servizi, Texas; sito |
+| 2 | Newsreader + Atkinson Hyperlegible | [Daylit Studio website](https://fontsinuse.com/uses/79109/daylit-studio-website) | studio di design e servizi, Texas; sito |
 | 3 | Spectral + Work Sans | [Failles Flots Fils Flammes](https://fontsinuse.com/uses/38063/failles-flots-fils-flammes-website) | rivista letteraria online, Parigi |
 | 4 | Piazzolla + Alegreya Sans (stesso designer) | [Jornadas de Edición Universitaria](https://fontsinuse.com/uses/36172/jornadas-de-edicion-universitaria-10) | evento editoriale, Buenos Aires; web e identità |
 | 5 | Fraunces (titoli) + Overpass (testo) | [BiteSize Learning](https://fontsinuse.com/uses/56266/bitesize-learning-rebrand) | formazione aziendale, Regno Unito; sito e materiali |
@@ -668,13 +674,13 @@ Instrument Serif è il serif della "serif renaissance" dei marchi IA, con il cor
 | 13 | Barlow + Vidaloka | [Wohnbar magazine](https://fontsinuse.com/uses/58423/wohnbar-magazine) | casa e cibo, Linz; rivista |
 | 14 | League Gothic + Instrument Serif | [Panaille](https://fontsinuse.com/uses/61384/panaille-restaurant) | ristorante, Bordeaux; insegne e identità |
 | 15 | Young Serif + Karla | [Tens](https://www.typewolf.com/site-of-the-day/tens-sunglasses) | occhiali, e-commerce; sito |
-| 16 | Work Sans + Alegreya | [Maurizio Ilpiac Piacenza](https://www.typewolf.com/site-of-the-day/maurizio-ilpiac-piacenza) | portfolio, Piacenza; sito |
+| 16 | Work Sans + Alegreya | [Maurizio Ilpiac Piacenza](https://www.typewolf.com/site-of-the-day/maurizio-ilpiac-piacenza) | portfolio di un designer di identità; sito |
 | 17 | Fraunces + Poppins | [Maria Coassin](https://fontsinuse.com/uses/72040/maria-coassin-gelato-consultant) | consulenza gelateria, Roma e Seattle; sito |
 
 Note: nella 1, 14 e 17 c'è un carattere della lista 3.5 (Montserrat, Instrument Serif, Poppins, Fraunces), scelto
 con una ragione dichiarata; la 7 e la 8 usano Merriweather, che Typewolf considera uno "staple"
 ([Typewolf](https://www.typewolf.com/blog/google-fonts-combinations)). Elenco completo dei 118 lavori di soli
-Google Fonts trovati: script `fiu_pairs.py` nella cartella di lavoro.
+Google Fonts trovati: appendice in fondo.
 
 ### 5.2 Schema dei nostri settori: titolo con un'idea, testo Google
 
@@ -696,8 +702,8 @@ libero di Collletttivo o Velvetyne ospitato in proprio (1.6).
 ## Metodo e limiti
 
 - Fonti lette direttamente: Typewolf (lista, articolo 2016, 66 schede di caratteri), Fonts In Use (131 pagine di
-  carattere, 140 pagine di lavori), Google Fonts Knowledge (sorgenti su GitHub), Butterick (16 capitoli), Pimp
-  my Type (11 articoli), webtypography.net, League of Moveable Type, Collletttivo, Fontshare, Elementor, codice di
+  carattere, 139 pagine di lavori), Google Fonts Knowledge (sorgenti su GitHub), Butterick (16 capitoli), Pimp
+  my Type (10 articoli e il catalogo open source), webtypography.net, League of Moveable Type, Collletttivo, Fontshare, Elementor, codice di
   Elementor, WordPress, Next.js, bolt.diy, Anthropic, Web Almanac 2025.
 - Fonts In Use privilegia stampa e identità; Typewolf privilegia studi americani e caratteri commerciali: i
   conteggi indicano la presenza nei lavori curati, non la diffusione sul web.
@@ -705,3 +711,132 @@ libero di Collletttivo o Velvetyne ospitato in proprio (1.6).
 - Default di Lovable e Framer non verificati su fonti primarie.
 - Velvetyne.fr era irraggiungibile (errore 500); I Love Typography non ha dato articoli pertinenti.
 - La verifica OpenType riguarda il sottoinsieme latino servito a Chrome il 6/10/2026.
+
+---
+
+## Appendice: lavori su Fonts In Use che usano solo Google Fonts
+
+Ricavati dalle pagine delle 131 famiglie controllate (6/10/2026). Formato e settore come classificati da Fonts In Use.
+
+| Caratteri | Lavoro | Formato | Settore | Luogo |
+|---|---|---|---|---|
+| Alegreya + Alegreya Sans | [Cuánto te pesa tu peso by Virginia Busnelli](https://fontsinuse.com/uses/67506/cuanto-te-pesa-tu-peso-by-virginia-busnelli) | Books | Food/Beverage, Health/Fitness | Argentina, Buenos Aires |
+| Alegreya + Alegreya Sans | [El teatro del espíritu by Carlos Rivarola](https://fontsinuse.com/uses/40491/el-teatro-del-espiritu-by-carlos-rivarola) | Books | Performing Arts | Argentina |
+| Alegreya + Alegreya Sans | [Será su nombre by Luis Loyola Cano](https://fontsinuse.com/uses/36786/sera-su-nombre-by-luis-loyola-cano) | Books | Literature, Performing Arts | Argentina |
+| Alegreya + Alegreya Sans | [Borges y sus firmas](https://fontsinuse.com/uses/21913/borges-y-sus-firmas) | Booklets/Pamphlets, Ephemera | Literature, Art | Argentina, Buenos Aires |
+| Aleo + DM Sans | [Reality House](https://fontsinuse.com/uses/62337/reality-house-1) | Web, Branding/Identity, Mobile/Tablet, Booklets/Pamphlets | Services, Health/Fitness | United States, New York City |
+| Amaranth + Open Sans | [UC Propone 2019](https://fontsinuse.com/uses/43621/uc-propone-2019) | Books | Institutional, Science/Nature, Education/Academia | Chile, Santiago |
+| Andada + Alegreya Sans | [Nhemombaraete reko rã’i by José Verá](https://fontsinuse.com/uses/42213/nhemombaraete-reko-ra-i-by-jose-vera) | Books | Literature, Science/Nature, Art, Religion/Spirituality | Brazil, Brasília |
+| Andada + Montserrat | [Transpassar: Poetics of movement](https://fontsinuse.com/uses/19978/transpassar-poetics-of-movement) | Books | Literature | Brazil, São Paulo |
+| Archivo + DM Serif Display | [Kook Furniture website](https://fontsinuse.com/uses/49413/kook-furniture-website) | Web, Social Media | Home/Interior, Retail/Shopping | South Africa |
+| Archivo + Judson | [We Wear Eco Website](https://fontsinuse.com/uses/35050/we-wear-eco-website) | Web | Fashion/Apparel | United States |
+| Atkinson Hyperlegible + Newsreader | [Daylit Studio website](https://fontsinuse.com/uses/79109/daylit-studio-website) | Web | Services, Graphic Design | United States, Allen |
+| Barlow + Noto Serif | [Silent Hill 2 Remake videogame](https://fontsinuse.com/uses/66399/silent-hill-2-remake-videogame) | Software/Apps | Entertainment, Technology | Poland, Kraków |
+| Barlow + Vidaloka | [Wohnbar magazine](https://fontsinuse.com/uses/58423/wohnbar-magazine) | Magazines/Periodicals | Home/Interior, Food/Beverage | Austria, Linz |
+| Bebas Neue + Poppins + Merriweather | [Darko audio website](https://fontsinuse.com/uses/39420/darko-audio-website) | Web, Film/Video | Lifestyle | Australia, Sydney |
+| Biryani + Lato + Open Sans | [Away-Days by Berlin Type School and UdK TypoLabor](https://fontsinuse.com/uses/14049/away-days-by-berlin-type-school-and-udk-typol) | Web | Event, Graphic Design, Education/Academia | Germany, Berlin |
+| Bungee + Jura + Montserrat | [Cantrip Seltzer](https://fontsinuse.com/uses/48619/cantrip-seltzer) | Web, Packaging, Branding/Identity | Product, Food/Beverage | United States, Massachusetts |
+| Cormorant + Amiko + Raleway | [Brilliante Ideen gesucht](https://fontsinuse.com/uses/18096/brilliante-ideen-gesucht) | Web, Booklets/Pamphlets | Technology, Kids, Education/Academia | Switzerland, Zürich |
+| Cormorant + Great Vibes + Playfair Display | [LovePaper](https://fontsinuse.com/uses/79877/lovepaper) | Web, Software/Apps | Services | Brazil |
+| Cormorant + Josefin Sans | [Endlich wieder Meer by Christiane Franke (Goya)](https://fontsinuse.com/uses/42666/endlich-wieder-meer-by-christiane-franke-goya) | Books | Literature | Germany, Hamburg |
+| Cormorant + Open Sans | [Farbpigmente: 50 Farben und ihre Geschichte by David Coles](https://fontsinuse.com/uses/66368/farbpigmente-50-farben-und-ihre-geschichte-by) | Books | Science/Nature | Switzerland, Zürich |
+| DM Sans + DM Serif Text | [Diseño Especulativo v. DCP infographic](https://fontsinuse.com/uses/69566/diseno-especulativo-v-dcp-infographic) | Infographics/Maps | Graphic Design, Education/Academia | Spain, Sevilla |
+| Domine + Roboto | [Campaign Monitor’s 2018 Predictions](https://fontsinuse.com/uses/19508/campaign-monitor-s-2018-predictions) | Web | Technology | United States, San Francisco |
+| EB Garamond + Inter + Open Sans | [WordPress.org website (2024)](https://fontsinuse.com/uses/60495/wordpress-org-website-2024) | Web, Mobile/Tablet | Technology | United States, California |
+| EB Garamond + Sorts Mill Goudy + Spirax | [Dave on Design](https://fontsinuse.com/uses/55873/dave-on-design) | Web | Graphic Design, Technology | Estonia |
+| Economica + Open Sans | [“How Search Works” by Google](https://fontsinuse.com/uses/15783/how-search-works-by-google) | Web | Technology | United States |
+| Eczar + Montserrat | [Orthopädie Kreuzberg](https://fontsinuse.com/uses/55445/orthopaedie-kreuzberg) | Branding/Identity | Health/Fitness | Germany, Dortmund |
+| Exo + Manrope | [Neon Team Agency website](https://fontsinuse.com/uses/59595/neon-team-agency-website) | Web, Mobile/Tablet |  | Thailand, Phuket |
+| Fahkwang + Nunito Sans | [hômnay beauty](https://fontsinuse.com/uses/73055/homnay-beauty) | Packaging, Advertising, Branding/Identity | Product, Lifestyle | Vietnam, Thành phố Hồ Chí Minh |
+| Fira Sans + Fira Mono | [EUT+ (European University of Technology)](https://fontsinuse.com/uses/54203/eut-european-university-of-technology) | Branding/Identity, Social Media | Institutional, Technology, Education/Academia, Governmental/Civic | France, Troyes |
+| Fira Sans + Fira Mono | [Tabuh game](https://fontsinuse.com/uses/9112/tabuh-game) | Mobile/Tablet, Software/Apps | Entertainment | Germany |
+| Fraunces + Overpass | [BiteSize Learning rebrand](https://fontsinuse.com/uses/56266/bitesize-learning-rebrand) | Web, Branding/Identity, Mobile/Tablet, Booklets/Pamphlets | Services, Education/Academia, Business/Finance | United Kingdom |
+| Fraunces + Poppins | [Maria Coassin: gelato consultant](https://fontsinuse.com/uses/72040/maria-coassin-gelato-consultant) | Web | Services, Food/Beverage | Italy, United States |
+| Fredoka + Lato | [Cocina sin gluten para niños by Dolly Walsh](https://fontsinuse.com/uses/30030/cocina-sin-gluten-para-ninos-by-dolly-walsh) | Books | Food/Beverage, Kids, Health/Fitness | Argentina, Buenos Aires |
+| Funnel Display + Bitter + Atkinson Hyperlegible | [Dirty Profits](https://fontsinuse.com/uses/65263/dirty-profits) | Web, Mobile/Tablet | Activism, Business/Finance, Governmental/Civic | Germany, Berlin |
+| Gilda Display + Space Mono + Xanh Mono | [raye the store 08, Beauty Edition](https://fontsinuse.com/uses/59932/raye-the-store-08-beauty-edition) | Signs, Branding/Identity | Event, Retail/Shopping, Health/Fitness | United Kingdom, London |
+| HK Grotesk + DM Mono | [SkyFi website](https://fontsinuse.com/uses/50011/skyfi-website) | Web, Mobile/Tablet | Technology | United States, New York City |
+| HK Grotesk + Spectral | [Encoded Symbols , IN Residence monographs](https://fontsinuse.com/uses/37983/encoded-symbols-in-residence-monographs) | Books | Education/Academia, Art | Italy, Favara |
+| IBM Plex Sans + IBM Plex Mono | [NorthMed visual identity](https://fontsinuse.com/uses/66227/northmed-visual-identity) | Branding/Identity | Technology, Health/Fitness | Israel |
+| IBM Plex Sans + IBM Plex Mono | [Giacomo Works](https://fontsinuse.com/uses/28323/giacomo-works) | Web | Graphic Design | Germany, Berlin |
+| IBM Plex Sans + IBM Plex Mono + IBM Plex Serif | [“Accidentes”, typographic CV](https://fontsinuse.com/uses/30616/accidentes-typographic-cv) | Infographics/Maps | Graphic Design | Spain, Sevilla |
+| IBM Plex Sans + IBM Plex Mono + IM Fell English | [Corsaires Studio](https://fontsinuse.com/uses/27301/corsaires-studio) | Web, Branding/Identity, Mobile/Tablet | Services, Graphic Design | France, Bordeaux |
+| IBM Plex Sans + Lusitana | [Sustainable Futures Collaborative](https://fontsinuse.com/uses/60029/sustainable-futures-collaborative) | Branding/Identity, Magazines/Periodicals, Posters/Flyers | Institutional, Education/Academia, Activism | India |
+| IM Fell English + IM Fell DW Pica + Libre Caslon Display | [Federalist Reader](https://fontsinuse.com/uses/79099/federalist-reader) | Web | Literature, Education/Academia, Politics | United States |
+| Instrument Serif + Anton | [Freedl Dolce Club](https://fontsinuse.com/uses/79375/freedl-dolce-club) | Object/Product | Fashion/Apparel, Lifestyle | Germany, Italy |
+| Instrument Serif + Geist Sans | [Sommerfest 25 Künstler:innenhäuser Worpswede poster](https://fontsinuse.com/uses/73366/sommerfest-25-kuenstler-innenhaeuser-worpswed) | Posters/Flyers | Event, Art | Germany, Worpswede |
+| Inter + Plus Jakarta Sans | [Secret Project](https://fontsinuse.com/uses/61811/secret-project) | Branding/Identity, Social Media | Services, Technology, Education/Academia | Indonesia, Jakarta |
+| Josefin Sans + Amatic SC | [Vandal wines](https://fontsinuse.com/uses/45415/vandal-wines) | Packaging | Food/Beverage | New Zealand |
+| Krub + Archivo | [MycoTech](https://fontsinuse.com/uses/79120/mycotech) | Web, Packaging, Branding/Identity | Product, Science/Nature | Argentina, Rafaela |
+| Lato + Fira Sans | [The Center of Gravity website](https://fontsinuse.com/uses/73659/the-center-of-gravity-website) | Web | Institutional, Science/Nature, Education/Academia | Denmark, Copenhagen |
+| Lato + Oswald | [Addictions prevention action](https://fontsinuse.com/uses/10084/addictions-prevention-action) | Web | Activism, Health/Fitness | Poland |
+| Lato + Playfair Display | [Chidusz magazine](https://fontsinuse.com/uses/20337/chidusz-magazine) | Magazines/Periodicals | Literature, Religion/Spirituality, Local | Poland, Wrocław |
+| Lato + Playfair Display | [Ara.cat ’s 2013 Year in Review](https://fontsinuse.com/uses/6244/ara-cat-s-2013-year-in-review) | Web, Infographics/Maps | News | Spain, Barcelona |
+| League Gothic + Instrument Serif | [Panaille restaurant](https://fontsinuse.com/uses/61384/panaille-restaurant) | Signs, Branding/Identity, Mobile/Tablet, Social Media, Ephemera | Food/Beverage | France, Bordeaux |
+| League Gothic + Montserrat + Merriweather | [Electronic Frontier Foundation (EFF)](https://fontsinuse.com/uses/55258/electronic-frontier-foundation-eff) | Web, Branding/Identity | Institutional, Technology, Activism, Governmental/Civic | United States, California |
+| Lexend + MuseoModerno | [mona rebrand (ArtCenter College of Design project)](https://fontsinuse.com/uses/75079/mona-rebrand-artcenter-college-of-design-proj) | Branding/Identity | Institutional, Art | United States, California |
+| Libre Baskerville + Source Sans | [Typozon portfolio website (2017)](https://fontsinuse.com/uses/16655/typozon-portfolio-website-2017) | Web | Graphic Design | Colombia, Bogotá |
+| Literata + Cousine + Sofia | [Tribute to Vietnam’s great prime ministers](https://fontsinuse.com/uses/62178/tribute-to-vietnam-s-great-prime-ministers) | Posters/Flyers | Politics, Other | Vietnam |
+| Manrope + IBM Plex Mono | [Phosphor Icons website](https://fontsinuse.com/uses/67558/phosphor-icons-website) | Web | Graphic Design | United States, Colorado |
+| Merriweather + Fira Sans | [Select Committee to Investigate the January 6th Attack on the U.S. Capitol website](https://fontsinuse.com/uses/43105/select-committee-to-investigate-the-january-6) | Web | Politics, Governmental/Civic | United States, Washington, D. C. |
+| Merriweather + Merriweather Sans | [Pivo Bakalář](https://fontsinuse.com/uses/67847/pivo-bakalar) | Packaging, Advertising, Signs, Object/Product, Branding/Identity | Product, Food/Beverage, Retail/Shopping | Czech Republic |
+| Merriweather + Merriweather Sans | [Main-Post website](https://fontsinuse.com/uses/24414/main-post-website) | Web | News, Local | Germany, Würzburg |
+| Merriweather + Mulish | [Together For Yes](https://fontsinuse.com/uses/21695/together-for-yes) | Web, Advertising, Branding/Identity | Activism, Governmental/Civic | Ireland, Dublin |
+| Merriweather + Open Sans | [Polskie Radio website](https://fontsinuse.com/uses/64074/polskie-radio-website) | Web | News | Poland |
+| Merriweather + Open Sans | [Moxie robot website](https://fontsinuse.com/uses/40711/moxie-robot-website) | Web | Product, Kids, Education/Academia | United States |
+| Merriweather + Open Sans + Montserrat | [Wemind website](https://fontsinuse.com/uses/51352/wemind-website) | Web | Business/Finance | France, Paris |
+| Merriweather + Roboto | [South China Morning Post website](https://fontsinuse.com/uses/24407/south-china-morning-post-website) | Web | News | China, Hong Kong |
+| Merriweather + Source Sans | [whitehouse.gov website (2018)](https://fontsinuse.com/uses/22378/whitehouse-gov-website-2018) | Web | Governmental/Civic | United States, Washington, D. C. |
+| Merriweather + Work Sans | [Glass Onion, “The Million Dollar Napkin” website](https://fontsinuse.com/uses/73707/glass-onion-the-million-dollar-napkin-website) | Web, Film/Video | Film/TV | United States |
+| Mona Sans + Anton + Instrument Serif | [Fermented Films](https://fontsinuse.com/uses/64040/fermented-films-1) | Web, Branding/Identity | Film/TV | Slovenia |
+| Montserrat + Climate Crisis | [FIMU Belfort Festival 2026](https://fontsinuse.com/uses/77496/fimu-belfort-festival-2026) | Branding/Identity, Posters/Flyers, Mobile/Tablet, Booklets/Pamphlets | Event, Kids, Music | France, Marseille |
+| Montserrat + Inter | [Decentriq](https://fontsinuse.com/uses/59878/decentriq) | Web, Branding/Identity, Social Media | Technology | Switzerland, Germany |
+| Montserrat + Roboto | [“Cardume” graphics for Instituto Guaicuy](https://fontsinuse.com/uses/64771/cardume-graphics-for-instituto-guaicuy) | Branding/Identity, Posters/Flyers | Institutional, Event, Science/Nature, Activism, Local, Governmental/Civic | Brazil, Belo Horizonte |
+| Montserrat + Roboto Condensed | [Mapa Paraopeba](https://fontsinuse.com/uses/64773/mapa-paraopeba) | Infographics/Maps | Science/Nature, Governmental/Civic | Brazil, Belo Horizonte |
+| Montserrat + Source Sans | [Deca WordPress Theme](https://fontsinuse.com/uses/11393/deca-wordpress-theme) | Web | Product | India |
+| Montserrat + Ubuntu | [Antena 1 identity (2022-)](https://fontsinuse.com/uses/58183/antena-1-identity-2022) | Branding/Identity, Film/Video | Film/TV | Romania |
+| Mulish + Khand | [Ayok’a identity](https://fontsinuse.com/uses/45414/ayok-a-identity) | Branding/Identity, Social Media | Retail/Shopping, Art | Switzerland, Russia |
+| Nanum Myeongjo + Bitter + Work Sans | [Types of Type](https://fontsinuse.com/uses/19151/types-of-type) | Web | Graphic Design | United States, Los Angeles |
+| Newsreader + Karla + Oswald | [L’Obs website](https://fontsinuse.com/uses/45802/l-obs-website) | Web | News | France, Paris |
+| Newsreader + Xanh Mono + Space Grotesk | [The Collective Spark: Igniting Thinking in Groups, Teams and the Wider World](https://fontsinuse.com/uses/60367/the-collective-spark-igniting-thinking-in-gro) | Books | Education/Academia | Australia, Belgium |
+| Noto Serif + Poppins | [beckn](https://fontsinuse.com/uses/75323/beckn) | Web, Branding/Identity, Posters/Flyers, Film/Video | Services, Technology | India, Bangalore |
+| Nunito Sans + Poppins | [eSharp portfolio website](https://fontsinuse.com/uses/39125/esharp-portfolio-website) | Web | Services | Australia, Sydney |
+| Ojuju + Space Mono + Xanh Mono | [raye the store 10](https://fontsinuse.com/uses/62010/raye-the-store-10) | Signs, Branding/Identity, Posters/Flyers | Retail/Shopping, Lifestyle | United Kingdom, London |
+| Onest + BIZ UDMincho | [NoCamera photo app](https://fontsinuse.com/uses/76916/nocamera-photo-app) | Branding/Identity, Software/Apps, Social Media | Technology, Art | Argentina, Buenos Aires |
+| Piazzolla + Alegreya Sans | [Jornadas de Edición Universitaria 10](https://fontsinuse.com/uses/36172/jornadas-de-edicion-universitaria-10) | Web, Branding/Identity | Event, Education/Academia | Argentina, Buenos Aires |
+| Playfair Display + Inter | [Sacha Tourtoulou portfolio](https://fontsinuse.com/uses/29406/sacha-tourtoulou-portfolio) | Web | Other | France, Paris |
+| Playfair Display + Lato | [Yuko Shimizu website](https://fontsinuse.com/uses/6089/yuko-shimizu-website) | Art/Illustration | Graphic Design | United States, New York City |
+| Playfair Display + Lato | [Designers checklists advices](https://fontsinuse.com/uses/5978/designers-checklists-advices) | Web | Graphic Design | France |
+| Playfair Display + Roboto | [Shaping the Future of Bel Canto](https://fontsinuse.com/uses/77514/shaping-the-future-of-bel-canto) | Booklets/Pamphlets | Education/Academia, Music | Greece, Italy |
+| Playfair Display + Roboto + Poppins | [Increaseo](https://fontsinuse.com/uses/29853/increaseo) | Web, Branding/Identity | Business/Finance | Australia, Erina |
+| Poppins + Inter | [Inkbot Design](https://fontsinuse.com/uses/63859/inkbot-design) | Web, Branding/Identity | Services, Graphic Design | United Kingdom, Northern Ireland |
+| Poppins + Work Sans | [don Gata studio website](https://fontsinuse.com/uses/50276/don-gata-studio-website) | Web | Services, Graphic Design | Portugal |
+| Prompt + Work Sans | [Onomatopoeia.club](https://fontsinuse.com/uses/34154/onomatopoeia-club) | Web, Branding/Identity | Music, Film/TV | United Kingdom, London |
+| Proza Libre + Open Sans | [redro.de](https://fontsinuse.com/uses/14793/redro-de) | Web | Graphic Design | Germany, Mainz |
+| PT Serif + Chivo + Quattrocento | [Aeon magazine](https://fontsinuse.com/uses/3730/aeon-magazine) | Web, Magazines/Periodicals | Literature | United Kingdom, London |
+| Public Sans + Karla | [HoodieHut website](https://fontsinuse.com/uses/38630/hoodiehut-website) | Web | Services, Fashion/Apparel, Retail/Shopping | United Kingdom, Sheffield |
+| Quicksand + Roboto | [Seed Furniture](https://fontsinuse.com/uses/8870/seed-furniture) | Web | Home/Interior |  |
+| Roboto + Merriweather | [The Moscow Times website](https://fontsinuse.com/uses/45172/the-moscow-times-website) | Web | News | Netherlands, Russia |
+| Roboto + Roboto Mono | [5th International Symposium on Solar Sailing](https://fontsinuse.com/uses/33848/5th-international-symposium-on-solar-sailing) | Web, Branding/Identity | Event, Technology, Science/Nature | Germany, Aachen |
+| Rubik + Source Serif | [Aardman Animations website](https://fontsinuse.com/uses/58068/aardman-animations-website) | Web, Mobile/Tablet | Entertainment, Film/TV | United Kingdom, Bristol |
+| Rubik Mono One + Rubik | [Donos do mercado by João Peres & Victor Matioli](https://fontsinuse.com/uses/38494/donos-do-mercado-by-joao-peres-and-victor-mat) | Books | Food/Beverage, Retail/Shopping, Activism, Governmental/Civic | Brazil, São Paulo |
+| Source Sans + Space Mono | [Access Democracy](https://fontsinuse.com/uses/58646/access-democracy) | Branding/Identity, Social Media | Technology, Activism | Germany, Berlin |
+| Space Grotesk + Instrument Sans | [Modal Digital website](https://fontsinuse.com/uses/68541/modal-digital-website) | Web | Services, Graphic Design, Technology | United Kingdom, Manchester |
+| Space Grotesk + Space Mono | [Othernity: Reconditioning Our Modern Heritage](https://fontsinuse.com/uses/42801/othernity-reconditioning-our-modern-heritage) | Books, Branding/Identity, Posters/Flyers, Exhibition/Installation | Event, Architecture | Hungary, Italy |
+| Space Grotesk + Space Mono | [Artoid Studio branding and website](https://fontsinuse.com/uses/40665/artoid-studio-branding-and-website) | Web | Services, Art, Film/TV | Hungary, Budapest |
+| Space Mono + Barlow | [Aura Bora packaging](https://fontsinuse.com/uses/45890/aura-bora-packaging) | Packaging | Product, Food/Beverage | United States, San Francisco |
+| Space Mono + Roboto | [720 Protections website](https://fontsinuse.com/uses/36656/720-protections-website) | Web, Branding/Identity | Product, Sports | Austria, Germany |
+| Space Mono + Space Grotesk | [CPS-IT brand identity](https://fontsinuse.com/uses/27501/cps-it-brand-identity) | Web, Branding/Identity, Posters/Flyers | Services, Technology | Germany, Berlin |
+| Spectral + Work Sans | [Failles Flots Fils Flammes website](https://fontsinuse.com/uses/38063/failles-flots-fils-flammes-website) | Web | Literature | France, Paris |
+| Syne + Syne Tactile | [XOXO Festival 2018](https://fontsinuse.com/uses/24383/xoxo-festival-2018) | Web | Event, Technology, Art | United States, Portland |
+| Syne + Syne Tactile | [WeTransfer: Ideas Report 2018](https://fontsinuse.com/uses/24520/wetransfer-ideas-report-2018) | Web | Services, Technology | Netherlands, Amsterdam |
+| Syne + Syne Tactile | [Soft art fair](https://fontsinuse.com/uses/23028/soft-art-fair) | Branding/Identity, Posters/Flyers | Event, Graphic Design, Music, Art | Philippines, Cagayan de Oro |
+| Syne + Syne Tactile + Syne Mono | [Synesthésie ¬ MMAINTENANT flyers and software](https://fontsinuse.com/uses/32468/synesthesie-mmaintenant-flyers-and-software) | Posters/Flyers, Software/Apps | Art | France, Saint-Denis |
+| Syne + Syne Tactile + Syne Mono | [Temple magazine Nº7 “No Limit”](https://fontsinuse.com/uses/28929/temple-magazine-no7-no-limit) | Magazines/Periodicals | Fashion/Apparel, Art | France, Paris |
+| Syne + Syne Tactile + Syne Mono | [Synesthésie ¬ MMAINTENANT poster](https://fontsinuse.com/uses/27135/synesthesie-mmaintenant-poster) | Posters/Flyers | Art | France, Paris |
+| Unna + Open Sans | [Sturm & Dreck album release party tickets by Feine Sahne Fischfilet](https://fontsinuse.com/uses/31664/sturm-and-dreck-album-release-party-tickets-b) | Ephemera | Event, Music | Germany, Loitz |
+| Vollkorn + Tagesschrift | [Mundräuber-Handbuch](https://fontsinuse.com/uses/2223/mundraeuber-handbuch) | Books | Food/Beverage, Activism | Germany, Weimar |
+| Work Sans + Space Grotesk + Source Serif | [seekicks: Transformative practices that shape the world](https://fontsinuse.com/uses/66842/seekicks-transformative-practices-that-shape-) | Web, Booklets/Pamphlets | Education/Academia, Art, Business/Finance | Germany, Berlin |
+| Young Serif + Poppins + Outfit | [Presentable website](https://fontsinuse.com/uses/74661/presentable-website) | Web, Mobile/Tablet | Services, Graphic Design | India, Gurgaon |
+
+Totale: 118 lavori.

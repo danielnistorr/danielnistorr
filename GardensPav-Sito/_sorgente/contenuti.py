@@ -919,7 +919,7 @@ CSS_PAGINE = (
     f'.gpv-cls .gpv-tabella tr>*{{border-bottom-color:{LINEA_CLS}!important}}'
     f'.gpv-cls .gpv-tabella thead th{{border-bottom-color:{GRAFITE}!important}}'
     # codici 01-07 in arancio scuro
-    f".gpv-cod{{font-family:'{MONO}',monospace;font-weight:500;color:{ARANCIO_SCURO};margin-right:16px;"
+    f".gpv-cod{{font-family:'{MONO}',monospace;font-weight:500;line-height:1;color:{ARANCIO_SCURO};margin-right:16px;"
     'font-variant-numeric:tabular-nums}'
     '@media (min-width:1025px){.gpv-sticky{position:sticky!important;top:32px;align-self:flex-start}}'
     f".gpv-sigla-t{{font-family:'{MONO}',monospace;font-weight:400;font-size:.72em;line-height:1;letter-spacing:1px;"
