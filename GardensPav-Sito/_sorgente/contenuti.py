@@ -8,7 +8,7 @@ monospazio per i dati, filetti, una foto vera e nitida), il capo di sezione con 
 dell'azienda, la tavola tecnica come immagine. Innesti dalla direzione "Il lavoro in primo piano": la vasca 550 quotata,
 l'indice con i conteggi, i numeri dell'attrito, la striscia del materiale.
 Fonti dei testi: sito attuale (01-analisi-sito-attuale.md, verbatim corretti), tabelle ripulite
-(_prova/spec-dati/tabelle-pulite.json), cantieri (_prova/spec-dati/cantieri.json), dati societari da fonti pubbliche.
+(dati/tabelle-pulite.json), cantieri (dati/cantieri.json), mappe disegnate dai dati OpenStreetMap e Natural Earth (dati/*.svg), dati societari da fonti pubbliche.
 """
 import json
 import os
@@ -756,7 +756,7 @@ def home_calcestruzzo():
 
 
 def _luoghi():
-    cantieri = json.load(open(os.path.join(os.path.dirname(QUI), '_prova', 'spec-dati', 'cantieri.json'),
+    cantieri = json.load(open(os.path.join(QUI, 'dati', 'cantieri.json'),
                               encoding='utf-8'))
     ids = {c['luogo']: c['id'] for c in cantieri}
     for c in cantieri:
