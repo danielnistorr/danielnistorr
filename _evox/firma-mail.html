@@ -76,7 +76,10 @@
       <input id="email" type="email" autocomplete="email" value="info@evoxconsulting.it">
     </label>
     <label>Partita IVA <span>(consigliata per una S.r.l.; se vuota, la riga sparisce)</span>
-      <input id="piva" inputmode="numeric" placeholder="01234567890">
+      <input id="piva" inputmode="numeric" value="04948190279">
+    </label>
+    <label>Città della sede legale
+      <input id="sede" value="Vicenza">
     </label>
   </form>
 
@@ -96,7 +99,7 @@
 </main>
 
 <script>
-  const campi = ['nome', 'ruolo', 'tel', 'email', 'piva'];
+  const campi = ['nome', 'ruolo', 'tel', 'email', 'piva', 'sede'];
   const $ = id => document.getElementById(id);
   const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -125,14 +128,14 @@
     parti.push(riga(`<a href="https://evoxconsulting.it" style="${link}">evoxconsulting.it</a>`, base));
     if (v.piva) {
       parti.push(riga('&nbsp;', 'font-size:8px;line-height:8px;'));
-      parti.push(riga(`EVOX Consulting S.r.l. · Vicenza · P.IVA ${esc(v.piva)}`, 'font-size:11px;line-height:15px;color:#6f7075;'));
+      parti.push(riga(`EVOX Consulting S.r.l.${v.sede ? ' · ' + esc(v.sede) : ''} · P.IVA ${esc(v.piva)}`, 'font-size:11px;line-height:15px;color:#6f7075;'));
     }
     const html = parti.join('');
     const righe = [nome, ruolo, '', 'EVOX Consulting'];
     if (v.tel) righe.push(v.tel);
     if (v.email) righe.push(v.email);
     righe.push('evoxconsulting.it');
-    if (v.piva) righe.push('', 'EVOX Consulting S.r.l. · Vicenza · P.IVA ' + v.piva);
+    if (v.piva) righe.push('', 'EVOX Consulting S.r.l.' + (v.sede ? ' · ' + v.sede : '') + ' · P.IVA ' + v.piva);
     const testo = righe.join('\n');
     $('firma').innerHTML = html;
     try {
