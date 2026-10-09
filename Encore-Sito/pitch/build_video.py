@@ -2,7 +2,7 @@
 """
 Pitch di Encore, 90 s, 1920x1080, 25 fps: video di produzione, numeri verificati con la fonte a schermo, il ciclo in
 cinque passi, musica. La voce si registra a parte seguendo COPIONE.md.
-Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video> <video del ciclo .webm>
+Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video> <video del ciclo .webm> <video del portale .webm>
 Nella cartella video servono: hd-<id Mixkit>.mp4 per gli id usati qui sotto, 32433-720.mp4 e 4480-1080.mp4.
 Scrive <cartella di lavoro>/encore-pitch-90s.mp4
 """
@@ -24,24 +24,26 @@ FONT = None
 # d: secondi; src: ('video', id, inizio) | ('nero',) | ('ciclo',) | ('fine',); ov: sovrimpressione
 SCENE = [
     dict(d=6, src=('video', '35884', 1), ov=('testo', 'Every season, luxury fashion\nis left with unsold stock.', None)),
-    dict(d=8, src=('video', '20770', 0), ov=('numero', (0, 9, '{:.0f}%'),
+    dict(d=7, src=('video', '20770', 0), ov=('numero', (0, 9, '{:.0f}%'),
          'of textiles placed on the EU market are destroyed\nbefore use. Up to 594,000 tonnes a year.', EEA, 'UP TO')),
     dict(d=7, src=('video', '4705', 2), ov=('numero', '1/3', 'of clothing returned after an online purchase\nends up destroyed.', EEA)),
     dict(d=7, src=('video', 'cucito', 3), ov=('testo', 'Since 19 July 2026, large companies can no longer\ndestroy unsold clothing in the EU.',
          'Regulation (EU) 2024/1781 (ESPR), Article 25')),
-    dict(d=7, src=('video', '17675', 2), ov=('numero', '<1%', 'of clothing material is recycled\ninto new clothing.',
+    dict(d=6, src=('video', '17675', 2), ov=('numero', '<1%', 'of clothing material is recycled\ninto new clothing.',
          'Source: Ellen MacArthur Foundation, A New Textiles Economy, 2017')),
-    dict(d=6, src=('nero',), ov=('nero', "The technology exists.\nWhat's missing is trust.")),
-    dict(d=10, src=('ciclo',), ov=('chiaro', 'One standard.\nOne loop.\nEvery kilo certified.')),
-    dict(d=6, src=('video', '15596', 1), ov=('passo', '01', 'Collected', 'Unsold stock, returns and offcuts.')),
-    dict(d=6, src=('video', '47258', 4), ov=('passo', '02', 'Scanned', 'Infrared scanners identify each fibre in seconds.')),
-    dict(d=6, src=('video', '20684', 3), ov=('passo', '03', 'Matched and certified',
-         'The right certified recycler. Every step on blockchain.')),
-    dict(d=5, src=('video', '51013', 1), ov=('passo', '04', 'Verified', 'Ask our AI where any kilo came from.')),
-    dict(d=6, src=('video', 'telaio', 6), ov=('passo', '05', 'Bought back', 'Recycled fibre, at a discount, for your next collection.')),
-    dict(d=6, src=('nero',), ov=('pilota',)),
+    dict(d=4, src=('nero',), ov=('nero', "The technology exists.\nWhat's missing is trust.")),
+    dict(d=7, src=('ciclo',), ov=('chiaro', 'One standard.\nOne loop.\nEvery kilo certified.')),
+    dict(d=5, src=('video', '15596', 1), ov=('passo', '01', 'Collected', 'Unsold stock, returns and offcuts.')),
+    dict(d=5, src=('video', '47258', 4), ov=('passo', '02', 'Scanned', 'Infrared scanners identify each fibre in seconds.')),
+    dict(d=5, src=('video', '20684', 3), ov=('passo', '03', 'Matched', 'Each batch goes to the right certified recycler.')),
+    dict(d=3, src=('etichetta',), ov=('vuoto',)),
+    dict(d=8, src=('portale', 0.5), ov=('vuoto',)),
+    dict(d=5, src=('video', 'telaio', 6), ov=('passo', '05', 'Bought back', 'Recycled fibre, at a discount, for your next collection.')),
+    dict(d=6, src=('video', '51013', 1), ov=('valore', 'Your unsold stock stops being a cost.', 'It comes back as fibre you buy below market price.')),
+    dict(d=5, src=('nero',), ov=('perche',)),
     dict(d=4, src=('fine',), ov=('fine',)),
 ]
+
 
 
 def run(cmd):
@@ -97,8 +99,10 @@ def fonte(d, testo, col):
 def ov_frame(ov, t):
     """Sovrimpressione al tempo t (secondi): ritorna un'immagine RGBA 1920x1080."""
     tipo = ov[0]
-    im = velo() if tipo in ('testo', 'numero', 'passo') else Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    im = velo() if tipo in ('testo', 'numero', 'passo', 'valore') else Image.new('RGBA', (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
+    if tipo == 'vuoto':
+        return im
     marchio(d, 96, 64, INK if tipo == 'chiaro' else PAPER)
     if tipo == 'testo':
         _, testo, src = ov
@@ -137,6 +141,22 @@ def ov_frame(ov, t):
         f = font(76)
         bb = d.multiline_textbbox((0, 0), ov[1], font=f, spacing=18)
         d.multiline_text((96, (H - bb[3]) / 2), ov[1], font=f, fill=INK, spacing=18)
+    elif tipo == 'valore':
+        _, riga1, riga2 = ov
+        d.text((94, H - 250), riga1, font=font(76), fill=PAPER, anchor='ls')
+        d.text((96, H - 160), riga2, font=font(52), fill=GRIGIO, anchor='ls')
+    elif tipo == 'perche':
+        d.text((96, 300), 'WHY ENCORE', font=font(24, 500), fill=GRIGIO, anchor='ls')
+        righe = ['One partner instead of dozens of recyclers to vet', 'A certificate no one can falsify',
+                 'Answers in plain language, not spreadsheets', 'Your products never reach the grey market']
+        for i, r in enumerate(righe):
+            vis = min(1.0, max(0.0, (t - 0.2 - i * 0.55) / 0.45))     # una riga alla volta
+            if vis <= 0:
+                continue
+            a = int(255 * vis)
+            y = 400 + i * 150
+            d.line((96, y, W - 96, y), fill=(58, 58, 63, a), width=2)
+            d.text((96, y + 92), r, font=font(58), fill=(255, 255, 255, a), anchor='ls')
     elif tipo == 'pilota':
         d.text((96, 300), 'THE FIRST LOOP', font=font(24, 500), fill=GRIGIO, anchor='ls')
         for i, (num, lab) in enumerate([('1', 'brand'), ('1', 'recycler'), ('1', 'batch of unsold\nwool knitwear')]):
@@ -153,7 +173,7 @@ def ov_frame(ov, t):
 
 
 def ov_statico(ov):
-    return ov[0] in ('testo', 'passo', 'nero', 'chiaro') or (ov[0] == 'numero' and not isinstance(ov[1], tuple))
+    return ov[0] in ('testo', 'passo', 'nero', 'chiaro', 'valore', 'vuoto') or (ov[0] == 'numero' and not isinstance(ov[1], tuple))
 
 
 def fine(out):
@@ -168,6 +188,41 @@ def fine(out):
         bb = d.textbbox((0, 0), testo, font=f)
         d.text(((W - bb[2]) / 2, y), testo, font=f, fill=col)
     im.save(out)
+
+
+def etichetta(lav):
+    """Fotogramma 3840x2160: maglie piegate (Pexels 14641424) con il cartellino del lotto e il QR code."""
+    out = os.path.join(lav, 'etichetta.png')
+    foto = os.path.join(lav, 'px-14641424.jpg')
+    if not os.path.exists(foto):
+        url = 'https://images.pexels.com/photos/14641424/pexels-photo-14641424.jpeg?auto=compress&cs=tinysrgb&w=3000'
+        open(foto, 'wb').write(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=90).read())
+    im = Image.open(foto).convert('RGB')
+    w, h = im.size
+    nh = int(w * 9 / 16); y = int((h - nh) * 0.5)
+    im = im.crop((0, y, w, y + nh)).resize((W * 2, H * 2), Image.LANCZOS)
+    from PIL import ImageEnhance
+    im = ImageEnhance.Brightness(ImageEnhance.Color(im).enhance(0.55)).enhance(0.62).convert('RGBA')
+    # cartellino
+    tw, th = 760, 1180
+    tag = Image.new('RGBA', (tw, th), (0, 0, 0, 0))
+    td = ImageDraw.Draw(tag)
+    td.rounded_rectangle((0, 0, tw - 1, th - 1), radius=36, fill=(250, 250, 248, 255))
+    td.ellipse((tw / 2 - 26, 46, tw / 2 + 26, 98), fill=(40, 40, 44, 255))
+    marchio(td, 70, 150, INK, scala=2.0)
+    td.text((70, 300), 'BATCH', font=font(30, 500), fill=(111, 112, 117))
+    td.text((70, 345), 'EN-26-0412', font=font(72), fill=INK)
+    td.text((70, 445), 'Wool 81%  ·  Cashmere 19%', font=font(38), fill=INK)
+    td.text((70, 500), '486.2 kg  ·  1,240 items', font=font(38), fill=(85, 86, 90))
+    qr = Image.open(os.path.join(QUI, 'qr.png')).convert('RGBA').resize((420, 420), Image.NEAREST)
+    tag.paste(qr, (70, 590), qr)
+    td.text((70, 1060), 'Scan to verify on chain', font=font(34, 500), fill=INK)
+    tag = tag.rotate(-5, resample=Image.BICUBIC, expand=True)
+    sd = ImageDraw.Draw(im)
+    sd.line((W * 2 * 0.64, 0, W * 2 * 0.64 + 40, 330), fill=(235, 235, 232, 255), width=6)      # il filo del cartellino
+    im.paste(tag, (int(W * 2 * 0.52), 300), tag)
+    im.convert('RGB').save(out)
+    return out
 
 
 def scena(i, s, lav, vid):
@@ -192,6 +247,12 @@ def scena(i, s, lav, vid):
     if src[0] == 'nero':
         base = ['-f', 'lavfi', '-i', f'color=c=0x0B0B0C:s={W}x{H}:d={dur}:r={FPS}']
         v = '[0]null[v]'
+    elif src[0] == 'etichetta':
+        base = ['-loop', '1', '-framerate', str(FPS), '-t', str(dur), '-i', etichetta(lav)]
+        v = f"[0]zoompan=z='1+0.07*on/{n}':x='iw*0.62-(iw/zoom/2)':y='ih*0.5-(ih/zoom/2)':d={n}:s={W}x{H}:fps={FPS}[v]"
+    elif src[0] == 'portale':
+        base = ['-ss', str(src[1]), '-t', str(dur), '-i', vid['portale']]
+        v = f'[0]scale={W}:{H},fps={FPS}[v]'
     elif src[0] == 'ciclo':
         base = ['-ss', '1', '-t', str(dur), '-i', vid['ciclo']]
         v = f'[0]scale={W}:{H},fps={FPS}[v]'
@@ -207,8 +268,8 @@ def scena(i, s, lav, vid):
 
 def main():
     global FONT
-    lav, FONT, vdir, ciclo = sys.argv[1:5]
-    vid = {'dir': vdir, 'ciclo': ciclo, 'cucito': os.path.join(vdir, '32433-720.mp4'), 'telaio': os.path.join(vdir, '4480-1080.mp4')}
+    lav, FONT, vdir, ciclo, portale = sys.argv[1:6]
+    vid = {'dir': vdir, 'ciclo': ciclo, 'portale': portale, 'cucito': os.path.join(vdir, '32433-720.mp4'), 'telaio': os.path.join(vdir, '4480-1080.mp4')}
     os.makedirs(lav, exist_ok=True)
     pezzi = []
     for i, s in enumerate(SCENE, 1):
