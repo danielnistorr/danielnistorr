@@ -186,7 +186,7 @@ def header():
 
 def footer():
     html = """<footer class="enc-piede"><div class="enc-c">
-<p class="enc-label enc-piede-riga">ENCORE · Team Atelier Zero · Startup Generation Challenge Verona 2026 · Sfida 02 &quot;Da scarto a risorsa&quot;</p>
+<p class="enc-label enc-piede-riga">ENCORE · Team Second Thread · Startup Generation Challenge Verona 2026 · Sfida 02 &quot;Da scarto a risorsa&quot;</p>
 <div class="enc-piede-marchio" aria-hidden="true"></div>
 </div></footer>"""
     css = f"""
@@ -213,7 +213,7 @@ def hero():
 <p class="enc-p">Encore is a closed-loop service that collects luxury brands' textile waste, sorts it by fibre, recycles it and sells the fibre back to them.</p>
 <div><a class="enc-btn enc-btn enc-chiaro" href="#contact">Book a pilot</a></div>
 </div>
-<p class="enc-label enc-hero-nota">Team Atelier Zero · Startup Generation Challenge Verona 2026</p>
+<p class="enc-label enc-hero-nota">Team Second Thread · Startup Generation Challenge Verona 2026</p>
 </div>
 </div>
 <script>(function(){{var v=document.querySelector('.enc-hero-video');if(!v)return;var m=window.matchMedia('(max-width:767px)').matches;

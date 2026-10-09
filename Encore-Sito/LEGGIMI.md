@@ -1,6 +1,6 @@
 # Encore: landing page per WordPress + Elementor
 
-Una sola pagina in inglese per Encore (Team Atelier Zero, Startup Generation Challenge Verona 2026, Sfida 02 "Da scarto a risorsa"), costruita con lo stesso generatore di Benvegnù. I testi sono quelli del brief, senza aggiunte. L'unica eccezione è "Thank you.", lo stato che compare dopo l'invio del modulo.
+Una sola pagina in inglese per Encore (Team Second Thread, Startup Generation Challenge Verona 2026, Sfida 02 "Da scarto a risorsa"), costruita con lo stesso generatore di Benvegnù. I testi sono quelli del brief, senza aggiunte. L'unica eccezione è "Thank you.", lo stato che compare dopo l'invio del modulo.
 
 ## Cosa c'è nella cartella
 
