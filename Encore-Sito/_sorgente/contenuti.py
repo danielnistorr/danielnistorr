@@ -411,7 +411,7 @@ def perche():
     punti = ''.join(f'<li><p class="enc-t">{p}</p></li>' for p in PUNTI)
     html = f"""<div class="enc-c enc-sez enc-perche">
 <div class="enc-testa-sez"><p class="enc-label">Why Encore</p></div>
-<p class="enc-t enc-big">Your unsold stock is frozen capital. <span class="enc-tenue">Encore turns it into fibre you buy back below market price, protecting your brand and your margin.</span></p>
+<p class="enc-t enc-big">Your unsold stock is frozen capital. <span class="enc-tenue">Encore turns it into fibre you buy back for your next collection, protecting your brand and your margin.</span></p>
 <ul class="enc-punti">{punti}</ul>
 </div>"""
     css = f"""

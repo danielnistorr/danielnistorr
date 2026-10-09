@@ -29,7 +29,7 @@ Infrared scanners identify each item's fibre in seconds. <break time="0.5s" />
 Each batch goes to the right certified recycler in our network. <break time="0.8s" />
 Every scan, weight and handover is recorded on blockchain. Scan the code, open the portal, or simply ask our AI where any kilo came from. <break time="0.8s" />
 Then buy the recycled fibre back, at a discount, for your next collection. <break time="0.8s" />
-Your unsold stock stops being a cost. It comes back as fibre below market price. <break time="0.8s" />
+Your unsold stock stops being a cost. <break time="0.8s" />
 One partner, one certificate no one can falsify, and nothing on the grey market. <break time="1.0s" />
 Encore. Start your first loop.
 ```
@@ -61,7 +61,7 @@ Every scan, weight and handover is recorded on blockchain. Scan the code, open t
 
 Then buy the recycled fibre back, at a discount, for your next collection.
 
-Your unsold stock stops being a cost. It comes back as fibre below market price.
+Your unsold stock stops being a cost.
 
 One partner, one certificate no one can falsify, and nothing on the grey market.
 
