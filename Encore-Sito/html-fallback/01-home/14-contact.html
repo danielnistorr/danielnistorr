@@ -19,7 +19,11 @@
 textarea.enc-input.enc-input{resize:none;min-height:96px}
 .enc-btn.enc-invia{grid-column:1/-1;width:100%;padding:24px 32px;font-size:13px;margin-top:16px}
 .enc-grazie{font-size:60px;line-height:1.06;letter-spacing:-0.028em}
-.enc-form[hidden],.enc-grazie[hidden]{display:none}
+.enc-form[hidden],.enc-grazie[hidden],.enc-errore[hidden]{display:none}
+.enc-trappola{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.enc-privacy,.enc-errore{grid-column:1/-1;color:#6F7075}
+.enc-errore{color:#131316}
+.enc-btn.enc-invia:disabled{cursor:wait}
 @media (max-width:1100px){.enc-cta-in{padding:96px 48px}}
 @media (max-width:900px){.enc-cta{grid-template-columns:1fr;min-height:0}.enc-cta-foto{min-height:0;aspect-ratio:4/3}
   .enc-cta-in{max-width:none;padding:88px 32px}}
@@ -34,15 +38,23 @@ textarea.enc-input.enc-input{resize:none;min-height:96px}
 <div class="enc-cta-modulo">
 <div class="enc-cta-in">
 <h2 class="enc-t enc-h2">Start your first loop.</h2>
-<form class="enc-form" id="enc-form" novalidate>
+<form class="enc-form" id="enc-form" novalidate data-endpoint="contatto.php">
 <label class="enc-campo" for="enc-name"><span class="enc-label">Name</span><input class="enc-input enc-input" id="enc-name" name="name" type="text" autocomplete="name" required></label><label class="enc-campo" for="enc-brand"><span class="enc-label">Brand</span><input class="enc-input enc-input" id="enc-brand" name="brand" type="text" autocomplete="organization" required></label><label class="enc-campo enc-campo-pieno" for="enc-email"><span class="enc-label">Email</span><input class="enc-input enc-input" id="enc-email" name="email" type="email" autocomplete="email" required></label>
+<label class="enc-trappola" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
 <label class="enc-campo enc-campo-pieno" for="enc-message"><span class="enc-label">Message</span><textarea class="enc-input enc-input" id="enc-message" name="message" rows="3"></textarea></label>
 <button class="enc-btn enc-btn enc-invia" type="submit">Book a pilot</button>
+<p class="enc-small enc-privacy">We use these details only to reply to your request.</p>
+<p class="enc-small enc-errore" id="enc-errore" role="alert" hidden>The request could not be sent. Write to us at info@evoxconsulting.it</p>
 </form>
 <p class="enc-t enc-grazie" id="enc-grazie" tabindex="-1" hidden>Thank you.</p>
 </div>
 </div>
 </div>
 <script>(function(){var f=document.getElementById('enc-form'),g=document.getElementById('enc-grazie');if(!f)return;
+var er=document.getElementById('enc-errore'),bt=f.querySelector('button[type=submit]');
 f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}
-f.hidden=true;g.hidden=false;g.focus();});})();</script></div></section></div>
+er.hidden=true;bt.disabled=true;
+fetch(f.getAttribute('data-endpoint'),{method:'POST',body:new FormData(f)})
+.then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+.then(function(j){if(!j||!j.ok)throw 0;f.hidden=true;g.hidden=false;g.focus();})
+.catch(function(){er.hidden=false;bt.disabled=false;});});})();</script></div></section></div>

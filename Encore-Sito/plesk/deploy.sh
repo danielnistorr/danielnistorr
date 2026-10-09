@@ -32,4 +32,6 @@ fi
 rm -f /root/encore-statico.zip
 echo "Fatto: http://$DOM"
 curl -sI "http://$DOM" | head -1
+# il modulo: una richiesta vuota deve rispondere {"ok":false} (422), segno che PHP gira sul sottodominio
+echo "Modulo: $(curl -s -X POST "http://$DOM/contatto.php")"
 SUL_SERVER

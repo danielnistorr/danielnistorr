@@ -19,3 +19,16 @@ Unsplash and Pexels block automated searches from the build machine, so the phot
 | File | Section | Source | License |
 |---|---|---|---|
 | `hero-loop-1280.mp4/.webm`, `hero-loop-576.mp4/.webm`, `hero-poster-*.webp` | 1. Hero (background, muted, 12 s loop, desaturated) | Mixkit video [32433](https://mixkit.co/free-stock-video/sewing/), sewing machine on knit fabric | Mixkit Stock Video Free License: free for commercial use, no attribution required |
+| `encore-pitch-720.mp4`, `pitch-poster-*.webp` | 2. Film (plays only after a click, with sound) | the 90 second Encore pitch, built by `pitch/build_video.py` from the sources below | see below |
+
+### Inside the pitch film
+
+| Source | Used for | License |
+|---|---|---|
+| Mixkit videos 35884, 20770, 4705, 32433, 17675, 15596, 11699, 20684, 4480, 51013 | production footage | Mixkit Stock Video Free License, no attribution required |
+| Pexels photo [6749297](https://www.pexels.com/photo/6749297/) | Arena di Verona scene | Pexels License |
+| Pexels photo [14641424](https://www.pexels.com/photo/a-close-up-shot-of-folded-knitted-clothes-14641424/) | batch tag with the QR code | Pexels License |
+| Mixkit music 601, "Skyline" by Eugenio Mininni | soundtrack | Mixkit Stock Music Free License |
+| ElevenLabs voice supplied by the client | voiceover | the client's ElevenLabs plan |
+
+`qr-encore.png` (portal section) is the same QR code used in the pitch film. It encodes `https://encore.evoxconsulting.it/portal/batch/EN-26-0412`, a prototype address that has no page behind it yet.

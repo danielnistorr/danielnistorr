@@ -151,8 +151,9 @@ NAV = [('The loop', '#loop'), ('Why Encore', '#why'), ('Compare', '#compare'), (
 # ---------------------------------------------------------------------------------------------
 def header():
     voci = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in NAV)
-    # in Elementor i widget HTML non caricano i Google Fonts: il link sta qui, nella prima sezione della pagina
-    html = f"""<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{m.GOOGLE_FONTS}">
+    # in Elementor i widget HTML non caricano i Google Fonts: il link sta qui, nella prima sezione della pagina,
+    # e non blocca il disegno (la pagina parte col carattere di riserva, poi passa a Instrument Sans)
+    html = f"""<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{m.GOOGLE_FONTS}" media="print" onload="this.media='all'">
 <header class="enc-testa"><div class="enc-c enc-testa-in">
 <a class="enc-marchio" href="#top" aria-label="Encore, back to top">{LOGO_BIANCO}</a>
 <nav aria-label="Main"><ul class="enc-nav">{voci}</ul></nav>
@@ -366,8 +367,12 @@ PASSI = [
 
 
 def come_funziona():
+    nir = ('<div class="enc-nir" aria-hidden="true"><p class="enc-label">NIR scan</p>'
+           '<p><span>Wool</span><span>81%</span></p><i><b style="width:81%"></b></i>'
+           '<p><span>Cashmere</span><span>19%</span></p><i><b style="width:19%"></b></i>'
+           '<p class="enc-nir-nota">Illustrative reading</p></div>')
     schede = ''.join(f"""<li class="enc-passo">
-{foto(f, (800, 1400), alt, 1400, 1750, '(max-width:900px) 100vw, 33vw', css='enc-passo-foto')}
+<div class="enc-passo-media">{foto(f, (800, 1400), alt, 1400, 1750, '(max-width:900px) 100vw, 33vw', css='enc-passo-foto')}{nir if n == '02' else ''}</div>
 <h3 class="enc-t enc-h3"><span class="enc-passo-n">{n}</span>{t}</h3>
 <p class="enc-p">{d}</p></li>""" for n, t, d, f, alt in PASSI)
     html = f"""<div class="enc-c enc-sez enc-come">
@@ -378,7 +383,14 @@ def come_funziona():
 .enc-come{{padding-top:0}}
 .enc-passi{{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}}
 .enc-passo{{display:flex;flex-direction:column;gap:16px;min-width:0}}
-.enc-passo-foto{{aspect-ratio:4/5;margin-bottom:8px}}
+.enc-passo-media{{position:relative;margin-bottom:8px}}
+.enc-passo-foto{{aspect-ratio:4/5}}
+.enc-nir{{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(11,11,12,0.86);border-radius:8px;padding:16px 18px;color:{PAPER};
+  font-family:{STACK}}}
+.enc-nir .enc-label{{color:#B9B9BC;margin-bottom:8px}}
+.enc-nir p{{display:flex;justify-content:space-between;margin:10px 0 6px;font-size:15px}}
+.enc-nir i{{display:block;height:3px;background:#3A3A3F}}.enc-nir b{{display:block;height:3px;background:{PAPER}}}
+.enc-nir .enc-nir-nota{{color:#B9B9BC;font-size:12px;margin:12px 0 0}}
 .enc-passo .enc-h3{{display:flex;gap:16px;align-items:baseline}}
 .enc-passo-n{{font-size:14px;letter-spacing:0.08em;color:{INK3};font-variant-numeric:tabular-nums}}
 .enc-passo .enc-p{{font-size:16px;max-width:26em}}
@@ -524,18 +536,26 @@ def contatti():
 <div class="enc-cta-modulo">
 <div class="enc-cta-in">
 <h2 class="enc-t enc-h2">Start your first loop.</h2>
-<form class="enc-form" id="enc-form" novalidate>
+<form class="enc-form" id="enc-form" novalidate data-endpoint="contatto.php">
 {campi}
+<label class="enc-trappola" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
 <label class="enc-campo enc-campo-pieno" for="enc-message"><span class="enc-label">Message</span><textarea class="enc-input enc-input" id="enc-message" name="message" rows="3"></textarea></label>
 <button class="enc-btn enc-btn enc-invia" type="submit">Book a pilot</button>
+<p class="enc-small enc-privacy">We use these details only to reply to your request.</p>
+<p class="enc-small enc-errore" id="enc-errore" role="alert" hidden>The request could not be sent. Write to us at info@evoxconsulting.it</p>
 </form>
 <p class="enc-t enc-grazie" id="enc-grazie" tabindex="-1" hidden>Thank you.</p>
 </div>
 </div>
 </div>
 <script>(function(){{var f=document.getElementById('enc-form'),g=document.getElementById('enc-grazie');if(!f)return;
+var er=document.getElementById('enc-errore'),bt=f.querySelector('button[type=submit]');
 f.addEventListener('submit',function(e){{e.preventDefault();if(!f.checkValidity()){{f.reportValidity();return;}}
-f.hidden=true;g.hidden=false;g.focus();}});}})();</script>"""
+er.hidden=true;bt.disabled=true;
+fetch(f.getAttribute('data-endpoint'),{{method:'POST',body:new FormData(f)}})
+.then(function(r){{return r.ok?r.json():Promise.reject(r.status);}})
+.then(function(j){{if(!j||!j.ok)throw 0;f.hidden=true;g.hidden=false;g.focus();}})
+.catch(function(){{er.hidden=false;bt.disabled=false;}});}});}})();</script>"""
     css = f"""
 .enc-cta{{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;min-height:100svh}}
 .enc-cta-foto{{position:relative;overflow:hidden;background:{DARK};min-height:560px}}
@@ -557,7 +577,11 @@ f.hidden=true;g.hidden=false;g.focus();}});}})();</script>"""
 textarea.enc-input.enc-input{{resize:none;min-height:96px}}
 .enc-btn.enc-invia{{grid-column:1/-1;width:100%;padding:24px 32px;font-size:13px;margin-top:16px}}
 .enc-grazie{{font-size:60px;line-height:1.06;letter-spacing:-0.028em}}
-.enc-form[hidden],.enc-grazie[hidden]{{display:none}}
+.enc-form[hidden],.enc-grazie[hidden],.enc-errore[hidden]{{display:none}}
+.enc-trappola{{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}}
+.enc-privacy,.enc-errore{{grid-column:1/-1;color:{INK3}}}
+.enc-errore{{color:{INK}}}
+.enc-btn.enc-invia:disabled{{cursor:wait}}
 @media (max-width:1100px){{.enc-cta-in{{padding:96px 48px}}}}
 @media (max-width:900px){{.enc-cta{{grid-template-columns:1fr;min-height:0}}.enc-cta-foto{{min-height:0;aspect-ratio:4/3}}
   .enc-cta-in{{max-width:none;padding:88px 32px}}}}
@@ -566,9 +590,151 @@ textarea.enc-input.enc-input{{resize:none;min-height:96px}}
     return sezione(html, css, ancora='contact')
 
 
+# ---------------------------------------------------------------------------------------------
+# Sezioni aggiunte il 9 ottobre 2026 (richiesta del committente): numeri con fonte, film, portale.
+# Testi nuovi, scritti per questa pagina; ogni numero ha la sua fonte sotto.
+# ---------------------------------------------------------------------------------------------
+def film():
+    html = f"""<div class="enc-c enc-sez enc-film">
+{testa_sez('Film', '90 seconds')}
+<h2 class="enc-t enc-h2">Encore in ninety seconds.</h2>
+<div class="enc-film-box">
+<button class="enc-film-play" type="button" aria-label="Play the Encore film, 90 seconds, with sound" data-src="{img('encore-pitch-720.mp4')}"
+ data-poster="{img('pitch-poster-1280.webp')}">
+<img src="{img('pitch-poster-1280.webp')}" srcset="{srcset('pitch-poster', (800, 1280))}" sizes="(max-width:1440px) 100vw, 1344px"
+ width="1280" height="720" alt="" loading="lazy" decoding="async">
+<span class="enc-film-btn"><span class="enc-film-tri" aria-hidden="true"></span>Play</span>
+</button>
+</div>
+</div>
+<script>(function(){{var b=document.querySelector('.enc-film-play');if(!b)return;b.addEventListener('click',function(){{
+var v=document.createElement('video');v.src=b.dataset.src;v.poster=b.dataset.poster;v.controls=true;v.autoplay=true;v.playsInline=true;
+v.setAttribute('aria-label','Encore film, 90 seconds');b.replaceWith(v);v.focus();v.play().catch(function(){{}});}});}})();</script>"""
+    css = f"""
+.enc-film .enc-h2{{margin-bottom:64px;max-width:14em}}
+.enc-film-box{{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:{DARK}}}
+.enc-film-box video,.enc-film-play{{display:block;width:100%;height:100%;border:0;padding:0;margin:0;background:{DARK};cursor:pointer}}
+.enc-film-box video{{object-fit:cover}}
+.enc-film-play img{{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform 1.6s ease}}
+.enc-film-play:hover img{{transform:scale(1.03)}}
+.enc-film-btn{{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:14px;
+  padding:18px 28px 18px 24px;border-radius:999px;background:{PAPER};color:{INK};font-family:{STACK};font-size:13px;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase}}
+.enc-film-play:hover .enc-film-btn,.enc-film-play:focus-visible .enc-film-btn{{background:{INK};color:{PAPER}}}
+.enc-film-tri{{width:0;height:0;border-style:solid;border-width:7px 0 7px 12px;border-color:transparent transparent transparent currentColor}}
+.enc-film-play:focus-visible{{outline:2px solid {INK};outline-offset:4px}}
+@media (max-width:767px){{.enc-film .enc-h2{{margin-bottom:40px}}}}"""
+    return sezione(html, css, ancora='film')
+
+
+NUMERI = [
+    ('Up to', '9%', 'of textiles placed on the EU market are destroyed before use.', 'European Environment Agency, 2024'),
+    ('Up to', '594,000 t', 'destroyed every year. As baled textiles, enough to fill the Arena di Verona four times.',
+     'European Environment Agency, 2024. Conversion below.'),
+    ('About', '1 in 3', 'garments returned after an online purchase ends up destroyed.', 'European Environment Agency, 2024 (range 22 to 43%)'),
+    ('Less than', '1%', 'of clothing material is recycled into new clothing.', 'Ellen MacArthur Foundation, A New Textiles Economy, 2017'),
+]
+
+
+def numeri():
+    celle = ''.join(f"""<li class="enc-num"><p class="enc-label">{pre}</p><p class="enc-t enc-num-n">{n}</p>
+<p class="enc-p">{t}</p><p class="enc-small enc-num-fonte">{f}</p></li>""" for pre, n, t, f in NUMERI)
+    html = f"""<div class="enc-c enc-sez enc-numeri">
+{testa_sez('The numbers', 'Europe')}
+<ul class="enc-num-griglia">{celle}</ul>
+<div class="enc-legge">
+<p class="enc-t enc-legge-data">19 July 2026</p>
+<div><p class="enc-p enc-legge-t">From this date, large companies can no longer destroy unsold clothing, clothing accessories and footwear in the EU.</p>
+<p class="enc-small enc-num-fonte">Regulation (EU) 2024/1781 (Ecodesign for Sustainable Products Regulation), Article 25. Medium-sized companies from 2030.</p></div>
+</div>
+<p class="enc-small enc-num-nota">Arena di Verona: up to 594,000 tonnes a year, baled at 450 kg per cubic metre (ISO 8115), take about 1.3 million cubic metres.
+The Arena, filled to the top of its 24 m walls, holds about 285,000 cubic metres. That is 4.6 times, rounded down to four.</p>
+</div>"""
+    css = f"""
+.enc-num-griglia{{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}}
+.enc-num{{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid {LINE};min-width:0}}
+.enc-num-n{{font-size:72px;line-height:1;letter-spacing:-0.035em;white-space:nowrap}}
+.enc-num .enc-p{{font-size:16px}}
+.enc-num-fonte{{color:{INK3};font-size:13px;margin-top:auto;padding-top:8px}}
+.enc-legge{{display:grid;grid-template-columns:4fr 8fr;gap:32px;align-items:baseline;margin-top:96px;padding-top:32px;border-top:1px solid {INK}}}
+.enc-legge-data{{font-size:52px;line-height:1.05;letter-spacing:-0.028em}}
+.enc-legge-t{{font-size:22px;line-height:1.45;color:{INK};max-width:30em;margin-bottom:12px}}
+.enc-num-nota{{color:{INK3};font-size:13px;max-width:60em;margin-top:56px}}
+@media (max-width:1100px){{.enc-num-griglia{{grid-template-columns:repeat(2,1fr);gap:48px 32px}}.enc-num-n{{font-size:64px}}}}
+@media (max-width:767px){{.enc-num-griglia{{grid-template-columns:1fr;gap:40px}}.enc-num-n{{font-size:56px}}
+  .enc-legge{{grid-template-columns:1fr;gap:16px;margin-top:64px}}.enc-legge-data{{font-size:40px}}.enc-legge-t{{font-size:19px}}}}"""
+    return sezione(html, css, ancora='numbers')
+
+
+STORIA = [
+    ('12 Oct', 'Collected at brand warehouse, 486.2 kg', '0x7f3a…c21e'),
+    ('14 Oct', 'NIR scan, 1,240 items identified', '0x91be…04af'),
+    ('15 Oct', 'Handover to certified recycler', '0x2c7d…9e13'),
+    ('22 Oct', 'Recycled yarn produced, 431.8 kg', '0xd40f…7b62'),
+    ('23 Oct', 'Offered back to brand at a discount', '0x58aa…e3f0'),
+]
+
+
+def portale():
+    righe = ''.join(f'<li><span class="enc-pt-data">{d}</span><span>{t}</span><span class="enc-pt-tx">{x}</span></li>' for d, t, x in STORIA)
+    html = f"""<div class="enc-c enc-sez enc-portale">
+{testa_sez('The portal', 'Prototype')}
+<div class="enc-pt-griglia">
+<div class="enc-pt-testo">
+<h2 class="enc-t enc-h2">Every kilo, on the record.</h2>
+<p class="enc-p">Each batch gets a certificate on blockchain and a QR code on its tag. Scan it to see the chain of custody, or ask our AI where any kilo came from.</p>
+<p class="enc-small enc-pt-nota">Prototype interface. Batch data are illustrative.</p>
+</div>
+<div class="enc-pt-finestra" role="img" aria-label="Prototype of the Encore portal: batch EN-26-0412, 486.2 kilograms collected, 1,240 items scanned, 81 percent wool and 19 percent cashmere, chain of custody in five steps recorded on blockchain, and an AI answer about where the cashmere came from.">
+<div class="enc-pt-barra" aria-hidden="true"><i></i><i></i><i></i><span>encore.evoxconsulting.it/portal/batch/EN-26-0412</span></div>
+<div class="enc-pt-corpo" aria-hidden="true">
+<div class="enc-pt-testa"><p><span class="enc-label">Batch</span><b>EN-26-0412 · Unsold wool knitwear</b></p>
+<div class="enc-pt-stato"><span>Certified on chain</span><img src="{img('qr-encore.png')}" width="72" height="72" alt="" loading="lazy"></div></div>
+<div class="enc-pt-cifre"><p><b>486.2 kg</b>collected</p><p><b>1,240</b>items scanned</p><p><b>81 / 19</b>wool / cashmere %</p><p><b>431.8 kg</b>yarn back to brand</p></div>
+<div class="enc-pt-basso">
+<div><p class="enc-label">Chain of custody</p><ul class="enc-pt-storia">{righe}</ul></div>
+<div class="enc-pt-ai"><p class="enc-label">Ask Encore</p>
+<p class="enc-pt-q">Where did the cashmere in this batch come from?</p>
+<p class="enc-pt-a">From 236 unsold knitwear items collected on 12 October, scanned on 14 October and recycled by a certified partner. Every step is signed on chain.</p></div>
+</div></div></div>
+</div>
+</div>"""
+    css = f"""
+.enc-pt-griglia{{display:grid;grid-template-columns:4fr 8fr;gap:64px;align-items:center}}
+.enc-pt-testo{{display:flex;flex-direction:column;gap:24px;min-width:0}}
+.enc-pt-testo .enc-h2{{max-width:9em}}
+.enc-pt-nota{{color:{INK3}}}
+.enc-pt-finestra{{background:{PAPER};border:1px solid {LINE};border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(19,19,22,0.12);min-width:0}}
+.enc-pt-barra{{display:flex;align-items:center;gap:8px;height:44px;padding:0 16px;background:{MIST};border-bottom:1px solid {LINE}}}
+.enc-pt-barra i{{width:10px;height:10px;border-radius:50%;background:#D6D6D2;display:block}}
+.enc-pt-barra span{{margin-left:16px;font-family:{STACK};font-size:13px;color:{INK3};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.enc-pt-corpo{{padding:28px 32px;font-family:{STACK};color:{INK}}}
+.enc-pt-testa{{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid {LINE}}}
+.enc-pt-testa p{{margin:0}}.enc-pt-testa b{{display:block;margin-top:6px;font-size:24px;font-weight:400;letter-spacing:-0.01em}}
+.enc-pt-stato{{display:flex;align-items:center;gap:16px}}
+.enc-pt-stato span{{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:{INK};color:{PAPER};white-space:nowrap}}
+.enc-pt-cifre{{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:20px 0;border-bottom:1px solid {LINE}}}
+.enc-pt-cifre p{{margin:0;font-size:13px;color:{INK3}}}.enc-pt-cifre b{{display:block;font-size:28px;font-weight:400;color:{INK};letter-spacing:-0.02em;margin-bottom:2px}}
+.enc-pt-basso{{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;padding-top:20px}}
+.enc-pt-storia{{list-style:none;margin:10px 0 0;padding:0}}
+.enc-pt-storia li{{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid {LINE};font-size:14px}}
+.enc-pt-data{{color:{INK3};font-size:13px}}
+.enc-pt-tx{{color:{INK3};font-size:12px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:6px}}
+.enc-pt-tx::before{{content:'';width:7px;height:7px;border-radius:50%;background:{INK}}}
+.enc-pt-ai{{background:{MIST};border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}}
+.enc-pt-q{{align-self:flex-end;margin:0;background:{INK};color:{PAPER};font-size:14px;line-height:1.4;border-radius:12px 12px 4px 12px;padding:10px 14px;max-width:92%}}
+.enc-pt-a{{margin:0;background:{PAPER};border:1px solid {LINE};border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:14px;line-height:1.45}}
+@media (max-width:1100px){{.enc-pt-griglia{{grid-template-columns:1fr;gap:48px}}}}
+@media (max-width:767px){{.enc-pt-corpo{{padding:20px 16px}}.enc-pt-testa{{flex-direction:column;align-items:flex-start}}
+  .enc-pt-cifre{{grid-template-columns:repeat(2,1fr)}}.enc-pt-basso{{grid-template-columns:1fr}}
+  .enc-pt-storia li{{grid-template-columns:52px 1fr}}.enc-pt-tx{{display:none}}}}"""
+    return sezione(html, css, ancora='portal')
+
+
+
 def landing():
-    return [('hero', hero()), ('problem', problema()), ('insight', intuizione()), ('solution', soluzione()),
-            ('how-it-works', come_funziona()), ('who', per_chi()), ('why', perche()), ('compare', confronto()),
+    return [('hero', hero()), ('film', film()), ('problem', problema()), ('numbers', numeri()), ('insight', intuizione()),
+            ('solution', soluzione()), ('how-it-works', come_funziona()), ('portal', portale()), ('who', per_chi()), ('why', perche()), ('compare', confronto()),
             ('first-loop', primo_ciclo()), ('result', risultato()), ('contact', contatti())]
 
 
