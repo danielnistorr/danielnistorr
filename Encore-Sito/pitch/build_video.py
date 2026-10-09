@@ -45,6 +45,10 @@ SCENE = [
 ]
 
 
+# Con la voce: stacchi sulle frasi della registrazione ElevenLabs (pause misurate con silencedetect), voce in ritardo di 0,5 s.
+VOCE_RITARDO = 0.5
+DURATE_VOCE = [5.8, 6.25, 5.10, 6.25, 5.05, 4.5, 5.75, 3.95, 4.3, 4.15, 2.6, 7.7, 5.1, 6.55, 5.95, 6.5]
+
 
 def run(cmd):
     r = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
