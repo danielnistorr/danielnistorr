@@ -1,4 +1,9 @@
-# Encore: pitch clienti da 90 secondi (seconda versione)
+# Encore: pitch clienti da 90 secondi
+
+> **Versione 3 (9 ottobre 2026), senza voce.** Il video regge da solo con testi a schermo e musica. Cambiamenti:
+> - **Blockchain:** al posto del passo 04 con la macchina da cucire ci sono il cartellino del lotto con il QR code (3 s) e il portale di prova (8 s): storia del lotto e domanda all'AI, con la scritta "Prototype interface · illustrative data".
+> - **Pilota:** la slide "1 brand, 1 recycler, 1 batch" è sostituita da "Your unsold stock stops being a cost. It comes back as fibre you buy below market price." e dai quattro motivi di "Why Encore".
+> - **Durate:** quelle aggiornate sono in `build_video.py` (lista SCENE). La tabella qui sotto è della versione 2.
 
 **Per chi:** responsabili sostenibilità, operations e prodotto dei marchi di moda di fascia alta. Lingua: inglese, come la landing.
 
