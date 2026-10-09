@@ -185,18 +185,39 @@ def header():
 
 
 def footer():
-    html = """<footer class="enc-piede"><div class="enc-c">
+    voci = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in NAV)
+    html = f"""<footer class="enc-piede">
+<div class="enc-c enc-piede-in">
+<div class="enc-piede-alto">
+<a class="enc-piede-logo" href="#top" aria-label="Encore, back to top">{LOGO_BIANCO}</a>
+<a class="enc-btn enc-btn enc-chiaro" href="#contact">Book a pilot</a>
+</div>
+<div class="enc-piede-mezzo">
+<nav aria-label="Footer"><ul class="enc-piede-nav">{voci}</ul></nav>
 <p class="enc-label enc-piede-riga">ENCORE · Team Second Thread · Startup Generation Challenge Verona 2026 · Sfida 02 &quot;Da scarto a risorsa&quot;</p>
+</div>
+</div>
 <div class="enc-piede-marchio" aria-hidden="true"></div>
-</div></footer>"""
+</footer>"""
     css = f"""
-.enc-piede{{background:{PAPER};border-top:1px solid {LINE};padding-top:64px;overflow:hidden}}
-.enc-piede-riga{{color:{INK2}}}
+.enc-piede{{background:{DARK};color:{PAPER};overflow:hidden;position:relative}}
+.enc-piede-in{{padding-top:120px}}
+.enc-piede-alto{{display:flex;justify-content:space-between;align-items:center;gap:32px;padding-bottom:64px}}
+.enc-piede-logo{{display:block;line-height:0}}
+.enc-piede-logo svg{{height:40px;width:auto;display:block}}
+.enc-piede-mezzo{{display:flex;justify-content:space-between;align-items:baseline;gap:32px;padding-top:32px;border-top:1px solid #2A2A2E;flex-wrap:wrap}}
+.enc-piede-nav{{display:flex;gap:40px;list-style:none;margin:0;padding:0}}
+.enc-piede-nav a{{font-family:{STACK};font-size:15px;color:{PAPER};text-decoration:none;display:inline-block;padding:8px 0}}
+.enc-piede-nav a:hover{{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}}
+.enc-piede-riga{{color:{ON_DARK2};text-align:right}}
+.enc-piede-marchio{{font-family:{STACK};font-weight:500;font-size:23vw;line-height:0.74;letter-spacing:-0.02em;color:#1B1B1F;
+  text-align:center;white-space:nowrap;user-select:none;margin-top:96px;transform:translateY(14%)}}
 .enc-piede-marchio::before{{content:'ENCORE'}}
-.enc-piede-marchio{{font-family:{STACK};font-weight:500;font-size:20vw;line-height:0.8;letter-spacing:0.04em;color:{MIST};
-  margin:64px 0 0;text-align:center;white-space:nowrap;user-select:none;transform:translateY(8%)}}
-@media (min-width:1440px){{.enc-piede-marchio{{font-size:288px}}}}"""
-    return C(RAW(html, css=css), pad='0', gap='0', boxed=False, tag='div', bg=PAPER)
+@media (min-width:1600px){{.enc-piede-marchio{{font-size:368px}}}}
+@media (max-width:767px){{.enc-piede-in{{padding-top:80px}}.enc-piede-alto{{flex-direction:column;align-items:flex-start;padding-bottom:48px}}
+  .enc-piede-logo svg{{height:32px}}.enc-piede-nav{{flex-wrap:wrap;gap:8px 24px}}.enc-piede-riga{{text-align:left}}
+  .enc-piede-marchio{{margin-top:64px}}}}"""
+    return C(RAW(html, css=css), pad='0', gap='0', boxed=False, tag='div', bg=DARK)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -488,22 +509,25 @@ def risultato():
 
 
 def contatti():
-    campo = ('<label class="enc-campo" for="enc-{n}"><span class="enc-label">{l}</span>'
+    campo = ('<label class="enc-campo{x}" for="enc-{n}"><span class="enc-label">{l}</span>'
              '<input class="enc-input enc-input" id="enc-{n}" name="{n}" type="{t}" autocomplete="{a}" required></label>')
-    campi = ''.join(campo.format(l=l, n=n, t=t, a=a) for l, n, t, a in (
-        ('Name', 'name', 'text', 'name'), ('Brand', 'brand', 'text', 'organization'), ('Email', 'email', 'email', 'email')))
-    html = f"""<div class="enc-c enc-sez">
-{testa_sez('Pilot', 'Startup Generation Challenge Verona 2026')}
-<div class="enc-cta">
-<div class="enc-cta-sx">
-<h2 class="enc-t enc-h2">Start your first loop.</h2>
-{foto('solution-wool', (800, 1400), 'Close-up of cable knit wool', 1400, 1750, '(max-width:900px) 100vw, 50vw', css='enc-cta-foto')}
+    campi = ''.join(campo.format(l=l, n=n, t=t, a=a, x=x) for l, n, t, a, x in (
+        ('Name', 'name', 'text', 'name', ''), ('Brand', 'brand', 'text', 'organization', ''),
+        ('Email', 'email', 'email', 'email', ' enc-campo-pieno')))
+    html = f"""<div class="enc-cta">
+<div class="enc-cta-foto">
+<img src="{img('cta-wool-macro-1400.webp')}" srcset="{srcset('cta-wool-macro', (800, 1400))}" sizes="(max-width:900px) 100vw, 50vw"
+ width="1400" height="1750" alt="Macro photograph of woven wool" loading="lazy" decoding="async">
+<div class="enc-cta-velo"></div>
+<p class="enc-label enc-cta-nota">Pilot · Startup Generation Challenge Verona 2026</p>
 </div>
 <div class="enc-cta-modulo">
+<div class="enc-cta-in">
+<h2 class="enc-t enc-h2">Start your first loop.</h2>
 <form class="enc-form" id="enc-form" novalidate>
 {campi}
-<label class="enc-campo" for="enc-message"><span class="enc-label">Message</span><textarea class="enc-input enc-input" id="enc-message" name="message" rows="4"></textarea></label>
-<div><button class="enc-btn enc-btn" type="submit">Book a pilot</button></div>
+<label class="enc-campo enc-campo-pieno" for="enc-message"><span class="enc-label">Message</span><textarea class="enc-input enc-input" id="enc-message" name="message" rows="3"></textarea></label>
+<button class="enc-btn enc-btn enc-invia" type="submit">Book a pilot</button>
 </form>
 <p class="enc-t enc-grazie" id="enc-grazie" tabindex="-1" hidden>Thank you.</p>
 </div>
@@ -513,21 +537,32 @@ def contatti():
 f.addEventListener('submit',function(e){{e.preventDefault();if(!f.checkValidity()){{f.reportValidity();return;}}
 f.hidden=true;g.hidden=false;g.focus();}});}})();</script>"""
     css = f"""
-.enc-cta{{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}}
-.enc-cta-sx{{display:flex;flex-direction:column;gap:64px}}
-.enc-cta-foto{{aspect-ratio:4/3}}
-.enc-cta-modulo{{background:{MIST};border-radius:6px;padding:56px;display:flex;flex-direction:column;justify-content:center}}
-.enc-form{{display:flex;flex-direction:column;gap:32px;width:100%}}
-.enc-campo{{display:flex;flex-direction:column;gap:8px}}
-.enc-input.enc-input{{font-family:{STACK};font-size:17px;line-height:1.5;color:{INK};background:transparent;border:0;
-  border-bottom:1px solid #CFCFCA;border-radius:0;padding:8px 0;width:100%;box-shadow:none}}
-.enc-input.enc-input:focus{{border-bottom-color:{INK};outline:none}}
-.enc-input.enc-input:focus-visible{{outline:2px solid {INK};outline-offset:4px}}
-textarea.enc-input.enc-input{{resize:vertical;min-height:104px}}
-.enc-form .enc-btn{{margin-top:8px}}
-.enc-grazie{{font-size:44px;line-height:1.1;letter-spacing:-0.02em}}
+.enc-cta{{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;min-height:100svh}}
+.enc-cta-foto{{position:relative;overflow:hidden;background:{DARK};min-height:560px}}
+.enc-cta-foto img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform 1.6s ease}}
+.enc-cta-foto:hover img{{transform:scale(1.03)}}
+.enc-cta-velo{{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,12,0.7) 0%,rgba(11,11,12,0.1) 45%)}}
+.enc-cta-nota{{position:absolute;left:48px;bottom:48px;color:rgba(255,255,255,0.86)}}
+.enc-cta-modulo{{display:flex;align-items:center;background:{PAPER}}}
+.enc-cta-in{{width:100%;max-width:640px;padding:120px 96px}}
+.enc-cta-in .enc-h2{{margin-bottom:72px}}
+.enc-form{{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px}}
+.enc-campo{{display:flex;flex-direction:column;gap:12px;min-width:0}}
+.enc-campo-pieno{{grid-column:1/-1}}
+.enc-input.enc-input{{font-family:{STACK};font-size:20px;line-height:1.4;color:{INK};background:transparent;border:0;
+  border-bottom:1px solid #CFCFCA;border-radius:0;padding:4px 0 14px;width:100%;box-shadow:none;outline:none}}
+.enc-input.enc-input:hover{{border-bottom-color:{INK3}}}
+.enc-input.enc-input:focus{{border-bottom-color:{INK};box-shadow:0 1px 0 {INK}}}
+.enc-input.enc-input:focus-visible{{outline:none}}
+textarea.enc-input.enc-input{{resize:none;min-height:96px}}
+.enc-btn.enc-invia{{grid-column:1/-1;width:100%;padding:24px 32px;font-size:13px;margin-top:16px}}
+.enc-grazie{{font-size:60px;line-height:1.06;letter-spacing:-0.028em}}
 .enc-form[hidden],.enc-grazie[hidden]{{display:none}}
-@media (max-width:900px){{.enc-cta{{grid-template-columns:1fr}}.enc-cta-sx{{gap:40px}}.enc-cta-modulo{{padding:32px 24px}}}}"""
+@media (max-width:1100px){{.enc-cta-in{{padding:96px 48px}}}}
+@media (max-width:900px){{.enc-cta{{grid-template-columns:1fr;min-height:0}}.enc-cta-foto{{min-height:0;aspect-ratio:4/3}}
+  .enc-cta-in{{max-width:none;padding:88px 32px}}}}
+@media (max-width:767px){{.enc-cta-nota{{left:16px;bottom:24px}}.enc-cta-in{{padding:72px 16px}}.enc-cta-in .enc-h2{{margin-bottom:48px}}
+  .enc-form{{grid-template-columns:1fr;gap:32px}}.enc-grazie{{font-size:40px}}}}"""
     return sezione(html, css, ancora='contact')
 
 
