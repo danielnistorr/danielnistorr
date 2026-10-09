@@ -18,6 +18,8 @@ FOTO = {
     'how-yarn-cones':  (2973400, 4 / 5, 0.45, (800, 1400), 70),
     'result-knit':     (7760243, 16 / 9, 0.9, (900, 1600, 2400), 70),
     'cta-wool-macro':  (7794331, 4 / 5, 0.9, (800, 1400), 70),
+    'hero-wide':       (5475173, 16 / 9, 0.85, (900, 1600, 2400), 68),
+    'solution-wide':   (6757412, 16 / 7, 0.85, (900, 1600, 2400), 58),
 }
 
 
@@ -57,7 +59,9 @@ def prepara(item):
 
 
 if __name__ == '__main__':
+    import sys
     os.makedirs(OUT, exist_ok=True)
+    scelte = {k: v for k, v in FOTO.items() if not sys.argv[1:] or k in sys.argv[1:]}
     with ThreadPoolExecutor(6) as ex:
-        for nome, size, out in ex.map(prepara, FOTO.items()):
+        for nome, size, out in ex.map(prepara, scelte.items()):
             print(nome, size, out)

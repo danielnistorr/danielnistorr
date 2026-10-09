@@ -28,16 +28,28 @@ Non servono altri plugin: menu, tabella e modulo sono dentro la pagina. Il modul
 
 **Immagini.** Le sezioni sono widget HTML, quindi Elementor non copia le foto nella libreria media. Le foto vengono caricate da `raw.githubusercontent.com`, dal ramo `claude/benvegnu-sito` di questo repository, e funzionano solo se il repository è pubblico. Altrimenti carica i file di `assets/web/` nella libreria media e rigenera con `python3 _sorgente/build.py --base https://TUO-SITO/wp-content/uploads/AAAA/MM/`.
 
+## Direzione (seconda versione, 9 ottobre 2026)
+
+Su richiesta del committente la prima versione (avorio, Bodoni Moda, bordeaux) è stata sostituita da una impaginazione e una palette prese da evoxconsulting.it:
+- **Hero:** video al vivo in loop (macchina da cucire su maglia, colori smorzati), titolo grande bianco in basso a sinistra, header trasparente con pulsante a pillola. Il video parte 2,5 secondi dopo il caricamento della pagina. Prima si vede il suo primo fotogramma come immagine fissa. Con "riduci movimento" attivo resta fermo.
+- **Palette e carattere:** nero `#131316`, bianco, grigi caldi `#F5F5F3`. Un solo carattere, Instrument Sans: titoli grandi in peso 400, spaziatura stretta.
+- **Sezioni:** ogni sezione si apre con un filetto e un'etichetta (il nome della sezione nel brief). I tre passi sono schede con foto. "Why Encore" e il risultato stanno su fasce scure. Il piè di pagina ha il marchio grande in filigrana.
+- **Disegno del ciclo:** nella sezione "The solution" c'è un SVG con le cinque tappe (nomi presi dalla tabella del brief) e un punto che percorre il cerchio in 16 secondi. Su telefono le etichette diventano un elenco sotto il cerchio.
+
+Non ho ripreso la numerazione "01 —" di Evox, perché le lineette sono vietate dal brief, né le schede con i numeri grandi.
+
 ## Scelte rispetto al brief
 
-- **Testo secondario.** Il "stone" `#8C857B` su avorio arriva a 3,2:1, sotto la soglia di leggibilità (4,5:1). Per filetti e testo su fondo scuro l'ho tenuto. Per il testo piccolo su avorio ho usato `#6E685F` (4,85:1).
-- **Foto.** Vengono tutte da Pexels: Unsplash blocca le ricerche automatiche da qui. Per cinque foto su sei l'autore va letto sulla pagina Pexels, link in `assets/web/CREDITS.md`.
-- **Stili comuni** (pulsanti, scala tipografica, margini) stanno nella sezione header. Se incolli le sezioni del Formato B una per una, la sezione header deve esserci.
-- **Spaziature.** Tutte multipli di 8: lato 64, 40 o 16 px; sezioni 160, 112 o 80 px.
+- **Font:** i Google Fonts sono collegati anche dentro la sezione header, perché in Elementor i widget HTML non li caricano da soli.
+- **Foto e video:** le foto vengono da Pexels, il video da Mixkit (licenza libera, attribuzione non richiesta). Fonti e licenze in `assets/web/CREDITS.md`.
+- **Spaziature:** tutte multipli di 8. Lato 48, 32 o 16 px; sezioni 160, 120 o 88 px.
 
 ## Collaudo (9 ottobre 2026)
 
-- Lighthouse 12, modalità telefono, sull'anteprima: **prestazioni 100, accessibilità 100, buone pratiche 100, SEO 100** (LCP 1,4 s, CLS 0,003).
-- Nessuno scorrimento orizzontale a 1440, 768 e 375 px. Su telefono la tabella scorre dentro il suo riquadro.
-- Provati con Chromium: menu a scomparsa su telefono, ancore, modulo (vuoto non parte, compilato mostra "Thank you.").
-- **Non provato** l'import in WordPress. Il formato JSON è lo stesso di Benvegnù, che è stato collaudato su Elementor 4.3.3.
+- Lighthouse 12, modalità telefono, sull'anteprima: **prestazioni 100, accessibilità 100, buone pratiche 100, SEO 100** (LCP 1,1-1,4 s, CLS 0,001).
+- Nessuno scorrimento orizzontale a 1440, 768 e 375 px.
+- Provati con Chromium: menu su telefono, ancore, modulo (vuoto non parte, compilato mostra "Thank you.").
+- **Import in WordPress provato** in locale (WordPress con SQLite, Elementor 4.3.3, tema Hello):
+  - tutti e 3 i template entrano, con 22 elementi su 22 per la pagina;
+  - la pagina con header e footer, modello Canvas, impostata come homepage, si vede come l'anteprima;
+  - screenshot in `screenshot/wordpress-*.jpg`.
