@@ -25,7 +25,7 @@ FONT = None
 SCENE = [
     dict(d=6, src=('video', '35884', 1), ov=('testo', 'Every season, luxury fashion\nis left with unsold stock.', None)),
     dict(d=8, src=('video', '20770', 0), ov=('numero', (0, 9, '{:.0f}%'),
-         'of textiles placed on the EU market are destroyed\nbefore use. Up to 594,000 tonnes a year.', EEA)),
+         'of textiles placed on the EU market are destroyed\nbefore use. Up to 594,000 tonnes a year.', EEA, 'UP TO')),
     dict(d=7, src=('video', '4705', 2), ov=('numero', '1/3', 'of clothing returned after an online purchase\nends up destroyed.', EEA)),
     dict(d=7, src=('video', 'cucito', 3), ov=('testo', 'Since 19 July 2026, large companies can no longer\ndestroy unsold clothing in the EU.',
          'Regulation (EU) 2024/1781 (ESPR), Article 25')),
@@ -107,7 +107,7 @@ def ov_frame(ov, t):
         d.multiline_text((96, H - 150 - bb[3]), testo, font=f, fill=PAPER, spacing=18)
         fonte(d, src, GRIGIO)
     elif tipo == 'numero':
-        _, val, label, src = ov
+        _, val, label, src, *pre = ov
         if isinstance(val, tuple):
             a, b, fmt = val
             k = min(1.0, t / 1.6)
@@ -117,6 +117,8 @@ def ov_frame(ov, t):
         bl = d.multiline_textbbox((0, 0), label, font=fl, spacing=14)
         y_label = H - 150 - bl[3]
         d.text((90, y_label - 36), val, font=font(260), fill=PAPER, anchor='ls')
+        if pre:                                         # "UP TO": il dato EEA è una forbice (4-9%), si mostra il massimo
+            d.text((96, y_label - 36 - 214), pre[0], font=font(26, 500), fill=GRIGIO, anchor='ls')
         d.multiline_text((96, y_label), label, font=fl, fill=PAPER, spacing=14)
         fonte(d, src, GRIGIO)
     elif tipo == 'passo':
