@@ -7,7 +7,7 @@ Direzione (seconda versione, su richiesta del committente): impaginazione e pale
 Hero con foto al vivo e titolo grande bianco in basso a sinistra, header trasparente con pulsante a pillola,
 nero #131316 / bianco / grigi caldi, un solo carattere (Instrument Sans) con titoli grandi in peso 400 e spaziatura
 stretta, intestazioni di sezione con filetto ed etichetta, schede foto per i passi, fascia scura con foto,
-piè di pagina con il marchio grande in filigrana. Niente numerazione "01 —" di Evox (lineetta vietata dal brief).
+piè di pagina con il marchio grande in filigrana. Niente numerazione di Evox con la lineetta lunga dopo il numero (vietata dal brief).
 
 Ogni sezione è un widget HTML (RAW) dentro un contenitore: il layout non ha un equivalente nei widget gratuiti di
 Elementor. Gli stili comuni stanno nella sezione header. Testi: esattamente quelli del brief, in inglese; le etichette

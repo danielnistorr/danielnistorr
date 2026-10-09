@@ -36,7 +36,7 @@ Su richiesta del committente la prima versione (avorio, Bodoni Moda, bordeaux) �
 - **Sezioni:** ogni sezione si apre con un filetto e un'etichetta (il nome della sezione nel brief). I tre passi sono schede con foto. "Why Encore" e il risultato stanno su fasce scure. Il piè di pagina ha il marchio grande in filigrana.
 - **Disegno del ciclo:** nella sezione "The solution" c'è un SVG con le cinque tappe (nomi presi dalla tabella del brief) e un punto che percorre il cerchio in 16 secondi. Su telefono le etichette diventano un elenco sotto il cerchio.
 
-Non ho ripreso la numerazione "01 —" di Evox, perché le lineette sono vietate dal brief, né le schede con i numeri grandi.
+Non ho ripreso la numerazione di Evox con la lineetta lunga dopo il numero, perché le lineette sono vietate dal brief, né le schede con i numeri grandi.
 
 ## Scelte rispetto al brief
 
