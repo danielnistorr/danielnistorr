@@ -2,7 +2,7 @@
 """
 Pitch di Encore, 90 s, 1920x1080, 25 fps: video di produzione, numeri verificati con la fonte a schermo, il ciclo in
 cinque passi, musica. La voce si registra a parte seguendo COPIONE.md.
-Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video> <video del ciclo .webm> <video del portale .webm>
+Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video> <video del ciclo .webm> <video del portale .webm> [voce .mp3]
 Nella cartella video servono: hd-<id Mixkit>.mp4 per gli id usati qui sotto, 32433-720.mp4 e 4480-1080.mp4.
 Scrive <cartella di lavoro>/encore-pitch-90s.mp4
 """
@@ -228,8 +228,8 @@ def etichetta(lav):
 def scena(i, s, lav, vid):
     dur, src, ov = s['d'], s['src'], s['ov']
     out = os.path.join(lav, f'scena-{i:02d}.mp4')
-    n = dur * FPS
-    fade = f'fade=t=in:st=0:d=0.5,fade=t=out:st={dur - 0.5}:d=0.5'
+    n = int(round(dur * FPS))
+    fade = f'fade=t=in:st=0:d=0.3,fade=t=out:st={dur - 0.3:.2f}:d=0.3'
     enc = ['-r', str(FPS), '-pix_fmt', 'yuv420p', '-c:v', 'libx264', '-crf', '19', '-preset', 'medium', '-an', out]
     if ov[0] == 'fine':
         img = os.path.join(lav, 'fine.png'); fine(img)
@@ -269,6 +269,10 @@ def scena(i, s, lav, vid):
 def main():
     global FONT
     lav, FONT, vdir, ciclo, portale = sys.argv[1:6]
+    voce = sys.argv[6] if len(sys.argv) > 6 else None
+    if voce:
+        for sc, d in zip(SCENE, DURATE_VOCE):
+            sc['d'] = d
     vid = {'dir': vdir, 'ciclo': ciclo, 'portale': portale, 'cucito': os.path.join(vdir, '32433-720.mp4'), 'telaio': os.path.join(vdir, '4480-1080.mp4')}
     os.makedirs(lav, exist_ok=True)
     pezzi = []
@@ -284,9 +288,20 @@ def main():
     if not os.path.exists(mp3):
         open(mp3, 'wb').write(urllib.request.urlopen(urllib.request.Request(MUSICA, headers={'User-Agent': 'Mozilla/5.0'}), timeout=90).read())
     out = os.path.join(lav, 'encore-pitch-90s.mp4')
-    run(['ffmpeg', '-y', '-i', muto, '-i', mp3, '-filter_complex',
-         f'[1]atrim=0:{totale},afade=t=in:st=0:d=2,afade=t=out:st={totale - 4}:d=4,loudnorm=I=-20:TP=-2[a]',
-         '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', out])
+    if voce:
+        # musica abbassata sotto la voce (sidechain), voce normalizzata a -16 LUFS, limitatore finale
+        ms = int(VOCE_RITARDO * 1000)
+        filtro = (f'[1]atrim=0:{totale},asetpts=PTS-STARTPTS,afade=t=in:st=0:d=1.5,afade=t=out:st={totale - 4}:d=4,volume=0.55[m];'
+                  f'[2]loudnorm=I=-16:TP=-2,adelay={ms}|{ms},pan=stereo|c0=c0|c1=c0,apad=whole_dur={totale}[v];'
+                  '[v]asplit=2[v1][v2];'
+                  '[m][v1]sidechaincompress=threshold=0.02:ratio=10:attack=15:release=450[md];'
+                  '[md][v2]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.9[a]')
+        run(['ffmpeg', '-y', '-i', muto, '-i', mp3, '-i', voce, '-filter_complex', filtro,
+             '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', str(totale), '-movflags', '+faststart', out])
+    else:
+        run(['ffmpeg', '-y', '-i', muto, '-i', mp3, '-filter_complex',
+             f'[1]atrim=0:{totale},afade=t=in:st=0:d=2,afade=t=out:st={totale - 4}:d=4,loudnorm=I=-20:TP=-2[a]',
+             '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', out])
     print('ok', out, totale, 's')
 
 
