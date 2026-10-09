@@ -11,6 +11,8 @@ Una sola pagina in inglese per Encore (Team Atelier Zero, Startup Generation Cha
 | `html-fallback/` | Formato B: un file `.html` per sezione, da incollare in un widget HTML di Elementor |
 | `anteprima/01-home.html` | la pagina completa, da aprire nel browser |
 | `assets/web/` | le 6 foto in WebP (2 o 3 larghezze ciascuna) e `CREDITS.md` con le fonti |
+| `logo/` | logo in SVG e PNG: orizzontale scuro e bianco, solo marchio, icona quadrata (generati da `_sorgente/logo.py`) |
+| `plesk/encore-statico.zip` | la landing come sito statico (index.html + 20 file), pronta da caricare su un server |
 | `screenshot/` | la pagina intera a 1440, 768 e 375 px |
 | `_sorgente/` | `contenuti.py` (testi, stili, sezioni), `motore.py` e `build.py` di Benvegnù, `prepara_immagini.py` |
 
@@ -27,6 +29,19 @@ Apri `anteprima/01-home.html` nel browser, oppure dalla cartella `Encore-Sito` l
 Non servono altri plugin: menu, tabella e modulo sono dentro la pagina. Il modulo non spedisce nulla, mostra solo il ringraziamento come chiede il brief.
 
 **Immagini.** Le sezioni sono widget HTML, quindi Elementor non copia le foto nella libreria media. Le foto vengono caricate da `raw.githubusercontent.com`, dal ramo `claude/benvegnu-sito` di questo repository, e funzionano solo se il repository è pubblico. Altrimenti carica i file di `assets/web/` nella libreria media e rigenera con `python3 _sorgente/build.py --base https://TUO-SITO/wp-content/uploads/AAAA/MM/`.
+
+## Logo
+
+Un anello aperto con un punto nel varco: il ciclo che si chiude, ogni chilo che torna al marchio. Accanto, ENCORE in Instrument Sans SemiBold spaziato, convertito in tracciati, così il file non dipende dal font. Il punto sta a destra e l'icona ha gli angoli vivi, per non ricordare l'icona di Instagram. È nell'header del sito ed è anche la favicon.
+
+## Metterla online come sito statico (Plesk)
+
+Il server di evoxconsulting.it usa Plesk (nginx). `encore.evoxconsulting.it` punta già allo stesso indirizzo IP.
+1. Plesk: *Siti web e domini > Aggiungi sottodominio*: `encore`.
+2. *Gestione file* del sottodominio: carica `plesk/encore-statico.zip` nella cartella principale, poi *Estrai*.
+3. *SSL/TLS > Let's Encrypt* per il sottodominio.
+
+La pagina ha `noindex`: va tolto quando si vuole che Google la trovi.
 
 ## Direzione (seconda versione, 9 ottobre 2026)
 

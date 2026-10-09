@@ -13,7 +13,10 @@ Ogni sezione è un widget HTML (RAW) dentro un contenitore: il layout non ha un 
 Elementor. Gli stili comuni stanno nella sezione header. Testi: esattamente quelli del brief, in inglese; le etichette
 piccole sono i nomi delle sezioni del brief.
 """
+import os
+import re
 from html import escape
+from urllib.parse import quote
 
 import motore as m
 from motore import C, RAW
@@ -21,6 +24,19 @@ from motore import C, RAW
 PREFISSO = 'enc'
 NOME_SITO = 'Encore'
 m.LINGUA = 'en'
+
+# logo (generato da logo.py in ../logo): in pagina inline, bianco sull'hero; come favicon l'icona quadrata
+LOGO_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logo')
+
+
+def _svg(nome):
+    t = open(os.path.join(LOGO_DIR, nome + '.svg'), encoding='utf-8').read().strip()
+    t = re.sub(r'<title>.*?</title>', '', t)
+    return re.sub(r' width="[\d.]+" height="[\d.]+" role="img" aria-label="Encore"', ' aria-hidden="true" focusable="false"', t)
+
+
+LOGO_BIANCO = _svg('encore-logo-bianco')
+m.ICONA = 'data:image/svg+xml,' + quote(open(os.path.join(LOGO_DIR, 'encore-icona.svg'), encoding='utf-8').read().strip())
 
 # ---------------------------------------------------------------------------------------------
 # Tema (palette di evoxconsulting.it)
@@ -138,7 +154,7 @@ def header():
     # in Elementor i widget HTML non caricano i Google Fonts: il link sta qui, nella prima sezione della pagina
     html = f"""<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{m.GOOGLE_FONTS}">
 <header class="enc-testa"><div class="enc-c enc-testa-in">
-<a class="enc-marchio" href="#top" aria-label="Encore, back to top">ENCORE</a>
+<a class="enc-marchio" href="#top" aria-label="Encore, back to top">{LOGO_BIANCO}</a>
 <nav aria-label="Main"><ul class="enc-nav">{voci}</ul></nav>
 <a class="enc-btn enc-btn enc-chiaro enc-testa-btn" href="#contact">Book a pilot</a>
 <details class="enc-menu"><summary>Menu</summary><ul>{voci}<li><a href="#contact">Book a pilot</a></li></ul></details>
@@ -147,7 +163,8 @@ def header():
     css = CSS_COMUNE + f"""
 .enc-testa{{position:absolute;top:0;left:0;right:0;z-index:20}}
 .enc-testa-in{{display:flex;align-items:center;gap:40px;height:88px;position:relative}}
-.enc-marchio{{font-family:{STACK};font-size:17px;font-weight:600;letter-spacing:0.34em;color:{PAPER};text-decoration:none;margin-right:auto}}
+.enc-marchio{{display:block;line-height:0;text-decoration:none;margin-right:auto}}
+.enc-marchio svg{{height:30px;width:auto;display:block}}
 .enc-nav{{display:flex;gap:32px;list-style:none;margin:0;padding:0}}
 .enc-nav a{{font-family:{STACK};font-size:14px;color:{PAPER};text-decoration:none;display:inline-block;padding:8px 0}}
 .enc-nav a:hover{{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}}
@@ -161,7 +178,7 @@ def header():
   border-bottom:1px solid {LINE}}}
 .enc-menu li:last-child a{{border-bottom:0}}
 @media (max-width:900px){{
-  .enc-testa-in{{height:72px}}
+  .enc-testa-in{{height:72px}}.enc-marchio svg{{height:26px}}
   .enc-testa nav,.enc-testa .enc-testa-btn.enc-testa-btn{{display:none}}.enc-menu{{display:block}}
 }}"""
     return C(RAW(html, css=css), pad='0', gap='0', boxed=False, tag='div', anchor='top')
@@ -317,7 +334,7 @@ def ciclo_svg():
 PASSI = [
     ('01', 'Hand over your waste.',
      'Unsold stock, returns and offcuts are collected. Infrared scanners identify each item\'s exact fibre in seconds.',
-     'problem-rail', 'Unsold garments hanging on a rail'),
+     'step-handover', 'Folded wool and cashmere knitwear in warm neutral tones'),
     ('02', 'Matched and certified.',
      'Every batch goes to the partner best suited to its fibre. Each scan and handover is certified on blockchain.',
      'how-yarn-cones', 'Cones of recycled yarn by a mill window'),

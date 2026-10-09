@@ -7,9 +7,10 @@ Unsplash and Pexels block automated searches from the build machine, so the phot
 | File | Section | Pexels photo | Photographer |
 |---|---|---|---|
 | `hero-knitwear-*.webp`, `hero-wide-*.webp` | not used in the current version (first hero) | [5475173](https://www.pexels.com/photo/close-up-shot-of-knitted-sweaters-on-white-surface-5475173/), "Close-Up Shot of Knitted Sweaters on White Surface" | see Pexels page |
-| `problem-rail-*.webp` | 5. How it works, step 01 (desaturated) | [5706275](https://www.pexels.com/photo/clothes-on-hangers-5706275/), "Clothes on Hangers" | see Pexels page |
+| `problem-rail-*.webp` | not used in the current version | [5706275](https://www.pexels.com/photo/clothes-on-hangers-5706275/), "Clothes on Hangers" | see Pexels page |
 | `solution-wool-*.webp`, `solution-wide-*.webp` | 4. The solution, 11. Call to action | [6757412](https://www.pexels.com/photo/close-up-of-a-sweater-fabric-6757412/), "Close-up of a Sweater Fabric" | see Pexels page |
 | `how-yarn-cones-*.webp` | 5. How it works, step 02 (desaturated) | [2973400](https://www.pexels.com/photo/pile-of-thread-rolls-beside-window-2973400/), "Pile of Thread Rolls Beside Window" | see Pexels page |
+| `step-handover-*.webp` | 5. How it works, step 01 | [14641424](https://www.pexels.com/photo/a-close-up-shot-of-folded-knitted-clothes-14641424/), "A Close-Up Shot of Folded Knitted Clothes" | see Pexels page |
 | `result-knit-*.webp` | 10. The result | [7760243](https://www.pexels.com/photo/a-woman-in-beige-sweater-7760243/), "A Woman in Beige Sweater" | cottonbro studio |
 | `cta-wool-macro-*.webp` | 5. How it works, step 03 | [7794331](https://www.pexels.com/photo/closeup-of-knitted-yarn-7794331/), "Closeup of knitted yarn" | see Pexels page |
 

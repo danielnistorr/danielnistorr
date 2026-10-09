@@ -903,6 +903,7 @@ def sezione_html(section, scope, fonts=True):
 
 
 LINGUA = 'it'
+ICONA = 'data:,'          # favicon (data URI); 'data:,' evita la richiesta a /favicon.ico
 
 
 def pagina_html(title, blocks, description=''):
@@ -910,7 +911,7 @@ def pagina_html(title, blocks, description=''):
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{_html.escape(title)}</title>'
             + (f'<meta name="description" content="{_html.escape(description)}">' if description else '') +
-            '<link rel="icon" href="data:,">'
+            f'<link rel="icon" href="{ICONA}">'
             '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
             # font non bloccanti: la pagina si disegna subito con il carattere di riserva, poi passa ai Google Fonts
             f'<link rel="stylesheet" href="{GOOGLE_FONTS}" media="print" onload="this.media=\'all\'">'
