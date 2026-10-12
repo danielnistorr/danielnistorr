@@ -6,7 +6,7 @@ Il sito attuale ha 10 pagine (01): Home, Camere con tre sottopagine (Doppia, Tri
 |---|---|---|---|
 | Home | **Home** | `/` | il prototipo approvato ("Sulla Piana Ave"), con le correzioni della specifica |
 | Camere, Doppia, Tripla, Quadrupla | **Camere** | `/camere/` | tre tipi, ognuno con superficie, persone e una frase; ancore `#doppia`, `#tripla`, `#quadrupla` per i vecchi indirizzi; i servizi in camera in fondo |
-| Ristorante | **Ristorante** | `/ristorante/` | oggi c'è solo il "Lorem ipsum": cucina tradizionale, le due sale, i piatti in foto |
+| Ristorante | **Ristorante** | `/ristorante/` | oggi c'è solo il "Lorem ipsum": cucina tradizionale, i piatti per nome, le due sale, la stube in foto |
 | Centro benessere | **Centro benessere** | `/centro-benessere/` | orario e prezzo come titolo, il secchio tirolese, l'elenco di cosa c'è e come si prenota |
 | Contatti | **Contatti** | `/contatti/` | il panorama della Piana con l'albergo in mezzo al prato, recapiti, richiesta di disponibilità, come arrivare |
 | Progetto POR FESR, CSR 2023-2027 | **Contributi** | `/contributi/` | pubblicità dei due contributi, testi ripuliti, loghi; ancore `#csr-2023-2027` e `#por-fesr` |
@@ -37,11 +37,12 @@ La casa gialla in mezzo al prato della Piana Ave, a 900 metri dal centro di Asia
 6. **Chiusura comune**: "Sulla Piana Ave, a 900 metri dal centro" e il panorama.
 
 ### Ristorante (`/ristorante/`)
-1. **Apertura**: la stube con la stufa a tutta larghezza subito sotto la testata, poi "Cucina tradizionale" e i piatti per nome.
-2. **La sala grande**: le vetrate sui prati a filo del bordo sinistro, accanto due righe sulle due sale.
-3. **A tavola**: due foto verticali affiancate (pasta, pane e vino dall'alto; la cantinetta dei vini), senza testo.
-4. **Riga delle date**.
-5. **Chiusura comune**.
+1. **Apertura**: la stube con la stufa a tutta larghezza subito sotto la testata, poi "Cucina tradizionale", i piatti per nome e le due sale (la stube, la sala grande con le vetrate sui prati).
+2. **A tavola**: due foto verticali affiancate (pasta, pane e vino dall'alto; la cantinetta dei vini), senza testo.
+3. **Riga delle date**.
+4. **Chiusura comune**.
+
+La sala grande non ha ancora una foto buona (tovaglie rosse, ventilatore, un'auto dietro il vetro): è nel brief delle foto da fare.
 
 ### Centro benessere (`/centro-benessere/`)
 1. **Apertura**: la sauna in verticale a filo del bordo sinistro; accanto "Dalle 15 alle 19, su prenotazione" e cosa c'è.
