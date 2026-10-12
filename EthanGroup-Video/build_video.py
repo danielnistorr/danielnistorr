@@ -4,9 +4,9 @@ Video di presentazione di Ethan Group, 90 s, 1920x1080, 25 fps. Stesso impianto 
 (Encore-Sito/pitch/build_video.py): video e foto con colori smorzati, numeri grandi con la fonte a schermo,
 tre capitoli (Green Economy, Blue Economy, Innovazione e Ricerca), chiusura sul colore del marchio.
 Tutti i numeri vengono da ethan-group.it (Storia e Valori, Risultati finanziari, Struttura del gruppo).
-Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video Mixkit> <cartella immagini del sito>
+Uso: python3 build_video.py <cartella di lavoro> <font InstrumentSans.ttf> <cartella video Mixkit> <cartella immagini del sito> [voce .mp3]
 Nella cartella video servono <id>.mp4 (versioni 720p da assets.mixkit.co) per gli id usati qui sotto.
-Scrive <cartella di lavoro>/ethan-group-90s.mp4
+Scrive <cartella di lavoro>/ethan-group-90s.mp4, o ethan-group-90s-voce.mp4 se si passa la voce
 """
 import os
 import subprocess
@@ -57,6 +57,15 @@ SCENE = [
     dict(d=5, src=('nero',), ov=('perche',)),
     dict(d=4, src=('ardesia',), ov=('fine',)),
 ]
+
+
+# Con la voce (ElevenLabs, voiceover.txt): la registrazione si taglia a metà delle pause tra una battuta e l'altra
+# (pause misurate con silencedetect, battute riconosciute con faster-whisper) e ogni battuta parte VOCE_RITARDO
+# secondi dopo lo stacco della sua scena. Le durate danno a ogni battuta il suo tempo e restano a 90 s in tutto.
+VOCE_RITARDO = 0.25
+VOCE_TAGLI = [0, 3.86, 7.80, 12.54, 13.73, 20.0, 24.62, 29.80, 33.49, 36.97, 38.14, 41.08, 43.58, 48.80, 50.76,
+              55.37, 60.09, 66.67, 71.86, 74.76]
+DURATE_VOCE = [4.4, 4.48, 5.28, 3.2, 6.8, 5.16, 5.72, 4.2, 4.0, 3.2, 3.48, 3.04, 5.76, 3.2, 5.12, 5.24, 7.12, 5.72, 4.88]
 
 
 def run(cmd):
@@ -253,6 +262,12 @@ def scena(i, s, lav, vdir):
 def main():
     global FONT, IMG
     lav, FONT, vdir, IMG = sys.argv[1:5]
+    voce = sys.argv[5] if len(sys.argv) > 5 else None
+    if voce:
+        if not (len(DURATE_VOCE) == len(SCENE) == len(VOCE_TAGLI) - 1):
+            raise SystemExit('DURATE_VOCE, VOCE_TAGLI e SCENE non tornano: ricalcola i tempi sulla voce')
+        for sc, d in zip(SCENE, DURATE_VOCE):
+            sc['d'] = d
     os.makedirs(lav, exist_ok=True)
     from concurrent.futures import ThreadPoolExecutor
     with ThreadPoolExecutor(4) as ex:
@@ -265,7 +280,28 @@ def main():
     mp3 = os.path.join(lav, 'musica.mp3')
     if not os.path.exists(mp3):
         open(mp3, 'wb').write(urllib.request.urlopen(urllib.request.Request(MUSICA, headers={'User-Agent': 'Mozilla/5.0'}), timeout=90).read())
-    out = os.path.join(lav, 'ethan-group-90s.mp4')
+    out = os.path.join(lav, 'ethan-group-90s' + ('-voce' if voce else '') + '.mp4')
+    if voce:
+        # ogni battuta tagliata dalla registrazione e spostata all'inizio della sua scena; musica abbassata
+        # sotto la voce (sidechain), voce normalizzata a -16 LUFS, limitatore finale
+        n = len(SCENE)
+        parti, inizio = [], 0.0
+        for i, (sc, a, b) in enumerate(zip(SCENE, VOCE_TAGLI, VOCE_TAGLI[1:])):
+            ms = int((inizio + VOCE_RITARDO) * 1000)
+            parti.append(f'[v{i}]atrim={a}:{b},asetpts=PTS-STARTPTS,afade=t=in:d=0.05,afade=t=out:st={b - a - 0.05:.2f}:d=0.05,'
+                         f'adelay={ms}|{ms}[p{i}]')
+            inizio += sc['d']
+        filtro = (f'[1]atrim=0:{totale},asetpts=PTS-STARTPTS,afade=t=in:st=0:d=1.5,afade=t=out:st={totale - 4}:d=4,volume=0.55[m];'
+                  f'[2]loudnorm=I=-16:TP=-2,aresample=44100,pan=stereo|c0=c0|c1=c0,asplit={n}' + ''.join(f'[v{i}]' for i in range(n)) + ';'
+                  + ';'.join(parti) + ';'
+                  + ''.join(f'[p{i}]' for i in range(n)) + f'amix=inputs={n}:normalize=0,apad=whole_dur={totale}[vv];'
+                  '[vv]asplit=2[w1][w2];'
+                  '[m][w1]sidechaincompress=threshold=0.02:ratio=10:attack=15:release=450[md];'
+                  '[md][w2]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.9[a]')
+        run(['ffmpeg', '-y', '-i', muto, '-i', mp3, '-i', voce, '-filter_complex', filtro,
+             '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', str(totale), '-movflags', '+faststart', out])
+        print('ok', out, totale, 's')
+        return
     run(['ffmpeg', '-y', '-i', muto, '-i', mp3, '-filter_complex',
          f'[1]atrim=0:{totale},afade=t=in:st=0:d=2,afade=t=out:st={totale - 4}:d=4,loudnorm=I=-20:TP=-2[a]',
          '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', out])
