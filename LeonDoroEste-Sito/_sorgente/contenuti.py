@@ -18,7 +18,14 @@ Come è costruito (per chi aggiunge pagine):
 - le foto con un titolo sopra sono sfondi di contenitore (Elementor le importa nella libreria media); al telefono, quando il
   titolo scende sotto la foto, la foto è un widget immagine visibile solo al telefono;
 - il menu della testata è un widget HTML (markup, stile e script, identico nel fallback): Elementor gratuito e il widget di
-  Ultimate Addons cambiano a 767 e 1024 px, la specifica vuole il bottone "Menu" a 820 px con telefono e "Prenota" nel pannello.
+  Ultimate Addons cambiano a 767 e 1024 px, la specifica vuole il bottone "Menu" con telefono e "Prenota" nel pannello. Il menu
+  si chiude a 900 px e non a 820 come nella specifica: misurato, la riga intera (logo, cinque voci, Prenota) chiede 878 px e a 821
+  il bottone usciva dalla testata; il telefono si vede da 1181 px (con il telefono la riga chiede 1123 px);
+- per le altre pagine: campo_giallo (la chiusura di ogni pagina), foto_con_titolo (foto piena col titolo nel cielo),
+  oggetto_centrato con frase (una cosa sola al centro del bianco), testo, link_isolato, contatti, solo_lettori, euro, LISTINO;
+  la prima sezione di ogni pagina ha anchor='content' (il link "Vai al contenuto" della testata porta lì);
+- le sezioni con una foto di sfondo hanno la classe e-no-lazyload sul contenitore esterno (la sezione): Elementor rimanda gli
+  sfondi dei figli finché la sezione non entra nella finestra, e senza JavaScript resterebbero vuoti.
 """
 from urllib.parse import quote
 
@@ -51,10 +58,10 @@ def _st(w, s, lh, ls=0.0, up=False):
 # Il titolo della home, l'unico dove la differenza si vede, la riprende in em nel CSS (classe ldo-display).
 STILI = {
     'display':   _st('800', (144, 104, 64), 0.9, -2.88, True),   # solo "Resta a cena"
-    'h1':        _st('800', (72, 56, 40), 0.98, -1.0, True),     # titolo delle pagine interne
-    'h2a':       _st('800', (44, 40, 30), 1.05, -0.4, True),     # titoli su foto o accanto a foto grandi
+    'h1':        _st('800', (72, 56, 40), 0.98, -1.08, True),     # titolo delle pagine interne
+    'h2a':       _st('800', (44, 40, 30), 1.05, -0.44, True),     # titoli su foto o accanto a foto grandi
     'h2b':       _st('800', (40, 36, 30), 1.05, -0.4, True),     # titoli del campo giallo
-    'h2c':       _st('800', (36, 36, 30), 1.05, -0.4, True),     # titoli accanto al testo
+    'h2c':       _st('800', (36, 36, 30), 1.05, -0.36, True),     # titoli accanto al testo
     'frase':     _st('400', (30, 26, 21), 1.35, -0.3),           # la frase sola centrata sotto l'oggetto
     'primo':     _st('400', (21, 19, 18), 1.55),                 # paragrafo d'apertura
     'h3':        _st('600', (22, 22, 20), 1.3),
@@ -174,14 +181,14 @@ CSS_SITO = (
 )
 
 # ---------------------------------------------------------------------------------------------
-# Testata: logo, menu, telefono, "Prenota"; sotto 820 px logo, "Chiama" e "Menu" (specifica 4.1)
+# Testata: logo, menu, telefono, "Prenota"; da 900 px in giù logo, "Chiama" e "Menu" (specifica 4.1)
 # ---------------------------------------------------------------------------------------------
 NAV_LINK = f"font:400 16px/1.2 {FONT_CSS};color:{INCHIOSTRO};text-decoration:none;white-space:nowrap;display:inline-block;padding:12px 0"
 SOTTOLINEA = 'text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px'
 CSS_NAV = (
     # il pannello del telefono si apre sotto tutta la testata: la testata è il riferimento, i widget no
     '.ldo-testata{position:relative;overflow-x:clip}'
-    '.ldo-testata .elementor-widget-html,.ldo-testata .ldo-w{position:static!important}'
+    '.ldo-testata .elementor-widget-html,.ldo-testata .ldo-w,.ldo-testata .ldo-marchio{position:static!important}'
     f'.ldo-nav{{display:flex;align-items:center;gap:40px;font-family:{FONT_CSS}}}'
     '.ldo-nav .ldo-pannello{display:flex;align-items:center;gap:40px}'
     '.ldo-nav .ldo-menu{display:flex;gap:32px;list-style:none;margin:0;padding:0}'
@@ -208,12 +215,12 @@ CSS_NAV = (
     f'.ldo-nav .ldo-apri:hover,.ldo-nav .ldo-apri[aria-expanded=true]{{background:{INCHIOSTRO};color:{BIANCO};border-color:{INCHIOSTRO}}}'
     f'.ldo-nav .ldo-chiama{{font:600 16px/1.2 {FONT_CSS};color:{VERDE};{SOTTOLINEA};padding:12px 0;white-space:nowrap}}'
     f'.ldo-nav .ldo-chiama:hover{{color:{INCHIOSTRO}}}'
-    '@media (max-width:1100px){.ldo-nav .ldo-tel{display:none}.ldo-nav,.ldo-nav .ldo-pannello{gap:24px}.ldo-nav .ldo-menu{gap:24px}}'
-    '@media (max-width:820px){'
+    '@media (max-width:1180px){.ldo-nav .ldo-tel{display:none}.ldo-nav,.ldo-nav .ldo-pannello{gap:24px}.ldo-nav .ldo-menu{gap:24px}}'
+    '@media (max-width:900px){'
     '.ldo-nav{gap:16px}'
     '.ldo-nav .ldo-chiama,.ldo-nav .ldo-apri{display:inline-block}'
     f'.ldo-nav .ldo-pannello{{position:absolute;left:0;right:0;top:100%;z-index:50;background:{BIANCO};flex-direction:column;'
-    'align-items:flex-start;gap:24px;padding:16px 40px 32px}'
+    'align-items:flex-start;gap:24px;padding:16px 40px 32px;min-height:calc(100vh - 88px);overflow-y:auto}'
     '.ldo-nav .ldo-menu{flex-direction:column;gap:0}'
     '.ldo-nav .ldo-menu a{font-size:20px}'
     '.ldo-nav .ldo-pannello .ldo-tel{display:inline-block;font-size:20px}'
@@ -223,8 +230,11 @@ CSS_NAV = (
     '.ldo-nav:not(.ldo-js) .ldo-apri{display:none}'
     '.ldo-nav:not(.ldo-js) .ldo-pannello{position:static;padding:0}'
     '.ldo-nav:not(.ldo-js){flex-direction:column;align-items:flex-end}'
+    '.ldo-nav:not(.ldo-js) .ldo-pannello{min-height:0}'
+    '.ldo-testata:has(.ldo-nav:not(.ldo-js)){align-items:flex-start!important}'
     '}'
-    '@media (max-width:767px){.ldo-nav .ldo-pannello{padding:16px 20px 32px}}'
+    # il pannello aperto copre tutta la finestra sotto la testata: niente pezzi di pagina sotto le voci
+    '@media (max-width:767px){.ldo-nav .ldo-pannello{padding:16px 20px 32px;min-height:calc(100vh - 76px)}}'
 )
 
 JS_NAV = (
@@ -243,7 +253,7 @@ JS_NAV = (
     "if(e.key==='Tab'){var f=[b].concat([].slice.call(p.querySelectorAll('a'))),i=f.indexOf(document.activeElement);"
     "if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}});"
     "document.addEventListener('click',function(e){if(n.classList.contains('aperto')&&!n.contains(e.target))apri(false)});"
-    "if(window.matchMedia){var mq=matchMedia('(min-width:821px)');var chiudi=function(){if(mq.matches)apri(false)};"
+    "if(window.matchMedia){var mq=matchMedia('(min-width:901px)');var chiudi=function(){if(mq.matches)apri(false)};"
     "if(mq.addEventListener)mq.addEventListener('change',chiudi);else if(mq.addListener)mq.addListener(chiudi)}"
     "})}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',via)}else{via()}})();"
 )
@@ -252,9 +262,6 @@ JS_NAV = (
 def nav_html():
     voci = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in VOCI_MENU)
     return (
-        # "Vai al contenuto": serve al fallback; in WordPress Ultimate Addons scrive già il suo (hfe-skip-link, verso #content)
-        # e lo script toglie questo, così il link è uno solo. La prima sezione di ogni pagina ha l'ancora "content".
-        '<a class="ldo-salta" href="#content">Vai al contenuto</a>'
         '<nav class="ldo-nav" aria-label="Menu principale">'
         f'<a class="ldo-chiama" href="{TEL_LINK}">Chiama</a>'
         '<button class="ldo-apri" type="button" aria-controls="ldo-pannello" aria-expanded="false">Menu</button>'
@@ -266,10 +273,17 @@ def nav_html():
 
 
 def header():
+    # "Vai al contenuto" prima del logo, così è il primo Tab: serve al fallback; in WordPress Ultimate Addons scrive già il suo
+    # (hfe-skip-link, verso #content) e lo script del menu toglie questo, così il link è uno solo.
+    # La prima sezione di ogni pagina ha l'ancora "content".
+    salta = RAW('<a class="ldo-salta" href="#content">Vai al contenuto</a>')
     logo = I(img('logo-leondoro-verde.png'), "Albergo Leon d'Oro, Este", link='/', link_label="Albergo Leon d'Oro, Este: pagina iniziale",
              w_img=(134, 134, 105), fisso=True, css='ldo-logo')
-    return C(logo, RAW(nav_html(), css=CSS_SITO + CSS_NAV), dir='row', justify='between', align='center', gap='m',
-             pad=(16, 'lato'), bg=BIANCO, boxed=False, tag='header', css='ldo-testata')
+    marchio = C(salta, logo, dir='row', align='center', gap=0, larg_px=(134, 134, 105), css='ldo-marchio')
+    # niente tag header: in WordPress Ultimate Addons avvolge già la testata in <header id="masthead"> e un secondo header
+    # dentro il primo è HTML non valido e un secondo punto di riferimento "banner" (lo stesso vale per il piede)
+    return C(marchio, RAW(nav_html(), css=CSS_SITO + CSS_NAV), dir='row', justify='between', align='center', gap='m',
+             pad=(16, 'lato'), bg=BIANCO, boxed=False, css='ldo-testata')
 
 
 # ---------------------------------------------------------------------------------------------
@@ -301,7 +315,7 @@ def footer():
     riga_link = C(*[_piede_testo(f'<p><a class="ldo-a" href="{u}">{t}</a></p>', fisso=True) for t, u in link],
                   dir='row', wrap=True, gap=32, gap_r=8, mt=48)
     return C(righe, riga_link, RAW('', css=CSS_PIEDE), bg=VERDE, pad=((64, 64, 48), 'lato', (48, 48, 40), 'lato'), gap=0,
-             boxed=False, tag='footer', css='ldo-piede')
+             boxed=False, css='ldo-piede')
 
 
 # ---------------------------------------------------------------------------------------------
@@ -414,22 +428,36 @@ def facciata():
              anchor='content', css='ldo-facciata e-no-lazyload')
 
 
-CSS_TARGA = (
-    '.ldo-targa-foto img{margin-left:auto;margin-right:auto}'
+CSS_OGGETTO = (
+    '.ldo-oggetto-foto img{margin-left:auto;margin-right:auto}'
     '@media (max-width:767px){.ldo-frase{line-height:1.4!important}}'
 )
 
 
+def frase(html, **p):
+    """La frase sola centrata sotto un oggetto (stile "frase", al massimo 25em)."""
+    return T(f'<p>{html}</p>', style='frase', color=INCHIOSTRO, align='center', max_w=(750, 650, 600), css='ldo-frase', **p)
+
+
+def oggetto_centrato(nome, foto, alt, sotto, larghezze=(480, 400, 273), ancora=None, pad_alto='stacco'):
+    """Una cosa sola al centro del bianco e, a 64 / 48 / 32 px, quello che la accompagna (specifica 3.6, "Oggetto centrato"):
+    la targa con la frase in home (H2), la maglia nel bike hotel (B2), la targa sopra il titolo in Prenota (P1).
+    sotto: widget già fatti (frase(...), oppure titolo e paragrafo); larghezze della foto in px a 1440, 1024, 390."""
+    figli = [I(img(foto), alt, w_img=larghezze, css='ldo-oggetto-foto')]
+    for k, w in enumerate(sotto):
+        w.p.setdefault('mt', 'l' if k == 0 else 's')
+        figli.append(w)
+    figli.append(RAW('', css=CSS_OGGETTO))
+    return C(*figli, align='center', pad=(pad_alto, 'lato', 0, 'lato'), gap=0, boxed=False, tag='section', anchor=ancora,
+             css=f'ldo-oggetto ldo-{nome}')
+
+
 def targa():
     """H2: la targa in ceramica ALBERGO al centro, sola, e una frase: dove siamo e cosa si trova."""
-    return C(
-        I(img('targa.jpg'), 'La targa in ceramica ALBERGO con la chiave e le due stelle, sul muro giallo della facciata',
-          w_img=(480, 400, 273), css='ldo-targa-foto'),
-        T(f'<p>Albergo e trattoria a{NB}Este, in Viale{NB}Fiume{NB}20: la cena, la camera e il garage per la{NB}bici, '
-          f'a{NB}due passi dal Castello Carrarese.</p>', style='frase', color=INCHIOSTRO, align='center',
-          max_w=(750, 650, 600), mt='l', css='ldo-frase'),
-        RAW('', css=CSS_TARGA),
-        align='center', pad=('stacco', 'lato', 0, 'lato'), gap=0, boxed=False, tag='section', css='ldo-targa')
+    return oggetto_centrato(
+        'targa', 'targa.jpg', 'La targa in ceramica ALBERGO con la chiave e le due stelle, sul muro giallo della facciata',
+        [frase(f'Albergo e trattoria a{NB}Este, in Viale{NB}Fiume{NB}20: la cena, la camera e il garage per la{NB}bici, '
+               f'a{NB}due passi dal Castello Carrarese.')])
 
 
 CSS_SALA = (
