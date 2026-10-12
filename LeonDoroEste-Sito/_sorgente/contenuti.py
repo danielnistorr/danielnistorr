@@ -378,7 +378,7 @@ CSS_FACCIATA = (
     '.ldo-fac-foto{position:relative;aspect-ratio:1680/826;padding-top:8.4%!important}'
     # velatura scura solo dietro il titolo (nessun colore: il nero caldo della foto)
     '.ldo-fac-foto::before{content:""!important;display:block;position:absolute;top:0;left:0;width:100%;height:100%;'
-    'background:radial-gradient(ellipse 34% 46% at 79% 30%,rgba(14,9,4,.5),rgba(14,9,4,0));opacity:1;mix-blend-mode:normal;'
+    'background:radial-gradient(ellipse 34% 46% at 79% 30%,rgba(14,9,4,.5),rgba(14,9,4,0));opacity:1;'
     'border:0;pointer-events:none;z-index:0}'
     '.ldo-fac-foto>.ldo-fac-titolo{position:relative;z-index:1}'
     # telefono: prima la foto verticale (widget immagine), poi il titolo in verde su bianco
