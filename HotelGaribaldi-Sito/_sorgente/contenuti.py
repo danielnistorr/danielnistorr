@@ -18,7 +18,7 @@ quello che non è verificabile è nel paragrafo 17 della specifica, da copiare n
 from urllib.parse import quote
 
 import motore as m
-from motore import C, H, T, B, I, RAW, MENU
+from motore import C, B, I, RAW, MENU
 
 PREFISSO = 'hgr'
 NOME_SITO = 'Hotel Garibaldi'
@@ -91,6 +91,15 @@ BASE_PREDEFINITA = 'https://raw.githubusercontent.com/danielnistorr/danielnistor
 BASE = BASE_PREDEFINITA
 
 
+def H(text, level='h2', style=None, color=None, **p):
+    """Titolo: in motore il colore predefinito è il NERO di Benvegnù (legato all'import), qui l'ardesia."""
+    return m.H(text, level, style, color or ARDESIA, **p)
+
+
+def T(html, style='body', color=None, **p):
+    return m.T(html, style, color or ARDESIA, **p)
+
+
 def imposta_base(base):
     global BASE
     BASE = base if base.endswith('/') else base + '/'
@@ -117,6 +126,13 @@ REA = 'PD-214632'
 CAPITALE = f'60.000{NB}euro'
 PEC = 'a.l.p.srl@pec.it'                       # [DA CONFERMARE] su INI-PEC
 CIN = 'IT028060A173Q36JDQ'
+
+
+# Sopra 1440 px ogni sezione è un contenitore di 1440 centrato. In Elementor il margine laterale (padding) sta fuori dalla
+# larghezza "boxed": per avere a 1920 gli stessi allineamenti di 1440 la larghezza boxed è 1440 meno i margini.
+W_TESTO = 1312     # margine di 64 a sinistra e a destra (testata, piede, titoli)
+W_FILO = 1376      # foto a filo di un bordo, margine di 64 solo dall'altro lato
+W_PIENO = 1440     # campo rosso: foto a filo, margine dentro la colonna di testo
 
 
 def mailto(oggetto, corpo=''):
@@ -161,13 +177,17 @@ CSS_BASE = (
     f'.hgr-testata .hfe-nav-menu__toggle[aria-expanded=true] .hfe-nav-menu-icon{{color:{ROSSO}!important}}'
     # la tendina: pannello bianco a tutta larghezza sotto la testata, senza filetti, con un'ombra leggera
     '@media (max-width:1024px){'
-    '.hgr-testata nav.hfe-dropdown{border:0!important;box-shadow:0 12px 24px rgba(30,38,49,.12)!important;'
-    f'background:{BIANCO}!important;padding:16px 0 40px!important}}'
+    '.hgr-testata .hgr-menu{flex:0 0 auto!important;width:auto!important}'
+    '.hgr-testata nav.hfe-dropdown{position:absolute!important;top:100%!important;margin-top:30px!important;border:0!important;'
+    f'box-shadow:0 12px 24px rgba(30,38,49,.12)!important;background:{BIANCO}!important;padding:0!important}}'
+    '.hgr-testata nav.hfe-dropdown ul.hfe-nav-menu{padding:16px 0 40px!important}'
+    '.hgr-testata nav.hfe-dropdown li.menu-item{border:0!important}'
     '.hgr-testata nav.hfe-dropdown .menu-item a.hfe-menu-item{padding:8px 48px!important;border:0!important;'
     f'color:{ARDESIA}!important;background:{BIANCO}!important}}'
     f'.hgr-testata nav.hfe-dropdown .menu-item a.hfe-menu-item:hover{{color:{ROSSO}!important}}'
     f'.hgr-testata nav.hfe-dropdown .current-menu-item>a.hfe-menu-item{{color:{ROSSO}!important}}}}'
-    '@media (max-width:767px){.hgr-testata nav.hfe-dropdown .menu-item a.hfe-menu-item{padding:8px 24px!important}}'
+    '@media (max-width:767px){.hgr-testata nav.hfe-dropdown .menu-item a.hfe-menu-item{padding:8px 24px!important}'
+    '.hgr-testata nav.hfe-dropdown{margin-top:16px!important}}'
     f"a.hfe-skip-link:focus{{background:{ARDESIA};color:{BIANCO};border-radius:0;box-shadow:none;outline:2px solid {BIANCO};"
     f"outline-offset:-4px;font:500 13px/1 '{SPECTRAL}',Georgia,serif;letter-spacing:1.8px;text-transform:uppercase;"
     'text-decoration:none;padding:16px 24px}'
@@ -243,10 +263,14 @@ JS_TESTATA = (
 CSS_OGGETTO = (
     # la chiave: a telefono la foto viene prima del titolo, ritagliata sul portachiavi grande
     '.hgr-chiave img{object-position:62% 50%}'
+    '@media (min-width:1025px){.hgr-chiave img{height:auto!important;aspect-ratio:12/5;max-height:600px}}'
+    '@media (min-width:768px) and (max-width:1024px){.hgr-chiave img{height:auto!important;aspect-ratio:1024/440}}'
+    # il titolo d'apertura resta su una riga anche tra 1025 e 1439 px: scende da 104 px con la larghezza della finestra
+    '@media (min-width:1025px) and (max-width:1439px){.hgr-apertura h1{font-size:min(104px,calc((100vw - 128px) / 11.6))!important}}'
     '@media (max-width:767px){.hgr-chiave{order:-1}.hgr-chiave img{object-position:84% 50%!important}}'
     # la camera: su desktop la didascalia sta sotto la foto senza allungare la riga, così il bagno è allineato al fondo
-    '@media (min-width:1025px){.hgr-figura{position:relative}.hgr-figura .hgr-didascalia{position:absolute;left:0;top:100%;'
-    'width:100%}}'
+    '@media (min-width:1025px){.hgr-figura{position:relative!important}.hgr-figura .hgr-didascalia{position:absolute!important;'
+    'left:0;top:100%;width:100%}}'
     # le statue: a telefono un ritaglio 390x420 al 40 % in verticale
     '@media (max-width:767px){.hgr-statue img{height:420px!important;object-fit:cover;object-position:50% 40%}}'
 )
@@ -305,7 +329,7 @@ def header():
             sottolinea=False, hide=['tablet', 'mobile'], fisso=True, css='hgr-tel-testata hgr-cifre hgr-tap')
     prenota = B('Prenota', '/prenota/', variant='primario', fisso=True, css='hgr-btn-testata')
     riga = C(marchio, menu, tel, prenota, dir='row', justify='between', align='center', gap=('s', 'xs', 'xs'),
-             min_h=(104, 104, 76), pad=(0, 'lato'), boxed=True)
+             min_h=(104, 104, 76), pad=(0, 'lato'), boxed=True, boxed_width=W_TESTO)
     return C(riga, RAW('', css=CSS_BASE, solo_elementor=True),
              RAW(JS_TESTATA, css=CSS_COMUNE + CSS_TESTATA + CSS_NAV_FALLBACK + CSS_OGGETTO),
              pad='0', gap='0', boxed=False, tag='header', bg=BIANCO, css='hgr-testata hgr-sito')
@@ -336,7 +360,7 @@ def footer():
               f'<span class="hgr-nw">capitale sociale {CAPITALE}</span>, <span class="hgr-nw">PEC {PEC}</span>. '
               f'<span class="hgr-nw">CIN {CIN}</span>.', stile='legale', colore=TESTO2, css='hgr-cifre'),
         pad=('xs', 0, 0, 0), border_top=1, border_color=FILETTO, mt='l', gap='0', css='hgr-legale')
-    return C(colonne, legale, gap='0', pad=('xl', 'lato', (48, 48, 32), 'lato'), bg=BIANCO, tag='footer',
+    return C(colonne, legale, gap='0', pad=('xl', 'lato', (48, 48, 32), 'lato'), bg=BIANCO, tag='footer', boxed_width=W_TESTO,
              css='hgr-piede hgr-sito')
 
 
@@ -359,13 +383,16 @@ def sezione_chiave(titolo, attacco, numero=TEL):
     """H1, la chiave: titolo grande sul bianco, sopra i portachiavi a tutta larghezza (fino a 1920 px);
     sotto, la frase con indirizzo, casello, parcheggio e colazione e, a destra, telefono ed email.
     A telefono la foto viene prima del titolo (regola G9 della guida)."""
-    titolo_n = C(H(titolo, 'h1', style='display'), boxed=True, pad=(0, 'lato'), mt=(0, 0, 32), mb=(48, 32, 0), gap='0')
+    titolo_n = C(H(titolo, 'h1', style='display'), boxed=True, boxed_width=W_TESTO, pad=(0, 'lato'), mt=(0, 0, 32),
+                 mb=(48, 32, 0), gap='0')
     foto = I(img('home-chiave.jpg'), ALT_CHIAVE, height=(600, 440, 300), fit='cover', pos='62% 50%', css='hgr-chiave')
     frase = C(testo(attacco, stile='lead', max_w=(744, 651, 744)), w=(60, 66, 100), gap='0')
-    contatti = C(telefono(numero=numero), email(mt='min'), align=('end', 'end', 'start'), w=(30, 28, 100), gap='0')
+    destra = ('right', 'right', 'left')
+    contatti = C(telefono(numero=numero, align=destra), email(mt='min', align=destra), align=('end', 'end', 'start'),
+                 w=(30, 28, 100), gap='0')
     attacco_n = C(frase, contatti,
                   dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='col', boxed=True,
-                  pad=(0, 'lato'), mt=(48, 48, 24))
+                  boxed_width=W_TESTO, pad=(0, 'lato'), mt=(48, 48, 24))
     return C(titolo_n, foto, attacco_n, boxed=True, boxed_width=1920, pad=((48, 48, 0), 0, 0, 0), gap='0', tag='section',
              anchor='content', css='hgr-apertura')
 
@@ -373,12 +400,13 @@ def sezione_chiave(titolo, attacco, numero=TEL):
 def sezione_insegna(titolo, corpo, link):
     """H2, l'insegna: la facciata all'imbrunire a filo del bordo sinistro (61,1 %, al massimo 880x660); accanto una
     colonna alta quanto la foto, con il dettaglio dell'insegna in alto e titolo, testo e link al fondo."""
-    foto = C(I(img('home-facciata-sera.jpg'), ALT_FACCIATA_SERA), w=(61.1, 54.7, 100), fisso=True, gap='0')
+    # 880 su 1376 (1440 meno il margine destro di 64) e 560 su 976 a 1024: a 1440 la foto è 880x660, scala 1
+    foto = C(I(img('home-facciata-sera.jpg'), ALT_FACCIATA_SERA), w=(63.95, 57.38, 100), fisso=True, gap='0')
     colonna = C(
         I(img('home-insegna-dettaglio.jpg'), ALT_INSEGNA, w_img=(256, 192, 192), hide=['mobile']),
         blocco_titolo_testo(titolo, corpo, link),
         justify='between', gap='m', grow=True, pad=(0, (0, 0, 24)))
-    return C(foto, colonna, dir='row', dir_m='column', gap='col', boxed=True,
+    return C(foto, colonna, dir='row', dir_m='column', gap='col', boxed=True, boxed_width=W_FILO,
              pad=('sezione', (64, 48, 0), 0, 0), tag='section', css='hgr-insegna')
 
 
@@ -388,7 +416,7 @@ def sezione_camera(titolo, corpo, link, didascalia, dettaglio=True, extra=None):
     figura = C(I(img('home-camera.jpg'), ALT_CAMERA),
                C(testo(didascalia, stile='small', colore=TESTO2), pad=('xxs', (0, 0, 24), 0, (0, 0, 24)), gap='0',
                  css='hgr-didascalia'),
-               w=(66.7, 58.6, 100), fisso=True, gap='0', css='hgr-figura')
+               w=(69.77, 61.48, 100), fisso=True, gap='0', css='hgr-figura')   # 960 su 1376, 600 su 976
     alto = [blocco_titolo_testo(titolo, corpo, link, stile_titolo='h2b')]
     if extra:
         alto.append(extra)
@@ -396,7 +424,7 @@ def sezione_camera(titolo, corpo, link, didascalia, dettaglio=True, extra=None):
     if dettaglio:
         figli.append(I(img('home-bagno-dettaglio.jpg'), ALT_BAGNO, w_img=(240, 240, 240), hide=['tablet', 'mobile']))
     colonna = C(*figli, justify='between', gap='m', grow=True, pad=(0, (0, 0, 24)))
-    return C(figura, colonna, dir='row-reverse', dir_m='column', gap='col', boxed=True,
+    return C(figura, colonna, dir='row-reverse', dir_m='column', gap='col', boxed=True, boxed_width=W_FILO,
              pad=('sezione', 0, 0, (64, 48, 0)), tag='section', css='hgr-camera')
 
 
@@ -414,7 +442,8 @@ def sezione_prenota(titolo, corpo, bottone, numero=TEL):
         B(bottone[0], bottone[1], variant='chiaro'),
         justify='center', gap='0', grow=True, pad=((96, 64, 48), (96, 48, 24), (96, 64, 64), (64, 48, 24)))
     foto = C(I(img('statue.jpg'), ALT_STATUE, css='hgr-statue'), w=(30.56, 37.1, 100), fisso=True, gap='0')
-    return C(testo_n, foto, dir='row', dir_m='column-reverse', gap='0', boxed=True, pad='0', bg=ROSSO, mt='sezione',
+    return C(testo_n, foto, dir='row', dir_m='column-reverse', gap='0', boxed=True, boxed_width=W_PIENO, pad='0', bg=ROSSO,
+             mt='sezione',
              tag='section', css='hgr-rosso hgr-prenota-home')
 
 
