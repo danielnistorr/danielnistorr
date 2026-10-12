@@ -562,9 +562,544 @@ def home():
             ('camere', camere_home())]
 
 
+# ---------------------------------------------------------------------------------------------
+# Componenti delle pagine interne
+# ---------------------------------------------------------------------------------------------
+def euro2(n):
+    """Prezzo del listino, sempre nella stessa forma (50,00 €): l'allineamento a destra basta, niente colonne di cifre."""
+    return f'{n},00{NB}€'
+
+
+def apertura(titolo, primo, centro=False, altro=None, ancora='content', css='', pad_alto='xl'):
+    """Il titolo della pagina (h1, 72 / 56 / 40) e il primo paragrafo, nel bianco sotto la testata, a 96 / 80 / 48 px.
+    centro: titolo e testo centrati da 768 px in su (al telefono a sinistra, come il resto della pagina)."""
+    al = ('center', 'center', 'left') if centro else 'left'
+    figli = [H(titolo, 'h1', style='h1', color=VERDE, align=al),
+             testo(f'<p>{primo}</p>', stile='primo', align=al, mt='s', max_w=(714, 714, 600))]
+    if altro:
+        figli.append(testo(f'<p>{altro}</p>', align=al, mt='xs', max_w=(646, 646, 600)))
+    return C(*figli, align=('center', 'center', 'start') if centro else 'start', pad=(pad_alto, 'lato', 0, 'lato'), gap=0,
+             boxed=False, tag='section', anchor=ancora, css=('ldo-apertura ' + css).strip())
+
+
+def foto_filo(nome, foto, alt, lato='destro', foto_tel=None, alt_tel=None, h_tel=300, pos_tel='center center', larghezza=1200,
+              w=(83.33, 87.5, 100)):
+    """Foto a filo del bordo della pagina (specifica 3.6): 1200 px a 1440 (scala 1,00 per un file da 1200), l'87,5 % a 1024,
+    tutta la larghezza al telefono. foto_tel: un altro ritaglio per il telefono; altrimenti al telefono la stessa foto alta
+    h_tel, ritagliata (pos_tel)."""
+    classe = f'ldo-filo-{nome}'
+    css = f'.{classe}{{max-width:{larghezza}px!important}}'
+    if foto_tel:
+        figli = [I(img(foto), alt, hide=['mobile']), I(img(foto_tel), alt_tel or alt, hide=['desktop', 'tablet'])]
+    else:
+        figli = [I(img(foto), alt)]
+        css += (f'@media (max-width:767px){{.{classe} img{{height:{h_tel}px!important;object-fit:cover;'
+                f'object-position:{pos_tel}}}}}')
+    return C(*figli, RAW('', css=css), w=w, gap=0, css=f'ldo-filo {classe}'), ('end' if lato == 'destro' else 'start')
+
+
+def h2(titolo, stile='h2a', colore=VERDE, **p):
+    return H(titolo, 'h2', style=stile, color=colore, **p)
+
+
+def h3(titolo, colore=VERDE, **p):
+    return H(titolo, 'h3', style='h3', color=colore, **p)
+
+
+def voci(elenco, **p):
+    """Righe di una carta (piatti, luoghi): una per riga, 18 px, senza puntini, senza filetti, senza prezzi."""
+    return T('<p>' + '<br>'.join(elenco) + '</p>', style='foto', color=INCHIOSTRO, **p)
+
+
+def colonne(blocchi, w=(31, 47, 100), gap=0, gap_r=(0, 48, 32), justify='between', **p):
+    """Colonne di solo testo, distribuite sulla riga (a 1440 tre da 31 %, a 1024 due da 47 %, al telefono una): la distanza
+    viene dallo spazio che avanza, così la somma resta sotto il 100 % (lezione di Benvegnù sulle griglie)."""
+    return C(*[C(*b, w=w, gap=0) for b in blocchi], dir='row', wrap=True, justify=justify, align='start', gap=gap,
+             gap_r=gap_r, **p)
+
+
+def gruppo_carta(titolo, piatti):
+    return [h3(titolo), voci(piatti, mt='xs')]
+
+
+CSS_LARGO = (
+    # colonne centrate larghe al massimo 1200 (carta del ristorante) e 640 (listino)
+    '.ldo-largo-1200{max-width:1200px!important;margin-left:auto!important;margin-right:auto!important}'
+    '.ldo-largo-640{max-width:640px!important;margin-left:auto!important;margin-right:auto!important}'
+)
+
+
+# ---------------------------------------------------------------------------------------------
+# 02 CAMERE (specifica 7)
+# ---------------------------------------------------------------------------------------------
+def camere_apertura():
+    """C1: il titolo nel bianco, poi la camera a due letti a filo destro, 1200 x 740 (scala 1,00): lo specchio della sala in
+    home. Al telefono il ritaglio sui letti e sulla porta."""
+    foto, lato = foto_filo('camere', 'camere-largo.jpg', 'Camera con due letti, il soffitto a travi e le pareti color ocra',
+                           foto_tel='camere-alto.jpg')
+    parole = C(H(f'Camera e<br>colazione', 'h1', style='h1', color=VERDE),
+               testo(f'<p>Tredici camere singole, doppie e matrimoniali, con la colazione compresa nel prezzo: a{NB}Este, in '
+                     f'Viale{NB}Fiume, a{NB}due passi dal centro e dal Castello Carrarese.</p>', stile='primo', mt='s',
+                     max_w=(714, 714, 600)),
+               pad=(0, 'lato', 0, 'lato'), gap=0)
+    foto.p['mt'] = 'l'
+    # la sezione allinea a destra: il testo è largo quanto la pagina, la foto (83 %) va a filo destro
+    return C(parole, foto, align='end', pad=('xl', 0, 0, 0), gap=0, boxed=False, tag='section', anchor='content',
+             css='ldo-camere-apertura')
+
+
+def listino():
+    """C2: il listino 2026 stretto al centro come una carta (640 px): l'unica tabella del sito, quattro righe con il prezzo
+    allineato a destra e un filetto sotto ogni riga."""
+    L = LISTINO
+
+    def riga(nome, prezzo):
+        return C(testo(f'<p>{nome}</p>', grow=True),
+                 T(f'<p>{euro2(prezzo)}</p>', style='prezzo', color=INCHIOSTRO, fisso=True),
+                 dir='row', justify='between', align='baseline', gap='s', pad=('xs', 0), border_bottom=1,
+                 border_color=INCHIOSTRO)
+
+    colonna = C(
+        h2(f'Listino {L["anno"]}', stile='h2c', align='center'),
+        h3('Camera e colazione', mt='l'),
+        C(riga('Singola', L['singola']), riga('Doppia o matrimoniale', L['doppia']), gap=0, mt='xxs'),
+        h3('Con i pasti, bevande incluse', mt='l'),
+        C(riga('Mezza pensione, a persona', L['mezza']), riga('Pensione completa, a persona', L['completa']), gap=0, mt='xxs'),
+        T('<p>Stagione unica.</p>', style='piccolo', color=INCHIOSTRO, mt='s'),
+        gap=0, css='ldo-largo-640')
+    return C(colonna, RAW('', css=CSS_LARGO), pad=('stacco', 'lato', 0, 'lato'), gap=0, boxed=False, tag='section',
+             anchor='listino', css='ldo-listino')
+
+
+CSS_RIGA_FOTO = (
+    # foto a filo e testo accanto: al telefono la foto sopra, a tutta larghezza, e il testo sotto con i margini di pagina
+    '.ldo-riga-foto .ldo-riga-img img{width:100%!important}'
+)
+
+
+def foto_e_testo(nome, foto, alt, figli, lato_foto='sinistro', w_foto=(50, 44.5, 100), ancora=None, mt='stacco', allinea='center'):
+    """Una foto a filo (sinistro o destro) e il testo accanto, nella stessa colonna titolo e paragrafi, centrato in verticale
+    sulla foto; al telefono la foto sopra e il testo sotto (camere C3, ristorante R4)."""
+    immagine = C(I(img(foto), alt), w=w_foto, fisso=True, gap=0, css='ldo-riga-img')
+    if lato_foto == 'sinistro':
+        parole = C(*figli, grow=True, gap=0, pad=(0, 'lato', 0, (64, 48, 20)), css='ldo-riga-testo')
+        parti, dir_m = (immagine, parole), 'column'
+    else:
+        parole = C(*figli, grow=True, gap=0, pad=(0, (64, 48, 20), 0, 'lato'), css='ldo-riga-testo')
+        parti, dir_m = (parole, immagine), 'column-reverse'
+    return C(*parti, RAW('', css=CSS_RIGA_FOTO), dir='row', dir_m=dir_m, align=(allinea, allinea, 'stretch'), gap=(0, 0, 32),
+             mt=mt, pad='0', boxed=False, tag='section', anchor=ancora, css=f'ldo-riga-foto ldo-{nome}')
+
+
+def in_albergo():
+    """C3: il salottino a filo sinistro (720 x 540, scala 0,70) e accanto i servizi detti in una frase, non in icone."""
+    return foto_e_testo('in-albergo', 'salottino.jpg', "Il salottino dell'albergo con la parete in legno e le poltrone verdi", [
+        h2('In albergo'),
+        testo("<p>Aria condizionata, TV satellitare, wi-fi e telefono in camera. L'auto resta nel parcheggio pubblico accanto "
+              "all'albergo, la bici nel garage.</p>", mt='s', max_w=(646, 646, 600)),
+        testo('<p>Al banco vi diamo indicazioni su cosa vedere a Este, sui sentieri dei Colli e su cantine e frantoi da '
+              'visitare.</p>', mt='xs', max_w=(646, 646, 600)),
+        testo("<p>Chi assiste un ricoverato all'ospedale di Schiavonia trova qui una camera.</p>", mt='xs',
+              max_w=(646, 646, 600)),
+        link_isolato("Per l'ospedale", '/ospedale-schiavonia/', mt='s'),
+    ], ancora='servizi')
+
+
+def camere_prenota():
+    """C4: il campo giallo con il banco della reception."""
+    return campo_giallo(
+        'Prenota una camera',
+        'Scriveteci le date di arrivo e di partenza e quante persone siete, adulti e bambini: vi rispondiamo con la '
+        'disponibilità.',
+        'reception.jpg', 'Il banco della reception in legno, con il casellario delle chiavi',
+        dopo=('Il modulo di richiesta', '/prenota/'), ancora='prenota')
+
+
+def camere():
+    return [('apertura', camere_apertura()), ('listino', listino()), ('in-albergo', in_albergo()),
+            ('prenota', camere_prenota())]
+
+
+# ---------------------------------------------------------------------------------------------
+# 03 RISTORANTE (specifica 8)
+# ---------------------------------------------------------------------------------------------
+def foto_piena(nome, foto, alt, larghezza_file, foto_tel, figli=(), ancora=None, mt='stacco'):
+    """Una foto a tutta larghezza, mai più larga del file (la sezione si ferma alla sua larghezza, centrata); al telefono un
+    ritaglio più alto. figli: quello che segue nel bianco, con i margini di pagina (bike hotel B1)."""
+    sotto = [C(*figli, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l')] if figli else []
+    return C(I(img(foto), alt, hide=['mobile']), I(img(foto_tel), alt, hide=['desktop', 'tablet']), *sotto,
+             boxed=True, boxed_width=larghezza_file, pad='0', gap=0, mt=mt, tag='section', anchor=ancora,
+             css=f'ldo-piena ldo-piena-{nome}')
+
+
+MENU_CARNE = [
+    ('Antipasti', ['Affettati misti', 'Sopressa, polenta e funghi', 'Prosciutto crudo e melone', 'Bresaola, rucola e grana']),
+    ('Primi', ["Pasta all'uovo al ragù o al pomodoro", 'Tagliolini in brodo', 'Zuppa di verdure', 'Pasta e fagioli',
+               'Fettuccine al sugo', 'Spaghetti alla carbonara', 'Gnocchi della casa', 'Pasticcio della casa',
+               'Cannelloni della casa', "Pasta all'arrabbiata", 'Risotti', 'Bigoli alla boscaiola']),
+    ('Secondi', ['Braciola di maiale', 'Braciola di vitello', 'Costata di manzo o filetto', 'Bistecca di manzo o di tacchino',
+                 'Fegato o cuore di vitellone', 'Fegato alla veneziana', 'Trippa alla parmigiana',
+                 'Coniglio al forno o alla cacciatora', 'Spezzatino o ossobuco di vitello', 'Arrosto di vitello',
+                 'Musso con polenta', 'Brasato di manzo', 'Bollito misto', 'Salsiccia e polenta', 'Vitello tonnato',
+                 'Carpaccio', 'Roast beef', 'Baccalà alla vicentina']),
+]
+MENU_PESCE = [
+    ('Antipasti', ['Insalata di mare', 'Carpaccio di pesce spada', 'Scampi alla busara', 'Granseola o granzoporro',   # [DA CONFERMARE: grafia]
+                   'Gamberetti in salsa rosa o con rucola e grana', 'Sarde in saor', 'Cozze e vongole', 'Astice']),
+    ('Primi', ['Spaghetti allo scoglio', 'Pasticcio di pesce', 'Spaghetti alla marinara', 'Tagliatelle alla busara',
+               'Tagliatelle con le seppie', 'Gnocchi alla marinara', 'Risotti di pesce', 'Penne al salmone', 'Zuppa di pesce']),
+    ('Secondi', ['Vitello di mare ai ferri', 'Sogliola ai ferri', 'Branzino ai ferri', 'Orata ai ferri', 'Scampi e capesante',
+                 'Seppie ai ferri', 'Spiedini di gamberoni', 'Fritto misto',
+                 'Baccalà alla vicentina o in insalata',                                                       # [DA CONFERMARE: lettura]
+                 'Seppie alla veneta', 'Grigliata mista']),
+]
+
+
+def ristorante_apertura():
+    """R1: il titolo centrato nel bianco, una frase del cliente: senza rivisitazioni (testo 7)."""
+    return apertura('Senza<br>rivisitazioni',
+                    'Cucina veneta preparata come vuole la tradizione: musso con polenta, baccalà alla vicentina, bigoli alla '
+                    'boscaiola, fegato alla veneziana. I vini vengono da cantine dei Colli Euganei.', centro=True)
+
+
+def ristorante_cucina():
+    """R2: la padella sulla fiamma, a tutta larghezza (1920 al massimo): il gesto della cucina, nessun testo sopra."""
+    return foto_piena('padella', 'padella-largo.jpg', "Una padella di pasta sulla fiamma, nella cucina del Leon d'Oro", 1920,
+                      'padella-alto.jpg', mt='xl')
+
+
+def ristorante_menu():
+    """R3: la carta di ogni giorno, scritta per intero come in trattoria: tre colonne di solo testo, larghe insieme 1200."""
+    carta = C(
+        h2('Ogni giorno'),
+        testo('<p>Questo è il menù tipo: le proposte cambiano ogni giorno.</p>', stile='primo', mt='s', max_w=(714, 714, 600)),
+        colonne([gruppo_carta(t, v) for t, v in MENU_CARNE], mt='l'),
+        testo('<p>Contorni cotti, freschi e alla griglia.</p>', mt='m', max_w=(646, 646, 600)),
+        testo(f"<p>In cucina c'è la signora Annalisa Brugin, madre dei titolari.</p>", mt='xs', max_w=(646, 646, 600)),
+        gap=0, css='ldo-largo-1200')
+    return C(carta, RAW('', css=CSS_LARGO), pad=('stacco', 'lato', 0, 'lato'), gap=0, boxed=False, tag='section', anchor='menu',
+             css='ldo-menu-carne')
+
+
+def ristorante_pesce():
+    """R4: il venerdì sera, pesce: la sala a filo sinistro con il titolo accanto, poi la carta del pesce come quella di ogni
+    giorno."""
+    riga = foto_e_testo('venerdi-foto', 'sala-vino.jpg',
+                        "In sala una coppia a tavola, con il vino e il pane; alle pareti le stampe di Este", [
+                            h2('Il venerdì, pesce', stile='h2c'),
+                            testo("<p>Il venerdì sera c'è il menù di pesce, in omaggio alla cultura contadina di queste terre: "
+                                  'è gradita la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
+                        ], mt=0)
+    carta_in = C(colonne([gruppo_carta(t, v) for t, v in MENU_PESCE]), gap=0, css='ldo-largo-1200')
+    return C(riga, C(carta_in, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'), RAW('', css=CSS_LARGO), pad='0', gap=0, mt='stacco',
+             boxed=False, tag='section', anchor='pesce', css='ldo-pesce')
+
+
+def ristorante_prenota():
+    """R5: il campo giallo con la cantinetta: si prenota per telefono."""
+    return campo_giallo(
+        'Prenota un tavolo',
+        'La domenica il ristorante è chiuso. Il venerdì sera, per il pesce, è meglio prenotare.',
+        'cantinetta.jpg', 'La cantinetta con lo scaffale dei vini e un tavolo apparecchiato con la tovaglia gialla',
+        azione='Telefonate', ordine=('tel', 'email'), ancora='prenota')
+
+
+def ristorante():
+    return [('apertura', ristorante_apertura()), ('cucina', ristorante_cucina()), ('menu', ristorante_menu()),
+            ('pesce', ristorante_pesce()), ('prenota', ristorante_prenota())]
+
+
+# ---------------------------------------------------------------------------------------------
+# 04 BIKE HOTEL (specifica 9)
+# ---------------------------------------------------------------------------------------------
+def bike_apertura():
+    """B1: la strada bianca fra le vigne dal drone, a tutta larghezza subito sotto la testata; il titolo sotto, nel bianco."""
+    return foto_piena(
+        'vigne', 'vigne-largo.jpg', 'Due ciclisti su una strada bianca fra i vigneti dei Colli Euganei, visti dall\'alto', 1920,
+        'vigne-alto.jpg', mt=0, ancora='content',
+        figli=[H('Bike hotel', 'h1', style='h1', color=VERDE),
+               testo(f"<p>Este è ai piedi dei Colli Euganei: si parte dall'albergo, in bici da strada o in mountain bike, e la "
+                     f"sera la bici dorme nel garage.</p>", stile='primo', mt='s', max_w=(714, 714, 600))])
+
+
+def bike_percorsi():
+    """B2: i ciclisti con la maglia del Leon d'Oro a filo sinistro (1200 x 638, scala 0,75); sotto, i percorsi detti in frase,
+    con le distanze dentro il testo: nessuna riga di numeri, nessun profilo altimetrico."""
+    foto, _ = foto_filo('mura', 'mura.jpg', "Due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, con "
+                                            'una torre sullo sfondo', h_tel=300, pos_tel='30% center')
+    parole = C(
+        h2('Da Este'),
+        testo(f"<p>Per chi va piano c'è la ciclovia E2, l'anello che gira attorno ai Colli Euganei passando per i paesi: "
+              f"70{NB}km, e Este è sul percorso.</p>", mt='s', max_w=(646, 646, 600)),
+        testo(f'<p>Per la mountain bike c\'è la Transeuganea, 60{NB}km nella natura dei Colli Euganei, e molti altri '
+              'sentieri.</p>', mt='xs', max_w=(646, 646, 600)),
+        testo(f"<p>Il Leon d'Oro collabora da anni con il Team Este{NB}Bike e aiuta a organizzare le sue uscite in mountain bike "
+              f"e in bici da strada: il ritrovo è in piazza, alle 8.30 d'estate e alle{NB}9 d'inverno. Al banco vi diamo consigli "
+              'e indicazioni per i giri dei Colli.</p>', mt='xs', max_w=(646, 646, 600)),
+        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l')
+    return C(foto, parole, pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='percorsi', css='ldo-percorsi')
+
+
+def bike_prenota():
+    """B3: il campo giallo con le due mountain bike sullo sterrato."""
+    L = LISTINO
+    return campo_giallo(
+        'Camera e garage',
+        f"Con la colazione, la singola costa {euro(L['singola'])} e la doppia {euro(L['doppia'])}; le bici restano nel garage "
+        "privato dell'albergo.",
+        'sterrato.jpg', 'Due ciclisti in maglia gialla in mountain bike su uno sterrato bianco',
+        azione='Prenota una camera', dopo=('Il modulo di richiesta', '/prenota/'), ancora='prenota')
+
+
+def bike_hotel():
+    return [('apertura', bike_apertura()), ('percorsi', bike_percorsi()), ('prenota', bike_prenota())]
+
+
+# ---------------------------------------------------------------------------------------------
+# 05 PER L'OSPEDALE (specifica 10)
+# ---------------------------------------------------------------------------------------------
+def ospedale_apertura():
+    """O1: pagina pratica: il titolo, dove è l'ospedale e come si chiama, che cosa offre l'albergo."""
+    return apertura(
+        f"Per<br>l'ospedale",
+        f"Dal 5 novembre 2014 l'ospedale della Bassa Padovana è a Schiavonia, nel comune di Monselice: si chiama Ospedali Riuniti "
+        f"Padova Sud Madre Teresa di Calcutta.",
+        altro=f"Da sempre il Leon d'Oro dà una camera a chi deve stare vicino a un ricoverato. Per ogni altra informazione, "
+              f"chiedete al banco.")
+
+
+def ospedale_strade():
+    """O2: le due strade per arrivare, due colonne di solo testo: niente riquadri, niente icone, niente filetti."""
+    cols = C(
+        C(h3('In navetta'),
+          testo(f'<p>Il bus navetta parte dalla stazione delle corriere di Este; andata e ritorno costano 4,80{NB}€.</p>',
+                mt='xs'), w=(40, 47, 100), gap=0),
+        C(h3('In taxi'),
+          testo(f'<p>Taxi Este, telefono <a class="ldo-a" href="tel:+393395040502">339{NB}5040502</a>.</p>', mt='xs'),
+          w=(40, 47, 100), gap=0),
+        dir='row', wrap=True, justify=('start', 'between', 'start'), align='start', gap=(64, 0, 0), gap_r=(0, 0, 32))
+    return C(cols,
+             testo(f"<p>Il centralino dell'ospedale risponde allo "
+                   f'<a class="ldo-a" href="tel:+390429714111">0429{NB}714111</a>.</p>', mt='m', max_w=(646, 646, 600)),
+             pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', boxed=False, tag='section', anchor='come-arrivare',
+             css='ldo-ospedale-strade')
+
+
+def ospedale_camera():
+    """O3: il campo giallo con la reception di sera; il telefono per primo."""
+    L = LISTINO
+    return campo_giallo(
+        'Una camera vicina',
+        f"Con la colazione, la singola costa {euro(L['singola'])} e la doppia {euro(L['doppia'])}; con la mezza pensione "
+        f"{euro(L['mezza'])} a persona, bevande incluse. Il ristorante è nella stessa casa.",
+        'reception-sera.jpg', 'La reception di sera, con la lampada verde accesa sul banco',
+        azione='Chiamate o scrivete', ordine=('tel', 'email'), ancora='prenota')
+
+
+def ospedale():
+    return [('apertura', ospedale_apertura()), ('strade', ospedale_strade()), ('camera', ospedale_camera())]
+
+
+# ---------------------------------------------------------------------------------------------
+# 06 DOVE SIAMO (specifica 11)
+# ---------------------------------------------------------------------------------------------
+MAPPA_URL = 'https://www.google.com/maps/search/?api=1&query=45.2267456,11.6543665'
+
+
+def dove_apertura():
+    """D1: Este dal drone a tutta larghezza, l'indirizzo nel cielo; al telefono il titolo sotto la foto, in verde."""
+    return foto_con_titolo(
+        'este', f'Viale<br>Fiume{NB}20', 'este-largo.jpg', (1920, 850),
+        "Este vista dall'alto, con i tetti del centro, il campanile e il verde delle mura", (50, (1040, 850)),
+        stile='h1', livello='h1', pad_alto='4.44%', ancora='content', mt=0, foto_telefono='este-alto.jpg')
+
+
+def dove_arrivare():
+    """D2: come arrivare, in una colonna; un link a Google Maps al posto della mappa incorporata (niente cookie di terzi)."""
+    return C(
+        testo('<p>Siamo a Este, a due passi dal centro e dal Castello Carrarese, ai piedi dei Colli Euganei, poco lontano dalle '
+              'terme di Abano e Montegrotto, in provincia di Padova.</p>', stile='primo', max_w=(714, 714, 600)),
+        testo("<p>Accanto all'albergo c'è il parcheggio pubblico. Dalla stazione delle corriere di Este parte la navetta per "
+              "l'ospedale di Schiavonia.</p>", mt='xs', max_w=(646, 646, 600)),
+        T(f'<p>{INDIRIZZO}</p>', style='contatto', color=VERDE, mt='m'),
+        link_isolato('Apri in Google Maps', MAPPA_URL, mt='s'),
+        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', boxed=False, tag='section', anchor='come-arrivare', css='ldo-arrivare')
+
+
+def dove_intorno():
+    """D3: i Colli dal drone a filo destro, poi i luoghi da vedere in due colonne di nomi e una riga per le gite in giornata."""
+    foto, _ = foto_filo('borgo', 'borgo.jpg', 'Colli a cono, vigneti e un borgo, ripresi dall\'alto sui Colli Euganei',
+                        h_tel=300, pos_tel='40% center')
+    a_este = [h3('A Este'),
+              testo('<p>Una città murata, nata con i Paleoveneti, colonia romana, poi degli Estensi, dei Carraresi e di '
+                    'Venezia.</p>', mt='xs'),
+              voci(['Castello Carrarese', 'Museo Nazionale Atestino', 'Duomo di Santa Tecla, con la pala di Giambattista Tiepolo',
+                    'Chiesa di San Martino', 'Santuario della Madonna delle Grazie'], mt='s'),
+              testo("<p>All'ufficio turistico IAT trovate orari, opuscoli e la Ceramica Estense.</p>", mt='s')]
+    sui_colli = [h3('Sui Colli'),
+                 testo('<p>Colline di origine vulcanica, parco regionale dal 1989: vini, olio, sentieri a piedi e in bici. Vi '
+                       'diciamo noi quali cantine e frantoi visitare.</p>', mt='xs'),
+                 voci(['Arquà Petrarca', 'Monte Gemola e Villa Beatrice', 'Buso della Casara a Valnogaredo',
+                       'Fonte Regina a Torreglia', 'Cascata Schivanoia a Teolo'], mt='s')]
+    parole = C(
+        h2('Intorno'),
+        colonne([a_este, sui_colli], w=(40, 47, 100), gap=(64, 0, 0), gap_r=(0, 0, 40), justify=('start', 'between', 'start'),
+                mt='l'),
+        testo('<p>In auto, da Este si va in giornata a Padova, Vicenza, Verona, Venezia, Chioggia, Rovigo, Ferrara e '
+              'Mantova.</p>', mt='l', max_w=(646, 646, 600)),
+        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l')
+    return C(foto, parole, align='end', pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='cosa-vedere',
+             css='ldo-intorno')
+
+
+def dove_porta():
+    """D4: il campo giallo con la porta e l'insegna nera col leone, per riconoscere l'ingresso."""
+    return campo_giallo(
+        "L'insegna col leone",
+        "L'insegna nera col leone è accanto alla porta, sotto la scritta Albergo Leon d'Oro dipinta sul muro giallo.",
+        'porta.jpg', "La porta del Leon d'Oro di sera, con l'insegna nera e il leone dorato accanto all'ingresso",
+        testi=[f'<p>{INDIRIZZO}. Il ristorante è chiuso la domenica.</p>'], ordine=('tel', 'email'), ancora='indirizzo')
+
+
+def dove_siamo():
+    return [('apertura', dove_apertura()), ('come-arrivare', dove_arrivare()), ('intorno', dove_intorno()),
+            ('porta', dove_porta())]
+
+
+# ---------------------------------------------------------------------------------------------
+# 07 PRENOTA (specifica 12 e 13)
+# ---------------------------------------------------------------------------------------------
+CF7_TITOLO = "Richiesta camera Leon d'Oro"
+CF7 = f'[contact-form-7 title="{CF7_TITOLO}"]'
+
+CSS_MODULO = (
+    # il modulo sul giallo: campi bianchi con il bordo inchiostro, etichette sopra, errori a parole (nessun rosso, che sul
+    # giallo non reggerebbe), arrivo e partenza affiancati da 768 px in su, adulti e bambini sempre affiancati
+    f'.ldo-modulo .wpcf7 label,.ldo-modulo .ldo-scelta{{display:block;margin:0;font:600 16px/1.3 {FONT_CSS};color:{INCHIOSTRO};'
+    'letter-spacing:0;text-transform:none}'
+    '.ldo-modulo .wpcf7 p{margin:0}.ldo-modulo .wpcf7 br{display:none}'
+    '.ldo-modulo .wpcf7-form-control-wrap{display:block}'
+    '.ldo-modulo .ldo-campi{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:24px}'
+    '.ldo-modulo .ldo-tutta{grid-column:1/-1}'
+    f'.ldo-modulo .ldo-nota{{display:block;margin-top:4px;font:400 15px/1.4 {FONT_CSS};color:{INCHIOSTRO}}}'
+    '.ldo-modulo input[type=text],.ldo-modulo input[type=email],.ldo-modulo input[type=tel],.ldo-modulo input[type=date],'
+    '.ldo-modulo input[type=number],.ldo-modulo select,.ldo-modulo textarea{display:block;width:100%;box-sizing:border-box;'
+    f'margin:8px 0 0;background:{BIANCO};border:2px solid {INCHIOSTRO};border-radius:2px;box-shadow:none;padding:12px 16px;'
+    f'height:48px;font:400 17px/1.3 {FONT_CSS};color:{INCHIOSTRO};letter-spacing:0;text-transform:none}}'
+    '.ldo-modulo select{padding-top:10px;padding-bottom:10px}'
+    '.ldo-modulo textarea{height:auto;min-height:144px;resize:vertical}'
+    f'.ldo-modulo input::placeholder,.ldo-modulo textarea::placeholder{{color:{GRIGIO};opacity:1}}'
+    f'.ldo-modulo input:focus,.ldo-modulo select:focus,.ldo-modulo textarea:focus{{border-color:{VERDE};'
+    f'outline:3px solid {INCHIOSTRO};outline-offset:2px}}'
+    f'.ldo-modulo input[type=checkbox],.ldo-modulo input[type=radio]{{accent-color:{VERDE};flex:0 0 20px;width:20px;height:20px;'
+    'margin:2px 0 0}'
+    '.ldo-modulo .wpcf7-list-item{display:block;margin:0}'
+    '.ldo-modulo .wpcf7-list-item label{display:flex;align-items:flex-start;gap:12px;min-height:44px;padding:10px 0 0;'
+    'font-weight:400;font-size:17px;line-height:1.4}'
+    '.ldo-modulo .wpcf7-radio,.ldo-modulo .wpcf7-checkbox,.ldo-modulo .wpcf7-acceptance{display:block;margin-top:4px}'
+    f'.ldo-modulo .wpcf7-acceptance a{{color:{INCHIOSTRO};text-decoration:underline;text-decoration-thickness:2px;'
+    'text-underline-offset:4px;font-weight:600}'
+    f'.ldo-modulo .wpcf7-acceptance a:hover,.ldo-modulo .wpcf7-acceptance a:focus-visible{{color:{VERDE}}}'
+    f'.ldo-modulo input[type=submit]{{background:{VERDE};color:{BIANCO};border:0;border-radius:2px;padding:12px 24px;height:auto;'
+    f'font:600 16px/1.2 {FONT_CSS};letter-spacing:0;text-transform:none;cursor:pointer;margin-top:8px;box-shadow:none}}'
+    '.ldo-modulo input[type=submit]:hover,.ldo-modulo input[type=submit]:active,.ldo-modulo input[type=submit]:focus'
+    f'{{background:{INCHIOSTRO};color:{BIANCO}}}'
+    f'.ldo-modulo input[type=submit]:focus-visible{{outline:3px solid {INCHIOSTRO};outline-offset:3px}}'
+    f'.ldo-modulo input[type=submit]:disabled{{background:{CHIARO};color:{GRIGIO};cursor:not-allowed}}'
+    f'.ldo-modulo .wpcf7-not-valid{{border:3px solid {INCHIOSTRO}!important}}'
+    f'.ldo-modulo .wpcf7-not-valid-tip{{color:{INCHIOSTRO};font:600 15px/1.3 {FONT_CSS};margin-top:8px}}'
+    ".ldo-modulo .wpcf7-not-valid-tip::before{content:'Errore: '}"
+    f'.ldo-modulo .wpcf7 form .wpcf7-response-output{{margin:24px 0 0;padding:16px;border:0;background:{BIANCO};'
+    f'color:{INCHIOSTRO};font:400 17px/1.4 {FONT_CSS}}}'
+    '.ldo-modulo .wpcf7-spinner{margin:8px 0 0 16px}'
+    '@media (max-width:767px){.ldo-modulo .ldo-data{grid-column:1/-1}.ldo-modulo input[type=submit]{width:100%}}'
+)
+
+CSS_SCRIVI = (
+    # il bottone del fallback (al posto del modulo): verde, hover inchiostro, mai opacità
+    f'.ldo-modulo a.ldo-scrivi{{display:inline-block;background:{VERDE}!important;color:{BIANCO}!important;padding:12px 24px;'
+    f'border-radius:2px;font:600 16px/1.2 {FONT_CSS};text-decoration:none!important}}'
+    f'.ldo-modulo a.ldo-scrivi:hover,.ldo-modulo a.ldo-scrivi:focus{{background:{INCHIOSTRO}!important;color:{BIANCO}!important}}'
+    f'.ldo-modulo a.ldo-scrivi:focus-visible{{outline:3px solid {INCHIOSTRO};outline-offset:3px}}'
+    f'.ldo-modulo .ldo-alt p{{font:400 19px/1.6 {FONT_CSS}!important;color:{INCHIOSTRO}!important;margin:0 0 24px!important}}'
+    '.ldo-modulo .ldo-alt p:last-child{margin-bottom:0!important}'
+)
+
+
+def prenota_apertura():
+    """P1: la targa con la chiave al centro, il titolo sotto e una frase: come si chiede una camera."""
+    return oggetto_centrato(
+        'prenota-targa', 'targa.jpg', 'La targa in ceramica ALBERGO con la chiave e le due stelle, sul muro giallo della facciata',
+        [H('Prenota', 'h1', style='h1', color=VERDE, align='center'),
+         testo('<p>Diteci le date, quante persone siete e come volete stare: vi rispondiamo con la disponibilità e le opzioni. '
+               'Per un tavolo, telefonate.</p>', stile='primo', align='center', max_w=(714, 714, 600))],
+        ancora='content', pad_alto='xl')
+
+
+def prenota_richiesta():
+    """P2: il campo giallo grande, con il modulo dentro: a sinistra chi risponde e i recapiti, a destra il modulo (640 px).
+    Nel fallback HTML, dove Contact Form 7 non c'è, un bottone apre un'email con le voci già scritte."""
+    corpo = ('Nome e cognome:\nTelefono:\nArrivo:\nPartenza:\nAdulti:\nBambini (età):\n'
+             'Camera (singola, doppia o matrimoniale, più camere):\n'
+             'Trattamento (camera e colazione, mezza pensione, pensione completa):\nGarage per la bici (sì o no):\nNote:\n')
+    alternativa = (f'<div class="ldo-alt"><p>Scriveteci a <a class="ldo-a" href="mailto:{EMAIL}" style="color:{INCHIOSTRO}">'
+                   f'{EMAIL}</a>: il bottone qui sotto apre un\'email con le voci da compilare.</p>'
+                   f'<p><a class="ldo-scrivi" href="{mailto("Richiesta camera", corpo)}">Scrivi un\'email</a></p></div>')
+    parole = C(
+        h2('Scriveteci', stile='h2b', colore=INCHIOSTRO),
+        testo("<p>Rispondiamo all'indirizzo che ci lasciate. Se preferite, chiamate o scrivete direttamente.</p>",
+              link=INCHIOSTRO, hover=VERDE, mt='s', max_w=(570, 570, 600)),
+        C(*[testo(f'<p>{v}</p>', stile='contatto', link=INCHIOSTRO, hover=VERDE, css='ldo-intero', fisso=True)
+            for v in (f'<a class="ldo-a" href="{TEL_LINK}">{TEL}</a>', f'<a class="ldo-a" href="mailto:{EMAIL}">{EMAIL}</a>')],
+          gap=(16, 16, 16), mt='m'),
+        testo(f'<p>Fax {FAX}</p>', mt='xs'),
+        w=(43, 100, 100), gap=0, css='ldo-richiesta-testo')
+    modulo = C(SHORTCODE(CF7, alternativa_html=alternativa, stile='testo', colore=INCHIOSTRO),
+               RAW('', css=CSS_MODULO, solo_elementor=True), RAW('', css=CSS_SCRIVI),
+               w=(49, 100, 100), gap=0, css='ldo-modulo')
+    return C(parole, modulo, dir='row', dir_t='column', justify='between', align='start', gap=0, gap_r=(0, 48, 48),
+             pad=('campo', 'lato', 'campo', 'lato'), bg=GIALLO, boxed=False, mt='xl', tag='section', anchor='richiesta',
+             css='ldo-campo ldo-richiesta')
+
+
+def prenota_tavolo():
+    """P3: una riga per il tavolo, nel bianco dopo il campo giallo: qui il giallo non è l'ultima sezione."""
+    return C(
+        h2('Un tavolo', stile='h2c'),
+        testo("<p>Per il ristorante basta una telefonata. Il venerdì sera c'è il pesce ed è gradita la prenotazione; la "
+              'domenica siamo chiusi.</p>', mt='s', max_w=(646, 646, 600)),
+        testo(f'<p><a class="ldo-a" href="{TEL_LINK}">{TEL}</a></p>', stile='contatto', css='ldo-intero', mt='s', fisso=True),
+        pad=('stacco', 'lato', 'stacco', 'lato'), gap=0, boxed=False, tag='section', anchor='tavolo', css='ldo-tavolo')
+
+
+def prenota():
+    return [('apertura', prenota_apertura()), ('richiesta', prenota_richiesta()), ('tavolo', prenota_tavolo())]
+
+
 PAGINE = [
     {'slug': '01-home', 'titolo': 'Home', 'sezioni': home,
      'titolo_seo': "Albergo Ristorante Leon d'Oro, Este (PD)",
      'descrizione': 'Albergo e trattoria in Viale Fiume 20 a Este: cucina veneta, tredici camere con la colazione, garage per le bici, '
                     "vicino all'ospedale di Schiavonia."},
+    {'slug': '02-camere', 'titolo': 'Camere', 'sezioni': camere,
+     'titolo_seo': "Camere a Este, listino 2026, Leon d'Oro",
+     'descrizione': 'Tredici camere a Este, singole, doppie e matrimoniali, con la colazione: listino 2026, mezza pensione e '
+                    'pensione completa con le bevande.'},
+    {'slug': '03-ristorante', 'titolo': 'Ristorante', 'sezioni': ristorante,
+     'titolo_seo': "Ristorante di cucina veneta a Este, Leon d'Oro",
+     'descrizione': 'Musso con polenta, baccalà alla vicentina, bigoli, fegato alla veneziana; il menù di ogni giorno e il pesce '
+                    'del venerdì sera. Chiuso la domenica.'},
+    {'slug': '04-bike-hotel', 'titolo': 'Bike hotel', 'sezioni': bike_hotel,
+     'titolo_seo': "Bike hotel a Este sui Colli Euganei, Leon d'Oro",
+     'descrizione': 'Garage per le bici, l\'anello ciclabile dei Colli da 70 km, la Transeuganea e le uscite con il Team Este Bike.'},
+    {'slug': '05-ospedale-schiavonia', 'titolo': "Per l'ospedale", 'sezioni': ospedale,
+     'titolo_seo': "Albergo vicino all'ospedale di Schiavonia, Leon d'Oro",
+     'descrizione': "Una camera a Este per chi assiste un ricoverato all'Ospedale di Schiavonia: come arrivare in navetta o in "
+                    'taxi.'},
+    {'slug': '06-dove-siamo', 'titolo': 'Dove siamo', 'sezioni': dove_siamo,
+     'titolo_seo': "Dove siamo: Viale Fiume 20, Este, Leon d'Oro",
+     'descrizione': "Come arrivare al Leon d'Oro a Este e cosa vedere in città e sui Colli Euganei."},
+    {'slug': '07-prenota', 'titolo': 'Prenota', 'sezioni': prenota,
+     'titolo_seo': "Prenota una camera, Leon d'Oro Este",
+     'descrizione': 'Richiesta di prenotazione: date, persone e trattamento. Rispondiamo con la disponibilità.'},
 ]
