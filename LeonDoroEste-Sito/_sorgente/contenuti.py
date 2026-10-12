@@ -30,7 +30,7 @@ Come è costruito (per chi aggiunge pagine):
 from urllib.parse import quote
 
 import motore as m
-from motore import C, H, T, I, RAW
+from motore import C, H, T, I, RAW, SHORTCODE
 
 PREFISSO = 'ldo'
 NOME_SITO = "Leon d'Oro"
@@ -72,6 +72,7 @@ STILI = {
     'nav':       _st('400', (16, 16, 20), 1.2),
     'piccolo':   _st('400', (15, 15, 15), 1.6),
     'etichetta': _st('600', (16, 16, 15), 1.3),
+    'prezzo':    _st('600', (19, 19, 17), 1.6),                  # prezzi del listino (testo in 600)
 }
 # nomi che il motore usa come predefiniti (H con livello senza stile, bottoni, shortcode)
 STILI.update({'h2': STILI['h2a'], 'p': STILI['testo'], 'body': STILI['testo'], 'small': STILI['piccolo'],
@@ -373,20 +374,30 @@ def campo_giallo(titolo, primo, foto, alt, testi=(), azione=None, ordine=('email
 
 
 def foto_con_titolo(nome, titolo, foto, misura, descrizione, pos_telefono, colore=INCHIOSTRO, stile='h2a', livello='h2',
-                    pad_alto='6.6%', pad_telefono=24, ancora=None, mt='stacco', dopo=()):
+                    pad_alto='6.6%', pad_telefono=24, ancora=None, mt='stacco', dopo=(), foto_telefono=None):
     """Foto a tutta larghezza con il titolo nel cielo, in alto a sinistra (home H5, Dove siamo D1): sfondo di contenitore,
     larghezza massima uguale al file, altezza in proporzione al file; al telefono la stessa foto ritagliata dallo sfondo
     (pos_telefono: posizione orizzontale in %, rapporto (w, h) del ritaglio) e il titolo resta nel cielo.
+    foto_telefono: al telefono un'altra foto (widget immagine) sopra e il titolo sotto, in verde su bianco (Dove siamo D1,
+    dove il cielo a 390 px è troppo basso per il titolo).
     dopo: widget sotto la foto, nel bianco, con il margine di pagina."""
     w, h = misura
     (px, (tw, th)) = pos_telefono
     classe = f'ldo-pieno-{nome}'
-    css = (f'.{classe} .ldo-pieno-foto{{aspect-ratio:{w}/{h};padding-top:{pad_alto}!important}}'
-           f'@media (max-width:767px){{.{classe} .ldo-pieno-foto{{aspect-ratio:{tw}/{th};background-position:{px}% top!important;'
-           f'padding-top:{pad_telefono}px!important}}}}')
-    pieno = C(H(titolo, livello, style=stile, color=colore), solo_lettori(descrizione), img=img(foto), img_pos='center top',
+    css = f'.{classe} .ldo-pieno-foto{{aspect-ratio:{w}/{h};padding-top:{pad_alto}!important}}'
+    if foto_telefono:
+        css += ('@media (max-width:767px){'
+                f'.{classe} .ldo-pieno-foto{{aspect-ratio:auto;background-image:none!important;padding:32px 20px 0!important}}'
+                f'.{classe} .ldo-pieno-foto .elementor-heading-title,.{classe} .ldo-pieno-foto h1,.{classe} .ldo-pieno-foto h2'
+                f'{{color:{VERDE}!important}}}}')
+    else:
+        css += (f'@media (max-width:767px){{.{classe} .ldo-pieno-foto{{aspect-ratio:{tw}/{th};background-position:{px}% top!important;'
+                f'padding-top:{pad_telefono}px!important}}}}')
+    lettori = solo_lettori(descrizione, hide=['mobile']) if foto_telefono else solo_lettori(descrizione)
+    pieno = C(H(titolo, livello, style=stile, color=colore), lettori, img=img(foto), img_pos='center top',
               pad=(0, 'lato', 0, 'lato'), gap=0, css='ldo-pieno-foto e-no-lazyload')
-    figli = [pieno]
+    figli = [I(img(foto_telefono), descrizione, hide=['desktop', 'tablet'])] if foto_telefono else []
+    figli.append(pieno)
     if dopo:
         figli.append(C(*dopo, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'))
     figli.append(RAW('', css=css))

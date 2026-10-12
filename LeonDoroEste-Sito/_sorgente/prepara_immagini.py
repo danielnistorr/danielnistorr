@@ -88,7 +88,7 @@ def foto(nome, sorgente, ritaglio, larghezza=None, zona=None, forza=1.0, gains=N
         im = bilancia(im, *gains)
         voce['guadagni_R_B'] = [round(g, 3) for g in gains]
     else:
-        voce['nota'] = 'senza bilanciamento: zona bianca da scegliere sul provino prima della pagina'
+        voce['nota'] = 'senza bilanciamento, voluto: luce calda come soggetto o nessun bianco affidabile'
     voce['misura_file'] = salva(im.crop(ritaglio), nome, larghezza)
     REGISTRO[nome] = voce
     return voce
@@ -139,31 +139,48 @@ def main():
     foto('camera.jpg', 'originali/albergo/camera-matrimoniale-finestra.jpg', (280, 0, 1200, 800),
          zona=(700, 150, 880, 330), uso='home H6, campo giallo (720 x 720 a 1440)')
 
-    # ---- pagine interne (specifica 15): ritagli da guardare sul provino prima di costruire la pagina ----
+    # ---- pagine interne (specifica 15), ritagli controllati sui provini (_prova/fette/provini/) ----
+    # zone bianche: la parete accanto alla porta (camera a due letti), il soffitto (salottino, reception), la tovaglia
+    # (sala, cantinetta), la strada bianca (vigne, sterrato), il muro bianco della casa (borgo sui Colli). Il salottino è
+    # illuminato da lampade calde: correzione a metà (forza 0,5), il soffitto resta caldo. Senza correzione, voluti: la
+    # padella sul fuoco e la reception di sera (la luce calda è il soggetto), Este dal drone e i ciclisti alle mura (luce
+    # del giorno, nessun bianco affidabile nel fotogramma).
     foto('camere-largo.jpg', 'originali/albergo/camera-due-letti-travi.jpg', (0, 30, 1200, 770),
-         zona=(830, 150, 930, 400), uso='camere C1')
+         zona=(830, 150, 930, 400), uso='camere C1 (1200 x 740 a 1440, a filo destro)')
     foto('camere-alto.jpg', 'originali/albergo/camera-due-letti-travi.jpg', (210, 100, 990, 700),
          zona=(830, 150, 930, 400), uso='camere C1, telefono')
-    foto('salottino.jpg', 'esterne/regione-veneto/salottino-poltrone-verdi.jpg', (0, 0, 1024, 768), uso='camere C3')
-    foto('reception.jpg', 'originali/albergo/reception-banco-legno.jpg', (200, 0, 1000, 800), uso='camere C4')
-    foto('padella-largo.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (0, 0, 1920, 850), uso='ristorante R2')
+    foto('salottino.jpg', 'esterne/regione-veneto/salottino-poltrone-verdi.jpg', (0, 0, 1024, 768),
+         zona=(300, 10, 700, 60), forza=0.5, uso='camere C3 (720 x 540 a 1440)')
+    foto('reception.jpg', 'originali/albergo/reception-banco-legno.jpg', (200, 0, 1000, 800),
+         zona=(700, 20, 1000, 80), uso='camere C4, campo giallo')
+    foto('padella-largo.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (0, 0, 1920, 850),
+         uso='ristorante R2 (a tutta larghezza, al massimo 1920)')
     foto('padella-alto.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (440, 0, 1480, 850), uso='ristorante R2, telefono')
-    foto('sala-vino.jpg', VIDEO + 'video-sala-servizio-vino.jpg', (0, 0, 1600, 850), uso='ristorante R4')
+    # sala col vino: il cameriere, tagliato alla testa dal fotogramma, resta fuori (oltre x 1080); restano la coppia a tavola
+    # e le stampe di Este alle pareti
+    foto('sala-vino.jpg', VIDEO + 'video-sala-servizio-vino.jpg', (0, 0, 1080, 850),
+         zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (720 x 567 a 1440)')
     foto('cantinetta.jpg', 'esterne/regione-veneto/cantinetta-vini-tavolo.jpg', (128, 0, 896, 768),
-         zona=(200, 600, 400, 680), uso='ristorante R5')
+         zona=(200, 600, 400, 680), uso='ristorante R5, campo giallo')
     foto('vigne-largo.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (0, 0, 1920, 850),
-         zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1')
+         zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1 (a tutta larghezza, al massimo 1920)')
     foto('vigne-alto.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (560, 0, 1600, 850),
          zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1, telefono')
-    foto('maglia.jpg', VIDEO + 'video-maglia-team-leon-doro.jpg', (80, 304, 1760, 904), uso='bike hotel B2')
+    # al posto della maglia (fotogramma sfocato, la mano copre la L di Leon e "(Padova)" finisce sotto il marchio del video):
+    # due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, una torre sullo sfondo (107,5 s)
+    foto('mura.jpg', VIDEO + 'video-ciclisti-mura-castello.jpg', (0, 0, 1600, 850), uso='bike hotel B2 (1200 x 638 a 1440)')
     foto('sterrato.jpg', VIDEO + 'video-mtb-coppia-sterrato.jpg', (480, 0, 1330, 850),
-         zona=(900, 780, 1100, 840), forza=0.8, uso='bike hotel B4')
-    foto('reception-sera.jpg', VIDEO + 'video-reception-sera.jpg', (380, 0, 1230, 850), uso='ospedale O3')
-    foto('este-largo.jpg', VIDEO + 'video-drone-este-dall-alto.jpg', (0, 0, 1920, 850), uso='dove siamo D1')
+         zona=(900, 780, 1100, 840), forza=0.8, uso='bike hotel B3, campo giallo')
+    foto('reception-sera.jpg', VIDEO + 'video-reception-sera.jpg', (380, 0, 1230, 850), uso='ospedale O3, campo giallo')
+    foto('este-largo.jpg', VIDEO + 'video-drone-este-dall-alto.jpg', (0, 0, 1920, 850),
+         uso='dove siamo D1 (sfondo, larghezza massima 1920)')
     foto('este-alto.jpg', VIDEO + 'video-drone-este-dall-alto.jpg', (440, 0, 1480, 850), uso='dove siamo D1, telefono')
+    # i Colli a cono, i vigneti e il borgo dal drone (54 s): introduce "Intorno"; fuori il marchio del video (oltre x 1780)
+    foto('borgo.jpg', VIDEO + 'video-drone-colli-borgo.jpg', (100, 0, 1700, 850),
+         zona=(1400, 470, 1480, 520), forza=0.8, uso='dove siamo D3 (1200 x 638 a 1440, a filo destro)')
     # la porta è la stessa ripresa della facciata (0,3 s dopo): stessi guadagni, così i due gialli sono uguali
     foto('porta.jpg', FOTOGRAMMI + 'porta-213.6s.png', (500, 60, 1380, 904), gains=tuple(fac['guadagni_R_B']),
-         uso='dove siamo D4')
+         uso='dove siamo D4, campo giallo')
 
     logo('logo-leondoro-verde.png', VERDE)
     logo('logo-leondoro-bianco.png', BIANCO_PIENO)
