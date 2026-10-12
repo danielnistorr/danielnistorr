@@ -27,6 +27,7 @@ Come è costruito (per chi aggiunge pagine):
 - le sezioni con una foto di sfondo hanno la classe e-no-lazyload sul contenitore esterno (la sezione): Elementor rimanda gli
   sfondi dei figli finché la sezione non entra nella finestra, e senza JavaScript resterebbero vuoti.
 """
+import re
 from urllib.parse import quote
 
 import motore as m
@@ -149,6 +150,36 @@ def euro(n):
     return f'{n}{NB}€'
 
 
+# apostrofo tipografico (U+2019) nei testi che si leggono: titoli, paragrafi, testi alternativi, l'alternativa del modulo.
+# I testi qui sono scritti con l'apostrofo dritto; WordPress lo cambia solo in alcuni widget, così il fallback e i titoli
+# restavano con l'apostrofo dritto, che nel maiuscolo 800 sembra una virgoletta. I tag HTML (attributi, stili) non si toccano.
+_TAG = re.compile(r'(<[^>]+>)')
+
+
+def _tipo(html):
+    return ''.join(x if x.startswith('<') else x.replace("'", '\u2019') for x in _TAG.split(html))
+
+
+def apostrofi(nodo):
+    p = nodo.p
+    if nodo.kind == 'heading':
+        p['text'] = _tipo(p['text'])
+    elif nodo.kind == 'text':
+        p['html'] = _tipo(p['html'])
+    elif nodo.kind == 'image':
+        p['alt'] = p.get('alt', '').replace("'", '\u2019')
+    elif nodo.kind == 'shortcode':
+        p['alternativa_html'] = _tipo(p['alternativa_html'])
+    for figlio in nodo.children:
+        apostrofi(figlio)
+    return nodo
+
+
+def tipografica(pagina):
+    """Le sezioni di una pagina con gli apostrofi tipografici (per PAGINE)."""
+    return lambda: [(nome, apostrofi(sezione)) for nome, sezione in pagina()]
+
+
 def mailto(oggetto, corpo=''):
     url = f'mailto:{EMAIL}?subject={quote(oggetto)}'
     return url + ('&body=' + quote(corpo) if corpo else '')
@@ -156,7 +187,7 @@ def mailto(oggetto, corpo=''):
 
 # voci del menu, in quest'ordine (specifica 4.1); "Prenota" è il bottone della testata, non una voce
 VOCI_MENU = [('camere', '/camere/'), ('ristorante', '/ristorante/'), ('bike hotel', '/bike-hotel/'),
-             ("per l'ospedale", '/ospedale-schiavonia/'), ('dove siamo', '/dove-siamo/')]
+             ('per l\u2019ospedale', '/ospedale-schiavonia/'), ('dove siamo', '/dove-siamo/')]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -179,6 +210,8 @@ CSS_SITO = (
     '.elementor-widget-text-editor p{text-wrap:pretty}'
     '.elementor-widget-text-editor p:last-child{margin-block-end:0!important;margin-bottom:0!important}'
     '.ldo-frase p{text-wrap:balance!important}'
+    # voci di una carta: niente spazio fra i paragrafi, rientro sospeso
+    '.ldo-voci p{margin:0!important;padding-left:1em;text-indent:-1em}'
 )
 
 # ---------------------------------------------------------------------------------------------
@@ -283,8 +316,8 @@ def header():
     marchio = C(salta, logo, dir='row', align='center', gap=0, larg_px=(134, 134, 105), css='ldo-marchio')
     # niente tag header: in WordPress Ultimate Addons avvolge già la testata in <header id="masthead"> e un secondo header
     # dentro il primo è HTML non valido e un secondo punto di riferimento "banner" (lo stesso vale per il piede)
-    return C(marchio, RAW(nav_html(), css=CSS_SITO + CSS_NAV), dir='row', justify='between', align='center', gap='m',
-             pad=(16, 'lato'), bg=BIANCO, boxed=False, css='ldo-testata')
+    return apostrofi(C(marchio, RAW(nav_html(), css=CSS_SITO + CSS_NAV), dir='row', justify='between', align='center',
+                       gap='m', pad=(16, 'lato'), bg=BIANCO, boxed=False, css='ldo-testata'))
 
 
 # ---------------------------------------------------------------------------------------------
@@ -315,8 +348,8 @@ def footer():
     link = [('Privacy', '/privacy/'), ('Cookie', '/cookie/'), ('Facebook', FACEBOOK), ('Instagram', INSTAGRAM)]
     riga_link = C(*[_piede_testo(f'<p><a class="ldo-a" href="{u}">{t}</a></p>', fisso=True) for t, u in link],
                   dir='row', wrap=True, gap=32, gap_r=8, mt=48)
-    return C(righe, riga_link, RAW('', css=CSS_PIEDE), bg=VERDE, pad=((64, 64, 48), 'lato', (48, 48, 40), 'lato'), gap=0,
-             boxed=False, css='ldo-piede')
+    return apostrofi(C(righe, riga_link, RAW('', css=CSS_PIEDE), bg=VERDE, pad=((64, 64, 48), 'lato', (48, 48, 40), 'lato'),
+                       gap=0, boxed=False, css='ldo-piede'))
 
 
 # ---------------------------------------------------------------------------------------------
@@ -607,8 +640,9 @@ def h3(titolo, colore=VERDE, **p):
 
 
 def voci(elenco, **p):
-    """Righe di una carta (piatti, luoghi): una per riga, 18 px, senza puntini, senza filetti, senza prezzi."""
-    return T('<p>' + '<br>'.join(elenco) + '</p>', style='foto', color=INCHIOSTRO, **p)
+    """Righe di una carta (piatti, luoghi): una per riga, 18 px, senza puntini, senza filetti, senza prezzi. Un paragrafo per
+    voce, con il rientro sospeso: una voce che va a capo non sembra due voci."""
+    return T(''.join(f'<p>{v}</p>' for v in elenco), style='foto', color=INCHIOSTRO, css='ldo-voci', **p)
 
 
 def colonne(blocchi, w=(31, 47, 100), gap=0, gap_r=(0, 48, 32), justify='between', **p):
@@ -823,7 +857,7 @@ def bike_apertura():
 
 
 def bike_percorsi():
-    """B2: i ciclisti con la maglia del Leon d'Oro a filo sinistro (1200 x 638, scala 0,75); sotto, i percorsi detti in frase,
+    """B2: i ciclisti con la maglia del Leon d'Oro a filo sinistro (1200 x 503, scala 0,75); sotto, i percorsi detti in frase,
     con le distanze dentro il testo: nessuna riga di numeri, nessun profilo altimetrico."""
     foto, _ = foto_filo('mura', 'mura.jpg', "Due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, con "
                                             'una torre sullo sfondo', h_tel=300, pos_tel='30% center')
@@ -958,7 +992,8 @@ def dove_porta():
         "L'insegna col leone",
         "L'insegna nera col leone è accanto alla porta, sotto la scritta Albergo Leon d'Oro dipinta sul muro giallo.",
         'porta.jpg', "La porta del Leon d'Oro di sera, con l'insegna nera e il leone dorato accanto all'ingresso",
-        testi=[f'<p>{INDIRIZZO}. Il ristorante è chiuso la domenica.</p>'], ordine=('tel', 'email'), ancora='indirizzo')
+        testi=[f'<p>{INDIRIZZO}. Il ristorante è chiuso la domenica.</p>'], ordine=('tel', 'email'), pos='right center',
+        ancora='indirizzo')
 
 
 def dove_siamo():
@@ -980,6 +1015,7 @@ CSS_MODULO = (
     '.ldo-modulo .wpcf7 p{margin:0}.ldo-modulo .wpcf7 br{display:none}'
     '.ldo-modulo .wpcf7-form-control-wrap{display:block}'
     '.ldo-modulo .ldo-campi{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:24px}'
+    '.ldo-modulo .ldo-campi>p{display:contents}'
     '.ldo-modulo .ldo-tutta{grid-column:1/-1}'
     f'.ldo-modulo .ldo-nota{{display:block;margin-top:4px;font:400 15px/1.4 {FONT_CSS};color:{INCHIOSTRO}}}'
     '.ldo-modulo input[type=text],.ldo-modulo input[type=email],.ldo-modulo input[type=tel],.ldo-modulo input[type=date],'
@@ -1077,29 +1113,29 @@ def prenota():
 
 
 PAGINE = [
-    {'slug': '01-home', 'titolo': 'Home', 'sezioni': home,
+    {'slug': '01-home', 'titolo': 'Home', 'sezioni': tipografica(home),
      'titolo_seo': "Albergo Ristorante Leon d'Oro, Este (PD)",
      'descrizione': 'Albergo e trattoria in Viale Fiume 20 a Este: cucina veneta, tredici camere con la colazione, garage per le bici, '
                     "vicino all'ospedale di Schiavonia."},
-    {'slug': '02-camere', 'titolo': 'Camere', 'sezioni': camere,
+    {'slug': '02-camere', 'titolo': 'Camere', 'sezioni': tipografica(camere),
      'titolo_seo': "Camere a Este, listino 2026, Leon d'Oro",
      'descrizione': 'Tredici camere a Este, singole, doppie e matrimoniali, con la colazione: listino 2026, mezza pensione e '
                     'pensione completa con le bevande.'},
-    {'slug': '03-ristorante', 'titolo': 'Ristorante', 'sezioni': ristorante,
+    {'slug': '03-ristorante', 'titolo': 'Ristorante', 'sezioni': tipografica(ristorante),
      'titolo_seo': "Ristorante di cucina veneta a Este, Leon d'Oro",
      'descrizione': 'Musso con polenta, baccalà alla vicentina, bigoli, fegato alla veneziana; il menù di ogni giorno e il pesce '
                     'del venerdì sera. Chiuso la domenica.'},
-    {'slug': '04-bike-hotel', 'titolo': 'Bike hotel', 'sezioni': bike_hotel,
+    {'slug': '04-bike-hotel', 'titolo': 'Bike hotel', 'sezioni': tipografica(bike_hotel),
      'titolo_seo': "Bike hotel a Este sui Colli Euganei, Leon d'Oro",
      'descrizione': 'Garage per le bici, l\'anello ciclabile dei Colli da 70 km, la Transeuganea e le uscite con il Team Este Bike.'},
-    {'slug': '05-ospedale-schiavonia', 'titolo': "Per l'ospedale", 'sezioni': ospedale,
+    {'slug': '05-ospedale-schiavonia', 'titolo': "Per l'ospedale", 'sezioni': tipografica(ospedale),
      'titolo_seo': "Albergo vicino all'ospedale di Schiavonia, Leon d'Oro",
      'descrizione': "Una camera a Este per chi assiste un ricoverato all'Ospedale di Schiavonia: come arrivare in navetta o in "
                     'taxi.'},
-    {'slug': '06-dove-siamo', 'titolo': 'Dove siamo', 'sezioni': dove_siamo,
+    {'slug': '06-dove-siamo', 'titolo': 'Dove siamo', 'sezioni': tipografica(dove_siamo),
      'titolo_seo': "Dove siamo: Viale Fiume 20, Este, Leon d'Oro",
      'descrizione': "Come arrivare al Leon d'Oro a Este e cosa vedere in città e sui Colli Euganei."},
-    {'slug': '07-prenota', 'titolo': 'Prenota', 'sezioni': prenota,
+    {'slug': '07-prenota', 'titolo': 'Prenota', 'sezioni': tipografica(prenota),
      'titolo_seo': "Prenota una camera, Leon d'Oro Este",
      'descrizione': 'Richiesta di prenotazione: date, persone e trattamento. Rispondiamo con la disponibilità.'},
 ]

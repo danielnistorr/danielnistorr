@@ -168,7 +168,7 @@ def main():
          zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1, telefono')
     # al posto della maglia (fotogramma sfocato, la mano copre la L di Leon e "(Padova)" finisce sotto il marchio del video):
     # due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, una torre sullo sfondo (107,5 s)
-    foto('mura.jpg', VIDEO + 'video-ciclisti-mura-castello.jpg', (0, 0, 1600, 850), uso='bike hotel B2 (1200 x 638 a 1440)')
+    foto('mura.jpg', VIDEO + 'video-ciclisti-mura-castello.jpg', (0, 180, 1600, 850), uso='bike hotel B2 (1200 x 503 a 1440)')
     foto('sterrato.jpg', VIDEO + 'video-mtb-coppia-sterrato.jpg', (480, 0, 1330, 850),
          zona=(900, 780, 1100, 840), forza=0.8, uso='bike hotel B3, campo giallo')
     foto('reception-sera.jpg', VIDEO + 'video-reception-sera.jpg', (380, 0, 1230, 850), uso='ospedale O3, campo giallo')
