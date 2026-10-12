@@ -195,6 +195,12 @@ CSS_NAV = (
     f'.ldo-nav .ldo-bottone:hover,.ldo-nav .ldo-bottone:active,.ldo-nav .ldo-bottone:focus{{background:{INCHIOSTRO};color:{BIANCO}}}'
     f'.ldo-nav a:focus-visible,.ldo-nav button:focus-visible{{outline:3px solid {GIALLO};outline-offset:3px}}'
     '.ldo-nav .ldo-chiama,.ldo-nav .ldo-apri{display:none}'
+    # "Vai al contenuto" (il nostro nel fallback, quello di Ultimate Addons in WordPress): nascosto, visibile al fuoco
+    '.ldo-salta,a.hfe-skip-link{position:absolute!important;left:-9999px!important;top:0}'
+    f'.ldo-salta:focus,a.hfe-skip-link:focus{{left:16px!important;top:16px!important;z-index:100;background:{VERDE}!important;'
+    f'color:{BIANCO}!important;font:600 16px/1.2 {FONT_CSS}!important;padding:8px 16px!important;text-decoration:none!important;'
+    f'border-radius:2px!important;box-shadow:none!important;clip:auto!important;width:auto!important;height:auto!important;'
+    f'outline:3px solid {GIALLO}!important;outline-offset:3px}}'
     # il bottone "Menu": il tema Hello colora i bottoni di rosa, qui ogni stato ha il suo colore
     f'.ldo-nav .ldo-apri,.ldo-nav .ldo-apri:focus{{font:600 16px/1 {FONT_CSS};background:{BIANCO};color:{INCHIOSTRO};'
     f'border:2px solid {INCHIOSTRO};border-radius:2px;padding:12px 16px;min-height:44px;min-width:44px;cursor:pointer;'
@@ -224,6 +230,7 @@ CSS_NAV = (
 JS_NAV = (
     "(function(){function via(){document.querySelectorAll('.ldo-nav').forEach(function(n){if(n.dataset.ok)return;n.dataset.ok=1;"
     "n.classList.add('ldo-js');var b=n.querySelector('.ldo-apri'),p=n.querySelector('.ldo-pannello');"
+    "if(document.querySelector('.hfe-skip-link')){document.querySelectorAll('.ldo-salta').forEach(function(s){s.remove()})}"
     # voce attiva: la pagina che si sta guardando
     "var qui=location.pathname.replace(/\\/+$/,'');n.querySelectorAll('.ldo-menu a').forEach(function(a){"
     "if(a.pathname.replace(/\\/+$/,'')===qui&&qui!=='')a.setAttribute('aria-current','page')});"
@@ -245,6 +252,9 @@ JS_NAV = (
 def nav_html():
     voci = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in VOCI_MENU)
     return (
+        # "Vai al contenuto": serve al fallback; in WordPress Ultimate Addons scrive già il suo (hfe-skip-link, verso #content)
+        # e lo script toglie questo, così il link è uno solo. La prima sezione di ogni pagina ha l'ancora "content".
+        '<a class="ldo-salta" href="#content">Vai al contenuto</a>'
         '<nav class="ldo-nav" aria-label="Menu principale">'
         f'<a class="ldo-chiama" href="{TEL_LINK}">Chiama</a>'
         '<button class="ldo-apri" type="button" aria-controls="ldo-pannello" aria-expanded="false">Menu</button>'
@@ -366,7 +376,7 @@ def foto_con_titolo(nome, titolo, foto, misura, descrizione, pos_telefono, color
     if dopo:
         figli.append(C(*dopo, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'))
     figli.append(RAW('', css=css))
-    return C(*figli, boxed=True, boxed_width=w, pad='0', gap=0, mt=mt, tag='section', anchor=ancora, css=classe)
+    return C(*figli, boxed=True, boxed_width=w, pad='0', gap=0, mt=mt, tag='section', anchor=ancora, css=f'{classe} e-no-lazyload')
 
 
 # ---------------------------------------------------------------------------------------------
@@ -401,7 +411,7 @@ def facciata():
              dir='row', justify=('end', 'end', 'start'), align='start', pad=(0, 'lato', 0, 'lato'), gap=0,
              css='ldo-fac-foto e-no-lazyload')
     return C(telefono, foto, RAW('', css=CSS_FACCIATA), boxed=True, boxed_width=1680, bg=NOTTE, pad='0', gap=0, tag='section',
-             anchor='contenuto', css='ldo-facciata')
+             anchor='content', css='ldo-facciata e-no-lazyload')
 
 
 CSS_TARGA = (
@@ -480,7 +490,7 @@ def storia():
     cartolina = C(parole, solo_lettori(descr, hide=['mobile']), img=img('cartolina-largo.jpg'), img_pos='center top', gap=0,
                   css='ldo-cartolina e-no-lazyload')
     return C(I(img('cartolina-alto.jpg'), descr, hide=['desktop', 'tablet']), cartolina, RAW('', css=CSS_STORIA),
-             boxed=True, boxed_width=2400, pad='0', gap=0, mt='stacco', tag='section', anchor='storia', css='ldo-storia')
+             boxed=True, boxed_width=2400, pad='0', gap=0, mt='stacco', tag='section', anchor='storia', css='ldo-storia e-no-lazyload')
 
 
 def colli():
