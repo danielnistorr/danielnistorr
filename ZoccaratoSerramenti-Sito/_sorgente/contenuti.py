@@ -63,6 +63,8 @@ STILI = {
     'nota':       _st(NORMALE, '400', (15, 15, 14), 1.4),
     'nota_b':     _st(NORMALE, '600', (15, 15, 14), 1.4),
     'barra':      _st(NORMALE, '400', (14, 14, 14), 1.25),
+    'piede':      _st(NORMALE, '400', (15, 15, 15), 1.55),
+    'sede':       _st(NORMALE, '400', (17, 17, 17), 1.55),
     'nav':        _st(NORMALE, '600', (16, 17, 17), 1.2),
     'btn':        _st(NORMALE, '600', (17, 17, 17), 1.2),
     'fatti':      _st(LARGO, '600', (18, 16, 16), 1.3),
@@ -381,3 +383,262 @@ SCELTE = [
     ('Vetrine e uffici', 'Vetrina, ufficio o negozio', 'm-vetrine.jpg'),
     ('Monoblocchi', 'Pensilina commerciale o monoblocco', 'm-monoblocchi.jpg'),
 ]
+
+
+# ---------------------------------------------------------------------------------------------
+# CSS del sito: base e componenti condivisi. Sta nel widget HTML della testata, che c'è in ogni pagina (in Elementor con
+# Ultimate Addons, nell'anteprima nel blocco della testata). Il CSS di una sola sezione sta nel suo widget HTML.
+# Il tema Hello colora link e bottoni di rosa (#c36): ogni selettore ha i suoi colori espliciti.
+# ---------------------------------------------------------------------------------------------
+SOTT = 'text-decoration:underline!important;text-decoration-thickness:2px!important;text-underline-offset:6px!important'
+CSS_SITO = (
+    'body{font-synthesis:none}'
+    '.zcs-sr{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;'
+    'clip-path:inset(50%)!important;white-space:nowrap!important;margin:0!important;padding:0!important}'
+    '.zcs-num{font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}'
+    '.zcs-nw{white-space:nowrap}'
+    # Elementor: a capo bilanciati nei titoli, niente spazio sotto l'ultimo paragrafo (come nell'anteprima)
+    '.elementor-widget-heading .elementor-heading-title{text-wrap:balance}'
+    '.elementor-widget-text-editor p{text-wrap:pretty}'
+    '.elementor-widget-text-editor p:last-child{margin-block-end:0!important;margin-bottom:0!important}'
+    '.elementor-widget-image img{display:block}'
+    # spaziatura dei titoli in em, uguale a ogni misura (specifica 4.2)
+    '.zcs-ls20 .elementor-heading-title,.zcs-ls20.zcs-w{letter-spacing:-0.02em!important}'
+    '.zcs-ls15 .elementor-heading-title,.zcs-ls15.zcs-w{letter-spacing:-0.015em!important}'
+    '.zcs-ls10 .elementor-heading-title,.zcs-ls10.zcs-w{letter-spacing:-0.01em!important}'
+    # fuoco visibile: blu, bianco sul campo blu
+    f'a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,'
+    f'textarea:focus-visible{{outline:3px solid {BLU};outline-offset:3px}}'
+    '.zcs-fiancata a:focus-visible{outline-color:#FFFFFF}'
+    '[id]{scroll-margin-top:24px}'
+    'html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}'
+    # link nel testo: blu 600 sottolineato a 4 px; al passaggio blu scuro e sottolineatura di 2 px (specifica 4.5)
+    f'.zcs-link a{{color:{BLU}!important;font-weight:600;text-decoration:underline!important;'
+    'text-decoration-thickness:1px!important;text-underline-offset:4px!important}'
+    f'.zcs-link a:hover,.zcs-link a:focus-visible{{color:{BLU_SCURO}!important;text-decoration-thickness:2px!important}}'
+    # "Vai al contenuto": il nostro nell'anteprima, quello di Ultimate Addons in WordPress; visibile solo al fuoco
+    '.zcs-salta,a.hfe-skip-link{position:absolute!important;left:-9999px!important;top:0}'
+    f'.zcs-salta:focus,a.hfe-skip-link:focus{{left:16px!important;top:8px!important;z-index:100;background:{BIANCO}!important;'
+    f'color:{BLU}!important;font:600 16px/1.2 {F_NORMALE}!important;padding:12px 16px!important;text-decoration:none!important;'
+    'clip:auto!important;clip-path:none!important;width:auto!important;height:auto!important;box-shadow:none!important}'
+    # griglie regolari (schede, passi, piede): colonne uguali a ogni larghezza, nessuna riga che va a capo per pochi px
+    '.zcs-griglia{display:grid!important}'
+    '.zcs-griglia>*{width:auto!important;max-width:none!important;min-width:0}'
+    '.zcs-g3{grid-template-columns:repeat(3,minmax(0,1fr))}'
+    '.zcs-g4{grid-template-columns:repeat(4,minmax(0,1fr))}'
+    '@media (max-width:767px){.zcs-g3,.zcs-g4{grid-template-columns:repeat(2,minmax(0,1fr))}'
+    '.zcs-g3>:first-child{grid-column:1/-1}}'
+    # foto nelle loro proporzioni, senza bordi né ombre
+    '.zcs-o img,.zcs-v img,.zcs-q img{display:block;width:100%!important;height:auto!important;max-width:100%!important;object-fit:cover}'
+    '.zcs-o img{aspect-ratio:4/3}.zcs-v img{aspect-ratio:3/4}.zcs-q img{aspect-ratio:1/1}'
+    # schede delle lavorazioni (home): una scheda = un link; conteggio in fondo, stessa linea di base nella riga
+    '.zcs-scheda{text-decoration:none!important}'
+    '.zcs-conta{margin-top:auto!important;padding-top:8px}'
+    '.zcs-breve{display:none}'
+    f'.zcs-scheda:hover .elementor-heading-title,.zcs-scheda:hover h3,.zcs-scheda:focus-visible .elementor-heading-title,'
+    f'.zcs-scheda:focus-visible h3{{color:{BLU}!important;text-decoration:underline;text-decoration-thickness:2px;'
+    'text-underline-offset:4px}'
+    f'.zcs-scheda:hover .zcs-conta p,.zcs-scheda:focus-visible .zcs-conta p{{color:{BLU_SCURO}!important;'
+    'text-decoration:underline;text-underline-offset:3px}'
+    '@media (max-width:1024px){.zcs-g4 .zcs-lungo{display:none}.zcs-g4 .zcs-breve{display:inline}}'
+    '@media (max-width:767px){.zcs-scheda .zcs-lungo{display:none}.zcs-scheda .zcs-breve{display:inline}'
+    '.zcs-g3>.zcs-scheda:not(:first-child) h3,.zcs-g4>.zcs-scheda h3,'
+    '.zcs-g3>.zcs-scheda:not(:first-child) .elementor-heading-title,.zcs-g4>.zcs-scheda .elementor-heading-title'
+    '{font-size:17px!important}}'
+    # didascalie: il nome del pezzo in 600, sotto la lavorazione
+    f'.zcs-didascalia b{{display:block;font-weight:600;color:{INCHIOSTRO}}}'
+    # i quattro passi (una procedura vera: numerati)
+    '.zcs-passi2{grid-template-columns:repeat(2,minmax(0,1fr))}'
+    '.zcs-passi4{grid-template-columns:repeat(4,minmax(0,1fr))}'
+    '@media (max-width:1024px){.zcs-passi4{grid-template-columns:repeat(2,minmax(0,1fr))}}'
+    '@media (max-width:767px){.zcs-passi2,.zcs-passi4{grid-template-columns:1fr}}'
+    # sedi: link senza sottolineatura, sottolineati al passaggio
+    f'.zcs-sede-dati a{{color:{BLU}!important;font-weight:600;text-decoration:none!important}}'
+    f'.zcs-sede-dati a:hover,.zcs-sede-dati a:focus-visible{{color:{BLU_SCURO}!important;text-decoration:underline!important;'
+    'text-underline-offset:4px!important}'
+    # telefono grande: un recapito, si sottolinea al passaggio
+    '.zcs-tel a{color:inherit!important;text-decoration:none!important;white-space:nowrap}'
+    f'.zcs-tel a:hover,.zcs-tel a:focus-visible{{color:{BLU_SCURO}!important;text-decoration:underline!important;'
+    'text-decoration-thickness:3px!important;text-underline-offset:6px!important}'
+    '.zcs-fiancata .zcs-tel a:hover,.zcs-fiancata .zcs-tel a:focus-visible{color:#FFFFFF!important}'
+)
+
+# ---------------------------------------------------------------------------------------------
+# Testata (specifica 5.1): barra del furto e testata con logo, menu con le tendine e telefono.
+# Un widget HTML (le tendine con i sottotipi non si fanno con il widget menu), identico nell'anteprima; il logo è un widget
+# Immagine, così entra nella libreria media all'import.
+# ---------------------------------------------------------------------------------------------
+VOCI_MENU = [('Per la casa', '/per-la-casa/'), ('Per le aziende', '/per-le-aziende/'), ('Lavori', '/lavori/'),
+             ('Dopo un furto', '/dopo-un-furto/'), ('Chi siamo', '/chi-siamo/'), ('Contatti', '/contatti/')]
+TENDINE = {'/per-la-casa/': 'casa', '/per-le-aziende/': 'aziende'}
+
+CSS_TESTATA = (
+    '.zcs-box{max-width:1440px;margin:0 auto;padding:0 40px;box-sizing:border-box}'
+    f'.zcs-barra{{background:{INCHIOSTRO};color:{BIANCO};font:400 14px/1.25 {F_NORMALE}}}'
+    '.zcs-barra p{margin:0}'
+    '.zcs-barra-in{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:32px}'
+    f'.zcs-barra a{{color:{BIANCO}!important;font-weight:600;text-decoration:none!important}}'
+    f'.zcs-barra a:hover,.zcs-barra a:focus-visible{{color:{BIANCO}!important;text-decoration:underline!important;'
+    'text-underline-offset:3px!important}'
+    '.zcs-barra a:focus-visible{outline-color:#FFFFFF}'
+    f'.zcs-barra-sedi{{color:{SU_SCURO};white-space:nowrap}}'
+    # testata: il widget HTML occupa l'altezza della testata, così le tendine partono dal suo bordo
+    '.zcs-testata{position:relative;z-index:30;overflow-x:clip}'
+    '.zcs-testata .zcs-logo{align-self:center!important}'
+    f'.zcs-nav{{display:flex;align-items:stretch;justify-content:flex-end;gap:32px;min-height:84px;font-family:{F_NORMALE}}}'
+    '.zcs-nav>*{align-self:center}'
+    '.zcs-menu{align-self:stretch;display:flex}'
+    '.zcs-menu>ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}'
+    '.zcs-menu>ul>li{position:relative;display:flex;align-items:center;margin:0;padding:0}'
+    f'.zcs-menu>ul>li>a{{color:{INCHIOSTRO}!important;text-decoration:none!important;font:600 16px/1.2 {F_NORMALE};'
+    'white-space:nowrap;padding:8px 0}'
+    f'.zcs-menu>ul>li>a:hover,.zcs-menu>ul>li>a:focus-visible,.zcs-voce:focus-within>a,.zcs-menu a[aria-current=page]'
+    f'{{color:{BLU}!important;{SOTT}}}'
+    f'.zcs-tendina{{display:none;position:absolute;top:100%;left:-24px;width:400px;background:{BIANCO};'
+    f'border:1px solid {FILETTO};box-shadow:0 10px 28px rgba(19,34,47,.12);padding:8px 0;z-index:40}}'
+    '.zcs-voce:hover .zcs-tendina,.zcs-voce:focus-within .zcs-tendina{display:block}'
+    '.zcs-tendina ul{list-style:none;margin:0;padding:0}.zcs-tendina li{margin:0;padding:0}'
+    f'.zcs-tendina a{{display:block;padding:8px 24px;text-decoration:none!important;color:{INCHIOSTRO}!important}}'
+    f'.zcs-tendina b{{display:block;font:600 16px/1.3 {F_NORMALE}}}'
+    f'.zcs-tendina span{{display:block;margin-top:4px;font:400 14px/1.4 {F_NORMALE};color:{TESTO2}}}'
+    f'.zcs-tendina a:hover,.zcs-tendina a:focus-visible{{background:{ALLUMINIO}}}'
+    f'.zcs-tendina a:hover b,.zcs-tendina a:focus-visible b{{color:{BLU}}}'
+    '.zcs-tendina a:focus-visible{outline-offset:-3px}'
+    f'.zcs-tel-testata{{font:600 18px/1.2 {F_LARGO};color:{BLU}!important;text-decoration:none!important;white-space:nowrap}}'
+    f'.zcs-tel-testata:hover,.zcs-tel-testata:focus-visible{{color:{BLU_SCURO}!important;text-decoration:underline!important;'
+    'text-underline-offset:4px!important}'
+    '.zcs-menu-m{display:none;position:relative}'
+    # da 1025 a 1199: logo 170, voci più strette, "Tel." nascosto alla vista
+    '@media (max-width:1199px) and (min-width:1025px){.zcs-menu>ul{gap:20px}.zcs-nav{gap:24px}'
+    '.zcs-tel-pre{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}'
+    # fino a 1024: bottone "Menu" con il pannello; il telefono resta a vista
+    '@media (max-width:1024px){'
+    '.zcs-box{padding:0 32px}'
+    '.zcs-barra-sedi .zcs-via{display:none}'
+    '.zcs-menu{display:none}'
+    '.zcs-nav{min-height:76px;gap:24px}'
+    '.zcs-tel-testata{font-size:16px}'
+    '.zcs-menu-m{display:block}'
+    f'.zcs-menu-m>summary{{list-style:none;cursor:pointer;font:600 15px/1 {F_NORMALE};color:{INCHIOSTRO};background:{BIANCO};'
+    f'border:1px solid {CAMPO};border-radius:2px;padding:8px 12px}}'
+    '.zcs-menu-m>summary::-webkit-details-marker{display:none}'
+    f'.zcs-menu-m>summary:hover{{border-color:{INCHIOSTRO}}}'
+    f'.zcs-menu-m[open]>summary{{background:{INCHIOSTRO};color:{BIANCO};border-color:{INCHIOSTRO}}}'
+    f'.zcs-menu-m>nav{{position:absolute;right:0;top:calc(100% + 12px);width:min(320px,calc(100vw - 32px));'
+    f'max-height:calc(100vh - 120px);overflow-y:auto;background:{BIANCO};border:1px solid {FILETTO};'
+    'box-shadow:0 10px 28px rgba(19,34,47,.12);display:flex;flex-direction:column;padding:8px 0;z-index:40}'
+    f'.zcs-menu-m nav a,.zcs-menu-m .zcs-sotto>summary{{color:{INCHIOSTRO}!important;text-decoration:none!important;'
+    f'font:600 17px/1.3 {F_NORMALE};padding:12px 16px}}'
+    '.zcs-menu-m nav>a{display:block}'
+    '.zcs-menu-m .zcs-sotto>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px}'
+    '.zcs-menu-m .zcs-sotto>summary::-webkit-details-marker{display:none}'
+    f'.zcs-menu-m .zcs-sotto>summary::after{{content:"+";font-weight:600;color:{BLU}}}'
+    '.zcs-menu-m .zcs-sotto[open]>summary::after{content:"\\2212"}'
+    '.zcs-menu-m .zcs-sotto ul{list-style:none;margin:0 0 8px;padding:0}.zcs-menu-m .zcs-sotto li{margin:0;padding:0}'
+    '.zcs-menu-m .zcs-sotto a{display:block;font-weight:400;font-size:16px;padding:8px 16px 8px 32px}'
+    f'.zcs-menu-m nav a:hover,.zcs-menu-m nav a:focus-visible,.zcs-menu-m .zcs-sotto>summary:hover{{color:{BLU}!important;'
+    f'background:{ALLUMINIO}}}'
+    f'.zcs-menu-m nav a[aria-current=page]{{color:{BLU}!important;{SOTT}}}'
+    '.zcs-menu-m nav a:focus-visible,.zcs-menu-m summary:focus-visible{outline-offset:-3px}'
+    '}'
+    '@media (max-width:767px){.zcs-box{padding:0 16px}.zcs-barra-sedi{display:none}.zcs-barra-in{justify-content:flex-start}'
+    '.zcs-nav{min-height:64px;gap:12px}.zcs-tel-testata{font-size:15px}'
+    '.zcs-tel-pre{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}'
+)
+
+# voce attiva (aria-current) sulla voce il cui percorso è l'inizio dell'indirizzo; la home non accende nessuna voce.
+# Il "Vai al contenuto" dell'anteprima si toglie se Ultimate Addons ha già il suo.
+JS_TESTATA = (
+    "(function(){function via(){var qui=location.pathname;"
+    "if(document.querySelector('.hfe-skip-link')){document.querySelectorAll('.zcs-salta').forEach(function(s){s.remove()})}"
+    "document.querySelectorAll('.zcs-menu>ul>li>a,.zcs-menu-m nav>a,.zcs-menu-m .zcs-sotto>a').forEach(function(a){"
+    "var p=a.getAttribute('data-percorso');if(p&&p!=='/'&&qui.indexOf(p)===0)a.setAttribute('aria-current','page')})}"
+    "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',via)}else{via()}})();"
+)
+
+
+def _tendina(gruppo):
+    return ''.join(f'<li><a href="{x["url"]}"><b>{x["nome"]}</b><span>{x["sotto"]}</span></a></li>'
+                   for x in LAVORAZIONI if x['gruppo'] == gruppo)
+
+
+def nav_html():
+    voci, voci_m = [], []
+    for nome, url in VOCI_MENU:
+        if url in TENDINE:
+            g = TENDINE[url]
+            voci.append(f'<li class="zcs-voce"><a href="{url}" data-percorso="{url}">{nome}</a>'
+                        f'<div class="zcs-tendina"><ul>{_tendina(g)}</ul></div></li>')
+            sotto = ''.join(f'<li><a href="{x["url"]}">{x["nome"]}</a></li>' for x in LAVORAZIONI if x['gruppo'] == g)
+            voci_m.append(f'<details class="zcs-sotto"><summary>{nome}</summary><ul>'
+                          f'<li><a href="{url}" data-percorso="{url}">{nome}: tutte le lavorazioni</a></li>{sotto}</ul></details>')
+        else:
+            voci.append(f'<li><a href="{url}" data-percorso="{url}">{nome}</a></li>')
+            voci_m.append(f'<a href="{url}" data-percorso="{url}">{nome}</a>')
+    return (
+        '<div class="zcs-nav">'
+        f'<nav class="zcs-menu" aria-label="Menu principale"><ul>{"".join(voci)}</ul></nav>'
+        f'<a class="zcs-tel-testata" href="{TEL_LINK}"><span class="zcs-tel-pre">Tel. </span>{TEL}</a>'
+        f'<details class="zcs-menu-m"><summary>Menu</summary><nav aria-label="Menu principale">{"".join(voci_m)}</nav></details>'
+        f'</div><script>{JS_TESTATA}</script>'
+    )
+
+
+def barra_html():
+    return (
+        '<a class="zcs-salta" href="#content">Vai al contenuto</a>'
+        '<div class="zcs-barra"><div class="zcs-box zcs-barra-in">'
+        f'<p>Furto o effrazione? Chiamate il {tel_link()}</p>'
+        f'<p class="zcs-barra-sedi">Borgoricco{NB}(PD)<span class="zcs-via">, via dell\'Industria{NB}18</span> · '
+        f'Brebbia{NB}(VA)<span class="zcs-via">, via Sandro Pertini{NB}1</span></p>'
+        '</div></div>'
+    )
+
+
+def header():
+    logo = I(img('logo.jpg'), 'Zoccarato serramenti, dal 1974', link='/', link_label='Zoccarato Serramenti, pagina iniziale',
+             w_img=(200, 170, 132), fisso=True, css='zcs-logo')
+    testata = C(logo, RAW(nav_html(), grow=True), dir='row', justify='between', align='center', gap=(32, 24, 12),
+                pad=(0, 'lato'), bg=BIANCO, border_bottom=1, border_color=FILETTO, boxed=True, css='zcs-testata')
+    # niente tag header: Ultimate Addons avvolge già la testata in <header id="masthead">
+    return C(RAW(barra_html(), css=CSS_SITO + CSS_TESTATA), testata, pad='0', gap='0', boxed=False, bg=BIANCO)
+
+
+# ---------------------------------------------------------------------------------------------
+# Piede (specifica 5.2): widget normali
+# ---------------------------------------------------------------------------------------------
+CSS_PIEDE = (
+    '.zcs-piede-griglia{grid-template-columns:1.3fr 1fr 1fr 1.2fr 1fr}'
+    f'.zcs-piede b{{display:block;color:{INCHIOSTRO};font-weight:600;margin-bottom:4px}}'
+    f'.zcs-piede a{{color:{TESTO2}!important;text-decoration:underline!important;text-decoration-thickness:1px!important;'
+    'text-underline-offset:3px!important}'
+    f'.zcs-piede a:hover,.zcs-piede a:focus-visible{{color:{BLU}!important;text-decoration-thickness:2px!important}}'
+    '@media (max-width:1200px){.zcs-piede-griglia{grid-template-columns:repeat(4,minmax(0,1fr))}'
+    '.zcs-piede-griglia>:first-child{grid-column:1/-1}}'
+    '@media (max-width:767px){.zcs-piede-griglia{grid-template-columns:1fr}}'
+)
+
+
+def _piede(html, **p):
+    return T(html, style='piede', color=TESTO2, link_color=TESTO2, link_hover=BLU, **p)
+
+
+def footer():
+    marchio = C(I(img('logo.jpg'), 'Zoccarato serramenti, dal 1974', link='/', link_label='Zoccarato Serramenti, pagina iniziale',
+                  w_img=(160, 160, 160), fisso=True),
+                _piede(f'<p>{RAGIONE}</p>', mt='s', max_w=(300, 600, None)), gap='0', w=(25, 100, 100))
+    colonne = C(
+        marchio,
+        _piede(f'<p><b>Sede</b>{SEDE_VIA}<br>{SEDE_CITTA}</p>', w=(16, 23, 100)),
+        _piede(f'<p><b>Unità locale</b>{UL_VIA}<br>{UL_CITTA}</p>', w=(16, 23, 100)),
+        _piede(f'<p><b>Contatti</b>Tel. {tel_link()}<br>Fax {num(FAX)}<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>'
+               f'PEC {PEC}</p>', w=(22, 23, 100)),
+        _piede(f'<p><b>Dati societari</b>P.IVA e C.F. {num(PIVA)}<br>REA {num(REA)}<br>Codice SDI {SDI}</p>', w=(16, 23, 100)),
+        dir='row', dir_m='column', wrap=True, gap=(32, 32, 20), gap_r=(32, 32, 20), css='zcs-griglia zcs-piede-griglia')
+    legale = C(
+        T('<p>© 2026 Zoccarato Serramenti S.n.c.</p>', style='barra', color=TESTO2, fisso=True),
+        T('<p><a href="/privacy/">Privacy</a></p>', style='barra', color=TESTO2, link_color=TESTO2, link_hover=BLU, fisso=True),
+        T('<p><a href="/cookie/">Cookie</a></p>', style='barra', color=TESTO2, link_color=TESTO2, link_hover=BLU, fisso=True),
+        dir='row', dir_m='column', wrap=True, gap=(24, 24, 8), mt=40)
+    return C(colonne, legale, RAW('', css=CSS_PIEDE), pad=((48, 48, 40), 'lato', 32, 'lato'), gap='0', bg=BIANCO,
+             border_top=1, border_color=FILETTO, css='zcs-piede')
