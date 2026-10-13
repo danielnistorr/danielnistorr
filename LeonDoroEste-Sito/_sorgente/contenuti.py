@@ -589,7 +589,7 @@ def camere_home():
         'camera.jpg', 'Camera matrimoniale con il soffitto a travi e la finestra',
         testi=["<p>Chi assiste un ricoverato all'ospedale di Schiavonia trova qui una camera, e "
                '<a class="ldo-a" href="/ospedale-schiavonia/">le indicazioni per arrivarci</a> in navetta o in taxi.</p>'],
-        azione='Prenota una camera', pos='45% center', ancora='prenota')
+        pos='45% center', ancora='prenota')
 
 
 def home():
@@ -856,7 +856,7 @@ def ristorante_prenota():
         'Prenota un tavolo',
         'La domenica il ristorante è chiuso. Il venerdì sera, per il pesce, è meglio prenotare.',
         'cantinetta.jpg', 'La cantinetta con lo scaffale dei vini e un tavolo apparecchiato con la tovaglia gialla',
-        azione='Telefonate', ordine=('tel', 'email'), ancora='prenota')
+        ordine=('tel', 'email'), ancora='prenota')
 
 
 def ristorante():
@@ -908,7 +908,7 @@ def bike_prenota():
         f"Con la colazione, la singola costa {euro(L['singola'])} e la doppia {euro(L['doppia'])}; le bici restano nel garage "
         "privato dell'albergo.",
         'sterrato.jpg', 'Due ciclisti in maglia gialla in mountain bike su uno sterrato bianco',
-        azione='Prenota una camera', dopo=('Il modulo di richiesta', '/prenota/'), ancora='prenota')
+        dopo=('Il modulo di richiesta', '/prenota/'), ancora='prenota')
 
 
 def bike_hotel():
@@ -919,30 +919,30 @@ def bike_hotel():
 # 05 PER L'OSPEDALE (specifica 10)
 # ---------------------------------------------------------------------------------------------
 def ospedale_apertura():
-    """O1: pagina pratica: il titolo, dove è l'ospedale e come si chiama, che cosa offre l'albergo."""
-    return apertura(
-        f"Per<br>l'ospedale",
-        f"Dal 5 novembre 2014 l'ospedale della Bassa Padovana è a Schiavonia, nel comune di Monselice: si chiama Ospedali Riuniti "
-        f"Padova Sud Madre Teresa di Calcutta.",
-        altro=f"Da sempre il Leon d'Oro dà una camera a chi deve stare vicino a un ricoverato. Per ogni altra informazione, "
-              f"chiedete al banco.")
+    """O1 (ripulitura del 13/10/2026): la camera con la finestra a filo sinistro (840 x 560 a 1440, scala 0,70) e accanto il
+    titolo e il perché della pagina. Prima la prima schermata era solo testo (guida G9): al telefono ora la foto viene prima."""
+    return foto_e_testo('ospedale', 'camera-finestra.jpg', 'Camera matrimoniale con il soffitto a travi e la finestra', [
+        H(f"Per<br>l'ospedale", 'h1', style='h1', color=VERDE),
+        testo(f"<p>Dal 5 novembre 2014 l'ospedale della Bassa Padovana è a Schiavonia, nel comune di Monselice: si chiama "
+              f"Ospedali Riuniti Padova Sud Madre Teresa di Calcutta.</p>", stile='primo', mt='s', max_w=(560, 560, 600)),
+        testo(f"<p>Da sempre il Leon d'Oro dà una camera a chi deve stare vicino a un ricoverato. Per ogni altra informazione, "
+              f"chiedete al banco.</p>", mt='xs', max_w=(560, 560, 600)),
+    ], w_foto=(58.33, 50, 100), ancora='content', mt='xl', larghezza_file=1200)
 
 
 def ospedale_strade():
-    """O2: le due strade per arrivare, due colonne di solo testo: niente riquadri, niente icone, niente filetti."""
-    cols = C(
-        C(h3('In navetta'),
-          testo(f'<p>Il bus navetta parte dalla stazione delle corriere di Este; andata e ritorno costano 4,80{NB}€.</p>',
-                mt='xs'), w=(40, 47, 100), gap=0),
-        C(h3('In taxi'),
-          testo(f'<p>Taxi Este, telefono <a class="ldo-a" href="tel:+393395040502">339{NB}5040502</a>.</p>', mt='xs'),
-          w=(40, 47, 100), gap=0),
-        dir='row', wrap=True, justify=('start', 'between', 'start'), align='start', gap=(64, 0, 0), gap_r=(0, 0, 32))
-    return C(cols,
-             testo(f"<p>Il centralino dell'ospedale risponde allo "
-                   f'<a class="ldo-a" href="tel:+390429714111">0429{NB}714111</a>.</p>', mt='m', max_w=(646, 646, 600)),
-             pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', boxed=False, tag='section', anchor='come-arrivare',
-             css='ldo-ospedale-strade ldo-max')
+    """O2 (ripulitura): come arrivare detto in tre frasi, nella colonna del titolo. Prima erano due colonne con un H3 ciascuna
+    ("In navetta", "In taxi"): il vestito da scheda, per due righe di testo."""
+    colonna = C(
+        testo(f"<p>Per arrivarci c'è il bus navetta, che parte dalla stazione delle corriere di Este: andata e ritorno costano "
+              f"4,80{NB}€.</p>", max_w=(560, 560, 600)),
+        testo(f'<p>Oppure il taxi: Taxi Este, telefono <a class="ldo-a" href="tel:+393395040502">339{NB}5040502</a>.</p>',
+              mt='xs', max_w=(560, 560, 600)),
+        testo(f"<p>Il centralino dell'ospedale risponde allo "
+              f'<a class="ldo-a" href="tel:+390429714111">0429{NB}714111</a>.</p>', mt='xs', max_w=(560, 560, 600)),
+        w=(41.67, 50, 100), gap=0, pad=(0, 'lato', 0, (64, 48, 20)), css='ldo-strade-testo')
+    return C(colonna, dir='row', justify=('end', 'end', 'start'), pad='0', gap=0, mt='l', boxed=False, tag='section',
+             anchor='come-arrivare', css='ldo-ospedale-strade')
 
 
 def ospedale_camera():
@@ -953,7 +953,7 @@ def ospedale_camera():
         f"Con la colazione, la singola costa {euro(L['singola'])} e la doppia {euro(L['doppia'])}; con la mezza pensione "
         f"{euro(L['mezza'])} a persona, bevande incluse. Il ristorante è nella stessa casa.",
         'reception-sera.jpg', 'La reception di sera, con la lampada verde accesa sul banco',
-        azione='Chiamate o scrivete', ordine=('tel', 'email'), ancora='prenota')
+        ordine=('tel', 'email'), ancora='prenota')
 
 
 def ospedale():
@@ -987,26 +987,24 @@ def dove_arrivare():
 
 
 def dove_intorno():
-    """D3: i Colli dal drone a filo destro, poi i luoghi da vedere in due colonne di nomi e una riga per le gite in giornata."""
+    """D3: i Colli dal drone a filo destro, poi i luoghi da vedere detti in frase, in una colonna, e le gite in giornata."""
     foto, _ = foto_filo('borgo', 'borgo.jpg', 'Colli a cono, vigneti e un borgo, ripresi dall\'alto sui Colli Euganei',
                         h_tel=300, pos_tel='40% center')
-    a_este = [h3('A Este'),
-              testo('<p>Una città murata, nata con i Paleoveneti, colonia romana, poi degli Estensi, dei Carraresi e di '
-                    'Venezia.</p>', mt='xs'),
-              voci(['Castello Carrarese', 'Museo Nazionale Atestino', 'Duomo di Santa Tecla, con la pala di Giambattista Tiepolo',
-                    'Chiesa di San Martino', 'Santuario della Madonna delle Grazie'], mt='s'),
-              testo("<p>All'ufficio turistico IAT trovate orari, opuscoli e la Ceramica Estense.</p>", mt='s')]
-    sui_colli = [h3('Sui Colli'),
-                 testo('<p>Colline di origine vulcanica, parco regionale dal 1989: vini, olio, sentieri a piedi e in bici. Vi '
-                       'diciamo noi quali cantine e frantoi visitare.</p>', mt='xs'),
-                 voci(['Arquà Petrarca', 'Monte Gemola e Villa Beatrice', 'Buso della Casara a Valnogaredo',
-                       'Fonte Regina a Torreglia', 'Cascata Schivanoia a Teolo'], mt='s')]
+    # ripulitura: prima due colonne con un H3 e un elenco di nomi ciascuna (la scheda); ora una colonna e i nomi nella frase
     parole = C(
         h2('Intorno'),
-        colonne([a_este, sui_colli], w=(40, 47, 100), gap=(64, 0, 0), gap_r=(0, 0, 40), justify=('start', 'between', 'start'),
-                mt='l'),
+        testo('<p>Este è una città murata, nata con i Paleoveneti, colonia romana, poi degli Estensi, dei Carraresi e di '
+              'Venezia. In città ci sono il Castello Carrarese, il Museo Nazionale Atestino, il Duomo di Santa Tecla con la '
+              'pala di Giambattista Tiepolo, la chiesa di San Martino e il santuario della Madonna delle Grazie.</p>',
+              stile='primo', mt='s', max_w=(714, 714, 600)),
+        testo("<p>All'ufficio turistico IAT trovate altre informazioni sui luoghi e sui prodotti del territorio, come la "
+              'Ceramica Estense; gli opuscoli ve li diamo noi, al banco.</p>', mt='xs', max_w=(646, 646, 600)),
+        testo(f'<p>I Colli Euganei sono colline di origine vulcanica, parco regionale dal{NB}1989: vini, olio, sentieri a piedi e '
+              'in bici. Da vedere Arquà Petrarca, il Monte Gemola con Villa Beatrice, il Buso della Casara a Valnogaredo, la '
+              'Fonte Regina a Torreglia e la cascata Schivanoia a Teolo; quali cantine e frantoi visitare ve lo diciamo noi.</p>',
+              stile='primo', mt='m', max_w=(714, 714, 600)),
         testo('<p>In auto, da Este si va in giornata a Padova, Vicenza, Verona, Venezia, Chioggia, Rovigo, Ferrara e '
-              'Mantova.</p>', mt='l', max_w=(646, 646, 600)),
+              'Mantova.</p>', mt='xs', max_w=(646, 646, 600)),
         pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', css='ldo-max')
     return C(foto, parole, align='end', pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='cosa-vedere',
              css='ldo-intorno')
@@ -1125,13 +1123,17 @@ def prenota_richiesta():
 
 
 def prenota_tavolo():
-    """P3: una riga per il tavolo, nel bianco dopo il campo giallo: qui il giallo non è l'ultima sezione."""
-    return C(
+    """P3 (ripulitura): il tavolo, nel bianco dopo il campo giallo, accanto alla sala con le tovaglie bianche a filo destro
+    (720 x 540 a 1440, mai oltre gli 800 px del file). Prima era una riga di testo con mezza pagina vuota accanto."""
+    sezione = foto_e_testo('tavolo', 'sala-bianca.jpg', "La sala con il soffitto a travi, la finestra ad arco, i quadri alle "
+                                                       "pareti e i tavoli apparecchiati con le tovaglie bianche", [
         h2('Un tavolo', stile='h2c'),
         testo("<p>Per il ristorante basta una telefonata. Il venerdì sera c'è il pesce ed è gradita la prenotazione; la "
-              'domenica siamo chiusi.</p>', mt='s', max_w=(646, 646, 600)),
+              'domenica siamo chiusi.</p>', mt='s', max_w=(560, 560, 600)),
         testo(f'<p><a class="ldo-a" href="{TEL_LINK}">{TEL}</a></p>', stile='contatto', css='ldo-intero', mt='s', fisso=True),
-        pad=('stacco', 'lato', 'stacco', 'lato'), gap=0, boxed=False, tag='section', anchor='tavolo', css='ldo-tavolo')
+    ], lato_foto='destro', w_foto=(50, 44.5, 100), ancora='tavolo', mt='stacco', larghezza_file=800)
+    sezione.p['pad'] = (0, 0, 'stacco', 0)
+    return sezione
 
 
 def prenota():

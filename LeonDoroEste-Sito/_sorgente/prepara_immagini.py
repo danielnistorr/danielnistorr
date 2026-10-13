@@ -163,10 +163,13 @@ def main():
          zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (1008 x 793 a 1440, a filo destro)')
     foto('cantinetta.jpg', 'esterne/regione-veneto/cantinetta-vini-tavolo.jpg', (128, 0, 896, 768),
          zona=(200, 600, 400, 680), uso='ristorante R5, campo giallo')
+    # ripulitura (13/10/2026): il fotogramma ha una dominante magenta (cielo rosa, terra viola). Il bilanciamento sulla strada
+    # bianca alzava il blu (guadagno 1,116) e rendeva viola la terra delle vigne; ora rosso e blu scendono insieme, il verde
+    # resta: la terra torna bruna e la foschia neutra (provini in _prova/ripulitura/vigne-prove.jpg e drone-prove.jpg)
     foto('vigne-largo.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (0, 0, 1920, 850),
-         zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1 (a tutta larghezza, al massimo 1920)')
+         gains=(0.93, 0.94), uso='bike hotel B1 (a tutta larghezza, al massimo 1920)')
     foto('vigne-alto.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (560, 0, 1600, 850),
-         zona=(860, 700, 930, 780), forza=0.8, uso='bike hotel B1, telefono')
+         gains=(0.93, 0.94), uso='bike hotel B1, telefono')
     # al posto della maglia (fotogramma sfocato, la mano copre la L di Leon e "(Padova)" finisce sotto il marchio del video):
     # due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, una torre sullo sfondo (107,5 s)
     foto('mura.jpg', VIDEO + 'video-ciclisti-mura-castello.jpg', (0, 180, 1600, 850), uso='bike hotel B2 (1200 x 503 a 1440)')
@@ -177,8 +180,15 @@ def main():
          uso='dove siamo D1 (sfondo, larghezza massima 1920)')
     foto('este-alto.jpg', VIDEO + 'video-drone-este-dall-alto.jpg', (440, 0, 1480, 850), uso='dove siamo D1, telefono')
     # i Colli a cono, i vigneti e il borgo dal drone (54 s): introduce "Intorno"; fuori il marchio del video (oltre x 1780)
+    # ripulitura: stessa dominante magenta delle vigne (foschia rosa): rosso e blu giù, il verde resta
     foto('borgo.jpg', VIDEO + 'video-drone-colli-borgo.jpg', (100, 0, 1700, 850),
-         zona=(1400, 470, 1480, 520), forza=0.8, uso='dove siamo D3 (1200 x 638 a 1440, a filo destro)')
+         gains=(0.93, 0.91), uso='dove siamo D3 (1200 x 638 a 1440, a filo destro)')
+    # ripulitura: la camera con la finestra apre la pagina per l'ospedale (840 x 560 a 1440, a filo sinistro; al telefono
+    # camera.jpg); la sala con le tovaglie bianche accompagna "Un tavolo" in Prenota (720 x 540 a 1440, mai oltre 800)
+    foto('camera-finestra.jpg', 'originali/albergo/camera-matrimoniale-finestra.jpg', (0, 0, 1200, 800),
+         zona=(700, 150, 880, 330), uso='ospedale O1 (840 x 560 a 1440, a filo sinistro)')
+    foto('sala-bianca.jpg', 'originali/ristorante/sala-tovaglie-bianche.jpg', (0, 0, 800, 600),
+         zona=(540, 500, 580, 540), uso='prenota P3 (720 x 540 a 1440, a filo destro)')
     # la porta è la stessa ripresa della facciata (0,3 s dopo): stessi guadagni, così i due gialli sono uguali
     foto('porta.jpg', FOTOGRAMMI + 'porta-213.6s.png', (500, 60, 1380, 904), gains=tuple(fac['guadagni_R_B']),
          uso='dove siamo D4, campo giallo')

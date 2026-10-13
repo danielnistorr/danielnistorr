@@ -18,7 +18,7 @@ bici sui Colli, assistere un ricoverato a Schiavonia, trovare la porta, prenotar
 | Versione inglese (7 pagine) | rimandi alle pagine italiane | | finché la famiglia non decide la versione inglese (Polylang gratuito) |
 
 Più due blocchi comuni, globali con il plugin gratuito Ultimate Addons for Elementor: **Header** bianco (logo verde col leone, menu
-in minuscolo, telefono, bottone verde "Prenota"; sotto 820 px logo, "Chiama" e "Menu") e **Footer** verde (ragione sociale,
+in minuscolo, telefono da 1181 px in su, bottone verde "Prenota"; da 900 px in giù logo, "Chiama" e "Menu") e **Footer** verde (ragione sociale,
 indirizzo, chiusura del ristorante, telefono, fax, email, P.IVA, REA, CIN, link a Privacy, Cookie, Facebook, Instagram).
 
 Ogni pagina si apre con una foto sola e un titolo maiuscolo di due o tre parole, e si chiude sul campo giallo della facciata con
@@ -45,15 +45,18 @@ il telefono e l'email.
 ### Ristorante
 1. **Senza rivisitazioni**: titolo e frase centrati.
 2. La padella sul fuoco a tutta larghezza.
-3. **Ogni giorno** (`#menu`): il menù tipo in tre colonne (antipasti, primi, secondi), i contorni, chi cucina.
-4. **Il venerdì, pesce** (`#pesce`): il menù di pesce accanto alla sala col vino.
+3. **Ogni giorno** (`#menu`): titolo e due frasi centrati (il menù cambia ogni giorno, chi cucina), poi la carta al centro in due
+   colonne: antipasti e primi, secondi e contorni.
+4. **Il venerdì, pesce** (`#pesce`): la sala col vino a filo destro, il titolo accanto in basso; sotto, il menù di pesce in tre
+   colonne.
 5. **Prenota un tavolo** (campo giallo): chiusura della domenica, il venerdì, telefono; la cantinetta.
 
 ### Bike hotel
 1. **Bike hotel**: la strada fra le vigne dal drone a tutta larghezza, il titolo e una frase sotto.
-2. **La maglia** gialla e nera col nome Leon d'Oro, al centro, con la frase sul Team Este Bike.
-3. **Da Este**: ciclovia E2, Transeuganea, ritrovo in piazza, consigli al banco.
-4. **Una camera e il garage** (campo giallo): prezzi, garage, email, telefono; le due mountain bike.
+2. **Da Este** (`#percorsi`): i due ciclisti con la maglia del Leon d'Oro sulla strada con la torre, a filo sinistro; sotto, in una
+   colonna che chiude sul bordo destro della foto, ciclovia E2, Transeuganea, Team Este Bike e ritrovo in piazza, consigli al banco.
+   (La maglia da sola, prevista al centro, aspetta una foto ferma: il fotogramma del video è sfocato.)
+3. **Camera e garage** (campo giallo): prezzi, garage, email, telefono; le due mountain bike.
 
 ### Per l'ospedale
 1. **Per l'ospedale**: l'ospedale di Schiavonia, nome e data, una camera per chi assiste un ricoverato.
@@ -63,8 +66,8 @@ il telefono e l'email.
 ### Dove siamo
 1. **Viale Fiume 20**: Este dall'alto con il titolo sul cielo.
 2. **Come arrivare** (`#come-arrivare`): dove siamo, parcheggio, navetta, indirizzo, link a Google Maps.
-3. **Intorno** (`#cosa-vedere`): a Este, sui Colli, in giornata.
-4. **Alla porta col leone** (campo giallo): come riconoscere la porta, indirizzo, chiusura, telefono, email; la porta di sera.
+3. **Intorno** (`#cosa-vedere`): i Colli dal drone con il borgo e i vigneti a filo destro; a Este, sui Colli, in giornata.
+4. **L'insegna col leone** (campo giallo): come riconoscere la porta, indirizzo, chiusura, telefono, email; la porta di sera.
 
 ### Prenota
 1. **Prenota**: la targa con la chiave, il titolo, una frase.
@@ -75,9 +78,9 @@ il telefono e l'email.
 
 ## Navigazione
 
-Menu: camere, ristorante, bike hotel, per l'ospedale, dove siamo (menu WordPress "Menu principale", widget Navigation Menu di
-Ultimate Addons), in minuscolo, voce attiva in verde sottolineata; a destra il telefono e il bottone "Prenota" verso `/prenota/`.
-Sotto 820 px il menu si chiude nel bottone "Menu" e apre un pannello bianco a tutta larghezza con le cinque voci, il telefono e
+Menu: camere, ristorante, bike hotel, per l'ospedale, dove siamo (widget HTML della testata, uguale nel fallback: il Navigation Menu
+di Ultimate Addons non sa mettere telefono e "Prenota" nel pannello del telefono), in minuscolo, voce attiva in verde sottolineata; a destra il telefono e il bottone "Prenota" verso `/prenota/`.
+Da 900 px in giù il menu si chiude nel bottone "Menu" e apre un pannello bianco a tutta larghezza con le cinque voci, il telefono e
 "Prenota"; in testata restano il logo e "Chiama".
 
 Dalla home alle pagine: "Il menù" porta a `/ristorante/#menu`, "Il bike hotel" a `/bike-hotel/`, "le indicazioni per arrivarci" a

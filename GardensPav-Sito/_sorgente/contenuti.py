@@ -1,97 +1,114 @@
 # -*- coding: utf-8 -*-
 """
-Contenuti del sito Benvegnù S.r.l.
-Direzione: la prima versione (bianco, nero, Barlow Condensed) rifinita sui siti premium reali della filiera:
-- hero divisa nero + foto a tutta altezza (Gruppo Mastrotto, Santoni)
-- blocchi foto grandi con il titolo sopra l'immagine (Rubelli, Santoni)
-- striscia prodotti a colori su fondo chiaro (Vibram)
-- interfaccia piccola e pulita, molto spazio, rosso Benvegnù solo come accento (Oerlikon Riri)
-Fonti dei testi: sito attuale ripulito, catalogo online (874 articoli, crawl del 4 ottobre 2026), Registro Imprese, scheda Google.
+Contenuti del sito Gardens Pav S.r.l. (Legnaro, PD): tema, testata, piede e pagine.
+
+Fonte dei testi: la home finale del 13 ottobre 2026 (_prova/home-finale/proto.html), che prende ogni dato da
+01-analisi-sito-attuale.md; specifica completa in _prova/spec.md (token al paragrafo 2, testata e piede al 3, home al 5).
+Ciò che non è verificabile è segnato nel LEGGIMI tra le cose da confermare.
+
+Come è fatta una pagina: ogni sezione è un contenitore Elementor con widget gratuiti (Titolo, Testo, Immagine, HTML,
+Shortcode). Le foto e i render stanno sempre in widget Immagine, così Elementor le scarica nella libreria media all'import.
+Le griglie e i passaggi a 1340, 1100, 900 px (che Elementor non ha) vengono da classi gpv-* e da un foglio di stile che sta
+nella testata (CSS_SITO) e in ogni sezione (CSS_<sezione>): le stesse regole valgono per il JSON di Elementor e per il
+fallback HTML, perché i selettori puntano alle classi messe sugli elementi, non alla struttura interna di Elementor.
+I disegni in sezione sono SVG scritti qui dai dati (nessun file da caricare) dentro widget HTML.
 """
-import json
 import os
 from urllib.parse import quote
 
 import motore as m
-from motore import C, H, T, B, I, MAPPA, LINEA_H, ARTICOLI, RAW, MENU, SHORTCODE
+from motore import C, H, T, I, RAW, SHORTCODE
 
 QUI = os.path.dirname(os.path.abspath(__file__))
+PREFISSO = 'gpv'
+NOME_SITO = 'Gardens Pav'
 
 # ---------------------------------------------------------------------------------------------
-# Tema
+# Tema (specifica, paragrafo 2)
 # ---------------------------------------------------------------------------------------------
-BIANCO = '#FFFFFF'
-NERO = '#111111'
-GRIGIO = '#F3F3F1'         # superfici chiare: striscia prodotti, blocco visita, pannello modulo
-TESTO2 = '#5A5A5A'         # testo secondario su bianco (6,9:1)
-SU_NERO2 = '#B5B5B5'       # testo secondario su nero (9,6:1)
-LINEA = '#E2E2E2'
-LINEA_SCURA = '#333333'
-ROSSO = '#9F2E29'          # il rosso storico di Benvegnù: solo numeri, voce attiva, piccoli segni
-TRASP = 'rgba(0,0,0,0)'
+CARTA = '#FFFFFF'         # fondo di quasi tutte le pagine
+SCHEDA = '#F2F1EE'        # schede, riquadro del modulo, piede
+SCHEDA_H = '#E6E4DE'      # scheda al passaggio, riga richiamata
+LINEA = '#D9D7D0'         # filetti delle tabelle, bordo della testata, riga legale (decorativo)
+CLS = '#CFD0CC'           # manufatti nei disegni in sezione
+TERRA = '#F0ECE5'         # terreno a tratteggio, fondo delle didascalie sul terreno
+TESTO = '#23221F'         # testo, titoli, bottone al passaggio (15,91:1 su bianco)
+TESTO2 = '#57554F'        # testo secondario (7,45:1 su bianco, 6,60:1 su #F2F1EE)
+ARANCIO = '#F38239'       # arancio del logo: tubi dei disegni, bottoni pieni, sottolineatura al passaggio; mai testo
+BORDO_CAMPI = '#8A877F'   # bordo di campi e caselle (3,59:1 su bianco, 3,18:1 su #F2F1EE)
+SEGNAPOSTO = '#6F6D67'    # testo d'esempio nei campi (5,17:1)
+SOTTOLINEA = '#A9A79F'    # sottolineatura a riposo delle didascalie e di "Chiedi un'offerta"
 
-CONDENSED = 'Barlow Condensed'
-BARLOW = 'Barlow'
+OVERPASS = 'Overpass'
+FONT_CSS = "'Overpass',Arial,sans-serif"
 
 
-def _st(f, w, s, lh, ls=0.0, up=False):
-    return dict(f=f, w=w, s=s, lh=lh, ls=ls, up=up)
+def _st(w, s, lh, ls=0.0):
+    return dict(f=OVERPASS, w=w, s=s, lh=lh, ls=ls, up=False)
 
+
+# scala tipografica (px a desktop, tablet, mobile); spaziatura in px per il desktop, in em nel CSS (classi gpv-tit*)
+STILI = {
+    'display':    _st('600', (52, 44, 31), 1.06, -1.04),
+    'h1':         _st('600', (44, 38, 29), 1.08, -0.88),
+    'h2':         _st('600', (40, 34, 27), 1.1, -0.6),
+    'h2m':        _st('600', (34, 30, 25), 1.1, -0.51),
+    'h2s':        _st('600', (30, 28, 24), 1.1, -0.45),
+    'h3b':        _st('700', (22, 22, 19), 1.25),
+    'h3':         _st('700', (19, 19, 17), 1.25),
+    'h3p':        _st('700', (15, 15, 15), 1.25),
+    'apertura':   _st('400', (18, 18, 16), 1.5),
+    'body':       _st('400', (17, 17, 16), 1.55),
+    'testo16':    _st('400', (16, 16, 15), 1.55),
+    'recapiti':   _st('400', (16, 16, 16), 1.6),
+    'nota':       _st('400', (15.5, 15.5, 15.5), 1.5),
+    'small':      _st('400', (15, 15, 15), 1.5),
+    'num':        _st('400', (15, 15, 14.5), 1.45),
+    'didascalia': _st('400', (14, 14, 14), 1.4),
+    'link':       _st('600', (14, 14, 14), 1.4),
+    'tutti':      _st('600', (15, 15, 15), 1.3),
+    'tel':        _st('700', (30, 30, 30), 1.15),
+    'piede':      _st('400', (15, 15, 15), 1.8),
+    'legale':     _st('400', (13.5, 13.5, 13.5), 1.55),
+    'nav':        _st('600', (15, 15, 15), 1.2),
+    'btn':        _st('700', (15, 15, 15), 1.2),
+    'h3_motore':  _st('700', (19, 19, 17), 1.25),
+}
+STILI['h3x'] = STILI['h3']
+
+# una sola scala: 4, 8, 12, 16, 24, 32, 48, 64, 88 (più il margine laterale della pagina, 40/32/16)
+SPAZI = {
+    '0':       (0, 0, 0),
+    'micro':   (4, 4, 4),
+    'xs':      (8, 8, 8),
+    's':       (12, 12, 12),
+    'm':       (16, 12, 8),
+    'l':       (24, 24, 16),
+    'xl':      (32, 32, 24),
+    'xxl':     (48, 32, 32),
+    'blocco':  (64, 64, 64),
+    'sezione': (88, 88, 64),
+    'lato':    (40, 32, 16),
+}
 
 TEMA = {
-    'nome': 'Banco',
-    'fondo': BIANCO, 'superficie': BIANCO, 'inchiostro': NERO, 'testo2': TESTO2, 'accento': ROSSO,
-    'filetto': LINEA, 'filetto_scuro': LINEA_SCURA, 'su_scuro2': SU_NERO2,
-    'scuro': NERO, 'su_scuro': BIANCO, 'su_accento': BIANCO,
-    'font_titoli': CONDENSED, 'font_testo': BARLOW, 'larghezza': 1280,
-    'google_fonts': 'https://fonts.googleapis.com/css?family=Barlow+Condensed:500,600%7CBarlow:300,400,500,600&display=swap',
-    'stili': {
-        'display': _st(CONDENSED, '600', (88, 68, 48), 0.95, 0, True),
-        'h1':      _st(CONDENSED, '600', (72, 56, 42), 0.96, 0, True),
-        'h2':      _st(CONDENSED, '600', (48, 40, 32), 1.0, 0, True),
-        'h3':      _st(CONDENSED, '600', (26, 24, 22), 1.1, 0.4, True),
-        'h3l':     _st(CONDENSED, '600', (34, 30, 26), 1.02, 0.2, True),
-        'h4':      _st(BARLOW, '600', (18, 18, 17), 1.35),
-        'num':     _st(CONDENSED, '500', (36, 32, 28), 1.0),
-        'cifra':   _st(CONDENSED, '600', (64, 52, 44), 0.95),
-        'tel':     _st(CONDENSED, '600', (56, 48, 40), 1.0),
-        'tel2':    _st(CONDENSED, '600', (40, 36, 36), 1.0),
-        'mega':    _st(CONDENSED, '600', (168, 140, 120), 0.8, -1.0),      # l'unico numero grande della pagina
-        'chiusura': _st(CONDENSED, '600', (144, 96, 72), 0.85, 0, True),   # "Vieni al banco" sopra la facciata
-        'h2m':     _st(CONDENSED, '600', (56, 44, 34), 1.0, 0, True),
-        'h2s':     _st(CONDENSED, '600', (32, 28, 26), 1.0, 0, True),
-        'h2card':  _st(CONDENSED, '600', (40, 36, 36), 0.95, 0, True),
-        'nome':    _st(CONDENSED, '600', (20, 20, 20), 1.1, 0, True),
-        'micro':   _st(BARLOW, '500', (11, 11, 11), 1.3, 2.0, True),
-        'testo15': _st(BARLOW, '400', (15, 15, 15), 1.55),
-        'meta':    _st(BARLOW, '400', (13, 13, 13), 1.4),
-        'nav_m':   _st(CONDENSED, '600', (24, 24, 24), 1.3, 0.5, True),
-        'label':   _st(BARLOW, '500', (12, 12, 12), 1.3, 2.2, True),
-        'lead':    _st(BARLOW, '300', (22, 20, 19), 1.5),
-        'body':    _st(BARLOW, '400', (17, 17, 16), 1.65),
-        'small':   _st(BARLOW, '400', (14, 14, 14), 1.55),
-        'dati':    _st(BARLOW, '400', (15, 15, 15), 1.6),
-        'link':    _st(BARLOW, '600', (13, 13, 13), 1.4, 1.6, True),
-        'nav':     _st(BARLOW, '500', (13, 13, 13), 1.25, 1.6, True),
-        'btn':     _st(BARLOW, '600', (13, 13, 13), 1.25, 2.0, True),
-    },
-    'spazi': {
-        'sezione': (120, 88, 64), 'lato': (48, 32, 20), 'xl': (72, 56, 40), 'l': (48, 40, 32), 'm': (32, 24, 20),
-        's': (20, 16, 16), 'xs': (12, 12, 10), 'xxs': (6, 6, 6), 'col': (24, 20, 16), 'hero_lato': (80, 32, 20), '0': (0, 0, 0),
-    },
-    # (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover): il pulsante si inverte, resta sempre visibile
-    'bottoni': {
-        'primario': (BIANCO, NERO, NERO, NERO, TRASP, NERO),
-        'contorno': (NERO, TRASP, NERO, BIANCO, NERO, NERO),
-        'bianco': (NERO, BIANCO, BIANCO, BIANCO, TRASP, BIANCO),
-        'contorno-bianco': (BIANCO, TRASP, BIANCO, NERO, BIANCO, BIANCO),
-    },
-    'bottone': {'raggio': 0, 'pad': (18, 34, 18, 34), 'bordo': 1, 'stile': 'btn'},
+    'nome': 'Sezione',
+    'fondo': CARTA, 'superficie': CARTA, 'inchiostro': TESTO, 'testo2': TESTO2, 'accento': ARANCIO,
+    'filetto': LINEA, 'filetto_scuro': TESTO2, 'su_scuro2': SCHEDA,
+    'scuro': TESTO, 'su_scuro': CARTA, 'su_accento': TESTO,
+    'font_titoli': OVERPASS, 'font_testo': OVERPASS, 'larghezza': 1280,
+    'google_fonts': 'https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap',
+    'stili': STILI,
+    'spazi': SPAZI,
+    # (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover): pieno arancio, al passaggio pieno grafite
+    'bottoni': {'primario': (TESTO, ARANCIO, ARANCIO, CARTA, TESTO, TESTO)},
+    'bottone': {'raggio': 2, 'pad': (12, 18, 12, 18), 'bordo': 0, 'stile': 'btn'},
 }
 m.applica_tema(TEMA)
+m.STILI['h3'] = STILI['h3']       # il widget "Articoli" del motore usa 'h3' e 'small': restano nella scala
 
 # Le immagini vengono scaricate da Elementor nella libreria media al momento dell'import.
-BASE_PREDEFINITA = 'https://raw.githubusercontent.com/danielnistorr/danielnistorr/claude/benvegnu-sito/BenvegnuSrl-Sito/assets/web/'
+BASE_PREDEFINITA = 'https://raw.githubusercontent.com/danielnistorr/danielnistorr/claude/benvegnu-sito/GardensPav-Sito/assets/web/'
 BASE = BASE_PREDEFINITA
 
 
@@ -105,951 +122,1139 @@ def img(nome):
 
 
 # ---------------------------------------------------------------------------------------------
-# Dati aziendali (un solo posto da aggiornare)
+# Dati aziendali (01, dati societari; un solo posto da aggiornare)
 # ---------------------------------------------------------------------------------------------
-TEL = '049\u00a0983\u00a00202'             # spazi indivisibili: il numero non va mai a capo
-TEL_LINK = 'tel:+390499830202'
-FAX = '049 983 1177'
-EMAIL = 'commerciale@benvegnusrl.it'
-PEC = 'info@pec.benvegnusrl.it'
-INDIRIZZO = 'Via del Lavoro 48'
-CITTA = '30030 Vigonovo (VE)'
-ZONA = 'Zona industriale Tombelle'
-ZONA_MIN = 'zona industriale Tombelle'
-WJ = '\u2060'                                # word joiner: niente a capo dentro gli intervalli orari
-ORARI = f'Dal lunedì al venerdì, 8:30{WJ}-{WJ}12:30 e 14:30{WJ}-{WJ}18:30'
-ORARI_BREVE = f'Lun{WJ}-{WJ}ven 8:30{WJ}-{WJ}12:30 e 14:30{WJ}-{WJ}18:30'
-CHIUSURA = 'Sabato e domenica chiuso'
-PIVA = '02326850282'
-REA = f'PD{WJ}-{WJ}222933'
-SEDE_LEGALE = 'Piazzetta Primo Modin 12, 35129 Padova'
-MAPS = ('https://www.google.com/maps/search/?api=1&query=Benvegn%C3%B9%20Via%20del%20Lavoro%2048%20Vigonovo'
-        '&query_place_id=ChIJCYLIGbDFfkcRl5iSbyMPyb4')
-CONDIZIONI_PDF = 'https://www.benvegnusrl.it/condizioni-di-vendita-Benvegnusrl.pdf'
-FACEBOOK = 'https://www.facebook.com/benvegnusrl'
-CF7 = '[contact-form-7 title="Richiesta disponibilità"]'
+NB = ' '                 # spazio indivisibile: numeri e unità, telefoni
+WJ = '⁠'                 # word joiner: il trattino degli intervalli non va a capo
 
 
-def mailto(oggetto, corpo=''):
-    url = f'mailto:{EMAIL}?subject={quote(oggetto)}'
-    if corpo:
-        url += '&body=' + quote(corpo)
-    return url
+def R(a, b):
+    return f'{a}{WJ}-{WJ}{b}'
 
 
-CATALOGO = json.load(open(os.path.join(QUI, 'catalogo.json'), encoding='utf-8'))
-FAM = {f['slug']: f for f in CATALOGO['famiglie']}
-TOTALE = CATALOGO['totale']                                            # 874
-N_VIBRAM = sum(FAM[k]['n'] for k in ('vibram-suole', 'vibram-lastre', 'vibram-mezzesuole-tacchi'))   # 329
+TEL = f'049{NB}641591'
+TEL_LINK = 'tel:+39049641591'
+FAX = f'049{NB}641913'
+EMAIL = 'info@gardenspav.it'
+PEC = 'gardenspav@legalmail.it'
+INDIRIZZO = f'Via Romea 154/A, 35020 Legnaro{NB}(PD)'
+ORARI_BREVE = f'lun{WJ}-{WJ}ven {R(8, 12)} e {R(14, 18)}'          # [DA CONFERMARE: orari presi da Google]
+ORARI = f'Da lunedì a venerdì, {R(8, 12)} e {R(14, 18)}.'
+LEGALE = (f'Gardens Pav S.r.l., sede legale e operativa Via Romea 154/A, 35020 Legnaro (PD). P.IVA e C.F. 03963070283. '
+          f'Registro Imprese di Padova, REA PD{WJ}-{WJ}351148. Capitale sociale 100.000 euro. PEC {PEC}')
+OFFERTA = '/contatti/#richiesta'     # destinazione di "Chiedi un'offerta" fuori dalla home (lo script la adatta)
 
-NOMI_SUB = {
-    'Nastri x timbr.caldo': 'nastri per timbratura a caldo', 'Pinze / Tronchesi': 'pinze e tronchesi',
-    'Pennarelli e refil': 'pennarelli e refill', 'Metallizz.ritorto': 'metallizzato ritorto',
-    'Numerini autoad.': 'numerini autoadesivi', 'Nastri x imballo': 'nastri per imballo',
-    'Suole in Gomma Monocolore': 'gomma monocolore', 'Suole in Gomma Pu': 'gomma PU', 'Suole Gumlite': 'Gumlite',
-    'Suole Espanse': 'espanse', 'Lastre Compatte': 'compatte', 'Lastre Espanso': 'espanse',
-    'Mezzesuole Compatto': 'mezzesuole compatte', 'Tacchi Compatti': 'tacchi compatti', 'Tacchi TPU/PU': 'tacchi TPU e PU',
-}
-
-
-def sottocategorie(slug, con_numeri=True):
-    voci = []
-    for s in FAM[slug]['sottocategorie']:
-        if s['n'] == 0:
-            continue
-        nome = NOMI_SUB.get(s['nome'], s['nome']).strip()
-        nome = nome[0].lower() + nome[1:] if not nome.startswith(('Gumlite', 'PU')) else nome
-        voci.append(f'{nome} ({s["n"]})' if con_numeri else nome)
-    testo = ', '.join(voci)
-    return testo[0].upper() + testo[1:]
+VOCI_MENU = [('Piattaforme per autolavaggi', '/piattaforme-autolavaggi/'), ('Vasche', '/vasche/'),
+             ('Depurazione', '/depurazione/'), ('Realizzazioni', '/realizzazioni/'), ('Azienda', '/azienda/'),
+             ('Contatti', '/contatti/')]
 
 
 # ---------------------------------------------------------------------------------------------
-# Componenti
+# Foglio di stile comune (in tutti e due i formati: sta nella testata, che è su ogni pagina)
 # ---------------------------------------------------------------------------------------------
-def sezione(*children, bg=BIANCO, pad=('sezione', 'lato'), **p):
-    return C(*children, bg=bg, pad=pad, tag='section', **p)
-
-
-def link_freccia(testo, url, colore=NERO, hover=ROSSO, **p):
-    """Link testuale in maiuscolo con freccia, come i "Scopri" dei siti di marca."""
-    classi = ('bv-tap ' + p.pop('css', '')).strip()
-    return T(f'<p><a href="{url}">{testo}&nbsp;&nbsp;→</a></p>', style='link', color=colore, link_color=colore,
-             link_hover=hover, css=classi, **p)
-
-
-def intestazione(titolo, lead, max_w=760, filetto=True):
-    # senza filetto quando la sezione dopo apre con una riga che ha già il suo filetto (niente doppie linee)
-    return sezione(
-        C(H(titolo, 'h1'), T(f'<p>{lead}</p>', style='lead', color=TESTO2, max_w=max_w), gap='m'),
-        pad=('xl', 'lato', 'l', 'lato'), anchor='content', **({'border_bottom': 1, 'border_color': LINEA} if filetto else {}))
-
-
-def hero_divisa(titolo, lead, pulsanti, foto, alt, foto_mobile=None, livello='h1', stile='display', min_h=680):
-    """Hero divisa: pannello nero con il titolo a sinistra, foto a tutta altezza a destra (Mastrotto, Santoni)."""
-    testo = C(H(titolo, livello, style=stile, color=BIANCO),
-              T(f'<p>{lead}</p>', style='lead', color=SU_NERO2, max_w=520),
-              C(*pulsanti, dir='row', dir_m='column', gap='s', mt='xs'),
-              w=(50, 100, 100), gap='m', justify='center', pad=('xl', 'xl', 'xl', 'hero_lato'), min_h=(min_h, 0, 0),
-              bg=NERO)
-    # foto come sfondo del contenitore: riempie sempre l'altezza del pannello nero, qualunque sia la lunghezza del testo
-    immagine = C(w=(50, 100, 100), min_h=(min_h, 520, 300), img=img(foto), alt=alt, hide=['mobile'] if foto_mobile else None)
-    figli = [testo, immagine]
-    if foto_mobile:
-        figli.append(C(w=(100, 100, 100), min_h=(300, 300, 280), img=img(foto_mobile), alt=alt, hide=['desktop', 'tablet']))
-    return C(*figli, dir='row', dir_t='column', boxed=False, pad='0', gap='0', bg=NERO, tag='section', anchor='content')
-
-
-def blocco_foto(titolo, testo, conteggio, foto, link):
-    """Blocco grande con foto come navigazione: titolo e dati sopra la foto scurita (Rubelli, Santoni)."""
-    return C(
-        T(f'<p>{conteggio}</p>', style='label', color=BIANCO),
-        H(titolo, 'h3', style='h3l', color=BIANCO),
-        T(f'<p>{testo}</p>', style='small', color='#E6E6E6', max_w=420),
-        T('<p>Vedi&nbsp;&nbsp;→</p>', style='link', color=BIANCO, mt='xxs'),   # testo, non link: il blocco intero è il link
-        w=(49, 48.5, 100), min_h=(460, 380, 300), justify='end', gap='xs', pad=('l', 'l', 'l', 'l'),
-        img=img(foto), alt=titolo, scrim=(20, 0.06, 0.8), link=link, overflow=True)
-
-
-def riga_indice(numero, titolo, testo, destra=None, colore=NERO, colore_testo=TESTO2, colore_num=ROSSO,
-                linea=LINEA, link=None, ancora=None):
-    centro = C(H(titolo, 'h3', color=colore), T(f'<p>{testo}</p>', style='body', color=colore_testo), gap='xxs', grow=True)
-    figli = [H(numero, 'p', style='num', color=colore_num, fisso=True, w_px=(64, 56, None))] if numero else []
-    figli.append(centro)
-    if destra:
-        figli.append(T(f'<p>{destra}</p>', style='label', color=colore, align=('right', 'right', 'left'), fisso=True))
-    return C(*figli, dir='row', dir_m='column', gap=('m', 's', 'xxs'), pad=('m', '0', 'm', '0'), border_top=1,
-             border_color=linea, align=('baseline', 'baseline', 'start'), link=link, anchor=ancora)
-
-
-# larghezze esatte delle griglie: (contenuto - spazi) / colonne, così l'ultima scheda arriva al bordo della colonna
-W4 = (23.59, 48.9, 100)      # 4 per riga su desktop (1280 - 3x24), 2 su tablet (960 - 20), una per riga su telefono
-W3 = (32.0, 31.9, 100)       # 3 per riga su desktop e tablet
-
-# scheda prodotto: la foto si ingrandisce appena al passaggio, dentro la sua cornice (niente dissolvenze)
-CSS_SCHEDE = (
-    '.bvg-scheda .bvg-foto{overflow:hidden}'
-    '.bvg-scheda img{transition:transform .5s ease}'
-    '.bvg-scheda:hover img,.bvg-scheda:focus-visible img{transform:scale(1.045)}'
-    f'.bvg-scheda:hover h4,.bvg-scheda:hover .elementor-heading-title{{color:{ROSSO}}}'
-)
-
-
-def scheda_prodotto(pid, nome, famiglia, nota, link=None, w=W4):
-    """Scheda prodotto alla maniera dei siti di marca: foto su bianco, famiglia in piccolo, nome, una riga.
-    Su telefono diventa una riga (foto a sinistra, testo a destra): niente schede orfane in una griglia a due."""
-    foto = C(I(img(f'prodotto-{pid}.jpg'), nome), bg=BIANCO, border=1, border_color=LINEA, w=(100, 100, 34), fisso=True,
-             css='bvg-foto')
-    testo = C(T(f'<p>{famiglia}</p>', style='label', color=TESTO2),
-              H(nome, 'h4', style='h4'),
-              T(f'<p>{nota}</p>', style='small', color=TESTO2),
-              gap='xxs', w=(100, 100, 62), mt=('xs', 'xs', 0))
-    return C(foto, testo, w=w, gap=('xxs', 'xxs', 's'), dir='column', dir_m='row', align=('stretch', 'stretch', 'center'),
-             link=link, css='bvg-scheda')
-
-
-def griglia_schede(schede):
-    # il widget con il CSS sta fuori dalla griglia: dentro occuperebbe un posto e manderebbe a capo una riga vuota
-    return C(C(*schede, dir='row', wrap=True, justify='start', gap='col', gap_r=('l', 'l', 's')), RAW('', css=CSS_SCHEDE),
-             gap='0')
-
-
-def blocco_banco(titolo='Vieni al banco', pulsante=None):
-    """Indirizzo, orari, telefono: fondo chiaro, telefono grande. Su tutte le pagine tranne Contatti."""
-    b1 = pulsante or B('Apri in Google Maps', MAPS, variant='primario', full_m=True)
-    return sezione(
-        C(H(titolo, 'h2'),
-          T(f'<p>{INDIRIZZO}, {ZONA_MIN}, {CITTA}.<br>Parcheggio clienti davanti al negozio.</p>'
-            f'<p>{ORARI}.<br>{CHIUSURA}.</p>', style='lead', color=NERO, link_color=NERO, link_hover=ROSSO),
-          w=(50, 100, 100), gap='m'),
-        C(T('<p>Telefono</p>', style='label', color=TESTO2),
-          H(TEL, 'p', style='tel', color=NERO, link=TEL_LINK),
-          T(f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>', style='body', color=NERO, link_color=NERO, link_hover=ROSSO),
-          C(b1, B('Scrivi una email', mailto('Richiesta informazioni'), variant='contorno', full_m=True),
-            dir='row', dir_m='column', gap='s', mt='s'),
-          w=(42, 100, 100), gap='xs'),
-        bg=GRIGIO, dir='row', dir_t='column', justify='between', gap='xl', anchor='banco')
-
-
-# ---------------------------------------------------------------------------------------------
-# Header e footer (template separati; con Ultimate Addons diventano header e footer di tutto il sito)
-# ---------------------------------------------------------------------------------------------
-VOCI_MENU = [('Catalogo', '/catalogo/'), ('Vibram', '/vibram/'), ('Marchi', '/marchi/'), ('Azienda', '/azienda/'),
-             ('Novità', '/novita/'), ('Contatti', '/contatti/')]
-
-CSS_BASE = (
+CSS_SITO = (
+    # carattere e numeri; nessun corsivo inventato dal browser
+    f'.gpv-raw{{font-family:{FONT_CSS};color:{TESTO};font-synthesis:none;-webkit-font-smoothing:antialiased}}'
+    '.gpv-raw *,.gpv-raw *::before,.gpv-raw *::after{box-sizing:border-box}'
+    '.gpv-raw h2,.gpv-raw h3,.gpv-raw p,.gpv-raw ul,.gpv-raw ol,.gpv-raw figure,figure.gpv-raw{margin:0;padding:0}'
+    '.gpv-raw figcaption,figure.gpv-raw figcaption{font-style:normal}'
+    '.gpv-raw ul,.gpv-raw ol{list-style:none}'
     'em,i,cite{font-style:normal}'
-    f'a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{{outline:2px solid {ROSSO};outline-offset:3px}}'
-    # il menu Ultimate Addons va a capo prima di riempire lo spazio: su desktop le voci restano su una riga
-    '@media (min-width:1025px){.hfe-nav-menu__layout-horizontal .hfe-nav-menu{flex-wrap:nowrap}.hfe-nav-menu .hfe-menu-item{white-space:nowrap}}'
-    # su tablet e telefono il menu chiuso resta impaginato (invisibile) e sporge a destra: lo taglio in orizzontale,
-    # in verticale la tendina aperta scende normalmente
-    '.bvg-testata{overflow-x:clip}'
-    '.elementor-widget-text-editor ul{list-style:none;margin:0;padding:0}'
-    f'.elementor-widget-text-editor li{{margin:0;padding:10px 0;border-top:1px solid {LINEA}}}'
-    f'.elementor-widget-text-editor li:last-child{{border-bottom:1px solid {LINEA}}}'
-    '.elementor-widget-heading .elementor-heading-title{text-wrap:balance}.elementor-widget-text-editor p{text-wrap:pretty}'
-    # come nel fallback: l'ultimo paragrafo di un testo non aggiunge 0,9em di spazio sotto
-    '.elementor-widget-text-editor p:last-child{margin-block-end:0!important;margin-bottom:0!important}'
-    f"a.hfe-skip-link:focus{{background:{NERO};color:{BIANCO};border-radius:0;box-shadow:none;outline:2px solid {BIANCO};"
-    f"outline-offset:-4px;font:600 14px/1 '{BARLOW}',Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase;"
-    'text-decoration:none;padding:16px 24px}'
+    'html{scroll-padding-top:96px}'
+    '@media (max-width:767px){html{scroll-padding-top:80px}body{padding-bottom:64px}}'
+    '@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}'
+    # titoli: spaziatura in em (Elementor la scrive in px uguale su tutti i formati), a capo bilanciato
+    '.gpv-tit .elementor-heading-title,.gpv-w.gpv-tit{letter-spacing:-.015em!important}'
+    '.gpv-tit-d .elementor-heading-title,.gpv-w.gpv-tit-d{letter-spacing:-.02em!important}'
+    '@media (max-width:767px){.gpv-tit-d .elementor-heading-title,.gpv-w.gpv-tit-d{line-height:1.1!important}}'
+    '.elementor-heading-title{text-wrap:balance}.elementor-widget-text-editor p{text-wrap:pretty}'
+    '.elementor-widget-text-editor p:last-child{margin-bottom:0!important;margin-block-end:0!important}'
+    # cifre tabellari dove ci sono misure, pesi e orari
+    '.gpv-cifre,.gpv-cifre p,.gpv-cifre .elementor-heading-title{font-variant-numeric:tabular-nums lining-nums}'
+    # link nel testo: grafite, sottolineatura 1 px; al passaggio arancio da 2 px (mai testo arancio)
+    f'a.gpv-a{{color:{TESTO}!important;text-decoration:underline!important;text-decoration-thickness:1px!important;'
+    'text-underline-offset:3px!important}'
+    f'a.gpv-a:hover{{text-decoration-color:{ARANCIO}!important;text-decoration-thickness:2px!important}}'
+    f'a.gpv-tutti{{color:{TESTO}!important;font-weight:600;white-space:nowrap;text-decoration:underline!important;'
+    'text-decoration-thickness:1px!important;text-underline-offset:4px!important}'
+    f'a.gpv-tutti:hover{{text-decoration-color:{ARANCIO}!important;text-decoration-thickness:2px!important}}'
+    f'a.gpv-chiedi{{color:{TESTO}!important;text-decoration:underline!important;text-decoration-color:{SOTTOLINEA}!important;'
+    'text-decoration-thickness:1px!important;text-underline-offset:3px!important}'
+    f'a.gpv-chiedi:hover{{text-decoration-color:{ARANCIO}!important;text-decoration-thickness:2px!important}}'
+    f'a.gpv-pl{{color:{TESTO}!important;text-decoration:none!important}}'
+    f'a.gpv-pl:hover{{text-decoration:underline!important;text-decoration-color:{ARANCIO}!important;text-underline-offset:3px!important}}'
+    f'a.gpv-a:focus-visible,a.gpv-tutti:focus-visible,a.gpv-chiedi:focus-visible,a.gpv-pl:focus-visible,'
+    f'.gpv-raw a:focus-visible,.gpv-raw button:focus-visible,.gpv-raw summary:focus-visible,.gpv-raw input:focus-visible,'
+    f'.gpv-raw select:focus-visible,.gpv-raw textarea:focus-visible,.gpv-modulo input:focus-visible,.gpv-modulo select:focus-visible,'
+    f'.gpv-modulo textarea:focus-visible,.gpv-modulo button:focus-visible,.gpv-logo a:focus-visible'
+    f'{{outline:2px solid {TESTO}!important;outline-offset:2px}}'
+    # bottone pieno: arancio con testo grafite, al passaggio grafite con testo bianco; mai opacità
+    f'.gpv-btn,a.gpv-btn,button.gpv-btn,input.gpv-btn{{display:inline-block;background:{ARANCIO}!important;color:{TESTO}!important;'
+    f'font:700 15px/1.2 {FONT_CSS};text-decoration:none!important;padding:12px 18px;border:0!important;border-radius:2px!important;'
+    'white-space:nowrap;cursor:pointer;box-shadow:none!important;text-transform:none;letter-spacing:0}'
+    f'.gpv-btn:hover,.gpv-btn:focus-visible,a.gpv-btn:hover,button.gpv-btn:hover,input.gpv-btn:hover{{background:{TESTO}!important;color:{CARTA}!important}}'
+    f'.gpv-btn:disabled,.gpv-btn[disabled]{{background:{SCHEDA_H}!important;color:{TESTO2}!important;cursor:progress}}'
+    # schede cliccabili: un solo link (sul titolo) che copre la scheda; "Chiedi un'offerta" sta sopra
+    '.gpv-scheda{position:relative;transition:none!important}'
+    f'.gpv-scheda:hover{{background-color:{SCHEDA_H}!important}}'
+    '.gpv-scheda .elementor-widget{position:static}'
+    f'.gpv-scheda h3 a{{color:{TESTO}!important;text-decoration:none!important}}'
+    '.gpv-scheda h3 a::after{content:"";position:absolute;inset:0;z-index:0}'
+    '.gpv-scheda h3 a:focus-visible{outline:0}'
+    f'.gpv-scheda:has(h3 a:focus-visible){{outline:2px solid {TESTO};outline-offset:2px}}'
+    '.gpv-scheda .gpv-s-chiedi{position:relative;z-index:1;align-self:flex-start}'
+    '.gpv-s-sotto p{min-height:2.8em}'
+    '.gpv-s-num{margin-top:auto!important}'
+    '.gpv-s-img img{width:100%;height:auto;display:block}'
+    # griglie (Elementor non ha i passaggi a 1100 e 900 px)
+    '.gpv-g4.gpv-g4{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px!important}'
+    '.gpv-g4 > *{width:auto!important;max-width:none!important;min-width:0}'
+    '@media (max-width:1100px){.gpv-g4.gpv-g4{gap:12px!important}}'
+    '@media (max-width:900px){.gpv-g4.gpv-g4{grid-template-columns:repeat(2,minmax(0,1fr))}}'
+    '@media (max-width:767px){.gpv-g4.gpv-g4{gap:8px!important}.gpv-g4.gpv-schede{grid-template-columns:1fr}}'
+    # scheda di famiglia: padding 24/24/16 (16 sotto 1100); sotto 900 è una riga con l'immagine di 116 px a sinistra
+    '.gpv-scheda.gpv-scheda{padding:24px 24px 16px!important}'
+    '@media (max-width:1100px){.gpv-scheda.gpv-scheda{padding:16px 16px 16px!important}}'
+    '@media (max-width:900px){'
+    '.gpv-scheda.gpv-scheda{display:grid!important;grid-template-columns:116px minmax(0,1fr);'
+    'grid-template-areas:"img nome" "img sotto" "img num" "img chiedi";column-gap:16px!important;row-gap:0!important;align-content:start;'
+    'padding:12px 12px 12px 8px!important}'
+    '.gpv-s-nome{grid-area:nome}.gpv-s-sotto{grid-area:sotto;margin-top:4px!important}'
+    '.gpv-s-img{grid-area:img;align-self:center;margin:0!important}'
+    '.gpv-s-num{grid-area:num;margin-top:8px!important}.gpv-s-chiedi{grid-area:chiedi;margin-top:8px!important}'
+    '.gpv-s-sotto p{min-height:0}'
+    '.gpv-s-nome .elementor-heading-title,.gpv-w.gpv-s-nome{font-size:17px!important}'
+    # Elementor scrive l'interlinea in em sul contenitore del widget: la riscrivo insieme al corpo
+    '.gpv-s-sotto p{font-size:13.5px!important;line-height:1.4!important}.gpv-s-num p{font-size:14.5px!important;line-height:1.45!important}}'
+    # testata di sezione: titolo e testo nella stessa colonna, il link in basso a destra
+    '.gpv-testa-t{max-width:782px}'
+    # didascalie delle foto
+    '.gpv-fig img{width:100%;height:auto;display:block}'
+    # contorno dei campi di Contact Form 7 e del fallback: stessi stili (vedi CSS_MODULO)
 )
 
-# aree di tocco: i link testuali restano uguali a vista ma si toccano su circa 40 px
-CSS_TAP = (
-    '.bv-tap a{display:inline-block;padding:12px 0;margin:-12px 0}'
-    '@media (max-width:1024px){.bv-tap-lista p{line-height:40px}.bv-tap-lista a{display:inline-block}}'
+# ---------------------------------------------------------------------------------------------
+# Componenti riutilizzabili (home e pagine interne)
+# ---------------------------------------------------------------------------------------------
+
+
+def testo(html, stile='body', colore=TESTO, **p):
+    """Widget Testo: link grafite anche al passaggio (l'arancio non è mai colore di testo)."""
+    return T(html, style=stile, color=colore, link_color=TESTO, link_hover=TESTO, **p)
+
+
+def titolo(t, livello='h2', stile='h2', **p):
+    classi = 'gpv-tit-d' if stile in ('display', 'h1') else ('gpv-tit' if stile.startswith('h2') else '')
+    css = (classi + ' ' + p.pop('css', '')).strip()
+    return H(t, livello, style=stile, color=TESTO, **({'css': css} if css else {}), **p)
+
+
+def sezione(*figli, pad=('sezione', 'lato', '0', 'lato'), anchor=None, css='', **p):
+    """Fascia di pagina: fondo bianco, contenuto largo 1280 (boxed), spazio sopra dalla scala."""
+    return C(*figli, pad=pad, tag='section', bg=CARTA, anchor=anchor, css=('gpv-sez ' + css).strip(), gap='0', **p)
+
+
+def testa(titolo_testo, frase, link=None, stile='h2', livello='h2', **p):
+    """Testata di sezione: titolo e frase nella stessa colonna, link "Tutte le ..." in basso a destra."""
+    col = C(titolo(titolo_testo, livello, stile), testo(f'<p>{frase}</p>', colore=TESTO2, mt='xs', max_w=782),
+            grow=True, gap='0', css='gpv-testa-t')
+    figli = [col]
+    if link:
+        figli.append(testo(f'<p><a class="gpv-tutti" href="{link[1]}">{link[0]}</a></p>', stile='tutti', fisso=True))
+    return C(*figli, dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap=('xxl', 'xl', 's'),
+             mb='l', css='gpv-testa', **p)
+
+
+def chiedi(prodotto, ancora='#contatti', base=''):
+    """Link "Chiedi un'offerta" che porta al modulo con il prodotto già scelto (data-prodotto per lo script)."""
+    return (f'<p><a class="gpv-chiedi" href="{base}?prodotto={quote(prodotto)}{ancora}" data-prodotto="{prodotto}" '
+            f'aria-label="Chiedi un’offerta: {prodotto[0].lower() + prodotto[1:] if not prodotto.startswith(("Depuratori", "Dissabbiatore")) else prodotto}">'
+            'Chiedi un’offerta</a></p>')
+
+
+def scheda_famiglia(foto, nome, sotto, numeri, href, alt, prodotto, ancora='#contatti', base=''):
+    """Scheda di famiglia (specifica 2.6.1): nome che porta alla scheda, sottoprodotti, render, due righe di numeri veri,
+    "Chiedi un'offerta". Il fondo cambia al passaggio; il link del titolo copre tutta la scheda."""
+    return C(
+        titolo(nome, 'h3', 'h3', link=href, css='gpv-s-nome'),
+        testo(f'<p>{sotto}</p>', 'didascalia', TESTO2, css='gpv-s-sotto', mt='xs'),
+        I(img(foto), alt, css='gpv-s-img', mt='s', mb='s'),
+        testo(f'<p>{numeri[0]}<br>{numeri[1]}</p>', 'num', css='gpv-s-num gpv-cifre'),
+        testo(chiedi(prodotto, ancora, base), 'link', css='gpv-s-chiedi', mt='s'),
+        bg=SCHEDA, pad=('l', 'l', 'm', 'l'), gap='0', css='gpv-scheda')
+
+
+def griglia(*figli, css='', **p):
+    """Griglia a 4 colonne (2 sotto 900 px, 1 o 2 a mobile secondo la classe): CSS grid dalla classe gpv-g4."""
+    return C(*figli, gap='m', css=('gpv-g4 ' + css).strip(), **p)
+
+
+def figura(foto, alt, didascalia, css='', **p):
+    """Foto con didascalia sotto (14 px, testo secondario)."""
+    return C(I(img(foto), alt), testo(f'<p>{didascalia}</p>', 'didascalia', TESTO2, mt='xs'), gap='0',
+             css=('gpv-fig ' + css).strip(), **p)
+
+
+# ---------------------------------------------------------------------------------------------
+# Testata e piede (Ultimate Addons for Elementor: template "Header" e "Footer", su tutto il sito)
+# ---------------------------------------------------------------------------------------------
+CSS_TESTATA = (
+    # la testata resta in alto: in WordPress è il <header id="masthead"> di Ultimate Addons, nel fallback la sezione
+    f'#masthead,.gpv-header{{position:sticky;top:0;z-index:40;background:{CARTA}}}'
+    '.gpv-testata{overflow-x:clip}'
+    'a.hfe-skip-link{display:none!important}'
+    '.gpv-salta{position:absolute;left:-9999px;top:8px;z-index:50;padding:8px 12px;background:#FFFFFF;'
+    f'color:{TESTO}!important;font:600 15px/1.2 {FONT_CSS};text-decoration:underline}}'
+    '.gpv-salta:focus{left:8px}'
+    '.gpv-logo img{display:block;width:172px;height:auto}'
+    '.gpv-nav{display:flex;align-items:center;gap:32px;width:100%}'
+    '.gpv-menu{display:flex;gap:24px;margin-right:auto}'
+    f'.gpv-menu a{{font:600 15px/1.2 {FONT_CSS};color:{TESTO}!important;text-decoration:none!important;white-space:nowrap;'
+    'padding:6px 0;border-bottom:2px solid transparent}'
+    f'.gpv-menu a:hover{{border-bottom-color:{ARANCIO}}}'
+    f'.gpv-menu a[aria-current=page]{{border-bottom-color:{TESTO}}}'
+    f'.gpv-menu a[aria-current=page]:hover{{border-bottom-color:{ARANCIO}}}'
+    f'.gpv-tel{{display:flex;flex-direction:column;text-decoration:none!important;line-height:1.2;white-space:nowrap;color:{TESTO}!important}}'
+    '.gpv-tel b{font-weight:700;font-size:19px;font-variant-numeric:tabular-nums}'
+    f'.gpv-tel span{{font-size:13px;color:{TESTO2}}}'
+    f'.gpv-tel:hover b{{text-decoration:underline;text-decoration-color:{ARANCIO};text-decoration-thickness:2px;text-underline-offset:3px}}'
+    '.gpv-hamb{display:none;position:relative}'
+    f'.gpv-hamb summary{{list-style:none;cursor:pointer;font:700 15px/1.2 {FONT_CSS};color:{TESTO};padding:10px 12px;'
+    f'border:1px solid {TESTO};border-radius:2px}}'
+    '.gpv-hamb summary::-webkit-details-marker{display:none}'
+    f'.gpv-hamb[open] summary{{background:{TESTO};color:#FFFFFF}}'
+    f'.gpv-tendina{{position:absolute;right:0;top:calc(100% + 13px);background:#FFFFFF;border:1px solid {LINEA};'
+    'width:300px;max-width:calc(100vw - 32px);padding:8px 0 16px;box-shadow:0 8px 24px rgba(35,34,31,.12);z-index:45}'
+    f'.gpv-tendina nav a{{display:block;padding:10px 18px;font:600 15px/1.35 {FONT_CSS};color:{TESTO}!important;text-decoration:none!important}}'
+    f'.gpv-tendina nav a:hover{{background:{SCHEDA}}}'
+    f'.gpv-tendina nav a[aria-current=page]{{font-weight:700;background:{SCHEDA}}}'
+    '.gpv-cerca{display:flex;margin:12px 18px 0;position:relative}'
+    '.gpv-cerca label{position:absolute;left:-9999px}'
+    f'.gpv-cerca input{{flex:1;min-width:0;height:42px;border:1px solid {BORDO_CAMPI};border-right:0;border-radius:2px 0 0 2px;'
+    f'padding:0 12px;font:400 16px/1.2 {FONT_CSS};color:{TESTO};background:#FFFFFF;margin:0}}'
+    f'.gpv-cerca input::placeholder{{color:{SEGNAPOSTO};opacity:1}}'
+    f'.gpv-cerca button{{height:42px;padding:0 14px;border:1px solid {TESTO};background:{TESTO};color:#FFFFFF;'
+    f'font:700 15px/1 {FONT_CSS};border-radius:0 2px 2px 0;cursor:pointer;margin:0}}'
+    f'.gpv-cerca button:hover{{background:{ARANCIO};border-color:{ARANCIO};color:{TESTO}}}'
+    '@media (max-width:1340px){.gpv-menu{display:none}.gpv-hamb{display:block}.gpv-tel{margin-left:auto}}'
+    '@media (max-width:767px){.gpv-logo img{width:136px}.gpv-nav{gap:12px}.gpv-tel span{display:none}.gpv-tel b{font-size:16px}'
+    '.gpv-btn--testata{display:none!important}.gpv-hamb summary{padding:8px 10px;font-size:14px}.gpv-tendina{right:-4px}}'
 )
+
+# voce attiva (una per pagina, dall'indirizzo); tendina chiusa con Esc e con un clic fuori; "Chiedi un'offerta" porta
+# al modulo della pagina se c'è (home: #contatti, Contatti: #richiesta), altrimenti a /contatti/#richiesta
+JS_TESTATA = (
+    "(function(){var p=location.pathname.replace(/index\\.html$/,'');"
+    "var file=p.split('/').pop();"
+    "document.querySelectorAll('.gpv-menu a,.gpv-tendina nav a').forEach(function(a){"
+    "var h=a.getAttribute('href');if(h===p||(file&&a.pathname.split('/').pop()===file&&file.indexOf('.html')>0))a.setAttribute('aria-current','page')});"
+    "var qui=document.getElementById('contatti')?'#contatti':(document.getElementById('richiesta')?'#richiesta':null);"
+    "if(qui)document.querySelectorAll('a.gpv-offerta').forEach(function(a){a.setAttribute('href',qui)});"
+    "var d=document.querySelector('.gpv-hamb');if(!d)return;"
+    "document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});"
+    "document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false})})();"
+)
+
+
+def nav_html():
+    voci = ''.join(f'<a href="{u}">{t}</a>' for t, u in VOCI_MENU)
+    return (
+        '<div class="gpv-raw gpv-nav">'
+        f'<nav class="gpv-menu" aria-label="Menu principale">{voci}</nav>'
+        f'<a class="gpv-tel" href="{TEL_LINK}"><b>{TEL}</b><span>Ufficio tecnico, {ORARI_BREVE}</span></a>'
+        f'<a class="gpv-btn gpv-btn--testata gpv-offerta" href="{OFFERTA}">Chiedi un’offerta</a>'
+        '<details class="gpv-hamb"><summary>Menu</summary><div class="gpv-tendina">'
+        f'<nav aria-label="Menu principale, versione compatta">{voci}</nav>'
+        '<form class="gpv-cerca" action="/" method="get" role="search">'
+        '<label for="gpv-cerca-t">Cerca per nome o taglia</label>'
+        '<input id="gpv-cerca-t" name="s" type="search" placeholder="Nome o taglia" autocomplete="off">'
+        '<button type="submit">Cerca</button></form></div></details>'
+        f'</div><script>{JS_TESTATA}</script>'
+    )
 
 
 def header():
-    barra = C(
-        T(f'<p>Banco aperto {ORARI_BREVE.lower()}</p>', style='small', color=SU_NERO2, hide=['mobile']),
-        T(f'<p>{ORARI_BREVE}</p>', style='small', color=SU_NERO2, hide=['desktop', 'tablet']),
-        T(f'<p><a href="{TEL_LINK}">{TEL}</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="mailto:{EMAIL}">{EMAIL}</a></p>', style='small',
-          color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, align='right', hide=['mobile'], css='bv-tap'),
-        T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='small', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2,
-          align='right', hide=['desktop', 'tablet'], css='bv-tap'),
-        dir='row', justify='between', align='center', gap='s', pad=(9, 'lato'), bg=NERO, boxed=True)
-    marchio = C(I(img('logo-benvegnu-nero.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 156, 136), fisso=True,
-                  link_label='Benvegnù S.r.l. pagina iniziale'),
-                dir='row', align='center', w=(30, 50, 55))
-    azioni = C(
-        T(f'<p><a href="{TEL_LINK}">Chiama</a></p>', style='link', color=NERO, link_color=NERO, link_hover=ROSSO,
-          hide=['desktop'], fisso=True, css='bv-tap'),
-        MENU(VOCI_MENU, colore=NERO, accento=ROSSO, fondo_menu=BIANCO, linea=LINEA, stile='nav', stile_mobile='nav_m',
-             spazio=32, pad_v=8, distanza=12, align_menu='right', fisso=True, larg=(None, 40, 40)),
-        B('Chiedi disponibilità', '/contatti/#modulo', variant='contorno', hide=['tablet', 'mobile'], fisso=True),
-        dir='row', align='center', justify='end', gap=('l', 's', 's'), w=(70, 50, 45))
-    testata = C(marchio, azioni, dir='row', justify='between', align='center', gap='m', min_h=(84, 72, 64),
-                pad=(10, 'lato'), bg=BIANCO, border_bottom=1, border_color=LINEA, boxed=True)
-    return C(barra, testata, RAW('', css=CSS_BASE, solo_elementor=True), RAW('', css=CSS_TAP), pad='0', boxed=False,
-             tag='header', bg=BIANCO, css='bvg-testata')
+    logo = I(img('logo-gardens-pav.png'), 'Gardens Pav, opere in calcestruzzo', link='/', w_img=(172, 172, 136), fisso=True,
+             css='gpv-logo', link_label='Gardens Pav, pagina iniziale')
+    riga = C(logo, RAW(nav_html(), grow=True), dir='row', align='center', gap=('xl', 'xl', 's'), min_h=(76, 76, 62),
+             pad=('0', 'lato'), boxed=True)
+    # il link "Vai al contenuto" e il foglio di stile stanno fuori dalla riga: non occupano posto tra logo e menu
+    salta = RAW('<a class="gpv-salta" href="#contenuto">Vai al contenuto</a>', css=CSS_SITO + CSS_TESTATA)
+    return C(salta, riga, pad='0', boxed=False, gap='0', bg=CARTA, border_bottom=1, border_color=LINEA, css='gpv-testata')
+
+
+CSS_PIEDE = (
+    '.gpv-piede-in.gpv-piede-in{display:grid!important;grid-template-columns:minmax(0,4fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr);'
+    'gap:48px!important}'
+    '.gpv-piede-in > *{width:auto!important;min-width:0}'
+    '@media (max-width:1100px){.gpv-piede-in.gpv-piede-in{grid-template-columns:1fr 1fr;gap:32px 48px!important}}'
+    '@media (max-width:767px){.gpv-piede-in.gpv-piede-in{grid-template-columns:1fr;gap:24px!important}}'
+    '.gpv-piede .gpv-logo img{width:172px}'
+    # barra del telefono in basso, fino a 767 px
+    '.gpv-barra{display:none}'
+    '@media (max-width:767px){.gpv-barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:35;background:#FFFFFF;'
+    f'border-top:1px solid {LINEA};padding:8px 12px;gap:8px}}'
+    f'.gpv-barra a{{flex:1;text-align:center;font:700 15px/1.2 {FONT_CSS};text-decoration:none!important;padding:11px 8px;'
+    f'border-radius:2px;color:{TESTO}!important}}'
+    f'.gpv-barra a:first-child{{border:1px solid {TESTO}}}'
+    f'.gpv-barra a:last-child{{background:{ARANCIO};border:1px solid {ARANCIO}}}'
+    f'.gpv-barra a:hover{{background:{TESTO};border-color:{TESTO};color:#FFFFFF!important}}}}'
+)
 
 
 def footer():
-    def colonna(titolo, html):
-        return C(T(f'<p>{titolo}</p>', style='label', color=SU_NERO2),
-                 T(html, style='dati', color=BIANCO, link_color=BIANCO, link_hover=SU_NERO2, sottolinea=False,
-                   css='bv-tap-lista'), gap='s',
-                 w=(22, 46, 100))
-    pagine = ''.join(f'<a href="{u}">{t}</a><br>' for t, u in VOCI_MENU)
-    righe = C(
-        C(I(img('logo-benvegnu-bianco.png'), 'Benvegnù S.r.l.', link='/', w_img=(176, 160, 150),
-            link_label='Benvegnù S.r.l. pagina iniziale'),
-          T('<p>Componenti, accessori e utensili per calzatura e pelletteria. Vigonovo, dal 1980.</p>', style='dati',
-            color=SU_NERO2, max_w=300), gap='m', w=(28, 46, 100)),
-        colonna('Il banco', f'<p>{INDIRIZZO}<br>{CITTA}<br>{ZONA}</p>'),   # gli orari sono già nella barra in alto
-        colonna('Contatti', f'<p>Tel. <a href="{TEL_LINK}">{TEL}</a><br>Fax {FAX}<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>'
-                            f'PEC {PEC}</p>'),
-        colonna('Pagine', f'<p>{pagine}<a href="{CONDIZIONI_PDF}">Condizioni di vendita (PDF)</a></p>'),
-        dir='row', dir_m='column', wrap=(False, True, False), justify='between', gap=('m', 'l', 'l'))
-    legale = C(
-        T(f'<p>© 2026 Benvegnù S.r.l. · P.IVA {PIVA} · REA {REA} · Sede legale {SEDE_LEGALE}</p>', style='small', color=SU_NERO2),
-        T(f'<p><a href="/privacy/">Privacy</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/cookie/">Cookie</a>&nbsp;&nbsp;·&nbsp;&nbsp;'
-          f'<a href="{FACEBOOK}">Facebook</a></p>', style='small', color=SU_NERO2, link_color=SU_NERO2, link_hover=BIANCO, sottolinea=False,
-          align=('right', 'right', 'left'), fisso=True, css='bv-tap'),
-        dir='row', dir_m='column', justify='between', gap='s', pad=('m', '0', '0', '0'), border_top=1, border_color=LINEA_SCURA)
-    return C(righe, legale, gap='xl', pad=('xl', 'lato', 'l', 'lato'), bg=NERO, tag='footer')
+    def colonna(nome, righe):
+        return C(titolo(nome, 'h3', 'h3p', mb='xs'),
+                 testo('<p>' + '<br>'.join(righe) + '</p>', 'piede', css='gpv-cifre'), gap='0')
+    pl = lambda t, u: f'<a class="gpv-pl" href="{u}">{t}</a>'
+    marchio = C(I(img('logo-gardens-pav.png'), 'Gardens Pav, opere in calcestruzzo', link='/', w_img=(172, 172, 172),
+                  css='gpv-logo', link_label='Gardens Pav, pagina iniziale'),
+                testo('<p>Manufatti in calcestruzzo armato vibrato per il trattamento delle acque e piattaforme prefabbricate per '
+                      'autolavaggi, da Legnaro (PD).</p>', 'small', TESTO2, mt='s'), gap='0')
+    colonne = C(
+        marchio,
+        colonna('Prodotti', [pl('Piattaforme per autolavaggi', '/piattaforme-autolavaggi/'), pl('Vasche monoblocco', '/vasche/'),
+                             pl('Depurazione', '/depurazione/'), pl('Realizzazioni', '/realizzazioni/')]),
+        colonna('Azienda', [pl('Chi siamo', '/azienda/'), pl('Contatti', '/contatti/'), pl('Privacy', '/privacy/'),
+                            pl('Cookie', '/cookie/')]),
+        colonna('Ufficio tecnico', [pl(TEL, TEL_LINK), ORARI_BREVE, pl(EMAIL, f'mailto:{EMAIL}')]),
+        gap='xxl', css='gpv-piede-in')
+    legale = C(testo(f'<p>{LEGALE}</p>', 'legale', TESTO2), border_top=1, border_color=LINEA, pad=('m', '0', '0', '0'), mt='xl')
+    barra = RAW(f'<div class="gpv-raw gpv-barra"><a href="{TEL_LINK}">Chiama {TEL}</a>'
+                f'<a class="gpv-offerta" href="{OFFERTA}">Chiedi un’offerta</a></div>', css=CSS_PIEDE)
+    return C(colonne, legale, barra, pad=(48, 'lato', 32, 'lato'), bg=SCHEDA, tag='footer', gap='0', css='gpv-piede')
 
 
 # ---------------------------------------------------------------------------------------------
-# HOME
+# Disegno in sezione del piazzale (home, H1): SVG scritto dai dati, unità del viewBox = centimetri.
+# Le didascalie sopra terra stanno in una fascia HTML alta 170 px (160 sotto 1340, 195 sotto 1180); i loro richiami
+# sono elementi HTML dentro il riquadro del disegno (altezza in px fino alla fascia più una percentuale fino al pezzo).
+# Sotto i 1025 px il disegno si divide in due figure intere, ognuna con le sue voci in elenco.
 # ---------------------------------------------------------------------------------------------
-def home():
-    n_tomaia = FAM['filati-elastici']['n'] + FAM['modelleria-riparazione']['n']
-    n_cura = sum(FAM[k]['n'] for k in ('prodotti-chimici', 'esposizione-cura', 'igiene-sicurezza', 'imballaggio'))
-    apertura = hero_divisa(
-        'Forniture per calzaturifici, pelletterie e\u00a0calzolai',
-        'Suole e lastre Vibram, filati, utensili e prodotti per la rifinitura del fondo e della tomaia. '
-        'Al banco di Vigonovo, nella Riviera del Brenta, dal 1980.',
-        [B('Sfoglia il catalogo', '/catalogo/', variant='bianco', full_m=True),
-         B('Come arrivare', MAPS, variant='contorno-bianco', full_m=True)],
-        'sede-hero.jpg', 'La sede Benvegnù in Via del Lavoro 48 a Vigonovo', foto_mobile='sede-hero-mobile.jpg')
+SX0, SW = -40, 1350              # x da -40 a 1310 cm
+SYT, S_TERRA = -16, 236          # da 16 cm sopra il piano di campagna al fondo del terreno
+SYB = S_TERRA + 2
+SH = SYB - SYT                   # 254 cm
+NS = 'vector-effect="non-scaling-stroke"'
 
-    catalogo = sezione(
-        C(H('Il catalogo', 'h2'),
-          C(T(f'<p>{TOTALE} articoli in 10 famiglie, dagli utensili alle suole Vibram. Quello che non trovi online, '
-              'chiedilo al banco.</p>', style='body', color=TESTO2),
-            link_freccia('Tutto il catalogo', '/catalogo/'), gap='s', w=(40, 60, 100)),
-          dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='m'),
-        C(blocco_foto('Vibram', 'Suole, lastre, mezzesuole e tacchi', f'{N_VIBRAM} articoli', 'blocco-vibram.jpg', '/vibram/'),
-          blocco_foto('Utensili', 'Forbici, coltelli, lesine, punzoni, martelli, mole, strumenti di misura, torchi',
-                      f'{FAM["utensili"]["n"]} articoli', 'blocco-utensili.jpg', '/catalogo/#utensili'),
-          blocco_foto('Tomaia e modelleria', 'Filati, elastici, allungaforme, alzi, materiali per modelleria e riparazione',
-                      f'{n_tomaia} articoli', 'blocco-tomaia.jpg', '/catalogo/#filati-elastici'),
-          blocco_foto('Cura, esposizione e imballo', 'Prodotti Girba, cura della scarpa, calzanti, guanti, nastri ed etichette',
-                      f'{n_cura} articoli', 'blocco-cura.jpg', '/catalogo/#esposizione-cura'),
-          dir='row', wrap=True, justify='between', gap='col', gap_r='col'),
-        gap='l', anchor='catalogo')
-
-    return [('apertura', apertura), ('catalogo', catalogo), ('dal-catalogo', striscia_catalogo()),
-            ('vibram', vibram_al_banco()), ('per-chi-lavoriamo', per_chi_lavoriamo()), ('banco', chiusura_banco())]
-
-
-# ---------------------------------------------------------------------------------------------
-# Home sotto il catalogo: quattro sezioni, ognuna con un'idea e un gesto
-# (ricerca su siti reali: striscia di Valextra con cella di testo di Edward Green; fascia nera di Edward Green e
-# Gruppo Mastrotto con la foto che esce dalla fascia; dichiarazione con i loghi come contesto di Lampo; titolo grande
-# appoggiato sulla foto della fascia sostenibilità di Mastrotto e righe d'indice di Ernest Wright e Vitsoe)
-# ---------------------------------------------------------------------------------------------
-CSS_KICKER = (
-    '.bv-kicker p{display:flex;align-items:center;gap:16px;margin:0}'
-    ".bv-kicker p::before{content:'';flex:0 0 48px;height:1px;background:currentColor}"
-)
-
-# articoli della striscia: (id foto, famiglia, nome, dettaglio verificato sul catalogo, link)
-# dettagli dalle varianti del sito attuale: Liverpool 4 colori x 7 misure, Crepe 4 colori 90x60, Tera 7, Mara 6, Lariz 4;
-# "Cod." solo dove il catalogo ha un codice articolo (gli altri numeri sono id di pagina, non codici)
-STRISCIA = [
-    ('80075', 'Suole Vibram', '2600 Liverpool', 'Gumlite, 4 colori, 7 misure', '/vibram/#vibram-suole'),
-    ('1895', 'Utensili', 'Forbici Lariz lame curve', 'Da lavoro, 4 misure', '/catalogo/#utensili'),
-    ('1030', 'Filati ed elastici', 'Gütermann Tera', 'Poliestere ritorto, 7 varianti', '/catalogo/#filati-elastici'),
-    ('82268', 'Lastre Vibram', '7106 Crepe', 'Gomma morbida, 90 x 60 cm, 4 colori', '/vibram/#vibram-lastre'),
-    ('14932', 'Utensili', 'Calibro digitale', 'Portata 200 mm, risoluzione 0,01 mm · Cod. 14932', '/catalogo/#utensili'),
-    ('80751', 'Tacchi Vibram', '1100T Montagna', 'Tacco 20,5 mm, mescola Vibram Mont', '/vibram/#vibram-mezzesuole-tacchi'),
-    ('15887', 'Filati ed elastici', 'Gütermann Mara', 'Poliestere ritorto, 6 varianti', '/catalogo/#filati-elastici'),
-    ('9978', 'Utensili', 'Coltello C.Dick Original', 'Misura 270 x 20 mm · Cod. 9978', '/catalogo/#utensili'),
-    ('15752', 'Esposizione e cura', 'Tendiscarpa in cedro', 'Modello European · Cod. 15752', '/catalogo/#esposizione-cura'),
-    ('14563', 'Modelleria e riparazione', 'Forma allargascarpe 2Way', 'Dasco · Cod. 14563', '/catalogo/#modelleria-riparazione'),
-    ('7995', 'Esposizione e cura', 'Calzante Longuette GT', 'Anatomico · Cod. 7995', '/catalogo/#esposizione-cura'),
-    ('15531', 'Imballaggio', 'Etichette Made in Italy', '28 x 8 mm, 5000 pezzi · Cod. 15531', '/catalogo/#imballaggio'),
+# (chiave, x della linea, y del pezzo, riga, allineamento, larghezza %, nome, dato, link)
+SEZ_FASCIA = [
+    ('a', 40, 10, 1, 'l', 30.8, f'Piattaforma per pista self Mod.{NB}450',
+     f'450×650{NB}cm, 2{NB}pannelli da 5,90{NB}t, spessore 20{NB}cm', '/piattaforme-autolavaggi/#mod-450'),
+    ('b', 480, 2, 1, 'l', 23.5, 'Grigliato in vetroresina PRFV',
+     f'moduli 200×100{NB}cm, antiscivolo al quarzo', '/piattaforme-autolavaggi/#fornitura'),
+    ('f', 1170, 8, 1, 'r', 23.5, 'Separatore oli con filtro a coalescenza',
+     f'da 3 a 30{NB}l/s, UNI{NB}EN{NB}858-1; scarico in acque superficiali, Tab.{NB}3, All.{NB}5, D.Lgs.{NB}152/2006',
+     '/depurazione/#separatore-oli'),
+    ('d', 170, 7, 2, 'l', 21.2, 'Supporti portagriglia',
+     'acciaio zincato, staffe e viti inox, giuntoplasto sul bordo della vasca', '/piattaforme-autolavaggi/#fornitura'),
+    ('e', 560, 10, 2, 'l', 21.9, 'Tubazioni predisposte',
+     'dentro i pannelli, per pluviali, lance e cavi elettrici', '/piattaforme-autolavaggi/#fornitura'),
+    ('c', 880, 8, 2, 'l', 19.7, 'Dissabbiatore statico',
+     f'da Ø{NB}148×206{NB}h, 2,30{NB}m³: sabbie e fanghi restano sul fondo', '/depurazione/#dissabbiatore'),
 ]
-CELLA = (312, 288, 300)
-FINE = {'14932', '9978'}        # oggetti sottili (calibro, coltello): ingranditi nella loro cella
+# (chiave, x, y del pezzo, y del bordo alto della didascalia, larghezza %, nome, dato, link, escluso)
+SEZ_TERRENO = [
+    ('h', 330, 124, 146, 26.0, 'Vasca sottopista', f'400×100×110{NB}h, compresa con la piattaforma',
+     '/piattaforme-autolavaggi/#mod-450', False),
+    ('g', 590, 30, 54, 13.3, 'Opere edili, escluse', f'scavo, pietrisco 4/8 da 20{NB}cm, cordolo perimetrale e magrone',
+     '/piattaforme-autolavaggi/#fornitura', True),
+]
 
-CSS_STRISCIA = (
-    # binario: scorre di lato con aggancio alle schede; il primo bordo è allineato alla griglia di 1280, la fine sborda
-    '.bv-strip .bv-track{flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden;scroll-snap-type:x mandatory;'
-    'scrollbar-width:thin;scrollbar-color:#111111 #E2E2E2;padding-left:max(48px,calc((100% - 1280px)/2))!important;'
-    'scroll-padding-left:max(48px,calc((100% - 1280px)/2))}'
-    # con JavaScript ci sono frecce e barra rossa: la barra di scorrimento del browser si nasconde
-    '.bv-strip.bv-js .bv-track{scrollbar-width:none}.bv-strip.bv-js .bv-track::-webkit-scrollbar{display:none}'
-    ".bv-strip .bv-track::after{content:'';flex:0 0 max(48px,calc(100% - 1280px))}"
-    '.bv-strip .bv-track>*{scroll-snap-align:start}'
-    '.bv-strip .bv-img{overflow:hidden}'
-    '.bv-strip .bv-img img{display:block;width:100%;height:auto;transition:transform .4s ease}'
-    '.bv-strip .bv-fine img{transform:scale(1.3)}'
-    '@media (hover:hover){.bv-strip .bv-card:hover .bv-img img{transform:scale(1.04)}'
-    '.bv-strip .bv-card:hover .bv-fine img{transform:scale(1.35)}'
-    '.bv-strip .bv-card:hover .bv-name,.bv-strip .bv-card:hover .bv-name .elementor-heading-title'
-    '{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}'
-    '@media (prefers-reduced-motion:reduce){.bv-strip .bv-img img{transition:none}}'
-    f'.bv-strip .bv-card:focus-visible,.bv-strip .bv-track:focus-visible{{outline:2px solid {ROSSO};outline-offset:-3px}}'
-    # comandi: barra di avanzamento rossa sottile e due frecce quadrate (si riempiono di nero, mai dissolvenze)
-    '.bv-strip .bv-ctrl{max-width:1280px;margin:32px auto 0;padding:0 48px;box-sizing:content-box;display:flex;align-items:center;gap:24px}'
-    '.bv-strip .bv-ctrl[hidden]{display:none}'
-    '.bv-strip .bv-bar{flex:1;height:1px;background:#CFCFCF;position:relative}'
-    f'.bv-strip .bv-thumb{{position:absolute;top:-1px;left:0;height:3px;width:30%;background:{ROSSO}}}'
-    '.bv-strip .bv-btns{display:flex;gap:8px}'
-    f".bv-strip .bv-ctrl .bv-btn{{width:48px;height:48px;padding:0;border:1px solid {NERO};border-radius:0;background:{BIANCO};"
-    f"color:{NERO};font:400 18px/1 '{BARLOW}',Arial,sans-serif;cursor:pointer;box-shadow:none;transition:background-color .2s,color .2s}}"
-    f'.bv-strip .bv-ctrl .bv-btn:hover:not([aria-disabled=true]),.bv-strip .bv-ctrl .bv-btn:focus-visible{{background:{NERO};color:{BIANCO};border-color:{NERO}}}'
-    f'.bv-strip .bv-ctrl .bv-btn[aria-disabled=true],.bv-strip .bv-ctrl .bv-btn[aria-disabled=true]:hover{{background:{BIANCO};border-color:#CFCFCF;color:#BDBDBD;cursor:default}}'
-    f'.bv-strip .bv-ctrl .bv-btn[aria-disabled=true]:focus-visible{{outline:2px solid {ROSSO};outline-offset:2px}}'
-    '@media (max-width:1024px){.bv-strip .bv-track{padding-left:32px!important;scroll-padding-left:32px}'
-    '.bv-strip .bv-track::after{flex-basis:32px}.bv-strip .bv-ctrl{padding:0 32px}}'
-    '@media (max-width:767px){.bv-strip .bv-track{padding-left:20px!important;scroll-padding-left:20px}'
-    '.bv-strip .bv-track::after{flex-basis:20px}.bv-strip .bv-ctrl{margin-top:24px;padding:0 20px}'
-    '.bv-strip .bv-ctrl .bv-btn{width:44px;height:44px}}'
+
+def _px(x):
+    return f'{(x - SX0) / SW * 100:.3f}%'
+
+
+def _py(y):
+    return f'{(y - SYT) / SH * 100:.3f}%'
+
+
+def svg_sezione(vista, richiami, etichetta, idp):
+    """Il piazzale in sezione: pista self Mod. 450 sul pietrisco, vasca sottopista, dissabbiatore, separatore oli.
+    idp: prefisso degli id dei motivi (ogni SVG nella pagina ha i suoi: uno nascosto non deve togliere i motivi all'altro)."""
+    vx0, vx1 = vista
+    vw = vx1 - vx0
+    L = []
+    a = L.append
+    a(f'<svg class="gpv-sez-svg" viewBox="{vx0} {SYT} {vw} {SH}" width="{vw}" height="{SH}" role="img" aria-label="{etichetta}" '
+      'xmlns="http://www.w3.org/2000/svg">')
+    a('<defs>'
+      f'<pattern id="{idp}-terra" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">'
+      f'<rect width="14" height="14" fill="{TERRA}"/><line x1="0" y1="0" x2="0" y2="14" stroke="#D6CDBD" stroke-width="1.6"/></pattern>'
+      f'<pattern id="{idp}-pietrisco" width="9" height="9" patternUnits="userSpaceOnUse">'
+      '<rect width="9" height="9" fill="#E7E3DA"/><circle cx="2" cy="2.5" r="1.3" fill="#8F897D"/>'
+      '<circle cx="6.5" cy="6.5" r="1.1" fill="#8F897D"/></pattern>'
+      f'<pattern id="{idp}-opere" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
+      '<rect width="6" height="6" fill="#E2DFD8"/><line x1="0" y1="0" x2="0" y2="6" stroke="#8E897E" stroke-width="1.6"/></pattern>'
+      '</defs>')
+    a(f'<rect x="{vx0}" y="0" width="{vw}" height="{S_TERRA}" fill="url(#{idp}-terra)"/>')
+    a(f'<line x1="{vx0}" y1="{S_TERRA}" x2="{vx1}" y2="{S_TERRA}" stroke="#C9BFAE" stroke-width="1" {NS}/>')
+    # opere edili: pietrisco sotto i pannelli, cordoli, magrone sotto la vasca
+    a(f'<rect x="25" y="20" width="600" height="20" fill="url(#{idp}-pietrisco)" stroke="#6E6A61" stroke-width="1" {NS}/>')
+    a(f'<rect x="0" y="20" width="25" height="26" fill="url(#{idp}-opere)" stroke="#6E6A61" stroke-width="1" {NS}/>')
+    a(f'<rect x="625" y="20" width="25" height="26" fill="url(#{idp}-opere)" stroke="#6E6A61" stroke-width="1" {NS}/>')
+    a(f'<rect x="113" y="130" width="424" height="11" fill="url(#{idp}-opere)" stroke="#6E6A61" stroke-width="1" {NS}/>')
+    # vasca sottopista 400 x 100 x 110 h con l'acqua sul fondo, grigliato e supporti
+    a(f'<path d="M125 20 H525 V130 H125 Z M137 20 V118 H513 V20 Z" fill-rule="evenodd" fill="{CLS}" stroke="#3E3D39" stroke-width="1.2" {NS}/>')
+    a('<rect x="137" y="20" width="376" height="98" fill="#FFFFFF"/>')
+    a('<rect x="137" y="102" width="376" height="16" fill="#DCE4E5"/>')
+    a(f'<line x1="137" y1="102" x2="513" y2="102" stroke="#8FA3A8" stroke-width="1" {NS}/>')
+    a(f'<rect x="137" y="0" width="376" height="20" fill="#F0F0EE" stroke="#A9A9A4" stroke-width="1" stroke-dasharray="4 3" {NS}/>')
+    for x in (167, 257, 347, 437):
+        a(f'<rect x="{x}" y="4" width="6" height="6" fill="#A7ACAE" stroke="#3E3D39" stroke-width="1" {NS}/>')
+    a(f'<rect x="137" y="0" width="376" height="4" fill="#3E8A5C" stroke="#1F4A31" stroke-width="1" {NS}/>')
+    for x0, x1 in ((0, 137), (513, 650)):
+        a(f'<rect x="{x0}" y="0" width="{x1 - x0}" height="20" fill="{CLS}" stroke="#3E3D39" stroke-width="1.2" {NS}/>')
+    a(f'<circle cx="560" cy="10" r="6.5" fill="{ARANCIO}" stroke="#3E3D39" stroke-width="1" {NS}/>')
+
+    def tubo(punti, w=10):
+        d = 'M' + ' L'.join(f'{x} {y}' for x, y in punti)
+        a(f'<path d="{d}" fill="none" stroke="#7A3E14" stroke-width="{w + 2.4}" stroke-linejoin="round"/>')
+        a(f'<path d="{d}" fill="none" stroke="{ARANCIO}" stroke-width="{w}" stroke-linejoin="round"/>')
+
+    def pozzo(x):
+        a(f'<path d="M{x} 20 H{x + 148} V226 H{x} Z M{x + 12} 20 V211 H{x + 136} V20 Z" fill-rule="evenodd" '
+          f'fill="{CLS}" stroke="#3E3D39" stroke-width="1.2" {NS}/>')
+        a(f'<rect x="{x + 12}" y="20" width="124" height="191" fill="#FFFFFF"/>')
+        a(f'<rect x="{x}" y="0" width="148" height="20" fill="{CLS}" stroke="#3E3D39" stroke-width="1.2" {NS}/>')
+        a(f'<rect x="{x + 56}" y="0" width="36" height="3.5" fill="#5F5E59"/>')
+
+    tubo([(519, 108), (802, 114)])
+    xd = 790                                   # dissabbiatore statico Ø 148 x 206 h: sabbie sul fondo
+    pozzo(xd)
+    a(f'<rect x="{xd + 12}" y="112" width="124" height="99" fill="#DCE4E5"/>')
+    a(f'<line x1="{xd + 12}" y1="112" x2="{xd + 136}" y2="112" stroke="#8FA3A8" stroke-width="1" {NS}/>')
+    a(f'<path d="M{xd + 12} 211 V193 C{xd + 40} 186 {xd + 70} 197 {xd + 100} 189 S{xd + 128} 186 {xd + 136} 190 V211 Z" fill="#C7B597"/>')
+    tubo([(xd, 114), (xd + 30, 114), (xd + 30, 160)])
+    tubo([(xd + 136, 122), (1052, 128)])
+    xs = 1040                                  # separatore oli con filtro a coalescenza
+    pozzo(xs)
+    a(f'<rect x="{xs + 12}" y="120" width="124" height="91" fill="#DCE4E5"/>')
+    a(f'<rect x="{xs + 12}" y="120" width="124" height="5" fill="#8C7647"/>')
+    tubo([(xs, 128), (xs + 26, 128), (xs + 26, 165)])
+    a(f'<rect x="{xs + 70}" y="136" width="40" height="60" fill="#EEF2F3" stroke="#3E3D39" stroke-width="1" {NS}/>')
+    for k in range(1, 6):
+        a(f'<line x1="{xs + 70 + k * 6.7:.1f}" y1="136" x2="{xs + 70 + k * 6.7:.1f}" y2="196" stroke="#7E8C92" stroke-width="1" {NS}/>')
+    tubo([(xs + 136, 134), (1320, 140)])
+    a(f'<line x1="{vx0}" y1="0" x2="{vx1}" y2="0" stroke="{TESTO}" stroke-width="1.5" {NS}/>')
+    if richiami:
+        for k, x, y, top, *_ in SEZ_TERRENO:
+            a(f'<line x1="{x}" y1="{y}" x2="{x}" y2="{top}" stroke="{TESTO}" stroke-width="1" {NS}/>')
+        for k, x, y, *_ in SEZ_FASCIA + SEZ_TERRENO:
+            a(f'<circle cx="{x}" cy="{y}" r="3.6" fill="{TESTO}" stroke="#FFFFFF" stroke-width="1" {NS}/>')
+    a('</svg>')
+    return ''.join(L)
+
+
+def _voce(nome, dato, href, escl, cls):
+    return (f'<a class="{cls}{" " + cls + "--escl" if escl else ""}" href="{href}"><span class="gpv-dida-n">{nome}</span>'
+            f'<span class="gpv-dida-d">{dato}</span></a>')
+
+
+def html_sezione():
+    fascia, richiami, terreno = [], [], []
+    for k, x, y, riga, al, larg, nome, dato, href in SEZ_FASCIA:
+        pos = f'left:{_px(x)};' if al == 'l' else f'right:{(SX0 + SW - x) / SW * 100:.3f}%;'
+        cls = f'gpv-dida gpv-dida--r{riga}' + (' gpv-dida--dx' if al == 'r' else '')
+        fascia.append(f'<a class="{cls}" style="{pos}max-width:{larg}%" href="{href}"><span class="gpv-dida-n">{nome}</span>'
+                      f'<span class="gpv-dida-d">{dato}</span></a>')
+        richiami.append(f'<span class="gpv-richiamo gpv-richiamo--r{riga}" style="left:{_px(x)};--y:{_py(y)}" aria-hidden="true"></span>')
+    for k, x, y, top, larg, nome, dato, href, escl in SEZ_TERRENO:
+        dx = k == 'h'      # la vasca sottopista ha a sinistra tutto il terreno libero: didascalia allineata a destra
+        cls = 'gpv-dida gpv-dida--t' + (' gpv-dida--escl' if escl else '') + (' gpv-dida--tdx' if dx else '')
+        pos = f'right:{(SX0 + SW - x) / SW * 100:.3f}%;' if dx else f'left:{_px(x)};'
+        terreno.append(f'<a class="{cls}" style="{pos}top:{_py(top)};max-width:{larg}%" href="{href}">'
+                       f'<span class="gpv-dida-n">{nome}</span><span class="gpv-dida-d">{dato}</span></a>')
+    voci = {d[0]: (d[6], d[7], d[8], False) for d in SEZ_FASCIA}
+    voci.update({d[0]: (d[5], d[6], d[7], d[8]) for d in SEZ_TERRENO})
+
+    def lista(chiavi):
+        return ''.join(f'<li>{_voce(*voci[k], "gpv-voce")}</li>' for k in chiavi)
+
+    sw_opere = ('<svg class="gpv-sw" viewBox="0 0 16 16" aria-hidden="true"><defs><pattern id="gpv-sw-opere" width="4" height="4" '
+                'patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="4" fill="#E2DFD8"/>'
+                '<line x1="0" y1="0" x2="0" y2="4" stroke="#8E897E" stroke-width="1.3"/></pattern></defs>'
+                '<rect x=".5" y=".5" width="15" height="15" fill="url(#gpv-sw-opere)" stroke="#6E6A61"/></svg>')
+    sw_terra = ('<svg class="gpv-sw" viewBox="0 0 16 16" aria-hidden="true"><defs><pattern id="gpv-sw-terra" width="6" height="6" '
+                f'patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="6" height="6" fill="{TERRA}"/>'
+                '<line x1="0" y1="0" x2="0" y2="6" stroke="#C9BFAE" stroke-width="1.2"/></pattern></defs>'
+                '<rect x=".5" y=".5" width="15" height="15" fill="url(#gpv-sw-terra)" stroke="#C9BFAE"/></svg>')
+    sw_cls = (f'<svg class="gpv-sw" viewBox="0 0 16 16" aria-hidden="true"><rect x=".5" y=".5" width="15" height="15" fill="{CLS}" '
+              'stroke="#3E3D39"/></svg>')
+    return (
+        '<figure class="gpv-raw gpv-sez-fig">'
+        '<div class="gpv-sez-intero">'
+        f'<div class="gpv-sez-fascia">{"".join(fascia)}</div>'
+        '<div class="gpv-sez-img">'
+        + svg_sezione((SX0, SX0 + SW), True, 'Sezione di una pista self Mod. 450: pannelli, grigliato e vasca sottopista sopra il '
+                      'piano di posa; a destra dissabbiatore e separatore oli collegati dal tubo di scarico', 'gpv-si')
+        + ''.join(richiami) + ''.join(terreno) + '</div></div>'
+        '<div class="gpv-sez-diviso">'
+        '<div class="gpv-sez-parte">'
+        + svg_sezione((-40, 700), False, 'Sezione della pista self Mod. 450: due pannelli da 20 cm sul pietrisco, grigliato verde '
+                      'e vasca sottopista sul magrone', 'gpv-sp')
+        + f'<ul class="gpv-sez-lista">{lista(["a", "b", "d", "e", "h", "g"])}</ul></div>'
+        '<div class="gpv-sez-parte">'
+        + svg_sezione((700, 1310), False, 'Sezione del dissabbiatore statico e del separatore oli con filtro a coalescenza, '
+                      'collegati dal tubo che arriva dalla vasca sottopista', 'gpv-sv')
+        + f'<ul class="gpv-sez-lista">{lista(["c", "f"])}</ul></div>'
+        '</div>'
+        '<figcaption class="gpv-sez-nota">'
+        '<div><p>Sezione lungo l’asse di una pista self Mod.&nbsp;450 e della linea che tratta l’acqua di lavaggio. Pezzi in scala, '
+        'misure in centimetri; la posizione delle vasche è indicativa.</p>'
+        f'<ul class="gpv-legenda"><li>{sw_cls}Manufatti Gardens Pav</li><li>{sw_opere}Opere edili dell’impresa</li>'
+        f'<li>{sw_terra}Terreno</li></ul></div>'
+        '<div><h3>Compreso con la piattaforma</h3><p>Posa in cantiere con il nostro personale. Vasca sottopista, grigliato, supporti '
+        'zincati, giuntoplasto, staffe e viti inox, tubazioni nei pannelli. Disegno con le fasi di posa, relazione strutturale, '
+        'scheda tecnica e piano di manutenzione.</p></div>'
+        '<div><h3>Su richiesta</h3><p>Trasporto con o senza gru, noleggio dell’autogru.</p>'
+        '<h3>Escluso</h3><p>Scavo, sbancamento, piano di posa, cordolo perimetrale e relazioni di calcolo delle opere edili.</p></div>'
+        '</figcaption></figure>'
+    )
+
+
+CSS_SEZIONE = (
+    '.gpv-sez-fig{--r2b:26px;--r1b:102px;--fascia:170px}'
+    '.gpv-sez-svg{display:block;width:100%;height:auto}'
+    '.gpv-sez-fascia{position:relative;height:var(--fascia)}'
+    '.gpv-sez-img{position:relative}'
+    f'.gpv-dida{{position:absolute;display:block;width:max-content;text-decoration:none!important;color:{TESTO}!important;line-height:1.25}}'
+    '.gpv-dida--r1{bottom:var(--r1b);margin-left:8px}'
+    '.gpv-dida--r2{bottom:var(--r2b);margin-left:8px}'
+    '.gpv-dida--dx{margin-left:0;margin-right:8px;text-align:right}'
+    f'.gpv-dida--t{{margin-left:-8px;padding:4px 8px 8px;background:{TERRA}}}'
+    '.gpv-dida--tdx{margin-left:0;margin-right:-8px;text-align:right}'
+    f'.gpv-dida-n{{display:block;font-weight:700;font-size:15px;text-decoration:underline;text-decoration-color:{SOTTOLINEA};'
+    'text-decoration-thickness:1px;text-underline-offset:3px}'
+    f'.gpv-dida-d{{display:block;font-size:14px;color:{TESTO2};margin-top:4px;font-variant-numeric:tabular-nums;text-wrap:pretty}}'
+    f'.gpv-dida:hover .gpv-dida-n,.gpv-voce:hover .gpv-dida-n{{text-decoration-color:{ARANCIO};text-decoration-thickness:2px}}'
+    f'.gpv-dida--escl .gpv-dida-n,.gpv-voce--escl .gpv-dida-n{{color:{TESTO2}}}'
+    f'.gpv-richiamo{{position:absolute;width:1px;margin-left:-.5px;background:{TESTO};pointer-events:none}}'
+    '.gpv-richiamo--r1{top:calc(-1 * var(--r1b));height:calc(var(--r1b) + var(--y))}'
+    '.gpv-richiamo--r2{top:calc(-1 * var(--r2b));height:calc(var(--r2b) + var(--y))}'
+    '.gpv-sez-diviso{display:none}'
+    '.gpv-sez-lista{margin-top:16px!important;display:grid;gap:12px}'
+    f'.gpv-voce{{display:block;text-decoration:none!important;color:{TESTO}!important;line-height:1.3}}'
+    '.gpv-sez-nota{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding:24px 0 0;font-size:15px;line-height:1.5}'
+    '.gpv-sez-nota h3{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:4px}'
+    '.gpv-sez-nota p+h3{margin-top:12px}'
+    f'.gpv-legenda{{margin-top:8px!important;display:flex;flex-wrap:wrap;gap:8px 16px;color:{TESTO2}}}'
+    '.gpv-legenda li{display:flex;align-items:center;gap:8px}'
+    '.gpv-sw{display:block;width:16px;height:16px;flex:none}'
+    '@media (max-width:1340px){.gpv-sez-fig{--r1b:96px;--fascia:160px}.gpv-dida-n{font-size:14px}.gpv-dida-d{font-size:13px}}'
+    '@media (max-width:1180px){.gpv-sez-fig{--fascia:195px}}'
+    '@media (max-width:1024px){.gpv-sez-intero{display:none}'
+    '.gpv-sez-diviso{display:grid;grid-template-columns:minmax(0,740fr) minmax(0,610fr);gap:32px;margin-top:16px}'
+    '.gpv-sez-nota{grid-template-columns:1fr 1fr;gap:24px 32px;padding-top:32px}'
+    '.gpv-sez-nota > :first-child{grid-column:1 / -1}}'
+    '@media (max-width:767px){.gpv-sez-diviso{grid-template-columns:1fr;gap:32px}.gpv-sez-nota{grid-template-columns:1fr;gap:16px}}'
 )
 
-# frecce e barra: senza JavaScript restano nascoste (lo scorrimento a mano e l'aggancio funzionano comunque)
-JS_STRISCIA = (
-    "(function(){function go(){document.querySelectorAll('.bv-strip').forEach(function(w){"
-    "var s=w.querySelector('.bv-track'),c=w.querySelector('.bv-ctrl');if(!s||!c||c.dataset.ok)return;c.dataset.ok=1;"
-    "var t=c.querySelector('.bv-thumb'),p=c.querySelector('.bv-prev'),n=c.querySelector('.bv-next');c.hidden=false;"
-    "w.classList.add('bv-js');"
-    "s.setAttribute('tabindex','0');s.setAttribute('role','region');s.setAttribute('aria-label','Articoli dal catalogo');"
-    "var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,bh=rm?'auto':'smooth';"
-    "function st(){var k=s.children[1]||s.children[0];return k?k.getBoundingClientRect().width:300}"
-    "function up(){var m=s.scrollWidth-s.clientWidth,v=s.clientWidth/s.scrollWidth,r=m>0?s.scrollLeft/m:0;"
-    "t.style.width=(v*100)+'%';t.style.left=(r*(1-v)*100)+'%';"
-    "p.setAttribute('aria-disabled',s.scrollLeft<=2);n.setAttribute('aria-disabled',s.scrollLeft>=m-2)}"
-    "p.addEventListener('click',function(){if(this.getAttribute('aria-disabled')==='true')return;s.scrollBy({left:-st(),behavior:bh})});"
-    "n.addEventListener('click',function(){if(this.getAttribute('aria-disabled')==='true')return;s.scrollBy({left:st(),behavior:bh})});"
-    "s.addEventListener('focusin',function(e){var k=e.target.closest&&e.target.closest('.bv-card');if(!k)return;"
-    "var a=k.getBoundingClientRect(),b=s.getBoundingClientRect(),pl=parseFloat(getComputedStyle(s).scrollPaddingLeft)||0;"
-    "if(a.left<b.left+pl-1||a.right>b.right+1){s.scrollTo({left:s.scrollLeft+a.left-b.left-pl,behavior:bh})}});"
-    "s.addEventListener('keydown',function(e){if(e.target!==s)return;if(e.key==='Home'||e.key==='End'){e.preventDefault();"
-    "s.scrollTo({left:e.key==='Home'?0:s.scrollWidth,behavior:bh})}});"
-    "s.addEventListener('scroll',up,{passive:true});window.addEventListener('resize',up);up()})}"
-    "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',go)}else{go()}})();"
+
+# ---------------------------------------------------------------------------------------------
+# Le quattro fasi di posa (home, H4): la pista self Mod. 450 in sezione, il pezzo nuovo in grigio pieno
+# ---------------------------------------------------------------------------------------------
+FVB = (-44, -76, 576, 228)
+F_SCURO = f'fill="{CLS}" stroke="#2A2926" stroke-width="1.5"'
+F_CHIARO = 'fill="#EEEDEA" stroke="#B3B1AB" stroke-width="1"'
+SCAVO = 'M-30 0 V40 H165 V140 H285 V40 H480 V0 Z'
+
+
+def _f_defs(n):
+    return (f'<defs><pattern id="gpv-f{n}-ter" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">'
+            f'<rect width="14" height="14" fill="{TERRA}"/><line x1="0" y1="0" x2="0" y2="14" stroke="#D6CDBD" stroke-width="1.6"/></pattern>'
+            f'<pattern id="gpv-f{n}-pie" width="9" height="9" patternUnits="userSpaceOnUse">'
+            '<rect width="9" height="9" fill="#EEEDEA"/><circle cx="2.5" cy="2.5" r="1.5" fill="#B3B1AB"/><circle cx="7" cy="6.5" r="1.2" fill="#C2C0BA"/></pattern>'
+            f'<pattern id="gpv-f{n}-pies" width="9" height="9" patternUnits="userSpaceOnUse">'
+            '<rect width="9" height="9" fill="#D9D6CE"/><circle cx="2.5" cy="2.5" r="1.8" fill="#4E4C47"/><circle cx="7" cy="6.5" r="1.5" fill="#6B6964"/></pattern>'
+            f'<pattern id="gpv-f{n}-gri" width="4" height="4" patternUnits="userSpaceOnUse">'
+            '<rect width="4" height="4" fill="#2E7A4C"/><rect x="1.3" y="0" width="1.4" height="4" fill="#3F9861"/></pattern></defs>')
+
+
+def _quota(x1, x2, y, t):
+    return (f'<g><line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<line x1="{x1}" y1="{y - 6}" x2="{x1}" y2="{y + 6}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<line x1="{x2}" y1="{y - 6}" x2="{x2}" y2="{y + 6}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<text x="{(x1 + x2) / 2}" y="{y - 8}" text-anchor="middle">{t}</text></g>')
+
+
+def _quota_v(x, y1, y2, t):
+    return (f'<g><line x1="{x}" y1="{y1}" x2="{x}" y2="{y2}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<line x1="{x - 5}" y1="{y1}" x2="{x + 5}" y2="{y1}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<line x1="{x - 5}" y1="{y2}" x2="{x + 5}" y2="{y2}" stroke="#2A2926" stroke-width="1" {NS}/>'
+            f'<text x="{x + 9}" y="{(y1 + y2) / 2 + 8}" text-anchor="start">{t}</text></g>')
+
+
+def _f_terreno(n, scavato):
+    x, y, w, h = FVB
+    s = f'<rect x="{x}" y="0" width="{w}" height="{h + y}" fill="url(#gpv-f{n}-ter)"/>'
+    if scavato:
+        s += f'<path d="{SCAVO}" fill="#FFFFFF"/>'
+        s += f'<path d="M{x} 0 H-30 V40 H165 V140 H285 V40 H480 V0 H{x + w}" fill="none" stroke="#B3B1AB" stroke-width="1" {NS}/>'
+    else:
+        s += f'<line x1="{x}" y1="0" x2="{x + w}" y2="0" stroke="#6F6D67" stroke-width="1.2" {NS}/>'
+    return s
+
+
+def _f_vasca(stile):
+    return (f'<rect x="165" y="130" width="120" height="10" {F_CHIARO} {NS}/>'
+            f'<path d="M175 20 H185 V120 H265 V20 H275 V130 H175 Z" {stile} {NS}/>'
+            f'<rect x="275" y="86" width="40" height="12" {stile} {NS}/>')
+
+
+def _f_cordoli(n, scuro):
+    pie = f'url(#gpv-f{n}-pies)' if scuro else f'url(#gpv-f{n}-pie)'
+    st = F_SCURO if scuro else F_CHIARO
+    pst = 'stroke="#2A2926" stroke-width="1.5"' if scuro else 'stroke="#B3B1AB" stroke-width="1"'
+    return (f'<path d="M165 40 V140 H175 V40 Z M275 40 V140 H285 V40 Z" fill="url(#gpv-f{n}-pie)" stroke="none"/>'
+            f'<rect x="10" y="20" width="165" height="20" fill="{pie}" {pst} {NS}/>'
+            f'<rect x="275" y="20" width="165" height="20" fill="{pie}" {pst} {NS}/>'
+            f'<rect x="-30" y="20" width="40" height="20" {st} {NS}/>'
+            f'<rect x="440" y="20" width="40" height="20" {st} {NS}/>')
+
+
+def _f_pannelli(n):
+    return (f'<path d="M-10 0 L185 3 V23 L-10 20 Z" {F_SCURO} {NS}/>'
+            f'<path d="M460 0 L265 3 V23 L460 20 Z" {F_SCURO} {NS}/>'
+            f'<rect x="185" y="3" width="80" height="5" fill="url(#gpv-f{n}-gri)" stroke="#1E5434" stroke-width="1" {NS}/>'
+            f'<path d="M185 8 H193 V14 M265 8 H257 V14" fill="none" stroke="#2A2926" stroke-width="1.5" {NS}/>')
+
+
+def svg_fasi():
+    def svg(n, corpo, etichetta):
+        x, y, w, h = FVB
+        return (f'<svg class="gpv-raw gpv-fase-svg" viewBox="{x} {y} {w} {h}" role="img" aria-label="{etichetta}" '
+                f'xmlns="http://www.w3.org/2000/svg">{_f_defs(n)}{corpo}</svg>')
+    c1 = _f_terreno(1, False)
+    c1 += ('<rect x="-33" y="-36" width="6" height="50" fill="#2A2926"/><rect x="447" y="-36" width="6" height="50" fill="#2A2926"/>'
+           f'<line x1="-30" y1="-28" x2="450" y2="-28" stroke="#2A2926" stroke-width="1.5" stroke-dasharray="6 4" {NS}/>'
+           f'<path d="{SCAVO}" fill="none" stroke="#9D9B95" stroke-width="1" stroke-dasharray="5 5" {NS}/>')
+    c1 += _quota(-30, 450, -46, '450')
+    c2 = _f_terreno(2, True) + _f_vasca(F_SCURO) + _quota(175, 275, 6, '100') + _quota_v(330, 20, 130, '110 h')
+    c3 = _f_terreno(3, True) + _f_vasca(F_CHIARO) + _f_cordoli(3, True) + _quota_v(486, 20, 40, '20')
+    c4 = (_f_terreno(4, True) + _f_vasca(F_CHIARO) + _f_cordoli(4, False) + _f_pannelli(4)
+          + _quota(-10, 460, -18, '450') + _quota_v(486, 0, 20, '20'))
+    return [svg(1, c1, 'Tracciatura dei contorni della piazzola larga 450 cm'),
+            svg(2, c2, 'Posa della vasca sottopista 400 per 100 per 110 cm sul magrone'),
+            svg(3, c3, 'Cordoli perimetrali di magrone e pietrisco 4/8 da 20 cm'),
+            svg(4, c4, 'Posa dei due pannelli da 20 cm e del grigliato in vetroresina')]
+
+
+# ---------------------------------------------------------------------------------------------
+# Dati della home (01: schede dei prodotti, punti 26-31; cantieri, punto 40; tabelle-pulite.json)
+# ---------------------------------------------------------------------------------------------
+# (immagine, nome, sottoprodotti, due righe di numeri, link, alt, voce del modulo)
+SCHEDE_PIATTAFORME = [
+    ('scheda-pista-self.jpg', 'Piste self', f'Mod.{NB}450, Mod.{NB}500, Mod.{NB}500 doppia griglia',
+     [f'450×650 o 500×650{NB}cm', f'2{NB}pannelli da 5,90 o 6,70{NB}t'],
+     '/piattaforme-autolavaggi/#piste-self', 'Pista self esplosa: due pannelli, vasca sottopista e grigliato', 'Piste self'),
+    ('scheda-portali.jpg', 'Portali', f'Mod.{NB}1, Mod.{NB}2, Mod.{NB}3 lavaggio chassis, Mod.{NB}4 prelavaggio, Mod.{NB}5',
+     [f'da 500×1100 a 500×1800{NB}cm', f'4 o 6 pannelli a incastro da 20{NB}cm'],
+     '/piattaforme-autolavaggi/#portali', 'Piattaforma per portale Mod. 5 in assonometria', 'Portali'),
+    ('scheda-isola.jpg', 'Isola di aspirazione e trave di rialzo', 'piastra per l’aspiratore, trave rovescia per le strutture in acciaio',
+     [f'piastra da 25{NB}cm, 2,50{NB}t', f'trave da 30{NB}cm, 3,20{NB}t'],
+     '/piattaforme-autolavaggi/#accessori', 'Isola di aspirazione prefabbricata', 'Isola di aspirazione o trave di rialzo'),
+    ('scheda-colori.jpg', 'Personalizzazione', 'calcestruzzo colorato, riscaldamento a pavimento, tubazioni predisposte',
+     ['4 colori con ossidi di ferro', 'rosso, verde, giallo, marrone'],
+     '/piattaforme-autolavaggi/#personalizzazione', 'Pianta di una pista self 450×650 in calcestruzzo colorato rosso',
+     'Piattaforma colorata o riscaldata'),
+]
+SCHEDE_ACQUA = [
+    ('scheda-rettangolari.jpg', 'Vasche rettangolari', 'acqua piovana, prima pioggia, antincendio, con resine epossidiche',
+     [f'11 misure, da 2,40 a 50{NB}m³', f'la più grande 1050×243×263{NB}h, 27{NB}t'],
+     '/vasche/#rettangolari', 'Vasca rettangolare monoblocco con coperchio', 'Vasche rettangolari'),
+    ('scheda-circolari.jpg', 'Vasche circolari', f'Ø{NB}148, 196 e 242, con resine epossidiche',
+     [f'6 misure, da 2,30 a 9,80{NB}m³', f'da 1,80 a 4,80{NB}t di vasca'],
+     '/vasche/#circolari', 'Vasca circolare monoblocco con coperchio', 'Vasche circolari'),
+    ('scheda-prima-pioggia.jpg', 'Prima pioggia', f'pozzetto scolmatore, accumulo per 48{NB}ore, separatore oli',
+     [f'17 taglie, da 400 a 10.000{NB}m²', f'in uscita oli non oltre 5{NB}mg/l'],
+     '/depurazione/#prima-pioggia', 'Impianto di prima pioggia in proiezione', 'Prima pioggia'),
+    ('scheda-dissabbiatore.jpg', 'Dissabbiatore statico', 'circolare o rettangolare, deflettore in PVC',
+     [f'15 misure, da 2,30 a 50{NB}m³', f'da Ø{NB}148×206{NB}h a 1050×243×263{NB}h'],
+     '/depurazione/#dissabbiatore', 'Dissabbiatore statico rettangolare in sezione', 'Dissabbiatore statico'),
+    ('scheda-separatore-oli.jpg', 'Separatore oli', f'filtro a coalescenza, UNI{NB}EN{NB}858-1, per autorimesse',
+     [f'5 taglie, da 3 a 30{NB}l/s', 'autorimesse fino a 450 posti auto'],
+     '/depurazione/#separatore-oli', 'Separatore oli rettangolare in sezione', 'Separatore oli'),
+    ('scheda-separatore-grassi.jpg', 'Separatore grassi', f'UNI{NB}EN{NB}1825-1, cucine, mense, macellerie',
+     [f'5 taglie, da 3 a 38{NB}l/s', f'da Ø{NB}148×206{NB}h a 550×243×260{NB}h'],
+     '/depurazione/#separatore-grassi', 'Separatore grassi circolare in sezione', 'Separatore grassi'),
+    ('scheda-imhoff.jpg', 'Vasca Imhoff', 'acque nere domestiche, sedimentazione e digestione',
+     [f'7 taglie, da 5 a 70{NB}AE', f'da 2,40 a 18,50{NB}t di vasca'],
+     '/depurazione/#imhoff', 'Vasca Imhoff in sezione', 'Vasca Imhoff'),
+    ('scheda-biologici.jpg', 'Depuratori biologici', 'ossidazione totale a fanghi attivi, dove non arriva la fognatura',
+     [f'BIO7{WJ}-{WJ}BIO20, da 7 a 20{NB}AE', f'BIO5L{WJ}-{WJ}BIO15L per la Laguna di Venezia'],
+     '/depurazione/#biologici', 'Depuratore biologico in sezione', 'Depuratori biologici'),
+]
+
+CONSEGNA = [
+    ('consegna-autogru.jpg', 'Vasca rettangolare sull’autocarro, sotto l’autogru',
+     'Vasca rettangolare caricata sull’autocarro, accanto all’autogru, con il logo Gardens Pav'),
+    ('consegna-calata.jpg', 'Vasca a più comparti calata nello scavo con le catene',
+     'Vasca rettangolare a più comparti appesa alle catene sopra lo scavo'),
+    ('consegna-lunga.jpg', 'Vasca rettangolare lunga e pozzetto circolare, in cantiere',
+     'Vasca rettangolare lunga con coperchio e pozzetto circolare posati nello scavo'),
+    ('consegna-batteria.jpg', 'Vasche rettangolari in batteria, in cantiere', 'Vasche rettangolari aperte, affiancate in batteria'),
+]
+
+# modelli di piattaforma (01, punto 31): nome, piazzola, pannelli, peso del pannello, vasche di raccolta
+MODELLI = [
+    (f'Mod.{NB}450', '450×650', '2 da 228×650', '5,90', '1'),
+    (f'Mod.{NB}500', '500×650', '2 da 253×650', '6,70', '1'),
+    (f'Mod.{NB}500 doppia griglia', '500×650', '2 da 253×650', '6,70', '2'),
+    (f'Mod.{NB}1', '500×1200', '4 da 253×600', '6,70', '1'),
+    (f'Mod.{NB}2', '500×1100', '4 da 253×550', '6,00', 'pozzetto escluso'),
+    (f'Mod.{NB}3 lavaggio chassis', '500×1200', '4 da 253×600', '6,70', '2'),
+    (f'Mod.{NB}4 area prelavaggio', '500×1300/<wbr>1800', '6, misure variabili', 'secondo le misure', 'da confermare'),
+    (f'Mod.{NB}5', '500×1300/<wbr>1800', '6, misure variabili', 'secondo le misure', '1'),
+]
+
+# (immagine, alt, testo della fase, didascalia della foto); l'ordine è quello del disegno con le fasi (01, punto 30)
+FASI = [
+    ('posa-1-tracciatura.jpg', 'Controllo delle misure e delle quote sul piano di posa', 'Tracciatura della piazzola',
+     f'Si segnano a terra i contorni della piazzola, 450×650{NB}cm per la pista self Mod.{NB}450.',
+     'San Giovanni in Persiceto (BO), controllo di misure e quote'),
+    ('posa-2-vasca.jpg', 'Vasche sottopista posate nel piano di posa di due piste self', 'Posa della vasca',
+     f'Vasca sottopista 400×100×110{NB}h sul magrone d’appoggio. La vasca è compresa nella fornitura.',
+     'Abano Terme (PD), piano di posa delle piste self'),
+    ('posa-3-cordoli.jpg', 'Cordoli di magrone e pietrisco intorno alle vasche di tre piste self', 'Cordoli perimetrali',
+     f'Cordolo di magrone e pietrisco 4/8 da 20{NB}cm. Sono opere edili, escluse dalla fornitura.',
+     'Biella, piano di posa delle piste self'),
+    ('posa-4-pannelli.jpg', 'Pannello calato con le catene accanto alla vasca sottopista', 'Posa dei pannelli',
+     f'Due pannelli da 5,90{NB}t con l’autogru, poi il grigliato sui supporti zincati. Li posa il nostro personale.',
+     f'Grugliasco (TO), pista self Mod.{NB}450'),
+]
+
+# mosaico: luogo e modelli come li scrive il sito attuale (01, punto 40); nessun nome di cliente
+MOSAICO = [
+    ('abano-terme', 'Abano Terme (PD)', f'portale Mod.{NB}1 e piste self'),
+    ('aosta', 'Aosta', ''),
+    ('pistoia', 'Pistoia', ''),
+    ('lucenec', 'Lučenec, Slovacchia', 'piste self riscaldate'),
+    ('grugliasco', 'Grugliasco (TO)', f'piste self Mod.{NB}450 e portale'),
+    ('cesena', 'Cesena (FC)', f'portale Mod.{NB}2 e piste self'),
+    ('crema', 'Crema (CR)', f'concessionaria, portale Mod.{NB}1'),
+    ('milano', 'Milano', ''),
+    ('ponsacco', 'Ponsacco (PI)', f'portale Mod.{NB}1 e piste self Mod.{NB}500'),
+    ('vezza-d-oglio', 'Vezza d’Oglio (BS)', 'autofficina, pista self'),
+    ('san-marino', 'San Marino', ''),
+    ('mottola', 'Mottola (TA)', 'piste self'),
+    ('piacenza', 'Piacenza', f'portali Mod.{NB}1 e Mod.{NB}3, piste self'),
+    ('rubano', 'Rubano (PD)', f'portale Mod.{NB}3 con lavachassis e piste self'),
+    ('poschiavo', 'Poschiavo, Svizzera', 'autofficina, pista self'),
+    ('tivoli-terme', 'Tivoli Terme (RM)', f'portale Mod.{NB}1'),
+]
+
+LUOGHI = [
+    ('Veneto', 'Abano Terme, Altivole, Alonte, Rovigo, Rubano, Verona (2)'),
+    ('Lombardia', 'Borgosatollo, Cornate d’Adda, Crema, Gavardo, Milano, Vezza d’Oglio'),
+    ('Piemonte e Valle d’Aosta', 'Aosta, Biella, Grugliasco, Montanera, Rivalta di Torino'),
+    ('Emilia-Romagna', 'Budrio, Cesena, Piacenza, San Giovanni in Persiceto, San Lazzaro di Savena, San Mauro Pascoli'),
+    ('Toscana, Lazio, Puglia', 'Livorno, Pistoia, Ponsacco, Viareggio, Tivoli Terme, Avetrana, Mottola'),
+    ('Fuori dall’Italia', 'Poschiavo (Svizzera), Lučenec (Slovacchia), due centri di lavaggio in Francia, San Marino'),
+]
+
+# voci del modulo (specifica 14): le stesse del modulo Contact Form 7 "Richiesta d'offerta"
+PRODOTTI_MODULO = ['Piste self', 'Portali', 'Isola di aspirazione o trave di rialzo', 'Piattaforma colorata o riscaldata',
+                   'Vasche rettangolari', 'Vasche circolari', 'Vasche con resine epossidiche', 'Prima pioggia',
+                   'Dissabbiatore statico', 'Separatore oli', 'Separatore oli per autorimesse', 'Separatore grassi',
+                   'Vasca Imhoff', 'Depuratori biologici', 'Altro']
+TRASPORTO = ['Con automezzo con gru', 'Con automezzo senza gru', 'Da decidere al telefono']
+
+
+# ---------------------------------------------------------------------------------------------
+# Modulo "Richiesta d'offerta" (specifica 14): Contact Form 7 in WordPress, lo stesso modulo in HTML nel fallback
+# (senza Contact Form 7 la richiesta parte come email già compilata dal programma di posta)
+# ---------------------------------------------------------------------------------------------
+CF7_TITOLO = 'Richiesta d’offerta'
+CF7_SHORTCODE = f'[contact-form-7 title="{CF7_TITOLO}"]'
+
+
+def modulo_cf7():
+    """Testo della scheda "Modulo" di Contact Form 7: senza a capo tra i campi (Contact Form 7 non aggiunge <p> e <br>)."""
+    prodotti = ' '.join(f'"{p}"' for p in PRODOTTI_MODULO)
+    trasporto = ' '.join(f'"{t}"' for t in TRASPORTO)
+    return (
+        '<div class="gpv-campi">'
+        f'<label class="gpv-campo gpv-campo--l">Che cosa vi serve [select* prodotto first_as_label "Scegliete il prodotto" {prodotti}]</label>'
+        '<label class="gpv-campo">Il vostro dato [text dato placeholder "10 AE, 5 l/s, 2.000 m²"]</label>'
+        '<label class="gpv-campo">Quantità [text quantita]</label>'
+        '<label class="gpv-campo">Comune di posa [text* comune]</label>'
+        f'<label class="gpv-campo">Trasporto [select trasporto {trasporto}]</label>'
+        '<label class="gpv-campo">Nome e cognome [text* nome autocomplete:name]</label>'
+        '<label class="gpv-campo">Azienda [text azienda autocomplete:organization]</label>'
+        '<label class="gpv-campo">Telefono [tel* telefono autocomplete:tel]</label>'
+        '<label class="gpv-campo">Email [email* email autocomplete:email]</label>'
+        '<label class="gpv-campo gpv-campo--l">Note [textarea note]</label>'
+        '</div>'
+        '<div class="gpv-consenso">[acceptance privacy] Ho letto l’<a href="/privacy/">informativa sulla privacy</a> e accetto il '
+        'trattamento dei dati per ricevere l’offerta. [/acceptance]</div>'
+        '[submit class:gpv-btn "Invia la richiesta"]'
+    )
+
+
+def modulo_html():
+    """Lo stesso modulo in HTML, per il fallback e l'anteprima."""
+    opz = '<option value="">Scegliete il prodotto</option>' + ''.join(f'<option>{p}</option>' for p in PRODOTTI_MODULO)
+    tra = ''.join(f'<option>{t}</option>' for t in TRASPORTO)
+    return (
+        f'<form class="gpv-raw gpv-form" action="mailto:{EMAIL}" method="post" enctype="text/plain">'
+        '<div class="gpv-campi">'
+        f'<label class="gpv-campo gpv-campo--l">Che cosa vi serve<select name="prodotto" required>{opz}</select></label>'
+        '<label class="gpv-campo">Il vostro dato<input type="text" name="dato" placeholder="10 AE, 5 l/s, 2.000 m²"></label>'
+        '<label class="gpv-campo">Quantità<input type="text" name="quantita"></label>'
+        '<label class="gpv-campo">Comune di posa<input type="text" name="comune" required></label>'
+        f'<label class="gpv-campo">Trasporto<select name="trasporto">{tra}</select></label>'
+        '<label class="gpv-campo">Nome e cognome<input type="text" name="nome" autocomplete="name" required></label>'
+        '<label class="gpv-campo">Azienda<input type="text" name="azienda" autocomplete="organization"></label>'
+        '<label class="gpv-campo">Telefono<input type="tel" name="telefono" autocomplete="tel" required></label>'
+        '<label class="gpv-campo">Email<input type="email" name="email" autocomplete="email" required></label>'
+        '<label class="gpv-campo gpv-campo--l">Note<textarea name="note"></textarea></label>'
+        '</div>'
+        '<div class="gpv-consenso"><label><input type="checkbox" name="privacy" required><span>Ho letto l’<a class="gpv-a" '
+        'href="/privacy/">informativa sulla privacy</a> e accetto il trattamento dei dati per ricevere l’offerta.</span></label></div>'
+        '<button class="gpv-btn" type="submit">Invia la richiesta</button>'
+        '</form>'
+    )
+
+
+CSS_MODULO = (
+    '.gpv-modulo form{margin:0}'
+    # Contact Form 7 avvolge i campi in un <p>: per la griglia non deve esistere
+    '.gpv-campi > p,.gpv-campi > br{display:contents}'
+    '.gpv-modulo form > p,.gpv-consenso > p{margin:0}'
+    '.gpv-campi{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}'
+    f'.gpv-campo{{display:flex!important;flex-direction:column;gap:4px;font:600 14px/1.3 {FONT_CSS};color:{TESTO};margin:0;'
+    'vertical-align:top}'
+    '.gpv-campo--l{grid-column:1 / -1}'
+    '.gpv-campo .wpcf7-form-control-wrap{display:block}'
+    f'.gpv-campo input,.gpv-campo select,.gpv-campo textarea{{font:400 16px/1.3 {FONT_CSS}!important;padding:10px 12px!important;'
+    f'border:1px solid {BORDO_CAMPI}!important;border-radius:2px!important;background:#FFFFFF!important;color:{TESTO}!important;'
+    'width:100%!important;margin:0!important;box-shadow:none!important;height:auto;min-height:44px}'
+    f'.gpv-campo input::placeholder,.gpv-campo textarea::placeholder{{color:{SEGNAPOSTO};opacity:1}}'
+    '.gpv-campo textarea{min-height:92px;height:92px;resize:vertical}'
+    f'.gpv-consenso{{font:400 14px/1.4 {FONT_CSS};color:{TESTO};margin-top:16px}}'
+    '.gpv-consenso label{display:flex!important;gap:12px;align-items:flex-start;line-height:1.4;margin:0}'
+    '.gpv-consenso .wpcf7-list-item{display:block;margin:0}'
+    f'.gpv-consenso input[type=checkbox]{{margin:2px 0 0;width:18px;height:18px;flex:none;accent-color:{TESTO}}}'
+    f'.gpv-consenso a{{color:{TESTO}!important;text-decoration:underline!important;text-underline-offset:3px}}'
+    '.gpv-modulo .gpv-btn{margin-top:16px;font-size:16px!important;padding:14px 22px!important}'
+    '.gpv-modulo .wpcf7-spinner{margin:16px 0 0 12px}'
+    # errori: bordo grafite da 2 px e messaggio in testo, nessun rosso
+    f'.gpv-modulo .wpcf7-not-valid{{border:2px solid {TESTO}!important}}'
+    f'.gpv-modulo .wpcf7-not-valid-tip{{color:{TESTO};font:400 14px/1.4 {FONT_CSS};margin-top:4px}}'
+    '.gpv-modulo .wpcf7-not-valid-tip::before{content:"Manca: "}'
+    f'.gpv-modulo .wpcf7-response-output{{border:1px solid {TESTO}!important;background:#FFFFFF;color:{TESTO};margin:16px 0 0!important;'
+    f'padding:12px 16px!important;font:400 15px/1.5 {FONT_CSS}}}'
+    '@media (max-width:1100px){.gpv-campi{grid-template-columns:1fr}}'
+    '@media (min-width:768px) and (max-width:1024px){.gpv-campi{grid-template-columns:1fr 1fr}}'
 )
-HTML_COMANDI = (
-    '<div class="bv-ctrl" hidden><div class="bv-bar"><span class="bv-thumb"></span></div><div class="bv-btns">'
-    '<button type="button" class="bv-btn bv-prev" aria-label="Articoli precedenti">&larr;</button>'
-    '<button type="button" class="bv-btn bv-next" aria-label="Articoli successivi">&rarr;</button></div></div>'
+
+# precompila il prodotto (e il dato) dall'indirizzo; in home i link "Chiedi un'offerta" scrivono il prodotto e scendono al
+# modulo senza ricaricare; nel fallback l'invio apre il programma di posta con la richiesta già scritta
+JS_MODULO = (
+    "(function(){var s=document.querySelector('.gpv-modulo select[name=\"prodotto\"]');if(!s)return;"
+    "var d=document.querySelector('.gpv-modulo input[name=\"dato\"]');"
+    "function imposta(v){if(!v)return;for(var i=0;i<s.options.length;i++){if(s.options[i].value===v||s.options[i].text===v){s.selectedIndex=i;return}}}"
+    "try{var q=new URLSearchParams(location.search);imposta(q.get('prodotto'));if(d&&!d.value&&q.get('dato'))d.value=q.get('dato')}catch(e){}"
+    "var dove=document.getElementById('contatti')||document.getElementById('richiesta');"
+    "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-prodotto]');if(!a||!dove)return;"
+    "e.preventDefault();imposta(a.getAttribute('data-prodotto'));dove.scrollIntoView();"
+    "try{history.replaceState(null,'',a.getAttribute('href'))}catch(e2){}s.focus({preventScroll:true})});"
+    "document.querySelectorAll('form.gpv-form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();"
+    "var r=[];f.querySelectorAll('select,input,textarea').forEach(function(x){if(x.type==='checkbox')return;"
+    "var l=x.closest('label');r.push((l?l.firstChild.textContent.trim():x.name)+': '+x.value)});"
+    f"location.href='mailto:{EMAIL}?subject='+encodeURIComponent('Richiesta d\\u2019offerta: '+f.prodotto.value+', '+f.comune.value)"
+    "+'&body='+encodeURIComponent(r.join('\\n'))})})})();"
 )
 
 
-def striscia_catalogo():
-    """S1: striscia di articoli tra filetti neri, aperta da una cella di testo nera; scorre di lato (Valextra, Edward Green)."""
-    def testo_cella():
-        return [C(T('<p>Dal catalogo</p>', style='label', color=SU_NERO2, css='bv-kicker'),
-                  H('Col codice facciamo prima', 'h2', style='h2card', color=BIANCO, mt=24),
-                  T('<p>Per riordinare servono il codice o il nome dell’articolo, più il colore o la misura. Basta una '
-                    'telefonata o una email.</p>', style='testo15', color=SU_NERO2, mt=20), gap='0'),
-                link_freccia('Sfoglia il catalogo', '/catalogo/', colore=BIANCO, hover=SU_NERO2)]
-    # desktop e tablet: prima cella della striscia; telefono: blocco nero sopra la striscia, così la prima scheda si vede intera
-    cella_testo = C(*testo_cella(), larg_px=CELLA, bg=NERO, pad=(32, 28, 24), justify='between', gap='m', border=1,
-                    border_color=NERO, hide=['mobile'])
-    blocco_mobile = C(C(*testo_cella(), bg=NERO, pad=(32, 24, 32, 24), gap='m', justify='between'), pad=(0, 20, 0, 20),
-                      hide=['desktop', 'tablet'])
-    schede = []
-    for pid, famiglia, nome, dettaglio, link in STRISCIA:
-        schede.append(C(
-            C(I(img(f'prodotto-{pid}.jpg'), nome), pad=(24, 24, 24), bg=BIANCO, css='bv-img bv-fine' if pid in FINE else 'bv-img'),
-            C(T(f'<p>{famiglia}</p>', style='micro', color=TESTO2),
-              H(nome, 'h3', style='nome', color=NERO, mt=8, css='bv-name'),
-              T(f'<p>{dettaglio}</p>', style='meta', color=TESTO2, mt=6),
-              pad=((4, 4, 4), (24, 24, 20), (24, 24, 20), (24, 24, 20)), min_h=(112, 112, 104), gap='0'),
-            larg_px=CELLA, bg=BIANCO, link=link, gap='0', border_top=1, border_right=1, border_bottom=1, border_color=NERO,
-            css='bv-card'))
-    # overflow anche nel JSON: se il widget HTML perdesse il suo CSS, la striscia scorrerebbe comunque
-    binario = C(cella_testo, *schede, dir='row', wrap=False, gap='0', pad='0', css='bv-track', overflow='auto')
-    return C(blocco_mobile, binario, RAW(HTML_COMANDI + f'<script>{JS_STRISCIA}</script>', css=CSS_STRISCIA), bg=BIANCO, boxed=False,
-             pad=((0, 0, 0), (0, 0, 0), (160, 120, 64), (0, 0, 0)), gap='0', tag='section',
-             css='bv-strip')
-
-
-CSS_RIGHE = (
-    CSS_KICKER +
-    '.bv-rows{margin-top:32px}'
-    f'.bv-rows .bv-row{{display:flex;align-items:baseline;height:52px;padding:15px 8px 15px 0;color:{BIANCO};text-decoration:none}}'
-    f".bv-rows .bv-row__n,.bv-rows .bv-row__c{{font:600 22px/1 '{CONDENSED}',Arial,sans-serif;text-transform:uppercase;color:{BIANCO}}}"
-    '.bv-rows .bv-row__c{font-weight:500;font-variant-numeric:tabular-nums}'
-    '.bv-rows .bv-row__d{flex:1;margin:0 16px;border-bottom:1px dotted rgba(255,255,255,.35);transform:translateY(-6px)}'
-    f".bv-rows .bv-row__a{{margin-left:16px;font:400 16px/1 '{BARLOW}',Arial,sans-serif;color:{SU_NERO2};transition:transform .2s,color .2s}}"
-    f'.bv-rows .bv-row:hover .bv-row__d,.bv-rows .bv-row:focus-visible .bv-row__d{{border-bottom-style:solid;border-color:{BIANCO}}}'
-    f'.bv-rows .bv-row:hover .bv-row__a,.bv-rows .bv-row:focus-visible .bv-row__a{{transform:translateX(4px);color:{BIANCO}}}'
-    f'.bv-rows .bv-row:focus-visible{{outline:2px solid {BIANCO};outline-offset:0}}'
-    '@media (max-width:1024px){.bv-rows .bv-row{height:48px;padding:14px 8px 14px 0}.bv-rows .bv-row__n,.bv-rows .bv-row__c{font-size:20px}}'
-    '@media (max-width:767px){.bv-rows .bv-row{height:52px;padding:16px 8px 16px 0}}'
-    '@media (prefers-reduced-motion:reduce){.bv-rows .bv-row__a{transition:none}}'
-)
-
-
-def vibram_al_banco():
-    """S2: fascia nera, la foto dell'espositore esce sopra e sotto la fascia; un solo numero grande; righe a puntini."""
-    famiglie = [('Suole', 'vibram-suole'), ('Lastre', 'vibram-lastre'), ('Mezzesuole e tacchi', 'vibram-mezzesuole-tacchi')]
-    righe = ''.join(f'<a class="bv-row" href="/vibram/#{slug}"><span class="bv-row__n">{nome}</span>'
-                    f'<span class="bv-row__d" aria-hidden="true"></span><span class="bv-row__c">{FAM[slug]["n"]}</span>'
-                    f'<span class="bv-row__a" aria-hidden="true">&rarr;</span></a>' for nome, slug in famiglie)
-    foto = C(w=(50, 50, 100), min_h=(0, 0, 390), img=img('espositore-vibram.jpg'), img_pos='center left',
-             alt='Espositore Vibram al banco Benvegnù',
-             mt=(-40, -32, 0), mb=(-40, -32, 0), z=2)
-    pannello = C(
-        T('<p>Rivenditore autorizzato Vibram</p>', style='label', color=SU_NERO2, css='bv-kicker'),
-        H(str(N_VIBRAM), 'p', style='mega', color=BIANCO, mt=32),
-        H('Articoli Vibram al banco', 'h2', style='h2s', color=BIANCO, mt=12),
-        T('<p>Per chi produce e per chi ripara. Partiamo da modello e misura, poi verifichiamo colore e disponibilità.</p>',
-          style='body', color=SU_NERO2, max_w=440, mt=16),
-        RAW(f'<nav class="bv-rows" aria-label="Famiglie Vibram">{righe}</nav>', css=CSS_RIGHE),
-        B('La pagina Vibram', '/vibram/', variant='bianco', full_m=True, mt=32),
-        w=(50, 50, 100), pad=((72, 56, 56), (80, 32, 20), (72, 56, 64), (96, 40, 20)), justify='center', gap='0')
-    riga = C(foto, pannello, dir='row', dir_m='column', align='stretch', gap='0', min_h=(720, 600, 0), pad='0',
-             boxed=True, boxed_width=1600)
-    # e-no-lazyload: Elementor non differisce lo sfondo (senza JavaScript la foto resterebbe nera)
-    return C(riga, bg=NERO, boxed=False, pad='0', gap='0', tag='section', css='e-no-lazyload')
-
-
-def per_chi_lavoriamo():
-    """S3: una dichiarazione semplice accanto ai marchi del banco, in una griglia 2x2 con filetti interni (Lampo)."""
-    marchi = [('vibram', 'Vibram', 'Suole, lastre, tacchi', '/vibram/', (52, 46, 44)),
-              ('gutermann', 'Gütermann', 'Filati Mara e Tera', '/catalogo/#filati-elastici', (48, 44, 40)),
-              ('girba', 'Girba', 'Tinture e finissaggio', '/catalogo/#prodotti-chimici', (64, 56, 50)),
-              ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi', '/marchi/', (48, 42, 38))]
-    bordi = [dict(border_right=1, border_bottom=1), dict(border_bottom=1), dict(border_right=1), {}]
-    celle = []
-    for (slug, nome, etichetta, link, h), b in zip(marchi, bordi):
-        celle.append(C(
-            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=h, fit='contain'), min_h=(64, 56, 52), justify='center'),
-            T(f'<p><span class="screen-reader-text">{nome}: </span>{etichetta}</p>', style='micro', color=TESTO2, align='center',
-              css='bv-logo-label'),
-            w=(50, 50, 50), min_h=(176, 150, 140), justify='center', align='stretch', gap=(20, 16, 16), link=link,
-            pad=(0, (16, 12, 10), 0, (16, 12, 10)), css='bv-logo', border_color=NERO, **b))
-    css = (CSS_KICKER +
-           f'.bv-logo:hover .bv-logo-label p,.bv-logo:focus-visible .bv-logo-label p{{color:{NERO};text-decoration:underline;'
-           'text-underline-offset:4px}')
-    css += ('@media (max-width:1024px){.bv-logo-label p{letter-spacing:1.2px}}'
-            f'@media (min-width:768px) and (max-width:1024px){{.bv-logo{{width:25%!important;border-bottom:0!important;'
-            f'border-right:1px solid {NERO}!important}}.bv-logo:last-child{{border-right:0!important}}}}')
-    testa = C(
-        T('<p>Per chi lavoriamo</p>', style='label', color=TESTO2, css='bv-kicker'),
-        H('Molti dei nostri clienti<br>producono per<br>i marchi del lusso', 'h2', style='h2m', mt=32),
-        T('<p>Calzaturifici, pelletterie e modellisti, ma anche calzolai e negozi di calzature. Al banco trovano gli stessi '
-          'marchi che usano ogni giorno in produzione e in riparazione.</p>', style='lead', color=TESTO2, max_w=560, mt=24),
-        RAW('', css=css), gap='0')
-    # lo spazio in più va solo tra il testo e il link: il link chiude alla stessa altezza della griglia dei marchi
-    sinistra = C(testa, link_freccia('Cosa trovi di ciascun marchio', '/marchi/', mt=32), w=(55, 100, 100), gap='0',
-                 justify='between')
-    destra = C(
-        T('<p>I marchi al banco</p>', style='label', color=TESTO2, mb=20),
-        C(*celle, dir='row', wrap=True, gap='0'),
-        w=(42.5, 100, 100), gap='0', mt=(0, 56, 48), justify='between')
-    return sezione(sinistra, destra, pad=((160, 120, 64), 'lato', (120, 88, 64), 'lato'), dir='row', dir_t='column', dir_m='column',
-                   justify='between', align=('stretch', 'stretch', 'stretch'), gap='0', css='bv-who')
-
-
-CSS_CHIUSURA = (
-    '.bv-chiusura .bv-facade img{display:block;width:100%!important;height:auto!important;max-width:100%;'
-    'aspect-ratio:2048/877;object-fit:cover;object-position:50% 50%}'
-    '@media (max-width:767px){.bv-chiusura .bv-facade img{aspect-ratio:7/5;object-position:78% 50%}}'
-)
-
-
-def chiusura_banco():
-    """S4: "Vieni al banco" grande appoggiato sul cielo della facciata, poi quattro colonne con filetto (Mastrotto, Ernest Wright)."""
-    corpo = ('Codice o nome articolo:\nColore, misura o formato:\nQuantità:\nRitiro al banco o spedizione:\n')
-    def colonna(etichetta, valore, nota, link=None, telefono=False):
-        figli = [T(f'<p>{etichetta}</p>', style='label', color=TESTO2)]
-        if telefono:
-            figli.append(H(TEL, 'p', style='tel2', color=NERO, link=TEL_LINK, mt=12))
-        else:
-            figli.append(T(f'<p>{valore}</p>', style='body', color=NERO, link_color=NERO, link_hover=ROSSO, mt=12))
-        figli.append(T(f'<p>{nota}</p>', style='testo15', color=TESTO2, mt=8))
-        if link:
-            figli.append(link_freccia(link[0], link[1], mt=16))
-        return C(*figli, w=(23, 48, 100), border_top=1, border_color=NERO, pad=(20, 0, 0, 0), gap='0')
-    indice = C(
-        colonna('Indirizzo', f'{INDIRIZZO}, {ZONA_MIN}, 30030\u00a0Vigonovo\u00a0(VE)', 'Parcheggio clienti davanti al negozio.',
-                ('Apri in Google Maps', MAPS)),
-        colonna('Orari del banco', ORARI, f'{CHIUSURA}.'),
-        colonna('Telefono', None, 'Per disponibilità, colori e misure.', telefono=True),
-        colonna('Email e spedizioni', f'<a href="{mailto("Richiesta disponibilità", corpo)}">{EMAIL}</a>',
-                'Verifichiamo varianti e disponibilità. Per gli ordini da lontano spediamo con corriere, alle condizioni '
-                'di vendita per le aziende.', ('Condizioni di vendita (PDF)', CONDIZIONI_PDF)),
-        dir='row', wrap=True, justify='between', gap='0', gap_r=(40, 40, 32), mt=(56, 56, 40))
+# ---------------------------------------------------------------------------------------------
+# HOME (specifica 5): la home finale del 13 ottobre, stessi testi e stesso ordine
+# ---------------------------------------------------------------------------------------------
+def h_apertura():
     return sezione(
-        H('Vieni al\u00a0banco', 'h2', style='chiusura', mb=(-58, -38, -26), z=2),
-        I(img('sede-larga.jpg'), 'La sede Benvegnù in Via del Lavoro 48, zona industriale Tombelle, Vigonovo', css='bv-facade', z=1),
-        indice, RAW('', css=CSS_CHIUSURA),
-        bg=GRIGIO, pad=((120, 88, 64), 'lato', (120, 88, 64), 'lato'), gap='0', anchor='banco', css='bv-chiusura')
+        titolo('Piattaforme per autolavaggi e vasche per il trattamento delle acque', 'h1', 'display', max_w=(1248, 1056, 1000)),
+        testo('<p>Prefabbricati in calcestruzzo armato vibrato Rck 45, prodotti a Legnaro (PD). Sopra, la pista che posiamo noi; '
+              'sotto, le vasche che raccolgono e trattano l’acqua.</p>', 'apertura', mt='s', max_w=(558, 558, 496)),
+        RAW(html_sezione(), css=CSS_SEZIONE, mt='micro'),
+        pad=('xl', 'lato', '0', 'lato'), anchor='contenuto')
 
 
-MARCHI = [
-    ('vibram', 'Vibram', 'Suole, lastre, mezzesuole e tacchi', 'https://www.vibram.com/it/', (60, 52, 44)),
-    ('gutermann', 'Gütermann', 'Filati per cucire Mara e Tera', 'https://www.guetermann.com/', (40, 36, 30)),
-    ('girba', 'Girba', 'Tinture e prodotti per il finissaggio', 'https://www.girbasrl.it/it/', (76, 68, 56)),
-    ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi per calzatura', 'https://www.zucchini.it/it/', (76, 68, 56)),
-]
+def h_linee():
+    consegna = C(
+        titolo('In consegna e in cantiere', 'h3', 'h3b'),
+        testo(f'<p>Ogni vasca arriva in un pezzo solo. Calcestruzzo C35/45 (Rck 45{NB}N/mm²) per le classi di esposizione XC4, '
+              f'XS1-XD2, XF1 e XA2, acciaio B450C, copriferro 3{NB}cm.</p>', colore=TESTO2, mt='xs', max_w=1054),
+        griglia(*[figura(f, alt, cap) for f, cap, alt in CONSEGNA], mt='m'),
+        gap='0', mt=48)
+    return sezione(
+        testa('Piattaforme per autolavaggi', 'Pannelli a incastro già maturati in stabilimento. Quando pozzetto, scarichi e '
+              'sottofondo sono pronti, la pista si posa in poche ore.', ('Modelli e forniture', '/piattaforme-autolavaggi/')),
+        griglia(*[scheda_famiglia(*s) for s in SCHEDE_PIATTAFORME], css='gpv-schede'),
+        testo(f'<p>Brevetto per invenzione industriale depositato n°{NB}275.271. Superficie a rombi con attrito 0,88 sul bagnato, '
+              f'dove il D.M.{NB}236/1989 chiede più di 0,40. Posate in <a class="gpv-a" href="#realizzazioni">36 cantieri</a> in Italia, '
+              'Svizzera, Slovacchia, Francia e San Marino.</p>', 'testo16', mt='l'),
+        testa('Vasche e impianti per l’acqua', 'Monoblocchi in calcestruzzo armato vibrato, a tenuta idraulica. Si scelgono sul '
+              'dato del progetto: metri cubi, litri al secondo, abitanti equivalenti (AE), metri quadri di piazzale.',
+              ('Tutte le schede', '/depurazione/'), mt='sezione'),
+        griglia(*[scheda_famiglia(*s) for s in SCHEDE_ACQUA], css='gpv-schede'),
+        consegna)
 
 
-def striscia_marchi():
-    celle = []
-    for i, (slug, nome, famiglia, _, h_logo) in enumerate(MARCHI):
-        celle.append(C(
-            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=h_logo, fit='contain'), min_h=(120, 110, 96), justify='center'),
-            T(f'<p>{nome}</p>', style='label', color=NERO, align='center', mt='xs'),
-            T(f'<p>{famiglia}</p>', style='small', color=TESTO2, align='center'),
-            w=(25, 50, 50), gap='xxs', pad=('m', 's', 'm', 's'),
-            border_right=1 if i < 3 else 0, border_color=LINEA))
-    return C(*celle, dir='row', wrap=True, gap='0', border_top=1, border_bottom=1, border_color=LINEA)
+CSS_PERCORSO = (
+    '.gpv-percorso-in.gpv-percorso-in{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(180px,1fr);'
+    'gap:32px!important;align-items:end!important}'
+    '.gpv-percorso-in > *{width:auto!important;min-width:0}'
+    '.gpv-percorso-img img{width:100%;height:auto;display:block}'
+    '.gpv-passi.gpv-passi{display:grid!important;grid-template-columns:19fr 34fr 31fr 16fr;gap:24px!important}'
+    '.gpv-passi > *{width:auto!important;min-width:0}'
+    '.gpv-dato{font-weight:600;font-variant-numeric:tabular-nums}'
+    f'.gpv-esempio{{font-size:15px;line-height:1.45;padding-bottom:4px}}'
+    '.gpv-esempio h3{font-size:16px;font-weight:700;line-height:1.3;margin-bottom:8px}'
+    f'.gpv-esempio li{{padding:8px 0;border-top:1px solid {LINEA};font-variant-numeric:tabular-nums}}'
+    '.gpv-esempio li b{display:block;font-weight:600}'
+    '@media (max-width:1024px){.gpv-percorso-in.gpv-percorso-in{grid-template-columns:1fr;gap:24px!important}'
+    '.gpv-esempio ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 16px}}'
+    '@media (max-width:767px){.gpv-passi.gpv-passi{grid-template-columns:1fr 1fr;gap:24px 16px!important}'
+    '.gpv-esempio ul{gap:0 12px}.gpv-esempio li{font-size:14px}}'
+)
 
 
-# ---------------------------------------------------------------------------------------------
-# CATALOGO
-# ---------------------------------------------------------------------------------------------
-ORDINE_FAMIGLIE = [
-    ('vibram-suole', '83137', ['2600 Liverpool, suola da città e tempo libero', '1012 Breithorn, suola da lavoro',
-                               '0056C Winter City, suola da uomo']),
-    ('vibram-lastre', '82268', ['7106 Crepe, lastra in gomma morbida', '7130 New Boulder, lastra per arrampicata',
-                                '8281 Diflex, lastra per ortesi plantari']),
-    ('vibram-mezzesuole-tacchi', '80751', ['2023 Wellness, mezza suola in gomma compatta', '1100T Montagna, tacco 20,5 mm',
-                                           '0750P Nuvola, lastra bi-mescola per tacchi']),
-    ('utensili', '1895', ['9978 Coltello C.Dick Original 270x20', '14932 Calibro digitale 200 mm', '2031 Martello con calamita']),
-    ('filati-elastici', '15887', ['Filato poliestere ritorto Mara', 'Filato poliestere ritorto Tera',
-                                  '1075 Filo Gialla Braid size 8']),
-    ('modelleria-riparazione', '14563', ['9049 Alzo per forma art. 601/29', '1802 Bipiede in ghisa cm 62',
-                                         '14563 Forma allargascarpe 2Way Dasco']),
-    ('prodotti-chimici', None, ['G04000 Bordobrill (Girba), 1 litro', 'G42001 Lederpolish 04 (Girba), 1 litro',
-                                'G61001 Tingileder (Girba), 25 litri']),
-    ('esposizione-cura', '15752', ['15752 Tendiscarpa in legno di cedro', '7995 Calzante Longuette anatomico',
-                                   '14933 Calze usa e getta, confezione da 200']),
-    ('igiene-sicurezza', '9907', ['9907 Guanti Marigold Green Nitrile', '15947 Mascherina con valvola FFP2', '16200 Guanti antiacido']),
-    ('imballaggio', '15531', ['2055 Nastro adesivo Comet', '15531 Etichette Made in Italy 28x8, 5000 pezzi',
-                              '9519 Numeri autoadesivi oro, 2000 pezzi']),
-]
-
-
-def catalogo():
-    # indice a salti: un link per widget in una riga che va a capo (niente stili in linea, che l'import può togliere)
-    indice = C(*[T(f'<p><a href="#{slug}">{FAM[slug]["nome"]}</a></p>', style='nav', color=NERO, link_color=NERO,
-                   link_hover=ROSSO) for slug, _, _ in ORDINE_FAMIGLIE],
-               dir='row', wrap=True, gap=('m', 'm', 's'), gap_r=('xs', 'xs', 'xs'), mt='xs')
-    apertura = sezione(
-        C(H('Catalogo', 'h1'),
-          T(f'<p>{TOTALE} articoli in 10 famiglie, dagli utensili alle suole Vibram. Per disponibilità, colori e misure chiedi al '
-            'banco o telefona negli orari di apertura.</p>', style='lead', color=TESTO2, max_w=760), gap='m'),
-        indice,
-        gap='l', pad=('xl', 'lato', 'l', 'lato'), anchor='content')
-
-    righe = []
-    for i, (slug, foto, esempi) in enumerate(ORDINE_FAMIGLIE, 1):
-        f = FAM[slug]
-        # senza foto prodotto (i chimici Girba non ne hanno): il logo del marchio nella stessa cornice quadrata
-        miniatura = (C(I(img(f'prodotto-{foto}.jpg'), f['nome']), border=1, border_color=LINEA, bg=BIANCO)
-                     if foto else C(I(img('marchio-girba.png'), 'Logo Girba', height=(84, 80, 44), fit='contain'),
-                                    min_h=(218, 211, 105), justify='center', border=1, border_color=LINEA, bg=BIANCO))
-        righe.append(C(
-            H(f'{i:02d}', 'p', style='num', color=ROSSO, fisso=True, w_px=(64, 56, None), hide=['mobile']),
-            C(miniatura, w=(17, 22, 30), fisso=True),
-            C(T(f'<p>{i:02d}</p>', style='label', color=ROSSO, hide=['desktop', 'tablet']),
-              H(f['nome'], 'h3'),
-              T(f'<p>{sottocategorie(slug)}</p>', style='body', color=TESTO2),
-              T('<p>' + '<br>'.join(esempi) + '</p>', style='small', color=NERO),
-              gap='s', grow=True, w=(40, 40, 62)),
-            C(T(f'<p>{f["n"]} articoli</p>', style='label', color=NERO, align=('right', 'right', 'left')),
-              T(f'<p><a href="{mailto("Disponibilità: " + f["nome"])}">Chiedi disponibilità&nbsp;&nbsp;→</a></p>',
-                style='link', color=NERO, link_color=NERO, link_hover=ROSSO, align=('right', 'right', 'left')),
-              gap='xs', w=(20, 22, 100), fisso=True),
-            dir='row', wrap=(False, False, True), gap=('l', 'm', 's'), pad=('l', '0', 'l', '0'), border_top=1, border_color=LINEA,
-            anchor=slug, align='start'))
-    famiglie = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('xl', 'lato', 'sezione', 'lato'))
-
-    non_online = sezione(
-        C(H('Al banco c’è anche quello che non è online', 'h2'),
-          T(f'<p>Il catalogo online non comprende tutte le famiglie che vendiamo. Chiedi al banco o chiama il {TEL}.</p>',
-            style='body', color=TESTO2),
-          C(B('Chiedi un articolo', mailto('Richiesta articolo non in catalogo'), variant='primario'), mt='xs'),
-          w=(40, 100, 100), gap='m'),
-        C(C(T('<ul><li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-              '<li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>', style='body'), w=(50, 50, 100)),
-          C(T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per l’incollaggio Fratelli Zucchini</li>'
-              '<li>Rinforzi per tomaia in tessuto</li><li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per tomaia</li></ul>',
-              style='body'), w=(50, 50, 100)),
-          dir='row', dir_m='column', gap='l', w=(54, 100, 100)),
-        bg=BIANCO, pad=('0', 'lato', 'sezione', 'lato'), dir='row', dir_t='column', justify='between', gap='xl')
-    return [('apertura', apertura), ('famiglie', famiglie), ('non-online', non_online), ('banco', blocco_banco())]
-
-
-# ---------------------------------------------------------------------------------------------
-# VIBRAM
-# ---------------------------------------------------------------------------------------------
-def vibram():
-    apertura = hero_divisa(
-        'Vibram a Vigonovo',
-        f'Benvegnù è rivenditore autorizzato Vibram. Nel catalogo ci sono {N_VIBRAM} articoli: suole da città, montagna e lavoro, '
-        'lastre compatte ed espanse, mezzesuole e tacchi. Servono a chi produce e a chi ripara.',
-        [B('Chiedi disponibilità', mailto('Disponibilità Vibram', 'Modello:\nMisura:\nColore:\nQuantità:\n'), variant='bianco',
-           full_m=True),
-         B(f'Chiama {TEL}', TEL_LINK, variant='contorno-bianco', full_m=True)],
-        'banco-suole.jpg', 'Suole e mezzesuole Vibram sul banco', livello='h1', stile='h1', min_h=520)
-
-    def blocco(titolo, slug, intro, schede, bordo=True):
-        return sezione(
-            C(C(H(titolo, 'h2'), T(f'<p>{intro}</p>', style='body', color=TESTO2, max_w=620), gap='s', grow=True),
-              T(f'<p>{FAM[slug]["n"]} articoli</p>', style='label', align=('right', 'right', 'left'), fisso=True),
-              dir='row', dir_m='column', justify='between', align=('end', 'end', 'start'), gap='m'),
-            griglia_schede(schede), gap='l', anchor=slug,
-            **({'border_top': 1, 'border_color': LINEA} if bordo else {}))
-
-    w3 = W3
-    suole = blocco('Suole', 'vibram-suole', sottocategorie('vibram-suole') + '.', [
-        scheda_prodotto('80075', '2600 Liverpool', 'Gumlite', 'Suola da città e tempo libero, monoblocco, disegno a onde', w=w3),
-        scheda_prodotto('85109', '0056C Winter City', 'Gomma monocolore', 'Suola da città e tempo libero da uomo', w=w3),
-        scheda_prodotto('82768', '2603 Gumblock', 'Gumlite', 'Suola a tacco staccato, disegno Carrarmato', w=w3),
-        scheda_prodotto('83137', '2609 Athena Gumlite', 'Gumlite', 'Suola per applicazioni ortopediche a dima extra large', w=w3),
-        scheda_prodotto('85014', '4303 Betulla tranciata', 'Espanse', 'Suola da città e tempo libero, disegno Carrarmato', w=w3),
-        scheda_prodotto('83169', 'V.0121P Fourà PU', 'Gomma PU', 'Suola in PU, nero e grigio, in più misure', w=w3),
-    ], bordo=False)
-    lastre = blocco('Lastre', 'vibram-lastre', sottocategorie('vibram-lastre') + '. Da tagliare a misura per suole, '
-                                                 'riparazioni e costruzioni ortopediche.', [
-        scheda_prodotto('82268', '7106 Crepe', 'Compatte', 'Lastra in gomma morbida', w=w3),
-        scheda_prodotto('84952', '8281 Diflex', 'Espanse', 'Lastra per ortesi plantari', w=w3),
-        scheda_prodotto('84413', '7130 New Boulder', 'Compatte', 'Lastra per arrampicata e bouldering, mescola extra morbida', w=w3),
-    ])
-    tacchi = blocco('Mezzesuole e tacchi', 'vibram-mezzesuole-tacchi', sottocategorie('vibram-mezzesuole-tacchi') + '.', [
-        scheda_prodotto('83255', '2023 Wellness', 'Mezzesuole compatte', 'Mezza suola in gomma compatta', w=w3),
-        scheda_prodotto('83263', '2025 Sebastian', 'Mezzesuole compatte', 'Mezza suola invernale in gomma compatta', w=w3),
-        scheda_prodotto('80751', '1100T Montagna', 'Tacchi compatti', 'Tacco 20,5 mm da montagna e sportivo, mescola Vibram Mont', w=w3),
-    ])
-    chi = sezione(
-        C(H('Per chi produce', 'h3'),
-          T('<p>Calzaturifici e suolifici: scegli modello, mescola e misure, poi verifichiamo insieme formati e quantità '
-            'disponibili.</p>', style='body', color=TESTO2), w=(48, 48, 100), gap='s', pad=('m', '0', '0', '0'),
-          border_top=2, border_color=NERO),
-        C(H('Per chi ripara', 'h3'),
-          T('<p>Calzolai: mezzesuole, tacchi e lastre da tagliare per risuolare scarpe da città, da lavoro e da montagna.</p>',
-            style='body', color=TESTO2), w=(48, 48, 100), gap='s', pad=('m', '0', '0', '0'), border_top=2,
-          border_color=NERO),
-        dir='row', dir_m='column', justify='between', gap='l', border_top=1, border_color=LINEA)
-    return [('apertura', apertura), ('suole', suole), ('lastre', lastre), ('mezzesuole-tacchi', tacchi),
-            ('per-chi', chi), ('banco', blocco_banco('Chiedi un modello Vibram'))]
-
-
-# ---------------------------------------------------------------------------------------------
-# MARCHI
-# ---------------------------------------------------------------------------------------------
-def marchi():
-    apertura = intestazione('Marchi', 'I marchi che trovi al banco e cosa c’è di ciascuno. Nel catalogo compaiono anche '
-                                      'utensili e materiali di altri produttori.', filetto=False)
-    schede = [
-        ('vibram', 'Vibram', f'Suole, mezzesuole, tacchi e lastre in gomma, per produzione e riparazione. È il marchio più '
-                             f'presente nel nostro catalogo: {N_VIBRAM} articoli.', [('La pagina Vibram', '/vibram/')], (96, 84, 72)),
-        ('gutermann', 'Gütermann', 'Filati industriali per cucire. Per pelle e calzatura teniamo i filati in poliestere ritorto '
-                                   'Mara e Tera, in più colori.', [('Filati ed elastici', '/catalogo/#filati-elastici')], (60, 52, 44)),
-        ('girba', 'Girba', 'Prodotti chimici per il finissaggio di calzatura e pelletteria: tinture e prodotti per tomaia e '
-                           'bordi. Nel catalogo online: Bordobrill, Iris, Lederpolish, Nubio, Tingileder.',
-         [('Prodotti chimici', '/catalogo/#prodotti-chimici')], (104, 92, 80)),
-        ('fratelli-zucchini', 'Fratelli Zucchini', 'Adesivi e prodotti per l’incollaggio in calzatura. Non sono ancora nel '
-                                                   'catalogo online: chiedi al banco quali formati sono disponibili.',
-         [('Chiedi gli adesivi', mailto('Adesivi Fratelli Zucchini'))], (104, 92, 80)),
+def h_percorso():
+    passi = [
+        ('Smistare', f'<b class="gpv-dato">Pozzetto scolmatore 98×98×106{NB}h.</b> La tubazione più bassa manda al trattamento i '
+                     f'primi 5{NB}mm; la seconda pioggia esce dal troppo pieno.'),
+        ('Accumulare', '<b class="gpv-dato">Separatore fanghi e accumulo.</b> L’acqua resta ferma 48 ore e sabbie e fanghi vanno '
+                       'sul fondo, poi il timer avvia l’elettropompa sommergibile.'),
+        ('Disoleare', f'<b class="gpv-dato">Separatore oli UNI{NB}EN{NB}858-1.</b> Le gocce più piccole si uniscono nel filtro a '
+                      'coalescenza e risalgono; con la camera oli piena il galleggiante chiude lo scarico.'),
+        ('Scaricare', f'In uscita oli minerali e idrocarburi <b class="gpv-dato">entro 5{NB}mg/l.</b>'),
     ]
-    sito = {s: u for s, _, _, u, _ in MARCHI}
-    righe = []
-    for i, (slug, nome, testo, links, h_logo) in enumerate(schede, 1):
-        righe.append(C(
-            C(I(img(f'marchio-{slug}.png'), f'Logo {nome}', height=h_logo, fit='contain'), justify='center',
-              min_h=(260, 220, 170), pad='l', bg=GRIGIO, w=(38, 40, 100)),
-            C(H(f'{i:02d}', 'p', style='num', color=ROSSO), H(nome, 'h2'),
-              T(f'<p>{testo}</p>', style='body', color=TESTO2, max_w=600),
-              C(*[link_freccia(t, u) for t, u in links], link_freccia(f'Sito ufficiale {nome}', sito[slug]),
-                gap='xs', mt='xs'),
-              gap='s', w=(54, 54, 100)),
-            dir='row', dir_m='column', justify='between', gap=('xl', 'l', 'm'), pad=('l', '0', 'l', '0'), border_top=1,
-            border_color=LINEA, align='center'))
-    elenco = sezione(*righe, C(LINEA_H(LINEA)), gap='0', pad=('xl', 'lato', 'sezione', 'lato'))
-    altri = sezione(
-        C(H('Nel catalogo trovi anche', 'h3'), w=(32, 100, 100)),
-        C(T('<p>Olfa, Mozart, Mark, Lariz, Kai, Wiss, C.Dick, Norton, Pentel, Marvy, Mitsubishi, Stanley, Dremel, Einhell, '
-            'Luxoro, 3M, Marigold, Sperian, Coats.</p>', style='lead', color=NERO),
-          T('<p>Sono i marchi che compaiono nei nomi degli articoli del catalogo online. Per un marchio che non vedi, chiedi.</p>',
-            style='small', color=TESTO2), w=(54, 100, 100), gap='s'),
-        bg=BIANCO, pad=('0', 'lato', 'sezione', 'lato'), dir='row', dir_t='column', justify='between', gap='l')
-    return [('apertura', apertura), ('elenco', elenco), ('altri-marchi', altri), ('banco', blocco_banco())]
+    esempio = (f'<div class="gpv-raw gpv-esempio"><h3>Per 2.000{NB}m² di piazzale</h3><ul>'
+               f'<li><b>Pozzetto scolmatore</b>98×98×106{NB}h</li><li><b>Accumulo</b>300×240×205{NB}h</li>'
+               f'<li><b>Separatore oli</b>Ø{NB}148×206{NB}h</li></ul></div>')
+    sinistra = C(
+        I(img('prima-pioggia-percorso.jpg'), 'Impianto di prima pioggia in sezione: pozzetto scolmatore, vasca di accumulo con '
+          'elettropompa, separatore oli con filtro a coalescenza, pozzetto di uscita', css='gpv-percorso-img'),
+        C(*[C(titolo(t, 'h3', 'h3'), testo(f'<p>{p}</p>', 'nota', mt='xs'), gap='0') for t, p in passi],
+          css='gpv-passi', mt='micro'),
+        gap='0')
+    return sezione(
+        testa('Prima pioggia, dal piazzale allo scarico', f'Sui piazzali scoperti i primi 5{NB}mm di pioggia portano via oli, '
+              'idrocarburi e sabbie. L’impianto si sceglie sui metri quadri di superficie scolante, da 400 a 10.000.',
+              ('Tutte le taglie', '/depurazione/#prima-pioggia'), stile='h2m'),
+        C(sinistra, RAW(esempio, css=CSS_PERCORSO), css='gpv-percorso-in'))
 
 
-# ---------------------------------------------------------------------------------------------
-# AZIENDA
-# ---------------------------------------------------------------------------------------------
-def azienda():
-    apertura = sezione(
-        C(H('Dal 1980 a Vigonovo', 'h1'),
-          T('<p>Benvegnù nasce nel 1980 a Vigonovo, nell’area calzaturiera della Riviera del Brenta. Vendiamo componenti e '
-            'accessori per calzature e pelletterie, in particolare i materiali per la rifinitura del fondo e della tomaia, e '
-            'tutta la piccola utensileria. Siamo specializzati in suole e lastre in gomma Vibram.</p>', style='lead',
-            color=TESTO2, max_w=820), gap='m'),
-        I(img('sede-larga.jpg'), 'La sede Benvegnù in Via del Lavoro 48, zona industriale Tombelle, Vigonovo',
-          height=(560, 420, 240), pos='center right'),   # su telefono resta inquadrata l'insegna
-        gap='xl', pad=('xl', 'lato', 'sezione', 'lato'), anchor='content')
+CSS_MODELLI = (
+    '.gpv-modelli-in.gpv-modelli-in{display:grid!important;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px!important;'
+    'align-items:start!important}'
+    '.gpv-modelli-in > *{width:auto!important;min-width:0}'
+    '.gpv-fatti p{margin:0 0 12px!important}.gpv-fatti p:last-child{margin-bottom:0!important}'
+    '.gpv-fatti b{font-weight:700}'
+    # tabella dei modelli: l'unica della home, 4 righe di dati
+    '.gpv-tabmod{width:100%;border-collapse:collapse;table-layout:fixed;margin:0;font-variant-numeric:tabular-nums lining-nums;'
+    f'font-family:{FONT_CSS};color:{TESTO};border:0}}'
+    # il tema Hello colora le righe dispari e borda le celle: qui nessuna riga a strisce, filetti solo sotto
+    f'.gpv-tabmod th,.gpv-tabmod td{{text-align:left;padding:12px 12px 12px 0;border:0!important;border-bottom:1px solid {LINEA}!important;'
+    'vertical-align:top;font-size:16px;line-height:1.35;background:transparent!important}'
+    '.gpv-tabmod col.gpv-c0{width:14%}'
+    f'.gpv-tabmod thead th{{font-weight:700;font-size:15px;vertical-align:bottom;border-bottom:2px solid {TESTO}!important}}'
+    f'.gpv-tabmod thead tr:first-child th{{font-weight:600;font-size:15px;color:{TESTO2};border-bottom:0!important;padding-bottom:4px}}'
+    '.gpv-tabmod thead tr:first-child td{border-bottom:0!important}'
+    f'.gpv-tabmod tbody th{{font-weight:400;color:{TESTO2};font-size:15px}}'
+    f'.gpv-tabmod thead tr:last-child td{{border-bottom:2px solid {TESTO}!important}}'
+    f'.gpv-tabmod .gpv-gr{{border-left:1px solid {LINEA}!important;padding-left:12px}}'
+    f'.gpv-tenue{{color:{TESTO2}}}'
+    '.gpv-modlista{display:none}'
+    # le quattro fasi
+    '.gpv-fasi.gpv-fasi{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px!important}'
+    '.gpv-fasi > *{width:auto!important;min-width:0}'
+    '.gpv-fase-svg{display:block;width:100%;height:auto;overflow:visible;margin:0 0 12px}'
+    f".gpv-fase-svg text{{font-family:{FONT_CSS};font-weight:600;font-size:27px;fill:#2A2926;font-variant-numeric:tabular-nums lining-nums}}"
+    '.gpv-fase-p p{min-height:4.5em}'
+    '@media (max-width:1100px){.gpv-modelli-in.gpv-modelli-in{gap:32px!important}}'
+    '@media (max-width:1024px){.gpv-modelli-in.gpv-modelli-in{grid-template-columns:1fr;gap:48px!important}'
+    '.gpv-tabmod{display:none}'
+    '.gpv-modlista{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px}'
+    f'.gpv-modlista li{{font-size:15px;line-height:1.45;padding:12px 0 16px;border-top:1px solid {LINEA};font-variant-numeric:tabular-nums}}'
+    '.gpv-modlista b{display:block;font-weight:700;font-size:16px;margin-bottom:4px}'
+    f'.gpv-modlista b span{{font-weight:400;color:{TESTO2}}}'
+    '.gpv-fasi.gpv-fasi{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px!important}'
+    '.gpv-fase.gpv-fase{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px!important;row-gap:0!important;'
+    'grid-template-areas:"disegno disegno" "foto testo";align-content:start}'
+    '.gpv-fase > *{width:auto!important;min-width:0}'
+    '.gpv-fase-d{grid-area:disegno}.gpv-fase-t{grid-area:testo}.gpv-fase-f{grid-area:foto;margin-top:0!important}'
+    '.gpv-fase-t .elementor-heading-title,.gpv-fase-t h3.gpv-w{font-size:17px!important}'
+    '.gpv-fase-p p{font-size:14.5px!important;line-height:1.5!important;min-height:0}}'
+    '@media (max-width:767px){.gpv-modlista{grid-template-columns:1fr 1fr;gap:0 16px}.gpv-modlista li{font-size:14.5px}'
+    '.gpv-modlista b{font-size:15px}.gpv-fasi.gpv-fasi{grid-template-columns:1fr;gap:32px!important}}'
+)
 
-    cosa = sezione(
-        C(H('Cosa vendiamo', 'h2'),
-          T(f'<p>Il catalogo online ha {TOTALE} articoli in 10 famiglie. Al banco trovi anche le famiglie che non sono '
-            'online.</p>', style='body', color=TESTO2),
-          C(B('Sfoglia il catalogo', '/catalogo/', variant='primario'), mt='xs'),
-          w=(32, 100, 100), gap='m'),
-        C(C(T('<ul><li>Suole e lastre in gomma Vibram</li><li>Filo in poliestere ed elastico per tomaia</li>'
-              '<li>Lacci in poliestere e cuoio</li><li>Cerniere in nylon e metallo</li><li>Tallonette coprichiodi</li>'
-              '<li>Piccola utensileria per la calzatura</li><li>Nastri abrasivi e tamponi SIA</li><li>Pennelli a mano e spazzole</li></ul>',
-              style='body'), w=(50, 50, 100)),
-          C(T('<ul><li>Chiodi e semenze in ferro e ottone</li><li>Prodotti per la rifinitura della suola e della tomaia</li>'
-              '<li>Prodotti per l’incollaggio Fratelli Zucchini</li><li>Rinforzi per tomaia in tessuto</li>'
-              '<li>Occhielli, agraffi e rivetti</li><li>Tessuti sintetici per la tomaia</li></ul>', style='body'), w=(50, 50, 100)),
-          dir='row', dir_m='column', gap='l', w=(60, 100, 100)),
-        dir='row', dir_t='column', justify='between', gap='xl', border_top=1, border_color=LINEA)
 
-    tappe = [
-        ('1980', 'Inizio dell’attività', 'A Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'),
-        ('1990', 'Nasce Benvegnù S.r.l.', 'Iscrizione alla Camera di Commercio di Padova il 24 ottobre 1990.'),
-        ('2014', 'Il catalogo va online', f'Dal 16 aprile 2014 i prodotti sono sul sito. Oggi sono {TOTALE} articoli in 10 famiglie.'),
-    ]
-    righe = [C(H(a, 'p', style='cifra', color=NERO, fisso=True, w_px=(170, 150, None)), C(H(t, 'h3'), w=(30, 30, 100), fisso=True),
-               T(f'<p>{d}</p>', style='body', color=TESTO2, grow=True),
-               dir='row', dir_m='column', gap=('l', 'm', 'xs'), pad=('m', '0', 'm', '0'), border_top=1, border_color=LINEA,
-               align=('baseline', 'baseline', 'start'))
-             for a, t, d in tappe]
-    storia = sezione(
-        H('Le date', 'h2'),
-        C(*righe, C(LINEA_H(LINEA)), gap='0'),
-        gap='l', border_top=1, border_color=LINEA)
+def html_modelli():
+    testa_t = ''.join(f'<th scope="col">{mo[0]}</th>' for mo in MODELLI)
 
-    distretto = sezione(
-        C(I(img('magazzino-corsia.jpg'), 'Corsia del magazzino Benvegnù', height=(520, 420, 260)), w=(50, 100, 100)),
-        C(H('Nel distretto della Riviera del Brenta', 'h2', color=BIANCO),
-          T('<p>Vigonovo è uno dei comuni del distretto calzaturiero della Riviera del Brenta, con Stra, Fiesso d’Artico, Dolo e '
-            'Fossò. Nel distretto lavorano oltre 500 imprese della filiera e si producono circa 20 milioni di paia di scarpe '
-            'l’anno.</p><p>Per chi lavora qui, il banco è a pochi chilometri: si passa, si guarda il materiale, si ritira.</p>',
-            style='body', color=SU_NERO2),
-          T('<p>Fonti: Unioncamere, “Le calzature della Riviera del Brenta”; FashionUnited, 7 novembre 2024.</p>',
-            style='small', color=SU_NERO2),
-          w=(42, 100, 100), gap='m'),
-        dir='row', dir_t='column', justify='between', gap='xl', align='center', bg=NERO)
+    def cella(v):
+        return f'<td class="gpv-tenue">{v}</td>' if v[0].isalpha() else f'<td>{v}</td>'
+    righe = [('Piazzola, cm', 1), ('Pannelli a incastro, cm', 2), ('Peso del pannello, t', 3),
+             (f'Vasche di raccolta 400×100×110{NB}h', 4)]
+    corpo = ''.join(f'<tr><th scope="row">{nome}</th>' + ''.join(cella(mo[i]) for mo in MODELLI) + '</tr>' for nome, i in righe)
+    lista = []
+    for k, mo in enumerate(MODELLI):
+        tipo = 'pista self' if k < 3 else 'portale'
+        pann = (f'{mo[2].split(" da ")[0]} pannelli {mo[2].split(" da ")[1]}{NB}cm, {mo[3]}{NB}t l’uno' if ' da ' in mo[2]
+                else '6 pannelli di misure variabili')
+        vasche = {'1': '1 vasca di raccolta', '2': '2 vasche di raccolta', 'pozzetto escluso': 'pozzetto di raccolta escluso',
+                  'da confermare': 'vasche di raccolta da confermare'}[mo[4]]
+        lista.append(f'<li><b>{mo[0]} <span>{tipo}</span></b>{mo[1].replace("<wbr>", "")}{NB}cm<br>{pann}<br>{vasche}</li>')
+    return ('<div class="gpv-raw"><table class="gpv-tabmod"><colgroup><col class="gpv-c0"><col span="3"><col span="5"></colgroup>'
+            '<thead><tr><td></td><th scope="colgroup" colspan="3">Pista self</th><th scope="colgroup" colspan="5" class="gpv-gr">Portale</th></tr>'
+            f'<tr><td></td>{testa_t}</tr></thead><tbody>{corpo}</tbody></table>'
+            f'<ul class="gpv-modlista">{"".join(lista)}</ul></div>')
 
-    clienti = [
-        ('Calzaturifici', 'Suole e lastre Vibram, filati, elastici, prodotti per il fondo e la tomaia.'),
-        ('Pelletterie', 'Filati, utensili da taglio, punzoni, tinture per bordi, prodotti per il finissaggio.'),
-        ('Calzolai', 'Mezzesuole, tacchi e lastre Vibram per la riparazione, colle, utensili.'),
-        ('Stilisti e modellisti', 'Materiali per modelleria, alzi e allungaforme, compassi, strumenti di misura.'),
-        ('Negozi di calzature', 'Calzanti, tendiscarpe, prodotti per la cura, calze monouso per la prova.'),
-    ]
-    per_chi = sezione(
-        C(H('Per chi lavoriamo', 'h2'), w=(32, 100, 100)),
-        C(*[riga_indice(f'{i:02d}', t, x) for i, (t, x) in enumerate(clienti, 1)], C(LINEA_H(LINEA)), w=(60, 100, 100),
+
+def h_modelli():
+    fatti = (
+        f'<p><b>Superficie a rombi.</b> Coefficiente d’attrito 0,88 sul bagnato con gomma 4S e 0,89 con cuoio; il D.M.{NB}236/1989 '
+        'chiede più di 0,40.</p>'
+        f'<p><b>Grigliato.</b> Vetroresina PRFV verde, antiscivolo al quarzo; nelle piste self moduli 200×100{NB}cm, maglia '
+        f'3,8×3,8×3,8{NB}h.</p>'
+        '<p><b>Tubazioni.</b> Predisposte dentro i pannelli per pluviali, lance e cavi elettrici.</p>'
+        f'<p><b>Brevetto.</b> Per invenzione industriale, depositato n°{NB}275.271, domanda PD2011A000169.</p>'
+        '<p><b>Smontaggio.</b> La piattaforma si smonta e si rimonta.</p>')
+    alto = C(
+        C(titolo('Misure, pesi e posa delle piattaforme', 'h2', 'h2s'),
+          testo(f'<p>Pannelli a incastro in calcestruzzo Rck 45, spessore 20{NB}cm, posati sulla vasca di raccolta '
+                f'400×100×110{NB}h. Non servono casseforme in cantiere.</p>', mt='s'),
+          testo(fatti, 'testo16', mt='m', css='gpv-fatti'),
           gap='0'),
-        dir='row', dir_t='column', justify='between', gap='xl')
+        figura('pista-portale.jpg', 'Pista finita sotto il portale di lavaggio, con grigliato verde e superficie a rombi',
+               'Pista sotto il portale di lavaggio: grigliato in vetroresina e superficie antiscivolo a rombi.'),
+        css='gpv-modelli-in')
+    modelli = C(
+        titolo('Gli otto modelli', 'h3', 'h3b'),
+        testo('<p>Misure in centimetri, larghezza per lunghezza. Tutti i pannelli hanno 20 cm di spessore.</p>', colore=TESTO2,
+              mt='xs', max_w=1054),
+        RAW(html_modelli(), css=CSS_MODELLI, mt='m'),
+        gap='0', mt=48)
+    fasi = []
+    for (foto, alt, nome, frase, cap), disegno in zip(FASI, svg_fasi()):
+        fasi.append(C(
+            C(RAW(disegno), gap='0', css='gpv-fase-d'),
+            C(titolo(nome, 'h3', 'h3'), testo(f'<p>{frase}</p>', 'nota', mt='xs', css='gpv-fase-p'), gap='0', css='gpv-fase-t'),
+            figura(foto, alt, cap, css='gpv-fase-f', mt='s'),
+            gap='0', css='gpv-fase'))
+    posa = C(
+        titolo('La posa in quattro fasi', 'h3', 'h3b'),
+        testo('<p>Con la fornitura arriva il disegno delle fasi. Qui la pista self Mod.&nbsp;450 in sezione, con il pezzo nuovo in '
+              'grigio pieno e quelli già fatti in chiaro; sotto, lo stesso passaggio in un cantiere.</p>', colore=TESTO2, mt='xs',
+              max_w=1054),
+        C(*fasi, css='gpv-fasi', mt='l'),
+        gap='0', mt=48)
+    return sezione(alto, modelli, posa, anchor='piattaforme')
 
-    condizioni = sezione(
-        C(H('Condizioni di vendita', 'h3'),
-          T('<p>Per le aziende con partita IVA valgono le condizioni generali di vendita: ordine minimo, pagamento e spedizione '
-            'sono indicati nel documento.</p>', style='body', color=TESTO2), w=(60, 100, 100), gap='s'),
-        C(link_freccia('Scarica il PDF', CONDIZIONI_PDF), w=(30, 100, 100), align=('end', 'start', 'start')),
-        dir='row', dir_t='column', justify='between', gap='m', align=('center', 'start', 'start'),
-        pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=LINEA, anchor='condizioni')
-    return [('apertura', apertura), ('cosa-vendiamo', cosa), ('dal-1980', storia), ('distretto', distretto),
-            ('per-chi', per_chi), ('condizioni', condizioni), ('banco', blocco_banco())]
 
-
-# ---------------------------------------------------------------------------------------------
-# NOVITÀ
-# ---------------------------------------------------------------------------------------------
-ARTICOLI_ESEMPIO = [
-    ('Il nuovo sito di Benvegnù è online', '/novita/', 'Avviso'),
-    (f'Il catalogo online: {TOTALE} articoli in 10 famiglie', '/catalogo/', 'Catalogo'),
-]
-
-# Il widget gratuito "Articoli recenti" di WordPress non ha controlli di stile in Elementor: CSS solo per .bvg-news
-STILE_NEWS = (
-    '.bvg-news h5,.bvg-news .widget-title,.bvg-news .wp-block-heading{display:none}'
-    '.bvg-news ul{list-style:none;margin:0;padding:0}'
-    f'.bvg-news li{{border-top:1px solid {LINEA};padding:24px 0;margin:0}}'
-    f'.bvg-news li:last-child{{border-bottom:1px solid {LINEA}}}'
-    f".bvg-news li a{{font-family:'{CONDENSED}',Arial,sans-serif;font-weight:600;font-size:28px;line-height:1.1;letter-spacing:.3px;"
-    f'text-transform:uppercase;color:{NERO};text-decoration:none}}'
-    f'.bvg-news li a:hover,.bvg-news li a:focus{{color:{ROSSO}}}'
-    f".bvg-news .post-date{{display:block;font-family:'{BARLOW}',Arial,sans-serif;font-weight:500;font-size:12px;letter-spacing:2px;"
-    f'text-transform:uppercase;color:{TESTO2};margin-top:8px}}'
-    '@media (max-width:767px){.bvg-news li a{font-size:22px}}'
+CSS_CANTIERI = (
+    '.gpv-mosaico.gpv-mosaico{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px!important}'
+    '.gpv-mosaico > *{width:auto!important;min-width:0}'
+    f'.gpv-mosaico b{{color:{TESTO};font-weight:600}}'
+    '.gpv-cantieri-sotto.gpv-cantieri-sotto{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px!important;'
+    'align-items:start!important}'
+    '.gpv-cantieri-sotto > *{width:auto!important;min-width:0}'
+    '.gpv-luoghi.gpv-luoghi{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 48px!important}'
+    '.gpv-luoghi > *{width:auto!important;min-width:0}'
+    f'.gpv-luoghi b{{display:block;color:{TESTO};font-weight:700}}'
+    '@media (max-width:1100px){.gpv-cantieri-sotto.gpv-cantieri-sotto{gap:32px!important}}'
+    '@media (max-width:1024px){.gpv-cantieri-sotto.gpv-cantieri-sotto{grid-template-columns:1fr}}'
+    '@media (max-width:900px){.gpv-mosaico.gpv-mosaico{grid-template-columns:repeat(2,minmax(0,1fr))}}'
+    '@media (max-width:767px){.gpv-mosaico.gpv-mosaico{gap:16px 8px!important}.gpv-mosaico > :nth-child(n+9){display:none!important}'
+    '.gpv-luoghi.gpv-luoghi{grid-template-columns:1fr}}'
 )
 
 
-def novita():
-    apertura = intestazione('Novità e avvisi', 'Chiusure, nuovi arrivi e novità dai marchi. Ogni avviso ha una data.')
-    avvisi = sezione(
-        C(C(T('<p>Orari del banco</p>', style='label', color=TESTO2),
-            H(ORARI, 'p', style='h3'),
-            T(f'<p>{CHIUSURA}. Le chiusure per ferie e festività le pubblichiamo qui, con le date di inizio e di fine.</p>',
-              style='body', color=TESTO2), gap='s', w=(64, 100, 100)),
-          C(B(f'Chiama {TEL}', TEL_LINK, variant='primario'), w=(32, 100, 100), align=('end', 'start', 'start')),
-          dir='row', dir_t='column', justify='between', gap='l', pad='l', bg=GRIGIO, align=('center', 'start', 'start')),
-        pad=('l', 'lato', '0', 'lato'))
-    elenco = sezione(
-        C(H('Ultime novità', 'h2'), w=(32, 100, 100)),
-        C(ARTICOLI(ARTICOLI_ESEMPIO, numero=8), RAW('', css=STILE_NEWS, solo_elementor=True), w=(60, 100, 100),
-          css='bvg-news'),
-        dir='row', dir_t='column', justify='between', gap='xl')
-    return [('apertura', apertura), ('avvisi', avvisi), ('elenco', elenco), ('banco', blocco_banco())]
+def h_cantieri():
+    mosaico = C(*[figura(f'cantiere-{c}.jpg', f'Piattaforme posate a {luogo}',
+                         f'<b>{luogo}</b>{(", " + mod) if mod else ""}') for c, luogo, mod in MOSAICO],
+                css='gpv-mosaico')
+    luoghi = C(*[testo(f'<p><b>{reg}</b> {txt}</p>', 'small', TESTO2) for reg, txt in LUOGHI], css='gpv-luoghi', mt='m')
+    sotto = C(
+        C(titolo('I 36 cantieri, per regione', 'h3', 'h3b'), luoghi, gap='0'),
+        figura('avetrana-posa.jpg', 'Posatori che montano supporti zincati e grigliato verde sulle vasche di una pista',
+               'Avetrana (TA), posa di griglie e supporti.'),
+        css='gpv-cantieri-sotto', mt=48)
+    return sezione(
+        testa('Piattaforme posate in 36 cantieri', 'Autolavaggi self service, stazioni di servizio, concessionarie, officine e '
+              'autotrasportatori, in Italia, Svizzera, Slovacchia, Francia e San Marino.',
+              ('Tutte le realizzazioni', '/realizzazioni/'), stile='h2m'),
+        mosaico, sotto, RAW('', css=CSS_CANTIERI),
+        anchor='realizzazioni')
 
 
-# ---------------------------------------------------------------------------------------------
-# CONTATTI
-# ---------------------------------------------------------------------------------------------
-STILE_CF7 = (
-    f".bvg-modulo .wpcf7 label,.bvg-modulo .bvg-scelta{{display:block;margin:0 0 22px;font:500 12px/16px '{BARLOW}',Arial,sans-serif;"
-    f'letter-spacing:2px;text-transform:uppercase;color:{TESTO2}}}'
-    '.bvg-modulo .wpcf7 p{margin:0}.bvg-modulo .wpcf7 br{display:none}'
-    '.bvg-modulo .wpcf7-form-control-wrap{display:block}'
-    '.bvg-modulo input[type=text],.bvg-modulo input[type=email],.bvg-modulo input[type=tel],.bvg-modulo select,'
-    f'.bvg-modulo textarea{{display:block;width:100%;margin-top:8px;background:{BIANCO};border:1px solid #BDBDBD;'
-    f"border-radius:0;box-shadow:none;padding:14px 16px;font:400 16px/24px '{BARLOW}',Arial,sans-serif;letter-spacing:0;"
-    f'text-transform:none;color:{NERO}}}'
-    '.bvg-modulo textarea{min-height:140px;resize:vertical}'
-    f'.bvg-modulo input:focus,.bvg-modulo textarea:focus{{border-color:{NERO};outline:2px solid {ROSSO};outline-offset:2px}}'
-    f".bvg-modulo input[type=submit]{{background:{NERO};color:{BIANCO};border:1px solid {NERO};border-radius:0;"
-    f"padding:18px 34px;font:600 13px/16px '{BARLOW}',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;"
-    'transition:background-color .15s,color .15s}'
-    f'.bvg-modulo input[type=submit]:hover{{background:transparent;color:{NERO}}}'
-    f'.bvg-modulo input[type=checkbox],.bvg-modulo input[type=radio]{{accent-color:{NERO};flex:0 0 20px;width:20px;height:20px;margin:1px 0 0}}'
-    '.bvg-modulo .wpcf7-list-item{display:block;margin:0}'
-    '.bvg-modulo .wpcf7-list-item label{display:flex;align-items:flex-start;gap:10px;margin:0;min-height:44px;padding:11px 0;line-height:22px}'
-    f'.bvg-modulo .wpcf7-list-item-label,.bvg-modulo .wpcf7-acceptance{{text-transform:none;letter-spacing:0;font-size:15px;color:{NERO}}}'
-    f'.bvg-modulo .wpcf7-not-valid-tip{{color:{ROSSO};font-size:14px;margin-top:6px;text-transform:none;letter-spacing:0}}'
-    f'.bvg-modulo .wpcf7 form .wpcf7-response-output{{margin:24px 0 0;padding:14px 16px;border:1px solid {NERO};font-size:15px}}'
-    '@media (max-width:767px){.bvg-modulo input[type=submit]{width:100%}}'
+CSS_CONTATTO = (
+    '.gpv-contatto-in.gpv-contatto-in{display:grid!important;grid-template-columns:minmax(0,6fr) minmax(0,6fr);'
+    'grid-template-areas:"dati modulo" "foto modulo";grid-template-rows:auto 1fr;gap:0 64px!important;align-items:start!important}'
+    '.gpv-contatto-in > *{width:auto!important;min-width:0}'
+    '.gpv-contatto-dati{grid-area:dati}.gpv-contatto-foto{grid-area:foto}.gpv-modulo{grid-area:modulo}'
+    '.gpv-ingressi.gpv-ingressi{display:grid!important;grid-template-columns:1fr 1fr;gap:24px 32px!important}'
+    '.gpv-ingressi > *{width:auto!important;min-width:0}'
+    f'.gpv-telg a{{color:{TESTO}!important;text-decoration:none!important;white-space:nowrap}}'
+    f'.gpv-telg a:hover{{text-decoration:underline!important;text-decoration-color:{ARANCIO}!important;text-decoration-thickness:3px!important;'
+    'text-underline-offset:5px!important}'
+    '@media (max-width:1100px){.gpv-contatto-in.gpv-contatto-in{column-gap:32px!important}.gpv-ingressi.gpv-ingressi{grid-template-columns:1fr}}'
+    '@media (max-width:1024px){.gpv-contatto-in.gpv-contatto-in{grid-template-columns:1fr;grid-template-areas:"dati" "modulo" "foto";'
+    'grid-template-rows:auto;gap:32px!important}.gpv-contatto-foto{margin-top:0!important}'
+    '.gpv-ingressi.gpv-ingressi{grid-template-columns:1fr 1fr}}'
+    '@media (max-width:767px){.gpv-ingressi.gpv-ingressi{grid-template-columns:1fr;gap:24px!important}}'
 )
 
 
-def contatti():
-    def dato(etichetta, html):
-        return C(T(f'<p>{etichetta}</p>', style='label', color=TESTO2, w_px=(130, 130, None)),
-                 T(f'<p>{html}</p>', style='body', color=NERO, link_color=NERO, link_hover=ROSSO, grow=True),
-                 dir='row', dir_m='column', gap=('m', 'm', 'xxs'), pad=('s', '0', 's', '0'), border_top=1, border_color=LINEA,
-                 align=('baseline', 'baseline', 'start'))
-    apertura = intestazione('Contatti', f'Il banco è a Vigonovo, in {INDIRIZZO}, {ZONA_MIN}. Rispondiamo al telefono negli '
-                                        'orari di apertura.', filetto=False)
-    corpo = ('Codice o nome articolo:\nColore, misura o formato:\nQuantità:\nRitiro al banco o spedizione:\n'
-             'Ragione sociale e partita IVA:\nTelefono:\n')
-    alternativa = (f'<p style="margin:0 0 24px">Scrivi a <a href="mailto:{EMAIL}">{EMAIL}</a>: il pulsante qui sotto apre '
-                   'una email con i campi già pronti da compilare.</p>'
-                   f'<p style="margin:0"><a href="{mailto("Richiesta disponibilità", corpo)}" style="display:inline-block;'
-                   f'background:{NERO};color:{BIANCO};border:1px solid {NERO};padding:18px 34px;font:600 13px/16px \'{BARLOW}\','
-                   'Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;text-decoration:none">Scrivi la richiesta</a></p>')
-    dati = sezione(
-        C(dato('Indirizzo', f'{INDIRIZZO}<br>{CITTA}<br>{ZONA}'),
-          dato('Orari', f'{ORARI}<br>{CHIUSURA}'),
-          dato('Telefono', f'<a href="{TEL_LINK}">{TEL}</a>'),
-          dato('Fax', FAX),
-          dato('Email', f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
-          dato('PEC', PEC),
-          dato('Parcheggio', 'Per i clienti, davanti al negozio'),
-          C(LINEA_H(LINEA)),
-          C(MAPPA(f'Benvegnù, {INDIRIZZO}, {CITTA}', height=(650, 340, 300), zoom=15, grigia=True), mt='l'),
-          w=(46, 100, 100), gap='0'),
-        C(H('Richiesta di disponibilità', 'h2'),
-          T('<p>Indica il codice o il nome dell’articolo: ti rispondiamo negli orari del banco.</p>', style='body', color=TESTO2),
-          C(SHORTCODE(CF7, alternativa_html=alternativa, colore=TESTO2), RAW('', css=STILE_CF7, solo_elementor=True), mt='s',
-            css='bvg-modulo'),
-          w=(46, 100, 100), gap='s', pad='l', bg=GRIGIO, anchor='modulo'),
-        dir='row', dir_t='column', justify='between', align='start', gap='xl', pad=('xl', 'lato', 'sezione', 'lato'))
-    societari = sezione(
-        C(H('Dati societari', 'h3'), w=(32, 100, 100)),
-        C(T(f'<p>Benvegnù S.r.l.<br>P.IVA e codice fiscale {PIVA}<br>REA {REA}<br>Sede legale: {SEDE_LEGALE}<br>PEC {PEC}</p>',
-            style='body', color=TESTO2),
-          link_freccia('Condizioni generali di vendita (PDF)', CONDIZIONI_PDF), w=(48.67, 100, 100), gap='s'),
-        dir='row', dir_t='column', justify='between', gap='l', pad=('l', 'lato', 'l', 'lato'), border_top=1, border_color=LINEA)
-    # le fasi del lavoro (pattern "processo in fasi" del brief): quattro colonne con filetto, numeri piccoli in grigio
-    fasi = [
-        ('Fase 1', 'Dicci cosa ti serve', f'Al banco, al telefono {TEL} o per email. Se l’articolo ha un codice, indicalo: '
-                                         'è nella sua scheda del catalogo.'),
-        ('Fase 2', 'Verifichiamo le varianti', 'Colore, misura, formato, quantità. Per Vibram partiamo da modello '
-                                               'e misura, per i filati da articolo e colore.'),
-        ('Fase 3', 'Ritiri al banco o spediamo', 'Ritiro a Vigonovo con parcheggio davanti al negozio. Per gli ordini da lontano '
-                                                 'spediamo con corriere, alle condizioni di vendita per le aziende.'),
-        ('Fase 4', 'Riordino col codice', 'Annota codice e colore, o misura, degli articoli che usi: per riordinare basta '
-                                          'dettarceli al telefono o per email.'),
-    ]
-    come = sezione(
-        H('Come si lavora con noi', 'h2', max_w=(760, 760, 600)),
-        C(*[C(T(f'<p>{n}</p>', style='label', color=TESTO2), H(t, 'h3', mt=12), T(f'<p>{x}</p>', style='body', color=TESTO2, mt=8),
-              w=(23, 48, 100), border_top=1, border_color=NERO, pad=(20, 0, 0, 0), gap='0') for n, t, x in fasi],
-          dir='row', wrap=True, justify='between', gap='0', gap_r=(40, 40, 32)),
-        gap='l', pad=('sezione', 'lato', 'sezione', 'lato'), border_top=1, border_color=LINEA)
-    return [('apertura', apertura), ('dati-modulo', dati), ('come-si-lavora', come), ('dati-societari', societari)]
+def ingresso(nome, frase):
+    return C(titolo(nome, 'h3', 'h3'),
+             H(TEL, 'p', style='tel', color=TESTO, link=TEL_LINK, css='gpv-telg gpv-cifre', mt='xs'),
+             testo(f'<p>{frase}</p>', 'nota', TESTO2, mt='xs'), gap='0')
 
 
+def blocco_modulo(ancora_modulo=None):
+    """Riquadro "Richiesta d'offerta": Contact Form 7 in WordPress, lo stesso modulo in HTML nel fallback."""
+    return C(
+        titolo('Richiesta d’offerta', 'h3', 'h3b'),
+        testo('<p>Scrivete il dato che avete e l’ufficio tecnico vi ricontatta con la taglia.</p>', 'small', TESTO2, mt='xs'),
+        SHORTCODE(CF7_SHORTCODE, alternativa_html=modulo_html()),
+        RAW(f'<script>{JS_MODULO}</script>', css=CSS_MODULO),
+        bg=SCHEDA, pad=('xl', 'xl', 'xl', 'xl'), gap='0', css='gpv-modulo', anchor=ancora_modulo)
+
+
+def h_contatto():
+    dati = C(
+        titolo('Prezzo e consegna, dall’ufficio tecnico', 'h2', 'h2m'),
+        testo(f'<p>{ORARI}</p>', mt='xs', css='gpv-cifre'),
+        C(ingresso('Piattaforme per autolavaggi', 'Tenete pronti il tipo di impianto, pista self o portale, e le misure dell’area.'),
+          ingresso('Vasche e impianti', 'Tenete pronto il dato del progetto: AE, l/s, m² di piazzale, m³ o posti auto. Per portate '
+                   'superiori, l’ufficio tecnico dimensiona l’impianto con voi.'),
+          css='gpv-ingressi', mt='l'),
+        testo(f'<p><a class="gpv-a" href="mailto:{EMAIL}">{EMAIL}</a>, fax {FAX}<br>PEC <a class="gpv-a" href="mailto:{PEC}">{PEC}</a>'
+              f'<br>{INDIRIZZO}</p>', 'recapiti', mt='l'),
+        gap='0', css='gpv-contatto-dati')
+    foto = figura('vasche-circolari-piazzale.jpg', 'Vasche circolari in calcestruzzo affiancate sul piazzale',
+                  'Vasche circolari sul piazzale.', css='gpv-contatto-foto', mt='xl')
+    # il widget con il foglio di stile sta fuori dalla griglia: dentro occuperebbe una cella
+    return sezione(C(dati, foto, blocco_modulo(), css='gpv-contatto-in'), RAW('', css=CSS_CONTATTO),
+                   pad=('sezione', 'lato', 'sezione', 'lato'), anchor='contatti')
+
+
+def home():
+    return [('apertura', h_apertura()), ('piattaforme-e-vasche', h_linee()), ('prima-pioggia', h_percorso()),
+            ('misure-e-posa', h_modelli()), ('cantieri', h_cantieri()), ('contatto', h_contatto())]
+
+
+# ---------------------------------------------------------------------------------------------
+# Pagine (in questa fase solo la home; testata e menu hanno già tutte le voci)
+# ---------------------------------------------------------------------------------------------
 PAGINE = [
     {'slug': '01-home', 'titolo': 'Home', 'sezioni': home,
-     'titolo_seo': 'Benvegnù | Forniture per calzaturifici, pelletterie e calzolai a Vigonovo',
-     'descrizione': 'Suole e lastre Vibram, filati, utensili e prodotti per fondo e tomaia. Al banco di Vigonovo, Riviera del Brenta, dal 1980.'},
-    {'slug': '02-azienda', 'titolo': 'Azienda', 'sezioni': azienda,
-     'titolo_seo': 'Azienda | Benvegnù, Vigonovo dal 1980',
-     'descrizione': 'Benvegnù nasce nel 1980 a Vigonovo, nel distretto calzaturiero della Riviera del Brenta.'},
-    {'slug': '03-catalogo', 'titolo': 'Catalogo', 'sezioni': catalogo,
-     'titolo_seo': f'Catalogo | {TOTALE} articoli per calzatura e pelletteria | Benvegnù',
-     'descrizione': 'Utensili, filati ed elastici, modelleria, prodotti chimici, esposizione e cura, suole e lastre Vibram.'},
-    {'slug': '04-vibram', 'titolo': 'Vibram', 'sezioni': vibram,
-     'titolo_seo': 'Vibram | Suole, lastre, mezzesuole e tacchi | Benvegnù Vigonovo',
-     'descrizione': f'Rivenditore autorizzato Vibram: {N_VIBRAM} articoli tra suole, lastre, mezzesuole e tacchi.'},
-    {'slug': '05-marchi', 'titolo': 'Marchi', 'sezioni': marchi,
-     'titolo_seo': 'Marchi | Vibram, Gütermann, Girba, Fratelli Zucchini | Benvegnù',
-     'descrizione': 'I marchi che trovi al banco di Benvegnù e cosa c’è di ciascuno.'},
-    {'slug': '06-novita', 'titolo': 'Novità', 'sezioni': novita,
-     'titolo_seo': 'Novità e avvisi | Benvegnù', 'descrizione': 'Chiusure, nuovi arrivi e novità dai marchi.'},
-    {'slug': '07-contatti', 'titolo': 'Contatti', 'sezioni': contatti,
-     'titolo_seo': 'Contatti | Benvegnù, Via del Lavoro 48, Vigonovo',
-     'descrizione': f'{INDIRIZZO}, {CITTA}. {ORARI}. Tel. {TEL}. Richiesta di disponibilità online.'.replace(WJ, '')
-                    .replace('\u00a0', ' ')},
+     'titolo_seo': 'Gardens Pav: piattaforme per autolavaggi, vasche e impianti per l’acqua',
+     'descrizione': 'Piattaforme prefabbricate per autolavaggi e vasche monoblocco in calcestruzzo armato vibrato per il '
+                    f'trattamento delle acque, prodotte a Legnaro (PD). Ufficio tecnico {TEL}.'},
 ]
