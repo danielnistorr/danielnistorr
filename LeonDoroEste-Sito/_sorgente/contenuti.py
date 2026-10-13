@@ -657,9 +657,10 @@ def gruppo_carta(titolo, piatti):
 
 
 CSS_LARGO = (
-    # colonne centrate larghe al massimo 1200 (carta del ristorante) e 640 (listino)
+    # colonne centrate larghe al massimo 1200, 880 (carta di ogni giorno) e 640 (listino)
     '.ldo-largo-1200{max-width:1200px!important;margin-left:auto!important;margin-right:auto!important}'
     '.ldo-largo-640{max-width:640px!important;margin-left:auto!important;margin-right:auto!important}'
+    '.ldo-largo-880{max-width:880px!important;margin-left:auto!important;margin-right:auto!important}'
 )
 
 
@@ -803,36 +804,45 @@ def ristorante_cucina():
 
 
 def ristorante_menu():
-    """R3: la carta di ogni giorno. Prima il titolo e chi cucina, accanto al carpaccio (a filo destro, 864 x 525, scala 0,62);
-    poi la carta scritta per intero come in trattoria: tre colonne di solo testo, larghe insieme 1200."""
-    riga = foto_e_testo('ogni-giorno-foto', 'carpaccio.jpg',
-                        'Un carpaccio con la rucola e il limone e un bicchiere di vino rosso, su una tavola apparecchiata', [
-                            h2('Ogni giorno'),
-                            testo('<p>Questo è il menù tipo: le proposte cambiano ogni giorno.</p>', stile='primo', mt='s',
-                                  max_w=(560, 560, 600)),
-                            testo("<p>In cucina c'è la signora Annalisa Brugin, madre dei titolari.</p>", mt='xs',
-                                  max_w=(560, 560, 600)),
-                        ], lato_foto='destro', w_foto=(60, 50, 100), mt=0)
-    carta = C(
-        colonne([gruppo_carta(t, v) for t, v in MENU_CARNE]),
-        testo('<p>Contorni cotti, freschi e alla griglia.</p>', mt='m', max_w=(646, 646, 600)),
-        gap=0, css='ldo-largo-1200')
-    return C(riga, C(carta, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'), RAW('', css=CSS_LARGO), pad='0', gap=0, mt='stacco',
-             boxed=False, tag='section', anchor='menu', css='ldo-menu-carne')
+    """R3: la carta di ogni giorno al centro del bianco, come la targa in home: titolo e due frasi centrati, poi le voci in
+    due colonne strette (antipasti e primi, secondi e contorni), larghe insieme 880 px. Nessuna foto: la carta è l'oggetto.
+    Due colonne e non tre: quattro antipasti accanto a diciotto secondi lasciavano un buco; così le colonne pareggiano."""
+    al = ('center', 'center', 'left')
+    carne = dict(MENU_CARNE)
+    prima = gruppo_carta('Antipasti', carne['Antipasti']) + [h3('Primi', mt='l'), voci(carne['Primi'], mt='xs')]
+    seconda = gruppo_carta('Secondi', carne['Secondi']) + [h3('Contorni', mt='l'),
+                                                           voci(['Cotti, freschi e alla griglia'], mt='xs')]
+    return C(
+        h2('Ogni giorno', align=al),
+        testo('<p>Questo è il menù tipo: le proposte cambiano ogni giorno.</p>', stile='primo', align=al, mt='s',
+              max_w=(714, 714, 600)),
+        testo("<p>In cucina c'è la signora Annalisa Brugin, madre dei titolari.</p>", align=al, mt='xs',
+              max_w=(646, 646, 600)),
+        colonne([prima, seconda], w=(44, 47, 100), gap_r=(0, 0, 48), mt='l', css='ldo-largo-880'),
+        RAW('', css=CSS_LARGO), align=('center', 'center', 'start'), pad=('stacco', 'lato', 0, 'lato'), gap=0,
+        boxed=False, tag='section', anchor='menu', css='ldo-menu-carne')
+
+
+CSS_VENERDI = (
+    # la sala a filo destro, mai più larga del file (1080); il titolo accanto, in basso, nel bianco
+    '.ldo-venerdi-foto{max-width:1080px!important}'
+)
 
 
 def ristorante_pesce():
-    """R4: il venerdì sera, pesce: la sala a filo sinistro (864 x 680, scala 0,80) con il titolo accanto, poi la carta del
-    pesce come quella di ogni giorno."""
-    riga = foto_e_testo('venerdi-foto', 'sala-vino.jpg',
-                        "In sala una coppia a tavola, con il vino e il pane; alle pareti le stampe di Este", [
-                            h2('Il venerdì, pesce', stile='h2c'),
-                            testo("<p>Il venerdì sera c'è il menù di pesce, in omaggio alla cultura contadina di queste terre: "
-                                  'è gradita la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
-                        ], w_foto=(60, 50, 100), mt=0)
-    carta_in = C(colonne([gruppo_carta(t, v) for t, v in MENU_PESCE]), gap=0, css='ldo-largo-1200')
-    return C(riga, C(carta_in, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'), RAW('', css=CSS_LARGO), pad='0', gap=0, mt='stacco',
-             boxed=False, tag='section', anchor='pesce', css='ldo-pesce')
+    """R4: il venerdì sera, pesce. La sala col vino a filo destro (960 x 756 a 1440, scala 0,89) e accanto, in basso nel
+    bianco, il titolo e la frase, come una didascalia grande; sotto, la carta del pesce in tre colonne (otto, nove e undici
+    voci), allineata al margine di pagina come il titolo. A 1024 e al telefono la foto sopra, a tutta larghezza."""
+    immagine = C(I(img('sala-vino.jpg'), "In sala una coppia a tavola, con il vino e il pane; alle pareti le stampe di Este"),
+                 w=(66.67, 100, 100), fisso=True, gap=0, css='ldo-venerdi-foto')
+    parole = C(h2('Il venerdì, pesce', stile='h2c'),
+               testo("<p>Il venerdì sera c'è il menù di pesce, in omaggio alla cultura contadina di queste terre: è gradita "
+                     'la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
+               grow=True, gap=0, pad=((0, 48, 32), (64, 40, 20), 0, 'lato'), css='ldo-venerdi-testo')
+    riga = C(parole, immagine, dir='row', dir_t='column-reverse', justify='end', align=('end', 'stretch', 'stretch'), gap=0)
+    carta = colonne([gruppo_carta(t, v) for t, v in MENU_PESCE], gap_r=(0, 48, 32), mt='l', pad=(0, 'lato', 0, 'lato'))
+    return C(riga, carta, RAW('', css=CSS_VENERDI), pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='pesce',
+             css='ldo-pesce')
 
 
 def ristorante_prenota():
