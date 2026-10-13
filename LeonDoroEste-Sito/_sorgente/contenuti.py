@@ -199,7 +199,7 @@ CSS_SITO = (
     '.ldo-sr{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;'
     'clip:rect(1px,1px,1px,1px)!important;white-space:nowrap!important;margin:0!important;padding:0!important}'
     # link nel testo: sottolineatura spessa 2 px a 6 px dal testo (specifica 3.5)
-    '.ldo-sott a{text-decoration:underline!important;text-decoration-thickness:2px!important;text-underline-offset:6px!important}'
+    '.ldo-sott a{font-weight:600;text-decoration:underline!important;text-decoration-thickness:2px!important;text-underline-offset:6px!important}'
     '.ldo-sott a:focus-visible{outline:3px solid ' + GIALLO + ';outline-offset:3px}'
     '.ldo-campo .ldo-sott a:focus-visible{outline-color:' + INCHIOSTRO + '}'
     '.ldo-intero a{white-space:nowrap}'
@@ -1097,8 +1097,8 @@ def prenota_richiesta():
     corpo = ('Nome e cognome:\nTelefono:\nArrivo:\nPartenza:\nAdulti:\nBambini (età):\n'
              'Camera (singola, doppia o matrimoniale, più camere):\n'
              'Trattamento (camera e colazione, mezza pensione, pensione completa):\nGarage per la bici (sì o no):\nNote:\n')
-    alternativa = (f'<div class="ldo-alt"><p>Scriveteci a <a class="ldo-a" href="mailto:{EMAIL}" style="color:{INCHIOSTRO}">'
-                   f'{EMAIL}</a>: il bottone qui sotto apre un\'email con le voci da compilare.</p>'
+    alternativa = (f'<div class="ldo-alt"><p>Il bottone qui sotto apre un\'email già indirizzata a noi, con le voci da '
+                   'compilare: date, persone, camera e trattamento.</p>'
                    f'<p><a class="ldo-scrivi" href="{mailto("Richiesta camera", corpo)}">Scrivi un\'email</a></p></div>')
     parole = C(
         h2('Scriveteci', stile='h2b', colore=INCHIOSTRO),
