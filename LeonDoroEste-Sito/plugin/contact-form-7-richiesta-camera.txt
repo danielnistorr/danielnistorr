@@ -1,0 +1,60 @@
+Titolo del modulo (deve essere esattamente questo, il sito lo cerca per titolo):
+Richiesta camera Leon d'Oro
+
+=== Scheda "Modulo": incolla tutto quello che c'è tra le due righe ===
+-----
+<div class="ldo-campi">
+<label class="ldo-tutta">Nome e cognome [text* nome autocomplete:name]</label>
+<label class="ldo-tutta">Email [email* email autocomplete:email]</label>
+<label class="ldo-tutta">Telefono <span class="ldo-nota">Se volete essere richiamati</span> [tel telefono autocomplete:tel]</label>
+<label class="ldo-data">Arrivo [date* arrivo min:today]</label>
+<label class="ldo-data">Partenza [date* partenza min:today]</label>
+<label>Adulti [number* adulti min:1 max:24 "1"]</label>
+<label>Bambini [number bambini min:0 max:10 "0"]</label>
+<label class="ldo-tutta">Camera [select camera "Singola" "Doppia o matrimoniale" "Più camere"]</label>
+<div class="ldo-tutta ldo-scelta">Trattamento [radio trattamento use_label_element default:1 "Camera e colazione" "Mezza pensione" "Pensione completa"]</div>
+<div class="ldo-tutta ldo-scelta">Garage per la bici [checkbox bici use_label_element "Arrivo in bici e mi serve il garage"]</div>
+<label class="ldo-tutta">Note [textarea note maxlength:1000 placeholder "Per esempio: orario di arrivo, età dei bambini, se assistete un ricoverato a Schiavonia"]</label>
+<div class="ldo-tutta">[acceptance privacy] Ho letto l’<a href="/privacy/">informativa sulla privacy</a> e acconsento all’uso dei miei dati per rispondere a questa richiesta. [/acceptance]</div>
+<div class="ldo-tutta">[submit "Invia la richiesta"]</div>
+</div>
+-----
+
+=== Scheda "Mail" ===
+A: prenotazioni@leondoroeste.it
+Da: [_site_title] <wordpress@IL-TUO-DOMINIO>
+Oggetto: Richiesta camera dal sito: dal [arrivo] al [partenza], [adulti] adulti
+Header aggiuntivi: Reply-To: [email]
+Corpo del messaggio:
+Nome e cognome: [nome]
+Email: [email]
+Telefono: [telefono]
+Arrivo: [arrivo]
+Partenza: [partenza]
+Adulti: [adulti]
+Bambini: [bambini]
+Camera: [camera]
+Trattamento: [trattamento]
+Garage per la bici: [bici]
+Note: [note]
+
+=== Scheda "Mail (2)": spunta "Usa Mail (2)", risposta automatica a chi scrive ===
+A: [email]
+Da: [_site_title] <wordpress@IL-TUO-DOMINIO>
+Oggetto: Abbiamo ricevuto la vostra richiesta
+Header aggiuntivi: Reply-To: prenotazioni@leondoroeste.it
+Corpo del messaggio:
+Abbiamo ricevuto la vostra richiesta per le date dal [arrivo] al [partenza]. Vi rispondiamo con la disponibilità.
+Albergo Ristorante Leon d'Oro, Viale Fiume 20, Este, tel. 0429 602949.
+
+=== Scheda "Messaggi" ===
+"Il messaggio è stato inviato": Grazie, abbiamo ricevuto la richiesta. Vi rispondiamo con la disponibilità.
+"Errore nei campi": Alcuni campi non sono compilati bene: li trovate segnati qui sopra.
+"Campo obbligatorio": Compilate questo campo.
+
+Note:
+- La richiesta non conferma la prenotazione: la conferma la dà una persona, per email o al telefono.
+- Niente reCAPTCHA (mette cookie di Google): contro lo spam il plugin gratuito "Honeypot for Contact Form 7", che aggiunge
+  un campo nascosto [DA CONFERMARE con il cliente].
+- Per consegnare davvero le email serve un plugin SMTP (per esempio WP Mail SMTP) configurato con la casella aziendale.
+- Il link "informativa sulla privacy" porta a /privacy/: la pagina la scrive il consulente del cliente.
