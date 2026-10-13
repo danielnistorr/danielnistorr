@@ -1,164 +1,184 @@
 # -*- coding: utf-8 -*-
 """
-Prepara le immagini del sito in assets/web/.
-- foto di sede e magazzino: bianco e nero neutro, curva a S leggera (neri profondi, luci pulite), ritagli per l'uso
-  (hero a tutta altezza, blocchi foto del catalogo); mai ingrandite oltre 2x i pixel reali
-- foto prodotto: a colori (il colore di un filo o di una suola è informazione), 800x800 su bianco, oggetto centrato
-- logo: originale per la testata, versione bianca per le parti nere; loghi dei marchi a un solo colore (#111111),
-  così stanno con le foto in bianco e nero invece di fare quattro macchie di colore; logo Benvegnù piatto nero per la testata
-Uso: python3 prepara_immagini.py
-"""
-import json
-import os
+Prepara le immagini del sito Zoccarato Serramenti in assets/web/ partendo da assets/originali/ (foto scaricate dal sito
+attuale, 01) e dalle liste della specifica (_prova/spec.md, paragrafo 16).
 
-from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+Regole:
+- mai più grandi dell'originale: si ritaglia alla proporzione della cella e si riduce, non si ingrandisce mai;
+- colori come sono (foto di cantiere), nessun filtro; il bianco e nero solo dove è già nell'originale (camion del 1974);
+- JPEG qualità 84, progressivo; le foto col timbro data della fotocamera non entrano (escluse già da GALLERIE);
+- le gallerie (pagina Lavori) escono da contenuti.GALLERIE, la stessa struttura che dà i conteggi di home e pagine.
+
+Uso: python3 -I _sorgente/prepara_immagini.py   (legge file scaricati: con -I, senza cartelle di lavoro nel percorso)
+"""
+import glob
+import os
+import sys
+
+from PIL import Image
 
 QUI = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, QUI)                     # contenuti.py (GALLERIE): codice nostro, accanto a questo file
+import contenuti as c                       # noqa: E402
+
 ASSET = os.path.join(os.path.dirname(QUI), 'assets')
 ORIG = os.path.join(ASSET, 'originali')
-EST = os.path.join(ASSET, 'esterne')
 WEB = os.path.join(ASSET, 'web')
-
-FACCIATA = os.path.join(EST, 'google-business-proprietario-01.jpg')
-SLIDE = {
-    'rotoli': 'home-slider-articoli-collanti-per-calzature-e-pelletterie-padova-venezia-2-45-38.jpg',
-    'lastre': 'home-slider-articoli-collanti-per-calzature-e-pelletterie-padova-venezia-3-37-39.jpg',
-    'tacchi': 'home-slider-articoli-per-calzature-padova-venezia-40-41.jpg',
-    'colle': 'home-slider-benvegnu-articoli-per-calzature-e-pelletterie-vigonovo-venezia-32-47.jpg',
-    'corsia': 'home-slider-ingrosso-articoli-per-pelletteria-calzature-padova-venezia-benvegnu-29-51.jpg',
-    'solette': 'home-slider-solette-calzature-padova-venezia-vibram-46-54.jpg',
-    'banco': 'home-slider-solette-vibram-suole-benvegu-26.jpg',
-    'espositore': 'home-slider-suole-scarpe-ginnastica-vibram-benvegnu-padova-venezia-25.jpg',
-}
-
-# nome web: (sorgente, rapporto o None per l'intera foto, larghezza in uscita, fuoco x, fuoco y)
-FOTO = {
-    'sede-hero.jpg': (FACCIATA, '9:10', 1240, 0.70, 0.45),        # metà destra della hero, a tutta altezza
-    'sede-hero-mobile.jpg': (FACCIATA, '4:3', 1200, 0.66, 0.42),
-    'sede-larga.jpg': (FACCIATA, '21:9', 2048, 0.50, 0.36),
-    'blocco-vibram.jpg': (SLIDE['banco'], '4:3', 750, 0.45, 0.55),
-    'blocco-utensili.jpg': (SLIDE['colle'], '4:3', 750, 0.62, 0.50),
-    'blocco-tomaia.jpg': (SLIDE['rotoli'], '4:3', 750, 0.50, 0.50),
-    'blocco-cura.jpg': (SLIDE['solette'], '4:3', 750, 0.60, 0.50),
-    'espositore-vibram.jpg': (SLIDE['espositore'], '1:1', 940, 0.50, 0.50),    # tiene intera la scritta 'vibram' a sinistra
-    'banco-suole.jpg': (SLIDE['banco'], None, 750, 0.5, 0.5),
-    'magazzino-corsia.jpg': (SLIDE['corsia'], None, 750, 0.5, 0.5),
-    'magazzino-lastre.jpg': (SLIDE['lastre'], None, 750, 0.5, 0.5),
-    'magazzino-tacchi.jpg': (SLIDE['tacchi'], None, 750, 0.5, 0.5),
-}
-
-# articoli scelti dal catalogo per rappresentare famiglie e modelli (productid del sito attuale)
-PRODOTTI = [
-    '1895', '9978', '14932', '2031', '8843', '1828',                 # utensili
-    '80075', '85109', '83169', '82768', '83137', '85014',            # suole Vibram
-    '82268', '84413', '84952', '84305',                              # lastre Vibram
-    '83255', '80751', '83566', '83263',                              # mezzesuole e tacchi Vibram
-    '1075', '15887', '1030', '9266', '10275',                        # filati ed elastici
-    '14563', '1802', '1795',                                         # modelleria e riparazione
-    '15752', '10572', '7995',                                        # esposizione e cura
-    '9907', '15947',                                                 # igiene e sicurezza
-    '2055', '15531',                                                 # imballaggio
-]
+QUALITA = 84
 
 
-def ritaglia(im, ratio, fx=0.5, fy=0.5):
-    if not ratio:
+def originale(nome):
+    """File originale da un nome breve (abitazioni-106) o da un nome intero (azienda-flotta-autogru-camion.jpg)."""
+    if nome.endswith('.jpg'):
+        return os.path.join(ORIG, nome)
+    trovati = glob.glob(os.path.join(ORIG, f'*-{nome}-*.jpg'))
+    trovati = [f for f in trovati if os.path.basename(f).split('-', 1)[1].startswith(nome + '-')]
+    if len(trovati) != 1:
+        raise SystemExit(f'originale non univoco per {nome}: {trovati}')
+    return trovati[0]
+
+
+def ritaglia(im, r=None, cx=.5, cy=.5, box=None):
+    """Ritaglio alla proporzione r (larghezza/altezza) intorno al fuoco cx, cy; box = riquadro da togliere prima."""
+    if box:
+        im = im.crop(box)
+    if not r:
         return im
-    rw, rh = map(int, ratio.split(':'))
     w, h = im.size
-    target = rw / rh
-    nw, nh = (int(h * target), h) if w / h > target else (w, int(w / target))
-    x = int(min(max(fx * w - nw / 2, 0), w - nw))
-    y = int(min(max(fy * h - nh / 2, 0), h - nh))
-    return im.crop((x, y, x + nw, y + nh))
+    if w / h > r:
+        nw = round(h * r)
+        x0 = min(max(0, round(cx * w - nw / 2)), w - nw)
+        return im.crop((x0, 0, x0 + nw, h))
+    nh = round(w / r)
+    y0 = min(max(0, round(cy * h - nh / 2)), h - nh)
+    return im.crop((0, y0, w, y0 + nh))
 
 
-def bianco_nero(im):
-    g = ImageOps.grayscale(im)
-    g = ImageOps.autocontrast(g, cutoff=(0.8, 0.4))
-    lut = []
-    for i in range(256):
-        x = i / 255.0
-        y = x * x * (3 - 2 * x)          # curva a S leggera
-        y = 0.55 * y + 0.45 * x
-        lut.append(int(round(y * 255)))
-    g = g.point(lut)
-    return g.convert('RGB')
+def riduci(im, larghezza):
+    """Riduce alla larghezza indicata solo se l'immagine è più larga: mai ingrandire."""
+    if larghezza and im.width > larghezza:
+        im = im.resize((larghezza, round(im.height * larghezza / im.width)), Image.LANCZOS)
+    return im
 
 
-def foto(src, dst, ratio, out_w, fx, fy):
-    im = ritaglia(Image.open(src).convert('RGB'), ratio, fx, fy)
-    out_w = min(out_w, im.size[0] * 2)
-    out_h = round(out_w * im.size[1] / im.size[0])
-    up = out_w > im.size[0]
-    im = im.resize((out_w, out_h), Image.LANCZOS)
-    if up:
-        im = im.filter(ImageFilter.UnsharpMask(radius=1.0, percent=40, threshold=3))
-    else:
-        im = ImageEnhance.Sharpness(im).enhance(1.1)
-    bianco_nero(im).save(dst, 'JPEG', quality=84, optimize=True, progressive=True)
-    return out_w, out_h
+def salva(im, nome, sorgente):
+    out = os.path.join(WEB, nome)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    src = Image.open(sorgente)
+    assert im.width <= src.width and im.height <= src.height, f'{nome}: più grande dell\'originale'
+    im.convert('RGB').save(out, quality=QUALITA, optimize=True, progressive=True)
+    return im.size
 
 
-def prodotto(src, dst, lato=800):
-    im = Image.open(src).convert('RGB')
-    g = ImageOps.grayscale(im)
-    bbox = ImageOps.invert(g).point(lambda v: 255 if v > 14 else 0).getbbox() or (0, 0) + im.size
-    obj = im.crop(bbox)
-    lim = int(lato * 0.78)
-    scala = min(lim / obj.size[0], lim / obj.size[1])
-    if max(im.size) <= 400:
-        scala = min(scala, 1.6)           # le foto Vibram sono 400x400: ingrandimento contenuto
-    obj = obj.resize((max(1, int(obj.size[0] * scala)), max(1, int(obj.size[1] * scala))), Image.LANCZOS)
-    out = Image.new('RGB', (lato, lato), 'white')
-    out.paste(obj, ((lato - obj.size[0]) // 2, (lato - obj.size[1]) // 2))
-    out.save(dst, 'JPEG', quality=86, optimize=True, progressive=True)
+def fai(nome, sorgente, r=None, larghezza=None, cx=.5, cy=.5, box=None):
+    f = originale(sorgente)
+    im = riduci(ritaglia(Image.open(f).convert('RGB'), r, cx, cy, box), larghezza)
+    return salva(im, nome, f)
 
 
-def logo_colore(src, dst, colore):
-    logo = Image.open(src).convert('RGBA')
-    r, g, b = Image.new('RGB', (1, 1), colore).getpixel((0, 0))
-    out = Image.new('RGBA', logo.size, (r, g, b, 0))
-    a = logo.getchannel('A')
-    out.putalpha(a)
-    px = out.load()
-    for y in range(logo.size[1]):
-        for x in range(logo.size[0]):
-            px[x, y] = (r, g, b, px[x, y][3])
-    out.save(dst, optimize=True)
+# ---------------------------------------------------------------------------------------------
+# Home e parti comuni (home finale: _prova/script/fiancata_immagini.py e finale_immagini.py)
+# nome web: (originale, proporzione o None, larghezza massima o None, fuoco x, fuoco y[, riquadro da togliere])
+# ---------------------------------------------------------------------------------------------
+HOME = {
+    'logo.jpg': ('grafica-logo.jpg', None, None, .5, .5),
+    # flotta: tolto il muro a destra (x > 820); la sponda "ZOCCARATO" sta tra x 60 e 300, il primo furgone tra 462 e 636
+    'flotta-autogru.jpg': ('azienda-flotta-autogru-camion.jpg', None, None, .5, .5, (0, 0, 820, 600)),
+    'casa-finestre.jpg': ('abitazioni-106', 4 / 3, None, .5, .5),
+    'casa-scorrevoli.jpg': ('scorrevoli-101', 4 / 3, None, .5, .5),
+    'casa-oscuranti.jpg': ('abitazioni-115', 4 / 3, None, .5, .5),
+    'casa-portoncini.jpg': ('portoncini-10', 3 / 4, None, .5, .5),
+    'casa-porte-interne.jpg': ('abitazioni-130', 3 / 4, None, .5, .5),
+    'casa-pergole.jpg': ('pensiline-14a', 3 / 4, None, .42, .5),
+    'casa-speciali.jpg': ('speciali-102', 3 / 4, None, .62, .5),
+    'ind-commerciali.jpg': ('commerciali-101', 4 / 3, None, .5, .5),
+    'ind-pensiline.jpg': ('commerciali-109', 4 / 3, None, .5, .5),
+    'ind-monoblocchi.jpg': ('monoblocchi-38', 4 / 3, None, .5, .5),
+    'lav-bovindo.jpg': ('abitazioni-109', 4 / 3, None, .5, .5),
+    'lav-inglesine.jpg': ('abitazioni-128', 3 / 4, None, .5, .5),
+    'lav-timpano.jpg': ('abitazioni-9', 4 / 3, None, .56, .5),
+    'lav-veranda-bronzo.jpg': ('scorrevoli-114', 3 / 4, None, .5, .5),
+    'lav-persiane-scorrevoli.jpg': ('oscuranti-113', 3 / 4, None, .5, .5),
+    'lav-copertura-vetrata.jpg': ('speciali-104', 4 / 3, None, .5, .5),
+    'lav-vetrata-bar.jpg': ('commerciali-116', 3 / 4, None, .5, .5),
+    'lav-cancello.jpg': ('speciali-108', 4 / 3, None, .5, .5),
+    'furto-serranda.jpg': ('azienda-effrazioni-01-serranda-divelta.jpg', 4 / 3, None, .5, .5),
+    'furto-porta.jpg': ('azienda-effrazioni-03-porta-ripristinata.jpg', None, None, .5, .5),
+    # bordo della scansione tolto prima del ritaglio
+    'storia-1974.jpg': ('azienda-storia-1-camion-struttura-ferro.jpg', 4 / 3, None, .5, .5, (16, 8, 944, 752)),
+    'sede-furgoni.jpg': ('azienda-flotta-2-sede-dall-alto.jpg', 4 / 3, None, .55, .5),
+}
 
+# miniature quadrate della scheda del sopralluogo (320 px da ritagli di 600-750 px); nessuna ripete una foto della home
+MINI = {
+    'm-finestre.jpg': ('abitazioni-107', .5, .5),
+    'm-scorrevoli.jpg': ('scorrevoli-104', .5, .5),
+    'm-oscuranti.jpg': ('oscuranti-07', .5, .5),
+    'm-portoncini.jpg': ('portoncini-102', .5, .45),
+    'm-pergole.jpg': ('pensiline-14b', .4, .5),
+    'm-speciali.jpg': ('speciali-103', .45, .5),
+    'm-vetrine.jpg': ('commerciali-112', .5, .5),
+    'm-monoblocchi.jpg': ('monoblocchi-34', .32, .5),
+}
 
-def logo_monocolore(src, dst, colore='#111111'):
-    """Logo di marchio a un solo colore, come nelle versioni monocromatiche ufficiali: le parti scure restano piene,
-    i fondi chiari (l'ottagono giallo Vibram) diventano trasparenti, i colori medi (blu Girba, rosso Zucchini) pieni."""
-    logo = Image.open(src).convert('RGBA')
-    lum = ImageOps.grayscale(logo.convert('RGB'))
-    copertura = lum.point(lambda v: int(max(0.0, min(1.0, (0.85 - v / 255.0) / 0.45)) * 255))
-    a = ImageChops.darker(copertura, logo.getchannel('A'))
-    r, g, b = Image.new('RGB', (1, 1), colore).getpixel((0, 0))
-    out = Image.new('RGBA', logo.size, (r, g, b, 0))
-    out.putalpha(a)
-    out.save(dst, optimize=True)
+# ---------------------------------------------------------------------------------------------
+# Pagine interne (specifica 16.1): foto delle fiancate, delle schede delle lavorazioni, di Chi siamo
+# ---------------------------------------------------------------------------------------------
+PAGINE_INTERNE = {
+    'apre-casa.jpg': ('home-02-scorrevole-legno.jpg', None, 1280, .5, .5, (160, 0, 1520, 850)),
+    'apre-aziende.jpg': ('home-03-stazione-servizio.jpg', None, 1280, .5, .5, (160, 0, 1520, 850)),
+    'apre-lavori.jpg': ('abitazioni-109', None, None, .5, .5, (0, 62, 1000, 687)),
+    'apre-furto.jpg': ('azienda-effrazioni-02-vetrata-a-terra.jpg', None, None, .5, .5, (0, 62, 1000, 687)),
+    'apre-storia.jpg': ('azienda-storia-1-camion-struttura-ferro.jpg', None, None, .5, .5, (0, 67, 1000, 692)),
+    'apre-contatti.jpg': ('azienda-flotta-3-furgoni-piazzale.jpg', None, None, .5, .5, (0, 103, 899, 665)),
+    'storia-1982.jpg': ('azienda-storia-2-aerea-sede.jpg', None, 800, .5, .5, (0, 8, 1000, 1008)),
+    'flotta-autogru-43.jpg': ('azienda-flotta-autogru-camion.jpg', None, None, .5, .5, (0, 0, 800, 600)),
+    'flotta-furgoni.jpg': ('azienda-flotta-3-furgoni-piazzale.jpg', None, None, .5, .5, (0, 47, 899, 721)),
+}
+
+# foto delle schede delle lavorazioni (specifica 8 e 9): orizzontali 4:3 a 800 px, verticali 3:4 a 600 px
+SCHEDE = {
+    'finestre': [('abitazioni-106', 'O'), ('abitazioni-108', 'O'), ('abitazioni-9', 'O'), ('abitazioni-119', 'O')],
+    'scorrevoli': [('scorrevoli-101', 'O'), ('scorrevoli-102', 'O'), ('scorrevoli-105', 'O'), ('abitazioni-5', 'O')],
+    'oscuranti': [('abitazioni-115', 'O'), ('oscuranti-106', 'O'), ('oscuranti-108', 'O'), ('oscuranti-18', 'O')],
+    'portoncini': [('portoncini-10', 'V'), ('portoncini-16', 'V'), ('portoncini-42', 'V')],
+    'porte-interne': [('abitazioni-130', 'V'), ('porte-interne-101', 'V'), ('porte-interne-33', 'V')],
+    'pergole': [('pensiline-14a', 'O'), ('pensiline-102', 'O'), ('pensiline-103', 'O'), ('pensiline-101', 'O')],
+    'speciali': [('speciali-102', 'O'), ('speciali-105', 'O'), ('speciali-108', 'O'), ('speciali-13a', 'O')],
+    'commerciali': [('commerciali-101', 'O'), ('commerciali-112', 'O'), ('commerciali-105', 'O'), ('commerciali-114', 'O')],
+    'pensiline': [('commerciali-109', 'O'), ('pensiline-14d', 'O'), ('pensiline-14f', 'O'), ('commerciali-108', 'O')],
+    'monoblocchi': [('monoblocchi-38', 'O'), ('monoblocchi-34', 'O'), ('monoblocchi-35', 'O')],
+}
+FUOCO_X = {'monoblocchi-34': .32}
 
 
 def main():
     os.makedirs(WEB, exist_ok=True)
-    for f in os.listdir(WEB):
-        os.remove(os.path.join(WEB, f))
-    for nome, (src, ratio, w, fx, fy) in FOTO.items():
-        src = src if os.path.isabs(src) else os.path.join(ORIG, src)
-        print(nome, foto(src, os.path.join(WEB, nome), ratio, w, fx, fy))
-    catalogo = json.load(open(os.path.join(QUI, 'catalogo.json'), encoding='utf-8'))
-    per_id = {a['id']: a['foto'] for f in catalogo['famiglie'] for s in f['sottocategorie'] for a in s['articoli'] if a['foto']}
-    for pid in PRODOTTI:
-        prodotto(os.path.join(ORIG, per_id[pid]), os.path.join(WEB, f'prodotto-{pid}.jpg'))
-    Image.open(os.path.join(ORIG, 'logo-benvegnu.png')).save(os.path.join(WEB, 'logo-benvegnu.png'), optimize=True)
-    logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-bianco.png'), '#FFFFFF')
-    # versione piatta nera per la testata: la sfera sfumata dell'originale stona su un sito tutto piatto
-    logo_colore(os.path.join(ORIG, 'logo-benvegnu.png'), os.path.join(WEB, 'logo-benvegnu-nero.png'), '#111111')
-    for m in ('vibram', 'gutermann', 'girba', 'fratelli-zucchini'):
-        logo_monocolore(os.path.join(ORIG, f'marchio-{m}.png'), os.path.join(WEB, f'marchio-{m}.png'))
-    print(len(os.listdir(WEB)), 'immagini in', WEB)
+    fatte = []
+    for nome, v in list(HOME.items()) + list(PAGINE_INTERNE.items()):
+        src, r, larg, cx, cy = v[:5]
+        fatte.append((nome, fai(nome, src, r, larg, cx, cy, v[5] if len(v) > 5 else None)))
+    for nome, (src, cx, cy) in MINI.items():
+        fatte.append((nome, fai(nome, src, 1, 320, cx, cy)))
+    for ancora, foto in SCHEDE.items():
+        for i, (src, o) in enumerate(foto, 1):
+            r, larg = (4 / 3, 800) if o == 'O' else (3 / 4, 600)
+            nome = f'fam-{ancora}-{i}.jpg'
+            fatte.append((nome, fai(nome, src, r, larg, FUOCO_X.get(src, .5), .5)))
+    # gallerie: il file grande per il lightbox alla sua misura (fino a 1000 px) e la miniatura ritagliata
+    for ancora, foto in c.GALLERIE.items():
+        for nome, o, _, _ in foto:
+            fatte.append((f'g/{nome}.jpg', fai(f'g/{nome}.jpg', nome, None, 1000)))
+            r, larg = (4 / 3, 520) if o == 'O' else (3 / 4, 420)
+            fatte.append((f'g/{nome}-p.jpg', fai(f'g/{nome}-p.jpg', nome, r, larg, FUOCO_X.get(nome, .5), .5)))
+    # niente file vecchi rimasti da una lista precedente
+    attese = {n for n, _ in fatte}
+    for f in glob.glob(os.path.join(WEB, '**', '*.jpg'), recursive=True):
+        if os.path.relpath(f, WEB) not in attese:
+            os.remove(f)
+    for nome, dim in fatte:
+        print(f'{nome}: {dim[0]}x{dim[1]}')
+    print(f'{len(fatte)} immagini in {WEB}, gallerie {c.TOTALE_FOTO} foto')
 
 
 if __name__ == '__main__':

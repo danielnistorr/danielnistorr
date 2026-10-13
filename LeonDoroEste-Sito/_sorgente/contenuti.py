@@ -835,14 +835,14 @@ CSS_VENERDI = (
 
 def ristorante_pesce():
     """R4: il venerdì sera, pesce. La sala col vino a filo destro (1008 x 793 a 1440, scala 0,93) e accanto, in basso nel
-    bianco, il titolo e la frase, come una didascalia grande; sotto, la carta del pesce in tre colonne (otto, nove e undici
+    bianco, il titolo e la frase, come una didascalia grande (oltre 1440 px il titolo resta accanto alla foto); sotto, la carta del pesce in tre colonne (otto, nove e undici
     voci), allineata al margine di pagina come il titolo. A 1024 e al telefono la foto sopra, a tutta larghezza."""
     immagine = C(I(img('sala-vino.jpg'), "In sala una coppia a tavola, con il vino e il pane; alle pareti le stampe di Este"),
                  w=(70, 100, 100), fisso=True, gap=0, css='ldo-venerdi-foto')
     parole = C(h2('Il venerdì, pesce', stile='h2c'),
                testo("<p>Il venerdì sera c'è il menù di pesce, in omaggio alla cultura contadina di queste terre: è gradita "
                      'la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
-               grow=True, gap=0, pad=((0, 48, 32), (48, 40, 20), 0, 'lato'), css='ldo-venerdi-testo')
+               w=(30, 100, 100), gap=0, pad=((0, 48, 32), (48, 40, 20), 0, 'lato'), css='ldo-venerdi-testo')
     riga = C(parole, immagine, dir='row', dir_t='column-reverse', justify='end', align=('end', 'stretch', 'stretch'), gap=0)
     carta = colonne([gruppo_carta(t, v) for t, v in MENU_PESCE], gap_r=(0, 48, 32), mt='l', pad=(0, 'lato', 0, 'lato'),
                     css='ldo-max')
