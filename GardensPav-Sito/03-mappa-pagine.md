@@ -1,86 +1,131 @@
 # 03. Mappa delle pagine
 
-Il sito attuale ha 82 pagine italiane: un menu alto (L'Azienda, Prodotti, Dove siamo, News, Contatti), un menu prodotti con tre famiglie e una pagina per ogni manufatto, per ogni modello di piattaforma e per ognuno dei 36 cantieri. Il nuovo sito raccoglie tutto in sette pagine. Ogni vecchia scheda diventa un'ancora dentro la pagina della sua famiglia, così nessun dato si perde e i vecchi indirizzi si reindirizzano uno per uno (`plugin/redirect-301.csv`).
+Versione del 13 ottobre 2026, dopo la home finale (`_prova/home-finale/`, screenshot in `screenshot/home/`). Sostituisce la mappa
+del 6 ottobre (conservata in `_prova/03-mappa-pagine-6-ottobre.md`).
 
-| Sito attuale | Nuovo sito | Slug | Perché |
-|---|---|---|---|
-| Home (slider, nessun testo) | **Home** | `/` | le due linee di prodotto dette nel titolo, il catalogo in breve, la tavola delle piattaforme, i cantieri |
-| Vasche prefabbricate monoblocco + 3 schede | **Vasche** | `/vasche/` | rettangolari, circolari e resinate stanno bene in una pagina sola: hanno le stesse misure |
-| Depurazione + 7 schede | **Depurazione** | `/depurazione/` | sette schede con la loro tabella, in un indice numerato |
-| Piattaforme per autolavaggi + 15 pagine (modelli, caratteristiche, posa, isola, personalizzazioni) | **Piattaforme per autolavaggi** | `/piattaforme-autolavaggi/` | è il prodotto che nessun concorrente vicino fa: la pagina più ricca |
-| Realizzazioni + 36 pagine di galleria | **Realizzazioni** | `/realizzazioni/` | una mappa e 36 schede con foto e lightbox, un'ancora per cantiere |
-| L'Azienda (testo distrutto), PDF | **Azienda** | `/azienda/` | testo ricostruito dalle versioni DE e FR, il calcestruzzo, le norme, i dati societari |
-| Dove siamo + Contatti | **Contatti** | `/contatti/` | recapiti, modulo per l'ufficio tecnico, mappa di Legnaro e mappa di Google solo al clic |
-| News (una voce vuota) | nessuna | | oggi c'è una sola notizia, senza data, che porta a una pagina vuota: si riapre se il cliente vuole tenerla aggiornata |
-| Privacy, Cookie | Privacy, Cookie | `/privacy/`, `/cookie/` | pagine WordPress semplici con il testo del cliente |
+Il sito attuale ha 82 pagine italiane: un menu alto (L'Azienda, Prodotti, Dove siamo, News, Contatti), un menu prodotti con tre
+famiglie e una pagina per ogni manufatto, per ogni modello di piattaforma e per ognuno dei 36 cantieri. Il nuovo sito le raccoglie
+in sette pagine, una per compito di chi visita. Ogni vecchia scheda diventa un'ancora dentro la pagina della sua famiglia, così
+nessun dato si perde e i vecchi indirizzi si reindirizzano uno per uno (`plugin/redirect-301.csv`).
 
-Più due blocchi comuni, globali con il plugin gratuito Ultimate Addons for Elementor:
-- **Testata** bianca, una riga sola: logo, menu, telefono in monospazio (sopra i 1280 px) e "Richiedi informazioni". Su tablet e telefono: logo, "Chiama" e hamburger.
-- **Piede** grafite: logo chiaro, prodotti, azienda, recapiti, riga legale completa (ragione sociale, sede, P.IVA e C.F., Registro Imprese di Padova, REA, capitale sociale, link a Privacy e Cookie).
+**L'idea del sito.** Ogni pezzo si vede intero, nel posto dove lavora e con le sue misure vere, e da ogni misura si arriva in un
+clic all'ufficio tecnico che fa il prezzo. In home è la sezione del piazzale di un autolavaggio (la pista sopra, le vasche sotto);
+nelle altre pagine ritorna come disegno in sezione o come tabella delle taglie, il documento che l'ufficio tecnico manderebbe a
+un'impresa.
 
-In fondo a ogni pagina tranne Contatti c'è il blocco **Ufficio tecnico**: "Portate più grandi o misure fuori tabella: chiedete all'ufficio tecnico", telefono, email e PEC, orari, sede. Viene dalla frase che il sito ripete in quasi tutte le schede: "PER PORTATE SUPERIORI CONTATTARE IL NOSTRO UFFICIO TECNICO".
+| Sito attuale | Nuovo sito | Slug | Compito di chi visita | Documento del mestiere |
+|---|---|---|---|---|
+| Home (slider, nessun testo) | **Home** | `/` | capire cosa produce l'azienda, trovare la famiglia giusta, chiamare | sezione quotata del piazzale; schede delle famiglie con due numeri veri |
+| Piattaforme per autolavaggi + 15 pagine (modelli, caratteristiche, posa, isola, personalizzazioni) | **Piattaforme per autolavaggi** | `/piattaforme-autolavaggi/` | il gestore o il costruttore di autolavaggi sceglie il modello e legge cosa è compreso | schede degli otto modelli; distinta della fornitura; tabella d'attrito |
+| Vasche prefabbricate monoblocco + 3 schede | **Vasche** | `/vasche/` | l'impresa trova la vasca per volume, legge ingombro e pesi per scavo e autogru | gamma delle 17 vasche alla stessa scala; tabella delle misure |
+| Depurazione + 7 schede | **Depurazione** | `/depurazione/` | il progettista parte dal dato (AE, l/s, m², posti auto) e trova taglia e norma | indice "dal dato alla taglia"; sette tabelle delle taglie |
+| Realizzazioni + 36 pagine di galleria | **Realizzazioni** | `/realizzazioni/` | il gestore vede piste posate vicino a sé e per un'attività come la sua | elenco delle referenze con luogo, tipo, modelli e foto |
+| L'Azienda (testo distrutto), PDF | **Azienda** | `/azienda/` | l'ufficio acquisti o la direzione lavori verifica il fornitore | scheda fornitore: calcestruzzo, norme, brevetto, dati societari |
+| Dove siamo + Contatti | **Contatti** | `/contatti/` | chiedere prezzo e consegna con i dati giusti, trovare la sede | modulo di richiesta d'offerta; recapiti per tipo di richiesta |
+| News (una voce vuota) | nessuna | | | una sola notizia senza data che porta a una pagina vuota: si riapre se il cliente la tiene aggiornata |
+| Privacy, Cookie | Privacy, Cookie | `/privacy/`, `/cookie/` | | testo del cliente |
 
-Il segno comune a tutte le pagine è il **capo di sezione**: etichetta in monospazio, nota di servizio a destra e sotto un filetto con le stanghette di una quota, preso dai disegni quotati dell'azienda.
+Più due blocchi comuni, globali con il plugin gratuito Ultimate Addons for Elementor, uguali alla home finale:
+- **Testata** bianca e fissa: logo, menu, telefono 049 641591 con gli orari dell'ufficio tecnico, "Chiedi un'offerta". Sotto i 1340
+  px il menu va nell'hamburger con la ricerca "Nome o taglia"; sotto i 768 px resta il telefono e in basso compare la barra "Chiama"
+  e "Chiedi un'offerta".
+- **Piede** #F2F1EE: logo, prodotti, azienda, ufficio tecnico, riga legale completa (ragione sociale, sede, P.IVA e C.F., Registro
+  Imprese di Padova, REA, capitale sociale, PEC, link a Privacy e Cookie).
+
+Ogni pagina interna tranne Contatti finisce con la **chiusura comune** "Prezzo e consegna, dall'ufficio tecnico": orari, cosa tenere
+pronto per quella pagina, telefono grande e "Chiedi un'offerta" con il prodotto già scelto nel modulo.
 
 ## Sezioni per pagina
 
 ### Home
-1. **Apertura** (Jensen, Escofet): titolo su due righe, "Vasche e impianti per il trattamento delle acque. / Piattaforme prefabbricate per autolavaggi."; la vasca col logo dipinto appesa all'autogru (la foto più nitida del sito); accanto il testo e l'indice del catalogo con i conteggi veri (17 misure, 7 impianti, 8 modelli, 36 cantieri). Sotto, il **cartiglio** a quattro celle (sede, telefono e orari, trasporto e posa, paesi dei cantieri), come la tabella in fondo ai disegni dell'azienda.
-2. **Vasche monoblocco** (fondo calcestruzzo): il render della vasca 550 con la sua quota "550 cm" e la riga dei dati; accanto "Undici misure rettangolari e sei circolari, da 2,30 a 50 mc."
-3. **Depurazione** (Jensen "Find Products Fast", Escofet "Highlights"): sette impianti in due colonne chiuse da filetti, render in sezione, un dato in monospazio; l'ottava cella manda all'ufficio tecnico.
-4. **Piattaforme per autolavaggi** (fondo grafite, Forterra, Rieder): la pianta quotata della pista self 450 in arancio, la tabella degli otto modelli, i due numeri dell'attrito (0,88 sul bagnato, 0,40 il limite di legge), il brevetto.
-5. **Il calcestruzzo**: C35/45, XC4 · XS1-XD2 · XF1 · XA2, B450C, S4 in quattro celle.
-6. **Realizzazioni** (Jensen, Godelmann): una foto di Altivole, "36 cantieri, da Aosta ad Avetrana. Cinque oltre confine." e la distinta dei luoghi con la sigla.
-7. **Ufficio tecnico**.
-
-### Vasche
-1. Apertura con la foto del piazzale di vasche circolari a filo del margine destro e un indice a tre voci.
-2. **Rettangolari**: la gamma delle 11 vasche disegnate in scala sceglie la riga della tabella e ne legge le misure; accanto la vasca 1050 in posa, segnata "in foto" nella tabella.
-3. **Circolari**: render e tabella delle 6 misure.
-4. **Con resine epossidiche** (fondo grafite): le due foto degli interni rossi, la tabella delle 15 misure in un riquadro apribile.
-5. Calcestruzzo e armature: il testo delle schede e le quattro classi di esposizione.
-6. Ufficio tecnico.
-
-### Depurazione
-1. Apertura con l'indice numerato 01-07 e la foto di una vasca con pozzetto in cantiere.
-2. Sette schede, a fondi e lati alterni: 01 dissabbiatore statico, 02 separatore grassi (UNI EN 1825-1), 03 vasca Imhoff, 04 separatore oli con filtro a coalescenza, 05 separatore oli per autorimesse e garage (tabella a due schede: acque superficiali e Laguna di Venezia), 06 impianti di prima pioggia (a tutta larghezza, con i tre passaggi: scolmatore, accumulo 48 ore, separatore oli), 07 depuratori biologici (tabella a due schede, BIO e BIO L). Ogni scheda: render o foto, testo dell'azienda corretto, tabella completa.
-3. Ufficio tecnico.
+La home finale del 13 ottobre, senza cambiamenti di testo e di ordine.
+1. **Apertura con la sezione del piazzale** (Mall Umweltsysteme, Hauraton): "Piattaforme per autolavaggi e vasche per il trattamento
+   delle acque", la sezione in scala con pista self Mod. 450, vasca sottopista, dissabbiatore e separatore oli, otto didascalie che
+   portano alle schede, compreso, su richiesta ed escluso.
+2. **Piattaforme per autolavaggi e vasche per l'acqua** (Jensen Precast, "Find Products Fast"): 4 schede delle piattaforme e 8 delle
+   vasche e degli impianti, con render, sottoprodotti, due righe di numeri veri e "Chiedi un'offerta"; la riga delle prove (brevetto,
+   attrito 0,88, 36 cantieri); le foto della consegna.
+3. **Prima pioggia, dal piazzale allo scarico** (Hauraton, percorso dell'acqua): render in sezione, quattro passi, esempio per 2.000 m².
+4. **Misure, pesi e posa delle piattaforme**: la pista sotto il portale, la tabella degli otto modelli (4 righe), la posa in quattro
+   fasi disegnata e fotografata.
+5. **Piattaforme posate in 36 cantieri** (SW Umwelttechnik, Referenzbücher): mosaico di 16 foto, cantieri per regione, la posa ad
+   Avetrana.
+6. **Prezzo e consegna, dall'ufficio tecnico**: due ingressi col telefono, recapiti, modulo "Richiesta d'offerta".
 
 ### Piattaforme per autolavaggi
-1. Apertura con la pista sotto le spazzole a filo del margine sinistro, "La pista di lavaggio arriva in pannelli e si posa in poche ore", brevetto.
-2. **Caratteristiche e vantaggi**: i cinque scopi scritti dall'azienda e la tabella d'attrito oggi chiusa in un'immagine (gomma 4S e cuoio, asciutto e bagnato, limite D.M. 236/1989).
-3. **Com'è fatta** (fondo grafite): la pianta quotata della pista self 450 con pannelli, vasca di raccolta, grigliato, calcestruzzo.
-4. **Gli otto modelli**: i disegni in pianta dell'azienda, tre piste self e cinque portali, con misure, pannelli e pesi; un'ancora per modello.
-5. **Fornitura**: le sette voci comprese, cosa è su richiesta (trasporto, autogru), cosa è escluso (opere edili).
-6. **Esempio di posa**: la sezione a strati con le didascalie portate in HTML.
-7. **Personalizzazione**: quattro colori del calcestruzzo, isola di aspirazione, trave di rialzo, riscaldamento a pavimento.
-8. **Piattaforme posate**: striscia a scorrimento di nove cantieri, con regione e modelli.
-9. Ufficio tecnico.
+1. **Apertura**: "Piattaforme prefabbricate per autolavaggi", come si compongono (due pannelli per la pista self, quattro o sei per il
+   portale), quattro fatti (brevetto, superficie a rombi, senza casseforme, smontabile), un bottone "Chiedi un'offerta"; a destra le
+   piazzole posate prima degli impianti.
+2. **Gli otto modelli** (Jensen): griglia 4×2 di schede con la pianta disegnata dall'azienda e una tabellina di quattro righe
+   (piazzola, pannelli, peso del pannello, raccolta); un'ancora per modello (`#mod-450` ... `#mod-5`).
+3. **Fornitura** (Mall, la sezione con i pezzi sotto terra): la sezione della pista grande con le didascalie e accanto la distinta di
+   quello che è compreso, su richiesta ed escluso.
+4. **La posa di un portale Mod. 1 a Crema**: le quattro fasi del disegno e sei foto in sequenza dal cantiere vero (giuntoplasto,
+   piastre, sigillatura, grigliati, piattaforma finita).
+5. **Superficie e attrito**: la superficie a rombi in foto, la tabella d'attrito oggi chiusa in un'immagine (gomma 4S e cuoio,
+   asciutto e bagnato, limite D.M. 236/1989), le righe del volantino delle piste.
+6. **Colori, riscaldamento e accessori**: le quattro piante colorate dell'azienda (rosso, verde, giallo, marrone); riscaldamento a
+   pavimento, isola di aspirazione, trave di rialzo con spessore e peso.
+7. **Piste posate**: quattro cantieri con le foto migliori a 1600 px (Altivole, Milano, San Lazzaro di Savena, Cornate d'Adda).
+8. Chiusura comune.
+
+### Vasche
+1. **Apertura con la gamma in scala**: "Vasche monoblocco in calcestruzzo armato vibrato", usi e gamma in una frase, e le 17 vasche
+   disegnate di lato alla stessa scala sotto la linea del terreno; ogni vasca porta alla sua riga della tabella.
+2. **Vasche rettangolari**: render, la 1050 calata con l'autogru, tabella di 11 misure (misure esterne, peso vasca, peso coperchio,
+   volume) con le note sulle solette.
+3. **Vasche circolari**: render, foto, tabella di 6 misure.
+4. **Con resine epossidiche**: le due foto degli interni rossi; le 15 misure sono quelle delle tabelle sopra, scritto in una frase.
+5. **Calcestruzzo e armatura**: C35/45, S4, le quattro classi di esposizione spiegate, B450C, copriferro, getto in cassero vibrato.
+6. Chiusura comune.
+
+### Depurazione
+1. **Apertura: dal dato del progetto alla taglia**: la tabella-indice che parte dal dato (m², m³, l/s, posti auto, AE) e porta
+   all'impianto e alla sua gamma.
+2. **Acque dei piazzali e delle autorimesse**, nell'ordine del percorso dell'acqua: impianti di prima pioggia (render lungo, quattro
+   passi, 17 taglie), dissabbiatore statico (15 misure), separatore oli con filtro a coalescenza (5 taglie, UNI EN 858-1), separatore
+   oli per autorimesse (due tabelle: acque superficiali e Laguna di Venezia).
+3. **Acque delle cucine**: separatore grassi (UNI EN 1825-1, dove si usa, 5 taglie).
+4. **Acque nere domestiche**: vasca Imhoff (i due comparti, 7 taglie da 5 a 70 AE), depuratori biologici (due tabelle, BIO e BIO L).
+   Ogni scheda ha la stessa impaginazione: render in sezione a sinistra con "si sceglie su" e norma, testo e tabella a destra.
+5. Chiusura comune.
 
 ### Realizzazioni
-1. Apertura con la mappa (le linee arancio partono da Legnaro e arrivano ai 36 cantieri) e l'elenco dei luoghi, che accende il punto sulla mappa.
-2. **I cantieri**, divisi per regione (Valle d'Aosta con Piemonte e Lazio con Puglia, che hanno un cantiere o due) e fuori dall'Italia: foto di copertina (lightbox), luogo e sigla, tipo di attività dal titolo del sito, modelli citati nelle didascalie del sito. Nessun nome di cliente.
-3. Ufficio tecnico.
+1. **Apertura con la mappa**: "36 cantieri con le piattaforme Gardens Pav", chi sono i clienti per tipo, le regioni con il numero;
+   la mappa con Legnaro e i punti dei cantieri.
+2. **Le piste posate**: filtro per regione e griglia di 36 schede (copertina, luogo e provincia, regione e tipo, modelli citati
+   dal sito, numero di foto); le foto si aprono nella lightbox. Nessun nome di cliente.
+3. Nota sui cantieri citati dal sito senza foto (Poprad, Brendola, Alessandria, Olbia).
+4. Chiusura comune.
 
 ### Azienda
-1. Apertura: chi è Gardens Pav (testo dell'azienda), foto della posa di una vasca nello scavo.
-2. **Il calcestruzzo** (fondo grafite): "C35/45" grande con sotto esposizione, armatura, consistenza e getto; l'impianto computerizzato, Rck 45, S4, B450C, copriferro 3 cm, una foto di vasche in cantiere.
-3. **Norme di riferimento** [elenco da confermare col cliente].
-4. **Dati societari**: ragione sociale, sede, P.IVA e C.F., REA, capitale, PEC, codice SDI, recapiti.
-5. Ufficio tecnico.
+1. **Apertura**: "Gardens Pav S.r.l., Legnaro (PD)", cosa produce, sede e stabilimento sulla SS516, iscrizione al Registro Imprese
+   dal 2005, le due linee di prodotto; la vasca calata nello scavo.
+2. **Il calcestruzzo**: l'impianto computerizzato, Rck 45, S4, B450C, copriferro 3 cm.
+3. **Norme, brevetto e certificazione**: tabella delle norme, brevetto n° 275.271; ISO 9001 solo dopo il rinnovo.
+4. **Dati per l'anagrafica fornitori**: ragione sociale, sede, P.IVA, REA, capitale, PEC, codice SDI, ATECO, recapiti.
+5. Chiusura comune.
 
 ### Contatti
-1. Recapiti col telefono grande, e il modulo **Richiesta informazioni** (Contact Form 7: nome, azienda, email, telefono, manufatto, dato di dimensionamento, comune di posa, note, disegno allegato, consenso privacy). Nel fallback HTML, al posto del modulo, un pulsante che apre un'email.
-2. **Dove siamo**: la mappa di Legnaro disegnata dai dati OpenStreetMap e la mappa di Google che si carica solo se la si chiede.
+1. **Recapiti e modulo**: "Richiesta d'offerta e contatti", telefono e orari dell'ufficio tecnico, tre ingressi per tipo di richiesta
+   (piattaforme, vasche e impianti, amministrazione e ordini), come mandare un disegno; accanto il modulo **Richiesta d'offerta**
+   (Contact Form 7: prodotto, il vostro dato, quantità, comune di posa, trasporto, nome, azienda, telefono, email, note, consenso),
+   lo stesso della home, precompilato dalle altre pagine. Nel fallback HTML un bottone che apre un'email.
+2. **Dove siamo**: Via Romea 154/A sulla SS516, la mappa dei dintorni disegnata dai dati OpenStreetMap e la mappa di Google che si
+   carica solo se la si chiede.
 
 ## Navigazione
 
-Menu: Vasche, Depurazione, Piattaforme per autolavaggi, Realizzazioni, Azienda, Contatti (menu WordPress "Menu principale", widget Navigation Menu di Ultimate Addons). Voce attiva in arancio scuro con sottolineatura arancio. Su tablet e telefono diventa un menu a tendina a tutta larghezza; accanto resta "Chiama" (la voce Contatti porta al modulo).
+Menu: Piattaforme per autolavaggi, Vasche, Depurazione, Realizzazioni, Azienda, Contatti (lo stesso ordine della home finale; menu
+WordPress "Menu principale"). Voce attiva con il filetto grafite sotto; al passaggio il filetto diventa arancio. Sotto i 1340 px il
+menu va nella tendina dell'hamburger con la ricerca; accanto restano il telefono e, sotto i 768 px, la barra in basso "Chiama" e
+"Chiedi un'offerta".
 
 Per `ciclo.sh`:
 ```
-PAGINE="/:01-home /vasche/:02-vasche /depurazione/:03-depurazione /piattaforme-autolavaggi/:04-piattaforme-autolavaggi /realizzazioni/:05-realizzazioni /azienda/:06-azienda /contatti/:07-contatti"
-MENU="vasche,depurazione,piattaforme-autolavaggi,realizzazioni,azienda,contatti"
+PAGINE="/:01-home /piattaforme-autolavaggi/:02-piattaforme-autolavaggi /vasche/:03-vasche /depurazione/:04-depurazione /realizzazioni/:05-realizzazioni /azienda/:06-azienda /contatti/:07-contatti"
+MENU="piattaforme-autolavaggi,vasche,depurazione,realizzazioni,azienda,contatti"
 ```
 
-La specifica completa (token, misure a 1440, 1024 e 390, testi esatti, foto, elementi dinamici, redirect) è in `_prova/spec.md`.
+La specifica completa (token, misure a 1440, 1024 e 390, testi esatti, foto, elementi dinamici, modulo, redirect, segnali evitati,
+cose da confermare) è in `_prova/spec.md`.

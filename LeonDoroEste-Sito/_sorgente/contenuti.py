@@ -212,6 +212,8 @@ CSS_SITO = (
     '.ldo-frase p{text-wrap:balance!important}'
     # voci di una carta: niente spazio fra i paragrafi, rientro sospeso
     '.ldo-voci p{margin:0!important;padding-left:1em;text-indent:-1em}'
+    # sugli schermi più larghi di 1440 le colonne di testo non si allargano oltre (righe lunghe al massimo come a 1440)
+    '.ldo-max{max-width:1440px!important}'
 )
 
 # ---------------------------------------------------------------------------------------------
@@ -842,7 +844,8 @@ def ristorante_pesce():
                      'la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
                grow=True, gap=0, pad=((0, 48, 32), (48, 40, 20), 0, 'lato'), css='ldo-venerdi-testo')
     riga = C(parole, immagine, dir='row', dir_t='column-reverse', justify='end', align=('end', 'stretch', 'stretch'), gap=0)
-    carta = colonne([gruppo_carta(t, v) for t, v in MENU_PESCE], gap_r=(0, 48, 32), mt='l', pad=(0, 'lato', 0, 'lato'))
+    carta = colonne([gruppo_carta(t, v) for t, v in MENU_PESCE], gap_r=(0, 48, 32), mt='l', pad=(0, 'lato', 0, 'lato'),
+                    css='ldo-max')
     return C(riga, carta, RAW('', css=CSS_VENERDI), pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='pesce',
              css='ldo-pesce')
 
@@ -892,7 +895,8 @@ def bike_percorsi():
         w=(53.83, 62.5, 100), gap=0, css='ldo-percorsi-testo')
     riga = C(colonna, dir='row', justify=('end', 'end', 'start'), w=(83.33, 87.5, 100), gap=0, mt='l',
              pad=(0, (0, 0, 20), 0, (0, 0, 20)), css='ldo-percorsi-riga')
-    return C(foto, riga, pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='percorsi',
+    # la riga si ferma dove si ferma la foto (1200, la sua misura): il testo chiude sempre sul bordo destro della foto
+    return C(foto, riga, RAW('', css='.ldo-percorsi-riga{max-width:1200px!important}'), pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='percorsi',
              css='ldo-percorsi')
 
 
@@ -938,7 +942,7 @@ def ospedale_strade():
              testo(f"<p>Il centralino dell'ospedale risponde allo "
                    f'<a class="ldo-a" href="tel:+390429714111">0429{NB}714111</a>.</p>', mt='m', max_w=(646, 646, 600)),
              pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', boxed=False, tag='section', anchor='come-arrivare',
-             css='ldo-ospedale-strade')
+             css='ldo-ospedale-strade ldo-max')
 
 
 def ospedale_camera():
@@ -1003,7 +1007,7 @@ def dove_intorno():
                 mt='l'),
         testo('<p>In auto, da Este si va in giornata a Padova, Vicenza, Verona, Venezia, Chioggia, Rovigo, Ferrara e '
               'Mantova.</p>', mt='l', max_w=(646, 646, 600)),
-        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l')
+        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l', css='ldo-max')
     return C(foto, parole, align='end', pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='cosa-vedere',
              css='ldo-intorno')
 
