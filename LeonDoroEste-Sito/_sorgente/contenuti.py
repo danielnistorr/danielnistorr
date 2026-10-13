@@ -711,22 +711,25 @@ CSS_RIGA_FOTO = (
 )
 
 
-def foto_e_testo(nome, foto, alt, figli, lato_foto='sinistro', w_foto=(50, 44.5, 100), ancora=None, mt='stacco', allinea='center'):
+def foto_e_testo(nome, foto, alt, figli, lato_foto='sinistro', w_foto=(50, 44.5, 100), ancora=None, mt='stacco', allinea='center',
+                 larghezza_file=None):
     """Una foto a filo (sinistro o destro) e il testo accanto, nella stessa colonna titolo e paragrafi, centrato in verticale
-    sulla foto; al telefono la foto sopra e il testo sotto (camere C3, ristorante R4)."""
-    immagine = C(I(img(foto), alt), w=w_foto, fisso=True, gap=0, css='ldo-riga-img')
+    sulla foto; al telefono la foto sopra e il testo sotto (camere C3). larghezza_file: la foto non va oltre (sugli schermi
+    larghi la percentuale la ingrandirebbe)."""
+    immagine = C(I(img(foto), alt), w=w_foto, fisso=True, gap=0, css=f'ldo-riga-img ldo-riga-img-{nome}')
     if lato_foto == 'sinistro':
         parole = C(*figli, grow=True, gap=0, pad=(0, 'lato', 0, (64, 48, 20)), css='ldo-riga-testo')
         parti, dir_m = (immagine, parole), 'column'
     else:
         parole = C(*figli, grow=True, gap=0, pad=(0, (64, 48, 20), 0, 'lato'), css='ldo-riga-testo')
         parti, dir_m = (parole, immagine), 'column-reverse'
-    return C(*parti, RAW('', css=CSS_RIGA_FOTO), dir='row', dir_m=dir_m, align=(allinea, allinea, 'stretch'), gap=(0, 0, 32),
+    css = CSS_RIGA_FOTO + (f'.ldo-riga-img-{nome}{{max-width:{larghezza_file}px!important}}' if larghezza_file else '')
+    return C(*parti, RAW('', css=css), dir='row', dir_m=dir_m, align=(allinea, allinea, 'stretch'), gap=(0, 0, 32),
              mt=mt, pad='0', boxed=False, tag='section', anchor=ancora, css=f'ldo-riga-foto ldo-{nome}')
 
 
 def in_albergo():
-    """C3: il salottino a filo sinistro (840 x 630, scala 0,82) e accanto i servizi detti in una frase, non in icone."""
+    """C3: il salottino a filo sinistro (840 x 630, scala 0,82; mai oltre i 1024 px del file) e accanto i servizi detti in una frase, non in icone."""
     return foto_e_testo('in-albergo', 'salottino.jpg', "Il salottino dell'albergo con la parete in legno e le poltrone verdi", [
         h2('In albergo'),
         testo("<p>Aria condizionata, TV satellitare, wi-fi e telefono in camera. L'auto resta nel parcheggio pubblico accanto "
@@ -736,7 +739,7 @@ def in_albergo():
         testo("<p>Chi assiste un ricoverato all'ospedale di Schiavonia trova qui una camera.</p>", mt='xs',
               max_w=(646, 646, 600)),
         link_isolato("Per l'ospedale", '/ospedale-schiavonia/', mt='s'),
-    ], w_foto=(58.33, 44.5, 100), ancora='servizi')
+    ], w_foto=(58.33, 44.5, 100), ancora='servizi', larghezza_file=1024)
 
 
 def camere_prenota():
