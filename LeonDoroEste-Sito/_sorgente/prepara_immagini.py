@@ -160,7 +160,7 @@ def main():
     # sala col vino: il cameriere, tagliato alla testa dal fotogramma, resta fuori (oltre x 1080); restano la coppia a tavola
     # e le stampe di Este alle pareti
     foto('sala-vino.jpg', VIDEO + 'video-sala-servizio-vino.jpg', (0, 0, 1080, 850),
-         zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (960 x 756 a 1440, a filo destro)')
+         zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (1008 x 793 a 1440, a filo destro)')
     foto('cantinetta.jpg', 'esterne/regione-veneto/cantinetta-vini-tavolo.jpg', (128, 0, 896, 768),
          zona=(200, 600, 400, 680), uso='ristorante R5, campo giallo')
     foto('vigne-largo.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (0, 0, 1920, 850),
