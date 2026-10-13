@@ -657,10 +657,9 @@ def gruppo_carta(titolo, piatti):
 
 
 CSS_LARGO = (
-    # colonne centrate larghe al massimo 1200, 880 (carta di ogni giorno) e 640 (listino)
-    '.ldo-largo-1200{max-width:1200px!important;margin-left:auto!important;margin-right:auto!important}'
+    # colonne centrate larghe al massimo 880 (carta di ogni giorno) e 640 (listino)
     '.ldo-largo-640{max-width:640px!important;margin-left:auto!important;margin-right:auto!important}'
-    '.ldo-largo-880{max-width:880px!important;margin-left:auto!important;margin-right:auto!important}'
+    '.ldo-largo-880{width:100%!important;max-width:880px!important;margin-left:auto!important;margin-right:auto!important}'
 )
 
 
@@ -874,20 +873,24 @@ def bike_apertura():
 
 def bike_percorsi():
     """B2: i ciclisti con la maglia del Leon d'Oro a filo sinistro (1200 x 503, scala 0,75); sotto, i percorsi detti in frase,
-    con le distanze dentro il testo: nessuna riga di numeri, nessun profilo altimetrico."""
+    con le distanze dentro il testo (nessuna riga di numeri, nessun profilo altimetrico), in una colonna che chiude sul bordo
+    destro della foto, come il testo sotto la sala in home: l'apertura ha il testo a sinistra, qui va a destra."""
     foto, _ = foto_filo('mura', 'mura.jpg', "Due ciclisti con la maglia gialla e nera del Leon d'Oro su una strada alberata, con "
-                                            'una torre sullo sfondo', h_tel=300, pos_tel='30% center')
-    parole = C(
+                                            'una torre sullo sfondo', h_tel=300, pos_tel='35% center')
+    colonna = C(
         h2('Da Este'),
         testo(f"<p>Per chi va piano c'è la ciclovia E2, l'anello che gira attorno ai Colli Euganei passando per i paesi: "
-              f"70{NB}km, e Este è sul percorso.</p>", mt='s', max_w=(646, 646, 600)),
+              f"70{NB}km, e Este è sul percorso.</p>", mt='s'),
         testo(f'<p>Per la mountain bike c\'è la Transeuganea, 60{NB}km nella natura dei Colli Euganei, e molti altri '
-              'sentieri.</p>', mt='xs', max_w=(646, 646, 600)),
+              'sentieri.</p>', mt='xs'),
         testo(f"<p>Il Leon d'Oro collabora da anni con il Team Este{NB}Bike e aiuta a organizzare le sue uscite in mountain bike "
               f"e in bici da strada: il ritrovo è in piazza, alle 8.30 d'estate e alle{NB}9 d'inverno. Al banco vi diamo consigli "
-              'e indicazioni per i giri dei Colli.</p>', mt='xs', max_w=(646, 646, 600)),
-        pad=(0, 'lato', 0, 'lato'), gap=0, mt='l')
-    return C(foto, parole, pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='percorsi', css='ldo-percorsi')
+              'e indicazioni per i giri dei Colli.</p>', mt='xs'),
+        w=(53.83, 62.5, 100), gap=0, css='ldo-percorsi-testo')
+    riga = C(colonna, dir='row', justify=('end', 'end', 'start'), w=(83.33, 87.5, 100), gap=0, mt='l',
+             pad=(0, (0, 0, 20), 0, (0, 0, 20)), css='ldo-percorsi-riga')
+    return C(foto, riga, pad='0', gap=0, mt='stacco', boxed=False, tag='section', anchor='percorsi',
+             css='ldo-percorsi')
 
 
 def bike_prenota():
