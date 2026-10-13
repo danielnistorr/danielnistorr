@@ -726,7 +726,7 @@ def foto_e_testo(nome, foto, alt, figli, lato_foto='sinistro', w_foto=(50, 44.5,
 
 
 def in_albergo():
-    """C3: il salottino a filo sinistro (720 x 540, scala 0,70) e accanto i servizi detti in una frase, non in icone."""
+    """C3: il salottino a filo sinistro (840 x 630, scala 0,82) e accanto i servizi detti in una frase, non in icone."""
     return foto_e_testo('in-albergo', 'salottino.jpg', "Il salottino dell'albergo con la parete in legno e le poltrone verdi", [
         h2('In albergo'),
         testo("<p>Aria condizionata, TV satellitare, wi-fi e telefono in camera. L'auto resta nel parcheggio pubblico accanto "
@@ -736,7 +736,7 @@ def in_albergo():
         testo("<p>Chi assiste un ricoverato all'ospedale di Schiavonia trova qui una camera.</p>", mt='xs',
               max_w=(646, 646, 600)),
         link_isolato("Per l'ospedale", '/ospedale-schiavonia/', mt='s'),
-    ], ancora='servizi')
+    ], w_foto=(58.33, 44.5, 100), ancora='servizi')
 
 
 def camere_prenota():
@@ -797,33 +797,39 @@ def ristorante_apertura():
 
 
 def ristorante_cucina():
-    """R2: la padella sulla fiamma, a tutta larghezza (1920 al massimo): il gesto della cucina, nessun testo sopra."""
-    return foto_piena('padella', 'padella-largo.jpg', "Una padella di pasta sulla fiamma, nella cucina del Leon d'Oro", 1920,
+    """R2: la padella sulla fiamma, a tutta larghezza (1600 al massimo, il file): il gesto della cucina, nessun testo sopra."""
+    return foto_piena('padella', 'padella-largo.jpg', "Una padella di pasta sulla fiamma, nella cucina del Leon d'Oro", 1600,
                       'padella-alto.jpg', mt='xl')
 
 
 def ristorante_menu():
-    """R3: la carta di ogni giorno, scritta per intero come in trattoria: tre colonne di solo testo, larghe insieme 1200."""
+    """R3: la carta di ogni giorno. Prima il titolo e chi cucina, accanto al carpaccio (a filo destro, 864 x 525, scala 0,62);
+    poi la carta scritta per intero come in trattoria: tre colonne di solo testo, larghe insieme 1200."""
+    riga = foto_e_testo('ogni-giorno-foto', 'carpaccio.jpg',
+                        'Un carpaccio con la rucola e il limone e un bicchiere di vino rosso, su una tavola apparecchiata', [
+                            h2('Ogni giorno'),
+                            testo('<p>Questo è il menù tipo: le proposte cambiano ogni giorno.</p>', stile='primo', mt='s',
+                                  max_w=(560, 560, 600)),
+                            testo("<p>In cucina c'è la signora Annalisa Brugin, madre dei titolari.</p>", mt='xs',
+                                  max_w=(560, 560, 600)),
+                        ], lato_foto='destro', w_foto=(60, 50, 100), mt=0)
     carta = C(
-        h2('Ogni giorno'),
-        testo('<p>Questo è il menù tipo: le proposte cambiano ogni giorno.</p>', stile='primo', mt='s', max_w=(714, 714, 600)),
-        colonne([gruppo_carta(t, v) for t, v in MENU_CARNE], mt='l'),
+        colonne([gruppo_carta(t, v) for t, v in MENU_CARNE]),
         testo('<p>Contorni cotti, freschi e alla griglia.</p>', mt='m', max_w=(646, 646, 600)),
-        testo(f"<p>In cucina c'è la signora Annalisa Brugin, madre dei titolari.</p>", mt='xs', max_w=(646, 646, 600)),
         gap=0, css='ldo-largo-1200')
-    return C(carta, RAW('', css=CSS_LARGO), pad=('stacco', 'lato', 0, 'lato'), gap=0, boxed=False, tag='section', anchor='menu',
-             css='ldo-menu-carne')
+    return C(riga, C(carta, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'), RAW('', css=CSS_LARGO), pad='0', gap=0, mt='stacco',
+             boxed=False, tag='section', anchor='menu', css='ldo-menu-carne')
 
 
 def ristorante_pesce():
-    """R4: il venerdì sera, pesce: la sala a filo sinistro con il titolo accanto, poi la carta del pesce come quella di ogni
-    giorno."""
+    """R4: il venerdì sera, pesce: la sala a filo sinistro (864 x 680, scala 0,80) con il titolo accanto, poi la carta del
+    pesce come quella di ogni giorno."""
     riga = foto_e_testo('venerdi-foto', 'sala-vino.jpg',
                         "In sala una coppia a tavola, con il vino e il pane; alle pareti le stampe di Este", [
                             h2('Il venerdì, pesce', stile='h2c'),
                             testo("<p>Il venerdì sera c'è il menù di pesce, in omaggio alla cultura contadina di queste terre: "
                                   'è gradita la prenotazione.</p>', stile='primo', mt='s', max_w=(560, 560, 600)),
-                        ], mt=0)
+                        ], w_foto=(60, 50, 100), mt=0)
     carta_in = C(colonne([gruppo_carta(t, v) for t, v in MENU_PESCE]), gap=0, css='ldo-largo-1200')
     return C(riga, C(carta_in, pad=(0, 'lato', 0, 'lato'), gap=0, mt='l'), RAW('', css=CSS_LARGO), pad='0', gap=0, mt='stacco',
              boxed=False, tag='section', anchor='pesce', css='ldo-pesce')

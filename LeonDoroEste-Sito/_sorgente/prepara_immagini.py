@@ -153,13 +153,17 @@ def main():
          zona=(300, 10, 700, 60), forza=0.5, uso='camere C3 (720 x 540 a 1440)')
     foto('reception.jpg', 'originali/albergo/reception-banco-legno.jpg', (200, 0, 1000, 800),
          zona=(700, 20, 1000, 80), uso='camere C4, campo giallo')
-    foto('padella-largo.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (0, 0, 1920, 850),
-         uso='ristorante R2 (a tutta larghezza, al massimo 1920)')
+    # la padella intera e metà della pentola a destra: 1600 x 850, a 1440 diventa 1440 x 765 (scala 0,90)
+    foto('padella-largo.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (0, 0, 1600, 850),
+         uso='ristorante R2 (a tutta larghezza, al massimo 1600)')
     foto('padella-alto.jpg', VIDEO + 'video-cucina-padella-fiamma.jpg', (440, 0, 1480, 850), uso='ristorante R2, telefono')
+    # il carpaccio con la rucola e il limone e il vino rosso (194 s): la bottiglia d'acqua col marchio, a destra, resta fuori
+    foto('carpaccio.jpg', VIDEO + 'video-tavola-carpaccio-vino.jpg', (100, 0, 1500, 850),
+         zona=(800, 500, 1000, 580), forza=0.8, uso='ristorante R3 (864 x 525 a 1440)')
     # sala col vino: il cameriere, tagliato alla testa dal fotogramma, resta fuori (oltre x 1080); restano la coppia a tavola
     # e le stampe di Este alle pareti
     foto('sala-vino.jpg', VIDEO + 'video-sala-servizio-vino.jpg', (0, 0, 1080, 850),
-         zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (720 x 567 a 1440)')
+         zona=(300, 660, 600, 740), forza=0.8, uso='ristorante R4 (864 x 680 a 1440)')
     foto('cantinetta.jpg', 'esterne/regione-veneto/cantinetta-vini-tavolo.jpg', (128, 0, 896, 768),
          zona=(200, 600, 400, 680), uso='ristorante R5, campo giallo')
     foto('vigne-largo.jpg', VIDEO + 'video-drone-vigneto-viale.jpg', (0, 0, 1920, 850),
