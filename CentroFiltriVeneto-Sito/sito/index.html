@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Centro Filtri Veneto, filtri e ricambi a Vigonovo</title>
 <meta name="description" content="Centro Filtri Veneto a Tombelle di Vigonovo (VE), tel. 049 9801910: più di 4000 filtri pronti per auto, camion, trattori, oleodinamica e pompe a vuoto.">
+<link rel="icon" href="img/icona-32.png" sizes="32x32" type="image/png">
+<!-- anteprima nei messaggi: alla pubblicazione og:image e og:url vanno scritti con l'indirizzo completo del sito -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Centro Filtri Veneto: portaci il codice, il mezzo o il filtro vecchio">
+<meta property="og:description" content="Filtri e ricambi a Tombelle di Vigonovo (VE): più di 4000 filtri pronti. Tel. 049 9801910, WhatsApp 320 6125425.">
+<meta property="og:image" content="img/anteprima-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lo scaffale dei filtri nel magazzino di Centro Filtri Veneto, con i cartellini dei codici">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Centro Filtri Veneto S.r.l.","telephone":"+39 049 9801910","email":"info@centrofiltriveneto.com","vatID":"IT04320460274","address":{"@type":"PostalAddress","streetAddress":"Via del Lavoro 30","postalCode":"30030","addressLocality":"Vigonovo","addressRegion":"VE","addressCountry":"IT"}}</script>
 <style>
 /* Pathway Extreme (SIL Open Font License), sottoinsieme latin servito dalla pagina: nessuna richiesta a Google */
 @font-face{font-family:"Pathway Extreme";font-style:normal;font-weight:400 800;font-stretch:75% 100%;font-display:swap;
@@ -17,10 +28,8 @@
   --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:80px;
   --gutter:64px; --max:1312px;
   --f:"Pathway Extreme", "Helvetica Neue", Arial, sans-serif;
-  /* il blu del banco parte dalla quarta pennellata */
-  --j1:16.6%;
-  /* uscita al vivo fino a 1440 px: la corsia a filo del bordo sinistro, il banco a filo del destro.
-     Oltre i 1440 px le due foto si allineano alla griglia (logo e testi), vedi la media query in fondo */
+  /* uscita al vivo fino a 1440 px: la corsia a filo del bordo sinistro.
+     Oltre i 1440 px si allinea alla griglia (logo e testi), vedi la media query in fondo */
   --fuori:var(--gutter);
 }
 *{box-sizing:border-box}
@@ -35,6 +44,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .wrap{max-width:calc(var(--max) + 2*var(--gutter));margin:0 auto;padding:0 var(--gutter)}
 .cond{font-stretch:75%;font-weight:800;letter-spacing:-0.012em}
 .num{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nw{white-space:nowrap}
 .solo-m,.solo-mi{display:none}
 
 /* testata */
@@ -47,43 +57,59 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .testa .tel{font-size:20px;text-decoration:none;padding-left:var(--s4);border-left:1px solid var(--linea)}
 .testa .tel-m,.testa .ord-m{display:none}
 
-/* il banco: i filtri sul banco, il frontale a pennellate, il piano blu */
+/* il banco. Giro 4: lo scaffale di sinistra della corsia, in verticale, è l'immagine; sopra, i cartellini coi codici
+   veri; accanto, sotto il titolo, il campo del codice. Il piano blu tiene il mezzo e il filtro vecchio */
 .banco{background:var(--carta);overflow-x:clip}
-.vetrina-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,404px);gap:var(--s5);align-items:end;padding-top:var(--s1)}
-/* la pila esce a filo del bordo sinistro: la foto non sta in un riquadro col margine */
-.pila{position:relative;grid-column:1;grid-row:1;margin-left:calc(-1 * var(--fuori));width:calc(100% + var(--fuori))}
+.vetrina-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s5);align-items:stretch}
+/* la foto esce a filo del bordo sinistro: non sta in un riquadro col margine */
+.pila{position:relative;grid-column:1;grid-row:1;align-self:start;margin-left:calc(-1 * var(--fuori));width:calc(100% + var(--fuori))}
 .pila img,.mucchio img{width:100%}
-.vetrina-t{grid-column:2;grid-row:1;padding-bottom:var(--s4)}
-.vetrina-t h1{font-size:clamp(40px,3.75vw,54px);line-height:.98}
-.vetrina-t .cosa{margin-top:var(--s3);font-size:18px;line-height:1.45}
-.vetrina-t .cosa2{margin-top:var(--s2);font-size:18px;line-height:1.45;font-weight:600}
-.vetrina-t .nota-cart{margin-top:var(--s2);font-size:15px;line-height:1.45;color:var(--ink2)}
-/* cartellini: come quelli di carta degli scaffali (bianchi, solo il codice in nero), centrati sul cartellino vero
-   della foto (--x, --y; sul telefono --xm, --ym). Il filo giallo sotto dice che si toccano: aprono WhatsApp col codice */
-.cart{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:1;display:block;background:var(--bianco);color:var(--ink);padding:4px 8px 3px;border-bottom:3px solid var(--sole);font-size:15px;line-height:1.2;font-weight:600;font-variant-numeric:tabular-nums;text-decoration:none;white-space:nowrap;box-shadow:0 1px 0 rgba(23,25,27,.25),0 3px 8px rgba(23,25,27,.18)}
+/* il titolo e il campo stanno in alto, accanto ai cartellini alti; famiglie e marchi subito sotto */
+.vetrina-t{grid-column:2;grid-row:1;display:flex;flex-direction:column;justify-content:flex-start;gap:var(--s4);padding:var(--s5) 0 var(--s4)}
+/* giro 5: famiglie e marchi 40 px sotto l'email (32 sotto i 1181 px), non spinte in fondo alla colonna */
+.vetrina-t > div + div{margin-top:var(--s1)}
+.vetrina-t h1{font-size:clamp(40px,5.6vw,80px);line-height:.96}
+.chiedi{margin-top:var(--s4)}
+.chiedi h2{font-size:28px;line-height:1.05;font-stretch:75%;font-weight:800;letter-spacing:-0.01em}
+.chiedi h2 label{cursor:pointer}
+.chiedi p{margin-top:var(--s1);font-size:17px;line-height:1.45}
+.vetrina-t .cosa{font-size:18px;line-height:1.45;max-width:36em}
+.vetrina-t .cosa2{margin-top:var(--s2);font-size:18px;line-height:1.45;font-weight:600;max-width:36em}
+/* cartellini: come quelli di carta degli scaffali (bianchi, solo il codice in nero), all'altezza del cartellino vero
+   della foto (--x, --y; fino a 900 px --xm, --ym sul ritaglio più basso). Il filo giallo dice che si toccano */
+.cart{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:1;display:block;background:var(--bianco);color:var(--ink);padding:8px 12px 5px;border-bottom:4px solid var(--sole);font-size:20px;line-height:1.2;font-weight:600;font-variant-numeric:tabular-nums;text-decoration:none;white-space:nowrap;box-shadow:0 1px 0 rgba(23,25,27,.25),0 3px 10px rgba(23,25,27,.22)}
+/* area di tocco di almeno 48 px di altezza */
+.cart::after{content:"";position:absolute;inset:-4px -4px}
 .cart:hover{background:var(--sole);color:var(--ink)}
+/* doppio anello, giallo e inchiostro: si vede sugli scaffali scuri e sulla carta */
+.cart:focus-visible{outline:3px solid var(--sole);outline-offset:2px;box-shadow:0 0 0 7px var(--ink)}
+.mucchio .cart{font-size:19px}
+/* giro 5: sulla corsia il cartellino della pagina sta a destra di quello vero, 14 px dopo il suo bordo destro (--rx,
+   in % della foto), e un filo giallo li collega: il cartellino scritto sullo scaffale resta in vista */
+.pila .cart{left:calc(var(--x) + var(--rx));transform:translate(14px,-50%)}
+.pila .cart::before{content:"";position:absolute;right:100%;top:50%;width:14px;height:3px;margin-top:-1px;background:var(--sole);box-shadow:0 0 0 1px rgba(23,25,27,.55)}
 .fronte{position:relative;height:clamp(22px,2.5vw,36px);background:var(--carta);overflow:hidden}
-.fronte-in{position:relative;max-width:1440px;height:100%;margin:0 auto}
+/* le pennellate partono dal bordo sinistro della foto: a filo dello schermo fino a 1440 px, sulla griglia oltre */
+.fronte-in{position:absolute;top:0;bottom:0;left:calc(max(var(--gutter), (100% - var(--max)) / 2) - var(--fuori));right:0}
 .fronte i{position:absolute;bottom:0;height:100%;transform-origin:0 100%;transform:skewX(-22deg);border-radius:3px 6px 3px 6px}
-.fronte .p1{left:1.4%;width:3.1%;background:var(--ocra)}
-.fronte .p2{left:5.6%;width:4.3%;background:var(--crema)}
-.fronte .p3{left:11%;width:4.7%;background:var(--azzurro)}
-.fronte .p4{left:var(--j1);right:-100vw;background:var(--blu);border-radius:3px 0 0 0}
+.fronte .p1{left:0;width:44px;background:var(--ocra)}
+.fronte .p2{left:58px;width:62px;background:var(--crema)}
+.fronte .p3{left:136px;width:68px;background:var(--azzurro)}
+.fronte .p4{left:220px;right:-100vw;background:var(--blu);border-radius:3px 0 0 0}
 .piano{background:var(--blu);padding:20px 0 var(--s4)}
-.modi{display:grid;grid-template-columns:minmax(0,5.2fr) minmax(0,3.6fr) minmax(0,3.2fr)}
+.modi{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
 .modo{padding:0 var(--s4)}
-.modo.codice{padding-left:0}
+.modo.mezzo{padding-left:0}
 .modo + .modo{border-left:1px solid var(--bianco)}
 .modo.vecchio{padding-right:0}
 .modo h2{font-size:clamp(22px,1.95vw,28px);line-height:1.05;font-stretch:75%;font-weight:800;letter-spacing:-0.01em;white-space:nowrap}
-.modo h2 label{cursor:pointer}
 .modo p{margin-top:var(--s1);font-size:17px;line-height:1.45}
-.campo{display:flex;margin-top:var(--s1);max-width:620px}
-.campo input{flex:1;min-width:0;height:56px;border:0;border-radius:0;padding:0 var(--s2);font:600 20px/1 var(--f);font-variant-numeric:tabular-nums;color:var(--ink);background:var(--bianco)}
-.campo input::placeholder{color:#6D6A63;font-weight:400}
-.campo button{height:56px;border:0;border-radius:0;padding:0 var(--s3);background:var(--sole);color:var(--ink);font:700 17px/1 var(--f);cursor:pointer;white-space:nowrap}
-.campo button:hover{background:var(--bianco)}
-.campo button:focus-visible,.campo input:focus-visible{outline:3px solid var(--ink);outline-offset:0}
+.campo{display:flex;margin-top:var(--s1);max-width:620px;border:2px solid var(--ink);background:var(--bianco)}
+.campo input{flex:1;min-width:0;height:56px;border:0;border-radius:0;padding:0 var(--s2);font:600 20px/1 var(--f);font-variant-numeric:tabular-nums;text-transform:uppercase;color:var(--ink);background:var(--bianco)}
+.campo input::placeholder{color:#6D6A63;font-weight:400;text-transform:none}
+.campo button{height:56px;border:0;border-left:2px solid var(--ink);border-radius:0;padding:0 var(--s3);background:var(--sole);color:var(--ink);font:700 17px/1 var(--f);cursor:pointer;white-space:nowrap}
+.campo button:hover{background:var(--ink);color:var(--sole)}
+.campo button:focus-visible,.campo input:focus-visible{outline:3px solid var(--blu);outline-offset:0}
 .modo a{color:var(--ink)}
 .modo a:hover{color:var(--ink);text-decoration-thickness:3px}
 .tels{margin-top:var(--s1)}
@@ -97,24 +123,24 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .porte .wrap{display:grid;grid-template-columns:7fr 5fr;gap:var(--s6);align-items:start}
 .porte h2{font-size:44px;line-height:1.05}
 .porta p{margin-top:var(--s2);max-width:34em}
-.porta ul{list-style:none;margin:var(--s3) 0 0;padding:0}
-.porta li{padding:10px 0;border-top:1px solid var(--linea);font-size:17px}
-.porta li:last-child{border-bottom:1px solid var(--linea)}
-.bottone{display:inline-block;margin-top:var(--s4);padding:16px var(--s3);background:var(--ink);color:var(--carta);text-decoration:none;font-weight:700;font-size:17px;line-height:1}
+.porta .breve{font-size:16px;color:var(--ink2)}
+.bottone{display:inline-block;margin-top:var(--s4);padding:15px var(--s3);background:var(--ink);color:var(--carta);text-decoration:none;font-weight:700;font-size:17px;line-height:1.2}
 .bottone:hover{background:#3B3833;color:var(--carta)}
 .privati .bottone{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
 .privati .bottone:hover{background:var(--ink);color:var(--carta)}
 
 /* filtri e marchi per famiglia */
 .marchi{background:var(--bianco);padding:var(--s6) 0}
-.marchi .wrap{display:grid;grid-template-columns:4fr 8fr;gap:var(--s6);align-items:start}
+/* giro 4: titolo sopra l'elenco a tutta larghezza (prima a 1440 restava un vuoto di 500 px sotto il titolo) */
+.marchi .wrap{display:block}
+.marchi .elenco{margin-top:var(--s4)}
 .marchi h2{font-size:clamp(42px,3.6vw,52px);line-height:1.02}
 .marchi .intro{margin-top:var(--s2);font-size:18px;color:var(--ink2)}
 .fila .prod{font-size:17px;line-height:1.45;color:var(--ink2);margin-bottom:6px;max-width:40em}
 .fila .prod a{color:var(--ink);font-weight:600}
 .marchi .elenco{border-top:2px solid var(--ink)}
-.fila{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr);gap:var(--s3);padding:14px 0;border-bottom:1px solid var(--linea);align-items:baseline}
-.fila h3{font-size:16px;line-height:1.35;font-weight:600;color:var(--ink2)}
+.fila{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--s5);padding:16px 0;border-bottom:1px solid var(--linea);align-items:baseline}
+.fila h3{font-size:20px;line-height:1.3;font-weight:600;color:var(--ink)}
 .nomi{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:2px;font-size:24px;line-height:1.25;font-weight:600}
 .nomi small{font-weight:400;font-size:15px;color:var(--ink2)}
 
@@ -129,8 +155,8 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .magazzino h3 + p{margin-top:4px}
 
 /* dove siamo */
-.dove{padding:var(--s6) 0;border-top:1px solid var(--linea);overflow-x:clip}
-.dove .wrap{display:grid;grid-template-columns:4fr 8fr;grid-template-areas:"t f" "o m";column-gap:var(--s5);row-gap:var(--s5);align-items:start}
+.dove{padding:var(--s6) 0 0;border-top:1px solid var(--linea);overflow-x:clip}
+.dove .wrap{display:grid;grid-template-columns:4fr 8fr;grid-template-areas:"t m" "o m";column-gap:var(--s5);row-gap:var(--s4);align-items:start}
 .dove-t{grid-area:t}
 .strada{grid-area:o}
 .mappa-box{grid-area:m}
@@ -140,10 +166,10 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .dove ol li{margin-top:var(--s1)}
 .dove .rec{margin-top:var(--s3);font-size:17px;line-height:1.6}
 .dove .rec a{font-weight:600}
-/* la foto del banco esce a filo del bordo destro, come la pila dei filtri a sinistra in apertura */
-.banco-foto{grid-area:f;margin:0 calc(-1 * var(--fuori)) 0 0}
+/* giro 4: il banco con tutte e tre le persone, a tutta larghezza in fondo alla sezione, come la piramide */
+.banco-foto{max-width:1440px;margin:var(--s5) auto 0}
 .banco-foto img{width:100%}
-.banco-foto figcaption{margin-top:var(--s1);padding-right:var(--fuori);font-size:15px;color:var(--ink2)}
+.banco-foto figcaption{max-width:calc(var(--max) + 2*var(--gutter));margin:var(--s1) auto 0;padding:0 var(--gutter);font-size:15px;color:var(--ink2)}
 .mappa-box{position:relative}
 .mappa{display:block;width:100%;height:auto}
 .m-wa{fill:none;stroke:#C5DCE8;stroke-width:3}
@@ -152,7 +178,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .m-ma{fill:none;stroke:#8F887A;stroke-width:3.5}
 .m-ro{fill:none;stroke:var(--ink);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
 .m-pt{fill:var(--sole);stroke:var(--ink);stroke-width:3}
-.et{position:absolute;font-size:14px;line-height:1.2;font-weight:600;background:var(--carta);padding:2px 6px;white-space:nowrap}
+.et{position:absolute;font-size:15px;line-height:1.2;font-weight:600;background:var(--carta);padding:2px 6px;white-space:nowrap}
 /* posizioni sul riquadro della mappa, alto 529 unità (giro 2: 30 unità in più in alto per la rotonda intera) */
 .et.e-pd{left:15.5%;top:6.5%}
 .et.e-ca{left:15.5%;top:32.2%}
@@ -163,61 +189,84 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .osm a{color:var(--ink2)}
 
 /* piede */
-.piede{background:var(--ink);color:#E9E4D8;padding:var(--s5) 0 var(--s4);font-size:15px;line-height:1.6}
+.piede{background:var(--ink);color:#E9E4D8;padding:var(--s5) 0 var(--s4);font-size:15px;line-height:1.6;margin-top:var(--s6)}
 .piede .wrap{display:grid;grid-template-columns:5fr 7fr;gap:var(--s5)}
 .piede .ind-mail{white-space:nowrap}
+/* giro 5: da 641 a 900 px la colonna è stretta: l'email va a capo solo dopo la chiocciola */
+.piede .mail-p{overflow-wrap:normal}
 .piede b{color:var(--carta);font-weight:600;font-size:17px}
 .piede a{color:#E9E4D8;overflow-wrap:anywhere}
 .piede a:hover{color:var(--sole)}
 .piede :focus-visible{outline-color:var(--sole)}
 .piede .legale{grid-column:1/-1;margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid #3A3B3D;color:#BDB8AC}
 
-/* sotto i 1260 px la foto è più piccola: cartellini più piccoli */
+/* sotto i 1260 px la foto è più piccola: cartellini appena più stretti, sempre a 18 px */
 @media (max-width:1260px){
-  .cart{padding:3px 6px 2px;font-size:13px}
+  .cart{padding:7px 10px 4px;font-size:18px}
+  .mucchio .cart{font-size:16px;padding:5px 8px 3px}
+  /* giro 5: area di tocco di 48 px */
+  .mucchio .cart::after{inset:-9px -4px}
 }
-/* oltre i 1440 px: corsia e banco allineati alla griglia, non a metà strada tra griglia e bordo */
+/* oltre i 1440 px: corsia e banco allineati alla griglia, non a metà strada tra griglia e bordo
+   (giro 5: il banco era tornato centrato a 1440 px, da 48 a 1488 a 1536) */
 @media (min-width:1441px){
   :root{--fuori:0px}
+  .banco-foto{max-width:var(--max)}
+  .banco-foto figcaption{padding:0}
 }
 /* tablet */
 @media (max-width:1180px){
   :root{--gutter:40px}
-  .testa nav{gap:var(--s3)}
+  .testa .wrap{gap:var(--s3)}
+  .testa nav{gap:20px;font-size:15px}
+  .testa .tel{font-size:18px;padding-left:var(--s3)}
   .testa .logo img{width:220px}
-  .vetrina-in{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--s4)}
-  .vetrina-t .cosa,.vetrina-t .cosa2{font-size:17px}
-  .modi{grid-template-columns:1fr 1fr}
-  .modo.codice{grid-column:1/-1;padding-right:0;padding-bottom:var(--s3)}
-  .modo.mezzo{border-left:0;padding-left:0}
-  .modo.mezzo,.modo.vecchio{border-top:1px solid var(--bianco);padding-top:var(--s3)}
+  .vetrina-in{gap:var(--s4)}
+  .vetrina-t{padding:var(--s2) 0 var(--s2);gap:var(--s3)}
+  .campo input{padding:0 12px}
+  .campo button{padding:0 var(--s2)}
+  .chiedi{margin-top:var(--s3)}
+  .chiedi h2{font-size:24px}
+  .vetrina-t .cosa,.vetrina-t .cosa2{font-size:16px}
+  .vetrina-t .cosa2{margin-top:var(--s1)}
   .modo h2{font-size:26px}
   .porte h2,.magazzino h2,.dove h2{font-size:36px}
   .marchi h2{font-size:42px}
   .marchi .wrap{grid-template-columns:1fr;gap:var(--s4)}
-  .dove .wrap{grid-template-columns:1fr;grid-template-areas:"t" "f" "o" "m";row-gap:var(--s4)}
-  .banco-foto{margin:0}
-  .banco-foto figcaption{padding-right:0}
+  .dove .wrap{grid-template-columns:1fr;grid-template-areas:"t" "o" "m";row-gap:var(--s4)}
 }
-/* da 641 a 1100 px il menu va su una seconda riga della testata */
-@media (max-width:1100px) and (min-width:641px){
+/* da 641 a 900 px la testata si stringe; sotto i 761 px il menu va su una seconda riga */
+@media (max-width:900px) and (min-width:641px){
+  .testa .logo img{width:180px}
+  .testa nav{gap:16px;font-size:14px}
+  .testa .tel{font-size:17px;padding-left:var(--s2)}
+}
+@media (max-width:760px) and (min-width:641px){
   .testa .wrap{flex-wrap:wrap;height:auto;padding-top:14px;padding-bottom:10px;row-gap:6px}
   .testa .tel{margin-left:auto}
   .testa nav{order:3;flex-basis:100%;margin-left:0;gap:var(--s3);overflow-x:auto;padding:4px 0}
+  /* giro 5: le due etichette salgono e non coprono il tracciato */
+  .et.e-vi{top:50.5%}
+  .et.e-st{top:63.5%}
 }
+/* fino a 900 px: titolo, campo, famiglie e marchi sopra; la foto (ritaglio più basso) a tutta larghezza sotto */
 @media (max-width:900px){
-  .vetrina-in{grid-template-columns:minmax(0,1fr);gap:var(--s3);padding-top:var(--s3)}
-  .vetrina-t{grid-row:1;grid-column:1;padding-bottom:0}
-  .pila{grid-row:2;grid-column:1;max-width:760px;justify-self:center;width:100%;margin-left:0}
-  .nota-mc{grid-row:3;grid-column:1}
+  .vetrina-in{grid-template-columns:minmax(0,1fr);gap:var(--s3)}
+  .vetrina-t{grid-row:1;grid-column:1;padding:var(--s3) 0 0;display:block}
+  .vetrina-t .cosa{margin-top:var(--s3)}
+  .pila{grid-row:3;grid-column:1;margin:0 calc(-1 * var(--gutter));width:auto}
+  .pila .cart{left:calc(var(--xm) + var(--rx));top:var(--ym)}
+  .pila .cart.solo-a{display:none}
+  .nota-mc{grid-row:2;grid-column:1}
   .vetrina-t h1{font-size:46px}
+  .modi{grid-template-columns:1fr 1fr}
   .porte .wrap{grid-template-columns:1fr;gap:var(--s6)}
   .magazzino .wrap{grid-template-columns:1fr;gap:var(--s4)}
   .fila{grid-template-columns:1fr;gap:2px}
 }
 /* telefono */
 @media (max-width:640px){
-  :root{--gutter:16px;--j1:23.7%}
+  :root{--gutter:16px}
   body{font-size:17px}
   .solo-l{display:none}
   .solo-m{display:block}
@@ -228,25 +277,30 @@ h1,h2,h3{margin:0;text-wrap:balance}
   .testa .ord-m{display:block;margin-left:auto;font-weight:700;font-size:15px;text-decoration:none;padding:10px 0}
   .testa .tel-m{display:block;padding:10px 14px;background:var(--ink);color:var(--carta);text-decoration:none;font-weight:700;font-size:15px;line-height:1}
   .testa .tel-m:hover{background:#3B3833;color:var(--carta)}
-  .vetrina-in{gap:12px;padding-top:var(--s2)}
+  .vetrina-in{gap:12px}
+  .vetrina-t{padding-top:var(--s2)}
   .piano{padding-top:14px}
   .vetrina-t h1{font-size:32px;line-height:1.02}
-  .vetrina-t .cosa{margin-top:var(--s1);font-size:15px;line-height:1.4}
+  .chiedi{margin-top:var(--s2)}
+  .chiedi h2{font-size:22px}
+  .chiedi p{font-size:16px}
+  .vetrina-t .cosa{margin-top:var(--s2);font-size:15px;line-height:1.4}
   .vetrina-t .cosa2{margin-top:6px;font-size:15px;line-height:1.4}
-  .vetrina-t .nota-cart{display:none}
-  .pila{margin:0 calc(-1 * var(--gutter));width:auto;max-width:none}
-  .cart{padding:2px 5px 1px;font-size:12px;border-bottom-width:3px}
-  .pila .cart{left:var(--xm);top:var(--ym)}
-  .nota-mc{margin-top:-6px;font-size:14px;line-height:1.35;color:var(--ink2)}
+  .cart{padding:7px 9px 4px;font-size:18px}
+  .mucchio .cart{font-size:14px;padding:5px 7px 3px;border-bottom-width:3px}
+  .mucchio .cart::after{inset:-12px -6px}
+  /* P60-8677 resta almeno 8 px dentro la foto: il codice stampato è vicino al bordo sinistro */
+  .mucchio .cart.c-p60{left:max(var(--x),53px)}
+  .nota-mc{font-size:15px;line-height:1.35;color:var(--ink2)}
   .modi{display:flex;flex-direction:column}
-  .modo,.modo.codice,.modo.mezzo,.modo.vecchio{padding:0 0 var(--s3);border-left:0}
+  .modo,.modo.mezzo,.modo.vecchio{padding:0 0 var(--s3);border-left:0}
   .modo.mezzo,.modo.vecchio{padding-top:var(--s3)}
   .modo.vecchio{padding-bottom:0}
   .modo h2{font-size:24px}
   .modo p{font-size:16px}
   .campo{flex-direction:column}
   .campo input{flex:none;height:52px}
-  .campo button{height:52px;margin-top:6px}
+  .campo button{height:52px;border-left:0;border-top:2px solid var(--ink)}
   .tels{display:flex;flex-wrap:wrap;column-gap:var(--s3)}
   .grande{font-size:24px}
   .grande small{font-size:16px}
@@ -259,20 +313,25 @@ h1,h2,h3{margin:0;text-wrap:balance}
   .magazzino{padding:0 0 var(--s6)}
   .magazzino .wrap{margin-top:var(--s3)}
   .dove{padding:var(--s6) 0}
-  .et{font-size:11px;padding:1px 4px}
-  .et.cfv{font-size:12px;right:2%;top:84%}
+  .et{font-size:12px;padding:1px 4px}
+  .et.e-vi{top:47%}
+  .et.cfv{font-size:13px;right:2%;top:84%}
   .et.e-st{display:none}
   .mappa-box{margin-bottom:22px}
-  .osm{bottom:-22px;font-size:11px;background:none;padding:4px 0 0}
+  .osm{bottom:-22px;font-size:12px;background:none;padding:4px 0 0}
   .piede .wrap{grid-template-columns:1fr}
   .piede .ind-mail{white-space:normal}
+  .banco-foto{margin-top:var(--s4)}
+  .piede{margin-top:var(--s4)}
 }
 /* telefoni stretti (320-374 px): logo e bottoni della testata stanno in riga */
 @media (max-width:374px){
   .testa .wrap{gap:10px}
   .testa .logo img{width:128px}
   .testa .tel-m{padding:10px}
-  .et.e-vi{top:47%}
+  .piede a{overflow-wrap:normal}
+  .mucchio .cart{padding:4px 5px 3px;font-size:13px}
+  .bottone{padding:14px 16px;font-size:16px}
 }
 </style>
 </head>
@@ -297,36 +356,39 @@ h1,h2,h3{margin:0;text-wrap:balance}
   <div class="vetrina">
     <div class="wrap vetrina-in">
       <div class="vetrina-t">
-        <h1 id="titolo" class="cond">Portaci il codice, il&nbsp;mezzo o il&nbsp;filtro vecchio</h1>
-        <p class="cosa">Filtri e ricambi per auto, camion, trattori, movimento terra, oleodinamica, pompe a vuoto e reparti produttivi.</p>
-        <p class="cosa2">Donaldson, Fleetguard, MANN-FILTER, Baldwin, HIFI&nbsp;Filter, UFI e gli altri marchi: più di 4000 filtri pronti a&nbsp;Vigonovo.</p>
-        <p class="nota-cart">I cartellini ripetono i codici scritti sui filtri della foto: ognuno apre WhatsApp con il codice già scritto.</p>
+        <div>
+          <h1 id="titolo" class="cond">Portaci il codice, il&nbsp;mezzo o il&nbsp;filtro vecchio</h1>
+          <form class="chiedi" id="chiedi" action="https://wa.me/393206125425" method="get" target="_blank">
+            <h2><label for="codice">Hai il codice?</label></h2>
+            <div class="campo">
+              <input id="codice" name="text" type="text" autocomplete="off" autocapitalize="characters" enterkeyhint="send" spellcheck="false" placeholder="scrivi il codice del filtro" required pattern=".*\S.*">
+              <button type="submit">Chiedi su WhatsApp</button>
+            </div>
+            <p>oppure <a id="chiedi-mail" href="mailto:info@centrofiltriveneto.com?subject=Richiesta%20filtro">scrivi a info@centrofiltriveneto.com</a></p>
+          </form>
+        </div>
+        <div>
+          <p class="cosa">Filtri e ricambi per auto, camion, trattori, movimento terra, oleodinamica, pompe a vuoto e reparti produttivi.</p>
+          <p class="cosa2">Donaldson, Fleetguard, <span class="nw">MANN-FILTER</span>, Baldwin, HIFI&nbsp;Filter, UFI e gli altri marchi: più di 4000 filtri pronti a&nbsp;Vigonovo.</p>
+        </div>
       </div>
       <div class="pila">
         <picture>
-          <source media="(max-width:640px)" srcset="img/corsia-m780.jpg 780w, img/corsia-m1170.jpg 1170w" sizes="100vw" width="780" height="557">
-          <img src="img/corsia-940.jpg" srcset="img/corsia-940.jpg 940w, img/corsia-1860.jpg 1860w" sizes="(max-width:900px) min(calc(100vw - 80px), 760px), (max-width:1180px) calc((100vw - 112px) * 0.545 + 40px), (max-width:1440px) calc(100vw - 516px), 860px" width="940" height="635" alt="La corsia del magazzino di Centro Filtri Veneto a Vigonovo: a sinistra gli scaffali con i filtri Baldwin, Fleetguard e di altri marchi, ognuno col suo codice, in fondo le finestre">
+          <source media="(max-width:900px)" srcset="img/corsia-o780.jpg 780w, img/corsia-o1170.jpg 1170w, img/corsia-o1760.jpg 1760w" sizes="100vw" width="780" height="727">
+          <img src="img/corsia-v640.jpg" srcset="img/corsia-v640.jpg 640w, img/corsia-v1240.jpg 1240w" sizes="(max-width:1180px) calc((100vw - 112px) * 0.4167 + 40px), (max-width:1440px) calc((100vw - 176px) * 0.4167 + 64px), 527px" width="640" height="815" alt="Lo scaffale dei filtri nel magazzino di Centro Filtri Veneto a Vigonovo: filtri Baldwin, Fleetguard e di altri marchi, ognuno col cartellino del suo codice">
         </picture>
-        <a class="cart" style="--x:8.5%;--y:8.2%;--xm:9.5%;--ym:8.7%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20BF593%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro BF593">BF593</a>
-        <a class="cart" style="--x:25.9%;--y:8.2%;--xm:29%;--ym:8.7%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%2033398%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 33398">33398</a>
-        <a class="cart" style="--x:10.2%;--y:63%;--xm:11.4%;--ym:66.7%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%2020201%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 20201">20201</a>
-        <a class="cart" style="--x:7.7%;--y:89.6%;--xm:8.6%;--ym:93.5%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20FF155%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro FF155">FF155</a>
+        <a class="cart" style="--rx:1.6%;--x:15.5%;--y:7.9%;--xm:15.5%;--ym:10.9%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20BF593%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro BF593">BF593</a>
+        <a class="cart" style="--rx:1.3%;--x:47.3%;--y:7.9%;--xm:47.3%;--ym:10.9%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%2033398%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 33398">33398</a>
+        <a class="cart" style="--rx:1.4%;--x:18.5%;--y:60.8%;--xm:18.5%;--ym:83.0%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%2020201%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 20201">20201</a>
+        <a class="cart solo-a" style="--rx:2.7%;--x:14.0%;--y:86.6%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20FF155%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro FF155">FF155</a>
       </div>
-      <p class="nota-mc solo-m">Tocca un cartellino: apre WhatsApp con il codice.</p>
+      <p class="nota-mc solo-m">Tocca un codice sulla foto: ti rispondiamo su WhatsApp.</p>
     </div>
   </div>
   <div class="fronte" aria-hidden="true"><div class="fronte-in"><i class="p1"></i><i class="p2"></i><i class="p3"></i><i class="p4"></i></div></div>
   <div class="piano">
     <div class="wrap">
       <div class="modi">
-        <form class="modo codice" id="chiedi" action="https://wa.me/393206125425" method="get" target="_blank">
-          <h2><label for="codice">Hai il codice?</label></h2>
-          <div class="campo">
-            <input id="codice" name="text" type="text" autocomplete="off" autocapitalize="characters" enterkeyhint="send" spellcheck="false" placeholder="per esempio LF3883" required pattern=".*\S.*">
-            <button type="submit">Chiedi su WhatsApp</button>
-          </div>
-          <p>oppure <a id="chiedi-mail" href="mailto:info@centrofiltriveneto.com?subject=Richiesta%20filtro">scrivi a info@centrofiltriveneto.com</a></p>
-        </form>
         <div class="modo mezzo">
           <h2>Hai solo il mezzo?</h2>
           <p>Dicci marca, modello e anno<span class="solo-mi"> del trattore, del camion o della macchina</span>.</p>
@@ -353,9 +415,9 @@ h1,h2,h3{margin:0;text-wrap:balance}
     </div>
     <div class="elenco">
       <div class="fila"><h3>Diesel, mezzi pesanti, campo e cantiere</h3><div><p class="prod">Veicoli industriali, movimento terra, trattori e macchine agricole: filtri olio, aria e gasolio, separatori acqua e gasolio.</p><p class="nomi"><span>Fleetguard</span><span>Donaldson</span><span>Baldwin</span><span>Virgis&nbsp;Filter</span></p></div></div>
-      <div class="fila"><h3>Auto e veicoli</h3><div><p class="nomi"><span>MANN-FILTER</span><span>UFI</span></p></div></div>
+      <div class="fila"><h3>Auto e veicoli</h3><div><p class="prod">Filtri per auto, fuoristrada e furgoni, compresi i filtri dell'aria e dell'abitacolo.</p><p class="nomi"><span class="nw">MANN-FILTER</span><span>UFI</span></p></div></div>
       <div class="fila"><h3>Oleodinamica e impianti</h3><div><p class="prod">Cartucce ed elementi filtranti idraulici. Separatori e ricambi per pompe a vuoto, con gli stessi materiali dell'originale. Filtri a pannello per l'aria e i fumi di reparto, depolverazione.</p><p class="prod"><a href="https://wa.me/393206125425?text=Buongiorno%2C%20vi%20mando%20la%20foto%20della%20targhetta%20della%20pompa%20a%20vuoto." target="_blank" rel="noopener">Mandaci su WhatsApp il codice o la foto della targhetta della pompa</a></p><p class="nomi"><span>MP&nbsp;Filtri</span><span>Argo&nbsp;Hytos</span><span>Filtrec</span><span>HYDAC</span><span>Parker</span></p></div></div>
-      <div class="fila"><h3>Aria, olio e idraulica, più marche</h3><div><p class="nomi"><span>HIFI&nbsp;Filter</span><span>SF&nbsp;Filter</span><span>GFT&nbsp;Filter <small>ne siamo distributori</small></span></p></div></div>
+      <div class="fila"><h3>Multimarca, per mezzi e impianti</h3><div><p class="prod">Filtri olio, aria, carburante, idraulici e per l'aria condizionata. Di GFT Filters siamo distributori.</p><p class="nomi"><span>HIFI&nbsp;Filter</span><span>SF&nbsp;Filter</span><span>GFT&nbsp;Filters</span></p></div></div>
       <div class="fila"><h3>Lubrificanti e accumulatori</h3><div><p class="prod">Anche ricambi aftermarket, chimica per autotrazione e industria, accessori.</p><p class="nomi"><span>Castrol <small>rivenditore autorizzato</small></span><span>FAAM <small>accumulatori</small></span></p></div></div>
     </div>
   </div>
@@ -366,11 +428,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <div class="porta ricambisti">
       <h2 class="cond">Ricambisti e officine</h2>
       <p>Cataloghi, promozioni e ordini sul portale, con il tuo account.</p>
-      <ul>
-        <li>Non hai un account? Lo richiedi dalla prima pagina del&nbsp;portale.</li>
-        <li>Resi su autorizzazione: la richiesta va fatta entro 30 giorni dalla consegna dall'area Gestione RMA del portale (senza account: <a href="mailto:resi@centrofiltriveneto.com">resi@centrofiltriveneto.com</a>). Condizioni ed esclusioni nella politica resi del&nbsp;portale.</li>
-        <li>Resa franco magazzino Vigonovo (EXW): ritiro al banco o spedizione su richiesta, a carico del&nbsp;cliente.</li>
-      </ul>
+      <p class="breve">Non hai un account? Lo richiedi dalla prima pagina del portale. Resi su autorizzazione e merce franco magazzino Vigonovo (EXW): condizioni e politica resi <a href="https://ecommerce.centrofiltriveneto.com/" target="_blank" rel="noopener">sul&nbsp;portale</a>.</p>
       <a class="bottone" href="https://ecommerce.centrofiltriveneto.com/" target="_blank" rel="noopener">Entra nel portale ricambisti</a>
       <p class="nota-m solo-m">Il portale si usa da computer. Dal telefono: <a class="num" href="https://wa.me/393206125425" target="_blank" rel="noopener">WhatsApp 320&nbsp;6125425</a> o <a class="num" href="tel:+390499801910">049&nbsp;9801910</a>.</p>
     </div>
@@ -384,16 +442,16 @@ h1,h2,h3{margin:0;text-wrap:balance}
 
 <section class="magazzino" aria-labelledby="mag-t">
   <div class="mucchio">
-    <img src="img/pila-1440.jpg" srcset="img/pila-780.jpg 780w, img/pila-1170.jpg 1170w, img/pila-1440.jpg 1440w, img/pila-2400.jpg 2400w" sizes="(max-width:1440px) 100vw, 1440px" width="1440" height="975" alt="Una quarantina di filtri di marchi diversi uno accanto all'altro: Donaldson, Fleetguard, MANN-FILTER, UFI, HIFI, MP Filtri, HYDAC e altri, fotografati da Centro Filtri Veneto" loading="lazy" decoding="async">
-    <a class="cart" style="--x:14%;--y:72%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20aria%20Donaldson%20PowerCore%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro PowerCore">PowerCore</a>
-    <a class="cart" style="--x:54.2%;--y:46.5%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20HIFI%20SH%2051054%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro SH&nbsp;51054">SH&nbsp;51054</a>
-    <a class="cart" style="--x:46.8%;--y:88%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20gasolio%2033119%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 33119">33119</a>
-    <a class="cart" style="--x:81%;--y:72%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20LF3883%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro LF3883">LF3883</a>
+    <img src="img/pila-1440.jpg" srcset="img/pila-780.jpg 780w, img/pila-1170.jpg 1170w, img/pila-1440.jpg 1440w, img/pila-2880.jpg 2880w" sizes="(max-width:1440px) 100vw, 1440px" width="1440" height="975" alt="Una quarantina di filtri di marchi diversi uno accanto all'altro: Donaldson, Fleetguard, MANN-FILTER, UFI, HIFI, MP Filtri, HYDAC e altri, fotografati da Centro Filtri Veneto" loading="lazy" decoding="async">
+    <a class="cart c-p60" style="--x:12.3%;--y:85.4%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20aria%20Donaldson%20P60-8677%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro P60-8677">P60-8677</a>
+    <a class="cart" style="--x:53.7%;--y:48.8%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20HIFI%20SH%2051054%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro SH 51054">SH&nbsp;51054</a>
+    <a class="cart" style="--x:45.9%;--y:90.3%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20gasolio%2033119%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro 33119">33119</a>
+    <a class="cart" style="--x:82.3%;--y:85%" href="https://wa.me/393206125425?text=Buongiorno%2C%20avete%20il%20filtro%20LF3883%3F" target="_blank" rel="noopener" aria-label="Chiedi su WhatsApp il filtro LF3883">LF3883</a>
   </div>
   <div class="wrap">
     <div>
       <h2 id="mag-t" class="cond">Più di 15000 codici gestiti</h2>
-      <p>Il magazzino di Vigonovo ne tiene più di 4000 pronti da consegnare. Qui sopra una parte dei marchi, uno accanto all'altro: anche questi cartellini aprono WhatsApp con il codice.</p>
+      <p>Il magazzino di Vigonovo ne tiene più di 4000 pronti da consegnare. Qui sopra una parte dei marchi, uno accanto all'altro, con i codici stampati sui filtri.</p>
     </div>
     <div class="storia">
       <h3>Dal 1985</h3>
@@ -407,14 +465,10 @@ h1,h2,h3{margin:0;text-wrap:balance}
 <section class="dove" id="dove" aria-labelledby="dove-t">
   <div class="wrap">
     <div class="dove-t">
-      <h2 id="dove-t" class="cond">Il banco è a Tombelle di&nbsp;Vigonovo</h2>
-      <p class="ind">Via del Lavoro 30<br>30030 Vigonovo (VE)<br>a circa 10&nbsp;km dal centro di Padova</p>
+      <h2 id="dove-t" class="cond">Il banco è&nbsp;a&nbsp;Tombelle di&nbsp;Vigonovo</h2>
+      <p class="ind">Via del Lavoro 30<br>30030&nbsp;Vigonovo&nbsp;(VE)<br>a circa 10&nbsp;km dal centro di Padova</p>
       <p class="rec"><a class="num" href="tel:+390499801910">049&nbsp;9801910</a><br><a class="num" href="https://wa.me/393206125425" target="_blank" rel="noopener">WhatsApp 320&nbsp;6125425</a><br><a href="mailto:info@centrofiltriveneto.com">info@centrofiltriveneto.com</a><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Centro%20Filtri%20Veneto%20Via%20del%20Lavoro%2030%20Vigonovo" target="_blank" rel="noopener">Apri in Google Maps</a></p>
     </div>
-    <figure class="banco-foto">
-      <img src="img/banco-900.jpg" srcset="img/banco-560.jpg 560w, img/banco-900.jpg 900w, img/banco-1820.jpg 1820w" sizes="(max-width:640px) calc(100vw - 32px), (max-width:1180px) calc(100vw - 80px), (max-width:1440px) calc((100vw - 176px) * 0.6667 + 64px), 843px" width="900" height="514" alt="Due persone di Centro Filtri Veneto al banco di Vigonovo, con gli scaffali dei filtri alle spalle" loading="lazy" decoding="async">
-      <figcaption>Il banco: qui si porta il filtro vecchio.</figcaption>
-    </figure>
     <ol class="strada">
       <li>Da Padova Est prendi SR308, Corso Argentina e l'uscita Via Vigonovese, in direzione di Via Statuto dei Lavoratori.</li>
       <li>Segui Via Statuto dei Lavoratori fino a Via del Lavoro, in zona Tombelle.</li>
@@ -429,6 +483,10 @@ h1,h2,h3{margin:0;text-wrap:balance}
       <span class="osm">Dati &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></span>
     </div>
   </div>
+  <figure class="banco-foto">
+    <img src="img/banco-1440.jpg" srcset="img/banco-780.jpg 780w, img/banco-1170.jpg 1170w, img/banco-1440.jpg 1440w, img/banco-2880.jpg 2880w" sizes="(max-width:1440px) 100vw, 1312px" width="1440" height="514" alt="Tre persone di Centro Filtri Veneto al banco di Vigonovo, con le carte sul piano e gli scaffali dei filtri alle spalle" loading="lazy" decoding="async">
+    <figcaption>Il banco: qui si porta il filtro vecchio.</figcaption>
+  </figure>
 </section>
 </main>
 
@@ -436,17 +494,17 @@ h1,h2,h3{margin:0;text-wrap:balance}
   <div class="wrap">
     <div>
       <b>Centro Filtri Veneto S.r.l.</b><br>
-      Via del Lavoro 30, 30030 Vigonovo&nbsp;(VE)<br>
+      Via del Lavoro 30, 30030&nbsp;Vigonovo&nbsp;(VE)<br>
       Tel. <a class="num" href="tel:+390499801910">049&nbsp;9801910</a> · Fax <span class="num">049&nbsp;504099</span><br>
       WhatsApp <a class="num" href="https://wa.me/393206125425" target="_blank" rel="noopener">320&nbsp;6125425</a><br>
-      <a href="mailto:info@centrofiltriveneto.com">info@centrofiltriveneto.com</a><br>
+      <a class="mail-p" href="mailto:info@centrofiltriveneto.com">info@<wbr>centrofiltriveneto.com</a><br>
       <a href="https://www.facebook.com/centrofiltriveneto" target="_blank" rel="noopener">Facebook</a>
     </div>
     <div>
       <b>Ordini e uffici</b><br>
       <a href="https://ecommerce.centrofiltriveneto.com/" target="_blank" rel="noopener">Portale ricambisti</a><br>
-      Resi:<br><a class="ind-mail" href="mailto:resi@centrofiltriveneto.com">resi@centrofiltriveneto.com</a><br>
-      Amministrazione:<br><a class="ind-mail" href="mailto:amministrazione@centrofiltriveneto.com">amministrazione@centrofiltriveneto.com</a>
+      Resi:<br><a class="ind-mail" href="mailto:resi@centrofiltriveneto.com">resi@<wbr>centrofiltriveneto.com</a><br>
+      Amministrazione:<br><a class="ind-mail" href="mailto:amministrazione@centrofiltriveneto.com">amministrazione@<wbr>centrofiltriveneto.com</a>
     </div>
     <p class="legale">© 2026 Centro Filtri Veneto S.r.l. · P.IVA e C.F. 04320460274 · REA VE-401159 · Capitale sociale 20.000&nbsp;euro</p>
   </div>
@@ -455,10 +513,11 @@ h1,h2,h3{margin:0;text-wrap:balance}
 <script>
 (function(){
   var f=document.getElementById('chiedi'), c=document.getElementById('codice'), m=document.getElementById('chiedi-mail');
-  function testo(){var v=c.value.trim();return v?'Buongiorno, avete il filtro '+v+'?':'';}
+  function codice(){return c.value.trim().toUpperCase();}
+  function testo(){var v=codice();return v?'Buongiorno, avete il filtro '+v+'?':'';}
   c.addEventListener('input',function(){
     var t=testo();
-    m.href='mailto:info@centrofiltriveneto.com?subject='+encodeURIComponent(t?'Richiesta filtro '+c.value.trim():'Richiesta filtro')+(t?'&body='+encodeURIComponent(t):'');
+    m.href='mailto:info@centrofiltriveneto.com?subject='+encodeURIComponent(t?'Richiesta filtro '+codice():'Richiesta filtro')+(t?'&body='+encodeURIComponent(t):'');
   });
   f.addEventListener('submit',function(e){
     var t=testo();
