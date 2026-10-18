@@ -1,0 +1,461 @@
+/* Lavoro & Salute: foglio di stile comune a home, Lavoro, Salute e note legali.
+   Il segno: l'arco del logo (misurato sul PNG da 3368 px, _prova/home/segno/arco.json) è il confine tra le due porte.
+   Carattere: Hind 400/500/600, ospitato in font/ (OFL). Colori: arancio e blu del logo, neutri tinti verso il blu. */
+@font-face { font-family: Hind; font-style: normal; font-weight: 400; font-display: swap; src: url(font/hind-400.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: Hind; font-style: normal; font-weight: 400; font-display: swap; src: url(font/hind-400-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+A720-A7FF; }
+@font-face { font-family: Hind; font-style: normal; font-weight: 500; font-display: swap; src: url(font/hind-500.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: Hind; font-style: normal; font-weight: 500; font-display: swap; src: url(font/hind-500-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+A720-A7FF; }
+@font-face { font-family: Hind; font-style: normal; font-weight: 600; font-display: swap; src: url(font/hind-600.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: Hind; font-style: normal; font-weight: 600; font-display: swap; src: url(font/hind-600-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+A720-A7FF; }
+
+:root {
+  --arancio-logo: #E94E1B;   /* resta nel logo */
+  --arancio: #C63F12;        /* campi con testo bianco, 5,1:1 */
+  --arancio-scuro: #A5330D;
+  --arancio-chiaro: #FFE4D8;
+  --blu: #214194;            /* dal logo, 9,3:1 col bianco */
+  --blu-scuro: #182F6E;
+  --blu-chiaro: #DCE3F6;
+  --inchiostro: #1B2347;
+  --testo2: #4A5170;
+  --filetto: #D3D7E3;
+  --fascia: #F3F4F8;
+  --bianco: #FFFFFF;
+  --g: 64px;
+  --largo: 1312px;
+  --testata: 72px;
+  --raggio: 4px;
+  --col-sx: 480px;           /* colonna sinistra delle porte: le voci Lavoro e le specialità partono alla stessa x */
+  --foto-w: clamp(240px, 27vw, 420px);
+  /* scala fissa: 92 parola delle porte, 56 titolo di pagina, 40 sezione, 28 modulo, 20, 18 testo, 16 etichetta, 15 piccolo */
+  --fs-display: 92px; --fs-h1: 56px; --fs-h2: 40px; --fs-h4: 28px; --fs-h3: 20px; --fs-testo: 18px; --fs-etichetta: 16px; --fs-piccolo: 15px;
+  /* spazi: 4 8 12 16 24 32 48 64 96 */
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: light; } }
+:root[data-theme="dark"] { color-scheme: light; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--testata) + 16px); }
+body {
+  margin: 0; background: var(--bianco); color: var(--inchiostro);
+  font-family: Hind, "Frutiger", "Segoe UI", system-ui, sans-serif; font-size: var(--fs-testo); line-height: 1.6;
+  font-synthesis: none; -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3, h4 { text-wrap: balance; font-weight: 500; }
+p, dd, li { text-wrap: pretty; }
+.nascosto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.riga { width: min(100% - 2 * var(--g), var(--largo)); margin-inline: auto; }
+.tel { white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--inchiostro); outline-offset: 3px; }
+.salta { position: absolute; left: 16px; top: -60px; z-index: 50; background: var(--inchiostro); color: var(--bianco); padding: 8px 16px; border-radius: var(--raggio); }
+.salta:focus { top: 8px; }
+
+/* bottoni: l'hover cambia il colore pieno, mai l'opacità */
+.bott {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px;
+  border: 0; border-radius: var(--raggio); font: 600 var(--fs-etichetta)/1.2 Hind, sans-serif;
+  text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color .15s ease, color .15s ease;
+}
+.bott::after { content: ""; width: 7px; height: 7px; border: solid currentColor; border-width: 2px 2px 0 0; transform: rotate(45deg); transition: transform .15s ease; }
+.bott:hover::after { transform: translateX(3px) rotate(45deg); }
+.bott-bianco-a { background: var(--bianco); color: var(--arancio-scuro); }
+.bott-bianco-a:hover { background: var(--arancio-chiaro); }
+.bott-bianco-b { background: var(--bianco); color: var(--blu); }
+.bott-bianco-b:hover { background: var(--blu-chiaro); }
+.bott-arancio { background: var(--arancio); color: var(--bianco); }
+.bott-arancio:hover { background: var(--arancio-scuro); }
+.bott-blu { background: var(--blu); color: var(--bianco); }
+.bott-blu:hover { background: var(--blu-scuro); }
+.link-freccia { font-weight: 600; font-size: var(--fs-etichetta); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.link-freccia:hover { text-decoration-thickness: 2px; }
+.campo-a :focus-visible, .campo-b :focus-visible { outline-color: var(--bianco); }
+
+/* testata */
+.testata { position: sticky; top: 0; z-index: 20; background: var(--bianco); border-bottom: 1px solid var(--filetto); }
+.testata .riga { height: var(--testata); display: flex; align-items: center; gap: 32px; }
+.testata .logo { flex: none; }
+.testata .logo img { height: 50px; width: auto; }
+.interruttore { display: flex; flex: none; border: 1px solid var(--filetto); border-radius: var(--raggio); overflow: hidden; }
+.interruttore a {
+  display: flex; align-items: center; min-height: 40px; padding: 0 14px; text-decoration: none;
+  font-weight: 600; font-size: var(--fs-piccolo); letter-spacing: .06em; text-transform: uppercase; line-height: 1;
+  transition: background-color .15s ease, color .15s ease;
+}
+.interruttore a + a { border-left: 1px solid var(--filetto); }
+.interruttore .i-lavoro { color: var(--arancio-scuro); }
+.interruttore .i-salute { color: var(--blu); }
+.interruttore .i-lavoro:hover { background: var(--arancio-chiaro); }
+.interruttore .i-salute:hover { background: var(--blu-chiaro); }
+.interruttore .i-lavoro[aria-current="page"] { background: var(--arancio); color: var(--bianco); }
+.interruttore .i-salute[aria-current="page"] { background: var(--blu); color: var(--bianco); }
+.menu { display: flex; gap: 24px; }
+.menu a { font-size: var(--fs-etichetta); font-weight: 500; text-decoration: none; white-space: nowrap; padding: 6px 0; border-bottom: 2px solid transparent; }
+.menu a:hover { border-bottom-color: var(--inchiostro); }
+.testata .orari { margin-left: auto; font-size: var(--fs-piccolo); line-height: 1.35; color: var(--testo2); white-space: nowrap; }
+.testata .orari b { display: block; font-weight: 600; color: var(--inchiostro); }
+.testata .chiama { text-decoration: none; line-height: 1.2; flex: none; }
+.testata .chiama span { display: block; font-size: var(--fs-piccolo); color: var(--testo2); }
+.testata .chiama strong { font-size: 24px; font-weight: 600; white-space: nowrap; }
+.testata .chiama:hover strong { color: var(--blu); }
+.testata-azioni { display: flex; gap: 8px; flex: none; }
+.testata-azioni .bott { min-height: 44px; padding: 0 16px; font-size: var(--fs-piccolo); }
+html.js body:not(.oltre) .testata-azioni { display: none; }
+html.js body.oltre .testata .orari { display: none; }
+html.js body.oltre .testata .chiama { margin-left: auto; }
+
+/* arco: il segno del logo */
+.arco { position: absolute; left: 0; bottom: -1px; width: 100%; height: auto; aspect-ratio: 1000 / 127; display: block; z-index: 2; overflow: visible; pointer-events: none; }
+.arco .nastro-testo { font: 600 11.1px Hind, sans-serif; fill: var(--inchiostro); display: none; }
+.arco a { pointer-events: auto; }
+.arco a:hover .nastro-testo, .arco a:focus .nastro-testo { fill: var(--blu); text-decoration: underline; }
+.arco-box { position: absolute; left: 0; right: 0; bottom: 0; aspect-ratio: 1000 / 127; z-index: 3; pointer-events: none; }
+.nodo { position: absolute; left: 50%; top: 7.54%; transform: translate(-50%, -50%); width: clamp(56px, 7.64vw, 110px); pointer-events: auto; border-radius: 50%; }
+.nodo img { width: 100%; height: auto; transition: transform .15s ease; }
+.nodo:hover img { transform: scale(1.05); }
+
+/* ===== HOME: le due porte ===== */
+.porte { position: relative; }
+.porta-lavoro { position: relative; background: var(--arancio); color: var(--bianco); padding-top: 12px; padding-bottom: 12.7%; }
+.porta-lavoro .contenuto {
+  margin-left: max(var(--g), (100% - var(--largo)) / 2); margin-right: calc(var(--foto-w) + 48px);
+  display: grid; grid-template-columns: var(--col-sx) minmax(0, 1fr); column-gap: 48px; padding-bottom: 44px; position: relative; z-index: 1;
+}
+.porta-lavoro .apertura { padding-top: 40px; }
+.parola { font-size: var(--fs-display); line-height: .92; font-weight: 500; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 16px -4px; }
+.porta-lavoro .chi, .porta-salute .chi { font-size: var(--fs-h3); line-height: 1.35; font-weight: 500; max-width: 30ch; margin-bottom: 24px; }
+.porta-salute .chi { max-width: none; margin-bottom: 16px; }
+.porta-lavoro .o-chiama { font-size: var(--fs-piccolo); margin-top: 12px; color: var(--arancio-chiaro); }
+.porta-lavoro .o-chiama a { color: var(--bianco); font-weight: 600; text-underline-offset: 3px; }
+.voci a {
+  display: grid; grid-template-columns: 1fr 12px; align-items: center; column-gap: 12px;
+  padding: 7px 12px; margin: 0 -12px; border-radius: var(--raggio); text-decoration: none; transition: background-color .15s ease;
+}
+.voci a::after { content: ""; grid-column: 2; grid-row: 1 / span 2; width: 7px; height: 7px; border: solid currentColor; border-width: 2px 2px 0 0; transform: rotate(45deg); transition: transform .15s ease; }
+.voci a:hover::after { transform: translateX(3px) rotate(45deg); }
+.voci b { font-weight: 600; font-size: var(--fs-etichetta); line-height: 1.3; }
+.voci span { font-size: var(--fs-piccolo); line-height: 1.4; }
+.porta-lavoro .voci a:hover { background: var(--arancio-scuro); }
+.porta-lavoro .voci span { color: var(--arancio-chiaro); }
+.foto-porta { position: absolute; top: 0; right: 0; bottom: 0; width: var(--foto-w); margin: 0; }
+.foto-porta img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
+.foto-striscia { display: none; }
+.porta-lavoro .chi .breve { display: none; }
+
+.porta-salute { background: var(--blu); color: var(--bianco); padding: 0 0 40px; }
+.porta-salute .contenuto { margin-top: -18px; position: relative; z-index: 4; display: grid; grid-template-columns: var(--col-sx) minmax(0, 1fr); column-gap: 48px; }
+.telgrande { display: inline-block; font-size: var(--fs-h2); line-height: 1.1; font-weight: 500; text-decoration: none; white-space: nowrap; }
+.telgrande:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.porta-salute .orario { font-size: var(--fs-piccolo); color: var(--blu-chiaro); margin: 4px 0 18px; }
+.porta-salute .lato { padding-top: 6px; }
+.volti { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.volti li { min-width: 0; }
+.volti .faccia { display: block; text-decoration: none; }
+.volti img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raggio); background: #ECEEF3; }
+.volti b { display: block; font-size: var(--fs-piccolo); font-weight: 600; line-height: 1.3; margin-top: 8px; white-space: nowrap; }
+.volti .faccia:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.volti .spec { display: block; font-size: 14px; line-height: 1.3; color: var(--blu-chiaro); text-decoration: none; margin-top: 2px; hyphens: manual; }
+.volti .spec:hover { color: var(--bianco); text-decoration: underline; text-underline-offset: 3px; }
+.porta-salute .altro { font-size: var(--fs-piccolo); margin-top: 20px; color: var(--blu-chiaro); }
+.porta-salute .altro a { color: var(--bianco); text-underline-offset: 3px; }
+.porta-salute .altro a:hover { text-decoration-thickness: 2px; }
+
+/* sezioni sotto le porte */
+.sez { padding: 96px 0; }
+.sez h2 { font-size: var(--fs-h2); line-height: 1.14; letter-spacing: -0.005em; margin-bottom: 16px; }
+.sez h2 .a { color: var(--arancio); }
+.sez h2 .b { color: var(--blu); }
+.sez .apre { color: var(--testo2); max-width: 52ch; margin-bottom: 32px; }
+
+.divisa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 0; }
+.divisa > .foto { margin: 0; position: relative; }
+.divisa > .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.divisa > .testo { padding: 96px var(--g) 96px 64px; max-width: 720px; }
+.divisa.testo-sx > .testo { padding: 96px 64px 96px max(var(--g), (100vw - var(--largo)) / 2); max-width: none; }
+
+.passi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 8px 0 32px; counter-reset: passo; }
+.passi li { counter-increment: passo; border-top: 1px solid var(--filetto); padding-top: 16px; }
+.passi li::before { content: counter(passo); display: block; font-size: var(--fs-h2); line-height: 1; font-weight: 500; color: var(--arancio); margin-bottom: 12px; }
+.passi b { display: block; font-weight: 600; font-size: var(--fs-etichetta); line-height: 1.35; margin-bottom: 4px; }
+.passi span { display: block; color: var(--testo2); font-size: var(--fs-piccolo); line-height: 1.45; }
+.legge { font-size: var(--fs-piccolo); color: var(--testo2); margin-bottom: 32px; }
+.azioni { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+
+.elenco li { display: grid; grid-template-columns: minmax(0, 19ch) minmax(0, 1fr); gap: 24px; padding: 14px 0; border-top: 1px solid var(--filetto); }
+.elenco li:last-child { border-bottom: 1px solid var(--filetto); }
+.elenco b { font-weight: 600; font-size: var(--fs-etichetta); line-height: 1.4; }
+.elenco span { color: var(--testo2); font-size: 17px; line-height: 1.45; }
+
+/* sede e mappa */
+.limena { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); padding: 0; }
+.limena .testo { padding: 96px 64px 96px max(var(--g), (100vw - var(--largo)) / 2); }
+.dati { display: grid; grid-template-columns: max-content 1fr; gap: 8px 24px; margin: 8px 0 32px; font-size: 17px; }
+.dati dt { font-weight: 600; }
+.dati dd { color: var(--testo2); }
+.limena .stesso { color: var(--testo2); max-width: 44ch; margin-bottom: 24px; }
+.mappa { position: relative; margin: 0; min-height: 620px; background: #EEF0F5; overflow: hidden; }
+.mappa > a { position: absolute; inset: 0; display: block; }
+.mappa img { width: 100%; height: 100%; object-fit: cover; }
+.mappa .et { position: absolute; font-size: var(--fs-piccolo); line-height: 1.25; color: var(--inchiostro); text-shadow: 0 0 3px #EEF0F5, 0 0 3px #EEF0F5, 0 0 6px #EEF0F5; pointer-events: none; }
+.mappa .et-via { font-weight: 600; color: var(--blu); font-size: 17px; }
+.mappa .osm { position: absolute; right: 8px; bottom: 6px; font-size: 12px; color: var(--testo2); background: #EEF0F5; padding: 0 4px; }
+
+/* moduli */
+.richiesta h2, .richiesta h3 { font-size: var(--fs-h4); line-height: 1.15; font-weight: 500; margin-bottom: 6px; }
+.richiesta > p { font-size: var(--fs-piccolo); color: var(--testo2); line-height: 1.5; margin-bottom: 20px; }
+.richiesta form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: end; }
+.richiesta .largo { grid-column: 1 / -1; }
+label { display: grid; gap: 6px; font-size: var(--fs-piccolo); font-weight: 600; line-height: 1.2; }
+input, select {
+  width: 100%; height: 52px; padding: 0 12px; border: 1px solid #9CA2BA; border-radius: var(--raggio);
+  font: 400 17px Hind, sans-serif; color: var(--inchiostro); background: var(--bianco);
+}
+input:focus, select:focus { outline: 3px solid var(--blu); outline-offset: 0; border-color: var(--blu); }
+.form-nota { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; font-weight: 400; font-size: var(--fs-piccolo); color: var(--testo2); }
+.form-nota label { display: flex; gap: 8px; align-items: center; font-weight: 400; }
+.form-nota input { width: 20px; height: 20px; accent-color: var(--blu); }
+.richiesta .bott { justify-content: center; }
+
+/* ===== PAGINE INTERNE: le fasce delle porte ===== */
+.campo { position: relative; color: var(--bianco); }
+.campo .riga { position: relative; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; align-items: start; }
+.campo h1 { font-size: var(--fs-h1); line-height: 1.04; letter-spacing: -0.01em; margin-bottom: 16px; }
+.campo .chi { font-size: var(--fs-h3); line-height: 1.4; font-weight: 500; max-width: 34ch; margin-bottom: 32px; }
+.campo .azioni .telgrande { font-size: 32px; }
+.campo-a { background: var(--arancio); padding: 64px 0 calc(12.7% + 8px); }
+.campo-a .bordo { position: absolute; left: 0; bottom: -1px; width: 100%; height: auto; aspect-ratio: 1000 / 127; z-index: 2; }
+.campo-a .azioni { gap: 16px 32px; }
+.campo-a .riga > div:first-child { padding-top: 24px; }
+.campo-b { background: var(--blu); padding: calc(12.7% - 64px) 0 88px; }
+.campo-b .bordo { position: absolute; left: 0; top: -1px; width: 100%; height: auto; aspect-ratio: 1000 / 127; z-index: 2; }
+.campo-b .riga { padding-top: 56px; }
+.campo-b .orario { font-size: var(--fs-piccolo); color: var(--blu-chiaro); margin: 4px 0 24px; }
+
+.ritratto { margin: 0; display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 24px; align-items: end; }
+.ritratto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raggio); }
+.ritratto figcaption { font-size: var(--fs-piccolo); line-height: 1.5; padding-bottom: 4px; }
+.ritratto figcaption b { display: block; font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+.ritratto .r1 { display: block; color: var(--bianco); }
+.ritratto .r2 { display: block; color: var(--arancio-chiaro); }
+
+.prenota { display: grid; gap: 0; }
+.prenota div { padding: 16px 0; border-top: 1px solid rgba(255, 255, 255, .35); }
+.prenota div:last-child { border-bottom: 1px solid rgba(255, 255, 255, .35); }
+.prenota dt { font-weight: 600; font-size: var(--fs-etichetta); }
+.prenota dd { font-size: var(--fs-piccolo); color: var(--blu-chiaro); line-height: 1.5; }
+.campo-b h2.piccolo { font-size: var(--fs-h3); font-weight: 600; margin-bottom: 8px; }
+
+/* specialità (pagina Salute) */
+.specialita > li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) max-content; gap: 32px; padding: 28px 0; border-top: 1px solid var(--filetto); align-items: start; scroll-margin-top: calc(var(--testata) + 16px); }
+.specialita > li:last-child { border-bottom: 1px solid var(--filetto); }
+.specialita h3 { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; color: var(--blu); margin-bottom: 4px; }
+.specialita .riga1 { color: var(--testo2); font-size: 17px; margin-bottom: 10px; }
+.specialita .resp { font-size: var(--fs-piccolo); line-height: 1.5; }
+.specialita .resp b { font-weight: 600; }
+.specialita .prest li { font-size: var(--fs-piccolo); line-height: 1.45; padding: 3px 0 3px 16px; position: relative; color: var(--inchiostro); }
+.specialita .prest li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 2px; background: var(--blu); }
+.specialita .chiedi { align-self: center; }
+
+.medici { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
+.medici img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raggio); background: #ECEEF3; margin-bottom: 12px; }
+.medici b { display: block; font-weight: 600; font-size: var(--fs-etichetta); line-height: 1.3; margin-bottom: 4px; }
+.medici span { display: block; font-size: var(--fs-piccolo); line-height: 1.45; color: var(--testo2); }
+.medici .ord { margin-top: 6px; font-size: 14px; }
+
+.servizi-salute { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
+.servizi-salute p { border-top: 1px solid var(--filetto); padding-top: 16px; color: var(--testo2); font-size: 17px; }
+.servizi-salute b { display: block; color: var(--inchiostro); font-weight: 600; font-size: var(--fs-etichetta); }
+
+.fascia { background: var(--fascia); }
+.due-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.contatti-az .telgrande { color: var(--arancio-scuro); margin: 8px 0 4px; }
+.contatti-az .telgrande:hover { color: var(--arancio); }
+.convenzione { margin-top: 24px; color: var(--testo2); font-size: 17px; max-width: 60ch; }
+.convenzione b { color: var(--inchiostro); font-weight: 600; }
+
+/* note legali */
+.legali { padding: 64px 0 96px; }
+.legali h1 { font-size: var(--fs-h2); line-height: 1.14; margin-bottom: 32px; }
+.legali section { max-width: 760px; padding: 24px 0; border-top: 1px solid var(--filetto); }
+.legali h2 { font-size: var(--fs-h3); font-weight: 600; margin-bottom: 8px; }
+.legali p { color: var(--testo2); font-size: 17px; margin-bottom: 8px; }
+
+/* piede */
+.piede { border-top: 1px solid var(--filetto); padding: 48px 0 32px; font-size: var(--fs-piccolo); line-height: 1.55; color: var(--testo2); }
+.piede .riga { display: grid; grid-template-columns: 1.1fr 1fr 1.2fr .9fr; gap: 32px; }
+.piede h2 { font-size: var(--fs-etichetta); font-weight: 600; color: var(--inchiostro); margin-bottom: 8px; }
+.piede img { height: 40px; width: auto; margin-bottom: 12px; }
+.piede a { color: var(--inchiostro); }
+.piede a:hover { color: var(--blu); }
+.piede .ultima { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--filetto); }
+
+.barra { display: none; }
+
+@media (min-width: 1320px) { .arco .nastro-testo { display: inline; } }
+@media (max-width: 1280px) {
+  .testata .riga { gap: 24px; }
+  .menu { gap: 20px; }
+}
+@media (max-width: 1180px) {
+  :root { --g: 40px; --col-sx: 400px; }
+  .testata .orari, .testata-azioni { display: none !important; }
+  .testata .chiama { margin-left: auto; }
+  .parola { font-size: 70px; }
+  .porta-salute .contenuto { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .porta-lavoro .contenuto { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
+  .porta-lavoro .apertura { padding-top: 16px; }
+  .divisa > .testo { padding: 72px var(--g) 72px 40px; }
+  .divisa.testo-sx > .testo { padding: 72px 40px 72px var(--g); }
+  .limena .testo { padding: 72px 40px 72px var(--g); }
+  .piede .riga { grid-template-columns: 1fr 1fr; }
+  .medici { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .specialita > li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .specialita .chiedi { grid-column: 1 / -1; justify-self: start; }
+  .campo h1 { font-size: 48px; }
+  .ritratto { grid-template-columns: minmax(0, 240px) minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+  .menu { display: none; }
+  .divisa, .limena, .due-col { grid-template-columns: minmax(0, 1fr); }
+  .due-col { gap: 48px; }
+  .divisa > .foto { aspect-ratio: 16 / 9; }
+  .divisa > .testo, .divisa.testo-sx > .testo, .limena .testo { padding: 56px var(--g); max-width: none; }
+  .mappa { aspect-ratio: 3 / 2; min-height: 0; }
+  .campo .riga { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .passi { gap: 20px; }
+}
+@media (max-width: 720px) {
+  :root { --g: 16px; --testata: 60px; --fs-h2: 29px; --fs-h3: 18px; --fs-testo: 17px; --fs-h4: 24px; }
+  .testata .riga { gap: 12px; }
+  .testata .logo img { height: 36px; }
+  .testata .chiama { display: none; }
+  .interruttore { margin-left: auto; }
+  .interruttore a { padding: 0 10px; min-height: 36px; font-size: 14px; letter-spacing: .04em; }
+  .bott { min-height: 48px; padding: 0 18px; font-size: 15px; }
+
+  .foto-porta { display: none; }
+  .foto-striscia { display: block; margin: 0; height: 140px; }
+  .foto-striscia img { width: 100%; height: 140px; object-fit: cover; }
+  .porta-lavoro { padding-top: 0; }
+  .porta-lavoro .contenuto { margin: 0 var(--g); display: block; padding: 14px 0 34px; }
+  .porta-lavoro .apertura { padding-top: 0; }
+  .parola { font-size: 44px; margin-bottom: 6px; margin-left: -2px; }
+  .porta-lavoro .chi, .porta-salute .chi { font-size: 17px; margin-bottom: 10px; max-width: none; }
+  .porta-lavoro .chi .lungo { display: none; }
+  .porta-lavoro .chi .breve { display: inline; }
+  .porta-lavoro .o-chiama { display: none; }
+  .porta-lavoro .voci { margin-top: 10px; }
+  .voci a { padding: 4px 8px; margin: 0 -8px; }
+  .voci span { display: none; }
+  .voci b { font-size: 16px; }
+  .porta-salute { padding: 0 0 28px; }
+  .porta-salute .contenuto { margin-top: -4px; row-gap: 20px; }
+  .telgrande { font-size: 29px; }
+  .porta-salute .orario { margin: 2px 0 12px; }
+  .volti { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 10px; }
+  .volti b { font-size: 14px; }
+  .volti .spec { font-size: 13px; }
+  .sez { padding: 56px 0; }
+  .sez.divisa, .sez.limena { padding: 0; }
+  .passi { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .passi li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 12px; }
+  .passi li::before { grid-row: 1 / span 2; font-size: 29px; margin: 0; }
+  .elenco li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .richiesta label:has(select) { grid-column: 1 / -1; }
+  .dati { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .dati dd { margin-bottom: 8px; }
+  .piede .riga { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .mappa .et-chiesa, .mappa .et-centro { display: none; }
+  .campo-a { padding: 32px 0 calc(12.7% + 24px); }
+  .campo-b { padding: 0 0 56px; }
+  .campo-b .riga { padding-top: calc(12.7vw + 8px); }
+  .campo h1 { font-size: 34px; }
+  .campo .chi { font-size: 17px; margin-bottom: 20px; }
+  .campo .azioni .telgrande { font-size: 29px; }
+  .ritratto { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 16px; }
+  .ritratto figcaption b { font-size: 17px; }
+  .specialita > li { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 22px 0; }
+  .medici { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .servizi-salute { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 32px; }
+  .servizi-salute p { padding: 12px 0; }
+  .legali { padding: 40px 0 56px; }
+  .barra {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; position: sticky; bottom: 0; z-index: 30;
+    background: var(--bianco); border-top: 1px solid var(--filetto); padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); gap: 8px;
+  }
+  .barra a { display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: var(--raggio); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .barra .b-tel { background: var(--bianco); color: var(--inchiostro); box-shadow: inset 0 0 0 1px #9CA2BA; }
+  .barra .b-tel:hover { background: var(--fascia); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.due-col .mappa { min-height: 0; aspect-ratio: 3 / 2; border-radius: var(--raggio); }
+.due-col .dati { margin-top: 0; }
+
+/* pagine interne: l'arco completo e il passaggio all'altra porta */
+.campo-a { padding-bottom: calc(12.7% + 16px); }
+.campo-a .arco-box { z-index: 3; }
+.passa {
+  position: absolute; pointer-events: auto; font-size: var(--fs-etichetta); font-weight: 600; line-height: 1.3; color: var(--bianco);
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; white-space: nowrap;
+}
+.passa::after { content: ""; display: inline-block; width: 7px; height: 7px; margin-left: 10px; border: solid currentColor; border-width: 2px 2px 0 0; transform: translateY(-2px) rotate(45deg); transition: transform .15s ease; }
+.passa:hover { text-decoration-thickness: 2px; }
+.passa:hover::after { transform: translate(3px, -2px) rotate(45deg); }
+.passa-b { left: 50%; top: 58%; transform: translateX(-50%); }
+.campo-b { padding-top: 0; }
+.campo-b .arco-su { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 127; margin-top: -1px; }
+.campo-b .riga { padding-top: 0; margin-top: -8px; }
+.passa-a { top: 12px; left: max(var(--g), (100% - var(--largo)) / 2); z-index: 4; }
+.passa-a::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 10px; border: solid currentColor; border-width: 0 0 2px 2px; transform: translateY(-2px) rotate(45deg); }
+.passa-a::after { display: none; }
+.ritratto { grid-template-columns: minmax(0, 1fr) minmax(0, 260px); gap: 24px; align-items: end; }
+.ritratto img { grid-column: 2; grid-row: 1; }
+.ritratto figcaption { grid-column: 1; grid-row: 1; padding: 0 0 4px; text-align: right; }
+.passi-sez { padding: 72px 0; }
+.passi-sez .riga { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 32px; align-items: start; }
+.passi-sez .passi { margin: 0; }
+.specialita .chiedi { color: var(--blu); }
+@media (max-width: 1180px) {
+  .ritratto { grid-template-columns: minmax(0, 1fr) minmax(0, 220px); }
+  .passi-sez .riga { grid-template-columns: minmax(0, 1fr); }
+  .passa-a { font-size: var(--fs-piccolo); }
+}
+@media (max-width: 900px) {
+  .ritratto { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 20px; }
+  .ritratto img { grid-column: 1; }
+  .ritratto figcaption { grid-column: 2; text-align: left; }
+  .campo-b .riga { margin-top: 0; }
+}
+@media (max-width: 720px) {
+  .passa { font-size: 14px; }
+  .passa-b { top: 64%; }
+  .passa-a { top: 6px; font-size: 13px; }
+  .campo-a { padding-bottom: calc(12.7% + 40px); }
+  .campo-b .riga { padding-top: 8px; }
+  .ritratto { grid-template-columns: minmax(0, 130px) minmax(0, 1fr); gap: 16px; }
+  .passi-sez { padding: 48px 0; }
+}
+
+/* medici nella fascia blu della pagina Salute */
+.campo-b .piccolo + .prenota { margin-bottom: 0; }
+.campo-b .bott + .piccolo { margin-top: 48px; }
+.campo-b .medici { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.campo-b .medici b { color: var(--bianco); }
+.campo-b .medici span { color: var(--blu-chiaro); }
+.campo-b #medici .piccolo { margin-bottom: 16px; }
+@media (max-width: 720px) {
+  .campo-b .medici { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .campo-b .bott + .piccolo { margin-top: 32px; }
+}
+.campo-b .prenota + .piccolo { margin-top: 40px; }
+@media (max-width: 720px) { .passa-a { display: none; } }
+@media (max-width: 900px) {
+  .passa-a { display: none; }
+  .volti { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
+}
+@media (max-width: 900px) { .volti { max-width: 540px; } }
+@media (max-width: 720px) { .passa-b { display: none; } .campo-a { padding-bottom: calc(12.7% + 24px); } }
