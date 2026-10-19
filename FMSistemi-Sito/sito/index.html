@@ -12,13 +12,17 @@
 @font-face{font-family:"Funnel Sans";src:url(fonts/funnel-sans-latin.woff2) format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
 
 :root{
-  --fondo:#141414;
-  --testo:#EDE7DF;
-  --testo-2:#A79F95;
-  --spento:#5A544D;
-  --filetto:#2A2A2A;
-  --rame:#B87333;
-  --rame-chiaro:#D6955A;
+  /* palette chiara: calce, grafite, rame; il blu FM solo nel logo e nel segno del fuoco */
+  --fondo:#EDE7DE;            /* calce, uguale al fondo della foto d'apertura */
+  --testo:#23201C;            /* grafite, 13,2:1 */
+  --testo-2:#5C554C;          /* 6,0:1 */
+  --spento:#857C70;           /* lettere senza mestiere, solo in grande: 3,2:1 */
+  --filetto:#D3CABD;
+  --rame:#B4703A;             /* segni e filetti, mai testo */
+  --rame-testo:#8F4F1F;       /* rame per il testo: 5,2:1 */
+  --rame-scuro:#8A4B1F;       /* fondo del bottone, testo calce 6,1:1 */
+  --rame-notte:#6E3814;       /* bottone al passaggio */
+  --blu:#046EA2;              /* blu FM: 4,6:1 */
   --margine:clamp(20px,4.45vw,64px);
   --gola:24px;
   --passo:160px;              /* un passo solo fra tutte le sezioni */
@@ -30,8 +34,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--fondo);color:var(--testo);font:400 18px/1.55 var(--sans);font-kerning:normal;-webkit-font-smoothing:antialiased;font-synthesis:none;overflow-x:clip}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
-a:hover{color:var(--rame-chiaro)}
-:focus-visible{outline:2px solid var(--rame-chiaro);outline-offset:3px}
+a:hover{color:var(--rame-testo)}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .salta{position:absolute;left:-9999px}
@@ -43,7 +47,7 @@ a:hover{color:var(--rame-chiaro)}
 .testa nav{display:flex;align-items:center;gap:32px;margin-left:auto;font-size:16px}
 .testa nav a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .testa nav a:hover{text-decoration:underline}
-.testa .tel{font:500 16px/1 var(--sans);padding-left:32px;border-left:1px solid #34302C}
+.testa .tel{font:500 16px/1 var(--sans);padding-left:32px;border-left:1px solid var(--filetto)}
 
 /* ---------- apertura ----------
    Il raccordo a T in rame attraversa lo schermo; il titolo poggia sulla barra; il gambo scende,
@@ -72,15 +76,15 @@ a:hover{color:var(--rame-chiaro)}
 /* la riga cresce verso l'alto dal bottone: il bordo basso del bottone resta sulla linea di base del titolo */
 .h1-riga{position:absolute;right:var(--margine);width:var(--col);bottom:calc(var(--h) - var(--base) + 44px + 22px);
   margin:0;font:400 17px/1.35 var(--sans);color:var(--testo);text-wrap:pretty}
-.h1-riga .conta{color:var(--rame-chiaro)}
+.h1-riga .conta{color:var(--rame-testo)}
 .azione{position:absolute;right:var(--margine);width:var(--col);bottom:calc(var(--h) - var(--base))}
-.bottone{display:inline-block;background:var(--rame);color:#141414;text-decoration:none;font:500 17px/1 var(--sans);padding:13.5px 22px;transition:background-color .12s}
-.bottone:hover{background:var(--rame-chiaro);color:#141414}
+.bottone{display:inline-block;background:var(--rame-scuro);color:#F7F2EA;text-decoration:none;font:500 17px/1 var(--sans);padding:13.5px 22px;transition:background-color .12s}
+.bottone:hover{background:var(--rame-notte);color:#F7F2EA}
 .azione .scrivi{margin-left:18px;font-size:16px;white-space:nowrap}
 
-.didascalia{position:absolute;left:0;bottom:var(--striscia);width:calc(var(--margine) + 400px);padding:28px 36px 30px var(--margine);background:var(--fondo);margin:0}
+.didascalia{position:absolute;left:0;bottom:var(--striscia);width:calc(var(--margine) + 400px);padding:28px 36px 30px var(--margine);margin:0}
 .didascalia .voce{display:block;font:400 30px/1.05 var(--display);letter-spacing:-.02em;margin-bottom:10px}
-.didascalia .voce b{font-weight:400;color:var(--rame-chiaro);margin-right:.3em}
+.didascalia .voce b{font-weight:400;color:var(--rame-testo);margin-right:.3em}
 .didascalia .cosa{display:block;font-size:17px;line-height:1.45;color:var(--testo);text-wrap:pretty}
 
 /* l'alfabeto: ventuno lettere, accese solo quelle che hanno un lavoro */
@@ -90,8 +94,8 @@ a:hover{color:var(--rame-chiaro)}
 .alfabeto a{color:var(--testo);transition:color .12s;-webkit-tap-highlight-color:transparent}
 .alfabeto .l{position:relative;display:block}
 .alfabeto .l::before{content:"";position:absolute;left:50%;top:-22px;width:24px;margin-left:-12px;height:3px;background:transparent;transition:background-color .12s}
-.alfabeto a:hover{color:var(--rame-chiaro)}
-.alfabeto a.qui{color:var(--rame-chiaro)}
+.alfabeto a:hover{color:var(--rame-testo)}
+.alfabeto a.qui{color:var(--rame-testo)}
 .alfabeto a.qui .l::before{background:var(--rame)}
 .alfabeto .nome{position:absolute;left:0;top:calc(100% + 9px);font:400 13px/1 var(--sans);color:var(--testo-2);white-space:nowrap}
 
@@ -106,7 +110,7 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
 .cantiere{list-style:none;margin:88px 0 0;padding:0;border-bottom:1px solid var(--filetto)}
 .cantiere li{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gola);padding:0 var(--margine);border-top:1px solid var(--filetto);scroll-margin-top:32px}
 .cantiere .idx{grid-column:1;grid-row:1;padding-top:30px;font-size:14px;line-height:1;color:var(--testo-2)}
-.cantiere .cap-l{grid-column:2 / span 2;grid-row:1;position:relative;align-self:start;margin-top:26px;font:400 152px/.74 var(--display);letter-spacing:-.02em;color:var(--rame-chiaro)}
+.cantiere .cap-l{grid-column:2 / span 2;grid-row:1;position:relative;align-self:start;margin-top:26px;font:400 152px/.74 var(--display);letter-spacing:-.02em;color:var(--rame-testo)}
 .cantiere .cap-l::after{content:"";position:absolute;left:4px;bottom:-22px;width:32px;height:3px;background:transparent}
 .cantiere li:target .cap-l::after{background:var(--rame)}
 .cantiere .t{grid-column:4 / span 3;grid-row:1;padding:26px 0 24px}
@@ -244,7 +248,7 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
 <a class="salta" href="#lavori">Salta ai lavori</a>
 
 <header class="testa">
-  <a href="index.html" aria-label="F.M. Sistemi, inizio"><img class="marchio" src="img/logo-chiaro.png" width="480" height="80" alt="FM Sistemi"></a>
+  <a href="index.html" aria-label="F.M. Sistemi, inizio"><img class="marchio" src="img/logo.png" width="480" height="80" alt="FM Sistemi"></a>
   <nav aria-label="Principale">
     <a href="#lavori">Lavori</a>
     <a href="#chi">Chi siamo</a>
@@ -261,7 +265,7 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
   <figure class="tavola">
     <picture>
       <source media="(max-width:600px)" srcset="img/tavola-t-m-780.jpg 780w, img/tavola-t-m-1170.jpg 1170w" sizes="100vw">
-      <img src="img/tavola-t-2000.jpg" srcset="img/tavola-t-1600.jpg 1600w, img/tavola-t-2000.jpg 2000w, img/tavola-t-2560.jpg 2560w" sizes="calc(100vw + 80px)" width="2000" height="1761" alt="Raccordo a T in rame su fondo nero, ruotato fino a disegnare una T maiuscola">
+      <img src="img/tavola-t-2000.jpg" srcset="img/tavola-t-1600.jpg 1600w, img/tavola-t-2000.jpg 2000w, img/tavola-t-2560.jpg 2560w" sizes="calc(100vw + 80px)" width="2000" height="1761" alt="Raccordo a T in rame su fondo chiaro, ruotato fino a disegnare una T maiuscola">
     </picture>
   </figure>
 
@@ -318,9 +322,9 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
       <picture class="striscia"><source media="(max-width:600px)" srcset="img/lavoro-e-m-780.jpg 780w, img/lavoro-e-m-1170.jpg 1170w" sizes="100vw">
         <img src="img/lavoro-e-720.jpg" srcset="img/lavoro-e-720.jpg 720w, img/lavoro-e-1440.jpg 1440w" sizes="(max-width:1100px) 100vw, 50vw" alt="Morsetti di una fila di interruttori e cavi pettinati in parallelo" loading="lazy" width="720" height="206"></picture></li>
     <li id="lavoro-a"><span class="idx num">04</span><span class="cap-l" aria-hidden="true">A</span>
-      <div class="t"><h3>Acqua</h3><p>Trattamento dell'acqua che arriva a caldaia e rubinetti.</p><p class="nella">Nella foto: gocce d’acqua su fondo nero.</p></div>
+      <div class="t"><h3>Acqua</h3><p>Trattamento dell'acqua che arriva a caldaia e rubinetti.</p><p class="nella">Nella foto: gocce d’acqua su una superficie chiara.</p></div>
       <picture class="striscia"><source media="(max-width:600px)" srcset="img/lavoro-a-m-780.jpg 780w, img/lavoro-a-m-1170.jpg 1170w" sizes="100vw">
-        <img src="img/lavoro-a-720.jpg" srcset="img/lavoro-a-720.jpg 720w, img/lavoro-a-1440.jpg 1440w" sizes="(max-width:1100px) 100vw, 50vw" alt="Gocce d’acqua in controluce su fondo nero" loading="lazy" width="720" height="206"></picture></li>
+        <img src="img/lavoro-a-720.jpg" srcset="img/lavoro-a-720.jpg 720w, img/lavoro-a-1440.jpg 1440w" sizes="(max-width:1100px) 100vw, 50vw" alt="Gocce d’acqua fitte su una superficie chiara" loading="lazy" width="720" height="206"></picture></li>
     <li id="lavoro-p"><span class="idx num">05</span><span class="cap-l" aria-hidden="true">P</span>
       <div class="t"><h3>Pompe di calore</h3><p>Pompe di calore e sistemi ibridi, come partner Viessmann.</p><p class="nella">Nella foto: griglia del ventilatore di un’unità esterna.</p></div>
       <picture class="striscia"><source media="(max-width:600px)" srcset="img/lavoro-p-m-780.jpg 780w, img/lavoro-p-m-1170.jpg 1170w" sizes="100vw">
@@ -395,7 +399,7 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
 
 <footer class="piede">
   <div class="griglia">
-    <img src="img/logo-chiaro.png" width="480" height="80" alt="FM Sistemi" loading="lazy">
+    <img src="img/logo.png" width="480" height="80" alt="FM Sistemi" loading="lazy">
     <p class="dati num">F.M. Sistemi S.r.l., via del Lavoro 37, 30030 Vigonovo (VE)<br>
       Partita IVA e codice fiscale 03807720283<br>
       PEC fmsistemisrl@legalmail.it, telefono +39&nbsp;049&nbsp;8305354</p>
