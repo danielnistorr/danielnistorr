@@ -31,3 +31,13 @@ Scaricate da images.unsplash.com a 2400 px di lato lungo.
 | `esterne/unsplash-heming-y-3PcleigTk.jpg` | https://unsplash.com/photos/abstract-pattern-of-black-metal-wires-y-3PcleigTk | Miká Heming | 07/01/2026 | 2400x1600 | B | armature in ferro in prospettiva, quasi nere (Praga): per "Opere in cemento" |
 
 Scartata dopo il download: Hardco Group `HyiMqlu5s9I` (copertura bianca in acciaio in montaggio): è un fotogramma morbido con una scritta semitrasparente sovrimpressa ("...snip"). File cancellato.
+
+## Estratti dal PDF in `originali/pdf-estratti/` (usati nella home finale)
+
+Estratti il 19/10/2026 con `pdfimages -f 28 -l 28 -png` da `originali/pdf/Company-Project-Portfolio.pdf` (pagina 28, "Bridge Sarpi, Padova, Italy, engineering and detailing", 2008), senza ricompressione. Materiale di Tre Esse S.r.l.: l'uso va confermato con l'azienda.
+
+- `p28-000.png`, `p28-001.png`: le due strisce raster (1027x537 ciascuna, 220 ppi) che compongono l'assonometria dell'arco del Sarpi. Da qui la tavola della home (`sito/img/sarpi-tavola-*`), con il tratto ricostruito a 2x.
+- `p28-002.png`: il Sarpi finito all'ora blu, riflesso nell'acqua (931x529). Da qui `sito/img/sarpi-opera-*`.
+- `p28-003.png`: il Sarpi all'ora blu dalla carreggiata (931x657). Non usato.
+
+La cupola di Adria della home (`sito/img/adria-cupola-*`) viene da `portfolio-ritagli/adria-cupola-dal-basso.jpg`.

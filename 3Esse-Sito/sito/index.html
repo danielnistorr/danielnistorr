@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tre Esse, ingegneria strutturale a Vigonovo</title>
+<meta name="description" content="Tre Esse S.r.l., società di ingegneria di Vigonovo (VE): calcoli statici, disegni costruttivi, direzione lavori e collaudo di ponti e strutture in acciaio e cemento armato.">
+<link rel="preload" href="fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Overpass (Delve Withrington, SIL Open Font License 1.1), file da Google Fonts, serviti dalla pagina */
+@font-face{font-family:"Overpass";src:url(fonts/overpass-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Overpass";src:url(fonts/overpass-latin-ext.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --carta:#F4F3EF;
+  --inchiostro:#16191C;
+  --grigio:#5E646A;     /* testo secondario, 5,6:1 sulla carta */
+  --quota:#8A9096;      /* filetti del cartiglio e della tabella */
+  --verde:#2E7D4F;      /* il verde del "3" del marchio */
+  --m:64px;             /* margine laterale */
+  --g:24px;             /* canalino */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--carta);color:var(--inchiostro);font-family:"Overpass",system-ui,sans-serif;font-size:19px;line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:6}
+.testata .wrap{display:flex;align-items:center;gap:40px;height:88px}
+.marchio{display:flex;align-items:baseline;gap:10px;text-decoration:none;font-weight:600;font-size:21px;letter-spacing:-.01em}
+.marchio b{font-weight:700;color:var(--verde);font-size:30px;line-height:1}
+.marchio span{font-weight:400;color:var(--grigio);font-size:15px;letter-spacing:0}
+.menu{display:flex;gap:36px;list-style:none;font-size:17px;margin-left:auto}
+.menu a{text-decoration:none}
+.menu a:hover,.menu a:focus-visible,.tel:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.tel{font-size:17px;text-decoration:none;font-weight:500}
+
+/* apertura: la tavola */
+.apertura{position:relative;height:max(720px,min(100svh,1200px));overflow:hidden;border-bottom:1px solid var(--quota)}
+.apertura .testo{position:relative;z-index:3;padding-top:clamp(150px,18vh,200px)}
+h1{font-weight:300;font-size:clamp(52px,9.2vw,132px);line-height:.93;letter-spacing:-.035em;margin-left:-.05em}
+.sotto{max-width:540px;margin-top:40px;font-size:21px;line-height:1.5}
+.azioni{display:flex;align-items:center;gap:28px;margin-top:40px;font-size:17px}
+.bottone{display:inline-block;background:var(--verde);color:#fff;text-decoration:none;padding:15px 24px 13px;font-weight:600;border-radius:2px;transition:background-color .15s}
+.bottone:hover,.bottone:focus-visible{background:#1F5C39}
+.azioni .dove{color:var(--grigio)}
+
+.tavola{position:absolute;inset:0;z-index:1;margin:0}
+/* la tavola segue l'altezza della finestra; sotto i 900 px scorre a sinistra per lasciare libero il cartiglio */
+.disegno{position:absolute;top:64px;right:0;height:min(calc((100% - 64px) * 1.16),69.6vw);aspect-ratio:900/1044;transform:translateX(calc(3% - clamp(0px, (900px - 100svh) * .75, 200px)))}
+.disegno img{width:100%;height:100%}
+.opera{position:absolute;right:0;top:clamp(150px,20.5vh,220px);width:52%;aspect-ratio:923/521}
+.opera img{width:100%;height:100%;object-fit:cover}
+.tavola[data-vista="disegno"] .opera,.tavola[data-vista="opera"] .disegno{display:none}
+.segno{position:absolute;display:flex;align-items:center;gap:8px;font-size:14px;line-height:1;transform:translate(-11px,-11px);white-space:nowrap}
+.segno i{font-style:normal;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--inchiostro);background:var(--carta);font-size:12px;font-weight:600;padding-top:2px}
+.segno em{font-style:normal;background:var(--carta);padding:4px 6px 3px}
+.segno.sx{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-11px)}
+
+/* cartiglio: il riquadro dei dati in basso a destra di ogni tavola */
+.cartiglio{position:absolute;z-index:4;right:var(--m);bottom:32px;width:236px;background:var(--carta);border:1px solid var(--quota);font-size:12px;line-height:1.3}
+.cartiglio .interruttore{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--quota)}
+.interruttore button{font:inherit;font-size:14px;font-weight:600;background:transparent;color:var(--inchiostro);border:0;min-height:44px;padding:3px 12px 0;cursor:pointer;transition:background-color .12s,color .12s}
+.interruttore button + button{border-left:1px solid var(--quota)}
+.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
+.interruttore button[aria-pressed="false"]:hover{background:#E6E5E0}
+.interruttore button:focus-visible{outline:2px solid var(--verde);outline-offset:-4px}
+.cartiglio dl div{display:grid;grid-template-columns:58px 1fr}
+.cartiglio dl div + div{border-top:1px solid var(--quota)}
+.cartiglio dt,.cartiglio dd{padding:7px 9px 5px}
+.cartiglio dt{color:var(--grigio);border-right:1px solid var(--quota)}
+.cartiglio dd{font-weight:600}
+
+/* sezioni */
+section{padding:168px 0 0}
+h2{font-weight:300;font-size:clamp(34px,4.4vw,64px);line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+h3{font-weight:600;font-size:19px;line-height:1.3}
+p{text-wrap:pretty}
+
+/* opere */
+.opere .capo{grid-column:1/9}
+.opere .capo p{margin-top:24px;font-size:21px;max-width:31em}
+.adria{margin-top:72px;align-items:end}
+.adria .foto{grid-column:1/8}
+.adria .foto img{width:100%}
+.adria figcaption{grid-column:9/13;font-size:17px;line-height:1.5;color:var(--grigio)}
+.adria figcaption strong{display:block;color:var(--inchiostro);font-weight:600;font-size:19px}
+.misure{display:flex;gap:40px;margin-top:32px}
+.misure p{font-size:14px;color:var(--grigio)}
+.misure b{display:block;font-weight:300;font-size:60px;line-height:1;letter-spacing:-.03em;color:var(--inchiostro);margin-bottom:8px}
+.registro{margin-top:120px;width:100%;border-collapse:collapse;font-size:19px;line-height:1.35}
+.registro th{font-size:14px;font-weight:400;color:var(--grigio);text-align:left;padding:0 0 12px}
+.registro thead tr{border-bottom:1px solid var(--inchiostro)}
+.registro tbody tr{border-bottom:1px solid #CBCDCF}
+.registro td{padding:17px 24px 14px 0;vertical-align:baseline}
+.registro td:last-child,.registro th:last-child{padding-right:0}
+.registro th{padding-right:24px}
+.registro .anno{width:calc((100% - 11 * var(--g)) / 12 + var(--g));color:var(--grigio)}
+.registro .op{width:46%;font-weight:600}
+.registro .dato{text-align:right;white-space:nowrap}
+.registro th.dato{text-align:right}
+.tutte{margin-top:28px;font-size:17px}
+.tutte a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--verde)}
+.tutte a:hover{color:var(--verde)}
+
+/* studio */
+.studio .intro{grid-column:1/9}
+.studio .intro p{margin-top:32px;font-size:21px;max-width:34em}
+.servizi{margin-top:96px;row-gap:56px}
+.servizi div{grid-column:span 6}
+.servizi dt{font-weight:600;font-size:21px;line-height:1.25;margin-bottom:10px}
+.servizi dd{max-width:30em}
+.ufficio{margin-top:96px;padding-top:28px;border-top:1px solid var(--quota);font-size:17px;color:var(--grigio)}
+.ufficio .grid{row-gap:16px}
+.ufficio .grid > p{grid-column:span 6;max-width:34em}
+
+/* contatti */
+.contatti{padding-bottom:168px}
+.contatti .etichetta{font-size:14px;font-weight:600;color:var(--grigio)}
+.telgrande{display:inline-block;margin-top:12px;font-weight:300;font-size:clamp(48px,6.7vw,96px);line-height:1;letter-spacing:-.03em;text-decoration:none;margin-left:-.04em}
+.telgrande:hover,.telgrande:focus-visible{color:var(--verde)}
+.contatti .grid{margin-top:64px;row-gap:40px;padding-top:28px;border-top:1px solid var(--quota)}
+.contatti .blocco{grid-column:span 4;font-size:19px;line-height:1.5}
+.contatti .blocco h3{font-size:14px;font-weight:600;color:var(--grigio);margin-bottom:10px}
+.contatti .blocco a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--verde)}
+.contatti .blocco a:hover,.contatti .blocco a:focus-visible{color:var(--verde)}
+
+/* piede */
+.piede{background:var(--inchiostro);color:#D9DBDD;font-size:15px;line-height:1.6;padding:56px 0 64px}
+.piede .grid > div{grid-column:span 4}
+.piede strong{color:#fff;font-weight:600}
+
+/* 1024 */
+@media (max-width:1200px){
+  :root{--m:40px}
+  .menu{gap:26px}
+  .sotto{max-width:420px;font-size:19px}
+  .testo .azioni .dove{display:none}
+  .opera{width:50%}
+  .disegno{transform:translateX(calc(-4% - clamp(0px, (900px - 100svh) * .75, 200px)))}
+  .adria figcaption{grid-column:8/13}
+  .misure b{font-size:48px}
+  .studio .intro,.opere .capo{grid-column:1/12}
+}
+/* tablet e telefono: la tavola scende sotto il titolo */
+@media (max-width:860px){
+  .menu{display:none}
+  .tel{margin-left:auto}
+  .apertura{height:auto;overflow:hidden;display:flex;flex-direction:column}
+  .apertura .testo{padding-top:128px;order:1;width:100%}
+  .apertura .testo .sotto,.apertura .testo .azioni{display:none}
+  .tavola{position:relative;inset:auto;order:2;height:clamp(420px,88vw,640px);margin-top:12px;overflow:hidden}
+  .disegno{top:0;right:0;height:112%;transform:translateX(9%)}
+  .opera{inset:0;width:auto;aspect-ratio:auto}
+  .opera img{object-position:28% 50%}
+  .apertura{border-bottom:0}
+  .cartiglio{position:relative;order:3;right:auto;bottom:auto;width:auto;max-width:420px;margin:0 var(--m);align-self:flex-end;width:calc(100% - 2 * var(--m))}
+  .cartiglio dl div{grid-template-columns:64px 1fr}
+  .dopo{order:4;padding:36px var(--m) 0}
+  section{padding-top:112px}
+  .opere .capo,.studio .intro{grid-column:1/13}
+  .adria .foto,.adria figcaption{grid-column:1/13}
+  .adria{row-gap:24px}
+  .servizi div,.contatti .blocco,.piede .grid > div,.ufficio .grid > p{grid-column:1/13}
+  .registro thead{display:none}
+  .registro tr{display:grid;grid-template-columns:3.2em 1fr;column-gap:16px;padding:14px 0 12px;border-bottom:1px solid #CBCDCF}
+  .registro tbody tr:first-child{border-top:1px solid var(--inchiostro)}
+  .registro td{border:0;padding:0;width:auto}
+  .registro .anno{grid-row:1/4;width:auto}
+  .registro .op{width:auto}
+  .registro .luogo{grid-column:2;color:var(--grigio)}
+  .registro .dato{grid-column:2;text-align:left}
+  .registro .dato:empty{display:none}
+}
+.apertura .dopo{display:none}
+@media (max-width:860px){.apertura .dopo{display:block}}
+@media (max-width:560px){
+  :root{--m:20px}
+  body{font-size:17px}
+  .testata .wrap{height:68px}
+  .marchio{font-size:19px}.marchio b{font-size:27px}.marchio span{display:none}
+  .tel{font-size:16px}
+  .apertura .testo{padding-top:104px}
+  h1{font-size:clamp(44px,13.6vw,60px);line-height:.95}
+  .tavola{height:clamp(380px,112vw,470px)}
+  .disegno{transform:translateX(18%)}
+  .segno{font-size:13px}
+  .segno.m-dx{flex-direction:row;transform:translate(-11px,-11px)}
+  .cartiglio dt,.cartiglio dd{padding:6px 10px 4px}
+  .sotto{font-size:18px;margin-top:0}
+  .azioni{flex-direction:column;align-items:flex-start;gap:16px;margin-top:28px}
+  section{padding-top:96px}
+  h2{font-size:clamp(32px,9vw,40px)}
+  .opere .capo p,.studio .intro p{font-size:18px}
+  .adria{margin-top:40px}
+  .misure b{font-size:44px}
+  .registro{margin-top:64px;font-size:17px}
+  .servizi dt,.contatti .blocco{font-size:18px}
+  .servizi{margin-top:56px;row-gap:36px}
+  .contatti{padding-bottom:96px}
+  .contatti .grid{margin-top:40px}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="#" aria-label="Tre Esse, inizio pagina"><b>3</b>Tre Esse <span>S.r.l.</span></a>
+    <ul class="menu">
+      <li><a href="#opere">Opere</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <a class="tel num" href="tel:+390498705564">049 87 05 564</a>
+  </div>
+</header>
+
+<main>
+<section class="apertura" style="padding-top:0" aria-labelledby="titolo">
+  <div class="wrap testo">
+    <h1 id="titolo">Ingegneria<br>strutturale</h1>
+    <p class="sotto">Calcoli statici, disegni costruttivi, direzione lavori e collaudo di ponti, coperture e strutture in acciaio e cemento armato. Per imprese e gruppi industriali, da Vigonovo, tra Padova e Venezia.</p>
+    <div class="azioni">
+      <a class="bottone" href="mailto:info@3essesrl.com">Scriveteci il progetto</a>
+      <span class="dove">info@3essesrl.com</span>
+    </div>
+  </div>
+
+  <figure class="tavola" data-vista="disegno" aria-labelledby="cartiglio-titolo">
+    <div class="disegno">
+      <img src="img/sarpi-tavola-1200.webp"
+           srcset="img/sarpi-tavola-640.webp 640w, img/sarpi-tavola-900.webp 900w, img/sarpi-tavola-1200.webp 1200w, img/sarpi-tavola-1500.webp 1500w, img/sarpi-tavola-1800.webp 1800w"
+           sizes="(max-width:560px) 94vw, (max-width:860px) 86vw, 60vw"
+           width="1800" height="2088"
+           alt="Assonometria al tratto dell'arco in acciaio del cavalcaferrovia Sarpi: le due nervature dell'arco, i traversi, i controventi e le imposte">
+      <span class="segno sx" style="left:64%;top:4%"><i class="num">1</i><em>Arco</em></span>
+      <span class="segno sx m-dx" style="left:14%;top:79%"><i class="num">2</i><em>Imposta</em></span>
+    </div>
+    <div class="opera">
+      <img src="img/sarpi-opera-923.jpg"
+           srcset="img/sarpi-opera-480.jpg 480w, img/sarpi-opera-720.jpg 720w, img/sarpi-opera-923.jpg 923w"
+           sizes="(max-width:860px) 100vw, 52vw"
+           width="923" height="521" loading="lazy"
+           alt="Il cavalcaferrovia Sarpi finito, all'ora blu: l'arco illuminato e la carreggiata rossa riflessi nell'acqua">
+    </div>
+  </figure>
+
+  <div class="cartiglio">
+    <div class="interruttore" role="group" aria-label="Vista della tavola">
+      <button type="button" aria-pressed="true" data-vista="disegno">Disegno</button>
+      <button type="button" aria-pressed="false" data-vista="opera">Opera</button>
+    </div>
+    <dl id="cartiglio-titolo">
+      <div><dt>Opera</dt><dd>Cavalcaferrovia Sarpi</dd></div>
+      <div><dt>Luogo</dt><dd>Padova</dd></div>
+      <div><dt>Anno</dt><dd class="num">2008</dd></div>
+      <div><dt>Lavoro</dt><dd>Calcolo e disegni costruttivi: Tre Esse</dd></div>
+    </dl>
+  </div>
+
+  <div class="dopo">
+    <p class="sotto">Calcoli statici, disegni costruttivi, direzione lavori e collaudo di ponti, coperture e strutture in acciaio e cemento armato. Per imprese e gruppi industriali, da Vigonovo, tra Padova e Venezia.</p>
+    <div class="azioni">
+      <a class="bottone" href="mailto:info@3essesrl.com">Scriveteci il progetto</a>
+      <span class="dove">info@3essesrl.com</span>
+    </div>
+  </div>
+</section>
+
+<section class="opere" id="opere" aria-labelledby="t-opere">
+  <div class="wrap">
+    <div class="grid">
+      <div class="capo">
+        <h2 id="t-opere">Dal Brennero a Riyad</h2>
+        <p>Ponti, coperture e strutture in acciaio calcolati e disegnati fino al singolo nodo, per le imprese che li costruiscono. Una scelta dal portfolio.</p>
+      </div>
+    </div>
+
+    <figure class="grid adria">
+      <div class="foto">
+        <img src="img/adria-cupola-760.jpg"
+             srcset="img/adria-cupola-480.jpg 480w, img/adria-cupola-760.jpg 760w, img/adria-cupola-865.jpg 865w"
+             sizes="(max-width:560px) calc(100vw - 40px), (max-width:860px) calc(100vw - 80px), (max-width:1440px) 54vw, 755px"
+             width="865" height="865" loading="lazy"
+             alt="La cupola in acciaio dell'Adria International Raceway vista da sotto: la raggiera delle travi attorno all'oculo">
+      </div>
+      <figcaption>
+        <strong>Adria International Raceway</strong>
+        Adria (RO), <span class="num">2006</span>. Calcolo e disegni costruttivi della cupola in acciaio.
+        <div class="misure">
+          <p><b class="num">90&nbsp;m</b>diametro</p>
+          <p><b class="num">700&nbsp;t</b>acciaio</p>
+        </div>
+      </figcaption>
+    </figure>
+
+    <table class="registro num">
+      <caption class="nascosto">Una scelta di opere dal portfolio di Tre Esse</caption>
+      <thead><tr><th class="anno" scope="col">Anno</th><th class="op" scope="col">Opera</th><th class="luogo" scope="col">Luogo</th><th class="dato" scope="col">Acciaio o volume</th></tr></thead>
+      <tbody>
+        <tr><td class="anno">2012</td><td class="op">Ponte Komo</td><td class="luogo">Kango, Gabon</td><td class="dato"></td></tr>
+        <tr><td class="anno">2012</td><td class="op">Centro congressi KAFD, facciata in acciaio e vetro</td><td class="luogo">Riyad, Arabia Saudita</td><td class="dato"></td></tr>
+        <tr><td class="anno">2011</td><td class="op">Edificio industriale</td><td class="luogo">Emirati Arabi Uniti</td><td class="dato">8000&nbsp;t</td></tr>
+        <tr><td class="anno">2011</td><td class="op">Tesa 105, uffici</td><td class="luogo">Arsenale, Venezia</td><td class="dato">80&nbsp;t</td></tr>
+        <tr><td class="anno">2010</td><td class="op">Ponte Verde</td><td class="luogo">Padova</td><td class="dato"></td></tr>
+        <tr><td class="anno">2008</td><td class="op">Cavalcaferrovia Sarpi</td><td class="luogo">Padova</td><td class="dato"></td></tr>
+        <tr><td class="anno">2008</td><td class="op">Grand Hotel Molino Stucky</td><td class="luogo">Giudecca, Venezia</td><td class="dato">250&#8239;000&nbsp;m³</td></tr>
+        <tr><td class="anno">2008</td><td class="op">Aeroporto</td><td class="luogo">Doha, Qatar</td><td class="dato"></td></tr>
+        <tr><td class="anno">2006</td><td class="op">Adria International Raceway, cupola</td><td class="luogo">Adria (RO)</td><td class="dato">700&nbsp;t</td></tr>
+        <tr><td class="anno">2005</td><td class="op">Ponte di Albes</td><td class="luogo">Autostrada del Brennero</td><td class="dato"></td></tr>
+      </tbody>
+    </table>
+    <p class="tutte"><a href="http://www.3essesrl.com/pdf/Company-Project-Portfolio.pdf">Il portfolio completo</a> <span style="color:var(--grigio)">(PDF in inglese, 54 pagine, 2013)</span></p>
+  </div>
+</section>
+
+<section class="studio" id="studio" aria-labelledby="t-studio">
+  <div class="wrap">
+    <div class="grid">
+      <div class="intro">
+        <h2 id="t-studio">Un solo interlocutore, dal calcolo al cantiere</h2>
+        <p>Tre Esse è una società di ingegneria. Segue l'opera dalla progettazione ai rilievi e alla direzione lavori, in proprio e con studi e disegnatori esterni, anche quando il lavoro tocca più settori.</p>
+      </div>
+    </div>
+    <dl class="grid servizi">
+      <div><dt>Progettazione</dt><dd>Preliminare, definitiva ed esecutiva. Calcoli statici di strutture in acciaio e in cemento armato, ingegneria antincendio, acustica.</dd></div>
+      <div><dt>Disegni costruttivi</dt><dd>Per le strutture in acciaio, fino al singolo nodo: travi, giunti, bulloni e piastre, pronti per l'officina.</dd></div>
+      <div><dt>Direzione lavori</dt><dd>Direzione lavori e coordinamento della sicurezza in cantiere, con i rilievi fatti dal nostro ufficio.</dd></div>
+      <div><dt>Project management</dt><dd>Controllo di tempi e costi, collaudi, perizie tecniche, consulenza tecnico-economica.</dd></div>
+    </dl>
+    <div class="ufficio">
+      <div class="grid">
+        <p>In ufficio <span class="num">24</span> postazioni. Disegno in Tecnometal, Bocad 3D e Prosteel 3D; calcolo in SAP2000, CDM Dolmen, SuperSAP e Straus7.</p>
+        <p>In cantiere una stazione totale Trimble 5503, un livello digitale Zeiss DiNi 11 e un fonometro Larson Davis LD-831 di classe 1.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contatti" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap">
+    <h2 id="t-contatti" class="nascosto">Contatti</h2>
+    <p class="etichetta">Telefono</p>
+    <a class="telgrande num" href="tel:+390498705564">049 87 05 564</a>
+    <div class="grid">
+      <div class="blocco">
+        <h3>Ufficio</h3>
+        <p>Via San Marco 14<br>Zona artigianale di Tombelle<br>30030 Vigonovo (VE)<br><a href="https://www.openstreetmap.org/search?query=Via%20San%20Marco%2014%20Vigonovo" rel="noopener">Apri la mappa</a></p>
+      </div>
+      <div class="blocco">
+        <h3>Posta</h3>
+        <p><a href="mailto:info@3essesrl.com">info@3essesrl.com</a></p>
+      </div>
+      <div class="blocco">
+        <h3>PEC e fax</h3>
+        <p>3essesrl@legalmailbox.it<br><span class="num">fax 049 87 05 572</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap grid">
+    <div><strong>Tre Esse S.r.l.</strong><br>Società di ingegneria</div>
+    <div>Via San Marco 14, Zona Artigianale di Tombelle<br>30030 Vigonovo (VE)</div>
+    <div class="num">C.F. e P.IVA 03464830284<br>Registro Imprese di Padova, REA PD-313241</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tavola=document.querySelector('.tavola');
+  var bottoni=[].slice.call(document.querySelectorAll('.interruttore button'));
+  function mostra(v){
+    tavola.setAttribute('data-vista',v);
+    bottoni.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.vista===v ? 'true' : 'false');});
+  }
+  bottoni.forEach(function(b,i){
+    b.addEventListener('click',function(){mostra(b.dataset.vista);});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var o=bottoni[1-i];o.focus();mostra(o.dataset.vista);}
+    });
+  });
+  // la foto dell'opera si carica subito dopo la pagina, così il cambio è immediato
+  window.addEventListener('load',function(){var im=document.querySelector('.opera img');if(im)im.loading='eager';});
+})();
+</script>
+</body>
+</html>

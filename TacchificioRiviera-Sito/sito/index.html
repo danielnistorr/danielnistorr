@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacchificio Riviera, tacchi per le calzature di lusso dal 1945</title>
+<meta name="description" content="Progettiamo e produciamo tacchi per i calzaturifici delle grandi griffe, dal disegno del cliente alla serie. Stra e Vigonovo, Riviera del Brenta, dal 1945.">
+<link rel="preload" href="fonts/imbue-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Caratteri: Imbue e Hanken Grotesk, Google Fonts, SIL Open Font License 1.1 (fonts/LICENZE.txt) */
+@font-face{font-family:"Imbue";src:url(fonts/imbue-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url(fonts/hanken-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+:root{
+  --carta:#F1EFEB;
+  --inchiostro:#161414;
+  --grigio:#625D58;
+  --filo:#CFCAC3;
+  --rosso:#A8322A;
+  --m:56px;           /* margine */
+  --g:24px;           /* canale */
+  --sez:160px;        /* passo tra le sezioni */
+  --riga:44px;        /* altezza della riga di base in apertura */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--carta);color:var(--inchiostro);
+  font:400 18px/1.6 "Hanken Grotesk",system-ui,sans-serif;font-synthesis:none;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--rosso)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--rosso);outline-offset:4px}
+.w{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.serif{font-family:"Imbue",serif;font-weight:300;font-optical-sizing:auto;letter-spacing:-.01em}
+h1,h2,h3,p,ol,ul,figure,dl,dd{margin:0;padding:0}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+.piccolo{font-size:14.5px;line-height:1.5;color:var(--grigio)}
+
+/* testata */
+.testata{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:40px;
+  padding-top:16px;padding-bottom:16px;font-size:15px;line-height:1.3}
+.marchio{display:flex;align-items:center;gap:14px;text-decoration:none;font-weight:500;letter-spacing:.005em}
+.marchio img{width:52px;height:52px}
+.testata .dove{color:var(--grigio)}
+.testata nav{display:flex;gap:28px}
+.testata nav a,.testata .tel{text-decoration:none}
+.testata .tel{font-weight:500;justify-self:end}
+
+/* apertura: titolo, il pezzo, una riga di base */
+.apertura{height:calc(100svh - 84px);min-height:720px;max-height:860px;
+  display:grid;grid-template-rows:auto 1fr auto;padding-bottom:30px}
+.apertura h1{font-family:"Imbue",serif;font-weight:300;font-optical-sizing:auto;
+  font-size:clamp(56px,9.2vw,132px);line-height:.92;letter-spacing:-.012em;text-align:center;margin-top:4px}
+.palco{position:relative;container-type:size;margin:34px 0 14px}
+.palco img{position:absolute;mix-blend-mode:multiply;height:auto;max-width:none;pointer-events:none;
+  /* una sola scala per tutti i pezzi (--k = px di schermo per px della foto): lo stiletto,
+     501 px nativi, riempie il palco, mai oltre 1,1x */
+  --k:min(1.1px, 100cqh / 501, 100cqw / (var(--ow) + 120));
+  width:calc(var(--w) * var(--k));
+  left:calc(50% - var(--cx) * var(--k));
+  bottom:calc((var(--h) - var(--b)) * var(--k) * -1)}
+.palco img[hidden]{display:none}
+.riga{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;column-gap:var(--g)}
+.riga .sx{position:relative;height:var(--riga);display:flex;align-items:center}
+.riga .intro{position:absolute;left:0;bottom:calc(100% + 22px);max-width:30ch;font-size:18px;line-height:1.5}
+.bottone{display:inline-flex;align-items:center;height:var(--riga);background:var(--inchiostro);color:var(--carta);
+  text-decoration:none;padding:0 20px;font-weight:500;font-size:15px;line-height:1}
+.bottone:hover{background:var(--rosso);color:#fff}
+.materie{display:flex;gap:28px;list-style:none;justify-content:center;align-items:center;height:var(--riga)}
+.materie button{appearance:none;background:none;border:0;margin:0;cursor:pointer;
+  padding:9px 0 8px;font:500 16px/1.2 "Hanken Grotesk",sans-serif;color:var(--grigio);
+  border-bottom:2px solid transparent;transition:color .12s,border-color .12s}
+.materie button:hover{color:var(--inchiostro)}
+.materie button[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--rosso)}
+.didascalia{justify-self:end;height:var(--riga);display:flex;align-items:center;text-align:right;
+  font-size:14.5px;line-height:1.3;color:var(--grigio)}
+
+/* foto a tutta larghezza (al massimo 1440 px, la misura che la fonte regge) */
+.piena{max-width:1440px;margin:calc(var(--sez) * .55) auto 0}
+.piena img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
+.piena figcaption{padding-top:14px}
+
+/* titoli di sezione */
+.sez{padding-top:var(--sez)}
+h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em}
+.capo{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:end}
+.capo h2{grid-column:1 / span 7}
+.capo p{grid-column:8 / span 5;max-width:40ch}
+
+/* dal disegno al tacco */
+.passi{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:72px}
+.passi li{border-top:1px solid var(--inchiostro);padding-top:18px}
+.passi h3{font-size:21px;line-height:1.25;font-weight:500;margin-bottom:10px;display:flex;gap:14px}
+.passi h3 span{color:var(--grigio);font-weight:400}
+.passi p{font-size:17px;line-height:1.55;max-width:29ch}
+
+/* il nome inciso: il pezzo in ottone con due legende */
+.nome{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:center}
+.nome .capo-n{grid-column:1 / span 4}
+.nome .capo-n p{margin-top:26px;max-width:30ch;color:var(--grigio)}
+.tavola{grid-column:5 / span 8;display:flex;justify-content:flex-start;padding-left:48px}
+.pezzo-o{position:relative;width:476px;flex:0 0 auto}
+.pezzo-o img{width:100%;height:auto;mix-blend-mode:multiply}
+.leg{position:absolute;display:flex;align-items:center;font-size:14.5px;line-height:1.35;
+  right:calc(-1 * var(--fuori));--fuori:300px;transform:translateY(-5px)}
+.leg i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--inchiostro);
+  box-shadow:0 0 0 1.5px rgba(241,239,235,.85);flex:0 0 auto}
+.leg b{display:block;height:1px;background:var(--inchiostro);flex:1 1 auto;min-width:24px}
+.leg span{padding-left:14px;width:200px;flex:0 0 auto}
+.leg em{font-style:normal;color:var(--grigio);display:block}
+.leg .n{display:none}
+.legende-m{display:none}
+
+/* storia */
+.storia{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:start}
+.storia figure{grid-column:1 / span 5;max-width:420px;margin-top:18px}
+.storia figure img{width:100%;height:auto;mix-blend-mode:multiply}
+.storia figcaption{margin-top:14px;max-width:34ch}
+.storia .testo{grid-column:6 / span 7}
+.anni{list-style:none;margin-top:48px}
+.anni li{display:grid;grid-template-columns:132px 1fr;gap:var(--g);padding:22px 0;border-top:1px solid var(--filo);align-items:baseline}
+.anni li:last-child{border-bottom:1px solid var(--filo)}
+.anni .anno{font-family:"Imbue",serif;font-weight:300;font-size:38px;line-height:1;font-variant-numeric:lining-nums}
+.anni p{font-size:18px;line-height:1.55;max-width:46ch}
+
+/* certificazioni */
+.cert{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:start}
+.cert .capo-c{grid-column:1 / span 4}
+.cert h2{font-size:21px;line-height:1.3;font-weight:500}
+.cert .capo-c p{margin-top:10px;max-width:36ch}
+.cert table{grid-column:6 / span 7;border-collapse:collapse;width:100%;font-size:16px}
+.cert td{padding:14px 0;border-top:1px solid var(--filo);vertical-align:baseline}
+.cert tr:last-child td{border-bottom:1px solid var(--filo)}
+.cert td:first-child{font-weight:500;width:34%}
+.cert td:last-child{text-align:right;color:var(--grigio)}
+.cert td a{text-decoration-color:var(--filo)}
+
+/* contatti */
+.contatti h2{font-size:clamp(46px,7.4vw,108px);line-height:.95}
+.recapiti{display:grid;grid-template-columns:repeat(12,1fr);gap:40px var(--g);margin-top:64px;align-items:start}
+.recapiti .voce-tel{grid-column:1 / span 6}
+.recapiti .tel{font-family:"Imbue",serif;font-weight:300;font-size:56px;line-height:1;text-decoration:none;letter-spacing:-.005em}
+.recapiti .fax{margin-top:14px}
+.recapiti dl{grid-column:7 / span 6;display:grid;grid-template-columns:1fr 1fr;gap:36px var(--g)}
+.recapiti dt{font-size:14.5px;color:var(--grigio);margin-bottom:6px}
+.recapiti dd{font-size:17px;line-height:1.5}
+.recapiti dd a.mappa{display:inline-block;margin-top:6px;font-size:15px}
+
+/* piede */
+.piede{background:var(--inchiostro);color:#E9E5DF;margin-top:var(--sez);padding:56px 0 48px;font-size:14.5px;line-height:1.6}
+.piede .w{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:start}
+.piede img{grid-column:1 / span 2;width:96px;height:96px}
+.piede .dati{grid-column:3 / span 6;color:#BDB7AF}
+.piede .dati b{color:#E9E5DF;font-weight:500}
+.piede .link{grid-column:9 / span 4;justify-self:end;text-align:right;color:#BDB7AF}
+.piede a:hover{color:#fff}
+
+/* tablet largo */
+@media (max-width:1100px){
+  :root{--m:40px;--sez:132px}
+  .testata .dove{display:none}
+  .anni li{grid-template-columns:104px 1fr}
+  .nome .capo-n{grid-column:1 / span 5}
+  .tavola{grid-column:6 / span 7;padding-left:0}
+  .pezzo-o{width:340px}
+  .leg{--fuori:200px}
+  .leg span{width:180px}
+  .recapiti .voce-tel{grid-column:1 / -1}
+  .recapiti dl{grid-column:1 / -1}
+}
+/* tablet */
+@media (max-width:860px){
+  :root{--m:28px;--g:18px;--sez:112px}
+  .testata{grid-template-columns:auto 1fr auto}
+  .testata nav{display:none}
+  .apertura{height:auto;min-height:0;max-height:none}
+  .palco{height:460px}
+  .riga{grid-template-columns:1fr auto;row-gap:22px}
+  .materie{grid-column:1 / -1;grid-row:1}
+  .riga .sx{grid-row:2;height:auto;display:block}
+  .riga .intro{position:static;margin-bottom:22px}
+  .didascalia{grid-row:2;align-self:end}
+  .capo{grid-template-columns:1fr}
+  .capo h2,.capo p{grid-column:auto}
+  .capo p{margin-top:22px}
+  .passi{grid-template-columns:1fr 1fr;row-gap:40px}
+  .nome .capo-n,.tavola{grid-column:1 / -1}
+  .tavola{margin-top:32px}
+  .storia figure{grid-column:1 / -1;max-width:380px;margin-top:0}
+  .storia .testo{grid-column:1 / -1;margin-top:40px;grid-row:1}
+  .cert .capo-c,.cert table{grid-column:1 / -1}
+  .piede img{grid-column:1 / -1}
+  .piede .dati,.piede .link{grid-column:1 / -1;justify-self:start;text-align:left}
+}
+/* telefono */
+@media (max-width:520px){
+  :root{--m:20px;--sez:96px}
+  body{font-size:17px}
+  .marchio img{width:44px;height:44px}
+  .marchio span{font-size:14px}
+  .testata{gap:16px;padding-top:14px;padding-bottom:10px}
+  .apertura{padding-bottom:0}
+  .apertura h1{font-size:15.4vw;line-height:.94;margin-top:14px}
+  .palco{height:276px;margin:30px 0 16px}
+  .riga{grid-template-columns:1fr;row-gap:0}
+  .materie{gap:0;justify-content:space-between}
+  .materie button{font-size:15px}
+  .didascalia{grid-row:2;justify-self:start;text-align:left;height:auto;margin-top:8px}
+  .riga .sx{grid-row:3;margin-top:22px}
+  .riga .intro{margin-bottom:18px;font-size:17px}
+  .piena{margin-top:var(--sez)}
+  .piena figcaption{padding-left:var(--m);padding-right:var(--m)}
+  .passi{grid-template-columns:1fr;row-gap:28px;margin-top:48px}
+  .tavola{display:block;margin-top:28px}
+  .pezzo-o{width:calc(100% - 44px);max-width:340px}
+  .leg{--fuori:40px;transform:translateY(-5px)}
+  .leg span{display:none}
+  .leg .n{display:block;width:16px;padding-left:8px;font-size:13px;font-weight:500;line-height:1;flex:0 0 auto}
+  .legende-m{display:block;list-style:none;margin-top:22px;font-size:15.5px;line-height:1.45}
+  .legende-m li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--filo)}
+  .legende-m li:last-child{border-bottom:1px solid var(--filo)}
+  .legende-m .num{font-weight:500;min-width:12px}
+  .anni li{grid-template-columns:76px 1fr;gap:14px}
+  .anni .anno{font-size:30px}
+  .anni p{font-size:17px}
+  .cert td{display:block;width:auto!important;text-align:left!important;border:0;padding:0}
+  .cert tr{display:block;padding:14px 0;border-top:1px solid var(--filo)}
+  .cert tr:last-child{border-bottom:1px solid var(--filo)}
+  .cert tr:last-child td{border:0}
+  .recapiti{margin-top:40px;row-gap:32px}
+  .recapiti .tel{font-size:44px}
+  .recapiti dl{grid-template-columns:1fr;row-gap:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="w testata">
+  <a class="marchio" href="#" aria-label="Tacchificio Riviera, inizio pagina">
+    <img src="img/timbro.svg" alt="" width="52" height="52"><span>Tacchificio Riviera</span>
+  </a>
+  <span class="dove">Stra e Vigonovo, Riviera del Brenta</span>
+  <nav aria-label="Sezioni">
+    <a href="#disegno">Dal disegno</a>
+    <a href="#storia">Storia</a>
+    <a href="#certificazioni">Certificazioni</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel num" href="tel:+39049502844">049 502844</a>
+</header>
+
+<main>
+<section class="w apertura" aria-labelledby="titolo">
+  <h1 id="titolo">Tacchi per le calzature di&nbsp;lusso</h1>
+
+  <div class="palco" id="palco" role="tabpanel" aria-labelledby="t-plastica">
+    <img hidden id="i-legno" src="img/tacco-legno-1x.jpg" srcset="img/tacco-legno-1x.jpg 1x, img/tacco-legno-2x.jpg 2x" alt="Due tacchi in legno grezzo, uno segnato a matita rossa" style="--w:707;--h:319;--cx:349;--b:302;--ow:565" width="707" height="319">
+    <img hidden id="i-prototipo" src="img/tacco-prototipo-1x.jpg" srcset="img/tacco-prototipo-1x.jpg 1x, img/tacco-prototipo-2x.jpg 2x" alt="Prototipo di tacco color avorio" style="--w:431;--h:539;--cx:169;--b:459;--ow:215" width="431" height="539">
+    <img id="i-plastica" src="img/tacco-plastica-1x.jpg" srcset="img/tacco-plastica-1x.jpg 1x, img/tacco-plastica-2x.jpg 2x" alt="Stiletto a calice nero" style="--w:520;--h:554;--cx:274;--b:517;--ow:211" width="520" height="554" fetchpriority="high">
+    <img hidden id="i-plexiglas" src="img/tacco-plexiglas-1x.jpg" srcset="img/tacco-plexiglas-1x.jpg 1x, img/tacco-plexiglas-2x.jpg 2x" alt="Tacco in plexiglas trasparente, a facce piane" style="--w:400;--h:444;--cx:221;--b:426;--ow:199" width="400" height="444">
+  </div>
+
+  <div class="riga">
+    <div class="sx">
+      <p class="intro">Progettiamo e produciamo tacchi per i calzaturifici delle grandi griffe, dal disegno del cliente alla serie. Nella Riviera del Brenta dal 1945.</p>
+      <a class="bottone" href="mailto:tacchificioriviera@tacchificioriviera.it?subject=Un%20disegno%20da%20realizzare">Inviaci il disegno</a>
+    </div>
+    <ul class="materie" role="tablist" aria-label="Materia del tacco">
+      <li><button type="button" role="tab" id="t-legno" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="legno">Legno</button></li>
+      <li><button type="button" role="tab" id="t-prototipo" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="prototipo">Prototipo</button></li>
+      <li><button type="button" role="tab" id="t-plastica" aria-controls="palco" aria-selected="true" tabindex="0" data-i="plastica">Plastica</button></li>
+      <li><button type="button" role="tab" id="t-plexiglas" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="plexiglas">Plexiglas</button></li>
+    </ul>
+    <p class="didascalia" id="didascalia" aria-live="polite">Stiletto a calice, nero</p>
+  </div>
+</section>
+
+<figure class="piena">
+  <picture>
+    <source media="(max-width:520px)" srcset="img/incisione-m-600.jpg 600w, img/incisione-m-864.jpg 864w" sizes="100vw">
+    <img src="img/incisione-1440.jpg" srcset="img/incisione-960.jpg 960w, img/incisione-1440.jpg 1440w, img/incisione-1920.jpg 1920w" sizes="(min-width:1440px) 1440px, 100vw" alt="Mani che incidono un fiore su un tacco in metallo, con una punta" width="1440" height="720" loading="lazy">
+  </picture>
+  <figcaption class="w piccolo">Un fiore inciso a mano su un tacco in metallo</figcaption>
+</figure>
+
+<section class="w sez" id="disegno" aria-labelledby="h-disegno">
+  <div class="capo">
+    <h2 class="serif" id="h-disegno">Dal disegno al tacco</h2>
+    <p>Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo, fino al pezzo di serie.</p>
+  </div>
+  <ol class="passi">
+    <li><h3><span class="num">1</span>Il disegno</h3><p>Si parte sempre dal disegno della griffe.</p></li>
+    <li><h3><span class="num">2</span>Il progetto</h3><p>Il disegno, interpretato, diventa il progetto al CAD.</p></li>
+    <li><h3><span class="num">3</span>Il prototipo</h3><p>Il prototipo, color avorio o in legno, si prova sotto la scarpa e si corregge a matita.</p></li>
+    <li><h3><span class="num">4</span>La serie</h3><p>Stampaggio a iniezione, finissaggio e imballaggio. Ogni pezzo viene controllato.</p></li>
+  </ol>
+</section>
+
+<section class="w sez" id="nome" aria-labelledby="h-nome">
+  <div class="nome">
+    <div class="capo-n">
+      <h2 class="serif" id="h-nome">Il nostro nome, inciso sul&nbsp;piano</h2>
+      <p>Un tacco in ottone a losanghe, dalla galleria dei nostri pezzi.</p>
+    </div>
+    <div class="tavola">
+      <figure class="pezzo-o">
+        <img src="img/tacco-ottone-1x.jpg" srcset="img/tacco-ottone-1x.jpg 452w, img/tacco-ottone-2x.jpg 904w" sizes="(max-width:520px) 340px, (max-width:1100px) 340px, 476px" width="452" height="519" loading="lazy" alt="Tacco in ottone a losanghe, con RIVIERA e 37 incisi sul piano">
+        <div class="leg" style="left:89.4%;top:10.2%" aria-hidden="true"><i></i><b></b><span>RIVIERA e 37<em>incisi sul piano</em></span><span class="n num">1</span></div>
+        <div class="leg" style="left:76%;top:51%" aria-hidden="true"><i></i><b></b><span>Losanghe<em>sul fianco</em></span><span class="n num">2</span></div>
+      </figure>
+      <ol class="legende-m" aria-label="Legende">
+        <li><span class="num">1</span><span>RIVIERA e 37 incisi sul piano</span></li>
+        <li><span class="num">2</span><span>Losanghe sul fianco</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="w sez" id="storia" aria-labelledby="h-storia">
+  <div class="storia">
+    <figure>
+      <img src="img/tacco-legno-1x.jpg" srcset="img/tacco-legno-1x.jpg 707w, img/tacco-legno-2x.jpg 1414w" sizes="(max-width:520px) 92vw, 420px" width="707" height="319" loading="lazy" alt="Due tacchi in legno grezzo, uno segnato a matita rossa">
+      <figcaption class="piccolo">Due tacchi in legno grezzo, uno segnato a matita rossa</figcaption>
+    </figure>
+    <div class="testo">
+      <h2 class="serif" id="h-storia">Tre generazioni di Boldrin</h2>
+      <ol class="anni">
+        <li><span class="anno">1945</span><p>Giovanni Boldrin, con il figlio Valentino, realizza il primo tacco in legno.</p></li>
+        <li><span class="anno">1970</span><p>Valentino introduce la lavorazione delle materie plastiche. Negli anni 80 l’azienda passa al figlio Fabio.</p></li>
+        <li><span class="anno">2010</span><p>Fabio Boldrin inaugura una nuova sede, con macchinari nuovi.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="w sez" id="certificazioni" aria-labelledby="h-cert">
+  <div class="cert">
+    <div class="capo-c">
+      <h2 id="h-cert">Sistemi certificati</h2>
+      <p class="piccolo">Progettazione e fabbricazione di tacchi in plastica per calzature di lusso: stampaggio a iniezione, finissaggio, imballaggio. Ente SGS.</p>
+    </div>
+    <table class="num">
+      <tbody>
+        <tr><td>ISO 14001:2015</td><td>Ambiente</td><td><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/certificazione-ISO-14001.pdf">IT23/00000326</a></td></tr>
+        <tr><td>ISO 45001:2018</td><td>Salute e sicurezza sul lavoro</td><td><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/certificazione-ISO-45001.pdf">IT23/00000328</a></td></tr>
+        <tr><td>ISO 50001:2018</td><td>Energia</td><td><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/certificazione-ISO-50001.pdf">IT23/00001097</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="w sez contatti" id="contatti" aria-labelledby="h-contatti">
+  <h2 class="serif" id="h-contatti">Diamo forma alla tua idea?</h2>
+  <div class="recapiti">
+    <div class="voce-tel">
+      <a class="tel num" href="tel:+39049502844">+39 049 502844</a>
+      <p class="fax piccolo num">Fax +39 049 504969</p>
+    </div>
+    <dl>
+      <div><dt>Scrivici</dt><dd><a href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></dd></div>
+      <div><dt>Sede operativa e amministrativa</dt><dd>Viale Serenissima 30<br>30030 Vigonovo (VE)<br><a class="mappa" href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></dd></div>
+      <div><dt>PEC</dt><dd><a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></dd></div>
+      <div><dt>Sede legale</dt><dd>Via Pola 22<br>30039 Stra (VE)</dd></div>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="w">
+    <img src="img/timbro-chiaro.svg" alt="" width="96" height="96" loading="lazy">
+    <p class="dati num"><b>Tacchificio Riviera S.r.l.</b><br>Via Pola 22, 30039 Stra (VE). P.IVA e C.F. 02005670274, REA VE-190999, capitale sociale 99.000 euro.<br>Tel. +39 049 502844, fax +39 049 504969. PEC tacchificioriviera@pec.tacchificioriviera.it</p>
+    <p class="link"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni (whistleblowing)</a><br><a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var schede=[].slice.call(document.querySelectorAll('.materie [role=tab]'));
+  var testi={
+    legno:'Due tacchi in legno grezzo',
+    prototipo:'Prototipo, color avorio',
+    plastica:'Stiletto a calice, nero',
+    plexiglas:'Plexiglas trasparente, a facce piane'
+  };
+  var dida=document.getElementById('didascalia'), palco=document.getElementById('palco');
+  function scegli(b,focus){
+    schede.forEach(function(x){
+      var on=x===b; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1;
+      document.getElementById('i-'+x.dataset.i).hidden=!on;
+    });
+    dida.textContent=testi[b.dataset.i];
+    palco.setAttribute('aria-labelledby',b.id);
+    if(focus) b.focus();
+  }
+  schede.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b)});
+    b.addEventListener('keydown',function(e){
+      var k=e.key, j=null;
+      if(k==='ArrowRight') j=(i+1)%schede.length;
+      else if(k==='ArrowLeft') j=(i-1+schede.length)%schede.length;
+      else if(k==='Home') j=0; else if(k==='End') j=schede.length-1;
+      if(j!==null){e.preventDefault(); scegli(schede[j],true);}
+    });
+  });
+})();
+</script>
+</body>
+</html>
