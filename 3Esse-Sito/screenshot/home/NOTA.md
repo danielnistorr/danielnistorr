@@ -20,7 +20,7 @@ Un ufficio tecnico si racconta con quello che ha calcolato. In alto un impalcato
 - Le due "Foto indicativa" in pagina sono state tolte, insieme a ogni didascalia sulle foto di repertorio: le note di lavorazione stanno nel LEGGIMI.
 - Studio: prima accanto alla cupola di Adria c'era una fascia vuota. Ora in alto a sinistra ci sono il titolo e la dotazione dello studio come piccola tabella con filetti (Calcolo, Disegno, Rilievo, Acustica: i software e gli strumenti della pagina Presentazione), al posto del paragrafo in prosa. In basso, allineata al piede della foto, la didascalia con i due numeri del portfolio in grande: diametro 90 m, acciaio 700 t. I software di disegno sono passati dai servizi alla tabella, così non si ripetono. La cupola è al vivo sul bordo destro, larga al massimo 865 px, cioè la sua misura vera, mai ingrandita. È appena più chiara della bozza.
 - Fascia dei controventi: il cielo ora coincide esattamente con la carta e i lati sfumano, così non si vede più l'orlo grigio della foto. Non supera mai i 1600 px veri (a 1920 resta di 1600 e il cielo continua nella carta).
-- Contatti su carta e non più su fondo nero, con il telefono grande (108 px, cifre tabellari). Il nero resta solo nel piede con i dati societari, come vuole il committente: chiaro, e il nero solo dove serve.
+- (Superato dal cartiglio, vedi "La chiusura" più sotto.) Contatti su carta e non più su fondo nero, con il telefono grande (108 px, cifre tabellari). Il nero resta solo nel piede con i dati societari, come vuole il committente: chiaro, e il nero solo dove serve.
 - Telefono: sistemata la crenatura di Switzer a 17 px (con la resa predefinita Chromium a 1x spezzava "stat ici", "costrut tivi"; ora il testo usa `text-rendering: geometricPrecision`). Bottoni dei filtri alti 45 px. Menu ridotto a Opere e telefono.
 - Pagina: 5171 px a 1440, prima 5669. A 390 è di 5487 px.
 - Tolti il link "Privacy" che puntava a "#" e il PDF del portfolio (22 MB).
@@ -38,11 +38,24 @@ Il committente ha scelto questa bozza: idea, prima schermata, trattamento delle 
 - **Tablet**: tra 561 e 860 px l'apertura usa il taglio del telefono centrato sul vertice della V (anche a 1344 px), così a 768 le due pile restano simmetriche.
 - Spaziatura tra le sezioni appena ridotta (da 124 a 110 px a 1440) e righe del registro di 2 px più basse.
 
+## La chiusura: il cartiglio della tavola (19/10/2026, dopo l'osservazione del committente)
+
+Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: titolo di luogo, telefono gigante, riga di colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche questa: "Zona artigianale di Tombelle, Vigonovo", il numero a 108 px, quattro colonnine (Ufficio, Email, Posta certificata, Fax) e il piede nero. Ho rifatto solo la chiusura; il resto della pagina non è cambiato.
+
+- **Un solo oggetto del loro mestiere**: i recapiti stanno nel cartiglio, il riquadro in basso a destra di ogni tavola tecnica, che uno studio di strutture compila ogni giorno. A 1440 il titolo "Contatti" sta in alto a sinistra e il cartiglio in basso a destra (largo al massimo 880 px), come sul foglio: lo spazio vuoto a sinistra è il campo del disegno. Riquadro esterno in inchiostro a 1,5 px, filetti interni grigi a 1 px, fondo carta, niente colore.
+- **Campi**: Studio (Tre Esse S.r.l., Ingegneria delle strutture), Tavola (Recapiti), Scala (1:1), Telefono, Indirizzo (Via San Marco 14, Zona artigianale di Tombelle, 30030 Vigonovo (VE), Apri la mappa), Email, Fax, Posta certificata. Etichette piccole in alto a sinistra di ogni casella, come nei cartigli veri; valori in Switzer 400, il telefono in 300 a 46 px.
+- **Rispetto alla proposta** ho tolto "Data" e "Tavola n.": una data sarebbe stata inventata e invecchia, un numero di tavola non significa niente. "Tavola: Recapiti" e "Scala 1:1" sono la cornice del foglio, non dati dell'azienda. Tutti i recapiti sono quelli che c'erano già in pagina; nessun dato nuovo.
+- **Collegamenti**: telefono `tel:+390498705564` sottolineato, alto 54 px a 1440 e almeno 44 px a ogni misura; email `mailto:info@3essesrl.com`; "Apri la mappa" su Google Maps.
+- **Piede**: una riga sola su carta, sopra un filetto: Tre Esse S.r.l., C.F. e P.IVA 03464830284, REA PD-313241, PEC. Testo acciaio #5F6870 (4,76:1), ragione sociale in inchiostro. Sul telefono va a capo dove serve. Il link alla privacy non c'è finché non c'è la pagina (vedi LEGGIMI).
+- **Tolti**: il titolo di luogo, il telefono a 108 px, la riga di quattro colonnine uguali, il piede a fondo nero. Ora nella pagina non c'è più nessun fondo scuro.
+- **Misure**: la chiusura è un riquadro a quattro colonne a 1440 e 1024 (a 1024 e 768 largo quanto la pagina, sotto il titolo); sotto i 560 px le caselle si impilano a tutta larghezza, solo Tavola e Scala restano affiancate.
+- Script: `_prova/script/finale_b_chiusura.mjs` fotografa la chiusura a più larghezze e controlla scorrimento, sovrapposizioni e testo che esce dalle caselle; `build_finale.sh` ne ricava `chiusura-1440.jpg`.
+
 ## Caratteri e colori
 
 - **Switzer** (Jérémie Hornus, Indian Type Foundry), da Fontshare. Pesi 300 (titoli, numeri grandi), 400 (testo), 500 (marchio, menu, h3, filtro attivo). I file woff2 sono quelli serviti da Fontshare, non modificati e serviti dalla pagina in `sito/fonts/`. Licenza: **ITF Free Font License 2.0** (`sito/fonts/FFL.txt`), che ammette l'uso commerciale e il self-hosting sul proprio sito e vieta di modificare o convertire i file (per questo non sono stati ridotti). L'attribuzione non è obbligatoria. Le cifre sono tabellari (`tabular-nums`), quindi anni, tonnellate e telefono si allineano senza monospazio. Una sola famiglia.
 - Riferimenti: sbp (titolo grottesco sottilissimo e grande, "Wir sind Ingenieure") e Dissing+Weitling (foto da bordo a bordo e una riga sotto). Il registro come tabella tipografica viene dai cataloghi delle opere degli studi di ingegneria, non dalla moda.
-- Colori: cemento chiaro #ECEBE7 (fondo e bianco delle foto), inchiostro #1A1C1E, acciaio #5F6870 per il testo secondario (4,8:1). Il rosso minio #C0502A è il colore dell'antiruggine: compare solo nel filo del filtro attivo, e il contatore usa #A8431F (5,05:1). Il piede ha fondo inchiostro con testo #C9CCCF.
+- Colori: cemento chiaro #ECEBE7 (fondo e bianco delle foto), inchiostro #1A1C1E, acciaio #5F6870 per il testo secondario (4,8:1). Il rosso minio #C0502A è il colore dell'antiruggine: compare solo nel filo del filtro attivo, e il contatore usa #A8431F (5,05:1). Il piede è su carta con testo acciaio; nessun fondo scuro in pagina. I filetti interni del cartiglio sono #8D9398, il riquadro esterno è inchiostro.
 
 ## Interazione
 
@@ -67,11 +80,12 @@ Le ho usate pochissimo, come già nella bozza. Tre Esse è un ufficio di ingegne
 ## Controlli (ultima rifinitura, 19/10/2026)
 
 - Scorrimento orizzontale: nessuno da 320 a 2560 px (passo 10/40).
-- Altezza: 5109 px a 1440 (6379 con "Tutte" aperto), 5296 a 390, 5537 a 320, 5235 a 1920, 4393 a 1024, 5723 a 768.
+- Altezza (con il cartiglio): 5113 px a 1440, 5361 a 390, 5573 a 320, 5298 a 1920, 4305 a 1024, 5665 a 768.
+- Chiusura guardata a pezzi a 1440, 1024, 768, 390 e 320 (`finale_b_chiusura.mjs` e `slice.py`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun testo fuori dalla sua casella, telefono alto almeno 44 px. Solo la chiusura a 1440: `chiusura-1440.jpg`.
 - Prime schermate guardate a 320, 390, 768, 1024, 1440 e 1920; pagine intere a 1440 e 390 guardate a pezzi; registro guardato su Tutte, Restauro e Project management a 1440 e 390. Nessuna sovrapposizione tra blocchi di testo (controllo automatico a tutte le misure).
 - Immagini: a 1x nessuna è servita oltre la sua misura vera. A 2x la fascia è a 0,9, l'apertura a 1,2, la cupola a 1,39 (la misura massima che esiste).
 - Filtri: dito, mouse, Tab con Invio e spazio, link dalla prima schermata (14, 10, 4, 3 e 34 righe, contatore giusto, bottoni alti 45 px). Crenatura dei filtri guardata a 1x: "Ponti e", "Cemento", "Restauro" regolari.
-- Collegamenti: `tel:+390498705564` (testata e contatti), `mailto:info@3essesrl.com`, mappa `google.com/maps/search/?api=1&query=Via+San+Marco+14+30030+Vigonovo+VE`.
+- Collegamenti: `tel:+390498705564` (testata e cartiglio), `mailto:info@3essesrl.com`, mappa `google.com/maps/search/?api=1&query=Via+San+Marco+14+30030+Vigonovo+VE`.
 - `segnali.sh` (`_prova/segnali-finale/`): 0 soglie bloccanti su 10. Foto al 35,8 %, monospazio 0 %, una famiglia, nessuna etichetta maiuscola, nessun titolo col punto. Da guardare: una sola misura di H2 (58 px), tenuta di proposito.
 - Nessun carattere U+2014 né U+2013 nella pagina; nessun U+2014 negli script e nei .md di questa consegna. Nessuna nota di lavorazione a vista.
-- Divieti del committente: nessun gradiente, nessuna emoji, niente Inter, card, glassmorphism, tre box con icona, badge, icone, dissolvenze allo scorrere, effetti sul cursore o corsivi d'accento.
+- Divieti del committente: nessun gradiente, nessuna emoji, niente Inter, card, bordi sinistri colorati, glassmorphism, scuro a basso contrasto, tre box con icona, badge, icone, dissolvenze allo scorrere, effetti sul cursore, bottoni che sbiadiscono o corsivi d'accento. Nella chiusura niente telefono gigante su fascia scura, niente riga di colonnine, niente piede scuro a quattro colonne.

@@ -5,8 +5,8 @@ Proposta non richiesta, solo la home. Niente è stato pubblicato, inviato o most
 ## Dove sono le cose
 
 - `sito/index.html`: la home finale "Registro delle opere", costruita sulla bozza B scelta dal committente. È statica e si apre con file:///. In `sito/img/` ci sono solo le immagini usate (JPEG in più larghezze); in `sito/fonts/` Switzer con la licenza `FFL.txt`.
-- `screenshot/home/`: `home-1440.jpg` e `home-390.jpg` (pagine intere), `home-1440-prima-schermata.jpg` (1440x900), `home-390-prima-schermata.jpg` (390x844) e `NOTA.md` (idea, caratteri, colori, interazione, foto, ispirazioni, controlli).
-- `_prova/script/build_finale.sh` rifà tutto: immagini con `finale_b_img.py`, pagina da `finale_b_pagina.html` con i controlli, screenshot con `finale_b_prima.mjs`. Gli altri controlli sono in `finale_b_controlli.mjs`, gli esiti di `segnali.sh` in `_prova/segnali-finale/`.
+- `screenshot/home/`: `home-1440.jpg` e `home-390.jpg` (pagine intere), `home-1440-prima-schermata.jpg` (1440x900), `home-390-prima-schermata.jpg` (390x844), `chiusura-1440.jpg` (solo la chiusura: contatti a cartiglio e piede) e `NOTA.md` (idea, caratteri, colori, interazione, foto, ispirazioni, controlli).
+- `_prova/script/build_finale.sh` rifà tutto: immagini con `finale_b_img.py`, pagina da `finale_b_pagina.html` con i controlli, screenshot con `finale_b_prima.mjs` e `finale_b_chiusura.mjs`. La chiusura è stata rifatta il 19/10/2026: i recapiti stanno in un cartiglio da tavola tecnica e il piede è una riga sola su carta (il perché è in `NOTA.md`). Di questa home non esiste una versione WordPress da rigenerare. Gli altri controlli sono in `finale_b_controlli.mjs`, gli esiti di `segnali.sh` in `_prova/segnali-finale/`.
 - `_prova/home/a/` e `_prova/home/b/`: le due bozze. La versione costruita prima sulla A (scartata) ha gli script in `_prova/script/scartata-a/`.
 - `01-analisi.md`: i fatti con le fonti. `assets/CREDITI.md`: l'origine di ogni immagine.
 
