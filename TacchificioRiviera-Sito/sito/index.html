@@ -140,26 +140,32 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 .cert td:last-child{text-align:right;color:var(--grigio)}
 .cert td a{text-decoration-color:var(--filo)}
 
-/* contatti */
-.contatti h2{font-size:clamp(46px,7.4vw,108px);line-height:.95}
-.recapiti{display:grid;grid-template-columns:repeat(12,1fr);gap:40px var(--g);margin-top:64px;align-items:start}
-.recapiti .voce-tel{grid-column:1 / span 6}
-.recapiti .tel{font-family:"Imbue",serif;font-weight:300;font-size:56px;line-height:1;text-decoration:none;letter-spacing:-.005em}
-.recapiti .fax{margin-top:14px}
-.recapiti dl{grid-column:7 / span 6;display:grid;grid-template-columns:1fr 1fr;gap:36px var(--g)}
-.recapiti dt{font-size:14.5px;color:var(--grigio);margin-bottom:6px}
-.recapiti dd{font-size:17px;line-height:1.5}
-.recapiti dd a.mappa{display:inline-block;margin-top:6px;font-size:15px}
-
-/* piede */
-.piede{background:var(--inchiostro);color:#E9E5DF;margin-top:var(--sez);padding:56px 0 48px;font-size:14.5px;line-height:1.6}
-.piede .w{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:start}
-.piede img{grid-column:1 / span 2;width:96px;height:96px}
-.piede .dati{grid-column:3 / span 6;color:#BDB7AF}
-.piede .dati b{color:#E9E5DF;font-weight:500}
-.piede .link{grid-column:9 / span 4;justify-self:end;text-align:right;color:#BDB7AF}
+/* contatti: la domanda e, accanto, il biglietto da visita dell'atelier con il timbro impresso:
+   un solo oggetto porta tutti i recapiti */
+.contatti{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:center}
+.contatti h2{grid-column:1 / span 6;font-size:clamp(46px,6.6vw,96px);line-height:.95}
+.biglietto{grid-column:7 / span 6;position:relative;background:#FBFAF7;border:1px solid #DDD8D1;
+  box-shadow:0 1px 2px rgba(22,20,20,.05),0 26px 50px -30px rgba(22,20,20,.32);
+  aspect-ratio:85 / 55;padding:38px 40px 30px;display:flex;flex-direction:column;font-size:15px;line-height:1.5}
+.biglietto .timbro{position:absolute;top:26px;right:30px;width:116px;height:116px;transform:rotate(-8deg)}
+.biglietto .firma{padding-right:150px}
+.biglietto .firma b{display:block;font-weight:500;font-size:17px}
+.biglietto .firma span{display:block;color:var(--grigio);font-size:14.5px;text-wrap:balance}
+.biglietto .voce{margin-top:auto;padding-top:24px}
+.biglietto .tel{display:inline-block;font-family:"Imbue",serif;font-weight:300;font-size:54px;line-height:1.05;letter-spacing:-.005em;
+  text-decoration-color:var(--filo);text-underline-offset:.14em;padding:4px 0}
+.biglietto .mail{display:inline-block;margin-top:4px;font-size:17px;padding:4px 0}
+.biglietto .dati{margin-top:18px;padding-top:12px;line-height:1.75;border-top:1px solid var(--filo);color:var(--grigio)}
+.biglietto .dati p{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 20px}
+.biglietto .dati .ind{color:var(--inchiostro)}
 .intero{white-space:nowrap}
-.piede a:hover{color:#fff}
+
+/* piede: una riga sola nel tono della pagina */
+.piede{margin-top:calc(var(--sez) * .8);padding-bottom:28px;font-size:13.5px;line-height:1.6;color:var(--grigio)}
+.piede p{border-top:1px solid var(--filo);padding-top:20px;display:flex;flex-wrap:wrap;column-gap:18px;row-gap:2px}
+.piede p > span{white-space:nowrap}
+.piede b{font-weight:500;color:var(--inchiostro)}
+.piede .legali{margin-left:auto;display:flex;column-gap:14px;flex-wrap:wrap}
 
 /* tablet largo */
 @media (max-width:1100px){
@@ -178,8 +184,9 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .pezzo-o{width:340px}
   .leg{--fuori:170px}
   .leg span{width:136px}
-  .recapiti .voce-tel{grid-column:1 / -1}
-  .recapiti dl{grid-column:1 / -1}
+  .contatti h2{grid-column:1 / -1;max-width:none}
+  .biglietto{grid-column:1 / span 9;margin-top:36px;max-width:640px}
+  .piede .legali{margin-left:0}
 }
 /* tablet */
 @media (max-width:860px){
@@ -202,8 +209,7 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .storia figure{grid-column:1 / -1;max-width:380px;margin-top:0}
   .storia .testo{grid-column:1 / -1;margin-top:40px;grid-row:1}
   .cert .capo-c,.cert table{grid-column:1 / -1}
-  .piede img{grid-column:1 / -1}
-  .piede .dati,.piede .link{grid-column:1 / -1;justify-self:start;text-align:left}
+  .biglietto{grid-column:1 / -1}
 }
 /* telefono */
 @media (max-width:520px){
@@ -241,9 +247,17 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .cert tr{display:block;padding:14px 0;border-top:1px solid var(--filo)}
   .cert tr:last-child{border-bottom:1px solid var(--filo)}
   .cert tr:last-child td{border:0}
-  .recapiti{margin-top:40px;row-gap:32px}
-  .recapiti .tel{font-size:44px}
-  .recapiti dl{grid-template-columns:1fr;row-gap:28px}
+  .biglietto{aspect-ratio:auto;padding:24px 22px 20px;margin-top:32px;font-size:14.5px}
+  .biglietto .timbro{top:16px;right:16px;width:76px;height:76px}
+  .biglietto .firma{padding-right:84px}
+  .biglietto .firma b{font-size:16px}
+  .biglietto .voce{padding-top:36px}
+  .biglietto .tel{font-size:clamp(34px,10.4vw,44px)}
+  .biglietto .mail{font-size:16px}
+  .biglietto .dati p{display:block}
+  .biglietto .dati p > *{display:block}
+  .biglietto .dati p + p{margin-top:6px}
+  .piede p{column-gap:14px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -364,28 +378,21 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 </section>
 
 <section class="w sez contatti" id="contatti" aria-labelledby="h-contatti">
-  <h2 class="serif" id="h-contatti">Diamo forma alla tua idea?</h2>
-  <div class="recapiti">
-    <div class="voce-tel">
-      <a class="tel num" href="tel:+39049502844">+39 049 502844</a>
-      <p class="fax piccolo num">Fax +39 049 504969</p>
+  <h2 class="serif" id="h-contatti">Diamo forma <br>alla tua idea?</h2>
+  <div class="biglietto">
+    <img class="timbro" src="img/timbro.svg" alt="" width="116" height="116" loading="lazy">
+    <p class="firma"><b>Tacchificio Riviera</b><span>Stra e Vigonovo, Riviera del Brenta</span></p>
+    <p class="voce"><a class="tel num" href="tel:+39049502844">+39 049 502844</a><br><a class="mail" href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></p>
+    <div class="dati num">
+      <p><span class="ind">Viale Serenissima 30, <span class="intero">30030 Vigonovo (VE)</span></span><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></p>
+      <p><span class="intero">Fax +39 049 504969</span><span>PEC <a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></span></p>
     </div>
-    <dl>
-      <div><dt>Scrivici</dt><dd><a href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></dd></div>
-      <div><dt>Sede operativa e amministrativa</dt><dd>Viale Serenissima 30<br>30030 Vigonovo (VE)<br><a class="mappa" href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></dd></div>
-      <div><dt>PEC</dt><dd><a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></dd></div>
-      <div><dt>Sede legale</dt><dd>Via Pola 22<br>30039 Stra (VE)</dd></div>
-    </dl>
   </div>
 </section>
 </main>
 
 <footer class="piede">
-  <div class="w">
-    <img src="img/timbro-chiaro.svg" alt="" width="96" height="96" loading="lazy">
-    <p class="dati num"><b>Tacchificio Riviera S.r.l.</b><br>Via Pola 22, 30039 Stra (VE). P.IVA e C.F. 02005670274, <span class="intero">REA VE-190999</span>, capitale sociale 99.000 euro.<br>Tel. <span class="intero">+39 049 502844</span>, fax <span class="intero">+39 049 504969</span>. PEC <span class="intero">tacchificioriviera@</span><wbr><span class="intero">pec.tacchificioriviera.it</span></p>
-    <p class="link"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">Procedura whistleblowing</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">Privacy whistleblowing</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni SA8000</a><br><a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></p>
-  </div>
+  <div class="w"><p class="num"><span><b>Tacchificio Riviera S.r.l.</b></span><span>Via Pola 22, 30039 Stra (VE)</span><span>P.IVA e C.F. 02005670274</span><span>REA VE-190999</span><span>Capitale sociale 99.000 euro</span><span class="legali"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a> <span>Whistleblowing: <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">procedura</a>, <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">privacy</a></span> <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni SA8000</a> <a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></span></p></div>
 </footer>
 
 <script>

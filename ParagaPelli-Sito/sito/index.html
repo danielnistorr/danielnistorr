@@ -158,27 +158,36 @@ dl,dd{margin:0}
 .squadra img{width:100%;height:auto;aspect-ratio:1620/800;object-fit:cover}
 .squadra figcaption{padding:10px var(--m) 0;font-size:13px;color:var(--grigio)}
 
-/* ---------- contatti ---------- */
-.dove{padding-top:clamp(72px,8vw,112px);padding-bottom:clamp(88px,9vw,136px)}
-.dove .luogo{grid-column:1/7}
-.dove .luogo p{margin-top:22px;font-size:17px;line-height:1.55}
-.dove .luogo p+p{margin-top:12px;font-size:15px}
-.recapiti{grid-column:7/13;display:grid;grid-template-columns:minmax(0,10em) 1fr;font-size:15px;line-height:1.55;align-self:start;margin-top:6px}
-.recapiti dt,.recapiti dd{padding:13px 0 14px;border-top:1px solid var(--filetto)}
-.recapiti dt{color:var(--grigio)}
-.recapiti dd .grande{font-size:28px;font-weight:300;font-stretch:88%;letter-spacing:-.01em;line-height:1.1}
-.recapiti dt:last-of-type,.recapiti dd:last-of-type{border-bottom:1px solid var(--filetto)}
+/* ---------- contatti: il cartellino della ditta ---------- */
+/* lo stesso oggetto del cartellino in apertura (cartoncino, filo, ombra dura, nome in Caslon, scheda a righe):
+   al posto dei dati del campione ci sono sede, telefono ed email; la scansione e' quella del colore scelto */
+.dove{padding:clamp(72px,8vw,120px) 0 clamp(64px,6.6vw,96px)}
+.tagliando{grid-column:3/11;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);background:var(--cartoncino);color:var(--inchiostro);border:1px solid rgba(26,24,23,.12);box-shadow:0 2px 0 rgba(26,24,23,.32)}
+.tagliando .scansione{position:relative;margin:0;min-height:100%;background:var(--tono);transition:background-color var(--t) ease}
+.tagliando .scansione img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tagliando .scansione span{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 28px);padding:4px 7px 3px;background:#F4F1EC;color:#1A1817;font-size:12px;font-weight:520;line-height:1.15;letter-spacing:.01em}
+.tagliando .testo{padding:24px 30px 24px}
+.tagliando h2{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.tagliando h2 .n{font-family:var(--nome);font-size:clamp(30px,2.9vw,40px);line-height:1.05;letter-spacing:-.01em}
+.tagliando h2 .c{font-size:15px;font-weight:420;color:var(--grigio)}
+.tagliando dl{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);margin-top:18px;font-size:15px;line-height:1.45}
+.tagliando dt,.tagliando dd{padding:10px 0 11px;border-top:1px solid rgba(26,24,23,.16)}
+.tagliando dt{color:#5E5A56}
+.tagliando dd{overflow-wrap:anywhere}
+.tagliando dd a{display:inline-block}
+.tagliando .nw{white-space:nowrap}
+.tagliando .mappa{display:block;width:max-content;margin-top:2px}
+.tagliando .tel{display:inline-flex;align-items:center;min-height:44px;margin:-8px 0 -9px;font-size:30px;font-weight:300;font-stretch:88%;letter-spacing:-.01em;line-height:1}
+.tagliando small{display:block;margin-top:4px;padding-top:12px;border-top:1px solid rgba(26,24,23,.16);font-size:12.5px;line-height:1.4;color:#5E5A56}
 
-/* ---------- piede ---------- */
-.piede{background:var(--inchiostro);color:#D9D5CF;padding:clamp(56px,6vw,88px) 0 40px;font-size:13px;line-height:1.6;overflow:hidden}
-.piede .chiusa{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin:0 0 20px}
-.piede .chiusa b{font-weight:560;font-stretch:118%;font-size:19px;letter-spacing:.01em;color:#F4F1EC}
-.piede .chiusa span{color:#A9A39B}
-.piede .costa{grid-column:1/-1;display:grid;grid-template-columns:repeat(27,minmax(0,1fr));column-gap:2px;height:clamp(44px,5.6vw,80px)}
+/* ---------- piede: la fila delle cartelle e una riga sola ---------- */
+.piede{padding:0 0 26px;font-size:13px;line-height:1.5;color:#5E5A56}
+.piede .costa{grid-column:1/-1;display:grid;grid-template-columns:repeat(27,minmax(0,1fr));column-gap:2px;height:clamp(40px,4.4vw,64px)}
 .piede .costa i{background-size:80px 350px;background-position:center 40%}
-.piede .riga{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 36px;align-items:baseline;margin-top:clamp(40px,4.4vw,64px);padding-top:18px;border-top:1px solid rgba(244,241,236,.18)}
+.piede .riga{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:0 28px;align-items:baseline;padding-top:10px}
+.piede .riga b{font-weight:560;color:var(--inchiostro)}
 .piede .riga .ult{margin-left:auto}
-.piede a{color:#F4F1EC}
+.piede a{color:var(--inchiostro);display:inline-block;padding:4px 0}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
@@ -196,6 +205,7 @@ dl,dd{margin:0}
   .righe h3{grid-column:1/-1;padding-top:0;margin-bottom:6px}
   .righe .nomi,.righe p{grid-column:1/-1}
   .box{grid-column:8/13}
+  .tagliando{grid-column:2/12}
 }
 /* ---------- 900 ---------- */
 @media (max-width:900px){
@@ -216,8 +226,7 @@ dl,dd{margin:0}
   .famiglie{grid-template-columns:1fr 1fr;row-gap:16px}
   .campo .lwg{grid-column:1/-1}
   .box{grid-column:1/-1;justify-self:start;margin-top:56px}
-  .dove .luogo,.recapiti{grid-column:1/-1}
-  .recapiti{margin-top:40px}
+  .tagliando{grid-column:1/-1;grid-template-columns:minmax(0,2fr) minmax(0,5fr)}
   .mazzetta{display:flex;height:112px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
   .mazzetta::-webkit-scrollbar{display:none}
   .linguetta{flex:1 0 64px;height:86px;scroll-snap-align:center}
@@ -260,14 +269,16 @@ dl,dd{margin:0}
   .box{width:100%}
   .corsia img{aspect-ratio:1.25}
   .squadra img{aspect-ratio:1}
-  .recapiti{grid-template-columns:1fr}
-  .recapiti dt{padding-bottom:0}
-  .recapiti dd{border-top:0;padding-top:2px}
-  .recapiti dd:last-of-type{border-bottom:1px solid var(--filetto)}
-  .recapiti dt:last-of-type{border-bottom:0}
-  .piede .riga{gap:6px 24px}
+  .tagliando{grid-template-columns:1fr}
+  .tagliando .scansione{min-height:0;height:96px}
+  .tagliando .scansione span{left:12px;bottom:12px}
+  .tagliando .testo{padding:16px 16px 18px}
+  .tagliando dl{grid-template-columns:1fr;margin-top:12px}
+  .tagliando dt{padding:9px 0 0;font-size:13px}
+  .tagliando dd{border-top:0;padding:0 0 9px}
+  .tagliando .tel{font-size:28px;margin:0}
   .piede .costa{column-gap:1px}
-  .piede .chiusa{flex-direction:column;gap:4px}
+  .piede .riga{gap:0 20px}
   .piede .riga .ult{margin-left:0}
 }
 /* ---------- telefoni stretti (320) ---------- */
@@ -411,35 +422,38 @@ dl,dd{margin:0}
 
 <section class="dove" id="contatti" aria-labelledby="t-dove">
   <div class="griglia">
-    <div class="luogo">
-      <h2 class="titolo" id="t-dove">Tombelle di Vigonovo, zona industriale</h2>
-      <p>Sede e magazzino in Via del Lavoro, 30030 Tombelle di Vigonovo (VE).</p>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Paraga+Pelli+Via+del+Lavoro+Tombelle+di+Vigonovo">Apri in Google Maps</a></p>
+    <div class="tagliando">
+      <div class="scansione" aria-hidden="true">
+        <img id="t-campione" src="img/c/botticelli/botticelli-2117.webp" srcset="img/c/botticelli/botticelli-2117.webp 350w, img/c2/botticelli/botticelli-2117.webp 640w" sizes="(max-width:600px) 100vw, 360px" width="350" height="350" alt="" loading="lazy">
+        <span id="t-et">Botticelli 2117</span>
+      </div>
+      <div class="testo">
+        <h2 id="t-dove"><span class="n">Paraga Pelli</span> <span class="c">Contatti</span></h2>
+        <dl>
+          <dt>Sede e magazzino</dt><dd>Via del Lavoro,<br><span class="nw">30030 Tombelle di Vigonovo (VE)</span> <a class="mappa" href="https://www.google.com/maps/search/?api=1&amp;query=Paraga+Pelli+Via+del+Lavoro+Tombelle+di+Vigonovo">Apri in Google Maps</a></dd>
+          <dt>Telefono</dt><dd><a class="tel num" href="tel:+390499832030">049&nbsp;983&nbsp;2030</a></dd>
+          <dt>Fax</dt><dd class="num">049&nbsp;983&nbsp;3050</dd>
+          <dt>Informazioni</dt><dd><a href="mailto:info@paragapelli.com">info@paragapelli.com</a></dd>
+          <dt>Ordini</dt><dd><a href="mailto:ordini@paragapelli.com">ordini@paragapelli.com</a></dd>
+          <dt>Amministrazione</dt><dd><a href="mailto:amministrazione@paragapelli.com">amministrazione@paragapelli.com</a></dd>
+          <dt>Ufficio estero</dt><dd><a href="mailto:sales@paragapelli.com">sales@paragapelli.com</a></dd>
+        </dl>
+        <small>Per ordini e campioni indicate articolo e codice del colore, come sul cartellino: <span id="t-scelto">Botticelli 2117</span>.</small>
+      </div>
     </div>
-    <dl class="recapiti">
-      <dt>Telefono</dt><dd><a class="grande num" href="tel:+390499832030">049&nbsp;983&nbsp;2030</a></dd>
-      <dt>Fax</dt><dd class="num">049&nbsp;983&nbsp;3050</dd>
-      <dt>Informazioni</dt><dd><a href="mailto:info@paragapelli.com">info@paragapelli.com</a></dd>
-      <dt>Ordini</dt><dd><a href="mailto:ordini@paragapelli.com">ordini@paragapelli.com</a></dd>
-      <dt>Amministrazione</dt><dd><a href="mailto:amministrazione@paragapelli.com">amministrazione@paragapelli.com</a></dd>
-      <dt>Ufficio estero</dt><dd><a href="mailto:sales@paragapelli.com">sales@paragapelli.com</a></dd>
-    </dl>
   </div>
 </section>
 </main>
 
 <footer class="piede">
   <div class="griglia">
-    <p class="chiusa"><b>Paraga Pelli</b><span class="num">27 cartelle colori, 403 campioni</span></p>
     <div class="costa" aria-hidden="true"><i style="background-image:url(img/d-botticelli.jpg)"></i><i style="background-image:url(img/d-sera.jpg)"></i><i style="background-image:url(img/d-lana.jpg)"></i><i style="background-image:url(img/d-piston.jpg)"></i><i style="background-image:url(img/d-madras.jpg)"></i><i style="background-image:url(img/d-spessorato.jpg)"></i><i style="background-image:url(img/d-doge.jpg)"></i><i style="background-image:url(img/d-leonardo.jpg)"></i><i style="background-image:url(img/d-modigliani.jpg)"></i><i style="background-image:url(img/d-nabuk.jpg)"></i><i style="background-image:url(img/d-ocean.jpg)"></i><i style="background-image:url(img/d-paros.jpg)"></i><i style="background-image:url(img/d-santorini.jpg)"></i><i style="background-image:url(img/d-wild-west.jpg)"></i><i style="background-image:url(img/d-corfu.jpg)"></i><i style="background-image:url(img/d-creta.jpg)"></i><i style="background-image:url(img/d-fog.jpg)"></i><i style="background-image:url(img/d-fuoco.jpg)"></i><i style="background-image:url(img/d-lido.jpg)"></i><i style="background-image:url(img/d-mykonos.jpg)"></i><i style="background-image:url(img/d-rodi.jpg)"></i><i style="background-image:url(img/d-vetta.jpg)"></i><i style="background-image:url(img/d-kelindo.jpg)"></i><i style="background-image:url(img/d-lipsi.jpg)"></i><i style="background-image:url(img/d-micro.jpg)"></i><i style="background-image:url(img/d-imola.jpg)"></i><i style="background-image:url(img/d-monza.jpg)"></i></div>
-    <div class="riga">
+    <p class="riga">
+      <b>Paraga Pelli</b>
       <span class="num">P.IVA 03748440272</span>
-      <span>Via del Lavoro, 30030 Tombelle di Vigonovo (VE)</span>
-      <a class="num" href="tel:+390499832030">049&nbsp;983&nbsp;2030</a>
-      <a href="mailto:info@paragapelli.com">info@paragapelli.com</a>
       <a href="https://www.facebook.com/ParagaPelli">Facebook</a>
       <a class="ult" href="#">Privacy</a>
-    </div>
+    </p>
   </div>
 </footer>
 
@@ -450,6 +464,7 @@ dl,dd{margin:0}
   A.forEach(function(a,i){perNome[a.a]=i});
   var root=document.documentElement, ap=document.getElementById('apertura'), mz=document.getElementById('mazzetta');
   var nome=document.getElementById('nome'), cod=document.getElementById('codice'), riga=document.getElementById('nome-linea');
+  var timg=document.getElementById('t-campione'), tet=document.getElementById('t-et'), tsc=document.getElementById('t-scelto');
   var img=document.getElementById('campione'), cn=document.getElementById('c-nome'), cc=document.getElementById('c-cod'), sch=document.getElementById('scheda');
   var lento=window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -530,6 +545,7 @@ dl,dd{margin:0}
     document.body.classList.toggle('tema-chiaro',ch);
     cod.textContent=c.k;cc.textContent=c.l;
     img.srcset=c.i+' 350w, '+c.i.replace('img/c/','img/c2/')+' 640w';img.src=c.i;img.alt='Scansione del campione '+c.t;
+    timg.srcset=img.srcset;timg.src=c.i;tet.textContent=c.t;tsc.textContent=c.t;
     adatta();
     if(mz.scrollWidth>mz.clientWidth+2){mz.scrollLeft=Math.max(0,b.offsetLeft-(mz.clientWidth-b.offsetWidth)/2)}
   }

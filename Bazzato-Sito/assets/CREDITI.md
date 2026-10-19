@@ -56,3 +56,15 @@ Versione finale costruita sulla bozza B, "Il ponte" (scelta del committente), il
 - `ponte-*.jpg`, `ponte-alta-*.jpg`: Artem Podrez (Pexels 8986138), Pexels License. Tolti SUBARU e FORESTER dal portellone e BRIDGESTONE dal fianco della gomma; saturazione ridotta; inquadratura intera 3:2 e taglio quadrato. Il modello resta riconoscibile dalla forma.
 - Non più usate nella home: Masth (mani sulla ruota), Mclean (disco), Bélanger (bussole), Yvette S (battistrada), Brunner, Buehner, wal_, Hyundai Motor Group.
 - Tutte e due restano segnaposto: in pagina portano l'etichetta "Foto indicativa" e vanno rifatte dal vero (vedi `LEGGIMI.md`).
+
+## Rifinitura della versione finale (19/10/2026, dopo il giudizio cieco)
+
+| File | Pagina della foto | Autore | Misura scaricata | Licenza | Note |
+|---|---|---|---|---|---|
+| `esterne/pexels-8985667-podrez-auto-intera-sul-ponte.jpg` | https://www.pexels.com/photo/car-on-lift-at-auto-the-repair-shop-8985667/ | Artem Podrez | 4200x2363 (originale 6144x3456) | "Free", Pexels License (letta sulla pagina il 19/10/2026) | SUV bianco intero di fianco sul ponte, officina luminosa; a destra un meccanico, insegne appese col marchio Geely. Segnaposto. Non usata in nessun'altra home della campagna (controllati tutti i `*-Sito/assets/CREDITI.md`; la serie di Podrez compare solo in LavoroESalute tra le foto guardate e scartate, con un altro numero) |
+
+Uso in `sito/img/` (script `_prova/script/finale_img.py`):
+- `ponte-*.jpg`, `ponte-alta-*.jpg`: ora Podrez 8985667 al posto di Podrez 8986138. Ritocchi: tolta l'insegna appesa con il marchio e la scritta (al suo posto il soffitto subito a destra), tolta la scritta del modello sulla portiera; bianco riportato al neutro, saturazione ridotta; taglio 3:2 e 5:4 con il meccanico e l'altra insegna fuori dal quadro. La forma dell'auto resta riconoscibile.
+- `officina-*.jpg`: stessa foto di Razumov, taglio più stretto (2040 px) e piastrelle grigio scuro schiarite a sinistra del pavimento.
+- Podrez 8986138 resta in `esterne/` ma non è più usata.
+- Guardate e scartate: Pexels 12185933 (Hyundai Motor Group, auto sul ponte in un'officina scura, marchio e modello sul portellone), 8986033 e 8985514 (Podrez, dettagli con marchi e fumo), 33814733 (marchio BMW in primo piano), 10126656 e 5158101 (scure); Unsplash Hv_gKPOXmwE (KC Shum, officina in disordine, targa leggibile).

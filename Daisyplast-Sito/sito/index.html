@@ -18,6 +18,7 @@
   --grigio:#5F625D;      /* testo secondario su latte, 5,9:1 */
   --grigio-chiaro:#BDBFB9; /* testo secondario su grafite, 9,6:1 */
   --filo:#D3D1C9;
+  --banco:#E8E5DC;       /* il banco su cui posa la shopper dei contatti, e il piede */
   --filo-scuro:rgba(243,241,234,.3);
   --m:clamp(20px,4.45vw,64px);
   --g:clamp(16px,1.67vw,24px);
@@ -133,26 +134,37 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
 .gruppi .et{display:block;font-size:14px;line-height:1.4;font-weight:600;margin-bottom:8px}
 .gruppi .elenco{display:block;font-family:var(--alto);font-weight:300;font-size:clamp(32px,3.75vw,54px);line-height:1.04;letter-spacing:-.008em;max-width:25em}
 
-/* ---------- Contatti ---------- */
-.contatti{background:var(--grafite);color:var(--latte);padding:var(--r) var(--m) clamp(64px,6vw,96px)}
-.contatti h2{max-width:11em;font-size:clamp(44px,6.6vw,96px);line-height:.92}
-.contatti .grande{display:inline-block;margin-top:clamp(28px,3.4vw,48px);font-family:var(--alto);font-weight:300;font-size:clamp(64px,17vw,250px);line-height:.86;letter-spacing:-.01em;font-variant-numeric:lining-nums proportional-nums;text-decoration:none;border-bottom:2px solid var(--filo-scuro);transition:border-color .15s}
-.contatti .grande:hover{border-bottom-color:var(--giallo)}
-.recapiti{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);row-gap:32px;margin-top:clamp(56px,6vw,88px);font-size:17px;line-height:1.5}
-.recapiti>div{border-top:1px solid var(--filo-scuro);padding-top:16px}
-.recapiti h3{font-size:14px;font-weight:400;color:var(--grigio-chiaro);margin-bottom:8px}
-.recapiti a{text-underline-offset:4px;text-decoration-thickness:1px;text-decoration-color:var(--grigio-chiaro)}
-.recapiti a:hover{text-decoration-color:var(--giallo)}
-.recapiti table{border-collapse:collapse}
-.recapiti td{padding:0 16px 0 0;vertical-align:baseline}
+/* ---------- Contatti: la loro shopper a maniglia fustellata, con i recapiti stampati sopra ---------- */
+.contatti{background:var(--banco);padding:var(--r) var(--m) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.contatti h2{grid-column:1 / span 6;align-self:center;max-width:6.4em;font-size:clamp(44px,6.6vw,96px);line-height:.92}
+.sacco{grid-column:7 / span 6;justify-self:center;position:relative;width:min(100%,600px);margin:0;padding:156px 44px 88px;text-align:center;font-style:normal;font-size:17px;line-height:1.6;color:var(--grafite);transform:rotate(-1.2deg);
+  background:
+    linear-gradient(116deg,rgba(255,255,255,0) 16%,rgba(255,255,255,.8) 28%,rgba(255,255,255,0) 42%),
+    linear-gradient(98deg,rgba(30,31,29,0) 63%,rgba(30,31,29,.035) 65.5%,rgba(30,31,29,0) 69%),
+    linear-gradient(to right,rgba(30,31,29,.07) 0,rgba(30,31,29,0) 1.2%,rgba(30,31,29,0) 4.6%,rgba(30,31,29,.08) 5%,rgba(255,255,255,.9) 5.2%,rgba(30,31,29,0) 5.8%,rgba(30,31,29,0) 94.2%,rgba(255,255,255,.9) 94.8%,rgba(30,31,29,.08) 95%,rgba(30,31,29,0) 95.4%,rgba(30,31,29,0) 98.8%,rgba(30,31,29,.07) 100%),
+    linear-gradient(to bottom,#FCFBF9,#F6F5F0);
+  box-shadow:0 1px 2px rgba(30,31,29,.14),0 22px 44px -22px rgba(30,31,29,.38),0 44px 90px -44px rgba(30,31,29,.3)}
+/* il rinforzo ripiegato in cima e la fustella della maniglia, che lascia vedere il banco */
+.sacco::before{content:"";position:absolute;left:0;right:0;top:0;height:118px;background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));border-bottom:1px solid rgba(30,31,29,.07)}
+.sacco::after{content:"";position:absolute;top:44px;left:50%;width:30%;height:40px;transform:translateX(-50%);border-radius:20px;background:var(--banco);box-shadow:inset 0 2px 5px rgba(30,31,29,.28),0 1px 0 rgba(255,255,255,.9)}
+/* la saldatura del fondo, una riga dritta zigrinata */
+.sacco .saldatura{position:absolute;left:0;right:0;bottom:22px;height:11px;border-top:1px solid rgba(30,31,29,.1);border-bottom:1px solid rgba(30,31,29,.1);background:repeating-linear-gradient(90deg,rgba(30,31,29,.12) 0 1px,rgba(30,31,29,0) 1px 4px)}
+.sacco .stampa{position:relative}
+.sacco .stampa img{width:min(280px,70%);margin:0 auto}
+.sacco .grande{display:inline-block;margin-top:34px;font-family:var(--alto);font-weight:300;font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.01em;font-variant-numeric:lining-nums proportional-nums;text-decoration:none;padding:0 4px 6px;border-bottom:2px solid var(--grigio);transition:border-color .15s}
+.sacco .grande:hover{border-bottom-color:var(--grafite)}
+.sacco .righe{margin-top:30px}
+.sacco .righe p+p{margin-top:14px}
+.sacco a{text-underline-offset:4px;text-decoration-thickness:1px}
+.sacco .et{color:var(--grigio)}
+.sacco .nw{white-space:nowrap}
 
-.piede{background:var(--grafite-2);color:var(--grigio-chiaro);padding:40px var(--m) 48px;font-size:14px;line-height:1.6;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:20px}
-.piede .a{grid-column:1 / span 4}
-.piede .b{grid-column:5 / span 4}
-.piede .c{grid-column:9 / span 4}
-.piede strong{color:var(--latte);font-weight:600}
-.piede a{color:var(--grigio-chiaro);text-underline-offset:3px}
-.piede a:hover{color:var(--latte)}
+/* il piede: una riga sola sul banco */
+.piede{background:var(--banco);padding:clamp(72px,8vw,120px) var(--m) 36px;color:var(--grigio);font-size:14px;line-height:1.6}
+.piede p{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;padding-top:16px;border-top:1px solid #CFCCC2}
+.piede strong{color:var(--grafite);font-weight:600}
+.piede a{color:inherit;text-underline-offset:3px}
+.piede a:hover{color:var(--grafite)}
 
 /* ---------- sotto 1260: il menu si apre con un pulsante (sopra, i quattro voci stanno a destra della colonna) ---------- */
 @media (max-width:1260px){
@@ -168,9 +180,6 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   .dato .kg{font-size:76px}
   .cartellino{width:400px}
 }
-@media (max-width:1000px){
-  .recapiti{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
 /* ---------- tavoletta ---------- */
 @media (max-width:860px){
   .apertura .fondo{grid-template-columns:1fr 1fr}
@@ -181,7 +190,10 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   .pannello.chiaro .cartellino{box-shadow:none}
   .percorso .capo{display:block}
   .cifre li{width:clamp(96px,16vw,140px)}
-  .piede .a,.piede .b,.piede .c{grid-column:1 / -1}
+  .contatti{display:block}
+  .contatti h2{max-width:11em;font-size:clamp(44px,7vw,72px)}
+  .sacco{margin:clamp(40px,6vw,56px) auto 0;transform:rotate(-1deg)}
+  .sacco .grande{font-size:clamp(72px,13vw,112px)}
 }
 /* ---------- tavoletta verticale: la colonna resta un manifesto, il testo scende sotto ---------- */
 @media (min-width:561px) and (max-width:860px){
@@ -236,7 +248,11 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   .indice button{font-size:13px;padding:14px 0 18px}
   .indice button .k{display:block}
   .gruppi .elenco{font-size:32px;line-height:1.06}
-  .recapiti{grid-template-columns:1fr;row-gap:24px}
+  .sacco{transform:none;padding:112px 20px 70px;font-size:16px}
+  .sacco::before{height:92px}
+  .sacco::after{top:34px;width:34%;height:34px}
+  .sacco .stampa img{width:min(200px,62%)}
+  .sacco .grande{margin-top:26px;font-size:clamp(60px,19vw,84px)}
 }
 @media (max-width:359px){
   .indice button{font-size:12px}
@@ -439,39 +455,26 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   </ul>
 </section>
 
-<section class="contatti scuro" id="contatti" aria-labelledby="t-contatti">
+<section class="contatti" id="contatti" aria-labelledby="t-contatti">
   <h2 id="t-contatti" class="alto">Misure, materiale, quantità: ditecele al telefono</h2>
-  <a class="grande num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a>
-  <div class="recapiti">
-    <div>
-      <h3>Dove</h3>
-      <p>Via del Lavoro 25<br>Tombelle di Vigonovo<br><span class="num">30030</span> Vigonovo (VE)</p>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+25+30030+Vigonovo+VE">Apri la mappa</a></p>
+  <address class="sacco">
+    <span class="saldatura" aria-hidden="true"></span>
+    <div class="stampa">
+      <img src="img/logo.webp" width="530" height="146" alt="Daisyplast s.r.l." loading="lazy">
+      <a class="grande num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a>
+      <div class="righe">
+        <p>Via del Lavoro 25, <span class="nw">Tombelle di Vigonovo</span><br><span class="num">30030</span> Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+25+30030+Vigonovo+VE">Apri la mappa</a></p>
+        <p><a href="mailto:info@daisyplast.it">info@daisyplast.it</a><br><span class="num">Fax 049&nbsp;982&nbsp;9961</span></p>
+        <p class="num"><span class="et">Carico e scarico</span><br><span class="nw">Lun–Ven 8:00–12:00</span> <span class="nw">e 14:00–17:30</span><br>Sab–Dom chiuso</p>
+        <p>Consegne con i nostri mezzi</p>
+      </div>
     </div>
-    <div>
-      <h3>Scrivere</h3>
-      <p><a href="mailto:info@daisyplast.it">info@daisyplast.it</a><br><span class="num">Fax 049&nbsp;982&nbsp;9961</span></p>
-    </div>
-    <div>
-      <h3>Carico e scarico</h3>
-      <table class="num">
-        <tr><td>Lun–Ven</td><td>8:00–12:00</td></tr>
-        <tr><td></td><td>14:00–17:30</td></tr>
-        <tr><td>Sab–Dom</td><td>chiuso</td></tr>
-      </table>
-    </div>
-    <div>
-      <h3>Consegne</h3>
-      <p>Con i nostri mezzi</p>
-    </div>
-  </div>
+  </address>
 </section>
 </main>
 
 <footer class="piede">
-  <div class="a"><strong>DAISYPLAST s.r.l.</strong><br>Via del Lavoro 25, Tombelle di Vigonovo<br><span class="num">30030</span> Vigonovo (VE)</div>
-  <div class="b num">P. IVA e C.F. 03861090276<br>REA VE-344838<br>Capitale sociale 60.000&nbsp;euro i.v.</div>
-  <div class="c num">Tel. <a href="tel:+390499802226">049&nbsp;980&nbsp;2226</a><br>PEC <a href="mailto:daisyplastsrl@pec.it">daisyplastsrl@pec.it</a><br>Questa pagina non usa cookie</div>
+  <p class="num"><strong>DAISYPLAST s.r.l.</strong><span>P. IVA e C.F. 03861090276</span><span>REA VE-344838</span><span>Capitale sociale 60.000&nbsp;euro i.v.</span><span>PEC <a href="mailto:daisyplastsrl@pec.it">daisyplastsrl@pec.it</a></span><span>Questa pagina non usa cookie</span></p>
 </footer>
 
 <script>

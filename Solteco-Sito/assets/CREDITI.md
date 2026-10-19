@@ -44,4 +44,6 @@ Aggiunto il 19/10/2026. La home finale usa tre foto, tutte Pexels con licenza "F
 - processo: Fernanda Simões, https://www.pexels.com/photo/craftsman-repairing-leather-shoe-sole-with-precision-30725646/ (copia grande `_prova/crawl/grandi/pennello-30725646-4480.jpg`, 4480x6720);
 - adesivi: Anna Tarazevich, https://www.pexels.com/photo/man-hands-holding-leather-and-paint-and-working-5963144/ (copia grande già presente, `tarazevich-5963144-3500.jpg`).
 
-Le foto di Shvets (cardatura) ed EvoMao (linea con le sneaker) del prototipo B non sono più in pagina. Nessuna delle tre compare nei CREDITI.md delle altre home della campagna (controllo del 19/10/2026).
+Le foto di Shvets (cardatura) ed EvoMao (linea con le sneaker) del prototipo B non sono più in pagina.
+
+Ultimo giro (19/10/2026): la colla al banco di Tarazevich è tolta dalla pagina e sostituita dalle suole di Fernanda Simões, https://www.pexels.com/photo/shoe-soles-on-a-wooden-surface-in-close-up-photography-13524733/ (licenza Pexels "Free", vedi sopra; copia grande `_prova/crawl/grandi/simoes-13524733-4000.jpg`), ritagliate sulle due suole ed esportate in `sito/img/suole-*.jpg`. Ricontrollato lo stesso giorno: il numero 13524733 non compare nei CREDITI.md delle altre home della campagna. Nessuna delle tre compare nei CREDITI.md delle altre home della campagna (controllo del 19/10/2026).

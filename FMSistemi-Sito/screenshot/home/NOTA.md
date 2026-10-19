@@ -1,8 +1,22 @@
 # F.M. Sistemi, nuova home: nota della versione finale
 
-Pagina: `sito/index.html` (si apre con file:///, nessuna chiamata esterna tranne i link a Google Maps, Facebook e alla pagina di partner Viessmann). Immagini in `sito/img`, caratteri in `sito/fonts`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini, caratteri, prova dell'interazione, screenshot, controllo U+2014). Screenshot qui: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg` (JPEG 85); controlli a 320, 768, 1024, 1280 e 1920, clic su E a 1440 e tocco su P a 390 in `_prova/home/finale-controlli/`, esito della prova in `_prova/home/finale-controlli/prova.json`.
+Pagina: `sito/index.html` (si apre con file:///, nessuna chiamata esterna tranne i link a Google Maps, Facebook e alla pagina di partner Viessmann). Immagini in `sito/img`, caratteri in `sito/fonts`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini, caratteri, prova dell'interazione, screenshot, controllo U+2014). Screenshot qui: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg` e `chiusura-1440.jpg` (solo la chiusura, dai contatti alla fine; JPEG 85); controlli a 320, 768, 1024, 1280 e 1920, clic su E a 1440 e tocco su P a 390 in `_prova/home/finale-controlli/`, esito della prova in `_prova/home/finale-controlli/prova.json`.
 
-Base: prototipo A "Materia". Passaggio dopo il giudizio cieco (55/80, prove in `_prova/cieco/`): stessa idea e stessa direzione, apertura ferma, sezione dei mestieri rifatta. Ultimo passaggio (19 ottobre 2026): **palette chiara**, dopo il commento del committente "fm sistemi non mi fa impazzire così scura la palette". Idea, struttura, caratteri, interazione, testi e dati sono gli stessi; la versione scura resta in `_prova/home/finale-scuro/` (pagina e prime schermate) e in `_prova/script/finale_img_scuro.py`.
+Base: prototipo A "Materia". Passaggio dopo il giudizio cieco (55/80, prove in `_prova/cieco/`): stessa idea e stessa direzione, apertura ferma, sezione dei mestieri rifatta. Ultimo passaggio (19 ottobre 2026): **palette chiara**, dopo il commento del committente "fm sistemi non mi fa impazzire così scura la palette". Idea, struttura, caratteri, interazione, testi e dati sono gli stessi; la versione scura resta in `_prova/home/finale-scuro/` (pagina e prime schermate) e in `_prova/script/finale_img_scuro.py`. Dopo (19 ottobre 2026) è cambiata solo **la chiusura** (contatti e piede), vedi sotto; la pagina com'era prima è in `_prova/home/prima-della-chiusura/`.
+
+## La chiusura: dopo la Z, un numero solo
+
+Il committente ha notato che quasi tutte le home della campagna chiudono allo stesso modo: titolo di luogo, numero di telefono gigante, una riga di tre o quattro colonnine (indirizzo, email, orari), piede a più colonne di testo minuto. Anche questa lo faceva ("In via del Lavoro 37...", numero a 92 px, tre colonne Orari, Scrivere, Venire, piede su pietra con logo, dati e Facebook in tre blocchi).
+
+Ora la chiusura è **l'ultima voce dell'indice**: la stessa riga delle otto righe dei mestieri (filetti sopra e sotto, capolettera a 152 px nelle colonne 2-3, nome e riga di testo nelle colonne 4-6), con due differenze che la fanno leggere come la fine dell'alfabeto. La capolettera è la **Z**, spenta come nell'alfabeto dell'apertura (#857C70, 3,3:1, solo in grande, nascosta ai lettori di schermo), perché la Z non è un mestiere; e dove ogni mestiere ha la sua striscia di materiale, qui c'è il **numero**, con sotto il segno di rame della riga raggiunta. Il nome della voce è il titolo della sezione: "Dopo la Z, un numero solo", che riprende la riga dell'apertura ("...un numero solo") e la frase dei lavori ("il cantiere ha un numero solo"). Un oggetto solo, già noto a chi ha letto la pagina, niente concetto nuovo.
+
+- **Voce:** "Dopo la Z, un numero solo" (h2, 28 px come i nomi dei mestieri) e sotto, come la riga di testo di un mestiere, gli orari: "Dal lunedì al sabato, 8.30-19.00. Domenica chiuso."
+- **Al posto della striscia:** 049 8305354 in Funnel Display 64 px a 1440 (40 px al telefono), collegamento `tel:` alto 74 px a 1440 e 50 px a 390, grafite, rame al passaggio; sotto, in testo corrente e non in colonne: "Via del Lavoro 37, zona artigianale, 30030 Vigonovo (VE): apri in Google Maps" e "info@fmsistemisrl.it; per preventivi e sopralluoghi commerciale@fmsistemisrl.it" (due `mailto:`, il secondo con l'oggetto "Richiesta di preventivo").
+- **Piede:** una riga sola sulla calce, senza fascia: F.M. Sistemi S.r.l., Partita IVA e codice fiscale 03807720283, PEC fmsistemisrl@legalmail.it, Facebook a destra; 14 px, secondario #5C554C (6,0:1). Al telefono le quattro voci vanno a capo una per riga. Nessun link alla privacy: la pagina non esiste ancora e un link vuoto era già stato tolto (va aggiunto quando c'è).
+- **Tolti:** il titolo di luogo "In via del Lavoro 37, nella zona artigianale di Vigonovo", il numero a 92 px, le tre colonne Orari, Scrivere, Venire con i loro sottotitoli, il fondo pietra del piede (#E3DBCE, ora la pagina è tutta calce), il logo ripetuto nel piede, l'indirizzo e il telefono ripetuti nel piede.
+- **Dati:** tutti quelli che c'erano, nessuno nuovo. L'indirizzo del piede non si ripete perché è nella voce sopra.
+- **Da 601 a 1100 e al telefono** la voce segue la riga dei mestieri: Z a sinistra (112 px, 80 px al telefono), voce e orari accanto, numero e recapiti sotto (allineati al testo da 601 a 1100, a tutta larghezza al telefono). "Dopo la Z," e "un numero solo" non si spezzano dentro (a 360 px e meno sì, per stare nella colonna).
+- **Controlli della chiusura** (con `_prova/script/build_finale.sh` e una cattura della sola chiusura a 1440, 1024, 768, 390, 360 e 320, guardata a pezzi): nessuno scorrimento orizzontale, nessun elemento fuori dallo schermo, nessuna sovrapposizione; contrasto dei testi come nel resto della pagina (13,2:1, 6,0:1, la Z 3,3:1 in grande); nessuna fascia scura, nessuna colonnina, nessun U+2014.
 
 ## L'idea
 
@@ -12,8 +26,8 @@ Il rame è l'unico accento forte della pagina: la T resta a colori, tutte le alt
 
 ## Cosa è cambiato nell'ultimo passaggio: la palette chiara
 
-- **Fondo.** Da grafite #141414 a calce #EDE7DE in tutta la pagina; il piede su pietra #E3DBCE, unica variazione di fondo. Nessuna fascia scura.
-- **Testo.** Grafite #23201C (13,2:1 sulla calce), secondario #5C554C (6,0:1; 5,3:1 sulla pietra del piede). Le lettere senza mestiere sono #857C70 (3,3:1), usate solo a 28-46 px, quindi testo grande; restano nascoste ai lettori di schermo.
+- **Fondo.** Da grafite #141414 a calce #EDE7DE in tutta la pagina (il piede era su pietra #E3DBCE: con la chiusura nuova è anche lui sulla calce). Nessuna fascia scura.
+- **Testo.** Grafite #23201C (13,2:1 sulla calce), secondario #5C554C (6,0:1). Le lettere senza mestiere sono #857C70 (3,3:1), usate solo a 28-46 px, quindi testo grande; restano nascoste ai lettori di schermo.
 - **Rame.** Rame #B4703A per il bottone (testo #1A1714, 4,5:1), il segno sotto la T accesa, il segno della riga raggiunta; rame per il testo #8F4F1F (5,2:1) per "Otto mestieri su ventuno lettere", la T della didascalia, la lettera accesa, le capolettera. Al passaggio il bottone diventa grafite con il testo calce (cambio netto, nessuna dissolvenza).
 - **Blu FM** #046EA2 solo nell'arco del logo e nel segno del fuoco da tastiera (4,6:1).
 - **Logo.** `sito/img/logo.png`: il raster del sito attuale con il nero portato a grafite, l'arco nel blu FM originale e il fondo trasparente (prima era schiarito per il fondo scuro).
@@ -39,7 +53,7 @@ Il rame è l'unico accento forte della pagina: la T resta a colori, tutte le alt
 
 **390x844.** Titolo su due righe a 82 px, la T di rame a tutta larghezza con il gambo al centro, poi la riga (cinque righe) e il bottone, poi l'alfabeto 7x3 con celle da 50x48 px; la T accesa è al centro della terza riga, sullo stesso asse del gambo.
 
-Sotto: "Una casa dalla A alla Z", collettore a tutta larghezza (la foto tecnica), il 17 a 216 px con la scheda a tre righe; la parete d'inverno con la frase "Il lavoro migliore è quello che a cantiere chiuso non si vede più. In casa resta la temperatura giusta."; contatti con il numero grande; piede con i dati societari. Un passo solo fra le sezioni: 160 px a 1440, 96 px a 390.
+Sotto: "Una casa dalla A alla Z", collettore a tutta larghezza (la foto tecnica), il 17 a 216 px con la scheda a tre righe; la parete d'inverno con la frase "Il lavoro migliore è quello che a cantiere chiuso non si vede più. In casa resta la temperatura giusta."; la chiusura "Dopo la Z, un numero solo" (l'ultima voce dell'indice, con il numero al posto della striscia); il piede su una riga. Un passo solo fra le sezioni: 160 px a 1440, 96 px a 390.
 
 ## Il confronto con Hambro e Paraga Pelli (prime schermate a 1440)
 
@@ -51,8 +65,8 @@ Sotto: "Una casa dalla A alla Z", collettore a tutta larghezza (la foto tecnica)
 ## Caratteri e colori
 
 - **Funnel Display** (titolo, lettere, capolettera, numeri grandi, frase della parete) e **Funnel Sans** (testo, menu, bottone): stessa superfamiglia, di The Funnel Project Authors (Dicotype), da Google Fonts, licenza SIL Open Font License 1.1 (testo in `sito/fonts/OFL.txt`). Serviti dalla pagina: `sito/fonts/funnel-display-latin.woff2` e `funnel-sans-latin.woff2`, variabili 300-800, usati a 400 e 500. Riferimenti: Aira (titolo enorme in un grottesco proprio, bianco su nero sopra una griglia in luce color rame) e Basalte (grottesco largo e leggero, forti salti di misura). Cifre tabellari su telefono, orari, partita IVA, date, indici. Nessun monospazio.
-- **Scala:** 216 il 17, 160 apertura, 152 capolettera, 92 telefono, 56 h2 e frase della parete, 46 lettere dell'alfabeto, 30 voce della tavola, 28 nomi dei mestieri, 17-20 testo, 13-14 didascalie, indici e nomi.
-- **Colori:** calce #EDE7DE (fondo, e fondo della foto d'apertura), pietra #E3DBCE (piede), grafite #23201C per il testo (13,2:1), secondario #5C554C (6,0:1), lettere spente #857C70 (3,3:1, solo in grande, nascoste ai lettori di schermo), filetti #D3CABD, rame #B4703A per il bottone e i segni sotto le lettere, rame per il testo #8F4F1F (5,2:1) per lettere accese, capolettera, inizio della riga e passaggio del mouse sui link. Il blu FM #046EA2 solo nell'arco del logo e nel segno del fuoco. Riferimenti per la luce: Hambro (oggetto in metallo su carta chiara con la sua ombra) e Kvadrat (fondi caldi, nessun bianco puro).
+- **Scala:** 216 il 17, 160 apertura, 152 capolettera, 64 numero della chiusura, 56 h2 e frase della parete, 46 lettere dell'alfabeto, 30 voce della tavola, 28 nomi dei mestieri, 17-20 testo, 13-14 didascalie, indici e nomi.
+- **Colori:** calce #EDE7DE (fondo, e fondo della foto d'apertura), grafite #23201C per il testo (13,2:1), secondario #5C554C (6,0:1), lettere spente #857C70 (3,3:1, solo in grande, nascoste ai lettori di schermo), filetti #D3CABD, rame #B4703A per il bottone e i segni sotto le lettere, rame per il testo #8F4F1F (5,2:1) per lettere accese, capolettera, inizio della riga e passaggio del mouse sui link. Il blu FM #046EA2 solo nell'arco del logo e nel segno del fuoco. Riferimenti per la luce: Hambro (oggetto in metallo su carta chiara con la sua ombra) e Kvadrat (fondi caldi, nessun bianco puro).
 
 ## Interazione
 
@@ -76,11 +90,11 @@ Le didascalie descrivono l'oggetto ("Nella foto: ...") e non dicono mai che è u
 
 ## Controlli (19 ottobre 2026, dopo l'ultimo `build_finale.sh`, palette chiara)
 
-- Contrasto di ogni testo sul suo fondo (`_prova/script/contrasto.mjs`): testo 13,2:1, secondario 6,0:1 e 5,3:1 sul piede, rame per il testo 5,2:1, bottone 4,5:1, lettere spente 3,3:1 (solo testo grande). La frase della parete d'inverno, misurata sui pixel della foto dietro le lettere: almeno 10,3:1 a 390 e 10,9:1 a 1440.
+- Contrasto di ogni testo sul suo fondo (`_prova/script/contrasto.mjs`): testo 13,2:1, secondario 6,0:1, rame per il testo 5,2:1, bottone 4,5:1, lettere spente 3,3:1 (solo testo grande). La frase della parete d'inverno, misurata sui pixel della foto dietro le lettere: almeno 10,3:1 a 390 e 10,9:1 a 1440.
 
 - `scrollWidth` uguale a `innerWidth` a 320, 360, 390, 430, 600, 601, 768, 900, 1024, 1100, 1101, 1280, 1366, 1440, 1536, 1920 e 2560 (`_prova/script/finale_prova.mjs`).
 - Interazione: a 1440 clic su A, E e P: la pagina va alla riga (bordo alto a 32 px), `:target` giusto, segno di rame acceso; foto, didascalia e alfabeto dell'apertura identici prima e dopo; `data-tav` non esiste. Tastiera: Tab arriva alla A, Invio porta a `#lavoro-a`, il Tab seguente prosegue da lì. Telefono 390: tocco su P porta a `#lavoro-p`.
-- Collegamenti: `tel:+390498305354` (testata, bottone, numero grande), `mailto:info@` e `mailto:commerciale@` con oggetto, Google Maps con l'indirizzo, Facebook, pagina partner Viessmann. Nessun `href="#"`, nessuna ancora rotta, console senza errori a 1440 e a 390.
+- Collegamenti: `tel:+390498305354` (testata, bottone, numero della chiusura), `mailto:info@` e `mailto:commerciale@` con oggetto, Google Maps con l'indirizzo, Facebook, pagina partner Viessmann. Nessun `href="#"`, nessuna ancora rotta, console senza errori a 1440 e a 390.
 - Screenshot a 320, 390, 768, 1024, 1440 e 1920 guardati a pezzi: nessuna sovrapposizione dopo le correzioni (a 768 il nome "Ristrutturazioni" toccava la sua riga, a 390 la M toccava il nome: corretti).
 - `segnali.sh`: 0 soglie bloccanti. Foto 59,1 % della pagina, una superfamiglia (Funnel Sans 85,5 %, Display 14,5 %), mono 0 %, 0 frecce, un numero grande (17), data 2025. Da guardare: una sola misura di H2 (56 px; la gerarchia la fanno 160, 152 e 216 px) e la numerazione 01-08, che qui è l'ordine vero di un cantiere.
 - Nessun carattere U+2014 in pagina, script, nota e LEGGIMI (controllo nel build). Orari con il trattino semplice "8.30-19.00".
