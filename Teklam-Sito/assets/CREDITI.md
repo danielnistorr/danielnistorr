@@ -1,0 +1,31 @@
+# Crediti delle immagini
+
+Aggiornato il 19 ottobre 2026. Licenze lette sulla pagina di ogni foto il 19 ottobre 2026.
+
+## Foto dell'azienda in `originali/`
+
+Scaricate da http://www.teklam.it/wp-content/uploads/ (libreria media pubblica, elenco da http://www.teklam.it/wp-json/wp/v2/media). Sono di Tek.Lam S.r.l. o caricate da loro: l'uso nella proposta va confermato con l'azienda. Inventario, misure e voti in `../_prova/inventario-immagini.json`.
+
+Attenzione, non sono loro anche se stanno sul loro sito: `2020-08-piegatricefutura.jpg` e `2020-09-macchinanew.jpg` (foto da catalogo dei costruttori), `2020-09-benvenuto-...33829-169.jpg` e `2020-10-problem_solving.jpg` (stock), `2020-07-logo1..4.jpg` e `2017-10-map-1.png` (avanzi del tema Kalium). Non usarle.
+
+## Foto di repertorio in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Tek.Lam]
+
+Nessuna è di Tek.Lam, della sua officina, delle sue macchine o dei suoi pezzi: servono solo a far vedere la direzione artistica nella proposta, e il LEGGIMI lo dirà. Nessuna immagine generata dall'IA. Le macchine ritratte non sono le loro (non è un Bystronic, non è un Finn-Power): nella proposta va scritto "foto indicativa".
+
+Licenza Unsplash (https://unsplash.com/license): uso libero anche commerciale, attribuzione non richiesta, modifiche ammesse; non si possono vendere le foto non modificate né usarle per un servizio concorrente. Ogni pagina riporta "Free to use under the Unsplash License" (nessuna è Unsplash+).
+Licenza Pexels (https://www.pexels.com/license/): uso libero anche commerciale, attribuzione non richiesta, modifiche ammesse; non si possono rivendere le foto non modificate né far credere che persone o marchi ritratti approvino un prodotto. Ogni pagina riporta, nella sezione License, la dicitura "Free".
+
+Scaricate da images.unsplash.com e images.pexels.com in versione 2400 px di lato lungo.
+
+| File | Pagina della foto | Autore | Pubblicata | Scaricata | Direzione | Note |
+|---|---|---|---|---|---|---|
+| `esterne/unsplash-cardinalli-Z0MTavs8WVg.jpg` | https://unsplash.com/photos/Z0MTavs8WVg | Clayton Cardinalli | 25/06/2020 | 2400x1600 | A, apertura | testa laser che taglia una lamiera con volute già incise, ventaglio di scintille; la più forte del gruppo |
+| `esterne/pexels-2798152.jpg` | https://www.pexels.com/photo/close-up-photo-of-a-metal-2798152/ | Brett Sayles | (Pexels, 6000x4000) | 2400x1600 | A | lamiera microforata curva, sfuocato morbido: texture per fondi e transizioni |
+| `esterne/unsplash-yurtman-RLDjPI-r5fU.jpg` | https://unsplash.com/photos/a-man-working-on-a-machine-in-a-factory-RLDjPI-r5fU | Cemrecan Yurtman | 29/01/2025 | 2400x1350 | A | mani con guanti che infilano la lamiera nella piegatrice |
+| `esterne/unsplash-turubayev-Di1e1Hnr1Us.jpg` | https://unsplash.com/photos/a-man-wearing-red-gloves-is-working-on-a-machine-Di1e1Hnr1Us | Daulet Turubayev | 25/09/2023 | 2400x3600 | A, verticale per mobile | piegatrice in verticale, guanti rossi (richiamo al rosso del logo) |
+| `esterne/unsplash-colah-x0Q7F6h-dXk.jpg` | https://unsplash.com/photos/x0Q7F6h-dXk | Zoshua Colah | 25/11/2025 | 2400x1579 | A | testa di taglio sopra il letto a punte, lamiera tagliata e sfridi |
+| `esterne/unsplash-letrung-fBCQz7OUUww.jpg` | https://unsplash.com/photos/a-piece-of-metal-being-cut-with-a-machine-fBCQz7OUUww | Le Trung | 26/03/2024 | 2400x1600 | B, apertura | scintille simmetriche su nero; ha la firma "LETRUNG" in basso a destra: va ritagliata (modifiche ammesse) |
+| `esterne/unsplash-yurtman-qk2i7n39-B0.jpg` | https://unsplash.com/photos/a-machine-that-is-cutting-a-piece-of-metal-qk2i7n39-B0 | Cemrecan Yurtman | 29/01/2025 | 2400x1350 | B | ugello del laser sulla lamiera, poche scintille, luce calda |
+| `esterne/unsplash-yurtman-w7w4T9M0TXg.jpg` | https://unsplash.com/photos/a-man-working-on-a-machine-in-a-factory-w7w4T9M0TXg | Cemrecan Yurtman | 29/01/2025 | 2400x1350 | B | piegatrice al buio con la linea rossa del laser di riferimento |
+| `esterne/unsplash-yurtman-enPxH6uqABg.jpg` | https://unsplash.com/photos/welder-working-on-a-piece-of-metal-in-a-factory-enPxH6uqABg | Cemrecan Yurtman | 30/04/2024 | 2400x1600 | B | tubolari quadri e pioggia di scintille (la pagina dice "A man welding"; sembra più un taglio a cannello: didascalia generica) |
+| `esterne/pexels-9729626.jpg` | https://www.pexels.com/photo/close-up-photo-of-welder-doing-some-metal-work-9729626/ | Francesca Cinel | (Pexels, 3824x5736) | 2400x3600 | B, verticale per mobile | saldatore con maschera, arco bianco-azzurro |
