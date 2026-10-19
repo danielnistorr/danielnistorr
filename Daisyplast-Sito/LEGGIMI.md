@@ -2,6 +2,8 @@
 
 ## Versione WordPress della home (come per Benvegnù)
 
+> **Da rigenerare (ottobre 2026): la chiusura della home statica è cambiata.** In `sito/index.html` la sezione contatti non è più la fascia grafite con il telefono a 245 px e i quattro recapiti in riga, e il piede non è più grafite a tre colonne: ora i recapiti sono stampati su una shopper a maniglia fustellata disegnata in CSS, su un banco latte, e il piede è una riga sola (vedi `screenshot/home/NOTA.md`, "La chiusura"). La versione WordPress (`elementor-json/`, `html-fallback/`, `anteprima/`, `plugin/`, generata da `_sorgente/`) ha ancora la chiusura vecchia: va aggiornata in `_sorgente/contenuti.py` (sezione contatti e piede) e rigenerata con `python3 _sorgente/build.py` e `python3 _sorgente/crea_installer.py`, poi ricollaudata. Fino ad allora il confronto "pixel per pixel" descritto qui sotto vale solo fino alla sezione clienti.
+
 La home finale ("La bolla", `sito/index.html`) è pronta da importare in WordPress con Elementor, più header e footer, in due formati:
 - **Formato A (primario):** template Elementor `.json` da importare con *Template > Template salvati > Importa template*, oppure tutto in automatico con il plugin di installazione.
 - **Formato B (fallback):** la stessa pagina in HTML+CSS autosufficiente, una sezione per file, da incollare in widget HTML di Elementor.

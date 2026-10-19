@@ -25,6 +25,7 @@
   --chiaro:#ABA69C;
   --filetto:#CFCBC3;
   --cuoio:#9A5B34;
+  --etichetta:#F7F5F1;
   --margine:64px;
   --gap:24px;
 }
@@ -122,20 +123,32 @@ ol,ul{padding:0;list-style:none}
 .marchio-trattato .codice p{font-size:44px;line-height:1.05;letter-spacing:-.025em}
 .marchio-trattato .codice p + p{margin-top:16px;font-size:17px;line-height:1.5;letter-spacing:0;color:var(--grigio);max-width:24em}
 
-/* contatti */
-.contatti{padding-bottom:128px}
-.telefono{grid-column:1 / -1;margin-top:36px;font-size:96px;line-height:.95;letter-spacing:-.04em;text-decoration:none;justify-self:start}
-.telefono:hover{color:var(--cuoio)}
-.voci{margin-top:64px;row-gap:32px}
-.voci div{grid-column:span 4}
-.voci dt{font-size:15px;color:var(--grigio)}
-.voci dd{margin-top:6px;font-size:19px;line-height:1.45}
+/* contatti: l'etichetta del fusto di colla */
+.contatti{padding-bottom:112px}
+.contatti .attacco{grid-column:1 / span 5;align-self:start}
+.etichetta{grid-column:7 / span 6;background:var(--etichetta);border:2px solid var(--inchiostro);color:var(--inchiostro);min-width:0}
+.et-testa{padding:24px 28px 22px;border-bottom:6px solid var(--inchiostro)}
+.et-nome{font-size:44px;line-height:1;letter-spacing:-.025em}
+.et-nome small{font-size:17px;letter-spacing:0;margin-left:6px;color:var(--grigio)}
+.et-sotto{margin-top:10px;font-size:17px;line-height:1.4;color:var(--testo)}
+.et-campo{padding:16px 28px 20px;border-bottom:1px solid var(--inchiostro);min-width:0}
+.et-voce{font-size:14px;line-height:1.3;color:var(--grigio);margin-bottom:6px}
+.et-campo .et-dato{font-size:19px;line-height:1.45}
+.et-campo .et-dato + .et-dato{margin-top:6px}
+.et-tel a{display:inline-block;padding:2px 0 6px;font-size:64px;line-height:1;letter-spacing:-.035em;white-space:nowrap;text-decoration-thickness:2px;text-underline-offset:.13em}
+.et-due{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);border-bottom:1px solid var(--inchiostro)}
+.et-due .et-campo{border-bottom:0}
+.et-due .et-campo + .et-campo{border-left:1px solid var(--inchiostro)}
+.et-righe{padding:6px 28px 12px}
+.et-righe div{display:grid;grid-template-columns:7em minmax(0,1fr);gap:16px;padding:10px 0 9px;font-size:16px;line-height:1.45}
+.et-righe div + div{border-top:1px solid var(--filetto)}
+.et-righe dt{color:var(--grigio)}
 
-/* piede */
-.piede{color:var(--grigio);padding:0 0 64px;font-size:14px;line-height:1.55}
-.piede .griglia > *{grid-column:span 3}
-.piede .griglia::before{content:"";grid-column:1 / -1;border-top:1px solid var(--inchiostro);margin-bottom:28px}
-.piede .nome{color:var(--inchiostro);font-size:18px;font-weight:500;line-height:1.3;margin-bottom:4px}
+/* piede: una riga */
+.piede{color:var(--grigio);padding:0 0 44px;font-size:14px;line-height:1.55}
+.piede .griglia::before{content:"";grid-column:1 / -1;border-top:1px solid var(--inchiostro);margin-bottom:18px}
+.piede p{grid-column:1 / -1;display:flex;flex-wrap:wrap;column-gap:32px;row-gap:2px}
+.piede .nome{color:var(--inchiostro);font-weight:500}
 
 /* fino a 1180 */
 @media (max-width:1180px){
@@ -148,7 +161,12 @@ ol,ul{padding:0;list-style:none}
   .sezione h2{font-size:52px}
   .categorie .nome,.dettaglio .codice p{font-size:36px}
   .passi h3{font-size:30px}
-  .telefono{font-size:86px}
+  .etichetta{grid-column:6 / span 7}
+  .et-tel a{font-size:54px}
+  .et-nome{font-size:38px}
+  .et-testa{padding:22px 24px 20px}
+  .et-campo{padding:14px 24px 18px}
+  .et-righe{padding:6px 24px 10px}
   .marchio-trattato .codice p{font-size:36px}
   .marchio-trattato{margin-top:80px}
   .scheda div{grid-template-columns:9em 1fr}
@@ -171,9 +189,9 @@ ol,ul{padding:0;list-style:none}
   .passi p{grid-column:3 / span 10;margin-top:10px}
   .dettaglio .codice,.scheda,.solvente,.marchio-trattato .codice{grid-column:1 / -1}
   .scheda{margin-top:32px}
-  .voci div{grid-column:span 6}
-  .telefono{font-size:72px}
-  .piede .griglia > *{grid-column:span 6;margin-bottom:20px}
+  .contatti .attacco{grid-column:1 / -1}
+  .etichetta{grid-column:1 / -1;margin-top:40px;max-width:640px}
+  .et-tel a{font-size:60px}
 }
 /* telefono */
 @media (max-width:700px){
@@ -215,11 +233,22 @@ ol,ul{padding:0;list-style:none}
   .scheda div{grid-template-columns:1fr;gap:2px;font-size:16px;padding:12px 0 11px}
   .solvente p{font-size:18px}
   .solvente p + p{font-size:16px}
-  .telefono{font-size:min(48px,12.2vw);margin-top:28px;letter-spacing:-.03em;white-space:nowrap}
-  .voci{margin-top:40px;row-gap:24px}
-  .voci div{grid-column:1 / -1}
-  .contatti{padding-bottom:96px}
-  .piede .griglia > *{grid-column:1 / -1}
+  .contatti{padding-bottom:80px}
+  .etichetta{margin-top:32px}
+  .et-testa{padding:18px 18px 16px;border-bottom-width:5px}
+  .et-nome{font-size:32px}
+  .et-nome small{font-size:15px}
+  .et-sotto{font-size:15px}
+  .et-campo{padding:12px 18px 16px}
+  .et-voce{font-size:13px}
+  .et-campo .et-dato{font-size:17px}
+  .et-tel a{font-size:min(44px,11vw);letter-spacing:-.03em}
+  .et-due{grid-template-columns:minmax(0,1fr)}
+  .et-due .et-campo + .et-campo{border-left:0;border-top:1px solid var(--inchiostro)}
+  .et-righe{padding:4px 18px 8px}
+  .et-righe div{grid-template-columns:minmax(0,1fr);gap:0;font-size:15px;padding:9px 0 8px}
+  .piede{padding-bottom:36px}
+  .piede p{flex-direction:column}
 }
 @media (max-width:350px){
   .apertura h1{font-size:44px}
@@ -351,22 +380,39 @@ ol,ul{padding:0;list-style:none}
     <div class="attacco">
       <h2 id="t-contatti">Per una scheda tecnica o un problema d’incollaggio</h2>
     </div>
-    <a class="telefono" href="tel:+393313358858" aria-label="Telefono 331 335 8858">331 335 8858</a>
+    <div class="etichetta" role="group" aria-label="Recapiti di Solteco">
+      <div class="et-testa">
+        <p class="et-nome">Solteco<small>sas</small></p>
+        <p class="et-sotto">Adesivi a base acqua per calzature e pelletteria</p>
+      </div>
+      <div class="et-campo et-tel">
+        <p class="et-voce">Telefono</p>
+        <a href="tel:+393313358858" aria-label="Telefono 331 335 8858">331 335 8858</a>
+      </div>
+      <div class="et-due">
+        <div class="et-campo">
+          <p class="et-voce">Email</p>
+          <p class="et-dato"><a href="mailto:info@solteco.it">info@solteco.it</a></p>
+        </div>
+        <div class="et-campo">
+          <p class="et-voce">Distribuito da</p>
+          <p class="et-dato">Vicolo Amerigo Vespucci 12<br>30030 Vigonovo (VE)</p>
+          <p class="et-dato"><a href="https://www.google.com/maps/search/?api=1&amp;query=Vicolo+Amerigo+Vespucci+12+30030+Vigonovo+VE">Apri la mappa</a></p>
+        </div>
+      </div>
+      <dl class="et-righe">
+        <div><dt>Impiego</dt><dd>Calzaturifici e pelletterie</dd></div>
+        <div><dt>Linea</dt><dd>AquaGum di Frabo Adesivi</dd></div>
+        <div><dt>Avvertenze</dt><dd>Prima dell’uso leggere la scheda tecnica: si chiede per telefono o per email.</dd></div>
+      </dl>
+    </div>
   </div>
-  <dl class="voci griglia">
-    <div><dt>Email</dt><dd><a href="mailto:info@solteco.it">info@solteco.it</a></dd></div>
-    <div><dt>Sede</dt><dd>Vicolo Amerigo Vespucci 12<br>30030 Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Vicolo+Amerigo+Vespucci+12+30030+Vigonovo+VE">Apri la mappa</a></dd></div>
-    <div><dt>Per chi</dt><dd>Calzaturifici e pelletterie</dd></div>
-  </dl>
 </section>
 </main>
 
 <footer class="piede">
   <div class="griglia">
-    <div><p class="nome">Solteco sas di Longhin <span class="nowrap">Giuseppe &amp; C.</span></p><p>Costituita nel 2011</p></div>
-    <div><p>Vicolo Amerigo Vespucci 12<br>30030 Vigonovo (VE)</p></div>
-    <div><p>P.IVA e C.F. 04037310275<br>REA VE 359812</p></div>
-    <div><p>Marchio trattato: Frabo Adesivi<br><a href="mailto:info@solteco.it">info@solteco.it</a></p></div>
+    <p><span class="nome">Solteco sas di Longhin <span class="nowrap">Giuseppe &amp; C.</span></span><span>P.IVA e C.F. 04037310275</span><span>REA VE 359812</span></p>
   </div>
 </footer>
 

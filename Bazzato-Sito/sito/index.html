@@ -114,19 +114,30 @@ ul{padding:0;list-style:none}
 .scheda dt{color:var(--grigio);font-size:16px}
 .scheda dd{font-size:18px;font-weight:500}
 
-/* dove */
-.dove{padding-block:120px 120px}
-.dove h2{grid-column:1/11;font-size:clamp(34px,3.9vw,56px);letter-spacing:-.03em;line-height:1.04}
-.colonna{margin-top:64px;font-size:17px;line-height:1.55}
-.colonna h3{font-size:15px;font-weight:500;color:var(--grigio);margin-bottom:12px}
-.c1{grid-column:1/5}.c2{grid-column:5/9}.c3{grid-column:9/13}
-.colonna p+p{margin-top:10px}
-.colonna .grande{font-size:24px;font-weight:500;letter-spacing:-.01em}
+/* chiusura: i recapiti sulla scheda di accettazione dell'officina, un foglio bianco rigato a filo nero */
+.dove{padding-top:120px}
+.accettazione{grid-column:1/-1;background:var(--foglio);border:1px solid var(--nero);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.acc-testa{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:28px 32px 26px}
+.dove h2{font-weight:500;font-size:clamp(32px,3.6vw,52px);line-height:1.04;letter-spacing:-.03em}
+.acc-marchio{font-size:16px;color:var(--grigio);white-space:nowrap}
+.acc-marchio b{font-weight:600;color:var(--nero);font-size:20px;letter-spacing:-.02em;margin-right:6px}
+.campo{padding:20px 32px 28px;border-top:1px solid var(--nero);font-size:17px;line-height:1.5}
+.c-orari,.c-mail{border-left:1px solid var(--nero)}
+.c-lavoro{grid-column:1/-1}
+.campo h3{font-size:14px;font-weight:500;color:var(--grigio);margin-bottom:14px}
+.campo p+p{margin-top:8px}
+.campo .valore{font-size:clamp(20px,1.8vw,24px);font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.campo .numero{font-size:clamp(34px,3.4vw,48px);font-weight:500;letter-spacing:-.025em;line-height:1.1}
+.campo .numero a{text-decoration-thickness:2px;text-underline-offset:.14em}
+.nota-campo{color:var(--grigio);font-size:16px}
+.spuntato{display:flex;align-items:center;gap:12px}
+.casella{width:20px;height:20px;flex:none}
+.lavoro-riga{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.lavoro-riga .bottone{flex:none}
 
-/* piede */
-.piede{padding-block:40px 48px;font-size:14px;color:var(--grigio);border-top:1px solid;border-image:linear-gradient(var(--filo),var(--filo)) 1 / 1px 0 0 / 0 100vw}
-.piede p:first-child{grid-column:1/9}
-.piede p:last-child{grid-column:9/13;text-align:right}
+/* piede: una riga sola */
+.piede{padding-block:28px 40px;font-size:14px;color:var(--grigio)}
+.piede p{grid-column:1/-1;display:flex;flex-wrap:wrap;column-gap:28px;row-gap:6px}
 
 @media (max-width:1180px){
   .testata{display:flex;justify-content:space-between;gap:24px}
@@ -145,13 +156,13 @@ ul{padding:0;list-style:none}
   .revisione h2{grid-column:1/-1}
   .revisione .testo-rev{grid-column:1/-1}
   .scheda{grid-column:1/-1;grid-row:auto;margin-top:56px}
-  .c1{grid-column:1/7}.c2{grid-column:7/13}.c3{grid-column:1/7}
 }
 @media (max-width:1100px){
   .lungo{display:none}
 }
 @media (max-width:960px){
   .menu{display:none}
+  .lavoro-riga{flex-direction:column;align-items:flex-start;gap:20px}
 }
 @media (max-width:900px){
   .apertura .sotto{grid-column:1/9}
@@ -189,16 +200,22 @@ ul{padding:0;list-style:none}
   .listino .altro{grid-column:1/-1;font-size:16px}
   .revisione{padding-block:88px 88px}
   .listino h2,.revisione h2{font-size:38px;line-height:1.03}
-  .dove h2{font-size:32px}
+  .dove h2{font-size:30px}
   .revisione .testo-rev{margin-top:32px;font-size:17px}
   .scheda{margin-top:40px}
   .scheda div{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:16px}
   .scheda dd{font-size:17px}
-  .dove{padding-block:72px 72px}
-  .colonna{margin-top:40px}
-  .c1,.c2,.c3{grid-column:1/-1}
-  .piede p:first-child,.piede p:last-child{grid-column:1/-1;text-align:left}
-  .piede p:last-child{margin-top:12px}
+  .dove{padding-top:72px}
+  .accettazione{grid-template-columns:minmax(0,1fr)}
+  .acc-testa{flex-direction:column;gap:8px;padding:22px 20px 20px}
+  .acc-marchio{order:-1}
+  .campo{padding:16px 20px 22px;font-size:16px}
+  .c-orari,.c-mail{border-left:0}
+  .campo h3{margin-bottom:10px}
+  .campo .numero{font-size:36px}
+  .lavoro-riga .bottone{align-self:stretch;text-align:center}
+  .piede{padding-block:24px 36px}
+  .piede p{column-gap:20px}
 }
 @media (max-width:359px), (max-width:700px) and (max-height:700px){
   .apertura picture img{object-position:50% 0}
@@ -311,29 +328,47 @@ ul{padding:0;list-style:none}
   </figure>
 
   <section class="dove griglia" id="dove" aria-labelledby="t-dove">
-    <h2 id="t-dove">Viale Serenissima&nbsp;3, Tombelle&nbsp;di&nbsp;Vigonovo</h2>
-    <div class="colonna c1">
-      <h3>Dove</h3>
-      <p>Zona artigianale di Tombelle<br>30030 Vigonovo (VE)</p>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+3+Vigonovo+VE">Apri in Google Maps</a></p>
-    </div>
-    <div class="colonna c2">
-      <h3>Orari dell'officina</h3>
-      <p>Dal lunedì al venerdì<br>08.00-12.00 e 14.00-18.00<br>Sabato chiuso</p>
-      <p>Uffici fino alle 12.30 e alle 19.00,<br>il venerdì fino alle 18.00</p>
-    </div>
-    <div class="colonna c3">
-      <h3>Telefono e WhatsApp</h3>
-      <p class="grande"><a href="tel:+390499830115">049 9830115</a></p>
-      <p><a href="https://wa.me/390499830115">Scrivi su WhatsApp</a></p>
-      <p><a href="mailto:info@bazzato.it">info@bazzato.it</a></p>
+    <div class="accettazione">
+      <div class="acc-testa">
+        <h2 id="t-dove">Scheda di accettazione</h2>
+        <p class="acc-marchio"><b>Bazzato</b>Autofficina</p>
+      </div>
+      <div class="campo c-dove">
+        <h3>Dove portare l'auto</h3>
+        <p class="valore">Viale Serenissima&nbsp;3</p>
+        <p>Zona artigianale di Tombelle, 30030&nbsp;Vigonovo&nbsp;(VE)</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+3+Vigonovo+VE">Apri in Google Maps</a></p>
+      </div>
+      <div class="campo c-orari">
+        <h3>Orari dell'officina</h3>
+        <p>Dal lunedì al venerdì<br>08.00-12.00 e 14.00-18.00<br>Sabato chiuso</p>
+        <p class="nota-campo">Uffici fino alle 12.30 e alle 19.00, il venerdì fino alle 18.00</p>
+      </div>
+      <div class="campo c-tel">
+        <h3>Telefono e WhatsApp</h3>
+        <p class="numero"><a href="tel:+390499830115">049 9830115</a></p>
+        <p><a href="https://wa.me/390499830115">Scrivi su WhatsApp</a></p>
+      </div>
+      <div class="campo c-mail">
+        <h3>Email</h3>
+        <p class="valore"><a href="mailto:info@bazzato.it">info@bazzato.it</a></p>
+      </div>
+      <div class="campo c-lavoro">
+        <h3>Lavoro richiesto</h3>
+        <div class="lavoro-riga">
+          <div>
+            <p class="valore spuntato"><svg class="casella" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x=".75" y=".75" width="18.5" height="18.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 5l10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>Revisione in sede, €&nbsp;79</p>
+            <p>Pre-revisione gratis. Appuntamenti dalle 09.00 alle 11.00 e dalle 14.30 alle 16.00.</p>
+          </div>
+          <a class="bottone" href="tel:+390499830115" aria-label="Prenota la revisione: chiama 049 9830115">Prenota la revisione</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="piede griglia">
-  <p>Bazzato snc di Bazzato Andrea e Paolo &amp; C., viale Serenissima 3, 30030 Vigonovo (VE). P.IVA e C.F. 03599300278, REA VE 322146.</p>
-  <p><a href="https://www.bazzato.it/informativa-privacy-agli-utenti.html">Informativa privacy</a></p>
+  <p><span>Bazzato snc di Bazzato Andrea e Paolo &amp; C.</span><span>P.IVA e C.F. 03599300278</span><span>REA VE 322146</span><a href="https://www.bazzato.it/informativa-privacy-agli-utenti.html">Informativa privacy</a></p>
 </footer>
 
 <script>

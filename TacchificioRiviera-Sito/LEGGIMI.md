@@ -11,7 +11,7 @@
 
 Fuori pagina finché non arriva una risposta:
 - **ISO 9001**: il PDF in linea (IT23/00000845) è scaduto il 13/10/2026. C'è il rinnovo? Se arriva, va aggiunta come quarta riga dei certificati.
-- **SA8000**: sul sito ci sono solo i documenti di sistema (Rev 00 del 20/11/2025). L'azienda è certificata? Nel piede il link "Segnalazioni SA8000" porta al loro modulo ME.04, accanto a "Procedura whistleblowing" e "Privacy whistleblowing" (i loro due .docx). Meglio pubblicarli come pagine o PDF.
+- **SA8000**: sul sito ci sono solo i documenti di sistema (Rev 00 del 20/11/2025). L'azienda è certificata? Nel piede il link "Segnalazioni SA8000" porta al loro modulo ME.04, accanto a "Whistleblowing: procedura, privacy" (i loro due .docx). Meglio pubblicarli come pagine o PDF.
 - **ISO 50001**: il PDF dice "valido dal 11 dicembre 2026", una data futura. In pagina c'è solo il numero, senza date.
 - **Numeri**: dipendenti (32 nel 2024) e fatturato (6,26 milioni nel 2025, da companyreports.it). Si possono citare?
 - **Griffe**: quali si possono nominare. In pagina c'è solo "le grandi griffe".
@@ -55,6 +55,6 @@ Servono anche il nome del fotografo e il permesso d'uso delle foto attuali.
 
 ## Loghi
 
-- Il timbro è il loro `logo.svg`, ricolorato in inchiostro (testata) e in chiaro (piede).
+- Il timbro è il loro `logo.svg`, ricolorato in inchiostro, in testata e impresso sul biglietto da visita dei contatti.
 - Contiene il vecchio numero "TEL. 049.502.844" e la scritta "VENEZIA ITALY". Serve una versione senza telefono per l'uso piccolo in testata, ed eventualmente una a colori se esiste.
 - La firma "Valentino Boldrin" è il marchio: va chiesto se è registrato e se si può usare così.

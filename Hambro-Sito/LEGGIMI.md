@@ -2,6 +2,8 @@
 
 ## Versione WordPress della home (come per Benvegnù)
 
+> **Da rigenerare (19 ottobre).** La chiusura della home statica è cambiata: i contatti sono un cartellino da campionario di 100 mm sulla carta, legato con un laccio tubolare da 3 mm in scala, e il piede è una riga sola sulla carta (Hambro srl, P.IVA, Informativa privacy, Facebook). Prima c'erano il cartellino sulla fascia cuoio e il piede nero a quattro colonne. La versione WordPress qui sotto ha ancora la chiusura vecchia. Vanno rifatti da `_sorgente/` i contatti e il footer di `elementor-json/` (`hbr-01-home.json`, `hbr-99-footer.json`, `pagine-complete-senza-pro/`), `html-fallback/01-home/08-contatti.html` e `99-footer/01-footer.html`, l'anteprima, il plugin di installazione e gli screenshot di `screenshot/elementor/` e `screenshot/fallback/`. Anche il confronto di altezze qui sotto (8896, 8489 e 8662 px) vale per la versione vecchia. Riferimento: `sito/index.html` e `screenshot/home/NOTA.md`, paragrafo "La chiusura".
+
 La home finale ("Campionario al millimetro", `sito/index.html`) è pronta da importare in WordPress con Elementor, più header e footer, in due formati:
 - **Formato A (primario):** template Elementor `.json` da importare con *Template > Template salvati > Importa template*, oppure tutto in automatico con il plugin di installazione.
 - **Formato B (fallback):** la stessa pagina in HTML+CSS autosufficiente, una sezione per file, da incollare in widget HTML di Elementor.

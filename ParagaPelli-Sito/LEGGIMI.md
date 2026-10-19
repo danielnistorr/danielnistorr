@@ -2,6 +2,8 @@
 
 ## Versione WordPress della home (come per Benvegnù)
 
+> **Da rigenerare (19 ottobre).** La chiusura della home statica è cambiata: i contatti sono ora il cartellino della ditta (lo stesso oggetto del cartellino in apertura, con la scansione del colore scelto) e il piede è sulla carta, con la fila dei dorsi e una riga sola. `elementor-json/`, `html-fallback/` (`07-contatti.html`, `99-footer/01-footer.html`), `anteprima/` e `plugin/paragapelli-installer.zip` hanno ancora la chiusura vecchia: vanno rifatti dalla statica con i comandi di "Rigenerare i file" qui sotto (in `_sorgente/` vanno portati i nuovi contatti e il nuovo piede) e ricollaudati. Dettagli in `screenshot/home/NOTA.md`, "La chiusura".
+
 La home finale ("La mazzetta", `sito/index.html`) è pronta da importare in WordPress con Elementor, più header e footer, in due formati:
 - **Formato A (primario):** template Elementor `.json` da importare con *Template > Template salvati > Importa template*, oppure tutto in automatico con il plugin di installazione.
 - **Formato B (fallback):** la stessa pagina in HTML+CSS autosufficiente, una sezione per file, da incollare in widget HTML di Elementor.

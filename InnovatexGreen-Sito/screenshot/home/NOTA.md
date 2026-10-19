@@ -2,7 +2,8 @@
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`.
 Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `home-finale.html`,
-misure, prova del gesto, larghezze da 320 a 2560, segnali, screenshot). Altezza a 1440: 5.006 px. A 390: 5.307 px.
+misure, prova del gesto, larghezze da 320 a 2560, segnali, screenshot, chiusura con `chiusura.mjs`). Altezza a 1440: 5.224 px.
+A 390: 5.344 px.
 
 Base: la bozza A, "La canapina", scelta dal committente. Prima schermata, impianto, trattamento delle foto, carattere e
 colori restano quelli della bozza. Ho cambiato l'esecuzione, i dati, il telefono e i dettagli. La versione precedente
@@ -47,8 +48,43 @@ cartellino, carta chiara, Hanken Grotesk). Ho corretto l'esecuzione:
   "Collanti" della tabella, che ripeteva il cartellino 12, diventa "Marchi: Distributori dei prodotti Mastek e
   Intercom." e il cartellino 12 porta la base (solvente o acqua). "Dodici materiali, tutti a magazzino" diventa
   "Dodici materiali". I contatti si intitolano "Contatti", a 64 px.
-- **Contatti a 1440:** quattro colonne uguali (span 3), email a 22 px. A 1024 restano 2 x 2.
 - **Mani col collante:** arancio dello sfondo meno saturo del 32 % e bianchi un poco più caldi, come lo scaffale.
+
+## La chiusura: l'etichetta del rotolo pronto alla spedizione
+
+Il committente ha notato che quasi tutte le home della campagna finivano uguali: titolo, telefono gigante su una fascia,
+tre o quattro colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche qui c'erano le quattro
+colonne uguali e il piede a quattro blocchi con il logo. Ho rifatto solo la chiusura, il resto della pagina non cambia.
+
+**L'idea.** La pagina è un campionario: ogni materiale ha il suo cartellino. Il passo dopo il campione è il rotolo che
+parte dal magazzino, e il rotolo porta un'etichetta. I recapiti sono scritti su quella etichetta, un solo oggetto:
+carta #FBFAF7 con gli angoli tondi della fustella, ruotata di 0,8 gradi (0,5 sul telefono) con la stessa ombra corta e
+calda dei cartellini, e dentro il modulo stampato a filetti d'inchiostro da 1 px. I campi dell'etichetta (articolo,
+metri, lotto) diventano i campi dei recapiti:
+- in testa il logo, come il fornitore stampato sull'etichetta;
+- **Magazzino** (Via Cristoforo Colombo 24, 30030 Vigonovo (VE), con "Apri in Google Maps") e **Orari** affiancati,
+  uno sotto l'altro sul telefono;
+- **Telefono** al posto dei metri: è il campo grande, 56 px a 1440, 48 a 1024, 40 a 390, 35 a 320, inchiostro su
+  carta chiara. Tutta la cella è il collegamento `tel:` (688 x 120 px a 1440, 334 x 98 a 390, 264 x 93 a 320);
+- **Email** a 28 px (20 sul telefono), collegamento `mailto:`;
+- in fondo il **codice a barre disegnato**: un Interleaved 2 of 5 vero del numero di telefono (0495021268, SVG
+  nascosto ai lettori di schermo), e accanto "Pronta consegna", come il timbro del magazzino.
+A sinistra, accanto all'etichetta, "Contatti" a 64 px e la frase del sito "Ordini la mattina, ricevi nel pomeriggio."
+a 24 px: è la promessa che l'etichetta mantiene. Nessun dato nuovo: sono tutti quelli che la pagina aveva già.
+
+**Il piede** è una riga sola sulla stessa carta, sotto un filetto: Innovatex S.r.l. con la sede legale di Cittadella,
+P.IVA e C.F., REA, capitale sociale, PEC e Privacy, in 13 px grigio #5C5E59 (5,76:1 sulla carta). A 1440 sta in una
+riga; a 1024 e 768 va su due, sul telefono scorre a capo come un testo. Il logo del piede non c'è più (è sull'etichetta).
+
+**Tolto:** le quattro colonnine uguali dei contatti con i titoletti, il piede a quattro blocchi (logo più tre colonne)
+sulla carta più scura #E7E4DC. Non c'era e non c'è un telefono gigante su fascia scura.
+
+**Controlli della chiusura** (`_prova/script/chiusura.mjs`, nel build): a 1440, 1024, 768, 390 e 320 nessuna cella
+dell'etichetta si sovrappone a un'altra o trabocca, nessuno scorrimento orizzontale (anche sulle 26 larghezze di
+`larghezze.mjs`). Contrasti: inchiostro su etichetta 16,4:1, grigio dei campi su etichetta 6,3:1, grigio del piede
+sulla carta 5,8:1. Guardata a pezzi a tutte e cinque le larghezze (`_prova/tmp-finale/chiusura/`); la chiusura a 1440
+è in `screenshot/home/chiusura-1440.jpg`. Le maiuscole piccole dei campi sono i nomi dei campi di un modulo, non
+etichette sopra un titolo (segnali: 0).
 
 ## Le prime due schermate
 
@@ -70,7 +106,7 @@ cartellino, carta chiara, Hanken Grotesk). Ho corretto l'esecuzione:
 
 Poi: "Tutto disponibile a pronta consegna" a 84 px sopra lo scaffale a tutta larghezza e una tabella di due righe
 (in produzione, marchi); le mani col collante sul sottopiede a tutta larghezza; la storia, con il titolo a sinistra e
-il testo a destra alla stessa altezza; "Contatti" con magazzino, telefono, email e orari; il piede con i dati societari.
+il testo a destra alla stessa altezza; "Contatti" sull'etichetta del rotolo; il piede in una riga.
 
 ## Cosa era già cambiato rispetto alla bozza A
 
@@ -86,7 +122,6 @@ il testo a destra alla stessa altezza; "Contatti" con magazzino, telefono, email
 - Contatti: tolta "Vigonovo, nella Riviera del Brenta". La Riviera del Brenta veniva dal sito di un'altra azienda.
 - Scaffale: dall'originale a piena risoluzione, stretto sui due ripiani centrali, i più chiari, con i neri sollevati.
 - Moltoprene, nylon, microfibra base e tela blu: ombre sollevate, perché la trama si legga.
-- Piede su carta più scura #E7E4DC con l'inchiostro, invece del nero: la pagina resta tutta luce.
 - A 1024 il titolo scende a 70 px e il ritaglio a 370 px (63 px d'aria). A 320 il cartellino perde la frase e tiene
   nome e variante.
 - Link "Privacy" alla pagina vera del sito (innovatexgreen.com/privacy-policy/).
@@ -100,7 +135,7 @@ il testo a destra alla stessa altezza; "Contatti" con magazzino, telefono, email
   grande"). Il tono "fornitore della moda che non fa moda" viene da Eurojersey (un tessuto e un indice di nomi) e da
   Carvico (titolo enorme in grottesco).
 - Carta #F2F0EB, inchiostro #1A1C19, grigio #5C5E59 (testo piccolo e numeri), nomi non scelti #7A7C76 (solo a 26-34
-  px), filetti #D6D3CB, cartellino #FBFAF7, piede #E7E4DC, ombre in un bruno caldo rgba(60,45,30). Verde del marchio #0F4621 solo nel logo e nel bottone. Il colore vero lo
+  px), filetti #D6D3CB, cartellino ed etichetta #FBFAF7, ombre in un bruno caldo rgba(60,45,30). Verde del marchio #0F4621 solo nel logo e nel bottone. Il colore vero lo
   danno i materiali.
 
 ## Interazione (un solo gesto)
@@ -140,7 +175,7 @@ comparse, il suono e il verde acido. Il registro è quello del fornitore: nomi, 
 
 ## Controlli
 
-- `segnali.sh` a 1440: 0 soglie bloccanti su 10. Area foto 37,7 %, una sola famiglia, nessun carattere vietato, nessun
+- `segnali.sh` a 1440: 0 soglie bloccanti su 10. Area foto 36,1 %, una sola famiglia, nessun carattere vietato, nessun
   titolo col punto, una sola sezione con titolo a sinistra e testo a destra. Una voce "da guardare": l'indice
   numerato da 01 a 12. Lo tengo perché non è una finta procedura: è il numero di campionario che ogni cartellino porta
   ("07" sulla canapina in apertura).

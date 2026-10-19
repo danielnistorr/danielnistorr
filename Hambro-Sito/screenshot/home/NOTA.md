@@ -26,8 +26,8 @@ Poi, in ordine:
 - **La ricopertura.** Il dittico metallo e pelle con le sagome da 40, 50 e 60 mm in scala reale, i dati, i semilavorati e la foto delle mani.
 - **Misure per settore.** Pelletteria, calzatura e abbigliamento uno sotto l'altro. Ogni articolo ha la misura del sito e la sua quota in cuoio su un righello 0-60 mm in scala reale: un tratto per le misure singole, una barra per gli intervalli.
 - **Il 1979**, sempre con "Giorgio Gastaldello".
-- **I contatti come cartellino del campione.** Un cartellino di carta col foro, sul campo cuoio, con il telefono a 32 px, la mail, l'indirizzo con "Apri la mappa" e gli orari.
-- **Il piede** con i dati societari.
+- **I contatti come cartellino da campionario**, in scala reale, legato con un laccio tubolare vero (vedi "La chiusura").
+- **Il piede**: una riga sola sulla carta.
 
 ## Caratteri
 - Mona Sans (GitHub con Degarism), SIL Open Font License 1.1. Il testo della licenza è in `sito/fonts/OFL.txt`; i file vengono da Google Fonts e li serve la pagina (latin e latin-ext, variabile in peso e larghezza). Il preload è stato tolto: in anteprima `file://` dava un errore CORS.
@@ -47,7 +47,8 @@ Poi, in ordine:
 - Carta #F2EDE4: il bianco della foto d'apertura, portato in pagina.
 - Inchiostro #1B1714.
 - Cuoio #7B4524: il marrone del logo Hambro. Lo usano il marchio, il bottone, le tacche del righello, le quote delle misure e il 1979.
-- Campo #6E3519: banco e contatti.
+- Campo #6E3519: il banco.
+- Cartoncino #E8DBC4: solo il cartellino dei contatti (grigio sopra 5,3:1, cuoio 5,7:1, inchiostro 13:1).
 - Taglio #3A2012: il bordo della striscia.
 - Oro #E2B866: solo il passaggio sui link nei campi scuri.
 
@@ -77,13 +78,26 @@ Tutte passano per la stessa gradazione: la carta come bianco, il sole da sinistr
 
 In pagina non c'è più nessun avviso sulle foto provvisorie: è nel LEGGIMI e va nella mail di accompagnamento. Nessuna immagine generata. Nessuna foto viene mostrata oltre i suoi pixel: lo controllo con i file veri scelti dal srcset a 1440, 1024 e 390.
 
-## Cosa è cambiato in questo passaggio (rilievi del giudice cieco)
+## La chiusura (rifatta il 19 ottobre)
+Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: titolo di luogo, telefono grande su una fascia scura, una riga di colonnine con indirizzo, posta e orari, piede scuro a quattro colonne. Anche qui il cartellino stava su una fascia cuoio piena e sotto c'era il piede nero a quattro colonne.
+
+Ora la chiusura è **un solo oggetto del loro mondo: un cartellino da campionario posato sulla stessa carta della pagina**, come gli altri oggetti, con il sole da sinistra e l'ombra a destra.
+- **Il cartellino è largo 100 mm veri** (con la taratura dello schermo, come righello, banco e sagome). Ha gli angoli alti smussati e l'occhiello rinforzato a 13 mm dal bordo. Sotto c'è una quota che scrive la larghezza vera: "mm 100" a 1440, 1024 e 768. Dove il telefono non ha 100 mm di spazio il cartellino si stringe e la quota lo dice ("mm 93" a 390, "mm 74" a 320).
+- **Il laccio è un laccio tubolare in pelle da 3 mm in scala reale** (un articolo del catalogo, nelle misure per settore e nel banco). Passa nell'occhiello e i due capi tagliati restano sciolti sulla carta. La didascalia dice "Laccio tubolare in pelle, mm 3".
+- **Sul cartellino, in ordine:** il marchio, il telefono a 32 px (`tel:`, sottolineato, alto 44 px), la posta (`mailto:`), l'indirizzo con "Apri la mappa" (Google Maps) e gli orari. Le etichette sono a 13 px e i dati a 15. Sono gli stessi dati di prima, nessuno nuovo.
+- **Il piede è una riga sola sulla carta,** sotto un filetto: Hambro srl, P.IVA 00967020280, Informativa privacy e, a destra, Facebook. Il corpo è 15 px, in grigio (6,2:1). La PEC non c'è, perché non era in pagina.
+
+Tolto: la fascia cuoio piena dei contatti, il piede nero a quattro colonne con il marchio ripetuto, l'indirizzo, il telefono e la posta ripetuti nel piede. Le fasce di fondo a tutta larghezza scendono da 4 a 3.
+
+Perché così: la pagina parla di misure vere, e chiudere con un cartellino in scala e un laccio del catalogo in scala tiene l'idea fino in fondo, con un oggetto solo e niente di nuovo da leggere. Anche la carta continua fino alla fine, invece di chiudere su due fasce scure come le altre home della campagna.
+
+## Cosa è cambiato nel passaggio precedente (rilievi del giudice cieco)
 Applicati:
 - **Didascalie e piede.** Tolte le cinque note "foto provvisoria" e "Proposta di nuova home". `grep -ci "provvisori\|da rifare\|Proposta di nuova home" sito/index.html` dà 0.
 - **Menu sotto i 1100 px.** La riga di sezioni scorrevole sotto i 1000 px; tra 1000 e 1100 il menu resta in testata. A 1024 si vedono 5 voci, a 390 se ne vedono 3 intere e le altre si raggiungono scorrendo la riga.
 - **Tablet.** La composizione sovrapposta del 1440, con la foto al 100 % della prima schermata a 1024 e a 768.
 - **Bordo della prima schermata.** Tolta la borchia tagliata, righello alzato di 32 px, quota "2-4" al posto di "3,5" e "4" col filo diagonale.
-- **Sezioni da modello.** Le tre colonne uguali di settore sono diventate un solo elenco di misure con le quote in scala. I contatti sono un cartellino, non più telefono a 120 px più tre colonne. Il cassetto è a file per famiglia.
+- **Sezioni da modello.** Le tre colonne uguali di settore sono diventate un solo elenco di misure con le quote in scala. I contatti sono un cartellino, non più telefono a 120 px più tre colonne (e in questo passaggio il cartellino è sceso dal campo cuoio sulla carta, vedi "La chiusura"). Il cassetto è a file per famiglia.
 - **Bobine.** Mostrate al massimo a 360 px di lato.
 - **Scala tipografica.** Da 19 corpi a 8, con la scala qui sopra.
 - **Banco.** Il tavolo è alto quanto la striscia più 48 px.
@@ -101,10 +115,12 @@ Respinto:
 
 ## Controlli
 - **Screenshot in questa cartella.**
-  - `home-1440.jpg` (intera, 8896 px);
+  - `home-1440.jpg` (intera, 9090 px);
   - `home-1440-prima-schermata.jpg`;
-  - `home-390.jpg` (intera, 8662 px);
+  - `home-390.jpg` (intera, 8541 px);
   - `home-390-prima-schermata.jpg`.
+  - `chiusura-1440.jpg`: solo la chiusura a 1440, dall'inizio dei contatti alla fine della pagina.
+  - La chiusura è stata guardata a pezzi a 1440, 1024, 768, 390 e 320 (e controllata anche a 1101, 1100, 920, 700 e 360): nessuna sovrapposizione tra i testi, nessuno scorrimento orizzontale.
   - Guardati a pezzi anche 320, 768, 1024 e 1920 (PNG in `_prova/screenshot-tmp/`, cancellati dopo il controllo).
 - **Scorrimento orizzontale.** scrollWidth uguale a innerWidth a 320, 360, 390, 700, 701, 768, 900, 1000, 1024, 1100, 1280, 1440, 1920 e 2560.
 - **Tastiera, a 1440 e 1024.** Freccia sui materiali dà Tubolare 4; End dà 16; Home più freccia dà 3. Il taglio vivo, ripreso a 30, con due volte Pagina giù e una freccia dà 9. Nastro 50 giallo funziona.
@@ -118,7 +134,7 @@ Respinto:
   - Facebook;
   - nessuna ancora senza destinazione.
 - **U+2014.** Assente in pagina, script, NOTA, LEGGIMI e CREDITI.
-- **`segnali.sh`.** 0 soglie bloccanti. Foto 37,9 %, Mona Sans 100 %, 18 filetti, nessuna tabella oltre 4 righe, 0 frecce, 4 fasce di fondo. Da guardare, e motivati nel LEGGIMI:
+- **`segnali.sh`.** 0 soglie bloccanti. Foto 37 %, Mona Sans 100 %, nessuna tabella oltre 4 righe, 0 frecce, 3 fasce di fondo (erano 4 prima della chiusura nuova), 19 filetti. Da guardare, e motivati nel LEGGIMI:
   - una sola misura di H2;
   - 2 numeri grandi (la lettura del banco e il 1979 con il nome);
   - l'indice 01-11 del cassetto.

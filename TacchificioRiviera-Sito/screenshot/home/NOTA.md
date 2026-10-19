@@ -21,12 +21,24 @@ Il resto della pagina:
 - "Il nostro nome, inciso sul piano": il tacco in ottone grande, senza riquadro, con due legende a filetto da 1 px e pallini vuoti da 10 px. Sul telefono diventano un elenco numerato.
 - "Tre generazioni di Boldrin", con la foto d'archivio in bianco e nero a sinistra.
 - I sistemi certificati, con lo scopo SGS.
-- I contatti, con la sede operativa e amministrativa, la mappa, il fax e la PEC.
-- Il piede scuro con i dati societari e i link a privacy, procedura e privacy whistleblowing, modulo SA8000 e versione inglese.
+- La chiusura: "Diamo forma alla tua idea?" e, accanto, il biglietto da visita dell'atelier con il timbro impresso, che porta tutti i recapiti (vedi sotto).
+- Il piede in una riga sola su carta: ragione sociale, sede legale, P.IVA, REA, capitale sociale e i link a privacy, whistleblowing (procedura e privacy), modulo SA8000 e versione inglese.
 
-Altezza della pagina: 4716 px a 1440, 5487 px a 390.
+Altezza della pagina: 4566 px a 1440, 5071 px a 390.
 
-## Cosa è cambiato in questo passaggio
+## La chiusura (ultimo passaggio)
+
+Il committente ha notato che quasi tutte le home finivano allo stesso modo: titolo, telefono gigante, riga di colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche qui era così (telefono a 56 px, quattro voci in due colonne, piede in inchiostro pieno con il timbro chiaro). La domanda "Diamo forma alla tua idea?" era già propria di un tacchificio che lavora sul disegno del cliente, quindi resta; cambia ciò che le risponde.
+
+- **Un solo oggetto: il biglietto da visita dell'atelier.** A destra della domanda (colonne 7-12 a 1440) c'è un biglietto in proporzione 85:55, su un cartoncino appena più chiaro della pagina (#FBFAF7), con un filetto e un'ombra corta come un biglietto appoggiato sul banco. In alto il nome e "Stra e Vigonovo, Riviera del Brenta", e a destra il loro timbro impresso, girato di 8 gradi come un timbro dato a mano. Al centro il telefono in Imbue a 54 px (collegamento `tel:`, sottolineato a filo) e l'email (`mailto:`). Sotto un filetto, in piccolo: sede operativa con "Apri la mappa", fax e PEC (`mailto:`). Il pezzo è coerente con l'idea della pagina: come i tacchi, anche i recapiti sono un oggetto solo, presentato su carta.
+- **Il piede è una riga sola**, nel tono della pagina: filetto, ragione sociale in inchiostro, poi sede legale, P.IVA e C.F., REA e capitale sociale (dati obbligatori per una S.r.l.) e i link legali a destra, a 13,5 px in grigio (5,7:1 sulla carta). A 1440 sta su una riga; sotto va a capo per voci intere.
+- **Tolti**: il telefono grande da solo, la griglia di quattro voci (Scrivici, Sede operativa, PEC, Sede legale), il piede scuro con il timbro chiaro e le colonne di link (e quindi `timbro-chiaro.svg`, che lo script non genera più). La sede legale e la PEC non si perdono: la prima è nel piede, la seconda sul biglietto.
+- **Dati**: tutti già in pagina prima, nessuno nuovo. Le due voci whistleblowing ora sono "Whistleblowing: procedura, privacy", con gli stessi due link.
+- **Telefono**: 237x65 px toccabili a 1440, 178x51 a 390, 149x44 a 320.
+- **Sotto i 1100 px** la domanda va sopra e il biglietto sotto, largo al massimo 640 px; sotto i 520 px il biglietto perde la proporzione fissa, il timbro scende a 76 px e le righe piccole vanno una per riga.
+- **Controlli**: chiusura guardata a pezzi a 1440, 1024, 768, 390 e 320; nessuno scorrimento orizzontale da 320 a 2560, nessuna sovrapposizione di testi o di aree dei link nella chiusura (controllo automatico da 320 a 1440), contrasto AA (inchiostro 17,6:1 e grigio 6,2:1 sul biglietto, grigio 5,7:1 sulla carta). La chiusura da sola è in `chiusura-1440.jpg`.
+
+## Cosa è cambiato nel passaggio precedente
 
 - **Il gesto racconta il mestiere.** Le quattro materie (Legno, Prototipo, Plastica, Plexiglas) sono diventate tre stadi: Legno, Prototipo, Serie, con la Serie scelta all'apertura. Il plexiglas è uscito, perché sulla carta era slavato. Le didascalie sono "Legno grezzo, segnato a matita rossa", "Prototipo color avorio" e "Di serie: stiletto a calice, nero".
 - **Lo stiletto ritoccato** (`ritocco_stiletto.py`):
@@ -57,7 +69,7 @@ Altezza della pagina: 4716 px a 1440, 5487 px a 390.
 - **Imbue** (Google Fonts, SIL Open Font License 1.1): in tondo, peso 300, asse ottico automatico. Si usa solo per i titoli, gli anni e il telefono grande. È un bodoniano stretto e alto, con lo stesso stacco pieno-filo dello stiletto. Il riferimento è il titolo stretto ad alto contrasto di Pelletteria Graziella, preso senza il corsivo.
 - **Hanken Grotesk** (Google Fonts, OFL 1.1): per il testo, il menu, le didascalie e le legende, con cifre tabellari per i codici dei certificati, le fasi e i recapiti.
 - Tutti e due sono serviti dalla pagina in `sito/fonts/` (woff2, sottoinsieme latin), con le licenze in `sito/fonts/LICENZE.txt`. Non c'è Inter né un corsivo d'accento.
-- **Colori**: carta #F1EFEB, inchiostro #161414, grigio #625D58, filetti #CFCAC3. L'unico accento è il rosso matita #A8322A, preso dal segno rosso sul tacco in legno: compare solo sulla scheda scelta, al passaggio del puntatore e sul fuoco della tastiera. Il piede è in inchiostro pieno.
+- **Colori**: carta #F1EFEB, inchiostro #161414, grigio #625D58, filetti #CFCAC3. L'unico accento è il rosso matita #A8322A, preso dal segno rosso sul tacco in legno: compare solo sulla scheda scelta, al passaggio del puntatore e sul fuoco della tastiera. Il piede è su carta, con un filetto.
 - **Riferimenti**: Pelletteria Graziella (una frase, un prodotto, il luogo in testata), Studio N19 (il titolo enorme su un fondo quasi bianco), Maison Ernest (il tacchificio trattato da maison), Pierre Hardy (lo still life su un fondo neutro).
 
 ## Quanto ho usato le ispirazioni
@@ -85,13 +97,13 @@ Tutte le foto in pagina sono del Tacchificio Riviera, prese dal loro sito tacchi
 | tacco-ottone-1x/2x | `nascita/tacco_1.jpg` | campo piatto, ombre neutre; mostrato a 1,05x |
 | incisione-800/1200/1920, -m-600/864 | `background/linee-desktop.jpg` (1920x1080) | antiblocchi, gradazione neutra, tagli 2:1 e 4:5, qualità 88 |
 | archivio-488 | `territorio/modal1.jpg` (488x562) | grigio neutro, misura nativa, mostrata a 440 px |
-| timbro.svg, timbro-chiaro.svg | `logo.svg` | ricolorato |
+| timbro.svg | `logo.svg` | ricolorato in inchiostro (testata e biglietto da visita) |
 
 Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: non aggiungono dettaglio. Nessun pezzo supera 1,1 volte la misura nativa.
 
 ## Controlli
 
-- Gli screenshot a 1440, 390, 320, 768, 1024 e 1920 sono in questa cartella, e li ho guardati a pezzi.
+- Gli screenshot a 1440, 390, 320, 768, 1024 e 1920 sono in questa cartella, e li ho guardati a pezzi; `chiusura-1440.jpg` è la sola chiusura.
 - **Scorrimento orizzontale.** `scrollWidth` è uguale a `innerWidth` a 320, 360, 390, 414, 520, 600, 768, 860, 900, 1024, 1100, 1280, 1440, 1680, 1920 e 2560 px.
 - **Testi.** Nessuna sovrapposizione (controllo automatico in `finale_scatti.mjs`).
 - **Zoom a 200 %.** Sullo screenshot a 1440, lo stiletto non ha seghettatura né macchia, e l'incisione non ha blocchi 8x8.
@@ -102,7 +114,7 @@ Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: no
   - Fine porta a Serie, Home a Legno, e la freccia sinistra dal primo porta all'ultimo;
   - la didascalia e l'immagine cambiano ogni volta.
 - **Collegamenti.**
-  - `tel:+39049502844` in testata e nei contatti;
+  - `tel:+39049502844` in testata e sul biglietto da visita;
   - `mailto:` all'indirizzo generale (con oggetto sul bottone) e alla PEC;
   - Google Maps sul Viale Serenissima 30 a Vigonovo;
   - i PDF dei tre certificati;
