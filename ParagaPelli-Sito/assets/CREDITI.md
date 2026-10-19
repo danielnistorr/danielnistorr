@@ -20,3 +20,5 @@ Licenze verificate il 19/10/2026 sulla pagina di ogni foto:
 | pexels-17315572-boga-mani-pelle.jpg | https://www.pexels.com/photo/leather-piece-on-a-table-17315572/ | Oğuz Kaan Boğa | Pexels License | 2400x1601 | direzione B, mani che scelgono la pelle |
 
 File immagine scaricati da images.unsplash.com e images.pexels.com (versione grande, non l'originale a piena risoluzione).
+
+Home finale (sito/index.html, versione del 19/10/2026): nessuna di queste foto è più in pagina. La foto di Kelly Sikkema (campioni metallizzati, non del catalogo) è stata tolta; tutte le immagini della home sono di Paraga Pelli (drappo, scansioni, box, corsia del magazzino, squadra in magazzino).

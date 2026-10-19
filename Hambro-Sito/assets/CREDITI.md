@@ -27,3 +27,13 @@ Versioni scaricate dal CDN `images.unsplash.com` a 2400 px di larghezza (la dime
 ## Immagini del sito attuale in `originali/`
 
 Scaricate il 19/10/2026 da `https://www.hambro.it/immagini/full/` (139 file). Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`. Appartengono a Hambro o ai suoi fornitori: 10 sono scansioni di pagine del catalogo di terzi "ASTOR" e almeno 3 (le foto dello slider) hanno l'aspetto di foto da catalogo di un produttore; i diritti d'uso vanno chiariti prima di riusarle (vedi 01-analisi, sezione 8).
+
+## Uso nella home finale (`sito/`, 19/10/2026)
+
+Rielaborate con `_prova/script/finale_img.py` (ritaglio, gradazione sulla carta, nitidezza, più larghezze); nessuna immagine generata.
+- Rodrigues `2hWmYcG26E8`: apertura, specchiata (tagli 1440+, tablet, telefono).
+- Rodrigues `hqGQcZnEvy0`: la fibbia oro del dittico "il metallo", fondo ripulito dal rumore.
+- Karimov `DmxTTqZtDds`: la pelle del dittico e la striscia del banco, portate sul cuoio #8A5230.
+- Berg `an44PeEll_w`: semilavorati.
+- Da `originali/` (hambro.it, diritti da chiarire): `2020082819b510e6283f3e7a1a998eb253a83ccd.jpeg` (bobina di laccio) e `20200828c559dc21f28d28e6c910602764e6d35f.jpeg` (bobina di tondino) per la Tav. 2; 11 scontornati del catalogo per il cassetto (elenco in `finale_img.py`).
+- Non usate nella home finale: Tepavac, Juno Jo, Devon Chan, Compagnons, Rodrigues `FXVC26csSz4` e `CkeOwnoLK5U`.

@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tek.Lam, lavorazione lamiera a Vigonovo</title>
+<meta name="description" content="Carpenteria in lamiera conto terzi a Vigonovo (VE): punzonatura e cesoia, taglio laser, piegatura CNC, saldatura MIG e TIG, tubi e profili, progettazione 3D. Famiglia Volpato, dal 1978.">
+<link rel="preload" href="fonts/mona-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Mona Sans (Google Fonts, SIL Open Font License 1.1, vedi fonts/OFL-MonaSans.txt): un solo file variabile, assi peso e larghezza */
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-latin.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --fondo:#DEDBD5;        /* acciaio caldo */
+  --fondo-2:#D2CEC6;
+  --grafite:#1D1B18;      /* il nero del logo, scaldato */
+  --grafite-2:#151412;
+  --testo-2:#57534C;
+  --filo:#B1ACA3;
+  --rosso:#E30913;        /* il raggio del logo */
+  --rosso-testo:#B5070F;
+  --campo:#D20A12;        /* il campo dei contatti: rosso del logo appena più fondo, per il testo bianco */
+  --campo-scuro:#A8070D;
+  --su-campo:#FFFFFF;
+  --su-campo-2:#FBE3E1;
+  --m:max(clamp(16px,3.9vw,56px), calc((100vw - 1328px) / 2));
+  --rg:56px;              /* il canale del raggio, a sinistra del titolo */
+  --gap:24px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--grafite);font-family:"Mona Sans",system-ui,sans-serif;font-size:17px;line-height:1.55;font-weight:400;font-stretch:100%;font-variant-numeric:lining-nums proportional-nums;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{color:var(--rosso-testo)}
+:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+h1,h2,h3,p,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.nb{white-space:nowrap}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:var(--m);top:8px;background:var(--grafite);color:#fff;padding:8px 12px;z-index:9}
+
+/* testata */
+.testata{display:flex;align-items:center;justify-content:space-between;gap:24px;height:80px;padding:0 var(--m);position:relative;z-index:3}
+.marchio{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marchio .segno{width:58px;height:auto}
+.marchio .scritta{height:20px;width:auto}
+.menu{display:flex;gap:32px;font-size:15px;font-weight:500}
+.menu a{text-decoration:none;padding:6px 0}
+.menu a:hover{text-decoration:underline}
+.tel-testata{font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap}
+
+/* il raggio: un tratto solo, dal segno del logo al foglio */
+.raggio{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;z-index:2;color:var(--rosso)}
+.raggio span{position:absolute;display:block}
+.raggio .v{width:2px;margin-left:-1px;background:repeating-linear-gradient(to bottom,var(--rosso) 0 9px,transparent 9px 15px);transform-origin:top;animation:cala .3s cubic-bezier(.3,.6,.3,1) both}
+.raggio .h{height:1.5px;margin-top:-.75px;background:var(--rosso);transform-origin:left;animation:piega .32s cubic-bezier(.3,.6,.3,1) .28s both}
+.raggio .punto{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--rosso);box-shadow:0 0 0 4px rgba(227,9,19,.18)}
+.raggio .est{width:1px;margin-left:-.5px;background:var(--rosso)}
+.raggio .tick{width:14px;height:1.5px;margin:-.75px 0 0 -7px;background:var(--rosso);transform:rotate(-45deg)}
+.raggio .q{transform:translate(-50%,-50%);background:var(--fondo);padding:0 12px;font-size:15px;font-weight:500;line-height:1;color:var(--rosso-testo);letter-spacing:.02em;white-space:nowrap}
+@keyframes cala{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes piega{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* apertura */
+.apertura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding:24px var(--m) 0}
+.apertura h1{grid-column:1/5;grid-row:1;padding-left:var(--rg);margin-top:-.06em;font-weight:500;font-stretch:75%;font-size:clamp(64px,7.2vw,104px);line-height:.9;letter-spacing:-.016em}
+.foglio{grid-column:5/13;grid-row:1;position:relative}
+.foglio .lastra{aspect-ratio:2/1;overflow:hidden;background:#8f8a82}
+.foglio img{width:100%;height:100%;object-fit:cover}
+.ap-quota{grid-column:1/-1;grid-row:2;height:60px}
+.attacco{grid-column:1/5;grid-row:3;padding-left:var(--rg)}
+.attacco p{font-size:18px;line-height:1.5;text-wrap:pretty;max-width:26em}
+.azione{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:22px}
+.bottone{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;background:var(--rosso);color:#fff;text-decoration:none;font-size:16px;font-weight:550;transition:background-color .18s ease}
+.bottone:hover{background:#B5070F;color:#fff}
+.azione .tel{font-size:15px;color:var(--testo-2)}
+.azione .tel a{color:var(--grafite);font-weight:500}
+.legenda{grid-column:5/13;grid-row:3;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:var(--gap);font-size:14px;line-height:1.45;color:var(--testo-2)}
+.legenda p:first-child{grid-column:1/5;color:var(--grafite)}
+.legenda p:last-child{grid-column:5/9}
+
+/* sezioni */
+.sezione{padding:136px var(--m) 0}
+.h2{font-weight:450;font-stretch:80%;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.022em;text-wrap:balance}
+.lead{margin-top:20px;max-width:34em;font-size:19px;line-height:1.5;text-wrap:pretty}
+
+/* lavorazioni */
+.schede{display:flex;margin-top:48px;border-top:1px solid var(--filo)}
+.scheda{flex:1 1 0;appearance:none;background:none;border:0;border-top:2px solid transparent;margin-top:-1px;padding:16px 16px 18px 0;text-align:left;font:inherit;color:var(--testo-2);cursor:pointer;display:flex;gap:10px;align-items:baseline;white-space:nowrap;transition:color .18s ease,border-color .18s ease}
+.scheda .n{font-size:13px;font-weight:500}
+.scheda .t{font-size:19px;font-weight:480;line-height:1.2}
+.scheda:hover{color:var(--grafite)}
+.scheda[aria-selected="true"]{color:var(--grafite);border-top-color:var(--rosso)}
+.scheda[aria-selected="true"] .n{color:var(--rosso-testo)}
+.pannello{margin-top:16px}
+.pannello[hidden]{display:none}
+.lastra-b{position:relative;aspect-ratio:2/1;overflow:hidden;background:#8f8a82}
+.lastra-b img{width:100%;height:100%;object-fit:cover}
+.lastra-b .credito{position:absolute;right:12px;bottom:12px;font-size:13px;line-height:1;padding:7px 9px;background:var(--grafite);color:#ECEAE5}
+.lastra-b.disegno{background:var(--fondo-2)}
+.lastra-b.disegno svg{width:100%;height:100%;display:block}
+.qb{position:relative;height:40px;color:var(--rosso-testo)}
+.qb::before{content:"";position:absolute;left:0;right:0;top:24px;border-top:1.5px solid var(--rosso)}
+.qb i{position:absolute;top:0;height:32px;border-left:1px solid var(--rosso)}
+.qb i:nth-of-type(1){left:0}.qb i:nth-of-type(2){right:0}
+.qb b{position:absolute;top:24px;width:14px;border-top:1.5px solid var(--rosso);transform:translate(-50%,-50%) rotate(-45deg)}
+.qb b:nth-of-type(1){left:0}.qb b:nth-of-type(2){left:100%}
+.qb span{position:absolute;left:50%;top:24px;transform:translate(-50%,-50%);background:var(--fondo);padding:0 12px;font-size:15px;font-weight:500;line-height:1;white-space:nowrap}
+.didascalia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-top:32px}
+.didascalia .testo{grid-column:1/6}
+.didascalia h3{font-size:26px;font-weight:500;font-stretch:88%;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+.didascalia .testo p{margin-top:12px;max-width:30em}
+.didascalia dl{grid-column:7/13;display:grid;grid-template-columns:minmax(130px,auto) 1fr;column-gap:24px;align-content:start;font-size:16px}
+.didascalia dt,.didascalia dd{padding:10px 0;border-top:1px solid var(--filo)}
+.didascalia dt{color:var(--testo-2)}
+.inserto{grid-column:7/13;display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:end;margin-top:4px}
+.inserto img{width:200px}
+.inserto figcaption{font-size:14px;line-height:1.4;color:var(--testo-2)}
+
+/* fascia */
+.fascia{margin-top:136px}
+.fascia img{width:100%;aspect-ratio:2/1;object-fit:cover;object-position:50% 40%}
+.fascia figcaption{padding:12px var(--m) 0;font-size:14px;color:var(--testo-2);text-align:right}
+
+.settori{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--gap);margin-top:48px}
+.settori li{border-top:1px solid var(--filo);padding:18px 0 32px}
+.settori .s{display:block;font-size:26px;font-weight:450;font-stretch:88%;line-height:1.15;letter-spacing:-.01em}
+.settori .d{display:block;margin-top:8px;font-size:15px;line-height:1.45;color:var(--testo-2);max-width:24em}
+
+/* chi siamo: la storia come quota */
+.storia{margin-top:56px}
+.linea{position:relative;height:118px}
+.linea .asse{position:absolute;left:0;right:0;top:64px;border-top:1.5px solid var(--rosso)}
+.linea .p{position:absolute;top:46px;height:36px;border-left:1px solid var(--rosso)}
+.linea .p::after{content:"";position:absolute;left:0;top:18px;width:14px;border-top:1.5px solid var(--rosso);transform:translate(-50%,-50%) rotate(-45deg)}
+.linea .anno{position:absolute;top:0;font-size:34px;font-weight:450;font-stretch:80%;letter-spacing:-.02em;line-height:1;transform:translateX(-50%)}
+.linea .anno.primo{transform:none}
+.linea .anno.ultimo{transform:translateX(-100%)}
+.linea .tratto{position:absolute;top:80px;font-size:15px;line-height:1.3;color:var(--rosso-testo);font-weight:500;transform:translateX(-50%);white-space:nowrap}
+.lv{display:none}
+.storia-testi{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-top:48px}
+.racconto{grid-column:1/7;font-size:19px;line-height:1.55;text-wrap:pretty}
+.racconto p+p{margin-top:16px}
+.persone{grid-column:8/13;display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-content:start}
+.persone li{border-top:1px solid var(--grafite);padding-top:14px}
+.persone .nome{display:block;font-size:20px;font-weight:500}
+.persone .ruolo{display:block;font-size:15px;color:var(--testo-2);margin-top:2px}
+.persone a{display:inline-block;margin-top:10px;font-size:15px}
+
+/* contatti: il campo rosso del logo */
+.contatti{margin-top:136px;background:var(--campo);color:var(--su-campo);padding:96px var(--m) 88px}
+.contatti a{color:var(--su-campo)}
+.contatti a:hover{color:var(--grafite)}
+.contatti .h2{font-size:clamp(56px,8.6vw,124px);font-weight:500;font-stretch:75%;line-height:.9;letter-spacing:-.018em}
+.contatti .sotto{margin-top:24px;max-width:34em;font-size:19px;color:var(--su-campo-2)}
+.recapiti{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px var(--gap);margin-top:64px}
+.recapiti .blocco{grid-column:span 4}
+.recapiti h3{font-size:13px;font-weight:550;letter-spacing:.1em;text-transform:uppercase;color:var(--su-campo-2);padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.45);margin-bottom:16px}
+.recapiti .grande{display:block;font-size:34px;font-weight:450;font-stretch:85%;letter-spacing:-.01em;line-height:1.1;text-decoration:none;white-space:nowrap}
+.recapiti .grande:hover{text-decoration:underline}
+.recapiti p{font-size:16px;line-height:1.5;color:var(--su-campo-2)}
+.recapiti p+p,.recapiti .grande+p{margin-top:10px}
+.recapiti dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:16px;margin-top:20px}
+.recapiti dt{color:var(--su-campo-2)}
+.recapiti dd{overflow-wrap:anywhere}
+.recapiti dd a{text-decoration:underline}
+.recapiti .indirizzo{font-size:22px;line-height:1.35;color:var(--su-campo)}
+.mezzi{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-top:72px;align-items:end}
+.mezzi figure{grid-column:span 4}
+.mezzi img{width:100%;aspect-ratio:47/36;object-fit:cover}
+.mezzi figcaption{margin-top:10px;font-size:14px;color:var(--su-campo-2)}
+.carico{grid-column:span 4;padding-bottom:30px}
+.carico p{font-size:16px;color:var(--su-campo-2);max-width:22em}
+.carico ul{margin-top:20px}
+.carico li{padding:12px 0;border-top:1px solid rgba(255,255,255,.45)}
+.carico .peso{display:block;font-size:40px;font-weight:450;font-stretch:80%;line-height:1;letter-spacing:-.015em;color:var(--su-campo)}
+.carico .cosa{display:block;margin-top:6px;font-size:15px;color:var(--su-campo-2)}
+
+.piede{background:var(--grafite-2);color:#ABA69D;padding:48px var(--m) 40px;font-size:14px;line-height:1.6}
+.piede .riga{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap)}
+.piede .marchio-p{grid-column:1/4}
+.piede .marchio-p img{height:18px;width:auto}
+.piede .societa{grid-column:4/9}
+.piede .link{grid-column:9/13;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:flex-end;align-content:start}
+.piede a{color:#DAD6CF}
+.piede a:hover{color:#FF6B6F}
+
+/* tablet */
+@media (max-width:1100px){
+  :root{--rg:48px}
+  .menu{gap:22px}
+  .apertura h1{grid-column:1/6}
+  .foglio{grid-column:6/13}
+  .attacco{grid-column:1/6}
+  .legenda{grid-column:6/13;display:block}
+  .legenda p+p{margin-top:8px}
+  .scheda .t{font-size:17px}
+  .didascalia .testo{grid-column:1/7}
+  .didascalia dl,.inserto{grid-column:7/13}
+  .inserto{grid-template-columns:1fr}
+  .settori{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .racconto{grid-column:1/13}
+  .persone{grid-column:1/13;margin-top:24px}
+  .recapiti .blocco{grid-column:span 6}
+  .mezzi figure{grid-column:span 6}
+  .carico{grid-column:1/13;padding-bottom:0}
+  .carico ul{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--gap)}
+  .piede .marchio-p{grid-column:1/13}.piede .societa{grid-column:1/8}.piede .link{grid-column:8/13}
+}
+@media (max-width:860px){
+  .menu{display:none}
+  .apertura h1{grid-column:1/-1;font-size:clamp(42px,9vw,80px);max-width:9.5em;padding-bottom:28px}
+  .foglio{grid-column:1/-1;grid-row:2;margin-left:var(--rg)}
+  .ap-quota{grid-row:3}
+  .attacco{grid-column:1/-1;grid-row:4}
+  .legenda{grid-column:1/-1;grid-row:5;padding-left:var(--rg);margin-top:28px}
+  .schede{overflow-x:auto;scrollbar-width:none;border-top:0;border-bottom:1px solid var(--filo);margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m));padding:0 var(--m)}
+  .schede::-webkit-scrollbar{display:none}
+  .scheda{flex:0 0 auto;border-top:0;border-bottom:2px solid transparent;margin:0 0 -1px;padding:12px 22px 12px 0}
+  .scheda[aria-selected="true"]{border-bottom-color:var(--rosso)}
+  .didascalia .testo,.didascalia dl,.inserto{grid-column:1/13}
+  .inserto{grid-template-columns:160px 1fr}
+  .inserto img{width:160px}
+}
+/* telefono: il foglio si gira, 1500 x 3000 */
+@media (max-width:620px){
+  :root{--rg:32px;--gap:16px}
+  body{font-size:16px}
+  .testata{height:64px}
+  .marchio{gap:10px}
+  .marchio .segno{width:44px}
+  .marchio .scritta{height:15px}
+  .tel-testata{font-size:15px}
+  .apertura{padding-top:12px}
+  .apertura h1{font-size:clamp(42px,12.6vw,54px);line-height:.92;padding-bottom:20px}
+  .foglio{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:end}
+  .foglio .lastra{aspect-ratio:1/2;height:clamp(300px,46svh,420px);width:auto}
+  .foglio .lastra img{object-position:50% 50%}
+  .foglio .cap-v{display:block!important;font-size:13px;line-height:1.4;color:var(--testo-2);padding-bottom:2px}
+  .ap-quota{height:48px}
+  .attacco p{font-size:16px;line-height:1.45}
+  .azione{margin-top:16px;gap:10px 16px}
+  .bottone{min-height:48px;padding:0 22px}
+  .legenda{margin-top:24px;font-size:13px}
+  .legenda .solo-largo{display:none}
+  .raggio .q{font-size:13px;padding:0 8px}
+  .sezione{padding-top:104px}
+  .lead{font-size:17px}
+  .schede{margin-top:32px}
+  .scheda .t{font-size:16px}
+  .lastra-b{aspect-ratio:4/3}
+  .lastra-b.disegno{aspect-ratio:4/3}
+  .qb span{font-size:13px}
+  .didascalia{margin-top:24px}
+  .didascalia h3{font-size:22px}
+  .didascalia dl{grid-template-columns:104px 1fr;column-gap:12px;font-size:15px}
+  .inserto{grid-template-columns:120px 1fr;gap:12px}
+  .inserto img{width:120px}
+  .fascia{margin-top:104px}
+  .fascia img{aspect-ratio:4/5}
+  .settori{grid-template-columns:1fr;margin-top:32px}
+  .settori li{padding:14px 0 22px}
+  .settori .s{font-size:22px}
+  .linea{display:none}
+  .lv{display:block;position:relative;margin-left:8px;border-left:1.5px solid var(--rosso)}
+  .lv li{position:relative;padding:0 0 28px 24px}
+  .lv li::before{content:"";position:absolute;left:-1px;top:14px;width:14px;border-top:1.5px solid var(--rosso);transform:translate(-50%,-50%) rotate(-45deg)}
+  .lv .anno{display:block;font-size:30px;font-weight:450;font-stretch:80%;letter-spacing:-.02em;line-height:1}
+  .lv .cosa{display:block;margin-top:6px;font-size:15px;color:var(--rosso-testo);font-weight:500}
+  .storia{margin-top:32px}
+  .storia-testi{margin-top:16px}
+  .racconto{font-size:17px}
+  .persone{grid-template-columns:1fr}
+  .contatti{margin-top:104px;padding-top:72px;padding-bottom:64px}
+  .contatti .sotto{font-size:17px}
+  .recapiti{margin-top:48px;gap:36px var(--gap)}
+  .recapiti .blocco{grid-column:1/13}
+  .recapiti .grande{font-size:30px}
+  .mezzi{margin-top:56px;gap:28px var(--gap)}
+  .mezzi figure{grid-column:1/13}
+  .carico ul{grid-template-columns:1fr}
+  .carico .peso{font-size:34px}
+  .piede .societa,.piede .link{grid-column:1/13;justify-content:flex-start}
+}
+.cap-v{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <a class="marchio" href="#" aria-label="Tek.Lam, inizio pagina">
+    <img class="segno" id="segno" src="img/logo-segno.png" width="153" height="120" alt="">
+    <img class="scritta" src="img/logo-scritta.png" width="358" height="64" alt="TEK.LAM">
+  </a>
+  <nav class="menu" aria-label="Sezioni">
+    <a href="#lavorazioni">Lavorazioni</a>
+    <a href="#settori">Settori</a>
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel-testata" href="tel:+390499801486">049&nbsp;980&nbsp;14&nbsp;86</a>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <h1 id="titolo">Tagliamo, pieghiamo e saldiamo a&nbsp;Tombelle</h1>
+  <figure class="foglio" id="foglio">
+    <div class="lastra">
+      <picture>
+        <source media="(max-width:620px)" srcset="img/apertura-v-323.jpg 323w" sizes="200px">
+        <img src="img/apertura-960.jpg" srcset="img/apertura-640.jpg 640w, img/apertura-960.jpg 960w, img/apertura-1292.jpg 1292w" sizes="(max-width:1100px) calc(100vw - 2 * var(--m) - var(--rg)), 880px" width="1292" height="646" alt="Un saldatore con la maschera salda a TIG un cassone in inox ancora coperto dal film protettivo blu" fetchpriority="high">
+      </picture>
+    </div>
+    <figcaption class="cap-v">Saldatura TIG su inox, officina Tek.Lam. Il foglio girato: 1500&nbsp;×&nbsp;3000&nbsp;mm.</figcaption>
+  </figure>
+  <div class="ap-quota" aria-hidden="true"></div>
+  <div class="attacco">
+    <p>Carpenteria in lamiera conto terzi a Vigonovo, tra Padova e Venezia. La famiglia Volpato lavora il ferro dal 1978.</p>
+    <div class="azione">
+      <a class="bottone" href="mailto:ufftec@teklam.it?subject=Richiesta%20di%20preventivo">Mandaci il disegno</a>
+      <span class="tel">o chiama il <a class="nb" href="tel:+390499801486">049&nbsp;980&nbsp;14&nbsp;86</a></span>
+    </div>
+  </div>
+  <div class="legenda">
+    <p class="solo-largo">Saldatura TIG su un cassone inox, col film protettivo ancora addosso. Officina Tek.Lam, Tombelle.</p>
+    <p>La cornice ha le proporzioni del foglio intero, <span class="nb">3000&nbsp;×&nbsp;1500&nbsp;mm</span>: il campo di lavoro del nostro laser e della punzonatrice.</p>
+  </div>
+</section>
+
+<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+  <h2 class="h2" id="t-lav">Le lavorazioni, sotto lo stesso tetto</h2>
+  <p class="lead">Il foglio passa da una macchina all’altra nello stesso capannone. Verniciatura e cromatura le coordiniamo noi, su impianti esterni collegati.</p>
+
+  <div class="schede" role="tablist" aria-label="Lavorazioni">
+    <button class="scheda" role="tab" id="s-punz" aria-selected="true" aria-controls="p-punz"><span class="n">1</span><span class="t">Punzonatura e cesoia</span></button>
+    <button class="scheda" role="tab" id="s-laser" aria-selected="false" aria-controls="p-laser" tabindex="-1"><span class="n">2</span><span class="t">Taglio laser</span></button>
+    <button class="scheda" role="tab" id="s-piega" aria-selected="false" aria-controls="p-piega" tabindex="-1"><span class="n">3</span><span class="t">Piegatura</span></button>
+    <button class="scheda" role="tab" id="s-sald" aria-selected="false" aria-controls="p-sald" tabindex="-1"><span class="n">4</span><span class="t">Saldatura</span></button>
+    <button class="scheda" role="tab" id="s-tubo" aria-selected="false" aria-controls="p-tubo" tabindex="-1"><span class="n">5</span><span class="t">Tubi e profili</span></button>
+  </div>
+
+  <div class="pannello" id="p-punz" role="tabpanel" aria-labelledby="s-punz" tabindex="0">
+    <div class="lastra-b"><img src="img/punzonatura-960.jpg" srcset="img/punzonatura-640.jpg 640w, img/punzonatura-960.jpg 960w, img/punzonatura-1292.jpg 1292w" sizes="(max-width:1328px) calc(100vw - 2 * var(--m)), 1328px" width="1292" height="646" alt="La punzonatrice Finn-Power SG6 dell’officina, con la lamiera forata sul piano" loading="lazy"></div>
+    <div class="qb" aria-hidden="true"><i></i><i></i><b></b><b></b><span>asse X 3000</span></div>
+    <div class="didascalia">
+      <div class="testo">
+        <h3>Finn-Power SG6, punzonatura e cesoia angolare</h3>
+        <p>Punzona e cesoia nella stessa macchina, con carico, scarico, impilaggio e separazione automatici: il pezzo esce già staccato dal foglio. Per i tagli dritti c’è anche la cesoia Gasparini.</p>
+      </div>
+      <dl>
+        <dt>Asse X</dt><dd>3000&nbsp;mm</dd>
+        <dt>Asse Y</dt><dd>1500&nbsp;mm</dd>
+        <dt>Cesoia Gasparini</dt><dd>fino a 3000&nbsp;mm di lunghezza</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="pannello" id="p-laser" role="tabpanel" aria-labelledby="s-laser" tabindex="0" hidden>
+    <div class="lastra-b"><img src="img/taglio-1000.jpg" srcset="img/taglio-640.jpg 640w, img/taglio-1000.jpg 1000w, img/taglio-1600.jpg 1600w, img/taglio-2400.jpg 2400w" sizes="(max-width:1328px) calc(100vw - 2 * var(--m)), 1328px" width="2400" height="1200" alt="Una testa di taglio laser su una lamiera in ferro, con il ventaglio di scintille" loading="lazy"><span class="credito">Foto indicativa</span></div>
+    <div class="didascalia">
+      <div class="testo">
+        <h3>Taglio laser</h3>
+        <p>Un Bystronic Byspeed da 4400&nbsp;W taglia ferro, inox e alluminio. Carico e scarico sono automatici, con un dispositivo antigraffio per le lamiere che non devono segnarsi.</p>
+      </div>
+      <dl>
+        <dt>Potenza</dt><dd>4400&nbsp;W</dd>
+        <dt>Campo di lavoro</dt><dd>3000&nbsp;×&nbsp;1500&nbsp;mm</dd>
+        <dt>Materiali</dt><dd>ferro, inox, alluminio</dd>
+      </dl>
+      <figure class="inserto">
+        <img src="img/byspeed-470.jpg" width="470" height="360" alt="Il laser Bystronic Byspeed nell’officina Tek.Lam, con il carrello degli attrezzi rosso" loading="lazy">
+        <figcaption>La Byspeed nell’officina di Tombelle</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="pannello" id="p-piega" role="tabpanel" aria-labelledby="s-piega" tabindex="0" hidden>
+    <div class="lastra-b"><img src="img/piega-960.jpg" srcset="img/piega-640.jpg 640w, img/piega-960.jpg 960w, img/piega-1292.jpg 1292w" sizes="(max-width:1328px) calc(100vw - 2 * var(--m)), 1328px" width="1292" height="646" alt="Una mano con il guanto appoggia la lamiera contro gli utensili della piegatrice" loading="lazy"></div>
+    <div class="qb" aria-hidden="true"><i></i><i></i><b></b><b></b><span>lunghezza utile 3100</span></div>
+    <div class="didascalia">
+      <div class="testo">
+        <h3>Due piegatrici a controllo numerico</h3>
+        <p>Una Finn-Power a 8 assi con bombatura Wila e una Warcom con bombatura idraulica, tutte e due con 3100&nbsp;mm di lunghezza utile.</p>
+      </div>
+      <dl>
+        <dt>Lunghezza utile</dt><dd>3100&nbsp;mm</dd>
+        <dt>Assi</dt><dd>fino a 8</dd>
+        <dt>Bombatura</dt><dd>Wila, idraulica</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="pannello" id="p-sald" role="tabpanel" aria-labelledby="s-sald" tabindex="0" hidden>
+    <div class="lastra-b"><img src="img/saldatura-800.jpg" srcset="img/saldatura-560.jpg 560w, img/saldatura-800.jpg 800w, img/saldatura-1000.jpg 1000w" sizes="(max-width:1328px) calc(100vw - 2 * var(--m)), 1328px" width="1000" height="500" alt="Il cassone in inox col film protettivo blu stampato, sotto la torcia TIG" loading="lazy"></div>
+    <div class="didascalia">
+      <div class="testo">
+        <h3>Saldatura MIG e TIG, poi l’assemblaggio</h3>
+        <p>Su ferro, inox e alluminio. Il pezzo può uscire già montato, pronto per la verniciatura o la cromatura.</p>
+      </div>
+      <dl>
+        <dt>Procedimenti</dt><dd>MIG, TIG</dd>
+        <dt>Materiali</dt><dd>ferro, inox, alluminio</dd>
+        <dt>Finiture</dt><dd>verniciatura e cromatura su impianti esterni collegati</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="pannello" id="p-tubo" role="tabpanel" aria-labelledby="s-tubo" tabindex="0" hidden>
+    <div class="lastra-b disegno">
+      <svg viewBox="0 0 2000 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t-sez">
+        <title id="t-sez">Le sezioni più grandi che curva la Pedrazzoli: tubo quadro 20 per 20 con parete da 3 millimetri e tubo tondo da 32 millimetri con parete da 2,2</title>
+        <g transform="translate(560 500)">
+          <rect x="-200" y="-200" width="400" height="400" fill="#1D1B18"/>
+          <rect x="-140" y="-140" width="280" height="280" fill="#D2CEC6"/>
+          <g stroke="#E30913" stroke-width="3" fill="none">
+            <path d="M-200 -236 H200 M-200 -260 V-212 M200 -260 V-212"/>
+            <path d="M-212 -248 l24 24 M188 -248 l24 24"/>
+            <path d="M236 -200 V-140 M212 -200 H250 M212 -140 H250"/>
+          </g>
+          <text x="0" y="-262" text-anchor="middle" font-size="52" font-weight="500" fill="#B5070F" font-family="Mona Sans, sans-serif">20</text>
+          <text x="262" y="-156" font-size="52" font-weight="500" fill="#B5070F" font-family="Mona Sans, sans-serif">3</text>
+          <text x="0" y="310" text-anchor="middle" font-size="48" fill="#1D1B18" font-family="Mona Sans, sans-serif">quadro 20 × 20 × 3</text>
+        </g>
+        <g transform="translate(1340 500)">
+          <circle r="320" fill="#1D1B18"/>
+          <circle r="276" fill="#D2CEC6"/>
+          <g stroke="#E30913" stroke-width="3" fill="none">
+            <path d="M-320 0 H320"/>
+            <path d="M-332 12 l24 -24 M308 12 l24 -24"/>
+          </g>
+          <text x="0" y="-28" text-anchor="middle" font-size="52" font-weight="500" fill="#B5070F" font-family="Mona Sans, sans-serif">Ø 32</text>
+          <text x="0" y="410" text-anchor="middle" font-size="48" fill="#1D1B18" font-family="Mona Sans, sans-serif">tondo Ø 32 × 2,2</text>
+        </g>
+      </svg>
+    </div>
+    <div class="didascalia">
+      <div class="testo">
+        <h3>Tubi e profili</h3>
+        <p>Taglio automatico con la troncatrice OMES, curvatura con la Pedrazzoli idraulica, calandratura dei tubolari di piccola sezione con la Ercolina a controllo numerico. Sopra, ingrandite, le sezioni più grandi che curviamo.</p>
+      </div>
+      <dl>
+        <dt>Taglio</dt><dd>fino a 120&nbsp;mm, barre fino a 2000&nbsp;mm</dd>
+        <dt>Curvatura</dt><dd>quadro 20&nbsp;×&nbsp;20&nbsp;×&nbsp;3, tondo Ø&nbsp;32&nbsp;×&nbsp;2,2</dd>
+        <dt>Calandratura</dt><dd>tubolari di piccola sezione</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="settori" aria-labelledby="t-set">
+  <figure class="fascia">
+    <picture>
+      <source media="(max-width:620px)" srcset="img/fascia-v-517.jpg 517w" sizes="100vw">
+      <img src="img/fascia-1330.jpg" srcset="img/fascia-640.jpg 640w, img/fascia-960.jpg 960w, img/fascia-1330.jpg 1330w" sizes="100vw" width="1330" height="646" alt="Una mano appoggia la lamiera contro la fila di utensili della piegatrice" loading="lazy">
+    </picture>
+    <figcaption>Piegatura, officina Tek.Lam</figcaption>
+  </figure>
+  <div class="sezione" style="padding-top:88px">
+    <h2 class="h2" id="t-set">Per chi lavoriamo</h2>
+    <p class="lead">Pezzi su disegno del cliente, anche già assemblati.</p>
+    <ul class="settori">
+      <li><span class="s">Elettromedicale ed elettronica</span><span class="d">Case metallici per apparecchi</span></li>
+      <li><span class="s">Arredo medicale e odontoiatrico</span><span class="d">Cassetti e mobili in lamiera verniciata</span></li>
+      <li><span class="s">Refrigerazione commerciale</span><span class="d">Telai in tubolare per banchi frigo</span></li>
+      <li><span class="s">Trattamento aria e fluidi</span><span class="d">Pannelli per cabine</span></li>
+      <li><span class="s">Macchine agricole e movimento terra</span><span class="d">Griglie e particolari in lamiera</span></li>
+      <li><span class="s">Carpenteria leggera</span><span class="d">Per qualsiasi settore meccanico</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sezione" id="chi-siamo" aria-labelledby="t-chi" style="padding-top:112px">
+  <h2 class="h2" id="t-chi">La famiglia Volpato, dal 1978</h2>
+  <div class="storia">
+    <div class="linea" aria-hidden="true">
+      <span class="asse"></span>
+      <span class="p" style="left:0"></span><span class="p" style="left:87.5%"></span><span class="p" style="left:100%"></span>
+      <span class="anno primo" style="left:0">1978</span>
+      <span class="anno" style="left:87.5%">2020</span>
+      <span class="anno ultimo" style="left:100%">oggi</span>
+      <span class="tratto" style="left:43.75%">FDS Volpato S.n.c., ferro battuto e carpenteria</span>
+      <span class="tratto" style="left:93.75%">Tek.Lam S.r.l.</span>
+    </div>
+    <ol class="lv">
+      <li><span class="anno">1978</span><span class="cosa">FDS Volpato S.n.c.</span></li>
+      <li><span class="anno">2020</span><span class="cosa">Tek.Lam S.r.l.</span></li>
+      <li><span class="anno">oggi</span><span class="cosa">Via del Lavoro 68, Tombelle</span></li>
+    </ol>
+  </div>
+  <div class="storia-testi">
+    <div class="racconto">
+      <p>Il lavoro comincia nel 1978 con la FDS Volpato, una carpenteria di piccoli manufatti in ferro battuto. Nel 2020 la società passa il testimone a Tek.Lam S.r.l., che resta della famiglia.</p>
+      <p>Seguiamo il pezzo dall’idea alla consegna: l’ufficio tecnico lo disegna in 3D insieme al cliente, l’officina lo taglia, lo piega e lo salda, i nostri due autocarri lo portano a destinazione.</p>
+    </div>
+    <ul class="persone">
+      <li><span class="nome">Sandro Volpato</span><span class="ruolo">Ufficio tecnico</span><a href="mailto:sandro@teklam.it">sandro@teklam.it</a></li>
+      <li><span class="nome">Dimitri Volpato</span><span class="ruolo">Commerciale</span><a href="mailto:dimitri@teklam.it">dimitri@teklam.it</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="contatti" id="contatti" aria-labelledby="t-con">
+  <h2 class="h2" id="t-con">Mandaci il disegno</h2>
+  <p class="sotto">Per un preventivo scrivi all’ufficio tecnico con il disegno, il materiale e le quantità, oppure chiamaci.</p>
+  <div class="recapiti">
+    <div class="blocco">
+      <h3>Telefonare</h3>
+      <a class="grande" href="tel:+390499801486">049&nbsp;980&nbsp;14&nbsp;86</a>
+      <p>Fax <span class="nb">049&nbsp;982&nbsp;90&nbsp;91</span></p>
+    </div>
+    <div class="blocco">
+      <h3>Scrivere</h3>
+      <a class="grande" href="mailto:ufftec@teklam.it">ufftec@teklam.it</a>
+      <p>Ufficio tecnico</p>
+      <dl>
+        <dt>Commerciale</dt><dd><a href="mailto:commerciale@teklam.it">commerciale@teklam.it</a></dd>
+        <dt>Informazioni</dt><dd><a href="mailto:info@teklam.it">info@teklam.it</a></dd>
+      </dl>
+    </div>
+    <div class="blocco">
+      <h3>Venire</h3>
+      <p class="indirizzo">Via del Lavoro 68<br>Zona artigianale Tombelle<br>30030 Vigonovo (VE)</p>
+      <p>Vicino al casello Padova Interporto dell’A13. <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+68+Vigonovo+VE">Apri la mappa</a></p>
+    </div>
+  </div>
+  <div class="mezzi">
+    <figure>
+      <img src="img/sede-470.jpg" width="470" height="360" alt="La palazzina degli uffici Tek.Lam con l’acero rosso davanti all’ingresso" loading="lazy">
+      <figcaption>La sede, in via del Lavoro</figcaption>
+    </figure>
+    <figure>
+      <img src="img/automezzi-470.jpg" width="470" height="360" alt="L’autocarro centinato e il furgone davanti al capannone" loading="lazy">
+      <figcaption>I mezzi con cui consegniamo</figcaption>
+    </figure>
+    <div class="carico">
+      <p>Il pezzo finito parte da qui con mezzi nostri.</p>
+      <ul>
+        <li><span class="peso">50&nbsp;q di portata</span><span class="cosa">autocarro centinato</span></li>
+        <li><span class="peso">35&nbsp;q complessivi</span><span class="cosa">autocarro con gru</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="riga">
+    <div class="marchio-p"><img src="img/logo-scritta-chiara.png" width="358" height="64" alt="TEK.LAM"></div>
+    <div class="societa">
+      <p>TEK.LAM S.R.L., C.F. e P.IVA 04595530272</p>
+      <p>Via del Lavoro 68, 30030 Vigonovo (VE)</p>
+      <p>Tel. <a class="nb" href="tel:+390499801486">+39&nbsp;049&nbsp;980&nbsp;14&nbsp;86</a>, <a href="mailto:info@teklam.it">info@teklam.it</a></p>
+    </div>
+    <div class="link">
+      <a href="https://www.facebook.com/Tek.lamsrl/">Facebook</a>
+      <a href="https://www.instagram.com/teklam_srl/">Instagram</a>
+      <a href="https://www.linkedin.com/company/tek-lam-srl/">LinkedIn</a>
+      <a href="http://www.teklam.it/privacy-contatti/">Privacy</a>
+      <a href="http://www.teklam.it/cookie/">Cookie</a>
+    </div>
+  </div>
+</footer>
+
+<div class="raggio" id="raggio" aria-hidden="true"></div>
+
+<script>
+(function(){
+  /* schede delle lavorazioni: clic, tocco, frecce, Inizio e Fine; cambio secco */
+  var tabs=[].slice.call(document.querySelectorAll('.scheda'));
+  function mostra(b,fuoco){
+    tabs.forEach(function(t){
+      var on=t===b;
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(fuoco)b.focus();
+    if(b.scrollIntoView&&b.parentNode.scrollWidth>b.parentNode.clientWidth){
+      var r=b.parentNode;r.scrollLeft=Math.max(0,b.offsetLeft-r.clientWidth/2+b.offsetWidth/2);
+    }
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){mostra(b,false);});
+    b.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();mostra(tabs[j],true);}
+    });
+  });
+
+  /* il raggio del logo: scende dall'ugello, gira a 90 gradi e diventa la quota del foglio */
+  var R=document.getElementById('raggio'),segno=document.getElementById('segno'),foglio=document.querySelector('#foglio .lastra'),qa=document.querySelector('.ap-quota');
+  var telefono=window.matchMedia('(max-width:620px)');
+  function el(c,s){var e=document.createElement('span');e.className=c;for(var k in s)e.style[k]=s[k];R.appendChild(e);return e;}
+  function px(n){return Math.round(n*2)/2+'px';}
+  var primo=true;
+  function disegna(){
+    var sx=window.scrollX||0,sy=window.scrollY||0;
+    var s=segno.getBoundingClientRect(),f=foglio.getBoundingClientRect(),q=qa.getBoundingClientRect();
+    if(!s.width||!f.width)return;
+    var x=s.left+sx+s.width*.446,y0=s.top+sy+s.height*.62;
+    var fb=f.bottom+sy,fl=f.left+sx,fr=f.right+sx;
+    var y=q.top+sy+q.height*.5;
+    R.innerHTML='';
+    var v=el('v',{left:px(x),top:px(y0),height:px(y-y0)});
+    var h=el('h',{left:px(x),top:px(y),width:px(fr-x)});
+    el('punto',{left:px(x),top:px(y)});
+    [fl,fr].forEach(function(xx){
+      el('est',{left:px(xx),top:px(fb+6),height:px(y-fb+2)});
+      el('tick',{left:px(xx),top:px(y)});
+    });
+    el('q',{left:px((fl+fr)/2),top:px(y)}).textContent=telefono.matches?'1500':'3000';
+    if(!primo){v.style.animation='none';h.style.animation='none';}
+    primo=false;
+  }
+  var t=null;
+  function ridisegna(){clearTimeout(t);t=setTimeout(disegna,60);}
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(disegna);}else{disegna();}
+  window.addEventListener('load',ridisegna);
+  window.addEventListener('resize',ridisegna);
+})();
+</script>
+</body>
+</html>

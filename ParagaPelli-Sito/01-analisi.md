@@ -9,7 +9,7 @@ Sito: http://paragapelli.com/it/home/index.html (crawl e screenshot del 19/10/20
 - Sede e magazzino a Tombelle di Vigonovo (VE), più un deposito ad Altamura (BA).
 - Dal 2007: iscrizione registro "01/03/2007" (aziende.it), costituzione "07/02/2007" (companyreports.it).
 - Piccola squadra con fatturato vero: "4" dipendenti nel 2022, fatturato 2022 "€ 3.797.017" (aziende.it). Sulla foto di Chi siamo ci sono 6 persone.
-- Catalogo sul sito: 27 articoli e 403 colori a campione. Le pelle hanno nomi di pittori e dogi (Botticelli, Modigliani, Leonardo, Doge), le ecopelle nomi di isole greche (Mykonos, Corfu, Santorini, Paros, Rodi, Creta).
+- Catalogo sul sito: 27 articoli e 403 colori a campione (ricontati sulle schede il 19/10/2026, vedi sezione 2). Le pelle hanno nomi di pittori e dogi (Botticelli, Modigliani, Leonardo, Doge), le ecopelle nomi di isole greche (Mykonos, Corfu, Santorini, Paros, Rodi, Creta).
 - Punto di forza nascosto: certificazione **Leather Working Group "Gold"**, che sul sito non compare.
 
 ## 2. Il sito di oggi
@@ -53,6 +53,13 @@ Sito: http://paragapelli.com/it/home/index.html (crawl e screenshot del 19/10/20
   - IMOLA: "Pelle bovina liscia spessore 1.00/1.1 mm Adatta nei rivestimenti auto".
   - MONZA: "Pelle bovina martellata".
 - Non ci sono macchine, numeri aziendali né certificazioni sul sito.
+
+**Catalogo verificato sulle schede (19/10/2026, per la home finale):**
+- Fonte: le 27 schede IT del crawl (`_prova/crawl/pages/it__prodotti__<categoria>__<ARTICOLO>.html`), blocco `lista_foto`, un campione per ogni link `class="cb"`; script `_prova/script/finale_catalogo.py`, uscita `_prova/crawl/catalogo-finale.json`.
+- Totale: **27 articoli, 403 colori**. Il vecchio conteggio a 398 perdeva cinque campioni con il link `zoomXXXX-2.jpg` (Madras nero, Modigliani 884, Santorini 107, Fog 09, Mykonos beige 05).
+- Colori per articolo. Pelle: Botticelli 24, Sera 30, Lana 29, Piston 17, Madras 8, Spessorato 8, Doge 9, Leonardo 24, Modigliani 17, Nabuk 7, Ocean 24, Paros 16, Santorini 16, Wild West 5. Ecopelle: Corfu 12, Creta 6, Fog 10, Fuoco 28, Lido 6, Mykonos 14, Rodi 7, Vetta 28. Tessuti: Kelindo 14, Lipsi 9, Micro 13. Pelle auto: Imola 11, Monza 11.
+- Caratteristiche verbatim delle schede non citate sopra: DOGE "Pelle Bovina invecchiata Spessore 1.0 mm Disegno naturale"; LANA "Pelle bovina I scelta Spessore 0.9/1 mm Disegno liscio, morbida"; LEONARDO "Pelle Bovina Spessore 1.0/1.1 mm Disegno Uruguay"; MADRAS "Pelle bovina Spessore 1/1.1 mm Disegno madras"; NABUK "Pelle Bovina anilina europea Spessore 1.1/1.2 mm Disegno Naturale"; OCEAN "Pelle Bovina semi anilina europea Spessore 1.0 mm Disegno Naturale"; PISTON "Pelle bovina Spessore 1.3/1.5 mm Disegno dollaro"; SANTORINI "Pelle Bovina Invecchiata Spessore 1.0 mm Disegno Naturale invecchiato"; SERA "Pelle bovina Spessore 1/1.1 mm Disegno Madras"; SPESSORATO "Pelle bovina-bufalo Spessore 1.3/1.5 Disegno dollaro"; WILD WEST "Pelle Bovina Nabuk Invecchiata Spessore 1.2/1.3 mm Disegno Naturale"; MODIGLIANI "... Spessore 1.1/1.2 mm Disegno Naturale"; PAROS "... Spessore 1.0 mm Disegno Naturale invecchiato"; MONZA "Pelle bovina martellata spessore 1/1.1 mm Impiegata nei rivestimenti auto"; CORFU "Adatto nel rivestimento di sofa, sedie e poltrone"; CRETA "Ecopelle mix PVC-PU Adatto per il rivestimento di sofa, letti e sedie."; FOG "Adatto per rivestimenti in genere, sofà, sedie e letti."; MYKONOS "Ecopelle 100% PU Adatto nel nel rivestimenti di sofa, letti e sedie"; RODI "Ecopelle 100% PU effetto invecchiato. Adatto per rivestimenti di sofà, sedie e letti."; VETTA "Ecopelle 100% PU Adatto per rivestimenti in genere, sofa e letti."; LIPSI "Tessuto microfibra accoppiato ad un feltro, disegno dollaro, adatto nel rivestimento di letti, sofa, poltrone e sedie."; MICRO "Tessuto in poliestere microfibra, adatto nei rivestimenti di letti, sofa, poltrone e sedie."; KELINDO "... adatto nel rivestimento di sofa, sedie e poltrone".
+- Nomi dei colori: quelli dei titoli dei campioni sulla scheda ("Botticelli 2117", "Madras testa di moro", "Corfu white 01", "Sc 02" per Monza).
 
 **Tecnologia:**
 - È una copia statica fatta con HTTrack: nel codice c'è "Mirrored from paragapelli.com ... HTTrack Website Copier ... 09 Feb 2025". Ultima modifica del server: 22/03/2025.
