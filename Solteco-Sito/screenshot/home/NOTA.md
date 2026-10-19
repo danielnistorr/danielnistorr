@@ -4,7 +4,7 @@ Versione finale costruita sulla bozza B, scelta dal committente. La prima scherm
 
 File: `sito/index.html` (statico, si apre anche come file:///), `sito/img/` (20 JPEG, tre foto in più larghezze), `sito/fonts/` (Host Grotesk e la licenza `OFL.txt`). Si rigenera tutto con `sh _prova/script/build_finale.sh tutte`, che rifà le immagini (`finale_b_img.py`), copia la pagina (`finale_b_index.html`) e scatta le schermate. La prova del gesto è `prova_interruttore_finale.mjs`.
 
-Schermate: `home-1440.jpg` (5434 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5670 px), `home-390-prima-schermata.jpg`.
+Schermate: `home-1440.jpg` (5490 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5703 px), `home-390-prima-schermata.jpg` e `chiusura-1440.jpg` (solo i contatti e il piede, 927 px).
 
 ## L'idea
 
@@ -15,7 +15,19 @@ Il lavoro di Solteco finisce in una riga di un millimetro: il punto in cui la to
 1. **Apertura** (come nella B): fondo grafite #171615 e testata con nome, tre voci, email e telefono. Il titolo è a 132 px (da 94 a 132 px secondo la finestra) su due righe a sinistra; a destra tre righe dicono chi è Solteco e cosa fa. La punta della scarpa entra dal basso e sfuma nel fondo; il filo porta alla legenda "Qui la tomaia è incollata alla suola", allineata al margine della griglia anche a 1920. A 390 la composizione è la stessa in verticale: titolo e testo in alto, la scarpa intera di punta (guardolo, occhielli) e la legenda in basso, il telefono in testata.
 2. **Processo**: si passa alla carta #EDEBE6. Il titolo è "Dalla suola alla pressa, in quattro passaggi", seguito da una sola frase dal sito di Solteco: "Con AquaGum, prima della riattivazione, il tunnel cold dry toglie l'acqua dalla colla e l'umidità dalla scarpa". Poi la foto a tutta larghezza (600 px a 1440) della colla stesa a pennello sul bordo del fondo. I quattro passaggi non sono più in quattro colonne strette: sono un indice a righe con filetti (numero, nome a 34 px, una riga di spiegazione).
 
-Poi vengono le suole sul banco a larghezza di griglia e "Acqua o solvente": l'elenco delle quattro categorie e, sotto, la scheda della linea AquaGum P/030 in sette righe. Accanto, nello stesso formato, "Frabo Adesivi" con quattro righe di scheda. Chiudono i contatti con il telefono a 96 px e il piede chiaro con i dati societari, separato da un filetto d'inchiostro.
+Poi vengono le suole sul banco a larghezza di griglia e "Acqua o solvente": l'elenco delle quattro categorie e, sotto, la scheda della linea AquaGum P/030 in sette righe. Accanto, nello stesso formato, "Frabo Adesivi" con quattro righe di scheda. Chiude l'etichetta del fusto con i recapiti e, sotto, il piede su una riga (vedi "La chiusura: l'etichetta del fusto").
+
+## La chiusura: l'etichetta del fusto
+
+Il committente ha notato che quasi tutte le home della campagna chiudevano allo stesso modo: titolo, telefono gigante, una riga di colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche questa ci cadeva (telefono a 96 px, tre colonnine Email, Sede, Per chi, piede a quattro colonne). Ora la chiusura è un oggetto del mestiere di Solteco: l'etichetta di un fusto di colla.
+
+- A sinistra resta il titolo "Per una scheda tecnica o un problema d'incollaggio"; a destra, dalla colonna 7 come le schede sopra (x 732 a 1440), c'è l'etichetta: carta più chiara #F7F5F1, bordo d'inchiostro da 2 px, filetti d'inchiostro tra i campi. Sotto 900 px il titolo va sopra e l'etichetta prende la larghezza (al massimo 640 px).
+- I campi sono quelli di un'etichetta, riempiti con i recapiti veri: in testa il prodotto ("Solteco sas", "Adesivi a base acqua per calzature e pelletteria") chiuso da un filetto spesso 6 px; poi "Telefono" con 331 335 8858 a 64 px (54 a 1024, 44 a 390, 35 a 320), collegamento `tel:` sottolineato; "Email" con `mailto:` e "Distribuito da" con l'indirizzo e "Apri la mappa"; in fondo le righe piccole come le avvertenze di un'etichetta: "Impiego" (calzaturifici e pelletterie), "Linea" (AquaGum di Frabo Adesivi), "Avvertenze" ("Prima dell'uso leggere la scheda tecnica: si chiede per telefono o per email", dal pannello del solvente: le schede si chiedono a Solteco).
+- Perché l'etichetta: è l'oggetto che il cliente di Solteco ha davanti in reparto, e una scheda d'etichetta è già il linguaggio della pagina (la scheda di P/030 e di Frabo). Così i recapiti sono l'ultima scheda della pagina, con un bordo che la fa diventare un oggetto, e non un blocco di contatti generico. Un solo oggetto, nessun disegno del fusto, nessun codice a barre o lotto inventato.
+- Il piede è una riga sola sulla carta, sotto un filetto d'inchiostro: "Solteco sas di Longhin Giuseppe & C.", "P.IVA e C.F. 04037310275", "REA VE 359812". La PEC non c'è (non trovata) e non c'è ancora una pagina privacy: sono nel LEGGIMI. A 390 e 320 la riga va a capo in due.
+- Tolti: il telefono a 96 px, la riga delle tre colonnine (Email, Sede, Per chi), il piede a quattro colonne con indirizzo ed email ripetuti e "Costituita nel 2011" (resta nel blocco di Frabo). Nessun dato nuovo: ogni testo dell'etichetta era già in pagina.
+- Contrasti AA sull'etichetta: inchiostro 16:1, testo #3A3834 10,7:1, grigio delle voci #67635C 5,5:1; sul piede il grigio è 5:1 sulla carta. Il cuoio del passaggio sui link è 4,9:1.
+- La modifica è in `_prova/script/chiusura_etichetta.py`, già applicata a `finale_b_index.html` (non va rilanciato).
 
 ## Cosa è cambiato rispetto alla bozza B
 
@@ -76,6 +88,14 @@ Il trattamento è quello della B, in `finale_b_img.py`: i blu e gli azzurri sono
 ## Le ispirazioni del committente (Graziella, Studio N19)
 
 Le ho usate pochissimo, e per scelta. Solteco è un agente tecnico di adesivi per calzaturifici, non un marchio di moda: il nero di lusso, il serif e le parole in corsivo di Graziella qui sarebbero fuori registro. Ho preso due tratti: da Graziella il telefono e l'email già nella testata, giusti per un'azienda di una persona che si chiama al telefono; da N19 il grande titolo grottesco con molta aria. Il nero dell'apertura non viene da Graziella ma dalla macro, e dura una schermata. Non ci sono menu a tutta pagina né testi che compaiono.
+
+## Controlli della chiusura nuova
+
+- Chiusura guardata a pezzi a 1440, 1024, 768, 390 e 320: nessuna sovrapposizione, nessun testo fuori dall'etichetta, il telefono non va a capo (scrollWidth del collegamento uguale alla sua larghezza a tutte le misure).
+- `scrollWidth` uguale a `innerWidth` a 320, 360, 375, 390, 414, 600, 768, 820, 900, 901, 1024, 1180, 1181, 1280, 1440 e 1920.
+- Altezza: 5490 px a 1440, 5703 a 390, 5617 a 320, 5447 a 768, 5002 a 1024, 5915 a 1920. Il gesto non cambia l'altezza (`controlli_ultimo.mjs`, `prova_interruttore_finale.mjs` rilanciati: tutto come prima, colonne a 732 e 522, ancore tutte esistenti).
+- Collegamenti nella chiusura: `tel:+393313358858` (area 433x72 px a 1440, 291x51 a 390), `mailto:info@solteco.it`, Google Maps.
+- Nessun U+2014, nessun gradiente, ombra di vetro, emoji, icona, badge, bordo sinistro colorato, opacità o animazione nella chiusura.
 
 ## Controlli (ultimo giro)
 

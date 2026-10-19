@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 19 ottobre 2026.
+Aggiornato il 19 ottobre 2026 (rifinitura della home finale: fascia dei fili tolta, entra la foto di Victor Ferreira).
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Area Systems]
 
@@ -25,6 +25,7 @@ Scaricate dai CDN (`images.unsplash.com`, `images.pexels.com`) a 2400 px sul lat
 | `esterne/unsplash-GYDBZrVPRU8-sun-dissipatori-in-fila.jpg` | https://unsplash.com/photos/GYDBZrVPRU8 | Declan Sun (@declansun) | 2400x1134 | B | "Neatly arranged heat sinks": alette in fila, fascia orizzontale |
 | `esterne/pexels-3520696-padrinan-dissipatore-su-nero.jpg` | https://www.pexels.com/photo/gray-metal-part-3520696/ | Miguel Á. Padriñán (@padrinan) | 2400x1596 | variante scura | dissipatore a raggiera su nero: solo se si sceglie una sezione scura |
 | `esterne/pexels-31665486-shox-dissipatore-su-bianco.jpg` | https://www.pexels.com/photo/close-up-of-computer-cooling-heatsink-device-31665486/ | SHOX ART (@shox) | 2400x1800 | A | dissipatore alettato con heat pipe in rame su bianco: il tema "calore" (è un componente da PC, quindi solo segnaposto) |
+| `esterne/unsplash-pLvgCVtwbls-ferreira-quadro-chiuso-feritoie.jpg` | https://unsplash.com/photos/pLvgCVtwbls | Victor Ferreira (@victorferreiraofficial) | 4928x3264, scaricata il 19/10/2026 alla risoluzione originale | finale, fascia "il quadro chiuso" | due ante grigie di un quadro chiuso con le feritoie dell'aria; la pagina riporta "Free to use under the Unsplash License" (nessuna Unsplash+), letta il 19/10/2026. Sull'anta destra c'è un cartello di pericolo in portoghese ("PERIGO QUADRO ELÉTRICO"): nella home è coperto con la lamiera liscia ricostruita (ritocco ammesso dalla licenza). Nessuna altra home della campagna la usa (controllato per ID) |
 
 ## Immagini del sito attuale in `originali/`
 
@@ -35,7 +36,8 @@ Appartengono ad Area Systems o, più probabilmente, ai suoi fornitori: gli scont
 ## Uso nella home finale (`sito/`, 19/10/2026)
 
 - `esterne/unsplash-NAchd3UmxXo-sime-quadro-aperto.jpg`: apertura (quadro aperto con le etichette), in `sito/img/quadro-*.webp` e `quadro-m-*.webp`. SEGNAPOSTO.
-- `esterne/unsplash-KDkU44ikiko-sime-quadro-cablaggio.jpg`: fascia dei fili, in `sito/img/fili-*.webp`, tagliata a destra degli alimentatori di marca. SEGNAPOSTO.
+- `esterne/unsplash-pLvgCVtwbls-ferreira-quadro-chiuso-feritoie.jpg`: fascia "il quadro chiuso" tra i pezzi e le misure ASB, in `sito/img/chiuso-*.webp` e `chiuso-m-*.webp`, con il cartello di pericolo tolto. SEGNAPOSTO.
+- `esterne/unsplash-KDkU44ikiko-sime-quadro-cablaggio.jpg`: non più usata. Era la fascia dei fili, tolta nella rifinitura (ripeteva l'armadio dell'apertura, sorgente utile di 1338 px).
 - `originali/catalogo-2022/p13-gruppo-ventilazione.jpg` e `p53-resistenza.jpg`: i due pezzi grandi (`gruppo-*.webp`, `resistenza-*.webp`), diritti da chiarire.
 - `originali/GT10023AB.png`, `Plafoniera-led-T5.png`, `ASVC200.jpg`, `Gruppi-ASB32S23ABE.png`, `DTV02-N.png`, `CTSH.png`: pezzi del cartellino (`p-*.webp`), diritti da chiarire.
 - `originali/style-Area-System-logo.jpg`: marchio orizzontale (`marchio.webp`); serve il vettoriale.

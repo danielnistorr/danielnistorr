@@ -2,7 +2,7 @@
 
 Costruita sulla bozza B, quella scelta dal committente. Restano l'idea, la prima schermata (la foto dell'officina a tutta larghezza con il titolo grande sul pavimento), il trattamento delle foto, il carattere e i colori della bozza; sono cambiati l'esecuzione, i dati, il telefono, i dettagli. Pagina: `sito/index.html`. Si rifà tutto con `bash _prova/script/build_finale.sh`.
 
-Screenshot: `home-1440.jpg` (5045 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (4888 px), `home-390-prima-schermata.jpg`. Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
+Screenshot: `home-1440.jpg` (5121 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5094 px), `home-390-prima-schermata.jpg` e `chiusura-1440.jpg` (solo la chiusura a 1440, dalla sezione dei contatti alla fine). Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
 
 ## Idea
 
@@ -21,8 +21,25 @@ L'officina com'è, chiara e dritta: un'auto alzata sul ponte, il pavimento a pia
   - "Lavori e prezzi" sul foglio bianco: sette righe, con il prezzo o "a preventivo" dove manca;
   - la revisione in sede: il titolo a sinistra e, accanto, la scheda Prezzo / Pre-revisione / Appuntamenti / Prima revisione / Poi;
   - una sola foto grande dopo l'apertura: un'auto bianca intera, di fianco, alzata sul ponte in un'officina luminosa, alta 960 px a 1440;
-  - dove siamo, con gli orari e i contatti;
-  - il piede con ragione sociale, P.IVA e REA.
+  - la chiusura: la scheda di accettazione dell'officina con indirizzo, orari, telefono, email e "Prenota la revisione";
+  - il piede in una riga sola: ragione sociale, P.IVA, REA e informativa privacy.
+
+## La chiusura: la scheda di accettazione
+
+Il committente ha notato che quasi tutte le home della campagna finiscono allo stesso modo: un titolo di luogo, il telefono gigante su una fascia scura, una riga di tre o quattro colonnine uguali con indirizzo, email e orari, poi un piede scuro a quattro colonne di testo minuscolo. Anche qui c'era lo schema (titolo "Viale Serenissima 3, Tombelle di Vigonovo", tre colonne Dove / Orari / Telefono, piede su due colonne), ed è cambiato.
+
+- **L'oggetto**: in officina tutto comincia dalla scheda di accettazione, il foglio che si compila quando si lascia l'auto (targa, data, lavoro richiesto). In pagina i recapiti stanno su quel foglio: un foglio bianco con il filo nero tutto intorno e le caselle rigate, come un modulo stampato. In alto "Scheda di accettazione" e, a destra come un'intestazione, "Bazzato Autofficina".
+- **Le caselle**, ognuna con la sua etichetta piccola in grigio in alto a sinistra, come sul modulo:
+  - "Dove portare l'auto": Viale Serenissima 3, zona artigianale di Tombelle, 30030 Vigonovo (VE), "Apri in Google Maps";
+  - "Orari dell'officina": dal lunedì al venerdì 08.00-12.00 e 14.00-18.00, sabato chiuso; uffici sotto, in grigio;
+  - "Telefono e WhatsApp": il numero a 48 px (36 px sul telefono), sottolineato, collegamento `tel:`; sotto "Scrivi su WhatsApp";
+  - "Email": info@bazzato.it, collegamento `mailto:`;
+  - "Lavoro richiesto", larga quanto il foglio: la casella segnata con la croce (disegnata nella pagina, non un'icona) e "Revisione in sede, € 79", la pre-revisione gratis e gli orari degli appuntamenti; a destra il bottone nero "Prenota la revisione", che chiama il numero.
+- **Le misure delle caselle non sono uguali**: 7 parti su 12 a sinistra e 5 a destra, e la riga del lavoro a tutta larghezza; a 390 e a 320 le caselle vanno una sotto l'altra e il bottone prende tutta la riga.
+- **Perché così**: il foglio è un oggetto solo, del loro mondo, e si legge come un modulo, non come una riga di colonne. Porta alla fine della pagina la cosa per cui la gente chiama, la revisione, che in pagina è già il servizio con il prezzo detto chiaro. I dati sono tutti quelli che c'erano già (indirizzo, orari, telefono, WhatsApp, email, prezzo e orari della revisione); nessuno è nuovo.
+- **Cosa è stato tolto**: il titolo con l'indirizzo, le tre colonne uguali e il piede su due colonne con l'indirizzo ripetuto. Il piede ora è una riga sola sul cemento, in grigio (6,4 di contrasto): Bazzato snc di Bazzato Andrea e Paolo & C., P.IVA e C.F. 03599300278, REA VE 322146, Informativa privacy. La PEC non c'è perché non è stata trovata (LEGGIMI, punto 11).
+- **Contrasto**: testo nero sul bianco; etichette e note in grigio #56554F sul bianco (7,5); bottone bianco sul nero, petrolio al passaggio (6,6).
+- **Altezza**: la chiusura è alta 726 px a 1440; la foto resta al 35 % della pagina.
 
 ## Caratteri e colori
 
@@ -88,11 +105,11 @@ Resta un limite che nessun ritocco toglie: l'auto dell'apertura è senza paraurt
 
 ## Controlli
 
-- **Larghezze**: 1440, 390, 320, 768, 1024 e 1920, guardate a pezzi. Nessuno scorrimento orizzontale, nessun testo fuori dalla finestra, nessuna sovrapposizione fra testata, titolo, testo e bottoni (`finale_scatti.mjs`).
+- **Larghezze**: 1440, 390, 320, 768, 1024 e 1920, guardate a pezzi. Nessuno scorrimento orizzontale, nessun testo fuori dalla finestra, nessuna sovrapposizione fra testata, titolo, testo e bottoni, né fra i testi della scheda di accettazione e del piede (`finale_scatti.mjs`, che salva anche la chiusura a 1440). La chiusura è stata guardata a pezzi a 1440, 1024, 768, 390 e 320.
 - **Da 320 a 2560** (`verifica_larghezze.mjs`, ogni pixel fino a 900 e poi ogni 8): scrollWidth sempre uguale alla larghezza della finestra; i prezzi del listino e i bottoni non escono mai dalla colonna. A 701, 768, 800 e 840 i prezzi finiscono esattamente sul margine (670, 734, 764, 803).
 - **Collegamenti**: `tel:+390499830115`, `https://wa.me/390499830115`, `mailto:info@bazzato.it`, Google Maps con "Viale Serenissima 3 Vigonovo VE", informativa privacy sul sito di oggi, ancore interne.
-- **Altezza a 1440**: 5045 px.
-- **Segnali da IA** (`kit/segnali.sh`, 1440): 0 soglie bloccanti su 10. Foto sul 35,6 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, nessun titolo col punto, 4 fasce di fondo, 17 filetti. Resta da guardare solo "misure degli H2: 2 (80 e 56 px)": è voluto, perché l'indirizzo è più piccolo dei titoli di sezione.
+- **Altezza a 1440**: 5121 px.
+- **Segnali da IA** (`kit/segnali.sh`, 1440): 0 soglie bloccanti su 10. Foto sul 35 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, nessun titolo col punto, 4 fasce di fondo, 23 filetti (le righe della scheda). Resta da guardare solo "misure degli H2: 2 (80 e 46 px)": è voluto, perché il titolo della scheda è più piccolo dei titoli di sezione.
 - **Divieti del committente**: nessun gradiente, nessuna emoji, niente Inter, nessuna card col bordo colorato, nessun vetro sfocato, nessuna icona, nessun badge, nessuna animazione allo scorrimento, nessun effetto sul cursore, nessun bottone che sbiadisce, nessun corsivo d'accento.
 - **Caratteri vietati**: nessuna lineetta lunga U+2014 né media U+2013 nella pagina, negli script, in questa nota e nel LEGGIMI.
 - **Note di lavorazione**: nessuna in pagina; la build controlla le parole "provvisori", "da rifare", "proposta", "segnaposto".
