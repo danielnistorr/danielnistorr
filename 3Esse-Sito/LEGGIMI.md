@@ -32,7 +32,7 @@ In pagina ci sono solo fatti presi dal sito e dai due PDF (fonti in `01-analisi.
 - **Sede**: Via San Marco 14 a Vigonovo è in pagina come "Ufficio". È sede legale o operativa? L'ufficio di Via del Cristo 378 a Padova (citato nel profilo) esiste ancora?
 - **Email**: in pagina c'è info@3essesrl.com (dal sito); il profilo dà tre.esse.srl@libero.it.
 - **Fax 049 87 05 572**: è ancora attivo? Se no si toglie.
-- **Studio**: le 24 postazioni, i software (SAP2000, CDM Dolmen, SuperSAP, Straus7, Tecnometal, Bocad, Prosteel) e gli strumenti (Trimble 5503, Zeiss DiNi 11, Larson Davis LD-831) vengono dalla pagina Presentazione. Sono ancora quelli?
+- **Studio**: le 24 postazioni, i software (SAP2000, CDM Dolmen, SuperSAP, Straus7, Tecnometal, Bocad, Prosteel) e gli strumenti (Trimble 5503, Zeiss DiNi 11, Larson Davis LD-831) vengono dalla pagina Presentazione e in pagina sono una tabella (Calcolo, Disegno, Rilievo, Acustica). Sono ancora quelli? Il titolo "Ventiquattro postazioni a Vigonovo" dà per scontato che le postazioni siano tutte nella sede di Vigonovo: se una parte è a Padova (Via del Cristo) il titolo diventa "Ventiquattro postazioni".
 - **Privacy**: manca la pagina dell'informativa. Il link nel piede va aggiunto quando c'è.
 
 ## Foto da rifare dal vero

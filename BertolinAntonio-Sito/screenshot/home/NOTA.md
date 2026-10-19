@@ -25,7 +25,7 @@ Su questa pagina il nome di un concorrente non reggerebbe: le foto, i colori dic
 - la testata ha il logo, quattro voci, "Scriveteci" (mailto) e il telefono;
 - il titolo è a 134 px, largo quanto la gabbia;
 - sotto, a partire dalla settima colonna, ci sono tre righe su cosa fanno e dove;
-- poi viene il telaio da bordo a bordo, alto 700 px, con le legende "1 Barra del telaio" e "2 Boccola tornita".
+- poi viene il telaio da bordo a bordo, alto 700 px e mostrato a 1:1, con le legende "1 Barra del telaio" e "2 Boccola tornita", tutte e due dentro la prima schermata.
 
 Nella seconda schermata ci sono:
 - la didascalia "Boccole sul telaio, prima del bagno di ossidazione.";
@@ -42,12 +42,12 @@ Nella seconda schermata ci sono:
 
 | Larghezza | Altezza |
 |---|---|
-| 1440 | 5736 px |
-| 390 | 5785 px |
-| 320 | 5944 px |
-| 768 | 5929 px |
-| 1024 | 5163 px |
-| 1920 | 5797 px |
+| 1440 | 5741 px |
+| 390 | 5787 px |
+| 320 | 5945 px |
+| 768 | 5932 px |
+| 1024 | 5166 px |
+| 1920 | 5975 px |
 
 Le sezioni sono cinque (apertura, chi, trattamenti, colore, stabilimento e contatti), più il piede.
 
@@ -56,8 +56,10 @@ Le sezioni sono cinque (apertura, chi, trattamenti, colore, stabilimento e conta
 Dalla bozza B restano l'idea, la prima schermata, il trattamento delle immagini, il carattere e i colori. Ecco cosa è cambiato.
 
 **Telaio, più nitido e più luminoso**
-- La fascia larga ora è tagliata solo sulla parte a fuoco della foto (da x 0 a 1720 su 2560). A 1440 la foto si riduce invece di ingrandirsi, e la metà destra sfocata, quella "impastata", resta fuori.
-- Il fondo è schiarito verso il bianco.
+- La fascia larga ora è tagliata a 1:1 sulla parte a fuoco della foto: da x 0 a 1440 su 2560, cioè la barra e le tre file di boccole nitide. A 1440 ogni punto della foto è un punto dello schermo, senza ingrandimenti, e la metà destra sfocata e impastata resta fuori.
+- Per gli schermi più larghi c'è la stessa inquadratura portata a 1920 in PIL (Lanczos e maschera), non lasciata al browser. Ho provato a tagliare più largo dalla foto per i 1920: la parte destra è troppo sfocata e l'ho scartata.
+- Il fondo è schiarito verso il bianco e lisciato dalle bande della compressione JPEG del sito, solo sui punti chiari: il metallo resta com'è.
+- La fascia ha sempre la stessa proporzione (1440:700), così le legende cadono sullo stesso punto a ogni larghezza.
 - La maschera di contrasto è leggera.
 
 **Legende del telaio**
@@ -140,8 +142,8 @@ Tutte le foto in pagina sono di Antonio Bertolin Srl, scaricate dal loro sito il
 
 | In pagina | Originale (voto qualità/apertura) | Lavorazione |
 |---|---|---|
-| `telaio-largo` 960/1440/1720 | `DSC_0029-scaled.jpg` (6/6) | taglio sulla parte a fuoco, fondo schiarito, saturazione 0,82 |
-| `telaio-alto` 390/780/1060 | lo stesso | verticale 4:5 sulle prime due file |
+| `telaio-largo` 960/1440/1920 | `DSC_0029-scaled.jpg` (6/6) | taglio 1:1 sulla parte a fuoco (x 0-1440), fondo schiarito e lisciato, saturazione 0,85; il 1920 è la stessa inquadratura ingrandita in PIL |
+| `telaio-alto` 390/780/1060 | lo stesso | verticale 4:5 sulle prime due file, a 1:1 |
 | `minuteria` 720/1080/1440 | `minuteria-medicale-scaled.jpg` (6/7) | bianchi puliti, taglio sul gruppo dei pezzi |
 | `tubi` 720/1440/2180 | `acciaio-scaled.jpg` (6/5) | solo i tubi, senza la base con la scritta rossa, polvere tolta |
 | `reparto` 640/960/1280 | `foto_aerea_bertolin-scaled.jpg` (6/3) | 4:3, saturazione 0,8, a mezza colonna vicino ai contatti |
@@ -168,7 +170,7 @@ Il registro viene dal mestiere: la foto di reparto, le legende, le misure vere, 
 
 | Soglia | Valore |
 |---|---|
-| Area foto | 35,5 % |
+| Area foto | 35,3 % |
 | Famiglie di caratteri | Mona Sans al 100 % |
 | Monospazio | 0 % |
 | Etichette maiuscole | 0 |

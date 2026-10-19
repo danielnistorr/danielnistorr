@@ -33,6 +33,8 @@ contattato nessuno, non è stato inviato nulla e non è pubblicata.
 - **"2.500+ prodotti" e "400+ clienti"** (contatori di about-us): non pubblicati finché non vengono confermati.
 - **Foto delle mani col collante:** dove è stata scattata (da Innovatex o da un cliente), chi è il fotografo, permesso
   d'uso del cliente se serve.
+- **Didascalia dello scaffale:** in pagina "Il magazzino di Vigonovo, febbraio 2026". La data viene dall'EXIF (3/2/2026); che lo scatto sia del magazzino di Vigonovo è dedotto, da confermare.
+- **"Oggi gli scaffali servono calzaturifici e pelletterie"** (storia): riassume il "per calzatura e pelletteria" del sito; da far leggere a Marco Benvegnù insieme al titolo.
 - **PEC** (info@pec.innovatexgreen.com): presa dai registri (aziende.it), non è sul sito.
 - **Riviera del Brenta, legame con Benvegnù S.r.l.:** non scritti in pagina. La fonte era il sito di un'altra azienda.
 

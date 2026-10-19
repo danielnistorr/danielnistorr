@@ -112,7 +112,8 @@ comparse, il suono e il verde acido. Il registro è quello del fornitore: nomi, 
   non copre mai il testo. Aria titolo-ritaglio: 53 px a 1440 e 1920, 63 px a 1024.
 - Guardate a pezzi le pagine intere a 1440 e 390 e le prime schermate a 1920, 1024, 768 e 320: nessuna sovrapposizione,
   nessun vuoto non voluto.
-- A 320 x 640 il bottone entra intero, ma l'orario finisce sotto il bordo.
+- A 320 x 640 il bottone e l'orario entrano interi (il fondo dell'orario è a 632 px).
+- Il testo dei cartellini va a capo senza parole sole in fondo (`text-wrap: pretty`): "nappe / e vitelli." invece di "vitelli." da solo.
 - Nessun U+2014 nella pagina, nella nota e nel LEGGIMI (controllo nello script). Nessuna nota di lavorazione a vista.
   Nessun dato fuori da `01-analisi.md`.
 - Divieti del committente: nessun gradiente, nessun badge, nessuna icona, nessun box con icona, nessun corsivo, nessuna

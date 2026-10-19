@@ -31,7 +31,7 @@ In pagina, da confermare:
 
 ## Foto da rifare dal vero
 
-Tutte le foto in pagina sono loro, ma sono piccole: 800x650 per gli still life, 1920 molto compresso per l'incisione, 488x562 per l'archivio. Lo stiletto e l'ottone sono già mostrati al limite (1,1x e 1,05x). Lo stiletto è stato ritoccato (macchia sul gambo, bordo del piano, neri aperti): è una toppa, non sostituisce lo scatto nuovo.
+Tutte le foto in pagina sono loro, ma sono piccole: 800x650 per gli still life, 1920 molto compresso per l'incisione, 488x562 per l'archivio. Lo stiletto e l'ottone sono già mostrati al limite (1,1x e 1,05x). Lo stiletto è stato ritoccato (macchia sul gambo, bordo del piano senza filo nero né gradini, puntini del rumore, neri aperti): è una toppa, non sostituisce lo scatto nuovo, e sullo schermo 2x resta un ingrandimento da 520 px.
 
 1. **Prioritario: lo stesso still life dello stiletto a calice nero, a 3000 px o più (meglio 4000)**: prima di tutto si chiede all'azienda l'originale del servizio fotografico; se non c'è, va rifatto.
    - Stesso fondo chiaro e neutro (non lilla), luce morbida dall'alto a sinistra, un pannello bianco a destra per disegnare il filo di luce sul fianco, ombra corta in basso.

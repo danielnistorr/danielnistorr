@@ -44,7 +44,7 @@ In pagina c'è solo ciò che è scritto sul loro sito o nelle fonti di `01-anali
 
 ## Foto da rifare dal vero
 
-Le tre foto in pagina sono segnaposto con licenza libera (Pexels e Unsplash), ritoccate per togliere i marchi; in pagina portano l'etichetta "Foto indicativa". Nessuna è dell'officina Bazzato e nessuna va pubblicata come se lo fosse. Serve mezza giornata di scatti in viale Serenissima 3, al mattino, con l'officina pulita e le luci accese.
+Le due foto in pagina sono segnaposto con licenza libera (Pexels), ritoccate per togliere i marchi e il disordine; in pagina portano l'etichetta "Foto indicativa". Nessuna è dell'officina Bazzato e nessuna va pubblicata come se lo fosse. Serve mezza giornata di scatti in viale Serenissima 3, al mattino, con l'officina pulita e le luci accese.
 
 1. **Apertura** (la più importante):
    - l'officina vista dal fondo del capannone, in asse, macchina all'altezza del petto, obiettivo 24-28 mm;
@@ -53,8 +53,8 @@ Le tre foto in pagina sono segnaposto con licenza libera (Pexels e Unsplash), ri
    - niente carrelli, scale e cavi in vista, niente targhe leggibili, niente marchi di attrezzature in primo piano;
    - luce dei neon più quella del portone aperto; bilanciamento neutro;
    - uno scatto orizzontale (almeno 4000 px di larghezza) e uno verticale per il telefono, con l'auto nel terzo alto.
-2. **Gomme**: mani di un loro meccanico che montano una ruota sul mozzo, in luce naturale, da vicino; guanti senza marchi; formato 2:1 con margine per il taglio quadrato.
-3. **Il ponte**: un'auto intera alzata, vista di tre quarti posteriore, con l'officina chiara dietro; formato 2:1.
+2. **Il ponte** (la seconda foto della home): un'auto intera alzata, vista di tre quarti posteriore, con l'officina chiara dietro; formato 3:2 orizzontale con margine per il taglio quadrato del telefono.
+3. **Per le pagine dei servizi**: mani di un loro meccanico che montano una ruota sul mozzo, in luce naturale, da vicino, guanti senza marchi.
 4. **Utili per le altre pagine**:
    - la linea revisione con un'auto in prova;
    - la facciata dritta con l'insegna, al mattino;
@@ -67,7 +67,7 @@ Le foto di oggi sul loro sito non servono: sono materiale stampa Opel e QParts, 
 
 - **Foto segnaposto**:
   - Renee Razumov (Pexels 33814736) e Artem Podrez (Pexels 8986138), con la Pexels License;
-  - Jimmy Nilsson Masth (Unsplash 9uHal2Dd9aE), con la Unsplash License.
+  - le mani sulla ruota di Jimmy Nilsson Masth (Unsplash 9uHal2Dd9aE) erano nella bozza B e non sono più usate.
   - Uso libero anche commerciale e modifiche ammesse. Licenze lette il 19/10/2026 sulla pagina di ogni foto; i dettagli sono in `assets/CREDITI.md`.
 - **Carattere**: General Sans di Indian Type Foundry (Fontshare), con la ITF Free Font License 2.0 (`sito/fonts/FFL.txt`).
   - È gratuito anche per l'uso commerciale e si può ospitare sul proprio server.

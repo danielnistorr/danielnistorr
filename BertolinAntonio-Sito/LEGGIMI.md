@@ -45,8 +45,9 @@ Tutte le foto in pagina sono dell'azienda e vengono dal sito di oggi. Reggono un
 
 1. **Il telaio carico prima del bagno**: è l'apertura e ha la priorità.
    - Luce: luce naturale di reparto, più un pannello bianco grande a sinistra, e il fondo (parete o telo) chiaro e uniforme.
-   - Fuoco: diaframma chiuso (f/11-f/16) e cavalletto, così anche le file in fondo restano leggibili. Oggi la metà destra è sfocata e nella fascia larga è stata tagliata.
-   - Tagli: uno orizzontale molto largo, almeno 6000 px, per la fascia 1440 x 700, e uno verticale 4:5 per il telefono, con la barra del telaio a un quarto da sinistra.
+   - Fuoco: diaframma chiuso (f/11-f/16) e cavalletto, così anche le file in fondo restano leggibili. Oggi la metà destra è sfocata: in pagina c'è solo la parte sinistra della foto, a 1:1, e per gli schermi da 1920 è ingrandita.
+   - Tagli: uno orizzontale molto largo, almeno 4000 px utili, per la fascia 1440 x 700 (e il doppio per gli schermi ad alta densità), e uno verticale 4:5 per il telefono, con la barra del telaio a un quarto da sinistra.
+   - Fondo: chiaro e pulito già in ripresa. Oggi le bande della compressione JPEG del sito sono state lisciate al computer.
    - In più: le mani con i guanti che appendono i pezzi.
 2. **I tubi di alluminio**.
    - Fondo: bianco o grigio chiarissimo senza giunte.
@@ -80,5 +81,5 @@ In testata e nel piede c'è il loro logo, preso dal PNG del sito (268 x 96 px co
 
 ## Note sui controlli
 
-- I segnali da IA (`_prova/controlli/segnali/`) danno 0 soglie bloccanti e 0 da guardare. L'area foto è al 35,5 %, appena sopra la soglia.
+- I segnali da IA (`_prova/controlli/segnali/`) danno 0 soglie bloccanti e 0 da guardare. L'area foto è al 35,3 %, appena sopra la soglia.
 - Con le foto rifatte dal vero conviene allargare il telaio e la minuteria, invece di aggiungere altre immagini.

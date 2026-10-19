@@ -2,7 +2,7 @@
 
 Costruita sulla bozza B, quella scelta dal committente. Restano l'idea, la prima schermata, il trattamento delle foto, il carattere e i colori della bozza; sono cambiati l'esecuzione, i dati, il telefono, i dettagli. Pagina: `sito/index.html`. Si rifà tutto con `bash _prova/script/build_finale.sh`.
 
-Screenshot: `home-1440.jpg` (5917 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5699 px), `home-390-prima-schermata.jpg`. Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
+Screenshot: `home-1440.jpg` (5185 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5258 px), `home-390-prima-schermata.jpg`. Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
 
 ## Idea
 
@@ -12,18 +12,16 @@ L'officina com'è, chiara e dritta: un'auto alzata sul ponte, il pavimento a pia
 
 - **1440, prima schermata.**
   - In testata, su cemento chiaro: "Bazzato Autofficina", tre voci di menu, lo stato "Aperto, chiude alle 12.00" con il punto azzurro e il telefono.
-  - Sotto, la foto dell'officina a tutta larghezza fino al fondo dello schermo.
+  - Sotto, la foto dell'officina a tutta larghezza fino al fondo dello schermo, più ordinata della bozza: tolti il parafango bianco sfocato in basso a sinistra, la scala e le pistole appoggiate al muro a destra dell'auto, il vano targa sporco.
   - Sul pavimento chiaro, in basso a sinistra, il titolo "Officina multimarca a Tombelle" (General Sans 500, 117 px, spaziatura -0,04em, interlinea 0,93). Sotto, due righe sui servizi e l'indirizzo, il bottone nero "Chiama 049 9830115", "Scrivi su WhatsApp" e "Foto indicativa" nell'angolo.
-  - Il parafango bianco sfocato in basso a sinistra non c'è più: al suo posto è stato ricostruito il pavimento.
 - **1440, seconda schermata.**
   - Una frase su chi sono: "L'officina di Andrea e Paolo Bazzato a Tombelle, tra Padova e Venezia, per auto di ogni marca. Prima il preventivo, alla fine il resoconto di ogni operazione fatta."
   - Quattro fatti in due colonne larghe, con il filetto nero sopra e senza icone: Eurorepar Car Service, GPL Landi, Revisione in sede, Auto sostitutiva. Nella bozza erano quattro colonne strette.
 - **390.** Taglio verticale della stessa foto, con l'auto in alto e il titolo su tre righe sul pavimento. Sotto, il bottone nero e WhatsApp. Nella testata lo stato è in forma corta, "Aperto fino alle 12.00", e si tocca per vedere gli orari. A 320 la foto sale di 64 px e il testo si stringe, così il titolo non copre il ponte.
-- **Poi:**
-  - la foto delle mani sulla ruota (2:1), che apre il foglio bianco;
-  - il listino "Prezzi chiari, sconti chiari", sette righe con il prezzo, o "a preventivo" dove manca;
-  - la revisione in sede, con la scheda Prezzo / Pre-revisione / Appuntamenti / Prima revisione / Poi;
-  - la foto dell'auto intera sul ponte (2:1, la stessa altezza delle mani);
+- **Poi, cinque blocchi in tutto:**
+  - il listino "Prezzi chiari, sconti chiari" sul foglio bianco: sette righe, con il prezzo o "a preventivo" dove manca, così la colonna di destra è sempre piena;
+  - la revisione in sede: il titolo a sinistra e, accanto, la scheda Prezzo / Pre-revisione / Appuntamenti / Prima revisione / Poi;
+  - una sola foto grande dopo l'apertura: l'auto bianca intera sul ponte, luminosa, alta 1000 px a 1440;
   - dove siamo, con gli orari e i contatti;
   - il piede con ragione sociale, P.IVA e REA.
 
@@ -36,7 +34,7 @@ L'officina com'è, chiara e dritta: un'auto alzata sul ponte, il pavimento a pia
 - **Scala**: titolo 117 px; titoli di sezione 80 e 56 px; frase d'apertura 41 px; testo 18-19 px; didascalie 13-14 px. Spaziatura negativa sui titoli.
 - **Cifre**: General Sans non ha le cifre tabellari, quindi nella colonna dei prezzi le cifre sono messe a larghezza uguale da poche righe di script, senza toccare il file del carattere.
 - **Colori**:
-  - cemento #E9E8E4 per la pagina, un solo foglio bianco #FFFFFF che va dalla foto delle mani alla fine del listino (l'unica variazione di fondo);
+  - cemento #E9E8E4 per la pagina, il foglio bianco #FFFFFF solo sotto il listino (l'unica variazione di fondo);
   - nero #111111 per il testo, grigio #56554F per il testo secondario (contrasto 6,1 sul cemento e 7,5 sul bianco), filetti #C9C7C1;
   - l'azzurro del loro logo, #00C3EF, solo nel punto dello stato "aperto";
   - il bottone è nero e al passaggio diventa petrolio pieno #00667E (6,6 con il bianco), subito, senza dissolvenza.
@@ -52,13 +50,12 @@ Il gesto è uno solo: lo stato dell'officina in testata, calcolato con l'ora di 
 
 ## Foto: origine e licenza
 
-Nessuna foto dell'azienda regge (voti da 1 a 5 su 10 in `_prova/inventario-immagini.json`). Le tre foto sono segnaposto con licenza libera, verificata sulla pagina di ogni foto, e nessuna è usata in un'altra home della campagna. In pagina portano l'etichetta "Foto indicativa".
+Nessuna foto dell'azienda regge (voti da 1 a 5 su 10 in `_prova/inventario-immagini.json`). Le due foto sono segnaposto con licenza libera, verificata sulla pagina di ogni foto, e nessuna è usata in un'altra home della campagna. In pagina portano l'etichetta "Foto indicativa".
 
 | In pagina | Origine | Licenza | Lavoro fatto |
 |---|---|---|---|
-| Apertura, officina con l'auto sul ponte | Renee Razumov, Pexels 33814736 | Pexels License | tolti SKODA, SUPERB, WURTH e MIRKA; tolto il parafango in primo piano ricostruendo il pavimento in prospettiva; gialli smorzati; velatura chiara sul pavimento; taglio largo e verticale |
-| Mani sulla ruota | Jimmy Nilsson Masth, Unsplash 9uHal2Dd9aE | Unsplash License | tolto il marchio sul guanto; ombre aperte; 2:1 e quadrato |
-| Auto bianca sul ponte | Artem Podrez, Pexels 8986138 | Pexels License | tolti SUBARU, FORESTER e BRIDGESTONE; saturazione ridotta; 2:1 e quadrato |
+| Apertura, officina con l'auto sul ponte | Renee Razumov, Pexels 33814736 | Pexels License | tolti SKODA, SUPERB, WURTH e MIRKA; tolto il parafango in primo piano ricostruendo il pavimento in prospettiva; tolte la scala e le pistole appoggiate al muro (muro ricostruito dai pixel chiari intorno); ripulito il vano targa; gialli smorzati; velatura chiara sul pavimento; taglio largo e verticale |
+| Auto bianca intera sul ponte | Artem Podrez, Pexels 8986138 | Pexels License | tolti SUBARU, FORESTER e BRIDGESTONE; saturazione ridotta; inquadratura intera 3:2 e quadrata per il telefono |
 
 Trattamento comune: luce neutra appena fredda, saturazione ridotta, neri non chiusi. JPEG progressivi in più larghezze con `srcset` (`_prova/script/finale_img.py`). Dettagli in `assets/CREDITI.md`.
 
@@ -71,33 +68,34 @@ Trattamento comune: luce neutra appena fredda, saturazione ridotta, neri non chi
 ## Cosa è cambiato rispetto alla bozza B
 
 - **Foto**:
-  - tolto il parafango bianco sfocato dall'apertura;
-  - tolta la banda delle bussole;
-  - le mani sono più chiare e meno alte (2:1 invece di 1,76:1);
-  - aggiunta l'auto intera sul ponte, della stessa altezza delle mani: due bande uguali, non tre di altezze diverse;
+  - apertura ripulita: via il parafango bianco sfocato, la scala, le pistole appoggiate al muro e il vano targa sporco;
+  - tolte la banda delle bussole e la banda scura delle mani sulla ruota: dopo l'apertura resta una sola foto, chiara e grande, invece di tre fasce di altezze diverse;
+  - aggiunta l'auto bianca intera sul ponte, luminosa;
   - la larghezza più grande dell'apertura ora esiste davvero (2280 px; la bozza chiamava un file a 2400 px che mancava).
 - **Dati**:
   - tolto "Dal 2005 Andrea e Paolo Bazzato riparano auto", perché l'anno della snc non è verificato e non dice nulla sulle persone;
   - "Dal 2017 tutte le auto nuove usano questo gas" ora è la frase della fonte;
   - "prezzo anche al telefono" invece di "si confronta al telefono";
   - "servono" invece di "bastano" per il preventivo del tagliando;
+  - l'assetto computerizzato, che era nella didascalia delle mani, ora è nella riga delle gomme;
   - orari col trattino corto (08.00-12.00), appuntamenti scritti per esteso.
 - **Stato in testata**: gestisce ferie e festivi da un elenco modificabile.
 - **Esecuzione**:
   - nessuna transizione (la bozza ne aveva sul bottone e sulla freccina);
   - quattro fatti in due colonne invece di quattro;
+  - la scheda della revisione accanto al titolo, senza il vuoto sopra;
   - menu visibile fino a 960 px;
   - "Scrivi su WhatsApp" anche in fondo;
   - filetti a tutta larghezza anche a 1920;
   - grigio del testo un poco più scuro;
   - il titolo a 320 non copre più il ponte.
-- **Dalla bozza A**: nessuna immagine. Solo la frase della fonte sul gas R1234yf e la cura per i dati incerti.
+- **Dalla bozza A**: nessuna immagine. Solo la frase della fonte sul gas R1234yf, il foglio bianco limitato al listino e la cura per i dati incerti.
 
 ## Controlli
 
 - **Larghezze**: 1440, 390, 320, 768, 1024 e 1920, guardate a pezzi. Nessuno scorrimento orizzontale, nessun testo fuori dalla finestra, nessuna sovrapposizione fra testata, titolo, testo e bottoni (`finale_scatti.mjs`).
-- **Altezza a 1440**: 5917 px.
-- **Segnali da IA** (`kit/segnali.sh`, 1440): 0 soglie bloccanti su 10. Foto sul 39,2 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, nessun titolo col punto, 4 fasce di fondo, 20 filetti. Resta da guardare solo "misure degli H2: 2 (80 e 56 px)": è voluto, perché l'indirizzo è più piccolo dei titoli di sezione.
+- **Altezza a 1440**: 5185 px.
+- **Segnali da IA** (`kit/segnali.sh`, 1440): 0 soglie bloccanti su 10. Foto sul 35,8 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, nessun titolo col punto, 4 fasce di fondo, 19 filetti. Resta da guardare solo "misure degli H2: 2 (80 e 56 px)": è voluto, perché l'indirizzo è più piccolo dei titoli di sezione.
 - **Divieti del committente**: nessun gradiente, nessuna emoji, niente Inter, nessuna card col bordo colorato, nessun vetro sfocato, nessuna icona, nessun badge, nessuna animazione allo scorrimento, nessun effetto sul cursore, nessun bottone che sbiadisce, nessun corsivo d'accento.
 - **Caratteri vietati**: nessuna lineetta lunga U+2014 né media U+2013 nella pagina, negli script, in questa nota e nel LEGGIMI.
 - **Note di lavorazione**: nessuna in pagina; la build controlla le parole "provvisori", "da rifare", "proposta", "segnaposto".

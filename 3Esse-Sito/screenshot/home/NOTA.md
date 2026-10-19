@@ -18,11 +18,11 @@ Un ufficio tecnico si racconta con quello che ha calcolato. In alto un impalcato
 
 - Dati: ogni ponte ora ha il suo luogo, preso dal portfolio: Isonzo a Farra d'Isonzo (GO), Versa a Mariano del Friuli (GO), Pegognaga (Mantova), Po di Volano a Migliarino (FE), Tremonti di Sopra (PN), Sambughè (TV), Campocroce sull'A4 (TV), Formentin ad Abano Terme (PD), Komo a Kango (Gabon). Paesi indicati per Nizza, Riyad, Doha e San Pietroburgo. Tesa 105 resta tra le opere in acciaio (80 t). I conteggi dei filtri restano giusti: 14+9+3+4+3 = 33.
 - Le due "Foto indicativa" in pagina sono state tolte, insieme a ogni didascalia sulle foto di repertorio: le note di lavorazione stanno nel LEGGIMI.
-- Studio: prima accanto alla cupola di Adria c'era una fascia vuota. Ora il titolo e il testo stanno in alto a sinistra e la didascalia in basso, allineata al piede della foto, con i due numeri del portfolio in grande: diametro 90 m, acciaio 700 t. La cupola è al vivo sul bordo destro, larga al massimo 865 px, cioè la sua misura vera, mai ingrandita. È appena più chiara della bozza.
+- Studio: prima accanto alla cupola di Adria c'era una fascia vuota. Ora in alto a sinistra ci sono il titolo e la dotazione dello studio come piccola tabella con filetti (Calcolo, Disegno, Rilievo, Acustica: i software e gli strumenti della pagina Presentazione), al posto del paragrafo in prosa. In basso, allineata al piede della foto, la didascalia con i due numeri del portfolio in grande: diametro 90 m, acciaio 700 t. I software di disegno sono passati dai servizi alla tabella, così non si ripetono. La cupola è al vivo sul bordo destro, larga al massimo 865 px, cioè la sua misura vera, mai ingrandita. È appena più chiara della bozza.
 - Fascia dei controventi: il cielo ora coincide esattamente con la carta e i lati sfumano, così non si vede più l'orlo grigio della foto. Non supera mai i 1600 px veri (a 1920 resta di 1600 e il cielo continua nella carta).
 - Contatti su carta e non più su fondo nero, con il telefono grande (108 px, cifre tabellari). Il nero resta solo nel piede con i dati societari, come vuole il committente: chiaro, e il nero solo dove serve.
 - Telefono: sistemata la crenatura di Switzer a 17 px (con la resa predefinita Chromium a 1x spezzava "stat ici", "costrut tivi"; ora il testo usa `text-rendering: geometricPrecision`). Bottoni dei filtri alti 45 px. Menu ridotto a Opere e telefono.
-- Pagina: 5171 px a 1440, prima 5669. A 390 è di 5362 px.
+- Pagina: 5171 px a 1440, prima 5669. A 390 è di 5487 px.
 - Tolti il link "Privacy" che puntava a "#" e il PDF del portfolio (22 MB).
 
 ## Caratteri e colori
@@ -54,7 +54,7 @@ Le ho usate pochissimo, come già nella bozza. Tre Esse è un ufficio di ingegne
 ## Controlli
 
 - Scorrimento orizzontale: nessuno da 320 a 2560 px (passo 10/40).
-- Altezza: 5171 px a 1440, 5362 a 390, 5294 a 1920, 4456 a 1024, 5770 a 768.
+- Altezza: 5171 px a 1440, 5487 a 390, 5590 a 320, 5294 a 1920, 4456 a 1024, 5920 a 768.
 - Prime schermate guardate a 320, 390, 768, 1024, 1440 e 1920. Pagine intere a 1440 e 390 guardate a pezzi. Nessuna sovrapposizione tra blocchi di testo (controllo automatico a tutte le misure).
 - Immagini: a 1x nessuna è servita oltre la sua misura vera. A 2x la fascia (1600 px) e la cupola (865 px) arrivano a 1,8-2 volte: sono le misure massime che esistono, e vanno rifatte dal vero.
 - Filtri: dito, mouse, Invio, spazio e link dalla prima schermata provati (14, 9, 4, 3 e 33 righe, contatore giusto).
