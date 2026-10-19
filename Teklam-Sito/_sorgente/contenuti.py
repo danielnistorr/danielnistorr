@@ -158,6 +158,10 @@ UFFTEC = 'ufftec@teklam.it'
 VOCI_MENU = [('Lavorazioni', '/#lavorazioni'), ('Chi siamo', '/#storia'), ('Settori', '/#settori'), ('Contatti', '/#contatti')]
 
 
+# Nei widget Testo il colore al passaggio del mouse (link_hover) è uguale a quello del link: Elementor lo usa anche
+# per il fuoco, la statica no. Il colore al passaggio del mouse sta nei fogli di stile, con :hover.
+
+
 def ap(html):
     """Apostrofo diritto come nella statica: WordPress (wptexturize) lo farebbe tipografico nei widget Testo."""
     return html.replace("'", '&#39;')
@@ -220,7 +224,7 @@ def css_testi(scope):
         f'{s} a{{color:inherit;text-decoration:underline;text-decoration-thickness:1px!important;text-underline-offset:.22em!important}}'
         f'{s} a:hover,{s} a:focus,{s} a:active{{color:inherit}}'
         # il reset del tema Hello aggiunge ai link a fuoco un anello: qui il fuoco della statica
-        f'{s} :focus-visible,{s} [tabindex]:not([tabindex="-1"]):focus-visible{{outline:2px solid var(--paglia);outline-offset:3px}}'
+        f'{s} :focus-visible{{outline:2px solid var(--paglia);outline-offset:3px}}'
         f'{s} a:focus-visible,{s} button:focus-visible{{box-shadow:none}}'
         f'{s} img{{display:block;max-width:100%;height:auto;border:0;border-radius:0;box-shadow:none}}'
     )
@@ -323,7 +327,7 @@ def marchio():
 def header():
     menu = MENU(VOCI_MENU, colore=BIANCO, colore_hover=PAGLIA, accento=PAGLIA, fondo_menu=GRAFITE, linea=FILO,
                 stile='nav', spazio=30, pad_h=0, pad_v=8, distanza=12, align_menu='right', slug='menu-tek-lam', css='tkl-menu')
-    tel = T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='tel', color=BIANCO, link_color=BIANCO, link_hover=PAGLIA,
+    tel = T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='tel', color=BIANCO, link_color=BIANCO, link_hover=BIANCO,
             sottolinea=False, css='tkl-tel')
     globali = RAW('', css=CSS_VARIABILI + CSS_SITO + CSS_COMUNE + css_testi('tkl-testa') + CSS_TESTATA)
     # solo in Elementor: i caratteri (nel fallback il <link> lo scrive già il motore) e le regole di Ultimate Addons
@@ -367,7 +371,7 @@ def footer():
              '<a href="https://www.linkedin.com/company/tek-lam-srl">LinkedIn</a> '
              '<a href="http://www.teklam.it/privacy-contatti/">Privacy</a> '
              '<a href="http://www.teklam.it/cookie/">Cookie</a></p>',
-             style='piede', color=BIANCO, link_color=BIANCO, link_hover=PAGLIA, sottolinea=False, css='tkl-link-piede')
+             style='piede', color=BIANCO, link_color=BIANCO, link_hover=BIANCO, sottolinea=False, css='tkl-link-piede')
     stile = RAW('', css=CSS_VARIABILI + CSS_COMUNE + CSS_MARCHIO + css_testi('tkl-piede') + CSS_PIEDE)
     riga = C(marchio(), soc, link, boxed=False, css='tkl-wrap tkl-griglia')
     return C(stile, riga, tag='footer', boxed=False, pad=0, bg=GRAFITE, css='tkl-piede tkl-sito')
@@ -517,7 +521,7 @@ def apertura():
         T('<p>Zona artigianale di Tombelle, Vigonovo (VE),<br class="a-capo"> vicino al casello A13 di Padova Interporto.</p>',
           style='riga', color=GRIGIO_SCURO, css='tkl-pf tkl-pf-dove'),
         T(f'<p><a href="mailto:{UFFTEC}">Mandaci il disegno:<br class="a-capo"> {UFFTEC}</a></p>',
-          style='riga', color=PAGLIA, link_color=PAGLIA, link_hover=NERO, css='tkl-pf tkl-pf-primo'),
+          style='riga', color=PAGLIA, link_color=PAGLIA, link_hover=PAGLIA, css='tkl-pf tkl-pf-primo'),
         boxed=False, css='tkl-piede-foglio')
     # i caratteri anche qui: se la testata globale manca, la home li carica comunque (solo Elementor)
     caratteri = RAW(caratteri_html(preconnect=False), solo_elementor=True)
@@ -595,7 +599,7 @@ CSS_LAVORAZIONI = (
     '.tkl-riga .sp-scelta button+button{border-left:1px solid rgba(22,19,15,.35)}'
     '.tkl-riga .sp-scelta button:hover{background:#e3ddd1}'
     '.tkl-riga .sp-scelta button[aria-checked="true"]{background:var(--inchiostro);color:var(--paglia)}'
-    '.tkl-riga .sp-scelta button:focus-visible{outline:2px solid var(--bronzo);outline-offset:-4px}'
+    '.tkl-riga .sp-scelta button:focus-visible{outline:2px solid var(--bronzo);outline-offset:-4px;box-shadow:none}'
     '.tkl-riga .sp-tavola{position:relative;height:20mm;margin-top:18px}'
     '.tkl-riga .sp-scala{position:absolute;left:0;bottom:0;width:9px;height:20mm;color:#8b8378}'
     '.tkl-riga .sp-scala::before{content:"";position:absolute;right:0;bottom:0;width:4px;height:100%;'
@@ -763,7 +767,7 @@ def storia():
                     'tecnico in casa.</p>'), style='racconto', color=INCHIOSTRO, css='tkl-racconto')
     persone = T('<p><b>Sandro Volpato</b><span>Responsabile ufficio tecnico</span><a href="mailto:sandro@teklam.it">sandro@teklam.it</a></p>'
                 '<p><b>Dimitri Volpato</b><span>Responsabile commerciale</span><a href="mailto:dimitri@teklam.it">dimitri@teklam.it</a></p>',
-                style='persone', color=INCHIOSTRO, link_color=INCHIOSTRO, link_hover=BRONZO, css='tkl-persone')
+                style='persone', color=INCHIOSTRO, link_color=INCHIOSTRO, link_hover=INCHIOSTRO, css='tkl-persone')
     griglia = C(H('Dal ferro battuto alla lamiera', level='h2', style='h2', color=INCHIOSTRO, css='tkl-titolo'), racconto, persone,
                 boxed=False, css='tkl-wrap tkl-griglia')
     stile = RAW('', css=CSS_VARIABILI + CSS_COMUNE + css_testi('tkl-storia') + CSS_CARTA + CSS_STORIA)
@@ -839,7 +843,7 @@ CSS_CONTATTI = (
     '.tkl-contatti .tkl-telefono{grid-row:1;grid-column:1/9;width:max-content!important;max-width:100%!important}'
     + ht('.tkl-contatti .tkl-telefono') + '{font:200 clamp(56px,8.4vw,120px)/.9 var(--f)!important;letter-spacing:-.035em!important;'
     'font-variant-numeric:tabular-nums lining-nums!important;color:var(--bianco)!important;text-transform:none!important}'
-    '.tkl-contatti .tkl-telefono a{color:inherit!important;text-decoration:none!important;transition:color .15s}'
+    '.tkl-contatti .tkl-telefono a{display:block;color:inherit!important;text-decoration:none!important;transition:color .15s}'
     '.tkl-contatti .tkl-telefono a:hover{color:var(--paglia)!important}'
     '.tkl-contatti .tkl-invito{grid-row:2;align-self:start;grid-column:1/8;max-width:30em!important}'
     '.tkl-contatti .tkl-invito,.tkl-contatti .tkl-invito p{font:400 22px/1.42 var(--f)!important;color:var(--bianco)!important}'
@@ -879,7 +883,7 @@ CSS_CONTATTI = (
 def contatti():
     def recapito(titolo, testo):
         return C(H(titolo, level='h3', style='h3', color=GRIGIO_SCURO, css='tkl-r-titolo'),
-                 T(ap(f'<p>{testo}</p>'), style='recapiti', color=BIANCO, link_color=BIANCO, link_hover=PAGLIA, sottolinea=True,
+                 T(ap(f'<p>{testo}</p>'), style='recapiti', color=BIANCO, link_color=BIANCO, link_hover=BIANCO, sottolinea=True,
                    css='tkl-r-testo'),
                  boxed=False, css='tkl-recapito')
     sede = C(I(img('sede-470.jpg'), alt="La palazzina della sede Tek.Lam con l'acero rosso davanti"),
@@ -899,7 +903,7 @@ def contatti():
         H('Contatti', level='h2', style='h2', color=BIANCO, css='tkl-vh'),
         H(TEL, level='div', style='telefono', color=BIANCO, link=TEL_LINK, css='tkl-telefono'),
         T(f'<p>Per un preventivo mandaci il disegno o il file 3D: <a href="mailto:{UFFTEC}">{UFFTEC}</a></p>', style='invito',
-          color=BIANCO, link_color=PAGLIA, link_hover=BIANCO, css='tkl-invito'),
+          color=BIANCO, link_color=PAGLIA, link_hover=PAGLIA, css='tkl-invito'),
         sede, recapiti, boxed=False, css='tkl-wrap tkl-griglia')
     stile = RAW('', css=CSS_VARIABILI + CSS_COMUNE + css_testi('tkl-contatti') + CSS_CONTATTI)
     return C(stile, griglia, boxed=False, pad=0, tag='section', anchor='contatti', bg=GRAFITE, css='tkl-contatti tkl-sito')
