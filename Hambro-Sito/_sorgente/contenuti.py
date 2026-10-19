@@ -229,6 +229,11 @@ def css_base(s):
 # =============================================================================================
 CSS_TESTATA = (
     '#masthead{position:static}'
+    # il collegamento "Salta al contenuto principale" che Ultimate Addons mette prima dell'header (si vede solo col fuoco):
+    # porta all'apertura (id content) e ha il carattere e i colori della pagina invece del blu e del carattere di sistema
+    '.hfe-skip-link:focus{background:var(--carta);color:var(--inchiostro);font-family:"Mona Sans",system-ui,sans-serif;'
+    'font-size:15px;font-weight:400;line-height:1;padding:14px 22px;text-decoration:underline;text-decoration-thickness:1px;'
+    'text-underline-offset:.22em;outline:2px solid var(--cuoio);outline-offset:-2px;border-radius:0;box-shadow:none}'
     '.hbr-testa{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;flex-direction:row;flex-wrap:nowrap;'
     'align-items:center;justify-content:space-between;gap:0 24px;padding:16px var(--m) 0;width:auto;max-width:none;margin:0;'
     'background:none;font-size:17px}'
@@ -296,7 +301,8 @@ CSS_PIEDE = (
     '.hbr-piede .hbr-col{grid-column:span 3}'
     '.hbr-piede .hbr-col p{text-wrap:wrap}'
     '.hbr-piede a{text-decoration:none;color:inherit}'
-    '.hbr-piede .hbr-piede-marchio a{color:var(--carta)}'
+    # il marchio del piede è un blocco largo quanto la colonna, come nella statica (stesso riquadro del fuoco)
+    '.hbr-piede .hbr-piede-marchio a{display:block;color:var(--carta)}'
     '.hbr-piede a:hover,.hbr-piede .hbr-piede-marchio a:hover{color:var(--carta);text-decoration:underline}'
     '@media (max-width:1100px){.hbr-piede .hbr-piede-marchio{grid-column:1/13;margin-bottom:24px}.hbr-piede .hbr-col{grid-column:span 4}}'
     '@media (max-width:700px){.hbr-piede .hbr-col{grid-column:1/13;margin-bottom:18px}}'
@@ -402,7 +408,8 @@ def apertura():
         dir='row', justify='between', align='baseline', gap=40, boxed=False, css='hbr-didascalie')
     righello = CNT(RAW('<div class="hbr-righello" data-righello aria-hidden="true"></div>',
                        css=imp(css_base('.hbr-apertura') + CSS_APERTURA)))
-    return C(foto, testo, didascalie, righello, boxed=False, pad=0, tag='section', css='hbr-apertura hbr-sito')
+    # id content: è la destinazione del collegamento "Salta al contenuto principale" di Ultimate Addons
+    return C(foto, testo, didascalie, righello, boxed=False, pad=0, tag='section', anchor='content', css='hbr-apertura hbr-sito')
 
 
 CSS_BANCO = (
@@ -899,8 +906,13 @@ def contatti():
 
 
 def home():
-    return [('apertura', apertura()), ('banco', banco()), ('minuteria', campionario()), ('tav2', tav2()),
-            ('ricopertura', ricopertura()), ('misure', mestieri()), ('storia', storia()), ('contatti', contatti())]
+    sezioni = [('apertura', apertura()), ('banco', banco()), ('minuteria', campionario()), ('tav2', tav2()),
+               ('ricopertura', ricopertura()), ('misure', mestieri()), ('storia', storia()), ('contatti', contatti())]
+    # e-no-lazyload: Elementor toglie le immagini di sfondo (anche i gradienti: fili tra le righe, righelli delle quote,
+    # striscia del banco) dalle sezioni dalla quarta in giù finché il suo script non le vede; senza script restavano vuote
+    for _, nodo in sezioni:
+        nodo.p['css'] += ' e-no-lazyload'
+    return sezioni
 
 
 PAGINE = [

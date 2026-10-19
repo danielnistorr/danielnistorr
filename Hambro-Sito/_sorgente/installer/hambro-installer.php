@@ -100,8 +100,10 @@ function hbr_impostazioni() {
 	update_option( 'date_format', 'j F Y' );
 	update_option( 'default_comment_status', 'closed' );
 	update_option( 'permalink_structure', '/%postname%/' );
+	// Mona Sans arriva dal link nel widget HTML dell'header: i Google Fonts di Elementor (Roboto e Roboto Slab del kit) non servono
+	update_option( 'elementor_google_font', '0' );
 	flush_rewrite_rules( true );
-	echo "impostazioni: nome, descrizione, non indicizzabile, fuso Europe/Rome, permalink /%postname%/\n";
+	echo "impostazioni: nome, descrizione, non indicizzabile, fuso Europe/Rome, permalink /%postname%/, Google Fonts di Elementor spenti\n";
 	require_once ABSPATH . 'wp-admin/includes/translation-install.php';
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	$l = wp_download_language_pack( 'it_IT' );

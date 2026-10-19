@@ -12,9 +12,10 @@ Sono le stesse della home statica, quindi si collegano (hard link) invece di cop
 - lavoro-<lettera>-1440 e lavoro-<lettera>-m-1170: le otto strisce dei mestieri, la versione larga per computer e tablet
   e il taglio del telefono (widget Immagine: WordPress rifà da sé le misure più piccole nella libreria media)
 - collettore e inverno: 1920 per computer e tablet, taglio verticale 1170 per il telefono (widget Immagine)
-- logo-chiaro.png (testata e piede), favicon-192.png (icona del sito)
-- fonts/: Funnel Display e Funnel Sans (woff2 della pagina statica, non modificati), la licenza OFL e caratteri.css,
-  il foglio con i due @font-face che la testata, l'apertura e il fallback caricano dalla base delle immagini
+- logo.png (testata e piede: il raster del sito attuale con il nero portato a grafite, fondo trasparente), favicon-192.png (icona del sito)
+- fonts/: Funnel Display e Funnel Sans (woff2 della pagina statica, non modificati) e la licenza OFL. Le @font-face
+  sono nel foglio di stile di ogni sezione (contenuti.css_variabili), con l'indirizzo dei woff2 sulla base delle immagini:
+  nessun foglio .css a parte, perché raw.githubusercontent serve i .css come text/plain e il browser li scarta
 
 Uso: python3 prepara_immagini.py
 """
@@ -42,7 +43,7 @@ FOTO = {
     'collettore-m-1170.jpg': (1170, 1462),
     'inverno-1920.jpg': (1920, 960),
     'inverno-m-1170.jpg': (1170, 1773),
-    'logo-chiaro.png': (480, 80),
+    'logo.png': (480, 80),
     'favicon-192.png': (192, 192),
 }
 for l in LETTERE:
@@ -50,15 +51,6 @@ for l in LETTERE:
     FOTO[f'lavoro-{l}-m-1170.jpg'] = None      # 1170 x 449-450
 
 CARATTERI = ['funnel-display-latin.woff2', 'funnel-sans-latin.woff2', 'OFL.txt']
-
-# il foglio dei caratteri: percorsi relativi, quindi vale da qualsiasi base (GitHub, uploads del sito, assets/ locale)
-CARATTERI_CSS = (
-    '/* Funnel Display e Funnel Sans, The Funnel Project Authors (Dicotype), SIL Open Font License 1.1: OFL.txt */\n'
-    '@font-face{font-family:"Funnel Display";src:url(funnel-display-latin.woff2) format("woff2");'
-    'font-weight:300 800;font-style:normal;font-display:swap}\n'
-    '@font-face{font-family:"Funnel Sans";src:url(funnel-sans-latin.woff2) format("woff2");'
-    'font-weight:300 800;font-style:normal;font-display:swap}\n'
-)
 
 
 def collega(src, dst):
@@ -86,14 +78,16 @@ def main():
         collega(src, os.path.join(WEB, nome))
     for nome in CARATTERI:
         collega(os.path.join(SITO, 'fonts', nome), os.path.join(WEB, 'fonts', nome))
-    with open(os.path.join(WEB, 'fonts', 'caratteri.css'), 'w', encoding='utf-8') as f:
-        f.write(CARATTERI_CSS)
+    # il vecchio foglio dei caratteri non serve più (le @font-face sono nei fogli delle sezioni)
+    vecchio = os.path.join(WEB, 'fonts', 'caratteri.css')
+    if os.path.exists(vecchio):
+        os.remove(vecchio)
     # nient'altro in assets/web: se una foto non serve più, la tolgo
     tenere = set(FOTO) | {'fonts'}
     for nome in os.listdir(WEB):
         if nome not in tenere:
             os.remove(os.path.join(WEB, nome))
-    print(f'assets/web: {len(FOTO)} immagini, {len(CARATTERI)} file di caratteri e caratteri.css')
+    print(f'assets/web: {len(FOTO)} immagini e {len(CARATTERI)} file di caratteri')
 
 
 if __name__ == '__main__':

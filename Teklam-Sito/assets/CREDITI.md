@@ -41,3 +41,19 @@ Foto aggiunta per la lastra della prima schermata (lavorata con `_prova/script/p
 | File | Pagina della foto | Autore | Pubblicata | Scaricata | Uso | Note |
 |---|---|---|---|---|---|---|
 | `esterne/unsplash-widodo-tRrIXmtOmL4.jpg` | https://unsplash.com/photos/brushed-metal-surface-with-light-reflection-tRrIXmtOmL4 | apryan widodo | 08/11/2022 | 3024x3024 (originale) | prototipo A "Il foglio annidato" | lamiera inox spazzolata vista di fronte (iPhone 7 Plus); girata, ritagliata in 2:1 e 1:2 e ritoccata con PIL come lastra della prima schermata. Pagina letta il 19/10/2026: "Free to use under the Unsplash License", nessuna indicazione di immagine generata |
+
+## Home finale (`sito/`), 19 ottobre 2026, ultimo passaggio
+
+Nessuna foto nuova scaricata. Le immagini di `sito/img/` sono rifatte da `_prova/script/finale_img.py` con un trattamento solo (quello caldo del prototipo B: neri caldi, luci paglia, grana leggera) a partire da file già elencati qui sopra. Nell'ultimo passaggio sono uscite dalla pagina tutte le foto di repertorio tranne la spazzolatura della lastra: Cardinalli, Sayles e le tre di Yurtman non sono più usate (restano in `esterne/` per i prototipi). Modifiche ammesse da entrambe le licenze.
+
+| In pagina | File in `sito/img/` | Origine | Licenza |
+|---|---|---|---|
+| Lastra della prima schermata | `lastra-*`, `lastra-v-*` | apryan widodo, Unsplash, `esterne/unsplash-widodo-tRrIXmtOmL4.jpg`: tenuta solo la spazzolatura, luce rifatta | Unsplash License |
+| Letto nei vuoti del foglio | `letto-*`, `letto-v-*` | `originali/2020-08-slide2-2.jpg` (il loro laser che taglia, fotogramma dello slider), sfocato | di Tek.Lam, uso da confermare |
+| Finestra del cartellino, pezzi 01-05 | `p-case`, `p-griglia`, `p-cassetto`, `p-telaio-inox`, `p-telaio-frigo` | ritagli delle foto dei pezzi finiti in `originali/2020-08-lavorazione5`, `1`, `4`, `3`, `2` (collage della pagina Realizzazioni) | di Tek.Lam, uso da confermare |
+| Finestra del cartellino, pezzo 06 | `p-modello` | `originali/2020-08-pc.jpg` (render), monocromo caldo | di Tek.Lam, uso da confermare |
+| Striscia dopo 02 | `punzonatura-*` | `originali/2020-08-slide3.jpg`, tagliata sotto il marchio della macchina | di Tek.Lam, uso da confermare |
+| Storia | `officina-*` | `originali/2020-08-slide1.jpg` | di Tek.Lam, uso da confermare |
+| Fascia piegatrice | `piega-*` | `originali/2020-08-slide4.jpg` | di Tek.Lam, uso da confermare |
+| Contatti, la sede | `sede-470` | `originali/2020-09-fabbrica.jpg` | di Tek.Lam, uso da confermare |
+| Logo | `logo-segno.png` | ritaglio di `originali/2020-07-logo-TEKLAM.png` | di Tek.Lam |

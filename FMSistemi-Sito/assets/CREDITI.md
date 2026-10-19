@@ -69,3 +69,15 @@ Usate: `pexels-3721272` (T, apertura), `pexels-7169730` (A), `pexels-16527887` (
 ## Ultimo passaggio della home (19 ottobre 2026)
 
 Nessuna foto nuova. Le stesse foto della versione finale sono ritagliate di nuovo da `_prova/script/finale_img.py` in strisce `sito/img/lavoro-*` (una per mestiere) e trattate in bianco e nero neutro, tranne il raccordo in rame `pexels-3721272` (a colori) e la parete d'inverno `pexels-13742375` (calda). Tolte dalla pagina le tavole delle lettere diverse dalla T e i campioni. Di `pexels-28950842-3896` restano solo i morsetti bassi e i cavi; le etichette dei marchi sono fuori dal taglio.
+
+## Palette chiara della home (19 ottobre 2026) [SEGNAPOSTO, DA SOSTITUIRE]
+
+Licenza "Free" di Pexels letta sulla pagina della foto il 19 ottobre 2026; scaricata da `images.pexels.com` con `w=2400`. Nessuna immagine generata dall'IA (la pagina indica una Sony ILCE-7M4); nessun marchio.
+
+| File | Pagina della foto | Autore | Originale | Scaricata | Uso | Note |
+|---|---|---|---|---|---|---|
+| `esterne/pexels-15192101.jpg` | https://www.pexels.com/photo/water-drops-on-white-background-15192101/ | Mian Rizwan | 7008x4672 | 2400x1600 | riga A | gocce d'acqua fitte su una superficie chiara; sostituisce `pexels-7169730` (gocce su nero), che non si usa più |
+
+Le altre foto sono le stesse della versione finale, trattate di nuovo da `_prova/script/finale_img.py` in monocromia calda chiara. Il raccordo `pexels-3721272` (fotografato su nero) è scontornato con una sagoma misurata e posato su un fondo calce con un'ombra disegnata: la licenza Pexels ammette le modifiche; resta un segnaposto da rifare dal vero.
+
+Cercate su Unsplash e Pexels e non usate (19 ottobre 2026): nessuna T in rame su fondo chiaro. Viste: Unsplash Ez0S4C8bzUk (curva in rame su muro beige, solo il gomito), c5aW5Xy-O7c (due tubi in rame verticali in un muro aperto), vohUE_QKvaM (rubinetto in ottone su muro bianco), h5If_bg7898 (tubi in rame a croce su fondo azzurro: ha l'aspetto di un rendering, scartata), Pexels 28169591 (manicotti in rame in fila su nero).

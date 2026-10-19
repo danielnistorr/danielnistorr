@@ -9,7 +9,7 @@ sito/index.html), riportata sezione per sezione nel generatore di Benvegnù.
   parete d'inverno, il 17 e la scheda, la frase, i contatti, il piede.
 - Widget HTML (nodo RAW del motore) solo per le parti che Elementor gratuito non fa: il raccordo a T dell'apertura
   (il <picture> della statica con il taglio del telefono, posato con la geometria della pagina: barra sotto il
-  titolo, gambo sull'asse della T dell'alfabeto, sfumatura sul grafite) e l'alfabeto delle 21 lettere, con le otto
+  titolo, gambo sull'asse della T dell'alfabeto, sfumatura nella calce) e l'alfabeto delle 21 lettere, con le otto
   accese che portano alla riga del loro mestiere. La pagina statica non ha JavaScript: neanche qui, a parte una riga
   che raccoglie le sezioni in <main> come nella statica.
 - L'impaginazione (griglia a 12 colonne, misure fluide con clamp e con le unità del contenitore, colori) è il foglio
@@ -27,13 +27,17 @@ NOME_SITO = 'FM Sistemi'
 # ---------------------------------------------------------------------------------------------
 # Tema: i colori e i caratteri della home statica
 # ---------------------------------------------------------------------------------------------
-FONDO = '#141414'          # grafite: fondo e nero delle foto
-TESTO = '#EDE7DF'
-TESTO2 = '#A79F95'         # secondario
-SPENTO = '#5A544D'         # lettere spente dell'alfabeto
-FILETTO = '#2A2A2A'
-RAME = '#B87333'           # bottone e segni sotto le lettere
-RAME_CHIARO = '#D6955A'    # lettere accese, capolettera, inizio della riga, passaggio del mouse
+# palette chiara: calce, grafite, rame; il blu FM solo nel logo e nel segno del fuoco
+FONDO = '#EDE7DE'          # calce, uguale al fondo della foto d'apertura
+TESTO = '#23201C'          # grafite, 13,2:1
+TESTO2 = '#5C554C'         # secondario, 6,0:1
+SPENTO = '#857C70'         # lettere spente dell'alfabeto, solo in grande
+PIETRA = '#E3DBCE'         # il piede
+FILETTO = '#D3CABD'
+RAME = '#B4703A'           # bottone e segni sotto le lettere
+RAME_TESTO = '#8F4F1F'     # rame per il testo: lettere accese, capolettera, inizio della riga, passaggio del mouse
+NERO_RAME = '#1A1714'      # testo del bottone
+BLU = '#046EA2'            # blu FM: segno del fuoco da tastiera
 
 DISPLAY = 'Funnel Display'
 SANS = 'Funnel Sans'
@@ -72,14 +76,14 @@ STILI = {
 
 TEMA = {
     'nome': 'Dalla A alla Z',
-    'fondo': FONDO, 'superficie': FONDO, 'inchiostro': TESTO, 'testo2': TESTO2, 'accento': RAME_CHIARO,
+    'fondo': FONDO, 'superficie': FONDO, 'inchiostro': TESTO, 'testo2': TESTO2, 'accento': RAME_TESTO,
     'filetto': FILETTO, 'filetto_scuro': FILETTO, 'su_scuro2': TESTO2,
-    'scuro': FONDO, 'su_scuro': TESTO, 'su_accento': FONDO,
+    'scuro': FONDO, 'su_scuro': TESTO, 'su_accento': NERO_RAME,
     'font_titoli': DISPLAY, 'font_testo': SANS, 'larghezza': 1440,
     'stili': STILI,
     'spazi': {'sezione': (160, 160, 96), 'lato': (64, 46, 20), 'm': (24, 24, 24), 's': (12, 12, 12), '0': (0, 0, 0)},
     # (testo, sfondo, bordo, testo hover, sfondo hover, bordo hover): l'hover cambia colore pieno, mai opacità
-    'bottoni': {'rame': (FONDO, RAME, RAME, FONDO, RAME_CHIARO, RAME_CHIARO)},
+    'bottoni': {'rame': (NERO_RAME, RAME, RAME, FONDO, TESTO, TESTO)},
     'bottone': {'raggio': 0, 'pad': (13.5, 22, 13.5, 22), 'bordo': 0, 'stile': 'btn'},
 }
 m.applica_tema(TEMA)
@@ -94,9 +98,11 @@ BASE = BASE_PREDEFINITA
 def imposta_base(base):
     global BASE
     BASE = base if base.endswith('/') else base + '/'
-    # i caratteri sono serviti dalla stessa base delle immagini (assets/web/fonts/caratteri.css, due @font-face):
-    # il motore scrive questo foglio nel fallback e nell'anteprima; in Elementor lo carica la testata
-    m.GOOGLE_FONTS = BASE + 'fonts/caratteri.css'
+    # i caratteri sono serviti dalla stessa base delle immagini (assets/web/fonts/*.woff2), con le @font-face scritte
+    # nel foglio di stile di ogni sezione (css_variabili). Niente foglio dei caratteri a parte: raw.githubusercontent
+    # serve i .css come text/plain con nosniff e il browser li scarta (ERR_BLOCKED_BY_ORB), mentre i woff2 li carica.
+    # Il motore scrive comunque un <link rel=stylesheet> verso questo indirizzo nel fallback e nell'anteprima: foglio vuoto.
+    m.GOOGLE_FONTS = 'data:text/css,'
 
 
 imposta_base(BASE_PREDEFINITA)
@@ -130,7 +136,7 @@ MESTIERI = [
     ('e', 'Elettrico', "Impianti elettrici, dal quadro all'ultima presa.",
      'Nella foto: morsetti di un quadro e cavi in parallelo.', 'Morsetti di una fila di interruttori e cavi pettinati in parallelo'),
     ('a', 'Acqua', "Trattamento dell'acqua che arriva a caldaia e rubinetti.",
-     'Nella foto: gocce d’acqua su fondo nero.', 'Gocce d’acqua in controluce su fondo nero'),
+     'Nella foto: gocce d’acqua su una superficie chiara.', 'Gocce d’acqua fitte su una superficie chiara'),
     ('p', 'Pompe di calore', 'Pompe di calore e sistemi ibridi, come partner Viessmann.',
      'Nella foto: griglia del ventilatore di un’unità esterna.', 'Griglia a spirale del ventilatore di un’unità esterna'),
     ('c', 'Clima', "Climatizzatori e trattamento dell'aria.",
@@ -147,6 +153,11 @@ ACCESE = {'A': 'Acqua', 'C': 'Clima', 'E': 'Elettrico', 'F': 'Fotovoltaico', 'M'
 ALFABETO = 'ABCDEFGHILMNOPQRSTUVZ'
 
 
+def dritto(html):
+    """Apostrofo diritto come nella statica: WordPress trasforma ' in quello tipografico nei widget Testo, &#39; resta diritto."""
+    return html.replace("'", '&#39;')
+
+
 def ht(sel):
     """Il testo di un titolo: in Elementor sta in .elementor-heading-title dentro il widget, nel fallback è il widget stesso."""
     return f'{sel},{sel} .elementor-heading-title'
@@ -161,14 +172,27 @@ def bt(sel):
 # Foglio di stile comune: variabili della pagina statica (con il prefisso --fm-: Elementor usa già --display),
 # regole di base. Ogni sezione lo porta con sé (il fallback HTML incolla le sezioni una per una).
 # ---------------------------------------------------------------------------------------------
+def css_variabili():
+    """Le @font-face della statica (stessi woff2, dalla base delle immagini) e le variabili della pagina."""
+    return (
+        '@font-face{font-family:"Funnel Display";src:url(' + img('fonts/funnel-display-latin.woff2') + ') format("woff2");'
+        'font-weight:300 800;font-style:normal;font-display:swap}'
+        '@font-face{font-family:"Funnel Sans";src:url(' + img('fonts/funnel-sans-latin.woff2') + ') format("woff2");'
+        'font-weight:300 800;font-style:normal;font-display:swap}'
+        + CSS_VARIABILI)
+
+
 CSS_VARIABILI = (
-    ':root{--fm-fondo:#141414;--fm-testo:#EDE7DF;--fm-testo-2:#A79F95;--fm-spento:#5A544D;--fm-filetto:#2A2A2A;'
-    '--fm-rame:#B87333;--fm-rame-chiaro:#D6955A;--fm-margine:clamp(20px,4.45vw,64px);--fm-gola:24px;--fm-passo:160px;'
+    ':root{--fm-fondo:#EDE7DE;--fm-testo:#23201C;--fm-testo-2:#5C554C;--fm-spento:#857C70;--fm-pietra:#E3DBCE;'
+    '--fm-filetto:#D3CABD;--fm-rame:#B4703A;--fm-rame-testo:#8F4F1F;--fm-nero-rame:#1A1714;--fm-blu:#046EA2;'
+    '--fm-margine:clamp(20px,4.45vw,64px);--fm-gola:24px;--fm-passo:160px;'
     '--fm-display:"Funnel Display",system-ui,sans-serif;--fm-sans:"Funnel Sans",system-ui,sans-serif}'
     '@media (max-width:600px){:root{--fm-passo:96px}}'
+    # Elementor rende morbido lo scorrimento verso le ancore (html{scroll-behavior:smooth}); la statica salta subito
+    'html{scroll-behavior:auto}'
 )
 
-# regole della pagina (corpo, fondo grafite): in ogni sezione, così vale anche il fallback incollato a pezzi
+# regole della pagina (corpo, fondo calce): in ogni sezione, così vale anche il fallback incollato a pezzi
 CSS_SITO = (
     'html{-webkit-text-size-adjust:100%;text-size-adjust:100%}'
     'body{margin:0;background:var(--fm-fondo);color:var(--fm-testo);font:400 18px/1.55 var(--fm-sans);font-kerning:normal;'
@@ -180,7 +204,7 @@ CSS_SITO = (
 def css_base(scope):
     """Regole di base dei widget nativi dentro una sezione: caratteri del corpo (le misure vere le scrive il foglio
     della sezione), margini del tema e di Elementor azzerati, link che prendono il colore del testo
-    (il tema Hello li colora di rosa), fuoco visibile in rame come nella statica."""
+    (il tema Hello li colora di rosa), fuoco visibile in blu FM come nella statica."""
     s = f'.{scope}'
     w = f':where({s}) :where(.elementor-widget-text-editor,.elementor-widget-heading,.elementor-heading-title,.fms-w)'
     return (
@@ -192,8 +216,11 @@ def css_base(scope):
         f':where({s}) :where(p,h1,h2,h3,blockquote,figure){{margin:0!important}}'
         f'{s} p,{s} h1,{s} h2,{s} h3{{text-wrap:wrap}}'
         f'{s} a{{color:inherit;text-decoration:underline;text-decoration-thickness:1px!important;text-underline-offset:.22em!important}}'
-        f'{s} a:hover{{color:var(--fm-rame-chiaro)}}'
-        f'{s} :focus-visible,{s} a:focus-visible{{outline:2px solid var(--fm-rame-chiaro);outline-offset:3px;box-shadow:none}}'
+        f'{s} a:hover{{color:var(--fm-rame-testo)}}'
+        # il motore colora di rame anche i link con il fuoco (a:focus); nella statica il fuoco dà solo il contorno blu
+        f'{s} .fms-scrivi a:focus:not(:hover),{s} .fms-scheda-p a:focus:not(:hover),{s} .fms-tel-grande a:focus:not(:hover),'
+        f'{s} .fms-col-p a:focus:not(:hover){{color:var(--fm-testo)!important}}'
+        f'{s} :focus-visible,{s} a:focus-visible{{outline:2px solid var(--fm-blu);outline-offset:3px;box-shadow:none}}'
         f'{s} .num{{font-variant-numeric:tabular-nums lining-nums}}'
         f'{s} .nowrap{{white-space:nowrap}}'
         f'{s} img{{display:block!important;max-width:100%;height:auto;border:0;border-radius:0;box-shadow:none}}'
@@ -244,14 +271,14 @@ CSS_TESTATA = (
     'padding:0!important;font-family:var(--fm-sans)!important;font-size:16px!important;font-weight:400!important;line-height:1.55!important;'
     'letter-spacing:0!important;text-transform:none!important;color:var(--fm-testo)!important;text-decoration:none!important;'
     'border:0!important;white-space:nowrap;background:none!important}'
-    '.fms-menu .hfe-nav-menu a.hfe-menu-item:hover,.fms-menu .fms-nav-l a:hover{color:var(--fm-rame-chiaro)!important;'
+    '.fms-menu .hfe-nav-menu a.hfe-menu-item:hover,.fms-menu .fms-nav-l a:hover{color:var(--fm-rame-testo)!important;'
     'text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:.22em!important}'
     '.fms-menu .hfe-nav-menu a.hfe-menu-item::before,.fms-menu .hfe-nav-menu a.hfe-menu-item::after{display:none!important}'
     '.fms-menu details,.fms-menu .hfe-nav-menu__toggle{display:none!important}'
     '.fms-tel p{margin:0!important;display:flex}'
     '.fms-tel a{display:inline-flex!important;align-items:center;min-height:44px;font:500 16px/1 var(--fm-sans)!important;'
-    'padding-left:32px;border-left:1px solid #34302C;color:var(--fm-testo)!important;text-decoration:none!important;white-space:nowrap}'
-    '.fms-tel a:hover{color:var(--fm-rame-chiaro)!important;text-decoration:underline!important}'
+    'padding-left:32px;border-left:1px solid var(--fm-filetto);color:var(--fm-testo)!important;text-decoration:none!important;white-space:nowrap}'
+    '.fms-tel a:hover{color:var(--fm-rame-testo)!important;text-decoration:underline!important}'
     # "Salta ai lavori": primo elemento della pagina, come nella statica
     '.fms-sito a.fms-salta{position:absolute;left:-9999px;font:400 18px/1.55 var(--fm-sans)}'
     '.fms-sito a.fms-salta:focus{left:var(--fm-margine);top:8px;z-index:9;background:var(--fm-testo);color:var(--fm-fondo);padding:8px 12px}'
@@ -261,8 +288,10 @@ CSS_TESTATA = (
     '.fms-menu .hfe-nav-menu__layout-horizontal,.fms-menu nav.hfe-dropdown{display:block!important;visibility:visible!important;'
     'opacity:1!important;height:auto!important;position:static!important;transform:none!important;width:auto!important;'
     'background:none!important;border:0!important;box-shadow:none!important;margin:0!important;padding:0!important}'
-    '.fms-menu nav.hfe-dropdown .hfe-nav-menu{display:flex!important;gap:22px!important;background:none!important;border:0!important}'
-    '.fms-menu nav.hfe-dropdown li.menu-item{width:auto!important;border:0!important;background:none!important}'
+    '.fms-menu nav.hfe-dropdown .hfe-nav-menu{display:flex!important;gap:22px!important;background:none!important;border:0!important;'
+    'visibility:visible!important;opacity:1!important;max-height:none!important;transform:none!important}'
+    '.fms-menu nav.hfe-dropdown li.menu-item,.fms-menu nav.hfe-dropdown a.hfe-menu-item{width:auto!important;border:0!important;'
+    'background:none!important;visibility:visible!important;opacity:1!important}'
     '.fms-menu .fms-nav-l{display:flex!important}}'
     '@media (max-width:860px){.fms-menu{display:none!important}.fms-tel a{border-left:0;padding-left:0}}'
     '@media (max-width:600px){.fms-testa{padding-top:14px!important}.fms-marchio img{width:138px!important}'
@@ -272,29 +301,35 @@ CSS_TESTATA = (
 CSS_TESTATA_ELEMENTOR = (
     '#masthead{position:static}'
     '.hfe-skip-link{display:none!important}'
-    '.fms-menu .hfe-nav-menu__toggle:focus-visible{outline:2px solid var(--fm-rame-chiaro);outline-offset:3px}'
+    '.fms-menu .hfe-nav-menu__toggle:focus-visible{outline:2px solid var(--fm-blu);outline-offset:3px}'
 )
 
 
-def caratteri():
-    """Il foglio dei caratteri (solo Elementor: nel fallback il <link> lo scrive già il motore)."""
-    return RAW(f'<link rel="stylesheet" href="{m.GOOGLE_FONTS}">', solo_elementor=True)
-
-
 def header():
-    marchio = I(img('logo-chiaro.png'), 'FM Sistemi', link='/', link_label='F.M. Sistemi, inizio', css='fms-marchio')
-    menu = MENU(VOCI_MENU, colore=TESTO, colore_hover=RAME_CHIARO, accento=RAME_CHIARO, fondo_menu=FONDO, linea=FILETTO,
+    # il nome del link ("F.M. Sistemi, inizio") lo scrive lo script della testata: Elementor divide gli attributi
+    # personalizzati alla virgola e ne farebbe aria-label="F.M. Sistemi" più un attributo "inizio"
+    marchio = I(img('logo.png'), 'FM Sistemi', link='/', css='fms-marchio')
+    menu = MENU(VOCI_MENU, colore=TESTO, colore_hover=RAME_TESTO, accento=RAME_TESTO, fondo_menu=FONDO, linea=FILETTO,
                 stile='nav', stile_mobile='nav', spazio=32, pad_h=0, pad_v=0, distanza=12, align_menu='right',
                 slug='menu-fm-sistemi', css='fms-menu')
     tel = T(f'<p><a class="tel num" href="{TEL_LINK}">{TEL}</a></p>', style='tel', color=TESTO, link_color=TESTO,
-            link_hover=RAME_CHIARO, sottolinea=False, css='fms-tel')
+            link_hover=RAME_TESTO, sottolinea=False, css='fms-tel')
     nav = C(menu, tel, dir='row', align='center', gap=32, boxed=False, css='fms-nav')
-    globali = RAW('<a class="fms-salta" href="#lavori">Salta ai lavori</a>',
-                  css=CSS_VARIABILI + CSS_SITO + css_base('fms-testa') + CSS_TESTATA)
+    # il menu si chiama "Principale" e il logo "F.M. Sistemi, inizio", come nella statica; testata e piede non si
+    # ripetono come punti di riferimento dentro quelli di Ultimate Addons
+    # (Elementor gratuito non dà attributi ai widget del menu; vedi sopra per il logo)
+    globali = RAW('<a class="fms-salta" href="#lavori">Salta ai lavori</a>'
+                  "<script>document.addEventListener('DOMContentLoaded',function(){"
+                  "document.querySelectorAll('nav.fms-menu,.fms-menu nav').forEach(function(n){n.setAttribute('aria-label','Principale')});"
+                  "document.querySelectorAll('.fms-marchio a').forEach(function(a){a.setAttribute('aria-label','F.M. Sistemi, inizio')});"
+                  # Ultimate Addons mette testata e piede dentro il proprio <header> e <footer>: un punto di riferimento solo
+                  "document.querySelectorAll('.fms-testa,.fms-piede').forEach(function(e){"
+                  "if(e.parentElement&&e.parentElement.closest('header,footer'))e.setAttribute('role','none')})})</script>",
+                  css=css_variabili() + CSS_SITO + css_base('fms-testa') + CSS_TESTATA)
     stile_el = RAW('', css=CSS_TESTATA_ELEMENTOR, solo_elementor=True)
     # i widget HTML stanno fuori dalla riga (posizione assoluta, misura zero): non aggiungono spazio tra le voci.
     # Vengono per primi: "Salta ai lavori" è la prima fermata del tasto Tab, come nella statica
-    fuori = C(globali, caratteri(), stile_el, boxed=False, css='fms-fuori')
+    fuori = C(globali, stile_el, boxed=False, css='fms-fuori')
     return C(fuori, marchio, nav, dir='row', align='center', gap=40, boxed=False, pad=0, tag='header',
              css='fms-testa fms-sito')
 
@@ -303,8 +338,8 @@ def header():
 # PIEDE (template "FM Sistemi: Footer")
 # =============================================================================================
 CSS_PIEDE = (
-    '.fms-piede{' + BLOCCO + 'margin-top:var(--fm-passo)!important;border-top:1px solid var(--fm-filetto)!important;'
-    'padding:48px 0 56px!important;font-size:14px;line-height:1.6;color:var(--fm-testo-2);background:none!important}'
+    '.fms-piede{' + BLOCCO + 'margin-top:var(--fm-passo)!important;background:var(--fm-pietra)!important;border:0!important;'
+    'padding:48px 0 56px!important;font-size:14px;line-height:1.6;color:var(--fm-testo-2)}'
     '.fms-piede .fms-griglia{align-items:start!important}'
     '.fms-piede p{font-size:14px;line-height:1.6;color:var(--fm-testo-2)}'
     '.fms-piede-logo{grid-column:1/span 3}'
@@ -313,7 +348,7 @@ CSS_PIEDE = (
     '.fms-link{grid-column:10/span 3}'
     '.fms-link p{text-align:right!important}'
     '.fms-link a{color:var(--fm-testo-2)!important}'
-    '.fms-link a:hover{color:var(--fm-rame-chiaro)!important}'
+    '.fms-link a:hover{color:var(--fm-rame-testo)!important}'
     '@media (max-width:860px){.fms-dati{grid-column:1/span 12;margin-top:24px!important}'
     '.fms-link{grid-column:1/span 12;margin-top:12px!important}.fms-link p{text-align:left!important}}'
     '@media (max-width:600px){.fms-piede-logo{grid-column:1/span 12}}'
@@ -321,15 +356,15 @@ CSS_PIEDE = (
 
 
 def footer():
-    logo = I(img('logo-chiaro.png'), 'FM Sistemi', css='fms-piede-logo')
+    logo = I(img('logo.png'), 'FM Sistemi', css='fms-piede-logo')
     dati = T('<p class="num">F.M. Sistemi S.r.l., via del Lavoro 37, 30030 Vigonovo (VE)<br>'
              'Partita IVA e codice fiscale 03807720283<br>'
              f'PEC fmsistemisrl@legalmail.it, telefono +39{NBSP}049{NBSP}8305354</p>',
              style='piede', color=TESTO2, css='fms-dati')
     link = T(f'<p><a href="{FACEBOOK}">Facebook</a></p>', style='piede', color=TESTO2, link_color=TESTO2,
-             link_hover=RAME_CHIARO, css='fms-link')
+             link_hover=RAME_TESTO, css='fms-link')
     griglia = C(logo, dati, link, boxed=False, css='fms-griglia')
-    return C(griglia, RAW('', css=CSS_VARIABILI + CSS_SITO + css_base('fms-piede') + CSS_COMUNE + CSS_PIEDE),
+    return C(griglia, RAW('', css=css_variabili() + CSS_SITO + css_base('fms-piede') + CSS_COMUNE + CSS_PIEDE),
              boxed=False, pad=0, tag='footer', css='fms-piede fms-sito')
 
 
@@ -337,7 +372,7 @@ def footer():
 # HOME
 # =============================================================================================
 # Apertura. Il raccordo a T in rame attraversa lo schermo; il titolo poggia sulla barra; il gambo scende,
-# sfuma sul grafite e diventa la T accesa dell'alfabeto. Geometria della statica: la foto è larga 100cqw + 80px;
+# sfuma nella calce e diventa la T accesa dell'alfabeto. Geometria della statica: la foto è larga 100cqw + 80px;
 # il gambo sta al 79,207 % della sua larghezza, l'asse della barra al 33,537 % della larghezza dal bordo alto,
 # mezzo spessore della barra = 5,122 % della larghezza.
 CSS_APERTURA = (
@@ -359,7 +394,9 @@ CSS_APERTURA = (
     '.fms-h1{position:absolute!important;inset:0!important;z-index:2!important;margin:0!important;pointer-events:none;'
     'width:auto!important;max-width:none!important}'
     '.fms-h1 .elementor-widget-container{position:static}'
-    '.fms-apertura h1{margin:0!important;position:static!important;text-wrap:wrap!important}'
+    # in Elementor l'h1 sta dentro il widget .fms-h1; nel fallback è il widget stesso e resta in posizione assoluta
+    '.fms-h1 h1{margin:0!important;position:static!important;text-wrap:wrap!important}'
+    '.fms-apertura h1.fms-h1{margin:0!important;text-wrap:wrap!important}'
     '.fms-apertura .h1-grande{position:absolute;left:var(--fm-margine);top:calc(var(--fm-base) - .825em);margin-left:-.045em;'
     'font:400 var(--fm-fs)/.9 var(--fm-display);letter-spacing:-.045em;white-space:nowrap;color:var(--fm-testo)}'
     '.fms-apertura .h1-grande .z{letter-spacing:0}'
@@ -368,26 +405,28 @@ CSS_APERTURA = (
     'bottom:calc(var(--fm-h) - var(--fm-base) + 44px + 22px);margin:0!important;z-index:2!important;'
     'font-size:17px!important;line-height:1.35!important;color:var(--fm-testo)}'
     '.fms-h1-riga p{text-wrap:pretty}'
-    '.fms-h1-riga .conta{color:var(--fm-rame-chiaro)}'
+    '.fms-h1-riga .conta{color:var(--fm-rame-testo)}'
     '.fms-azione{position:absolute!important;right:var(--fm-margine);width:var(--fm-col)!important;max-width:none!important;'
     'bottom:calc(var(--fm-h) - var(--fm-base));display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;'
     'align-items:baseline!important;justify-content:flex-start!important;gap:0!important;padding:0!important;margin:0!important;'
     'min-height:0!important;z-index:2!important}'
     '.fms-azione>*{flex:0 0 auto!important;width:auto!important;max-width:none!important;margin:0!important}'
-    f'{bt(".fms-bottone")}{{display:inline-block!important;background:var(--fm-rame)!important;color:#141414!important;'
+    f'{bt(".fms-bottone")}{{display:inline-block!important;background:var(--fm-rame)!important;color:var(--fm-nero-rame)!important;'
     'text-decoration:none!important;font:500 17px/1 var(--fm-sans)!important;letter-spacing:0!important;text-transform:none!important;'
     'padding:13.5px 22px!important;border:0!important;border-radius:0!important;box-shadow:none!important;min-height:0!important;'
     'transition:background-color .12s!important;font-variant-numeric:tabular-nums lining-nums;text-align:left!important}'
-    f'{bt(".fms-bottone")}:hover{{background:var(--fm-rame-chiaro)!important;color:#141414!important}}'
+    f'{bt(".fms-bottone")}:hover{{background:var(--fm-testo)!important;color:var(--fm-fondo)!important}}'
+    # il fuoco del bottone come nella statica (il fallback del motore lo farebbe di 3 px color rame)
+    f'{bt(".fms-bottone")}:focus-visible{{outline:2px solid var(--fm-blu)!important;outline-offset:3px!important}}'
     '.fms-bottone .elementor-button-content-wrapper,.fms-bottone .elementor-button-text{display:inline!important}'
     '.fms-bottone .elementor-button-wrapper{display:block}'
     '.fms-scrivi a{margin-left:18px;font-size:16px;white-space:nowrap}'
     # la voce della T sotto la barra
     '.fms-didascalia{position:absolute!important;left:0;bottom:var(--fm-striscia);width:calc(var(--fm-margine) + 400px)!important;'
-    'max-width:none!important;padding:28px 36px 30px var(--fm-margine)!important;background:var(--fm-fondo)!important;'
+    'max-width:none!important;padding:28px 36px 30px var(--fm-margine)!important;background:none!important;'
     'margin:0!important;z-index:2!important}'
     '.fms-didascalia .voce{display:block;font:400 30px/1.05 var(--fm-display);letter-spacing:-.02em;margin-bottom:10px}'
-    '.fms-didascalia .voce b{font-weight:400;color:var(--fm-rame-chiaro);margin-right:.3em}'
+    '.fms-didascalia .voce b{font-weight:400;color:var(--fm-rame-testo);margin-right:.3em}'
     '.fms-didascalia .cosa{display:block;font-size:17px;line-height:1.45;color:var(--fm-testo);text-wrap:pretty}'
     # l'alfabeto: ventuno lettere, accese solo quelle che hanno un lavoro
     '.fms-alfa{position:absolute!important;left:0;right:0;bottom:0;height:var(--fm-striscia)!important;' + BLOCCO +
@@ -400,8 +439,8 @@ CSS_APERTURA = (
     '.fms-alfabeto .l{position:relative;display:block}'
     '.fms-alfabeto .l::before{content:"";position:absolute;left:50%;top:-22px;width:24px;margin-left:-12px;height:3px;'
     'background:transparent;transition:background-color .12s}'
-    '.fms-alfabeto a:hover{color:var(--fm-rame-chiaro)}'
-    '.fms-alfabeto a.qui{color:var(--fm-rame-chiaro)}'
+    '.fms-alfabeto a:hover{color:var(--fm-rame-testo)}'
+    '.fms-alfabeto a.qui{color:var(--fm-rame-testo)}'
     '.fms-alfabeto a.qui .l::before{background:var(--fm-rame)}'
     '.fms-alfabeto .nome{position:absolute;left:0;top:calc(100% + 9px);font:400 13px/1 var(--fm-sans);color:var(--fm-testo-2);white-space:nowrap}'
     # da 601 a 1100: in colonna; riga e bottone subito sotto la foto, poi l'alfabeto
@@ -466,17 +505,17 @@ def apertura():
         f'srcset="{img("tavola-t-m-780.jpg")} 780w, {img("tavola-t-m-1170.jpg")} 1170w" sizes="100vw">'
         f'<img src="{img("tavola-t-2000.jpg")}" srcset="{img("tavola-t-1600.jpg")} 1600w, {img("tavola-t-2000.jpg")} 2000w, '
         f'{img("tavola-t-2560.jpg")} 2560w" sizes="calc(100vw + 80px)" width="2000" height="1761" '
-        'alt="Raccordo a T in rame su fondo nero, ruotato fino a disegnare una T maiuscola"></picture>')
-    # i caratteri anche qui (solo Elementor): se la testata globale manca, la home li carica comunque
-    tavola = C(RAW(picture), caratteri(), boxed=False, tag='figure', css='fms-tavola')
+        'alt="Raccordo a T in rame su fondo chiaro, ruotato fino a disegnare una T maiuscola"></picture>')
+    # i caratteri: le @font-face sono nel foglio di stile di ogni sezione (css_variabili), anche senza la testata globale
+    tavola = C(RAW(picture), boxed=False, tag='figure', css='fms-tavola')
     didascalia = T('<p><span class="voce"><b>T</b>Termoidraulica</span> '
                    '<span class="cosa">Riscaldamento e acqua calda sanitaria: tubi, raccordi e collettori.</span></p>',
                    style='body', color=TESTO, css='fms-didascalia')
-    alfa = C(RAW(_alfabeto(), css=CSS_VARIABILI + CSS_SITO + css_base('fms-apertura') + CSS_APERTURA),
+    alfa = C(RAW(_alfabeto(), css=css_variabili() + CSS_SITO + css_base('fms-apertura') + CSS_APERTURA),
              boxed=False, css='fms-alfa')
     azione = C(B(f'Telefonate allo 049{NBSP}8305354', TEL_LINK, variant='rame', css='fms-bottone'),
                T(f'<p><a class="scrivi" href="{MAIL_SOPRALLUOGO}">o scrivete</a></p>', style='body', color=TESTO,
-                 link_color=TESTO, link_hover=RAME_CHIARO, css='fms-scrivi'),
+                 link_color=TESTO, link_hover=RAME_TESTO, css='fms-scrivi'),
                dir='row', align='baseline', boxed=False, css='fms-azione')
     return C(h1, riga, tavola, didascalia, alfa, azione, boxed=False, pad=0, tag='section', css='fms-apertura fms-sito')
 
@@ -493,7 +532,7 @@ CSS_LAVORI = (
     '.fms-riga>*{width:auto!important;max-width:none!important;min-width:0}'
     '.fms-idx{grid-column:1;grid-row:1;padding-top:30px!important;font-size:14px!important;line-height:1!important;color:var(--fm-testo-2)}'
     '.fms-cap-l{grid-column:2/span 2;grid-row:1;position:relative!important;align-self:start;margin-top:26px!important;'
-    'font:400 152px/.74 var(--fm-display)!important;letter-spacing:-.02em!important;color:var(--fm-rame-chiaro)}'
+    'font:400 152px/.74 var(--fm-display)!important;letter-spacing:-.02em!important;color:var(--fm-rame-testo)}'
     '.fms-cap-l::after{content:"";position:absolute;left:4px;bottom:-22px;width:32px;height:3px;background:transparent}'
     '.fms-riga:target .fms-cap-l::after{background:var(--fm-rame)}'
     '.fms-t{grid-column:4/span 3;grid-row:1;' + BLOCCO.replace('padding:0!important;', '') + 'padding:26px 0 24px!important}'
@@ -534,9 +573,9 @@ CSS_LAVORI = (
 def _riga(i, lettera, nome, testo, nella, alt):
     return C(
         T(f'<p class="num">{i:02d}</p>', style='idx', color=TESTO2, css='fms-idx'),
-        T(f'<p aria-hidden="true">{lettera.upper()}</p>', style='cap', color=RAME_CHIARO, css='fms-cap-l'),
+        T(f'<p aria-hidden="true">{lettera.upper()}</p>', style='cap', color=RAME_TESTO, css='fms-cap-l'),
         C(H(nome, level='h3', style='h3', color=TESTO, css='fms-h3'),
-          T(f'<p>{testo}</p>', style='t17', color=TESTO, css='fms-cosa'),
+          T(f'<p>{dritto(testo)}</p>', style='t17', color=TESTO, css='fms-cosa'),
           T(f'<p>{nella}</p>', style='nella', color=TESTO2, css='fms-nella'),
           boxed=False, css='fms-t'),
         C(I(img(f'lavoro-{lettera}-1440.jpg'), alt, css='fms-d'), I(img(f'lavoro-{lettera}-m-1170.jpg'), alt, css='fms-m'),
@@ -547,12 +586,12 @@ def _riga(i, lettera, nome, testo, nella, alt):
 def lavori():
     testa = C(
         H('Una casa dalla A alla Z', level='h2', style='h2', color=TESTO, css='fms-h2 fms-lavori-h2'),
-        T("<p>Chi rifà casa di solito chiama tre ditte: il muratore, l'idraulico, l'elettricista. Qui il cantiere ha un "
-          "numero solo, e i mestieri arrivano nell'ordine in cui servono.</p>", style='intro', color=TESTO, css='fms-intro'),
+        T(dritto("<p>Chi rifà casa di solito chiama tre ditte: il muratore, l'idraulico, l'elettricista. Qui il cantiere ha un "
+                 "numero solo, e i mestieri arrivano nell'ordine in cui servono.</p>"), style='intro', color=TESTO, css='fms-intro'),
         boxed=False, css='fms-griglia')
     cantiere = C(*[_riga(i, *ms) for i, ms in enumerate(MESTIERI, 1)], boxed=False, css='fms-cantiere')
     return C(testa, cantiere,
-             RAW('', css=CSS_VARIABILI + CSS_SITO + css_base('fms-lavori') + CSS_COMUNE + CSS_LAVORI),
+             RAW('', css=css_variabili() + CSS_SITO + css_base('fms-lavori') + CSS_COMUNE + CSS_LAVORI),
              boxed=False, pad=0, anchor='lavori', tag='section', css='fms-sezione fms-lavori fms-sito')
 
 
@@ -602,11 +641,11 @@ def chi():
            boxed=False, css='fms-dl')
     scheda = C(dl, T('<p>Lavoriamo per privati, aziende ed enti pubblici. Con Viessmann installiamo anche gli impianti '
                      f'commerciali: <a href="{VIESSMANN}">la nostra pagina di partner</a>.</p>', style='body', color=TESTO,
-                     link_color=TESTO, link_hover=RAME_CHIARO, css='fms-scheda-p'),
+                     link_color=TESTO, link_hover=RAME_TESTO, css='fms-scheda-p'),
                boxed=False, css='fms-scheda')
     griglia = C(cifra, scheda, boxed=False, css='fms-griglia fms-chi-griglia')
     return C(H('Chi siamo', level='h2', style='h2', color=TESTO, css='fms-nascosto'), foto, griglia,
-             RAW('', css=CSS_VARIABILI + CSS_SITO + css_base('fms-chi') + CSS_COMUNE + CSS_CHI),
+             RAW('', css=css_variabili() + CSS_SITO + css_base('fms-chi') + CSS_COMUNE + CSS_CHI),
              boxed=False, pad=0, anchor='chi', tag='section', css='fms-sezione fms-chi fms-sito')
 
 
@@ -629,7 +668,7 @@ def inverno():
               'giusta.</p></blockquote>', style='frase', color=TESTO, css='fms-frase')
     return C(I(img('inverno-1920.jpg'), alt, css='fms-d'), I(img('inverno-m-1170.jpg'), alt, css='fms-m'),
              C(frase, boxed=False, css='fms-griglia fms-blockquote'),
-             RAW('', css=CSS_VARIABILI + CSS_SITO + css_base('fms-inverno') + CSS_COMUNE + CSS_INVERNO),
+             RAW('', css=css_variabili() + CSS_SITO + css_base('fms-inverno') + CSS_COMUNE + CSS_INVERNO),
              boxed=False, pad=0, tag='figure', css='fms-inverno fms-sito')
 
 
@@ -648,8 +687,27 @@ CSS_CONTATTI = (
 )
 
 # come nella statica, le sezioni dall'apertura ai contatti stanno in <main> (punto di riferimento per i lettori di schermo):
-# Elementor gratuito non ha un contenitore che le raccolga, lo fa questo script quando la pagina arriva ai contatti
-PRINCIPALE = ("<script>(function(){var a=document.querySelector('.fms-apertura'),z=document.getElementById('contatti');"
+# Elementor gratuito non ha un contenitore che le raccolga, lo fa questo script quando la pagina arriva ai contatti.
+# Lo stesso script dà i nomi dei punti di riferimento della statica (Elementor gratuito non dà attributi ai contenitori):
+# "Apertura", le sezioni con il testo del loro titolo, i contenitori figura (in Elementor sono <div>) con il ruolo
+# "figure", "La casa a cantiere chiuso" alla parete d'inverno, la didascalia come nome della foto del collettore,
+# l'elenco dei mestieri (ruoli list e listitem) e la scheda (ruoli term e definition)
+PRINCIPALE = ("<script>(function(){var q=function(s){return document.querySelector(s)},"
+              "a=q('.fms-apertura'),z=document.getElementById('contatti'),v=q('.fms-inverno.fms-sito'),o=q('.fms-foto'),"
+              "t=q('.fms-tavola');if(a)a.setAttribute('aria-label','Apertura');"
+              # le sezioni con il nome del loro titolo, come gli aria-labelledby della statica
+              "['lavori','chi','contatti'].forEach(function(i){var s=document.getElementById(i),h=s&&s.querySelector('h2');"
+              "if(h)s.setAttribute('aria-label',h.textContent.trim())});"
+              # in Elementor i contenitori "figure" escono come <div>: il ruolo e il nome della statica
+              "[t,o,v].forEach(function(e){if(e&&e.tagName!=='FIGURE')e.setAttribute('role','figure')});"
+              "if(v)v.setAttribute('aria-label','La casa a cantiere chiuso');"
+              "var c=o&&o.querySelector('.fms-figcaption p');if(c&&!o.querySelector('figcaption')){c.id='fms-didascalia-foto';"
+              "o.setAttribute('aria-labelledby',c.id)}"
+              # l'elenco dei mestieri e la scheda: nella statica <ol> e <dl>, qui contenitori e widget Testo
+              "var k=q('.fms-cantiere');if(k){k.setAttribute('role','list');[].forEach.call(k.querySelectorAll('.fms-riga'),"
+              "function(r){r.setAttribute('role','listitem')})}"
+              "[].forEach.call(document.querySelectorAll('.fms-dt p'),function(e){e.setAttribute('role','term')});"
+              "[].forEach.call(document.querySelectorAll('.fms-dd p'),function(e){e.setAttribute('role','definition')});"
               "if(!a||!z||a.closest('main'))return;while(a.parentNode&&!a.parentNode.contains(z))a=a.parentNode;"
               "while(z.parentNode!==a.parentNode)z=z.parentNode;var m=document.createElement('main');a.parentNode.insertBefore(m,a);"
               "while(m.nextSibling){var x=m.nextSibling;m.appendChild(x);if(x===z)break}})();</script>")
@@ -658,20 +716,20 @@ PRINCIPALE = ("<script>(function(){var a=document.querySelector('.fms-apertura')
 def contatti():
     def colonna(titolo, html):
         return C(H(titolo, level='h3', style='h3col', color=TESTO2, css='fms-col-h'),
-                 T(html, style='col', color=TESTO, link_color=TESTO, link_hover=RAME_CHIARO, css='fms-col-p'),
+                 T(html, style='col', color=TESTO, link_color=TESTO, link_hover=RAME_TESTO, css='fms-col-p'),
                  boxed=False, css='fms-col')
     griglia = C(
         H('In via del Lavoro 37, nella zona artigianale di Vigonovo', level='h2', style='h2', color=TESTO,
           css='fms-h2 fms-contatti-h2'),
         T(f'<p class="num"><a href="{TEL_LINK}">{TEL}</a></p>', style='telg', color=TESTO, link_color=TESTO,
-          link_hover=RAME_CHIARO, sottolinea=False, css='fms-tel-grande'),
+          link_hover=RAME_TESTO, sottolinea=False, css='fms-tel-grande'),
         colonna('Orari', '<p class="num">Dal lunedì al sabato, <span class="nowrap">8.30-19.00</span></p><p>Domenica chiuso</p>'),
         colonna('Scrivere', '<p><a href="mailto:info@fmsistemisrl.it">info@fmsistemisrl.it</a></p>'
                 f'<p><a href="{MAIL_PREVENTIVO}">commerciale@fmsistemisrl.it</a>, per preventivi e sopralluoghi</p>'),
         colonna('Venire', '<p class="num">Via del Lavoro 37, 30030 Vigonovo (VE)</p>'
                 f'<p><a href="{MAPS}">Apri in Google Maps</a></p>'),
         boxed=False, css='fms-griglia')
-    return C(griglia, RAW(PRINCIPALE, css=CSS_VARIABILI + CSS_SITO + css_base('fms-contatti') + CSS_COMUNE + CSS_CONTATTI),
+    return C(griglia, RAW(PRINCIPALE, css=css_variabili() + CSS_SITO + css_base('fms-contatti') + CSS_COMUNE + CSS_CONTATTI),
              boxed=False, pad=0, anchor='contatti', tag='section', css='fms-sezione fms-contatti fms-sito')
 
 

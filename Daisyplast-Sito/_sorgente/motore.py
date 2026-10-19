@@ -898,7 +898,7 @@ def sezione_html(section, scope, fonts=True):
     css = Css()
     body = to_html(section, css, scope)
     style = _reset().format(s='.' + scope) + css.out()
-    head = f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">' if fonts else ''
+    head = f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">' if fonts and GOOGLE_FONTS else ''
     return f'{head}<style>{style}</style><div class="{scope}">{body}</div>'
 
 
@@ -907,7 +907,7 @@ def pagina_html(title, blocks, description=''):
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{_html.escape(title)}</title>'
             + (f'<meta name="description" content="{_html.escape(description)}">' if description else '') +
-            f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">'
+            (f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{GOOGLE_FONTS}">' if GOOGLE_FONTS else '') +
             f'<style>html,body{{margin:0;padding:0;background:{FONDO};}}</style></head><body>'
             + ''.join(blocks) + '</body></html>')
 

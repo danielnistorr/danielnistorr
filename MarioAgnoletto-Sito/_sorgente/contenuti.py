@@ -267,12 +267,20 @@ box-shadow:0 0 0 1px var(--filo);display:grid;gap:12px;font-size:16px;line-heigh
 
 CSS_TESTATA_ELEMENTOR = css('''
 #masthead{position:static}
+html{scroll-behavior:auto!important}
 .hfe-skip-link{display:none!important}
 .mag-nav .hfe-nav-menu li.current-menu-item>a.hfe-menu-item:not(:hover){color:var(--grafite)!important;text-decoration:none!important}
 ''')
 
 SCRIPT_MENU = (
     "<script>(function(){var menu=document.querySelector('.mag-menu');if(!menu)return;"
+    # il menu in riga ha lo stesso nome della statica ("Sezioni"), in Elementor e nel fallback
+    "var nv=document.querySelector('.mag-nav nav, nav.mag-nav');if(nv)nv.setAttribute('aria-label','Sezioni');"
+    # le voci del menu di Ultimate Addons saltano alla sezione come nella statica: senza questo il plugin anima lo
+    # scorrimento per 0,8 s anche con "riduci movimento"; il clic arriva al browser, che va all'ancora subito
+    # (non nell'editor, dove il clic serve a scegliere il widget)
+    "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.mag-nav .hfe-nav-menu a[href*=\"#\"]');"
+    "if(a&&!document.body.classList.contains('elementor-editor-active'))e.stopPropagation()},true);"
     # le voci sono quelle del menu di WordPress (Ultimate Addons) o del menu del fallback, se ci sono
     "var fonte=document.querySelector('.mag-nav ul');var ul=menu.querySelector('ul');"
     "if(fonte&&ul){var v=fonte.querySelectorAll('a');if(v.length){ul.innerHTML='';v.forEach(function(x){"
@@ -326,7 +334,9 @@ def footer():
            f'P.IVA {PIVA}.</p>', style='piede', color=GRAFITE_2, css='mag-piede-p num')
     p2 = T('<p>La foto della fresa (B, Prototipo) è di repertorio (Unsplash); le altre sono pezzi dell\'officina.</p>',
            style='piede', color=GRAFITE_2, css='mag-piede-p mag-piede-2')
-    return C(logo, p1, p2, boxed=False, pad=0, tag='footer', css='mag-piede mag-sito')
+    # niente tag footer: in WordPress il piede sta già dentro il <footer id="colophon"> di Ultimate Addons
+    # (un footer dentro un footer non è HTML valido), come la testata sta nel suo <header id="masthead">
+    return C(logo, p1, p2, boxed=False, pad=0, css='mag-piede mag-sito')
 
 
 # =============================================================================================
