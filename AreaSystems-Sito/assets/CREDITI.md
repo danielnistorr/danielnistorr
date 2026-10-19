@@ -31,3 +31,12 @@ Scaricate dai CDN (`images.unsplash.com`, `images.pexels.com`) a 2400 px sul lat
 Scaricate il 19/10/2026 da `https://www.areasystems.it/images/`, `/gallery/` e `/style/` (418 file, circa 10 MB), più 8 immagini estratte dal PDF del catalogo 2022 (`originali/catalogo-2022/`, il PDF da 74 MB è stato cancellato dopo l'estrazione). Inventario, misure, pagine, soggetto e voti in `_prova/inventario-immagini.json`.
 
 Appartengono ad Area Systems o, più probabilmente, ai suoi fornitori: gli scontornati dei ventilatori ACDCFAN, Commonwealth, Jason Fan ed ECOFIT, degli alimentatori Mean Well e dei relè Relpol hanno l'aspetto di foto dei produttori; le 18 foto delle applicazioni (data center, eolico, CNC, fotovoltaico) sono di repertorio di origine ignota. I diritti d'uso vanno chiariti prima di riusarle (vedi 01-analisi, sezione 8).
+
+## Uso nella home finale (`sito/`, 19/10/2026)
+
+- `esterne/unsplash-NAchd3UmxXo-sime-quadro-aperto.jpg`: apertura (quadro aperto con le etichette), in `sito/img/quadro-*.webp` e `quadro-m-*.webp`. SEGNAPOSTO.
+- `esterne/unsplash-KDkU44ikiko-sime-quadro-cablaggio.jpg`: fascia dei fili, in `sito/img/fili-*.webp`, tagliata a destra degli alimentatori di marca. SEGNAPOSTO.
+- `originali/catalogo-2022/p13-gruppo-ventilazione.jpg` e `p53-resistenza.jpg`: i due pezzi grandi (`gruppo-*.webp`, `resistenza-*.webp`), diritti da chiarire.
+- `originali/GT10023AB.png`, `Plafoniera-led-T5.png`, `ASVC200.jpg`, `Gruppi-ASB32S23ABE.png`, `DTV02-N.png`, `CTSH.png`: pezzi del cartellino (`p-*.webp`), diritti da chiarire.
+- `originali/style-Area-System-logo.jpg`: marchio orizzontale (`marchio.webp`); serve il vettoriale.
+- Le altre foto di `esterne/` non sono usate nella home finale.

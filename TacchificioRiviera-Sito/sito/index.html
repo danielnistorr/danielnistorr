@@ -47,7 +47,7 @@ p{text-wrap:pretty}
 .testata .dove{color:var(--grigio)}
 .testata nav{display:flex;gap:28px}
 .testata nav a,.testata .tel{text-decoration:none}
-.testata .tel{font-weight:500;justify-self:end}
+.testata .tel{font-weight:500;justify-self:end;white-space:nowrap}
 
 /* apertura: titolo, il pezzo, una riga di base */
 .apertura{height:calc(100svh - 84px);min-height:720px;max-height:860px;
@@ -63,6 +63,8 @@ p{text-wrap:pretty}
   left:calc(50% - var(--cx) * var(--k));
   bottom:calc((var(--h) - var(--b)) * var(--k) * -1)}
 .palco img[hidden]{display:none}
+/* il legno, basso e largo, sale sopra la frase d'apertura: la sua base resta 130 px sopra il fondo del palco */
+.palco #i-legno{--k:min(1.1px, (100cqh - 150px) / var(--h), 100cqw / (var(--ow) + 120));bottom:130px}
 .riga{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;column-gap:var(--g)}
 .riga .sx{position:relative;height:var(--riga);display:flex;align-items:center}
 .riga .intro{position:absolute;left:0;bottom:calc(100% + 22px);max-width:30ch;font-size:18px;line-height:1.5}
@@ -70,7 +72,7 @@ p{text-wrap:pretty}
   text-decoration:none;padding:0 20px;font-weight:500;font-size:15px;line-height:1}
 .bottone:hover{background:var(--rosso);color:#fff}
 .materie{display:flex;gap:28px;list-style:none;justify-content:center;align-items:center;height:var(--riga)}
-.materie button{appearance:none;background:none;border:0;margin:0;cursor:pointer;
+.materie button{appearance:none;background:none;border:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent;
   padding:9px 0 8px;font:500 16px/1.2 "Hanken Grotesk",sans-serif;color:var(--grigio);
   border-bottom:2px solid transparent;transition:color .12s,border-color .12s}
 .materie button:hover{color:var(--inchiostro)}
@@ -78,8 +80,8 @@ p{text-wrap:pretty}
 .didascalia{justify-self:end;height:var(--riga);display:flex;align-items:center;text-align:right;
   font-size:14.5px;line-height:1.3;color:var(--grigio)}
 
-/* foto a tutta larghezza (al massimo 1440 px, la misura che la fonte regge) */
-.piena{max-width:1440px;margin:calc(var(--sez) * .55) auto 0}
+/* la foto dell'incisione: dentro i margini della griglia, al massimo 1328 px (la fonte, un 1920 compresso, viene sempre ridotta) */
+.piena{max-width:1440px;padding:0 var(--m);margin:calc(var(--sez) * .55) auto 0}
 .piena img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
 .piena figcaption{padding-top:14px}
 
@@ -90,12 +92,12 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 .capo h2{grid-column:1 / span 7}
 .capo p{grid-column:8 / span 5;max-width:40ch}
 
-/* dal disegno al tacco */
-.passi{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:72px}
-.passi li{border-top:1px solid var(--inchiostro);padding-top:18px}
-.passi h3{font-size:21px;line-height:1.25;font-weight:500;margin-bottom:10px;display:flex;gap:14px}
-.passi h3 span{color:var(--grigio);font-weight:400}
-.passi p{font-size:17px;line-height:1.55;max-width:29ch}
+/* dal disegno al tacco: una riga sola, le fasi legate da un filetto */
+.filiera{list-style:none;display:flex;align-items:baseline;gap:18px;margin-top:72px;font-size:21px;line-height:1.3;font-weight:500}
+.filiera li{display:flex;align-items:baseline;gap:18px;flex:1 1 auto;white-space:nowrap}
+.filiera li:last-child{flex:0 0 auto}
+.filiera li:not(:last-child)::after{content:"";flex:1 1 auto;min-width:28px;border-top:1px solid var(--inchiostro);transform:translateY(-.32em)}
+.filiera .num{color:var(--grigio);font-weight:400;font-size:15px;margin-right:-6px}
 
 /* il nome inciso: il pezzo in ottone con due legende */
 .nome{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:center}
@@ -117,7 +119,7 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 /* storia */
 .storia{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:start}
 .storia figure{grid-column:1 / span 5;max-width:440px;margin-top:18px}
-.storia figure img{width:100%;height:auto;mix-blend-mode:multiply}
+.storia figure img{width:100%;height:auto}
 .storia figcaption{margin-top:14px;max-width:40ch}
 .storia .testo{grid-column:6 / span 7}
 .anni{list-style:none;margin-top:48px}
@@ -156,37 +158,45 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 .piede .dati{grid-column:3 / span 6;color:#BDB7AF}
 .piede .dati b{color:#E9E5DF;font-weight:500}
 .piede .link{grid-column:9 / span 4;justify-self:end;text-align:right;color:#BDB7AF}
+.intero{white-space:nowrap}
 .piede a:hover{color:#fff}
 
 /* tablet largo */
 @media (max-width:1100px){
   :root{--m:40px;--sez:132px}
+  .testata{grid-template-columns:auto 1fr auto}
   .testata .dove{display:none}
+  .testata nav{justify-self:end}
+  .filiera{display:block;margin-top:56px;font-size:19px}
+  .filiera li{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--filo)}
+  .filiera li:last-child{border-bottom:1px solid var(--filo)}
+  .filiera li:not(:last-child)::after{content:none}
+  .filiera .num{margin-right:0;min-width:16px}
   .anni li{grid-template-columns:104px 1fr}
-  .nome .capo-n{grid-column:1 / span 5}
-  .tavola{grid-column:6 / span 7;padding-left:0}
+  .nome .capo-n{grid-column:1 / span 4}
+  .tavola{grid-column:5 / span 8;padding-left:0}
   .pezzo-o{width:340px}
-  .leg{--fuori:200px}
-  .leg span{width:180px}
+  .leg{--fuori:170px}
+  .leg span{width:136px}
   .recapiti .voce-tel{grid-column:1 / -1}
   .recapiti dl{grid-column:1 / -1}
 }
 /* tablet */
 @media (max-width:860px){
   :root{--m:28px;--g:18px;--sez:112px}
-  .testata{grid-template-columns:auto 1fr auto}
+  .testata{grid-template-columns:1fr auto}
   .testata nav{display:none}
   .apertura{height:auto;min-height:0;max-height:none}
   .palco{height:460px}
-  .riga{grid-template-columns:1fr auto;row-gap:22px}
+  .palco #i-legno{--k:min(1.1px, 100cqh / (var(--h) + 80), 100cqw / (var(--ow) + 60));bottom:calc(50cqh - var(--h) * var(--k) / 2)}
+  .riga{grid-template-columns:1fr;row-gap:0}
   .materie{grid-column:1 / -1;grid-row:1}
-  .riga .sx{grid-row:2;height:auto;display:block}
+  .didascalia{grid-row:2;grid-column:1 / -1;justify-self:center;text-align:center;height:auto;margin-top:8px}
+  .riga .sx{grid-row:3;height:auto;display:block;margin-top:40px}
   .riga .intro{position:static;margin-bottom:22px}
-  .didascalia{grid-row:2;align-self:end}
   .capo{grid-template-columns:1fr}
   .capo h2,.capo p{grid-column:auto}
   .capo p{margin-top:22px}
-  .passi{grid-template-columns:1fr 1fr;row-gap:40px}
   .nome .capo-n,.tavola{grid-column:1 / -1}
   .tavola{margin-top:32px}
   .storia figure{grid-column:1 / -1;max-width:380px;margin-top:0}
@@ -212,8 +222,9 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .riga .sx{grid-row:3;margin-top:22px}
   .riga .intro{margin-bottom:18px;font-size:17px}
   .piena{margin-top:var(--sez)}
-  .piena figcaption{padding-left:var(--m);padding-right:var(--m)}
-  .passi{grid-template-columns:1fr;row-gap:28px;margin-top:48px}
+  .piena img{aspect-ratio:4/5}
+  .storia figcaption{text-wrap:balance}
+  .filiera{margin-top:44px;font-size:18px}
   .tavola{display:block;margin-top:28px}
   .pezzo-o{width:calc(100% - 44px);max-width:340px}
   .leg{--fuori:40px;transform:translateY(-5px)}
@@ -257,11 +268,10 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 <section class="w apertura" aria-labelledby="titolo">
   <h1 id="titolo">Tacchi per le calzature di&nbsp;lusso</h1>
 
-  <div class="palco" id="palco" role="tabpanel" aria-labelledby="t-plastica">
-    <img hidden id="i-legno" src="img/tacco-legno-1x.jpg" srcset="img/tacco-legno-1x.jpg 1x, img/tacco-legno-2x.jpg 2x" alt="Due tacchi in legno grezzo, uno segnato a matita rossa" style="--w:707;--h:319;--cx:349;--b:302;--ow:565" width="707" height="319">
+  <div class="palco" id="palco" role="tabpanel" aria-labelledby="t-serie">
+    <img hidden id="i-legno" src="img/tacco-legno-1x.jpg" srcset="img/tacco-legno-1x.jpg 1x, img/tacco-legno-2x.jpg 2x" alt="Due tacchi in legno grezzo, uno segnato a matita rossa" style="--w:678;--h:319;--cx:306;--b:302;--ow:565" width="678" height="319">
     <img hidden id="i-prototipo" src="img/tacco-prototipo-1x.jpg" srcset="img/tacco-prototipo-1x.jpg 1x, img/tacco-prototipo-2x.jpg 2x" alt="Prototipo di tacco color avorio" style="--w:431;--h:476;--cx:169;--b:459;--ow:215" width="431" height="476">
-    <img id="i-plastica" src="img/tacco-plastica-1x.jpg" srcset="img/tacco-plastica-1x.jpg 1x, img/tacco-plastica-2x.jpg 2x" alt="Stiletto a calice nero" style="--w:520;--h:552;--cx:274;--b:517;--ow:211" width="520" height="552" fetchpriority="high">
-    <img hidden id="i-plexiglas" src="img/tacco-plexiglas-1x.jpg" srcset="img/tacco-plexiglas-1x.jpg 1x, img/tacco-plexiglas-2x.jpg 2x" alt="Tacco in plexiglas trasparente, a facce piane" style="--w:400;--h:444;--cx:221;--b:426;--ow:199" width="400" height="444">
+    <img id="i-serie" src="img/tacco-plastica-1x.jpg" srcset="img/tacco-plastica-1x.jpg 1x, img/tacco-plastica-2x.jpg 2x" alt="Stiletto a calice nero, di serie" style="--w:520;--h:552;--cx:274;--b:517;--ow:210" width="520" height="552" fetchpriority="high">
   </div>
 
   <div class="riga">
@@ -269,22 +279,21 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
       <p class="intro">Progettiamo e produciamo tacchi per i calzaturifici delle grandi griffe, dal disegno del cliente alla serie. Nella Riviera del Brenta dal 1945.</p>
       <a class="bottone" href="mailto:tacchificioriviera@tacchificioriviera.it?subject=Un%20disegno%20da%20realizzare">Inviaci il disegno</a>
     </div>
-    <ul class="materie" role="tablist" aria-label="Materia del tacco">
+    <ul class="materie" role="tablist" aria-label="Dal legno alla serie">
       <li><button type="button" role="tab" id="t-legno" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="legno">Legno</button></li>
       <li><button type="button" role="tab" id="t-prototipo" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="prototipo">Prototipo</button></li>
-      <li><button type="button" role="tab" id="t-plastica" aria-controls="palco" aria-selected="true" tabindex="0" data-i="plastica">Plastica</button></li>
-      <li><button type="button" role="tab" id="t-plexiglas" aria-controls="palco" aria-selected="false" tabindex="-1" data-i="plexiglas">Plexiglas</button></li>
+      <li><button type="button" role="tab" id="t-serie" aria-controls="palco" aria-selected="true" tabindex="0" data-i="serie">Serie</button></li>
     </ul>
-    <p class="didascalia" id="didascalia" aria-live="polite">Stiletto a calice, nero</p>
+    <p class="didascalia" id="didascalia" aria-live="polite">Di serie: stiletto a calice, nero</p>
   </div>
 </section>
 
 <figure class="piena">
   <picture>
-    <source media="(max-width:520px)" srcset="img/incisione-m-600.jpg 600w, img/incisione-m-864.jpg 864w" sizes="100vw">
-    <img src="img/incisione-1440.jpg" srcset="img/incisione-960.jpg 960w, img/incisione-1440.jpg 1440w, img/incisione-1920.jpg 1920w" sizes="(min-width:1440px) 1440px, 100vw" alt="Mani che incidono un fiore su un tacco in metallo, con una punta" width="1440" height="720" loading="lazy">
+    <source media="(max-width:520px)" srcset="img/incisione-m-600.jpg 600w, img/incisione-m-864.jpg 864w" sizes="calc(100vw - 40px)">
+    <img src="img/incisione-1200.jpg" srcset="img/incisione-800.jpg 800w, img/incisione-1200.jpg 1200w, img/incisione-1920.jpg 1920w" sizes="(min-width:1440px) 1328px, (min-width:1101px) calc(100vw - 112px), (min-width:861px) calc(100vw - 80px), calc(100vw - 56px)" alt="Mani che incidono un fiore su un tacco in metallo, con una punta" width="1200" height="600" loading="lazy">
   </picture>
-  <figcaption class="w piccolo">Un fiore inciso a mano su un tacco in metallo</figcaption>
+  <figcaption class="piccolo">Un fiore inciso a mano su un tacco in metallo</figcaption>
 </figure>
 
 <section class="w sez" id="disegno" aria-labelledby="h-disegno">
@@ -292,11 +301,12 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
     <h2 class="serif" id="h-disegno">Dal disegno al tacco</h2>
     <p>Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo, fino al pezzo di serie.</p>
   </div>
-  <ol class="passi">
-    <li><h3><span class="num">1</span>Il disegno</h3><p>Si parte sempre dal disegno della griffe.</p></li>
-    <li><h3><span class="num">2</span>Il progetto</h3><p>Il disegno, interpretato, diventa il progetto al CAD.</p></li>
-    <li><h3><span class="num">3</span>Il prototipo</h3><p>Il prototipo, color avorio o in legno, si prova sotto la scarpa e si corregge a matita.</p></li>
-    <li><h3><span class="num">4</span>La serie</h3><p>Stampaggio a iniezione, finissaggio e imballaggio. Ogni pezzo viene controllato.</p></li>
+  <ol class="filiera">
+    <li><span class="num">1</span>Disegno del cliente</li>
+    <li><span class="num">2</span>Progettazione</li>
+    <li><span class="num">3</span>Stampaggio a iniezione</li>
+    <li><span class="num">4</span>Finissaggio</li>
+    <li><span class="num">5</span>Imballaggio</li>
   </ol>
 </section>
 
@@ -323,8 +333,8 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 <section class="w sez" id="storia" aria-labelledby="h-storia">
   <div class="storia">
     <figure>
-      <img src="img/tacco-legno-1x.jpg" srcset="img/tacco-legno-1x.jpg 707w, img/tacco-legno-2x.jpg 1414w" sizes="(max-width:520px) 92vw, 440px" width="707" height="319" loading="lazy" alt="Due tacchi in legno grezzo, uno segnato a matita rossa">
-      <figcaption class="piccolo">Due tacchi in legno grezzo, uno segnato a matita rossa</figcaption>
+      <img src="img/archivio-488.jpg" width="488" height="562" loading="lazy" alt="Foto d'archivio in bianco e nero: un uomo con una pergamena e una statuetta">
+      <figcaption class="piccolo">Dall'archivio dell'azienda</figcaption>
     </figure>
     <div class="testo">
       <h2 class="serif" id="h-storia">Tre generazioni di Boldrin</h2>
@@ -341,7 +351,7 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   <div class="cert">
     <div class="capo-c">
       <h2 id="h-cert">Sistemi certificati</h2>
-      <p class="piccolo">Progettazione e fabbricazione di tacchi in plastica per calzature di lusso: stampaggio a iniezione, finissaggio, imballaggio. Ente SGS.</p>
+      <p class="piccolo">Progettazione e fabbricazione di tacchi in plastica per calzature di lusso. Ente di certificazione SGS.</p>
     </div>
     <table class="num">
       <tbody>
@@ -373,8 +383,8 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 <footer class="piede">
   <div class="w">
     <img src="img/timbro-chiaro.svg" alt="" width="96" height="96" loading="lazy">
-    <p class="dati num"><b>Tacchificio Riviera S.r.l.</b><br>Via Pola 22, 30039 Stra (VE). P.IVA e C.F. 02005670274, REA VE-190999, capitale sociale 99.000 euro.<br>Tel. +39 049 502844, fax +39 049 504969. PEC tacchificioriviera@pec.tacchificioriviera.it</p>
-    <p class="link"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni (whistleblowing)</a><br><a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></p>
+    <p class="dati num"><b>Tacchificio Riviera S.r.l.</b><br>Via Pola 22, 30039 Stra (VE). P.IVA e C.F. 02005670274, <span class="intero">REA VE-190999</span>, capitale sociale 99.000 euro.<br>Tel. <span class="intero">+39 049 502844</span>, fax <span class="intero">+39 049 504969</span>. PEC <span class="intero">tacchificioriviera@</span><wbr><span class="intero">pec.tacchificioriviera.it</span></p>
+    <p class="link"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">Procedura whistleblowing</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">Privacy whistleblowing</a><br><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni SA8000</a><br><a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></p>
   </div>
 </footer>
 
@@ -382,10 +392,9 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 (function(){
   var schede=[].slice.call(document.querySelectorAll('.materie [role=tab]'));
   var testi={
-    legno:'Due tacchi in legno grezzo',
-    prototipo:'Prototipo, color avorio',
-    plastica:'Stiletto a calice, nero',
-    plexiglas:'Plexiglas trasparente, a facce piane'
+    legno:'Legno grezzo, segnato a matita rossa',
+    prototipo:'Prototipo color avorio',
+    serie:'Di serie: stiletto a calice, nero'
   };
   var dida=document.getElementById('didascalia'), palco=document.getElementById('palco');
   function scegli(b,focus){

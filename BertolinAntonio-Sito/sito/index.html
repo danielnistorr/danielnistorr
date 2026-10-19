@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antonio Bertolin, ossidazione anodica di titanio e alluminio</title>
+<meta name="description" content="Ossidazione anodica di titanio e alluminio, Type II, brillantatura, passivazione e sabbiatura su minuteria di precisione. Reparto a Tombelle di Vigonovo (VE).">
+<link rel="preload" href="fonts/monasans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Mona Sans, variabile (larghezza 75-125 %, peso 200-900). SIL Open Font License 1.1 */
+@font-face{font-family:'Mona Sans';font-style:normal;font-weight:200 900;font-stretch:75% 125%;font-display:swap;
+  src:url(fonts/monasans-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Mona Sans';font-style:normal;font-weight:200 900;font-stretch:75% 125%;font-display:swap;
+  src:url(fonts/monasans-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2113,U+A720-A7FF}
+
+:root{
+  --bianco:#FFFFFF;
+  --alluminio:#E6E7E8;   /* alluminio naturale: il solo campo pieno, i trattamenti */
+  --grafite:#1C1E21;     /* testo e piede */
+  --grigio:#565A60;      /* note e didascalie (6:1 sul campo alluminio) */
+  --spento:#8A8E94;      /* trattamenti che non valgono per il metallo scelto */
+  --oro:#8F6B1D;         /* oro dell'anodica, solo al passaggio sui link */
+  --filetto:#C4C7CB;
+  --m:64px;              /* margine laterale */
+  --g:24px;              /* canale */
+  --ritmo:128px;         /* spazio tra le sezioni */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bianco);color:var(--grafite);
+  font-family:'Mona Sans',Arial,sans-serif;font-stretch:100%;font-weight:400;
+  font-size:18px;line-height:1.55;font-kerning:normal;text-rendering:optimizeLegibility;font-synthesis:none}
+img{display:block;max-width:100%;height:auto}
+figure{margin:0}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a,button{transition:color .12s linear}
+a:hover{color:var(--oro)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--grafite);outline-offset:3px}
+.num{font-variant-numeric:lining-nums proportional-nums}
+.nw{white-space:nowrap}
+.gabbia{padding-left:var(--m);padding-right:var(--m);max-width:1440px;margin:0 auto}
+h1,h2,h3{margin:0;font-weight:430;font-stretch:112%;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.salta{position:absolute;left:var(--m);top:-60px;background:var(--grafite);color:var(--bianco);padding:10px 14px;z-index:5;font-size:15px}
+.salta:focus{top:12px;color:var(--bianco)}
+
+/* testata */
+.testata{display:flex;align-items:center;justify-content:space-between;height:96px;gap:24px}
+.testata .marchio{display:block;flex:none}
+.testata .marchio img{height:44px;width:auto}
+.testata nav{display:flex;gap:36px;font-size:15px;font-weight:500}
+.testata nav a,.testata .azioni a{text-decoration:none}
+.testata .azioni{display:flex;gap:28px;font-size:15px;font-weight:500}
+.testata .azioni .scrivi{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}
+
+/* apertura */
+.apertura .titolo{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.apertura h1{grid-column:1 / -1;font-size:min(134px,calc((100vw - 2 * var(--m)) / 9.85));line-height:.92;letter-spacing:-.035em;padding-top:44px;white-space:nowrap}
+.apertura h1 .riga{display:inline}
+.apertura .lede{grid-column:7 / span 6;margin-top:30px;font-size:19px;line-height:1.5;max-width:31em}
+.telaio{position:relative;margin-top:44px}
+.telaio img{width:100%;aspect-ratio:1440 / 700;max-height:760px;object-fit:cover;object-position:0 50%}
+.legenda{position:absolute;left:var(--x);top:var(--y);display:flex;align-items:center;transform:translateY(-50%);
+  font-size:13px;font-weight:500;line-height:1;white-space:nowrap;pointer-events:none}
+.legenda::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--bianco);
+  box-shadow:0 0 0 2px var(--grafite);transform:translate(-50%,0);flex:none}
+.legenda i{display:block;width:44px;height:1px;background:var(--bianco);margin-left:-5px}
+.legenda b{font-weight:500;background:var(--bianco);padding:7px 10px 6px;color:var(--grafite)}
+.legenda b span{margin-right:8px;color:var(--grigio)}
+.didascalia{font-size:14px;color:var(--grigio);padding-top:14px}
+
+/* chi */
+.chi{padding-top:var(--ritmo);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.chi .grande{grid-column:1 / span 9;font-size:34px;line-height:1.24;letter-spacing:-.012em;font-stretch:104%}
+.chi .settori{grid-column:6 / span 6;margin-top:48px;color:var(--grigio)}
+.chi .settori strong{color:var(--grafite);font-weight:500}
+
+/* trattamenti */
+.campo{background:var(--alluminio);margin-top:var(--ritmo);padding:96px 0 104px}
+.campo h2{font-size:64px;line-height:1;letter-spacing:-.025em}
+.filtro{margin-top:36px;font-size:30px;line-height:1.3;letter-spacing:-.012em;font-stretch:108%;font-weight:400}
+.filtro button{font:inherit;letter-spacing:inherit;color:var(--grafite);background:none;border:0;padding:0;margin:0;cursor:pointer;
+  min-height:44px;text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:2px;text-underline-offset:.2em;text-decoration-color:var(--grigio)}
+.filtro button:hover{color:var(--oro)}
+.filtro button[aria-pressed="true"]{text-decoration-style:solid;text-decoration-color:var(--grafite);text-decoration-thickness:3px;font-weight:500}
+.filtro button[aria-pressed="true"]:hover{color:var(--grafite)}
+.esito{font-size:15px;color:var(--grigio);min-height:1.55em;margin-top:6px}
+.elenco{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--grafite)}
+.elenco li{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:24px 0 26px;border-bottom:1px solid var(--filetto)}
+.elenco h3{grid-column:1 / span 5;font-size:26px;line-height:1.15;letter-spacing:-.012em;font-weight:450}
+.elenco h3 small{display:block;font-size:14px;font-stretch:100%;font-weight:400;letter-spacing:0;color:var(--grigio);margin-top:8px}
+.elenco .cosa{grid-column:6 / span 4;font-size:17px;line-height:1.5;padding-top:3px}
+.elenco .dato{grid-column:10 / span 3;text-align:right;font-size:30px;line-height:1.1;letter-spacing:-.01em;font-stretch:112%;font-weight:400}
+.elenco .dato small{display:block;font-size:14px;font-stretch:100%;letter-spacing:0;font-weight:400;color:var(--grigio);margin-top:8px}
+.elenco li.fuori,.elenco li.fuori small{color:var(--spento)}
+
+/* colore */
+.colore{padding-top:var(--ritmo)}
+.colore h2{font-size:64px;line-height:1;letter-spacing:-.025em;max-width:9.5em}
+.colore .corpo{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:end;margin-top:16px}
+.colore .corpo > p{grid-column:1 / span 3;padding-bottom:48px}
+.pezzi{position:relative;grid-column:4 / span 9}
+.pezzi .legenda{font-size:13px}
+.pezzi .legenda b{background:transparent;padding:0 0 0 8px}
+.pezzi .legenda::before{background:var(--grafite);box-shadow:none;width:7px;height:7px}
+.pezzi .legenda i{background:var(--grafite);width:36px;margin-left:-2px}
+.legenda.sx{flex-direction:row-reverse;transform:translate(-100%,-50%)}
+.legenda.sx::before{transform:translate(50%,0)}
+.legenda.sx i{margin-left:0;margin-right:-5px}
+.pezzi .legenda.sx b{padding:0 8px 0 0}
+.pezzi .legenda.sx i{margin-right:-2px}
+.alluminio{margin-top:104px}
+.alluminio h2{font-size:40px;line-height:1.08;letter-spacing:-.018em;max-width:12em;margin-bottom:40px}
+.colori{list-style:none;margin:0;padding:0;position:relative;height:44px;font-size:14px}
+.colori li{position:absolute;top:16px;left:var(--a);width:var(--l);border-top:1px solid var(--grafite);padding-top:9px;line-height:1.2}
+.alluminio .sotto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);margin-top:40px}
+.alluminio .sotto p{grid-column:7 / span 5}
+
+/* reparto e contatti */
+.reparto{padding-top:var(--ritmo);padding-bottom:var(--ritmo);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start}
+.reparto .foto{grid-column:1 / span 7}
+.reparto .dati{grid-column:9 / span 4}
+.reparto .anno{font-size:120px;line-height:.86;letter-spacing:-.04em;font-stretch:112%;font-weight:400;font-variant-numeric:lining-nums proportional-nums}
+.reparto .anno + p{margin-top:18px;max-width:24em}
+.reparto h2{font-size:34px;line-height:1.12;letter-spacing:-.015em;margin-top:64px}
+.reparto .indirizzo{margin-top:8px;color:var(--grigio)}
+.reparto .tel{display:inline-block;font-size:38px;line-height:1;letter-spacing:-.015em;font-stretch:112%;font-weight:430;margin-top:28px;text-decoration:none}
+.reparto .preventivo{margin-top:24px;max-width:26em}
+
+/* piede */
+.piede{background:var(--grafite);color:#D7D9DC;font-size:14px;line-height:1.6}
+.piede .gabbia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding-top:56px;padding-bottom:56px}
+.piede img{height:34px;width:auto}
+.piede .c1{grid-column:1 / span 3}
+.piede .c2{grid-column:5 / span 3}
+.piede .c3{grid-column:8 / span 3}
+.piede .c4{grid-column:11 / span 2;text-align:right}
+.piede a:hover{color:#E2C27A}
+.piede a:focus-visible{outline-color:#FFFFFF}
+
+/* 1024 */
+@media (max-width:1200px){
+  :root{--m:48px;--ritmo:112px}
+  .testata nav{gap:24px}
+  .testata .azioni{gap:20px}
+  .apertura .lede{grid-column:6 / span 7;font-size:18px}
+  .chi .grande{grid-column:1 / span 11;font-size:30px}
+  .chi .settori{grid-column:5 / span 8}
+  .campo h2,.colore h2{font-size:54px}
+  .filtro{font-size:26px}
+  .elenco h3{grid-column:1 / span 6;font-size:23px}
+  .elenco .cosa{grid-column:7 / span 6}
+  .elenco .dato{grid-column:7 / span 6;text-align:left;margin-top:12px;font-size:24px}
+  .elenco .dato small{display:inline;margin-left:10px}
+  .colore .corpo{margin-top:24px}
+  .colore .corpo > p{grid-column:1 / span 4}
+  .pezzi{grid-column:5 / span 8}
+  .alluminio h2{font-size:34px}
+  .piede .c1{grid-column:1 / -1;margin-bottom:28px}
+  .piede .c2{grid-column:1 / span 4}
+  .piede .c3{grid-column:5 / span 4}
+  .piede .c4{grid-column:9 / span 4}
+  .reparto .foto{grid-column:1 / span 6}
+  .reparto .dati{grid-column:8 / span 5}
+  .reparto .anno{font-size:96px}
+  .reparto .tel{font-size:34px}
+}
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px;--g:16px;--ritmo:96px}
+  .testata nav{display:none}
+  .apertura .lede{grid-column:1 / -1;max-width:34em;margin-top:24px}
+  .telaio{margin-top:40px}
+  .chi .grande{grid-column:1 / -1;font-size:26px}
+  .chi .settori{grid-column:1 / -1;margin-top:32px}
+  .campo{padding:88px 0 96px}
+  .elenco h3{grid-column:1 / span 12}
+  .elenco .cosa{grid-column:1 / span 12;margin-top:12px}
+  .elenco .dato{grid-column:1 / span 12}
+  .colore .corpo{display:block}
+  .colore .corpo > p{max-width:34em;padding-bottom:0}
+  .pezzi{margin-top:24px}
+  .alluminio .sotto p{grid-column:1 / span 10}
+  .reparto .foto,.reparto .dati{grid-column:1 / -1}
+  .reparto .dati{margin-top:64px}
+  .piede .c1,.piede .c2,.piede .c3,.piede .c4{grid-column:1 / -1;text-align:left;margin-top:24px}
+  .piede .c1{margin-top:0}
+}
+/* 390 */
+@media (max-width:560px){
+  :root{--m:16px;--g:12px;--ritmo:80px}
+  body{font-size:17px}
+  .testata{height:72px}
+  .testata .marchio img{height:30px}
+  .testata .azioni{gap:16px;font-size:15px}
+  .apertura h1{font-size:min(47px,12vw);letter-spacing:-.03em;padding-top:28px;line-height:.95;white-space:normal}
+  .apertura h1 .riga{display:block}
+  .apertura .lede{font-size:17px;margin-top:20px}
+  .telaio{margin-top:28px}
+  .telaio img{aspect-ratio:auto;max-height:none}
+  .telaio .legenda{left:var(--xm);top:var(--ym)}
+  .legenda.sx-m{flex-direction:row-reverse;transform:translate(-100%,-50%)}
+  .legenda.sx-m::before{transform:translate(50%,0)}
+  .legenda.sx-m i{margin-left:0;margin-right:-5px}
+  .legenda i{width:24px}
+  .didascalia{padding-left:var(--m);padding-right:var(--m)}
+  .chi .grande{font-size:22px;line-height:1.3}
+  .campo h2,.colore h2{font-size:36px}
+  .filtro{margin-top:24px;font-size:23px}
+  .elenco h3{font-size:22px}
+  .elenco .dato{font-size:22px}
+  .elenco .dato small{display:block;margin-left:0;margin-top:6px}
+  .pezzi{margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1)}
+  .pezzi .legenda{font-size:12px}
+  .pezzi .legenda i{width:16px}
+  .alluminio{margin-top:72px}
+  .alluminio h2{font-size:26px;margin-bottom:28px}
+  .alluminio .tubi{margin-left:calc(var(--m) * -1);width:calc(100% + 2 * var(--m));max-width:none}
+  .colori{margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1);height:40px;font-size:12px}
+  .alluminio .sotto{margin-top:32px}
+  .alluminio .sotto p{grid-column:1 / -1}
+  .reparto .foto{margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1)}
+  .reparto .anno{font-size:80px}
+  .reparto h2{font-size:26px;margin-top:48px}
+  .reparto .tel{font-size:34px}
+}
+@media (max-width:350px){
+  .testata .azioni .scrivi{display:none}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="gabbia testata">
+  <a class="marchio" href="#" aria-label="Antonio Bertolin Srl, inizio pagina"><img src="img/logo-grafite.png" width="265" height="96" alt="Antonio Bertolin Srl Meccaniche"></a>
+  <nav aria-label="Principale">
+    <a href="#trattamenti">Trattamenti</a>
+    <a href="#colore">Colore</a>
+    <a href="#reparto">Reparto</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <div class="azioni">
+    <a class="scrivi" href="mailto:info@bertolinantonio.it">Scriveteci</a>
+    <a class="num" href="tel:+39049503240">049 503240</a>
+  </div>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <div class="gabbia">
+    <div class="titolo">
+      <h1 id="titolo"><span class="riga">Ossidazione </span><span class="riga">anodica</span></h1>
+      <p class="lede">Titanio e alluminio, poi passivazione, brillantatura e sabbiatura, su minuteria di precisione per il medicale e l'industria. Il reparto è a Tombelle di Vigonovo, in provincia di Venezia.</p>
+    </div>
+  </div>
+  <figure class="telaio">
+    <picture>
+      <source media="(max-width:560px)" srcset="img/telaio-alto-390.jpg 390w, img/telaio-alto-780.jpg 780w, img/telaio-alto-1060.jpg 1060w" sizes="100vw">
+      <img src="img/telaio-largo-1440.jpg" srcset="img/telaio-largo-960.jpg 960w, img/telaio-largo-1440.jpg 1440w, img/telaio-largo-1720.jpg 1720w" sizes="100vw" width="1440" height="700" fetchpriority="high" alt="Telaio di ossidazione caricato con file di boccole tornite, ognuna fissata alla sua barra">
+    </picture>
+    <span class="legenda" style="--x:18.6%;--y:46%;--xm:21%;--ym:84%" aria-hidden="true"><i></i><b><span>1</span>Barra del telaio</b></span>
+    <span class="legenda sx-m" style="--x:52.2%;--y:25%;--xm:73%;--ym:27%" aria-hidden="true"><i></i><b><span>2</span>Boccola tornita</b></span>
+    <figcaption class="gabbia didascalia">Boccole sul telaio, prima del bagno di ossidazione.</figcaption>
+  </figure>
+</section>
+
+<section class="gabbia chi" aria-label="Chi siamo">
+  <p class="grande">Antonio Bertolin è un'officina metalmeccanica. Ha cominciato costruendo materiale rotabile per metropolitane, tram, filobus e Ferrovie dello Stato, poi particolari meccanici su specifica del cliente. Oggi ha in casa anche i trattamenti di superficie, a cominciare dall'ossidazione anodica di alluminio e titanio.</p>
+  <p class="settori"><strong>Per chi lavoriamo.</strong> Minuteria per il medicale e il dentale, l'aeronautico, il navale, l'automotive, la moto e la bici. Pezzi per la moda e l'arredamento, dove l'alluminio colorato conta anche per come si vede.</p>
+</section>
+
+<section class="campo" id="trattamenti" aria-labelledby="t-tratt">
+  <div class="gabbia">
+    <h2 id="t-tratt">Sei trattamenti, tre metalli</h2>
+    <p class="filtro" role="group" aria-label="Filtra i trattamenti per metallo"><span>Il pezzo è in </span><button type="button" data-metallo="al" aria-pressed="false">alluminio</button>, <button type="button" data-metallo="ti" aria-pressed="false">titanio</button> o <button type="button" data-metallo="ac" aria-pressed="false">acciaio</button>?</p>
+    <p class="esito" id="esito" aria-live="polite"></p>
+    <ul class="elenco">
+      <li data-metalli="ti">
+        <h3>Ossidazione anodica del titanio<small>Titanio</small></h3>
+        <p class="cosa">Colore senza vernice né pigmento, su tutto il pezzo o solo in parte. Serve anche a riconoscere i pezzi, alla biocompatibilità e contro il grippaggio.</p>
+        <p class="dato num"><span class="nw">0&ndash;400 nm</span><small>di ossido</small></p>
+      </li>
+      <li data-metalli="al">
+        <h3>Ossidazione anodica dell'alluminio<small>Alluminio</small></h3>
+        <p class="cosa">Naturale oppure nero, rosso, blu e oro. Su finitura lucida, opaca o satinata.</p>
+        <p class="dato num"><span class="nw">5&ndash;20 micron</span><small>di strato</small></p>
+      </li>
+      <li data-metalli="ti">
+        <h3>Type II, ossidazione dura<small>Titanio</small></h3>
+        <p class="cosa">Antigrippante e lubrificante. Per l'aeronautico, il navale, il medicale e i pezzi che lavorano in acqua di mare.</p>
+        <p class="dato">Grigio scuro<small>colore della superficie</small></p>
+      </li>
+      <li data-metalli="ti">
+        <h3>Brillantatura<small>Titanio</small></h3>
+        <p class="cosa">Toglie bave e spigoli vivi e lascia la superficie brillante, con un'alta resistenza alla corrosione.</p>
+      </li>
+      <li data-metalli="ti ac">
+        <h3>Passivazione<small>Titanio e acciaio</small></h3>
+        <p class="cosa">In acido citrico oppure nitrico, secondo il materiale del pezzo.</p>
+        <p class="dato">Citrico o nitrico<small>secondo il materiale</small></p>
+      </li>
+      <li data-metalli="al ti ac">
+        <h3>Sabbiatura e micropallinatura<small>Alluminio, titanio e acciaio</small></h3>
+        <p class="cosa">Lavoro meccanico e manuale che erode lo strato più superficiale del metallo, anche su minuteria.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="gabbia colore" id="colore" aria-labelledby="t-colore">
+  <h2 id="t-colore">Sul titanio il colore è uno spessore</h2>
+  <div class="corpo">
+    <p>L'ossido cresce da 0 a 400 nanometri e la luce, riflessa sopra e sotto lo strato, arriva all'occhio come oro, blu, rosa o verde. Nessuna vernice: le misure del pezzo non cambiano in modo sostanziale.</p>
+    <figure class="pezzi">
+      <img src="img/minuteria-1440.jpg" srcset="img/minuteria-720.jpg 720w, img/minuteria-1080.jpg 1080w, img/minuteria-1440.jpg 1440w" sizes="(max-width:900px) 100vw, 940px" width="1440" height="1160" loading="lazy" alt="Minuteria medicale e dentale in titanio anodizzato: placchetta, viti e boccole oro, verdi, rosa e blu">
+      <span class="legenda sx" style="--x:59.2%;--y:12.4%" aria-hidden="true"><i></i><b>Blu</b></span>
+      <span class="legenda sx" style="--x:44%;--y:22.6%" aria-hidden="true"><i></i><b>Rosa</b></span>
+      <span class="legenda sx" style="--x:48.6%;--y:47.8%" aria-hidden="true"><i></i><b>Verde</b></span>
+      <span class="legenda" style="--x:56.6%;--y:86.4%" aria-hidden="true"><i></i><b>Oro</b></span>
+    </figure>
+  </div>
+
+  <div class="alluminio">
+    <h2>Sull'alluminio il colore è un pigmento</h2>
+    <img class="tubi" src="img/tubi-1440.jpg" srcset="img/tubi-720.jpg 720w, img/tubi-1440.jpg 1440w, img/tubi-2180.jpg 2180w" sizes="(max-width:560px) 100vw, 1312px" width="1440" height="505" loading="lazy" alt="Tubi in alluminio anodizzato in fila: nero, blu, azzurro, oro, rosso, rame e naturale">
+    <ul class="colori" aria-label="Colori dell'alluminio in foto">
+      <li style="--a:1.7%;--l:10.6%">Nero</li>
+      <li style="--a:12.9%;--l:20.4%">Blu</li>
+      <li style="--a:33.9%;--l:20.4%">Oro</li>
+      <li style="--a:54.9%;--l:20.6%">Rosso</li>
+      <li style="--a:76.1%;--l:22.2%">Naturale</li>
+    </ul>
+    <div class="sotto">
+      <p>Lo strato va da 5 a 20 micron. Oltre al naturale ci sono il nero, il rosso, il blu e l'oro, su una finitura lucida, opaca o satinata.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gabbia reparto" id="reparto" aria-labelledby="t-dove">
+  <figure class="foto">
+    <img src="img/reparto-960.jpg" srcset="img/reparto-640.jpg 640w, img/reparto-960.jpg 960w, img/reparto-1280.jpg 1280w" sizes="(max-width:900px) 100vw, 760px" width="1280" height="960" loading="lazy" alt="Lo stabilimento di Viale Serenissima 15 visto dall'alto, con il tetto a shed">
+  </figure>
+  <div class="dati" id="contatti">
+    <p class="anno">2018</p>
+    <p>A luglio l'officina si è allargata e ha installato l'impianto di ossidazione anodica dell'alluminio e del titanio.</p>
+    <h2 id="t-dove">Viale Serenissima 15, Tombelle di Vigonovo</h2>
+    <p class="indirizzo">Zona artigianale, 30030 Vigonovo (VE)</p>
+    <a class="tel num" href="tel:+39049503240">049 503240</a>
+    <p class="preventivo">Per un preventivo mandate disegno, materiale e quantità a <a href="mailto:info@bertolinantonio.it">info@bertolinantonio.it</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="gabbia">
+    <div class="c1"><img src="img/logo-bianco.png" width="265" height="96" alt="Antonio Bertolin Srl"></div>
+    <div class="c2">Antonio Bertolin Srl<br>Sede legale: Via Ugo Foscolo 9, 35139 Padova<br><span class="num">P.IVA 03418840280</span></div>
+    <div class="c3">Stabilimento: Viale Serenissima 15<br>30030 Tombelle di Vigonovo (VE)<br><a class="num" href="tel:+39049503240">T. 049 503240</a></div>
+    <div class="c4"><a href="mailto:info@bertolinantonio.it">info@bertolinantonio.it</a><br><a href="https://www.bertolinantonio.it/privacy/">Privacy</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nomi={al:'l’alluminio',ti:'il titanio',ac:'l’acciaio'};
+  var bottoni=[].slice.call(document.querySelectorAll('.filtro button'));
+  var righe=[].slice.call(document.querySelectorAll('.elenco li'));
+  var esito=document.getElementById('esito');
+  function scegli(m){
+    bottoni.forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.metallo===m));});
+    if(!m){righe.forEach(function(r){r.classList.remove('fuori');});esito.textContent='';return;}
+    var n=0;
+    righe.forEach(function(r){var ok=r.dataset.metalli.split(' ').indexOf(m)>-1;r.classList.toggle('fuori',!ok);if(ok)n++;});
+    esito.textContent='Per '+nomi[m]+': '+n+' trattamenti su 6. Toccate di nuovo per vederli tutti.';
+  }
+  bottoni.forEach(function(b){
+    b.addEventListener('click',function(){
+      scegli(b.getAttribute('aria-pressed')==='true'?null:b.dataset.metallo);
+    });
+  });
+})();
+</script>
+</body>
+</html>

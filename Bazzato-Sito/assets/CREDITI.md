@@ -38,3 +38,22 @@ Scaricate da https://www.bazzato.it il 19/10/2026, più la foto della sede dalla
 ## Uso nel prototipo B della home (`_prova/home/b/`)
 
 Lavorate con `_prova/script/proto_b_img.py` (toni neutri appena freddi, saturazione ridotta). Ritocchi fatti, ammessi dalle licenze Unsplash e Pexels: nella foto di Razumov tolte le scritte SKODA e SUPERB sul portellone, WURTH sull'avvolgitubo e MIRKA sul carrello, con una velatura chiara sul pavimento; nella foto di Masth tolto il marchio sul guanto. Usate anche le bussole di Bélanger in taglio panoramico. Restano segnaposto da sostituire.
+
+## Aggiunte per la versione finale della home (19/10/2026)
+
+Licenze lette il 19/10/2026 sulla pagina di ogni foto; nessuna delle due è già usata in un'altra home della campagna (controllati tutti i `*-Sito/assets/CREDITI.md`, anche per autore).
+
+| File | Pagina della foto | Autore | Misura scaricata | Licenza | Note |
+|---|---|---|---|---|---|
+| `esterne/unsplash-oa68pmfG-qk-hmg-berlina-bianca-studio.jpg` | https://unsplash.com/photos/a-white-car-on-a-white-background-oa68pmfG-qk | Hyundai Motor Group (@hyundaimotorgroup) | 5000x5000 | "Free to use under the Unsplash License" (non Unsplash+) | berlina bianca (Hyundai Sonata) di tre quarti in studio bianco. Segnaposto per l'apertura: va sostituita con una foto vera |
+| `esterne/pexels-8986138-podrez-auto-sul-ponte.jpg` | https://www.pexels.com/photo/white-car-in-a-garage-for-check-up-8986138/ | Artem Podrez | 2800x1867 (originale 6240x4160) | "Free", Pexels License | SUV bianco intero sul ponte a due colonne, officina luminosa. Segnaposto |
+
+## Uso nella versione finale (`sito/img/`, script `_prova/script/finale_img.py`)
+
+Versione finale costruita sulla bozza B, "Il ponte" (scelta del committente), il 19/10/2026. Sostituisce la versione costruita prima sulla bozza A: la berlina in studio di Hyundai Motor Group (Unsplash oa68pmfG-qk) resta scaricata in `esterne/` ma non è più usata.
+
+- `officina-*.jpg`, `officina-alta-*.jpg` (apertura): Renee Razumov (Pexels 33814736), Pexels License. Ritocchi: tolte le scritte SKODA e SUPERB sul portellone, WURTH sull'avvolgitubo e MIRKA sul carrello; tolto il parafango bianco sfocato in primo piano in basso a sinistra, ricostruendo il pavimento con le piastrelle spostate lungo la prospettiva; gialli smorzati; toni neutri appena freddi, saturazione ridotta, velatura chiara sul pavimento. Taglio largo (2280 px) e verticale per il telefono.
+- `gomme-*.jpg`, `gomme-alta-*.jpg`: Jimmy Nilsson Masth (Unsplash 9uHal2Dd9aE), Unsplash License. Tolto il marchio sul guanto, ombre aperte, taglio 2:1 e quadrato per il telefono.
+- `ponte-*.jpg`, `ponte-alta-*.jpg`: Artem Podrez (Pexels 8986138), Pexels License. Tolti SUBARU e FORESTER dal portellone e BRIDGESTONE dal fianco della gomma; saturazione ridotta; taglio 2:1 e quadrato. Il modello resta riconoscibile dalla forma.
+- Non più usate nella home: Mclean (disco), Bélanger (bussole), Yvette S (battistrada), Brunner, Buehner, wal_, Hyundai Motor Group.
+- Tutte e tre restano segnaposto: in pagina portano l'etichetta "Foto indicativa" e vanno rifatte dal vero (vedi `LEGGIMI.md`).

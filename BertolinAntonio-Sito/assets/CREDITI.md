@@ -27,3 +27,7 @@ Versioni scaricate dai CDN `images.unsplash.com` e `images.pexels.com` a 2400 px
 ## Immagini del sito attuale in `originali/`
 
 Scaricate il 19/10/2026 da `https://www.bertolinantonio.it/wp-content/uploads/` (30 file: 19 foto JPEG con i loro ritagli, 9 PNG tra grafiche, loghi e marchi degli enti, 2 certificati in PDF). Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`. Le foto di prodotto sono di Antonio Bertolin srl (alcune portano la scritta dell'azienda sul supporto); i marchi IQNET e IMQ sono degli enti di certificazione e si usano secondo le loro regole.
+
+## Home finale (bozza B, "Il telaio")
+
+Aggiornato il 19 ottobre 2026. La versione finale in `sito/` usa solo foto di `originali/` (telaio `DSC_0029`, minuteria medicale, tubi `acciaio-scaled`, foto aerea, logo del piede). Nessuna foto di `esterne/` è in pagina.

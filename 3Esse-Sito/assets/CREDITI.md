@@ -32,12 +32,18 @@ Scaricate da images.unsplash.com a 2400 px di lato lungo.
 
 Scartata dopo il download: Hardco Group `HyiMqlu5s9I` (copertura bianca in acciaio in montaggio): è un fotogramma morbido con una scritta semitrasparente sovrimpressa ("...snip"). File cancellato.
 
-## Estratti dal PDF in `originali/pdf-estratti/` (usati nella home finale)
+## Usate nella home finale (`sito/img/`, bozza B "Registro delle opere")
 
-Estratti il 19/10/2026 con `pdfimages -f 28 -l 28 -png` da `originali/pdf/Company-Project-Portfolio.pdf` (pagina 28, "Bridge Sarpi, Padova, Italy, engineering and detailing", 2008), senza ricompressione. Materiale di Tre Esse S.r.l.: l'uso va confermato con l'azienda.
+Aggiornato il 19/10/2026. Tutte con lo stesso trattamento (monocromo in grigi chiari, script `_prova/script/finale_b_img.py`).
 
-- `p28-000.png`, `p28-001.png`: le due strisce raster (1027x537 ciascuna, 220 ppi) che compongono l'assonometria dell'arco del Sarpi. Da qui la tavola della home (`sito/img/sarpi-tavola-*`), con il tratto ricostruito a 2x.
-- `p28-002.png`: il Sarpi finito all'ora blu, riflesso nell'acqua (931x529). Da qui `sito/img/sarpi-opera-*`.
-- `p28-003.png`: il Sarpi all'ora blu dalla carreggiata (931x657). Non usato.
+- `apertura-*`: Jao Kop, `esterne/unsplash-kop-ZovCK9PgffY.jpg`, licenza Unsplash. Segnaposto: non è un'opera di Tre Esse (Helsinki). In pagina senza didascalia; va sostituita (vedi LEGGIMI).
+- `nodo-*`: Jonathan Lim, `esterne/unsplash-lim-0BvlhW4zthY.jpg`, licenza Unsplash. Segnaposto: non è un'opera di Tre Esse (Vancouver). In pagina senza didascalia; va sostituita.
+- `adria-*`: `originali/portfolio-ritagli/adria-cupola-dal-basso.jpg`, materiale di Tre Esse dal portfolio del 2013 (uso da confermare con l'azienda).
 
-La cupola di Adria della home (`sito/img/adria-cupola-*`) viene da `portfolio-ritagli/adria-cupola-dal-basso.jpg`.
+## Estratti dal PDF in `originali/pdf-estratti/` (non usati nella home finale)
+
+Estratti il 19/10/2026 con `pdfimages -f 28 -l 28 -png` da `originali/pdf/Company-Project-Portfolio.pdf` (pagina 28, "Bridge Sarpi, Padova, Italy, engineering and detailing", 2008), senza ricompressione. Servivano alla versione costruita sulla bozza A, scartata dal committente. Materiale di Tre Esse S.r.l.
+
+- `p28-000.png`, `p28-001.png`: le due strisce raster (1027x537 ciascuna, 220 ppi) dell'assonometria dell'arco del Sarpi.
+- `p28-002.png`: il Sarpi finito all'ora blu, riflesso nell'acqua (931x529).
+- `p28-003.png`: il Sarpi all'ora blu dalla carreggiata (931x657).

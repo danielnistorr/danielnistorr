@@ -36,3 +36,12 @@ Scaricate il 19/10/2026 da `http://solteco.it/images/` (20 file, 1,4 MB). Invent
 ## Copie più grandi per il prototipo A (`_prova/crawl/grandi/`)
 
 Aggiunto il 19/10/2026. Stesse foto e stesse licenze della tabella sopra, scaricate più grandi dal CDN `images.pexels.com` per il ritaglio dell'apertura: `simoes-13524733-4000.jpg` (Fernanda Simões, pexels.com/photo/13524733, 4000x6000) e `tarazevich-5963144-3500.jpg` (Anna Tarazevich, pexels.com/photo/5963144, 3500x2333). Le suole di Simões sono scontornate e messe su carta da `_prova/script/proto_a_img.py`.
+
+## Home finale (base B), `sito/img/`
+
+Aggiunto il 19/10/2026. La home finale usa tre foto, tutte Pexels con licenza "Free" (vedi sopra), lavorate da `_prova/script/finale_b_img.py` (toni freddi spenti, neutri scaldati, rossi riportati verso il cuoio, nitidezza dopo la riduzione) ed esportate in JPEG in più larghezze:
+- apertura: breakermaximus, https://www.pexels.com/photo/close-up-of-a-brown-leather-shoe-10855838/ (copia grande `_prova/crawl/grandi/breaker-10855838-4600.jpg`, 4600x3000, dal CDN `images.pexels.com`);
+- processo: Fernanda Simões, https://www.pexels.com/photo/craftsman-repairing-leather-shoe-sole-with-precision-30725646/ (copia grande `_prova/crawl/grandi/pennello-30725646-4480.jpg`, 4480x6720);
+- adesivi: Anna Tarazevich, https://www.pexels.com/photo/man-hands-holding-leather-and-paint-and-working-5963144/ (copia grande già presente, `tarazevich-5963144-3500.jpg`).
+
+Le foto di Shvets (cardatura) ed EvoMao (linea con le sneaker) del prototipo B non sono più in pagina. Nessuna delle tre compare nei CREDITI.md delle altre home della campagna (controllo del 19/10/2026).

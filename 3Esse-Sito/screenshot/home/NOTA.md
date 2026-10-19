@@ -1,50 +1,63 @@
-# Tre Esse, home finale "La tavola"
+# Tre Esse, home finale: "Registro delle opere" (dalla bozza B)
 
-Pagina: `sito/index.html` (statica, si apre con file:///). Immagini in `sito/img/`, carattere in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini, pagina, controlli, screenshot). Pagina alta 4680 px a 1440 e 5188 px a 390.
+Il committente ha visto le due bozze e ha scelto la B. Questa versione sostituisce del tutto quella costruita prima sulla bozza A ("La tavola"), i cui script sono in `_prova/script/scartata-a/`. Della B restano l'idea, la prima schermata, il trattamento delle foto, il carattere e i colori; sono cambiati i dati, l'esecuzione, il telefono, la sezione Studio e i contatti.
 
-## L'idea
+File: `sito/index.html`, `sito/img/` (16 JPEG in più larghezze), `sito/fonts/` (Switzer e licenza). Si rifà tutto con `bash _prova/script/build_finale.sh`; controlli con `node _prova/script/finale_b_controlli.mjs file://.../sito/index.html <cartella>`.
 
-Il prodotto di Tre Esse è il disegno che fa stare in piedi un arco d'acciaio. La prima schermata è una tavola tecnica vera: carta chiara, l'assonometria dell'arco del cavalcaferrovia Sarpi al vivo sul bordo destro e su quello inferiore, e in basso a destra il cartiglio, il riquadro dei dati che chiude ogni tavola di progetto (opera, luogo, anno, lavoro). Dentro il cartiglio c'è l'unico gesto della pagina: Disegno / Opera. Un tocco e nello stesso spazio compare il ponte finito. "Dal disegno all'opera" non è più una sezione: è l'interruttore.
+## Idea
 
-Rispetto al prototipo A la prima schermata è ripensata, non ritoccata: il disegno passa da oggetto accanto al titolo a tavola al vivo (59 % della larghezza a 1440), la didascalia "Tav." in basso a sinistra sparisce dentro il cartiglio, i richiami scendono da 3 a 2, la foto calda sta a un tocco e non due schermate più giù. Il cartiglio è il segno del mestiere che Mario Agnoletto e Hambro non hanno: con il nome di un concorrente la pagina non regge, perché la tavola e i dati sono di Tre Esse.
+Un ufficio tecnico si racconta con quello che ha calcolato. In alto un impalcato in acciaio visto da sotto, in grigi chiari: il cielo e la neve diventano la carta della pagina e le pile a V si posano sul titolo. Sotto c'è il registro delle opere: un elenco tipografico (anno, opera, luogo, tonnellate o metri cubi) e nessuna griglia di miniature. Poche parole e i numeri veri del portfolio.
 
 ## Le prime due schermate
 
-1. Apertura (1440x900): "Ingegneria strutturale" in Overpass 300 a 132 px, una frase su cosa fanno e per chi, il bottone verde "Scriveteci il progetto" e l'email. A destra la tavola del Sarpi, con i richiami 1 Arco e 2 Imposta; in basso a destra il cartiglio (filetti da 1 px #8A9096, righe in Overpass 600 a 12 px con cifre tabellari) con l'interruttore alto 44 px. In stato Opera la foto del Sarpi all'ora blu compare a destra, allineata al titolo e al vivo sul bordo destro, alla sua misura nativa; il cartiglio resta dov'è. Una riga sottile chiude il foglio.
-   - A 390: titolo, tavola a tutta larghezza (al vivo a destra e in basso), subito sotto il cartiglio con l'interruttore: tutto entro 806 px dei 844. Frase e bottone vengono dopo.
-2. "Dal Brennero a Riyad": la cupola di Adria da sotto in quadrato su 7 colonne (755 px, file da 865: mai oltre la misura nativa), accanto la didascalia con 90 m e 700 t in grande; sotto, dieci opere in tabella (anno, opera, luogo, acciaio o volume) con cifre tabellari e filetti, e il link al portfolio completo in PDF.
+- **1440x900**: testata chiara (Tre Esse, Opere, Servizi, Studio, Contatti, telefono). Sotto, la foto a tutta larghezza alta 490 px che sfuma nella carta, senza didascalia. Poi "Ingegneria delle strutture" su una riga a 122 px in Switzer Light. In basso, a sinistra, la frase su cosa fanno e per chi; a destra tre righe del registro (2011 Emirati 8000 t, 2008 Sarpi, 2006 Adria 700 t) e il link "Tutte le 33 opere del registro".
+- **Seconda schermata a 1440**: il registro. A sinistra il titolo resta fermo durante lo scorrimento, con il contatore in rosso minio (14 ponti e passerelle); a destra i filtri e le righe, con il luogo di ogni ponte preso dal portfolio.
+- **390x844**: testata con Opere e telefono, poi la foto tagliata sul vertice della V (362 px). Il titolo va su due righe a 52 px, poi la frase e le prime righe del registro, tutto dentro gli 844 px. A 320 il menu tiene solo il telefono.
 
-Poi: "Un solo interlocutore, dal calcolo al cantiere" (i quattro servizi in 2x2, senza icone né riquadri, e due righe grigie su software e strumenti), contatti con il telefono a 96 px su fondo carta e tre colonne (Ufficio, Posta, PEC e fax), piede scuro con i dati societari, l'unico cambio di fondo.
+## Cosa è cambiato rispetto alla bozza B
+
+- Dati: ogni ponte ora ha il suo luogo, preso dal portfolio: Isonzo a Farra d'Isonzo (GO), Versa a Mariano del Friuli (GO), Pegognaga (Mantova), Po di Volano a Migliarino (FE), Tremonti di Sopra (PN), Sambughè (TV), Campocroce sull'A4 (TV), Formentin ad Abano Terme (PD), Komo a Kango (Gabon). Paesi indicati per Nizza, Riyad, Doha e San Pietroburgo. Tesa 105 resta tra le opere in acciaio (80 t). I conteggi dei filtri restano giusti: 14+9+3+4+3 = 33.
+- Le due "Foto indicativa" in pagina sono state tolte, insieme a ogni didascalia sulle foto di repertorio: le note di lavorazione stanno nel LEGGIMI.
+- Studio: prima accanto alla cupola di Adria c'era una fascia vuota. Ora il titolo e il testo stanno in alto a sinistra e la didascalia in basso, allineata al piede della foto, con i due numeri del portfolio in grande: diametro 90 m, acciaio 700 t. La cupola è al vivo sul bordo destro, larga al massimo 865 px, cioè la sua misura vera, mai ingrandita. È appena più chiara della bozza.
+- Fascia dei controventi: il cielo ora coincide esattamente con la carta e i lati sfumano, così non si vede più l'orlo grigio della foto. Non supera mai i 1600 px veri (a 1920 resta di 1600 e il cielo continua nella carta).
+- Contatti su carta e non più su fondo nero, con il telefono grande (108 px, cifre tabellari). Il nero resta solo nel piede con i dati societari, come vuole il committente: chiaro, e il nero solo dove serve.
+- Telefono: sistemata la crenatura di Switzer a 17 px (con la resa predefinita Chromium a 1x spezzava "stat ici", "costrut tivi"; ora il testo usa `text-rendering: geometricPrecision`). Bottoni dei filtri alti 45 px. Menu ridotto a Opere e telefono.
+- Pagina: 5171 px a 1440, prima 5669. A 390 è di 5362 px.
+- Tolti il link "Privacy" che puntava a "#" e il PDF del portfolio (22 MB).
 
 ## Caratteri e colori
 
-- Overpass, una famiglia sola: 300 per titoli, telefono e misure grandi, 400 testo, 600 voci, cartiglio e righe della tabella; cifre tabellari (`font-variant-numeric: tabular-nums`) per anni, tonnellate, metri cubi e telefoni. Disegno di Delve Withrington (Delve Fonts) per Red Hat, licenza SIL Open Font License 1.1 (testo in `sito/fonts/OFL.txt`), file woff2 presi da Google Fonts e serviti dalla pagina.
-- Perché: Overpass ridisegna la Highway Gothic della segnaletica stradale e il suo nome vuol dire cavalcavia: è la lettera delle infrastrutture che Tre Esse calcola. Il registro viene dagli studi di ingegneria: schlaich bergermann partner (titolo grande e sottile su bianco) e Dissing+Weitling (bianco pieno, un solo colore). Niente monospazio, niente corsivi.
-- Colori: carta #F4F3EF, inchiostro #16191C, grigio testo #5E646A, grigio quota #8A9096 (filetti del cartiglio e delle righe), verde #2E7D4F preso dal "3" del marchio, solo per marchio, bottone e sottolineature dei link.
-
-## Ispirazioni del committente (Pelletteria Graziella, Studio N19)
-
-Usate al minimo, di proposito. Il soggetto è tecnico e lavora per le imprese: un ufficio di calcolo e disegni costruttivi di ponti in acciaio non è un marchio di moda o di lusso, quindi il registro viene dagli studi di ingegneria (sbp, Dissing+Weitling) e non dalla moda. Da N19 resta solo il grottesco grande su fondo chiaro con l'aria intorno; da Graziella niente (fondo nero, corsivi, foto di prodotto di lusso sono il registro sbagliato per chi disegna ponti).
+- **Switzer** (Jérémie Hornus, Indian Type Foundry), da Fontshare. Pesi 300 (titoli, numeri grandi), 400 (testo), 500 (marchio, menu, h3, filtro attivo). I file woff2 sono quelli serviti da Fontshare, non modificati e serviti dalla pagina in `sito/fonts/`. Licenza: **ITF Free Font License 2.0** (`sito/fonts/FFL.txt`), che ammette l'uso commerciale e il self-hosting sul proprio sito e vieta di modificare o convertire i file (per questo non sono stati ridotti). L'attribuzione non è obbligatoria. Le cifre sono tabellari (`tabular-nums`), quindi anni, tonnellate e telefono si allineano senza monospazio. Una sola famiglia.
+- Riferimenti: sbp (titolo grottesco sottilissimo e grande, "Wir sind Ingenieure") e Dissing+Weitling (foto da bordo a bordo e una riga sotto). Il registro come tabella tipografica viene dai cataloghi delle opere degli studi di ingegneria, non dalla moda.
+- Colori: cemento chiaro #ECEBE7 (fondo e bianco delle foto), inchiostro #1A1C1E, acciaio #5F6870 per il testo secondario (4,8:1). Il rosso minio #C0502A è il colore dell'antiruggine: compare solo nel filo del filtro attivo, e il contatore usa #A8431F (5,05:1). Il piede ha fondo inchiostro con testo #C9CCCF.
 
 ## Interazione
 
-Un solo gesto: l'interruttore Disegno / Opera nel cartiglio. Clic, tocco, oppure frecce sinistra e destra quando il fuoco è sui bottoni; `aria-pressed` sui due bottoni, anello di fuoco verde, 44 px di altezza. Il cambio è netto, senza dissolvenza; l'unica transizione (0,12 s) è sul colore dei bottoni. La foto dell'opera si carica dopo la pagina, così il cambio è immediato. Nessuna animazione allo scorrere, niente effetti sul cursore, nessun hover che sbiadisce.
+Un solo gesto: i filtri del registro (Ponti e passerelle 14, Acciaio 9, Cemento armato 3, Restauro 4, Project management 3, Tutte 33). Sono bottoni con `aria-pressed` e funzionano con mouse, dito, Tab, Invio e spazio. Accorciano l'elenco senza ricaricare la pagina e aggiornano il contatore (`aria-live`). Il link "Tutte le 33 opere" della prima schermata porta al registro e lo apre su Tutte. Senza JavaScript si vedono tutte le righe. L'unica transizione dura 0,12 s, solo sul colore dei filtri. Niente dissolvenze allo scorrere, niente effetti che seguono il cursore.
 
-## Foto e disegni
+## Foto, origine e licenza
 
-Tutto materiale di Tre Esse, nessuna foto di repertorio (le foto Unsplash di `assets/esterne/` non sono usate).
-- `sarpi-tavola-*` (WebP, 640-1800 px): assonometria dell'arco del Sarpi. Fonte: le due strisce raster della pagina 28 di `Company-Project-Portfolio.pdf` (1027x537 ciascuna, 220 ppi), estratte senza ricompressione con `pdfimages` in `assets/originali/pdf-estratti/`. Tolti i due dettagli staccati (nodo in alto a sinistra, attacco dei pendini in basso a destra) per lasciare l'arco solo. Il tratto è ricostruito, non solo ingrandito: x2 bicubico, sfocatura di 0,7 px, curva a soglia morbida, inchiostro e carta cotti nel file. A 1:1 non ci sono gradini; a 1440 il disegno si vede a 0,93 della misura nativa.
-- `sarpi-opera-*` (JPEG, 480-923 px): il Sarpi finito all'ora blu, stessa pagina del PDF (931x529), tolto il filo grigio del bordo. Mai servita oltre 923 px.
-- `adria-cupola-*` (JPEG, 480-865 px): ritaglio dal portfolio (1155x865), quadrato centrato sull'oculo, schiarito appena (gamma 0,86), non ingrandito.
-- Diritti: sono dell'azienda o dei fotografi delle imprese; l'uso va confermato (LEGGIMI).
+Un solo trattamento per tutte (PIL): monocromo, ombre sollevate a grigio acciaio #3A3E42, luci portate al colore della carta. Ogni foto è in 3 o 4 larghezze con srcset, in JPEG.
+
+| In pagina | Origine | Licenza |
+|---|---|---|
+| Apertura | Jao Kop, unsplash.com/photos/ZovCK9PgffY (Helsinki) | Unsplash License, uso commerciale, attribuzione non richiesta. **Segnaposto**: non è un'opera di Tre Esse |
+| Fascia | Jonathan Lim, unsplash.com/photos/0BvlhW4zthY (Vancouver) | Unsplash License. **Segnaposto**: non è un'opera di Tre Esse |
+| Studio | Cupola del circuito di Adria, ritaglio dal portfolio Tre Esse 2013 (1155x865, quadrato di 865) | Materiale dell'azienda, uso da confermare |
+
+Nessuna foto nuova è stata scaricata e nessuna immagine è generata. Le due foto Unsplash non compaiono in altre home della campagna (controllati tutti i `*-Sito/assets/CREDITI.md` il 19/10/2026). Le foto vere da scattare sono descritte nel LEGGIMI.
+
+## Ispirazioni del committente (Pelletteria Graziella, Studio N19)
+
+Le ho usate pochissimo, come già nella bozza. Tre Esse è un ufficio di ingegneria strutturale che lavora per imprese e carpenterie, non un marchio di moda o di lusso. Il registro giusto viene dagli studi di ingegneria (sbp, Dissing+Weitling), non dalla pelletteria. Di Graziella non ho preso niente: fondo nero, serif con parole in corsivo e foto di prodotto sono il tono sbagliato per chi calcola ponti. Di N19 ho preso solo due tratti: il titolo enorme in grottesco su fondo chiaro e il vuoto attorno.
 
 ## Controlli
 
-- Larghezze guardate a pezzi: 320, 390, 768, 1024, 1366x768, 1440, 1536x864, 1920. Nessuno scorrimento orizzontale, nessuna sovrapposizione: il cartiglio non copre il disegno a nessuna misura (sotto i 900 px di altezza la tavola scorre a sinistra in proporzione).
-- Tastiera: le frecce cambiano vista e spostano il fuoco; provato a 1440 e a 390 col tocco.
-- U+2014: nessuno in pagina, nella NOTA, nel LEGGIMI e negli script.
-- `segnali.sh` a 1440: 15 soglie su 18 a posto. Restano tre voci, tutte volute:
-  - area immagini 20,7 % (soglia 35 %): il giudice ha chiesto di togliere la sezione del prospetto, doppione dell'apertura, e di non usare foto altrui. Le altre foto di Tre Esse sono sotto i 500 px o con la filigrana. L'apertura è per metà disegno. Con le foto nuove del Sarpi e del Ponte Verde si può aggiungere una fascia.
-  - una tabella di 10 righe in home (soglia 4): chiesta dal giudice al posto della prosa. Qui il dato è il prodotto: anno, opera, luogo, tonnellate.
-  - una sola misura di H2 (da guardare): l'unico elemento grande è il titolo d'apertura, come nei riferimenti.
-- Divieti del committente: nessuno (niente gradienti, emoji, Inter, card con bordo colorato, vetro, scuro a basso contrasto, tre box con icona, badge, icone, dissolvenze, effetti sul cursore, lineette lunghe, corsivo d'accento).
+- Scorrimento orizzontale: nessuno da 320 a 2560 px (passo 10/40).
+- Altezza: 5171 px a 1440, 5362 a 390, 5294 a 1920, 4456 a 1024, 5770 a 768.
+- Prime schermate guardate a 320, 390, 768, 1024, 1440 e 1920. Pagine intere a 1440 e 390 guardate a pezzi. Nessuna sovrapposizione tra blocchi di testo (controllo automatico a tutte le misure).
+- Immagini: a 1x nessuna è servita oltre la sua misura vera. A 2x la fascia (1600 px) e la cupola (865 px) arrivano a 1,8-2 volte: sono le misure massime che esistono, e vanno rifatte dal vero.
+- Filtri: dito, mouse, Invio, spazio e link dalla prima schermata provati (14, 9, 4, 3 e 33 righe, contatore giusto).
+- `segnali.sh` (`_prova/segnali-finale/`): 0 soglie bloccanti su 10. Foto al 35,1 %, monospazio 0 %, una famiglia, nessuna etichetta maiuscola, nessun titolo col punto. Da guardare: una sola misura di H2 (58 px), tenuta di proposito come in Rieder e Mutina.
+- Nessun carattere U+2014 nella pagina, negli script e nei .md di questa consegna. Nessuna nota di lavorazione a vista (la build fallisce se trova "indicativa", "provvisori", "da rifare", "proposta", "segnaposto").
+- Divieti del committente: nessun gradiente, nessuna emoji, niente Inter, card, glassmorphism, tre box con icona, badge, icone, dissolvenze allo scorrere, effetti sul cursore o corsivi d'accento.
