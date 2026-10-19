@@ -4,22 +4,26 @@ Contenuti della home di Tek.Lam per WordPress + Elementor: la home statica appro
 sito/index.html), riportata sezione per sezione nel generatore di Benvegnù.
 
 - Widget nativi di Elementor, modificabili dal cliente: testata (segno e scritta del marchio, menu di Ultimate Addons,
-  telefono), titolo e anno dell'apertura con la foto, i testi della sezione dello spessore, la fascia della
-  piegatrice, i sette passi del percorso, settori e note, famiglia con la foto della saldatura e le persone,
+  telefono), titolo e anno dell'apertura con la foto, i testi della sezione dello spessore, i sette passi del percorso, settori e note, famiglia con la foto della saldatura e le persone,
   telefono, invito e recapiti dei contatti, piede.
 - Widget HTML (nodo RAW del motore) solo per le parti che Elementor gratuito non fa: l'interruttore Ferro, Inox,
   Alluminio e la sezione della lamiera in millimetri veri (lettura, legenda, scala, guide, tratteggio), con lo
   script della pagina statica; il fondo decorativo dei contatti (un <picture> senza testo alternativo, come nella
   statica).
-- L'impaginazione (griglia a 12 colonne, misure fluide con clamp, punti di rottura 1180, 1100, 820 e 640 px della
+- L'impaginazione (griglia a 12 colonne, misure fluide con clamp, punti di rottura 1240, 1100, 820, 640 e 380 px della
   statica) è il foglio di stile della pagina statica, con le classi tkl-, dentro i nodi RAW: vale uguale per il
   template Elementor e per il fallback HTML.
 
 Testi e dati: tutti dalla home statica (verificati in 01-analisi.md). Nessun dato nuovo.
 La versione per la home precedente ("Il foglio annidato", bocciata) è in _prova/wp-vecchio-foglio/.
 """
+import os
+import re
+
 import motore as m
 from motore import C, H, T, I, RAW, MENU
+
+QUI = os.path.dirname(os.path.abspath(__file__))
 
 PREFISSO = 'tkl'
 NOME_SITO = 'Tek.Lam'
@@ -68,7 +72,7 @@ TEMA = {
         'h2':       _st(TESTO, '200', (72, 51.2, 40), 0.96, -2.2),
         'h2sp':     _st(TESTO, '200', (77.8, 55.3, 42), 0.96, -2.3),
         'body':     _st(TESTO, '400', (18, 18, 17), 1.55),
-        'n':        _st(TESTO, '200', (60, 44, 30), 1.0, -1.8),
+        'n':        _st(TESTO, '500', (15, 15, 15), 1.55),
         'passo':    _st(TESTO, '400', (21, 21, 20), 1.2, -0.21),
         'mac':      _st(TESTO, '600', (15, 15, 15), 1.4),
         'mis':      _st(TESTO, '400', (15, 15, 15), 1.4),
@@ -142,7 +146,8 @@ TEL = f'049{NBSP}980{NBSP}14{NBSP}86'
 TEL_LINK = 'tel:+390499801486'
 
 # voci del menu: in WordPress è il menu "Menu Tek.Lam" (link personalizzati verso le ancore della home)
-VOCI_MENU = [('Lavorazioni', '/#percorso'), ('Settori', '/#settori'), ('Famiglia Volpato', '/#famiglia'), ('Contatti', '/#contatti')]
+VOCI_MENU = [('Lavorazioni', '/#percorso'), ('Settori', '/#settori'), ('Famiglia Volpato', '/#famiglia'), ('Contatti', '/#contatti'),
+             (TEL, TEL_LINK)]   # il telefono si vede solo nel menu a scomparsa, sotto 380 px, come nella statica
 
 
 # Nei widget Testo il colore al passaggio del mouse (link_hover) è uguale a quello del link: Elementor lo usa anche
@@ -173,7 +178,8 @@ def senza_scatola(sel):
 CSS_VARIABILI = (
     ':root{--nero:#050403;--fumo:#1b1916;--bianco:#f4f1ea;--grigio-scuro:#a59e93;--chiaro:#efece6;--inchiostro:#16130f;'
     '--grigio:#625b52;--bronzo:#8a5a1c;--paglia:#e2b46c;--filo:rgba(244,241,234,.22);--filo-chiaro:rgba(22,19,15,.18);'
-    '--m:clamp(20px,4.45vw,64px);--gap:clamp(16px,1.67vw,24px);--f:"Sofia Sans",system-ui,sans-serif}'
+    '--m:clamp(20px,4.45vw,64px);--intervallo:clamp(16px,1.67vw,24px);--f:"Sofia Sans",system-ui,sans-serif}'
+    # nella statica è --gap: in Elementor --gap è la spaziatura dei contenitori, quindi qui si chiama --intervallo
     # Elementor rende morbido lo scorrimento verso le ancore; la statica no
     'html{-webkit-text-size-adjust:100%;scroll-behavior:auto}'
 )
@@ -221,14 +227,14 @@ def contenitore(scope):
     return f'{scope}{{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;gap:0!important;min-height:0!important}}'
 
 
-GRIGLIA = ('display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)!important;row-gap:0!important;'
+GRIGLIA = ('display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--intervallo)!important;row-gap:0!important;'
            'padding:0 var(--m)!important;width:100%!important;max-width:none!important;margin:0!important;min-height:0!important;')
 # la riga di una griglia: i widget prendono la colonna dal foglio di stile, non dal contenitore flex di Elementor
-FIGLI = '{s}>*{{width:auto!important;max-width:none!important;min-width:0}}'
+FIGLI = ':where({s})>*{{width:auto!important;max-width:none!important;min-width:0}}'
 
 CSS_COMUNE = (
     ':where(.tkl-sito) .tkl-griglia{' + GRIGLIA + '}'
-    + FIGLI.format(s=':where(.tkl-sito .tkl-griglia)') +
+    + FIGLI.format(s='.tkl-sito .tkl-griglia') +
     ht(':where(.tkl-sito) .tkl-titolo-sez') + '{font:200 clamp(40px,5vw,72px)/.96 var(--f)!important;letter-spacing:-.03em!important;'
     'text-wrap:balance!important;text-transform:none!important;color:inherit!important}'
     # una foto con il taglio verticale solo sul telefono (widget Immagine), come <picture> nella statica
@@ -272,22 +278,56 @@ CSS_TESTATA = (
     '.tkl-menu .hfe-nav-menu__layout-horizontal a.hfe-menu-item::before,.tkl-menu .hfe-nav-menu__layout-horizontal a.hfe-menu-item::after,'
     '.tkl-menu .hfe-pointer__underline a.hfe-menu-item::after{display:none!important}'
     '.tkl-menu .tkl-nav-l a[aria-current]{border:0!important;padding:0!important}'
-    '.tkl-menu details,.tkl-menu .hfe-nav-menu__toggle{display:none!important}'
+    # la voce del telefono: solo nel menu a scomparsa, sotto 380 px
+    '.tkl-menu li:has(>a[href^="tel:"]){display:none!important}'
     # Ultimate Addons e il fallback passano al menu a scomparsa a 1024 px; la statica a 820 toglie il menu: fino a 821 resta in riga
     '@media (min-width:821px){'
     '.tkl-menu .hfe-nav-menu__layout-horizontal,.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu{visibility:visible!important;'
     'opacity:1!important;height:auto!important;position:static!important;display:flex!important;background:none!important;'
     'border:0!important;box-shadow:none!important;width:auto!important;left:auto!important;top:auto!important}'
     '.tkl-menu .hfe-nav-menu__layout-horizontal li.menu-item{width:auto!important;background:none!important;border:0!important}'
-    '.tkl-menu .tkl-nav-l{display:flex!important}}'
+    '.tkl-menu .tkl-nav-l{display:flex!important}'
+    '.tkl-menu details,.tkl-menu .hfe-nav-menu__toggle{display:none!important}}'
     '.tkl-testa .tkl-tel p{margin:0!important}'
     '.tkl-testa .tkl-tel,.tkl-testa .tkl-tel p{font:400 16px/1.55 var(--f)!important;color:var(--bianco)!important}'
-    '.tkl-testa .tkl-tel a{color:var(--bianco)!important;text-decoration:none!important;font-variant-numeric:tabular-nums;white-space:nowrap}'
+    '.tkl-testa .tkl-tel a{display:block;color:var(--bianco)!important;text-decoration:none!important;font-variant-numeric:tabular-nums;white-space:nowrap}'
     '.tkl-testa .tkl-tel a:hover{color:var(--paglia)!important}'
     '@media (max-width:1100px){.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu,.tkl-menu .tkl-nav-l{gap:22px!important}}'
-    '@media (max-width:820px){.tkl-testa .tkl-menu{display:none!important}.tkl-testa .tkl-tel{margin-left:auto!important}}'
-    '@media (max-width:640px){.tkl-testa{padding-top:18px!important}'
-    '.tkl-testa .tkl-tel,.tkl-testa .tkl-tel p{font-size:15px!important}}'
+    # sotto 820 px il bottone "Menu" apre le voci in un pannello sotto la testata, come nella statica
+    '@media (max-width:820px){'
+    '.tkl-testa{gap:12px 20px!important}'
+    '.tkl-testa .tkl-tel{margin-left:auto!important;order:1}'
+    '.tkl-testa .tkl-menu{margin-left:0!important;order:2}'
+    '.tkl-testa .tkl-menu,.tkl-testa .tkl-menu>.elementor-widget-container,.tkl-menu .hfe-nav-menu,.tkl-menu details{position:static!important}'
+    '.tkl-menu .hfe-nav-menu__toggle,.tkl-menu summary{display:flex!important;align-items:center;justify-content:center;min-height:44px!important;'
+    'min-width:0!important;margin:0!important;padding:0 16px!important;border:1px solid var(--filo)!important;border-radius:0!important;'
+    'background:none!important;cursor:pointer;list-style:none;color:var(--bianco)!important;font:400 16px/1.55 var(--f)!important}'
+    '.tkl-menu .hfe-nav-menu__toggle:hover,.tkl-menu summary:hover{border-color:var(--bianco)!important}'
+    '.tkl-menu .hfe-nav-menu__toggle .hfe-nav-menu-icon,.tkl-menu summary .tkl-ico,.tkl-menu summary::-webkit-details-marker{display:none!important}'
+    '.tkl-menu .hfe-nav-menu__toggle::after,.tkl-menu summary::after{content:"Menu"}'
+    '.tkl-menu .hfe-nav-menu__toggle:focus-visible,.tkl-menu summary:focus-visible{outline:2px solid var(--paglia);outline-offset:3px;box-shadow:none}'
+    '.tkl-menu details{display:block!important}'
+    '.tkl-menu nav.hfe-nav-menu__layout-horizontal,.tkl-menu details>ul{display:none!important}'
+    '.tkl-menu .hfe-nav-menu__toggle.hfe-active-menu+nav.hfe-nav-menu__layout-horizontal,.tkl-menu details[open]>ul{display:flex!important;'
+    'flex-direction:column!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;width:auto!important;'
+    'height:auto!important;visibility:visible!important;opacity:1!important;margin:12px 0 0!important;padding:4px var(--m) 20px!important;'
+    'background:var(--nero)!important;border:0!important;border-bottom:1px solid var(--filo)!important;box-shadow:none!important;z-index:6!important}'
+    '.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu{display:flex!important;flex-direction:column!important;gap:0!important;margin:0!important;padding:0!important;'
+    'border:0!important;background:none!important}'
+    '.tkl-menu nav li.menu-item,.tkl-menu details li{display:block;margin:0!important;padding:0!important;border:0!important;background:none!important;'
+    'width:auto!important}'
+    '.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu>li>a.hfe-menu-item,.tkl-menu details li a{display:block!important;padding:13px 0!important;font:400 22px/1.55 var(--f)!important;'
+    'color:var(--bianco)!important;background:none!important;border:0!important;border-top:1px solid var(--filo)!important;text-decoration:none!important;'
+    'text-transform:none!important;letter-spacing:0!important;justify-content:flex-start!important}'
+    '.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu>li:first-child>a.hfe-menu-item,.tkl-menu details li:first-child a{border-top:0!important}'
+    '.tkl-menu .hfe-nav-menu__layout-horizontal .hfe-nav-menu>li>a.hfe-menu-item:hover,.tkl-menu details li a:hover{color:var(--paglia)!important}}'
+    '@media (max-width:640px){.tkl-testa{padding-top:18px!important;gap:16px!important}'
+    '.tkl-testa .tkl-tel,.tkl-testa .tkl-tel p{font-size:15px!important}'
+    '.tkl-menu .hfe-nav-menu__toggle,.tkl-menu summary{font-size:15px!important;border:0!important;padding:0 2px!important}'
+    '.tkl-menu .hfe-nav-menu__toggle::after,.tkl-menu summary::after{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}}'
+    '@media (max-width:380px){.tkl-testa .tkl-tel{display:none!important}.tkl-testa .tkl-menu{margin-left:auto!important}'
+    '.tkl-menu li:has(>a[href^="tel:"]){display:block!important}'
+    '.tkl-menu a[href^="tel:"]{font-variant-numeric:tabular-nums!important}}'
 )
 
 CSS_TESTATA_ELEMENTOR = (
@@ -295,6 +335,25 @@ CSS_TESTATA_ELEMENTOR = (
     '#masthead{position:static}'
     '.hfe-skip-link{display:none!important}'
     '.tkl-menu .hfe-nav-menu li.current-menu-item>a.hfe-menu-item:not(:hover){color:var(--bianco)!important}'
+)
+
+
+# Ultimate Addons fa scorrere la pagina in 800 ms verso le ancore del menu e non chiude il pannello con Esc: qui, come nella
+# statica, il link salta subito all'ancora (il clic non arriva al gestore di Ultimate Addons), il pannello si chiude, Esc lo chiude.
+# Il bottone di Ultimate Addons (un div role=button) non si apriva con Spazio (la pagina scorreva) e con Invio portava il fuoco
+# sulla prima voce: qui Invio e Spazio lo aprono e lo chiudono lasciando il fuoco sul bottone, come il <button> della statica,
+# e il suo nome accessibile è "Menu" come nella statica (Ultimate Addons scrive "Attivazione del menu")
+SCRIPT_MENU_UAE = (
+    "<script>(function(){function t(){return document.querySelector('.tkl-menu .hfe-nav-menu__toggle.hfe-active-menu')}"
+    "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.tkl-menu a.hfe-menu-item');"
+    "if(!a||a.getAttribute('href').indexOf('#')<0)return;e.stopPropagation();var b=t();if(b)b.click()},true);"
+    "document.addEventListener('keydown',function(e){var b=t();if(e.key==='Escape'&&b){b.click();b.focus()}});"
+    "function g(e){return e.target.closest&&e.target.closest('.tkl-menu .hfe-nav-menu__toggle')}"
+    "document.addEventListener('keydown',function(e){if(g(e)&&(e.key===' '||e.key==='Enter'))e.preventDefault()},true);"
+    "document.addEventListener('keyup',function(e){var b=g(e);if(!b||(e.key!==' '&&e.key!=='Enter'))return;e.preventDefault();"
+    "e.stopPropagation();b.click()},true);"
+    "function n(){document.querySelectorAll('.tkl-menu .hfe-nav-menu__toggle').forEach(function(b){b.setAttribute('aria-label','Menu')})}"
+    "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',n);else n()})();</script>"
 )
 
 
@@ -310,9 +369,16 @@ def header():
                 stile='nav', spazio=32, pad_h=0, pad_v=0, distanza=12, align_menu='right', slug='menu-tek-lam', css='tkl-menu')
     tel = T(f'<p><a href="{TEL_LINK}">{TEL}</a></p>', style='tel', color=BIANCO, link_color=BIANCO, link_hover=BIANCO,
             sottolinea=False, css='tkl-tel')
-    globali = RAW('', css=CSS_VARIABILI + CSS_SITO + CSS_COMUNE + css_testi('tkl-testa') + CSS_TESTATA)
+    # nel fallback il menu del telefono è un <details>: un tocco su una voce o Esc lo chiudono, come nella statica
+    globali = RAW("<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.tkl-menu details a');"
+                  "if(a)a.closest('details').removeAttribute('open')});document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;"
+                  "var d=document.querySelector('.tkl-menu details[open]');if(d){d.removeAttribute('open');d.querySelector('summary').focus()}});"
+                  # le voci sono ancore della home: nessuna è "la pagina corrente" (lo script del menu del fallback le segnerebbe tutte)
+                  "document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.tkl-menu a[aria-current][href*=\"#\"]')"
+                  ".forEach(function(a){a.removeAttribute('aria-current')})})</script>",
+                  css=CSS_VARIABILI + CSS_SITO + CSS_COMUNE + css_testi('tkl-testa') + CSS_TESTATA)
     # solo in Elementor: i caratteri (nel fallback il <link> lo scrive già il motore) e le regole di Ultimate Addons
-    caratteri = RAW(caratteri_html(), css=CSS_TESTATA_ELEMENTOR, solo_elementor=True)
+    caratteri = RAW(caratteri_html() + SCRIPT_MENU_UAE, css=CSS_TESTATA_ELEMENTOR, solo_elementor=True)
     fuori = C(globali, caratteri, boxed=False, css='tkl-fuori')
     return C(fuori, marchio(), menu, tel, dir='row', align='center', gap=40, boxed=False, pad=0, tag='header',
              css='tkl-testa tkl-sito')
@@ -366,7 +432,7 @@ def footer():
 CSS_APERTURA = (
     contenitore('.tkl-apertura') +
     '.tkl-apertura{position:relative!important;min-height:max(100svh,720px)!important;display:flex!important;flex-direction:column!important;'
-    'justify-content:flex-end!important;overflow:hidden!important;background:var(--nero)!important;flex-wrap:nowrap!important}'
+    'justify-content:flex-end!important;overflow:hidden!important;background:var(--nero)!important;flex-wrap:nowrap!important;color:var(--bianco)}'
     # la foto: due widget Immagine (largo e, solo sul telefono, verticale) in un contenitore steso sulla sezione
     '.tkl-apertura .tkl-ap-foto{position:absolute!important;inset:-13% 0 0 0;width:auto!important;height:auto!important;display:block!important;'
     'padding:0!important;margin:0!important;min-height:0!important}'
@@ -382,7 +448,7 @@ CSS_APERTURA = (
     '.tkl-apertura .tkl-anno small{display:block;font-size:16px;line-height:1.3;letter-spacing:0;font-weight:400;color:var(--grigio-scuro);'
     'margin-top:18px;font-variant-numeric:normal}'
     '.tkl-apertura .tkl-riga-sotto{grid-column:1/13;display:grid!important;grid-template-columns:subgrid;align-items:end!important;'
-    'padding:24px 0 0!important;border-top:1px solid var(--filo)!important;margin:0!important;gap:0!important;column-gap:var(--gap)!important;'
+    'padding:24px 0 0!important;border-top:1px solid var(--filo)!important;margin:0!important;gap:0!important;column-gap:var(--intervallo)!important;'
     'width:auto!important;max-width:none!important;min-height:0!important}'
     + FIGLI.format(s='.tkl-apertura .tkl-riga-sotto') +
     '.tkl-apertura .tkl-sotto{grid-column:1/7;max-width:31em!important}'
@@ -409,8 +475,11 @@ CSS_APERTURA = (
     '.tkl-apertura .tkl-ind p{align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:6px 24px}}'
     '@media (max-width:640px){'
     '.tkl-apertura{min-height:0!important;display:block!important}'
-    '.tkl-apertura .tkl-ap-foto{position:relative!important;inset:auto;height:min(64svh,560px)!important}'
-    '.tkl-ap-foto img{object-position:50% 30%}'
+    # nella statica il <picture> resta in linea: l'altezza min(64svh,560px) non si applica e la foto verticale
+    # prende la sua altezza naturale. Qui lo stesso risultato
+    '.tkl-apertura .tkl-ap-foto{position:relative!important;inset:auto;height:auto!important}'
+    '.tkl-ap-foto>*,.tkl-ap-foto>*>.elementor-widget-container{height:auto!important}'
+    '.tkl-ap-foto img{height:auto!important;object-position:50% 30%;aspect-ratio:600/703}'
     '.tkl-apertura .tkl-griglia{margin-top:-64px!important;row-gap:22px!important;padding-bottom:28px!important}'
     + ht('.tkl-apertura .tkl-titolo') + '{font-size:clamp(56px,17.4vw,76px)!important;line-height:.9!important;letter-spacing:-.04em!important}'
     '.tkl-apertura .tkl-anno,.tkl-apertura .tkl-anno p{font-size:clamp(56px,17.4vw,76px)!important}'
@@ -443,7 +512,8 @@ def apertura():
 # --- 2. Lo spessore, a grandezza vera: il gesto (interruttore e sezione in millimetri veri, widget HTML)
 CSS_SPESSORE = (
     contenitore('.tkl-spessore') +
-    '.tkl-spessore{padding:clamp(88px,10vw,148px) 0 clamp(88px,10vw,140px)!important;background:var(--nero)!important;display:block!important}'
+    '.tkl-spessore{padding:clamp(88px,10vw,148px) 0 clamp(88px,10vw,140px)!important;background:var(--nero)!important;display:block!important;'
+    'color:var(--bianco)}'
     '.tkl-spessore .tkl-griglia{row-gap:40px!important;align-items:start!important}'
     '.tkl-spessore .tkl-sp-testo{grid-column:1/6;display:block!important;padding:0!important;margin:0!important;min-height:0!important}'
     + ht('.tkl-spessore .tkl-sp-h2') + '{font:200 clamp(42px,5.4vw,78px)/.96 var(--f)!important;letter-spacing:-.03em!important;'
@@ -463,12 +533,13 @@ CSS_SPESSORE = (
     '.tkl-spessore .scelta button[aria-checked="true"]{background:var(--paglia);color:var(--nero)}'
     '.tkl-spessore .scelta button[aria-checked="true"] span{color:var(--nero)}'
     '.tkl-spessore .scelta button:focus-visible{outline:2px solid var(--bianco);outline-offset:-4px;box-shadow:none}'
-    '.tkl-spessore .sp-figura{grid-column:7/13;margin:0 calc(var(--m) * -1) 0 0;--t:20}'
+    # Elementor azzera i margini delle <figure> nei widget (.elementor .elementor-widget:not(...) figure): qui servono
+    '.tkl-spessore .sp-figura{grid-column:7/13;margin:0 calc(var(--m) * -1) 0 0!important;--t:20}'
     '.tkl-spessore .lettura{display:flex;align-items:baseline;gap:18px;padding-right:var(--m)}'
     '.tkl-spessore .lettura output{font-weight:200;font-size:clamp(120px,15vw,216px);line-height:.8;letter-spacing:-.05em;'
     'font-variant-numeric:tabular-nums lining-nums;color:var(--bianco)}'
     '.tkl-spessore .lettura .u{font-weight:200;font-size:clamp(36px,3.6vw,52px);letter-spacing:-.02em}'
-    '.tkl-spessore .lettura .mat{margin-left:auto;font-size:16px;color:var(--grigio-scuro);text-align:right;line-height:1.35}'
+    '.tkl-spessore .lettura .mat{margin-left:auto!important;font-size:16px;color:var(--grigio-scuro);text-align:right;line-height:1.35}'
     '.tkl-spessore .lettura .mat b{display:block;color:var(--bianco);font-weight:500}'
     '.tkl-spessore .tavola{position:relative;margin-top:64px;height:27mm;--l:150px}'
     '.tkl-spessore .legenda{position:absolute;left:0;bottom:0;width:calc(var(--l) - 24px);height:100%;margin:0;padding:0;list-style:none}'
@@ -482,25 +553,26 @@ CSS_SPESSORE = (
     'background:repeating-linear-gradient(to top,currentColor 0 1px,transparent 1px 1mm)}'
     '.tkl-spessore .scala::after{content:"";position:absolute;right:0;bottom:0;width:12px;height:100%;'
     'background:repeating-linear-gradient(to top,currentColor 0 1px,transparent 1px 5mm)}'
-    '.tkl-spessore .sezione{position:absolute;left:var(--l);right:0;bottom:0;height:calc(var(--t) * 1mm);border:1.5px solid var(--bianco);'
-    'border-right:0;background-color:#14120f;transition:height .22s cubic-bezier(.3,.7,.2,1)}'
+    '.tkl-spessore .sezione{position:absolute;left:var(--l);right:var(--m);bottom:0;height:calc(var(--t) * 1mm);border:1.5px solid var(--bianco);'
+    'background-color:#14120f;transition:height .22s cubic-bezier(.3,.7,.2,1)}'
     '.tkl-spessore .sp-figura[data-mat="ferro"] .sezione{background-image:repeating-linear-gradient(-45deg,var(--paglia) 0 1px,transparent 1px 1.6mm)}'
     '.tkl-spessore .sp-figura[data-mat="inox"] .sezione{background-image:repeating-linear-gradient(-45deg,var(--paglia) 0 1px,transparent 1px .7mm,'
     'var(--paglia) .7mm calc(.7mm + 1px),transparent calc(.7mm + 1px) 2.6mm)}'
     '.tkl-spessore .sp-figura[data-mat="alluminio"] .sezione{background-image:repeating-linear-gradient(-45deg,var(--paglia) 0 1px,transparent 1px 2.8mm),'
     'repeating-linear-gradient(45deg,rgba(226,180,108,.45) 0 1px,transparent 1px 2.8mm)}'
-    '.tkl-spessore .guide{position:absolute;left:var(--l);right:0;bottom:0;height:100%;pointer-events:none}'
+    '.tkl-spessore .guide{position:absolute;left:var(--l);right:var(--m);bottom:0;height:100%;pointer-events:none}'
     '.tkl-spessore .guide i{position:absolute;left:0;right:0;height:0;border-top:1px dashed rgba(244,241,234,.34)}'
     '.tkl-spessore .guide i.su{border-color:transparent}'
     '.tkl-spessore .sp-figura figcaption{margin-top:22px;padding-left:150px;padding-right:var(--m);font-size:14px;line-height:1.45;'
     'color:var(--grigio-scuro);max-width:46em}'
     '.tkl-spessore .sp-figura figcaption b{color:var(--bianco);font-weight:600}'
     '@media (max-width:1100px){'
-    '.tkl-spessore .tkl-sp-testo{grid-column:1/13;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}'
+    '.tkl-spessore .tkl-sp-testo{grid-column:1/13;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--intervallo)!important}'
     + FIGLI.format(s='.tkl-spessore .tkl-sp-testo') +
     '.tkl-spessore .tkl-sp-h2,.tkl-spessore .tkl-sp-p{grid-column:1/9}'
     '.tkl-spessore .scelta{grid-column:1/13}'
-    '.tkl-spessore .sp-figura{grid-column:1/13}}'
+    '.tkl-spessore .sp-figura{grid-column:1/13}'
+    '.tkl-spessore .lettura .mat{margin-left:6px!important;text-align:left}}'
     '@media (max-width:640px){'
     '.tkl-spessore .tkl-sp-h2,.tkl-spessore .tkl-sp-p{grid-column:1/13}'
     '.tkl-spessore .tkl-sp-p,.tkl-spessore .tkl-sp-p p{font-size:17px!important}'
@@ -508,61 +580,28 @@ CSS_SPESSORE = (
     '.tkl-spessore .scelta button,.tkl-spessore .scelta button:hover,.tkl-spessore .scelta button:focus{flex:1;flex-direction:column;gap:2px;'
     'align-items:flex-start;padding:12px 14px}'
     '.tkl-spessore .lettura{flex-wrap:wrap}'
-    '.tkl-spessore .lettura .mat{margin-left:0;width:100%;text-align:left;order:3}'
+    '.tkl-spessore .lettura .mat{margin-left:0!important;width:100%;text-align:left;order:3}'
     '.tkl-spessore .tavola{--l:112px}'
     '.tkl-spessore .sp-figura figcaption{padding-left:0}}'
 )
 
-SCELTA = ('<div class="scelta" role="radiogroup" aria-label="Metallo">'
-          '<button type="button" role="radio" aria-checked="true" tabindex="0" data-mat="ferro" data-t="20">Ferro <span>20</span></button>'
-          '<button type="button" role="radio" aria-checked="false" tabindex="-1" data-mat="inox" data-t="15">Inox <span>15</span></button>'
-          '<button type="button" role="radio" aria-checked="false" tabindex="-1" data-mat="alluminio" data-t="10">Alluminio <span>10</span></button>'
-          '</div>')
+# l'interruttore, la figura e lo script vengono dalla pagina statica così come sono (sito/index.html): se la statica cambia,
+# il prossimo build.py li riprende uguali
+STATICA = os.path.join(os.path.dirname(QUI), 'sito', 'index.html')
 
-FIGURA = ('<figure class="sp-figura" id="figura" data-mat="ferro">'
-          '<div class="lettura"><output id="lettura" for="figura" aria-live="polite">20</output><span class="u">mm</span>'
-          '<p class="mat"><b id="nome-mat">Ferro</b>spessore massimo di taglio</p></div>'
-          '<div class="tavola" aria-hidden="true"><ol class="legenda">'
-          '<li data-q="20" class="su" style="bottom:20mm">ferro<b>20</b></li>'
-          '<li data-q="15" style="bottom:15mm">inox<b>15</b></li>'
-          '<li data-q="10" style="bottom:10mm">alluminio<b>10</b></li>'
-          '<li style="bottom:0">mm<b>0</b></li></ol>'
-          '<div class="scala"></div>'
-          '<div class="guide"><i data-q="20" class="su" style="bottom:20mm"></i><i data-q="15" style="bottom:15mm"></i>'
-          '<i data-q="10" style="bottom:10mm"></i></div>'
-          '<div class="sezione"></div></div>'
-          '<figcaption><b>Scala 1:1.</b> La lamiera in sezione, tratteggiata come in un disegno tecnico. È disegnata in millimetri: '
-          'su uno schermo a densità standard è spessa quanto il foglio vero.</figcaption></figure>')
 
-# lo script della pagina statica, invariato
-SCRIPT_SPESSORE = r"""(function(){
-  var gruppo=document.querySelector('.scelta');
-  var bottoni=[].slice.call(gruppo.querySelectorAll('[role=radio]'));
-  var figura=document.getElementById('figura');
-  var lettura=document.getElementById('lettura');
-  var nome=document.getElementById('nome-mat');
-  var quote=[].slice.call(figura.querySelectorAll('[data-q]'));
-  function scegli(b,fuoco){
-    bottoni.forEach(function(x){var on=x===b;x.setAttribute('aria-checked',on);x.tabIndex=on?0:-1;});
-    var t=b.dataset.t;
-    figura.dataset.mat=b.dataset.mat;
-    figura.style.setProperty('--t',t);
-    lettura.textContent=t;
-    nome.textContent=b.firstChild.textContent.trim();
-    quote.forEach(function(q){q.classList.toggle('su',q.dataset.q===t);});
-    if(fuoco)b.focus();
-  }
-  bottoni.forEach(function(b,i){
-    b.addEventListener('click',function(){scegli(b,false);});
-    b.addEventListener('keydown',function(e){
-      var k=e.key,j=null;
-      if(k==='ArrowRight'||k==='ArrowDown')j=(i+1)%bottoni.length;
-      else if(k==='ArrowLeft'||k==='ArrowUp')j=(i-1+bottoni.length)%bottoni.length;
-      else if(k==='Home')j=0;else if(k==='End')j=bottoni.length-1;
-      if(j!==null){e.preventDefault();scegli(bottoni[j],true);}
-    });
-  });
-})();"""
+def dalla_statica(inizio, fine, da=0):
+    s = open(STATICA, encoding='utf-8').read()
+    i = s.index(inizio, da)
+    j = s.index(fine, i) + len(fine)
+    return re.sub(r'\n\s*', '', s[i:j]) if not inizio.startswith('(function') else s[i:j]
+
+
+def script_spessore():
+    s = open(STATICA, encoding='utf-8').read()
+    i = s.index("(function(){\n  var gruppo=document.querySelector('.scelta')")
+    j = s.index('})();', i) + len('})();')
+    return s[i:j]
 
 
 def spessore():
@@ -571,105 +610,95 @@ def spessore():
         T('<p>Il laser è un <strong>Bystronic Byspeed da 4400&nbsp;W</strong> con carico e scarico automatici e dispositivo '
           'antigraffio. Taglia fogli fino a <span class="num nb">3000 × 1500&nbsp;mm</span>. Lo spessore massimo cambia col '
           'metallo: sceglilo e guarda la sezione.</p>', style='body', color=GRIGIO_SCURO, css='tkl-sp-p'),
-        C(RAW(SCELTA), boxed=False, css='tkl-scelta-box'),
+        C(RAW(dalla_statica('<div class="scelta"', '</div>')), boxed=False, css='tkl-scelta-box'),
         boxed=False, css='tkl-sp-testo')
-    figura = C(RAW(FIGURA + '<script>' + SCRIPT_SPESSORE + '</script>'), boxed=False, css='tkl-figura-box')
+    figura = C(RAW(dalla_statica('<figure class="sp-figura"', '</figure>') + '<script>' + script_spessore() + '</script>'),
+               boxed=False, css='tkl-figura-box')
     stile = RAW('', css=CSS_VARIABILI + CSS_COMUNE + css_testi('tkl-spessore') + CSS_SPESSORE)
     return C(stile, C(testo, figura, boxed=False, css='tkl-griglia'), boxed=False, pad=0, tag='section', anchor='spessore', bg=NERO,
              css='tkl-spessore tkl-sito')
 
 
-# --- 3. Il percorso del pezzo: la fascia della piegatrice, poi i sette passi su una riga di quota (fondo chiaro)
+# --- 3. Il percorso del pezzo: sette passi veri in sette righe, nome, macchina e misura allineati (fondo chiaro)
 CSS_CHIARO = (
     '.tkl-chiaro{background:var(--chiaro)!important;color:var(--inchiostro)}'
 )
 
 CSS_PERCORSO = (
     contenitore('.tkl-percorso') +
-    '.tkl-percorso{padding:0 0 clamp(64px,6.5vw,92px)!important;display:block!important}'
-    '.tkl-percorso .tkl-banda{position:relative!important;background:var(--nero)!important;display:block!important;padding:0!important;'
-    'margin:0!important;min-height:0!important}'
-    '.tkl-banda .tkl-largo img{width:100%!important;height:clamp(200px,25vw,400px)!important;max-width:none!important;object-fit:cover;'
-    'object-position:50% 50%}'
-    '.tkl-banda .tkl-stretto img{width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:1000/625}'
-    '.tkl-banda .tkl-ind-foto{position:absolute!important;right:var(--m);bottom:12px;width:auto!important}'
-    '.tkl-banda .tkl-ind-foto,.tkl-banda .tkl-ind-foto p{font:400 13px/1.55 var(--f)!important;color:var(--grigio-scuro)!important}'
-    '.tkl-percorso .tkl-capo{padding-top:clamp(48px,4.6vw,66px)!important;row-gap:20px!important;align-items:end!important}'
-    '.tkl-percorso .tkl-capo .tkl-titolo-sez{grid-column:1/7}'
-    '.tkl-percorso .tkl-capo-p{grid-column:8/13;max-width:28em!important}'
-    '.tkl-percorso .tkl-capo-p,.tkl-percorso .tkl-capo-p p{font:400 18px/1.5 var(--f)!important;color:var(--grigio)!important}'
-    '.tkl-percorso .tkl-passi{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:auto;column-gap:0!important;'
-    'row-gap:0!important;margin:clamp(40px,4vw,56px) var(--m) 0!important;padding:0!important;width:auto!important;max-width:none!important;'
-    'min-height:0!important}'
-    '.tkl-passi>.tkl-passo{display:grid!important;grid-row:span 4;grid-template-rows:subgrid;position:relative!important;gap:0!important;'
-    'padding:0!important;margin:0!important;width:auto!important;max-width:none!important;min-width:0;min-height:0!important}'
-    '.tkl-passo>*{padding-right:var(--gap)!important;width:auto!important;max-width:none!important;min-width:0}'
-    '.tkl-passo .tkl-n{padding-bottom:14px!important}'
-    '.tkl-passo .tkl-n,.tkl-passo .tkl-n p{font:200 clamp(44px,4.2vw,60px)/1 var(--f)!important;letter-spacing:-.03em!important;'
-    'color:#9b9286!important;font-variant-numeric:tabular-nums lining-nums!important}'
-    '.tkl-passo .tkl-passo-h{position:relative!important;padding-top:20px!important;margin-bottom:12px!important;border-top:1px solid var(--inchiostro);'
-    'background:repeating-linear-gradient(90deg,rgba(22,19,15,.42) 0 1px,transparent 1px 8px) left top/100% 6px no-repeat}'
-    + ht('.tkl-passo .tkl-passo-h') + '{font:400 21px/1.2 var(--f)!important;letter-spacing:-.01em!important;color:var(--inchiostro)!important;'
-    'text-transform:none!important}'
-    # la tacca lunga all'inizio di ogni passo, come una quota, e la tacca di chiusura dopo l'ultimo passo
-    '.tkl-passo .tkl-passo-h::before{content:"";position:absolute;left:0;top:-15px;width:1px;height:15px;background:var(--inchiostro)}'
-    '.tkl-passo:last-child .tkl-passo-h::after{content:"";position:absolute;right:0;top:-15px;width:1px;height:15px;background:var(--inchiostro)}'
-    '.tkl-passo .tkl-mac,.tkl-passo .tkl-mac p{font:600 15px/1.4 var(--f)!important;color:var(--inchiostro)!important}'
-    '.tkl-passo .tkl-mis{margin-top:3px!important}'
-    '.tkl-passo .tkl-mis,.tkl-passo .tkl-mis p{font:400 15px/1.4 var(--f)!important;color:var(--grigio)!important;'
+    '.tkl-percorso{padding:clamp(72px,7vw,100px) 0 clamp(64px,6.5vw,92px)!important;display:block!important}'
+    '.tkl-percorso .tkl-griglia{align-items:start!important;row-gap:36px!important}'
+    '.tkl-percorso .tkl-capo{grid-column:1/5;display:block!important;padding:0!important;margin:0!important;min-height:0!important}'
+    '.tkl-percorso .tkl-capo .tkl-titolo-sez{max-width:7em!important}'
+    '.tkl-percorso .tkl-capo-p{margin-top:24px!important;max-width:21em!important}'
+    '.tkl-percorso .tkl-capo-p,.tkl-percorso .tkl-capo-p p{font:400 17px/1.5 var(--f)!important;color:var(--grigio)!important}'
+    '.tkl-percorso .tkl-distinta{grid-column:5/13;display:block!important;border-top:1px solid var(--inchiostro)!important;'
+    'border-bottom:1px solid var(--inchiostro)!important;padding:0!important;margin:0!important;min-height:0!important}'
+    '.tkl-distinta>.tkl-passo{display:grid!important;grid-template-columns:2.6em minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,1fr);'
+    'column-gap:var(--intervallo)!important;row-gap:0!important;align-items:baseline!important;padding:14px 0 13px!important;margin:0!important;'
+    'width:100%!important;max-width:none!important;min-height:0!important;font-size:18px}'
+    '.tkl-distinta>.tkl-passo>*{width:auto!important;max-width:none!important;min-width:0}'
+    '.tkl-distinta>.tkl-passo+.tkl-passo{border-top:1px solid var(--filo-chiaro)!important}'
+    '.tkl-passo .tkl-n,.tkl-passo .tkl-n p{font:500 15px/1.55 var(--f)!important;letter-spacing:0!important;color:var(--bronzo)!important;'
     'font-variant-numeric:tabular-nums lining-nums!important}'
-    '@media (max-width:1180px){.tkl-percorso .tkl-passi{grid-template-columns:repeat(4,minmax(0,1fr))}'
-    '.tkl-passi>.tkl-passo:nth-child(n+5) .tkl-n{padding-top:44px!important}}'
-    '@media (max-width:1100px){.tkl-percorso .tkl-capo .tkl-titolo-sez{grid-column:1/13}.tkl-percorso .tkl-capo-p{grid-column:1/10}}'
-    '@media (max-width:640px){'
-    '.tkl-banda .tkl-ind-foto{bottom:8px}'
-    '.tkl-percorso .tkl-capo .tkl-titolo-sez,.tkl-percorso .tkl-capo-p{grid-column:1/13}'
-    '.tkl-percorso .tkl-capo-p,.tkl-percorso .tkl-capo-p p{font-size:17px!important}'
-    # i passi in colonna: numero a sinistra
-    '.tkl-percorso .tkl-passi{display:block!important;margin-top:36px!important}'
-    '.tkl-passi>.tkl-passo{display:grid!important;grid-template-columns:56px minmax(0,1fr);grid-template-rows:none;column-gap:0!important;'
-    'padding:14px 0 16px!important;border-top:1px solid var(--filo-chiaro)!important}'
-    '.tkl-passi>.tkl-passo:last-child{border-bottom:1px solid var(--filo-chiaro)!important}'
-    '.tkl-passo>*{padding-right:0!important;grid-column:2}'
-    '.tkl-passo .tkl-n,.tkl-passi>.tkl-passo:nth-child(n+5) .tkl-n{grid-column:1;grid-row:1 / span 3;padding:2px 0 0!important}'
-    '.tkl-passo .tkl-n,.tkl-passo .tkl-n p{font-size:30px!important}'
-    '.tkl-passo .tkl-passo-h{grid-row:1;border-top:0;background:none;padding-top:0!important;margin-bottom:4px!important}'
+    + ht('.tkl-passo .tkl-passo-h') + '{font:400 21px/1.25 var(--f)!important;letter-spacing:-.01em!important;color:var(--inchiostro)!important;'
+    'text-transform:none!important}'
+    + '.tkl-passo .tkl-dati{display:contents!important}'
+    '.tkl-passo .tkl-mac,.tkl-passo .tkl-mac p{font:600 16px/1.35 var(--f)!important;color:var(--inchiostro)!important}'
+    '.tkl-passo .tkl-mis,.tkl-passo .tkl-mis p{font:400 16px/1.35 var(--f)!important;color:var(--grigio)!important;text-align:right;'
+    'font-variant-numeric:tabular-nums lining-nums!important}'
+    # column-gap con !important: nel fallback il motore scrive gap:0 per ogni contenitore (.tkl-home-percorso .<id>), con la
+    # stessa specificità e dopo; senza, a 1024 il testo del capo partiva 10 px più a sinistra che nella statica
+    '@media (max-width:1240px){'
+    '.tkl-percorso .tkl-capo{grid-column:1/13;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--intervallo)!important;'
+    'align-items:end}'
+    + FIGLI.format(s='.tkl-percorso .tkl-capo') +
+    '.tkl-percorso .tkl-capo .tkl-titolo-sez{grid-column:1/7}'
+    '.tkl-percorso .tkl-capo-p{grid-column:8/13;margin-top:0!important}'
+    '.tkl-percorso .tkl-distinta{grid-column:1/13}}'
+    '@media (max-width:820px){'
+    '.tkl-percorso .tkl-capo{display:block!important}'
+    '.tkl-percorso .tkl-capo-p{margin-top:20px!important;max-width:30em!important}'
+    # la distinta in colonna: numero a sinistra, nome sopra, macchina e misura sulla stessa riga sotto
+    '.tkl-distinta>.tkl-passo{grid-template-columns:44px minmax(0,1fr);column-gap:0!important;padding:13px 0 14px!important}'
+    '.tkl-passo .tkl-n{grid-row:1 / span 2}'
     + ht('.tkl-passo .tkl-passo-h') + '{font-size:20px!important}'
-    '.tkl-passo .tkl-passo-h::before,.tkl-passo:last-child .tkl-passo-h::after{display:none}'
-    '.tkl-passo .tkl-mac{grid-row:2}'
-    '.tkl-passo .tkl-mis{grid-row:3;margin-top:0!important}}'
+    # font-size 0: gli spazi fra i widget (a capo nel markup di Elementor) non devono diventare uno spazio prima della virgola
+    '.tkl-passo .tkl-dati{display:block!important;margin-top:3px!important;font-size:0!important;line-height:1.4}'
+    '.tkl-passo .tkl-mac,.tkl-passo .tkl-mis,.tkl-passo .tkl-mac p,.tkl-passo .tkl-mis p,.tkl-passo .tkl-dati .elementor-widget-container{'
+    'display:inline!important;font-size:0!important;line-height:1.4!important;text-align:left}'
+    # nella statica la riga è alta 21,25 px: il rigo del blocco (15 px, 1,4) più i paragrafi in linea (1,35)
+    '.tkl-passo .tkl-mac p,.tkl-passo .tkl-mis p{font-size:15px!important;line-height:21.25px!important}'
+    '.tkl-passo .tkl-mis::before{content:", ";font-size:15px}}'
+    '@media (max-width:640px){.tkl-percorso .tkl-capo-p,.tkl-percorso .tkl-capo-p p{font-size:17px!important}}'
 )
 
 PASSI = [
     ('Progettazione 3D', 'Ufficio tecnico interno', 'rendering e prototipo'),
-    ('Taglio laser', 'Bystronic Byspeed 4400&nbsp;W', 'campo <span class="nb">3000 × 1500&nbsp;mm</span>'),
-    ('Punzonatura e cesoia', 'Finn-Power SG6', 'pezzo già separato e impilato'),
-    ('Piegatura CNC', 'Finn-Power 8 assi e Warcom', 'lunghezza utile <span class="nb">3100&nbsp;mm</span>'),
+    ('Taglio laser', 'Bystronic Byspeed 4400&nbsp;W', '<span class="nb">3000 × 1500&nbsp;mm</span>'),
+    ('Punzonatura e cesoia', 'Finn-Power SG6', 'pezzo separato e impilato'),
+    ('Piegatura CNC', 'Finn-Power 8 assi, Warcom', 'lunghezza <span class="nb">3100&nbsp;mm</span>'),
     ('Saldatura', 'MIG e TIG', 'ferro, inox, alluminio'),
-    ('Tubi e profili', 'OMES, Ercolina, Pedrazzoli', 'curvatura fino a <span class="nb">20 × 20 × 3</span>'),
-    ('Montaggio e consegna', 'Due autocarri propri', 'centinato da 50&nbsp;q e <span class="nb">con gru</span>'),
+    ('Tubi e profili', 'OMES, Ercolina, Pedrazzoli', 'curvatura <span class="nb">20 × 20 × 3</span>'),
+    ('Montaggio e consegna', 'Due autocarri propri', 'centinato da 50&nbsp;q, <span class="nb">con gru</span>'),
 ]
 
 
 def percorso():
-    alt = 'Una mano con il guanto accompagna la lamiera sotto gli utensili della piegatrice; a sinistra la linea rossa del laser di riferimento.'
-    banda = C(I(img('piega-2400.jpg'), alt=alt, css='tkl-largo'), I(img('piega-m-1000.jpg'), alt=alt, css='tkl-stretto'),
-              T('<p>Foto indicativa</p>', style='piccolo', color=GRIGIO_SCURO, css='tkl-ind-foto'),
-              boxed=False, css='tkl-banda')
-    capo = C(H('Il percorso del pezzo', level='h2', style='h2', color=INCHIOSTRO, css='tkl-titolo-sez'),
+    capo = C(H('Il percorso del pezzo', level='h2', style='h2', color=INCHIOSTRO, css='tkl-titolo-sez'),
              T(ap("<p>Dal file al camion, in un'officina sola. Verniciatura, cromatura, sabbiatura e zincatura le seguiamo noi su "
                   "impianti esterni collegati.</p>"), style='body', color=GRIGIO, css='tkl-capo-p'),
-             boxed=False, css='tkl-griglia tkl-capo')
+             boxed=False, css='tkl-capo')
 
     def passo(i, nome, mac, mis):
-        return C(T(f'{i:02d}', style='n', color='#9b9286', css='tkl-n'),
+        return C(T(f'{i:02d}', style='n', color=BRONZO, css='tkl-n'),
                  H(nome, level='h3', style='passo', color=INCHIOSTRO, css='tkl-passo-h'),
-                 T(f'<p>{mac}</p>', style='mac', color=INCHIOSTRO, css='tkl-mac'),
-                 T(f'<p>{mis}</p>', style='mis', color=GRIGIO, css='tkl-mis'),
+                 C(T(f'<p>{mac}</p>', style='mac', color=INCHIOSTRO, css='tkl-mac'),
+                   T(f'<p>{mis}</p>', style='mis', color=GRIGIO, css='tkl-mis'), boxed=False, css='tkl-dati'),
                  boxed=False, css='tkl-passo')
-    passi = C(*[passo(i, *p) for i, p in enumerate(PASSI, 1)], boxed=False, css='tkl-passi')
+    distinta = C(*[passo(i, *p) for i, p in enumerate(PASSI, 1)], boxed=False, css='tkl-distinta')
     stile = RAW('', css=CSS_VARIABILI + CSS_COMUNE + css_testi('tkl-percorso', chiaro=True) + CSS_CHIARO + CSS_PERCORSO)
-    return C(stile, banda, capo, passi, boxed=False, pad=0, tag='section', anchor='percorso', bg=CHIARO,
+    return C(stile, C(capo, distinta, boxed=False, css='tkl-griglia'), boxed=False, pad=0, tag='section', anchor='percorso', bg=CHIARO,
              css='tkl-percorso tkl-chiaro tkl-sito')
 
 
@@ -688,7 +717,7 @@ CSS_SETTORI = (
     '.tkl-settori .tkl-elenco sup{font-size:max(.28em,12px);font-weight:500;letter-spacing:0;vertical-align:top;position:relative;top:.5em;'
     'margin-left:.06em;color:var(--bronzo);font-variant-numeric:tabular-nums;line-height:inherit}'
     '.tkl-settori .tkl-note{grid-column:1/13;margin-top:clamp(36px,4vw,56px)!important}'
-    '.tkl-settori .tkl-note ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--gap);row-gap:16px;margin:0!important;'
+    '.tkl-settori .tkl-note ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--intervallo);row-gap:16px;margin:0!important;'
     'padding:0!important;list-style:none!important}'
     '.tkl-settori .tkl-note li{display:flex;gap:10px;margin:0!important;padding:0!important;border:0!important;'
     'font:400 15px/1.42 var(--f)!important;color:var(--grigio)!important}'
@@ -720,25 +749,25 @@ CSS_FAMIGLIA = (
     'display:block!important}'
     '.tkl-famiglia .tkl-griglia{row-gap:0!important;align-items:start!important}'
     '.tkl-famiglia .tkl-titolo-sez{grid-column:1/7}'
-    '.tkl-famiglia .tkl-storia{grid-column:1/7;margin-top:28px!important;max-width:30em!important}'
+    '.tkl-famiglia .tkl-storia{grid-column:8/13;align-self:end;max-width:30em!important}'
     '.tkl-famiglia .tkl-storia,.tkl-famiglia .tkl-storia p{font:400 20px/1.5 var(--f)!important;color:var(--inchiostro)!important}'
-    '.tkl-famiglia .tkl-doc{grid-column:4/13;margin:clamp(40px,4.5vw,64px) calc(var(--m) * -1) 0 0!important}'
+    '.tkl-famiglia .tkl-doc{grid-column:1/13;margin:clamp(40px,4.5vw,64px) calc(var(--m) * -1) 0!important}'
     '.tkl-famiglia .tkl-doc img{width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:1330/560}'
-    '.tkl-famiglia .tkl-piede-doc{grid-column:4/13;display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr));column-gap:var(--gap)!important;'
+    # la statica sceglie il file da 640 px sul telefono: stesse proporzioni
+    '@media (max-width:640px){.tkl-famiglia .tkl-doc img{aspect-ratio:640/269}}'
+    '.tkl-famiglia .tkl-piede-doc{grid-column:1/13;display:grid!important;grid-template-columns:subgrid;column-gap:var(--intervallo)!important;'
     'row-gap:0!important;padding:14px 0 0!important;margin:0!important;width:auto!important;max-width:none!important;min-height:0!important}'
     + FIGLI.format(s='.tkl-famiglia .tkl-piede-doc') +
-    '.tkl-famiglia .tkl-didascalia{grid-column:1/5}'
+    '.tkl-famiglia .tkl-didascalia{grid-column:1/6}'
     '.tkl-famiglia .tkl-didascalia,.tkl-famiglia .tkl-didascalia p{font:400 14px/1.45 var(--f)!important;color:var(--grigio)!important}'
-    '.tkl-famiglia .tkl-persone{grid-column:6/10;display:grid!important;grid-template-columns:1fr 1fr;column-gap:var(--gap)}'
+    '.tkl-famiglia .tkl-persone{grid-column:8/13;display:grid!important;grid-template-columns:1fr 1fr;column-gap:var(--intervallo)}'
     '.tkl-famiglia .tkl-persone>.elementor-widget-container{display:contents!important}'
     '.tkl-famiglia .tkl-persone,.tkl-famiglia .tkl-persone p{font:400 15px/1.45 var(--f)!important;color:var(--inchiostro)!important}'
     '.tkl-famiglia .tkl-persone b{display:block;font-weight:600;font-size:17px}'
     '.tkl-famiglia .tkl-persone span{color:var(--grigio)}'
     '@media (max-width:1100px){'
     '.tkl-famiglia .tkl-titolo-sez{grid-column:1/13}'
-    '.tkl-famiglia .tkl-storia{grid-column:1/11}'
-    '.tkl-famiglia .tkl-doc{grid-column:1/13;margin-left:calc(var(--m) * -1)!important}'
-    '.tkl-famiglia .tkl-piede-doc{grid-column:1/13;grid-template-columns:repeat(12,minmax(0,1fr))}'
+    '.tkl-famiglia .tkl-storia{grid-column:1/11;margin-top:28px!important}'
     '.tkl-famiglia .tkl-didascalia{grid-column:1/7}'
     '.tkl-famiglia .tkl-persone{grid-column:7/13}}'
     '@media (max-width:640px){'
@@ -769,11 +798,15 @@ def famiglia():
 CSS_CONTATTI = (
     contenitore('.tkl-contatti') +
     '.tkl-contatti{position:relative!important;padding:clamp(88px,9vw,132px) 0 clamp(64px,6vw,88px)!important;overflow:hidden!important;'
-    'background:var(--nero)!important;display:block!important}'
+    'background:var(--nero)!important;display:block!important;color:var(--bianco)}'
     + senza_scatola('.tkl-contatti .tkl-fondo') +
     '.tkl-contatti .fondo{position:absolute;inset:0}'
     '.tkl-contatti .fondo img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:40% 60%}'
-    '.tkl-contatti .tkl-griglia{position:relative;row-gap:36px!important}'
+    '.tkl-contatti::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;'
+    'background:linear-gradient(rgba(5,4,3,0),rgba(5,4,3,.6) 35%,rgba(5,4,3,.88));pointer-events:none}'
+    '.tkl-contatti .tkl-griglia{position:relative;z-index:1;row-gap:36px!important}'
+    '.tkl-contatti .tkl-nota-foto{position:absolute!important;z-index:1;right:var(--m);top:clamp(20px,2.4vw,32px);width:auto!important;margin:0!important}'
+    '.tkl-contatti .tkl-nota-foto,.tkl-contatti .tkl-nota-foto p{font:400 13px/1.55 var(--f)!important;color:var(--grigio-scuro)!important}'
     '.tkl-contatti .tkl-contatti-h{grid-column:1/13}'
     + ht('.tkl-contatti .tkl-contatti-h') + '{font:600 17px/1.55 var(--f)!important;color:var(--bianco)!important;text-transform:none!important;'
     'letter-spacing:0!important}'
@@ -786,7 +819,7 @@ CSS_CONTATTI = (
     '.tkl-contatti .tkl-invito,.tkl-contatti .tkl-invito p{font:400 21px/1.42 var(--f)!important;color:var(--bianco)!important}'
     '.tkl-contatti .tkl-invito a{color:var(--paglia)!important}'
     '.tkl-contatti .tkl-invito a:hover{color:var(--bianco)!important}'
-    '.tkl-contatti .tkl-recapiti{grid-column:1/13;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap)!important;'
+    '.tkl-contatti .tkl-recapiti{grid-column:1/13;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--intervallo)!important;'
     'row-gap:28px!important;padding:26px 0 0!important;border-top:1px solid var(--filo)!important;margin:0!important;width:auto!important;'
     'max-width:none!important;min-height:0!important}'
     + FIGLI.format(s='.tkl-contatti .tkl-recapiti') +
@@ -841,7 +874,8 @@ def contatti():
                   "var m=document.createElement('main');p.insertBefore(m,a);"
                   "while(m.nextElementSibling){var x=m.nextElementSibling;m.appendChild(x);if(x===z)break}})();</script>")
     stile = RAW(principale, css=CSS_VARIABILI + CSS_COMUNE + css_testi('tkl-contatti') + CSS_CONTATTI)
-    return C(stile, fondo, griglia, boxed=False, pad=0, tag='section', anchor='contatti', bg=NERO, css='tkl-contatti tkl-sito')
+    nota = T('<p>Foto indicativa</p>', style='piccolo', color=GRIGIO_SCURO, css='tkl-nota-foto')
+    return C(stile, fondo, nota, griglia, boxed=False, pad=0, tag='section', anchor='contatti', bg=NERO, css='tkl-contatti tkl-sito')
 
 
 def home():

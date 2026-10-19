@@ -96,7 +96,7 @@ function tkl_attivazione() {
 function tkl_impostazioni() {
 	// Elementor copia nome e descrizione nel suo kit: se il kit non è ancora pronto solleva un errore,
 	// ma l'opzione è già salvata, quindi proseguo
-	foreach ( [ 'blogname' => 'Tek.Lam', 'blogdescription' => 'Lamiera tagliata, punzonata, piegata e saldata per conto terzi, a Vigonovo' ] as $k => $v ) {
+	foreach ( [ 'blogname' => 'Tek.Lam', 'blogdescription' => 'Lamiera conto terzi a Vigonovo' ] as $k => $v ) {
 		try { update_option( $k, $v ); } catch ( Throwable $e ) { echo "$k salvato; il kit di Elementor non si è aggiornato (" . $e->getMessage() . ")\n"; }
 	}
 	update_option( 'blog_public', 0 );                 // sito di prova: i motori di ricerca non lo indicizzano
@@ -118,12 +118,12 @@ function tkl_impostazioni() {
 		echo 'Elementor ' . ELEMENTOR_VERSION . ', contenitori: ' . ( \Elementor\Plugin::$instance->experiments->is_feature_active( 'container' ) ? 'attivi' : 'NON attivi' ) . "\n";
 	}
 	// template costruiti con build.py --caratteri-locali: i caratteri arrivano dal sito, quindi spengo anche
-	// i Google Fonts che Elementor caricherebbe da sé (Roboto del kit, Big Shoulders Display e Sofia Sans dei widget)
+	// i Google Fonts che Elementor caricherebbe da sé (Roboto del kit e Sofia Sans dei widget)
 	$google = false;
 	foreach ( glob( __DIR__ . '/template/*.json' ) as $f ) { if ( false !== strpos( file_get_contents( $f ), 'fonts.googleapis.com' ) ) { $google = true; } }
 	if ( ! $google ) { update_option( 'elementor_google_font', '0' ); echo "caratteri dal sito: Google Fonts di Elementor disattivati\n"; }
 	else { echo "caratteri da Google Fonts (per toglierli: build.py --caratteri-locali, vedi LEGGIMI)\n"; }
-	echo 'unfiltered_html: ' . ( current_user_can( 'unfiltered_html' ) ? 'si' : 'NO (gli script dei widget HTML, cioè il foglio con i sei pezzi e l\'interruttore degli spessori, verrebbero tolti)' ) . "\n";
+	echo 'unfiltered_html: ' . ( current_user_can( 'unfiltered_html' ) ? 'si' : 'NO (gli script dei widget HTML, cioè l\'interruttore Ferro, Inox, Alluminio e i ritocchi del menu, verrebbero tolti)' ) . "\n";
 }
 
 function tkl_conta( $els ) { $n = 0; foreach ( $els as $e ) { $n += 1 + tkl_conta( $e['elements'] ?? [] ); } return $n; }
@@ -208,7 +208,9 @@ function tkl_rigenera_id( $els ) { foreach ( $els as &$e ) { $e['id'] = substr( 
 
 // voci del menu: le ancore delle sezioni della home, come nella testata della pagina statica
 function tkl_voci_menu() {
-	return [ [ 'Lavorazioni', '/#lavorazioni', '' ], [ 'Chi siamo', '/#storia', '' ], [ 'Settori', '/#settori', '' ], [ 'Contatti', '/#contatti', '' ] ];
+	// l'ultima voce, il telefono, si vede solo nel menu a scomparsa sotto 380 px, come nella pagina statica
+	return [ [ 'Lavorazioni', '/#percorso', '' ], [ 'Settori', '/#settori', '' ], [ 'Famiglia Volpato', '/#famiglia', '' ],
+		[ 'Contatti', '/#contatti', '' ], [ '049&nbsp;980&nbsp;14&nbsp;86', 'tel:+390499801486', '' ] ];
 }
 
 function tkl_hf() {

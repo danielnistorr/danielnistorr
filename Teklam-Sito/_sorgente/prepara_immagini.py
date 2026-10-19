@@ -28,9 +28,8 @@ IMMAGINI = [
     'logo-segno.png', 'logo-scritta-chiara.png',                          # marchio, testata e piede
     'apertura-1000.jpg', 'apertura-1440.jpg', 'apertura-1800.jpg', 'apertura-2400.jpg',   # taglio laser (Unsplash)
     'apertura-v-600.jpg', 'apertura-v-860.jpg', 'apertura-v-1280.jpg',    # il taglio verticale per il telefono
-    'piega-1000.jpg', 'piega-1600.jpg', 'piega-2400.jpg', 'piega-m-640.jpg', 'piega-m-1000.jpg',   # fascia (Unsplash)
     'officina-640.jpg', 'officina-960.jpg', 'officina-1330.jpg',          # saldatura TIG (Tek.Lam)
-    'contatti-1000.jpg', 'contatti-1600.jpg', 'contatti-2400.jpg', 'contatti-m-800.jpg',   # fondo dei contatti
+    'contatti-1000.jpg', 'contatti-1600.jpg', 'contatti-2400.jpg', 'contatti-m-800.jpg',   # fondo dei contatti (Unsplash)
 ]
 CARATTERI = ['sofia-latin.woff2', 'sofia-latin-ext.woff2', 'OFL-SofiaSans.txt']
 
