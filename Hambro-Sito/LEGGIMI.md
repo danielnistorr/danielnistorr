@@ -16,21 +16,24 @@
 ## Home finale (sito/)
 
 - `sito/index.html`, immagini in `sito/img/` (solo quelle usate, JPEG in più larghezze), caratteri in `sito/fonts/` (Mona Sans, SIL OFL 1.1, testo della licenza in `sito/fonts/OFL.txt`). Nota con idea, schermate, caratteri, colori, interazione, foto e controlli: `screenshot/home/NOTA.md`.
-- Si rifà tutto con `bash _prova/script/build_finale.sh`: immagini con `finale_img.py`, pagina da `finale_pagina.html`, screenshot in `screenshot/home/`. I PNG di controllo vanno in `_prova/screenshot-tmp/` e si cancellano a mano. Il banco si prova con `node _prova/script/prova_pagina.mjs`.
-- Base: il prototipo B "Campionario al millimetro" (`_prova/home/b/`). Da A vengono il dittico metallo e pelle con le sagome in scala e il telefono come targa nei contatti.
+- Si rifà tutto con `bash _prova/script/build_finale.sh`: immagini con `finale_img.py`, pagina da `finale_pagina.html`, screenshot in `screenshot/home/`. I PNG di controllo vanno in `_prova/screenshot-tmp/` e si cancellano a mano. Prove: `node _prova/script/prova_interazione.mjs <url> <cartella>` (console, menu, tastiera e tocco sul banco, collegamenti, corpi tipografici, foto ingrandite, vuoto del banco) e `node _prova/script/largo.mjs <url> <larghezza>` (scorrimento orizzontale).
+- Base: il prototipo B "Campionario al millimetro" (`_prova/home/b/`). Da A viene il dittico metallo e pelle con le sagome in scala.
+- **Le foto sono segnaposto, ma la pagina non lo dice**: nessuna didascalia o riga del piede parla di foto provvisorie. L'avviso va nella mail di accompagnamento: "le foto di fibbie, cuoio e laboratorio sono segnaposto Unsplash; le bobine e gli 11 pezzi del cassetto vengono dal vostro sito".
 
 ### Dati da confermare con Hambro (in pagina non ci sono segnaposto)
 - **1979.** In pagina è sempre "Giorgio Gastaldello, nella pelletteria dal 1979", mai l'anno della srl. Va chiesto l'anno di costituzione della società.
 - **Fibbie da ricoprire mm40, 50 e 60.** Le sagome della Tav. 3 sono larghe quanto la misura. Va chiesto se la misura è la luce del passante (la larghezza della cintura) o l'esterno della fibbia, e la proporzione vera di ogni sagoma.
-- **Strisce a taglio vivo.** Il cursore si aggancia alle misure a catalogo (2, 3, 3,5, 4, 16, 20, 25, 30, 40, 50, 60). Se tagliano a qualsiasi millimetro tra 2 e 60, basta togliere l'aggancio. Per il tubolare: oltre a 2, 3, 4 e 16, quali misure ci sono?
+- **Strisce a taglio vivo.** Il sito dice "striscie a taglio vivo da mm2 a mm60": il banco le fa scegliere millimetro per millimetro da 2 a 60. Va confermato che tagliano a ogni millimetro (se no, si torna all'aggancio sulle misure a catalogo). Per il tubolare il banco offre 2, 3, 4 e 16: il sito dice "da mm2 a mm16" (pelletteria) e "mm2-3-4" (calzature); quali misure intermedie ci sono?
+- **Righello d'apertura.** La quota "2-4" raccoglie lacci tubolari 2, 3, 4, tondini 2-3,5 e cordoncino 3-4; le altre tacche in cuoio sono 16 (tubolare), 20, 25, 30, 40, 50 (nastri), 60 (strisce e fibbie).
 - **Nastri.** I sei colori del banco (rosso, giallo, salvia, viola, grigio, nero) vengono dalla loro foto dei rotoli: vanno chiesti i colori disponibili oggi. Satab: la rappresentanza è ancora valida?
 - **Altri dati in pagina.**
   - Rivetti 00, 033, 034, 036 e occhielli piatti e bombati;
   - nappe e vitelli lavabili "sp. 0,7 e 1,1": due spessori o un intervallo?
   - minuteria nichel free;
   - bottoni Yvette e a pressione.
-- **Le bobine della Tav. 2.** Che siano il loro magazzino; che la bobina chiara sia tondino in pelle.
-- **Contatti.** Telefono principale 049 980 2326. Il 049 980 2330 è il fax? Gli orari (venerdì solo mattina, sabato e domenica chiusi) vanno confermati. Mancano la pagina privacy e il link Facebook definitivo.
+- **Le bobine della Tav. 2.** Che siano il loro magazzino; che la bobina chiara sia tondino in pelle (ha una cucitura: potrebbe essere un tubolare cucito). In pagina sono due ritagli stretti alti 459 px, perché le foto da telefono restino pulite.
+- **Misure per settore.** L'elenco riprende le pagine Accessori calzature, abbigliamento e pelletterie del sito. Nastro intrecciato, corda juta, scheletri, salpe e rinforzi, occhielli, lampo e fibbie doppie sono in pagina senza misura: vanno chieste le misure, se ci sono.
+- **Contatti.** Telefono principale 049 980 2326. Il 049 980 2330 è il fax? Gli orari (venerdì solo mattina, sabato e domenica chiusi) vanno confermati. Il link "Apri la mappa" cerca l'indirizzo su Google Maps: va controllato che la scheda di Hambro esca per prima. Mancano la pagina privacy e il link Facebook definitivo.
 - **Fuori pagina.**
   - PEC, dipendenti, superficie, clienti;
   - sede storica di Noventa Padovana;
@@ -55,6 +58,6 @@ Tutte sulla stessa carta avorio opaca (vicina a #F2EDE4), con sole vero o un'uni
 - Mona Sans: SIL Open Font License 1.1, uso commerciale libero, file serviti dalla pagina.
 
 ### Soglie "da guardare" di segnali.sh e perché restano
-- 5 fasce di fondo: apertura, banco cuoio, carta, contatti cuoio, piede. Sono un fondo e due campi nel colore della casa, voluti.
+- Una sola misura di H2 (60 px): la scala dei corpi è stata ridotta a 13, 15, 17, 22, 32, 60 e 136 (più la lettura del banco) per togliere i salti di mezzo pixel; i titoli si distinguono per posizione e colore, non per corpo.
 - 2 numeri grandi: la lettura del banco, che è lo strumento, e il 1979, sempre con il nome di Gastaldello.
 - La numerazione 01-11 del cassetto è l'indice del campionario, non una procedura.

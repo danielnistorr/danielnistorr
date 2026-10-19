@@ -56,3 +56,21 @@ Il logo in testata e nel piede è ritagliato dal PNG verticale del loro sito (`2
 - H2 di due misure (72 e 124 px): voluto. Un elemento grande per vista, il titolo d'apertura e "Mandaci il disegno" sul campo rosso.
 - "1 altro gradiente": è il tratteggio del raggio rosso, non una sfumatura.
 - Area foto al 35 %, sulla soglia: salirà con le foto nuove a piena risoluzione.
+
+## Prototipo B, "Scintilla e spessore" (`_prova/home/b/`)
+
+Seconda direzione per la home, da mostrare accanto a quella in `sito/`: apertura nera con la foto di un taglio laser e "Lamiera conto terzi" in grande, poi lo spessore massimo di taglio (ferro 20, inox 15, alluminio 10 mm) disegnato in millimetri veri con un interruttore. Idea, caratteri, foto e controlli in `_prova/home/b/nota.md`.
+
+Da confermare prima di mostrarla come definitiva: gli spessori (la home di oggi dice 20/15/10, Attrezzature 25/15-20/12: il prototipo usa 20/15/10 ed è l'unica pagina dove il dato è a vista); la forma "la famiglia Volpato lavora il metallo dal 1978"; il taglio OMES "fino a 120 mm" (diametro o lato); l'uso delle foto slide1 e automezzi.
+
+## Prototipo A, "Il foglio annidato" (`_prova/home/a/`)
+
+Rifatto da zero dopo la bocciatura del primo A (in `_prova/home/vecchio-a/`). La prima schermata è un foglio di inox spazzolato 3000 x 1500 in proporzione vera (1500 x 3000 sul telefono): TEK.LAM tagliato e già uscito, sei pezzi ancora annidati, uno per lavorazione; si tocca un pezzo, si stacca e il cartellino sul resto del foglio mostra macchina e misure. Idea, caratteri, foto e controlli in `_prova/home/a/nota.md`. Si rifà con `python3 -I _prova/script/proto_a_img.py` e `python3 -I _prova/script/proto_a_build.py`.
+
+Da confermare prima di mostrarlo come definitivo (oggi non a vista):
+- spessori massimi del laser (20/15/10 o 25/15-20/12 mm) e portata delle piegatrici (100, 120 o 125 t): in pagina solo campo di lavoro e lunghezza utile 3100 mm;
+- portata dell'autocarro con gru (la fonte dice "35 qli complessivi") e "7,5 di pianale" del centinato: in pagina solo "autocarro con gru" e "50 quintali di portata utile";
+- se la TrumaBend V170 della foto del 2024 è in officina: allora la riga Piegatura va aggiornata;
+- se `2020-08-pc.jpg` (render CAD) è un modello del loro ufficio tecnico: oggi la didascalia resta generica;
+- la cesoia Gasparini ("fino a mm 3000 di lungh. x sp. 6 8"): in pagina solo la lunghezza;
+- i link "La lavorazione per esteso" puntano a pagine che non esistono ancora (`lavorazioni/...`).

@@ -29,3 +29,15 @@ Scaricate da images.unsplash.com e images.pexels.com in versione 2400 px di lato
 | `esterne/unsplash-yurtman-w7w4T9M0TXg.jpg` | https://unsplash.com/photos/a-man-working-on-a-machine-in-a-factory-w7w4T9M0TXg | Cemrecan Yurtman | 29/01/2025 | 2400x1350 | B | piegatrice al buio con la linea rossa del laser di riferimento |
 | `esterne/unsplash-yurtman-enPxH6uqABg.jpg` | https://unsplash.com/photos/welder-working-on-a-piece-of-metal-in-a-factory-enPxH6uqABg | Cemrecan Yurtman | 30/04/2024 | 2400x1600 | B | tubolari quadri e pioggia di scintille (la pagina dice "A man welding"; sembra più un taglio a cannello: didascalia generica) |
 | `esterne/pexels-9729626.jpg` | https://www.pexels.com/photo/close-up-photo-of-welder-doing-some-metal-work-9729626/ | Francesca Cinel | (Pexels, 3824x5736) | 2400x3600 | B, verticale per mobile | saldatore con maschera, arco bianco-azzurro |
+
+## Prototipo B della home (`_prova/home/b/`), 19 ottobre 2026
+
+Usa solo foto già elencate qui sopra, rifatte con `_prova/script/proto_b_img.py` (ritagli, tono caldo comune, grana): Le Trung (apertura, tagliata sotto per togliere la firma), Cardinalli, Sayles, Yurtman `w7w4T9M0TXg`, `enPxH6uqABg` e `qk2i7n39-B0` (in quest'ultima è stato tolto il marchio del costruttore stampato sull'ugello), Cinel; più `2020-08-slide1.jpg` e `2020-08-automezzi.jpg` di Tek.Lam, in monocromo e piccole. Nessuna foto nuova scaricata. Modifiche ammesse da entrambe le licenze.
+
+## Prototipo A della home, "Il foglio annidato" (`_prova/home/a/`), 19 ottobre 2026
+
+Foto aggiunta per la lastra della prima schermata (lavorata con `_prova/script/proto_a_img.py`). Le altre foto del prototipo A sono già elencate qui sopra: Colah e Yurtman `RLDjPI-r5fU` e `enPxH6uqABg` (foto indicative), più le foto del sito Tek.Lam in `originali/` (laserbystronic, slide1, slide3, slide4, pc, fabbrica, automezzi).
+
+| File | Pagina della foto | Autore | Pubblicata | Scaricata | Uso | Note |
+|---|---|---|---|---|---|---|
+| `esterne/unsplash-widodo-tRrIXmtOmL4.jpg` | https://unsplash.com/photos/brushed-metal-surface-with-light-reflection-tRrIXmtOmL4 | apryan widodo | 08/11/2022 | 3024x3024 (originale) | prototipo A "Il foglio annidato" | lamiera inox spazzolata vista di fronte (iPhone 7 Plus); girata, ritagliata in 2:1 e 1:2 e ritoccata con PIL come lastra della prima schermata. Pagina letta il 19/10/2026: "Free to use under the Unsplash License", nessuna indicazione di immagine generata |
