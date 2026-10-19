@@ -144,18 +144,32 @@ p{text-wrap:pretty}
 .pdf a:hover span{text-decoration:underline}
 .pdf small{display:block;color:var(--grigio);font-size:14px}
 
-/* contatti: lamiera chiara, numero in inchiostro */
-.contatti{background:var(--lamiera);padding-top:104px;padding-bottom:96px}
-.contatti h2{grid-column:1/13;font-size:96px;line-height:1;letter-spacing:-.035em}
-.contatti h2 a{text-decoration:none}
-.contatti h2 a:hover{color:var(--rosso)}
-.contatti .col{grid-column:span 4;margin-top:48px;font-size:17px;line-height:1.55}
-.contatti .col b{display:block;font-weight:600;margin-bottom:6px}
-.contatti .grigio{color:var(--grigio)}
+/* contatti: l'etichetta dati che si attacca dentro la porta del quadro (adesivo bianco su lamiera RAL 7035) */
+.contatti{background:var(--lamiera);padding-top:120px;padding-bottom:120px}
+.contatti .grid{align-items:start}
+.contatti .testo{grid-column:1/6}
+.contatti h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
+.contatti .testo p{margin-top:24px;font-size:21px;line-height:1.5;max-width:15em}
+.targa{grid-column:6/13;background:#fff;border-radius:8px;padding:9px;box-shadow:0 0 0 1px #D2D5D3,0 1px 2px rgba(21,23,26,.10)}
+.targa .cornice{border:2px solid var(--inchiostro);border-radius:4px}
+.targa dl{border-top:2px solid var(--inchiostro);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.targa .capo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px 12px}
+.targa .capo img{width:150px}
+.targa .capo span{font-size:14px;font-weight:600;line-height:1.3;text-align:right}
+.targa .campo{border-top:1px solid var(--inchiostro);padding:12px 20px 16px;font-size:17px;line-height:1.5}
+.targa .campo:first-child{border-top:0}
+.targa .largo{grid-column:1/-1}
+.targa .campo + .campo:not(.largo){border-left:1px solid var(--inchiostro)}
+.targa dt{font-size:13px;font-weight:600;line-height:1.3;color:var(--grigio);margin-bottom:4px}
+.targa .tel-g{display:inline-block;font-size:56px;line-height:1;font-weight:400;letter-spacing:-.025em;text-decoration:none;padding:6px 0 4px}
+.targa .mail{font-size:24px;line-height:1.3;letter-spacing:-.01em}
 
-.piede{padding-top:32px;padding-bottom:36px;font-size:14px;line-height:1.6;color:var(--grigio);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 32px}
-.piede a{text-decoration:none}
-.piede a:hover{text-decoration:underline}
+/* piede: una riga sola, sulla carta */
+.piede{padding-top:28px;padding-bottom:32px;font-size:14px;line-height:1.7;color:var(--grigio)}
+.piede span{white-space:nowrap}
+.piede span + span::before{content:"\00B7";margin:0 .7em;color:var(--grigio)}
+.piede a{text-decoration:underline;text-decoration-color:#9AA0A2}
+.piede a:hover{text-decoration-color:currentColor}
 
 /* 1280 e 1366: la frase in tre righe, la foto sale */
 @media (max-width:1400px){
@@ -182,7 +196,11 @@ p{text-wrap:pretty}
   .fam b{font-size:17px}
   .menu{gap:24px}
   .sez h2{font-size:54px}
-  .contatti h2{font-size:84px}
+  .contatti{padding-top:104px;padding-bottom:104px}
+  .contatti h2{font-size:54px}
+  .contatti .testo{grid-column:1/13}
+  .contatti .testo p{max-width:30em}
+  .targa{grid-column:1/13;max-width:760px;margin-top:40px}
 }
 /* 768 */
 @media (max-width:900px){
@@ -207,7 +225,6 @@ p{text-wrap:pretty}
   .fam li:nth-child(2){border-bottom:1px solid var(--lamiera-scura)}
   .anche h3,.anche p{grid-column:1/13}
   .anche p{margin-top:16px}
-  .contatti .col{grid-column:span 6}
 }
 /* telefono */
 @media (max-width:640px){
@@ -254,11 +271,19 @@ p{text-wrap:pretty}
   .cat .pdf{margin-top:28px}
   .pdf{columns:1}
   .pdf li{padding:10px 0 8px}
-  .contatti{padding-top:64px;padding-bottom:64px}
-  .contatti h2{font-size:52px}
-  .contatti .col{grid-column:1/13;margin-top:32px}
-  .piede{display:block}
-  .piede span{display:block}
+  .contatti{padding-top:76px;padding-bottom:76px}
+  .contatti h2{font-size:38px;line-height:1.06}
+  .contatti .testo p{margin-top:16px;font-size:18px}
+  .targa{margin-top:32px;padding:7px;border-radius:7px}
+  .targa dl{grid-template-columns:minmax(0,1fr)}
+  .targa .capo{padding:12px 14px 10px}
+  .targa .capo img{width:124px}
+  .targa .capo span{font-size:13px}
+  .targa .campo{padding:10px 14px 14px;font-size:16px}
+  .targa .campo + .campo:not(.largo){border-left:0}
+  .targa .tel-g{font-size:40px}
+  .targa .mail{font-size:20px}
+  .piede{padding-top:24px;padding-bottom:28px}
 }
 @media (max-width:360px){
   .logo{width:124px}
@@ -267,7 +292,10 @@ p{text-wrap:pretty}
   .eroe h1{font-size:40px}
   .cart{height:260px}
   .cart dl{grid-template-columns:64px 1fr}
-  .contatti h2{font-size:44px}
+  .targa .capo{flex-direction:column;align-items:flex-start;gap:6px}
+  .targa .capo span{text-align:left}
+  .targa .tel-g{font-size:34px}
+  .targa .mail{font-size:18px}
 }
 </style>
 </head>
@@ -405,19 +433,27 @@ p{text-wrap:pretty}
 
 <section class="contatti" id="contatti" aria-labelledby="h-con">
   <div class="w grid">
-    <h2 id="h-con" class="num"><a href="tel:+390497960705">049 7960705</a></h2>
-    <div class="col"><b>Scrivete</b><a href="mailto:info@areasystems.it">info@areasystems.it</a><br><span class="grigio">con la sigla del pezzo o le misure del quadro</span></div>
-    <div class="col"><b>Sede operativa</b>Via San Marco 10<br>30030 Tombelle di Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Marco+10+Tombelle+Vigonovo">Apri la mappa</a></div>
-    <div class="col"><b>Sede legale</b>Via Brescia 6<br>35020 Saonara (PD)<br><span class="grigio">PEC area.systems@pec.it</span></div>
+    <div class="testo">
+      <h2 id="h-con">Contatti</h2>
+      <p>Chiamate o scrivete con la sigla del pezzo o le misure del quadro.</p>
+    </div>
+    <div class="targa num">
+      <div class="cornice">
+      <div class="capo"><img src="img/marchio.webp" width="1054" height="192" alt="Area Systems" loading="lazy"><span>Clima per quadri elettrici</span></div>
+      <dl>
+        <div class="campo largo"><dt>Tel.</dt><dd><a class="tel-g" href="tel:+390497960705">049 7960705</a></dd></div>
+        <div class="campo largo"><dt>E-mail</dt><dd><a class="mail" href="mailto:info@areasystems.it">info@areasystems.it</a></dd></div>
+        <div class="campo"><dt>Sede operativa</dt><dd>Via San Marco 10<br>30030 Tombelle di Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Marco+10+Tombelle+Vigonovo">Apri la mappa</a></dd></div>
+        <div class="campo"><dt>Sede legale</dt><dd>Via Brescia 6<br>35020 Saonara (PD)</dd></div>
+      </dl>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="w piede num">
-  <span>Area Systems srl, dal 2016</span>
-  <span>P. IVA e C.F. IT 04952870287</span>
-  <span>REA PD-431335, capitale sociale 10.000 euro</span>
-  <span><a href="https://www.iubenda.com/privacy-policy/25167846">Privacy</a> e <a href="https://www.iubenda.com/privacy-policy/25167846/cookie-policy">cookie</a></span>
+  <p><span>Area Systems srl, dal 2016</span><span>P. IVA e C.F. IT 04952870287</span><span>REA PD-431335</span><span>capitale sociale 10.000 euro</span><span>PEC area.systems@pec.it</span><span><a href="https://www.iubenda.com/privacy-policy/25167846">Privacy</a> e <a href="https://www.iubenda.com/privacy-policy/25167846/cookie-policy">cookie</a></span></p>
 </footer>
 
 <script>

@@ -4,12 +4,14 @@ Proposta non richiesta: solo la home, da mostrare all'azienda. Non è pubblicata
 
 - `01-analisi.md`: azienda, sito di oggi, fatti con le fonti, materiale visivo, direzioni artistiche, riferimenti.
 - `sito/`: la home finale, "Scintilla e spessore" (`index.html`, `img/`, `fonts/`). Si apre con file:///. Viene dal prototipo B e sostituisce la versione "Il foglio annidato", bocciata.
-- `screenshot/home/`: home intera e prima schermata a 1440 e a 390, più `NOTA.md` (idea, prime due schermate, caratteri, colori, interazione, foto, controlli).
+- `screenshot/home/`: home intera e prima schermata a 1440 e a 390, la chiusura da sola a 1440 (`chiusura-1440.jpg`), più `NOTA.md` (idea, prime due schermate, caratteri, colori, interazione, foto, controlli).
 - `assets/originali/`: le immagini del sito teklam.it. `assets/esterne/`: foto Unsplash e Pexels scaricate come segnaposto, licenze in `assets/CREDITI.md`. `assets/web/` contiene le immagini e il carattere della home finale per la versione WordPress (vedi sotto).
 - Versione WordPress della home: `elementor-json/`, `html-fallback/`, `anteprima/`, `plugin/teklam-installer.zip`, `screenshot/elementor/`, `screenshot/fallback/`, `_sorgente/` (vedi "Versione WordPress della home").
 - `_prova/`: lavoro di servizio (crawl, riferimenti, prototipi A e B in `_prova/home/`, script). `bash _prova/script/build_finale.sh` rifà immagini, carattere, pagina, controlli (anche menu, righe del percorso e larghezze da 320 a 2560 con `rifinitura_prova.mjs`) e screenshot; gli script della versione bocciata sono in `_prova/script/vecchio-foglio/`.
 
 ## Versione WordPress della home (come per Benvegnù)
+
+> **Da rigenerare: la chiusura della home è cambiata (19 ottobre, sera).** Nella statica (`sito/index.html`) i contatti e il piede non sono più il telefono a 160 px sulla foto dell'ugello con quattro colonnine di recapiti e il piede a tre colonne: ora i recapiti sono incisi su una targhetta di lamiera tagliata al laser, sul nero, e il piede è una riga sola (ragione sociale, P.IVA, privacy, cookie, social). La foto di fondo dei contatti (`contatti-*`) non è più in `sito/img/`. I file WordPress di questa cartella (`elementor-json/`, `html-fallback/`, `anteprima/`, `plugin/teklam-installer.zip`, `assets/web/`, `screenshot/elementor/`, `screenshot/fallback/`) sono ancora quelli della chiusura di prima e vanno rifatti: in `_sorgente/` (non toccato) la sezione dei contatti e il piede di `contenuti.py` vanno riscritti sulla targhetta, `prepara_immagini.py` cita ancora i quattro file `contatti-*` da togliere dall'elenco, poi i tre comandi di "Rigenerare i file" e il collaudo. Le altezze e i confronti pixel per pixel scritti sotto valgono per la chiusura di prima. Dettagli della targhetta in `screenshot/home/NOTA.md`.
 
 La home finale ("Scintilla e spessore", `sito/index.html`, versione del 19 ottobre alle 19:24) è pronta da importare in WordPress con Elementor, più header e footer, in due formati:
 - **Formato A (primario):** template Elementor `.json` da importare con *Template > Template salvati > Importa template*, oppure tutto in automatico con il plugin di installazione.
@@ -169,11 +171,11 @@ L'officina di notte: la scintilla del laser su nero pieno, poi lo spessore che q
 
 ## Foto da rifare dal vero
 
-In pagina ci sono due foto di repertorio con la dicitura "Foto indicativa" (apertura e fondo dei contatti) e una loro foto, un fotogramma da telefono di 1330 px allargato a tutta la finestra (sopra i 1440 px si vede morbida). La fascia della piegatrice sopra il percorso è uscita. Mezza giornata di fotografo in officina, di sera o a portoni chiusi, luce della macchina più una lampada calda radente, file da almeno 3000 px di lato lungo:
+Nella statica c'è una foto di repertorio con la dicitura "Foto indicativa" (l'apertura; quella sotto i contatti è uscita con la targhetta) e una loro foto, un fotogramma da telefono di 1330 px allargato a tutta la finestra (sopra i 1440 px si vede morbida). La fascia della piegatrice sopra il percorso è uscita. Mezza giornata di fotografo in officina, di sera o a portoni chiusi, luce della macchina più una lampada calda radente, file da almeno 3000 px di lato lungo:
 
 1. **L'apertura**: il loro Byspeed che taglia ferro spesso, ripreso basso al livello della lamiera, ugello al centro, scintille ai due lati, sotto almeno un terzo di buio per il titolo; tempo breve (1/250 o meno) per le scie nitide, f/4. Più una versione verticale 4:5 per il telefono, stretta sull'ugello. Con la foto vera la dicitura "Foto indicativa" sparisce dalla prima schermata.
 2. **La famiglia**: la saldatura TIG sul cassone col film blu, stessa scena di `slide1` a piena risoluzione e in orizzontale largo (almeno 2,4:1 di ritaglio, perché va a tutta larghezza), e Sandro e Dimitri Volpato in officina al lavoro, non in posa.
-3. **I contatti**: l'ugello del loro laser sul piano a punte, fermo, macchina spenta, luce radente; deve reggere scurito al 60 % sotto il testo, con la parte bassa calma (lì ci sono i recapiti).
+3. **I contatti**: non serve più per la statica (i recapiti sono sulla targhetta, sul nero). Una foto vera dell'officina in più aiuterebbe però l'area coperta da foto, scesa al 31,4 % (vedi `screenshot/home/NOTA.md`).
 4. Facoltativa: il bordo vero di una lamiera da 20 mm appena tagliata, in macro con luce radente, per affiancare la sezione disegnata.
 
 ## Caratteri e licenze
