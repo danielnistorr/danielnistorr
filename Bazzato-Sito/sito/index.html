@@ -13,7 +13,7 @@
 @font-face{font-family:"General Sans";src:url("fonts/GeneralSans-Semibold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
 :root{
-  --cemento:#E9E8E4;
+  --cemento:#F0EEEA;
   --foglio:#FFFFFF;
   --nero:#111111;
   --grigio:#56554F;
@@ -43,16 +43,19 @@ ul{padding:0;list-style:none}
 .menu{grid-column:4/9;display:flex;gap:32px;font-size:16px}
 .menu a{text-decoration:none}
 .menu a:hover{text-decoration:underline}
-.lato{grid-column:9/13;display:flex;justify-content:flex-end;align-items:center;gap:28px;font-size:16px}
+.lato{grid-column:9/13;display:flex;justify-content:flex-end;align-items:center;font-size:16px}
 .tel{text-decoration:none;font-weight:500;white-space:nowrap}
-.stato{font:inherit;color:inherit;background:none;border:0;padding:12px 0;cursor:pointer;display:flex;align-items:center;gap:10px;text-align:left;white-space:nowrap}
-.stato:hover .stato-testo{text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1px}
-.punto{width:9px;height:9px;border-radius:50%;background:var(--grigio);flex:none}
-.aperto .punto{background:var(--azzurro);box-shadow:0 0 0 3px rgba(0,195,239,.22)}
-.segno{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);flex:none}
-.stato[aria-expanded="true"] .segno{transform:translateY(2px) rotate(-135deg)}
-.orari-pannello{position:absolute;top:64px;right:var(--m);width:min(400px,calc(100vw - 2*var(--m)));background:var(--foglio);border:1px solid var(--filo);padding:24px 24px 20px;font-size:16px;line-height:1.45}
+.tel-testata{font-size:17px}
 .orari-pannello[hidden]{display:none}
+/* stato dell'officina, nell'apertura accanto al bottone */
+.stato-box{position:relative}
+.stato{font:inherit;font-weight:500;font-size:clamp(22px,2vw,29px);letter-spacing:-.015em;line-height:1.2;color:inherit;background:none;border:0;padding:6px 0;margin:-6px 0;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;white-space:nowrap}
+.stato:hover .stato-testo{text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1.5px}
+.punto{width:13px;height:13px;border-radius:50%;background:var(--grigio);flex:none}
+.aperto .punto{background:var(--azzurro);box-shadow:0 0 0 4px rgba(0,195,239,.24)}
+.segno{width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);flex:none;margin-left:2px}
+.stato[aria-expanded="true"] .segno{transform:translateY(3px) rotate(-135deg)}
+.orari-pannello{position:absolute;z-index:6;bottom:calc(100% + 14px);left:0;width:min(400px,calc(100vw - 2*var(--m)));background:var(--foglio);border:1px solid var(--filo);padding:24px 24px 20px;font-size:16px;line-height:1.45}
 .orari-pannello h2{font-size:16px;font-weight:600;margin-bottom:12px}
 .riga-ora{display:grid;grid-template-columns:80px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--filo)}
 .riga-ora dt{color:var(--grigio)}
@@ -67,7 +70,8 @@ ul{padding:0;list-style:none}
 .apertura h1 .riga{display:block}
 .apertura .sotto{grid-column:1/6;font-size:19px;line-height:1.45;max-width:31em}
 .wa{white-space:nowrap}
-.azioni{grid-column:6/11;display:flex;align-items:center;gap:28px;align-self:end}
+.azioni{grid-column:6/11;display:flex;flex-direction:column;align-items:flex-start;gap:22px;align-self:end}
+.bottoni{display:flex;align-items:center;gap:28px}
 .bottone{display:inline-block;white-space:nowrap;background:var(--nero);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:15px 24px}
 .bottone:hover{background:var(--petrolio);color:#fff}
 .didascalia-foto{grid-column:11/13;justify-self:end;align-self:end;font-size:13px;color:#3F3E3A;text-align:right}
@@ -75,13 +79,13 @@ ul{padding:0;list-style:none}
 /* officina */
 .officina{padding-block:136px 128px}
 .lead{grid-column:1/9;font-size:clamp(27px,2.85vw,41px);line-height:1.17;letter-spacing:-.02em;text-wrap:pretty}
-.fatti{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);row-gap:48px;margin-top:96px}
+.fatti{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);row-gap:28px;margin-top:96px}
 .fatti li{border-top:1px solid var(--nero);padding-top:18px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:var(--g);align-items:baseline}
 .fatti b{font-weight:500;font-size:20px;letter-spacing:-.01em}
 .fatti span{color:var(--grigio);font-size:17px;line-height:1.5}
 
 /* banda foto: l'auto intera sul ponte */
-.banda img{width:100%;height:clamp(300px,69.5vw,1100px);object-fit:cover;object-position:50% 60%}
+.banda img{width:100%;height:clamp(300px,66.6vw,1100px);object-fit:cover;object-position:50% 55%}
 .banda figcaption{padding-top:14px;font-size:14px;color:var(--grigio)}
 .banda figcaption span:first-child{grid-column:1/9}
 .banda figcaption span:last-child{grid-column:9/13;text-align:right}
@@ -133,6 +137,7 @@ ul{padding:0;list-style:none}
 @media (max-width:1100px){
   .apertura .sotto{grid-column:1/7}
   .azioni{grid-column:7/11}
+  .voci .prezzo{white-space:normal;text-wrap:balance}
   .lead{grid-column:1/-1}
   .fatti li{grid-template-columns:1fr;row-gap:6px}
   .voci .nome{grid-column:1/6}
@@ -157,21 +162,20 @@ ul{padding:0;list-style:none}
   :root{--g:16px}
   body{font-size:17px}
   .testata{height:64px;gap:12px}
-  .lato{gap:0}
-  .lato .tel{display:none}
-  .stato{font-size:15px}
-  .orari-pannello{top:58px}
+  .tel-testata{font-size:16px}
+  .stato{font-size:22px;gap:12px}
   .apertura{height:clamp(560px,calc(100svh - 64px),760px)}
   .apertura picture img{object-position:50% 30%}
   .apertura .testo{bottom:24px;row-gap:18px}
   .apertura h1{font-size:clamp(42px,13.4vw,60px);line-height:.95}
   .apertura .sotto{grid-column:1/-1;font-size:17px}
-  .azioni{grid-column:1/-1;grid-row:auto;gap:20px}
+  .azioni{grid-column:1/-1;grid-row:auto;gap:18px}
+  .bottoni{gap:20px}
   .didascalia-foto{display:none}
   .officina{padding-block:88px 88px}
   .lead{font-size:25px}
   .fatti{grid-template-columns:1fr;margin-top:56px;row-gap:28px}
-  .banda img{height:auto;aspect-ratio:1/1}
+  .banda img{height:auto;aspect-ratio:5/4}
   .banda figcaption span:first-child{grid-column:1/-1}
   .banda figcaption span:last-child{display:none}
   .listino{padding-block:64px 88px}
@@ -200,8 +204,10 @@ ul{padding:0;list-style:none}
   .apertura .testo{bottom:20px;row-gap:14px}
   .apertura h1{font-size:40px}
   .apertura .sotto{font-size:15px;line-height:1.42}
-  .azioni{gap:16px}
-  .bottone{padding:14px 18px;font-size:16px}
+  .azioni{gap:14px}
+  .bottone{padding:13px 16px;font-size:16px}
+  .bottoni{gap:14px}
+  .stato{font-size:19px;gap:10px}
 }
 </style>
 </head>
@@ -215,22 +221,7 @@ ul{padding:0;list-style:none}
     <a href="#dove">Dove siamo</a>
   </nav>
   <div class="lato">
-    <button class="stato" id="stato" type="button" aria-expanded="false" aria-controls="orari">
-      <span class="punto" aria-hidden="true"></span>
-      <span class="stato-testo" id="stato-testo">Orari dell'officina</span>
-      <span class="segno" aria-hidden="true"></span>
-    </button>
-    <a class="tel" href="tel:+390499830115">049 9830115</a>
-  </div>
-  <div class="orari-pannello" id="orari" hidden>
-    <h2>Orari</h2>
-    <dl>
-      <div class="riga-ora"><dt>Officina</dt><dd>dal lunedì al venerdì<br>08.00-12.00 e 14.00-18.00</dd></div>
-      <div class="riga-ora"><dt>Uffici</dt><dd>dal lunedì al venerdì<br>08.00-12.30 e 14.00-19.00<br>il venerdì fino alle 18.00</dd></div>
-      <div class="riga-ora"><dt>Sabato</dt><dd>chiuso</dd></div>
-    </dl>
-    <p class="avviso" id="avviso" hidden></p>
-    <p>Telefono e WhatsApp: <a href="tel:+390499830115">049 9830115</a></p>
+    <a class="tel tel-testata" href="tel:+390499830115">049 9830115</a>
   </div>
 </header>
 
@@ -238,14 +229,33 @@ ul{padding:0;list-style:none}
   <section class="apertura" aria-labelledby="titolo">
     <picture>
       <source media="(max-width:700px)" srcset="img/officina-alta-480.jpg 480w, img/officina-alta-780.jpg 780w, img/officina-alta-960.jpg 960w" sizes="100vw">
-      <img src="img/officina-1440.jpg" srcset="img/officina-960.jpg 960w, img/officina-1440.jpg 1440w, img/officina-1920.jpg 1920w, img/officina-2280.jpg 2280w" sizes="100vw" width="1440" height="827" fetchpriority="high" alt="Un'officina chiara con il pavimento a piastrelle e un'auto alzata sul ponte, vista dal fondo del capannone">
+      <img src="img/officina-1440.jpg" srcset="img/officina-960.jpg 960w, img/officina-1440.jpg 1440w, img/officina-1920.jpg 1920w, img/officina-2040.jpg 2040w" sizes="100vw" width="1440" height="827" fetchpriority="high" alt="Un'officina chiara con il pavimento a piastrelle e un'auto alzata sul ponte, vista dal fondo del capannone">
     </picture>
     <div class="testo griglia">
       <h1 id="titolo">Officina multimarca <span class="riga">a Tombelle</span></h1>
-      <p class="sotto">Tagliandi, revisione in sede, gomme, clima, elettrauto e impianti GPL, su auto di ogni marca. Viale Serenissima 3, Vigonovo (VE).</p>
+      <p class="sotto">Tagliandi, gomme, clima, elettrauto e impianti GPL su auto di ogni marca. Revisione in sede in circa 45 minuti, € 79. Viale Serenissima 3, Vigonovo (VE).</p>
       <div class="azioni">
-        <a class="bottone" href="tel:+390499830115">Chiama 049 9830115</a>
-        <a class="wa" href="https://wa.me/390499830115"><span class="lungo">Scrivi su </span>WhatsApp</a>
+        <div class="stato-box">
+          <button class="stato" id="stato" type="button" aria-expanded="false" aria-controls="orari">
+            <span class="punto" aria-hidden="true"></span>
+            <span class="stato-testo" id="stato-testo">Orari dell'officina</span>
+            <span class="segno" aria-hidden="true"></span>
+          </button>
+          <div class="orari-pannello" id="orari" hidden>
+            <h2>Orari</h2>
+            <dl>
+              <div class="riga-ora"><dt>Officina</dt><dd>dal lunedì al venerdì<br>08.00-12.00 e 14.00-18.00</dd></div>
+              <div class="riga-ora"><dt>Uffici</dt><dd>dal lunedì al venerdì<br>08.00-12.30 e 14.00-19.00<br>il venerdì fino alle 18.00</dd></div>
+              <div class="riga-ora"><dt>Sabato</dt><dd>chiuso</dd></div>
+            </dl>
+            <p class="avviso" id="avviso" hidden></p>
+            <p>Telefono e WhatsApp: <a href="tel:+390499830115">049 9830115</a></p>
+          </div>
+        </div>
+        <div class="bottoni">
+          <a class="bottone" href="tel:+390499830115">Chiama 049 9830115</a>
+          <a class="wa" href="https://wa.me/390499830115"><span class="lungo">Scrivi su </span>WhatsApp</a>
+        </div>
       </div>
       <p class="didascalia-foto">Foto indicativa</p>
     </div>
@@ -255,22 +265,20 @@ ul{padding:0;list-style:none}
     <p class="lead">L'officina di Andrea e Paolo Bazzato a Tombelle, tra Padova e Venezia, per auto di ogni marca. Prima il preventivo, alla fine il resoconto di ogni operazione fatta.</p>
     <ul class="fatti">
       <li><b>Eurorepar Car Service</b><span>Centro di riparazione della rete multimarca.</span></li>
-      <li><b>GPL Landi</b><span>Assistenza autorizzata sugli impianti a gas.</span></li>
-      <li><b>Revisione in sede</b><span>Circa 45 minuti, si può aspettare.</span></li>
       <li><b>Auto sostitutiva</b><span>A noleggio, mentre la tua è sul ponte.</span></li>
     </ul>
   </section>
 
   <section class="listino" id="lavori" aria-labelledby="t-lavori">
     <div class="griglia">
-      <h2 id="t-lavori">Prezzi chiari, sconti chiari</h2>
+      <h2 id="t-lavori">Lavori e prezzi</h2>
       <p class="intro">Dove c'è un prezzo fisso lo scriviamo. Per il resto si parte dal preventivo, e alla fine ricevi il resoconto delle operazioni fatte.</p>
       <ul class="voci">
         <li><span class="nome">Tagliando</span><span class="det">Su tutte le auto. Per il preventivo servono targa, chilometri e sigla del motore.</span><span class="prezzo"><small>a preventivo</small></span></li>
         <li><span class="nome">Gomme</span><span class="det">Delle migliori marche, con assetto computerizzato. Nel prezzo montaggio, valvole, equilibratura e contributo ambientale.</span><span class="prezzo"><small>prezzo anche al telefono</small></span></li>
-        <li><span class="nome">Clima, gas R134a</span><span class="det">Controllo e ricarica del climatizzatore.</span><span class="prezzo"><small>circa</small> € 70</span></li>
-        <li><span class="nome">Clima, gas R1234yf</span><span class="det">Dal 2017 tutte le auto nuove usano questo gas.</span><span class="prezzo"><small>circa</small> € 180</span></li>
-        <li><span class="nome">Batterie</span><span class="det">Test e ricarica. Batterie QParts Iva compresa, montaggio escluso.</span><span class="prezzo"><small>da</small> € 80 <small>a</small> € 185</span></li>
+        <li><span class="nome">Clima, gas R134a</span><span class="det">Controllo e ricarica del climatizzatore.</span><span class="prezzo"><small>circa</small> €&nbsp;70</span></li>
+        <li><span class="nome">Clima, gas R1234yf</span><span class="det">Dal 2017 tutte le auto nuove usano questo gas.</span><span class="prezzo"><small>circa</small> €&nbsp;180</span></li>
+        <li><span class="nome">Batterie</span><span class="det">Test e ricarica. Batterie QParts Iva compresa, montaggio escluso.</span><span class="prezzo"><small>da</small> €&nbsp;80 <small>a</small> €&nbsp;185</span></li>
         <li><span class="nome">Elettrauto</span><span class="det">Diagnosi con il diagnostico multimarca.</span><span class="prezzo"><small>a preventivo</small></span></li>
         <li><span class="nome">Impianti GPL</span><span class="det">Assistenza autorizzata Landi.</span><span class="prezzo"><small>a preventivo</small></span></li>
       </ul>
@@ -296,7 +304,7 @@ ul{padding:0;list-style:none}
   <figure class="banda">
     <picture>
       <source media="(max-width:700px)" srcset="img/ponte-alta-480.jpg 480w, img/ponte-alta-780.jpg 780w" sizes="100vw">
-      <img src="img/ponte-1440.jpg" srcset="img/ponte-960.jpg 960w, img/ponte-1440.jpg 1440w, img/ponte-1920.jpg 1920w, img/ponte-2400.jpg 2400w" sizes="100vw" width="1440" height="960" loading="lazy" alt="Un'auto bianca alzata sul ponte a due colonne, vista da dietro, in un'officina luminosa">
+      <img src="img/ponte-1440.jpg" srcset="img/ponte-960.jpg 960w, img/ponte-1440.jpg 1440w, img/ponte-1920.jpg 1920w, img/ponte-2400.jpg 2400w" sizes="100vw" width="1440" height="959" loading="lazy" alt="Un'auto bianca intera alzata sul ponte, vista di fianco, in un'officina luminosa con il pavimento a piastrelle">
     </picture>
     <figcaption class="griglia"><span>Tagliandi e manutenzione rapida, su auto di ogni marca.</span><span>Foto indicativa</span></figcaption>
   </figure>
@@ -382,10 +390,10 @@ ul{padding:0;list-style:none}
   function stato(){
     var a=adesso(),oggi=a.d,t=a.min,motivo=chiuso(oggi);
     if(!motivo){
-      if(t>=ORARI[0][0]&&t<ORARI[0][1])return{aperto:true,testo:'Aperto, chiude alle 12.00',corto:'Aperto fino alle 12.00'};
-      if(t>=ORARI[1][0]&&t<ORARI[1][1])return{aperto:true,testo:'Aperto, chiude alle 18.00',corto:'Aperto fino alle 18.00'};
-      if(t<ORARI[0][0])return{aperto:false,testo:'Chiuso, apre alle 08.00',corto:'Apre alle 08.00'};
-      if(t<ORARI[1][0])return{aperto:false,testo:'Pausa, riapre alle 14.00',corto:'Riapre alle 14.00'};
+      if(t>=ORARI[0][0]&&t<ORARI[0][1])return{aperto:true,testo:'Aperto, chiude alle 12.00'};
+      if(t>=ORARI[1][0]&&t<ORARI[1][1])return{aperto:true,testo:'Aperto, chiude alle 18.00'};
+      if(t<ORARI[0][0])return{aperto:false,testo:'Chiuso, apre alle 08.00'};
+      if(t<ORARI[1][0])return{aperto:false,testo:'Pausa, riapre alle 14.00'};
     }
     for(var n=1;n<120;n++){if(!chiuso(dopo(oggi,n)))break;}
     var giorno=dopo(oggi,n),quando;
@@ -393,7 +401,7 @@ ul{padding:0;list-style:none}
     else if(n<7)quando=GIORNI[giorno.getUTCDay()];
     else quando='il '+giorno.getUTCDate()+' '+MESI[giorno.getUTCMonth()];
     var prima=motivo==='ferie'?'Chiuso per ferie':'Chiuso';
-    return{aperto:false,testo:prima+', riapre '+quando+(n<7?' alle 08.00':''),corto:'Riapre '+quando};
+    return{aperto:false,testo:prima+', riapre '+quando+(n<7?' alle 08.00':'')};
   }
   function prossimeFerie(){ // avviso nel pannello se una chiusura inizia entro 45 giorni
     var oggi=iso(adesso().d),lim=iso(dopo(adesso().d,45));
@@ -408,10 +416,7 @@ ul{padding:0;list-style:none}
   }
 
   var s=stato(),b=document.getElementById('stato'),p=document.getElementById('orari'),av=prossimeFerie();
-  var corto=matchMedia('(max-width:700px)');
-  function scrivi(){document.getElementById('stato-testo').textContent=corto.matches?s.corto:s.testo;}
-  scrivi();
-  if(corto.addEventListener)corto.addEventListener('change',scrivi);
+  document.getElementById('stato-testo').textContent=s.testo;
   b.classList.toggle('aperto',s.aperto);
   b.setAttribute('aria-label',s.testo+'. Mostra gli orari');
   if(av){var e=document.getElementById('avviso');e.textContent=av;e.hidden=false;}

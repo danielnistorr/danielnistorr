@@ -14,13 +14,16 @@ Proposta non richiesta, solo la home. Niente è stato pubblicato, inviato o most
 
 In pagina ci sono solo fatti presi dal sito e dai due PDF (fonti in `01-analisi.md`, luoghi e anni dal portfolio del 2013). Restano da confermare:
 
-- **Il registro delle opere**: 33 opere, tutte del portfolio del 2013 o delle pagine del sito.
+- **Il registro delle opere**: 34 opere, tutte del portfolio del 2013 o delle pagine del sito. 26 hanno l'anno; le altre 8 (senza anno nelle fonti) stanno in fondo sotto "Altre opere", senza colonna dell'anno.
+  - Rochdale (2012) e Birley Fields (2013) a Manchester sono ora due righe, come nel portfolio: facciate in acciaio ("courtain wall design (steel struct.)").
+  - Centro direzionale Giotto: anno 2007 e Padova dal portfolio ("RETAIL AND BUSINESS CENTER GIOTTO, PADOVA", 2007). Centro commerciale Alimarket: Padova dal titolo della sua scheda nel sito.
   - Il ruolo di Tre Esse in ognuna. Nel portfolio quasi tutte sono "engineering and detailing"; il registro non lo scrive riga per riga.
   - Si possono citare tutte per nome?
   - Il KAFD di Riyad (facciata in acciaio e vetro): che lavoro ha fatto Tre Esse?
   - L'"Edificio industriale, Emirati Arabi Uniti, 8000 t" nel portfolio è di Danieli. Il nome del cliente resta fuori finché non c'è il permesso.
 - **Opere dopo il 2013**: il portfolio si ferma lì. Senza lavori recenti il registro mostra uno studio fermo, quindi vanno chiesti e messi in testa.
-- **Anni mancanti** per le opere in cemento armato, i restauri (tranne lo Stucky) e le tre centrali in project management.
+  - Per questo l'estratto della prima schermata (Emirati 8000 t, Molino Stucky 250.000 m³, Adria 700 t) non mostra gli anni. Quando arrivano tre opere recenti con i loro numeri, vanno messe lì al posto di queste, con l'anno.
+- **Anni mancanti** per le 8 "Altre opere": Ponte sul Brenta, Centro commerciale Alimarket, Chiesa di San Francesco, ex zuccherificio di Cavarzere, campanile di Montecchia di Crosara, centrali di Castegnero, Maleo e Meduno. Con l'anno passano nel registro principale.
   - Il "Ponte sul Brenta, Corte di Piove di Sacco" del sito è il "Bridge inox a Corte, Piove di Sacco, 2006" del portfolio? Se sì è in acciaio inox, non in cemento armato, e va spostato tra i ponti (i conteggi dei filtri cambiano).
 - **Lasciate fuori di proposito**:
   - Nancy e Brest (2013), la stazione di Mons (Calatrava), Trecenta e Montegrotto, ILVA, ABS Udine, tralicci Terna, Acciaierie Venete;
@@ -39,12 +42,13 @@ In pagina ci sono solo fatti presi dal sito e dai due PDF (fonti in `01-analisi.
 
 Le due foto grandi della home (apertura e fascia) sono **segnaposto di repertorio** (Unsplash, Helsinki e Vancouver): non sono opere di Tre Esse e in pagina non hanno didascalia. Non si pubblica finché non sono sostituite con foto delle loro opere. Il trattamento resta lo stesso (`finale_b_img.py`: basta cambiare il file sorgente e il taglio).
 
-1. **Apertura**: il cavalcaferrovia Sarpi o il Ponte Verde a Padova, a pochi chilometri dalla sede.
+1. **Apertura**: il cavalcaferrovia Sarpi o il Ponte Verde a Padova, a pochi chilometri dalla sede. È la correzione più importante: oggi la prima schermata mostra un ponte di Helsinki e con il nome di un concorrente reggerebbe uguale. Il materiale dell'azienda che c'è non basta (le foto del Sarpi nel portfolio sono di notte e larghe 922 px; quelle del sito sono a 500 px con la filigrana).
+   - Quando c'è la foto vera, sotto l'immagine va una legenda piccola con nome e anno dell'opera (per esempio "Cavalcaferrovia Sarpi, Padova, 2008"), come le righe del registro.
    - Visti da sotto, in asse con l'impalcato, così che l'acciaio occupi la metà alta e le pile o le spalle scendano verso il titolo.
    - Mattino con cielo coperto chiaro (il cielo deve diventare la carta), obiettivo 24-35 mm, treppiede, almeno 6000 px di lato lungo.
    - Serve anche un taglio verticale per il telefono, centrato sull'appoggio.
-2. **Fascia**: un nodo bullonato o una controventatura di una loro opera in acciaio, vista dal basso contro lo stesso cielo chiaro. Almeno 4000 px di larghezza (oggi è 1600 e a 2x è al limite).
-3. **Cupola di Adria**: il ritaglio del portfolio è di 1155x865 px, un po' grigio e compresso. Servono l'originale senza compressione, oppure una foto nuova dal centro della cupola, in asse con l'oculo, con luce diffusa e almeno 4000 px.
+2. **Fascia**: un nodo bullonato o una controventatura di una loro opera in acciaio, vista dal basso contro lo stesso cielo chiaro. Almeno 3200 px di larghezza: il segnaposto di oggi è la stessa foto Unsplash scaricata a 3200 px, nitida anche su schermo 2x.
+3. **Cupola di Adria**: il ritaglio del portfolio è di 1155x865 px, un po' grigio e compresso. In pagina ora è intera, larga al massimo 800 px, ripulita dai blocchi JPEG e con più contrasto locale: a 1x è nitida, su schermo 2x è ancora un po' morbida. Servono l'originale senza compressione, oppure una foto nuova dal centro della cupola, in asse con l'oculo, con luce diffusa e almeno 2400 px.
 4. Le 223 foto della galleria del sito attuale sono a 500 px con la filigrana "3 Tre Esse s.r.l." e non sono usabili: chiedere gli originali.
 5. Diritti: le foto del portfolio sono dell'azienda o dei fotografi delle imprese e dei committenti? Va chiarito prima di usare la cupola.
 

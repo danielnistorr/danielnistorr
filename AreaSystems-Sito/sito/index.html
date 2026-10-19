@@ -50,13 +50,13 @@ p{text-wrap:pretty}
 .menu-m ul{position:absolute;left:0;right:0;top:100%;z-index:6;background:var(--carta);list-style:none;padding:8px var(--m) 20px;border-bottom:1px solid var(--filo)}
 .menu-m li a{display:block;padding:12px 0;font-size:22px;font-weight:300;letter-spacing:-.01em;text-decoration:none}
 
-/* apertura */
-.apre{padding-top:20px;padding-bottom:44px;align-items:end}
-.apre h1{grid-column:1/9;font-size:128px;line-height:.93;letter-spacing:-.038em}
-.apre .sotto{grid-column:9/13;font-size:18px;line-height:1.5;padding-bottom:4px}
+/* apertura: una griglia sola per titolo, frase, legenda e foto (le colonne 2..13 sono quelle di .w) */
+.eroe{display:grid;grid-template-columns:minmax(0,1fr) repeat(12,minmax(0,calc((min(100%,1568px) - 2 * var(--m) - 11 * var(--g)) / 12))) minmax(0,1fr);column-gap:var(--g)}
+.eroe h1{grid-column:2/10;grid-row:1/3;align-self:end;margin-top:12px;font-size:clamp(92px,8.9vw,128px);line-height:.93;letter-spacing:-.038em}
+.eroe .sotto{grid-column:10/14;grid-row:1;align-self:end;margin-top:12px;font-size:18px;line-height:1.5}
 
 /* foto del quadro con le etichette: dove va ogni pezzo */
-.quadro{position:relative;width:100%;container-type:inline-size;height:clamp(460px,calc(100vh - 398px),66.667vw);overflow:hidden;background:var(--lamiera)}
+.quadro{grid-column:1/-1;grid-row:3;margin-top:32px;position:relative;width:100%;container-type:inline-size;height:clamp(500px,calc(100vh - 410px),66.667vw);overflow:hidden;background:var(--lamiera)}
 .quadro picture img{width:100%;height:auto}
 .tags{list-style:none}
 .tag{-webkit-tap-highlight-color:transparent;position:absolute;left:calc(var(--x) * 1cqw);top:calc(var(--y) * .66667cqw);display:flex;align-items:center;border:0;background:none;padding:0;font:inherit;color:var(--inchiostro);cursor:pointer;transform:translate(-7px,-50%)}
@@ -69,16 +69,17 @@ p{text-wrap:pretty}
 .tag[aria-selected="true"] .pt{background:var(--rosso);border-color:#fff}
 .tag[aria-selected="true"] .lab{background:var(--inchiostro);color:#fff}
 
-/* cartellino: la legenda del pezzo scelto, ancorata in basso a destra, lontano dalle etichette */
-.cart{position:absolute;right:24px;bottom:24px;z-index:3;width:328px;background:#fff;padding:14px 16px 14px;display:grid;grid-template-columns:96px 1fr;column-gap:14px;grid-template-rows:auto 1fr;align-items:start;box-shadow:0 2px 12px rgba(21,23,26,.2)}
-.cart .fig{grid-row:1/3;width:96px;height:70px;background:var(--lamiera)}
-.cart .fig img{width:96px;height:70px;object-fit:contain;padding:4px}
-.cart .dove{font-size:14px;color:var(--grigio);line-height:1.3}
+/* legenda del pezzo scelto: sulla carta, sotto la frase, fuori dalla foto; altezza fissa */
+.cart{grid-column:10/14;grid-row:2;margin-top:24px;height:180px;border-top:1px solid var(--inchiostro);padding-top:12px;display:grid;grid-template-columns:88px 1fr;column-gap:14px;grid-template-rows:repeat(5,auto);align-content:start}
+.cart .guida{display:none;grid-column:1/3;grid-row:1;font-size:14px;line-height:1.3;color:var(--grigio);margin-bottom:14px}
+.cart .fig{grid-column:1;grid-row:2/4;width:88px;height:64px;background:var(--lamiera)}
+.cart .fig img{width:88px;height:64px;object-fit:contain;padding:4px}
+.cart .dove{grid-column:2;grid-row:2;font-size:14px;color:var(--grigio);line-height:1.3}
 .cart .dove b{color:var(--rosso);font-weight:700;margin-right:6px}
-.cart h3{font-size:19px;line-height:1.15;letter-spacing:-.01em;font-weight:400;margin-top:4px}
-.cart dl{grid-column:1/3;display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;margin-top:12px;font-size:14px;line-height:1.35}
+.cart h3{grid-column:2;grid-row:3;font-size:19px;line-height:1.15;letter-spacing:-.01em;font-weight:400;margin-top:4px}
+.cart dl{grid-column:1/3;grid-row:4;display:grid;grid-template-columns:76px 1fr;column-gap:12px;row-gap:2px;margin-top:12px;font-size:14px;line-height:1.35}
 .cart dt{color:var(--grigio)}
-.cart .scheda{grid-column:1/3;margin-top:10px;font-size:14px;justify-self:start}
+.cart .scheda{grid-column:1/3;grid-row:5;margin-top:8px;font-size:14px;justify-self:start}
 
 /* sezioni */
 .sez{padding-top:136px;padding-bottom:136px}
@@ -102,8 +103,23 @@ p{text-wrap:pretty}
 .fam span{display:block;margin-top:6px;color:var(--grigio)}
 .fam .nw{display:inline;margin-top:0;color:inherit}
 
-/* fascia dei fili */
-.fili img{width:100%}
+/* gruppi ASB disegnati in scala tra loro: lato in mm = --mm */
+.misure{padding-bottom:0}
+.misure h2{grid-column:1/8}
+.misure .lead{grid-column:1/8;margin-top:28px}
+.scala{grid-column:1/13;margin-top:56px;list-style:none;display:grid;grid-template-columns:114fr 150fr 204fr 250fr 325fr;grid-template-rows:auto auto;column-gap:var(--g)}
+.scala li{display:grid;grid-row:span 2;grid-template-rows:subgrid;font-size:15px;line-height:1.4}
+.scala .q{align-self:end;position:relative;width:100%;aspect-ratio:1;background:#DADDDA;border:1px solid #BFC4C2}
+.scala .q::before,.scala .q::after{content:"";position:absolute;border-radius:50%;border:1px solid #7E8587}
+.scala .q::before{inset:9%}
+.scala .q::after{inset:42%;background:#C3C8C6}
+.scala .dati{border-top:1px solid var(--inchiostro);margin-top:14px;padding-top:12px}
+.scala b{display:block;font-weight:600;font-size:17px}
+.scala .dati span{display:block;color:var(--grigio)}
+.misure .chiude{grid-column:1/13;margin-top:28px;font-size:15px;color:var(--grigio)}
+.misure .chiude a{color:var(--inchiostro)}
+
+/* per chi */
 .per .grid{row-gap:0}
 .per h2{grid-column:1/7}
 .per .lead{grid-column:1/7;margin-top:28px}
@@ -125,50 +141,67 @@ p{text-wrap:pretty}
 .pdf a:hover span{text-decoration:underline}
 .pdf small{display:block;color:var(--grigio);font-size:14px}
 
-/* contatti */
-.contatti{background:var(--inchiostro);color:#fff;padding-top:112px;padding-bottom:104px}
-.contatti a:hover{color:#E9B8AE}
-.contatti h2{grid-column:1/13;font-size:132px;line-height:.95;letter-spacing:-.04em}
+/* contatti: lamiera chiara, numero in inchiostro */
+.contatti{background:var(--lamiera);padding-top:104px;padding-bottom:96px}
+.contatti h2{grid-column:1/13;font-size:96px;line-height:1;letter-spacing:-.035em}
 .contatti h2 a{text-decoration:none}
-.contatti h2 a:hover{text-decoration:underline;text-decoration-thickness:3px;color:#fff}
-.contatti .col{grid-column:span 4;margin-top:56px;font-size:17px;line-height:1.55}
+.contatti h2 a:hover{color:var(--rosso)}
+.contatti .col{grid-column:span 4;margin-top:48px;font-size:17px;line-height:1.55;border-top:1px solid var(--lamiera-scura);padding-top:16px}
 .contatti .col b{display:block;font-weight:600;margin-bottom:6px}
-.contatti .grigio{color:#B9BEC1}
+.contatti .grigio{color:var(--grigio)}
 
 .piede{padding-top:32px;padding-bottom:36px;font-size:14px;line-height:1.6;color:var(--grigio);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 32px}
 .piede a{text-decoration:none}
 .piede a:hover{text-decoration:underline}
 
+/* 1280 e 1366: la frase in tre righe, la foto sale */
+@media (max-width:1400px){
+  .testa{height:84px}
+  .eroe .sotto{font-size:16px;line-height:1.5}
+}
 /* 1024 */
 @media (max-width:1180px){
+  .cart .guida{display:block}
   :root{--m:48px}
-  .apre h1{grid-column:1/9;font-size:92px}
-  .apre .sotto{grid-column:9/13;font-size:17px}
-  .quadro{height:auto;overflow:visible;background:none}
-  .cart{position:static;width:auto;max-width:640px;box-shadow:none;background:var(--carta);padding:24px var(--m) 0;grid-template-columns:120px 1fr;column-gap:16px}
+  .eroe h1{grid-row:1;font-size:92px}
+  .eroe .sotto{font-size:17px}
+  .quadro{grid-row:2;height:auto;overflow:visible;background:none}
+  .cart{grid-column:2/14;grid-row:3;max-width:600px;height:244px;border-top:0;margin-top:0;padding-top:22px;grid-template-columns:120px 1fr;column-gap:16px}
   .cart .fig,.cart .fig img{width:120px;height:87px}
   .cart h3{font-size:21px}
-  .fam{grid-column:1/13;grid-row:3;margin:72px 0 0;columns:2;column-gap:var(--g)}
-  .fam li{break-inside:avoid}
-  .fam li:nth-child(3){border-top:1px solid var(--lamiera-scura)}
-  .fam li:nth-child(2){border-bottom:1px solid var(--lamiera-scura)}
+  .scala{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .scala .q{width:calc(var(--mm) / 325 * 100%)}
+  .scala li{font-size:14px}
+  .scala b{font-size:16px}
+  .f-res{grid-row:1;margin-top:0}
+  .fam{grid-column:9/13;grid-row:2;align-self:start;margin:88px 0 0}
+  .fam li{padding:14px 0 12px;font-size:15px}
+  .fam b{font-size:17px}
   .menu{gap:24px}
   .sez h2{font-size:54px}
-  .contatti h2{font-size:104px}
+  .contatti h2{font-size:84px}
 }
 /* 768 */
 @media (max-width:900px){
   :root{--m:32px;--g:16px}
   .menu{display:none}
   .menu-m{display:block}
-  .apre h1{grid-column:1/13;font-size:80px}
-  .apre .sotto{grid-column:1/10;margin-top:24px}
+  .eroe h1{grid-column:2/14;font-size:80px}
+  .eroe .sotto{grid-column:2/11;grid-row:2;margin-top:24px}
+  .quadro{grid-row:3}
+  .cart{grid-row:4}
+  .misure h2,.misure .lead{grid-column:1/13}
+  .scala{margin-top:48px;column-gap:16px}
   .pezzi .testo,.per h2,.per .lead,.cat h2,.cat .lead{grid-column:1/13}
   .mondi,.pdf{grid-column:1/13}
   .mondi{grid-row:auto;margin-top:48px}
   .cat .pdf{margin-top:40px}
   .f-res{grid-column:8/13;grid-row:2;margin-top:56px}
   .f-gru{grid-column:1/8;grid-row:2;margin-top:56px}
+  .fam{grid-column:1/13;grid-row:3;margin:64px 0 0;columns:2;column-gap:var(--g)}
+  .fam li{break-inside:avoid}
+  .fam li:nth-child(3){border-top:1px solid var(--lamiera-scura)}
+  .fam li:nth-child(2){border-bottom:1px solid var(--lamiera-scura)}
   .anche h3,.anche p{grid-column:1/13}
   .anche p{margin-top:16px}
   .contatti .col{grid-column:span 6}
@@ -181,12 +214,10 @@ p{text-wrap:pretty}
   .logo{width:168px}
   .tel{font-size:15px}
   .testa-dx{gap:18px}
-  .eroe{display:flex;flex-direction:column}
-  .apre{display:contents}
-  .apre h1{order:1;padding:16px var(--m) 0;font-size:46px;line-height:.98;letter-spacing:-.03em}
-  .apre .sotto{order:2;padding:0 var(--m) 28px;font-size:17px;margin-top:16px}
-  .quadro{order:3;height:auto;overflow:visible;background:none}
-  .cart{padding:20px var(--m) 4px;grid-template-columns:96px 1fr;column-gap:14px}
+  .eroe h1{margin-top:16px;font-size:46px;line-height:.98;letter-spacing:-.03em}
+  .eroe .sotto{grid-column:2/14;font-size:17px;margin-top:16px}
+  .quadro{margin-top:28px}
+  .cart{height:222px;padding-top:16px;grid-template-columns:96px 1fr;column-gap:14px}
   .cart .fig,.cart .fig img{width:96px;height:70px}
   .cart h3{font-size:20px}
   .cart dl{column-gap:12px}
@@ -194,6 +225,11 @@ p{text-wrap:pretty}
   .tag,.tag.sx{left:calc(var(--mx) * 1cqw);top:calc(var(--my) * 1.0256cqw);transform:translate(-50%,-50%);flex-direction:row;width:44px;height:44px;justify-content:center}
   .tag .pt{width:26px;height:26px;border-width:2px;display:grid;place-items:center;font-size:13px;font-weight:700;line-height:1;padding-top:2px;color:var(--inchiostro);box-shadow:0 1px 3px rgba(0,0,0,.35)}
   .tag[aria-selected="true"] .pt{color:#fff}
+  .scala{grid-template-columns:1fr;grid-template-rows:none;margin-top:40px;--k:.28px}
+  .scala li{grid-row:auto;grid-template-rows:none;grid-template-columns:calc(325 * var(--k) + 24px) 1fr;align-items:end;padding:14px 0;border-top:1px solid var(--filo)}
+  .scala li:last-child{border-bottom:1px solid var(--filo)}
+  .scala .q{width:calc(var(--mm) * var(--k))}
+  .scala .dati{border-top:0;margin-top:0;padding-top:0}
   .tag .pt::after{content:attr(data-n)}
   .sez{padding-top:76px;padding-bottom:76px}
   .sez h2{font-size:38px;line-height:1.06}
@@ -225,7 +261,9 @@ p{text-wrap:pretty}
   .logo{width:124px}
   .tel{font-size:13px}
   .testa-dx{gap:12px}
-  .apre h1{font-size:40px}
+  .eroe h1{font-size:40px}
+  .cart{height:260px}
+  .cart dl{grid-template-columns:64px 1fr}
   .contatti h2{font-size:44px}
 }
 </style>
@@ -255,10 +293,8 @@ p{text-wrap:pretty}
 
 <main>
 <div class="eroe">
-<section class="w grid apre" aria-labelledby="titolo">
   <h1 id="titolo">Il clima giusto dentro il quadro</h1>
   <p class="sotto">Ventilazione, condizionamento e riscaldamento per quadri elettrici, con alimentatori, relè e lampade. Da&nbsp;Tombelle di Vigonovo, tra&nbsp;Padova e&nbsp;Venezia.</p>
-</section>
 
 <div class="quadro" id="quadro">
   <picture>
@@ -266,21 +302,22 @@ p{text-wrap:pretty}
     <img src="img/quadro-1440.webp" srcset="img/quadro-1440.webp 1440w, img/quadro-1920.webp 1920w, img/quadro-2400.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Quadro elettrico aperto: a sinistra la porta e la parete con due tratti di guida DIN liberi, in alto il tetto, a destra le file dei moduli cablati">
   </picture>
   <div class="tags" role="tablist" aria-label="Dove vanno i nostri pezzi nel quadro">
-    <button class="tag" role="tab" id="t1" data-i="1" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:58;--y:5;--mx:89;--my:5"><span class="pt" data-n="1"></span><span class="lab"><b>1</b>Torrino</span></button>
+    <button class="tag" role="tab" id="t1" data-i="1" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:58;--y:5;--mx:89;--my:7"><span class="pt" data-n="1"></span><span class="lab"><b>1</b>Torrino</span></button>
     <button class="tag" role="tab" id="t2" data-i="2" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:17;--y:8;--mx:26;--my:8"><span class="pt" data-n="2"></span><span class="lab"><b>2</b>Lampada LED</span></button>
-    <button class="tag" role="tab" id="t3" data-i="3" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:3.4;--y:16;--mx:7;--my:16"><span class="pt" data-n="3"></span><span class="lab"><b>3</b>Condizionatore</span></button>
-    <button class="tag" role="tab" id="t4" data-i="4" aria-selected="true" aria-controls="cart" tabindex="0" style="--x:3.4;--y:40;--mx:7;--my:42"><span class="pt" data-n="4"></span><span class="lab"><b>4</b>Gruppo con filtro</span></button>
+    <button class="tag" role="tab" id="t3" data-i="3" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:3.4;--y:16;--mx:9;--my:16"><span class="pt" data-n="3"></span><span class="lab"><b>3</b>Condizionatore</span></button>
+    <button class="tag" role="tab" id="t4" data-i="4" aria-selected="true" aria-controls="cart" tabindex="0" style="--x:3.4;--y:40;--mx:9;--my:42"><span class="pt" data-n="4"></span><span class="lab"><b>4</b>Gruppo con filtro</span></button>
     <button class="tag sx" role="tab" id="t5" data-i="5" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:29;--y:33.6;--mx:44.6;--my:33.6"><span class="pt" data-n="5"></span><span class="lab"><b>5</b>Termostato</span></button>
     <button class="tag sx" role="tab" id="t6" data-i="6" aria-selected="false" aria-controls="cart" tabindex="-1" style="--x:29;--y:48;--mx:44.6;--my:48"><span class="pt" data-n="6"></span><span class="lab"><b>6</b>Resistenza</span></button>
   </div>
+</div>
   <div class="cart" id="cart" role="tabpanel" aria-live="polite" aria-labelledby="t4">
+    <p class="guida">Scegliete un numero sulla foto.</p>
     <div class="fig"><img id="c-img" src="img/p-gruppo.webp" width="440" height="320" alt=""></div>
     <p class="dove"><b id="c-n" class="num">4</b><span id="c-dove">Va sulla porta, in basso</span></p>
     <h3 id="c-nome">Gruppo con filtro ASB</h3>
     <dl id="c-dati" class="num"><dt>Misure</dt><dd>da 114 × 114 a 325 × 325 mm</dd><dt>Portata</dt><dd>da 24 a 700 m³/h</dd><dt>Durata</dt><dd>fino a 50.000 ore a 40 °C, IP54</dd></dl>
     <a class="scheda" id="c-link" href="https://www.areasystems.it/gruppi-di-ventilazione-ad-incasso-serie-asb.html">Scheda della serie ASB</a>
   </div>
-</div>
 </div>
 
 <section class="sez pezzi" id="pezzi" aria-labelledby="h-pezzi">
@@ -299,7 +336,7 @@ p{text-wrap:pretty}
         <figcaption><b>Gruppo di ventilazione con filtro.</b> Griglia cromata davanti al ventilatore, telaio da incassare nella porta del quadro.</figcaption>
       </figure>
       <ul class="fam num">
-        <li><b>Ventilazione</b>Gruppi con filtro ASB, GB/F e GA, torrini GT, ventilatori assiali e centrifughi in AC, DC ed EC.<span>da 24 a 1500&nbsp;m³/h</span></li>
+        <li><b>Ventilazione</b>Gruppi con filtro ASB, GB/F e GA, torrini GT, ventilatori assiali e centrifughi in AC, DC ed EC.<span>gruppi e torrini da 24 a 1500&nbsp;m³/h</span></li>
         <li><b>Condizionamento</b>Da parete ASVC e ASVE, da tetto ASRC, ad aria compressa <span class="nw">AS-CC</span> in acciaio inox.<span>da 350 a 4000&nbsp;W frigoriferi</span></li>
         <li><b>Riscaldamento</b>Resistenze CTSH touch safe, ASTH, STH, ventilate FSTH e CTSHF.<span>CTSH da 25 a 150&nbsp;W, da −45 a +70&nbsp;°C</span></li>
         <li><b>Controllo</b>Termostati bimetallici DTV e DTR, termostato doppio, igrostato meccanico.<span>da 0 a +60&nbsp;°C</span></li>
@@ -308,12 +345,20 @@ p{text-wrap:pretty}
   </div>
 </section>
 
-<div class="fili">
-  <picture>
-    <source media="(max-width:640px)" srcset="img/fili-m-390.webp 390w, img/fili-m-780.webp 780w" sizes="100vw">
-    <img src="img/fili-1338.webp" srcset="img/fili-960.webp 960w, img/fili-1338.webp 1338w" sizes="100vw" width="1338" height="456" alt="Moduli su guida DIN e fili colorati con le etichette, in alto in un quadro" loading="lazy">
-  </picture>
-</div>
+<section class="sez misure" id="asb" aria-labelledby="h-asb">
+  <div class="w grid">
+    <h2 id="h-asb">Gruppi ASB in cinque misure</h2>
+    <p class="lead">Si fissano a scatto, senza viti, nelle dime standard. La griglia si apre sul davanti per cambiare il filtro senza smontare il gruppo. Grigio RAL 7035, o RAL 7032 su richiesta.</p>
+    <ol class="scala num" aria-label="Le cinque misure dei gruppi ASB, disegnate in scala tra loro">
+      <li style="--mm:114"><span class="q" aria-hidden="true"></span><p class="dati"><b>ASB08</b>114 × 114 mm<span>da 24 a 36&nbsp;m³/h</span></p></li>
+      <li style="--mm:150"><span class="q" aria-hidden="true"></span><p class="dati"><b>ASB13</b>150 × 150 mm<span>da 56 a 60&nbsp;m³/h</span></p></li>
+      <li style="--mm:204"><span class="q" aria-hidden="true"></span><p class="dati"><b>ASB20</b>204 × 204 mm<span>da 120 a 211&nbsp;m³/h</span></p></li>
+      <li style="--mm:250"><span class="q" aria-hidden="true"></span><p class="dati"><b>ASB25</b>250 × 250 mm<span>da 198 a 430&nbsp;m³/h</span></p></li>
+      <li style="--mm:325"><span class="q" aria-hidden="true"></span><p class="dati"><b>ASB32</b>325 × 325 mm<span>da 550 a 700&nbsp;m³/h</span></p></li>
+    </ol>
+    <p class="chiude">Disegnati in scala tra loro. IP54, da −10 a +70&nbsp;°C, ventilatore su cuscinetti a sfera. <a href="https://www.areasystems.it/gruppi-di-ventilazione-ad-incasso-serie-asb.html">Scheda della serie ASB</a></p>
+  </div>
+</section>
 
 <section class="sez per" id="per" aria-labelledby="h-per">
   <div class="w grid">
@@ -369,7 +414,7 @@ p{text-wrap:pretty}
 (function(){
   var P = {
     1:{dove:'Va sul tetto del quadro',nome:'Torrino di ventilazione',img:'p-torrino',
-       dati:[['Compito','aspira l’aria calda dall’alto e la porta fuori'],['Portata','da 500 a 1500 m³/h'],['Misure','da 324 × 324 a 540 × 390 mm']],
+       dati:[['Compito','aspira l’aria calda e la porta fuori'],['Portata','da 500 a 1500 m³/h'],['Misure','da 324 × 324 a 540 × 390 mm']],
        link:['torrini-di-ventilazione.html','Scheda dei torrini']},
     2:{dove:'Va sotto il tetto',nome:'Lampada LED AS-T5',img:'p-lampada',
        dati:[['Corpo','alluminio da 0,8 mm'],['Posa','su staffe o magneti'],['In fila','attacchi maschio e femmina']],

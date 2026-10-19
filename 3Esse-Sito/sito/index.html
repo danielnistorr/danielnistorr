@@ -22,7 +22,7 @@
   --minio-testo:#A8431F;
   --m:clamp(20px,4.45vw,64px);
   --gap:24px;
-  --sez:clamp(80px,8.6vw,124px);
+  --sez:clamp(72px,7.6vw,110px);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -52,10 +52,10 @@ ol,ul{padding:0;list-style:none}
 h1{grid-column:1/-1;text-wrap:balance;font-weight:300;font-size:clamp(50px,8.5vw,124px);line-height:.98;letter-spacing:-.042em;margin-left:-.05em}
 .apertura .sotto{grid-column:1/-1;display:grid;grid-template-columns:subgrid;margin-top:26px;align-items:start}
 .apertura .lead{grid-column:1/7;font-size:19px;line-height:1.5;max-width:34em;text-wrap:pretty}
-.estratto{grid-column:8/-1;font-size:15px;line-height:1.5;padding-top:4px}
-.estratto li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;column-gap:16px;padding:3px 0}
-.estratto li span:first-child,.estratto li span:last-child{color:var(--acciaio)}
-.estratto a{display:inline-block;margin-top:8px;margin-left:60px;font-weight:500}
+.estratto{grid-column:8/-1;justify-self:end;width:100%;max-width:560px;font-size:15px;line-height:1.5;padding-top:4px}
+.estratto li{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:3px 0}
+.estratto li span:last-child{color:var(--acciaio)}
+.estratto a{display:inline-block;margin-top:8px;font-weight:500}
 
 /* titoli di sezione */
 h2{font-weight:300;font-size:clamp(36px,4.1vw,58px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
@@ -68,40 +68,42 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
 .registro .conta b{display:block;font-weight:300;font-size:clamp(44px,4.6vw,64px);line-height:1;letter-spacing:-.03em;color:var(--minio-testo);margin-bottom:8px}
 .registro .elenco{grid-column:5/-1}
 .filtri{display:flex;flex-wrap:wrap;gap:4px 30px;margin:6px 0 30px}
-.filtri button{font:inherit;font-size:16px;font-weight:500;color:var(--acciaio);background:none;border:0;border-radius:0;padding:12px 0 8px;min-height:44px;cursor:pointer;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;-webkit-tap-highlight-color:transparent}
+.filtri button{font:inherit;font-size:16px;font-weight:500;color:var(--acciaio);background:none;border:0;border-radius:0;padding:12px 0 8px;min-height:44px;cursor:pointer;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;-webkit-tap-highlight-color:transparent;text-rendering:inherit;font-kerning:normal;font-variant-numeric:tabular-nums lining-nums}
 .filtri button:hover{color:var(--inchiostro)}
 .filtri button[aria-pressed="true"]{color:var(--inchiostro);border-bottom-color:var(--minio)}
 .filtri sup{font-size:11px;font-weight:400;margin-left:3px;vertical-align:.7em;line-height:0}
-.reg li{display:grid;grid-template-columns:72px minmax(0,1.3fr) minmax(0,1fr) 6.5em;column-gap:var(--gap);align-items:baseline;padding:15px 0 14px;border-top:1px solid var(--filo)}
+.reg li{display:grid;grid-template-columns:72px minmax(0,1.3fr) minmax(0,1fr) 6.5em;column-gap:var(--gap);align-items:baseline;padding:14px 0 13px;border-top:1px solid var(--filo)}
 .reg li:last-child{border-bottom:1px solid var(--filo)}
-.reg li[hidden]{display:none}
+.reg li[hidden],.altre-t[hidden]{display:none}
+.altre-t{margin-top:44px;margin-bottom:10px;font-weight:400;font-size:15px;line-height:1.4;letter-spacing:0;color:var(--acciaio)}
+.reg.senza li{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 6.5em;padding-left:calc(72px + var(--gap))}
 .reg .a{color:var(--acciaio);font-size:17px}
 .reg .o{font-size:22px;line-height:1.3;letter-spacing:-.01em}
 .reg .l{color:var(--acciaio);font-size:17px}
 .reg .d{text-align:right;font-size:17px;white-space:nowrap}
 
 /* fascia fotografica */
-.fascia img{width:100%;max-width:1600px;margin-inline:auto;height:clamp(300px,53vw,763px);object-fit:cover;object-position:50% 48%} /* mai oltre i 1600 px veri: oltre, il cielo e' gia' la carta */
+.fascia img{width:100%;height:clamp(300px,66.7vw,960px);object-fit:cover;object-position:50% 50%} /* 3200 px veri: nitida anche a 1440 su schermo 2x; i lati sfumano nella carta */
 
 /* servizi */
 .servizi{padding-top:var(--sez)}
 .servizi h2{grid-column:1/8}
-.fasi{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gap);row-gap:52px;margin-top:60px;counter-reset:f}
+.fasi{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gap);row-gap:44px;margin-top:52px;counter-reset:f}
 .fasi li{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:12px;max-width:600px}
 .fasi li::before{counter-increment:f;content:counter(f);font-size:22px;font-weight:300;color:var(--acciaio);line-height:1.3}
 .fasi p{grid-column:2;margin-top:10px;color:#3c4248;font-size:18px;text-wrap:pretty}
 
-/* studio: testo a sinistra, la cupola di Adria al vivo sul bordo destro */
-.studio{padding-top:var(--sez);padding-bottom:calc(var(--sez) - 16px);padding-right:0;row-gap:0}
-.studio .testo{grid-column:1/5;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-bottom:4px}
+/* studio: testo a sinistra, la cupola di Adria a destra con la sua didascalia sotto */
+.studio{padding-top:var(--sez);padding-bottom:calc(var(--sez) - 16px);row-gap:0}
+.studio .testo{grid-column:1/5;grid-row:1}
 .dotazione{margin-top:40px;font-size:16px;line-height:1.45;max-width:30em}
 .dotazione div{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:16px;padding:13px 0 12px;border-top:1px solid var(--filo)}
 .dotazione div:last-child{border-bottom:1px solid var(--filo)}
 .dotazione dt{color:var(--acciaio)}
-.studio figure{grid-column:5/-1;grid-row:1;justify-self:end;width:100%;max-width:865px}
-.studio figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.cupola{font-size:15px;line-height:1.45;color:var(--acciaio)}
-.cupola b{display:block;font-weight:500;font-size:17px;color:var(--inchiostro);margin-bottom:18px}
+.studio figure{grid-column:5/-1;grid-row:1;justify-self:end;width:100%;max-width:800px}
+.studio figure img{width:100%}
+.cupola{margin-top:20px;font-size:15px;line-height:1.45;color:var(--acciaio)}
+.cupola b{display:block;font-weight:500;font-size:17px;color:var(--inchiostro);margin-bottom:16px}
 .cupola dl{display:flex;gap:48px}
 .cupola dt{font-size:14px;margin-bottom:4px}
 .cupola dd{font-weight:300;font-size:clamp(36px,3.6vw,52px);line-height:1;letter-spacing:-.03em;color:var(--inchiostro)}
@@ -126,25 +128,26 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
   .registro .capo{grid-column:1/-1;position:static;display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px}
   .registro .conta{margin-top:0;text-align:right}
   .registro .elenco{grid-column:1/-1}
-  .studio .testo{grid-column:1/6}
-  .studio figure{grid-column:6/-1}
+  .studio .testo{grid-column:1/7}
+  .studio figure{grid-column:7/-1}
   .recapiti{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
 }
 @media (max-width:860px){
   .menu a.vasto{display:none}
   .apertura .lead{grid-column:1/-1}
-  .estratto{grid-column:1/-1;margin-top:28px;max-width:560px}
+  .apertura img{object-position:50% 72%}
+  .estratto{grid-column:1/-1;justify-self:start;margin-top:28px;max-width:646px} /* larga quanto il paragrafo: 34em a 19 px */
+  .reg.senza li{grid-template-columns:minmax(0,1fr) auto;padding-left:calc(52px + var(--gap))}
+  .reg.senza .l{grid-column:1;grid-row:2}
+  .reg.senza .d{grid-column:2;grid-row:1}
   .servizi h2,.contatti h2{grid-column:1/-1}
   .fasi{grid-template-columns:1fr}
   .reg li{grid-template-columns:52px minmax(0,1fr) auto;row-gap:2px}
   .reg .l{grid-column:2;grid-row:2}
   .reg .d{grid-column:3;grid-row:1}
-  .studio{padding-right:var(--m)}
   .studio .testo,.studio figure{grid-column:1/-1;grid-row:auto}
-  .studio .testo{display:contents}
-  .studio .testo>div:first-child{grid-column:1/-1;grid-row:1}
-  .studio figure{grid-row:2;margin-top:48px;justify-self:stretch;max-width:none;width:auto;margin-inline:calc(-1 * var(--m))}
-  .cupola{grid-column:1/-1;grid-row:3;margin-top:20px}
+  .studio figure{margin-top:48px;justify-self:stretch;max-width:none;width:auto;margin-inline:calc(-1 * var(--m))}
+  .cupola{padding-inline:var(--m)}
 }
 /* telefono */
 @media (max-width:560px){
@@ -163,9 +166,11 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
   .filtri{gap:0 20px;margin-bottom:18px}
   .filtri button{font-size:15px}
   .reg li{grid-template-columns:44px minmax(0,1fr) auto;column-gap:12px;padding:14px 0 13px}
+  .reg.senza li{padding-left:56px}
+  .altre-t{margin-top:36px}
   .reg .o{font-size:18px}
   .reg .a,.reg .l,.reg .d{font-size:15px}
-  .fascia img{height:auto;aspect-ratio:390/299}
+  .fascia img{aspect-ratio:390/299}
   .fasi{margin-top:44px;row-gap:40px}
   .fasi li{grid-template-columns:32px minmax(0,1fr)}
   .fasi p{font-size:17px}
@@ -197,7 +202,7 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
 <main>
 <section class="apertura" aria-labelledby="t-apertura">
   <picture>
-    <source media="(max-width:560px)" srcset="img/apertura-m-390.jpg 390w, img/apertura-m-780.jpg 780w, img/apertura-m-1170.jpg 1170w" sizes="100vw">
+    <source media="(max-width:860px)" srcset="img/apertura-m-390.jpg 390w, img/apertura-m-780.jpg 780w, img/apertura-m-1170.jpg 1170w, img/apertura-m-1344.jpg 1344w" sizes="100vw">
     <img src="img/apertura-1440.jpg" srcset="img/apertura-960.jpg 960w, img/apertura-1440.jpg 1440w, img/apertura-1920.jpg 1920w, img/apertura-2400.jpg 2400w" sizes="100vw" width="2400" height="1120" alt="Un impalcato in acciaio visto da sotto, posato su pile a V in calcestruzzo" fetchpriority="high">
   </picture>
   <div class="w testo g">
@@ -206,11 +211,11 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
       <p class="lead">Calcoli statici, disegni costruttivi, direzione lavori e collaudi di ponti, coperture ed edifici in acciaio e cemento armato, per imprese e gruppi industriali. Da Vigonovo, tra Padova e Venezia.</p>
       <div class="estratto">
         <ol>
-          <li><span>2011</span><span>Edificio industriale, Emirati Arabi Uniti</span><span>8000&nbsp;t</span></li>
-          <li><span>2008</span><span>Cavalcaferrovia Sarpi, Padova</span><span></span></li>
-          <li><span>2006</span><span>Circuito e centro commerciale, Adria</span><span>700&nbsp;t</span></li>
+          <li><span>Edificio industriale, Emirati Arabi Uniti</span><span>8000&nbsp;t</span></li>
+          <li><span>Grand Hotel Molino Stucky, Venezia</span><span>250.000&nbsp;m³</span></li>
+          <li><span>Circuito e centro commerciale, Adria</span><span>700&nbsp;t</span></li>
         </ol>
-        <a href="#registro" data-f="tutte">Tutte le 33 opere del registro</a>
+        <a href="#registro" data-f="tutte">Tutte le 34 opere del registro</a>
       </div>
     </div>
   </div>
@@ -219,25 +224,26 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
 <section class="w registro g" id="registro" aria-labelledby="t-registro">
   <div class="capo">
     <h2 id="t-registro">Registro<br>delle opere</h2>
-    <p class="conta" aria-live="polite"><b id="conta">33</b> <span id="conta-t">opere, da Padova a Doha</span></p>
+    <p class="conta" aria-live="polite"><b id="conta">14</b> <span id="conta-t">opere, da Padova a Doha</span></p>
   </div>
   <div class="elenco">
     <div class="filtri" role="group" aria-label="Filtra il registro">
       <button type="button" data-f="ponti" aria-pressed="false">Ponti e passerelle<sup>14</sup></button>
-      <button type="button" data-f="acciaio" aria-pressed="false">Acciaio<sup>9</sup></button>
+      <button type="button" data-f="acciaio" aria-pressed="false">Acciaio<sup>10</sup></button>
       <button type="button" data-f="cemento" aria-pressed="false">Cemento armato<sup>3</sup></button>
       <button type="button" data-f="restauro" aria-pressed="false">Restauro<sup>4</sup></button>
       <button type="button" data-f="pm" aria-pressed="false">Project management<sup>3</sup></button>
-      <button type="button" data-f="tutte" aria-pressed="true">Tutte<sup>33</sup></button>
+      <button type="button" data-f="tutte" aria-pressed="true">Tutte<sup>34</sup></button>
     </div>
     <ol class="reg">
+      <li data-c="acciaio"><span class="a">2013</span><span class="o">Facciata del campus Birley Fields</span><span class="l">Manchester, Regno Unito</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2012</span><span class="o">Ponte Komo</span><span class="l">Kango, Gabon</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2012</span><span class="o">Ponte di Campocroce</span><span class="l">Autostrada A4 (TV)</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2012</span><span class="o">Ponte sull’Isonzo</span><span class="l">Farra d’Isonzo (GO)</span><span class="d"></span></li>
       <li data-c="acciaio"><span class="a">2012</span><span class="o">Nuovo stadio</span><span class="l">Nizza, Francia</span><span class="d"></span></li>
       <li data-c="acciaio"><span class="a">2012</span><span class="o">Centro congressi KAFD</span><span class="l">Riyad, Arabia Saudita</span><span class="d"></span></li>
       <li data-c="acciaio"><span class="a">2012</span><span class="o">Progetto di montaggio e sollevamento</span><span class="l">San Pietroburgo, Russia</span><span class="d"></span></li>
-      <li data-c="acciaio"><span class="a">2012–13</span><span class="o">Rochdale e Birley Fields</span><span class="l">Manchester</span><span class="d"></span></li>
+      <li data-c="acciaio"><span class="a">2012</span><span class="o">Facciata degli uffici comunali</span><span class="l">Rochdale, Regno Unito</span><span class="d"></span></li>
       <li data-c="acciaio"><span class="a">2011</span><span class="o">Edificio industriale</span><span class="l">Emirati Arabi Uniti</span><span class="d">8000&nbsp;t</span></li>
       <li data-c="acciaio"><span class="a">2011</span><span class="o">Uffici Tesa 105</span><span class="l">Arsenale, Venezia</span><span class="d">80&nbsp;t</span></li>
       <li data-c="ponti"><span class="a">2011</span><span class="o">Passerella sul Passante di Mestre</span><span class="l">Sambughè (TV)</span><span class="d"></span></li>
@@ -249,21 +255,24 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
       <li data-c="acciaio"><span class="a">2009</span><span class="o">Point Village</span><span class="l">Dublino</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2008</span><span class="o">Cavalcaferrovia Sarpi</span><span class="l">Padova</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2008</span><span class="o">Passerella sul Po di Volano</span><span class="l">Migliarino (FE)</span><span class="d"></span></li>
-      <li data-c="restauro"><span class="a">2008</span><span class="o">Grand Hotel Molino Stucky</span><span class="l">Giudecca, Venezia</span><span class="d">250&#8239;000&nbsp;m³</span></li>
+      <li data-c="restauro"><span class="a">2008</span><span class="o">Grand Hotel Molino Stucky</span><span class="l">Giudecca, Venezia</span><span class="d">250.000&nbsp;m³</span></li>
       <li data-c="acciaio"><span class="a">2008</span><span class="o">Aeroporto</span><span class="l">Doha, Qatar</span><span class="d"></span></li>
+      <li data-c="cemento"><span class="a">2007</span><span class="o">Centro direzionale Giotto</span><span class="l">Padova</span><span class="d"></span></li>
       <li data-c="acciaio"><span class="a">2006</span><span class="o">Circuito e centro commerciale</span><span class="l">Adria (RO)</span><span class="d">700&nbsp;t</span></li>
       <li data-c="ponti"><span class="a">2005</span><span class="o">Ponte di Albes</span><span class="l">Autostrada del Brennero</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2005</span><span class="o">Passerella</span><span class="l">Tremonti di Sopra (PN)</span><span class="d"></span></li>
       <li data-c="ponti"><span class="a">2004</span><span class="o">Passerella dell’hotel Formentin</span><span class="l">Abano Terme (PD)</span><span class="d"></span></li>
-      <li data-c="cemento"><span class="a"></span><span class="o">Ponte sul Brenta</span><span class="l">Corte di Piove di Sacco (PD)</span><span class="d"></span></li>
-      <li data-c="cemento"><span class="a"></span><span class="o">Centro direzionale Giotto</span><span class="l"></span><span class="d"></span></li>
-      <li data-c="cemento"><span class="a"></span><span class="o">Centro Alimarket</span><span class="l"></span><span class="d"></span></li>
-      <li data-c="restauro"><span class="a"></span><span class="o">Chiesa di San Francesco</span><span class="l">Padova</span><span class="d"></span></li>
-      <li data-c="restauro"><span class="a"></span><span class="o">Ex zuccherificio</span><span class="l">Cavarzere</span><span class="d"></span></li>
-      <li data-c="restauro"><span class="a"></span><span class="o">Campanile</span><span class="l">Montecchia di Crosara</span><span class="d"></span></li>
-      <li data-c="pm"><span class="a"></span><span class="o">Centrale elettrica</span><span class="l">Castegnero</span><span class="d"></span></li>
-      <li data-c="pm"><span class="a"></span><span class="o">Centrale elettrica</span><span class="l">Maleo</span><span class="d"></span></li>
-      <li data-c="pm"><span class="a"></span><span class="o">Centrale elettrica</span><span class="l">Meduno</span><span class="d"></span></li>
+    </ol>
+    <h3 class="altre-t" id="altre-t">Altre opere</h3>
+    <ol class="reg senza" aria-labelledby="altre-t">
+      <li data-c="cemento"><span class="o">Ponte sul Brenta</span><span class="l">Corte di Piove di Sacco (PD)</span><span class="d"></span></li>
+      <li data-c="cemento"><span class="o">Centro commerciale Alimarket</span><span class="l">Padova</span><span class="d"></span></li>
+      <li data-c="restauro"><span class="o">Chiesa di San Francesco</span><span class="l">Padova</span><span class="d"></span></li>
+      <li data-c="restauro"><span class="o">Ex zuccherificio</span><span class="l">Cavarzere</span><span class="d"></span></li>
+      <li data-c="restauro"><span class="o">Campanile</span><span class="l">Montecchia di Crosara</span><span class="d"></span></li>
+      <li data-c="pm"><span class="o">Centrale elettrica</span><span class="l">Castegnero</span><span class="d"></span></li>
+      <li data-c="pm"><span class="o">Centrale elettrica</span><span class="l">Maleo</span><span class="d"></span></li>
+      <li data-c="pm"><span class="o">Centrale elettrica</span><span class="l">Meduno</span><span class="d"></span></li>
     </ol>
   </div>
 </section>
@@ -271,7 +280,7 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
 <div class="fascia">
   <picture>
     <source media="(max-width:560px)" srcset="img/nodo-m-390.jpg 390w, img/nodo-m-780.jpg 780w, img/nodo-m-1170.jpg 1170w" sizes="100vw">
-    <img src="img/nodo-1600.jpg" srcset="img/nodo-800.jpg 800w, img/nodo-1200.jpg 1200w, img/nodo-1600.jpg 1600w" sizes="100vw" width="1600" height="864" alt="Controventi a X sotto un impalcato in acciaio, visti dal basso" loading="lazy">
+    <img src="img/nodo-1600.jpg" srcset="img/nodo-800.jpg 800w, img/nodo-1200.jpg 1200w, img/nodo-1600.jpg 1600w, img/nodo-2400.jpg 2400w, img/nodo-3200.jpg 3200w" sizes="100vw" width="3200" height="2016" alt="Controventi a X sotto un impalcato in acciaio, visti dal basso" loading="lazy">
   </picture>
 </div>
 
@@ -296,16 +305,16 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
         <div><dt>Acustica</dt><dd>Fonometro Larson Davis <span class="nw">LD-831</span>, classe&nbsp;1</dd></div>
       </dl>
     </div>
-    <div class="cupola">
+  </div>
+  <figure>
+    <img src="img/adria-800.jpg" srcset="img/adria-600.jpg 600w, img/adria-800.jpg 800w, img/adria-1155.jpg 1155w" sizes="(max-width:860px) 100vw, 800px" width="1155" height="865" alt="La copertura del circuito di Adria vista da sotto: raggiera di travi in acciaio attorno al lucernario" loading="lazy">
+    <figcaption class="cupola">
       <b>Circuito e centro commerciale, Adria (RO), 2006</b>
       <dl>
         <div><dt>Diametro</dt><dd>90<small>m</small></dd></div>
         <div><dt>Acciaio</dt><dd>700<small>t</small></dd></div>
       </dl>
-    </div>
-  </div>
-  <figure>
-    <img src="img/adria-865.jpg" srcset="img/adria-480.jpg 480w, img/adria-720.jpg 720w, img/adria-865.jpg 865w" sizes="(max-width:860px) 100vw, 865px" width="865" height="865" alt="La copertura del circuito di Adria vista da sotto: raggiera di travi in acciaio attorno al lucernario" loading="lazy">
+    </figcaption>
   </figure>
 </section>
 
@@ -330,12 +339,15 @@ h3{font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.01em}
 (function(){
   var bottoni=[].slice.call(document.querySelectorAll('.filtri button'));
   var righe=[].slice.call(document.querySelectorAll('.reg li'));
-  var conta=document.getElementById('conta'), contaT=document.getElementById('conta-t');
+  var conta=document.getElementById('conta'), contaT=document.getElementById('conta-t'), altreT=document.getElementById('altre-t');
   var frasi={tutte:'opere, da Padova a Doha',ponti:'ponti e passerelle',acciaio:'opere in acciaio',cemento:'opere in cemento armato',restauro:'restauri',pm:'impianti in project management'};
   function scegli(f){
     var n=0;
     bottoni.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-f')===f));});
-    righe.forEach(function(r){var on=(f==='tutte'||r.getAttribute('data-c')===f);r.hidden=!on;if(on)n++;});
+    var conAnno=0;
+    righe.forEach(function(r){var on=(f==='tutte'||r.getAttribute('data-c')===f);r.hidden=!on;if(on){n++;if(!r.parentNode.classList.contains('senza'))conAnno++;}});
+    var senza=document.querySelectorAll('.reg.senza li:not([hidden])').length;
+    altreT.hidden=!(senza&&conAnno);
     conta.textContent=n;contaT.textContent=frasi[f];
   }
   bottoni.forEach(function(b){b.addEventListener('click',function(){scegli(b.getAttribute('data-f'));});});

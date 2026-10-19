@@ -37,8 +37,8 @@ Scartata dopo il download: Hardco Group `HyiMqlu5s9I` (copertura bianca in accia
 Aggiornato il 19/10/2026. Tutte con lo stesso trattamento (monocromo in grigi chiari, script `_prova/script/finale_b_img.py`).
 
 - `apertura-*`: Jao Kop, `esterne/unsplash-kop-ZovCK9PgffY.jpg`, licenza Unsplash. Segnaposto: non è un'opera di Tre Esse (Helsinki). In pagina senza didascalia; va sostituita (vedi LEGGIMI).
-- `nodo-*`: Jonathan Lim, `esterne/unsplash-lim-0BvlhW4zthY.jpg`, licenza Unsplash. Segnaposto: non è un'opera di Tre Esse (Vancouver). In pagina senza didascalia; va sostituita.
-- `adria-*`: `originali/portfolio-ritagli/adria-cupola-dal-basso.jpg`, materiale di Tre Esse dal portfolio del 2013 (uso da confermare con l'azienda).
+- `nodo-*`: Jonathan Lim, `esterne/grandi/unsplash-lim-0BvlhW4zthY-3200.jpg` (stessa foto, scaricata il 19/10/2026 a 3200x4800 da images.unsplash.com/photo-1785871740330-7cb52cbb5767 con `w=3200`; l'originale è 3333x5000; licenza ricontrollata sulla pagina della foto: "Free to use under the Unsplash License", non Unsplash+). Serve perché la fascia a 1440 su schermo 2x resti nitida. Segnaposto: non è un'opera di Tre Esse (Vancouver). In pagina senza didascalia; va sostituita.
+- `adria-*`: `originali/portfolio-ritagli/adria-cupola-dal-basso.jpg` intera (1155x865, non più ritagliata a quadrato), materiale di Tre Esse dal portfolio del 2013 (uso da confermare con l'azienda).
 
 ## Estratti dal PDF in `originali/pdf-estratti/` (non usati nella home finale)
 

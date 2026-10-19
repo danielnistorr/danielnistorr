@@ -8,7 +8,7 @@ Proposta non richiesta di una nuova homepage (solo la home) per Solteco sas di L
 - `screenshot/home/`: schermate a 1440 e 390 (intere e prima schermata) e `NOTA.md` con l'idea, le scelte e i controlli.
 - `01-analisi.md`: i fatti con le fonti, il materiale visivo, le due direzioni e i riferimenti.
 - `_prova/home/a/` e `_prova/home/b/`: le due bozze. Il committente ha scelto la B; la finale parte da lì.
-- `_prova/script/build_finale.sh`: rifà immagini, pagina e schermate (`sh build_finale.sh tutte` scatta anche 320, 768, 1024 e 1920). Gli altri script `finale_*.py` e `finale_pagina.html` sono della versione sulla bozza A, scartata.
+- `_prova/script/build_finale.sh`: rifà immagini, pagina e schermate (`sh build_finale.sh tutte` scatta anche 320, 768, 1024 e 1920). La pagina si scrive in `finale_b_index.html` e le immagini si fanno con `finale_b_img.py`; `prova_interruttore_finale.mjs` prova il gesto con tastiera e dito, `largo_finale.mjs` cerca gli elementi che escono dalla finestra. Gli altri script `finale_img.py`, `finale_poly.py` e `finale_pagina.html` sono della versione sulla bozza A, scartata.
 - `assets/CREDITI.md`: origine e licenza di ogni foto.
 
 ## Dati da confermare con Solteco prima di pubblicare

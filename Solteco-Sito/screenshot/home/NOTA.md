@@ -2,9 +2,9 @@
 
 Versione finale costruita sulla bozza B, scelta dal committente. La prima schermata, l'idea, il trattamento delle foto, il carattere e i colori sono quelli della B; sono cambiati l'esecuzione, i dati non verificati, la lunghezza e le sezioni che il giudice aveva segnalato come deboli.
 
-File: `sito/index.html` (statico, si apre anche come file:///), `sito/img/` (19 JPEG, tre foto in più larghezze), `sito/fonts/` (Host Grotesk e la licenza `OFL.txt`). Si rigenera tutto con `sh _prova/script/build_finale.sh tutte`, che rifà le immagini (`finale_b_img.py`), copia la pagina (`finale_b_index.html`) e scatta le schermate. La prova del gesto è `prova_interruttore_finale.mjs`.
+File: `sito/index.html` (statico, si apre anche come file:///), `sito/img/` (20 JPEG, tre foto in più larghezze), `sito/fonts/` (Host Grotesk e la licenza `OFL.txt`). Si rigenera tutto con `sh _prova/script/build_finale.sh tutte`, che rifà le immagini (`finale_b_img.py`), copia la pagina (`finale_b_index.html`) e scatta le schermate. La prova del gesto è `prova_interruttore_finale.mjs`.
 
-Schermate: `home-1440.jpg` (5766 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (6026 px), `home-390-prima-schermata.jpg`.
+Schermate: `home-1440.jpg` (5886 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (6026 px), `home-390-prima-schermata.jpg`.
 
 ## L'idea
 
@@ -28,7 +28,8 @@ Poi vengono la colla lattiginosa sul cuoio a tutta larghezza e "Acqua o solvente
 - Tolta la classe dei numeri tabellari: le cifre di Host Grotesk sono già tutte larghe uguali (650 unità, misurato nel file).
 - Contrasti: il grigio delle righe spente è passato da #9C978E (2,4:1) a #85807A (3,3:1, sopra 3:1 per il testo grande); le descrizioni restano in #67635C (5:1).
 - Aggiunti il link "Vai al contenuto", il caricamento anticipato del carattere e `fetchpriority` sull'immagine d'apertura.
-- Lunghezza: da 6242 a 5766 px a 1440 e da 6679 a 6026 px a 390.
+- Lunghezza: da 6242 a 5886 px a 1440 e da 6679 a 6026 px a 390.
+- Le due foto sotto l'apertura hanno lo stesso taglio 2:1 e lo stesso tono. Nella colla al banco il tappetino da taglio verde acqua è portato a grafite, e nel taglio per il telefono il tappo rosso è fuori campo. Nel pennello il fondo cardato, che desaturato tirava al rosa, è riportato verso l'ambra del cuoio.
 
 ## Caratteri e colori
 
@@ -50,7 +51,7 @@ Tutte segnaposto da Pexels, licenza "Free" letta sulla pagina di ogni foto. Ness
 | Processo | colla stesa a pennello sul fondo della scarpa montata | Fernanda Simões, Pexels 30725646, licenza Pexels |
 | Adesivi | adesivo lattiginoso steso a spatola sul cuoio | Anna Tarazevich, Pexels 5963144, licenza Pexels |
 
-Il trattamento è quello della B, in `finale_b_img.py`: i blu e gli azzurri sono portati quasi al grigio, i neutri sono scaldati verso la grafite e la curva è morbida. In più, i rossi sono riportati verso il cuoio e c'è una maschera di contrasto dopo ogni riduzione. L'apertura è composta su fondo #171615 con una sfumatura dall'alto. Le immagini sono servite con `srcset` (1440, 2160 e 2880 per l'apertura, tagli quadrati per il telefono). Le foto del sito attuale non reggono (fotogrammi di video sotto 1027 px con le scritte impresse, voti 1-3 su 10). Cosa rifare dal vero è scritto nel LEGGIMI.
+Il trattamento è quello della B, in `finale_b_img.py`: i blu e gli azzurri sono portati quasi al grigio, i neutri sono scaldati verso la grafite e la curva è morbida. In più, i rossi e i rosa sono riportati verso il cuoio, il verde acqua del tappetino va a grafite e c'è una maschera di contrasto dopo ogni riduzione. L'apertura è composta su fondo #171615 con una sfumatura dall'alto. Le immagini sono servite con `srcset` (1440, 2160 e 2880 per l'apertura, tagli quadrati per il telefono). Le foto del sito attuale non reggono (fotogrammi di video sotto 1027 px con le scritte impresse, voti 1-3 su 10). Cosa rifare dal vero è scritto nel LEGGIMI.
 
 ## Le ispirazioni del committente (Graziella, Studio N19)
 
@@ -59,7 +60,9 @@ Le ho usate pochissimo, e per scelta. Solteco è un agente tecnico di adesivi pe
 ## Controlli
 
 - Larghezze 320, 390, 768, 1024, 1440 e 1920, guardate a pezzi: nessuno scorrimento orizzontale, nessuna sovrapposizione. La legenda dell'apertura resta sulla linea di colla a tutte le misure.
-- Altezza a 1440: 5766 px (richiesto tra 4500 e 6500).
+- Altezza a 1440: 5886 px (richiesto tra 4500 e 6500); 6026 px a 390, 6617 px a 1920.
+- Corretti nell'ultimo giro: a 320 il titolo del processo usciva di 11 px (ora scende a 33 px sotto i 350 px di finestra); a 1920 la foto della colla si fermava a 1440 px (ora è a tutta larghezza come il pennello); il `srcset` della colla puntava a un file inesistente.
+- Gesto provato con `_prova/script/prova_interruttore_finale.mjs` (Tab e Invio a 1440, tap a 390, area di tocco 103x44 px) e larghezze controllate con `_prova/script/largo_finale.mjs` (320, 340, 360, 375, 390, 414: nessun elemento esce dalla finestra).
 - Segnali da IA (`_prova/segnali-finale/`): nessuna soglia bloccante su 10. Due voci sono da guardare: gli H2 hanno tutti la stessa misura, ed è voluto (l'elemento grande è il titolo, il secondo è il telefono); 01-04 numerano una procedura vera.
 - Nessun carattere U+2014 nella pagina, negli script e in questi file. Nessuna nota di lavorazione a vista. Nessuna violazione dei divieti: niente gradienti, badge, box con icona, card con bordo colorato, glassmorphism, dissolvenze allo scorrere.
 - Dati: ogni fatto in pagina viene da 01-analisi.md, cioè dal sito di Solteco, da fraboadesivi.com e dai registri. Ciò che è dubbio è nel LEGGIMI e non in pagina.
