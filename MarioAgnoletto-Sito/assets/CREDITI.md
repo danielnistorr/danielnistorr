@@ -25,25 +25,22 @@ Licenza Unsplash (https://unsplash.com/license): uso libero anche commerciale, s
 
 Scaricate il 19 ottobre 2026 da `https://www.marioagnoletto.it/img/` (logo, sfondi, 18 foto prodotto, foto della sede). Inventario, misure e voti in `_prova/inventario-immagini.json`. Sono di Mario Agnoletto (le foto prodotto sembrano scattate in azienda con uno smartphone); lo sfondo con i brillantini (`background_background.jpg`) è un'immagine di repertorio di origine sconosciuta e non va riusata. La foto `photos_large_6.jpg` mostra il marchio di una maison su un cliché: non pubblicarla senza permesso.
 
-## Usate nella home finale (`sito/img/`)
+## Usate nella home finale (`sito/img/`), versione B "Tavola dei campioni"
 
-Le tre foto di Ruan Richard Rodrigues (FXVC26csSz4, hqGQcZnEvy0, aNe3TXdpHMg) sono ESCLUSE: la stessa serie è nella home di Hambro, stesso paese e stesso mestiere. Restano nella cartella solo come traccia; nessuna pagina di Mario Agnoletto le deve usare. Nessuna foto nuova scaricata per la home finale. Dal giro di rifinitura del 19 ottobre 2026 la foto Unsplash _ifvZpJieZ4 (punzoni di Jos Zwaan) non è più in pagina: la coppia "Punzone e impronta" usa solo foto dell'azienda.
+Aggiornato il 19 ottobre 2026, ultimo giro. Le foto della serie di Ruan Richard Rodrigues (aNe3TXdpHMg, FXVC26csSz4, hqGQcZnEvy0, 2hWmYcG26E8 e la stessa serie) sono ESCLUSE: sono riservate alla home di Hambro. Restano nella cartella solo come traccia, e `_prova/script/finale_img.py` si ferma se una di loro entra in pagina.
+- Per la home finale non è stata scaricata nessuna foto nuova.
+- È stato scaricato solo il modello di segmentazione BiRefNet lite (licenza MIT, da github.com/danielgatis/rembg/releases) in `_prova/crawl/modelli/`. Produce le maschere di trasparenza del tacco e dei campioni; non genera pixel.
+- Nell'ultimo giro sono uscite dalla pagina due foto di repertorio: le minuterie zigrinate di Ivan Di (ALvgGEl8mEE), che non sono un prodotto dell'azienda, e i punzoni di Jos Zwaan (_ifvZpJieZ4). Restano in `esterne/` ma non sono usate.
 
 | File in `sito/img/` | Origine | Licenza | Dove |
 |---|---|---|---|
-| `pelle-l-*`, `pelle-p-*` | Unsplash Y5RNGe_xkAQ, Ayush Design | Unsplash License | apertura e contatti (segnaposto) |
-| `punzoni-*` | `originali/photos_large_1.jpg`, taglio da x 430 (cliché col cavallo, ruota forata, stampo a fiore, ingranaggio); il punzone d'acciaio a sinistra porta il monogramma di una maison ed è fuori quadro | foto di Mario Agnoletto, permesso da confermare | coppia "Punzone e impronta", rovescio |
-| `scarpa-*` | Unsplash 4kqacvbRq34, McFollis | Unsplash License | coppia "Tacco e scarpa", dritto (segnaposto, non è un loro prodotto) |
-| `fresa-*` | Unsplash pl95tzT0f7Y, mastars MT | Unsplash License | coppia "Prototipo e serie", rovescio (segnaposto) |
-| `serie-*` | Unsplash ALvgGEl8mEE, Ivan Di | Unsplash License | coppia "Prototipo e serie", dritto (segnaposto) |
-| `impronta-*` | `originali/photos_large_6.jpg`, striscia di cuoio stampata a caldo, ritaglio 640x640 girato di 180 gradi; il cliché col marchio di una maison resta fuori quadro | foto di Mario Agnoletto, permesso da confermare; la scritta in corsivo può essere di un cliente | coppia "Punzone e impronta", dritto |
-| `pezzo-rov-*` | `originali/photos_large_1.jpg`, punzoni in ottone con la scritta a specchio (440x330) | foto di Mario Agnoletto, permesso da confermare | apertura, accanto all'interruttore (Rovescio) |
-| `pezzo-dri-*` | `originali/photos_large_6.jpg`, la stessa striscia di cuoio da vicino (420x315) | come `impronta-*` | apertura, accanto all'interruttore (Dritto) |
-| `tacchi-*` | `originali/photos_large_12.jpg` | foto di Mario Agnoletto, permesso da confermare | coppia "Tacco e scarpa", rovescio |
-| `fibbie-*` | `originali/photos_large_13.jpg`, taglio panoramico sopra la fibbia cromata con la scritta "SHY" (esclusa: può essere il marchio di un cliente) | foto di Mario Agnoletto, permesso da confermare | fascia "Finiture" |
-| `t-punzoni`, `t-fustelle`, `t-ruote` | `originali/photos_large_1.jpg` (cliché col cavallo, stampo a fiore, ruota forata) | foto di Mario Agnoletto, permesso da confermare | miniature dell'indice |
-| `t-stampa` | `originali/photos_large_15.jpg` (pelle argento stampata) | come sopra | miniatura |
-| `t-fibbie` | `originali/photos_large_13.jpg` (fibbia in ottone) | come sopra | miniatura |
-| `t-tacchi` | `originali/photos_large_12.jpg` (tacco a lamelle) | come sopra | miniatura |
-| `t-bigiotteria` | `originali/photos_large_17.jpg` (farfalla traforata) | come sopra | miniatura |
-| `logo-neg.svg`, `monogramma.svg`, `timbro.svg` | ricalco in SVG di `originali/logo.png` (script `_prova/script/finale_logo.py`) | logo di Mario Agnoletto, versione per fondo scuro da approvare | testata, piede, contatti |
+| `tacco-l-*`, `tacco-p-*` | `originali/photos_large_12.jpg`, tacco gioiello a lamelle in ottone (riquadro 880,0-1920,700), scontornato e posato sul cartone con un'ombra; a 1440 ribaltato sull'antidiagonale, a 390 ruotato di 90 gradi | foto di Mario Agnoletto, permesso da confermare | apertura |
+| `t-tacchi-*` | `originali/photos_large_12.jpg`, gabbia in acciaio (riquadro 580,420-1580,1080), scontornata e girata di 90 gradi; tolti il tacco a lamelle e il tacco cromato | come sopra | campione 01 |
+| `t-punzoni-*`, `t-fustelle-*`, `t-ruote-*` | `originali/photos_large_1.jpg`: cliché col cavallo, stampo a due fiori, ruota forata, scontornati; il quadrotto d'acciaio col monogramma a rovescio è tolto | come sopra | campioni 02, 03, 04 |
+| `t-bigiotteria-*` | `originali/photos_large_17.jpg`, farfalle traforate, scontornate | come sopra | campione 05 |
+| `t-accessori-*` | `originali/photos_large_13.jpg`, due fibbie in ottone (riquadro 0,0-1180,590), scontornate; la fibbia cromata con la scritta "SHY" è fuori quadro | come sopra | campione 06 |
+| `t-stampa-*` | `originali/photos_large_15.jpg`, pelle argento goffrata e cuoio stampato a rilievo (riquadro 380,0-1340,480) | come sopra | campione 07 |
+| `finiture-*` | `originali/photos_large_13.jpg`, fibbia a catena e placca martellata (riquadro 1250,0-1920,820); il pezzo col motivo che ricorda un marchio è fuori quadro | come sopra | sezione B, Serie |
+| `ottone-*` | `originali/photos_large_2.jpg`, ottone inciso e lastra traforata, foto intera | come sopra | sezione C, Punzoni |
+| `fresa-*` | Unsplash pl95tzT0f7Y, mastars MT | Unsplash License | sezione B, Prototipo (segnaposto) |
+| `logo.svg`, `timbro.svg`, `timbro-grafite.svg` | ricalco in SVG di `originali/logo.png` (script `_prova/script/proto_b_logo.py`; la versione grafite è lo stesso tracciato con un altro colore) | logo di Mario Agnoletto, da approvare | testata, piede, timbro, dritto e rovescio |

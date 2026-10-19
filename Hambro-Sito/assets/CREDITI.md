@@ -31,7 +31,7 @@ Scaricate il 19/10/2026 da `https://www.hambro.it/immagini/full/` (139 file). In
 ## Uso nella home finale (`sito/`, 19/10/2026)
 
 Rielaborate con `_prova/script/finale_img.py` (ritaglio, gradazione sulla carta, nitidezza, più larghezze); nessuna immagine generata.
-- Rodrigues `2hWmYcG26E8`: apertura, specchiata (tagli 1440+, tablet, telefono).
+- Rodrigues `2hWmYcG26E8`: apertura, specchiata (tagli 1440+, tablet, telefono). Ritoccata: tolta la borchia sciolta in basso a destra, che nel taglio 16:10 entrava tagliata dal bordo (la Unsplash License permette di modificare la foto).
 - Rodrigues `hqGQcZnEvy0`: la fibbia oro del dittico "il metallo", fondo ripulito dal rumore.
 - Karimov `DmxTTqZtDds`: la pelle del dittico e la striscia del banco, portate sul cuoio #8A5230.
 - Berg `an44PeEll_w`: semilavorati.

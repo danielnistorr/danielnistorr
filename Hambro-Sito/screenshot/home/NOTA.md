@@ -1,67 +1,66 @@
 # Hambro, home finale: "Campionario al millimetro"
 
-Pagina: `sito/index.html` (immagini in `sito/img/`, caratteri in `sito/fonts/`). Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `finale_pagina.html`, screenshot). Prova del banco di misura con clic e tastiera: `node _prova/script/prova_pagina.mjs <url> <cartella> [larghezza] [altezza] [mobile]`.
+Pagina: `sito/index.html` (immagini in `sito/img/`, caratteri in `sito/fonts/`). Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `finale_pagina.html`, screenshot). Prove: `node _prova/script/prova_interazione.mjs <url> <cartella>` e `node _prova/script/largo.mjs <url> <larghezza>`.
 
-Base: il prototipo B, scelto dal committente. Idea, prima schermata, trattamento delle foto, tipografia e colore restano quelli di B; sono cambiati esecuzione, dati, telefono e dettagli, più due innesti da A (il dittico metallo e pelle con le sagome in scala, il telefono come targa nei contatti).
+Base: il prototipo B, scelto dal committente ("i like them a lot"). Idea, prima schermata, trattamento delle foto, tipografia e colore restano quelli di B. In questo passaggio sono cambiati esecuzione, dati, navigazione, telefono e dettagli (elenco più sotto).
 
 ## L'idea
-La home è la tavola di un campionario tenuto al millimetro. Gli oggetti stanno sulla stessa carta calda, in pieno sole, e le misure del catalogo Hambro (lacci da 2 a 60, tondini da 2 a 3,5, tubolari fino a 16, nastri da 20 a 50, fibbie da ricoprire 40, 50 e 60) diventano il disegno: un righello in scala reale in apertura, uno strumento subito sotto, le sagome delle fibbie in scala nella ricopertura.
+La home è la tavola di un campionario tenuto al millimetro. Gli oggetti stanno sulla stessa carta calda, in pieno sole, e le misure del catalogo Hambro diventano il disegno:
+- il righello in scala reale in apertura;
+- il banco 1:1 subito sotto, dove la striscia prende la larghezza vera;
+- le sagome delle fibbie da ricoprire in scala nella ricopertura;
+- le quote di ogni articolo sullo stesso righello 0-60 mm nelle misure per settore.
 
 ## Le prime due schermate
-1. Apertura a 1440x900. La foto della fibbia smontata (Rodrigues, specchiata) prende tutta la pagina; il titolo "Fibbie, lacci e rinforzi" sta a sinistra sulla carta, a 136 px con interlinea 0,92. Il sottotitolo è di tre righe. Segue il bottone "Prova le misure, mm 2-60", che porta al banco, con la mail accanto. Le due didascalie, "Scala 1:1" a sinistra e "Tav. 1" a destra, hanno la stessa forma e la stessa linea di base. La lineetta verticale color cuoio non c'è più.
-   - Il righello in fondo è in scala reale e segue la taratura del banco.
-   - Le tacche delle misure a catalogo (2, 3,5, 4, 16, 20, 25, 30, 40, 50, 60) sono in cuoio, alte 18 px, con il numero in cuoio sopra. Dove i numeri non ci stanno, 3,5 e 4 salgono di una riga con un filo fino alla tacca.
-   - Le altre tacche sono in inchiostro al 40 %.
-   - Il righello si ferma a 100 mm; dopo, la riga sfuma sotto la fibbia.
-   - A 390 il titolo sta sulla carta. Sotto c'è la foto, tagliata su una fibbia intera (anello, ardiglione e borchie tutti dentro), poi il righello su una striscia di carta di 34 px. In fondo allo schermo si vedono 42 px del campo cuoio del banco. Telefono in testata, bottone alto 44 px.
-2. Banco di misura, sul campo cuoio #6E3519. Titolo "Lacci e nastri in scala 1:1", la lettura grande "mm 30" e la striscia a taglio vivo a tutta pagina, larga 30 mm veri.
-   - La striscia è grana di cuoio desaturata verso #8A5230, con il taglio vivo più scuro (1 px #3A2012 sopra e sotto).
-   - L'ombra parte dalla stessa x della striscia, scende di 6 px ed è sfocata.
+1. **Apertura a 1440x900.** La foto della fibbia smontata (Rodrigues, specchiata) prende tutta la pagina. Il titolo "Fibbie, lacci e rinforzi" sta a sinistra sulla carta, a 136 px con interlinea 0,92. Sotto ci sono il sottotitolo, il bottone "Prova le misure, mm 2-60" e la mail. Le due didascalie, "Scala 1:1" a sinistra e "Tav. 1" a destra, hanno la stessa linea di base.
+   - Il righello è in scala reale, segue la taratura del banco e sta 32 px sopra la piega: le ultime 32 righe sono solo carta.
+   - In cuoio ci sono la quota "2-4" (un filo sopra le tacche 2, 3, 3,5 e 4) e le tacche 16, 20, 25, 30, 40, 50 e 60. I numeri sono a 13 px. Dove un numero non sta nella riga bassa sale in quella alta, e la sua tacca si allunga in verticale (niente fili in diagonale).
+   - La borchia sciolta che entrava tagliata dal bordo inferiore è stata tolta dalla foto.
+   - **Tablet (701-1100).** La stessa composizione: la foto parte dalla testata e occupa tutta la prima schermata, con un taglio apposta in cui la fibbia esce dal bordo destro. Il titolo è sulla carta a 97 px (1024) e 73 px (768). Sotto i 900 px il righello si ferma a 60 mm, prima del ramo della fibbia.
+   - **Telefono (390).** Il titolo è sulla carta, sotto c'è la riga delle sezioni; poi la foto con la fibbia intera, il righello su una striscia di carta e, in fondo allo schermo, 48 px del campo cuoio del banco. Bottone e mail stanno sulla stessa riga.
+2. **Banco di misura, sul campo cuoio #6E3519.** Titolo "Lacci e nastri in scala 1:1", la lettura grande "mm 30" e la striscia a tutta pagina, larga 30 mm veri. Il tavolo è alto quanto la striscia più 48 px e cambia altezza con lei in 200 ms, quindi non resta campo vuoto (a 4 mm: 63 px in tutto).
 
 Poi, in ordine:
-- il cassetto della minuteria: 11 famiglie, con gli scontornati Hambro alla stessa scala ottica, con la stessa ombra e lo stesso bianco. "Fuori dal cassetto" è chiuso da un filetto inchiostro sulla carta, non più dal riquadro nero;
-- Tav. 2: due bobine del magazzino Hambro, laccio a taglio vivo e tondino. Prendono il posto della corda di Tepavac, che era fuori scala;
-- la ricopertura: il dittico metallo e pelle con le sagome da 40, 50 e 60 mm in scala reale, i dati e i semilavorati, con la foto delle mani;
-- le tre colonne pelletteria, calzatura e abbigliamento;
-- il 1979, sempre insieme a "Giorgio Gastaldello";
-- i contatti, con il telefono a 120 px;
-- il piede con i dati societari.
+- **Il cassetto della minuteria.** Una fila per famiglia (moschettoni, anelli e fibbie, attacchi, chiusure), con il nome della famiglia sul bordo come l'etichetta di uno scomparto. Gli 11 scontornati Hambro sono alla stessa scala ottica, con la stessa ombra e lo stesso bianco. Poi "Fuori dal cassetto" e un solo link "Chiedi un campione" (mailto con oggetto).
+- **Tav. 2.** Due ritagli stretti delle bobine Hambro, al massimo 360 px di lato.
+- **La ricopertura.** Il dittico metallo e pelle con le sagome da 40, 50 e 60 mm in scala reale, i dati, i semilavorati e la foto delle mani.
+- **Misure per settore.** Pelletteria, calzatura e abbigliamento uno sotto l'altro. Ogni articolo ha la misura del sito e la sua quota in cuoio su un righello 0-60 mm in scala reale: un tratto per le misure singole, una barra per gli intervalli.
+- **Il 1979**, sempre con "Giorgio Gastaldello".
+- **I contatti come cartellino del campione.** Un cartellino di carta col foro, sul campo cuoio, con il telefono a 32 px, la mail, l'indirizzo con "Apri la mappa" e gli orari.
+- **Il piede** con i dati societari.
 
 ## Caratteri
-- Mona Sans (GitHub con Degarism), licenza SIL Open Font License 1.1, testo in `sito/fonts/OFL.txt`, file presi da Google Fonts e serviti dalla pagina (latin e latin-ext, variabile in peso e larghezza).
-- Una sola famiglia. Il motivo viene dai riferimenti: le etichette DIN di Horween e il grottesco pieno del marchio Mastrotto, cioè un grottesco da catalogo industriale. Uso l'asse della larghezza:
-  - 100 per testo e titoli;
-  - 112-125 per i numeri grandi, il righello, il telefono e il marchio.
-- Scala:
-  - apertura 136 px, peso 380, spaziatura -0,04em;
-  - h2 60 e 80 px;
-  - telefono 120 px, peso 300, larghezza 112;
-  - lettura del banco fino a 232 px;
-  - testo 17 px;
-  - didascalie 13 px;
-  - maiuscolo spaziato solo per le etichette dei contatti.
-- Numeri: le cifre tabellari di Mona Sans hanno lo zero barrato e l'1 con la grazia, quindi la pagina sembrerebbe un terminale. Restano le cifre proporzionali allineate (`lining-nums`); misure, orari e codici stanno in colonne allineate a destra.
+- Mona Sans (GitHub con Degarism), SIL Open Font License 1.1. Il testo della licenza è in `sito/fonts/OFL.txt`; i file vengono da Google Fonts e li serve la pagina (latin e latin-ext, variabile in peso e larghezza). Il preload è stato tolto: in anteprima `file://` dava un errore CORS.
+- Una sola famiglia. Il motivo viene dai riferimenti: le etichette DIN di Horween e il grottesco pieno del marchio Mastrotto, cioè un grottesco da catalogo industriale. Uso l'asse della larghezza: 100 per testo e titoli, 112-125 per i numeri grandi, il righello e il marchio.
+- **Scala dei corpi: 13, 15, 17, 22, 32, 60 e 136 px**, più la lettura del banco (fino a 232). A 1440 sono in uso 8 corpi, contati sugli elementi visibili (prima erano 19). Ruoli:
+  - 13: didascalie, righello, numeri del cassetto;
+  - 15: menu, bottoni, elenchi, dati;
+  - 17: testo e sottotitolo;
+  - 22: famiglie del cassetto, settori, marchio, testo del 1979;
+  - 32: telefono nel cartellino, titolo dei semilavorati;
+  - 60: tutti gli h2;
+  - 136: titolo d'apertura e 1979.
+- **Numeri.** Le cifre tabellari di Mona Sans hanno lo zero barrato, quindi restano le cifre proporzionali allineate (`lining-nums`). Misure e orari stanno in colonne allineate a destra.
 - Niente Inter, niente monospazio, niente corsivo.
 
 ## Colori
-- Carta #F2EDE4: il bianco della foto d'apertura, portato in pagina. Lo stesso principio della carta terracotta di Riri.
+- Carta #F2EDE4: il bianco della foto d'apertura, portato in pagina.
 - Inchiostro #1B1714.
-- Cuoio #7B4524: marchio, bottone, tacche del righello e 1979. È il marrone del logo Hambro.
-- Campo #6E3519: banco e contatti, il colore pieno della pagina, come il fondo di Mastrotto.
+- Cuoio #7B4524: il marrone del logo Hambro. Lo usano il marchio, il bottone, le tacche del righello, le quote delle misure e il 1979.
+- Campo #6E3519: banco e contatti.
 - Taglio #3A2012: il bordo della striscia.
 - Oro #E2B866: solo il passaggio sui link nei campi scuri.
-- Il colore pieno dei nastri viene dai rotoli della foto Hambro (`originali/202008281a708a….jpeg`).
 
 ## Interazione
-- Banco di misura con tre scelte.
-  - Taglio vivo: il cursore si aggancia alle misure a catalogo 2, 3, 3,5, 4, 16, 20, 25, 30, 40, 50 e 60. Il taglio a qualsiasi millimetro non è confermato.
+- **Navigazione.**
+  - Sopra i 1000 px: cinque voci in testata (Lacci e nastri, Minuteria, Ricopertura, Misure per settore, Contatti) e il telefono.
+  - Sotto i 1000 px: le stesse voci passano su una riga sotto il marchio, che scorre di lato. Ogni voce è alta 44 px.
+- **Banco di misura.**
+  - Taglio vivo: ogni millimetro da 2 a 60, come dice il sito ("da mm2 a mm60"). Le frecce spostano di 1 mm, Pagina su e giù di 10 mm, Home e Fine vanno agli estremi. Le tacche del cursore sono ogni 10 mm.
   - Tubolare: 2, 3, 4 e 16.
   - Nastro: 20, 25, 30, 40 e 50, in sei colori.
-- La striscia cambia altezza in 200 ms.
-- Il cursore è disegnato: traccia in carta al 30 %, tacche sulle misure, pomello carta, nessun grigio di sistema.
-- Frecce, Home e Fine saltano da una misura all'altra. Radio e range sono nativi, quindi funzionano anche con tastiera e dito.
-- Il link "Tara lo schermo" apre una tessera di 85,6 mm. La taratura vale per righello, banco e sagome e resta nel browser; se lo spazio del browser non c'è, la pagina va lo stesso.
-- Il selettore Oro/Nichel di A non c'è: arriverà con lo still life della stessa fibbia in più finiture.
+- Radio e range sono nativi, quindi vanno con tastiera e dito. Il cursore è disegnato.
+- "Tara lo schermo" apre una tessera di 85,6 mm. La taratura vale per righello, banco, sagome e quote, e resta nel browser; se lo spazio del browser non c'è, la pagina va lo stesso.
 - Nessuna animazione allo scorrere, nessun effetto sul cursore. I bottoni cambiano colore pieno, non sbiadiscono.
 
 ## Foto: origine e licenza
@@ -69,31 +68,60 @@ Tutte passano per la stessa gradazione: la carta come bianco, il sole da sinistr
 
 | In pagina | Origine | Licenza |
 |---|---|---|
-| Apertura (3 tagli: 1440+, tablet, telefono) | Ruan Richard Rodrigues, Unsplash `2hWmYcG26E8`, specchiata | Unsplash License, segnaposto |
-| Dittico, il metallo | Ruan Richard Rodrigues, Unsplash `hqGQcZnEvy0` (la fibbia oro), fondo ripulito dal rumore | Unsplash License, segnaposto |
+| Apertura (3 tagli: 1440+, tablet, telefono) | Ruan Richard Rodrigues, Unsplash `2hWmYcG26E8`, specchiata, borchia sciolta tolta | Unsplash License, segnaposto |
+| Dittico, il metallo | Ruan Richard Rodrigues, Unsplash `hqGQcZnEvy0` | Unsplash License, segnaposto |
 | Dittico, la pelle; striscia del banco | Igor Karimov, Unsplash `DmxTTqZtDds`, portata su #8A5230 | Unsplash License, segnaposto |
 | Semilavorati (mani sul cartamodello) | Cohen Berg, Unsplash `an44PeEll_w` | Unsplash License, segnaposto |
-| Tav. 2, bobine di laccio e di tondino | hambro.it, `originali/2020082819b5….jpeg` e `20200828c559….jpeg` (foto da telefono) | dell'azienda, da confermare |
-| Cassetto, 11 scontornati | catalogo di hambro.it (`originali/`, 400x300 e 640x480) | diritti da chiarire, sembrano foto di produttore |
+| Tav. 2, bobine di laccio e di tondino | hambro.it, foto da telefono, ritagli stretti 360 e 720 px | dell'azienda, da confermare |
+| Cassetto, 11 scontornati | catalogo di hambro.it | diritti da chiarire |
 
-Le foto di fibbie dorate di Rodrigues restano a questa home. Pagine e licenze sono in `assets/CREDITI.md`. Nessuna immagine generata. Non sono più usati Tepavac, Juno Jo e Devon Chan.
+In pagina non c'è più nessun avviso sulle foto provvisorie: è nel LEGGIMI e va nella mail di accompagnamento. Nessuna immagine generata. Nessuna foto viene mostrata oltre i suoi pixel: lo controllo con i file veri scelti dal srcset a 1440, 1024 e 390.
+
+## Cosa è cambiato in questo passaggio (rilievi del giudice cieco)
+Applicati:
+- **Didascalie e piede.** Tolte le cinque note "foto provvisoria" e "Proposta di nuova home". `grep -ci "provvisori\|da rifare\|Proposta di nuova home" sito/index.html` dà 0.
+- **Menu sotto i 1100 px.** La riga di sezioni scorrevole sotto i 1000 px; tra 1000 e 1100 il menu resta in testata. A 1024 si vedono 5 voci, a 390 se ne vedono 3 intere e le altre si raggiungono scorrendo la riga.
+- **Tablet.** La composizione sovrapposta del 1440, con la foto al 100 % della prima schermata a 1024 e a 768.
+- **Bordo della prima schermata.** Tolta la borchia tagliata, righello alzato di 32 px, quota "2-4" al posto di "3,5" e "4" col filo diagonale.
+- **Sezioni da modello.** Le tre colonne uguali di settore sono diventate un solo elenco di misure con le quote in scala. I contatti sono un cartellino, non più telefono a 120 px più tre colonne. Il cassetto è a file per famiglia.
+- **Bobine.** Mostrate al massimo a 360 px di lato.
+- **Scala tipografica.** Da 19 corpi a 8, con la scala qui sopra.
+- **Banco.** Il tavolo è alto quanto la striscia più 48 px.
+- **Dati.**
+  - Taglio vivo da 2 a 60 al millimetro.
+  - Didascalia del righello corretta.
+  - "Accessori in legno e bambù, in plastica e metallo nichel free, con strass".
+  - Tolti "a rotolo", "a bobina" e "su misura", che non erano nelle fonti.
+- **Cassetto.** Le card non sono più link a #contatti; c'è un solo "Chiedi un campione".
+- **Preload del carattere.** Tolto.
+- **Voce.** "Il laboratorio attrezzato realizza..." è diventato "In laboratorio facciamo componenti semilavorati...".
+
+Respinto:
+- **Il banco 1:1 al posto della foto in apertura.** Il committente ha visto la prima schermata e ha scritto "i like them a lot". La consegna dice di non ripensarla. Dentro l'idea ho fatto quello che si poteva fare senza cambiarla: righello intero, più leggibile e staccato dalla piega; fondo pulito; tablet sovrapposto come il 1440.
 
 ## Controlli
-- Screenshot:
-  - `home-1440.jpg` (intera, 8422 px);
+- **Screenshot in questa cartella.**
+  - `home-1440.jpg` (intera, 8896 px);
   - `home-1440-prima-schermata.jpg`;
-  - `home-390.jpg` (intera);
+  - `home-390.jpg` (intera, 8662 px);
   - `home-390-prima-schermata.jpg`.
-  - Guardati a pezzi anche 320, 768, 1024 e 1920.
-- Nessuno scorrimento orizzontale a nessuna larghezza, nessuna sovrapposizione.
-- Banco provato con clic e tastiera a 1440 e a 390: tubolare più tre frecce dà 16, nastro 50 giallo.
-- U+2014: assente in pagina, script e note.
-- `segnali.sh`: 0 soglie bloccanti. Area foto 46,1 %, Mona Sans 100 %, 4 misure di H2, 18 filetti, 0 frecce. Da guardare:
-  - 5 fasce: apertura, banco, carta, contatti, piede. Sono volute: un fondo carta e due campi cuoio;
-  - 2 numeri grandi: la lettura del banco, che è lo strumento, e il 1979 con il nome;
-  - la numerazione 01-11 del cassetto, che è l'indice del campionario.
+  - Guardati a pezzi anche 320, 768, 1024 e 1920 (PNG in `_prova/screenshot-tmp/`, cancellati dopo il controllo).
+- **Scorrimento orizzontale.** scrollWidth uguale a innerWidth a 320, 360, 390, 700, 701, 768, 900, 1000, 1024, 1100, 1280, 1440, 1920 e 2560.
+- **Tastiera, a 1440 e 1024.** Freccia sui materiali dà Tubolare 4; End dà 16; Home più freccia dà 3. Il taglio vivo, ripreso a 30, con due volte Pagina giù e una freccia dà 9. Nastro 50 giallo funziona.
+- **Tocco, a 390.** Un tocco su Tubolare dà 4; un tocco in fondo al cursore dà 16; Taglio vivo con un tocco all'inizio dà 2; nastro 50 giallo funziona.
+- **Menu.** Il link Contatti porta alla sezione.
+- **Console.** Nessun errore e nessun avviso a 1440, 1024 e 390.
+- **Collegamenti.**
+  - `tel:+390499802326`;
+  - `mailto:commerciale@hambro.it` (anche con oggetto per i campioni);
+  - Google Maps sull'indirizzo di via dell'Artigianato 30, Vigonovo;
+  - Facebook;
+  - nessuna ancora senza destinazione.
+- **U+2014.** Assente in pagina, script, NOTA, LEGGIMI e CREDITI.
+- **`segnali.sh`.** 0 soglie bloccanti. Foto 37,9 %, Mona Sans 100 %, 18 filetti, nessuna tabella oltre 4 righe, 0 frecce, 4 fasce di fondo. Da guardare, e motivati nel LEGGIMI:
+  - una sola misura di H2;
+  - 2 numeri grandi (la lettura del banco e il 1979 con il nome);
+  - l'indice 01-11 del cassetto.
 
 ## Cosa manca perché la prima schermata arrivi a 8
-La prima schermata non è stata ripensata. Le mancano due cose.
-- Una foto vera di Hambro in apertura: una loro fibbia in zama smontata, sulla stessa carta e con lo stesso sole radente da sinistra. Con la foto di Rodrigues la pagina resta "un fornitore di minuteria qualunque, fatto molto bene".
-- Il righello letto come catalogo Hambro: le tacche in cuoio ci sono già, ma serve la conferma delle misure (vedi LEGGIMI). Con le misure confermate si possono scrivere i nomi degli articoli sotto le tacche.
+Una foto vera di Hambro in apertura: una loro fibbia in zama smontata, sulla stessa carta e con lo stesso sole radente da sinistra (indicazioni di scatto nel LEGGIMI). Con la foto di Rodrigues la pagina resta "un fornitore di minuteria qualunque, fatto molto bene". La prima schermata non è stata ripensata, per scelta del committente.

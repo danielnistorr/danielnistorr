@@ -1,533 +1,452 @@
 <!doctype html>
-<html lang="it" data-lato="rovescio" class="leva-in-vista">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mario Agnoletto, incisore meccanico a Tombelle di Vigonovo</title>
-<meta name="description" content="Punzoni, fustelle, minuterie e accessori in metallo per calzatura e pelletteria. Zama, ottone, alluminio e acciaio, dal progetto alla serie. Tombelle di Vigonovo (VE).">
-<link rel="icon" href="img/monogramma.svg" type="image/svg+xml">
+<meta name="description" content="Fibbie, puntali, tacchi gioiello, punzoni e fustelle su disegno per calzatura e pelletteria. Zama, ottone, alluminio e acciaio, dal progetto alla serie.">
 <style>
-/* Caratteri: Bodoni Moda e Mona Sans, Google Fonts, licenza SIL Open Font License 1.1, serviti dalla pagina (sottoinsieme latino, file variabili) */
-@font-face{font-family:"Bodoni Moda";src:url("fonts/bodoni-moda-latin.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Mona Sans";src:url("fonts/mona-sans-latin.woff2") format("woff2");font-weight:200 900;font-stretch:75% 125%;font-style:normal;font-display:swap}
+/* Host Grotesk, Element Type, SIL Open Font License 1.1 (Google Fonts), servito dalla pagina */
+@font-face{font-family:"Host Grotesk";src:url("fonts/host-grotesk-latin.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
 
 :root{
-  --nero:#151311;      /* nero conceria */
-  --nero-2:#0e0c0b;
-  --avorio:#EFE8DC;    /* avorio pelle */
-  --ottone:#B08D57;
-  --ottone-luce:#D9BC86;
-  --testo-su-nero:#D3CABC;
-  --tenue-su-nero:#A39889;
-  --testo-su-avorio:#151311;
-  --tenue-su-avorio:#5C5246;
-  --filetto-nero:rgba(239,232,220,.18);
-  --filetto-avorio:rgba(21,19,17,.2);
-  --m:clamp(16px,5.6vw,88px);   /* margine laterale */
-  --g:clamp(12px,1.7vw,24px);   /* passo della griglia */
-  --testata:64px;
-  --serif:"Bodoni Moda",Didot,"Bodoni 72",serif;
-  --sans:"Mona Sans","Helvetica Neue",Arial,sans-serif;
+  --cartone:#E7E4DD;      /* il cartone grigio dei piani dall'alto */
+  --cartone-2:#DCD8CF;
+  --grafite:#2A2A28;
+  --grafite-2:#5B5852;
+  --filo:rgba(42,42,40,.24);
+  --rosso:#C8102E;        /* il rosso del logo: timbro, stato acceso, passaggio sui link */
+  --m:clamp(16px,4.45vw,64px);   /* margine */
+  --g:clamp(12px,1.67vw,24px);   /* passo della griglia */
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--testata)}
-body{margin:0;background:var(--nero);color:var(--testo-su-nero);font-family:var(--sans);font-size:17px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-img{display:block;max-width:100%}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cartone);color:var(--grafite);font-family:"Host Grotesk",system-ui,sans-serif;font-weight:400;font-size:17px;line-height:1.5;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-a:hover{color:var(--ottone-luce)}
-:focus-visible{outline:2px solid var(--ottone-luce);outline-offset:3px}
-.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.etichetta{font-family:var(--sans);font-stretch:118%;font-weight:500;font-size:11.5px;line-height:1.3;letter-spacing:.11em;text-transform:uppercase}
-.num{font-variant-numeric:lining-nums} /* le cifre tabellari di Mona Sans hanno lo zero barrato: qui nessun numero sta in colonna */
+a:hover{color:var(--rosso)}
+:focus-visible{outline:2px solid var(--grafite);outline-offset:3px}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-inline:var(--m)}
+.etichetta{font-size:11.5px;line-height:1.3;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.piccolo{font-size:13px;line-height:1.45}
+.num{font-variant-numeric:tabular-nums lining-nums}
 
-/* ---------- testata ---------- */
-.testata{position:sticky;top:0;z-index:20;height:var(--testata);background:var(--nero);display:flex;align-items:center;gap:28px;padding:0 var(--m);border-bottom:1px solid var(--filetto-nero)}
-.testata .logo{flex:0 0 auto;display:block;line-height:0;text-decoration:none}
-.testata .logo img{height:34px;width:auto}
-.testata .logo .l-mono{display:none}
-.menu{display:flex;gap:28px;margin-left:auto;font-size:14px;letter-spacing:.01em}
-.menu a{text-decoration:none;color:var(--testo-su-nero);transition:color 150ms ease}
-.menu a:hover{color:var(--ottone-luce);text-decoration:underline}
-.tel-testata{flex:0 0 auto;font-size:14px;color:var(--avorio);text-decoration:none;font-variant-numeric:lining-nums;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px;transition:color 150ms ease}
-.tel-testata:hover{text-decoration:underline}
-.menu-bottone{display:none;flex:0 0 auto;min-height:44px;padding:0 2px 0 6px;border:0;background:transparent;color:var(--avorio);font:500 14px/1 var(--sans);cursor:pointer;touch-action:manipulation;transition:color 150ms ease}
-.menu-bottone:hover{color:var(--ottone-luce)}
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;gap:24px;height:84px;padding-inline:var(--m)}
+.testata .logo img{width:206px;height:auto}
+.testata nav{display:flex;gap:30px;font-size:15px;margin-left:clamp(32px,4vw,64px)}
+.testata nav a{text-decoration:none}
+.testata nav a:hover{text-decoration:underline}
+.testata .tel{margin-left:auto;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap}
+.menu{display:none;margin-left:auto;position:relative}
 
-/* ---------- interruttore rovescio / dritto ---------- */
-.leva{position:relative;flex:0 0 auto;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;height:40px;padding:0;border:1px solid rgba(239,232,220,.42);border-radius:2px;background:transparent;color:var(--avorio);font:inherit;cursor:pointer;min-width:196px;touch-action:manipulation;transition:border-color 150ms ease}
-.leva span{position:relative;z-index:1;padding:0 16px;font-family:var(--sans);font-stretch:118%;font-weight:500;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;transition:color 180ms ease}
-.leva::before{content:"";position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);background:var(--ottone);border-radius:1px;transition:transform 200ms cubic-bezier(.7,0,.2,1)}
-.leva .l-rov{color:var(--nero)}
-html[data-lato="dritto"] .leva::before{transform:translateX(100%)}
-html[data-lato="dritto"] .leva .l-rov{color:var(--avorio)}
-html[data-lato="dritto"] .leva .l-dri{color:var(--nero)}
-.leva:hover{border-color:var(--ottone-luce)}
-.leva-grande{height:56px;min-width:260px}
-.leva-grande span{font-size:12.5px}
-/* la copia in testata entra a sinistra del telefono: telefono (e Menu sul telefono) restano fermi */
-.testata .leva{order:2}
-.tel-testata{order:3}
-.menu-bottone{order:4}
-html.leva-in-vista .testata .leva{display:none}
+/* 1. apertura: il pezzo posato sulla tavola, che esce dal bordo alto e dal bordo destro della pagina */
+.apertura{position:relative;height:100svh;min-height:760px;max-height:1040px;overflow:hidden}
+.tavola{position:absolute;top:0;right:0;height:100%;aspect-ratio:744/1084;margin:0}
+.tavola picture,.tavola .pezzo{display:block;width:100%;height:100%}
+.apertura .testo{position:absolute;left:var(--m);top:clamp(150px,20vh,196px);width:min(46vw,720px);z-index:2}
+h1{margin:0;font-weight:300;font-size:clamp(60px,9.3vw,152px);line-height:.9;letter-spacing:-.045em}
+.attacco{margin:36px 0 0;max-width:27em;font-size:19px;line-height:1.48}
+.apertura .contatto{margin-top:30px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px}
+.bottone{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--grafite);color:var(--cartone);text-decoration:none;font-weight:500;font-size:16px;transition:background-color .18s ease}
+.bottone:hover{background:var(--rosso);color:#fff}
+.apertura .dove{color:var(--grafite-2);font-size:15px}
 
-/* ---------- apertura ---------- */
-.apertura{position:relative;min-height:calc(100svh - var(--testata));min-height:max(640px,calc(100svh - var(--testata)));display:grid;grid-template-rows:auto 1fr auto;padding:40px var(--m) 32px;overflow:hidden;color:var(--avorio);background:var(--nero);isolation:isolate}
-/* la striscia di pelle sotto il punzone: a filo dei due bordi, fondo nero sopra e sotto */
-.striscia{position:relative;isolation:isolate;align-self:center;margin:24px calc(-1 * var(--m));padding:clamp(12px,1.6vw,24px) var(--m);display:flex;align-items:center;justify-content:center;border-top:1px solid #000;border-bottom:1px solid #000;box-shadow:0 1px 0 rgba(239,232,220,.08),0 -1px 0 rgba(239,232,220,.08)}
-.striscia .fondo{position:absolute;inset:0;z-index:-1}
-.striscia .fondo img{width:100%;height:100%;object-fit:cover;object-position:0 40%}
-.ap-alto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start}
-.ap-alto .chi{grid-column:1/7;margin:0;font-size:12px;color:var(--testo-su-nero)}
-.ap-alto .lato-nota{grid-column:9/13;margin:0;font-size:14px;line-height:1.5;color:var(--testo-su-nero);max-width:30em}
-.lato-nota .su-dri{display:none}
-html[data-lato="dritto"] .lato-nota .su-dri{display:inline}
-html[data-lato="dritto"] .lato-nota .su-rov{display:none}
+/* richiami numerati sul pezzo */
+.richiamo{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;line-height:1;white-space:nowrap;transform:translate(-6px,-50%)}
+.richiamo::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--grafite);box-shadow:0 0 0 3px rgba(231,228,221,.9)}
+.richiamo b{font-weight:500;font-variant-numeric:tabular-nums}
+.richiamo.sx{flex-direction:row-reverse;transform:translate(calc(-100% + 6px),-50%)}
+.richiamo i{display:block;width:40px;height:1px;background:var(--grafite)}
+.richiamo.lungo i{width:72px}
+.richiamo.lunghissimo i{width:116px}
+.richiamo.p{display:none}
+.legenda{position:absolute;left:var(--m);bottom:30px;z-index:2;display:flex;gap:18px;align-items:baseline;color:var(--grafite-2);margin:0}
+/* il timbro MA battuto sulla punta dell'anello, come un marchio sul pezzo */
+.timbro{position:absolute;width:112px;height:112px;transform:translate(-50%,-50%) rotate(-11deg);mix-blend-mode:multiply;z-index:1;pointer-events:none}
+.timbro.p{display:none}
+.legenda .num{font-weight:500;color:var(--grafite)}
 
-h1{margin:0;font-weight:400}
-.marchio{display:block;font-family:var(--serif);font-weight:500;font-variation-settings:"opsz" 40;font-size:min(20.4vw,300px);line-height:1.12;letter-spacing:-.025em;text-align:center;white-space:nowrap;
-  transform:scale(-1,1);transition:transform 240ms cubic-bezier(.75,0,.2,1),color 240ms ease,text-shadow 240ms ease;
-  color:var(--ottone);
-  /* rovescio: la testa del punzone, ottone pieno posato sulla pelle. Luce da sinistra: due soli livelli di spessore
-     (1 e 2 px) e un'ombra corta; gli scostamenti sono rovesciati dalla specchiatura */
-  text-shadow:1px -1px 0 rgba(255,236,200,.45),-1px 1px 0 #6e5530,-2px 2px 0 #4a3920,-4px 6px 10px rgba(0,0,0,.5)}
-html[data-lato="dritto"] .marchio{transform:scale(1,1);color:#A2804C;
-  /* dritto: l'impronta a caldo nella pelle; spigolo scuro in alto a sinistra, labbro chiaro in basso a destra */
-  text-shadow:-1px -2px 0 rgba(0,0,0,.85),-2px -3px 2px rgba(0,0,0,.5),1px 1px 0 rgba(255,226,170,.28),2px 2px 1px rgba(255,226,170,.1)}
+/* titoli di sezione */
+.sezione{padding-top:clamp(88px,10vw,148px)}
+h2{margin:0;font-weight:300;font-size:clamp(38px,4.6vw,66px);line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+h2.medio{font-size:clamp(32px,3.4vw,48px);letter-spacing:-.03em;line-height:1.02}
+p{margin:0;text-wrap:pretty}
+.intro{grid-column:1 / span 7}
+.intro p{margin-top:22px;max-width:34em;font-size:18px;color:var(--grafite)}
+.tav span,.legenda span:first-child{white-space:nowrap}
+.tav{grid-column:1 / -1;display:flex;gap:18px;align-items:baseline;color:var(--grafite-2);margin-bottom:22px}
 
-.ap-basso{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:end;padding-top:20px;border-top:1px solid var(--filetto-nero)}
-.ap-basso p{margin:0;font-size:14px;line-height:1.5;color:var(--testo-su-nero)}
-.ap-basso .etichetta{display:block;margin-bottom:8px;color:var(--tenue-su-nero)}
-.ap-basso .c1{grid-column:1/4;padding-right:16px}
-.ap-basso .c2{grid-column:4/7;padding-right:16px}
-.ap-basso .pezzo{grid-column:7/9;margin:0;align-self:end}
-.pezzo .ph{position:relative;aspect-ratio:4/3;background:#000;overflow:hidden}
-.pezzo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 200ms ease}
-.pezzo .p-dri{opacity:0}
-html[data-lato="dritto"] .pezzo .p-dri{opacity:1}
-.pezzo figcaption{margin-top:8px;font-size:12px;line-height:1.4;color:var(--tenue-su-nero)}
-.pezzo figcaption .su-dri{display:none}
-html[data-lato="dritto"] .pezzo figcaption .su-dri{display:inline}
-html[data-lato="dritto"] .pezzo figcaption .su-rov{display:none}
-.ap-basso .c4{grid-column:9/13;justify-self:end;text-align:right}
-.ap-basso .c4 .etichetta{margin-bottom:12px}
-.ap-basso .chiama{display:block;margin-top:14px;font-size:14px;line-height:1.4;color:var(--ottone-luce)}
-.ap-basso .chiama a{color:var(--ottone-luce);font-variant-numeric:lining-nums;white-space:nowrap;transition:color 150ms ease}
-.ap-basso .chiama a:hover{color:var(--avorio)}
+/* 2. la tavola dei campioni con il filtro per metallo */
+.filtro{grid-column:1 / -1;margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.filtro button{appearance:none;font:inherit;font-size:15px;color:var(--grafite);background:transparent;border:1px solid var(--filo);min-height:46px;padding:0 18px 0 14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+.filtro button:hover{border-color:var(--grafite)}
+.filtro button[aria-pressed="true"]{background:var(--grafite);color:var(--cartone);border-color:var(--grafite)}
+.filtro .campo{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.campo.tutti{background:conic-gradient(#8E959B 0 25%,#C5A465 0 50%,#D9DBDC 0 75%,#6E7377 0)}
+.campo.zama{background:linear-gradient(135deg,#B9BEC2,#7F868C)}
+.campo.ottone{background:linear-gradient(135deg,#E6CC8E,#A8844C)}
+.campo.alluminio{background:linear-gradient(135deg,#F3F4F4,#B9BCBF)}
+.campo.acciaio{background:linear-gradient(135deg,#A9AEB2,#4F5458)}
+.conteggio{margin-left:auto;color:var(--grafite-2);font-size:15px}
+.conteggio b{font-weight:500;color:var(--grafite)}
 
-/* ---------- il pezzo due volte ---------- */
-.coppie{padding:128px 0 144px}
-.intro{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:0 var(--m);margin-bottom:96px}
-h2{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;letter-spacing:-.02em;text-wrap:balance;margin:0}
-.intro h2{grid-column:1/10;font-size:clamp(44px,6.2vw,92px);line-height:.98;color:var(--avorio)}
-.intro p{grid-column:7/12;margin:40px 0 0;font-size:18px;line-height:1.6;text-wrap:pretty;max-width:34em}
+.campioni{grid-column:1 / -1;margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px var(--g);container-type:inline-size}
+.campione{margin:0;position:relative}
+.campione .foto{position:relative;aspect-ratio:1;background:var(--cartone-2);overflow:hidden}
+.campione.largo{grid-column:span 2}
+.campione.largo .foto{aspect-ratio:auto;height:calc((100cqw - 3 * var(--g)) / 4)}
+.campione.grande{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column}
+.campione.grande .foto{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+.campione.grande .foto img{position:absolute;inset:0}
+.campione .foto img{width:100%;height:100%;object-fit:cover}
+.campione .foto.pelle{background:#3a2c22}
+.campione figcaption{display:grid;grid-template-columns:2.2em 1fr;column-gap:6px;margin-top:14px;font-size:14px;line-height:1.4}
+.campione .n{font-variant-numeric:tabular-nums;color:var(--grafite-2)}
+.campione .nome{font-size:17px;font-weight:500;line-height:1.25}
+.campione .met{grid-column:2;color:var(--grafite-2)}
+.campione .desc{grid-column:2;margin-top:6px;max-width:30em}
+.campione.acceso .foto::after{content:"";position:absolute;top:12px;right:12px;width:12px;height:12px;border-radius:50%;background:var(--rosso);box-shadow:0 0 0 3px var(--cartone-2)}
+/* con un metallo scelto: in tavola restano solo i campioni accesi, tutti della stessa misura; gli altri scendono
+   in una riga di caselle vuote col loro numero */
+.campioni.filtrato .campione{grid-column:auto;grid-row:auto;display:block}
+.campioni.filtrato .campione .foto{aspect-ratio:1;height:auto}
+.campioni.filtrato .campione.spento{display:none}
+.altri{grid-column:1 / -1;margin:36px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--grafite-2)}
+.altri[hidden]{display:none}
+.altri .tit{margin-right:8px}
+.altri li.c{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;box-shadow:inset 0 0 0 1px var(--filo)}
+.altri li.c b{font-weight:400;font-variant-numeric:tabular-nums}
 
-/* una coppia: la foto grande va a filo del bordo; nella colonna stretta il titolo in alto e la foto piccola in basso,
-   allineata alla grande, con le due didascalie sulla stessa linea. L'interruttore scambia grande e piccola. */
-.coppia{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:1fr auto;column-gap:var(--g);padding:0 var(--m);margin-bottom:144px}
-.coppia:last-child{margin-bottom:0}
-.coppia .testo{grid-row:1;align-self:start;padding-bottom:40px}
-.coppia h3{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(30px,2.6vw,38px);line-height:1.06;letter-spacing:-.012em;color:var(--avorio)}
-.coppia .testo .etichetta{margin:12px 0 0;color:var(--tenue-su-nero)}
-.coppia .testo p:not(.etichetta){margin:18px 0 0;font-size:16px;line-height:1.55;color:var(--testo-su-nero);max-width:24em;text-wrap:pretty}
-.coppia figure{margin:0;align-self:end;min-width:0}
-.coppia .ph{overflow:hidden;background:#000}
-.coppia .ph img{width:100%;height:100%;object-fit:cover}
-.coppia figcaption{margin-top:14px;min-height:40px;font-size:13.5px;line-height:1.45;color:var(--testo-su-nero);max-width:34em}
-.coppia figcaption .etichetta{display:inline-block;margin-right:10px;color:var(--ottone-luce);font-size:11px}
+/* 3. dal disegno alla serie */
+.dittico{display:grid;grid-template-columns:7fr 5fr;gap:6px;margin-top:56px}
+.dittico figure{margin:0}
+.dittico .foto{height:clamp(300px,44vw,640px);overflow:hidden}
+.dittico img{width:100%;height:100%;object-fit:cover}
+.dittico figcaption{padding:16px var(--m) 0;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:15px}
+.dittico figure:first-child figcaption{padding-right:0}
+.dittico figure:last-child figcaption{padding-left:0}
+.dittico figcaption b{font-weight:500;font-size:17px}
 
-/* colonne: normale = grande a sinistra (1-8), stretta a destra (9-12); .spec = il contrario */
-.coppia .testo{grid-column:9/13}
-.coppia.spec .testo{grid-column:1/5}
-html[data-lato="rovescio"] .coppia .f-rov,html[data-lato="dritto"] .coppia .f-dri{grid-column:1/9;grid-row:1/3}
-html[data-lato="rovescio"] .coppia .f-dri,html[data-lato="dritto"] .coppia .f-rov{grid-column:9/13;grid-row:2}
-html[data-lato="rovescio"] .coppia.spec .f-rov,html[data-lato="dritto"] .coppia.spec .f-dri{grid-column:5/13}
-html[data-lato="rovescio"] .coppia.spec .f-dri,html[data-lato="dritto"] .coppia.spec .f-rov{grid-column:1/5}
-html[data-lato="rovescio"] .coppia .f-rov .ph,html[data-lato="dritto"] .coppia .f-dri .ph{height:min(80vh,740px)}
-html[data-lato="rovescio"] .coppia .f-dri .ph,html[data-lato="dritto"] .coppia .f-rov .ph{height:min(56vh,520px)}
-@media (min-width:861px){
-html[data-lato="rovescio"] .coppia:not(.spec) .f-rov .ph,html[data-lato="dritto"] .coppia:not(.spec) .f-dri .ph{margin-left:calc(-1 * var(--m))}
-html[data-lato="rovescio"] .coppia.spec .f-rov .ph,html[data-lato="dritto"] .coppia.spec .f-dri .ph{margin-right:calc(-1 * var(--m))}
-/* l'impronta viene da un ritaglio di 640x640 px: in grande non va oltre 1,2 volte (768 px) */
-html[data-lato="dritto"] .coppia .f-dri .ph-impronta{max-width:768px;margin-left:auto}
+/* 4. punzoni: il cartellino sopra la foto */
+.punzoni{position:relative;margin-top:clamp(72px,7vw,104px)}
+.punzoni .foto{height:clamp(420px,58vw,820px);overflow:hidden}
+.punzoni .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.punzoni .didascalia{margin:14px var(--m) 0 auto;max-width:34em;text-align:right;font-size:13px;color:var(--grafite-2)}
+/* dritto e rovescio: il segno sul punzone e la sua impronta */
+.specchio{margin:26px 0 0;display:flex;gap:26px;align-items:flex-start;padding-top:20px;border-top:1px solid var(--filo)}
+.specchio div{display:flex;align-items:center;gap:12px;font-size:13px;line-height:1.35;color:var(--grafite-2)}
+.specchio img{width:52px;height:52px;flex:none}
+.specchio .rovescio img{transform:scaleX(-1)}
+.cartellino{position:absolute;left:var(--m);bottom:calc(var(--m) * 0.9);width:min(440px,calc(100% - 2 * var(--m)));background:var(--cartone);padding:30px 32px 32px}
+.cartellino .tav{margin:0 0 18px}
+.cartellino p{margin-top:14px;font-size:16px}
+.cartellino .bottone{margin-top:24px}
+
+/* 5. dove e contatti: l'unico fondo scuro */
+.contatti{background:var(--grafite);color:var(--cartone);padding-block:clamp(72px,8vw,120px) clamp(56px,6vw,88px)}
+.contatti a:hover{color:#fff}
+.contatti .tav{color:rgba(231,228,221,.62)}
+.contatti .sinistra{grid-column:1 / span 6}
+.contatti .destra{grid-column:8 / span 5;padding-top:40px}
+.contatti .chi{margin-top:26px;font-size:18px;max-width:30em;color:rgba(231,228,221,.86)}
+.contatti .tel-grande{display:inline-block;font-size:clamp(44px,5.3vw,78px);font-weight:300;letter-spacing:-.04em;line-height:1;text-decoration:none;white-space:nowrap}
+.recapiti{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);row-gap:28px;padding-top:24px;border-top:1px solid rgba(231,228,221,.22)}
+.recapiti div{font-size:15px;line-height:1.55}
+.recapiti .etichetta{display:block;color:rgba(231,228,221,.6);margin-bottom:8px}
+
+.piede{padding-block:36px 40px}
+.piede .griglia{row-gap:16px;align-items:start}
+.piede .logo img{width:168px}
+.piede .logo{grid-column:1 / span 3}
+.piede p{grid-column:4 / span 6;font-size:13px;line-height:1.55;color:var(--grafite-2)}
+.piede p + p{grid-row:2}
+
+
+/* fino a 1240: menu a tendina, cosi' la testata non tocca lo stelo che entra dal bordo alto */
+@media (max-width:1240px){
+  .testata nav{display:none}
+  .menu{display:block;margin-left:auto}
+  .testata .tel{margin-left:0}
 }
-.ph-punzoni img{object-position:50% 50%}
-.ph-impronta img{object-position:60% 50%}
-.ph-tacchi img{object-position:55% 45%}
-.ph-scarpa img{object-position:42% 50%}
-.ph-fresa img{object-position:30% 50%}
-.ph-serie img{object-position:50% 50%}
-
-/* ---------- lavorazioni (campo avorio) ---------- */
-.lavorazioni{background:var(--avorio);color:var(--testo-su-avorio);padding:128px 0 128px}
-.lavorazioni a:hover{color:#7A5A2A}
-.lav-testa{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:0 var(--m);align-items:end}
-.lav-testa h2{grid-column:1/8;font-size:clamp(56px,9.4vw,140px);line-height:.9;letter-spacing:-.03em}
-.lav-testa h2 .rov{display:inline-block;transform:scale(-1,1);transition:transform 240ms cubic-bezier(.75,0,.2,1)}
-html[data-lato="dritto"] .lav-testa h2 .rov{transform:none}
-.lav-testa p{grid-column:8/12;margin:0 0 10px;font-size:18px;line-height:1.6;color:var(--testo-su-avorio);text-wrap:pretty}
-.fascia{margin:80px 0 0;padding:0 var(--m)}
-.fascia img,.fascia figcaption{max-width:1280px}
-.fascia img{width:100%;height:auto;aspect-ratio:1250/536;object-fit:cover}
-.fascia figcaption{padding-top:14px;font-size:13.5px;color:var(--tenue-su-avorio)}
-.fascia figcaption .etichetta{margin-right:10px;color:var(--testo-su-avorio);font-size:11px}
-
-.indice{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:96px var(--m) 0}
-.famiglia{grid-column:1/7}
-.famiglia + .famiglia{grid-column:7/13}
-.famiglia > .fam{display:block;padding-bottom:14px;font-size:15px;font-weight:500;color:var(--testo-su-avorio);border-bottom:1px solid var(--testo-su-avorio)}
-.famiglia ul{list-style:none;margin:0;padding:0}
-.famiglia li{display:grid;grid-template-columns:120px 1fr auto;column-gap:24px;row-gap:6px;align-content:start;min-height:169px;padding:24px 0;border-bottom:1px solid var(--filetto-avorio)}
-.famiglia li .mini{grid-column:1;grid-row:1/4;width:120px;height:120px;background:#2a2622}
-.famiglia h3{grid-column:2;grid-row:1;margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.5vw,36px);line-height:1.08;letter-spacing:-.012em}
-.famiglia .mat{grid-column:3;grid-row:1;align-self:baseline;text-align:right;font-size:13.5px;color:var(--tenue-su-avorio);white-space:nowrap}
-.famiglia li p{grid-column:2/4;grid-row:2;margin:0;max-width:30em;font-size:15px;line-height:1.5;color:var(--tenue-su-avorio)}
-.famiglia li p strong{font-weight:600;color:var(--testo-su-avorio)}
-
-/* ---------- contatti ---------- */
-.contatti{position:relative;isolation:isolate;padding:128px var(--m) 112px;color:var(--avorio);overflow:hidden}
-.contatti .fondo{position:absolute;inset:0;z-index:-1}
-.contatti .fondo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
-.contatti .griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:56px}
-.contatti h2{grid-column:1/8;font-size:clamp(44px,6.2vw,92px);line-height:.98;color:var(--avorio)}
-.contatti .timbro{grid-column:12/13;grid-row:1;justify-self:end;align-self:start;width:72px;height:72px}
-.contatti .manda{grid-column:1/8;grid-row:2;align-self:start;margin:-24px 0 0;max-width:30em;font-size:17px;line-height:1.55;color:var(--testo-su-nero)}
-.contatti .manda a{color:var(--ottone-luce)}
-.contatti .manda a:hover{color:var(--avorio)}
-.contatti .telefono{grid-column:1/8;grid-row:3;align-self:end;margin:0}
-.contatti .telefono a{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.01em;text-decoration:none;font-variant-numeric:tabular-nums lining-nums;color:var(--ottone-luce);transition:color 150ms ease}
-.contatti .telefono a:hover{color:var(--avorio)}
-.contatti .telefono .etichetta{display:block;margin-bottom:14px;color:var(--tenue-su-nero)}
-.contatti dl{grid-column:8/13;grid-row:3;align-self:end;margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:24px;row-gap:14px;font-size:15px;line-height:1.5}
-.contatti dt{color:var(--tenue-su-nero);padding-top:3px}
-.contatti dd{margin:0;color:var(--avorio)}
-
-/* ---------- piede ---------- */
-.piede{background:var(--nero-2);color:var(--tenue-su-nero);padding:48px var(--m) 40px;font-size:13px;line-height:1.6}
-.piede .griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:28px;align-items:start}
-.piede .logo{grid-column:1/4;line-height:0}
-.piede .logo img{height:30px;width:auto}
-.piede p{margin:0}
-.piede .p1{grid-column:4/8}
-.piede .p2{grid-column:8/11}
-.piede .p3{grid-column:11/13;text-align:right}
-.piede .crediti{grid-column:4/13;font-size:12px;color:#8C8173}
-
-/* ---------- 1024 ---------- */
 @media (max-width:1100px){
-  .menu{gap:20px}
-  .menu .facoltativo{display:none}
-  .ap-alto .chi{grid-column:1/8}
-  .ap-alto .lato-nota{grid-column:8/13}
-  .ap-basso .c1{grid-column:1/4}.ap-basso .c2{grid-column:4/7}.ap-basso .pezzo{grid-column:7/9}.ap-basso .c4{grid-column:9/13}
-  .leva-grande{min-width:220px}
-  .intro p{grid-column:5/12}
-  .lav-testa h2{grid-column:1/-1}.lav-testa p{grid-column:5/12;margin-top:32px}
-  .famiglia li{grid-template-columns:96px 1fr auto;min-height:145px;column-gap:20px}
-  .famiglia li .mini{width:96px;height:96px}
-  .famiglia .mat{grid-column:2/4;grid-row:2;text-align:left}
-  .famiglia li p{grid-row:3}
+  .apertura .testo{width:min(50vw,520px);top:150px}
+  .attacco{font-size:17px;max-width:24em}
+  .campione .desc{font-size:13px}
+  .intro{grid-column:1 / span 10}
+  .timbro{width:96px;height:96px}
 }
-/* ---------- tavoletta stretta e telefono: la stessa idea, impaginata in colonna ---------- */
-@media (max-width:860px){
-  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:8px var(--m) 20px;background:var(--nero);border-bottom:1px solid var(--filetto-nero);font-size:18px}
-  .menu a{display:flex;align-items:center;min-height:52px;border-bottom:1px solid var(--filetto-nero)}
-  .menu a:last-child{border-bottom:0}
-  .menu .facoltativo{display:flex}
-  .testata.aperta .menu{display:flex}
-  .menu-bottone{display:inline-flex;align-items:center}
-  .tel-testata{margin-left:auto}
-  .testata .leva{margin-left:auto}
-  html:not(.leva-in-vista) .tel-testata{margin-left:0}
-  .testata{gap:16px}
-  .ap-basso .c1{grid-column:1/7}.ap-basso .c2{grid-column:7/13}.ap-basso .pezzo{display:none}.ap-basso .c4{grid-column:1/-1;justify-self:start;text-align:left;margin-top:28px}
-  .intro h2{grid-column:1/-1}.intro p{grid-column:1/11}
-  .coppia{display:flex;flex-direction:column;align-items:stretch;margin-bottom:96px}
-  .coppia .testo{order:0;padding-bottom:28px}
-  html[data-lato] .coppia figure{width:auto}
-  html[data-lato="rovescio"] .coppia .f-rov,html[data-lato="dritto"] .coppia .f-dri{order:1}
-  html[data-lato="rovescio"] .coppia .f-dri,html[data-lato="dritto"] .coppia .f-rov{order:2;margin-top:28px;display:grid;grid-template-columns:38% 1fr;column-gap:16px;align-items:end}
-  html[data-lato="rovescio"] .coppia .f-rov .ph,html[data-lato="dritto"] .coppia .f-dri .ph{aspect-ratio:4/5;height:auto}
-  html[data-lato="rovescio"] .coppia .f-dri .ph,html[data-lato="dritto"] .coppia .f-rov .ph{grid-column:2;grid-row:1;aspect-ratio:1/1;height:auto}
-  html[data-lato="rovescio"] .coppia .f-dri figcaption,html[data-lato="dritto"] .coppia .f-rov figcaption{grid-column:1;grid-row:1;margin:0;min-height:0}
-  html[data-lato="rovescio"] .coppia .f-dri figcaption .etichetta,html[data-lato="dritto"] .coppia .f-rov figcaption .etichetta{display:block;margin:0 0 6px}
-  .famiglia,.famiglia + .famiglia{grid-column:1/-1}
-  .famiglia + .famiglia{margin-top:72px}
-  .contatti h2{grid-column:1/11;grid-row:1}
-  .contatti .timbro{grid-column:11/13;width:56px;height:56px}
-  .contatti .manda,.contatti .telefono,.contatti dl{grid-column:1/-1;grid-row:auto}
-  .contatti .manda{margin-top:-16px}
-  .piede .logo,.piede .p1,.piede .p2,.piede .p3,.piede .crediti{grid-column:1/-1;text-align:left}
+/* tablet: il pezzo resta sopra, ma piu' basso, cosi' titolo e bottone stanno nella prima schermata */
+@media (min-width:601px) and (max-width:900px){
+  .apertura .tavola{width:min(58vw,430px);align-self:flex-start}
+  .richiamo i{width:18px}
+  .richiamo.lungo i{width:44px}
+  .apertura > .testo{margin-top:10px}
 }
-/* ---------- apertura verticale: telefono e tavoletta in verticale ---------- */
-@media (max-width:600px), (max-width:860px) and (orientation:portrait){
-  .apertura{padding:28px var(--m) 24px;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto auto auto;column-gap:14px;row-gap:16px;min-height:calc(100svh - var(--testata))}
-  /* la striscia di pelle diventa una colonna a filo del bordo sinistro, alta quanto l'apertura */
-  .striscia{grid-column:1;grid-row:1/-1;align-self:stretch;margin:-28px 0 -24px calc(-1 * var(--m));padding:20px 8px 20px var(--m);border:0;border-right:1px solid #000;box-shadow:1px 0 0 rgba(239,232,220,.08)}
-  .striscia .fondo img{object-position:0 0}
-  h1{align-self:stretch;display:flex;align-items:center;justify-content:center;margin-left:-6px;padding-right:calc(min(36vw,19vh) * .24)}
-  .ap-alto .a-capo{display:block}
-  .marchio{writing-mode:vertical-rl;font-size:min(36vw,19vh);line-height:.8;letter-spacing:-.02em;
-    transform:scale(-1,1);
-    text-shadow:1px -1px 0 rgba(255,236,200,.45),-1px 1px 0 #6e5530,-2px 2px 0 #4a3920,-4px 6px 10px rgba(0,0,0,.5)}
-  html[data-lato="dritto"] .marchio{transform:scale(-1,-1);
-    text-shadow:1px 2px 0 rgba(0,0,0,.85),2px 3px 2px rgba(0,0,0,.5),-1px -1px 0 rgba(255,226,170,.28)}
-  .ap-alto{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:20px;align-self:start}
-  .ap-alto .lato-nota{font-size:13.5px}
-  .ap-basso{display:contents}
-  .ap-basso .pezzo{display:block;grid-column:2;grid-row:2;align-self:center;width:100%;max-width:440px}
-  .ap-basso .c1{grid-column:2;grid-row:3}
-  .ap-basso .c2{grid-column:2;grid-row:4}
-  .ap-basso .c4{grid-column:2;grid-row:5}
-  .ap-basso p{font-size:13px;line-height:1.45;padding-right:0}
-  .ap-basso .etichetta{margin-bottom:4px;font-size:10.5px}
-  .ap-basso .c3{display:none}
-  .ap-basso .c4{margin-top:4px}
-  .ap-basso .chiama{display:none}
-  .leva-grande{min-width:0;width:100%;height:52px}
-  .leva-grande span{padding:0 8px;font-size:11px}
+/* telefono e tablet stretto: il pezzo ruotato entra dal bordo alto e dal bordo sinistro, il testo sta sotto */
+@media (max-width:900px){
+  .apertura{height:auto;min-height:0;max-height:none;overflow:visible;display:flex;flex-direction:column}
+  .tavola{position:relative;top:auto;right:auto;height:auto;width:min(84vw,560px);order:-1}
+  .richiamo.l{display:none}
+  .richiamo.p{display:flex}
+  .timbro.l{display:none}
+  .timbro.p{display:block;width:84px;height:84px}
+  .apertura .testo{position:relative;left:auto;top:auto;width:auto;padding:4px var(--m) 0;margin-top:-6px}
+  .legenda{position:relative;left:auto;bottom:auto;padding:22px var(--m) 0}
+  .campioni{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px var(--g)}
+  .campione.grande{grid-row:auto}
+  .campione.largo .foto{height:auto;aspect-ratio:2/1}
+  .campione.largo{grid-column:1 / -1}
+  .contatti .sinistra,.contatti .destra{grid-column:1 / -1}
+  .contatti .destra{padding-top:56px}
+  .campione.grande .foto{aspect-ratio:4/5}
+  .piede .logo,.piede p{grid-column:1 / -1;justify-self:start}
+  .piede p + p{grid-row:auto}
 }
-/* ---------- telefono ---------- */
 @media (max-width:600px){
-  :root{--testata:56px}
   body{font-size:16px}
-  .testata{gap:8px;padding:0 16px}
-  .menu{padding-left:16px;padding-right:16px}
-  .menu-bottone{padding:0 0 0 4px}
-  .testata .logo img{height:28px}
-  html:not(.leva-in-vista) .testata .logo .l-nome{display:none}
-  html:not(.leva-in-vista) .testata .logo .l-mono{display:block;height:34px}
-  .testata .leva{min-width:0;height:44px}
-  .testata .leva span{padding:0 7px;font-size:10px;letter-spacing:.08em}
-  .apertura{padding-left:16px;padding-right:16px;column-gap:12px}
-  .striscia{margin-left:-16px;padding-left:16px}
-  .ap-alto .chi{font-size:11px;letter-spacing:.09em}
-  .coppie{padding:88px 0 96px}
-  .intro{margin-bottom:56px}
-  .intro h2{font-size:44px}
-  .intro p{margin-top:24px;font-size:16.5px}
-  .coppia{margin-bottom:88px}
-  .coppia h3{font-size:30px}
-  html[data-lato="rovescio"] .coppia .f-rov,html[data-lato="dritto"] .coppia .f-dri{margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
-  html[data-lato="rovescio"] .coppia .f-rov figcaption,html[data-lato="dritto"] .coppia .f-dri figcaption{padding:0 var(--m);min-height:0}
-  html[data-lato="rovescio"] .coppia .f-dri,html[data-lato="dritto"] .coppia .f-rov{margin-right:calc(-1 * var(--m))}
-  .lavorazioni{padding:88px 0 88px}
-  .lav-testa h2{font-size:min(64px,17vw)}
-  .lav-testa p{grid-column:1/-1;font-size:16.5px}
-  .fascia{margin-top:48px;padding:0}
-  .fascia img{aspect-ratio:4/3;object-position:30% 50%}
-  .fascia figcaption{padding:14px 16px 0}
-  .indice{padding:64px 16px 0}
-  .famiglia li{grid-template-columns:88px 1fr;column-gap:16px;min-height:0;padding:18px 0 20px}
-  .famiglia li .mini{width:88px;height:88px;grid-row:1/4}
-  .famiglia h3{grid-column:2;font-size:26px}
-  .famiglia .mat{grid-column:2;grid-row:2;text-align:left;white-space:normal}
-  .famiglia li p{grid-column:2;grid-row:3;font-size:14.5px}
-  .contatti{padding:88px 16px 80px}
-  .contatti .griglia{row-gap:40px}
-  .contatti h2{font-size:44px}
-  .contatti .telefono a{font-size:42px}
-  .contatti dl{grid-template-columns:1fr;row-gap:2px}
-  .contatti dd{margin-bottom:14px}
-  .piede{padding:40px 16px 32px}
+  .testata{height:68px}
+  .testata .logo img{width:158px}
+  .tavola{width:86vw}
+  h1{font-size:clamp(50px,15.4vw,72px);line-height:.92}
+  .attacco{margin-top:20px;font-size:16.5px}
+  .apertura .contatto{margin-top:22px}
+  .richiamo{font-size:11px;gap:6px}
+  .richiamo i{width:18px}
+  .richiamo.lungo i{width:44px}
+  .timbro.p{width:68px;height:68px}
+  .testata .tel{display:none}
+  .menu{margin-left:auto}
+  .filtro{gap:8px}
+  .filtro button{min-height:44px;padding:0 13px 0 11px;font-size:14px}
+  .conteggio{margin:6px 0 0;flex-basis:100%}
+  .campioni{gap:30px 12px}
+  .campione.largo,.campione.grande{grid-column:1 / -1}
+  .campione figcaption{grid-template-columns:1.9em 1fr;font-size:13px}
+  .campione .nome{font-size:15px}
+  .campione .desc{font-size:13px}
+  .dittico{grid-template-columns:1fr;gap:28px}
+  .dittico .foto{height:auto;aspect-ratio:4/3}
+  .dittico figcaption,.dittico figure:first-child figcaption,.dittico figure:last-child figcaption{padding:12px var(--m) 0}
+  .punzoni .foto{height:auto;aspect-ratio:4/3}
+  .cartellino{position:relative;left:auto;bottom:auto;width:auto;margin:-48px var(--m) 0;padding:24px 22px 26px}
+  .punzoni .didascalia{text-align:left;margin:14px var(--m) 0}
+  .specchio{gap:18px}
+  .recapiti{grid-template-columns:1fr}
+  .contatti .destra{padding-top:44px}
 }
-@media (max-width:600px) and (max-height:700px){
-  .ap-basso .pezzo{display:none}
+@media (max-width:360px){
+  .richiamo.p.sx:not(.lungo) i{display:none}
+  .richiamo.p{gap:4px}
+  .contatti .tel-grande{font-size:38px}
+  .timbro.p{width:58px;height:58px}
+  .testata .logo img{width:140px}
 }
-@media (max-width:379px){
-  .testata .logo .l-nome{height:23px}
-  html:not(.leva-in-vista) .tel-testata{display:none}
-    .ap-alto .lato-nota{font-size:13px}
-  .leva-grande span{padding:0 6px;font-size:10.5px;letter-spacing:.07em}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.menu summary{list-style:none;cursor:pointer;font-size:15px;font-weight:500;min-height:44px;display:flex;align-items:center}
+.menu summary::-webkit-details-marker{display:none}
+.menu ul{position:absolute;right:0;top:100%;margin-top:6px;min-width:220px;margin:0;padding:18px 22px;list-style:none;background:var(--cartone);box-shadow:0 0 0 1px var(--filo);display:grid;gap:12px;font-size:16px}
+.menu[open] ul a{display:block;min-height:32px}
 </style>
 </head>
 <body>
 
 <header class="testata">
-  <a class="logo" href="#apertura" aria-label="Mario Agnoletto, inizio pagina"><img class="l-nome" src="img/logo-neg.svg" width="506" height="106" alt="Mario Agnoletto"><img class="l-mono" src="img/monogramma.svg" width="106" height="106" alt="Mario Agnoletto"></a>
-  <nav class="menu" id="menu" aria-label="Sezioni">
-    <a href="#coppie" class="facoltativo">Il pezzo due volte</a>
+  <a class="logo" href="#" aria-label="Mario Agnoletto, incisore meccanico: torna all'inizio"><img src="img/logo.svg" alt="Mario Agnoletto" width="206" height="42"></a>
+  <nav aria-label="Sezioni">
     <a href="#lavorazioni">Lavorazioni</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#serie">Dal disegno alla serie</a>
+    <a href="#punzoni">Punzoni</a>
+    <a href="#contatti">Dove siamo</a>
   </nav>
-  <a class="tel-testata" href="tel:+390499800985" aria-label="Telefono 049 98 00 985">049&nbsp;98&nbsp;00&nbsp;985</a>
-  <button class="leva" type="button" role="switch" aria-checked="false" aria-label="Stampa: mostra il dritto"><span class="l-rov" aria-hidden="true">Rovescio</span><span class="l-dri" aria-hidden="true">Dritto</span></button>
-  <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <details class="menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="#lavorazioni">Lavorazioni</a></li>
+      <li><a href="#serie">Dal disegno alla serie</a></li>
+      <li><a href="#punzoni">Punzoni</a></li>
+      <li><a href="#contatti">Dove siamo</a></li>
+    </ul>
+  </details>
+  <a class="tel num" href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a>
 </header>
 
 <main>
-<section class="apertura" id="apertura" aria-label="Apertura">
-  <div class="ap-alto">
-    <p class="chi etichetta">Incisore meccanico <span class="a-capo">a Tombelle di Vigonovo</span></p>
-    <p class="lato-nota" aria-live="polite"><span class="su-rov">Il nome è inciso a rovescio, come sulla testa di un punzone. Premi Dritto e lo stampi sulla pelle.</span><span class="su-dri">Il dritto è quello che il punzone lascia sulla pelle: leggibile e in positivo.</span></p>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="testo">
+    <h1 id="titolo">Incisore<br>meccanico</h1>
+    <p class="attacco">Fibbie, puntali, tacchi gioiello, punzoni e fustelle su disegno, per la calzatura e la pelletteria. Seguiamo il pezzo dal progetto alla serie, in zama, ottone, alluminio e acciaio.</p>
+    <div class="contatto">
+      <a class="bottone num" href="tel:+390499800985">Chiama 049&nbsp;98&nbsp;00&nbsp;985</a>
+      <span class="dove">Tombelle di Vigonovo (VE), dal 1979</span>
+    </div>
   </div>
-
-  <div class="striscia">
-    <picture class="fondo">
-      <source media="(max-width:600px), (max-width:860px) and (orientation:portrait)" srcset="img/pelle-p-640.webp 640w, img/pelle-p-900.webp 900w, img/pelle-p-1300.webp 1300w" sizes="40vw">
-      <img src="img/pelle-l-1920.webp" srcset="img/pelle-l-1280.webp 1280w, img/pelle-l-1920.webp 1920w, img/pelle-l-2400.webp 2400w" sizes="100vw" alt="" width="2400" height="1500" fetchpriority="high">
+  <figure class="tavola">
+    <picture>
+      <source media="(max-width: 900px)" srcset="img/tacco-p-400.webp 400w, img/tacco-p-744.webp 744w" sizes="86vw">
+      <img class="pezzo" src="img/tacco-l-744.webp" srcset="img/tacco-l-480.webp 480w, img/tacco-l-744.webp 744w" sizes="69vh" width="744" height="1084" fetchpriority="high"
+        alt="Un tacco gioiello a lamelle in ottone visto dall'alto: l'anello d'appoggio, quattro lamelle e lo stelo in cui si innestano">
     </picture>
-    <h1><span class="vh">Mario </span><span class="marchio">Agnoletto</span><span class="vh">, incisore meccanico</span></h1>
-  </div>
-
-  <div class="ap-basso">
-    <p class="c1"><span class="etichetta">Per chi lavora la pelle</span>Punzoni e alfabeti per la stampa su pelle, fustelle, ruote e rulli</p>
-    <p class="c2"><span class="etichetta">Sul prodotto finito</span>Fibbie, morsetti, puntali, copritacchi e tacchi gioiello</p>
-    <figure class="pezzo">
-      <div class="ph"><img class="p-rov" src="img/pezzo-rov-440.webp" srcset="img/pezzo-rov-220.webp 220w, img/pezzo-rov-440.webp 440w" sizes="(max-width:860px) 60vw, 200px" alt="Punzoni in ottone con la scritta incisa a specchio" width="440" height="330"><img class="p-dri" src="img/pezzo-dri-420.webp" srcset="img/pezzo-dri-210.webp 210w, img/pezzo-dri-420.webp 420w" sizes="(max-width:860px) 60vw, 200px" alt="Scritta impressa a caldo su cuoio naturale" width="420" height="315"></div>
-      <figcaption><span class="su-rov">Sul banco: punzoni in ottone, a rovescio.</span><span class="su-dri">Sul cuoio: la scritta impressa a caldo.</span></figcaption>
-    </figure>
-    <div class="c4"><span class="etichetta">Stampa</span><button class="leva leva-grande" type="button" role="switch" aria-checked="false" aria-label="Stampa: mostra il dritto"><span class="l-rov" aria-hidden="true">Rovescio</span><span class="l-dri" aria-hidden="true">Dritto</span></button><span class="chiama">Chiamate il <a href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a></span></div>
-  </div>
-</section>
-
-<section class="coppie" id="coppie" aria-labelledby="t-coppie">
-  <div class="intro">
-    <h2 id="t-coppie">Ogni pezzo esiste due volte</h2>
-    <p>In metallo è in negativo e a specchio; sulla scarpa e sulla borsa diventa dritto e leggibile. Facciamo minuterie e accessori in esclusiva, soprattutto per calzatura e pelletteria: gli attrezzi che lasciano il segno e i pezzi che restano sul prodotto. L'officina l'ha fondata Mario Agnoletto nel 1979.</p>
-  </div>
-
-  <div class="coppia">
-    <div class="testo">
-      <h3>Punzone e impronta</h3>
-      <p class="etichetta">Stampa su pelle e cuoio</p>
-      <p>Alfabeti in acciaio e ottone per la personalizzazione, con la grafica fatta da noi, anche in 24&nbsp;ore.</p>
-    </div>
-    <figure class="f-rov">
-      <div class="ph ph-punzoni"><img src="img/punzoni-1024.webp" srcset="img/punzoni-640.webp 640w, img/punzoni-1024.webp 1024w, img/punzoni-1200.webp 1200w" sizes="(max-width:860px) 100vw, 64vw" alt="Sul banco: cliché in ottone con un cavallo inciso, ruota forata in acciaio, stampo a fiore e un piccolo ingranaggio" width="1200" height="830" loading="lazy"></div>
-      <figcaption><span class="etichetta">Rovescio</span>Cliché in ottone, ruota e stampo: il disegno è inciso a specchio.</figcaption>
-    </figure>
-    <figure class="f-dri">
-      <div class="ph ph-impronta"><img src="img/impronta-640.webp" srcset="img/impronta-480.webp 480w, img/impronta-640.webp 640w" sizes="(max-width:860px) 100vw, 40vw" alt="Striscia di cuoio naturale con una scritta in corsivo impressa a caldo" width="640" height="640" loading="lazy"></div>
-      <figcaption><span class="etichetta">Dritto</span>Una scritta impressa a caldo su cuoio naturale.</figcaption>
-    </figure>
-  </div>
-
-  <div class="coppia spec">
-    <div class="testo">
-      <h3>Tacco e scarpa</h3>
-      <p class="etichetta">Tacchi gioiello</p>
-      <p>Il tacco è un pezzo di metallo che resta a vista: lo facciamo in ottone, acciaio e alluminio.</p>
-    </div>
-    <figure class="f-rov">
-      <div class="ph ph-tacchi"><img src="img/tacchi-1024.webp" srcset="img/tacchi-640.webp 640w, img/tacchi-1024.webp 1024w, img/tacchi-1600.webp 1600w, img/tacchi-1920.webp 1920w" sizes="(max-width:860px) 100vw, 64vw" alt="Tre tacchi gioiello in metallo appoggiati su una pelle stampata" width="1920" height="1080" loading="lazy"></div>
-      <figcaption><span class="etichetta">Rovescio</span>Tre tacchi gioiello: stelo, gabbia e lamelle.</figcaption>
-    </figure>
-    <figure class="f-dri">
-      <div class="ph ph-scarpa"><img src="img/scarpa-1024.webp" srcset="img/scarpa-640.webp 640w, img/scarpa-1024.webp 1024w, img/scarpa-1600.webp 1600w, img/scarpa-2200.webp 2200w" sizes="(max-width:860px) 100vw, 64vw" alt="Décolleté dorata con il tacco in metallo, riflessa su un piano scuro" width="2200" height="2063" loading="lazy"></div>
-      <figcaption><span class="etichetta">Dritto</span>Il tacco, una volta montato, resta a vista.</figcaption>
-    </figure>
-  </div>
-
-  <div class="coppia">
-    <div class="testo">
-      <h3>Prototipo e serie</h3>
-      <p class="etichetta">Dall'idea alla serie</p>
-      <p>Partendo da un'idea ne seguiamo la progettazione, lo sviluppo del prototipo e la produzione in serie.</p>
-    </div>
-    <figure class="f-rov">
-      <div class="ph ph-fresa"><img src="img/fresa-1024.webp" srcset="img/fresa-640.webp 640w, img/fresa-1024.webp 1024w, img/fresa-1600.webp 1600w, img/fresa-2040.webp 2040w" sizes="(max-width:860px) 100vw, 64vw" alt="Una fresa lavora un pezzo in metallo serrato nella morsa" width="2040" height="1600" loading="lazy"></div>
-      <figcaption><span class="etichetta">Rovescio</span>Il prototipo nasce sotto la fresa.</figcaption>
-    </figure>
-    <figure class="f-dri">
-      <div class="ph ph-serie"><img src="img/serie-1024.webp" srcset="img/serie-640.webp 640w, img/serie-1024.webp 1024w, img/serie-1600.webp 1600w" sizes="(max-width:860px) 100vw, 64vw" alt="Un mucchio di minuterie zigrinate in ottone, tutte uguali" width="1600" height="1600" loading="lazy"></div>
-      <figcaption><span class="etichetta">Dritto</span>Poi la produzione in serie.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="lavorazioni" id="lavorazioni" aria-labelledby="t-lav">
-  <div class="lav-testa">
-    <h2 id="t-lav"><span class="rov">Lavorazioni</span></h2>
-    <p>Attrezzi per chi lavora la pelle e pezzi in metallo che restano sul prodotto. Lavoriamo zama, ottone, alluminio e acciaio.</p>
-  </div>
-
-  <figure class="fascia">
-    <img src="img/fibbie-1250.webp" srcset="img/fibbie-640.webp 640w, img/fibbie-1024.webp 1024w, img/fibbie-1250.webp 1250w" sizes="(max-width:600px) 100vw, min(1280px, 89vw)" alt="Due fibbie in ottone lucido su una pelle stampata a rilievo" width="1250" height="536" loading="lazy">
-    <figcaption><span class="etichetta">Finiture</span>Fibbie in ottone. Gli accessori escono con qualsiasi finitura o verniciatura.</figcaption>
+    <span class="richiamo l sx lunghissimo" style="left:64.25%;top:79.34%"><i></i><b>1</b> Anello</span>
+    <span class="richiamo l" style="left:72.18%;top:42.62%"><i></i><b>2</b> Lamelle</span>
+    <span class="richiamo l lungo" style="left:43.41%;top:27.03%"><i></i><b>3</b> Asola</span>
+    <span class="richiamo l lungo" style="left:36.69%;top:18.36%"><i></i><b>4</b> Stelo</span>
+    <span class="richiamo p" style="left:35.62%;top:79.34%"><i></i><b>1</b> Anello</span>
+    <span class="richiamo p sx" style="left:27.69%;top:42.62%"><i></i><b>2</b> Lamelle</span>
+    <span class="richiamo p sx lungo" style="left:56.45%;top:27.03%"><i></i><b>3</b> Asola</span>
+    <span class="richiamo p sx lungo" style="left:63.17%;top:18.36%"><i></i><b>4</b> Stelo</span>
+    <img class="timbro l" src="img/timbro.svg" alt="" width="112" height="112" style="left:74.87%;top:89.76%">
+    <img class="timbro p" src="img/timbro.svg" alt="" width="84" height="84" style="left:25.0%;top:89.76%">
   </figure>
+  <p class="legenda piccolo"><span class="num">01</span><span>Tacco gioiello a lamelle in ottone, visto dall'alto</span></p>
+</section>
 
-  <div class="indice">
-    <div class="famiglia">
-      <span class="fam">Per chi lavora la pelle</span>
-      <ul>
-        <li><img class="mini" src="img/t-punzoni-120.webp" srcset="img/t-punzoni-120.webp 120w, img/t-punzoni-176.webp 176w, img/t-punzoni-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Cliché in ottone inciso con un cavallo" width="120" height="120" loading="lazy"><h3>Punzoni e alfabeti</h3><span class="mat">Acciaio, ottone</span><p>Per la stampa su pelle e cuoio, anche in set di alfabeti per la personalizzazione. Sviluppo della grafica e <strong>consegna anche in 24&nbsp;ore</strong>.</p></li>
-        <li><img class="mini" src="img/t-fustelle-120.webp" srcset="img/t-fustelle-120.webp 120w, img/t-fustelle-176.webp 176w, img/t-fustelle-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Stampo in metallo a forma di fiore" width="120" height="120" loading="lazy"><h3>Fustelle</h3><span class="mat">Ottone, alluminio, acciaio</span><p>Per il taglio e la stampa di pelle, cuoio e tessuto.</p></li>
-        <li><img class="mini" src="img/t-ruote-120.webp" srcset="img/t-ruote-120.webp 120w, img/t-ruote-176.webp 176w, img/t-ruote-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Ruota in acciaio forata" width="120" height="120" loading="lazy"><h3>Ruote e rulli</h3><span class="mat">Acciaio</span><p>Ruote in acciaio e rulli, fatti su disegno.</p></li>
-        <li><img class="mini" src="img/t-stampa-120.webp" srcset="img/t-stampa-120.webp 120w, img/t-stampa-176.webp 176w, img/t-stampa-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Pelle argento stampata a rilievo" width="120" height="120" loading="lazy"><h3>Stampa e foratura</h3><span class="mat">Servizio</span><p>Stampa e foratura su pelle, con un catalogo di lavorazioni pronte.</p></li>
-      </ul>
+<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="griglia">
+    <p class="tav piccolo"><span>A</span><span>Campionario</span></p>
+    <div class="intro">
+      <h2 id="t-lav">Otto lavorazioni, quattro metalli</h2>
+      <p>Due famiglie di pezzi: gli attrezzi per chi lavora la pelle e i pezzi che finiscono sulla scarpa, sulla borsa, in vetrina. In tavola ce ne sono sette; l'ottava sono le targhe da esposizione, in alluminio, ottone e plexiglas.</p>
     </div>
-    <div class="famiglia">
-      <span class="fam">Sul prodotto finito</span>
-      <ul>
-        <li><img class="mini" src="img/t-fibbie-120.webp" srcset="img/t-fibbie-120.webp 120w, img/t-fibbie-176.webp 176w, img/t-fibbie-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Fibbia in ottone lucido" width="120" height="120" loading="lazy"><h3>Fibbie e accessori</h3><span class="mat">Ogni finitura</span><p>Fibbie, morsetti, talloni, puntali e copritacchi, con qualsiasi finitura o verniciatura.</p></li>
-        <li><img class="mini" src="img/t-tacchi-120.webp" srcset="img/t-tacchi-120.webp 120w, img/t-tacchi-176.webp 176w, img/t-tacchi-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Tacco gioiello a lamelle in metallo" width="120" height="120" loading="lazy"><h3>Tacchi gioiello</h3><span class="mat">Ottone, acciaio, alluminio</span><p>Steli, gabbie e lamelle: il tacco come pezzo a vista, fatto in esclusiva.</p></li>
-        <li><img class="mini" src="img/t-bigiotteria-120.webp" srcset="img/t-bigiotteria-120.webp 120w, img/t-bigiotteria-176.webp 176w, img/t-bigiotteria-240.webp 240w" sizes="(max-width:600px) 88px, (max-width:1100px) 96px, 120px" alt="Farfalla in metallo lucido traforata" width="120" height="120" loading="lazy"><h3>Bigiotteria</h3><span class="mat">Finiture preziose</span><p>Anelli, bracciali, spille e pendagli, con applicazioni di cristalli e pietre.</p></li>
-        <li class="senza-foto"><h3>Targhe</h3><span class="mat">Da esposizione</span><p>Targhe da esposizione e articoli da vetrina.</p></li>
-      </ul>
+
+    <div class="filtro" id="metalli" role="group" aria-label="Filtra per metallo">
+      <button type="button" data-m="tutti" aria-pressed="true"><span class="campo tutti" aria-hidden="true"></span>Tutti</button>
+      <button type="button" data-m="zama" aria-pressed="false"><span class="campo zama" aria-hidden="true"></span>Zama</button>
+      <button type="button" data-m="ottone" aria-pressed="false"><span class="campo ottone" aria-hidden="true"></span>Ottone</button>
+      <button type="button" data-m="alluminio" aria-pressed="false"><span class="campo alluminio" aria-hidden="true"></span>Alluminio</button>
+      <button type="button" data-m="acciaio" aria-pressed="false"><span class="campo acciaio" aria-hidden="true"></span>Acciaio</button>
+      <p class="conteggio" aria-live="polite"><b class="num">7</b> lavorazioni in tavola</p>
+    </div>
+
+    <div class="campioni">
+      <figure class="campione grande" data-m="ottone acciaio alluminio">
+        <div class="foto"><img src="img/t-tacchi-660.webp" srcset="img/t-tacchi-480.webp 480w, img/t-tacchi-660.webp 660w" sizes="(max-width:900px) 92vw, 46vw" width="660" height="1000" loading="lazy" alt="Un tacco gioiello a gabbia in acciaio lucido, visto dall'alto"></div>
+        <figcaption><span class="n">01</span><span class="nome">Tacchi gioiello</span><span class="met">ottone, acciaio, alluminio</span><span class="desc">A gabbia, a lamelle o a stelo, su disegno.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="acciaio ottone">
+        <div class="foto"><img src="img/t-punzoni-560.webp" srcset="img/t-punzoni-400.webp 400w, img/t-punzoni-560.webp 560w, img/t-punzoni-700.webp 700w" sizes="(max-width:900px) 45vw, 22vw" width="700" height="700" loading="lazy" alt="Cliché in ottone inciso con un cavallo e il suo guidatore, visto dall'alto"></div>
+        <figcaption><span class="n">02</span><span class="nome">Punzoni e alfabeti</span><span class="met">acciaio, ottone</span><span class="desc">Per stampare pelle e cuoio, anche in set di alfabeti.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="ottone alluminio acciaio">
+        <div class="foto"><img src="img/t-fustelle-560.webp" srcset="img/t-fustelle-400.webp 400w, img/t-fustelle-560.webp 560w, img/t-fustelle-720.webp 720w" sizes="(max-width:900px) 45vw, 22vw" width="720" height="720" loading="lazy" alt="Stampo in acciaio a due fiori, con i segni della fresa"></div>
+        <figcaption><span class="n">03</span><span class="nome">Fustelle</span><span class="met">ottone, alluminio, acciaio</span><span class="desc">Per tagliare e stampare pelle, cuoio e tessuto.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="acciaio">
+        <div class="foto"><img src="img/t-ruote-640.webp" srcset="img/t-ruote-400.webp 400w, img/t-ruote-640.webp 640w, img/t-ruote-820.webp 820w" sizes="(max-width:900px) 45vw, 22vw" width="820" height="820" loading="lazy" alt="Ruota forata in acciaio vista dall'alto"></div>
+        <figcaption><span class="n">04</span><span class="nome">Ruote e rulli</span><span class="met">acciaio</span><span class="desc">Ruote in acciaio e rulli.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="">
+        <div class="foto"><img src="img/t-bigiotteria-640.webp" srcset="img/t-bigiotteria-400.webp 400w, img/t-bigiotteria-640.webp 640w, img/t-bigiotteria-1080.webp 1080w" sizes="(max-width:900px) 45vw, 22vw" width="1080" height="1080" loading="lazy" alt="Farfalle in metallo lucido traforate a ovali"></div>
+        <figcaption><span class="n">05</span><span class="nome">Bigiotteria</span><span class="met">finiture preziose</span><span class="desc">Anelli, bracciali, spille e pendagli, con cristalli e pietre.</span></figcaption>
+      </figure>
+      <figure class="campione largo" data-m="zama ottone alluminio acciaio">
+        <div class="foto"><img src="img/t-accessori-1180.webp" srcset="img/t-accessori-640.webp 640w, img/t-accessori-900.webp 900w, img/t-accessori-1180.webp 1180w" sizes="(max-width:900px) 92vw, 46vw" width="1180" height="590" loading="lazy" alt="Due fibbie in ottone lucido, una con le borchie a punta"></div>
+        <figcaption><span class="n">06</span><span class="nome">Accessori</span><span class="met">zama, ottone, alluminio, acciaio</span><span class="desc">Fibbie, morsetti, talloni, puntali e copritacchi, con qualsiasi finitura o verniciatura.</span></figcaption>
+      </figure>
+      <figure class="campione largo" data-m="">
+        <div class="foto pelle"><img src="img/t-stampa-960.webp" srcset="img/t-stampa-640.webp 640w, img/t-stampa-960.webp 960w" sizes="(max-width:900px) 92vw, 46vw" width="960" height="480" loading="lazy" alt="Pelle argento goffrata e cuoio marrone stampato a rilievo con un motivo a grappolo"></div>
+        <figcaption><span class="n">07</span><span class="nome">Stampa e foratura su pelle</span><span class="met">servizio, su pelle</span><span class="desc">Con un catalogo di lavorazioni pronte.</span></figcaption>
+      </figure>
+      <ul class="altri" hidden></ul>
     </div>
   </div>
 </section>
 
-<section class="contatti" id="contatti" aria-labelledby="t-con">
-  <picture class="fondo">
-    <source media="(max-width:600px)" srcset="img/pelle-p-640.webp 640w, img/pelle-p-900.webp 900w" sizes="100vw">
-    <img src="img/pelle-l-1920.webp" srcset="img/pelle-l-1280.webp 1280w, img/pelle-l-1920.webp 1920w" sizes="100vw" alt="" width="2400" height="1500" loading="lazy">
-  </picture>
+<section class="sezione" id="serie" aria-labelledby="t-serie">
   <div class="griglia">
-    <h2 id="t-con">Portate l'idea in officina</h2>
-    <img class="timbro" src="img/timbro.svg" width="106" height="106" alt="" loading="lazy">
-    <p class="manda">Per un preventivo mandate il disegno o il logo a <a href="mailto:info@marioagnoletto.it?subject=Richiesta%20di%20preventivo">info@marioagnoletto.it</a>.</p>
-    <p class="telefono"><span class="etichetta">Telefono</span><a href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a></p>
-    <dl>
-      <dt class="etichetta">Dove</dt><dd>Via dell'Artigianato&nbsp;18<br>30030 Tombelle di Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+18+30030+Tombelle+di+Vigonovo">Apri la mappa</a></dd>
-      <dt class="etichetta">Posta</dt><dd><a href="mailto:info@marioagnoletto.it">info@marioagnoletto.it</a></dd>
-      <dt class="etichetta">PEC</dt><dd>marioagnoletto@pec.it</dd>
-      <dt class="etichetta">Fax</dt><dd class="num">049&nbsp;50&nbsp;31&nbsp;72</dd>
-    </dl>
+    <p class="tav piccolo"><span>B</span><span>Un pezzo, tre passaggi</span></p>
+    <div class="intro">
+      <h2 id="t-serie">Dal disegno alla serie</h2>
+      <p>Si parte da un'idea del cliente: ne seguiamo la progettazione, lo sviluppo del prototipo e la produzione in serie.</p>
+    </div>
+  </div>
+  <div class="dittico">
+    <figure>
+      <div class="foto"><img src="img/fresa-1600.webp" srcset="img/fresa-700.webp 700w, img/fresa-1100.webp 1100w, img/fresa-1600.webp 1600w, img/fresa-2100.webp 2100w" sizes="(max-width:600px) 100vw, 58vw" width="2100" height="1600" loading="lazy" alt="Una fresa al lavoro su un pezzo in rame"></div>
+      <figcaption><b>Prototipo</b><span>Il primo pezzo, prima della serie. Foto di repertorio.</span></figcaption>
+    </figure>
+    <figure>
+      <div class="foto"><img src="img/finiture-670.webp" srcset="img/finiture-480.webp 480w, img/finiture-670.webp 670w" sizes="(max-width:600px) 100vw, 42vw" width="670" height="820" loading="lazy" alt="Una fibbia a catena cromata e una placca in ottone con l'inserto martellato, su pelle stampata"></div>
+      <figcaption><b>Serie</b><span>Pezzi finiti, con qualsiasi finitura o verniciatura.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="punzoni" id="punzoni" aria-labelledby="t-pun">
+  <div class="foto"><img src="img/ottone-1500.webp" srcset="img/ottone-700.webp 700w, img/ottone-1100.webp 1100w, img/ottone-1500.webp 1500w, img/ottone-1920.webp 1920w" sizes="100vw" width="1920" height="1080" loading="lazy" alt="Ottone inciso dall'alto: un cliché a foglie, due bordi a spina e un blocchetto forato, sopra una lastra traforata"></div>
+  <div class="cartellino">
+    <p class="tav piccolo"><span>C</span><span>Punzoni e alfabeti</span></p>
+    <h2 class="medio" id="t-pun">Punzoni anche in 24 ore</h2>
+    <p>In acciaio e ottone, per stampare pelle e cuoio, anche in set di alfabeti per la personalizzazione. La grafica la sviluppiamo noi.</p>
+    <a class="bottone num" href="tel:+390499800985">Chiama 049&nbsp;98&nbsp;00&nbsp;985</a>
+    <div class="specchio">
+      <div class="rovescio"><img src="img/timbro-grafite.svg" alt="" width="52" height="52"><span>Sul punzone,<br>a rovescio</span></div>
+      <div><img src="img/timbro.svg" alt="" width="52" height="52"><span>Sulla pelle,<br>dritto</span></div>
+    </div>
+  </div>
+  <p class="didascalia">Ottone inciso dell'officina: un cliché a foglie, due bordi a spina, un blocchetto forato, sopra una lastra traforata.</p>
+</section>
+
+<section class="contatti" id="contatti" aria-labelledby="t-dove">
+  <div class="griglia">
+    <div class="sinistra">
+      <p class="tav piccolo"><span>D</span><span>Dove siamo</span></p>
+      <h2 id="t-dove">Tombelle di Vigonovo, nella Riviera del Brenta</h2>
+      <p class="chi">Lavoriamo soprattutto per calzaturifici e pelletterie. Le targhe e gli articoli da vetrina sono per i negozi e i vetrinisti.</p>
+    </div>
+    <div class="destra">
+      <a class="tel-grande num" href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a>
+      <div class="recapiti">
+        <div><span class="etichetta">Officina</span>Via dell'Artigianato 18<br>30030 Tombelle di Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+18+Tombelle+di+Vigonovo">Apri in Google Maps</a></div>
+        <div><span class="etichetta">Scrivere</span><a href="mailto:info@marioagnoletto.it">info@marioagnoletto.it</a><br>PEC <a href="mailto:marioagnoletto@pec.it">marioagnoletto@pec.it</a></div>
+        <div class="num"><span class="etichetta">Telefono e fax</span>Tel. <a href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a><br>Fax 049&nbsp;50&nbsp;31&nbsp;72</div>
+        <div><span class="etichetta">Ditta</span>Agnoletto Mario<br>impresa individuale<br>P.IVA <span class="num">00802440271</span></div>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="piede">
   <div class="griglia">
-    <a class="logo" href="#apertura" aria-label="Mario Agnoletto, inizio pagina"><img src="img/logo-neg.svg" width="506" height="106" alt="Mario Agnoletto" loading="lazy"></a>
-    <p class="p1">Agnoletto Mario, impresa individuale<br>Via dell'Artigianato&nbsp;18, 30030 Tombelle di Vigonovo (VE)</p>
-    <p class="p2"><span class="num">P.&nbsp;IVA 00802440271</span><br>PEC marioagnoletto@pec.it</p>
-    <p class="p3"><a href="#">Privacy</a><br><a href="#">Cookie</a></p>
-    <p class="crediti">Pelle nera, scarpa, fresa e minuterie sono foto di repertorio con licenza Unsplash; le altre sono di Mario Agnoletto.</p>
+    <a class="logo" href="#"><img src="img/logo.svg" alt="Mario Agnoletto" width="168" height="34"></a>
+    <p class="num">Agnoletto Mario, impresa individuale, incisore meccanico dal 1979. Via dell'Artigianato 18, 30030 Tombelle di Vigonovo (VE). P.IVA 00802440271.</p>
+    <p>La foto della fresa (B, Prototipo) è di repertorio (Unsplash); le altre sono pezzi dell'officina.</p>
   </div>
 </footer>
 
 <script>
 (function(){
-  var html=document.documentElement, leve=document.querySelectorAll('.leva');
-  function metti(lato){
-    html.setAttribute('data-lato',lato);
-    var dritto=lato==='dritto';
-    leve.forEach(function(b){
-      b.setAttribute('aria-checked',dritto?'true':'false');
-      b.setAttribute('aria-label',dritto?'Stampa: torna al rovescio':'Stampa: mostra il dritto');
+  var bottoni = document.querySelectorAll('.filtro button');
+  var tavola = document.querySelector('.campioni');
+  var campioni = tavola.querySelectorAll('.campione');
+  var altri = tavola.querySelector('.altri');
+  var conteggio = document.querySelector('.conteggio');
+  var nomi = {tutti:'', zama:'Zama', ottone:'Ottone', alluminio:'Alluminio', acciaio:'Acciaio'};
+  function scegli(m, daUtente){
+    if (nomi[m] === undefined) m = 'tutti';
+    var n = 0, fuori = [];
+    campioni.forEach(function(c){
+      var ok = m === 'tutti' || (' ' + c.dataset.m + ' ').indexOf(' ' + m + ' ') > -1;
+      c.classList.toggle('spento', !ok);
+      c.classList.toggle('acceso', ok && m !== 'tutti');
+      if (ok) n++; else fuori.push('<li class="c"><b>' + c.querySelector('.n').textContent + '</b>' + c.querySelector('.nome').textContent + '</li>');
     });
+    tavola.classList.toggle('filtrato', m !== 'tutti');
+    altri.hidden = m === 'tutti';
+    altri.innerHTML = m === 'tutti' ? '' : '<li class="tit">Non in ' + nomi[m].toLowerCase() + ':</li>' + fuori.join('');
+    bottoni.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.m === m ? 'true' : 'false'); });
+    conteggio.innerHTML = m === 'tutti' ? '<b class="num">7</b> lavorazioni in tavola' : nomi[m] + ': <b class="num">' + n + '</b> ' + (n === 1 ? 'lavorazione' : 'lavorazioni') + ' su 7';
+    if (daUtente && history.replaceState) history.replaceState(null, '', m === 'tutti' ? location.pathname + location.search : '#metallo=' + m);
   }
-  leve.forEach(function(b){
-    b.addEventListener('click',function(){metti(html.getAttribute('data-lato')==='dritto'?'rovescio':'dritto');});
-  });
-  /* la copia dell'interruttore in testata compare solo quando quello dell'apertura esce dallo schermo */
-  var grande=document.querySelector('.leva-grande');
-  if('IntersectionObserver' in window && grande){
-    new IntersectionObserver(function(v){html.classList.toggle('leva-in-vista',v[0].isIntersecting);}).observe(grande);
-  } else { html.classList.remove('leva-in-vista'); }
-  /* menu del telefono */
-  var testata=document.querySelector('.testata'), mb=document.querySelector('.menu-bottone');
-  function chiudi(){testata.classList.remove('aperta');mb.setAttribute('aria-expanded','false');mb.textContent='Menu';}
-  mb.addEventListener('click',function(){
-    var a=testata.classList.toggle('aperta');
-    mb.setAttribute('aria-expanded',a?'true':'false');mb.textContent=a?'Chiudi':'Menu';
-  });
-  document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',chiudi);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&testata.classList.contains('aperta')){chiudi();mb.focus();}});
+  bottoni.forEach(function(b){ b.addEventListener('click', function(){ scegli(b.dataset.m, true); }); });
+  function daIndirizzo(){ var q = (location.hash.match(/metallo=(\w+)/) || [])[1]; if (q) scegli(q, false); }
+  window.addEventListener('hashchange', daIndirizzo);
+  daIndirizzo();
+  // menu a tendina: si chiude scegliendo una voce, con Esc e toccando fuori
+  var menu = document.querySelector('.menu');
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.open = false; }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.open){ menu.open = false; menu.querySelector('summary').focus(); } });
+  document.addEventListener('click', function(e){ if (menu.open && !menu.contains(e.target)) menu.open = false; });
 })();
 </script>
 </body>
