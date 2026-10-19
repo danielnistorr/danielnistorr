@@ -5,7 +5,7 @@ Proposta non richiesta di una nuova homepage per Area Systems srl (Tombelle di V
 ## Dove sono le cose
 
 - `sito/index.html`: la home finale (statica, si apre con file:///). Accanto ci sono `sito/img/` (solo le immagini usate, WebP in più larghezze) e `sito/fonts/` (Overpass woff2 e la licenza OFL).
-- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg` e `NOTA.md` (idea, caratteri, colori, interazione, foto, controlli).
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (solo contatti e piede) e `NOTA.md` (idea, caratteri, colori, interazione, foto, controlli).
 - `_prova/script/build_finale.sh`: rifà tutto, cioè immagini (`finale_img.py`), controllo U+2014, prova del gesto e del menu (`prova_gesto_finale.mjs`), misure della prima schermata da 320 a 2560 (`misure_rifinitura.mjs`), screenshot e misura dei segnali.
 - `_prova/home/a/` e `_prova/home/b/`: le due bozze. Il committente ha scelto la B, "Il quadro aperto", e la home finale parte da lì.
 - `01-analisi.md`: fatti con le fonti, il sito di oggi, i voti delle foto, i riferimenti.
@@ -63,5 +63,5 @@ Nessuna foto in apertura è di Area Systems. La foto del quadro aperto (Raymond 
 ## Note di progetto
 
 - **La legenda del pezzo scelto** sta sulla carta, nella colonna destra dell'apertura, sotto la frase, con altezza fissa: non copre la foto. Sotto i 1180 px passa sotto la foto, con la riga "Scegliete un numero sulla foto.".
-- **Le misure degli H2 sono due** (64 e 96 px): il titolo d'apertura è l'unico elemento grande, il telefono chiude la pagina su lamiera chiara.
+- **La chiusura è l'etichetta dati del quadro**: telefono, email e sedi stanno in campi su un adesivo bianco, sulla lamiera chiara; il piede è una riga sola con i dati societari, la PEC e privacy e cookie. Ha sostituito il telefono a 96 px, la riga di tre colonne e il piede a quattro colonne. Gli H2 hanno una sola misura (64 px).
 - **La prima schermata non è stata ripensata** nonostante il giudizio cieco (che la trovava troppo vicina a quella di Bertolin Antonio e chiedeva un solo pezzo loro scontornato): il committente ha scelto questa bozza. Il rimedio vero è lo scatto del punto 1 qui sopra.

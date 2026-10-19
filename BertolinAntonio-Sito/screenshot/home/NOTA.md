@@ -15,7 +15,7 @@ Poi vengono:
 - chi sono;
 - il colore, che sul titanio è uno spessore e sull'alluminio un pigmento, mostrato sui loro pezzi;
 - i sei trattamenti, che si filtrano per metallo;
-- l'impianto del 2018 e lo stabilimento di Tombelle accanto ai contatti.
+- l'impianto del 2018, lo stabilimento di Tombelle e i recapiti sulla scala dei colori del titanio, la cui ultima barretta è una targhetta (vedi "La chiusura").
 
 Su questa pagina il nome di un concorrente non reggerebbe: le foto, i colori dichiarati, il 2018 e l'indirizzo sono tutti di Bertolin.
 
@@ -38,12 +38,12 @@ Nella seconda schermata ci sono la distinta ("1 Barra del telaio", "2 Boccola to
 
 | Larghezza | Altezza |
 |---|---|
-| 320 | 5986 px |
-| 390 | 5825 px |
-| 768 | 5607 px |
-| 1024 | 5377 px |
-| 1440 | 5988 px |
-| 1920 | 5988 px |
+| 320 | 6059 px |
+| 390 | 5955 px |
+| 768 | 5652 px |
+| 1024 | 5405 px |
+| 1440 | 6015 px |
+| 1920 | 6016 px |
 
 ## Cosa era già cambiato rispetto alla bozza B
 
@@ -63,7 +63,7 @@ Prima del giudizio cieco, sulla bozza B erano già stati fatti questi interventi
 - **Le legende dell'apertura**: le etichette in pillola bianca somigliavano a quelle di Area Systems, che è dello stesso giro e dello stesso paese. Ora sulla foto restano solo un punto, un filo e un palloncino col numero, come in un disegno d'assieme di un'officina meccanica. I nomi stanno nella distinta sotto la foto, sulla sinistra, e la didascalia è alla settima colonna, allineata con il testo d'apertura.
 - **Il colore prima**: la sezione "Sul titanio il colore è uno spessore" viene subito dopo chi sono, prima dei trattamenti. La minuteria colorata è alla terza schermata, non più alla quinta. Anche la navigazione segue il nuovo ordine.
 - **La minuteria**: il taglio è più stretto sul gruppo centrale (1100 x 1040 della foto, senza il pezzo argentato tagliato sul bordo) e la foto esce a destra fino al bordo della gabbia larga. I pezzi sono circa una volta e mezza più grandi di prima. Il paragrafo sta 36 px sotto il titolo, non più in basso a 720 px. A 390 restano due legende, Blu e Oro.
-- **Il logo**: è un SVG ridisegnato dal PNG del sito (`_prova/script/logo_svg.py`: ingrandimento 8 volte, contorni con OpenCV). È in linea come `<symbol>` e riusato nel piede. A DPR 2 i bordi sono netti, "srl" e "MECCANICHE" si leggono. Resta da chiedere il vettoriale vero.
+- **Il logo**: è un SVG ridisegnato dal PNG del sito (`_prova/script/logo_svg.py`: ingrandimento 8 volte, contorni con OpenCV). È in linea come `<symbol>` nella testata (il piede ora è una riga di testo e non lo ripete). A DPR 2 i bordi sono netti, "srl" e "MECCANICHE" si leggono. Resta da chiedere il vettoriale vero.
 - **Nessun file ingrandito**: tolto `telaio-largo-1920`, che era un ingrandimento del 1440. Oltre i 1440 px la fascia del telaio resta larga 1440 e centrata, come i tubi. Ogni file servito è al massimo grande quanto il suo taglio nell'originale.
 - **Lo stabilimento**: l'aerea è un quadrato di 421 px sulle colonne 1-4 accanto al 2018 (prima 755 px). A 768 sta sulle colonne 1-5 accanto ai dati, e a 390 è un taglio 16:9 a filo.
 - **La griglia**: testo d'apertura, "Per chi lavoriamo", didascalia del telaio, testo sull'alluminio e blocco dei contatti partono tutti alla colonna 7 (x 732 a 1440). La colonna 6 resta solo alla tabella dei trattamenti.
@@ -77,6 +77,26 @@ Prima del giudizio cieco, sulla bozza B erano già stati fatti questi interventi
 - **Aprire su un solo pezzo di titanio scontornato al posto del telaio, con il titolo "Sul titanio il colore è uno spessore"**: il committente ha scelto questa bozza e ha chiesto di non ripensare la prima schermata, quindi titolo e fascia restano. Ho fatto quello che sta dentro l'idea: i palloncini al posto delle pillole e il colore due schermate prima.
 - **Due punti veri per punto CSS a DPR 2 su telaio e minuteria**: il limite è nelle foto. La parte nitida del telaio è larga 1440 px e il gruppo della minuteria 1100 px, e ingrandirle sarebbe peggio. A DPR 2 telaio e minuteria hanno 1 punto vero per punto CSS, i tubi 1,5 e l'aerea 2,3. Al telefono sono tutte a 2 o più (`_prova/controlli/verifica.txt`). Per il resto servono le foto rifatte dal vero (vedi LEGGIMI).
 - **Il telaio in gabbia a 1312 px**: a 1440 resterebbe comunque a 1:1, e la fascia da bordo a bordo è la prima schermata scelta. Oltre i 1440 non si allarga più.
+
+## La chiusura: la scala del titanio e la targhetta
+
+Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: un titolo di luogo, il telefono gigante su una fascia scura, una riga di colonnine con indirizzo, email e orari, poi un piede scuro a quattro colonne. Anche qui il piede era grafite a quattro colonne (logo, sede legale, stabilimento, email), e i recapiti erano una pila di righe sotto il 2018. Ora la chiusura nasce dal mestiere, ed è un oggetto solo.
+
+**Cosa c'è** (`chiusura-1440.jpg`, dall'inizio della sezione del reparto alla fine della pagina):
+- l'aerea dello stabilimento e il 2018 restano dove erano, con le stesse parole;
+- sotto il 2018, alla colonna 7 come gli altri testi, c'è la scala dei colori che il titanio prende man mano che l'ossido cresce: Naturale, Oro, Blu, Rosa, quattro barrette in fila dall'alto, ognuna col suo foro come un provino appeso al telaio;
+- l'ultima barretta, la verde, è una targhetta anodizzata con quattro fori agli angoli. Porta "Stabilimento", Viale Serenissima 15, "Zona artigianale, 30030 Tombelle di Vigonovo (VE)", "Indicazioni stradali" (Google Maps), poi un filetto inciso e sotto il telefono 049 503240 a 40 px (collegamento `tel:`, sottolineato) e l'email (`mailto:`);
+- a sinistra, sotto l'aerea e allineato in basso con la riga del telefono, c'è "Scriveteci o chiamate" con "Per un preventivo mandate disegno, materiale e quantità.";
+- il piede è una riga sola sul bianco, sopra un filetto grigio: Antonio Bertolin Srl, la sede legale di Padova, la P.IVA e "Privacy" a destra. La PEC non c'è perché non la conosciamo (domanda 13 del LEGGIMI).
+
+**Perché questa**: la pagina racconta che sul titanio il colore è uno spessore. La scala lo mostra un'ultima volta, senza foto, e l'ultimo gradino diventa la targhetta che un'officina di trattamenti consegnerebbe davvero. L'ordine delle barrette è quello in cui i colori compaiono al crescere dell'ossido (il secondo oro, che sul titanio torna dopo il blu, è lasciato fuori per tenere la scala semplice). Non ci sono nanometri sulle barrette: in pagina c'è solo il campo da 0 a 400 nm, e dare un valore a ogni colore sarebbe un dato nuovo.
+
+**Cosa è stato tolto**: il piede grafite a quattro colonne col logo bianco (ora c'è solo la riga), il telefono e l'email ripetuti nel piede, il titolo con l'indirizzo e la pila di righe dei recapiti sotto il 2018. Non ci sono fasce scure né colonnine uguali. I dati sono gli stessi di prima: nessun recapito nuovo, il fax resta fuori.
+
+**Alle varie larghezze**:
+- a 1024 la scala sta sulle colonne 6-12 come gli altri testi, e sulla targhetta telefono ed email vanno uno sotto l'altro;
+- a 768 l'aerea e il 2018 restano affiancati, poi "Scriveteci o chiamate" e la scala a tutta gabbia;
+- a 390 e 320 tutto va in colonna; "Serenissima 15" non si spezza e il piede va su tre righe a 390, su quattro a 320.
 
 ## Caratteri e colori
 
@@ -97,12 +117,22 @@ Prima del giudizio cieco, sulla bozza B erano già stati fatti questi interventi
 |---|---|
 | bianco #FFFFFF | la pagina |
 | alluminio naturale #E6E7E8 | il solo campo pieno, i trattamenti |
-| grafite #1C1E21 | testo e piede |
+| grafite #1C1E21 | testo, anche sulla targhetta |
 | grigio #565A60 | le note |
 | spento #767A80 | i trattamenti che non valgono per il metallo scelto (3,5:1 sul campo) |
 | oro #8F6B1D | solo al passaggio sui link |
 
-Il colore pieno lo danno le foto dei pezzi anodizzati. Non ci sono gradienti, ombre o vetri.
+Il colore pieno lo danno le foto dei pezzi anodizzati e, nella chiusura, la scala del titanio: cinque tinte piatte prese dai pezzi in foto e scelte per il contrasto del testo che portano.
+
+| Barretta | Tinta | Testo sopra |
+|---|---|---|
+| Naturale | #BDBBB6 | grafite, 8,7:1 |
+| Oro | #D9AA3F | grafite, 7,8:1 |
+| Blu | #1F5FAE | bianco, 6,4:1 |
+| Rosa | #B9406F | bianco, 5,2:1 |
+| Verde, la targhetta | #5DBDB0 | grafite, 7,5:1 |
+
+Non ci sono gradienti, ombre o vetri.
 
 ## L'interazione
 
@@ -142,11 +172,12 @@ Il registro viene dal mestiere: la foto di reparto, i palloncini e la distinta d
 Tutti rifatti dopo la rifinitura, con `build_finale.sh`.
 - **Scorrimento orizzontale**: nessuno. `scrollWidth` è uguale a `innerWidth` su 21 larghezze da 320 a 2560 (`verifica_finale.mjs`).
 - **Larghezze guardate a pezzi** con `slice.py`: 1440 e 390 (consegna), 320, 768, 1024 e 1920 (`_prova/controlli/`). Nessun elemento esce dalla finestra, nessun testo si sovrappone a un altro e nessuna legenda o palloncino esce dalla sua foto.
+- **La chiusura**, rifatta: guardata a pezzi con `slice.py` a 1440, 1024, 768, 390 e 320 (`_prova/controlli/chiusura-*.jpg`). Nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun foro sopra il testo. Contrasto misurato da `verifica_finale.mjs` sul fondo vero di ogni testo: minimo 5,2:1 (Rosa, bianco sul rosa), la targhetta 7,5:1, il piede 6,9:1. Altezza da toccare: telefono 50 px, email 44 px, indicazioni 47 px.
 - **Collegamenti**:
-  - `tel:+39049503240` in testata, nei contatti e nel piede;
-  - `mailto:info@bertolinantonio.it` in testata ("Scriveteci"), nella riga del preventivo e nel piede;
+  - `tel:+39049503240` in testata e sulla targhetta (50 px di altezza da toccare);
+  - `mailto:info@bertolinantonio.it` in testata ("Scriveteci") e sulla targhetta;
   - "Indicazioni stradali" porta a Google Maps su "Viale Serenissima 15, 30030 Tombelle di Vigonovo VE";
-  - "Privacy" porta alla pagina del sito di oggi.
+  - "Privacy", nella riga del piede, porta alla pagina del sito di oggi.
 - **Interazione**: tastiera (Tab, Invio, Spazio) a 1440, 1024 e 1920; dito a 390, 320 e 768. Esiti in `verifica.txt` e nel registro della build.
 - **Misure del giudice**:
   - i cinque testi spostati partono a x 732 a 1440;
@@ -161,13 +192,13 @@ Tutti rifatti dopo la rifinitura, con `build_finale.sh`.
 
 | Soglia | Valore |
 |---|---|
-| Area foto | 35,2 % |
+| Area foto | 35,1 % |
 | Famiglie di caratteri | Mona Sans al 100 % |
 | Monospazio | 0 % |
 | Etichette maiuscole | 0 |
 | Misure di H2 | 3 (64, 40, 34 px) |
 | Fasce di fondo | 3 |
-| Filetti | 11 |
+| Filetti | 13 |
 | Frecce | 0 |
 | Numeri grandi | 1 (2018) |
 | Contenuto datato | 2018 |

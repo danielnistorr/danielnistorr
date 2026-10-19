@@ -79,7 +79,7 @@ Tutte le foto in pagina sono dell'azienda e vengono dal sito di oggi. Reggono un
 
 ## Logo
 
-In testata e nel piede c'è il loro logo ridisegnato in SVG dal PNG del sito (`logo-footer-bertolin.png`, 274 x 102 px), con `_prova/script/logo_svg.py`. Lo script ingrandisce il PNG 8 volte e ne ricava i contorni. È un solo `<symbol>` in linea nella pagina: grafite in testata, bianco nel piede. Sugli schermi ad alta densità ora è netto, ma il tratteggio dell'arco e le lettere sono una ricostruzione e non il disegno originale. Serve il vettoriale (SVG, AI o PDF) da mettere al suo posto.
+In testata c'è il loro logo ridisegnato in SVG dal PNG del sito (`logo-footer-bertolin.png`, 274 x 102 px), con `_prova/script/logo_svg.py`. Lo script ingrandisce il PNG 8 volte e ne ricava i contorni. È un solo `<symbol>` in linea nella pagina, in grafite. Il piede è una riga di testo e non lo ripete. Sugli schermi ad alta densità ora è netto, ma il tratteggio dell'arco e le lettere sono una ricostruzione e non il disegno originale. Serve il vettoriale (SVG, AI o PDF) da mettere al suo posto.
 
 ## Note sui controlli
 
