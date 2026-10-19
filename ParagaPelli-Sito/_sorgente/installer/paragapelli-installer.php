@@ -87,14 +87,18 @@ function ppl_attivazione() {
 	delete_transient( 'elementor_activation_redirect' );
 	if ( class_exists( '\Elementor\Plugin' ) ) {
 		$kit = \Elementor\Plugin::$instance->kits_manager->get_active_id();
-		if ( ! $kit ) { \Elementor\Core\Kits\Manager::create_default_kit(); $kit = get_option( 'elementor_active_kit' ); }
+		// l'opzione può puntare a un kit che non esiste più (cancellato a mano): in quel caso ne creo uno nuovo
+		if ( ! $kit || ! get_post( $kit ) ) { \Elementor\Core\Kits\Manager::create_default_kit(); $kit = get_option( 'elementor_active_kit' ); }
 		echo 'kit Elementor attivo: ' . $kit . "\n";
 	} else { echo "Elementor non attivo: ripeti il passo Plugin e tema\n"; }
 }
 
 function ppl_impostazioni() {
-	update_option( 'blogname', 'Paraga Pelli' );
-	update_option( 'blogdescription', 'Pelle bovina, ecopelle e tessuti per imbottiti e rivestimenti' );
+	// Elementor copia nome e descrizione nel suo kit: se il kit non è ancora pronto solleva un errore,
+	// ma l'opzione è già salvata, quindi proseguo
+	foreach ( [ 'blogname' => 'Paraga Pelli', 'blogdescription' => 'Pelle bovina, ecopelle e tessuti per imbottiti e rivestimenti' ] as $k => $v ) {
+		try { update_option( $k, $v ); } catch ( Throwable $e ) { echo "$k salvato; il kit di Elementor non si è aggiornato (" . $e->getMessage() . ")\n"; }
+	}
 	update_option( 'blog_public', 0 );                 // sito di prova: i motori di ricerca non lo indicizzano
 	update_option( 'timezone_string', 'Europe/Rome' );
 	update_option( 'date_format', 'j F Y' );

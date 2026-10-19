@@ -187,6 +187,8 @@ CSS_VARIABILI = (
     '--t:.26s;--ppl-bh:#1A1817;--ppl-bht:#F6F3EE}'
     '.ppl-tema-chiaro{--ppl-bh:#F6F3EE;--ppl-bht:#1A1817}'
     '@media (max-width:600px){:root{--g:12px}}'
+    # Elementor rende morbido lo scorrimento verso le ancore e verso il fuoco; la statica no
+    'html{scroll-behavior:auto}'
 )
 
 # regole che valgono per tutto il sito: stanno nella testata (Elementor) e nella testata del fallback
