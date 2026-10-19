@@ -7,7 +7,7 @@
 - `sito/index.html`: la home finale "Tavola dei campioni" (prototipo B, scelto dal committente), in HTML statico: si apre con un doppio clic.
   - Immagini in `sito/img/` (WebP in più larghezze, logo e timbro in SVG).
   - Carattere in `sito/fonts/`: Host Grotesk, SIL Open Font License 1.1. La pagina non chiede nulla a Google né ad altri domini.
-- `screenshot/home/`: home a 1440 e a 390, intere e prima schermata, più le prime schermate a 320, 768, 1024 e 1920, il filtro e il menu. `NOTA.md` spiega idea, caratteri, colori, interazione, foto, controlli e cosa è cambiato nell'ultimo giro.
+- `screenshot/home/`: home a 1440 e a 390, intere e prima schermata, più le prime schermate a 320, 768, 1024 e 1920, il filtro, il menu e la sola chiusura a 1440 (`chiusura-1440.jpg`). `NOTA.md` spiega idea, caratteri, colori, interazione, foto, controlli e cosa è cambiato nell'ultimo giro.
 - La stessa home per WordPress con Elementor, più header e footer: `elementor-json/`, `html-fallback/`, `anteprima/`, `plugin/agnoletto-installer.zip`, `assets/web/`, `screenshot/elementor/`, `screenshot/fallback/` e il generatore in `_sorgente/` (vedi "Versione WordPress della home").
 - `01-analisi.md`: analisi del sito attuale, fatti con le fonti, riferimenti.
 - `assets/CREDITI.md`: origine e licenza di ogni foto.
@@ -18,6 +18,13 @@
   - Il modello di segmentazione usato per gli scontorni (BiRefNet lite, licenza MIT, 224 MB) è in `_prova/crawl/modelli/`. Serve solo per rifare le maschere (`_prova/finale/tacco-alfa.png` e `_prova/finale/alfa/`) e si può cancellare se manca spazio.
 
 La versione A, "Dritto e rovescio", è stata sostituita. Da A sono rimaste solo correzioni di testo già verificate: "cristalli e pietre" al posto del marchio nella bigiotteria, e i recapiti, che erano già uguali.
+
+## Da fare: la versione WordPress va rigenerata (chiusura cambiata)
+
+La chiusura della home statica è stata rifatta dopo che la versione WordPress era stata generata. La fascia grafite "Dove siamo" con il telefono grande e i quattro blocchi di recapiti è diventata una **scheda d'archivio** su fondo cartone, chiusa dal timbro MA impresso. Il piede, che aveva il logo e due paragrafi, ora è **una riga sola**: ragione sociale, P.IVA, PEC e la riga sulla foto della fresa. I dati sono gli stessi. Dettagli e motivi sono nella NOTA (`screenshot/home/NOTA.md`, "Chiusura nuova").
+- `elementor-json/`, `html-fallback/` (`05-contatti.html` e `99-footer/01-footer.html`), `anteprima/`, `plugin/agnoletto-installer.zip`, `assets/web/` e `screenshot/elementor/` e `screenshot/fallback/` mostrano **ancora la chiusura vecchia**. Questo vale anche per le altezze e il collaudo descritti qui sotto.
+- Per rigenerarli va aggiornato il generatore in `_sorgente/` (`contenuti.py`, sezione contatti e piede) sulla nuova `sito/index.html`. Va aggiunto il file `sito/img/timbro-impresso.svg`, poi si lanciano i tre comandi di "Rigenerare i file" e si rifà il collaudo. In questo giro `_sorgente/` e i file WordPress non sono stati toccati.
+- Il 1979 ora compare in un punto solo, l'apertura ("dal 1979"). Il piede non lo riporta più, e nemmeno i recapiti, dove c'era l'etichetta "Ditta". La riga della fresa nel piede ora è "La foto della fresa (B) è di repertorio, Unsplash".
 
 ## Versione WordPress della home (come per Benvegnù)
 

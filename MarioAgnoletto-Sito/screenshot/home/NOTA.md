@@ -6,7 +6,10 @@ Screenshot (JPEG 85):
 - `home-1440.jpg` e `home-390.jpg`: pagine intere;
 - `home-1440-prima-schermata.jpg` (1440x900) e `home-390-prima-schermata.jpg` (390x844);
 - prime schermate anche a 320x640, 768x1024, 1024x768 e 1920x1080 (`home-<larghezza>-prima-schermata.jpg`);
-- `filtro-1440-zama.jpg`, `filtro-390-ottone.jpg`: la tavola filtrata; `menu-1024.jpg`: la tendina aperta.
+- `filtro-1440-zama.jpg`, `filtro-390-ottone.jpg`: la tavola filtrata; `menu-1024.jpg`: la tendina aperta;
+- `chiusura-1440.jpg`: solo la chiusura a 1440, dall'inizio della sezione D alla fine della pagina.
+
+Le pagine intere, le prime schermate a 390 e 1440 e la chiusura sono state rifatte dopo il cambio della chiusura. Le altre prime schermate, i filtri e il menu sono del giro prima: la chiusura non vi compare.
 
 ## L'idea
 
@@ -50,7 +53,36 @@ Dal giudizio cieco (48/80), con la prima schermata tenuta com'è per scelta del 
 - Il link "Metalli", che portava nello stesso punto di "Lavorazioni", è stato tolto dal menu. Al suo posto c'è "Punzoni" (#punzoni).
 - Sotto i 1240 px il menu sta a destra accanto al telefono, e la tendina si apre sotto il suo comando. Si chiude scegliendo una voce, con Esc (il focus torna su "Menu") e toccando fuori.
 - Privacy, Cookie ed English, che erano link morti, sono stati tolti dal piede: vanno rimessi con le pagine vere (vedi LEGGIMI).
-- Nei recapiti l'etichetta "Dal 1979" diventa "Ditta". Il 1979 resta, in piccolo, nell'apertura e nel piede, ed è nel LEGGIMI tra i dati da confermare.
+- Contatti e piede sono stati poi rifatti del tutto: vedi "Chiusura nuova" qui sotto. Il 1979 resta, in piccolo, solo nell'apertura, ed è nel LEGGIMI tra i dati da confermare.
+
+## Chiusura nuova: la scheda d'archivio col timbro
+
+Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: titolo del luogo, telefono gigante su una fascia scura, una riga di colonnine con indirizzo, email e orari, e un piede scuro a quattro colonne. Anche questa finiva così: fascia grafite, "049 98 00 985" a 78 px, quattro blocchi di recapiti in due colonne, piede con logo e due paragrafi.
+
+**Cosa c'è ora.** Un solo oggetto del mondo della pagina: la **scheda d'archivio** della tavola dei campioni, posata sul cartone come i pezzi, con la stessa ombra corta. In fondo è chiusa dal **timbro MA impresso**: il timbro è il gesto.
+- In testa: "D, Dove siamo" e "Scheda d'archivio, recapiti", sopra un doppio filetto da scheda stampata. Sotto ci sono il titolo "Tombelle di Vigonovo, nella Riviera del Brenta" (48 px, come il cartellino C) e la riga sui clienti.
+- I recapiti sono i campi della scheda, una riga per voce, etichetta a sinistra e valore a destra, tra filetti sottili:
+  - Telefono, link `tel:` da 28 a 36 px secondo la larghezza, alto 48 px: si vede e si tocca;
+  - Email e PEC, link `mailto:`;
+  - Fax;
+  - Officina, con l'indirizzo e "Apri in Google Maps".
+- Il timbro è battuto in basso a destra, sulle righe Fax e Officina, in una colonna lasciata libera dai valori: non copre nessun testo, solo i filetti, come un timbro vero su una scheda.
+  - È il ricalco del monogramma del logo, `img/timbro-impresso.svg`, fatto da `finale_timbro_impresso.py`. Un filtro SVG gli dà la grana dell'inchiostro, la pressione un po' più forte da un lato e il bordo appena mosso. Il disegno non cambia.
+  - Sotto i 720 px il timbro scende sotto le righe, in fondo a destra. Sotto i 480 l'etichetta va sopra il valore.
+- **Piede**: una riga sola nel tono della pagina, su cartone, con un filetto sopra. Porta ragione sociale (Agnoletto Mario, impresa individuale), P.IVA 00802440271, PEC e la riga sulla foto della fresa di repertorio. Il logo nel piede è tolto: il marchio chiude già la scheda. La privacy non c'è perché la pagina non esiste ancora; va aggiunta con il testo vero (vedi LEGGIMI).
+
+**Cosa è stato tolto.** La fascia grafite, l'unico fondo scuro della pagina. Poi il telefono a 78 px, la griglia di quattro blocchi (Officina, Scrivere, Telefono e fax, Ditta) e il piede a colonne con il logo. Nessun dato è nuovo e nessuno è sparito: telefono, fax, email, PEC, indirizzo, mappa, ragione sociale e P.IVA sono quelli di prima. Il 1979 resta nell'apertura.
+
+**Perché.** La pagina è una tavola di campioni d'archivio. La chiusura naturale è il cartellino che accompagna la tavola, con i dati di chi l'ha fatta, e il timbro dell'officina, lo stesso segno battuto sul pezzo in apertura e mostrato a specchio nella sezione C. Così la pagina comincia e finisce con lo stesso gesto.
+
+**Controlli della chiusura.**
+- Guardata a pezzi a 1440, 1024, 768, 390 e 320 (`_prova/script/finale_chiusura.mjs`). Scheda larga 880 px fino a 1024, 700 a 768, 355 a 390, 288 a 320.
+- Nessuno scorrimento orizzontale. `finale_controlla.mjs` ora guarda anche la testa della scheda, la riga sui clienti, etichette, valori, timbro e piede: nessuna sovrapposizione da 320 a 2560.
+- Contrasto AA:
+  - grafite su carta 12,9:1;
+  - grafite-2 #5B5852 su carta 6,3:1 e su cartone 5,6:1 (etichette, riga sui clienti, piede);
+  - rosso su carta 5,3:1 (passaggio sui link).
+- Nessun U+2014, nessun gradiente, nessuna animazione, nessun corsivo, nessuna icona.
 
 ## Le prime due schermate
 
@@ -60,15 +92,15 @@ Dal giudizio cieco (48/80), con la prima schermata tenuta com'è per scelta del 
    - A 390 il pezzo è ruotato di 90 gradi: entra dal bordo alto, tra il logo e "Menu", ed esce dal bordo sinistro. Sotto ci sono titolo, frase e bottone.
 2. **Campionario (A).** Titolo, filtro con i campioni di colore dei metalli e il conteggio, poi la tavola. In alto la gabbia in grande e quattro piccoli (punzoni, fustelle, ruote, bigiotteria), sotto due larghi (accessori, stampa su pelle). Ogni campione ha numero, nome, metalli e una riga presa dal sito.
 
-Seguono "Dal disegno alla serie" (dittico a tutta larghezza), "Punzoni anche in 24 ore" (foto a tutta larghezza con il cartellino), "Dove siamo" (l'unico fondo scuro) e il piede con i dati societari.
+Seguono "Dal disegno alla serie" (dittico a tutta larghezza), "Punzoni anche in 24 ore" (foto a tutta larghezza con il cartellino), "Dove siamo" (la scheda d'archivio col timbro) e il piede in una riga.
 
 ## Caratteri e colori, con il riferimento
 
 - **Host Grotesk** (Element Type, SIL Open Font License 1.1, da Google Fonts). Una sola famiglia, woff2 variabile 300-800, sottoinsieme latino, servito dalla pagina in `fonts/`.
   - Riferimento: **De Castelli** (metallo lavorato), che usa Gramatika, un grottesco quieto. Host Grotesk ha le cifre tabellari: telefoni, numeri di catalogo e P.IVA si allineano.
   - Pesi: 300 per i titoli, 400 per il testo, 500 per i nomi dei campioni, i numeri dei richiami e i bottoni.
-- **Cartone #E7E4DD** come fondo, **#DCD8CF** per le caselle dei campioni, **grafite #2A2A28** per testo, bottoni, filetti e contatti.
-- **Rosso #C8102E**, preso dal logo: solo il timbro MA, il punto sui campioni accesi dal filtro e il passaggio sui link.
+- **Cartone #E7E4DD** come fondo, **#DCD8CF** per le caselle dei campioni, **carta #F4F2ED** per la scheda dei recapiti, **grafite #2A2A28** per testo, bottoni e filetti.
+- **Rosso #C8102E**, preso dal logo: solo il timbro MA (sul pezzo, nel dritto e rovescio, sulla scheda), il punto sui campioni accesi dal filtro e il passaggio sui link.
 
 ## Interazione, provata
 
@@ -113,11 +145,11 @@ Nessuna foto della serie di Ruan Richard Rodrigues (riservata a Hambro): lo scri
 - **Nitidezza** (`finale_nitidezza.mjs`): a 768 con DPR 2 il browser sceglie il file più grande disponibile per ogni casella. I campioni piccoli hanno almeno 700 px per 686 px di schermo.
   - Restano sotto 2x solo le foto la cui risoluzione vera è più bassa: il tacco d'apertura (744 px), la gabbia (660), la stampa su pelle (960) e le finiture (670). Si risolve solo con le foto nuove (vedi LEGGIMI).
 - **Guardate a pezzi**: le pagine intere a 1440, 1024 e 390; le prime schermate a 320, 390, 768, 1024, 1440 e 1920; i filtri Zama, Acciaio e Ottone; il menu aperto a 1024.
-- **Collegamenti**: `tel:+390499800985` (testata, apertura, cartellino, contatti), `mailto:info@marioagnoletto.it`, `mailto:marioagnoletto@pec.it`, Google Maps su "Via dell'Artigianato 18 Tombelle di Vigonovo", ancore #lavorazioni, #serie, #punzoni, #contatti. Nessun link a "#" a parte il logo, che riporta in cima.
+- **Collegamenti**: `tel:+390499800985` (testata, apertura, cartellino, scheda), `mailto:info@marioagnoletto.it`, `mailto:marioagnoletto@pec.it`, Google Maps su "Via dell'Artigianato 18 Tombelle di Vigonovo", ancore #lavorazioni, #serie, #punzoni, #contatti. Nessun link a "#" a parte il logo, che riporta in cima.
 - **Lineette lunghe (U+2014)**: zero in pagina, in questa nota, nel LEGGIMI, nei crediti e negli script.
 - **Errori in console e file mancanti**: nessuno.
 - **Segnali da IA** (`segnali.sh`, home a 1440, rapporto in `_prova/finale/segnali/`): 0 soglie bloccanti.
-  - Foto al 52 % della pagina, una sola famiglia, monospazio 0 %, 2 filetti larghi, 0 frecce, 2 fasce di fondo.
+  - Dopo la chiusura nuova: foto al 50,5 % della pagina, una sola famiglia, monospazio 0 %, 8 filetti larghi (le righe della scheda), 0 frecce, nessuna fascia di fondo oltre al cartone.
   - Da guardare, e voluti:
     - H2 di due misure (66 e 48 px): una misura grande più il cartellino.
     - Numerazione 01-07 (più lo 01 della legenda): è il numero di catalogo dei campioni, l'idea stessa.
