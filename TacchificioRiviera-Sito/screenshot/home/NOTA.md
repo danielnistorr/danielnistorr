@@ -21,12 +21,24 @@ Il resto della pagina:
 - "Il nostro nome, inciso sul piano": il tacco in ottone grande, senza riquadro, con due legende a filetto da 1 px e pallini vuoti da 10 px. Sul telefono diventano un elenco numerato.
 - "Tre generazioni di Boldrin", con la foto d'archivio in bianco e nero a sinistra.
 - I sistemi certificati, con lo scopo SGS.
-- La chiusura: "Diamo forma alla tua idea?" e, accanto, il biglietto da visita dell'atelier con il timbro impresso, che porta tutti i recapiti (vedi sotto).
+- La chiusura: "Diamo forma alla tua idea?" e, accanto, il piano del tacco visto dall'alto, disegnato a filo, che porta tutti i recapiti (vedi sotto).
 - Il piede in una riga sola su carta: ragione sociale, sede legale, P.IVA, REA, capitale sociale e i link a privacy, whistleblowing (procedura e privacy), modulo SA8000 e versione inglese.
 
-Altezza della pagina: 4566 px a 1440, 5071 px a 390.
+Altezza della pagina: 4704 px a 1440, 5254 px a 390 (con la chiusura del piano del tacco).
 
-## La chiusura (ultimo passaggio)
+## La chiusura: il piano del tacco (confronto delle chiusure, 19 ottobre 2026)
+
+Messe affiancate tutte le chiusure della campagna (`_metodo/chiusure-a-confronto.jpg`), il biglietto da visita con il timbro tondo era troppo vicino alla scheda d'archivio di Mario Agnoletto: tutte e due erano un cartoncino chiaro con l'ombra, il telefono grande e un timbro tondo impresso, sulla carta. E un biglietto da visita non è un oggetto del mestiere: lo ha qualunque azienda.
+
+- **L'oggetto: il piano del tacco, visto dall'alto.** È la faccia del tacco che va contro la scarpa, quella dove l'azienda incide il nome (la sezione sopra: "Il nostro nome, inciso sul piano"). È disegnato a filo come sul disegno del cliente: contorno in inchiostro da 1,5 px, dorso tondo in alto, petto appena concavo in basso, una seconda linea tratteggiata #B9B2A8 all'interno, riempimento #F8F6F2 appena più chiaro della carta. Nessuna ombra, nessun rettangolo: è l'unica chiusura della campagna che non ha una forma squadrata. Il disegno è un SVG che si allarga con il contenuto (`preserveAspectRatio="none"`, tratto che non si deforma), quindi al telefono il piano si allunga come quello di uno stiletto.
+- **Dentro il piano**, centrati come un'incisione: "Tacchificio Riviera" in Imbue 30 px; il telefono in Imbue 58 px (`tel:`, sottolineato a filo); l'email (`mailto:`, va a capo solo dopo la @); sotto un filetto, in piccolo, la sede operativa con "apri la mappa", il fax e la PEC (`mailto:`).
+- **A sinistra** la domanda "Diamo forma alla tua idea?" e sotto una riga nuova che dice cos'è il disegno: "Inviaci il disegno. I recapiti sono sul piano del tacco, dove incidiamo il nostro nome." (riprende il bottone d'apertura "Inviaci il disegno" e la sezione del nome inciso).
+- **Tolti**: il biglietto da visita, il timbro impresso nei contatti (il timbro resta nella testata), la riga "Stra e Vigonovo, Riviera del Brenta" del biglietto (è già nella testata). Nessun dato nuovo, nessun dato perso: sede, fax e PEC sono tutti nel piano; sede legale e dati societari nel piede.
+- **Larghezze.** Sotto i 1100 px la domanda va sopra e il piano sotto, largo al massimo 640 px; sotto i 520 px il piano si allunga, il telefono scende a 32-42 px e le righe piccole vanno una per riga.
+- **Controlli**: chiusura guardata a pezzi a 1440, 1024, 768, 390 e 320; nessuno scorrimento orizzontale da 320 a 2560 (build); nessun testo fuori dal contorno; contrasti: inchiostro sul piano 17,0:1, grigio sul piano 6,0:1, grigio sulla carta 5,7:1. Il disegno è `aria-hidden`. Segnali come prima (17 soglie su 18 OK, area foto 26,9 %, filetti 14). Nessun U+2014. Altezza della pagina: 4704 px a 1440, 5254 a 390.
+- **Come si rifà**: `_prova/script/chiusura_piano.py` è già applicato a `_prova/finale/index.html` (la pagina com'era prima è in `_prova/home/prima-del-piano/`); poi `bash _prova/script/build_finale.sh`.
+
+## La chiusura precedente: il biglietto da visita (sostituita)
 
 Il committente ha notato che quasi tutte le home finivano allo stesso modo: titolo, telefono gigante, riga di colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche qui era così (telefono a 56 px, quattro voci in due colonne, piede in inchiostro pieno con il timbro chiaro). La domanda "Diamo forma alla tua idea?" era già propria di un tacchificio che lavora sul disegno del cliente, quindi resta; cambia ciò che le risponde.
 
@@ -97,7 +109,7 @@ Tutte le foto in pagina sono del Tacchificio Riviera, prese dal loro sito tacchi
 | tacco-ottone-1x/2x | `nascita/tacco_1.jpg` | campo piatto, ombre neutre; mostrato a 1,05x |
 | incisione-800/1200/1920, -m-600/864 | `background/linee-desktop.jpg` (1920x1080) | antiblocchi, gradazione neutra, tagli 2:1 e 4:5, qualità 88 |
 | archivio-488 | `territorio/modal1.jpg` (488x562) | grigio neutro, misura nativa, mostrata a 440 px |
-| timbro.svg | `logo.svg` | ricolorato in inchiostro (testata e biglietto da visita) |
+| timbro.svg | `logo.svg` | ricolorato in inchiostro (testata) |
 
 Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: non aggiungono dettaglio. Nessun pezzo supera 1,1 volte la misura nativa.
 
@@ -114,7 +126,7 @@ Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: no
   - Fine porta a Serie, Home a Legno, e la freccia sinistra dal primo porta all'ultimo;
   - la didascalia e l'immagine cambiano ogni volta.
 - **Collegamenti.**
-  - `tel:+39049502844` in testata e sul biglietto da visita;
+  - `tel:+39049502844` in testata e sul piano del tacco nei contatti;
   - `mailto:` all'indirizzo generale (con oggetto sul bottone) e alla PEC;
   - Google Maps sul Viale Serenissima 30 a Vigonovo;
   - i PDF dei tre certificati;

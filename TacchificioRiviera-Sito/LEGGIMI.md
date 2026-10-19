@@ -55,6 +55,6 @@ Servono anche il nome del fotografo e il permesso d'uso delle foto attuali.
 
 ## Loghi
 
-- Il timbro è il loro `logo.svg`, ricolorato in inchiostro, in testata e impresso sul biglietto da visita dei contatti.
+- Il timbro è il loro `logo.svg`, ricolorato in inchiostro, in testata. La chiusura (dal 19/10/2026) è il piano del tacco visto dall'alto, disegnato a filo, con i recapiti dentro: vedi `screenshot/home/NOTA.md`.
 - Contiene il vecchio numero "TEL. 049.502.844" e la scritta "VENEZIA ITALY". Serve una versione senza telefono per l'uso piccolo in testata, ed eventualmente una a colori se esiste.
 - La firma "Valentino Boldrin" è il marchio: va chiesto se è registrato e se si può usare così.

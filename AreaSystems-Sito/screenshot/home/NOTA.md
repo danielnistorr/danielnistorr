@@ -22,7 +22,20 @@ Area Systems vende il clima del quadro elettrico. La home apre il quadro e mostr
 - **Il torrino nella legenda**: "aspira l'aria calda e la porta fuori", più corto, per stare su una riga.
 - **Altezza**: 5781 px a 1440 con la chiusura nuova (era 4756, poi 5720), 6739 a 390.
 
-## La chiusura: l'etichetta dati del quadro
+## La chiusura: il quadro chiuso (confronto delle chiusure, 19 ottobre 2026)
+
+Messe affiancate tutte le chiusure della campagna (`_metodo/chiusure-a-confronto.jpg`), quella di Area Systems era la gemella del cartiglio di 3Esse: titolo "Contatti" in alto a sinistra, tabella bianca a filetti a destra su un fondo grigio piatto, piede su una riga. L'etichetta dati, da sola, non si leggeva come un oggetto: sembrava una scheda qualsiasi. Ora l'oggetto si vede intero.
+
+- **L'oggetto: la porta del quadro, chiusa.** Due ante in lamiera RAL 7035 (sfumatura #DFE2DF a #D3D7D4) con la fuga scura #8C9390 fra le ante e lungo il bordo, due cerniere sul fianco sinistro, un'ombra corta sotto. Sull'anta stretta (196 px a 1440) sei feritoie stampate, con il labbro chiaro sopra e la fessura scura sotto, e in basso la serratura tonda a chiave triangolare. Sull'anta grande l'etichetta dati: lo stesso adesivo bianco di prima. La pagina si apre sul quadro aperto e si chiude sul quadro chiuso.
+- **L'etichetta.** Intestazione con il marchio e "Clima per quadri elettrici"; filetto da 2 px; un campo con "Tel." (54 px, `tel:+390497960705`, area di tocco alta 62 px) e sotto "E-mail" (`mailto:`), poi un filetto e i due campi delle sedi (operativa con "Apri la mappa", legale). Telefono ed email stanno in un campo solo: così i filetti larghi restano 2 (29 in pagina, sotto i 30).
+- **Accanto**, a sinistra, "Contatti" (64 px) e "Chiamate o scrivete con la sigla del pezzo o le misure del quadro." come prima. Il fondo della sezione è la carta della pagina: la lamiera ora è solo la porta.
+- **Dati**: gli stessi di prima, nessuno nuovo, nessuno tolto.
+- **Larghezze.** Sotto i 1180 px il titolo va sopra e la porta sotto a tutta larghezza; sotto i 900 l'anta stretta scende a 168 px e l'etichetta va in una colonna (telefono a 46 px); sotto i 640 le ante si impilano (fuga orizzontale), le cerniere spariscono, l'anta stretta diventa una fascia con la serratura a sinistra e sei feritoie in due colonne.
+- **Altezza della chiusura a 1440**: 640 px con il piede (prima 607). Pagina: 5814 px a 1440, 6901 a 390.
+- **Controlli**: chiusura guardata a pezzi a 1440, 1024, 768, 390 e 320; nessuno scorrimento orizzontale, nessun elemento fuori dalla finestra; contrasti: inchiostro sul bianco 18:1, grigio delle sigle sul bianco 6,8:1, "Contatti" e la riga sulla carta 17,2:1, piede 6,5:1. Ante, feritoie, cerniere e serratura sono `aria-hidden`. Segnali: 0 soglie bloccanti (area foto 35,2 %, filetti 29). Nessun U+2014.
+- **Come si rifà**: `_prova/script/chiusura_porta.py` legge la pagina com'era prima (`_prova/home/prima-della-porta/`, con la vecchia `chiusura-1440.jpg`) e riscrive `sito/index.html`; poi `bash _prova/script/build_finale.sh`.
+
+## La chiusura precedente: l'etichetta dati del quadro (sostituita)
 
 Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: il telefono gigante su una fascia, sotto una riga di tre o quattro colonnine con indirizzo, email e orari, poi un piede a quattro colonne di testo minuscolo. Anche questa finiva così (il numero a 96 px su lamiera, tre colonne, piede a quattro colonne). È stata rifatta solo la chiusura; il resto della pagina non è cambiato.
 

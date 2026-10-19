@@ -140,24 +140,26 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 .cert td:last-child{text-align:right;color:var(--grigio)}
 .cert td a{text-decoration-color:var(--filo)}
 
-/* contatti: la domanda e, accanto, il biglietto da visita dell'atelier con il timbro impresso:
-   un solo oggetto porta tutti i recapiti */
+/* contatti: la domanda e, accanto, il piano del tacco visto dall'alto, disegnato a filo come sul disegno del cliente.
+   Il piano e' dove incidiamo il nome: qui ci stanno i recapiti. Il disegno (SVG) si allarga con il contenuto, il tratto resta di 1,5 px. */
 .contatti{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:center}
-.contatti h2{grid-column:1 / span 6;font-size:clamp(46px,6.6vw,96px);line-height:.95}
-.biglietto{grid-column:7 / span 6;position:relative;background:#FBFAF7;border:1px solid #DDD8D1;
-  box-shadow:0 1px 2px rgba(22,20,20,.05),0 26px 50px -30px rgba(22,20,20,.32);
-  aspect-ratio:85 / 55;padding:38px 40px 30px;display:flex;flex-direction:column;font-size:15px;line-height:1.5}
-.biglietto .timbro{position:absolute;top:26px;right:30px;width:116px;height:116px;transform:rotate(-8deg)}
-.biglietto .firma{padding-right:150px}
-.biglietto .firma b{display:block;font-weight:500;font-size:17px}
-.biglietto .firma span{display:block;color:var(--grigio);font-size:14.5px;text-wrap:balance}
-.biglietto .voce{margin-top:auto;padding-top:24px}
-.biglietto .tel{display:inline-block;font-family:"Imbue",serif;font-weight:300;font-size:54px;line-height:1.05;letter-spacing:-.005em;
+.contatti .domanda{grid-column:1 / span 5}
+.contatti h2{font-size:clamp(46px,6.6vw,96px);line-height:.95}
+.contatti .sotto-h{margin-top:28px;max-width:30ch;color:var(--grigio)}
+.piano{grid-column:7 / span 6;position:relative;min-height:560px;text-align:center;
+  padding:150px 88px 112px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:15px;line-height:1.5}
+.piano svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.piano .bordo{fill:#F8F6F2;stroke:var(--inchiostro);stroke-width:1.5}
+.piano .dentro{fill:none;stroke:#B9B2A8;stroke-width:1;stroke-dasharray:5 5}
+.piano > *{position:relative}
+.piano .firma{font-family:"Imbue",serif;font-weight:300;font-size:30px;line-height:1.1}
+.piano .tel{display:inline-block;margin-top:22px;font-family:"Imbue",serif;font-weight:300;font-size:58px;line-height:1.05;letter-spacing:-.005em;
   text-decoration-color:var(--filo);text-underline-offset:.14em;padding:4px 0}
-.biglietto .mail{display:inline-block;margin-top:4px;font-size:17px;padding:4px 0}
-.biglietto .dati{margin-top:18px;padding-top:12px;line-height:1.75;border-top:1px solid var(--filo);color:var(--grigio)}
-.biglietto .dati p{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 20px}
-.biglietto .dati .ind{color:var(--inchiostro)}
+.piano .mail{display:inline-block;margin-top:4px;font-size:17px;padding:4px 0}
+.piano .dati{margin-top:18px;padding-top:12px;line-height:1.75;border-top:1px solid var(--filo);color:var(--grigio);align-self:stretch}
+.piano .dati p + p{margin-top:2px}
+.piano .dati .ind{color:var(--inchiostro)}
+.piano .dati a{white-space:nowrap}
 .intero{white-space:nowrap}
 
 /* piede: una riga sola nel tono della pagina */
@@ -184,8 +186,8 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .pezzo-o{width:340px}
   .leg{--fuori:170px}
   .leg span{width:136px}
-  .contatti h2{grid-column:1 / -1;max-width:none}
-  .biglietto{grid-column:1 / span 9;margin-top:36px;max-width:640px}
+  .contatti .domanda{grid-column:1 / -1}
+  .piano{grid-column:1 / span 10;margin-top:44px;max-width:640px}
   .piede .legali{margin-left:0}
 }
 /* tablet */
@@ -209,7 +211,7 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .storia figure{grid-column:1 / -1;max-width:380px;margin-top:0}
   .storia .testo{grid-column:1 / -1;margin-top:40px;grid-row:1}
   .cert .capo-c,.cert table{grid-column:1 / -1}
-  .biglietto{grid-column:1 / -1}
+  .piano{grid-column:1 / -1}
 }
 /* telefono */
 @media (max-width:520px){
@@ -247,16 +249,11 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .cert tr{display:block;padding:14px 0;border-top:1px solid var(--filo)}
   .cert tr:last-child{border-bottom:1px solid var(--filo)}
   .cert tr:last-child td{border:0}
-  .biglietto{aspect-ratio:auto;padding:24px 22px 20px;margin-top:32px;font-size:14.5px}
-  .biglietto .timbro{top:16px;right:16px;width:76px;height:76px}
-  .biglietto .firma{padding-right:84px}
-  .biglietto .firma b{font-size:16px}
-  .biglietto .voce{padding-top:36px}
-  .biglietto .tel{font-size:clamp(34px,10.4vw,44px)}
-  .biglietto .mail{font-size:16px}
-  .biglietto .dati p{display:block}
-  .biglietto .dati p > *{display:block}
-  .biglietto .dati p + p{margin-top:6px}
+  .piano{min-height:0;padding:96px 34px 70px;font-size:14.5px;margin-top:32px}
+  .piano .firma{font-size:24px}
+  .piano .tel{margin-top:14px;font-size:clamp(32px,10vw,42px)}
+  .piano .mail{font-size:15.5px}
+  .piano .dati{font-size:14px}
   .piede p{column-gap:14px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -378,14 +375,21 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 </section>
 
 <section class="w sez contatti" id="contatti" aria-labelledby="h-contatti">
+  <div class="domanda">
   <h2 class="serif" id="h-contatti">Diamo forma <br>alla tua idea?</h2>
-  <div class="biglietto">
-    <img class="timbro" src="img/timbro.svg" alt="" width="116" height="116" loading="lazy">
-    <p class="firma"><b>Tacchificio Riviera</b><span>Stra e Vigonovo, Riviera del Brenta</span></p>
+  <p class="sotto-h">Inviaci il disegno. I recapiti sono sul piano del tacco, dove incidiamo il nostro nome.</p>
+  </div>
+  <div class="piano">
+    <svg viewBox="0 0 600 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="bordo" vector-effect="non-scaling-stroke" d="M36 318C36 128 152 18 300 18S564 128 564 318L556 486C554 520 532 538 500 533C432 522 370 516 300 516S168 522 100 533C68 538 46 520 44 486Z"/>
+      <path class="dentro" vector-effect="non-scaling-stroke" transform="translate(30 30) scale(.9)" d="M36 318C36 128 152 18 300 18S564 128 564 318L556 486C554 520 532 538 500 533C432 522 370 516 300 516S168 522 100 533C68 538 46 520 44 486Z"/>
+    </svg>
+    <p class="firma">Tacchificio Riviera</p>
     <p class="voce"><a class="tel num" href="tel:+39049502844">+39 049 502844</a><br><a class="mail" href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></p>
     <div class="dati num">
-      <p><span class="ind">Viale Serenissima 30, <span class="intero">30030 Vigonovo (VE)</span></span><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></p>
-      <p><span class="intero">Fax +39 049 504969</span><span>PEC <a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></span></p>
+      <p><span class="ind">Viale Serenissima 30, <span class="intero">30030 Vigonovo (VE)</span></span>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">apri la mappa</a></p>
+      <p><span class="intero">Fax +39 049 504969</span></p>
+      <p>PEC <a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></p>
     </div>
   </div>
 </section>
