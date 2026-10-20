@@ -140,32 +140,26 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
 .cert td:last-child{text-align:right;color:var(--grigio)}
 .cert td a{text-decoration-color:var(--filo)}
 
-/* contatti: la domanda e, accanto, il piano del tacco visto dall'alto, disegnato a filo come sul disegno del cliente.
-   Il piano e' dove incidiamo il nome: qui ci stanno i recapiti. Il disegno (SVG) si allarga con il contenuto, il tratto resta di 1,5 px. */
-.contatti{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:center}
-.contatti .domanda{grid-column:1 / span 5}
-.contatti h2{font-size:clamp(46px,6.6vw,96px);line-height:.95}
-.contatti .sotto-h{margin-top:28px;max-width:30ch;color:var(--grigio)}
-.piano{grid-column:7 / span 6;position:relative;min-height:560px;text-align:center;
-  padding:150px 88px 112px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:15px;line-height:1.5}
-.piano svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.piano .bordo{fill:#F8F6F2;stroke:var(--inchiostro);stroke-width:1.5}
-.piano .dentro{fill:none;stroke:#B9B2A8;stroke-width:1;stroke-dasharray:5 5}
-.piano > *{position:relative}
-.piano .firma{font-family:"Imbue",serif;font-weight:300;font-size:30px;line-height:1.1}
-.piano .tel{display:inline-block;margin-top:22px;font-family:"Imbue",serif;font-weight:300;font-size:58px;line-height:1.05;letter-spacing:-.005em;
-  text-decoration-color:var(--filo);text-underline-offset:.14em;padding:4px 0}
-.piano .mail{display:inline-block;margin-top:4px;font-size:17px;padding:4px 0}
-.piano .dati{margin-top:18px;padding-top:12px;line-height:1.75;border-top:1px solid var(--filo);color:var(--grigio);align-self:stretch}
-.piano .dati p + p{margin-top:2px}
-.piano .dati .ind{color:var(--inchiostro)}
-.piano .dati a{white-space:nowrap}
+/* chiusura (stile B, con foto): a sinistra una foto sola, a filo del bordo della pagina anche oltre i 1440 px;
+   a destra la frase su come lavorano e, in basso, i recapiti in poche righe a corpo di testo */
+.contatti{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
+.contatti .foto{grid-column:1 / span 6;grid-row:1;margin-left:calc(-1 * var(--m) - max(0px, (100vw - 1440px) / 2))}
+.contatti .foto img{width:100%;height:clamp(520px,47vw,700px);object-fit:cover;object-position:57% 35%}
+.contatti .testo{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.contatti h2{font-size:clamp(38px,4.5vw,66px);line-height:1;letter-spacing:-.01em}
+.rec{font-size:17px;line-height:1.55}
+.rec p + p{margin-top:10px}
+.rec .tel{display:inline-flex;align-items:center;min-height:44px;margin-bottom:4px;font-size:clamp(28px,2.5vw,36px);line-height:1.1;
+  letter-spacing:-.01em;white-space:nowrap;text-underline-offset:.16em}
+.rec a:not(.tel){display:inline-block;padding:2px 0}
+.rec .grigio{color:var(--grigio)}
 .intero{white-space:nowrap}
 
 /* piede: una riga sola nel tono della pagina */
 .piede{margin-top:calc(var(--sez) * .8);padding-bottom:28px;font-size:13.5px;line-height:1.6;color:var(--grigio)}
 .piede p{border-top:1px solid var(--filo);padding-top:20px;display:flex;flex-wrap:wrap;column-gap:18px;row-gap:2px}
 .piede p > span{white-space:nowrap}
+.piede p > span.pec{white-space:normal}
 .piede b{font-weight:500;color:var(--inchiostro)}
 .piede .legali{margin-left:auto;display:flex;column-gap:14px;flex-wrap:wrap}
 
@@ -186,8 +180,7 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .pezzo-o{width:340px}
   .leg{--fuori:170px}
   .leg span{width:136px}
-  .contatti .domanda{grid-column:1 / -1}
-  .piano{grid-column:1 / span 10;margin-top:44px;max-width:640px}
+  .contatti .foto{grid-column:1 / span 7}
   .piede .legali{margin-left:0}
 }
 /* tablet */
@@ -211,7 +204,10 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .storia figure{grid-column:1 / -1;max-width:380px;margin-top:0}
   .storia .testo{grid-column:1 / -1;margin-top:40px;grid-row:1}
   .cert .capo-c,.cert table{grid-column:1 / -1}
-  .piano{grid-column:1 / -1}
+  .contatti .foto{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
+  .contatti .foto img{height:auto;aspect-ratio:5 / 4;max-height:640px}
+  .contatti .testo{grid-column:1 / -1;grid-row:2;margin-top:44px;gap:36px}
+  .contatti h2{font-size:clamp(36px,6vw,52px);line-height:1.02}
 }
 /* telefono */
 @media (max-width:520px){
@@ -249,11 +245,8 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   .cert tr{display:block;padding:14px 0;border-top:1px solid var(--filo)}
   .cert tr:last-child{border-bottom:1px solid var(--filo)}
   .cert tr:last-child td{border:0}
-  .piano{min-height:0;padding:96px 34px 70px;font-size:14.5px;margin-top:32px}
-  .piano .firma{font-size:24px}
-  .piano .tel{margin-top:14px;font-size:clamp(32px,10vw,42px)}
-  .piano .mail{font-size:15.5px}
-  .piano .dati{font-size:14px}
+  .contatti .testo{margin-top:36px;gap:32px}
+  .rec{font-size:16.5px}
   .piede p{column-gap:14px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -374,29 +367,24 @@ h2.serif{font-size:clamp(42px,5.6vw,80px);line-height:.98;letter-spacing:-.012em
   </div>
 </section>
 
-<section class="w sez contatti" id="contatti" aria-labelledby="h-contatti">
-  <div class="domanda">
-  <h2 class="serif" id="h-contatti">Diamo forma <br>alla tua idea?</h2>
-  <p class="sotto-h">Inviaci il disegno. I recapiti sono sul piano del tacco, dove incidiamo il nostro nome.</p>
-  </div>
-  <div class="piano">
-    <svg viewBox="0 0 600 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path class="bordo" vector-effect="non-scaling-stroke" d="M36 318C36 128 152 18 300 18S564 128 564 318L556 486C554 520 532 538 500 533C432 522 370 516 300 516S168 522 100 533C68 538 46 520 44 486Z"/>
-      <path class="dentro" vector-effect="non-scaling-stroke" transform="translate(30 30) scale(.9)" d="M36 318C36 128 152 18 300 18S564 128 564 318L556 486C554 520 532 538 500 533C432 522 370 516 300 516S168 522 100 533C68 538 46 520 44 486Z"/>
-    </svg>
-    <p class="firma">Tacchificio Riviera</p>
-    <p class="voce"><a class="tel num" href="tel:+39049502844">+39 049 502844</a><br><a class="mail" href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></p>
-    <div class="dati num">
-      <p><span class="ind">Viale Serenissima 30, <span class="intero">30030 Vigonovo (VE)</span></span>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">apri la mappa</a></p>
-      <p><span class="intero">Fax +39 049 504969</span></p>
-      <p>PEC <a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></p>
+<section class="w sez contatti con-foto" id="contatti" aria-labelledby="h-contatti">
+  <figure class="foto">
+    <img src="img/prototipo-scaffali-1440.jpg" srcset="img/prototipo-scaffali-640.jpg 640w, img/prototipo-scaffali-960.jpg 960w, img/prototipo-scaffali-1440.jpg 1440w, img/prototipo-scaffali-1920.jpg 1920w" sizes="(max-width:860px) 142vw, (max-width:1100px) 930px, 1250px" width="1440" height="810" loading="lazy" alt="Due persone esaminano un prototipo di tacco segnato in rosso, davanti agli scaffali dei modelli">
+  </figure>
+  <div class="testo">
+    <h2 class="serif" id="h-contatti">Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo.</h2>
+    <div class="rec num">
+      <p><a class="tel" href="tel:+39049502844">+39 049 502844</a></p>
+      <p><a href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></p>
+      <p>Viale Serenissima 30, <span class="intero">30030 Vigonovo (VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></p>
+      <p class="grigio"><span class="intero">Fax +39 049 504969</span></p>
     </div>
   </div>
 </section>
 </main>
 
 <footer class="piede">
-  <div class="w"><p class="num"><span><b>Tacchificio Riviera S.r.l.</b></span><span>Via Pola 22, 30039 Stra (VE)</span><span>P.IVA e C.F. 02005670274</span><span>REA VE-190999</span><span>Capitale sociale 99.000 euro</span><span class="legali"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a> <span>Whistleblowing: <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">procedura</a>, <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">privacy</a></span> <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni SA8000</a> <a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></span></p></div>
+  <div class="w"><p class="num"><span><b>Tacchificio Riviera S.r.l.</b></span><span>Via Pola 22, 30039 Stra (VE)</span><span>P.IVA e C.F. 02005670274</span><span>REA VE-190999</span><span>Capitale sociale 99.000 euro</span><span class="pec">PEC <a href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></span><span class="legali"><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a> <span>Whistleblowing: <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">procedura</a>, <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">privacy</a></span> <a href="https://www.tacchificioriviera.it/app/assets/certificazioni/modulo-segnalazione-SA8000-tacchificio-riviera.pdf">Segnalazioni SA8000</a> <a href="https://www.tacchificioriviera.it/en" hreflang="en" lang="en">English</a></span></p></div>
 </footer>
 
 <script>
