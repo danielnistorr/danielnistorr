@@ -45,6 +45,8 @@ accompagnamento (in pagina non c'è nessun segnaposto, i dati sono quelli del si
 - **Foto delle mani col collante:** dove è stata scattata (da Innovatex o da un cliente), chi è il fotografo, permesso
   d'uso del cliente se serve.
 - **Didascalia dello scaffale:** in pagina "Il magazzino di Vigonovo, febbraio 2026". La data viene dall'EXIF (3/2/2026); che lo scatto sia del magazzino di Vigonovo è dedotto, da confermare.
+- **Foto della chiusura** (corsia del magazzino col carrello elevatore, `A7406863`, dal loro sito): c'è una persona al
+  volante; chiedere se va bene in home. Didascalia in pagina "Una corsia del magazzino, febbraio 2026".
 - **PEC** (info@pec.innovatexgreen.com): presa dai registri (aziende.it), non è sul sito.
 - **Riviera del Brenta, legame con Benvegnù S.r.l.:** non scritti in pagina. La fonte era il sito di un'altra azienda.
 

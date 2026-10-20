@@ -2,7 +2,7 @@
 
 Costruita sulla bozza B, quella scelta dal committente. Restano l'idea, la prima schermata (la foto dell'officina a tutta larghezza con il titolo grande sul pavimento), il trattamento delle foto, il carattere e i colori della bozza; sono cambiati l'esecuzione, i dati, il telefono, i dettagli. Pagina: `sito/index.html`. Si rifà tutto con `bash _prova/script/build_finale.sh`.
 
-Screenshot: `home-1440.jpg` (5121 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5094 px), `home-390-prima-schermata.jpg` e `chiusura-1440.jpg` (solo la chiusura a 1440, dalla sezione dei contatti alla fine). Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
+Screenshot: `home-1440.jpg` (4677 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (4430 px), `home-390-prima-schermata.jpg` e `chiusura-1440.jpg` (solo la chiusura a 1440, dalla sezione dei contatti alla fine). Sono fatti con l'ora fissata a martedì 20/10/2026 alle 10.30 (`?ora=2026-10-20T10:30`). Senza il parametro la pagina usa l'ora vera di Vigonovo.
 
 ## Idea
 
@@ -20,26 +20,21 @@ L'officina com'è, chiara e dritta: un'auto alzata sul ponte, il pavimento a pia
 - **Poi, cinque blocchi in tutto:**
   - "Lavori e prezzi" sul foglio bianco: sette righe, con il prezzo o "a preventivo" dove manca;
   - la revisione in sede: il titolo a sinistra e, accanto, la scheda Prezzo / Pre-revisione / Appuntamenti / Prima revisione / Poi;
-  - una sola foto grande dopo l'apertura: un'auto bianca intera, di fianco, alzata sul ponte in un'officina luminosa, alta 960 px a 1440;
-  - la chiusura: la scheda di accettazione dell'officina con indirizzo, orari, telefono, email e "Prenota la revisione";
+  - la chiusura (stile B, "con foto"): la frase "L'officina di Andrea e Paolo Bazzato, per auto di ogni marca." con i recapiti accanto, poi l'unica foto grande dopo l'apertura, l'auto bianca intera alzata sul ponte, a tutta larghezza fino al piede;
   - il piede in una riga sola: ragione sociale, P.IVA, REA e informativa privacy.
 
-## La chiusura: la scheda di accettazione
+## La chiusura: stile B, "con foto" (20/10/2026)
 
-Il committente ha notato che quasi tutte le home della campagna finiscono allo stesso modo: un titolo di luogo, il telefono gigante su una fascia scura, una riga di tre o quattro colonnine uguali con indirizzo, email e orari, poi un piede scuro a quattro colonne di testo minuscolo. Anche qui c'era lo schema (titolo "Viale Serenissima 3, Tombelle di Vigonovo", tre colonne Dove / Orari / Telefono, piede su due colonne), ed è cambiato.
+Storia. Le chiusure di tutte le home della campagna erano uguali (titolo di luogo, telefono gigante su fascia scura, colonnine, piede nero a quattro colonne). Sono state rifatte come "un oggetto del mestiere disegnato che porta i recapiti": qui era la scheda di accettazione dell'officina, un foglio bianco rigato con le caselle. Il committente le ha bocciate tutte. Gli sono stati mostrati due campioni su Hambro e su Bazzato (`_prova/chiusure-campioni/`, foglio `confronto.jpg`: A tipografica, B con foto) e ha scelto **B, con foto**. Questa è la chiusura del campione B di Bazzato portata nel sorgente (`_prova/script/finale_pagina.html`) così com'è: stessa frase, stessa foto, stessa impaginazione.
 
-- **L'oggetto**: in officina tutto comincia dalla scheda di accettazione, il foglio che si compila quando si lascia l'auto (targa, data, lavoro richiesto). In pagina i recapiti stanno su quel foglio: un foglio bianco con il filo nero tutto intorno e le caselle rigate, come un modulo stampato. In alto "Scheda di accettazione" e, a destra come un'intestazione, "Bazzato Autofficina".
-- **Le caselle**, ognuna con la sua etichetta piccola in grigio in alto a sinistra, come sul modulo:
-  - "Dove portare l'auto": Viale Serenissima 3, zona artigianale di Tombelle, 30030 Vigonovo (VE), "Apri in Google Maps";
-  - "Orari dell'officina": dal lunedì al venerdì 08.00-12.00 e 14.00-18.00, sabato chiuso; uffici sotto, in grigio;
-  - "Telefono e WhatsApp": il numero a 48 px (36 px sul telefono), sottolineato, collegamento `tel:`; sotto "Scrivi su WhatsApp";
-  - "Email": info@bazzato.it, collegamento `mailto:`;
-  - "Lavoro richiesto", larga quanto il foglio: la casella segnata con la croce (disegnata nella pagina, non un'icona) e "Revisione in sede, € 79", la pre-revisione gratis e gli orari degli appuntamenti; a destra il bottone nero "Prenota la revisione", che chiama il numero.
-- **Le misure delle caselle non sono uguali**: 7 parti su 12 a sinistra e 5 a destra, e la riga del lavoro a tutta larghezza; a 390 e a 320 le caselle vanno una sotto l'altra e il bottone prende tutta la riga.
-- **Perché così**: il foglio è un oggetto solo, del loro mondo, e si legge come un modulo, non come una riga di colonne. Porta alla fine della pagina la cosa per cui la gente chiama, la revisione, che in pagina è già il servizio con il prezzo detto chiaro. I dati sono tutti quelli che c'erano già (indirizzo, orari, telefono, WhatsApp, email, prezzo e orari della revisione); nessuno è nuovo.
-- **Cosa è stato tolto**: il titolo con l'indirizzo, le tre colonne uguali e il piede su due colonne con l'indirizzo ripetuto. Il piede ora è una riga sola sul cemento, in grigio (6,4 di contrasto): Bazzato snc di Bazzato Andrea e Paolo & C., P.IVA e C.F. 03599300278, REA VE 322146, Informativa privacy. La PEC non c'è perché non è stata trovata (LEGGIMI, punto 11).
-- **Contrasto**: testo nero sul bianco; etichette e note in grigio #56554F sul bianco (7,5); bottone bianco sul nero, petrolio al passaggio (6,6).
-- **Altezza**: la chiusura è alta 726 px a 1440; la foto resta al 35 % della pagina.
+- **La frase**: "L'officina di Andrea e Paolo Bazzato, per auto di ogni marca." (General Sans 500, 72 px a 1440, 36 px sul telefono, spaziatura -0,036em), a sinistra su 7 colonne di 12. È la loro presentazione, presa dalla frase della seconda schermata: chiude la pagina con i nomi dei titolari invece che con un titolo di luogo.
+- **I recapiti**, a destra della frase e allineati al suo piede, a corpo di testo e senza etichette: il telefono a 34 px sottolineato (`tel:`), "Scrivi su WhatsApp o info@bazzato.it", l'indirizzo "Viale Serenissima 3, 30030 Vigonovo (VE)" che apre Google Maps, "Dal lunedì al venerdì, 08.00-12.00 e 14.00-18.00" e "Sabato chiuso" in grigio. Le fasce orarie non si spezzano mai a metà.
+- **La foto**: sotto, a tutta larghezza fino al piede, l'auto bianca intera alzata sul ponte nell'officina luminosa (alta 835 px a 1440, 58 % della larghezza; 5:4 sul telefono), con "Foto indicativa" in basso a destra (#3F3E3A sul pavimento chiaro, almeno 6,9). È la foto che prima stava a metà pagina fra il listino e la revisione: ora c'è una sola volta, in fondo, e la pagina non ha una foto in più.
+- **Il piede**: invariato, una riga sola sul cemento in grigio (6,4): Bazzato snc di Bazzato Andrea e Paolo & C., P.IVA e C.F. 03599300278, REA VE 322146, Informativa privacy. La PEC non c'è perché non è stata trovata (LEGGIMI, punto 11).
+- **Sotto 1100 px** la frase prende tutta la riga e i recapiti vanno sotto, a sinistra; a 390 e a 320 tutto in colonna, la foto 5:4.
+- **Cosa è stato tolto**: la scheda di accettazione (foglio rigato, caselle, croce disegnata, bottone "Prenota la revisione"). Restano veri e in pagina tutti i dati: la revisione, il prezzo, la pre-revisione gratis e gli orari degli appuntamenti sono nella sezione "Revisione" con "Per prenotare: 049 9830115"; gli orari degli uffici nel pannello dello stato in apertura.
+- **Difetti corretti rispetto al campione**: fra la revisione e la frase restavano 288 px di cemento vuoto (prima li separava la foto); ora la chiusura comincia 40 px sotto la fine della revisione (24 px sul telefono), con lo stesso respiro fra le altre sezioni. Tolte le regole CSS della vecchia banda foto e della scheda, che non servivano più; le due regole sotto 1100 px sono nel blocco delle altre.
+- **Altezza**: la chiusura è alta 1277 px a 1440 (`chiusura-1440.jpg`); la pagina passa da 5121 a 4677 px.
 
 ## Caratteri e colori
 
@@ -70,8 +65,8 @@ Nessuna foto dell'azienda regge (voti da 1 a 5 su 10 in `_prova/inventario-immag
 
 | In pagina | Origine | Licenza | Lavoro fatto |
 |---|---|---|---|
-| Apertura, officina con l'auto sul ponte vista dal fondo | Renee Razumov, Pexels 33814736 | Pexels License | tolti SKODA, SUPERB, WURTH e MIRKA; tolto il parafango in primo piano ricostruendo il pavimento in prospettiva; schiarite le piastrelle grigio scuro a sinistra; tolte la scala e le pistole appoggiate al muro; ripulito il vano targa; gialli smorzati; velatura chiara sul pavimento; taglio largo (2040 px) e verticale |
-| Auto bianca intera, di fianco, sul ponte | Artem Podrez, Pexels 8985667 | Pexels License | tolta l'insegna appesa con il marchio e la scritta, tolta la scritta del modello sulla portiera; bianco riportato al neutro (la foto era calda e verdina); saturazione ridotta; taglio 3:2 e 5:4 per il telefono, con il meccanico fuori dal quadro |
+| Apertura, officina con l'auto sul ponte vista dal fondo | Renee Razumov, Pexels 33814736 (https://www.pexels.com/photo/modern-car-repair-shop-interior-with-vehicle-33814736/) | Pexels License | tolti SKODA, SUPERB, WURTH e MIRKA; tolto il parafango in primo piano ricostruendo il pavimento in prospettiva; schiarite le piastrelle grigio scuro a sinistra; tolte la scala e le pistole appoggiate al muro; ripulito il vano targa; gialli smorzati; velatura chiara sul pavimento; taglio largo (2040 px) e verticale |
+| Chiusura, sotto la frase e i recapiti: auto bianca intera, di fianco, sul ponte | Artem Podrez, Pexels 8985667 (https://www.pexels.com/photo/car-on-lift-at-auto-the-repair-shop-8985667/) | Pexels License (gratuita anche per uso commerciale, senza obbligo di citazione; letta sulla pagina il 19/10/2026) | tolta l'insegna appesa con il marchio e la scritta, tolta la scritta del modello sulla portiera; bianco riportato al neutro (la foto era calda e verdina); saturazione ridotta; taglio 3:2 e 5:4 per il telefono, con il meccanico fuori dal quadro |
 
 Trattamento comune: luce neutra appena fredda, saturazione ridotta, neri non chiusi. JPEG progressivi in più larghezze con `srcset` (`_prova/script/finale_img.py`). Dettagli in `assets/CREDITI.md`.
 
@@ -105,11 +100,12 @@ Resta un limite che nessun ritocco toglie: l'auto dell'apertura è senza paraurt
 
 ## Controlli
 
-- **Larghezze**: 1440, 390, 320, 768, 1024 e 1920, guardate a pezzi. Nessuno scorrimento orizzontale, nessun testo fuori dalla finestra, nessuna sovrapposizione fra testata, titolo, testo e bottoni, né fra i testi della scheda di accettazione e del piede (`finale_scatti.mjs`, che salva anche la chiusura a 1440). La chiusura è stata guardata a pezzi a 1440, 1024, 768, 390 e 320.
+- **Larghezze**: 1440, 390, 320, 768, 1024 e 1920, guardate a pezzi. Nessuno scorrimento orizzontale, nessun testo fuori dalla finestra, nessuna sovrapposizione fra testata, titolo, testo e bottoni, né fra la frase, i recapiti, la didascalia della foto e il piede nella chiusura (`finale_scatti.mjs`, che salva anche la chiusura a 1440). La chiusura è stata guardata a pezzi a 1440, 1024, 768, 390 e 320.
 - **Da 320 a 2560** (`verifica_larghezze.mjs`, ogni pixel fino a 900 e poi ogni 8): scrollWidth sempre uguale alla larghezza della finestra; i prezzi del listino e i bottoni non escono mai dalla colonna. A 701, 768, 800 e 840 i prezzi finiscono esattamente sul margine (670, 734, 764, 803).
 - **Collegamenti**: `tel:+390499830115`, `https://wa.me/390499830115`, `mailto:info@bazzato.it`, Google Maps con "Viale Serenissima 3 Vigonovo VE", informativa privacy sul sito di oggi, ancore interne.
-- **Altezza a 1440**: 5121 px.
-- **Segnali da IA** (`kit/segnali.sh`, 1440): 0 soglie bloccanti su 10. Foto sul 35 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, nessun titolo col punto, 4 fasce di fondo, 23 filetti (le righe della scheda). Resta da guardare solo "misure degli H2: 2 (80 e 46 px)": è voluto, perché il titolo della scheda è più piccolo dei titoli di sezione.
+- **Altezza a 1440**: 4677 px.
+- **Segnali da IA** (`kit/segnali.sh`, 1440, dopo la chiusura nuova): 0 soglie bloccanti su 10. Foto sul 36,3 % della pagina, General Sans al 100 %, nessun monospazio, nessuna etichetta maiuscola, un titolo col punto su 4 (la frase della chiusura, ammesso), 4 fasce di fondo, 16 filetti. Resta da guardare solo "misure degli H2: 2 (80 e 72 px)": la frase della chiusura è appena più piccola dei titoli di sezione.
+- **Contrasto della chiusura**: frase e recapiti neri sul cemento; "Sabato chiuso" e il piede in grigio #56554F (6,4); "Foto indicativa" #3F3E3A sul pavimento chiaro della foto (almeno 6,9).
 - **Divieti del committente**: nessun gradiente, nessuna emoji, niente Inter, nessuna card col bordo colorato, nessun vetro sfocato, nessuna icona, nessun badge, nessuna animazione allo scorrimento, nessun effetto sul cursore, nessun bottone che sbiadisce, nessun corsivo d'accento.
 - **Caratteri vietati**: nessuna lineetta lunga U+2014 né media U+2013 nella pagina, negli script, in questa nota e nel LEGGIMI.
 - **Note di lavorazione**: nessuna in pagina; la build controlla le parole "provvisori", "da rifare", "proposta", "segnaposto".

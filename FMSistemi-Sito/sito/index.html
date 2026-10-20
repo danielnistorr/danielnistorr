@@ -141,24 +141,25 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
 .inverno blockquote{position:absolute;left:0;right:0;bottom:0;margin:0}
 .inverno blockquote p{grid-column:1 / span 8;margin:0;font:400 clamp(32px,3.9vw,56px)/1.08 var(--display);letter-spacing:-.03em;color:var(--testo);text-wrap:balance}
 
-/* la chiusura: l'ultima voce dell'indice. Stessa riga dei mestieri (filetti, capolettera, nome, testo);
-   la Z e' spenta come nell'alfabeto dell'apertura, e al posto della striscia di materiale c'e' il numero */
-.fine{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gola);padding:0 var(--margine);border-top:1px solid var(--filetto);border-bottom:1px solid var(--filetto)}
-.fine .cap-l{grid-column:2 / span 2;grid-row:1;align-self:start;margin-top:26px;font:400 152px/.74 var(--display);letter-spacing:-.02em;color:var(--spento)}
-.fine .t{grid-column:4 / span 3;grid-row:1;padding:26px 0 24px}
-.fine h2{font:400 28px/1.05 var(--display);letter-spacing:-.02em;text-wrap:wrap}
-.fine .orari{margin:12px 0 0;font-size:17px;line-height:1.45}
-.fine .recapiti{grid-column:7 / span 6;grid-row:1;padding:20px 0 34px}
-.fine .numero{margin:0;font:400 clamp(40px,4.45vw,64px)/1 var(--display);letter-spacing:-.03em}
-.fine .numero a{display:inline-block;position:relative;padding:4px 0 6px;text-decoration:none}
-.fine .numero a::after{content:"";position:absolute;left:2px;bottom:-12px;width:32px;height:3px;background:var(--rame)}
-.fine .numero a:hover{color:var(--rame-testo)}
-.fine .recapiti p:not(.numero){margin:0;font-size:17px;line-height:1.5;text-wrap:pretty}
-.fine .dove{margin-top:30px!important}
+/* la chiusura (stile B, con foto): a sinistra la frase della pagina e i recapiti, a destra una foto sola
+   che esce dal bordo destro come le strisce dei mestieri. Nessun riquadro, nessuna etichetta. */
+.chiusa .griglia{align-items:stretch}
+.chiusa .testo{grid-column:1 / span 6;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:56px;padding-right:var(--gola)}
+.chiusa h2{max-width:11em}
+.chiusa .rec{font-size:18px;line-height:1.55}
+.chiusa .rec p{margin:0}
+.chiusa .rec p+p{margin-top:10px}
+.chiusa .numero{display:inline-flex;align-items:center;min-height:48px;margin-bottom:8px;font:400 clamp(32px,2.8vw,40px)/1.1 var(--display);letter-spacing:-.02em;white-space:nowrap;text-decoration-thickness:1px;text-underline-offset:.16em}
+.chiusa .numero:hover{text-decoration-thickness:2px}
+.chiusa .rec a:not(.numero){display:inline-block;padding:2px 0}
+.chiusa .rec .orari{color:var(--testo-2)}
+.chiusa .scatto{grid-column:7 / span 6;grid-row:1;margin:0 calc(-1 * var(--margine)) 0 0}
+.chiusa .scatto img{width:100%;height:clamp(560px,53vw,860px);object-fit:cover;object-position:50% 40%}
 .nowrap{white-space:nowrap}
 
-/* il piede: una riga sola, sulla calce */
-.piede{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;align-items:baseline;padding:22px var(--margine) 30px;margin:0;font-size:14px;line-height:1.6;color:var(--testo-2)}
+/* il piede: una riga sola, sulla calce, sotto un filetto */
+.piede{padding:0 var(--margine) 30px;margin-top:96px;font-size:14px;line-height:1.6;color:var(--testo-2)}
+.piede .riga{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;align-items:baseline;margin:0;padding-top:20px;border-top:1px solid var(--filetto)}
 .piede span{white-space:nowrap}
 .piede a{display:inline-block;padding:2px 0;margin-left:auto}
 
@@ -191,17 +192,18 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
   .scheda{grid-column:5 / span 8}
   .cifra{grid-column:1 / span 4}
   .inverno blockquote p{grid-column:1 / span 10}
-  .fine{grid-template-columns:40px 112px minmax(0,1fr)}
-  .fine .cap-l{grid-column:2;font-size:112px;margin-top:28px}
-  .fine .t{grid-column:3;padding:28px 0 0}
-  .fine h2{font-size:24px}
-  .fine .recapiti{grid-column:3;grid-row:2;padding:32px 0 34px}
+  .chiusa .testo{gap:48px}
 }
 @media (max-width:860px){
   .testa nav a:not(.tel){display:none}
   .testa .tel{border-left:0;padding-left:0}
   .cifra{grid-column:1 / span 12}
   .scheda{grid-column:1 / span 12;margin-top:48px}
+  /* la chiusura in colonna: prima la frase e i recapiti, poi la foto a tutta larghezza */
+  .chiusa .testo{grid-column:1 / span 12;padding-right:0;gap:40px}
+  .chiusa h2{max-width:13em}
+  .chiusa .scatto{grid-column:1 / span 12;grid-row:2;margin:64px calc(-1 * var(--margine)) 0}
+  .chiusa .scatto img{height:auto;aspect-ratio:1;max-height:640px;object-position:50% 70%}
 }
 
 /* ---------- telefono ---------- */
@@ -243,20 +245,19 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
   .scheda dl div{grid-template-columns:1fr;gap:4px;padding:16px 0}
   .inverno img{aspect-ratio:.66}
   .inverno blockquote p{grid-column:1 / span 12}
-  .fine{grid-template-columns:24px 72px minmax(0,1fr);column-gap:12px}
-  .fine .cap-l{grid-column:2;font-size:80px;margin:22px 0 0}
-  .fine .t{grid-column:3;padding:20px 0 0}
-  .fine .orari{margin-top:8px;font-size:16px}
-  .fine .recapiti{grid-column:1 / -1;grid-row:2;padding:30px 0 28px}
-  .fine .recapiti p:not(.numero){font-size:16px}
-  .fine .dove{margin-top:26px!important}
-  .piede{display:block}
+  .chiusa .testo{gap:32px}
+  .chiusa .rec{font-size:17px}
+  .chiusa .numero{font-size:32px}
+  .chiusa .scatto{margin-top:48px}
+  .chiusa .scatto img{aspect-ratio:.8;max-height:none}
+  .piede{margin-top:56px}
+  .piede .riga{display:block}
   .piede span{display:block;white-space:normal}
   .piede a{margin:2px 0 0}
 }
 @media (max-width:360px){
   .azione .scrivi{display:inline-block;margin:14px 0 0}
-  .fine h2 .nowrap{white-space:normal}
+  .chiusa .numero{font-size:30px}
 }
 </style>
 </head>
@@ -390,27 +391,31 @@ h2{font:400 clamp(34px,3.9vw,56px)/1.04 var(--display);letter-spacing:-.03em;mar
   <blockquote class="griglia"><p>Il lavoro migliore è quello che a cantiere chiuso non si vede più. In casa resta la temperatura giusta.</p></blockquote>
 </figure>
 
-<section class="sezione contatti" id="contatti" aria-labelledby="t-dove">
-  <div class="fine">
-    <span class="cap-l" aria-hidden="true">Z</span>
-    <div class="t">
-      <h2 id="t-dove">Dopo la&nbsp;Z, <span class="nowrap">un numero solo</span></h2>
-      <p class="orari num">Dal lunedì al sabato, <span class="nowrap">8.30-19.00</span>. Domenica chiuso.</p>
+<section class="sezione chiusa" id="contatti" aria-labelledby="t-con">
+  <div class="griglia">
+    <div class="testo">
+      <h2 id="t-con">Qui il cantiere ha un numero solo, e i mestieri arrivano nell'ordine in cui servono.</h2>
+      <div class="rec num">
+        <p><a class="numero" href="tel:+390498305354">049&nbsp;8305354</a></p>
+        <p><a href="mailto:info@fmsistemisrl.it">info@fmsistemisrl.it</a><br>per preventivi e sopralluoghi <a href="mailto:commerciale@fmsistemisrl.it?subject=Richiesta%20di%20preventivo">commerciale@fmsistemisrl.it</a></p>
+        <p>Via del Lavoro 37, zona artigianale, <span class="nowrap">30030 Vigonovo (VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+37+30030+Vigonovo+VE">Apri in Google Maps</a></p>
+        <p class="orari">Dal lunedì al sabato, <span class="nowrap">8.30-19.00</span>. <span class="nowrap">Domenica chiuso.</span></p>
+      </div>
     </div>
-    <div class="recapiti">
-      <p class="numero num"><a href="tel:+390498305354">049&nbsp;8305354</a></p>
-      <p class="dove num">Via del Lavoro 37, zona artigianale, 30030 Vigonovo&nbsp;(VE): <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+37+30030+Vigonovo+VE" class="nowrap">apri in Google Maps</a></p>
-      <p><a href="mailto:info@fmsistemisrl.it">info@fmsistemisrl.it</a>; per preventivi e sopralluoghi <a href="mailto:commerciale@fmsistemisrl.it?subject=Richiesta%20di%20preventivo">commerciale@fmsistemisrl.it</a></p>
-    </div>
+    <figure class="scatto">
+      <img src="img/chiusa-800.jpg" srcset="img/chiusa-800.jpg 800w, img/chiusa-1200.jpg 1200w, img/chiusa-1335.jpg 1335w" sizes="(max-width:860px) 100vw, 50vw" width="800" height="800" loading="lazy" alt="Tubi bianchi dei circuiti del riscaldamento a pavimento che scendono dalla barra del collettore">
+    </figure>
   </div>
 </section>
 </main>
 
 <footer class="piede num">
-  <span>F.M. Sistemi S.r.l.</span>
-  <span>Partita IVA e codice fiscale 03807720283</span>
-  <span>PEC fmsistemisrl@legalmail.it</span>
-  <a href="https://www.facebook.com/FM-Sistemi-SRL-865904943478639">Facebook</a>
+  <p class="riga">
+    <span>F.M. Sistemi S.r.l.</span>
+    <span>Partita IVA e codice fiscale 03807720283</span>
+    <span>PEC fmsistemisrl@legalmail.it</span>
+    <a href="https://www.facebook.com/FM-Sistemi-SRL-865904943478639">Facebook</a>
+  </p>
 </footer>
 
 </body>

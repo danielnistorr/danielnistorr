@@ -84,15 +84,9 @@ ul{padding:0;list-style:none}
 .fatti b{font-weight:500;font-size:20px;letter-spacing:-.01em}
 .fatti span{color:var(--grigio);font-size:17px;line-height:1.5}
 
-/* banda foto: l'auto intera sul ponte */
-.banda img{width:100%;height:clamp(300px,66.6vw,1100px);object-fit:cover;object-position:50% 55%}
-.banda figcaption{padding-top:14px;font-size:14px;color:var(--grigio)}
-.banda figcaption span:first-child{grid-column:1/9}
-.banda figcaption span:last-child{grid-column:9/13;text-align:right}
-
 /* listino */
 .listino{background:var(--foglio);padding-block:128px 136px}
-.listino h2,.revisione h2,.dove h2{font-weight:500;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-.036em;text-wrap:balance}
+.listino h2,.revisione h2{font-weight:500;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-.036em;text-wrap:balance}
 .listino h2{grid-column:1/10}
 .listino .intro{grid-column:1/7;margin-top:28px;font-size:19px;color:var(--grigio);max-width:32em}
 .voci{grid-column:1/-1;margin-top:88px;border-bottom:1px solid var(--filo)}
@@ -114,29 +108,23 @@ ul{padding:0;list-style:none}
 .scheda dt{color:var(--grigio);font-size:16px}
 .scheda dd{font-size:18px;font-weight:500}
 
-/* chiusura: i recapiti sulla scheda di accettazione dell'officina, un foglio bianco rigato a filo nero */
-.dove{padding-top:80px}
-.accettazione{grid-column:1/-1;background:var(--foglio);border:1px solid var(--nero);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
-.acc-testa{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:22px 32px 20px}
-.dove h2{font-weight:500;font-size:clamp(32px,3.2vw,46px);line-height:1.04;letter-spacing:-.03em}
-.acc-marchio{font-size:16px;color:var(--grigio);white-space:nowrap}
-.acc-marchio b{font-weight:600;color:var(--nero);font-size:20px;letter-spacing:-.02em;margin-right:6px}
-.campo{padding:18px 32px 22px;border-top:1px solid var(--nero);font-size:17px;line-height:1.5}
-.c-orari,.c-mail{border-left:1px solid var(--nero)}
-.c-lavoro{grid-column:1/-1}
-.campo h3{font-size:14px;font-weight:500;color:var(--grigio);margin-bottom:12px}
-.campo p+p{margin-top:8px}
-.campo .valore{font-size:clamp(20px,1.8vw,24px);font-weight:500;letter-spacing:-.01em;line-height:1.3}
-.campo .numero{font-size:clamp(34px,3.4vw,48px);font-weight:500;letter-spacing:-.025em;line-height:1.1}
-.campo .numero a{text-decoration-thickness:2px;text-underline-offset:.14em}
-.nota-campo{color:var(--grigio);font-size:16px}
-.spuntato{display:flex;align-items:center;gap:12px}
-.casella{width:20px;height:20px;flex:none}
-.lavoro-riga{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.lavoro-riga .bottone{flex:none}
+/* chiusura B: la frase loro e i recapiti, poi l'auto sul ponte a tutta larghezza come ultima immagine */
+.dove{padding-top:40px}
+.dove .testa{align-items:end;row-gap:48px}
+.dove h2{grid-column:1/8;font-weight:500;font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.036em;text-wrap:balance}
+.rec{grid-column:8/13;justify-self:end;font-size:18px;line-height:1.55}
+.rec p+p{margin-top:4px}
+.rec-tel{font-size:clamp(28px,2.4vw,34px);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.rec-tel a{text-decoration-thickness:1.5px;text-underline-offset:.16em}
+.rec .stacco{margin-top:16px}
+.rec .nota{color:var(--grigio)}
+.intero{white-space:nowrap}
+.foto-fine{position:relative;margin-top:96px}
+.foto-fine img{width:100%;height:clamp(300px,58vw,1000px);object-fit:cover;object-position:50% 58%}
+.foto-fine figcaption{position:absolute;right:var(--m);bottom:20px;font-size:13px;color:#3F3E3A}
 
 /* piede: una riga sola */
-.piede{padding-block:22px 28px;font-size:14px;color:var(--grigio)}
+.piede{padding-block:28px 36px;font-size:14px;color:var(--grigio)}
 .piede p{grid-column:1/-1;display:flex;flex-wrap:wrap;column-gap:28px;row-gap:6px}
 
 @media (max-width:1180px){
@@ -156,13 +144,14 @@ ul{padding:0;list-style:none}
   .revisione h2{grid-column:1/-1}
   .revisione .testo-rev{grid-column:1/-1}
   .scheda{grid-column:1/-1;grid-row:auto;margin-top:56px}
+  .dove h2{grid-column:1/-1}
+  .rec{grid-column:1/9;justify-self:start}
 }
 @media (max-width:1100px){
   .lungo{display:none}
 }
 @media (max-width:960px){
   .menu{display:none}
-  .lavoro-riga{flex-direction:column;align-items:flex-start;gap:20px}
 }
 @media (max-width:900px){
   .apertura .sotto{grid-column:1/9}
@@ -187,9 +176,6 @@ ul{padding:0;list-style:none}
   .officina{padding-block:88px 88px}
   .lead{font-size:25px}
   .fatti{grid-template-columns:1fr;margin-top:56px;row-gap:28px}
-  .banda img{height:auto;aspect-ratio:5/4}
-  .banda figcaption span:first-child{grid-column:1/-1}
-  .banda figcaption span:last-child{display:none}
   .listino{padding-block:64px 88px}
   .listino .intro{grid-column:1/-1;font-size:17px}
   .voci{margin-top:48px}
@@ -200,20 +186,18 @@ ul{padding:0;list-style:none}
   .listino .altro{grid-column:1/-1;font-size:16px}
   .revisione{padding-block:88px 88px}
   .listino h2,.revisione h2{font-size:38px;line-height:1.03}
-  .dove h2{font-size:30px}
   .revisione .testo-rev{margin-top:32px;font-size:17px}
   .scheda{margin-top:40px}
   .scheda div{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:16px}
   .scheda dd{font-size:17px}
-  .dove{padding-top:72px}
-  .accettazione{grid-template-columns:minmax(0,1fr)}
-  .acc-testa{flex-direction:column;gap:8px;padding:22px 20px 20px}
-  .acc-marchio{order:-1}
-  .campo{padding:16px 20px 22px;font-size:16px}
-  .c-orari,.c-mail{border-left:0}
-  .campo h3{margin-bottom:10px}
-  .campo .numero{font-size:36px}
-  .lavoro-riga .bottone{align-self:stretch;text-align:center}
+  .dove{padding-top:24px}
+  .dove .testa{row-gap:36px}
+  .dove h2{font-size:36px;line-height:1.05}
+  .rec{grid-column:1/-1;justify-self:start;font-size:17px}
+  .rec-tel{font-size:30px}
+  .foto-fine{margin-top:56px}
+  .foto-fine img{height:auto;aspect-ratio:5/4}
+  .foto-fine figcaption{bottom:12px;font-size:12px}
   .piede{padding-block:24px 36px}
   .piede p{column-gap:20px}
 }
@@ -319,51 +303,24 @@ ul{padding:0;list-style:none}
     </dl>
   </section>
 
-  <figure class="banda">
-    <picture>
-      <source media="(max-width:700px)" srcset="img/ponte-alta-480.jpg 480w, img/ponte-alta-780.jpg 780w" sizes="100vw">
-      <img src="img/ponte-1440.jpg" srcset="img/ponte-960.jpg 960w, img/ponte-1440.jpg 1440w, img/ponte-1920.jpg 1920w, img/ponte-2400.jpg 2400w" sizes="100vw" width="1440" height="959" loading="lazy" alt="Un'auto bianca intera alzata sul ponte, vista di fianco, in un'officina luminosa con il pavimento a piastrelle">
-    </picture>
-    <figcaption class="griglia"><span>Tagliandi e manutenzione rapida, su auto di ogni marca.</span><span>Foto indicativa</span></figcaption>
-  </figure>
-
-  <section class="dove griglia" id="dove" aria-labelledby="t-dove">
-    <div class="accettazione">
-      <div class="acc-testa">
-        <h2 id="t-dove">Scheda di accettazione</h2>
-        <p class="acc-marchio"><b>Bazzato</b>Autofficina</p>
-      </div>
-      <div class="campo c-dove">
-        <h3>Dove portare l'auto</h3>
-        <p class="valore">Viale Serenissima&nbsp;3</p>
-        <p>Zona artigianale di Tombelle, 30030&nbsp;Vigonovo&nbsp;(VE)</p>
-        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+3+Vigonovo+VE">Apri in Google Maps</a></p>
-      </div>
-      <div class="campo c-orari">
-        <h3>Orari dell'officina</h3>
-        <p>Dal lunedì al venerdì<br>08.00-12.00 e 14.00-18.00<br>Sabato chiuso</p>
-        <p class="nota-campo">Uffici fino alle 12.30 e alle 19.00, il venerdì fino alle&nbsp;18.00</p>
-      </div>
-      <div class="campo c-tel">
-        <h3>Telefono e WhatsApp</h3>
-        <p class="numero"><a href="tel:+390499830115">049 9830115</a></p>
-        <p><a href="https://wa.me/390499830115">Scrivi su WhatsApp</a></p>
-      </div>
-      <div class="campo c-mail">
-        <h3>Email</h3>
-        <p class="valore"><a href="mailto:info@bazzato.it">info@bazzato.it</a></p>
-      </div>
-      <div class="campo c-lavoro">
-        <h3>Lavoro richiesto</h3>
-        <div class="lavoro-riga">
-          <div>
-            <p class="valore spuntato"><svg class="casella" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x=".75" y=".75" width="18.5" height="18.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 5l10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>Revisione in sede, €&nbsp;79</p>
-            <p>Pre-revisione gratis. Appuntamenti dalle 09.00 alle 11.00 e dalle 14.30 alle 16.00.</p>
-          </div>
-          <a class="bottone" href="tel:+390499830115" aria-label="Prenota la revisione: chiama 049 9830115">Prenota la revisione</a>
-        </div>
+  <section class="dove" id="dove" aria-labelledby="t-dove">
+    <div class="testa griglia">
+      <h2 id="t-dove">L'officina di Andrea e Paolo Bazzato, per&nbsp;auto di ogni&nbsp;marca.</h2>
+      <div class="rec">
+        <p class="rec-tel"><a href="tel:+390499830115">049 9830115</a></p>
+        <p><a href="https://wa.me/390499830115">Scrivi su WhatsApp</a> o <a href="mailto:info@bazzato.it">info@bazzato.it</a></p>
+        <p class="stacco"><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+3+Vigonovo+VE">Viale Serenissima&nbsp;3, 30030&nbsp;Vigonovo&nbsp;(VE)</a></p>
+        <p>Dal lunedì al venerdì, <span class="intero">08.00-12.00</span> e <span class="intero">14.00-18.00</span></p>
+        <p class="nota">Sabato chiuso</p>
       </div>
     </div>
+    <figure class="foto-fine">
+      <picture>
+        <source media="(max-width:700px)" srcset="img/ponte-alta-480.jpg 480w, img/ponte-alta-780.jpg 780w" sizes="100vw">
+        <img src="img/ponte-1440.jpg" srcset="img/ponte-960.jpg 960w, img/ponte-1440.jpg 1440w, img/ponte-1920.jpg 1920w, img/ponte-2400.jpg 2400w" sizes="100vw" width="1440" height="959" loading="lazy" alt="Un'auto bianca intera alzata sul ponte, vista di fianco, in un'officina luminosa con il pavimento a piastrelle">
+      </picture>
+      <figcaption>Foto indicativa</figcaption>
+    </figure>
   </section>
 </main>
 

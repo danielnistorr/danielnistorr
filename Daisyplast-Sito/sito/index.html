@@ -18,7 +18,6 @@
   --grigio:#5F625D;      /* testo secondario su latte, 5,9:1 */
   --grigio-chiaro:#BDBFB9; /* testo secondario su grafite, 9,6:1 */
   --filo:#D3D1C9;
-  --banco:#E8E5DC;       /* il banco su cui posa la shopper dei contatti, e il piede */
   --filo-scuro:rgba(243,241,234,.3);
   --m:clamp(20px,4.45vw,64px);
   --g:clamp(16px,1.67vw,24px);
@@ -134,34 +133,23 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
 .gruppi .et{display:block;font-size:14px;line-height:1.4;font-weight:600;margin-bottom:8px}
 .gruppi .elenco{display:block;font-family:var(--alto);font-weight:300;font-size:clamp(32px,3.75vw,54px);line-height:1.04;letter-spacing:-.008em;max-width:25em}
 
-/* ---------- Contatti: la loro shopper a maniglia fustellata, con i recapiti stampati sopra ---------- */
-.contatti{background:var(--banco);padding:var(--r) var(--m) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
-.contatti h2{grid-column:1 / span 6;align-self:center;max-width:6.4em;font-size:clamp(44px,6.6vw,96px);line-height:.92}
-.sacco{grid-column:7 / span 6;justify-self:center;position:relative;width:min(100%,600px);margin:0;padding:156px 44px 88px;text-align:center;font-style:normal;font-size:17px;line-height:1.6;color:var(--grafite);transform:rotate(-1.2deg);
-  background:
-    linear-gradient(116deg,rgba(255,255,255,0) 16%,rgba(255,255,255,.8) 28%,rgba(255,255,255,0) 42%),
-    linear-gradient(98deg,rgba(30,31,29,0) 63%,rgba(30,31,29,.035) 65.5%,rgba(30,31,29,0) 69%),
-    linear-gradient(to right,rgba(30,31,29,.07) 0,rgba(30,31,29,0) 1.2%,rgba(30,31,29,0) 4.6%,rgba(30,31,29,.08) 5%,rgba(255,255,255,.9) 5.2%,rgba(30,31,29,0) 5.8%,rgba(30,31,29,0) 94.2%,rgba(255,255,255,.9) 94.8%,rgba(30,31,29,.08) 95%,rgba(30,31,29,0) 95.4%,rgba(30,31,29,0) 98.8%,rgba(30,31,29,.07) 100%),
-    linear-gradient(to bottom,#FCFBF9,#F6F5F0);
-  box-shadow:0 1px 2px rgba(30,31,29,.14),0 22px 44px -22px rgba(30,31,29,.38),0 44px 90px -44px rgba(30,31,29,.3)}
-/* il rinforzo ripiegato in cima e la fustella della maniglia, che lascia vedere il banco */
-.sacco::before{content:"";position:absolute;left:0;right:0;top:0;height:118px;background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));border-bottom:1px solid rgba(30,31,29,.07)}
-.sacco::after{content:"";position:absolute;top:44px;left:50%;width:30%;height:40px;transform:translateX(-50%);border-radius:20px;background:var(--banco);box-shadow:inset 0 2px 5px rgba(30,31,29,.28),0 1px 0 rgba(255,255,255,.9)}
-/* la saldatura del fondo, una riga dritta zigrinata */
-.sacco .saldatura{position:absolute;left:0;right:0;bottom:22px;height:11px;border-top:1px solid rgba(30,31,29,.1);border-bottom:1px solid rgba(30,31,29,.1);background:repeating-linear-gradient(90deg,rgba(30,31,29,.12) 0 1px,rgba(30,31,29,0) 1px 4px)}
-.sacco .stampa{position:relative}
-.sacco .stampa img{width:min(280px,70%);margin:0 auto}
-.sacco .grande{display:inline-block;margin-top:34px;font-family:var(--alto);font-weight:300;font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.01em;font-variant-numeric:lining-nums proportional-nums;text-decoration:none;padding:0 4px 6px;border-bottom:2px solid var(--grigio);transition:border-color .15s}
-.sacco .grande:hover{border-bottom-color:var(--grafite)}
-.sacco .righe{margin-top:30px}
-.sacco .righe p+p{margin-top:14px}
-.sacco a{text-underline-offset:4px;text-decoration-thickness:1px}
-.sacco .et{color:var(--grigio)}
-.sacco .nw{white-space:nowrap}
+/* ---------- Chiusura: la foto delle bobine a filo del bordo sinistro, a destra la frase e i recapiti ---------- */
+.contatti{padding:clamp(24px,3vw,48px) var(--m) var(--r);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.contatti .foto{grid-column:1 / span 6;grid-row:1;position:relative;margin-left:calc(-1 * var(--m));min-height:clamp(560px,53vw,780px);background:var(--grafite)}
+.contatti .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.contatti .testo{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:56px}
+.contatti h2{font-size:clamp(44px,5vw,76px);line-height:.94;max-width:9.5em}
+.contatti address{max-width:34em;font-style:normal;font-size:clamp(17px,1.25vw,18px);line-height:1.55}
+.contatti address p+p{margin-top:12px}
+.contatti .numero{font-variant-numeric:lining-nums proportional-nums;display:inline-flex;align-items:center;min-height:44px;margin-bottom:4px;font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-.01em;white-space:nowrap;text-underline-offset:.16em;text-decoration-thickness:1px}
+.contatti .numero:hover{text-decoration-thickness:2px}
+.contatti address a:not(.numero){display:inline-block;padding:2px 0;text-underline-offset:4px;text-decoration-thickness:1px}
+.contatti .grigio{color:var(--grigio)}
+.contatti .nw{white-space:nowrap}
 
-/* il piede: una riga sola sul banco */
-.piede{background:var(--banco);padding:clamp(72px,8vw,120px) var(--m) 36px;color:var(--grigio);font-size:14px;line-height:1.6}
-.piede p{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;padding-top:16px;border-top:1px solid #CFCCC2}
+/* il piede: una riga sola, sotto un filetto */
+.piede{padding:0 var(--m) 32px;color:var(--grigio);font-size:14px;line-height:1.6}
+.piede p{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;padding-top:16px;border-top:1px solid var(--filo)}
 .piede strong{color:var(--grafite);font-weight:600}
 .piede a{color:inherit;text-underline-offset:3px}
 .piede a:hover{color:var(--grafite)}
@@ -179,6 +167,8 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   :root{--mezza:14vw}
   .dato .kg{font-size:76px}
   .cartellino{width:400px}
+  .contatti .foto{grid-column:1 / span 5}
+  .contatti .testo{grid-column:7 / span 6}
 }
 /* ---------- tavoletta ---------- */
 @media (max-width:860px){
@@ -190,10 +180,11 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   .pannello.chiaro .cartellino{box-shadow:none}
   .percorso .capo{display:block}
   .cifre li{width:clamp(96px,16vw,140px)}
-  .contatti{display:block}
-  .contatti h2{max-width:11em;font-size:clamp(44px,7vw,72px)}
-  .sacco{margin:clamp(40px,6vw,56px) auto 0;transform:rotate(-1deg)}
-  .sacco .grande{font-size:clamp(72px,13vw,112px)}
+  .contatti{display:block;padding-top:0}
+  .contatti .foto{margin:0 calc(-1 * var(--m));min-height:0}
+  .contatti .foto img{position:static;height:auto;aspect-ratio:3/2}
+  .contatti .testo{margin-top:clamp(40px,6vw,56px);gap:40px}
+  .contatti h2{max-width:11em;font-size:clamp(44px,7vw,64px)}
 }
 /* ---------- tavoletta verticale: la colonna resta un manifesto, il testo scende sotto ---------- */
 @media (min-width:561px) and (max-width:860px){
@@ -248,11 +239,10 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
   .indice button{font-size:13px;padding:14px 0 18px}
   .indice button .k{display:block}
   .gruppi .elenco{font-size:32px;line-height:1.06}
-  .sacco{transform:none;padding:112px 20px 70px;font-size:16px}
-  .sacco::before{height:92px}
-  .sacco::after{top:34px;width:34%;height:34px}
-  .sacco .stampa img{width:min(200px,62%)}
-  .sacco .grande{margin-top:26px;font-size:clamp(60px,19vw,84px)}
+  .contatti .foto img{aspect-ratio:1/1}
+  .contatti .testo{margin-top:32px;gap:32px}
+  .contatti h2{font-size:clamp(40px,12.4vw,52px);line-height:.95}
+  .contatti .numero{font-size:30px}
 }
 @media (max-width:359px){
   .indice button{font-size:12px}
@@ -456,20 +446,22 @@ h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--c
 </section>
 
 <section class="contatti" id="contatti" aria-labelledby="t-contatti">
-  <h2 id="t-contatti" class="alto">Misure, materiale, quantità: ditecele al telefono</h2>
-  <address class="sacco">
-    <span class="saldatura" aria-hidden="true"></span>
-    <div class="stampa">
-      <img src="img/logo.webp" width="530" height="146" alt="Daisyplast s.r.l." loading="lazy">
-      <a class="grande num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a>
-      <div class="righe">
-        <p>Via del Lavoro 25, <span class="nw">Tombelle di Vigonovo</span><br><span class="num">30030</span> Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+25+30030+Vigonovo+VE">Apri la mappa</a></p>
-        <p><a href="mailto:info@daisyplast.it">info@daisyplast.it</a><br><span class="num">Fax 049&nbsp;982&nbsp;9961</span></p>
-        <p class="num"><span class="et">Carico e scarico</span><br><span class="nw">Lun–Ven 8:00–12:00</span> <span class="nw">e 14:00–17:30</span><br>Sab–Dom chiuso</p>
-        <p>Consegne con i nostri mezzi</p>
-      </div>
-    </div>
-  </address>
+  <figure class="foto">
+    <picture>
+      <source media="(max-width:560px)" srcset="img/chiusa-q-600.webp 600w, img/chiusa-q-1000.webp 1000w" sizes="100vw">
+      <source media="(max-width:860px)" srcset="img/chiusa-l-900.webp 900w, img/chiusa-l-1600.webp 1600w" sizes="100vw">
+      <img src="img/chiusa-720.webp" srcset="img/chiusa-720.webp 720w, img/chiusa-1180.webp 1180w" sizes="50vw" width="720" height="773" loading="lazy" alt="Bobine di film bianco avvolte sui mandrini di una linea, accanto agli ingranaggi">
+    </picture>
+  </figure>
+  <div class="testo">
+    <h2 id="t-contatti" class="alto">Estrudiamo il film in bolla e lo saldiamo in sacchi, shopper, bobine e monopieghe.</h2>
+    <address>
+      <p><a class="numero" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a></p>
+      <p><a href="mailto:info@daisyplast.it">info@daisyplast.it</a><br><span class="grigio num">Fax 049&nbsp;982&nbsp;9961</span></p>
+      <p>Via del Lavoro 25, <span class="nw">Tombelle di Vigonovo</span>, <span class="nw num">30030 Vigonovo (VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+25+30030+Vigonovo+VE">Apri la mappa</a></p>
+      <p class="grigio num">Carico e scarico dal lunedì al venerdì, <span class="nw">8:00–12:00</span> e <span class="nw">14:00–17:30</span>; sabato e domenica chiuso. Consegne con i nostri mezzi.</p>
+    </address>
+  </div>
 </section>
 </main>
 

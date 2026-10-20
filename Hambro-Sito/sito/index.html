@@ -215,42 +215,41 @@ p,li,dd,td{text-wrap:pretty}
 .storia .anno b{display:block;margin-top:18px;font-weight:540;font-size:15px}
 .storia .testo{grid-column:7/12;align-self:end;font-size:22px;line-height:1.45;letter-spacing:-.005em}
 
-/* contatti: un cartellino da campionario in scala reale, 100 mm, legato con un laccio tubolare da 3 mm, posato sulla carta */
-.contatti{--cartoncino:#E8DBC4;padding-top:24px;padding-bottom:120px}
-.contatti .invito{grid-column:1/6;align-self:start;padding-top:calc(34 * var(--u) + 24px)}
-.contatti .invito p{margin-top:24px;color:var(--grigio);max-width:22em}
-.appeso{grid-column:7/13;justify-self:center;position:relative;padding-top:calc(34 * var(--u));width:calc(100 * var(--u));max-width:100%}
-.laccio{position:absolute;left:50%;top:0;width:calc(62 * var(--u));height:calc(34 * var(--u) + 13 * var(--u));margin-left:calc(-62 * var(--u));overflow:visible;pointer-events:none;z-index:2;filter:drop-shadow(3px 4px 3px rgba(60,30,10,.28))}
-.laccio path{fill:none;stroke-linecap:butt;vector-effect:non-scaling-stroke}
-.laccio .corpo{stroke:var(--cuoio);stroke-width:calc(3 * var(--u))}
-.laccio .luce{stroke:#9A5F37;stroke-width:calc(.9 * var(--u))}
-.laccio-dida{position:absolute;top:calc(1 * var(--u));right:calc(50% + 64 * var(--u));text-align:right;white-space:nowrap;font-size:13px;line-height:1.4;color:var(--grigio)}
-.cartellino{position:relative;filter:drop-shadow(5px 7px 6px rgba(60,30,10,.22))}
-.cartellino .carta{position:relative;background:var(--cartoncino);color:var(--inchiostro);padding:calc(26 * var(--u)) 28px 26px;clip-path:polygon(calc(16 * var(--u)) 0,calc(100% - 16 * var(--u)) 0,100% calc(16 * var(--u)),100% 100%,0 100%,0 calc(16 * var(--u)))}
-.occhiello{position:absolute;left:50%;top:calc(13 * var(--u));width:calc(12 * var(--u));height:calc(12 * var(--u));margin:calc(-6 * var(--u)) 0 0 calc(-6 * var(--u));border-radius:50%;background:radial-gradient(circle,#3A2012 0 calc(2.6 * var(--u)),#9C8564 calc(2.6 * var(--u)) calc(3.1 * var(--u)),#D9C8AB calc(3.1 * var(--u)) calc(5.6 * var(--u)),#C7B394 calc(5.6 * var(--u)))}
-.cartellino .marca{display:block;text-align:center;font-stretch:125%;font-weight:640;font-size:15px;letter-spacing:.14em;color:var(--cuoio);line-height:1;padding-bottom:18px}
-.cartellino a:hover{color:var(--cuoio)}
-.cartellino dl{font-size:15px}
-.cartellino dl>div{padding:12px 0;background:linear-gradient(var(--filo),var(--filo)) top/100% 1px no-repeat}
-.cartellino dt{font-size:13px;color:var(--grigio)}
-.cartellino dd{margin-top:2px}
-.cartellino .tel{display:inline-flex;align-items:center;min-height:44px;font-stretch:112%;font-weight:400;font-size:32px;line-height:1.1;letter-spacing:-.02em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
-.cartellino .tel:hover{text-decoration-thickness:2px}
-.cartellino dd a{display:inline-block;padding:2px 0}
-.cartellino .ore{display:grid;grid-template-columns:auto auto;column-gap:16px;row-gap:2px}
-.cartellino .ore span:nth-child(even){text-align:right;white-space:nowrap}
-.quota{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13px;color:var(--grigio);line-height:1}
-.quota::before,.quota::after{content:"";flex:1;height:9px;background:linear-gradient(var(--grigio),var(--grigio)) center/100% 1px no-repeat}
-.quota::before{border-left:1px solid var(--grigio)}
-.quota::after{border-right:1px solid var(--grigio)}
+/* chiusura (stile B "con foto", scelto il 20 ottobre): la frase, i recapiti e una foto grande che esce dal bordo destro */
+.chiusa{padding-top:clamp(96px,10vw,144px);padding-bottom:clamp(88px,9vw,128px)}
+.chiusa .testo{grid-column:1/6;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.chiusa h2{font-size:clamp(34px,4.17vw,60px);line-height:1;letter-spacing:-.035em;font-weight:380}
+.chiusa .rec{font-size:17px;line-height:1.55}
+.chiusa .rec p+p{margin-top:10px}
+.chiusa .rec .numero{margin-bottom:6px}
+.chiusa .rec a:not(.numero){display:inline-block;padding:2px 0}
+.chiusa .rec .grigio{color:var(--grigio)}
+.chiusa .nb{white-space:nowrap}
+.chiusa .foto{grid-column:7/13;grid-row:1;margin-right:calc(-1 * var(--m))}
+.chiusa .foto img{width:100%;height:clamp(560px,53vw,780px);object-fit:cover;object-position:100% 40%}
+@media (max-width:900px){
+  .chiusa{padding-top:0}
+  .chiusa .foto{grid-column:1/13;margin-left:calc(-1 * var(--m))}
+  .chiusa .foto img{height:auto;aspect-ratio:1/1;max-height:640px;object-position:100% 50%}
+  .chiusa .testo{grid-column:1/13;grid-row:2;margin-top:48px;gap:40px}
+  .chiusa h2{font-size:clamp(40px,5.6vw,50px);max-width:14em}
+}
+@media (max-width:700px){
+  .chiusa{padding-bottom:72px}
+  .chiusa .testo{margin-top:36px;gap:32px}
+  .chiusa h2{font-size:clamp(32px,9.2vw,40px);line-height:1.02}
+}
 
-/* piede: una riga sola, nel tono della pagina */
-.piede{padding-top:22px;padding-bottom:28px;font-size:15px;line-height:1.5;color:var(--grigio)}
+/* piede: una riga sola, nel tono della pagina; l'unico filetto della chiusura */
+.piede{padding-bottom:28px;font-size:15px;line-height:1.5;color:var(--grigio)}
 .piede .riga{display:flex;flex-wrap:wrap;gap:6px 28px;padding-top:18px;border-top:1px solid var(--filo);grid-column:1/13}
 .piede .riga>*{display:inline-flex;align-items:center;min-height:24px}
 .piede .fb{margin-left:auto}
 .piede a{color:var(--grigio)}
 .piede a:hover{color:var(--inchiostro)}
+.numero{display:inline-flex;align-items:center;min-height:44px;font-stretch:112%;font-weight:400;font-size:clamp(28px,2.23vw,32px);line-height:1.1;letter-spacing:-.02em;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+.numero:hover{text-decoration-thickness:2px}
+@media (max-width:700px){.piede .fb{margin-left:0}}
 
 /* navigazione compatta: sotto i 1000 px le voci passano su una riga sotto il marchio, che scorre di lato */
 @media (max-width:1000px){
@@ -268,7 +267,6 @@ p,li,dd,td{text-wrap:pretty}
   .tav2 .b1{grid-column:3/7}
   .tav2 .b2{grid-column:7/11}
   .tav2 figcaption{grid-column:3/11}
-  .contatti .invito{grid-column:1/7}
 }
 @media (max-width:900px){
   .apertura .azione{flex-direction:column;align-items:flex-start}
@@ -281,8 +279,6 @@ p,li,dd,td{text-wrap:pretty}
   .ricopertura .testo,.misure,.semilavorati .testo{grid-column:1/13}
   .storia .anno,.storia .testo{grid-column:1/13}
   .storia .testo{margin-top:32px}
-  .contatti .invito{grid-column:1/13;padding-top:72px}
-  .appeso{grid-column:1/13;justify-self:start;margin-top:24px;margin-left:calc(56 * var(--u))}
   .prova{height:auto;aspect-ratio:390/330}
   .mestieri h2,.mestieri .intro{grid-column:1/13}
   .testata-quote,.settore li{grid-template-columns:minmax(0,1fr) 150px calc(60 * var(--u) + 12px)}
@@ -325,23 +321,12 @@ p,li,dd,td{text-wrap:pretty}
   .tav2 figcaption{grid-column:1/13;flex-direction:column}
   .prova{aspect-ratio:390/360}
   .semilavorati{padding-top:72px}
-  .contatti{padding-top:8px;padding-bottom:72px}
-  .contatti .invito{padding-top:64px}
-  .appeso{margin-left:0;margin-top:16px}
-  .cartellino .carta{padding-left:20px;padding-right:20px}
-  .laccio{width:calc(40 * var(--u));margin-left:calc(-40 * var(--u))}
-  .laccio-dida{right:auto;left:50%;margin-left:calc(9 * var(--u));top:calc(8 * var(--u));text-align:left}
-  .piede .fb{margin-left:0}
   /* misure per settore: nome e misura sopra, quota sotto */
   .testata-quote{display:flex;justify-content:flex-end}
   .testata-quote .nome,.testata-quote .mis{display:none}
   .settore li{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}
   .settore li .sc{grid-column:1/3;justify-self:end}
   .settore li .sc:empty{display:none}
-}
-@media (max-width:360px){
-  .cartellino .ore{grid-template-columns:1fr;row-gap:0}
-  .cartellino .ore span:nth-child(even){text-align:left;white-space:normal;margin-bottom:6px}
 }
 @media (max-width:360px){
   .scelte span{padding:0 6px;font-size:13px}
@@ -587,34 +572,23 @@ p,li,dd,td{text-wrap:pretty}
   </div>
 </section>
 
-<section class="contatti" id="contatti" aria-labelledby="t-con">
+<section class="chiusa" id="contatti" aria-labelledby="t-con">
   <div class="griglia">
-    <div class="invito">
-      <h2 class="h2" id="t-con">Per ordini e campioni</h2>
-      <p>Sul sito c'è solo una parte di quello che è disponibile: il resto si chiede al telefono o per posta.</p>
-    </div>
-    <div class="appeso">
-      <svg class="laccio" aria-hidden="true" focusable="false" viewBox="0 0 62 47" preserveAspectRatio="none">
-        <path class="corpo" d="M62 47 C61 34 56 26 44 21 C30 15 18 13 6 4"/>
-        <path class="luce" d="M62 47 C61 34 56 26 44 21 C30 15 18 13 6 4"/>
-        <path class="corpo" d="M62 47 C62 33 52 30 40 27 C26 24 14 22 2 14"/>
-        <path class="luce" d="M62 47 C62 33 52 30 40 27 C26 24 14 22 2 14"/>
-      </svg>
-      <p class="laccio-dida">Laccio tubolare<br>in pelle, mm&nbsp;3</p>
-      <div class="cartellino">
-        <div class="carta">
-          <span class="occhiello" aria-hidden="true"></span>
-          <p class="marca">HAMBRO</p>
-          <dl>
-            <div><dt>Telefono</dt><dd><a class="tel" href="tel:+390499802326">049&nbsp;980&nbsp;2326</a></dd></div>
-            <div><dt>Posta</dt><dd><a href="mailto:commerciale@hambro.it">commerciale@hambro.it</a></dd></div>
-            <div><dt>Indirizzo</dt><dd>via dell'Artigianato, 30<br>30030 Vigonovo (Venezia)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Hambro%20srl%2C%20via%20dell%27Artigianato%2030%2C%2030030%20Vigonovo%20VE">Apri la mappa</a></dd></div>
-            <div><dt>Orari</dt><dd class="ore"><span>Lunedì a giovedì</span><span>8:00&#8288;-&#8288;12:00 e 13:30&#8288;-&#8288;17:30</span><span>Venerdì</span><span>8:00&#8288;-&#8288;12:00</span><span>Sabato e domenica</span><span>chiuso</span></dd></div>
-          </dl>
-        </div>
+    <div class="testo">
+      <h2 id="t-con">Sul sito c'è solo una parte. Il resto si chiede al telefono o per posta.</h2>
+      <div class="rec">
+        <p><a class="numero" href="tel:+390499802326">049&nbsp;980&nbsp;2326</a></p>
+        <p><a href="mailto:commerciale@hambro.it">commerciale@hambro.it</a></p>
+        <p>via dell'Artigianato, 30, 30030&nbsp;Vigonovo (Venezia)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Hambro%20srl%2C%20via%20dell%27Artigianato%2030%2C%2030030%20Vigonovo%20VE">Apri la mappa</a></p>
+        <p class="grigio">Lunedì a giovedì <span class="nb">8:00&#8288;-&#8288;12:00 e 13:30&#8288;-&#8288;17:30</span><br>Venerdì <span class="nb">8:00&#8288;-&#8288;12:00</span>, sabato e domenica chiuso</p>
       </div>
-      <p class="quota" aria-hidden="true"><span data-quota>mm 100</span></p>
     </div>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/chiusa-m-390.jpg 390w, img/chiusa-m-780.jpg 780w, img/chiusa-m-1170.jpg 1170w" sizes="100vw">
+        <img src="img/chiusa-720.jpg" srcset="img/chiusa-720.jpg 720w, img/chiusa-1440.jpg 1440w" sizes="50vw" width="720" height="773" loading="lazy" alt="Fibbia ad ardiglione in metallo dorato su un piano lucido">
+      </picture>
+    </figure>
   </div>
 </section>
 </main>
@@ -686,13 +660,8 @@ p,li,dd,td{text-wrap:pretty}
     o+='</svg>';
     el.innerHTML=o;
   }
-  /* quota del cartellino: la larghezza vera in millimetri, taratura inclusa */
-  function quota(){
-    var q=document.querySelector('[data-quota]'),c=document.querySelector('.cartellino');if(!q||!c)return;
-    q.textContent='mm '+Math.round(c.getBoundingClientRect().width/(96/25.4*k));
-  }
-  disegna();quota();
-  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){disegna();quota();},60);});
+  disegna();
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(disegna,60);});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(disegna);
 
   /* banco di misura */
@@ -753,7 +722,7 @@ p,li,dd,td{text-wrap:pretty}
   document.querySelectorAll('input[name=col]').forEach(function(r){r.addEventListener('change',function(){str.style.setProperty('--c',r.value);});});
   tacche();scegli(30);
   if(kIn){kIn.addEventListener('input',function(){
-    k=parseFloat(kIn.value)||1;root.style.setProperty('--k',k);disegna();quota();
+    k=parseFloat(kIn.value)||1;root.style.setProperty('--k',k);disegna();
     try{localStorage.setItem('hambro-k',String(k))}catch(e){}
   });}
 })();

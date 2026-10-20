@@ -131,44 +131,25 @@ p{margin:0;text-wrap:pretty}
 .alluminio .sotto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);margin-top:40px}
 .alluminio .sotto p{grid-column:7 / span 5}
 
-/* reparto e contatti */
-.reparto{padding-top:var(--ritmo);padding-bottom:calc(var(--ritmo) - 16px);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start}
-.reparto .sx{grid-column:1 / span 4;align-self:stretch;display:flex;flex-direction:column}
-.reparto .dx{grid-column:7 / span 6}
-.reparto .foto{margin-top:14px}
-.reparto .dati{max-width:calc(100% - 1.5em)}
-.reparto .anno{font-size:120px;line-height:.86;letter-spacing:-.04em;font-stretch:112%;font-weight:400;font-variant-numeric:lining-nums proportional-nums}
-.reparto .anno + p{margin-top:18px;max-width:24em}
-/* contatti: la scala dei colori del titanio, dal naturale al verde. Le barrette sono tinte piatte
-   prese dai pezzi in foto; l'ultima, la verde, e' una targhetta e porta i recapiti */
-.invito{margin-top:auto;padding-top:56px}
-.invito h2{font-size:34px;line-height:1.12;letter-spacing:-.015em}
-.invito p{margin-top:16px;max-width:20em}
-.scala{margin-top:40px}
-.scala .nota{font-size:14px;color:var(--grigio);margin-bottom:12px}
-.barrette{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:14px;font-weight:500;line-height:1}
-.barrette li{position:relative;height:30px;display:flex;align-items:center;padding-left:34px;background:var(--c);color:var(--grafite)}
-.barrette li.scura{color:var(--bianco)}
-.foro{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--bianco);border:1px solid var(--grafite)}
-.barrette .foro{left:12px;top:9px}
-.targa{position:relative;margin-top:3px;background:#5DBDB0;color:var(--grafite);padding:28px 44px 28px}
-.targa .foro{top:12px}
-.targa .foro.s{left:12px}
-.targa .foro.d{right:12px}
-.targa .foro.giu{top:auto;bottom:12px}
-.targa .testa{display:flex;justify-content:space-between;gap:16px;font-size:14px;font-weight:500;line-height:1.2}
-.targa .via{margin-top:14px;font-size:34px;line-height:1.08;letter-spacing:-.015em;font-stretch:112%;font-weight:430}
-.targa .luogo{margin-top:6px}
-.targa .mappa{font-size:15px}
-.targa .mappa a{display:inline-block;padding:12px 0}
-.targa .recapiti{display:flex;flex-wrap:wrap;gap:16px 56px;margin-top:6px;padding-top:18px;border-top:1px solid var(--grafite)}
-.targa .recapiti p{display:flex;flex-direction:column;justify-content:space-between}
-.targa .recapiti span{display:block;font-size:14px;font-weight:500;margin-bottom:4px}
-.targa a{color:var(--grafite)}
-.targa a:hover{color:var(--grafite);text-decoration-thickness:2px}
-.targa .tel{display:inline-block;font-size:40px;line-height:1.1;letter-spacing:-.015em;font-stretch:112%;font-weight:430;text-decoration-thickness:2px;text-underline-offset:.16em;padding:2px 0 4px}
-.targa .tel:hover{text-decoration-thickness:3px}
-.targa .mail{display:inline-block;font-size:20px;line-height:1.2;padding:10px 0;overflow-wrap:anywhere}
+/* reparto: il 2018, a sinistra il numero, alla colonna 7 la frase */
+.reparto{padding-top:var(--ritmo);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:end}
+.reparto .anno{grid-column:1 / span 6;font-size:120px;line-height:.86;letter-spacing:-.04em;font-stretch:112%;font-weight:400;font-variant-numeric:lining-nums proportional-nums}
+.reparto .dati{grid-column:7 / span 5}
+.reparto .dati p{max-width:24em}
+
+/* chiusura: la foto dello stabilimento a sinistra, a filo del bordo della pagina; a destra, alla
+   colonna 7 come gli altri testi, la frase in carattere di titolo e i recapiti in poche righe */
+.chiusa{padding-top:var(--ritmo);padding-bottom:calc(var(--ritmo) - 16px)}
+.chiusa .griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.chiusa .foto{grid-column:1 / span 6;grid-row:1;margin-right:var(--g);
+  margin-left:calc(-1 * var(--m) - max(0px, (100vw - 1440px) / 2))}
+.chiusa .foto img{width:100%;height:clamp(560px,46vw,720px);object-fit:cover;object-position:50% 44%}
+.chiusa .testo{grid-column:7 / span 6;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.chiusa h2{font-size:56px;line-height:1.02;letter-spacing:-.022em;max-width:10.5em}
+.chiusa .rec p + p{margin-top:6px}
+.chiusa .rec a{display:inline-block;padding:10px 0}
+.chiusa .rec .tel{font-size:40px;line-height:1.1;letter-spacing:-.015em;font-stretch:112%;font-weight:430;text-decoration-thickness:2px;text-underline-offset:.16em;padding:0 0 6px}
+.chiusa .rec .mail{overflow-wrap:anywhere}
 
 /* piede: una riga sola nel tono della pagina */
 .piede .riga{display:flex;flex-wrap:wrap;gap:6px 32px;margin:0;padding:20px 0 24px;border-top:1px solid var(--filetto);font-size:14px;line-height:1.5;color:var(--grigio)}
@@ -195,11 +176,11 @@ p{margin:0;text-wrap:pretty}
   .colore .corpo > p{grid-column:1 / span 4}
   .pezzi{grid-column:5 / span 8}
   .alluminio h2{font-size:34px}
-  .reparto .dx{grid-column:6 / span 7}
-  .invito h2{font-size:30px}
-  .targa{padding:30px 36px 32px}
-  .targa .via{font-size:30px}
-  .targa .tel{font-size:36px}
+  .reparto .dati{grid-column:6 / span 7}
+  .chiusa .testo{grid-column:6 / span 7}
+  .chiusa .foto{grid-column:1 / span 5}
+  .chiusa h2{font-size:48px}
+  .chiusa .rec .tel{font-size:36px}
   .alluminio .sotto p{grid-column:6 / span 7}
   .reparto .anno{font-size:96px}
 }
@@ -223,12 +204,12 @@ p{margin:0;text-wrap:pretty}
   .colore .corpo > p{max-width:34em;padding-bottom:0}
   .pezzi{margin-top:24px}
   .alluminio .sotto p{grid-column:1 / span 10}
-  .reparto .sx,.reparto .dx{display:contents}
-  .reparto .foto{grid-column:1 / span 5;grid-row:1;margin-top:10px}
-  .reparto .dati{grid-column:7 / span 6;grid-row:1;max-width:none}
-  .invito{grid-column:1 / span 9;grid-row:2;padding-top:72px}
-  .scala{grid-column:1 / -1;grid-row:3;margin-top:36px}
-  .reparto .anno{font-size:88px}
+  .reparto .anno{grid-column:1 / span 5;font-size:88px}
+  .reparto .dati{grid-column:6 / span 7}
+  .chiusa .foto{grid-column:1 / -1;margin:0 calc(-1 * var(--m))}
+  .chiusa .foto img{height:auto;aspect-ratio:4 / 3}
+  .chiusa .testo{grid-column:1 / -1;grid-row:2;margin-top:48px;gap:36px}
+  .chiusa h2{max-width:11em}
   .piede .riga{gap:4px 24px}
   .piede .riga .privacy{margin-left:0}
 }
@@ -272,20 +253,11 @@ p{margin:0;text-wrap:pretty}
   .colori{height:40px;font-size:12px}
   .alluminio .sotto{margin-top:32px}
   .alluminio .sotto p{grid-column:1 / -1}
-  .reparto .foto{grid-column:1 / -1;margin-top:0;margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1)}
-  .reparto .dati{grid-column:1 / -1;grid-row:2;margin-top:56px}
-  .invito{grid-column:1 / -1;grid-row:3;padding-top:56px}
-  .scala{grid-row:4;margin-top:28px}
-  .reparto .anno{font-size:80px}
-  .invito h2{font-size:26px}
-  .targa{padding:30px 20px 28px}
-  .targa .foro{top:9px}
-  .targa .foro.s{left:9px}
-  .targa .foro.d{right:9px}
-  .targa .foro.giu{top:auto;bottom:9px}
-  .targa .via{font-size:min(26px,7.4vw)}
-  .targa .tel{font-size:32px}
-  .targa .mail{font-size:18px}
+  .reparto .anno{grid-column:1 / -1;font-size:80px}
+  .reparto .dati{grid-column:1 / -1;margin-top:18px}
+  .chiusa .testo{margin-top:36px;gap:28px}
+  .chiusa h2{font-size:min(36px,10.4vw);line-height:1.04}
+  .chiusa .rec .tel{font-size:32px}
 }
 @media (max-width:380px){
   .testata .azioni .scrivi{display:none}
@@ -406,44 +378,26 @@ p{margin:0;text-wrap:pretty}
   </div>
 </section>
 
-<section class="gabbia reparto" id="reparto" aria-label="Il reparto e i contatti">
-  <div class="sx">
-  <figure class="foto">
-    <picture>
-      <source media="(max-width:560px)" srcset="img/reparto-largo-400.jpg 400w, img/reparto-largo-800.jpg 800w, img/reparto-largo-1280.jpg 1280w" sizes="100vw">
-      <img src="img/reparto-720.jpg" srcset="img/reparto-480.jpg 480w, img/reparto-720.jpg 720w, img/reparto-960.jpg 960w" sizes="(max-width:900px) 40vw, (max-width:1200px) 34vw, 422px" width="960" height="960" loading="lazy" alt="Lo stabilimento di Viale Serenissima 15 visto dall'alto, con il tetto a shed">
-    </picture>
-  </figure>
-  <div class="invito">
-    <h2 id="t-contatti">Scriveteci o chiamate</h2>
-    <p>Per un preventivo mandate disegno, materiale e quantità.</p>
-  </div>
-  </div>
-  <div class="dx">
+<section class="gabbia reparto" id="reparto" aria-label="Il reparto">
+  <p class="anno">2018</p>
   <div class="dati">
-    <p class="anno">2018</p>
     <p>A luglio l'officina si è allargata e ha installato l'impianto di ossidazione anodica dell'alluminio e del titanio.</p>
   </div>
-  <div class="scala" id="contatti" role="group" aria-labelledby="t-contatti">
-    <p class="nota">Sul titanio il colore cambia man mano che l'ossido cresce: dal naturale al verde.</p>
-    <ol class="barrette" aria-hidden="true">
-      <li style="--c:#BDBBB6"><i class="foro"></i>Naturale</li>
-      <li style="--c:#D9AA3F"><i class="foro"></i>Oro</li>
-      <li class="scura" style="--c:#1F5FAE"><i class="foro"></i>Blu</li>
-      <li class="scura" style="--c:#B9406F"><i class="foro"></i>Rosa</li>
-    </ol>
-    <div class="targa">
-      <i class="foro s" aria-hidden="true"></i><i class="foro d" aria-hidden="true"></i><i class="foro s giu" aria-hidden="true"></i><i class="foro d giu" aria-hidden="true"></i>
-      <p class="testa"><span>Stabilimento</span><span aria-hidden="true">Verde</span></p>
-      <p class="via">Viale <span class="nw">Serenissima 15</span></p>
-      <p class="luogo">Zona artigianale, 30030 Tombelle di Vigonovo (VE)</p>
-      <p class="mappa"><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+15%2C+30030+Tombelle+di+Vigonovo+VE">Indicazioni stradali</a></p>
-      <div class="recapiti">
-        <p><span>Telefono</span><a class="tel num" href="tel:+39049503240">049 503240</a></p>
-        <p><span>Email</span><a class="mail" href="mailto:info@bertolinantonio.it">info@bertolinantonio.it</a></p>
+</section>
+
+<section class="chiusa" id="contatti" aria-labelledby="t-contatti">
+  <div class="gabbia griglia">
+    <figure class="foto">
+      <img src="img/chiusa-1100.jpg" srcset="img/chiusa-700.jpg 700w, img/chiusa-1100.jpg 1100w, img/chiusa-1650.jpg 1650w, img/chiusa-2200.jpg 2200w" sizes="(max-width:900px) 100vw, 50vw" width="2200" height="1520" loading="lazy" alt="Lo stabilimento di Viale Serenissima 15 visto dall'alto, con il tetto a shed">
+    </figure>
+    <div class="testo">
+      <h2 id="t-contatti">Per un preventivo mandate disegno, materiale e quantità.</h2>
+      <div class="rec">
+        <p><a class="tel num" href="tel:+39049503240">049 503240</a></p>
+        <p><a class="mail" href="mailto:info@bertolinantonio.it">info@bertolinantonio.it</a></p>
+        <p>Viale <span class="nw">Serenissima 15</span>, zona artigianale<br>30030 Tombelle di Vigonovo (VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Serenissima+15%2C+30030+Tombelle+di+Vigonovo+VE">Indicazioni stradali</a></p>
       </div>
     </div>
-  </div>
   </div>
 </section>
 </main>

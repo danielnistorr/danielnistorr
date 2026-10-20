@@ -56,7 +56,7 @@ Attenzione all'apertura: nella foto segnaposto l'auto sul ponte è senza paraurt
    - niente carrelli, scale e cavi in vista, niente targhe leggibili, niente marchi di attrezzature in primo piano;
    - luce dei neon più quella del portone aperto; bilanciamento neutro;
    - uno scatto orizzontale (almeno 4000 px di larghezza) e uno verticale per il telefono, con l'auto nel terzo alto.
-2. **Il ponte** (la seconda foto della home): un'auto intera alzata, vista di fianco, con aria ai due lati e l'officina chiara dietro, con la stessa luce dell'apertura; formato 3:2 orizzontale con margine per il taglio 5:4 del telefono. Niente gomme a terra, persone o insegne con marchi nel quadro.
+2. **Il ponte** (la seconda foto della home, in chiusura sotto i recapiti): un'auto intera alzata, vista di fianco, con aria ai due lati e l'officina chiara dietro, con la stessa luce dell'apertura; formato 3:2 orizzontale con margine per il taglio 5:4 del telefono. Niente gomme a terra, persone o insegne con marchi nel quadro.
 3. **Per le pagine dei servizi**: mani di un loro meccanico che montano una ruota sul mozzo, in luce naturale, da vicino, guanti senza marchi.
 4. **Utili per le altre pagine**:
    - la linea revisione con un'auto in prova;

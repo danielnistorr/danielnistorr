@@ -28,6 +28,6 @@ Scaricate il 19 ottobre 2026 da `https://irp.cdn-website.com/4abcab3c/dms3rep/mu
 ## Uso nella home finale (`sito/`, 19 ottobre 2026)
 
 - Unsplash in pagina: `unsplash-tJ-SrdvRF20.jpg` (vergine), `unsplash-mFcsYcSSiMQ.jpg` (rigenerato), `unsplash-kFK54FCIB3U.jpg` (compostabile). Lavorate con `_prova/script/finale_img.py`, nessuna didascalia le attribuisce a Daisyplast.
-- Dal sito daisyplast.it: 015 (apertura: la bolla; tappa 2: il quadro comandi, taglio diverso della stessa foto), 005 (tappa 1), 001 (tappa 3), 002 (tappa 5), Logo.png (testata). Diritti da chiarire con l'azienda. Non più usate dopo la revisione: 007 (bobina rossa) e la 005 intera nei contatti.
+- Dal sito daisyplast.it: 015 (apertura: la bolla; tappa 2: il quadro comandi, taglio diverso della stessa foto), 005 (tappa 1), 001 (tappa 3, e in un altro taglio la foto della chiusura), 002 (tappa 5), Logo.png (testata). Diritti da chiarire con l'azienda. Non più usate dopo la revisione: 007 (bobina rossa) e la 005 intera nei contatti.
 - Non usate nella finale: `unsplash-QF-xrQgybxw.jpg` (è una rete, non un film), `unsplash-wV_-MIsn6lU.jpg` (bancali con il marchio di un produttore di resina: non pubblicabile), `unsplash-pAEwRKQJcn8.jpg`, `unsplash-nnlRR2NF2ko.jpg`, `unsplash-C7X5ijG_-uM.jpg`, `unsplash-bQ9y93kdk4c.jpg`, `unsplash-7BeJEad4cso.jpg`.
 - Nessuna foto nuova scaricata per la finale.

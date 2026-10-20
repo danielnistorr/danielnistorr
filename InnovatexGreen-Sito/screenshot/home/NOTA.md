@@ -2,8 +2,8 @@
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`.
 Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `home-finale.html`,
-misure, prova del gesto, larghezze da 320 a 2560, segnali, screenshot, chiusura con `chiusura.mjs`). Altezza a 1440: 5.224 px.
-A 390: 5.344 px.
+misure, prova del gesto, larghezze da 320 a 2560, segnali, screenshot, chiusura con `chiusura.mjs`). Altezza a 1440: 5.621 px.
+A 390: 5.318 px.
 
 Base: la bozza A, "La canapina", scelta dal committente. Prima schermata, impianto, trattamento delle foto, carattere e
 colori restano quelli della bozza. Ho cambiato l'esecuzione, i dati, il telefono e i dettagli. La versione precedente
@@ -47,44 +47,55 @@ cartellino, carta chiara, Hanken Grotesk). Ho corretto l'esecuzione:
   consegna." come riga a sé, e la frase senza fonte "Oggi gli scaffali servono calzaturifici e pelletterie". La riga
   "Collanti" della tabella, che ripeteva il cartellino 12, diventa "Marchi: Distributori dei prodotti Mastek e
   Intercom." e il cartellino 12 porta la base (solvente o acqua). "Dodici materiali, tutti a magazzino" diventa
-  "Dodici materiali". I contatti si intitolano "Contatti", a 64 px.
+  "Dodici materiali". La chiusura non si intitola più "Contatti": vedi sotto.
 - **Mani col collante:** arancio dello sfondo meno saturo del 32 % e bianchi un poco più caldi, come lo scaffale.
 
-## La chiusura: l'etichetta del rotolo pronto alla spedizione
+## La chiusura: la frase del sito, i recapiti, la corsia del magazzino (stile B, "con foto")
 
-Il committente ha notato che quasi tutte le home della campagna finivano uguali: titolo, telefono gigante su una fascia,
-tre o quattro colonnine con indirizzo, email e orari, piede scuro a quattro colonne. Anche qui c'erano le quattro
-colonne uguali e il piede a quattro blocchi con il logo. Ho rifatto solo la chiusura, il resto della pagina non cambia.
+Storia. Le chiusure di tutte le home della campagna erano uguali (titolo di luogo, telefono gigante su fascia, colonnine,
+piede a quattro colonne). Le avevo rifatte come un oggetto del mestiere disegnato che porta i recapiti: qui l'etichetta
+del rotolo pronto alla spedizione, con il codice a barre. Il committente le ha bocciate. Fra i due campioni mostrati su
+Hambro e Bazzato (`../Hambro-Sito/_prova/chiusure-campioni/` e `../Bazzato-Sito/_prova/chiusure-campioni/`) ha scelto
+lo stile B, "con foto". Ho rifatto solo la chiusura in quello stile; il resto della pagina non cambia.
 
-**L'idea.** La pagina è un campionario: ogni materiale ha il suo cartellino. Il passo dopo il campione è il rotolo che
-parte dal magazzino, e il rotolo porta un'etichetta. I recapiti sono scritti su quella etichetta, un solo oggetto:
-carta #FBFAF7 con gli angoli tondi della fustella, ruotata di 0,8 gradi (0,5 sul telefono) con la stessa ombra corta e
-calda dei cartellini, e dentro il modulo stampato a filetti d'inchiostro da 1 px. I campi dell'etichetta (articolo,
-metri, lotto) diventano i campi dei recapiti:
-- in testa il logo, come il fornitore stampato sull'etichetta;
-- **Magazzino** (Via Cristoforo Colombo 24, 30030 Vigonovo (VE), con "Apri in Google Maps") e **Orari** affiancati,
-  uno sotto l'altro sul telefono;
-- **Telefono** al posto dei metri: è il campo grande, 56 px a 1440, 48 a 1024, 40 a 390, 35 a 320, inchiostro su
-  carta chiara. Tutta la cella è il collegamento `tel:` (688 x 120 px a 1440, 334 x 98 a 390, 264 x 93 a 320);
-- **Email** a 28 px (20 sul telefono), collegamento `mailto:`;
-- in fondo il **codice a barre disegnato**: un Interleaved 2 of 5 vero del numero di telefono (0495021268, SVG
-  nascosto ai lettori di schermo), e accanto "Pronta consegna", come il timbro del magazzino.
-A sinistra, accanto all'etichetta, "Contatti" a 64 px e la frase del sito "Ordini la mattina, ricevi nel pomeriggio."
-a 24 px: è la promessa che l'etichetta mantiene. Nessun dato nuovo: sono tutti quelli che la pagina aveva già.
+**Com'è fatta** (testo sopra, foto a tutta larghezza sotto, come il campione di Bazzato):
+- **La frase**, grande nel carattere dei titoli (Hanken Grotesk 400, 66 px a 1440, 47 a 1024, 40 a 768, 38 a 390,
+  34 a 320, spaziatura -0,035 em, a capo bilanciati): "Ordini la mattina, ricevi il materiale nel pomeriggio." È la
+  frase della home del sito, intera ("Tutto disponibile a pronta consegna: ordini la mattina, ricevi il materiale nel
+  pomeriggio", `01-analisi.md`); in apertura c'è nella forma breve. È il punto forte che dichiarano e dice come lavorano.
+  Fa da titolo della sezione (`#contatti`, il menu ci porta ancora). Non c'è più la parola "Contatti".
+- **I recapiti**, a destra della frase su computer e sotto da 900 px in giù, in quattro righe di testo: il telefono
+  049 502 1268 in peso 500 (36 px a 1440, 28 a 1024 e 768, 32 a 390, 30 a 320, `tel:+390495021268`), l'email
+  (`mailto:info@innovatexgreen.com`), l'indirizzo Via Cristoforo Colombo 24, 30030 Vigonovo (VE) che è esso stesso il
+  collegamento a Google Maps, e l'orario "Lunedì-venerdì, 8:30-12:30 e 14:30-18:30" (gli orari non si spezzano).
+  Niente riquadri, filetti, campi in maiuscolo, logo o codice a barre.
+- **La foto**: la corsia del magazzino con il carrello elevatore fra gli scaffali di rotoli su pallet, a tutta larghezza
+  (2:1 su computer, 1440 x 720 a 1440; quadrata sul telefono, centrata sul carrello), con la didascalia della pagina
+  sotto: "Una corsia del magazzino, febbraio 2026". È l'immagine che la frase promette: il materiale che parte.
+  Sopra la chiusura c'è la storia, aperta dalle mani col collante: foto diversa, nessuno spostamento necessario.
+- **Il piede** resta una riga sulla stessa carta, sotto un filetto: Innovatex S.r.l. con la sede legale di Cittadella,
+  P.IVA e C.F., REA, capitale sociale, PEC e Privacy, in 13 px grigio #5C5E59. A 1440 sta in una riga, a 1024 e 768 su
+  due, sul telefono va a capo come un testo.
 
-**Il piede** è una riga sola sulla stessa carta, sotto un filetto: Innovatex S.r.l. con la sede legale di Cittadella,
-P.IVA e C.F., REA, capitale sociale, PEC e Privacy, in 13 px grigio #5C5E59 (5,76:1 sulla carta). A 1440 sta in una
-riga; a 1024 e 768 va su due, sul telefono scorre a capo come un testo. Il logo del piede non c'è più (è sull'etichetta).
+**La foto: origine, licenza, lavorazione.** `A7406863` (`assets/originali/A7406863-scaled.jpg`, 2560 x 1707), dal
+servizio fotografico di Innovatex pubblicato sul loro sito (Sony ILCE-7M4; EXIF della copia sul sito 11/2/2026 12:12, come
+la canapina e il collante). È una loro foto, non repertorio: nessuna licenza esterna, nessun file di `assets/esterne`.
+In `01-analisi.md` aveva 7 su 5 ("scura e grandangolare"); a tutta larghezza in fondo funziona, ed è la più nitida
+delle foto non ancora in pagina (le forme nelle gabbie forse sono di un cliente, la latta Mastek è su nero con marchi di
+terzi). Lavorata in `finale_img.py` con lo stesso tono dello scaffale (colore 0,9, luce +5 %, neri sollevati) e la luce
+rossa di sicurezza del carrello meno satura del 30 %, come l'arancio delle forme nella banda delle mani. File:
+`magazzino-900/1440/2200.jpg` e `magazzino-tel-480/900.jpg`. Nella foto c'è una persona al volante: va chiesto a
+Innovatex se va bene in home (è già sul loro sito).
 
-**Tolto:** le quattro colonnine uguali dei contatti con i titoletti, il piede a quattro blocchi (logo più tre colonne)
-sulla carta più scura #E7E4DC. Non c'era e non c'è un telefono gigante su fascia scura.
+**Tolto:** l'etichetta del rotolo (modulo a filetti, campi in maiuscolo, logo, codice a barre, "Pronta consegna"),
+il titolo "Contatti", la frase a 24 px accanto.
 
-**Controlli della chiusura** (`_prova/script/chiusura.mjs`, nel build): a 1440, 1024, 768, 390 e 320 nessuna cella
-dell'etichetta si sovrappone a un'altra o trabocca, nessuno scorrimento orizzontale (anche sulle 26 larghezze di
-`larghezze.mjs`). Contrasti: inchiostro su etichetta 16,4:1, grigio dei campi su etichetta 6,3:1, grigio del piede
-sulla carta 5,8:1. Guardata a pezzi a tutte e cinque le larghezze (`_prova/tmp-finale/chiusura/`); la chiusura a 1440
-è in `screenshot/home/chiusura-1440.jpg`. Le maiuscole piccole dei campi sono i nomi dei campi di un modulo, non
-etichette sopra un titolo (segnali: 0).
+**Controlli della chiusura** (`_prova/script/chiusura.mjs`, nel build), a 1440, 1024, 768, 390 e 320: la frase e i
+recapiti non si sovrappongono, nessuna riga dei recapiti trabocca, la foto è caricata e larga quanto la finestra,
+nessuno scorrimento orizzontale (anche sulle 26 larghezze da 320 a 2560 di `larghezze.mjs`). Collegamenti: tel:,
+mailto:, Google Maps, privacy. Contrasti sulla carta #F2F0EB: inchiostro 15,1:1, grigio della didascalia e del piede
+5,8:1. Guardata a pezzi a tutte e cinque le larghezze (`_prova/tmp-finale/chiusura/`); la chiusura a 1440 è in
+`screenshot/home/chiusura-1440.jpg`.
 
 ## Le prime due schermate
 
@@ -106,7 +117,8 @@ etichette sopra un titolo (segnali: 0).
 
 Poi: "Tutto disponibile a pronta consegna" a 84 px sopra lo scaffale a tutta larghezza e una tabella di due righe
 (in produzione, marchi); le mani col collante sul sottopiede a tutta larghezza; la storia, con il titolo a sinistra e
-il testo a destra alla stessa altezza; "Contatti" sull'etichetta del rotolo; il piede in una riga.
+il testo a destra alla stessa altezza; la chiusura con la frase "Ordini la mattina, ricevi il materiale nel pomeriggio.",
+i recapiti e la corsia del magazzino a tutta larghezza; il piede in una riga.
 
 ## Cosa era già cambiato rispetto alla bozza A
 
@@ -135,7 +147,7 @@ il testo a destra alla stessa altezza; "Contatti" sull'etichetta del rotolo; il 
   grande"). Il tono "fornitore della moda che non fa moda" viene da Eurojersey (un tessuto e un indice di nomi) e da
   Carvico (titolo enorme in grottesco).
 - Carta #F2F0EB, inchiostro #1A1C19, grigio #5C5E59 (testo piccolo e numeri), nomi non scelti #7A7C76 (solo a 26-34
-  px), filetti #D6D3CB, cartellino ed etichetta #FBFAF7, ombre in un bruno caldo rgba(60,45,30). Verde del marchio #0F4621 solo nel logo e nel bottone. Il colore vero lo
+  px), filetti #D6D3CB, cartellino #FBFAF7, ombre in un bruno caldo rgba(60,45,30). Verde del marchio #0F4621 solo nel logo e nel bottone. Il colore vero lo
   danno i materiali.
 
 ## Interazione (un solo gesto)
@@ -163,6 +175,7 @@ tono su tutte (colore 0,88-0,98, contrasto +4 %, ombre sollevate dove servono). 
   `A7406392` (foto dritta, senza zigzag).
 - Pronta consegna: scaffale `A7406827-2`, due ripiani centrali.
 - Chi siamo: mani col collante sul sottopiede `A7406469-1`, arancio dello sfondo attenuato e bianchi scaldati.
+- Chiusura: corsia del magazzino con il carrello elevatore `A7406863`, tono dello scaffale, luce rossa attenuata.
 Le foto da rifare dal vero e come sono nel `LEGGIMI.md`.
 
 ## Le ispirazioni del committente (Graziella, N19): quanto le ho usate
@@ -175,7 +188,7 @@ comparse, il suono e il verde acido. Il registro è quello del fornitore: nomi, 
 
 ## Controlli
 
-- `segnali.sh` a 1440: 0 soglie bloccanti su 10. Area foto 36,1 %, una sola famiglia, nessun carattere vietato, nessun
+- `segnali.sh` a 1440: 0 soglie bloccanti su 10. Area foto 46,7 % (con la corsia del magazzino in chiusura), una sola famiglia, nessun carattere vietato, nessun
   titolo col punto, una sola sezione con titolo a sinistra e testo a destra. Una voce "da guardare": l'indice
   numerato da 01 a 12. Lo tengo perché non è una finta procedura: è il numero di campionario che ogni cartellino porta
   ("07" sulla canapina in apertura).
