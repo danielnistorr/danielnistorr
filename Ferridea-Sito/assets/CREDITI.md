@@ -35,6 +35,6 @@ Scartate dopo averle viste: le scale dell'Apple Store di Pechino (marchio ricono
 ## Home finale (`sito/`), 20 ottobre 2026
 
 La versione finale usa **solo foto di Ferridea** prese da `originali/`, lavorate con `_prova/script/build_img.py`:
-`scale--P1020524.jpg` (apertura, scontornata), `cancelli--DSCN0383_.jpg`, `parapetti--Parapetti-San-Giacomo-014.jpg`, `capottine--P1030303.jpg`, `scale--Scala-Treviso-011.jpg`, `home--P1030186.jpg`, `parapetti--P1030315.jpg`, `scale--Scala-Treviso-016.jpg`, `parapetti--Sand-20-07-2008-007.jpg`. In `sito/img/` hanno nomi neutri (senza nomi di clienti o luoghi). L'uso va confermato con l'azienda e con i clienti delle case riconoscibili.
+`scale--P1020524.jpg` (apertura, scontornata), `cancelli--P1030320_.jpg` (tessera Cancelli), `parapetti--Parapetti-San-Giacomo-014.jpg`, `capottine--P1030303.jpg`, `scale--Scala-Treviso-011.jpg`, `home--P1030186.jpg` (Ferro battuto), `parapetti--P1030315.jpg` (Lamiera), `parapetti--Sand-20-07-2008-007.jpg` (Inox), `cancelli--P1030183.jpg` (chiusura, dettaglio). Ogni opera compare una volta sola. Nell'ultimo passaggio sono uscite `cancelli--DSCN0383_.jpg` (il portone ad arco) e `scale--Scala-Treviso-016.jpg` (era la stessa scala della tessera Scale). In `sito/img/` hanno nomi neutri (senza nomi di clienti o luoghi). L'uso va confermato con l'azienda e con i clienti delle case riconoscibili.
 
 Nessuna foto di `esterne/` è usata nella home finale: restano solo nei prototipi `_prova/home/a` e `_prova/home/b`.

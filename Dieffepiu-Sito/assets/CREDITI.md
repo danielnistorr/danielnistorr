@@ -33,9 +33,8 @@ Scaricate il 20/10/2026 da `https://dieffepiu.it/image/<id>` (gli id sono nei da
 ## Usate nella home finale (`sito/img/`)
 
 Solo foto dell'azienda, lavorate con `_prova/script/finale_img.py`; nessuna foto di `esterne/`.
-- `cingolo-*.webp`: da `originali/slides_2-6__e2884da3cea611eba816c81f66bc3d6b-2.jpg` (sito dieffepiu.it), scontornato, parete ricostruita sotto la guida, specchiato.
-- `spazzolino-*.webp`: da `originali/difranco__home5.jpg` (vecchio sito difranco.it, stessa P.IVA).
+- `cingolo-*.webp`: da `originali/slides_2-6__e2884da3cea611eba816c81f66bc3d6b-2.jpg` (sito dieffepiu.it), parete ricostruita sotto la guida, scontornato con una maschera vera (giro 3), ombra di contatto disegnata, specchiato.
 - `testate-*.webp`: da `originali/slides_2-8__imm05.jpg` (sito).
-- `att030-*.webp`: da `originali/youtube-anteprima__Dxt6fEBRLbA.jpg` (anteprima del video YouTube dell'azienda).
 - `rotoli-*.webp`: da `originali/slides_2-2___DSC4780.jpg` (sito).
-- `logo-*.webp` e `icona-180.png`: da `originali/logo-dieffepiu-1396x857.png` e `originali/logo-favicon-apple-icon-180x180.png`.
+- `logo-100.webp`, `logo-208.webp` e `icona-180.png`: da `originali/logo-dieffepiu-1396x857.png` (senza la riga piccola "SISTEMI PER ZANZARIERE") e `originali/logo-favicon-apple-icon-180x180.png`.
+- Tolte nel giro 3: `spazzolino-*.webp` (da `originali/difranco__home5.jpg`) e `att030-*.webp` (da `originali/youtube-anteprima__Dxt6fEBRLbA.jpg`).

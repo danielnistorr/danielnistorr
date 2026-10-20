@@ -23,6 +23,17 @@ Nessuna di queste foto compare nei `CREDITI.md` delle altre home della campagna 
 | `esterne/unsplash-OnbSOhz0oig-afinis-magazzino-scaffali.jpg` | https://unsplash.com/photos/a-large-warehouse-filled-with-lots-of-pallets-OnbSOhz0oig | AFINIS Group (@afinisgroup) | 2400x1600 | A e B, magazzino | magazzino luminoso con scaffalature a pallet gialle e blu e un carrello elevatore al centro. Nikon D7200. È il magazzino di un produttore di guarnizioni: nessun marchio leggibile in primo piano |
 | `esterne/unsplash-q6j5mSRpi50-fejuz-piazzale-container.jpg` | https://unsplash.com/photos/a-large-amount-of-containers-are-stacked-on-top-of-each-other-q6j5mSRpi50 | Fejuz (@fejuz) | 2400x1600 | B, groupage e mare | corridoio tra pile di container in un terminal, coni arancio, cielo bianco. Canon EOS R. Sui container ci sono i nomi di società di noleggio container, piccoli e in secondo piano |
 
+## Foto esterne in `esterne-alta/` (rifinitura del 20/10/2026) [SEGNAPOSTO, DA SOSTITUIRE]
+
+Scaricate il 20/10/2026 dal CDN `images.unsplash.com` (l'indirizzo della foto letto sulla sua pagina). Licenza letta sulla pagina di ogni foto: "Free to use under the Unsplash License", nessuna Unsplash+, nessuna con "AI", "render" o "3D" nella descrizione o nei tag. Nessuna compare nei `CREDITI.md` delle altre home della campagna (controllato il 20/10/2026).
+
+| File | Pagina della foto | Autore | Misura | Uso | Note |
+|---|---|---|---|---|---|
+| `esterne-alta/unsplash-2wpx8Bl0mwM-dextar-originale-4240.jpg` | https://unsplash.com/photos/a-white-semi-truck-parked-on-concrete-under-a-blue-sky-2wpx8Bl0mwM | Dextar Studio (@dextarstudio) | 4240x2832 (originale) | apertura | la stessa foto di `esterne/`, alla risoluzione piena (`photo-1780172168745-2dac9174eb88`): i ritocchi si fanno qui e la foto si riduce, quindi a 1440 è nitida |
+| `esterne-alta/unsplash-qHo65Xyzcvo-zemos-magazzino-sacchi.jpg` | https://unsplash.com/photos/a-warehouse-filled-with-stacks-of-white-bags-qHo65Xyzcvo | Zemos (@zemos) | 3200x2133 | chiusura | bancali di sacchi bianchi avvolti nel film, luce delle finestre. Sony ILCE-7M3, pubblicata l'11/03/2024. Le scritte sui sacchi sono minute e non leggibili |
+| `esterne-alta/unsplash-hnMqVv0EkRc-craftsman-magazzino-vuoto.jpg` | https://unsplash.com/photos/spacious-empty-warehouse-interior-with-polished-concrete-floor-hnMqVv0EkRc | Craftsman Concrete Floors (@craftsmanconcrete_official) | 3200x2134 | selettore, Dogana | capannone nuovo e vuoto a Dallas, pavimento chiaro e pilastri segnati di giallo, pubblicata il 28/02/2026. Nessun marchio leggibile; spenti i cavi fucsia del soffitto |
+| `esterne-alta/unsplash-WZrmEaufAyQ-zemos-camion-in-carico.jpg` | https://unsplash.com/photos/a-semi-truck-is-loaded-with-white-bags-WZrmEaufAyQ | Zemos (@zemos) | 3200x2133 | scartata | camion in carico sotto una pensilina: troppo scura e con marchi grandi (container, sacchi) |
+
 ## Immagini del sito attuale in `originali/`
 
 Scaricate il 20/10/2026 da `https://melsped.it/images/`, `https://melsped.it/media/k2/items/cache/` e `https://melsped.it/templates/theme939/images/` (il sito è una copia statica HTTrack del 31/01/2022 di un Joomla). Tolti i doppioni identici (stesso md5). Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`. Le foto della sede, del furgone, del magazzino e dell'ufficio sembrano di un fotografo professionista (circa 2013): l'autore non è indicato. `foto1`, `foto2`, `foto3`, `home-3` e lo sfondo del `camion` sono di repertorio. Sullo scatolone di `magazzino.jpg` c'è il marchio di un'altra azienda.
@@ -40,15 +51,19 @@ Script: `_prova/script/finale_img.py` (lanciato da `_prova/script/build_finale.s
 
 | File in `sito/img/` | Foto | Ritocchi |
 |---|---|---|
-| `apertura-*`, `apertura-medio-*`, `apertura-largo-*`, `apertura-tel-*` | Dextar Studio `2wpx8Bl0mwM` | raddrizzata di 5,5 gradi; tolti la stella Mercedes, la scritta del modello, l'indirizzo web e la scritta sulla visiera, la targhetta sulla porta, la sigla "FRC" con la data sul frontale del rimorchio; spenta la parte fucsia sotto il rimorchio; cielo schiarito, il cemento in basso sfuma nel fondo della pagina |
+| `apertura-*`, `apertura-medio-*`, `apertura-largo-*`, `apertura-tel-*` | Dextar Studio `2wpx8Bl0mwM`, originale 4240 px | ritoccata sull'originale, poi raddrizzata di 5,5 gradi: lamelle della calandra ricostruite dove c'era la stella Mercedes; tolte la scritta del modello, la scritta e l'indirizzo web sulla visiera, la targhetta sulla porta, la sigla "FRC 01-2032" e la targhetta grigia sul frontale del rimorchio (lamiera ricostruita riga per riga); il parasole ciano del parabrezza portato a vetro scuro; il catarifrangente fucsia sotto il rimorchio sostituito dal telaio; cielo schiarito, il cemento in basso sfuma nel fondo della pagina; nitidezza leggera dopo la riduzione. Controllo al 200 % in `_prova/script/controllo/apertura-1440-200.png` |
 | `modo-strada-*` | Matthew Jackson `SJGC3NNOqU4` | coperti i due marchi dei fornitori sui sigillanti delle baie |
 | `modo-aereo-*` | Peaky_82 `PEf3deR3l_U` | coperti i due marchi del costruttore sui motori e i due marchi della società di handling sulla scaletta |
-| `modo-mare-*` | Venti Views `1cqIcrWFQBI` | solo il trattamento comune, saturazione più bassa |
-| `modo-dogana-*` | AFINIS Group `OnbSOhz0oig` | solo il trattamento comune, saturazione più bassa |
-| `chiusura-*` | Yuri Krupenin `4n2Tvf8ZKVM` | taglio orizzontale sulle baie B9 e B10 |
+| `modo-mare-*` | Venti Views `1cqIcrWFQBI` | nessun ritocco di contenuto |
+| `modo-dogana-*` | Craftsman Concrete Floors `hnMqVv0EkRc` | spenti i cavi fucsia del soffitto |
+| `chiusura-*` | Zemos `qHo65Xyzcvo` | taglio senza la parte più scura del tetto |
 | `logo-melsped-senza-riga.svg` | ricalco del logo (vedi sotto) | stesso file, con la vista tagliata sopra la riga "SPEDIZIONI INTERNAZIONALI" |
 
-Controllo di nuovo il 20/10/2026 su tutte le cartelle `*-Sito/assets/CREDITI.md`: nessuna di queste sette foto compare in un'altra home della campagna.
+Trattamento comune ai quattro modi del selettore e alla chiusura: ombre sollevate, saturazione al 50-72 %, bianco appena caldo e croma dei blu e dei ciano abbassato (`tetto_blu`), così cielo, mare e capannoni stanno nella stessa luce; foglio di controllo con le quattro foto affiancate in `_prova/script/controllo/quattro-modi.png`. Ogni modo ha tre tagli: 12:5 (desktop), 3:2 (da 600 a 820 px), 4:5 (sotto i 600 px).
+
+Non più usate nella home finale (restano in `esterne/`): AFINIS Group `OnbSOhz0oig` (magazzino affollato sotto il neon) e Yuri Krupenin `4n2Tvf8ZKVM` (baie B9 e B10, troppo simile alla foto di Strada).
+
+Controllo di nuovo il 20/10/2026 su tutte le cartelle `*-Sito/assets/CREDITI.md`: nessuna delle sette foto usate compare in un'altra home della campagna.
 
 ## Caratteri
 

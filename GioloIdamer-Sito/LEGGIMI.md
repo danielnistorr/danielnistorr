@@ -11,12 +11,13 @@
 
 In pagina ci sono solo dati presi dal loro sito o dai registri (`01-analisi.md`). Questi vanno confermati prima di pubblicare:
 
-- **Il titolo** "Dal 1961 spostiamo quello che le aziende non possono fermare" è copy nostro, non una frase loro. L'anno 1961 viene dal sito ("dal 1961 ad oggi"). Il titolo va approvato dall'azienda; in alternativa c'è la loro frase "Quando il carico è importante, l'esperienza fa la differenza."
+- **Il titolo** "Dal 1961 spostiamo i macchinari delle aziende che non possono fermarsi" è copy nostro, non una frase loro (è la versione scelta in questo passaggio). L'anno 1961 viene dal sito ("dal 1961 ad oggi"). Il titolo va approvato dall'azienda; in alternativa c'è la loro frase "Quando il carico è importante, l'esperienza fa la differenza."
 - **65 anni**: la chiusura usa la loro frase "Dopo 65 anni, la nostra storia parla per noi" (pagina `azienda`). Altrove il sito dice 60 anni (slider) e "oltre 50 anni". Va bene "dal 1961, 65 anni"? E chi sono "Giolo S. e C." nella snc del 1996?
 - **Le autogru Ormig**: in pagina sono tre (25, 35 e 40 t), come nella home di oggi. La pagina del posizionamento ne cita due (25 e 40 t).
 - **Le gru Cormach "da 5 a 33 t"**: è il testo della home di oggi, ma la scheda più forte dichiara 30 t. Va deciso quale numero tenere.
 - **I conteggi "5 mezzi", "3 mezzi" e "2 mezzi"** vengono dalle 10 schede del sito. La scheda "iveco-magirus-260-s_e4" mostra un Volvo: l'Iveco Magirus è ancora in flotta?
-- **Le legende del convoglio** ("Volvo FH, trattore a tre assi", "semirimorchio ribassato a quattro assi") sono lette dalla foto. Va confermato anche che la culla alta 40 cm è di questo ribassato.
+- **Le legende del convoglio in apertura** ("Volvo FH, trattore a tre assi", "semirimorchio ribassato a quattro assi") sono lette dalla foto. La Ormig della foto porta la scritta "40iE indoor" e "portata max kg 40000": in legenda c'è la scheda della Ormig T40 indoor (DIN 40 t, braccio 13 m, ingombro 2,20 x 2,39 m). Va confermato che sono lo stesso mezzo, e che la culla alta 40 cm è di questo ribassato.
+- **La foto del convoglio è raddrizzata di 1 grado** per la proposta: nel sito vero va sostituita con quella rifatta (sotto, punto 3).
 - **La foto storica dei cinque autocarri**:
   - di che anno è? La didascalia dice solo "Foto d'archivio";
   - sulle portiere si legge "Saonara PD" e un numero che sembra 049 640544: se è lo stesso di oggi, si può scrivere in didascalia;
@@ -31,6 +32,7 @@ In pagina ci sono solo dati presi dal loro sito o dai registri (`01-analisi.md`)
 - **Instagram @autotrasportigiolo**: è linkato dal sito di oggi, ma non sono riuscito ad aprirlo (errore 429). Esiste ed è aggiornato?
 - **Il raggio d'azione** (Nordest, Nord Italia o tutta Italia) e il "progetto diciotto": non sono in pagina.
 - **I massimali delle polizze** e le abilitazioni degli operatori gru: non sono in pagina.
+- **La riga sull'art. 1696 c.c.** ("per legge la RC Vettore risarcisce al massimo 1 euro per ogni chilo di merce") è tolta dalla home e va nella pagina `assicurazioni.html`, dove già sta nel sito di oggi.
 - **I diritti delle foto**: tutte le foto in pagina sono dell'azienda, prese dal sito giolo.it. Chi le ha scattate? Si possono usare? Esistono gli originali più grandi?
 
 ## Pagine del sito nuovo linkate dalla home
@@ -51,14 +53,15 @@ La home rimanda a queste pagine, che il sito nuovo dovrà avere:
   - `azienda.html` (Storia dal 1961)
   - `assicurazioni.html` (Coperture assicurative; esiste già fuori menu)
   - `notizie.html`
-  - `contatti.html` e `contatti.html#preventivo`
+  - `contatti.html` e `contatti.html#preventivo` (linkata dall'apertura, dalla chiusura e dal piede)
 - Esterni:
   - Privacy https://www.iubenda.com/privacy-policy/82351570
   - Cookie https://www.iubenda.com/privacy-policy/82351570/cookie-policy
   - Facebook https://www.facebook.com/gioloautotrasporti/
   - Instagram https://www.instagram.com/autotrasportigiolo/
   - Google Maps per via Irpinia 65.
-- Nella testata le voci portano alle sezioni della home: `#servizi`, `#mezzi`, `#lavori`, `#contatti`.
+- Nella testata le voci portano alle sezioni della home: `#servizi`, `#mezzi`, `#lavori`, `#contatti` (la sezione storia è `#storia`).
+- Facebook e Instagram sono nella riga legale del piede, scritti in parole.
 
 **Newsletter**: non c'è, ed è voluto. I clienti sono aziende che chiamano quando hanno un macchinario da spostare. Giolo non comunica fiere, cataloghi o collezioni.
 
@@ -66,16 +69,17 @@ La home rimanda a queste pagine, che il sito nuovo dovrà avere:
 
 Le foto in pagina sono vere ma da telefono: quasi tutte esistono solo a 700 px, e la scansione d'archivio è morbida. Per il sito vero servono:
 
-1. **La flotta di oggi per "Allora / Oggi"**.
+1. **La flotta di oggi per "Allora / Oggi"** (sezione storia, a metà pagina).
    - Va scattata dallo stesso punto e con la stessa focale della foto d'archivio: ad altezza d'occhio, di tre quarti, con le cabine in fila davanti al capannone di via Irpinia.
    - Luce del mattino, cielo coperto chiaro, piazzale sgombro.
    - Lato lungo almeno 4000 px, da tagliare 2:1.
-   - È la condizione perché l'interruttore funzioni davvero: oggi la foto "Oggi" è dall'alto e con il grandangolo.
+   - È la condizione perché l'interruttore funzioni davvero: oggi la foto "Oggi" è dall'alto e con il grandangolo. Per la proposta è rifilata sulle cabine in primo piano, ma il punto di vista resta diverso.
 2. **La scansione della stampa dei cinque autocarri** e della foto seppia, a 600 dpi, senza vetro e senza riflessi. Se c'è il negativo, meglio scansionare quello.
-3. **Il convoglio Volvo FH con la Ormig T40, di profilo**.
+   - Con la scansione nuova la stampa della storia può passare da 864 px CSS a tutta la griglia, e la foto seppia della chiusura a tutta altezza. Oggi la seppia esiste solo a 1000 px ed è mostrata a 760 px CSS: a 1x è nitida, su uno schermo 2x è un poco morbida.
+3. **Il convoglio Volvo FH con la Ormig T40, di profilo**. È l'oggetto della prima schermata.
    - Obiettivo lungo (85-135 mm), ripreso dal lato a circa 25 m, all'altezza del centro ruote.
    - Fondo pulito, un muro chiaro o il cielo coperto, a 4000 px.
-   - Va bene lo scontorno di adesso, ma la foto attuale è un po' inclinata.
+   - Va bene lo scontorno di adesso, ma la foto attuale è inclinata di 1 grado (raddrizzata in `finale_img.py`) ed esiste a 1920 px: in pagina è a 1312 px CSS, quindi su uno schermo 2x è appena ingrandita. Serve almeno a 2700 px di larghezza utile.
 4. **Tre lavori seguiti dall'inizio alla fine**, con un fotografo e il permesso del cliente:
    - una posa in reparto con la Ormig;
    - un sollevamento in quota in centro città (il Palazzo della Ragione, se si rifà);
