@@ -21,10 +21,22 @@ La versione A, "Dritto e rovescio", è stata sostituita. Da A sono rimaste solo 
 
 ## Da fare: la versione WordPress va rigenerata (chiusura cambiata)
 
-La chiusura della home statica è stata rifatta dopo che la versione WordPress era stata generata. La fascia grafite "Dove siamo" con il telefono grande e i quattro blocchi di recapiti è diventata una **scheda d'archivio** su fondo cartone, chiusa dal timbro MA impresso. Il piede, che aveva il logo e due paragrafi, ora è **una riga sola**: ragione sociale, P.IVA, PEC e la riga sulla foto della fresa. I dati sono gli stessi. Dettagli e motivi sono nella NOTA (`screenshot/home/NOTA.md`, "Chiusura nuova").
-- `elementor-json/`, `html-fallback/` (`05-contatti.html` e `99-footer/01-footer.html`), `anteprima/`, `plugin/agnoletto-installer.zip`, `assets/web/` e `screenshot/elementor/` e `screenshot/fallback/` mostrano **ancora la chiusura vecchia**. Questo vale anche per le altezze e il collaudo descritti qui sotto.
-- Per rigenerarli va aggiornato il generatore in `_sorgente/` (`contenuti.py`, sezione contatti e piede) sulla nuova `sito/index.html`. Va aggiunto il file `sito/img/timbro-impresso.svg`, poi si lanciano i tre comandi di "Rigenerare i file" e si rifà il collaudo. In questo giro `_sorgente/` e i file WordPress non sono stati toccati.
-- Il 1979 ora compare in un punto solo, l'apertura ("dal 1979"). Il piede non lo riporta più, e nemmeno i recapiti, dove c'era l'etichetta "Ditta". La riga della fresa nel piede ora è "La foto della fresa (B) è di repertorio, Unsplash".
+La chiusura della home statica è stata rifatta dopo che la versione WordPress era stata generata, e poi rifatta di nuovo il 20 ottobre 2026. La fascia grafite "Dove siamo" con il telefono grande e i quattro blocchi di recapiti era diventata una scheda d'archivio col timbro MA impresso. Il committente l'ha bocciata e ha scelto lo stile B "con foto".
+- **Ora** a sinistra c'è la foto della sede, a filo del bordo della pagina: `sito/img/sede-*.webp` e `sede-q-*.webp`, dalla foto `photos_large_company.jpg` del loro sito.
+- A destra ci sono la frase "Seguiamo il pezzo dal progetto alla serie" e i recapiti in quattro righe: telefono, email, indirizzo con la mappa, fax.
+- Il piede è **una riga sola**: ragione sociale, P.IVA, PEC e la riga sulla foto della fresa.
+- I dati sono gli stessi. Dettagli e motivi sono nella NOTA (`screenshot/home/NOTA.md`, "Chiusura nuova").
+
+`elementor-json/`, `html-fallback/` (`05-contatti.html` e `99-footer/01-footer.html`), `anteprima/`, `plugin/agnoletto-installer.zip`, `assets/web/` e `screenshot/elementor/` e `screenshot/fallback/` mostrano **ancora la chiusura vecchia** (la fascia grafite). Questo vale anche per le altezze e il collaudo descritti qui sotto.
+
+Per rigenerarli:
+1. Aggiornare il generatore in `_sorgente/` (`contenuti.py`, sezione contatti e piede) sulla nuova `sito/index.html`.
+2. Aggiungere a `assets/web/` le foto della sede (`sede-1020.webp`, `sede-q-1080.webp`). Il timbro impresso della scheda non serve più.
+3. Lanciare i tre comandi di "Rigenerare i file" e rifare il collaudo.
+
+In questi giri `_sorgente/` e i file WordPress non sono stati toccati.
+
+Il 1979 ora compare in un punto solo, l'apertura ("dal 1979"). Il piede non lo riporta più, e nemmeno i recapiti, dove c'era l'etichetta "Ditta". La riga della fresa nel piede ora è "La foto della fresa (B) è di repertorio, Unsplash".
 
 ## Versione WordPress della home (come per Benvegnù)
 

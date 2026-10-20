@@ -55,34 +55,50 @@ Dal giudizio cieco (48/80), con la prima schermata tenuta com'è per scelta del 
 - Privacy, Cookie ed English, che erano link morti, sono stati tolti dal piede: vanno rimessi con le pagine vere (vedi LEGGIMI).
 - Contatti e piede sono stati poi rifatti del tutto: vedi "Chiusura nuova" qui sotto. Il 1979 resta, in piccolo, solo nell'apertura, ed è nel LEGGIMI tra i dati da confermare.
 
-## Chiusura nuova: la scheda d'archivio col timbro
+## Chiusura nuova: la sede e una frase loro (stile B, "con foto")
 
-Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: titolo del luogo, telefono gigante su una fascia scura, una riga di colonnine con indirizzo, email e orari, e un piede scuro a quattro colonne. Anche questa finiva così: fascia grafite, "049 98 00 985" a 78 px, quattro blocchi di recapiti in due colonne, piede con logo e due paragrafi.
+La chiusura è stata rifatta due volte. Prima tutte le home finivano allo stesso modo (titolo del luogo, telefono gigante su fascia scura, colonnine, piede scuro a quattro colonne). Poi ogni home ha avuto un oggetto del mestiere disegnato che portava i recapiti: qui era la scheda d'archivio col timbro MA impresso. Il committente ha bocciato anche quella e, tra i due campioni fatti su Hambro e Bazzato, ha scelto lo stile B, "con foto". Questa è la chiusura in quello stile.
 
-**Cosa c'è ora.** Un solo oggetto del mondo della pagina: la **scheda d'archivio** della tavola dei campioni, posata sul cartone come i pezzi, con la stessa ombra corta. In fondo è chiusa dal **timbro MA impresso**: il timbro è il gesto.
-- In testa: "D, Dove siamo" e "Scheda d'archivio, recapiti", sopra un doppio filetto da scheda stampata. Sotto ci sono il titolo "Tombelle di Vigonovo, nella Riviera del Brenta" (48 px, come il cartellino C) e la riga sui clienti.
-- I recapiti sono i campi della scheda, una riga per voce, etichetta a sinistra e valore a destra, tra filetti sottili:
-  - Telefono, link `tel:` da 28 a 36 px secondo la larghezza, alto 48 px: si vede e si tocca;
-  - Email e PEC, link `mailto:`;
-  - Fax;
-  - Officina, con l'indirizzo e "Apri in Google Maps".
-- Il timbro è battuto in basso a destra, sulle righe Fax e Officina, in una colonna lasciata libera dai valori: non copre nessun testo, solo i filetti, come un timbro vero su una scheda.
-  - È il ricalco del monogramma del logo, `img/timbro-impresso.svg`, fatto da `finale_timbro_impresso.py`. Un filtro SVG gli dà la grana dell'inchiostro, la pressione un po' più forte da un lato e il bordo appena mosso. Il disegno non cambia.
-  - Sotto i 720 px il timbro scende sotto le righe, in fondo a destra. Sotto i 480 l'etichetta va sopra il valore.
-- **Piede**: una riga sola nel tono della pagina, su cartone, con un filetto sopra. Porta ragione sociale (Agnoletto Mario, impresa individuale), P.IVA 00802440271, PEC e la riga sulla foto della fresa di repertorio. Il logo nel piede è tolto: il marchio chiude già la scheda. La privacy non c'è perché la pagina non esiste ancora; va aggiunta con il testo vero (vedi LEGGIMI).
+**Cosa c'è ora** (sezione D, "Dove siamo", su cartone come il resto della pagina):
+- **A sinistra la foto**, a filo del bordo sinistro della pagina, larga sei colonne: l'ingresso dell'officina a Tombelle di Vigonovo, con l'insegna "Incisore meccanico Mario Agnoletto", la pensilina e le vetrate. A 1440 è 708x763 px.
+- **A destra**, in alto, la piccola indicazione "D, Dove siamo", come le sezioni A, B e C. Sotto la frase, grande, in Host Grotesk 300 come gli altri titoli (60 px a 1440, 36-40 px sul telefono):
+  - "Seguiamo il pezzo dal progetto alla serie".
+  - È presa dalla frase d'apertura ("Seguiamo il pezzo dal progetto alla serie, in zama, ottone, alluminio e acciaio") ed è quella che dice meglio come lavorano: seguono il pezzo del cliente fino alla produzione.
+  - Una prima versione in due frasi ("Si parte da un'idea del cliente. Seguiamo il pezzo...") è stata scartata, perché lo strumento dei segnali la segna come titolo in due frasi.
+- **A destra, in basso**, i recapiti in quattro righe di testo, senza etichette, riquadri o filetti:
+  - il telefono 049 98 00 985 (`tel:`), da 28 a 38 px, alto 48 px;
+  - l'email info@marioagnoletto.it (`mailto:`);
+  - l'indirizzo "Via dell'Artigianato 18, 30030 Tombelle di Vigonovo (VE)", con "Apri in Google Maps" sotto;
+  - "Fax 049 50 31 72", in grafite-2.
+  - Orari non ce ne sono: il sito dell'azienda non li dà.
+- **Sotto i 900 px** prima vengono la frase e i recapiti, poi la foto a tutta larghezza, quadrata (al massimo 640 px di altezza), che chiude la pagina sopra il piede. Così la sezione C (foto, cartellino, didascalia) non è seguita subito da un'altra foto.
+- **Piede**: una riga sola su cartone con un filetto sopra, come prima. Porta ragione sociale (Agnoletto Mario, impresa individuale), P.IVA 00802440271, PEC marioagnoletto@pec.it e la riga sulla foto della fresa di repertorio. La privacy non c'è perché la pagina non esiste ancora (vedi LEGGIMI).
 
-**Cosa è stato tolto.** La fascia grafite, l'unico fondo scuro della pagina. Poi il telefono a 78 px, la griglia di quattro blocchi (Officina, Scrivere, Telefono e fax, Ditta) e il piede a colonne con il logo. Nessun dato è nuovo e nessuno è sparito: telefono, fax, email, PEC, indirizzo, mappa, ragione sociale e P.IVA sono quelli di prima. Il 1979 resta nell'apertura.
+**La foto.** È `assets/originali/photos_large_company.jpg`, la foto della sede pubblicata sul sito attuale dell'azienda (1920x1080). Come le altre foto loro, va usata col loro permesso, che è da confermare. In `sito/img/` diventa:
+- `sede-720` e `sede-1020`: riquadro 360,0-1380,1080, verticale, per i larghi;
+- `sede-q-480`, `sede-q-780` e `sede-q-1080`: riquadro 300,0-1380,1080, quadrato, per telefono e tablet.
 
-**Perché.** La pagina è una tavola di campioni d'archivio. La chiusura naturale è il cartellino che accompagna la tavola, con i dati di chi l'ha fatta, e il timbro dell'officina, lo stesso segno battuto sul pezzo in apertura e mostrato a specchio nella sezione C. Così la pagina comincia e finisce con lo stesso gesto.
+Le fa `finale_img.py` con la stessa gradazione delle altre foto della pagina (saturazione all'80 %, curva a S leggera, neri a 14, luci a 246, tono appena caldo, maschera di contrasto).
+- Perché questa: è la foto più nitida che hanno (le foto prodotto sono da telefono, con qualche macchia), è vera, e per "Dove siamo" mostra proprio il posto. L'insegna col monogramma rosso riprende il rosso del timbro.
+- La foto sopra la chiusura è l'ottone inciso della sezione C, quindi le due foto sono diverse e non c'è stato niente da spostare.
+- Nessuna foto nuova scaricata. Nessuna foto della serie di Ruan Richard Rodrigues.
+
+**Cosa è stato tolto.** La scheda d'archivio con la sua ombra, il doppio filetto, le etichette maiuscole (Telefono, Email, PEC, Fax, Officina), i filetti tra le righe e il timbro impresso (`img/timbro-impresso.svg`). Il file non è più in `sito/img/` e il build non lo rifà più. `finale_timbro_impresso.py` resta tra gli script, ma il build non lo lancia. Tolti anche il colore carta #F4F2ED, il titolo "Tombelle di Vigonovo, nella Riviera del Brenta" e la riga sui clienti ("Lavoriamo soprattutto per calzaturifici e pelletterie...").
+- I dati sono tutti quelli di prima: telefono, email, fax, indirizzo e mappa nella chiusura; PEC, ragione sociale e P.IVA nel piede.
 
 **Controlli della chiusura.**
-- Guardata a pezzi a 1440, 1024, 768, 390 e 320 (`_prova/script/finale_chiusura.mjs`). Scheda larga 880 px fino a 1024, 700 a 768, 355 a 390, 288 a 320.
-- Nessuno scorrimento orizzontale. `finale_controlla.mjs` ora guarda anche la testa della scheda, la riga sui clienti, etichette, valori, timbro e piede: nessuna sovrapposizione da 320 a 2560.
-- Contrasto AA:
-  - grafite su carta 12,9:1;
-  - grafite-2 #5B5852 su carta 6,3:1 e su cartone 5,6:1 (etichette, riga sui clienti, piede);
-  - rosso su carta 5,3:1 (passaggio sui link).
-- Nessun U+2014, nessun gradiente, nessuna animazione, nessun corsivo, nessuna icona.
+- Guardata a pezzi a 1440, 1024, 768, 390 e 320 (`_prova/script/finale_chiusura.mjs`):
+  - a 1440 foto 708x763, testo a destra largo 533 px;
+  - a 1024 foto 503x560, testo largo 379 px;
+  - a 768, 390 e 320 la frase e i recapiti stanno sopra, poi la foto a tutta larghezza (768x640, 390x390, 320x320).
+  - La frase va a capo così: "Seguiamo il pezzo / dal progetto / alla serie" sui larghi, "Seguiamo il pezzo / dal progetto alla serie" sul telefono.
+- Nessuno scorrimento orizzontale da 320 a 2560. `finale_controlla.mjs` ora guarda anche l'indicazione D, ogni riga dei recapiti, la foto e il piede: nessuna sovrapposizione.
+- Contrasto AA su cartone:
+  - grafite #2A2A28 11,3:1 (frase, recapiti);
+  - grafite-2 #5B5852 5,6:1 (fax, indicazione D, piede);
+  - rosso #C8102E 4,6:1 (solo il passaggio sui link).
+- Nessun U+2014, nessun gradiente, nessuna animazione, nessun corsivo, nessuna icona, nessun riquadro.
+- Nitidezza: a 1440 con DPR 2 la foto ha 1020 px per 708 px di schermo (1,44x): è la risoluzione vera della foto.
 
 ## Le prime due schermate
 
@@ -92,15 +108,15 @@ Il committente ha notato che quasi tutte le home della campagna finivano allo st
    - A 390 il pezzo è ruotato di 90 gradi: entra dal bordo alto, tra il logo e "Menu", ed esce dal bordo sinistro. Sotto ci sono titolo, frase e bottone.
 2. **Campionario (A).** Titolo, filtro con i campioni di colore dei metalli e il conteggio, poi la tavola. In alto la gabbia in grande e quattro piccoli (punzoni, fustelle, ruote, bigiotteria), sotto due larghi (accessori, stampa su pelle). Ogni campione ha numero, nome, metalli e una riga presa dal sito.
 
-Seguono "Dal disegno alla serie" (dittico a tutta larghezza), "Punzoni anche in 24 ore" (foto a tutta larghezza con il cartellino), "Dove siamo" (la scheda d'archivio col timbro) e il piede in una riga.
+Seguono "Dal disegno alla serie" (dittico a tutta larghezza), "Punzoni anche in 24 ore" (foto a tutta larghezza con il cartellino), "Dove siamo" (la sede a sinistra, la frase e i recapiti a destra) e il piede in una riga.
 
 ## Caratteri e colori, con il riferimento
 
 - **Host Grotesk** (Element Type, SIL Open Font License 1.1, da Google Fonts). Una sola famiglia, woff2 variabile 300-800, sottoinsieme latino, servito dalla pagina in `fonts/`.
   - Riferimento: **De Castelli** (metallo lavorato), che usa Gramatika, un grottesco quieto. Host Grotesk ha le cifre tabellari: telefoni, numeri di catalogo e P.IVA si allineano.
   - Pesi: 300 per i titoli, 400 per il testo, 500 per i nomi dei campioni, i numeri dei richiami e i bottoni.
-- **Cartone #E7E4DD** come fondo, **#DCD8CF** per le caselle dei campioni, **carta #F4F2ED** per la scheda dei recapiti, **grafite #2A2A28** per testo, bottoni e filetti.
-- **Rosso #C8102E**, preso dal logo: solo il timbro MA (sul pezzo, nel dritto e rovescio, sulla scheda), il punto sui campioni accesi dal filtro e il passaggio sui link.
+- **Cartone #E7E4DD** come fondo, **#DCD8CF** per le caselle dei campioni, **grafite #2A2A28** per testo, bottoni e filetti.
+- **Rosso #C8102E**, preso dal logo: solo il timbro MA (sul pezzo e nel dritto e rovescio), il punto sui campioni accesi dal filtro e il passaggio sui link.
 
 ## Interazione, provata
 
@@ -125,7 +141,8 @@ Script `_prova/script/finale_filtro.mjs`, risultati in `_prova/finale/filtro.txt
 | `finiture-*` | foto 13, fibbia a catena e placca martellata, su pelle stampata | come sopra | B, Serie |
 | `ottone-*` | foto 2, ottone inciso e lastra traforata | come sopra | C, Punzoni |
 | `fresa-*` | Unsplash pl95tzT0f7Y, mastars MT | Unsplash License | B, Prototipo (segnaposto) |
-| `logo.svg`, `timbro.svg`, `timbro-grafite.svg` | ricalco in SVG del `logo.png` del sito (500x100) | marchio dell'azienda | testata, piede, timbro, dritto e rovescio |
+| `sede-*`, `sede-q-*` | foto della sede del sito (`photos_large_company.jpg`), ingresso dell'officina con l'insegna | dell'azienda, da usare col suo permesso | D, chiusura |
+| `logo.svg`, `timbro.svg`, `timbro-grafite.svg` | ricalco in SVG del `logo.png` del sito (500x100) | marchio dell'azienda | testata, timbro, dritto e rovescio |
 
 Nessuna foto della serie di Ruan Richard Rodrigues (riservata a Hambro): lo script delle immagini si ferma se ne trova una. Nessuna immagine generata dall'IA.
 
@@ -145,13 +162,13 @@ Nessuna foto della serie di Ruan Richard Rodrigues (riservata a Hambro): lo scri
 - **Nitidezza** (`finale_nitidezza.mjs`): a 768 con DPR 2 il browser sceglie il file più grande disponibile per ogni casella. I campioni piccoli hanno almeno 700 px per 686 px di schermo.
   - Restano sotto 2x solo le foto la cui risoluzione vera è più bassa: il tacco d'apertura (744 px), la gabbia (660), la stampa su pelle (960) e le finiture (670). Si risolve solo con le foto nuove (vedi LEGGIMI).
 - **Guardate a pezzi**: le pagine intere a 1440, 1024 e 390; le prime schermate a 320, 390, 768, 1024, 1440 e 1920; i filtri Zama, Acciaio e Ottone; il menu aperto a 1024.
-- **Collegamenti**: `tel:+390499800985` (testata, apertura, cartellino, scheda), `mailto:info@marioagnoletto.it`, `mailto:marioagnoletto@pec.it`, Google Maps su "Via dell'Artigianato 18 Tombelle di Vigonovo", ancore #lavorazioni, #serie, #punzoni, #contatti. Nessun link a "#" a parte il logo, che riporta in cima.
+- **Collegamenti**: `tel:+390499800985` (testata, apertura, cartellino, chiusura), `mailto:info@marioagnoletto.it`, `mailto:marioagnoletto@pec.it`, Google Maps su "Via dell'Artigianato 18 Tombelle di Vigonovo", ancore #lavorazioni, #serie, #punzoni, #contatti. Nessun link a "#" a parte il logo, che riporta in cima.
 - **Lineette lunghe (U+2014)**: zero in pagina, in questa nota, nel LEGGIMI, nei crediti e negli script.
 - **Errori in console e file mancanti**: nessuno.
 - **Segnali da IA** (`segnali.sh`, home a 1440, rapporto in `_prova/finale/segnali/`): 0 soglie bloccanti.
-  - Dopo la chiusura nuova: foto al 50,5 % della pagina, una sola famiglia, monospazio 0 %, 8 filetti larghi (le righe della scheda), 0 frecce, nessuna fascia di fondo oltre al cartone.
+  - Dopo la chiusura con la foto: foto al 55,8 % della pagina, una sola famiglia, monospazio 0 %, 0 titoli col punto, 2 filetti larghi, 0 frecce, nessuna fascia di fondo oltre al cartone.
   - Da guardare, e voluti:
-    - H2 di due misure (66 e 48 px): una misura grande più il cartellino.
+    - H2 di tre misure (66, 48 e 60 px): i titoli di sezione, il cartellino e la frase della chiusura.
     - Numerazione 01-07 (più lo 01 della legenda): è il numero di catalogo dei campioni, l'idea stessa.
     - 5 gradienti: i campioni di colore dei metalli nel filtro.
 
