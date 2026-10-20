@@ -1,8 +1,10 @@
-// uso: node allegato.mjs <spec.json> <cartella-uscita> [--mittente "Nome Cognome · telefono · email"]
-// Crea il PDF da allegare alla mail: A4 orizzontale, tre pagine.
+// uso: node allegato.mjs <spec.json> <cartella-uscita> [--mittente "Nome Cognome · telefono · email"] [--ora 2026-10-20T10:00:00+02:00]
+// Crea il PDF da allegare alla mail: tre pagine A4 orizzontali e una quarta lunga.
 //   1. la prima schermata della home a tutta pagina, con nome e frase sotto
 //   2. due schermate da telefono e tre punti "cosa cambia"
 //   3. due sezioni della home da computer e il prossimo passo
+//   4. la home intera da computer, larga 297 mm come le altre e alta quanto serve ("completa": false la toglie)
+// L'orologio della pagina è fermo a --ora (di default un martedì alle 10 a Roma): così gli orari "aperto adesso" escono sempre uguali.
 // Le immagini si scattano adesso dalla pagina statica (<cartella>/sito/index.html) a densità 2 e 3,
 // così il PDF resta nitido anche stampato. Accanto al PDF scrive pagine-<n>.png per guardarlo.
 import { createRequire } from 'module';
@@ -16,6 +18,8 @@ const argv = process.argv.slice(2);
 const specPath = argv[0], outDir = argv[1] && path.resolve(argv[1]);
 const mi = argv.indexOf('--mittente');
 const mittente = mi > -1 ? argv[mi + 1] : '';
+const oi = argv.indexOf('--ora');
+const ORA = oi > -1 ? argv[oi + 1] : '2026-10-20T10:00:00+02:00';
 if (!specPath || !outDir) { console.error('uso: node allegato.mjs <spec.json> <cartella-uscita> [--mittente "..."]'); process.exit(1); }
 const S = JSON.parse(fs.readFileSync(specPath, 'utf8'));
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
@@ -27,8 +31,9 @@ fs.mkdirSync(work, { recursive: true });
 const browser = await chromium.launch();
 
 async function apri(ctxOpts) {
-  const ctx = await browser.newContext(ctxOpts);
+  const ctx = await browser.newContext({ timezoneId: 'Europe/Rome', locale: 'it-IT', ...ctxOpts });
   const page = await ctx.newPage();
+  await page.clock.setFixedTime(new Date(ORA));
   await page.goto('file://' + sito, { waitUntil: 'load', timeout: 90000 });
   await page.evaluate(() => document.querySelectorAll('img[loading=lazy],iframe[loading=lazy]').forEach(e => { e.loading = 'eager'; }));
   await page.evaluate(async () => {
@@ -52,6 +57,18 @@ async function apri(ctxOpts) {
   }
   await ctx.close();
 }
+// computer: la home intera (densità 1,5, sotto il limite di 16000 px di altezza della cattura)
+const completa = S.completa !== false;
+let altCompleta = 0;
+if (completa) {
+  const { ctx, page } = await apri({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 });
+  const H = await page.evaluate(() => document.documentElement.scrollHeight);
+  if (H * 1.5 > 16000) { await ctx.close(); console.error(`pagina troppo alta per la cattura intera: ${H} px`); process.exit(1); }
+  await page.screenshot({ path: path.join(work, 'completa.jpg'), type: 'jpeg', quality: 74, fullPage: true });
+  altCompleta = H * 297 / 1440;
+  await ctx.close();
+}
+const tot = completa ? 4 : 3;
 // telefono: prima schermata e una seconda più in basso
 {
   const { ctx, page } = await apri({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
@@ -122,7 +139,7 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
       ${S.punti.map(p => `<div class="punto"><b>${esc(p.titolo)}</b><p>${esc(p.testo)}</p></div>`).join('')}
     </div>
   </div>
-  <div class="n">2 / 3</div>
+  <div class="n">2 / ${tot}</div>
 </section>
 <section class="p">
   <div class="sez">
@@ -134,19 +151,37 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
       ${mittente ? `<div class="mitt">${esc(mittente)}</div>` : ''}
     </div>
   </div>
-  <div class="n">3 / 3</div>
+  <div class="n">3 / ${tot}</div>
 </section>
 </body></html>`;
-const htmlPath = path.join(work, 'allegato.html');
-fs.writeFileSync(htmlPath, html);
-{
+// pagina 4 in un documento a parte (altra misura di pagina), poi si uniscono con pdfunite
+const STRISCIA = 20;
+const html4 = html.replace(/@page\{[^}]*\}/, `@page{size:297mm ${(STRISCIA + altCompleta).toFixed(2)}mm;margin:0}`)
+  .replace(/<body>[\s\S]*<\/body>/, `<body><section style="width:297mm;height:${(STRISCIA + altCompleta).toFixed(2)}mm;position:relative;overflow:hidden">
+  <div style="height:${STRISCIA}mm;display:flex;align-items:center;justify-content:space-between;padding:0 16mm">
+    <div style="font-size:10pt"><b style="font-weight:500">${esc(S.azienda)}</b><span style="color:var(--muto)">, la home intera come si vede da un computer</span></div>
+    <div class="n" style="position:static">4 / 4</div>
+  </div>
+  <img src="file://${work}/completa.jpg" alt="" style="display:block;width:297mm;height:${altCompleta.toFixed(2)}mm">
+</section></body>`);
+async function stampa(h, file) {
+  const hp = path.join(work, file + '.html');
+  fs.writeFileSync(hp, h);
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
-  await page.goto('file://' + htmlPath, { waitUntil: 'load' });
+  await page.goto('file://' + hp, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
-  const pdf = path.join(outDir, S.file);
-  await page.pdf({ path: pdf, width: '297mm', height: '210mm', printBackground: true, preferCSSPageSize: true });
+  const out = path.join(work, file + '.pdf');
+  await page.pdf({ path: out, printBackground: true, preferCSSPageSize: true });
   await ctx.close();
+  return out;
+}
+{
+  const pdf = path.join(outDir, S.file);
+  const p13 = await stampa(html, 'allegato');
+  if (completa) execFileSync('pdfunite', [p13, await stampa(html4, 'completa'), pdf]);
+  else fs.copyFileSync(p13, pdf);
+  for (const f of fs.readdirSync(outDir)) if (/^pagina-\d+\.png$/.test(f)) fs.rmSync(path.join(outDir, f));
   const kb = Math.round(fs.statSync(pdf).size / 1024);
   const pagine = execFileSync('pdfinfo', [pdf]).toString().match(/Pages:\s+(\d+)/)[1];
   execFileSync('pdftoppm', ['-r', '70', '-png', pdf, path.join(outDir, 'pagina')]);
