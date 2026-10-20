@@ -72,3 +72,5 @@ Dal prototipo B, scelto dal committente. Nessuna foto nuova scaricata: le immagi
 | Logo | `logo-segno.png`, `logo-scritta-chiara.png` | ritagli di `originali/2020-07-logo-TEKLAM.png` | di Tek.Lam |
 
 Rifinitura dello stesso giorno: uscita la fascia della piegatrice sopra il percorso (Yurtman `w7w4T9M0TXg`, resta in `esterne/` per i prototipi). La foto dei contatti ora porta anch'essa la dicitura "Foto indicativa" in pagina.
+
+Chiusura con foto, 20 ottobre 2026: nessuna foto nuova scaricata. La foto di Cemrecan Yurtman `esterne/unsplash-yurtman-qk2i7n39-B0.jpg` (https://unsplash.com/photos/qk2i7n39-B0, Unsplash License) torna in pagina a tutta larghezza sotto i recapiti, non più scurita, come `fine-*` (1,9:1) e `fine-v-*` (4:5), con il marchio del costruttore tolto dall'ugello e la dicitura "Foto indicativa". Era uscita il 19 sera con la targhetta, che è stata bocciata.

@@ -81,3 +81,7 @@ Licenza "Free" di Pexels letta sulla pagina della foto il 19 ottobre 2026; scari
 Le altre foto sono le stesse della versione finale, trattate di nuovo da `_prova/script/finale_img.py` in monocromia calda chiara. Il raccordo `pexels-3721272` (fotografato su nero) è scontornato con una sagoma misurata e posato su un fondo calce con un'ombra disegnata: la licenza Pexels ammette le modifiche; resta un segnaposto da rifare dal vero.
 
 Cercate su Unsplash e Pexels e non usate (19 ottobre 2026): nessuna T in rame su fondo chiaro. Viste: Unsplash Ez0S4C8bzUk (curva in rame su muro beige, solo il gomito), c5aW5Xy-O7c (due tubi in rame verticali in un muro aperto), vohUE_QKvaM (rubinetto in ottone su muro bianco), h5If_bg7898 (tubi in rame a croce su fondo azzurro: ha l'aspetto di un rendering, scartata), Pexels 28169591 (manicotti in rame in fila su nero).
+
+## Chiusura della home, stile B con foto (20 ottobre 2026) [SEGNAPOSTO, DA SOSTITUIRE]
+
+Nessuna foto nuova. `sito/img/chiusa-*.jpg` è la metà bassa di `esterne/pexels-7937309.jpg` (Pavel Danilyuk, licenza "Free" di Pexels letta il 19 ottobre 2026, già elencata sopra): ritaglio quadrato da y 2045 a y 3380, la barra di ritorno del collettore e i tubi dei circuiti, senza la marcatura di certificazione stampata più in basso; stessa monocromia calda chiara, da `_prova/script/finale_img.py`.
