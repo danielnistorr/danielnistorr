@@ -78,6 +78,47 @@ const tot = completa ? 4 : 3;
   await page.screenshot({ path: path.join(work, 'telefono-2.jpg'), type: 'jpeg', quality: 80 });
   await ctx.close();
 }
+// le due schermate del telefono si tagliano in basso tra due blocchi, così nessuna riga di testo resta a metà
+const TAGLIO = `
+import sys, json
+from PIL import Image
+def taglio(f):
+    # Si toglie solo l'ultimo blocco, se è testo tagliato dal bordo o che continua sotto (una foto tagliata dal bordo va bene così),
+    # e con lui un titolo rimasto da solo sopra; mai più del 45% dell'altezza. Uno spazio vuoto conta come
+    # stacco tra blocchi se è alto almeno 12 px CSS (36 a densità 3); il taglio cade 5 px sotto il contenuto.
+    im = Image.open(f).convert('L'); w, h = im.size; px = im.load(); x0, x1 = int(w * .04), int(w * .96)
+    righe = [[px[x, y] for x in range(x0, x1, 3)] for y in range(h)]
+    ok = [max(v) - min(v) < 10 for v in righe]
+    coda = 0
+    while coda < h and ok[h - 1 - coda]: coda += 1
+    if coda >= 36: return h, h  # in fondo c'è già uno stacco: il blocco sopra è finito
+    # altrimenti l'ultimo blocco è tagliato dal bordo, o è un paragrafo che continua sotto il bordo
+    stacchi, y = [], h - 1  # dal basso: (inizio, lunghezza) degli spazi vuoti alti almeno 36 px
+    while y >= 0:
+        if ok[y]:
+            e = y
+            while y >= 0 and ok[y]: y -= 1
+            if e - y >= 36: stacchi.append((y + 1, e - y))
+        else: y -= 1
+    if not stacchi: return h, h
+    s0, n0 = stacchi[0]
+    fondo = righe[s0 + n0 // 2][0]
+    blocco = [v for r in righe[s0 + n0:h:4] for v in r]
+    if sum(abs(v - fondo) < 14 for v in blocco) / len(blocco) < .5: return h, h  # in fondo c'è una foto
+    taglio = s0 + 15
+    if len(stacchi) > 1:
+        s1, n1 = stacchi[1]
+        if s0 - (s1 + n1) < 270 and n1 >= 1.5 * n0 and s1 + 15 >= h * .55: taglio = s1 + 15  # titolo rimasto solo
+    return (h, taglio) if taglio >= h * .55 else (h, h)
+quote = []
+for f in sys.argv[1:3]:
+    h, t = taglio(f)
+    if t < h:
+        im = Image.open(f); im.crop((0, 0, im.size[0], t)).save(f, quality=82)
+    quote.append(t / h)
+print(json.dumps(quote))
+`;
+const quota = JSON.parse(execFileSync('python3', ['-c', TAGLIO, path.join(work, 'telefono-1.jpg'), path.join(work, 'telefono-2.jpg')]).toString());
 
 const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const font = path.join(REPO, '3Esse-Sito/assets/fonts/switzer');
@@ -107,7 +148,7 @@ html,body{background:var(--fondo);color:var(--ink);font-family:Sw,sans-serif;tex
 .cop .frase{font-size:10pt;line-height:1.4;max-width:150mm;text-align:right;color:var(--ink)}
 /* 2 */
 .tel{display:flex;gap:16mm;padding:16mm 16mm 0}
-.tel .fon{display:flex;gap:7mm;flex:none}
+.tel .fon{display:flex;gap:7mm;flex:none;align-items:flex-start}
 .tel .fon img{display:block;height:162mm;width:auto;border-radius:5.5mm;border:.3mm solid var(--filo)}
 .tel .testo{flex:1;padding-top:2mm}
 h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-bottom:9mm}
@@ -133,7 +174,7 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
 </section>
 <section class="p">
   <div class="tel">
-    <div class="fon"><img src="file://${work}/telefono-1.jpg" alt=""><img src="file://${work}/telefono-2.jpg" alt=""></div>
+    <div class="fon"><img src="file://${work}/telefono-1.jpg" alt="" style="height:${(162 * quota[0]).toFixed(1)}mm"><img src="file://${work}/telefono-2.jpg" alt="" style="height:${(162 * quota[1]).toFixed(1)}mm"></div>
     <div class="testo">
       <h2>${esc(S.titolo_punti || 'Cosa cambia')}</h2>
       ${S.punti.map(p => `<div class="punto"><b>${esc(p.titolo)}</b><p>${esc(p.testo)}</p></div>`).join('')}
