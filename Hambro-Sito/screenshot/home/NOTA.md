@@ -26,7 +26,7 @@ Poi, in ordine:
 - **La ricopertura.** Il dittico metallo e pelle con le sagome da 40, 50 e 60 mm in scala reale, i dati, i semilavorati e la foto delle mani.
 - **Misure per settore.** Pelletteria, calzatura e abbigliamento uno sotto l'altro. Ogni articolo ha la misura del sito e la sua quota in cuoio su un righello 0-60 mm in scala reale: un tratto per le misure singole, una barra per gli intervalli.
 - **Il 1979**, sempre con "Giorgio Gastaldello".
-- **I contatti come cartellino da campionario**, in scala reale, legato con un laccio tubolare vero (vedi "La chiusura").
+- **La chiusura con foto** (stile B, scelto dal committente il 20 ottobre): la frase "Sul sito c'è solo una parte: il resto si chiede al telefono o per posta", i recapiti e una fibbia dorata grande che esce dal bordo destro (vedi "La chiusura").
 - **Il piede**: una riga sola sulla carta.
 
 ## Caratteri
@@ -37,8 +37,8 @@ Poi, in ordine:
   - 15: menu, bottoni, elenchi, dati;
   - 17: testo e sottotitolo;
   - 22: famiglie del cassetto, settori, marchio, testo del 1979;
-  - 32: telefono nel cartellino, titolo dei semilavorati;
-  - 60: tutti gli h2;
+  - 32: telefono della chiusura (28 sotto i 1260 px), titolo dei semilavorati;
+  - 60: tutti gli h2, anche quello della chiusura (40-50 sul tablet, 32-40 sul telefono);
   - 136: titolo d'apertura e 1979.
 - **Numeri.** Le cifre tabellari di Mona Sans hanno lo zero barrato, quindi restano le cifre proporzionali allineate (`lining-nums`). Misure e orari stanno in colonne allineate a destra.
 - Niente Inter, niente monospazio, niente corsivo.
@@ -48,7 +48,6 @@ Poi, in ordine:
 - Inchiostro #1B1714.
 - Cuoio #7B4524: il marrone del logo Hambro. Lo usano il marchio, il bottone, le tacche del righello, le quote delle misure e il 1979.
 - Campo #6E3519: il banco.
-- Cartoncino #E8DBC4: solo il cartellino dei contatti (grigio sopra 5,3:1, cuoio 5,7:1, inchiostro 13:1).
 - Taglio #3A2012: il bordo della striscia.
 - Oro #E2B866: solo il passaggio sui link nei campi scuri.
 
@@ -73,23 +72,30 @@ Tutte passano per la stessa gradazione: la carta come bianco, il sole da sinistr
 | Dittico, il metallo | Ruan Richard Rodrigues, Unsplash `hqGQcZnEvy0` | Unsplash License, segnaposto |
 | Dittico, la pelle; striscia del banco | Igor Karimov, Unsplash `DmxTTqZtDds`, portata su #8A5230 | Unsplash License, segnaposto |
 | Semilavorati (mani sul cartamodello) | Cohen Berg, Unsplash `an44PeEll_w` | Unsplash License, segnaposto |
+| Chiusura, fibbia dorata su piano lucido (2 tagli: verticale 720/1440 e quadrato 390/780/1170, `img/chiusa-*.jpg`) | Ruan Richard Rodrigues, Unsplash `FXVC26csSz4`, specchiata, il bianco portato sulla carta, un filo meno giallo (`finale_img.py`, punto 7) | Unsplash License, segnaposto |
 | Tav. 2, bobine di laccio e di tondino | hambro.it, foto da telefono, ritagli stretti 360 e 720 px | dell'azienda, da confermare |
 | Cassetto, 11 scontornati | catalogo di hambro.it | diritti da chiarire |
 
 In pagina non c'è più nessun avviso sulle foto provvisorie: è nel LEGGIMI e va nella mail di accompagnamento. Nessuna immagine generata. Nessuna foto viene mostrata oltre i suoi pixel: lo controllo con i file veri scelti dal srcset a 1440, 1024 e 390.
 
-## La chiusura (rifatta il 19 ottobre)
-Il committente ha notato che quasi tutte le home della campagna finivano allo stesso modo: titolo di luogo, telefono grande su una fascia scura, una riga di colonnine con indirizzo, posta e orari, piede scuro a quattro colonne. Anche qui il cartellino stava su una fascia cuoio piena e sotto c'era il piede nero a quattro colonne.
+## La chiusura (rifatta il 20 ottobre, stile B "con foto")
+Storia. Le chiusure di tutte le home della campagna erano uguali (titolo di luogo, telefono gigante su fascia scura, colonnine, piede nero a quattro colonne). Il 19 ottobre erano diventate "un oggetto del mestiere disegnato che porta i recapiti": qui un cartellino da campionario di 100 mm legato con un laccio tubolare da 3 mm. Il committente le ha bocciate ("mo fan cagare"). Su due campioni (A tipografica, B con foto; `_prova/chiusure-campioni/`) ha scelto B, "con foto". Questa è B portata nella pagina finale così com'è, con i soli difetti corretti qui sotto.
 
-Ora la chiusura è **un solo oggetto del loro mondo: un cartellino da campionario posato sulla stessa carta della pagina**, come gli altri oggetti, con il sole da sinistra e l'ombra a destra.
-- **Il cartellino è largo 100 mm veri** (con la taratura dello schermo, come righello, banco e sagome). Ha gli angoli alti smussati e l'occhiello rinforzato a 13 mm dal bordo. Sotto c'è una quota che scrive la larghezza vera: "mm 100" a 1440, 1024 e 768. Dove il telefono non ha 100 mm di spazio il cartellino si stringe e la quota lo dice ("mm 93" a 390, "mm 74" a 320).
-- **Il laccio è un laccio tubolare in pelle da 3 mm in scala reale** (un articolo del catalogo, nelle misure per settore e nel banco). Passa nell'occhiello e i due capi tagliati restano sciolti sulla carta. La didascalia dice "Laccio tubolare in pelle, mm 3".
-- **Sul cartellino, in ordine:** il marchio, il telefono a 32 px (`tel:`, sottolineato, alto 44 px), la posta (`mailto:`), l'indirizzo con "Apri la mappa" (Google Maps) e gli orari. Le etichette sono a 13 px e i dati a 15. Sono gli stessi dati di prima, nessuno nuovo.
-- **Il piede è una riga sola sulla carta,** sotto un filetto: Hambro srl, P.IVA 00967020280, Informativa privacy e, a destra, Facebook. Il corpo è 15 px, in grigio (6,2:1). La PEC non c'è, perché non era in pagina.
+**Com'è.**
+- **La frase**, grande, a sinistra in alto: "Sul sito c'è solo una parte: il resto si chiede al telefono o per posta". È h2 a 60 px (1440), inchiostro su carta.
+- **I recapiti**, a sinistra in basso, allineati al piede della foto, senza etichette: il telefono a 32 px sottolineato (`tel:`, alto 44 px), la posta (`mailto:`), l'indirizzo con "Apri la mappa" (Google Maps), gli orari in grigio in due righe. Testo a 17 px. Sono gli stessi dati di prima, nessuno nuovo.
+- **La foto**, a destra: colonne 7-12 della griglia più il margine, quindi esce dal bordo destro della pagina. Alta 763 px a 1440 (da 560 a 780). È una fibbia ad ardiglione dorata su un piano lucido, specchiata, con il fondo sfocato portato sulla carta #F2EDE4: la carta della pagina entra nella foto. Origine e licenza nella tabella delle foto.
+- **Sotto i 900 px** la foto va prima, quadrata a tutta larghezza (al massimo 640 px di altezza), poi la frase e i recapiti in colonna. Il piede passa su due righe sotto i 700 px.
+- **Il piede** resta una riga sola sulla carta, sotto un filetto: Hambro srl, P.IVA 00967020280, Informativa privacy e, a destra, Facebook. 15 px, grigio (6,2:1).
 
-Tolto: la fascia cuoio piena dei contatti, il piede nero a quattro colonne con il marchio ripetuto, l'indirizzo, il telefono e la posta ripetuti nel piede. Le fasce di fondo a tutta larghezza scendono da 4 a 3.
+**Difetti del campione corretti nel portarlo.**
+- La frase era in due frasi ("... una parte. Il resto si chiede ... posta."): `segnali.sh` la dava come soglia bloccante (titolo in due frasi). Ora è una frase sola con i due punti, senza punto finale come gli altri titoli. Le parole sono le stesse.
+- H2 a 64 px e telefono a 36: riportati sulla scala dei corpi della pagina (60 e 32).
+- Tra 701 e 900 px la frase scendeva a 34 px, più piccola che sul telefono (36 a 390): ora 40-50 px (43 a 768).
+- Nello script restava la quota del cartellino (`quota()`), chiamata anche dalla taratura: senza cartellino la taratura avrebbe dato un errore. Tolta.
+- Le foto del campione stavano in `_prova/chiusure-campioni/b/foto/`: ora le fa `finale_img.py` (punto 7) in `sito/img/`, con la stessa gradazione. `build_finale.sh` fa anche `chiusura-1440.jpg` (con `_prova/script/chiusura.mjs`).
 
-Perché così: la pagina parla di misure vere, e chiudere con un cartellino in scala e un laccio del catalogo in scala tiene l'idea fino in fondo, con un oggetto solo e niente di nuovo da leggere. Anche la carta continua fino alla fine, invece di chiudere su due fasce scure come le altre home della campagna.
+Tolto: il cartellino, il laccio, la quota "mm 100", il colore cartoncino #E8DBC4.
 
 ## Cosa è cambiato nel passaggio precedente (rilievi del giudice cieco)
 Applicati:
@@ -97,7 +103,7 @@ Applicati:
 - **Menu sotto i 1100 px.** La riga di sezioni scorrevole sotto i 1000 px; tra 1000 e 1100 il menu resta in testata. A 1024 si vedono 5 voci, a 390 se ne vedono 3 intere e le altre si raggiungono scorrendo la riga.
 - **Tablet.** La composizione sovrapposta del 1440, con la foto al 100 % della prima schermata a 1024 e a 768.
 - **Bordo della prima schermata.** Tolta la borchia tagliata, righello alzato di 32 px, quota "2-4" al posto di "3,5" e "4" col filo diagonale.
-- **Sezioni da modello.** Le tre colonne uguali di settore sono diventate un solo elenco di misure con le quote in scala. I contatti sono un cartellino, non più telefono a 120 px più tre colonne (e in questo passaggio il cartellino è sceso dal campo cuoio sulla carta, vedi "La chiusura"). Il cassetto è a file per famiglia.
+- **Sezioni da modello.** Le tre colonne uguali di settore sono diventate un solo elenco di misure con le quote in scala. I contatti non sono più telefono a 120 px più tre colonne (oggi sono la chiusura con foto, vedi "La chiusura"). Il cassetto è a file per famiglia.
 - **Bobine.** Mostrate al massimo a 360 px di lato.
 - **Scala tipografica.** Da 19 corpi a 8, con la scala qui sopra.
 - **Banco.** Il tavolo è alto quanto la striscia più 48 px.
@@ -115,18 +121,18 @@ Respinto:
 
 ## Controlli
 - **Screenshot in questa cartella.**
-  - `home-1440.jpg` (intera, 9090 px);
+  - `home-1440.jpg` (intera, 9244 px);
   - `home-1440-prima-schermata.jpg`;
-  - `home-390.jpg` (intera, 8541 px);
+  - `home-390.jpg` (intera, 8418 px);
   - `home-390-prima-schermata.jpg`.
   - `chiusura-1440.jpg`: solo la chiusura a 1440, dall'inizio dei contatti alla fine della pagina.
-  - La chiusura è stata guardata a pezzi a 1440, 1024, 768, 390 e 320 (e controllata anche a 1101, 1100, 920, 700 e 360): nessuna sovrapposizione tra i testi, nessuno scorrimento orizzontale.
+  - La chiusura nuova è stata guardata a pezzi a 1440, 1024, 768, 390 e 320 (e anche a 901, 900 e 700): nessuna sovrapposizione tra testo e foto, nessuno scorrimento orizzontale. Contrasto più basso nella chiusura e nel piede: 6,25:1 (orari e piede in grigio a 15-17 px). La foto non è mai mostrata oltre i suoi pixel: file scelto dal srcset e riquadro misurati a 320, 360, 390, 700, 701, 768, 900, 901, 1000, 1024, 1100, 1280, 1440, 1920 e 2560 (scala al massimo 1,0).
   - Guardati a pezzi anche 320, 768, 1024 e 1920 (PNG in `_prova/screenshot-tmp/`, cancellati dopo il controllo).
-- **Scorrimento orizzontale.** scrollWidth uguale a innerWidth a 320, 360, 390, 700, 701, 768, 900, 1000, 1024, 1100, 1280, 1440, 1920 e 2560.
+- **Scorrimento orizzontale.** scrollWidth uguale a innerWidth a 320, 360, 390, 700, 701, 768, 900, 901, 1000, 1024, 1100, 1280, 1440, 1920 e 2560.
 - **Tastiera, a 1440 e 1024.** Freccia sui materiali dà Tubolare 4; End dà 16; Home più freccia dà 3. Il taglio vivo, ripreso a 30, con due volte Pagina giù e una freccia dà 9. Nastro 50 giallo funziona.
 - **Tocco, a 390.** Un tocco su Tubolare dà 4; un tocco in fondo al cursore dà 16; Taglio vivo con un tocco all'inizio dà 2; nastro 50 giallo funziona.
 - **Menu.** Il link Contatti porta alla sezione.
-- **Console.** Nessun errore e nessun avviso a 1440, 1024 e 390.
+- **Console.** Nessun errore e nessun avviso alle 15 larghezze qui sopra, anche cambiando la taratura.
 - **Collegamenti.**
   - `tel:+390499802326`;
   - `mailto:commerciale@hambro.it` (anche con oggetto per i campioni);
@@ -134,7 +140,7 @@ Respinto:
   - Facebook;
   - nessuna ancora senza destinazione.
 - **U+2014.** Assente in pagina, script, NOTA, LEGGIMI e CREDITI.
-- **`segnali.sh`.** 0 soglie bloccanti. Foto 37 %, Mona Sans 100 %, nessuna tabella oltre 4 righe, 0 frecce, 3 fasce di fondo (erano 4 prima della chiusura nuova), 19 filetti. Da guardare, e motivati nel LEGGIMI:
+- **`segnali.sh`.** 0 soglie bloccanti. Foto 40,6 % (con la foto della chiusura), Mona Sans 100 %, 0 titoli col punto e 0 in due frasi, nessuna tabella oltre 4 righe, 0 frecce, 3 fasce di fondo, 19 filetti. Da guardare, e motivati nel LEGGIMI:
   - una sola misura di H2;
   - 2 numeri grandi (la lettura del banco e il 1979 con il nome);
   - l'indice 01-11 del cassetto.

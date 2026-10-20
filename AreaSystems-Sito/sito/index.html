@@ -144,38 +144,23 @@ p{text-wrap:pretty}
 .pdf a:hover span{text-decoration:underline}
 .pdf small{display:block;color:var(--grigio);font-size:14px}
 
-/* contatti: il quadro chiuso. Due ante in lamiera RAL 7035 con la fuga scura fra le ante; sull'anta grande l'etichetta dati
-   (adesivo bianco) con i recapiti, sull'anta stretta le feritoie stampate e la serratura a chiave triangolare. Cerniere sul fianco. */
-.contatti{padding-top:72px;padding-bottom:72px}
-.contatti .grid{align-items:center}
-.contatti .testo{grid-column:1/5}
-.contatti h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
-.contatti .testo p{margin-top:24px;font-size:21px;line-height:1.5;max-width:15em}
-.porta{grid-column:5/13;position:relative;display:grid;grid-template-columns:minmax(0,1fr) 196px;gap:3px;padding:3px;background:#8C9390;border-radius:9px;box-shadow:0 18px 36px -24px rgba(21,23,26,.45)}
-.anta{position:relative;min-width:0;border-radius:6px;background:linear-gradient(180deg,#DFE2DF 0%,#D3D7D4 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(0,0,0,.06)}
-.anta-1{padding:28px 40px}
-.anta-2{padding:40px 32px 104px;display:flex;flex-direction:column;align-items:stretch}
-.cerniera{position:absolute;left:-7px;width:7px;height:56px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,#7D8481,#A9AFAC)}
-.cerniera.c1{top:56px}.cerniera.c2{bottom:56px}
-.feritoie{display:grid;grid-template-columns:minmax(0,1fr);row-gap:15px;list-style:none}
-.feritoie li{height:17px;border-radius:9px;background:linear-gradient(180deg,#F2F4F2 0,#C9CECB 42%,#2E3432 44%,#4F5653 100%);box-shadow:0 1px 0 rgba(255,255,255,.75),0 -1px 0 rgba(0,0,0,.08)}
-.serratura{position:absolute;left:50%;bottom:40px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#EEF0EE,#B7BDBA 70%);box-shadow:0 1px 2px rgba(0,0,0,.25),inset 0 0 0 1px #9AA19E}
-.serratura::after{content:"";position:absolute;left:13px;top:12px;width:18px;height:16px;background:#4A504D;clip-path:polygon(50% 0,100% 100%,0 100%)}
-.targa{background:#fff;border-radius:4px;box-shadow:0 0 0 1px #BEC3C0,0 1px 1px rgba(21,23,26,.10)}
-.targa .capo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px 14px}
-.targa .capo img{width:150px}
-.targa .capo span{font-size:14px;font-weight:600;line-height:1.3;text-align:right}
-.targa dl{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);border-top:2px solid var(--inchiostro)}
-.targa .campo{padding:10px 24px 14px;font-size:17px;line-height:1.5}
-.targa .lungo{grid-column:1/3;border-bottom:1px solid var(--inchiostro)}
-.targa .lungo dt + dd + dt{margin-top:10px}
-.targa .dx{border-left:1px solid var(--inchiostro)}
-.targa dt{font-size:13px;font-weight:600;line-height:1.3;color:var(--grigio);margin-bottom:4px}
-.targa .tel-g{display:inline-block;font-size:54px;line-height:1;font-weight:400;letter-spacing:-.025em;text-decoration:none;white-space:nowrap;padding:6px 0 2px}
-.targa .mail{display:inline-block;font-size:22px;line-height:1.3;letter-spacing:-.01em;padding-top:2px}
+/* contatti (stile B "con foto"): a sinistra una sola foto grande, a filo del bordo della pagina anche oltre i 1568 px;
+   a destra la frase in alto, nel carattere dei titoli, e i recapiti in basso, in poche righe a corpo di testo */
+.contatti{padding-bottom:120px}
+.contatti .grid{align-items:stretch}
+.contatti .foto{grid-column:1/7;min-width:0;margin-left:calc(-1 * (var(--m) + max(0px, (100vw - 1568px) / 2)))}
+.contatti .foto img{width:100%;height:clamp(560px,52vw,1000px);object-fit:cover;object-position:50% 50%}
+.contatti .testo{grid-column:8/13;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:56px;padding-top:4px}
+.contatti h2{font-size:clamp(44px,4.45vw,64px);line-height:1.04;letter-spacing:-.03em}
+.rec{font-size:18px;line-height:1.55}
+.rec p+p{margin-top:12px}
+.rec .tel-g{display:inline-flex;align-items:center;min-height:48px;font-size:36px;line-height:1.1;letter-spacing:-.02em;white-space:nowrap}
+.rec .mail{display:inline-block;padding:2px 0;font-size:20px}
+.rec .grigio{color:var(--grigio)}
 
 /* piede: una riga sola, sulla carta */
-.piede{padding-top:28px;padding-bottom:32px;font-size:14px;line-height:1.7;color:var(--grigio);word-spacing:.45em}
+.piede{padding-top:0;padding-bottom:32px;font-size:14px;line-height:1.7;color:var(--grigio);word-spacing:.45em}
+.piede p{padding-top:20px;border-top:1px solid var(--filo)}
 .piede span{word-spacing:normal;white-space:nowrap}
 .piede span:not(:last-child)::after{content:"\00B7";margin-left:.6em}
 .piede a{text-decoration:underline;text-decoration-color:#9AA0A2}
@@ -205,12 +190,8 @@ p{text-wrap:pretty}
   .fam li{padding:14px 0 12px;font-size:15px}
   .fam b{font-size:17px}
   .menu{gap:24px}
+  .contatti .testo{grid-column:7/13;padding-left:24px;gap:48px}
   .sez h2{font-size:54px}
-  .contatti{padding-top:96px;padding-bottom:96px}
-  .contatti h2{font-size:54px}
-  .contatti .testo{grid-column:1/13}
-  .contatti .testo p{max-width:30em}
-  .porta{grid-column:1/13;margin-top:40px}
 }
 /* 768 */
 @media (max-width:900px){
@@ -235,13 +216,10 @@ p{text-wrap:pretty}
   .fam li:nth-child(2){border-bottom:1px solid var(--lamiera-scura)}
   .anche h3,.anche p{grid-column:1/13}
   .anche p{margin-top:16px}
-  .porta{grid-template-columns:minmax(0,1fr) 168px}
-  .anta-1{padding:32px}
-  .anta-2{padding:32px 28px 96px}
-  .targa dl{grid-template-columns:minmax(0,1fr)}
-  .targa .lungo{grid-column:auto}
-  .targa .dx{border-left:0;border-top:1px solid var(--inchiostro)}
-  .targa .tel-g{font-size:46px}
+  .contatti{padding-bottom:96px}
+  .contatti .foto{grid-column:1/13;margin-right:calc(-1 * var(--m))}
+  .contatti .foto img{height:min(110vw,720px)}
+  .contatti .testo{grid-column:1/13;padding:0;margin-top:48px;gap:40px}
 }
 /* telefono */
 @media (max-width:640px){
@@ -288,23 +266,14 @@ p{text-wrap:pretty}
   .cat .pdf{margin-top:28px}
   .pdf{columns:1}
   .pdf li{padding:10px 0 8px}
-  .contatti{padding-top:76px;padding-bottom:76px}
+  .contatti{padding-bottom:72px}
+  .contatti .testo{margin-top:36px;gap:32px}
   .contatti h2{font-size:38px;line-height:1.06}
-  .contatti .testo p{margin-top:16px;font-size:18px}
-  .porta{margin-top:32px;grid-template-columns:minmax(0,1fr)}
-  .cerniera{display:none}
-  .anta-1{padding:20px 16px}
-  .anta-2{padding:22px 16px 22px 76px;flex-direction:row;align-items:center}
-  .anta-2 .feritoie{flex:1;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:12px}
-  .serratura{left:18px;top:50%;bottom:auto;margin-left:0;width:40px;height:40px;margin-top:-20px}
-  .serratura::after{left:12px;top:11px;width:16px;height:14px}
-  .targa .capo{padding:12px 16px 10px}
-  .targa .capo img{width:124px}
-  .targa .capo span{font-size:13px}
-  .targa .campo{padding:10px 16px 14px;font-size:16px}
-  .targa .tel-g{font-size:40px}
-  .targa .mail{font-size:20px}
-  .piede{padding-top:24px;padding-bottom:28px}
+  .rec{font-size:17px}
+  .rec .tel-g{font-size:32px}
+  .rec .mail{font-size:18px}
+  .piede{padding-bottom:28px}
+  .piede p{padding-top:16px}
 }
 @media (max-width:360px){
   .logo{width:124px}
@@ -313,10 +282,8 @@ p{text-wrap:pretty}
   .eroe h1{font-size:40px}
   .cart{height:260px}
   .cart dl{grid-template-columns:64px 1fr}
-  .targa .capo{flex-direction:column;align-items:flex-start;gap:6px}
-  .targa .capo span{text-align:left}
-  .targa .tel-g{font-size:34px;padding:8px 0 4px}
-  .targa .mail{font-size:18px}
+  .contatti h2{font-size:34px}
+  .rec .tel-g{font-size:30px}
 }
 </style>
 </head>
@@ -454,25 +421,16 @@ p{text-wrap:pretty}
 
 <section class="contatti" id="contatti" aria-labelledby="h-con">
   <div class="w grid">
+    <figure class="foto">
+      <img src="img/cuffia-1080.webp" srcset="img/cuffia-480.webp 480w, img/cuffia-720.webp 720w, img/cuffia-1080.webp 1080w, img/cuffia-1600.webp 1600w" sizes="(max-width:900px) 100vw, 50vw" width="1600" height="2000" alt="Cuffia di sfiato in acciaio con la griglia a lamelle, su una lamiera spazzolata" loading="lazy">
+    </figure>
     <div class="testo">
-      <h2 id="h-con">Contatti</h2>
-      <p>Chiamate o scrivete con la sigla del pezzo o le misure del quadro.</p>
-    </div>
-    <div class="porta">
-      <div class="anta anta-1">
-        <span class="cerniera c1" aria-hidden="true"></span><span class="cerniera c2" aria-hidden="true"></span>
-        <div class="targa num">
-          <div class="capo"><img src="img/marchio.webp" width="1054" height="192" alt="Area Systems" loading="lazy"><span>Clima per quadri elettrici</span></div>
-          <dl>
-            <div class="campo lungo"><dt>Tel.</dt><dd><a class="tel-g" href="tel:+390497960705">049 7960705</a></dd><dt>E-mail</dt><dd><a class="mail" href="mailto:info@areasystems.it">info@areasystems.it</a></dd></div>
-            <div class="campo"><dt>Sede operativa</dt><dd>Via San Marco 10<br>30030 Tombelle di Vigonovo&nbsp;(VE)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Marco+10+Tombelle+Vigonovo">Apri la mappa</a></dd></div>
-            <div class="campo dx"><dt>Sede legale</dt><dd>Via Brescia 6<br>35020 Saonara&nbsp;(PD)</dd></div>
-          </dl>
-        </div>
-      </div>
-      <div class="anta anta-2">
-        <span class="serratura" aria-hidden="true"></span>
-        <ul class="feritoie" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+      <h2 id="h-con">Chiamate o scrivete con la sigla del pezzo o le misure del quadro.</h2>
+      <div class="rec num">
+        <p><a class="tel-g" href="tel:+390497960705">049 7960705</a></p>
+        <p><a class="mail" href="mailto:info@areasystems.it">info@areasystems.it</a></p>
+        <p>Via San Marco 10, <span class="nw">30030 Tombelle di Vigonovo&nbsp;(VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Marco+10+Tombelle+Vigonovo">Apri la mappa</a></p>
+        <p class="grigio">Sede legale in Via Brescia 6, <span class="nw">35020 Saonara&nbsp;(PD)</span></p>
       </div>
     </div>
   </div>
