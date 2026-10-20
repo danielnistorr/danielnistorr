@@ -46,6 +46,8 @@ Tutte le foto in pagina sono loro, ma sono piccole: 800x650 per gli still life, 
    - Serve anche un taglio verticale per il telefono.
 5. Se possibile, **la pressa a iniezione e il controllo dei pezzi**, per una futura pagina sul processo (non in questa home). Serve il permesso delle persone ritratte.
 
+6. **La foto della chiusura** (`background/nascita-desktop.jpg`, due persone che esaminano un prototipo davanti agli scaffali dei modelli) è un 1920 molto compresso: serve l'originale del servizio. Chi sono le due persone? Va confermato che sono d'accordo a comparire nella home.
+
 Servono anche il nome del fotografo e il permesso d'uso delle foto attuali.
 
 ## Licenze
@@ -55,6 +57,6 @@ Servono anche il nome del fotografo e il permesso d'uso delle foto attuali.
 
 ## Loghi
 
-- Il timbro è il loro `logo.svg`, ricolorato in inchiostro, in testata. La chiusura (dal 19/10/2026) è il piano del tacco visto dall'alto, disegnato a filo, con i recapiti dentro: vedi `screenshot/home/NOTA.md`.
+- Il timbro è il loro `logo.svg`, ricolorato in inchiostro, in testata. La chiusura (dal 20/10/2026, stile B "con foto" scelto dal committente) è una foto loro a sinistra, a filo del bordo, con la frase e i recapiti a destra: vedi `screenshot/home/NOTA.md`.
 - Contiene il vecchio numero "TEL. 049.502.844" e la scritta "VENEZIA ITALY". Serve una versione senza telefono per l'uso piccolo in testata, ed eventualmente una a colori se esiste.
 - La firma "Valentino Boldrin" è il marchio: va chiesto se è registrato e se si può usare così.

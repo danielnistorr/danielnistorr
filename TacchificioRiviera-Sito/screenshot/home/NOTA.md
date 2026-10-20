@@ -21,12 +21,27 @@ Il resto della pagina:
 - "Il nostro nome, inciso sul piano": il tacco in ottone grande, senza riquadro, con due legende a filetto da 1 px e pallini vuoti da 10 px. Sul telefono diventano un elenco numerato.
 - "Tre generazioni di Boldrin", con la foto d'archivio in bianco e nero a sinistra.
 - I sistemi certificati, con lo scopo SGS.
-- La chiusura: "Diamo forma alla tua idea?" e, accanto, il piano del tacco visto dall'alto, disegnato a filo, che porta tutti i recapiti (vedi sotto).
+- La chiusura, stile B "con foto": a sinistra, a filo del bordo della pagina, il controllo di un prototipo davanti agli scaffali dei modelli; a destra la frase "Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo." e i recapiti in poche righe (vedi sotto).
 - Il piede in una riga sola su carta: ragione sociale, sede legale, P.IVA, REA, capitale sociale e i link a privacy, whistleblowing (procedura e privacy), modulo SA8000 e versione inglese.
 
-Altezza della pagina: 4704 px a 1440, 5254 px a 390 (con la chiusura del piano del tacco).
+Altezza della pagina: 4821 px a 1440, 5281 px a 390 (con la chiusura con foto).
 
-## La chiusura: il piano del tacco (confronto delle chiusure, 19 ottobre 2026)
+## La chiusura: stile B, con foto (20 ottobre 2026)
+
+Le chiusure "oggetto del mestiere disegnato che porta i recapiti" (qui il piano del tacco) sono state bocciate dal committente. Sui due campioni di Hambro e Bazzato ha scelto lo stile B, "con foto": una frase dell'azienda grande, i recapiti in poche righe pulite, una sola foto grande, il piede in una riga. Qui è applicato così.
+
+- **La frase**, in Imbue (il carattere dei titoli) a 65 px a 1440, 46 a 1024, 36 al telefono: "Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo." Viene dal paragrafo di "Dal disegno al tacco", che a sua volta riprende il loro sito ("Il cliente presenta un disegno con la sua idea, viene interpretata e realizzata", pagina Ispirazioni). È la frase che dice meglio come lavorano: sul disegno del cliente. Esce "Diamo forma alla tua idea?", che era una domanda d'invito, e la riga sul piano del tacco.
+- **I recapiti**, in Hanken a corpo di testo, in fondo alla colonna e allineati al piede della foto: il telefono +39 049 502844 a 36 px (28 px sotto i 1120 px; `tel:`, area toccabile alta 44 px), l'email (`mailto:`, va a capo solo dopo la @), la sede operativa "Viale Serenissima 30, 30030 Vigonovo (VE)" con "Apri la mappa" (Google Maps), poi in grigio il fax e la PEC (`mailto:`). Orari: l'azienda non li pubblica, quindi non ci sono. Niente riquadri, card, filetti tra le voci, etichette maiuscole o disegni.
+- **La foto**: `sito/img/prototipo-scaffali-{640,960,1440,1920}.jpg`, da `assets/originali/background/nascita-desktop.jpg` (1920x1080), lo sfondo della sezione "Nascita" del loro sito tacchificioriviera.it: due persone esaminano un prototipo di tacco segnato in rosso, davanti agli scaffali dei modelli. È una foto dell'azienda (licenza: la loro, come tutte le altre in pagina; il permesso d'uso e quello delle persone ritratte vanno chiesti, vedi LEGGIMI). Nessuna foto esterna, nessuna foto nuova.
+  - **Perché questa.** La più bella e nitida del materiale è l'incisione del fiore, ma è già la pausa fotografica della seconda schermata (approvata così): ripeterla in chiusura sarebbe un doppione, e spostarla vorrebbe dire toccare il resto della pagina. Tra le altre foto piene a 1920 (il CAD, la sede al crepuscolo, questa) è la più nitida sulle mani e sul pezzo, e racconta proprio la frase accanto: il prototipo segnato in rosso (lo stesso rosso matita dell'accento della pagina) che passa di mano in mano. Sopra la chiusura ci sono i certificati, senza foto: nessun doppione vicino.
+  - **Trattamento** uguale all'incisione (`finale_img.py`): antiblocchi (mediana 3x3 al 60 % e sfocatura di 0,5 px, la fonte è un JPEG molto compresso), gradazione neutra appena desaturata (0,88), qualità 88. Si esporta l'inquadratura intera e la pagina la taglia con `object-fit`, centrata sulle mani e sul tacco (`object-position: 57% 35%`): le due facce restano dentro da 900 a 2560 px.
+- **Impaginazione.** Sopra i 860 px la foto occupa le colonne 1-6 (1-7 sotto i 1100) ed esce fino al bordo sinistro della finestra anche oltre i 1440 px (`margin-left` con `max(0px, (100vw - 1440px) / 2)`); alta 677 px a 1440, tra 520 e 700. Il testo sta nelle colonne 8-12: la frase in alto, allineata alla cima della foto, i recapiti in basso, allineati al piede. Sotto gli 860 px la foto va sopra, a tutta larghezza da bordo a bordo, in 5:4, poi la frase e i recapiti.
+- **Il piede** resta quello di prima, una riga sola a 1440 nel tono della pagina: ragione sociale, sede legale, P.IVA e C.F., REA, capitale sociale e i link a privacy, whistleblowing (procedura e privacy), modulo SA8000 e versione inglese. La PEC aggiunta lì lo mandava su due righe a 1440 (servono 1600 px), quindi resta tra i recapiti.
+- **Dati**: tutti quelli che c'erano, nessuno nuovo, nessuno perso (tel, email, sede operativa con mappa, fax, PEC nei recapiti; sede legale e dati societari nel piede).
+- **Controlli**: chiusura guardata a pezzi a 2560, 1440, 1024, 900, 768, 390 e 320; nessuno scorrimento orizzontale da 320 a 2560 (build); nessuna sovrapposizione di testi (controllo automatico del build); la foto parte da x=0 a ogni larghezza; contrasti: inchiostro sulla carta 16,0:1, grigio (fax, PEC, piede) sulla carta 5,7:1. Nessun U+2014. Segnali: 17 soglie su 18 OK; area foto 33,4 % (prima 26,9 %), 13 filetti, un titolo col punto (la frase della chiusura) su 6, dentro la soglia.
+- **Come si rifà**: `_prova/script/chiusura_foto.py` è già applicato a `_prova/finale/index.html` (la pagina com'era prima, con il piano del tacco, è in `_prova/home/prima-della-foto/`); poi `bash _prova/script/build_finale.sh`.
+
+## La chiusura precedente: il piano del tacco (sostituita il 20/10/2026)
 
 Messe affiancate tutte le chiusure della campagna (`_metodo/chiusure-a-confronto.jpg`), il biglietto da visita con il timbro tondo era troppo vicino alla scheda d'archivio di Mario Agnoletto: tutte e due erano un cartoncino chiaro con l'ombra, il telefono grande e un timbro tondo impresso, sulla carta. E un biglietto da visita non è un oggetto del mestiere: lo ha qualunque azienda.
 
@@ -109,6 +124,7 @@ Tutte le foto in pagina sono del Tacchificio Riviera, prese dal loro sito tacchi
 | tacco-ottone-1x/2x | `nascita/tacco_1.jpg` | campo piatto, ombre neutre; mostrato a 1,05x |
 | incisione-800/1200/1920, -m-600/864 | `background/linee-desktop.jpg` (1920x1080) | antiblocchi, gradazione neutra, tagli 2:1 e 4:5, qualità 88 |
 | archivio-488 | `territorio/modal1.jpg` (488x562) | grigio neutro, misura nativa, mostrata a 440 px |
+| prototipo-scaffali-640/960/1440/1920 | `background/nascita-desktop.jpg` (1920x1080) | antiblocchi, gradazione neutra, inquadratura intera tagliata in pagina, qualità 88 (chiusura) |
 | timbro.svg | `logo.svg` | ricolorato in inchiostro (testata) |
 
 Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: non aggiungono dettaglio. Nessun pezzo supera 1,1 volte la misura nativa.
@@ -126,7 +142,7 @@ Le versioni 2x sono ottenute con Lanczos e una maschera di contrasto leggera: no
   - Fine porta a Serie, Home a Legno, e la freccia sinistra dal primo porta all'ultimo;
   - la didascalia e l'immagine cambiano ogni volta.
 - **Collegamenti.**
-  - `tel:+39049502844` in testata e sul piano del tacco nei contatti;
+  - `tel:+39049502844` in testata e nei recapiti della chiusura;
   - `mailto:` all'indirizzo generale (con oggetto sul bottone) e alla PEC;
   - Google Maps sul Viale Serenissima 30 a Vigonovo;
   - i PDF dei tre certificati;
