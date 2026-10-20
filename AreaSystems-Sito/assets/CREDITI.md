@@ -37,6 +37,7 @@ Appartengono ad Area Systems o, più probabilmente, ai suoi fornitori: gli scont
 
 - `esterne/unsplash-NAchd3UmxXo-sime-quadro-aperto.jpg`: apertura (quadro aperto con le etichette), in `sito/img/quadro-*.webp` e `quadro-m-*.webp`. SEGNAPOSTO.
 - `esterne/unsplash-pLvgCVtwbls-ferreira-quadro-chiuso-feritoie.jpg`: fascia "il quadro chiuso" tra i pezzi e le misure ASB, in `sito/img/chiuso-*.webp` e `chiuso-m-*.webp`, con il cartello di pericolo tolto. SEGNAPOSTO.
+- `esterne/unsplash-CQkoCt7taPo-pancrate-cuffia-sfiato-acciaio.jpg`: chiusura (stile B "con foto", 20/10/2026), foto a sinistra dei recapiti, in `sito/img/cuffia-*.webp`, con la sigla di marca stampata sul bordo coperta. Nessuna altra home della campagna la usa (controllato per ID il 20/10/2026). SEGNAPOSTO.
 - `esterne/unsplash-KDkU44ikiko-sime-quadro-cablaggio.jpg`: non più usata. Era la fascia dei fili, tolta nella rifinitura (ripeteva l'armadio dell'apertura, sorgente utile di 1338 px).
 - `originali/catalogo-2022/p13-gruppo-ventilazione.jpg` e `p53-resistenza.jpg`: i due pezzi grandi (`gruppo-*.webp`, `resistenza-*.webp`), diritti da chiarire.
 - `originali/GT10023AB.png`, `Plafoniera-led-T5.png`, `ASVC200.jpg`, `Gruppi-ASB32S23ABE.png`, `DTV02-N.png`, `CTSH.png`: pezzi del cartellino (`p-*.webp`), diritti da chiarire.

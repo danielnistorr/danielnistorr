@@ -18,11 +18,25 @@ Area Systems vende il clima del quadro elettrico. La home apre il quadro e mostr
   - **la fascia "il quadro chiuso"**: due ante grigie con le feritoie per l'aria (Victor Ferreira, Unsplash `pLvgCVtwbls`). La sorgente è di 4928 px ed è esportata a 1440, 1920 e 2880, con lo stesso trattamento freddo e desaturato dell'apertura. Sull'anta destra c'era un cartello di pericolo in portoghese: è coperto da lamiera liscia, ricostruita con la luce dell'anta e la grana dell'anta sinistra (`finale_img.py`). Racconta il quadro da fuori, dopo il quadro aperto: è da lì che passa l'aria;
   - **"Gruppi ASB in cinque misure"**: i cinque gruppi della serie ASB disegnati in scala tra loro (114, 150, 204, 250 e 325 mm di lato), con la sigla, la misura e la portata di ogni taglia, prese dalla tabella della scheda ASB. Due righe di testo dicono come si montano (a scatto, senza viti, nelle dime standard), la griglia apribile per il filtro e i due grigi RAL. È una linea con la loro sigla e le misure diventano il disegno. Il disegno è in CSS, senza immagini e senza quote in monospazio.
 - **Dato corretto.** La riga della ventilazione diceva "da 24 a 1500 m³/h", ma i ventilatori assiali arrivano oltre (GW280H 1870 mc/h, Jason Fan FJ28082MAB 2040 mc/h). Ora dice "gruppi e torrini da 24 a 1500 m³/h", che vale per ASB, GB/F, GA e GT.
-- **Contatti chiari.** La fascia nera in fondo è diventata lamiera chiara #E7E9E7. Poi la chiusura è stata rifatta del tutto come etichetta dati del quadro (vedi sopra). La pagina è chiara dalla testata al piede.
+- **Contatti chiari.** La fascia nera in fondo è diventata lamiera chiara #E7E9E7. Poi la chiusura è stata rifatta come etichetta dati, poi come porta del quadro, e infine (20/10/2026) nello stile B con foto (vedi sotto). La pagina è chiara dalla testata al piede.
 - **Il torrino nella legenda**: "aspira l'aria calda e la porta fuori", più corto, per stare su una riga.
-- **Altezza**: 5781 px a 1440 con la chiusura nuova (era 4756, poi 5720), 6739 a 390.
+- **Altezza**: 6120 px a 1440 con la chiusura con foto (era 4756, poi 5720, 5781 e 5814), 6988 a 390.
 
-## La chiusura: il quadro chiuso (confronto delle chiusure, 19 ottobre 2026)
+## La chiusura: foto e recapiti (stile B "con foto", 20 ottobre 2026)
+
+Le chiusure "oggetto del mestiere disegnato che porta i recapiti" (qui la porta del quadro con l'etichetta dati) sono state bocciate dal committente. Sui campioni di Hambro e Bazzato ha scelto lo stile B, con foto. Qui è rifatta solo la chiusura; il resto della pagina non è cambiato.
+
+- **Impaginazione.** A sinistra una sola foto grande, a filo del bordo sinistro della pagina a ogni larghezza (anche oltre i 1568 px della griglia): colonne 1-6 più il margine, 708 x 749 px a 1440, 948 x 998 a 1920, 1268 x 1000 a 2560. A destra (colonne 8-12) la frase in alto e i recapiti in basso, allineati al piede della foto. Sotto i 1180 px il testo prende le colonne 7-12; sotto i 900 la foto va sopra a tutta larghezza (alta 110vw, al massimo 720 px) e il testo sotto.
+- **La frase**: "Chiamate o scrivete con la sigla del pezzo o le misure del quadro." È la riga che stava accanto a "Contatti": dice come lavorano, a partire dalla sigla o dalle misure. Ora è il titolo della sezione (H2 `#h-con`), in Overpass 300 come gli altri titoli, 64 px a 1440 (`clamp(44px, 4,45vw, 64px)`, 38 al telefono, 34 sotto i 360). Il titolo "Contatti" non c'è più; la voce di menu porta sempre a `#contatti`.
+- **I recapiti**, a corpo di testo, senza riquadri, filetti o etichette sopra i campi: il telefono `tel:+390497960705` a 36 px (32 al telefono, 30 sotto i 360; area di tocco alta 48 px), `mailto:info@areasystems.it`, "Via San Marco 10, 30030 Tombelle di Vigonovo (VE)" con "Apri la mappa" (Google Maps), e in grigio "Sede legale in Via Brescia 6, 35020 Saonara (PD)". Gli orari non ci sono: non sono nel sito e non sono stati inventati.
+- **Il piede** resta la stessa riga (ragione sociale, P. IVA e C.F., REA, capitale, PEC, privacy e cookie iubenda), ora con un filetto sopra, l'unico della chiusura.
+- **La foto**: cuffia di sfiato in acciaio con la griglia a lamelle, su lamiera spazzolata. Steve Pancrate, Unsplash `CQkoCt7taPo` (vedi "Foto"). È la più nitida tra quelle disponibili e non ripete né il quadro aperto né il quadro chiuso; è l'aria che esce, il tema della pagina, e richiama le cuffie di protezione del loro catalogo. Sopra la chiusura c'è la sezione dei cataloghi, senza foto, quindi non c'è stato niente da spostare. **Segnaposto**: non è un loro pezzo.
+- **Tolti**: la porta (ante, fuga, cerniere, feritoie, serratura), l'etichetta dati con il marchio, i suoi filetti e i suoi campi.
+- **Come si rifà**: `_prova/script/chiusura_foto.py` legge la pagina com'era prima (`_prova/home/prima-della-foto/`, con la vecchia `chiusura-1440.jpg`) e riscrive `sito/index.html`; la foto la esporta `finale_img.py` (`sito/img/cuffia-480/720/1080/1600.webp`); poi `bash _prova/script/build_finale.sh`. `chiusura-1440.jpg` ora parte 72 px sopra la sezione, sulla carta vuota.
+- **Controlli della chiusura** a 2560, 1920, 1600, 1440, 1366, 1280, 1181, 1180, 1024, 901, 900, 768, 641, 640, 430, 390, 360 e 320: scrollWidth uguale alla finestra, nessun elemento fuori dalla finestra (salvo la foto, che esce a sinistra di proposito), nessun testo che trabocca, telefono su una riga, nessun errore in console. Guardata a pezzi a 1440, 1024, 768, 390 e 320. Contrasti sulla carta #FAFAF8: inchiostro 17,2:1, grigio della sede legale e del piede 6,5:1. Segnali a 1440: 0 soglie bloccanti; area foto 39,8 % (era 35,2), filetti 28, 3 fasce di fondo; un titolo col punto (questo) su 8.
+- **Altezza**: 6120 px a 1440 (era 5814), 6988 a 390, 7068 a 320, 6414 a 768, 5953 a 1024, 6821 a 1920.
+
+## La chiusura precedente: il quadro chiuso (19 ottobre 2026, sostituita)
 
 Messe affiancate tutte le chiusure della campagna (`_metodo/chiusure-a-confronto.jpg`), quella di Area Systems era la gemella del cartiglio di 3Esse: titolo "Contatti" in alto a sinistra, tabella bianca a filetti a destra su un fondo grigio piatto, piede su una riga. L'etichetta dati, da sola, non si leggeva come un oggetto: sembrava una scheda qualsiasi. Ora l'oggetto si vede intero.
 
@@ -51,7 +65,7 @@ Il committente ha notato che quasi tutte le home della campagna finivano allo st
 
 - **1440 x 900**: testata chiara con il marchio orizzontale, quattro voci di menu e il telefono. A sinistra il titolo "Il clima giusto dentro il quadro", a 128 px su due righe, peso 300, spaziatura -0,038em. A destra, in alto, tre righe su cosa vendono e da dove; sotto, dopo un filetto, la legenda del pezzo scelto (all'inizio il gruppo con filtro ASB). Sotto, il quadro aperto a tutta larghezza con le sei etichette, tutte visibili.
 - **390 x 844**: il titolo a 46 px su due righe, la frase, poi il quadro in un taglio quasi quadrato con sei numeri tondi da 44 px di area di tocco. La riga "Scegliete un numero sulla foto." e la legenda cominciano sotto la foto.
-- **Poi**: i due pezzi veri del loro catalogo, grandi su grigio lamiera, con le quattro famiglie; la fascia del quadro chiuso; i gruppi ASB in scala; per chi lavorano; "Nello stesso quadro"; i cataloghi PDF veri; l'etichetta dati con telefono, email e sedi su lamiera chiara; il piede in una riga con i dati societari.
+- **Poi**: i due pezzi veri del loro catalogo, grandi su grigio lamiera, con le quattro famiglie; la fascia del quadro chiuso; i gruppi ASB in scala; per chi lavorano; "Nello stesso quadro"; i cataloghi PDF veri; la chiusura con la foto della cuffia di sfiato a sinistra e, a destra, la frase e i recapiti; il piede in una riga con i dati societari.
 
 ## Caratteri e colori
 
@@ -68,6 +82,7 @@ Le sei etichette sono un gruppo di schede (role tablist). Si usano con il clic o
 
 - **Apertura**: Raymond Sime, quadro aperto, Unsplash `NAchd3UmxXo` (Unsplash License, verificata il 19/10/2026). Esportata a 1440, 1920 e 2400 px; per il telefono un taglio quasi quadrato a 390, 780 e 1170. **Segnaposto**: non è un loro quadro e nessun pezzo inquadrato è loro; le etichette indicano dove vanno i loro prodotti.
 - **Quadro chiuso**: Victor Ferreira, Unsplash `pLvgCVtwbls` (Unsplash License, verificata il 19/10/2026 sulla pagina della foto: "Free to use under the Unsplash License", non Unsplash+). Cartello tolto. **Segnaposto.**
+- **Chiusura**: Steve Pancrate (@redaska), cuffia di sfiato in acciaio, Unsplash `CQkoCt7taPo` (https://unsplash.com/photos/a-close-up-of-a-vent-on-a-metal-surface-CQkoCt7taPo), file `assets/esterne/unsplash-CQkoCt7taPo-pancrate-cuffia-sfiato-acciaio.jpg`, 1600 x 2400. Unsplash License, letta il 19/10/2026 sulla pagina della foto ("Free to use under the Unsplash License", non Unsplash+, vedi `assets/CREDITI.md`); il 20/10 la pagina non si è lasciata rileggere (protezione dai robot), quindi vale la lettura del 19. Sul bordo c'era una sigla di marca stampata a rilievo: coperta con la lamiera del bordo (modifica ammessa dalla licenza). Taglio 1600 x 2000 con la cuffia al centro, stesso trattamento delle altre (saturazione 0,6, ombre aperte, bianco freddo), WebP a 480, 720, 1080 e 1600. **Segnaposto**: non è un loro pezzo.
 - **Pezzi grandi**: il gruppo di ventilazione (pag. 13) e la resistenza alettata (pag. 53) del catalogo Area Systems 2022, scontornati, ripuliti dalla polvere e trattati.
 - **Pezzi della legenda**: gli scontornati del sito (GT10023AB, plafoniera T5, ASVC200, gruppo ASB32, DTV02-N, CTSH), mostrati a 88-120 px.
 - **Trattamento** (lo stesso della bozza B, con PIL): saturazione abbassata, ombre aperte, bianco neutro freddo, nitidezza leggera; WebP in più larghezze con srcset.
@@ -84,7 +99,7 @@ Usate pochissimo, e il giudice è d'accordo. Area Systems è un piccolo distribu
 
 ## Controlli
 
-- Altezza (con la chiusura nuova): 1440: 5781 px; 390: 6739; 320: 6931; 768: 5864; 1024: 5921; 1280: 5676; 1920: 6232.
+- Altezza (con la chiusura con foto, 20/10/2026): 1440: 6120 px; 390: 6988; 320: 7068; 768: 6414; 1024: 5953; 1280: 5932; 1920: 6821.
 - Prima schermata (`_prova/script/misure_rifinitura.mjs`, a 16 larghezze da 320 a 2560): titolo su due righe ovunque; legenda di altezza costante con tutti e sei i pezzi e senza testo che trabocca; legenda e foto mai sovrapposte; scrollWidth uguale a innerWidth a 320, 360, 390, 430, 600, 768, 900, 1024, 1180, 1181, 1280, 1366, 1440, 1600, 1920 e 2560.
 - Gesto (`_prova/script/prova_gesto_finale.mjs`, a 320, 390, 768, 1024, 1440, 1920): tocco o clic, frecce, Inizio, Fine, fuoco sull'etichetta giusta, etichette dentro la foto, menu del telefono che si apre e si chiude dopo la scelta. Tutto a posto, senza errori in console.
 - Collegamenti: `tel:+390497960705` (due volte: testata ed etichetta), `mailto:info@areasystems.it`, mappa Google sulla via San Marco 10 di Tombelle, otto PDF dei cataloghi e sei schede su areasystems.it (risposta 200 il 19/10/2026), privacy e cookie iubenda 25167846.

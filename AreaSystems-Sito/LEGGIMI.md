@@ -40,7 +40,7 @@ In pagina c'è il marchio orizzontale (le ali con la scritta AREA SYSTEMS a dest
 
 ## Foto da rifare dal vero
 
-Nessuna foto in apertura è di Area Systems. La foto del quadro aperto (Raymond Sime) e la fascia del quadro chiuso (Victor Ferreira, con il cartello di pericolo tolto) sono **segnaposto** di Unsplash: non sono loro quadri e nessun pezzo inquadrato è loro. Vanno sostituite prima di ogni uso pubblico. Serve mezza giornata di scatti.
+Nessuna foto in apertura è di Area Systems. La foto del quadro aperto (Raymond Sime), la fascia del quadro chiuso (Victor Ferreira, con il cartello di pericolo tolto) e la cuffia di sfiato della chiusura (Steve Pancrate) sono **segnaposto** di Unsplash: non sono loro quadri e nessun pezzo inquadrato è loro. Vanno sostituite prima di ogni uso pubblico. Serve mezza giornata di scatti.
 
 1. **Il quadro aperto (apertura)**:
    - un loro quadro vero in RAL 7035, porta aperta a sinistra, fotografato frontale e un po' da sinistra come la foto di oggi (luce piatta e uniforme, niente ombre dure, almeno 3000 px di larghezza);
@@ -57,11 +57,11 @@ Nessuna foto in apertura è di Area Systems. La foto del quadro aperto (Raymond 
 ## Licenze
 
 - **Overpass**: The Overpass Project Authors (Red Hat), SIL Open Font License 1.1, da Google Fonts, servito dalla pagina (`sito/fonts/OFL.txt`).
-- **Foto Unsplash** (`NAchd3UmxXo` di Raymond Sime, `pLvgCVtwbls` di Victor Ferreira): Unsplash License, uso commerciale libero e senza attribuzione obbligatoria, modifiche ammesse, verificata sulla pagina di ogni foto il 19/10/2026. La foto `KDkU44ikiko` (fascia dei fili) non è più usata. Il dettaglio è in `assets/CREDITI.md`.
+- **Foto Unsplash** (`NAchd3UmxXo` di Raymond Sime, `pLvgCVtwbls` di Victor Ferreira, `CQkoCt7taPo` di Steve Pancrate): Unsplash License, uso commerciale libero e senza attribuzione obbligatoria, modifiche ammesse, verificata sulla pagina di ogni foto il 19/10/2026. La foto `KDkU44ikiko` (fascia dei fili) non è più usata. Il dettaglio è in `assets/CREDITI.md`.
 - **Foto del catalogo 2022 e scontornati del sito**: di Area Systems o dei produttori, diritti da chiarire (punto 12).
 
 ## Note di progetto
 
 - **La legenda del pezzo scelto** sta sulla carta, nella colonna destra dell'apertura, sotto la frase, con altezza fissa: non copre la foto. Sotto i 1180 px passa sotto la foto, con la riga "Scegliete un numero sulla foto.".
-- **La chiusura è il quadro chiuso** (rifatta il 19/10/2026 dopo il confronto di tutte le chiusure, perché era troppo vicina al cartiglio di 3Esse): due ante in lamiera RAL 7035 con cerniere, feritoie e serratura a chiave triangolare; sull'anta grande l'etichetta dati bianca con telefono, email e sedi. Il piede resta una riga sola. Si rifà con `_prova/script/chiusura_porta.py`; la versione prima è in `_prova/home/prima-della-porta/`. Gli H2 hanno una sola misura (64 px).
+- **La chiusura è nello stile B "con foto"** (20/10/2026, scelto dal committente sui campioni di Hambro e Bazzato, dopo la bocciatura delle chiusure disegnate come oggetti): a sinistra la foto grande della cuffia di sfiato, a filo del bordo della pagina; a destra la frase "Chiamate o scrivete con la sigla del pezzo o le misure del quadro." e i recapiti in poche righe; il piede resta una riga sola. Si rifà con `_prova/script/chiusura_foto.py`; la versione prima (la porta del quadro) è in `_prova/home/prima-della-foto/`. Non c'è una versione WordPress di questo sito da rigenerare. Gli H2 hanno una sola misura (64 px).
 - **La prima schermata non è stata ripensata** nonostante il giudizio cieco (che la trovava troppo vicina a quella di Bertolin Antonio e chiedeva un solo pezzo loro scontornato): il committente ha scelto questa bozza. Il rimedio vero è lo scatto del punto 1 qui sopra.
