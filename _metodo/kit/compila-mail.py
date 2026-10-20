@@ -14,6 +14,7 @@ p.add_argument('--paese', required=True)
 p.add_argument('--telefono', default='')  # senza telefono la riga [TELEFONO] della firma si toglie
 p.add_argument('--email', required=True)
 p.add_argument('--dopo-visita', default='')
+p.add_argument('--senza-pdf', action='store_true')  # tiene i PDF già fatti (per esempio se il mittente non cambia)
 a = p.parse_args()
 KIT = os.path.dirname(os.path.abspath(__file__))
 dopo = {x.strip() for x in a.dopo_visita.split(',') if x.strip()}
@@ -59,7 +60,8 @@ for d in sorted(os.listdir(a.cartella)):
     cart = os.path.join(a.cartella, d)
     spec = os.path.join(cart, 'spec.json')
     mitt = '  ·  '.join(x for x in (a.nome, a.paese, a.telefono, a.email) if x)
-    subprocess.run(['node', os.path.join(KIT, 'allegato.mjs'), spec, cart, '--mittente', mitt], check=True)
+    if not a.senza_pdf:
+        subprocess.run(['node', os.path.join(KIT, 'allegato.mjs'), spec, cart, '--mittente', mitt], check=True)
     pdf = os.path.join(cart, json.load(open(spec, encoding='utf-8'))['file'])
     subprocess.run(['rm', '-rf', os.path.join(cart, '_lavoro')])
     open(os.path.join(cart, 'pronta.txt'), 'w', encoding='utf-8').write(f'A: {a_}\nOggetto: {oggetto}\nAllegato: {os.path.basename(pdf)}\n\n{testo}\n')
