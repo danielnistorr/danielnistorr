@@ -1,4 +1,4 @@
-# uso: python3 compila-mail.py <cartella-invio> --nome "Nome Cognome" --paese "Paese" --telefono "333 1234567" --email "tu@dominio.it" [--dopo-visita 01,05]
+# uso: python3 compila-mail.py <cartella-invio> --nome "Nome Cognome" --paese "Paese" [--telefono "333 1234567"] --email "tu@dominio.it" [--dopo-visita 01,05]
 # Per ogni <cartella-invio>/NN-azienda/email.md:
 #   - sostituisce [NOME], [PAESE], [TELEFONO] nella mail (e nella variante, se l'azienda è in --dopo-visita)
 #   - rifà il PDF con il mittente in fondo alla pagina 3
@@ -11,7 +11,7 @@ p = argparse.ArgumentParser()
 p.add_argument('cartella')
 p.add_argument('--nome', required=True)
 p.add_argument('--paese', required=True)
-p.add_argument('--telefono', required=True)
+p.add_argument('--telefono', default='')  # senza telefono la riga [TELEFONO] della firma si toglie
 p.add_argument('--email', required=True)
 p.add_argument('--dopo-visita', default='')
 a = p.parse_args()
@@ -30,7 +30,10 @@ def campo(md, nome):
 
 
 def riempi(t):
-    return t.replace('[NOME]', a.nome).replace('[PAESE]', a.paese).replace('[TELEFONO]', a.telefono)
+    t = t.replace('[NOME]', a.nome).replace('[PAESE]', a.paese)
+    if not a.telefono:
+        t = re.sub(r'\n\[TELEFONO\][ \t]*(?=\n|$)', '', t)
+    return t.replace('[TELEFONO]', a.telefono)
 
 
 for d in sorted(os.listdir(a.cartella)):
@@ -55,7 +58,7 @@ for d in sorted(os.listdir(a.cartella)):
     oggetto = campo(md, 'Oggetto')
     cart = os.path.join(a.cartella, d)
     spec = os.path.join(cart, 'spec.json')
-    mitt = f'{a.nome}  ·  {a.telefono}  ·  {a.email}'
+    mitt = '  ·  '.join(x for x in (a.nome, a.paese, a.telefono, a.email) if x)
     subprocess.run(['node', os.path.join(KIT, 'allegato.mjs'), spec, cart, '--mittente', mitt], check=True)
     pdf = os.path.join(cart, json.load(open(spec, encoding='utf-8'))['file'])
     subprocess.run(['rm', '-rf', os.path.join(cart, '_lavoro')])
