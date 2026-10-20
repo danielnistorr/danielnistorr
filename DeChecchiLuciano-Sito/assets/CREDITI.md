@@ -32,3 +32,7 @@ Scaricate il 20/10/2026 da `https://www.dechecchiluciano.it/wp-content/uploads/`
 
 - `originali/logo-dechecchi-positivo.svg` e `originali/logo-dechecchi-negativo.svg`: ricostruiti in vettoriale dai tracciati originali contenuti nel depliant Woodled24 (`https://www.dechecchiluciano.it/wp-content/uploads/2020/02/depliant_ITA_WEB.pdf`, pagina 4), senza ridisegnare nulla; colori presi dal PNG del sito (#1D1D1B testo, #E84E0E e #F39200 marchio, #DDDDDD lastra). Manca la riga "SKIRTING AND PROFILES" del logo del sito. Script: `_prova/script/logo_svg.py`.
 - `originali/logo-dechecchi-sito-444x152.png`: il logo del sito di oggi (`2017/04/DeChecchi_2017.png`), con la riga "SKIRTING AND PROFILES".
+
+## Uso nel prototipo B della home (`_prova/home/b/`)
+
+Nessuna foto nuova scaricata. Dalle esterne: Debartolo `etUfoBKNRaM` (apertura, di giorno; tolta la presa elettrica dalla boiserie), Dudeck `nn1xCtRvUOs` (apertura, di sera), Putra `hBudOBV8TUg` (chiusura). Dalle originali: `2019-12_woodled_24_DeChecchi_3.jpg` (Woodled24, con una versione "spenta" simulata con PIL per il cursore d'intensità) e `2017-05_De_Checchi_Tecnologia_1.jpg` (reparto). Script: `_prova/script/proto_b_img.py`.

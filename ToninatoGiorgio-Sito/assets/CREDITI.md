@@ -31,3 +31,14 @@ Scaricate da images.unsplash.com con lato lungo 2400 px.
 | `esterne/unsplash-moritz-WwQYfbYuDGU.jpg` | https://unsplash.com/photos/WwQYfbYuDGU | Moritz (@mementomor) | 14/01/2026 | 2400x1600 | B, chiusura | vecchio contatore su un muro a calce con rami secchi, luce morbida; Fujifilm X100V |
 
 Scartate dopo la verifica: `7WzD2mTRWK8` (marchio Sunsynk in primo piano), `_u95HlNoz68` e `xVptEZzgVfo` (marchi CEM e General Electric in primo piano), `HrPtg-HH6_k` (scatto da telefono, piatto).
+
+### Aggiunte del prototipo A della home (20/10/2026)
+
+Licenza letta sulla pagina della foto il 20/10/2026: "Free to use under the Unsplash License", nessuna è Unsplash+. Nessuna è in un altro `*-Sito/assets/CREDITI.md` della campagna (controllato per codice della foto). Scaricate da images.unsplash.com.
+
+| File | Pagina della foto | Autore | Pubblicata | Misura | Direzione | Note |
+|---|---|---|---|---|---|---|
+| `esterne/unsplash-kierinsight-3TeMciP8iLM.jpg` | https://unsplash.com/photos/3TeMciP8iLM | Kier in Sight Archives (@kierinsightarchives) | 26/10/2025 | 3200x2398 | A, apertura | un cavo di conduttori colorati fa un anello e si apre in tanti fili su carta chiara; in pagina specchiata e col fondo uniformato |
+| `esterne/unsplash-kierinsight-vs-oGzpUDJI.jpg` | https://unsplash.com/photos/vs-oGzpUDJI | Kier in Sight Archives (@kierinsightarchives) | 26/10/2025 | 2400x1799 | A, fascia | conduttori colorati sparsi su fondo bianco, a tutto campo |
+
+Nota: la matassa di rame di Guille B (`TqueZSSAloY`) è già usata da AlaEngineering-Sito: il prototipo A non la usa.

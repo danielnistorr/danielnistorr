@@ -34,3 +34,7 @@ Scaricate il 20/10/2026 con curl dal CDN (`images.unsplash.com`, `images.pexels.
 | `esterne/pexels-5023995-santiago-tubo-ottone-legno-scuro.jpg` | https://www.pexels.com/photo/close-up-of-a-golden-pipe-5023995/ | Shawn Santiago | 2400x1600 (originale 6240x4160) | B | un tubo in ottone tornito su legno scuro, luce bassa |
 
 Cercate e scartate (20/10/2026): Unsplash P8CGvIQB1uo (tubi color ottone: è il motore di un SR-71), m6aXFCYBJz0 (tornio a Mumbai, sporco e fuori registro), GwtQGmTOCIE (mani su metallo: già usata in un'altra home della campagna), UbsDLjqZ9RM, 26_e1IXEsaE, UYdtwfoKZQY (oggetti in ottone ornamentali, fuori registro); foto di lampade di altri marchi (ricerca "brass lamp", "brass light fixture"): escluse perché sarebbero prodotti concorrenti riconoscibili.
+
+## Prototipo B (`originali/b-2400/`)
+
+Scaricate il 20/10/2026 da `static.wixstatic.com` (sito di 247LAB), come le altre foto dell'azienda: F001 (profilo 1111), F018 (Roberto al banco), F024 e F024-3200 (BOATY S accesa), F026 (BOATY terra), F044, F045, F046 (MINA nelle tre finiture), F056, F066 (CIUCCIO), F075, F428-2880 e F496-2880 (Harry's Piccolo, Trieste 2025, foto Roberto Pastrovicchio). Stessi diritti da chiarire della sezione sopra. Nessuna foto di repertorio nel prototipo B.
