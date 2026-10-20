@@ -36,4 +36,5 @@ Rielaborate con `_prova/script/finale_img.py` (ritaglio, gradazione sulla carta,
 - Karimov `DmxTTqZtDds`: la pelle del dittico e la striscia del banco, portate sul cuoio #8A5230.
 - Berg `an44PeEll_w`: semilavorati.
 - Da `originali/` (hambro.it, diritti da chiarire): `2020082819b510e6283f3e7a1a998eb253a83ccd.jpeg` (bobina di laccio) e `20200828c559dc21f28d28e6c910602764e6d35f.jpeg` (bobina di tondino) per la Tav. 2; 11 scontornati del catalogo per il cassetto (elenco in `finale_img.py`).
-- Non usate nella home finale: Tepavac, Juno Jo, Devon Chan, Compagnons, Rodrigues `FXVC26csSz4` e `CkeOwnoLK5U`.
+- Non usate nella home finale: Tepavac, Juno Jo, Devon Chan, Compagnons, Rodrigues `CkeOwnoLK5U`.
+- Rodrigues `FXVC26csSz4` (fibbia dorata su piano lucido) dal 20 ottobre è la foto della chiusura della home finale, specchiata e portata sulla carta (`sito/img/chiusa-*.jpg`, da `_prova/script/finale_img.py`, punto 7). Unsplash License, segnaposto.
