@@ -77,7 +77,7 @@ Tutte segnaposto Unsplash, licenza Unsplash (uso commerciale libero), verificata
 | Dogana | Craftsman Concrete Floors `hnMqVv0EkRc` | spenti i cavi fucsia del soffitto |
 | Chiusura | Zemos `qHo65Xyzcvo` | taglio senza la parte scura del tetto |
 
-Trattamento comune ai modi e alla chiusura, fatto con PIL: ombre sollevate, saturazione dal 50 al 72 %, bianco appena caldo e croma dei blu e dei ciano abbassato, così cielo, mare e capannoni stanno nella stessa luce (foglio di controllo `_prova/script/controllo/quattro-modi.png`). WebP in più larghezze con `srcset`. Il brief per rifarle dal vero è nel `LEGGIMI.md`.
+Trattamento comune ai modi e alla chiusura, fatto con PIL: ombre sollevate, saturazione dal 50 al 72 %, bianco appena caldo e croma dei blu e dei ciano abbassato, così cielo, mare e capannoni stanno nella stessa luce (foglio di controllo `quattro-modi.png`, rigenerato da `finale_img.py` e cancellato da `build_finale.sh` dopo averlo guardato). WebP in più larghezze con `srcset`. Il brief per rifarle dal vero è nel `LEGGIMI.md`.
 
 ## Cosa è cambiato nella rifinitura (dopo il giudizio cieco)
 
