@@ -35,3 +35,9 @@ Scaricate il 20/10/2026 da `http://www.griste.com/` (pagine, cartelle con indice
 Video: non scaricati in `originali/` per lo spazio su disco. Il video della home (`video/video-serra-2026-audio-japanese.mp4`, 1000x700, 11 s, caricato il 02/02/2026) è stato guardato a fotogrammi in una cartella temporanea e poi cancellato; il fotogramma di copertina è `originali/video__video-serra-2026-h.jpg`.
 
 I file `originali/logo-griste-tracciato-*.svg` sono una ricostruzione mia del logo, tracciata dall'immagine 1374x392 contenuta in `pdf/codice-etico-1.pdf` (salvata come `originali/logo-griste-codice-etico-1374x392.png`): coincidenza con l'originale 99,3% dei pixel, differenze di 1 px sui bordi. Vedi 01-analisi, sezione 8.
+
+## Uso nella home finale (`sito/`, 20/10/2026, ultimo passaggio)
+
+- Chiusura: `esterne/unsplash-9rdoc89WxP0-gngroup-banco-orafo.jpg` (GN Group, Unsplash License, pagina https://unsplash.com/photos/9rdoc89WxP0), tagliata sulle mani e sul banco senza il viso: 4:3 (`sito/img/chiusura-banco-900.jpg`, `-1350.jpg`, `-1600.jpg`) e 1:1 per il telefono (`-q600.jpg`, `-q1200.jpg`), neri appena aperti, luce calda tenuta (script `_prova/script/finale_img.py`). In pagina con la didascalia "Foto indicativa". Ricontrollato il 20/10/2026 che non compaia nei `CREDITI.md` delle altre home della campagna.
+- Non più usata nella home finale: McFollis (punte di sandalo con strass), che era nella chiusura della versione precedente.
+- Tutte le altre immagini della home finale sono di Griste: gli scontornati dei pezzi (`originali/file__prodotti__*`) e due foto del laboratorio (`originali/img__gioielli__photogallery__photogallery-gioielli-f03`, `f04`; la `f01` del CAD non è più in pagina); il logo è la ricostruzione SVG `originali/logo-griste-tracciato-blu.svg`.

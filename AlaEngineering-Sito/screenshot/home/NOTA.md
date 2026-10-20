@@ -1,0 +1,45 @@
+# Home finale di Ala Engineering: nota
+
+Pagina: `sito/index.html` (si apre con file:///, nessuna risorsa esterna), immagini in `sito/img/` (JPEG in due o tre larghezze, logo PNG), caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (con `extra` anche i controlli a 320, 768, 1024 e 1920 in `_prova/controlli/`). Parte dal prototipo A, "La scheda", scelto dal giudice; la prima schermata è stata ripensata dentro la stessa direzione, come chiesto per il K0 sotto 8.
+
+## L'idea
+
+Una loro scheda di potenza vera, grande, su carta chiara, come una tavola tecnica, e il selettore della serie ALASUPPLY come gesto principale: cinque potenze vere (600, 2.000, 5.000, 10.000 e 25.000 W) e cinque schede vere, tutte sullo stesso piano, con la stessa ombra corta e lo stesso punto di vista. Scegliere la potenza cambia la scheda, le tre legende dei componenti e la riga dei dati (ingresso, uscita, corrente). Il titolo è la loro frase, "L'elettronica che si adatta al vostro prodotto": il selettore la dimostra con il loro catalogo. Con il nome di un concorrente non regge: sigle, schede e dati sono solo loro.
+
+## Le prime due schermate
+
+- **1440**: logo vero, menu, telefono. Titolo in Encode Sans 300 a 88 px su due righe. La ALASUPPLY-3FH occupa da x 560 a x 1376 e sale fino alla riga di base della seconda riga del titolo; tre legende con filetto da 0,75 px (trasformatore, induttori toroidali, piastra di dissipazione), sistemate negli spazi vuoti della scheda. Sotto la scheda una sola riga grigia a 15 px: "ALASUPPLY-3FH · trifase 400 V ±15 % · uscita da 24 a 220 V · da 45 a 120 A". A sinistra due righe su cosa fanno e per chi, il selettore con i numeri a 32 px su filetti #DCDAD4 e il punto blu solo sullo scatto scelto, poi "Parlateci del vostro prodotto →" sottolineato con "Lavoriamo solo con aziende" in grigio. Nessun bottone pieno.
+- **390**: titolo su tre righe, la scheda a tutta larghezza con i tre punti numerati, una riga con i nomi dei punti, i cinque scatti come numeri sottolineati (lo scelto in blu, sottolineatura da 2 px, area di tocco da 44 px), la riga di sigla e dati, la frase su chi sono accorciata ("...su misura, progettati e collaudati a Saonara") e l'invito. Tutto dentro 844 px.
+- **Seconda schermata**: "Un catalogo da cui partire", otto famiglie 4 x 2 a 1440. Ogni foto sta nello stesso riquadro invisibile (304 x 216 px), oggetto centrato e appoggiato in basso, stessa ombra, fondi bianchi tolti dal bordo e moltiplicati sulla carta; titolo, sigle in maiuscolo piccolo e una riga di dati: tre righe in tutto.
+- Poi: "Dentro treni, cabine e seggiovie" con la loro frase sul gas metano, il dittico a tutta larghezza (senza più il punto sul muso del treno) e sei applicazioni datate; la frase del cliente sugli "artigiani dell'elettronica" con i nomi dei clienti e "Da oltre 30 anni progettazione, sviluppo, produzione e collaudo si fanno qui, completamente in Italia"; la chiusura; il piede.
+- Altezza: 4743 px a 1440, 5801 px a 390.
+
+## Chiusura e piede
+
+- **Chiusura** ("b con foto", foto a sinistra a filo del bordo): la foto loro del banco di collaudo, 760 x 620 px a 1440; a destra, con la base allineata all'ultima riga, la loro frase "Un referente unico, dal progetto al collaudo" (da `perch-sceglierci`: "Perché avrete un referente unico"), 40 px, il telefono grande con `tel:`, la mail con `mailto:`, l'indirizzo con "come arrivare" verso la mappa, la riga del casello A13. Niente fax, niente orari (non pubblicati). A 390 la foto va sotto i recapiti.
+- **Piede**: logo PNG originale (600 x 180 mostrato a 200 px, quindi nitido fino a 3x), una riga su chi sono; quattro colonne: Prodotti (le otto famiglie), Azienda (Perché sceglierci, Progetti, News, Download e infografiche, Lavora con noi), Contatti (indirizzo, Come arrivare, telefono, fax, mail), Seguici (LinkedIn, YouTube, la pagina vetrina LinkedIn sulle rinnovabili: solo i profili che esistono). Riga legale: "© 2026 ALA Engineering S.r.l.", P.IVA, indirizzo, Privacy, Cookie. A 390 le colonne sono `details` con il titoletto visibile, il segno + e −, attivabili da tastiera; sopra i 600 px restano aperte e il titoletto non si tocca né prende il fuoco.
+- **Newsletter: no.** Vendono solo ad aziende e su progetto, le news sono tre o quattro l'anno e il loro canale vivo è LinkedIn; una newsletter vuota farebbe più danno di nessuna. Da riconsiderare solo se vogliono mandare le schede tecniche nuove ai clienti.
+
+## Caratteri e colori
+
+- **Encode Sans** (Pablo Impallari, Andrés Torresi, Jacques Le Bailly; Google Fonts, SIL Open Font License 1.1, testo in `sito/fonts/OFL.txt`), variabile in peso e larghezza, servita dalla pagina. Larghezza 112,5 % per titoli, menu, sigle e numeri del selettore, 100 % per il testo; pesi 300, 400 e 500; cifre tabellari per potenze, tensioni, codici e telefono. Motivo: le maiuscole larghe e spaziate di "ENGINEERING" nel loro logo, il grottesco largo e leggero di Rimac Technology e il Frutiger Neue Light di Vicor. Non è nella lista b della guida e non è usata in altre home della campagna. Un solo carattere, nessun monospazio.
+- **Colori**: carta #F4F3EF (le foto dei prodotti sono moltiplicate sulla carta, quindi l'oggetto ci sta sopra senza riquadro), inchiostro #16191C, grigio #565B60 per didascalie e righe secondarie (6,2:1 sulla carta, 5,7:1 sul piede), filetti #DCDAD4, blu del logo #0F6EA2 (5,0:1) solo per lo scatto scelto e il passaggio sui link, piede #ECEAE4. Nessun rame come colore: lo danno le foto.
+- Riferimenti: Vicor (il prodotto vero come apertura, le tensioni come grafica), Prodrive (una scheda vera e un titolo grande), Nothing (un solo oggetto nitido e un solo invito), Mario Agnoletto e Hambro della campagna (pezzo vero su chiaro con le legende).
+
+## Interazione
+
+Un solo gesto: il selettore di potenza. Cinque bottoni `role="radio"` in un `radiogroup`; clic, tocco, frecce, Home e Fine; un solo scatto nella sequenza del tasto Tab. Il cambio è netto, senza dissolvenze; la riga dei dati ha `aria-live`. Sopra i 1180 px legende con filetto e testo; da 600 a 1179 px punti numerati con l'elenco sotto la foto; sotto i 600 px la scheda in un taglio più stretto con i punti. L'unica transizione (0,12 s) è il punto blu dello scatto scelto. Menu del telefono e del tablet: un bottone vero con `aria-expanded`. Nessuna animazione allo scorrere, nessun effetto che segue il cursore, nessun bottone che sbiadisce.
+
+## Foto: origine e licenza
+
+- **Loro** (sito alaengineering.it, presumibilmente di Ala Engineering, da confermare): le cinque ALASUPPLY (1FB, 1FL, 3FM, 3FH, 3FX), le otto famiglie (ALADC-X, ALABAT-3FM, ALASTAB-DC-H, ALACONV 3.0, ALAEMERGENCY, ALAWIN-3M, ALAGREEN-H, scheda a microprocessore), il banco di collaudo. Lavorate con PIL in `_prova/script/finale_img.py`: fondo tolto dal bordo, ombra corta comune, moltiplicate sulla carta. **Nessun ingrandimento**: la versione da 990 px ha l'oggetto alla misura originale, la 1x lo mostra a 816 px CSS (scala 0,82 per la 3FH). Le schede sono anteprime oneste a 1024 px; vanno rifatte (LEGGIMI).
+- **Banco di collaudo**: poster "Siamo artigiani dell'elettronica" tolto dal muro in fotoritocco, portatile e pannello attrezzi fuori dal taglio. Il ritocco è dichiarato nel LEGGIMI: la foto va rifatta. Non è la foto che sta subito sopra e non compare in altre home.
+- **Segnaposto Unsplash** (Unsplash License, già in `assets/CREDITI.md`, non usati in nessun'altra home della campagna, controllato per ID): Frecciarossa ETR1000 di Edoardo Bortoli (portato a una luce di nebbia più fredda e chiara per stare accanto all'altra foto; logo Trenitalia piccolo sul muso, non è un concorrente) e seggiovia nella nebbia di Verstappen Photography. Nessuna immagine generata dall'IA, nessun marchio concorrente in vista. Le foto della prova B (seggiovia come apertura, foto di repertorio desaturate, condensatori di Unsplash) non sono usate.
+
+## Controlli fatti
+
+- `segnali.sh` (copia del kit) sulla pagina finale: **0 soglie bloccanti su 10, 0 da guardare su 8**. Foto 35,3 % dell'area a 1440; Encode Sans 100 %; mono 0 %; 0 etichette sopra i titoli; 0 titoli col punto; H2 in 3 misure; 2 fasce di fondo (carta e piede); 2 filetti larghi; 1 freccia ("Parlateci del vostro prodotto →"); date in pagina (2011, 2015, 2021, 2023, 2024, 2025).
+- Nessuno scorrimento orizzontale a 320, 390, 768, 1024, 1440, 1920 (larghezza del documento uguale alla finestra); screenshot guardati a pezzi a tutte queste larghezze; nessuna sovrapposizione tra legende, titolo e colonna di sinistra in nessuno dei cinque stati del selettore a 1440.
+- Tastiera: frecce, Home e Fine sul selettore; Invio sui titoletti del piede a 390 apre la colonna; sopra i 600 px non la chiude.
+- Nessun carattere U+2014 nella pagina, nella nota, nel LEGGIMI e negli script (controllato con grep).
+- Ogni dato in pagina viene da `01-analisi.md` o da `_prova/crawl/testi.txt`; restano fuori l'ISO 9001 scaduto, l'anno di fondazione, i numeri di progetti e personalizzazioni, il REA e il capitale sociale.

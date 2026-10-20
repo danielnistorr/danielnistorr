@@ -38,3 +38,21 @@ Cercate e scartate (20/10/2026): Unsplash P8CGvIQB1uo (tubi color ottone: è il 
 ## Prototipo B (`originali/b-2400/`)
 
 Scaricate il 20/10/2026 da `static.wixstatic.com` (sito di 247LAB), come le altre foto dell'azienda: F001 (profilo 1111), F018 (Roberto al banco), F024 e F024-3200 (BOATY S accesa), F026 (BOATY terra), F044, F045, F046 (MINA nelle tre finiture), F056, F066 (CIUCCIO), F075, F428-2880 e F496-2880 (Harry's Piccolo, Trieste 2025, foto Roberto Pastrovicchio). Stessi diritti da chiarire della sezione sopra. Nessuna foto di repertorio nel prototipo B.
+
+## Home finale (`sito/img/`)
+
+Lavorate il 20/10/2026 con `_prova/script/finale_img.py` ed esportate in WebP a più larghezze. Sono tutte foto dell'azienda, prese dal loro sito Wix o dal catalogo G-label 2026; nessuna foto di repertorio, nessuna immagine generata.
+
+| File in `sito/img/` | Origine | Uso |
+|---|---|---|
+| `apertura-boaty-*` | F024 originale 4000x6000 (`hi/F024-full.jpg`, scaricato dal CDN Wix del loro sito il 20/10/2026), pagina `boaty-s` | apertura, BOATY S accesa |
+| `collezioni-f346-*` | F346 originale 4573x3049 (`hi/F346-full.jpg`), scheda `portfolio/casa-p`: Verona 2022, progetto Parisotto + Formenton Architetti, foto Alessandro Cusano | tre collezioni |
+| `mina-ottone-*`, `mina-marrone-*`, `mina-antracite-*` | F046, F045, F044, pagine dello shop; riportate alla stessa scala e allo stesso riquadro, ombre aperte | selettore delle finiture |
+| `persone-f018-*` | F018 originale 4608x3072 (`hi/F018-full.jpg`, scaricato dal CDN Wix il 20/10/2026), pagina `about-3`; tagliata a x 3840 per togliere i libri di terzi e il televisore | su misura |
+| `progetto-casa-g-*` | F288 (`scelte-2400/F288.jpg`), scheda `portfolio/casa-g`: Venezia 2024, progetto MIDE architetti, foto Alessandro Cusano | progetti |
+| `chiusura-ciuccio-*` | F066 (`b-2400/F066.jpg`), pagina `collezione-decorativa-1`; è la stessa applique della scheda `ciuccio` e della pagina 104 del catalogo RB 2026 | chiusura |
+| `favicon.svg` | `originali/logo-pittogramma-spot.svg` | icona della scheda |
+
+Non sono più in pagina, dopo la rifinitura del 20/10/2026: BOWLY (F029), il profilo 1111 (F001) e lo SPOT G-6 del catalogo G-label.
+
+Diritti: come per le altre foto dell'azienda (sezione sopra). Per F288 e F346 servono il permesso e il credito di Alessandro Cusano; per le foto di prodotto e il ritratto va chiesto chi è l'autore.

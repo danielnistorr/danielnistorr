@@ -42,3 +42,19 @@ Licenza letta sulla pagina della foto il 20/10/2026: "Free to use under the Unsp
 | `esterne/unsplash-kierinsight-vs-oGzpUDJI.jpg` | https://unsplash.com/photos/vs-oGzpUDJI | Kier in Sight Archives (@kierinsightarchives) | 26/10/2025 | 2400x1799 | A, fascia | conduttori colorati sparsi su fondo bianco, a tutto campo |
 
 Nota: la matassa di rame di Guille B (`TqueZSSAloY`) è già usata da AlaEngineering-Sito: il prototipo A non la usa.
+
+### Prototipo B della home (20/10/2026)
+
+Nessuna foto nuova. Usa `unsplash-spiske-ar6XfQSeSwM.jpg` (spia rossa portata al verde del marchio, pannello schiarito), `unsplash-lyaptsev-lTAh5dGmN-8.jpg` (marchio bus77 sulle etichette sfumato) e `unsplash-moritz-WwQYfbYuDGU.jpg`; lavorate da `_prova/script/proto_b_img.py` in `_prova/home/b/img/`. La licenza Unsplash ammette le modifiche.
+
+### Home finale in `sito/` (20/10/2026, ultimo giro)
+
+Le foto dei fili colorati (Kier in Sight Archives) non sono più in home: il giudice ha chiesto un oggetto vero della misura. Le tre foto della home sono segnaposto già annotati sopra, lavorati da `_prova/script/build_img.py` (la licenza Unsplash ammette le modifiche):
+
+- apertura: amperometro di Markus Spiske, https://unsplash.com/photos/ar6XfQSeSwM. Scaricato di nuovo in alta risoluzione da images.unsplash.com (`photo-1587317304283-b01650dc735e`, 4800x3200) in `esterne/unsplash-spiske-ar6XfQSeSwM-4800.jpg`; licenza riletta sulla pagina il 20/10/2026 ("Free to use under the Unsplash License"). In pagina solo l'amperometro, scontornato lungo la ghiera, colore un po' spento, ombra corta aggiunta; il voltmetro e la spia rossa non ci sono. Nessun marchio. `sito/img/ampere-*.jpg`;
+- analisi: contatore su muro a calce di Moritz (`WwQYfbYuDGU`), taglio verticale, la scritta del produttore del contatore sfocata; `sito/img/contatore-*.jpg`;
+- chiusura: moduli su guida DIN di Aleksandr Lyaptsev (`lTAh5dGmN-8`), taglio sulla parte a fuoco, i marchi bus77 e iRidi sulle etichette sfocati; `sito/img/moduli-*.jpg`.
+
+Controllato di nuovo il 20/10/2026 (per codice della foto e per codice del file): nessuna delle tre compare in un altro `*-Sito/assets/CREDITI.md` della campagna.
+
+Logo: `sito/img/logo-testata-*.webp` e `logo-piede-*.webp` sono lo stesso ritaglio del PNG originale `originali/logo-toninato-originale-3163.png` (marchio e logotipo, senza la riga della ragione sociale), senza toccare la forma.

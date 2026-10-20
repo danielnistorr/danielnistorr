@@ -29,3 +29,11 @@ Scaricate dal CDN (`images.pexels.com`, `images.unsplash.com`) a 2400 px sul lat
 Scaricate il 20/10/2026 da `https://www.tecnoplastic.com/_media/img/` (per ogni file la misura più grande disponibile tra `xlarge`, `large`, `medium`, `small`) e da `_frame/`. Due file vengono dalla brochure 2024 (`_iserv/dlfiles/dl.php?ddl=tpbrochure2024-italiano.pdf`): `brochure-insegna-acqua-1654.jpg` (foto di pag. 3) e `logo-lockup-brochure-600dpi.png`; `logo-marchio-tp.svg` è il marchio vettoriale estratto dalla stessa pagina senza ridisegnarlo. Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`.
 
 Le foto di prodotto scontornate sono di Tecnoplastic. I fondi delle testate delle schede (`*-sfondo-web*.png`: pozzo petrolifero, fiamme, provette, calici) hanno l'aspetto di foto di repertorio di terzi: diritti da chiarire, da non riusare. `logo-water-fitters.svg` è il marchio del negozio online di terzi, non di Tecnoplastic.
+
+## Uso nei prototipi della home
+
+- Prototipo B ("Il livello", `_prova/home/b/`): `pexels-36336154-so-asta-livello-acqua-calma.jpg` (fascia del collaudo), `unsplash-kKpTHqM2K-c-hendry-cerchi-acqua.jpg` (chiusura), `unsplash-2mKYEVGA4jE-rodriguez-luce-su-acqua.jpg` (trama leggera dentro l'acqua dell'apertura). Le altre immagini del prototipo B sono di Tecnoplastic (`originali/`).
+
+## Uso nella home finale (`sito/`)
+
+Solo immagini di Tecnoplastic da `originali/`: `taurus-2.png` (apertura e prima versione), `taurus-drink-2.png`, `taurus-ex-2.png`, `taurus-fep-2.png`, `taurus-pur-2.png`, `taurus-sihf-2.png`, `taurus-sezionato.png`, `dolphin-10-triple.png`, `img-2601-2.jpg` (facciata, chiusura), `logo-marchio-tp.svg`. Lavorate con `_prova/script/finale_img.py`. Nessuna foto di `esterne/` è usata.

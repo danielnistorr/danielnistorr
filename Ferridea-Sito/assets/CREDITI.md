@@ -31,3 +31,10 @@ Scaricate da images.unsplash.com con lato lungo 2400 px.
 | `esterne/unsplash-piunninen-ID1NqV_n6oY.jpg` | https://unsplash.com/photos/locksmith-hammering-in-an-anvil-ID1NqV_n6oY | Sergei Piunninen | 04/07/2019 | 2400x1601 | A e B, chiusura | mani che battono il ferro su un'incudine montata su un ceppo, all'aperto e di giorno: il mestiere senza scintille e senza buio |
 
 Scartate dopo averle viste: le scale dell'Apple Store di Pechino (marchio riconoscibile), la scala nera in ombra di Dima e il fabbro al buio di Lightbody (scure, il registro di Tek.Lam), il saldatore Pexels 2381463 (scintille), le scale da biblioteca o da stazione (edifici pubblici, non il lavoro di un artigiano).
+
+## Home finale (`sito/`), 20 ottobre 2026
+
+La versione finale usa **solo foto di Ferridea** prese da `originali/`, lavorate con `_prova/script/build_img.py`:
+`scale--P1020524.jpg` (apertura, scontornata), `cancelli--DSCN0383_.jpg`, `parapetti--Parapetti-San-Giacomo-014.jpg`, `capottine--P1030303.jpg`, `scale--Scala-Treviso-011.jpg`, `home--P1030186.jpg`, `parapetti--P1030315.jpg`, `scale--Scala-Treviso-016.jpg`, `parapetti--Sand-20-07-2008-007.jpg`. In `sito/img/` hanno nomi neutri (senza nomi di clienti o luoghi). L'uso va confermato con l'azienda e con i clienti delle case riconoscibili.
+
+Nessuna foto di `esterne/` è usata nella home finale: restano solo nei prototipi `_prova/home/a` e `_prova/home/b`.

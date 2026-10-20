@@ -30,3 +30,19 @@ Scaricate dai CDN (`images.unsplash.com`, `images.pexels.com`) a 2400 px sul lat
 Scaricate il 20/10/2026 da https://alaengineering.it/wp-content/uploads/ (307 file, 52 MB: foto, grafiche del tema, 48 loghi di clienti, infografiche, 15 PDF tra schede tecniche, certificato ISO e politica della qualità). Diritti: le foto dei prodotti e del laboratorio sono presumibilmente di Ala Engineering; le foto dei ROV, della barca Physis, del lettino Quec Phisis, di Plug The Sun e del Frecciarossa sono dei clienti o di repertorio e vanno chiarite (vedi LEGGIMI). La scheda madre di repertorio della testata attuale (`2016-08_Sfondo_home.jpg`) non va riusata. Inventario e voti in `_prova/inventario-immagini.json`.
 
 Logo: `originali/logo-ala-600x180.png` (copia di `2019-05_Logo_Ala_Sito_2x.png`, il file più grande pubblicato) e `originali/logo-ala-favicon-144.png` (la sola "A"). Nei PDF delle schede tecniche il logo è un raster di 382x152 con ombra grigia, quindi peggiore. Nessun vettoriale trovato.
+
+## Aggiunte del prototipo B della home (20/10/2026)
+
+Cinque foto in più per le applicazioni del selettore "Dove l'avete già incontrata", tutte segnaposto da sostituire. Licenza letta il 20/10/2026 sulla pagina di ogni foto: "Free to use under the Unsplash License", nessuna Unsplash+. Nessuna compare nei `CREDITI.md` delle altre cartelle `*-Sito` (controllo per ID il 20/10/2026). Scaricate da `images.unsplash.com` a 2400 px di larghezza.
+
+| File | Pagina della foto | Autore | Misure | Uso | Note |
+|---|---|---|---|---|---|
+| `esterne/unsplash-MJuBifMRSkg-fertroulik-armadio-gas.jpg` | https://unsplash.com/photos/green-utility-box-with-no-smoking-sign-and-yellow-pipe-MJuBifMRSkg | Fer Troulik (@fertroulik) | 2400x1600 | B, metano | armadio di una linea del gas davanti a una serra; non è una stazione di pompaggio |
+| `esterne/unsplash-fid75YDSpss-winstonchen-tralicci-foschia.jpg` | https://unsplash.com/photos/many-power-line-towers-against-a-hazy-sky-fid75YDSpss | Winston Chen (@winstonchen) | 2400x1600 | B, cabina elettrica | tralicci nella foschia; non è una cabina di distribuzione |
+| `esterne/unsplash-pM2kkL8Vu9E-prabhakaran-filatura.jpg` | https://unsplash.com/photos/a-large-room-with-rows-of-machines-and-spools-of-thread-pM2kkL8Vu9E | Prince Prabhakaran (@vadakkunokki) | 2400x3200 | B, linea tessile | filatura a Vazhani (Kerala), tagliata in orizzontale |
+| `esterne/unsplash-CF0xtRfFNiE-akyurt-calice-vino.jpg` | https://unsplash.com/photos/clear-wine-glass-with-red-liquid-CF0xtRfFNiE | engin akyurt (@enginakyurt) | 2400x1601 | B, vino | calice di rosso su fondo chiaro |
+| `esterne/unsplash-JX3i7Hg1XTg-virtuesolar-fotovoltaico-neve.jpg` | https://unsplash.com/photos/a-solar-panel-in-the-middle-of-a-snowy-field-JX3i7Hg1XTg | Virtue Solar (@virtuesolar) | 2400x1807 | B, accumulo | campo fotovoltaico a terra nella neve; Virtue Solar è un installatore, nessun marchio leggibile in foto |
+
+## Uso nella home finale (`sito/`, 20/10/2026)
+
+Della cartella `esterne/` la home finale usa solo due segnaposto: `unsplash-8l8viRGA7-Q-bortoli-frecciarossa.jpg` (tagliata in 8:7 e portata a una luce di nebbia più fredda) e `unsplash-WlM5jTXIgXM-verstappen-seggiovia-nebbia.jpg` (tagliata in 8:7). Tutte le altre foto in pagina sono di Ala Engineering, da `originali/`: le cinque ALASUPPLY, otto famiglie di prodotto e il banco di collaudo (con il poster tolto in fotoritocco, da rifare dal vero). Nessuna foto nuova scaricata per la versione finale.

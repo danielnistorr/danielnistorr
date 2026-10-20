@@ -30,3 +30,25 @@ Scartate: Unsplash `6fSfmrjqulw` (autogru con il nome di un noleggiatore, "HANYS
 Scaricate il 20/10/2026 da `https://www.giolo.it/upload/<misura>/<nome>` (109 nomi, 8,3 MB): per ogni nome ho preso la misura più grande che il CMS ha già generato (1920_, 1920_900, 1000_600, 700_600, 700_467). Solo 10 file superano i 1000 px; 86 esistono solo a 700x467. Inventario, misure, pagine, soggetto e voti in `_prova/inventario-immagini.json`. Sono foto di Autotrasporti Giolo (mezzi con il loro logo), quasi tutte scattate col telefono; `34000eP-6-1024x723.jpg` è una foto del costruttore della gru (Cormach). Il segnaposto del CMS `nullcms.png` è stato scaricato e cancellato.
 
 Loghi: `logo-sito-logo_giolo.png` (183x91) e `logo-sito-logo_giolo_70.png` (141x70) da `https://www.giolo.it/template/images/`. `logo-giolo-bozza.svg` è una mia ricostruzione tracciata dal PNG da 183 px (script `_prova/script/logo_svg.py`): giusta nei colori e nelle proporzioni, ma con i bordi delle lettere leggermente irregolari e la scritta "S.N.C." approssimata. Non è il vettoriale ufficiale.
+
+## Aggiunta del prototipo A (20/10/2026)
+
+- `esterne/grandi/pexels-29224557-yurtman-3600.jpg`: la stessa foto Pexels 29224557 di Cemrecan Yurtman già elencata sopra (licenza Pexels "Free", verificata il 20/10/2026), scaricata dal CDN `images.pexels.com` a 2400x3600 per scontornare il gancio a una risoluzione sufficiente per lo schermo a 2x. Nessuna foto nuova.
+- Il logo `_prova/home/a/img/logo-giolo.svg` è un ridisegno del PNG di 183x91 (`_prova/script/proto_a_logo.py`): GIOLO raddrizzato su griglia, IDAMER e S.N.C. in Encode Sans (OFL) convertita in tracciati. Non è il vettoriale ufficiale.
+
+## Prototipo B, "Verde Giolo" (20/10/2026)
+
+- Nessuna foto esterna: il prototipo B usa solo foto dell'azienda da `originali/` (diritti da confermare con Autotrasporti Giolo): `300---Foto-giolo-aut.jpg` (cinque Iveco d'archivio), `IMG_1226-3.jpeg` (flotta in fila), `IMG_4057.jpeg` (Volvo FH con Ormig 40iE, scontornato con `_prova/script/proto_b_mask.py`), `4196854194---Foto-giolo-aut.jpg`, `196---Foto-giolo-aut.jpg`, `319---Foto-giolo-aut.jpeg` (lavori), `7361166001---Foto-giolo-aut.jpg` (foto seppia). Trattamento ed esportazione in `_prova/script/proto_b_img.py`.
+- Il logo `_prova/home/b/img/logo-giolo.svg` e `logo-giolo-piede.svg` sono copie del ridisegno del prototipo A (`_prova/script/proto_a_logo.py`); nella versione per la testata la targa è riempita di verde #0F5A32. Non è il vettoriale ufficiale.
+
+## Home finale, `sito/` (20/10/2026)
+
+- **Foto**: nessuna foto esterna. La home finale usa solo foto dell'azienda da `originali/` (diritti da confermare con Autotrasporti Giolo):
+  - `300---Foto-giolo-aut.jpg` (cinque autocarri d'archivio);
+  - `IMG_1226-3.jpeg` (flotta di oggi);
+  - `IMG_4057.jpeg` (convoglio scontornato);
+  - `4196854194---Foto-giolo-aut.jpg`, `196---Foto-giolo-aut.jpg`, `319---Foto-giolo-aut.jpeg` (lavori);
+  - `7361166001---Foto-giolo-aut.jpg` (seppia della chiusura).
+  - Trattamento e tagli in `_prova/script/finale_img.py`.
+- **Caratteri**: Hubot Sans e Mona Sans, SIL Open Font License 1.1. I testi della licenza sono in `licenze-caratteri/`, scaricati il 20/10/2026 da https://raw.githubusercontent.com/google/fonts/main/ofl/hubotsans/OFL.txt e .../ofl/monasans/OFL.txt.
+- **Logo**: il ridisegno SVG del prototipo A (`_prova/script/proto_a_logo.py`), confrontato con il PNG da 183 px. Non è il vettoriale ufficiale.

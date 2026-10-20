@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ala Engineering, elettronica di potenza su misura</title>
+<meta name="description" content="Alimentatori, caricabatterie, stabilizzatori e convertitori di potenza su misura, progettati, prodotti e collaudati a Saonara (PD) per chi costruisce macchine e impianti.">
+<link rel="preload" href="fonts/encode-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Encode Sans";font-style:normal;font-weight:100 900;font-stretch:75% 125%;font-display:swap;src:url(fonts/encode-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Encode Sans";font-style:normal;font-weight:100 900;font-stretch:75% 125%;font-display:swap;src:url(fonts/encode-sans-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --carta:#F4F3EF; --carta-2:#ECEAE4; --inchiostro:#16191C; --grigio:#565B60; --filo:#DCDAD4; --filo-2:#CFCCC4; --blu:#0F6EA2;
+  --m:clamp(20px,4.45vw,64px);
+  --largo:112.5%;
+  --h1:clamp(40px,6.11vw,88px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Encode Sans",system-ui,sans-serif;font-stretch:100%;font-weight:400;font-size:17px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--blu)}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{padding-left:var(--m);padding-right:var(--m);max-width:1440px;margin:0 auto}
+h1,h2,h3{font-stretch:var(--largo);font-weight:300;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* testata */
+.testata{display:flex;align-items:center;gap:40px;height:92px}
+.testata .logo img{height:58px;width:auto}
+.testata nav{display:flex;gap:30px;margin-left:auto;font-size:15px;font-stretch:var(--largo)}
+.testata nav a{text-decoration:none;padding:6px 0}
+.testata nav a:hover{text-decoration:underline}
+.testata .tel{font-size:15px;font-stretch:var(--largo);font-weight:500;text-decoration:none;padding-left:30px;border-left:1px solid var(--filo-2)}
+.menu-btn{display:none}
+
+/* apertura */
+.apertura{padding-top:44px}
+.apertura h1{position:relative;z-index:2;font-size:var(--h1);line-height:.98;letter-spacing:-.035em;text-wrap:wrap}
+.apertura h1 .r2{display:block}
+.banco{display:grid;grid-template-columns:minmax(0,436fr) minmax(0,816fr);column-gap:60px}
+.banco-testo{padding-top:44px;display:flex;flex-direction:column;align-items:flex-start}
+.intro{font-size:17px;line-height:1.55;max-width:25em}
+.selettore{margin-top:34px;width:100%}
+.selettore-tit{font-size:13px;color:var(--grigio);margin-bottom:6px;font-stretch:var(--largo)}
+.potenze{display:flex;flex-direction:column;border-top:1px solid var(--filo)}
+.potenze button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:7px 0 6px;border-bottom:1px solid var(--filo);font-stretch:var(--largo);font-variant-numeric:tabular-nums lining-nums;color:var(--inchiostro)}
+.potenze .w{font-size:32px;font-weight:300;letter-spacing:-.015em;line-height:1.12;display:flex;align-items:baseline}
+.potenze .w small{font-size:17px;margin-left:.22em;letter-spacing:0}
+.potenze .s{font-size:13px;color:var(--grigio);letter-spacing:.04em}
+.potenze .pt{width:0;height:8px;flex:none;align-self:center;transition:width .12s}
+.potenze button:hover .w{color:var(--blu)}
+.potenze button[aria-checked="true"],.potenze button[aria-checked="true"] .s{color:var(--blu)}
+.potenze button[aria-checked="true"] .pt{width:20px}
+.potenze button[aria-checked="true"] .pt::before{content:"";display:block;width:8px;height:8px;border-radius:50%;background:var(--blu)}
+.potenze button:focus-visible{outline:2px solid var(--blu);outline-offset:2px}
+.invito{margin-top:34px;display:flex;flex-direction:column;gap:4px}
+.invito a{font-size:17px;font-stretch:var(--largo);text-decoration:underline;text-underline-offset:.26em}
+.invito span{font-size:14px;color:var(--grigio)}
+
+.tavola{position:relative;margin:calc(var(--h1) * -0.70) calc(-1 * var(--m)) 0 0;padding-right:var(--m)}
+.quadro{position:relative;aspect-ratio:816/470}
+.quadro .scheda img{width:100%;height:100%}
+.quadro .scheda[hidden]{display:none}
+.quadro svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.quadro svg line{stroke:var(--inchiostro);stroke-width:.75}
+.quadro svg circle{fill:var(--carta);stroke:var(--inchiostro);stroke-width:1}
+.leg{position:absolute;font-size:13px;line-height:1.28;font-stretch:var(--largo);pointer-events:none;width:max-content;max-width:9.6em}
+.leg b{font-weight:500;margin-right:.4em;font-variant-numeric:tabular-nums}
+.leg.l{transform:translate(calc(-100% - 8px),-50%);text-align:right}
+.leg.r{transform:translate(8px,-50%)}
+.leg.u{transform:translate(-100%,calc(-100% - 4px));text-align:right}
+.leg.ul{transform:translate(-2px,calc(-100% - 4px))}
+.leg.d{transform:translate(-2px,4px)}
+.num-p{position:absolute;width:20px;height:20px;border-radius:50%;border:1px solid var(--inchiostro);background:var(--carta);transform:translate(-50%,-50%);display:grid;place-items:center;font-size:11px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1;pointer-events:none}
+.elenco-leg{display:none;list-style:none;margin:10px 0 0;padding:0;font-size:13px;line-height:1.35;color:var(--inchiostro);font-stretch:var(--largo)}
+.elenco-leg li{display:inline}
+.elenco-leg li+li::before{content:"·";margin:0 .55em;color:var(--grigio)}
+.elenco-leg b{font-weight:500;margin-right:.35em}
+.spec{margin-top:14px;font-size:15px;color:var(--grigio);font-variant-numeric:tabular-nums lining-nums}
+.spec b{font-weight:500;color:var(--inchiostro);font-stretch:var(--largo);letter-spacing:.03em}
+.spec i{font-style:normal;margin:0 .5em}
+.spec span,.famiglie .sig b{white-space:nowrap;font-weight:inherit}
+.spec b{white-space:nowrap}
+
+/* sezioni */
+.sezione{padding-top:136px}
+.sezione h2{font-size:clamp(32px,3.9vw,56px);line-height:1.04;letter-spacing:-.03em}
+.sezione .sotto{margin-top:20px;max-width:36em;color:var(--grigio)}
+
+/* catalogo */
+.famiglie{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:52px 32px}
+.famiglie a{text-decoration:none;display:block}
+.famiglie img{width:100%;aspect-ratio:304/216}
+.famiglie h3{font-size:19px;line-height:1.25;letter-spacing:-.005em;margin-top:12px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.famiglie a:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.famiglie .sig{font-size:11.5px;color:var(--grigio);margin-top:5px;letter-spacing:.07em;font-stretch:var(--largo);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.famiglie .sig span{margin:0 .1em}
+.famiglie p.d{font-size:15px;line-height:1.45;margin-top:4px}
+
+/* applicazioni */
+.dittico{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:56px}
+.dittico figure{margin:0}
+.dittico img{width:100%;aspect-ratio:8/7;object-fit:cover}
+.dittico figcaption{padding:14px var(--m) 0;font-size:14px;line-height:1.45;max-width:38em}
+.dittico figcaption b{font-weight:500}
+.dittico figure:first-child figcaption{padding-right:24px}
+.dittico figure:last-child figcaption{padding-left:24px}
+.altri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px;margin:64px 0 0;padding:0;list-style:none}
+.altri li{font-size:15px;line-height:1.45}
+.altri .anno{display:block;font-size:13px;color:var(--grigio);font-variant-numeric:tabular-nums;margin-bottom:4px;font-stretch:var(--largo)}
+.altri h3{font-size:19px;font-weight:400;line-height:1.25;margin-bottom:6px}
+
+.voce{margin-top:104px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px 64px;align-items:end}
+.voce blockquote{margin:0;font-size:clamp(26px,2.75vw,40px);line-height:1.15;letter-spacing:-.02em;font-weight:300;font-stretch:var(--largo);text-wrap:balance}
+.voce .chi{font-size:14px;color:var(--grigio);margin-top:14px}
+.voce .clienti{font-size:15px;line-height:1.5}
+.voce .clienti span{color:var(--grigio)}
+.voce .clienti+p{margin-top:14px;font-size:15px;line-height:1.5}
+
+/* chiusura */
+.chiusura{margin-top:136px;display:grid;grid-template-columns:minmax(0,760fr) minmax(0,680fr);align-items:end}
+.chiusura .foto{margin:0}
+.chiusura .foto img{width:100%;aspect-ratio:760/620;object-fit:cover}
+.chiusura .testo{padding:0 var(--m) 0 64px}
+.chiusura h2{font-size:clamp(34px,3.75vw,54px);line-height:1.03;letter-spacing:-.03em;max-width:11em}
+.recapiti{margin-top:40px;font-size:16px;line-height:1.6}
+.recapiti .tel{display:inline-block;font-size:clamp(30px,2.65vw,38px);font-weight:300;font-stretch:var(--largo);letter-spacing:-.01em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em;margin-bottom:12px;line-height:1.2}
+.recapiti .nota{color:var(--grigio);font-size:15px;margin-bottom:-.3em}
+
+/* piede */
+.piede{margin-top:120px;background:var(--carta-2);padding-top:72px;padding-bottom:36px}
+.piede-griglia{display:grid;grid-template-columns:minmax(0,4fr) repeat(4,minmax(0,2fr));gap:32px}
+.piede .logo{display:inline-block}
+.piede .logo img{width:200px;height:auto}
+.piede .chi{margin-top:18px;font-size:15px;line-height:1.5;max-width:20em}
+.piede h2{font-size:13px;font-weight:500;font-stretch:var(--largo);letter-spacing:.04em;color:var(--grigio);margin:0 0 14px}
+.piede ul{list-style:none;margin:0;padding:0;font-size:15px;line-height:1.5}
+.piede li+li{margin-top:7px}
+.piede ul a,.piede address a{text-decoration:none}
+.piede ul a:hover,.piede address a:hover{text-decoration:underline}
+.piede address{font-style:normal;font-size:15px;line-height:1.5}
+.piede address p+p{margin-top:12px}
+.legale{margin-top:72px;padding-top:20px;border-top:1px solid var(--filo-2);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:13px;color:var(--grigio)}
+.legale .dx{margin-left:auto;display:flex;gap:24px}
+.piede-colonna summary{list-style:none;cursor:default}
+.piede-colonna summary::-webkit-details-marker{display:none}
+
+/* tablet largo: punti numerati al posto delle legende */
+@media (max-width:1179px){
+  .testata nav{gap:22px}
+  .famiglie{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .piede-griglia{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .piede-griglia>.marchio{grid-column:1/-1;margin-bottom:16px}
+  .altri{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .elenco-leg{display:block}
+}
+/* tablet */
+@media (max-width:899px){
+  .testata nav{display:none}
+  .testata .tel{margin-left:auto}
+  .menu-btn{all:unset;display:inline-flex;align-items:center;cursor:pointer;font-size:15px;font-stretch:var(--largo);min-height:44px;padding:0 0 0 14px}
+  .menu-btn:focus-visible{outline:2px solid var(--blu)}
+  .menu-mob{padding:4px var(--m) 20px;font-size:18px;font-stretch:var(--largo)}
+  .menu-mob[hidden]{display:none}
+  .menu-mob a{display:block;padding:10px 0;text-decoration:none;border-bottom:1px solid var(--filo)}
+  .banco{display:flex;flex-direction:column}
+  .banco-testo,.tavola{display:contents}
+  .tavola{margin:0}
+  .quadro{order:1;margin:18px calc(-1 * var(--m)) 0}
+  .elenco-leg{order:2;margin-top:6px}
+  .selettore{order:3;margin-top:20px}
+  .spec{order:4;margin-top:12px}
+  .intro{order:5;margin-top:24px}
+  .invito{order:6;margin-top:18px}
+  .potenze{flex-direction:row;justify-content:space-between;border-top:0;gap:4px}
+  .potenze button{border:0;padding:6px 0 8px;min-height:44px;align-items:center;justify-content:center}
+  .potenze .w{font-size:19px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;text-decoration-color:var(--filo-2)}
+  .potenze .w small,.potenze .s,.potenze .pt{display:none}
+  .potenze button[aria-checked="true"] .w{text-decoration-color:var(--blu);text-decoration-thickness:2px}
+  .famiglie{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 24px}
+  .voce{grid-template-columns:1fr}
+  .chiusura{grid-template-columns:1fr;gap:36px}
+  .chiusura .testo{padding:0 var(--m)}
+  .chiusura .foto{order:2}
+  .piede-griglia{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* telefono */
+@media (max-width:600px){
+  body{font-size:16px}
+  .testata{height:68px;gap:16px}
+  .testata .logo img{height:36px}
+  .testata .tel{display:none}
+  .menu-btn{margin-left:auto}
+  .apertura{padding-top:14px}
+  .apertura h1{font-size:40px;line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+  .apertura h1 .r2{display:inline}
+  .quadro{margin-top:10px;aspect-ratio:390/250}
+  .selettore{margin-top:14px}
+  .selettore-tit{margin-bottom:0}
+  .intro{font-size:16px;line-height:1.5;margin-top:18px}
+  .intro .lunga{display:none}
+  .invito{margin-top:14px}
+  .invito a{font-size:16px}
+  .spec{font-size:14px;line-height:1.45}
+  .sezione{padding-top:96px}
+  .famiglie{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}
+  .famiglie h3{font-size:15.5px;white-space:normal}
+  .famiglie .sig{font-size:10.5px;letter-spacing:.05em;white-space:normal}
+  .famiglie p.d{font-size:14px}
+  .dittico{grid-template-columns:1fr;gap:28px;margin-top:40px}
+  .dittico figure:first-child figcaption,.dittico figure:last-child figcaption{padding:12px var(--m) 0}
+  .altri{grid-template-columns:1fr;gap:28px;margin-top:48px}
+  .voce{margin-top:80px}
+  .chiusura{margin-top:96px}
+  .piede{margin-top:96px;padding-top:48px}
+  .piede-griglia{grid-template-columns:1fr;gap:0}
+  .piede-griglia>.marchio{margin-bottom:28px}
+  .piede-colonna{border-top:1px solid var(--filo-2)}
+  .piede-colonna:last-child{border-bottom:1px solid var(--filo-2)}
+  .piede-colonna summary{display:flex;justify-content:space-between;align-items:center;min-height:48px;cursor:pointer}
+  .piede-colonna summary h2{margin:0;font-size:14px;color:var(--inchiostro)}
+  .piede-colonna summary::after{content:"+";font-size:20px;line-height:1;font-weight:300}
+  .piede-colonna[open] summary::after{content:"\2212"}
+  .piede-colonna>ul,.piede-colonna>address{padding-bottom:18px}
+  .legale{margin-top:28px;border-top:0;padding-top:0}
+  .legale .dx{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="wrap testata">
+  <a class="logo" href="./"><img src="img/logo-ala.png" width="600" height="180" alt="Ala Engineering, industrial electronic design"></a>
+  <nav aria-label="Principale">
+    <a href="#catalogo">Prodotti</a>
+    <a href="#applicazioni">Applicazioni</a>
+    <a href="perche-sceglierci.html">Azienda</a>
+    <a href="download.html">Download</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel num" href="tel:+390498792448">049 87 92 448</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mob">Menu</button>
+</header>
+<nav id="menu-mob" class="menu-mob" hidden aria-label="Principale, telefono">
+  <a href="#catalogo">Prodotti</a>
+  <a href="#applicazioni">Applicazioni</a>
+  <a href="perche-sceglierci.html">Azienda</a>
+  <a href="download.html">Download</a>
+  <a href="#contatti">Contatti</a>
+  <a class="num" href="tel:+390498792448">049 87 92 448</a>
+</nav>
+
+<main>
+<section class="wrap apertura" aria-labelledby="tit">
+  <h1 id="tit">L’elettronica che si adatta <span class="r2">al vostro prodotto</span></h1>
+
+  <div class="banco">
+    <div class="banco-testo">
+      <p class="intro">Alimentatori, caricabatterie, stabilizzatori e convertitori su misura<span class="lunga"> per chi costruisce macchine e impianti</span>, progettati e collaudati a Saonara.</p>
+
+      <div class="selettore">
+        <p class="selettore-tit" id="sel-tit">La serie ALASUPPLY, per potenza in watt</p>
+        <div class="potenze" role="radiogroup" aria-labelledby="sel-tit">
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="1fb"><span class="w"><span class="pt"></span>600<small>W</small></span><span class="s">1FB</span></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="1fl"><span class="w"><span class="pt"></span>2.000<small>W</small></span><span class="s">1FL</span></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="3fm"><span class="w"><span class="pt"></span>5.000<small>W</small></span><span class="s">3FM</span></button>
+          <button type="button" role="radio" aria-checked="true" tabindex="0" data-k="3fh"><span class="w"><span class="pt"></span>10.000<small>W</small></span><span class="s">3FH</span></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="3fx"><span class="w"><span class="pt"></span>25.000<small>W</small></span><span class="s">3FX</span></button>
+        </div>
+      </div>
+
+      <p class="invito"><a href="#contatti">Parlateci del vostro prodotto →</a><span>Lavoriamo solo con aziende</span></p>
+    </div>
+
+    <figure class="tavola">
+      <div class="quadro" id="quadro">
+        <picture class="scheda" data-k="1fb" hidden><source media="(max-width:600px)" srcset="img/scheda-1fb-m-780.jpg 780w, img/scheda-1fb-m-1050.jpg 1050w" sizes="100vw"><img src="img/scheda-1fb-d-816.jpg" srcset="img/scheda-1fb-d-816.jpg 816w, img/scheda-1fb-d-990.jpg 990w" sizes="(min-width:1440px) 816px, (max-width:899px) 100vw, 57vw" width="816" height="470" alt="Alimentatore ALASUPPLY-1FB da 600 W: scheda verde sotto una piastra di dissipazione in alluminio, morsetti verdi sul lato" loading="lazy"></picture>
+        <picture class="scheda" data-k="1fl" hidden><source media="(max-width:600px)" srcset="img/scheda-1fl-m-780.jpg 780w, img/scheda-1fl-m-1050.jpg 1050w" sizes="100vw"><img src="img/scheda-1fl-d-816.jpg" srcset="img/scheda-1fl-d-816.jpg 816w, img/scheda-1fl-d-990.jpg 990w" sizes="(min-width:1440px) 816px, (max-width:899px) 100vw, 57vw" width="816" height="470" alt="Alimentatore ALASUPPLY-1FL da 2.000 W: scheda con un grande dissipatore alettato in alluminio" loading="lazy"></picture>
+        <picture class="scheda" data-k="3fm" hidden><source media="(max-width:600px)" srcset="img/scheda-3fm-m-780.jpg 780w, img/scheda-3fm-m-1050.jpg 1050w" sizes="100vw"><img src="img/scheda-3fm-d-816.jpg" srcset="img/scheda-3fm-d-816.jpg 816w, img/scheda-3fm-d-990.jpg 990w" sizes="(min-width:1440px) 816px, (max-width:899px) 100vw, 57vw" width="816" height="470" alt="Alimentatore ALASUPPLY-3FM da 5.000 W: scheda con trasformatore giallo, induttori toroidali blu e condensatori elettrolitici" loading="lazy"></picture>
+        <picture class="scheda" data-k="3fh"><source media="(max-width:600px)" srcset="img/scheda-3fh-m-780.jpg 780w, img/scheda-3fh-m-1050.jpg 1050w" sizes="100vw"><img src="img/scheda-3fh-d-816.jpg" srcset="img/scheda-3fh-d-816.jpg 816w, img/scheda-3fh-d-990.jpg 990w" sizes="(min-width:1440px) 816px, (max-width:899px) 100vw, 57vw" width="816" height="470" alt="Alimentatore ALASUPPLY-3FH da 10.000 W: scheda di potenza con trasformatore giallo, quattro induttori toroidali in rame e piastra di dissipazione in alluminio" fetchpriority="high"></picture>
+        <picture class="scheda" data-k="3fx" hidden><source media="(max-width:600px)" srcset="img/scheda-3fx-m-780.jpg 780w, img/scheda-3fx-m-1050.jpg 1050w" sizes="100vw"><img src="img/scheda-3fx-d-816.jpg" srcset="img/scheda-3fx-d-816.jpg 816w, img/scheda-3fx-d-990.jpg 990w" sizes="(min-width:1440px) 816px, (max-width:899px) 100vw, 57vw" width="816" height="470" alt="Alimentatore ALASUPPLY-3FX da 25.000 W: contenitore in alluminio aperto con schede, barre in rame e un induttore toroidale" loading="lazy"></picture>
+        <svg id="fili" viewBox="0 0 816 470" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div id="legende" aria-hidden="true"></div>
+      </div>
+      <ol class="elenco-leg" id="elenco-leg" aria-hidden="true"></ol>
+      <figcaption class="spec" id="spec" aria-live="polite"><b>ALASUPPLY-3FH</b><i>·</i><span>trifase 400 V ±15 %</span><i>·</i><span>uscita da 24 a 220 V</span><i>·</i><span>da 45 a 120 A</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="wrap sezione" id="catalogo" aria-labelledby="t-cat">
+  <h2 id="t-cat">Un catalogo da cui partire</h2>
+  <p class="sotto">Ogni prodotto si personalizza: tensione, corrente, potenza, contenitore, grado di protezione. Molti sono esclusivi per il cliente che li ha commissionati.</p>
+  <ul class="famiglie">
+    <li><a href="prodotti/alimentatori.html"><img src="img/fam-alimentatori-320.jpg" srcset="img/fam-alimentatori-320.jpg 320w, img/fam-alimentatori-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Convertitore ALADC-X in contenitore aperto" loading="lazy"><h3>Alimentatori AC/DC e DC/DC</h3><p class="sig"><b>ALASUPPLY</b> <span>·</span> <b>ALADC</b> <span>·</span> <b>ALAMULTI</b></p><p class="d num">Da 100 a 25.000 W, da rete o da batteria.</p></a></li>
+    <li><a href="prodotti/caricabatterie.html"><img src="img/fam-caricabatterie-320.jpg" srcset="img/fam-caricabatterie-320.jpg 320w, img/fam-caricabatterie-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Caricabatterie ALABAT-3FM su dissipatore alettato" loading="lazy"><h3>Caricabatterie industriali</h3><p class="sig"><b>ALABAT</b></p><p class="d num">Da 600 a 25.000 W, piombo, litio, NiCd.</p></a></li>
+    <li><a href="prodotti/stabilizzatori.html"><img src="img/fam-stabilizzatori-320.jpg" srcset="img/fam-stabilizzatori-320.jpg 320w, img/fam-stabilizzatori-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Stabilizzatore ALASTAB-DC-H" loading="lazy"><h3>Stabilizzatori di tensione</h3><p class="sig"><b>ALASTAB-DC</b> <span>·</span> <b>ALASTAB-AC-3W</b></p><p class="d num">Da 600 a 25.000 W, in DC e in AC.</p></a></li>
+    <li><a href="prodotti/convertitori-di-frequenza.html"><img src="img/fam-convertitori-320.jpg" srcset="img/fam-convertitori-320.jpg 320w, img/fam-convertitori-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Convertitore di frequenza ALACONV 3.0 in contenitore rack" loading="lazy"><h3>Convertitori di frequenza</h3><p class="sig"><b>ALACONV 3.0</b> <span>·</span> <b>ALACONV 3.0 D</b></p><p class="d num">Da 50 a 60 Hz e viceversa, 3 kVA.</p></a></li>
+    <li><a href="prodotti/alimentatori-tamponati.html"><img src="img/fam-tamponati-320.jpg" srcset="img/fam-tamponati-320.jpg 320w, img/fam-tamponati-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Soccorritore ALAEMERGENCY con dissipatore" loading="lazy"><h3>Tamponati e soccorritori</h3><p class="sig"><b>ALAEMERGENCY</b> <span>·</span> <b>ALABUFFER-M</b></p><p class="d num">UPS in continua con batteria in tampone.</p></a></li>
+    <li><a href="prodotti/rack.html"><img src="img/fam-rack-320.jpg" srcset="img/fam-rack-320.jpg 320w, img/fam-rack-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Alimentatore modulare ALAWIN-3M su rack 19 pollici" loading="lazy"><h3>Modulari su rack 19″</h3><p class="sig"><b>ALAWIN-3M</b> <span>·</span> <b>ALAWIN-6M</b></p><p class="d num">Moduli ridondanti, sostituibili a caldo.</p></a></li>
+    <li><a href="prodotti/energie-rinnovabili.html"><img src="img/fam-rinnovabili-320.jpg" srcset="img/fam-rinnovabili-320.jpg 320w, img/fam-rinnovabili-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Regolatore ALAGREEN-H per fonti rinnovabili" loading="lazy"><h3>Energie rinnovabili</h3><p class="sig"><b>ALAGREEN</b></p><p class="d num">Solare, eolico, fuel cell e accumulo.</p></a></li>
+    <li><a href="prodotti/schede-su-misura.html"><img src="img/fam-schede-320.jpg" srcset="img/fam-schede-320.jpg 320w, img/fam-schede-640.jpg 640w" sizes="(max-width:600px) 45vw, (max-width:1179px) 30vw, 304px" width="304" height="216" alt="Scheda elettronica a microprocessore progettata su misura" loading="lazy"><h3>Schede su misura</h3><p class="sig"><b>SU PROGETTO DEL CLIENTE</b></p><p class="d num">Di controllo, a microprocessore.</p></a></li>
+  </ul>
+</section>
+
+<section class="sezione" id="applicazioni" aria-labelledby="t-app">
+  <div class="wrap">
+    <h2 id="t-app">Dentro treni, cabine e seggiovie</h2>
+    <p class="sotto">Magari il gas metano che usate a casa è stato pompato da una stazione con i nostri alimentatori ridondanti su rack. Quello che progettiamo di solito non si vede: lavora nascosto dentro il prodotto finale.</p>
+  </div>
+  <div class="dittico">
+    <figure>
+      <img src="img/treno-720.jpg" srcset="img/treno-720.jpg 720w, img/treno-1080.jpg 1080w, img/treno-1440.jpg 1440w" sizes="(max-width:600px) 100vw, 50vw" width="1830" height="1600" alt="Un Frecciarossa ETR1000 sotto la linea aerea, in pianura, con la nebbia" loading="lazy">
+      <figcaption><b>Frecciarossa ETR1000, 2015.</b> Gruppo di continuità in continua per le luci di emergenza, personalizzato secondo i capitolati RTI Ansaldo Breda / Bombardier, <span class="num">MTBF oltre 600.000 h</span>.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/seggiovia-720.jpg" srcset="img/seggiovia-720.jpg 720w, img/seggiovia-1080.jpg 1080w, img/seggiovia-1440.jpg 1440w" sizes="(max-width:600px) 100vw, 50vw" width="2057" height="1800" alt="Due seggiolini vuoti di una seggiovia nella nebbia" loading="lazy">
+      <figcaption><b>Seggiovie.</b> Caricabatterie progettati per lavorare in condizioni ambientali estreme, nell’impianto e non sul seggiolino.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <ul class="altri">
+      <li><span class="anno">2011</span><h3>Cabine di distribuzione ENEL</h3>Convertitore DC/DC da <span class="num">24 V a 110 V</span> per i sistemi di sicurezza.</li>
+      <li><span class="anno">2024</span><h3>Robot sottomarini</h3><span class="num">4 kW a 400 Vdc</span> lungo il cordone ombelicale, fino a <span class="num">300 m</span> di profondità.</li>
+      <li><span class="anno">2023</span><h3>Barche a idrogeno</h3>Convertitore per le celle a combustibile del prototipo di PhysisPEB.</li>
+      <li><span class="anno">2021</span><h3>Colonnine di ricarica</h3>ALAEV-3FX, caricabatterie modulare da <span class="num">25 kW</span> che si mette in parallelo.</li>
+      <li><span class="anno">Da oltre 10 anni</span><h3>Gasdotti europei</h3>Alimentatori modulari ridondanti su rack nelle stazioni di pompaggio del metano.</li>
+      <li><span class="anno">2025</span><h3>Energia fuori rete</h3>Elettronica per i sistemi portatili solari con batteria di Plug The Sun.</li>
+    </ul>
+
+    <div class="voce">
+      <div>
+        <blockquote>«Pur con una struttura industriale, siete… gli artigiani dell’elettronica.»</blockquote>
+        <p class="chi">Un cliente, sulla pagina Perché sceglierci</p>
+      </div>
+      <div>
+        <p class="clienti"><span>Tra le aziende che ci hanno scelto:</span> Siemens, Enel, Fiamm, Carlo Gavazzi, Socomec, La Cimbali, DAB, Findus, Scame, Fracarro, Flaem, Cebi, Itelco, ROJ.</p>
+        <p>Da oltre 30 anni progettazione, sviluppo, produzione e collaudo si fanno qui, completamente in Italia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-chi">
+  <figure class="foto"><img src="img/laboratorio-760.jpg" srcset="img/laboratorio-760.jpg 760w, img/laboratorio-930.jpg 930w" sizes="(max-width:899px) 100vw, 53vw" width="930" height="759" alt="Un tecnico in camice al banco di collaudo, davanti a due file di schede con induttori toroidali" loading="lazy"></figure>
+  <div class="testo">
+    <h2 id="t-chi">Un referente unico, dal progetto al collaudo</h2>
+    <div class="recapiti">
+      <a class="tel num" href="tel:+390498792448">049 87 92 448</a>
+      <p><a href="mailto:info@alaengineering.it">info@alaengineering.it</a></p>
+      <p>Via Friuli 4, 35020 Saonara (PD), <a href="https://www.google.com/maps/place/Ala+Engineering/@45.3818636,11.9625908,17z" rel="noopener">come arrivare</a></p>
+      <p class="nota">Vicino al casello di Padova Zona Industriale sulla A13.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="piede-griglia">
+      <div class="marchio">
+        <a class="logo" href="./"><img src="img/logo-ala.png" width="600" height="180" alt="Ala Engineering" loading="lazy"></a>
+        <p class="chi">Progettazione e produzione di elettronica industriale personalizzata, a Saonara (PD).</p>
+      </div>
+      <details class="piede-colonna" open>
+        <summary><h2>Prodotti</h2></summary>
+        <ul>
+          <li><a href="prodotti/alimentatori.html">Alimentatori AC/DC e DC/DC</a></li>
+          <li><a href="prodotti/caricabatterie.html">Caricabatterie industriali</a></li>
+          <li><a href="prodotti/stabilizzatori.html">Stabilizzatori di tensione</a></li>
+          <li><a href="prodotti/convertitori-di-frequenza.html">Convertitori di frequenza</a></li>
+          <li><a href="prodotti/alimentatori-tamponati.html">Tamponati e soccorritori</a></li>
+          <li><a href="prodotti/rack.html">Modulari su rack 19″</a></li>
+          <li><a href="prodotti/energie-rinnovabili.html">Energie rinnovabili</a></li>
+          <li><a href="prodotti/schede-su-misura.html">Schede su misura</a></li>
+        </ul>
+      </details>
+      <details class="piede-colonna" open>
+        <summary><h2>Azienda</h2></summary>
+        <ul>
+          <li><a href="perche-sceglierci.html">Perché sceglierci</a></li>
+          <li><a href="progetti.html">Progetti</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="download.html">Download e infografiche</a></li>
+          <li><a href="lavora-con-noi.html">Lavora con noi</a></li>
+        </ul>
+      </details>
+      <details class="piede-colonna" open>
+        <summary><h2>Contatti</h2></summary>
+        <address>
+          <p>Via Friuli 4<br>35020 Saonara (PD)<br><a href="https://www.google.com/maps/place/Ala+Engineering/@45.3818636,11.9625908,17z" rel="noopener">Come arrivare</a></p>
+          <p><a class="num" href="tel:+390498792448">Tel. 049 87 92 448</a><br><span class="num">Fax 049 87 92 393</span><br><a href="mailto:info@alaengineering.it">info@alaengineering.it</a></p>
+        </address>
+      </details>
+      <details class="piede-colonna" open>
+        <summary><h2>Seguici</h2></summary>
+        <ul>
+          <li><a href="https://www.linkedin.com/company/ala-engineering/" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/channel/UClGLV1jjWVuWnOSLECWGtIA" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/showcase/elettronica-personalizzata-per-energie-rinnovabili" rel="noopener">LinkedIn, energie rinnovabili</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="legale">
+      <span>© 2026 ALA Engineering S.r.l.</span>
+      <span class="num">P.IVA 02427510249</span>
+      <span>Via Friuli 4, 35020 Saonara (PD)</span>
+      <span class="dx"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script id="leg" type="application/json">{"1fb":{"d":[{"t":"Piastra di dissipazione","p":[83.29,19.81],"e":[83.29,3.69],"lato":"ul"},{"t":"Etichetta di collaudo","p":[32.08,69.53],"e":[15.83,69.53],"lato":"l"},{"t":"Morsetti di ingresso e uscita","p":[35.95,85.66],"e":[15.83,85.66],"lato":"l"}],"m":[{"t":"Piastra di dissipazione","p":[75.37,17.69]},{"t":"Etichetta di collaudo","p":[18.58,67.21]},{"t":"Morsetti di ingresso e uscita","p":[22.87,83.27]}]},"1fl":{"d":[{"t":"Dissipatore alettato","p":[72.57,29.34],"e":[77.86,29.34],"lato":"r"},{"t":"Condensatori elettrolitici","p":[22.38,46.01],"e":[9.53,46.01],"lato":"l"},{"t":"Connettori dei segnali","p":[79.08,84.86],"e":[84.37,84.86],"lato":"r"}],"m":[{"t":"Dissipatore alettato","p":[70.9,27.18]},{"t":"Condensatori elettrolitici","p":[15.25,43.78]},{"t":"Connettori dei segnali","p":[78.12,82.48]}]},"3fm":{"d":[{"t":"Induttori toroidali","p":[41.11,19.3],"e":[58.28,19.3],"lato":"r"},{"t":"Trasformatore","p":[27.98,57.89],"e":[27.98,73.68],"lato":"d"},{"t":"Condensatori elettrolitici","p":[53.84,78.95],"e":[53.84,90.35],"lato":"l"}],"m":[{"t":"Induttori toroidali","p":[41.62,28.97]},{"t":"Trasformatore","p":[29.24,61.66]},{"t":"Condensatori elettrolitici","p":[53.62,79.49]}]},"3fh":{"d":[{"t":"Trasformatore","p":[60.81,13.86],"e":[45.66,13.86],"lato":"l"},{"t":"Induttori toroidali","p":[94.65,44.74],"e":[94.65,27.54],"lato":"u"},{"t":"Piastra di dissipazione","p":[78.99,82.28],"e":[85.86,82.28],"lato":"r"}],"m":[{"t":"Trasformatore","p":[60.19,24.37]},{"t":"Induttori toroidali","p":[92.1,50.52]},{"t":"Piastra di dissipazione","p":[77.33,82.32]}]},"3fx":{"d":[{"t":"Induttore toroidale","p":[67.42,21.36],"e":[67.42,-0.08],"lato":"ul"},{"t":"Barre in rame","p":[47.59,36.57],"e":[8.69,36.57],"lato":"l"},{"t":"Contenitore in alluminio","p":[81.26,85.69],"e":[85.75,85.69],"lato":"r"}],"m":[{"t":"Induttore toroidale","p":[69.35,19.24]},{"t":"Barre in rame","p":[47.37,34.38]},{"t":"Contenitore in alluminio","p":[84.7,83.3]}]}}</script>
+<script>
+(function(){
+  var M = {
+    '1fb':{s:'ALASUPPLY-1FB',i:'monofase 230 V ±20 %',o:'uscita da 5 a 300 V',a:'da 1,5 a 40 A'},
+    '1fl':{s:'ALASUPPLY-1FL',i:'monofase 230 V ±20 %',o:'uscita da 5 a 1.000 V',a:'da 2,5 a 100 A'},
+    '3fm':{s:'ALASUPPLY-3FM',i:'trifase 400 V ±15 %',o:'uscita da 15 a 600 V',a:'da 7 a 70 A'},
+    '3fh':{s:'ALASUPPLY-3FH',i:'trifase 400 V ±15 %',o:'uscita da 24 a 220 V',a:'da 45 a 120 A'},
+    '3fx':{s:'ALASUPPLY-3FX',i:'trifase 400 V ±15 %',o:'uscita da 110 a 800 V',a:'da 30 a 100 A'}
+  };
+  var LEG = JSON.parse(document.getElementById('leg').textContent);
+  var punti = matchMedia('(max-width:1179px)'), mob = matchMedia('(max-width:600px)');
+  var btn = [].slice.call(document.querySelectorAll('.potenze button'));
+  var pic = [].slice.call(document.querySelectorAll('#quadro .scheda'));
+  var svg = document.getElementById('fili'), box = document.getElementById('legende'), lista = document.getElementById('elenco-leg');
+  var NS = 'http://www.w3.org/2000/svg', cur = '3fh';
+  function el(t,c){var e=document.createElement(t); if(c) e.className=c; return e;}
+  function sv(t,a){var e=document.createElementNS(NS,t); for(var k in a) e.setAttribute(k,a[k]); return e;}
+  function legende(){
+    var L = LEG[cur]; svg.innerHTML=''; box.innerHTML=''; lista.innerHTML='';
+    if (!punti.matches){
+      L.d.forEach(function(g,i){
+        var px=g.p[0]*8.16, py=g.p[1]*4.70, ex=g.e[0]*8.16, ey=g.e[1]*4.70;
+        svg.appendChild(sv('line',{x1:px,y1:py,x2:ex,y2:ey,'vector-effect':'non-scaling-stroke'}));
+        svg.appendChild(sv('circle',{cx:px,cy:py,r:4.2,'vector-effect':'non-scaling-stroke'}));
+        var t = el('span','leg '+g.lato); t.style.left=g.e[0]+'%'; t.style.top=g.e[1]+'%';
+        t.innerHTML='<b>'+(i+1)+'</b>'+g.t; box.appendChild(t);
+      });
+    } else {
+      var pts = mob.matches ? L.m : L.d;
+      pts.forEach(function(g,i){
+        var n = el('span','num-p'); n.textContent=i+1; n.style.left=g.p[0]+'%'; n.style.top=g.p[1]+'%'; box.appendChild(n);
+        var li = el('li'); li.innerHTML='<b>'+(i+1)+'</b>'+g.t; lista.appendChild(li);
+      });
+    }
+  }
+  function scegli(k, fuoco){
+    cur = k; var m = M[k];
+    btn.forEach(function(b){ var on = b.dataset.k===k; b.setAttribute('aria-checked', on); b.tabIndex = on?0:-1; if(on && fuoco) b.focus(); });
+    pic.forEach(function(p){ p.hidden = p.dataset.k!==k; });
+    document.getElementById('spec').innerHTML = '<b>'+m.s+'</b><i>·</i><span>'+m.i+'</span><i>·</i><span>'+m.o+'</span><i>·</i><span>'+m.a+'</span>';
+    legende();
+  }
+  btn.forEach(function(b,i){
+    b.addEventListener('click', function(){ scegli(b.dataset.k); });
+    b.addEventListener('keydown', function(e){
+      var n = null;
+      if (e.key==='ArrowDown'||e.key==='ArrowRight') n = (i+1)%btn.length;
+      if (e.key==='ArrowUp'||e.key==='ArrowLeft') n = (i-1+btn.length)%btn.length;
+      if (e.key==='Home') n = 0; if (e.key==='End') n = btn.length-1;
+      if (n!==null){ e.preventDefault(); scegli(btn[n].dataset.k, true); }
+    });
+  });
+  [mob,punti].forEach(function(q){ q.addEventListener ? q.addEventListener('change', legende) : q.addListener(legende); });
+  legende();
+
+  var mb = document.querySelector('.menu-btn'), mm = document.getElementById('menu-mob');
+  mb.addEventListener('click', function(){ var o = mb.getAttribute('aria-expanded')==='true'; mb.setAttribute('aria-expanded', !o); mm.hidden = o; mb.textContent = o ? 'Menu' : 'Chiudi'; });
+
+  // piede: a fisarmonica solo sul telefono; sopra i 600 px le colonne restano aperte e il titoletto non si tocca
+  var det = [].slice.call(document.querySelectorAll('.piede-colonna'));
+  function piede(){ det.forEach(function(d){ d.open = !mob.matches; var s=d.querySelector('summary'); if(mob.matches){ s.removeAttribute('tabindex'); } else { s.setAttribute('tabindex','-1'); } }); }
+  det.forEach(function(d){ d.querySelector('summary').addEventListener('click', function(e){ if(!mob.matches) e.preventDefault(); }); });
+  (mob.addEventListener ? mob.addEventListener('change', piede) : mob.addListener(piede));
+  piede();
+})();
+</script>
+</body>
+</html>

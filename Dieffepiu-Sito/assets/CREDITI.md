@@ -29,3 +29,13 @@ Versioni scaricate dai CDN `images.unsplash.com` e `images.pexels.com` a 2400 px
 ## Immagini del sito attuale in `originali/`
 
 Scaricate il 20/10/2026 da `https://dieffepiu.it/image/<id>` (gli id sono nei dati JSON della pagina), dai favicon del sito, dal vecchio sito `https://www.difranco.it/images/` (stessa P.IVA) e dalle anteprime dei 5 video del canale YouTube dell'azienda. In `originali/catalogo/` 8 pagine del catalogo `https://dieffepiu.it/catalogo.pdf` rese a 120 dpi e l'immagine di copertina estratta. Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`. Sono materiale dell'azienda: chi le ha scattate e con quali diritti va chiesto (vedi 01-analisi, sezione 9).
+
+## Usate nella home finale (`sito/img/`)
+
+Solo foto dell'azienda, lavorate con `_prova/script/finale_img.py`; nessuna foto di `esterne/`.
+- `cingolo-*.webp`: da `originali/slides_2-6__e2884da3cea611eba816c81f66bc3d6b-2.jpg` (sito dieffepiu.it), scontornato, parete ricostruita sotto la guida, specchiato.
+- `spazzolino-*.webp`: da `originali/difranco__home5.jpg` (vecchio sito difranco.it, stessa P.IVA).
+- `testate-*.webp`: da `originali/slides_2-8__imm05.jpg` (sito).
+- `att030-*.webp`: da `originali/youtube-anteprima__Dxt6fEBRLbA.jpg` (anteprima del video YouTube dell'azienda).
+- `rotoli-*.webp`: da `originali/slides_2-2___DSC4780.jpg` (sito).
+- `logo-*.webp` e `icona-180.png`: da `originali/logo-dieffepiu-1396x857.png` e `originali/logo-favicon-apple-icon-180x180.png`.

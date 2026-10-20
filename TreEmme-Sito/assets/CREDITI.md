@@ -32,3 +32,9 @@ Avvertenze:
 - Le persone sono riconoscibili: la licenza Unsplash e Pexels non copre l'uso che suggerisce un rapporto con l'azienda o con un prodotto. Didascalia "foto indicativa" e sostituzione con foto di clienti veri, con liberatoria.
 
 Scartate dopo la verifica: Hans Moerman, carrozzina vuota in spiaggia; Georgi Kalaydzhiev, carrozzina vuota nel parco (la carrozzina vuota comunica assenza); alexandre saraiva carniato su Pexels, scura e solitaria; Nayeli Dalton, con il marchio "drive" in primo piano sullo schienale; LISK OBE, tornio vecchio e buio; Chepe Nicoli, è una bicicletta; Natalia Blauth e le foto di tennis di Fellipe Ditadi, che sono Unsplash+.
+
+## Uso nella home finale (sito/)
+
+- Chiusura: `kyraderksen-carrozzina-lago.jpg` (Zachary Kyra-Derksen, Unsplash License), taglio alto 1600x1130 (la carrozzina di altra marca resta fuori quadro) in `sito/img/chiusura-lago-*.webp`, con la didascalia "Foto indicativa" sotto la foto. Controllato di nuovo il 20/10/2026: non compare nei CREDITI.md delle altre home della campagna.
+- Tutte le altre immagini della home sono dell'azienda (`assets/originali/`). Nessuna foto nuova scaricata per la versione finale.
+- Carattere: Saira, SIL Open Font License 1.1, testo della licenza da https://github.com/google/fonts/blob/main/ofl/saira/OFL.txt in `assets/fonts-licenze/OFL-Saira.txt`.

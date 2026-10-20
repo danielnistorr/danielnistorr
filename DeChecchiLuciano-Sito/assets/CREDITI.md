@@ -36,3 +36,14 @@ Scaricate il 20/10/2026 da `https://www.dechecchiluciano.it/wp-content/uploads/`
 ## Uso nel prototipo B della home (`_prova/home/b/`)
 
 Nessuna foto nuova scaricata. Dalle esterne: Debartolo `etUfoBKNRaM` (apertura, di giorno; tolta la presa elettrica dalla boiserie), Dudeck `nn1xCtRvUOs` (apertura, di sera), Putra `hBudOBV8TUg` (chiusura). Dalle originali: `2019-12_woodled_24_DeChecchi_3.jpg` (Woodled24, con una versione "spenta" simulata con PIL per il cursore d'intensità) e `2017-05_De_Checchi_Tecnologia_1.jpg` (reparto). Script: `_prova/script/proto_b_img.py`.
+
+## Uso nella home finale (`sito/`)
+
+Nessuna foto nuova scaricata e nessuna foto esterna usata: le Unsplash e Pexels di `esterne/` restano solo nei prototipi. Tutte le foto della home finale sono di De Checchi Luciano, dal loro sito (diritti e autore da confermare con l'azienda, vedi LEGGIMI):
+- apertura: `originali/2017-04_slide_DeChecchi_2.jpg`, ritagliata e posata sulla carta (`_prova/script/finale_maschera.py`, `finale_img.py`);
+- fascia delle linee: `originali/2017-04_slide_DeChecchi_3.jpg` (campioni Trattline);
+- stabilimenti: `originali/2017-05_De_Checchi_Tecnologia_1.jpg` (reparto);
+- chiusura: `originali/2019-12_woodled_24_DeChecchi_3.jpg` (Woodled24 acceso);
+- logo: `originali/logo-dechecchi-positivo.svg`.
+
+Carattere: SUSE (Google Fonts, SIL Open Font License 1.1), testo della licenza scaricato il 20/10/2026 da `https://raw.githubusercontent.com/google/fonts/main/ofl/suse/OFL.txt` in `_prova/crawl/ext/suse/OFL.txt` e copiato in `sito/fonts/OFL-SUSE.txt`.

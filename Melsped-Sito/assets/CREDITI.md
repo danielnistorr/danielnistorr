@@ -33,3 +33,23 @@ Scaricate il 20/10/2026 da `https://melsped.it/images/`, `https://melsped.it/med
 - `originali/logo-melsped-ricalco-da-facebook.svg`: mio ricalco in due colori (#1A1A18, #F7CF0A) del PNG qui sopra (`_prova/script/logo_svg.py`, contorni a 4x semplificati). Fedele fino a circa 450 px di larghezza; più grande i bordi ondulano. Va bene come segnaposto nel piede; per il sito serve il vettoriale originale o un ridisegno geometrico.
 - `originali/logo-sito-250x212.jpg`: il logo della testata di oggi (`images/logo3.jpg`), senza la riga "SPEDIZIONI INTERNAZIONALI".
 - `originali/logo-sito-sfumato-229x180.png`: versione con sfumatura e riflesso del tema (`templates/theme939/images/logo/logo.png`), da non usare.
+
+## Uso nella home finale (`sito/img/`, 20/10/2026)
+
+Script: `_prova/script/finale_img.py` (lanciato da `_prova/script/build_finale.sh`). Trattamento comune a tutte le foto: ombre sollevate, saturazione ridotta, bianco appena caldo; WebP in più larghezze.
+
+| File in `sito/img/` | Foto | Ritocchi |
+|---|---|---|
+| `apertura-*`, `apertura-medio-*`, `apertura-largo-*`, `apertura-tel-*` | Dextar Studio `2wpx8Bl0mwM` | raddrizzata di 5,5 gradi; tolti la stella Mercedes, la scritta del modello, l'indirizzo web e la scritta sulla visiera, la targhetta sulla porta, la sigla "FRC" con la data sul frontale del rimorchio; spenta la parte fucsia sotto il rimorchio; cielo schiarito, il cemento in basso sfuma nel fondo della pagina |
+| `modo-strada-*` | Matthew Jackson `SJGC3NNOqU4` | coperti i due marchi dei fornitori sui sigillanti delle baie |
+| `modo-aereo-*` | Peaky_82 `PEf3deR3l_U` | coperti i due marchi del costruttore sui motori e i due marchi della società di handling sulla scaletta |
+| `modo-mare-*` | Venti Views `1cqIcrWFQBI` | solo il trattamento comune, saturazione più bassa |
+| `modo-dogana-*` | AFINIS Group `OnbSOhz0oig` | solo il trattamento comune, saturazione più bassa |
+| `chiusura-*` | Yuri Krupenin `4n2Tvf8ZKVM` | taglio orizzontale sulle baie B9 e B10 |
+| `logo-melsped-senza-riga.svg` | ricalco del logo (vedi sotto) | stesso file, con la vista tagliata sopra la riga "SPEDIZIONI INTERNAZIONALI" |
+
+Controllo di nuovo il 20/10/2026 su tutte le cartelle `*-Sito/assets/CREDITI.md`: nessuna di queste sette foto compare in un'altra home della campagna.
+
+## Caratteri
+
+`fonts/archivo-latin-var.woff2` e `fonts/archivo-latinext-var.woff2`: Archivo (Omnibus-Type), file variabili di Google Fonts con gli assi peso e larghezza. Licenza SIL Open Font License 1.1, testo in `fonts/OFL-Archivo.txt` (scaricato da github.com/google/fonts, `ofl/archivo/OFL.txt`) e copiato in `sito/fonts/OFL.txt`.

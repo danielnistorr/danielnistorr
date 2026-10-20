@@ -34,3 +34,9 @@ Scaricate da images.unsplash.com e images.pexels.com a 2400 px di lato lungo.
 | `esterne/pexels-optlasers-7254420.jpg` | https://www.pexels.com/photo/close-up-shot-of-a-cnc-laser-7254420/ | Opt Lasers | 25/03/2021 | 2400x2400 (orig. 6000x6000) | A e B | testa laser a diodo che incide una superficie granulosa, punto di luce viola. Non è una marcatrice in fibra come quella di Marin: "foto indicativa". Si vede l'adesivo di avvertenza laser in alto |
 
 Scartate dopo averle viste: Nilov (Pexels 9242911, robot da gara con adesivi "WARNING"), Talmacs (Unsplash Mmh5A_eSTis, vite sporca e graffiata), Diecasting Mould (Unsplash D60xwIqu-jA, foto pubblicitaria di un produttore di pressofusi), gomi (serie di viti su bianco, possibile resa 3D senza dati di scatto).
+
+## Home finale (`sito/`, 20 ottobre 2026)
+
+Usa solo foto di Marin: `8407.1600.jpg` (apertura, nei due stati dell'interruttore, e tagli per il telefono), `slide3.jpg` (tappi), `8447.1600.jpg` (solo il gruppo di bussole, sfere e raccordi in basso al centro, 665x300; il resto del banco e le impugnature con le scritte sono fuori) e `slide2.jpg` (bussole, chiusura). Tutte esportate a 1x o più piccole, mai ingrandite. Lavorazione in `_prova/script/finale_img.py`. Nessuna foto di `esterne/` è usata nella finale.
+
+Carattere: Zalando Sans (Google Fonts, SIL Open Font License 1.1, nome riservato "Zalando"), file originali in `fonts/` e `../sito/fonts/` con `OFL.txt`.
