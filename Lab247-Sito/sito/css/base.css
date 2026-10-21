@@ -1,0 +1,241 @@
+/* 247LAB, stile comune del sito. Estratto dalla home (index.html): token, tipografia, griglia,
+   testata, piede, bottoni, link, moduli. Le pagine aggiungono css/<gruppo>.css e non cambiano questo file.
+   Jost (Indestructible Type) e Hanken Grotesk (Hanken Design Co.): SIL Open Font License 1.1, da Google Fonts, serviti in locale */
+@font-face{font-family:"Jost";font-style:normal;font-weight:300 500;font-display:swap;src:url(../fonts/Jost-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Jost";font-style:normal;font-weight:300 500;font-display:swap;src:url(../fonts/Jost-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 500;font-display:swap;src:url(../fonts/HankenGrotesk-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 500;font-display:swap;src:url(../fonts/HankenGrotesk-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2C60-2C7F,U+A720-A7FF}
+
+/* ---------- token ---------- */
+:root{
+  /* il buio: solo dove la lampada e' accesa (apertura della home, testata e testa delle pagine) */
+  --nero:#12100D;        /* il fondo della foto di BOATY S, portato a un solo nero caldo */
+  --luce:#EDE7DC;        /* testo su nero, 15,4:1 */
+  --cenere:#A39B8E;      /* testo secondario su nero, 6,9:1 */
+  --ottone:#C9A35A;      /* bottone e fuoco su nero, 8,0:1 */
+  --filo-n:rgba(237,231,220,.16);
+  /* la luce: tutto il resto della pagina */
+  --carta:#F4F1EA;
+  --inchiostro:#171614;  /* 16,0:1 su carta */
+  --seppia:#5E574D;      /* testo secondario su carta, 6,3:1 */
+  --ottone-scuro:#6E5119;/* passaggio del mouse e fuoco su carta, 6,5:1 */
+  --filo-ottone:#B8924A; /* solo filetti */
+  --filo-c:rgba(23,22,20,.16);
+  --m:64px;--g:24px;
+  --s1:8px;--s2:16px;--s3:24px;--s4:40px;--s5:64px;--s6:104px;--s7:144px;
+  --jost:"Jost",ui-sans-serif,system-ui,sans-serif;
+  --hanken:"Hanken Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --alta-testata:96px;
+}
+
+/* ---------- base e tipografia ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.menu-aperto{overflow:hidden}
+body{background:var(--carta);color:var(--inchiostro);font-family:var(--hanken);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;font-synthesis:none;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--ottone-scuro)}
+:focus-visible{outline:2px solid var(--ottone-scuro);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{padding-left:var(--m);padding-right:var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+h1,h2,h3{font-family:var(--jost);font-weight:300;text-wrap:balance}
+p{text-wrap:pretty}
+.salta{position:absolute;left:-9999px;top:0;background:var(--luce);color:var(--nero);padding:8px 12px;z-index:30}
+.salta:focus{left:16px;top:16px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.didascalia{font-size:14px;line-height:1.5;color:var(--seppia)}
+.didascalia b{font-weight:500;color:var(--inchiostro)}
+.vai{font-family:var(--jost);font-size:17px}
+.bottone{display:inline-block;background:var(--ottone);color:var(--nero);text-decoration:none;font-family:var(--jost);font-size:17px;font-weight:400;padding:15px 26px;line-height:1.2;transition:background-color .15s,color .15s}
+.bottone:hover{background:var(--inchiostro);color:var(--carta)}
+
+/* il buio */
+.scuro{background:var(--nero);color:var(--luce)}
+.scuro a:hover{color:var(--ottone)}
+.scuro :focus-visible{outline-color:var(--ottone)}
+.scuro .didascalia{color:var(--cenere)}
+.scuro .didascalia b{color:var(--luce)}
+.scuro .bottone:hover{background:var(--luce);color:var(--nero)}
+
+/* ---------- testata ---------- */
+.testata{position:absolute;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;gap:56px;height:96px;color:var(--luce)}
+.testata a:hover{color:var(--luce)}
+.testata :focus-visible{outline-color:var(--ottone)}
+.testata .logo{display:block;flex-shrink:0;color:var(--luce);width:118px}
+.testata .logo svg{display:block;width:100%;height:auto}
+.menu{display:flex;gap:28px;list-style:none;font-family:var(--jost);font-size:16px}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover{border-bottom-color:var(--ottone)}
+.menu .solo-tel{display:none}
+.testata-dx{display:flex;align-items:center;gap:28px;font-family:var(--jost);font-size:16px;margin-left:auto}
+.testata-dx a{text-decoration:none}
+.testata-dx .tel{font-variant-numeric:tabular-nums}
+.lingua{color:var(--cenere)}
+.apri-menu{display:none;align-items:center;gap:10px;background:none;border:0;color:var(--luce);font-family:var(--jost);font-size:16px;padding:10px 0;cursor:pointer}
+.apri-menu i{display:block;width:18px;height:1px;background:currentColor;box-shadow:0 -5px 0 currentColor,0 5px 0 currentColor}
+.testata.aperta .apri-menu i{box-shadow:none}
+/* pagine interne: la testata sta sul suo nero, nel flusso; la voce attiva ha il filetto ottone */
+.interna .testata{position:relative;background:var(--nero)}
+html.menu-aperto .interna{padding-top:var(--alta-testata)}
+.menu a[aria-current]{border-bottom-color:var(--ottone)}
+
+/* ---------- testa delle pagine interne: il nero continua sotto la testata, con il titolo ---------- */
+.testa{background:var(--nero);color:var(--luce);padding:var(--s5) var(--m) 56px}
+.testa h1{font-size:clamp(56px,7.2vw,112px);line-height:.92;letter-spacing:-.035em;margin-left:-.04em}
+.testa-sotto{margin-top:36px;align-items:end}
+.testa .sotto{grid-column:1 / span 7;font-family:var(--jost);font-size:24px;line-height:1.3;font-weight:300}
+.testa .chi{grid-column:1 / span 7;margin-top:12px;color:var(--cenere);max-width:40em}
+.testa .azioni{grid-column:1 / span 7;margin-top:28px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.testa .azioni .vai{color:var(--luce)}
+.testa .didascalia,.testa .briciole{grid-column:9 / span 4;grid-row:1 / span 3;align-self:end;text-align:right}
+.briciole{font-size:14px;line-height:1.5;color:var(--cenere)}
+.briciole ol{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:2px 0}
+.briciole li+li::before{content:"/";padding:0 8px;color:var(--cenere)}
+.briciole a{text-decoration:none}
+.briciole a:hover{text-decoration:underline;color:var(--luce)}
+.briciole [aria-current]{color:var(--luce)}
+
+/* ---------- sezioni e titoli: le misure della home ---------- */
+.sezione{padding-top:var(--s6);padding-bottom:var(--s6)}
+.sezione-stretta{padding-top:var(--s5);padding-bottom:var(--s6)}
+.t-2{font-size:64px;line-height:1;letter-spacing:-.03em}
+.t-3{font-size:36px;line-height:1.1;letter-spacing:-.02em}
+.t-4{font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.25;letter-spacing:-.01em}
+.t-3 small,.t-4 small{font-family:var(--hanken);font-size:15px;letter-spacing:0;color:var(--seppia);font-weight:400;margin-left:12px}
+.intro{color:var(--seppia);max-width:34em}
+.secondario{color:var(--seppia)}
+.misura{max-width:34em}
+
+/* filetti: l'indice delle collezioni e dei committenti della home */
+.filetti{list-style:none;border-top:1px solid var(--filo-c)}
+.filetti>li{padding:var(--s3) 0 28px;border-bottom:1px solid var(--filo-c)}
+.righe{list-style:none;border-top:1px solid var(--filo-c)}
+.righe>li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0 10px;border-bottom:1px solid var(--filo-c)}
+.righe>li>span:first-child{font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.25;letter-spacing:-.01em}
+.righe small{font-size:14px;color:var(--seppia);font-variant-numeric:tabular-nums;text-align:right}
+/* specifiche: etichetta e valore tra filetti */
+.specifiche{border-top:1px solid var(--filo-c)}
+.specifiche>div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:16px;padding:10px 0 11px;border-bottom:1px solid var(--filo-c)}
+.specifiche dt{color:var(--seppia);font-size:15px}
+.specifiche dd{font-size:16px}
+/* colonne della home dentro .griglia: foto 1-6 e testo 8-12 (collezioni), testo 1-6 e foto 8-12 (MINA) */
+.col-sx{grid-column:1 / span 6}
+.col-dx{grid-column:8 / span 5}
+.col-larga{grid-column:1 / span 7}
+.col-stretta{grid-column:9 / span 4}
+.col-tutta{grid-column:1 / -1}
+/* foto a filo del bordo, come in home */
+.a-filo-sx{margin-left:calc(-1 * var(--m))}
+.a-filo-dx{margin-right:calc(-1 * var(--m))}
+.a-filo-sx figcaption{padding-left:var(--m)}
+figcaption.didascalia,figure>.didascalia{margin-top:12px}
+
+/* ---------- moduli ---------- */
+.campo{display:flex;margin-top:20px;border-bottom:1px solid var(--inchiostro)}
+.campo:focus-within{border-bottom-color:var(--ottone-scuro);box-shadow:0 1px 0 var(--ottone-scuro)}
+.campo input{flex:1;min-width:0;background:transparent;border:0;color:var(--inchiostro);font:inherit;font-size:17px;padding:12px 0}
+.campo input:focus{outline:none}
+.campo input::placeholder{color:var(--seppia)}
+.campo button{background:none;border:0;color:var(--inchiostro);font-family:var(--jost);font-size:17px;padding:12px 0 12px 20px;cursor:pointer}
+.campo button:hover{color:var(--ottone-scuro)}
+.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--seppia);line-height:1.45}
+.consenso input{margin-top:3px;width:16px;height:16px;accent-color:var(--ottone-scuro);flex:none}
+.esito{margin-top:8px;font-size:14px;color:var(--ottone-scuro);min-height:1.45em}
+/* modulo a piu' campi (contatti, richieste): etichetta sopra, filo sotto, come il campo della newsletter */
+.modulo{display:grid;gap:28px}
+.voce{display:flex;flex-direction:column}
+.voce label,.voce .etichetta{font-family:var(--jost);font-size:17px;margin-bottom:4px}
+.voce .aiuto{font-size:14px;color:var(--seppia);margin-top:6px}
+.voce input,.voce textarea,.voce select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--inchiostro);border-radius:0;color:var(--inchiostro);font:inherit;font-size:17px;padding:10px 0;-webkit-appearance:none;appearance:none}
+.voce textarea{min-height:9em;resize:vertical;line-height:1.5}
+.voce select{background-image:none;cursor:pointer}
+.voce input:focus,.voce textarea:focus,.voce select:focus{outline:none;border-bottom-color:var(--ottone-scuro);box-shadow:0 1px 0 var(--ottone-scuro)}
+.voce input::placeholder,.voce textarea::placeholder{color:var(--seppia)}
+.voce [aria-invalid=true]{border-bottom-color:#8A2E1C;box-shadow:0 1px 0 #8A2E1C}
+.modulo .bottone{border:0;cursor:pointer;justify-self:start}
+
+/* ---------- piede ---------- */
+.piede{border-top:1px solid var(--filo-ottone);padding-top:72px;padding-bottom:32px}
+.piede-alto{align-items:start}
+.piede-chi{grid-column:1 / span 5}
+.piede .logo{display:block;width:156px;color:var(--inchiostro)}
+.piede .logo svg{display:block;width:100%;height:auto}
+.piede-chi p{margin-top:22px;max-width:26em;color:var(--seppia);font-size:16px}
+.newsletter{grid-column:8 / span 5}
+.newsletter h2{font-size:26px;line-height:1.2;letter-spacing:-.01em;font-weight:400}
+.newsletter p.i{margin-top:8px;font-size:15px;color:var(--seppia)}
+.colonne{margin-top:56px;row-gap:40px}
+.colonna{grid-column:span 3}
+.colonna h3{font-family:var(--hanken);font-weight:500;font-size:14px;letter-spacing:.02em;color:var(--seppia);margin-bottom:14px}
+.colonna ul{list-style:none;font-size:16px;line-height:1.5}
+.colonna li+li{margin-top:8px}
+.colonna a{text-decoration:none}
+.colonna a:hover{text-decoration:underline}
+.legale{margin-top:56px;padding-top:22px;border-top:1px solid var(--filo-c);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--seppia)}
+.legale a{text-decoration:none;color:var(--seppia)}
+.legale a:hover{text-decoration:underline;color:var(--inchiostro)}
+.legale .dx{margin-left:auto;display:flex;gap:24px}
+
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px}
+  .testata{gap:32px}
+  .menu{gap:18px;font-size:15px}
+  .testata-dx .tel{display:none}
+  .t-2{font-size:52px}
+  .t-3{font-size:30px}
+  .righe>li>span:first-child{font-size:21px}
+}
+/* 768: da qui il menu e' un bottone */
+@media (max-width:900px){
+  :root{--m:32px}
+  .menu,.testata-dx .lingua{display:none}
+  .apri-menu{display:inline-flex}
+  .testata.aperta{position:fixed;background:var(--nero);z-index:20}
+  .testata.aperta .menu{display:flex;position:fixed;top:96px;left:0;right:0;bottom:0;flex-direction:column;gap:0;background:var(--nero);border-top:1px solid var(--filo-n);padding:8px var(--m) 24px;overflow-y:auto}
+  .testata.aperta .menu a{display:block;padding:12px 0;font-size:22px;border-bottom:0}
+  .testata.aperta .menu a[aria-current]{color:var(--ottone)}
+  .testata.aperta .menu .solo-tel{display:block;margin-top:12px}
+  .testa .sotto,.testa .chi,.testa .azioni{grid-column:1 / -1}
+  .testa .didascalia,.testa .briciole{grid-column:1 / -1;grid-row:auto;text-align:left;margin-top:var(--s4)}
+  .briciole ol{justify-content:flex-start}
+  .t-2{font-size:44px}
+  .t-3 small,.t-4 small{display:block;margin:4px 0 0}
+  .col-sx{grid-column:1 / span 6}
+  .col-dx{grid-column:7 / span 6}
+  .col-larga,.col-stretta{grid-column:1 / -1}
+  .col-stretta{margin-top:var(--s4)}
+  .piede-chi,.newsletter{grid-column:1 / -1}
+  .newsletter{margin-top:var(--s5)}
+  .colonna{grid-column:span 6}
+}
+/* 390 */
+@media (max-width:600px){
+  :root{--m:20px;--g:16px;--alta-testata:72px}
+  body{font-size:16px}
+  .testata{height:72px}
+  .testata .logo{width:108px}
+  .testata.aperta .menu{top:72px}
+  .testa{padding-top:var(--s4);padding-bottom:48px}
+  .testa h1{font-size:clamp(44px,13vw,60px)}
+  .testa-sotto{margin-top:24px}
+  .testa .sotto{font-size:20px}
+  .testa .chi{font-size:16px}
+  .sezione,.sezione-stretta{padding-top:var(--s5);padding-bottom:var(--s5)}
+  .t-2{font-size:40px}
+  .t-3{font-size:28px}
+  .righe>li>span:first-child{font-size:20px}
+  .specifiche>div{grid-template-columns:minmax(0,1fr);gap:2px}
+  .col-sx,.col-dx,.col-larga,.col-stretta{grid-column:1 / -1}
+  .col-dx,.col-stretta{margin-top:var(--s5)}
+  .a-filo-sx{margin-right:calc(-1 * var(--m))}
+  .a-filo-dx{margin-left:calc(-1 * var(--m))}
+  .a-filo-sx figcaption,.a-filo-dx figcaption{padding-left:var(--m);padding-right:var(--m)}
+  .piede{padding-top:56px}
+  .colonne{margin-top:48px;row-gap:32px}
+  .legale{margin-top:48px}
+  .legale .dx{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
