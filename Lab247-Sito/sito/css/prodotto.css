@@ -2,11 +2,16 @@
    Foto a filo del bordo sinistro come in home (col-sx), testo accanto (col-dx) fermo mentre le foto scorrono;
    sul telefono le foto si scorrono col dito. I campioni (.campione, .c-*) sono in base.css. */
 
-/* testa: nome grande, variante in cenere; i nomi lunghi in una parola sola si stringono per stare nella riga */
-.scheda-testa h1{font-size:min(clamp(56px,7.2vw,112px),calc((100vw - 2 * var(--m)) / (var(--lettere,6) * .68)))}
+/* testa: nome grande, variante in cenere (seppia sulla carta), la prima foto a destra fino al bordo
+   (la misura del nome la fa base.css con --lettere, cosi' i nomi lunghi in una parola stanno nella colonna) */
 .scheda-testa h1 .scheda-variante{color:var(--cenere)}
+.scheda-testa.carta h1 .scheda-variante{color:var(--seppia)}
 .scheda-testa .sotto a{text-decoration-color:var(--filo-n)}
+.scheda-testa.carta .sotto a{text-decoration-color:var(--filo-c)}
 .scheda-testa .sotto a:hover{text-decoration-color:currentColor}
+.testa-foto .ingrandisci{display:block;height:100%}
+.testa-foto img.intera{object-fit:contain;background:var(--nero)}
+.testa.carta .testa-foto img.intera{background:transparent;object-position:50% 100%}
 
 /* foto e informazioni */
 .scheda-apertura{align-items:stretch}
@@ -14,6 +19,7 @@
 .scheda-scorri{display:grid;gap:var(--g)}
 .scheda-scorri:focus-visible{outline-offset:-2px}
 .scheda-foto img{width:100%}
+.scheda-foto .ingrandisci{display:block}
 .scheda-foto.piccola{margin-left:var(--m)}
 .scheda-conta{display:none}
 
@@ -23,9 +29,22 @@
 .scheda-firma{margin-top:var(--s3)}
 .scheda-etichetta{font-family:var(--hanken);font-weight:500;font-size:14px;letter-spacing:.02em;color:var(--seppia);margin-bottom:14px}
 .scheda-finiture{margin-top:var(--s5);max-width:440px}
-.scheda-campioni{list-style:none}
-.scheda-campioni li{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--filo-c);font-size:17px}
-.scheda-campioni li:last-child{border-bottom:1px solid var(--filo-c)}
+/* la finitura: una sola come testo; piu' finiture come scelta (radio veri, come MINA), che va nella mail */
+fieldset.scheda-finiture{border:0;padding:0;min-width:0}
+.scheda-una,.scheda-fin span{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--filo-c);font-size:17px}
+.scheda-una{display:block;border-bottom:1px solid var(--filo-c)}
+.scheda-fin{display:block;cursor:pointer}
+.scheda-fin input{position:absolute;opacity:0;width:1px;height:1px}
+.scheda-fin span{color:var(--seppia);transition:color .15s}
+.scheda-fin:last-of-type span{border-bottom:1px solid var(--filo-c)}
+.scheda-fin:hover span,.scheda-fin input:checked+span{color:var(--inchiostro)}
+.scheda-fin input:checked+span i{box-shadow:0 0 0 2px var(--carta),0 0 0 3px var(--inchiostro)}
+.scheda-fin input:checked+span i.c-bianco{box-shadow:0 0 0 1px var(--seppia) inset,0 0 0 2px var(--carta),0 0 0 3px var(--inchiostro)}
+.scheda-fin input:focus-visible+span{outline:2px solid var(--ottone-scuro);outline-offset:2px}
+/* una sola foto (nella testa): descrizione a sinistra, finiture e documenti a destra */
+.scheda-sola .scheda-info-sx{grid-column:1 / span 6}
+.scheda-sola .scheda-info-sx .scheda-descrizione{max-width:16em}
+.scheda-sola .col-dx>:first-child{margin-top:0}
 .scheda-nota{margin-top:12px;max-width:440px}
 .scheda-chiedi{margin-top:var(--s5)}
 .scheda-chiedi .bottone{max-width:100%}
@@ -70,15 +89,16 @@
 }
 /* 390: le foto si scorrono col dito, una alla volta, nel riquadro della prima */
 @media (max-width:600px){
-  .scheda-testa h1{font-size:min(clamp(44px,13vw,60px),calc((100vw - 2 * var(--m)) / (var(--lettere,6) * .68)))}
   .scheda-galleria{margin-right:calc(-1 * var(--m))}
   .scheda-scorri{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
   .scheda-scorri::-webkit-scrollbar{display:none}
   .scheda-foto,.scheda-foto.piccola{flex:0 0 100%;max-width:none!important;margin:0;scroll-snap-align:start;aspect-ratio:var(--rapporto);display:flex;align-items:center;justify-content:center}
   .molte .scheda-foto,.molte .scheda-foto.piccola{flex-basis:calc(100% - 40px)}
+  .scheda-foto .ingrandisci{width:100%;height:100%}
   .scheda-foto img{width:100%;height:100%;object-fit:contain}
   .scheda-conta{display:block;margin-top:12px;padding:0 var(--m);font-size:14px;color:var(--seppia)}
   .scheda-fermo{position:static}
+  .scheda-sola .scheda-info-sx{grid-column:1 / -1}
   .scheda-descrizione{font-size:22px}
   .scheda-finiture,.scheda-chiedi,.scheda-documenti{margin-top:var(--s4)}
   .scheda-documenti li{flex-wrap:wrap;gap:0 12px}

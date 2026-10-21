@@ -21,11 +21,8 @@
 .ingresso-tc .ingresso-foto{grid-column:7 / span 6;grid-row:1}
 .ingresso-tc .ingresso-foto img{aspect-ratio:1/1;object-fit:cover;max-height:900px}
 .ingresso-tc figcaption{padding-right:var(--m)}
-/* G-label: la foto a tutta larghezza, sotto il nome e il testo */
-.ingresso-gl{padding-top:var(--s5)}
-.ingresso-banda img{width:100%;height:min(50vw,820px);object-fit:cover}
-.ingresso-sotto-banda{margin-top:var(--s5);align-items:start}
-.ingresso-sotto-banda .ingresso-sotto{margin-top:var(--s1)}
+/* G-label: come RB, la foto a filo del bordo sinistro e il testo accanto */
+.ingresso-gl figure img{aspect-ratio:1/1;max-height:900px;object-fit:cover}
 
 /* righe tra filetti che sono link: tutta la riga si tocca */
 .righe-link>li{padding:0}
@@ -69,6 +66,8 @@
 .filtri-esito{margin-top:var(--s1);min-height:1.5em}
 .famiglia{margin-top:var(--s5);scroll-margin-top:var(--s7)}
 .famiglia:first-child{margin-top:var(--s4)}
+/* la barra dei filtri ha gia' il suo filetto: il primo gruppo non ne ripete un altro a pochi pixel */
+.famiglia:first-child .famiglia-nome,.tecnico .famiglia:first-child{border-top:0;padding-top:0}
 .famiglia-nome{padding-top:var(--s3);border-top:1px solid var(--filo-c)}
 .voci{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);row-gap:var(--s5);margin-top:var(--s4)}
 .voce-cat a{display:block;text-decoration:none}
@@ -80,7 +79,6 @@
 .foto img.contain{object-fit:contain}
 .voce-cat h3{margin-top:14px;font-size:22px;line-height:1.2;letter-spacing:-.01em;transition:color .15s}
 .voce-cat a:hover h3{color:var(--ottone-scuro)}
-.voce-fam{margin-top:2px;font-size:14px;color:var(--seppia)}
 .voce-dati{margin-top:2px;font-size:14px;color:var(--seppia)}
 /* Twentyfour7: il tipo nella colonna di sinistra, i modelli in tre colonne, come una tavola tecnica */
 .tecnico .famiglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--filo-c);padding-top:var(--s3)}
@@ -151,10 +149,12 @@
   .ingresso-sotto{font-size:20px}
   .ingresso-tc .ingresso-testo,.ingresso-tc .ingresso-foto{grid-column:1 / -1}
   .ingresso-tc .ingresso-foto{grid-row:1}
-  .ingresso-tc .ingresso-testo{grid-row:2;margin-top:var(--s5)}
+  .ingresso-tc .ingresso-testo{grid-row:2;margin-top:var(--s4)}
   .ingresso-tc figcaption{padding-left:var(--m)}
-  .ingresso-banda img,.banda-foto img{height:75vw}
-  .ingresso-sotto-banda .col-dx{margin-top:var(--s3)}
+  .banda-foto img{height:75vw}
+  /* tra un ingresso e l'altro il passo della home (104 px), non il doppio */
+  .ingresso{padding-top:var(--s4);padding-bottom:var(--s5)}
+  .ingresso .col-dx{margin-top:var(--s4)}
   .righe-link a>span{font-size:20px}
   .filtri{position:static}
   .filtro{flex-direction:column;gap:0;padding-top:var(--s1)}
@@ -162,7 +162,7 @@
   .filtro-voci{gap:0 20px}
   .voci,.tecnico .voci{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s4)}
   .voce-cat h3{font-size:19px;margin-top:10px}
-  .voce-fam,.voce-dati{font-size:13px}
+  .voce-dati{font-size:13px}
   .tecnico .famiglia-nome small{display:block;margin:4px 0 0}
   .gl-intro-testo .col-dx{margin-top:var(--s3)}
   .gl-app-coppia{grid-template-columns:minmax(0,1fr);row-gap:var(--s5)}
@@ -170,3 +170,6 @@
   .gl-catalogo .col-dx{margin-top:var(--s4)}
   .chiusura-col .col-dx{margin-top:var(--s5)}
 }
+/* le voci che darebbero 0 modelli con l'altro filtro: visibili ma spente */
+.filtro-voci button[aria-disabled=true]{opacity:.6;cursor:default;text-decoration:line-through;text-decoration-thickness:1px}
+.filtro-voci button[aria-disabled=true]:hover{color:var(--seppia)}

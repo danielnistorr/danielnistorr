@@ -2,9 +2,11 @@
 
 È una proposta non richiesta: il sito completo, statico, in italiano, nello stesso design della home. Si apre con `file:///` da `sito/index.html`, senza server e senza dipendenze esterne (caratteri, immagini, cataloghi e schede PDF sono in locale).
 
+Tutto il sito è anche in `_prova/247lab-sito-completo.zip` (cartella `sito/`, 132 pagine, circa 120 MB): si estrae e si apre `sito/index.html` con un doppio clic.
+
 ## Mappa del sito
 
-**130 pagine**: la home, fatta a mano, e 129 pagine generate.
+**132 pagine**: la home, fatta a mano, e 131 pagine generate.
 
 | Pagina | File | Cosa c'è |
 |---|---|---|
@@ -21,39 +23,57 @@
 | Chi siamo | `chi-siamo.html` | Roberto e Marco, le tappe, gli studi, Saonara |
 | Contatti | `contatti.html` | recapiti, modulo che prepara una mail, indirizzo, ragione sociale, P.IVA, social |
 | Shop | `shop.html` | MINA nelle tre finiture con prezzo e codice, la lampada, la spedizione |
-| Schede MINA | `shop/mina.html`, `shop/mina-marrone-brunito.html`, `shop/mina-antracite.html` | scelta della finitura (cambia foto, prezzo, codice e mail), ordine via mail, dati tecnici |
+| Schede MINA | `shop/mina.html`, `shop/mina-marrone-brunito.html`, `shop/mina-antracite.html` | scelta della finitura (cambia foto, prezzo, codice e mail), ordine via mail, dati tecnici, le tre finiture affiancate |
+| Privacy e Cookie | `privacy.html`, `cookie.html` | cosa fa davvero il sito con i dati (niente cookie, moduli che preparano una mail), titolare, diritti: **testo da far verificare** |
 
 Ogni pagina interna ha la testata e il piede della home (stesse voci; la voce del menu della sezione è segnata), le briciole `Home / Sezione / Pagina` e il titolo `Nome | 247LAB`.
+
+**Il nero solo dove una lampada è accesa**, come nella home: Collezioni, RB, Twentyfour7 e le schede prodotto con una foto scura si aprono sul nero con la lampada accesa a destra, fino al bordo; tutte le altre (G-label, progetti, su misura, cataloghi, chi siamo, contatti, shop, privacy, cookie e le schede con una foto chiara) si aprono sulla carta, con la testata in inchiostro.
 
 ## Cosa c'è e dove
 
 - `sito/` è il sito: `css/base.css` (token, tipografia, griglia, testata, piede, bottoni, campioni delle finiture) più un foglio per gruppo (`collezioni.css`, `prodotto.css`, `progetti.css`, `azienda.css`), `js/` (menu del telefono e newsletter in `base.js`, filtri, galleria, modulo e scelta di MINA), `img/` (WebP a più larghezze), `fonts/`, `cataloghi/` (i tre PDF 2026), `schede/` (79 schede tecniche PDF).
 - `_prova/dati/` sono i dati da cui nascono le pagine: `prodotti.json`, `progetti.json`, `collezioni.json`, `sito.json`, con le fonti e le correzioni in `NOTE.md`.
-- `_prova/script/` è il generatore (`genera.py`, `base.py`, i quattro `pagine_*.py`, vedi `LEGGIMI-generatore.md`) e il controllo dei link (`controlla_link.py`).
-- `screenshot/sito/` contiene gli screenshot di 14 pagine a 1440 e a 390 (e tre pagine anche a 768 e 320); `screenshot/home/` quelli della home, con `NOTA.md` su idea, caratteri, colori e controlli.
+- `_prova/script/` è il generatore (`genera.py`, `base.py`, i cinque `pagine_*.py`, vedi `LEGGIMI-generatore.md`), il controllo dei link (`controlla_link.py`) e la rifinitura delle foto prodotto (`rifinitura_img.py`, con gli originali in `_prova/img-sorgenti/`).
+- `screenshot/sito/` contiene gli screenshot di 18 pagine a 1440 e a 390 (cinque anche a 768 e 320, Twentyfour7 a 2560); `screenshot/home/` quelli della home, con `NOTA.md` su idea, caratteri, colori e controlli.
 - `01-analisi.md` raccoglie i fatti con le fonti. `assets/CREDITI.md` dice l'origine di ogni immagine.
 
 ## Come si rigenera
 
 ```
-python3 /home/user/danielnistorr/Lab247-Sito/_prova/script/genera.py          # rifà le 129 pagine (non la home)
+python3 -I /home/user/danielnistorr/Lab247-Sito/_prova/script/rifinitura_img.py   # solo se cambiano le foto prodotto
+python3 /home/user/danielnistorr/Lab247-Sito/_prova/script/genera.py          # rifà le 131 pagine (non la home)
 python3 /home/user/danielnistorr/Lab247-Sito/_prova/script/controlla_link.py  # controlla link, immagini, srcset, css, js, ancore
 ```
 
 Serve Python 3 con Pillow. Un giro basta: chi ha una scheda e chi sta nelle griglie lo decide `pubblicabile()` in `base.py`, dai dati. Per cambiare un testo o un numero si cambiano i dati in `_prova/dati/`, non le pagine. La home si modifica a mano in `_prova/script/finale.html` e `sito/index.html` (oppure `bash _prova/script/build_finale.sh solo-pagina`).
 
-`controlla_link.py` apre tutte le 130 pagine e controlla ogni `href`, `src`, `srcset`, foglio di stile, script, ancora e `url()` dei CSS. Oggi: nessun link rotto, nessun percorso assoluto, nessun U+2014. I link esterni sono solo quelli che servono: EN e English (sito di oggi), WhatsApp, la mappa, i social, Artemest e Archiproducts.
+`controlla_link.py` apre tutte le 132 pagine e controlla ogni `href`, `src`, `srcset`, foglio di stile, script, ancora e `url()` dei CSS. Oggi: nessun link rotto, nessun percorso assoluto, nessun U+2014. I link esterni sono solo quelli che servono: EN e English (sito di oggi), WhatsApp, la mappa, i social, Artemest, Archiproducts e il Garante privacy (nell'informativa).
+
+Collaudo del 21/10/2026: nessuno scorrimento orizzontale su tutte le 132 pagine a 320, 390, 768, 1440 e 2560 (e su 21 pagine-tipo a 15 larghezze da 320 a 2560), un solo `h1` per pagina, nessun errore JavaScript; provati con Chromium i filtri (voci spente quando darebbero 0), l'ancora che cambia (`#strip-led`), la finitura che va nella mail, la foto ingrandita (frecce, Esc, fuoco che torna), il menu del telefono (Esc e fuoco). Screenshot in `screenshot/sito/` (18 pagine a 1440 e 390, cinque anche a 768 e 320, Twentyfour7 a 2560).
 
 ## Correzioni fatte nell'unione (da sapere)
 
 - **Numeri dei modelli in home**: 49 RB (era 51) e 24 Twentyfour7 (era 25), come nelle pagine delle collezioni.
 - **KYLE con tige PS** è nel catalogo RB 2026: ora è nella griglia RB, tra i soffitti, oltre che nella sua scheda. I due G-label (SPOT G-6, LINEA L-20) hanno la scheda e il link dalla pagina G-label.
 - **G-label in home** porta ora alla pagina `g-label.html` ("Il sistema G-label"), con il catalogo accanto come per RB e Twentyfour7.
-- **Privacy e cookie**: i testi non esistono, quindi non ci sono pagine né link finti. Nel piede restano copyright, P.IVA e English; i consensi della newsletter e del modulo contatti dicono "Ho letto l'informativa privacy" senza link. **I testi di privacy e cookie vanno forniti prima di andare online**, e allora si rimettono i link nel piede e nei due consensi.
+- **Privacy e cookie**: ci sono `privacy.html` e `cookie.html`, con i link nel piede (anche della home) e nei consensi della newsletter e del modulo contatti. Dicono solo fatti verificabili sul sito: nessun cookie e nessuna statistica, nessun contenuto di altri siti, i moduli preparano una mail che invia chi scrive, la newsletter non è collegata; titolare, recapiti, P.IVA, diritti (Regolamento UE 2016/679) e il Garante. **Vanno fatti rileggere all'azienda o al suo consulente prima di andare online**; mancano di proposito i tempi di conservazione e la PEC, da confermare.
 - **MINA**: gli alt della seconda foto dicevano "accesa", ma la lampada è spenta (e del brunito marrone si vede solo il piede): corretti nei dati.
 - **Campioni delle finiture**: un solo insieme di colori in collezioni, schede e shop (ottone #B8924A, brunito #5A4130, antracite #3A3D40, come il selettore della home; bianco, nero e alluminio per Twentyfour7). Sono colori approssimati: vanno confrontati con i campioni veri.
 - **Misure**: lo spazio tra numero e unità (7 W, 3000 K, 405 mm) è lo stesso in griglie, schede, G-label e shop.
 - **Archivio progetti**: da 15.800 a 8.500 px di altezza a 1440, con tre progetti per riga dopo i due più recenti (due per riga a 768, uno sul telefono).
+
+## Rifinitura dopo il giudizio cieco (21/10/2026)
+
+- **Aperture**: nere solo con una lampada accesa a destra (BUKÈ S4 in Collezioni, EDI in RB, 1111 in Twentyfour7, la prima foto nelle schede prodotto scure); le altre sulla carta, con la testata in inchiostro (classi nuove in `base.css`: `.testa.con-foto`, `.testa.carta`, `.testata.su-carta`). La home non cambia.
+- **Foto Twentyfour7**: le foto di studio su nero e su bianco puro sono ritagliate su un fondo unico #12100D, quadrate, con l'apparecchio al 70 % del riquadro (GHOST-8 ingrandito, 7025 non più tagliato). Le foto RB su fondo blu-viola (KYLE tavolo, LUCY tavolo e terra, RO' S, RO' S con tige, BUKÈ S6) hanno le ombre riportate a un nero caldo; i neri puri (anche la seconda foto di MINA) sono #12100D come nella home. Lo fa `_prova/script/rifinitura_img.py`, dagli originali in `_prova/img-sorgenti/`.
+- **Il banco di lavoro (F042)** compare solo in Su misura. RB apre con Casa P (F334, tre fari su un'asta); in Chi siamo la sezione "A Saonara, Padova" è senza foto, perché non ci sono altre foto di Roberto o Marco al banco né di Saonara (da scattare, vedi sotto).
+- **Collezioni**: G-label ha lo stesso schema di RB, con la foto della mano e la didascalia "SPOT G-6 sul binario G-label"; i tipi Twentyfour7 in una colonna; sul telefono il passo tra le collezioni è quello della home.
+- **Griglie**: sotto ogni modello RB c'è la sorgente con potenza e IP (1xGU10 LED 8 W max, IP20) al posto della famiglia, già scritta nel titolo del gruppo; nei filtri le voci che darebbero 0 modelli (o 0 progetti) sono spente e i numeri dei progetti seguono l'altro filtro.
+- **Schede prodotto**: la finitura si sceglie (radio veri) e finisce nella mail di "Chiedi informazioni"; con una finitura sola è scritta come testo. Il link al catalogo apre la pagina giusta del PDF (`#page=`, i cataloghi sono a doppia pagina). Le foto si ingrandiscono.
+- **Schede progetto**: le verticali vanno sempre a coppie; quella dispari sta in una riga con un'orizzontale, alte uguali (mai più una verticale sola su mezza riga). Le foto si ingrandiscono.
+- **MINA**: in fondo alla scheda le tre finiture affiancate, con prezzo e codice, al posto della seconda foto quasi uguale alla prima.
+- **Testi**: "LED" maiuscolo, "Alimentatore: incluso", G-label "Ottone" e la nota degli accessori riscritta come fatto, "SPOT G-6 in dettaglio", Fendi senza tipo (vedi sotto). Dettagli in `_prova/dati/NOTE.md`.
 
 ## Da confermare con l'azienda
 
@@ -96,7 +116,8 @@ Serve Python 3 con Pillow. Un giro basta: chi ha una scheda e chi sta nelle grig
 
 - **Titoli corretti**: "Branzino Felice" (resto del modello Wix) è diventato **Casa AL**; First Padova, Massimo Alba, Tiziana Fausti Lugano, Harry's Piccolo senza i resti di formattazione.
 - **Casa R** (Padova 2024) e **Casa R+S** (Padova 2018) sono due schede diverse: sono due progetti?
-- **Tipo**: dato solo dove è certo (8 case, 2 hotel, 5 uffici, 10 negozi); gli altri 16, tra cui ristoranti ed enoteche, sono senza tipo e compaiono solo con "Tutti". Se serve un filtro "Ristoranti", va aggiunto ai dati.
+- **Tipo**: dato solo dove è certo (8 case, 2 hotel, 5 uffici, 9 negozi); gli altri 17, tra cui ristoranti ed enoteche, sono senza tipo e compaiono solo con "Tutti". Se serve un filtro "Ristoranti", va aggiunto ai dati.
+- **Fendi**: nelle foto si legge "@fendishowroom", quindi il tipo è vuoto come per Ferragamo. È un negozio o uno showroom?
 - **Testi dei progetti**: le schede di oggi non ne hanno; le schede nuove mostrano solo i dati e le foto. Un paragrafo per progetto (anche solo per i 10 principali) le renderebbe più ricche.
 - **Alt delle foto dei progetti**: veri ma generici ("Casa AL, Lussino: foto 3 di 8"), da migliorare con l'azienda.
 - **Prodotti nei progetti**: la riga "Prodotti" compare solo dove un modello è nominato nella descrizione della foto (per esempio KYLE terra in Casa G, dedotta dalla forma). L'azienda può dare l'elenco vero per ogni progetto.
@@ -109,7 +130,7 @@ Serve Python 3 con Pillow. Un giro basta: chi ha una scheda e chi sta nelle grig
 
 ## Per metterlo online
 
-1. **Privacy e cookie**: servono i due testi (con la ragione sociale, la PEC se confermata, il servizio della newsletter). Poi due pagine `privacy.html` e `cookie.html` nel generatore, i link nel piede e nei consensi della newsletter e del modulo contatti. Senza statistiche né contenuti di terzi il sito non ha cookie; se si aggiunge un servizio di statistiche serve il banner.
+1. **Privacy e cookie**: le due pagine ci sono (`privacy.html`, `cookie.html`, da `pagine_legale.py`), con i link nel piede e nei consensi. Prima di pubblicare vanno rilette dall'azienda o dal suo consulente e completate con la PEC (se confermata), i tempi di conservazione delle mail e, quando ci sarà, il servizio della newsletter e quello che ospita il sito. Senza statistiche né contenuti di terzi il sito non ha cookie; se si aggiunge un servizio di statistiche servono il banner e una nuova informativa cookie.
 2. **Modulo contatti**: oggi prepara una mail (`mailto:` con nome, cognome, email, oggetto e messaggio) a info@247lab.it e non invia niente da solo. Online lo si può collegare a un servizio di moduli (Formspree, Netlify Forms, o lo script dell'hosting) con il doppio controllo antispam; il consenso resta.
 3. **Newsletter**: il modulo del piede controlla i dati e risponde "L'iscrizione apre a breve" con il mailto. Va collegato a Brevo o Mailchimp con il doppio consenso (dettagli sotto).
 4. **Shop**: oggi il bottone "Prepara l'ordine via mail" apre una mail d'ordine con finitura, codice e prezzo; niente carrello né pagamento. Due strade da scegliere con l'azienda: tenere l'ordine via mail (e il pagamento con bonifico o link di pagamento), oppure portare il bottone al checkout di oggi (`https://www.247lab.it/category/all-products`, finché Wix resta attivo) o a un negozio vero (Shopify Lite, Stripe Payment Links) con le condizioni di vendita e il diritto di recesso.
@@ -133,6 +154,8 @@ Ha senso perché ogni anno esce un catalogo nuovo, la G-label è appena uscita, 
 - **G-label e Twentyfour7 in luce del giorno**, come F346: un solo apparecchio su parete chiara. Oggi la sezione Tre collezioni ha una sola foto (F346) perché le foto di 1111 e dello SPOT G-6 (un render del catalogo) non reggevano accanto.
 - **MINA nelle tre finiture con la stessa inquadratura vera**: le tre foto dello shop sono scattate da punti diversi. Oggi sono riportate con PIL alla stessa scala e allo stesso riquadro, e le ombre sono aperte perché il brunito si legga sul muro nero; va rifatta una serie a camera ferma, su fondo grigio medio.
 - **Un macro della lavorazione dell'ottone** (taglio, brunitura) e il banco di lavoro di Saonara, se esistono.
+- **Saonara**: il laboratorio o lo showroom, per la sezione "A Saonara, Padova" di Chi siamo, che oggi è senza foto (il banco F042 resta solo in Su misura).
+- **Twentyfour7 in studio**: le foto di oggi sono ritagli su nero o su bianco portati a un fondo unico con Pillow; una serie scattata su fondo scuro uniforme sarebbe più pulita (RDN, la seconda foto, ha la parte alta tagliata per togliere l'ombra del soffitto).
 
 ## Licenze e permessi
 

@@ -1,5 +1,11 @@
-// 247LAB, scheda prodotto: sul telefono le foto si scorrono di lato. Qui il contatore "1 / 3" e le frecce.
+// 247LAB, scheda prodotto: la finitura scelta va nella mail; sul telefono le foto si scorrono di lato (contatore e frecce).
 (function(){
+  // la finitura: ogni radio porta la sua mail gia' scritta (data-mail)
+  var fin=document.getElementById('scheda-finiture'),mail=document.getElementById('scheda-mail');
+  if(fin&&mail){
+    var usa=function(){var c=fin.querySelector('input:checked');if(c)mail.href=c.getAttribute('data-mail');};
+    fin.addEventListener('change',usa);usa();
+  }
   var tel=matchMedia('(max-width:600px)');
   var ferma=matchMedia('(prefers-reduced-motion:reduce)');
   document.querySelectorAll('.scheda-galleria').forEach(function(g){

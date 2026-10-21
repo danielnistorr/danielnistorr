@@ -83,8 +83,13 @@
 .seq-coppia-a{grid-column:2 / span 5}
 .seq-coppia-b{grid-column:7 / span 5}
 .seq-coppia img{object-fit:cover}
-.seq-v-dx figure{grid-column:7 / span 5}
-.seq-v-sx figure{grid-column:2 / span 5}
+/* una verticale e un'orizzontale nella stessa riga, alte uguali (la larghezza segue il rapporto di ogni foto) */
+.seq-mista{display:flex;gap:var(--g);align-items:flex-start}
+.seq-mista figure{min-width:0}
+.scheda-accanto{margin-top:var(--s4)}
+.scheda-accanto img{width:100%}
+.filtro-gruppo button[aria-disabled=true]{color:var(--seppia);opacity:.6;cursor:default;text-decoration:line-through;text-decoration-thickness:1px}
+.filtro-gruppo button[aria-disabled=true]:hover{color:var(--seppia)}
 
 /* ---------- scheda: progetto precedente e successivo ---------- */
 .progetto-vicini{padding-top:var(--s6)}
@@ -122,15 +127,15 @@
   .scheda-h .scheda-dati{grid-column:1 / -1;margin-top:var(--s5)}
   .scheda-v .scheda-dati{grid-column:8 / span 5}
   .seq-h-dx figure,.seq-h-sx figure{grid-column:1 / -1}
-  .seq-v-dx figure{grid-column:5 / span 8}
-  .seq-v-sx figure{grid-column:1 / span 8}
   .progetto-foto{padding-top:var(--s5)}
 }
 /* 390 */
 @media (max-width:600px){
   .progetti-filtro{padding-top:var(--s4)}
   .filtro{row-gap:var(--s1)}
-  .filtro-gruppo{column-gap:20px;flex-basis:100%}
+  .filtro-gruppo{column-gap:14px;flex-basis:100%}
+  .filtro-gruppo button{font-size:16px}
+  .filtro-gruppo button .n{margin-left:1px}
   .filtro-nome{flex-basis:100%;margin:0}
   .progetti-archivio{padding-top:var(--s4);padding-bottom:var(--s5)}
   .p-lista{row-gap:var(--s4)}
@@ -147,7 +152,8 @@
   .scheda-v .scheda-dati,.scheda-h .scheda-dati{grid-column:1 / -1;margin-top:var(--s4)}
   .seq-riga+.seq-riga{margin-top:var(--s3)}
   .seq-coppia{column-gap:var(--s1)}
-  .seq-v-dx figure,.seq-v-sx figure{grid-column:1 / -1}
+  .seq-mista{flex-direction:column;gap:var(--s3)}
+  .seq-mista figure{flex:none!important;width:100%}
   .progetto-vicini{padding-top:var(--s5)}
   .vicino-prev,.vicino-next{grid-column:1 / -1}
   .vicino-next{margin-top:var(--s4)}
