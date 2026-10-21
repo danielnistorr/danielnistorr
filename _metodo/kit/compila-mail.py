@@ -56,6 +56,9 @@ for d in sorted(os.listdir(a.cartella)):
     if rimasti:
         sys.exit(f'{d}: segnaposto rimasti: {rimasti}')
     a_ = re.split(r'\s+·\s+', campo(md, 'A'))[0].strip()
+    if not re.fullmatch(r'[^@\s]+@[^@\s]+\.[a-z]{2,}', a_):
+        print(f'{d}: nessun indirizzo valido ({a_[:60]}), la bozza esce senza destinatario')
+        a_ = ''
     oggetto = campo(md, 'Oggetto')
     cart = os.path.join(a.cartella, d)
     spec = os.path.join(cart, 'spec.json')
@@ -67,7 +70,8 @@ for d in sorted(os.listdir(a.cartella)):
     open(os.path.join(cart, 'pronta.txt'), 'w', encoding='utf-8').write(f'A: {a_}\nOggetto: {oggetto}\nAllegato: {os.path.basename(pdf)}\n\n{testo}\n')
     m = EmailMessage(policy=email.policy.SMTP)
     m['From'] = formataddr((a.nome, a.email))
-    m['To'] = a_
+    if a_:
+        m['To'] = a_
     m['Subject'] = oggetto
     m['X-Unsent'] = '1'
     m.set_content(testo)
