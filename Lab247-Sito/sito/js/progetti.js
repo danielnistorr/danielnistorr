@@ -5,10 +5,10 @@
   var voci=[].slice.call(lista.children),conta=document.getElementById('conta'),vuoto=document.getElementById('vuoto');
   var stato={tipo:'',periodo:''};
   function forme(){
-    // le righe di due: 7 + 5 colonne, poi 5 + 7, contando solo i progetti visibili
+    // i primi due visibili in grande (7 + 5 colonne), poi tre per riga
     var n=0;
-    voci.forEach(function(v){if(v.hidden)return;var riga=Math.floor(n/2)%2,largo=(n%2)===riga;
-      v.classList.toggle('p-largo',largo);v.classList.toggle('p-stretto',!largo);n++;});
+    voci.forEach(function(v){if(v.hidden)return;
+      v.classList.toggle('p-largo',n===0);v.classList.toggle('p-stretto',n===1);v.classList.toggle('p-terzo',n>1);n++;});
     return n;
   }
   function applica(){
