@@ -1,0 +1,102 @@
+/* 247LAB, scheda prodotto (prodotti/<slug>.html). Usa i token e le classi di base.css; qui solo le parti della scheda.
+   Foto a filo del bordo sinistro come in home (col-sx), testo accanto (col-dx) fermo mentre le foto scorrono;
+   sul telefono le foto si scorrono col dito. I campioni hanno i colori del selettore di MINA nella home. */
+
+/* testa: nome grande, variante in cenere; i nomi lunghi in una parola sola si stringono per stare nella riga */
+.scheda-testa h1{font-size:min(clamp(56px,7.2vw,112px),calc((100vw - 2 * var(--m)) / (var(--lettere,6) * .68)))}
+.scheda-testa h1 .scheda-variante{color:var(--cenere)}
+.scheda-testa .sotto a{text-decoration-color:var(--filo-n)}
+.scheda-testa .sotto a:hover{text-decoration-color:currentColor}
+
+/* foto e informazioni */
+.scheda-apertura{align-items:stretch}
+.scheda-galleria{margin-left:calc(-1 * var(--m))}
+.scheda-scorri{display:grid;gap:var(--g)}
+.scheda-scorri:focus-visible{outline-offset:-2px}
+.scheda-foto img{width:100%}
+.scheda-foto.piccola{margin-left:var(--m)}
+.scheda-conta{display:none}
+
+.scheda-info{min-width:0}
+.scheda-fermo{position:sticky;top:var(--s4)}
+.scheda-descrizione{font-family:var(--jost);font-weight:300;font-size:30px;line-height:1.25;letter-spacing:-.01em;max-width:18em}
+.scheda-firma{margin-top:var(--s3)}
+.scheda-etichetta{font-family:var(--hanken);font-weight:500;font-size:14px;letter-spacing:.02em;color:var(--seppia);margin-bottom:14px}
+.scheda-finiture{margin-top:var(--s5);max-width:440px}
+.scheda-campioni{list-style:none}
+.scheda-campioni li{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--filo-c);font-size:17px}
+.scheda-campioni li:last-child{border-bottom:1px solid var(--filo-c)}
+.campione{display:block;width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px rgba(23,22,20,.22) inset}
+.c-ottone{background:var(--filo-ottone)}
+.c-brunito{background:#5A4130}
+.c-antracite{background:#3A3D40}
+.c-bianco{background:#FFFFFF}
+.c-nero{background:var(--nero)}
+.c-alluminio{background:#B5B3AE}
+.c-neutro{background:transparent}
+.scheda-nota{margin-top:12px;max-width:440px}
+.scheda-chiedi{margin-top:var(--s5)}
+.scheda-chiedi .bottone{max-width:100%}
+.scheda-mail{margin-top:12px}
+.scheda-documenti{margin-top:var(--s5);max-width:440px}
+.scheda-documenti a{text-decoration:none;font-family:var(--jost);font-weight:300;font-size:21px;line-height:1.25}
+.scheda-documenti a:hover span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+
+/* dati tecnici: gruppi tra filetti, accanto il disegno */
+.scheda-dati{padding-top:var(--s5)}
+.scheda-dati-corpo{margin-top:var(--s5);align-items:start}
+.scheda-gruppo+.scheda-gruppo{margin-top:var(--s5)}
+.scheda-tabella-due{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s5);row-gap:var(--s5)}
+.scheda-tabella-due .scheda-gruppo+.scheda-gruppo{margin-top:0}
+.scheda-dati .specifiche dd{overflow-wrap:anywhere}
+.scheda-disegno img{width:auto;max-width:100%;max-height:760px}
+.scheda-disegno figcaption{margin-top:var(--s2)}
+
+/* altri della stessa famiglia */
+.scheda-altri{padding-top:var(--s5)}
+.scheda-altri-testa{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s2) var(--s4)}
+.scheda-altri-lista{list-style:none;margin-top:var(--s5);row-gap:var(--s5)}
+.scheda-altri-lista li{grid-column:span 3}
+.scheda-altri-lista a{display:block;text-decoration:none}
+.scheda-altro-foto{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--nero)}
+.scheda-altro-foto img{width:100%;height:100%;object-fit:cover}
+.scheda-altro-nome{display:block;margin-top:14px;font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.25;letter-spacing:-.01em;transition:color .15s}
+.scheda-altro-nome .scheda-variante{color:var(--seppia);transition:color .15s}
+.scheda-altri-lista a:hover .scheda-altro-nome,.scheda-altri-lista a:hover .scheda-variante{color:var(--ottone-scuro)}
+
+/* 1024 */
+@media (max-width:1180px){
+  .scheda-descrizione{font-size:26px}
+  .scheda-altro-nome{font-size:21px}
+}
+/* 768 */
+@media (max-width:900px){
+  .scheda-tabella-due{grid-template-columns:minmax(0,1fr)}
+  .scheda-disegno{margin-top:var(--s5)}
+  .scheda-altri-lista li{grid-column:span 6}
+  .scheda-descrizione{font-size:24px}
+}
+/* 390: le foto si scorrono col dito, una alla volta, nel riquadro della prima */
+@media (max-width:600px){
+  .scheda-testa h1{font-size:min(clamp(44px,13vw,60px),calc((100vw - 2 * var(--m)) / (var(--lettere,6) * .68)))}
+  .scheda-galleria{margin-right:calc(-1 * var(--m))}
+  .scheda-scorri{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+  .scheda-scorri::-webkit-scrollbar{display:none}
+  .scheda-foto,.scheda-foto.piccola{flex:0 0 100%;max-width:none!important;margin:0;scroll-snap-align:start;aspect-ratio:var(--rapporto);display:flex;align-items:center;justify-content:center}
+  .molte .scheda-foto,.molte .scheda-foto.piccola{flex-basis:calc(100% - 40px)}
+  .scheda-foto img{width:100%;height:100%;object-fit:contain}
+  .scheda-conta{display:block;margin-top:12px;padding:0 var(--m);font-size:14px;color:var(--seppia)}
+  .scheda-fermo{position:static}
+  .scheda-descrizione{font-size:22px}
+  .scheda-finiture,.scheda-chiedi,.scheda-documenti{margin-top:var(--s4)}
+  .scheda-documenti li{flex-wrap:wrap;gap:0 12px}
+  .scheda-documenti a{font-size:19px}
+  .scheda-documenti small{white-space:nowrap}
+  .scheda-dati .specifiche>div{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:12px}
+  .scheda-dati-corpo{margin-top:var(--s4)}
+  .scheda-gruppo+.scheda-gruppo,.scheda-tabella-due{row-gap:var(--s4)}
+  .scheda-gruppo+.scheda-gruppo{margin-top:var(--s4)}
+  .scheda-disegno img{max-height:560px}
+  .scheda-altri-lista{margin-top:var(--s4);row-gap:var(--s4)}
+  .scheda-altro-nome{font-size:18px;margin-top:10px}
+}

@@ -1,0 +1,174 @@
+/* 247LAB, collezioni: prodotti.html, collezione-rb.html, collezione-tecnica.html, g-label.html.
+   Solo token e misure di base.css; punti di rottura 1180, 900, 600. Nessuna ombra, nessuna dissolvenza:
+   le sole transizioni sono i cambi di colore di 150 ms. */
+.catalogo [hidden]{display:none!important}
+
+/* ---------- prodotti.html: tre ingressi, tre composizioni ---------- */
+.ingresso{padding-top:var(--s6);padding-bottom:var(--s6);align-items:start}
+.ingresso figure img{width:100%}
+.ingresso-rb figure img{aspect-ratio:4/5;max-height:960px;object-fit:cover}
+.ingresso-testo{padding-top:var(--s1)}
+.ingresso-nome{font-size:112px;line-height:.9;letter-spacing:-.035em;margin-left:-.04em}
+.ingresso-tipo{margin-top:var(--s2);font-size:15px;color:var(--seppia)}
+.ingresso-sotto{margin-top:var(--s4);font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.3;max-width:24em}
+.ingresso-p{margin-top:var(--s2);color:var(--seppia);max-width:34em}
+.ingresso-famiglie{margin-top:var(--s4)}
+.ingresso-azioni{margin-top:var(--s4);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) 32px}
+.vai.pdf{font-family:var(--hanken);font-size:15px;color:var(--seppia)}
+.vai.pdf:hover{color:var(--ottone-scuro)}
+/* Twentyfour7: testo a sinistra, foto quadrata a filo del bordo destro */
+.ingresso-tc .ingresso-testo{grid-column:1 / span 5;grid-row:1}
+.ingresso-tc .ingresso-foto{grid-column:7 / span 6;grid-row:1}
+.ingresso-tc .ingresso-foto img{aspect-ratio:1/1;object-fit:cover;max-height:900px}
+.ingresso-tc figcaption{padding-right:var(--m)}
+/* G-label: la foto a tutta larghezza, sotto il nome e il testo */
+.ingresso-gl{padding-top:var(--s5)}
+.ingresso-banda img{width:100%;height:min(50vw,820px);object-fit:cover}
+.ingresso-sotto-banda{margin-top:var(--s5);align-items:start}
+.ingresso-sotto-banda .ingresso-sotto{margin-top:var(--s1)}
+
+/* righe tra filetti che sono link: tutta la riga si tocca */
+.righe-link>li{padding:0}
+.righe-link a{flex:1;display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);padding:9px 0 10px;text-decoration:none}
+.righe-link a>span{font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.25;letter-spacing:-.01em;transition:color .15s}
+.righe-link a:hover>span{color:var(--ottone-scuro)}
+.righe-link small{font-size:14px;color:var(--seppia);text-align:right}
+.righe-link.due{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-top:0}
+.righe-link.due>li:nth-child(-n+2){border-top:1px solid var(--filo-c)}
+
+/* campioni delle finiture: gli stessi colori del selettore di MINA */
+.campioni{list-style:none;display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:var(--s4)}
+.campioni li{display:flex;align-items:center;gap:10px;font-size:15px}
+.campioni i{display:block;width:22px;height:22px;border-radius:50%;flex:none;box-shadow:0 0 0 1px var(--filo-c) inset}
+
+/* ---------- apertura delle collezioni ---------- */
+.intro-col{padding-top:var(--s6);padding-bottom:var(--s6);align-items:start}
+.intro-col figure img{width:100%;aspect-ratio:4/5;max-height:900px;object-fit:cover}
+.intro-col .col-dx{padding-top:var(--s1)}
+.intro-p{margin-top:var(--s2);max-width:34em}
+.intro-col h2+.intro-p,.intro-tc h2+.intro-p{margin-top:var(--s4)}
+.intro-fin{margin-top:var(--s5)}
+.intro-col .campioni{margin-top:var(--s3)}
+.intro-nota{margin-top:var(--s3);max-width:34em}
+.intro-tc{padding-top:var(--s6);padding-bottom:var(--s5);align-items:start}
+.intro-tc figure img{width:100%}
+.intro-tc figcaption{padding-right:var(--m)}
+.intro-dati{margin-top:var(--s5);max-width:40em}
+
+/* ---------- il catalogo: filtro e griglia ---------- */
+.catalogo{padding-top:var(--s6);padding-bottom:var(--s6)}
+.catalogo-testa .intro{margin-top:var(--s3)}
+.filtri{margin-top:var(--s5);display:grid;gap:0;border-top:1px solid var(--filo-c);border-bottom:1px solid var(--filo-c);padding:var(--s1) 0;position:sticky;top:0;z-index:5;background:var(--carta)}
+.filtro{display:flex;align-items:baseline;gap:var(--s3)}
+.filtro+.filtro{border-top:1px solid var(--filo-c)}
+.filtro-nome{flex:0 0 96px;font-size:14px;color:var(--seppia)}
+.filtro-voci{display:flex;flex-wrap:wrap;gap:0 var(--s3)}
+.filtro-voci button{background:none;border:0;border-bottom:1px solid transparent;border-radius:0;color:var(--seppia);font-family:var(--jost);font-size:17px;line-height:1.2;padding:12px 0 10px;min-height:44px;cursor:pointer;transition:color .15s,border-color .15s}
+.filtro-voci button .num{font-family:var(--hanken);font-size:13px;margin-left:4px}
+.filtro-voci button:hover{color:var(--ottone-scuro)}
+.filtro-voci button[aria-pressed=true]{color:var(--inchiostro);border-bottom-color:var(--ottone-scuro)}
+.filtri-esito{margin-top:var(--s1);min-height:1.5em}
+.famiglia{margin-top:var(--s5);scroll-margin-top:var(--s7)}
+.famiglia:first-child{margin-top:var(--s4)}
+.famiglia-nome{padding-top:var(--s3);border-top:1px solid var(--filo-c)}
+.voci{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);row-gap:var(--s5);margin-top:var(--s4)}
+.voce-cat a{display:block;text-decoration:none}
+.foto{display:block;overflow:hidden;background:var(--filo-c)}
+.foto.verticale{aspect-ratio:4/5}
+.foto.quadrata{aspect-ratio:1/1}
+.foto img{width:100%;height:100%}
+.foto img.cover{object-fit:cover}
+.foto img.contain{object-fit:contain}
+.voce-cat h3{margin-top:14px;font-size:22px;line-height:1.2;letter-spacing:-.01em;transition:color .15s}
+.voce-cat a:hover h3{color:var(--ottone-scuro)}
+.voce-fam{margin-top:2px;font-size:14px;color:var(--seppia)}
+.voce-dati{margin-top:2px;font-size:14px;color:var(--seppia)}
+/* Twentyfour7: il tipo nella colonna di sinistra, i modelli in tre colonne, come una tavola tecnica */
+.tecnico .famiglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--filo-c);padding-top:var(--s3)}
+.tecnico .famiglia-nome{grid-column:1 / span 3;border-top:0;padding-top:0}
+.tecnico .famiglia-nome small{display:block;margin:6px 0 0}
+.tecnico .voci{grid-column:4 / -1;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0}
+
+/* ---------- fondo delle pagine ---------- */
+.banda-col{padding-bottom:var(--s6)}
+.banda-foto{margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
+.banda-foto img{width:100%;height:min(50vw,820px);object-fit:cover}
+.banda-foto figcaption{padding:0 var(--m)}
+.chiusura-col{padding-top:var(--s5);padding-bottom:var(--s6);align-items:start}
+.chiusura-col .intro{margin-top:var(--s3)}
+.chiusura-link{margin-top:var(--s3);display:flex;flex-wrap:wrap;gap:var(--s1) 32px}
+.chiusura-col .col-dx{padding-top:var(--s1)}
+.chiusura-sotto{margin-bottom:var(--s2)}
+
+/* ---------- g-label.html ---------- */
+.gl-intro-testo{padding-top:var(--s5);padding-bottom:var(--s6);align-items:start}
+.gl-intro-testo .intro-p:first-child{margin-top:0}
+.gl-apparecchi{padding-bottom:var(--s6)}
+.gl-app-coppia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s5);margin-top:var(--s5);align-items:start}
+.gl-app-foto img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.gl-app-testo h3{margin-top:var(--s3)}
+.gl-codice{margin-top:var(--s1);font-size:14px;color:var(--seppia)}
+.gl-desc{margin-top:var(--s2);max-width:34em}
+.gl-app-testo .specifiche{margin-top:var(--s3)}
+.gl-scheda{margin-top:var(--s3)}
+.gl-accessori{padding-top:var(--s6);padding-bottom:var(--s6);border-top:1px solid var(--filo-c)}
+.gl-accessori .intro{margin-top:var(--s3)}
+.gl-gruppi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);row-gap:var(--s5);margin-top:var(--s5)}
+.gl-gruppo .righe{margin-top:var(--s2)}
+.gl-gruppo .righe>li{display:block;padding:10px 0 12px}
+.gl-gruppo .righe>li>span:first-child{display:block;font-size:19px}
+.gl-gruppo .righe small{display:block;margin-top:2px;text-align:left}
+.gl-nota{margin-top:var(--s5);max-width:48em}
+.gl-catalogo{padding-bottom:var(--s6);align-items:center}
+.gl-catalogo figure img{width:100%}
+.gl-catalogo .intro{margin-top:var(--s3)}
+.unito{white-space:nowrap}
+.gl-catalogo-azioni{margin-top:var(--s4)}
+.gl-catalogo-azioni+.gl-catalogo-azioni{margin-top:var(--s3)}
+
+/* 1024 */
+@media (max-width:1180px){
+  .ingresso-nome{font-size:88px}
+  .righe-link a>span{font-size:21px}
+  .voci{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tecnico .voci{grid-column:4 / -1;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gl-gruppi{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* 768 */
+@media (max-width:900px){
+  .ingresso-nome{font-size:72px}
+  .ingresso-tc .ingresso-testo{grid-column:1 / span 6}
+  .ingresso-tc .ingresso-foto{grid-column:7 / span 6}
+  .righe-link.due{grid-template-columns:minmax(0,1fr);border-top:1px solid var(--filo-c)}
+  .righe-link.due>li:nth-child(-n+2){border-top:0}
+  .tecnico .famiglia{display:block}
+  .tecnico .famiglia-nome small{display:inline;margin:0 0 0 12px}
+  .tecnico .voci{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--s3)}
+  .gl-app-coppia{column-gap:var(--g)}
+  .intro-tc .col-stretta{max-width:560px}
+}
+/* 390 */
+@media (max-width:600px){
+  .ingresso-nome{font-size:64px}
+  .ingresso-sotto{font-size:20px}
+  .ingresso-tc .ingresso-testo,.ingresso-tc .ingresso-foto{grid-column:1 / -1}
+  .ingresso-tc .ingresso-foto{grid-row:1}
+  .ingresso-tc .ingresso-testo{grid-row:2;margin-top:var(--s5)}
+  .ingresso-tc figcaption{padding-left:var(--m)}
+  .ingresso-banda img,.banda-foto img{height:75vw}
+  .ingresso-sotto-banda .col-dx{margin-top:var(--s3)}
+  .righe-link a>span{font-size:20px}
+  .filtri{position:static}
+  .filtro{flex-direction:column;gap:0;padding-top:var(--s1)}
+  .filtro-nome{flex:none}
+  .filtro-voci{gap:0 20px}
+  .voci,.tecnico .voci{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s4)}
+  .voce-cat h3{font-size:19px;margin-top:10px}
+  .voce-fam,.voce-dati{font-size:13px}
+  .tecnico .famiglia-nome small{display:block;margin:4px 0 0}
+  .gl-intro-testo .col-dx{margin-top:var(--s3)}
+  .gl-app-coppia{grid-template-columns:minmax(0,1fr);row-gap:var(--s5)}
+  .gl-gruppi{grid-template-columns:minmax(0,1fr);row-gap:var(--s4)}
+  .gl-catalogo .col-dx{margin-top:var(--s4)}
+  .chiusura-col .col-dx{margin-top:var(--s5)}
+}

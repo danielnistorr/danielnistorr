@@ -1,0 +1,152 @@
+/* 247LAB, progetti: l'archivio (progetti.html) e le schede (progetti/<slug>.html).
+   Usa i token e le classi di base.css; punti di rottura 1180, 900, 600. */
+
+/* ---------- archivio: filtro ---------- */
+.progetti-filtro{padding-top:var(--s5)}
+.filtro{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2) var(--s5);padding-bottom:var(--s2);border-bottom:1px solid var(--filo-c)}
+.filtro-gruppo{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 var(--s3)}
+.filtro-nome{font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--seppia);margin-right:calc(-1 * var(--s1))}
+.filtro-gruppo button{background:none;border:0;border-bottom:2px solid transparent;color:var(--seppia);font-family:var(--jost);font-size:17px;font-weight:400;line-height:1.2;padding:12px 0 8px;cursor:pointer;transition:color .15s,border-color .15s}
+.filtro-gruppo button .n{font-family:var(--hanken);font-size:13px;margin-left:2px}
+.filtro-gruppo button:hover{color:var(--ottone-scuro)}
+.filtro-gruppo button[aria-pressed=true]{color:var(--inchiostro);border-bottom-color:var(--ottone-scuro)}
+.filtro-conta{margin-left:auto;font-size:14px;color:var(--seppia)}
+
+/* ---------- archivio: la griglia, a righe di due foto alte uguali (7 + 5 colonne, poi 5 + 7) ---------- */
+.progetti-archivio{padding-top:var(--s5);padding-bottom:var(--s6)}
+.p-lista{list-style:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:var(--s5);
+  --col:calc((100vw - 2 * var(--m) - 11 * var(--g)) / 12)}
+.p-voce{min-width:0}
+.p-voce[hidden]{display:none}
+.p-largo{grid-column:span 7}
+.p-stretto{grid-column:span 5}
+.p-foto{display:block}
+.p-foto img{width:100%;height:calc((7 * var(--col) + 6 * var(--g)) * 2 / 3);object-fit:cover;background:var(--filo-c)}
+.p-riga{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px var(--s2);margin-top:14px}
+.p-riga h3 a{text-decoration:none}
+.p-riga h3 a:hover{color:var(--ottone-scuro);text-decoration:underline}
+.p-riga small{margin-left:auto;font-size:14px;color:var(--seppia);text-align:right}
+.p-voce .didascalia{margin-top:2px;max-width:40em}
+.p-vuoto{margin-top:var(--s4);color:var(--seppia)}
+.p-vuoto button{background:none;border:0;color:var(--inchiostro);text-decoration:underline;text-underline-offset:.22em;cursor:pointer;margin-left:var(--s1);padding:8px 0}
+.p-vuoto button:hover{color:var(--ottone-scuro)}
+
+/* ---------- archivio: gli studi ---------- */
+.progetti-studi{border-top:1px solid var(--filo-c);margin-left:var(--m);margin-right:var(--m);padding-left:0;padding-right:0}
+.progetti-studi .griglia{align-items:start}
+.studi-testa{grid-column:1 / span 4}
+.studi-testa .intro{margin-top:var(--s3)}
+.studi-a{grid-column:5 / span 4;margin-top:var(--s1)}
+.studi-b{grid-column:9 / span 4;margin-top:var(--s1)}
+.studi-lista>li{flex-wrap:wrap;padding:12px 0 14px}
+.studi-lista>li>span:first-child{font-size:21px}
+.studi-progetti{flex-basis:100%;margin-top:2px;font-size:15px;line-height:1.5;color:var(--seppia)}
+.studi-progetti a{text-decoration-color:var(--filo-c)}
+.studi-progetti a:hover,.studi-uno a:hover{text-decoration-color:currentColor}
+.studi-uno{font-size:15px}
+.studi-uno a{color:var(--seppia);text-decoration-color:var(--filo-c)}
+.studi-uno a:hover{color:var(--ottone-scuro)}
+
+/* ---------- chiusura (archivio e schede) ---------- */
+.progetti-chiusura{padding-bottom:var(--s6)}
+.progetti-chiusura .griglia{border-top:1px solid var(--filo-c);padding-top:var(--s5);align-items:start}
+.progetti-chiusura h2{grid-column:1 / span 6}
+.chiusura-dx{grid-column:8 / span 5}
+.chiusura-azioni{margin-top:var(--s4);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3) 32px}
+.progetti-studi+.progetti-chiusura{padding-top:0}
+.progetti-studi+.progetti-chiusura .griglia{border-top:0;padding-top:0}
+
+/* ---------- scheda: apertura con la copertina a filo del bordo sinistro e la scheda accanto ---------- */
+.progetto-apertura{padding-top:var(--s5)}
+.progetto-apertura .griglia{align-items:start}
+.scheda-h .scheda-copertina{grid-column:1 / span 7}
+.scheda-v .scheda-copertina{grid-column:1 / span 5}
+.scheda-copertina img{width:100%}
+.scheda-dati{grid-column:9 / span 4}
+.scheda-v .scheda-dati{grid-column:8 / span 5}
+.scheda-dati h2{margin-bottom:var(--s3)}
+.scheda-dati dd a{text-decoration-color:var(--filo-ottone)}
+.scheda-testo{margin-top:var(--s4)}
+.scheda-testo p+p{margin-top:var(--s2)}
+.scheda-conta{margin-top:var(--s2)}
+
+/* ---------- scheda: le foto in sequenza ---------- */
+.progetto-foto{padding-top:var(--s6)}
+.seq-riga+.seq-riga{margin-top:var(--s5)}
+.seq-riga figure{min-width:0}
+.seq-riga img{width:100%}
+.seq-h-dx figure{grid-column:3 / -1}
+.seq-h-sx figure{grid-column:1 / span 10}
+.seq-coppia{align-items:start}
+.seq-coppia-a{grid-column:2 / span 5}
+.seq-coppia-b{grid-column:7 / span 5}
+.seq-coppia img{object-fit:cover}
+.seq-v-dx figure{grid-column:7 / span 5}
+.seq-v-sx figure{grid-column:2 / span 5}
+
+/* ---------- scheda: progetto precedente e successivo ---------- */
+.progetto-vicini{padding-top:var(--s6)}
+.progetto-vicini .griglia{border-top:1px solid var(--filo-c);padding-top:var(--s4)}
+.vicino{display:block;text-decoration:none;min-width:0}
+.vicino-prev{grid-column:1 / span 6}
+.vicino-next{grid-column:7 / span 6}
+.vicino-foto{display:block}
+.vicino-foto img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--filo-c)}
+.vicino-titolo{display:block;font-family:var(--jost);font-weight:300;margin-top:var(--s2);transition:color .15s}
+.vicino .didascalia{display:block;margin-top:4px}
+.vicino:hover .vicino-titolo{color:var(--ottone-scuro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+.vicini-tutti{margin-top:var(--s4)}
+.progetto-vicini+.progetti-chiusura{padding-top:var(--s6)}
+
+/* 1024 */
+@media (max-width:1180px){
+  .studi-testa{grid-column:1 / -1}
+  .studi-a{grid-column:1 / span 6;margin-top:var(--s4)}
+  .studi-b{grid-column:7 / span 6;margin-top:var(--s4)}
+  .scheda-h .scheda-copertina{grid-column:1 / span 7}
+  .scheda-dati{grid-column:8 / span 5}
+  .seq-coppia-a{grid-column:1 / span 6}
+  .seq-coppia-b{grid-column:7 / span 6}
+}
+/* 768 */
+@media (max-width:900px){
+  .filtro{column-gap:var(--s4)}
+  .filtro-conta{flex-basis:100%;margin-left:0}
+  .progetti-chiusura h2,.chiusura-dx{grid-column:1 / -1}
+  .chiusura-dx{margin-top:var(--s3)}
+  .scheda-h .scheda-copertina{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
+  .scheda-v .scheda-copertina{grid-column:1 / span 7}
+  .scheda-h .scheda-dati{grid-column:1 / -1;margin-top:var(--s5)}
+  .scheda-v .scheda-dati{grid-column:8 / span 5}
+  .seq-h-dx figure,.seq-h-sx figure{grid-column:1 / -1}
+  .seq-v-dx figure{grid-column:5 / span 8}
+  .seq-v-sx figure{grid-column:1 / span 8}
+  .progetto-foto{padding-top:var(--s5)}
+}
+/* 390 */
+@media (max-width:600px){
+  .progetti-filtro{padding-top:var(--s4)}
+  .filtro{row-gap:var(--s1)}
+  .filtro-gruppo{column-gap:20px;flex-basis:100%}
+  .filtro-nome{flex-basis:100%;margin:0}
+  .progetti-archivio{padding-top:var(--s4);padding-bottom:var(--s5)}
+  .p-lista{row-gap:var(--s4)}
+  .p-largo,.p-stretto{grid-column:1 / -1}
+  .p-foto{margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
+  .p-foto img{height:auto;aspect-ratio:3/2}
+  .p-riga{margin-top:12px}
+  .studi-a,.studi-b{grid-column:1 / -1}
+  .studi-b{margin-top:0;border-top:0}
+  .studi-lista>li>span:first-child{font-size:20px}
+  .progetti-chiusura{padding-bottom:var(--s5)}
+  .progetto-apertura{padding-top:0}
+  .scheda-v .scheda-copertina,.scheda-h .scheda-copertina{grid-column:1 / -1}
+  .scheda-v .scheda-dati,.scheda-h .scheda-dati{grid-column:1 / -1;margin-top:var(--s4)}
+  .seq-riga+.seq-riga{margin-top:var(--s3)}
+  .seq-coppia{column-gap:var(--s1)}
+  .seq-v-dx figure,.seq-v-sx figure{grid-column:1 / -1}
+  .progetto-vicini{padding-top:var(--s5)}
+  .vicino-prev,.vicino-next{grid-column:1 / -1}
+  .vicino-next{margin-top:var(--s4)}
+  .progetto-vicini+.progetti-chiusura{padding-top:var(--s5)}
+}
