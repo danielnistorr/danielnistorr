@@ -34,3 +34,7 @@ Scaricate il 24/10/2026 dalla libreria media di WordPress (`/wp-json/wp/v2/media
 - I 12 file `*_wow_balloons*` e `partner-palloncini-wow*` sono del partner Palloncini WOW (allestimenti con palloncini), non di Poli-Art.
 - Non scaricato: `CALABRIA.tif` (14,7 MB, non usato in pagina).
 - `Testi.docx`: è il testo della pagina Chi siamo, lasciato pubblico tra i caricamenti.
+
+## Home finale (`sito/`)
+
+Usa solo foto di Poli-Art da `originali/` (Face-of-GOD, Face-of-GOD2, Oggetti2, 3Db, Pallone1, CorniciORO4, Pawson3, Pawson2) e il loro logo. Nessuna foto di `esterne/`. Carattere Mona Sans (SIL Open Font License 1.1) in `fonts/`.

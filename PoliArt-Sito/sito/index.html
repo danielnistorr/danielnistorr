@@ -55,26 +55,40 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 .destra{display:flex;gap:18px;align-items:center}
 .apri-menu{display:none}
 
-/* apertura: un pezzo solo, posato sulla carta */
-.apertura{position:relative;margin-top:calc(var(--testata) * -1);padding-top:var(--testata);min-height:min(100vh,940px)}
-.apertura .cornice{position:relative;min-height:calc(min(100vh,940px) - var(--testata))}
-.apertura h1{position:relative;z-index:2;padding-top:clamp(28px,6vh,72px);
-  font-size:clamp(52px,8.4vw,120px);line-height:.93;letter-spacing:-.04em;font-stretch:118%;font-weight:320}
+/* apertura: la testa al centro, il titolo spezzato attorno, la legenda sotto il pezzo */
+.apertura{position:relative;margin-top:calc(var(--testata) * -1);padding-top:var(--testata)}
+.apertura .cornice{position:relative}
+.apertura h1{position:relative;z-index:2;font-size:clamp(44px,12.4vw,58px);line-height:.93;letter-spacing:-.045em;font-stretch:118%;font-weight:320}
 .apertura h1 span{display:block}
-.apertura .testo{position:relative;z-index:2;max-width:30em;margin-top:40px}
-.lead{font-size:20px;line-height:1.5}
-
-.pezzo{position:absolute;z-index:1;right:calc(var(--m) * 0.4);bottom:0;width:clamp(300px,40vw,580px);margin:0}
+.apertura h1 .t2{text-align:right}
+.pezzo{position:relative;z-index:1;margin:0}
 .pezzo img{width:100%;height:auto}
 .pezzo img[hidden]{display:none}
-.comando{position:absolute;z-index:2;left:var(--m);bottom:clamp(40px,6vh,64px);display:flex;align-items:center;gap:22px;max-width:40em}
-.interruttore{display:inline-flex;flex:none;border:1px solid var(--inchiostro);border-radius:999px;padding:3px;background:var(--carta)}
-.interruttore button{font:inherit;font-size:15px;font-weight:500;color:var(--inchiostro);background:transparent;border:0;
-  border-radius:999px;padding:9px 18px;min-height:40px;cursor:pointer;transition:background-color .12s,color .12s}
-.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
-.interruttore button:not([aria-pressed="true"]):hover{background:var(--filo)}
-.didascalia{margin:0;max-width:24em;font-size:14px;line-height:1.45;color:var(--grigio)}
+.lead{font-size:17px;line-height:1.5}
+
+/* legenda: due parole, la scelta sottolineata */
+.legenda{text-align:center}
+.scelta{display:inline-flex;align-items:center;gap:4px;font-size:17px;font-weight:500}
+.scelta button{font:inherit;color:var(--grigio);background:none;border:0;padding:10px 8px;min-height:44px;cursor:pointer;
+  text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:7px;
+  transition:color .12s,text-decoration-color .12s}
+.scelta button:hover{color:var(--inchiostro);text-decoration-color:var(--filo)}
+.scelta button[aria-pressed="true"]{color:var(--inchiostro);text-decoration-color:var(--inchiostro)}
+.scelta .punto{color:var(--grigio)}
+.didascalia{margin:2px auto 0;max-width:30em;font-size:14px;line-height:1.45;color:var(--grigio)}
 .didascalia b{font-weight:500;color:var(--inchiostro)}
+
+/* da 1000 px in su: composizione su una schermata */
+@media (min-width:1000px){
+  .apertura{--leg:92px;--pz-h:clamp(440px,min(100vh - 250px,50vw),660px);--pz-w:calc(var(--pz-h) * .7467);--base:calc(var(--leg) + var(--pz-h) * .043)}
+  .apertura .cornice{height:calc(min(100vh,940px) - var(--testata));min-height:620px}
+  .apertura h1{position:static;font-size:clamp(52px,7.6vw,112px);letter-spacing:-.04em}
+  .apertura h1 .t1{position:absolute;z-index:2;left:var(--m);top:clamp(16px,4.5vh,48px)}
+  .apertura h1 .t2{position:absolute;z-index:2;right:var(--m);bottom:calc(var(--base) - .11em)}
+  .pezzo{position:absolute;left:50%;bottom:var(--leg);width:var(--pz-w);transform:translateX(-50%)}
+  .apertura .testo{position:absolute;z-index:2;left:var(--m);bottom:calc(var(--base) - 7px);width:min(22em,calc(50% - var(--pz-w) / 2 - var(--m) - 24px))}
+  .legenda{position:absolute;z-index:2;left:50%;bottom:10px;width:min(34em,90%);transform:translateX(-50%)}
+}
 
 /* sezioni */
 .sezione{padding-top:clamp(96px,11vw,160px)}
@@ -87,8 +101,6 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 .lavoro{margin:0}
 .lavoro .foto{overflow:hidden;background:var(--filo)}
 .lavoro .foto img{width:100%;height:100%;object-fit:cover}
-.lavoro .foto.posato{background:var(--carta)}
-.lavoro .foto.posato img{object-fit:contain;object-position:50% 100%}
 .lavoro figcaption{margin-top:16px;max-width:30em}
 .lavoro h3{font-size:21px;line-height:1.25;font-weight:500;letter-spacing:-.005em}
 .lavoro p{margin-top:6px;font-size:16px;line-height:1.5;color:var(--grigio)}
@@ -100,22 +112,19 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 .ancora a{text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--ardesia)}
 .ancora a:hover{color:var(--ardesia)}
 
-/* laboratorio */
-.cantiere{margin:clamp(96px,11vw,160px) 0 0}
-.cantiere img{width:100%;height:clamp(320px,46vw,660px);object-fit:cover;object-position:50% 45%}
+/* come lavoriamo: la foto nella cornice, titolo e due righe sotto */
+.cantiere{margin:0}
+.cantiere img{width:100%;height:clamp(280px,30vw,440px);object-fit:cover;object-position:50% 38%}
 .cantiere figcaption{margin-top:12px;font-size:14px;color:var(--grigio)}
-.lab-capo{margin-top:clamp(56px,6vw,80px)}
-.passi{margin-top:clamp(40px,4vw,56px);list-style:none;padding:0}
-.passi li{grid-column:span 4;padding-top:18px;border-top:1px solid var(--inchiostro)}
-.passi .n{font-weight:500;font-size:15px;color:var(--grigio)}
-.passi h3{margin-top:10px;font-size:26px;line-height:1.15;letter-spacing:-.02em;font-stretch:108%;font-weight:420}
-.passi p{margin-top:10px;font-size:17px;color:var(--grigio);max-width:24em}
+.lab{margin-top:clamp(40px,4.5vw,64px);align-items:start;row-gap:20px}
+.lab h2{grid-column:1 / span 5;font-size:clamp(32px,3.5vw,50px);line-height:1.05;letter-spacing:-.035em;font-stretch:112%}
+.lab p{grid-column:7 / span 6;font-size:19px;max-width:32em;padding-top:6px}
 
 /* chiusura: testo a sinistra, la sala fino al bordo destro */
 .chiusura{padding-top:clamp(112px,12vw,168px)}
 .chiusura .griglia{align-items:start}
 .chiusura .parole{grid-column:1 / span 5;padding-top:8px}
-.chiusura h2{font-size:clamp(34px,3.9vw,56px);line-height:1.05;letter-spacing:-.035em;font-stretch:112%}
+.chiusura h2{font-size:clamp(32px,3.5vw,50px);line-height:1.05;letter-spacing:-.035em;font-stretch:112%}
 .recapiti{margin-top:56px;font-size:18px;line-height:1.5}
 .recapiti .tel{display:inline-block;font-size:clamp(30px,2.8vw,40px);font-weight:420;letter-spacing:-.02em;font-stretch:108%;
   text-decoration:none;border-bottom:1px solid var(--inchiostro);line-height:1.2;margin-bottom:18px;transition:color .12s,border-color .12s}
@@ -124,7 +133,8 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 .recapiti a{text-underline-offset:3px;text-decoration-thickness:1px}
 .recapiti a:not(.tel):hover{color:var(--ardesia)}
 .chiusura .foto{grid-column:7 / span 6;margin:0;margin-right:calc((100vw - min(100vw,var(--larg))) / -2 - var(--m))}
-.chiusura .foto img{width:100%;height:clamp(380px,38vw,560px);object-fit:cover;object-position:40% 50%}
+.chiusura .foto img{width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover}
+.chiusura .foto figcaption{margin-top:12px;font-size:14px;color:var(--grigio)}
 
 /* piede */
 .piede{margin-top:clamp(96px,10vw,140px);background:var(--carta-2);padding:clamp(56px,6vw,80px) 0 28px;font-size:16px}
@@ -135,22 +145,28 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 .col{grid-column:span 2}
 .piede h2{font-size:15px;font-weight:500;letter-spacing:0;font-stretch:100%;margin:0 0 14px;color:var(--grigio)}
 .piede ul{list-style:none;margin:0;padding:0}
-.piede li{margin:0 0 8px}
+.piede li{margin:0 0 4px}
 .piede a{text-decoration:none;color:var(--inchiostro);border-bottom:1px solid transparent}
+.piede li a,.piede .col p a{display:inline-block;padding:4px 0}
 .piede a:hover{border-bottom-color:currentColor}
-.piede .col p{margin-bottom:8px}
+.piede .col p{margin-bottom:4px}
 .legale{margin-top:64px;padding-top:20px;border-top:1px solid #CFCBC3;display:flex;flex-wrap:wrap;gap:8px 28px;
   font-size:14px;color:var(--grigio)}
 .legale span:first-child{margin-right:auto}
 .legale a{color:var(--grigio)}
 
+/* sotto i 1000 px: titolo, testa, legenda, frase in colonna */
+@media (max-width:999px){
+  .apertura h1{padding-top:clamp(8px,2vw,24px);max-width:15em}
+  .apertura h1{font-size:clamp(44px,12.4vw,84px)}
+  .pezzo{width:min(66vw,440px);margin:-4px auto 0}
+  .legenda{margin-top:-6px}
+  .apertura .testo{margin-top:28px;max-width:34em}
+}
 /* tablet */
 @media (max-width:1100px){
   .menu{gap:22px}
-  .pezzo{width:clamp(300px,44vw,520px)}
-  .apertura .testo,.comando{max-width:min(30em,50%)}
-  .comando{flex-direction:column;align-items:flex-start;gap:12px}
-  .lead{font-size:18px}
+  .lead{font-size:16px}
   .marchio{grid-column:1 / -1}
   .col{grid-column:span 3}
 }
@@ -162,19 +178,16 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
   .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:var(--testata);background:var(--carta);
     padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
   .menu.aperto a{display:block;padding:12px 0;font-size:20px}
-  .apertura{min-height:0}
-  .apertura .cornice{min-height:0;display:flex;flex-direction:column}
-  .pezzo{position:relative;right:auto;bottom:auto;width:min(76%,480px);align-self:flex-end;margin:-28px 0 0;order:2}
-  .comando{position:static;order:3;max-width:none;margin-top:4px}
-  .apertura .testo{order:4;margin-top:36px;max-width:34em}
   .capo{grid-column:1 / -1}
   .l-1,.l-2,.l-3,.l-4{grid-column:1 / -1}
   .lavoro .foto,.l-1 .foto,.l-2 .foto,.l-3 .foto,.l-4 .foto{height:auto;aspect-ratio:4 / 3}
   .ancora{grid-column:1 / -1}
-  .passi li{grid-column:1 / -1;margin-bottom:28px}
+  .lab h2,.lab p{grid-column:1 / -1}
+  .lab p{padding-top:0}
+  .cantiere img{height:auto;aspect-ratio:4 / 3}
   .chiusura .parole{grid-column:1 / -1}
   .chiusura .foto{grid-column:1 / -1;margin:48px calc(var(--m) * -1) 0}
-  .chiusura .foto img{height:auto;aspect-ratio:4 / 3}
+  .chiusura .foto figcaption{padding:0 var(--m)}
 }
 /* telefono */
 @media (max-width:640px){
@@ -182,10 +195,6 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
   body{font-size:17px}
   .logo img{width:112px}
   .tel-testata{font-size:15px}
-  .apertura h1{padding-top:10px;font-size:clamp(40px,12.6vw,58px);letter-spacing:-.045em}
-  .pezzo{width:min(64%,330px);margin:-34px -4px 0 0}
-  .comando{margin-top:6px;gap:10px}
-  .interruttore button{padding:8px 16px}
   .lead{font-size:17px}
   .col{grid-column:1 / -1}
   .piede .alto{row-gap:32px}
@@ -194,6 +203,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 }
 @media (max-width:360px){
   .tel-testata{display:none}
+  .didascalia{min-height:2.9em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -207,7 +217,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
     <nav aria-label="Principale">
       <ul class="menu" id="menu">
         <li><a href="#lavorazioni">Lavorazioni</a></li>
-        <li><a href="#laboratorio">Laboratorio</a></li>
+        <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
         <li><a href="realizzazioni/">Realizzazioni</a></li>
         <li><a href="#contatti">Contatti</a></li>
       </ul>
@@ -222,30 +232,29 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
   <div class="cornice">
-    <h1 id="titolo"><span>Polistirolo</span> <span>scolpito</span> <span>e rifinito</span></h1>
+    <h1 id="titolo"><span class="t1">Polistirolo<br>scolpito</span> <span class="t2">e rifinito</span></h1>
 
     <figure class="pezzo" id="pezzo" data-stato="finito">
       <img id="img-finito" src="img/testa-finita-840.webp"
            srcset="img/testa-finita-560.webp 560w, img/testa-finita-840.webp 840w, img/testa-finita-1120.webp 1120w"
-           sizes="(max-width:640px) 64vw, (max-width:900px) 76vw, (max-width:1100px) 44vw, 580px" width="1120" height="1500"
+           sizes="(max-width:999px) min(66vw, 440px), 520px" width="1120" height="1500"
            fetchpriority="high" alt="Testa a facce piane cromata a specchio, con gli occhi e la bocca dorati">
       <img id="img-grezzo" hidden src="img/testa-grezza-840.webp"
            srcset="img/testa-grezza-560.webp 560w, img/testa-grezza-840.webp 840w, img/testa-grezza-1120.webp 1120w"
-           sizes="(max-width:640px) 64vw, (max-width:900px) 76vw, (max-width:1100px) 44vw, 580px" width="1120" height="1500"
+           sizes="(max-width:999px) min(66vw, 440px), 520px" width="1120" height="1500"
            alt="La stessa testa a facce piane in polistirene bianco, prima della finitura">
     </figure>
 
-    <div class="testo">
-      <p class="lead">Scenografie, vetrine e stand, decori per l'edilizia, prototipi e oggetti fuori scala. Tagliamo il polistirene espanso con macchine a controllo numerico e, dove serve, lo lavoriamo a mano. A Grisignano di Zocco dal <span class="num">1986</span>.</p>
-    </div>
-
-    <div class="comando">
-      <div class="interruttore" role="group" aria-label="Mostra il pezzo finito o grezzo">
-        <button type="button" data-v="finito" aria-pressed="true">Finito</button>
-        <button type="button" data-v="grezzo" aria-pressed="false">Grezzo</button>
+    <div class="legenda">
+      <div class="scelta" role="group" aria-label="Mostra la testa finita o grezza">
+        <button type="button" data-v="finito" aria-pressed="true">Finito</button><span class="punto" aria-hidden="true">·</span><button type="button" data-v="grezzo" aria-pressed="false">Grezzo</button>
       </div>
       <p class="didascalia" id="didascalia" aria-live="polite"><b>Finito.</b> La testa cromata, con occhi e bocca dorati.</p>
     </div>
+    <div class="testo">
+      <p class="lead">Scenografie, vetrine e stand, decori per l'edilizia, prototipi e oggetti fuori scala. Tagliamo il polistirene espanso con macchine a controllo numerico e, dove serve, lo lavoriamo a mano. A&nbsp;Grisignano di Zocco dal <span class="num">1986</span>.</p>
+    </div>
+
   </div>
 </section>
 
@@ -260,7 +269,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
     <div class="griglia lavori">
       <figure class="lavoro l-1">
         <div class="foto"><img src="img/stand-oggetti-1200.webp" srcset="img/stand-oggetti-800.webp 800w, img/stand-oggetti-1200.webp 1200w, img/stand-oggetti-1800.webp 1800w"
-          sizes="(max-width:900px) 100vw, 62vw" width="1800" height="1125" loading="lazy"
+          sizes="(max-width:900px) 100vw, 62vw" width="1800" height="1055" loading="lazy"
           alt="Stand in fiera: oggetti di casa grigi appesi a stampate giganti, come i pezzi di un modellino, sopra pannelli di mosaico"></div>
         <figcaption><h3>Scenografie, vetrine e stand</h3><p>Per teatro, cinema, vetrine e fiere. Si monta e si smonta in fretta: adatto alle produzioni itineranti.</p></figcaption>
       </figure>
@@ -271,10 +280,10 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
         <figcaption><h3>Loghi e lettere in volume</h3><p>Marchi e scritte in tre dimensioni.</p></figcaption>
       </figure>
       <figure class="lavoro l-3">
-        <div class="foto posato"><img src="img/pallone-1100.webp" srcset="img/pallone-700.webp 700w, img/pallone-1100.webp 1100w, img/pallone-1600.webp 1600w"
-          sizes="(max-width:900px) 100vw, 38vw" width="1600" height="1200" loading="lazy"
-          alt="Un pallone da calcio gigante a facce bianche e nere; un uomo in piedi accanto appoggia la mano sul pallone e arriva a meno di metà della sua altezza"></div>
-        <figcaption><h3>Prototipi e fuori scala</h3><p>Il prodotto rifatto in grande per la fiera. La persona accanto dà la misura. Oppure il prototipo dal progetto 3D, da vedere e tastare con mano prima della produzione.</p></figcaption>
+        <div class="foto"><img src="img/chaise-1100.webp" srcset="img/chaise-700.webp 700w, img/chaise-1100.webp 1100w, img/chaise-1600.webp 1600w"
+          sizes="(max-width:900px) 100vw, 38vw" width="1600" height="1280" loading="lazy"
+          alt="Una chaise longue bianca dalle forme morbide, scolpita, in laboratorio tra i blocchi di polistirolo"></div>
+        <figcaption><h3>Prototipi e mockup</h3><p>Il prototipo da vedere e tastare con mano prima della produzione, e il prodotto rifatto in grande per la fiera.</p></figcaption>
       </figure>
       <figure class="lavoro l-4">
         <div class="foto"><img src="img/cornici-oro-1100.webp" srcset="img/cornici-oro-700.webp 700w, img/cornici-oro-1100.webp 1100w, img/cornici-oro-1600.webp 1600w"
@@ -287,22 +296,18 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
   </div>
 </section>
 
-<section id="laboratorio" aria-labelledby="t-lab">
-  <figure class="cantiere">
-    <img src="img/cantiere-sala-1600.webp" srcset="img/cantiere-sala-900.webp 900w, img/cantiere-sala-1600.webp 1600w, img/cantiere-sala-2400.webp 2400w"
-         sizes="100vw" width="2400" height="1500" loading="lazy"
-         alt="Due persone su un ponteggio montano un grande volume cilindrico bianco dentro una sala vuota">
-    <figcaption class="cornice">Un volume curvo in montaggio, prima della finitura.</figcaption>
-  </figure>
+<section class="sezione" id="come-lavoriamo" aria-labelledby="t-lab">
   <div class="cornice">
-    <div class="griglia lab-capo">
-      <div class="capo"><h2 id="t-lab">Dal file al pezzo finito</h2></div>
+    <figure class="cantiere">
+      <img src="img/cantiere-sala-1400.webp" srcset="img/cantiere-sala-800.webp 800w, img/cantiere-sala-1400.webp 1400w, img/cantiere-sala-2000.webp 2000w"
+           sizes="(max-width:1440px) calc(100vw - 2 * clamp(20px, 4.45vw, 64px)), 1312px" width="2000" height="1125" loading="lazy"
+           alt="Due persone su un ponteggio montano un grande volume curvo bianco dentro una sala vuota">
+      <figcaption>Un volume curvo in montaggio, prima della finitura.</figcaption>
+    </figure>
+    <div class="griglia lab">
+      <h2 id="t-lab">Dal file al pezzo finito</h2>
+      <p>Partiamo dal progetto 3D del cliente; se manca, il solido virtuale lo elaboriamo noi. Le macchine a controllo numerico tagliano il blocco e, dove serve, si scolpisce a mano.</p>
     </div>
-    <ol class="griglia passi">
-      <li><span class="n num">1</span><h3>Il progetto</h3><p>Partiamo dal progetto 3D del cliente. Se manca, il solido virtuale lo elaboriamo noi.</p></li>
-      <li><span class="n num">2</span><h3>Il taglio</h3><p>Le macchine a controllo numerico tagliano il blocco; dove serve, si scolpisce a mano.</p></li>
-      <li><span class="n num">3</span><h3>La finitura</h3><p>La superficie viene trattata per reggere gli urti e prendere l'aspetto voluto.</p></li>
-    </ol>
   </div>
 </section>
 
@@ -310,7 +315,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
   <div class="cornice">
     <div class="griglia">
       <div class="parole">
-        <h2 id="t-chi">Riproposto in dimensioni più grandi, suscita la curiosità del passante</h2>
+        <h2 id="t-chi">Un prodotto riproposto in dimensioni più grandi suscita la curiosità del passante</h2>
         <div class="recapiti">
           <a class="tel num" href="tel:+390444614719">0444&nbsp;614719</a>
           <p><a href="mailto:info@poli-art.it">info@poli-art.it</a></p>
@@ -318,9 +323,10 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
         </div>
       </div>
       <figure class="foto">
-        <img src="img/sala-curva-1200.webp" srcset="img/sala-curva-800.webp 800w, img/sala-curva-1200.webp 1200w, img/sala-curva-1800.webp 1800w"
-             sizes="(max-width:900px) 100vw, 50vw" width="1800" height="1529" loading="lazy"
-             alt="Sala dalle pareti curve e bianche, con un taglio di luce nel soffitto">
+        <img src="img/pallone-fiera-1000.webp" srcset="img/pallone-fiera-700.webp 700w, img/pallone-fiera-1000.webp 1000w, img/pallone-fiera-1400.webp 1400w"
+             sizes="(max-width:900px) 100vw, 50vw" width="1400" height="1050" loading="lazy"
+             alt="Un pallone da calcio gigante a facce bianche e nere su un prato sintetico; un uomo in piedi accanto appoggia la mano sul pallone e arriva a meno di metà della sua altezza">
+        <figcaption>Il pallone abitabile, in fiera. La persona accanto dà la misura.</figcaption>
       </figure>
     </div>
   </div>
@@ -339,7 +345,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
         <ul>
           <li><a href="scenografie/">Scenografie e stand</a></li>
           <li><a href="edilizia/">Edilizia e decori</a></li>
-          <li><a href="prototipi-e-mockup/">Prototipi e fuori scala</a></li>
+          <li><a href="prototipi-e-mockup/">Prototipi e mockup</a></li>
           <li><a href="loghi-in-volume/">Loghi in volume</a></li>
           <li><a href="cake-design/">Cake design</a></li>
           <li><a href="stampa-3d/">Stampa 3D</a></li>
@@ -350,7 +356,7 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
         <ul>
           <li><a href="chi-siamo/">Chi siamo</a></li>
           <li><a href="realizzazioni/">Realizzazioni</a></li>
-          <li><a href="#laboratorio">Laboratorio</a></li>
+          <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
         </ul>
       </nav>
       <div class="col">
@@ -382,9 +388,9 @@ h1,h2,h3{margin:0;font-weight:340;text-wrap:balance}
   var did=document.getElementById('didascalia');
   var testi={
     finito:'<b>Finito.</b> La testa cromata, con occhi e bocca dorati.',
-    grezzo:'<b>Grezzo.</b> La testa in polistirene, prima della finitura.'
+    grezzo:'<b>Grezzo.</b> In polistirene, prima della finitura.'
   };
-  var bott=document.querySelectorAll('.interruttore button');
+  var bott=document.querySelectorAll('.scelta button');
   function vai(v){
     fig.setAttribute('data-stato',v);
     img.finito.hidden=(v!=='finito'); img.grezzo.hidden=(v!=='grezzo');
