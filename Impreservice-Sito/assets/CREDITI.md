@@ -15,6 +15,7 @@ Foto di repertorio scaricate il 24/10/2026. Su ogni pagina ho controllato la lic
 | `esterne/pexels-17048866-hofer-anelli-cemento-berna.jpg` | https://www.pexels.com/photo/close-up-of-cement-blocks-in-row-17048866/ | Harri Hofer (@harri) | Pexels, Free | 2400x1600 | A, dettaglio o chiusura | elementi prefabbricati ad anello impilati al sole, Berna |
 | `esterne/unsplash-mFmRXUBb11g-gomezangel-galleria-zurigo.jpg` | https://unsplash.com/photos/mFmRXUBb11g | Ricardo Gomez Angel (@rgaleriacom) | Unsplash License | 2400x1431 | A e B, chiusura | galleria pedonale in calcestruzzo con luce calda in fondo, Zurigo |
 | `esterne/unsplash-CPI7JAIVaDU-mpikakis-anello-avdou.jpg` | https://unsplash.com/photos/a-couple-of-men-standing-next-to-a-giant-object-CPI7JAIVaDU | Evangelos Mpikakis (@mpikman) | Unsplash License | 2400x1600 | B, cantiere | scudo ad anello di una fresa su una culla bianca, due operai, luce di giorno, Creta |
+| `esterne/pexels-20818874-dvoretskyi-calcestruzzo-chiaro.jpg` | https://www.pexels.com/photo/smooth-gray-concrete-texture-20818874/ | Артем Дворецкий (@834934396) | Pexels, Free | 3200x3200 (originale 5000x5000) | apertura della home finale | superficie di calcestruzzo chiaro con pori e grana fine, luce piatta. Scaricata il 24/10/2026, licenza controllata sulla pagina, non segnata come generata dall'IA, non presente nei CREDITI.md delle altre home |
 
 Scaricate da images.pexels.com e images.unsplash.com con curl, alla larghezza di 2400 px.
 
@@ -24,9 +25,9 @@ Scaricate da impreservicesrl.it il 24/10/2026: elenco, misure e voti in `_prova/
 
 ## Uso nella home finale (sito/img/)
 
-- `galleria-*`: Mishin, Pexels 11424325 (sezione Easy Click, al posto della galleria di Sharma del prototipo).
-- `pozzo-*`: Ballıdağ, Pexels 16227437 (referenze).
+- `sez-sx-*`, `sez-dx-*`, `sez-dx-b-*` (apertura): i due conci sono la superficie di calcestruzzo di Dvoretskyi, Pexels 20818874 (due ritagli diversi, grana tenuta, macchie larghe tolte, tono caldo); il connettore Easy Click Smart è reso dallo script `_prova/script/sezione_img.py` come solido di rivoluzione, con i profili misurati sui disegni CAD dell'azienda (`12-bussola-smart.png`, `13-asm-smart.jpg`, `14-perno-smart.png`) e il colore nero dei loro render (`34/35/36-Senza-nome`). Nessuna immagine generata dall'IA.
+- `galleria-*`: Mishin, Pexels 11424325 (sezione Easy Click).
 - `viadotto-*`: Nagda, Pexels 27808651 (ponti e viadotti).
 - `scudo-*`: Mpikakis, Unsplash CPI7JAIVaDU (chiusura).
-- `ec-*`: disegni CAD dell'azienda (`13-asm-smart.jpg`, `14-perno-smart.png`, `12-bussola-smart.png`), rielaborati.
 - `logo-simbolo-*`: simbolo dell'azienda (`logo-impreservice-icona-blu-1000.png`).
+- Non più in pagina: il pozzo di Ballıdağ (Pexels 16227437) e i livelli `ec-*` ricavati dai disegni CAD.

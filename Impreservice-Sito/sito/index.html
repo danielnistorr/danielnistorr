@@ -48,39 +48,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blu);outline-offset
 .testata .tel{font-size:16px;font-weight:500;text-decoration:none}
 .apri-menu{display:none;font:inherit}
 
-/* Apertura: il pezzo in luce */
-.apertura{position:relative;height:clamp(660px,calc(100svh - 88px),900px);overflow:clip;background:radial-gradient(52% 62% at 64% 54%,var(--carta-luce) 0%,var(--carta) 72%)}
-.apertura h1{position:relative;z-index:2;margin:0;padding-top:clamp(36px,5vh,60px);font-weight:300;font-size:clamp(52px,8.4vw,124px);line-height:.94;letter-spacing:-.035em}
-.apertura h1 span{display:block}
-.tavola-pezzo{position:absolute;right:24px;top:clamp(104px,13vh,124px);width:69%;aspect-ratio:1267/824;margin:0}
-.parte,.assieme{position:absolute;inset:0}
-.parte img,.assieme img{position:absolute;inset:0;width:100%;height:100%}
-.parte{transition:transform .3s cubic-bezier(.55,0,.2,1)}
-.pezzo[data-stato="aperto"] .parte.sx{transform:translate(-17.860%,12.897%)}
-.pezzo[data-stato="aperto"] .parte.dx{transform:translate(17.860%,-12.897%)}
-.pezzo:not(.in-pezzi) .parte img{visibility:hidden}
-.pezzo.in-pezzi .assieme{visibility:hidden}
-
-/* legende: punto sul pezzo, filo sottile, numero e nome */
-.leg{position:absolute;left:var(--x);top:var(--y);width:0;height:0;font-size:15px;line-height:1;white-space:nowrap;--l:72px}
-.leg i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px var(--carta-luce)}
-.leg .f{position:absolute;background:var(--inchiostro)}
-.leg em{position:absolute;font-style:normal;display:flex;gap:7px;align-items:baseline}
-.leg b{font-weight:400;font-variant-numeric:tabular-nums;color:var(--grigio)}
-.leg.sx .f{right:6px;top:0;width:var(--l);height:1px}
-.leg.sx em{right:calc(var(--l) + 16px);top:-7px}
-.leg.su .f{left:0;bottom:6px;width:1px;height:var(--l)}
-.leg.su em{left:10px;bottom:calc(var(--l) - 8px)}
-.leg.su.a-sx em{left:auto;right:10px}
-
-.banco{position:absolute;z-index:2;right:var(--m);bottom:var(--fondo);width:calc((100% - 2*var(--m) - 11*var(--g))/12*4 + 3*var(--g))}
-.banco p{margin:0;font-size:19px;line-height:1.5;text-wrap:pretty}
-.interruttore{display:inline-flex;margin-top:28px;border:1px solid var(--inchiostro);background:var(--carta)}
+/* Apertura: Easy Click in sezione tra due conci */
+.apertura{position:relative;padding-bottom:var(--fondo)}
+.apertura-capo{align-items:end;padding-top:clamp(28px,4.2vh,52px)}
+.apertura h1{grid-column:1/9;margin:0;font-weight:300;font-size:clamp(48px,6.5vw,98px);line-height:.94;letter-spacing:-.035em}
+.apertura h1 .riga{display:block}
+.apertura h1 .sotto{display:block;margin-top:.5em;font-size:clamp(22px,2.15vw,31px);line-height:1.2;letter-spacing:-.012em;font-weight:400;color:var(--grigio)}
+.apertura-testo{grid-column:9/13;margin:0 0 .2em;font-size:18px;line-height:1.5;text-wrap:pretty}
+.sezione{--h:clamp(max(240px,17vw),min(31vw,calc(100svh - 492px)),460px);position:relative;height:var(--h);margin:clamp(24px,3.4vh,36px) 0 0;overflow:clip}
+.strato{position:absolute;top:0;height:100%;transition:transform .32s cubic-bezier(.55,0,.2,1)}
+.strato img{height:100%;width:auto;max-width:none}
+.strato.sx{left:calc(50% - 3 * var(--h));z-index:2}
+.strato.dx{left:50%;z-index:1}
+.strato.dx.b{z-index:3}
+.sezione[data-stato="aperto"] .strato.sx{transform:translateX(calc(var(--h) * -.2835))}
+.sezione[data-stato="aperto"] .strato.dx{transform:translateX(calc(var(--h) * .2835))}
+.apertura-piede{display:flex;justify-content:space-between;align-items:center;gap:16px 40px;margin-top:22px}
+.interruttore{display:inline-flex;border:1px solid var(--inchiostro);background:var(--carta);flex:none}
 .interruttore button{font:inherit;font-size:16px;font-weight:500;line-height:1;color:var(--inchiostro);background:transparent;border:0;padding:0 24px;height:48px;cursor:pointer;transition:background-color .12s,color .12s}
 .interruttore button+button{border-left:1px solid var(--inchiostro)}
 .interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
 .interruttore button[aria-pressed="false"]:hover{background:var(--carta-2)}
-.didascalia-pezzo{position:absolute;z-index:2;left:var(--m);bottom:calc(var(--fondo) + 14px);margin:0;max-width:17em;font-size:14px;line-height:20px;color:var(--grigio)}
+.didascalia-pezzo{margin:0;max-width:34em;font-size:14px;line-height:20px;color:var(--grigio);text-align:right}
 .didascalia-pezzo b{font-weight:500;color:var(--inchiostro)}
 
 /* Sezioni */
@@ -91,11 +80,6 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 .didascalia{font-size:14px;line-height:1.45;color:var(--grigio);margin:14px var(--m) 0}
 .didascalia b{font-weight:500;color:var(--inchiostro)}
 
-/* legenda su foto */
-.foto .leg i{background:var(--carta);box-shadow:0 0 0 3px rgba(20,23,26,.35)}
-.foto .leg .f{background:var(--carta)}
-.foto .leg.su em{background:var(--carta);padding:6px 9px;bottom:calc(var(--l) + 6px);color:var(--inchiostro)}
-.foto .leg.su.a-sx em{left:auto;right:-10px}
 
 .conci{padding-top:136px}
 .conci-capo{margin-bottom:48px}
@@ -122,10 +106,11 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 .tutte{margin:32px 0 0;font-size:16px}
 .tutte a{font-weight:500}
 
-.ponti{padding-top:168px}
-.ponti-testo{margin-top:48px}
-.ponti-testo h2{grid-column:1/8}
-.ponti-testo .testo-grande{grid-column:1/7;margin-top:24px}
+.ponti{margin-top:168px;padding-right:var(--m);align-items:end}
+.ponti-foto{grid-column:1/9;margin:0}
+.ponti-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.ponti-testo{grid-column:10/13;padding-bottom:4px}
+.ponti-testo .testo-grande{margin-top:24px}
 
 /* Chiusura */
 .chiusura{margin-top:168px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-left:var(--m);align-items:start}
@@ -137,7 +122,7 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 .recapiti p{margin:0 0 4px}
 .recapiti .indirizzo{color:var(--grigio);font-size:15px;margin-top:18px}
 .recapiti .nota{color:var(--grigio);font-size:15px;margin-top:18px;max-width:26em}
-.chiusura-foto{grid-column:7/13;margin:0}
+.chiusura-foto{grid-column:6/13;margin:0}
 .chiusura-foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .chiusura-foto figcaption{font-size:14px;line-height:1.45;color:var(--grigio);margin-top:14px}
 
@@ -164,24 +149,25 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 .piede-basso a{color:var(--grigio)}
 .piede-basso a:hover{color:var(--blu)}
 
-@media (prefers-reduced-motion:reduce){.parte{transition:none}}
+@media (prefers-reduced-motion:reduce){.strato{transition:none}}
 
 /* 1920 */
 @media (min-width:1700px){
   :root{--m:max(64px,calc((100vw - 1600px)/2))}
-  .tavola-pezzo{right:calc(var(--m) - 40px);width:min(69%,1120px)}
 }
 /* 1024 */
 @media (max-width:1180px){
   :root{--m:48px}
   .menu{gap:24px}
-  .tavola-pezzo{width:72%;right:12px}
-  .banco p{font-size:17px}
+  .apertura h1{grid-column:1/8}
+  .apertura-testo{grid-column:8/13;font-size:17px}
   .conci-capo h2{grid-column:1/-1}
   .conci-piede .testo-grande{grid-column:1/-1}
   .dati{grid-column:1/-1;margin-top:40px}
   .chiusura-testo{grid-column:1/7}
   .chiusura-foto{grid-column:7/13}
+  .ponti-foto{grid-column:1/8}
+  .ponti-testo{grid-column:8/13}
   .piede-marchio{grid-column:1/-1}
   .piede-col,.piede-col:first-of-type{grid-column:span 3}
 }
@@ -194,19 +180,17 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
   .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:72px;background:var(--carta);padding:8px var(--m) 24px;z-index:10;border-bottom:1px solid var(--filo);font-size:20px}
   .menu.aperto a{padding:12px 0}
   .testata{height:72px}
-  .apertura{height:auto;display:flex;flex-direction:column;padding-bottom:8px;background:radial-gradient(70% 34% at 50% 44%,var(--carta-luce) 0%,var(--carta) 80%)}
-  .apertura h1{padding-top:28px}
-  .tavola-pezzo{position:relative;top:auto;right:auto;width:calc(100% + 2*var(--m));margin:8px calc(-1*var(--m)) 0}
-  .banco{position:static;width:auto;margin-top:28px}
-  .banco p{max-width:36em}
-  .pezzo .leg.sx .f{right:auto;left:0;top:6px;width:1px;height:var(--l)}
-  .pezzo .leg.sx em{right:auto;left:-14px;top:calc(var(--l) + 10px)}
-  .pezzo .parte.sx .leg{--l:max(44px,12.5vw) !important}
-  .didascalia-pezzo{position:static;margin-top:20px}
+  .apertura h1,.apertura-testo{grid-column:1/-1}
+  .apertura-testo{margin-top:24px;max-width:34em}
+  .sezione{--h:min(44vw,360px)}
+  .apertura-piede{flex-direction:column;align-items:flex-start}
+  .didascalia-pezzo{text-align:left}
   .conci{padding-top:112px}
   .conci-capo p{grid-column:1/-1}
   .cantieri-capo h2,.cantieri-capo .testo-grande{grid-column:1/-1}
-  .ponti-testo h2,.ponti-testo .testo-grande{grid-column:1/-1}
+  .ponti{padding-right:0;row-gap:36px}
+  .ponti-foto,.ponti-testo{grid-column:1/-1}
+  .ponti-testo{padding:0 var(--m)}
   .ponti-testo .testo-grande{margin-top:20px}
   .elenchi>div{grid-column:span 6}
   .elenchi>div:last-child{grid-column:1/-1;margin-top:40px}
@@ -224,14 +208,13 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
   body{font-size:17px}
   .marchio img{width:48px}
   .marchio span{font-size:19px}
-  .apertura h1{font-size:clamp(42px,12.6vw,58px);line-height:.98;letter-spacing:-.03em;padding-top:24px}
-  .leg{font-size:13px}
-  .pezzo .leg{--l:30px !important}
-  .leg em{gap:4px}
-  .leg.sx em{right:calc(var(--l) + 12px);top:-6px}
-  .leg i{width:8px;height:8px;left:-4px;top:-4px}
-  .banco p{font-size:17px}
-  .interruttore{display:flex;margin-top:20px}
+  .apertura-capo{padding-top:24px}
+  .apertura h1{font-size:clamp(40px,12.4vw,56px);line-height:.98;letter-spacing:-.03em}
+  .apertura h1 .sotto{font-size:21px;margin-top:.55em}
+  .apertura-testo{font-size:17px;margin-top:20px}
+  .sezione{--h:49vw;margin-top:28px}
+  .apertura-piede{margin-top:20px;gap:16px;align-items:stretch}
+  .interruttore{display:flex}
   .interruttore button{flex:1}
   .didascalia-pezzo{font-size:13px;line-height:19px;max-width:none}
   .conci{padding-top:96px}
@@ -239,11 +222,11 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
   .testo-grande{font-size:18px}
   .conci-capo{margin-bottom:32px}
   .conci-piede{margin-top:40px}
-  .foto .leg{display:none}
   .dati{grid-template-columns:1fr}
   .dati dt{padding-bottom:0}
   .dati dd{border-top:0;padding-top:4px}
-  .cantieri,.ponti{padding-top:104px}
+  .cantieri{padding-top:104px}
+  .ponti{margin-top:104px}
   .elenchi{margin-top:40px}
   .elenchi>div,.elenchi>div:last-child{grid-column:1/-1;margin-top:0}
   .elenchi>div:not(:first-child){margin-top:36px}
@@ -274,7 +257,7 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
     <a href="#easy-click">Easy Click</a>
     <a href="#ponti">Ponti e viadotti</a>
     <a href="#referenze">Referenze</a>
-    <a href="#piede">Azienda</a>
+    <a href="azienda.html">Azienda</a>
     <a href="#contatti">Contatti</a>
   </nav>
   <a class="tel num" href="tel:+3904441939838">+39&nbsp;0444&nbsp;1939838</a>
@@ -282,53 +265,42 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 </header>
 
 <main id="contenuto">
-  <section class="apertura involucro" id="easy-click" aria-labelledby="titolo">
-    <h1 id="titolo"><span>Sistemi di</span> <span>connessione</span></h1>
+  <section class="apertura" id="easy-click" aria-labelledby="titolo">
+    <div class="apertura-capo griglia involucro">
+      <h1 id="titolo"><span class="riga">Sistemi di</span> <span class="riga">connessione</span> <span class="sotto">per conci di galleria</span></h1>
+      <p class="apertura-testo">Easy Click unisce e allinea i conci prefabbricati delle gallerie scavate con la fresa: due bussole, una per concio, e un perno che le aggancia a&nbsp;scatto.</p>
+    </div>
 
-    <figure class="tavola-pezzo pezzo in-pezzi" id="pezzo" data-stato="aperto">
-      <div class="assieme">
-        <img src="img/ec-assieme-2x.webp" srcset="img/ec-assieme-1x.webp 1267w, img/ec-assieme-2x.webp 2534w" sizes="(max-width:860px) 100vw, 69vw" width="1267" height="824" alt="Easy Click Smart agganciato: le due bussole unite dal perno">
-      </div>
-      <div class="parte">
-        <img src="img/ec-perno-2x.webp" srcset="img/ec-perno-1x.webp 1267w, img/ec-perno-2x.webp 2534w" sizes="(max-width:860px) 100vw, 69vw" width="1267" height="824" alt="">
-        <div class="leg su a-sx" style="--x:51.4%;--y:43.6%;--l:84px"><i></i><span class="f"></span><em><b>2</b>Perno</em></div>
-      </div>
-      <div class="parte sx">
-        <img src="img/ec-bussola-sx-2x.webp" srcset="img/ec-bussola-sx-1x.webp 1267w, img/ec-bussola-sx-2x.webp 2534w" sizes="(max-width:860px) 100vw, 69vw" width="1267" height="824" alt="">
-        <div class="leg sx" style="--x:30.9%;--y:55.4%;--l:120px"><i></i><span class="f"></span><em><b>1</b>Bussola</em></div>
-      </div>
-      <div class="parte dx">
-        <img src="img/ec-bussola-dx-2x.webp" srcset="img/ec-bussola-dx-1x.webp 1267w, img/ec-bussola-dx-2x.webp 2534w" sizes="(max-width:860px) 100vw, 69vw" width="1267" height="824" alt="">
-        <div class="leg su a-sx" style="--x:70.1%;--y:28.3%;--l:96px"><i></i><span class="f"></span><em><b>3</b>Bussola</em></div>
-      </div>
-      <figcaption class="vn" id="stato" aria-live="polite">Easy Click Smart aperto: due bussole e il perno separati lungo lo stesso asse.</figcaption>
+    <figure class="sezione" id="pezzo" data-stato="aperto" aria-describedby="stato">
+      <div class="strato dx"><img src="img/sez-dx-1x.webp" srcset="img/sez-dx-1x.webp 1320w, img/sez-dx-2x.webp 2640w" sizes="(max-width:560px) 160vw, (max-width:860px) 132vw, 1380px" width="1320" height="440" alt=""></div>
+      <div class="strato sx"><img src="img/sez-sx-1x.webp" srcset="img/sez-sx-1x.webp 1593w, img/sez-sx-2x.webp 3186w" sizes="(max-width:560px) 190vw, (max-width:860px) 160vw, 1660px" width="1593" height="440" alt="Easy Click Smart in sezione tra due conci di calcestruzzo: le due bussole annegate nei conci e il perno nero che le unisce attraverso il giunto"></div>
+      <div class="strato dx b"><img src="img/sez-dx-b-1x.webp" srcset="img/sez-dx-b-1x.webp 1320w, img/sez-dx-b-2x.webp 2640w" sizes="(max-width:560px) 160vw, (max-width:860px) 132vw, 1380px" width="1320" height="440" alt=""></div>
+      <figcaption class="vn" id="stato" aria-live="polite">Giunto aperto: il perno sporge dal concio di sinistra, il concio di destra è staccato.</figcaption>
     </figure>
 
-    <div class="banco">
-      <p>Easy Click unisce e allinea i conci prefabbricati delle gallerie scavate con la fresa: due bussole, una per concio, e un perno che le aggancia a&nbsp;scatto.</p>
-      <div class="interruttore" role="group" aria-label="Vista del connettore Easy Click">
+    <div class="apertura-piede involucro">
+      <div class="interruttore" role="group" aria-label="Giunto tra i due conci">
         <button type="button" data-mostra="aperto" aria-pressed="true">Aperto</button>
         <button type="button" data-mostra="agganciato" aria-pressed="false">Agganciato</button>
       </div>
+      <p class="didascalia-pezzo"><b>Easy Click Smart</b> in sezione tra due conci, ricostruito dai disegni tecnici Impreservice. Brevetto IT&nbsp;1391815.</p>
     </div>
-    <p class="didascalia-pezzo"><b>Easy Click Smart</b><br>Dai disegni tecnici Impreservice.<br>Brevetto IT&nbsp;1391815.</p>
   </section>
 
   <section class="conci" aria-labelledby="t-conci">
     <div class="conci-capo griglia involucro">
-      <h2 id="t-conci">Conci attrezzati con tecnologia Easy&nbsp;Click</h2>
+      <h2 id="t-conci">Entra senza fatica, tiene serrato e&nbsp;allineato</h2>
       <p>Le bussole stanno nei conci, il perno unisce un concio al vicino quando l'anello si chiude.</p>
     </div>
     <figure class="foto">
       <picture>
         <source media="(max-width:560px)" srcset="img/galleria-tel-700.webp 700w, img/galleria-tel-1000.webp 1000w" sizes="100vw" width="1000" height="1300">
-        <img src="img/galleria-1800.webp" srcset="img/galleria-1200.webp 1200w, img/galleria-1800.webp 1800w, img/galleria-2400.webp 2400w" sizes="100vw" width="2400" height="1000" loading="lazy" alt="Galleria di metropolitana rivestita con anelli di conci in calcestruzzo, i binari in prospettiva">
+        <img src="img/galleria-1800.webp" srcset="img/galleria-1200.webp 1200w, img/galleria-1800.webp 1800w, img/galleria-2400.webp 2400w" sizes="100vw" width="2400" height="1143" loading="lazy" alt="Galleria di metropolitana rivestita con anelli di conci in calcestruzzo, i binari in prospettiva">
       </picture>
-      <div class="leg su a-sx" style="--x:87.3%;--y:34.4%;--l:72px"><i></i><span class="f"></span><em>Giunto tra due conci</em></div>
     </figure>
     <p class="didascalia"><b>Galleria rivestita</b> con anelli di conci prefabbricati. Le linee sottili sono i giunti.</p>
     <div class="conci-piede griglia involucro">
-      <p class="testo-grande">Il perno entra senza fatica e tiene il concio serrato e allineato a quello accanto. Il rivestimento in materiale composito resiste alla corrosione e all'abrasione.</p>
+      <p class="testo-grande">Il perno si inserisce con poco sforzo e tiene il concio serrato e allineato a quello accanto. Il rivestimento in materiale composito dura a lungo e resiste alla corrosione e all'abrasione.</p>
       <dl class="dati">
         <dt>Versioni</dt><dd>Smart, Medium, Magnum</dd>
         <dt>Smart HD</dt><dd>taglio fino a 480&nbsp;kN</dd>
@@ -343,13 +315,6 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
       <h2 id="t-cantieri">Dal Brennero a&nbsp;Brisbane</h2>
       <p class="testo-grande">Metropolitane, gallerie ferroviarie e stradali, condotte d'acqua: Easy Click è nei conci di 42&nbsp;cantieri, dalla galleria di base del Brennero alla Legacy Way di Brisbane.</p>
     </div>
-    <figure class="foto">
-      <picture>
-        <source media="(max-width:560px)" srcset="img/pozzo-tel-700.webp 700w, img/pozzo-tel-1000.webp 1000w" sizes="100vw" width="1400" height="1600">
-        <img src="img/pozzo-1800.webp" srcset="img/pozzo-1200.webp 1200w, img/pozzo-1800.webp 1800w, img/pozzo-2400.webp 2400w" sizes="100vw" width="2400" height="1000" loading="lazy" alt="Pozzo di partenza di una fresa visto dall'alto, con il carroponte giallo">
-      </picture>
-    </figure>
-    <p class="didascalia"><b>Pozzo di partenza di una fresa</b>, visto dall'alto.</p>
     <div class="involucro">
       <div class="elenchi griglia">
         <div>
@@ -386,36 +351,34 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
           </ul>
         </div>
       </div>
-      <p class="tutte"><a href="#referenze">Tutti i 42 cantieri</a></p>
+      <p class="tutte"><a href="referenze.html">Tutti i 42 cantieri</a></p>
     </div>
   </section>
 
-  <section class="ponti" id="ponti" aria-labelledby="t-ponti">
-    <figure class="foto">
-      <picture>
-        <source media="(max-width:560px)" srcset="img/viadotto-tel-700.webp 700w, img/viadotto-tel-1000.webp 1000w" sizes="100vw" width="1400" height="1802">
-        <img src="img/viadotto-1800.webp" srcset="img/viadotto-1200.webp 1200w, img/viadotto-1800.webp 1800w, img/viadotto-2400.webp 2400w" sizes="100vw" width="2400" height="1200" loading="lazy" alt="Intradosso di due viadotti gemelli in calcestruzzo, con le pile in fila">
-      </picture>
+  <section class="ponti griglia" id="ponti" aria-labelledby="t-ponti">
+    <figure class="ponti-foto">
+      <img src="img/viadotto-1200.webp" srcset="img/viadotto-800.webp 800w, img/viadotto-1200.webp 1200w, img/viadotto-1600.webp 1600w" sizes="(max-width:860px) 100vw, 66vw" width="1600" height="1067" loading="lazy" alt="Intradosso di due viadotti gemelli in calcestruzzo, con le pile in fila">
     </figure>
-    <div class="ponti-testo griglia involucro">
+    <div class="ponti-testo">
       <h2 id="t-ponti">Giunti per ponti e&nbsp;viadotti</h2>
-      <p class="testo-grande">Fuori dalla galleria, gli impalcati: ricerca, produzione e posa dei giunti Sapjoint, con la membrana impermeabilizzante Sapeflex. <a href="#ponti">La linea ponti</a></p>
+      <p class="testo-grande">Fuori dalla galleria, gli impalcati: ricerca, produzione e posa dei giunti Sapjoint, con la membrana impermeabilizzante Sapeflex.</p>
+      <p class="tutte"><a href="ponti-e-viadotti.html">La linea ponti</a></p>
     </div>
   </section>
 
   <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
     <div class="chiusura-testo">
-      <h2 id="t-contatti">Copriamo consegne in tutto il&nbsp;mondo</h2>
+      <h2 id="t-contatti">Conci attrezzati con tecnologia Easy&nbsp;Click</h2>
       <div class="recapiti">
         <a class="tel-grande" href="tel:+3904441939838">+39&nbsp;0444&nbsp;1939838</a>
         <p><a href="mailto:info@impreservicesrl.it">info@impreservicesrl.it</a></p>
         <p><a href="mailto:carlo@impreservicesrl.it">carlo@impreservicesrl.it</a></p>
         <p class="indirizzo">Via Serenissima 8/b, 36040 Grisignano di Zocco&nbsp;(VI)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Serenissima+8b+36040+Grisignano+di+Zocco+VI">Apri la mappa</a></p>
-        <p class="nota">Tempi di consegna secondo quantità. Per i costi, scriveteci.</p>
+        <p class="nota">Consegne in tutto il mondo, con tempi secondo quantità. Per i costi, scriveteci.</p>
       </div>
     </div>
     <figure class="chiusura-foto">
-      <img src="img/scudo-1200.webp" srcset="img/scudo-800.webp 800w, img/scudo-1200.webp 1200w, img/scudo-1600.webp 1600w" sizes="(max-width:860px) 100vw, 50vw" width="1600" height="1200" loading="lazy" alt="Lo scudo ad anello di una fresa appoggiato sulla culla di montaggio, con due operai al lavoro">
+      <img src="img/scudo-1200.webp" srcset="img/scudo-800.webp 800w, img/scudo-1200.webp 1200w, img/scudo-1600.webp 1600w" sizes="(max-width:860px) 100vw, 58vw" width="1600" height="1200" loading="lazy" alt="Lo scudo ad anello di una fresa appoggiato sulla culla di montaggio, con due operai al lavoro">
       <figcaption>Scudo di una fresa sulla culla di montaggio.</figcaption>
     </figure>
   </section>
@@ -430,20 +393,20 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
     <div class="piede-col">
       <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Prodotti</button></h2>
       <ul>
-        <li><a href="#easy-click">Easy Click Smart</a></li>
-        <li><a href="#easy-click">Easy Click Medium</a></li>
-        <li><a href="#easy-click">Easy Click Magnum</a></li>
-        <li><a href="#easy-click">Smart HD e Hybrid</a></li>
-        <li><a href="#ponti">Giunti per ponti e viadotti</a></li>
+        <li><a href="easy-click.html#smart">Easy Click Smart</a></li>
+        <li><a href="easy-click.html#medium">Easy Click Medium</a></li>
+        <li><a href="easy-click.html#magnum">Easy Click Magnum</a></li>
+        <li><a href="easy-click.html#smart-hd-hybrid">Smart HD e Hybrid</a></li>
+        <li><a href="ponti-e-viadotti.html">Giunti per ponti e viadotti</a></li>
       </ul>
     </div>
     <div class="piede-col">
       <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Azienda</button></h2>
       <ul>
-        <li><a href="#piede">Azienda e brevetti</a></li>
-        <li><a href="#referenze">Referenze</a></li>
-        <li><a href="#piede">Fiere e notizie</a></li>
-        <li><a href="#contatti">Contatti</a></li>
+        <li><a href="azienda.html">Azienda e brevetti</a></li>
+        <li><a href="referenze.html">Referenze</a></li>
+        <li><a href="notizie.html">Fiere e notizie</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
       </ul>
     </div>
     <div class="piede-col">
@@ -463,7 +426,7 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
   </div>
   <div class="piede-basso">
     <p><span>Impreservice S.r.l.</span><span class="num">P.IVA e C.F. 03495060281</span><span class="num">REA VI 403908</span><span class="num">Capitale sociale 10.000&nbsp;€</span></p>
-    <nav aria-label="Note legali"><a href="https://segnalazioni.impreservicesrl.it" rel="noopener">Segnalazioni D.Lgs. 24/2023</a><a href="#">Privacy</a><a href="#">Cookie</a></nav>
+    <nav aria-label="Note legali"><a href="https://segnalazioni.impreservicesrl.it" rel="noopener">Segnalazioni D.Lgs. 24/2023</a><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></nav>
   </div>
 </footer>
 
@@ -471,19 +434,12 @@ h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;le
 (function(){
   var pezzo=document.getElementById('pezzo'), stato=document.getElementById('stato');
   var bottoni=document.querySelectorAll('[data-mostra]');
-  var testi={aperto:'Easy Click Smart aperto: due bussole e il perno separati lungo lo stesso asse.',agganciato:'Easy Click Smart agganciato: le due bussole unite dal perno.'};
-  var lento=window.matchMedia('(prefers-reduced-motion: reduce)');
-  var attesa=null;
-  function fine(){ if(pezzo.getAttribute('data-stato')==='agganciato') pezzo.classList.remove('in-pezzi'); }
+  var testi={aperto:'Giunto aperto: il perno sporge dal concio di sinistra, il concio di destra è staccato.',agganciato:'Giunto chiuso: i due conci sono a contatto e il perno è agganciato nelle due bussole.'};
   bottoni.forEach(function(b){
     b.addEventListener('click',function(){
       var v=b.getAttribute('data-mostra');
       if(v===pezzo.getAttribute('data-stato')) return;
-      clearTimeout(attesa);
-      pezzo.classList.add('in-pezzi');
-      void pezzo.offsetWidth;
       pezzo.setAttribute('data-stato',v);
-      if(v==='agganciato') attesa=setTimeout(fine,lento.matches?0:320);
       bottoni.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
       stato.textContent=testi[v];
     });
