@@ -35,3 +35,7 @@ Note d'uso:
 - Diecasting Mould è l'account di un fornitore di pressofusi: nessun marchio è visibile nell'inquadratura.
 - Escalante: su un getto si legge una sigla di stampo piccola e sfocata, nessun marchio commerciale.
 - Grieveson: il file è morbido al 100% (compressione visibile); va bene a mezza pagina, non a tutto schermo.
+
+## Uso nella home finale (`sito/`)
+
+Repertorio usato: Diecasting Mould (apertura, carter isolato sul fondo della pagina), Grieveson (tappa Trasporto), Escalante (chiusura). Dal sito Progecom: forno a crogiolo `617993_63c4b918…`, degasaggio `617993_22fb7a2c…`, rete `617993_3b181aec…`, pistone `617993_dc2abcaa…`, valigetta `4a6a7c_da1722af…`, bocca di forno `4a6a7c_804c276f…`, lingotti STEMIN `4a6a7c_dc8cdae2…` (foto di STEMIN S.p.A., consenso da chiedere), logo `logo-simbolo-738.png`. Trattamenti in `_prova/script/finale_img.py`; nessuna foto nuova scaricata.
