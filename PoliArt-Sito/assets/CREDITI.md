@@ -37,4 +37,4 @@ Scaricate il 24/10/2026 dalla libreria media di WordPress (`/wp-json/wp/v2/media
 
 ## Home finale (`sito/`)
 
-Usa solo foto di Poli-Art da `originali/` (Face-of-GOD, Face-of-GOD2, Oggetti2, 3Db, Pallone1, CorniciORO4, Pawson3, Pawson2) e il loro logo. Nessuna foto di `esterne/`. Carattere Mona Sans (SIL Open Font License 1.1) in `fonts/`.
+Usa solo foto di Poli-Art da `originali/` (Face-of-GOD, Face-of-GOD2 specchiata, Oggetti2, 3Db, Chesslong, CorniciORO4, Pawson3, Pallone1) e il loro logo. Nessuna foto di `esterne/`. Carattere Mona Sans (SIL Open Font License 1.1) in `fonts/`.
