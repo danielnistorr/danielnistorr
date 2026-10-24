@@ -26,3 +26,11 @@ Tutte da Pexels, licenza Pexels ("Free" letta sulla pagina di ogni foto il 24/10
 Avvertenze:
 - Sono segnaposto d'atmosfera: nessuna mostra un prodotto Rizzi. Il protagonista della home deve restare una bottiglia vera loro (vedi `01-analisi.md`, sez. 4 e 5).
 - Scartate: le foto Pexels di bottiglie di marchi riconoscibili (Jägermeister, Disaronno, Aperol, Licor 43, Amarula), presenti in quasi tutti i risultati per "liqueur bottle", e la foto del museo di Heidelberg (29555900) con etichette leggibili di altri.
+
+## Usate nella home finale (sito/img/)
+
+- Bottiglie Felsina, Fernet, Garofano, Pinalpe, Prugna, Punch Arancio e Alchermes: originali dell'azienda (`2024-02-*.png`, `2023-02-bott-alchermes.png`), scontornate e messe in scena con PIL (`_prova/script/finale_img.py`).
+- `spezie-*.jpg`: Sedanur Kunuk, Pexels, licenza Pexels (https://www.pexels.com/photo/culinary-spices-and-orange-slices-on-white-background-30004632/).
+- `chiusura-*.jpg`: Mathias Reding, Pexels, licenza Pexels (https://www.pexels.com/photo/bottle-and-drinking-glasses-with-alcohol-11560692/). Controllata di nuovo il 24/10/2026: l'ID 11560692 non compare nei CREDITI di nessun'altra home della campagna.
+- Loghi: `logo-distilleria-rizzi-scritta-1286x168.png` e `logo-distilleria-rizzi-nero-1500x300.png`, ricolorati in inchiostro.
+- Caratteri (non immagini, per completezza): Zodiak e Switzer, Fontshare, ITF Free Font License, scaricati il 24/10/2026 da api.fontshare.com in `_prova/crawl/fontshare/`.

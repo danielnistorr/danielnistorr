@@ -23,3 +23,13 @@ Licenza verificata sulla pagina di ogni foto il 24/10/2026: Unsplash "Free to us
 | pexels-charoenburi-fogli-stampati-pallet-19843566.jpg | mani che controllano fogli stampati su un pallet in tipografia | wutthichai charoenburi | https://www.pexels.com/photo/man-looking-at-new-printed-papers-19843566/ | Pexels License |
 | pexels-langevin-stampati-pile-studio-10897656.jpg | pile di stampati color crema con titoli in serif, verticale | Mathilde Langevin (@mathilde) | https://www.pexels.com/photo/stacks-of-printed-leaflets-with-an-elegant-font-in-a-studio-10897656/ | Pexels License |
 | pexels-ferbugs-libri-aperti-bn-3525384.jpg | libri aperti impilati, bianco e nero, orizzontale | Ferbugs | https://www.pexels.com/photo/grayscale-photography-of-open-books-3525384/ | Pexels License |
+
+### Aggiunta per la home finale (24/10/2026)
+
+Licenza verificata sulla pagina della foto il 24/10/2026: "Free", Pexels License (https://www.pexels.com/license/), nessun segno di immagine generata (EXIF della pagina: Canon EOS Rebel T6, 20/01/2022). Controllata per ID e autore nei CREDITI.md di tutte le altre home della campagna: non compare. Scaricata da images.pexels.com alla misura originale (3456x5184).
+
+| File | Soggetto | Autore | Pagina | Licenza |
+|---|---|---|---|---|
+| pexels-allecgomes-cartonato-spigolo-10939170.jpg | spigolo di un libro cartonato bianco su un altro con copertina nera, su telo bianco: unghiatura e blocco delle pagine, verticale | Allec Gomes (@allecgomes) | https://www.pexels.com/photo/corner-of-white-book-in-hardcover-binding-10939170/ | Pexels License |
+
+In pagina è usata in monocromia (inchiostro su carta) come apertura, con la didascalia "Foto indicativa". Va sostituita con lo still life di un cartonato stampato da Peruzzo (vedi LEGGIMI.md).

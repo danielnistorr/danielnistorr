@@ -22,3 +22,12 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto: Unsplash "Free to us
 | `esterne/unsplash-eiermann-placca-ottone-NX0ZshMc3N8.jpg` | https://unsplash.com/photos/NX0ZshMc3N8 | Georg Eiermann | Unsplash License | 2400x1597 | targhe | placca ovale in ottone a rilievo "Pollit & Wigzell 1923" su fondo rosso (museo del vapore di Bolton): nome storico ben leggibile, solo come segnaposto |
 
 Scartate: la vetrina di timbri di Anton Borzenkov (Trodat in primo piano), i sigilli di Diana Light e mk. s (buste viste dall'alto, soggetto debole), le foto di Jos Zwaan e Hasan Mrad (già usate nella campagna).
+
+## Originali a piena misura (`assets/esterne/originali-pexels/`)
+
+Scaricati il 24/10/2026 da `images.pexels.com` per il prototipo A della home (le copie da 2400 px non bastavano per i ritagli larghi a 2x). Stesse foto e stessa licenza (Pexels License) delle righe sopra.
+
+| File | Pagina della foto | Autore | Misura |
+|---|---|---|---|
+| `esterne/originali-pexels/pexels-tarazevich-sigillo-carta-5425648-3500.jpg` | https://www.pexels.com/photo/close-up-photo-of-a-stamp-on-a-paper-5425648/ | Anna Tarazevich | 3500x2333 |
+| `esterne/originali-pexels/pexels-tarazevich-punzoni-mani-5963063-3500.jpg` | https://www.pexels.com/photo/hands-holding-stamps-5963063/ | Anna Tarazevich | 3500x2333 |

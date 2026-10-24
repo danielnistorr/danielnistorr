@@ -48,6 +48,7 @@ p{margin:0;text-wrap:pretty}
 .menu a:hover{text-decoration:underline}
 .tel-testata{font-size:16px;font-weight:500;text-decoration:none;padding-left:30px;border-left:1px solid var(--filo);line-height:1.2}
 .apri-menu{display:none}
+.solo-menu{display:none}
 
 /* apertura: la tavola. Il titolo e i nomi a sinistra, la bottiglia ritta sul filo del piano */
 .apertura{position:relative;overflow:hidden}
@@ -61,8 +62,8 @@ p{margin:0;text-wrap:pretty}
 .nomi .g{font-size:14px;font-variant-numeric:tabular-nums lining-nums}
 .nomi button:hover{color:var(--inchiostro)}
 .nomi button[aria-checked="true"]{color:var(--inchiostro);border-bottom-color:var(--rosso)}
-.scheda{grid-column:1 / -1;margin-top:16px;padding-bottom:16px;border-bottom:1px solid var(--inchiostro);font-size:16px;color:var(--grigio);min-height:calc(1.5em + 16px)}
-.scheda span{display:block;max-width:44em}
+.scheda{grid-column:1 / -1;margin-top:14px;padding-bottom:16px;border-bottom:1px solid var(--inchiostro);font-size:16px;line-height:1.5;color:var(--grigio);min-height:calc(3em + 16px);display:flex;align-items:flex-end}
+.scheda span{display:block;max-width:38em}
 .scheda b{color:var(--inchiostro);font-weight:500}
 
 /* la bottiglia: tela 1000x2000, bottiglia alta il 90 %, base al 92,5 % della tela */
@@ -95,7 +96,7 @@ p{margin:0;text-wrap:pretty}
 
 /* laboratorio */
 .laboratorio figure{margin:0}
-.laboratorio img{width:100%;aspect-ratio:18/7;object-fit:cover}
+.laboratorio img{width:100%;aspect-ratio:18/7;max-height:600px;object-fit:cover}
 .laboratorio figcaption{font-size:14px;color:var(--grigio);margin-top:12px}
 .lab-testo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding-top:72px;padding-bottom:132px}
 .lab-testo h2{grid-column:2 / span 8;font-size:clamp(38px,4.3vw,62px);line-height:1.02;letter-spacing:-.02em}
@@ -120,7 +121,7 @@ p{margin:0;text-wrap:pretty}
 /* chiusura */
 .chiusura{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:stretch}
 .chiu-testo{padding:128px var(--m) 112px max(var(--m),calc((100vw - 1440px)/2 + var(--m)));display:flex;flex-direction:column;justify-content:space-between;gap:64px}
-.chiu-testo h2{font-size:clamp(40px,4.3vw,62px);line-height:1.02;letter-spacing:-.022em;max-width:9.6em}
+.chiu-testo h2{font-size:clamp(40px,3.9vw,56px);line-height:1.02;letter-spacing:-.022em;max-width:9.6em}
 .recapiti{font-size:17px;line-height:1.5}
 .recapiti .tel{display:inline-block;font-family:var(--serif);font-size:clamp(36px,3.4vw,48px);line-height:1;letter-spacing:-.01em;text-decoration:none;margin-bottom:22px;font-variant-numeric:lining-nums}
 .recapiti .tel:hover{color:var(--rosso)}
@@ -157,23 +158,25 @@ p{margin:0;text-wrap:pretty}
 /* tablet */
 @media (max-width:1180px){
   .menu{gap:22px}
-  .tavola{right:calc(var(--m) + 196px)}
-  .leg{right:-190px}
-  .leg span{width:150px}
-  .nomi{gap:0 26px}
-  .nomi .n{font-size:25px}
-  .apertura h1,.scelta{grid-column:1 / span 8}
-  .attacco{grid-column:1 / span 7}
+  .tavola{right:calc(var(--m) + 150px)}
+  .leg{right:-150px;font-size:14px}
+  .leg span{width:118px}
+  .nomi{gap:0 24px}
+  .nomi .n{font-size:24px}
+  .apertura h1,.scelta,.attacco{grid-column:1 / span 6}
+  .scheda span{max-width:31em}
 }
 @media (max-width:1000px){
   .menu,.tel-testata{display:none}
   .apri-menu{display:inline-flex;margin-left:auto;align-items:center;border:1px solid var(--inchiostro);background:none;font:inherit;font-size:15px;font-weight:500;padding:9px 16px;cursor:pointer;color:var(--inchiostro)}
   .testata.aperta .menu{display:flex;position:absolute;top:92px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:20px}
   .testata.aperta .menu a{padding:12px 0;border-bottom:1px solid var(--filo)}
+  .testata.aperta .menu .solo-menu{display:block;font-weight:500;border-bottom:0}
   .legende{display:none}
   .tavola{right:var(--m);--h:clamp(640px,calc(100svh - 120px),760px)}
   .apertura .wrap{min-height:900px}
   .apertura h1,.attacco,.scelta{grid-column:1 / span 7}
+  .scheda span{max-width:52%}
   .nomi{grid-template-columns:repeat(2,max-content)}
   .pasticceria .wrap{grid-template-columns:repeat(8,minmax(0,1fr))}
   .pasticceria figure{grid-column:1 / span 3}
@@ -194,7 +197,7 @@ p{margin:0;text-wrap:pretty}
   .logo{width:150px}
   .testata.aperta .menu{top:68px}
   .apri-menu{padding:8px 14px;font-size:15px;min-height:42px}
-  .apertura .wrap{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 196px;column-gap:8px;align-content:start;padding-top:94px;padding-bottom:64px;
+  .apertura .wrap{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 196px;column-gap:8px;align-content:start;padding-top:94px;padding-bottom:36px;
     grid-template-areas:"titolo titolo" "scelta tavola" "scheda scheda" "attacco attacco"}
   .apertura h1{grid-area:titolo;font-size:clamp(42px,13.8vw,56px);line-height:.95;max-width:none}
   .scelta{grid-area:scelta;margin-top:0;align-self:end;padding-bottom:20px}
@@ -204,7 +207,8 @@ p{margin:0;text-wrap:pretty}
   .nomi .g{font-size:13px}
   .tavola{grid-area:tavola;position:relative;right:auto;bottom:auto;--h:440px;height:calc(var(--h) * .932);width:auto;aspect-ratio:auto;margin:14px -30px 0 0;overflow:hidden}
   .tavola img{width:calc(var(--h) / 2);height:var(--h);max-width:none;object-fit:fill}
-  .scheda{grid-area:scheda;margin-top:0;padding:14px 0 0;border-bottom:0;border-top:1px solid var(--inchiostro);font-size:15px;line-height:1.45;min-height:5.9em}
+  .scheda{grid-area:scheda;align-items:flex-start;margin-top:0;padding:14px 0 0;border-bottom:0;border-top:1px solid var(--inchiostro);font-size:15px;line-height:1.45;min-height:5.9em}
+  .scheda span{max-width:none}
   .attacco{grid-area:attacco;margin-top:22px;font-size:17px;max-width:21em}
   .pasticceria{padding:88px 0 84px}
   .pasticceria .wrap{grid-template-columns:1fr}
@@ -224,7 +228,7 @@ p{margin:0;text-wrap:pretty}
   .anni .a{font-size:22px}
   .chiusura{grid-template-columns:1fr}
   .chiu-testo{padding:88px var(--m) 56px;gap:40px}
-  .chiusura figure{min-height:0;aspect-ratio:1/1}
+  .chiusura figure{min-height:0;aspect-ratio:5/4}
   .piede{padding-top:64px}
   .piede-marchio img{width:240px}
   .piede-marchio,.newsletter{grid-column:1 / -1}
@@ -251,6 +255,7 @@ p{margin:0;text-wrap:pretty}
       <a href="#pasticceria">Per la pasticceria</a>
       <a href="#centenario">La storia</a>
       <a href="#contatti">Spaccio e contatti</a>
+      <a class="solo-menu num" href="tel:+390499000053">Chiama lo 049 900 0053</a>
     </nav>
     <a class="tel-testata num" href="tel:+390499000053">049 900 0053</a>
   </div>

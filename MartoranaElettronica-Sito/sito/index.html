@@ -18,7 +18,6 @@
 
 :root{
   --alu:#EEF0EF;      /* pannello in alluminio */
-  --carta:#F7F8F7;
   --ink:#16191C;
   --ink-2:#464C52;
   --filo:#C9CECD;
@@ -59,10 +58,12 @@ h1,h2{font-family:var(--t)}
 .apri{display:none}
 
 /* apertura: il pannello del Mod. 1294/P, le due scritte del titolo sono i due pulsanti */
-.apertura{position:relative;overflow:hidden}
+.apertura{position:relative;overflow:hidden;padding-bottom:120px}
+/* titolo e pannello in un solo blocco largo quanto il titolo: il pannello finisce sotto la "o" finale */
+.ap-blocco{width:fit-content;max-width:100%}
 h1{font-size:148px;line-height:.9;letter-spacing:-.04em;word-spacing:.05em;font-stretch:108%;font-weight:540;margin-top:20px;white-space:nowrap}
 .ap-griglia{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0 40px;margin-top:14px}
-.ap-testo{padding-top:44px;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:25px}
+.ap-testo{padding-top:44px;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:22px}
 .ap-testo .lead{font-size:19px;line-height:1.5}
 .azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
 .btn{display:inline-block;background:var(--blu);color:#fff;text-decoration:none;font-weight:560;font-size:16px;padding:14px 20px;transition:background-color .15s}
@@ -71,8 +72,8 @@ h1{font-size:148px;line-height:.9;letter-spacing:-.04em;word-spacing:.05em;font-
 .link:hover{color:var(--blu)}
 .didascalia{font-size:15px;line-height:1.4;color:var(--ink-2)}
 .didascalia b{color:var(--ink);font-weight:600}
-.macchina{position:relative;margin:-4px 0 0 18px;width:calc(100% - 18px + var(--m) + 88px)}
-@media (min-width:1441px){.macchina{width:calc(100% - 18px + var(--m) + 88px + (100vw - 1440px) / 2)}}
+/* il file e largo 1492 px: mostrato al massimo a 746 px, cosi anche sugli schermi 2x ogni pixel del file vale un pixel */
+.macchina{position:relative;margin:6px -30px 0 0;width:min(746px,calc(100% + 30px));justify-self:end}
 .macchina img{width:100%}
 /* legenda: punto sul pulsante, filetto verticale, parola sotto la macchina */
 .leg{position:absolute;width:0;bottom:4.6%;border-left:1px solid var(--ink)}
@@ -97,14 +98,12 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 .fatti div{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr);gap:var(--g);align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--filo)}
 .fatti dt{font-family:var(--t);font-size:30px;line-height:1.1;font-weight:520;letter-spacing:-.02em;font-stretch:104%}
 .fatti dd{margin:0;font-size:16px;color:var(--ink-2)}
-.archivio{grid-column:10/13;margin:0;justify-self:end}
-.archivio img{width:196px;background:#fff;padding:10px;box-shadow:0 1px 0 rgba(22,25,28,.06)}
-.archivio figcaption{font-size:14px;line-height:1.45;color:var(--ink-2);margin-top:12px;max-width:196px;position:absolute}
-.archivio{position:relative}
+.archivio{grid-column:9/13;margin:0 0 0 48px;align-self:end;display:flex;align-items:flex-end;gap:20px}
+.archivio img{width:150px;flex:none}
+.archivio figcaption{font-size:14px;line-height:1.45;color:var(--ink-2);max-width:200px}
 .archivio figcaption b{color:var(--ink);font-weight:600}
 
 /* le prove */
-.prove{background:var(--carta)}
 .prove-testa{margin-bottom:44px}
 .prove-testa h2{grid-column:1/7}
 .prove-testa p{grid-column:1/6;margin-top:22px;color:var(--ink-2)}
@@ -120,8 +119,8 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 .dettaglio{display:none}
 .voce>button[aria-expanded="true"]+.dettaglio{display:grid}
 .dettaglio{position:absolute;top:0;right:0;width:calc(58.4% - 36px);grid-template-columns:1fr 1fr;gap:0 var(--g);align-content:start}
-.palco{grid-column:1/3;display:flex;align-items:flex-start;justify-content:flex-start;margin-bottom:26px}
-.palco img{max-height:340px;width:auto;max-width:100%}
+.palco{grid-column:1/3;display:flex;align-items:flex-end;justify-content:flex-start;height:280px;margin-bottom:32px}
+.palco img{max-height:280px;width:auto;max-width:min(520px,100%)}
 .dettaglio h3{grid-column:1/3;font-size:28px;letter-spacing:-.015em;margin-bottom:12px}
 .dettaglio .cosa{grid-column:1/2}
 .dettaglio .chi{grid-column:2/3;font-size:16px;color:var(--ink-2)}
@@ -135,16 +134,10 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 .fam-testa h2{grid-column:1/8}
 .fam-testa p{grid-column:1/6;margin-top:22px;color:var(--ink-2)}
 .famiglie{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
-.fam{padding:18px 0;border-bottom:1px solid var(--filo);align-items:center}
-.fam-nome{grid-column:1/5}
-.fam-nome h3{font-size:26px;letter-spacing:-.015em}
-.fam-nome .mod{margin-top:8px;font-size:15px;font-weight:500;color:var(--ink)}
-.fam .prova{grid-column:5/10;color:var(--ink-2);font-size:17px}
-.fam figure{grid-column:10/13;margin:0;justify-self:end;text-align:right}
-.fam img{height:140px;width:auto;margin-left:auto}
-.fam figcaption{font-size:13px;color:var(--ink-2);margin-top:2px}
-.anche{margin-top:28px;font-size:16px;color:var(--ink-2);max-width:52em}
-.anche b{color:var(--ink);font-weight:600}
+.fam{padding:22px 0 21px;border-bottom:1px solid var(--filo);align-items:baseline}
+.fam h3{grid-column:1/4;font-size:24px;letter-spacing:-.015em}
+.fam .mod{grid-column:4/7;font-size:15px;font-weight:500}
+.fam .prova{grid-column:7/13;color:var(--ink-2);font-size:17px}
 
 /* alimentatori e software */
 .energia{overflow:hidden;padding-top:0}
@@ -152,9 +145,9 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 .en-testo{grid-column:1/6;align-self:center}
 .en-testo h2{font-size:52px}
 .en-testo p{margin-top:22px;color:var(--ink-2)}
-.en-foto{grid-column:7/13;margin:0 calc(-1 * var(--m) - 40px) 0 0}
+.en-foto{grid-column:7/13;margin:0;justify-self:end;width:min(484px,100%)}
 .en-foto img{width:100%}
-.en-foto figcaption{font-size:14px;color:var(--ink-2);margin-top:-14px;padding-left:32px}
+.en-foto figcaption{font-size:14px;color:var(--ink-2);margin-top:-6px;padding-left:16px}
 .en-foto figcaption b{color:var(--ink);font-weight:600}
 .software{margin-top:48px}
 .software>h3{grid-column:1/5;font-size:26px;letter-spacing:-.015em}
@@ -188,7 +181,6 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 .pd-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .pd-col a,.pd-col li{color:#DCE6F6}
 .pd-c1{grid-column:5/7}.pd-c2{grid-column:7/9}.pd-c3{grid-column:9/11}.pd-c4{grid-column:11/13}
-.pd-col .grande{font-size:20px;font-weight:560;color:#fff}
 .pd-basso{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-top:56px;padding:22px 0 28px;border-top:1px solid rgba(255,255,255,.32);font-size:14px;color:#DCE6F6}
 .pd-basso nav{display:flex;gap:24px}
 .pd-basso a{color:#DCE6F6}
@@ -204,10 +196,13 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   h2{font-size:46px}
   .azienda h2{font-size:40px}
   .fatti dt{font-size:24px}
-  .archivio img{width:200px}
-  .archivio figcaption{max-width:200px}
-  .palco{height:320px}.palco img{max-height:320px}
-  .fam img{height:130px}
+  .archivio{flex-direction:column;align-items:flex-start;gap:12px}
+  .archivio figcaption{max-width:180px}
+  .dettaglio{grid-template-columns:minmax(0,1fr)}
+  .dettaglio .cosa,.dettaglio .chi{grid-column:1/-1}
+  .dettaglio .chi{margin-top:14px}
+  .palco{height:250px}.palco img{max-height:250px}
+  .fam h3{grid-column:1/5}.fam .mod{grid-column:5/8}.fam .prova{grid-column:8/13}
   .en-testo{grid-column:1/7}.en-testo h2{font-size:42px}
   .en-foto{grid-column:7/13}
   .ch-testo h2{font-size:46px}
@@ -225,14 +220,15 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   .testata .wrap{height:72px}
   .tel-top{margin-left:auto}
   h1{font-size:84px;white-space:normal}
+  .apertura{padding-bottom:0}
+  .ap-blocco{width:auto}
   .ap-griglia{grid-template-columns:minmax(0,1fr)}
-  .macchina{order:-1;margin:24px 0 40px -8px;width:calc(100% + var(--m) + 70px)}
+  .macchina{order:-1;margin:24px 0 40px -8px;width:min(746px,calc(100% + var(--m) + 70px));justify-self:start}
   .ap-testo{padding:0 0 64px}
   .didascalia{display:none}
   .az-sx,.archivio{grid-column:1/-1}
-  .archivio{justify-self:start;margin-top:48px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:end}
-  .archivio img{width:150px;padding:7px}
-  .archivio figcaption{position:static}
+  .archivio{justify-self:start;margin:48px 0 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:end}
+  .archivio img{width:120px}
   .archivio figcaption{margin-top:0;max-width:22em}
   .prove-testa h2,.prove-testa p,.fam-testa h2,.fam-testa p{grid-column:1/-1}
   .prove-testa p,.fam-testa p{max-width:34em}
@@ -240,13 +236,11 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   .dettaglio{position:static;width:auto;padding:4px 0 28px}
   .palco{height:240px;margin-bottom:20px}.palco img{max-height:240px}
   .prove-corpo{min-height:0}
-  .fam-nome{grid-column:1/7}
-  .fam .prova{grid-column:1/-1;grid-row:2;margin-top:12px}
-  .fam figure{grid-column:7/13;grid-row:1}
-  .fam img{height:120px}
+  .fam h3{grid-column:1/7}.fam .mod{grid-column:7/13}
+  .fam .prova{grid-column:1/-1;margin-top:8px}
   .en-testo,.en-foto,.software>h3,.sw{grid-column:1/-1}
-  .en-foto{margin:40px calc(-1 * var(--m)) 0 0}
-  .en-foto figcaption{padding-left:0;margin-top:-6px}
+  .en-foto{margin:40px 0 0;justify-self:start}
+  .en-foto figcaption{padding-left:0}
   .software>h3{margin-bottom:18px}
   .ch-griglia{grid-template-columns:minmax(0,1fr)}
   .ch-testo{padding:96px var(--m) 56px;gap:48px}
@@ -271,8 +265,8 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   .azienda h2{font-size:31px;line-height:1.12}
   .fatti div{grid-template-columns:minmax(0,1fr);gap:2px}
   .fatti dt{font-size:22px}
-  .archivio{grid-template-columns:118px minmax(0,1fr)}
-  .archivio img{width:118px}
+  .archivio{grid-template-columns:101px minmax(0,1fr)}
+  .archivio img{width:101px}
   .prove-testa{margin-bottom:36px}
   .voce>button{font-size:18px;padding:15px 0}
   .dettaglio{grid-template-columns:minmax(0,1fr)}
@@ -281,15 +275,13 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   .dettaglio .chi{margin-top:14px}
   .palco{height:200px}.palco img{max-height:200px}
   .fam-testa{margin-bottom:32px}
-  .fam{padding:24px 0}
-  .fam-nome,.fam figure,.fam .prova{grid-column:1/-1}
-  .fam figure{grid-row:1;justify-self:start;text-align:left;margin-bottom:14px}
-  .fam img{height:112px;margin-left:0}
-  .fam-nome{grid-row:2}
-  .fam .prova{grid-row:3;font-size:16px}
-  .fam-nome h3{font-size:23px}
+  .fam{padding:18px 0 17px}
+  .fam h3,.fam .mod,.fam .prova{grid-column:1/-1}
+  .fam h3{font-size:22px}
+  .fam .mod{margin-top:4px;font-size:14px}
+  .fam .prova{font-size:16px;margin-top:6px}
   .en-testo h2{font-size:34px}
-  .en-foto{margin:36px calc(-1 * var(--m) - 60px) 0 0}
+  .en-foto{margin:32px 0 0;width:100%}
   .software{margin-top:56px}
   .sw li{grid-template-columns:minmax(0,1fr);gap:4px}
   .ch-testo{padding:88px var(--m) 48px}
@@ -333,11 +325,12 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
   <div class="wrap">
+    <div class="ap-blocco">
     <h1 id="titolo">Corretto o scarto</h1>
     <div class="ap-griglia">
       <div class="ap-testo">
         <div>
-          <p class="lead">Stazioni di collaudo su misura per le linee di produzione, con hardware e software nostri. Progettate e costruite a Mestrino dal&nbsp;1973.</p>
+          <p class="lead">Stazioni di collaudo su misura per le linee di produzione, con hardware e software nostri. Progettate e costruite a Mestrino. Dal&nbsp;1973.</p>
           <div class="azioni">
             <a class="btn" href="tel:+390499003655">Chiama 049&nbsp;9003655</a>
             <a class="link" href="mailto:martorana@martoranaelettronica.com">Scrivete una email</a>
@@ -346,10 +339,11 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
         <p class="didascalia"><b>Mod.&nbsp;1294/P</b>, stazione da banco</p>
       </div>
       <figure class="macchina">
-        <img src="img/mod1294p-1100.webp" srcset="img/mod1294p-760.webp 760w, img/mod1294p-1100.webp 1100w, img/mod1294p-1492.webp 1492w" sizes="(max-width:600px) 118vw, (max-width:900px) 110vw, (max-width:1200px) 66vw, (max-width:1440px) 1100px, 1492px" width="1492" height="836" alt="Stazione di collaudo Mod. 1294/P: pannello in alluminio con due display rossi, spie delle prove in corso, presa per l'apparecchio da provare e i pulsanti verde Corretto e rosso Scarto" fetchpriority="high">
+        <img src="img/mod1294p-760.webp" srcset="img/mod1294p-760.webp 760w, img/mod1294p-1100.webp 1100w, img/mod1294p-1492.webp 1492w" sizes="(max-width:600px) 118vw, 746px" width="1492" height="836" alt="Stazione di collaudo Mod. 1294/P: pannello in alluminio con due display rossi, spie delle prove in corso, presa per l'apparecchio da provare e i pulsanti verde Corretto e rosso Scarto" fetchpriority="high">
         <span class="leg leg-c"><span>Corretto</span></span>
         <span class="leg leg-s"><span>Scarto</span></span>
       </figure>
+    </div>
     </div>
   </div>
 </section>
@@ -368,7 +362,7 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
       </dl>
     </div>
     <figure class="archivio">
-      <img src="img/archivio-anni70-600.jpg" srcset="img/archivio-anni70-300.jpg 300w, img/archivio-anni70-600.jpg 600w" sizes="(max-width:600px) 118px, (max-width:900px) 150px, 196px" width="600" height="1607" alt="Stazione di collaudo degli anni Settanta in un mobile marrone, con monitor e strumenti a pannello" loading="lazy">
+      <img src="img/archivio-anni70-202.jpg" srcset="img/archivio-anni70-202.jpg 202w, img/archivio-anni70-404.jpg 404w" sizes="(max-width:600px) 101px, (max-width:900px) 120px, 150px" width="202" height="541" alt="Stazione di collaudo degli anni Settanta in un mobile marrone, con monitor e strumenti a pannello" loading="lazy">
       <figcaption><b>Anni '70.</b> Stazione di collaudo realizzata per la Zanussi Grandi Impianti.</figcaption>
     </figure>
   </div>
@@ -383,12 +377,12 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
     <div class="prove-corpo">
       <ul class="voci">
         <li class="voce">
-          <button type="button" aria-expanded="true" aria-controls="p1"><i class="led" aria-hidden="true"></i>Continuità di terra</button>
+          <button type="button" aria-expanded="false" aria-controls="p1"><i class="led" aria-hidden="true"></i>Continuità di terra</button>
           <div class="dettaglio" id="p1">
             <div class="palco"><img src="img/m0586tn-900.webp" srcset="img/m0586tn-520.webp 520w, img/m0586tn-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="475" alt="Modulo 0586_TN per la prova di terra" loading="lazy"></div>
             <h3>Continuità di terra</h3>
             <p class="cosa">Verifica che le parti metalliche accessibili siano collegate al conduttore di protezione e misura la resistenza del circuito di terra.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_TN, Mod.&nbsp;1294/P</p>
+            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_TN</p>
           </div>
         </li>
         <li class="voce">
@@ -397,7 +391,7 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
             <div class="palco"><img src="img/m0586rn-900.webp" srcset="img/m0586rn-520.webp 520w, img/m0586rn-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="475" alt="Modulo 0586_RN per la prova di rigidità dielettrica" loading="lazy"></div>
             <h3>Rigidità dielettrica</h3>
             <p class="cosa">Applica un'alta tensione tra le parti attive e la carcassa e controlla che l'isolamento regga senza scariche.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_RN, Mod.&nbsp;1294/P con la tensione di prova in kV a vista</p>
+            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_RN</p>
           </div>
         </li>
         <li class="voce">
@@ -406,16 +400,16 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
             <div class="palco"><img src="img/m1200inv-531.webp" srcset="img/m1200inv-360.webp 360w, img/m1200inv-531.webp 531w" sizes="(max-width:900px) 40vw, 18vw" width="531" height="1218" alt="Stazione di collaudo Mod. 1200 Inverter, armadio blu a rack" loading="lazy"></div>
             <h3>Isolamento elettrico</h3>
             <p class="cosa">Misura la resistenza d'isolamento tra il circuito di alimentazione e le parti che si possono toccare.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, nella foto la versione Inverter; Mod.&nbsp;1294/P</p>
+            <p class="chi"><b>La fa</b>Mod.&nbsp;1200, nella foto la versione Inverter</p>
           </div>
         </li>
         <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p4"><i class="led" aria-hidden="true"></i>Dispersione</button>
+          <button type="button" aria-expanded="true" aria-controls="p4"><i class="led" aria-hidden="true"></i>Dispersione</button>
           <div class="dettaglio" id="p4">
             <div class="palco"><img src="img/m0586ad-900.webp" srcset="img/m0586ad-520.webp 520w, img/m0586ad-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="558" alt="Modulo 0586_AD per la prova di dispersione, con display rossi di tensione e corrente" loading="lazy"></div>
             <h3>Dispersione</h3>
             <p class="cosa">Misura la corrente che passa verso terra con l'apparecchio acceso alla tensione di alimentazione.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_AD, Mod.&nbsp;1294/P</p>
+            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_AD</p>
           </div>
         </li>
         <li class="voce">
@@ -467,28 +461,12 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
       <p>Stazioni computerizzate per chi produce elettrodomestici, piani cottura, saldatrici e apparecchi illuminanti.</p>
     </div>
     <ul class="famiglie">
-      <li class="fam griglia">
-        <div class="fam-nome"><h3>Sicurezza elettrica</h3><p class="mod">Mod.&nbsp;1200, Mod.&nbsp;1000, serie /NET, Mod.&nbsp;1294A</p></div>
-        <p class="prova">Continuità di terra, rigidità dielettrica, isolamento, dispersione, assorbimento monofase, bifase e trifase, differenziale. Con l'inverter, prove a <span class="nb">120&nbsp;V</span>, <span class="nb">240&nbsp;V</span> e <span class="nb">208&nbsp;V</span> a <span class="nb">60&nbsp;Hz</span>.</p>
-        <figure><img src="img/fam-sicurezza-464.webp" srcset="img/fam-sicurezza-232.webp 232w, img/fam-sicurezza-464.webp 464w" sizes="152px" width="464" height="488" alt="Stazione di collaudo Mod. 1200 Orizzontale: armadio blu con monitor, cassetto tastiera e moduli di prova" loading="lazy"><figcaption>Mod.&nbsp;1200 Orizzontale</figcaption></figure>
-      </li>
-      <li class="fam griglia">
-        <div class="fam-nome"><h3>Tenuta e portata</h3><p class="mod">Mod.&nbsp;1200G, M0704N</p></div>
-        <p class="prova">Piani cottura a gas fino a <span class="nb">70&nbsp;mbar</span> e <span class="nb">1200&nbsp;l/h</span>, con la portata corretta in funzione della pressione. Circuiti idraulici: perdite fino a <span class="nb">396&nbsp;cc/h</span>, precisione <span class="nb">0,1&nbsp;%FS</span>.</p>
-        <figure><img src="img/fam-tenuta-523.webp" srcset="img/fam-tenuta-261.webp 261w, img/fam-tenuta-523.webp 523w" sizes="172px" width="523" height="488" alt="Stazione portatile M0704N verde acqua per la tenuta dei circuiti idraulici" loading="lazy"><figcaption>M0704N</figcaption></figure>
-      </li>
-      <li class="fam griglia">
-        <div class="fam-nome"><h3>Saldatrici</h3><p class="mod">Mod.&nbsp;1200DB, 1200rs, 0586, 0103, 200</p></div>
-        <p class="prova">Stazioni computerizzate per saldatrici a Tig, Mig, plasma e inverter, per trascinatori e caricabatterie.</p>
-        <figure><img src="img/fam-saldatrici-369.webp" srcset="img/fam-saldatrici-184.webp 184w, img/fam-saldatrici-369.webp 369w" sizes="121px" width="369" height="488" alt="Sistema di collaudo per saldatrici: armadio con schermo, supporto arancione e pedale" loading="lazy"><figcaption>Sistema per saldatrici</figcaption></figure>
-      </li>
-      <li class="fam griglia">
-        <div class="fam-nome"><h3>Apparecchi illuminanti</h3><p class="mod">M0524-LED, Mod.&nbsp;1294A</p></div>
-        <p class="prova">La M0524-LED è nata con i principali produttori del settore illuminotecnico: prova DALI, DALI2, DMX512, <span class="nb">0-10&nbsp;V</span> e <span class="nb">1-10&nbsp;V</span>.</p>
-        <figure><img src="img/fam-led-897.webp" srcset="img/fam-led-448.webp 448w, img/fam-led-897.webp 897w" sizes="294px" width="897" height="488" alt="Stazione M0524-LED con il modulo di comando a pedale" loading="lazy"><figcaption>M0524-LED</figcaption></figure>
-      </li>
+      <li class="fam griglia"><h3>Sicurezza elettrica</h3><p class="mod">Mod.&nbsp;1200, Mod.&nbsp;1000, serie /NET, Mod.&nbsp;1294A</p><p class="prova">Dal Mod.&nbsp;1200 personalizzabile al Mod.&nbsp;1294A compatto, tutto in uno. Con l'inverter, prove a <span class="nb">120</span>, <span class="nb">240</span> e <span class="nb">208&nbsp;V</span> a <span class="nb">60&nbsp;Hz</span>.</p></li>
+      <li class="fam griglia"><h3>Tenuta e portata</h3><p class="mod">Mod.&nbsp;1200G, M0704N</p><p class="prova">Collaudo in linea dei piani di cottura a gas e della tenuta dei circuiti idraulici.</p></li>
+      <li class="fam griglia"><h3>Saldatrici</h3><p class="mod">Mod.&nbsp;1200DB, 1200rs, 0586, 0103, 200</p><p class="prova">Saldatrici a Tig, Mig, plasma e inverter, trascinatori e caricabatterie.</p></li>
+      <li class="fam griglia"><h3>Apparecchi illuminanti</h3><p class="mod">M0524-LED, Mod.&nbsp;1294A</p><p class="prova">DALI, DALI2, DMX512, <span class="nb">0-10&nbsp;V</span> e <span class="nb">1-10&nbsp;V</span>. La M0524-LED è nata con i principali produttori del settore.</p></li>
+      <li class="fam griglia"><h3>Anche su misura</h3><p class="mod">Apparecchiature speciali</p><p class="prova">Prova surge per il filo smaltato, impianti refrigeranti con alimentatori fino a <span class="nb">65&nbsp;kVA</span>, simulatori guasti, basi pneumatiche porta pezzo.</p></li>
     </ul>
-    <p class="anche"><b>Su misura anche:</b> la prova surge a tensione progressiva per le falle nel filo smaltato, le stazioni per impianti refrigeranti con alimentatori fino a <span class="nb">65&nbsp;kVA</span>, i simulatori guasti per le verifiche periodiche e le basi pneumatiche porta pezzo.</p>
   </div>
 </section>
 
@@ -538,7 +516,7 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
     <div class="griglia pd-alto">
       <div class="pd-marchio">
         <img src="img/logo-bianco.png" width="471" height="143" alt="Martorana Elettronica S.r.l." loading="lazy">
-        <p>Stazioni di collaudo su misura per l'industria, progettate e costruite a Mestrino dal&nbsp;1973.</p>
+        <p>Stazioni di collaudo su misura per l'industria, progettate e costruite a Mestrino. Dal&nbsp;1973.</p>
       </div>
       <nav class="pd-col pd-c1" aria-labelledby="pd-az">
         <h2 id="pd-az">Azienda</h2>
@@ -572,9 +550,8 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
       <div class="pd-col pd-c4">
         <h2>Contatti</h2>
         <ul>
-          <li><a class="grande" href="tel:+390499003655">049&nbsp;9003655</a></li>
+          <li><a href="tel:+390499003655">049&nbsp;9003655</a></li>
           <li><a href="mailto:martorana@martoranaelettronica.com">martorana@<wbr>martoranaelettronica.com</a></li>
-          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Torino+10%2FB+35035+Mestrino+PD">Via Torino 10/B<br>35035 Mestrino (PD)</a></li>
         </ul>
       </div>
     </div>
@@ -590,7 +567,10 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
   var bottoni=[].slice.call(document.querySelectorAll('.voce>button'));
   bottoni.forEach(function(b,i){
     b.addEventListener('click',function(){
+      var prima=b.getBoundingClientRect().top;
       bottoni.forEach(function(x){x.setAttribute('aria-expanded',x===b?'true':'false')});
+      /* a una colonna il dettaglio sopra si chiude: si compensa lo scorrimento, la riga resta dov'era */
+      if(window.innerWidth<=900){var d=b.getBoundingClientRect().top-prima;if(Math.abs(d)>1)window.scrollBy(0,d);}
     });
     b.addEventListener('keydown',function(e){
       var j=null;

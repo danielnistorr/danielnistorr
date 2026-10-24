@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Belletti Ascensori, Mestrino</title>
 <meta name="description" content="Belletti progetta, costruisce, installa e mantiene ascensori, montacarichi e piattaforme elevatrici dal 1908, anche negli edifici storici. Mestrino, Padova.">
-<link rel="preload" href="fonts/radio-canada-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Radio Canada, Google Fonts, SIL Open Font License 1.1: famiglia variabile (peso 300-700, larghezza 75-100 %) */
 @font-face{font-family:"Radio Canada";font-style:normal;font-weight:300 700;font-stretch:75% 100%;font-display:swap;
@@ -54,14 +53,14 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 .menu{display:flex;gap:36px;list-style:none;margin:0;padding:0}
 .menu a,.tel-testata{text-decoration:none;font-size:16px;letter-spacing:.005em}
 .menu a:hover,.tel-testata:hover{color:var(--verde);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
-.tel-testata{font-weight:500}
+.tel-testata{font-weight:500;white-space:nowrap}
 .apri-menu{display:none}
 
 /* apertura: la loro frase come un architrave, sotto un solo lavoro vero al centro, alla sua misura reale */
-.apertura{padding-top:116px}
-.apertura h1{font-stretch:75%;font-weight:300;font-size:clamp(52px,7.2vw,104px);line-height:.94;letter-spacing:-.014em;text-align:center}
+.apertura{padding-top:112px}
+.apertura h1{font-stretch:75%;font-weight:300;font-size:clamp(52px,7vw,100px);line-height:.94;letter-spacing:-.014em;text-align:center}
 .apertura h1 .riga{display:block}
-.opera{width:min(900px,100%);margin:40px auto 0}
+.opera{width:min(900px,100%);margin:36px auto 0}
 .opera img{width:100%}
 .opera figcaption{margin-top:14px;font-size:14px;line-height:1.5;color:var(--grigio);display:flex;justify-content:space-between;align-items:baseline;gap:32px}
 .opera figcaption strong{color:var(--inchiostro);font-weight:500}
@@ -74,7 +73,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
   padding:16px 26px 17px;transition:background-color .15s}
 .bottone:hover{background:var(--verde-scuro)}
 .guasti{font-size:16px;color:var(--grigio)}
-.guasti a{color:var(--inchiostro);font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.guasti a{display:inline-block;padding:3px 0;color:var(--inchiostro);font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
 .guasti a:hover{color:var(--verde)}
 
 /* storia: un solo racconto, senza colonne */
@@ -133,7 +132,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 .recapiti p+p{margin-top:16px}
 .recapiti .et{display:block;font-size:14px;color:var(--grigio)}
 .recapiti .uffici{font-size:32px;line-height:1.15;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid currentColor}
-.recapiti a{text-underline-offset:4px;text-decoration-thickness:1px}
+.recapiti a{display:inline-block;padding:3px 0;text-underline-offset:4px;text-decoration-thickness:1px}
 .recapiti a:hover{color:var(--verde)}
 
 /* piede */
@@ -213,15 +212,16 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
   .misure dd small{font-size:16px}
   .progetto{margin-top:28px}
   .famiglie{grid-template-columns:1fr;row-gap:28px;margin-top:40px}
-  .servizi{grid-template-columns:1fr;row-gap:22px}
-  .pronto{margin-top:36px}
-  .pronto a{font-size:34px}
+  .assistenza .dx{margin-top:32px}
+  .pronto a{font-size:36px}
   .chiusura figure{margin-top:40px}
   .chiusura figure img{aspect-ratio:4/5}
   .recapiti .uffici{font-size:30px}
   .piede{padding-top:52px}
   .piede .marchio img{width:150px}
-  .colonna,.colonna.larga,.colonna.stretta{grid-column:1 / -1;border-top:1px solid var(--linea)}
+  .colonna{grid-column:1 / -1;border-top:1px solid var(--linea)}
+  .colonna a{padding:10px 0}
+  .colonna ul{gap:0}
   .colonna h2{margin:0}
   .colonna .apri{display:flex;width:100%;justify-content:space-between;align-items:center;appearance:none;background:none;border:0;
     font:inherit;font-weight:500;font-size:16px;color:var(--inchiostro);padding:16px 0;cursor:pointer}
@@ -233,11 +233,19 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
   .colonna ul.aperto{display:flex}
   .piede .alto{row-gap:0}
   .piede .marchio{margin-bottom:36px}
+  /* Seguici ha un solo link: una riga semplice, senza fisarmonica */
+  .colonna.seguici{display:flex;align-items:center;gap:12px;padding:6px 0}
+  .colonna.seguici .titolo{display:block;font-size:16px;color:var(--inchiostro)}
+  .colonna.seguici .titolo::after{content:":"}
+  .colonna.seguici ul{display:flex;padding:0}
   .legale{margin-top:36px;flex-direction:column}
-  .legale .dx{margin-left:0;margin-top:8px}
+  .legale .dx{margin-left:0;margin-top:2px}
+  .legale a{display:inline-block;padding:10px 0}
+}
+@media (max-width:374px){
+  .tel-testata{display:none}
 }
 @media (max-width:360px){
-  .legende{grid-template-columns:1fr;row-gap:10px}
   .misure{column-gap:20px}
   .misure dd{font-size:27px}
   .misure dd small{font-size:15px}
@@ -268,32 +276,22 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
   <div class="wrap">
-    <h1 id="titolo"><span class="riga">Ascensori</span> <span class="riga">dal 1908</span></h1>
-    <div class="corpo">
-      <div class="testo">
-        <p class="lead">Progettiamo, costruiamo, installiamo e manteniamo ascensori, montacarichi e piattaforme elevatrici, anche dentro gli edifici storici. Da Mestrino, Padova.</p>
-        <div class="azione">
-          <a class="bottone num" href="tel:+390495082430">Chiama lo 049 508&#8239;2430</a>
-          <p class="guasti">Guasti, 24 ore su 24: <a class="num nb" href="tel:+390499005131">049 900&#8239;5131</a></p>
-        </div>
-        <p class="didascalia" id="didascalia-apertura"><strong>Cà della Nave, Martellago (Venezia).</strong> Il vano scala in vetro curvo nelle ex scuderie di Villa Grimani Morosini; progetto arch. Gianni e Carlotta Rigo, ing. Andrea Viel.</p>
+    <h1 id="titolo"><span class="riga">L’ascensore rispecchia</span> <span class="riga">il carattere dell’edificio</span></h1>
+    <figure class="opera">
+      <picture>
+        <source media="(max-width:640px)" srcset="img/apertura-cadellanave-tel-390.webp 390w, img/apertura-cadellanave-tel-456.webp 456w" sizes="100vw" width="456" height="570">
+        <img src="img/apertura-cadellanave-942.webp" srcset="img/apertura-cadellanave-480.webp 480w, img/apertura-cadellanave-720.webp 720w, img/apertura-cadellanave-942.webp 942w"
+             sizes="min(900px, calc(100vw - 2 * clamp(20px, 4.45vw, 64px)))" width="942" height="592" fetchpriority="high"
+             alt="Il cilindro di vetro con la scala a chiocciola e l'ascensore tondo, accanto all'ala seicentesca delle ex scuderie di Villa Grimani Morosini a Martellago">
+      </picture>
+      <figcaption><span><strong>Ca’ della Nave, Martellago (Venezia).</strong> Il vano in vetro curvo accanto all’ala ovest, della seconda metà del ’600, nelle ex scuderie di Villa Grimani Morosini.</span><a href="#lavori" data-tab="tab-nave">La scheda del lavoro</a></figcaption>
+    </figure>
+    <div class="invito">
+      <p class="lead">Dal 1908 progettiamo, costruiamo, installiamo e manteniamo ascensori, montacarichi e piattaforme elevatrici, anche dentro gli edifici storici. Da <span class="nb">Mestrino, Padova.</span></p>
+      <div class="azione">
+        <a class="bottone num" href="tel:+390495082430">Chiama lo 049 508&#8239;2430</a>
+        <p class="guasti">Guasti, 24 ore su 24: <a class="num nb" href="tel:+390499005131">049 900&#8239;5131</a></p>
       </div>
-      <figure class="opera" aria-describedby="didascalia-apertura">
-        <picture>
-          <source media="(max-width:640px)" srcset="img/apertura-cadellanave-tel-390.webp 390w, img/apertura-cadellanave-tel-456.webp 456w" sizes="100vw" width="456" height="570">
-          <img src="img/apertura-cadellanave-900.webp" srcset="img/apertura-cadellanave-480.webp 480w, img/apertura-cadellanave-660.webp 660w, img/apertura-cadellanave-900.webp 900w"
-               sizes="(max-width:1080px) min(900px, 100vw), min(900px, 62.5vw)" width="900" height="777" fetchpriority="high"
-               alt="Il cilindro di vetro con la scala a chiocciola e l'ascensore tondo, accanto all'ala seicentesca delle ex scuderie di Villa Grimani Morosini a Martellago">
-        </picture>
-        <div class="quota" style="--x1:7.6%;--x2:66.7%;--y:36.8%" aria-hidden="true">
-          <p class="leg muro">Ala ovest<span>seconda metà del ’600</span></p>
-          <p class="leg vetro">Ascensore tondo<span class="num">480&nbsp;kg, 5&nbsp;persone, 4&nbsp;fermate</span></p>
-        </div>
-      </figure>
-      <dl class="legende">
-        <div><dt>Il muro</dt><dd>Ala ovest, seconda metà del ’600</dd></div>
-        <div><dt>Il vetro</dt><dd class="num">Ascensore tondo, 480&nbsp;kg, 5&nbsp;persone, 4&nbsp;fermate</dd></div>
-      </dl>
     </div>
   </div>
 </section>
@@ -301,23 +299,17 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 <section class="sezione storia" id="storia" aria-labelledby="t-storia">
   <div class="wrap grid">
     <h2 id="t-storia">Un secolo e tre generazioni</h2>
-    <p class="racconto">Rodolfo Belletti installava ascensori in tutta Europa, fino in Romania e in Russia nel primo dopoguerra. Dopo di lui il figlio Paolo con Elvira; oggi l’azienda è guidata da Gaetano e Irma Belletti con l’amministratore delegato, l’ingegner Andrea Viel.</p>
-    <div class="fatti">
-      <p><strong>Trenta addetti</strong>alle dirette dipendenze, con oltre venti tecnici.</p>
-      <p><strong>Veneto e Friuli</strong>Assistenza diretta nelle province del Veneto e in parte del Friuli.</p>
-      <p><strong>Per chi</strong>Condomini e amministratori, progettisti, enti pubblici, negozi, case private.</p>
-    </div>
+    <p class="racconto">Rodolfo Belletti installava ascensori in tutta Europa, fino in Romania e in Russia nel primo dopoguerra. Dopo di lui il figlio Paolo con Elvira; oggi l’azienda è guidata da Gaetano e Irma Belletti con l’amministratore delegato, l’ingegner Andrea Viel. Siamo trenta addetti alle dirette dipendenze, con oltre venti tecnici nelle province del Veneto e in parte del Friuli.</p>
   </div>
 </section>
 
 <section class="sezione lavori" id="lavori" aria-labelledby="t-lavori">
   <div class="wrap">
     <h2 id="t-lavori">Pensiamo che per presentarci bastino i lavori che abbiamo eseguito</h2>
-    <p class="sotto">L’ascensore rispecchia il carattere dell’edificio.</p>
     <div class="tabs" role="tablist" aria-label="Lavori">
       <button class="tab" type="button" role="tab" id="tab-cavour" aria-controls="p-cavour" aria-selected="true"><span class="n">Galleria Cavour</span><span class="l">Padova</span></button>
       <button class="tab" type="button" role="tab" id="tab-michiel" aria-controls="p-michiel" aria-selected="false" tabindex="-1"><span class="n">Ca’ Michiel</span><span class="l">Venezia</span></button>
-      <button class="tab" type="button" role="tab" id="tab-nave" aria-controls="p-nave" aria-selected="false" tabindex="-1"><span class="n">Cà della Nave</span><span class="l">Martellago</span></button>
+      <button class="tab" type="button" role="tab" id="tab-nave" aria-controls="p-nave" aria-selected="false" tabindex="-1"><span class="n">Ca’ della Nave</span><span class="l">Martellago</span></button>
     </div>
 
     <div class="pannello" role="tabpanel" id="p-cavour" aria-labelledby="tab-cavour" tabindex="0">
@@ -340,7 +332,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 
     <div class="pannello" role="tabpanel" id="p-michiel" aria-labelledby="tab-michiel" tabindex="0" hidden>
       <figure>
-        <img src="img/lavoro-camichiel-790.webp" srcset="img/lavoro-camichiel-390.webp 390w, img/lavoro-camichiel-560.webp 560w, img/lavoro-camichiel-790.webp 790w" sizes="(max-width:900px) 100vw, 50vw" width="790" height="603" loading="lazy" alt="La cabina semicircolare in vetro con il mosaico blu, vista dall'alto nel cortile di Ca' Michiel">
+        <img src="img/lavoro-camichiel-790.webp" srcset="img/lavoro-camichiel-390.webp 390w, img/lavoro-camichiel-560.webp 560w, img/lavoro-camichiel-790.webp 790w" sizes="(max-width:900px) 100vw, 50vw" width="790" height="603" loading="lazy" alt="La cabina semicircolare in vetro con il mosaico blu e il tetto in acciaio, vista dall'alto nel cortile di Ca' Michiel">
         <figcaption>Ca’ Michiel, Venezia. La cabina vista dall’alto, nel cortile del palazzo.</figcaption>
       </figure>
       <div class="dati">
@@ -359,7 +351,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
     <div class="pannello" role="tabpanel" id="p-nave" aria-labelledby="tab-nave" tabindex="0" hidden>
       <figure>
         <img src="img/lavoro-cadellanave-826.webp" srcset="img/lavoro-cadellanave-390.webp 390w, img/lavoro-cadellanave-560.webp 560w, img/lavoro-cadellanave-826.webp 826w" sizes="(max-width:900px) 100vw, 50vw" width="826" height="630" loading="lazy" alt="La scala a chiocciola attorno al vano tondo in vetro, vista dall'alto">
-        <figcaption>Cà della Nave, Martellago. La scala a chiocciola attorno al vano, dall’alto.</figcaption>
+        <figcaption>Ca’ della Nave, Martellago. La scala a chiocciola attorno al vano, dall’alto.</figcaption>
       </figure>
       <div class="dati">
         <p class="descr">Nella corte delle ex scuderie di Villa Grimani Morosini, un cilindro di vetro con la scala a chiocciola attorno all’ascensore tondo. Porte di piano in vetro curvo stratificato 8+8.</p>
@@ -379,6 +371,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 <section class="sezione impianti" id="impianti" aria-labelledby="t-impianti">
   <div class="wrap">
     <h2 id="t-impianti">Dal montaoggetti da 12&nbsp;kg all’ascensore per 100 persone</h2>
+    <p class="perchi">Per condomini e amministratori, progettisti, enti pubblici, negozi e case private.</p>
     <ul class="famiglie">
       <li><h3>Ascensori</h3><p>Gearless senza locale macchine od oleodinamici, fino a 3&nbsp;m/s.</p></li>
       <li><h3>Panoramici e strutture in vetro</h3><p>Strutture metalliche antisismiche, per l’interno o l’esterno.</p></li>
@@ -394,16 +387,10 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
   <div class="wrap grid">
     <div class="sx">
       <h2 id="t-assistenza">Assistenza 24&nbsp;ore, dal 1997</h2>
-      <p>Il call center risponde a ogni ora, 365 giorni all’anno, secondo la norma <span class="nb">EN 81-28</span>. In caso di guasto manda un tecnico a liberare chi è rimasto in cabina.</p>
+      <p>Il call center risponde a ogni ora, 365 giorni all’anno, secondo la norma <span class="nb">EN 81-28</span>, e in caso di guasto manda un tecnico a liberare chi è rimasto in cabina. Poi manutenzione preventiva, verifiche semestrali, assistenza alla verifica biennale e riparazioni su impianti di ogni tipo e di qualsiasi marca, anche servoscala.</p>
     </div>
     <div class="dx">
-      <dl class="servizi">
-        <div><dt>Manutenzione preventiva</dt><dd>Ogni anno i controlli previsti dal nostro manuale della qualità.</dd></div>
-        <div><dt>Verifica semestrale</dt><dd>Le prove dei dispositivi di sicurezza, con l’esito sul libretto dell’impianto.</dd></div>
-        <div><dt>Verifica biennale</dt><dd>I nostri tecnici accanto all’ispettore dell’ente notificato.</dd></div>
-        <div><dt>Riparazioni</dt><dd>Su impianti di ogni tipo e di qualsiasi marca, anche servoscala.</dd></div>
-      </dl>
-      <p class="pronto"><a class="num" href="tel:+390499005131">049 900&#8239;5131</a><span>Guasti e assistenza tecnica</span></p>
+      <p class="pronto"><span>Guasti e assistenza tecnica</span><a class="num" href="tel:+390499005131">049 900&#8239;5131</a></p>
     </div>
   </div>
 </section>
@@ -418,7 +405,6 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
       <h2 id="t-contatti">Trenta cuori e una sola anima</h2>
       <address class="recapiti">
         <p><span class="et">Uffici</span><a class="uffici num" href="tel:+390495082430">049 508&#8239;2430</a></p>
-        <p><span class="et">Guasti, 24 ore su 24</span><a class="guasti-n num" href="tel:+390499005131">049 900&#8239;5131</a></p>
         <p><a href="mailto:info@bellettiascensori.it">info@bellettiascensori.it</a></p>
         <p>Via della Tecnica 29, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Belletti+Via+della+Tecnica+29+35035+Mestrino+PD">Apri la mappa</a></p>
       </address>
@@ -444,7 +430,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
           <li><a href="contatti/">Contatti</a></li>
         </ul>
       </nav>
-      <nav class="colonna larga" aria-label="Impianti">
+      <nav class="colonna" aria-label="Impianti">
         <button class="apri" type="button" aria-expanded="false" aria-controls="c-impianti">Impianti</button>
         <h2 class="titolo">Impianti</h2>
         <ul id="c-impianti">
@@ -467,8 +453,7 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
           <li><a class="num" href="tel:+390499005131">049 900&#8239;5131</a></li>
         </ul>
       </nav>
-      <nav class="colonna stretta" aria-label="Seguici">
-        <button class="apri" type="button" aria-expanded="false" aria-controls="c-seguici">Seguici</button>
+      <nav class="colonna seguici" aria-label="Seguici">
         <h2 class="titolo">Seguici</h2>
         <ul id="c-seguici">
           <li><a href="https://www.youtube.com/@BellettiAscensori" rel="noopener">YouTube</a></li>
@@ -503,6 +488,9 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
     if(fuoco)t.focus();
     if(t.scrollIntoView&&t.parentNode.scrollWidth>t.parentNode.clientWidth)t.scrollIntoView({block:'nearest',inline:'nearest'});
   }
+  document.querySelectorAll('a[data-tab]').forEach(function(a){
+    a.addEventListener('click',function(){scegli(document.getElementById(a.getAttribute('data-tab')),false);});
+  });
   tabs.forEach(function(t,i){
     t.addEventListener('click',function(){scegli(t,false);});
     t.addEventListener('keydown',function(e){var k=e.key,j=null;

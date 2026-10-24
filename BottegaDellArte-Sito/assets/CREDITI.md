@@ -28,3 +28,7 @@ URL delle immagini scaricate con curl (parametri `?fm=jpg&q=82&w=2400`):
 - photo-1696774276977-131fc18de2a0, photo-1609811692040-35b06faddb8d, photo-1666524254906-1b8f802c2caf, photo-1544691560-fc2053d97726, photo-1490717164730-d639c415a82a, photo-1779031242480-b3ee36ff9d02, photo-1772207896656-4210003d65ee, photo-1605887075098-77bf2157632b, photo-1780342735708-a6b80f03e81d (tutte su https://images.unsplash.com/).
 
 Sono segnaposto: lo dice il LEGGIMI. Nessuna immagine generata dall'IA.
+
+## Home finale (`sito/`)
+
+Usa solo foto dell'azienda da `assets/originali/`: `2020-10_Port-3.jpeg` e `2020-10_Port.4.jpeg` (portone dopo e prima), `2020-05_Bottega_dell_Arte_Armadiature-1.jpeg`, `2020-06_porte-a-bilico-2-scaled.jpg`, `2020-06_porte_restaurate-n1.jpg`, `2020-06_universita08.jpg`, `2020-10_Port1.jpg`, il logo `logo-bottega-arte-1014.png` e il monogramma `logo-monogramma-B-512.png`. Nessuna delle foto Unsplash qui sopra è usata nella home finale.

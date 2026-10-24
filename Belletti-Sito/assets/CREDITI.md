@@ -40,8 +40,8 @@ Estratte il 24/10/2026 con `pdfimages` dai PDF dei redazionali DiBaio pubblicati
 ## Uso nella home finale (`sito/`)
 
 Solo foto di impianti Belletti, nessuna foto di repertorio. Script: `_prova/script/finale_img.py`.
-- Apertura: Cà della Nave, Martellago, dalla corte (`_prova/crawl/pdfimg/mart-007.jpg`, dal redazionale `01_DiBaio_Martellago.pdf`, 942x694, la più grande nel PDF), taglio 660x570.
-- Lavori: Galleria Cavour (`cav-003.jpg`, `02_DiBaio_Cavour.pdf`), Ca' Michiel (`depliant/d-020.jpg`), Cà della Nave dall'alto (`mart-021.jpg`).
+- Apertura: Ca' della Nave, Martellago, dalla corte (`_prova/crawl/pdfimg/mart-007.jpg`, dal redazionale `01_DiBaio_Martellago.pdf`, 942x694, la più grande nel PDF), inquadratura intera senza le panchine, 942x592, mostrata al massimo a 900 px; per il telefono taglio 4:5 di 456x570.
+- Lavori: Galleria Cavour (`cav-003.jpg`, `02_DiBaio_Cavour.pdf`), Ca' Michiel (`depliant/d-020.jpg`, taglio alto sulla cabina col mosaico), Ca' della Nave dall'alto (`mart-021.jpg`).
 - Chiusura: la sede di Mestrino di sera con il furgone dell'assistenza (`depliant/d-027.jpg`), targa sfocata.
 - Logo: `originali/logo-belletti-depliant.svg`.
 Diritti del fotografo e dell'editore DiBaio da chiedere a Belletti. Per provare la conversione delle foto CMYK di Villa Pavan è stato scaricato, solo come strumento e poi cancellato, il profilo "Artifex CMYK SWOP" di Ghostscript (github.com/ArtifexSoftware/ghostpdl); Villa Pavan non è nella home finale.
