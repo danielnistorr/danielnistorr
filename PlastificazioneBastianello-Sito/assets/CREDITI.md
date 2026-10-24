@@ -34,3 +34,9 @@ Scaricate il 24/10/2026 dalla libreria media di WordPress (`/wp-json/wp/v2/media
 
 - `esterne/pexels-15807279-mcmanus-scatole-con-finestra-7656.jpg`: la stessa foto Pexels 15807279 di Connor Scott McManus (https://www.pexels.com/photo/boxes-with-cakes-on-handrail-15807279/, Pexels License) nella misura originale 7656x5104, scaricata dal CDN `images.pexels.com` per ricavare l'astuccio d'apertura. In pagina è un fotomontaggio indicativo, non una foto documentaria: scontornato, specchiato, il dolce e l'etichetta della pasticceria tolti e la finestra ridisegnata vuota con uno script (`_prova/script/finale_astuccio.py` e `finale_astuccio_ripulisci.py`), la cornice destra, coperta da un'altra scatola nella foto, ricostruita da un modello della luce della faccia. Nessuna immagine generata dall'IA.
 - Nessuna altra foto esterna nuova: la home finale usa anche Unsplash gOfXb8eW4g8 (Emily Bernal, già in tabella) e sei foto del sito di oggi.
+
+## Rifinitura della home finale (24/10/2026)
+
+- Il fotomontaggio dell'astuccio da Pexels 15807279 **non è più in pagina**: l'apertura ora è il damasco in serigrafia UV della loro foto `originali/VERNICIATURA-SERIGRAFICA-scaled.jpg`, ritagliato sul solo motivo (`_prova/script/finale_foglio.py`). I due file Pexels restano in `esterne/` solo come materiale dei prototipi.
+- Unica foto esterna rimasta in pagina: Unsplash gOfXb8eW4g8 di Emily Bernal (Unsplash License), scheda Plastificazione, con "foto indicativa", desaturata verso i toni della pagina.
+- Nessuna foto nuova scaricata. Nessuna immagine generata dall'IA: il marchio del cliente sui fogli con UV a riserva è stato tolto con un ritocco classico (inpainting di OpenCV sui soli tratti delle lettere e riempimento dei riquadri col loro colore), in `_prova/script/finale_img.py`.
