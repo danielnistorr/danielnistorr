@@ -111,18 +111,16 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 .famiglie h3{font-size:20px;font-weight:500;line-height:1.3;letter-spacing:-.005em}
 .famiglie p{font-size:16px;line-height:1.5;color:var(--grigio);margin-top:6px;max-width:24em}
 
-/* assistenza */
-.assistenza .sx{grid-column:1 / span 5}
-.assistenza .dx{grid-column:7 / -1}
+/* assistenza: una fascia corta, titolo e frase a sinistra, il numero dei guasti a destra */
+.assistenza .grid{align-items:end}
+.assistenza .sx{grid-column:1 / span 7}
+.assistenza .dx{grid-column:9 / -1}
 .assistenza h2{font-size:clamp(32px,3.6vw,50px);line-height:1.08;letter-spacing:-.018em}
-.assistenza .sx p{margin-top:28px;font-size:18px;line-height:1.55;max-width:25em;text-wrap:pretty}
-.servizi{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap);row-gap:32px;padding-top:12px}
-.servizi dt{font-weight:500;font-size:18px}
-.servizi dd{font-size:16px;color:var(--grigio);margin-top:4px;max-width:20em}
-.pronto{margin-top:48px;display:flex;align-items:baseline;flex-wrap:wrap;column-gap:20px;row-gap:4px}
-.pronto a{font-size:40px;line-height:1.1;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid currentColor}
-.pronto a:hover{color:var(--verde)}
+.assistenza .sx p{margin-top:24px;font-size:18px;line-height:1.55;max-width:34em;text-wrap:pretty}
+.pronto{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .pronto span{font-size:15px;color:var(--grigio)}
+.pronto a{font-size:44px;line-height:1.1;letter-spacing:-.01em;font-weight:300;text-decoration:none;border-bottom:1px solid currentColor}
+.pronto a:hover{color:var(--verde)}
 
 /* chiusura */
 .chiusura .grid{align-items:center}
@@ -135,7 +133,6 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 .recapiti p+p{margin-top:16px}
 .recapiti .et{display:block;font-size:14px;color:var(--grigio)}
 .recapiti .uffici{font-size:32px;line-height:1.15;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid currentColor}
-.recapiti .guasti-n{font-size:20px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor}
 .recapiti a{text-underline-offset:4px;text-decoration-thickness:1px}
 .recapiti a:hover{color:var(--verde)}
 
@@ -146,11 +143,9 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 .piede .marchio img{width:170px}
 .piede .marchio p{margin-top:24px;max-width:21em;color:var(--grigio)}
 .colonna{grid-column:span 2}
-.colonna.larga{grid-column:span 3}
-.colonna.stretta{grid-column:span 1}
-.colonna h2{font-size:15px;font-weight:500;letter-spacing:0;margin-bottom:14px}
-.colonna ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.colonna a{text-decoration:none;color:var(--grigio)}
+.colonna h2{font-size:15px;font-weight:500;letter-spacing:0;margin-bottom:10px}
+.colonna ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.colonna a{display:inline-block;padding:3px 0;text-decoration:none;color:var(--grigio)}
 .colonna a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:4px}
 .colonna .apri{display:none}
 .legale{margin-top:72px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;column-gap:28px;row-gap:6px;
@@ -161,29 +156,21 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
 
 /* schermi medi */
 @media (max-width:1180px){
-  .storia .fatti{grid-column:9 / -1}
   .misure{column-gap:36px}
   .misure dd{font-size:34px}
   .piede .marchio{grid-column:1 / -1}
-  .colonna,.colonna.larga,.colonna.stretta{grid-column:span 3}
+  .colonna{grid-column:span 3}
 }
 @media (max-width:1080px){
-  .apertura .corpo{grid-template-columns:minmax(0,1fr);margin-right:0}
-  .apertura .testo{display:contents}
-  .lead{grid-row:1;margin-top:14px}
-  .azione{grid-row:2}
-  .opera{grid-row:3;margin-top:48px;margin-right:calc(var(--m) * -1);margin-left:auto;width:min(900px,calc(100% + var(--m)))}
-  .legende{grid-row:4}
-  .didascalia{grid-row:5;margin-top:14px;max-width:44em}
   .dati{grid-column:7 / -1}
   .famiglie{grid-template-columns:1fr 1fr}
   .assistenza .sx,.assistenza .dx{grid-column:1 / -1}
-  .assistenza .dx{margin-top:48px}
+  .assistenza .dx{margin-top:40px}
 }
 @media (max-width:900px){
   .menu{gap:24px}
+  .apertura .invito{grid-template-columns:minmax(0,1fr);row-gap:32px;margin-top:48px}
   .storia h2,.storia .racconto{grid-column:1 / -1}
-  .storia .fatti{grid-column:1 / -1;grid-row:auto;margin-top:44px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap)}
   .pannello figure{grid-column:1 / -1;margin-right:calc(var(--m) * -1)}
   .pannello img{aspect-ratio:4/3}
   .dati{grid-column:1 / -1;margin-top:32px}
@@ -204,20 +191,15 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
     padding:8px var(--m) 20px;border-bottom:1px solid var(--linea)}
   .menu.aperto{display:flex}
   .menu a{display:block;padding:12px 0;font-size:20px}
-  .tel-testata{display:none}
-  .apertura{padding-top:100px}
-  .apertura h1{font-size:clamp(52px,19vw,92px);line-height:.9;white-space:normal}
-  .apertura h1 .riga{display:block}
-  .apertura .corpo{margin-top:24px}
+  .testata nav{order:3}
+  .tel-testata{order:2;margin-left:auto;margin-right:18px;font-size:15px;padding:12px 0}
+  .apertura{padding-top:104px}
+  .apertura h1{font-size:clamp(44px,14.2vw,60px);line-height:.96;text-align:left}
+  .opera{width:auto;margin:28px calc(var(--m) * -1) 0}
+  .opera figcaption{display:block;padding:0 var(--m)}
+  .opera figcaption a{display:inline-block;margin-top:6px;padding:6px 0}
+  .apertura .invito{margin-top:36px;row-gap:26px}
   .lead{font-size:18px}
-  .azione{margin-top:26px}
-  .opera{margin-top:36px;width:auto;margin-left:calc(var(--m) * -1)}
-  .opera .leg{display:none}
-  .legende{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;margin:16px 0 0;font-size:15px;line-height:1.4}
-  .legende dt{font-weight:500}
-  .legende dd{color:var(--inchiostro)}
-  .didascalia{margin-top:14px}
-  .storia .fatti{grid-template-columns:1fr;gap:22px}
   .tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;column-gap:28px;margin:36px calc(var(--m) * -1) 0;
     padding:0 var(--m);scroll-padding-inline:var(--m);scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
