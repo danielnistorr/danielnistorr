@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overdrive Customs, officina moto a Vigonovo</title>
+<meta name="description" content="Officina per Harley-Davidson e custom giapponesi a Vigonovo (VE): tagliandi, riparazioni, motoristica, restauro e special da concorso costruite partendo dal telaio.">
+<link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-ext-var.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-var.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --calce:#F3F1EC;
+  --calce-2:#E8E5DE;
+  --inchiostro:#151515;
+  --grigio:#5F6267;
+  --filo:#CFCBC2;
+  --rosso:#B3261E;
+  --rosso-scuro:#8E1D17;
+  --notte:#151515;
+  --notte-testo:#ECE9E2;
+  --notte-grigio:#AEABA4;
+  --notte-filo:#3A3934;
+  --m:64px;
+  --col:24px;
+  --larga:1440px;
+  --fila:68px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;background:var(--calce);color:var(--inchiostro);
+  font-family:"Archivo",system-ui,sans-serif;font-stretch:100%;font-weight:400;
+  font-size:18px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nb{white-space:nowrap}
+.salta{position:absolute;left:-9999px;top:0;background:var(--inchiostro);color:var(--calce);padding:10px 16px;z-index:10}
+.salta:focus{left:16px;top:16px}
+:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+.gabbia{max-width:var(--larga);margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
+
+/* testata */
+.testata .gabbia{display:flex;align-items:center;gap:48px;height:96px}
+.marchio{display:block;color:var(--inchiostro);flex:none;line-height:0}
+.marchio svg{width:112px;height:auto}
+.menu{display:flex;gap:32px;margin-left:24px}
+.menu a{text-decoration:none;font-size:16px;font-weight:500;padding:8px 0;border-bottom:1px solid transparent;transition:border-color .15s}
+.menu a:hover{border-bottom-color:var(--inchiostro)}
+.testata .tel{margin-left:auto;font-size:16px;font-weight:600;text-decoration:none;padding:8px 0;transition:color .15s}
+.testata .tel:hover{color:var(--rosso)}
+.testata{position:relative;z-index:20}
+.apri-menu{display:none}
+
+/* apertura */
+.apertura{padding-bottom:24px}
+.apertura .gabbia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
+.apertura h1{grid-column:1 / -1;grid-row:1;font-stretch:106%;font-weight:500;white-space:nowrap;
+  font-size:clamp(44px,6.95vw,100px);line-height:.94;letter-spacing:-.035em;padding-top:18px}
+.apertura .testo{grid-column:1 / span 4;grid-row:2;margin-top:36px;padding-top:var(--fila);display:flex;flex-direction:column;position:relative;z-index:2}
+.apertura .testo p.lead{font-size:19px;line-height:1.5;max-width:19em;text-wrap:pretty;margin-top:-6px}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:28px}
+.bottone{display:inline-block;background:var(--rosso);color:#fff;text-decoration:none;font-weight:600;font-size:17px;
+  padding:15px 24px;border-radius:2px;transition:background-color .15s}
+.bottone:hover{background:var(--rosso-scuro)}
+.azioni .nota{font-size:15px;color:var(--grigio);flex-basis:100%}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio)}
+.didascalia b{color:var(--inchiostro);font-weight:600}
+.apertura .didascalia{margin-top:auto;padding-top:32px;padding-bottom:12px;max-width:24em}
+
+.moto{grid-column:5 / -1;grid-row:2;margin-top:36px;position:relative;padding-top:var(--fila)}
+.moto img{width:100%}
+.leg{position:absolute;left:var(--x);top:0;bottom:calc((100% - var(--fila)) * (1 - var(--y) / 100));
+  border-left:1px solid var(--inchiostro);padding-left:10px;font-size:14px;line-height:1.3;white-space:nowrap}
+.leg b{font-weight:600;margin-right:6px}
+.leg span{display:block;color:var(--grigio)}
+.leg::after{content:"";position:absolute;left:-5px;bottom:-5px;width:9px;height:9px;border-radius:50%;
+  background:var(--calce);border:1.5px solid var(--inchiostro)}
+.punto{display:none}
+.elenco-legende{display:none}
+
+/* sezioni */
+.sezione{padding-top:136px}
+.h2{font-stretch:106%;font-weight:500;font-size:clamp(34px,4vw,58px);line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+.intro{font-size:19px;line-height:1.55;text-wrap:pretty}
+
+/* officina */
+.officina .h2{grid-column:1 / span 8}
+.officina .intro{grid-column:1 / span 5;margin-top:36px;max-width:27em}
+.lista{margin-top:42px}
+.lista h3{font-size:15px;font-weight:600;color:var(--grigio);margin-bottom:10px}
+.lista li{font-size:19px;line-height:1.6}
+.officina .l1{grid-column:7 / span 3}
+.officina .l2{grid-column:10 / span 3}
+
+/* moto premiate */
+.premiate .griglia{align-items:start}
+.premiate .h2{grid-column:1 / span 4;grid-row:1}
+.testa-moto{grid-column:8 / span 5;grid-row:1;padding-top:8px}
+.premiate .intro{max-width:31em}
+.premiate .primi{margin-top:14px;font-size:15px;color:var(--grigio);max-width:31em}
+.palco{grid-column:1 / span 7;grid-row:2;margin-top:56px;max-width:720px;aspect-ratio:3 / 2;background:var(--calce-2);overflow:hidden}
+.palco img{width:100%;height:100%;object-fit:cover}
+.lato{grid-column:8 / span 5;grid-row:2;margin-top:56px}
+.schede{display:flex;flex-direction:column}
+.scheda{appearance:none;background:none;border:0;border-top:1px solid var(--filo);text-align:left;font:inherit;color:var(--grigio);
+  cursor:pointer;padding:20px 0;display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:baseline;transition:color .15s}
+.scheda:last-child{border-bottom:1px solid var(--filo)}
+.scheda .nome{font-stretch:106%;font-weight:500;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+.scheda .anno{font-size:15px}
+.scheda .base{grid-column:1 / -1;font-size:15px;margin-top:4px}
+.scheda:hover{color:var(--inchiostro)}
+.scheda[aria-selected="true"]{color:var(--inchiostro)}
+.scheda[aria-selected="true"] .nome::before{content:"";display:inline-block;width:10px;height:10px;background:var(--rosso);border-radius:50%;margin-right:12px;vertical-align:.18em}
+.premio{margin-top:28px;font-size:17px;line-height:1.55;max-width:24em;min-height:7.8em}
+
+/* riviste */
+.riviste-testo{grid-column:1 / span 4}
+.riviste .intro{margin-top:24px;font-size:17px;max-width:20em}
+.copertine{grid-column:5 / span 8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--col);align-items:end}
+.copertine figure img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 0}
+.copertine figcaption{margin-top:12px}
+
+/* chiusura */
+.chiusura{padding-top:152px}
+.chiusura .testo{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr;column-gap:var(--col);align-items:start}
+.chiusura .frase{grid-column:1 / span 6;grid-row:1;font-stretch:106%;font-weight:500;font-size:clamp(36px,4.3vw,62px);line-height:1;letter-spacing:-.03em;text-wrap:balance;max-width:11em}
+.chiusura .sotto{grid-column:1 / span 6;grid-row:2;margin-top:20px;font-size:19px;color:var(--grigio)}
+.recapiti{grid-column:8 / span 5;grid-row:1 / span 2;padding-top:6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px var(--col)}
+.recapiti .tutta{grid-column:1 / -1}
+.recapiti dt{font-size:15px;font-weight:600;color:var(--grigio)}
+.recapiti dd{font-size:18px;line-height:1.45;margin-top:4px}
+.recapiti .grande{font-stretch:106%;font-size:40px;font-weight:500;letter-spacing:-.02em;line-height:1.1;text-decoration:none;transition:color .15s}
+.recapiti .grande:hover{color:var(--rosso)}
+.recapiti dd a{text-underline-offset:3px;text-decoration-thickness:1px;transition:color .15s}
+.recapiti dd a:hover{color:var(--rosso)}
+.recapiti .wa{margin-left:20px}
+.chiusura .foto{margin-top:96px}
+.chiusura .foto img{width:100%;aspect-ratio:16 / 10;max-height:1000px;object-fit:cover;object-position:85% 0}
+.chiusura .foto figcaption{max-width:var(--larga);margin:14px auto 0;padding:0 var(--m)}
+
+/* piede */
+.piede{background:var(--notte);color:var(--notte-testo);margin-top:152px;padding:88px 0 0}
+.piede a{text-decoration:none;transition:color .15s}
+.piede a:hover{text-decoration:underline;text-underline-offset:3px;color:#fff}
+.piede .alto{row-gap:48px}
+.piede .chi{grid-column:1 / span 3}
+.piede .chi svg{width:150px;height:auto;color:var(--notte-testo)}
+.piede .chi p{margin-top:24px;font-size:15px;line-height:1.5;color:var(--notte-grigio);max-width:17em}
+.piede nav{grid-column:span 2}
+.piede h2{font-size:15px;font-weight:600;color:var(--notte-grigio);margin-bottom:14px}
+.piede li{font-size:16px;line-height:1.5;padding:4px 0}
+.piede .notizie{grid-column:span 3}
+.piede .notizie p{font-size:15px;color:var(--notte-grigio);margin-bottom:16px;max-width:22em}
+.campo{display:flex;border-bottom:1px solid #8A8780}
+.campo input{flex:1;min-width:0;background:transparent;border:0;color:var(--notte-testo);font:inherit;font-size:16px;padding:12px 0}
+.campo input::placeholder{color:#9C998F}
+.campo input:focus{outline:none}
+.campo:focus-within{border-bottom-color:var(--notte-testo)}
+.campo button{background:none;border:0;color:var(--notte-testo);font:inherit;font-weight:600;font-size:16px;cursor:pointer;padding:12px 0 12px 16px;transition:color .15s}
+.campo button:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;line-height:1.45;color:var(--notte-grigio)}
+.consenso input{margin:2px 0 0;width:16px;height:16px;accent-color:var(--rosso);flex:none}
+.consenso a{text-decoration:underline;text-underline-offset:2px}
+.seguici{margin-top:28px;font-size:16px}
+.seguici span{font-size:15px;font-weight:600;color:var(--notte-grigio);margin-right:12px}
+.piede .basso{margin-top:80px;border-top:1px solid var(--notte-filo);padding:24px 0 32px;display:flex;flex-wrap:wrap;gap:8px 32px;font-size:13px;color:var(--notte-grigio)}
+.piede .basso .legali{margin-left:auto;display:flex;gap:24px}
+
+@media (hover:hover){ .apri-menu:hover{background:var(--inchiostro);color:var(--calce)} }
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px;--fila:0px}
+  .menu{gap:24px;margin-left:8px}
+  .apertura .gabbia{display:flex;flex-direction:column}
+  .apertura h1{order:1;font-size:clamp(42px,8.2vw,84px);white-space:normal;text-wrap:balance}
+  .moto{order:2;margin-top:28px;width:100%;max-width:920px;align-self:center}
+  .elenco-legende{order:3}
+  .apertura .testo{order:4;margin-top:36px;max-width:640px}
+  .apertura .testo p.lead{margin-top:0}
+  .apertura .didascalia{margin-top:0;padding-top:24px}
+  .leg{display:none}
+  .punto{display:flex;position:absolute;left:var(--x);top:calc(var(--y) * 1%);width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;
+    background:var(--inchiostro);color:var(--calce);font-size:13px;font-weight:600;align-items:center;justify-content:center}
+  .elenco-legende{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:6px 48px;margin-top:18px;font-size:15px;line-height:1.35}
+  .elenco-legende li{display:flex;gap:10px}
+  .elenco-legende b{font-weight:600}
+  .elenco-legende span{color:var(--grigio)}
+  .officina .l1{grid-column:1 / span 5}
+  .officina .l2{grid-column:6 / span 5}
+  .officina .intro{grid-column:1 / span 8}
+  .palco{grid-column:1 / span 7}
+  .scheda .nome{font-size:24px}
+  .piede .chi{grid-column:1 / -1}
+  .piede nav{grid-column:span 3}
+  .piede .notizie{grid-column:span 3}
+}
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px}
+  .testata .tel{margin-left:auto}
+  .apri-menu{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;margin-left:4px;background:none;border:1px solid var(--inchiostro);border-radius:2px;
+    color:var(--inchiostro);font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background-color .15s,color .15s}
+  .testata.aperta .apri-menu{background:var(--inchiostro);color:var(--calce)}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;margin:0;padding:4px var(--m) 24px;flex-direction:column;gap:0;
+    background:var(--calce);border-bottom:1px solid var(--filo)}
+  .testata.aperta .menu{display:flex}
+  .menu a{font-size:24px;font-stretch:106%;padding:14px 0;border-bottom:1px solid var(--filo)}
+  .menu a:hover{border-bottom-color:var(--inchiostro)}
+  .apertura h1{font-size:clamp(42px,9.6vw,84px)}
+  .moto{margin-top:32px}
+  .elenco-legende li{display:block}
+  .elenco-legende span{display:block}
+  .palco,.lato,.testa-moto,.premiate .h2{grid-column:1 / -1;grid-row:auto}
+  .testa-moto{margin-top:20px;padding-top:0}
+  .palco{max-width:none;margin-top:40px}
+  .lato{margin-top:24px}
+  .premio{min-height:0}
+  .riviste-testo,.officina .h2,.officina .intro{grid-column:1 / -1}
+  .copertine{grid-column:1 / -1;margin-top:40px}
+  .chiusura .testo{display:block}
+  .recapiti{margin-top:40px;padding-top:0}
+  .chiusura .foto{margin-top:64px}
+  .chiusura .foto img{aspect-ratio:3 / 2}
+  .piede nav{grid-column:span 4}
+  .piede .notizie{grid-column:1 / -1}
+}
+/* 390 */
+@media (max-width:560px){
+  :root{--m:20px}
+  body{font-size:17px}
+  .testata .gabbia{height:72px;gap:16px}
+  .marchio svg{width:88px}
+  .testata .tel{font-size:15px}
+  .apertura h1{font-size:clamp(36px,12.8vw,58px);padding-top:12px;letter-spacing:-.03em;line-height:.98}
+  .moto{margin-top:20px;margin-left:-14px;margin-right:-14px;width:auto;max-width:none;align-self:stretch}
+  .punto{width:24px;height:24px;margin:-12px 0 0 -12px;font-size:12px}
+  .elenco-legende{grid-template-columns:1fr 1fr;font-size:14px;gap:10px 16px;margin-top:14px}
+  .elenco-legende li{display:block}
+  .elenco-legende span{display:block}
+  .apertura .testo{margin-top:28px}
+  .apertura .testo p.lead{font-size:17px}
+  .sezione{padding-top:96px}
+  .intro{font-size:17px}
+  .officina .intro{margin-top:20px}
+  .lista li{font-size:17px}
+  .officina .l1,.officina .l2{grid-column:1 / -1}
+  .officina .l2{margin-top:28px}
+  .apri-menu{padding:0 12px}
+  .palco{margin:32px calc(var(--m) * -1) 0}
+  .scheda{padding:14px 0}
+  .scheda .nome{font-size:22px}
+  .copertine{column-gap:12px}
+  .chiusura{padding-top:96px}
+  .recapiti{grid-template-columns:1fr;margin-top:32px;gap:22px}
+  .recapiti .grande{font-size:34px}
+  .recapiti .wa{display:block;margin:6px 0 0}
+  .piede{margin-top:96px;padding-top:64px}
+  .piede .alto{column-gap:16px;row-gap:36px}
+  .piede nav{grid-column:span 6}
+  .chiusura .foto{margin-top:48px}
+  .chiusura .foto img{aspect-ratio:4 / 3;object-position:100% 0}
+  .piede .basso{margin-top:56px}
+  .piede .basso .legali{margin-left:0}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="logo" viewBox="0 0 1008 545"><path fill="currentColor" fill-rule="evenodd" d="M903.25 493.25 L899.00 493.00 L896.50 495.00 L896.00 496.00 L896.00 498.00 L897.75 501.50 L897.75 503.25 L896.75 505.00 L893.25 508.50 L893.00 509.00 L893.25 510.50 L895.25 510.75 L898.75 508.75 L903.00 504.00 L904.75 500.00 L904.75 495.75Z M995.75 458.75 L994.75 458.25 L967.25 458.50 L962.75 459.00 L961.25 460.00 L960.25 463.25 L959.50 468.00 L959.75 469.50 L960.50 470.00 L962.25 469.25 L965.25 466.00 L968.75 463.75 L972.25 463.50 L973.00 464.00 L973.50 465.50 L971.75 476.25 L970.25 481.75 L970.00 484.25 L969.25 486.00 L969.00 489.00 L968.25 490.50 L968.00 492.75 L966.25 496.50 L964.25 497.50 L961.75 499.50 L961.50 500.25 L962.00 501.00 L964.25 501.75 L978.00 501.75 L979.75 500.75 L979.75 499.75 L977.00 496.75 L976.50 495.75 L976.25 493.25 L976.75 491.75 L977.00 488.50 L977.75 486.50 L978.00 484.00 L979.00 480.75 L979.50 477.25 L980.00 476.25 L980.00 474.75 L981.00 471.75 L981.00 470.50 L982.25 465.25 L984.25 463.00 L987.75 463.50 L990.25 465.25 L992.25 469.00 L993.75 469.75 L994.75 469.00 L995.25 468.00 L996.25 464.00 L996.25 459.50Z M890.50 459.00 L887.75 458.25 L872.50 458.25 L868.25 458.75 L864.25 458.75 L862.25 460.00 L862.25 461.00 L865.00 463.50 L865.00 467.00 L864.00 470.75 L864.00 472.50 L863.00 475.50 L862.25 480.50 L861.00 485.00 L860.75 487.50 L859.75 490.50 L859.50 492.75 L858.25 495.50 L854.25 499.00 L854.00 500.25 L854.50 500.75 L857.00 501.75 L881.75 501.75 L885.00 500.50 L887.75 496.00 L888.25 492.50 L887.50 491.75 L886.50 491.75 L885.50 492.25 L882.75 494.50 L879.50 496.25 L875.00 497.00 L869.75 496.75 L868.25 495.75 L868.00 490.25 L868.75 485.75 L870.00 483.75 L871.50 482.50 L872.75 482.00 L875.75 482.25 L876.75 482.75 L879.75 485.50 L881.00 485.75 L882.25 484.75 L883.50 481.25 L884.00 476.25 L883.75 474.25 L883.00 473.25 L882.25 473.00 L880.50 473.50 L876.75 476.00 L873.50 476.00 L872.00 475.25 L871.75 473.00 L872.50 470.25 L874.75 466.00 L877.00 463.75 L878.75 463.00 L880.50 463.00 L884.50 463.75 L887.50 465.50 L889.00 467.25 L890.75 467.50 L891.75 466.50 L891.75 461.00 L891.25 459.75Z M788.00 459.25 L787.00 458.50 L785.75 458.25 L776.75 458.25 L775.50 459.00 L775.25 460.50 L777.25 464.50 L777.00 470.50 L776.00 474.00 L776.00 476.50 L775.00 479.75 L774.00 486.50 L773.25 487.75 L772.50 487.75 L772.00 487.25 L771.50 485.50 L766.75 476.50 L765.75 473.75 L761.00 464.25 L759.50 462.00 L757.25 459.75 L754.75 458.75 L750.50 458.50 L748.25 458.75 L747.00 459.25 L746.50 459.75 L746.50 460.50 L748.75 463.25 L749.75 465.50 L749.75 467.50 L749.25 468.75 L749.00 472.00 L748.25 474.00 L748.00 476.75 L746.75 481.50 L746.00 486.50 L745.25 488.50 L744.75 492.25 L743.75 494.50 L742.75 495.75 L739.25 498.75 L738.75 500.00 L739.00 500.75 L740.50 501.75 L749.25 501.75 L751.00 501.25 L751.50 500.75 L751.75 499.75 L750.50 497.00 L750.25 494.75 L750.75 491.25 L750.75 488.25 L751.75 484.50 L751.75 482.25 L752.75 479.00 L752.75 477.00 L753.75 474.25 L754.00 471.50 L754.75 470.75 L755.50 470.75 L756.25 471.75 L756.50 473.25 L757.50 474.50 L758.00 476.25 L759.00 477.50 L759.75 479.75 L761.50 482.75 L762.75 486.25 L768.00 496.75 L770.00 499.50 L771.75 501.00 L773.25 501.50 L774.75 501.00 L775.50 500.25 L776.75 497.00 L777.00 493.75 L777.75 492.25 L777.75 490.75 L778.75 487.50 L778.75 485.75 L779.50 484.00 L782.75 468.25 L784.25 464.75 L787.75 461.25 L788.25 460.25Z M736.50 459.25 L735.25 458.50 L732.75 458.50 L732.50 458.25 L718.75 458.25 L718.50 458.50 L710.25 458.75 L708.00 459.75 L707.75 460.25 L708.00 461.25 L709.50 462.25 L710.75 463.75 L710.50 467.25 L709.00 473.75 L709.00 475.50 L708.25 477.50 L707.00 484.75 L706.50 485.75 L704.75 494.00 L704.00 495.50 L702.25 497.25 L700.25 498.50 L699.75 499.50 L700.25 500.75 L703.00 501.75 L727.75 501.75 L731.00 500.25 L733.75 494.75 L734.00 493.00 L733.25 491.75 L732.25 491.75 L730.50 492.75 L727.50 495.25 L723.75 496.50 L721.25 497.00 L715.50 496.75 L714.75 496.50 L713.75 495.00 L713.75 489.25 L714.50 485.50 L715.00 484.50 L716.50 482.75 L717.50 482.25 L721.00 482.00 L722.75 483.00 L725.25 485.50 L726.75 485.75 L727.75 485.00 L729.00 482.00 L729.75 476.00 L729.25 474.00 L728.50 473.25 L727.75 473.00 L726.50 473.25 L724.00 475.25 L721.75 476.00 L718.75 476.00 L717.75 475.25 L717.75 471.50 L718.75 468.75 L720.75 465.50 L722.50 463.75 L724.50 463.00 L727.75 463.25 L730.00 463.75 L731.50 464.50 L735.25 467.50 L736.50 467.50 L737.25 466.50 L737.50 465.00 L737.50 461.50Z M954.75 458.25 L953.25 458.00 L939.25 458.25 L938.00 459.00 L937.75 459.75 L938.00 460.50 L940.75 463.50 L941.00 467.50 L938.50 479.75 L937.75 481.75 L937.50 484.50 L936.25 488.25 L935.75 492.00 L934.75 494.75 L932.75 497.25 L930.75 498.25 L929.25 499.75 L929.25 500.75 L929.75 501.50 L930.50 501.75 L945.50 501.75 L947.00 500.75 L946.75 499.00 L944.00 496.25 L943.75 493.25 L944.75 489.75 L945.00 486.75 L945.75 484.75 L945.75 483.25 L946.75 479.75 L946.75 478.00 L947.50 476.00 L948.75 469.25 L950.00 465.75 L951.00 464.00 L952.50 462.50 L953.75 462.00 L955.50 460.50 L955.50 459.00Z M812.00 458.25 L811.00 458.00 L809.75 458.25 L796.75 458.25 L795.25 459.00 L795.00 460.25 L798.00 463.75 L798.00 468.25 L797.50 469.50 L797.50 471.25 L796.50 474.50 L796.50 476.00 L795.75 478.00 L795.50 480.50 L794.75 482.50 L794.75 484.00 L793.00 490.25 L792.75 492.75 L791.75 495.25 L790.50 496.75 L788.25 498.00 L786.50 499.75 L786.25 500.50 L787.00 501.50 L787.50 501.75 L802.50 501.75 L803.25 501.50 L804.25 500.50 L804.25 499.75 L803.50 498.50 L801.25 496.25 L801.00 493.00 L801.50 492.00 L802.25 486.25 L803.00 484.00 L803.00 482.75 L803.75 480.25 L804.00 477.75 L804.75 475.75 L804.75 474.25 L805.75 471.00 L805.75 469.75 L808.00 464.00 L812.50 460.50 L812.75 459.25Z M701.75 458.50 L699.25 458.00 L693.00 458.25 L691.50 458.75 L690.75 459.50 L690.50 460.25 L691.00 461.00 L691.25 463.75 L690.00 468.25 L678.50 489.50 L677.75 490.25 L677.25 490.25 L676.25 489.00 L676.25 487.00 L675.75 485.00 L675.50 477.50 L675.25 477.25 L675.25 465.75 L676.25 462.00 L677.00 460.75 L677.00 459.50 L676.00 458.75 L674.25 458.50 L667.50 458.50 L667.25 458.75 L664.75 458.75 L662.75 459.75 L662.50 460.25 L662.75 461.75 L665.75 464.75 L666.00 465.50 L666.00 467.75 L666.75 470.50 L667.00 476.50 L668.00 482.50 L669.00 495.25 L669.75 498.25 L669.75 499.75 L670.50 501.25 L672.50 502.00 L673.75 501.75 L675.50 500.75 L678.00 497.75 L680.75 493.75 L685.50 485.50 L686.25 484.75 L690.25 477.50 L694.00 472.00 L696.25 467.50 L699.75 463.75 L702.25 461.75 L702.75 460.75 L702.75 459.50Z M852.50 459.50 L842.00 457.75 L834.75 458.25 L831.00 459.50 L827.50 461.25 L824.00 464.00 L820.75 467.50 L819.25 469.50 L817.00 473.75 L815.00 479.50 L814.75 487.25 L815.00 489.75 L816.25 493.50 L818.00 496.25 L821.00 499.25 L826.25 501.75 L830.25 502.25 L835.00 502.25 L836.75 501.75 L838.50 501.75 L841.00 500.75 L842.00 500.75 L845.75 498.50 L847.50 496.25 L848.50 493.75 L848.50 492.75 L847.75 492.00 L846.75 492.00 L844.25 493.00 L839.25 495.75 L835.00 496.75 L831.75 496.75 L830.00 496.25 L827.75 495.00 L825.25 492.50 L823.75 488.50 L823.75 479.75 L826.00 473.00 L828.00 469.25 L832.50 464.25 L834.75 463.00 L841.00 462.75 L843.00 463.25 L845.25 464.50 L850.00 470.25 L851.75 470.00 L853.00 467.75 L853.75 462.75 L853.50 461.00Z M821.50 273.25 L820.00 272.25 L815.25 272.75 L809.00 272.75 L806.50 273.25 L792.00 274.25 L789.75 274.75 L785.25 275.00 L783.50 275.50 L780.50 275.50 L768.00 277.25 L765.75 277.25 L759.25 278.50 L757.25 278.50 L747.00 280.25 L744.75 280.25 L743.50 280.75 L741.75 280.75 L738.50 281.50 L736.50 281.50 L735.50 282.00 L728.50 283.00 L727.25 283.50 L720.75 284.25 L714.50 285.75 L708.50 286.50 L698.75 288.75 L697.00 288.75 L695.00 289.50 L688.25 290.50 L686.50 291.25 L676.50 293.00 L671.25 294.50 L665.25 295.50 L663.50 296.25 L657.25 297.50 L655.25 298.25 L652.75 298.50 L641.25 301.50 L640.00 301.50 L626.75 305.25 L621.00 306.50 L618.50 307.50 L617.25 307.50 L615.50 308.25 L605.00 310.75 L602.50 311.75 L600.50 312.00 L599.25 312.75 L597.25 313.00 L571.25 321.25 L566.00 322.50 L563.25 323.75 L561.00 324.25 L550.50 328.00 L549.75 328.00 L547.75 329.00 L544.75 329.75 L543.50 330.50 L536.50 332.50 L532.00 334.50 L524.00 337.00 L477.75 354.75 L477.25 355.25 L475.50 355.75 L471.00 358.00 L467.75 359.00 L458.75 363.25 L456.75 363.75 L455.25 364.75 L453.25 365.25 L447.00 368.25 L444.00 369.25 L439.25 371.75 L437.25 372.25 L430.50 375.75 L424.50 378.25 L414.75 383.50 L411.00 385.00 L405.00 388.50 L395.00 393.50 L385.50 399.50 L382.00 401.25 L377.50 404.50 L370.50 408.75 L360.00 416.50 L352.75 422.50 L344.25 431.00 L342.00 434.00 L340.25 437.50 L339.25 442.25 L339.25 445.00 L340.00 448.00 L341.00 450.25 L343.75 454.00 L346.50 456.50 L350.00 459.00 L353.00 460.25 L354.25 461.25 L357.75 463.00 L365.00 465.75 L368.00 466.50 L368.50 466.25 L368.50 465.25 L367.50 463.00 L367.50 461.50 L368.00 459.75 L370.25 455.75 L374.00 451.25 L384.25 442.00 L388.25 439.25 L390.00 437.50 L391.50 436.75 L392.75 435.50 L401.00 430.00 L402.00 429.00 L403.25 428.50 L406.00 426.25 L409.50 424.25 L411.00 423.00 L412.75 422.25 L414.50 420.75 L415.50 420.50 L416.50 419.50 L423.50 415.50 L426.50 413.25 L429.00 412.25 L430.50 411.00 L436.75 407.75 L438.00 406.75 L441.50 405.25 L442.75 404.25 L454.25 398.25 L455.50 398.00 L459.25 395.75 L467.75 391.50 L473.50 389.25 L483.25 384.25 L487.00 383.00 L492.25 380.25 L495.25 379.25 L496.25 378.50 L501.00 376.75 L505.00 374.75 L506.25 374.50 L509.00 373.00 L511.00 372.50 L525.50 366.25 L530.00 364.75 L534.00 362.75 L536.00 362.25 L538.50 361.00 L540.75 360.50 L552.25 355.50 L554.00 355.25 L558.50 353.25 L564.50 351.25 L565.75 350.50 L569.50 349.50 L574.00 347.50 L584.25 343.75 L586.50 343.25 L587.75 342.50 L591.50 341.50 L596.75 339.25 L599.25 338.75 L602.50 337.25 L615.75 333.00 L624.25 329.75 L626.00 329.50 L629.75 328.00 L633.50 327.00 L634.75 326.25 L636.50 326.00 L638.75 325.00 L641.75 324.50 L643.00 323.75 L645.50 323.25 L651.50 321.00 L653.25 320.75 L660.75 318.25 L662.75 318.00 L669.00 315.75 L671.25 315.50 L677.75 313.25 L682.75 312.25 L685.50 311.25 L687.50 311.00 L689.25 310.25 L697.00 308.50 L704.50 306.25 L707.00 306.00 L708.00 305.50 L719.00 303.00 L720.50 302.25 L725.25 301.25 L726.75 301.25 L728.50 300.50 L729.75 300.50 L733.75 299.25 L735.00 299.25 L740.75 297.75 L743.25 297.50 L745.25 296.75 L746.50 296.75 L748.75 296.00 L753.75 295.25 L764.00 292.75 L766.75 292.50 L780.50 289.50 L783.50 289.25 L784.50 288.75 L791.25 287.75 L792.25 287.25 L795.50 287.00 L813.00 283.75 L815.75 282.75 L818.00 281.25 L820.00 279.25 L821.75 276.00Z M362.00 106.25 L356.50 106.00 L352.75 106.75 L351.25 107.75 L348.75 108.50 L345.75 110.50 L340.75 115.75 L338.25 120.00 L337.25 122.50 L335.75 128.50 L335.75 132.25 L335.50 132.50 L336.25 139.75 L339.25 146.50 L340.75 148.50 L344.50 151.50 L345.75 151.75 L347.00 152.50 L351.25 153.25 L354.75 153.00 L359.00 152.00 L363.00 150.00 L366.75 147.00 L369.25 144.25 L371.75 140.50 L374.00 134.75 L375.00 128.50 L375.00 123.75 L373.50 117.00 L371.50 113.00 L367.75 108.75 L365.00 107.25Z M357.50 111.00 L358.75 111.25 L360.75 112.50 L363.00 115.00 L364.25 117.25 L364.50 118.75 L365.75 121.75 L366.00 124.25 L366.50 125.50 L366.50 133.00 L365.75 137.00 L365.00 138.50 L364.50 140.75 L363.00 143.50 L360.25 146.25 L358.75 147.25 L356.50 148.00 L353.25 148.25 L351.25 147.50 L348.00 144.75 L345.50 140.00 L344.00 132.25 L344.25 125.00 L346.50 117.25 L348.00 115.00 L349.75 113.25 L352.50 111.50 L354.25 111.00Z M415.25 89.75 L411.75 89.75 L409.75 90.50 L408.75 90.50 L405.50 92.00 L404.00 93.50 L406.00 97.50 L405.75 103.50 L401.00 125.50 L400.00 126.75 L399.00 126.25 L395.00 116.75 L393.00 111.00 L392.75 109.25 L392.00 107.75 L391.50 105.00 L391.00 104.25 L391.25 98.00 L390.50 97.25 L384.75 98.00 L380.00 99.75 L377.75 101.00 L377.25 101.75 L377.50 103.00 L378.25 103.75 L380.25 104.75 L382.25 106.50 L384.00 111.25 L387.00 117.50 L387.75 120.25 L390.50 125.75 L391.25 128.50 L395.75 138.50 L396.75 139.25 L398.75 139.50 L400.25 138.75 L402.50 134.75 L402.50 134.00 L404.00 130.00 L405.00 125.25 L406.25 121.75 L407.00 117.75 L407.75 116.25 L408.00 114.00 L408.75 112.25 L409.25 109.25 L409.75 108.50 L410.00 106.25 L411.00 103.50 L412.00 98.75 L416.00 91.75 L416.00 90.75Z M951.50 113.25 L949.75 111.25 L948.75 110.75 L945.50 110.75 L941.75 112.25 L935.25 115.75 L934.00 116.00 L923.25 121.50 L912.00 128.00 L910.50 129.25 L908.75 130.00 L900.75 135.25 L889.00 143.75 L888.00 144.00 L887.50 143.75 L876.25 143.75 L874.75 142.75 L874.50 142.25 L874.75 140.75 L877.00 136.00 L880.00 131.25 L889.25 120.00 L891.25 118.25 L895.75 113.25 L902.50 107.25 L906.75 104.00 L912.25 100.25 L915.50 98.75 L917.75 98.50 L918.50 99.00 L918.75 99.75 L918.50 100.50 L916.00 103.50 L912.00 109.50 L911.50 110.75 L909.00 114.00 L908.00 116.25 L906.75 117.50 L906.25 118.75 L906.25 120.75 L908.00 123.00 L910.50 124.00 L912.00 124.00 L915.00 122.75 L922.75 117.00 L927.75 112.00 L930.75 108.25 L932.50 104.75 L933.00 103.00 L933.00 99.50 L931.50 96.00 L928.75 92.00 L925.50 89.00 L923.25 87.50 L917.25 85.00 L913.25 84.25 L909.25 84.25 L904.75 85.00 L896.25 88.25 L895.00 89.25 L888.50 92.50 L879.25 99.25 L874.75 103.00 L868.00 109.50 L861.50 117.25 L858.25 122.25 L854.50 130.75 L854.50 132.00 L854.00 132.75 L853.50 135.00 L853.75 141.50 L852.75 142.50 L851.50 142.75 L850.00 143.75 L847.50 148.25 L846.75 149.00 L844.25 154.00 L842.00 157.25 L838.25 164.25 L834.00 170.75 L833.25 172.50 L832.00 174.00 L827.00 182.50 L821.00 191.25 L816.75 198.25 L813.75 202.25 L811.75 205.75 L810.50 207.00 L809.75 206.50 L809.50 205.75 L816.00 184.25 L816.75 183.00 L817.25 181.00 L819.75 175.00 L820.75 171.50 L822.00 169.25 L823.00 165.75 L827.25 156.25 L827.50 155.00 L829.75 150.50 L830.75 147.50 L832.75 143.75 L833.25 141.75 L835.75 137.00 L836.50 134.25 L835.75 131.50 L833.75 128.00 L828.25 122.00 L824.50 118.75 L821.25 116.50 L818.25 115.00 L815.75 114.25 L812.25 114.50 L810.00 115.50 L808.50 115.75 L806.25 117.00 L803.50 119.50 L800.00 123.50 L799.75 124.25 L795.25 130.00 L787.75 140.75 L783.50 147.75 L782.75 148.25 L782.00 148.25 L781.00 147.25 L780.25 145.50 L775.75 140.00 L771.25 136.00 L768.75 134.25 L765.75 132.75 L763.25 132.00 L757.75 132.00 L754.75 133.00 L752.75 134.50 L744.50 143.25 L743.75 144.75 L741.00 148.00 L735.50 156.25 L734.50 157.25 L732.25 161.25 L727.25 168.50 L726.75 168.50 L726.25 167.75 L726.50 165.25 L726.25 162.75 L723.00 157.50 L719.00 153.75 L718.25 153.50 L714.00 150.25 L711.50 149.00 L709.75 148.75 L706.75 149.00 L704.50 150.00 L702.75 151.50 L701.75 153.00 L701.50 154.00 L703.00 156.25 L703.00 159.00 L700.75 167.00 L699.25 171.00 L698.25 175.25 L697.00 176.50 L695.50 177.25 L679.25 182.25 L676.25 182.75 L675.00 182.50 L673.75 181.25 L673.00 179.50 L671.00 176.75 L667.50 173.00 L666.75 172.75 L663.25 169.75 L657.75 167.00 L655.75 166.25 L650.75 165.25 L643.00 165.50 L639.25 166.75 L635.75 168.50 L629.25 173.25 L621.50 181.00 L619.25 184.50 L616.75 187.00 L613.75 189.00 L605.50 197.00 L600.25 203.50 L594.50 211.75 L588.25 223.00 L587.25 223.75 L584.25 224.50 L583.00 225.75 L579.50 232.25 L577.75 234.75 L577.25 236.25 L573.00 242.75 L571.00 246.75 L563.00 259.75 L561.75 261.25 L561.25 262.50 L552.25 276.50 L547.25 283.50 L545.75 286.25 L543.75 288.00 L543.25 287.50 L543.50 285.00 L545.25 279.50 L545.50 277.25 L546.00 276.50 L546.50 274.00 L547.75 270.75 L547.75 269.75 L550.00 263.50 L550.25 261.75 L553.00 254.25 L556.50 242.50 L558.00 239.00 L558.25 237.25 L563.50 223.00 L566.25 213.75 L569.00 206.50 L569.00 205.75 L572.50 196.00 L572.50 195.00 L573.25 193.50 L577.00 181.50 L577.75 180.25 L578.00 178.50 L578.50 177.75 L582.50 165.50 L584.75 164.00 L595.50 159.50 L609.50 154.75 L616.50 152.00 L622.75 150.25 L629.50 147.75 L631.25 147.50 L632.50 146.75 L634.25 146.50 L637.25 145.25 L640.00 144.75 L645.25 143.00 L647.50 142.75 L649.25 142.00 L651.00 142.00 L653.00 141.25 L656.00 140.75 L659.00 138.75 L659.75 136.75 L659.50 134.75 L657.75 133.75 L652.25 133.75 L640.50 135.00 L639.50 135.50 L628.75 137.00 L623.00 138.50 L616.75 139.50 L607.50 142.00 L605.00 142.25 L602.25 143.25 L600.25 143.50 L599.50 144.00 L592.00 145.75 L588.75 147.00 L587.25 147.00 L586.75 146.50 L586.75 145.75 L590.25 141.00 L591.00 138.75 L590.75 137.50 L588.50 133.25 L582.50 126.75 L575.50 121.25 L572.75 120.00 L567.50 120.25 L565.75 121.25 L564.25 122.75 L563.25 124.50 L563.25 125.50 L564.75 126.75 L565.25 128.00 L565.00 131.00 L564.25 133.00 L563.00 140.50 L562.50 141.25 L561.75 145.25 L560.75 148.00 L559.75 152.75 L558.25 156.50 L557.25 157.25 L550.25 160.00 L544.25 163.00 L534.25 169.25 L529.75 172.75 L527.75 175.00 L524.50 181.50 L523.75 187.00 L524.00 190.50 L525.75 196.25 L527.75 198.50 L530.25 199.50 L535.25 200.50 L541.25 200.50 L544.50 199.75 L545.50 200.50 L545.25 202.50 L538.25 219.25 L537.25 222.50 L536.25 224.25 L534.00 232.00 L532.75 234.75 L532.50 236.25 L531.75 237.25 L528.50 238.25 L526.50 239.50 L520.50 242.00 L512.25 246.25 L511.00 247.25 L509.75 247.50 L503.25 251.00 L501.25 252.50 L496.75 254.75 L489.75 259.50 L488.50 260.00 L487.50 261.00 L480.50 265.50 L473.50 270.75 L472.75 271.00 L460.25 270.75 L459.00 269.50 L459.00 268.25 L461.25 263.25 L462.00 262.50 L462.25 261.50 L468.00 253.75 L473.50 247.25 L480.75 239.75 L491.75 230.50 L493.00 230.00 L496.50 227.50 L500.00 225.75 L501.75 225.50 L503.00 226.75 L502.50 228.25 L501.00 229.75 L499.00 233.25 L497.50 235.00 L492.00 243.25 L490.50 246.00 L490.75 248.25 L491.75 249.50 L494.00 251.00 L496.75 251.00 L500.25 249.25 L504.75 246.00 L513.00 238.25 L516.25 233.50 L517.50 229.75 L517.50 227.25 L517.00 225.50 L515.00 221.50 L513.50 219.50 L511.25 217.25 L508.00 214.75 L503.75 212.75 L499.25 211.50 L492.25 211.50 L488.50 212.25 L483.00 214.25 L477.00 217.25 L470.75 221.00 L460.25 229.00 L457.75 231.75 L451.75 237.25 L445.25 245.25 L440.50 253.50 L438.50 259.00 L437.75 263.75 L438.00 268.75 L435.00 270.25 L434.00 271.25 L430.00 278.75 L429.00 280.00 L428.25 282.00 L418.25 298.00 L417.25 300.25 L414.75 303.75 L414.00 305.50 L411.25 309.25 L406.00 318.00 L398.50 329.25 L397.75 330.00 L396.75 330.25 L396.50 328.25 L400.25 315.50 L401.25 313.25 L402.00 309.75 L402.50 309.00 L406.75 295.50 L413.50 277.25 L414.25 276.25 L414.50 274.75 L420.00 262.25 L419.75 259.50 L416.75 253.25 L414.00 249.50 L410.75 246.50 L407.25 244.00 L404.50 242.75 L400.75 242.50 L398.00 243.50 L397.25 244.25 L395.50 245.00 L393.25 247.25 L393.25 248.50 L394.50 249.75 L395.00 251.25 L394.00 255.50 L390.25 264.75 L381.75 281.00 L371.75 297.50 L370.00 299.75 L368.00 303.50 L363.75 309.50 L363.25 310.75 L360.00 315.25 L355.75 322.25 L340.50 344.25 L334.25 352.50 L333.00 353.50 L332.00 353.00 L332.25 351.00 L335.00 341.25 L335.50 340.50 L339.00 329.25 L341.00 324.50 L343.50 317.00 L346.25 310.75 L346.75 308.75 L356.75 286.75 L358.50 282.25 L358.50 281.00 L356.50 275.25 L354.25 271.25 L352.00 268.25 L349.25 265.50 L346.00 263.00 L343.00 261.50 L340.25 260.75 L334.75 261.00 L332.25 262.25 L331.00 263.25 L330.50 264.25 L330.50 265.75 L333.00 267.75 L332.75 271.50 L331.75 274.25 L331.50 276.25 L329.50 280.25 L329.00 282.00 L326.75 285.25 L325.75 287.50 L323.25 291.25 L318.25 300.25 L315.50 304.00 L314.50 306.25 L312.25 309.25 L312.00 310.25 L308.50 315.25 L305.25 321.00 L292.25 340.50 L288.50 345.50 L286.25 349.25 L284.50 351.25 L275.50 364.50 L266.75 375.75 L265.25 378.25 L263.75 379.75 L262.00 382.50 L251.75 395.00 L251.25 396.00 L248.50 399.00 L247.25 401.00 L238.00 411.50 L235.00 415.50 L226.00 425.25 L221.00 431.25 L216.25 436.00 L214.00 438.75 L201.25 451.50 L180.00 471.00 L162.75 484.75 L156.75 488.50 L155.50 489.75 L148.75 494.25 L141.50 498.25 L139.50 499.75 L128.75 505.00 L126.25 505.75 L123.75 507.00 L120.75 507.75 L119.00 508.75 L108.25 511.25 L103.25 511.75 L96.75 511.75 L94.75 511.25 L92.00 511.25 L84.00 509.25 L78.00 506.50 L70.00 500.75 L68.75 499.00 L65.50 495.75 L63.00 492.25 L58.00 481.25 L56.75 477.00 L56.50 474.75 L55.50 472.00 L54.00 463.75 L53.50 452.75 L53.25 452.50 L53.50 439.75 L55.00 425.00 L55.50 423.50 L55.50 421.75 L56.00 420.25 L56.00 418.50 L56.75 416.00 L57.00 413.25 L57.50 412.25 L57.50 410.75 L58.50 407.50 L58.50 405.75 L60.25 399.50 L60.50 397.50 L62.25 392.00 L62.50 389.75 L63.50 387.75 L65.00 381.75 L70.00 367.25 L70.25 365.50 L72.75 359.75 L76.25 349.75 L87.75 323.25 L89.25 320.75 L96.25 306.00 L101.00 297.50 L103.25 292.75 L108.50 284.25 L110.50 280.25 L112.25 278.00 L113.50 275.50 L115.25 273.25 L120.00 265.50 L122.25 262.75 L130.50 250.75 L134.00 246.50 L134.25 245.75 L135.75 244.25 L136.00 243.50 L140.75 238.00 L145.25 232.00 L155.50 220.75 L156.25 219.50 L162.75 213.00 L164.00 211.25 L176.50 199.00 L194.75 183.25 L197.25 181.75 L198.75 180.25 L211.25 171.50 L224.25 163.75 L233.00 159.50 L233.75 159.50 L239.50 157.00 L245.00 155.25 L247.25 155.00 L248.75 154.25 L253.00 153.75 L259.25 154.00 L263.25 155.25 L266.25 157.00 L269.50 160.75 L271.75 165.75 L272.25 172.00 L271.75 176.50 L270.00 184.75 L267.25 193.50 L266.50 195.00 L266.50 195.75 L265.50 197.50 L265.25 199.00 L261.25 208.75 L256.00 220.25 L255.00 221.75 L254.75 223.00 L252.75 226.25 L248.00 236.25 L247.00 237.50 L246.50 239.00 L243.50 244.75 L242.75 245.50 L240.75 249.75 L239.75 251.00 L238.00 254.75 L232.25 264.25 L230.25 268.25 L229.25 269.25 L226.50 274.50 L226.25 280.00 L227.25 282.50 L229.25 284.50 L231.50 285.25 L234.50 285.50 L237.75 284.50 L239.00 283.75 L252.25 272.00 L261.75 262.50 L270.00 253.25 L278.00 242.75 L281.50 237.25 L282.75 236.00 L286.50 229.50 L289.00 226.00 L291.00 221.75 L293.50 217.75 L295.00 213.75 L297.00 210.00 L298.50 205.50 L299.25 204.50 L299.50 203.00 L300.50 201.00 L303.25 191.50 L305.00 180.25 L305.00 173.25 L303.75 166.25 L303.00 163.75 L301.25 160.25 L298.00 155.75 L291.25 149.25 L284.50 144.50 L274.75 139.50 L266.25 136.50 L255.00 134.25 L247.25 134.00 L247.00 133.75 L236.25 134.25 L234.25 134.75 L232.50 134.75 L231.50 135.25 L228.50 135.50 L221.50 137.25 L210.00 141.25 L201.50 145.25 L198.00 146.50 L194.75 148.50 L192.75 149.25 L191.50 150.25 L189.00 151.25 L173.00 161.00 L164.25 167.50 L161.00 169.50 L159.00 171.50 L158.25 171.75 L150.25 178.00 L147.50 180.75 L146.50 181.25 L140.75 186.25 L130.00 196.25 L122.00 204.75 L117.25 209.25 L104.50 223.50 L99.25 230.25 L98.00 231.25 L91.25 240.25 L88.75 243.00 L88.00 244.50 L85.50 247.25 L70.50 268.75 L61.00 283.75 L54.00 295.75 L53.00 298.00 L52.00 299.25 L51.75 300.25 L50.00 303.00 L49.00 305.50 L48.00 306.75 L41.25 320.50 L37.75 328.25 L36.50 332.00 L34.00 337.00 L33.25 339.75 L32.25 341.50 L30.00 348.00 L29.00 349.75 L29.00 350.50 L24.50 363.25 L22.25 371.75 L21.50 373.25 L21.25 375.25 L20.25 378.00 L20.00 380.25 L19.25 382.00 L19.25 383.25 L17.50 389.25 L17.50 391.00 L15.75 398.25 L14.50 408.00 L13.75 411.00 L13.50 416.00 L12.75 421.00 L12.75 424.00 L12.50 424.25 L12.50 428.75 L12.25 429.00 L12.50 450.25 L14.75 468.00 L17.25 477.25 L17.50 479.50 L18.75 482.25 L20.75 488.75 L24.50 496.50 L30.50 505.25 L40.00 514.75 L45.75 519.00 L54.25 523.75 L62.25 527.25 L72.00 530.25 L77.50 531.50 L78.75 531.50 L81.00 532.25 L92.50 533.75 L102.75 534.00 L103.00 534.25 L118.00 533.75 L131.50 532.25 L134.00 531.50 L138.50 531.00 L150.75 528.00 L161.50 524.25 L170.25 520.00 L178.50 515.25 L193.50 504.50 L200.50 498.25 L201.75 497.50 L209.00 490.75 L219.50 480.25 L228.50 470.25 L243.25 452.50 L263.75 424.75 L265.75 421.25 L266.75 420.25 L273.25 410.25 L274.75 408.50 L280.00 399.75 L280.75 399.00 L281.50 397.25 L282.50 396.25 L285.75 391.25 L286.50 389.50 L289.25 385.50 L294.50 376.25 L296.50 373.50 L300.75 365.75 L302.00 364.25 L302.50 362.75 L305.75 357.00 L306.75 356.75 L307.50 357.50 L309.25 361.75 L312.00 366.00 L316.00 370.00 L320.50 373.25 L324.00 375.00 L328.00 376.25 L332.25 376.25 L337.25 375.25 L339.25 374.25 L341.25 372.25 L351.25 358.50 L352.00 356.75 L354.50 353.25 L355.50 351.00 L359.50 344.75 L362.25 339.25 L364.75 335.25 L366.50 331.25 L368.50 329.00 L369.00 329.50 L369.00 331.00 L368.25 335.00 L368.25 340.75 L370.00 345.50 L373.25 350.00 L378.75 354.75 L384.75 357.75 L389.00 358.50 L394.00 358.00 L396.25 356.75 L401.00 352.25 L406.25 345.50 L411.25 338.00 L412.00 336.25 L413.75 334.00 L415.50 330.50 L418.00 326.75 L419.25 324.00 L422.25 319.50 L422.75 318.00 L423.50 317.25 L423.75 318.50 L422.50 321.00 L422.50 322.25 L421.75 324.75 L422.00 327.25 L422.75 329.50 L425.50 333.75 L428.50 336.75 L431.75 339.25 L437.00 341.75 L439.00 342.00 L440.50 342.75 L443.50 343.25 L449.25 343.25 L455.50 341.75 L456.75 341.00 L459.25 340.25 L462.75 338.25 L464.00 338.00 L471.25 334.00 L475.75 331.00 L484.00 324.75 L488.50 320.75 L493.50 315.75 L499.75 308.75 L500.50 307.25 L503.75 303.25 L506.75 297.25 L508.00 292.50 L508.00 287.50 L507.00 282.75 L505.50 279.75 L503.25 277.25 L500.00 275.25 L494.75 274.00 L489.50 274.00 L488.75 273.50 L488.75 273.00 L490.75 271.25 L492.50 270.50 L494.00 269.00 L495.00 268.75 L496.50 267.50 L497.75 267.00 L502.50 263.50 L505.00 262.25 L506.00 261.25 L507.75 260.50 L509.75 259.00 L511.50 258.25 L518.00 254.00 L527.00 248.75 L528.00 249.50 L528.00 250.50 L526.75 253.50 L526.50 255.50 L524.25 262.00 L524.25 263.00 L523.00 266.50 L523.00 268.00 L522.00 270.25 L520.00 277.75 L519.75 280.25 L518.75 283.25 L517.50 290.00 L517.25 296.00 L518.75 300.75 L522.25 305.75 L525.75 309.00 L531.50 312.25 L535.50 313.25 L541.00 313.00 L543.75 312.25 L548.75 308.00 L554.75 300.50 L557.00 296.75 L559.50 293.50 L567.50 280.25 L572.50 271.00 L573.00 269.50 L574.00 268.25 L574.75 266.25 L576.25 264.25 L577.00 264.25 L577.50 265.00 L578.00 268.75 L579.75 273.75 L581.50 276.75 L584.00 280.00 L588.75 284.50 L595.00 288.00 L600.75 290.00 L602.50 290.00 L606.00 290.75 L611.75 290.75 L617.25 289.50 L623.50 287.00 L627.75 284.75 L631.50 282.25 L639.75 275.50 L645.75 269.50 L655.25 257.25 L657.50 253.25 L658.75 252.00 L659.25 250.75 L660.00 250.00 L663.75 242.75 L664.75 241.50 L669.25 232.25 L670.25 229.25 L671.75 226.25 L672.25 224.25 L673.00 223.00 L673.25 221.50 L674.00 220.25 L674.00 219.50 L675.50 215.50 L675.75 213.50 L676.25 212.75 L678.00 204.50 L678.25 198.25 L678.50 198.00 L678.00 194.25 L678.25 193.00 L679.75 191.75 L682.00 191.25 L692.00 187.50 L693.25 187.75 L693.75 188.25 L693.75 189.00 L692.25 192.50 L687.25 208.00 L686.00 210.75 L686.00 211.50 L685.00 213.75 L685.00 214.50 L684.25 216.00 L681.50 225.50 L680.00 229.50 L678.00 238.50 L677.50 244.75 L678.50 248.50 L680.50 252.25 L682.75 255.50 L685.00 258.00 L688.00 260.75 L692.00 263.50 L694.25 264.25 L695.75 264.00 L697.75 262.75 L700.00 260.00 L700.25 257.25 L699.25 256.00 L698.50 254.25 L698.50 253.25 L699.50 250.00 L703.75 240.25 L708.75 231.00 L713.50 221.00 L715.25 218.25 L718.75 211.25 L719.50 210.50 L721.75 205.75 L722.75 204.50 L723.50 202.50 L725.75 199.00 L726.75 196.50 L732.25 187.00 L734.75 182.00 L739.25 175.25 L741.00 171.75 L746.25 164.50 L748.75 160.25 L750.75 157.50 L752.75 155.75 L753.25 156.50 L752.25 158.50 L751.75 160.50 L748.00 168.50 L745.00 177.00 L743.00 181.50 L742.00 185.25 L740.00 190.00 L740.00 191.00 L738.25 196.50 L737.50 197.75 L737.25 200.00 L736.25 202.75 L735.75 206.00 L734.75 208.75 L733.75 213.75 L733.75 215.50 L733.25 217.50 L733.25 221.50 L733.00 221.75 L733.25 225.25 L734.25 228.25 L738.00 234.00 L740.25 236.50 L743.50 239.00 L744.75 240.50 L748.75 242.75 L752.00 242.50 L755.00 240.25 L756.25 238.00 L756.25 236.25 L755.25 234.00 L755.25 232.50 L758.50 223.75 L762.75 214.75 L763.00 213.50 L767.75 204.25 L772.75 193.50 L774.00 191.75 L779.00 181.50 L780.00 180.25 L780.50 178.50 L781.50 177.25 L785.50 169.25 L787.25 166.75 L787.75 165.25 L791.25 160.25 L792.75 157.50 L802.75 143.25 L807.25 138.00 L807.75 138.25 L807.75 138.75 L806.75 140.25 L806.00 143.25 L803.00 149.00 L802.75 150.25 L800.50 154.75 L800.25 156.00 L794.00 171.00 L793.00 174.50 L792.25 175.75 L791.00 180.00 L789.00 185.00 L788.25 188.25 L785.25 197.25 L783.00 208.00 L783.00 212.50 L783.75 214.75 L786.75 220.50 L789.75 224.00 L792.75 226.50 L796.25 228.75 L800.50 230.75 L803.50 231.25 L809.25 231.00 L812.50 229.25 L815.25 226.75 L822.00 218.25 L826.00 212.25 L828.25 208.00 L829.50 206.50 L832.00 201.75 L834.50 198.00 L835.25 196.00 L838.00 192.00 L838.75 190.00 L839.50 189.25 L840.25 187.50 L840.75 187.25 L841.50 184.50 L845.75 176.50 L853.25 160.50 L854.50 157.00 L857.00 151.75 L857.25 150.50 L858.50 149.25 L859.75 149.50 L863.00 151.25 L867.25 152.25 L877.00 152.00 L877.50 152.50 L875.50 154.25 L873.75 155.00 L870.00 157.50 L861.00 165.00 L856.00 169.75 L848.25 178.25 L844.50 183.50 L841.25 187.25 L841.25 188.00 L838.75 192.25 L837.50 197.00 L837.50 199.75 L838.50 202.50 L840.25 205.75 L842.25 208.00 L848.25 212.75 L850.00 213.25 L852.25 214.50 L857.25 216.00 L864.50 216.25 L868.25 215.50 L869.75 214.75 L872.00 214.25 L874.50 213.00 L875.75 212.75 L878.25 211.25 L880.25 210.75 L882.00 209.50 L884.75 208.25 L886.50 206.75 L887.50 206.50 L895.50 201.00 L898.50 198.25 L900.75 196.75 L908.25 189.75 L913.75 183.50 L917.75 178.50 L921.50 172.25 L923.25 167.50 L923.75 164.75 L923.75 162.25 L923.25 157.75 L921.00 152.50 L918.00 149.50 L914.50 147.75 L911.00 147.25 L909.75 146.75 L905.50 147.25 L904.75 147.00 L904.25 146.00 L918.00 136.50 L950.25 117.00 L951.50 115.75 L951.75 115.00Z M483.75 281.75 L484.25 282.50 L484.25 283.50 L481.75 288.00 L476.75 294.50 L470.00 302.00 L465.50 306.25 L464.00 308.25 L459.25 313.00 L456.75 315.00 L452.50 319.25 L443.50 327.00 L441.00 328.25 L440.50 327.75 L440.50 327.00 L441.75 324.75 L444.00 322.00 L445.00 320.00 L452.25 310.50 L460.00 301.75 L480.50 281.50 L482.25 281.25Z M461.00 279.75 L461.00 280.25 L458.00 282.50 L456.50 283.00 L455.00 284.50 L452.00 286.50 L440.50 296.75 L432.25 305.75 L429.50 309.25 L427.50 312.50 L425.75 314.25 L425.25 314.00 L425.75 311.75 L435.50 292.25 L435.75 291.00 L437.25 288.50 L442.25 276.75 L444.00 276.50 L445.75 277.75 L447.25 278.00 L448.75 278.75 L452.75 279.50 L460.25 279.25Z M655.75 199.00 L656.50 199.75 L656.25 201.25 L652.75 210.25 L652.50 211.75 L650.50 215.50 L649.75 218.00 L641.00 234.75 L630.25 252.50 L622.00 263.75 L618.75 267.25 L618.00 268.50 L609.50 276.75 L608.25 277.25 L607.25 278.25 L605.00 279.50 L603.50 279.75 L602.50 279.25 L600.75 277.50 L600.25 276.50 L600.00 270.25 L601.25 261.75 L602.00 260.25 L602.25 258.00 L603.25 255.25 L603.50 253.50 L604.25 252.00 L606.50 244.50 L609.25 238.50 L609.50 237.25 L611.50 233.75 L613.25 229.50 L614.00 228.75 L614.75 226.75 L615.75 225.50 L619.75 218.25 L625.75 210.25 L630.75 204.75 L634.50 201.75 L644.00 201.00 L651.50 199.75 L655.00 198.75Z M553.00 180.25 L553.50 180.75 L553.25 182.25 L552.25 184.25 L551.75 186.25 L550.75 187.75 L549.75 191.25 L548.50 192.50 L547.50 192.75 L542.50 192.00 L541.75 191.25 L542.00 189.75 L552.25 180.25Z M652.75 174.75 L656.00 178.75 L656.50 181.00 L656.50 186.50 L656.25 187.00 L655.25 187.75 L642.50 188.00 L641.50 186.75 L641.50 185.00 L642.50 181.75 L643.75 179.50 L645.50 177.25 L648.25 174.75 L650.50 174.00Z M899.00 154.50 L899.75 155.25 L899.75 156.75 L898.75 158.75 L892.50 167.25 L886.00 174.50 L875.25 185.50 L868.00 192.25 L858.75 200.25 L856.50 201.25 L856.00 200.50 L858.00 196.75 L864.25 188.00 L871.00 179.75 L876.50 173.75 L896.00 154.50 L896.50 154.25Z M448.00 80.25 L447.25 80.00 L444.50 80.25 L440.50 81.25 L434.25 83.50 L430.75 84.25 L422.75 87.25 L420.75 88.75 L420.75 89.75 L421.50 90.50 L423.50 91.00 L425.00 93.25 L425.50 99.25 L426.00 101.25 L426.75 114.50 L427.25 117.50 L427.25 124.00 L424.25 128.50 L424.50 130.25 L425.50 130.50 L429.00 130.25 L432.25 129.00 L444.50 125.75 L446.75 124.75 L447.75 124.75 L452.00 123.25 L454.00 121.50 L454.50 120.50 L455.25 117.25 L455.25 113.75 L454.50 112.50 L453.00 112.75 L451.25 114.50 L450.50 116.00 L447.75 118.75 L443.25 121.00 L439.50 122.00 L437.75 122.00 L436.25 120.75 L434.75 116.25 L434.50 114.50 L434.75 109.75 L437.00 107.25 L440.00 106.50 L441.75 107.00 L444.50 108.50 L446.00 108.50 L447.00 106.50 L447.00 102.00 L446.50 100.50 L446.50 99.00 L446.00 97.50 L445.00 96.25 L444.00 95.75 L442.75 96.25 L441.25 98.25 L438.25 100.75 L435.00 101.00 L434.00 100.00 L433.50 96.75 L433.75 96.50 L433.75 94.00 L434.75 90.00 L436.75 87.75 L440.50 86.50 L444.25 86.50 L447.25 87.50 L448.75 88.50 L449.75 88.50 L450.50 87.75 L450.25 84.50 L448.75 81.00Z M484.50 71.25 L481.25 70.50 L479.75 70.50 L473.00 71.50 L470.50 72.50 L469.50 72.50 L466.25 73.75 L463.75 74.25 L459.50 76.00 L458.50 77.00 L458.75 78.75 L461.25 80.25 L462.25 81.25 L463.00 84.00 L463.00 86.00 L463.50 88.25 L464.50 104.25 L465.00 106.25 L465.00 113.00 L464.50 114.25 L461.75 117.25 L461.75 118.75 L462.75 119.50 L465.00 119.50 L468.75 118.25 L471.50 117.75 L472.75 117.00 L475.25 116.25 L476.75 115.00 L477.00 114.50 L476.75 113.50 L474.75 111.50 L473.75 109.75 L472.50 104.00 L472.50 100.75 L472.25 100.50 L472.50 98.75 L473.25 97.75 L474.25 97.25 L475.25 97.25 L478.00 98.50 L480.00 100.50 L485.50 108.50 L488.25 110.75 L490.75 111.25 L495.00 110.75 L497.75 109.50 L498.75 108.25 L498.75 107.50 L497.75 106.25 L496.25 106.00 L494.00 105.00 L491.50 102.75 L484.50 92.75 L484.50 91.75 L488.25 87.00 L489.50 84.50 L490.00 82.25 L489.75 77.50 L488.75 75.25 L487.25 73.00Z M478.25 75.75 L480.50 77.50 L481.75 80.00 L482.25 84.25 L481.50 86.75 L478.75 90.25 L477.25 91.25 L474.25 92.50 L472.75 92.75 L471.75 91.75 L471.50 89.75 L471.50 86.00 L471.00 82.25 L471.25 77.50 L472.00 76.75 L475.25 75.50Z M527.50 58.25 L520.25 58.00 L519.00 58.50 L517.00 58.50 L512.50 59.50 L500.75 63.50 L499.50 64.50 L499.25 66.00 L499.75 66.75 L501.75 67.50 L502.75 68.50 L504.00 71.50 L504.25 76.00 L504.75 78.25 L505.25 89.25 L505.75 93.00 L505.75 100.75 L505.00 102.50 L502.50 105.75 L502.50 106.75 L503.00 107.50 L503.50 107.75 L505.75 107.50 L512.00 105.25 L514.00 105.00 L518.25 103.50 L519.25 103.50 L520.50 102.75 L524.00 101.75 L529.25 98.75 L533.25 95.00 L535.50 92.00 L538.00 86.25 L539.50 77.75 L539.25 73.50 L538.25 69.25 L537.50 68.25 L537.25 67.00 L536.00 65.50 L535.50 64.00 L532.50 61.00Z M520.50 62.75 L523.75 63.75 L525.00 64.50 L527.50 67.00 L529.00 69.25 L531.00 77.00 L531.00 83.75 L529.50 89.50 L528.00 92.50 L524.25 96.25 L518.25 99.25 L515.00 99.25 L514.25 98.25 L513.50 92.00 L512.00 66.00 L513.00 64.75 L514.75 63.75 L517.50 63.00Z M570.00 45.50 L568.00 45.00 L564.00 45.00 L562.25 45.50 L560.75 45.50 L546.75 49.75 L544.25 51.50 L544.50 53.25 L547.00 54.50 L547.75 55.25 L548.75 58.00 L549.25 61.50 L549.50 68.50 L550.00 71.75 L550.00 75.00 L550.50 77.25 L551.00 86.50 L550.25 88.75 L547.50 92.00 L547.50 93.00 L548.50 94.00 L551.75 93.75 L557.25 91.75 L559.25 91.50 L562.50 89.75 L562.75 88.50 L562.25 87.50 L560.75 86.25 L559.75 84.50 L558.50 79.75 L558.25 73.25 L559.75 71.75 L561.75 71.75 L563.75 72.75 L567.25 76.75 L568.00 78.25 L572.50 84.25 L573.75 85.00 L576.50 85.75 L578.25 85.75 L582.75 84.50 L584.25 83.25 L584.75 82.25 L584.00 80.75 L580.75 80.00 L577.50 77.50 L576.25 75.25 L574.50 73.25 L574.00 72.00 L570.50 67.50 L570.50 65.75 L573.25 62.50 L575.25 59.00 L575.75 57.25 L575.75 52.75 L575.25 51.00 L573.50 48.00 L572.25 46.75Z M563.50 50.00 L564.75 50.50 L566.50 52.25 L568.00 55.75 L567.75 59.75 L566.50 62.50 L565.25 64.00 L563.25 65.50 L558.75 67.25 L557.50 66.00 L557.25 60.25 L557.00 60.00 L557.00 52.50 L558.50 50.75 L560.75 50.00Z M601.50 33.75 L599.75 33.75 L595.50 35.25 L589.25 36.75 L586.00 38.00 L585.25 39.00 L585.25 40.25 L586.00 41.00 L588.00 41.75 L589.25 43.00 L590.00 44.75 L590.25 48.25 L590.75 50.00 L591.00 56.25 L591.75 62.25 L592.25 73.75 L591.50 76.50 L588.75 80.00 L588.50 81.25 L589.00 82.00 L590.75 82.00 L597.75 79.75 L598.75 79.75 L601.00 78.75 L602.75 78.50 L604.50 77.75 L605.50 76.75 L605.25 75.25 L604.50 74.50 L602.50 73.75 L601.50 72.75 L600.50 70.25 L600.50 68.50 L600.00 66.75 L600.00 63.75 L599.50 61.00 L599.50 58.25 L598.75 52.50 L598.75 48.75 L598.50 48.50 L598.50 41.00 L599.00 39.75 L602.00 35.75 L602.00 34.50Z M643.75 21.25 L640.50 21.50 L636.50 22.75 L634.50 23.75 L633.50 24.75 L633.50 26.25 L635.00 28.75 L634.75 36.00 L634.25 38.75 L633.50 40.50 L633.25 43.50 L630.25 57.00 L629.75 58.00 L629.00 58.50 L628.00 57.75 L622.50 44.00 L622.00 41.25 L620.25 36.50 L620.25 29.50 L619.75 29.00 L616.25 29.00 L611.50 30.75 L610.75 30.75 L608.00 32.00 L606.50 33.25 L606.50 34.50 L607.50 35.50 L611.00 37.50 L615.50 47.50 L616.25 50.25 L617.25 51.75 L618.00 54.25 L620.00 58.50 L620.50 60.50 L621.25 61.50 L624.00 68.50 L624.75 69.75 L626.25 71.00 L629.00 70.75 L629.75 70.00 L631.75 66.25 L634.00 57.50 L634.75 55.75 L635.00 53.75 L635.75 52.25 L636.00 50.25 L636.75 48.50 L640.00 34.50 L641.25 31.00 L641.25 30.00 L645.00 24.00 L645.25 23.00 L644.75 21.75Z M676.75 11.75 L673.25 12.00 L668.50 13.25 L666.50 14.25 L661.25 15.50 L652.75 18.50 L650.50 19.75 L649.75 20.75 L650.25 22.00 L652.25 22.50 L653.50 23.50 L654.25 25.50 L654.25 27.25 L654.75 29.00 L656.50 53.75 L656.00 56.50 L653.50 60.00 L653.50 61.50 L654.25 62.00 L658.75 61.75 L661.25 60.75 L665.75 59.75 L669.75 58.25 L672.50 57.75 L679.75 55.50 L681.75 54.50 L683.25 53.00 L683.75 52.00 L684.50 48.25 L684.50 45.50 L683.50 44.00 L682.50 44.00 L681.00 45.50 L679.75 47.50 L675.25 51.50 L672.50 52.75 L669.75 53.25 L668.75 53.75 L667.00 53.75 L665.50 52.75 L664.50 50.25 L663.50 44.75 L664.00 40.75 L666.00 39.00 L667.75 38.25 L669.75 38.25 L673.25 40.00 L675.00 40.00 L676.00 39.00 L676.25 33.75 L675.25 29.50 L674.00 27.75 L672.75 27.50 L671.75 28.00 L669.00 31.50 L667.50 32.25 L664.50 33.00 L663.25 31.75 L662.75 30.25 L662.75 26.25 L663.50 23.00 L664.50 20.75 L666.50 19.00 L669.50 18.25 L673.50 18.25 L676.50 19.25 L678.25 20.25 L679.50 19.50 L679.75 18.00 L679.25 15.50 L678.25 13.00Z"/></symbol></svg>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="gabbia">
+    <a class="marchio" href="#" aria-label="Overdrive Customs, torna all'inizio"><svg viewBox="0 0 1008 545" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav class="menu" id="menu" aria-label="Principale">
+      <a href="#officina">Officina</a>
+      <a href="#moto">Le moto</a>
+      <a href="#riviste">Riviste</a>
+      <a href="#contatti">Dove siamo</a>
+    </nav>
+    <a class="tel num" href="tel:+393402510434">340&nbsp;251&nbsp;0434</a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <div class="gabbia">
+    <h1 id="titolo">Special, dal telaio in&nbsp;su</h1>
+
+    <div class="testo">
+      <p class="lead">Officina per Harley-Davidson e custom giapponesi a Vigonovo, Venezia. Facciamo tagliandi e riparazioni, e su progetto costruiamo special da&nbsp;concorso.</p>
+      <div class="azioni">
+        <a class="bottone num" href="tel:+393402510434">Chiama 340&nbsp;251&nbsp;0434</a>
+        <span class="nota">Su appuntamento, da martedì a venerdì</span>
+      </div>
+      <p class="didascalia"><b>Hagane, <span class="num">2024</span>.</b> Chopper con motore Suzuki DR650. Prima nella categoria Metric al Biker Fest di Lignano, poi in copertina su Kustom World e sull'olandese Bigtwin.</p>
+    </div>
+
+    <figure class="moto">
+      <img src="img/hagane-860.webp"
+           srcset="img/hagane-640.webp 640w, img/hagane-860.webp 860w, img/hagane-1290.webp 1290w, img/hagane-1720.webp 1720w"
+           sizes="(max-width:560px) calc(100vw - 12px), (max-width:900px) calc(100vw - 64px), (max-width:1180px) 52vw, 860px"
+           width="860" height="477" fetchpriority="high"
+           alt="Hagane, chopper rosso con telaio e forcella costruiti da Overdrive Customs, motore e ruote da una Suzuki DR650 e sella in pelle trapuntata, vista di fianco">
+      <div aria-hidden="true">
+        <span class="leg num" style="--x:27.68%;--y:32.50"><b>1</b>Telaio e forcella<span>Overdrive Customs</span></span>
+        <span class="leg num" style="--x:50.38%;--y:54.45"><b>2</b>Motore e ruote<span>Suzuki DR650</span></span>
+        <span class="leg num" style="--x:75.10%;--y:35.44"><b>3</b>Sella<span>Cisco Leather</span></span>
+        <span class="punto num" style="--x:27.68%;--y:32.50">1</span>
+        <span class="punto num" style="--x:50.38%;--y:54.45">2</span>
+        <span class="punto num" style="--x:75.10%;--y:35.44">3</span>
+      </div>
+    </figure>
+    <ol class="elenco-legende num" aria-label="I pezzi di Hagane">
+      <li><b>1</b> Telaio e forcella <span>Overdrive Customs</span></li>
+      <li><b>2</b> Motore e ruote <span>Suzuki DR650</span></li>
+      <li><b>3</b> Sella <span>Cisco Leather</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sezione officina" id="officina" aria-labelledby="t-officina">
+  <div class="gabbia griglia">
+    <h2 class="h2" id="t-officina">Dal tagliando alla moto da concorso</h2>
+    <p class="intro">Aperta da Matteo il 2 maggio 2015. Si lavora su appuntamento, e la moto di tutti i giorni passa dallo stesso banco di quella da portare in&nbsp;fiera.</p>
+    <div class="lista l1">
+      <h3>In officina</h3>
+      <ul>
+        <li>Tagliandi</li>
+        <li>Riparazioni motori</li>
+        <li>Ripristino di veicoli sinistrati</li>
+        <li>Servizio pneumatici</li>
+        <li>Trasporto veicoli</li>
+      </ul>
+    </div>
+    <div class="lista l2">
+      <h3>Su progetto</h3>
+      <ul>
+        <li>Customizzazioni</li>
+        <li>Motoristica</li>
+        <li>Restauro</li>
+        <li>Costruzioni personalizzate</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sezione premiate" id="moto" aria-labelledby="t-moto">
+  <div class="gabbia griglia">
+      <h2 class="h2" id="t-moto">Le moto premiate</h2>
+      <div class="testa-moto">
+      <p class="intro">Dal <span class="num">2018</span> le nostre special vincono ai concorsi del Nord Italia: Biker Fest a Lignano, American Dream a Padova, MondoMotori a Vicenza, Kustom Kulture a&nbsp;Cesena.</p>
+      <p class="primi">Primi posti: Bonebreaker <span class="num">2018</span>, Night Train ed Envy <span class="num">2019</span>, Drakkar <span class="num">2021</span>, Special K <span class="num">2022</span>, la <span class="num">883</span> nel <span class="num">2023</span>, Hagane nel&nbsp;<span class="num">2024</span>.</p>
+      </div>
+      <figure class="palco">
+        <img id="foto-moto" src="img/specialk-720.webp"
+             srcset="img/specialk-480.webp 480w, img/specialk-720.webp 720w"
+             sizes="(max-width:560px) 100vw, (max-width:900px) calc(100vw - 64px), 720px" width="720" height="480" loading="lazy"
+             alt="Kawasaki Z650RS Special K verde e nera, di fianco, su fondo bianco da studio">
+      </figure>
+      <div class="lato">
+        <div class="schede" role="tablist" aria-label="Scegli la moto" aria-orientation="vertical">
+          <button class="scheda" role="tab" id="s-envy" aria-selected="false" aria-controls="premio" tabindex="-1" data-moto="envy">
+            <span class="nome">Envy</span><span class="anno num">2019</span>
+            <span class="base">Ducati Monster 600</span>
+          </button>
+          <button class="scheda" role="tab" id="s-drakkar" aria-selected="false" aria-controls="premio" tabindex="-1" data-moto="drakkar">
+            <span class="nome">Drakkar</span><span class="anno num">2021</span>
+            <span class="base">Harley-Davidson Road King</span>
+          </button>
+          <button class="scheda" role="tab" id="s-specialk" aria-selected="true" aria-controls="premio" data-moto="specialk">
+            <span class="nome">Special K</span><span class="anno num">2022</span>
+            <span class="base">Kawasaki Z650RS</span>
+          </button>
+          <button class="scheda" role="tab" id="s-883" aria-selected="false" aria-controls="premio" tabindex="-1" data-moto="883-oldstyle">
+            <span class="nome">883 Old Style</span><span class="anno num">2023</span>
+            <span class="base">Harley-Davidson 883, chopper</span>
+          </button>
+        </div>
+        <p class="premio" id="premio" role="tabpanel" aria-labelledby="s-specialk" aria-live="polite">N° 1 nella categoria Streetfighter al Kustom Kulture di Cesena e al MondoMotori di Vicenza, novembre e dicembre 2022.</p>
+      </div>
+  </div>
+</section>
+
+<section class="sezione riviste" id="riviste" aria-labelledby="t-riviste">
+  <div class="gabbia griglia">
+    <div class="riviste-testo">
+      <h2 class="h2" id="t-riviste">In copertina</h2>
+      <p class="intro">Su Ferro nel <span class="num">2015</span>, su Bikers Life e Kustom World dal <span class="num">2018</span>; Drakkar in copertina su Bikers Life nel dicembre <span class="num">2021</span>. Hagane è finita in copertina in Italia e in&nbsp;Olanda.</p>
+    </div>
+    <div class="copertine">
+      <figure>
+        <img src="img/kustomworld-2024-360.webp" srcset="img/kustomworld-2024-360.webp 360w, img/kustomworld-2024-600.webp 600w, img/kustomworld-2024-765.webp 765w" sizes="(max-width:560px) 44vw, (max-width:900px) 45vw, 424px" width="360" height="499" loading="lazy" alt="Copertina di Kustom World con Hagane e Matteo, agosto 2024">
+        <figcaption class="didascalia"><b>Kustom World</b><br><span class="num">agosto 2024</span>, Hagane</figcaption>
+      </figure>
+      <figure>
+        <img src="img/bigtwin-2025-360.webp" srcset="img/bigtwin-2025-360.webp 360w, img/bigtwin-2025-600.webp 600w, img/bigtwin-2025-773.webp 773w" sizes="(max-width:560px) 44vw, (max-width:900px) 45vw, 424px" width="360" height="479" loading="lazy" alt="Copertina della rivista olandese Bigtwin con Hagane, aprile 2025">
+        <figcaption class="didascalia"><b>Bigtwin</b>, Olanda<br><span class="num">aprile 2025</span>, Hagane</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="gabbia griglia">
+    <div class="testo">
+      <h2 class="frase" id="t-contatti">I mostri non sono nella vostra testa: li creo io</h2>
+      <p class="sotto">Sempre tanta voglia di fare e costruire special.</p>
+      <dl class="recapiti">
+        <div class="tutta">
+          <dt>Telefono e WhatsApp</dt>
+          <dd><a class="grande num" href="tel:+393402510434">340&nbsp;251&nbsp;0434</a><a class="wa" href="https://wa.me/393402510434">Scrivi su WhatsApp</a></dd>
+        </div>
+        <div>
+          <dt>Officina</dt>
+          <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Francesco+8%2Fa+30030+Vigonovo+VE">Via San Francesco 8/a<br>30030 Vigonovo (VE)</a></dd>
+        </div>
+        <div>
+          <dt>Orari</dt>
+          <dd class="num">Da martedì a venerdì<br>9:30-13 e 15:30-19<br>Solo su appuntamento</dd>
+        </div>
+        <div class="tutta">
+          <dt>Email</dt>
+          <dd><a href="mailto:overdrivecustoms@live.com">overdrivecustoms@live.com</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+  <figure class="foto">
+    <img src="img/officina-1600.webp"
+         srcset="img/officina-800.webp 800w, img/officina-1200.webp 1200w, img/officina-1600.webp 1600w, img/officina-2200.webp 2200w, img/officina-2560.webp 2560w"
+         sizes="100vw" width="1600" height="900" loading="lazy"
+         alt="Matteo a braccia conserte in officina, accanto alla Ducati Monster grigia Envy e a una Sportster arancio, pareti bianche con la fascia rossa">
+    <figcaption class="didascalia">Matteo in officina, via San Francesco 8/a. Al centro la Ducati Monster 600 «Envy», a destra una Sportster.</figcaption>
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="gabbia">
+    <div class="alto griglia">
+      <div class="chi">
+        <svg viewBox="0 0 1008 545" role="img" aria-label="Overdrive Customs"><use href="#logo"/></svg>
+        <p>Officina moto e special a Vigonovo, in provincia di Venezia, dal&nbsp;<span class="num">2015</span>.</p>
+      </div>
+      <nav aria-labelledby="p-officina">
+        <h2 id="p-officina">Officina</h2>
+        <ul>
+          <li><a href="#officina">Tagliandi e riparazioni</a></li>
+          <li><a href="#officina">Customizzazioni</a></li>
+          <li><a href="#officina">Motoristica</a></li>
+          <li><a href="#officina">Restauro</a></li>
+          <li><a href="#riviste">Riviste</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p-moto">
+        <h2 id="p-moto">Le moto</h2>
+        <ul>
+          <li><a href="#titolo">Hagane</a></li>
+          <li><a href="#moto" data-moto="specialk">Special K</a></li>
+          <li><a href="#moto" data-moto="883-oldstyle">883 Old Style</a></li>
+          <li><a href="#moto" data-moto="drakkar">Drakkar</a></li>
+          <li><a href="#moto" data-moto="envy">Envy</a></li>
+        </ul>
+      </nav>
+        <nav aria-labelledby="p-contatti">
+          <h2 id="p-contatti">Contatti</h2>
+          <ul>
+            <li><a class="num" href="tel:+393402510434">340&nbsp;251&nbsp;0434</a></li>
+            <li><a href="https://wa.me/393402510434">WhatsApp</a></li>
+            <li><a href="mailto:overdrivecustoms@live.com">Email</a></li>
+            <li><a href="#contatti">Orari e indirizzo</a></li>
+          </ul>
+        </nav>
+      <form class="notizie" action="#" aria-labelledby="p-notizie">
+        <h2 id="p-notizie">Fiere e moto nuove</h2>
+        <p>Poche email l'anno: dove trovarci in fiera e le moto appena finite.</p>
+        <div class="campo">
+          <label class="salta" for="email-notizie">La tua email</label>
+          <input id="email-notizie" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
+          <button type="submit">Iscriviti</button>
+        </div>
+        <label class="consenso"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="/privacy">informativa privacy</a> e accetto di ricevere le email.</span></label>
+        <p class="seguici"><span>Seguici</span> <a href="https://instagram.com/overdrive_customs">Instagram, @overdrive_customs</a></p>
+      </form>
+    </div>
+    <div class="basso">
+      <span>© <span class="num">2026</span> Overdrive Customs, via San Francesco 8/a, <span class="num">30030</span> Vigonovo (VE)</span>
+      <span class="legali"><a href="/privacy">Privacy</a><a href="/cookie">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var dati = {
+    "envy": {w:[480,720,994], alt:"Ducati Monster 600 Envy grigia, di fianco, davanti alla lamiera del capannone",
+      testo:"1° nella classe Streetfighter al Biker Fest International di Lignano, maggio 2019. Esposta al Motor Bike Expo di Verona nel 2020 e nel 2022."},
+    "drakkar": {w:[480,720,1080], alt:"Harley-Davidson Road King Drakkar grigia, con le borse laterali lunghe, di fianco davanti alla lamiera del capannone",
+      testo:"1° premio nella categoria Bagger all'American Dream di Padova, novembre 2021. Kit di Killer Custom, vernice grigio Carrara. Su Bikers Life di dicembre 2021."},
+    "specialk": {w:[480,720], alt:"Kawasaki Z650RS Special K verde e nera, di fianco, su fondo bianco da studio",
+      testo:"N° 1 nella categoria Streetfighter al Kustom Kulture di Cesena e al MondoMotori di Vicenza, novembre e dicembre 2022."},
+    "883-oldstyle": {w:[480,704], alt:"Matteo seduto sulla Harley-Davidson 883 chopper nera, su fondo bianco da studio",
+      testo:"1° posto nella categoria Old Style all'American Dream di Padova, ottobre 2023; 2° nella stessa categoria al Kustom Kulture di Cesena."}
+  };
+  var schede = Array.prototype.slice.call(document.querySelectorAll('.scheda'));
+  var foto = document.getElementById('foto-moto');
+  var premio = document.getElementById('premio');
+  function scegli(b, fuoco){
+    schede.forEach(function(x){ var si = x === b; x.setAttribute('aria-selected', si ? 'true' : 'false'); x.tabIndex = si ? 0 : -1; });
+    var k = b.getAttribute('data-moto'), d = dati[k];
+    foto.srcset = d.w.map(function(w){ return 'img/' + k + '-' + w + '.webp ' + w + 'w'; }).join(', ');
+    foto.src = 'img/' + k + '-' + (d.w.indexOf(720) > -1 ? 720 : d.w[d.w.length - 1]) + '.webp';
+    foto.alt = d.alt;
+    premio.textContent = d.testo;
+    premio.setAttribute('aria-labelledby', b.id);
+    if (fuoco) b.focus();
+  }
+  schede.forEach(function(b, i){
+    b.addEventListener('click', function(){ scegli(b); });
+    b.addEventListener('keydown', function(e){
+      var j = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') j = (i + 1) % schede.length;
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') j = (i - 1 + schede.length) % schede.length;
+      if (e.key === 'Home') j = 0;
+      if (e.key === 'End') j = schede.length - 1;
+      if (j !== null){ e.preventDefault(); scegli(schede[j], true); }
+    });
+  });
+  // i nomi delle moto nel piede aprono la scheda giusta
+  Array.prototype.forEach.call(document.querySelectorAll('.piede a[data-moto]'), function(a){
+    a.addEventListener('click', function(){
+      var b = document.querySelector('.scheda[data-moto="' + a.getAttribute('data-moto') + '"]');
+      if (b) scegli(b);
+    });
+  });
+  // menu su telefono e tablet: un bottone vero che apre e chiude i quattro link
+  var testata = document.querySelector('.testata'), apri = document.querySelector('.apri-menu');
+  function menu(aperto, torna){
+    testata.classList.toggle('aperta', aperto);
+    apri.setAttribute('aria-expanded', aperto ? 'true' : 'false');
+    apri.textContent = aperto ? 'Chiudi' : 'Menu';
+    if (!aperto && torna) apri.focus();
+  }
+  if (apri){
+    apri.addEventListener('click', function(){ menu(apri.getAttribute('aria-expanded') !== 'true'); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && testata.classList.contains('aperta')) menu(false, true); });
+    Array.prototype.forEach.call(document.querySelectorAll('#menu a'), function(a){ a.addEventListener('click', function(){ menu(false); }); });
+  }
+  // la newsletter non e' ancora collegata a un servizio: nessun invio
+  var form = document.querySelector('.notizie');
+  if (form) form.addEventListener('submit', function(e){ e.preventDefault(); });
+})();
+</script>
+</body>
+</html>

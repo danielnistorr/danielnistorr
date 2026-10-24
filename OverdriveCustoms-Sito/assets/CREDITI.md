@@ -28,3 +28,20 @@ Non sono di Overdrive Customs, delle sue moto o della sua officina: servono solo
 | `unsplash-vNH9b4LpUGw-medvedev-bicilindrico-scuro.jpg` | https://unsplash.com/photos/gray-and-black-motorcycle-engine-vNH9b4LpUGw | Andre Medvedev (@izamu) | 2400x1600 | B, dettaglio | bicilindrico a V nero visto dall'alto. Sul coperchio c'è un piccolo stemma Harley-Davidson (il marchio su cui lavorano, non un concorrente) |
 
 Guardate e scartate: le cafe racer BMW di Gijs Coolen (sono costruzioni di un'altra officina, riconoscibili), la Triumph Bobber di John Paulsen (marchio sul serbatoio), le foto Getty su Unsplash+ (a pagamento), il saldatore di Christopher Burns e di Filipa Saldanha (luce blu fredda, troppo da repertorio).
+
+## Versione finale della home (sito/img)
+
+Solo foto dell'azienda, nessun segnaposto di `esterne/` e nessuna foto nuova scaricata. Lavorate con `_prova/script/finale_taglio.py` e `finale_img.py`.
+
+| Uso | File d'origine | Autore indicato nel post | Note |
+|---|---|---|---|
+| Apertura, scontornata | `originali/feed/20240522_C7QjkJVIRt0.jpg` | nessuno | Hagane nel campo, 1080 px; scontorno a script, pixel originali |
+| Officina, tutta larghezza | `originali/copertina-sito-original.jpg` | da chiedere | 2560x1440 |
+| Selettore, Envy | `originali/feed/20181121_BqcLrvEgKvp.jpg` | nessuno | taglio 3:2 |
+| Selettore, Drakkar | `originali/feed/20220307_Caz27QGowGU.jpg` | @luciodebiase | taglio 3:2 |
+| Selettore, Special K | `originali/feed/20230828_Cwfiz3-oi3b.jpg` | nessuno (servizio in studio) | 720 px, a misura piena |
+| Selettore, 883 Old Style | `originali/feed/20231202_C0Wverwo_GZ.jpg` | @boemphoto | 704 px |
+| Chiusura | `originali/feed/20221208_Cl6Flamoiqn.jpg` | @boemphoto | Matteo con la Special K, taglio 4:3 |
+| Copertine | `originali/feed/20240819_C-20QVBoqJR.jpg`, `originali/feed/20250327_DHsQHfYN4bp.jpg` | riviste Kustom World e Bigtwin | permesso delle riviste |
+
+Carattere: Archivo (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, file in `sito/fonts/` con `OFL-Archivo.txt`.

@@ -23,3 +23,7 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto. Unsplash: "Free to u
 | pexels-kurt-19851428.jpg (2400x1348) | vivaio visto dal drone, file ordinate e capezzagne (Yalova) | Ahmet Kurt | https://www.pexels.com/photo/trees-on-farm-19851428/ | Pexels License |
 
 Nota sul rullo giallo di Eiermann: è una macchina di un altro costruttore (giallo e rosso sono i colori di un marchio noto). Nell'inquadratura c'è solo il giallo e nessun logo; usarla solo come dettaglio di acciaio, mai come "macchina Berto".
+
+## Uso nella home finale (`sito/`)
+
+Nessuna foto di repertorio. Tutte le immagini della pagina sono dell'azienda: foto in studio delle schede, `FOTO-3` della galleria, l'anteprima del video YouTube `5b_3K-YZ2zk` del loro canale (chiusura) e il logo dal cartello giallo. Seymour (`Dwt1Ozz1Qfc`), usata nella chiusura della versione giudicata, è stata tolta.

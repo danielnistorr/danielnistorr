@@ -16,3 +16,5 @@ Foto scaricate il 24/10/2026 in `assets/esterne/`, al massimo 2400 px di lato. L
 Licenze: Unsplash License https://unsplash.com/license ; Pexels License https://www.pexels.com/license/ . Uso commerciale libero, attribuzione non obbligatoria (la teniamo qui per correttezza).
 
 Scartata: "A blue braided hose tied in a knot" (Unsplash VzVugVJtP5I), perché la pagina la descrive come "3D Render".
+
+Home finale (`sito/`): usate Westbeek (magazzino) e Zhukova (chiusura); le altre restano solo nei prototipi.

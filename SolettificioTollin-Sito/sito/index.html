@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solettificio Tollin, sottopiedi per calzature dal 1970</title>
+<meta name="description" content="Sottopiedi per calzature da uomo, da donna e da bambino, per i calzaturifici. Dal 1970, oggi in via Irpinia 15 a Villatora di Saonara (Padova).">
+<link rel="preload" href="fonts/commissioner-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face {
+  font-family: "Commissioner";
+  src: url("fonts/commissioner-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --carta: #F3EFE8;
+  --carta-2: #EAE4DA;
+  --inchiostro: #1B1A17;
+  --grigio: #5F5950;
+  --accento: #A9461D;
+  --accento-scuro: #8A3814;
+  --filetto: rgba(27, 26, 23, .18);
+  --m: 72px;
+  --col: 1296px;
+  --sezione: 192px;
+  --bordo: max(var(--m), calc((100vw - var(--col)) / 2));
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--carta);
+  color: var(--inchiostro);
+  font-family: "Commissioner", system-ui, sans-serif;
+  font-variation-settings: "FLAR" 0, "VOLM" 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  font-synthesis: none;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { color: var(--accento); }
+:focus-visible { outline: 2px solid var(--accento); outline-offset: 3px; }
+h1, h2, h3 { margin: 0; font-weight: 300; font-variation-settings: "FLAR" 100, "VOLM" 0; text-wrap: balance; }
+p, blockquote, figure { margin: 0; }
+p { text-wrap: pretty; }
+.nascosto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.salta { position: absolute; left: -9999px; top: 8px; background: var(--inchiostro); color: var(--carta); padding: 8px 14px; }
+.salta:focus { left: 8px; z-index: 10; }
+.contenitore { max-width: calc(var(--col) + 2 * var(--m)); margin: 0 auto; padding: 0 var(--m); }
+
+/* testata */
+.testata {
+  max-width: calc(var(--col) + 2 * var(--m)); margin: 0 auto; padding: 0 var(--m);
+  height: 96px; display: flex; align-items: center; gap: 48px; position: relative; z-index: 3;
+}
+.testata .marchio { flex: none; display: block; }
+.testata .marchio img { width: 150px; height: auto; }
+.testata nav { margin-left: auto; }
+.testata nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 36px; }
+.testata nav a, .testata .tel, .testata .lingua { text-decoration: none; font-size: 16px; }
+.testata nav a:hover, .testata .tel:hover, .testata .lingua:hover { text-decoration: underline; color: var(--inchiostro); }
+.testata .tel { font-weight: 500; white-space: nowrap; padding-left: 36px; border-left: 1px solid var(--filetto); }
+.testata .lingua { color: var(--grigio); }
+.menu-bottone { display: none; }
+
+/* apertura: il foglio in negativo */
+.apertura { max-width: 1440px; margin: 0 auto; padding: 0 var(--m); display: grid;
+  grid-template-columns: minmax(0, 1fr) min(57vw, 820px);
+  grid-template-areas: "titolo titolo" "lead oggetto"; column-gap: 32px; }
+.apertura h1 {
+  grid-area: titolo; padding-top: 36px;
+  font-size: clamp(54px, 8.95vw, 129px); line-height: .94; letter-spacing: -.04em; white-space: nowrap;
+}
+.ap-oggetto { grid-area: oggetto; margin-top: 20px; }
+.ap-oggetto img { width: 100%; }
+.ap-didascalia { margin-top: 2px; padding-left: 8%; font-size: 13px; line-height: 20px; color: var(--grigio); }
+.ap-testo { grid-area: lead; align-self: end; padding-bottom: 52px; }
+.ap-lead { max-width: 21em; font-size: 19px; line-height: 1.55; }
+.ap-azioni { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
+.bottone {
+  display: inline-block; background: var(--accento); color: #fff; text-decoration: none;
+  padding: 15px 26px 16px; font-size: 17px; font-weight: 500; white-space: nowrap;
+}
+.bottone:hover { background: var(--accento-scuro); color: #fff; }
+
+/* sezioni */
+h2 { font-size: 60px; line-height: 1.02; letter-spacing: -.03em; }
+.capo { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; align-items: end; }
+.capo h2 { grid-column: 1 / span 7; }
+.capo p { grid-column: 9 / -1; font-size: 18px; max-width: 24em; padding-bottom: 6px; }
+
+/* reparti: il gesto */
+.reparti { padding-top: var(--sezione); }
+.schede { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
+.schede button {
+  width: 100%; font: inherit; font-size: 17px; font-weight: 500; color: var(--grigio); background: none; cursor: pointer;
+  border: 0; border-top: 1px solid var(--filetto); padding: 16px 0 20px; text-align: left; min-height: 56px;
+  display: flex; align-items: baseline; gap: 12px; transition: color .12s, border-color .12s;
+}
+.schede button span { font-size: 15px; font-weight: 400; }
+.schede button:hover { color: var(--inchiostro); border-top-color: var(--inchiostro); }
+.schede button[aria-pressed="true"] { color: var(--inchiostro); border-top: 2px solid var(--accento); padding-top: 15px; }
+.reparto { display: grid; grid-template-columns: minmax(0, 1000px) minmax(0, 1fr); column-gap: 32px;
+  grid-template-areas: "foto dett" "frase ."; }
+.reparto[hidden] { display: none; }
+.reparto-foto { grid-area: foto; aspect-ratio: 3 / 2; background: var(--carta-2); }
+.reparto-foto img { width: 100%; height: 100%; object-fit: cover; }
+.reparto blockquote { grid-area: frase; padding-top: 36px; min-height: calc(36px + 3 * 1.28em); font-size: 30px; line-height: 1.28;
+  letter-spacing: -.015em; font-weight: 300; font-variation-settings: "FLAR" 100, "VOLM" 0; text-wrap: pretty; }
+.dettaglio { grid-area: dett; align-self: end; border-top: 1px solid var(--filetto); padding-top: 16px; }
+.dettaglio h3 { font-size: 20px; line-height: 1.25; font-weight: 500; font-variation-settings: "FLAR" 0, "VOLM" 0; letter-spacing: -.005em; }
+.dettaglio p { margin-top: 10px; font-size: 15px; line-height: 1.55; }
+.dettaglio .macchina { margin-top: 14px; font-size: 14px; color: var(--grigio); }
+
+/* sottopiedi */
+.sottopiedi { padding-top: var(--sezione); }
+.sp-foto { width: min(100%, 880px); margin-left: auto; }
+.sp-foto img { width: 100%; }
+.sp-foto figcaption { margin-top: 12px; font-size: 14px; color: var(--grigio); }
+.sottopiedi h2 { margin-top: 48px; max-width: 26em; font-size: 48px; line-height: 1.1; letter-spacing: -.03em; }
+.sottopiedi .tipi { margin-top: 28px; font-size: 18px; line-height: 1.6; max-width: 34em; }
+
+/* chiusura */
+.chiusura { padding-top: var(--sezione); padding-bottom: 128px; padding-left: var(--bordo);
+  display: grid; grid-template-columns: minmax(0, 1fr) min(66vw, 1060px); column-gap: 64px; align-items: center; }
+.chiusura h2 { font-size: 56px; max-width: 9em; }
+.ch-tel { display: inline-block; margin-top: 44px; font-size: 56px; line-height: 1; letter-spacing: -.02em; font-weight: 400;
+  font-variation-settings: "FLAR" 100, "VOLM" 0; text-decoration: none; white-space: nowrap; }
+.ch-tel:hover { color: var(--accento); text-decoration: underline; text-decoration-thickness: 2px; }
+.ch-recapiti { margin-top: 28px; font-size: 18px; line-height: 1.6; font-style: normal; }
+.ch-recapiti p + p { margin-top: 12px; }
+.ch-foto { height: min(50vw, 720px); }
+.ch-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+
+/* piede */
+.piede { background: var(--carta-2); }
+.piede-alto { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 48px; padding-top: 88px; padding-bottom: 72px; }
+.piede-marchio img { width: 150px; }
+.piede-marchio p { margin-top: 24px; font-size: 15px; line-height: 1.55; color: var(--grigio); max-width: 22em; }
+.piede-colonne { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
+.piede-colonne h2 { font-size: 15px; line-height: 1.4; font-weight: 500; letter-spacing: 0; font-variation-settings: "FLAR" 0, "VOLM" 0; }
+.piede-colonne ul { list-style: none; margin: 16px 0 0; padding: 0; font-size: 15px; line-height: 1.5; }
+.piede-colonne li + li { margin-top: 10px; }
+.piede-colonne a { text-decoration: none; }
+.piede-colonne a:hover { text-decoration: underline; color: var(--inchiostro); }
+.piede-colonne .num { white-space: nowrap; }
+.piede-basso { display: flex; justify-content: space-between; gap: 24px; padding-top: 24px; padding-bottom: 32px;
+  border-top: 1px solid var(--filetto); font-size: 13px; line-height: 1.6; color: var(--grigio); }
+.piede-basso .legali { white-space: nowrap; }
+.piede-basso .legali a + a { margin-left: 20px; }
+
+/* 1024 e tablet */
+@media (max-width: 1180px) {
+  :root { --m: 48px; --sezione: 128px; }
+  .testata { gap: 32px; }
+  .testata nav ul { gap: 24px; }
+  .testata .tel { padding-left: 24px; }
+  h2, .chiusura h2 { font-size: 50px; }
+  .apertura { grid-template-columns: minmax(0, 1fr) 52vw; }
+  .ap-oggetto { margin-top: 28px; margin-right: -16px; }
+  .ap-lead { font-size: 17px; }
+  .reparto { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); column-gap: 40px; grid-template-areas: "foto foto" "frase dett"; }
+  .reparto blockquote { font-size: 26px; padding-top: 32px; }
+  .dettaglio { align-self: start; margin-top: 36px; }
+  .sottopiedi h2 { font-size: 38px; }
+  .chiusura { column-gap: 40px; grid-template-columns: minmax(0, 1fr) 58vw; }
+  .chiusura h2 { font-size: 44px; }
+  .ch-tel { font-size: 44px; }
+  .piede-alto { grid-template-columns: 1fr; row-gap: 48px; }
+}
+@media (max-width: 960px) {
+  .testata nav ul { gap: 20px; }
+  .testata .lingua { display: none; }
+}
+
+/* telefono e tablet verticale */
+@media (max-width: 860px) {
+  :root { --m: 24px; --sezione: 96px; }
+  body { font-size: 17px; }
+  .testata { height: 64px; gap: 16px; }
+  .testata .marchio img { width: 140px; }
+  .testata nav { position: absolute; left: 0; right: 0; top: 64px; background: var(--carta); padding: 8px var(--m) 24px; display: none; border-bottom: 1px solid var(--filetto); }
+  .testata nav.aperto { display: block; }
+  .testata nav ul { flex-direction: column; gap: 0; }
+  .testata nav a { display: block; padding: 12px 0; font-size: 20px; }
+  .testata .tel { margin-left: auto; padding-left: 0; border-left: 0; font-size: 15px; }
+  .menu-bottone {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 0 0 4px; font: inherit; font-size: 15px; font-weight: 500;
+    background: none; border: 0; color: var(--inchiostro); cursor: pointer; text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px;
+  }
+  .apertura { grid-template-columns: 1fr; grid-template-areas: "titolo" "oggetto" "lead"; padding: 0 var(--m); }
+  .apertura h1 { padding-top: 28px; font-size: clamp(44px, 13.6vw, 104px); line-height: .96; white-space: normal; }
+  .apertura h1 span { display: block; }
+  .ap-oggetto { margin: 16px calc(-1 * var(--m)) 0; }
+  .ap-didascalia { padding: 0 var(--m); }
+  .ap-testo { padding-bottom: 0; margin-top: 20px; }
+  .ap-lead { font-size: 18px; }
+  .ap-azioni { margin-top: 24px; gap: 12px 24px; }
+  h2, .chiusura h2 { font-size: 38px; line-height: 1.06; }
+  .capo { grid-template-columns: 1fr; row-gap: 18px; }
+  .capo h2, .capo p { grid-column: 1; }
+  .capo p { font-size: 17px; padding-bottom: 0; }
+  .schede { margin-top: 40px; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+  .schede button { padding: 12px 0 14px; font-size: 16px; }
+  .schede button[aria-pressed="true"] { padding-top: 11px; }
+  .reparto { grid-template-columns: minmax(0, 1fr); grid-template-areas: "foto" "frase" "dett"; }
+  .reparto-foto { margin: 8px calc(-1 * var(--m)) 0; aspect-ratio: 3 / 2; }
+  .reparto blockquote { font-size: 23px; line-height: 1.3; padding-top: 24px; min-height: calc(24px + 4 * 1.3em); }
+  .dettaglio { margin-top: 24px; }
+  .sp-foto { width: auto; margin: 0 calc(-1 * var(--m)); }
+  .sp-foto figcaption { padding: 0 var(--m); }
+  .sottopiedi h2 { margin-top: 36px; font-size: 30px; line-height: 1.15; }
+  .sottopiedi .tipi { margin-top: 20px; font-size: 17px; }
+  .chiusura { grid-template-columns: 1fr; padding-right: 0; padding-bottom: 0; row-gap: 40px; }
+  .ch-testo { padding-right: var(--m); }
+  .ch-tel { font-size: 42px; margin-top: 28px; }
+  .ch-foto { margin-left: calc(-1 * var(--m)); height: auto; aspect-ratio: 720 / 556; }
+  .piede-alto { padding-top: 64px; padding-bottom: 48px; }
+  .piede-colonne { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; column-gap: 24px; }
+  .piede-basso { flex-direction: column; gap: 12px; }
+}
+@media (max-width: 360px) {
+  .testata .marchio img { width: 120px; }
+  .testata { gap: 10px; }
+  .testata .tel { font-size: 14px; }
+  .ch-tel { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#principale">Vai al contenuto</a>
+
+<header class="testata">
+  <a class="marchio" href="index.html" aria-label="Solettificio Tollin, pagina iniziale"><img src="img/logo-tollin.png" width="316" height="69" alt="Solettificio Tollin"></a>
+  <nav id="menu" aria-label="Principale">
+    <ul>
+      <li><a href="#reparti">Lavorazioni</a></li>
+      <li><a href="#sottopiedi">Sottopiedi</a></li>
+      <li><a href="azienda.html">Azienda</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+  <a class="tel" href="tel:+39049640620">049&nbsp;640620</a>
+  <a class="lingua" href="en/" hreflang="en" lang="en">English</a>
+  <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main id="principale">
+
+<section class="apertura" aria-labelledby="titolo">
+  <h1 id="titolo"><span>Sottopiedi</span> <span>per calzature</span></h1>
+  <figure class="ap-oggetto">
+    <img src="img/foglio-820.webp"
+         srcset="img/foglio-600.webp 600w, img/foglio-820.webp 820w, img/foglio-1230.webp 1230w, img/foglio-1640.webp 1640w"
+         sizes="(max-width: 860px) 100vw, (max-width: 1180px) 52vw, min(57vw, 820px)" width="1640" height="979" fetchpriority="high"
+         alt="Un foglio di cartoncino grigio chiaro forato in negativo con le sagome dei sottopiedi, appena tagliato dal plotter.">
+    <figcaption class="ap-didascalia">Il foglio di cartoncino all’uscita del plotter Comelz CN, dopo il taglio delle sagome.</figcaption>
+  </figure>
+  <div class="ap-testo">
+    <p class="ap-lead">Da uomo, da donna e da bambino, per i calzaturifici. Li disegniamo sulla forma, li tagliamo e li cambriamo in via Irpinia&nbsp;15. Siamo nati nel 1970, come piccola realtà a conduzione familiare.</p>
+    <div class="ap-azioni">
+      <a class="bottone" href="tel:+39049640620">Chiama 049&nbsp;640620</a>
+      <a href="mailto:info@tollin.it">info@tollin.it</a>
+    </div>
+  </div>
+</section>
+
+<section class="reparti" id="reparti" aria-labelledby="t-reparti">
+  <div class="contenitore">
+    <div class="capo">
+      <h2 id="t-reparti">Quattro reparti sotto lo stesso tetto</h2>
+      <p>Dal disegno sulla forma alla scatola chiusa, ogni passaggio si fa in via Irpinia&nbsp;15.</p>
+    </div>
+
+    <ul class="schede" aria-label="I reparti">
+      <li><button type="button" aria-pressed="true" aria-controls="r1" data-r="r1"><span>1</span>Modelleria</button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="r2" data-r="r2"><span>2</span>Taglio</button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="r3" data-r="r3"><span>3</span>Cambratura</button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="r4" data-r="r4"><span>4</span>Controllo</button></li>
+    </ul>
+
+    <div class="reparto" id="r1" role="region" aria-label="Studio modelleria">
+      <figure class="reparto-foto"><img src="img/r1-modelleria-1000.webp" srcset="img/r1-modelleria-700.webp 700w, img/r1-modelleria-1000.webp 1000w, img/r1-modelleria-1300.webp 1300w" sizes="(max-width: 860px) 100vw, (max-width: 1180px) calc(100vw - 96px), 1000px" width="1300" height="867" loading="lazy" alt="Dal plotter Comelz CN esce un foglio di cartoncino bianco con le sagome dei sottopiedi già tagliate."></figure>
+      <div class="dettaglio">
+        <h3>Studio modelleria</h3>
+        <p>Modelli, prototipi e campioni con i programmi CAD/CAM per calzature.</p>
+        <p class="macchina">Plotter Comelz CN</p>
+      </div>
+      <blockquote><p>«La progettazione parte dalle caratteristiche della forma del modello, ponendo attenzione alla sagoma della parte inferiore della forma, alle sue curvature»</p></blockquote>
+    </div>
+    <div class="reparto" id="r2" role="region" aria-label="Lavorazione automatizzata" hidden>
+      <figure class="reparto-foto"><img src="img/r2-taglio-1000.webp" srcset="img/r2-taglio-700.webp 700w, img/r2-taglio-1000.webp 1000w, img/r2-taglio-1300.webp 1300w" sizes="(max-width: 860px) 100vw, (max-width: 1180px) calc(100vw - 96px), 1000px" width="1300" height="867" loading="lazy" alt="La tranciatrice Comelz CM44S con un foglio di materiale color cuoio tagliato a sottopiedi sul nastro verde."></figure>
+      <div class="dettaglio">
+        <h3>Lavorazione automatizzata</h3>
+        <p>Oltre ai sottopiedi tagliamo suole, puntali, contrafforti e tallonette, su cellulosico accoppiato, cartone fibrato, pelle e cuoio.</p>
+        <p class="macchina">Tranciatrice Comelz CM44S</p>
+      </div>
+      <blockquote><p>«La tecnologia del taglio a punzone e della lama oscillante garantiscono alta produttività e flessibilità»</p></blockquote>
+    </div>
+    <div class="reparto" id="r3" role="region" aria-label="Cambratura" hidden>
+      <figure class="reparto-foto"><img src="img/r3-cambratura-1000.webp" srcset="img/r3-cambratura-700.webp 700w, img/r3-cambratura-1000.webp 1000w, img/r3-cambratura-1300.webp 1300w" sizes="(max-width: 860px) 100vw, (max-width: 1180px) calc(100vw - 96px), 1000px" width="1300" height="867" loading="lazy" alt="Gli stampi della pressa Comec SPM12 con due forme in plastica."></figure>
+      <div class="dettaglio">
+        <h3>Piatto, poi garbato</h3>
+        <p>Dalla trancia il sottopiede esce piatto. La pressa lo porta sulla curva della forma, con stampi diversi per ogni sagoma.</p>
+        <p class="macchina">Pressa Comec SPM12</p>
+      </div>
+      <blockquote><p>«Ogni sottopiede è garbato in modo progressivo in modo da evitare la formazione di grinze»</p></blockquote>
+    </div>
+    <div class="reparto" id="r4" role="region" aria-label="Supervisione" hidden>
+      <figure class="reparto-foto"><img src="img/r4-controllo-1000.webp" srcset="img/r4-controllo-700.webp 700w, img/r4-controllo-1000.webp 1000w, img/r4-controllo-1300.webp 1300w" sizes="(max-width: 860px) 100vw, (max-width: 1180px) calc(100vw - 96px), 1000px" width="1300" height="867" loading="lazy" alt="Due mani sistemano in una scatola una fila di sottopiedi neri cambrati."></figure>
+      <div class="dettaglio">
+        <h3>Supervisione</h3>
+        <p>Poi l’imballo nelle scatole, per una consegna puntuale.</p>
+        <p class="macchina">Controllo e imballo</p>
+      </div>
+      <blockquote><p>«I prodotti sono controllati minuziosamente dal personale e dai titolari prima di essere consegnati ai clienti»</p></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sottopiedi contenitore" id="sottopiedi" aria-labelledby="t-sottopiedi">
+  <figure class="sp-foto">
+    <img src="img/scatola-880.webp" srcset="img/scatola-600.webp 600w, img/scatola-880.webp 880w, img/scatola-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 880px" width="1200" height="711" loading="lazy" alt="Una scatola piena di sottopiedi cambrati impilati, con il tallone bianco e la pianta color cuoio.">
+    <figcaption>Sottopiedi cambrati, impilati nella scatola per la consegna.</figcaption>
+  </figure>
+  <h2 id="t-sottopiedi">Cuoio, schiuma di lattice, pelle, gommapiuma, lana, tessuto sintetico e antibatterico</h2>
+  <p class="tipi">Sottopiedi da uomo, da donna e da bambino; per sandalo, con incastri a ragno; per bambino, in soffice lattice.</p>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="ch-testo">
+    <h2 id="t-contatti">Una consegna puntuale, in&nbsp;tempi rapidi</h2>
+    <a class="ch-tel" href="tel:+39049640620">049&nbsp;640620</a>
+    <address class="ch-recapiti">
+      <p><a href="mailto:info@tollin.it">info@tollin.it</a></p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Via Irpinia 15, Zona Artigianale<br>35020 Villatora di Saonara (PD)</a></p>
+    </address>
+  </div>
+  <figure class="ch-foto">
+    <img src="img/furgone-1150.webp" srcset="img/furgone-600.webp 600w, img/furgone-900.webp 900w, img/furgone-1150.webp 1150w" sizes="(max-width: 860px) 100vw, min(66vw, 1060px)" width="1150" height="888" loading="lazy" alt="Il furgone giallo con la scritta Tollin, porte aperte e cartoni sul bancale, davanti al capannone di via Irpinia.">
+  </figure>
+</section>
+
+</main>
+
+<footer class="piede">
+  <div class="contenitore piede-alto">
+    <div class="piede-marchio">
+      <img src="img/logo-tollin.png" width="316" height="69" loading="lazy" alt="Solettificio Tollin">
+      <p>Sottopiedi per calzature da uomo, da donna e da bambino. Dal 1970, oggi in via Irpinia 15 a Villatora di Saonara.</p>
+    </div>
+    <nav class="piede-colonne" aria-label="Mappa del sito">
+      <div>
+        <h2>Azienda</h2>
+        <ul>
+          <li><a href="azienda.html">Chi siamo</a></li>
+          <li><a href="dove-siamo.html">Dove siamo</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Lavorazioni</h2>
+        <ul>
+          <li><a href="studio-modelleria.html">Studio modelleria</a></li>
+          <li><a href="lavorazione-automatizzata.html">Taglio CAD/CAM</a></li>
+          <li><a href="cambratura.html">Cambratura</a></li>
+          <li><a href="supervisione.html">Controllo e consegna</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Sottopiedi</h2>
+        <ul>
+          <li><a href="sottopiedi.html#uomo">Uomo</a></li>
+          <li><a href="sottopiedi.html#donna">Donna</a></li>
+          <li><a href="sottopiedi.html#bambino">Bambino</a></li>
+          <li><a href="sottopiedi.html#sandalo">Sandalo</a></li>
+          <li><a href="sottopiedi.html#materiali">Materiali</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contatti</h2>
+        <ul>
+          <li><a class="num" href="tel:+39049640620">+39 049&nbsp;640620</a></li>
+          <li><a href="mailto:info@tollin.it">info@tollin.it</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Via Irpinia 15<br>35020 Villatora di Saonara</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="contenitore">
+    <div class="piede-basso">
+      <p>Solettificio Tollin S.r.l. dal 2011, via Irpinia 15, 35020 Villatora di Saonara (PD). P.IVA e C.F. 04574740280, REA PD 400926, capitale sociale 100.000 euro i.v., PEC solettificiotollinsrl@cgn.legalmail.it</p>
+      <p class="legali"><a href="en/" hreflang="en" lang="en">English</a><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var voci = [].slice.call(document.querySelectorAll('.schede button'));
+  function scegli(b, fuoco) {
+    voci.forEach(function (v) {
+      var on = v === b;
+      v.setAttribute('aria-pressed', on ? 'true' : 'false');
+      document.getElementById(v.dataset.r).hidden = !on;
+    });
+    if (fuoco) b.focus();
+  }
+  voci.forEach(function (b, i) {
+    b.addEventListener('click', function () { scegli(b); });
+    b.addEventListener('keydown', function (e) {
+      var k = e.key, j = -1;
+      if (k === 'ArrowRight' || k === 'ArrowDown') j = (i + 1) % voci.length;
+      if (k === 'ArrowLeft' || k === 'ArrowUp') j = (i - 1 + voci.length) % voci.length;
+      if (k === 'Home') j = 0;
+      if (k === 'End') j = voci.length - 1;
+      if (j > -1) { e.preventDefault(); scegli(voci[j], true); }
+    });
+  });
+  var menu = document.getElementById('menu');
+  var mb = document.querySelector('.menu-bottone');
+  mb.addEventListener('click', function () {
+    var aperto = mb.getAttribute('aria-expanded') === 'true';
+    mb.setAttribute('aria-expanded', String(!aperto));
+    menu.classList.toggle('aperto', !aperto);
+    mb.textContent = aperto ? 'Menu' : 'Chiudi';
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { mb.setAttribute('aria-expanded', 'false'); menu.classList.remove('aperto'); mb.textContent = 'Menu'; }
+  });
+})();
+</script>
+</body>
+</html>
