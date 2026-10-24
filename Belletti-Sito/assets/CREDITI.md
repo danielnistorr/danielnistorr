@@ -30,3 +30,9 @@ Scaricate da bellettiascensori.it il 24/10/2026: elenco, misure e voti in `_prov
 ## _prova/crawl/pdfimg/ (foto estratte dai redazionali)
 
 Estratte il 24/10/2026 con `pdfimages` dai PDF dei redazionali DiBaio pubblicati sul sito Belletti (`assets/originali/pdf/01_DiBaio_Martellago.pdf`, `02_DiBaio_Cavour.pdf`, `04_DiBaio_XXI_Investimenti.pdf`): foto di impianti Belletti (Cà della Nave a Martellago, Galleria Cavour a Padova, Villa Pavan a Treviso), da 590 a 1190 px. Le immagini `xxi-*` sono JPEG CMYK con i canali invertiti. Il fotografo non è indicato: i diritti vanno chiesti a Belletti (e all'editore per i redazionali). Usate nel prototipo A della home (`_prova/home/a/`).
+
+## Uso nel prototipo B della home (`_prova/home/b/`)
+
+- Dal depliant 2008 (`assets/originali/depliant/`): `d-037` Galleria Cavour di notte (apertura), `d-051` facciata della sede (generazioni, "oggi"), `d-002` torre in vetro (tessera Strutture), `d-030` montauto con l'auto d'epoca (tessera Montauto), `d-027` sede con il furgone (chiusura). Diritti del fotografo da chiedere a Belletti.
+- Dalle gallerie del sito: `fn000008` cabina tonda nella scala elicoidale (tessera Ascensori), `fn000053` montacarichi con il carrello elevatore (tessera Montacarichi).
+- Segnaposto di repertorio già elencati sopra: Charkoftaki (`pexels-16261027`, Rodolfo), Erdoğan (`pexels-32684366`, Paolo ed Elvira), Jeromin (`pexels-11572257`, Assistenza). In pagina hanno la didascalia "Foto indicativa". Nessuna nuova foto scaricata.

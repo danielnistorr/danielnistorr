@@ -21,3 +21,12 @@ Scaricate da images.pexels.com e images.unsplash.com con curl, alla larghezza di
 ## assets/originali/ (dal sito di oggi)
 
 Scaricate da impreservicesrl.it il 24/10/2026: elenco, misure e voti in `_prova/inventario-immagini.json`. Molte non sono di Impreservice (Pexels, Unsplash, Pixabay, foto stampa di progetti, render Alstom, catture di altri siti): non vanno riusate senza chiarire i diritti. Il fotogramma `90-youtube-jxtiioap3hc-maxres.jpg` è la copertina del loro video YouTube (il video non è stato scaricato).
+
+## Uso nella home finale (sito/img/)
+
+- `galleria-*`: Mishin, Pexels 11424325 (sezione Easy Click, al posto della galleria di Sharma del prototipo).
+- `pozzo-*`: Ballıdağ, Pexels 16227437 (referenze).
+- `viadotto-*`: Nagda, Pexels 27808651 (ponti e viadotti).
+- `scudo-*`: Mpikakis, Unsplash CPI7JAIVaDU (chiusura).
+- `ec-*`: disegni CAD dell'azienda (`13-asm-smart.jpg`, `14-perno-smart.png`, `12-bussola-smart.png`), rielaborati.
+- `logo-simbolo-*`: simbolo dell'azienda (`logo-impreservice-icona-blu-1000.png`).
