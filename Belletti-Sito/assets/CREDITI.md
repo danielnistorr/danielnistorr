@@ -36,3 +36,12 @@ Estratte il 24/10/2026 con `pdfimages` dai PDF dei redazionali DiBaio pubblicati
 - Dal depliant 2008 (`assets/originali/depliant/`): `d-037` Galleria Cavour di notte (apertura), `d-051` facciata della sede (generazioni, "oggi"), `d-002` torre in vetro (tessera Strutture), `d-030` montauto con l'auto d'epoca (tessera Montauto), `d-027` sede con il furgone (chiusura). Diritti del fotografo da chiedere a Belletti.
 - Dalle gallerie del sito: `fn000008` cabina tonda nella scala elicoidale (tessera Ascensori), `fn000053` montacarichi con il carrello elevatore (tessera Montacarichi).
 - Segnaposto di repertorio già elencati sopra: Charkoftaki (`pexels-16261027`, Rodolfo), Erdoğan (`pexels-32684366`, Paolo ed Elvira), Jeromin (`pexels-11572257`, Assistenza). In pagina hanno la didascalia "Foto indicativa". Nessuna nuova foto scaricata.
+
+## Uso nella home finale (`sito/`)
+
+Solo foto di impianti Belletti, nessuna foto di repertorio. Script: `_prova/script/finale_img.py`.
+- Apertura: Cà della Nave, Martellago, dalla corte (`_prova/crawl/pdfimg/mart-007.jpg`, dal redazionale `01_DiBaio_Martellago.pdf`, 942x694, la più grande nel PDF), taglio 660x570.
+- Lavori: Galleria Cavour (`cav-003.jpg`, `02_DiBaio_Cavour.pdf`), Ca' Michiel (`depliant/d-020.jpg`), Cà della Nave dall'alto (`mart-021.jpg`).
+- Chiusura: la sede di Mestrino di sera con il furgone dell'assistenza (`depliant/d-027.jpg`), targa sfocata.
+- Logo: `originali/logo-belletti-depliant.svg`.
+Diritti del fotografo e dell'editore DiBaio da chiedere a Belletti. Per provare la conversione delle foto CMYK di Villa Pavan è stato scaricato, solo come strumento e poi cancellato, il profilo "Artifex CMYK SWOP" di Ghostscript (github.com/ArtifexSoftware/ghostpdl); Villa Pavan non è nella home finale.

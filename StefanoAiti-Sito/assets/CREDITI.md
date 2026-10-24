@@ -27,3 +27,7 @@ Tutte da Pexels. Licenza letta il 24/10/2026 sulla pagina di ogni foto: la voce 
 | `esterne/pexels-16362386-morgan-crown-graphic.jpg` | Crown Graphic Special in bianco e nero, verticale | Caryn Morgan | https://www.pexels.com/photo/close-up-of-a-vintage-camera-16362386/ | 4096x6144, 13/04/2023 |
 
 Unsplash non è stato usato: le pagine di download rispondono con un controllo anti robot (307 verso `.within.website`) e la ricerca non ha dato foto adatte non già usate.
+
+## Home finale (`sito/`)
+
+La home finale usa solo foto di Stefano Aiti: cinque still life (Calearo, Marijke, Superoro, Pianegonda, Lago), Banca Prealpi, la scala di Studio 4 Marmicolor, la Fornace Morandi, lo Scania di Salima e la ciotola di Calegaro in chiusura. Nessun segnaposto di `esterne/` è usato. Elenco e trattamento in `screenshot/home/NOTA.md`.

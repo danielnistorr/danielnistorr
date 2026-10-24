@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belletti Ascensori, Mestrino</title>
+<meta name="description" content="Belletti progetta, costruisce, installa e mantiene ascensori, montacarichi e piattaforme elevatrici dal 1908, anche negli edifici storici. Mestrino, Padova.">
+<link rel="preload" href="fonts/radio-canada-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Radio Canada, Google Fonts, SIL Open Font License 1.1: famiglia variabile (peso 300-700, larghezza 75-100 %) */
+@font-face{font-family:"Radio Canada";font-style:normal;font-weight:300 700;font-stretch:75% 100%;font-display:swap;
+  src:url(fonts/radio-canada-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Radio Canada";font-style:normal;font-weight:300 700;font-stretch:75% 100%;font-display:swap;
+  src:url(fonts/radio-canada-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --calce:#F6F5F2;
+  --calce-2:#ECEAE5;
+  --inchiostro:#1B1D1F;
+  --grigio:#58595B;
+  --linea:#CFCCC5;
+  --verde-logo:#009A54;
+  --verde:#007A43;
+  --verde-scuro:#00603A;
+  --m:clamp(20px,4.45vw,64px);   /* margine laterale: 64 px a 1440, 20 px a 390 */
+  --gap:24px;
+  --sez:160px;                   /* spazio fisso tra le sezioni */
+  --f:"Radio Canada",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--calce);color:var(--inchiostro);font-family:var(--f);font-size:18px;line-height:1.55;
+  font-stretch:100%;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p,figure,dl,dd{margin:0}
+h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nb{white-space:nowrap}
+.wrap{padding-left:var(--m);padding-right:var(--m);max-width:1440px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+.sezione{padding-top:var(--sez)}
+.salta{position:absolute;left:var(--m);top:-60px;background:var(--inchiostro);color:#fff;padding:10px 14px;z-index:20}
+.salta:focus{top:12px}
+
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5}
+.testata .wrap{display:flex;align-items:center;justify-content:space-between;height:88px}
+.logo{display:block;width:124px}
+.logo img{width:124px;height:auto}
+.menu{display:flex;gap:36px;list-style:none;margin:0;padding:0}
+.menu a,.tel-testata{text-decoration:none;font-size:16px;letter-spacing:.005em}
+.menu a:hover,.tel-testata:hover{color:var(--verde);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.tel-testata{font-weight:500}
+.apri-menu{display:none}
+
+/* apertura: il titolo come un architrave, sotto un solo lavoro vero, il vecchio e il nuovo legati da una quota */
+.apertura{padding-top:108px}
+.apertura h1{font-stretch:75%;font-weight:300;font-size:clamp(56px,11.8vw,170px);line-height:.86;letter-spacing:-.018em;
+  margin-left:-.045em;white-space:nowrap}
+.apertura .corpo{display:grid;grid-template-columns:minmax(0,1fr) min(900px,62.5vw);column-gap:var(--gap);margin-top:14px;
+  margin-right:calc(var(--m) * -1);align-items:stretch}
+.apertura .testo{display:flex;flex-direction:column;padding-top:14px;padding-bottom:190px}
+.lead{font-size:20px;line-height:1.5;max-width:22em;text-wrap:pretty}
+.azione{margin-top:36px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.bottone{display:inline-block;background:var(--verde);color:#fff;text-decoration:none;font-weight:500;font-size:17px;
+  padding:16px 26px 17px;transition:background-color .15s}
+.bottone:hover{background:var(--verde-scuro)}
+.guasti{font-size:16px;color:var(--grigio)}
+.guasti a{color:var(--inchiostro);font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.guasti a:hover{color:var(--verde)}
+.didascalia{margin-top:auto;font-size:14px;line-height:1.5;color:var(--grigio);max-width:25em}
+.didascalia strong{color:var(--inchiostro);font-weight:500}
+.opera{position:relative}
+.opera img{width:100%}
+/* la quota: una linea sottile dal muro del Seicento al vetro, con le due legende */
+.quota{position:absolute;left:var(--x1);width:calc(var(--x2) - var(--x1));top:var(--y);height:0;border-top:1.5px solid var(--inchiostro);pointer-events:none}
+.quota::before,.quota::after{content:"";position:absolute;top:-8px;width:1.5px;height:15px;background:var(--inchiostro)}
+.quota::before{left:-.75px}
+.quota::after{right:-.75px}
+.leg{position:absolute;bottom:12px;margin:0;padding:6px 10px 7px;background:rgba(246,245,242,.92);font-size:15px;line-height:1.35;
+  font-weight:500;white-space:nowrap;color:var(--inchiostro)}
+.leg span{display:block;font-weight:400}
+.leg.muro{left:-10px}
+.leg.vetro{left:calc(100% - 10px)}
+.legende{display:none}
+
+/* storia */
+.storia h2{grid-column:1 / span 7;font-size:clamp(36px,4.4vw,60px);line-height:1.04;letter-spacing:-.02em}
+.storia .racconto{grid-column:1 / span 7;margin-top:36px;font-size:clamp(20px,1.8vw,25px);line-height:1.48;text-wrap:pretty;max-width:31em}
+.storia .fatti{grid-column:9 / -1;grid-row:1 / span 2;align-self:end;display:flex;flex-direction:column;gap:26px;font-size:17px;line-height:1.5}
+.fatti strong{display:block;font-weight:500;font-size:19px;margin-bottom:2px}
+
+/* lavori: tre schede in fila, sotto foto a filo del bordo e scheda tecnica */
+.lavori h2{font-size:clamp(32px,3.6vw,50px);line-height:1.08;letter-spacing:-.018em;max-width:19em}
+.lavori .sotto{margin-top:18px;font-size:clamp(19px,1.6vw,22px);color:var(--grigio);max-width:30em}
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);margin-top:56px;border-bottom:1px solid var(--linea)}
+.tab{appearance:none;background:none;border:0;margin:0 0 -1px;padding:0 0 18px;font:inherit;color:var(--grigio);text-align:left;cursor:pointer;
+  display:flex;flex-direction:column;gap:2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.tab .n{font-size:28px;line-height:1.15;letter-spacing:-.01em}
+.tab .l{font-size:15px}
+.tab:hover{color:var(--inchiostro)}
+.tab[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--verde)}
+.pannello{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);margin-top:48px;align-items:start}
+.pannello[hidden]{display:none}
+.pannello figure{grid-column:1 / span 6;margin-left:calc(var(--m) * -1)}
+.pannello img{width:100%;aspect-ratio:708/540;object-fit:cover}
+.pannello figcaption{font-size:14px;color:var(--grigio);margin-top:12px;padding-left:var(--m)}
+.dati{grid-column:8 / -1}
+.dati .descr{font-size:clamp(19px,1.6vw,22px);line-height:1.5;text-wrap:pretty;max-width:24em}
+.misure{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;column-gap:48px;row-gap:28px;margin-top:44px}
+.misure div{display:flex;flex-direction:column-reverse;gap:4px}
+.misure dt{font-size:14px;color:var(--grigio)}
+.misure dd{font-size:40px;line-height:1.05;font-weight:300;letter-spacing:-.015em;font-variant-numeric:tabular-nums lining-nums}
+.misure dd small{font-size:19px;margin-left:4px;letter-spacing:0;font-weight:400}
+.progetto{margin-top:40px;font-size:15px;line-height:1.55;color:var(--grigio);max-width:32em}
+
+/* impianti */
+.impianti h2{font-size:clamp(32px,3.6vw,50px);line-height:1.08;letter-spacing:-.018em;max-width:16em}
+.famiglie{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);row-gap:48px}
+.famiglie h3{font-size:20px;font-weight:500;line-height:1.3;letter-spacing:-.005em}
+.famiglie p{font-size:16px;line-height:1.5;color:var(--grigio);margin-top:6px;max-width:24em}
+
+/* assistenza */
+.assistenza .sx{grid-column:1 / span 5}
+.assistenza .dx{grid-column:7 / -1}
+.assistenza h2{font-size:clamp(32px,3.6vw,50px);line-height:1.08;letter-spacing:-.018em}
+.assistenza .sx p{margin-top:28px;font-size:18px;line-height:1.55;max-width:25em;text-wrap:pretty}
+.servizi{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap);row-gap:32px;padding-top:12px}
+.servizi dt{font-weight:500;font-size:18px}
+.servizi dd{font-size:16px;color:var(--grigio);margin-top:4px;max-width:20em}
+.pronto{margin-top:48px;display:flex;align-items:baseline;flex-wrap:wrap;column-gap:20px;row-gap:4px}
+.pronto a{font-size:40px;line-height:1.1;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid currentColor}
+.pronto a:hover{color:var(--verde)}
+.pronto span{font-size:15px;color:var(--grigio)}
+
+/* chiusura */
+.chiusura .grid{align-items:center}
+.chiusura figure{grid-column:1 / span 6;margin-left:calc(var(--m) * -1)}
+.chiusura figure img{width:100%;aspect-ratio:708/800;object-fit:cover}
+.chiusura figcaption{font-size:14px;color:var(--grigio);margin-top:12px;padding-left:var(--m)}
+.chiusura .testo{grid-column:8 / -1;padding-bottom:26px}
+.chiusura h2{font-size:clamp(40px,4.45vw,64px);line-height:1.04;letter-spacing:-.02em;max-width:8em}
+.recapiti{margin-top:40px;font-style:normal;font-size:17px;line-height:1.5}
+.recapiti p+p{margin-top:16px}
+.recapiti .et{display:block;font-size:14px;color:var(--grigio)}
+.recapiti .uffici{font-size:32px;line-height:1.15;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid currentColor}
+.recapiti .guasti-n{font-size:20px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor}
+.recapiti a{text-underline-offset:4px;text-decoration-thickness:1px}
+.recapiti a:hover{color:var(--verde)}
+
+/* piede */
+.piede{margin-top:var(--sez);background:var(--calce-2);padding-top:80px;padding-bottom:40px;font-size:15px;line-height:1.5}
+.piede .alto{row-gap:48px}
+.piede .marchio{grid-column:1 / span 4}
+.piede .marchio img{width:170px}
+.piede .marchio p{margin-top:24px;max-width:21em;color:var(--grigio)}
+.colonna{grid-column:span 2}
+.colonna.larga{grid-column:span 3}
+.colonna.stretta{grid-column:span 1}
+.colonna h2{font-size:15px;font-weight:500;letter-spacing:0;margin-bottom:14px}
+.colonna ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.colonna a{text-decoration:none;color:var(--grigio)}
+.colonna a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:4px}
+.colonna .apri{display:none}
+.legale{margin-top:72px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;column-gap:28px;row-gap:6px;
+  font-size:13.5px;color:var(--grigio)}
+.legale a{color:var(--grigio);text-underline-offset:3px}
+.legale a:hover{color:var(--verde)}
+.legale .dx{margin-left:auto;display:flex;gap:28px}
+
+/* schermi medi */
+@media (max-width:1180px){
+  .storia .fatti{grid-column:9 / -1}
+  .misure{column-gap:36px}
+  .misure dd{font-size:34px}
+  .piede .marchio{grid-column:1 / -1}
+  .colonna,.colonna.larga,.colonna.stretta{grid-column:span 3}
+}
+@media (max-width:1080px){
+  .apertura .corpo{grid-template-columns:minmax(0,1fr);margin-right:0}
+  .apertura .testo{display:contents}
+  .lead{grid-row:1;margin-top:14px}
+  .azione{grid-row:2}
+  .opera{grid-row:3;margin-top:48px;margin-right:calc(var(--m) * -1);margin-left:auto;width:min(900px,calc(100% + var(--m)))}
+  .legende{grid-row:4}
+  .didascalia{grid-row:5;margin-top:14px;max-width:44em}
+  .dati{grid-column:7 / -1}
+  .famiglie{grid-template-columns:1fr 1fr}
+  .assistenza .sx,.assistenza .dx{grid-column:1 / -1}
+  .assistenza .dx{margin-top:48px}
+}
+@media (max-width:900px){
+  .menu{gap:24px}
+  .storia h2,.storia .racconto{grid-column:1 / -1}
+  .storia .fatti{grid-column:1 / -1;grid-row:auto;margin-top:44px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap)}
+  .pannello figure{grid-column:1 / -1;margin-right:calc(var(--m) * -1)}
+  .pannello img{aspect-ratio:4/3}
+  .dati{grid-column:1 / -1;margin-top:32px}
+  .chiusura figure{grid-column:1 / -1;grid-row:2;margin-right:calc(var(--m) * -1);margin-top:48px}
+  .chiusura .testo{grid-column:1 / -1;grid-row:1;padding-bottom:0}
+  .chiusura figure img{aspect-ratio:4/3}
+}
+/* telefono */
+@media (max-width:640px){
+  :root{--sez:96px}
+  body{font-size:17px}
+  .testata .wrap{height:72px}
+  .logo,.logo img{width:104px}
+  .apri-menu{display:inline-flex;align-items:center;gap:8px;appearance:none;background:none;border:0;font:inherit;font-size:16px;
+    color:var(--inchiostro);padding:12px 0 12px 12px;cursor:pointer}
+  .apri-menu .righe{width:18px;height:10px;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
+  .menu{display:none;position:absolute;top:72px;left:0;right:0;background:var(--calce);flex-direction:column;gap:0;
+    padding:8px var(--m) 20px;border-bottom:1px solid var(--linea)}
+  .menu.aperto{display:flex}
+  .menu a{display:block;padding:12px 0;font-size:20px}
+  .tel-testata{display:none}
+  .apertura{padding-top:100px}
+  .apertura h1{font-size:clamp(52px,19vw,92px);line-height:.9;white-space:normal}
+  .apertura h1 .riga{display:block}
+  .apertura .corpo{margin-top:24px}
+  .lead{font-size:18px}
+  .azione{margin-top:26px}
+  .opera{margin-top:36px;width:auto;margin-left:calc(var(--m) * -1)}
+  .opera .leg{display:none}
+  .legende{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;margin:16px 0 0;font-size:15px;line-height:1.4}
+  .legende dt{font-weight:500}
+  .legende dd{color:var(--inchiostro)}
+  .didascalia{margin-top:14px}
+  .storia .fatti{grid-template-columns:1fr;gap:22px}
+  .tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;column-gap:28px;margin:36px calc(var(--m) * -1) 0;
+    padding:0 var(--m);scroll-padding-inline:var(--m);scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;scroll-snap-align:start;padding-bottom:14px}
+  .tab .n{font-size:22px}
+  .tab .l{font-size:14px}
+  .pannello{margin-top:28px}
+  .pannello img{aspect-ratio:1/1}
+  .misure{column-gap:28px;row-gap:22px;margin-top:32px}
+  .misure dd{font-size:30px}
+  .misure dd small{font-size:16px}
+  .progetto{margin-top:28px}
+  .famiglie{grid-template-columns:1fr;row-gap:28px;margin-top:40px}
+  .servizi{grid-template-columns:1fr;row-gap:22px}
+  .pronto{margin-top:36px}
+  .pronto a{font-size:34px}
+  .chiusura figure{margin-top:40px}
+  .chiusura figure img{aspect-ratio:4/5}
+  .recapiti .uffici{font-size:30px}
+  .piede{padding-top:52px}
+  .piede .marchio img{width:150px}
+  .colonna,.colonna.larga,.colonna.stretta{grid-column:1 / -1;border-top:1px solid var(--linea)}
+  .colonna h2{margin:0}
+  .colonna .apri{display:flex;width:100%;justify-content:space-between;align-items:center;appearance:none;background:none;border:0;
+    font:inherit;font-weight:500;font-size:16px;color:var(--inchiostro);padding:16px 0;cursor:pointer}
+  .colonna .apri::after{content:"";width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg) translateY(-3px);transition:transform .15s}
+  .colonna .apri[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-3px)}
+  .colonna .titolo{display:none}
+  .colonna ul{display:none;padding-bottom:18px}
+  .colonna ul.aperto{display:flex}
+  .piede .alto{row-gap:0}
+  .piede .marchio{margin-bottom:36px}
+  .legale{margin-top:36px;flex-direction:column}
+  .legale .dx{margin-left:0;margin-top:8px}
+}
+@media (max-width:360px){
+  .legende{grid-template-columns:1fr;row-gap:10px}
+  .misure{column-gap:20px}
+  .misure dd{font-size:27px}
+  .misure dd small{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Belletti Ascensori, pagina iniziale"><img src="img/logo-belletti.svg" width="124" height="46" alt="Belletti Ascensori"></a>
+    <nav aria-label="Principale">
+      <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu"><span class="righe" aria-hidden="true"></span>Menu</button>
+      <ul class="menu" id="menu">
+        <li><a href="#lavori">Lavori</a></li>
+        <li><a href="#impianti">Impianti</a></li>
+        <li><a href="#assistenza">Assistenza</a></li>
+        <li><a href="#storia">Storia</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+    <a class="tel-testata num" href="tel:+390495082430">049 508&#8239;2430</a>
+  </div>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <div class="wrap">
+    <h1 id="titolo"><span class="riga">Ascensori</span> <span class="riga">dal 1908</span></h1>
+    <div class="corpo">
+      <div class="testo">
+        <p class="lead">Progettiamo, costruiamo, installiamo e manteniamo ascensori, montacarichi e piattaforme elevatrici, anche dentro gli edifici storici. Da Mestrino, Padova.</p>
+        <div class="azione">
+          <a class="bottone num" href="tel:+390495082430">Chiama lo 049 508&#8239;2430</a>
+          <p class="guasti">Guasti, 24 ore su 24: <a class="num nb" href="tel:+390499005131">049 900&#8239;5131</a></p>
+        </div>
+        <p class="didascalia" id="didascalia-apertura"><strong>Cà della Nave, Martellago (Venezia).</strong> Il vano scala in vetro curvo nelle ex scuderie di Villa Grimani Morosini; progetto arch. Gianni e Carlotta Rigo, ing. Andrea Viel.</p>
+      </div>
+      <figure class="opera" aria-describedby="didascalia-apertura">
+        <picture>
+          <source media="(max-width:640px)" srcset="img/apertura-cadellanave-tel-390.webp 390w, img/apertura-cadellanave-tel-456.webp 456w" sizes="100vw" width="456" height="570">
+          <img src="img/apertura-cadellanave-900.webp" srcset="img/apertura-cadellanave-480.webp 480w, img/apertura-cadellanave-660.webp 660w, img/apertura-cadellanave-900.webp 900w"
+               sizes="(max-width:1080px) min(900px, 100vw), min(900px, 62.5vw)" width="900" height="777" fetchpriority="high"
+               alt="Il cilindro di vetro con la scala a chiocciola e l'ascensore tondo, accanto all'ala seicentesca delle ex scuderie di Villa Grimani Morosini a Martellago">
+        </picture>
+        <div class="quota" style="--x1:7.6%;--x2:66.7%;--y:36.8%" aria-hidden="true">
+          <p class="leg muro">Ala ovest<span>seconda metà del ’600</span></p>
+          <p class="leg vetro">Ascensore tondo<span class="num">480&nbsp;kg, 5&nbsp;persone, 4&nbsp;fermate</span></p>
+        </div>
+      </figure>
+      <dl class="legende">
+        <div><dt>Il muro</dt><dd>Ala ovest, seconda metà del ’600</dd></div>
+        <div><dt>Il vetro</dt><dd class="num">Ascensore tondo, 480&nbsp;kg, 5&nbsp;persone, 4&nbsp;fermate</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sezione storia" id="storia" aria-labelledby="t-storia">
+  <div class="wrap grid">
+    <h2 id="t-storia">Un secolo e tre generazioni</h2>
+    <p class="racconto">Rodolfo Belletti installava ascensori in tutta Europa, fino in Romania e in Russia nel primo dopoguerra. Dopo di lui il figlio Paolo con Elvira; oggi l’azienda è guidata da Gaetano e Irma Belletti con l’amministratore delegato, l’ingegner Andrea Viel.</p>
+    <div class="fatti">
+      <p><strong>Trenta addetti</strong>alle dirette dipendenze, con oltre venti tecnici.</p>
+      <p><strong>Veneto e Friuli</strong>Assistenza diretta nelle province del Veneto e in parte del Friuli.</p>
+      <p><strong>Per chi</strong>Condomini e amministratori, progettisti, enti pubblici, negozi, case private.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sezione lavori" id="lavori" aria-labelledby="t-lavori">
+  <div class="wrap">
+    <h2 id="t-lavori">Pensiamo che per presentarci bastino i lavori che abbiamo eseguito</h2>
+    <p class="sotto">L’ascensore rispecchia il carattere dell’edificio.</p>
+    <div class="tabs" role="tablist" aria-label="Lavori">
+      <button class="tab" type="button" role="tab" id="tab-cavour" aria-controls="p-cavour" aria-selected="true"><span class="n">Galleria Cavour</span><span class="l">Padova</span></button>
+      <button class="tab" type="button" role="tab" id="tab-michiel" aria-controls="p-michiel" aria-selected="false" tabindex="-1"><span class="n">Ca’ Michiel</span><span class="l">Venezia</span></button>
+      <button class="tab" type="button" role="tab" id="tab-nave" aria-controls="p-nave" aria-selected="false" tabindex="-1"><span class="n">Cà della Nave</span><span class="l">Martellago</span></button>
+    </div>
+
+    <div class="pannello" role="tabpanel" id="p-cavour" aria-labelledby="tab-cavour" tabindex="0">
+      <figure>
+        <img src="img/lavoro-cavour-770.webp" srcset="img/lavoro-cavour-390.webp 390w, img/lavoro-cavour-560.webp 560w, img/lavoro-cavour-770.webp 770w" sizes="(max-width:900px) 100vw, 50vw" width="770" height="587" loading="lazy" alt="Il volume dell'ascensore in acciaio e vetro in piazza Cavour a Padova, di giorno">
+        <figcaption>Piazza Cavour, Padova. L’accesso al volume dell’ascensore dal piano della piazza.</figcaption>
+      </figure>
+      <div class="dati">
+        <p class="descr">Il volume in acciaio e vetro che porta dalla piazza alla galleria sotterranea, inaugurato nell’ottobre 2007. Cabina con pareti in vetro stratificato e porte a quattro ante tutto vetro.</p>
+        <dl class="misure">
+          <div><dt>Portata</dt><dd>480<small>kg</small></dd></div>
+          <div><dt>Persone</dt><dd>6</dd></div>
+          <div><dt>Corsa</dt><dd>3,82<small>m</small></dd></div>
+          <div><dt>Fermate</dt><dd>2</dd></div>
+          <div><dt>Velocità</dt><dd>0,40<small>m/s</small></dd></div>
+        </dl>
+        <p class="progetto">Oleodinamico in taglia laterale, vano in acciaio inox. Progetto degli architetti Antonio e Tina Zambusi, ing. Ziffer, ing. Andrea Viel.</p>
+      </div>
+    </div>
+
+    <div class="pannello" role="tabpanel" id="p-michiel" aria-labelledby="tab-michiel" tabindex="0" hidden>
+      <figure>
+        <img src="img/lavoro-camichiel-790.webp" srcset="img/lavoro-camichiel-390.webp 390w, img/lavoro-camichiel-560.webp 560w, img/lavoro-camichiel-790.webp 790w" sizes="(max-width:900px) 100vw, 50vw" width="790" height="603" loading="lazy" alt="La cabina semicircolare in vetro con il mosaico blu, vista dall'alto nel cortile di Ca' Michiel">
+        <figcaption>Ca’ Michiel, Venezia. La cabina vista dall’alto, nel cortile del palazzo.</figcaption>
+      </figure>
+      <div class="dati">
+        <p class="descr">Un palazzo gotico senza spazio all’interno: l’ascensore sta nel piccolo cortile, la corsa parte dal primo piano e la fossa è sospesa su un pilone in acciaio. Parete in vetro semicircolare e mosaico Bisazza.</p>
+        <dl class="misure">
+          <div><dt>Portata</dt><dd>450<small>kg</small></dd></div>
+          <div><dt>Persone</dt><dd>6</dd></div>
+          <div><dt>Corsa</dt><dd>10,00<small>m</small></dd></div>
+          <div><dt>Piani serviti</dt><dd>2</dd></div>
+          <div><dt>Velocità</dt><dd>0,40<small>m/s</small></dd></div>
+        </dl>
+        <p class="progetto">Oleodinamico, con il motore a circa 25 metri dal vano, in alto, al riparo dall’acqua alta. Progetto dell’arch. Edoardo Danzi.</p>
+      </div>
+    </div>
+
+    <div class="pannello" role="tabpanel" id="p-nave" aria-labelledby="tab-nave" tabindex="0" hidden>
+      <figure>
+        <img src="img/lavoro-cadellanave-826.webp" srcset="img/lavoro-cadellanave-390.webp 390w, img/lavoro-cadellanave-560.webp 560w, img/lavoro-cadellanave-826.webp 826w" sizes="(max-width:900px) 100vw, 50vw" width="826" height="630" loading="lazy" alt="La scala a chiocciola attorno al vano tondo in vetro, vista dall'alto">
+        <figcaption>Cà della Nave, Martellago. La scala a chiocciola attorno al vano, dall’alto.</figcaption>
+      </figure>
+      <div class="dati">
+        <p class="descr">Nella corte delle ex scuderie di Villa Grimani Morosini, un cilindro di vetro con la scala a chiocciola attorno all’ascensore tondo. Porte di piano in vetro curvo stratificato 8+8.</p>
+        <dl class="misure">
+          <div><dt>Portata</dt><dd>480<small>kg</small></dd></div>
+          <div><dt>Persone</dt><dd>5</dd></div>
+          <div><dt>Corsa</dt><dd>10,87<small>m</small></dd></div>
+          <div><dt>Fermate</dt><dd>4</dd></div>
+          <div><dt>Velocità</dt><dd>0,50<small>m/s</small></dd></div>
+        </dl>
+        <p class="progetto">Oleodinamico a spinta diretta, cilindro telescopico a tre stadi. Progetto degli architetti Gianni e Carlotta Rigo con l’ing. Andrea Viel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione impianti" id="impianti" aria-labelledby="t-impianti">
+  <div class="wrap">
+    <h2 id="t-impianti">Dal montaoggetti da 12&nbsp;kg all’ascensore per 100 persone</h2>
+    <ul class="famiglie">
+      <li><h3>Ascensori</h3><p>Gearless senza locale macchine od oleodinamici, fino a 3&nbsp;m/s.</p></li>
+      <li><h3>Panoramici e strutture in vetro</h3><p>Strutture metalliche antisismiche, per l’interno o l’esterno.</p></li>
+      <li><h3>Montacarichi e montaoggetti</h3><p>Montaoggetti da 12&nbsp;kg, anche per uso alimentare.</p></li>
+      <li><h3>Montauto</h3><p>Per i centri storici, dove non c’è spazio per una rampa.</p></li>
+      <li><h3>Piattaforme elevatrici</h3><p>Per piccoli edifici residenziali e per le persone con disabilità.</p></li>
+      <li><h3>Scale e tappeti mobili</h3><p>Per negozi, centri commerciali e luoghi di grande traffico.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sezione assistenza" id="assistenza" aria-labelledby="t-assistenza">
+  <div class="wrap grid">
+    <div class="sx">
+      <h2 id="t-assistenza">Assistenza 24&nbsp;ore, dal 1997</h2>
+      <p>Il call center risponde a ogni ora, 365 giorni all’anno, secondo la norma <span class="nb">EN 81-28</span>. In caso di guasto manda un tecnico a liberare chi è rimasto in cabina.</p>
+    </div>
+    <div class="dx">
+      <dl class="servizi">
+        <div><dt>Manutenzione preventiva</dt><dd>Ogni anno i controlli previsti dal nostro manuale della qualità.</dd></div>
+        <div><dt>Verifica semestrale</dt><dd>Le prove dei dispositivi di sicurezza, con l’esito sul libretto dell’impianto.</dd></div>
+        <div><dt>Verifica biennale</dt><dd>I nostri tecnici accanto all’ispettore dell’ente notificato.</dd></div>
+        <div><dt>Riparazioni</dt><dd>Su impianti di ogni tipo e di qualsiasi marca, anche servoscala.</dd></div>
+      </dl>
+      <p class="pronto"><a class="num" href="tel:+390499005131">049 900&#8239;5131</a><span>Guasti e assistenza tecnica</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="sezione chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap grid">
+    <figure>
+      <img src="img/chiusura-sede-708.webp" srcset="img/chiusura-sede-390.webp 390w, img/chiusura-sede-560.webp 560w, img/chiusura-sede-708.webp 708w, img/chiusura-sede-869.webp 869w" sizes="(max-width:900px) 100vw, 50vw" width="708" height="800" loading="lazy" alt="La sede Belletti di Mestrino di sera, con la scala rossa dietro la vetrata e il furgone dell'assistenza davanti all'ingresso">
+      <figcaption>La sede di Mestrino, di sera.</figcaption>
+    </figure>
+    <div class="testo">
+      <h2 id="t-contatti">Trenta cuori e una sola anima</h2>
+      <address class="recapiti">
+        <p><span class="et">Uffici</span><a class="uffici num" href="tel:+390495082430">049 508&#8239;2430</a></p>
+        <p><span class="et">Guasti, 24 ore su 24</span><a class="guasti-n num" href="tel:+390499005131">049 900&#8239;5131</a></p>
+        <p><a href="mailto:info@bellettiascensori.it">info@bellettiascensori.it</a></p>
+        <p>Via della Tecnica 29, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Belletti+Via+della+Tecnica+29+35035+Mestrino+PD">Apri la mappa</a></p>
+      </address>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="grid alto">
+      <div class="marchio">
+        <img src="img/logo-belletti.svg" width="170" height="63" alt="Belletti Ascensori" loading="lazy">
+        <p>Ascensori, montacarichi e piattaforme elevatrici dal 1908. Progetto, installazione e manutenzione da Mestrino, Padova.</p>
+      </div>
+      <nav class="colonna" aria-label="Azienda">
+        <button class="apri" type="button" aria-expanded="false" aria-controls="c-azienda">Azienda</button>
+        <h2 class="titolo">Azienda</h2>
+        <ul id="c-azienda">
+          <li><a href="storia/">Storia dal 1908</a></li>
+          <li><a href="lavori/">Lavori</a></li>
+          <li><a href="certificazioni/">Certificazioni</a></li>
+          <li><a href="contatti/">Contatti</a></li>
+        </ul>
+      </nav>
+      <nav class="colonna larga" aria-label="Impianti">
+        <button class="apri" type="button" aria-expanded="false" aria-controls="c-impianti">Impianti</button>
+        <h2 class="titolo">Impianti</h2>
+        <ul id="c-impianti">
+          <li><a href="impianti/ascensori/">Ascensori</a></li>
+          <li><a href="impianti/panoramici-e-strutture/">Panoramici e strutture in vetro</a></li>
+          <li><a href="impianti/montacarichi/">Montacarichi e montaoggetti</a></li>
+          <li><a href="impianti/montauto/">Montauto</a></li>
+          <li><a href="impianti/piattaforme/">Piattaforme elevatrici</a></li>
+          <li><a href="impianti/scale-mobili/">Scale e tappeti mobili</a></li>
+        </ul>
+      </nav>
+      <nav class="colonna" aria-label="Assistenza">
+        <button class="apri" type="button" aria-expanded="false" aria-controls="c-assistenza">Assistenza</button>
+        <h2 class="titolo">Assistenza</h2>
+        <ul id="c-assistenza">
+          <li><a href="assistenza/manutenzione/">Manutenzione</a></li>
+          <li><a href="assistenza/emergenza-24-ore/">Emergenza 24 ore</a></li>
+          <li><a href="assistenza/verifiche/">Verifiche periodiche</a></li>
+          <li><a href="assistenza/servoscala/">Servoscala</a></li>
+          <li><a class="num" href="tel:+390499005131">049 900&#8239;5131</a></li>
+        </ul>
+      </nav>
+      <nav class="colonna stretta" aria-label="Seguici">
+        <button class="apri" type="button" aria-expanded="false" aria-controls="c-seguici">Seguici</button>
+        <h2 class="titolo">Seguici</h2>
+        <ul id="c-seguici">
+          <li><a href="https://www.youtube.com/@BellettiAscensori" rel="noopener">YouTube</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="legale">
+      <span>Belletti S.r.l., Via della Tecnica 29, 35035 Mestrino (PD)</span>
+      <span class="num">P.IVA e C.F. 01263940288</span>
+      <span class="num">REA PD 190779</span>
+      <span class="dx"><a href="privacy/">Privacy</a><a href="cookie/">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // menu del telefono
+  var b=document.querySelector('.apri-menu'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){var a=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!a));m.classList.toggle('aperto',!a);});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');m.classList.remove('aperto');}});
+  // colonne del piede a fisarmonica sul telefono
+  document.querySelectorAll('.colonna .apri').forEach(function(x){
+    x.addEventListener('click',function(){var a=x.getAttribute('aria-expanded')==='true';x.setAttribute('aria-expanded',String(!a));
+      document.getElementById(x.getAttribute('aria-controls')).classList.toggle('aperto',!a);});
+  });
+  // selettore dei lavori: cambia foto e scheda tecnica, senza transizioni
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function scegli(t,fuoco){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(fuoco)t.focus();
+    if(t.scrollIntoView&&t.parentNode.scrollWidth>t.parentNode.clientWidth)t.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){scegli(t,false);});
+    t.addEventListener('keydown',function(e){var k=e.key,j=null;
+      if(k==='ArrowRight'||k==='ArrowDown')j=(i+1)%tabs.length;else if(k==='ArrowLeft'||k==='ArrowUp')j=(i-1+tabs.length)%tabs.length;
+      else if(k==='Home')j=0;else if(k==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();scegli(tabs[j],true);}});
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ciesseci, CSC Factory: stampa, ricamo e abbigliamento da lavoro a Mestrino</title>
+<meta name="description" content="Dal 1982 stampa su supporti anche di grandi dimensioni e personalizzazione di abbigliamento promozionale e da lavoro. Negozio, showroom e laboratorio in Via Zanella 1 a Mestrino (PD).">
+<link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="img/logo-csc-128.png" type="image/png">
+<style>
+/* Archivo, Omnibus-Type, SIL Open Font License 1.1 (fonts/OFL-Archivo.txt): variabile in peso e larghezza */
+@font-face{font-family:'Archivo';src:url(fonts/archivo-latin-var.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+:root{
+  --carta:#F4F3EF;
+  --carta-2:#EAE8E2;
+  --inch:#151714;
+  --inch-2:#4A4C47;   /* testo secondario: 8,1:1 su carta, 7,4:1 sul piede */
+  --inch-3:#5C5E58;   /* didascalie: 6,1:1 su carta, 5,6:1 sul piede */
+  --filo:#D3D1CA;
+  --verde:#0B6B35;    /* verde del logo: 6,1:1 su carta */
+  --verde-scuro:#08542A;
+  --m:64px;           /* margine laterale */
+  --g:24px;           /* passo della griglia */
+  --sez:136px;        /* respiro tra le sezioni */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--carta);color:var(--inch);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variation-settings:'wdth' 100;font-kerning:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* etichette strette e maiuscole, come la scritta FACTORY del logo */
+.stretto{font-variation-settings:'wdth' 68;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:13px;line-height:1.3}
+
+/* ---------- testata ---------- */
+.testata{position:absolute;top:0;left:0;right:0;z-index:5}
+.testata .wrap{display:flex;align-items:center;height:96px;gap:44px}
+.marchio{display:flex;align-items:center;gap:14px;text-decoration:none;flex-shrink:0;white-space:nowrap}
+.marchio img{width:56px;height:auto}
+.marchio .stretto{font-size:14px;letter-spacing:.09em}
+.marchio .stretto span{display:block;font-weight:500;color:var(--inch-3);letter-spacing:.06em}
+.menu{display:flex;gap:28px;list-style:none;font-size:15px}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover{border-bottom-color:var(--inch)}
+.apri-menu{display:none}
+
+/* ---------- apertura: la felpa 82 ---------- */
+.apertura{position:relative;min-height:max(820px,min(100vh,940px));overflow:hidden}
+.apertura .testo{position:relative;z-index:2;padding-top:196px;padding-bottom:150px;max-width:900px}
+h1{font-variation-settings:'wdth' 116;font-weight:460;font-size:clamp(46px,6.8vw,98px);line-height:.97;letter-spacing:-.03em}
+.apertura .lede{margin-top:40px;font-size:19px;line-height:1.5;max-width:29em;color:var(--inch-2)}
+.azioni{margin-top:36px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.bottone{display:inline-block;background:var(--verde);color:var(--carta);text-decoration:none;font-weight:600;font-size:16px;padding:16px 26px}
+.bottone:hover{background:var(--verde-scuro)}
+.tel{font-size:22px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.tel:hover{color:var(--verde)}
+/* la felpa: scontornata sulla carta, esce dal bordo destro e da quello basso; mostrata a 1,3x
+   dello scatto originale (324 x 680), non oltre. Gli ultimi 52 px a destra (dove lo scatto
+   taglia il cappuccio) restano fuori dalla pagina */
+.felpa{position:absolute;right:-52px;bottom:0;width:421px;margin:0;z-index:1}
+.felpa img{width:421px;height:923px}
+.didascalia-felpa{position:absolute;z-index:2;bottom:40px;right:335px;max-width:300px;text-align:right;font-size:14px;line-height:1.45;color:var(--inch-3)}
+.didascalia-felpa b{color:var(--inch);font-weight:600}
+
+/* ---------- titoli di sezione ---------- */
+.sezione{padding-top:var(--sez)}
+h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,58px);line-height:1.02;letter-spacing:-.022em}
+.testa{align-items:end;row-gap:24px}
+.testa h2{grid-column:1 / span 7}
+.testa p{grid-column:9 / span 4;color:var(--inch-2);max-width:26em}
+
+/* ---------- lavorazioni: il gesto ---------- */
+.schede{margin-top:72px;display:flex;flex-wrap:wrap;gap:8px 40px}
+.scheda{appearance:none;background:none;border:0;cursor:pointer;color:var(--inch-3);font:inherit;font-variation-settings:'wdth' 104;font-weight:500;font-size:clamp(20px,2.2vw,32px);letter-spacing:-.012em;line-height:1.1;padding:10px 0 14px;border-bottom:3px solid transparent;display:flex;align-items:baseline;gap:10px}
+.scheda .n{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.scheda:hover{color:var(--inch)}
+.scheda[aria-selected="true"]{color:var(--inch);border-bottom-color:var(--verde)}
+.palco{margin-top:28px}
+.pannello img{width:100%;aspect-ratio:2.25/1;object-fit:cover}
+.pannello .sotto{padding-top:32px;align-items:start;row-gap:20px}
+.pannello blockquote{grid-column:1 / span 7;font-variation-settings:'wdth' 100;font-weight:440;font-size:clamp(22px,2.2vw,31px);line-height:1.25;letter-spacing:-.012em}
+.pannello .dati{grid-column:9 / span 4;font-size:15px;color:var(--inch-2)}
+.pannello .dati .stretto{color:var(--inch-3);display:block;margin-bottom:6px}
+.pannello .dati a{display:inline-block;margin-top:14px;color:var(--verde);font-weight:600}
+.anche{margin-top:64px;padding-top:24px;border-top:1px solid var(--filo);font-size:17px;color:var(--inch-2)}
+.anche a{color:var(--inch)}
+
+/* ---------- abbigliamento ---------- */
+.abbigliamento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);max-width:1440px;margin:0 auto;padding-right:var(--m);align-items:end}
+.foto-dpi{grid-column:1 / span 7}
+.foto-dpi img{width:100%;aspect-ratio:1/1.12;object-fit:cover}
+.testo-abb{grid-column:9 / span 4;padding-bottom:8px}
+.lede-abb{margin-top:40px;font-size:19px;line-height:1.5}
+.nota-abb{margin-top:18px;color:var(--inch-2)}
+.voci{margin-top:36px;list-style:none;border-top:1px solid var(--filo)}
+.voci a{display:block;padding:14px 0;border-bottom:1px solid var(--filo);text-decoration:none;font-weight:500}
+.voci a:hover{color:var(--verde)}
+
+/* ---------- dal 1982 ---------- */
+.storia{align-items:end;row-gap:40px}
+.anno{grid-column:1 / span 7;font-variation-settings:'wdth' 125;font-weight:300;font-size:clamp(110px,15.5vw,224px);line-height:.8;letter-spacing:-.04em;font-variant-numeric:tabular-nums lining-nums;margin-left:-.04em}
+.storia .frase{grid-column:8 / span 5;font-size:21px;line-height:1.45;max-width:24em;padding-bottom:6px}
+.date{margin-top:88px;row-gap:40px}
+.data{grid-column:span 6;border-top:1px solid var(--verde);padding-top:20px;display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:baseline}
+.data .a{font-variation-settings:'wdth' 112;font-weight:560;font-size:32px;letter-spacing:-.02em;line-height:1}
+.data h3{font-variation-settings:'wdth' 108;font-weight:560;font-size:20px;letter-spacing:-.01em;line-height:1.25}
+.data p{grid-column:2;margin-top:6px;color:var(--inch-2)}
+.perchi{margin-top:96px;list-style:none;border-top:1px solid var(--inch)}
+.perchi li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:22px 0;border-bottom:1px solid var(--filo);align-items:baseline}
+.perchi h3{grid-column:1 / span 3;font-variation-settings:'wdth' 108;font-weight:560;font-size:22px;letter-spacing:-.01em}
+.perchi p{grid-column:4 / span 6;color:var(--inch-2)}
+.perchi a{grid-column:11 / span 2;justify-self:end;color:var(--verde);font-weight:600;font-size:15px}
+
+/* ---------- chiusura ---------- */
+.chiusura{margin-top:var(--sez);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);max-width:1440px;margin-left:auto;margin-right:auto;padding-left:var(--m);align-items:center}
+.chiusura .testo{grid-column:1 / span 5;padding:16px 0 8px}
+.chiusura h2{font-size:clamp(40px,4.6vw,66px)}
+.sotto-chi{margin-top:24px;font-size:19px;line-height:1.5;color:var(--inch-2);max-width:24em}
+.recapiti{margin-top:52px;font-size:17px}
+.recapiti .tel{font-size:clamp(30px,2.8vw,40px);font-variation-settings:'wdth' 110;letter-spacing:-.01em}
+.recapiti p{margin-top:14px;color:var(--inch-2)}
+.recapiti p a{color:var(--inch)}
+.recapiti p a:hover{color:var(--verde)}
+.recapiti .orari{margin-top:26px;font-size:15px}
+.chiusura .foto{grid-column:6 / span 7;margin:0 calc(-1 * max(0px, (100vw - 1440px) / 2)) 0 0}
+.chiusura .foto img{width:100%;aspect-ratio:1.05/1;object-fit:cover;object-position:42% 50%}
+.didascalia-chi{margin-top:12px;font-size:14px;color:var(--inch-3);padding-right:var(--m)}
+.didascalia-chi b{color:var(--inch);font-weight:600}
+
+/* ---------- piede ---------- */
+.piede{margin-top:var(--sez);background:var(--carta-2);padding:88px 0 40px;font-size:15px}
+.piede .alto{row-gap:48px}
+.piede .chi{grid-column:1 / span 3}
+.piede .chi img{width:96px;height:auto}
+.piede .chi p{margin-top:20px;color:var(--inch-2);max-width:22em}
+.piede .chi .contatti-piede{margin-top:16px;color:var(--inch);line-height:1.7}
+.contatti-piede a{text-decoration:none}
+.contatti-piede a:hover{text-decoration:underline;text-underline-offset:3px}
+.col{grid-column:span 2}
+.piede h3{font-variation-settings:'wdth' 68;font-weight:600;text-transform:uppercase;letter-spacing:.07em;font-size:13px;color:var(--inch-2);margin-bottom:16px}
+.piede ul{list-style:none}
+.piede li + li{margin-top:9px}
+.col a,.social a{text-decoration:none}
+.col a:hover,.social a:hover{text-decoration:underline;text-underline-offset:3px}
+.lettera{grid-column:10 / span 3}
+.lettera p{color:var(--inch-2)}
+.lettera form{margin-top:16px}
+.campo{display:flex;border-bottom:1px solid var(--inch)}
+.campo input{flex:1;min-width:0;background:transparent;border:0;font:inherit;font-size:16px;padding:12px 0;color:var(--inch)}
+.campo input::placeholder{color:var(--inch-3)}
+.campo button{background:none;border:0;font:inherit;font-weight:600;color:var(--verde);cursor:pointer;padding:12px 0 12px 16px}
+.campo button:hover{color:var(--verde-scuro);text-decoration:underline;text-underline-offset:3px}
+.consenso{display:flex;gap:10px;margin-top:14px;font-size:14px;color:var(--inch-2);align-items:flex-start}
+.consenso input{margin-top:3px;accent-color:var(--verde);width:16px;height:16px;flex:none}
+.social{margin-top:40px}
+.basso{margin-top:72px;padding-top:24px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:14px;color:var(--inch-2)}
+.basso span + span::before{content:"·";margin:0 10px}
+.basso nav{display:flex;gap:20px}
+
+/* ---------- 1200 ---------- */
+@media (max-width:1200px){
+  :root{--m:48px;--sez:128px}
+  .menu{gap:22px}
+  .testata .wrap{gap:32px}
+}
+/* ---------- 1024 ---------- */
+@media (max-width:1100px){
+  .menu{display:none}
+  .apri-menu{display:inline-block;margin-left:auto;background:var(--carta);border:1px solid var(--inch);font:inherit;font-size:15px;font-weight:500;padding:9px 16px;cursor:pointer;color:var(--inch);position:relative;z-index:3}
+  .testata .wrap{justify-content:space-between}
+  .menu.aperto{display:flex;position:absolute;top:96px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
+  .menu.aperto a{display:block;padding:12px 0;font-size:18px}
+  .apertura .testo{max-width:640px}
+  .felpa{right:-60px}
+  .didascalia-felpa{right:330px;max-width:240px}
+  .foto-dpi{grid-column:1 / span 6}
+  .testo-abb{grid-column:7 / span 6}
+  .testa h2{grid-column:1 / span 12}
+  .testa p{grid-column:1 / span 8}
+  .pannello blockquote{grid-column:1 / span 8}
+  .pannello .dati{grid-column:9 / span 4}
+  .anno{grid-column:1 / span 12}
+  .storia .frase{grid-column:1 / span 8}
+  .col{grid-column:span 3}
+  .piede .chi{grid-column:1 / span 12}
+  .lettera{grid-column:1 / span 12;max-width:560px}
+}
+/* ---------- 768 ---------- */
+@media (max-width:860px){
+  :root{--m:32px;--sez:112px}
+  .apertura{min-height:0}
+  .apertura .testo{max-width:none;padding:132px 0 0}
+  h1{font-size:clamp(42px,9vw,72px)}
+  .felpa{position:relative;right:auto;bottom:auto;width:auto;margin:16px 0 0;display:flex;justify-content:flex-end}
+  .felpa img{width:421px;max-width:none;height:auto;margin-right:-52px}
+  .didascalia-felpa{position:static;max-width:none;text-align:left;padding:14px var(--m) 0}
+  .pannello blockquote,.pannello .dati{grid-column:1 / span 12}
+  .testa p{grid-column:1 / span 12}
+  .abbigliamento{padding-right:0}
+  .foto-dpi{grid-column:1 / span 12}
+  .foto-dpi img{aspect-ratio:4/3;object-position:50% 20%}
+  .testo-abb{grid-column:1 / span 12;padding:48px var(--m) 0}
+  .storia .frase{grid-column:1 / span 12}
+  .data{grid-column:1 / span 12}
+  .date{margin-top:64px}
+  .didascalia-chi{padding:0 var(--m)}
+  .perchi h3{grid-column:1 / span 12}
+  .perchi p{grid-column:1 / span 9;margin-top:6px}
+  .perchi a{grid-column:10 / span 3;align-self:end}
+  .chiusura{padding-left:0}
+  .chiusura .testo{grid-column:1 / span 12;padding:0 var(--m)}
+  .chiusura .foto{grid-column:1 / span 12;margin:56px 0 0}
+  .chiusura .foto img{aspect-ratio:1.6/1}
+  .col{grid-column:span 6}
+  .lettera{grid-column:1 / span 12}
+}
+/* ---------- 390 ---------- */
+@media (max-width:560px){
+  :root{--m:20px;--g:16px;--sez:96px}
+  body{font-size:16px}
+  .testata .wrap{height:72px}
+  .marchio img{width:44px}
+  .marchio .stretto{font-size:12px}
+  .menu.aperto{top:72px}
+  .apertura .testo{padding-top:104px}
+  h1{font-size:41px;line-height:1;letter-spacing:-.03em;font-variation-settings:'wdth' 106}
+  h1 br{display:none}
+  .apertura .lede{margin-top:20px;font-size:17px}
+  .azioni{margin-top:24px;gap:22px}
+  .bottone{padding:15px 22px}
+  .tel{font-size:20px}
+  .felpa{margin-top:-18px}   /* le prime righe dello scatto sono solo carta: passano sotto il testo */
+  .felpa img{width:calc(100% + 48px);margin-right:-48px}
+  h2{font-size:34px}
+  .schede{margin-top:40px;gap:2px 22px}
+  .scheda{font-size:20px;padding:8px 0 10px}
+  .scheda .n{font-size:11px}
+  .pannello img{aspect-ratio:1.35/1}
+  .pannello .sotto{padding-top:22px}
+  .lede-abb{font-size:17px;margin-top:28px}
+  .sotto-chi{font-size:17px}
+  .anno{font-size:112px}
+  .storia .frase{font-size:18px}
+  .data{grid-template-columns:1fr;row-gap:6px}
+  .data p{grid-column:1;margin-top:2px}
+  .data .a{font-size:28px}
+  .perchi{margin-top:64px}
+  .perchi p{grid-column:1 / span 12}
+  .perchi a{grid-column:1 / span 12;justify-self:start;margin-top:8px}
+  .chiusura h2{font-size:38px}
+  .recapiti{margin-top:36px}
+  .piede{padding-top:64px}
+  .piede .chi img{width:80px}
+  .col{grid-column:1 / span 12}
+  .basso{flex-direction:column}
+  .basso span{display:block}
+  .basso span + span::before{content:none}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="#" aria-label="CSC Factory, Ciesseci Srl: inizio pagina">
+      <img src="img/logo-csc-128.png" width="128" height="124" alt="">
+      <span class="stretto">CSC Factory<span>Mestrino, dal 1982</span></span>
+    </a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav aria-label="Principale">
+      <ul class="menu" id="menu">
+        <li><a href="#lavorazioni">Lavorazioni</a></li>
+        <li><a href="#abbigliamento">Abbigliamento</a></li>
+        <li><a href="#chi-siamo">Chi siamo</a></li>
+        <li><a href="shop/">Shop</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="wrap">
+    <div class="testo">
+      <h1 id="titolo">Stampa e ricamo:<br> diffondiamo<br> il tuo brand.</h1>
+      <p class="lede">Dal 1982 stampiamo su supporti anche di grandi dimensioni e personalizziamo abbigliamento promozionale e da lavoro. Negozio, showroom e laboratorio a Mestrino, Padova.</p>
+      <div class="azioni">
+        <a class="bottone" href="preventivo/">Chiedi un preventivo</a>
+        <a class="tel num" href="tel:+39049634423">049 634423</a>
+      </div>
+    </div>
+  </div>
+  <figure class="felpa">
+    <img src="img/felpa82-421.jpg" srcset="img/felpa82-324.jpg 324w, img/felpa82-421.jpg 421w" sizes="421px" width="421" height="923" alt="La felpa grigia CSC Factory vista dall'alto, con il numero 82 stampato in verde fluo e il marchio CSC Factory dentro l'8">
+  </figure>
+  <p class="didascalia-felpa"><b>La felpa CSC Factory:</b> il 1982 stampato come un numero di maglia.</p>
+</section>
+
+<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="wrap">
+    <div class="griglia testa">
+      <h2 id="t-lav">Su tessuto, plex, legno e metallo</h2>
+      <p>Undici lavorazioni per mettere il tuo marchio su un capo, un furgone, una targa o uno zerbino. Cinque, da vicino:</p>
+    </div>
+    <div class="schede" role="tablist" aria-label="Lavorazioni">
+      <button class="scheda" type="button" role="tab" id="s-ricamo" aria-controls="p-ricamo" aria-selected="true">Ricamo</button>
+      <button class="scheda" type="button" role="tab" id="s-serigrafia" aria-controls="p-serigrafia" aria-selected="false" tabindex="-1">Serigrafia</button>
+      <button class="scheda" type="button" role="tab" id="s-sublimazione" aria-controls="p-sublimazione" aria-selected="false" tabindex="-1">Sublimazione</button>
+      <button class="scheda" type="button" role="tab" id="s-uv" aria-controls="p-uv" aria-selected="false" tabindex="-1">Stampa UV</button>
+      <button class="scheda" type="button" role="tab" id="s-laser" aria-controls="p-laser" aria-selected="false" tabindex="-1">Incisione laser</button>
+    </div>
+  </div>
+
+  <div class="palco">
+    <div class="pannello" role="tabpanel" id="p-ricamo" aria-labelledby="s-ricamo">
+      <img src="img/tec-ricamo-1440.jpg" srcset="img/tec-ricamo-800.jpg 800w, img/tec-ricamo-1440.jpg 1440w" sizes="100vw" width="1440" height="640" alt="Coni di filo colorato in fila sull'albero di una ricamatrice">
+      <div class="wrap"><div class="griglia sotto">
+        <blockquote>«Perfetto per farti riconoscere e creare appartenenza tra i tuoi dipendenti o gli associati.»</blockquote>
+        <p class="dati"><span class="stretto">Dove</span>Abbigliamento da lavoro e per il tempo libero. Il ricamo personalizzato ha anche un marchio suo, RicaMarty.<br><a href="pubblicita/ricamo/">Il ricamo</a></p>
+      </div></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-serigrafia" aria-labelledby="s-serigrafia" hidden>
+      <img src="img/tec-serigrafia-1440.jpg" srcset="img/tec-serigrafia-800.jpg 800w, img/tec-serigrafia-1440.jpg 1440w, img/tec-serigrafia-2400.jpg 2400w" sizes="100vw" width="1440" height="640" alt="Mani che tirano la racla su un telaio serigrafico, accanto a una finestra" loading="lazy">
+      <div class="wrap"><div class="griglia sotto">
+        <blockquote>«La stampa serigrafica avviene su tessuto, pelli, tnt, e su materiali rigidi come plex, legno, metallo e altro.»</blockquote>
+        <p class="dati"><span class="stretto">Dove</span>Magliette, felpe, shopper in tnt, pannelli rigidi.<br><a href="pubblicita/serigrafia/">La serigrafia</a></p>
+      </div></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-sublimazione" aria-labelledby="s-sublimazione" hidden>
+      <img src="img/tec-sublimazione-1440.jpg" srcset="img/tec-sublimazione-800.jpg 800w, img/tec-sublimazione-1440.jpg 1440w, img/tec-sublimazione-1680.jpg 1680w" sizes="100vw" width="1440" height="640" alt="Una maglietta gialla stesa sul piano di una pressa a caldo" loading="lazy">
+      <div class="wrap"><div class="griglia sotto">
+        <blockquote>«Un effetto non in rilievo e impalpabile, modificando direttamente la tinta del tessuto.»</blockquote>
+        <p class="dati"><span class="stretto">Colori</span>Non ci sono limiti di colore.<br><a href="pubblicita/sublimazione/">La sublimazione</a></p>
+      </div></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-uv" aria-labelledby="s-uv" hidden>
+      <img src="img/tec-stampa-uv-1440.jpg" srcset="img/tec-stampa-uv-800.jpg 800w, img/tec-stampa-uv-1440.jpg 1440w, img/tec-stampa-uv-1920.jpg 1920w" sizes="100vw" width="1440" height="640" alt="Tre sagome in plexiglass stampate in UV da Ciesseci: un volto dipinto, un gatto, un occhio" loading="lazy">
+      <div class="wrap"><div class="griglia sotto">
+        <blockquote>«Stampa il tuo messaggio su qualsiasi supporto fino a spessori di <span class="num">50 mm</span>.»</blockquote>
+        <p class="dati"><span class="stretto">Supporti</span>PVC, policarbonato, tessuti, legno, forex, plexiglass, pvc adesivo. Il plex anche con taglio su misura, su singolo pezzo.<br><a href="pubblicita/stampa-uv/">La stampa UV</a></p>
+      </div></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-laser" aria-labelledby="s-laser" hidden>
+      <img src="img/tec-laser-1024.jpg" srcset="img/tec-laser-800.jpg 800w, img/tec-laser-1024.jpg 1024w" sizes="100vw" width="1024" height="455" alt="La testa dell'incisore laser di Ciesseci sopra il piano a nido d'ape" loading="lazy">
+      <div class="wrap"><div class="griglia sotto">
+        <blockquote>«Plexiglas, targhe, portachiavi, ma anche penne, matite in legno, penne per touchscreen, pendrive USB.»</blockquote>
+        <p class="dati"><span class="stretto">Oggetti</span>Targhe, portachiavi e gadget con il tuo marchio.<br><a href="pubblicita/incisioni-laser/">L'incisione laser</a></p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="anche">E poi <a href="pubblicita/tampografia/">tampografia</a>, <a href="pubblicita/stampa-digitale/">stampa digitale</a>, <a href="pubblicita/timbri/">timbri</a>, <a href="pubblicita/decorazione-automezzi/">decorazione di automezzi</a>, <a href="pubblicita/grafica/">grafica</a> e <a href="zerbini-e-tappeti-personalizzati/">zerbini e tappeti stampati</a>.</p>
+  </div>
+</section>
+
+<section class="sezione abbigliamento" id="abbigliamento" aria-labelledby="t-abb">
+  <div class="foto-dpi">
+    <img src="img/dpi-1000.jpg" srcset="img/dpi-700.jpg 700w, img/dpi-1000.jpg 1000w, img/dpi-1400.jpg 1400w" sizes="(max-width:860px) 100vw, 56vw" width="1000" height="1120" alt="Caschi da cantiere arancioni e gilet ad alta visibilità appesi a una parete bianca" loading="lazy">
+  </div>
+  <div class="testo-abb">
+    <h2 id="t-abb">Centinaia di capi, scarpe e DPI in showroom</h2>
+    <p class="lede-abb">Salopette, giacche da lavoro, camicie, polo, felpe, giubbini, grembiuli; calzature antinfortunistiche e capi per il tempo libero, sia al dettaglio che all'ingrosso.</p>
+    <p class="nota-abb">Su richiesta mettiamo anche il tuo nome e quello dei tuoi dipendenti.</p>
+    <ul class="voci">
+      <li><a href="abbigliamento/abbigliamento-da-lavoro/">Abbigliamento da lavoro</a></li>
+      <li><a href="abbigliamento/calzature-antinfortunistiche/">Calzature antinfortunistiche</a></li>
+      <li><a href="abbigliamento/abbigliamento-tempo-libero/">Tempo libero</a></li>
+      <li><a href="cataloghi/">Cataloghi dei fornitori</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sezione" id="chi-siamo" aria-labelledby="t-chi">
+  <div class="wrap">
+    <h2 id="t-chi" class="sr">Chi siamo</h2>
+    <div class="griglia storia">
+      <p class="anno" aria-hidden="true">1982</p>
+      <p class="frase">Ciesseci nasce nel 1982 da tre amici, in un piccolo laboratorio casalingo a Rubano.</p>
+    </div>
+    <div class="griglia date">
+      <div class="data">
+        <span class="a num">1982</span>
+        <h3>Rubano</h3>
+        <p>Il primo laboratorio, in casa.</p>
+      </div>
+      <div class="data">
+        <span class="a num">2019</span>
+        <h3>Via Zanella 1, Mestrino</h3>
+        <p>Negozio, showroom e laboratorio, inaugurati il <span class="num">23 febbraio</span>.</p>
+      </div>
+    </div>
+    <ul class="perchi">
+      <li><h3>Aziende</h3><p>Abbigliamento da lavoro e calzature con il vostro marchio, e il nome di chi li indossa.</p><a href="preventivo/">Preventivo</a></li>
+      <li><h3>Associazioni</h3><p>Sportive e culturali, o la tua band: maglie, felpe, striscioni e gadget.</p><a href="#lavorazioni">Lavorazioni</a></li>
+      <li><h3>Privati</h3><p>Lo shop online: t-shirt, tazze, quadri e idee regalo. Spediamo in tutta Italia.</p><a href="shop/">Shop</a></li>
+      <li><h3>RicaMarty</h3><p>Il nostro marchio dedicato all'arte del ricamo personalizzato.</p><a href="shop/ricamarty/">RicaMarty</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-con">
+  <div class="testo">
+    <h2 id="t-con">Ti aspettiamo a Mestrino</h2>
+    <p class="sotto-chi">Per visitare lo showroom e scegliere tra centinaia di capi da lavoro, calzature antinfortunistiche e abbigliamento per il tempo libero.</p>
+    <div class="recapiti">
+      <a class="tel num" href="tel:+39049634423">049 634423</a>
+      <p>Cellulare <a class="num" href="tel:+393278831747">327 8831747</a> · <a href="https://wa.me/393278831747">WhatsApp</a></p>
+      <p><a href="mailto:info@ciessecisrl.it">info@ciessecisrl.it</a></p>
+      <p>Via Zanella 1, 35035 Mestrino (PD) · <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Zanella+1+35035+Mestrino+PD">Apri la mappa</a></p>
+      <p class="orari num">Da lunedì a venerdì 8:00-12:30 e 14:00-18:30<br>Sabato 8:00-11:00</p>
+    </div>
+  </div>
+  <figure class="foto">
+    <img src="img/showroom-1024.jpg" srcset="img/showroom-700.jpg 700w, img/showroom-1024.jpg 1024w" sizes="(max-width:860px) 100vw, 56vw" width="1024" height="680" alt="Lo showroom di Via Zanella: giacche, magliette ad alta visibilità e una parete di scarpe antinfortunistiche" loading="lazy">
+    <figcaption class="didascalia-chi"><b>Via Zanella 1.</b> Lo showroom, inaugurato il <span class="num">23 febbraio 2019</span>.</figcaption>
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="griglia alto">
+      <div class="chi">
+        <img src="img/logo-csc-240.png" width="240" height="233" alt="CSC Factory, since 1982">
+        <p>Ciesseci Srl, marchio CSC Factory: stampa, ricamo e abbigliamento da lavoro a Mestrino dal 1982.</p>
+        <p class="contatti-piede"><a class="num" href="tel:+39049634423">049 634423</a><br><a href="mailto:info@ciessecisrl.it">info@ciessecisrl.it</a><br>Via Zanella 1, 35035 Mestrino (PD)</p>
+      </div>
+      <div class="col">
+        <h3>Lavorazioni</h3>
+        <ul>
+          <li><a href="pubblicita/ricamo/">Ricamo</a></li>
+          <li><a href="pubblicita/serigrafia/">Serigrafia</a></li>
+          <li><a href="pubblicita/sublimazione/">Sublimazione</a></li>
+          <li><a href="pubblicita/stampa-uv/">Stampa UV</a></li>
+          <li><a href="pubblicita/incisioni-laser/">Incisioni laser</a></li>
+          <li><a href="pubblicita/decorazione-automezzi/">Decorazione automezzi</a></li>
+          <li><a href="pubblicita/">Tutte le lavorazioni</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Abbigliamento</h3>
+        <ul>
+          <li><a href="abbigliamento/abbigliamento-da-lavoro/">Da lavoro</a></li>
+          <li><a href="abbigliamento/calzature-antinfortunistiche/">Calzature antinfortunistiche</a></li>
+          <li><a href="abbigliamento/abbigliamento-tempo-libero/">Tempo libero</a></li>
+          <li><a href="shop/">Shop online</a></li>
+          <li><a href="shop/ricamarty/">RicaMarty</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Azienda</h3>
+        <ul>
+          <li><a href="chi-siamo/">Chi siamo</a></li>
+          <li><a href="#abbigliamento">Showroom</a></li>
+          <li><a href="cataloghi/">Cataloghi</a></li>
+          <li><a href="promozioni/">Promozioni</a></li>
+          <li><a href="preventivo/">Preventivo</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </div>
+      <div class="lettera">
+        <h3>Novità e promozioni</h3>
+        <p>Una mail quando escono promozioni, cataloghi nuovi e idee per lo shop.</p>
+        <form action="#" method="post" onsubmit="return false">
+          <label class="sr" for="email-lettera">La tua email</label>
+          <div class="campo">
+            <input id="email-lettera" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
+            <button type="submit">Iscriviti</button>
+          </div>
+          <label class="consenso"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="termini-duso-e-informative/informativa-privacy/">informativa privacy</a> e acconsento a ricevere la newsletter.</span></label>
+        </form>
+        <div class="social">
+          <h3>Seguici</h3>
+          <ul>
+            <li><a href="https://www.facebook.com/ciesseci">Facebook</a></li>
+            <li><a href="https://www.instagram.com/ciessecisrl/">Instagram</a></li>
+            <li><a href="https://www.instagram.com/ricamarty_/">RicaMarty su Instagram</a></li>
+            <li><a href="https://www.facebook.com/people/RicaMarty/61558415187099/">RicaMarty su Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="basso">
+      <p><span>CIESSECI SRL</span><span>Sede legale Via Cavour 8, 35030 Rubano (PD)</span><span class="num">P.IVA e C.F. 03866700283</span><span class="num">REA PD-343821</span><span class="num">Capitale sociale 10.200,00 €</span></p>
+      <nav aria-label="Note legali"><a href="termini-duso-e-informative/informativa-privacy/">Privacy</a><a href="termini-duso-e-informative/cookie-policy/">Cookie</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Le cinque lavorazioni: schede vere, con frecce, Home e Fine da tastiera. Cambio netto, senza dissolvenze.
+(function(){
+  var schede=[].slice.call(document.querySelectorAll('.scheda'));
+  function scegli(s, fuoco){
+    schede.forEach(function(t){
+      var on=t===s;
+      t.setAttribute('aria-selected', on?'true':'false');
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(fuoco) s.focus();
+  }
+  schede.forEach(function(s,i){
+    s.addEventListener('click', function(){ scegli(s,false); });
+    s.addEventListener('keydown', function(e){
+      var j=null;
+      if(e.key==='ArrowRight') j=(i+1)%schede.length;
+      else if(e.key==='ArrowLeft') j=(i-1+schede.length)%schede.length;
+      else if(e.key==='Home') j=0;
+      else if(e.key==='End') j=schede.length-1;
+      if(j!==null){ e.preventDefault(); scegli(schede[j],true); }
+    });
+  });
+  var b=document.querySelector('.apri-menu'), m=document.getElementById('menu');
+  b.addEventListener('click', function(){
+    var a=m.classList.toggle('aperto');
+    b.setAttribute('aria-expanded', a?'true':'false');
+    b.textContent=a?'Chiudi':'Menu';
+  });
+})();
+</script>
+</body>
+</html>

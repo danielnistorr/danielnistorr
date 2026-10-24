@@ -1,0 +1,36 @@
+# Home finale, "Il pettine" (Molon Giovanni)
+
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, logo con `finale_logo.py`, pagina da `pagina.html`, screenshot con `finale_shot.mjs`). Altezza a 1440: 5224 px, piede compreso; a 390: 6322 px.
+
+## L'idea
+Il ranghinatore frontale a cinghie, scontornato e nitido sulla carta color fieno, è l'unico protagonista: un oggetto lungo, rosso, fitto di denti come un pettine. Il titolo "Ranghinatori a cinghie" corre su una riga sola, lungo come la macchina che sta sotto. Quattro legende fini indicano le parti vere, lette dalla tavola del loro sito; sotto la piega la stessa macchina si misura, scegliendo la larghezza di lavoro. Con il nome di un concorrente non regge: il ranghinatore a cinghie è la loro macchina, e i numeri del selettore sono la loro tabella.
+
+## Le prime due schermate
+1. A 1440 (ripensata, non ritoccata: il prototipo era a 7,5 su K0). Testata con il logo MOLON in SVG, cinque voci, telefono e lingue. Il titolo a 112 px su una riga; la macchina larga 1043 px parte 60 px sotto la linea di base del titolo, a destra, e scende in diagonale. I gruppi di testo sono due: il titolo in alto e, in basso a sinistra, nel vuoto che la macchina lascia sotto la ruota, la frase sulle tre operazioni con il bottone rosso "Chiama 049 900 0103" e "Arlesega di Mestrino (PD), dal 1936" sulla stessa riga. La didascalia del prototipo è passata sotto la piega. Ombre di contatto più morbide; a 2x nessun alone sui denti (il fondo bianco è moltiplicato sulla carta).
+2. "Scegli la larghezza di lavoro": sei numeri in cifre tabellari a 32 px, senza caselle; il modello attivo in inchiostro con un tratto rosso di 3 px, gli altri in grigio; a destra le caselle Versione PRO e gEnio. Righello da 0 a 320 cm, cinque dati, nota di due righe. Poi la gamma 2x2, la storia con l'archivio a filo e i rivenditori, la chiusura con la foto in campo, il piede.
+A 390: testata con logo, telefono e bottone "Menu" (icona a due righe e parola, button con aria-expanded, si chiude con Esc); titolo su due righe, la macchina subito sotto con i numeri 1-4 e la chiave, poi frase e bottone. Il bottone rosso resta nella prima schermata a 844 px.
+
+## Caratteri e colori, con i riferimenti
+- Sofia Sans (Lettersoup, Google Fonts), una famiglia sola, file variabile latino servito dalla pagina (`sito/fonts/sofia-sans-latin-var.woff2`). Licenza SIL Open Font License 1.1, testo in `sito/fonts/OFL-Sofia-Sans.txt`: uso commerciale libero. Titoli 380 con spaziatura da -0,025 a -0,035em, testo 400, etichette, titoli della gamma e nomi dei rivenditori 500; cifre tabellari per modelli, misure e telefono. Motivo: è la scelta della guida per macchine e industria (c1, riferimenti Festool e Metzner), un impianto DIN con più calore, vicino alle scritte delle targhette e delle decalcomanie delle macchine; Hanken Grotesk è già in due home della campagna.
+- Carta #F3F0E7 per quasi tutta la pagina (lo stesso fondo su cui sono moltiplicati gli scontornati), piede #EAE7DD per staccarlo, inchiostro #1E1D1A, grigio #5D5950 (6,3:1 sulla carta, 5,8:1 sul piede), rosso Molon #C8231B solo per il bottone, il tratto del modello attivo e la barra del righello (bianco sul rosso 5,6:1). Il verde e il blu stanno solo nelle macchine. Riferimenti: Sneeboer (un solo rosso del marchio, il mestiere del fabbro raccontato), Reform (il rosso delle macchine coerente con il marchio), Pöttinger (la macchina riconoscibile prima di tutto); la pulizia chiara dalle home amate di Mario Agnoletto e Hambro.
+
+## Interazione
+Un gesto solo, "Scegli la larghezza": radio veri (frecce della tastiera, focus visibile, dito), più due caselle. Al cambio si aggiornano la barra rossa (lavoro), la grigia (larghezza massima), il nome del modello e cinque dati, annunciati con aria-live. Cambio netto, nessuna animazione. Versione PRO si spegne dove non esiste (190, 210) e resta fissa sul 300 PRO; gEnio aggiunge 60 kg. I valori sono quelli della tabella del sito, ricontrollati uno per uno (11/12/13/14/15/16 pettini, doppi denti 4, 4, 4-5, 5-6 sul PRO, pesi da 210 a 350 kg). Il menu a 390 e il piede a fisarmonica a 390 usano veri bottoni con aria-expanded. Nessuna comparsa allo scorrimento, nessun effetto sul cursore, hover a colore pieno.
+
+## Foto, origine e licenza
+Tutte dell'azienda, da molonmachinery.com (`assets/originali/`, vedi `assets/CREDITI.md`); nessuna foto di repertorio, nessuna immagine generata, nessuna foto già usata in un'altra home della campagna.
+- `macchina-*`: `2017_10_230_5-scont.jpg` (2048x1536, fondo bianco), moltiplicato sulla carta con ombre di contatto; è la stessa foto della tavola `2017_10_superFRONT-ita.jpg`, da cui vengono le legende (denti, cinghie, bandella registrabile, ruote ballon 15x6.00-6 e 16x6,50-8 sul PRO).
+- `gamma-*`: `2017_10_RANGHINATORE-POST09noEtichette.jpg`, `2018_01_MAJOR160_sf.jpg` (fondo grigio riportato a bianco), `2017_10_380-2.jpg`, `2017_10_SCOPA-lamiera.jpg`: stessa scala d'ingombro, stessa linea di terra, stessa ombra.
+- `archivio-*`: `2017_10_foto4.jpg`, virata sul tono della carta.
+- `chiusura-*`: `2025_03_dok-tc-07-molon-br.jpg` (4032x3024), MAJOR 180.3 in campo con l'andana dietro; taglio 4:3 sotto la linea del cielo. Sostituisce la foto col trattore Reform del prototipo. Il portattrezzi verde dietro non mostra marchi leggibili.
+- `logo-molon.svg`: ricostruito dal logo piatto grigio `logo-molon-piatto-grigio-599x139.jpg`: M, L e N come poligoni, le due O come anelli ellittici adattati al contorno, piedi messi in piano a mano. Confrontato al 400 % con l'originale: forme e proporzioni (4,5:1) coincidono; va comunque sostituito con il vettoriale originale se esiste.
+
+## Piede
+Logo e una riga su chi sono; colonne Prodotti (cinque famiglie e Ricambi), Azienda (Chi siamo, Storia, Rivenditori), Contatti (telefono, fax, email, indirizzo, mappa), Lingua; ultima riga con ragione sociale, indirizzo, P.IVA, Privacy, Cookie, ©. Fondo #EAE7DD, nessuna ombra, nessuna icona. "Video delle macchine" tolto finché il canale YouTube non è confermato come ufficiale; per lo stesso motivo nessuna colonna Seguici.
+Newsletter: non c'è, perché vendono tramite rivenditori in Italia e all'estero, la pagina News è vuota dal 2017, le fiere non vengono comunicate e il cliente finale compra dal rivenditore; al suo posto l'elenco dei rivenditori con il telefono.
+
+## Controlli
+- Screenshot guardati a pezzi: 1440 intera e prima schermata, 390 intera e prima schermata, chiusura e piede a 1440, più 320x640, 768x1024, 1024x768 e 1920x1080. Nessuno scorrimento orizzontale (larghezza del documento uguale alla finestra a tutte le misure), nessuna sovrapposizione; a 320 il telefono in testata si nasconde e resta nel bottone rosso.
+- `segnali.sh` a 1440: 0 soglie da correggere su 10, 0 da guardare su 8; foto al 36,8 %, una famiglia, 9 filetti larghi, 2 fasce di fondo (pagina e piede), H2 in 4 misure. L'unico gradiente segnalato sono le tacche del righello.
+- Selettore, menu, Esc e fisarmonica provati con Playwright; nessun errore in console.
+- Nessun carattere U+2014 nella pagina, negli script e in questa nota.
