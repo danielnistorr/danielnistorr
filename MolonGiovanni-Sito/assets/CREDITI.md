@@ -4,6 +4,8 @@
 
 Scaricate il 24/10/2026 da https://www.molonmachinery.com (pagine e libreria media di WordPress, `wp-json/wp/v2/media`). Sono di Molon Giovanni: si usano nella proposta come materiale loro, ma per il sito vero vanno chieste le versioni originali e confermati i diritti (alcune foto in campo sono state fatte da rivenditori o clienti: Val d'Ultimo, Snopex, Agrometal). Inventario e voti in `_prova/inventario-immagini.json`.
 
+Usate nella home finale (`sito/img/`): `2017_10_230_5-scont.jpg` (apertura), `2017_10_RANGHINATORE-POST09noEtichette.jpg`, `2018_01_MAJOR160_sf.jpg`, `2017_10_380-2.jpg`, `2017_10_SCOPA-lamiera.jpg` (gamma), `2017_10_foto4.jpg` (archivio), `2017_10_11.08_10ritoc.jpg` (chiusura, dal passaggio di rifinitura finale; prima c'era `2025_03_dok-tc-07-molon-br.jpg`).
+
 Esclusi dall'uso: i loghi dei partner (Gasser, Agrometal, Kalinke, Snopex, Agrisorg, Earth Tools) e il banner FederUnacoma di EIMA 2024, che sono marchi di terzi.
 
 ## Segnaposto esterni (assets/esterne/)

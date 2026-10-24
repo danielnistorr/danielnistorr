@@ -30,4 +30,4 @@ Unsplash non è stato usato: le pagine di download rispondono con un controllo a
 
 ## Home finale (`sito/`)
 
-La home finale usa solo foto di Stefano Aiti: cinque still life (Calearo, Marijke, Superoro, Pianegonda, Lago), Banca Prealpi, la scala di Studio 4 Marmicolor, la Fornace Morandi, lo Scania di Salima e la ciotola di Calegaro in chiusura. Nessun segnaposto di `esterne/` è usato. Elenco e trattamento in `screenshot/home/NOTA.md`.
+La home finale usa solo foto di Stefano Aiti: in apertura quattro fotografie intere (ciotole Calegaro, vaso Marijke, oblò di Brendola per Artufficio, frangisole del Gregorianum), poi Banca Prealpi, la scala di Studio 4 Marmicolor, la Fornace Morandi, lo Scania di Salima e i gioielli Superoro in chiusura. Nessun segnaposto di `esterne/` è usato. Elenco e trattamento in `screenshot/home/NOTA.md`.

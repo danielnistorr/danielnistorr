@@ -15,6 +15,8 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto: "Free" con rimando a
 | pexels-6375553-kang-cucina-acciaio.jpg | https://www.pexels.com/photo/a-stainless-table-in-the-kitchen-6375553/ | Skylar Kang | 2448x3696 | cucina professionale vuota in acciaio, Nikon D7000 |
 | pexels-12255469-ehlers-sala-buffet-hotel.jpg | https://www.pexels.com/photo/tableware-and-food-on-a-table-in-a-luxurious-dining-hall-12255469/ | Magda Ehlers | 3648x5472 | sala colazioni di un grande albergo con lampadario e buffet |
 | pexels-5676260-sakelli-calici-banco.jpg | https://www.pexels.com/photo/empty-wine-glasses-on-a-table-5676260/ | Julia Sakelli | 4306x2852 | file di calici vuoti su un banco chiaro, Nikon D5100 |
+| pexels-18677610-celik-piatto-bianco-dallalto.jpg | https://www.pexels.com/photo/empty-white-plate-on-the-table-18677610/ | Yusuf Çelik | 2560x1920 | piatto bianco vuoto dall'alto, bianco e nero, Fujifilm X-T5; aggiunta il 24/10/2026 per il prototipo A, licenza "Free" verificata sulla pagina |
+| pexels-7283407-kovaleva-calice-ombra.jpg | https://www.pexels.com/photo/white-wine-in-a-clear-glass-7283407/ | Polina Kovaleva | 3013x4516 | calice a tulipano con la sua ombra su fondo bianco, Panasonic DMC-GX80; aggiunta il 24/10/2026 per il prototipo A, licenza "Free" verificata sulla pagina |
 
 ## Immagini dell'azienda
 

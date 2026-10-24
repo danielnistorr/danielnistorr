@@ -59,34 +59,37 @@ p{margin:0;text-wrap:pretty}
 .menu .solo-tel{display:none}
 .tel-c{display:none}
 
-/* apertura: il pezzo da solo, quattro richiami sul getto */
-.apertura{position:relative;height:max(720px,100svh);overflow:clip;
-  --pw:min(69.7vw, calc((max(720px,100svh) - 216px) * 1.468), 1140px)}
-.ap-col{position:absolute;left:var(--m);top:clamp(112px,15vh,150px);z-index:2}
-.ap-titolo{font-stretch:112%;font-weight:400;font-size:clamp(64px,7.8vw,120px);line-height:.94;letter-spacing:-.035em}
-.ap-sotto{margin-top:38px;max-width:min(440px,30vw);font-size:19px;line-height:1.5}
-.azioni{display:flex;align-items:center;gap:24px;margin-top:30px;flex-wrap:wrap}
-.bottone{display:inline-block;background:var(--bronzo);color:#F7F5EF;text-decoration:none;
-  font-weight:500;font-size:17px;padding:15px 24px;transition:background-color .15s}
-.bottone:hover{background:var(--bronzo-scuro)}
-.meta{font-size:15px;color:var(--grigio)}
-.pezzo{position:absolute;width:var(--pw);aspect-ratio:1410/970;
-  right:calc(var(--m) - .0816 * var(--pw));bottom:calc(64px - .053 * var(--pw))}
+/* apertura: il pistone d'iniezione al centro, quotato come su un disegno; il titolo sotto */
+.apertura{position:relative;display:grid;grid-template-rows:var(--top) minmax(0,1fr) auto auto;
+  min-height:max(680px,100svh);padding:0 var(--m) 40px;
+  --top:150px;
+  --fs:clamp(64px,8vw,128px);
+  --pw:min(calc(100vw - 2 * var(--m) - 460px), calc((max(680px,100svh) - var(--top) - var(--fs) * .94 - 150px) * 1.443), 920px)}
+.pezzo{grid-row:2;justify-self:center;align-self:end;position:relative;margin:0;width:var(--pw);aspect-ratio:1224/848}
 .pezzo>img{width:100%;height:100%}
-.punto{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;
-  background:var(--inchiostro);box-shadow:0 0 0 3px var(--fondo)}
+.pezzo figcaption{margin:0}
+.quote{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.quote line{stroke:var(--inchiostro);stroke-width:1;vector-effect:non-scaling-stroke}
+.q-testo{position:absolute;left:calc(96.41% + 10px);top:46.5%;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);
+  font-size:14px;line-height:1;white-space:nowrap}
+.segno{position:absolute;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;border:1.5px solid var(--inchiostro)}
 .filo{position:absolute;width:1px;margin-left:-.5px;background:var(--inchiostro)}
 .filo.o{height:1px;width:auto;margin:-.5px 0 0}
-.nota{position:absolute;margin:0;width:190px;font-size:14px;line-height:1.4;padding-bottom:10px}
-.nota b{display:block;font-weight:600}
-.nota b i{font-style:normal;font-weight:400;color:var(--grigio);margin-right:8px;font-variant-numeric:tabular-nums}
+.nota{position:absolute;margin:0;width:max-content;max-width:210px;font-size:14px;line-height:1.4}
+.nota b{display:block;font-weight:600;color:var(--inchiostro)}
 .nota span{display:block;color:var(--grigio)}
-.nota.sx{padding:0 14px 0 0;text-align:right;transform:translateY(-50%)}
-.didascalia-ap{position:absolute;left:var(--m);bottom:26px;margin:0;font-size:13.5px;color:var(--grigio)}
-.ap-tel,.legenda-tel,.ap-azioni-tel{display:none}
+.nota.su{bottom:calc(100% + 30px)}
+.nota.dx{text-align:right}
+.nota.sx{text-align:right;transform:translateY(-50%)}
+.ap-titolo{grid-row:3;font-stretch:112%;font-weight:400;font-size:var(--fs);line-height:.94;letter-spacing:-.035em;margin-top:24px}
+.ap-riga{grid-row:4;display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-top:26px}
+.ap-sotto{max-width:31em;font-size:19px;line-height:1.5}
+.bottone{display:inline-block;background:var(--bronzo);color:#F7F5EF;text-decoration:none;
+  font-weight:500;font-size:17px;padding:15px 24px;transition:background-color .15s;white-space:nowrap}
+.bottone:hover{background:var(--bronzo-scuro)}
 
 /* sezioni */
-.sezione{padding-top:168px}
+.sezione{padding-top:144px}
 .intesta{margin-bottom:56px}
 .intesta h2{font-stretch:112%;font-size:clamp(40px,4.6vw,66px);line-height:1;letter-spacing:-.03em}
 .intesta .frase{margin-top:24px;max-width:36em;font-size:21px;line-height:1.5}
@@ -102,13 +105,15 @@ p{margin:0;text-wrap:pretty}
 .tappe button[aria-selected="true"] .t{color:var(--inchiostro)}
 .tappe button[aria-selected="true"] .n{color:var(--bronzo)}
 .tappe button:focus-visible{outline:2px solid var(--bronzo);outline-offset:4px}
-.pannelli{margin-top:44px}
+.pannelli{margin-top:44px;display:grid}
+.js .pannello{grid-area:1/1}
 .pannello{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:start}
-.js .pannello[hidden]{display:none}
+.js .pannello[hidden]{display:grid;visibility:hidden}
 .pannello figure{grid-column:1/8;margin:0 0 0 calc(-1 * var(--m))}
 .pannello figure figcaption{padding-left:var(--m)}
 .pannello figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.pannello figure.stretta img{max-width:520px;margin-left:var(--m)}
+.pannello figure.stretta{grid-column:1/7}
+.pannello figure.stretta img{max-width:760px}
 figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 .tp-testo{grid-column:9/13;padding-top:4px}
 .tp-testo h3{font-stretch:112%;font-size:42px;line-height:1.02;letter-spacing:-.025em}
@@ -124,7 +129,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 /* assistenza */
 .assist{display:grid;grid-template-columns:56% 1fr;gap:0;align-items:center}
 .assist figure{margin:0}
-.assist figure img{width:100%;height:min(600px,42vw);object-fit:cover}
+.assist figure img{width:100%;height:min(720px,50vw);object-fit:cover}
 .assist figcaption{padding-left:var(--m)}
 .assist .colonna{padding:0 var(--m) 0 calc(var(--m) + 2vw);max-width:720px}
 .assist h2{font-stretch:115%;font-size:clamp(44px,5vw,76px);line-height:.98;letter-spacing:-.035em}
@@ -147,15 +152,15 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 .sotto-tab{display:flex;justify-content:space-between;gap:24px;margin-top:22px;font-size:16px;color:var(--grigio)}
 .sotto-tab a{color:var(--inchiostro)}
 .stemin figure{margin:0}
-.stemin figure img{width:100%;aspect-ratio:12/5;max-height:680px;object-fit:cover}
+.stemin figure img{width:100%;aspect-ratio:16/9;max-height:800px;object-fit:cover}
 .stemin figcaption{padding-left:var(--m)}
 .rappresenta{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);margin-top:48px;align-items:baseline}
 .rappresenta .indice{grid-column:1/4;margin:0;font-weight:400}
 .rappresenta p{grid-column:4/12;font-stretch:108%;font-size:clamp(24px,2.5vw,34px);line-height:1.24;letter-spacing:-.015em}
 
 /* chiusura */
-.chiusura{display:grid;grid-template-columns:minmax(0,4.4fr) minmax(0,7.6fr);gap:0 calc(var(--g) + 4vw);padding-left:var(--m);align-items:end}
-.chiusura h2{font-stretch:115%;font-size:clamp(40px,4.4vw,64px);line-height:1;letter-spacing:-.035em}
+.chiusura{display:grid;grid-template-columns:minmax(0,3.9fr) minmax(0,8.1fr);gap:0 calc(var(--g) + 3vw);padding-left:var(--m);align-items:center}
+.chiusura h2{font-stretch:115%;font-size:clamp(40px,3.9vw,58px);line-height:1;letter-spacing:-.035em}
 .recapiti{margin-top:44px;font-style:normal}
 .recapiti .telgrande{display:inline-block;font-stretch:115%;font-size:clamp(32px,3vw,44px);letter-spacing:-.02em;text-decoration:none;font-variant-numeric:tabular-nums}
 .recapiti .telgrande:hover{text-decoration:underline}
@@ -163,8 +168,8 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 .recapiti .indirizzo{color:var(--grigio);font-size:17px}
 .recapiti .indirizzo a{color:var(--inchiostro)}
 .chiusura figure{margin:0}
-.chiusura figure img{width:100%;aspect-ratio:5/4;object-fit:cover}
-.chiusura figcaption{padding-right:var(--m)}
+.chiusura figure img{width:100%;aspect-ratio:1410/970}
+.chiusura figcaption{padding:0 var(--m) 0 9%;margin-top:-16px}
 
 /* piede */
 .piede{margin-top:128px;background:var(--fondo-2);padding:80px var(--m) 32px}
@@ -189,25 +194,6 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 @media (max-width:1239px){
   :root{--m:48px}
   .menu{gap:22px}
-  .testata{position:relative;background:var(--fondo)}
-  .apertura{height:auto;overflow:visible;padding-bottom:8px}
-  .ap-col{position:static;padding:28px var(--m) 0}
-  .ap-titolo{font-size:clamp(50px,11vw,104px);font-stretch:112%}
-  .ap-sotto{max-width:34em;margin-top:22px;font-size:18px}
-  .ap-col .azioni{display:none}
-  .pezzo{display:none}
-  .didascalia-ap{position:static;padding:12px var(--m) 0;font-size:12.5px}
-  .ap-tel{display:block;position:relative;margin:28px var(--m) 0}
-  .ap-tel img{width:100%}
-  .pallino{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:1px solid var(--inchiostro);
-    background:var(--fondo);display:grid;place-items:center;font-size:12px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1}
-  .legenda-tel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px var(--g);margin:20px var(--m) 0;padding:0;list-style:none;font-size:14px;line-height:1.35}
-  .legenda-tel li{display:grid;grid-template-columns:22px 1fr;gap:6px}
-  .legenda-tel i{font-style:normal;color:var(--grigio);font-variant-numeric:tabular-nums}
-  .legenda-tel b{display:block;font-weight:600}
-  .legenda-tel span{color:var(--grigio)}
-  .ap-azioni-tel{display:block;padding:0 var(--m)}
-  .ap-azioni-tel .azioni{margin-top:24px}
   .pannello figure{grid-column:1/7}
   .tp-testo{grid-column:7/13}
   .tp-testo h3{font-size:34px}
@@ -217,16 +203,22 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
   .piede nav:nth-of-type(2){grid-column:4/8}
   .piede nav:nth-of-type(3){grid-column:8/13}
 }
-@media (min-width:901px) and (max-width:1239px){
-  .apertura{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:var(--g);
-    grid-template-areas:"col tel" "az leg" "cap cap";align-items:start}
-  .ap-col{grid-area:col;padding-top:40px}
-  .ap-titolo{font-size:clamp(50px,6.2vw,76px);white-space:nowrap}
-  .ap-tel{grid-area:tel;margin:40px var(--m) 0 0}
-  .legenda-tel{grid-area:leg;grid-template-columns:1fr 1fr;margin:20px var(--m) 0 0}
-  .ap-azioni-tel{grid-area:az;align-self:start}
-  .ap-azioni-tel .azioni{margin-top:12px}
-  .didascalia-ap{grid-area:cap}
+/* sotto 1000: il racconto in colonna, titolo, pistone con la sola quota, frase e telefono */
+@media (max-width:999px){
+  .testata{position:relative;background:var(--fondo)}
+  .apertura{display:flex;flex-direction:column;min-height:0;padding:20px var(--m) 8px}
+  .ap-titolo{order:1;margin:0;font-size:clamp(46px,11.6vw,96px)}
+  .pezzo{order:2;width:calc(100% - 30px);align-self:flex-start;margin-top:22px}
+  .ap-riga{order:3;flex-direction:column;align-items:stretch;margin-top:18px;gap:22px}
+  .segno,.filo,.nota{display:none}
+  .q-testo{font-size:12.5px;left:calc(96.41% + 6px)}
+  .ap-sotto{font-size:18px;max-width:34em}
+  .bottone{text-align:center}
+}
+@media (min-width:600px) and (max-width:999px){
+  .pezzo{width:min(78%,640px);align-self:center}
+  .ap-riga{flex-direction:row;align-items:flex-end}
+  .bottone{flex:none}
 }
 @media (max-width:900px){
   :root{--m:24px;--g:16px}
@@ -245,23 +237,20 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
   .tel-c{display:inline}
   .apri{all:unset;display:block;cursor:pointer;font-size:16px;font-weight:500;padding:8px 0 8px 8px}
   .apri:focus-visible{outline:2px solid var(--bronzo)}
-  .ap-col{padding-top:20px}
-  .ap-titolo{font-size:clamp(46px,13.4vw,92px)}
-  .ap-sotto{font-size:17px;margin-top:16px}
-  .ap-tel{margin:18px 0 0}
-  .legenda-tel{grid-template-columns:1fr 1fr;gap:12px var(--g);margin-top:14px}
-  .azioni .bottone{flex:1 1 100%;text-align:center}
-  .ap-azioni-tel .azioni{margin-top:20px;gap:12px 24px}
+  .ap-sotto{font-size:17px}
   .sezione{padding-top:104px}
   .intesta{margin-bottom:32px}
   .intesta .frase{font-size:18px;margin-top:18px}
-  .tappe{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .tappe button{padding:12px 0 14px}
-  .tappe button[aria-selected="true"]{padding-top:10px}
+  .tappe{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:6px}
+  .tappe button{border-top:0;border-bottom:1px solid var(--filo);padding:10px 0 12px}
+  .tappe button[aria-selected="true"]{border-top:0;border-bottom:3px solid var(--inchiostro);padding:10px 0 10px}
+  .pannelli{display:block}
+  .js .pannello[hidden]{display:none}
   .tappe .t{font-size:18px}
   .pannelli{margin-top:26px}
   .pannello{display:block}
   .pannello figure.stretta img{max-width:100%}
+  .pannello figure.stretta{margin-right:calc(-1 * var(--m))}
   .tp-testo{padding-top:24px}
   .tp-testo h3{font-size:30px}
   .tp-testo .fatto{font-size:17px;margin-top:12px}
@@ -312,9 +301,10 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 }
 @media (max-width:420px){
   .tappe .t{font-size:16.5px;letter-spacing:-.01em}
-  .ap-titolo{font-size:clamp(42px,13.4vw,56px)}
+  .ap-titolo{font-size:clamp(42px,13.2vw,56px)}
 }
 @media (max-width:360px){
+  .tappe{grid-template-columns:repeat(2,minmax(0,1fr))}
   .testata .tel{display:none}
   .apri{margin-left:auto}
   .piede-griglia{display:block}
@@ -345,57 +335,36 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
-  <div class="ap-col">
-    <h1 class="ap-titolo" id="titolo">Metalli<br>non ferrosi</h1>
-    <p class="ap-sotto">Impianti e prodotti per fonderie di alluminio, zinco e rame: dal crogiolo al pistone d'iniezione, con l'assistenza tecnica e commerciale fino al post vendita.</p>
-    <div class="azioni">
-      <a class="bottone num" href="tel:+393486046875">Chiama +39&nbsp;348&nbsp;604&nbsp;6875</a>
-      <span class="meta">Mestrino (PD), dal 1990</span>
-    </div>
-  </div>
-
-  <figure class="pezzo" style="margin:0">
-    <img src="img/carter-1000.jpg" srcset="img/carter-700.jpg 700w, img/carter-1000.jpg 1000w, img/carter-1410.jpg 1410w" sizes="min(70vw, 1140px)" width="1410" height="970"
-      alt="Carter in alluminio pressofuso, con la flangia esagonale in primo piano, su un fondo chiaro">
-    <figcaption class="sr">Quattro forniture Progecom indicate sul getto: la lega, il degasaggio, la filtrazione, l'iniezione.</figcaption>
-    <!-- 1 parete piena: richiamo a sinistra -->
-    <span class="punto" style="left:33.33%;top:71.13%"></span>
-    <span class="filo o" style="left:10.6%;width:22.73%;top:71.13%"></span>
-    <p class="nota sx" style="right:89.4%;top:71.13%"><b><i>1</i>La lega</b><span>Al-Si in lingotti da <span class="nw" style="display:inline">6-8 kg</span></span></p>
-    <!-- 2 parete sottile della canna: fila alta -->
-    <span class="punto" style="left:37.59%;top:25.77%"></span>
-    <span class="filo" style="left:37.59%;top:-3.8%;height:29.57%"></span>
-    <p class="nota" style="left:37.59%;bottom:103.8%"><b><i>2</i>Pareti senza porosità</b><span>Degasaggio con rotore Ø&nbsp;250&nbsp;mm, fino a 2000 cicli</span></p>
-    <!-- 3 nervatura sottile -->
-    <span class="punto" style="left:44.96%;top:33.2%"></span>
-    <span class="filo" style="left:44.96%;top:8.4%;height:24.8%"></span>
-    <p class="nota" style="left:44.96%;bottom:91.6%"><b><i>3</i>Niente inclusioni</b><span>Rete con maglia da 1,0 a 2,5&nbsp;mm</span></p>
-    <!-- 4 flangia spessa -->
-    <span class="punto" style="left:73.05%;top:38.66%"></span>
-    <span class="filo" style="left:73.05%;top:8.4%;height:30.26%"></span>
-    <p class="nota" style="left:73.05%;bottom:91.6%"><b><i>4</i>Pressione d'iniezione</b><span>Pistoni Ø&nbsp;50-180&nbsp;mm, fino a 420&nbsp;HB</span></p>
+  <h1 class="ap-titolo" id="titolo">Metalli <span class="nw">non ferrosi</span></h1>
+  <figure class="pezzo">
+    <img src="img/pistone-1000.jpg" srcset="img/pistone-720.jpg 720w, img/pistone-1000.jpg 1000w, img/pistone-1224.jpg 1224w" sizes="(max-width:599px) calc(100vw - 78px), (max-width:999px) min(78vw, 640px), min(62vw, 1000px)" width="1224" height="848"
+      alt="Pistone d'iniezione per pressofusione in acciaio, sdraiato, con la testa piana a destra e l'attacco a sinistra">
+    <svg class="quote" viewBox="0 0 1224 848" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="1100" y1="31" x2="1192" y2="31"/>
+      <line x1="1062" y1="758" x2="1192" y2="758"/>
+      <line x1="1180" y1="31" x2="1180" y2="758"/>
+      <line x1="1170" y1="41" x2="1190" y2="21"/>
+      <line x1="1170" y1="768" x2="1190" y2="748"/>
+    </svg>
+    <span class="q-testo num" aria-hidden="true">Ø 50-180&nbsp;mm</span>
+    <figcaption>
+      <span class="sr">Le parti del pistone: </span>
+      <span class="segno" style="left:7.27%;top:46.23%"></span>
+      <span class="filo o" style="right:92.73%;left:-28px;top:46.23%"></span>
+      <span class="nota sx" style="right:calc(100% + 40px);top:46.23%"><b>Attacco allo stelo</b><span>a filetto o a baionetta</span></span>
+      <span class="segno" style="left:52.61%;top:15.57%"></span>
+      <span class="filo" style="left:52.61%;top:-24px;height:calc(15.57% + 24px)"></span>
+      <span class="nota su dx" style="right:47.39%"><b>Corpo in acciaio</b><span>indurito fino a 420&nbsp;HB</span></span>
+      <span class="segno" style="left:85.29%;top:18.16%"></span>
+      <span class="filo" style="left:85.29%;top:-24px;height:calc(18.16% + 24px)"></span>
+      <span class="nota su" style="left:85.29%"><b>Fascia</b><span>CuCo2Be o CuNiSiCr</span></span>
+      <span class="sr">Diametro da 50 a 180 mm.</span>
+    </figcaption>
   </figure>
-
-  <div class="ap-tel" aria-hidden="true">
-    <img src="img/carter-tel-780.jpg" srcset="img/carter-tel-780.jpg 780w, img/carter-tel-1220.jpg 1220w" sizes="100vw" width="1220" height="855" alt="">
-    <span class="pallino" style="left:30.74%;top:68.42%">1</span>
-    <span class="pallino" style="left:35.66%;top:16.96%">2</span>
-    <span class="pallino" style="left:44.18%;top:25.38%">3</span>
-    <span class="pallino" style="left:76.64%;top:31.58%">4</span>
+  <div class="ap-riga">
+    <p class="ap-sotto">Impianti e prodotti per fonderie di alluminio, zinco e rame, dal crogiolo al pistone d'iniezione. A Mestrino, dal 1990.</p>
+    <a class="bottone num" href="tel:+393486046875">Chiama +39&nbsp;348&nbsp;604&nbsp;6875</a>
   </div>
-  <ol class="legenda-tel" aria-hidden="true">
-    <li><i>1</i><div><b>La lega</b><span>Al-Si, lingotti <span class="nw">6-8 kg</span></span></div></li>
-    <li><i>2</i><div><b>Senza porosità</b><span>Rotore Ø&nbsp;250&nbsp;mm</span></div></li>
-    <li><i>3</i><div><b>Niente inclusioni</b><span>Maglia <span class="nw">1,0-2,5 mm</span></span></div></li>
-    <li><i>4</i><div><b>Iniezione</b><span>Pistoni <span class="nw">Ø 50-180</span></span></div></li>
-  </ol>
-  <div class="ap-azioni-tel">
-    <div class="azioni">
-      <a class="bottone num" href="tel:+393486046875">Chiama +39&nbsp;348&nbsp;604&nbsp;6875</a>
-      <span class="meta">Mestrino, Padova. Dal 1990</span>
-    </div>
-  </div>
-  <p class="didascalia-ap">Carter pressofuso in alluminio (foto indicativa)</p>
 </section>
 
 <section class="sezione" id="prodotti" aria-labelledby="t-prodotti">
@@ -435,7 +404,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
       </div>
       <div class="pannello" role="tabpanel" id="tp-2" aria-labelledby="tb-2" tabindex="0" hidden>
         <figure class="stretta">
-          <img src="img/t2-degasaggio-520.jpg" srcset="img/t2-degasaggio-520.jpg 520w, img/t2-degasaggio-709.jpg 709w" sizes="(max-width:900px) 100vw, 520px" width="520" height="390" alt="Impianto di degasaggio su carrello, con braccio e bombola" loading="lazy">
+          <img src="img/t2-degasaggio-709.jpg" srcset="img/t2-degasaggio-640.jpg 640w, img/t2-degasaggio-709.jpg 709w" sizes="(max-width:900px) 100vw, 44vw" width="709" height="532" alt="Impianto di degasaggio su carrello, con braccio e bombola" loading="lazy">
           <figcaption>Impianto di degasaggio su carrello con braccio e bombola.</figcaption>
         </figure>
         <div class="tp-testo">
@@ -475,8 +444,8 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
       </div>
       <div class="pannello" role="tabpanel" id="tp-5" aria-labelledby="tb-5" tabindex="0" hidden>
         <figure>
-          <img src="img/t5-iniezione-960.jpg" srcset="img/t5-iniezione-640.jpg 640w, img/t5-iniezione-960.jpg 960w, img/t5-iniezione-1280.jpg 1280w" sizes="(max-width:900px) 100vw, 46vw" width="960" height="720" alt="Pistone d'iniezione con la fascia, in piedi su un fondo chiaro" loading="lazy">
-          <figcaption>Pistone d'iniezione con la fascia.</figcaption>
+          <img src="img/t5-iniezione-960.jpg" srcset="img/t5-iniezione-640.jpg 640w, img/t5-iniezione-960.jpg 960w, img/t5-iniezione-1300.jpg 1300w" sizes="(max-width:900px) 100vw, 46vw" width="960" height="720" alt="Due pistoni e una fascia in lega di rame accanto a un pistone in acciaio con l'attacco fresato" loading="lazy">
+          <figcaption>Pistoni e fascia in lega di rame, pistone in acciaio.</figcaption>
         </figure>
         <div class="tp-testo">
           <h3>Iniezione</h3>
@@ -515,7 +484,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
       <h2 id="t-assist"><span class="indice">Assistenza</span>Anche nel week-end</h2>
       <p class="apre">Manutenzione e pulizia periodica dei forni anche il sabato e la domenica, così la produzione della settimana non rallenta.</p>
       <ul class="punti">
-        <li><b>Il magazzino lo teniamo noi.</b> Ordini evasi in tempi molto brevi su tutto il territorio nazionale, senza il costo di un magazzino in fonderia.</li>
+        <li><b>Il magazzino lo teniamo noi.</b> La fonderia non sostiene il costo di gestione di un magazzino proprio.</li>
         <li><b>Prima e dopo la vendita.</b> Supporto tecnico e commerciale dalla fase iniziale al post vendita, con strutture e tecnici esterni di lunga esperienza.</li>
         <li><b>Carte in regola.</b> Certificati di analisi del materiale su richiesta, corso di formazione per gli strumenti di controllo.</li>
       </ul>
@@ -525,7 +494,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 
 <section class="sezione stemin" id="stemin" aria-labelledby="t-stemin">
   <figure>
-    <img src="img/lingotti-1440.jpg" srcset="img/lingotti-960.jpg 960w, img/lingotti-1440.jpg 1440w, img/lingotti-2400.jpg 2400w" sizes="100vw" width="1440" height="600" alt="Pile di lingotti di lega di alluminio con l'etichetta del produttore" loading="lazy">
+    <img src="img/lingotti-1440.jpg" srcset="img/lingotti-960.jpg 960w, img/lingotti-1440.jpg 1440w, img/lingotti-2196.jpg 2196w" sizes="100vw" width="1440" height="720" alt="Pile di lingotti di lega di alluminio con l'etichetta del produttore" loading="lazy">
     <figcaption>Lingotti di lega di alluminio STEMIN.</figcaption>
   </figure>
   <div class="rappresenta wrap">
@@ -556,16 +525,16 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
 <section class="sezione" id="contatti" aria-labelledby="t-contatti">
   <div class="chiusura">
     <div class="testo">
-      <h2 id="t-contatti">Dalla fase iniziale alla fase post vendita</h2>
+      <h2 id="t-contatti">Ordini evasi in tempi molto brevi, in tutta Italia</h2>
       <address class="recapiti">
         <a class="telgrande" href="tel:+393486046875">+39&nbsp;348&nbsp;604&nbsp;6875</a>
-        <p><a href="mailto:info@progecom-poggese.it">info@progecom-poggese.it</a><br><a href="mailto:commerciale@progecom-poggese.it">commerciale@progecom-poggese.it</a></p>
+        <p><a href="mailto:info@progecom-poggese.it">info@progecom-poggese.it</a><br><a href="mailto:commerciale@progecom-poggese.it">commerciale@<wbr>progecom-poggese.it</a></p>
         <p class="indirizzo">Via Udine 24, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Udine+24+35035+Mestrino+PD" rel="noopener">Apri la mappa</a></p>
       </address>
     </div>
     <figure>
-      <img src="img/getti-1140.jpg" srcset="img/getti-760.jpg 760w, img/getti-1140.jpg 1140w, img/getti-1500.jpg 1500w" sizes="(max-width:900px) 100vw, 56vw" width="1140" height="912" alt="Getti grezzi di pistoni in alluminio ammucchiati in un cassone" loading="lazy">
-      <figcaption>Getti grezzi di pistoni in alluminio.</figcaption>
+      <img src="img/carter-1000.jpg" srcset="img/carter-700.jpg 700w, img/carter-1000.jpg 1000w, img/carter-1410.jpg 1410w" sizes="(max-width:900px) 100vw, 56vw" width="1410" height="970" alt="Carter in alluminio pressofuso, con la flangia esagonale in primo piano, su un fondo chiaro" loading="lazy">
+      <figcaption>Il risultato in fonderia: un carter pressofuso in alluminio (foto indicativa).</figcaption>
     </figure>
   </div>
 </section>
@@ -578,7 +547,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
         <img src="img/logo-120.webp" srcset="img/logo-120.webp 2x, img/logo-180.webp 3x" alt="" width="52" height="53" loading="lazy">
         <span>PROGECOM</span>
       </a>
-      <p>Impianti e prodotti per fonderie di metalli non ferrosi, con l'assistenza dalla fase iniziale al post vendita. Mestrino, Padova, dal 1990.</p>
+      <p>Crogioli, degasaggio, filtrazione, pistoni d'iniezione e strumenti di controllo per fonderie di metalli non ferrosi. Mestrino, Padova, dal 1990.</p>
     </div>
     <nav aria-labelledby="pf-az">
       <h2 id="pf-az">Azienda</h2>
@@ -607,9 +576,7 @@ figcaption{font-size:13.5px;color:var(--grigio);margin-top:12px}
       <ul>
         <li><a class="num" href="tel:+393486046875">+39&nbsp;348&nbsp;604&nbsp;6875</a></li>
         <li><a href="mailto:info@progecom-poggese.it">info@progecom-poggese.it</a></li>
-        <li><a href="mailto:commerciale@progecom-poggese.it">commerciale@<wbr>progecom-poggese.it</a></li>
-        <li>Via Udine 24, 35035 Mestrino (PD)</li>
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Udine+24+35035+Mestrino+PD" rel="noopener">Apri la mappa</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Udine+24+35035+Mestrino+PD" rel="noopener">Come arrivare a Mestrino</a></li>
       </ul>
     </nav>
   </div>

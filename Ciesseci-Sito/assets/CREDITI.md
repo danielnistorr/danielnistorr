@@ -19,7 +19,7 @@ Licenze lette il 24/10/2026 sulla pagina di ogni foto:
 - Unsplash: tutte riportano "Free to use under the Unsplash License"; nessuna è Unsplash+. Licenza (https://unsplash.com/license): uso libero commerciale e non commerciale, senza permesso; non è ammesso vendere le foto senza modifiche sostanziali o usarle per un servizio concorrente.
 - Pexels: la pagina riporta la licenza "Free" con il rimando alla Pexels License (https://www.pexels.com/license/): uso libero, attribuzione non obbligatoria; non è ammesso vendere copie non modificate o far credere che le persone ritratte approvino un prodotto.
 
-Scaricate dai CDN `images.unsplash.com` e `images.pexels.com`, al massimo 2400 px sul lato lungo. Nessuna è già usata in un'altra home della campagna: ho confrontato gli identificativi con tutti i `*-Sito/assets/CREDITI.md` il 24/10/2026.
+Scaricate dai CDN `images.unsplash.com` e `images.pexels.com`, al massimo 2400 px sul lato lungo (3800 px per la maglietta dell'apertura, che serve a 2x). Nessuna è già usata in un'altra home della campagna: ho confrontato gli identificativi con tutti i `*-Sito/assets/CREDITI.md` il 24/10/2026.
 
 | File | Pagina della foto | Autore | Misura | Uso pensato | Note |
 |---|---|---|---|---|---|
@@ -33,11 +33,22 @@ Scaricate dai CDN `images.unsplash.com` e `images.pexels.com`, al massimo 2400 p
 | `esterne/unsplash-wjHdeYmI-XU-paquet-caschi-e-gilet-alta-visibilita.jpg` | https://unsplash.com/photos/hard-hats-and-safety-vests-wjHdeYmI-XU | Tanya Paquet (@tanyapaquet) | 1600x2400 | A e B, abbigliamento e antinfortunistica | caschi arancio e gilet giallo fluo appesi a una parete bianca |
 | `esterne/unsplash-gX8dF8Zoegg-heftiba-giacca-verde-su-gruccia.jpg` | https://unsplash.com/photos/person-holding-green-denim-jacket-gX8dF8Zoegg | Toa Heftiba (@heftiba) | 1600x2400 | A, abbigliamento | camicia giacca verde con un piccolo ricamo bianco, su gruccia: il verde richiama quello del logo |
 | `esterne/unsplash-EY0BPl2rpME-compagnons-maglietta-gialla-su-pressa.jpg` | https://unsplash.com/photos/a-yellow-t-shirt-on-a-pressing-machine-EY0BPl2rpME | Compagnons (@sigmund) | 2400x1600 | A, gesto delle lavorazioni (Sublimazione) | maglietta gialla stesa sul piano di una pressa a caldo; licenza letta il 24/10/2026: "Free to use under the Unsplash License", non Unsplash+. Sull'etichetta del collo si intravede il marchio del produttore della maglietta: piccolo, fuori fuoco. Aggiunta dal prototipo A il 24/10/2026, identificativo controllato contro `_prova/usate-campagna.txt` e i `CREDITI.md` delle altre home |
+| `esterne/pexels-12025472-mrmockup-maglietta-bianca-stesa.jpg` | https://www.pexels.com/photo/a-blank-white-shirt-12025472/ | Mr. Mockup (Pexels) | 3800x2533 (originale 7600x5066) | home finale, apertura (segnaposto) | maglietta bianca intera, stesa piana e ripresa dall'alto su fondo grigio; nessun marchio. Licenza letta il 24/10/2026 sulla pagina: "Free" (Pexels License). Aggiunta nella rifinitura del 24/10/2026, identificativo controllato contro `_prova/usate-campagna.txt` e i `CREDITI.md` delle altre home: non usata altrove |
+| `esterne/pexels-38030790-socnangdong-incisione-laser-su-legno.jpg` | https://www.pexels.com/photo/precision-laser-engraving-on-wooden-surface-38030790/ | Sóc Năng Động (Pexels) | 2400x1600 (originale 4800x3200) | home finale, scheda Incisione laser (segnaposto) | testa di un incisore laser che scrive su un listello di legno; nessun marchio leggibile. Licenza letta il 24/10/2026 sulla pagina: "Free" (Pexels License). Aggiunta nella rifinitura del 24/10/2026, non usata in altre home |
 
 Manca, e nessun archivio libero ce l'ha in modo decente: **un capo da lavoro vero con il logo di un cliente ricamato o stampato, fotografato pulito su fondo chiaro** (e la loro felpa "82" rifatta bene). È la foto più importante da fare dal vero.
 
 Scartata dopo la verifica: la polo blu con ricamo di TuanAnh Blue (https://unsplash.com/photos/M-MwtidrO1g), perché il ricamo è tagliato dal bordo e il colletto mostra il marchio del produttore.
 
-## Uso nella home finale (24/10/2026)
+## Uso nella home finale (24/10/2026, dopo la rifinitura)
 
-Nella home finale (`sito/`) restano quattro segnaposto esterni: Wallace (scheda Ricamo, con le scritte del marchio dei fili tolte con inpaint e il taglio stretto sui coni), emarts (scheda Serigrafia), Compagnons (scheda Sublimazione, con l'etichetta del produttore tolta con inpaint) e Paquet (abbigliamento e DPI). Non sono più usate: Novantino (apertura del prototipo A), Nguyen e le due di Roberts. L'apertura è la felpa 82 di Ciesseci (`originali/2018-02-csc-factory-26.jpg`), scontornata; chiusura con lo showroom di Ciesseci (`originali/2019-02-ciesseci-nuova-sede-2.jpg`).
+Nella home finale (`sito/`) restano cinque segnaposto esterni:
+- Mr. Mockup (Pexels 12025472): l'apertura, la maglietta bianca intera; il fondo grigio è stato stimato e portato al colore carta, la maglietta tiene la sua ombra vera;
+- Wallace (scheda Ricamo, con le scritte del marchio dei fili tolte con inpaint);
+- emarts (scheda Serigrafia);
+- Compagnons (scheda Sublimazione, con l'etichetta del produttore tolta con inpaint);
+- Sóc Năng Động (Pexels 38030790): scheda Incisione laser, al posto della foto loro della macchina (1024 px, a tutta larghezza si ingrandiva 1,4x).
+
+Non sono più usate: la felpa scontornata in apertura (`originali/2018-02-csc-factory-26.jpg`), Paquet (caschi e gilet), Novantino, Nguyen e le due di Roberts.
+
+Foto di Ciesseci in pagina: la felpa "82" da vicino nella sezione 1982 (`originali/2018-02-csc-factory-14.jpg`), lo showroom di Via Zanella nella sezione abbigliamento (`originali/2019-02-ciesseci-nuova-sede-2.jpg`, ritaglio 4:5), la stampa UV su plexiglass nella scheda (`originali/2019-10-sld-stampe-plexiglass.jpg`), la facciata di Via Zanella nella chiusura (`originali/2022-04-sede-nuova-1.jpg`), il logo (`originali/logo-badge-500x486.png`).

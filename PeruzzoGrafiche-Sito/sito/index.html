@@ -49,43 +49,48 @@ p{margin:0;text-wrap:pretty}
 .menu a{text-decoration:none}
 .menu a:hover{text-decoration:underline}
 .testata .tel{font-size:16px;font-weight:500;text-decoration:none;padding-left:30px;border-left:1px solid #BEB8AD}
-.apri{display:none;appearance:none;background:none;border:0;padding:10px 0;font:500 16px/1 var(--sans);color:var(--inchiostro);cursor:pointer;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
+.apri{display:none;appearance:none;-webkit-tap-highlight-color:transparent;background:none;border:0;padding:10px 0;font:500 16px/1 var(--sans);color:var(--inchiostro);cursor:pointer;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
 .apri:hover{color:var(--rosso-testo)}
 
-/* ---------- apertura: titolo, poi un solo libro sulla carta */
-.apertura .testo{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-top:36px}
-.apertura h1{grid-column:1 / span 8;grid-row:1 / span 2;align-self:end;font-size:116px;line-height:1;letter-spacing:-.03em;font-variation-settings:'opsz' 30;margin-bottom:-.13em}
-.apertura .sotto{grid-column:9 / span 4;grid-row:1;align-self:end;font-size:18px;line-height:1.5}
-.azione{grid-column:9 / span 4;grid-row:2;margin-top:24px}
+/* ---------- apertura: il titolo si appoggia al vuoto della foto, il libro a destra; sotto il titolo l'unico gesto */
+.apertura{position:relative;min-height:calc(min(69.4vw,1180px) * .644 + 64px)}
+.apertura .testo{position:relative;z-index:2;padding-top:40px;width:calc(var(--m) + 600px)}
+.apertura h1{font-size:116px;line-height:1;letter-spacing:-.03em;font-variation-settings:'opsz' 30}
+.apertura .sotto{margin-top:30px;max-width:25em;font-size:18px;line-height:1.5}
+.oggetto{position:absolute;z-index:1;top:0;right:0;width:min(69.4vw,1180px);margin:0}
+.oggetto img{width:100%;height:auto}
+.oggetto figcaption{position:absolute;right:var(--m);top:calc(100% - 22px);font-size:14px;line-height:1.45;color:var(--grigio);text-align:right}
 .bottone{display:inline-block;background:var(--rosso-testo);color:#fff;text-decoration:none;font:500 16px/1 var(--sans);padding:16px 22px}
 .bottone:hover{background:#9E1606;color:#fff}
-.oggetto{margin:20px 0 0}
-.oggetto img{width:100%;height:auto;aspect-ratio:2880/1120}
-.oggetto figcaption{display:flex;justify-content:space-between;gap:24px;margin-top:6px;font-size:14px;line-height:1.45;color:var(--grigio)}
-.oggetto figcaption span+span{white-space:nowrap}
 
-/* ---------- confezioni: l'unico gesto della pagina */
-.confezioni{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;margin-top:56px;align-items:end}
-.confezioni h2{grid-column:1 / span 3;font:500 16px/1.4 var(--sans);color:var(--grigio);padding-bottom:16px}
-.schede{grid-column:4 / span 9;display:flex;gap:44px;border-bottom:1px solid var(--filetto)}
-.scheda{appearance:none;background:none;border:0;margin:0 0 -1px;padding:0 0 14px;font:400 30px/1.1 var(--serif);letter-spacing:-.01em;color:#6E6A63;cursor:pointer;border-bottom:3px solid transparent;font-variation-settings:'opsz' 30}
+/* ---------- confezioni: tre schede, cambiano la sezione del dorso, la variante e il preventivo */
+.conf{position:relative;z-index:2;width:calc(var(--m) + 600px);margin-top:44px;padding-bottom:56px}
+.conf h2{font:500 15px/1.4 var(--sans);color:var(--grigio);margin-bottom:8px}
+.schede{display:flex;gap:36px;border-bottom:1px solid var(--filetto)}
+.scheda{appearance:none;-webkit-tap-highlight-color:transparent;background:none;border:0;margin:0 0 -1px;padding:0 0 12px;font:400 30px/1.1 var(--serif);letter-spacing:-.01em;color:#6E6A63;cursor:pointer;border-bottom:3px solid transparent;font-variation-settings:'opsz' 30;white-space:nowrap}
 .scheda:hover{color:var(--inchiostro)}
 .scheda[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--rosso)}
-.pannello{grid-column:4 / span 9;display:flex;justify-content:space-between;align-items:baseline;gap:32px;padding-top:18px;font-size:17px}
+.pannello{display:flex;align-items:center;gap:24px;padding-top:20px}
 .pannello[hidden]{display:none}
-.pannello p{color:var(--grigio)}
-.pannello a{font-weight:500;white-space:nowrap}
+.dorso{flex:none;width:320px;height:149px;overflow:visible}
+.dorso .l{fill:none;stroke:var(--inchiostro);stroke-width:1;stroke-linecap:round}
+.dorso .f{fill:none;stroke:var(--inchiostro);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dorso .p{fill:var(--inchiostro)}
+.dorso .c{fill:#BEB8AD}
+.dorso .g{fill:none;stroke:#8A857C;stroke-width:.8}
+.dorso text{font:400 12px var(--sans);fill:var(--grigio)}
+.pannello p{font-size:16px;line-height:1.45;color:var(--grigio);margin-bottom:16px}
 
 /* ---------- editori */
 .editori{padding-top:144px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
-.editori h2{grid-column:1 / span 8;font-size:60px;line-height:1.04;letter-spacing:-.02em;font-variation-settings:'opsz' 30}
-.editori .nomi{grid-column:1 / span 8;grid-row:2;margin-top:44px;font:400 44px/1.22 var(--serif);letter-spacing:-.012em;font-variation-settings:'opsz' 30}
+.editori h2{grid-column:1 / span 8;grid-row:1;font-size:60px;line-height:1.04;letter-spacing:-.02em;font-variation-settings:'opsz' 30}
+.editori .nomi{grid-column:1 / span 8;grid-row:2;align-self:start;margin-top:44px;font:400 44px/1.22 var(--serif);letter-spacing:-.012em;font-variation-settings:'opsz' 30}
 .editori .nomi span{white-space:nowrap}
-.dedica{grid-column:9 / span 4;grid-row:2;align-self:end;margin:0;display:flex;align-items:flex-end;gap:20px;padding-bottom:8px}
-.dedica img{width:200px;height:300px;flex:none;mix-blend-mode:multiply}
-.dedica figcaption{font-size:14px;line-height:1.45;color:var(--grigio)}
-.editori .anche{grid-column:1 / span 6;margin-top:36px;color:var(--grigio);font-size:17px}
-.editoriale{grid-column:1 / span 6;margin-top:48px;padding-top:22px;border-top:1px solid var(--filetto);font-size:17px}
+.dedica{grid-column:9 / span 4;grid-row:1 / span 4;align-self:start;justify-self:end;margin:6px 0 0;width:340px}
+.dedica img{width:340px;height:510px;mix-blend-mode:multiply}
+.dedica figcaption{margin-top:14px;font-size:14px;line-height:1.45;color:var(--grigio)}
+.editori .anche{grid-column:1 / span 6;grid-row:3;margin-top:36px;color:var(--grigio);font-size:17px}
+.editoriale{grid-column:1 / span 6;grid-row:4;align-self:start;margin-top:48px;padding-top:22px;border-top:1px solid var(--filetto);font-size:17px}
 .editoriale a{font-weight:500}
 
 /* ---------- reparti */
@@ -99,11 +104,11 @@ p{margin:0;text-wrap:pretty}
 .ciclo h3{font-size:30px;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px;font-variation-settings:'opsz' 30}
 .ciclo p{font-size:16px;line-height:1.5;color:var(--grigio)}
 .foto-reparto{margin:68px 0 0}
-.foto-reparto img{width:100%;aspect-ratio:2400/1120;object-fit:cover}
+.foto-reparto img{width:100%;aspect-ratio:1312/560;object-fit:cover}
 .foto-reparto figcaption{font-size:14px;color:var(--grigio);margin-top:10px}
 
 /* ---------- chiusura: frase loro, recapiti, il foglio in oro a filo del bordo */
-.chiusura{margin-top:120px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-left:var(--m)}
+.chiusura{margin-top:136px;align-items:center;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-left:var(--m)}
 .chiusura .testo{grid-column:1 / span 5;align-self:center;padding:24px 0}
 .chiusura h2{font-size:72px;line-height:1.02;letter-spacing:-.025em;font-variation-settings:'opsz' 30}
 .recapiti{margin-top:44px;font-size:18px;line-height:1.6}
@@ -113,7 +118,8 @@ p{margin:0;text-wrap:pretty}
 .recapiti .mappa{font-weight:500}
 .chiusura .bottone{margin-top:34px}
 .chiusura figure{grid-column:7 / -1;margin:0}
-.chiusura figure img{width:100%;height:100%;min-height:680px;object-fit:cover;object-position:30% 50%}
+.chiusura figure img{width:100%;height:auto;aspect-ratio:1053/800}
+.chiusura figcaption{margin-top:10px;padding-right:var(--m);font-size:14px;line-height:1.45;color:var(--grigio)}
 
 /* ---------- piede */
 .piede{margin-top:128px;border-top:1px solid var(--filetto);padding-top:72px;padding-bottom:40px}
@@ -126,7 +132,7 @@ p{margin:0;text-wrap:pretty}
 .colonna h2{font:500 16px/1.4 var(--sans);margin-bottom:14px}
 .colonna ul{list-style:none;margin:0;padding:0}
 .colonna li{margin:0 0 8px;line-height:1.4}
-.colonna a{text-decoration:none;color:var(--grigio)}
+.colonna a{text-decoration:none;color:var(--grigio);overflow-wrap:anywhere}
 .colonna a:hover{color:var(--rosso-testo);text-decoration:underline}
 .legale{margin-top:72px;padding-top:24px;border-top:1px solid var(--filetto);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--grigio)}
 .legale .dx{margin-left:auto;display:flex;gap:24px}
@@ -135,20 +141,24 @@ p{margin:0;text-wrap:pretty}
 /* ---------- 1024 */
 @media (max-width:1240px){
   :root{--m:48px}
-  .apertura h1{grid-column:1 / -1;grid-row:auto;font-size:104px;margin-bottom:0}
-  .apertura .sotto{grid-column:1 / span 7;grid-row:auto;margin-top:24px}
-  .azione{grid-column:9 / -1;grid-row:auto;justify-self:end;align-self:end;margin-top:0}
-  .confezioni h2{grid-column:1 / -1;padding-bottom:12px}
-  .schede,.pannello{grid-column:1 / -1}
-  .editori h2,.rep-testa h2{font-size:50px;grid-column:1 / span 9}
+  .apertura{display:flex;flex-direction:column;min-height:0}
+  .apertura .testo{width:auto}
+  .apertura h1{font-size:100px}
+  .apertura .sotto{max-width:30em;margin-top:24px}
+  .oggetto{position:relative;order:2;width:min(100%,1180px);align-self:flex-end;margin-top:-4vw}
+  .oggetto figcaption{position:static;margin-top:-12px;padding:0 var(--m)}
+  .conf{order:3;width:auto;margin-top:36px;padding-bottom:0}
+  .editori h2,.rep-testa h2{font-size:50px}
+  .rep-testa h2{grid-column:1 / span 9}
   .rep-testa p{grid-column:1 / span 8;margin-top:20px}
   .editori .nomi{font-size:38px}
-  .dedica{grid-column:1 / span 8;grid-row:auto;margin-top:36px}
-  .dedica figcaption{max-width:22em}
+  .dedica{width:100%}
+  .dedica img{width:100%;height:auto}
   .chiusura h2{font-size:58px}
   .chiusura .testo{grid-column:1 / span 6}
-  .chiusura figure img{min-height:600px}
   .menu{gap:22px}
+  .piede .marchio{grid-column:1 / -1}
+  .colonna{grid-column:span 3}
 }
 /* ---------- 768 */
 @media (max-width:900px){
@@ -161,22 +171,18 @@ p{margin:0;text-wrap:pretty}
   .testata .tel{margin-left:auto;border:0;padding-left:0}
   .apri{display:block}
   .apertura h1{font-size:84px}
-  .apertura .sotto{grid-column:1 / -1}
-  .azione{grid-column:1 / -1;justify-self:start;margin-top:24px}
   .schede{gap:28px}
   .scheda{font-size:24px}
-  .pannello{display:block}
-  .pannello a{display:inline-block;margin-top:8px}
-  .editori .nomi{grid-column:1 / -1;font-size:34px}
-  .dedica{grid-column:1 / -1;grid-row:auto;margin-top:36px}
-  .editori .anche,.editoriale{grid-column:1 / -1}
+  .editori h2,.editori .nomi{grid-column:1 / -1}
+  .editori .nomi{font-size:34px}
+  .dedica{grid-column:1 / span 6;grid-row:auto;justify-self:start;margin-top:44px;width:340px}
+  .editori .anche,.editoriale{grid-column:1 / -1;grid-row:auto}
   .ciclo{grid-template-columns:1fr 1fr;row-gap:40px}
   .chiusura{padding-left:0}
   .chiusura .testo{grid-column:1 / -1;padding:0 var(--m)}
   .chiusura figure{grid-column:1 / -1;margin-top:56px}
-  .chiusura figure img{min-height:0;aspect-ratio:4/3}
-  .piede .marchio{grid-column:1 / -1}
-  .colonna{grid-column:span 3}
+  .chiusura figcaption{padding:0 var(--m)}
+  .colonna{grid-column:span 6}
 }
 /* ---------- telefono */
 @media (max-width:640px){
@@ -185,38 +191,36 @@ p{margin:0;text-wrap:pretty}
   .testata{height:68px;gap:16px}
   .testata .logo img{width:108px;height:26px}
   .testata .tel{font-size:15px}
-  .apertura .testo{display:block;padding-top:24px}
+  .apertura .testo{padding-top:24px}
   .apertura h1{font-size:60px;line-height:.98}
   .apertura .sotto{margin-top:18px;font-size:17px}
-  .azione{margin-top:22px}
-  .oggetto{margin-top:20px}
-  .oggetto img{aspect-ratio:1170/999}
-  .oggetto figcaption{font-size:13px}
-  .confezioni{display:block;margin-top:36px}
-  .confezioni h2{font-size:15px;padding-bottom:8px}
+  .oggetto{width:100%;margin-top:8px}
+  .oggetto img{aspect-ratio:1090/710}
+  .oggetto figcaption{margin-top:-4px;font-size:13px;text-align:left}
+  .conf{margin-top:28px}
   .schede{gap:8px;justify-content:space-between}
-  .scheda{font-size:clamp(16px,5.2vw,20px);padding-bottom:10px;white-space:nowrap}
-  .pannello{font-size:16px;padding-top:14px}
+  .scheda{font-size:clamp(16px,5.2vw,20px);padding-bottom:10px}
+  .pannello{display:block;padding-top:16px}
+  .dorso{width:100%;max-width:320px;height:auto;aspect-ratio:300/140;margin-bottom:14px}
   .editori{padding-top:96px;display:block}
   .rep-testa{display:block}
   .editori h2,.rep-testa h2{font-size:38px;line-height:1.08}
   .rep-testa p{margin-top:16px;font-size:16px}
   .editori .nomi{font-size:27px;line-height:1.28;margin-top:28px}
-  .dedica{gap:16px}
-  .dedica img{width:120px;height:180px}
+  .dedica{width:240px;margin-top:36px}
   .editori .anche{margin-top:28px;font-size:16px}
   .editoriale{margin-top:36px;font-size:16px}
   .reparti{padding-top:96px}
   .ciclo{grid-template-columns:1fr;row-gap:28px;margin-top:40px}
   .ciclo h3{font-size:26px}
   .foto-reparto{margin-top:44px}
-  .foto-reparto img{aspect-ratio:1170/1046}
+  .foto-reparto img{aspect-ratio:1170/1079}
   .chiusura{margin-top:88px}
   .chiusura h2{font-size:44px}
   .recapiti{margin-top:28px;font-size:17px}
   .recapiti .tel-grande{font-size:36px}
   .chiusura figure{margin-top:44px}
-  .chiusura figure img{aspect-ratio:1/1}
+  .chiusura figure img{aspect-ratio:1/1;object-fit:cover;object-position:62% 50%}
   .piede{margin-top:80px;padding-top:48px}
   .piede-griglia{display:block}
   .piede .marchio{margin-bottom:36px}
@@ -257,36 +261,52 @@ p{margin:0;text-wrap:pretty}
 <section class="apertura" aria-labelledby="titolo">
   <div class="testo wrap">
     <h1 id="titolo">Stampare è un’arte</h1>
-    <p class="sotto">Tipografia a Mestrino dal 1989: prestampa, stampa offset e digitale, legatoria e consegna. Libri, fumetti, cataloghi d’arte e riviste.</p>
-    <div class="azione"><a class="bottone" href="preventivi.html">Chiedi un preventivo</a></div>
+    <p class="sotto">Tipografia a Mestrino dal <span class="num">1989</span>: prestampa, stampa offset e digitale, legatoria e consegna. Libri, fumetti, cataloghi d’arte e riviste.</p>
   </div>
   <figure class="oggetto">
     <picture>
-      <source media="(max-width:640px)" srcset="img/apertura-tel-780.jpg 780w, img/apertura-tel-1170.jpg 1170w" sizes="100vw">
-      <img src="img/apertura-1440.jpg" srcset="img/apertura-960.jpg 960w, img/apertura-1440.jpg 1440w, img/apertura-2160.jpg 2160w, img/apertura-2880.jpg 2880w" sizes="100vw" alt="Lo spigolo di un libro cartonato: la copertina in cartone sporge dal blocco delle pagine" width="2880" height="1120" fetchpriority="high">
+      <source media="(max-width:640px)" srcset="img/apertura-tel-780.jpg 780w, img/apertura-tel-1090.jpg 1090w" sizes="100vw" width="1090" height="710">
+      <img src="img/apertura-1180.jpg" srcset="img/apertura-900.jpg 900w, img/apertura-1180.jpg 1180w" sizes="(max-width:1240px) 100vw, 70vw" alt="The Private Eye, un cartonato con la copertina arancio, visto di tre quarti: il cartone sporge dal blocco delle pagine" width="1180" height="760" fetchpriority="high">
     </picture>
-    <figcaption class="wrap"><span>Cartonato, visto dallo spigolo: il cartone della copertina e il blocco delle pagine.</span><span>Foto indicativa</span></figcaption>
+    <figcaption>The Private Eye per Bao Publishing, cartonato.</figcaption>
   </figure>
-</section>
-
-<section class="confezioni wrap" id="confezioni" aria-labelledby="t-conf">
-  <h2 id="t-conf">Che confezione vi serve?</h2>
-  <div class="schede" role="tablist" aria-labelledby="t-conf">
-    <button class="scheda" role="tab" id="s-punto" aria-controls="p-punto" aria-selected="false" tabindex="-1">Punto metallico</button>
-    <button class="scheda" role="tab" id="s-brossura" aria-controls="p-brossura" aria-selected="false" tabindex="-1">Brossura</button>
-    <button class="scheda" role="tab" id="s-cartonato" aria-controls="p-cartonato" aria-selected="true">Cartonato</button>
-  </div>
-  <div class="pannello" role="tabpanel" id="p-punto" aria-labelledby="s-punto" hidden>
-    <p>A punto sella o a punto omega.</p>
-    <a href="preventivi.html?confezione=punto-metallico">Preventivo per un punto metallico</a>
-  </div>
-  <div class="pannello" role="tabpanel" id="p-brossura" aria-labelledby="s-brossura" hidden>
-    <p>Fresata o cucita, con la copertina al vivo o con le alette.</p>
-    <a href="preventivi.html?confezione=brossura">Preventivo per una brossura</a>
-  </div>
-  <div class="pannello" role="tabpanel" id="p-cartonato" aria-labelledby="s-cartonato">
-    <p>Fresato o cucito, con il risguardo o autorisguardato.</p>
-    <a href="preventivi.html?confezione=cartonato">Preventivo per un cartonato</a>
+  <div class="conf wrap" id="confezioni">
+    <h2 id="t-conf">Che confezione vi serve?</h2>
+    <div class="schede" role="tablist" aria-labelledby="t-conf">
+      <button class="scheda" role="tab" id="s-punto" aria-controls="p-punto" aria-selected="false" tabindex="-1">Punto metallico</button>
+      <button class="scheda" role="tab" id="s-brossura" aria-controls="p-brossura" aria-selected="false" tabindex="-1">Brossura</button>
+      <button class="scheda" role="tab" id="s-cartonato" aria-controls="p-cartonato" aria-selected="true">Cartonato</button>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-punto" aria-labelledby="s-punto" hidden>
+      <svg class="dorso" viewBox="0 0 300 140" role="img" aria-label="Sezione del dorso di un punto metallico: i fogli piegati uno dentro l’altro, tenuti dal punto nella piega">
+        <path class="f" d="M196 40H36C22 40 22 100 36 100H196"/>
+        <path class="l" d="M196 44.4H39C26.2 44.4 26.2 95.6 39 95.6H196M196 48.8H42C30.4 48.8 30.4 91.2 42 91.2H196M196 53.2H45C34.6 53.2 34.6 86.8 45 86.8H196M196 57.6H48C38.8 57.6 38.8 82.4 48 82.4H196M196 62H51C43 62 43 78 51 78H196M196 66.4H54C47.2 66.4 47.2 73.6 54 73.6H196"/>
+        <path class="f" d="M20 70H62" style="stroke-width:2.6"/>
+        <path class="g" d="M204 40H216M204 57.6H216M28 74V114"/>
+        <text x="220" y="44">copertina</text><text x="220" y="61.6">fogli piegati</text><text x="20" y="128">punto nella piega</text>
+      </svg>
+      <div><p>A punto sella o a punto omega.</p><a class="bottone" href="preventivi.html?confezione=punto-metallico">Chiedi un preventivo</a></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-brossura" aria-labelledby="s-brossura" hidden>
+      <svg class="dorso" viewBox="0 0 300 140" role="img" aria-label="Sezione del dorso di una brossura: il blocco delle pagine incollato al dorso e la copertina morbida che lo avvolge">
+        <rect class="c" x="40" y="42" width="6" height="56"/>
+        <path class="l" d="M46 44H196M46 48H196M46 52H196M46 56H196M46 60H196M46 64H196M46 68H196M46 72H196M46 76H196M46 80H196M46 84H196M46 88H196M46 92H196M46 96H196"/>
+        <path class="f" d="M200 38H34V102H200"/>
+        <path class="g" d="M204 38H216M204 70H216M43 100V114"/>
+        <text x="220" y="42">copertina</text><text x="220" y="74">blocco</text><text x="20" y="128">colla sul dorso</text>
+      </svg>
+      <div><p>Fresata o cucita, con la copertina al vivo o con le alette.</p><a class="bottone" href="preventivi.html?confezione=brossura">Chiedi un preventivo</a></div>
+    </div>
+    <div class="pannello" role="tabpanel" id="p-cartonato" aria-labelledby="s-cartonato">
+      <svg class="dorso" viewBox="0 0 300 140" role="img" aria-label="Sezione del dorso di un cartonato: il blocco delle pagine tra due cartoni che sporgono, e il dorso arrotondato">
+        <path class="l" d="M50 48H190M49 52H190M48 56H190M47.5 60H190M47 64H190M47 68H190M47 72H190M47 76H190M47.5 80H190M48 84H190M49 88H190M50 92H190"/>
+        <rect class="p" x="56" y="34" width="142" height="7"/><rect class="p" x="56" y="99" width="142" height="7"/>
+        <path class="f" d="M50 34C24 46 24 94 50 106" style="stroke-width:2.4"/>
+        <path class="g" d="M204 37.5H216M204 70H216M194 108V114M30 96V114"/>
+        <text x="220" y="41.5">cartone</text><text x="220" y="74">blocco</text><text x="170" y="128">unghiatura</text><text x="20" y="128">dorso</text>
+      </svg>
+      <div><p>Fresato o cucito, con il risguardo o autorisguardato.</p><a class="bottone" href="preventivi.html?confezione=cartonato">Chiedi un preventivo</a></div>
+    </div>
   </div>
 </section>
 
@@ -294,7 +314,7 @@ p{margin:0;text-wrap:pretty}
   <h2 id="t-edi">Fumetti, libri e cataloghi d’arte per case editrici di tutta Italia</h2>
   <p class="nomi"><span>Bao Publishing,</span> <span>Coconino Press,</span> <span>Tunuè,</span> <span>Saldapress,</span> <span>BeccoGiallo,</span> <span>Il Castoro,</span> <span>Baldini e Castoldi,</span> <span>Franco Cosimo Panini</span></p>
   <figure class="dedica">
-    <img src="img/dedica-400.jpg" alt="Disegno a matita con la dedica: Grazie per averci stampato a very good book" width="200" height="300" loading="lazy">
+    <img src="img/dedica-533.jpg" srcset="img/dedica-400.jpg 400w, img/dedica-533.jpg 533w" sizes="(max-width:640px) 240px, 340px" alt="Disegno a matita con la dedica: Grazie per averci stampato a very good book" width="340" height="510" loading="lazy">
     <figcaption>Il disegno di un autore di fumetti, con la dedica «Grazie per averci stampato a very good book».</figcaption>
   </figure>
   <p class="anche">E poi i cataloghi delle gallerie Contini e Vecchiato Arte, gli stampati di aziende come Atala, Selle Royal e Calpeda, i taccuini per Lucca Comics &amp; Games.</p>
@@ -312,12 +332,12 @@ p{margin:0;text-wrap:pretty}
     <li><span class="n num">.3</span><h3>Legatoria</h3><p>Brossura, punto metallico e cartonato. Piegatura, plastificazione opaca, lucida o soft touch, vernice UV, foil, embossing, cellofanatura.</p></li>
     <li><span class="n num">.4</span><h3>Logistica</h3><p>Imballaggio e consegna con auto, furgone e cargo nostri, in Italia e all’estero.</p></li>
   </ol>
-  <figure class="foto-reparto">
+  <figure class="foto-reparto wrap">
     <picture>
-      <source media="(max-width:640px)" srcset="img/legatoria-tel-780.jpg 780w, img/legatoria-tel-1170.jpg 1170w" sizes="100vw">
-      <img src="img/legatoria-1800.jpg" srcset="img/legatoria-1200.jpg 1200w, img/legatoria-1800.jpg 1800w, img/legatoria-2400.jpg 2400w" sizes="100vw" alt="Il reparto legatoria: a sinistra la linea di raccolta e cucitura, a destra le pile di segnature sui bancali" width="2400" height="1120" loading="lazy">
+      <source media="(max-width:640px)" srcset="img/legatoria-tel-780.jpg 780w, img/legatoria-tel-1170.jpg 1170w" sizes="calc(100vw - 40px)" width="1170" height="1079">
+      <img src="img/legatoria-1312.jpg" srcset="img/legatoria-960.jpg 960w, img/legatoria-1312.jpg 1312w, img/legatoria-1900.jpg 1900w" sizes="calc(100vw - 2 * var(--m))" alt="Il reparto legatoria: a sinistra la linea di raccolta e cucitura, a destra le pile di segnature sui bancali" width="1312" height="560" loading="lazy">
     </picture>
-    <figcaption class="wrap">Legatoria, la linea di raccolta e cucitura e le segnature sui bancali. Mestrino, gennaio <span class="num">2018</span>.</figcaption>
+    <figcaption>Legatoria, la linea di raccolta e cucitura e le segnature sui bancali. Mestrino, gennaio <span class="num">2018</span>.</figcaption>
   </figure>
 </section>
 
@@ -333,7 +353,8 @@ p{margin:0;text-wrap:pretty}
     <a class="bottone" href="preventivi.html">Chiedi un preventivo</a>
   </div>
   <figure>
-    <img src="img/chiusura-862.jpg" srcset="img/chiusura-640.jpg 640w, img/chiusura-862.jpg 862w" sizes="(max-width:900px) 100vw, 50vw" alt="Un foglio stampato in oro con una frase scritta a mano e il logo Peruzzo ripetuto" width="862" height="800" loading="lazy">
+    <img src="img/chiusura-1053.jpg" srcset="img/chiusura-780.jpg 780w, img/chiusura-1053.jpg 1053w" sizes="(max-width:900px) 100vw, 50vw" alt="Un foglio stampato in oro con frasi scritte a mano sulla stampa e il marchio Peruzzo Industrie Grafiche" width="1053" height="800" loading="lazy">
+    <figcaption>Un foglio stampato in oro, con il marchio storico Peruzzo Industrie Grafiche.</figcaption>
   </figure>
 </section>
 </main>
@@ -376,7 +397,7 @@ p{margin:0;text-wrap:pretty}
       <h2 id="pc4">Contatti</h2>
       <ul>
         <li><a class="num" href="tel:+390499002884">049 9002884</a></li>
-        <li><a href="mailto:info@graficheperuzzo.it">info@graficheperuzzo.it</a></li>
+        <li><a href="mailto:info@graficheperuzzo.it">info@<wbr>graficheperuzzo.it</a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Peruzzo+Grafiche+Via+Marco+Polo+10+35035+Mestrino" rel="noopener">Via Marco Polo 10/12, Mestrino</a></li>
         <li><a href="preventivi.html">Preventivo</a></li>
       </ul>
@@ -391,7 +412,8 @@ p{margin:0;text-wrap:pretty}
 </footer>
 
 <script>
-// Confezioni: schede con tastiera (frecce, Home, Fine); il cambio è netto, senza dissolvenze.
+// Confezioni: schede con tastiera (frecce, Home, Fine). Cambiano la sezione del dorso, la variante e il link
+// al preventivo; il cambio è netto, senza dissolvenze.
 (function(){
   var tabs=[].slice.call(document.querySelectorAll('.scheda'));
   function scegli(t,fuoco){
@@ -417,8 +439,8 @@ p{margin:0;text-wrap:pretty}
 // Menu sotto i 900 px: bottone vero con aria-expanded; si chiude con Esc o scegliendo una voce.
 (function(){
   var b=document.querySelector('.apri'),n=document.getElementById('menu-princ');
-  function chiudi(){b.setAttribute('aria-expanded','false');n.classList.remove('aperto')}
-  b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';if(o){chiudi()}else{b.setAttribute('aria-expanded','true');n.classList.add('aperto')}});
+  function chiudi(){b.setAttribute('aria-expanded','false');b.textContent='Menu';n.classList.remove('aperto')}
+  b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';if(o){chiudi()}else{b.setAttribute('aria-expanded','true');b.textContent='Chiudi';n.classList.add('aperto')}});
   n.addEventListener('click',function(e){if(e.target.tagName==='A')chiudi()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('aperto')){chiudi();b.focus()}});
 })();

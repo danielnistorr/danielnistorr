@@ -24,6 +24,7 @@ Scaricate dai CDN `images.unsplash.com` e `images.pexels.com` con il lato lungo 
 | `esterne/unsplash-ft2Gpg_fNVY-dang-sala-consiglio-ovale.jpg` | https://unsplash.com/photos/ft2Gpg_fNVY | Nguyen Dang (@ngdang) | 1600x2400 | A e B, sale riunioni | sala riunioni ovale con lampadario e tende gialle |
 | `esterne/unsplash-BfqRSrbFHDY-sr-auditorium-poltrone-rosse.jpg` | https://unsplash.com/photos/BfqRSrbFHDY | SR Engineers and Consultants (@sr_engineersandconsultants) | 2400x1351 | A e B, università e auditorium | auditorium vuoto, poltrone rosse, soffitto chiaro |
 | `esterne/unsplash-sdtnZ4LgbWk-goldstein-mixer-fader.jpg` | https://unsplash.com/photos/sdtnZ4LgbWk | Adi Goldstein (@adigold1) | 2400x1590 | B, service e noleggio | fader di un mixer in bianco e nero |
+| `esterne/unsplash-UVL_Ix960es-cavallin-chiesa-treviso.jpg` | https://unsplash.com/photos/UVL_Ix960es | Luca Cavallin (@lucavallin) | 2400x3600 | A, chiese | navata della chiesa di San Francesco a Treviso, banchi in legno, abside con vetrate; licenza letta il 24/10/2026: "Free to use under the Unsplash License", non Unsplash+. Sull'altare c'è una stella natalizia luminosa: nel taglio usato resta piccola |
 
 Scartata dopo averla guardata: `Oyrq_zSqytU` (DDP) era indicata come "black corded microphone" ma è un lampione a LED.
 

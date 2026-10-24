@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ciesseci, CSC Factory: stampa, ricamo e abbigliamento da lavoro a Mestrino</title>
 <meta name="description" content="Dal 1982 stampa su supporti anche di grandi dimensioni e personalizzazione di abbigliamento promozionale e da lavoro. Negozio, showroom e laboratorio in Via Zanella 1 a Mestrino (PD).">
-<link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="img/logo-csc-128.png" type="image/png">
 <style>
 /* Archivo, Omnibus-Type, SIL Open Font License 1.1 (fonts/OFL-Archivo.txt): variabile in peso e larghezza */
@@ -51,23 +50,20 @@ p{text-wrap:pretty}
 .menu a:hover{border-bottom-color:var(--inch)}
 .apri-menu{display:none}
 
-/* ---------- apertura: la felpa 82 ---------- */
-.apertura{position:relative;min-height:max(820px,min(100vh,940px));overflow:hidden}
-.apertura .testo{position:relative;z-index:2;padding-top:196px;padding-bottom:150px;max-width:900px}
-h1{font-variation-settings:'wdth' 116;font-weight:460;font-size:clamp(46px,6.8vw,98px);line-height:.97;letter-spacing:-.03em}
-.apertura .lede{margin-top:40px;font-size:19px;line-height:1.5;max-width:29em;color:var(--inch-2)}
-.azioni{margin-top:36px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+/* ---------- apertura: il capo intero, al centro, sotto il titolo ---------- */
+.apertura{padding-top:124px}
+h1{font-variation-settings:'wdth' 116;font-weight:460;font-size:clamp(44px,5.6vw,82px);line-height:.98;letter-spacing:-.03em;text-align:center}
+/* tre colonne: testo, il capo (680 px: la maglietta prende circa il 44 % della pagina a 1440, intera nella prima schermata), azioni */
+.scena{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,680px) minmax(0,1fr);column-gap:var(--g);align-items:end}
+.capo{grid-column:2;grid-row:1;margin:0}
+.capo img{width:100%;height:auto}
+.capo picture{display:block}
+.apertura .lede{grid-column:1;grid-row:1;align-self:center;padding-top:40px;font-size:17px;line-height:1.55;color:var(--inch-2);max-width:21em}
+.azioni{grid-column:3;grid-row:1;align-self:center;padding-top:40px;display:flex;flex-direction:column;align-items:flex-end;gap:22px}
 .bottone{display:inline-block;background:var(--verde);color:var(--carta);text-decoration:none;font-weight:600;font-size:16px;padding:16px 26px}
 .bottone:hover{background:var(--verde-scuro)}
 .tel{font-size:22px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .tel:hover{color:var(--verde)}
-/* la felpa: scontornata sulla carta, esce dal bordo destro e da quello basso; mostrata a 1,3x
-   dello scatto originale (324 x 680), non oltre. Gli ultimi 52 px a destra (dove lo scatto
-   taglia il cappuccio) restano fuori dalla pagina */
-.felpa{position:absolute;right:-52px;bottom:0;width:421px;margin:0;z-index:1}
-.felpa img{width:421px;height:923px}
-.didascalia-felpa{position:absolute;z-index:2;bottom:40px;right:335px;max-width:300px;text-align:right;font-size:14px;line-height:1.45;color:var(--inch-3)}
-.didascalia-felpa b{color:var(--inch);font-weight:600}
 
 /* ---------- titoli di sezione ---------- */
 .sezione{padding-top:var(--sez)}
@@ -82,21 +78,23 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 .scheda .n{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .scheda:hover{color:var(--inch)}
 .scheda[aria-selected="true"]{color:var(--inch);border-bottom-color:var(--verde)}
-.palco{margin-top:28px}
-.pannello img{width:100%;aspect-ratio:2.25/1;object-fit:cover}
+.palco{margin:28px auto 0;max-width:1680px}
+.pannello img{width:100%;aspect-ratio:2/1;object-fit:cover}
 .pannello .sotto{padding-top:32px;align-items:start;row-gap:20px;min-height:164px}  /* stessa altezza per le cinque schede: la pagina sotto non salta */
 .pannello blockquote{grid-column:1 / span 7;font-variation-settings:'wdth' 100;font-weight:440;font-size:clamp(22px,2.2vw,31px);line-height:1.25;letter-spacing:-.012em}
 .pannello .dati{grid-column:9 / span 4;font-size:15px;color:var(--inch-2)}
-.pannello .dati .stretto{color:var(--inch-3);display:block;margin-bottom:6px}
+.pannello .dati .etichetta{display:block;margin-bottom:6px;font-size:14px;font-weight:600;color:var(--inch-2)}
 .pannello .dati a{display:inline-block;margin-top:14px;color:var(--verde);font-weight:600}
 .anche{margin-top:64px;padding-top:24px;border-top:1px solid var(--filo);font-size:17px;color:var(--inch-2)}
 .anche a{color:var(--inch)}
 
 /* ---------- abbigliamento ---------- */
-.abbigliamento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);max-width:1440px;margin:0 auto;padding-right:var(--m);align-items:end}
-.foto-dpi{grid-column:1 / span 7}
-.foto-dpi img{width:100%;aspect-ratio:1/1.12;object-fit:cover}
-.testo-abb{grid-column:9 / span 4;padding-bottom:8px}
+.abbigliamento .griglia{align-items:end}
+.foto-abb{grid-column:2 / span 5;margin:0}
+.foto-abb img{width:100%;max-width:544px;aspect-ratio:4/5;object-fit:cover}
+.foto-abb figcaption{margin-top:12px;font-size:14px;color:var(--inch-3)}
+.foto-abb figcaption b{color:var(--inch);font-weight:600}
+.testo-abb{grid-column:8 / span 5;padding-bottom:36px}
 .lede-abb{margin-top:40px;font-size:19px;line-height:1.5}
 .nota-abb{margin-top:18px;color:var(--inch-2)}
 .voci{margin-top:36px;list-style:none;border-top:1px solid var(--filo)}
@@ -105,8 +103,12 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 
 /* ---------- dal 1982 ---------- */
 .storia{align-items:end;row-gap:40px}
-.anno{grid-column:1 / span 7;font-variation-settings:'wdth' 125;font-weight:300;font-size:clamp(110px,15.5vw,224px);line-height:.8;letter-spacing:-.04em;font-variant-numeric:tabular-nums lining-nums;margin-left:-.04em}
-.storia .frase{grid-column:8 / span 5;font-size:21px;line-height:1.45;max-width:24em;padding-bottom:6px}
+.anno{grid-column:1 / span 8;grid-row:1;font-variation-settings:'wdth' 125;font-weight:300;font-size:clamp(110px,15.5vw,224px);line-height:.8;letter-spacing:-.04em;font-variant-numeric:tabular-nums lining-nums;margin-left:-.04em}
+.storia .frase{grid-column:9 / span 4;grid-row:2;font-size:21px;line-height:1.45;max-width:24em;padding-bottom:6px}
+.felpa82{grid-column:9 / span 4;grid-row:1;margin:0;align-self:end}
+.felpa82 img{width:100%;aspect-ratio:900/620;object-fit:cover}
+.felpa82 figcaption{margin-top:10px;font-size:14px;line-height:1.45;color:var(--inch-3);max-width:32ch}
+.felpa82 figcaption b{color:var(--inch);font-weight:600}
 .date{margin-top:88px;row-gap:40px}
 .data{grid-column:span 6;border-top:1px solid var(--verde);padding-top:20px;display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:baseline}
 .data .a{font-variation-settings:'wdth' 112;font-weight:560;font-size:32px;letter-spacing:-.02em;line-height:1}
@@ -130,14 +132,14 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 .recapiti p a:hover{color:var(--verde)}
 .recapiti .orari{margin-top:26px;font-size:15px}
 .chiusura .foto{grid-column:6 / span 7;margin:0 calc(-1 * max(0px, (100vw - 1440px) / 2)) 0 0}
-.chiusura .foto img{width:100%;aspect-ratio:1.05/1;object-fit:cover;object-position:42% 50%}
+.chiusura .foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .didascalia-chi{margin-top:12px;font-size:14px;color:var(--inch-3);padding-right:var(--m)}
 .didascalia-chi b{color:var(--inch);font-weight:600}
 
 /* ---------- piede ---------- */
 .piede{margin-top:var(--sez);background:var(--carta-2);padding:88px 0 40px;font-size:15px}
 .piede .alto{row-gap:48px}
-.piede .chi{grid-column:1 / span 3}
+.piede .chi{grid-column:1 / span 4}
 .piede .chi img{width:96px;height:auto}
 .piede .chi p{margin-top:20px;color:var(--inch-2);max-width:22em}
 .piede .chi .contatti-piede{margin-top:16px;color:var(--inch);line-height:1.7}
@@ -149,9 +151,10 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 .piede li + li{margin-top:9px}
 .col a,.social a{text-decoration:none}
 .col a:hover,.social a:hover{text-decoration:underline;text-underline-offset:3px}
-.lettera{grid-column:10 / span 3}
-.lettera p{color:var(--inch-2)}
-.lettera form{margin-top:16px}
+.lettera{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:16px;margin-top:24px;padding-top:40px;border-top:1px solid var(--filo);align-items:start}
+.lettera .intro{grid-column:1 / span 4}
+.lettera .intro p{color:var(--inch-2);max-width:26em}
+.lettera form{grid-column:5 / span 6}
 .campo{display:flex;border-bottom:1px solid var(--inch)}
 .campo input{flex:1;min-width:0;background:transparent;border:0;font:inherit;font-size:16px;padding:12px 0;color:var(--inch)}
 .campo input::placeholder{color:var(--inch-3)}
@@ -159,9 +162,10 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 .campo button:hover{color:var(--verde-scuro);text-decoration:underline;text-underline-offset:3px}
 .consenso{display:flex;gap:10px;margin-top:14px;font-size:14px;color:var(--inch-2);align-items:flex-start}
 .consenso input{margin-top:3px;accent-color:var(--verde);width:16px;height:16px;flex:none}
-.social{margin-top:40px}
+.esito{margin-top:12px;font-size:14px;color:var(--inch);min-height:1.45em}
 .basso{margin-top:72px;padding-top:24px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:14px;color:var(--inch-2)}
-.basso span + span::before{content:"·";margin:0 10px}
+.basso p{display:flex;flex-wrap:wrap;gap:4px 24px}
+.basso span{white-space:nowrap}
 .basso nav{display:flex;gap:20px}
 
 /* ---------- 1200 ---------- */
@@ -169,6 +173,7 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   :root{--m:48px;--sez:128px}
   .menu{gap:22px}
   .testata .wrap{gap:32px}
+  .lettera form{grid-column:5 / span 8}
 }
 /* ---------- 1024 ---------- */
 @media (max-width:1100px){
@@ -177,38 +182,46 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   .testata .wrap{justify-content:space-between}
   .menu.aperto{display:flex;position:absolute;top:96px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
   .menu.aperto a{display:block;padding:12px 0;font-size:18px}
-  .apertura .testo{max-width:640px}
-  .felpa{right:-60px}
-  .didascalia-felpa{right:330px;max-width:240px}
-  .foto-dpi{grid-column:1 / span 6}
-  .testo-abb{grid-column:7 / span 6}
+  .apertura{padding-top:140px}
+  /* il capo resta al centro; testo e azioni scendono sotto, su due colonne */
+  .scena{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .capo{grid-column:2 / span 10;grid-row:1;justify-self:center;width:100%;max-width:620px}
+  .apertura .lede{grid-column:1 / span 7;grid-row:2;padding:8px 0 0;align-self:start;max-width:30em}
+  .azioni{grid-column:8 / span 5;grid-row:2;padding:8px 0 0;align-self:start}
+  .foto-abb{grid-column:1 / span 6}
+  .testo-abb{grid-column:7 / span 6;padding-bottom:24px}
   .testa h2{grid-column:1 / span 12}
   .testa p{grid-column:1 / span 8}
   .pannello blockquote{grid-column:1 / span 8}
   .pannello .dati{grid-column:9 / span 4}
-  .anno{grid-column:1 / span 12}
-  .storia .frase{grid-column:1 / span 8}
-  .col{grid-column:span 3}
+  /* 1982: il numero a sinistra, frase e felpa accanto, fino a 861 px */
+  .anno{grid-column:1 / span 7;font-size:clamp(110px,17vw,190px)}
+  .storia .frase{grid-column:8 / span 5}
+  .felpa82{grid-column:8 / span 4}
   .piede .chi{grid-column:1 / span 12}
-  .lettera{grid-column:1 / span 12;max-width:560px}
+  .piede .chi p{max-width:36em}
+  .col{grid-column:span 3}
+  .lettera .intro{grid-column:1 / span 5}
+  .lettera form{grid-column:6 / span 7}
 }
 /* ---------- 768 ---------- */
 @media (max-width:860px){
   :root{--m:32px;--sez:112px}
-  .apertura{min-height:0}
-  .apertura .testo{max-width:none;padding:132px 0 0}
-  h1{font-size:clamp(42px,9vw,72px)}
-  .felpa{position:relative;right:auto;bottom:auto;width:auto;margin:16px 0 0;display:flex;justify-content:flex-end}
-  .felpa img{width:421px;max-width:none;height:auto;margin-right:-52px}
-  .didascalia-felpa{position:static;max-width:none;text-align:left;padding:14px var(--m) 0}
+  .apertura{padding-top:128px}
+  h1{font-size:clamp(40px,8.6vw,68px)}
+  .scena{margin-top:20px}
+  .capo{grid-column:1 / span 12;max-width:560px}
+  .apertura .lede{grid-column:1 / span 12;padding-top:4px}
+  .azioni{grid-column:1 / span 12;grid-row:3;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:28px;padding-top:24px}
   .pannello blockquote,.pannello .dati{grid-column:1 / span 12}
   .pannello .sotto{min-height:250px}
   .testa p{grid-column:1 / span 12}
-  .abbigliamento{padding-right:0}
-  .foto-dpi{grid-column:1 / span 12}
-  .foto-dpi img{aspect-ratio:4/3;object-position:50% 20%}
-  .testo-abb{grid-column:1 / span 12;padding:48px var(--m) 0}
-  .storia .frase{grid-column:1 / span 12}
+  .foto-abb{grid-column:1 / span 12}
+  .foto-abb img{max-width:544px}
+  .testo-abb{grid-column:1 / span 12;padding:48px 0 0}
+  .anno{grid-column:1 / span 12;grid-row:auto;font-size:clamp(104px,24vw,190px)}
+  .storia .frase{grid-column:1 / span 7;grid-row:2;align-self:start}
+  .felpa82{grid-column:8 / span 5;grid-row:2}
   .data{grid-column:1 / span 12}
   .date{margin-top:64px}
   .didascalia-chi{padding:0 var(--m)}
@@ -218,9 +231,8 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   .chiusura{padding-left:0}
   .chiusura .testo{grid-column:1 / span 12;padding:0 var(--m)}
   .chiusura .foto{grid-column:1 / span 12;margin:56px 0 0}
-  .chiusura .foto img{aspect-ratio:1.6/1}
   .col{grid-column:span 6}
-  .lettera{grid-column:1 / span 12}
+  .lettera .intro,.lettera form{grid-column:1 / span 12}
 }
 /* ---------- 390 ---------- */
 @media (max-width:560px){
@@ -230,15 +242,14 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   .marchio img{width:44px}
   .marchio .stretto{font-size:12px}
   .menu.aperto{top:72px}
-  .apertura .testo{padding-top:104px}
-  h1{font-size:41px;line-height:1;letter-spacing:-.03em;font-variation-settings:'wdth' 106}
-  h1 br{display:none}
-  .apertura .lede{margin-top:20px;font-size:17px}
-  .azioni{margin-top:24px;gap:22px}
+  .apertura{padding-top:100px}
+  h1{font-size:40px;line-height:1;letter-spacing:-.03em;font-variation-settings:'wdth' 106}
+  .scena{margin-top:12px}
+  .capo{margin:0 -8px;width:calc(100% + 16px)}
+  .apertura .lede{font-size:16px;padding-top:0}
+  .azioni{margin-top:0;gap:22px;padding-top:20px}
   .bottone{padding:15px 22px}
   .tel{font-size:20px}
-  .felpa{margin-top:-18px}   /* le prime righe dello scatto sono solo carta: passano sotto il testo */
-  .felpa img{width:calc(100% + 48px);margin-right:-48px}
   h2{font-size:34px}
   .schede{margin-top:40px;gap:2px 22px}
   .scheda{font-size:20px;padding:8px 0 10px}
@@ -248,7 +259,9 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   .lede-abb{font-size:17px;margin-top:28px}
   .sotto-chi{font-size:17px}
   .anno{font-size:112px}
-  .storia .frase{font-size:18px}
+  .storia{row-gap:28px}
+  .storia .frase{grid-column:1 / span 12;grid-row:auto;font-size:18px}
+  .felpa82{grid-column:1 / span 12;grid-row:auto}
   .data{grid-template-columns:1fr;row-gap:6px}
   .data p{grid-column:1;margin-top:2px}
   .data .a{font-size:28px}
@@ -261,8 +274,8 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
   .piede .chi img{width:80px}
   .col{grid-column:1 / span 12}
   .basso{flex-direction:column}
-  .basso span{display:block}
-  .basso span + span::before{content:none}
+  .basso p{flex-direction:column}
+  .basso span{white-space:normal}
 }
 </style>
 </head>
@@ -290,8 +303,15 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 <main>
 <section class="apertura" aria-labelledby="titolo">
   <div class="wrap">
-    <div class="testo">
-      <h1 id="titolo">Stampa e ricamo:<br> diffondiamo<br> il tuo brand.</h1>
+    <h1 id="titolo">Stampa e ricamo:<br> diffondiamo il tuo brand.</h1>
+    <div class="scena">
+      <figure class="capo">
+        <!-- sorgente almeno 1,9x della larghezza mostrata: 1400 px per 680 px (1440) e 560 px (768), 1000 px per 366 px (390) -->
+        <picture>
+          <source media="(max-width:560px)" srcset="img/capo-1000.jpg">
+          <img src="img/capo-1400.jpg" width="1400" height="1235" alt="Una maglietta bianca stesa piana, vista dall'alto, sulla carta" fetchpriority="high">
+        </picture>
+      </figure>
       <p class="lede">Dal 1982 stampiamo su supporti anche di grandi dimensioni e personalizziamo abbigliamento promozionale e da lavoro. Negozio, showroom e laboratorio a Mestrino, Padova.</p>
       <div class="azioni">
         <a class="bottone" href="preventivo/">Chiedi un preventivo</a>
@@ -299,17 +319,13 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
       </div>
     </div>
   </div>
-  <figure class="felpa">
-    <img src="img/felpa82-421.jpg" srcset="img/felpa82-324.jpg 324w, img/felpa82-421.jpg 421w" sizes="421px" width="421" height="923" alt="La felpa grigia CSC Factory vista dall'alto, con il numero 82 stampato in verde fluo e il marchio CSC Factory dentro l'8">
-  </figure>
-  <p class="didascalia-felpa"><b>La felpa CSC Factory:</b> il 1982 stampato come un numero di maglia.</p>
 </section>
 
 <section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
   <div class="wrap">
     <div class="griglia testa">
       <h2 id="t-lav">Su tessuto, plex, legno e metallo</h2>
-      <p>Undici lavorazioni per mettere il tuo marchio su un capo, un furgone, una targa o uno zerbino. Cinque, da vicino:</p>
+      <p>Undici lavorazioni per mettere il tuo marchio su un capo, un furgone, una targa o uno zerbino.</p>
     </div>
     <div class="schede" role="tablist" aria-label="Lavorazioni">
       <button class="scheda" type="button" role="tab" id="s-ricamo" aria-controls="p-ricamo" aria-selected="true">Ricamo</button>
@@ -322,38 +338,38 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 
   <div class="palco">
     <div class="pannello" role="tabpanel" id="p-ricamo" aria-labelledby="s-ricamo">
-      <img src="img/tec-ricamo-1440.jpg" srcset="img/tec-ricamo-800.jpg 800w, img/tec-ricamo-1440.jpg 1440w" sizes="100vw" width="1440" height="640" alt="Coni di filo colorato in fila sull'albero di una ricamatrice">
+      <img src="img/tec-ricamo-1440.jpg" srcset="img/tec-ricamo-800.jpg 800w, img/tec-ricamo-1440.jpg 1440w, img/tec-ricamo-1680.jpg 1680w" sizes="(max-width:560px) 170vw, 100vw" width="1440" height="720" alt="Coni di filo colorato in fila sull'albero di una ricamatrice">
       <div class="wrap"><div class="griglia sotto">
         <blockquote>«Perfetto per farti riconoscere e creare appartenenza tra i tuoi dipendenti o gli associati.»</blockquote>
-        <p class="dati"><span class="stretto">Dove</span>Abbigliamento da lavoro e per il tempo libero. Il ricamo personalizzato ha anche un marchio suo, RicaMarty.<br><a href="pubblicita/ricamo/">Il ricamo</a></p>
+        <p class="dati"><span class="etichetta">Su cosa</span>Abbigliamento da lavoro e per il tempo libero. Il ricamo personalizzato ha anche un marchio suo, RicaMarty.<br><a href="pubblicita/ricamo/">Il ricamo</a></p>
       </div></div>
     </div>
     <div class="pannello" role="tabpanel" id="p-serigrafia" aria-labelledby="s-serigrafia" hidden>
-      <img src="img/tec-serigrafia-1440.jpg" srcset="img/tec-serigrafia-800.jpg 800w, img/tec-serigrafia-1440.jpg 1440w, img/tec-serigrafia-2400.jpg 2400w" sizes="100vw" width="1440" height="640" alt="Mani che tirano la racla su un telaio serigrafico, accanto a una finestra" loading="lazy">
+      <img src="img/tec-serigrafia-1440.jpg" srcset="img/tec-serigrafia-800.jpg 800w, img/tec-serigrafia-1440.jpg 1440w, img/tec-serigrafia-2400.jpg 2400w" sizes="(max-width:560px) 170vw, 100vw" width="1440" height="720" alt="Mani che tirano la racla su un telaio serigrafico, accanto a una finestra" loading="lazy">
       <div class="wrap"><div class="griglia sotto">
         <blockquote>«La stampa serigrafica avviene su tessuto, pelli, tnt, e su materiali rigidi come plex, legno, metallo e altro.»</blockquote>
-        <p class="dati"><span class="stretto">Dove</span>Magliette, felpe, shopper in tnt, pannelli rigidi.<br><a href="pubblicita/serigrafia/">La serigrafia</a></p>
+        <p class="dati"><span class="etichetta">Su cosa</span>Magliette, felpe, shopper in tnt, pannelli rigidi.<br><a href="pubblicita/serigrafia/">La serigrafia</a></p>
       </div></div>
     </div>
     <div class="pannello" role="tabpanel" id="p-sublimazione" aria-labelledby="s-sublimazione" hidden>
-      <img src="img/tec-sublimazione-1440.jpg" srcset="img/tec-sublimazione-800.jpg 800w, img/tec-sublimazione-1440.jpg 1440w, img/tec-sublimazione-1680.jpg 1680w" sizes="100vw" width="1440" height="640" alt="Una maglietta gialla stesa sul piano di una pressa a caldo" loading="lazy">
+      <img src="img/tec-sublimazione-1440.jpg" srcset="img/tec-sublimazione-800.jpg 800w, img/tec-sublimazione-1440.jpg 1440w, img/tec-sublimazione-2100.jpg 2100w" sizes="(max-width:560px) 170vw, 100vw" width="1440" height="720" alt="Una maglietta gialla stesa sul piano di una pressa a caldo" loading="lazy">
       <div class="wrap"><div class="griglia sotto">
         <blockquote>«Un effetto non in rilievo e impalpabile, modificando direttamente la tinta del tessuto.»</blockquote>
-        <p class="dati"><span class="stretto">Colori</span>Non ci sono limiti di colore.<br><a href="pubblicita/sublimazione/">La sublimazione</a></p>
+        <p class="dati"><span class="etichetta">Su cosa</span>Tessuto: la stampa entra nella tinta. Non ci sono limiti di colore.<br><a href="pubblicita/sublimazione/">La sublimazione</a></p>
       </div></div>
     </div>
     <div class="pannello" role="tabpanel" id="p-uv" aria-labelledby="s-uv" hidden>
-      <img src="img/tec-stampa-uv-1440.jpg" srcset="img/tec-stampa-uv-800.jpg 800w, img/tec-stampa-uv-1440.jpg 1440w, img/tec-stampa-uv-1920.jpg 1920w" sizes="100vw" width="1440" height="640" alt="Tre sagome in plexiglass stampate in UV da Ciesseci: un volto dipinto, un gatto, un occhio" loading="lazy">
+      <img src="img/tec-stampa-uv-1440.jpg" srcset="img/tec-stampa-uv-800.jpg 800w, img/tec-stampa-uv-1440.jpg 1440w, img/tec-stampa-uv-1720.jpg 1720w" sizes="(max-width:560px) 170vw, 100vw" width="1440" height="720" alt="Tre sagome in plexiglass stampate in UV da Ciesseci: un volto dipinto, un gatto, un occhio" loading="lazy">
       <div class="wrap"><div class="griglia sotto">
         <blockquote>«Stampa il tuo messaggio su qualsiasi supporto fino a spessori di <span class="num">50 mm</span>.»</blockquote>
-        <p class="dati"><span class="stretto">Supporti</span>PVC, policarbonato, tessuti, legno, forex, plexiglass, pvc adesivo. Il plex anche con taglio su misura, su singolo pezzo.<br><a href="pubblicita/stampa-uv/">La stampa UV</a></p>
+        <p class="dati"><span class="etichetta">Su cosa</span>PVC, policarbonato, tessuti, legno, forex, plexiglass, pvc adesivo. Il plex anche con taglio su misura, su singolo pezzo.<br><a href="pubblicita/stampa-uv/">La stampa UV</a></p>
       </div></div>
     </div>
     <div class="pannello" role="tabpanel" id="p-laser" aria-labelledby="s-laser" hidden>
-      <img src="img/tec-laser-1024.jpg" srcset="img/tec-laser-800.jpg 800w, img/tec-laser-1024.jpg 1024w" sizes="100vw" width="1024" height="455" alt="La testa dell'incisore laser di Ciesseci sopra il piano a nido d'ape" loading="lazy">
+      <img src="img/tec-laser-1440.jpg" srcset="img/tec-laser-800.jpg 800w, img/tec-laser-1440.jpg 1440w, img/tec-laser-2400.jpg 2400w" sizes="(max-width:560px) 170vw, 100vw" width="1440" height="720" alt="La testa di un incisore laser che scrive su un listello di legno" loading="lazy">
       <div class="wrap"><div class="griglia sotto">
         <blockquote>«Plexiglas, targhe, portachiavi, ma anche penne, matite in legno, penne per touchscreen, pendrive USB.»</blockquote>
-        <p class="dati"><span class="stretto">Oggetti</span>Targhe, portachiavi e gadget con il tuo marchio.<br><a href="pubblicita/incisioni-laser/">L'incisione laser</a></p>
+        <p class="dati"><span class="etichetta">Su cosa</span>Targhe, portachiavi e gadget con il tuo marchio.<br><a href="pubblicita/incisioni-laser/">L'incisione laser</a></p>
       </div></div>
     </div>
   </div>
@@ -364,20 +380,23 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
 </section>
 
 <section class="sezione abbigliamento" id="abbigliamento" aria-labelledby="t-abb">
-  <div class="foto-dpi">
-    <img src="img/dpi-1000.jpg" srcset="img/dpi-700.jpg 700w, img/dpi-1000.jpg 1000w, img/dpi-1400.jpg 1400w" sizes="(max-width:860px) 100vw, 56vw" width="1000" height="1120" alt="Caschi da cantiere arancioni e gilet ad alta visibilità appesi a una parete bianca" loading="lazy">
-  </div>
-  <div class="testo-abb">
-    <h2 id="t-abb">Centinaia di capi, scarpe e DPI in showroom</h2>
-    <p class="lede-abb">Salopette, giacche da lavoro, camicie, polo, felpe, giubbini, grembiuli; calzature antinfortunistiche e capi per il tempo libero, sia al dettaglio che all'ingrosso.</p>
-    <p class="nota-abb">Su richiesta mettiamo anche il tuo nome e quello dei tuoi dipendenti.</p>
-    <ul class="voci">
-      <li><a href="abbigliamento/abbigliamento-da-lavoro/">Abbigliamento da lavoro</a></li>
-      <li><a href="abbigliamento/calzature-antinfortunistiche/">Calzature antinfortunistiche</a></li>
-      <li><a href="abbigliamento/abbigliamento-tempo-libero/">Tempo libero</a></li>
-      <li><a href="cataloghi/">Cataloghi dei fornitori</a></li>
-    </ul>
-  </div>
+  <div class="wrap"><div class="griglia">
+    <figure class="foto-abb">
+      <img src="img/showroom-544.jpg" srcset="img/showroom-400.jpg 400w, img/showroom-544.jpg 544w" sizes="(max-width:860px) calc(100vw - 64px), 532px" width="544" height="680" alt="Lo showroom di Via Zanella: una giacca verde in primo piano, giacche da lavoro e magliette stampate appese in vetrina" loading="lazy">
+      <figcaption><b>Via Zanella 1.</b> Lo showroom, inaugurato il <span class="num">23 febbraio 2019</span>.</figcaption>
+    </figure>
+    <div class="testo-abb">
+      <h2 id="t-abb">Centinaia di capi, scarpe e DPI in showroom</h2>
+      <p class="lede-abb">Salopette, giacche da lavoro, camicie, polo, felpe, giubbini, grembiuli; calzature antinfortunistiche e capi per il tempo libero, sia al dettaglio che all'ingrosso.</p>
+      <p class="nota-abb">Su richiesta mettiamo anche il tuo nome e quello dei tuoi dipendenti.</p>
+      <ul class="voci">
+        <li><a href="abbigliamento/abbigliamento-da-lavoro/">Abbigliamento da lavoro</a></li>
+        <li><a href="abbigliamento/calzature-antinfortunistiche/">Calzature antinfortunistiche</a></li>
+        <li><a href="abbigliamento/abbigliamento-tempo-libero/">Tempo libero</a></li>
+        <li><a href="cataloghi/">Cataloghi dei fornitori</a></li>
+      </ul>
+    </div>
+  </div></div>
 </section>
 
 <section class="sezione" id="chi-siamo" aria-labelledby="t-chi">
@@ -385,6 +404,10 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
     <h2 id="t-chi" class="sr">Chi siamo</h2>
     <div class="griglia storia">
       <p class="anno" aria-hidden="true">1982</p>
+      <figure class="felpa82">
+        <img src="img/felpa82-900.jpg" srcset="img/felpa82-640.jpg 640w, img/felpa82-900.jpg 900w" sizes="(max-width:560px) calc(100vw - 40px), (max-width:1100px) 40vw, 420px" width="900" height="620" alt="Da vicino, la felpa grigia CSC Factory con il numero 82 stampato in verde fluo" loading="lazy">
+        <figcaption><b>La felpa CSC Factory.</b> Il 1982 stampato come un numero di maglia.</figcaption>
+      </figure>
       <p class="frase">Ciesseci nasce nel 1982 da tre amici, in un piccolo laboratorio casalingo a Rubano.</p>
     </div>
     <div class="griglia date">
@@ -421,8 +444,8 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
     </div>
   </div>
   <figure class="foto">
-    <img src="img/showroom-1024.jpg" srcset="img/showroom-700.jpg 700w, img/showroom-1024.jpg 1024w" sizes="(max-width:860px) 100vw, 56vw" width="1024" height="680" alt="Lo showroom di Via Zanella: giacche, magliette ad alta visibilità e una parete di scarpe antinfortunistiche" loading="lazy">
-    <figcaption class="didascalia-chi"><b>Via Zanella 1.</b> Lo showroom, inaugurato il <span class="num">23 febbraio 2019</span>.</figcaption>
+    <img src="img/sede-1020.jpg" srcset="img/sede-700.jpg 700w, img/sede-1020.jpg 1020w" sizes="(max-width:860px) 100vw, 56vw" width="1020" height="680" alt="La sede di Via Zanella a Mestrino, con l'insegna Servizio grafico, Servizio stampa, Abbigliamento lavoro e tempo libero" loading="lazy">
+    <figcaption class="didascalia-chi"><b>Via Zanella 1, Mestrino.</b> Negozio e showroom dal <span class="num">2019</span>.</figcaption>
   </figure>
 </section>
 </main>
@@ -468,30 +491,33 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
           <li><a href="#contatti">Contatti</a></li>
         </ul>
       </div>
+      <div class="col social">
+        <h3>Seguici</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/ciesseci">Facebook</a></li>
+          <li><a href="https://www.instagram.com/ciessecisrl/">Instagram</a></li>
+          <li><a href="https://www.instagram.com/ricamarty_/">RicaMarty su Instagram</a></li>
+          <li><a href="https://www.facebook.com/people/RicaMarty/61558415187099/">RicaMarty su Facebook</a></li>
+        </ul>
+      </div>
       <div class="lettera">
-        <h3>Novità e promozioni</h3>
-        <p>Una mail quando escono promozioni, cataloghi nuovi e idee per lo shop.</p>
-        <form action="#" method="post" onsubmit="return false">
+        <div class="intro">
+          <h3>Novità e promozioni</h3>
+          <p>Una mail quando escono promozioni, cataloghi nuovi e idee per lo shop.</p>
+        </div>
+        <form action="#" method="post" novalidate>
           <label class="sr" for="email-lettera">La tua email</label>
           <div class="campo">
             <input id="email-lettera" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
             <button type="submit">Iscriviti</button>
           </div>
           <label class="consenso"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="termini-duso-e-informative/informativa-privacy/">informativa privacy</a> e acconsento a ricevere la newsletter.</span></label>
+          <p class="esito" role="status" aria-live="polite"></p>
         </form>
-        <div class="social">
-          <h3>Seguici</h3>
-          <ul>
-            <li><a href="https://www.facebook.com/ciesseci">Facebook</a></li>
-            <li><a href="https://www.instagram.com/ciessecisrl/">Instagram</a></li>
-            <li><a href="https://www.instagram.com/ricamarty_/">RicaMarty su Instagram</a></li>
-            <li><a href="https://www.facebook.com/people/RicaMarty/61558415187099/">RicaMarty su Facebook</a></li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="basso">
-      <p><span>CIESSECI SRL</span><span>Sede legale Via Cavour 8, 35030 Rubano (PD)</span><span class="num">P.IVA e C.F. 03866700283</span><span class="num">REA PD-343821</span><span class="num">Capitale sociale 10.200,00 €</span></p>
+      <p><span>CIESSECI SRL</span> <span>Sede legale Via Cavour 8, 35030 Rubano (PD)</span> <span class="num">P.IVA e C.F. 03866700283</span> <span class="num">REA PD-343821</span> <span class="num">Capitale sociale 10.200,00 €</span></p>
       <nav aria-label="Note legali"><a href="termini-duso-e-informative/informativa-privacy/">Privacy</a><a href="termini-duso-e-informative/cookie-policy/">Cookie</a></nav>
     </div>
   </div>
@@ -520,6 +546,15 @@ h2{font-variation-settings:'wdth' 112;font-weight:560;font-size:clamp(34px,4vw,5
       else if(e.key==='End') j=schede.length-1;
       if(j!==null){ e.preventDefault(); scegli(schede[j],true); }
     });
+  });
+  // Newsletter: modulo dimostrativo, non collegato a un servizio (vedi LEGGIMI). Controlla i campi e lo dice.
+  var f=document.querySelector('.lettera form'), es=f.querySelector('.esito');
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var em=f.elements.email, ok=f.elements.consenso;
+    if(!em.value || !em.checkValidity()){ es.textContent='Scrivi un indirizzo email valido.'; em.focus(); return; }
+    if(!ok.checked){ es.textContent='Per iscriverti serve il consenso all\'informativa privacy.'; ok.focus(); return; }
+    es.textContent='Modulo dimostrativo: non ancora collegato al servizio di invio.';
   });
   var b=document.querySelector('.apri-menu'), m=document.getElementById('menu');
   b.addEventListener('click', function(){
