@@ -1,0 +1,33 @@
+# Lavoro & Salute, versione finale: nota agli screenshot
+
+Pagine in `sito/` (statiche, si aprono con un doppio clic): `index.html`, `lavoro.html`, `salute.html`, più `note-legali.html` collegata dal piede. Foglio di stile unico `sito/stile.css`, caratteri in `sito/font/`, immagini in `sito/img/`. Le pagine si rigenerano con `python3 -I _prova/script/sito_build.py sito`; gli screenshot con `_prova/script/sito_scatti.sh`; i controlli con `node _prova/script/sito_controlli.mjs <cartella sito>`.
+
+## Idea
+
+Il logo di Lavoro & Salute mette LAVORO sopra SALUTE e li separa con un arco arancio sopra un'onda blu, divisi da un nastro bianco. Il sito usa quell'arco, misurato sul PNG del logo da 3368 px (freccia 10,5 % della larghezza, nastro circa 27 px a 1440), come confine tra le due porte. Sulla home la porta Lavoro (campo arancio) sta sopra la porta Salute (campo blu) e la "&" del logo, portata a 110 px, fa da cerniera sul colmo e porta a "Dal 2006 a Limena". Sulle pagine interne l'arco resta e fa da passaggio: in fondo alla fascia arancio di Lavoro si vede l'onda blu con il collegamento a Salute; in cima alla fascia blu di Salute si vedono gli angoli arancio con il collegamento a Lavoro. Il segno regge solo con questo logo.
+
+## Cosa c'è in ogni pagina
+
+- **Home** (`home-1440*.jpg`, `home-390*.jpg`). Testata con logo, interruttore LAVORO | SALUTE, Medici, Dove siamo, orari della segreteria e telefono; dopo le porte compaiono Preventivo e Appuntamento. Prima schermata a 1440: porta Lavoro con titolo, riga, "Chiedi un preventivo", telefono e cinque voci (medico competente, visite ed esami, formazione, sicurezza e documenti, cassette di pronto soccorso), allineate alla stessa colonna dei medici di Salute (x 592); foto del tipografo con le mani sui rulli, non tagliate dall'arco. Porta Salute con titolo, riga, telefono a 40 px, orari, "Richiedi un appuntamento" e i sei medici veri a 121 px, stesso taglio 4:5, fondi uniformati, nome su una riga e specialità come collegamento. A 390: striscia foto alta 140 px sopra LAVORO, cinque voci a tutta larghezza, bottone di Salute dentro gli 844 px, barra fissa Chiama, Preventivo, Appuntamento. Sotto: "Per le aziende, come si comincia" (foto alta quanto la colonna, tre passi con numeri arancio, una sola citazione del D.Lgs 81/2008, art. 41), "Dal 2006 a Limena" (indirizzo, orari, telefono, email, come si prenota, mappa disegnata che apre Google Maps), piede. 267 parole.
+- **Lavoro** (`lavoro-*.jpg`). Fascia arancio con "Medicina del lavoro e sicurezza", "Aziende delle province di Padova e Vicenza, a Limena o in azienda", "Chiedi un preventivo", telefono e ritratto vero del Dott. Lo Savio con didascalia (specialista in medicina del lavoro, elenco nazionale dei medici competenti n. 16735); arco con passaggio a Salute. Cinque servizi con una riga ciascuno, convenzione in una riga, tre passi, preventivo con telefono, orari, email, sede e modulo (azienda, referente, telefono, email, numero di lavoratori, servizio: nessun dato sanitario). Formazione solo con i nomi dei corsi, senza durate. 233 parole.
+- **Salute** (`salute-*.jpg`). Fascia blu con angoli arancio e passaggio a Lavoro: "Visite specialistiche su appuntamento", telefono, orari, bottone, come si prenota (telefono, segreteria, modulo con richiamata), esami del sangue e visita a domicilio; a destra le schede dei sei medici con nome, specializzazione e Ordine (numero dove il sito attuale lo pubblica). Cinque specialità con responsabile, una riga, al massimo cinque prestazioni e "Richiedi un appuntamento" che preseleziona la specialità nel modulo. Modulo di richiesta (nome, telefono, specialità, nessun sintomo), sede e mappa.
+- **Note legali**: dati societari, struttura sanitaria e direttore sanitario, privacy e cookie, solo con fatti noti.
+
+## Caratteri e colori
+
+- Hind 400, 500, 600, ospitato sul sito (OFL): impronta Frutiger, il carattere della segnaletica sanitaria (scelta motivata nel prototipo: Lanserhof, Terveystalo, Pihlajalinna in 02). Una sola famiglia, nessun corsivo. Scala fissa 92 / 56 / 40 / 28 / 20 / 18 / 16 / 15; maiuscolo solo per LAVORO e SALUTE come nel logo e per l'interruttore. Audacia in un punto solo: le due parole delle porte.
+- Arancio #C63F12 per i campi con testo bianco (5,1:1), un gradino sotto l'arancio del logo #E94E1B; blu #214194 del logo (9,3:1). Neutri tinti verso il blu: inchiostro #1B2347, testo #4A5170, filetti #D3D7E3, fascia #F3F4F8. Hover sempre a colore pieno (arancio scuro, blu scuro, tinte chiare), mai opacità; nessuna comparsa allo scorrere.
+
+## Foto
+
+- Vere, dal sito attuale: logo e "&", sei ritratti dei medici (Lo Savio dall'originale Leica Q2). Turco, Di Nino e Greco avevano fondi con poltrone arancio e parete marrone: il fondo è stato separato e sostituito con il neutro #ECEEF3 (`_prova/script/sito_ritratti.py`).
+- Di repertorio, Pexels, licenza "Free" letta sulla pagina il 18/10/2026, segnate [DA SOSTITUIRE con foto della struttura] in `assets/CREDITI.md` e nel LEGGIMI (non sulla pagina): tipografo di Antoni Shkraba (porta Lavoro), falegname di Alax Matias (Per le aziende, servizi).
+- Mappa: dati © OpenStreetMap contributors (ODbL), attribuzione sulla mappa; nessun iframe di Google prima del consenso.
+
+## Controlli fatti
+
+- Screenshot guardati tutti a pezzi (`_prova/sito-scatti/pezzi/`), più 768 e 1024 (`_prova/sito-scatti/tablet/`). Corretti durante il giro: bottone di Salute fuori dalla prima schermata a 1440 e a 390, fasce bianche doppie a 390, nomi dei medici accavallati a 768, collegamento sopra il nastro in Salute a 390 e 768, didascalia del ritratto staccata, sezione "Come si comincia" vuota.
+- `sito_controlli.mjs` a 390, 768, 1024 e 1440 su quattro pagine: nessuno sbordamento orizzontale, nessuna immagine rotta o ingrandita oltre la misura naturale, nessuna ancora o pagina mancante, nessun telefono a capo.
+- `segnali.sh`: home 0 soglie bloccanti e 0 da guardare (foto 36,1 %, H2 a 92, 40 e 16 px, 3 fasce piene). Lavoro e Salute hanno solo la soglia dell'area foto sotto il 35 % (17,9 % e 12,1 %): la soglia è tarata per la home e la struttura non ha ancora foto proprie da mostrare; non ho aggiunto altre foto di repertorio per arrivarci.
+- Nessun U+2014 nelle pagine, nel CSS, negli script e nei .md; nessun segnaposto a vista nelle pagine (zero [DA CONFERMARE] e [DA SOSTITUIRE] nell'HTML).
+- Norme (03): niente superlativi, recensioni, numeri, prezzi, promozioni o "senza attesa"; direttore sanitario nel piede di ogni pagina; solo le specialità con il nome e il titolo del responsabile (L. 175/1992, art. 4); moduli senza campi sanitari; nessun cookie né servizio di terzi.

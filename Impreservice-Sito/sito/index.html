@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impreservice, sistemi di connessione per conci</title>
+<meta name="description" content="Easy Click: due bussole e un perno a scatto per unire e allineare i conci prefabbricati delle gallerie scavate con la fresa. Impreservice, Grisignano di Zocco (VI).">
+<link rel="icon" type="image/png" href="img/logo-simbolo-160.png">
+<link rel="preload" href="fonts/geologica-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Geologica (Monokrom), Google Fonts, SIL Open Font License 1.1: servita dalla pagina */
+@font-face{font-family:"Geologica";src:url(fonts/geologica-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geologica";src:url(fonts/geologica-latin-ext.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root{
+  --carta:#ECEAE5;
+  --carta-luce:#F4F2EE;
+  --carta-2:#E2DFD8;
+  --inchiostro:#14171A;
+  --grigio:#4F5256;
+  --blu:#075A9E;
+  --filo:rgba(20,23,26,.18);
+  --m:64px;
+  --g:24px;
+  --fondo:clamp(40px,6vh,64px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Geologica",system-ui,sans-serif;font-weight:400;font-size:18px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--blu)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.involucro{padding-left:var(--m);padding-right:var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:16px;top:12px;background:var(--carta);padding:8px 12px;z-index:20}
+.vn{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Testata */
+.testata{display:flex;align-items:center;justify-content:space-between;height:88px;position:relative;z-index:5}
+.marchio{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--inchiostro)}
+.marchio img{width:60px;height:auto}
+.marchio span{font-size:21px;font-weight:500;letter-spacing:-.01em}
+.menu{display:flex;gap:36px;font-size:16px}
+.menu a{text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.testata .tel{font-size:16px;font-weight:500;text-decoration:none}
+.apri-menu{display:none;font:inherit}
+
+/* Apertura: Easy Click in sezione tra due conci */
+.apertura{position:relative;padding-bottom:var(--fondo)}
+.apertura-capo{align-items:end;padding-top:clamp(28px,4.2vh,52px)}
+.apertura h1{grid-column:1/9;margin:0;font-weight:300;font-size:clamp(48px,6.5vw,98px);line-height:.94;letter-spacing:-.035em}
+.apertura h1 .riga{display:block}
+.apertura h1 .sotto{display:block;margin-top:.5em;font-size:clamp(22px,2.15vw,31px);line-height:1.2;letter-spacing:-.012em;font-weight:400;color:var(--grigio)}
+.apertura-testo{grid-column:9/13;margin:0 0 .2em;font-size:18px;line-height:1.5;text-wrap:pretty}
+.sezione{--h:clamp(max(240px,17vw),min(31vw,calc(100svh - 492px)),460px);position:relative;height:var(--h);margin:clamp(24px,3.4vh,36px) 0 0;overflow:clip}
+.strato{position:absolute;top:0;height:100%;transition:transform .32s cubic-bezier(.55,0,.2,1)}
+.strato img{height:100%;width:auto;max-width:none}
+.strato.sx{left:calc(50% - 3 * var(--h));z-index:2}
+.strato.dx{left:50%;z-index:1}
+.strato.dx.b{z-index:3}
+.sezione[data-stato="aperto"] .strato.sx{transform:translateX(calc(var(--h) * -.2835))}
+.sezione[data-stato="aperto"] .strato.dx{transform:translateX(calc(var(--h) * .2835))}
+.apertura-piede{display:flex;justify-content:space-between;align-items:center;gap:16px 40px;margin-top:22px}
+.interruttore{display:inline-flex;border:1px solid var(--inchiostro);background:var(--carta);flex:none}
+.interruttore button{font:inherit;font-size:16px;font-weight:500;line-height:1;color:var(--inchiostro);background:transparent;border:0;padding:0 24px;height:48px;cursor:pointer;transition:background-color .12s,color .12s}
+.interruttore button+button{border-left:1px solid var(--inchiostro)}
+.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
+.interruttore button[aria-pressed="false"]:hover{background:var(--carta-2)}
+.didascalia-pezzo{margin:0;max-width:34em;font-size:14px;line-height:20px;color:var(--grigio);text-align:right}
+.didascalia-pezzo b{font-weight:500;color:var(--inchiostro)}
+
+/* Sezioni */
+h2{margin:0;font-weight:300;font-size:clamp(34px,4.3vw,62px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
+.testo-grande{font-size:20px;line-height:1.5;text-wrap:pretty;margin:0}
+.foto{margin:0;position:relative}
+.foto img{width:100%}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio);margin:14px var(--m) 0}
+.didascalia b{font-weight:500;color:var(--inchiostro)}
+
+
+.conci{padding-top:136px}
+.conci-capo{margin-bottom:48px}
+.conci-capo h2{grid-column:1/8}
+.conci-capo p{grid-column:1/6;margin:24px 0 0;font-size:16px;color:var(--grigio);line-height:1.5}
+.conci-piede{margin-top:72px}
+.conci-piede .testo-grande{grid-column:1/6}
+.dati{grid-column:7/13;margin:0;display:grid;grid-template-columns:minmax(120px,176px) 1fr;column-gap:0;font-size:16px;line-height:1.45}
+.dati dt,.dati dd{margin:0;padding:14px 0;border-top:1px solid var(--filo)}
+.dati dt{color:var(--grigio);padding-right:var(--g)}
+.dati dd{font-variant-numeric:tabular-nums lining-nums}
+
+.cantieri{padding-top:168px}
+.cantieri-capo{margin-bottom:48px}
+.cantieri-capo h2{grid-column:1/8}
+.cantieri-capo .testo-grande{grid-column:1/7;margin-top:28px}
+.elenchi{margin-top:64px}
+.elenchi>div{grid-column:span 4}
+.elenchi h3{margin:0 0 10px;font-size:16px;font-weight:500;display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--inchiostro)}
+.elenchi h3 span{font-variant-numeric:tabular-nums;color:var(--grigio);font-weight:400}
+.elenchi ul{list-style:none;margin:0;padding:0;font-size:16px;line-height:1.45}
+.elenchi li{padding:7px 0}
+.elenchi li small{color:var(--grigio);font-size:inherit}
+.tutte{margin:32px 0 0;font-size:16px}
+.tutte a{font-weight:500}
+
+.ponti{margin-top:168px;padding-right:var(--m);align-items:end}
+.ponti-foto{grid-column:1/9;margin:0}
+.ponti-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.ponti-testo{grid-column:10/13;padding-bottom:4px}
+.ponti-testo .testo-grande{margin-top:24px}
+
+/* Chiusura */
+.chiusura{margin-top:168px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-left:var(--m);align-items:start}
+.chiusura-testo{grid-column:1/6;padding-top:4px}
+.chiusura h2{font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.034em}
+.recapiti{margin-top:104px;font-size:17px;line-height:1.6}
+.recapiti .tel-grande{display:inline-block;font-size:36px;font-weight:300;letter-spacing:-.015em;text-decoration:none;margin-bottom:14px;font-variant-numeric:tabular-nums lining-nums}
+.recapiti .tel-grande:hover{color:var(--blu);text-decoration:underline;text-decoration-thickness:1px}
+.recapiti p{margin:0 0 4px}
+.recapiti .indirizzo{color:var(--grigio);font-size:15px;margin-top:18px}
+.recapiti .nota{color:var(--grigio);font-size:15px;margin-top:18px;max-width:26em}
+.chiusura-foto{grid-column:6/13;margin:0}
+.chiusura-foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.chiusura-foto figcaption{font-size:14px;line-height:1.45;color:var(--grigio);margin-top:14px}
+
+/* Piede */
+.piede{margin-top:120px;border-top:1px solid var(--filo);padding-top:72px;padding-bottom:36px;font-size:15px}
+.piede-alto{row-gap:40px}
+.piede-marchio{grid-column:1/5}
+.piede-marchio .marchio img{width:72px}
+.piede-marchio .marchio span{font-size:23px}
+.piede-marchio p{margin:20px 0 0;max-width:22em;color:var(--grigio);line-height:1.5}
+.piede-col{grid-column:span 2}
+.piede-col:first-of-type{grid-column:6/8}
+.piede-col h2{font-size:14px;font-weight:500;letter-spacing:0;line-height:1.3;margin:0 0 16px;color:var(--inchiostro)}
+.piede-col ul{list-style:none;margin:0;padding:0}
+.piede-col li{margin:0 0 9px;line-height:1.4}
+.piede-col a{text-decoration:none;color:var(--grigio)}
+.piede-col a:hover{color:var(--blu);text-decoration:underline}
+.piede-col .yt{display:inline-flex;align-items:center;gap:10px}
+.piede-col .yt svg{width:20px;height:14px;flex:none}
+.fisarmonica{all:unset}
+.piede-basso{margin-top:72px;padding-top:22px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:13px;color:var(--grigio)}
+.piede-basso p{margin:0;display:flex;flex-wrap:wrap;gap:4px 22px}
+.piede-basso nav{display:flex;flex-wrap:wrap;gap:4px 22px}
+.piede-basso a{color:var(--grigio)}
+.piede-basso a:hover{color:var(--blu)}
+
+@media (prefers-reduced-motion:reduce){.strato{transition:none}}
+
+/* 1920 */
+@media (min-width:1700px){
+  :root{--m:max(64px,calc((100vw - 1600px)/2))}
+}
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px}
+  .menu{gap:24px}
+  .apertura h1{grid-column:1/8}
+  .apertura-testo{grid-column:8/13;font-size:17px}
+  .conci-capo h2{grid-column:1/-1}
+  .conci-piede .testo-grande{grid-column:1/-1}
+  .dati{grid-column:1/-1;margin-top:40px}
+  .chiusura-testo{grid-column:1/7}
+  .chiusura-foto{grid-column:7/13}
+  .ponti-foto{grid-column:1/8}
+  .ponti-testo{grid-column:8/13}
+  .piede-marchio{grid-column:1/-1}
+  .piede-col,.piede-col:first-of-type{grid-column:span 3}
+}
+/* 768 e telefono: il pezzo va sotto il titolo */
+@media (max-width:860px){
+  :root{--m:32px}
+  .menu{display:none}
+  .apri-menu{display:inline-flex;align-items:center;font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);background:none;border:1px solid var(--inchiostro);padding:0 18px;height:44px;cursor:pointer}
+  .testata .tel{display:none}
+  .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:72px;background:var(--carta);padding:8px var(--m) 24px;z-index:10;border-bottom:1px solid var(--filo);font-size:20px}
+  .menu.aperto a{padding:12px 0}
+  .testata{height:72px}
+  .apertura h1,.apertura-testo{grid-column:1/-1}
+  .apertura-testo{margin-top:24px;max-width:34em}
+  .sezione{--h:min(44vw,360px)}
+  .apertura-piede{flex-direction:column;align-items:flex-start}
+  .didascalia-pezzo{text-align:left}
+  .conci{padding-top:112px}
+  .conci-capo p{grid-column:1/-1}
+  .cantieri-capo h2,.cantieri-capo .testo-grande{grid-column:1/-1}
+  .ponti{padding-right:0;row-gap:36px}
+  .ponti-foto,.ponti-testo{grid-column:1/-1}
+  .ponti-testo{padding:0 var(--m)}
+  .ponti-testo .testo-grande{margin-top:20px}
+  .elenchi>div{grid-column:span 6}
+  .elenchi>div:last-child{grid-column:1/-1;margin-top:40px}
+  .chiusura{padding-left:0;row-gap:48px}
+  .chiusura-testo{grid-column:1/-1;padding:0 var(--m)}
+  .recapiti{margin-top:48px}
+  .chiusura-foto{grid-column:1/-1}
+  .chiusura-foto figcaption{margin-left:var(--m);margin-right:var(--m)}
+  .piede{margin-top:96px}
+  .piede-col,.piede-col:first-of-type{grid-column:span 6}
+}
+/* 390 */
+@media (max-width:560px){
+  :root{--m:20px;--g:16px}
+  body{font-size:17px}
+  .marchio img{width:48px}
+  .marchio span{font-size:19px}
+  .apertura-capo{padding-top:24px}
+  .apertura h1{font-size:clamp(40px,12.4vw,56px);line-height:.98;letter-spacing:-.03em}
+  .apertura h1 .sotto{font-size:21px;margin-top:.55em}
+  .apertura-testo{font-size:17px;margin-top:20px}
+  .sezione{--h:49vw;margin-top:28px}
+  .apertura-piede{margin-top:20px;gap:16px;align-items:stretch}
+  .interruttore{display:flex}
+  .interruttore button{flex:1}
+  .didascalia-pezzo{font-size:13px;line-height:19px;max-width:none}
+  .conci{padding-top:96px}
+  h2{font-size:clamp(32px,9vw,38px)}
+  .testo-grande{font-size:18px}
+  .conci-capo{margin-bottom:32px}
+  .conci-piede{margin-top:40px}
+  .dati{grid-template-columns:1fr}
+  .dati dt{padding-bottom:0}
+  .dati dd{border-top:0;padding-top:4px}
+  .cantieri{padding-top:104px}
+  .ponti{margin-top:104px}
+  .elenchi{margin-top:40px}
+  .elenchi>div,.elenchi>div:last-child{grid-column:1/-1;margin-top:0}
+  .elenchi>div:not(:first-child){margin-top:36px}
+  .chiusura{margin-top:104px}
+  .chiusura h2{font-size:40px}
+  .recapiti .tel-grande{font-size:31px}
+  .piede{margin-top:80px;padding-top:48px}
+  .piede-alto{row-gap:0}
+  .piede-marchio{margin-bottom:28px}
+  .piede-col,.piede-col:first-of-type{grid-column:1/-1;border-top:1px solid var(--filo)}
+  .piede-col h2{margin:0}
+  .fisarmonica{display:flex;justify-content:space-between;align-items:center;width:100%;padding:14px 0;cursor:pointer;font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);min-height:48px;box-sizing:border-box}
+  .fisarmonica::after{content:"+";font-weight:300;font-size:22px;line-height:1}
+  .fisarmonica[aria-expanded="true"]::after{content:"\2212"}
+  .piede-col ul{display:none;padding-bottom:18px}
+  .piede-col.aperta ul{display:block}
+  .piede-col li{margin-bottom:12px}
+  .piede-basso{margin-top:32px;flex-direction:column}
+  .piede-basso p{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<header class="testata involucro">
+  <a class="marchio" href="#" aria-label="Impreservice, inizio pagina"><img src="img/logo-simbolo-160.png" srcset="img/logo-simbolo-160.png 2x, img/logo-simbolo-240.png 3x" width="60" height="22" alt=""><span>Impreservice</span></a>
+  <nav class="menu" id="menu" aria-label="Menu principale">
+    <a href="#easy-click">Easy Click</a>
+    <a href="#ponti">Ponti e viadotti</a>
+    <a href="#referenze">Referenze</a>
+    <a href="azienda.html">Azienda</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel num" href="tel:+3904441939838">+39&nbsp;0444&nbsp;1939838</a>
+  <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main id="contenuto">
+  <section class="apertura" id="easy-click" aria-labelledby="titolo">
+    <div class="apertura-capo griglia involucro">
+      <h1 id="titolo"><span class="riga">Sistemi di</span> <span class="riga">connessione</span> <span class="sotto">per conci di galleria</span></h1>
+      <p class="apertura-testo">Easy Click unisce e allinea i conci prefabbricati delle gallerie scavate con la fresa: due bussole, una per concio, e un perno che le aggancia a&nbsp;scatto.</p>
+    </div>
+
+    <figure class="sezione" id="pezzo" data-stato="aperto" aria-describedby="stato">
+      <div class="strato dx"><img src="img/sez-dx-1x.webp" srcset="img/sez-dx-1x.webp 1320w, img/sez-dx-2x.webp 2640w" sizes="(max-width:560px) 160vw, (max-width:860px) 132vw, 1380px" width="1320" height="440" alt=""></div>
+      <div class="strato sx"><img src="img/sez-sx-1x.webp" srcset="img/sez-sx-1x.webp 1593w, img/sez-sx-2x.webp 3186w" sizes="(max-width:560px) 190vw, (max-width:860px) 160vw, 1660px" width="1593" height="440" alt="Easy Click Smart in sezione tra due conci di calcestruzzo: le due bussole annegate nei conci e il perno nero che le unisce attraverso il giunto"></div>
+      <div class="strato dx b"><img src="img/sez-dx-b-1x.webp" srcset="img/sez-dx-b-1x.webp 1320w, img/sez-dx-b-2x.webp 2640w" sizes="(max-width:560px) 160vw, (max-width:860px) 132vw, 1380px" width="1320" height="440" alt=""></div>
+      <figcaption class="vn" id="stato" aria-live="polite">Giunto aperto: il perno sporge dal concio di sinistra, il concio di destra è staccato.</figcaption>
+    </figure>
+
+    <div class="apertura-piede involucro">
+      <div class="interruttore" role="group" aria-label="Giunto tra i due conci">
+        <button type="button" data-mostra="aperto" aria-pressed="true">Aperto</button>
+        <button type="button" data-mostra="agganciato" aria-pressed="false">Agganciato</button>
+      </div>
+      <p class="didascalia-pezzo"><b>Easy Click Smart</b> in sezione tra due conci, ricostruito dai disegni tecnici Impreservice. Brevetto IT&nbsp;1391815.</p>
+    </div>
+  </section>
+
+  <section class="conci" aria-labelledby="t-conci">
+    <div class="conci-capo griglia involucro">
+      <h2 id="t-conci">Entra senza fatica, tiene serrato e&nbsp;allineato</h2>
+      <p>Le bussole stanno nei conci, il perno unisce un concio al vicino quando l'anello si chiude.</p>
+    </div>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:560px)" srcset="img/galleria-tel-700.webp 700w, img/galleria-tel-1000.webp 1000w" sizes="100vw" width="1000" height="1300">
+        <img src="img/galleria-1800.webp" srcset="img/galleria-1200.webp 1200w, img/galleria-1800.webp 1800w, img/galleria-2400.webp 2400w" sizes="100vw" width="2400" height="1143" loading="lazy" alt="Galleria di metropolitana rivestita con anelli di conci in calcestruzzo, i binari in prospettiva">
+      </picture>
+    </figure>
+    <p class="didascalia"><b>Galleria rivestita</b> con anelli di conci prefabbricati. Le linee sottili sono i giunti.</p>
+    <div class="conci-piede griglia involucro">
+      <p class="testo-grande">Il perno si inserisce con poco sforzo e tiene il concio serrato e allineato a quello accanto. Il rivestimento in materiale composito dura a lungo e resiste alla corrosione e all'abrasione.</p>
+      <dl class="dati">
+        <dt>Versioni</dt><dd>Smart, Medium, Magnum</dd>
+        <dt>Smart HD</dt><dd>taglio fino a 480&nbsp;kN</dd>
+        <dt>Hybrid</dt><dd>boccola L140 passo 5&nbsp;mm da un lato, scatto dall'altro</dd>
+        <dt>Brevetto</dt><dd>IT&nbsp;1391815, depositato il 29&nbsp;ottobre 2008</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="cantieri" id="referenze" aria-labelledby="t-cantieri">
+    <div class="cantieri-capo griglia involucro">
+      <h2 id="t-cantieri">Dal Brennero a&nbsp;Brisbane</h2>
+      <p class="testo-grande">Metropolitane, gallerie ferroviarie e stradali, condotte d'acqua: Easy Click è nei conci di 42&nbsp;cantieri, dalla galleria di base del Brennero alla Legacy Way di Brisbane.</p>
+    </div>
+    <div class="involucro">
+      <div class="elenchi griglia">
+        <div>
+          <h3>Italia <span>24</span></h3>
+          <ul>
+            <li>BBT lato Italia <small>Mules, Bolzano</small></li>
+            <li>Metro blu <small>Milano</small></li>
+            <li>Metro linea 1 <small>Napoli</small></li>
+            <li>Nodo di Firenze</li>
+            <li>Galleria del Catajo <small>Padova</small></li>
+            <li>Gran San Bernardo <small>Aosta</small></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Europa <span>8</span></h3>
+          <ul>
+            <li>Metro <small>Copenaghen</small></li>
+            <li>HS2 <small>Inghilterra</small></li>
+            <li>Gran Metro <small>Varsavia</small></li>
+            <li>Metro linea 5 <small>Bucarest</small></li>
+            <li>S19 Tunel <small>Polonia</small></li>
+            <li>Condotta SM-BAM <small>Belgio</small></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Mondo <span>10</span></h3>
+          <ul>
+            <li>Legacy Way <small>Brisbane</small></li>
+            <li>Tsuen Drainage <small>Hong Kong</small></li>
+            <li>El Alto Tunnel <small>Panama</small></li>
+            <li>Beni Haroun <small>Algeria</small></li>
+            <li>Tunnel Rio Lomas <small>Buenos Aires</small></li>
+            <li>Metro CPB J Holland <small>Sydney</small></li>
+          </ul>
+        </div>
+      </div>
+      <p class="tutte"><a href="referenze.html">Tutti i 42 cantieri</a></p>
+    </div>
+  </section>
+
+  <section class="ponti griglia" id="ponti" aria-labelledby="t-ponti">
+    <figure class="ponti-foto">
+      <img src="img/viadotto-1200.webp" srcset="img/viadotto-800.webp 800w, img/viadotto-1200.webp 1200w, img/viadotto-1600.webp 1600w" sizes="(max-width:860px) 100vw, 66vw" width="1600" height="1067" loading="lazy" alt="Intradosso di due viadotti gemelli in calcestruzzo, con le pile in fila">
+    </figure>
+    <div class="ponti-testo">
+      <h2 id="t-ponti">Giunti per ponti e&nbsp;viadotti</h2>
+      <p class="testo-grande">Fuori dalla galleria, gli impalcati: ricerca, produzione e posa dei giunti Sapjoint, con la membrana impermeabilizzante Sapeflex.</p>
+      <p class="tutte"><a href="ponti-e-viadotti.html">La linea ponti</a></p>
+    </div>
+  </section>
+
+  <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+    <div class="chiusura-testo">
+      <h2 id="t-contatti">Conci attrezzati con tecnologia Easy&nbsp;Click</h2>
+      <div class="recapiti">
+        <a class="tel-grande" href="tel:+3904441939838">+39&nbsp;0444&nbsp;1939838</a>
+        <p><a href="mailto:info@impreservicesrl.it">info@impreservicesrl.it</a></p>
+        <p><a href="mailto:carlo@impreservicesrl.it">carlo@impreservicesrl.it</a></p>
+        <p class="indirizzo">Via Serenissima 8/b, 36040 Grisignano di Zocco&nbsp;(VI)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Serenissima+8b+36040+Grisignano+di+Zocco+VI">Apri la mappa</a></p>
+        <p class="nota">Consegne in tutto il mondo, con tempi secondo quantità. Per i costi, scriveteci.</p>
+      </div>
+    </div>
+    <figure class="chiusura-foto">
+      <img src="img/scudo-1200.webp" srcset="img/scudo-800.webp 800w, img/scudo-1200.webp 1200w, img/scudo-1600.webp 1600w" sizes="(max-width:860px) 100vw, 58vw" width="1600" height="1200" loading="lazy" alt="Lo scudo ad anello di una fresa appoggiato sulla culla di montaggio, con due operai al lavoro">
+      <figcaption>Scudo di una fresa sulla culla di montaggio.</figcaption>
+    </figure>
+  </section>
+</main>
+
+<footer class="piede involucro" id="piede">
+  <div class="piede-alto griglia">
+    <div class="piede-marchio">
+      <a class="marchio" href="#" aria-label="Impreservice, inizio pagina"><img src="img/logo-simbolo-160.png" srcset="img/logo-simbolo-160.png 2x, img/logo-simbolo-240.png 3x" width="72" height="27" alt=""><span>Impreservice</span></a>
+      <p>Siamo in ventidue, a Grisignano di Zocco, sulla Serenissima tra Padova e Vicenza.</p>
+    </div>
+    <div class="piede-col">
+      <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Prodotti</button></h2>
+      <ul>
+        <li><a href="easy-click.html#smart">Easy Click Smart</a></li>
+        <li><a href="easy-click.html#medium">Easy Click Medium</a></li>
+        <li><a href="easy-click.html#magnum">Easy Click Magnum</a></li>
+        <li><a href="easy-click.html#smart-hd-hybrid">Smart HD e Hybrid</a></li>
+        <li><a href="ponti-e-viadotti.html">Giunti per ponti e viadotti</a></li>
+      </ul>
+    </div>
+    <div class="piede-col">
+      <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Azienda</button></h2>
+      <ul>
+        <li><a href="azienda.html">Azienda e brevetti</a></li>
+        <li><a href="referenze.html">Referenze</a></li>
+        <li><a href="notizie.html">Fiere e notizie</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+      </ul>
+    </div>
+    <div class="piede-col">
+      <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Contatti</button></h2>
+      <ul>
+        <li><a class="num" href="tel:+3904441939838">+39&nbsp;0444&nbsp;1939838</a></li>
+        <li><a href="mailto:info@impreservicesrl.it">info@impreservicesrl.it</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Serenissima+8b+36040+Grisignano+di+Zocco+VI">Via Serenissima 8/b<br>Grisignano di Zocco (VI)</a></li>
+      </ul>
+    </div>
+    <div class="piede-col">
+      <h2><button class="fisarmonica" type="button" aria-expanded="false" tabindex="-1">Seguici</button></h2>
+      <ul>
+        <li><a class="yt" href="https://www.youtube.com/@Impreservicesrl" rel="noopener"><svg viewBox="0 0 20 14" aria-hidden="true"><rect x=".75" y=".75" width="18.5" height="12.5" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.2v5.6l4.8-2.8z" fill="currentColor"/></svg>YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="piede-basso">
+    <p><span>Impreservice S.r.l.</span><span class="num">P.IVA e C.F. 03495060281</span><span class="num">REA VI 403908</span><span class="num">Capitale sociale 10.000&nbsp;€</span></p>
+    <nav aria-label="Note legali"><a href="https://segnalazioni.impreservicesrl.it" rel="noopener">Segnalazioni D.Lgs. 24/2023</a><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pezzo=document.getElementById('pezzo'), stato=document.getElementById('stato');
+  var bottoni=document.querySelectorAll('[data-mostra]');
+  var testi={aperto:'Giunto aperto: il perno sporge dal concio di sinistra, il concio di destra è staccato.',agganciato:'Giunto chiuso: i due conci sono a contatto e il perno è agganciato nelle due bussole.'};
+  bottoni.forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-mostra');
+      if(v===pezzo.getAttribute('data-stato')) return;
+      pezzo.setAttribute('data-stato',v);
+      bottoni.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      stato.textContent=testi[v];
+    });
+  });
+  var am=document.querySelector('.apri-menu'), menu=document.getElementById('menu');
+  am.addEventListener('click',function(){var o=menu.classList.toggle('aperto');am.setAttribute('aria-expanded',o?'true':'false');am.textContent=o?'Chiudi':'Menu';});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'&&menu.classList.contains('aperto')){menu.classList.remove('aperto');am.setAttribute('aria-expanded','false');am.textContent='Menu';}});
+  var mq=window.matchMedia('(max-width:560px)');
+  function fis(){document.querySelectorAll('.fisarmonica').forEach(function(b){b.tabIndex=mq.matches?0:-1;});}
+  fis(); if(mq.addEventListener) mq.addEventListener('change',fis);
+  document.querySelectorAll('.fisarmonica').forEach(function(b){
+    b.addEventListener('click',function(){if(!mq.matches)return;var c=b.closest('.piede-col');var o=c.classList.toggle('aperta');b.setAttribute('aria-expanded',o?'true':'false');});
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeta S.r.l. · Articoli su misura in PVC elettrosaldato, Padova</title>
+<meta name="description" content="Zeta S.r.l. produce articoli su misura in PVC elettrosaldato, polipropilene, plastica riciclata e compostabile: raccoglitori ad anelli, buste, cartelle, copertine, album. Padova.">
+<link rel="preload" href="fonts/GeneralSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Switzer-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"General Sans";src:url(fonts/GeneralSans-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Switzer";src:url(fonts/Switzer-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Switzer";src:url(fonts/Switzer-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+
+:root{
+  --carta:#F7F6F2;
+  --lastra:#EDEBE5;
+  --piede:#EFEDE7;
+  --inchiostro:#14201A;
+  --verde:#0A6B42;
+  --verde-scuro:#07552F;
+  --nota:#4E5550;
+  --filo:rgba(20,32,26,.16);
+  --m:64px;
+  --g:24px;
+  --titoli:"General Sans",system-ui,sans-serif;
+  --testo:"Switzer",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font:400 18px/1.55 var(--testo);font-kerning:normal;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--titoli);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.salta{position:absolute;left:-999px;top:8px;background:var(--inchiostro);color:var(--carta);padding:8px 14px;z-index:10}
+.salta:focus{left:8px}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;gap:48px;padding:26px var(--m) 0}
+.testata .logo img{width:104px}
+.testata nav{display:flex;gap:32px;margin-left:auto}
+.testata nav a,.testata .tel{font:500 16px/1 var(--testo);text-decoration:none}
+.testata nav a:hover,.testata .tel:hover{color:var(--verde)}
+.testata .tel{padding-left:32px;border-left:1px solid var(--filo);line-height:28px}
+.menu-btn{display:none;appearance:none;background:none;border:1px solid var(--filo);color:var(--inchiostro);font:500 15px/1 var(--testo);padding:11px 14px;cursor:pointer}
+.menu-btn:hover{border-color:var(--inchiostro)}
+
+/* apertura: titolo su una riga a tutta larghezza, il pezzo sotto che esce a destra e dal fondo */
+.eroe{position:relative;height:100vh;min-height:760px;max-height:1240px;overflow:hidden;
+  background:radial-gradient(46% 44% at 70% 56%,#FDFCFA 0%,rgba(253,252,250,0) 100%) var(--carta)}
+.eroe{--t:min(calc((100vw - 2*var(--m)) / 12.2),150px)}
+.eroe h1{position:absolute;z-index:2;left:var(--m);top:116px;white-space:nowrap;font-size:var(--t);line-height:1;letter-spacing:-.04em}
+.pezzo{position:absolute;left:39%;top:calc(262px + var(--t));width:86vw;margin:0}
+.pezzo img{width:100%}
+.leg{position:absolute;left:var(--x);top:var(--y);width:0;height:0;font:400 15px/1.4 var(--testo)}
+.leg i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px rgba(247,246,242,.9)}
+.leg .linea{position:absolute;left:0;bottom:0;width:1px;height:var(--h);background:var(--inchiostro)}
+.leg .t{position:absolute;left:-1px;bottom:calc(var(--h) + 10px);white-space:nowrap}
+.leg .t span{display:block;color:var(--nota);font-size:14px}
+.eroe .sotto{position:absolute;left:var(--m);bottom:72px;width:384px}
+.eroe .sotto p{font-size:19px;line-height:1.55}
+.azioni{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--verde);color:#fff;font:500 16px/1 var(--testo);padding:17px 24px;text-decoration:none}
+.btn:hover{background:var(--verde-scuro)}
+.azioni .tel2{font:500 16px/1 var(--testo);text-underline-offset:4px}
+.azioni .tel2:hover{color:var(--verde)}
+.didascalia{font:400 14px/1.45 var(--testo);color:var(--nota)}
+
+/* sezioni */
+.sez{padding:180px var(--m) 0}
+.sez h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
+.intro{font-size:21px;line-height:1.5;max-width:34em;margin-top:28px}
+
+/* prodotti */
+.prodotti{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.prodotti .testa{grid-column:1 / span 7}
+.elenco{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);column-gap:var(--g);row-gap:64px;margin-top:88px}
+.voce{border-top:1px solid var(--filo);padding-top:22px}
+.voce h3{font-size:26px;line-height:1.15;letter-spacing:-.012em}
+.voce p{font-size:16px;line-height:1.55;color:var(--nota);margin-top:12px;max-width:25em}
+.perchi{grid-column:1 / span 8;margin-top:88px;font-size:18px}
+.perchi a{text-underline-offset:4px}
+.perchi a:hover{color:var(--verde)}
+
+/* materiali: il gesto */
+.materiali{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding-left:0;align-items:start}
+.materiali figure{grid-column:1 / span 7;margin:0}
+.materiali figure img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--lastra)}
+.materiali figcaption{padding:12px 0 0 var(--m)}
+.mat-testo{grid-column:9 / span 4;padding-top:8px}
+.mat-testo h2{font-size:56px}
+.schede{display:flex;margin-top:44px;border-bottom:1px solid var(--filo)}
+.schede button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin:0 28px -1px 0;padding:12px 2px 14px;font:500 20px/1 var(--titoli);color:var(--nota);cursor:pointer}
+.schede button:hover{color:var(--inchiostro)}
+.schede button[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--verde)}
+.pannello{padding-top:28px;min-height:150px}
+.pannello h3{font-size:30px;letter-spacing:-.015em}
+.pannello p{margin-top:12px;font-size:18px;max-width:28em}
+.sost{margin-top:40px;padding-top:24px;border-top:1px solid var(--filo)}
+.sost h3{font:500 18px/1.3 var(--testo)}
+.sost p{margin-top:8px;font-size:16px;line-height:1.6;color:var(--nota)}
+
+/* storia */
+.storia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding-right:0;align-items:start}
+.storia .testa{grid-column:1 / span 5}
+.date{list-style:none;margin:56px 0 0;padding:0}
+.date li{display:grid;grid-template-columns:96px 1fr;gap:var(--g);padding:20px 0;border-top:1px solid var(--filo)}
+.date .anno{font:500 30px/1.05 var(--testo);letter-spacing:-.01em;color:var(--verde)}
+.date p{font-size:17px;line-height:1.5}
+.storia figure{grid-column:6 / -1;margin:8px 0 0 56px}
+.storia figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.storia figcaption{padding-top:12px}
+
+/* chiusura: testo a sinistra, foto a destra fino al bordo */
+.chiusura{display:grid;grid-template-columns:minmax(0,1fr) min(54vw,800px);column-gap:80px;align-items:end;padding:224px 0 0 var(--m)}
+.chiusura h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
+.chiusura .invito{font-size:18px;max-width:26em;margin-top:28px}
+.recapiti{margin-top:36px;font-size:17px;line-height:1.75}
+.recapiti a{text-underline-offset:4px;text-decoration-thickness:1px}
+.recapiti a:hover{color:var(--verde)}
+.recapiti .grande{display:inline-block;font:500 44px/1.1 var(--testo);letter-spacing:-.02em;text-decoration:none;margin-bottom:12px}
+.recapiti .orari{color:var(--nota)}
+.chiusura figure{margin:0}
+.chiusura figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.chiusura figcaption{padding:12px var(--m) 0 0}
+
+/* piede */
+.piede{margin-top:176px;background:var(--piede);padding:80px var(--m) 32px}
+.piede .alto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:48px}
+.piede .marchio{grid-column:1 / span 3}
+.piede .marchio img{width:132px}
+.piede .marchio p{margin-top:24px;font-size:16px;line-height:1.55;color:var(--nota);max-width:22em}
+.piede .colonna{grid-column:span 2}
+.piede .colonna.larga{grid-column:span 3}
+.piede h2{font:500 13px/1.2 var(--testo);letter-spacing:.08em;text-transform:uppercase;color:var(--nota);margin-bottom:18px}
+.piede ul{list-style:none;margin:0;padding:0}
+.piede li{font-size:16px;line-height:1.5;margin-bottom:9px}
+.piede li a{text-decoration:none}
+.piede li a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:4px}
+.piede li a[aria-current]{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--verde)}
+.piede .lingue{margin-top:28px}
+.piede .basso{margin-top:72px;padding-top:24px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;line-height:1.5;color:var(--nota)}
+.piede .basso a{color:var(--inchiostro);text-underline-offset:3px}
+.piede .basso a:hover{color:var(--verde)}
+.piede .basso .dx{margin-left:auto;display:flex;gap:24px}
+
+/* 1024 */
+@media (max-width:1200px){
+  :root{--m:48px}
+  .eroe{min-height:700px}
+  .pezzo{left:35%;width:94vw}
+  .eroe .sotto{width:340px;bottom:56px}
+  .eroe .sotto p{font-size:18px}
+  .elenco{grid-template-columns:repeat(2,1fr)}
+  .mat-testo{grid-column:8 / span 5}
+  .mat-testo h2{font-size:48px}
+  .storia .testa{grid-column:1 / span 6}
+  .storia figure{grid-column:7 / -1;margin-left:32px}
+  .sez h2{font-size:54px}
+  .chiusura h2{font-size:48px}
+  .chiusura{column-gap:56px}
+  .piede .marchio{grid-column:1 / -1}
+  .piede .colonna,.piede .colonna.larga{grid-column:span 3}
+}
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px}
+  .testata{flex-wrap:wrap}
+  .testata nav{display:none;order:4;flex-basis:100%;flex-direction:column;gap:0;margin:16px 0 0;border-top:1px solid var(--filo)}
+  .testata.aperta{background:var(--carta);padding-bottom:12px}
+  .testata.aperta nav{display:flex}
+  .testata nav a{font-size:20px;padding:16px 0;border-bottom:1px solid var(--filo)}
+  .testata .tel{margin-left:auto}
+  .menu-btn{display:block}
+  .eroe{height:auto;max-height:none;min-height:0;padding:132px var(--m) 64px;background:var(--carta)}
+  .eroe h1{position:static;white-space:normal;font-size:84px;line-height:.98}
+  .pezzo{position:relative;left:auto;top:auto;bottom:auto;width:calc(100% + var(--m) + 64px);max-width:none;margin:36px calc(-1*var(--m) - 64px) 0 0}
+  .leg{position:static;width:auto;height:auto;margin:8px 0 0;max-width:calc(100vw - 2*var(--m))}
+  .leg i,.leg .linea{display:none}
+  .leg .t{position:static;white-space:normal}
+  .eroe .sotto{position:static;width:auto;max-width:34em;margin-top:28px}
+  .prodotti .testa,.perchi{grid-column:1 / -1}
+  .materiali figure{grid-column:1 / -1}
+  .mat-testo{grid-column:1 / -1;padding:40px var(--m) 0}
+  .storia{padding-right:var(--m)}
+  .storia .testa,.storia figure{grid-column:1 / -1}
+  .storia figure{margin:48px 0 0}
+  .chiusura{grid-template-columns:1fr;padding-right:var(--m)}
+  .chiusura figure{margin:56px calc(-1*var(--m)) 0 0}
+  .piede .colonna,.piede .colonna.larga{grid-column:span 6}
+}
+/* telefono */
+@media (max-width:600px){
+  :root{--m:20px;--g:16px}
+  body{font-size:17px}
+  .testata{padding-top:18px;gap:16px}
+  .testata .logo img{width:80px}
+  .testata .tel{border:0;padding-left:0;font-size:15px}
+  .eroe{padding-top:100px;padding-bottom:48px}
+  .eroe h1{font-size:clamp(40px,13.6vw,54px);line-height:.98;letter-spacing:-.038em}
+  .pezzo{margin-top:22px;width:calc(100% + var(--m) + 150px);margin-right:calc(-1*var(--m) - 150px)}
+  .leg .t{font-size:14px}
+  .eroe .sotto{margin-top:20px}
+  .eroe .sotto p{font-size:17px;line-height:1.5}
+  .azioni{margin-top:20px;gap:20px}
+  .sez{padding-top:96px}
+  .sez h2,.chiusura h2{font-size:38px;line-height:1.06}
+  .intro{font-size:18px}
+  .elenco{grid-template-columns:1fr;row-gap:32px;margin-top:48px}
+  .voce h3{font-size:23px}
+  .perchi{margin-top:48px;font-size:17px}
+  .schede{margin-top:28px}
+  .schede button{font-size:18px;margin-right:20px}
+  .pannello{min-height:0}
+  .pannello h3{font-size:26px}
+  .date li{grid-template-columns:64px 1fr;gap:16px}
+  .date .anno{font-size:24px}
+  .chiusura{padding-top:112px}
+  .recapiti .grande{font-size:36px}
+  .chiusura figure{margin-top:44px}
+  .piede{margin-top:96px;padding-top:56px}
+  .piede .alto{row-gap:36px}
+  .piede .colonna{grid-column:span 6}
+  .piede .colonna.larga{grid-column:1 / -1}
+  .piede .basso{margin-top:48px}
+  .piede .basso .dx{margin-left:0}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <a class="logo" href="/" aria-label="Zeta S.r.l., pagina iniziale"><img src="img/logo-zeta-300.webp" srcset="img/logo-zeta-300.webp 300w, img/logo-zeta-600.webp 600w" sizes="104px" width="300" height="145" alt="Zeta s.r.l."></a>
+  <nav id="menu" aria-label="Menu principale">
+    <a href="#prodotti">Prodotti</a>
+    <a href="#materiali">Materiali</a>
+    <a href="#storia">Storia</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel num" href="tel:+39049774299">049 774299</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main id="contenuto">
+<section class="eroe" aria-labelledby="titolo">
+  <h1 id="titolo">Diamo forma alle vostre idee</h1>
+
+  <figure class="pezzo">
+    <img src="img/raccoglitore-blu-1800.webp"
+         srcset="img/raccoglitore-blu-800.webp 800w, img/raccoglitore-blu-1200.webp 1200w, img/raccoglitore-blu-1800.webp 1800w, img/raccoglitore-blu-2600.webp 2600w"
+         sizes="(max-width:600px) calc(100vw + 150px), (max-width:900px) calc(100vw + 64px), 86vw" width="2600" height="1343" fetchpriority="high"
+         alt="Raccoglitore campionario in PVC blu goffrato, posato quasi di piatto: in primo piano il bordo saldato della copertina.">
+    <figcaption class="leg" style="--x:28.5%;--y:5.2%;--h:64px"><i></i><span class="linea"></span><span class="t">Bordo saldato ad alta frequenza<span>Raccoglitore campionario in PVC goffrato</span></span></figcaption>
+  </figure>
+
+  <div class="sotto">
+    <p>Raccoglitori, buste, cartelle, copertine e album su misura, in PVC elettrosaldato, polipropilene, plastica riciclata e compostabile. A Padova, in viale della Navigazione Interna.</p>
+    <div class="azioni">
+      <a class="btn" href="mailto:info@zetaitaly.com?subject=Richiesta%20di%20preventivo">Chiedete un preventivo</a>
+      <a class="tel2 num" href="tel:+39049774299">049 774299</a>
+    </div>
+  </div>
+</section>
+
+<section class="sez prodotti" id="prodotti" aria-labelledby="t-prodotti">
+  <div class="testa">
+    <h2 id="t-prodotti">Su misura, dal raccoglitore alla busta</h2>
+    <p class="intro">Ogni articolo nasce dalle vostre misure. Se avete già un originale basta mandarci il campione, che vi rendiamo.</p>
+  </div>
+  <div class="elenco">
+    <div class="voce">
+      <h3>Raccoglitori ad anelli</h3>
+      <p>Di qualsiasi formato. Lisci, a buccia d'arancia o similpelle, con stampa a caldo, serigrafica o in quadricromia.</p>
+    </div>
+    <div class="voce">
+      <h3>Buste e tasche</h3>
+      <p>Trasparenti o adesive. I nostri robot sigillano nelle buste i cartoncini delle tipografie.</p>
+    </div>
+    <div class="voce">
+      <h3>Cartelle con molla</h3>
+      <p class="num">Molla in acciaio o in plastica, a scomparsa nel dorso; capienza di 3 o 6&nbsp;mm.</p>
+    </div>
+    <div class="voce">
+      <h3>Copertine e sovraccoperte</h3>
+      <p>Per libri, dizionari e agende, da proteggere senza nasconderli.</p>
+    </div>
+    <div class="voce">
+      <h3>Album e albumini fotografici</h3>
+      <p class="num">Copertina in cartoncino da 200&nbsp;g/m² saldata alle buste in polipropilene, senza rivetti né spilli.</p>
+    </div>
+    <div class="voce">
+      <h3>Custodie per dischi in vinile</h3>
+      <p class="num">In PVC opaco o cristal, negli spessori da 100, 140, 150, 180 e 300&nbsp;micron.</p>
+    </div>
+  </div>
+  <p class="perchi">Lavoriamo per catene di forniture per ufficio e per studi fotografici, industrie grafiche, legatorie e tipografie, banche e compagnie di assicurazione, produttori di gioielli e di orologi, agenzie pubblicitarie e aziende di pet food, in Italia e all'estero. E poi portadocumenti, portaprezzi e blister con la valva termoformata saldata: <a href="/prodotti/">tutti i prodotti</a>.</p>
+</section>
+
+<section class="sez materiali" id="materiali" aria-labelledby="t-materiali">
+  <figure>
+    <img id="mat-foto" src="img/materiale-colorato-1050.webp"
+         srcset="img/materiale-colorato-700.webp 700w, img/materiale-colorato-1050.webp 1050w, img/materiale-colorato-1400.webp 1400w"
+         sizes="(max-width:900px) 100vw, 55vw" width="1400" height="1050" loading="lazy"
+         alt="Primo piano del bordo saldato del raccoglitore in PVC blu goffrato, su fondo chiaro.">
+    <figcaption class="didascalia" id="mat-did">Il bordo saldato del raccoglitore campionario</figcaption>
+  </figure>
+  <div class="mat-testo">
+    <h2 id="t-materiali">Del vostro colore, o trasparente come il vetro</h2>
+    <div class="schede" role="tablist" aria-label="Materiale">
+      <button role="tab" id="tab-colorato" aria-controls="pan" aria-selected="true" tabindex="0" data-k="colorato">Colorato</button>
+      <button role="tab" id="tab-cristal" aria-controls="pan" aria-selected="false" tabindex="-1" data-k="cristal">Cristal</button>
+      <button role="tab" id="tab-opaco" aria-controls="pan" aria-selected="false" tabindex="-1" data-k="opaco">Opaco</button>
+    </div>
+    <div class="pannello" id="pan" role="tabpanel" aria-labelledby="tab-colorato" tabindex="0">
+      <h3 id="pan-t">Colorato a campione</h3>
+      <p id="pan-p">Copertina e interno nella palette di colori standard o nel Pantone che ci indicate.</p>
+    </div>
+    <div class="sost">
+      <h3>Anche riciclato e compostabile</h3>
+      <p class="num">Dal 2010 lavoriamo il PLA, dal 2019 la bioplastica compostabile certificata OK&nbsp;Compost; oggi anche un PVC di origine vegetale, ricavato dal tall oil delle cartiere e certificato ISCC&nbsp;PLUS. Gli scarti di lavorazione li recuperiamo noi, e dal 2022 sui nostri tetti ci sono i pannelli fotovoltaici.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sez storia" id="storia" aria-labelledby="t-storia">
+  <div class="testa">
+    <h2 id="t-storia">Tre generazioni, due primati</h2>
+    <ol class="date">
+      <li><span class="anno num">1969</span><p>Fulvio Sacerdoti rileva la Zeta, una piccola azienda di articoli plastici elettrosaldati. La famiglia vendeva cancelleria a Padova dal 1935.</p></li>
+      <li><span class="anno num">1986</span><p>La prima linea al mondo completamente automatizzata per le cartelle con molla.</p></li>
+      <li><span class="anno num">1994</span><p>Il primo albumino fotografico ecologico d'Europa, brevettato: buste trasparenti senza aloni azzurrati e senza anelli di Newton.</p></li>
+      <li><span class="anno num">2015</span><p>Gavriel Sacerdoti diventa amministratore delegato: la terza generazione.</p></li>
+    </ol>
+  </div>
+  <figure>
+    <img src="img/reparto-linea-1024.webp" srcset="img/reparto-linea-640.webp 640w, img/reparto-linea-1024.webp 1024w" sizes="(max-width:900px) 100vw, 56vw" width="1024" height="683" loading="lazy"
+         alt="Un operatore alla linea di lavorazione, tra bobine di film rosse e blu e una banda gialla.">
+    <figcaption class="didascalia">In reparto, alla linea della plastica riciclata</figcaption>
+  </figure>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="testo">
+    <h2 id="t-contatti">Progettiamo l'articolo su misura insieme a voi</h2>
+    <p class="invito">Mandateci un disegno, un'idea o un originale da rifare, con le misure e le quantità.</p>
+    <p class="recapiti">
+      <a class="grande num" href="tel:+39049774299">049 774299</a><br>
+      <a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a><br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna 55, 35129&nbsp;Padova</a><br>
+      <span class="orari num">Lunedì-venerdì, 8.30-12.30 e 14.00-18.00</span>
+    </p>
+  </div>
+  <figure>
+    <img src="img/chiusura-taglio-667.webp" srcset="img/chiusura-taglio-480.webp 480w, img/chiusura-taglio-667.webp 667w" sizes="(max-width:900px) 100vw, 52vw" width="667" height="500" loading="lazy"
+         alt="Un uomo in camicia bianca al tavolo da lavoro, con un foglio trasparente tra le mani e una cartella rossa accanto.">
+    <figcaption class="didascalia">In reparto, 2023</figcaption>
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="alto">
+    <div class="marchio">
+      <img src="img/logo-zeta-300.webp" srcset="img/logo-zeta-300.webp 300w, img/logo-zeta-600.webp 600w" sizes="132px" width="300" height="145" alt="Zeta s.r.l." loading="lazy">
+      <p>Articoli su misura in PVC elettrosaldato, polipropilene, plastica riciclata e compostabile. Padova, dal 1969 con la famiglia Sacerdoti.</p>
+    </div>
+    <nav class="colonna" aria-labelledby="p-azienda">
+      <h2 id="p-azienda">Azienda</h2>
+      <ul>
+        <li><a href="/chi-siamo/">Chi siamo</a></li>
+        <li><a href="/storia/">Storia</a></li>
+        <li><a href="/ecosostenibilita/">Ecosostenibilità</a></li>
+        <li><a href="/pvc-bio-origine-100-vegetale/">PVC Bio</a></li>
+      </ul>
+    </nav>
+    <nav class="colonna" aria-labelledby="p-prodotti">
+      <h2 id="p-prodotti">Prodotti</h2>
+      <ul>
+        <li><a href="/categoria-prodotto/raccoglitori-ad-anelli/">Raccoglitori ad anelli</a></li>
+        <li><a href="/categoria-prodotto/buste-pvc/">Buste in PVC</a></li>
+        <li><a href="/categoria-prodotto/cartelle-cartelline/">Cartelle e cartelline</a></li>
+        <li><a href="/categoria-prodotto/copertine-e-sovraccoperte/">Copertine e sovraccoperte</a></li>
+        <li><a href="/categoria-prodotto/portadocumenti/">Portadocumenti</a></li>
+        <li><a href="/categoria-prodotto/album-fotografici/">Album fotografici</a></li>
+        <li><a href="/categoria-prodotto/bioplastica/">Articoli in bioplastica</a></li>
+      </ul>
+    </nav>
+    <div class="colonna larga">
+      <h2>Contatti</h2>
+      <ul class="num">
+        <li><a href="tel:+39049774299">049 774299</a></li>
+        <li><a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna 55<br>35129 Padova</a></li>
+        <li>Lunedì-venerdì<br>8.30-12.30 e 14.00-18.00</li>
+      </ul>
+    </div>
+    <div class="colonna">
+      <h2>Seguici</h2>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/zeta-srl---articoli-in-plastica/" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <h2 class="lingue">Lingua</h2>
+      <ul>
+        <li><a href="/" aria-current="true">Italiano</a></li>
+        <li><a href="https://www.zetaitaly.co.uk/" hreflang="en" lang="en">English</a></li>
+        <li><a href="https://www.zetaitaly.fr/" hreflang="fr" lang="fr">Français</a></li>
+        <li><a href="https://www.zetaitaly.de/" hreflang="de" lang="de">Deutsch</a></li>
+        <li><a href="https://www.zetaitaly.es/" hreflang="es" lang="es">Español</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="basso num">
+    <span>ZETA S.r.l.</span>
+    <span>Viale della Navigazione Interna 55, 35129 Padova</span>
+    <span>P.IVA e C.F. 00220030282</span>
+    <span>Registro Imprese di Padova n. 00220030282</span>
+    <span>Capitale sociale 51.480 euro i.v.</span>
+    <span class="dx"><a href="/privacy/">Privacy</a><a href="/cookies/">Cookie</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.testata'),b=t.querySelector('.menu-btn');
+  function chiudi(){t.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';}
+  b.addEventListener('click',function(){var o=t.classList.toggle('aperta');b.setAttribute('aria-expanded',o);b.textContent=o?'Chiudi':'Menu';});
+  t.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',chiudi);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&t.classList.contains('aperta')){chiudi();b.focus();}});
+})();
+(function(){
+  var dati={
+    colorato:{t:"Colorato a campione",p:"Copertina e interno nella palette di colori standard o nel Pantone che ci indicate.",
+      f:"materiale-colorato",d:"Il bordo saldato del raccoglitore campionario",a:"Primo piano del bordo saldato del raccoglitore in PVC blu goffrato, su fondo chiaro."},
+    cristal:{t:"PVC cristal",p:"Trasparente come il vetro: lascia vedere quello che protegge. Per i dischi in vinile lo saldiamo da 100 a 300 micron.",
+      f:"materiale-cristal",d:"Valva termoformata trasparente in una cartella porta campioni",a:"Angolo di una vaschetta trasparente termoformata, a scomparti, posata in una cartella bianca."},
+    opaco:{t:"Opaco",p:"Per copertine e cartelle: liscio, a buccia d'arancia o similpelle, nei colori che ci indicate.",
+      f:"materiale-opaco",d:"Cartella campionario bianca, aperta",a:"Cartella campionario bianca aperta, con dentro le cartelle dei colori."}
+  };
+  var tabs=[].slice.call(document.querySelectorAll('.schede [role=tab]'));
+  var foto=document.getElementById('mat-foto'),pan=document.getElementById('pan'),did=document.getElementById('mat-did');
+  var pt=document.getElementById('pan-t'),pp=document.getElementById('pan-p');
+  var larg={colorato:[700,1050,1400],cristal:[700,1050,1400],opaco:[700,1050]};
+  function serie(k){return larg[k].map(function(w){return 'img/'+dati[k].f+'-'+w+'.webp '+w+'w';}).join(', ');}
+  var caricate=false;
+  function precarica(){if(caricate)return;caricate=true;Object.keys(dati).forEach(function(k){var i=new Image();i.sizes=foto.sizes;i.srcset=serie(k);});}
+  foto.addEventListener('load',precarica,{once:true});
+  function scegli(tab,fuoco){
+    tabs.forEach(function(b){var on=b===tab;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;});
+    var k=tab.dataset.k,d=dati[k];
+    foto.srcset=serie(k);foto.src='img/'+d.f+'-1050.webp';foto.alt=d.a;
+    pt.textContent=d.t;pp.textContent=d.p;did.textContent=d.d;pan.setAttribute('aria-labelledby',tab.id);
+    if(fuoco)tab.focus();
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b);});
+    b.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];
+      else if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      else if(e.key==='Home')n=tabs[0];
+      else if(e.key==='End')n=tabs[tabs.length-1];
+      if(n){e.preventDefault();scegli(n,true);}
+    });
+  });
+})();
+</script>
+</body>
+</html>

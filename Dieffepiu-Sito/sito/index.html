@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dieffepiu, sistemi per zanzariere</title>
+<meta name="description" content="Profili in alluminio, componenti, kit e macchine per chi produce zanzariere. Saonara (Padova), dal 1987.">
+<link rel="icon" type="image/png" href="img/icona-180.png">
+<link rel="preload" href="fonts/pathway-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Pathway Extreme";font-style:normal;font-weight:100 900;font-stretch:75% 100%;font-display:swap;
+  src:url(fonts/pathway-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Pathway Extreme";font-style:normal;font-weight:100 900;font-stretch:75% 100%;font-display:swap;
+  src:url(fonts/pathway-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --carta:#F3F1EB;      /* la carta della pagina e delle foto scontornate */
+  --carta-2:#E9E6DD;    /* il piede */
+  --inchiostro:#16191B;
+  --grigio:#4C5155;     /* 7,1:1 sulla carta, 6,4:1 sul piede */
+  --blu:#006B9D;        /* blu del marchio: link e fuochi */
+  --giallo:#F2B705;     /* giallo delle macchine: solo la barra in scala */
+  --binario:#E5E2D8;
+  --filo:rgba(22,25,27,.16);
+  --m:64px;             /* margine laterale */
+  --col:32px;           /* canalino */
+  --sez:128px;          /* ritmo verticale tra le sezioni */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);
+  font-family:"Pathway Extreme",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;
+  font-stretch:100%;font-optical-sizing:auto;font-synthesis:none;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--blu)}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{padding-left:var(--m);padding-right:var(--m);max-width:1440px;margin:0 auto}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
+.nw{white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* testata */
+.testata{position:relative;z-index:5}
+.testata .wrap{display:flex;align-items:center;gap:56px;height:100px}
+.logo{flex:none}
+.logo img{height:50px;width:auto}
+.menu{display:flex;gap:34px;font-size:16px;font-weight:500}
+.menu a{text-decoration:none;padding:6px 0}
+.menu a:hover{text-decoration:underline}
+.destra{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:16px}
+.lingue{display:flex;gap:12px;color:var(--grigio)}
+.lingue a{text-decoration:none}
+.lingue [aria-current]{color:var(--inchiostro);font-weight:500}
+.lingue-menu{display:none}
+.tel-testata{font-weight:500;text-decoration:none}
+.apri-menu{display:none}
+
+/* apertura: un pezzo solo */
+.apertura{position:relative;padding-bottom:8px}
+h1{position:relative;z-index:2;font-size:164px;line-height:.86;font-weight:400;font-stretch:78%;letter-spacing:-.03em;margin:14px 0 0 -.045em;white-space:nowrap}
+.apertura .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:start}
+.apertura .testo{grid-column:1 / span 4;align-self:end;padding-bottom:2px;max-width:400px}
+.apertura .sotto{font-size:19px;line-height:1.52;text-wrap:pretty}
+.azioni{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin-top:36px}
+.bottone{display:inline-flex;align-items:center;height:54px;padding:0 24px;background:var(--inchiostro);color:#fff;
+  font-weight:500;font-size:17px;text-decoration:none;border-radius:2px}
+.bottone:hover{background:var(--blu);color:#fff}
+.link-cat{font-size:16px;font-weight:500}
+.pezzo{grid-column:5 / -1;margin:-4px calc(var(--m) * -1 + 8px) 0 0;justify-self:end;width:min(100%,872px)}
+.pezzo figure{margin:0;position:relative}
+.pezzo img{width:100%}
+/* legende come nella tavola esplosa del catalogo: punto sul pezzo, filetto di 1 px, codice */
+.leg{position:absolute;left:var(--x);top:var(--y);width:0;height:0;font-size:15px;line-height:1.2;color:var(--grigio);white-space:nowrap}
+.leg i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--carta);border:2px solid var(--inchiostro);box-sizing:border-box}
+.leg::before{content:"";position:absolute;background:var(--inchiostro)}
+.leg .etichetta{position:absolute}
+.leg b{font-weight:500;color:var(--inchiostro);letter-spacing:.02em;margin-right:6px}
+.leg-occhielli{--x:10.47%;--y:17.27%;--len:118px}
+.leg-occhielli::before{right:5px;top:0;width:var(--len);height:1px}
+.leg-occhielli .etichetta{right:calc(var(--len) + 17px);top:-.62em}
+.leg-cingolo{--x:50.87%;--y:7.03%;--len:56px}
+.leg-cingolo::before{left:0;bottom:5px;width:1px;height:var(--len)}
+.leg-cingolo .etichetta{left:-1px;bottom:calc(var(--len) + 13px)}
+.pezzo figcaption{position:relative;display:flex;flex-wrap:wrap;gap:4px 24px;margin:-40px calc(var(--m) - 8px) 0 6%;padding-top:12px;border-top:1px solid var(--filo);font-size:15px;line-height:1.4;color:var(--grigio)}
+.pezzo figcaption b{font-weight:500;color:var(--inchiostro)}
+
+/* chi siamo */
+.chi{padding-top:112px}
+.dichiarazione{font-size:46px;line-height:1.16;font-weight:400;letter-spacing:-.016em;font-stretch:92%;max-width:24.5em;text-wrap:pretty}
+.dichiarazione .grigio{color:var(--grigio)}
+.due{margin-top:64px;font-size:17px;line-height:1.6}
+.due .a{grid-column:1 / span 5}
+.due .b{grid-column:7 / span 5}
+
+
+/* sistemi */
+.sistemi{padding-top:var(--sez)}
+h2{font-size:64px;line-height:1;font-weight:420;font-stretch:84%;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.indice{margin-top:44px;align-items:start}
+.linee{grid-column:1 / span 8;font-size:34px;line-height:1.3;font-weight:400;font-stretch:88%;letter-spacing:-.008em;color:var(--grigio);text-wrap:pretty}
+.linee span{white-space:nowrap;color:var(--inchiostro)}
+.scheda{grid-column:10 / span 3;font-size:15px;line-height:1.5;color:var(--grigio);padding-top:8px}
+.scheda b{display:block;color:var(--inchiostro);font-weight:500;font-size:16px}
+.scheda .mat{display:block;margin-bottom:10px}
+.scheda dl{display:grid;grid-template-columns:auto auto;justify-content:space-between;gap:2px 18px;margin:0}
+.scheda dt{margin:0}
+.scheda dt span{display:inline-block;min-width:5.6em;color:var(--inchiostro)}
+.scheda dd{margin:0;color:var(--inchiostro);text-align:right}
+.foto-piena{margin:64px 0 0}
+.foto-piena img{width:100%}
+.sotto-foto{margin-top:18px;align-items:baseline}
+.sotto-foto .dida{grid-column:1 / span 4;font-size:15px;color:var(--grigio)}
+.sotto-foto .colori{grid-column:7 / span 5;font-size:17px;line-height:1.6;max-width:31em}
+
+/* macchine */
+.macchine{padding-top:var(--sez)}
+.macchine h2{max-width:11em}
+.macchine .intro{margin-top:28px;font-size:21px;line-height:1.48;max-width:29em;text-wrap:pretty}
+.misura{margin-top:80px}
+.misura h3{font-size:30px;line-height:1.15;font-weight:420;font-stretch:88%;letter-spacing:-.01em;margin:0}
+.misura .guida{margin-top:10px;font-size:17px;color:var(--grigio);max-width:36em}
+.selettore{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.selettore button{font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);background:transparent;border:1px solid var(--inchiostro);
+  padding:0 18px;height:46px;cursor:pointer;border-radius:2px}
+.selettore button:hover{background:var(--binario)}
+.selettore button[aria-pressed="true"]{background:var(--inchiostro);color:#fff}
+.macchina{margin-top:40px}
+.macchina-nome{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;min-height:32px}
+.macchina-nome b{font-size:22px;line-height:1.25;font-weight:500;font-stretch:92%}
+.macchina-nome span{font-size:16px;color:var(--grigio);font-weight:500}
+.macchina-nome span:empty{display:none}
+.scala{position:relative;margin-top:20px;height:142px}
+.binario{position:absolute;left:0;right:0;top:0;height:88px;background:var(--binario)}
+.barra{position:absolute;left:0;top:0;height:88px;width:var(--l,100%);background:var(--giallo);transition:width .24s ease-out}
+.barra span{position:absolute;right:16px;bottom:12px;font-size:20px;font-weight:500;line-height:1;white-space:nowrap;color:var(--inchiostro)}
+.barra.fuori span{right:auto;left:calc(100% + 14px)}
+.tacche{position:absolute;left:0;right:0;top:88px;height:54px;margin:0;padding:0;list-style:none;border-top:1px solid var(--inchiostro)}
+.tacche li{position:absolute;top:0;font-size:14px;color:var(--grigio);padding-top:12px;transform:translateX(-50%)}
+.tacche li::before{content:"";position:absolute;left:50%;top:0;width:1px;height:8px;background:var(--inchiostro)}
+.tacche li:first-child{transform:none}
+.tacche li:first-child::before{left:0}
+.tacche li:last-child{transform:translateX(-100%)}
+.tacche li:last-child::before{left:auto;right:0}
+.dati{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--col);margin:28px 0 0;min-height:104px}
+.dati div{min-width:0}
+.dati dt{font-size:15px;color:var(--grigio);margin-bottom:6px}
+.dati dd{margin:0;font-size:30px;line-height:1.12;font-weight:420;font-stretch:90%;letter-spacing:-.01em}
+.dati dd small{display:block;font-size:16px;letter-spacing:0;font-weight:400;font-stretch:100%;margin-top:6px;line-height:1.35;color:var(--grigio)}
+.macchina-nota{margin-top:16px;font-size:16px;color:var(--grigio);min-height:1.55em}
+
+/* chiusura */
+.chiusura{margin-top:var(--sez);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:820px}
+.chiusura .testo{padding:96px var(--col) 80px var(--m);display:flex;flex-direction:column;max-width:720px;justify-self:end;width:100%}
+.chiusura h2{font-size:68px;max-width:none}
+.recapiti{margin-top:auto;padding-top:56px;font-size:18px;line-height:1.6}
+.recapiti p{margin:0 0 16px}
+.recapiti .tel{font-size:42px;line-height:1.1;font-weight:420;font-stretch:88%;letter-spacing:-.01em;text-decoration:underline;
+  text-decoration-thickness:2px;text-underline-offset:.16em;text-decoration-color:var(--inchiostro);display:inline-block;margin-bottom:10px}
+.recapiti .tel:hover{color:var(--blu);text-decoration-color:var(--blu)}
+.recapiti .orari{color:var(--grigio);font-size:16px}
+.chiusura figure{margin:0;position:relative;min-height:100%}
+.chiusura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+
+/* piede */
+.piede{background:var(--carta-2);padding:76px 0 36px;font-size:16px}
+.piede .alto{row-gap:48px}
+.firma{grid-column:1 / span 4;grid-row:1}
+.firma img{height:104px;width:auto}
+.firma > p{margin-top:22px;max-width:24em;color:var(--grigio);line-height:1.55}
+.firma .contatti-piede{margin-top:18px;color:var(--inchiostro);line-height:1.75}
+.contatti-piede a{text-decoration:none}
+.contatti-piede a:hover{text-decoration:underline}
+.notizie{grid-column:1 / span 4;grid-row:2}
+.esito{margin-top:12px;font-size:15px;color:var(--inchiostro);min-height:0}
+.esito:empty{display:none}
+.notizie h2{font-size:24px;line-height:1.2;font-weight:500;font-stretch:92%;letter-spacing:-.005em}
+.notizie p{margin-top:8px;color:var(--grigio);max-width:32em}
+.campo{display:flex;margin-top:20px;max-width:480px}
+.campo input{flex:1;min-width:0;height:52px;border:1px solid #80858A;border-right:0;background:#FBFAF6;padding:0 16px;font:inherit;font-size:17px;color:var(--inchiostro);border-radius:2px 0 0 2px}
+.campo input::placeholder{color:#62676B}
+.campo button{height:52px;padding:0 24px;border:0;background:var(--inchiostro);color:#fff;font:inherit;font-weight:500;font-size:17px;cursor:pointer;border-radius:0 2px 2px 0}
+.campo button:hover{background:var(--blu)}
+.consenso{display:flex;gap:12px;align-items:flex-start;margin-top:14px;font-size:14px;line-height:1.45;color:var(--grigio);max-width:480px}
+.consenso input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--inchiostro);flex:none}
+.colonne{grid-column:6 / -1;grid-row:1 / span 2;display:grid;grid-template-columns:1fr 1.4fr 1fr .8fr;column-gap:var(--col);align-content:start;padding-top:6px}
+.colonne section{min-width:0}
+.colonne h3{font-size:15px;font-weight:500;margin:0 0 16px;color:var(--inchiostro)}
+.colonne ul{list-style:none;margin:0;padding:0}
+.colonne li{margin:0 0 10px;line-height:1.35}
+.colonne a{text-decoration:none;color:var(--grigio)}
+.colonne a:hover{color:var(--blu);text-decoration:underline}
+.fisarmonica-btn{display:none}
+.legale{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:64px;padding-top:24px;border-top:1px solid var(--filo);font-size:14px;color:var(--grigio)}
+.legale a{color:var(--grigio)}
+.legale a:hover{color:var(--blu)}
+.legale .spinta{margin-left:auto}
+
+@media (prefers-reduced-motion:reduce){.barra{transition:none}}
+
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:40px;--sez:120px}
+  h1{font-size:140px}
+  .menu{gap:22px}
+  .testata .wrap{gap:36px}
+  .apertura .testo{grid-column:1 / span 5}
+  .pezzo{grid-column:6 / -1;margin-top:-10px}
+  .pezzo figcaption{margin:10px 0 0;gap:4px 22px}
+  .leg-occhielli{--len:64px}
+  .dichiarazione{font-size:38px}
+  h2{font-size:54px}
+  .chiusura h2{font-size:50px}
+  .chiusura{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .linee{font-size:29px;grid-column:1 / span 12}
+  .scheda{grid-column:1 / span 5;margin-top:40px}
+  .dati dd{font-size:25px}
+  .lingue{gap:10px}
+  .destra{gap:22px}
+  .firma{grid-column:1 / span 5;grid-row:1}
+  .notizie{grid-column:7 / -1;grid-row:1;padding-top:6px}
+  .colonne{grid-column:1 / -1;grid-row:2}
+}
+/* 768 */
+@media (max-width:960px){
+  :root{--m:32px;--col:24px;--sez:104px}
+  .testata .wrap{height:84px;gap:16px}
+  .logo img{height:42px}
+  .menu{display:none}
+  .apri-menu{display:inline-flex;align-items:center;height:44px;padding:0 16px;font:inherit;font-weight:500;font-size:16px;background:none;border:1px solid var(--inchiostro);color:var(--inchiostro);border-radius:2px;cursor:pointer}
+  .apri-menu:hover{color:var(--blu);border-color:var(--blu)}
+  .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:84px;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:22px}
+  .menu.aperto a{padding:12px 0}
+  .lingue{display:none}
+  .menu.aperto .lingue-menu{display:flex;gap:24px;margin-top:12px;padding-top:12px;border-top:1px solid var(--filo);font-size:17px;color:var(--grigio)}
+  .lingue-menu a{text-decoration:none;padding:12px 0}
+  .lingue-menu [aria-current]{color:var(--inchiostro);font-weight:500}
+  .destra{gap:16px}
+  h1{font-size:112px;white-space:normal;margin-top:20px}
+  .apertura .corpo{display:flex;flex-direction:column}
+  .pezzo{order:1;width:auto;margin:8px calc(var(--m) * -1) 0;justify-self:auto}
+  .pezzo figure{margin-top:52px}
+  .pezzo figcaption{margin:2px var(--m) 0}
+  .leg-occhielli{--x:10.4%;--y:17.27%;--len:calc(17.27vw * .7238 + 30px)}
+  .leg-occhielli::before{right:auto;left:0;top:auto;bottom:5px;width:1px;height:var(--len)}
+  .leg-occhielli .etichetta{right:auto;left:-1px;top:auto;bottom:calc(var(--len) + 13px)}
+  .leg-cingolo{--x:52%;--len:calc(7.03vw * .7238 + 30px)}
+  .apertura .testo{order:2;align-self:auto;padding-top:28px;max-width:34em}
+  .due .a,.due .b{grid-column:1 / -1}
+  .due .b{margin-top:20px}
+  .sotto-foto .dida,.sotto-foto .colori{grid-column:1 / -1}
+  .sotto-foto .colori{margin-top:16px}
+  .dati{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}
+  .chiusura{display:flex;flex-direction:column-reverse;min-height:0}
+  .chiusura .testo{padding:56px var(--m) 72px;max-width:none}
+  .chiusura figure{min-height:0;aspect-ratio:4/3}
+  .colonne{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+}
+/* 390 */
+@media (max-width:600px){
+  :root{--m:20px;--col:16px;--sez:88px}
+  body{font-size:17px}
+  .testata .wrap{height:72px}
+  .logo img{height:36px}
+  .menu.aperto{top:72px}
+  .tel-testata{font-size:15px}
+  .apri-menu{height:40px;padding:0 12px}
+  h1{font-size:84px;line-height:.86;margin-top:14px}
+  .pezzo{margin-top:6px}
+  .pezzo figcaption{margin-top:0;font-size:14px;gap:2px 12px}
+  .leg{font-size:14px}
+  .pezzo figure{margin-top:52px}
+  .leg-occhielli{--len:calc(17.27vw * .7238 + 22px)}
+  .leg-cingolo{--len:calc(7.03vw * .7238 + 22px)}
+  .leg .etichetta{bottom:calc(var(--len) + 9px)}
+  .apertura .testo{padding-top:20px}
+  .apertura .sotto{font-size:17px}
+  .azioni{margin-top:20px;gap:14px}
+  .bottone{height:52px;padding:0 20px;font-size:16px}
+  .chi{padding-top:88px}
+  .dichiarazione{font-size:28px;line-height:1.2}
+  .due{margin-top:36px}
+  h2,.chiusura h2{font-size:40px}
+  .linee{font-size:22px;line-height:1.35}
+  .indice{margin-top:28px}
+  .scheda{grid-column:1 / -1;margin-top:32px}
+  .foto-piena{margin-top:40px}
+  .macchine .intro{font-size:18px}
+  .misura{margin-top:56px}
+  .misura h3{font-size:26px}
+  .selettore{display:grid;grid-template-columns:1fr 1fr;margin-top:24px}
+  .selettore button{padding:0 10px;font-size:15px}
+  .scala{height:118px}
+  .binario,.barra{height:64px}
+  .barra span{font-size:15px;right:10px;bottom:10px}
+  .barra.fuori span{left:calc(100% + 8px)}
+  .tacche{top:64px}
+  .tacche li{font-size:13px}
+  .tacche li.minore{display:none}
+  .dati{margin-top:20px}
+  .dati dd{font-size:22px}
+  .dati dd small{font-size:15px}
+  .recapiti .tel{font-size:34px}
+  .chiusura figure{aspect-ratio:1/1}
+  .piede{padding:56px 0 32px}
+  .firma img{height:84px}
+  .firma,.notizie{grid-column:1 / -1}
+  .notizie{grid-row:2;padding-top:0}
+  .colonne{grid-row:3}
+  .campo{flex-direction:column}
+  .campo input{flex:none;width:100%;border-right:1px solid #80858A;border-radius:2px}
+  .campo button{margin-top:10px;border-radius:2px;align-self:flex-start}
+  .colonne{display:block;padding-top:0}
+  .colonne section{border-top:1px solid var(--filo)}
+  .colonne section:last-child{border-bottom:1px solid var(--filo)}
+  .fisarmonica-btn{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;padding:16px 0;font:inherit;font-size:17px;font-weight:500;color:var(--inchiostro);cursor:pointer;text-align:left}
+  .fisarmonica-btn span{font-size:22px;line-height:1;font-weight:400;width:20px;text-align:center}
+  .colonne h3.titolo-colonna{display:none}
+  .colonne ul{padding-bottom:8px}
+  .colonne li{margin:0}
+  .colonne li a{display:block;padding:11px 0}
+  .contatti-piede a{display:inline-block;padding:8px 0}
+  .colonne ul[hidden]{display:none}
+  .legale{margin-top:40px;gap:6px 18px;border-top:0;padding-top:0}
+  .legale .spinta{margin-left:0}
+}
+/* telefoni stretti */
+@media (max-width:370px){
+  .testata .wrap{gap:12px}
+  .logo img{height:31px}
+  .destra{gap:12px}
+  .tel-testata{font-size:14px}
+  .apri-menu{padding:0 10px;font-size:15px}
+  h1{font-size:74px}
+  .leg .lungo{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Dieffepiu, pagina iniziale"><img src="img/logo-100.webp" width="178" height="100" alt="DIEFFE+"></a>
+    <nav class="menu" id="menu" aria-label="Principale">
+      <a href="#sistemi">Sistemi</a>
+      <a href="#macchine">Macchine</a>
+      <a href="#azienda">Azienda</a>
+      <a href="#contatti">Contatti</a>
+      <div class="lingue-menu" aria-label="Lingua"><a href="/" aria-current="true" lang="it">Italiano</a><a href="/en/" lang="en" hreflang="en">English</a><a href="/de/" lang="de" hreflang="de">Deutsch</a></div>
+    </nav>
+    <div class="destra">
+      <div class="lingue" aria-label="Lingua"><a href="/" aria-current="true" lang="it">IT</a><a href="/en/" lang="en" hreflang="en">EN</a><a href="/de/" lang="de" hreflang="de">DE</a></div>
+      <a class="tel-testata num" href="tel:+390498791175">+39&nbsp;049&nbsp;8791175</a>
+      <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap apertura" aria-labelledby="titolo">
+    <h1 id="titolo">Per chi fa zanzariere</h1>
+    <div class="corpo">
+      <div class="testo">
+        <p class="sotto">Sistemi per zanzariere e le macchine per produrle: profili in alluminio, componenti e kit, saldatrici, banchi di taglio e saldatura, presse. A&nbsp;Saonara (Padova), dal&nbsp;1987.</p>
+        <div class="azioni">
+          <a class="bottone num" href="tel:+390498791175">Chiamate +39&nbsp;049&nbsp;8791175</a>
+          <a class="link-cat" href="https://dieffepiu.it/catalogo.pdf">Catalogo PDF, 76&nbsp;MB</a>
+        </div>
+      </div>
+      <div class="pezzo">
+        <figure class="tavola">
+          <img src="img/cingolo-960.webp" srcset="img/cingolo-640.webp 640w, img/cingolo-960.webp 960w, img/cingolo-1376.webp 1376w" sizes="(max-width:960px) 100vw, 900px" width="1376" height="996" alt="Il cingolo nero del sistema TANK, arrotolato a spirale, con i due occhielli di attacco">
+          <span class="leg leg-occhielli" aria-hidden="true"><i></i><span class="etichetta">Occhielli<span class="lungo"> di attacco</span></span></span>
+          <span class="leg leg-cingolo" aria-hidden="true"><i></i><span class="etichetta"><b class="num">TK101</b> Cingolo</span></span>
+          <figcaption class="num">
+            <span class="sr">Nella foto: il cingolo TK101 con gli occhielli di attacco. Misure del sistema: altezza fino a 3.000 mm, larghezza fino a 1.900 mm. </span>
+            <b>TANK REVOLUTION® laterale</b>
+            <span>fino a 3.000&nbsp;×&nbsp;1.900&nbsp;mm</span>
+            <span>ingombro minimo 50&nbsp;mm</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap chi" id="azienda" aria-label="Chi siamo">
+    <p class="dichiarazione">Progettiamo e produciamo i sistemi e le macchine con cui altre aziende fanno le zanzariere. <span class="grigio">Dal 1987 abbiamo progettato e realizzato oltre 2.000 impianti di produzione, per il mercato italiano e per quello estero.</span></p>
+    <div class="griglia due">
+      <p class="a">Dieffepiu nasce dalla scissione della Di Franco, l’azienda da cui viene: unica proprietà e unica gestione, con i tecnici in casa per i progetti su misura dei clienti. Siamo in via Lombardia 33, nella zona industriale di Villatora a&nbsp;Saonara.</p>
+      <p class="b num">Ci trovate a MADE expo a Milano e a BATIMAT a Parigi: cinque fiere dal 2021 a oggi, l’ultima a Parigi tra settembre e ottobre 2026.</p>
+    </div>
+  </section>
+
+  <section class="sistemi" id="sistemi" aria-labelledby="t-sistemi">
+    <div class="wrap">
+      <h2 id="t-sistemi">Quattordici linee a catalogo</h2>
+      <div class="griglia indice">
+        <p class="linee"><span>FLEXAL KIT</span>, <span>KIT TRANSFORMER</span>, <span>PLIXI®</span>, <span>TANK®</span>, <span>FLEXAL DIM</span>, <span>FLEXAL PLATINUM</span>, <span>ROLLY STYLE 1</span>, <span>ROLLY STYLE WOOD</span>, <span>ROLLY STYLE 3</span>, <span>CIVIKA</span>, <span>AMERIKA 35</span>, <span>schermi fissi</span>, <span>componenti universali</span> e l’<span>espositore</span>.</p>
+        <div class="scheda num">
+          <b>Profili TANK®</b><span class="mat">Alluminio EN-AW 6060&nbsp;T5, peso al metro</span>
+          <dl>
+            <dt><span>DFTK005</span> Guida superiore</dt><dd>640&nbsp;g/m</dd>
+            <dt><span>DFTK006</span> Riscontro a muro</dt><dd>269&nbsp;g/m</dd>
+            <dt><span>DFTK007</span> Cassonetto</dt><dd>977&nbsp;g/m</dd>
+            <dt><span>DFTK008</span> Barra maniglia</dt><dd>864&nbsp;g/m</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <figure class="foto-piena">
+      <img src="img/testate-1440.webp" srcset="img/testate-900.webp 900w, img/testate-1440.webp 1440w, img/testate-2200.webp 2200w, img/testate-2750.webp 2750w" sizes="100vw" width="2750" height="1430" alt="Testate, supporti, tappi e passacavi in plastica nera e avorio, disposti su fondo chiaro" loading="lazy">
+    </figure>
+    <div class="wrap griglia sotto-foto">
+      <p class="dida">Testate, supporti, tappi e passacavi.</p>
+      <p class="colori num">Gli accessori escono neri. Da 1.000 pezzi per tipo anche bronzo, grigio, RAL&nbsp;1013, RAL&nbsp;9010 e RAL&nbsp;8017, con il 20% in più sul listino.</p>
+    </div>
+  </section>
+
+  <section class="macchine" id="macchine" aria-labelledby="t-macchine">
+    <div class="wrap">
+      <h2 id="t-macchine">Dodici macchine, dal banco di saldatura alla pressa</h2>
+      <p class="intro">Saldatrici per la fettuccia, banchi elettronici che tagliano e saldano la rete fino a 8,2&nbsp;metri, bottonatrici e presse pneumatiche. Gran parte dei sistemi e delle macchine del catalogo è coperta da brevetti e modelli di utilità.</p>
+
+      <div class="misura" aria-labelledby="t-misura">
+        <h3 id="t-misura">Da 3 a 8,2 metri di lavoro</h3>
+        <p class="guida">Scegliete una macchina: la barra gialla prende la sua lunghezza sulla scala del banco più lungo.</p>
+        <div class="selettore" role="group" aria-label="Scegli la macchina">
+          <button type="button" data-m="basic" aria-pressed="false">Basic ATT001-B</button>
+          <button type="button" data-m="att007" aria-pressed="false">ATT007</button>
+          <button type="button" data-m="tubi" aria-pressed="false">Tubi rete 6&nbsp;m</button>
+          <button type="button" data-m="att030" aria-pressed="true">ATT030</button>
+        </div>
+        <div class="macchina" aria-live="polite">
+          <p class="macchina-nome"><b id="m-nome">Banco elettronico per sistemi a misura e in kit</b><span id="m-codice">ATT030</span></p>
+          <div class="scala">
+            <div class="binario"></div>
+            <div class="barra" id="m-barra" style="--l:100%"><span class="num" id="m-barra-t">banco 8.200&nbsp;mm</span></div>
+            <ol class="tacche num" aria-hidden="true">
+              <li style="left:0">0</li>
+              <li class="minore" style="left:12.195%">1</li>
+              <li style="left:24.39%">2</li>
+              <li class="minore" style="left:36.585%">3</li>
+              <li style="left:48.78%">4</li>
+              <li class="minore" style="left:60.976%">5</li>
+              <li style="left:73.171%">6</li>
+              <li class="minore" style="left:85.366%">7</li>
+              <li style="left:100%">8,2&nbsp;m</li>
+            </ol>
+          </div>
+          <dl class="dati num" id="m-dati">
+            <div><dt>Lunghezza</dt><dd>8.200&nbsp;mm</dd></div>
+            <div><dt>Peso e potenza</dt><dd>1.200&nbsp;kg<small>4&nbsp;kW</small></dd></div>
+            <div><dt>Produttività</dt><dd>40 pezzi l’ora<small>a misura; 30 in kit</small></dd></div>
+            <div><dt>Taglio della rete</dt><dd>±&nbsp;1,5&nbsp;mm</dd></div>
+          </dl>
+          <p class="macchina-nota" id="m-nota">Rumorosità inferiore a 70&nbsp;dB(A).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+    <div class="testo">
+      <h2 id="t-contatti">I valori di sempre,<br> lo sguardo al futuro</h2>
+      <div class="recapiti">
+        <p><a class="tel num" href="tel:+390498791175">+39&nbsp;049&nbsp;8791175</a><br>
+        <a href="mailto:info@dieffepiu.it">info@dieffepiu.it</a></p>
+        <p>Via Lombardia 33, 35020 Saonara (PD)<br>
+        Zona industriale di Villatora<br>
+        <a class="nw" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Lombardia+33+35020+Saonara+PD">Apri la mappa</a></p>
+        <p class="orari num">Dal lunedì al giovedì <span class="nw">8:30-12:30</span> e <span class="nw">13:30-17:30</span><br>Venerdì <span class="nw">8:30-12:30</span> e <span class="nw">13:00-17:00</span></p>
+      </div>
+    </div>
+    <figure>
+      <img src="img/rotoli-1000.webp" srcset="img/rotoli-720.webp 720w, img/rotoli-1000.webp 1000w, img/rotoli-1240.webp 1240w" sizes="(max-width:960px) 100vw, 60vw" width="1240" height="853" alt="Rotoli di fettuccia grigia impilati in magazzino" loading="lazy">
+    </figure>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="griglia alto">
+      <div class="firma">
+        <img src="img/logo-208.webp" width="369" height="208" alt="DIEFFE+" loading="lazy">
+        <p>Sistemi, componenti e macchine per chi produce zanzariere. Saonara (Padova), dal&nbsp;1987.</p>
+        <p class="contatti-piede num"><a href="tel:+390498791175">+39&nbsp;049&nbsp;8791175</a><br>
+        <a href="mailto:info@dieffepiu.it">info@dieffepiu.it</a><br>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Lombardia+33+35020+Saonara+PD">Via Lombardia 33, Saonara (PD)</a></p>
+      </div>
+      <form class="notizie" action="#" method="post" aria-labelledby="t-notizie">
+          <h2 id="t-notizie">Fiere e aggiornamenti del catalogo</h2>
+          <p>Una mail quando esce una linea nuova, quando cambia il catalogo e prima di ogni fiera.</p>
+          <div class="campo">
+            <label class="sr" for="email-notizie">Indirizzo email</label>
+            <input id="email-notizie" type="email" name="email" autocomplete="email" placeholder="nome@azienda.it" required>
+            <button type="submit">Iscriviti</button>
+          </div>
+          <label class="consenso"><input type="checkbox" name="consenso" required> <span>Ho letto l’<a href="https://www.iubenda.com/privacy-policy/11870350">informativa privacy</a> e accetto di ricevere queste comunicazioni.</span></label>
+          <p class="esito" id="esito-notizie" aria-live="polite"></p>
+      </form>
+
+      <div class="colonne">
+        <section>
+          <h3 class="titolo-colonna">Sistemi</h3>
+          <button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="c-sistemi">Sistemi <span aria-hidden="true">+</span></button>
+          <ul id="c-sistemi">
+            <li><a href="/sistemi/tank">TANK®</a></li>
+            <li><a href="/sistemi/plixi">PLIXI®</a></li>
+            <li><a href="/sistemi/flexal-kit">FLEXAL KIT</a></li>
+            <li><a href="/sistemi/kit-transformer">KIT TRANSFORMER</a></li>
+            <li><a href="/sistemi/rolly-style">ROLLY STYLE</a></li>
+            <li><a href="/componenti">Componenti universali</a></li>
+            <li><a href="/sistemi">Tutte le linee</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3 class="titolo-colonna">Macchine</h3>
+          <button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="c-macchine">Macchine <span aria-hidden="true">+</span></button>
+          <ul id="c-macchine">
+            <li><a href="/macchine/banchi">Banchi di taglio e saldatura</a></li>
+            <li><a href="/macchine/saldatrici">Saldatrici per fettuccia</a></li>
+            <li><a href="/macchine/tubi-rete">Saldatrice tubi rete</a></li>
+            <li><a href="/macchine/bottonatrice">Bottonatrice ATT009</a></li>
+            <li><a href="/macchine/presse">Presse ATT006</a></li>
+            <li><a href="/macchine/kit-banco">Kit pneumatico per il banco</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3 class="titolo-colonna">Azienda</h3>
+          <button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="c-azienda">Azienda <span aria-hidden="true">+</span></button>
+          <ul id="c-azienda">
+            <li><a href="/azienda">Chi siamo</a></li>
+            <li><a href="/news">Fiere e novità</a></li>
+            <li><a href="https://dieffepiu.it/catalogo.pdf">Catalogo PDF</a></li>
+            <li><a href="/login">Area riservata</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3 class="titolo-colonna">Seguici</h3>
+          <button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="c-social">Seguici <span aria-hidden="true">+</span></button>
+          <ul id="c-social">
+            <li><a href="https://www.youtube.com/channel/UCuqwKa-y9ZYN9wEd7YAQmXw">YouTube</a></li>
+            <li><a href="https://www.facebook.com/dieffepiusrlzanzariere">Facebook</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="legale num">
+      <span>© 2026 Dieffepiu S.r.l.</span>
+      <span>P.IVA IT01335450282</span>
+      <span>REA PD-204413</span>
+      <span>Capitale sociale 300.000 euro</span>
+      <span>PEC <a href="mailto:dieffepiu@pec.it">dieffepiu@pec.it</a></span>
+      <span class="spinta"><a href="https://www.iubenda.com/privacy-policy/11870350">Privacy</a>&emsp;<a href="https://www.iubenda.com/privacy-policy/11870350/cookie-policy">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // il gesto: scegliere la macchina, la barra gialla prende la sua lunghezza sugli 8,2 m
+  var M={
+    basic:{nome:"Saldatrice manuale Basic",codice:"ATT001-B",l:3000,barra:"piano 3.000 mm",
+      righe:[["Piano","3.000 mm"],["Barra saldante","1.560 mm"],["Peso","150 kg"],["Fettuccia","10 e 50 mm"]],
+      nota:"Saldatura termica a impulsi."},
+    att007:{nome:"Banco elettronico di taglio e saldatura",codice:"ATT007",l:4000,barra:"banco 4.000 mm",
+      righe:[["Lunghezza","4.000 mm"],["Peso","400 kg"]],
+      nota:"Taglia e salda la rete sullo stesso banco."},
+    tubi:{nome:"Banco e saldatrice automatica per tubi rete da 6 m",codice:"",l:6000,barra:"tubi rete 6.000 mm",
+      righe:[["Tubi rete","6.000 mm"],["Saldatura","automatica"]],
+      nota:"Brevetto depositato."},
+    att030:{nome:"Banco elettronico per sistemi a misura e in kit",codice:"ATT030",l:8200,barra:"banco 8.200 mm",
+      righe:[["Lunghezza","8.200 mm"],["Peso e potenza","1.200 kg","4 kW"],["Produttività","40 pezzi l’ora","a misura; 30 in kit"],["Taglio della rete","± 1,5 mm"]],
+      nota:"Rumorosità inferiore a 70 dB(A)."}
+  };
+  var bott=document.querySelectorAll(".selettore button");
+  var nome=document.getElementById("m-nome"),cod=document.getElementById("m-codice"),
+      barra=document.getElementById("m-barra"),barraT=document.getElementById("m-barra-t"),
+      dati=document.getElementById("m-dati"),nota=document.getElementById("m-nota");
+  function mostra(k){
+    var d=M[k];if(!d)return;
+    bott.forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-m")===k?"true":"false")});
+    nome.textContent=d.nome;cod.textContent=d.codice;
+    barra.style.setProperty("--l",(d.l/8200*100).toFixed(3)+"%");
+    barraT.textContent=d.barra.replace(/ (?=mm)/,"\u00a0");
+    barra.classList.toggle("fuori",d.l<6000);
+    dati.innerHTML="";
+    for(var i=0;i<4;i++){
+      var div=document.createElement("div"),r=d.righe[i];
+      if(r){
+        var dt=document.createElement("dt");dt.textContent=r[0];
+        var dd=document.createElement("dd");dd.textContent=r[1].replace(/ (?=(mm|kg|kW)\b)/g,"\u00a0");
+        if(r[2]){var s=document.createElement("small");s.textContent=r[2].replace(/ (?=(mm|kg|kW)\b)/g,"\u00a0");dd.appendChild(s)}
+        div.appendChild(dt);div.appendChild(dd);
+      }
+      dati.appendChild(div);
+    }
+    nota.textContent=d.nota;
+  }
+  bott.forEach(function(b,i){
+    b.addEventListener("click",function(){mostra(b.getAttribute("data-m"))});
+    b.addEventListener("keydown",function(e){
+      var j=null;
+      if(e.key==="ArrowRight")j=(i+1)%bott.length;
+      if(e.key==="ArrowLeft")j=(i-1+bott.length)%bott.length;
+      if(j!==null){e.preventDefault();bott[j].focus();mostra(bott[j].getAttribute("data-m"))}
+    });
+  });
+  // menu del telefono
+  var apri=document.querySelector(".apri-menu"),menu=document.getElementById("menu");
+  apri.addEventListener("click",function(){
+    var o=apri.getAttribute("aria-expanded")!=="true";
+    apri.setAttribute("aria-expanded",String(o));menu.classList.toggle("aperto",o);apri.textContent=o?"Chiudi":"Menu";
+  });
+  menu.addEventListener("click",function(e){if(e.target.tagName==="A"){apri.setAttribute("aria-expanded","false");menu.classList.remove("aperto");apri.textContent="Menu"}});
+  // piede a fisarmonica sotto i 600 px, con bottoni veri
+  var mq=window.matchMedia("(max-width:600px)");
+  var fb=document.querySelectorAll(".fisarmonica-btn");
+  function imposta(){fb.forEach(function(b){var ul=document.getElementById(b.getAttribute("aria-controls"));
+    ul.hidden=mq.matches?b.getAttribute("aria-expanded")!=="true":false})}
+  fb.forEach(function(b){b.addEventListener("click",function(){
+    var o=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(o));
+    b.querySelector("span").textContent=o?"−":"+";imposta()})});
+  if(mq.addEventListener){mq.addEventListener("change",imposta)}imposta();
+  // newsletter: finche' non e' collegata a un servizio di invio, lo dice
+  var form=document.querySelector(".notizie"),esito=document.getElementById("esito-notizie");
+  form.addEventListener("submit",function(e){e.preventDefault();
+    esito.textContent="Grazie. L’iscrizione non è ancora attiva: il modulo va collegato al servizio di invio."});
+})();
+</script>
+</body>
+</html>

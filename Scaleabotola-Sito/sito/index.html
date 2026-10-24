@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scalarredo, scale a misura</title>
+<meta name="description" content="Scale da interno su misura in acciaio e legno e scale retrattili per la soffitta. Negozio e showroom a Mestrino (Padova), sulla statale 11.">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url("fonts/archivo-latin.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+:root{
+  --carta:#F7F6F3;--carta-2:#EDECE8;--inchiostro:#14171A;--grigio:#565B62;--blu:#1F4FA8;
+  --filo:rgba(20,23,26,.16);
+  --m:clamp(20px,4.45vw,64px);
+  --g:24px;
+  --col:calc((100vw - 2*var(--m) - 11*var(--g))/12);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Archivo",system-ui,sans-serif;font-size:18px;line-height:1.55;font-stretch:100%;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0;text-wrap:pretty}
+h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:var(--m);top:12px;z-index:9;background:var(--carta);padding:8px 12px}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;gap:40px;padding:26px var(--m) 0}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.logo svg{width:38px;height:auto;fill:var(--blu)}
+.logo img{height:23px;width:auto}
+.menu{display:flex;gap:30px;margin-left:auto;font-size:15.5px;font-weight:500}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover{border-bottom-color:var(--inchiostro)}
+.testata .tel{font-size:15.5px;font-weight:600;text-decoration:none;margin-left:28px;padding:6px 0;border-bottom:1px solid var(--inchiostro);white-space:nowrap}
+.testata .tel:hover{color:var(--blu);border-bottom-color:var(--blu)}
+.apri-menu{display:none}
+
+/* apertura: la foto e le sue quote */
+.apertura{position:relative}
+.tavola{position:relative;margin:0;background:#F0EFEC}
+.tavola picture img{width:100%;height:auto}
+.quote{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.quote line,.quote path{stroke:var(--blu);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.quote circle{fill:var(--blu)}
+.quote text{fill:var(--blu);font-family:"Archivo",sans-serif;font-weight:500;letter-spacing:0;text-rendering:geometricPrecision;paint-order:stroke;stroke:#F1F0ED;stroke-linejoin:round}
+.quote-desk text{font-size:14.7px;stroke-width:4px}
+.quote-tel{display:none}
+svg [hidden]{display:none}
+.quote-tel text{font-size:31px;stroke-width:8px}
+.titolo{position:absolute;left:67.4%;top:15.6%;width:28.4%}
+.titolo h1{font-size:7.25vw;line-height:.9;letter-spacing:-.045em;font-weight:300;font-stretch:104%}
+.titolo h1 span{display:block}
+.titolo p{margin-top:2.3vw;font-size:18px;line-height:1.5;max-width:25em}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:26px}
+.bottone{display:inline-block;background:var(--inchiostro);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:14px 22px;transition:background-color .15s}
+.bottone:hover{background:var(--blu)}
+.link{font-weight:500;font-size:16px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.link:hover{color:var(--blu)}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio)}
+.striscia{display:flex;justify-content:space-between;gap:24px;padding:14px var(--m) 0}
+
+/* chi sono */
+.mestieri{padding:150px var(--m) 140px}
+.mestieri p{font-size:clamp(25px,2.7vw,39px);line-height:1.24;letter-spacing:-.015em;font-weight:300;max-width:24em}
+.mestieri p + p{margin-top:.8em;color:var(--grigio)}
+
+/* scale da interno */
+.interno{display:grid;grid-template-columns:calc(var(--m) + 6*var(--col) + 5*var(--g)) 1fr;column-gap:calc(var(--col) + 2*var(--g));align-items:start;padding-right:var(--m)}
+.interno figure{margin:0}
+.interno figure img{width:100%;height:auto}
+.interno figcaption{padding:12px 0 0 var(--m)}
+.interno .testo{padding-top:8px}
+h2{font-size:clamp(34px,3.9vw,56px);line-height:1.02;letter-spacing:-.03em}
+.interno .testo p{margin-top:24px;max-width:31em}
+.modelli{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--filo);display:grid;grid-template-columns:1fr 1fr;column-gap:32px;row-gap:22px}
+.modelli dt{font-weight:600;font-size:17px}
+.modelli dd{margin:2px 0 0;font-size:15.5px;line-height:1.45;color:var(--grigio)}
+
+/* retrattili */
+.retrattili{padding-top:170px}
+.retrattili .capo{padding:0 var(--m);max-width:calc(8*var(--col) + 7*var(--g) + 2*var(--m))}
+.retrattili .capo p{margin-top:24px;max-width:36em}
+.plus{margin:64px 0 0}
+.plus img{width:100%;height:auto}
+.plus figcaption{padding:12px var(--m) 0}
+
+.foro{display:grid;grid-template-columns:calc(4*var(--col) + 3*var(--g)) 1fr;column-gap:calc(var(--col) + 2*var(--g));padding:130px var(--m) 0;align-items:start}
+.foro h2{margin-bottom:34px}
+.schede{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.schede button{appearance:none;background:none;border:0;padding:6px 0 6px 26px;margin:0;font:inherit;font-size:clamp(24px,2.4vw,34px);font-weight:300;letter-spacing:-.02em;line-height:1.15;color:var(--grigio);cursor:pointer;position:relative;text-align:left;transition:color .15s}
+.schede button::before{content:"";position:absolute;left:0;top:50%;width:14px;height:1.5px;background:transparent}
+.schede button:hover{color:var(--inchiostro)}
+.schede button[aria-selected="true"]{color:var(--inchiostro)}
+.schede button[aria-selected="true"]::before{background:var(--blu)}
+.dati{margin:38px 0 0;max-width:27em}
+.dati dl{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:10px;font-size:16px;line-height:1.45}
+.dati dt{color:var(--grigio)}
+.dati dd{margin:0}
+.dati p{margin-top:18px;font-size:16px;line-height:1.5}
+.dati .prezzo{margin-top:14px;font-weight:600}
+.disegno{margin:0}
+.disegno svg{width:100%;height:auto;overflow:visible}
+.d-linea{stroke:var(--inchiostro);stroke-width:1.5;fill:none}
+.d-sottile{stroke:var(--inchiostro);stroke-width:1;fill:none}
+.d-pant{stroke:var(--inchiostro);stroke-width:1.1;fill:none;stroke-linejoin:round}
+.d-gradino{stroke:var(--inchiostro);stroke-width:2.2;fill:none;stroke-linecap:square}
+.d-poche{fill:url(#tratteggio);stroke:var(--inchiostro);stroke-width:1.5}
+.d-pannello{fill:var(--carta);stroke:var(--inchiostro);stroke-width:1.5}
+.d-tratto{stroke:var(--inchiostro);stroke-width:1;fill:none;stroke-dasharray:5 5}
+.d-quota{stroke:var(--blu);stroke-width:1;fill:none}
+.d-testo,.d-nota{text-rendering:geometricPrecision}
+.d-testo{fill:var(--blu);font-family:"Archivo",sans-serif;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}
+.d-nota{fill:var(--inchiostro);font-family:"Archivo",sans-serif;font-size:14px}
+.disegno figcaption{margin-top:22px;max-width:44em}
+.comune{grid-column:2;margin-top:14px;font-size:16px;max-width:44em}
+
+/* chiusura */
+.chiusura{display:grid;grid-template-columns:calc(5*var(--col) + 4*var(--g)) 1fr;column-gap:calc(var(--col) + 2*var(--g));padding:170px 0 0 var(--m);align-items:end}
+.chiusura h2{font-size:clamp(36px,4.4vw,64px);line-height:1;letter-spacing:-.035em}
+.recapiti{margin-top:44px;font-size:17px;line-height:1.6}
+.recapiti .grande{display:inline-block;font-size:clamp(28px,2.5vw,36px);font-weight:400;letter-spacing:-.01em;text-decoration:none;border-bottom:1.5px solid var(--inchiostro);line-height:1.15;margin-bottom:18px}
+.recapiti .grande:hover{color:var(--blu);border-bottom-color:var(--blu)}
+.recapiti p + p{margin-top:12px}
+.recapiti p:last-child{margin-bottom:-6px}
+.recapiti a:not(.grande):hover{color:var(--blu)}
+.chiusura figure{margin:0}
+.chiusura figure img{width:100%;height:auto}
+
+/* piede */
+.piede{margin-top:128px;background:var(--carta-2);padding:80px var(--m) 36px;font-size:15.5px;line-height:1.5}
+.piede-alto{display:grid;grid-template-columns:calc(4*var(--col) + 3*var(--g)) repeat(4,1fr);column-gap:var(--g)}
+.firma img{width:136px;height:auto}
+.firma p{margin-top:20px;max-width:21em;color:var(--grigio)}
+.piede h3{font-size:13.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+.piede ul{list-style:none;margin:0;padding:0}
+.piede li + li{margin-top:7px}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline;text-underline-offset:3px;color:var(--blu)}
+.piede .seguici{margin-top:30px}
+.piede-basso{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px 32px;margin-top:72px;padding-top:22px;border-top:1px solid var(--filo);font-size:13.5px;color:var(--grigio)}
+.piede-basso p{max-width:62em}
+.piede-basso ul{display:flex;gap:24px}
+.piede-basso li + li{margin-top:0}
+
+/* tablet largo */
+@media (max-width:1180px) and (min-width:1024px){
+  .titolo{position:static;width:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:30px var(--m) 4px}
+  .titolo h1{position:absolute;left:67.4%;top:14.5%}
+  .titolo p{margin:0;max-width:34em;font-size:17px}
+  .azioni{margin:0;flex:none}
+}
+@media (max-width:1180px) and (min-width:1024px){
+  .piede-alto{grid-template-columns:repeat(4,1fr);row-gap:48px}
+  .firma{grid-column:1/-1;display:flex;align-items:flex-end;gap:32px}
+  .firma p{margin:0}
+}
+/* tablet e telefono */
+@media (max-width:1023px){
+  .testata{position:relative;padding:16px var(--m);gap:18px;background:var(--carta)}
+  .menu{display:none}
+  .testata .tel{margin-left:auto}
+  .apri-menu{display:block;appearance:none;background:none;border:0;border-bottom:1px solid var(--inchiostro);border-radius:0;margin:0;padding:6px 0;font:inherit;font-size:15.5px;font-weight:600;color:var(--inchiostro);cursor:pointer;min-height:36px}
+  .testata.aperta .menu{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;margin:0;background:var(--carta);padding:4px var(--m) 20px;border-bottom:1px solid var(--filo);font-size:19px;font-weight:400}
+  .testata.aperta .menu a{display:block;padding:12px 0;border-bottom:1px solid var(--filo)}
+  .titolo{position:static;width:auto;padding:36px var(--m) 40px}
+  .titolo h1{font-size:clamp(54px,11.5vw,104px)}
+  .titolo h1 span{display:inline}
+  .titolo p{margin-top:22px;font-size:17px;max-width:32em}
+  .striscia{flex-direction:column;gap:2px}
+  .interno{grid-template-columns:1fr;padding-right:0}
+  .interno .testo{padding:56px var(--m) 0}
+  .retrattili .capo{max-width:none}
+  .retrattili .capo p{max-width:38em}
+  .foro{grid-template-columns:1fr;row-gap:44px}
+  .comune{grid-column:1}
+  .chiusura{grid-template-columns:1fr;padding-right:0}
+  .chiusura .testo{padding-right:var(--m)}
+  .chiusura figure{margin-top:56px}
+  .piede-alto{grid-template-columns:1fr 1fr;row-gap:44px}
+  .firma{grid-column:1/-1}
+}
+@media (max-width:720px){
+  body{font-size:17px}
+  .quote-desk{display:none}
+  .quote-tel{display:block}
+  .mestieri{padding:88px var(--m) 80px}
+  .retrattili{padding-top:104px}
+  .plus{margin-top:44px}
+  .foro{padding-top:88px}
+  .modelli{grid-template-columns:1fr;margin-top:40px}
+  .schede{flex-direction:row;flex-wrap:wrap;gap:4px 22px}
+  .schede button{padding:6px 0;font-size:24px}
+  .schede button::before{left:0;top:auto;bottom:0;width:100%;height:1.5px}
+  .d-testo,.d-nota{font-size:29px}
+  .chiusura{padding-top:104px}
+  .piede{margin-top:96px;padding-top:60px}
+  .piede-alto{grid-template-columns:1fr;row-gap:36px}
+  .piede-basso{flex-direction:column;margin-top:52px}
+}
+@media (max-width:440px){
+  .testata{gap:14px}
+  .logo{gap:8px}
+  .logo svg{width:28px}
+  .logo img{height:15px}
+  .testata .tel,.apri-menu{font-size:14.5px}
+}
+@media (max-width:359px){
+  .testata .tel{display:none}
+  .apri-menu{margin-left:auto}
+}
+/* le scritte delle quote restano attorno ai 13 px a ogni larghezza */
+@media (min-width:1600px){.quote-desk text{font-size:12px;stroke-width:3.5px}}
+@media (max-width:1180px){.quote-desk text{font-size:19px;stroke-width:5px}}
+@media (max-width:1023px){.quote-desk text{font-size:27px;stroke-width:7px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata" id="testata">
+  <a class="logo" href="#" aria-label="Scalarredo scale, pagina iniziale">
+    <svg viewBox="12 15 181 139" aria-hidden="true"><path fill-rule="evenodd" d="M13.4 126.0 L13.4 130.6 L14.2 135.0 L16.2 139.9 L19.2 144.2 L23.1 147.9 L25.9 149.6 L31.0 151.8 L35.6 152.5 L170.0 152.5 L173.9 151.8 L179.1 149.6 L184.9 145.0 L188.5 140.2 L189.8 137.8 L190.9 134.2 L191.6 129.9 L191.6 126.6 L190.8 121.6 L187.8 115.1 L121.6 25.1 L117.8 21.2 L113.0 18.1 L107.1 16.2 L104.9 16.0 L98.0 16.2 L92.2 18.0 L87.4 21.1 L83.5 24.9 L18.0 113.9 L14.9 119.6Z M185.9 123.0 L186.5 126.9 L186.1 132.2 L183.9 138.0 L181.6 141.1 L177.2 144.9 L172.5 146.9 L168.0 147.5 L111.6 147.5 L111.1 147.0 L111.5 145.9 L143.1 102.9 L147.2 99.2 L152.0 96.9 L155.8 96.0 L160.9 96.0 L165.0 97.1 L169.0 99.2 L171.6 101.8 L183.8 118.1Z M163.0 90.0 L162.9 91.2 L155.1 91.0 L150.1 92.1 L145.8 94.1 L142.0 97.0 L137.9 101.4 L104.4 147.1 L103.5 147.5 L56.6 147.5 L56.1 147.1 L56.2 146.1 L113.1 68.6 L117.2 63.9 L121.0 61.1 L123.0 60.1 L127.4 58.9 L132.6 58.9 L137.2 60.0 L141.5 62.4 L145.8 66.5Z M114.4 24.9 L117.5 28.0 L135.8 52.8 L136.0 54.0 L126.4 54.0 L122.0 55.1 L116.6 57.9 L111.2 62.9 L49.2 147.1 L48.4 147.5 L37.0 147.5 L32.2 146.9 L27.4 144.6 L23.0 140.8 L20.1 136.4 L18.5 131.0 L18.4 126.8 L19.2 122.4 L21.8 117.4 L85.2 30.8 L89.0 26.4 L90.8 24.8 L94.5 22.5 L98.2 21.2 L101.0 20.9 L106.8 21.2 L110.4 22.5Z"/></svg>
+    <img src="img/scritta-blu.png" alt="" width="625" height="72">
+  </a>
+  <nav class="menu" id="menu" aria-label="Principale">
+    <a href="#interno">Scale da interno</a>
+    <a href="#retrattili">Scale retrattili</a>
+    <a href="#foro">Dove va il foro</a>
+    <a href="#showroom">Showroom</a>
+  </nav>
+  <a class="tel num" href="tel:+390499000099">049&nbsp;900&nbsp;00&nbsp;99</a>
+  <button class="apri-menu" type="button" id="apri-menu" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <figure class="tavola">
+    <picture>
+      <source media="(max-width:720px)" srcset="img/montreal-tel-780.jpg 780w, img/montreal-tel-940.jpg 940w" sizes="100vw">
+      <img src="img/montreal-1440.jpg" srcset="img/montreal-1440.jpg 1440w, img/montreal-1630.jpg 1630w" sizes="100vw" width="1440" height="853" alt="Scala a giorno Montreal in acciaio verniciato bianco vista di fianco, con il parapetto a correnti">
+    </picture>
+    <svg class="quote quote-desk" viewBox="730 0 1630 966" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g>
+        <line x1="1059" y1="521" x2="1059" y2="596"/>
+        <line x1="1200" y1="597" x2="1200" y2="579"/>
+        <line x1="1059" y1="588" x2="1200" y2="588"/>
+        <line x1="1053" y1="594" x2="1065" y2="582"/>
+        <line x1="1194" y1="594" x2="1206" y2="582"/>
+        <line x1="1205" y1="601" x2="1274" y2="601"/>
+        <line x1="1262" y1="601" x2="1262" y2="687"/>
+        <line x1="1256" y1="607" x2="1268" y2="595"/>
+        <line x1="1256" y1="693" x2="1268" y2="681"/>
+        <circle cx="1112" cy="652" r="3.5"/>
+        <line x1="1110" y1="656" x2="1042" y2="748"/>
+      </g>
+      <text x="1140" y="577" text-anchor="middle">pedata</text>
+      <text x="1277" y="649">alzata</text>
+      <text x="1030" y="766" text-anchor="middle">fascia da 8&#8239;mm</text>
+    </svg>
+    <svg class="quote quote-tel" viewBox="760 90 940 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g>
+        <line x1="1059" y1="521" x2="1059" y2="596"/>
+        <line x1="1200" y1="597" x2="1200" y2="579"/>
+        <line x1="1059" y1="588" x2="1200" y2="588"/>
+        <line x1="1053" y1="594" x2="1065" y2="582"/>
+        <line x1="1194" y1="594" x2="1206" y2="582"/>
+        <line x1="1205" y1="601" x2="1274" y2="601"/>
+        <line x1="1262" y1="601" x2="1262" y2="687"/>
+        <line x1="1256" y1="607" x2="1268" y2="595"/>
+        <line x1="1256" y1="693" x2="1268" y2="681"/>
+        <circle cx="1112" cy="652" r="3.5"/>
+        <line x1="1110" y1="656" x2="1042" y2="748"/>
+      </g>
+      <text x="1129" y="572" text-anchor="middle">pedata</text>
+      <text x="1277" y="654">alzata</text>
+      <text x="1010" y="782" text-anchor="middle">fascia da 8&#8239;mm</text>
+    </svg>
+  </figure>
+  <div class="titolo">
+    <h1 id="titolo"><span>Scale</span> <span>a misura</span></h1>
+    <p>Scale da interno in acciaio e legno, progettate, prodotte e posate da noi, e scale retrattili per la soffitta. Ogni scala nasce dalle misure del foro e della stanza.</p>
+    <div class="azioni">
+      <a class="bottone num" href="tel:+390499000099">Chiama lo 049&nbsp;900&nbsp;00&nbsp;99</a>
+      <a class="link" href="#foro">Dove va il foro?</a>
+    </div>
+  </div>
+  <div class="striscia didascalia">
+    <p>Montreal a L in acciaio verniciato bianco, con la fascia da 8&#8239;mm.</p>
+    <p>Negozio e showroom sulla statale 11 Padova-Vicenza</p>
+  </div>
+</section>
+
+<section class="mestieri" aria-label="Chi siamo">
+  <p>Da due generazioni disegniamo scale da interno sul foro e sulla stanza, una per una: a giorno, a rampa, elicoidali, a chiocciola, con ringhiere in acciaio o in vetro.</p>
+  <p>Le retrattili, in magazzino o fuori misura, partono ogni giorno.</p>
+</section>
+
+<section class="interno" id="interno" aria-labelledby="t-interno">
+  <figure>
+    <img src="img/antracite-955.jpg" srcset="img/antracite-640.jpg 640w, img/antracite-955.jpg 955w" sizes="(max-width:1023px) 100vw, 52vw" width="955" height="1052" loading="lazy" alt="Rampa di una scala Montreal con doppia fascia antracite, gradini bianchi e parapetto inox a correnti">
+    <figcaption class="didascalia">Montreal a doppia fascia antracite, con gradini bianchi.</figcaption>
+  </figure>
+  <div class="testo">
+    <div>
+    <h2 id="t-interno">Scale da interno, una per casa</h2>
+    <p>Una scala unica, a misura e personalizzata, e su richiesta su vostro disegno. Strutture in acciaio, gradini in legno da 40, 50 o 60&#8239;mm, posa in opera della nostra squadra.</p>
+    </div>
+    <dl class="modelli num">
+      <div><dt>Montreal</dt><dd>doppia struttura a fascia, spessore 8&#8239;mm</dd></div>
+      <div><dt>Toronto</dt><dd>a fascia singola</dd></div>
+      <div><dt>New York</dt><dd>doppia struttura laterale sagomata a zeta, lamiera tagliata al laser</dd></div>
+      <div><dt>Boston</dt><dd>doppia struttura portante a cremagliera</dd></div>
+      <div><dt>Londra e Parigi</dt><dd>a chiocciola, diametro da 110 a 160&#8239;cm</dd></div>
+      <div><dt>Elicoidali</dt><dd>foro nel solaio da 100&#8239;cm, meglio 130 o 140</dd></div>
+      <div><dt>A pedata alternata</dt><dd>pendenza 60°, 200&#8239;cm a terra per salire di 300</dd></div>
+      <div><dt>Ringhiere in vetro</dt><dd>extrachiaro 8+8 con filo lucido, ancoraggi in acciaio</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="retrattili" id="retrattili" aria-labelledby="t-retrattili">
+  <div class="capo">
+    <h2 id="t-retrattili">Scale retrattili per la soffitta</h2>
+    <p>Pronte in magazzino, di solito consegnate in 5 giorni lavorativi; fuori misura in 2-6 settimane. La linea PLUS è verniciata di bianco, cornice, telaio e struttura, con pannello da 18&#8239;mm (27 nella coibentata).</p>
+  </div>
+  <figure class="plus">
+    <picture>
+      <source media="(max-width:720px)" srcset="img/frassino-tel-780.jpg" sizes="100vw">
+      <img src="img/frassino-1440.jpg" srcset="img/frassino-800.jpg 800w, img/frassino-1440.jpg 1440w, img/frassino-1600.jpg 1600w" sizes="100vw" width="1440" height="560" loading="lazy" alt="Gradini in frassino spazzolato della scala PLUS, ripiegati nel pantografo verniciato bianco">
+    </picture>
+    <figcaption class="didascalia">PLUS, gradini in frassino spazzolato: portano la pedata a 14&#8239;cm, come in una scala da interno.</figcaption>
+  </figure>
+
+  <div class="foro" id="foro">
+    <div>
+      <h2 id="t-foro">Dove va il foro?</h2>
+      <div class="schede" role="tablist" aria-labelledby="t-foro">
+        <button role="tab" id="s-soffitto" aria-controls="p-soffitto" aria-selected="true">Soffitto</button>
+        <button role="tab" id="s-parete" aria-controls="p-parete" aria-selected="false" tabindex="-1">Parete</button>
+        <button role="tab" id="s-terrazzo" aria-controls="p-terrazzo" aria-selected="false" tabindex="-1">Terrazzo</button>
+        <button role="tab" id="s-soppalco" aria-controls="p-soppalco" aria-selected="false" tabindex="-1">Soppalco</button>
+      </div>
+      <div class="dati num" id="p-soffitto" role="tabpanel" aria-labelledby="s-soffitto">
+        <dl><dt>Foro</dt><dd>da 45&#8239;×&#8239;70 a 80&#8239;×&#8239;100&#8239;cm</dd><dt>Altezza</dt><dd>300&#8239;cm, altre a richiesta</dd><dt>A terra</dt><dd>140&#8239;cm, 170 per aprirla</dd></dl>
+        <p>A pantografo o a quattro elementi. Anche motorizzata, 220&#8239;volt e telecomando: si apre in 20 secondi.</p>
+        <p class="prezzo">Nel negozio online da 238&#8239;euro più IVA</p>
+      </div>
+      <div class="dati num" id="p-parete" role="tabpanel" aria-labelledby="s-parete" hidden>
+        <dl><dt>Foro</dt><dd>da 50&#8239;×&#8239;80 a 80&#8239;×&#8239;100&#8239;cm, o su misura</dd><dt>Altezza</dt><dd>300&#8239;cm, altre a richiesta</dd><dt>A terra</dt><dd>140&#8239;cm, 170 per aprirla</dd></dl>
+        <p>Per le aperture verticali. La portina ruota di circa 170° e resta chiusa con il suo peso, senza serratura.</p>
+        <p class="prezzo">Nel negozio online da 425&#8239;euro più IVA</p>
+      </div>
+      <div class="dati num" id="p-terrazzo" role="tabpanel" aria-labelledby="s-terrazzo" hidden>
+        <dl><dt>Foro</dt><dd>da 60&#8239;×&#8239;80 a 80&#8239;×&#8239;100&#8239;cm</dd><dt>Altezza</dt><dd>300&#8239;cm, solai spessi a richiesta</dd><dt>A terra</dt><dd>140&#8239;cm, 170 per aprirla</dd></dl>
+        <p>Per il tetto piano. Coperchio in multistrato e acciaio zincato, con molla a gas, serratura a cremonese e guarnizioni sui quattro lati; gradini di scavalco per uscire.</p>
+      </div>
+      <div class="dati num" id="p-soppalco" role="tabpanel" aria-labelledby="s-soppalco" hidden>
+        <dl><dt>Foro</dt><dd>70&#8239;×&#8239;100&#8239;cm</dd><dt>Altezza</dt><dd>300&#8239;cm, corrimano 100 sopra</dd><dt>Gradini</dt><dd>10&#8239;×&#8239;35&#8239;cm</dd></dl>
+        <p>Si fissa solo al pavimento del soppalco, senza pareti ai lati; all'arrivo due sostegni curvi per salire e scendere.</p>
+      </div>
+    </div>
+
+    <figure class="disegno">
+      <svg viewBox="0 0 780 616" role="img" aria-labelledby="d-titolo">
+        <title id="d-titolo">Disegno in sezione della scala retrattile scelta, con le misure principali</title>
+        <defs>
+          <pattern id="tratteggio" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#14171A" stroke-width=".8"/></pattern>
+          <g id="pantografo">
+            <path class="d-pant" d="M-10 0.0 L10 34.4 L-10 68.8 L10 103.2 L-10 137.7 L10 172.1 L-10 206.5 L10 240.9 L-10 275.3 L10 309.8 L-10 344.2 L10 378.6 L-10 413.0"/>
+            <path class="d-pant" d="M10 0.0 L-10 34.4 L10 68.8 L-10 103.2 L10 137.7 L-10 172.1 L10 206.5 L-10 240.9 L10 275.3 L-10 309.8 L10 344.2 L-10 378.6 L10 413.0"/>
+          </g>
+        </defs>
+
+        <g data-disegno="soffitto">
+          <line class="d-linea" x1="30" y1="520" x2="720" y2="520"/>
+          <rect class="d-poche" x="30" y="120" width="300" height="25"/>
+          <rect class="d-poche" x="430" y="120" width="290" height="25"/>
+          <rect class="d-sottile" x="330" y="72" width="100" height="48"/>
+          <g transform="translate(330 145) rotate(-25)"><use href="#pantografo"/></g>
+          <path class="d-linea" d="M330 145 L505 520"/>
+          <path class="d-gradino" d="M352 192 L376 192 M366 220 L390 220 M379 248 L403 248 M392 276 L416 276 M405 304 L429 304 M418 332 L442 332 M431 360 L455 360 M444 388 L468 388 M457 416 L481 416 M470 444 L494 444 M483 472 L507 472 M496 500 L520 500"/>
+          <rect class="d-pannello" x="326" y="141" width="8" height="104" transform="rotate(-25 330 145)"/>
+          <path class="d-tratto" d="M720.6 327.1 A431 431 0 0 1 542.5 520"/>
+          <line class="d-quota" x1="330" y1="54" x2="430" y2="54"/><line class="d-quota" x1="330" y1="44" x2="330" y2="68"/><line class="d-quota" x1="430" y1="44" x2="430" y2="68"/>
+          <text class="d-testo" x="380" y="40" text-anchor="middle">foro</text>
+        </g>
+
+        <g data-disegno="parete" hidden>
+          <line class="d-linea" x1="30" y1="520" x2="720" y2="520"/>
+          <rect class="d-poche" x="240" y="145" width="25" height="375"/>
+          <rect class="d-poche" x="240" y="0" width="25" height="40"/>
+          <rect class="d-poche" x="30" y="145" width="210" height="25"/>
+          <path class="d-linea" d="M265 145 L440 520"/>
+          <g transform="translate(265 145) rotate(-25)"><use href="#pantografo"/></g>
+          <path class="d-gradino" d="M287 192 L311 192 M301 220 L325 220 M314 248 L338 248 M327 276 L351 276 M340 304 L364 304 M353 332 L377 332 M366 360 L390 360 M379 388 L403 388 M392 416 L416 416 M405 444 L429 444 M418 472 L442 472 M431 500 L455 500"/>
+          <rect class="d-pannello" x="261" y="141" width="8" height="104" transform="rotate(-25 265 145)"/>
+          <path class="d-tratto" d="M265 40 A105 105 0 0 1 283.2 248.4"/>
+          <text class="d-nota" x="384" y="96">la portina ruota di circa 170°</text>
+          <path class="d-tratto" d="M655.6 327.1 A431 431 0 0 1 477.5 520"/>
+        </g>
+
+        <g data-disegno="terrazzo" hidden>
+          <line class="d-linea" x1="30" y1="520" x2="720" y2="520"/>
+          <rect class="d-poche" x="30" y="108" width="300" height="37"/>
+          <rect class="d-poche" x="430" y="108" width="290" height="37"/>
+          <line x1="30" y1="106" x2="330" y2="106" stroke="#14171A" stroke-width="3"/>
+          <line x1="430" y1="106" x2="720" y2="106" stroke="#14171A" stroke-width="3"/>
+          <path class="d-linea" d="M326 108 L326 84 L434 84 L434 108"/>
+          <rect class="d-pannello" x="320" y="72" width="120" height="12" transform="rotate(58 440 84)"/>
+          <line class="d-sottile" x1="338" y1="100" x2="398" y2="26"/>
+          <text class="d-nota" x="474" y="40">coperchio a tenuta</text>
+          <line class="d-sottile" x1="470" y1="36" x2="424" y2="36"/>
+          <path class="d-linea" d="M330 145 L505 520"/>
+          <g transform="translate(330 145) rotate(-25)"><use href="#pantografo"/></g>
+          <path class="d-gradino" d="M352 192 L376 192 M366 220 L390 220 M379 248 L403 248 M392 276 L416 276 M405 304 L429 304 M418 332 L442 332 M431 360 L455 360 M444 388 L468 388 M457 416 L481 416 M470 444 L494 444 M483 472 L507 472 M496 500 L520 500"/>
+          <path class="d-tratto" d="M720.6 327.1 A431 431 0 0 1 542.5 520"/>
+        </g>
+
+        <g data-disegno="soppalco" hidden>
+          <line class="d-linea" x1="30" y1="520" x2="720" y2="520"/>
+          <rect class="d-poche" x="330" y="145" width="390" height="25"/>
+          <rect class="d-pannello" x="330" y="137" width="60" height="8"/>
+          <path class="d-linea" d="M330 145 L155 520"/>
+          <g transform="translate(330 145) scale(-1 1) rotate(-25)"><use href="#pantografo"/></g>
+          <path class="d-gradino" d="M308 192 L284 192 M294 220 L270 220 M281 248 L257 248 M268 276 L244 276 M255 304 L231 304 M242 332 L218 332 M229 360 L205 360 M216 388 L192 388 M203 416 L179 416 M190 444 L166 444 M177 472 L153 472 M164 500 L140 500"/>
+          <path class="d-linea" d="M352 145 C352 70 338 34 306 22"/>
+          <path class="d-linea" d="M368 145 C368 66 352 26 316 14"/>
+          <text class="d-nota" x="400" y="60">sostegni curvi</text>
+          <line class="d-sottile" x1="396" y1="56" x2="362" y2="64"/>
+          <path class="d-tratto" d="M25.2 449.8 A431 431 0 0 0 117.5 520"/>
+        </g>
+
+        <g class="d-quote-comuni">
+          <line class="d-quota" x1="724" y1="145" x2="760" y2="145"/>
+          <line class="d-quota" x1="724" y1="520" x2="760" y2="520"/>
+          <line class="d-quota" x1="748" y1="145" x2="748" y2="520"/>
+          <line class="d-quota" x1="741" y1="152" x2="755" y2="138"/>
+          <line class="d-quota" x1="741" y1="527" x2="755" y2="513"/>
+          <text class="d-testo" transform="translate(738 332) rotate(-90)" text-anchor="middle">300 cm</text>
+        </g>
+        <g class="d-orizzontali">
+          <line class="d-quota" x1="330" y1="526" x2="330" y2="612"/>
+          <line class="d-quota" x1="505" y1="526" x2="505" y2="560"/>
+          <line class="d-quota" x1="542.5" y1="526" x2="542.5" y2="612"/>
+          <line class="d-quota" x1="324" y1="552" x2="511" y2="552"/>
+          <line class="d-quota" x1="324" y1="604" x2="548.5" y2="604"/>
+          <text class="d-testo" x="417.5" y="546" text-anchor="middle">140 cm</text>
+          <text class="d-testo" x="436" y="597" text-anchor="middle">170 cm</text>
+        </g>
+      </svg>
+      <figcaption class="didascalia">Le misure sono quelle del foro nel solaio o nella parete. L'altezza si prende da pavimento a soffitto; lo spessore del solaio serve solo per le staffe di fissaggio.</figcaption>
+    </figure>
+    <p class="comune num">Tutti i modelli: portata 150&#8239;kg, collaudo a 260&#8239;kg. Consegna al piano strada con sponda, o posa nostra.</p>
+  </div>
+</section>
+
+<section class="chiusura" id="showroom" aria-labelledby="t-showroom">
+  <div class="testo">
+    <h2 id="t-showroom">Vieni a vedere la tua scala nel negozio di Mestrino</h2>
+    <div class="recapiti num">
+      <a class="grande" href="tel:+390499000099">049&nbsp;900&nbsp;00&nbsp;99</a>
+      <p><a href="mailto:scalarredo@scalarredo.it">scalarredo@scalarredo.it</a></p>
+      <p>Via Marco Polo 2, Mestrino (PD), sulla statale 11 Padova-Vicenza<br><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Scalarredo%20Via%20Marco%20Polo%202%20Mestrino">Apri la mappa</a></p>
+      <p>Da lunedì a venerdì 9.00-12.30 e 15.00-19.00<br>Sabato solo al mattino</p>
+    </div>
+  </div>
+  <figure>
+    <img src="img/elicoidale-1000.jpg" srcset="img/elicoidale-720.jpg 720w, img/elicoidale-1000.jpg 1000w, img/elicoidale-1349.jpg 1349w" sizes="(max-width:1023px) 100vw, 50vw" width="1000" height="867" loading="lazy" alt="Scala elicoidale bianca vista dall'alto, con le piante in fondo alla tromba">
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="piede-alto">
+    <div class="firma">
+      <img src="img/logo-scalarredo-272.png" width="272" height="222" alt="Scalarredo scale, le scale a Padova">
+      <p>Scale da interno su misura e scale retrattili per la soffitta, da due generazioni. Negozio e showroom a Mestrino, Padova.</p>
+    </div>
+    <nav class="colonna" aria-labelledby="f-interno">
+      <h3 id="f-interno">Scale da interno</h3>
+      <ul>
+        <li><a href="scale-da-interno/a-giorno-e-a-rampa/">A giorno e a rampa</a></li>
+        <li><a href="scale-da-interno/elicoidali/">Elicoidali</a></li>
+        <li><a href="scale-da-interno/a-chiocciola/">A chiocciola</a></li>
+        <li><a href="scale-da-interno/a-pedata-alternata/">A pedata alternata</a></li>
+        <li><a href="scale-da-interno/ringhiere-e-parapetti/">Ringhiere e parapetti</a></li>
+      </ul>
+    </nav>
+    <nav class="colonna" aria-labelledby="f-retrattili">
+      <h3 id="f-retrattili">Scale retrattili</h3>
+      <ul>
+        <li><a href="scale-retrattili/a-soffitto/">A soffitto</a></li>
+        <li><a href="scale-retrattili/a-parete/">A parete</a></li>
+        <li><a href="scale-retrattili/per-terrazzo/">Per terrazzo</a></li>
+        <li><a href="scale-retrattili/per-soppalco/">Per soppalco</a></li>
+        <li><a href="scale-retrattili/motorizzate/">Motorizzate</a></li>
+        <li><a href="#foro">Misure del foro</a></li>
+      </ul>
+    </nav>
+    <nav class="colonna" aria-labelledby="f-azienda">
+      <h3 id="f-azienda">Azienda</h3>
+      <ul>
+        <li><a href="#showroom">Showroom di Mestrino</a></li>
+        <li><a href="negozio/">Negozio online</a></li>
+        <li><a href="catalogo-scale-retrattili.pdf">Catalogo retrattili (PDF)</a></li>
+        <li><a href="condizioni-di-vendita/">Condizioni di vendita</a></li>
+      </ul>
+    </nav>
+    <div class="colonna num">
+      <h3>Contatti</h3>
+      <ul>
+        <li><a href="tel:+390499000099">049&nbsp;900&nbsp;00&nbsp;99</a></li>
+        <li><a href="mailto:scalarredo@scalarredo.it">scalarredo@scalarredo.it</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Scalarredo%20Via%20Marco%20Polo%202%20Mestrino">Via Marco Polo 2, Mestrino</a></li>
+      </ul>
+      <h3 class="seguici">Seguici</h3>
+      <ul><li><a href="https://www.youtube.com/@giorgiotiziana4735">YouTube</a></li></ul>
+    </div>
+  </div>
+  <div class="piede-basso num">
+    <p>Scalarredo S.r.l., P.IVA e C.F. 03265520282, REA 295631, capitale sociale 15.300&#8239;euro i.v., sede legale via Archimede 2, Rubano (PD), PEC <a href="mailto:Scalarredo@pec.it">Scalarredo@pec.it</a></p>
+    <ul><li><a href="privacy/">Privacy</a></li><li><a href="cookie/">Cookie</a></li></ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* menu della testata sotto i 1024 px */
+  var t=document.getElementById('testata'), m=document.getElementById('apri-menu');
+  function chiudi(){ t.classList.remove('aperta'); m.setAttribute('aria-expanded','false'); m.textContent='Menu'; }
+  m.addEventListener('click',function(){
+    var o=t.classList.toggle('aperta'); m.setAttribute('aria-expanded',o?'true':'false'); m.textContent=o?'Chiudi':'Menu';
+  });
+  t.addEventListener('click',function(e){ if(e.target.closest('.menu a')) chiudi(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && t.classList.contains('aperta')){ chiudi(); m.focus(); } });
+
+  /* Dove va il foro? */
+  var schede=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var orizz=document.querySelector('.d-orizzontali');
+  function quoteVerso(nome){
+    // il soppalco scende verso sinistra: le quote a terra si specchiano
+    var sx = nome==='soppalco';
+    orizz.setAttribute('transform', sx ? 'translate(660 0) scale(-1 1)' : (nome==='parete' ? 'translate(-65 0)' : ''));
+    orizz.querySelectorAll('text').forEach(function(x){
+      x.setAttribute('transform', sx ? 'translate('+(2*parseFloat(x.getAttribute('x')))+' 0) scale(-1 1)' : '');
+    });
+  }
+  function scegli(btn, fuoco){
+    schede.forEach(function(b){
+      var on=b===btn;
+      b.setAttribute('aria-selected', on);
+      b.tabIndex = on ? 0 : -1;
+      document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
+      var nome=b.id.slice(2);
+      var g=document.querySelector('[data-disegno="'+nome+'"]');
+      if(g){ if(on) g.removeAttribute('hidden'); else g.setAttribute('hidden',''); }
+      if(on) quoteVerso(nome);
+    });
+    if(fuoco) btn.focus();
+  }
+  schede.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b)});
+    b.addEventListener('keydown',function(e){
+      var k=e.key, j=null;
+      if(k==='ArrowDown'||k==='ArrowRight') j=(i+1)%schede.length;
+      if(k==='ArrowUp'||k==='ArrowLeft') j=(i-1+schede.length)%schede.length;
+      if(k==='Home') j=0;
+      if(k==='End') j=schede.length-1;
+      if(j!==null){e.preventDefault();scegli(schede[j],true);}
+    });
+  });
+})();
+</script>
+</body>
+</html>

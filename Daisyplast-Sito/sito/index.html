@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daisyplast, sacchi e film in polietilene a Tombelle di Vigonovo</title>
+<meta name="description" content="Daisyplast estrude film in bolla e salda sacchi, shopper, bobine e monopieghe in polietilene vergine, rigenerato e compostabile. Tombelle di Vigonovo (VE), dal 2008.">
+<style>
+/* Caratteri: Sofia Sans e Sofia Sans Extra Condensed (Google Fonts, SIL Open Font License 1.1, testo in fonts/OFL.txt), serviti da fonts/ */
+@font-face{font-family:"Sofia Sans";src:url(fonts/sofiasans-latin.woff2) format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Sofia Sans Extra Condensed";src:url(fonts/sofiasansextracondensed-latin.woff2) format("woff2");font-weight:200 600;font-style:normal;font-display:swap}
+
+:root{
+  --latte:#F3F1EA;
+  --grafite:#1E1F1D;
+  --grafite-2:#161715;
+  --giallo:#F2C230;      /* il cuore della margherita del logo, ammorbidito: l'unico colore pieno */
+  --grigio:#5F625D;      /* testo secondario su latte, 5,9:1 */
+  --grigio-chiaro:#BDBFB9; /* testo secondario su grafite, 9,6:1 */
+  --filo:#D3D1C9;
+  --filo-scuro:rgba(243,241,234,.3);
+  --m:clamp(20px,4.45vw,64px);
+  --g:clamp(16px,1.67vw,24px);
+  --r:clamp(80px,8.9vw,128px);   /* il passo verticale tra le sezioni */
+  --mezza:min(19vw,300px);        /* metà della colonna della bolla */
+  --colonna-l:calc(50% - var(--mezza));
+  --colonna-r:calc(50% + var(--mezza));
+  --alto:"Sofia Sans Extra Condensed","Arial Narrow",sans-serif;
+  --testo:"Sofia Sans",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--latte);color:var(--grafite);font-family:var(--testo);font-size:clamp(17px,1.25vw,18px);line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-kerning:normal}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0;text-wrap:pretty}
+h1,h2,h3{margin:0;font-weight:inherit;text-wrap:balance}
+ul,ol{margin:0;padding:0;list-style:none}
+figure{margin:0}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salta{position:absolute;left:var(--m);top:-60px;background:var(--latte);color:var(--grafite);padding:10px 14px;z-index:10}
+.salta:focus{top:12px}
+:focus-visible{outline:2px solid var(--grafite);outline-offset:3px}
+.scuro :focus-visible{outline-color:var(--giallo)}
+.alto{font-family:var(--alto);font-weight:300;letter-spacing:-.012em}
+
+/* ---------- Testata ---------- */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;padding:26px var(--m) 14px;color:var(--grafite)}
+.testata .marchio{display:block;width:clamp(124px,10.6vw,152px);flex:none;order:-2}
+.menu{display:flex;gap:clamp(18px,1.9vw,28px);margin-left:auto;font-size:16px;line-height:1.2}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .15s}
+.menu a:hover{border-bottom-color:currentColor}
+.testata .tel{order:-1;font-size:16px;text-decoration:none;margin-left:clamp(20px,2.4vw,36px);padding:6px 0;border-bottom:1px solid var(--grigio);transition:border-color .15s}
+.testata .tel:hover{border-bottom-color:var(--grafite)}
+.apri{display:none}
+
+/* ---------- Apertura: la bolla in colonna sul campo latte ---------- */
+.apertura{position:relative;background:var(--latte);color:var(--grafite);height:100vh;height:100svh;min-height:720px;max-height:1080px;overflow:hidden}
+.bolla{position:absolute;top:0;bottom:0;left:50%;width:calc(2 * var(--mezza));transform:translateX(-50%);background:var(--grafite)}
+.bolla img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.titolo{position:absolute;left:var(--m);right:var(--m);top:clamp(120px,19vh,190px);margin:0;font-size:clamp(64px,12.2vw,216px);line-height:.88}
+.titolo span{display:block}
+.titolo .r{text-align:right}
+/* il titolo è grafite sul latte e latte dove attraversa la bolla: due strati, ritagliati sul bordo della colonna */
+h1.titolo{clip-path:polygon(0 0,var(--colonna-l) 0,var(--colonna-l) 100%,var(--colonna-r) 100%,var(--colonna-r) 0,100% 0,100% 100%,0 100%)}
+.titolo.luce{color:var(--latte);clip-path:inset(0 var(--colonna-l));pointer-events:none;user-select:none}
+.apertura .fondo{position:absolute;left:var(--m);right:var(--m);bottom:clamp(100px,13vh,124px);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:last baseline}
+.apertura .intro{grid-column:1 / span 5;font-size:clamp(18px,1.4vw,20px);line-height:1.45;max-width:calc(50vw - var(--mezza) - var(--m) - 32px)}
+.intro .prev{margin-top:18px;font-size:16px}
+.intro .prev a{text-decoration:none;border-bottom:1px solid var(--grigio);padding-bottom:3px;transition:border-color .15s}
+.intro .prev a:hover{border-bottom-color:var(--grafite)}
+.dato{grid-column:8 / span 5;position:relative;text-align:right;justify-self:end;max-width:calc(50vw - var(--mezza) - var(--m) - 24px)}
+.dato .didascalia{max-width:19em;margin:0 0 26px auto;text-align:left}
+.dato .kg{font-size:96px;line-height:.86;white-space:nowrap;font-variant-numeric:lining-nums proportional-nums}
+.dato .kg small{font-size:inherit}
+.dato .sotto{position:absolute;right:0;top:100%;width:min(100%,25em);margin-top:16px;font-size:14px;line-height:1.45}
+.didascalia{font-size:13px;line-height:1.45;color:var(--grigio-chiaro)}
+.apertura .didascalia{color:var(--grigio)}
+
+/* ---------- Tre materiali: il selettore ---------- */
+.materiali{padding:var(--r) 0 0}
+.testa{padding:0 var(--m)}
+.testa p{max-width:30em;font-size:clamp(18px,1.4vw,20px);line-height:1.45}
+.schede{display:flex;column-gap:clamp(20px,3.2vw,52px);margin:clamp(20px,2.4vw,32px) 0 0;padding:0 var(--m)}
+.schede button{appearance:none;background:none;border:0;padding:0 0 10px;margin:0;cursor:pointer;font-family:var(--alto);font-weight:300;font-size:clamp(46px,8.2vw,118px);line-height:.95;letter-spacing:-.01em;color:#83867F;border-bottom:3px solid transparent;transition:color .12s,border-color .12s}
+.schede button:hover{color:var(--grafite)}
+.schede button[aria-selected="true"]{color:var(--grafite);border-bottom-color:var(--grafite)}
+.pannelli{display:grid;margin-top:clamp(24px,2.8vw,40px)}
+.pannello{position:relative;grid-area:1 / 1}
+.pannello[hidden]{display:block;visibility:hidden}
+.pannello .foto{position:relative;background:var(--grafite)}
+.pannello.chiaro .foto{background:var(--latte)}
+.pannello .foto img{width:100%;height:clamp(440px,50vw,800px);object-fit:cover}
+.cartellino{position:absolute;right:var(--m);bottom:var(--m);width:440px;background:var(--latte);color:var(--grafite);padding:28px 32px 30px}
+.pannello.chiaro .cartellino{box-shadow:0 0 0 1px var(--filo)}
+.cartellino h3{font-family:var(--alto);font-weight:400;font-size:44px;line-height:1;letter-spacing:-.005em}
+.cartellino .materia{margin-top:8px;color:var(--grigio);font-size:15px;line-height:1.4}
+.cartellino ul{margin-top:18px}
+.cartellino li{padding:8px 0;border-top:1px solid var(--filo);font-size:17px;line-height:1.35}
+
+/* ---------- Il percorso di un ordine: il palco ---------- */
+.percorso{background:var(--grafite);color:var(--latte);padding:var(--r) 0 clamp(32px,3vw,48px)}
+.percorso .capo{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:last baseline;padding:0 var(--m)}
+.percorso h2{grid-column:1 / span 8;font-size:clamp(44px,5vw,72px);line-height:.94}
+.palco{margin-top:clamp(36px,4vw,56px)}
+.tappe{position:relative;height:clamp(420px,44.45vw,760px);overflow:hidden;touch-action:pan-y;background:var(--grafite-2)}
+.tappa{position:absolute;inset:0}
+.tappa[hidden]{display:none}
+.tappa img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none}
+.tappa .testo{position:absolute;left:var(--m);bottom:clamp(36px,3.9vw,56px);max-width:min(40em,58%);text-shadow:0 1px 18px rgba(22,23,21,.75)}
+.tappa .n{font-size:14px;line-height:1.4;color:var(--giallo)}
+.tappa h3{margin-top:6px;font-family:var(--alto);font-weight:300;font-size:clamp(56px,6.1vw,88px);line-height:.92;letter-spacing:-.012em}
+.tappa .frase{margin-top:14px;font-size:clamp(18px,1.4vw,20px);line-height:1.45;max-width:27em}
+.tappa .det{margin-top:12px;font-size:15px;color:var(--grigio-chiaro)}
+.tappa .det a{color:var(--latte);text-underline-offset:3px;text-decoration-thickness:1px}
+/* tappa 4: palco solo tipografico, le linee di saldatura come cifre */
+.tappa.tipo{background:var(--grafite-2)}
+.cifre{position:absolute;right:var(--m);top:clamp(32px,3.6vw,52px);display:flex;gap:clamp(28px,3.4vw,52px)}
+.cifre li{width:clamp(120px,12vw,180px);padding-top:0;font-size:15px;line-height:1.35;color:var(--grigio-chiaro)}
+.cifre b{display:block;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--filo-scuro);font-family:var(--alto);font-weight:200;font-size:clamp(220px,30vw,440px);line-height:.74;letter-spacing:-.02em;color:var(--latte);font-variant-numeric:lining-nums proportional-nums}
+.indice{display:grid;grid-template-columns:repeat(5,1fr);column-gap:var(--g);padding:0 var(--m)}
+.indice button{appearance:none;background:none;border:0;border-top:1px solid var(--filo-scuro);margin:0;padding:18px 0 22px;text-align:left;cursor:pointer;color:var(--grigio-chiaro);font:inherit;font-size:16px;line-height:1.3;box-shadow:inset 0 0 0 transparent;transition:color .12s,border-color .12s,box-shadow .12s}
+.indice button .k{display:inline-block;min-width:1.4em;font-variant-numeric:tabular-nums}
+.indice button:hover{color:var(--latte)}
+.indice button[aria-selected="true"]{color:var(--latte);border-top-color:var(--giallo);box-shadow:inset 0 2px 0 var(--giallo)}
+
+/* ---------- Clienti ---------- */
+.clienti{padding:var(--r) var(--m)}
+.clienti h2{font-size:clamp(44px,6.1vw,88px);line-height:.92;max-width:11em}
+.gruppi{margin-top:clamp(36px,4vw,56px)}
+.gruppi li{padding:18px 0 26px;border-top:1px solid var(--filo)}
+.gruppi .et{display:block;font-size:14px;line-height:1.4;font-weight:600;margin-bottom:8px}
+.gruppi .elenco{display:block;font-family:var(--alto);font-weight:300;font-size:clamp(32px,3.75vw,54px);line-height:1.04;letter-spacing:-.008em;max-width:25em}
+
+/* ---------- Chiusura: la foto delle bobine a filo del bordo sinistro, a destra la frase e i recapiti ---------- */
+.contatti{padding:clamp(24px,3vw,48px) var(--m) var(--r);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.contatti .foto{grid-column:1 / span 6;grid-row:1;position:relative;margin-left:calc(-1 * var(--m));min-height:clamp(560px,53vw,780px);background:var(--grafite)}
+.contatti .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.contatti .testo{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:56px}
+.contatti h2{font-size:clamp(44px,5vw,76px);line-height:.94;max-width:9.5em}
+.contatti address{max-width:34em;font-style:normal;font-size:clamp(17px,1.25vw,18px);line-height:1.55}
+.contatti address p+p{margin-top:12px}
+.contatti .numero{font-variant-numeric:lining-nums proportional-nums;display:inline-flex;align-items:center;min-height:44px;margin-bottom:4px;font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-.01em;white-space:nowrap;text-underline-offset:.16em;text-decoration-thickness:1px}
+.contatti .numero:hover{text-decoration-thickness:2px}
+.contatti address a:not(.numero){display:inline-block;padding:2px 0;text-underline-offset:4px;text-decoration-thickness:1px}
+.contatti .grigio{color:var(--grigio)}
+.contatti .nw{white-space:nowrap}
+
+/* il piede: una riga sola, sotto un filetto */
+.piede{padding:0 var(--m) 32px;color:var(--grigio);font-size:14px;line-height:1.6}
+.piede p{display:flex;flex-wrap:wrap;column-gap:28px;row-gap:2px;padding-top:16px;border-top:1px solid var(--filo)}
+.piede strong{color:var(--grafite);font-weight:600}
+.piede a{color:inherit;text-underline-offset:3px}
+.piede a:hover{color:var(--grafite)}
+
+/* ---------- sotto 1260: il menu si apre con un pulsante (sopra, i quattro voci stanno a destra della colonna) ---------- */
+@media (max-width:1260px){
+  .menu{display:none}
+  .apri{display:inline-block;margin-left:auto;appearance:none;background:none;border:0;border-bottom:1px solid var(--grigio);color:inherit;font:inherit;font-size:16px;line-height:1.2;padding:6px 0;cursor:pointer}
+  .apri:hover{border-bottom-color:var(--grafite)}
+  .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;margin:0;flex-direction:column;gap:0;background:var(--grafite-2);color:var(--latte);padding:8px var(--m) 18px}
+  .menu.aperto a{padding:12px 0;border-bottom:1px solid rgba(243,241,234,.12);font-size:18px}
+  .menu.aperto a:focus-visible{outline-color:var(--giallo)}
+}
+@media (max-width:1100px){
+  :root{--mezza:14vw}
+  .dato .kg{font-size:76px}
+  .cartellino{width:400px}
+  .contatti .foto{grid-column:1 / span 5}
+  .contatti .testo{grid-column:7 / span 6}
+}
+/* ---------- tavoletta ---------- */
+@media (max-width:860px){
+  .apertura .fondo{grid-template-columns:1fr 1fr}
+  .apertura .intro{grid-column:1 / span 2;max-width:30em}
+  .dato{grid-column:1 / span 2;max-width:none;justify-self:stretch}
+  .pannello .foto img{height:auto;aspect-ratio:4/3}
+  .cartellino{position:relative;right:auto;bottom:auto;width:auto;margin:0 var(--m);padding:24px 0 0;background:none}
+  .pannello.chiaro .cartellino{box-shadow:none}
+  .percorso .capo{display:block}
+  .cifre li{width:clamp(96px,16vw,140px)}
+  .contatti{display:block;padding-top:0}
+  .contatti .foto{margin:0 calc(-1 * var(--m));min-height:0}
+  .contatti .foto img{position:static;height:auto;aspect-ratio:3/2}
+  .contatti .testo{margin-top:clamp(40px,6vw,56px);gap:40px}
+  .contatti h2{max-width:11em;font-size:clamp(44px,7vw,64px)}
+}
+/* ---------- tavoletta verticale: la colonna resta un manifesto, il testo scende sotto ---------- */
+@media (min-width:561px) and (max-width:860px){
+  :root{--mezza:22vw}
+  .bolla{bottom:auto;height:max(720px,min(100svh,1080px))}
+  .apertura{height:auto;max-height:none;min-height:0}
+  .apertura .fondo{position:relative;left:auto;right:auto;bottom:auto;margin:0 var(--m);padding:calc(max(720px,min(100svh,1080px)) + 48px) 0 0;align-items:start}
+  .dato{text-align:left;margin-top:36px}
+  .dato .didascalia{margin:0 0 20px}
+  .dato .sotto{position:static;margin-top:12px;width:auto;max-width:30em}
+  .testata .tel{order:0;margin-left:auto}
+  .apri{order:1;margin-left:22px}
+  .tappa .testo{max-width:80%}
+  .tipo .testo{max-width:46%}
+}
+/* ---------- telefono: la bolla occupa lo schermo, il titolo la attraversa in latte ---------- */
+@media (max-width:560px){
+  .testata{padding-top:18px;color:var(--latte)}
+  .testata .marchio{width:116px}
+  .testata .tel{font-size:15px;border-bottom-color:var(--grigio-chiaro)}
+  .apri{border-bottom-color:var(--grigio-chiaro)}
+  .testata :focus-visible,.apertura :focus-visible{outline-color:var(--giallo)}
+  .apertura{min-height:680px;max-height:none;background:var(--grafite);color:var(--latte)}
+  .bolla{width:100%}
+  .bolla::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,23,21,.5) 0,rgba(22,23,21,0) 30%,rgba(22,23,21,0) 44%,rgba(22,23,21,.9) 72%,rgba(22,23,21,.96) 100%)}
+  .titolo{top:clamp(92px,13vh,120px);font-size:clamp(58px,18.6vw,84px);line-height:.9}
+  h1.titolo{clip-path:none}
+  .titolo.luce{display:none}
+  .apertura .fondo{display:block;bottom:auto;top:auto;position:absolute;left:var(--m);right:var(--m);bottom:24px}
+  .apertura .intro{font-size:17px}
+  .intro .prev{margin-top:12px;font-size:15px}
+  .intro .prev a{border-bottom-color:var(--grigio-chiaro)}
+  .dato{text-align:left;margin-top:18px}
+  .dato .didascalia{display:none}
+  .dato .kg{font-size:56px}
+  .dato .sotto{position:static;margin-top:8px;width:auto}
+  .schede{display:grid;grid-template-columns:1fr;justify-items:start;row-gap:6px}
+  .schede button{font-size:44px;padding-bottom:6px}
+  .pannello .foto img{aspect-ratio:4/5}
+  .tappe{display:grid;height:auto;overflow:visible}
+  .tappa{position:relative;inset:auto;grid-area:1 / 1}
+  .tappa[hidden]{display:block;visibility:hidden}
+  .tappa img{height:auto;aspect-ratio:1/1}
+  .tappa .testo{position:static;max-width:none;padding:22px var(--m) 28px}
+  .tappa h3{font-size:56px}
+  .tappa .frase{font-size:17px}
+  .tipo{display:flex;flex-direction:column}
+  .cifre{position:static;flex:1 0 auto;min-height:100vw;display:grid;grid-template-columns:repeat(3,1fr);align-content:end;align-items:start;padding:0 var(--m) 4px;gap:clamp(20px,6vw,32px)}
+  .cifre li{width:auto}
+  .cifre b{font-size:clamp(130px,42vw,200px);margin-bottom:10px;padding-bottom:10px}
+  .indice{column-gap:8px}
+  .indice button{font-size:13px;padding:14px 0 18px}
+  .indice button .k{display:block}
+  .gruppi .elenco{font-size:32px;line-height:1.06}
+  .contatti .foto img{aspect-ratio:1/1}
+  .contatti .testo{margin-top:32px;gap:32px}
+  .contatti h2{font-size:clamp(40px,12.4vw,52px);line-height:.95}
+  .contatti .numero{font-size:30px}
+}
+@media (max-width:359px){
+  .indice button{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="salta" href="#materiali">Vai ai materiali</a>
+
+<header class="testata">
+  <a class="marchio" href="index.html" aria-label="Daisyplast, pagina iniziale"><img src="img/logo.webp" width="530" height="146" alt="Daisyplast s.r.l."></a>
+  <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav class="menu" id="menu" aria-label="Principale">
+    <a href="#materiali">Materiali</a>
+    <a href="#percorso">Un ordine</a>
+    <a href="#clienti">Clienti</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a>
+</header>
+
+<main>
+<section class="apertura" id="apertura" aria-labelledby="titolo">
+  <figure class="bolla">
+    <picture>
+      <source media="(max-width:560px)" srcset="img/bolla-p-590.webp 590w" sizes="100vw">
+      <img src="img/bolla-768.webp" srcset="img/bolla-600.webp 600w, img/bolla-768.webp 768w" sizes="(max-width:860px) 44vw, (max-width:1100px) 28vw, min(38vw,600px)" width="768" height="1280" fetchpriority="high" alt="La bolla di film che sale dalla testa di estrusione, dentro l'anello di raffreddamento in acciaio forato">
+    </picture>
+  </figure>
+  <h1 id="titolo" class="titolo alto"><span>Sacchi e film</span><span class="r">in polietilene</span></h1>
+  <p class="titolo luce alto" aria-hidden="true"><span>Sacchi e film</span><span class="r">in polietilene</span></p>
+  <div class="fondo">
+    <div class="intro">
+      <p>Estrudiamo il film in bolla e lo saldiamo in sacchi, shopper, bobine e monopieghe per grossisti del Triveneto, industrie e artigiani. A Tombelle di Vigonovo dal&nbsp;2008.</p>
+      <p class="prev">Per un preventivo: <a class="num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a></p>
+    </div>
+    <div class="dato">
+      <p class="didascalia">Nella foto, una testa di estrusione: il film sale dall'anello di raffreddamento verso i rulli di traino.</p>
+      <p class="kg alto num">oltre 10.000&nbsp;kg</p>
+      <p class="sotto num">di sacchi e film al giorno, da 5 linee in bolla e 4 di saldatura. Consegne con i nostri mezzi.</p>
+    </div>
+  </div>
+</section>
+
+<section class="materiali" id="materiali" aria-labelledby="t-materiali">
+  <div class="testa">
+    <h2 id="t-materiali" class="vh">Tre materiali</h2>
+    <p>Dalle stesse cinque linee escono tre film.</p>
+  </div>
+  <div class="schede" role="tablist" aria-label="Materiale del film">
+    <button role="tab" id="s-vergine" aria-controls="p-vergine" aria-selected="true">Vergine</button>
+    <button role="tab" id="s-rigenerato" aria-controls="p-rigenerato" aria-selected="false" tabindex="-1">Rigenerato</button>
+    <button role="tab" id="s-compostabile" aria-controls="p-compostabile" aria-selected="false" tabindex="-1">Compostabile</button>
+  </div>
+
+  <div class="pannelli">
+  <div class="pannello" role="tabpanel" id="p-vergine" aria-labelledby="s-vergine" tabindex="0">
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:560px)" srcset="img/vergine-p-600.webp 600w, img/vergine-p-900.webp 900w, img/vergine-p-1160.webp 1160w" sizes="100vw">
+        <img src="img/vergine-l-1600.webp" srcset="img/vergine-l-960.webp 960w, img/vergine-l-1600.webp 1600w, img/vergine-l-2400.webp 2400w" sizes="100vw" width="1600" height="800" alt="Un sacchetto trasparente per alimenti, su fondo nero">
+      </picture>
+    </figure>
+    <div class="cartellino">
+      <h3>PE-LD vergine</h3>
+      <p class="materia">Polietilene a bassa densità di prima scelta</p>
+      <ul>
+        <li>Sacchi per alimenti</li>
+        <li>Buste con chiusura minigrip</li>
+        <li>Sacchi per maglieria</li>
+        <li>Sacchi industriali</li>
+        <li>Bobine e monopieghe per imballaggio</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-rigenerato" aria-labelledby="s-rigenerato" tabindex="0" hidden>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:560px)" srcset="img/rigenerato-p-600.webp 600w, img/rigenerato-p-900.webp 900w, img/rigenerato-p-1200.webp 1200w" sizes="100vw">
+        <img src="img/rigenerato-l-1600.webp" srcset="img/rigenerato-l-960.webp 960w, img/rigenerato-l-1600.webp 1600w, img/rigenerato-l-2400.webp 2400w" sizes="100vw" width="1600" height="800" loading="lazy" alt="Film nero lucido, spiegazzato">
+      </picture>
+    </figure>
+    <div class="cartellino">
+      <h3>PE-LD rigenerato</h3>
+      <p class="materia">Polietilene da materiale riciclato</p>
+      <ul>
+        <li>Sacchi neri per l'immondizia, sfusi e in rotolo</li>
+        <li>Sacchi per la raccolta differenziata</li>
+        <li>Shopper riutilizzabili</li>
+        <li>Sacchi industriali</li>
+        <li>Bobine in materiale rigenerato</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pannello chiaro" role="tabpanel" id="p-compostabile" aria-labelledby="s-compostabile" tabindex="0" hidden>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:560px)" srcset="img/compostabile-p-600.webp 600w, img/compostabile-p-900.webp 900w, img/compostabile-p-1120.webp 1120w" sizes="100vw">
+        <img src="img/compostabile-l-1600.webp" srcset="img/compostabile-l-960.webp 960w, img/compostabile-l-1600.webp 1600w, img/compostabile-l-2400.webp 2400w" sizes="100vw" width="1600" height="800" loading="lazy" alt="Una margherita bianca a cui manca un petalo, posato accanto">
+      </picture>
+    </figure>
+    <div class="cartellino">
+      <h3>Compostabile</h3>
+      <p class="materia">Biodegradabile e compostabile</p>
+      <ul>
+        <li>Sacchetti per i rifiuti</li>
+        <li>Shopper biocompostabili</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="percorso scuro" id="percorso" aria-labelledby="t-percorso">
+  <div class="capo">
+    <h2 id="t-percorso" class="alto">Dall'ordine alla consegna</h2>
+  </div>
+  <div class="palco">
+    <div class="tappe">
+      <div class="tappa" id="tappa-1" role="tabpanel" aria-labelledby="k-1">
+        <picture>
+          <source media="(max-width:560px)" srcset="img/t1-ordine-p-600.webp 600w, img/t1-ordine-p-900.webp 900w" sizes="100vw">
+          <img src="img/t1-ordine-1440.webp" srcset="img/t1-ordine-800.webp 800w, img/t1-ordine-1440.webp 1440w" sizes="100vw" width="1440" height="640" loading="lazy" alt="Gli strati di film di una bobina, visti di taglio">
+        </picture>
+        <div class="testo">
+          <p class="n num">1 di 5</p>
+          <h3>L'ordine</h3>
+          <p class="frase">Nell'arco di una giornata l'ordine diventa una scheda di lavorazione.</p>
+          <p class="det">Al telefono, <a class="num" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a>, o per email a <a href="mailto:info@daisyplast.it">info@daisyplast.it</a></p>
+        </div>
+      </div>
+      <div class="tappa" id="tappa-2" role="tabpanel" aria-labelledby="k-2" hidden>
+        <picture>
+          <source media="(max-width:560px)" srcset="img/t2-piano-p-600.webp 600w, img/t2-piano-p-700.webp 700w" sizes="100vw">
+          <img src="img/t2-piano-1440.webp" srcset="img/t2-piano-800.webp 800w, img/t2-piano-1440.webp 1440w, img/t2-piano-1920.webp 1920w" sizes="100vw" width="1440" height="640" loading="lazy" alt="Il quadro comandi di una linea di estrusione: schermo, pulsanti, due display e una nota scritta a penna in alto">
+        </picture>
+        <div class="testo">
+          <p class="n num">2 di 5</p>
+          <h3>Il piano</h3>
+          <p class="frase">La scheda entra nella programmazione settimanale delle linee di estrusione, poi in quella delle linee di saldatura.</p>
+          <p class="det">Il polietilene deriva dal petrolio: sugli aumenti teniamo aggiornati i clienti.</p>
+        </div>
+      </div>
+      <div class="tappa" id="tappa-3" role="tabpanel" aria-labelledby="k-3" hidden>
+        <picture>
+          <source media="(max-width:560px)" srcset="img/t3-bobine-p-600.webp 600w, img/t3-bobine-p-900.webp 900w" sizes="100vw">
+          <img src="img/t3-bobine-1440.webp" srcset="img/t3-bobine-800.webp 800w, img/t3-bobine-1440.webp 1440w, img/t3-bobine-1920.webp 1920w" sizes="100vw" width="1440" height="640" loading="lazy" alt="Bobine di film bianco avvolte su mandrini">
+        </picture>
+        <div class="testo">
+          <p class="n num">3 di 5</p>
+          <h3>La bolla</h3>
+          <p class="frase">Cinque linee di estrusione in bolla. Il film esce dalla testa, sale gonfiato d'aria fino ai rulli di traino e si avvolge in bobina.</p>
+          <p class="det">Siamo in tredici, dal 2008.</p>
+        </div>
+      </div>
+      <div class="tappa tipo" id="tappa-4" role="tabpanel" aria-labelledby="k-4" hidden>
+        <ul class="cifre num">
+          <li><b>2</b>per sacchi arrotolati</li>
+          <li><b>1</b>per sacchi sfusi</li>
+          <li><b>1</b>per shopper</li>
+        </ul>
+        <div class="testo">
+          <p class="n num">4 di 5</p>
+          <h3>La saldatura</h3>
+          <p class="frase">Quattro linee di saldatura, ognuna per il suo sacco.</p>
+        </div>
+      </div>
+      <div class="tappa" id="tappa-5" role="tabpanel" aria-labelledby="k-5" hidden>
+        <picture>
+          <source media="(max-width:560px)" srcset="img/t5-consegna-p-600.webp 600w, img/t5-consegna-p-900.webp 900w" sizes="100vw">
+          <img src="img/t5-consegna-1440.webp" srcset="img/t5-consegna-800.webp 800w, img/t5-consegna-1440.webp 1440w, img/t5-consegna-1920.webp 1920w" sizes="100vw" width="1440" height="640" loading="lazy" alt="Rotoli di sacchi di polietilene pronti">
+        </picture>
+        <div class="testo">
+          <p class="n num">5 di 5</p>
+          <h3>La consegna</h3>
+          <p class="frase">Consegniamo con i nostri mezzi.</p>
+          <p class="det num">Carico e scarico dal lunedì al venerdì, 8:00–12:00 e 14:00–17:30</p>
+        </div>
+      </div>
+    </div>
+    <div class="indice" role="tablist" aria-label="Il percorso di un ordine, cinque tappe">
+      <button role="tab" id="k-1" aria-controls="tappa-1" aria-selected="true"><span class="k">1</span> Ordine</button>
+      <button role="tab" id="k-2" aria-controls="tappa-2" aria-selected="false" tabindex="-1"><span class="k">2</span> Piano</button>
+      <button role="tab" id="k-3" aria-controls="tappa-3" aria-selected="false" tabindex="-1"><span class="k">3</span> Bolla</button>
+      <button role="tab" id="k-4" aria-controls="tappa-4" aria-selected="false" tabindex="-1"><span class="k">4</span> Saldatura</button>
+      <button role="tab" id="k-5" aria-controls="tappa-5" aria-selected="false" tabindex="-1"><span class="k">5</span> Consegna</button>
+    </div>
+  </div>
+</section>
+
+<section class="clienti" id="clienti" aria-labelledby="t-clienti">
+  <h2 id="t-clienti" class="alto">Per grossisti, industrie e artigiani</h2>
+  <ul class="gruppi">
+    <li><span class="et">Grossisti</span><span class="elenco">Ferramenta, ingrossi di detersivi e prodotti per le pulizie, di carta e plastica, di forniture alberghiere e catering, di materiali per l'imballaggio</span></li>
+    <li><span class="et">Industrie e artigiani</span><span class="elenco">Colorifici, panifici, maglierie, tacchifici, calzaturifici, mobilifici</span></li>
+    <li><span class="et">Utilizzatori</span><span class="elenco">Imprese di pulizia, mense, Ulss, cooperative, consorzi, enti</span></li>
+  </ul>
+</section>
+
+<section class="contatti" id="contatti" aria-labelledby="t-contatti">
+  <figure class="foto">
+    <picture>
+      <source media="(max-width:560px)" srcset="img/chiusa-q-600.webp 600w, img/chiusa-q-1000.webp 1000w" sizes="100vw">
+      <source media="(max-width:860px)" srcset="img/chiusa-l-900.webp 900w, img/chiusa-l-1600.webp 1600w" sizes="100vw">
+      <img src="img/chiusa-720.webp" srcset="img/chiusa-720.webp 720w, img/chiusa-1180.webp 1180w" sizes="50vw" width="720" height="773" loading="lazy" alt="Bobine di film bianco avvolte sui mandrini di una linea, accanto agli ingranaggi">
+    </picture>
+  </figure>
+  <div class="testo">
+    <h2 id="t-contatti" class="alto">Estrudiamo il film in bolla e lo saldiamo in sacchi, shopper, bobine e monopieghe.</h2>
+    <address>
+      <p><a class="numero" href="tel:+390499802226">049&nbsp;980&nbsp;2226</a></p>
+      <p><a href="mailto:info@daisyplast.it">info@daisyplast.it</a><br><span class="grigio num">Fax 049&nbsp;982&nbsp;9961</span></p>
+      <p>Via del Lavoro 25, <span class="nw">Tombelle di Vigonovo</span>, <span class="nw num">30030 Vigonovo (VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+del+Lavoro+25+30030+Vigonovo+VE">Apri la mappa</a></p>
+      <p class="grigio num">Carico e scarico dal lunedì al venerdì, <span class="nw">8:00–12:00</span> e <span class="nw">14:00–17:30</span>; sabato e domenica chiuso. Consegne con i nostri mezzi.</p>
+    </address>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <p class="num"><strong>DAISYPLAST s.r.l.</strong><span>P. IVA e C.F. 03861090276</span><span>REA VE-344838</span><span>Capitale sociale 60.000&nbsp;euro i.v.</span><span>PEC <a href="mailto:daisyplastsrl@pec.it">daisyplastsrl@pec.it</a></span><span>Questa pagina non usa cookie</span></p>
+</footer>
+
+<script>
+/* Due gruppi di schede (materiali e percorso): clic, dito, frecce, Inizio e Fine. Cambio netto, nessun movimento automatico. */
+(function(){
+  [].forEach.call(document.querySelectorAll('[role=tablist]'),function(lista){
+    var schede=[].slice.call(lista.querySelectorAll('[role=tab]'));
+    var pannelli=schede.map(function(s){return document.getElementById(s.getAttribute('aria-controls'))});
+    var cur=0;
+    function vai(i,fuoco){
+      i=(i+schede.length)%schede.length;cur=i;
+      schede.forEach(function(s,k){
+        var su=k===i;
+        s.setAttribute('aria-selected',su?'true':'false');
+        s.tabIndex=su?0:-1;
+        pannelli[k].hidden=!su;
+      });
+      var im=pannelli[i].querySelector('img');if(im)im.loading='eager';
+      if(fuoco)schede[i].focus();
+    }
+    schede.forEach(function(s,k){
+      s.addEventListener('click',function(){vai(k,false)});
+      s.addEventListener('keydown',function(e){
+        var m={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+        if(m){e.preventDefault();vai(cur+m,true)}
+        else if(e.key==='Home'){e.preventDefault();vai(0,true)}
+        else if(e.key==='End'){e.preventDefault();vai(schede.length-1,true)}
+      });
+    });
+    /* sul palco del percorso si sfoglia anche col dito */
+    var palco=lista.parentNode.querySelector('.tappe');
+    if(palco){
+      var x0=null,y0=null;
+      palco.addEventListener('dragstart',function(e){e.preventDefault()});
+      palco.addEventListener('pointerdown',function(e){x0=e.clientX;y0=e.clientY});
+      palco.addEventListener('pointercancel',function(){x0=null});
+      palco.addEventListener('pointerup',function(e){
+        if(x0===null)return;var dx=e.clientX-x0,dy=e.clientY-y0;x0=null;
+        if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.4)vai(cur+(dx<0?1:-1),false);
+      });
+    }
+  });
+  /* menu a pulsante sotto 1180 px */
+  var apri=document.querySelector('.apri'),menu=document.getElementById('menu');
+  apri.addEventListener('click',function(){
+    var a=menu.classList.toggle('aperto');
+    apri.setAttribute('aria-expanded',a?'true':'false');
+  });
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('aperto');apri.setAttribute('aria-expanded','false')}});
+})();
+</script>
+</body>
+</html>

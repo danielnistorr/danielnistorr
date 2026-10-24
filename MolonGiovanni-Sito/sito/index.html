@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molon Giovanni, ranghinatori a cinghie dal 1936</title>
+<meta name="description" content="Ranghinatori a cinghie, girelli spandivoltafieno e scopatrici per trattori, motofalciatrici e motocoltivatori. Arlesega di Mestrino (PD), dal 1936.">
+<style>
+@font-face{font-family:"Sofia Sans";src:url(fonts/sofia-sans-latin-var.woff2) format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+:root{
+  --carta:#F3F0E7;
+  --carta-2:#E6E2D6;
+  --piede:#E2DDCF;
+  --inchiostro:#1E1D1A;
+  --grigio:#5D5950;
+  --filetto:rgba(30,29,26,.18);
+  --rosso:#C8231B;
+  --rosso-scuro:#A01A14;
+  --m:64px;
+  --col:1312px;
+  --x:min(1px, calc(100vw / 1440));
+  --u:max(.6px, min(1px, calc(100vw / 1440), calc((100svh - 88px) / 812)));
+  --terra-max:#B9B3A4;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Sofia Sans",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{color:var(--rosso)}
+:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:calc(var(--col) + 2*var(--m));margin:0 auto;padding:0 var(--m)}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.vis{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:16px;top:16px;background:var(--inchiostro);color:var(--carta);padding:8px 12px;z-index:10}
+
+/* testata */
+.testata{position:relative;z-index:5}
+.testata .riga{display:flex;align-items:center;gap:44px;height:88px}
+.testata .logo{width:132px;flex:none;display:block}
+.testata .logo img{width:100%}
+.testata nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:16px}
+.testata nav a{text-decoration:none}
+.testata .destra{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:16px}
+.testata .tel{font-weight:500;text-decoration:none}
+.lingue{display:flex;gap:12px;color:var(--grigio);font-size:14px;letter-spacing:.04em}
+.lingue a{text-decoration:none}
+.lingue [aria-current]{color:var(--inchiostro)}
+.menu-btn{-webkit-tap-highlight-color:transparent;display:none;align-items:center;gap:10px;background:none;border:0;padding:10px 0 10px 4px;margin:0;font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);cursor:pointer}
+.menu-btn i{display:block;width:18px;height:8px;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
+.menu-btn[aria-expanded="true"] i{height:0;border-bottom:0;transform:rotate(45deg);position:relative}
+.menu-btn[aria-expanded="true"] i::after{content:"";position:absolute;left:0;top:-1.5px;width:18px;border-top:1.5px solid currentColor;transform:rotate(-90deg)}
+.pannello{position:absolute;left:0;right:0;top:100%;background:var(--carta);border-bottom:1px solid var(--filetto);padding:8px var(--m) 28px}
+.pannello[hidden]{display:none}
+.testata .pannello ul{display:block;list-style:none;margin:0;padding:0}
+.pannello li a{display:block;padding:12px 0;font-size:24px;line-height:1.2;text-decoration:none;border-bottom:1px solid var(--filetto)}
+.pannello .lingue{margin-top:20px;font-size:15px;gap:20px}
+
+/* apertura: la macchina in scala sopra la linea di terra.
+   A 1440x900 le misure sono in px; sotto scalano con la larghezza (--x) e, per le misure verticali, anche con l'altezza della finestra (--u). */
+.apertura{position:relative;max-width:1440px;margin:0 auto;height:calc(812*var(--u))}
+.apertura h1{position:absolute;left:var(--m);top:calc(20*var(--u));font-size:calc(112*var(--u));line-height:1;letter-spacing:-.035em;font-weight:380;white-space:nowrap}
+.scegli{position:absolute;z-index:2;left:var(--m);bottom:calc(40*var(--u))}
+.etichetta{font-size:14px;color:var(--grigio);letter-spacing:.02em;margin:0 0 12px}
+.modelli{border:0;margin:0;padding:0;min-width:0;display:flex;gap:0 calc(17*var(--u))}
+.modelli label{position:relative;display:block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.modelli input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.modelli label span{display:block;padding:0 0 9px;font-size:max(22px,calc(29*var(--u)));line-height:1;letter-spacing:-.015em;color:var(--grigio);border-bottom:3px solid transparent;font-variant-numeric:tabular-nums lining-nums}
+.modelli label span small{font-size:13px;letter-spacing:.02em;margin-left:3px;font-weight:500}
+.modelli label:hover span{color:var(--inchiostro)}
+.modelli input:checked + span{color:var(--inchiostro);border-bottom-color:var(--rosso)}
+.modelli input:focus-visible + span{outline:2px solid var(--rosso);outline-offset:6px}
+.opzioni{display:flex;gap:4px 24px;flex-wrap:wrap;margin-top:calc(14*var(--u))}
+.opzione{display:flex;align-items:center;gap:8px;min-height:40px;font-size:15px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.opzione input{width:18px;height:18px;margin:0;accent-color:var(--inchiostro);cursor:pointer}
+.opzione input:disabled + span{color:#8E897D}
+.opzione small{color:var(--grigio);font-size:14px}
+.riga-dati{margin-top:calc(10*var(--u));font-size:15px;line-height:1.5;color:var(--grigio)}
+.riga-dati b{font-weight:500;color:var(--inchiostro)}
+.riga-dati .k{display:inline-block;width:14px;height:4px;margin:0 7px 3px 0;vertical-align:middle}
+.k-lav{background:var(--rosso)}
+.k-max{background:var(--terra-max)}
+.palco{position:absolute;right:var(--m);bottom:calc(40*var(--u));width:min(calc(880*var(--u)), calc(100% - 2*var(--m) - max(calc(432*var(--u)), 420px)))}
+.scena{position:relative;aspect-ratio:1780/1098}
+.macchina{position:absolute;left:0;bottom:0;width:100%;transition:width .18s ease-out}
+.macchina img{width:100%}
+.terra{position:relative;height:max(46px,calc(54*var(--u)))}
+.terra .linea{position:absolute;left:0;right:0;top:0;height:1px;background:var(--inchiostro)}
+.terra .t-max,.terra .t-lav{position:absolute;left:0;top:-2px;height:5px;transition:width .18s ease-out}
+.terra .t-max{background:var(--terra-max);width:100%}
+.terra .t-lav{background:var(--rosso);width:87.5%}
+.terra .tacche{position:absolute;left:0;right:0;top:3px;height:10px;
+  background:
+   repeating-linear-gradient(90deg,var(--inchiostro) 0 1px,transparent 1px calc(100% / 32)) 0 0/100% 5px no-repeat,
+   repeating-linear-gradient(90deg,var(--inchiostro) 0 1px,transparent 1px calc(100% / 6.4)) 0 0/100% 10px no-repeat}
+.terra .cifre{position:absolute;left:0;right:0;top:20px;font-size:13px;line-height:1;color:var(--grigio)}
+.terra .cifre span{position:absolute;transform:translateX(-50%)}
+.terra .cifre span:first-child{transform:none}
+.terra .cifre span:last-child{transform:translateX(-100%)}
+.apertura .testo{position:absolute;left:var(--m);top:calc(176*var(--u));width:calc(380*var(--u));min-width:280px}
+.apertura .testo p{font-size:max(16px,calc(19*var(--u)));line-height:1.45}
+.bottone{display:inline-block;margin-top:calc(24*var(--u));background:var(--rosso);color:#fff;text-decoration:none;font-weight:500;font-size:16px;padding:14px 22px;line-height:1.2;white-space:nowrap}
+.bottone:hover{background:var(--rosso-scuro);color:#fff}
+.didascalia{font-size:14px;color:var(--grigio);line-height:1.45}
+
+/* il frontale scelto: dati e parti */
+.scheda{padding-top:96px}
+.scheda h2{font-size:48px;line-height:1.04;letter-spacing:-.025em;max-width:16em}
+.scheda .sotto{margin-top:14px;color:var(--grigio);max-width:40em}
+.dati{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px;margin:44px 0 0;padding:20px 0 0;border-top:1px solid var(--filetto)}
+.dati div{margin:0}
+.dati dt{font-size:14px;color:var(--grigio)}
+.dati dd{margin:4px 0 0;font-size:30px;line-height:1.1;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.dati dd small{font-size:16px;letter-spacing:0;color:var(--grigio);margin-left:4px}
+.parti{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.parti li{padding-top:16px;border-top:1px solid var(--inchiostro);font-size:16px;line-height:1.45}
+.parti b{display:block;font-weight:500;font-size:19px;line-height:1.25;margin-bottom:4px}
+.parti span:last-child{color:var(--grigio)}
+.scheda .nota{margin-top:32px;font-size:15px;color:var(--grigio);max-width:62em}
+
+/* gamma */
+.gamma{padding-top:128px}
+.gamma h2{font-size:56px;line-height:1.02;letter-spacing:-.03em;max-width:13em}
+.gamma .sotto{margin-top:18px;color:var(--grigio);max-width:40em}
+.griglia{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-top:40px;list-style:none;padding:0}
+.griglia a{display:block;text-decoration:none}
+.griglia img{width:100%;aspect-ratio:1400/700}
+.griglia h3{font-size:24px;line-height:1.2;letter-spacing:-.01em;font-weight:500;margin-top:14px;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.18em;text-decoration-thickness:1px}
+.griglia a:hover h3{text-decoration-color:currentColor}
+.griglia a:hover{color:inherit}
+.griglia p{margin-top:8px;color:var(--grigio);max-width:31em;font-size:17px}
+
+/* storia */
+.storia{padding:144px 0 0;display:grid;grid-template-columns:minmax(0,14fr) minmax(0,10fr);gap:0 64px;align-items:end}
+.storia figure{margin:0}
+.storia figure img{width:100%}
+.storia figcaption{margin:14px 0 0 var(--m)}
+.storia .testo{padding-right:var(--m);max-width:640px}
+.storia h2{font-size:48px;line-height:1.04;letter-spacing:-.025em}
+.anni{list-style:none;margin:32px 0 0;padding:0}
+.anni li{display:grid;grid-template-columns:76px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--filetto)}
+.anni li:last-child{border-bottom:1px solid var(--filetto)}
+.anni b{font-weight:500;font-variant-numeric:tabular-nums lining-nums}
+.storia .oggi{margin-top:24px}
+.rivenditori{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:12px 24px;margin-top:88px;padding-top:22px;border-top:1px solid var(--filetto)}
+.rivenditori h3{font-size:22px;line-height:1.2;font-weight:500}
+.rivenditori ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px 24px;font-size:16px;line-height:1.35}
+.rivenditori li b{display:block;font-weight:500}
+.rivenditori li span{color:var(--grigio)}
+.rivenditori p{grid-column:2;margin-top:10px;font-size:16px}
+.rivenditori p a{white-space:nowrap}
+
+/* chiusura */
+.chiusura{padding:144px 0 0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 64px;align-items:center;max-width:1440px;margin:0 auto}
+.chiusura .testo{padding-left:var(--m)}
+.chiusura h2{font-size:60px;line-height:1.02;letter-spacing:-.03em}
+.recapiti{margin-top:44px;font-style:normal;font-size:17px;line-height:1.65}
+.recapiti .tel-grande{display:inline-block;font-size:40px;line-height:1.1;letter-spacing:-.01em;text-decoration:none;font-variant-numeric:tabular-nums lining-nums;margin-bottom:16px}
+.recapiti p{margin:0}
+.chiusura figure{margin:0}
+.chiusura figure img{width:100%}
+.chiusura figcaption{margin-top:12px}
+
+/* piede */
+.piede{margin-top:144px;background:var(--piede);border-top:1px solid var(--filetto);padding:72px 0 32px;font-size:16px}
+.piede .alto{display:grid;grid-template-columns:4fr 2.2fr 1.6fr 2.4fr 1.4fr;gap:32px}
+.piede .logo{width:150px}
+.piede .chi{margin-top:20px;color:var(--grigio);max-width:22em;font-size:15px}
+.piede h2{font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin:0 0 16px}
+.piede ul{list-style:none;margin:0;padding:0}
+.piede li{margin:0 0 9px;line-height:1.4}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline;color:var(--inchiostro)}
+.piede .grigio{color:var(--grigio)}
+.piede .basso{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:64px;padding-top:20px;border-top:1px solid var(--filetto);font-size:14px;color:var(--grigio)}
+.piede .basso a{text-decoration:underline}
+.piede .basso .anno{margin-left:auto}
+.piede .col-btn{display:none}
+
+/* sotto i 960 px l'apertura si impila: titolo, frase e bottone, scelta del modello, macchina sulla linea di terra */
+@media (max-width:959px){
+  .apertura{height:auto;padding-top:28px}
+  .apertura h1,.scegli,.palco,.apertura .testo{position:static;width:auto;min-width:0}
+  .apertura h1{padding:0 var(--m);font-size:clamp(52px,9.4vw,96px);line-height:.96;white-space:normal}
+  .scegli{padding:0 var(--m);margin-top:36px}
+  .palco{margin:28px var(--m) 0}
+  .apertura .testo{padding:0 var(--m);margin-top:22px;max-width:40em}
+}
+@media (max-width:1099px){
+  :root{--m:40px}
+  .testata nav ul{gap:22px}
+  .lingue{display:none}
+  .pannello .lingue{display:flex}
+  .dati{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .parti{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}
+  .storia,.chiusura{gap:0 40px}
+  .rivenditori{grid-template-columns:1fr}
+  .rivenditori ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rivenditori p{grid-column:1}
+  .piede .alto{grid-template-columns:repeat(4,1fr)}
+  .piede .marchio{grid-column:1 / -1}
+}
+@media (max-width:900px){
+  .testata .riga nav{display:none}
+  .menu-btn{display:flex}
+  .testata .destra{gap:22px}
+  .gamma h2{font-size:44px}
+  .storia,.chiusura{grid-template-columns:1fr}
+  .storia .testo{padding:44px var(--m) 0;max-width:none}
+  .storia figure{margin-right:var(--m)}
+  .chiusura .testo{padding:0 var(--m)}
+  .chiusura figure{margin-top:44px}
+  .chiusura figcaption{padding:0 var(--m)}
+}
+@media (max-width:640px){
+  :root{--m:20px}
+  body{font-size:17px}
+  .testata .riga{height:64px;gap:16px}
+  .testata .logo{width:104px;padding:11px 0}
+  .testata .tel{font-size:15px;padding:12px 0}
+  .apertura{padding-top:18px}
+  .apertura h1{font-size:52px;line-height:.98;letter-spacing:-.03em}
+  .scegli{margin-top:28px}
+  .etichetta{margin-bottom:10px}
+  .modelli{display:grid;grid-template-columns:repeat(6,auto);justify-content:space-between;gap:0}
+  .modelli label span{font-size:24px;padding:10px 0 9px}
+  .modelli label span small{display:block;font-size:12px;margin:2px 0 0;position:absolute;left:0;top:100%}
+  .opzioni{gap:0 22px;margin-top:14px}
+  .opzione{min-height:44px}
+  .riga-dati{margin-top:2px;font-size:14px}
+  .palco{margin-top:18px}
+  .terra .cifre span:nth-child(even){display:none}
+  .apertura .testo{margin-top:18px}
+  .apertura .testo p{font-size:17px}
+  .bottone{margin-top:16px}
+  .scheda{padding-top:80px}
+  .scheda h2{font-size:34px}
+  .dati{grid-template-columns:1fr 1fr;gap:18px 16px;margin-top:32px}
+  .dati dd{font-size:26px}
+  .parti{grid-template-columns:1fr;gap:24px;margin-top:40px}
+  .scheda .nota{font-size:14px}
+  .gamma{padding-top:96px}
+  .gamma h2{font-size:34px}
+  .griglia{grid-template-columns:1fr;gap:32px}
+  .griglia h3{font-size:21px}
+  .griglia p{font-size:16px}
+  .storia{padding-top:96px}
+  .storia figure{margin-right:0}
+  .storia h2{font-size:34px}
+  .rivenditori{margin-top:64px}
+  .rivenditori ul{grid-template-columns:1fr 1fr}
+  .chiusura{padding-top:96px}
+  .chiusura h2{font-size:38px}
+  .recapiti .tel-grande{font-size:34px;display:inline-flex;align-items:center;min-height:48px;margin-bottom:8px}
+  .recapiti p a{display:inline-flex;align-items:center;min-height:44px}
+  .piede{margin-top:96px;padding-top:48px}
+  .piede .alto{grid-template-columns:1fr;gap:0}
+  .piede .marchio{margin-bottom:32px}
+  .piede .col{border-top:1px solid var(--filetto)}
+  .piede .col:last-child{border-bottom:1px solid var(--filetto)}
+  .piede h2{margin:0}
+  .piede .col-t{display:none}
+  .piede .col-btn{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:56px;padding:0;margin:0;background:none;border:0;font:inherit;font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--inchiostro);cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .piede .col-btn svg{display:block;width:12px;height:12px}
+  .piede .col-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+  .piede .col ul{padding:0 0 14px}
+  .piede .col ul[hidden]{display:none}
+  .piede li{margin:0}
+  .piede li a{display:inline-flex;align-items:center;min-height:44px}
+  .piede li:not(:has(a)){padding:10px 0}
+  .piede .basso{flex-direction:column;gap:6px;margin-top:36px;border-top:0;padding-top:0}
+  .piede .basso a{display:inline-flex;align-items:center;min-height:44px}
+  .piede .basso .anno{margin-left:0}
+}
+@media (max-width:360px){.testata .tel{display:none}.modelli label span{font-size:20px}}
+@media (min-width:641px){.piede .col ul[hidden]{display:block}}
+@media (prefers-reduced-motion:reduce){.macchina,.terra .t-max,.terra .t-lav{transition:none}}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<header class="testata">
+  <div class="wrap riga">
+    <a href="#" class="logo" aria-label="Molon, pagina iniziale"><img src="img/logo-molon.svg" alt="Molon" width="132" height="29"></a>
+    <nav aria-label="Principale">
+      <ul>
+        <li><a href="#frontali">Ranghinatori</a></li>
+        <li><a href="#gamma">Gamma</a></li>
+        <li><a href="#storia">Storia</a></li>
+        <li><a href="#rivenditori">Rivenditori</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="destra">
+      <a class="tel num" href="tel:+390499000103">049 900 0103</a>
+      <div class="lingue" aria-label="Lingua"><a href="#" aria-current="true">IT</a><a href="#" lang="en">EN</a><a href="#" lang="de">DE</a><a href="#" lang="fr">FR</a></div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="pannello"><i aria-hidden="true"></i>Menu</button>
+    </div>
+  </div>
+  <nav class="pannello" id="pannello" aria-label="Menu" hidden>
+    <ul>
+      <li><a href="#frontali">Ranghinatori</a></li>
+      <li><a href="#gamma">Gamma</a></li>
+      <li><a href="#storia">Storia</a></li>
+      <li><a href="#rivenditori">Rivenditori</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <div class="lingue" aria-label="Lingua"><a href="#" aria-current="true">Italiano</a><a href="#" lang="en">English</a><a href="#" lang="de">Deutsch</a><a href="#" lang="fr">Français</a></div>
+  </nav>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <h1 id="titolo">Ranghinatori a cinghie</h1>
+  <div class="testo">
+    <p>Rivoltano l'erba, la mettono in andana e allargano l'andana. Per trattori, motofalciatrici e motocoltivatori.</p>
+    <a class="bottone num" href="tel:+390499000103">Chiama 049 900 0103</a>
+  </div>
+  <div class="scegli">
+    <p class="etichetta" id="t-modelli">Scegli il modello: la macchina cambia larghezza in scala</p>
+    <fieldset class="modelli" aria-labelledby="t-modelli">
+      <label><input type="radio" name="mod" value="190"><span>190</span></label>
+      <label><input type="radio" name="mod" value="210"><span>210</span></label>
+      <label><input type="radio" name="mod" value="230"><span>230</span></label>
+      <label><input type="radio" name="mod" value="250"><span>250</span></label>
+      <label><input type="radio" name="mod" value="260"><span>260</span></label>
+      <label><input type="radio" name="mod" value="300" checked><span>300<small>PRO</small></span></label>
+    </fieldset>
+    <div class="opzioni">
+      <label class="opzione"><input type="checkbox" id="pro" checked disabled><span>Versione PRO</span></label>
+      <label class="opzione"><input type="checkbox" id="genio"><span>gEnio <small>+60 kg</small></span></label>
+    </div>
+    <p class="riga-dati num" id="riga" aria-live="polite"><span class="k k-lav" aria-hidden="true"></span><b id="a-lav">280</b> cm di lavoro, <span class="k k-max" aria-hidden="true"></span><b id="a-max">320</b> massima, <b id="a-pet">16</b> pettini</p>
+  </div>
+  <div class="palco">
+    <div class="scena">
+      <div class="macchina" id="macchina">
+        <img src="img/macchina-1200.webp" srcset="img/macchina-800.webp 800w, img/macchina-1200.webp 1200w, img/macchina-1600.webp 1600w, img/macchina-1780.webp 1780w" sizes="(max-width:1099px) 100vw, 62vw" width="1780" height="1098" fetchpriority="high" alt="Ranghinatore frontale a cinghie rosso, visto di tre quarti: pettini con i denti doppi, ruote ballon e bandella fermafieno nera">
+      </div>
+    </div>
+    <div class="terra" aria-hidden="true">
+      <div class="linea"></div>
+      <div class="t-max" id="t-max"></div>
+      <div class="t-lav" id="t-lav"></div>
+      <div class="tacche"></div>
+      <div class="cifre num"><span style="left:0">0</span><span style="left:15.625%">50</span><span style="left:31.25%">100</span><span style="left:46.875%">150</span><span style="left:62.5%">200</span><span style="left:78.125%">250</span><span style="left:93.75%">300</span><span style="left:100%">cm</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="scheda wrap" id="frontali" aria-labelledby="t-scheda">
+  <h2 id="t-scheda">Nove frontali per trattore, da 190 a 280&nbsp;cm di lavoro</h2>
+  <p class="sotto">Attacco molto vicino al trattore, presa di forza a 540 o 1000 giri al minuto. Altri modelli su richiesta.</p>
+  <dl class="dati" id="dati">
+    <div><dt>Modello</dt><dd id="d-mod">300 PRO</dd></div>
+    <div><dt>Larghezza di lavoro</dt><dd><span id="d-lav">280</span><small>cm</small></dd></div>
+    <div><dt>Larghezza massima</dt><dd><span id="d-max">320</span><small>cm</small></dd></div>
+    <div><dt>Pettini</dt><dd id="d-pet">16</dd></div>
+    <div><dt>Doppi denti per pettine</dt><dd id="d-den">5-6</dd></div>
+    <div><dt>Peso</dt><dd><span id="d-peso">340-350</span><small>kg</small></dd></div>
+  </dl>
+  <ol class="parti">
+    <li><b>Denti doppi</b><span>4, 5 o 6 per pettine, inclinati per lavorare il fieno senza strapparlo.</span></li>
+    <li><b>Pettini su cinghie trapezoidali</b><span>Montati con cuscinetti in plastica che non vanno lubrificati.</span></li>
+    <li><b>Bandella fermafieno</b><span>Registrabile; tra gli optional c'è quella idraulica.</span></li>
+    <li><b>Ruote ballon</b><span class="num">15×6.00-6, sul PRO 16×6.50-8.</span></li>
+  </ol>
+  <p class="nota">Nella versione PRO i componenti principali sono rinforzati. gEnio appoggia su quattro ruote ballon, con bilanciere e cerniera per seguire il terreno, e pesa 60 kg in più. La macchina in apertura è la foto del 230: per gli altri modelli è riportata in proporzione alla larghezza massima.</p>
+</section>
+
+<section class="gamma wrap" id="gamma" aria-labelledby="t-gamma">
+  <h2 id="t-gamma">Le altre macchine Molon</h2>
+  <p class="sotto">Ranghinatori posteriori e per motofalciatrici, girelli e scopatrici. Per ogni macchina ci sono i ricambi.</p>
+  <ul class="griglia">
+    <li><a href="#"><img src="img/gamma-posteriori-960.webp" srcset="img/gamma-posteriori-640.webp 640w, img/gamma-posteriori-960.webp 960w, img/gamma-posteriori-1400.webp 1400w" sizes="(max-width:640px) 100vw, 46vw" width="1400" height="700" loading="lazy" alt="Ranghinatore posteriore a cinghie blu con telaio verde">
+      <h3>Ranghinatori posteriori per trattori</h3>
+      <p>Attacco a 3 punti. MINOR MINI 120, MINOR 140, 160.3D, 180.3D, 210.3D e 230.3D: da 120 a 230 cm di lavoro, da 85 a 240 kg.</p></a></li>
+    <li><a href="#"><img src="img/gamma-motofalciatrici-960.webp" srcset="img/gamma-motofalciatrici-640.webp 640w, img/gamma-motofalciatrici-960.webp 960w, img/gamma-motofalciatrici-1400.webp 1400w" sizes="(max-width:640px) 100vw, 46vw" width="1400" height="700" loading="lazy" alt="Ranghinatore MAJOR rosso per motofalciatrice, con stegola e ruote">
+      <h3>Ranghinatori per motofalciatrici e motocoltivatori</h3>
+      <p>MINI, MIKY e MAJOR, da 80 a 200 kg. Leggeri e maneggevoli, funzionano come i ranghinatori da trattore.</p></a></li>
+    <li><a href="#"><img src="img/gamma-girelli-960.webp" srcset="img/gamma-girelli-640.webp 640w, img/gamma-girelli-960.webp 960w, img/gamma-girelli-1400.webp 1400w" sizes="(max-width:640px) 100vw, 46vw" width="1400" height="700" loading="lazy" alt="Girello spandivoltafieno 380 rosso con le giranti aperte">
+      <h3>Girelli spandivoltafieno</h3>
+      <p>200, 250, 380 e 200 MC. Baricentro basso e ruote sterzanti allargate per le forti pendenze; sul 380 le giranti esterne si ripiegano in alto.</p></a></li>
+    <li><a href="#"><img src="img/gamma-scopatrici-960.webp" srcset="img/gamma-scopatrici-640.webp 640w, img/gamma-scopatrici-960.webp 960w, img/gamma-scopatrici-1400.webp 1400w" sizes="(max-width:640px) 100vw, 46vw" width="1400" height="700" loading="lazy" alt="Scopatrice verde per trattore con spazzole bianche">
+      <h3>Scopatrici per trattori</h3>
+      <p>160, 180, 210 e 230. Spazzola larga per insilato, mais e foglie; spazzola a denti per nocciole, olive e sottobosco.</p></a></li>
+  </ul>
+</section>
+
+<section class="storia" id="storia" aria-labelledby="t-storia">
+  <figure>
+    <img src="img/archivio-1200.webp" srcset="img/archivio-800.webp 800w, img/archivio-1200.webp 1200w, img/archivio-1699.webp 1699w" sizes="(max-width:900px) 100vw, 60vw" width="1699" height="1290" loading="lazy" alt="Fotografia d'archivio in bianco e nero: un uomo alla guida di un trattore traina un rastrello raccoglifieno a ruote alte">
+    <figcaption class="didascalia">Rastrello a ruote alte dietro il trattore, anni Cinquanta.</figcaption>
+  </figure>
+  <div class="testo">
+    <h2 id="t-storia">Dal fabbro al gEnio, nella stessa famiglia</h2>
+    <ol class="anni">
+      <li><b>1936</b><span>Giovanni Molon comincia a lavorare come fabbro.</span></li>
+      <li><b>1952</b><span>I primi rastrelli raccoglifieno trainati da animali.</span></li>
+      <li><b>1961</b><span>Il voltafieno a forche.</span></li>
+      <li><b>1967</b><span>Escono i primi ranghinatori a cinghie.</span></li>
+      <li><b>Oggi</b><span>gEnio, il frontale su quattro ruote ballon.</span></li>
+    </ol>
+    <p class="oggi">L'azienda è guidata da Enio e Bruno Molon, figli del fondatore, su circa 3.000&nbsp;m² coperti.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="rivenditori" id="rivenditori">
+    <h3>Rivenditori</h3>
+    <ul>
+      <li><b>Gasser Landmaschinen</b><span>Chiusa, Bolzano</span></li>
+      <li><b>Agrometal</b><span>Slovenia</span></li>
+      <li><b>Kalinke</b><span>Berg-Höhenrain, Germania</span></li>
+      <li><b>Agrisorg</b><span>Romania</span></li>
+      <li><b>Tracmaster</b><span>Regno Unito</span></li>
+    </ul>
+    <p>Per il rivenditore più vicino, telefonate allo <a class="num" href="tel:+390499000103">049 900 0103</a>.</p>
+  </div>
+</div>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="testo">
+    <h2 id="t-contatti">Per un'andana soffice ed arieggiata</h2>
+    <address class="recapiti">
+      <a class="tel-grande" href="tel:+390499000103">049 900 0103</a>
+      <p><a href="mailto:info@molonmachinery.com">info@molonmachinery.com</a></p>
+      <p>Via Mestrina 10, 35035 Arlesega di Mestrino (PD)</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Mestrina+10+35035+Arlesega+Mestrino+PD">Apri la mappa</a></p>
+    </address>
+  </div>
+  <figure>
+    <img src="img/chiusura-1200.webp" srcset="img/chiusura-640.webp 640w, img/chiusura-960.webp 960w, img/chiusura-1200.webp 1200w, img/chiusura-1600.webp 1600w" sizes="(max-width:900px) 100vw, 56vw" width="1600" height="2000" loading="lazy" alt="Ranghinatore frontale Molon rosso al lavoro su un prato in collina: il fieno in andana davanti, due alberi sul crinale">
+    <figcaption class="didascalia">Frontale a cinghie su un prato in collina, con l'andana appena fatta.</figcaption>
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="alto">
+      <div class="marchio">
+        <img class="logo" src="img/logo-molon.svg" alt="Molon" width="150" height="33" loading="lazy">
+        <p class="chi">Macchine per la fienagione costruite ad Arlesega di Mestrino, in provincia di Padova, dalla famiglia Molon.</p>
+      </div>
+      <div class="col">
+        <h2><span class="col-t">Prodotti</span><button class="col-btn" type="button" aria-expanded="false" aria-controls="c-prod">Prodotti<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 4l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></h2>
+        <ul id="c-prod">
+          <li><a href="#frontali">Ranghinatori frontali</a></li>
+          <li><a href="#gamma">Ranghinatori posteriori</a></li>
+          <li><a href="#gamma">Per motofalciatrici e motocoltivatori</a></li>
+          <li><a href="#gamma">Girelli spandivoltafieno</a></li>
+          <li><a href="#gamma">Scopatrici</a></li>
+          <li><a href="#">Ricambi</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><span class="col-t">Azienda</span><button class="col-btn" type="button" aria-expanded="false" aria-controls="c-az">Azienda<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 4l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></h2>
+        <ul id="c-az">
+          <li><a href="#">Chi siamo</a></li>
+          <li><a href="#storia">Storia</a></li>
+          <li><a href="#rivenditori">Rivenditori</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><span class="col-t">Contatti</span><button class="col-btn" type="button" aria-expanded="false" aria-controls="c-con">Contatti<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 4l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></h2>
+        <ul id="c-con">
+          <li><a class="num" href="tel:+390499000103">Tel. 049 900 0103</a></li>
+          <li class="num grigio">Fax 049 900 0694</li>
+          <li><a href="mailto:info@molonmachinery.com">info@molonmachinery.com</a></li>
+          <li>Via Mestrina 10<br>35035 Arlesega di Mestrino (PD)</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Mestrina+10+35035+Arlesega+Mestrino+PD">Apri la mappa</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><span class="col-t">Lingua</span><button class="col-btn" type="button" aria-expanded="false" aria-controls="c-lin">Lingua<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 4l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></h2>
+        <ul id="c-lin">
+          <li><a href="#" aria-current="true">Italiano</a></li>
+          <li><a href="#" lang="en">English</a></li>
+          <li><a href="#" lang="de">Deutsch</a></li>
+          <li><a href="#" lang="fr">Français</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="basso">
+      <span>Molon Giovanni S.r.l.</span>
+      <span>Via Mestrina 10, 35035 Arlesega di Mestrino (PD)</span>
+      <span class="num">P.IVA 00258060284</span>
+      <a href="#">Privacy</a>
+      <a href="#">Cookie</a>
+      <span class="anno num">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // valori della tabella "ranghinatori frontali per trattori" di molonmachinery.com (letta il 24/10/2026)
+  var T={
+    '190':{lav:190,max:220,pet:11,den:'4',peso:[210,210],pro:null},
+    '210':{lav:210,max:240,pet:12,den:'4',peso:[245,245],pro:null},
+    '230':{lav:230,max:260,pet:13,den:'4-5',peso:[255,265],pro:{den:'5-6',peso:[285,295]}},
+    '250':{lav:250,max:280,pet:14,den:'4-5',peso:[290,300],pro:{den:'5-6',peso:[325,335]}},
+    '260':{lav:260,max:300,pet:15,den:'4-5',peso:[300,310],pro:{den:'5-6',peso:[330,340]}},
+    '300':{lav:280,max:320,pet:16,den:'5-6',peso:[340,350],pro:'solo'}
+  };
+  var $=function(id){return document.getElementById(id)};
+  var pro=$('pro'),genio=$('genio'),proUtente=false;
+  function pc(n){return (n/320*100)+'%'}
+  function mostra(){
+    var v=document.querySelector('input[name=mod]:checked').value, m=T[v];
+    var den=m.den, peso=m.peso.slice(), nome=v;
+    if(m.pro===null){pro.checked=false;pro.disabled=true}
+    else if(m.pro==='solo'){pro.checked=true;pro.disabled=true;nome='300 PRO'}
+    else{pro.disabled=false;pro.checked=proUtente;if(proUtente){den=m.pro.den;peso=m.pro.peso.slice();nome=v+' PRO'}}
+    if(genio.checked){peso=[peso[0]+60,peso[1]+60];nome+=' gEnio'}
+    $('a-lav').textContent=m.lav;$('a-max').textContent=m.max;$('a-pet').textContent=m.pet;
+    $('d-mod').textContent=nome;$('d-lav').textContent=m.lav;$('d-max').textContent=m.max;$('d-pet').textContent=m.pet;$('d-den').textContent=den;
+    $('d-peso').textContent=peso[0]===peso[1]?peso[0]:peso[0]+'-'+peso[1];
+    $('macchina').style.width=pc(m.max);
+    $('t-max').style.width=pc(m.max);
+    $('t-lav').style.width=pc(m.lav);
+  }
+  document.querySelectorAll('input[name=mod]').forEach(function(i){i.addEventListener('change',mostra)});
+  pro.addEventListener('change',function(){proUtente=pro.checked;mostra()});
+  genio.addEventListener('change',mostra);
+  mostra();
+
+  // menu sul telefono
+  var mb=document.querySelector('.menu-btn'), pan=$('pannello');
+  function chiudi(){mb.setAttribute('aria-expanded','false');pan.hidden=true}
+  mb.addEventListener('click',function(){var a=mb.getAttribute('aria-expanded')==='true';mb.setAttribute('aria-expanded',a?'false':'true');pan.hidden=a;if(!a){var p=pan.querySelector('a');if(p)p.focus()}});
+  pan.addEventListener('click',function(e){if(e.target.closest('a'))chiudi()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pan.hidden){chiudi();mb.focus()}});
+
+  // piede: a fisarmonica solo sul telefono
+  var mq=window.matchMedia('(max-width:640px)');
+  var btns=document.querySelectorAll('.piede .col-btn');
+  function piede(){btns.forEach(function(b){var u=$(b.getAttribute('aria-controls'));u.hidden=mq.matches&&b.getAttribute('aria-expanded')!=='true'})}
+  btns.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true');piede()})});
+  if(mq.addEventListener)mq.addEventListener('change',piede);
+  piede();
+})();
+</script>
+</body>
+</html>

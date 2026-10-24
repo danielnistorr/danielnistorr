@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nord Service, carrozzeria per macchine da lavoro a Mestrino</title>
+<meta name="description" content="Sabbiatura con garnet, fondi e vernici a liquido, vetroresina e plastica, carpenteria e vetri per macchine agricole, macchine operatrici e mezzi pesanti. Officina a Mestrino (PD).">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --carta:#F4F2EE; --carta-2:#EAE7E1; --inchiostro:#171717; --inchiostro-2:#4A4844;
+  --filo:rgba(23,23,23,.2); --arancio:#EF7821; --arancio-scuro:#D9650F; --arancio-testo:#A9500F;
+  --m:clamp(20px,4.45vw,64px); --g:24px;
+  --col:calc((min(100vw,1440px) - 2 * var(--m) - 11 * var(--g)) / 12);
+  --larga:"wdth" 118; --media:"wdth" 108;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Archivo",system-ui,sans-serif;
+  font-size:18px;line-height:1.55;font-weight:400;font-synthesis:none;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--arancio-testo)}
+:focus-visible{outline:2px solid var(--arancio-testo);outline-offset:3px}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+b{font-weight:600}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--m)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.salta{position:absolute;left:var(--m);top:-80px;z-index:10;background:var(--inchiostro);color:var(--carta);padding:10px 16px;font-size:16px;text-decoration:none}
+.salta:focus{top:12px;color:var(--carta)}
+
+/* testata */
+.testata{height:88px;display:flex;align-items:center;gap:40px}
+.testata .logo img{height:52px;width:auto}
+.menu{display:flex;gap:36px;margin-left:auto;font-size:16px}
+.menu a{text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.tel-testata{font-size:16px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;padding-left:36px;border-left:1px solid var(--filo);line-height:28px}
+details.menu-mobile{display:none}
+
+/* apertura: il titolo su una riga a tutta larghezza, sotto la pala posata sul filo del suolo */
+.apertura{position:relative;max-width:1440px;margin-inline:auto;padding-inline:var(--m);
+  height:clamp(700px,calc(100svh - 88px),900px);display:flex;flex-direction:column;--suolo:52px}
+.apertura h1{font-variation-settings:var(--larga);font-weight:600;white-space:nowrap;
+  font-size:calc((min(100vw,1440px) - 2 * var(--m)) / 7.8);line-height:.86;letter-spacing:-.036em;padding-top:14px;margin-left:-.04em}
+.ap-corpo{flex:1;min-height:0;position:relative;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.ap-testo{grid-column:1/5;align-self:end;padding-bottom:56px;position:relative;z-index:2}
+.lead{font-size:20px;line-height:1.5;max-width:23em}
+.azioni{margin-top:32px;display:flex;align-items:center;gap:20px 28px;flex-wrap:wrap}
+.bottone{display:inline-block;background:var(--arancio);color:var(--inchiostro);font-weight:600;font-size:17px;
+  padding:15px 22px;text-decoration:none;font-variant-numeric:tabular-nums;transition:background-color .15s}
+.bottone:hover{background:var(--arancio-scuro);color:var(--inchiostro)}
+.pala{position:absolute;right:calc(-1 * var(--m) - max(0px,(100vw - 1440px) / 2));bottom:0;z-index:1;height:calc(100% - 6px);max-width:calc(100% + var(--m) - 4 * var(--col) - 4 * var(--g));aspect-ratio:1800/1774}
+.pala img{width:100%;height:100%;object-fit:contain;object-position:right bottom;transform:translateY(3.95%)}
+.suolo{height:var(--suolo);border-top:1px solid var(--inchiostro);display:flex;justify-content:flex-end;position:relative;z-index:2;
+  margin-right:calc(-1 * var(--m) - max(0px,(100vw - 1440px) / 2));padding-right:calc(var(--m) + max(0px,(100vw - 1440px) / 2))}
+.suolo p{padding-top:14px;font-size:14px;line-height:1.4;color:var(--inchiostro-2);font-variant-numeric:tabular-nums lining-nums}
+.suolo b{color:var(--inchiostro);font-weight:600}
+
+/* titoli di sezione */
+h2{font-variation-settings:var(--media);font-weight:600;font-size:clamp(34px,3.75vw,54px);line-height:1.04;letter-spacing:-.026em;text-wrap:balance}
+h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.01em}
+.sezione{padding-top:176px}
+
+/* lavorazioni */
+.lav-testa h2{max-width:13em}
+.lav-testa p{margin-top:24px;font-size:20px;color:var(--inchiostro-2);max-width:31em}
+.lavorazioni{display:grid;grid-template-columns:repeat(3,1fr);column-gap:var(--g);row-gap:56px;margin-top:96px}
+.lavorazioni li{border-top:1px solid var(--filo);padding-top:20px;padding-right:12%}
+.lavorazioni p{margin-top:10px;font-size:17px;color:var(--inchiostro-2);text-wrap:pretty}
+
+/* fascia: carta e nastro in cabina */
+.fascia{margin-top:136px;max-width:1920px;margin-inline:auto}
+.fascia img{width:100%;aspect-ratio:2/1;object-fit:cover}
+.fascia figcaption{margin-top:14px;font-size:15px;color:var(--inchiostro-2)}
+.fascia figcaption b{color:var(--inchiostro)}
+
+/* apripista */
+.apripista{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start;max-width:1440px;margin-inline:auto;padding-right:var(--m)}
+.foto-seq{grid-column:1/7;display:grid}
+.foto-seq figure{grid-area:1/1}
+.foto-seq figure[hidden]{display:none}
+.foto-seq img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.foto-seq figcaption{font-size:15px;color:var(--inchiostro-2);margin-top:14px;padding-left:var(--m)}
+.foto-seq figcaption b{color:var(--inchiostro)}
+.seq-testo{grid-column:7/13;padding-left:calc(var(--col) + 2 * var(--g));padding-top:8px}
+.seq-testo p{margin-top:24px;color:var(--inchiostro-2);max-width:24em}
+.stati{margin-top:48px;display:flex;flex-direction:column}
+.stato{appearance:none;background:none;border:0;border-top:1px solid var(--filo);color:var(--inchiostro-2);
+  font:inherit;text-align:left;cursor:pointer;padding:16px 0 18px;display:flex;align-items:baseline;gap:20px;position:relative;width:100%}
+.stato:last-child{border-bottom:1px solid var(--filo)}
+.stato .data{font-size:15px;width:7.4em;flex:none;font-variant-numeric:tabular-nums lining-nums}
+.stato .parola{font-variation-settings:var(--larga);font-weight:600;font-size:32px;line-height:1;letter-spacing:-.02em}
+.stato:hover{color:var(--inchiostro)}
+.stato[aria-selected="true"]{color:var(--inchiostro)}
+.stato[aria-selected="true"]::before{content:"";position:absolute;left:0;right:0;top:-2px;height:3px;background:var(--arancio)}
+
+/* chiusura */
+.famiglia{margin-top:40px;padding-top:20px;border-top:1px solid var(--filo);font-size:18px;color:var(--inchiostro-2);max-width:28em}
+.famiglia b{color:var(--inchiostro)}
+.chiusura{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);max-width:1440px;margin-inline:auto;padding-left:var(--m)}
+.chiusura .testo{grid-column:1/6;padding-top:4px}
+.chiusura h2{max-width:10em;font-size:clamp(38px,4.6vw,66px);line-height:1.02}
+.recapiti{margin-top:80px;font-size:18px;line-height:1.5}
+.recapiti .tel{font-variation-settings:var(--media);font-weight:600;font-size:64px;line-height:1.05;letter-spacing:-.03em;text-decoration:none;font-variant-numeric:tabular-nums;display:inline-block;margin-bottom:22px;border-bottom:3px solid var(--arancio)}
+.recapiti li+li{margin-top:6px}
+.recapiti .orario{color:var(--inchiostro-2)}
+.chiusura figure{grid-column:6/13;margin-right:calc(-1 * max(0px,(100vw - 1440px) / 2))}
+.chiusura img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.chiusura figcaption{font-size:15px;color:var(--inchiostro-2);margin-top:14px}
+
+/* piede */
+.piede{background:var(--carta-2);margin-top:168px;padding-top:80px;font-size:16px}
+.piede-griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:48px}
+.piede-marchio{grid-column:1/5}
+.piede-marchio img{height:96px;width:auto}
+.piede-marchio p{margin-top:24px;max-width:21em;color:var(--inchiostro-2);font-size:16px}
+.colonna h3{font-size:15px;font-weight:600;font-variation-settings:"wdth" 100;letter-spacing:.005em;margin-bottom:18px;color:var(--inchiostro)}
+.colonna li+li{margin-top:9px}
+.colonna a{text-decoration:none}
+.colonna a:hover{text-decoration:underline}
+.colonna .nb{white-space:nowrap}
+.c1{grid-column:5/7}.c2{grid-column:7/9}.c3{grid-column:9/11}.c4{grid-column:11/13}
+.legale{margin-top:80px;border-top:1px solid var(--filo);padding-block:22px 30px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--inchiostro-2)}
+.legale .destra{margin-left:auto;display:flex;gap:24px}
+.legale a{text-decoration:none}.legale a:hover{text-decoration:underline}
+
+/* fino a 1199: la colonna del testo si stringe */
+@media (max-width:1199px){
+  .ap-testo{grid-column:1/6}
+  .lead{font-size:19px;max-width:21em}
+  .pala{max-width:calc(100% + var(--m) - 5 * var(--col) - 5 * var(--g))}
+}
+
+/* tablet: tutto in colonna */
+@media (max-width:999px){
+  .menu{gap:24px}
+  .tel-testata{padding-left:24px}
+  .apertura{height:auto;overflow:clip}
+  .ap-corpo,.ap-testo{display:contents}
+  .apertura h1{order:1;padding-top:28px}
+  .lead{order:2;margin-top:24px;max-width:27em;text-wrap:pretty}
+  .pala{order:3;position:relative;bottom:auto;right:auto;align-self:flex-end;height:auto;max-width:none;width:min(68vw,560px);margin-top:16px;margin-right:calc(-1 * var(--m))}
+  .suolo{order:4}
+  .azioni{order:5;margin-top:24px}
+  .lavorazioni{grid-template-columns:repeat(2,1fr)}
+  .apripista{display:flex;flex-direction:column-reverse;padding-right:0}
+  .seq-testo{padding:0 var(--m) 40px}
+  .foto-seq{width:100%;max-width:640px}
+  .chiusura{display:block;padding-left:0}
+  .chiusura .testo{padding:0 var(--m)}
+  .chiusura figure{margin:56px 0 0 auto;width:min(88vw,640px)}
+  .chiusura figcaption{padding-left:0}
+  .piede-marchio{grid-column:1/13}
+  .c1{grid-column:1/4}.c2{grid-column:4/7}.c3{grid-column:7/10}.c4{grid-column:10/13}
+}
+
+/* telefono */
+@media (max-width:699px){
+  body{font-size:17px}
+  .testata{height:64px;gap:16px}
+  .testata .logo img{height:40px}
+  .menu,.tel-testata{display:none}
+  .tel-mobile{margin-left:auto;font-size:15px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;padding:12px 0;line-height:20px}
+  details.menu-mobile{display:block}
+  details.menu-mobile summary{list-style:none;cursor:pointer;font-size:15px;padding:12px 0 12px 6px}
+  details.menu-mobile summary::-webkit-details-marker{display:none}
+  details.menu-mobile[open] summary{color:var(--arancio-testo)}
+  .menu-aperto{position:absolute;left:0;right:0;top:64px;background:var(--carta);padding:8px var(--m) 24px;z-index:5;border-bottom:1px solid var(--filo)}
+  .menu-aperto a{display:block;padding:12px 0;font-size:20px;text-decoration:none;border-top:1px solid var(--filo)}
+  .apertura h1{white-space:normal;font-size:clamp(50px,17.4vw,78px);padding-top:12px;line-height:.88}
+  .lead{font-size:17px;margin-top:18px}
+  .pala{width:90vw;margin-top:4px}
+  .apertura{--suolo:44px}
+  .suolo p{padding-top:10px;font-size:13px}
+  .azioni{margin-top:14px;gap:8px 20px}
+  .sezione{padding-top:104px}
+  .lav-testa p{font-size:18px}
+  .lavorazioni{grid-template-columns:1fr;row-gap:28px;margin-top:48px}
+  .lavorazioni li{padding-right:0}
+  .fascia{margin-top:80px}
+  .fascia img{aspect-ratio:4/3;object-position:30% 50%}
+  .foto-seq figcaption{padding-inline:var(--m)}
+  .stati{flex-direction:row;margin-top:32px}
+  .stato{flex:1;flex-direction:column;gap:6px;padding:14px 8px 4px 0;border-bottom:0 !important}
+  .stato .data{width:auto;font-size:13px}
+  .stato .parola{font-size:clamp(16px,4.8vw,20px);font-variation-settings:"wdth" 104}
+  .recapiti{margin-top:40px}
+  .recapiti .tel{font-size:clamp(38px,11.5vw,52px)}
+  .chiusura figure{width:92vw;margin-top:48px}
+  .piede{margin-top:104px;padding-top:56px}
+  .piede-marchio img{height:80px}
+  .c1,.c2,.c3,.c4{grid-column:span 6}
+  .piede-griglia{row-gap:40px}
+  .legale{margin-top:56px}
+  .legale .destra{margin-left:0}
+}
+@media (min-width:700px){.tel-mobile{display:none}}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="wrap testata">
+  <a class="logo" href="./" aria-label="Nord Service, home"><img src="img/logo-112.png" width="166" height="112" alt="Nord Service S.r.l."></a>
+  <nav class="menu" aria-label="Principale">
+    <a href="#apripista">Prima e dopo</a>
+    <a href="#lavorazioni">Lavorazioni</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel-testata" href="tel:+390499005162">049&nbsp;900&nbsp;5162</a>
+  <a class="tel-mobile" href="tel:+390499005162">049&nbsp;900&nbsp;5162</a>
+  <details class="menu-mobile">
+    <summary>Menu</summary>
+    <nav class="menu-aperto" aria-label="Principale, telefono">
+      <a href="#apripista">Prima e dopo</a>
+      <a href="#lavorazioni">Lavorazioni</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </details>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <h1 id="titolo">Tornano nuove</h1>
+  <div class="ap-corpo">
+    <div class="ap-testo">
+      <p class="lead">Carrozzeria per macchine da lavoro: sabbiatura con garnet, fondi e vernici a liquido, vetroresina, carpenteria e vetri. Officina a Mestrino, Padova.</p>
+      <div class="azioni">
+        <a class="bottone" href="tel:+390499005162">Chiama 049&nbsp;900&nbsp;5162</a>
+        <a href="mailto:info@nordservice.net">info@nordservice.net</a>
+      </div>
+    </div>
+    <figure class="pala">
+      <img src="img/pala-1360.webp"
+        srcset="img/pala-640.webp 640w, img/pala-960.webp 960w, img/pala-1360.webp 1360w, img/pala-1800.webp 1800w"
+        sizes="(max-width:699px) 90vw, (max-width:999px) 68vw, 640px"
+        width="1800" height="1774" fetchpriority="high"
+        alt="Pala gommata Komatsu WA320 gialla con la benna alzata">
+    </figure>
+  </div>
+  <div class="suolo"><p><b>Komatsu WA320</b>, maggio 2025</p></div>
+</section>
+
+<section class="sezione" id="apripista" aria-labelledby="t-seq">
+  <div class="apripista">
+    <div class="foto-seq">
+      <figure id="p-sabbiato" role="tabpanel" aria-labelledby="s-sabbiato" hidden>
+        <img src="img/d8r-sabbiato-1100.jpg" srcset="img/d8r-sabbiato-720.jpg 720w, img/d8r-sabbiato-1100.jpg 1100w, img/d8r-sabbiato-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista cingolato appena sabbiato, metallo grigio a vista, nella cabina di sabbiatura">
+        <figcaption><b>Sabbiato, metallo nudo in cabina.</b> 3 ottobre 2024.</figcaption>
+      </figure>
+      <figure id="p-verniciato" role="tabpanel" aria-labelledby="s-verniciato" hidden>
+        <img src="img/d8r-verniciato-1100.jpg" srcset="img/d8r-verniciato-720.jpg 720w, img/d8r-verniciato-1100.jpg 1100w, img/d8r-verniciato-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista appena verniciato di giallo in cabina, con le mascherature ancora montate">
+        <figcaption><b>Fondo e giallo in cabina, mascherature ancora su.</b> 10 ottobre 2024.</figcaption>
+      </figure>
+      <figure id="p-finito" role="tabpanel" aria-labelledby="s-finito">
+        <img src="img/d8r-finito-1100.jpg" srcset="img/d8r-finito-720.jpg 720w, img/d8r-finito-1100.jpg 1100w, img/d8r-finito-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista D8R finito, giallo, con le scritte rimesse">
+        <figcaption><b>Finito, con le scritte rimesse.</b> 16 ottobre 2024.</figcaption>
+      </figure>
+    </div>
+    <div class="seq-testo">
+      <h2 id="t-seq">Un apripista&nbsp;D8R, ottobre 2024</h2>
+      <p>Tre fotografie scattate in officina: il metallo sabbiato, il giallo appena dato, la macchina finita. Scegli il giorno.</p>
+      <div class="stati" role="tablist" aria-label="Giorno di lavorazione">
+        <button class="stato" role="tab" id="s-sabbiato" aria-controls="p-sabbiato" aria-selected="false" tabindex="-1"><span class="data">3 ottobre</span><span class="parola">Sabbiato</span></button>
+        <button class="stato" role="tab" id="s-verniciato" aria-controls="p-verniciato" aria-selected="false" tabindex="-1"><span class="data">10 ottobre</span><span class="parola">Verniciato</span></button>
+        <button class="stato" role="tab" id="s-finito" aria-controls="p-finito" aria-selected="true"><span class="data">16 ottobre</span><span class="parola">Finito</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="wrap">
+    <div class="lav-testa">
+      <h2 id="t-lav">Sulla carrozzeria intera o su un solo pezzo</h2>
+      <p>Per tutti i mezzi industriali: macchine agricole e operatrici, i loro componenti, autoveicoli di grandi dimensioni.</p>
+    </div>
+    <ul class="lavorazioni">
+      <li><h3>Sabbiatura con garnet</h3><p>Un abrasivo naturale toglie vernice, ruggine e incrostazioni e arriva in ogni angolo della macchina, con poca polvere. Il garnet si riusa.</p></li>
+      <li><h3>Fondi e vernici a liquido</h3><p>Prima il fondo, per l'adesione, poi la vernice a spruzzo. Anche solo sul punto del danno.</p></li>
+      <li><h3>Vetroresina e plastica</h3><p>Saldatrici a plastica e a graffe per rinforzare le crepe; fogli e resine bicomponenti o spatolabili per la vetroresina.</p></li>
+      <li><h3>Carpenteria</h3><p>Modifiche in ferro e acciaio: tagliamo, saldiamo, raddrizziamo e creiamo quello che serve.</p></li>
+      <li><h3>Vetri</h3><p>Dal finestrino del camion al parabrezza di una pala gommata.</p></li>
+      <li><h3>Consulenza</h3><p>Ti indirizziamo nella ricerca dei componenti di cui hai bisogno.</p></li>
+    </ul>
+  </div>
+  <figure class="fascia">
+    <img src="img/carta-1440.jpg"
+      srcset="img/carta-800.jpg 800w, img/carta-1440.jpg 1440w, img/carta-2400.jpg 2400w"
+      sizes="(min-width:1920px) 1920px, 100vw" width="1440" height="720" loading="lazy"
+      alt="Braccio arancio di un mini escavatore in cabina di verniciatura, il resto della macchina coperto da carta, nastro e nylon">
+    <figcaption class="wrap"><b>Un mini escavatore in cabina: carta e nastro dove la vernice non deve arrivare.</b> Dicembre 2024.</figcaption>
+  </figure>
+</section>
+
+<section class="sezione" id="contatti" aria-labelledby="t-chi">
+  <div class="chiusura">
+    <div class="testo">
+      <h2 id="t-chi">Sappiamo far tornare nuove le macchine con cui lavori ogni giorno</h2>
+      <div>
+        <ul class="recapiti">
+          <li><a class="tel" href="tel:+390499005162">049&nbsp;900&nbsp;5162</a></li>
+          <li><a href="mailto:info@nordservice.net">info@nordservice.net</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Levico+20+35035+Mestrino+PD">Via Levico 20, 35035 Mestrino (PD)</a></li>
+          <li class="orario num">Dal lunedì al venerdì, 7:00&#8209;17:30</li>
+        </ul>
+        <p class="famiglia">Un lavoro di famiglia: <b>Stefano Barbieri</b>, nel settore da oltre quarant'anni, e oggi al suo fianco il figlio <b>Leonardo</b>.</p>
+      </div>
+    </div>
+    <figure>
+      <img src="img/cingoli-960.jpg" srcset="img/cingoli-640.jpg 640w, img/cingoli-960.jpg 960w, img/cingoli-1400.jpg 1400w"
+        sizes="(max-width:699px) 92vw, (max-width:999px) 640px, 58vw" width="960" height="1200" loading="lazy"
+        alt="Ruota dentata, rulli e cingolo di un apripista appena verniciati di giallo lucido, in cabina">
+      <figcaption><b>Giallo appena dato su ruota dentata e cingolo dell'apripista D8R.</b> 10 ottobre 2024.</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="piede-griglia">
+      <div class="piede-marchio">
+        <img src="img/logo-192.png" width="285" height="192" alt="Nord Service S.r.l." loading="lazy">
+        <p>Sabbiatura, verniciatura e riparazione della carrozzeria di macchine da lavoro. Un'officina di famiglia a Mestrino, Padova.</p>
+      </div>
+      <nav class="colonna c1" aria-labelledby="f-lav">
+        <h3 id="f-lav">Lavorazioni</h3>
+        <ul>
+          <li><a href="lavorazioni/sabbiatura-garnet/">Sabbiatura con garnet</a></li>
+          <li><a href="lavorazioni/fondi-e-vernici/">Fondi e vernici a liquido</a></li>
+          <li><a href="lavorazioni/vetroresina-e-plastica/">Vetroresina e plastica</a></li>
+          <li><a href="lavorazioni/carpenteria/">Carpenteria</a></li>
+          <li><a href="lavorazioni/vetri/">Vetri</a></li>
+          <li><a href="lavorazioni/consulenza/">Consulenza</a></li>
+        </ul>
+      </nav>
+      <nav class="colonna c2" aria-labelledby="f-az">
+        <h3 id="f-az">Azienda</h3>
+        <ul>
+          <li><a href="chi-siamo/">Chi siamo</a></li>
+          <li><a href="lavori/">Lavori</a></li>
+          <li><a href="#apripista">Prima e dopo</a></li>
+          <li><a href="contatti/">Contatti</a></li>
+        </ul>
+      </nav>
+      <div class="colonna c3">
+        <h3>Officina</h3>
+        <ul>
+          <li><a class="nb num" href="tel:+390499005162">049&nbsp;900&nbsp;5162</a></li>
+          <li><a href="mailto:info@nordservice.net">info@nordservice.net</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Levico+20+35035+Mestrino+PD">Via Levico 20<br>35035 Mestrino (PD)</a></li>
+          <li class="num">Lunedì-venerdì<br>7:00&#8209;17:30</li>
+        </ul>
+      </div>
+      <div class="colonna c4">
+        <h3>Seguici</h3>
+        <ul><li><a href="https://www.instagram.com/nordservice.srl/">Instagram</a></li></ul>
+      </div>
+    </div>
+    <div class="legale">
+      <span>Nord Service S.r.l.</span>
+      <span class="num">P.IVA 04717810289</span>
+      <span>Sede legale: Via Pitagora 11/A, 35030 Rubano (PD)</span>
+      <span class="destra"><a href="privacy/">Privacy</a><a href="cookie/">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.stato'));
+  function scegli(t,fuoco){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on?'true':'false');
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(fuoco)t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){scegli(t,false)});
+    t.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i+tabs.length-1)%tabs.length;
+      if(e.key==='Home')j=0; if(e.key==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();scegli(tabs[j],true)}
+    });
+  });
+  /* il menu del telefono si chiude quando si sceglie una voce */
+  [].forEach.call(document.querySelectorAll('.menu-aperto a'),function(a){
+    a.addEventListener('click',function(){a.closest('details').open=false});
+  });
+})();
+</script>
+</body>
+</html>

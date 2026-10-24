@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berto Guerrino, macchine speciali per vivai a Saonara</title>
+<meta name="description" content="Dal 1961 a Saonara (PD) costruiamo sterrapiante, rincalzatrici e trapiantatrici per vivai. Officina e negozio per le macchine da orto e giardino.">
+<link rel="preload" href="fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Anybody, Etcetera Type Co., SIL Open Font License 1.1 (Google Fonts), servito dalla pagina */
+@font-face{
+  font-family:"Anybody";
+  src:url("fonts/anybody-latin.woff2") format("woff2");
+  font-weight:100 900; font-stretch:50% 150%; font-style:normal; font-display:swap;
+}
+:root{
+  --carta:#F4F1E9;
+  --carta-2:#EAE5D8;
+  --inchiostro:#1B1A17;
+  --grigio:#58544B;
+  --filo:#CFC8B8;
+  --blu:#23324A;
+  --margine:64px;
+  --gap:24px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+a,button{-webkit-tap-highlight-color:transparent}
+body{
+  margin:0; background:var(--carta); color:var(--inchiostro);
+  font-family:"Anybody",system-ui,sans-serif; font-stretch:100%; font-weight:400;
+  font-size:18px; line-height:1.6; font-synthesis:none;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{display:block; max-width:100%; height:auto}
+a{color:var(--blu); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em}
+a:hover{color:var(--inchiostro); text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blu); outline-offset:3px}
+p{margin:0}
+h1,h2,h3{margin:0}
+.wrap{max-width:1440px; margin:0 auto; padding:0 var(--margine)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nb{white-space:nowrap}
+.griglia12{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap)}
+
+/* testata */
+.testata{position:relative; z-index:3}
+.testata .wrap{display:flex; align-items:center; height:96px; gap:48px}
+.marchio{display:block; flex:none; line-height:0}
+.marchio img{width:112px; height:auto}
+.menu{display:flex; gap:32px; margin:0; padding:0; list-style:none; font-size:16px}
+.menu a{color:var(--inchiostro); text-decoration:none}
+.menu a:hover{text-decoration:underline; text-decoration-thickness:1px}
+.testata .tel{margin-left:auto; font-size:16px; font-weight:600; color:var(--inchiostro); text-decoration:none; letter-spacing:.01em}
+.testata .tel:hover{text-decoration:underline}
+.apri{display:none}
+
+/* apertura: il titolo a tutta riga, sotto il banco con lo sterrapiante in scala e i comandi */
+.apertura .wrap{padding-top:28px; padding-bottom:120px}
+h1{
+  font-stretch:72%; font-weight:580; font-size:min(136px,9.3vw); line-height:.9;
+  letter-spacing:-.012em; white-space:nowrap;
+}
+.banco{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); margin-top:32px; align-items:start}
+.disegno{grid-column:1 / span 8; margin:0; max-width:850px}
+.comandi{grid-column:9 / span 4; padding-top:6px}
+.lead{font-size:19px; line-height:1.55; text-wrap:pretty}
+.scala{width:100%; height:auto; display:block; overflow:visible}
+.scala .r{fill:none; stroke:#ADA493; stroke-width:1; stroke-dasharray:3 4}
+.scala .r.on{stroke:var(--inchiostro); stroke-width:1.25; stroke-dasharray:none}
+.scala .macchina{transform-box:view-box; transform-origin:110px 350px; transition:transform .18s ease-out}
+@media (prefers-reduced-motion:reduce){ .scala .macchina{transition:none} }
+.scala text{font-family:"Anybody",sans-serif; font-size:15px; fill:var(--inchiostro); font-variant-numeric:tabular-nums lining-nums}
+.scala .m{fill:#6B665B; font-size:14px; font-weight:600; letter-spacing:.03em}
+.scala .m.on{fill:var(--inchiostro)}
+.scala .terra-s,.scala .q{stroke:var(--inchiostro); stroke-width:1}
+.scelta{display:flex; margin-top:28px; border:1px solid var(--inchiostro)}
+.scelta button{
+  flex:1; appearance:none; border:0; background:transparent; color:var(--inchiostro); cursor:pointer;
+  font:inherit; font-weight:600; font-size:17px; letter-spacing:.02em; height:56px; padding:0 8px;
+  font-variant-numeric:tabular-nums lining-nums;
+}
+.scelta button + button{border-left:1px solid var(--inchiostro)}
+.scelta button:hover{background:var(--carta-2)}
+.scelta button[aria-pressed="true"]{background:var(--inchiostro); color:var(--carta)}
+.dati{margin:24px 0 0; padding:0; border-top:1px solid var(--filo)}
+.dati div{display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0 9px; border-bottom:1px solid var(--filo)}
+.dati dt{font-size:15px; color:var(--grigio)}
+.dati dd{margin:0; font-stretch:62%; font-weight:400; font-size:44px; line-height:1; letter-spacing:-.01em; font-variant-numeric:tabular-nums lining-nums; white-space:nowrap}
+.dati dd small{font-size:18px; font-stretch:100%; margin-left:6px; letter-spacing:0}
+.note{margin-top:14px; font-size:15px; line-height:1.7; color:var(--grigio)}
+.note a{margin-right:20px; white-space:nowrap}
+.azioni{display:flex; align-items:center; gap:28px; margin-top:24px; flex-wrap:wrap}
+.bottone{
+  display:inline-flex; align-items:center; height:52px; padding:0 24px;
+  background:var(--inchiostro); color:var(--carta); text-decoration:none;
+  font-weight:600; font-size:17px; letter-spacing:.01em;
+}
+.bottone:hover{background:var(--blu); color:var(--carta); text-decoration:none}
+
+/* sezioni */
+section{scroll-margin-top:24px}
+h2{font-stretch:72%; font-weight:580; font-size:72px; line-height:.94; letter-spacing:-.01em; text-wrap:balance}
+.intro{font-size:19px; line-height:1.6; max-width:34em; text-wrap:pretty}
+
+/* in campo: la zolla, una tavola sola con la didascalia grande sotto */
+.campo{padding:0 0 128px}
+.campo .griglia12{border-top:1px solid var(--filo); padding-top:96px}
+.campo figure{grid-column:5 / span 8; margin:0}
+.campo figure img{width:500px}
+.campo figcaption{margin-top:12px; font-size:15px; color:var(--grigio)}
+.campo h2{grid-column:5 / span 7; margin-top:40px; font-size:56px; line-height:.96}
+.campo p{grid-column:5 / span 6; margin-top:24px; font-size:19px; max-width:30em; text-wrap:pretty}
+
+/* le altre macchine */
+.macchine{padding:0 0 128px}
+.macchine .testa .intro{margin-top:24px}
+.fila{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:var(--gap); margin:64px 0 0; padding:0; list-style:none; row-gap:72px}
+.fila li{display:flex; flex-direction:column; min-width:0}
+.fila .img{height:340px; padding:0 28px 0 0; border-bottom:1px solid var(--inchiostro); display:flex; align-items:flex-end; justify-content:flex-start}
+.fila .img img{height:320px; width:auto; max-width:100%; object-fit:contain; object-position:left bottom}
+.fila h3{margin:22px 28px 0 0; font-size:21px; font-weight:600; line-height:1.25}
+.fila h3 a{color:var(--inchiostro); text-decoration:none}
+.fila h3 a:hover{text-decoration:underline}
+.fila p{margin:6px 28px 0 0; font-size:15px; color:var(--grigio)}
+.altre{margin-top:72px; padding-top:28px; border-top:1px solid var(--filo); display:flex; justify-content:space-between; gap:48px; align-items:baseline}
+.altre p{max-width:52em; font-size:17px}
+.altre a{white-space:nowrap}
+
+/* officina e negozio: una colonna sola */
+.officina{padding:0 0 128px}
+.officina .colonna{max-width:640px}
+.officina .intro{margin-top:28px}
+.conc{margin-top:56px; font-size:17px; color:var(--grigio)}
+.marchi{margin-top:6px; font-stretch:62%; font-weight:400; font-size:40px; line-height:1.15; letter-spacing:0; text-wrap:balance; max-width:1000px}
+.prodotti{margin-top:20px; font-size:17px; color:var(--grigio); max-width:46em}
+.prodotti-link{margin-top:10px; font-size:17px}
+
+/* chiusura */
+.chiusura{display:grid; grid-template-columns:minmax(0,9fr) minmax(0,11fr); max-width:1440px; margin:0 auto; min-height:720px}
+.chiusura .testo{padding:120px 64px 120px var(--margine); align-self:center}
+.chiusura h2{font-size:88px; line-height:.92}
+.chiusura .sotto{margin-top:28px; font-size:19px; max-width:24em}
+.recapiti{margin-top:56px; font-size:18px; line-height:1.55}
+.recapiti .tel{display:inline-block; font-stretch:62%; font-weight:400; font-size:68px; line-height:1; color:var(--inchiostro); text-decoration:none; letter-spacing:-.005em}
+.recapiti .tel:hover{text-decoration:underline; text-decoration-thickness:2px}
+.recapiti p{margin-top:18px}
+.recapiti p + p{margin-top:8px}
+.chiusura .foto{margin:0; position:relative; min-height:100%}
+.chiusura .foto img{width:100%; height:100%; object-fit:cover; object-position:8% 50%; position:absolute; inset:0}
+
+/* piede */
+.piede{background:var(--carta-2); padding:88px 0 40px; font-size:16px}
+.piede .alto{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap)}
+.piede .chi{grid-column:1 / span 4}
+.piede .chi img{width:168px}
+.piede .chi p{margin-top:20px; max-width:22em; color:var(--grigio); line-height:1.5}
+.piede nav{grid-column:span 2}
+.piede .chi + nav{grid-column:5 / span 2}
+.piede h3{margin:0 0 10px; font-size:15px; font-weight:600; letter-spacing:.02em}
+.piede ul{margin:0; padding:0; list-style:none}
+.piede li{margin:0; line-height:1.4}
+.piede nav a{display:inline-block; padding:5px 0; color:var(--inchiostro); text-decoration:none}
+.piede nav a:hover{text-decoration:underline}
+.piede .basso{margin-top:64px; padding-top:20px; border-top:1px solid var(--filo); display:flex; justify-content:space-between; align-items:center; gap:24px; font-size:14px; color:var(--grigio)}
+.piede .basso ul{display:flex; gap:24px}
+.piede .basso a{display:inline-block; padding:5px 0; color:var(--grigio)}
+.piede .basso a:hover{color:var(--inchiostro)}
+.piede .fisa{display:none}
+
+/* sotto i 1280 */
+@media (max-width:1280px){
+  .menu{gap:24px}
+}
+@media (max-width:1100px){
+  .disegno{grid-column:1 / span 7}
+  .comandi{grid-column:8 / span 5}
+  .lead{font-size:17px}
+  .dati dd{font-size:40px}
+  .scala text{font-size:18px}
+  .scala .m{font-size:17px}
+}
+/* sotto i 1024: menu a bottone */
+@media (max-width:1024px){
+  :root{--margine:40px}
+  .menu{display:none}
+  .apri{display:inline-flex; margin-left:16px; align-items:center; height:44px; padding:0 16px; border:1px solid var(--inchiostro); background:transparent; color:var(--inchiostro); font:inherit; font-size:15px; font-weight:600; cursor:pointer}
+  .apri:hover{background:var(--carta-2)}
+  .testata.aperta .menu{display:flex; flex-direction:column; gap:0; position:absolute; left:0; right:0; top:100%; background:var(--carta); padding:8px var(--margine) 24px; border-bottom:1px solid var(--filo)}
+  .testata.aperta .menu a{display:block; padding:12px 0; font-size:20px}
+  .apertura .wrap{padding-bottom:104px}
+  .campo{padding-bottom:112px}
+  .campo .griglia12{padding-top:88px}
+  .campo figure,.campo h2,.campo p{grid-column:3 / -1}
+  .campo h2{font-size:48px}
+  .fila .img{height:280px}
+  .fila .img img{height:260px}
+  .chiusura{grid-template-columns:1fr; min-height:0}
+  .chiusura .testo{padding:112px var(--margine) 72px; align-self:start}
+  .chiusura .foto{min-height:0}
+  .chiusura .foto img{position:static; aspect-ratio:16/9; height:auto}
+  .piede .chi{grid-column:1 / -1; margin-bottom:48px}
+  .piede nav,.piede .chi + nav{grid-column:span 3}
+}
+/* sotto i 900: titolo su due righe, il disegno a tutta larghezza, i comandi sotto */
+@media (max-width:900px){
+  h1{white-space:normal; font-size:96px}
+  .banco{display:block; margin-top:40px}
+  .disegno{max-width:none}
+  .comandi{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:40px; padding-top:0; margin-top:28px;
+    grid-template-areas:"s s" "d l" "d n" "d a"; align-content:start}
+  .scelta{grid-area:s; margin-top:0}
+  .dati{grid-area:d}
+  .lead{grid-area:l; margin-top:24px}
+  .note{grid-area:n}
+  .azioni{grid-area:a; margin-top:20px}
+}
+@media (max-width:760px){
+  .scala text{font-size:18px}
+  .scala .m{font-size:17px}
+}
+@media (max-width:820px){
+  .campo figure,.campo h2,.campo p{grid-column:1 / -1}
+  .campo figure img{width:100%; max-width:500px}
+  .altre{display:block}
+  .altre a{display:inline-block; margin-top:16px}
+}
+/* telefono */
+@media (max-width:600px){
+  :root{--margine:16px; --gap:16px}
+  body{font-size:17px}
+  .testata .wrap{height:64px; gap:12px}
+  .marchio img{width:84px}
+  .testata .tel{font-size:15px}
+  .apertura .wrap{padding-top:16px; padding-bottom:88px}
+  h1{font-size:64px; line-height:.88}
+  .banco{margin-top:24px}
+  .comandi{display:flex; flex-direction:column; margin-top:20px}
+  .scelta{order:1}
+  .dati{order:2; margin-top:16px}
+  .lead{order:3; font-size:17px; margin-top:24px}
+  .note{order:4}
+  .azioni{order:5; gap:20px; margin-top:20px}
+  .bottone{height:50px; padding:0 20px; font-size:16px}
+  .scelta button{font-size:16px; padding:0 4px}
+  .scala text{font-size:24px}
+  .scala .m{font-size:21px}
+  .dati div{padding:8px 0 7px}
+  .dati dt{font-size:14px}
+  .dati dd{font-size:34px}
+  .dati dd small{font-size:15px}
+  h2{font-size:48px}
+  .intro{font-size:17px}
+  .campo{padding-bottom:88px}
+  .campo .griglia12{padding-top:64px}
+  .campo h2{font-size:38px; margin-top:28px}
+  .campo p{font-size:17px; margin-top:18px}
+  .macchine{padding-bottom:88px}
+  .fila{margin-top:40px; row-gap:40px}
+  .fila .img{height:160px; padding-right:12px}
+  .fila .img img{height:146px}
+  .fila h3{font-size:16px; margin:14px 12px 0 0}
+  .fila p{font-size:14px; margin-right:12px}
+  .altre{margin-top:48px}
+  .officina{padding-bottom:88px}
+  .conc{margin-top:40px}
+  .marchi{font-size:32px}
+  .prodotti,.prodotti-link{font-size:16px}
+  .chiusura .testo{padding:88px var(--margine) 56px}
+  .chiusura h2{font-size:56px}
+  .chiusura .sotto{font-size:17px}
+  .recapiti{margin-top:40px}
+  .recapiti .tel{font-size:56px}
+  .chiusura .foto img{aspect-ratio:4/3; object-position:8% 50%}
+  .piede{padding:64px 0 32px}
+  .piede .chi{margin-bottom:32px}
+  .piede nav,.piede .chi + nav{grid-column:1 / -1; border-top:1px solid var(--filo)}
+  .piede nav:last-of-type{border-bottom:1px solid var(--filo)}
+  .piede h3{margin:0}
+  .piede .fisa{display:flex; width:100%; justify-content:space-between; align-items:center; background:none; border:0; padding:16px 0; min-height:52px; font:inherit; font-size:16px; font-weight:600; color:var(--inchiostro); cursor:pointer; text-align:left}
+  .piede .fisa .segno{font-weight:400; font-size:28px; line-height:1}
+  .piede .fisa[aria-expanded="true"] .segno{transform:rotate(45deg)}
+  .piede .titolo{display:none}
+  .piede nav ul{padding:0 0 16px}
+  .piede nav ul[hidden]{display:none}
+  .piede nav a{padding:8px 0}
+  .piede .basso{display:block; margin-top:32px; border-top:0; padding-top:0}
+  .piede .basso ul{margin-top:8px; flex-wrap:wrap; gap:4px 24px}
+}
+@media (max-width:360px){
+  h1{font-size:56px}
+  .scala text{font-size:28px}
+  .scala .m{font-size:25px}
+  .dati dd{font-size:30px}
+  .marchi{font-size:28px}
+  .chiusura h2{font-size:48px}
+  .recapiti .tel{font-size:48px}
+}
+@media (min-width:601px){ .piede nav ul[hidden]{display:block} }
+</style>
+</head>
+<body>
+
+<header class="testata" id="testata">
+  <div class="wrap">
+    <a class="marchio" href="#" aria-label="Berto Guerrino, pagina iniziale"><img src="img/logo-berto.png" width="524" height="206" alt="BERTO"></a>
+    <ul class="menu" id="menu">
+      <li><a href="#campo">Sterrapiante</a></li>
+      <li><a href="#macchine">Macchine per vivai</a></li>
+      <li><a href="#officina">Officina e negozio</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <a class="tel num" href="tel:+39049640282">049&nbsp;640282</a>
+    <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="wrap">
+    <h1 id="titolo">Macchine speciali <span class="nb">per vivai</span></h1>
+
+    <div class="banco">
+      <figure class="disegno">
+        <svg class="scala" viewBox="0 0 680 400" role="img" aria-labelledby="scala-t">
+          <title id="scala-t">Lo sterrapiante Berto, giallo con il vomere blu, disegnato in scala dentro l'ingombro delle tre versioni, lunghezza per altezza</title>
+          <rect class="r" data-r="100" x="110" y="10" width="560" height="340"/>
+          <rect class="r" data-r="85"  x="110" y="30" width="460" height="320"/>
+          <rect class="r" data-r="80"  x="110" y="70" width="420" height="280"/>
+          <image class="macchina" id="mac" href="img/sterrapiante-700.jpg" x="110" y="22" width="540" height="331" preserveAspectRatio="xMinYMax meet"/>
+          <text class="m" data-r="100" x="662" y="29" text-anchor="end">MOD. 100</text>
+          <text class="m" data-r="85"  x="118" y="49">MOD. 85</text>
+          <text class="m" data-r="80"  x="118" y="89">MOD. 80</text>
+          <line class="terra-s" x1="0" y1="350" x2="680" y2="350"/>
+          <line class="q" id="qh" x1="86" y1="30" x2="86" y2="350"/>
+          <line class="q" id="qh1" x1="80" y1="30" x2="92" y2="30"/>
+          <text id="th" x="76" y="195" text-anchor="end">160 cm</text>
+          <line class="q" id="ql" x1="110" y1="374" x2="570" y2="374"/>
+          <line class="q" id="ql1" x1="570" y1="368" x2="570" y2="380"/>
+          <line class="q" x1="110" y1="368" x2="110" y2="380"/>
+          <text id="tl" x="340" y="398" text-anchor="middle">230 cm</text>
+        </svg>
+      </figure>
+
+      <div class="comandi">
+        <p class="lead">Dal 1961 a Saonara costruiamo macchine per i vivai. Lo sterrapiante è totalmente idraulico, sposta il vomere fuori carreggiata fino a un metro e si fa in tre versioni.</p>
+        <div class="scelta" role="group" aria-label="Versione dello sterrapiante">
+          <button type="button" aria-pressed="false" data-m="80">MOD.&nbsp;80</button>
+          <button type="button" aria-pressed="true" data-m="85">MOD.&nbsp;85</button>
+          <button type="button" aria-pressed="false" data-m="100">MOD.&nbsp;100</button>
+        </div>
+        <dl class="dati" aria-live="polite">
+          <div><dt>Trattore</dt><dd><span id="d-hp">60/100</span><small>HP</small></dd></div>
+          <div><dt>Larghezza</dt><dd><span id="d-lar">110</span><small>cm</small></dd></div>
+          <div><dt>Peso</dt><dd><span id="d-kg">500</span><small>kg</small></dd></div>
+        </dl>
+        <p class="note">Attacco a tre punti, PTO 540 giri.<br><a href="macchine/sterrapiante.html">La scheda tecnica</a><a href="https://youtu.be/wZaJq_-mrEM" rel="noopener" target="_blank">Il video in campo</a></p>
+        <div class="azioni">
+          <a class="bottone num" href="tel:+39049640282">Chiama 049&nbsp;640282</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="campo" id="campo" aria-labelledby="t-campo">
+  <div class="wrap">
+    <div class="griglia12">
+      <figure>
+        <img src="img/zolla-500.jpg" width="500" height="500" loading="lazy" alt="Lo sterrapiante giallo al lavoro in un vivaio: il vomere solleva la zolla e le radici escono dalla terra">
+        <figcaption>Lo sterrapiante al lavoro tra le file.</figcaption>
+      </figure>
+      <h2 id="t-campo">Il vomere passa sotto la fila, solleva la zolla e la apre</h2>
+      <p>Sterra a radice nuda piante da frutto, viti, rose, semenzai, pioppi, carpani e tigli. La pianta resta sul terreno, pronta per essere raccolta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="macchine" id="macchine" aria-labelledby="t-macchine">
+  <div class="wrap">
+    <div class="testa">
+      <h2 id="t-macchine">Le altre macchine per il vivaio</h2>
+      <p class="intro">Costruite da noi, dal trapianto alla ceppaia.</p>
+    </div>
+    <ul class="fila">
+      <li>
+        <div class="img"><img src="img/porta-innesti-640.jpg" srcset="img/porta-innesti-420.jpg 420w, img/porta-innesti-640.jpg 640w" sizes="(max-width:600px) 45vw, 400px" width="640" height="533" loading="lazy" alt="Rincalzatrice per ceppaie di porta innesti, gialla con le frese blu"></div>
+        <h3><a href="macchine/rincalzatrice-porta-innesti.html">Rincalzatrice per ceppaie di porta innesti</a></h3>
+        <p class="num">trattore 70&nbsp;HP, 515&nbsp;kg, 170&nbsp;×&nbsp;140&nbsp;cm, alta 170&nbsp;cm</p>
+      </li>
+      <li>
+        <div class="img"><img src="img/primi-rami-640.jpg" srcset="img/primi-rami-420.jpg 420w, img/primi-rami-640.jpg 640w" sizes="(max-width:600px) 45vw, 340px" width="640" height="623" loading="lazy" alt="Rincalzatrice primi rami per ceppaia con le due spirali blu"></div>
+        <h3><a href="macchine/rincalzatrice-primi-rami.html">Rincalzatrice primi rami per ceppaia</a></h3>
+        <p class="num">due spirali movimentate a olio, 210&nbsp;kg</p>
+      </li>
+      <li>
+        <div class="img"><img src="img/piragna-640.jpg" srcset="img/piragna-420.jpg 420w, img/piragna-640.jpg 640w" sizes="(max-width:600px) 45vw, 560px" width="640" height="376" loading="lazy" alt="Trincia Piragna gialla e blu con il cartello di sicurezza dei 20 metri"></div>
+        <h3><a href="macchine/trincia-piragna.html">Trincia Piragna</a></h3>
+        <p class="num">taglia e sminuzza in una passata, 420&nbsp;kg</p>
+      </li>
+      <li>
+        <div class="img"><img src="img/agevolatrice-640.jpg" srcset="img/agevolatrice-420.jpg 420w, img/agevolatrice-640.jpg 640w" sizes="(max-width:600px) 45vw, 480px" width="640" height="445" loading="lazy" alt="Agevolatrice gialla a quattro ruote con il sedile per l'operatore"></div>
+        <h3><a href="macchine/agevolatrice.html">Agevolatrice</a></h3>
+        <p class="num">si pianta da seduti, zolle fino a 25&nbsp;cm</p>
+      </li>
+    </ul>
+    <div class="altre">
+      <p>E poi la trapiantatrice a ruota TT da 1, 2 o 3 file, la fresatrice multipla alta, lo scalzapneus a soffio d'aria, il rimorchio agricolo omologato da 3500&nbsp;kg, il trattorino 4&nbsp;RM con motore Kubota, i bancali zincati a caldo e il materiale per l'innesto.</p>
+      <a href="macchine/">Tutte le schede</a>
+    </div>
+  </div>
+</section>
+
+<section class="officina" id="officina" aria-labelledby="t-officina">
+  <div class="wrap">
+    <div class="colonna">
+      <h2 id="t-officina">Officina e negozio</h2>
+      <p class="intro">La nostra officina meccanica assicura l'assistenza dopo la vendita su tutte le nostre macchine e attrezzature. In negozio trovate accessori e pezzi di ricambio.</p>
+    </div>
+    <p class="conc">Siamo concessionari di</p>
+    <p class="marchi">Honda, Stihl, Grin, Etesia, Toro, Goldoni, S.E.P., Maito, Felco, Vesco, Kuker</p>
+    <p class="prodotti">Trattori, motocoltivatori, motozappe, rasaerba, motoseghe, decespugliatori, soffiatori, motopompe e generatori.</p>
+    <p class="prodotti-link"><a href="giardinaggio.html">Giardinaggio e marchi</a></p>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="testo">
+    <h2 id="t-contatti">La nostra ditta nasce nel <span class="num">1961</span>.</h2>
+    <p class="sotto">Costruiamo macchine per la lavorazione dei vivai e le vendiamo direttamente.</p>
+    <div class="recapiti">
+      <a class="tel num" href="tel:+39049640282">049&nbsp;640282</a>
+      <p><a href="mailto:bertopd@libero.it">bertopd@libero.it</a></p>
+      <p>Via Caovilla 27/B, 35020 Saonara (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Caovilla+27%2FB+35020+Saonara+PD" rel="noopener" target="_blank">Apri la mappa</a></p>
+    </div>
+  </div>
+  <figure class="foto">
+    <img src="img/campo-960.jpg" srcset="img/campo-640.jpg 640w, img/campo-960.jpg 960w, img/campo-1264.jpg 1264w" sizes="(max-width:1024px) 100vw, 800px" width="960" height="529" loading="lazy" alt="La trincia Piragna Berto al lavoro dietro il trattore, tra le file di un vivaio">
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="alto">
+      <div class="chi">
+        <img src="img/logo-berto-payoff.png" width="524" height="262" loading="lazy" alt="BERTO, Instruments for professionals">
+        <p>Macchine speciali per vivai, macchine e attrezzi per l'orto e il giardino. Saonara (PD), dal 1961.</p>
+      </div>
+      <nav aria-labelledby="p1">
+        <h3 id="p1"><button class="fisa" type="button" aria-expanded="false" aria-controls="l1">Macchine per vivai<span class="segno" aria-hidden="true">+</span></button><span class="titolo">Macchine per vivai</span></h3>
+        <ul id="l1">
+          <li><a href="macchine/sterrapiante.html">Sterrapiante</a></li>
+          <li><a href="macchine/scalzapneus.html">Scalzapneus</a></li>
+          <li><a href="macchine/rincalzatrice-porta-innesti.html">Rincalzatrice porta innesti</a></li>
+          <li><a href="macchine/rincalzatrice-primi-rami.html">Rincalzatrice primi rami</a></li>
+          <li><a href="macchine/trapiantatrice-tt.html">Trapiantatrice TT</a></li>
+          <li><a href="macchine/trincia-piragna.html">Trincia Piragna</a></li>
+          <li><a href="macchine/">Tutte le macchine</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p2">
+        <h3 id="p2"><button class="fisa" type="button" aria-expanded="false" aria-controls="l2">Azienda<span class="segno" aria-hidden="true">+</span></button><span class="titolo">Azienda</span></h3>
+        <ul id="l2">
+          <li><a href="azienda.html">Chi siamo</a></li>
+          <li><a href="giardinaggio.html">Giardinaggio e marchi</a></li>
+          <li><a href="officina.html">Officina e ricambi</a></li>
+          <li><a href="video.html">Video delle macchine</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p3">
+        <h3 id="p3"><button class="fisa" type="button" aria-expanded="false" aria-controls="l3">Contatti<span class="segno" aria-hidden="true">+</span></button><span class="titolo">Contatti</span></h3>
+        <ul id="l3">
+          <li><a class="num" href="tel:+39049640282">049&nbsp;640282</a></li>
+          <li><a href="mailto:bertopd@libero.it">bertopd@libero.it</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Caovilla+27%2FB+35020+Saonara+PD" rel="noopener" target="_blank">Via Caovilla 27/B, Saonara</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p4">
+        <h3 id="p4"><button class="fisa" type="button" aria-expanded="false" aria-controls="l4">Seguici<span class="segno" aria-hidden="true">+</span></button><span class="titolo">Seguici</span></h3>
+        <ul id="l4">
+          <li><a href="https://www.youtube.com/@lorenaberto328" rel="noopener" target="_blank">YouTube</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="basso">
+      <p>Berto Guerrino S.a.s. di Fausto e Lorena Berto, P.IVA <span class="num">02570660288</span></p>
+      <ul>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="cookie.html">Cookie</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // le tre versioni dello sterrapiante, dalla scheda tecnica (cm e kg)
+  var M = {
+    "80":  {hp:"40/68",  h:140, l:210, lar:90,  kg:350},
+    "85":  {hp:"60/100", h:160, l:230, lar:110, kg:500},
+    "100": {hp:"100/150",h:170, l:280, lar:120, kg:680}
+  };
+  var X0 = 110, TERRA = 350, K = 2, IW = 540, IH = 331;
+  var bt = document.querySelectorAll('.scelta button');
+  function $(id){ return document.getElementById(id); }
+  function mostra(m){
+    var d = M[m];
+    bt.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.m === m ? 'true' : 'false'); });
+    document.querySelectorAll('.scala .r, .scala .m').forEach(function(r){ r.classList.toggle('on', r.dataset.r === m); });
+    var top = TERRA - d.h*K, fine = X0 + d.l*K;
+    $('qh').setAttribute('y1', top); $('qh1').setAttribute('y1', top); $('qh1').setAttribute('y2', top);
+    $('th').setAttribute('y', (top + TERRA)/2 + 5); $('th').textContent = d.h + ' cm';
+    $('ql').setAttribute('x2', fine); $('ql1').setAttribute('x1', fine); $('ql1').setAttribute('x2', fine);
+    $('tl').setAttribute('x', (X0 + fine)/2); $('tl').textContent = d.l + ' cm';
+    $('mac').style.transform = 'scale(' + Math.min(d.l*K/IW, d.h*K/IH).toFixed(4) + ')';
+    $('d-hp').textContent = d.hp; $('d-lar').textContent = d.lar; $('d-kg').textContent = d.kg;
+  }
+  bt.forEach(function(b, i){
+    b.addEventListener('click', function(){ mostra(b.dataset.m); });
+    b.addEventListener('keydown', function(e){
+      var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (j === null) return;
+      j = (j + bt.length) % bt.length; bt[j].focus(); mostra(bt[j].dataset.m); e.preventDefault();
+    });
+  });
+  mostra('85');
+
+  // menu sotto i 1024 px
+  var t = $('testata'), ap = t.querySelector('.apri');
+  ap.addEventListener('click', function(){
+    var on = !t.classList.contains('aperta');
+    t.classList.toggle('aperta', on); ap.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+  t.querySelectorAll('.menu a').forEach(function(a){ a.addEventListener('click', function(){ t.classList.remove('aperta'); ap.setAttribute('aria-expanded','false'); }); });
+
+  // colonne del piede a fisarmonica sotto i 600 px
+  var mq = window.matchMedia('(max-width:600px)');
+  var fs = document.querySelectorAll('.piede .fisa');
+  function piede(){
+    fs.forEach(function(f){
+      var ul = $(f.getAttribute('aria-controls'));
+      ul.hidden = mq.matches ? f.getAttribute('aria-expanded') !== 'true' : false;
+    });
+  }
+  fs.forEach(function(f){
+    f.addEventListener('click', function(){
+      f.setAttribute('aria-expanded', f.getAttribute('aria-expanded') !== 'true' ? 'true' : 'false'); piede();
+    });
+  });
+  (mq.addEventListener ? mq.addEventListener('change', piede) : mq.addListener(piede));
+  piede();
+})();
+</script>
+</body>
+</html>

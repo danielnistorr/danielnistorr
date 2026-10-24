@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meccanica Masi, officina meccanica a Padova</title>
+<meta name="description" content="Officina meccanica a Padova: tornitura, fresatura CNC, lamiera e saldatura su disegno, dal pieno. Rulli per macchine da stampa offset e flexo. Manutenzione e installazione di macchine presso il cliente.">
+<link rel="icon" href="img/logo-masi-scritta.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Mona Sans, Google Fonts, SIL Open Font License 1.1: file variabili (peso e larghezza) serviti dalla pagina */
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --fondo:#F2F0EB;        /* carta calda, la pagina */
+  --fondo-piede:#E9E6DF;  /* il piede, un tono sotto */
+  --inchiostro:#171717;
+  --grigio:#55524D;
+  --filo:#CFCBC3;
+  --rosso:#E3141B;        /* il rosso del logo: solo il telefono grande */
+  --rosso-scuro:#B3121A;  /* passaggio su bottoni e link */
+  --m:64px;               /* margine laterale */
+  --g:24px;               /* spazio tra le colonne */
+  --sez:112px;            /* respiro tra le sezioni */
+  --barra:72px;           /* fascia dell'interruttore sotto il pezzo */
+  --cx:65%;               /* asse del pezzo nella prima schermata */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--fondo);color:var(--inchiostro);font-family:"Mona Sans",system-ui,sans-serif;font-stretch:100%;font-weight:400;font-size:18px;line-height:1.55;font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--rosso-scuro);outline-offset:3px}
+.num{font-variant-numeric:lining-nums}
+.salta{position:absolute;left:-9999px;top:8px;background:var(--inchiostro);color:var(--fondo);padding:10px 14px;z-index:30}
+.salta:focus{left:8px}
+.pagina{max-width:1600px;margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+
+/* testata */
+.testata{display:flex;align-items:center;justify-content:space-between;height:88px;position:relative;z-index:5}
+.testata .logo{display:block;width:112px}
+.testata .logo img{width:100%}
+.menu{display:flex;gap:36px;list-style:none;font-size:16px;font-weight:500}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover{border-bottom-color:var(--inchiostro)}
+.tel-testata{font-size:16px;font-weight:600;text-decoration:none}
+.tel-testata:hover{color:var(--rosso-scuro)}
+.apri-menu{display:none}
+
+/* prima schermata: il pezzo domina dall'alto, il titolo lo regge in basso a sinistra */
+.apertura{position:relative;height:clamp(600px,calc(100vh - 88px),860px);height:clamp(600px,calc(100svh - 88px),860px)}
+.tela{position:absolute;left:var(--cx);bottom:var(--barra);height:calc(100% - var(--barra) - 4px);aspect-ratio:2000 / 1480;transform:translateX(-50%);pointer-events:none;z-index:1}
+.tela img{position:absolute;inset:0;width:100%;height:100%}
+.tela img[hidden],.tela .legenda[hidden]{display:none}
+.apertura-testo{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:36px 0 calc(var(--barra) - .17em);max-width:62%}
+h1{order:2;font-size:clamp(52px,6.5vw,96px);font-weight:500;font-stretch:80%;line-height:.94;letter-spacing:-.022em}
+h1 span{display:block;white-space:nowrap}
+.attacco{order:1;max-width:29em}
+.attacco p{font-size:19px;line-height:1.5;text-wrap:pretty}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
+.bottone{display:inline-block;background:var(--inchiostro);color:var(--fondo);text-decoration:none;font-size:17px;font-weight:600;padding:15px 24px;transition:background-color .12s}
+.bottone:hover{background:var(--rosso-scuro)}
+.riga-piccola{font-size:15px;color:var(--grigio);margin-top:18px}
+.riga-piccola a{color:var(--inchiostro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;margin-right:18px}
+.riga-piccola a:hover{color:var(--rosso-scuro)}
+.legenda{position:absolute;inset:0;list-style:none}
+.legenda li{position:absolute;display:flex;align-items:center;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
+.legenda li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 2px var(--fondo);flex:none}
+.legenda .filo{display:block;height:1px;background:var(--inchiostro);width:var(--l,64px);flex:none}
+.legenda em{font-style:normal;margin-left:8px}
+.legenda .sx{flex-direction:row-reverse;transform:translate(calc(-100% + 4.5px),-50%)}
+.legenda .sx em{margin:0 8px 0 0}
+.legenda .dx{transform:translate(-4.5px,-50%)}
+.legenda i{display:none}
+.barra{position:absolute;left:var(--cx);bottom:0;height:var(--barra);transform:translateX(-50%);display:flex;align-items:center;z-index:3}
+.interruttore{display:inline-flex;border:1px solid var(--inchiostro)}
+.interruttore button{font:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--inchiostro);border:0;padding:10px 22px;min-height:44px;cursor:pointer}
+.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--fondo)}
+.interruttore button[aria-pressed="false"]:hover{background:#E4E1DA}
+.didascalia-pezzo{position:absolute;right:0;bottom:0;height:var(--barra);display:flex;align-items:center;font-size:14px;line-height:1.4;color:var(--grigio);max-width:15em;text-align:right;z-index:3}
+.didascalia-pezzo strong{color:var(--inchiostro);font-weight:600}
+.lista-legenda{display:none}
+
+/* sezioni */
+section,section.pagina{padding-top:var(--sez)}
+h2{font-size:clamp(34px,3.9vw,56px);font-weight:500;font-stretch:85%;line-height:1.03;letter-spacing:-.02em;text-wrap:balance}
+h3{font-size:21px;font-weight:600;line-height:1.25}
+.intro{font-size:19px;line-height:1.55;text-wrap:pretty}
+
+.settori h2{grid-column:1 / 9}
+.settori .intro{grid-column:1 / 10;margin-top:20px;color:var(--grigio)}
+.indice{list-style:none;margin-top:48px;border-top:1px solid var(--inchiostro)}
+.indice li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:baseline;padding:20px 0 22px;border-bottom:1px solid var(--filo)}
+.indice h3{grid-column:1 / 7;font-size:clamp(28px,2.9vw,42px);font-weight:500;font-stretch:85%;line-height:1.05;letter-spacing:-.016em}
+.indice p{grid-column:7 / 12;font-size:17px;line-height:1.5}
+
+.foto-officina{margin-top:var(--sez)}
+.foto-officina img{width:100%;height:clamp(300px,35vw,504px);object-fit:cover;object-position:50% 40%}
+.foto-officina figcaption{font-size:14px;color:var(--grigio);padding-top:12px}
+
+.lavorazioni-testa h2{grid-column:1 / 8}
+.lavorazioni-testa .intro{grid-column:9 / 13;align-self:end}
+.lavorazioni{list-style:none;margin-top:56px;row-gap:48px}
+.lavorazioni li{grid-column:span 4;display:flex;flex-direction:column;border-top:1px solid var(--inchiostro);padding-top:18px}
+.lavorazioni p{font-size:17px;line-height:1.55;color:var(--grigio);margin-top:10px;max-width:24em}
+.lavorazioni .misura{order:-1;font-size:28px;font-weight:500;font-stretch:85%;letter-spacing:-.01em;line-height:1.1;margin-bottom:14px}
+.materiali{margin-top:40px;font-size:17px;color:var(--grigio)}
+.materiali b{color:var(--inchiostro);font-weight:600}
+
+.lavori{margin-top:56px;row-gap:48px}
+.lavori figure{margin:0}
+.lavori .uno{grid-column:1 / 9}
+.lavori .due{grid-column:9 / 13}
+.lavori img{width:100%;height:clamp(320px,37.5vw,540px);object-fit:cover}
+.lavori figcaption{margin-top:20px;max-width:34em}
+.lavori h3{font-size:clamp(21px,1.8vw,25px);font-weight:600;line-height:1.2}
+.lavori figcaption p{margin-top:10px;font-size:17px}
+.lavori .misure{display:block;margin-top:10px;font-size:15px;color:var(--grigio)}
+.altri{margin-top:48px;font-size:17px;color:var(--grigio);max-width:60em}
+.altri a{color:var(--inchiostro);text-decoration-thickness:1px;text-underline-offset:4px}
+.altri a:hover{color:var(--rosso-scuro)}
+
+.dal-cliente h2{grid-column:1 / 8;font-size:clamp(32px,3.5vw,50px)}
+.dal-cliente .colonna{grid-column:8 / 13}
+.dal-cliente h3{margin-bottom:14px}
+.fasi{list-style:none;counter-reset:f}
+.fasi li{counter-increment:f;display:flex;gap:16px;font-size:17px;padding:10px 0;border-top:1px solid var(--filo)}
+.fasi li:last-child{border-bottom:1px solid var(--filo)}
+.fasi li::before{content:counter(f,decimal-leading-zero);font-weight:600;color:var(--rosso-scuro);min-width:24px;font-variant-numeric:lining-nums}
+.dal-cliente .dove{margin-top:22px;font-size:17px;color:var(--grigio)}
+
+/* chiusura: testo a sinistra, foto fino al bordo destro */
+.chiusura{padding-bottom:96px;align-items:center}
+.chiusura-testo{grid-column:1 / 6}
+.chiusura h2{font-size:clamp(34px,3.9vw,56px)}
+.recapiti{margin-top:40px;font-size:18px;line-height:1.55;font-style:normal}
+.recapiti .tel{display:inline-block;font-size:clamp(36px,3.3vw,48px);font-weight:500;font-stretch:90%;letter-spacing:-.01em;line-height:1.1;color:var(--rosso);text-decoration:none;margin-bottom:14px}
+.recapiti .tel:hover{color:var(--rosso-scuro);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.recapiti p + p{margin-top:10px}
+.recapiti a.sott{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.recapiti a.sott:hover{color:var(--rosso-scuro)}
+.recapiti .orari{color:var(--grigio)}
+.chiusura .voce{margin-top:28px;font-size:16px;color:var(--grigio);max-width:24em}
+.chiusura figure{grid-column:7 / 13;margin-right:calc(-1 * (var(--m) + max(0px, (100vw - 1600px) / 2)))}
+.chiusura figure img{width:100%;height:clamp(380px,38vw,560px);object-fit:cover}
+.chiusura figcaption{font-size:14px;color:var(--grigio);padding:12px var(--m) 0 0}
+
+/* piede */
+.piede{background:var(--fondo-piede);padding:64px 0 32px}
+.piede .marchio{grid-column:1 / 5}
+.piede .marchio img{width:136px}
+.piede .marchio p{font-size:15px;line-height:1.55;color:var(--grigio);margin-top:20px;max-width:23em}
+.piede nav{grid-column:5 / 13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g)}
+.piede h2{font-size:15px;font-weight:600;font-stretch:100%;letter-spacing:0;line-height:1.3;margin-bottom:16px}
+.piede ul{list-style:none;font-size:15px;line-height:1.5}
+.piede li + li{margin-top:9px}
+.piede nav a{text-decoration:none}
+.piede nav a:hover{text-decoration:underline;text-underline-offset:3px;color:var(--rosso-scuro)}
+.piede .contatti-piede li{color:var(--grigio)}
+.piede .contatti-piede a{color:var(--inchiostro)}
+.legale{grid-column:1 / 13;display:flex;justify-content:space-between;align-items:flex-start;gap:12px 40px;margin-top:52px;padding-top:20px;border-top:1px solid #CDC9C0;font-size:13px;line-height:1.5;color:var(--grigio)}
+.legale ul{display:flex;gap:24px;list-style:none;flex:none}
+.legale li + li{margin-top:0}
+.legale a{color:var(--grigio);text-underline-offset:3px}
+.legale a:hover{color:var(--inchiostro)}
+.fisarmonica-btn{display:none}
+
+/* schermi medi */
+@media (max-width:1180px){
+  :root{--m:40px;--sez:120px;--cx:66%}
+  .menu{gap:24px}
+  .apertura-testo{max-width:66%}
+  .attacco p{font-size:17px}
+  .didascalia-pezzo{display:none}
+  .legenda li{font-size:13px}
+  .legenda .filo{width:calc(var(--l) * .6)}
+  .lavorazioni li{grid-column:span 6}
+  .lavorazioni-testa h2{grid-column:1 / 13}
+  .lavorazioni-testa .intro{grid-column:1 / 10;margin-top:20px}
+  .indice p{grid-column:7 / 13}
+  .dal-cliente h2{grid-column:1 / 13}
+  .dal-cliente .colonna{grid-column:1 / 10;margin-top:48px}
+  .chiusura-testo{grid-column:1 / 7}
+  .chiusura figure{grid-column:7 / 13}
+  .piede .marchio{grid-column:1 / 13;margin-bottom:48px}
+  .piede nav{grid-column:1 / 13}
+}
+
+/* telefono e tablet stretto: titolo, pezzo, interruttore, poi il testo */
+@media (max-width:900px){
+  :root{--m:32px;--sez:104px}
+  .menu{display:none}
+  .apri-menu{display:inline-flex;align-items:center;font:inherit;font-size:16px;font-weight:600;background:none;border:1px solid var(--inchiostro);padding:8px 14px;min-height:44px;cursor:pointer;color:var(--inchiostro)}
+  .apri-menu:hover{background:#E4E1DA}
+  .testata{height:72px}
+  .testata.aperta .menu{display:flex;position:absolute;top:72px;left:calc(-1 * var(--m));right:calc(-1 * var(--m));flex-direction:column;gap:0;background:var(--fondo);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
+  .testata.aperta .menu a{display:block;padding:14px 0;font-size:20px;border-bottom:1px solid var(--filo)}
+  .tel-testata{margin-left:auto;margin-right:18px}
+  .apertura{height:auto;display:flex;flex-direction:column}
+  .apertura-testo{display:contents}
+  h1{order:1;font-size:clamp(40px,8.4vw,68px);line-height:.98;padding-top:12px}
+  h1 span{display:inline;white-space:normal}
+  .tela{order:2;position:relative;left:auto;bottom:auto;transform:none;width:100%;max-width:560px;height:auto;aspect-ratio:1200 / 1300;margin:8px auto 0}
+  .tela .larga{display:none}
+  .barra{order:3;position:static;transform:none;height:auto;justify-content:center;padding:4px 0 0}
+  .didascalia-pezzo{display:none}
+  .legenda li{transform:translate(-50%,-50%)!important}
+  .legenda li::before,.legenda .filo,.legenda em{display:none}
+  .legenda i{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--inchiostro);color:var(--fondo);font-style:normal;font-size:12px;font-weight:600;box-shadow:0 0 0 2px var(--fondo)}
+  .lista-legenda{order:4;display:block;list-style:none;font-size:15px;line-height:1.4;margin-top:16px;max-width:560px;width:100%;align-self:center}
+  .lista-legenda[hidden]{display:none}
+  .lista-legenda li{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--filo)}
+  .lista-legenda li:last-child{border-bottom:1px solid var(--filo)}
+  .lista-legenda b{font-weight:600;min-width:14px}
+  .attacco{order:5;max-width:none;margin-top:36px}
+  .attacco p{font-size:18px}
+  .azioni{margin-top:24px}
+  .riga-piccola{margin-top:16px}
+  .lavorazioni li{grid-column:1 / 13}
+  .indice li{display:block}
+  .indice p{margin-top:8px}
+  .lavori .uno,.lavori .due{grid-column:1 / 13}
+  .lavori img{height:auto;aspect-ratio:4 / 3}
+  .lavori .due img{aspect-ratio:4 / 5}
+  .dal-cliente .colonna{grid-column:1 / 13}
+  .chiusura{padding-bottom:0}
+  .chiusura-testo{grid-column:1 / 13}
+  .chiusura figure{grid-column:1 / 13;margin:56px calc(-1 * var(--m)) 0}
+  .chiusura figure img{height:auto;aspect-ratio:4 / 3}
+  .chiusura figcaption{padding:12px var(--m) 0}
+  .piede{margin-top:var(--sez)}
+  .piede nav{grid-template-columns:1fr 1fr;row-gap:40px}
+}
+@media (min-width:901px){ .tela .stretta{display:none} }
+@media (max-width:560px){
+  :root{--m:20px;--g:16px;--sez:88px}
+  body{font-size:17px}
+  .testata .logo{width:84px}
+  .tel-testata{font-size:15px;margin-right:12px}
+  h1{font-size:clamp(36px,11.2vw,46px)}
+  .interruttore{width:100%}
+  .interruttore button{flex:1;font-size:16px}
+  .barra{display:block}
+  .bottone{display:block;text-align:center}
+  .intro{font-size:18px}
+  .indice{margin-top:40px}
+  .indice h3{font-size:30px}
+  .foto-officina img{height:auto;aspect-ratio:4 / 5}
+  .lavorazioni{margin-top:44px;row-gap:40px}
+  .lavorazioni .misura{font-size:24px}
+  .lavori{margin-top:40px}
+  .chiusura h2{font-size:34px}
+  .piede{padding-top:52px}
+  .piede nav{display:block}
+  .piede nav > div{border-top:1px solid #CDC9C0}
+  .piede nav > div:last-child{border-bottom:1px solid #CDC9C0}
+  .piede nav h2{margin:0}
+  .fisarmonica-btn{display:flex;width:100%;justify-content:space-between;align-items:center;font:inherit;font-size:16px;font-weight:600;background:none;border:0;color:var(--inchiostro);padding:14px 0;min-height:48px;cursor:pointer}
+  .fisarmonica-btn::after{content:"+";font-weight:400;font-size:22px;line-height:1}
+  .fisarmonica-btn[aria-expanded="true"]::after{content:"\2212"}
+  .piede nav h2 .titolo-fisso{display:none}
+  .piede nav ul{padding-bottom:18px}
+  .piede nav ul[hidden]{display:none}
+  .legale{margin-top:40px;flex-direction:column}
+}
+@media (min-width:561px){ .piede nav ul[hidden]{display:block} }
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<div class="pagina">
+<header class="testata" id="testata">
+  <a class="logo" href="#" aria-label="Meccanica Masi, inizio pagina"><img src="img/logo-masi-scritta.svg" alt="Meccanica Masi S.R.L." width="112" height="53"></a>
+  <ul class="menu" id="menu">
+    <li><a href="#settori">Settori</a></li>
+    <li><a href="#lavorazioni">Lavorazioni</a></li>
+    <li><a href="#progetti">Progetti</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a class="tel-testata num" href="tel:+393481693451">348&nbsp;169&nbsp;34&nbsp;51</a>
+  <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+</div>
+
+<main id="contenuto">
+
+<div class="pagina">
+<div class="apertura">
+  <div class="apertura-testo">
+    <h1><span>Precisione in officina,</span> <span>continuità in produzione</span></h1>
+    <div class="attacco">
+      <p>Torniamo, fresiamo, pieghiamo e saldiamo pezzi su disegno, ricavati dal pieno nella nostra officina. Per la manutenzione e l'installazione delle macchine veniamo noi in azienda.</p>
+      <div class="azioni"><a class="bottone num" href="tel:+393481693451">Chiama 348&nbsp;169&nbsp;34&nbsp;51</a></div>
+      <p class="riga-piccola"><a href="mailto:info@meccanicamasi.it">info@meccanicamasi.it</a><span class="num">Officina meccanica a Padova, dal 1977</span></p>
+    </div>
+  </div>
+
+  <figure class="tela" aria-labelledby="pezzo-didascalia">
+    <img class="larga" id="fin-larga" src="img/leva-finita-larga-1500.webp" srcset="img/leva-finita-larga-1000.webp 1000w, img/leva-finita-larga-1500.webp 1500w, img/leva-finita-larga-2000.webp 2000w" sizes="(min-width:901px) 70vw, 1px" width="2000" height="1480" alt="Leva con settore dentato in ghisa, verniciata bianca, con la dentatura e il manicotto alesato lasciati in metallo" fetchpriority="high">
+    <img class="larga" id="grz-larga" src="img/leva-grezza-larga-1500.webp" srcset="img/leva-grezza-larga-1000.webp 1000w, img/leva-grezza-larga-1500.webp 1500w, img/leva-grezza-larga-2000.webp 2000w" sizes="(min-width:901px) 70vw, 1px" width="2000" height="1480" alt="Lo stesso pezzo in ghisa appena fresato dal pieno, prima della verniciatura" hidden>
+    <img class="stretta" id="fin-stretta" src="img/leva-finita-stretta-900.webp" srcset="img/leva-finita-stretta-600.webp 600w, img/leva-finita-stretta-900.webp 900w, img/leva-finita-stretta-1200.webp 1200w" sizes="(max-width:900px) 92vw, 1px" width="1200" height="1300" alt="Leva con settore dentato in ghisa, verniciata bianca, con la dentatura e il manicotto alesato lasciati in metallo">
+    <img class="stretta" id="grz-stretta" src="img/leva-grezza-stretta-900.webp" srcset="img/leva-grezza-stretta-600.webp 600w, img/leva-grezza-stretta-900.webp 900w, img/leva-grezza-stretta-1200.webp 1200w" sizes="(max-width:900px) 92vw, 1px" width="1200" height="1300" alt="Lo stesso pezzo in ghisa appena fresato dal pieno, prima della verniciatura" hidden>
+    <ol class="legenda larga" id="leg-fin-larga" aria-hidden="true">
+      <li class="sx" style="left:29.59%;top:43.22%;--l:56px"><span class="filo"></span><em>Settore dentato, fresato con fresa modulo</em></li>
+      <li class="dx" style="left:52.84%;top:89.24%;--l:120px"><span class="filo"></span><em>Alesatura H7</em></li>
+    </ol>
+    <ol class="legenda larga" id="leg-grz-larga" aria-hidden="true" hidden>
+      <li class="sx" style="left:22.21%;top:61.99%;--l:56px"><span class="filo"></span><em>Settore dentato</em></li>
+      <li class="dx" style="left:51.59%;top:85.3%;--l:96px"><span class="filo"></span><em>Ghisa dal pieno, prima della verniciatura</em></li>
+    </ol>
+    <ol class="legenda stretta" id="leg-fin-stretta" aria-hidden="true">
+      <li style="left:19.72%;top:42.66%"><i>1</i></li>
+      <li style="left:54.21%;top:89.29%"><i>2</i></li>
+    </ol>
+    <ol class="legenda stretta" id="leg-grz-stretta" aria-hidden="true" hidden>
+      <li style="left:8.34%;top:61.27%"><i>1</i></li>
+      <li style="left:52.38%;top:85.14%"><i>2</i></li>
+    </ol>
+  </figure>
+
+  <div class="barra">
+    <div class="interruttore" role="group" aria-label="Mostra il pezzo">
+      <button type="button" aria-pressed="false" data-stato="grezzo">Grezzo</button>
+      <button type="button" aria-pressed="true" data-stato="finito">Finito</button>
+    </div>
+  </div>
+  <p class="didascalia-pezzo" id="pezzo-didascalia"><span><strong>Leva e settore dentato in ghisa</strong>, lavorazione CNC dal pieno</span></p>
+
+  <ol class="lista-legenda" id="lista-fin" aria-label="Particolari del pezzo finito">
+    <li><b class="num">1</b>Settore dentato, fresato con fresa modulo</li>
+    <li><b class="num">2</b>Alesatura H7</li>
+  </ol>
+  <ol class="lista-legenda" id="lista-grz" aria-label="Particolari del pezzo grezzo" hidden>
+    <li><b class="num">1</b>Settore dentato</li>
+    <li><b class="num">2</b>Ghisa dal pieno, prima della verniciatura</li>
+  </ol>
+</div>
+</div>
+
+<section id="settori" class="settori pagina" aria-labelledby="t-settori">
+  <div class="griglia">
+    <h2 id="t-settori">Dalla stampa ai trasporti industriali</h2>
+    <p class="intro">Produrre e rettificare rulli per macchine da stampa offset e flexo è una delle nostre specializzazioni più richieste. Lavoriamo anche per sacchettifici, confezionatrici e trasporti industriali.</p>
+  </div>
+  <ul class="indice">
+    <li><h3>Stampa offset e flexo</h3><p>Rulli nuovi e rettificati, ricambi per rotative Man-Roland, interventi sulle macchine da stampa direttamente in azienda.</p></li>
+    <li><h3>Giornali</h3><p>Una linea di spedizione giornali, su commessa di una delle principali aziende di produzione giornali del Veneto.</p></li>
+    <li><h3>Sacchetti e confezioni</h3><p>Macchine per sacchettifici e confezionatrici; il rullo pinza della fondellatrice che chiude il fondo dei sacchi di carta.</p></li>
+    <li><h3>Trasporti e automazione</h3><p>Nastri trasportatori, rulli e guide. Installazione di macchine automatiche, dal montaggio al collaudo.</p></li>
+  </ul>
+</section>
+
+<figure class="foto-officina">
+  <picture>
+    <source media="(max-width:560px)" srcset="img/fresatrice-v-480.webp 480w, img/fresatrice-v-780.webp 780w, img/fresatrice-v-1080.webp 1080w" sizes="100vw">
+    <img src="img/fresatrice-1080.webp" srcset="img/fresatrice-720.webp 720w, img/fresatrice-1080.webp 1080w, img/fresatrice-1600.webp 1600w" sizes="100vw" width="1600" height="800" alt="Fresatrice in officina: il mandrino con la fresa sopra la tavola con le staffe di bloccaggio" loading="lazy">
+  </picture>
+  <figcaption class="pagina">Foto indicativa di una fresatrice in officina.</figcaption>
+</figure>
+
+<section id="lavorazioni" class="pagina" aria-labelledby="t-lav">
+  <div class="griglia lavorazioni-testa">
+    <h2 id="t-lav">Dalla componente singola all'intera rotativa</h2>
+    <p class="intro">Tutto nella nostra officina: il pezzo viene programmato e lavorato internamente, senza subappaltare nulla all'esterno.</p>
+  </div>
+  <ul class="griglia lavorazioni">
+    <li><h3>Tornitura</h3><p>Rulli per macchine da stampa offset e flexo, prodotti e rettificati, e pulegge ricavate dal pieno.</p><span class="misura num">6 torni, 1 a CNC</span></li>
+    <li><h3>Fresatura CNC</h3><p>Fresatrice industriale: il pezzo viene programmato e lavorato da noi, dal singolo componente alla serie.</p><span class="misura num">3 assi</span></li>
+    <li><h3>Lamiera</h3><p>Taglio e piegatura di acciaio, inox e alluminio, dal particolare piccolo alla lamiera grande.</p><span class="misura num">da 10&nbsp;cm a 3&nbsp;m</span></li>
+    <li><h3>Saldatura</h3><p>Saldatura professionale in officina, con tre procedimenti.</p><span class="misura">TIG, MIG/MAG, elettrodo</span></li>
+    <li><h3>Manutenzione sul posto</h3><p>Interveniamo sulle macchine dove lavorano: nastri trasportatori, rulli, guide.</p><span class="misura">offset, flexo, sacchettifici</span></li>
+    <li><h3>Installazione macchine automatiche</h3><p>Montaggio meccanico, sistemi automatici, configurazione e regolazioni.</p><span class="misura">dal montaggio al collaudo</span></li>
+  </ul>
+  <p class="materiali"><b>Materiali:</b> acciaio, acciaio inossidabile, alluminio, ottone, ghisa.</p>
+</section>
+
+<section id="progetti" class="pagina" aria-labelledby="t-prog">
+  <h2 id="t-prog">Due lavori per la stampa</h2>
+  <div class="griglia lavori">
+    <figure class="uno">
+      <img src="img/man-roland-960.webp" srcset="img/man-roland-640.webp 640w, img/man-roland-960.webp 960w, img/man-roland-1300.webp 1300w" sizes="(max-width:900px) 100vw, 60vw" width="1300" height="900" alt="Supporto in alluminio fresato dal pieno, con la sede del cuscinetto a rullini e la parte centrale alleggerita" loading="lazy">
+      <figcaption>
+        <h3>Supporto per il rullo silicone di una rotativa offset Man-Roland</h3>
+        <p>Ricavato da un blocco pieno di lega leggera per una rotativa a quattro colori: la parte centrale alleggerita, la sede del cuscinetto a rullini montato a pressione, quattro fori di fissaggio.</p>
+        <span class="misure num">Alluminio 6082 o 7075, fresatura CNC a 3 assi e tornitura</span>
+      </figcaption>
+    </figure>
+    <figure class="due">
+      <img src="img/linea-giornali-660.webp" srcset="img/linea-giornali-440.webp 440w, img/linea-giornali-660.webp 660w, img/linea-giornali-880.webp 880w" sizes="(max-width:900px) 100vw, 30vw" width="880" height="1010" alt="Linea di spedizione giornali in profilati di alluminio, con il nastro verde che curva a 90 gradi" loading="lazy">
+      <figcaption>
+        <h3>Linea di spedizione giornali</h3>
+        <p>Su commessa di una delle principali aziende di produzione giornali del Veneto.</p>
+        <span class="misure num">Profilati di alluminio, nastri in PVC, curve a 90°</span>
+      </figcaption>
+    </figure>
+  </div>
+  <p class="altri">Altri lavori: <a href="progetti/pulegge-dal-pieno.html">pulegge dal pieno</a>, <a href="progetti/rullo-pinza-fondellatrice.html">rullo pinza per fondellatrice</a>, <a href="progetti/mandrino-espansibile.html">mandrino espansibile per ribobinatrice</a>, <a href="progetti/basamento-braccio-robotico.html">basamento per braccio robotico</a>.</p>
+</section>
+
+<section id="dal-cliente" class="dal-cliente pagina" aria-labelledby="t-cliente">
+  <div class="griglia">
+    <h2 id="t-cliente">Non chiediamo di smontare, imballare e spedire nulla: veniamo noi da voi</h2>
+    <div class="colonna">
+      <h3>Come installiamo una macchina</h3>
+      <ol class="fasi">
+        <li>Analisi iniziale</li>
+        <li>Montaggio meccanico completo</li>
+        <li>Installazione dei sistemi automatici</li>
+        <li>Configurazione e regolazioni</li>
+        <li>Test e collaudo finale</li>
+      </ol>
+      <p class="dove">Interveniamo su macchine da stampa offset e flexo, macchine per sacchettifici e confezionatrici, nastri trasportatori, rulli e guide, per aziende dal Friuli al Trentino, dall'Emilia-Romagna al Veneto.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contatti" class="pagina" aria-labelledby="t-chiusura">
+  <div class="griglia chiusura">
+    <div class="chiusura-testo">
+      <h2 id="t-chiusura">Un'officina che c'era ieri, c'è oggi e sarà qui domani</h2>
+      <address class="recapiti">
+        <a class="tel num" href="tel:+393481693451">348&nbsp;169&nbsp;34&nbsp;51</a>
+        <p><a class="sott" href="mailto:info@meccanicamasi.it">info@meccanicamasi.it</a></p>
+        <p><a class="sott" href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+6%2C+35127+Padova" rel="noopener">Via dell'Artigianato 6, 35127 Padova</a></p>
+        <p class="orari num">Dal lunedì al venerdì 8:00&#8209;18:00<br>Sabato 8:00&#8209;12:00</p>
+      </address>
+      <p class="voce">Chi ci chiama parla con chi lavora, e chi lavora conosce il mestiere.</p>
+    </div>
+    <figure>
+      <img src="img/pulegge-960.webp" srcset="img/pulegge-640.webp 640w, img/pulegge-960.webp 960w, img/pulegge-1300.webp 1300w" sizes="(max-width:900px) 100vw, 55vw" width="1300" height="880" alt="Due pulegge dentate e un mozzo in alluminio, torniti e fresati dal pieno" loading="lazy">
+      <figcaption>Pulegge dentate e mozzo in alluminio, torniti e fresati dal pieno.</figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer class="piede">
+  <div class="pagina griglia">
+    <div class="marchio">
+      <img src="img/logo-masi-scritta.svg" alt="Meccanica Masi S.R.L." width="136" height="64" loading="lazy">
+      <p>Officina meccanica di famiglia a Padova: lavorazioni dal pieno su disegno, rulli per la stampa, manutenzione e installazione di macchine automatiche.</p>
+    </div>
+    <nav aria-label="Pagine del sito">
+      <div>
+        <h2><button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="p-azienda">Azienda</button><span class="titolo-fisso">Azienda</span></h2>
+        <ul id="p-azienda">
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="officina.html">L'officina</a></li>
+          <li><a href="#settori">Settori</a></li>
+          <li><a href="lavora-con-noi.html">Lavora con noi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2><button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="p-lav">Lavorazioni</button><span class="titolo-fisso">Lavorazioni</span></h2>
+        <ul id="p-lav">
+          <li><a href="lavorazioni/rulli-per-la-stampa.html">Rulli per la stampa</a></li>
+          <li><a href="lavorazioni/tornitura.html">Tornitura</a></li>
+          <li><a href="lavorazioni/fresatura-cnc.html">Fresatura CNC</a></li>
+          <li><a href="lavorazioni/lamiera.html">Lamiera</a></li>
+          <li><a href="lavorazioni/saldatura.html">Saldatura</a></li>
+          <li><a href="lavorazioni/manutenzione-sul-posto.html">Manutenzione sul posto</a></li>
+          <li><a href="lavorazioni/installazione-macchine.html">Installazione macchine</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2><button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="p-prog">Progetti</button><span class="titolo-fisso">Progetti</span></h2>
+        <ul id="p-prog">
+          <li><a href="progetti/leva-settore-dentato.html">Leva e settore dentato</a></li>
+          <li><a href="progetti/supporto-rullo-man-roland.html">Supporto rullo Man-Roland</a></li>
+          <li><a href="progetti/linea-spedizione-giornali.html">Linea spedizione giornali</a></li>
+          <li><a href="progetti/pulegge-dal-pieno.html">Pulegge dal pieno</a></li>
+          <li><a href="progetti/">Tutti i progetti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2><button class="fisarmonica-btn" type="button" aria-expanded="false" aria-controls="p-cont">Contatti</button><span class="titolo-fisso">Contatti</span></h2>
+        <ul id="p-cont" class="contatti-piede">
+          <li><a class="num" href="tel:+393481693451">348&nbsp;169&nbsp;34&nbsp;51</a></li>
+          <li><a href="mailto:info@meccanicamasi.it">info@meccanicamasi.it</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+6%2C+35127+Padova" rel="noopener">Via dell'Artigianato 6<br>35127 Padova</a></li>
+          <li class="num">Lun&#8209;ven 8&#8209;18, sab 8&#8209;12</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="legale">
+      <p class="num">Meccanica Masi S.R.L., via dell'Artigianato 6, 35127 Padova. P.IVA e C.F. 05200110285, REA PD&#8209;450853, codice SDI M5UXCR1</p>
+      <ul>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="cookie.html">Cookie</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Interruttore Grezzo / Finito: cambio netto di foto e legende, niente dissolvenze
+  var bott = document.querySelectorAll('.interruttore button');
+  var coppie = [['fin-larga','grz-larga'],['fin-stretta','grz-stretta'],['leg-fin-larga','leg-grz-larga'],['leg-fin-stretta','leg-grz-stretta'],['lista-fin','lista-grz']];
+  function mostra(stato){
+    var fin = stato === 'finito';
+    coppie.forEach(function(c){ document.getElementById(c[0]).hidden = !fin; document.getElementById(c[1]).hidden = fin; });
+    bott.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.stato === stato)); });
+  }
+  bott.forEach(function(b, i){
+    b.addEventListener('click', function(){ mostra(b.dataset.stato); });
+    b.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        var altro = bott[(i + 1) % bott.length]; altro.focus(); mostra(altro.dataset.stato);
+      }
+    });
+  });
+  // Menu su telefono
+  var t = document.getElementById('testata'), am = t.querySelector('.apri-menu');
+  am.addEventListener('click', function(){
+    var aperto = t.classList.toggle('aperta'); am.setAttribute('aria-expanded', String(aperto));
+  });
+  t.querySelectorAll('.menu a').forEach(function(a){ a.addEventListener('click', function(){ t.classList.remove('aperta'); am.setAttribute('aria-expanded','false'); }); });
+  // Piede a fisarmonica sotto i 561 px; sopra le colonne restano aperte
+  var stretto = window.matchMedia('(max-width:560px)');
+  var fis = document.querySelectorAll('.fisarmonica-btn');
+  function prepara(){
+    fis.forEach(function(b){
+      var ul = document.getElementById(b.getAttribute('aria-controls'));
+      if (stretto.matches) { ul.hidden = b.getAttribute('aria-expanded') !== 'true'; } else { ul.hidden = false; }
+    });
+  }
+  fis.forEach(function(b){
+    b.addEventListener('click', function(){
+      var ap = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', String(ap)); document.getElementById(b.getAttribute('aria-controls')).hidden = !ap;
+    });
+  });
+  prepara();
+  if (stretto.addEventListener) stretto.addEventListener('change', prepara);
+})();
+</script>
+</body>
+</html>
