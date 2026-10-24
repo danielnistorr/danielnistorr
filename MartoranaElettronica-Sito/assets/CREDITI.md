@@ -24,3 +24,7 @@ Versioni scaricate con curl dal CDN `images.unsplash.com` a 2400 px sul lato lun
 | `esterne/larochelle-saldatore.jpg` | https://unsplash.com/photos/man-wearing-automatic-dark-welding-helmet-c-vWdiICscA | Max LaRochelle (@maxlarochelle) | 1594x2400 | A e B | saldatore con maschera, cielo al tramonto: il settore saldatura |
 | `esterne/schuster-led-scheda.jpg` | https://unsplash.com/photos/close-up-of-many-small-led-lights-on-a-circuit-board-wUcVdX2zT50 | Sebastian Schuster (@sschusterphotoart) | 2400x2400 | A | scheda LED bianca di un apparecchio illuminante: M0524-LED |
 | `esterne/shavrik-pannello-pulsanti.jpg` | https://unsplash.com/photos/a-close-up-of-a-control-panel-with-buttons-r6fBLCriUgg | Shavr IK (@shavr) | 2400x1509 | B | pannello di comando con pulsanti e selettori, scuro e consumato |
+
+## Uso nella home finale (`sito/`)
+
+Delle foto esterne la home finale usa solo `esterne/vladdeep-cestello-lavatrice.jpg` (chiusura, `sito/img/chiusura-cestello-*.jpg`, taglio verticale e tono freddo). Le altre nove restano in archivio e non compaiono in pagina. Tutte le altre immagini della home sono dell'azienda (`originali/`).

@@ -39,4 +39,4 @@ Diritti:
 ## Logo
 
 - `originali/logo-colore-289x94.png`, `originali/logo-bianco-366x101.png`, `originali/logo-monogramma-100.png`, `originali/logo-vecchio-400x142.png`: dal sito, proprietà dell'azienda.
-- `logo-ricostruito-bozza.svg`: tracciato da me il 24/10/2026 dal PNG bianco 366x101 (`_prova/script/traccia_logo.py`, contorni ingranditi 8 volte e semplificati), colore #257B82. Il confronto a 1100 px (`_prova/tmp-analisi`, cancellato) è fedele nelle forme; differenze minime negli angoli arrotondati. Va sostituito dal vettoriale originale se l'azienda lo ha.
+- `logo-ricostruito-bozza.svg`: tracciato da me il 24/10/2026 dal PNG bianco 366x101 (`_prova/script/traccia_logo.py`, contorni ingranditi 8 volte e semplificati), colore #257B82. Il confronto a 1100 px è fedele nelle forme; differenze minime negli angoli arrotondati. Va sostituito dal vettoriale originale se l'azienda lo ha.
