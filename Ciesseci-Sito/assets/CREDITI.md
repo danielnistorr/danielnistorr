@@ -37,3 +37,7 @@ Scaricate dai CDN `images.unsplash.com` e `images.pexels.com`, al massimo 2400 p
 Manca, e nessun archivio libero ce l'ha in modo decente: **un capo da lavoro vero con il logo di un cliente ricamato o stampato, fotografato pulito su fondo chiaro** (e la loro felpa "82" rifatta bene). È la foto più importante da fare dal vero.
 
 Scartata dopo la verifica: la polo blu con ricamo di TuanAnh Blue (https://unsplash.com/photos/M-MwtidrO1g), perché il ricamo è tagliato dal bordo e il colletto mostra il marchio del produttore.
+
+## Uso nella home finale (24/10/2026)
+
+Nella home finale (`sito/`) restano quattro segnaposto esterni: Wallace (scheda Ricamo, con le scritte del marchio dei fili tolte con inpaint e il taglio stretto sui coni), emarts (scheda Serigrafia), Compagnons (scheda Sublimazione, con l'etichetta del produttore tolta con inpaint) e Paquet (abbigliamento e DPI). Non sono più usate: Novantino (apertura del prototipo A), Nguyen e le due di Roberts. L'apertura è la felpa 82 di Ciesseci (`originali/2018-02-csc-factory-26.jpg`), scontornata; chiusura con lo showroom di Ciesseci (`originali/2019-02-ciesseci-nuova-sede-2.jpg`).

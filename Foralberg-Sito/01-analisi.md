@@ -94,7 +94,7 @@ Sito: https://www.foralberg.it/it/ (crawl e screenshot del 24/10/2026: home IT e
 
 ## 4. Materiale visivo
 
-Ho scaricato 32 immagini (13 MB) da foralberg.it e dallo shop in `assets/originali/`, più 4 loghi SVG ricostruiti. Inventario con misure, pagine, soggetto e voti (qualità / forza come apertura, da 1 a 10) in `_prova/inventario-immagini.json`; fogli provino in `_prova/fogli/`. Il sito non ha video.
+Ho scaricato 32 immagini (9 MB) da foralberg.it e dallo shop in `assets/originali/`, più 4 loghi SVG ricostruiti. Inventario con misure, pagine, soggetto e voti (qualità / forza come apertura, da 1 a 10) in `_prova/inventario-immagini.json`; fogli provino in `_prova/fogli/`. Il sito non ha video.
 
 | Gruppo | Quanti | Misure | Qualità | Apertura | Giudizio |
 |---|---|---|---|---|---|
@@ -146,13 +146,13 @@ Aperti dal vivo il 24/10/2026; prime schermate in `riferimenti/<nome>-1440-prima
 1. **Schönwald** (schoenwald.com, porcellana per l'hotellerie dal gruppo BHS tabletop; il suo marchio compare sullo stand Foralberg del 1954).
    - Alta gamma: un tavolo di servizio dall'alto, con un grande piatto bianco fondo che occupa metà schermo e la porcellana vera in luce naturale; a 390 resta il piatto. Il piatto da hotel come protagonista è la direzione A.
    - Da non riprendere: il titolo bianco maiuscolo sopra la foto, il velo scuro, il bottone blu notte arrotondato, il menu di sei voci maiuscole.
-2. **Robbe & Berking** (robbeberking.com, posate d'argento dal 1874).
+2. **Robbe & Berking** (robbeberking.com, posate d'argento, Germania).
    - Alta gamma: una posata sola, enorme e nitida, in luce del giorno su lino grigio con il piatto bianco sfocato dietro; Adobe Garamond per i titoli, Ace Sans per l'interfaccia. Il dettaglio del metallo basta da solo.
    - Da non riprendere: la testata blu ardesia con due righe di menu e il riquadro bianco sfumato sopra la foto.
-3. **Serax** (serax.com, design per la tavola, Anversa, con una sezione "Professionals").
+3. **Serax** (serax.com, design per la tavola, con la voce "Professionals" nel menu).
    - Alta gamma: tanto bianco, logo spaziato al centro, etichette minuscole e spaziate, una foto chiara e calma; un serif proprio (Serax-Serif) con Avenir Next. Il tono chiaro e ordinato che piace al committente.
    - Da non riprendere: la barra nera della newsletter in cima, la finestra che chiede il paese, la bolla della chat.
-4. **Zwiesel Glas** (zwiesel-glas.com, calici per la ristorazione dal 1872, sezione "Gastronomie").
+4. **Zwiesel Glas** (zwiesel-glas.com, calici per la ristorazione, sezione "Gastronomie" nel menu).
    - Alta gamma: calici veri in luce chiara, MarkPro con Walbaum per i titoli, molta luce. Dimostra che il vetro si racconta senza buio.
    - Da non riprendere: la promozione "20% Rabatt" come apertura e il riquadro grigio col testo accanto alla foto.
 5. **Bonna** (bonna.com.tr, porcellana per hotel e ristoranti).

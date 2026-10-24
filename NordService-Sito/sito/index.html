@@ -47,39 +47,23 @@ b{font-weight:600}
 .tel-testata{font-size:16px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;padding-left:36px;border-left:1px solid var(--filo);line-height:28px}
 details.menu-mobile{display:none}
 
-/* apertura: la pala posata sulla linea dei giorni */
-.apertura{position:relative;max-width:1440px;margin-inline:auto;height:clamp(700px,calc(100svh - 88px),880px);
-  --linea:104px}
-.ap-testo{position:relative;z-index:2;padding:36px var(--m) 0;width:calc(var(--m) + 5 * var(--col) + 4 * var(--g))}
-.apertura h1{font-variation-settings:var(--larga);font-weight:600;font-size:clamp(64px,10.2vw,148px);line-height:.88;letter-spacing:-.036em}
-.lead{margin-top:36px;font-size:20px;line-height:1.5;max-width:26em}
+/* apertura: il titolo su una riga a tutta larghezza, sotto la pala posata sul filo del suolo */
+.apertura{position:relative;max-width:1440px;margin-inline:auto;padding-inline:var(--m);
+  height:clamp(700px,calc(100svh - 88px),900px);display:flex;flex-direction:column;--suolo:52px}
+.apertura h1{font-variation-settings:var(--larga);font-weight:600;white-space:nowrap;
+  font-size:calc((min(100vw,1440px) - 2 * var(--m)) / 7.8);line-height:.86;letter-spacing:-.036em;padding-top:14px;margin-left:-.04em}
+.ap-corpo{flex:1;min-height:0;position:relative;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.ap-testo{grid-column:1/5;padding-top:44px;position:relative;z-index:2}
+.lead{font-size:20px;line-height:1.5;max-width:23em}
 .azioni{margin-top:32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .bottone{display:inline-block;background:var(--arancio);color:var(--inchiostro);font-weight:600;font-size:17px;
   padding:15px 22px;text-decoration:none;font-variant-numeric:tabular-nums;transition:background-color .15s}
 .bottone:hover{background:var(--arancio-scuro);color:var(--inchiostro)}
-.pala{position:absolute;right:calc(-1 * max(0px,(100vw - 1440px) / 2));bottom:var(--linea);z-index:1;
-  height:min(calc(100% - var(--linea) - 20px),calc(58vw * 1774 / 1800));aspect-ratio:1800/1774}
-.pala img{width:100%;height:100%;transform:translateY(3.95%)}
-
-.righello{position:absolute;left:var(--m);right:var(--m);bottom:0;height:var(--linea);
-  display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);border-top:1px solid var(--inchiostro);z-index:2}
-.r-titolo{grid-column:1/5;padding-top:16px;font-size:14px;line-height:1.4;color:var(--inchiostro-2)}
-.r-titolo b{color:var(--inchiostro)}
-.scala{grid-column:5/13;position:relative}
-.scala svg{position:absolute;left:0;top:0;width:100%;height:7px;overflow:visible}
-.scala ol{position:relative;height:100%}
-.scala li{position:absolute;top:0}
-.scala li:nth-child(1){left:0}
-.scala li:nth-child(2){left:calc(100% * 7 / 13)}
-.scala li:nth-child(3){right:0;text-align:right}
-.scala a{display:block;padding:16px 0 8px 12px;text-decoration:none;position:relative;line-height:1.25}
-.scala li:nth-child(3) a{padding:16px 12px 8px 0}
-.scala a::before{content:"";position:absolute;top:0;left:0;width:1px;height:14px;background:var(--inchiostro)}
-.scala li:nth-child(3) a::before{left:auto;right:0}
-.scala .data{display:block;font-size:14px;color:var(--inchiostro-2);font-variant-numeric:tabular-nums lining-nums}
-.scala .parola{display:block;font-variation-settings:var(--media);font-weight:600;font-size:18px;letter-spacing:-.01em}
-.scala a:hover .parola{color:var(--arancio-testo);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
-.scala li:nth-child(3) a::after{content:"";position:absolute;right:0;top:-2px;height:3px;width:calc(100% + 24px);background:var(--arancio)}
+.pala{position:absolute;right:0;bottom:0;z-index:1;height:calc(100% - 36px);max-width:calc(100% - 4 * var(--col) - 4 * var(--g));aspect-ratio:1800/1774}
+.pala img{width:100%;height:100%;object-fit:contain;object-position:right bottom;transform:translateY(3.95%)}
+.suolo{height:var(--suolo);border-top:1px solid var(--inchiostro);display:flex;justify-content:flex-end;position:relative;z-index:2}
+.suolo p{padding-top:14px;font-size:14px;line-height:1.4;color:var(--inchiostro-2);font-variant-numeric:tabular-nums lining-nums}
+.suolo b{color:var(--inchiostro);font-weight:600}
 
 /* titoli di sezione */
 h2{font-variation-settings:var(--media);font-weight:600;font-size:clamp(34px,3.75vw,54px);line-height:1.04;letter-spacing:-.026em;text-wrap:balance}
@@ -93,21 +77,15 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
 .lavorazioni li{border-top:1px solid var(--filo);padding-top:20px;padding-right:12%}
 .lavorazioni p{margin-top:10px;font-size:17px;color:var(--inchiostro-2);text-wrap:pretty}
 
-/* fascia: la mascheratura */
-.fascia{margin-top:136px;max-width:1920px;margin-inline:auto}
-.fascia img{width:100%;aspect-ratio:2/1;object-fit:cover}
-.fascia figcaption{margin-top:14px;font-size:15px;color:var(--inchiostro-2)}
-.fascia figcaption b{color:var(--inchiostro)}
-
 /* apripista */
 .apripista{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start;max-width:1440px;margin-inline:auto;padding-right:var(--m)}
-.foto-seq{grid-column:1/8;display:grid}
+.foto-seq{grid-column:1/7;display:grid}
 .foto-seq figure{grid-area:1/1}
 .foto-seq figure[hidden]{display:none}
 .foto-seq img{width:100%;aspect-ratio:1/1;object-fit:cover}
 .foto-seq figcaption{font-size:15px;color:var(--inchiostro-2);margin-top:14px;padding-left:var(--m)}
 .foto-seq figcaption b{color:var(--inchiostro)}
-.seq-testo{grid-column:8/13;padding-left:var(--g);padding-top:8px}
+.seq-testo{grid-column:7/13;padding-left:calc(var(--col) + 2 * var(--g));padding-top:8px}
 .seq-testo p{margin-top:24px;color:var(--inchiostro-2);max-width:24em}
 .stati{margin-top:48px;display:flex;flex-direction:column}
 .stato{appearance:none;background:none;border:0;border-top:1px solid var(--filo);color:var(--inchiostro-2);
@@ -130,7 +108,7 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
 .famiglia{margin-top:36px;padding-top:20px;border-top:1px solid var(--filo);font-size:18px;color:var(--inchiostro-2);max-width:30em}
 .famiglia b{color:var(--inchiostro)}
 .chiusura figure{grid-column:8/13;margin-right:calc(-1 * max(0px,(100vw - 1440px) / 2))}
-.chiusura img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.chiusura img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .chiusura figcaption{font-size:15px;color:var(--inchiostro-2);margin-top:14px}
 
 /* piede */
@@ -151,31 +129,26 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
 
 /* fino a 1199: la colonna del testo si stringe */
 @media (max-width:1199px){
-  .ap-testo{width:calc(var(--m) + 6 * var(--col) + 5 * var(--g))}
-  .lead{font-size:19px;max-width:22em}
-  .pala{height:min(calc(100% - var(--linea) - 20px),calc(54vw * 1774 / 1800))}
-  .r-titolo{grid-column:1/4}
-  .scala{grid-column:4/13}
+  .ap-testo{grid-column:1/6}
+  .lead{font-size:19px;max-width:21em}
+  .pala{max-width:calc(100% - 5 * var(--col) - 5 * var(--g))}
 }
 
 /* tablet: tutto in colonna */
 @media (max-width:999px){
   .menu{gap:24px}
   .tel-testata{padding-left:24px}
-  .apertura{height:auto;display:flex;flex-direction:column;overflow:clip}
-  .ap-testo{width:auto;padding:28px var(--m) 0;display:contents}
-  .apertura h1{order:1;padding:28px var(--m) 0}
-  .lead{order:2;padding:0 var(--m);margin-top:24px;max-width:calc(30em + 2 * var(--m))}
-  .pala{order:3;position:relative;bottom:auto;right:auto;align-self:flex-end;height:auto;width:min(88vw,720px);margin-top:8px}
-  .pala img{transform:none}
-  .righello{order:4;position:relative;left:auto;right:auto;margin-inline:var(--m);margin-top:calc(min(88vw,720px) * -0.0395 * 1774 / 1800);height:auto}
-  .r-titolo{grid-column:1/13;order:2;padding-top:6px;padding-bottom:0}
-  .scala{grid-column:1/13;height:76px}
-  .azioni{order:5;padding:0 var(--m);margin-top:28px}
+  .apertura{height:auto;overflow:clip}
+  .ap-corpo,.ap-testo{display:contents}
+  .apertura h1{order:1;padding-top:28px}
+  .lead{order:2;margin-top:24px;max-width:30em}
+  .pala{order:3;position:relative;bottom:auto;right:auto;align-self:flex-end;height:auto;max-width:none;width:min(80vw,640px);margin-top:16px}
+  .suolo{order:4}
+  .azioni{order:5;margin-top:24px}
   .lavorazioni{grid-template-columns:repeat(2,1fr)}
   .apripista{display:flex;flex-direction:column-reverse;padding-right:0}
   .seq-testo{padding:0 var(--m) 40px}
-  .foto-seq{width:100%;max-width:760px}
+  .foto-seq{width:100%;max-width:640px}
   .chiusura{display:block;padding-left:0}
   .chiusura .testo{padding:0 var(--m)}
   .chiusura figure{margin:56px 0 0 auto;width:min(88vw,640px)}
@@ -190,34 +163,23 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
   .testata{height:64px;gap:16px}
   .testata .logo img{height:40px}
   .menu,.tel-testata{display:none}
-  .tel-mobile{margin-left:auto;font-size:15px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
+  .tel-mobile{margin-left:auto;font-size:15px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;padding:12px 0;line-height:20px}
   details.menu-mobile{display:block}
   details.menu-mobile summary{list-style:none;cursor:pointer;font-size:15px;padding:12px 0 12px 6px}
   details.menu-mobile summary::-webkit-details-marker{display:none}
   details.menu-mobile[open] summary{color:var(--arancio-testo)}
   .menu-aperto{position:absolute;left:0;right:0;top:64px;background:var(--carta);padding:8px var(--m) 24px;z-index:5;border-bottom:1px solid var(--filo)}
   .menu-aperto a{display:block;padding:12px 0;font-size:20px;text-decoration:none;border-top:1px solid var(--filo)}
-  .apertura h1{font-size:clamp(50px,17.4vw,78px);padding-top:18px}
+  .apertura h1{white-space:normal;font-size:clamp(50px,17.4vw,78px);padding-top:18px;line-height:.88}
   .lead{font-size:17px;margin-top:18px}
-  .pala{width:108vw;margin-right:-8vw;margin-top:6px}
-  .righello{margin-top:calc(108vw * -0.0395 * 1774 / 1800)}
-  .r-titolo{display:none}
-  .scala{height:64px}
-  .scala a{padding-left:9px}
-  .scala li:nth-child(3) a{padding-right:9px}
-  .scala .data{font-size:13px}
-  .scala .parola{font-size:16px}
-  .scala li:nth-child(2){transform:translateX(-50%)}
-  .scala li:nth-child(2) a{padding-left:0;text-align:center}
-  .scala li:nth-child(2) a::before{left:50%}
-  .azioni{margin-top:22px;gap:20px}
+  .pala{width:calc(100vw - var(--m));margin-right:calc(-1 * var(--m));margin-top:4px}
+  .apertura{--suolo:44px}
+  .suolo p{padding-top:12px;font-size:13px}
+  .azioni{margin-top:18px;gap:20px}
   .sezione{padding-top:104px}
   .lav-testa p{font-size:18px}
   .lavorazioni{grid-template-columns:1fr;row-gap:28px;margin-top:48px}
   .lavorazioni li{padding-right:0}
-  .fascia{margin-top:88px}
-  .fascia img{aspect-ratio:4/3;object-position:62% 50%}
-  .fascia figcaption{padding-inline:var(--m)}
   .foto-seq figcaption{padding-inline:var(--m)}
   .stati{flex-direction:row;margin-top:32px}
   .stato{flex:1;flex-direction:column;gap:6px;padding:14px 8px 4px 0;border-bottom:0 !important}
@@ -242,8 +204,8 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
 <header class="wrap testata">
   <a class="logo" href="./" aria-label="Nord Service, home"><img src="img/logo-112.png" width="166" height="112" alt="Nord Service S.r.l."></a>
   <nav class="menu" aria-label="Principale">
+    <a href="#apripista">Prima e dopo</a>
     <a href="#lavorazioni">Lavorazioni</a>
-    <a href="#apripista">Lavori</a>
     <a href="#contatti">Contatti</a>
   </nav>
   <a class="tel-testata" href="tel:+390499005162">049&nbsp;900&nbsp;5162</a>
@@ -251,8 +213,8 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
   <details class="menu-mobile">
     <summary>Menu</summary>
     <nav class="menu-aperto" aria-label="Principale, telefono">
+      <a href="#apripista">Prima e dopo</a>
       <a href="#lavorazioni">Lavorazioni</a>
-      <a href="#apripista">Lavori</a>
       <a href="#contatti">Contatti</a>
     </nav>
   </details>
@@ -260,36 +222,58 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
 
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
-  <div class="ap-testo">
-    <h1 id="titolo">Tornano<br>nuove</h1>
-    <p class="lead">Carrozzeria per macchine da lavoro: sabbiatura con garnet, fondi e vernici a liquido, vetroresina, carpenteria e vetri. Officina a Mestrino, Padova.</p>
-    <div class="azioni">
-      <a class="bottone" href="tel:+390499005162">Chiama 049&nbsp;900&nbsp;5162</a>
-      <a href="mailto:info@nordservice.net">info@nordservice.net</a>
+  <h1 id="titolo">Tornano nuove</h1>
+  <div class="ap-corpo">
+    <div class="ap-testo">
+      <p class="lead">Carrozzeria per macchine da lavoro: sabbiatura con garnet, fondi e vernici a liquido, vetroresina, carpenteria e vetri. Officina a Mestrino, Padova.</p>
+      <div class="azioni">
+        <a class="bottone" href="tel:+390499005162">Chiama 049&nbsp;900&nbsp;5162</a>
+        <a href="mailto:info@nordservice.net">info@nordservice.net</a>
+      </div>
+    </div>
+    <figure class="pala">
+      <img src="img/pala-1360.webp"
+        srcset="img/pala-640.webp 640w, img/pala-960.webp 960w, img/pala-1360.webp 1360w, img/pala-1800.webp 1800w"
+        sizes="(max-width:699px) 100vw, (max-width:999px) 80vw, 640px"
+        width="1800" height="1774" fetchpriority="high"
+        alt="Pala gommata Komatsu WA320 gialla con la benna alzata">
+    </figure>
+  </div>
+  <div class="suolo"><p><b>Komatsu WA320</b>, maggio 2025</p></div>
+</section>
+
+<section class="sezione" id="apripista" aria-labelledby="t-seq">
+  <div class="apripista">
+    <div class="foto-seq">
+      <figure id="p-sabbiato" role="tabpanel" aria-labelledby="s-sabbiato" hidden>
+        <img src="img/d8r-sabbiato-1100.jpg" srcset="img/d8r-sabbiato-720.jpg 720w, img/d8r-sabbiato-1100.jpg 1100w, img/d8r-sabbiato-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista cingolato appena sabbiato, metallo grigio a vista, nella cabina di sabbiatura">
+        <figcaption><b>Sabbiato, metallo nudo in cabina.</b> 3 ottobre 2024.</figcaption>
+      </figure>
+      <figure id="p-verniciato" role="tabpanel" aria-labelledby="s-verniciato" hidden>
+        <img src="img/d8r-verniciato-1100.jpg" srcset="img/d8r-verniciato-720.jpg 720w, img/d8r-verniciato-1100.jpg 1100w, img/d8r-verniciato-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista appena verniciato di giallo in cabina, con le mascherature ancora montate">
+        <figcaption><b>Fondo e giallo in cabina, mascherature ancora su.</b> 10 ottobre 2024.</figcaption>
+      </figure>
+      <figure id="p-finito" role="tabpanel" aria-labelledby="s-finito">
+        <img src="img/d8r-finito-1100.jpg" srcset="img/d8r-finito-720.jpg 720w, img/d8r-finito-1100.jpg 1100w, img/d8r-finito-1500.jpg 1500w"
+          sizes="(max-width:999px) min(100vw,640px), 50vw" width="1100" height="1100" loading="lazy"
+          alt="Apripista D8R finito, giallo, con le scritte rimesse">
+        <figcaption><b>Finito, con le scritte rimesse.</b> 16 ottobre 2024.</figcaption>
+      </figure>
+    </div>
+    <div class="seq-testo">
+      <h2 id="t-seq">Un apripista D8R, ottobre 2024</h2>
+      <p>Tre fotografie scattate in officina: il metallo sabbiato, il giallo appena dato, la macchina finita. Scegli il giorno.</p>
+      <div class="stati" role="tablist" aria-label="Giorno di lavorazione">
+        <button class="stato" role="tab" id="s-sabbiato" aria-controls="p-sabbiato" aria-selected="false" tabindex="-1"><span class="data">3 ottobre</span><span class="parola">Sabbiato</span></button>
+        <button class="stato" role="tab" id="s-verniciato" aria-controls="p-verniciato" aria-selected="false" tabindex="-1"><span class="data">10 ottobre</span><span class="parola">Verniciato</span></button>
+        <button class="stato" role="tab" id="s-finito" aria-controls="p-finito" aria-selected="true"><span class="data">16 ottobre</span><span class="parola">Finito</span></button>
+      </div>
     </div>
   </div>
-  <figure class="pala">
-    <img src="img/pala-1360.webp"
-      srcset="img/pala-640.webp 640w, img/pala-960.webp 960w, img/pala-1360.webp 1360w, img/pala-1800.webp 1800w"
-      sizes="(max-width:699px) 108vw, (max-width:999px) 88vw, 700px"
-      width="1800" height="1774" fetchpriority="high"
-      alt="Pala gommata Komatsu WA320 gialla, riverniciata, con la benna alzata">
-  </figure>
-  <nav class="righello" aria-label="Un apripista in officina, ottobre 2024">
-    <p class="r-titolo"><b>Un apripista D8R in officina</b><br>ottobre 2024, tre fotografie</p>
-    <div class="scala">
-      <svg viewBox="0 0 13 7" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <g stroke="#171717" stroke-width="1" vector-effect="non-scaling-stroke">
-          <line x1="1" y1="0" x2="1" y2="6" vector-effect="non-scaling-stroke"/><line x1="2" y1="0" x2="2" y2="6" vector-effect="non-scaling-stroke"/><line x1="3" y1="0" x2="3" y2="6" vector-effect="non-scaling-stroke"/><line x1="4" y1="0" x2="4" y2="6" vector-effect="non-scaling-stroke"/><line x1="5" y1="0" x2="5" y2="6" vector-effect="non-scaling-stroke"/><line x1="6" y1="0" x2="6" y2="6" vector-effect="non-scaling-stroke"/><line x1="8" y1="0" x2="8" y2="6" vector-effect="non-scaling-stroke"/><line x1="9" y1="0" x2="9" y2="6" vector-effect="non-scaling-stroke"/><line x1="10" y1="0" x2="10" y2="6" vector-effect="non-scaling-stroke"/><line x1="11" y1="0" x2="11" y2="6" vector-effect="non-scaling-stroke"/><line x1="12" y1="0" x2="12" y2="6" vector-effect="non-scaling-stroke"/>
-        </g>
-      </svg>
-      <ol>
-        <li><a href="#apripista" data-stato="s-sabbiato"><span class="data">3 ottobre</span><span class="parola">Sabbiato</span></a></li>
-        <li><a href="#apripista" data-stato="s-verniciato"><span class="data">10 ottobre</span><span class="parola">Verniciato</span></a></li>
-        <li><a href="#apripista" data-stato="s-finito"><span class="data">16 ottobre</span><span class="parola">Finito</span></a></li>
-      </ol>
-    </div>
-  </nav>
 </section>
 
 <section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
@@ -306,47 +290,6 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
       <li><h3>Vetri</h3><p>Dal finestrino del camion al parabrezza di una pala gommata.</p></li>
       <li><h3>Consulenza</h3><p>Ti indirizziamo nella ricerca dei componenti di cui hai bisogno.</p></li>
     </ul>
-  </div>
-  <figure class="fascia">
-    <img src="img/mascherata-1440.jpg"
-      srcset="img/mascherata-800.jpg 800w, img/mascherata-1440.jpg 1440w, img/mascherata-2400.jpg 2400w"
-      sizes="100vw" width="1440" height="720" loading="lazy"
-      alt="Braccio di una macchina avvolto in carta e nastro di mascheratura, nella cabina di verniciatura">
-    <figcaption class="wrap"><b>Mascheratura in cabina, prima della vernice.</b> Il colore arriva solo dove la carta lascia scoperto. Maggio 2025.</figcaption>
-  </figure>
-</section>
-
-<section class="sezione" id="apripista" aria-labelledby="t-seq">
-  <div class="apripista">
-    <div class="foto-seq">
-      <figure id="p-sabbiato" role="tabpanel" aria-labelledby="s-sabbiato" hidden>
-        <img src="img/d8r-sabbiato-1100.jpg" srcset="img/d8r-sabbiato-720.jpg 720w, img/d8r-sabbiato-1100.jpg 1100w, img/d8r-sabbiato-1500.jpg 1500w"
-          sizes="(max-width:999px) min(100vw,760px), 58vw" width="1100" height="1100" loading="lazy"
-          alt="Apripista cingolato appena sabbiato, metallo grigio a vista, nella cabina di sabbiatura">
-        <figcaption><b>Sabbiato, metallo nudo in cabina.</b> 3 ottobre 2024.</figcaption>
-      </figure>
-      <figure id="p-verniciato" role="tabpanel" aria-labelledby="s-verniciato" hidden>
-        <img src="img/d8r-verniciato-1100.jpg" srcset="img/d8r-verniciato-720.jpg 720w, img/d8r-verniciato-1100.jpg 1100w, img/d8r-verniciato-1500.jpg 1500w"
-          sizes="(max-width:999px) min(100vw,760px), 58vw" width="1100" height="1100" loading="lazy"
-          alt="Apripista appena verniciato di giallo in cabina, con le mascherature ancora montate">
-        <figcaption><b>Fondo e giallo in cabina, mascherature ancora su.</b> 10 ottobre 2024.</figcaption>
-      </figure>
-      <figure id="p-finito" role="tabpanel" aria-labelledby="s-finito">
-        <img src="img/d8r-finito-1100.jpg" srcset="img/d8r-finito-720.jpg 720w, img/d8r-finito-1100.jpg 1100w, img/d8r-finito-1500.jpg 1500w"
-          sizes="(max-width:999px) min(100vw,760px), 58vw" width="1100" height="1100" loading="lazy"
-          alt="Apripista D8R finito, giallo, con le scritte rimesse">
-        <figcaption><b>Finito, con le scritte rimesse.</b> 16 ottobre 2024.</figcaption>
-      </figure>
-    </div>
-    <div class="seq-testo">
-      <h2 id="t-seq">Un apripista D8R, ottobre 2024</h2>
-      <p>Tre fotografie scattate in officina: il metallo sabbiato, il giallo appena dato, la macchina finita. Scegli il giorno.</p>
-      <div class="stati" role="tablist" aria-label="Giorno di lavorazione">
-        <button class="stato" role="tab" id="s-sabbiato" aria-controls="p-sabbiato" aria-selected="false" tabindex="-1"><span class="data">3 ottobre</span><span class="parola">Sabbiato</span></button>
-        <button class="stato" role="tab" id="s-verniciato" aria-controls="p-verniciato" aria-selected="false" tabindex="-1"><span class="data">10 ottobre</span><span class="parola">Verniciato</span></button>
-        <button class="stato" role="tab" id="s-finito" aria-controls="p-finito" aria-selected="true"><span class="data">16 ottobre</span><span class="parola">Finito</span></button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -365,10 +308,10 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
       </div>
     </div>
     <figure>
-      <img src="img/virole-960.jpg" srcset="img/virole-640.jpg 640w, img/virole-960.jpg 960w, img/virole-1400.jpg 1400w"
-        sizes="(max-width:699px) 92vw, (max-width:999px) 640px, 42vw" width="960" height="960" loading="lazy"
-        alt="Due grandi virole cilindriche blu caricate su un camion, con un albero alle spalle">
-      <figcaption><b>Due virole blu sul camion.</b> Maggio 2025.</figcaption>
+      <img src="img/mascherata-960.jpg" srcset="img/mascherata-640.jpg 640w, img/mascherata-960.jpg 960w, img/mascherata-1400.jpg 1400w"
+        sizes="(max-width:699px) 92vw, (max-width:999px) 640px, 42vw" width="960" height="1200" loading="lazy"
+        alt="Braccio di una macchina avvolto in carta e nastro, sotto una piastra nera, nella cabina di verniciatura">
+      <figcaption><b>Mascheratura in cabina, prima della vernice.</b> Maggio 2025.</figcaption>
     </figure>
   </div>
 </section>
@@ -385,7 +328,7 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
         <h3 id="f-lav">Lavorazioni</h3>
         <ul>
           <li><a href="lavorazioni/sabbiatura-garnet/">Sabbiatura con garnet</a></li>
-          <li><a href="lavorazioni/fondi-e-verniciatura/">Fondi e verniciatura</a></li>
+          <li><a href="lavorazioni/fondi-e-vernici/">Fondi e vernici a liquido</a></li>
           <li><a href="lavorazioni/vetroresina-e-plastica/">Vetroresina e plastica</a></li>
           <li><a href="lavorazioni/carpenteria/">Carpenteria</a></li>
           <li><a href="lavorazioni/vetri/">Vetri</a></li>
@@ -446,12 +389,9 @@ h3{font-variation-settings:var(--media);font-weight:600;font-size:22px;line-heig
       if(j!==null){e.preventDefault();scegli(tabs[j],true)}
     });
   });
-  /* la linea dei giorni sotto la pala apre la foto di quel giorno */
-  [].forEach.call(document.querySelectorAll('.scala a[data-stato]'),function(a){
-    a.addEventListener('click',function(){
-      var t=document.getElementById(a.getAttribute('data-stato'));
-      if(t){scegli(t,false);setTimeout(function(){t.focus({preventScroll:true})},0)}
-    });
+  /* il menu del telefono si chiude quando si sceglie una voce */
+  [].forEach.call(document.querySelectorAll('.menu-aperto a'),function(a){
+    a.addEventListener('click',function(){a.closest('details').open=false});
   });
 })();
 </script>
