@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026. Licenze lette sulla pagina di ogni foto il 24 ottobre 2026.
+Aggiornato il 24 ottobre 2026. Nella home finale (dopo la rifinitura) delle foto di repertorio resta solo `pexels-vanderwolf-38439497.jpg` (chiusura); l'apertura è un disegno SVG della loro rete ondulata; delle foto loro sono usate `uploads_2014_04_rete_ondul01.jpg`, `gallery_reti-ondulate_IMG_1130-1.JPG`, `gallery_cancelli_canc082202.jpeg`, `gallery_cancelli_canc082204.jpeg` e `gallery_ringhiere_ringh082202.jpeg`. Licenze lette sulla pagina di ogni foto il 24 ottobre 2026.
 
 ## Materiale dell'azienda in `originali/`
 
