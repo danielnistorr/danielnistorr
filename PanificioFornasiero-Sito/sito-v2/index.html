@@ -215,17 +215,18 @@ section { padding: 34px 0; }
   .feste-foto2 { margin-top: auto; padding: 32px 0 0; max-width: 300px; }
 }
 
-/* IL PANE: la foto delle tartarughe e l'elenco come una lavagna del banco, a più misure. */
+/* IL PANE. Telefono: titolo, foto a tutta larghezza, i cinque pani padovani uno sotto l'altro, grandi, come sulla lavagna
+   del banco. Da 1100 px: titolo e frase in due colonne sbilanciate, i cinque nomi in una riga intera a 80 px,
+   sotto l'elenco e il forno a sinistra e la foto delle tartarughe a destra, a filo del bordo. */
 .pane-intro { padding: 0 var(--m); }
 .pane-intro p { margin-top: 12px; max-width: 40ch; }
 .pane-foto { margin-top: 26px; }
 .pane-foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 62%; }
 .pane-foto .didascalia { padding: 0 var(--m); }
 .pani { padding: 0 var(--m); margin-top: 30px; }
-.pani-casa { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 0 .4em; }
-.pani-casa li { font: 500 30px/1.18 var(--serif); letter-spacing: -.01em; }
-.pani-casa li:not(:last-child)::after { content: ","; }
-.pani-altri { margin-top: 28px; }
+.pani-casa { margin-top: 12px; }
+.pani-casa li { font: 400 36px/1.06 var(--serif); letter-spacing: -.018em; }
+.pani-altri { margin-top: 30px; }
 .pani-altri ul { margin-top: 10px; columns: 2; column-gap: 24px; font-size: 17px; line-height: 1.45; }
 .pani-altri li { break-inside: avoid; padding: 2px 0; }
 .pani-nota { margin-top: 14px; font-size: 16px; color: var(--testo2); max-width: 44ch; }
@@ -235,41 +236,66 @@ section { padding: 34px 0; }
 @media (min-width: 760px) { .forno .f-lungo { grid-column: auto; } .forno .f-pizze, .forno .f-dolci { order: 0; } }
 .forno p { margin-top: 6px; font-size: 17px; line-height: 1.5; }
 @media (min-width: 760px) and (max-width: 1099px) {
-  .pane-foto img { aspect-ratio: 16 / 10; }
+  /* tavoletta: i cinque nomi a sinistra, la foto a destra a filo del bordo, il resto sotto a tutta larghezza */
+  .pane { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; column-gap: 40px; }
+  .pane-intro { grid-column: 1 / -1; grid-row: 1; }
+  .pani { display: contents; }
+  .pani > .etichetta { grid-column: 1; grid-row: 2; padding-left: var(--m); margin-top: 34px; }
+  .pani-casa { grid-column: 1; grid-row: 3; padding-left: var(--m); }
+  .pani-casa li { font-size: 5vw; line-height: 1.08; }
+  .pane-foto { grid-column: 2; grid-row: 2 / span 3; margin-top: 34px; }
+  .pane-foto img { aspect-ratio: 1060 / 1178; object-position: 50% 50%; }
+  .pane-foto .didascalia { padding: 0; }
+  .pani-altri { grid-column: 1 / -1; grid-row: 5; padding: 0 var(--m); }
   .pani-altri ul { columns: 3; }
-  .forno { grid-template-columns: 1fr 1fr; gap: 32px 40px; }
+  .pani-nota { grid-column: 1 / -1; grid-row: 6; padding: 0 var(--m); }
+  .forno { grid-column: 1 / -1; grid-row: 7; grid-template-columns: 1fr 1fr; gap: 32px 40px; }
 }
 @media (min-width: 1100px) {
-  .pane { padding-top: 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 80px; }
-  .pane-foto { grid-column: 1; grid-row: 1 / span 2; margin: 0; align-self: start; }
-  .pane-foto img { aspect-ratio: 1060 / 1178; object-position: 50% 50%; }
-  .pane-foto .didascalia { padding-left: var(--m); }
-  .pane-intro { grid-column: 2; grid-row: 1; padding: 0 var(--m) 0 0; }
-  .pane-intro p { font-size: 19px; margin-top: 18px; }
-  .pani { grid-column: 2; grid-row: 2; padding: 0 var(--m) 0 0; margin-top: 34px; }
-  .pani-casa { gap: 0 .55em; }
-  .pani-casa li { font-size: 50px; line-height: 1.12; letter-spacing: -.02em; }
-  .pani-altri { margin-top: 30px; }
-  .pani-altri ul { columns: 3; column-gap: 28px; font-size: 17px; }
-  .forno { grid-column: 1 / -1; grid-row: 3; margin-top: 64px; padding: 0 var(--m); grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px; }
+  .pane { padding-top: 72px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: repeat(5, auto) 1fr; column-gap: 80px; align-items: start; }
+  .pane-intro { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 80px; align-items: end; }
+  .pane-intro .s-titolo { font-size: 44px; line-height: 1.06; letter-spacing: -.018em; }
+  .pane-intro p { margin: 0; font-size: 19px; max-width: 54ch; }
+  .pani { display: contents; }
+  .pani > .etichetta { grid-column: 1 / -1; grid-row: 2; padding: 0 var(--m); margin-top: 52px; }
+  .pani-casa { grid-column: 1 / -1; grid-row: 3; padding: 0 var(--m); margin-top: 14px; display: flex; flex-wrap: wrap; gap: 0 26px; }
+  .pani-casa li { font-size: 80px; line-height: 1.04; letter-spacing: -.028em; }
+  .pani-casa li:not(:last-child)::after { content: ","; }
+  .pani-altri { grid-column: 1; grid-row: 4; padding-left: var(--m); margin-top: 52px; }
+  .pani-altri ul { columns: 3; column-gap: 28px; }
+  .pani-nota { grid-column: 1; grid-row: 5; padding-left: var(--m); }
+  .forno { grid-column: 1; grid-row: 6; margin-top: 52px; padding: 0 0 0 var(--m); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px 48px; }
   .forno p { font-size: 16px; }
+  .pane-foto { grid-column: 2; grid-row: 4 / span 3; margin: 52px 0 0; }
+  .pane-foto img { aspect-ratio: 1060 / 1178; object-position: 50% 50%; }
+  .pane-foto .didascalia { padding: 0; }
 }
 
-/* CHI SIAMO: solo parole, a misure diverse; le date nella voce dell'insegna. */
+/* CHI SIAMO: solo parole. Da 1100 px tutto centrato sul grigio caldo: titolo piccolo, la frase di Galileo grande da sola,
+   le quattro date nella voce dell'insegna, enormi. */
 .storia { background: var(--carta2); }
 .storia-in { padding: 0 var(--m); }
 .storia-p { margin-top: 14px; max-width: 42ch; }
-.storia .citazione { margin-top: 28px; font-size: 23px; max-width: 28ch; }
-.date { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px 20px; }
+.storia .citazione { margin-top: 28px; font-size: 26px; line-height: 1.26; letter-spacing: -.01em; max-width: 24ch; }
+.date { margin-top: 34px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 20px; }
 .date li { display: grid; gap: 6px; font-size: 16px; line-height: 1.4; }
-.date b { font: 600 40px/1 var(--insegna); color: var(--bordeaux); letter-spacing: .01em; }
+.date b { font: 600 48px/1 var(--insegna); color: var(--bordeaux); letter-spacing: .01em; }
+@media (min-width: 760px) and (max-width: 1099px) {
+  .storia .citazione { font-size: 36px; line-height: 1.2; }
+  .date { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .date b { font-size: 56px; }
+}
 @media (min-width: 1100px) {
-  .storia-in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 80px; align-items: start; }
-  .storia-p { font-size: 19px; margin-top: 22px; }
-  .storia .citazione { grid-column: 2; grid-row: 1 / span 2; margin: 0; font-size: 40px; line-height: 1.2; letter-spacing: -.015em; max-width: 22ch; }
-  .date { grid-column: 1 / -1; margin-top: 72px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
-  .date li { gap: 12px; }
-  .date b { font-size: 64px; letter-spacing: 0; }
+  .storia { padding: 96px 0; }
+  .storia-in { text-align: center; }
+  .storia-in .s-titolo { font-size: 34px; line-height: 1.1; letter-spacing: -.01em; }
+  .storia-p { font-size: 19px; margin: 12px auto 0; }
+  .storia .citazione { margin: 56px auto 0; font-size: 58px; line-height: 1.12; letter-spacing: -.024em; max-width: 25ch; text-wrap: balance; }
+  .storia .firma-c { margin-top: 20px; }
+  .date { margin-top: 88px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+  .date li { gap: 14px; justify-items: center; }
+  .date li span { max-width: 26ch; }
+  .date b { font-size: 96px; letter-spacing: -.01em; }
 }
 
 /* FORNITURE: solo testo. Da 1100 px il titolo su una riga intera, sotto due colonne disuguali. */

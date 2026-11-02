@@ -93,6 +93,7 @@ figure{margin:0}
 .fatti b{font-weight:600}
 .fatti .piccolo{display:block;font-size:var(--s-pic);color:var(--grigio);margin-top:2px}
 .stato b{color:var(--rosso);font-weight:700}
+.stato b.aperto{color:#1e6b35}
 .scrivi{display:inline-flex;align-items:center;min-height:48px;font-weight:600}
 .ap-basso{margin-top:52px;align-items:end}
 .ingressi{grid-column:1/5}
@@ -392,7 +393,7 @@ figure{margin:0}
       <li>Interventi su Padova e provincia<span class="piccolo">Fuori provincia? Chiamateci.</span></li>
       <li>Toyota, BT, Cesab e tutte le altre marche<span class="piccolo">Carrelli elettrici e diesel, frontali e da magazzino</span></li>
       <li>Carrelli sostitutivi durante le riparazioni</li>
-      <li>Via Canada 12, Padova<span class="piccolo"><a href="mailto:unicar@protec.it">unicar@protec.it</a></span></li>
+      <li>Via Canada 12, Padova<span class="piccolo">unicar@protec.it</span></li>
     </ul>
     <p class="ap-scrivi"><a class="scrivi" href="mailto:unicar@protec.it?subject=Carrello%20fermo&amp;body=Azienda%3A%0D%0AIndirizzo%20dove%20si%20trova%20il%20carrello%3A%0D%0AReferente%20e%20telefono%3A%0D%0AMarca%3A%0D%0AModello%3A%0D%0AMatricola%20(dalla%20targhetta)%3A%0D%0ACosa%20succede%3A%0D%0A">Scrivete all'officina: carrello fermo</a></p>
   </div>
@@ -629,10 +630,11 @@ figure{margin:0}
   }
   var t='',a=adesso(),f=ORARI[a.g]||[];
   for(var i=0;i<f.length;i++){
-    if(a.h>=f[i][0]&&a.h<f[i][1]){t='<b>Aperto ora</b>, fino alle '+ora(f[i][1]);break;}
+    if(a.h>=f[i][0]&&a.h<f[i][1]){t='<b class="aperto">Aperto ora</b>, fino alle '+ora(f[i][1]);break;}
     if(a.h<f[i][0]){t='<b>Chiuso ora</b>, riapre alle '+ora(f[i][0]);break;}
   }
   if(!t){for(var k=1;k<=7;k++){var gg=(a.g-1+k)%7+1;if(ORARI[gg]&&ORARI[gg].length){t='<b>Chiuso ora</b>, riapre '+(k===1?'domani':GIORNI[gg])+' alle '+ora(ORARI[gg][0][0]);break;}}}
+  if(t&&t.indexOf('Chiuso')>-1){t+='<br>Fuori orario? Scriveteci: vi richiamiamo alla riapertura.';}
   if(t){[].forEach.call(document.querySelectorAll('[data-stato]'),function(s){s.innerHTML=t+'<br>';});}
 
   // Richiesta ricambio: compone l'email, non invia nulla dalla pagina
