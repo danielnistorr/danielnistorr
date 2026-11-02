@@ -40,3 +40,10 @@ Avvertenze sui marchi e sull'uso:
 - `yurtman-tecnici-sul-carrello.jpg`: sezione officina, taglio stretto su mani e montante senza volti, tolta la scritta TCM, tono schiarito e raffreddato; `sito/img/officina-*.webp`, mai ingrandito.
 - `originali/testata/007.jpg` (la sede, materiale del loro sito): chiusura, taglio 455 x 249 sulla palazzina con le insegne Unicar e BT Cesab (senza l'insegna Cami2), mai ingrandito; `sito/img/sede-455.jpg`.
 - Nessuna nuova foto scaricata per la versione finale. Controllo di riuso ripetuto il 2/11/2026 sui `*-Sito/assets/CREDITI.md` delle altre home: nessuna di queste foto compare altrove.
+
+## Uso nella home v2, scheda d'uso (2/11/2026)
+
+- `originali/testata/007.jpg` (la sede, materiale del loro sito): apertura, striscia intera 939 x 249 a misura d'origine a 1440 e taglio 499 x 249 sull'ingresso con le insegne per il telefono; livelli, contrasto e nitidezza leggeri (`_prova/uso/script/v2_img.py`), mai ingrandita; `sito-v2/img/sede-*`.
+- `originali/testata/008.jpg` (la squadra, materiale del loro sito): chiusura, striscia intera 939 x 249 e taglio 520 x 249 sul gruppo per il telefono; stesso trattamento; `sito-v2/img/squadra-*`.
+- `duc-le-retrattili-in-fila.jpg` (Duc LE, Unsplash License, `p0VP_TOAd5E`): sezione Assistenza, taglio panoramico 2400 x 637 (lo stesso rapporto delle strisce della sede) e taglio 3:2 per il telefono, un po' più chiaro e meno saturo; in pagina con la dicitura "Foto indicativa". Resta visibile, piccolo, l'adesivo "e-lm.com" su un montante a destra. `sito-v2/img/retrattili-*`.
+- Nessuna foto nuova scaricata. Controllo di riuso ripetuto il 2/11/2026 su tutti i `*-Sito/assets/CREDITI.md`: `p0VP_TOAd5E` compare solo in questo file.
