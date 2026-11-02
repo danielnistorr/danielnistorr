@@ -93,7 +93,7 @@ Una mattina di riprese in luce naturale di finestra, senza flash, sempre con la 
 ## Licenze
 
 - Caratteri: Sentient e General Sans, Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito), file serviti dalla pagina.
-- Foto: Unsplash T6vI65xwoNA (Karen Sewell, tagliatelle) e Unsplash ytxRXkY8QE4 (Victoria Nazaruk, panini nei sacchetti), Licenza Unsplash. Sono segnaposto da sostituire prima di qualsiasi uso pubblico. Pexels 4198047 e Unsplash W0PDHT_sYoQ, usate nella versione precedente, non sono più in pagina. Le altre foto in pagina sono del panificio, prese dal loro sito. Dettagli in `assets/CREDITI.md`.
+- Foto: dal ritocco con l'uso in pagina ci sono solo foto del panificio, prese dal loro sito (per il sito nuovo serve il loro consenso). Le foto di repertorio usate prima (Unsplash T6vI65xwoNA di Karen Sewell, tagliatelle; Unsplash ytxRXkY8QE4 di Victoria Nazaruk, panini nei sacchetti; Pexels 4198047 e Unsplash W0PDHT_sYoQ) non sono più in pagina e restano in `assets/esterne/` solo come archivio. Dettagli in `assets/CREDITI.md`.
 - Le foto della libreria di Wix presenti sul sito di oggi non sono usate (licenza valida solo dentro Wix).
 
 ## Versione 2 (scheda d'uso)

@@ -29,17 +29,17 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 |---|---|---|---|---|---|
 | `esterne/pexels-4198047-karola-g-panino-lino.jpg` | https://www.pexels.com/photo/4198047/ ("Fresh bread on table covered cloth") | Karola G (kaboompics.com) | 2400x3600 | apertura della versione precedente, oggi non usata | un panino chiaro con un taglio, dall'alto, su lino. Licenza letta il 2/11/2026 sulla pagina della foto: "Free", con il rimando alla Licenza Pexels (https://www.pexels.com/license/: uso gratuito, anche commerciale, attribuzione non obbligatoria; non si vende la foto senza modifiche e non la si usa per far credere a un'approvazione dell'autore). Non è in nessun altro `CREDITI.md` della campagna (controllato il 2/11/2026). Non è un loro pane |
 
-## Uso nella home finale (`sito/`, 2 novembre 2026, ultimo passaggio)
+## Uso nella home finale (`sito/`, versione 1 con l'uso, ritocco del 2 novembre 2026)
 
+Solo foto del panificio, da `originali/`; nessuna foto di `esterne/`, nessuna immagine generata. Lavorate con `_prova/script/finale_img.py`.
 - Apertura: la focaccia veneta sul sacco del cinquantesimo (`b56ebf_fabc...`), foto del panificio, scontornata (`_prova/script/scontorna_focaccia.py`) con un'ombra aggiunta.
+- Apertura, solo sul telefono: la striscia dell'insegna "FORNASIERO Galileo" nella scheda di via Vigonovese, taglio 640x60 della foto della vetrina (`617993_02eb45f6...`), alla misura nativa.
 - Chi siamo: la vetrina con Galileo e Fidalma (`617993_02eb45f6...`), foto loro, alla misura nativa 640x319.
-- Il pane di oggi: tartarughe della galleria del panificio (`617993_28aa18bc...`), foto loro, tagliata e corretta nel colore.
-- Pasta fresca: Unsplash T6vI65xwoNA (Karen Sewell); segnaposto, con "Foto indicativa" in didascalia.
-- Natale: panettone sul sacco di juta (`b56ebf_5b27...`) e l'etichetta del cinquantesimo ritagliata dalla foto della focaccia (`b56ebf_fabc...`), foto loro.
-- Chiusura: Unsplash ytxRXkY8QE4 (Victoria Nazaruk); segnaposto, dalla versione 1 con l'uso (2/11/2026) con "Foto indicativa" in didascalia ("Pane nei sacchetti di carta. Foto indicativa."). Licenza letta il 24/10/2026 sulla pagina della foto (tabella sopra); né questa né Sewell sono in altri `CREDITI.md` della campagna (ricontrollato il 2/11/2026, sera).
+- Il pane di ogni giorno: tartarughe della galleria del panificio (`617993_28aa18bc...`), foto loro, tagliata e corretta nel colore.
+- Natale: panettone sul sacco di juta (`b56ebf_5b27...`) e la focaccia di Natale intera sul sacco del cinquantesimo, con l'etichetta (`b56ebf_fabc...`, taglio quadrato), foto loro.
+- Chiusura: il pane a fette nel cesto con il sacchetto della bottega (`617993_f35f170e...`), galleria del panificio, con la stessa correzione della luce delle tartarughe.
 - Piede: il logo del sito a una tinta (bruno delle scritte del sacchetto), PNG a 2x e 3x.
-- Non più usate: Pexels 4198047 (Karola G) e Unsplash W0PDHT_sYoQ (Laura Tautan), in pagina nella versione precedente; restano in `esterne/` solo come archivio della proposta.
-- Non usate nella home finale: le altre foto di `esterne/`.
+- Non più usate: Unsplash T6vI65xwoNA (Karen Sewell, tagliatelle) e Unsplash ytxRXkY8QE4 (Victoria Nazaruk, panini nei sacchetti), in pagina fino al primo passaggio della versione 1 con l'uso; Pexels 4198047 (Karola G) e Unsplash W0PDHT_sYoQ (Laura Tautan), in pagina nella versione precedente. Restano in `esterne/` solo come archivio della proposta.
 
 ## Uso nella home versione 2 (`sito-v2/`, 2 novembre 2026)
 
