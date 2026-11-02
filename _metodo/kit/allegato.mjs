@@ -31,10 +31,12 @@ fs.mkdirSync(work, { recursive: true });
 const browser = await chromium.launch();
 
 async function apri(ctxOpts) {
-  const ctx = await browser.newContext({ timezoneId: 'Europe/Rome', locale: 'it-IT', ...ctxOpts });
+  const ctx = await browser.newContext({ timezoneId: 'Europe/Rome', locale: 'it-IT', reducedMotion: 'reduce', ...ctxOpts });
   const page = await ctx.newPage();
   await page.clock.setFixedTime(new Date(ORA));
   await page.goto('file://' + sito, { waitUntil: 'load', timeout: 90000 });
+  // scorrimento immediato: con scroll-behavior:smooth le schermate uscivano a metà corsa
+  await page.addStyleTag({ content: 'html,body{scroll-behavior:auto!important}' });
   await page.evaluate(() => document.querySelectorAll('img[loading=lazy],iframe[loading=lazy]').forEach(e => { e.loading = 'eager'; }));
   await page.evaluate(async () => {
     for (let y = 0; y < document.documentElement.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); }
@@ -73,7 +75,7 @@ const tot = completa ? 4 : 3;
 {
   const { ctx, page } = await apri({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
   await page.screenshot({ path: path.join(work, 'telefono-1.jpg'), type: 'jpeg', quality: 80 });
-  await page.evaluate(y => window.scrollTo(0, y), S.telefono2_y);
+  await page.evaluate(y => window.scrollTo({ top: y, behavior: 'instant' }), S.telefono2_y);
   await page.waitForTimeout(600);
   await page.screenshot({ path: path.join(work, 'telefono-2.jpg'), type: 'jpeg', quality: 80 });
   await ctx.close();
