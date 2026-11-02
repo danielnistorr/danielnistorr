@@ -6,7 +6,8 @@ Proposta non richiesta di una nuova homepage per Eurotecnica Salmaso S.R.L. (Pad
 - Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md` spiega idea, caratteri, colori, interazione, foto e controlli).
 - Rifare tutto: `bash _prova/script/build_finale.sh` (immagini, pagina, screenshot, controlli a 320, 768, 1024, 1920). `IMMAGINI=0` salta le immagini, `CONTROLLI=0` i controlli.
 - Analisi con le fonti: `01-analisi.md`. Crediti delle foto: `assets/CREDITI.md`.
-- Versione del 2 novembre 2026: sostituisce quella del 24 ottobre (stessa idea, fondo nel petrolio del marchio, microfono scontornato sull’asse che divide il titolo, chiusura e piede rifatti).
+- Versione del 2 novembre 2026: sostituisce quella del 24 ottobre (stessa idea, fondo nel petrolio del marchio, microfono scontornato sull’asse che divide il titolo, chiusura e piede rifatti), rifinita lo stesso giorno sul giudizio cieco (fondo più chiaro, foto del service piccole, colonne leggibili, giorni feriali, menu del telefono, piede). Dettagli in `screenshot/home/NOTA.md`.
+- Controlli finali: `node _prova/script/controlli.mjs file://$PWD/sito/index.html` (scorrimento da 320 a 2560, console, link, nitidezza delle foto, gesto con tastiera e tocco, menu).
 
 ## Pagine linkate dalla home (da costruire)
 
@@ -15,7 +16,7 @@ Proposta non richiesta di una nuova homepage per Eurotecnica Salmaso S.R.L. (Pad
 | `impianti/` con le ancore `#sale-congressi`, `#teatri`, `#aule`, `#chiese`, `#evacuazione` | impianti per tipo di sala, dai testi della pagina Impianti di oggi |
 | `service/` con `#amplificazione`, `#traduzione`, `#video`, `#streaming` | le sei voci del service |
 | `noleggi/` | elenco del materiale a noleggio e la regola dei giorni |
-| `azienda/` con `#partner` | storia dal 1967 e lavoro con impiantisti, rivenditori e manutentori |
+| `azienda/` con `#partner` e `#mepa` | storia dal 1967, lavoro con impiantisti, rivenditori e manutentori, abilitazioni MePA per la pubblica amministrazione |
 | `contatti/` | recapiti, mappa, modulo |
 | `privacy/`, `cookie/` | informative (oggi c’è solo la privacy, pagina e PDF) |
 
@@ -30,8 +31,14 @@ Le sezioni della home hanno le ancore `#service`, `#noleggio`, `#impianti`, `#az
 - Il negozio "emporio dell’audio": aperto al pubblico? Con quali orari? Il dominio emporiodellaudio.it è in vendita. In pagina non compare.
 - Le sale delle foto del 2024 (sala storica con soffitto dorato, palco sull’acqua): dove sono e se i committenti accettano di essere nominati. Le didascalie oggi non dicono il luogo.
 - Se gli elenchi di Service e Impianti sono attuali (Skype e Lync superati; in pagina "programmi di largo utilizzo").
-- Nel calcolo del noleggio: se il ritiro e il reso di domenica sono possibili (il sito dice "il giorno antecedente" e "il giorno successivo" senza eccezioni) e se consegna e montaggio avvengono il giorno prima, come la linea mostra (il sito dice solo che si possono chiedere).
+- Nel calcolo del noleggio: se il ritiro e il reso di sabato e di domenica sono possibili (il sito dice "il giorno antecedente" e "il giorno successivo" senza eccezioni). Finché non lo sappiamo la pagina usa solo i giorni feriali, lunedì-venerdì: un evento di lunedì ha il ritiro il venerdì prima, uno di sabato il reso il lunedì dopo; all’apertura mostra il primo giovedì fra almeno due giorni. Se sono aperti il sabato, basta cambiare la funzione `feriale` nello script della pagina (una riga).
+- Se consegna e montaggio avvengono il giorno feriale prima, come la linea mostra (il sito dice solo che si possono chiedere).
 - Marchi che vogliono mostrare (oggi un’immagine con 11 loghi): servono gli accordi; la home non ne mostra.
+
+## Prima di pubblicare (tecnico)
+
+- Con il sito servito in http rimettere in `<head>` i due preload dei caratteri (`fonts/general-sans-500.woff2` e `fonts/host-grotesk-variabile.woff2`, `as="font" type="font/woff2" crossorigin`): tolti dal file statico perché aperti come file:// danno errori CORS in console.
+- Gli originali grandi di Karisch e Dang usati dalla build sono in `_prova/crawl/hr/` (scaricati dal CDN di Unsplash il 2/11/2026, stesse foto dei file in `assets/esterne/`).
 
 ## Foto da rifare dal vero
 
@@ -40,12 +47,13 @@ Tutte le foto esterne sono segnaposto (licenze in `assets/CREDITI.md`): vanno so
 1. **Apertura, il microfono**: un loro radiomicrofono a impugnatura, verticale, griglia in alto, su fondo chiaro uniforme (cartoncino o muro chiaro, poi scontornato), luce morbida di finestra da destra, macchina su cavalletto alla stessa altezza del microfono per non deformarlo, almeno 4000 px di altezza, il cavo tolto o tenuto dritto verso il basso. Senza marchi leggibili, o con il loro consenso. Se il microfono ha un anello colorato, meglio petrolio o grigio.
 2. **Storia**: una delle unità per conferenze che progettavano a Padova (base con microfono o con votazione), se ne esiste ancora una, sul banco di un’aula consiliare vera; luce naturale, fondo sfocato, taglio quasi quadrato.
 3. **Una sala per tipo** (teatro, sala consiliare, aula, chiesa) con i loro impianti, vuota, luce naturale, macchina sull’asse della sala (la home è costruita sulla simmetria): la chiusura vuole una sala simmetrica ripresa dal centro.
-4. **Service**: la regia durante un convegno e un palco all’aperto, con una reflex o una mirrorless e non con il telefono; orizzontali, almeno 3000 px.
-5. Diritti delle sei foto del 2024: l’EXIF riporta il copyright di un fotografo di repertorio (probabilmente ereditato da un modello di Photoshop). Da chiarire prima di usarle.
+4. **Service**: la regia durante un convegno e un palco all’aperto, con una reflex o una mirrorless e non con il telefono; orizzontali 3:2, almeno 3000 px, senza schermi con testo leggibile e senza marchi in primo piano. Con foto così le due immagini possono tornare più grandi; quelle del 2024 da telefono restano a 420 px.
+5. **Chiusura**: una sala consiliare o congressuale con un loro impianto, ripresa dal centro con il tavolo sull’asse, orizzontale e larga almeno 3000 px (la segnaposto arriva a 2520 dopo aver tolto i cordoni del museo).
+6. Diritti delle sei foto del 2024: l’EXIF riporta il copyright di un fotografo di repertorio (probabilmente ereditato da un modello di Photoshop). Da chiarire prima di usarle.
 
 ## Licenze
 
-- Foto esterne: Unsplash License (DESIGNECOLOGIST hvgd0ygXuQQ, Valentin Karisch igNLOmbJBhg, Daniel Emale zBZZfr8_0ME, Nguyen Dang ft2Gpg_fNVY), lette sulle pagine delle foto il 24/10/2026. Nessuna immagine generata dall’IA.
+- Foto esterne: Unsplash License (DESIGNECOLOGIST hvgd0ygXuQQ, Valentin Karisch igNLOmbJBhg, Daniel Emale zBZZfr8_0ME, Nguyen Dang ft2Gpg_fNVY), lette sulle pagine delle foto il 24/10/2026 e, per Karisch e Dang, di nuovo il 2/11/2026. Nessuna immagine generata dall’IA.
 - Caratteri: General Sans (Fontshare, ITF Free Font License, uso commerciale ammesso) e Host Grotesk (Google Fonts, SIL Open Font License 1.1), serviti dalla pagina; testi in `sito/fonts/`.
 
 ## Logo

@@ -49,7 +49,9 @@ Controllato di nuovo il 2/11/2026 che nessuno di questi ID compaia nei `CREDITI.
 | Foto | Dove | Lavorazione (`_prova/script/finale_img.py`) |
 |---|---|---|
 | DESIGNECOLOGIST hvgd0ygXuQQ | apertura, `sito/img/microfono-*.webp` | scritta "SPEAK UP" e scritte del connettore tolte, scontornato (WebP con trasparenza), anello della griglia portato al petrolio del logo, cavo tolto sotto il pressacavo |
-| Valentin Karisch igNLOmbJBhg | impianti, `teatro-*.jpg` | taglio 2,4:1 e 4:3, neri verso il petrolio |
+| Valentin Karisch igNLOmbJBhg | impianti, `teatro-*.jpg` | dall’originale 3600x2395 (`_prova/crawl/hr/karisch-3600.jpg`), taglio 16:9 e 4:3, neri verso il petrolio |
 | Daniel Emale zBZZfr8_0ME | storia, `conferenza-*.jpg` | taglio quasi quadrato e 4:3 |
-| Nguyen Dang ft2Gpg_fNVY | chiusura, `chiusura-*.jpg` | taglio 3:2 da x 96 (fuori i due visitatori dietro la vetrata) e 5:4 |
-| `originali/2024-05-1.jpg`, `2024-05-3.jpg` (azienda) | service, `regia-*.jpg`, `palco-*.jpg` | tagli 2:1, rumore smorzato; diritti da chiarire |
+| Nguyen Dang ft2Gpg_fNVY | chiusura, `chiusura-*.jpg` | dall’originale 3200x4800 (`_prova/crawl/hr/dang-3200.jpg`), taglio 3:2 e 5:4 centrati sul tavolo; cordoni rossi del museo e visitatore dietro la vetrata tolti con un ritocco |
+| `originali/2024-05-1.jpg`, `2024-05-3.jpg` (azienda) | service, `regia-*.jpg`, `palco-*.jpg` | tagli 3:2 a 420 px (la regia senza il monitor con il testo), rumore smorzato; diritti da chiarire |
+
+Originali più grandi scaricati il 2/11/2026 dal CDN di Unsplash (`images.unsplash.com/photo-1778962390083-ae4c125ba770` per Karisch, `photo-1775492783108-5714035b298b` per Dang, indirizzi letti nelle pagine delle foto), confrontati con i file di `esterne/`: stesse foto. Licenza riletta lo stesso giorno: "Free to use under the Unsplash License".
