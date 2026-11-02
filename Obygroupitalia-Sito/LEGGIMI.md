@@ -2,6 +2,8 @@
 
 Proposta non richiesta di una nuova homepage, solo la home, per OBY GROUP ITALIA Srl (www.obygroupitalia.com). Non è pubblicata e l'azienda non è stata contattata.
 
+**Scelta del committente (2 novembre): la versione 1 (`sito/`), con l'uso.** È la pagina da consegnare. Cosa è cambiato e cosa resta da confermare è nella sezione "Versione 1 con l'uso" in fondo; la versione 1 com'era prima è copiata in `_prova/versione-1-originale/`.
+
 - Pagina: `sito/index.html`, statica, si apre con file:///. Immagini in `sito/img/` (solo quelle usate, JPEG in più larghezze), carattere in `sito/fonts/`.
 - Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md` spiega idea, caratteri, colori, interazione, foto e controlli).
 - Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `finale_img.py`, pagina da `finale-pagina.html`, screenshot. Le modifiche dell'ultimo giro (dopo il giudizio cieco) sono in `_prova/script/rifinitura_pagina.py`, che parte da `finale-pagina-prima-del-giudizio.html`.
@@ -134,3 +136,37 @@ Seconda proposta di home, costruita sulla scheda di identità e d'uso (`_prova/u
 **Pagine del sito nuovo.** Valgono quelle della tabella qui sopra. Nella versione 2 i link del piede puntano alle sezioni della home (`#incendio`, `#allagamento`, `#maltempo`, `#amianto`, `#dopo`, `#bonifiche-industriali`, `#ambienti-confinati`, `#escavatori-a-risucchio`, `#lavori-in-fune`, `#sabbiature`, `#opere-edili`, `#assicurazioni`, `#azienda`, `#contatti`) e ai due PDF in `sito-v2/doc/`; nel sito vero andranno a `/interventi/...`, `/pronto-intervento/` e `/copertura-sicura-starflex/`. Privacy e Cookie puntano a `/privacy-policy/` e `/cookie-policy/`.
 
 **Newsletter.** Anche qui niente newsletter, per lo stesso motivo: servizio d'emergenza su chiamata, nessuna novità periodica da comunicare.
+
+## Versione 1 con l'uso
+
+Il committente ha visto le due versioni e ha scelto la prima ("no preferisco versione 1"), con l'uso. La pagina è sempre `sito/index.html`, rifatta con `sh _prova/script/build_finale.sh` (sorgente `_prova/script/finale-pagina.html`, immagini con `finale_img.py`); misure, salti, barra e link si provano con `node _prova/script/uso1_prova.mjs <url> <cartella>` e `node _prova/script/uso2_misure.mjs <url> <cartella>`. Copie: `_prova/versione-1-originale/` (prima del giro) e `_prova/script/finale-pagina-uso1-giro1.html` (primo giro, prima delle prove dei clienti tipo). Dettaglio, misure e controlli in `screenshot/home/NOTA.md`, sezione omonima.
+
+**Cosa resta com'era:** grafica, Onest, colori, griglia, la copertura STARFLEX dell'apertura (a computer dov'era, al telefono sotto i bottoni, sempre nella prima schermata), il titolo "Eliminiamo ogni traccia del danno", l'ordine delle sezioni, la cucina e la stanza "Foto indicativa", la chiusura e il piede.
+
+**Cosa è stato aggiunto o cambiato, nello stile della pagina (due giri):**
+- Apertura: subito sotto il titolo la riga "Incendi, allagamenti, grandine e maltempo, amianto: in case, condomini, negozi e capannoni. Mettiamo in sicurezza, puliamo e ricostruiamo, e alle pratiche burocratiche pensiamo noi. Da Longare (VI), in Veneto e fuori regione."; "Chiama il cellulare 340 834 9597" (rosso), "Chiama gli uffici 0444 1329022" (a bordo), "Manda le foto del danno per mail" (al telefono a bordo, oggetto e traccia già scritti), "Altro cellulare 393 911 4656"; al telefono e al tablet quattro tacche Incendio, Allagamento, Grandine e tetti, Amianto; le tre porte. In testata "Uffici" sopra il numero anche al telefono.
+- Testata fissa a computer; nel menu anche "Industria".
+- Telefono e tablet: barra fissa con Cellulare e Uffici, che compare appena il bottone del cellulare esce dallo schermo.
+- Pronto intervento: titolo "Nessuna incombenza burocratica, pensiamo noi a tutto", il loro claim "Quando il danno diventa serio, noi entriamo in azione" in testa al paragrafo, chi segue le pratiche (compagnia e numero del sinistro), i nove passaggi come elenco numerato tutto in vista al posto del righello.
+- Interventi in due gruppi con un'etichetta da titolo; "Bonifiche dopo allagamenti e alluvioni"; le voci industriali complete con la mail per capitolato e foto; fune e cunicolo con una riga su attrezzature ATEX ed escavatori a risucchio e la richiesta di visura, iscrizioni e abilitazioni.
+- Starflex: paragrafo con le parole della brochure 2026 (sopra la guaina esistente; per la compagnia risarcimenti più bassi e sinistri chiusi prima), tabella di cinque righe (guaina, smaltimento, posa a freddo, supporto bagnato, 30 anni dichiarati da MPM), bottone della documentazione tecnica con "giugno 2026", brochure, richiesta documenti, contatto per affidare un sinistro; tolto "in tempi rapidissimi".
+- Azienda: titolo "Ripristiniamo a nuovo e tutto torna come prima" e una tabella con ragione sociale, P.IVA, REA, sede operativa e legale, uffici, mail e "Chiedi visura, iscrizioni e abilitazioni per mail". Nei contatti "Sede operativa".
+- Tolti "è sempre pronta a intervenire", i "Fig.", "nasce nel 2018"; "30 anni di durabilità dichiarata" al posto di "certificata".
+
+**Respinto:** il claim al posto del titolo e un'altra foto al posto della copertura d'apertura (il committente ha scelto titolo e immagine della versione 1); togliere la cucina e la stanza Pexels (sono grafica della versione scelta e già dichiarate; le foto vere non reggono quelle misure); descrizioni inventate per le voci industriali con solo il titolo; lo stato "aperto ora / chiuso ora", gli orari e "24 ore su 24" (nessun dato pubblicato); il modulo a caselle della versione 2.
+
+**Da confermare in più con l'azienda (prima di pubblicare):**
+1. Orari degli uffici, chi risponde al cellulare fuori orario, se c'è reperibilità 24 ore su 24. Con gli orari veri si può aggiungere accanto ai bottoni lo stato "aperto ora / chiuso ora" calcolato sull'ora di Roma.
+2. Se si può usare WhatsApp sul cellulare per le foto del danno (oggi solo mail).
+3. La zona servita: in pagina c'è "in Veneto e fuori regione", dedotto dalle sedi operative della brochure 2022 (Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia). Qual è l'elenco di oggi? Con la risposta va riscritta la fine della riga d'apertura.
+4. Se le pratiche che seguono comprendono il rapporto con la compagnia e il perito, e se il numero del sinistro serve davvero alla prima chiamata (in pagina: "se il danno è assicurato, dicci la compagnia e il numero del sinistro").
+5. Che "case, condomini, negozi e capannoni" vada bene come elenco (dal loro "ambienti ed edifici di qualsiasi tipo" e dalla foto del condominio).
+6. Iscrizioni e abilitazioni con numero ed ente (Albo gestori ambientali e categorie, amianto, ATEX, ambienti confinati, lavori in fune): oggi la pagina le fa chiedere per mail; quando arrivano vanno scritte nella riga "Documenti". Se robot ATEX ed escavatori a risucchio sono mezzi loro (in pagina: "lavoriamo con").
+7. Le due foto vere dell'industria: la fune sulla pala eolica è un loro lavoro? Il cunicolo è loro, e il logo sulla tuta (tagliato fuori) è vero?
+8. Le voci industriali con solo il titolo (digestori, escavatori a risucchio, reti gas, spazi a rischio inquinamento, smaltimento rifiuti, manti stradali, fotovoltaico): serve una riga loro per ciascuna.
+9. I PDF in `sito/doc/` sono quelli del sito di oggi: la documentazione Starflex scrive "esclusiva", "durabilità certificata" e "Comagnie", la brochure 2022 dà Grisignano e il 2011. Vanno rifatti da Oby (e MPM) prima di pubblicare i link; "Meno costi oggi. Meno sinistri domani." è preso dalla stessa brochure.
+10. Restano validi i punti 1-11 dei "Dati da confermare" qui sopra (l'anno di nascita non è in pagina).
+
+**Foto da rifare dal vero, per questa versione:** valgono i punti di "Foto da rifare dal vero" qui sopra, con due priorità: (a) un loro ambiente dopo un incendio, orizzontale 21:9 a 2600 px o più, luce naturale, nessun volto né oggetto del cliente riconoscibile, al posto della cucina "Foto indicativa"; (b) lo stesso ambiente alla consegna, 5:4 a 2000 px, al posto della stanza "Foto indicativa". Per la parte industriale: la squadra in un serbatoio o un ambiente confinato con i DPI e un escavatore a risucchio al lavoro, 1:1 e 16:10 a 1200 px o più, al posto della fune e del cunicolo, che sono piccoli (582 e 450 px). Va anche chiesto se la copertura STARFLEX dell'apertura è un lavoro di Oby: se è di MPM, serve una loro copertura finita, 16:10 a 2800 px, presa dal drone o dal parapetto.
+
+**Nessuna foto nuova di repertorio:** in questo giro non è stata aggiunta nessuna immagine; `assets/CREDITI.md` non cambia. Carattere: Onest, Google Fonts, SIL Open Font License 1.1, servito da `sito/fonts/`.

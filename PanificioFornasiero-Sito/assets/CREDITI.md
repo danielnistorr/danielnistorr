@@ -36,7 +36,7 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 - Il pane di oggi: tartarughe della galleria del panificio (`617993_28aa18bc...`), foto loro, tagliata e corretta nel colore.
 - Pasta fresca: Unsplash T6vI65xwoNA (Karen Sewell); segnaposto, con "Foto indicativa" in didascalia.
 - Natale: panettone sul sacco di juta (`b56ebf_5b27...`) e l'etichetta del cinquantesimo ritagliata dalla foto della focaccia (`b56ebf_fabc...`), foto loro.
-- Chiusura: Unsplash ytxRXkY8QE4 (Victoria Nazaruk); segnaposto. Licenza letta il 24/10/2026 sulla pagina della foto (tabella sopra); né questa né Sewell sono in altri `CREDITI.md` della campagna (controllato il 2/11/2026).
+- Chiusura: Unsplash ytxRXkY8QE4 (Victoria Nazaruk); segnaposto, dalla versione 1 con l'uso (2/11/2026) con "Foto indicativa" in didascalia ("Pane nei sacchetti di carta. Foto indicativa."). Licenza letta il 24/10/2026 sulla pagina della foto (tabella sopra); né questa né Sewell sono in altri `CREDITI.md` della campagna (ricontrollato il 2/11/2026, sera).
 - Piede: il logo del sito a una tinta (bruno delle scritte del sacchetto), PNG a 2x e 3x.
 - Non più usate: Pexels 4198047 (Karola G) e Unsplash W0PDHT_sYoQ (Laura Tautan), in pagina nella versione precedente; restano in `esterne/` solo come archivio della proposta.
 - Non usate nella home finale: le altre foto di `esterne/`.

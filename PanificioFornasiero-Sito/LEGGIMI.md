@@ -2,9 +2,37 @@
 
 Proposta non richiesta di una nuova homepage per il Panificio Galileo Fornasiero S.r.l. di Camin (Padova). Solo la home. Non è pubblicata, l'azienda non è stata contattata.
 
+## Versione 1 con l'uso
+
+Il committente, viste le due versioni, ha scelto la versione 1 (`sito/`): grafica, caratteri, colori, impaginazione, la focaccia, il titolo e l'idea restano. Il 2 novembre sera le ho aggiunto, nel suo stile e con il minimo di cambiamenti a vista, quello che nelle prove della versione 2 serviva ai visitatori della scheda `_prova/uso/SCHEDA.md`. La versione 1 com'era prima è copiata in `_prova/versione-1-originale/` (sito, screenshot, script, LEGGIMI) per poter tornare indietro; la versione 2 resta in `sito-v2/` come promemoria.
+
+Cosa c'è di nuovo (dettagli, misure e controlli in `screenshot/home/NOTA.md`):
+- Prima schermata, telefono: la focaccia passa nel gradino a destra di "Siamo", il titolo resta su quattro righe; sotto, la riga su chi siamo, lo stato di adesso in grande (ora di Roma, festivi compresi), i due negozi con l'orario di oggi, l'eccezione della settimana (mercoledì pomeriggio, sabato, cellulare di via Alsazia), "Chiama" e "Mappa" ciascuno, e in stagione la riga delle prenotazioni di Natale o di Pasqua con "Come si prenota". Tutto nei primi 844 px a 390.
+- Prima schermata, 1440: la stessa composizione con il titolo a 140 px invece di 145; sotto la F di "Fornasiero" la riga su chi siamo, lo stato, i due negozi affiancati; la riga delle Feste chiude la schermata. In testata "Per bar e ristoranti".
+- Natale e Pasqua: come si prenota, pezzature e prezzi da chiedere, "Chiamaci e ordina: 049 870 26 58" e il numero di via Alsazia.
+- Sezione nuova "Per bar, alberghi, ristoranti e rivendite": la fornitura, le consegne a domicilio, cosa chiedere, il telefono del laboratorio e la mail con oggetto "Fornitura pane" e traccia.
+- Nelle schede dei negozi lo stato con lo stesso orologio e "chiedete al telefono" per sabato e domenica dove l'orario non è scritto.
+- La foto di repertorio della chiusura ora ha "Foto indicativa" come quella della pasta.
+- Nessun link a pagine che non esistono: storia e fornitura portano alle sezioni della home, Bacheca, Privacy e Cookie alle pagine del sito di oggi. Le pagine da fare restano quelle elencate sotto.
+- Dato strutturato con i due negozi, CAP 35127 e orari.
+
+Script: `_prova/script/build_finale.sh` rifà gli screenshot all'ora simulata lunedì 2 novembre alle 10 (con `--immagini` anche le immagini); `v1uso_prova.mjs` prova lo stato a 21 ore e giorni, la prima schermata, la riga delle Feste a date diverse, JavaScript spento, l'arrivo dai link, lo scorrimento orizzontale da 320 a 2560 e i collegamenti; `v1uso_misura.mjs` misura la prima schermata. Per vedere un'altra ora: `index.html?ora=2026-12-16T10:00`.
+
+Da aggiornare in cima allo script della pagina, sotto "Da aggiornare con il panificio": `FERIE`, `FESTIVI`, `NATALE_DA`, `FINE_PRENOTAZIONI`, `SPEGNI` (oggi 1 novembre, 15 dicembre, 23 dicembre alle 13: date scelte nella proposta). Le finestre di Pasqua (dai 40 giorni prima, "chiamate per sapere" dai 7 giorni prima, fino al sabato alle 13) sono scritte nello script.
+
+Da confermare con il panificio, per quello che questa versione mette a vista:
+- Il sabato di via Vigonovese ("Sabato: chiamate"), le domeniche dei due negozi, le ferie, i festivi in cui chiudono (anche il 13 giugno, Sant'Antonio) e gli orari sotto Natale.
+- Se via Alsazia 3 è ancora aperta, chi risponde al 338 660 06 64 e se su Google Maps c'è la scheda del negozio (i link mappa cercano "Panificio Fornasiero" con l'indirizzo; se la scheda non c'è, Google mostra comunque l'indirizzo).
+- Le date delle prenotazioni di Natale e di Pasqua, se si possono dire pezzature e prezzi, e dove si ritira.
+- Fornitura e consegne: zona, giorni, quantità minime; se le consegne a domicilio alle famiglie e il pane con il Mattino agli anziani si fanno ancora.
+- Il consenso a usare in pagina la frase sugli operai della Stanga e della Snia Viscosa, detta al Mattino di Padova nel 2023, insieme a quello per le altre frasi e foto (vedi sotto).
+- Il modulo "Gli avvisi di Romina" nel piede è rimasto com'era nella versione 1 e non invia nulla: o si collega a un servizio (vedi "Newsletter") o si toglie, come nella versione 2, e al suo posto va la riga "Le prenotazioni di Natale e di Pasqua si fanno al telefono".
+
+Foto da rifare dal vero, per questa versione (oltre all'elenco "Foto da rifare dal vero" più sotto): i panini del mattino nei loro sacchetti bianchi con la scritta bruna, per la chiusura, al posto del repertorio con "Foto indicativa"; le tagliatelle e i bigoli sul banco infarinato, al posto del repertorio della pasta; la vetrina di via Alsazia 3, che oggi non ha nessuna foto; il laboratorio o le cassette della consegna per la sezione delle forniture, che oggi è solo testo.
+
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale (statica, si apre con file:///). `sito/img/`: solo le immagini usate, WebP a più larghezze. `sito/fonts/`: Sentient e General Sans.
+- `sito/index.html`: la home finale, versione 1 con l'uso (statica, si apre con file:///). `sito/img/`: solo le immagini usate, WebP a più larghezze. `sito/fonts/`: Sentient e General Sans.
 - Ultimo passaggio (2 novembre): apertura rifatta con la loro focaccia scontornata nel gradino del titolo, fondo mollica in apertura e nel piede, parte centrale ripulita. Cosa è cambiato e i controlli sono in `screenshot/home/NOTA.md`.
 - `screenshot/home/`: screenshot a 1440 e 390 (intere e prima schermata), chiusura e piede a 1440, `NOTA.md` (idea, scelte, controlli).
 - `_prova/script/build_finale.sh`: rifà immagini (`finale_img.py`, che usa `scontorna_focaccia.py` per la focaccia dell'apertura) e screenshot (`finale_shot.mjs`); `prova_gesto.mjs` prova le schede dei negozi; `controlli.mjs` controlla lo scorrimento orizzontale da 320 a 2560 e i collegamenti; `trova_largo.mjs` cerca gli elementi che escono dalla pagina; `misura_apertura.mjs` misura titolo e focaccia.
