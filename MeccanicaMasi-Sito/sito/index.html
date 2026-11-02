@@ -13,17 +13,17 @@
 @font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
 :root{
-  --fondo:#F2F0EB;        /* carta calda, la pagina */
-  --fondo-piede:#E9E6DF;  /* il piede, un tono sotto */
-  --inchiostro:#171717;
-  --grigio:#55524D;
-  --filo:#CFCBC3;
-  --rosso:#E3141B;        /* il rosso del logo: solo il telefono grande */
-  --rosso-scuro:#B3121A;  /* passaggio su bottoni e link */
+  --fondo:#E1E6DE;        /* il verde grigio del banco su cui posano i pezzi (pulegge, supporto, mandrino), schiarito */
+  --fondo-piede:#D2D9CF;  /* il piede, un tono sotto */
+  --tocco:#D3DAD0;        /* fondo del bottone al passaggio */
+  --inchiostro:#141A16;
+  --grigio:#48514A;
+  --filo:#B4BEB2;
+  --rosso:#D8121A;        /* il rosso del logo: solo il telefono grande */
+  --rosso-scuro:#A5101A;  /* passaggio su bottoni e link */
   --m:64px;               /* margine laterale */
   --g:24px;               /* spazio tra le colonne */
-  --sez:96px;             /* respiro tra le sezioni */
-  --barra:72px;           /* fascia dell'interruttore sotto il pezzo */
+  --sez:112px;            /* respiro tra le sezioni */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -39,7 +39,7 @@ a{color:inherit}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
 
 /* testata */
-.testata{display:flex;align-items:center;justify-content:space-between;height:88px;position:relative;z-index:5}
+.testata{display:flex;align-items:center;justify-content:space-between;height:80px;position:relative;z-index:5}
 .testata .logo{display:block;width:112px}
 .testata .logo img{width:100%}
 .menu{display:flex;gap:36px;list-style:none;font-size:16px;font-weight:500}
@@ -49,42 +49,29 @@ a{color:inherit}
 .tel-testata:hover{color:var(--rosso-scuro)}
 .apri-menu{display:none}
 
-/* prima schermata: il pezzo domina dall'alto, il titolo lo regge in basso a sinistra */
-.apertura{--h:clamp(600px,calc(100vh - 88px),860px);--h:clamp(600px,calc(100svh - 88px),860px);--th:calc(var(--h) - var(--barra) - 4px);--sx:0px;position:relative;height:var(--h)}
-/* la tela 2:1 parte dal margine sinistro; il pezzo sta sul suo asse al 65 % della larghezza */
-.tela{position:absolute;left:var(--sx);bottom:var(--barra);height:var(--th);aspect-ratio:2600 / 1300;pointer-events:none;z-index:1}
-.tela img{position:absolute;inset:0;width:100%;height:100%}
-.tela img[hidden],.tela .legenda[hidden]{display:none}
-.apertura-testo{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:36px 0 calc(var(--barra) - .17em);max-width:62%}
-h1{order:2;font-size:clamp(52px,6.5vw,96px);font-weight:500;font-stretch:80%;line-height:.94;letter-spacing:-.022em}
-h1 span{display:block;white-space:nowrap}
-.attacco{order:1;max-width:30em}
-.attacco p{font-size:19px;line-height:1.5;text-wrap:pretty}
-.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
+/* prima schermata, sull'asse: il pezzo al centro, sotto il titolo da margine a margine che gli fa da basamento,
+   sotto ancora il testo a sinistra e la chiamata a destra */
+.apertura{--h:clamp(640px,calc(100vh - 80px),1000px);--h:clamp(640px,calc(100svh - 80px),1000px);height:var(--h);display:grid;grid-template-rows:minmax(0,1fr) auto auto;padding:4px 0 36px}
+.tela{grid-area:1 / 1;position:relative;min-height:0;margin:0}
+.pezzo{position:absolute;inset:0}
+.pezzo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.pezzo img[hidden]{display:none}
+.didascalia-pezzo{position:absolute;left:0;bottom:0;max-width:19em;font-size:14px;line-height:1.45;color:var(--grigio)}
+.didascalia-pezzo strong{display:block;color:var(--inchiostro);font-weight:600}
+.interruttore{grid-area:1 / 1;align-self:end;justify-self:end;position:relative;z-index:2;display:inline-flex;border:1px solid var(--inchiostro)}
+.interruttore button{font:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--inchiostro);border:0;padding:10px 20px;min-height:44px;cursor:pointer;white-space:nowrap}
+.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--fondo)}
+.interruttore button[aria-pressed="false"]:hover{background:var(--tocco)}
+/* il titolo misura esattamente la riga tra i due margini: corpo = larghezza utile / larghezza del titolo in em */
+h1{margin-top:18px;font-size:calc((min(100vw, 1600px) - 2 * var(--m)) / 8.990);font-weight:500;font-stretch:82%;line-height:.86;letter-spacing:-.024em;text-align:center;white-space:nowrap}
+h1 span{white-space:nowrap}
+.base{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end;margin-top:30px}
+.base p{grid-column:1 / 8;font-size:18px;line-height:1.5;text-wrap:pretty;max-width:40em}
+.azioni{grid-column:8 / 13;justify-self:end;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px 28px}
 .bottone{display:inline-block;background:var(--inchiostro);color:var(--fondo);text-decoration:none;font-size:17px;font-weight:600;padding:15px 24px;transition:background-color .12s}
 .bottone:hover{background:var(--rosso-scuro)}
-.riga-piccola{font-size:15px;color:var(--grigio);margin-top:18px}
-.riga-piccola span{white-space:nowrap}
-@media (max-width:560px){ .riga-piccola span{display:block;white-space:normal;margin-top:6px} }
-.riga-piccola a{color:var(--inchiostro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;margin-right:18px}
-.riga-piccola a:hover{color:var(--rosso-scuro)}
-.legenda{position:absolute;inset:0;list-style:none}
-.legenda li{position:absolute;display:flex;align-items:center;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
-.legenda li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 2px var(--fondo);flex:none}
-.legenda .filo{display:block;height:1px;background:var(--inchiostro);width:var(--l,64px);flex:none}
-.legenda em{font-style:normal;margin-left:8px}
-.legenda .sx{flex-direction:row-reverse;transform:translate(calc(-100% + 4.5px),-50%)}
-.legenda .sx em{margin:0 8px 0 0}
-.legenda .dx{transform:translate(-4.5px,-50%)}
-.legenda i{display:none}
-.barra{position:absolute;left:calc(var(--th) * 1.3 + var(--sx));bottom:0;height:var(--barra);transform:translateX(-50%);display:flex;align-items:center;z-index:3}
-.interruttore{display:inline-flex;border:1px solid var(--inchiostro)}
-.interruttore button{font:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--inchiostro);border:0;padding:10px 22px;min-height:44px;cursor:pointer}
-.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--fondo)}
-.interruttore button[aria-pressed="false"]:hover{background:#E4E1DA}
-.didascalia-pezzo{position:absolute;right:0;bottom:0;height:var(--barra);display:flex;align-items:center;font-size:14px;line-height:1.4;color:var(--grigio);max-width:15em;text-align:right;z-index:3}
-.didascalia-pezzo strong{color:var(--inchiostro);font-weight:600}
-.lista-legenda{display:none}
+.azioni .mail{font-size:16px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.azioni .mail:hover{color:var(--rosso-scuro)}
 
 /* sezioni */
 section,section.pagina{padding-top:var(--sez)}
@@ -99,16 +86,16 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 .indice h3{grid-column:1 / 7;font-size:clamp(28px,2.9vw,42px);font-weight:500;font-stretch:85%;line-height:1.05;letter-spacing:-.016em}
 .indice p{grid-column:7 / 12;font-size:17px;line-height:1.5}
 
-.foto-officina{margin-top:var(--sez)}
-.foto-officina img{width:100%;height:clamp(300px,32vw,460px);object-fit:cover;object-position:50% 40%}
-.foto-officina figcaption{font-size:14px;color:var(--grigio);padding-top:12px}
+.fascia{margin-top:var(--sez)}
+.fascia img{width:100%;height:clamp(320px,40vw,620px);object-fit:cover;object-position:50% 55%}
+.fascia figcaption{font-size:14px;color:var(--grigio);padding-top:12px}
 
 .lavorazioni-testa h2{grid-column:1 / 8}
 .lavorazioni-testa .intro{grid-column:9 / 13;align-self:end}
 .lavorazioni{list-style:none;margin-top:56px;row-gap:48px}
-.lavorazioni li{grid-column:span 4;display:flex;flex-direction:column;border-top:1px solid var(--inchiostro);padding-top:18px}
-.lavorazioni p{font-size:17px;line-height:1.55;color:var(--grigio);margin-top:10px;max-width:24em}
-.lavorazioni .misura{order:-1;font-size:28px;font-weight:500;font-stretch:85%;letter-spacing:-.01em;line-height:1.1;margin-bottom:14px}
+.lavorazioni li{grid-column:span 3;border-top:1px solid var(--inchiostro);padding-top:18px}
+.lavorazioni .misura{display:block;font-size:30px;font-weight:500;font-stretch:85%;letter-spacing:-.01em;line-height:1.1;margin-bottom:16px;font-variant-numeric:lining-nums}
+.lavorazioni p{font-size:17px;line-height:1.55;color:var(--grigio);margin-top:8px;max-width:22em}
 .materiali{margin-top:40px;font-size:17px;color:var(--grigio)}
 .materiali b{color:var(--inchiostro);font-weight:600}
 
@@ -125,14 +112,11 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 .altri a{color:var(--inchiostro);text-decoration-thickness:1px;text-underline-offset:4px}
 .altri a:hover{color:var(--rosso-scuro)}
 
-.dal-cliente .griglia{align-items:end}
-.dal-cliente .sinistra{grid-column:1 / 7}
-.dal-cliente h2{font-size:clamp(32px,3.5vw,50px)}
-.dal-cliente figure{margin-top:44px;max-width:520px}
-.dal-cliente h2 span{display:block}
+.dal-cliente h2{grid-column:1 / 11;font-size:clamp(32px,3.6vw,52px)}
+.dal-cliente figure{grid-column:1 / 7;margin:48px 0 0}
 .dal-cliente figure img{width:100%}
 .dal-cliente figcaption{font-size:14px;color:var(--grigio);padding-top:12px}
-.dal-cliente .colonna{grid-column:8 / 13}
+.dal-cliente .colonna{grid-column:8 / 13;margin-top:48px}
 .dal-cliente h3{margin-bottom:14px}
 .fasi{list-style:none;counter-reset:f}
 .fasi li{counter-increment:f;display:flex;gap:16px;font-size:17px;padding:10px 0;border-top:1px solid var(--filo)}
@@ -169,7 +153,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 .piede nav a:hover{text-decoration:underline;text-underline-offset:3px;color:var(--rosso-scuro)}
 .piede .contatti-piede li{color:var(--grigio)}
 .piede .contatti-piede a{color:var(--inchiostro)}
-.legale{grid-column:1 / 13;display:flex;justify-content:space-between;align-items:flex-start;gap:12px 40px;margin-top:52px;padding-top:20px;border-top:1px solid #CDC9C0;font-size:13px;line-height:1.5;color:var(--grigio)}
+.legale{grid-column:1 / 13;display:flex;justify-content:space-between;align-items:flex-start;gap:12px 40px;margin-top:52px;padding-top:20px;border-top:1px solid var(--filo);font-size:13px;line-height:1.5;color:var(--grigio)}
 .legale ul{display:flex;gap:24px;list-style:none;flex:none}
 .legale li + li{margin-top:0}
 .legale a{color:var(--grigio);text-underline-offset:3px}
@@ -178,57 +162,42 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 
 /* schermi medi */
 @media (max-width:1180px){
-  :root{--m:40px;--sez:96px}
+  :root{--m:40px;--sez:104px}
   .menu{gap:24px}
-  .apertura-testo{max-width:66%}
-  .attacco{max-width:24em}
-  .attacco p{font-size:17px}
-  .didascalia-pezzo{display:none}
-  .apertura{--sx:calc(var(--th) * -.13)}
-  .legenda li{font-size:13px}
-  .legenda .filo{width:calc(var(--l) * .4)}
+  .base p{grid-column:1 / 8;font-size:17px}
+  .azioni{grid-column:8 / 13;flex-direction:column;align-items:flex-end;gap:12px}
   .lavorazioni li{grid-column:span 6}
   .lavorazioni-testa h2{grid-column:1 / 13}
   .lavorazioni-testa .intro{grid-column:1 / 10;margin-top:20px}
   .indice p{grid-column:7 / 13}
-  .dal-cliente .sinistra{grid-column:1 / 9}
-  .dal-cliente .colonna{grid-column:1 / 10;margin-top:48px}
+  .dal-cliente h2{grid-column:1 / 13}
   .chiusura-testo{grid-column:1 / 7}
   .chiusura figure{grid-column:7 / 13}
   .piede .marchio{grid-column:1 / 13;margin-bottom:48px}
   .piede nav{grid-column:1 / 13}
 }
 
-/* telefono e tablet stretto: titolo, pezzo, interruttore, poi il testo */
+/* telefono e tablet stretto: pezzo, didascalia, interruttore, titolo, testo */
 @media (max-width:900px){
   :root{--m:32px;--sez:104px}
   .menu{display:none}
   .apri-menu{display:inline-flex;align-items:center;font:inherit;font-size:16px;font-weight:600;background:none;border:1px solid var(--inchiostro);padding:8px 14px;min-height:44px;cursor:pointer;color:var(--inchiostro)}
-  .apri-menu:hover{background:#E4E1DA}
+  .apri-menu:hover{background:var(--tocco)}
   .testata{height:72px}
   .testata.aperta .menu{display:flex;position:absolute;top:72px;left:calc(-1 * var(--m));right:calc(-1 * var(--m));flex-direction:column;gap:0;background:var(--fondo);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
   .testata.aperta .menu a{display:block;padding:14px 0;font-size:20px;border-bottom:1px solid var(--filo)}
   .tel-testata{margin-left:auto;margin-right:18px}
-  .apertura{height:auto;display:flex;flex-direction:column}
-  .apertura-testo{display:contents}
-  h1{order:1;font-size:clamp(40px,8.4vw,68px);line-height:.98;padding-top:12px}
-  h1 span{display:inline;white-space:normal}
-  .tela{order:2;position:relative;left:auto;bottom:auto;transform:none;width:100%;max-width:560px;height:auto;aspect-ratio:1200 / 1300;margin:8px auto 0}
-  .tela .larga{display:none}
-  .barra{order:3;position:static;transform:none;height:auto;justify-content:center;padding:4px 0 0}
-  .didascalia-pezzo{display:none}
-  .legenda li{transform:translate(-50%,-50%)!important}
-  .legenda li::before,.legenda .filo,.legenda em{display:none}
-  .legenda i{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--inchiostro);color:var(--fondo);font-style:normal;font-size:12px;font-weight:600;box-shadow:0 0 0 2px var(--fondo)}
-  .lista-legenda{order:4;display:block;list-style:none;font-size:15px;line-height:1.4;margin-top:16px;max-width:560px;width:100%;align-self:center}
-  .lista-legenda[hidden]{display:none}
-  .lista-legenda li{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--filo)}
-  .lista-legenda li:last-child{border-bottom:1px solid var(--filo)}
-  .lista-legenda b{font-weight:600;min-width:14px}
-  .attacco{order:5;max-width:none;margin-top:36px}
-  .attacco p{font-size:18px}
-  .azioni{margin-top:24px}
-  .riga-piccola{margin-top:16px}
+  .apertura{height:auto;display:flex;flex-direction:column;padding:0}
+  .tela{display:flex;flex-direction:column}
+  .pezzo{position:relative;inset:auto;height:min(88vw,50svh,560px)}
+  .didascalia-pezzo{position:static;max-width:none;text-align:center;margin-top:14px}
+  .didascalia-pezzo strong{display:inline}
+  .interruttore{align-self:center;margin-top:16px}
+  h1{font-size:clamp(40px,10.6vw,84px);line-height:.92;white-space:normal;margin-top:36px}
+  h1 span{display:block}
+  .base{display:block;margin-top:28px}
+  .base p{font-size:18px;max-width:34em}
+  .azioni{justify-self:stretch;justify-content:flex-start;flex-direction:row;align-items:center;margin-top:24px}
   .lavorazioni li{grid-column:span 6}
   .settori h2,.settori .intro,.lavorazioni-testa .intro{grid-column:1 / 13}
   .indice li{display:block}
@@ -236,8 +205,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
   .lavori .uno{grid-column:1 / 8}
   .lavori .due{grid-column:8 / 13}
   .lavori img{height:clamp(300px,46vw,400px)}
-  .dal-cliente .sinistra,.dal-cliente .colonna{grid-column:1 / 13}
-  .dal-cliente h2 span{display:inline}
+  .dal-cliente figure,.dal-cliente .colonna{grid-column:1 / 13}
   .chiusura{padding-bottom:0}
   .chiusura-testo{grid-column:1 / 13}
   .chiusura figure{grid-column:1 / 13;margin:56px calc(-1 * var(--m)) 0}
@@ -246,34 +214,36 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
   .piede{margin-top:var(--sez)}
   .piede nav{grid-template-columns:1fr 1fr;row-gap:40px}
 }
-@media (min-width:901px){ .tela .stretta{display:none} }
-@media (min-width:901px) and (max-width:1180px){ .riga-piccola span{display:none} }
 @media (max-width:560px){
   :root{--m:20px;--g:16px;--sez:88px}
   body{font-size:17px}
   .testata .logo{width:84px}
   .tel-testata{font-size:15px;margin-right:12px}
-  h1{font-size:clamp(36px,11.2vw,46px)}
+  .pezzo{height:min(86vw,46svh)}
+  .didascalia-pezzo{font-size:13px;margin-top:10px}
   .interruttore{width:100%}
-  .interruttore button{flex:1;font-size:16px}
-  .barra{display:block}
+  .interruttore button{flex:1;font-size:16px;padding:10px 8px}
+  h1{font-size:clamp(40px,13.4vw,56px);margin-top:30px}
+  .base p{font-size:17px}
+  .azioni{display:block}
   .bottone{display:block;text-align:center}
+  .azioni .mail{display:inline-block;margin-top:16px}
   .intro{font-size:18px}
   .indice{margin-top:40px}
   .indice h3{font-size:30px}
-  .foto-officina img{height:auto;aspect-ratio:4 / 5}
+  .fascia img{height:auto;aspect-ratio:1 / 1}
   .lavorazioni{margin-top:44px;row-gap:40px}
   .lavorazioni li{grid-column:1 / 13}
   .lavori .uno,.lavori .due{grid-column:1 / 13}
   .lavori img{height:auto;aspect-ratio:4 / 3}
   .lavori .due img{aspect-ratio:4 / 5}
-  .lavorazioni .misura{font-size:24px}
+  .lavorazioni .misura{font-size:26px}
   .lavori{margin-top:40px}
   .chiusura h2{font-size:34px}
   .piede{padding-top:52px}
   .piede nav{display:block}
-  .piede nav > div{border-top:1px solid #CDC9C0}
-  .piede nav > div:last-child{border-bottom:1px solid #CDC9C0}
+  .piede nav > div{border-top:1px solid var(--filo)}
+  .piede nav > div:last-child{border-bottom:1px solid var(--filo)}
   .piede nav h2{margin:0}
   .fisarmonica-btn{display:flex;width:100%;justify-content:space-between;align-items:center;font:inherit;font-size:16px;font-weight:600;background:none;border:0;color:var(--inchiostro);padding:14px 0;min-height:48px;cursor:pointer}
   .fisarmonica-btn::after{content:"+";font-weight:400;font-size:22px;line-height:1}
@@ -307,54 +277,22 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 
 <div class="pagina">
 <div class="apertura">
-  <div class="apertura-testo">
-    <h1><span>Precisione in officina,</span> <span>continuità in produzione</span></h1>
-    <div class="attacco">
-      <p>Torniamo, fresiamo, pieghiamo e saldiamo pezzi su disegno, ricavati dal pieno nella nostra officina. Per la manutenzione e l'installazione delle macchine veniamo noi in azienda.</p>
-      <div class="azioni"><a class="bottone num" href="tel:+393481693451">Chiama 348&nbsp;169&nbsp;34&nbsp;51</a></div>
-      <p class="riga-piccola"><a href="mailto:info@meccanicamasi.it">info@meccanicamasi.it</a><span class="num">Officina meccanica a Padova, dal 1977</span></p>
-    </div>
-  </div>
-
   <figure class="tela" aria-labelledby="pezzo-didascalia">
-    <img class="larga" id="fin-larga" src="img/leva-finita-larga-1950.webp" srcset="img/leva-finita-larga-1300.webp 1300w, img/leva-finita-larga-1950.webp 1950w, img/leva-finita-larga-2600.webp 2600w" sizes="(min-width:901px) 105vw, 1px" width="2600" height="1300" alt="Leva con settore dentato in ghisa, verniciata bianca, con la dentatura e il manicotto alesato lasciati in metallo" fetchpriority="high">
-    <img class="larga" id="grz-larga" src="img/leva-grezza-larga-1950.webp" srcset="img/leva-grezza-larga-1300.webp 1300w, img/leva-grezza-larga-1950.webp 1950w, img/leva-grezza-larga-2600.webp 2600w" sizes="(min-width:901px) 105vw, 1px" width="2600" height="1300" alt="Lo stesso pezzo in ghisa appena fresato dal pieno, prima della verniciatura" hidden>
-    <img class="stretta" id="fin-stretta" src="img/leva-finita-stretta-900.webp" srcset="img/leva-finita-stretta-600.webp 600w, img/leva-finita-stretta-900.webp 900w, img/leva-finita-stretta-1200.webp 1200w" sizes="(max-width:900px) 92vw, 1px" width="1200" height="1300" alt="Leva con settore dentato in ghisa, verniciata bianca, con la dentatura e il manicotto alesato lasciati in metallo">
-    <img class="stretta" id="grz-stretta" src="img/leva-grezza-stretta-900.webp" srcset="img/leva-grezza-stretta-600.webp 600w, img/leva-grezza-stretta-900.webp 900w, img/leva-grezza-stretta-1200.webp 1200w" sizes="(max-width:900px) 92vw, 1px" width="1200" height="1300" alt="Lo stesso pezzo in ghisa appena fresato dal pieno, prima della verniciatura" hidden>
-    <ol class="legenda larga" id="leg-fin-larga" aria-hidden="true">
-      <li class="sx" style="left:50.96%;top:42.24%;--l:56px"><span class="filo"></span><em>Settore dentato, fresato con fresa modulo</em></li>
-      <li class="dx" style="left:66.95%;top:89.09%;--l:120px"><span class="filo"></span><em>Alesatura H7</em></li>
-    </ol>
-    <ol class="legenda larga" id="leg-grz-larga" aria-hidden="true" hidden>
-      <li class="sx" style="left:47.51%;top:40.87%;--l:56px"><span class="filo"></span><em>Settore dentato</em></li>
-      <li class="dx" style="left:73.2%;top:10.09%;--l:96px"><span class="filo"></span><em>Ghisa dal pieno</em></li>
-    </ol>
-    <ol class="legenda stretta" id="leg-fin-stretta" aria-hidden="true">
-      <li style="left:19.72%;top:42.66%"><i>1</i></li>
-      <li style="left:54.21%;top:89.29%"><i>2</i></li>
-    </ol>
-    <ol class="legenda stretta" id="leg-grz-stretta" aria-hidden="true" hidden>
-      <li style="left:8.34%;top:61.27%"><i>1</i></li>
-      <li style="left:68.22%;top:28.17%"><i>2</i></li>
-    </ol>
-  </figure>
-
-  <div class="barra">
-    <div class="interruttore" role="group" aria-label="Mostra il pezzo">
-      <button type="button" aria-pressed="false" data-stato="grezzo">Grezzo</button>
-      <button type="button" aria-pressed="true" data-stato="finito">Finito</button>
+    <div class="pezzo">
+      <img id="pezzo-grezzo" src="img/leva-grezza-820.webp" srcset="img/leva-grezza-546.webp 546w, img/leva-grezza-820.webp 820w, img/leva-grezza-1093.webp 1093w" sizes="(max-width:900px) 88vw, 36vw" width="1093" height="1265" alt="Leva con settore dentato in ghisa appena fresata dal pieno, vista dall'alto: la tasca con i segni dell'utensile, i fori e la dentatura ad arco" fetchpriority="high">
+      <img id="pezzo-verniciato" src="img/leva-finita-595.webp" srcset="img/leva-finita-396.webp 396w, img/leva-finita-595.webp 595w, img/leva-finita-793.webp 793w" sizes="(max-width:900px) 60vw, 24vw" width="793" height="1306" alt="La stessa leva verniciata bianca, vista di tre quarti: la dentatura e il manicotto alesato restano in metallo" hidden>
     </div>
+    <figcaption class="didascalia-pezzo num" id="pezzo-didascalia"><strong>Leva con settore dentato in ghisa.</strong> Fresata CNC dal pieno, alesatura&nbsp;H7. Lo stesso pezzo, visto da due lati.</figcaption>
+  </figure>
+  <div class="interruttore" role="group" aria-label="Mostra il pezzo">
+    <button type="button" aria-pressed="true" data-stato="grezzo">Appena fresato</button>
+    <button type="button" aria-pressed="false" data-stato="verniciato">Verniciato</button>
   </div>
-  <p class="didascalia-pezzo" id="pezzo-didascalia"><span><strong>Leva e settore dentato in ghisa</strong>, lavorazione CNC dal pieno</span></p>
-
-  <ol class="lista-legenda" id="lista-fin" aria-label="Particolari del pezzo finito">
-    <li><b class="num">1</b>Settore dentato, fresato con fresa modulo</li>
-    <li><b class="num">2</b>Alesatura H7</li>
-  </ol>
-  <ol class="lista-legenda" id="lista-grz" aria-label="Particolari del pezzo grezzo" hidden>
-    <li><b class="num">1</b>Settore dentato</li>
-    <li><b class="num">2</b>Ghisa dal pieno</li>
-  </ol>
+  <h1><span>Pezzi dal pieno,</span> <span>su disegno</span></h1>
+  <div class="base">
+    <p>Officina meccanica a Padova: torniamo, fresiamo, pieghiamo e saldiamo su disegno, facciamo rulli per la stampa offset e flexo e, per manutenzione e installazione, veniamo noi in azienda.</p>
+    <div class="azioni"><a class="bottone num" href="tel:+393481693451">Chiama 348&nbsp;169&nbsp;34&nbsp;51</a><a class="mail" href="mailto:info@meccanicamasi.it">info@meccanicamasi.it</a></div>
+  </div>
 </div>
 </div>
 
@@ -365,32 +303,30 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
   </div>
   <ul class="indice">
     <li><h3>Stampa offset e flexo</h3><p>Rulli nuovi e rettificati, ricambi per rotative Man-Roland, interventi sulle macchine da stampa direttamente in azienda.</p></li>
-    <li><h3>Giornali</h3><p>Una linea di spedizione giornali, su commessa di una delle principali aziende di produzione giornali del Veneto.</p></li>
+    <li><h3>Giornali</h3><p>Una linea di spedizione per i giornali appena usciti dalla rotativa.</p></li>
     <li><h3>Sacchetti e confezioni</h3><p>Macchine per sacchettifici e confezionatrici; il rullo pinza della fondellatrice che chiude il fondo dei sacchi di carta.</p></li>
     <li><h3>Trasporti e automazione</h3><p>Nastri trasportatori, rulli e guide. Installazione di macchine automatiche, dal montaggio al collaudo.</p></li>
   </ul>
 </section>
 
-<figure class="foto-officina">
+<figure class="fascia">
   <picture>
-    <source media="(max-width:560px)" srcset="img/fresatrice-v-480.webp 480w, img/fresatrice-v-780.webp 780w, img/fresatrice-v-1080.webp 1080w" sizes="100vw">
-    <img src="img/fresatrice-1080.webp" srcset="img/fresatrice-720.webp 720w, img/fresatrice-1080.webp 1080w, img/fresatrice-1600.webp 1600w" sizes="100vw" width="1600" height="800" alt="Fresatrice in officina: il mandrino con la fresa sopra la tavola con le staffe di bloccaggio" loading="lazy">
+    <source media="(max-width:560px)" srcset="img/mandrino-v-480.webp 480w, img/mandrino-v-780.webp 780w, img/mandrino-v-1080.webp 1080w" sizes="100vw">
+    <img src="img/mandrino-1000.webp" srcset="img/mandrino-720.webp 720w, img/mandrino-1000.webp 1000w, img/mandrino-1200.webp 1200w" sizes="100vw" width="1200" height="600" alt="Gruppo mandrino espansibile smontato sul banco: le ganasce a settori, le molle di richiamo e il mozzo con la chiavetta" loading="lazy">
   </picture>
-  <figcaption class="pagina">Foto indicativa di una fresatrice in officina.</figcaption>
+  <figcaption class="pagina">Gruppo mandrino espansibile per una ribobinatrice di filo per saldatura, smontato sul banco della nostra officina.</figcaption>
 </figure>
 
 <section id="lavorazioni" class="pagina" aria-labelledby="t-lav">
   <div class="griglia lavorazioni-testa">
     <h2 id="t-lav">Dalla componente singola all'intera rotativa</h2>
-    <p class="intro">Tutto nella nostra officina: il pezzo viene programmato e lavorato internamente, senza subappaltare nulla all'esterno.</p>
+    <p class="intro">Il pezzo viene programmato e lavorato internamente, senza subappaltare nulla all'esterno.</p>
   </div>
   <ul class="griglia lavorazioni">
-    <li><h3>Tornitura</h3><p>Rulli per offset e flexo, pulegge dal pieno.</p><span class="misura num">6 torni, 1 a CNC</span></li>
-    <li><h3>Fresatura CNC</h3><p>Programmato e lavorato da noi, senza subappalti.</p><span class="misura num">3 assi</span></li>
-    <li><h3>Lamiera</h3><p>Taglio e piegatura di acciaio, inox, alluminio.</p><span class="misura num">da 10&nbsp;cm a 3&nbsp;m</span></li>
-    <li><h3>Saldatura</h3><p>Saldatura professionale, in officina.</p><span class="misura">TIG, MIG/MAG, elettrodo</span></li>
-    <li><h3>Manutenzione sul posto</h3><p>Nastri trasportatori, rulli, guide.</p><span class="misura">offset, flexo, sacchettifici</span></li>
-    <li><h3>Installazione macchine automatiche</h3><p>Montaggio, sistemi automatici, regolazioni.</p><span class="misura">dal montaggio al collaudo</span></li>
+    <li><span class="misura">6 torni, 1 a CNC</span><h3>Tornitura</h3><p>Rulli per offset e flexo, pulegge dal pieno.</p></li>
+    <li><span class="misura">3 assi</span><h3>Fresatura CNC</h3><p>Fresatrice CNC industriale: dal blocco pieno al pezzo finito.</p></li>
+    <li><span class="misura">da 10&nbsp;cm a 3&nbsp;m</span><h3>Lamiera</h3><p>Taglio e piegatura di acciaio, inox, alluminio.</p></li>
+    <li><span class="misura">TIG, MIG/MAG, elettrodo</span><h3>Saldatura</h3><p>Saldatura professionale, in officina.</p></li>
   </ul>
   <p class="materiali"><b>Materiali:</b> acciaio, acciaio inossidabile, alluminio, ottone, ghisa.</p>
 </section>
@@ -399,7 +335,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
   <h2 id="t-prog">Due lavori per la stampa</h2>
   <div class="griglia lavori">
     <figure class="uno">
-      <img src="img/man-roland-960.webp" srcset="img/man-roland-640.webp 640w, img/man-roland-960.webp 960w, img/man-roland-1300.webp 1300w" sizes="(max-width:900px) 100vw, 60vw" width="1300" height="900" alt="Supporto in alluminio fresato dal pieno, con la sede del cuscinetto a rullini e la parte centrale alleggerita" loading="lazy">
+      <img src="img/man-roland-960.webp" srcset="img/man-roland-640.webp 640w, img/man-roland-960.webp 960w, img/man-roland-1380.webp 1380w" sizes="(max-width:900px) 100vw, 60vw" width="1380" height="900" alt="Supporto in alluminio fresato dal pieno, con la sede del cuscinetto a rullini e la parte centrale alleggerita" loading="lazy">
       <figcaption>
         <h3>Supporto per il rullo silicone di una rotativa offset Man-Roland</h3>
         <p>Ricavato da un blocco pieno di lega leggera per una rotativa a quattro colori: la parte centrale alleggerita, la sede del cuscinetto a rullini montato a pressione, quattro fori di fissaggio.</p>
@@ -415,18 +351,16 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
       </figcaption>
     </figure>
   </div>
-  <p class="altri">Altri lavori: <a href="progetti/pulegge-dal-pieno.html">pulegge dal pieno</a>, <a href="progetti/rullo-pinza-fondellatrice.html">rullo pinza per fondellatrice</a>, <a href="progetti/mandrino-espansibile.html">mandrino espansibile per ribobinatrice</a>, <a href="progetti/basamento-braccio-robotico.html">basamento per braccio robotico</a>.</p>
+  <p class="altri">Altri lavori: <a href="progetti/pulegge-dal-pieno.html">pulegge dal pieno</a>, <a href="progetti/rullo-pinza-fondellatrice.html">rullo pinza per fondellatrice</a>, <a href="progetti/svolgitore.html">svolgitore su commessa</a>, <a href="progetti/basamento-braccio-robotico.html">basamento per braccio robotico</a>.</p>
 </section>
 
 <section id="dal-cliente" class="dal-cliente pagina" aria-labelledby="t-cliente">
   <div class="griglia">
-    <div class="sinistra">
-      <h2 id="t-cliente"><span>Non chiediamo di smontare,</span> <span>imballare e spedire nulla:</span> <span>veniamo noi da voi</span></h2>
-      <figure>
-        <img src="img/stampa-interno-598.webp" srcset="img/stampa-interno-480.webp 480w, img/stampa-interno-598.webp 598w" sizes="(max-width:640px) 100vw, 598px" width="598" height="449" alt="Interno di una macchina da stampa aperta: pulegge dentate e cinghie di trasmissione" loading="lazy">
-        <figcaption>Pulegge e cinghie di trasmissione dentro una macchina da stampa.</figcaption>
-      </figure>
-    </div>
+    <h2 id="t-cliente">Non chiediamo di smontare, imballare e spedire nulla: veniamo noi da voi</h2>
+    <figure>
+      <img src="img/stampa-interno-598.webp" srcset="img/stampa-interno-480.webp 480w, img/stampa-interno-598.webp 598w" sizes="(max-width:900px) 100vw, 598px" width="598" height="449" alt="Interno di una macchina da stampa aperta: pulegge dentate e cinghie di trasmissione" loading="lazy">
+      <figcaption>Pulegge e cinghie di trasmissione dentro una macchina da stampa.</figcaption>
+    </figure>
     <div class="colonna">
       <h3>Come installiamo una macchina</h3>
       <ol class="fasi">
@@ -436,7 +370,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
         <li>Configurazione e regolazioni</li>
         <li>Test e collaudo finale</li>
       </ol>
-      <p class="dove">Interveniamo su macchine da stampa offset e flexo, macchine per sacchettifici e confezionatrici, nastri trasportatori, rulli e guide, per aziende dal Friuli al Trentino, dall'Emilia-Romagna al Veneto.</p>
+      <p class="dove">Interveniamo su macchine da stampa offset e flexo, sacchettifici e confezionatrici, per aziende dal Friuli al Trentino, dall'Emilia&#8209;Romagna al Veneto.</p>
     </div>
   </div>
 </section>
@@ -451,7 +385,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
         <p><a class="sott" href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+6%2C+35127+Padova" rel="noopener">Via dell'Artigianato 6, 35127 Padova</a></p>
         <p class="orari num">Dal lunedì al venerdì 8:00&#8209;18:00<br>Sabato 8:00&#8209;12:00</p>
       </address>
-      <p class="voce">Chi ci chiama parla con chi lavora, e chi lavora conosce il mestiere.</p>
+      <p class="voce num">Chi ci chiama parla con chi lavora, e chi lavora conosce il mestiere. A Padova dal 1977.</p>
     </div>
     <figure>
       <img src="img/pulegge-960.webp" srcset="img/pulegge-640.webp 640w, img/pulegge-960.webp 960w, img/pulegge-1300.webp 1300w" sizes="(max-width:900px) 100vw, 55vw" width="1300" height="880" alt="Due pulegge dentate e un mozzo in alluminio, torniti e fresati dal pieno" loading="lazy">
@@ -466,7 +400,7 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
   <div class="pagina griglia">
     <div class="marchio">
       <img src="img/logo-masi-scritta.svg" alt="Meccanica Masi S.R.L." width="136" height="64" loading="lazy">
-      <p>Officina meccanica di famiglia a Padova: lavorazioni dal pieno su disegno, rulli per la stampa, manutenzione e installazione di macchine automatiche.</p>
+      <p>Officina meccanica di famiglia a Padova. Tornitura, fresatura CNC, lamiera e saldatura; rulli per la stampa; manutenzione e installazione di macchine automatiche.</p>
     </div>
     <nav aria-label="Pagine del sito">
       <div>
@@ -522,12 +456,11 @@ h3{font-size:21px;font-weight:600;line-height:1.25}
 
 <script>
 (function(){
-  // Interruttore Grezzo / Finito: cambio netto di foto e legende, niente dissolvenze
+  // Interruttore Appena fresato / Verniciato: cambio netto della foto, niente dissolvenze
   var bott = document.querySelectorAll('.interruttore button');
-  var coppie = [['fin-larga','grz-larga'],['fin-stretta','grz-stretta'],['leg-fin-larga','leg-grz-larga'],['leg-fin-stretta','leg-grz-stretta'],['lista-fin','lista-grz']];
+  var foto = { grezzo: document.getElementById('pezzo-grezzo'), verniciato: document.getElementById('pezzo-verniciato') };
   function mostra(stato){
-    var fin = stato === 'finito';
-    coppie.forEach(function(c){ document.getElementById(c[0]).hidden = !fin; document.getElementById(c[1]).hidden = fin; });
+    Object.keys(foto).forEach(function(k){ foto[k].hidden = k !== stato; });
     bott.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.stato === stato)); });
   }
   bott.forEach(function(b, i){

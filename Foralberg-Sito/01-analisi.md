@@ -108,6 +108,8 @@ Ho scaricato 32 immagini (9 MB) da foralberg.it e dallo shop in `assets/original
 | Banner di La Vetrinetta (Rosenthal, Villeroy & Boch, WMF) | 6 | 1920x700 | 2-5 | 0-1 | grafica promozionale con scritte, marchi altrui |
 | Logo | 1 JPEG + 4 SVG | 500x102; vettoriale | 4; 9 | 0 | vedi sez. 8 |
 
+Due dettagli letti sulle fonti il 02/11/2026 e usati nella rifinitura della home: sulla portiera del furgone (`storia_camion2_foralberg.jpg`, letto sull'originale a 4205 px) è dipinto "porcellane / cristallerie / posaterie / art. vari cucina", cioè le voci che oggi aprono il catalogo; nel Catalogo 2026/2027, alla pagina 47 del capitolo Porcellana: "Colori: il bianco valorizza il cibo, le tonalità intense e vivaci creano contrasti scenografici".
+
 **Verdetto**: per il presente il materiale **non regge** (media 4 su 10): non c'è una foto dello showroom, del magazzino, delle persone o di un lavoro consegnato, e quasi tutto è dei fornitori. L'**archivio** invece regge una home di alta gamma: quattro scansioni oltre i 4000 px, con la firma e il nome scritti sopra, che nessun concorrente può avere. Per la proposta: archivio vero più segnaposto della sez. 6 per il presente. Per il sito vero servono una giornata nello showroom di via Cile (una tavola apparecchiata in luce naturale, un solo piatto bianco su fondo chiaro, la parete di calici, il magazzino dei 6.000 articoli, le persone al banco) e la scansione di tutto l'archivio fotografico.
 
 ## 5. Due direzioni artistiche

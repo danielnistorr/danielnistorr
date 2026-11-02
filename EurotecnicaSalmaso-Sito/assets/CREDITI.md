@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 24 ottobre 2026; uso nella home finale aggiornato il 2 novembre 2026 (sezione in fondo).
 
 ## Foto esterne in `esterne/` (SEGNAPOSTO, da sostituire con foto vere di Eurotecnica Salmaso)
 
@@ -41,3 +41,15 @@ Diritti:
 
 - `originali/logo-colore-289x94.png`, `originali/logo-bianco-366x101.png`, `originali/logo-monogramma-100.png`, `originali/logo-vecchio-400x142.png`: dal sito, proprietà dell'azienda.
 - `logo-ricostruito-bozza.svg`: tracciato da me il 24/10/2026 dal PNG bianco 366x101 (`_prova/script/traccia_logo.py`, contorni ingranditi 8 volte e semplificati), colore #257B82. Il confronto a 1100 px è fedele nelle forme; differenze minime negli angoli arrotondati. Va sostituito dal vettoriale originale se l'azienda lo ha.
+
+## Uso nella home finale (versione del 2 novembre 2026)
+
+Controllato di nuovo il 2/11/2026 che nessuno di questi ID compaia nei `CREDITI.md` delle altre aziende della campagna.
+
+| Foto | Dove | Lavorazione (`_prova/script/finale_img.py`) |
+|---|---|---|
+| DESIGNECOLOGIST hvgd0ygXuQQ | apertura, `sito/img/microfono-*.webp` | scritta "SPEAK UP" e scritte del connettore tolte, scontornato (WebP con trasparenza), anello della griglia portato al petrolio del logo, cavo tolto sotto il pressacavo |
+| Valentin Karisch igNLOmbJBhg | impianti, `teatro-*.jpg` | taglio 2,4:1 e 4:3, neri verso il petrolio |
+| Daniel Emale zBZZfr8_0ME | storia, `conferenza-*.jpg` | taglio quasi quadrato e 4:3 |
+| Nguyen Dang ft2Gpg_fNVY | chiusura, `chiusura-*.jpg` | taglio 3:2 da x 96 (fuori i due visitatori dietro la vetrata) e 5:4 |
+| `originali/2024-05-1.jpg`, `2024-05-3.jpg` (azienda) | service, `regia-*.jpg`, `palco-*.jpg` | tagli 2:1, rumore smorzato; diritti da chiarire |

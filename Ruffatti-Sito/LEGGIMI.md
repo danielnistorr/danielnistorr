@@ -15,9 +15,9 @@ In pagina c'è solo ciò che ha una fonte. Restano da chiedere:
 
 1. **Ragione sociale completa** con forma giuridica, REA, capitale sociale e PEC: non trovati. Per questo la riga in fondo al piede ha solo "Fratelli Ruffatti" e la P.IVA.
 2. **Numeri di oggi.** "Oltre 500 organi in Italia" e "oltre 50 negli Stati Uniti" vengono da testi del 2016, e sono in pagina così. Vale lo stesso per "oltre un centinaio" di restauri e "da mezzo secolo" (altrove il sito dice "più di quarant'anni"). Quanti sono oggi, e quanti organi in tutto?
-3. **Buckfast**: in pagina "consegnato tra il 2017 e il 2018" (container arrivati nell'aprile 2017). Servono la data dell'inaugurazione e la conferma che la foto mostra l'organo in cantoria.
-4. **Boteå**: l'anno di consegna; si sa solo il contratto, agosto 2015. Per questo in pagina non c'è l'anno.
-5. **Le parti della canna**: noce, canaletto e piede sono la mia lettura della foto `xtrompette3`. Va fatta controllare a loro.
+3. **Buckfast**: in pagina "consegnato tra il 2017 e il 2018" (container arrivati nell'aprile 2017). Servono la data dell'inaugurazione, la conferma che la foto mostra l'organo in cantoria e la disposizione finale: "cento file di canne, due consolle" viene da un testo del 2016 scritto al futuro, per questo in pagina non c'è più.
+4. **Boteå**: l'anno di consegna; si sa solo il contratto, agosto 2015. Per questo in pagina non c'è l'anno. Va confermato anche se i tiranti in fibra di carbonio sono stati davvero realizzati (la notizia del 2015 dice "saranno utilizzati"): finché non lo confermano, in pagina non ci sono.
+5. **Le parti della canna**: noce, canaletto e piede sono la mia lettura della foto `xtrompette3`, e anche le tre fasce che il gesto lascia piene (noce dal 10 al 38 % dell'altezza, canaletto dal 38 al 74 %, piede dal 78 %). Va fatta controllare a loro. La frase iniziale accanto alla canna unisce la loro "Costruire canne ad ancia è diventata attività rara per gli organari" (pagina Canne ad ancia) con "Le nostre nascono in laboratorio, parte per parte", che riassume "costruiamo ogni componente possibile in laboratorio": va approvata.
 6. **Indirizzo e mappa**: Homo Faber scrive "Address upon request" e "By appointment only". Va confermato che via Facciolati 166 e il link alla mappa si possono pubblicare. "Su appuntamento" va aggiunto sotto l'indirizzo solo se lo confermano.
 7. **Orari**: non pubblici, quindi non ci sono.
 8. **Le trombe en chamade della chiusura** (`xOrgan064modif`): in quale chiesa sono? Il luogo va in didascalia.
@@ -32,12 +32,16 @@ Le foto in pagina sono tutte loro, ma quasi tutte sono a 800 px. Per prima cosa 
 
 | Foto | Problema | Come rifarla |
 |---|---|---|
-| Canna ad ancia aperta (apertura) | 595x800 dopo la rotazione; in pagina è ingrandita 1,1 volte a 1x e circa 2,3 volte a 2x, quindi morbida sugli schermi retina. È l'immagine che regge l'idea | Still life su carta avorio (o fondo bianco caldo), luce morbida da sinistra con un pannello di rimbalzo a destra. Canna intera in verticale, noce tornita e canaletto a fuoco (focus stacking se serve), almeno 4000 px sul lato lungo. Ombra corta e morbida, nessun riflesso di lampade sul metallo |
-| Registro di Tromba (seconda sezione) | 800x600, in pagina circa 930 px (1,16 volte), morbida a 2x | Le canne ad ancia di un registro sul somiere, in laboratorio, con luce naturale da una finestra laterale e senza flash; ottica lunga, diaframma 4-5,6; almeno 4000 px |
-| Trombe en chamade (chiusura) | 600x600 dal file da 800x600, ingrandita 1,18 volte | Chiedere l'originale di `xOrgan064modif` e il luogo, oppure rifarla nella chiesa con la luce del giorno, dal basso, con la parete chiara dietro |
+| Canna ad ancia aperta (apertura) | 595x800 dopo la rotazione; in pagina è mostrata alla sua misura vera (mai ingrandita a 1x da 1024 px in su, ridotta sotto), ma sugli schermi retina è 2 volte, quindi morbida. È l'immagine che regge l'idea | Still life su carta avorio (o fondo bianco caldo), luce morbida da sinistra con un pannello di rimbalzo a destra. Canna intera in verticale, noce tornita e canaletto a fuoco (focus stacking se serve), almeno 4000 px sul lato lungo. Ombra corta e morbida, nessun riflesso di lampade sul metallo |
+| Registro di Tromba (seconda sezione) | taglio 800x800, in pagina al massimo 800 px (1 volta), morbida a 2x; il terzo alto del file originale è sfocato | Le canne ad ancia di un registro sul somiere, in laboratorio, con luce naturale da una finestra laterale e senza flash; ottica lunga, diaframma 4-5,6; almeno 4000 px |
+| Trombe en chamade (chiusura) | 600x600 dal file da 800x600, in pagina circa 676x780, ingrandita 1,3 volte | Chiedere l'originale di `xOrgan064modif` e il luogo, oppure rifarla nella chiesa con la luce del giorno, dal basso, con la parete chiara dietro |
 | Maestranze (archivio) | 900x575, ingrandita 1,16 volte | Scansione dell'originale cartaceo a 1200 dpi |
 | Buckfast | il file da 800 px è un ingrandimento 1,4 volte del taglio da 568 px | File originale della reflex (`756A…`) o le foto del fotografo dell'abbazia, con il permesso |
 | Davies Symphony Hall | 800x1085, buona a 1x | Originale o foto del committente, con il permesso |
+
+## Colore di fondo
+
+Il fondo della pagina è #E7E8E2, il grigio chiaro della lega di stagno delle canne (lo stesso tono del metallo della canna in apertura e delle canne di facciata nelle foto delle opere); il piede è #DCDDD7, la lastra appena più scura. Sostituisce la carta avorio #F4F1EA della prima versione. Se l'azienda preferisce un fondo caldo, l'alternativa coerente col mestiere è il legno chiaro del somiere, non un beige generico.
 
 ## Licenze
 

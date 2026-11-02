@@ -44,3 +44,8 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto (Pexels: "Free", con 
 Foto loro usate nella home finale (diritti da confermare con l'azienda): `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` (sezione delle dieci lavorazioni), `originali/targa-in-acciaio-corten.jpg` (chiusura), `originali/logo-orizzontale-641x114.jpg` e `originali/logo-verticale-256x200.png` (testata e piede).
 
 Caratteri: `assets/fonts/encodesans-latin.woff2` e `encodesans-latin-ext.woff2` (Encode Sans, file variabile peso 100-900 e larghezza 75-125 %, da Google Fonts), licenza SIL Open Font License 1.1 in `assets/fonts/OFL-EncodeSans.txt` (scaricata da github.com/google/fonts, cartella `ofl/encodesans`).
+
+## Home finale, giro del 2 novembre 2026
+
+La home non usa più nessuna foto di repertorio: il sigillo di Pauline Raw (apertura) e le presse di Dana Sredojevic (fascia) sono stati tolti. Le righe sopra restano come registro dei file scaricati.
+Foto usate, tutte dalla libreria media del sito sanmarcotimbri.it (diritti da confermare con l'azienda): `originali/traforato-in-ottone-cromato.jpg` (apertura, leone scontornato con `_prova/script/fin_leone.py`), `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` (dieci lavorazioni), `originali/targa-in-acciaio-corten.jpg` (chiusura), `originali/logo-orizzontale-641x114.jpg` (solo la scritta, in testata) e `originali/logo-verticale-256x200.png` (piede).

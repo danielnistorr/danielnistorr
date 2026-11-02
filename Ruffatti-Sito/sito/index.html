@@ -14,11 +14,12 @@
 @font-face{font-family:'Switzer';src:url('fonts/switzer-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Switzer';src:url('fonts/switzer-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
 :root{
-  --carta:#F4F1EA;
-  --carta-2:#ECE7DD;
+  /* il fondo e il grigio chiaro della lega di stagno delle canne (come il metallo della canna in apertura); il piede e la lastra appena piu scura */
+  --carta:#E7E8E2;
+  --carta-2:#DCDDD7;
   --inchiostro:#1C1A17;
-  --grigio:#5C564E;
-  --filo:#CFC7B8;
+  --grigio:#52554F;
+  --filo:#C2C4BC;
   --bordeaux:#6A0C10;
   --bordeaux-2:#8A1218;
   --m:clamp(20px,4.45vw,64px);
@@ -60,31 +61,42 @@ p{text-wrap:pretty}
 .tel{font-variant-numeric:tabular-nums}
 .menu-btn{display:none}
 
-/* apertura: la canna e l'asse della pagina, centrata sulle colonne 7 e 8; mai piu alta della foto vera (800 px) */
+/* apertura: simmetrica come il prospetto di un organo. Il titolo corre su una riga sola a tutta misura, come la scritta sulla
+   cornice della cassa; sotto, sull'asse della pagina, la canna alla sua misura vera (800 px, mai ingrandita), che scende oltre
+   la piega; ai lati i due testi */
 .apertura{
-  --h:clamp(760px,100svh,860px);
-  --col:calc((100% - 2 * var(--m) - 11 * var(--g)) / 12);
-  --asse:calc(var(--m) + 6 * (var(--col) + var(--g)) + var(--col) + var(--g) / 2);
-  --ch:min(var(--h),800px);
+  --top:clamp(132px,16.5vh,176px);
+  --fs:min(132px,calc((100vw - 2 * var(--m)) / 12.9));
+  --ct:calc(var(--top) + var(--fs) * 1.05 + 20px);
+  --ch:800px;
+  --h:calc(var(--ct) + var(--ch));
   --cw:calc(var(--ch) * .74375);
   position:relative;height:var(--h);overflow:hidden
 }
-.apertura .testo{position:relative;z-index:3;padding:clamp(132px,19vh,196px) 0 0 var(--m);width:calc(var(--m) + 6 * var(--col) + 5 * var(--g))}
-.apertura h1{font-size:clamp(52px,calc((100vw - 392px) / 11.6),110px);line-height:.94;letter-spacing:-.035em}
-.apertura .riga{margin-top:28px;font-size:19px;line-height:1.45;max-width:24em}
-.apertura .azioni{margin-top:36px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.apertura .testo{position:relative;z-index:3;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-content:start;padding:var(--top) var(--m) 0}
+.apertura h1{grid-column:1 / -1;text-align:center;white-space:nowrap;font-size:var(--fs);line-height:.94;letter-spacing:-.03em}
+.apertura .riga{grid-column:1 / span 4;grid-row:2;margin-top:calc(var(--ch) * .2 + 20px);font-size:19px;line-height:1.45;max-width:22em}
+.apertura .azioni{grid-column:1 / span 4;grid-row:3;margin-top:32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .apertura .azioni .tel{font:500 18px/1 var(--sans);text-decoration:underline;text-underline-offset:.25em}
-.canna{position:absolute;z-index:1;top:0;height:var(--ch);width:var(--cw);left:calc(var(--asse) - .565 * var(--cw))}
-.canna img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 86%,transparent 100%)}
-.segno{position:absolute;left:calc(var(--x) * 100%);top:calc(var(--y) * 100%);transform:translateY(-50%);font:500 13px/1 var(--sans);color:var(--bordeaux);font-variant-numeric:tabular-nums;padding-bottom:3px;border-bottom:1px solid transparent}
-.segno.on{border-bottom-color:var(--bordeaux)}
-/* le tre parti: indice numerato nella colonna del titolo, la frase sotto */
-.parti{margin-top:40px;max-width:30em}
+.canna{position:absolute;z-index:1;top:var(--ct);height:var(--ch);width:var(--cw);left:calc(50% - .565 * var(--cw));margin:0}
+.canna img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 7%,#000 84%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 7%,#000 84%,transparent 100%)}
+/* il gesto: la parte scelta resta piena, il resto della canna si vela del colore dello stagno */
+.velo{position:absolute;inset:0;background:var(--carta);opacity:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--a) - 5%),transparent var(--a),transparent var(--b),#000 calc(var(--b) + 5%));
+  mask-image:linear-gradient(to bottom,#000 calc(var(--a) - 5%),transparent var(--a),transparent var(--b),#000 calc(var(--b) + 5%))}
+.canna[data-on] .velo{opacity:.58}
+.canna[data-on="noce"]{--a:10%;--b:38%}
+.canna[data-on="canaletto"]{--a:38%;--b:74%}
+.canna[data-on="piede"]{--a:78%;--b:105%}
+/* le tre parti: indice numerato a destra della canna, la frase sotto */
+.parti{grid-column:9 / span 4;grid-row:2 / span 2;margin-top:calc(var(--ch) * .2 + 20px);max-width:24em}
 .parti-tit{font-size:14px;line-height:1.4;color:var(--grigio)}
 .indice{list-style:none;display:flex;flex-wrap:wrap;margin-top:12px;border-top:1px solid var(--filo)}
-.voce{position:relative;display:flex;align-items:baseline;gap:8px;min-height:44px;padding:14px 28px 0 0;background:none;border:0;font:400 17px/1 var(--sans);color:var(--inchiostro);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.indice li{margin-right:26px}
+.indice li:last-child{margin-right:0}
+.voce{position:relative;display:flex;align-items:baseline;gap:8px;min-height:44px;padding:14px 0 0;background:none;border:0;font:400 17px/1 var(--sans);color:var(--inchiostro);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .voce .n{font:500 13px/1 var(--sans);color:var(--bordeaux);font-variant-numeric:tabular-nums}
-.voce::before{content:"";position:absolute;left:0;right:28px;top:-1px;height:2px;background:transparent}
+.voce::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent}
 .voce:hover{color:var(--bordeaux)}
 .voce[aria-pressed="true"]{color:var(--bordeaux)}
 .voce[aria-pressed="true"]::before{background:var(--bordeaux)}
@@ -94,20 +106,20 @@ p{text-wrap:pretty}
 .parte[hidden]{display:block;visibility:hidden}
 
 /* sezioni */
-section{padding-top:clamp(72px,7vw,100px)}
-#laboratorio{padding-top:clamp(64px,6vw,88px)}
+section{padding-top:clamp(64px,6vw,88px)}
+#laboratorio{padding-top:clamp(56px,5vw,72px)}
 .intro h2{grid-column:1 / span 7}
 .intro p{grid-column:1 / span 6;margin-top:28px;max-width:34em}
 .intro .link{grid-column:1 / span 6;margin-top:20px;justify-self:start}
 
 /* seconda sezione: la foto a filo del bordo sinistro (mai oltre i suoi 800 px), il testo a destra; poi le tre misure */
-.laboratorio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-right:var(--m);margin-top:clamp(48px,5vw,72px);align-items:end}
-.laboratorio img{grid-column:1 / span 7;width:calc(100% + var(--m));max-width:800px;aspect-ratio:20/19;object-fit:cover}
+.laboratorio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-right:var(--m);margin-top:clamp(40px,4vw,56px);align-items:end}
+.laboratorio img{grid-column:1 / span 7;width:calc(100% + var(--m));max-width:800px;aspect-ratio:1/1;object-fit:cover}
 .laboratorio figcaption{grid-column:9 / span 4}
 .laboratorio .lato{font-size:18px;line-height:1.55;max-width:24em}
 .laboratorio .piccolo{margin-top:20px;max-width:24em}
 .laboratorio .link{display:inline-block;margin-top:20px}
-.misure{margin-top:clamp(48px,5vw,72px);border-top:1px solid var(--filo)}
+.misure{margin-top:clamp(40px,4vw,56px);border-top:1px solid var(--filo)}
 .misura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:28px 0 30px;border-bottom:1px solid var(--filo);align-items:baseline}
 .misura h3{grid-column:1 / span 5;font:400 28px/1.15 var(--serif);letter-spacing:-.01em;text-wrap:balance}
 .misura p{grid-column:7 / span 5;font-size:16px;line-height:1.55;color:var(--inchiostro);max-width:32em}
@@ -116,9 +128,9 @@ section{padding-top:clamp(72px,7vw,100px)}
 .opere-testa blockquote{grid-column:1 / span 9}
 .opere-testa blockquote p{font:300 clamp(36px,3.9vw,56px)/1.06 var(--serif);letter-spacing:-.02em;text-wrap:balance}
 .opere-testa blockquote footer{margin-top:20px;font-size:15px;color:var(--grigio)}
-.opere{margin-top:clamp(48px,5vw,72px);row-gap:48px}
+.opere{margin-top:clamp(40px,4vw,56px);row-gap:48px}
 .opera{grid-column:span 4}
-.opera img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.opera img{width:100%;aspect-ratio:3/5;object-fit:cover}
 .opera h3{margin-top:18px;font:400 26px/1.15 var(--serif);letter-spacing:-.01em}
 .opera .dove{margin-top:6px;font-size:16px;color:var(--inchiostro)}
 .opera .cosa{margin-top:4px;font-size:15px;line-height:1.5;color:var(--grigio)}
@@ -126,7 +138,7 @@ section{padding-top:clamp(72px,7vw,100px)}
 .dopo p{font-size:17px;max-width:40em}
 
 /* storia */
-.archivio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-right:var(--m);margin-top:clamp(48px,5vw,64px);align-items:end}
+.archivio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-right:var(--m);margin-top:clamp(40px,4vw,56px);align-items:end}
 .archivio img{grid-column:1 / span 9;width:calc(100% + var(--m));max-width:none;margin-left:calc(-1 * var(--m))}
 .archivio{padding-left:var(--m)}
 .archivio figcaption{grid-column:10 / span 3}
@@ -145,7 +157,7 @@ section{padding-top:clamp(72px,7vw,100px)}
 .recapiti .grande{font:300 clamp(36px,3.6vw,52px)/1 var(--serif);letter-spacing:-.01em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em;font-variant-numeric:tabular-nums lining-nums}
 .recapiti li:first-child{margin-bottom:12px}
 .chiusura figure{grid-column:7 / span 6}
-.chiusura figure img{width:100%;height:100%;min-height:720px;object-fit:cover}
+.chiusura figure img{width:100%;height:100%;min-height:780px;object-fit:cover}
 
 /* piede */
 .piede{margin-top:clamp(56px,4.5vw,64px);background:var(--carta-2);padding:64px var(--m) 28px}
@@ -159,7 +171,7 @@ section{padding-top:clamp(72px,7vw,100px)}
 .news form{margin-top:20px}
 .news .riga{display:flex}
 .news label.vis{display:block;font-size:14px;color:var(--grigio);margin-bottom:6px}
-.news input[type=email]{flex:1;min-width:0;font:400 16px/1 var(--sans);color:var(--inchiostro);background:var(--carta);border:1px solid #8F8677;border-right:0;padding:15px 16px;border-radius:0}
+.news input[type=email]{flex:1;min-width:0;font:400 16px/1 var(--sans);color:var(--inchiostro);background:var(--carta);border:1px solid #7E8279;border-right:0;padding:15px 16px;border-radius:0}
 .news button{font:500 16px/1 var(--sans);background:var(--bordeaux);color:#fff;border:0;padding:0 22px;cursor:pointer;transition:background-color .15s}
 .news button:hover{background:var(--bordeaux-2)}
 .consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;line-height:1.45;color:var(--grigio)}
@@ -185,9 +197,6 @@ section{padding-top:clamp(72px,7vw,100px)}
   .testata nav.aperto ul{flex-direction:column;gap:0}
   .testata nav.aperto a{display:block;padding:14px 0;font-size:18px}
 }
-@media (max-width:1299px){
-  .apertura{--asse:calc(var(--m) + 7 * (var(--col) + var(--g)) + var(--col) + var(--g) / 2)}
-}
 @media (max-width:1023px){
   .laboratorio img{grid-column:1 / span 10}
   .laboratorio figcaption{grid-column:1 / span 10;grid-row:2;margin-top:28px;padding-left:var(--m)}
@@ -205,17 +214,18 @@ section{padding-top:clamp(72px,7vw,100px)}
   .piede .chi{grid-column:1 / -1}
   .colonne{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
 }
-/* telefono e tablet: titolo, riga e indice sopra, la canna intera sotto, poi i bottoni */
+/* telefono e tablet: sempre sull'asse; titolo, riga e indice sopra, la canna intera sotto, poi i bottoni */
 @media (max-width:1023px){
-  .apertura{height:auto;overflow:visible;display:flex;flex-direction:column;--ch:clamp(420px,calc(60vw + 200px),640px)}
+  .apertura{height:auto;overflow:visible;display:flex;flex-direction:column;text-align:center;--ch:clamp(420px,calc(60vw + 200px),640px)}
   .apertura .testo{display:contents}
-  .apertura h1{order:1;padding:112px var(--m) 0;font-size:clamp(46px,12.6vw,84px);line-height:.96}
-  .apertura .riga{order:2;margin:20px var(--m) 0;font-size:17px}
-  .parti{order:3;margin:28px var(--m) 0}
-  .figura{order:4;margin-top:28px}
-  .apertura .azioni{order:5;margin:28px var(--m) 0}
-  .canna{position:relative;left:auto;top:auto;margin-inline:auto;max-width:100%}
-  .canna img{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 9%,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 9%,#000 86%,transparent 100%)}
+  .apertura h1{order:1;padding:112px var(--m) 0;white-space:normal;font-size:clamp(46px,12.4vw,92px);line-height:.96}
+  .apertura .riga{order:2;margin:20px auto 0;padding-inline:var(--m);font-size:17px;max-width:calc(22em + 2 * var(--m))}
+  .parti{order:3;margin:28px auto 0;padding-inline:var(--m);width:100%;max-width:calc(26em + 2 * var(--m))}
+  .indice{justify-content:center}
+  .indice li,.indice li:last-child{margin:0 13px}
+  .figura{order:4;margin-top:20px}
+  .apertura .azioni{order:5;margin:28px var(--m) 0;justify-content:center}
+  .canna{position:relative;left:auto;top:auto;margin-left:calc(50% - .565 * var(--cw))}
 }
 @media (max-width:767px){
   body{font-size:17px}
@@ -227,7 +237,7 @@ section{padding-top:clamp(72px,7vw,100px)}
   .intro h2,.intro p,.intro .link{grid-column:1 / -1}
   .laboratorio{display:block;padding-right:0}
   .laboratorio img{width:100%;max-width:none}
-  .laboratorio figcaption{margin:20px var(--m) 0}
+  .laboratorio figcaption{margin:20px var(--m) 0;padding-left:0}
   .misura h3,.misura p{grid-column:1 / -1}
   .misura p{margin-top:10px}
   .misura h3{font-size:25px}
@@ -239,8 +249,8 @@ section{padding-top:clamp(72px,7vw,100px)}
   .archivio figcaption{margin:12px var(--m) 0}
   .due > div,.due > div + div{grid-column:1 / -1}
   .due > div + div{margin-top:40px}
-  .voce{padding-right:22px;font-size:16px}
-  .voce::before{right:22px}
+  .indice li,.indice li:last-child{margin:0 11px}
+  .voce{font-size:16px}
   .chiusura{display:block;padding-left:0}
   .chiusura .testo{padding:0 var(--m);gap:36px}
   .chiusura figure{margin-top:48px}
@@ -278,12 +288,13 @@ section{padding-top:clamp(72px,7vw,100px)}
     <div class="parti">
       <p class="parti-tit" id="parti-tit">Una canna ad ancia Ruffatti, aperta</p>
       <ol class="indice" aria-labelledby="parti-tit">
-        <li><button class="voce" type="button" data-k="noce" aria-pressed="true" aria-controls="parte-noce"><span class="n">1</span>Noce</button></li>
+        <li><button class="voce" type="button" data-k="noce" aria-pressed="false" aria-controls="parte-noce"><span class="n">1</span>Noce</button></li>
         <li><button class="voce" type="button" data-k="canaletto" aria-pressed="false" aria-controls="parte-canaletto"><span class="n">2</span>Canaletto</button></li>
         <li><button class="voce" type="button" data-k="piede" aria-pressed="false" aria-controls="parte-piede"><span class="n">3</span>Piede</button></li>
       </ol>
       <div class="frasi" aria-live="polite">
-        <p class="parte" id="parte-noce">Il metallo per le <b>noci</b> viene fuso manualmente con metodi antichi. Dopo la fusione, ogni noce viene singolarmente tornita.</p>
+        <p class="parte" id="parte-intro">Costruire canne ad ancia è diventata attività rara per gli organari. Le nostre nascono in laboratorio, parte per parte.</p>
+        <p class="parte" id="parte-noce" hidden>Il metallo per le <b>noci</b> viene fuso manualmente con metodi antichi. Dopo la fusione, ogni noce viene singolarmente tornita.</p>
         <p class="parte" id="parte-canaletto" hidden>I <b>canaletti</b> sono lavorati alla fresa per praticare l’apertura frontale; i fondi sono poi saldati con barre d’argento.</p>
         <p class="parte" id="parte-piede" hidden>Ciascuna noce viene adattata al proprio <b>piede</b>, per ottenere il massimo di precisione e la stabilità dell’accordatura.</p>
       </div>
@@ -297,9 +308,7 @@ section{padding-top:clamp(72px,7vw,100px)}
   <div class="figura">
     <div class="canna">
       <img src="img/canna-595.jpg" width="595" height="800" alt="Una canna ad ancia aperta, in verticale: in alto il risuonatore, al centro la noce con il canaletto d’ottone e la molla d’accordatura, in basso il piede sfilato" fetchpriority="high">
-      <span class="segno on" data-k="noce" style="--x:.76;--y:.22" aria-hidden="true">1</span>
-      <span class="segno" data-k="canaletto" style="--x:.63;--y:.66" aria-hidden="true">2</span>
-      <span class="segno" data-k="piede" style="--x:.71;--y:.85" aria-hidden="true">3</span>
+      <span class="velo" aria-hidden="true"></span>
     </div>
   </div>
 </section>
@@ -311,9 +320,9 @@ section{padding-top:clamp(72px,7vw,100px)}
     </div>
   </div>
   <figure class="laboratorio">
-    <img src="img/tromba-800.jpg" srcset="img/tromba-600.jpg 600w, img/tromba-800.jpg 800w" sizes="(max-width:767px) 100vw, (max-width:1023px) 85vw, 800px" width="800" height="760" alt="Le canne ad ancia di un registro di Tromba in fila sul somiere, viste dall’alto" loading="lazy">
+    <img src="img/tromba-800.jpg" srcset="img/tromba-600.jpg 600w, img/tromba-800.jpg 800w" sizes="(max-width:767px) 100vw, (max-width:1023px) 85vw, 800px" width="800" height="800" alt="Le canne ad ancia di un registro di Tromba in fila sul somiere, viste dall’alto" loading="lazy">
     <figcaption>
-      <p class="lato">Ben pochi organari costruiscono ancora le canne ad ancia. Qui si fondono le lastre, si tornano le noci, si stagiona il legno: dai somieri alle canne ad anima e ad ancia, fino ai particolari più minuti.</p>
+      <p class="lato">Qui si fondono le lastre, si tornano le noci, si stagiona il legno: dai somieri alle canne ad anima e ad ancia, fino ai particolari più minuti.</p>
       <p class="piccolo">Nella foto, un registro di Tromba. Ogni registro ad ancia è progettato per lo strumento a cui va.</p>
       <a class="link" href="#">Come costruiamo</a>
     </figcaption>
@@ -484,15 +493,17 @@ section{padding-top:clamp(72px,7vw,100px)}
 
 <script>
 (function(){
-  var voci = document.querySelectorAll('.voce'), segni = document.querySelectorAll('.segno');
+  var voci = document.querySelectorAll('.voce'), canna = document.querySelector('.canna'), intro = document.getElementById('parte-intro');
   voci.forEach(function(b){
     b.addEventListener('click', function(){
+      var scelto = b.getAttribute('aria-pressed') !== 'true';   /* un secondo tocco sulla stessa voce torna alla canna intera */
       voci.forEach(function(x){
-        var on = x === b;
+        var on = scelto && x === b;
         x.setAttribute('aria-pressed', on ? 'true' : 'false');
         document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
       });
-      segni.forEach(function(s){ s.classList.toggle('on', s.dataset.k === b.dataset.k); });
+      intro.hidden = scelto;
+      if (scelto) canna.dataset.on = b.dataset.k; else delete canna.dataset.on;
     });
   });
   var mb = document.querySelector('.menu-btn'), menu = document.getElementById('menu');

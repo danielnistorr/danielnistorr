@@ -34,9 +34,9 @@ Scaricate il 24/10/2026 da `https://irp-cdn.multiscreensite.com/2821c4aa/dms3rep
 - `negozio/`: foto di prodotto; quelle con marca Molina (trapunta SINFONIA) e Disney sono di terzi; il tappeto Tabriz (`negozio/4126147316.jpg`, marca Alans) è un articolo loro ma la foto può essere del fornitore. Diritti da chiarire.
 - Loghi: `logo-servalli-stemma.png` (1920x823) è il migliore trovato; `logo-servalli-house.svg` è il marchio del gruppo Servalli House, ricalcato in modo grezzo.
 
-## Usate nella home finale (`sito/`, 24/10/2026)
+## Usate nella home finale (`sito/`, aggiornato il 2/11/2026)
 
-- Pinales (Pexels 31902663): "Per la casa", portata al bianco caldo.
-- Araujo (Unsplash d0RbiJeEMQI): "Per alberghi e rivenditori", tagliata sopra l'etichetta blu e schiarita.
+- Pinales (Pexels 31902663): "Per la casa", con il bianco portato al bianco della pagina #F7F6F2.
+- Hansen (Unsplash qPNgpYUCW0c): "Per alberghi e rivenditori", taglio stretto sulla spugna, ombre alzate, bianco portato al bianco della pagina (aggiornato il 2/11/2026; Araujo non è più usata: era sfocata e aveva l'etichetta leggibile di un marchio).
 - Moradian (Unsplash NvdxYHt5CHM): foto della chiusura, taglio quadrato.
 - Dal sito attuale: il Tabriz del negozio (diritti da chiarire), cinque foto d'archivio della pagina `storia` (permesso da chiedere), il logo con lo stemma.

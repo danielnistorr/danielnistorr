@@ -11,14 +11,14 @@
 @font-face{font-family:"Switzer";src:url(fonts/Switzer-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
 
 :root{
-  --carta:#F7F6F2;
-  --lastra:#EDEBE5;
-  --piede:#EFEDE7;
+  --carta:#D9E7DF;
+  --lastra:#CFDFD6;
+  --piede:#CCDDD3;
   --inchiostro:#14201A;
   --verde:#0A6B42;
   --verde-scuro:#07552F;
   --nota:#4E5550;
-  --filo:rgba(20,32,26,.16);
+  --filo:rgba(20,32,26,.2);
   --m:64px;
   --g:24px;
   --titoli:"General Sans",system-ui,sans-serif;
@@ -46,21 +46,22 @@ p{margin:0;text-wrap:pretty}
 .menu-btn{display:none;appearance:none;background:none;border:1px solid var(--filo);color:var(--inchiostro);font:500 15px/1 var(--testo);padding:11px 14px;cursor:pointer}
 .menu-btn:hover{border-color:var(--inchiostro)}
 
-/* apertura: la loro busta trasparente posata sul titolo; il titolo si legge attraverso il film */
-.eroe{position:relative;height:100vh;min-height:760px;max-height:1080px;overflow:hidden;background:var(--carta);
-  --t:min(11.6vw,196px);--lg:200px;--fw:min(40vw,640px);padding:calc(56px + 6.6vh) var(--m) 0}
-.eroe h1{position:relative;z-index:1;font-size:var(--t);line-height:.95;letter-spacing:-.042em;margin-left:-.04em}
+/* apertura: la loro busta a quattro spazi, dritta, a tutta griglia; le saldature fanno la griglia della prima schermata.
+   Il titolo sta dentro le tasche (sotto il film), il resto nelle tasche di sotto. Posizioni in % misurate dalla foto (busta_img.py). */
+.eroe{position:relative;overflow:hidden;padding:0;--top:104px}
+.tela{position:relative;container-type:inline-size;
+  width:calc((100% - 2*var(--m)) / .9114);margin:calc(var(--top) - (100% - 2*var(--m)) * .0486) 0 0 calc(var(--m) - (100% - 2*var(--m)) * .0486)}
+.busta{position:relative;aspect-ratio:3160/2380}
+.busta picture,.busta .film{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.eroe h1{position:absolute;z-index:1;left:7.75%;bottom:calc(53.4% + 2.4cqw);font-size:13.2cqw;line-height:.95;letter-spacing:-.042em;margin:0 0 0 -.04em}
 .eroe h1 span{display:block}
-.busta{position:absolute;z-index:2;top:88px;left:calc(var(--m) + var(--t) * 3);width:var(--fw);margin:0;pointer-events:none}
-.busta img{width:100%}
-.leg{position:absolute;left:var(--x);top:var(--y);width:0;height:0;font:400 15px/1.4 var(--testo)}
-.leg i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px rgba(247,246,242,.9)}
-.leg{--w:calc(var(--fw) * .5 + 28px)}
-.leg .linea{position:absolute;left:0;top:0;height:1px;width:var(--w);background:var(--inchiostro)}
-.leg .t{position:absolute;left:calc(var(--w) + 14px);top:-11px;width:var(--lg)}
-.leg .t span{display:block;color:var(--nota);font-size:14px;margin-top:4px}
-.eroe .sotto{position:relative;z-index:1;width:min(440px,calc(100vw - 2*var(--m)));margin-top:calc(28px + 2.4vh)}
+/* il testo e il bottone nella tasca in basso a sinistra (stessa cella della griglia, margini calcolati sulla tela) */
+.eroe .sotto{position:absolute;z-index:3;left:7.75%;top:calc(48.3% + 2.6cqw);width:min(440px,38.6cqw)}
 .eroe .sotto p{font-size:19px;line-height:1.55}
+.tasca2{position:absolute;z-index:3;left:calc(50.38% + 3.3cqw);top:calc(48.3% + 2.6cqw);width:min(360px,34cqw)}
+.primato{font-size:17px;line-height:1.5}
+.primato .anno{display:block;font:500 15px/1 var(--testo);color:var(--verde);margin-bottom:10px}
+.tasca2 .didascalia{margin-top:18px}
 .azioni{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
 .btn{display:inline-block;white-space:nowrap;background:var(--verde);color:#fff;font:500 16px/1 var(--testo);padding:17px 24px;text-decoration:none}
 .btn:hover{background:var(--verde-scuro)}
@@ -70,7 +71,7 @@ p{margin:0;text-wrap:pretty}
 
 /* sezioni */
 .sez{padding:180px var(--m) 0}
-.prodotti{padding-top:140px}
+.prodotti{padding-top:168px}
 .sez h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
 .intro{font-size:21px;line-height:1.5;max-width:34em;margin-top:28px}
 
@@ -112,20 +113,21 @@ p{margin:0;text-wrap:pretty}
 .storia figcaption{padding-top:12px}
 .date{grid-column:1 / -1;list-style:none;margin:88px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--g)}
 .date li{border-top:1px solid var(--filo);padding-top:20px}
-.date .anno{display:block;font:500 44px/1 var(--testo);letter-spacing:-.02em;color:var(--verde)}
+.date .anno{display:block;font:500 36px/1 var(--testo);letter-spacing:-.02em;color:var(--verde)}
 .date p{font-size:17px;line-height:1.5;margin-top:16px;max-width:19em}
 
-/* chiusura: testo a sinistra, foto a destra fino al bordo */
-.chiusura{display:grid;grid-template-columns:minmax(0,1fr) min(46vw,660px);column-gap:80px;align-items:end;padding:224px 0 0 var(--m)}
-.chiusura h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
-.chiusura .invito{font-size:18px;max-width:26em;margin-top:28px}
-.recapiti{margin-top:36px;font-size:17px;line-height:1.75}
+/* chiusura: la frase sopra a tutta riga, poi i recapiti a sinistra e la foto intera del tavolo fino al bordo destro */
+.chiusura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:208px 0 0 var(--m)}
+.chiusura .testa{grid-column:1 / span 10;padding-right:var(--m)}
+.chiusura h2{font-size:80px;line-height:1;letter-spacing:-.034em;max-width:12em}
+.chiusura .invito{font-size:19px;max-width:30em;margin-top:28px}
+.recapiti{grid-column:1 / span 4;align-self:start;margin:72px 0 0;font-size:17px;line-height:1.75}
 .recapiti a{text-underline-offset:4px;text-decoration-thickness:1px}
 .recapiti a:hover{color:var(--verde)}
 .recapiti .grande{display:inline-block;font:500 44px/1.1 var(--testo);letter-spacing:-.02em;text-decoration:none;margin-bottom:12px}
 .recapiti .orari{color:var(--nota)}
-.chiusura figure{margin:0}
-.chiusura figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.chiusura figure{grid-column:5 / -1;margin:72px 0 0}
+.chiusura figure img{width:100%;max-width:1200px;aspect-ratio:12/5;object-fit:cover}
 .chiusura figcaption{padding:12px var(--m) 0 0}
 
 /* piede */
@@ -151,10 +153,8 @@ p{margin:0;text-wrap:pretty}
 /* 1024 */
 @media (max-width:1200px){
   :root{--m:48px}
-  .eroe{min-height:700px;--lg:170px;--fw:34vw}
-  .eroe .sotto{width:330px}
-  .eroe .azioni{flex-wrap:nowrap;width:max-content}
   .eroe .sotto p{font-size:18px}
+  .primato{font-size:16px}
   .elenco{grid-template-columns:repeat(2,1fr)}
   .mat-testo{grid-column:8 / span 5}
   .mat-testo h2{font-size:48px}
@@ -166,8 +166,9 @@ p{margin:0;text-wrap:pretty}
   .sost h3{grid-column:1 / span 4}
   .sost p{grid-column:5 / -1;margin-top:0;max-width:40em}
   .sez h2{font-size:54px}
-  .chiusura h2{font-size:48px}
-  .chiusura{column-gap:56px}
+  .chiusura h2{font-size:60px}
+  .recapiti{grid-column:1 / span 5}
+  .chiusura figure{grid-column:6 / -1}
   .piede .marchio{grid-column:1 / -1}
   .piede .colonna,.piede .colonna.larga{grid-column:span 3}
 }
@@ -181,13 +182,10 @@ p{margin:0;text-wrap:pretty}
   .testata nav a{font-size:20px;padding:16px 0;border-bottom:1px solid var(--filo)}
   .testata .tel{margin-left:auto;border-left:0;padding-left:0}
   .menu-btn{display:block}
-  .eroe{height:auto;max-height:none;min-height:0;display:flex;flex-direction:column;padding:132px var(--m) 72px;--t:15vw;--fw:54vw}
-  .eroe h1{font-size:var(--t);line-height:.95}
-  .busta{position:relative;top:auto;left:auto;order:2;align-self:flex-end;width:var(--fw);margin:calc(var(--t) * -1.5) calc(-.4 * var(--m)) 0 0}
-  .leg{position:static;width:auto;height:auto;margin:10px 0 0;padding-right:calc(.4 * var(--m))}
-  .leg i,.leg .linea{display:none}
-  .leg .t{position:static;width:auto}
-  .eroe .sotto{order:3;width:auto;max-width:34em;margin-top:36px}
+  /* da 601 a 900: busta orizzontale; il testo e il bottone escono sotto la busta, il primato va nella tasca in basso a sinistra */
+  .eroe{padding-bottom:16px}
+  .eroe .sotto{position:static;width:auto;max-width:34em;margin:36px 0 0 4.43%}
+  .tasca2{left:7.75%;width:min(380px,40cqw)}
   .prodotti .testa,.perchi{grid-column:1 / -1}
   .materiali figure{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
   .materiali figcaption{padding-right:var(--m)}
@@ -197,8 +195,9 @@ p{margin:0;text-wrap:pretty}
   .storia figure{margin:48px calc(-1 * var(--m)) 0 0}
   .storia figcaption{padding-right:var(--m)}
   .date{margin-top:56px}
-  .chiusura{grid-template-columns:1fr;padding-right:var(--m)}
-  .chiusura figure{margin:56px calc(-1*var(--m)) 0 0}
+  .chiusura .testa,.recapiti{grid-column:1 / -1;padding-right:var(--m)}
+  .recapiti{margin-top:40px}
+  .chiusura figure{grid-column:1 / -1;margin:56px 0 0}
   .piede .colonna,.piede .colonna.larga{grid-column:span 6}
 }
 /* telefono */
@@ -208,16 +207,23 @@ p{margin:0;text-wrap:pretty}
   .testata{padding-top:18px;gap:16px}
   .testata .logo img{width:80px}
   .testata .tel{border:0;padding-left:0;font-size:15px}
-  .eroe{padding-top:96px;padding-bottom:56px;--t:clamp(40px,15.6vw,64px);--fw:62vw}
-  .eroe h1{letter-spacing:-.04em}
-  .busta{margin-top:calc(var(--t) * -1.35);margin-right:calc(-1.2 * var(--m))}
-  .leg{padding-right:var(--m)}
-  .leg .t{font-size:14px}
-  .eroe .sotto{margin-top:24px}
+  .eroe{padding-bottom:0}
+  /* telefono: la busta in verticale, titolo nelle tasche di sopra, primato e didascalia in quelle di sotto */
+  .eroe{--top:78px}
+  .busta{aspect-ratio:2380/3160}
+  .tela{width:calc((100% - 2*var(--m)) / .8824);
+    margin:calc(var(--top) - (100% - 2*var(--m)) * .0666) 0 0 calc(var(--m) - (100% - 2*var(--m)) * .0666)}
+  .eroe h1{left:calc(5.88% + 3.4cqw);bottom:calc(51.1% + 3cqw);font-size:13.4cqw}
+  .eroe .sotto{margin:24px 5.88% 0}
+  .tasca2{left:calc(5.88% + 3.4cqw);top:calc(50.4% + 3.4cqw);width:calc(81.98% - 6.8cqw);max-width:30em}
   .eroe .sotto p{font-size:17px;line-height:1.5}
+  .primato{font-size:15px;line-height:1.45}
+  .primato .anno{font-size:14px;margin-bottom:6px}
+  .tasca2 .didascalia{font-size:13px;margin-top:10px}
   .azioni{margin-top:20px;gap:20px}
   .sez{padding-top:96px}
   .sez h2,.chiusura h2{font-size:38px;line-height:1.06}
+  .chiusura h2{font-size:42px}
   .intro{font-size:18px}
   .elenco{grid-template-columns:1fr;row-gap:32px;margin-top:48px}
   .voce h3{font-size:23px}
@@ -233,6 +239,7 @@ p{margin:0;text-wrap:pretty}
   .chiusura{padding-top:112px}
   .recapiti .grande{font-size:36px}
   .chiusura figure{margin-top:44px}
+  .chiusura figure img{aspect-ratio:4/3;object-position:24% 50%}
   .piede{margin-top:96px;padding-top:56px}
   .piede .alto{row-gap:36px}
   .piede .colonna{grid-column:span 6}
@@ -259,23 +266,30 @@ p{margin:0;text-wrap:pretty}
 
 <main id="contenuto">
 <section class="eroe" aria-labelledby="titolo">
-  <h1 id="titolo"><span>Trasparente</span> <span>come il vetro</span></h1>
-
-  <div class="sotto">
-    <p>Dal 1969 a Padova saldiamo PVC e polipropilene ad alta frequenza e ne facciamo articoli su misura: raccoglitori, buste, cartelle, copertine e album, anche in plastica riciclata e compostabile.</p>
-    <div class="azioni">
-      <a class="btn" href="mailto:info@zetaitaly.com?subject=Richiesta%20di%20preventivo">Chiedete un preventivo</a>
-      <a class="tel2 num" href="tel:+39049774299">049 774299</a>
+  <div class="tela">
+    <div class="busta">
+      <h1 id="titolo"><span>Trasparente</span> <span>come il vetro</span></h1>
+      <picture>
+        <source media="(min-width:601px)" sizes="calc((100vw - 64px) / .9114)"
+                srcset="img/busta-orizz-1000.webp 1000w, img/busta-orizz-1500.webp 1500w, img/busta-orizz-2100.webp 2100w, img/busta-orizz-2900.webp 2900w">
+        <img class="film" src="img/busta-ritratto-900.webp"
+             srcset="img/busta-ritratto-600.webp 600w, img/busta-ritratto-900.webp 900w, img/busta-ritratto-1300.webp 1300w, img/busta-ritratto-1800.webp 1800w"
+             sizes="calc((100vw - 40px) / .8824)" width="2380" height="3160" fetchpriority="high"
+             alt="Una busta trasparente a quattro spazi per raccoglitori ad anelli, posata sul titolo: le lettere si leggono attraverso il film, le saldature dividono le tasche.">
+      </picture>
+      <div class="tasca2">
+        <p class="primato"><span class="anno num">1994</span>Il primo albumino fotografico ecologico d'Europa: buste trasparenti senza aloni azzurrati e senza anelli di Newton.</p>
+        <p class="didascalia">Nella foto, una nostra busta in PVC a quattro spazi per raccoglitori ad anelli.</p>
+      </div>
+    </div>
+    <div class="sotto">
+      <p>Dal 1969 a Padova saldiamo PVC e polipropilene ad alta frequenza e ne facciamo articoli su misura: raccoglitori, buste, cartelle, copertine e album, anche in plastica riciclata e compostabile.</p>
+      <div class="azioni">
+        <a class="btn" href="mailto:info@zetaitaly.com?subject=Richiesta%20di%20preventivo">Chiedete un preventivo</a>
+        <a class="tel2 num" href="tel:+39049774299">049 774299</a>
+      </div>
     </div>
   </div>
-
-  <figure class="busta">
-    <img src="img/busta-cristal-1400.webp"
-         srcset="img/busta-cristal-700.webp 700w, img/busta-cristal-1000.webp 1000w, img/busta-cristal-1400.webp 1400w, img/busta-cristal-1900.webp 1900w"
-         sizes="(max-width:600px) 78vw, (max-width:900px) 60vw, min(40vw,640px)" width="2376" height="3099" fetchpriority="high"
-         alt="Una busta trasparente a quattro spazi, vista dall'alto, posata sul titolo: le lettere si leggono attraverso il film, le saldature dividono le tasche.">
-    <figcaption class="leg" style="--x:46%;--y:70%"><i></i><span class="linea"></span><span class="t">Saldatura ad alta frequenza<span>Busta a quattro spazi per raccoglitori ad anelli</span></span></figcaption>
-  </figure>
 </section>
 
 <section class="sez prodotti" id="prodotti" aria-labelledby="t-prodotti">
@@ -351,25 +365,25 @@ p{margin:0;text-wrap:pretty}
   <ol class="date">
     <li><span class="anno num">1969</span><p>Fulvio Sacerdoti rileva la Zeta, una piccola azienda di articoli plastici elettrosaldati.</p></li>
     <li><span class="anno num">1986</span><p>La prima linea al mondo completamente automatizzata per le cartelle con molla.</p></li>
-    <li><span class="anno num">1994</span><p>Il primo albumino fotografico ecologico d'Europa, brevettato: buste trasparenti senza aloni azzurrati e senza anelli di Newton.</p></li>
+    <li><span class="anno num">1994</span><p>Il brevetto del primo albumino fotografico ecologico d'Europa.</p></li>
     <li><span class="anno num">2015</span><p>Gavriel Sacerdoti diventa amministratore delegato: la terza generazione.</p></li>
   </ol>
 </section>
 
 <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
-  <div class="testo">
+  <div class="testa">
     <h2 id="t-contatti">Progettiamo l'articolo su misura insieme a voi</h2>
     <p class="invito">Mandateci un disegno, un'idea o un originale da rifare, con le misure e le quantità.</p>
-    <p class="recapiti">
-      <a class="grande num" href="tel:+39049774299">049 774299</a><br>
-      <a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a><br>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna&nbsp;55, 35129&nbsp;Padova</a><br>
-      <span class="orari num">Lunedì-venerdì, 8.30-12.30 e 14.00-18.00</span>
-    </p>
   </div>
+  <p class="recapiti">
+    <a class="grande num" href="tel:+39049774299">049 774299</a><br>
+    <a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a><br>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna&nbsp;55, 35129&nbsp;Padova</a><br>
+    <span class="orari num">Lunedì-venerdì, 8.30-12.30 e 14.00-18.00</span>
+  </p>
   <figure>
-    <img src="img/chiusura-taglio-667.webp" srcset="img/chiusura-taglio-480.webp 480w, img/chiusura-taglio-667.webp 667w" sizes="(max-width:900px) 100vw, 46vw" width="667" height="500" loading="lazy"
-         alt="Un uomo in camicia bianca al tavolo da lavoro, con un foglio trasparente tra le mani e una cartella rossa accanto.">
+    <img src="img/chiusura-tavolo-1200.webp" srcset="img/chiusura-tavolo-800.webp 800w, img/chiusura-tavolo-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 32px), 64vw" width="1200" height="500" loading="lazy"
+         alt="Un uomo in camicia bianca e cravatta al tavolo da lavoro, con un foglio trasparente tra le mani, una cartella rossa e un film trasparente sul piano.">
     <figcaption class="didascalia">In reparto, 2023</figcaption>
   </figure>
 </section>

@@ -6,6 +6,19 @@ Scaricate il 24/10/2026 da https://www.regazzon.it/ (pagine, testate, caroselli)
 
 `logo-regazzon-da-brochure.svg`: logo vettoriale estratto con pdftocairo dalla copertina di `regazzon-brochure-it-en.pdf` (tracciati originali dell'impaginato Illustrator, nessun ridisegno).
 
+### Aggiunte del 2 novembre 2026 (estratte dai PDF del sito con pdfimages, nessuna nuova risoluzione inventata)
+
+Stesso proprietario e stesso servizio fotografico (Nicola Verardo, Vanni Dalla Via). Nei PDF le foto sono sotto le fasce grafiche, che sono tracciati a parte: l'immagine incorporata è la foto intera, più alta delle strisce 982x342 del sito.
+
+| File | Da dove | Misure | Soggetto | Uso in home |
+|---|---|---|---|---|
+| `brochure-copertina-corona-1024x709.jpg` | `regazzon-brochure-it-en.pdf`, p. 1 (copertina "Trasmettiamo potenza") | 1024x709 | corona a dentatura interna in macro, marcature incise | apertura |
+| `brochure-p2-giunto-604x412.jpg` | `regazzon-brochure-it-en.pdf`, p. 2 | 604x412 | giunto dentato intero con riflesso | non usata (riserva per la pagina Ingranaggi) |
+| `catalogo-p9-pignone-corona-626x604.jpg` | catalogo generale, p. 9 | 626x604 | pignone e corona con il riflesso sul piano | chiusura |
+| `catalogo-p10-tornitura-verticale-986x670.jpg` | catalogo generale, p. 10 | 986x670 | gole tornite al tornio verticale | scheda Tornitura |
+| `catalogo-p20-saldatura-985x670.jpg` | catalogo generale, p. 20 | 985x670 | saldatore sul mozzo di una ruota | scheda Saldatura |
+| `catalogo-p24-controllo-zeiss-986x669.jpg` | catalogo generale, p. 24 | 986x669 | tastatore Zeiss sui denti di una corona | scheda Controllo |
+
 ## Segnaposto di repertorio (`esterne/`)
 
 Licenza verificata sulla pagina di ogni foto il 24/10/2026: Unsplash "Free to use under the Unsplash License" (nessuna Unsplash+), Pexels "Free" (licenza Pexels). Scaricate con curl dalla CDN, al massimo 2400 px di lato. Nessuna è già usata in un'altra home della campagna (controllati tutti i `*-Sito/assets/CREDITI.md`). Nessuna è generata dall'IA. Sono segnaposto: vanno sostituite con foto vere di Regazzon.

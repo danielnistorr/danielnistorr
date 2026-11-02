@@ -4,11 +4,11 @@ Proposta non richiesta di una nuova homepage per L'Artificio Battagin (A.B. s.r.
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale (HTML e CSS in un solo file, un piccolo script per il gesto, il menu e la newsletter).
+- `sito/index.html`: la home finale, seconda versione del 2/11/2026 (HTML e CSS in un solo file, un piccolo script per il gesto, il menu e la newsletter). La prima versione del 24/10/2026 è in `_prova/versione-1/index.html` (solo la pagina).
 - `sito/img/`: solo le immagini usate, in JPEG o WebP e in più larghezze (srcset).
 - `sito/fonts/`: Gambetta 400, Switzer 400 e 500 in woff2, serviti dalla pagina.
 - `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (idea, caratteri, colori, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà immagini, caratteri e screenshot (`img_finale.py`, `campiona.py`, `screenshot_finale.mjs`); `prova_gesto.mjs` prova il gesto con mouse e tastiera; `shoot_finale.mjs` e `trova_fuori.mjs` servono ai controlli a varie larghezze.
+- `_prova/script/build_finale.sh`: rifà immagini, caratteri e screenshot (`img_finale.py`, `campiona.py`, `screenshot_finale.mjs`), prova il gesto con mouse e tastiera (`prova_gesto.mjs`) e misura i segnali da IA; `shoot_finale.mjs` e `trova_fuori.mjs` servono ai controlli a varie larghezze.
 - `01-analisi.md`: i fatti con le fonti; `_prova/home/a` e `_prova/home/b`: i due prototipi giudicati.
 
 ## Pagine del sito nuovo a cui punta la home
@@ -21,7 +21,8 @@ Gli indirizzi sono quelli del sito di oggi, da tenere:
 Nulla di quanto segue è scritto in pagina finché non viene confermato.
 
 1. **Orari di apertura**: non sono sul sito. Cylex (21/11/2025) indica lunedì solo pomeriggio, martedì 9.00-12.30 e 15.30-19.00, domenica chiuso. Quando arrivano vanno nella chiusura, sotto l'indirizzo.
-2. **I cinque profili del gesto**: oggi sono rosso e oro (la cornice di Matteo), oro barocco e argento barocco (i listelli sul banco), nero intagliato con filo oro e laccato blu (due angolari della parete). Servono i nomi veri o i codici a catalogo e la conferma che siano profili che tengono.
+2. **I cinque profili del gesto**: oggi sono rosso e oro (la cornice di Matteo), oro barocco e argento barocco (i listelli sul banco), nero intagliato con filo oro e laccato blu (due angolari della parete). Servono i nomi veri o i codici a catalogo, la larghezza vera di ogni listello (in pagina sono 60, 52, 56, 34 e 28 px a 1440, a occhio) e la conferma che siano profili che tengono.
+2b. **Il colore del muro**: il fondo della pagina (#D9E8E4) è il turchese della parete degli angolari schiarito, campionato dalle foto. Se hanno il codice della tinta della parete (per esempio un RAL o un NCS), conviene partire da quello.
 3. **La newsletter e lo sconto**: il popup di oggi promette il 15% sul primo acquisto nello shop. Non l'ho messo in pagina: va confermato se è ancora valido. Il popup all'apertura va tolto.
 4. **L'origine**: bottega di pitture murali (pagina Il negozio) o laboratorio di cornici ("50 anni fa", post del 30/03/2023)? E l'anno esatto: "anni '70" non basta per un "dal 197x". In pagina c'è solo "anni '70".
 5. **Gli anni delle sedi**: Piazza De Gasperi, Via Marin e Via Cavalletto sono senza anno; Via Sarpi "negli anni '90"; Via della Croce Rossa "dal 2007". Per Via Cavalletto il sito dice solo "In seguito".
@@ -36,19 +37,20 @@ Nulla di quanto segue è scritto in pagina finché non viene confermato.
 
 ## Foto da rifare dal vero (con indicazioni di scatto)
 
-La pagina usa una sola foto di repertorio (il muro con la luce di finestra, Unsplash) e foto dell'azienda. Le foto del servizio del 2023 sono online solo a 1000-1080 px: **chiedere al fotografo gli originali a piena risoluzione** (angolari, Matteo, cornici, reparti) e il suo nome per i crediti.
+La pagina usa solo foto dell'azienda prese dal sito; nessuna foto di repertorio. Le foto del servizio del 2023 sono online solo a 1000-1080 px: **chiedere al fotografo gli originali a piena risoluzione** (angolari, Matteo, cornici, reparti, matite) e il suo nome per i crediti.
 
-1. **La cornice dell'apertura (la più importante)**. Oggi è una resa composta: i cinque listelli sono ritagliati dalle loro foto e montati con il taglio a 45° su un muro di repertorio. Da rifare così: una parete chiara del negozio, luce naturale dalla vetrina da sinistra (niente flash), cavalletto, macchina frontale e in bolla all'altezza del centro della cornice, obiettivo 50-85 mm, diaframma f/8. La stessa cornice vuota quadrata (circa 50x50 cm) appesa sempre allo stesso chiodo e alla stessa luce, rifatta con i cinque profili scelti (o cinque cornici dello stesso formato), così il gesto resta uguale: almeno 2.880 px di larghezza, RAW, bilanciamento sul muro.
-2. **I cinque campioni**: gli angolari veri della parete, scansionati o fotografati frontali su fondo neutro grigio chiaro, luce diffusa, almeno 2.400 px, uno per file, con il nome del profilo nel nome del file.
+1. **La cornice dell'apertura (la più importante)**. Oggi è una composizione: i cinque listelli sono ritagliati dalle loro foto, tagliati a 45° in Python e montati con `border-image` intorno a un passepartout disegnato, con il titolo al posto dell'opera. Da rifare così: cinque **barre campione vere** (o cinque angolari della parete) fotografate frontali e in bolla su fondo neutro grigio chiaro, luce diffusa da in alto a destra, macro o 100 mm a f/8, almeno 2.400 px sul lato lungo, una per file con il nome del profilo nel nome del file. Dalla barra dritta si rifà il listello per il `border-image` senza ritagli inclinati. In alternativa, una cornice vera larga circa 120x50 cm con il passepartout bianco, fotografata frontale su una parete del negozio, ma allora il titolo non potrebbe stare dentro come testo vero.
+2. **I cinque campioni**: gli stessi angolari, scansionati o fotografati come sopra.
 3. **Matteo al banco**: oggi c'è Matteo che regge la cornice rossa e oro (bella, da tenere). Manca il gesto del mestiere: il taglio del passepartout a 45° e l'assemblaggio. Mani e attrezzo in primo piano, luce laterale, 3.000 px.
-4. **La parete degli angolari**: l'originale del fotografo (oggi 1000 px, a 1440 è ingrandita). Se si rifà: frontale, a tutta parete, luce uniforme, 4.000 px di larghezza.
-5. **La cassetta-cavalletto**: oggi è scontornata dalla foto su fondo grigio. Da rifare su carta bianca senza cuciture, luce morbida da sinistra, ombra naturale sotto, solo la cassetta aperta, 3.000 px.
-6. **I cavalletti in faggio** (chiusura): la foto `IMG_7395` regge (2.560 px); se si rifà, stessa inquadratura con la luce della vetrina e meno neon.
+4. **La parete degli angolari**: l'originale del fotografo (oggi 1000 px, a 1440 è ingrandita 1,44 volte e a 1920 quasi 2). Se si rifà: frontale, a tutta parete, luce uniforme, 4.000 px di larghezza.
+5. **La cassetta-cavalletto**: oggi è scontornata dalla foto su fondo grigio e posata sul colore del muro. Da rifare su carta bianca senza cuciture o, meglio, su un cartoncino del colore della parete, luce morbida da sinistra, ombra naturale sotto, solo la cassetta aperta, 3.000 px.
+6. **Le matite colorate** (Artinpratica): l'originale del fotografo (oggi 1000 px, tagliata in alto a destra per togliere l'etichetta del marchio). Se si rifà: stessa diagonale, senza etichette di marca nell'inquadratura, 2.400 px.
+7. **I cavalletti in faggio** (chiusura): la foto `IMG_7395` regge (2.560 px); se si rifà, stessa inquadratura con la luce della vetrina e meno neon.
 
 ## Licenze
 
 - **Caratteri**: Gambetta e Switzer di Indian Type Foundry, da Fontshare, con la ITF Free Font License (uso commerciale libero, anche sul web; non si possono vendere i file dei caratteri). I file woff2 stanno in `sito/fonts/`.
-- **Foto di repertorio**: solo il muro con la luce di finestra, "a square wooden frame hanging on a wall" di In The Making Studio, Unsplash `gx6NxtpgHqY`, Unsplash License (uso commerciale libero, attribuzione non richiesta), verificata il 24/10/2026. La cornice in rovere della foto non si vede: è coperta dalla cornice disegnata. Elenco completo in `assets/CREDITI.md`. Non è usata in nessun'altra home della campagna.
+- **Foto di repertorio**: nessuna nella seconda versione. Le nove foto Unsplash di riserva (Unsplash License, verificata il 24/10/2026) sono elencate in `assets/CREDITI.md`; la prima versione usava come muro quella di In The Making Studio (`gx6NxtpgHqY`).
 - **Foto dell'azienda**: dal loro sito (servizio fotografico del 2023 e foto del 2023-2024). Vanno chieste formalmente prima di un uso pubblico, insieme ai nomi dei fotografi.
 - Nessuna immagine generata dall'IA.
 

@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 2 novembre 2026.
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere del Panificio Fornasiero]
 
@@ -22,6 +22,24 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 | `esterne/unsplash-ytxRXkY8QE4-nazaruk-panini-sacchetti.jpg` | https://unsplash.com/photos/ytxRXkY8QE4 | Victoria Nazaruk (@vvladimirovnna) | 1600x2400 | B | panini nei sacchetti di carta: banco e consegne a domicilio |
 | `esterne/unsplash-1l2qWh-W5AU-intrepid-pagnotte-griglia-mattino.jpg` | https://unsplash.com/photos/1l2qWh-W5AU | Intrepid (@intrepidfilm) | 2400x1591 | B | pagnotte appena sfornate sulla griglia, luce calda del mattino |
 | `esterne/unsplash-T6vI65xwoNA-sewell-pasta-fresca-vassoio.jpg` | https://unsplash.com/photos/T6vI65xwoNA | Karen Sewell (@sewellkare12) | 1920x2400 | A e B | tagliatelle fresche infarinate su vassoio d'acciaio: la pasta fresca all'uovo |
+
+## Foto Pexels in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE]
+
+| File | Pagina della foto | Autore | Misure | Uso | Note |
+|---|---|---|---|---|---|
+| `esterne/pexels-4198047-karola-g-panino-lino.jpg` | https://www.pexels.com/photo/4198047/ ("Fresh bread on table covered cloth") | Karola G (kaboompics.com) | 2400x3600 | apertura della versione precedente, oggi non usata | un panino chiaro con un taglio, dall'alto, su lino. Licenza letta il 2/11/2026 sulla pagina della foto: "Free", con il rimando alla Licenza Pexels (https://www.pexels.com/license/: uso gratuito, anche commerciale, attribuzione non obbligatoria; non si vende la foto senza modifiche e non la si usa per far credere a un'approvazione dell'autore). Non è in nessun altro `CREDITI.md` della campagna (controllato il 2/11/2026). Non è un loro pane |
+
+## Uso nella home finale (`sito/`, 2 novembre 2026, ultimo passaggio)
+
+- Apertura: la focaccia veneta sul sacco del cinquantesimo (`b56ebf_fabc...`), foto del panificio, scontornata (`_prova/script/scontorna_focaccia.py`) con un'ombra aggiunta.
+- Chi siamo: la vetrina con Galileo e Fidalma (`617993_02eb45f6...`), foto loro, alla misura nativa 640x319.
+- Il pane di oggi: tartarughe della galleria del panificio (`617993_28aa18bc...`), foto loro, tagliata e corretta nel colore.
+- Pasta fresca: Unsplash T6vI65xwoNA (Karen Sewell); segnaposto, con "Foto indicativa" in didascalia.
+- Natale: panettone sul sacco di juta (`b56ebf_5b27...`) e l'etichetta del cinquantesimo ritagliata dalla foto della focaccia (`b56ebf_fabc...`), foto loro.
+- Chiusura: Unsplash ytxRXkY8QE4 (Victoria Nazaruk); segnaposto. Licenza letta il 24/10/2026 sulla pagina della foto (tabella sopra); né questa né Sewell sono in altri `CREDITI.md` della campagna (controllato il 2/11/2026).
+- Piede: il logo del sito a una tinta (bruno delle scritte del sacchetto), PNG a 2x e 3x.
+- Non più usate: Pexels 4198047 (Karola G) e Unsplash W0PDHT_sYoQ (Laura Tautan), in pagina nella versione precedente; restano in `esterne/` solo come archivio della proposta.
+- Non usate nella home finale: le altre foto di `esterne/`.
 
 ## Immagini del sito attuale in `originali/`
 

@@ -13,8 +13,9 @@
 @font-face{font-family:"Golos Text";font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/golos-latinext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
 :root{
-  --carta:#F2EDE4;
-  --carta-2:#E9E2D6;
+  /* il fondo è il bianco della biancheria d'albergo, la parte più grande del loro lavoro: le foto delle lenzuola e della spugna ci finiscono dentro senza bordo */
+  --carta:#F7F6F2;
+  --carta-2:#ECEAE4;
   --inchiostro:#23201B;
   --nota:#675F55;
   --robbia:#9A2E22;
@@ -41,31 +42,35 @@ p{text-wrap:pretty}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* testata */
-.testata{position:relative;z-index:5;display:flex;align-items:center;gap:44px;height:var(--testata);padding-inline:var(--m)}
+/* testata in asse: menu a sinistra, stemma al centro sopra il tappeto, telefono a destra */
+.testata{position:relative;z-index:5;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:32px;height:var(--testata);padding-inline:var(--m)}
+.testata .logo{grid-column:2;grid-row:1}
 .testata .logo img{width:132px;height:auto}
-.testata nav{flex:1}
+.testata nav{grid-column:1;grid-row:1}
 .testata nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:16px}
 .testata nav a{text-decoration:none}
-.testata nav a:hover{text-decoration:underline}
-.testata .tel{font-size:16px;font-weight:500;text-decoration:none;white-space:nowrap}
+@media (hover:hover){.testata nav a:hover{text-decoration:underline}}
+.testata .tel{grid-column:3;grid-row:1;justify-self:end;font-size:16px;font-weight:500;text-decoration:none;white-space:nowrap}
 .menu-btn{display:none}
 
-/* apertura: il Tabriz grande, alto più della schermata, vicino al titolo; la didascalia sotto il tappeto */
-/* il tappeto si mette a circa 90 px dalla fine del titolo (largo circa 4,2 volte il corpo), a qualunque larghezza */
-.apertura{--fs:clamp(104px,8.34vw,164px);--tw:min(48vw,calc((100svh + 140px) * .6485));display:grid;grid-template-columns:minmax(0,1fr) var(--tw);grid-template-rows:auto 1fr;column-gap:48px;padding:16px max(var(--m),calc(100vw - var(--m) - 4.2 * var(--fs) - 72px - var(--tw))) 0 var(--m)}
-.apertura .testo{grid-column:1;grid-row:1;padding-top:60px}
-.apertura h1{font-size:var(--fs);line-height:.94;letter-spacing:-.012em}
-.apertura .lead{margin-top:36px;max-width:26em;font-size:clamp(20px,1.39vw,24px);line-height:1.55}
-.azioni{display:flex;align-items:center;gap:28px;margin-top:36px;flex-wrap:wrap}
+/* apertura in asse, come il tappeto: il Tabriz al centro, il titolo lo attraversa come la trama attraversa l'ordito.
+   "Tessile | casa" sulla prima riga, "dal | 1895" sulla seconda, una parola per lato; il corpo nasce dalla larghezza del lato */
+.apertura{--ag:48px;--tw:min(42vw,calc((100svh - var(--testata) + 40px) / 1.5421));--lato:calc((100vw - 2 * var(--m) - var(--tw) - 2 * var(--ag)) / 2);--fs:clamp(60px,calc(var(--lato) / 2.76),180px);
+  display:grid;grid-template-columns:minmax(0,1fr) var(--tw) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto auto;column-gap:var(--ag);padding:8px var(--m) 0}
+.apertura h1{grid-column:1/4;grid-row:2;display:grid;grid-template-columns:minmax(0,1fr) var(--tw) minmax(0,1fr);column-gap:var(--ag);font-size:var(--fs);line-height:.96;letter-spacing:-.012em;text-wrap:nowrap}
+.apertura h1 .riga{display:contents}
+.apertura h1 .a{grid-column:1;text-align:right}
+.apertura h1 .b{grid-column:3;text-align:left}
+.apertura .lead{font-size:clamp(18px,1.32vw,23px);line-height:1.5}
+.apertura .lead-a{grid-column:1;grid-row:3;justify-self:end;max-width:17em;margin-top:36px;text-align:right}
+.apertura .lato-b{grid-column:3;grid-row:3;max-width:17em;margin-top:36px}
+.azioni{display:flex;align-items:center;gap:28px;margin-top:32px;flex-wrap:wrap}
 .btn{display:inline-block;background:var(--robbia);color:#fff;text-decoration:none;font-weight:500;font-size:16px;padding:15px 24px;transition:background-color .15s}
 .azioni .link{font-size:16px}
-.tappeto{grid-column:2;grid-row:1/3;margin:0}
-.tappeto img{width:100%;height:auto;filter:drop-shadow(0 1px 1.5px rgba(60,40,25,.16)) drop-shadow(0 8px 14px rgba(60,40,25,.07))}
-.didascalia{margin-top:20px;max-width:34em;font-size:14px;line-height:1.5;color:var(--nota)}
+.tappeto{grid-column:2;grid-row:1/5}
+.tappeto img{width:100%;height:auto}
+.didascalia{grid-column:1;grid-row:4;align-self:end;justify-self:end;margin:24px 0 72px;max-width:21em;font-size:14px;line-height:1.5;color:var(--nota);text-align:right}
 .didascalia strong{color:var(--inchiostro);font-weight:500}
-.nota-arch{grid-column:1;grid-row:2;align-self:end;margin:0;width:min(300px,100%)}
-.nota-arch img{width:100%;aspect-ratio:4/3}
-.nota-arch figcaption{margin-top:14px;font-size:14px;line-height:1.5;color:var(--nota)}
 
 /* prodotti */
 .prodotti{padding-top:130px}
@@ -154,38 +159,38 @@ p{text-wrap:pretty}
   :root{--m:48px}
   .testata{gap:32px}
   .testata nav ul{gap:22px}
-  .apertura{--fs:88px}
-  .apertura .lead{max-width:21em;font-size:19px}
+  .apertura{--ag:36px}
   .prodotti h2,.storia h2{font-size:54px}
   .anno-grande{font-size:76px}
   .anni button{font-size:38px}
-  .nota-arch{display:none}
   .piede .chi{grid-column:1/13;display:flex;align-items:flex-end;gap:40px;margin-bottom:48px}
   .piede .chi p{margin:0}
   .piede .c1{grid-column:1/4}.piede .c2{grid-column:4/7}.piede .c3{grid-column:7/10}
 }
 @media (max-width:1100px){
-  .menu-btn{display:inline-block;border:1px solid var(--inchiostro);background:transparent;font:500 15px var(--sans);color:var(--inchiostro);padding:8px 14px;cursor:pointer}
+  .menu-btn{grid-column:1;grid-row:1;justify-self:start;display:inline-block;border:1px solid var(--inchiostro);background:transparent;font:500 15px var(--sans);color:var(--inchiostro);padding:8px 14px;cursor:pointer}
   @media (hover:hover){.menu-btn:hover{background:var(--inchiostro);color:var(--carta)}}
-  .testata{gap:18px}
-  .testata .tel{margin-left:auto}
   .testata nav{position:absolute;top:100%;left:0;right:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
   .testata nav[hidden]{display:none}
   .testata nav:not([hidden]){display:block}
   .testata nav ul{flex-direction:column;gap:0;font-size:20px}
   .testata nav li a{display:block;padding:12px 0}
-  .apertura{--fs:80px}
-  .apertura .lead{font-size:18px}
+  .apertura .lead{font-size:17px}
 }
-/* 900: impilato, il tappeto sotto il titolo */
+/* 900: sempre in asse; "Tessile casa" sopra il tappeto e "dal 1895" sotto. Il titolo lascia in mezzo lo spazio esatto
+   del tappeto (--rw x 1,5421 più due respiri), e il tappeto si centra nella stessa cella */
 @media (max-width:900px){
   :root{--m:32px;--g:16px}
-  .apertura{display:block;padding:0 var(--m)}
-  .apertura .testo{padding-top:36px}
-  .apertura h1{font-size:76px}
-  .apertura .lead{margin-top:24px;max-width:30em}
-  .azioni{margin-top:32px}
-  .tappeto{width:min(520px,100%);margin:56px auto 0}
+  .apertura{--rw:min(360px,60vw);--rg:22px;--fs:76px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;justify-items:center;padding:28px var(--m) 0;text-align:center}
+  .apertura h1{grid-column:1;grid-row:1;grid-template-columns:minmax(0,1fr);grid-template-rows:auto calc(var(--rw) * 1.5421 + 2 * var(--rg)) auto;text-align:center}
+  .apertura h1 .riga{display:block;grid-column:1}
+  .apertura h1 .riga + .riga{grid-row:3}
+  .tappeto{grid-column:1;grid-row:1;align-self:center;width:var(--rw)}
+  .apertura .lead-a,.apertura .lato-b,.didascalia{grid-column:1;justify-self:center;max-width:30em;text-align:center}
+  .apertura .lead-a{grid-row:2;margin-top:28px}
+  .apertura .lato-b{grid-row:3;margin-top:4px}
+  .azioni{justify-content:center;margin-top:28px}
+  .didascalia{grid-row:4;margin:28px 0 0;max-width:26em}
   .prodotti{padding-top:110px}
   .coppia{grid-template-columns:1fr;gap:64px}
   .coppia .txt,.coppia .dx .txt,.coppia .sx .txt{padding:24px var(--m) 0;margin:0}
@@ -210,12 +215,11 @@ p{text-wrap:pretty}
   body{font-size:17px}
   .testata .logo img{width:104px}
   .testata .tel{font-size:15px}
-  .apertura h1{font-size:54px;line-height:.98}
-  .apertura .lead{margin-top:16px;font-size:17px;line-height:1.5}
-  .apertura .testo{padding-top:22px}
-  .azioni{margin-top:24px;gap:20px}
-  .tappeto{margin-top:40px}
-  .didascalia{margin-top:16px}
+  .apertura{--rw:62vw;--rg:16px;--fs:58px;padding-top:20px}
+  .apertura .lead{font-size:16px;line-height:1.5}
+  .apertura .lead-a{margin-top:20px}
+  .azioni{margin-top:20px;gap:20px}
+  .didascalia{margin-top:24px;font-size:13px}
   .btn{padding:13px 18px}
   .prodotti{padding-top:88px}
   .prodotti h2,.storia h2{font-size:38px;line-height:1.06}
@@ -245,7 +249,11 @@ p{text-wrap:pretty}
   .legale .societa{flex:none}
 }
 @media (max-width:360px){
-  .apertura h1{font-size:46px}
+  .apertura{--fs:50px;--rw:60vw}
+  .testata{column-gap:12px}
+  .testata .logo img{width:86px}
+  .testata .tel{font-size:14px}
+  .menu-btn{padding:7px 11px;font-size:14px}
   .anni{gap:6px}
   .anni button{font-size:21px}
 }
@@ -269,22 +277,19 @@ p{text-wrap:pretty}
 
 <main>
 <section class="apertura" aria-labelledby="titolo">
-  <div class="testo">
-    <h1 id="titolo">Tessile casa dal&nbsp;<span class="num">1895</span></h1>
-    <p class="lead">Biancheria per la casa e per l'albergo, piumini, coperte e tende, e tappeti annodati a mano che importiamo direttamente dagli anni&nbsp;70. All'ingrosso da quattro generazioni, a&nbsp;Padova, e anche online.</p>
+  <h1 id="titolo"><span class="riga"><span class="a">Tessile</span> <span class="b">casa</span></span> <span class="riga"><span class="a">dal</span> <span class="b num">1895</span></span></h1>
+  <div class="tappeto">
+    <img src="img/tabriz-760.webp" srcset="img/tabriz-360.webp 360w, img/tabriz-560.webp 560w, img/tabriz-760.webp 760w, img/tabriz-960.webp 960w" sizes="(max-width:560px) 62vw, (max-width:900px) 360px, 42vw" width="749" height="1155" fetchpriority="high" aria-describedby="didascalia" alt="Tappeto Tabriz annodato a mano visto dall'alto: campo rosso con medaglione centrale blu e avorio, bordura blu scuro, frange alle due estremità">
+  </div>
+  <p class="lead lead-a">Biancheria per la casa e per l'albergo, piumini, coperte, tende e tappeti annodati a&nbsp;mano.</p>
+  <div class="lato-b">
+    <p class="lead">All'ingrosso da quattro generazioni, a&nbsp;Padova, e anche online.</p>
     <div class="azioni">
       <a class="btn" href="negozio/">Il negozio online</a>
       <a class="link" href="#alberghi">Per alberghi e rivenditori</a>
     </div>
   </div>
-  <figure class="tappeto">
-    <img src="img/tabriz-760.webp" srcset="img/tabriz-360.webp 360w, img/tabriz-560.webp 560w, img/tabriz-760.webp 760w, img/tabriz-960.webp 960w" sizes="(max-width:560px) calc(100vw - 40px), (max-width:900px) 520px, 48vw" width="749" height="1155" fetchpriority="high" alt="Tappeto Tabriz annodato a mano visto dall'alto: campo rosso con medaglione centrale blu e avorio, bordura blu scuro, frange alle due estremità">
-    <figcaption class="didascalia"><strong>Tabriz ghali</strong>, lana annodata a mano con inserti in seta, <span class="num">205&nbsp;×&nbsp;298&nbsp;cm</span>. Marchio Alans: dal <span class="num">1994</span> è la nostra società per l'importazione.</figcaption>
-  </figure>
-  <figure class="nota-arch">
-    <img src="img/persia-480.webp" srcset="img/persia-320.webp 320w, img/persia-480.webp 480w, img/persia-640.webp 640w" sizes="300px" width="480" height="360" alt="Un venditore regge un tappeto su un tetto coperto di tappeti stesi al sole, in bianco e nero">
-    <figcaption>Tappeti stesi al sole, dall'archivio di Franco Servalli. Negli anni&nbsp;70 comincia l'importazione diretta.</figcaption>
-  </figure>
+  <p class="didascalia" id="didascalia"><strong>Tabriz ghali</strong>, lana annodata a mano con inserti in seta, <span class="num">205&nbsp;×&nbsp;298&nbsp;cm</span>, marchio Alans. I tappeti li importiamo direttamente dagli anni&nbsp;70.</p>
 </section>
 
 <section class="prodotti" id="prodotti" aria-labelledby="t-prodotti">
@@ -302,7 +307,7 @@ p{text-wrap:pretty}
       </figcaption>
     </figure>
     <figure class="dx" id="alberghi">
-      <img src="img/albergo-960.webp" srcset="img/albergo-480.webp 480w, img/albergo-720.webp 720w, img/albergo-960.webp 960w, img/albergo-1360.webp 1360w" sizes="(max-width:900px) 100vw, 50vw" width="960" height="864" loading="lazy" alt="Asciugamani bianchi di spugna piegati, in pila">
+      <img src="img/albergo-960.webp" srcset="img/albergo-480.webp 480w, img/albergo-720.webp 720w, img/albergo-960.webp 960w, img/albergo-1400.webp 1400w" sizes="(max-width:900px) 100vw, 50vw" width="960" height="864" loading="lazy" alt="Asciugamani bianchi di spugna piegati, in pila">
       <figcaption class="txt">
         <h3>Per alberghi e rivenditori</h3>
         <p>Su misura per hotel, SPA, residence, lavanderie e comunità, con il vostro logo stampato o ricamato, anche in versione ignifuga. Rivenditori, grossisti e alberghi hanno condizioni riservate.</p>

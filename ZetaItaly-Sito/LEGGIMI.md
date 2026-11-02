@@ -5,9 +5,9 @@ Proposta non richiesta di una nuova home per https://www.zetaitaly.com (solo la 
 ## Cosa c'è
 
 - `sito/index.html`: la home finale, statica (si apre con file:///). `sito/img/`: solo le immagini usate, WebP in più larghezze. `sito/fonts/`: i tre caratteri serviti dalla pagina.
-- `screenshot/home/`: screenshot a 1440 e 390 (intera e prima schermata), chiusura e piede a 1440, e `NOTA.md` (idea, schermate, caratteri, colori, interazione, foto, controlli).
+- `screenshot/home/`: screenshot a 1440 e 390 (intera e prima schermata), chiusura e piede a 1440, e `NOTA.md` (idea, cosa è cambiato nell'ultimo giro, schermate, caratteri, colori, interazione, foto, controlli).
 - `01-analisi.md`: fatti con le fonti; `assets/CREDITI.md`: origine e licenza di ogni immagine.
-- `_prova/script/build_finale.sh`: rifà immagini (`finale_img.py`), caratteri, screenshot (`screenshot_finale.mjs`), collaudo (`collaudo.mjs`) e segnali. La pagina è scritta a mano.
+- `_prova/script/build_finale.sh`: rifà immagini (`busta_img.py` per l'apertura, `finale_img.py` per le altre), caratteri, screenshot (`screenshot_finale.mjs`), collaudo (`collaudo.mjs`) e segnali. La pagina è scritta a mano. Le posizioni delle tasche nel CSS dell'apertura sono le percentuali stampate da `busta_img.py`: se si cambia la foto vanno rimisurate. `giro.sh` fa screenshot di prova a pezzi.
 - `_prova/home/a` e `_prova/home/b`: i due prototipi; il giudice ha scelto A.
 
 ## Pagine che il sito nuovo deve avere (collegate dal piede)
@@ -21,15 +21,17 @@ Stessi indirizzi di oggi, così non servono redirect:
 
 Nella home le voci del menu portano alle sezioni della pagina (#prodotti, #materiali, #storia, #contatti). Il bottone "Chiedete un preventivo" apre una mail a info@zetaitaly.com; nel sito vero può portare al modulo di `/contatti/`.
 
+Colore: il fondo è il verde del marchio Zeta molto schiarito (#D9E7DF), non un beige: è il fondo che si vede attraverso la busta d'apertura. Va bene anche per il sito vero se Zeta tiene il verde del logo.
+
 Newsletter: no, e non va collegata a niente. Zeta lavora su commessa per aziende, non ha notizie, fiere, cataloghi scaricabili o collezioni; LinkedIn basta.
 
 ## Dati da confermare con Zeta
 
 In pagina c'è solo quello che ha una fonte in `01-analisi.md`. Restano da chiedere:
 
-1. **La foto d'apertura**: che articolo è esattamente il raccoglitore blu (campionario per un cliente?) e se si può mostrare; sulla copertina c'era una scritta bianca, tolta. La foto è stata **specchiata, ruotata di 7 gradi e schiarita all'interno**: va detto all'azienda, e va rifatta (sotto).
-2. **La legenda "Bordo saldato ad alta frequenza"**: confermare che il bordo di quel raccoglitore è saldato ad alta frequenza. Il giudice aveva proposto di aggiungere "senza colla né rivetti": non l'ho messo, perché la frase loro ("senza l'uso di rivetti o spilli") parla degli albumini e un raccoglitore ad anelli ha di solito il meccanismo rivettato. Se Zeta conferma che il bordo non usa colla, si può aggiungere.
-3. **"Goffratura similpelle" e "interno in PVC trasparente"** del raccoglitore: tolti dalla pagina finché Zeta non conferma.
+1. **La foto d'apertura**: che articolo è esattamente la busta a quattro spazi (`2019_12_busta-pvc-4-spazi.jpg`), se è in PVC cristal (in pagina c'è solo "busta in PVC a quattro spazi per raccoglitori ad anelli") e se le sue saldature sono ad alta frequenza. La foto è stata **raddrizzata in prospettiva, specchiata e trasformata in un film con trasparenza**: i riflessi e le saldature vengono dalla foto, il resto della foto (il fondo nero) è tolto. Da 601 px in su è anche **ruotata di 90 gradi**. Va detto all'azienda, e va rifatta dal vero (sotto).
+2. **Il titolo "Trasparente come il vetro"**: è la loro frase sul PVC cristal delle custodie per vinile ("PVC opaco o cristal, trasparente come il vetro"), usata qui per la busta. Confermare che vale anche per le buste.
+3. **Il primato del 1994 nell'apertura**: la frase è del loro testo di Storia ("buste fotografiche straordinariamente trasparenti senza aloni azzurrati e senza sgradevoli anelli di Newton"). Va confermato che si può mettere accanto a una busta per raccoglitori, che non è un albumino.
 4. **Le foto del selettore**: che la vaschetta porta campioni sia una valva termoformata saldata alla cartella (didascalia "Valva termoformata trasparente in una cartella porta campioni") e che la cartella campionario bianca sia in PVC opaco; il permesso di mostrare le cartelle colore del cliente che contiene (si leggono solo codici come "2GY", nessun marchio).
 5. **Le persone nelle foto del 2023**: chi è l'uomo al tavolo (chiusura, didascalia "In reparto, 2023") e se è Gavriel Sacerdoti; chi è l'operatore alla linea (Storia). Il permesso di mostrarli. "Al tavolo di taglio" non è scritto in didascalia finché non è confermato.
 6. **Gli originali del servizio 2023**: chi l'ha fatto, i diritti, le versioni in alta risoluzione e gli altri scatti (in rete ci sono solo miniature da 200 px di saldatrici, bobine, controllo).
@@ -43,13 +45,13 @@ In pagina c'è solo quello che ha una fonte in `01-analisi.md`. Restano da chied
 
 ## Foto da rifare dal vero
 
-Le foto di prodotto di Zeta sono del 2019 su grigio scuro con polvere, o del 2015 su velluto nero con flash: in pagina sono state scontornate e posate su un piano chiaro, ma è un ripiego. Mezza giornata di still life basta per tutta la home.
+Le foto di prodotto di Zeta sono del 2019 su grigio scuro con polvere, o del 2015 su velluto nero con flash: in pagina sono state scontornate e posate sul piano verde chiaro della pagina (#CFDFD6), ma è un ripiego. Mezza giornata di still life basta per tutta la home.
 
-- **Apertura**: lo stesso raccoglitore campionario blu, su un piano bianco caldo (cartoncino o carta da fondale #F4F2EC), luce da finestra laterale o softbox grande a sinistra, ombra corta e morbida, camera alta a circa 30 gradi, ottica 85-100 mm, f/8-11, almeno 6000 px di lato lungo. Inquadrare largo, con il raccoglitore intero e spazio sopra per il titolo; niente scritte sulla copertina.
-- **Bordo saldato in macro**: lo stesso raccoglitore, ottica macro 100 mm, luce radente che fa leggere la goffratura e la linea della saldatura, fuoco sul bordo, fondo che sfuma chiaro.
+- **Apertura**: la stessa busta a quattro spazi, vuota, fotografata dall'alto e perfettamente in piano, su un fondo verde chiaro uniforme (cartoncino tinto vicino a #D9E7DF, o direttamente sopra un foglio con il titolo stampato, per avere la trasparenza vera). Ci vuole luce grande e morbida da un lato, con un solo riflesso lungo sul film, senza polvere e senza impronte. Ottica 85-100 mm, f/8-11, almeno 6000 px di lato lungo, e una seconda versione con la busta in orizzontale. Con la foto vera il film non va più ricostruito: basta lo scontorno.
+- **Saldature in macro**: la stessa busta, ottica macro 100 mm, luce radente che faccia leggere il bordo saldato e la saldatura ondulata tra le tasche.
 - **Un articolo in tre materiali**, inquadrato sempre uguale (stessa posizione, stessa luce), per il selettore: cristal trasparente (con un foglio stampato dentro, per far vedere la trasparenza), opaco goffrato, colorato a Pantone.
 - **Campioni di goffratura e di colore** (liscio, buccia d'arancia, similpelle) affiancati, dall'alto.
-- **Reparto**: gli originali del servizio 2023; se si rifà, una persona alla saldatrice e mani al tavolo, luce naturale, foto orizzontali di almeno 3000 px, per avere foto di reparto a metà schermo e a filo (l'area foto della home oggi è al 26,6 %, il metodo chiede il 35 %).
+- **Reparto**: gli originali del servizio 2023; se si rifà, una persona alla saldatrice e mani al tavolo, luce naturale, foto orizzontali di almeno 3000 px: oggi la foto del tavolo (1200x500) e quella della linea (1024 px) sugli schermi retina si vedono morbide.
 - Togliere sempre i marchi dei clienti dalle foto di prodotto, o chiedere il permesso.
 
 ## Licenze

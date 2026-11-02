@@ -20,6 +20,6 @@ File scaricati da images.unsplash.com e ridotti a 2400 px sul lato lungo (JPEG q
 
 Nota: nelle foto non ci sono marchi riconoscibili in primo piano. Le foto dell'azienda (cartella `originali/`) restano la prima scelta dove reggono: la parete degli angolari, Matteo con la cornice rossa e oro, le cornici barocche, i cavalletti Mabef.
 
-## Uso nella home finale (sito/, 24/10/2026)
+## Uso nella home finale (sito/, seconda versione del 2/11/2026)
 
-Nella home finale è usata una sola foto di questo elenco: `unsplash-gx6NxtpgHqY-inthemaking-cornice-rovere.jpg` (In The Making Studio), come muro con la luce di finestra dell'apertura (`sito/img/muro-d-*.jpg`, `muro-m-*.jpg`). La sua cornice in rovere è coperta dalla cornice disegnata con i listelli dell'azienda. Le altre otto foto non sono usate. Tutte le altre immagini della home vengono da `originali/` (foto dell'azienda).
+Nella home finale non c'è più nessuna foto di questo elenco. La prima versione (24/10/2026) usava la foto di In The Making Studio (`gx6NxtpgHqY`) come muro dell'apertura; nella seconda versione il muro è il colore della parete degli angolari e la cornice è disegnata con i listelli dell'azienda, quindi la foto non serve più. Tutte le immagini della home vengono da `originali/` (foto dell'azienda dal loro sito): Matteo con la cornice rossa e oro, la parete degli angolari, la cassetta-cavalletto, l'espositore delle matite colorate, i cavalletti in faggio, i listelli ritagliati dalle stesse foto e il logo. Le nove foto restano qui come segnaposto di riserva.

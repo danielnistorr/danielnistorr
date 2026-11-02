@@ -6,6 +6,7 @@ Proposta non richiesta di una nuova home per Servalli Padova sas (servalli.net),
 - Screenshot e nota del progetto: `screenshot/home/` (`NOTA.md` spiega idea, caratteri, colori, interazione, foto e controlli).
 - Rigenerare tutto: `bash _prova/script/build_finale.sh` (immagini, pagina, caratteri, screenshot).
 - Analisi con le fonti: `01-analisi.md`. Prototipi: `_prova/home/a` e `_prova/home/b` (scelto B).
+- Ultimo passaggio (2 novembre): prima schermata in asse, con il Tabriz al centro e il titolo diviso ai due lati, e fondo bianco biancheria #F7F6F2 al posto della carta beige. Cosa è cambiato e i controlli sono in `screenshot/home/NOTA.md`.
 
 ## Dati da confermare con l'azienda
 
@@ -44,14 +45,14 @@ Il sito nuovo avrà queste pagine. Nella proposta i link sono percorsi relativi,
 
 ## Foto da rifare dal vero
 
-Le tre foto esterne sono segnaposto e vanno sostituite prima di qualsiasi uso pubblico. Serve mezza giornata di still life in magazzino, su un fondo neutro caldo (carta o lino écru), con luce di finestra o un softbox grande da un lato, senza flash diretto. Scatti in RAW ad almeno 3000 px sul lato lungo.
+Le tre foto esterne sono segnaposto e vanno sostituite prima di qualsiasi uso pubblico. Serve mezza giornata di still life in magazzino, su un fondo bianco (un lino o un cartone bianco, vicino al bianco della pagina #F7F6F2, così le foto di biancheria ci finiscono dentro come oggi fa `finale_img.py`), con luce di finestra o un softbox grande da un lato, senza flash diretto. Scatti in RAW ad almeno 3000 px sul lato lungo.
 
-1. **Il Tabriz o un altro tappeto loro, dall'alto** (sostituisce la foto del negozio nella prima schermata):
+1. **Il Tabriz o un altro tappeto loro, dall'alto** (sostituisce la foto del negozio nella prima schermata, dove il tappeto è largo fino a 670 px e oggi a 2x è ingrandito):
    - tappeto steso a terra, macchina in bolla sulla verticale (scala o braccio), obiettivo 35-50 mm, tutto il tappeto con le frange e un margine di fondo;
    - luce radente da un lato, perché si veda il vello;
    - più un dettaglio del retro con i nodi e uno del frangiato.
 2. **Le lenzuola loro, bianche, piegate in pila** (sostituisce Pinales): tre o quattro pezzi piegati con cura, vista frontale leggermente dall'alto, bianco tenuto senza bruciare le luci.
-3. **La spugna con un logo ricamato da loro** (sostituisce Araujo): due o tre asciugamani d'albergo piegati, con il ricamo in primo piano, messo a fuoco e in luce radente.
+3. **La spugna con un logo ricamato da loro** (sostituisce Hansen; il segnaposto di oggi è in luce di sole dura, con le ombre alzate in elaborazione): due o tre asciugamani d'albergo piegati, con il ricamo in primo piano, messo a fuoco e in luce radente.
 4. **Tre o quattro tappeti piegati in pila nello showroom** (sostituisce Moradian nella chiusura): vista di taglio, i bordi a vista, fondo pulito.
 5. **Archivio**: le scansioni ad alta risoluzione (600 dpi) delle stampe originali di telai, MADIVAL, Giardiniera 1967 (oggi solo 1024 px), Persia e Tehran 1994, più il tappeto con la scritta SERVALLI annodata, oggi troppo piccolo.
 
@@ -59,7 +60,7 @@ Le tre foto esterne sono segnaposto e vanno sostituite prima di qualsiasi uso pu
 
 - **Foto esterne** (dettagli e pagine delle foto in `assets/CREDITI.md`), licenze lette il 24/10/2026:
   - juan pinales, Pexels 31902663: licenza Pexels, uso commerciale libero, attribuzione non obbligatoria;
-  - Antonio Araujo, Unsplash d0RbiJeEMQI: licenza Unsplash;
+  - Mads Leif Hansen, Unsplash qPNgpYUCW0c: licenza Unsplash;
   - bahareh moradian, Unsplash NvdxYHt5CHM: licenza Unsplash.
 
   Nessuna immagine è generata dall'IA e nessuna è usata in altre home della campagna.

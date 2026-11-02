@@ -12,11 +12,13 @@
 @font-face{font-family:"Rethink Sans";src:url(fonts/RethinkSans-latin-ext.woff2) format("woff2");font-weight:400 600;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
 :root{
-  --carta:#F4F3F0;
-  --carta-2:#ECEBE7;
-  --inchiostro:#17181B;
-  --grigio:#55595F;
-  --filo:#D4D5D6;
+  /* il blu del marchio Varotto (#00265a) diluito: parete chiara, piano su cui si appoggia l'argento */
+  --parete:#F3F5F8;
+  --carta:#E2E8EF;
+  --carta-2:#D6DEE7;
+  --inchiostro:#15181D;
+  --grigio:#474D56;
+  --filo:#C2CBD6;
   --blu:#13294B;
   --blu-scuro:#0B1B33;
   --m:72px;
@@ -43,7 +45,7 @@ figure{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* testata */
-.testata{position:relative;z-index:5}
+.testata{position:relative;z-index:5;background:var(--parete)}
 .testata .wrap{display:flex;align-items:center;height:84px;gap:48px}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
 .logo img{height:48px;width:auto}
@@ -57,14 +59,17 @@ figure{margin:0}
 .testata-dx .tel:hover{text-decoration:underline}
 .bt-menu{display:none}
 
-/* apertura: il pezzo in alto al centro, il titolo su una riga sotto, testo e azioni in fondo */
-.apertura{position:relative;padding-top:12px}
-.pezzo{width:min(1120px,100%);margin:0 auto}
-.pezzo img{width:100%}
-.dida-pezzo{text-align:right;margin-top:-22px;position:relative}
-.apertura h1{--h:min(116px,calc((100vw - var(--m) * 2) / 11.15));font-size:var(--h);line-height:1;letter-spacing:-.022em;margin-top:30px;white-space:nowrap;text-wrap:nowrap}
+/* apertura, il banco di posa: parete chiara in alto, il titolo appoggiato con la sua linea di base
+   sull'orizzonte, il vassoio disteso sul piano con la sua ombra vera */
+.parete{background:var(--parete)}
+.apertura .parete{padding-top:60px}
+.apertura h1{--h:min(116px,calc((100vw - var(--m) * 2) / 11.15));font-size:var(--h);line-height:.71;letter-spacing:-.022em;white-space:nowrap;text-wrap:nowrap}
 .apertura h1 span{display:inline}
-.sotto{margin-top:26px;align-items:end}
+.apertura .piano{padding-top:50px}
+.pezzo{width:min(1160px,100%);margin:0 auto}
+.pezzo img{width:100%}
+.dida-pezzo{text-align:right;margin-top:10px}
+.sotto{margin-top:34px;align-items:end}
 .intro{grid-column:1 / span 6;font-size:18px;line-height:1.5;max-width:36em}
 .azioni{grid-column:8 / -1;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:16px 28px}
 .bottone{white-space:nowrap;display:inline-flex;align-items:center;height:50px;padding:0 24px;background:var(--blu);color:#fff;text-decoration:none;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;transition:background-color .15s}
@@ -139,22 +144,23 @@ figure{margin:0}
 .materiali{margin:32px 0 0;display:flex;flex-wrap:wrap;gap:4px 22px;font-family:var(--serif);font-size:clamp(22px,2vw,28px);line-height:1.25;list-style:none;padding:0}
 .rip .chiama{margin-top:32px}
 
-/* chiusura */
-.chiusura{margin-top:var(--stacco);display:grid;grid-template-columns:minmax(0,1fr) 50%;align-items:stretch}
-.chiusura .testo{padding:40px calc(var(--g) * 3) 40px var(--bordo)}
-.chiusura h2{font-size:clamp(42px,4.8vw,70px);line-height:1;letter-spacing:-.018em;max-width:9em}
-.recapiti{margin-top:52px}
+/* chiusura: lo stesso banco di posa dell'apertura; l'alzata sta in piedi davanti all'orizzonte */
+.chiusura{margin-top:var(--stacco);--lz:min(46vw,660px)}
+.chiusura .parete{position:relative;padding-top:160px}
+.chiusura h2{grid-column:1 / span 6;font-size:clamp(42px,4.8vw,70px);line-height:1;letter-spacing:-.018em;max-width:9em;margin-bottom:-.145em}
+.chiusura .foto{position:absolute;z-index:1;top:100%;right:calc(var(--bordo) - var(--m) + 24px);width:var(--lz);transform:translateY(-43%)}
+.chiusura .foto img{width:100%}
+.chiusura .piano{min-height:calc(var(--lz) * .7417 * .57 + 110px)}
+.recapiti{grid-column:1 / span 5;padding-top:64px;padding-bottom:40px}
 .recapiti .tel{display:inline-block;font-family:var(--serif);font-size:clamp(44px,4.45vw,64px);line-height:1;letter-spacing:-.01em;text-decoration:none;font-variant-numeric:lining-nums tabular-nums}
 .recapiti .tel:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.1em}
 .recapiti dl{margin:32px 0 0;display:grid;grid-template-columns:80px 1fr;row-gap:10px;font-size:17px;line-height:1.5}
 .recapiti dt{color:var(--grigio);font-size:14px;line-height:1.5;padding-top:2px}
 .recapiti dd{margin:0}
 .recapiti .mappa{display:inline-block;margin-top:4px;font-size:15px}
-.chiusura .foto{position:relative;min-height:600px}
-.chiusura .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 
 /* piede */
-.piede{background:var(--carta-2);padding:104px 0 36px;margin-top:0}
+.piede{background:var(--carta-2);padding:104px 0 36px;margin-top:0;border-top:1px solid var(--filo)}
 .piede .alto{align-items:start}
 .piede .marchio{grid-column:1 / span 5}
 .firma{display:flex;align-items:center;gap:16px}
@@ -167,7 +173,7 @@ figure{margin:0}
 .news form{margin-top:22px}
 .campo{display:flex;border-bottom:1px solid var(--inchiostro)}
 .campo input{flex:1;min-width:0;background:transparent;border:0;padding:12px 0;font:16px var(--sans);color:var(--inchiostro)}
-.campo input::placeholder{color:#62666C}
+.campo input::placeholder{color:#555B64}
 .campo button{appearance:none;border:0;background:var(--blu);color:#fff;font:500 15px var(--sans);padding:0 22px;margin:4px 0;cursor:pointer;transition:background-color .15s}
 .campo button:hover{background:var(--blu-scuro)}
 .opzioni{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:16px;font-size:14px;color:var(--grigio);line-height:1.45}
@@ -175,7 +181,7 @@ figure{margin:0}
 .opzioni input{margin:2px 0 0;width:16px;height:16px;accent-color:var(--blu);flex:none}
 .opzioni .consenso{flex-basis:100%}
 .esito{margin-top:10px;font-size:14px;color:var(--inchiostro);min-height:1.45em}
-.colonne{margin-top:80px;padding-top:40px;border-top:1px solid #CFCFCC}
+.colonne{margin-top:80px;padding-top:40px;border-top:1px solid #B9C3CF}
 .col{grid-column:span 3}
 .col h3{font-family:var(--sans);font-weight:600;font-size:14px;line-height:1.2;margin-bottom:16px}
 .col ul{list-style:none;margin:0;padding:0;font-size:15px;line-height:1.5}
@@ -203,7 +209,7 @@ figure{margin:0}
   .menu{display:none}
   .testata-dx .shop{display:none}
   .bt-menu{display:inline-flex;align-items:center;height:44px;padding:0 4px;background:none;border:0;font:500 15px var(--sans);color:var(--inchiostro);cursor:pointer;text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1px}
-  .menu.aperto{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:20px}
+  .menu.aperto{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--parete);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:20px}
   .menu.aperto a{padding:12px 0;border-bottom:1px solid var(--filo)}
   .menu.aperto .solo-tel{display:block}
   .testata .wrap{height:76px}
@@ -225,10 +231,12 @@ figure{margin:0}
   .rip .foto figcaption{padding-left:var(--m)}
   .rip .testo{padding:0 var(--m) 0 calc(var(--g) * 2)}
   .rip h2{font-size:36px}
-  .chiusura{grid-template-columns:minmax(0,1fr)}
-  .chiusura .testo{padding:0 var(--m)}
-  .chiusura .foto{margin-top:56px;min-height:0;aspect-ratio:6/5}
-  .chiusura h2{font-size:40px}
+  .chiusura{--lz:min(calc(100vw - var(--m) * 2),560px)}
+  .chiusura .parete{padding-top:88px;display:flow-root}
+  .chiusura h2{grid-column:1 / -1;font-size:44px;margin-bottom:0}
+  .chiusura .foto{position:relative;top:auto;right:auto;transform:none;margin:40px auto calc(var(--lz) * -.40);padding:0 0}
+  .chiusura .piano{min-height:0;padding-top:calc(var(--lz) * .40 + 8px)}
+  .recapiti{grid-column:1 / -1;padding-top:32px}
   .recapiti .tel{font-size:40px}
   .piede .marchio,.news{grid-column:1 / -1}
   .news{margin-top:48px}
@@ -247,7 +255,7 @@ figure{margin:0}
   .titolo-grande{--tg:104px}
   .marchi .intest,.marchi .elenco,.marchi .chi,.alzata{grid-column:1 / -1}
   .alzata{grid-row:4;margin:48px 0 0;position:static}
-  .alzata .cornice{position:relative;aspect-ratio:1120/939;max-width:560px;margin:0 auto}
+  .alzata .cornice{position:relative;aspect-ratio:1021/861;max-width:560px;margin:0 auto}
   .alzata figcaption{position:static;margin-top:12px;text-align:left;padding:0}
   .rip .foto .cornice{min-height:0;aspect-ratio:4/5;flex:none;max-height:640px}
   .rip .foto figcaption{margin-top:12px;padding:0 var(--m)}
@@ -264,10 +272,11 @@ figure{margin:0}
   .testata-dx{gap:14px}
   .testata-dx .tel{display:none}
   .menu.aperto{top:68px}
-  .apertura{padding-top:4px}
+  .apertura .parete{padding-top:22px}
+  .apertura .piano{padding-top:30px}
   .pezzo{width:auto;margin:0 calc(var(--m) * -1)}
-  .dida-pezzo{text-align:left;padding:0 var(--m);margin-top:4px}
-  .apertura h1{--h:clamp(44px,13.6vw,58px);white-space:normal;text-wrap:balance;line-height:.98;letter-spacing:-.02em;margin-top:20px}
+  .dida-pezzo{text-align:left;padding:0 var(--m);margin-top:8px}
+  .apertura h1{--h:clamp(44px,14vw,60px);white-space:normal;text-wrap:balance;line-height:1;letter-spacing:-.02em;margin-bottom:-.145em}
   .apertura h1 span{display:block}
   .sotto{margin-top:20px}
   .intro{font-size:17px}
@@ -296,10 +305,9 @@ figure{margin:0}
   .rip h2{font-size:36px}
   .materiali{font-size:21px;gap:2px 16px}
   .chiusura h2{font-size:40px}
-  .recapiti{margin-top:36px}
+  .chiusura .parete{padding-top:64px}
   .recapiti .tel{font-size:46px}
   .recapiti dl{grid-template-columns:64px 1fr;font-size:16px}
-  .chiusura .foto{margin-top:44px}
   .piede{padding-top:64px}
   .col{grid-column:1 / -1;margin-bottom:32px}
   .legale{flex-direction:column;gap:6px}
@@ -333,21 +341,23 @@ figure{margin:0}
 </header>
 
 <main>
-  <section class="apertura wrap" aria-labelledby="h-apertura">
+  <section class="apertura" aria-labelledby="h-apertura">
+    <div class="parete"><div class="wrap"><h1 id="h-apertura"><span>Fabbrica d’argenteria</span> <span>dal 1974</span></h1></div></div>
+    <div class="piano wrap">
     <figure class="pezzo">
       <picture>
-        <source media="(max-width:560px)" srcset="img/vassoio-tel-780.webp 780w, img/vassoio-tel-848.webp 848w" sizes="100vw">
-        <img src="img/vassoio-1240.webp" srcset="img/vassoio-620.webp 620w, img/vassoio-930.webp 930w, img/vassoio-1240.webp 1240w" sizes="(max-width:1120px) 100vw, 1120px" width="1240" height="532" alt="Vassoio rettangolare in Sheffield con due manici, bordo a godrons e incisione floreale al centro" fetchpriority="high">
+        <source media="(max-width:560px)" srcset="img/vassoio-tel-800.webp 800w" sizes="100vw" width="800" height="430">
+        <img src="img/vassoio-1240.webp" srcset="img/vassoio-620.webp 620w, img/vassoio-930.webp 930w, img/vassoio-1240.webp 1240w" sizes="(max-width:1160px) 100vw, 1160px" width="1240" height="430" alt="Vassoio rettangolare in Sheffield con due manici, bordo a godrons e incisione floreale al centro" fetchpriority="high">
       </picture>
       <figcaption class="dida-pezzo piccolo">Vassoio in Sheffield, metallo argentato, con bordo a godrons e incisione floreale. Dal nostro catalogo.</figcaption>
     </figure>
-    <h1 id="h-apertura"><span>Fabbrica d’argenteria</span> <span>dal 1974</span></h1>
     <div class="grid sotto">
       <p class="intro">Vassoi, servizi da caffè, candelabri, posate e cornici in argento 925 e 800 con il nostro punzone, 364&nbsp;PD, lavorati a mano nello stabilimento di Padova. E&nbsp;poi Sheffield, oggettistica e la riparazione dei vostri argenti.</p>
       <div class="azioni">
         <a class="bottone" href="tel:+390498700709">Chiama 049&nbsp;870&nbsp;07&nbsp;09</a>
         <a class="link" href="mailto:info@varottoalfredo.com">info@varottoalfredo.com</a>
       </div>
+    </div>
     </div>
   </section>
 
@@ -414,7 +424,7 @@ figure{margin:0}
         </ol>
         <p class="chi piccolo"><span class="posate">Linee di posate: Inglese, Barocco, Cardinale, Impero, Mauriziano, Perles, Regina Anna, San Marco e Floreale.</span> Negozi e rivenditori mandano le proposte d’ordine dall’<a href="area-clienti/">area clienti</a>; i privati comprano dallo <a href="https://www.varottoshop.com/">shop online</a>.</p>
       <figure class="alzata">
-        <div class="cornice"><img src="img/sottopiatto-900.webp" srcset="img/sottopiatto-600.webp 600w, img/sottopiatto-900.webp 900w, img/sottopiatto-1120.webp 1120w" sizes="(max-width:700px) 100vw, 50vw" width="900" height="755" alt="Sottopiatto tondo argentato con bordo barocco a volute" loading="lazy"></div>
+        <div class="cornice"><img src="img/sottopiatto-760.webp" srcset="img/sottopiatto-520.webp 520w, img/sottopiatto-760.webp 760w, img/sottopiatto-1021.webp 1021w" sizes="(max-width:700px) 100vw, 50vw" width="1021" height="861" alt="Sottopiatto tondo argentato con bordo barocco a volute" loading="lazy"></div>
         <figcaption class="piccolo">Sottopiatto argentato con bordo barocco, dal nostro catalogo.</figcaption>
       </figure>
     </div>
@@ -434,8 +444,14 @@ figure{margin:0}
   </section>
 
   <section class="chiusura" id="contatti" aria-labelledby="h-chiusura">
-    <div class="testo">
-      <h2 id="h-chiusura">Soddisfiamo ogni tipo di richiesta particolare</h2>
+    <div class="parete">
+      <div class="wrap grid"><h2 id="h-chiusura">Soddisfiamo ogni tipo di richiesta particolare</h2></div>
+      <figure class="foto">
+        <img src="img/alzata-760.webp" srcset="img/alzata-540.webp 540w, img/alzata-760.webp 760w, img/alzata-1084.webp 1084w" sizes="(max-width:900px) calc(100vw - 64px), 50vw" width="1084" height="804" alt="Alzata per torta tonda argentata con bordo a perline e piedini decorati" loading="lazy">
+        <figcaption class="sr">Alzata per torta argentata, dal nostro catalogo.</figcaption>
+      </figure>
+    </div>
+    <div class="piano wrap grid">
       <div class="recapiti">
         <a class="tel" href="tel:+390498700709">049&nbsp;870&nbsp;07&nbsp;09</a>
         <dl>
@@ -445,10 +461,6 @@ figure{margin:0}
         </dl>
       </div>
     </div>
-    <figure class="foto">
-      <img src="img/alzata-1100.webp" srcset="img/alzata-720.webp 720w, img/alzata-1100.webp 1100w, img/alzata-1440.webp 1440w" sizes="(max-width:700px) 100vw, (max-width:900px) 45vw, 50vw" width="1440" height="1200" alt="Alzata per torta tonda argentata con bordo a perline e piedini decorati, su fondo chiaro" loading="lazy">
-      <figcaption class="sr">Alzata per torta argentata, dal nostro catalogo.</figcaption>
-    </figure>
   </section>
 </main>
 

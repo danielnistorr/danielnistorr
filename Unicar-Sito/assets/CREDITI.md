@@ -33,3 +33,10 @@ Avvertenze sui marchi e sull'uso:
 - `savinov-parete-attrezzi.jpg`: è un'officina di biciclette (chiavi per raggi): va bene solo come tessitura di attrezzi, non come officina carrelli.
 - Scartate perché hanno un marchio concorrente in primo piano: Hyster (`82ZiY5pzl1c`), UniCarriers Nissan (`OqeSaL0nl28`, il nome si confonderebbe con Unicar), Doosan (`QBcxhOcDU4U`), Manitou (`f0qt5HS40E4`, `qBD1__CH_MI`), Linde (`P5JMzUz6URY`), Komatsu su Pexels (16243256).
 - Sono tutte segnaposto: il LEGGIMI della home dirà quali rifare dal vero (sede, furgoni, officina, un carrello in revisione).
+
+## Uso nella home finale (2/11/2026)
+
+- `reding-toyota-piazzale.jpg`: apertura, scontornato (`_prova/script/finale_img.py`): tolti gli adesivi SOFIMA e la corda sul contrappeso, fango e graffi puliti, vetri della cabina resi come vetro fumé uniforme, tolti tergicristalli e specchietto, ruota anteriore ripresa tra i ritti dello schienale; esportato in `sito/img/carrello-*.webp`.
+- `yurtman-tecnici-sul-carrello.jpg`: sezione officina, taglio stretto su mani e montante senza volti, tolta la scritta TCM, tono schiarito e raffreddato; `sito/img/officina-*.webp`, mai ingrandito.
+- `originali/testata/007.jpg` (la sede, materiale del loro sito): chiusura, taglio 455 x 249 sulla palazzina con le insegne Unicar e BT Cesab (senza l'insegna Cami2), mai ingrandito; `sito/img/sede-455.jpg`.
+- Nessuna nuova foto scaricata per la versione finale. Controllo di riuso ripetuto il 2/11/2026 sui `*-Sito/assets/CREDITI.md` delle altre home: nessuna di queste foto compare altrove.

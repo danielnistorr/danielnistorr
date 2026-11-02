@@ -3,29 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fratelli Zuin, scavi controllati dal 1946 a Padova</title>
-<meta name="description" content="Movimento terra, lavori stradali, demolizioni e aspirazioni industriali con escavatori a risucchio. Impresa di famiglia a Padova dal 1946.">
-<link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/risucchio-1120.webp" as="image" type="image/webp" imagesrcset="img/risucchio-640.webp 640w, img/risucchio-960.webp 960w, img/risucchio-1120.webp 1120w, img/risucchio-1331.webp 1331w" imagesizes="(min-width:1181px) min(1300px, 75.7vw), 96vw">
+<title>Fratelli Zuin, escavazioni ed aspirazioni a risucchio controllato a Padova</title>
+<meta name="description" content="Escavatori a risucchio, movimento terra, lavori stradali e demolizioni per enti pubblici e privati. Impresa di famiglia a Padova dal 1946.">
+<link rel="preload" href="img/risucchio-960.webp" as="image" type="image/webp" imagesrcset="img/risucchio-640.webp 640w, img/risucchio-960.webp 960w, img/risucchio-1350.webp 1350w" imagesizes="(min-width:1181px) min(884px, 61.4vw), 94vw">
 <style>
 /* Archivo, Omnibus-Type, SIL Open Font License 1.1: un solo file variabile (larghezza 62-125 %, peso 100-900) */
 @font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;
   src:url(fonts/archivo-latin-var.woff2) format("woff2")}
 :root{
-  --fondo:#F3F1EC;      /* polvere di cava */
-  --fondo-2:#E8E4DB;    /* piede */
+  /* i colori vengono dal mezzo: la cabina gialla, la fascia bordeaux con la scritta gialla, il rosso del cassone */
+  --fondo:#ECD675;      /* giallo della cabina MAN, schiarito */
+  --fondo-ombra:#E0C75E;/* stesso giallo, in ombra: fondo delle foto mentre caricano */
+  --fascia:#5A2830;     /* bordeaux della fascia con la scritta, misurato sulla foto (piede) */
+  --fascia-testo:#ECD675;
+  --fascia-nota:#E6D9AE;
   --ink:#1B1B19;
-  --ink-2:#45433E;
-  --ghiaia:#6F6B63;     /* note e virgole, 4,7:1 sul fondo */
-  --ghiaia-p:#625E57;   /* note nel piede, 5,1:1 sul fondo del piede */
-  --sottolinea:#B4B0A6;
-  --rosso:#B42620;      /* rosso cassone, misurato sulla fiancata del risucchio */
-  --rosso-scuro:#8E1C17;
-  --filetto:rgba(27,27,25,.16);
+  --ink-2:#36332A;
+  --nota:#4A4636;       /* note e virgole, 6,5:1 sul giallo */
+  --sottolinea:rgba(27,27,25,.38);
+  --rosso:#B42620;      /* rosso cassone: il bottone (bianco sul rosso 6,5:1) */
+  --rosso-testo:#8E1C17;/* rosso per il testo sul giallo, 6,3:1 */
+  --filetto:rgba(27,27,25,.24);
   --m:72px;             /* margine laterale */
   --g:24px;             /* spazio tra colonne */
   --sez:136px;          /* ritmo verticale tra sezioni */
-  --sx:max(var(--m), calc((100% - 1440px) / 2 + var(--m)));  /* bordo sinistro della griglia */
+  --sx:max(var(--m), calc((100% - 1440px) / 2 + var(--m)));  /* bordo sinistro e destro della griglia */
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -34,8 +36,8 @@ body{margin:0;background:var(--fondo);color:var(--ink);
   font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
-a:hover{color:var(--rosso)}
-:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+a:hover{color:var(--rosso-testo)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
 .salta{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--fondo);padding:8px 14px;z-index:20}
@@ -51,23 +53,27 @@ a:hover{color:var(--rosso)}
 .tel-testata{font-size:16px;font-weight:500;text-decoration:none}
 .menu-bottone{display:none}
 
-/* ------------------------------------------------ apertura: il mezzo vero, intero, posato sul fondo */
-.apertura{position:relative;height:min(max(900px,100vh),1000px);overflow:hidden;
-  --W:min(1300px,75.7vw);          /* larghezza del mezzo: 1090 px a 1440, mai oltre i 1331 px del ritaglio */
-  --terra:60px}                    /* dal fondo della prima schermata al bordo basso dell'immagine */
-.apertura h1{position:absolute;left:var(--sx);top:124px;margin:0;
-  font-size:min(112px,7.78vw);line-height:.93;font-weight:500;font-stretch:116%;letter-spacing:-.035em}
-.mezzo{position:absolute;right:0;bottom:var(--terra);width:var(--W);margin:0}
+/* ------------------------------------------------ apertura: la scritta della fiancata come titolo, il mezzo intero davanti */
+.apertura{position:relative;height:min(max(900px,100vh),940px);overflow:hidden;
+  --W:min(884px,61.4vw);           /* il mezzo: 884 px a 1440, cioè 1,5 volte al massimo l'originale di 1350 px a DPR 2 */
+  --H:calc(var(--W) * .4578);      /* altezza dell'immagine (618/1350) */
+  --terra:64px}                    /* dal fondo della prima schermata al bordo basso dell'immagine */
+.apertura h1{position:absolute;left:var(--sx);right:var(--sx);top:128px;margin:0;font-weight:500}
+.apertura h1 .pre,.apertura h1 .post{display:block;font-size:30px;line-height:1.15;font-stretch:112%;letter-spacing:-.012em}
+/* "risucchio" a tutta griglia: 276 px contro i 30 px delle due righe piccole */
+.apertura h1 .grande{display:block;margin:4px 0 0 -.045em;font-size:min(276px,19.17vw);line-height:.86;font-stretch:125%;letter-spacing:-.055em}
+.apertura h1 .post{margin-top:26px}
+.mezzo{position:absolute;right:var(--sx);bottom:var(--terra);width:var(--W);margin:0;z-index:1}
 .mezzo img{width:100%}
-/* la didascalia sta sotto le ruote, allineata a sinistra con il mezzo */
-.didascalia-mezzo{position:absolute;left:calc(100% - var(--W));bottom:24px;margin:0;font-size:14px;line-height:1.4;color:var(--ghiaia)}
-/* testo e bottone: la riga del bottone e dell'email poggia sulla linea di terra della ruota anteriore */
-.apertura .sotto{position:absolute;left:var(--sx);bottom:calc(var(--terra) + var(--W) * .0398);width:390px}
+/* didascalia: a destra, a filo del muso, sotto la linea di terra */
+.didascalia-mezzo{position:absolute;right:var(--sx);bottom:26px;margin:0;font-size:14px;line-height:1.4;color:var(--nota)}
+/* testo e bottone: la riga del bottone poggia sulla linea di terra della ruota anteriore */
+.apertura .sotto{position:absolute;left:var(--sx);bottom:calc(var(--terra) + var(--H) * .097);width:400px}
 .apertura .sotto p{margin:0 0 28px;font-size:18px;line-height:1.5;color:var(--ink-2)}
 .azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
 .bottone{display:inline-flex;align-items:center;height:52px;padding:0 24px;background:var(--rosso);color:#fff;
   font-weight:500;font-size:17px;text-decoration:none;transition:background-color .15s}
-.bottone:hover{background:var(--rosso-scuro);color:#fff}
+.bottone:hover{background:var(--rosso-testo);color:#fff}
 
 /* ------------------------------------------------ titoli di sezione */
 .h2{margin:0;font-size:56px;line-height:1.02;font-weight:500;font-stretch:112%;letter-spacing:-.025em;text-wrap:balance}
@@ -79,79 +85,77 @@ a:hover{color:var(--rosso)}
 .voci li{display:inline}
 .voce{color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-color:var(--sottolinea);
   text-decoration-thickness:1px;text-underline-offset:.2em;transition:color .12s,text-decoration-color .12s}
-.voce:hover{color:var(--rosso);text-decoration-color:var(--rosso)}
-.voce[aria-pressed="true"]{color:var(--ink);text-decoration-color:var(--rosso);text-decoration-thickness:2px}
-.voci .sep{color:var(--ghiaia)}
+.voce:hover{color:var(--rosso-testo);text-decoration-color:var(--rosso-testo)}
+.voce[aria-pressed="true"]{color:var(--rosso-testo);text-decoration-color:var(--rosso);text-decoration-thickness:3px}
+.voci .sep{color:var(--nota)}
 .quadro{margin:48px 0 0}
-.quadro .foto{aspect-ratio:2/1;background:#DAD5CA;overflow:hidden}
+.quadro .foto{aspect-ratio:2/1;background:var(--fondo-ombra);overflow:hidden;max-width:100%}
 .quadro img{width:100%;height:100%;object-fit:cover}
-.quadro figcaption{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);padding-top:18px;font-size:17px;line-height:1.5;align-items:baseline}
+.quadro figcaption{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);padding-top:18px;font-size:17px;line-height:1.5;align-items:start;
+  min-height:calc(2 * 1.5em + 18px)}
 .quadro .nome{grid-column:1/4;font-weight:500;font-size:20px;line-height:1.3}
 .quadro .frase{grid-column:4/10;margin:0;color:var(--ink-2)}
-.quadro .conto{grid-column:10/11;color:var(--ghiaia);font-size:15px;white-space:nowrap}
-.quadro .indicativa{grid-column:11/13;justify-self:end;color:var(--ghiaia);font-size:15px;white-space:nowrap}
+.quadro .meta{grid-column:10/13;justify-self:end;text-align:right;color:var(--nota);font-size:15px;line-height:1.6}
+.quadro .meta span{display:block;white-space:nowrap}
+.quadro .meta span[hidden]{display:none}
 
-/* ------------------------------------------------ storia */
+/* ------------------------------------------------ storia: tre righe, stessa griglia */
 .storia{padding:var(--sez) 0 0}
-.anni{margin:56px 0 0;padding:0;list-style:none}
+.anni{margin:56px 0 0;padding:0;list-style:none;border-bottom:1px solid var(--filetto)}
 .anni li{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);padding:32px 0 36px;border-top:1px solid var(--filetto)}
 .anni .anno{grid-column:1/4;font-size:64px;line-height:.9;font-weight:400;font-stretch:112%;letter-spacing:-.03em;white-space:nowrap}
 .anni .testo{grid-column:4/10;margin:0;font-size:20px;line-height:1.5;text-wrap:pretty}
-.oggi{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:end;margin-top:36px}
-.oggi figure{grid-column:1/8;margin:0 0 0 calc(var(--sx) * -1)}
-.oggi figure img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.oggi .testo-oggi{grid-column:9/13;padding-bottom:4px}
-.oggi .anno{display:block;font-size:64px;line-height:.9;font-stretch:112%;letter-spacing:-.03em;margin:0 0 24px}
-.oggi p{margin:0 0 16px;font-size:20px;line-height:1.5}
-.oggi p:last-child{margin-bottom:0}
 
 /* ------------------------------------------------ chiusura: frase loro, quattro righe, una foto */
 .chiusura{padding:var(--sez) 0 0}
-.chiusura .frase-grande{margin:0;font-size:64px;line-height:1.02;font-weight:500;font-stretch:114%;letter-spacing:-.03em;max-width:1060px;text-wrap:balance}
+.chiusura .frase-grande{margin:0;font-size:60px;line-height:1.04;font-weight:500;font-stretch:112%;letter-spacing:-.028em;max-width:1120px;text-wrap:balance}
 .recapiti{margin:48px 0 64px;padding:0;list-style:none;font-size:19px;line-height:1.5}
 .recapiti li{margin:0 0 6px}
 .recapiti .tel{display:inline-block;font-size:44px;line-height:1;font-weight:500;font-stretch:112%;letter-spacing:-.02em;text-decoration:none;margin:0 0 14px}
-.recapiti .tel:hover{color:var(--rosso)}
-.recapiti .grigio{color:var(--ghiaia);margin-top:10px}
+.recapiti .grigio{color:var(--nota);margin-top:10px}
 .foto-chiusura{margin:0}
-.foto-chiusura img{width:100%;height:min(41.67vw,680px);object-fit:cover;object-position:62% 55%}
+.foto-chiusura img{width:100%;height:min(57vw,870px);object-fit:cover;object-position:60% 55%}
 
-/* ------------------------------------------------ piede */
-.piede{background:var(--fondo-2);padding:72px 0 36px;font-size:16px;line-height:1.55}
+/* ------------------------------------------------ piede: la fascia bordeaux con la scritta gialla, come sul mezzo */
+.piede{background:var(--fascia);color:var(--fascia-testo);padding:72px 0 36px;font-size:16px;line-height:1.55}
+.piede a:hover{color:#fff}
+.piede :focus-visible{outline-color:var(--fascia-testo)}
 .piede .alto{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
 .piede .marca{grid-column:1/5}
 .piede .marca img{width:150px;margin-bottom:22px}
-.piede .marca p{margin:0;max-width:22em;color:var(--ink-2)}
+.piede .marca p{margin:0;max-width:22em;color:var(--fascia-nota)}
 .piede nav{grid-column:6/13;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
-.piede .titolo-col,.piede .col h2{margin:0 0 14px;font-size:15px;font-weight:600;letter-spacing:0;color:var(--ink)}
+.piede .titolo-col,.piede .col h2{margin:0 0 14px;font-size:15px;font-weight:600;letter-spacing:0;color:var(--fascia-testo)}
 .piede ul{list-style:none;margin:0;padding:0}
 .piede li{margin:0 0 8px}
-.piede nav a{text-decoration:none;color:var(--ink-2)}
-.piede nav a:hover{color:var(--rosso);text-decoration:underline}
-.piede .etichetta{display:block;color:var(--ghiaia-p);font-size:14px;line-height:1.4}
-.piede .testo-col{color:var(--ink-2)}
+.piede nav a{text-decoration:none;color:var(--fascia-nota)}
+.piede nav a:hover{text-decoration:underline}
+.piede .etichetta{display:block;color:var(--fascia-testo);font-size:14px;line-height:1.4;font-weight:500}
+.piede .testo-col{color:var(--fascia-nota)}
 .piede .basso{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;margin-top:64px;padding-top:22px;
-  border-top:1px solid var(--filetto);font-size:14px;color:var(--ghiaia-p)}
+  border-top:1px solid rgba(236,214,117,.32);font-size:14px;color:var(--fascia-nota)}
 .piede .basso p{margin:0}
 .piede .basso span{margin-right:24px}
-.piede .basso a{color:var(--ghiaia-p)}
+.piede .basso a{color:var(--fascia-nota)}
 .piede .basso a + a{margin-left:24px}
-.piede .basso a:hover{color:var(--rosso)}
 .fisarmonica{display:none}
 .col h2{display:none}
 
 /* ------------------------------------------------ fino a 1180: il mezzo sotto il titolo */
 @media (max-width:1180px){
   :root{--m:40px;--sez:112px}
-  .apertura{height:auto;padding:128px 0 0}
-  .apertura h1{position:static;margin:0 var(--m);font-size:88px}
-  .mezzo{position:relative;right:auto;bottom:auto;width:94%;margin:44px 0 0 6%}
-  .didascalia-mezzo{position:static;margin:10px 0 0 6%;padding-right:var(--m)}
-  .apertura .sotto{position:static;width:auto;max-width:560px;margin:36px var(--m) 0}
+  .apertura{height:auto;padding:124px 0 0}
+  .apertura h1{position:static;margin:0 var(--m)}
+  .apertura h1 .grande{font-size:calc((100vw - 2 * var(--m)) * .2095)}
+  .apertura h1 .pre,.apertura h1 .post{font-size:26px}
+  .apertura h1 .post{margin-top:18px}
+  .mezzo{position:relative;right:auto;bottom:auto;width:min(884px, calc(100% - 2 * var(--m)));margin:8px var(--m) 0 auto}
+  .didascalia-mezzo{position:static;text-align:right;margin:10px var(--m) 0}
+  .apertura .sotto{position:static;width:auto;max-width:560px;margin:28px var(--m) 0}
   .h2{font-size:46px}
   .voci{font-size:28px}
-  .anni .anno,.oggi .anno{font-size:54px}
-  .chiusura .frase-grande{font-size:54px}
+  .anni .anno{font-size:54px}
+  .chiusura .frase-grande{font-size:50px}
   .piede .marca{grid-column:1/13;display:flex;gap:28px;align-items:center;margin-bottom:40px}
   .piede .marca img{margin:0}
   .piede nav{grid-column:1/13}
@@ -167,17 +171,13 @@ a:hover{color:var(--rosso)}
     text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
   .testata .wrap{position:relative}
   .apertura{padding:112px 0 0}
-  .apertura h1{font-size:72px}
-  .quadro figcaption{grid-template-columns:1fr auto;gap:6px 16px}
-  .quadro .nome{grid-column:1/3}
-  .quadro .frase{grid-column:1/3}
-  .quadro .conto{grid-column:1/2}
-  .quadro .indicativa{grid-column:2/3}
+  .quadro figcaption{grid-template-columns:1fr auto;gap:6px 16px;min-height:0}
+  .quadro .nome{grid-column:1/2}
+  .quadro .meta{grid-column:2/3;grid-row:1}
+  .quadro .nome{min-height:2.6em}
+  .quadro .frase{grid-column:1/3;min-height:4.5em}
   .anni li{grid-template-columns:1fr;gap:12px}
   .anni .anno,.anni .testo{grid-column:auto}
-  .oggi{grid-template-columns:1fr}
-  .oggi figure{grid-column:auto;margin:0 calc(var(--m) * -1)}
-  .oggi .testo-oggi{grid-column:auto;padding-top:28px}
   .piede nav{grid-template-columns:repeat(3,1fr);row-gap:36px}
 }
 /* ------------------------------------------------ telefono */
@@ -187,23 +187,25 @@ a:hover{color:var(--rosso)}
   .testata .wrap{height:72px}
   .logo img{width:78px}
   .tel-testata{font-size:15px}
-  .apertura{padding:100px 0 0}
-  .apertura h1{font-size:min(54px,13.6vw);line-height:.95;letter-spacing:-.03em}
-  .mezzo{width:calc(100% - 10px);margin:30px 0 0 10px}
-  .didascalia-mezzo{margin:8px var(--m) 0;font-size:13px}
-  .apertura .sotto{margin:26px var(--m) 0}
+  .apertura{padding:104px 0 0}
+  .apertura h1 .pre,.apertura h1 .post{font-size:min(19px,4.9vw);line-height:1.25}
+  .apertura h1 .grande{margin-top:6px}
+  .apertura h1 .post{margin-top:10px}
+  .mezzo{width:calc(100% - 20px);margin:18px 10px 0 auto}
+  .didascalia-mezzo{margin:6px var(--m) 0;font-size:13px}
+  .apertura .sotto{margin:22px var(--m) 0}
   .apertura .sotto p{font-size:17px;margin-bottom:22px}
   .h2{font-size:34px}
   .intro{margin-top:16px}
   .voci{font-size:22px;line-height:1.5;margin-top:30px}
   .quadro{margin-top:30px}
-  .quadro .foto{aspect-ratio:4/3;margin:0 calc(var(--m) * -1)}
+  .quadro .foto{aspect-ratio:4/3;margin:0 calc(var(--m) * -1);max-width:none !important}
   .quadro .nome{font-size:18px}
   .anni{margin-top:36px}
   .anni li{padding:24px 0 28px}
-  .anni .anno,.oggi .anno{font-size:44px}
-  .anni .testo,.oggi p{font-size:17px}
-  .chiusura .frase-grande{font-size:36px;line-height:1.05}
+  .anni .anno{font-size:44px}
+  .anni .testo{font-size:17px}
+  .chiusura .frase-grande{font-size:34px;line-height:1.08}
   .recapiti{margin:32px 0 44px;font-size:17px}
   .recapiti .tel{font-size:38px}
   .foto-chiusura img{height:auto;aspect-ratio:4/3}
@@ -211,11 +213,11 @@ a:hover{color:var(--rosso)}
   .piede .marca{display:block;margin-bottom:28px}
   .piede .marca img{margin-bottom:16px;width:130px}
   .piede nav{display:block}
-  .piede nav .col{border-top:1px solid var(--filetto)}
-  .piede nav .col:last-child{border-bottom:1px solid var(--filetto)}
+  .piede nav .col{border-top:1px solid rgba(236,214,117,.32)}
+  .piede nav .col:last-child{border-bottom:1px solid rgba(236,214,117,.32)}
   .col h2{display:block;margin:0}
   .fisarmonica{display:flex;width:100%;justify-content:space-between;align-items:center;min-height:52px;background:none;border:0;padding:0;
-    font:inherit;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer}
+    font:inherit;font-size:16px;font-weight:600;color:var(--fascia-testo);cursor:pointer}
   .fisarmonica::after{content:"";width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
   .fisarmonica[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
   .piede nav .titolo-col{display:none}
@@ -247,19 +249,19 @@ a:hover{color:var(--rosso)}
 
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
-  <h1 id="titolo">Scavi controllati,<br>dal&nbsp;1946</h1>
+  <h1 id="titolo"><span class="pre">Escavazioni ed aspirazioni a</span> <span class="grande">risucchio</span> <span class="post">controllato</span></h1>
 
   <figure class="mezzo">
-    <img src="img/risucchio-1120.webp"
-         srcset="img/risucchio-640.webp 640w, img/risucchio-960.webp 960w, img/risucchio-1120.webp 1120w, img/risucchio-1331.webp 1331w"
-         sizes="(min-width:1181px) min(1300px, 75.7vw), 96vw"
-         width="1331" height="611" fetchpriority="high"
+    <img src="img/risucchio-960.webp"
+         srcset="img/risucchio-640.webp 640w, img/risucchio-960.webp 960w, img/risucchio-1350.webp 1350w"
+         sizes="(min-width:1181px) min(884px, 61.4vw), 94vw"
+         width="1350" height="618" fetchpriority="high"
          alt="Escavatore a risucchio dei Fratelli Zuin: cabina gialla MAN, allestimento rosso con la scritta Escavazioni ed aspirazioni a risucchio controllato e il braccio con il tubo di aspirazione">
   </figure>
-  <p class="didascalia-mezzo">Escavatore a risucchio su MAN TGA <span class="num">35.410</span>, il nostro mezzo in Via Bassette</p>
+  <p class="didascalia-mezzo">Il nostro escavatore a risucchio, <span class="num" style="white-space:nowrap">MAN TGA 35.410</span></p>
 
   <div class="sotto">
-    <p>Movimento terra, lavori stradali, demolizioni e aspirazioni industriali. Impresa di famiglia a&nbsp;Padova, tre generazioni.</p>
+    <p>Movimento terra, lavori stradali, demolizioni e aspirazioni industriali. Impresa di famiglia a&nbsp;Padova dal&nbsp;<span class="num">1946</span>.</p>
     <div class="azioni">
       <a class="bottone num" href="tel:+39049625336">Chiama 049&nbsp;625336</a>
       <a href="mailto:info@fratellizuin.it?subject=Richiesta%20di%20preventivo">info@fratellizuin.it</a>
@@ -285,12 +287,11 @@ a:hover{color:var(--rosso)}
     </ul>
 
     <figure class="quadro" id="quadro" aria-live="polite">
-      <div class="foto"><img id="q-img" src="img/s-risucchio-960.jpg" srcset="img/s-risucchio-640.jpg 640w, img/s-risucchio-960.jpg 960w, img/s-risucchio-1365.jpg 1365w" sizes="(min-width:1440px) 1296px, 92vw" width="1365" height="682" alt="Retro di un escavatore a risucchio dei Fratelli Zuin con il braccio ad arco e il tubo di aspirazione" loading="lazy"></div>
+      <div class="foto" id="q-foto" style="max-width:1365px"><img id="q-img" src="img/s-risucchio-960.jpg" srcset="img/s-risucchio-640.jpg 640w, img/s-risucchio-960.jpg 960w, img/s-risucchio-1365.jpg 1365w" sizes="(max-width:560px) 150vw, (min-width:1440px) 1296px, 92vw" width="1365" height="682" alt="Retro di un escavatore a risucchio dei Fratelli Zuin con il braccio ad arco e il tubo di aspirazione" loading="lazy"></div>
       <figcaption>
         <span class="nome" id="q-nome">Escavatori a risucchio industriali</span>
         <p class="frase" id="q-frase">Scavi controllati e aspirazione di qualsiasi materiale: liquido, secco, solido e polveri, anche in luoghi confinati.</p>
-        <span class="conto num" id="q-conto">4 di 9</span>
-        <span class="indicativa" id="q-ind" hidden>Foto indicativa</span>
+        <span class="meta"><span class="num" id="q-conto">4 di 9</span><span id="q-ind" hidden>Foto indicativa</span></span>
       </figcaption>
     </figure>
   </div>
@@ -302,30 +303,23 @@ a:hover{color:var(--rosso)}
     <ol class="anni">
       <li>
         <span class="anno num">1946</span>
-        <p class="testo">I tre fratelli Zuin cominciano nel cortile di casa, trasportando materiale da costruzione con il loro primo autocarro, un DOGE. Presto arrivano altri autocarri e i primi escavatori.</p>
+        <p class="testo">I tre fratelli Zuin cominciano nel cortile di casa, trasportando materiale da costruzione con il loro primo autocarro, un DOGE. Presto arrivano altri autocarri ed escavatori; con gli anni entrano nella società anche i figli.</p>
       </li>
       <li>
         <span class="anno num">1968–69</span>
-        <p class="testo">Entrano nella società anche i figli e arrivano scavi, demolizioni e urbanizzazioni. La prima demolizione importante è l'ex Foro Boario di Padova; poi la sede dell'Azienda del Gas in Via Trieste e una parte dell'impianto di illuminazione del Prato della Valle.</p>
+        <p class="testo">La prima demolizione importante: l'ex Foro Boario di Padova. Poi la sede dell'Azienda del Gas in Via Trieste e la realizzazione di una parte dell'impianto di illuminazione del Prato della Valle.</p>
+      </li>
+      <li>
+        <span class="anno">Oggi</span>
+        <p class="testo">Escavatori cingolati, gommati e mini escavatori, scarrabili anche della larghezza di un'automobile e gli escavatori a&nbsp;risucchio. Per i lavori pubblici, l'impresa ha l'attestazione di qualificazione SOA.</p>
       </li>
     </ol>
-    <div class="oggi">
-      <figure>
-        <img src="img/storia-fiancata-935.jpg" srcset="img/storia-fiancata-640.jpg 640w, img/storia-fiancata-935.jpg 935w" sizes="(min-width:861px) 60vw, 100vw" width="935" height="526" loading="lazy"
-             alt="Fiancata rossa di un escavatore a risucchio con il logo ovale F.lli Zuin, l'indirizzo Via Bassette 6, Padova, e la scritta Escavazioni ed aspirazioni a risucchio controllato">
-      </figure>
-      <div class="testo-oggi">
-        <span class="anno">Oggi</span>
-        <p>Tre generazioni di esperienza e una vasta gamma di mezzi: escavatori cingolati, gommati e mini escavatori, scarrabili anche della larghezza di un'automobile e gli escavatori a risucchio.</p>
-        <p>Per i lavori pubblici, l'impresa ha l'attestazione di qualificazione SOA.</p>
-      </div>
-    </div>
   </div>
 </section>
 
 <section class="chiusura" id="recapiti" aria-labelledby="t-chiusura">
   <div class="wrap">
-    <h2 class="frase-grande" id="t-chiusura">In grado di intervenire in qualsiasi situazione e&nbsp;spazio</h2>
+    <h2 class="frase-grande" id="t-chiusura">Scarrabili della larghezza di un'automobile, in grado di intervenire in qualsiasi situazione e&nbsp;spazio</h2>
     <ul class="recapiti">
       <li><a class="tel num" href="tel:+39049625336">049&nbsp;625336</a></li>
       <li><a href="mailto:info@fratellizuin.it?subject=Richiesta%20di%20preventivo">info@fratellizuin.it</a></li>
@@ -334,7 +328,7 @@ a:hover{color:var(--rosso)}
     </ul>
   </div>
   <figure class="foto-chiusura">
-    <img src="img/chiusura-1440.jpg" srcset="img/chiusura-640.jpg 640w, img/chiusura-960.jpg 960w, img/chiusura-1440.jpg 1440w, img/chiusura-1920.jpg 1920w" sizes="100vw" width="1440" height="600" loading="lazy"
+    <img src="img/chiusura-1440.jpg" srcset="img/chiusura-640.jpg 640w, img/chiusura-960.jpg 960w, img/chiusura-1440.jpg 1440w, img/chiusura-1920.jpg 1920w" sizes="(max-width:560px) 165vw, min(125vw, 1920px)" width="1440" height="654" loading="lazy"
          alt="Escavatore Hitachi arancio dei Fratelli Zuin che carica un autocarro DAF con il cassone rosso, tra gli alberi">
   </figure>
 </section>
@@ -344,7 +338,7 @@ a:hover{color:var(--rosso)}
   <div class="wrap">
     <div class="alto">
       <div class="marca">
-        <img src="img/logo-zuin-inchiostro-300.png" width="300" height="161" alt="F.lli Zuin &amp; C. s.n.c., movimento terra, lavori stradali" loading="lazy">
+        <img src="img/logo-zuin-giallo-300.png" width="300" height="161" alt="F.lli Zuin &amp; C. s.n.c., movimento terra, lavori stradali" loading="lazy">
         <p>Impresa di famiglia a&nbsp;Padova dal&nbsp;1946: movimento terra, lavori stradali, demolizioni e aspirazioni con escavatori a&nbsp;risucchio.</p>
       </div>
       <nav aria-label="Piede">
@@ -362,11 +356,14 @@ a:hover{color:var(--rosso)}
           <p class="titolo-col">Lavori</p>
           <h2><button class="fisarmonica" type="button" aria-expanded="false" aria-controls="p-lav">Lavori</button></h2>
           <ul id="p-lav">
+            <li><a href="servizi.html#risucchio">Escavatori a risucchio</a></li>
             <li><a href="servizi.html#movimento-terra">Movimento terra</a></li>
             <li><a href="servizi.html#lavori-stradali">Lavori stradali</a></li>
             <li><a href="servizi.html#demolizioni">Demolizioni</a></li>
-            <li><a href="servizi.html#risucchio">Escavatori a risucchio</a></li>
-            <li><a href="servizi.html#fognature">Fognature e urbanizzazioni</a></li>
+            <li><a href="servizi.html#urbanizzazioni">Urbanizzazioni</a></li>
+            <li><a href="servizi.html#fognature">Fognature</a></li>
+            <li><a href="servizi.html#esterne">Sistemazioni esterne</a></li>
+            <li><a href="servizi.html#ritiro">Ritiro del materiale</a></li>
             <li><a href="noleggio-scarrabili.html">Noleggio cassoni scarrabili</a></li>
           </ul>
         </div>
@@ -392,27 +389,28 @@ a:hover{color:var(--rosso)}
 
 <script>
 (function(){
-  // i nove lavori: f = file, w = larghezze esportate, s = foto di repertorio (segnaposto)
+  // i nove lavori: f = file, w = larghezze esportate (l'ultima è la più grande), s = foto di repertorio (segnaposto)
   var dati=[
-    {f:"s-demolizioni",w:[640,960,1440,1600],s:1,n:"Demolizioni",t:"L'abbattimento delle strutture si fa con martelli demolitori e pinze idrauliche.",a:"Escavatore cingolato che demolisce un edificio in mattoni"},
-    {f:"s-urbanizzazioni",w:[640,960,1440,1920],s:1,n:"Urbanizzazioni",t:"Scavi e urbanizzazioni entrano nell'attività con la seconda generazione, insieme alle demolizioni.",a:"Incrocio nuovo con marciapiedi visto dall'alto"},
+    {f:"s-demolizioni",w:[640,960,1440,1920],s:1,n:"Demolizioni",t:"L'abbattimento delle strutture si fa con martelli demolitori e pinze idrauliche.",a:"Escavatore con martello demolitore su un cumulo di macerie di cemento armato"},
+    {f:"s-urbanizzazioni",w:[640,960,1440,1920],s:1,n:"Urbanizzazioni",t:"Opere di urbanizzazione per committenti pubblici e privati.",a:"Benna di un escavatore che apre una trincea nell'asfalto"},
     {f:"s-cassoni",w:[640,960,1365],s:0,n:"Noleggio cassoni scarrabili",t:"Cassoni da 2 a 25 m³, con scarrabili anche della larghezza di un'automobile per gli spazi stretti.",a:"Autocarri dei Fratelli Zuin con il cassone rosso allineati sul piazzale"},
     {f:"s-risucchio",w:[640,960,1365],s:0,n:"Escavatori a risucchio industriali",t:"Scavi controllati e aspirazione di qualsiasi materiale: liquido, secco, solido e polveri, anche in luoghi confinati.",a:"Retro di un escavatore a risucchio dei Fratelli Zuin con il braccio ad arco e il tubo di aspirazione"},
-    {f:"s-fognature",w:[640,960],s:0,n:"Formazione e sistemazione fognature",t:"Formazione di fognature nuove e sistemazione di quelle esistenti.",a:"Autocarro che scarica terra in uno scavo con tubazioni avvolte in tessuto bianco"},
-    {f:"s-stradali",w:[640,960,1440,1920],s:1,n:"Lavori stradali",t:"Strade, marciapiedi, piste ciclabili e rotatorie, e la manutenzione di strade e autostrade.",a:"Rulli compattatori rossi e vibrofinitrice su asfalto nuovo"},
-    {f:"s-movimento",w:[640,960,1440,1920],s:1,n:"Movimento terra",t:"Con escavatori cingolati, gommati e mini escavatori, e gli autocarri per portare via il materiale.",a:"Cantiere di movimento terra visto dall'alto, con escavatori e dumper"},
-    {f:"s-ritiro",w:[640,960,1440,1920],s:1,n:"Ritiro del materiale",t:"Ritiriamo il materiale che proviene da demolizioni e scavi.",a:"Escavatore e autocarro su una strada demolita, visti dall'alto"},
-    {f:"s-esterne",w:[640,960,1440,1772],s:1,n:"Sistemazioni esterne",t:"Anche i lavori di piccola entità, con mini escavatori e scarrabili piccoli.",a:"Scavo in una via stretta tra le case, visto dall'alto"}
+    {f:"s-fognature",w:[640,960,1440,1920],s:1,n:"Formazione e sistemazione fognature",t:"Formazione di fognature nuove e sistemazione di quelle esistenti.",a:"Operaio che risale da uno scavo profondo armato, con l'escavatore che compatta il fondo"},
+    {f:"s-stradali",w:[640,960,1440],s:1,n:"Lavori stradali",t:"Strade, marciapiedi, piste ciclabili e rotatorie, e la manutenzione di strade e autostrade.",a:"Rulli compattatori rossi e vibrofinitrice su asfalto nuovo"},
+    {f:"s-movimento",w:[640,960,1440,1920],s:1,n:"Movimento terra",t:"Con escavatori cingolati, gommati e mini escavatori, e gli autocarri per portare via il materiale.",a:"Escavatore giallo che carica terra su un dumper in un cantiere di case nuove"},
+    {f:"s-ritiro",w:[640,960,1440,1920],s:0,n:"Ritiro del materiale",t:"Ritiriamo il materiale che proviene da demolizioni e scavi.",a:"Pala gommata dei Fratelli Zuin su un cumulo di macerie"},
+    {f:"s-esterne",w:[640,960,1440,1920],s:1,n:"Sistemazioni esterne",t:"Anche i lavori di piccola entità, con mini escavatori e scarrabili piccoli.",a:"Mini escavatore che scava una trincea in un giardino privato"}
   ];
   var voci=[].slice.call(document.querySelectorAll('.voce'));
-  var img=document.getElementById('q-img'),nome=document.getElementById('q-nome'),frase=document.getElementById('q-frase'),
+  var box=document.getElementById('q-foto'),img=document.getElementById('q-img'),nome=document.getElementById('q-nome'),frase=document.getElementById('q-frase'),
       conto=document.getElementById('q-conto'),ind=document.getElementById('q-ind');
   function mostra(i){
-    var d=dati[i];
+    var d=dati[i],max=d.w[d.w.length-1];
     voci.forEach(function(v,k){v.setAttribute('aria-pressed',k===i?'true':'false')});
     var ss=d.w.map(function(w){return 'img/'+d.f+'-'+w+'.jpg '+w+'w'}).join(', ');
     var pre=new Image();
-    pre.onload=function(){img.srcset=ss;img.src='img/'+d.f+'-960.jpg';img.alt=d.a;};
+    // la foto non si mostra mai più larga della sua misura vera
+    pre.onload=function(){box.style.maxWidth=max+'px';img.srcset=ss;img.src='img/'+d.f+'-960.jpg';img.alt=d.a;img.width=max;img.height=Math.round(max/2);};
     pre.sizes=img.sizes;pre.srcset=ss;pre.src='img/'+d.f+'-960.jpg';
     nome.textContent=d.n;frase.textContent=d.t;conto.textContent=(i+1)+' di 9';ind.hidden=!d.s;
   }

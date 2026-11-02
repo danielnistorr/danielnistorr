@@ -1,68 +1,87 @@
-# San Marco Timbri, home finale: "L'impronta"
+# San Marco Timbri, home finale: "L'impronta" (giro del 2 novembre)
 
-Pagina: `sito/index.html` (si apre con file:///, nessuna risorsa esterna). Si rifà tutto con `bash _prova/script/build_finale.sh` (scontorno, immagini, pagina, caratteri, screenshot).
+Pagina: `sito/index.html` (si apre con file:///, nessuna risorsa esterna). Si rifà tutto con `bash _prova/script/build_finale.sh` (scontorno del leone, immagini, pagina, caratteri, screenshot).
 
 ## L'idea
 
-Un timbro con la testa in ottone appena sollevato dalla carta, e accanto la sua impronta d'inchiostro, che scende dalla riga di base del titolo "Personalizziamo timbri e targhe": il mestiere detto con un oggetto e il segno che lascia.
-L'impronta torna una volta sola come gesto: chi visita scrive il suo testo e vede il suo timbro stampato, poi lo chiede per email così com'è.
-Il resto della pagina è carta chiara e ordinata: i timbri, le dieci lavorazioni in un indice, come si lavora, la chiusura con la foto e il piede.
+La prima schermata è composta come un timbro tondo: una riga di testo sopra, il segno al centro, una riga sotto, tutto su un asse solo. Sopra c'è "Personalizziamo", al centro il loro leone traforato in ottone cromato, sotto "timbri e targhe". Il fondo è il blu dell'inchiostro da timbri, il colore che il loro lavoro lascia sulla carta; il resto della pagina è carta bianca da ufficio con il testo nello stesso blu.
+L'impronta torna come gesto: chi visita scrive il suo testo, lo vede stampato in blu sulla carta e lo chiede per email così com'è.
+Il piede torna sul blu, così la pagina si apre e si chiude come un foglio timbrato.
 
-Rispetto al prototipo A (giudizio del 24/10): niente più ceralacca né monogrammi altrui in apertura, il titolo sta sulla carta e non sopra una foto a tutta larghezza (gesto di Tek.Lam e Bazzato), l'oggetto è scontornato e a filo del bordo destro. Innestati da B: l'indice delle dieci lavorazioni, i tre passi a filetti, le righe dei recapiti a due colonne e la struttura del piede. Non presi da B: selettore dei materiali, Bodoni, blu notte, porta inglese.
+## Cosa è cambiato rispetto alla versione giudicata
+
+Rispetto al giudizio cieco (`_prova/cieco.json`, 53/80) e alla richiesta del committente del 2 novembre ("più alta gamma, meno uguali tra loro"):
+- **Apertura rifatta nell'impianto, non solo nell'oggetto.** Prima: carta beige, titolo a sinistra, timbro di repertorio scontornato a destra, impronta disegnata, "Foto indicativa" (lo schema di Hambro e Agnoletto). Ora: fondo blu inchiostro a tutta larghezza, asse centrale, titolo spezzato sopra e sotto il leone come la scritta di un timbro tondo, nessuna legenda e nessun "Foto indicativa". Confrontata con le prime schermate di Hambro, Agnoletto e della zona di Grisignano (`_invio/zona/home/copertine-est-grisignano.jpg`): nessuna ha un fondo di colore pieno con un oggetto centrato e il titolo diviso sopra e sotto.
+- **L'oggetto è loro**: il leone traforato in ottone cromato della libreria media del sito (il leone lega nome, marchio e mestiere), scontornato dal cartone con `fin_leone.py` (maschera ristretta dentro il bordo, sfumatura di 1 px, il giallo del cartone tolto dal contorno), cromo reso neutro, ombra corta sul blu. Provato a deviceScaleFactor 2: nessun alone chiaro lungo il contorno.
+- **Nessuna foto di repertorio in pagina**: via il sigillo di Pauline Raw e le presse di Dana Sredojevic. Tutte e tre le foto sono loro.
+- **Colore di fondo dal mestiere**: blu inchiostro #26389C (apertura, piede, impronta) e carta bianca #FAFAF7 al posto del beige #F5F2EC.
+- **Testata**: la sola scritta "sanmarcotimbri" in bianco, al centro sull'asse, a 30 px (il leone a tratto, illeggibile a quella misura, resta nel piede). Sotto i 1100 px il menu passa a un bottone vero.
+- **Timbri e impronta**: le tre famiglie in tre colonne senza filetti, sopra; sotto due colonne, anteprima larga sette colonne su dodici (circa 690 px a 1440, 480 a 1024) e modulo a destra. Tolto `maxlength`: le righe lunghe si stringono nell'impronta e nell'email arriva il testo intero (provato con "Studio Notarile Bianchi Rossi & Associati S.r.l.").
+- **Dieci lavorazioni**: indice senza numeri 01-10, nome e riga vera sulla stessa linea, accanto una sola foto loro alta quanto l'indice, a filo del bordo destro. È l'unico blocco a filetti della pagina (erano 26 filetti, ora 17 compresi quelli del piede).
+- **Come lavoriamo**: niente più fascia di repertorio né passi numerati 1-3; titolo e due frasi loro (macchine, file, RAL o PANTONE, campionatura).
+- **Chiusura**: frase loro "Su qualsiasi materiale, a fresa o a laser" (dalla riga "INCISIONI su qualsiasi materiale sia a fresa che laser", che ora compare solo qui; nell'indice Incisioni dice "A fresa e a laser"). Niente più tabella etichetta e valore: telefono grande, poi WhatsApp, email, indirizzo con la mappa e la zona in righe di testo semplici. La targa in corten è mostrata al massimo alla sua misura vera (624 px, prima 660 px ingranditi a 708), taglio senza il cielo bianco ai lati, foto a filo del bordo sinistro e testo a destra.
+- **Piede**: newsletter in una fascia orizzontale sotto le colonne; Lavorazioni in due sottocolonne sotto un solo titolo; scarto tra le basi delle colonne sotto gli 80 px.
+- Tolto il `<link rel=preload>` del carattere (errori CORS aperto da file://; `font-display:swap` basta).
 
 ## Le prime due schermate
 
-- **1440 x 900.** Testata chiara: logo vero (scritta e leone), quattro voci, telefono in rosso timbro. A sinistra, sulla carta, il titolo a 116 px in Encode Sans largo (125 %, peso 340) su due righe; sotto, tre righe su cosa fanno, il bottone "Prova la tua impronta" e l'email. A destra il timbro scontornato, alto circa 550 px, con la testa d'ottone verso il titolo e il manico che esce dal bordo destro della pagina; tra i due l'impronta tonda "San Marco Timbri, 35129 Padova", che tocca la discendente della "g" di "targhe". Sotto la testa la didascalia "Foto indicativa".
-- **Seconda schermata a 1440.** "Timbri in gomma e in metallo" con le tre famiglie in tre righe a filetti (gomma, metallo, ceralacca); accanto, subito, l'impronta interattiva (rettangolare all'inizio, così non ripete quella dell'apertura) e il modulo.
-- **390 x 844.** Nell'ordine: il timbro in alto a filo del bordo destro con l'impronta in basso a sinistra, il titolo su due righe a 45 px che appoggia sull'impronta, la frase, il bottone a tutta larghezza, l'email. Testata con logo, telefono e un vero bottone "Menu".
-- Altezza: 5531 px a 1440 (piede compreso), 6865 a 390, 5019 a 1024, 7591 a 768, 7078 a 320, 5880 a 1920. Nessuno scorrimento orizzontale a nessuna larghezza.
+- **1440 x 900.** Fondo blu fino a 890 px. Testata: quattro voci a sinistra, la scritta al centro, il telefono a destra, tutto in bianco. "Personalizziamo" a 103 px (Encode Sans largo 118 %, peso 330), il leone largo circa 610 px, "timbri e targhe" sotto; una riga ("Timbri in gomma e in metallo, targhe, insegne e segnaletica. Un laboratorio artigiano a Padova."), il bottone bianco "Prova la tua impronta" e l'email. In basso a destra, sul margine, la didascalia sobria "Leone traforato in ottone cromato".
+- **Seconda schermata a 1440.** "Timbri in gomma e in metallo", le tre famiglie, l'impronta interattiva in blu e il modulo.
+- **390 x 844.** Stesso asse: testata con scritta, telefono e "Menu"; "Personalizziamo" a 45 px, il leone quasi a tutta larghezza, "timbri e targhe", la frase, il bottone a tutta larghezza, l'email, la didascalia. Tutta l'apertura sta nella prima schermata.
+- Altezze: 5024 px a 1440 (piede compreso), 6384 a 390, 6496 a 320, 6699 a 768, 4630 a 1024, 5114 a 1920.
 
 ## Sezioni
 
 1. Apertura (sopra).
 2. Timbri in gomma e in metallo, con "Prova la tua impronta".
-3. "Dieci lavorazioni, dal timbro all'insegna": titolo e frase (privati, aziende e strutture pubbliche; i timbri in metallo li chiedono soprattutto amministrazioni pubbliche, notai e avvocati, come dice la loro scheda), una foto loro a mezza larghezza fino al bordo (lettere in ottone brunito), poi l'indice 01-10 in due colonne a filetti sottili con le righe vere del loro elenco.
-4. "I file li prepariamo noi": fascia bassa (480 px a 1440) con due presse per la stampa a caldo, dichiarata "Foto indicativa"; sotto, la frase sulle macchine e tre passi a filetti (File e loghi; Colori RAL o PANTONE; Prova e campionatura).
-5. Chiusura "b con foto": "Per privati, aziende e strutture pubbliche" (frase loro), il telefono 049 776126 grande in rosso con tel:, poi quattro righe etichetta e valore (Cellulare e WhatsApp con wa.me, Email con mailto, Laboratorio con il link alla mappa, Zona); a destra fino al bordo la targa in corten (foto loro, l'unica in opera). Niente orari: non sono pubblicati.
-6. Piede (sotto).
+3. "Dieci lavorazioni, dal timbro all'insegna": privati, aziende e strutture pubbliche; i timbri in metallo li chiedono soprattutto amministrazioni pubbliche, notai e avvocati (come dice la loro scheda); l'indice; le lettere in ottone brunito.
+4. "I file li prepariamo noi".
+5. Chiusura "b con foto" (foto a sinistra a filo del bordo, testo a destra). Niente orari: non sono pubblicati.
+6. Piede.
 
 ## Caratteri e colori
 
-- **Encode Sans** (Impallari Type, Andres Torresi, Jacques Le Bailly; Google Fonts), una sola famiglia, file variabile con assi di peso e di larghezza, servito dalla pagina in `sito/fonts/`. Licenza **SIL Open Font License 1.1** (uso commerciale libero), testo in `sito/fonts/OFL.txt`. Titolo d'apertura largo 125 % peso 340; titoli di sezione 112 % peso 420; voci dell'indice 108 % peso 420 a 32 px; testo 100 % peso 400; cifre tabellari su telefoni, numeri dell'indice e P.IVA.
-- Perché: la scritta larga e calma è quella delle targhe incise e dei timbri da ufficio; la larghezza variabile dà al titolo il passo della targa e al testo una lettura normale con una famiglia sola. Il registro chiaro, con un oggetto solo sulla carta, viene da Artisaire (un sigillo solo su un invito chiaro) e da Graf von Faber-Castell (un oggetto grande, testata bianca, poche voci), senza il loro corsivo d'accento. Encode Sans non è nelle liste b della guida e non è usato dalle 13 home amate.
-- Colori: carta #F5F2EC, piede #ECE6DB, inchiostro #1B1A17 (15,6:1), grigio dei testi secondari #5B574F (6,4:1 sulla carta, 5,8:1 sul piede), ottone #8A6A2C solo sui numeri dei passi e sul contorno di fuoco (4,5:1), rosso timbro #B8261D solo sui numeri di telefono (5,6:1). Filetti #D6CDBE.
+- **Encode Sans** (Impallari Type, Andres Torresi, Jacques Le Bailly; Google Fonts), una sola famiglia, file variabile con assi di peso e di larghezza, servito dalla pagina in `sito/fonts/`. Licenza **SIL Open Font License 1.1** (uso commerciale libero), testo in `sito/fonts/OFL.txt`. Titolo d'apertura largo 118 % peso 330; titoli di sezione 112 % peso 420; voci dell'indice 110 % a 27 px; testo 100 % peso 400; cifre tabellari su telefoni e P.IVA.
+- Perché: la scritta larga e calma è quella delle targhe incise e dei timbri da ufficio; la larghezza variabile dà al titolo il passo della targa e al testo una lettura normale con una famiglia sola. Encode Sans non è nelle liste b della guida.
+- Colori: blu inchiostro #26389C (fondo di apertura e piede; bianco sopra 9,9:1, testi secondari #D2D7F0 6,9:1), carta #FAFAF7, testo #1C2A78 (12,2:1), grigio blu dei testi secondari #4F5674 (6,9:1), impronta #3443B0 (7,8:1), filetti #D5D8E3. Nessun rosso, nessun ottone di comodo: un timbro ha due colori, l'inchiostro e la carta.
 
 ## Interazione
 
-Un solo gesto, "Prova la tua impronta", dentro la sezione dei timbri. Tre righe di testo e la scelta tra timbro rettangolare e tondo: l'impronta si ridisegna subito in SVG con la grana dell'inchiostro e una leggera inclinazione, senza animazioni; i testi lunghi si stringono per stare nel timbro. Il bottone "Chiedi questo timbro" apre un'email a info@sanmarcotimbri.it con forma e testo già scritti (provato: `node _prova/script/fin_gesto.mjs file://.../sito/index.html <uscita.jpg>`). Tastiera: Tab sui campi, frecce sulla forma, fuoco visibile in ottone; dito: campi e bottoni alti 44-48 px. Le uniche transizioni (120 ms) sono il colore dei bottoni toccati. Niente che compare allo scorrimento, niente che segue il cursore.
+Un solo gesto, "Prova la tua impronta", dentro la sezione dei timbri. Tre righe di testo e la scelta tra rettangolare e tondo: l'impronta si ridisegna subito in SVG con la grana dell'inchiostro blu e una leggera inclinazione, senza animazioni; i testi lunghi si stringono per stare nel timbro. "Chiedi questo timbro" apre un'email a info@sanmarcotimbri.it con forma e testo intero già scritti.
+Provato con `node _prova/script/fin_gesto.mjs <url> <uscita.jpg>`:
+- tastiera a 1440: Tab dalla testata ai campi nell'ordine giusto, freccia destra sulla forma passa a "Tondo", fuoco visibile;
+- dito a 390: tocco su "Tondo", tocco su "Menu" (si apre, aria-expanded true), Esc lo chiude;
+- bersagli alti 44-48 px.
+Le uniche transizioni (120 ms) sono il colore dei bottoni toccati. Niente che compare allo scorrimento, niente che segue il cursore.
 
 ## Foto, origine e licenza
 
-Trattamento comune con PIL: saturazione al 86-92 %, un filo di contrasto, nitidezza leggera all'uscita; più larghezze con srcset; l'oggetto d'apertura in WebP con trasparenza e un'ombra morbida sulla carta.
+Trattamento comune con PIL: saturazione al 90-92 % sulle foto, cromo del leone quasi neutro (18 %), un filo di contrasto, nitidezza leggera all'uscita; più larghezze con srcset.
 
 | Dove | Foto | Origine | Licenza |
 |---|---|---|---|
-| Apertura | timbro con testa in ottone e manico in legno, scontornato | Pauline Raw, https://www.pexels.com/photo/a-wooden-stamp-on-a-white-surface-10559993/ (originale 3709x5564; dei quattro sigilli ho tenuto quello in alto, visto di lato) | Pexels License |
-| Apertura | impronta tonda | disegnata in SVG nella pagina, stesso motore del gesto | |
+| Apertura | leone traforato in ottone cromato, scontornato | sito sanmarcotimbri.it, libreria media (`traforato-in-ottone-cromato.jpg`, 1000x750) | dell'azienda, da confermare |
 | Dieci lavorazioni | lettere ritagliate a rilievo in ottone brunito | sito sanmarcotimbri.it, libreria media | dell'azienda, da confermare |
-| Come lavoriamo | due presse per la stampa a caldo sul banco | Dana Sredojevic, https://www.pexels.com/photo/hot-stamping-machines-on-a-table-12884573/ | Pexels License |
 | Chiusura | targa direzionale in acciaio corten su pilastro | sito sanmarcotimbri.it, libreria media | dell'azienda, da confermare |
-| Testata e piede | logo orizzontale e verticale, bianco reso trasparente | sito sanmarcotimbri.it | dell'azienda |
+| Testata e piede | scritta e logo verticale, bianco reso trasparente e ricolorato in bianco | sito sanmarcotimbri.it | dell'azienda |
 
-Nessuna foto generata dall'IA, nessuna già usata in un'altra home della campagna (controllo sui `CREDITI.md`), nessun marchio concorrente in primo piano. La foto della chiusura non compare altrove nella pagina.
+Nessuna foto generata dall'IA, nessuna di repertorio, nessun marchio concorrente in primo piano. Il leone viene da uno scatto di 1000 px (il leone è largo circa 830 px nell'originale): a 1440 è mostrato largo circa 610 px, quindi a 1x è nitido, mentre su uno schermo 2x è ingrandito di circa 1,5 volte, morbido ma pulito; va rifatto in studio (LEGGIMI).
 
 ## Piede
 
-Logo verticale vero (PNG originale 256x200 reso trasparente, in WebP senza perdite, mostrato a 128 px, quindi 2x; il leone non si ricostruisce in SVG senza l'originale vettoriale), una riga su chi sono e, sotto, la newsletter "Novità e promozioni" (campo a filetto, bottone, consenso privacy). A destra le colonne Lavorazioni (dieci voci su due sottocolonne), Idee regalo, Azienda (Chi siamo, Come lavoriamo, Promozioni e novità, Contatti) e Contatti (telefono e fax, WhatsApp, email, indirizzo con mappa). In fondo: "San Marco Timbri di Tosato Andrea, via G. A. Longhin 91, 35129 Padova, P.IVA 04289090286", Privacy, Cookie. Niente REA né capitale (impresa individuale), niente "Seguici" (nessun profilo verificato). A 390 le colonne si impilano: logo, Lavorazioni, Idee regalo, Azienda, Contatti, newsletter, riga legale.
-La newsletter ha senso per la linea regalo (lauree, matrimoni, Natale) e per la pagina "Promozioni & News" che esiste già: il modulo controlla email e consenso ma non invia nulla finché non si collega a un servizio (LEGGIMI).
+Logo verticale vero (PNG originale 256x200, bianco reso trasparente, in bianco sul blu, mostrato a 120 px, quindi 2x; il leone non si ricostruisce in SVG senza l'originale vettoriale) e una riga su chi sono. Colonne: Lavorazioni (dieci voci in due sottocolonne), Idee regalo, Azienda (Chi siamo, Come lavoriamo, Promozioni e novità, Contatti), Contatti (telefono e fax, WhatsApp, email, indirizzo con mappa). Sotto, la fascia "Novità e promozioni" con campo, bottone e consenso; in fondo "San Marco Timbri di Tosato Andrea, via G. A. Longhin 91, 35129 Padova, P.IVA 04289090286", Privacy, Cookie. Niente REA né capitale (impresa individuale), niente "Seguici" (nessun profilo verificato). A 390 si impila: logo, Lavorazioni, Idee regalo e Azienda affiancate, Contatti, newsletter, riga legale.
+La newsletter ha senso per la linea regalo (lauree, matrimoni, Natale) e per la pagina "Promozioni & News" che esiste già: controlla email e consenso ma non invia nulla finché non si collega a un servizio (LEGGIMI).
 
-## Controlli
+## Controlli (2 novembre)
 
-- Screenshot guardati a pezzi a 1440, 390, 320, 768, 1024 e 1920: nessuna sovrapposizione involontaria (l'impronta tocca il titolo e la testa del timbro copre il bordo dell'impronta per scelta), nessuno scorrimento orizzontale.
-- Nessun carattere U+2014 nella pagina, in questa nota, nel LEGGIMI e negli script; nessun punto mediano come separatore; voi ovunque.
-- `segnali.sh` (`_prova/tmp-finale` cancellata, risultato riportato qui): famiglia unica Encode Sans, nessun carattere delle liste b, nessuna etichetta sopra i titoli, nessun titolo col punto, 3 misure di H2, 2 fasce di fondo, 26 filetti, 0 frecce, nessun numero grande con etichetta, nessun divieto trovato.
+- Screenshot guardati a pezzi a 1440, 390, 320, 768, 1024 e 1920; dettaglio del leone a deviceScaleFactor 2.
+- scrollWidth uguale a innerWidth a 24 larghezze da 320 a 2560 (`_prova/script/fin_larghezze.mjs`).
+- Collegamenti: `tel:+39049776126`, `mailto:info@sanmarcotimbri.it`, `https://wa.me/393761673361`, Google Maps su "Via Giacinto Andrea Longhin 91 35129 Padova"; nessuna ancora interna rotta.
+- Nessun carattere U+2014 nella pagina, in questa nota, nel LEGGIMI e negli script; voi ovunque.
+- `segnali.sh` (cartella di uscita cancellata dopo la lettura):
+  - OK: nessun carattere delle liste b, 0 etichette sopra i titoli, 0 titoli col punto, 3 fasce di fondo, 1 sola sezione titolo a sinistra e testo a destra, 17 filetti, 0 frecce, 0 numeri grandi con etichetta, 0 numerazioni, nessuna tabella, nessun divieto trovato, famiglia unica, nessun titolo nero.
   - "Monospazio 100 %": falso positivo, lo strumento legge "code" dentro il nome "Encode Sans"; in pagina non c'è nessun monospazio.
-  - "Area foto 24,6 %" (soglia 35 %): voluto. La pagina segue la ricetta del committente (carta chiara, un oggetto scontornato, aria); le foto ci sono in ogni sezione, ma le loro sono da 1000 px e non reggono di più. Con la giornata di still life (LEGGIMI) si possono allargare.
-  - Numerazioni: 01-10 è l'indice delle dieci lavorazioni annunciate dal titolo; 1-3 sono i passi di una procedura vera.
-  - Nessun contenuto con data o nome: l'anno di inizio e i lavori con cliente non sono pubblici (LEGGIMI).
-- Divieti del committente: nessun gradiente, nessuna emoji, niente Inter, niente card con bordo colorato, niente vetro, niente tre box con icona, niente badge, nessuna icona Lucide, niente dissolvenze allo scorrimento, niente effetti sul cursore, niente bottoni che sbiadiscono, niente serif corsivo.
+  - "Area foto 18,4 %" (soglia 35 %): voluto. Le foto loro sono da 1000 px e non reggono di più senza ingrandirle; la ricetta del committente chiede un solo oggetto con aria. Con la giornata di still life (LEGGIMI) si allargano.
+  - Misure di H2: 60 px nelle sezioni e 13 px nei titoletti del piede.
+  - Nessun contenuto con data o nome: anno di inizio e lavori con cliente non sono pubblici (LEGGIMI).
+- Divieti del committente: nessun gradiente, nessuna emoji, niente Inter, niente card con bordo colorato, niente vetro, niente tre box con icona, niente badge, nessuna icona Lucide, niente dissolvenze allo scorrimento, niente effetti sul cursore, niente bottoni che sbiadiscono, niente serif corsivo, niente legende numerate sull'oggetto.
