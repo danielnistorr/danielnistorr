@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L’Artificio Battagin, belle arti e cornici su misura a Padova</title>
+<meta name="description" content="Negozio di belle arti con laboratorio interno di cornici su misura e corsi Artinpratica, in via della Croce Rossa 5/a a Padova.">
+<style>
+@font-face{font-family:"Gambetta";src:url("fonts/gambetta-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url("fonts/switzer-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url("fonts/switzer-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  --carta:#F6F3EE;
+  --inchiostro:#1F1B17;
+  --grigio:#5E564D;
+  --verde:#17633A;
+  --verde-scuro:#0E4527;
+  --turchese:#CFE7E4;
+  --filo:rgba(31,27,23,.16);
+  /* unità della prima schermata: 1 px della tavola a 1440, che si ferma a 1600 */
+  --u:calc(min(100vw, 1600px) / 1440);
+  --m:20px;
+  --gap:24px;
+  --serif:"Gambetta",Georgia,serif;
+  --sans:"Switzer","Helvetica Neue",Arial,sans-serif;
+}
+@media (min-width:700px){:root{--m:calc((100vw - min(100vw, 1600px)) / 2 + var(--u) * 80)}}
+@media (min-width:700px) and (max-width:1099px){:root{--m:clamp(32px,5vw,56px)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font:400 18px/1.55 var(--sans);font-feature-settings:"kern";overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.015em}
+p{margin:0}
+.wrap{padding-left:var(--m);padding-right:var(--m)}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salta{position:absolute;left:8px;top:-60px;z-index:20;background:var(--inchiostro);color:#fff;padding:10px 14px;text-decoration:none}
+.salta:focus{top:8px}
+.num{font-variant-numeric:tabular-nums}
+.link{color:var(--verde);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+.link:hover{color:var(--verde-scuro);text-decoration-thickness:2px}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio);margin-top:12px}
+.h2{font-size:clamp(34px,3.6vw,54px);line-height:1.05;letter-spacing:-.02em}
+
+/* ------------------------------------------------ testata */
+.testata{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:40px;padding:26px var(--m) 0}
+.testata .logo img{width:120px;height:auto}
+.menu{display:flex;gap:30px;margin:0 0 0 auto;list-style:none;padding:0}
+.menu a{text-decoration:none;font-size:16px;font-weight:500}
+.menu a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:.3em}
+.testata .tel{font-weight:500;font-size:16px;text-decoration:none;white-space:nowrap}
+.testata .tel:hover{color:var(--verde)}
+.apri-menu{display:none}
+
+/* ------------------------------------------------ prima schermata */
+.apertura{position:relative}
+.muro{position:relative}
+.muro picture,.muro .fondo{display:block;width:100%;height:100%}
+.muro .fondo{object-fit:cover}
+.vestito{position:absolute;left:var(--vl);top:var(--vt);width:var(--vw);aspect-ratio:1}
+.vestito img{width:100%;height:100%}
+.vestito img[hidden]{display:none}
+.profili{border:0;margin:0;padding:0;min-width:0}
+.profili legend{padding:0;font-size:14px;font-weight:500;color:var(--grigio);float:left;width:100%;margin-bottom:12px}
+.campioni{clear:both;display:flex;gap:16px}
+.campione{appearance:none;border:0;padding:0;background:none;cursor:pointer;width:64px;height:64px;position:relative;outline-offset:4px;flex:none}
+.campione img{width:100%;height:100%;pointer-events:none}
+.campione::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;background:transparent}
+.campione:hover::after{background:rgba(31,27,23,.28)}
+.campione[aria-checked="true"]::after{background:var(--verde)}
+.profilo-nome{font-size:15px;line-height:1.45;max-width:30em;min-height:2.9em}
+.profilo-nome b{font-weight:500}
+.apertura h1{font-size:clamp(44px,calc(var(--u) * 104),116px);line-height:.98;letter-spacing:-.025em;font-weight:400;text-wrap:balance}
+.sotto{font-size:clamp(17px,calc(var(--u) * 20),22px);line-height:1.5;max-width:31em}
+.sotto a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.sotto a:hover{color:var(--verde)}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px}
+.bottone{display:inline-flex;align-items:center;height:54px;background:var(--verde);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:0 24px;font-variant-numeric:tabular-nums}
+.bottone:hover{background:var(--verde-scuro)}
+
+/* tavola da 1440 (si ferma a 1600): tutto in unità --u, cornice con l'angolo in (800,168), larga 480 */
+@media (min-width:1100px){
+  .apertura{width:calc(var(--u) * 1440);height:calc(var(--u) * 900);margin:0 auto}
+  .muro{position:absolute;inset:0}
+  .muro{--vl:52.556%;--vt:13.867%;--vw:39.333%}
+  .muro::after{content:"";position:absolute;top:0;bottom:0;right:0;width:8%;background:linear-gradient(90deg,rgba(246,243,238,0),var(--carta));pointer-events:none}
+  .apertura-testo{position:absolute;left:calc(var(--u) * 80);top:calc(var(--u) * 157);bottom:calc(var(--u) * 136);width:calc(var(--u) * 690);display:flex;flex-direction:column}
+  .sotto{margin-top:calc(var(--u) * 40)}
+  .azioni{margin-top:auto;padding-top:24px}
+  .comando{position:absolute;left:calc(var(--u) * 800);top:calc(var(--u) * 668);width:calc(var(--u) * 560)}
+  .profilo-nome{margin-top:22px}
+}
+</style>
+<style>
+/* tablet: due colonne in flusso */
+@media (min-width:700px) and (max-width:1099px){
+  .apertura{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(24px,4vw,48px);padding:128px var(--m) 0;align-items:stretch}
+  .apertura>*{min-width:0}
+  .apertura-testo{grid-column:1;grid-row:1;display:flex;flex-direction:column}
+  .apertura h1{font-size:clamp(44px,6.4vw,66px)}
+  .sotto{margin-top:28px;font-size:17px}
+  .azioni{margin-top:auto;padding-top:28px}
+  .muro{grid-column:2;grid-row:1;align-self:start;width:100%;aspect-ratio:390/360;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .comando{grid-column:2;grid-row:2;padding-left:7%;margin-top:-20px}
+  .campioni{gap:0;justify-content:space-between;max-width:360px}
+  .campione{width:min(56px,calc((100% - 40px) / 5));height:auto;aspect-ratio:1}
+  .profilo-nome{margin-top:20px}
+  .muro{--vl:11.877%;--vt:7.589%;--vw:76.246%}
+}
+/* telefono: in colonna */
+@media (max-width:699px){
+  .testata{position:relative;padding:16px var(--m) 4px;gap:14px}
+  .testata .logo img{width:88px}
+  .apri-menu{display:inline-flex;align-items:center;gap:8px;margin-left:auto;font:inherit;font-size:16px;font-weight:500;background:none;border:0;padding:12px 0;min-height:44px;color:var(--inchiostro);cursor:pointer}
+  .apri-menu .barre{width:18px;height:10px;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
+  .testata .tel{display:inline-flex;align-items:center;min-height:44px}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--carta);padding:4px var(--m) 20px;border-bottom:1px solid var(--filo);z-index:6}
+  .menu.aperto{display:flex}
+  .menu a{display:block;padding:11px 0;font-size:22px;font-family:var(--serif);font-weight:400}
+  .apertura{display:flex;flex-direction:column}
+  .apertura-testo{display:contents}
+  .apertura h1{order:1;font-size:clamp(36px,11vw,52px);line-height:1.02;padding:14px var(--m) 0}
+  .muro{order:2;width:100%;aspect-ratio:390/360;margin-top:2px}
+  .muro{--vl:11.877%;--vt:7.589%;--vw:76.246%}
+  .comando{order:3;padding:0 var(--m)}
+  .campioni{gap:0;justify-content:space-between;max-width:400px}
+  .campione{width:min(64px,calc((100vw - 2 * var(--m) - 32px) / 5));height:auto;aspect-ratio:1}
+  .profilo-nome{margin-top:22px}
+  .sotto{order:4;padding:0 var(--m);margin-top:22px;font-size:17px}
+  .azioni{order:5;padding:0 var(--m);margin-top:26px}
+}
+
+/* ------------------------------------------------ Matteo */
+section{position:relative}
+.lab{display:grid;grid-template-columns:57% 1fr;gap:0 clamp(32px,5vw,80px);align-items:center;padding-top:clamp(32px,4vw,56px)}
+.lab figure{margin:0}
+.lab figcaption{padding-left:var(--m)}
+.lab .testo{padding-right:var(--m);max-width:640px}
+.lab .testo p{margin-top:22px;max-width:30em}
+.voci{margin:32px 0 0;padding:0}
+.voci div{padding:14px 0;border-top:1px solid var(--filo)}
+.voci dt{font-family:var(--serif);font-size:22px;line-height:1.2}
+.voci dd{margin:4px 0 0;color:var(--grigio);font-size:16px}
+.lab .link{display:inline-block;margin-top:24px}
+
+/* ------------------------------------------------ la parete degli angolari (unica fascia di colore) */
+.parete{background:var(--turchese);margin-top:clamp(40px,4vw,56px);padding-top:clamp(48px,4.4vw,64px)}
+.parete .intro{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:last baseline}
+.parete h2{grid-column:1/7}
+.parete .intro p{grid-column:7/13;max-width:32em}
+.parete figure{margin:clamp(32px,3.4vw,48px) 0 0}
+.parete figure img{width:100%}
+.parete figcaption{padding:12px var(--m) 24px;font-size:14px;color:#3B4644}
+
+/* ------------------------------------------------ la famiglia */
+.famiglia{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-top:clamp(72px,7.5vw,112px)}
+.famiglia .intro{grid-column:1/6}
+.famiglia .intro p{margin-top:20px;max-width:30em}
+.sedi{grid-column:7/13;list-style:none;margin:6px 0 0;padding:0}
+.sedi li{display:grid;grid-template-columns:44px 1fr;align-items:baseline;padding:0 0 22px}
+.sedi li:last-child{padding-bottom:0}
+.sedi .n{font-size:14px;font-weight:500;color:var(--grigio)}
+.sedi .via{display:block;font-family:var(--serif);font-size:30px;line-height:1.12;letter-spacing:-.01em}
+.sedi .q{display:block;font-size:15px;line-height:1.45;color:var(--grigio);margin-top:4px}
+.sedi li.oggi .via,.sedi li.oggi .n{color:var(--verde)}
+
+/* ------------------------------------------------ belle arti */
+.bellearti{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:var(--gap) clamp(40px,5.6vw,80px);align-items:center;padding-top:clamp(72px,7.5vw,112px)}
+.bellearti figure{margin:0}
+.bellearti figure img{width:100%}
+.bellearti .testo p{margin-top:18px;max-width:30em}
+.reparti{list-style:none;margin:32px 0 0;padding:0}
+.reparti li{display:grid;grid-template-columns:minmax(0,36%) 1fr;gap:0 20px;align-items:baseline;min-height:56px;padding:15px 0 13px;border-top:1px solid var(--filo)}
+.reparti li:last-child{border-bottom:1px solid var(--filo)}
+.reparti .r-nome{font-family:var(--serif);font-size:24px;line-height:1.15}
+.reparti .r-dett{color:var(--grigio);font-size:15px;line-height:1.45}
+.bellearti .vai{display:flex;flex-wrap:wrap;gap:10px 32px;margin-top:26px}
+
+/* ------------------------------------------------ Artinpratica */
+.corsi{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-top:clamp(72px,7.5vw,112px)}
+.corsi .testo{grid-column:1/6}
+.corsi .testo p{margin-top:18px;max-width:28em}
+.corsi .testo .link{display:inline-block;margin-top:22px}
+.date{grid-column:7/13;list-style:none;margin:0;padding:0;align-self:end}
+.date li{display:grid;grid-template-columns:88px 1fr auto;gap:2px 20px;align-items:baseline;padding:18px 0 17px;border-top:1px solid var(--filo)}
+.date li:last-child{border-bottom:1px solid var(--filo)}
+.date time{font-variant-numeric:tabular-nums;font-weight:500;font-size:16px}
+.date .t{font-family:var(--serif);font-size:23px;line-height:1.2}
+.date .d{grid-column:2;font-size:15px;color:var(--grigio)}
+.date .p{grid-column:3;grid-row:1;font-variant-numeric:tabular-nums;font-weight:500;font-size:16px;text-align:right;white-space:nowrap}
+
+/* ------------------------------------------------ chiusura: testo a sinistra, foto a destra fino al bordo */
+.chiusura{display:grid;grid-template-columns:1fr 42%;gap:clamp(32px,4.4vw,64px);margin-top:clamp(80px,8vw,120px)}
+.chiusura .testo{padding-left:var(--m);display:flex;flex-direction:column}
+.chiusura h2{font-size:clamp(38px,calc(var(--u) * 60),68px);line-height:1.04;letter-spacing:-.022em;max-width:12.4em;text-wrap:balance}
+.recapiti{margin-top:auto;padding-top:40px;font-style:normal}
+.recapiti .tel-grande{display:inline-block;font-family:var(--serif);font-size:clamp(34px,3.2vw,46px);line-height:1;text-decoration:none;font-variant-numeric:tabular-nums;color:var(--verde)}
+.recapiti .tel-grande:hover{color:var(--verde-scuro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+.recapiti p{margin-top:16px;font-size:17px;line-height:1.65}
+.recapiti a{text-underline-offset:.2em;text-decoration-thickness:1px}
+.recapiti a:hover{color:var(--verde)}
+.recapiti .grigio{color:var(--grigio)}
+.chiusura figure{margin:0}
+.chiusura figure img{width:100%;height:clamp(420px,39vw,620px);object-fit:cover;object-position:50% 45%}
+
+/* ------------------------------------------------ piede */
+.piede{margin-top:clamp(72px,7vw,104px);border-top:1px solid var(--filo);padding-top:52px;padding-bottom:28px;font-size:15px;line-height:1.55}
+.piede-alto{display:grid;grid-template-columns:repeat(12,1fr);gap:40px var(--gap);align-items:start}
+.piede-marchio{grid-column:1/6}
+.piede-marchio img{width:125px;height:auto}
+.piede-marchio p{margin-top:16px;max-width:24em;color:var(--grigio)}
+.newsletter{grid-column:7/13}
+.newsletter h2{font-family:var(--serif);font-size:26px;font-weight:400;letter-spacing:-.01em}
+.newsletter .nl-testo{color:var(--grigio);margin-top:6px;max-width:34em}
+.newsletter form{margin-top:16px}
+.nl-riga{display:flex;gap:10px}
+.nl-riga input{flex:1;min-width:0;font:inherit;font-size:16px;padding:0 14px;height:50px;border:1px solid rgba(31,27,23,.5);background:#FBFAF7;color:var(--inchiostro);border-radius:0}
+.nl-riga input::placeholder{color:#6E665D}
+.nl-riga button{font:inherit;font-weight:500;font-size:16px;background:var(--verde);color:#fff;border:0;padding:0 24px;height:50px;cursor:pointer;border-radius:0}
+.nl-riga button:hover{background:var(--verde-scuro)}
+.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;color:var(--grigio)}
+.consenso input{margin:3px 0 0;width:18px;height:18px;accent-color:var(--verde);flex:none}
+.nl-esito{font-size:14px;margin-top:6px;min-height:1.4em;color:var(--verde)}
+.colonne{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);gap:32px var(--gap);padding-top:36px;border-top:1px solid var(--filo)}
+.piede h3{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0;margin:0 0 12px;color:var(--inchiostro)}
+.piede ul{list-style:none;margin:0;padding:0}
+.piede li{margin:0 0 7px}
+.colonne a{text-decoration:none;color:var(--grigio);font-size:15px}
+.colonne a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:.2em}
+.legale{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:40px;padding-top:18px;border-top:1px solid var(--filo);font-size:13px;color:var(--grigio)}
+.legale nav{display:flex;flex-wrap:wrap;gap:6px 20px;margin-left:auto}
+.legale a{text-decoration:none}
+.legale a:hover{color:var(--verde);text-decoration:underline}
+
+/* ------------------------------------------------ menu su tablet */
+@media (min-width:700px) and (max-width:1099px){
+  .menu{gap:20px}
+  .testata{gap:24px}
+  .menu a,.testata .tel{font-size:15px}
+}
+@media (min-width:700px) and (max-width:900px){
+  .menu li:nth-child(4){display:none}
+}
+
+/* ------------------------------------------------ sezioni su tablet e telefono */
+@media (max-width:1099px){
+  .famiglia .intro{grid-column:1/7}
+  .sedi .via{font-size:26px}
+  .bellearti{grid-template-columns:minmax(0,40%) 1fr}
+  .reparti .r-nome{font-size:21px}
+}
+@media (max-width:899px){
+  .lab{grid-template-columns:1fr;padding-top:56px}
+  .lab .testo{padding:28px var(--m) 0;max-width:none}
+  .lab figcaption{padding-right:var(--m)}
+  .parete .intro{grid-template-columns:1fr;gap:16px}
+  .parete h2,.parete .intro p{grid-column:auto}
+  .parete figure img{aspect-ratio:3/2;object-fit:cover}
+  .famiglia{grid-template-columns:1fr}
+  .famiglia .intro,.sedi{grid-column:auto}
+  .sedi{margin-top:32px}
+  .sedi li{grid-template-columns:32px 1fr;padding-bottom:18px}
+  .sedi .via{font-size:24px}
+  .bellearti{grid-template-columns:1fr;padding-top:72px}
+  .bellearti figure{max-width:440px}
+  .corsi{grid-template-columns:1fr}
+  .corsi .testo,.date{grid-column:auto}
+  .date{margin-top:24px}
+  .chiusura{grid-template-columns:1fr;gap:36px}
+  .chiusura .testo{padding-right:var(--m)}
+  .recapiti{padding-top:28px}
+  .chiusura figure img{height:auto;aspect-ratio:4/3}
+  .piede-alto{grid-template-columns:1fr;gap:36px}
+  .piede-marchio,.newsletter,.colonne{grid-column:auto}
+  .colonne{grid-template-columns:1fr 1fr}
+  .legale nav{margin-left:0}
+}
+@media (max-width:699px){
+  .date li{grid-template-columns:64px 1fr auto;gap:2px 12px}
+  .date .t{font-size:21px}
+  .reparti li{grid-template-columns:1fr;gap:2px;padding:14px 0 12px}
+  .reparti .r-nome{font-size:22px}
+}
+@media (max-width:420px){
+  .nl-riga{flex-direction:column}
+  .nl-riga input{flex:none;width:100%}
+  .nl-riga button{width:100%}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <a class="logo" href="/" aria-label="L’Artificio Battagin, pagina iniziale"><img src="img/logo-artificio-battagin.png" width="250" height="117" alt="L’Artificio Battagin"></a>
+  <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu"><span class="barre" aria-hidden="true"></span>Menu</button>
+  <ul class="menu" id="menu">
+    <li><a href="/il-negozio/">Il negozio</a></li>
+    <li><a href="/belle-arti/">Belle arti</a></li>
+    <li><a href="/cornici/">Cornici</a></li>
+    <li><a href="/workshop/">Artinpratica</a></li>
+    <li><a href="/shoponline/">Shop online</a></li>
+  </ul>
+  <a class="tel num" href="tel:+390497811043">049 7811043</a>
+</header>
+
+<main id="contenuto">
+<section class="apertura" aria-labelledby="titolo">
+  <div class="muro">
+    <picture>
+      <source media="(max-width: 1099px)" srcset="img/muro-m-390.jpg 390w, img/muro-m-780.jpg 780w, img/muro-m-1170.jpg 1170w" sizes="(max-width: 699px) 100vw, 50vw">
+      <img class="fondo" src="img/muro-d-1440.jpg" srcset="img/muro-d-1440.jpg 1440w, img/muro-d-2160.jpg 2160w, img/muro-d-2880.jpg 2880w" sizes="min(100vw, 1600px)" width="1440" height="900" alt="">
+    </picture>
+    <div class="vestito">
+      <img src="img/cornice-rosso-480.webp" srcset="img/cornice-rosso-480.webp 566w, img/cornice-rosso-720.webp 850w, img/cornice-rosso-960.webp 1132w" sizes="(max-width: 699px) 76vw, (max-width: 1099px) 38vw, min(39.4vw, 630px)" width="566" height="566" data-p="rosso" alt="Una cornice rossa e oro appesa a un muro chiaro, nella luce di una finestra">
+      <img src="img/cornice-oro-480.webp" srcset="img/cornice-oro-480.webp 566w, img/cornice-oro-720.webp 850w, img/cornice-oro-960.webp 1132w" sizes="(max-width: 699px) 76vw, (max-width: 1099px) 38vw, min(39.4vw, 630px)" width="566" height="566" data-p="oro" alt="Una cornice barocca dorata appesa a un muro chiaro" hidden>
+      <img src="img/cornice-argento-480.webp" srcset="img/cornice-argento-480.webp 566w, img/cornice-argento-720.webp 850w, img/cornice-argento-960.webp 1132w" sizes="(max-width: 699px) 76vw, (max-width: 1099px) 38vw, min(39.4vw, 630px)" width="566" height="566" data-p="argento" alt="Una cornice barocca argentata appesa a un muro chiaro" hidden>
+      <img src="img/cornice-nero-480.webp" srcset="img/cornice-nero-480.webp 566w, img/cornice-nero-720.webp 850w, img/cornice-nero-960.webp 1132w" sizes="(max-width: 699px) 76vw, (max-width: 1099px) 38vw, min(39.4vw, 630px)" width="566" height="566" data-p="nero" alt="Una cornice nera intagliata con passepartout chiaro, appesa a un muro chiaro" hidden>
+      <img src="img/cornice-blu-480.webp" srcset="img/cornice-blu-480.webp 566w, img/cornice-blu-720.webp 850w, img/cornice-blu-960.webp 1132w" sizes="(max-width: 699px) 76vw, (max-width: 1099px) 38vw, min(39.4vw, 630px)" width="566" height="566" data-p="blu" alt="Una cornice laccata blu appesa a un muro chiaro" hidden>
+    </div>
+  </div>
+  <div class="apertura-testo">
+    <h1 id="titolo">Ogni quadro ha bisogno del suo miglior vestito</h1>
+    <p class="sotto">Un negozio di belle arti per chi dipinge, disegna e incide, e un laboratorio dove tagliamo e assembliamo cornici su misura. In <a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">via della Croce Rossa 5/a, Padova</a>.</p>
+    <div class="azioni">
+      <a class="bottone" href="tel:+390497811043">Chiamate lo 049 7811043</a>
+      <a class="link" href="/shoponline/">Shop online</a>
+    </div>
+  </div>
+  <div class="comando">
+    <fieldset class="profili">
+      <legend>Prova il profilo sulla cornice</legend>
+      <div class="campioni" role="radiogroup" aria-label="Profilo della cornice">
+        <button class="campione" type="button" role="radio" aria-checked="true" tabindex="0" data-p="rosso" aria-label="Rosso e oro"><img src="img/campione-rosso.webp" width="144" height="144" alt=""></button>
+        <button class="campione" type="button" role="radio" aria-checked="false" tabindex="-1" data-p="oro" aria-label="Oro barocco"><img src="img/campione-oro.webp" width="144" height="144" alt=""></button>
+        <button class="campione" type="button" role="radio" aria-checked="false" tabindex="-1" data-p="argento" aria-label="Argento barocco"><img src="img/campione-argento.webp" width="144" height="144" alt=""></button>
+        <button class="campione" type="button" role="radio" aria-checked="false" tabindex="-1" data-p="nero" aria-label="Nero intagliato con passepartout"><img src="img/campione-nero.webp" width="144" height="144" alt=""></button>
+        <button class="campione" type="button" role="radio" aria-checked="false" tabindex="-1" data-p="blu" aria-label="Laccato blu"><img src="img/campione-blu.webp" width="144" height="144" alt=""></button>
+      </div>
+    </fieldset>
+    <p class="profilo-nome" aria-live="polite"><b>Rosso e oro.</b> È la cornice che Matteo tiene in mano, qui sotto.</p>
+  </div>
+</section>
+
+<section class="lab" id="cornici" aria-labelledby="t-lab">
+  <figure>
+    <img src="img/matteo-1080.jpg" srcset="img/matteo-720.jpg 720w, img/matteo-1080.jpg 1080w" sizes="(max-width: 899px) 100vw, 57vw" width="1080" height="868" loading="lazy" alt="Matteo Battagin regge una cornice rossa e oro davanti alla parete degli angolari">
+    <figcaption class="didascalia">Matteo Battagin con la cornice rossa e oro, davanti agli angolari campione.</figcaption>
+  </figure>
+  <div class="testo">
+    <h2 class="h2" id="t-lab">La corniceria, uno dei vanti dell’Artificio</h2>
+    <p>Se ne occupa Matteo Battagin, corniciaio da oltre vent’anni. Nel laboratorio interno taglia e assembla cornici in vari stili, dal più classico al più contemporaneo, e porta avanti la tradizione insegnata dal padre Antonio.</p>
+    <dl class="voci">
+      <div><dt>Struttura grossa</dt><dd>Semplici o barocche, in qualunque dimensione, anche per le specchiere.</dd></div>
+      <div><dt>Cornici sottili</dt><dd>Per stampe, grafiche d’autore e fotografie, compresa la Street Art.</dd></div>
+      <div><dt>Passepartout</dt><dd>Tagliato a 45° per un migliore effetto estetico.</dd></div>
+    </dl>
+    <a class="link" href="/cornici/">Le cornici su misura</a>
+  </div>
+</section>
+
+<section class="parete" aria-labelledby="t-parete">
+  <div class="intro wrap">
+    <h2 class="h2" id="t-parete">Gli angolari campione, appesi in negozio</h2>
+    <p>Ori, argenti, legni e colori, dal profilo più sottile alla struttura grossa. Portate il quadro e scegliete qui, angolo per angolo.</p>
+  </div>
+  <figure>
+    <img src="img/angolari-1440.jpg" srcset="img/angolari-1000.jpg 1000w, img/angolari-1440.jpg 1440w" sizes="100vw" width="1440" height="605" loading="lazy" alt="La parete degli angolari campione: spigoli di cornice a V in colonne, dorati, argentati, neri e colorati, su fondo turchese">
+    <figcaption>La parete degli angolari in via della Croce Rossa.</figcaption>
+  </figure>
+</section>
+
+<section class="famiglia wrap" id="negozio" aria-labelledby="t-fam">
+  <div class="intro">
+    <h2 class="h2" id="t-fam">Una famiglia amante dell’arte</h2>
+    <p>Correvano gli anni ’70 quando Antonio Battagin, con la moglie Gabriella Zoccarato, aprì in pieno centro la prima bottega. Oggi al timone ci sono i figli Alessia e Matteo. In mezzo, cinque indirizzi a Padova.</p>
+  </div>
+  <ol class="sedi">
+    <li><span class="n num">1</span><span><span class="via">Piazza De Gasperi</span><span class="q">Pitture murali e attrezzature per imbiancatura</span></span></li>
+    <li><span class="n num">2</span><span><span class="via">Via Marin</span><span class="q">A Città Giardino, dove arrivano le belle arti</span></span></li>
+    <li><span class="n num">3</span><span><span class="via">Via Cavalletto</span><span class="q">In seguito, Via Cavalletto</span></span></li>
+    <li><span class="n num">4</span><span><span class="via">Via Sarpi</span><span class="q">Negli anni ’90: laboratori creativi, corniceria e galleria</span></span></li>
+    <li class="oggi"><span class="n num">5</span><span><span class="via">Via della Croce Rossa</span><span class="q">Dal 2007, un luminoso open space con i reparti, il laboratorio di cornici e gli atelier</span></span></li>
+  </ol>
+</section>
+
+<section class="bellearti wrap" id="belle-arti" aria-labelledby="t-ba">
+  <figure>
+    <img src="img/cassetta-840.jpg" srcset="img/cassetta-560.jpg 560w, img/cassetta-840.jpg 840w, img/cassetta-1120.jpg 1120w" sizes="(max-width: 899px) min(440px, 90vw), 39vw" width="840" height="967" loading="lazy" alt="Cassetta-cavalletto in legno di faggio, aperta, con il leggio alzato e il marchio L’Artificio Battagin">
+    <figcaption class="didascalia">La cassetta-cavalletto in faggio con il marchio L’Artificio Battagin.</figcaption>
+  </figure>
+  <div class="testo">
+    <h2 class="h2" id="t-ba">Per i professionisti e gli amanti dell’arte</h2>
+    <p>I reparti di belle arti, con i consigli di uno staff di esperti. E lo shop online, con spedizioni in tutta Italia.</p>
+    <ul class="reparti">
+      <li><span class="r-nome">Colori</span><span class="r-dett">Winsor &amp; Newton, Lefranc Bourgeois, Liquitex, Maimeri</span></li>
+      <li><span class="r-nome">Carte</span><span class="r-dett">Fabriano, Magnani 1404, Arches, Canson</span></li>
+      <li><span class="r-nome">Pennelli</span><span class="r-dett">Borciani &amp; Bonazzi, Tintoretto, Da Vinci, SEM</span></li>
+      <li><span class="r-nome">Cavalletti</span><span class="r-dett">Mabef, in faggio, fatti in Italia</span></li>
+      <li><span class="r-nome">Incisione e cartoleria</span><span class="r-dett">Charbonnel, Tassotti, Caran d’Ache</span></li>
+    </ul>
+    <p class="vai"><a class="link" href="/shoponline/">Lo shop online</a><a class="link" href="/belle-arti/">Tutti i reparti</a></p>
+  </div>
+</section>
+
+<section class="corsi wrap" id="artinpratica" aria-labelledby="t-corsi">
+  <div class="testo">
+    <h2 class="h2" id="t-corsi">Artinpratica</h2>
+    <p>Laboratori creativi, workshop e corsi di aggiornamento, nell’angolo del negozio dedicato agli atelier artistici per adulti e bambini. Nel 2026, ventidue appuntamenti in calendario.</p>
+    <a class="link" href="/workshop/">Tutto il calendario</a>
+  </div>
+  <ul class="date" aria-label="I prossimi appuntamenti">
+    <li><time datetime="2026-11-13">13 nov</time><span class="t">Corso base di pittura a olio</span><span class="p">240 €</span><span class="d">con Cinzia Praticelli, 10 incontri il venerdì, dalle 17 alle 19</span></li>
+    <li><time datetime="2026-11-21">21 nov</time><span class="t">Workshop di manga “Personaggi in movimento”</span><span class="p">25 €</span><span class="d">con Virginia Nordio, sabato dalle 9.30 alle 12.30</span></li>
+    <li><time datetime="2026-11-28">28 nov</time><span class="t">Workshop avanzato di brush lettering</span><span class="p">25 €</span><span class="d">con Schizzi di Lucy, sabato dalle 15.30 alle 18.30</span></li>
+  </ul>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-chiusura">
+  <div class="testo">
+    <h2 id="t-chiusura">Da sempre luogo dove si danno appuntamento artisti e appassionati d’arte</h2>
+    <address class="recapiti">
+      <a class="tel-grande" href="tel:+390497811043">049 7811043</a>
+      <p>Cellulare <a class="num" href="tel:+393802308602">380 2308602</a><br>
+      <a href="mailto:negozio@artificiobattagin.it">negozio@artificiobattagin.it</a><br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">Via della Croce Rossa 5/a, 35129 Padova</a><br>
+      <span class="grigio">Ampio parcheggio privato.</span></p>
+    </address>
+  </div>
+  <figure>
+    <img src="img/cavalletti-1080.jpg" srcset="img/cavalletti-720.jpg 720w, img/cavalletti-1080.jpg 1080w, img/cavalletti-1440.jpg 1440w" sizes="(max-width: 899px) 100vw, 42vw" width="1080" height="896" loading="lazy" alt="Cavalletti in legno di faggio in fila nel reparto del negozio di via della Croce Rossa">
+  </figure>
+</section>
+</main>
+
+<footer class="piede wrap">
+  <div class="piede-alto">
+    <div class="piede-marchio">
+      <img src="img/logo-artificio-battagin.png" width="250" height="117" alt="L’Artificio Battagin" loading="lazy">
+      <p>Belle arti, cornici su misura e corsi a Padova. Una bottega di famiglia dagli anni ’70.</p>
+    </div>
+    <div class="newsletter">
+      <h2 id="t-nl">La newsletter</h2>
+      <p class="nl-testo">Il calendario dei corsi, le novità e le promozioni del negozio.</p>
+      <form id="nl" novalidate aria-labelledby="t-nl">
+        <label class="vh" for="nl-email">Indirizzo email</label>
+        <div class="nl-riga">
+          <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="La vostra email" required>
+          <button type="submit">Iscriviti</button>
+        </div>
+        <label class="consenso"><input type="checkbox" name="consenso" required> <span>Acconsento a ricevere comunicazioni via email a fini promozionali e commerciali. <a class="link" href="/privacy-policy/">Informativa privacy</a></span></label>
+        <p class="nl-esito" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="colonne">
+      <nav aria-labelledby="p-neg">
+        <h3 id="p-neg">Negozio</h3>
+        <ul>
+          <li><a href="/il-negozio/">Il negozio</a></li>
+          <li><a href="/belle-arti/">Belle arti</a></li>
+          <li><a href="/cornici/">Cornici su misura</a></li>
+          <li><a href="/shoponline/">Shop online</a></li>
+          <li><a href="/product-category/idee-regalo/gift-card/">Gift card</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p-art">
+        <h3 id="p-art">Artinpratica</h3>
+        <ul>
+          <li><a href="/workshop/">Workshop e corsi</a></li>
+          <li><a href="/news/">News</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Contatti</h3>
+        <ul>
+          <li><a class="num" href="tel:+390497811043">049 7811043</a></li>
+          <li><a class="num" href="tel:+393802308602">380 2308602</a></li>
+          <li><a href="mailto:negozio@artificiobattagin.it">negozio@artificiobattagin.it</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">Via della Croce Rossa 5/a, Padova</a></li>
+        </ul>
+      </div>
+      <nav aria-labelledby="p-seg">
+        <h3 id="p-seg">Seguici</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/lartificiobattagin/" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/artificiobattagin/" rel="noopener">Facebook</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="legale">
+    <span>A.B. s.r.l., via della Croce Rossa 5/a, 35129 Padova</span>
+    <span class="num">P.IVA 04191710286</span>
+    <span class="num">REA PD 369492</span>
+    <nav aria-label="Note legali">
+      <a href="/condizioni-di-vendita/">Condizioni di vendita</a>
+      <a href="/resi-e-rimborsi/">Resi e rimborsi</a>
+      <a href="/spedizioni-e-pagamenti/">Spedizioni e pagamenti</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/cookie-policy/">Cookie</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var testi={
+    rosso:'<b>Rosso e oro.</b> È la cornice che Matteo tiene in mano, qui sotto.',
+    oro:'<b>Oro barocco.</b> Struttura grossa, in qualunque dimensione, anche per le specchiere.',
+    argento:'<b>Argento barocco.</b> Semplice o barocca, adatta anche a valorizzare una specchiera.',
+    nero:'<b>Nero intagliato, con passepartout.</b> Il passepartout lo tagliamo a 45°, per un migliore effetto estetico.',
+    blu:'<b>Laccato blu.</b> Dal più classico al più contemporaneo: i colori sono sulla parete degli angolari.'
+  };
+  var cornici=[].slice.call(document.querySelectorAll('.vestito img'));
+  var nome=document.querySelector('.profilo-nome');
+  var bottoni=[].slice.call(document.querySelectorAll('.campione'));
+  function scegli(b,focus){
+    var p=b.getAttribute('data-p');
+    bottoni.forEach(function(x){var on=x===b;x.setAttribute('aria-checked',on?'true':'false');x.tabIndex=on?0:-1;});
+    cornici.forEach(function(c){c.hidden=c.getAttribute('data-p')!==p;});
+    nome.innerHTML=testi[p];
+    if(focus)b.focus();
+  }
+  bottoni.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b,false);});
+    b.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%bottoni.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+bottoni.length)%bottoni.length;
+      if(e.key==='Home')j=0;
+      if(e.key==='End')j=bottoni.length-1;
+      if(j!==null){e.preventDefault();scegli(bottoni[j],true);}
+    });
+  });
+  var am=document.querySelector('.apri-menu'),menu=document.getElementById('menu');
+  am.addEventListener('click',function(){var a=am.getAttribute('aria-expanded')==='true';am.setAttribute('aria-expanded',a?'false':'true');menu.classList.toggle('aperto',!a);});
+  var f=document.getElementById('nl');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var es=f.querySelector('.nl-esito');
+    if(!f.email.value||!f.email.checkValidity()){es.textContent='Scrivete un indirizzo email valido.';f.email.focus();return;}
+    if(!f.consenso.checked){es.textContent='Serve il consenso per iscrivervi.';return;}
+    es.textContent='Grazie, iscrizione ricevuta.';
+  });
+  var q=new URLSearchParams(location.search).get('profilo');
+  if(q){var b=bottoni.filter(function(x){return x.getAttribute('data-p')===q;})[0];if(b)scegli(b,false);}
+})();
+</script>
+</body>
+</html>

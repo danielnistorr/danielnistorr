@@ -16,6 +16,7 @@ Licenza Unsplash (https://unsplash.com/license): uso gratuito, commerciale e non
 | `unsplash-YXe0d6T4ToA-ilkevich-posate-nero.jpg` | https://unsplash.com/photos/YXe0d6T4ToA | Andrey Ilkevich (@ilkevich) | 16/10/2025 | 1597x2400 | B | cucchiaio, forchetta e coltello lisci su nero con riflesso: posate moderne, sul coltello c'è un piccolo marchio stampato ("Sola"): nel prototipo B è tolto con un ritocco (`_prova/script/proto_b_img.py`), la foto resta un segnaposto |
 | `unsplash-Ki2nci-RJbk-dittrich-caffettiera.jpg` | https://unsplash.com/photos/Ki2nci-RJbk | Bernd Dittrich (@hdbernd) | 18/01/2026 | 1643x2400 | B | caffettiera cilindrica lucida con manico nero su fondo scuro |
 | `unsplash-bfk68pL0EJ0-doyle-mani-lucidatura.jpg` | https://unsplash.com/photos/bfk68pL0EJ0 | Tahlia Doyle (@tahliaclaire) | 10/06/2021 | 2400x1600 | comune | mani sporche di pasta che lucidano un piccolo pezzo di metallo: il laboratorio e il servizio di riparazione e lucidatura |
+| `unsplash-sL1E3sUxcAs-kumpan-cucchiaio-argento.jpg` | https://unsplash.com/photos/sL1E3sUxcAs | Anna Kumpan (@ankumpan) | 25/04/2021 | 2400x1572 | home finale, selettore 800 | cucchiaio liscio in argento su tavolo bianco, luce morbida (Canon EOS 600D). Aggiunta il 24/10/2026 per la home finale: pagina letta con WebFetch ("Free to use under the Unsplash License", non Unsplash+), scaricata con curl da `images.unsplash.com/photo-1619367300933-376d8c5cd5f9` a 2400 px; non compare nei CREDITI.md delle altre home |
 
 Scartate dopo l'anteprima: due foto di Eric Prouzet (argenti ossidati in un negozio di antiquariato, raccontano il vecchio e non il nuovo), il candelabro di menachem weinreb e il bicchiere di Haim Shamritz (oggetti di culto), la caffettiera ossidata di Angie Dutton, la caffettiera di atelierbyvineeth (vetrina con riflessi verdi).
 
@@ -27,3 +28,7 @@ Scartate dopo l'anteprima: due foto di Eric Prouzet (argenti ossidati in un nego
 - `originali/logo-*`: copie dei loghi trovati (il migliore è 130x153 px).
 
 I diritti delle foto dello shop e del catalogo vanno confermati con l'azienda: alcune sembrano foto dei fornitori.
+
+## Usate nella home finale (`sito/`, 24/10/2026)
+
+Vassoio Sheffield inciso (shop, apertura), alzata per torta (shop, marchi), Harvey coppa (925), Kumpan cucchiaio (800), Cook salsiera (Sheffield), Tewari forchette (alpacca), Doyle mani e fresa (riparazione, tagliata senza il bracciale dell'orologio), Lodge forchette incrociate (chiusura). Lavorate con `_prova/script/finale_img.py`. Non usate più: Liao sfera (fondo bruciato e fermaglio da bigiotteria), Doiun, Nguyen, Ilkevich, Dittrich.

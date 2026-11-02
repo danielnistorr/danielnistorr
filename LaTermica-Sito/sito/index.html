@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La Termica, canne fumarie in rame e inox a Mestrino</title>
 <meta name="description" content="Progettazione, vendita, installazione e manutenzione di canne fumarie in acciaio inox e in rame. Video ispezioni, spazzacamino, armadi su misura. Mestrino (PD).">
-<link rel="preload" href="fonts/brygada-1918-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Brygada 1918";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/brygada-1918-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Brygada 1918";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/brygada-1918-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -46,9 +45,9 @@ ul,ol{padding:0;list-style:none}
 .tel:hover{color:var(--rame)}
 .apri-menu{display:none}
 
-/* apertura: il rame sale dalla carta */
+/* apertura: i tubi in rame entrano dal bordo, il titolo si appoggia sul primo tubo, le canne salgono fino alla testata */
 .apertura{position:relative}
-.apertura-testo{position:absolute;inset:0 0 auto 0;z-index:2;padding-top:56px}
+.apertura-testo{position:absolute;inset:0 0 auto 0;z-index:2;padding-top:max(48px,calc(42vw - 560px))}
 .apertura h1{font-size:clamp(48px,6.6vw,96px);line-height:.98;letter-spacing:-.025em;max-width:7.4em;margin-left:-.03em}
 .apertura .sotto{font-size:19px;line-height:1.5;max-width:26em;margin-top:30px}
 .azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:36px}
@@ -56,18 +55,9 @@ ul,ol{padding:0;list-style:none}
 .bottone:hover{background:var(--rame-scuro)}
 .link{font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;transition:color .12s}
 .link:hover{color:var(--rame)}
-.apertura-foto{position:relative;width:min(940px,65.3vw);margin-left:auto;padding-top:10px}
+.apertura-foto{margin:0}
 .apertura-foto picture,.apertura-foto img{display:block;width:100%}
-.foto-in{position:relative}
-.leg{--l:52px;position:absolute;left:var(--x);top:var(--y);font-size:13px;line-height:1.2;font-weight:500;white-space:nowrap}
-.leg i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--carta);box-shadow:0 0 0 1.5px var(--inchiostro)}
-.leg::before{content:"";position:absolute;left:4px;top:0;width:var(--l,56px);height:1px;background:var(--inchiostro)}
-.leg span{position:absolute;left:calc(var(--l,56px) + 10px);top:-8px}
-.leg.sx::before{left:calc(-4px - var(--l))}
-.leg.sx span{left:auto;right:calc(var(--l) + 10px);text-align:right}
-.apertura-foto .leg{--x:62.7%;--y:15.4%}
-.apertura .didascalia{position:absolute;left:var(--bordo);bottom:34px;z-index:2;display:flex;gap:14px;max-width:24em}
-.apertura .didascalia b{font-weight:500;color:var(--inchiostro)}
+.apertura-foto figcaption{padding:14px var(--bordo) 0;text-align:right}
 
 /* chi siamo */
 .chi{padding-top:100px;padding-bottom:0}
@@ -87,30 +77,27 @@ ul,ol{padding:0;list-style:none}
 .righe li{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:baseline;padding:18px 0 20px;border-bottom:1px solid var(--filo)}
 .righe h3{grid-column:1 / span 5;font-size:24px;line-height:1.2;letter-spacing:-.008em}
 .righe p{grid-column:6 / span 5;color:var(--tenue);font-size:17px;max-width:30em}
-.righe .con-occhio{align-items:center}
-.occhio{grid-column:11 / span 2;justify-self:end;width:200px;margin:-14px 0}
-.occhio img{width:200px;height:200px;border-radius:50%;object-fit:cover}
 
 /* lavori con linguette */
-.lavori{display:grid;grid-template-columns:4fr 8fr;column-gap:clamp(32px,6vw,96px);align-items:center;padding-left:var(--bordo)}
-.linguette{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:40px;border-bottom:1px solid var(--filo)}
+.lavori{display:grid;grid-template-columns:4fr 8fr;column-gap:clamp(32px,6vw,96px);align-items:start;padding-left:var(--bordo)}
+.linguette{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:44px;border-bottom:1px solid var(--filo)}
 .linguette button{font:500 16px/1 var(--sans);color:var(--tenue);background:none;border:0;padding:15px 0;margin-bottom:-1px;border-bottom:2px solid transparent;cursor:pointer;transition:color .12s}
 .linguette button:hover{color:var(--inchiostro)}
 .linguette button[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--rame)}
 .pannelli{margin-top:28px;min-height:5.4em}
 .pannelli p{font-family:var(--serif);font-size:24px;line-height:1.3;max-width:19em}
 .lavori-foto{margin:0}
-.lavori-foto img{width:100%;height:840px;object-fit:cover}
-#f-case{object-position:50% 0%}
-#f-centro{object-position:70% 50%}
+.lavori-foto img{width:100%;height:760px;object-fit:cover}
+#f-palazzine{object-position:40% 0%}
+#f-ville{object-position:35% 0%}
 #f-industria{object-position:50% 25%}
 [hidden]{display:none!important}
 
 /* materiali e su misura */
 .misura{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:center;padding-top:80px;padding-bottom:90px}
-.misura-foto{grid-column:1 / span 8;margin-left:-40px}
-.misura-foto figcaption{margin-top:6px;padding-left:40px}
-.misura-testo{grid-column:9 / -1}
+.misura-testo{grid-column:1 / span 6;grid-row:1}
+.misura-foto{grid-column:8 / -1;grid-row:1}
+.misura-foto figcaption{margin-top:14px}
 .misura-testo .intro{margin-top:22px;font-size:18px;color:var(--tenue);max-width:30em}
 .materiali{margin-top:36px}
 .materiali div{display:grid;grid-template-columns:96px 1fr;column-gap:20px;align-items:baseline;padding:14px 0;border-top:1px solid var(--filo)}
@@ -122,7 +109,7 @@ ul,ol{padding:0;list-style:none}
 .misura-testo .nota b{color:var(--inchiostro);font-weight:500}
 
 /* chiusura */
-.chiusura{display:grid;grid-template-columns:5fr 7fr;column-gap:clamp(32px,5vw,80px);align-items:center;padding-left:var(--bordo)}
+.chiusura{display:grid;grid-template-columns:5fr 7fr;column-gap:clamp(32px,5vw,80px);align-items:end;padding-left:var(--bordo)}
 .chiusura h2{font-size:clamp(44px,5.8vw,84px);line-height:.98;letter-spacing:-.024em;max-width:7em}
 .chiusura .sotto{margin-top:26px;font-size:19px;max-width:24em}
 .recapiti{font-style:normal;font-size:17px;line-height:1.65;margin-top:56px}
@@ -131,10 +118,11 @@ ul,ol{padding:0;list-style:none}
 .recapiti a:not(.grande){text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .12s}
 .recapiti a:not(.grande):hover{color:var(--rame)}
 .chiusura-foto{margin:0}
-.chiusura-foto img{width:100%;height:850px;object-fit:cover;object-position:50% 20%}
+.chiusura-foto img{width:100%;height:640px;object-fit:cover;object-position:50% 6%}
+.showroom{margin-top:18px;font-size:15px;color:var(--tenue);max-width:24em}
 
 /* piede */
-.piede{background:var(--carta-2);margin-top:110px;padding-top:64px}
+.piede{background:var(--carta-2);margin-top:80px;padding-top:64px}
 .piede-alto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;row-gap:56px}
 .piede-marchio{grid-column:1 / span 4}
 .piede-marchio img{width:180px}
@@ -144,7 +132,7 @@ ul,ol{padding:0;list-style:none}
 .colonna ul{margin-top:18px;display:grid;row-gap:9px;font-size:15px}
 .colonna a,.legale a{text-decoration:none;color:var(--tenue);transition:color .12s}
 .colonna a:hover,.legale a:hover{color:var(--inchiostro);text-decoration:underline;text-underline-offset:3px}
-.colonna .apri{display:none}
+.colonna .sr-apri{display:none;margin:0}
 .promemoria{margin-top:48px;max-width:380px}
 .promemoria p{margin-top:12px;font-size:15px;color:var(--tenue)}
 .promemoria form{margin-top:16px}
@@ -156,18 +144,18 @@ ul,ol{padding:0;list-style:none}
 .consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;line-height:1.45;color:var(--tenue)}
 .consenso input{margin:2px 0 0;width:16px;height:16px;accent-color:var(--rame);flex:none}
 .consenso a{color:inherit;text-underline-offset:2px}
+.stato{margin-top:10px;font-size:14px;color:var(--inchiostro);min-height:1.45em}
 .legale{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;margin-top:64px;padding-top:22px;padding-bottom:30px;border-top:1px solid var(--filo);font-size:13px;color:var(--tenue)}
 .legale nav{display:flex;gap:24px}
 
 /* 1024 */
 @media (max-width:1180px){
   .menu{gap:24px}
-  .apertura-foto .leg{--l:28px}
-  .leg span{white-space:normal;width:5.4em}
+  .apertura-testo{padding-top:40px}
   .apertura .sotto{max-width:22em;font-size:18px}
-  .apertura-foto{width:56vw}
-  .azioni{flex-direction:column;align-items:flex-start}
-  .apertura .didascalia{position:static;padding:14px var(--m) 0}
+  .apertura-foto{margin-top:110px}
+  .linguette{gap:4px 20px}
+  .linguette button{font-size:15px}
   .righe h3{grid-column:1 / span 4}
   .righe p{grid-column:5 / span 6}
   .colonne{grid-column:1 / -1}
@@ -183,28 +171,23 @@ ul,ol{padding:0;list-style:none}
   .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;background:var(--carta);padding:4px var(--m) 20px;border-bottom:1px solid var(--filo)}
   .menu.aperto a{font-size:20px;padding:11px 0}
   .apertura-testo{position:static;padding-top:40px}
-  .apertura-foto{width:100%;padding-top:24px}
-  .azioni{flex-direction:row;align-items:center}
-  .misura-foto{max-width:560px;margin-left:0}
-  .misura-foto figcaption{padding-left:0}
-  .apertura .didascalia{position:static;padding:14px var(--m) 0}
+  .apertura-foto{margin-top:28px}
+  .apertura-foto figcaption{padding-inline:var(--m)}
+  .misura-foto{max-width:460px}
   .chi{padding-top:110px}
   .chi .due p,.chi .due p+p{grid-column:1 / -1}
   .chi .due p+p{margin-top:20px}
   .righe h3{grid-column:1 / -1}
   .righe p{grid-column:1 / -1;margin-top:6px}
-  .righe .con-occhio{grid-template-columns:1fr 120px;align-items:center}
-  .righe .con-occhio h3,.righe .con-occhio p{grid-column:1}
-  .righe .con-occhio .occhio{grid-column:2;grid-row:1 / span 2;width:120px}
-  .occhio img{width:120px;height:120px}
   .lavori{grid-template-columns:1fr;padding-right:var(--m)}
   .lavori-testo{padding-bottom:36px}
+  .linguette{margin-top:36px}
   .lavori-foto img{height:auto;aspect-ratio:4/5}
-  .misura-foto,.misura-testo{grid-column:1 / -1}
-  .misura-testo{margin-top:40px}
+  .misura-foto,.misura-testo{grid-column:1 / -1;grid-row:auto}
+  .misura-foto{margin-top:48px}
   .chiusura{grid-template-columns:1fr;padding-right:0}
   .chiusura-testo{padding-right:var(--m);padding-bottom:48px}
-  .chiusura-foto img{height:auto;aspect-ratio:4/5}
+  .chiusura-foto img{height:auto;aspect-ratio:4/5;object-position:50% 10%}
   .piede-marchio{display:block}
   .promemoria{margin-top:40px}
   .colonne{grid-template-columns:repeat(2,1fr);row-gap:40px}
@@ -219,10 +202,7 @@ ul,ol{padding:0;list-style:none}
   .apertura h1{font-size:43px;line-height:1;max-width:none}
   .apertura .sotto{font-size:17px;margin-top:18px}
   .azioni{margin-top:24px;gap:14px 22px}
-  .apertura-foto{padding-top:22px}
-  .apertura-foto .leg{--x:70%;--y:8.4%;--l:24px;font-size:12px}
-  .leg.sx::before{left:4px}
-  .leg.sx span{right:auto;left:calc(var(--l) + 10px);text-align:left}
+  .apertura-foto{margin-top:22px}
   .chi{padding-top:90px}
   .chi .frase{font-size:27px}
   .chi .due{margin-top:32px}
@@ -248,6 +228,7 @@ ul,ol{padding:0;list-style:none}
   .colonna{border-top:1px solid var(--filo)}
   .colonna:last-child{border-bottom:1px solid var(--filo)}
   .colonna .titolo{display:none}
+  .colonna .sr-apri{display:block}
   .colonna .apri{display:flex;width:100%;justify-content:space-between;align-items:center;font:500 13px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:transparent;border:0;padding:18px 0;color:var(--inchiostro);cursor:pointer;text-align:left}
   .colonna .apri span{font-size:20px;font-weight:400;letter-spacing:0}
   .colonna ul{display:none;margin-top:0;padding-bottom:18px}
@@ -255,8 +236,6 @@ ul,ol{padding:0;list-style:none}
   .legale{flex-direction:column;margin-top:40px;border-top:0;padding-top:0}
 }
 @media (max-width:360px){
-  .apertura-foto .leg{--l:12px}
-  .apertura-foto .leg span{width:4.6em}
   .apertura h1{font-size:37px}
 }
 </style>
@@ -266,7 +245,7 @@ ul,ol{padding:0;list-style:none}
 
 <header class="testata">
   <div class="wrap">
-    <a class="logo" href="#"><img src="img/logo-400.png" srcset="img/logo-400.png 400w, img/logo-600.png 600w" sizes="160px" width="400" height="125" alt="La Termica camini inox"></a>
+    <a class="logo" href="#"><img src="img/logo-480.png" srcset="img/logo-480.png 480w, img/logo-640.png 640w" sizes="160px" width="480" height="150" alt="La Termica camini inox"></a>
     <nav class="menu" id="menu" aria-label="Principale">
       <a href="#servizi">Servizi</a>
       <a href="#lavori">Lavori</a>
@@ -289,14 +268,13 @@ ul,ol{padding:0;list-style:none}
       <a class="link" href="#contatti">Venite in showroom</a>
     </div>
   </div>
-  <figure class="apertura-foto"><div class="foto-in">
+  <figure class="apertura-foto">
     <picture>
       <source media="(max-width:620px)" srcset="img/rame-v-800.webp 800w, img/rame-v-1166.webp 1166w" sizes="100vw" width="1166" height="1853">
-      <img src="img/rame-1100.webp" srcset="img/rame-760.webp 760w, img/rame-1100.webp 1100w, img/rame-1600.webp 1600w, img/rame-2048.webp 2048w" sizes="(max-width:900px) 100vw, (max-width:1180px) 56vw, 940px" width="2048" height="1730" fetchpriority="high" alt="Tre canne fumarie in rame corrono sui coppi di un tetto e salgono in verticale, ognuna con il suo terminale.">
+      <img src="img/rame-1280.webp" srcset="img/rame-960.webp 960w, img/rame-1280.webp 1280w, img/rame-1600.webp 1600w, img/rame-2074.webp 2074w" sizes="100vw" width="2074" height="1736" fetchpriority="high" alt="Tre canne fumarie in rame corrono sui coppi di un tetto e salgono in verticale, ognuna con il suo terminale.">
     </picture>
-    <span class="leg sx" aria-hidden="true"><i></i><span>Terminale in rame</span></span>
-  </div></figure>
-  <p class="didascalia"><b class="num">01</b><span>Tre canne in rame sui coppi di un centro storico. Lavoro La Termica.</span></p>
+    <figcaption class="didascalia">Tre canne in rame sui coppi di un centro storico. Lavoro La Termica.</figcaption>
+  </figure>
 </section>
 
 <section class="chi wrap" id="chi-siamo" aria-label="Chi siamo">
@@ -313,8 +291,7 @@ ul,ol{padding:0;list-style:none}
     <li><h3>Progettazione</h3><p>Dimensionamento dell’impianto; canne fumarie e camini costruiti su misura.</p></li>
     <li><h3>Vendita e consegna</h3><p>Al dettaglio e all’ingrosso, al banco del magazzino o con la consegna in cantiere.</p></li>
     <li><h3>Installazione certificata</h3><p>Tecnici certificati e specializzati nelle canne fumarie inox, con la certificazione del prodotto e dell’installazione.</p></li>
-    <li class="con-occhio"><h3>Video ispezioni e spazzacamino</h3><p>La telecamera dentro la canna, anche preesistente, poi la pulizia.</p>
-      <figure class="occhio"><img src="img/ispezione-320.webp" srcset="img/ispezione-320.webp 320w, img/ispezione-480.webp 480w" sizes="200px" width="320" height="320" loading="lazy" alt="Fotogramma di una video ispezione: gli anelli dell’interno di una canna inox verso la luce."></figure></li>
+    <li><h3>Video ispezioni e spazzacamino</h3><p>La telecamera dentro la canna, anche preesistente, poi la pulizia.</p></li>
     <li><h3>Messa a norma, intubamento, risanamento</h3><p>Per le canne fumarie esistenti da adeguare, intubare o recuperare.</p></li>
     <li><h3>Stufe e caminetti</h3><p>Stufe a legna e a pellet, caminetti e termocamini CLAM, Eva Calor e Calux.</p></li>
     <li><h3>Abbattitori di fuliggine</h3><p>Abbattitori, aspiratori e depuratori dei fumi, contro la fuliggine.</p></li>
@@ -324,29 +301,27 @@ ul,ol{padding:0;list-style:none}
 <section class="lavori" id="lavori" aria-labelledby="t-lavori">
   <div class="lavori-testo">
     <h2 id="t-lavori">Lavori ultimati</h2>
-    <div class="linguette" role="tablist" aria-label="Tipi di lavoro">
-      <button type="button" role="tab" id="tab-case" aria-controls="p-case" aria-selected="true">Case</button>
-      <button type="button" role="tab" id="tab-centro" aria-controls="p-centro" aria-selected="false" tabindex="-1">Centri storici</button>
-      <button type="button" role="tab" id="tab-industria" aria-controls="p-industria" aria-selected="false" tabindex="-1">Camini autoportanti</button>
-    </div>
-    <div class="pannelli">
-      <div role="tabpanel" id="p-case" aria-labelledby="tab-case" data-foto="f-case"><p>Una canna in rame sale lungo la facciata di una palazzina in mattoni, fino sopra il tetto.</p></div>
-      <div role="tabpanel" id="p-centro" aria-labelledby="tab-centro" data-foto="f-centro" hidden><p>Tre canne in rame corrono sui coppi, accanto ai comignoli in cotto.</p></div>
-      <div role="tabpanel" id="p-industria" aria-labelledby="tab-industria" data-foto="f-industria" hidden><p>Tre canne inox dentro un traliccio d’acciaio: il camino sta in piedi da solo, sopra il tetto.</p></div>
+    <div class="lavori-sotto">
+      <div class="linguette" role="tablist" aria-label="Tipi di lavoro">
+        <button type="button" role="tab" id="tab-palazzine" aria-controls="p-palazzine" aria-selected="true">Palazzine</button>
+        <button type="button" role="tab" id="tab-ville" aria-controls="p-ville" aria-selected="false" tabindex="-1">Ville</button>
+        <button type="button" role="tab" id="tab-industria" aria-controls="p-industria" aria-selected="false" tabindex="-1">Camini autoportanti</button>
+      </div>
+      <div class="pannelli">
+        <div role="tabpanel" id="p-palazzine" aria-labelledby="tab-palazzine" data-foto="f-palazzine"><p>Una canna in rame sale lungo la facciata di una palazzina d’epoca in mattoni, fino sopra il tetto.</p></div>
+        <div role="tabpanel" id="p-ville" aria-labelledby="tab-ville" data-foto="f-ville" hidden><p>Su una villa nuova la canna in rame sale accanto alla facciata e supera il colmo del tetto in coppi.</p></div>
+        <div role="tabpanel" id="p-industria" aria-labelledby="tab-industria" data-foto="f-industria" hidden><p>Tre canne inox dentro un traliccio d’acciaio: il camino sta in piedi da solo, sopra il tetto.</p></div>
+      </div>
     </div>
   </div>
   <figure class="lavori-foto">
-    <img id="f-case" src="img/lav-palazzina-1100.webp" srcset="img/lav-palazzina-700.webp 700w, img/lav-palazzina-1100.webp 1100w, img/lav-palazzina-1320.webp 1320w" sizes="(max-width:900px) 100vw, 60vw" width="1320" height="1540" loading="lazy" alt="Canna fumaria in rame lungo la facciata di una palazzina in mattoni con finestra ad arco.">
-    <img id="f-centro" hidden src="img/lav-centro-1100.webp" srcset="img/lav-centro-700.webp 700w, img/lav-centro-1100.webp 1100w, img/lav-centro-1380.webp 1380w" sizes="(max-width:900px) 100vw, 60vw" width="1380" height="1160" loading="lazy" alt="Tre canne in rame sui coppi di un tetto, accanto a tre comignoli in cotto.">
+    <img id="f-palazzine" src="img/lav-palazzina-1100.webp" srcset="img/lav-palazzina-700.webp 700w, img/lav-palazzina-1100.webp 1100w, img/lav-palazzina-1290.webp 1290w" sizes="(max-width:900px) 100vw, 60vw" width="1290" height="1540" loading="lazy" alt="Canna fumaria in rame lungo la facciata di una palazzina in mattoni con finestra ad arco.">
+    <img id="f-ville" hidden src="img/lav-ville-1100.webp" srcset="img/lav-ville-700.webp 700w, img/lav-ville-1100.webp 1100w, img/lav-ville-1460.webp 1460w" sizes="(max-width:900px) 100vw, 60vw" width="1460" height="1840" loading="lazy" alt="Canna fumaria in rame accanto alla facciata di una villa nuova: supera il colmo del tetto in coppi.">
     <img id="f-industria" hidden src="img/lav-traliccio-1100.webp" srcset="img/lav-traliccio-700.webp 700w, img/lav-traliccio-1100.webp 1100w, img/lav-traliccio-1500.webp 1500w" sizes="(max-width:900px) 100vw, 60vw" width="1500" height="1760" loading="lazy" alt="Tre canne inox dentro un traliccio d’acciaio, davanti a un tetto in coppi e a un comignolo in mattoni.">
   </figure>
 </section>
 
 <section class="misura wrap" id="su-misura" aria-labelledby="t-misura">
-  <figure class="misura-foto">
-    <img src="img/armadio-1000.webp" srcset="img/armadio-700.webp 700w, img/armadio-1000.webp 1000w, img/armadio-1380.webp 1380w" sizes="(max-width:900px) 100vw, 64vw" width="1380" height="1260" loading="lazy" alt="Armadio a due ante in acciaio inox con serratura, visto di fronte.">
-    <figcaption class="didascalia">Armadio a due ante in acciaio inox, costruito da La Termica.</figcaption>
-  </figure>
   <div class="misura-testo">
     <h2 id="t-misura">Tubi a magazzino, armadi su misura</h2>
     <p class="intro">In magazzino le serie per ogni impianto, dalla stufa a pellet alla caldaia.</p>
@@ -354,11 +329,15 @@ ul,ol{padding:0;list-style:none}
       <div><dt>316L</dt><dd>Tubi a mono e doppia parete, anche in varie finiture</dd></div>
       <div><dt>304</dt><dd>Tubi a parete singola</dd></div>
       <div><dt>Rame</dt><dd>Tubi <span class="num">7/10&nbsp;mm</span> e serie a doppia parete</dd></div>
-      <div><dt>Ovali</dt><dd>Anche alluminati e flessibili, con comignoli e accessori</dd></div>
+      <div><dt>Ovali</dt><dd>Tubi ovali in inox; a catalogo anche alluminati, flessibili, comignoli e accessori</dd></div>
     </dl>
     <p class="nota"><b>Su misura.</b> Con la nostra attrezzatura costruiamo armadi in inox e alluminio: copri caldaia, armadi e portine gas, cassette con lastra safe crash e lavorazioni d’arredamento su disegno.</p>
     <p class="nota"><b>Pronto Lamiera.</b> Taglio e piega di lamiere e tubolari in pochissimo tempo.</p>
   </div>
+  <figure class="misura-foto">
+    <img src="img/armadio-900.webp" srcset="img/armadio-600.webp 600w, img/armadio-900.webp 900w, img/armadio-1199.webp 1199w" sizes="(max-width:900px) 460px, 36vw" width="1199" height="1400" loading="lazy" alt="Armadio a due ante in acciaio inox con serratura, visto di tre quarti.">
+    <figcaption class="didascalia">Armadio a due ante in acciaio inox, costruito da La Termica.</figcaption>
+  </figure>
 </section>
 
 <section class="chiusura" id="contatti" aria-labelledby="t-chiusura">
@@ -370,6 +349,7 @@ ul,ol{padding:0;list-style:none}
       <a href="mailto:info@latermicacamini.com">info@latermicacamini.com</a><br>
       <a href="https://www.google.com/maps/search/?api=1&amp;query=La+Termica+Via+Bologna+6+35035+Mestrino+PD" rel="noopener">Via Bologna 6, zona industriale<br>35035 Mestrino (PD)</a>
     </address>
+    <p class="showroom">Magazzino e showroom di oltre <span class="num">500&nbsp;m²</span>, al dettaglio e all’ingrosso.</p>
   </div>
   <figure class="chiusura-foto">
     <img src="img/vapore-1100.webp" srcset="img/vapore-520.webp 520w, img/vapore-760.webp 760w, img/vapore-1100.webp 1100w, img/vapore-1500.webp 1500w" sizes="(max-width:900px) 100vw, 58vw" width="1500" height="1680" loading="lazy" alt="Tre canne inox legate dai tiranti, viste dal basso, con il vapore bianco che esce in cima.">
@@ -381,18 +361,19 @@ ul,ol{padding:0;list-style:none}
   <div class="wrap">
     <div class="piede-alto">
       <div class="piede-marchio">
-        <img src="img/logo-400.png" srcset="img/logo-400.png 400w, img/logo-600.png 600w" sizes="180px" width="400" height="125" loading="lazy" alt="La Termica camini inox">
+        <img src="img/logo-480.png" srcset="img/logo-480.png 480w, img/logo-640.png 640w" sizes="180px" width="480" height="150" loading="lazy" alt="La Termica camini inox">
         <p>Canne fumarie in inox e in rame, stufe, armadi su misura e spazzacamino. Magazzino e showroom a Mestrino, in provincia di Padova.</p>
         <section class="promemoria" aria-labelledby="c-promemoria">
           <h2 id="c-promemoria">Promemoria pulizia</h2>
           <p>Una mail all’anno, prima dell’inverno, per ricordarvi la pulizia della canna fumaria.</p>
-          <form action="#" method="post" onsubmit="return false">
+          <form action="#" method="post" id="promemoria">
             <div class="campo">
               <label class="sr" for="email">La vostra email</label>
               <input type="email" id="email" name="email" placeholder="La vostra email" autocomplete="email" required>
               <button type="submit">Iscrivimi</button>
             </div>
             <label class="consenso"><input type="checkbox" name="consenso" required> <span>Ho letto l’<a href="/privacy/">informativa privacy</a> e voglio ricevere il promemoria. Posso cancellarmi quando voglio.</span></label>
+            <p class="stato" role="status"></p>
           </form>
         </section>
       </div>
@@ -415,9 +396,11 @@ ul,ol{padding:0;list-style:none}
           <h2 class="sr-apri"><button class="apri" type="button" aria-expanded="false" aria-controls="l-prodotti">Prodotti<span aria-hidden="true">+</span></button></h2>
           <ul id="l-prodotti">
             <li><a href="/prodotti/inox-doppia-parete/">Inox doppia parete</a></li>
-            <li><a href="/prodotti/inox-monoparete/">Inox monoparete</a></li>
             <li><a href="/prodotti/rame/">Rame</a></li>
+            <li><a href="/prodotti/inox-monoparete/">Inox monoparete</a></li>
+            <li><a href="/prodotti/ovali/">Ovali</a></li>
             <li><a href="/prodotti/pellet-e-legna/">Pellet e legna</a></li>
+            <li><a href="/prodotti/flessibili/">Flessibili</a></li>
             <li><a href="/prodotti/comignoli-e-accessori/">Comignoli e accessori</a></li>
           </ul>
         </div>
@@ -487,6 +470,10 @@ ul,ol{padding:0;list-style:none}
   });
   menu.addEventListener('click',function(e){if(e.target.tagName==='A'){am.setAttribute('aria-expanded','false');menu.classList.remove('aperto');}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto')){am.click();am.focus();}});
+
+  // promemoria: il servizio di invio non e ancora collegato (vedi LEGGIMI); il modulo conferma e non invia nulla
+  var pf=document.getElementById('promemoria');
+  pf.addEventListener('submit',function(e){e.preventDefault();pf.querySelector('.stato').textContent='Grazie, vi scriveremo prima dell’inverno.';});
 
   // colonne del piede a fisarmonica sul telefono
   document.querySelectorAll('.colonna .apri').forEach(function(b){

@@ -4,9 +4,9 @@ Proposta non richiesta di una nuova homepage per La Termica snc di Camporese Mar
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale, statica. Accanto ci sono `sito/img/` (solo le immagini usate, WebP in più larghezze, logo PNG a 2x) e `sito/fonts/` (Brygada 1918 e Host Grotesk, woff2).
+- `sito/index.html`: la home finale, statica. Accanto ci sono `sito/img/` (solo le immagini usate, WebP in più larghezze, logo PNG a 3x) e `sito/fonts/` (Brygada 1918 e Host Grotesk, woff2).
 - `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (idea, schermate, caratteri, colori, interazione, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà immagini, pagina, controlli, screenshot e segnali. Gli script sono `build_img.py` (immagini), `larghezze.mjs`, `sezioni.mjs`, `controlli.mjs` e `screenshot_finali.mjs`.
+- `_prova/script/build_finale.sh`: rifà immagini, pagina, controlli, screenshot e segnali. Gli script sono `build_img.py` (immagini), `larghezze.mjs`, `sezioni.mjs`, `controlli.mjs`, `interazione.mjs` (linguette, promemoria, titoli del piede, collegamenti) e `screenshot_finali.mjs`.
 - `01-analisi.md`: fatti con le fonti. `_prova/giudizio.json`: il giudizio sui prototipi. `_prova/home/a` e `_prova/home/b`: i prototipi.
 - `assets/CREDITI.md`: origine e licenza di ogni immagine.
 
@@ -24,15 +24,16 @@ Proposta non richiesta di una nuova homepage per La Termica snc di Camporese Mar
 - **Marchi**: CLAM, Eva Calor e Calux per stufe e caminetti sono ancora quelli trattati?
 - **Pronto Lamiera e abbattitori di fuliggine**: sono servizi ancora attivi? Il "98%" del loro sito non è usato.
 - **Abilitazioni**: oltre a "autorizzati dalla camera di commercio", quali hanno di preciso? Si possono citare con il numero?
-- **Legenda della foto d'apertura**: oggi dice solo "Terminale in rame". Il titolare può confermare una seconda legenda sul gomito, "Curva a 90°, saldata su misura"?
-- **Righe dei materiali**: le righe 316L, 304, Rame e Ovali sono riscritte dai loro testi. Vanno controllate con il titolare, in particolare "Rame: tubi 7/10 mm e serie a doppia parete".
-- **Luoghi e permessi**: dove sono i cantieri delle foto (il centro storico del rame è Padova?) e se le foto si possono pubblicare con le case riconoscibili.
+- **Righe dei materiali**: le righe 316L, 304, Rame e Ovali sono riscritte dai loro testi e dalle famiglie del catalogo. Vanno controllate con il titolare, in particolare "Rame: tubi 7/10 mm e serie a doppia parete" e "Ovali: tubi ovali in inox; a catalogo anche alluminati, flessibili, comignoli e accessori".
+- **Linguette dei lavori**: "Palazzine" (DSC00639) e "Ville" (DSC00479) sono nomi dati dalle foto (una palazzina d'epoca in mattoni, una villa nuova con tetto in coppi). Va bene dividerli così, o il titolare preferisce "Condomini" e "Centri storici" con altre foto?
+- **Luoghi e permessi**: dove sono i cantieri delle foto (il centro storico del rame è Padova?) e se le foto si possono pubblicare con le case riconoscibili, compresa la villa di DSC00479.
+- **Showroom**: nella chiusura c'è "Magazzino e showroom di oltre 500 m², al dettaglio e all'ingrosso", come sul loro sito. Se lo showroom ha orari o si visita su appuntamento, va scritto lì.
 - **Promemoria pulizia** nel piede: lo vogliono? È una mail all'anno, prima dell'inverno. Se non lo vogliono gestire, si toglie il blocco e il piede resta con logo, quattro colonne e riga legale.
 - Dipendenti (4) e ricavi (749.000 €) vengono da atoka.io: non sono in pagina e non vanno messi senza conferma.
 
 ## Il promemoria (newsletter minima)
 
-Il modulo nel piede (campo email, bottone "Iscrivimi", casella del consenso con il link all'informativa) oggi non invia niente: `action="#"` e `onsubmit="return false"`. Prima di andare in linea va collegato a un servizio di invio (per esempio Brevo o MailerLite, con server in UE) con doppia conferma dell'iscrizione. Va anche aggiornata l'informativa privacy, che oggi non parla di newsletter. Il link "informativa privacy" punta a `/privacy/`.
+Il modulo nel piede (campo email, bottone "Iscrivimi", casella del consenso con il link all'informativa) oggi non invia niente: `action="#"`, e lo script ferma l'invio e mostra solo la riga "Grazie, vi scriveremo prima dell'inverno." (`role="status"`), perché chi lo prova non creda che il sito sia rotto. Prima di andare in linea va collegato a un servizio di invio (per esempio Brevo o MailerLite, con server in UE) con doppia conferma dell'iscrizione. Va anche aggiornata l'informativa privacy, che oggi non parla di newsletter. Il link "informativa privacy" punta a `/privacy/`.
 
 ## Pagine che il sito nuovo dovrà avere (link del piede e del menu)
 
@@ -46,9 +47,11 @@ Il modulo nel piede (campo email, bottone "Iscrivimi", casella del consenso con 
   - `/servizi/abbattitori/`
 - Prodotti:
   - `/prodotti/inox-doppia-parete/`
-  - `/prodotti/inox-monoparete/`
   - `/prodotti/rame/`
+  - `/prodotti/inox-monoparete/`
+  - `/prodotti/ovali/`
   - `/prodotti/pellet-e-legna/`
+  - `/prodotti/flessibili/`
   - `/prodotti/comignoli-e-accessori/`
 - Su misura:
   - `/su-misura/armadi-copri-caldaia/`
@@ -77,8 +80,8 @@ Le foto in pagina sono tutte loro, ma vengono da telefoni e compatte del 2011-20
    - Lo stesso cantiere anche in verticale, per il telefono.
 2. **Un terminale inox** contro il cielo, sempre con il teleobiettivo, per la parte "inox" del titolo.
 3. **Il camino autoportante** (traliccio con tre canne), visto dal basso e di fianco, con le verticali corrette.
-4. **Un armadio inox su misura** su fondo chiaro, in laboratorio. Luce diffusa da un lato e un pannello bianco dall'altro, per avere riflessi lunghi e puliti sull'acciaio; di fronte e di tre quarti.
-5. **La video ispezione**: un fotogramma nitido della telecamera dentro una canna inox nuova, senza scritte a schermo.
+4. **Un armadio inox su misura** su fondo chiaro, in laboratorio. Luce diffusa da un lato e un pannello bianco dall'altro, per avere riflessi lunghi e puliti sull'acciaio; di tre quarti, come quello in pagina (DSC01936, oggi scontornato a mano lungo gli spigoli).
+5. **La video ispezione**: un fotogramma nitido della telecamera dentro una canna inox nuova, senza scritte a schermo. Oggi non è in pagina: il fotogramma del 2014 era posterizzato.
 6. **Il magazzino e lo showroom** ordinati, con luce naturale o lampade calde, per la pagina "Showroom e magazzino".
 7. **Mario Camporese e i figli** al lavoro su un tetto, se vogliono comparire, con i dispositivi di sicurezza in vista.
 
@@ -89,4 +92,4 @@ Le foto in pagina sono tutte loro, ma vengono da telefoni e compatte del 2011-20
 
 ## Logo
 
-Il logo in pagina è un PNG trasparente a 400 e 600 px, ricavato dal JPEG a 3000x938 del loro sito (`assets/originali/logo-completo-3000x938.jpg`). Il sito non ha un SVG e non è stato ridisegnato: ricostruire le forme e la scritta condensata in modo fedele richiede il file originale. Al grafico o all'azienda va chiesto il logo vettoriale (AI, EPS, PDF o SVG).
+Il logo in pagina è un PNG trasparente a 480 e 640 px (3x per 160 px in testata), ricavato dal JPEG a 3000x938 del loro sito (`assets/originali/logo-completo-3000x938.jpg`). Il sito non ha un SVG e non è stato ridisegnato: ricostruire le forme e la scritta condensata in modo fedele richiede il file originale. Al grafico o all'azienda va chiesto il logo vettoriale (AI, EPS, PDF o SVG).

@@ -37,3 +37,20 @@ Scaricate da images.unsplash.com e images.pexels.com e portate a 2400 px di lato
 | `esterne/unsplash-bankphrom-Tzm3Oyu_6sk.jpg` | https://unsplash.com/photos/Tzm3Oyu_6sk | Bank Phrom | 25/08/2017 | 2400x1602 | A e B | rotativa con i giornali in corsa sui rulli: il loro settore (stampa offset, linea giornali) |
 | `esterne/pexels-lucock-28752154.jpg` | https://www.pexels.com/photo/close-up-of-industrial-gears-and-machinery-28752154/ | Connor Lucock | 03/10/2024 | 1600x2400 | B, verticale | ingranaggi e riduttore su una macchina, colori freddi |
 | `esterne/unsplash-gunkel-6kfQvW5eync.jpg` | https://unsplash.com/photos/6kfQvW5eync | Wilhelm Gunkel | 20/07/2019 | 2400x1351 | B | dentatura di un ingranaggio che emerge dal nero |
+
+## Usate nella home finale (`sito/img/`, 24 ottobre 2026)
+
+Tutte rielaborate con `_prova/script/finale_img.py` (tagli, trattamento caldo e luminoso, WebP in più larghezze).
+
+| File in `sito/img/` | Origine | Licenza | Note |
+|---|---|---|---|
+| `leva-finita-larga-*`, `leva-finita-stretta-*` | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-06-08-at-20.40.35-1.avif` | dell'azienda, uso da confermare | scontornata (grabCut), ombra presa dalla foto, WebP con trasparenza |
+| `leva-grezza-larga-*`, `leva-grezza-stretta-*` | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-06-08-at-20.40.41.avif` | dell'azienda, uso da confermare | scontornata, ruotata di 90 gradi e specchiata perché abbia il verso della leva finita |
+| `man-roland-*` | Meccanica Masi, `originali/2026-06_Progetti-2.jpeg` | dell'azienda | progetto "Supporto rullo silicone Man Roland" |
+| `linea-giornali-*` | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-03-28-at-11.24.08-10.jpeg` | dell'azienda | tagliata sopra i ritagli di carta a terra |
+| `stampa-interno-*` | Meccanica Masi, `originali/2026-10_IMG20230705092448.jpg` (598 px) | dell'azienda | dalla pagina Manutenzione meccanica sul posto |
+| `pulegge-*` (chiusura) | Meccanica Masi, `originali/2026-06_progetti-parte-3-e1791920314353.jpeg` | dell'azienda | progetto "Pulegge dal pieno" |
+| `fresatrice-*`, `fresatrice-v-*` | Connor Lucock, Pexels, https://www.pexels.com/photo/industrial-lathe-machine-in-action-28929513/ (`esterne/pexels-lucock-28929513.jpg`) | Pexels License, "Free" | unica foto di repertorio della home, con la didascalia "Foto indicativa"; non usata in altre home della campagna (controllati i `*-Sito/assets/CREDITI.md` il 24/10/2026) |
+| `logo-masi-scritta.svg` | Meccanica Masi, `originali/logo-masi-ingranaggi.svg` | marchio dell'azienda | solo la scritta vettoriale, tolti gli ingranaggi raster (`_prova/script/finale_logo.py`) |
+
+Non più usate nella versione finale: Mastars `cJpvBX_gNrg` e Bank Phrom `Tzm3Oyu_6sk` (prototipo A), il tornio sulla puleggia `2026-10_IMG20240312141719.jpg` (troppo piccolo e scuro per la chiusura).

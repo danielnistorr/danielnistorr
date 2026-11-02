@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foralberg, forniture alberghiere dal 1953 a Padova</title>
+<meta name="description" content="Tavola, bar, buffet, cucine e impianti professionali per alberghi, ristoranti e collettività. Showroom di oltre 800 m² in via Cile 2, Padova.">
+<link rel="preload" href="fonts/schibsted-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Schibsted Grotesk, Google Fonts, SIL Open Font License 1.1 (fonts/OFL.txt): una famiglia sola, 400 e 500 */
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/schibsted-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/schibsted-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --carta:#F3F1EC;      /* le luci delle foto finiscono qui */
+  --inchiostro:#161616; /* 16,1:1 sulla carta */
+  --grigio:#5A5A5A;     /* 6,1:1 */
+  --filetto:rgba(22,22,22,.16);
+  --blu:#00699A;        /* blu Foralberg scurito per il contrasto: 5,5:1; bianco sul blu 6,0:1 */
+  --blu-2:#00547B;
+  --m:72px;
+  --g:24px;
+  --larg:1296px;
+  --h1:106px;
+  --h2:56px;
+  --sez:144px;
+  --pad:max(var(--m), calc((100% - var(--larg)) / 2));
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:18px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-variant-numeric:lining-nums}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{text-wrap:pretty}
+.nw{white-space:nowrap}
+.tab{font-variant-numeric:tabular-nums lining-nums}
+.cif{font-variant-numeric:lining-nums proportional-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fascia{padding-inline:var(--pad)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+.h2{font-size:var(--h2);line-height:1.04;letter-spacing:-.03em}
+
+/* link nel testo: sottolineatura sottile, al passaggio cambia colore */
+.lk{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+.lk:hover{color:var(--blu)}
+.bottone{display:inline-flex;align-items:center;min-height:50px;padding:0 24px;background:var(--blu);color:#fff;text-decoration:none;font:inherit;font-size:16px;font-weight:500;border:0;border-radius:0;cursor:pointer;transition:background-color .12s}
+.bottone:hover{background:var(--blu-2)}
+
+/* testata */
+.testata{display:flex;align-items:center;justify-content:space-between;gap:32px;height:82px;position:relative}
+.marchio{display:block;flex:none;line-height:0}
+.marchio img{height:44px;width:auto}
+.menu{display:flex;align-items:center;gap:36px}
+.menu ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.menu a{text-decoration:none;font-size:16px;font-weight:500;transition:color .12s}
+.menu a:hover{color:var(--blu)}
+.tel{font-size:16px;font-weight:500;text-decoration:none}
+.apri{display:none}
+
+/* apertura */
+.ap-testo{padding-top:14px;padding-bottom:26px;align-items:start}
+.ap-testo h1{grid-column:1/-1;grid-row:1;font-size:var(--h1);line-height:.94;letter-spacing:-.04em}
+.ap-lato{grid-column:7/13;grid-row:1;margin-top:calc(var(--h1) * 1.2);max-width:520px}
+.ap-lato p{font-size:19px;line-height:1.45}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:18px}
+.azioni .lk{font-size:16px;font-weight:500}
+.ap-foto{margin:0}
+.ap-foto img{width:100%;height:auto;background:#dcd9d2}
+.didascalia{font-size:14px;line-height:1.5;color:var(--grigio)}
+.didascalia b{font-weight:500;color:var(--inchiostro)}
+.ap-did{padding-top:14px}
+.ap-did p{grid-column:1/7}
+
+/* consulenti */
+.consulenti{padding-top:var(--sez)}
+.consulenti h2,.consulenti p{grid-column:1/10}
+.consulenti p{margin-top:28px;font-size:25px;line-height:1.42;letter-spacing:-.01em}
+
+/* catalogo: l'indice del catalogo 2026/2027 cambia la foto */
+.catalogo{padding-top:var(--sez);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-inline:var(--pad)}
+.cat-testo{grid-column:1/6;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.cat-testa .intro{margin-top:20px;color:var(--grigio);max-width:30em}
+.indice{list-style:none;margin:0;padding:0;border-top:1px solid var(--filetto)}
+.indice li{border-bottom:1px solid var(--filetto)}
+.indice button{appearance:none;background:none;border:0;border-radius:0;margin:0;font:inherit;width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:18px 0 15px;cursor:pointer;color:var(--grigio);text-align:left;transition:color .12s}
+.indice .nome{font-size:36px;line-height:1.1;letter-spacing:-.022em}
+.indice .pag{font-size:15px;white-space:nowrap}
+.indice button:hover,.indice button[aria-pressed="true"]{color:var(--inchiostro)}
+.indice button[aria-pressed="true"] .pag{color:var(--blu)}
+.scheda p{font-size:17px;line-height:1.55;max-width:28em}
+.scheda a{display:inline-block;margin-top:12px;font-size:16px;font-weight:500}
+.tavole{grid-column:7/13;grid-row:1;margin-right:calc(-1 * var(--pad));align-self:start}
+.tavola{margin:0}
+.tavola[hidden]{display:none}
+.tavola img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#dcd9d2}
+
+/* progetto */
+.progetto{padding-top:var(--sez)}
+.progetto h2{grid-column:1/10}
+.pg-intro{grid-column:1/8;margin-top:24px}
+.passi{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);margin:56px 0 0;padding:0;list-style:none}
+.passi li{border-top:1px solid var(--filetto);padding-top:20px}
+.passi .n{display:block;font-size:15px;font-weight:500;color:var(--blu);margin-bottom:22px}
+.passi h3{font-size:21px;line-height:1.25;letter-spacing:-.01em;font-weight:500;margin-bottom:8px}
+.passi p{font-size:16px;line-height:1.5;color:var(--grigio)}
+.pa{grid-column:1/9;margin-top:56px;font-size:17px}
+.pa b{font-weight:500}
+
+/* storia */
+.storia{padding-top:var(--sez);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-inline:var(--pad)}
+.st-foto{grid-column:1/8;margin:0 0 0 calc(-1 * var(--pad))}
+.st-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#dcd9d2}
+.st-testo{grid-column:8/13;display:flex;flex-direction:column;justify-content:flex-end}
+.st-testo .f{margin-top:26px;font-size:24px;line-height:1.36;letter-spacing:-.012em;max-width:20em}
+.st-anni{margin-top:26px;font-size:17px;line-height:1.6;color:var(--grigio);max-width:26em}
+.st-did{margin-top:40px}
+.st-anni b{font-weight:500;color:var(--inchiostro);font-variant-numeric:tabular-nums lining-nums}
+
+/* chiusura */
+.chiusura{margin-top:var(--sez);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-inline:var(--pad)}
+.ch-testo{grid-column:1/7;padding:104px 0 96px;display:flex;flex-direction:column;justify-content:center}
+.ch-testo h2{max-width:11em}
+.recapiti{margin-top:48px;font-style:normal;font-size:18px;line-height:1.5}
+.recapiti .tel-g{display:inline-block;font-size:46px;letter-spacing:-.025em;text-decoration:none;line-height:1.05;margin-bottom:18px;transition:color .12s}
+.recapiti .tel-g:hover{color:var(--blu)}
+.recapiti p+p{margin-top:14px}
+.recapiti .t{color:var(--grigio)}
+.ch-foto{grid-column:7/13;margin:0 calc(-1 * var(--pad)) 0 0;position:relative;min-height:860px}
+.ch-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;background:#dcd9d2}
+
+/* piede */
+.piede{padding-top:88px;padding-bottom:36px;border-top:1px solid var(--filetto);font-size:15px;line-height:1.5}
+.pd-alto{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.pd-chi{grid-column:1/6}
+.pd-chi img{height:44px;width:auto}
+.pd-chi p{margin-top:22px;max-width:25em;color:var(--grigio)}
+.news{grid-column:8/13}
+.news h2{font-size:21px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.news p{margin-top:4px;color:var(--grigio)}
+.news form{margin-top:18px}
+.campo{display:flex;border-bottom:1px solid var(--inchiostro)}
+.campo input{flex:1;min-width:0;border:0;border-radius:0;background:transparent;font:inherit;font-size:17px;padding:12px 0;color:var(--inchiostro)}
+.campo input::placeholder{color:#6b6b6b}
+.campo input:focus{outline:none}
+.campo:focus-within{border-bottom-color:var(--blu);box-shadow:0 1px 0 var(--blu)}
+.campo .bottone{min-height:46px;margin-bottom:-1px}
+.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--grigio)}
+.consenso input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--blu);flex:none}
+.esito{margin-top:10px;font-size:14px;min-height:1.5em}
+.pd-col{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);margin-top:72px}
+.pd-col h3{font-size:15px;font-weight:500;margin-bottom:14px}
+.pd-col ul{list-style:none;margin:0;padding:0}
+.pd-col li+li{margin-top:7px}
+.pd-col a{text-decoration:none;color:var(--grigio);transition:color .12s}
+.pd-col a:hover{color:var(--blu);text-decoration:underline;text-underline-offset:.25em}
+.pd-col .ct li,.pd-col .ct a{color:var(--inchiostro)}
+.pd-legale{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;margin-top:72px;padding-top:22px;border-top:1px solid var(--filetto);font-size:13px;color:var(--grigio)}
+.pd-legale ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.pd-legale a{color:var(--grigio);transition:color .12s}
+.pd-legale a:hover{color:var(--blu)}
+
+/* 1920 e oltre: il titolo cresce un poco, la griglia resta a 1296 */
+@media (min-width:1700px){:root{--h1:112px}}
+
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px;--g:20px;--h1:86px;--h2:46px;--sez:120px}
+  .menu ul{gap:22px}
+  .menu{gap:26px}
+  .consulenti p{font-size:22px}
+  .indice .nome{font-size:27px}
+  .passi{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .pa{grid-column:1/11}
+  .st-foto{grid-column:1/8}
+  .st-testo{grid-column:8/13}
+  .st-testo .f{font-size:20px}
+  .ch-testo{grid-column:1/8}
+  .ch-foto{grid-column:8/13}
+  .recapiti .tel-g{font-size:38px}
+}
+/* 768 */
+@media (max-width:860px){
+  :root{--h1:72px;--sez:104px}
+  .menu ul{display:none}
+  .apri{display:inline-flex;align-items:center;min-height:44px;padding:0;background:none;border:0;font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);cursor:pointer}
+  .apri:hover{color:var(--blu)}
+  .menu.aperto ul{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;padding:8px var(--pad) 20px;background:var(--carta);border-bottom:1px solid var(--filetto);z-index:5}
+  .menu.aperto ul a{display:block;padding:12px 0;font-size:20px}
+  .ap-lato{grid-column:1/-1;grid-row:2;margin-top:24px;max-width:560px}
+  .ap-did p{grid-column:1/11}
+  .consulenti h2,.consulenti p{grid-column:1/-1}
+  /* catalogo: voci in due colonne sopra la foto */
+  .cat-testo{display:contents}
+  .cat-testa{grid-column:1/-1;grid-row:1}
+  .indice{grid-column:1/-1;grid-row:2;margin-top:32px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);border-top:0}
+  .indice li{border-top:1px solid var(--filetto);border-bottom:0}
+  .tavole{grid-column:1/-1;grid-row:3;margin:24px calc(-1 * var(--pad)) 0}
+  .scheda{grid-column:1/-1;grid-row:4;padding-top:20px}
+  .tavola img{aspect-ratio:4/3}
+  .passi{margin-top:44px}
+  .st-foto{grid-column:1/-1;grid-row:2;margin:32px calc(-1 * var(--pad)) 0}
+  .st-testo{grid-column:1/-1;grid-row:1;padding-bottom:0}
+  .st-did{margin-top:20px}
+  .ch-testo{grid-column:1/-1;padding:0 0 48px}
+  .ch-foto{grid-column:1/-1;min-height:0;margin:0 calc(-1 * var(--pad))}
+  .ch-foto img{position:static;height:auto;aspect-ratio:4/3}
+  .pd-chi,.news{grid-column:1/-1}
+  .news{margin-top:48px}
+  .pd-col{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+}
+/* telefono */
+@media (max-width:560px){
+  :root{--m:20px;--g:14px;--h1:50px;--h2:34px;--sez:88px}
+  body{font-size:17px}
+  .testata{height:68px;gap:16px}
+  .marchio img{height:32px}
+  .menu{gap:18px}
+  .tel{font-size:15px}
+  .ap-testo{padding-top:18px;padding-bottom:22px}
+  .ap-testo h1{line-height:.98;letter-spacing:-.035em}
+  .ap-lato{margin-top:16px}
+  .ap-lato p{font-size:17px}
+  .azioni{margin-top:16px;gap:10px 20px}
+  .bottone{min-height:48px;padding:0 20px}
+  .ap-did{padding-top:10px}
+  .ap-did p{grid-column:1/-1}
+  .consulenti p{margin-top:20px;font-size:19px;line-height:1.45}
+  .h2{line-height:1.08}
+  .indice{margin-top:24px}
+  .indice button{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 0 10px;min-height:56px}
+  .indice .nome{font-size:21px}
+  .indice .pag{font-size:13px}
+  .tavola img{aspect-ratio:1/1}
+  .scheda p{font-size:16px}
+  .pg-intro,.pa,.progetto h2{grid-column:1/-1}
+  .passi{grid-template-columns:1fr;row-gap:26px;margin-top:36px}
+  .passi .n{margin-bottom:10px}
+  .pa{margin-top:40px;font-size:16px}
+  .st-testo .f{font-size:19px;margin-top:18px}
+  .st-foto{margin-top:28px}
+  .ch-testo{padding-bottom:40px}
+  .recapiti{margin-top:32px;font-size:17px}
+  .recapiti .tel-g{font-size:36px}
+  .piede{padding-top:64px}
+  .pd-chi img{height:38px}
+  .pd-col{margin-top:52px;grid-template-columns:1fr 1fr;column-gap:20px}
+  .pd-col{grid-template-areas:"prod serv" "prod azi" "ct ct"}
+  .pd-col>div:nth-child(1){grid-area:prod}
+  .pd-col>div:nth-child(2){grid-area:serv}
+  .pd-col>div:nth-child(3){grid-area:azi}
+  .pd-col .ct{grid-area:ct}
+  .pd-col a{overflow-wrap:anywhere}
+  .pd-legale{margin-top:52px;display:block}
+  .pd-legale ul{margin-top:10px}
+}
+@media (max-width:360px){
+  :root{--m:16px}
+  .marchio img{height:26px}
+  .testata,.menu{gap:12px}
+  .tel{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="testata fascia">
+  <a class="marchio" href="#"><img src="img/logo-foralberg.svg" alt="Foralberg" width="218" height="46"></a>
+  <nav class="menu" aria-label="Menu principale">
+    <ul id="voci">
+      <li><a href="#catalogo">Prodotti</a></li>
+      <li><a href="#progetti">Progetti</a></li>
+      <li><a href="#storia">Storia</a></li>
+      <li><a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf">Cataloghi</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <a class="tel cif" href="tel:+39049760955">049&nbsp;760955</a>
+    <button class="apri" type="button" aria-expanded="false" aria-controls="voci">Menu</button>
+  </nav>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="t-apertura">
+  <div class="ap-testo fascia griglia">
+    <h1 id="t-apertura">Forniture alberghiere<br>dal 1953</h1>
+    <div class="ap-lato">
+      <p>Tavola, bar, buffet, cucine e impianti professionali per alberghi, ristoranti e collettività.</p>
+      <div class="azioni">
+        <a class="bottone" href="#catalogo">Sfoglia il catalogo 2026/2027</a>
+        <a class="lk" href="#contatti">Vieni in via Cile&nbsp;2</a>
+      </div>
+    </div>
+  </div>
+  <figure class="ap-foto">
+    <picture>
+      <source media="(max-width:560px)" srcset="img/furgone-q-780.jpg 780w, img/furgone-q-1170.jpg 1170w" sizes="100vw" width="780" height="780">
+      <img src="img/furgone-1440.jpg" srcset="img/furgone-768.jpg 768w, img/furgone-1024.jpg 1024w, img/furgone-1440.jpg 1440w, img/furgone-2160.jpg 2160w, img/furgone-2880.jpg 2880w" sizes="100vw" width="1440" height="791" fetchpriority="high" alt="Furgone OM Lupetto 30 in bianco e nero sotto i portici di Padova: sul cassone la firma Foralberg, il monogramma e la scritta Forniture navali e alberghiere, Padova, via Trieste 11">
+    </picture>
+    <figcaption class="ap-did fascia griglia didascalia">
+      <p><b>Le prime consegne firmate Foralberg.</b> Un OM Lupetto 30 sotto i portici di Padova, con l’indirizzo di via Trieste&nbsp;11 sul cassone: la firma è la stessa del logo di oggi.</p>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="consulenti fascia griglia" aria-labelledby="t-consulenti">
+  <h2 class="h2" id="t-consulenti">Consulenti dell’ospitalità</h2>
+  <p>Per alberghi, ristoranti, bar, banqueting ed enti pubblici, dalla tavola agli impianti di cucina. In via Cile, a&nbsp;Padova, uno showroom di oltre <span class="nw">800&nbsp;m²</span> con più di 30.000 articoli, di cui oltre 6.000 in pronta consegna; più di 30 collaboratori interni, 11&nbsp;agenti e commerciali, un ufficio di rappresentanza a&nbsp;Venezia e consegne in tutta Italia.</p>
+</section>
+
+<section class="catalogo" id="catalogo" aria-labelledby="t-catalogo">
+  <div class="cat-testo">
+    <div class="cat-testa">
+      <h2 class="h2" id="t-catalogo">Dalla tavola alla cucina, in 516 pagine</h2>
+      <p class="intro">Il catalogo 2026/2027, capitolo per capitolo. Scegliete un capitolo: si apre alla sua pagina.</p>
+    </div>
+    <ol class="indice" id="indice" aria-label="Capitoli del catalogo 2026/2027">
+      <li><button type="button" aria-pressed="true" aria-controls="tavole" data-cap="porcellana" data-pag="10" data-testo="Piatti, bowl, tazze e teiere di Steelite, RAK, Revol e della linea Foralberg. Molti modelli si personalizzano con il marchio del vostro locale."><span class="nome">Porcellana</span><span class="pag">p.&nbsp;<span class="tab">10</span></span></button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="tavole" data-cap="posateria" data-pag="182" data-testo="Posate da sala in più collezioni, fino al Laguiole, e coltelli da carne."><span class="nome">Posateria</span><span class="pag">p.&nbsp;<span class="tab">182</span></span></button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="tavole" data-cap="vetro" data-pag="232" data-testo="Calici e bicchieri Rona 5 Star Glass, in vetro sonoro e in vetro comune."><span class="nome">Vetro</span><span class="pag">p.&nbsp;<span class="tab">232</span></span></button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="tavole" data-cap="bar" data-pag="290" data-testo="Coppe da champagne, calici da martini, mixer e attrezzature per barman e mixologist."><span class="nome">Bar e mixology</span><span class="pag">p.&nbsp;<span class="tab">290</span></span></button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="tavole" data-cap="buffet" data-pag="378" data-testo="Chafing dish, alzate, cassette e supporti componibili per il buffet dell’albergo e per il catering."><span class="nome">Buffet e catering</span><span class="pag">p.&nbsp;<span class="tab">378</span></span></button></li>
+      <li><button type="button" aria-pressed="false" aria-controls="tavole" data-cap="gastronorm" data-pag="470" data-testo="Contenitori gastronorm in acciaio inox e in policarbonato, contenitori isotermici e carrelli porta piatti per banqueting, catering e ristorazione."><span class="nome">Gastronorm</span><span class="pag">p.&nbsp;<span class="tab">470</span></span></button></li>
+    </ol>
+    <div class="scheda" aria-live="polite">
+      <p id="scheda-testo">Piatti, bowl, tazze e teiere di Steelite, RAK, Revol e della linea Foralberg. Molti modelli si personalizzano con il marchio del vostro locale.</p>
+      <a class="lk" id="scheda-link" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=10">Apri il capitolo nel catalogo, p. 10</a>
+    </div>
+  </div>
+  <div class="tavole" id="tavole">
+    <figure class="tavola" data-cap="porcellana"><img src="img/cap-porcellana-1080.jpg" srcset="img/cap-porcellana-720.jpg 720w, img/cap-porcellana-1080.jpg 1080w, img/cap-porcellana-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" alt="Due mani posano un piatto bianco su una tovaglia di lino"></figure>
+    <figure class="tavola" data-cap="posateria" hidden><img src="img/cap-posateria-1080.jpg" srcset="img/cap-posateria-720.jpg 720w, img/cap-posateria-1080.jpg 1080w, img/cap-posateria-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" loading="lazy" alt="Forchette d’argento cesellate affiancate su un fondo chiaro"></figure>
+    <figure class="tavola" data-cap="vetro" hidden><img src="img/cap-vetro-1080.jpg" srcset="img/cap-vetro-720.jpg 720w, img/cap-vetro-1080.jpg 1080w, img/cap-vetro-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" loading="lazy" alt="File di calici da vino capovolti e diritti su un banco"></figure>
+    <figure class="tavola" data-cap="bar" hidden><img src="img/cap-bar-1080.jpg" srcset="img/cap-bar-720.jpg 720w, img/cap-bar-1080.jpg 1080w, img/cap-bar-1272.jpg 1272w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" loading="lazy" alt="Calici vuoti allineati sul banco chiaro di un bar"></figure>
+    <figure class="tavola" data-cap="buffet" hidden><img src="img/cap-buffet-1080.jpg" srcset="img/cap-buffet-720.jpg 720w, img/cap-buffet-1080.jpg 1080w, img/cap-buffet-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" loading="lazy" alt="Il buffet della colazione in un albergo, con ciotole, piatti impilati e un’alzata di frutta"></figure>
+    <figure class="tavola" data-cap="gastronorm" hidden><img src="img/cap-gastronorm-1080.jpg" srcset="img/cap-gastronorm-720.jpg 720w, img/cap-gastronorm-1080.jpg 1080w, img/cap-gastronorm-1280.jpg 1280w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1350" loading="lazy" alt="Forchette, cucchiai e coltelli in vaschette gastronorm d’acciaio, visti dall’alto"></figure>
+  </div>
+</section>
+
+<section class="progetto fascia griglia" id="progetti" aria-labelledby="t-progetti">
+  <h2 class="h2" id="t-progetti">Dall’ascolto al piatto, un progetto su misura</h2>
+  <p class="pg-intro">Per una nuova apertura o un rinnovo seguiamo il lavoro dallo studio dell’area al render e al disegno tecnico, fino all’installazione e all’assistenza dopo la vendita.</p>
+  <ol class="passi">
+    <li><span class="n">1</span><h3>Conosciamoci</h3><p>Ascoltiamo la tua idea e iniziamo lo studio.</p></li>
+    <li><span class="n">2</span><h3>Il tuo progetto prende forma</h3><p>Progettazione, rendering, disegno tecnico.</p></li>
+    <li><span class="n">3</span><h3>Fatti sorprendere</h3><p>Installazione e collaudo.</p></li>
+    <li><span class="n">4</span><h3>Sempre tutto sotto controllo</h3><p>Assistenza tecnica post vendita.</p></li>
+  </ol>
+  <p class="pa"><b>Per gli enti pubblici.</b> Siamo fornitore abilitato sul MePA di Consip e sulle piattaforme regionali Sintel (Lombardia), SATER (Emilia-Romagna), bandi Alto Adige, SIT Belluno e Albo fornitori del Comune di Peschiera del Garda.</p>
+</section>
+
+<section class="storia" id="storia" aria-labelledby="t-storia">
+  <figure class="st-foto">
+    <img src="img/fiera38-1200.jpg" srcset="img/fiera38-820.jpg 820w, img/fiera38-1200.jpg 1200w, img/fiera38-1640.jpg 1640w" sizes="(max-width:860px) 100vw, 58vw" width="1200" height="900" loading="lazy" alt="Lo stand Foralberg alla 38a Fiera di Padova: la scritta Foralberg, Padova, via S. Fermo 16 sopra scaffali di porcellane, posate e pentole, tavoli apparecchiati e macchine per lavanderia">
+  </figure>
+  <div class="st-testo">
+    <h2 class="h2" id="t-storia">Firmato Foralberg</h2>
+    <p class="f">Foralberg è stata fondata nel 1953 grazie ai fratelli Desiderio, Luigi e Guerino.</p>
+    <p class="st-anni"><b>1953</b> la fondazione, <b>1963</b> le prime consegne con l’OM Lupetto&nbsp;30, <b>1980</b> la sede di via Cile, <b>2008</b> lo showroom di oltre <span class="nw">800&nbsp;m²</span>.</p>
+    <p class="st-did didascalia"><b>Nella foto, lo stand alla 38a Fiera di Padova, 1960.</b> Foto Giordani.</p>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="ch-testo">
+    <h2 class="h2" id="t-contatti">Ci piace pensare di essere più di un semplice fornitore</h2>
+    <address class="recapiti">
+      <a class="tel-g" href="tel:+39049760955">049&nbsp;760955</a>
+      <p>Servizio clienti <a class="lk cif nw" href="tel:+393351426521">335&nbsp;142&nbsp;6521</a><br><a class="lk" href="mailto:servizioclienti@foralberg.it">servizioclienti@foralberg.it</a></p>
+      <p>Vendite e showroom<br><a class="lk" href="mailto:ldesiderio@foralberg.it">ldesiderio@foralberg.it</a></p>
+      <p>Via Cile 2, 35127 Padova, zona industriale<br><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Foralberg+via+Cile+2+35127+Padova">Apri la mappa</a></p>
+      <p class="t">Uffici e showroom dal lunedì al venerdì, <span class="nw cif">8.30-12.30</span> e <span class="nw cif">14.30-18.30</span></p>
+    </address>
+  </div>
+  <figure class="ch-foto">
+    <img src="img/fiera42-1080.jpg" srcset="img/fiera42-720.jpg 720w, img/fiera42-1080.jpg 1080w, img/fiera42-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 50vw" width="1080" height="1317" loading="lazy" alt="Lo stand Foralberg forniture alberghiere alla 42a Fiera di Padova, con la grande insegna, un mangano e lavatrici industriali">
+  </figure>
+</section>
+</main>
+
+<footer class="piede fascia">
+  <div class="pd-alto">
+    <div class="pd-chi">
+      <img src="img/logo-foralberg.svg" alt="Foralberg" width="208" height="44" loading="lazy">
+      <p>Forniture e progetti per l’ospitalità dal 1953: tavola, bar, buffet, cucine e impianti professionali. Showroom e uffici in via Cile 2, Padova.</p>
+    </div>
+    <div class="news">
+      <h2>Novità e cataloghi</h2>
+      <p>Il nuovo catalogo e le novità per la tavola, il buffet e la cucina.</p>
+      <form id="iscrizione" novalidate aria-label="Iscrizione alla newsletter">
+        <div class="campo">
+          <label class="sr" for="email-n">Indirizzo email</label>
+          <input id="email-n" type="email" name="email" placeholder="La vostra email" autocomplete="email" required>
+          <button class="bottone" type="submit">Iscriviti</button>
+        </div>
+        <label class="consenso"><input type="checkbox" name="consenso" required> <span>Ho letto l’<a class="lk" href="/privacy/">informativa privacy</a> e accetto di ricevere la newsletter di Foralberg s.r.l.</span></label>
+        <p class="esito" id="esito" role="status"></p>
+      </form>
+    </div>
+  </div>
+  <nav class="pd-col" aria-label="Mappa del sito">
+    <div>
+      <h3>Prodotti</h3>
+      <ul>
+        <li><a href="/prodotti/porcellana/">Porcellana</a></li>
+        <li><a href="/prodotti/posateria/">Posateria</a></li>
+        <li><a href="/prodotti/vetro/">Vetro</a></li>
+        <li><a href="/prodotti/bar-e-mixology/">Bar e mixology</a></li>
+        <li><a href="/prodotti/buffet-e-catering/">Buffet e catering</a></li>
+        <li><a href="/prodotti/gastronorm/">Gastronorm e gestione pasti</a></li>
+        <li><a href="/prodotti/cucina-e-pasticceria/">Cucina e pasticceria</a></li>
+        <li><a href="/cataloghi/">Cataloghi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Servizi</h3>
+      <ul>
+        <li><a href="/progetti-su-misura/">Progetti su misura</a></li>
+        <li><a href="/impianti-professionali/">Impianti professionali</a></li>
+        <li><a href="/piatti-personalizzati/">Piatti personalizzati</a></li>
+        <li><a href="/acquisti-pa/">Acquisti PA</a></li>
+        <li><a href="/assistenza/">Assistenza post vendita</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Azienda</h3>
+      <ul>
+        <li><a href="/chi-siamo/">Chi siamo, dal 1953</a></li>
+        <li><a href="/showroom/">Showroom</a></li>
+        <li><a href="/marchi/">Marchi</a></li>
+        <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+        <li><a href="https://lavetrinetta.foralberg.it/">La Vetrinetta, per i privati</a></li>
+        <li><a href="https://www.facebook.com/LaVetrinetta2015/">La Vetrinetta su Facebook</a></li>
+      </ul>
+    </div>
+    <div class="ct">
+      <h3>Contatti</h3>
+      <ul>
+        <li><a class="cif" href="tel:+39049760955">049&nbsp;760955</a></li>
+        <li>Servizio clienti <a class="cif nw" href="tel:+393351426521">335&nbsp;142&nbsp;6521</a></li>
+        <li><a href="mailto:servizioclienti@foralberg.it">servizioclienti@foralberg.it</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Foralberg+via+Cile+2+35127+Padova">Via Cile 2, 35127 Padova</a></li>
+        <li>Lun-ven <span class="nw cif">8.30-12.30</span>, <span class="nw cif">14.30-18.30</span></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="pd-legale">
+    <p>Foralberg s.r.l., via Cile 2, 35127 Padova, P.IVA <span class="tab">00210840286</span></p>
+    <ul>
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/cookie/">Cookie</a></li>
+      <li><a href="/note-legali/">Note legali</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Indice del catalogo: clic, Invio o frecce cambiano di colpo la foto, la riga e il link alla pagina del PDF.
+  var pdf='https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=';
+  var bottoni=[].slice.call(document.querySelectorAll('#indice button'));
+  var tavole=[].slice.call(document.querySelectorAll('#tavole .tavola'));
+  var testo=document.getElementById('scheda-testo'), link=document.getElementById('scheda-link');
+  function scegli(b){
+    bottoni.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    tavole.forEach(function(t){t.hidden=t.getAttribute('data-cap')!==b.getAttribute('data-cap')});
+    testo.textContent=b.getAttribute('data-testo');
+    link.href=pdf+b.getAttribute('data-pag');
+    link.textContent='Apri il capitolo nel catalogo, p. '+b.getAttribute('data-pag');
+  }
+  bottoni.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b)});
+    b.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowDown'||e.key==='ArrowRight')j=(i+1)%bottoni.length;
+      if(e.key==='ArrowUp'||e.key==='ArrowLeft')j=(i-1+bottoni.length)%bottoni.length;
+      if(e.key==='Home')j=0;
+      if(e.key==='End')j=bottoni.length-1;
+      if(j!==null){e.preventDefault();bottoni[j].focus();scegli(bottoni[j])}
+    });
+  });
+  // le altre foto dell'indice si scaricano dopo l'apertura, così il cambio è immediato
+  window.addEventListener('load',function(){tavole.forEach(function(t){var i=t.querySelector('img');i.loading='eager'})});
+
+  // Menu del telefono.
+  var apri=document.querySelector('.apri'),menu=document.querySelector('.menu');
+  apri.addEventListener('click',function(){var a=menu.classList.toggle('aperto');apri.setAttribute('aria-expanded',a?'true':'false');apri.textContent=a?'Chiudi':'Menu'});
+  menu.querySelectorAll('ul a').forEach(function(l){l.addEventListener('click',function(){menu.classList.remove('aperto');apri.setAttribute('aria-expanded','false');apri.textContent='Menu'})});
+
+  // Newsletter: il modulo non invia nulla finché non è collegato a un servizio.
+  document.getElementById('iscrizione').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target, esito=document.getElementById('esito');
+    if(!f.email.value||!f.email.checkValidity()){esito.textContent='Scrivete un indirizzo email valido.';f.email.focus();return}
+    if(!f.consenso.checked){esito.textContent='Serve il consenso per iscrivervi.';f.consenso.focus();return}
+    esito.textContent='Grazie. L’iscrizione sarà attiva quando il modulo verrà collegato al servizio di invio.';
+  });
+})();
+</script>
+</body>
+</html>

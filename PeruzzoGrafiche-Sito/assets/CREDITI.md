@@ -32,4 +32,17 @@ Licenza verificata sulla pagina della foto il 24/10/2026: "Free", Pexels License
 |---|---|---|---|---|
 | pexels-allecgomes-cartonato-spigolo-10939170.jpg | spigolo di un libro cartonato bianco su un altro con copertina nera, su telo bianco: unghiatura e blocco delle pagine, verticale | Allec Gomes (@allecgomes) | https://www.pexels.com/photo/corner-of-white-book-in-hardcover-binding-10939170/ | Pexels License |
 
-In pagina è usata in monocromia (inchiostro su carta) come apertura, con la didascalia "Foto indicativa". Va sostituita con lo still life di un cartonato stampato da Peruzzo (vedi LEGGIMI.md).
+Era l'apertura della prima versione della home finale (in monocromia, con "Foto indicativa"). Dopo la revisione del 24/10/2026 non è più in pagina: l'apertura usa una foto di un lavoro di Peruzzo (The Private Eye, pagina Prodotti del loro sito). Il file resta qui solo come archivio.
+
+### Foto di Peruzzo in pagina dopo la revisione (24/10/2026)
+
+Nessuna foto di repertorio nella home finale. Le foto in pagina sono tutte dal sito di Peruzzo (`assets/originali/`), usate solo per la proposta:
+
+| In pagina | File originale | Fonte sul sito di oggi |
+|---|---|---|
+| Apertura | `2017-11-The-Private-Eye_Bao-Publishing.jpg` (1200x885) | pagina Prodotti, "The Private Eye, Bao Publishing" |
+| Editori | `2017-11-Paper-Girls-2_Bao-Publishing.jpg`, `2017-11-Il-club-delle-baby-sitter_Il-Castoro.jpg`, `2017-11-La-Sposa-Yemenita_BeccoGiallo.jpg` | pagina Prodotti |
+| Reparti | `2020-11-IMG_8866.jpg` | libreria media del sito |
+| Chiusura | `2018-07-IMG_8364.jpg` | libreria media del sito |
+
+Le copertine sono opere di terzi (editori e autori): per pubblicare servono i permessi (vedi LEGGIMI.md).

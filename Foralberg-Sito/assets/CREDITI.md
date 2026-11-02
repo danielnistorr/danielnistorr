@@ -21,3 +21,7 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto: "Free" con rimando a
 ## Immagini dell'azienda
 
 In `assets/originali/`: scaricate da foralberg.it e lavetrinetta.foralberg.it il 24/10/2026, proprietà di Foralberg s.r.l. o dei marchi che distribuisce (le foto dello slider e delle copertine sono quasi tutte dei fornitori: Steelite, Berto's, Rona, Pinti, Eme, RAK). Le quattro foto d'archivio in bianco e nero portano la didascalia "FOTO GIORDANI": i diritti vanno chiesti all'azienda. I file `logo-foralberg-*.svg` sono i tracciati vettoriali estratti dalla pagina 1 del Catalogo 2026/2027 (`/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf`), ricolorati in #1D1D1B; il PDF non è conservato.
+
+## Home finale (sito/, 24/10/2026)
+
+Foto usate in `sito/img/`, tutte passate nello stesso viraggio in bianco e nero (`_prova/script/finale_img.py`): archivio Foralberg (furgone OM Lupetto 30, stand alla 38a e alla 42a Fiera di Padova, "Foto Giordani", diritti da chiedere); Pexels 6957563 (Nilov, Porcellana), 12021478 (Irina P, Posateria), 3992482 (Nguyễn Thanh Ngọc, Vetro), 5676260 (Sakelli, Bar e mixology), 12255469 (Ehlers, Buffet e catering, ritagliata sul buffet), 7140435 (Filirovska, Gastronorm). Nessuna nuova foto scaricata per la finale.

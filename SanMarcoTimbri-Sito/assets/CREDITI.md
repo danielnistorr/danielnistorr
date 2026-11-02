@@ -31,3 +31,16 @@ Scaricati il 24/10/2026 da `images.pexels.com` per il prototipo A della home (le
 |---|---|---|---|
 | `esterne/originali-pexels/pexels-tarazevich-sigillo-carta-5425648-3500.jpg` | https://www.pexels.com/photo/close-up-photo-of-a-stamp-on-a-paper-5425648/ | Anna Tarazevich | 3500x2333 |
 | `esterne/originali-pexels/pexels-tarazevich-punzoni-mani-5963063-3500.jpg` | https://www.pexels.com/photo/hands-holding-stamps-5963063/ | Anna Tarazevich | 3500x2333 |
+
+## Aggiunte per la home finale (24/10/2026)
+
+Licenza verificata il 24/10/2026 sulla pagina di ogni foto (Pexels: "Free", con il link alla Pexels License; nessuna indicazione di immagine generata dall'IA). Controllo sui `CREDITI.md` delle altre home della campagna: nessuna delle due compare altrove.
+
+| File | Pagina della foto | Autore | Licenza | Misura | Dove | Nota |
+|---|---|---|---|---|---|---|
+| `esterne/originali-pexels/pexels-raw-sigilli-ottone-10559993-3709.jpg` | https://www.pexels.com/photo/a-wooden-stamp-on-a-white-surface-10559993/ | Pauline Raw | Pexels License | 3709x5564 (originale) | apertura | dalla foto dei quattro sigilli ho scontornato solo quello in alto (testa in ottone e manico in legno, visto di lato, senza incisione leggibile); nastro e altri sigilli tolti, un puntino bianco sul bordo ritoccato. Script: `_prova/script/fin_scontorno.py` |
+| `esterne/pexels-sredojevic-presse-caldo-12884573.jpg` | https://www.pexels.com/photo/hot-stamping-machines-on-a-table-12884573/ | Dana Sredojevic | Pexels License | 2400x2658 (orig. 5263x5829) | fascia di "I file li prepariamo noi" | due presse per la stampa a caldo su un banco contro una parete chiara; sulle presse c'è una targhetta del costruttore, illeggibile alla misura della pagina. Dichiarata "Foto indicativa" |
+
+Foto loro usate nella home finale (diritti da confermare con l'azienda): `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` (sezione delle dieci lavorazioni), `originali/targa-in-acciaio-corten.jpg` (chiusura), `originali/logo-orizzontale-641x114.jpg` e `originali/logo-verticale-256x200.png` (testata e piede).
+
+Caratteri: `assets/fonts/encodesans-latin.woff2` e `encodesans-latin-ext.woff2` (Encode Sans, file variabile peso 100-900 e larghezza 75-125 %, da Google Fonts), licenza SIL Open Font License 1.1 in `assets/fonts/OFL-EncodeSans.txt` (scaricata da github.com/google/fonts, cartella `ofl/encodesans`).

@@ -30,7 +30,7 @@ Avvertenze:
 ## Usate nella home finale (sito/img/)
 
 - Bottiglie Felsina, Fernet, Garofano, Pinalpe, Prugna, Punch Arancio e Alchermes: originali dell'azienda (`2024-02-*.png`, `2023-02-bott-alchermes.png`), scontornate e messe in scena con PIL (`_prova/script/finale_img.py`).
-- `spezie-*.jpg`: Sedanur Kunuk, Pexels, licenza Pexels (https://www.pexels.com/photo/culinary-spices-and-orange-slices-on-white-background-30004632/).
-- `chiusura-*.jpg`: Mathias Reding, Pexels, licenza Pexels (https://www.pexels.com/photo/bottle-and-drinking-glasses-with-alcohol-11560692/). Controllata di nuovo il 24/10/2026: l'ID 11560692 non compare nei CREDITI di nessun'altra home della campagna.
+- `manifesto-*.jpg`: dalla foto `2025-04-1000098150-01.jpeg` della libreria media dell'azienda (mostra «Padova da gustare», 2025), raddrizzata in prospettiva e ritagliata sul solo manifesto «i classici prodotti RIZZI PADOVA», senza gli altri oggetti della parete (Amaro Bareggi, Iperchina, Vedaldi e gli altri marchi di terzi restano fuori). Originale della collezione di Simone Marzari: diritti da chiedere prima di pubblicare.
 - Loghi: `logo-distilleria-rizzi-scritta-1286x168.png` e `logo-distilleria-rizzi-nero-1500x300.png`, ricolorati in inchiostro.
+- Le foto Pexels di Kunuk (spezie) e Reding (bottiglia e bicchierini) erano nella versione precedente e sono state tolte nella rifinitura del 24/10/2026: nella home finale non c'è nessuna foto di repertorio.
 - Caratteri (non immagini, per completezza): Zodiak e Switzer, Fontshare, ITF Free Font License, scaricati il 24/10/2026 da api.fontshare.com in `_prova/crawl/fontshare/`.

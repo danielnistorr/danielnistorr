@@ -19,3 +19,7 @@ File scaricati da images.unsplash.com e ridotti a 2400 px sul lato lungo (JPEG q
 | unsplash-sjsT8VDkN28-kostyuk-pennelli-contenitore.jpg | https://unsplash.com/photos/a-collection-of-assorted-paintbrushes-in-a-container-sjsT8VDkN28 | Tasha Kostyuk (@tashakostyuk) | 14/03/2026 | 2400x1800 | workshop: mazzo di pennelli usati |
 
 Nota: nelle foto non ci sono marchi riconoscibili in primo piano. Le foto dell'azienda (cartella `originali/`) restano la prima scelta dove reggono: la parete degli angolari, Matteo con la cornice rossa e oro, le cornici barocche, i cavalletti Mabef.
+
+## Uso nella home finale (sito/, 24/10/2026)
+
+Nella home finale è usata una sola foto di questo elenco: `unsplash-gx6NxtpgHqY-inthemaking-cornice-rovere.jpg` (In The Making Studio), come muro con la luce di finestra dell'apertura (`sito/img/muro-d-*.jpg`, `muro-m-*.jpg`). La sua cornice in rovere è coperta dalla cornice disegnata con i listelli dell'azienda. Le altre otto foto non sono usate. Tutte le altre immagini della home vengono da `originali/` (foto dell'azienda).

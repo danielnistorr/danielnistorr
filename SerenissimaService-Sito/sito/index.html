@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serenissima Service, carrozzeria e officina a Padova</title>
+<meta name="description" content="Carrozzeria, officina e meccatronica, elettrauto, centro cristalli, grandine e soccorso stradale in 3000 mq nella zona industriale di Padova. Gestione dei sinistri senza anticipi.">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Archivo, SIL Open Font License 1.1 (fonts/OFL.txt), variabile: larghezza 62-125 %, peso 100-900 */
+@font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --carta:#F4F2EC;      /* i pannelli della cabina, trattati con la stessa carta */
+  --carta-2:#EAE7DF;    /* piede */
+  --inchiostro:#161714;
+  --grigio:#5C5E58;     /* 6,1:1 su carta */
+  --filo:#D5D2C8;
+  --verde:#076633;      /* il verde del logo, 6,7:1 su carta */
+  --verde-scuro:#054A25;
+  --giallo:#F2C200;     /* il sollevatore: solo superfici, mai testo */
+  --m:64px;
+  --gap:24px;
+  --sezione:160px;
+  --largo:112%;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--carta);color:var(--inchiostro);font-family:"Archivo",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;font-stretch:100%;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--verde);text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nw{white-space:nowrap}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+h1,h2,h3{font-weight:500;font-stretch:var(--largo);text-wrap:balance}
+h2{font-size:52px;line-height:1.04;letter-spacing:-.025em}
+.sezione{padding-top:var(--sezione)}
+
+/* testata */
+.testata{display:flex;align-items:center;justify-content:space-between;height:84px;gap:32px;position:relative;z-index:3}
+.testata .marchio img{width:162px;height:auto}
+.menu{display:flex;gap:32px;font-size:16px}
+.menu a{text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.testata .tel{font-size:17px;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
+.testata .tel span{font-weight:400;color:var(--grigio);margin-right:10px}
+.menu-mobile{display:none}
+
+/* apertura: la promessa del logo sulla carta, a destra la cabina con la Ferrari che esce dalla carta */
+.apertura{position:relative;display:flex;min-height:calc(clamp(720px,100svh,1080px) - 84px)}
+.apertura .testo{position:relative;z-index:2;flex:1;padding-top:clamp(48px,9svh,112px);padding-bottom:120px}
+.apertura .colonna{max-width:620px}
+.apertura h1{font-size:122px;line-height:.9;letter-spacing:-.045em;font-weight:500}
+.apertura .intro{font-size:19px;line-height:1.5;margin-top:40px;max-width:26em}
+.apertura .chiama{display:flex;align-items:center;gap:22px;margin-top:34px}
+.apertura .orari{font-size:14px;line-height:1.4;color:var(--grigio);white-space:nowrap}
+.bottone{white-space:nowrap;display:inline-block;background:var(--verde);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:15px 24px;line-height:1.2;transition:background-color .15s}
+.bottone:hover{background:var(--verde-scuro);color:#fff;text-decoration:none}
+.cabina{position:absolute;top:-84px;right:0;height:calc(100% + 84px);aspect-ratio:1674/1860;z-index:1}
+.cabina .foto{position:relative;height:100%;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 14%),linear-gradient(to bottom,transparent 0,#000 190px,#000 calc(100% - 64px),transparent 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent 0,#000 14%),linear-gradient(to bottom,transparent 0,#000 190px,#000 calc(100% - 64px),transparent 100%);mask-composite:intersect}
+.cabina img{width:100%;height:100%;object-fit:cover}
+.legenda{position:absolute;display:flex;align-items:center;gap:10px;font-size:14px;line-height:1;white-space:nowrap;transform:translate(-5.5px,-50%)}
+.legenda i{width:11px;height:11px;border-radius:50%;background:var(--carta);border:3px solid var(--inchiostro);flex:none}
+.legenda b{display:block;height:1px;background:var(--inchiostro);width:48px;flex:none}
+.legenda span{background:var(--carta);padding:7px 10px 7px 9px;font-weight:500}
+.legenda span em{font-style:normal;font-variant-numeric:tabular-nums;color:var(--grigio);margin-right:8px;font-weight:400}
+.l1{left:56.7%;top:22.6%}
+.l2{left:49.7%;top:54.7%}
+.didascalia-apertura{position:absolute;z-index:2;bottom:36px;left:max(var(--m),calc((100vw - 1440px)/2 + var(--m)));font-size:14px;line-height:1.45;color:var(--grigio);max-width:24em}
+
+/* reparti */
+.testa{align-items:end}
+.testa h2{grid-column:1 / span 7}
+.testa p{grid-column:8 / span 5;color:var(--grigio);max-width:31em}
+.linguette-giro{position:relative;margin-top:56px}
+.linguette{display:flex;border-bottom:1px solid var(--filo)}
+.linguette button{white-space:nowrap;appearance:none;background:none;border:0;border-radius:0;cursor:pointer;font:inherit;font-stretch:var(--largo);font-size:24px;font-weight:500;letter-spacing:-.01em;color:var(--grigio);padding:0 0 18px;margin-right:48px;position:relative;transition:color .12s}
+.linguette button:hover,.linguette button[aria-selected="true"]{color:var(--inchiostro)}
+.linguette button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:var(--giallo)}
+.pannello[hidden]{display:none}
+.pannello .foto{aspect-ratio:2.25/1;overflow:hidden;background:var(--carta-2);margin-top:32px}
+.pannello .foto img{width:100%;height:100%;object-fit:cover}
+.pannello .sotto{padding-top:32px;row-gap:16px}
+.pannello h3{grid-column:1 / span 7;font-size:32px;line-height:1.16;letter-spacing:-.018em;max-width:19em}
+.pannello .dett{grid-column:8 / span 5}
+.pannello .dett p{font-size:17px}
+.pannello .azioni{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:16px}
+.pannello .azioni a{font-weight:500}
+.pannello .didascalia{grid-column:1 / span 7;font-size:14px;color:var(--grigio)}
+
+/* dal 1993 */
+.sede{align-items:start}
+.sede .foto{grid-column:1 / span 5;margin-left:calc(-1*var(--m))}
+.sede .foto img{width:100%;aspect-ratio:1120/1150;object-fit:cover}
+.sede .foto figcaption{font-size:14px;color:var(--grigio);padding:12px 0 0 var(--m)}
+.sede .testo{grid-column:7 / span 6}
+.sede .storia{font-size:19px;margin-top:28px;max-width:31em}
+.sede .dotazione{font-size:30px;line-height:1.3;font-stretch:106%;letter-spacing:-.012em;margin-top:40px;padding-top:28px;border-top:1px solid var(--filo)}
+.sede .dotazione strong{font-weight:600;font-variant-numeric:tabular-nums lining-nums}
+.sede .prove{margin-top:24px;font-size:16px;color:var(--grigio);max-width:34em}
+
+/* sinistro */
+.sinistro .sx{grid-column:1 / span 5}
+.sinistro .lead{font-size:22px;line-height:1.4;margin-top:24px;max-width:20em}
+.sinistro .note{margin-top:40px;font-size:16px;color:var(--grigio);max-width:30em}
+.sinistro .note p+p{margin-top:14px}
+.passi{grid-column:7 / span 6;list-style:none;counter-reset:p}
+.passi li{display:grid;grid-template-columns:72px 1fr;align-items:baseline;padding:22px 0 24px;border-top:1px solid var(--filo);font-size:22px;line-height:1.3;font-stretch:104%}
+.passi li:last-child{border-bottom:1px solid var(--filo)}
+.passi li::before{counter-increment:p;content:counter(p);font-variant-numeric:tabular-nums;font-size:16px;color:var(--grigio);font-stretch:100%}
+.passi li small{display:block;font-size:15px;color:var(--grigio);margin-top:6px;font-stretch:100%}
+.passi li small a{color:var(--inchiostro);font-weight:500}
+
+/* chiusura: la frase e i recapiti a sinistra, la sede a destra fino al bordo */
+.chiusura .griglia{align-items:end}
+.chiusura .testo{grid-column:1 / span 6;grid-row:1;padding-bottom:4px}
+.chiusura .foto{grid-column:8 / span 5;grid-row:1;margin-right:calc(-1*var(--m))}
+.chiusura .foto img{width:100%;aspect-ratio:845/735;object-fit:cover}
+.chiusura h2{font-size:84px;line-height:.98;letter-spacing:-.03em}
+.recapiti{margin-top:48px;font-size:17px;line-height:1.5}
+.recapiti .grande{font-size:40px;font-weight:500;font-stretch:var(--largo);letter-spacing:-.015em;line-height:1.1;text-decoration:none;display:inline-block}
+.recapiti .grande:hover{color:var(--verde)}
+.recapiti .riga{margin-top:12px}
+.recapiti .piccolo{color:var(--grigio);font-size:15px;margin-top:4px}
+.recapiti .primo{margin-top:6px}
+.recapiti .piccolo-in{color:var(--grigio);font-size:15px;margin-left:6px}
+.recapiti .orari{margin-top:22px;color:var(--grigio);font-size:15px}
+
+/* piede */
+.piede{background:var(--carta-2);margin-top:var(--sezione);padding:96px 0 44px}
+.piede .righe{row-gap:48px}
+.piede .chi{grid-column:1 / span 4}
+.piede .col:nth-of-type(1){grid-column:5 / span 2}
+.piede .col:nth-of-type(2){grid-column:7 / span 2}
+.piede .col:nth-of-type(3){grid-column:9 / span 2}
+.piede .col:nth-of-type(4){grid-column:11 / span 2}
+.piede .chi img{width:240px;height:auto}
+.piede .chi p{font-size:15px;color:var(--grigio);margin-top:20px;max-width:22em}
+.piede .tit{font-size:14px;font-weight:600;letter-spacing:.02em;margin-bottom:16px}
+.piede ul{list-style:none;font-size:15px;line-height:1.5}
+.piede li+li{margin-top:9px}
+.piede .col a{text-decoration:none}
+.piede .col a:hover{color:var(--verde);text-decoration:underline}
+.piede .legale{margin-top:80px;padding-top:22px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:13px;color:var(--grigio)}
+.piede .legale a{color:var(--grigio)}
+.piede .legale a:hover{color:var(--verde)}
+.piede .legale .dx{margin-left:auto;display:flex;gap:24px}
+
+/* oltre 1440: le foto a filo del bordo arrivano davvero al bordo della finestra */
+@media (min-width:1441px){
+  .sede .foto{margin-left:calc(-1*(var(--m) + (100vw - 1440px)/2))}
+  .chiusura .foto{margin-right:calc(-1*(var(--m) + (100vw - 1440px)/2))}
+  .sede .foto figcaption{padding-left:calc(var(--m) + (100vw - 1440px)/2)}
+}
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px;--sezione:136px}
+  .apertura h1{font-size:92px}
+  .apertura .colonna{max-width:440px}
+  .apertura .intro{font-size:17px;margin-top:30px}
+  .apertura .chiama{flex-direction:column;align-items:flex-start;gap:10px}
+  .apertura{min-height:calc(57.8vw - 84px)}
+  .cabina{height:auto;width:52vw}
+  .cabina .foto,.cabina img{height:auto}
+  .legenda{font-size:13px;gap:8px}
+  .legenda b{width:22px}
+  .menu{gap:22px}
+  h2{font-size:44px}
+  .chiusura h2{font-size:64px}
+  .linguette button{font-size:21px;margin-right:32px}
+  .pannello h3{font-size:28px}
+  .sede .dotazione{font-size:25px}
+  .passi li{font-size:20px}
+}
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px;--sezione:112px}
+  .menu{display:none}
+  .menu-mobile{display:block;position:relative}
+  .menu-mobile summary{list-style:none;cursor:pointer;font-size:16px;font-weight:500;padding:8px 0}
+  .menu-mobile summary::-webkit-details-marker{display:none}
+  .testata{position:relative}
+  .menu-mobile{position:static}
+  .menu-mobile ul{position:absolute;left:0;right:0;top:100%;z-index:5;background:var(--carta);list-style:none;padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
+  .menu-mobile li a{display:block;padding:12px 0;text-decoration:none;font-size:20px;font-weight:500;font-stretch:var(--largo)}
+  .menu-mobile li:last-child a{margin-top:14px;display:inline-block;background:var(--verde);color:#fff;font-size:17px;padding:14px 20px;font-stretch:100%}
+  .testata .tel{margin-left:auto}
+  .apertura{display:block;min-height:0}
+  .apertura .testo{padding-top:40px;padding-bottom:0}
+  .apertura .colonna{max-width:none}
+  .apertura h1{font-size:96px}
+  .apertura .intro{max-width:30em}
+  .apertura .chiama{flex-direction:row;align-items:center;gap:18px}
+  .cabina{position:relative;top:0;height:auto;width:100%;aspect-ratio:auto;margin-top:8px}
+  .cabina .foto{height:auto;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 96px);mask-image:linear-gradient(to bottom,transparent 0,#000 96px)}
+  .cabina img{height:auto}
+  .legenda{display:none}
+  .cabina img{aspect-ratio:4/3;object-position:50% 100%}
+  .didascalia-apertura{position:static;padding:12px var(--m) 0;max-width:none}
+  .testa h2{grid-column:1 / span 12}
+  .testa p{grid-column:1 / span 10;margin-top:18px}
+  .pannello h3,.pannello .dett,.pannello .didascalia{grid-column:1 / span 12}
+  .sede .foto{grid-column:1 / span 6}
+  .sede .testo{grid-column:7 / span 6}
+  h2{font-size:38px}
+  .sede .storia{font-size:17px}
+  .sede .dotazione{font-size:21px;margin-top:28px}
+  .sinistro .sx{grid-column:1 / span 12}
+  .passi{grid-column:1 / span 12;margin-top:48px}
+  .chiusura .testo{grid-column:1 / span 6}
+  .chiusura .foto{grid-column:7 / span 6}
+  .chiusura h2{font-size:52px}
+  .recapiti .grande{font-size:32px}
+  .piede .chi{grid-column:1 / span 12}
+  .piede .col:nth-of-type(n){grid-column:span 3}
+}
+/* telefono */
+@media (max-width:640px){
+  :root{--m:20px;--sezione:96px}
+  body{font-size:17px}
+  .testata{height:64px}
+  .testata .marchio img{width:132px}
+  .testata .tel{display:none}
+  .apertura .testo{padding-top:28px}
+  .apertura h1{font-size:68px;line-height:.92;letter-spacing:-.04em}
+  .apertura .intro{font-size:17px;margin-top:22px}
+  .apertura .chiama{gap:16px;margin-top:22px}
+  .bottone{font-size:16px;padding:14px 18px}
+  .apertura .orari{font-size:13px}
+  .cabina{margin-top:0}
+  .cabina img{aspect-ratio:auto}
+  .cabina .foto{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 64px);mask-image:linear-gradient(to bottom,transparent 0,#000 64px)}
+  .didascalia-apertura{padding-top:10px;font-size:13px}
+  h2{font-size:34px;line-height:1.08}
+  .testa p{font-size:17px}
+  .linguette-giro{margin:32px calc(-1*var(--m)) 0}
+  .linguette-giro::after{content:"";position:absolute;top:0;right:0;bottom:1px;width:48px;pointer-events:none;background:linear-gradient(to right,rgba(244,242,236,0),var(--carta) 80%)}
+  .linguette{overflow-x:auto;scrollbar-width:none;padding:0 var(--m);border-bottom:0;box-shadow:inset 0 -1px 0 var(--filo)}
+  .linguette::-webkit-scrollbar{display:none}
+  .linguette::after{content:"";flex:0 0 28px}
+  .linguette button{font-size:18px;margin-right:26px;padding:10px 0 14px}
+  .linguette button:focus-visible{outline-offset:-3px}
+  .linguette button[aria-selected="true"]::after{height:4px;bottom:0}
+  .pannello .foto{margin:0 calc(-1*var(--m));aspect-ratio:4/3}
+  .pannello h3{font-size:24px;line-height:1.2}
+  .pannello .sotto{padding-top:22px}
+  .sede{display:block}
+  .sede .foto{margin:0 calc(-1*var(--m))}
+  .sede .foto img{aspect-ratio:4/4.2}
+  .sede .foto figcaption{padding:10px var(--m) 0}
+  .sede .testo{margin-top:36px}
+  .sede .dotazione{font-size:21px}
+  .sinistro .lead{font-size:19px}
+  .passi{margin-top:36px}
+  .passi li{grid-template-columns:40px 1fr;font-size:18px;padding:18px 0 20px}
+  .chiusura .griglia{display:flex;flex-direction:column}
+  .chiusura .testo{order:1}
+  .chiusura .foto{order:2}
+  .chiusura .testo{padding:0}
+  .chiusura h2{font-size:46px}
+  .recapiti{margin-top:32px}
+  .chiusura .foto{margin:44px calc(-1*var(--m)) 0}
+  .chiusura .foto img{aspect-ratio:4/3.3}
+  .piede{padding-top:56px}
+  .piede .righe{row-gap:0}
+  .piede .chi{margin-bottom:36px}
+  .piede .col:nth-of-type(n){grid-column:1 / span 12;padding:22px 0;border-top:1px solid var(--filo)}
+  .piede .tit{margin-bottom:12px}
+  .piede ul{display:flex;flex-wrap:wrap;gap:0 22px}
+  .piede li a{display:inline-block;padding:5px 0}
+  .piede li+li{margin-top:0}
+  .piede .legale{margin-top:24px;display:block}
+  .piede .legale span,.piede .legale .dx{display:block;margin:6px 0 0}
+  .piede .legale .dx a{margin-right:20px}
+}
+@media (max-width:370px){
+  .apertura h1{font-size:58px}
+  .apertura .chiama{flex-direction:column;align-items:flex-start;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap testata">
+  <a class="marchio" href="#" aria-label="Serenissima Service, inizio pagina"><img src="img/scritta-324.png" srcset="img/scritta-162.png 162w, img/scritta-324.png 324w" sizes="162px" width="162" height="38" alt="Serenissima Service"></a>
+  <nav class="menu" aria-label="Menu principale">
+    <a href="#reparti">Servizi</a>
+    <a href="#sinistro">Sinistri</a>
+    <a href="#storia">Chi siamo</a>
+    <a href="prenota-il-tagliando/">Prenota il tagliando</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel" href="tel:+39049760655"><span>Telefono</span>049&nbsp;760655</a>
+  <details class="menu-mobile">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="#reparti">Servizi</a></li>
+      <li><a href="#sinistro">Sinistri</a></li>
+      <li><a href="#storia">Chi siamo</a></li>
+      <li><a href="prenota-il-tagliando/">Prenota il tagliando</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+      <li><a href="tel:+39049760655" class="num">Chiama 049&nbsp;760655</a></li>
+    </ul>
+  </details>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="t-apertura">
+  <div class="wrap testo">
+    <div class="colonna">
+      <h1 id="t-apertura">Botta?<br>Risposta!</h1>
+      <p class="intro">Carrozzeria, officina, elettrauto, cristalli, grandine e soccorso stradale in 3000&nbsp;mq, nella zona industriale di Padova. Dal 1993.</p>
+      <div class="chiama">
+        <a class="bottone" href="tel:+39049760655">Chiama lo 049&nbsp;760655</a>
+        <span class="orari num">Lun-ven 8-12 e 14-18<br>Sabato 8-12</span>
+      </div>
+    </div>
+  </div>
+  <figure class="cabina" aria-describedby="d-apertura">
+    <div class="foto">
+      <picture>
+        <source media="(max-width:640px)" srcset="img/cabina-auto-stretta-480.webp 480w, img/cabina-auto-stretta-780.webp 780w, img/cabina-auto-stretta-1300.webp 1300w" sizes="100vw" width="1300" height="1530">
+        <img src="img/cabina-auto-1280.webp" srcset="img/cabina-auto-640.webp 640w, img/cabina-auto-900.webp 900w, img/cabina-auto-1280.webp 1280w, img/cabina-auto-1674.webp 1674w" sizes="(max-width:900px) 100vw, (max-width:1180px) 52vw, 900px" width="1674" height="1860" alt="Una Ferrari 488 nera vista da dietro, ferma al centro di una cabina di verniciatura: soffitto filtrante, lampade sulle pareti coperte dal film, pavimento grigliato; sul fondo la cabina successiva" fetchpriority="high">
+      </picture>
+      <div class="legenda l1" aria-hidden="true"><i></i><b></b><span><em>1</em>Plenum filtrante</span></div>
+      <div class="legenda l2" aria-hidden="true"><i></i><b></b><span><em>2</em>Ferrari 488, settembre 2018</span></div>
+    </div>
+  </figure>
+  <p class="didascalia-apertura" id="d-apertura">Una delle 9 cabine di verniciatura di Corso Stati Uniti, con la Ferrari 488 riparata nel settembre 2018.</p>
+</section>
+
+<section class="wrap sezione" id="reparti" aria-labelledby="t-reparti">
+  <div class="griglia testa">
+    <h2 id="t-reparti">Cinque reparti, una sede</h2>
+    <p>L'incidente non è solo carrozzeria: per questo nella stessa sede ci sono anche l'officina, il centro cristalli, il levabolli e il carro attrezzi.</p>
+  </div>
+
+  <div class="linguette-giro">
+    <div class="linguette" role="tablist" aria-label="Reparti">
+      <button type="button" role="tab" id="tab-carrozzeria" aria-controls="p-carrozzeria" aria-selected="true">Carrozzeria</button>
+      <button type="button" role="tab" id="tab-officina" aria-controls="p-officina" aria-selected="false" tabindex="-1">Officina</button>
+      <button type="button" role="tab" id="tab-cristalli" aria-controls="p-cristalli" aria-selected="false" tabindex="-1">Cristalli</button>
+      <button type="button" role="tab" id="tab-grandine" aria-controls="p-grandine" aria-selected="false" tabindex="-1">Grandine</button>
+      <button type="button" role="tab" id="tab-soccorso" aria-controls="p-soccorso" aria-selected="false" tabindex="-1">Soccorso stradale</button>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-carrozzeria" aria-labelledby="tab-carrozzeria">
+    <div class="foto"><img src="img/carrozzeria-1312.webp" srcset="img/carrozzeria-640.webp 640w, img/carrozzeria-960.webp 960w, img/carrozzeria-1312.webp 1312w, img/carrozzeria-1742.webp 1742w" sizes="(max-width:640px) 100vw, (max-width:1440px) 92vw, 1312px" width="1742" height="774" alt="Un carrozziere chino sul passaruota posteriore di un'auto nera coperta dal telo: stende il nastro di carta attorno alla ruota, sul pavimento grigliato della cabina"></div>
+    <div class="griglia sotto">
+      <h3>Perché sostituire un'intera portiera quando basta sistemare una piccola strisciata?</h3>
+      <div class="dett">
+        <p>Smart repair da 1 a 4 ore, verniciatura all'acqua essiccata in cabina, verniciature opache, riparazione e verniciatura dei cerchi in lega. Ricambi originali o paralleli, per lavorare anche in economia.</p>
+        <p class="azioni"><a href="servizi/carrozzeria/">La carrozzeria</a><a href="tel:+39049760655" class="num">049&nbsp;760655, interno Carrozzeria</a></p>
+      </div>
+      <p class="didascalia">La mascheratura della Ferrari 488 prima della verniciatura, settembre 2018.</p>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-officina" aria-labelledby="tab-officina">
+    <div class="foto"><img loading="lazy" src="img/officina-1312.webp" srcset="img/officina-640.webp 640w, img/officina-960.webp 960w, img/officina-1312.webp 1312w, img/officina-1600.webp 1600w" sizes="(max-width:640px) 100vw, (max-width:1440px) 92vw, 1312px" width="1600" height="711" alt="L'officina meccanica: i ponti sollevatori e le auto in lavorazione sotto le file di luci"></div>
+    <div class="griglia sotto">
+      <h3>Il tuo meccatronico di fiducia, per auto e furgoni fino a 35&nbsp;quintali</h3>
+      <div class="dett">
+        <p>Diagnosi elettronica per qualsiasi casa costruttrice, tagliandi completi su qualsiasi chilometraggio, elettrauto, ricarica dell'aria condizionata, antifurto anche satellitare.</p>
+        <p class="azioni"><a href="prenota-il-tagliando/">Prenota il tagliando</a><a href="servizi/officina-meccatronica/">L'officina</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-cristalli" aria-labelledby="tab-cristalli">
+    <div class="foto"><img loading="lazy" src="img/cristalli-1312.webp" srcset="img/cristalli-640.webp 640w, img/cristalli-960.webp 960w, img/cristalli-1312.webp 1312w, img/cristalli-1600.webp 1600w" sizes="(max-width:640px) 100vw, (max-width:1440px) 92vw, 1312px" width="1600" height="711" alt="Un tecnico posa il parabrezza con le ventose"></div>
+    <div class="griglia sotto">
+      <h3>Non tutte le scheggiature richiedono la sostituzione del vetro</h3>
+      <div class="dett">
+        <p>Ripariamo il parabrezza quando si può e lo sostituiamo quando serve. Applichiamo pellicole omologate ai cristalli e il trattamento antipioggia.</p>
+        <p class="azioni"><a href="servizi/centro-cristalli/">Il centro cristalli</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-grandine" aria-labelledby="tab-grandine">
+    <div class="foto"><img loading="lazy" src="img/grandine-1312.webp" srcset="img/grandine-640.webp 640w, img/grandine-960.webp 960w, img/grandine-1312.webp 1312w, img/grandine-1600.webp 1600w" sizes="(max-width:640px) 100vw, (max-width:1440px) 92vw, 1312px" width="1600" height="711" alt="Il levabolli regola la lampada a righe sopra il tetto di un'auto scura, in cabina"></div>
+    <div class="griglia sotto">
+      <h3>Spesso un'auto grandinata si ripara in giornata</h3>
+      <div class="dett">
+        <p>Il levabolli è un lavoro artigianale: si fa sotto speciali lampade che evidenziano anche la minima imperfezione della lamiera, senza riverniciare. Sulla riparazione, garanzia a vita.</p>
+        <p class="azioni"><a href="servizi/grandine-levabolli/">Grandine e levabolli</a></p>
+      </div>
+      <p class="didascalia">In cabina, nel 2019.</p>
+    </div>
+  </div>
+
+  <div class="pannello" role="tabpanel" id="p-soccorso" aria-labelledby="tab-soccorso">
+    <div class="foto"><img loading="lazy" src="img/soccorso-1312.webp" srcset="img/soccorso-640.webp 640w, img/soccorso-960.webp 960w, img/soccorso-1312.webp 1312w, img/soccorso-1600.webp 1600w" sizes="(max-width:640px) 100vw, (max-width:1440px) 92vw, 1312px" style="object-position:64% 50%" width="1600" height="711" alt="Il carro attrezzi blu con la scritta Soccorso stradale Serenissima Service e la targa Il Socio sopra la cabina"></div>
+    <div class="griglia sotto">
+      <h3>Con il nostro carro attrezzi l'auto arriva direttamente in officina</h3>
+      <div class="dett">
+        <p>Dal soccorso alla pratica con l'assicurazione ci pensiamo noi, e intanto puoi contare su oltre 40 auto sostitutive.</p>
+        <p class="azioni"><a href="tel:+393355639355" class="num">Cellulare 335&nbsp;5639355</a><a href="servizi/soccorso-stradale/">Il soccorso stradale</a></p>
+      </div>
+      <p class="didascalia">Sulla cabina del carro c'è scritto «Il Socio», il soprannome che la sede ha dal 1993.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sezione" id="storia" aria-labelledby="t-storia">
+  <div class="griglia sede">
+    <figure class="foto">
+      <img loading="lazy" src="img/lucidatura-840.webp" srcset="img/lucidatura-560.webp 560w, img/lucidatura-840.webp 840w, img/lucidatura-1120.webp 1120w" sizes="(max-width:640px) 100vw, 42vw" width="1120" height="1150" alt="Due mani con i guanti passano la lucidatrice su una portiera bianca">
+      <figcaption>Lucidatura dopo la verniciatura.</figcaption>
+    </figure>
+    <div class="testo">
+      <h2 id="t-storia">Dal 1993 in Corso Stati Uniti</h2>
+      <p class="storia">Siamo nati da un ramo di una storica carrozzeria padovana degli anni Sessanta. Nel 1993 un gruppo di amici-soci riparte in una sede di circa 620&nbsp;mq, soprannominata fin da subito «Il Socio». Nel 2001 si allarga fino ai 3000&nbsp;mq di oggi.</p>
+      <p class="dotazione"><strong>9</strong> cabine di verniciatura, <strong>12</strong> ponti in officina, <strong>4</strong> dispositivi di diagnosi, <strong>40</strong> auto sostitutive e un impianto fotovoltaico da <strong class="nw">100&nbsp;kWp</strong> sul tetto.</p>
+      <p class="prove">Certificazione ISO 9001. Nel triennio 2023-2025 nell'albo dei fornitori della Polizia di Stato.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sezione" id="sinistro" aria-labelledby="t-sinistro">
+  <div class="griglia sinistro">
+    <div class="sx">
+      <h2 id="t-sinistro">Il sinistro, senza anticipi</h2>
+      <p class="lead">Hai avuto un incidente? Dalla constatazione amichevole all'auto riparata, il cliente non deve anticipare nulla.</p>
+      <div class="note">
+        <p>Siamo carrozzeria fiduciaria di 26 compagnie, tra cui Generali, UnipolSai, Allianz, Zurich, Verti, Groupama e Vittoria.</p>
+        <p>Con un'auto a noleggio lungo termine (Ayvens, Alphabet, Athlon, Sifà, Leasys, Volkswagen Lease) facciamo noi le foto dei danni, chiediamo l'autorizzazione al noleggio e prenotiamo l'auto sostitutiva, se prevista. <a href="servizi/flotte-noleggio-lungo-termine/">Flotte e noleggio</a></p>
+      </div>
+    </div>
+    <ol class="passi">
+      <li><span>Ti aiutiamo a compilare il modulo CAI&nbsp;/&nbsp;CID<small><a href="https://serenissimaservice.it/wp-content/uploads/2024/02/Modulo_Constatazione_amichevole.pdf">Scarica il modulo CID (PDF)</a></small></span></li>
+      <li><span>Teniamo noi i rapporti con l'assicurazione</span></li>
+      <li><span>Incontriamo il perito</span></li>
+      <li><span>L'assicurazione paga direttamente la carrozzeria</span></li>
+      <li><span>Ti diamo un'auto sostitutiva gratuita<small>Con la Kasko e senza limiti di chilometri</small></span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sezione chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap griglia">
+    <figure class="foto">
+      <picture>
+        <img loading="lazy" src="img/sede-845.webp" srcset="img/sede-480.webp 480w, img/sede-845.webp 845w" sizes="(max-width:640px) 100vw, (max-width:900px) 50vw, 44vw" width="845" height="735" alt="La sede in Corso Stati Uniti: il capannone chiaro con l'insegna Serenissima Service, officina e carrozzeria, e l'ingresso giallo">
+      </picture>
+    </figure>
+    <div class="testo">
+      <h2 id="t-contatti">Pensiamo a tutto noi</h2>
+      <div class="recapiti">
+        <a class="grande num" href="tel:+39049760655">049&nbsp;760655</a>
+        <p class="piccolo primo">Centralino. Per i sinistri scegli l'interno Carrozzeria</p>
+        <p class="riga"><a href="tel:+393355639355" class="num">335&nbsp;5639355</a> <span class="piccolo-in">cellulare</span></p>
+        <p class="riga"><a href="mailto:info@serenissimaservice.it">info@serenissimaservice.it</a></p>
+        <p class="riga"><a href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Stati+Uniti+19%2C+35127+Padova">Corso Stati Uniti 19/19-A, 35127 Padova</a></p>
+        <p class="piccolo">Zona industriale</p>
+        <p class="orari num">Lunedì-venerdì 8:00-12:00 e 14:00-18:00<br>Sabato 8:00-12:00</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="griglia righe">
+      <div class="chi">
+        <img src="img/logo-480.png" srcset="img/logo-240.png 240w, img/logo-480.png 480w" sizes="240px" width="240" height="128" alt="Serenissima Service, Botta? Risposta!">
+        <p>Carrozzeria, officina e soccorso stradale nella zona industriale di Padova, dal 1993.</p>
+      </div>
+      <nav class="col" aria-labelledby="pf-servizi">
+        <p class="tit" id="pf-servizi">Servizi</p>
+        <ul>
+          <li><a href="servizi/carrozzeria/">Carrozzeria</a></li>
+          <li><a href="servizi/officina-meccatronica/">Officina e meccatronica</a></li>
+          <li><a href="servizi/centro-cristalli/">Centro cristalli</a></li>
+          <li><a href="servizi/grandine-levabolli/">Grandine e levabolli</a></li>
+          <li><a href="servizi/soccorso-stradale/">Soccorso stradale</a></li>
+        </ul>
+      </nav>
+      <nav class="col" aria-labelledby="pf-perte">
+        <p class="tit" id="pf-perte">Per te</p>
+        <ul>
+          <li><a href="servizi/gestione-sinistri/">Gestione sinistri</a></li>
+          <li><a href="servizi/flotte-noleggio-lungo-termine/">Flotte e noleggio</a></li>
+          <li><a href="prenota-il-tagliando/">Prenota il tagliando</a></li>
+          <li><a href="https://serenissimaservice.it/wp-content/uploads/2024/02/Modulo_Constatazione_amichevole.pdf">Modulo CID (PDF)</a></li>
+        </ul>
+      </nav>
+      <nav class="col" aria-labelledby="pf-azienda">
+        <p class="tit" id="pf-azienda">Azienda</p>
+        <ul>
+          <li><a href="chi-siamo/">Chi siamo</a></li>
+          <li><a href="servizi/gestione-sinistri/#compagnie">Compagnie convenzionate</a></li>
+          <li><a href="news/">News</a></li>
+          <li><a href="contatti/">Contatti e dove siamo</a></li>
+        </ul>
+      </nav>
+      <nav class="col" aria-labelledby="pf-seguici">
+        <p class="tit" id="pf-seguici">Seguici</p>
+        <ul>
+          <li><a href="https://www.facebook.com/Serenissima-Service-1667868210177791/" rel="noopener">Facebook</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="legale">
+      <span>Serenissima Service S.r.l.</span>
+      <span>Corso Stati Uniti 19/19-A, 35127 Padova</span>
+      <span class="num">P.IVA e C.F. 00019100288</span>
+      <span class="dx"><a href="privacy-policy/">Privacy</a><a href="cookie-policy/">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var lista=document.querySelector('[role="tablist"]');
+  if(!lista) return;
+  var tabs=[].slice.call(lista.querySelectorAll('[role="tab"]'));
+  var pannelli=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+  function scegli(i,fuoco){
+    tabs.forEach(function(t,k){
+      var on=k===i;
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+      pannelli[k].hidden=!on;
+    });
+    if(fuoco) tabs[i].focus({preventScroll:true});
+    // sul telefono la riga delle linguette scorre: porta in vista quella scelta
+    var t=tabs[i], l=lista;
+    if(l.scrollWidth>l.clientWidth){
+      var sx=t.offsetLeft-l.offsetLeft, dx=sx+t.offsetWidth;
+      if(sx<l.scrollLeft+20) l.scrollLeft=Math.max(0,sx-20);
+      else if(dx>l.scrollLeft+l.clientWidth-48) l.scrollLeft=dx-l.clientWidth+48;
+    }
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){scegli(i,false);});
+    t.addEventListener('keydown',function(e){
+      var n=tabs.length,j=null;
+      if(e.key==='ArrowRight') j=(i+1)%n;
+      else if(e.key==='ArrowLeft') j=(i-1+n)%n;
+      else if(e.key==='Home') j=0;
+      else if(e.key==='End') j=n-1;
+      if(j!==null){e.preventDefault();scegli(j,true);}
+    });
+  });
+  scegli(0,false);
+  // le foto degli altri reparti si caricano dopo la pagina, così lo scambio è immediato
+  window.addEventListener('load',function(){
+    pannelli.forEach(function(p){var im=p.querySelector('img');if(im){im.loading='eager';}});
+  });
+})();
+</script>
+</body>
+</html>

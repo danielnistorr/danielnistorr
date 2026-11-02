@@ -19,3 +19,5 @@ Licenze verificate il 24/10/2026 sulla pagina di ogni foto: la pagina riporta "F
 File scaricati da images.unsplash.com con curl, alla misura di 2400 px sul lato lungo.
 
 Attenzione: in assets/originali/ ci sono anche foto di repertorio presenti nella libreria del sito di oggi (troy-mortier, elmarie-van-rooyen, jamar-penny, header, macchine-movimento-terra) e una foto di cronaca sulle demolizioni di Triscina: non sono di Fratelli Zuin e non vanno usate (vedi _prova/inventario-immagini.json).
+
+Uso nella home finale (sito/, 24/10/2026): Bruno BD, Iain CJwHaOQFcwI, Wolfgang Weiser, Shane McLendon, Brandon Mowinkel ed Eduard Delputte, tra i nove lavori, con la scritta "Foto indicativa". Le altre tre (Hanlin Sun, AO NURA, Iain p8XyPr3uN_o) non sono in pagina.

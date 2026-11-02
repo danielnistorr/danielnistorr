@@ -33,3 +33,10 @@ Scaricate il 24/10/2026 da `https://irp-cdn.multiscreensite.com/2821c4aa/dms3rep
 - `AdobeStock_*`, `pexels-photo-1209611.jpeg`, `bed_loft_blue-*`: foto di repertorio con licenza del sito attuale, non trasferibile. Da non riusare.
 - `negozio/`: foto di prodotto; quelle con marca Molina (trapunta SINFONIA) e Disney sono di terzi; il tappeto Tabriz (`negozio/4126147316.jpg`, marca Alans) è un articolo loro ma la foto può essere del fornitore. Diritti da chiarire.
 - Loghi: `logo-servalli-stemma.png` (1920x823) è il migliore trovato; `logo-servalli-house.svg` è il marchio del gruppo Servalli House, ricalcato in modo grezzo.
+
+## Usate nella home finale (`sito/`, 24/10/2026)
+
+- Pinales (Pexels 31902663): "Per la casa", portata al bianco caldo.
+- Araujo (Unsplash d0RbiJeEMQI): "Per alberghi e rivenditori", tagliata sopra l'etichetta blu e schiarita.
+- Moradian (Unsplash NvdxYHt5CHM): foto della chiusura, taglio quadrato.
+- Dal sito attuale: il Tabriz del negozio (diritti da chiarire), cinque foto d'archivio della pagina `storia` (permesso da chiedere), il logo con lo stemma.

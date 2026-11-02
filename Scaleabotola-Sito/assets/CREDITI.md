@@ -28,5 +28,6 @@ Licenza letta sulla pagina di ogni foto il 24/10/2026. Pexels: dicitura "Free" (
 | hussaini-chiocciola-bianca.jpg | Chiocciola bianca in ferro battuto su fondo bianco, molto chiara | Syed Hussaini (Unsplash) | https://unsplash.com/photos/white-spiral-stair-with-white-background-ZPkMBJ6iOgs | 05/07/2018 |
 
 Avvertenze:
+- Nella home finale (`sito/index.html`, rifinitura del 24/10/2026) non ne compare nessuna: tutte le foto in pagina sono dell'azienda (`PLUS-pantografo.jpg`, `banner-bg2.jpg`, `montreal-012.jpg`, `scale-giorno-Montreal-1.jpg`). L'elicoidale di Gayatri Dhea, usata nel giro precedente, è stata tolta.
 - Sono segnaposto: nessuna mostra un prodotto Scalarredo. Manca del tutto una foto bella di scala retrattile (su Unsplash e Pexels ci sono solo scale a pioli e soffitte rustiche): l'apertura sulla retrattile deve usare `PLUS-pantografo.jpg` (catalogo, diritti da chiarire) finché non si fotografa una PLUS vera nello showroom.
 - Scartate: le foto dei risultati Pexels con scale storiche o ornate (non è il loro registro), le scale a pioli con persone al lavoro, i render 3D.

@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zeta S.r.l. · Articoli su misura in PVC elettrosaldato, Padova</title>
 <meta name="description" content="Zeta S.r.l. produce articoli su misura in PVC elettrosaldato, polipropilene, plastica riciclata e compostabile: raccoglitori ad anelli, buste, cartelle, copertine, album. Padova.">
-<link rel="preload" href="fonts/GeneralSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Switzer-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"General Sans";src:url(fonts/GeneralSans-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Switzer";src:url(fonts/Switzer-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
@@ -48,29 +46,31 @@ p{margin:0;text-wrap:pretty}
 .menu-btn{display:none;appearance:none;background:none;border:1px solid var(--filo);color:var(--inchiostro);font:500 15px/1 var(--testo);padding:11px 14px;cursor:pointer}
 .menu-btn:hover{border-color:var(--inchiostro)}
 
-/* apertura: titolo su una riga a tutta larghezza, il pezzo sotto che esce a destra e dal fondo */
-.eroe{position:relative;height:100vh;min-height:760px;max-height:1240px;overflow:hidden;
-  background:radial-gradient(46% 44% at 70% 56%,#FDFCFA 0%,rgba(253,252,250,0) 100%) var(--carta)}
-.eroe{--t:min(calc((100vw - 2*var(--m)) / 12.2),150px)}
-.eroe h1{position:absolute;z-index:2;left:var(--m);top:116px;white-space:nowrap;font-size:var(--t);line-height:1;letter-spacing:-.04em}
-.pezzo{position:absolute;left:39%;top:calc(262px + var(--t));width:86vw;margin:0}
-.pezzo img{width:100%}
+/* apertura: la loro busta trasparente posata sul titolo; il titolo si legge attraverso il film */
+.eroe{position:relative;height:100vh;min-height:760px;max-height:1080px;overflow:hidden;background:var(--carta);
+  --t:min(11.6vw,196px);--lg:200px;--fw:min(40vw,640px);padding:calc(56px + 6.6vh) var(--m) 0}
+.eroe h1{position:relative;z-index:1;font-size:var(--t);line-height:.95;letter-spacing:-.042em;margin-left:-.04em}
+.eroe h1 span{display:block}
+.busta{position:absolute;z-index:2;top:88px;left:calc(var(--m) + var(--t) * 3);width:var(--fw);margin:0;pointer-events:none}
+.busta img{width:100%}
 .leg{position:absolute;left:var(--x);top:var(--y);width:0;height:0;font:400 15px/1.4 var(--testo)}
 .leg i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px rgba(247,246,242,.9)}
-.leg .linea{position:absolute;left:0;bottom:0;width:1px;height:var(--h);background:var(--inchiostro)}
-.leg .t{position:absolute;left:-1px;bottom:calc(var(--h) + 10px);white-space:nowrap}
-.leg .t span{display:block;color:var(--nota);font-size:14px}
-.eroe .sotto{position:absolute;left:var(--m);bottom:72px;width:384px}
+.leg{--w:calc(var(--fw) * .5 + 28px)}
+.leg .linea{position:absolute;left:0;top:0;height:1px;width:var(--w);background:var(--inchiostro)}
+.leg .t{position:absolute;left:calc(var(--w) + 14px);top:-11px;width:var(--lg)}
+.leg .t span{display:block;color:var(--nota);font-size:14px;margin-top:4px}
+.eroe .sotto{position:relative;z-index:1;width:min(440px,calc(100vw - 2*var(--m)));margin-top:calc(28px + 2.4vh)}
 .eroe .sotto p{font-size:19px;line-height:1.55}
 .azioni{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
-.btn{display:inline-block;background:var(--verde);color:#fff;font:500 16px/1 var(--testo);padding:17px 24px;text-decoration:none}
+.btn{display:inline-block;white-space:nowrap;background:var(--verde);color:#fff;font:500 16px/1 var(--testo);padding:17px 24px;text-decoration:none}
 .btn:hover{background:var(--verde-scuro)}
-.azioni .tel2{font:500 16px/1 var(--testo);text-underline-offset:4px}
+.azioni .tel2{font:500 16px/1 var(--testo);white-space:nowrap;text-underline-offset:4px}
 .azioni .tel2:hover{color:var(--verde)}
 .didascalia{font:400 14px/1.45 var(--testo);color:var(--nota)}
 
 /* sezioni */
 .sez{padding:180px var(--m) 0}
+.prodotti{padding-top:140px}
 .sez h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
 .intro{font-size:21px;line-height:1.5;max-width:34em;margin-top:28px}
 
@@ -87,10 +87,10 @@ p{margin:0;text-wrap:pretty}
 
 /* materiali: il gesto */
 .materiali{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding-left:0;align-items:start}
-.materiali figure{grid-column:1 / span 7;margin:0}
+.materiali figure{grid-column:1 / span 7;grid-row:1 / span 2;margin:0}
 .materiali figure img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--lastra)}
 .materiali figcaption{padding:12px 0 0 var(--m)}
-.mat-testo{grid-column:9 / span 4;padding-top:8px}
+.mat-testo{grid-column:9 / span 4;grid-row:1;padding-top:8px}
 .mat-testo h2{font-size:56px}
 .schede{display:flex;margin-top:44px;border-bottom:1px solid var(--filo)}
 .schede button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin:0 28px -1px 0;padding:12px 2px 14px;font:500 20px/1 var(--titoli);color:var(--nota);cursor:pointer}
@@ -99,23 +99,24 @@ p{margin:0;text-wrap:pretty}
 .pannello{padding-top:28px;min-height:150px}
 .pannello h3{font-size:30px;letter-spacing:-.015em}
 .pannello p{margin-top:12px;font-size:18px;max-width:28em}
-.sost{margin-top:40px;padding-top:24px;border-top:1px solid var(--filo)}
+.sost{grid-column:9 / span 4;grid-row:2;align-self:end;margin-top:40px;padding-top:24px;border-top:1px solid var(--filo)}
 .sost h3{font:500 18px/1.3 var(--testo)}
 .sost p{margin-top:8px;font-size:16px;line-height:1.6;color:var(--nota)}
 
 /* storia */
-.storia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding-right:0;align-items:start}
-.storia .testa{grid-column:1 / span 5}
-.date{list-style:none;margin:56px 0 0;padding:0}
-.date li{display:grid;grid-template-columns:96px 1fr;gap:var(--g);padding:20px 0;border-top:1px solid var(--filo)}
-.date .anno{font:500 30px/1.05 var(--testo);letter-spacing:-.01em;color:var(--verde)}
-.date p{font-size:17px;line-height:1.5}
-.storia figure{grid-column:6 / -1;margin:8px 0 0 56px}
+.storia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:end}
+.storia .testa{grid-column:1 / span 5;padding-bottom:6px}
+.storia .testa .intro{max-width:22em}
+.storia figure{grid-column:7 / -1;margin:0}
 .storia figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .storia figcaption{padding-top:12px}
+.date{grid-column:1 / -1;list-style:none;margin:88px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--g)}
+.date li{border-top:1px solid var(--filo);padding-top:20px}
+.date .anno{display:block;font:500 44px/1 var(--testo);letter-spacing:-.02em;color:var(--verde)}
+.date p{font-size:17px;line-height:1.5;margin-top:16px;max-width:19em}
 
 /* chiusura: testo a sinistra, foto a destra fino al bordo */
-.chiusura{display:grid;grid-template-columns:minmax(0,1fr) min(54vw,800px);column-gap:80px;align-items:end;padding:224px 0 0 var(--m)}
+.chiusura{display:grid;grid-template-columns:minmax(0,1fr) min(46vw,660px);column-gap:80px;align-items:end;padding:224px 0 0 var(--m)}
 .chiusura h2{font-size:64px;line-height:1.02;letter-spacing:-.03em}
 .chiusura .invito{font-size:18px;max-width:26em;margin-top:28px}
 .recapiti{margin-top:36px;font-size:17px;line-height:1.75}
@@ -150,15 +151,20 @@ p{margin:0;text-wrap:pretty}
 /* 1024 */
 @media (max-width:1200px){
   :root{--m:48px}
-  .eroe{min-height:700px}
-  .pezzo{left:35%;width:94vw}
-  .eroe .sotto{width:340px;bottom:56px}
+  .eroe{min-height:700px;--lg:170px;--fw:34vw}
+  .eroe .sotto{width:330px}
+  .eroe .azioni{flex-wrap:nowrap;width:max-content}
   .eroe .sotto p{font-size:18px}
   .elenco{grid-template-columns:repeat(2,1fr)}
   .mat-testo{grid-column:8 / span 5}
   .mat-testo h2{font-size:48px}
   .storia .testa{grid-column:1 / span 6}
-  .storia figure{grid-column:7 / -1;margin-left:32px}
+  .storia figure{grid-column:7 / -1}
+  .date{grid-template-columns:repeat(2,1fr);row-gap:40px}
+  .materiali figure{grid-row:1}
+  .sost{grid-column:1 / -1;grid-row:2;align-self:start;margin:56px 0 0 var(--m);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+  .sost h3{grid-column:1 / span 4}
+  .sost p{grid-column:5 / -1;margin-top:0;max-width:40em}
   .sez h2{font-size:54px}
   .chiusura h2{font-size:48px}
   .chiusura{column-gap:56px}
@@ -173,21 +179,24 @@ p{margin:0;text-wrap:pretty}
   .testata.aperta{background:var(--carta);padding-bottom:12px}
   .testata.aperta nav{display:flex}
   .testata nav a{font-size:20px;padding:16px 0;border-bottom:1px solid var(--filo)}
-  .testata .tel{margin-left:auto}
+  .testata .tel{margin-left:auto;border-left:0;padding-left:0}
   .menu-btn{display:block}
-  .eroe{height:auto;max-height:none;min-height:0;padding:132px var(--m) 64px;background:var(--carta)}
-  .eroe h1{position:static;white-space:normal;font-size:84px;line-height:.98}
-  .pezzo{position:relative;left:auto;top:auto;bottom:auto;width:calc(100% + var(--m) + 64px);max-width:none;margin:36px calc(-1*var(--m) - 64px) 0 0}
-  .leg{position:static;width:auto;height:auto;margin:8px 0 0;max-width:calc(100vw - 2*var(--m))}
+  .eroe{height:auto;max-height:none;min-height:0;display:flex;flex-direction:column;padding:132px var(--m) 72px;--t:15vw;--fw:54vw}
+  .eroe h1{font-size:var(--t);line-height:.95}
+  .busta{position:relative;top:auto;left:auto;order:2;align-self:flex-end;width:var(--fw);margin:calc(var(--t) * -1.5) calc(-.4 * var(--m)) 0 0}
+  .leg{position:static;width:auto;height:auto;margin:10px 0 0;padding-right:calc(.4 * var(--m))}
   .leg i,.leg .linea{display:none}
-  .leg .t{position:static;white-space:normal}
-  .eroe .sotto{position:static;width:auto;max-width:34em;margin-top:28px}
+  .leg .t{position:static;width:auto}
+  .eroe .sotto{order:3;width:auto;max-width:34em;margin-top:36px}
   .prodotti .testa,.perchi{grid-column:1 / -1}
-  .materiali figure{grid-column:1 / -1}
-  .mat-testo{grid-column:1 / -1;padding:40px var(--m) 0}
-  .storia{padding-right:var(--m)}
+  .materiali figure{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
+  .materiali figcaption{padding-right:var(--m)}
+  .mat-testo{grid-column:1 / -1;grid-row:auto;padding:40px var(--m) 0}
+  .sost{grid-row:auto;display:block;margin:40px 0 0 var(--m)}
   .storia .testa,.storia figure{grid-column:1 / -1}
-  .storia figure{margin:48px 0 0}
+  .storia figure{margin:48px calc(-1 * var(--m)) 0 0}
+  .storia figcaption{padding-right:var(--m)}
+  .date{margin-top:56px}
   .chiusura{grid-template-columns:1fr;padding-right:var(--m)}
   .chiusura figure{margin:56px calc(-1*var(--m)) 0 0}
   .piede .colonna,.piede .colonna.larga{grid-column:span 6}
@@ -199,11 +208,12 @@ p{margin:0;text-wrap:pretty}
   .testata{padding-top:18px;gap:16px}
   .testata .logo img{width:80px}
   .testata .tel{border:0;padding-left:0;font-size:15px}
-  .eroe{padding-top:100px;padding-bottom:48px}
-  .eroe h1{font-size:clamp(40px,13.6vw,54px);line-height:.98;letter-spacing:-.038em}
-  .pezzo{margin-top:22px;width:calc(100% + var(--m) + 150px);margin-right:calc(-1*var(--m) - 150px)}
+  .eroe{padding-top:96px;padding-bottom:56px;--t:clamp(40px,15.6vw,64px);--fw:62vw}
+  .eroe h1{letter-spacing:-.04em}
+  .busta{margin-top:calc(var(--t) * -1.35);margin-right:calc(-1.2 * var(--m))}
+  .leg{padding-right:var(--m)}
   .leg .t{font-size:14px}
-  .eroe .sotto{margin-top:20px}
+  .eroe .sotto{margin-top:24px}
   .eroe .sotto p{font-size:17px;line-height:1.5}
   .azioni{margin-top:20px;gap:20px}
   .sez{padding-top:96px}
@@ -216,8 +226,10 @@ p{margin:0;text-wrap:pretty}
   .schede button{font-size:18px;margin-right:20px}
   .pannello{min-height:0}
   .pannello h3{font-size:26px}
-  .date li{grid-template-columns:64px 1fr;gap:16px}
+  .date{grid-template-columns:1fr;row-gap:28px;margin-top:48px}
+  .date li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding-top:16px}
   .date .anno{font-size:24px}
+  .date p{margin-top:0}
   .chiusura{padding-top:112px}
   .recapiti .grande{font-size:36px}
   .chiusura figure{margin-top:44px}
@@ -247,23 +259,23 @@ p{margin:0;text-wrap:pretty}
 
 <main id="contenuto">
 <section class="eroe" aria-labelledby="titolo">
-  <h1 id="titolo">Diamo forma alle vostre idee</h1>
-
-  <figure class="pezzo">
-    <img src="img/raccoglitore-blu-1800.webp"
-         srcset="img/raccoglitore-blu-800.webp 800w, img/raccoglitore-blu-1200.webp 1200w, img/raccoglitore-blu-1800.webp 1800w, img/raccoglitore-blu-2600.webp 2600w"
-         sizes="(max-width:600px) calc(100vw + 150px), (max-width:900px) calc(100vw + 64px), 86vw" width="2600" height="1343" fetchpriority="high"
-         alt="Raccoglitore campionario in PVC blu goffrato, posato quasi di piatto: in primo piano il bordo saldato della copertina.">
-    <figcaption class="leg" style="--x:28.5%;--y:5.2%;--h:64px"><i></i><span class="linea"></span><span class="t">Bordo saldato ad alta frequenza<span>Raccoglitore campionario in PVC goffrato</span></span></figcaption>
-  </figure>
+  <h1 id="titolo"><span>Trasparente</span> <span>come il vetro</span></h1>
 
   <div class="sotto">
-    <p>Raccoglitori, buste, cartelle, copertine e album su misura, in PVC elettrosaldato, polipropilene, plastica riciclata e compostabile. A Padova, in viale della Navigazione Interna.</p>
+    <p>Dal 1969 a Padova saldiamo PVC e polipropilene ad alta frequenza e ne facciamo articoli su misura: raccoglitori, buste, cartelle, copertine e album, anche in plastica riciclata e compostabile.</p>
     <div class="azioni">
       <a class="btn" href="mailto:info@zetaitaly.com?subject=Richiesta%20di%20preventivo">Chiedete un preventivo</a>
       <a class="tel2 num" href="tel:+39049774299">049 774299</a>
     </div>
   </div>
+
+  <figure class="busta">
+    <img src="img/busta-cristal-1400.webp"
+         srcset="img/busta-cristal-700.webp 700w, img/busta-cristal-1000.webp 1000w, img/busta-cristal-1400.webp 1400w, img/busta-cristal-1900.webp 1900w"
+         sizes="(max-width:600px) 78vw, (max-width:900px) 60vw, min(40vw,640px)" width="2376" height="3099" fetchpriority="high"
+         alt="Una busta trasparente a quattro spazi, vista dall'alto, posata sul titolo: le lettere si leggono attraverso il film, le saldature dividono le tasche.">
+    <figcaption class="leg" style="--x:46%;--y:70%"><i></i><span class="linea"></span><span class="t">Saldatura ad alta frequenza<span>Busta a quattro spazi per raccoglitori ad anelli</span></span></figcaption>
+  </figure>
 </section>
 
 <section class="sez prodotti" id="prodotti" aria-labelledby="t-prodotti">
@@ -278,7 +290,7 @@ p{margin:0;text-wrap:pretty}
     </div>
     <div class="voce">
       <h3>Buste e tasche</h3>
-      <p>Trasparenti o adesive. I nostri robot sigillano nelle buste i cartoncini delle tipografie.</p>
+      <p>Trasparenti o adesive. Dove è possibile, i nostri robot sigillano nelle buste i cartoncini delle tipografie.</p>
     </div>
     <div class="voce">
       <h3>Cartelle con molla</h3>
@@ -305,11 +317,11 @@ p{margin:0;text-wrap:pretty}
     <img id="mat-foto" src="img/materiale-colorato-1050.webp"
          srcset="img/materiale-colorato-700.webp 700w, img/materiale-colorato-1050.webp 1050w, img/materiale-colorato-1400.webp 1400w"
          sizes="(max-width:900px) 100vw, 55vw" width="1400" height="1050" loading="lazy"
-         alt="Primo piano del bordo saldato del raccoglitore in PVC blu goffrato, su fondo chiaro.">
-    <figcaption class="didascalia" id="mat-did">Il bordo saldato del raccoglitore campionario</figcaption>
+         alt="Tre buste a L in PVC trasparente colorato, nera, blu notte e azzurra, posate a ventaglio su un piano chiaro.">
+    <figcaption class="didascalia" id="mat-did">Buste a L in PVC trasparente colorato</figcaption>
   </figure>
   <div class="mat-testo">
-    <h2 id="t-materiali">Del vostro colore, o trasparente come il vetro</h2>
+    <h2 id="t-materiali">Del vostro colore, opaco o cristal</h2>
     <div class="schede" role="tablist" aria-label="Materiale">
       <button role="tab" id="tab-colorato" aria-controls="pan" aria-selected="true" tabindex="0" data-k="colorato">Colorato</button>
       <button role="tab" id="tab-cristal" aria-controls="pan" aria-selected="false" tabindex="-1" data-k="cristal">Cristal</button>
@@ -317,30 +329,31 @@ p{margin:0;text-wrap:pretty}
     </div>
     <div class="pannello" id="pan" role="tabpanel" aria-labelledby="tab-colorato" tabindex="0">
       <h3 id="pan-t">Colorato a campione</h3>
-      <p id="pan-p">Copertina e interno nella palette di colori standard o nel Pantone che ci indicate.</p>
+      <p id="pan-p">Trasparente colorato o pieno, nella palette di colori standard o nel Pantone che ci indicate.</p>
     </div>
-    <div class="sost">
-      <h3>Anche riciclato e compostabile</h3>
-      <p class="num">Dal 2010 lavoriamo il PLA, dal 2019 la bioplastica compostabile certificata OK&nbsp;Compost; oggi anche un PVC di origine vegetale, ricavato dal tall oil delle cartiere e certificato ISCC&nbsp;PLUS. Gli scarti di lavorazione li recuperiamo noi, e dal 2022 sui nostri tetti ci sono i pannelli fotovoltaici.</p>
-    </div>
+  </div>
+  <div class="sost">
+    <h3>Anche riciclato e compostabile</h3>
+    <p class="num">Dal 2010 studiamo il PLA, dal 2019 facciamo articoli in bioplastica compostabile certificata OK&nbsp;Compost; oggi anche in un PVC di origine vegetale, ricavato dal tall oil delle cartiere e certificato ISCC&nbsp;PLUS. Gli scarti di lavorazione li recuperiamo noi, e dal 2022 sui nostri tetti ci sono i pannelli fotovoltaici.</p>
   </div>
 </section>
 
 <section class="sez storia" id="storia" aria-labelledby="t-storia">
   <div class="testa">
     <h2 id="t-storia">Tre generazioni, due primati</h2>
-    <ol class="date">
-      <li><span class="anno num">1969</span><p>Fulvio Sacerdoti rileva la Zeta, una piccola azienda di articoli plastici elettrosaldati. La famiglia vendeva cancelleria a Padova dal 1935.</p></li>
-      <li><span class="anno num">1986</span><p>La prima linea al mondo completamente automatizzata per le cartelle con molla.</p></li>
-      <li><span class="anno num">1994</span><p>Il primo albumino fotografico ecologico d'Europa, brevettato: buste trasparenti senza aloni azzurrati e senza anelli di Newton.</p></li>
-      <li><span class="anno num">2015</span><p>Gavriel Sacerdoti diventa amministratore delegato: la terza generazione.</p></li>
-    </ol>
+    <p class="intro">Dal 1935 la famiglia Sacerdoti vende cancelleria a Padova; dal 1969 produce in proprio articoli in plastica elettrosaldata.</p>
   </div>
   <figure>
-    <img src="img/reparto-linea-1024.webp" srcset="img/reparto-linea-640.webp 640w, img/reparto-linea-1024.webp 1024w" sizes="(max-width:900px) 100vw, 56vw" width="1024" height="683" loading="lazy"
+    <img src="img/reparto-linea-1024.webp" srcset="img/reparto-linea-640.webp 640w, img/reparto-linea-1024.webp 1024w" sizes="(max-width:900px) 100vw, 46vw" width="1024" height="683" loading="lazy"
          alt="Un operatore alla linea di lavorazione, tra bobine di film rosse e blu e una banda gialla.">
     <figcaption class="didascalia">In reparto, alla linea della plastica riciclata</figcaption>
   </figure>
+  <ol class="date">
+    <li><span class="anno num">1969</span><p>Fulvio Sacerdoti rileva la Zeta, una piccola azienda di articoli plastici elettrosaldati.</p></li>
+    <li><span class="anno num">1986</span><p>La prima linea al mondo completamente automatizzata per le cartelle con molla.</p></li>
+    <li><span class="anno num">1994</span><p>Il primo albumino fotografico ecologico d'Europa, brevettato: buste trasparenti senza aloni azzurrati e senza anelli di Newton.</p></li>
+    <li><span class="anno num">2015</span><p>Gavriel Sacerdoti diventa amministratore delegato: la terza generazione.</p></li>
+  </ol>
 </section>
 
 <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
@@ -350,12 +363,12 @@ p{margin:0;text-wrap:pretty}
     <p class="recapiti">
       <a class="grande num" href="tel:+39049774299">049 774299</a><br>
       <a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a><br>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna 55, 35129&nbsp;Padova</a><br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna&nbsp;55, 35129&nbsp;Padova</a><br>
       <span class="orari num">Lunedì-venerdì, 8.30-12.30 e 14.00-18.00</span>
     </p>
   </div>
   <figure>
-    <img src="img/chiusura-taglio-667.webp" srcset="img/chiusura-taglio-480.webp 480w, img/chiusura-taglio-667.webp 667w" sizes="(max-width:900px) 100vw, 52vw" width="667" height="500" loading="lazy"
+    <img src="img/chiusura-taglio-667.webp" srcset="img/chiusura-taglio-480.webp 480w, img/chiusura-taglio-667.webp 667w" sizes="(max-width:900px) 100vw, 46vw" width="667" height="500" loading="lazy"
          alt="Un uomo in camicia bianca al tavolo da lavoro, con un foglio trasparente tra le mani e una cartella rossa accanto.">
     <figcaption class="didascalia">In reparto, 2023</figcaption>
   </figure>
@@ -394,7 +407,7 @@ p{margin:0;text-wrap:pretty}
       <ul class="num">
         <li><a href="tel:+39049774299">049 774299</a></li>
         <li><a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna 55<br>35129 Padova</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Viale della Navigazione Interna&nbsp;55<br>35129&nbsp;Padova</a></li>
         <li>Lunedì-venerdì<br>8.30-12.30 e 14.00-18.00</li>
       </ul>
     </div>
@@ -433,17 +446,17 @@ p{margin:0;text-wrap:pretty}
 })();
 (function(){
   var dati={
-    colorato:{t:"Colorato a campione",p:"Copertina e interno nella palette di colori standard o nel Pantone che ci indicate.",
-      f:"materiale-colorato",d:"Il bordo saldato del raccoglitore campionario",a:"Primo piano del bordo saldato del raccoglitore in PVC blu goffrato, su fondo chiaro."},
+    colorato:{t:"Colorato a campione",p:"Trasparente colorato o pieno, nella palette di colori standard o nel Pantone che ci indicate.",
+      f:"materiale-colorato",d:"Buste a L in PVC trasparente colorato",a:"Tre buste a L in PVC trasparente colorato, nera, blu notte e azzurra, posate a ventaglio su un piano chiaro."},
     cristal:{t:"PVC cristal",p:"Trasparente come il vetro: lascia vedere quello che protegge. Per i dischi in vinile lo saldiamo da 100 a 300 micron.",
       f:"materiale-cristal",d:"Valva termoformata trasparente in una cartella porta campioni",a:"Angolo di una vaschetta trasparente termoformata, a scomparti, posata in una cartella bianca."},
-    opaco:{t:"Opaco",p:"Per copertine e cartelle: liscio, a buccia d'arancia o similpelle, nei colori che ci indicate.",
-      f:"materiale-opaco",d:"Cartella campionario bianca, aperta",a:"Cartella campionario bianca aperta, con dentro le cartelle dei colori."}
+    opaco:{t:"Opaco goffrato",p:"Liscio, a buccia d'arancia o similpelle: la goffratura della copertina la scegliete voi.",
+      f:"materiale-opaco",d:"La copertina goffrata di un raccoglitore campionario",a:"Primo piano della copertina blu opaca di un raccoglitore, con la grana similpelle e il bordo della copertina."}
   };
   var tabs=[].slice.call(document.querySelectorAll('.schede [role=tab]'));
   var foto=document.getElementById('mat-foto'),pan=document.getElementById('pan'),did=document.getElementById('mat-did');
   var pt=document.getElementById('pan-t'),pp=document.getElementById('pan-p');
-  var larg={colorato:[700,1050,1400],cristal:[700,1050,1400],opaco:[700,1050]};
+  var larg={colorato:[700,1050,1400],cristal:[700,1050,1400],opaco:[700,1050,1400]};
   function serie(k){return larg[k].map(function(w){return 'img/'+dati[k].f+'-'+w+'.webp '+w+'w';}).join(', ');}
   var caricate=false;
   function precarica(){if(caricate)return;caricate=true;Object.keys(dati).forEach(function(k){var i=new Image();i.sizes=foto.sizes;i.srcset=serie(k);});}

@@ -7,7 +7,8 @@ Proposta non richiesta, preparata il 24/10/2026, che riguarda solo la home. L'az
 - `sito/index.html`: la home finale, "L'etichetta in piano". È statica e si apre con file:///.
 - `sito/img/`: solo le immagini usate, in WebP con alfa per le bottiglie e in JPEG per le foto, in più larghezze.
 - `sito/fonts/`: Zodiak e Switzer in woff2 dai pacchetti completi Fontshare, con il testo della licenza ITF FFL.
-- `screenshot/home/`: home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg, chiusura-1440.jpg e NOTA.md, che descrive idea, caratteri, colori, interazione, foto e controlli.
+- `screenshot/home/`: home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg, chiusura-1440.jpg e NOTA.md, che descrive idea, caratteri, colori, interazione, foto, controlli e cosa è cambiato nell'ultima rifinitura (legende tolte, scheda col grado accanto alla bottiglia, striscia Pexels tolta, manifesto storico in chiusura).
+- `_prova/script/collaudo_finale.mjs`: il collaudo (larghezze da 320 a 2560, tastiera, tocco, menu, newsletter, collegamenti, console).
 - `_prova/script/build_finale.sh`: rifà tutto (immagini con `finale_img.py`, caratteri, pagina da `finale_pagina.html`, screenshot con `shot_finale.mjs`).
 - `_prova/home/a` e `_prova/home/b`: i due prototipi. Il giudice ha scelto A.
 - `01-analisi.md`: i fatti con le fonti. `assets/CREDITI.md`: origine e licenza di ogni immagine.
@@ -18,7 +19,9 @@ Proposta non richiesta, preparata il 24/10/2026, che riguarda solo la home. L'az
 - **Titolari**: in pagina ci sono solo i nomi, Maddalena e Alessandro, come nella loro home. Va chiesto se vogliono anche i cognomi (Varotto e Belluco, dall'articolo de La Difesa del Popolo).
 - **"Distilleria" senza distillazione**: oggi non distillano. La pagina dice "liquori, amari e aromi" e "infusi, alcolati e sciroppi", mai "distilliamo". Il nome resta.
 - **Felsina, Fernet e Garofano**: non hanno una scheda. I gradi (21°, 45°, 21°) vengono dalla pagina `coloriesaporidiprimavera2024`, e "tra i più amati per il dopo pasto" e il Garofano nel vin brulè vengono dall'articolo `due-cuori-e-un-distillato`. Il formato non è indicato. Va confermato che i sei prodotti siano tutti in vendita oggi.
-- **Alchermes**: la bottiglia fotografata è il liquore ("gradi 30" in etichetta), non l'aroma a 70° della linea pasticceria. Per questo la didascalia non dà il grado. Per il sito vero serve la foto del formato da laboratorio.
+- **Alchermes**: la bottiglia fotografata è il liquore ("gradi 30" in etichetta), non l'aroma a 70° della linea pasticceria. In pagina sta accanto alle famiglie senza didascalia e senza grado. Per il sito vero serve la foto del formato da laboratorio.
+- **Manifesto storico in chiusura**: «i classici prodotti RIZZI PADOVA» viene dalla foto della mostra «Padova da gustare» 2025 che è nella loro libreria media, ma l'originale è della collezione di Simone Marzari. Prima di pubblicare servono il permesso di riproduzione e, meglio, una scansione piana del manifesto (la foto attuale è di sbieco, raddrizzata con PIL, con un riflesso del vetro sulla bottiglia di Crema Marsala e una luce in alto a destra). La data del manifesto non è nota e in pagina non è scritta. Se il permesso non arriva, la chiusura usa la foto del punto 3 qui sotto.
+- **"Per chi"**: la riga "Lavoriamo soprattutto con pasticcerie, bar, ristoranti e distributori del Veneto" riassume i clienti citati nella loro home (`01-analisi.md`, sez. 1). Va confermata la formula.
 - **16.540 bottiglie dal 14 dicembre 2022**: è il numero del contatore della loro home al 24/10/2026. Va aggiornato con un numero vero o tolto.
 - **Spaccio**: in pagina c'è "chiamaci per sapere quando passare", come nei loro Contatti. Il blog del 2024 e la pagina della Festa del Papà 2025 danno orari diversi: se lo spaccio ha orari fissi, vanno scritti.
 - **Ricettari e strumenti del fondatore in vetrina nello spaccio**: vengono dall'articolo del 2025. Va confermato che siano ancora esposti.
@@ -46,21 +49,22 @@ Proposta non richiesta, preparata il 24/10/2026, che riguarda solo la home. L'az
 
 ## Newsletter
 
-Il modulo "Lettere dalla distilleria" nel piede (email, bottone e casella del consenso) **non invia nulla** finché non viene collegato a un servizio come Brevo o Mailchimp, con il doppio consenso: email di conferma e registro dei consensi. Il link "Ricevi l'invito per email" del centenario porta a questo modulo. Ha senso perché ci sono il centenario, i cofanetti delle feste, le fiere e i clienti privati dello spaccio. L'informativa privacy deve citare la newsletter.
+Il modulo "Lettere dalla distilleria" nel piede (email, bottone e casella del consenso) **non invia nulla** finché non viene collegato a un servizio come Brevo o Mailchimp, con il doppio consenso: email di conferma e registro dei consensi. Il link "Ricevi l'invito per email" del centenario porta a questo modulo. Dopo l'invio il modulo scrive un riscontro provvisorio ("Grazie: ti scriveremo per confermare l'iscrizione.") in un elemento `role="status"`: va sostituito con la risposta vera del servizio, che deve mandare l'email di conferma del doppio consenso. Ha senso perché ci sono il centenario, i cofanetti delle feste, le fiere e i clienti privati dello spaccio. L'informativa privacy deve citare la newsletter.
 
 ## Foto da rifare dal vero
 
-Il materiale di oggi vale circa 4 su 10. Le bottiglie scontornate del 2024 reggono la proposta, ma sono foto da telefono con nitidezza spinta e luce piatta.
+Il materiale di oggi vale circa 4 su 10. Le bottiglie scontornate del 2024 reggono la proposta, ma sono foto da telefono con nitidezza spinta e luce piatta: in questo giro ho attenuato la maschera di contrasto, stretto lo scontorno, tolto l'ombra portata finta e il lembo chiaro dei sigilli sui tappi, ma oltre i 700 px di altezza sgranano. La priorità numero uno è lo still life in studio delle sei etichette.
 
 1. **Le sei etichette di casa, più l'Alchermes**: mezza giornata di still life in studio. Ogni bottiglia piena va fotografata da sola, dritta e frontale, su un fondale di carta color avorio (vicino a #F3EEE6). La luce è una sola, morbida, grande, da sinistra (bank o finestra con diffusore), con un pannello bianco a destra. Serve un polarizzatore per togliere i riflessi sul vetro e sull'etichetta. Obiettivo da 90-100 mm a f/11, file a 6000 px o più. Si tiene la stessa distanza per tutte, così le altezze restano in scala vera (il Pinalpe da 75 cl più basso). Le foto sostituiscono `assets/originali/2024-02-*.png` e `2023-02-bott-alchermes.png`, e le ombre si rifanno in ripresa invece che con PIL.
-2. **Spezie del Garofano**: chiodi di garofano, cannella, scorze d'agrumi e mele vere, sul piano del loro laboratorio o su carta, dall'alto e con la stessa luce morbida. Sostituisce la foto Pexels di Kunuk. Taglio orizzontale largo (18:7).
-3. **Chiusura**: un bicchierino del loro Felsina o Garofano nel sole radente della finestra dello spaccio, oppure la vetrina con i ricettari del fondatore. Sostituisce la foto Pexels di Reding. Formato orizzontale 4:3 o 3:2.
-4. **Facoltative per le altre pagine**: le mani di Maddalena e Alessandro su alcolati e infusi in laboratorio, i ricettari aperti, la sede in via Negri di giorno (al posto della schermata di Street View).
+2. **Manifesto storico**: una scansione piana a 600 dpi (o una foto frontale senza vetro, con due luci a 45°) del manifesto «i classici prodotti RIZZI PADOVA», con il permesso della collezione Marzari. Sostituisce `manifesto-*.jpg` in chiusura; serve almeno 1200x1850 px per gli schermi ad alta densità.
+3. **Alternativa per la chiusura**: un bicchierino del loro Felsina o Garofano accanto alla bottiglia, nel sole radente della finestra dello spaccio, oppure la vetrina con i ricettari del fondatore. Formato verticale 2:3, per la stessa impaginazione.
+4. **Per altre pagine**: le spezie del Garofano (chiodi, cannella, scorze d'agrumi, mele) sul piano del laboratorio, dall'alto e con la stessa luce morbida.
+5. **Facoltative per le altre pagine**: le mani di Maddalena e Alessandro su alcolati e infusi in laboratorio, i ricettari aperti, la sede in via Negri di giorno (al posto della schermata di Street View).
 
 ## Licenze
 
 - **Caratteri**: Zodiak e Switzer sono di Indian Type Foundry, distribuiti da Fontshare con la ITF Free Font License 2.0, che consente l'uso commerciale gratuito anche in self-hosting. Il testo è in `sito/fonts/LICENZA-ITF-FFL.txt`. I file sono quelli del pacchetto completo, non modificati.
-- **Foto Pexels** (licenza Pexels: uso gratuito anche commerciale, attribuzione non obbligatoria): Sedanur Kunuk, spezie (30004632), e Mathias Reding, bottiglia e bicchierini nel raggio di sole (11560692). Sono segnaposto d'atmosfera: nessuna mostra un prodotto Rizzi o marchi di terzi.
+- **Foto Pexels**: nella home finale non ce ne sono più. Le otto scaricate restano in `assets/esterne/` con la licenza in `assets/CREDITI.md`, per eventuali altre pagine.
 - **Foto e grafiche dell'azienda**: bottiglie e logo vengono dalla libreria media del loro sito. Per il sito vero vanno chiesti gli originali e confermati i diritti.
 
 ## Loghi
