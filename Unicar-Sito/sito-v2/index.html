@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unicar, assistenza carrelli elevatori a Padova</title>
+<meta name="description" content="Officina di assistenza carrelli elevatori in via Canada 12 a Padova: riparazioni in azienda, ricambi di ogni marca, manutenzione programmata e controlli di sicurezza. Toyota, BT, Cesab e tutte le altre marche. Tel. 049 8792361.">
+<meta name="theme-color" content="#FAFAF8">
+<link rel="preload" href="fonts/sofia-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Sofia Sans";font-style:normal;font-weight:1 1000;font-display:swap;src:url(fonts/sofia-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Sofia Sans";font-style:normal;font-weight:1 1000;font-display:swap;src:url(fonts/sofia-sans-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  /* il bianco dei furgoni dell'assistenza e l'intonaco grigio della sede di via Canada; il rosso della C del logo */
+  --carta:#FAFAF8;
+  --intonaco:#ECEEEE;
+  --inchiostro:#141617;
+  --grigio:#55595D;
+  --filo:#CDD1D3;
+  --rosso:#D7141A;
+  --rosso-scuro:#B10F15;
+  --m:clamp(20px,4.45vw,64px);
+  --g:24px;
+  --f:"Sofia Sans",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--f);font-size:18px;line-height:1.5;font-weight:400;font-kerning:normal;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--inchiostro);outline-offset:3px;border-radius:2px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.w{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.salta{position:absolute;left:-9999px;top:0}
+.salta:focus{left:16px;top:12px;z-index:9;background:var(--carta);padding:8px 12px}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+/* testata */
+.testata{display:flex;align-items:center;gap:28px;height:88px}
+.marchio{display:flex;align-items:center;gap:16px;text-decoration:none;flex:none}
+.marchio img{width:96px}
+.marchio span{font-size:15px;line-height:1.2;font-weight:600;max-width:12em;color:var(--inchiostro)}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:16px;font-weight:500}
+.nav a{text-decoration:none;white-space:nowrap}
+.nav a:hover{text-decoration:underline}
+.testata .cami2{font-size:16px;font-weight:500;color:var(--grigio);text-decoration:none;padding-left:26px;border-left:1px solid var(--filo)}
+.testata .cami2:hover{text-decoration:underline;color:var(--inchiostro)}
+.testata .tel{font-size:18px;font-weight:700;color:var(--rosso);text-decoration:none;white-space:nowrap}
+.testata .tel:hover{text-decoration:underline}
+.menu-b{display:none}
+
+/* apertura */
+.apertura{padding-top:40px}
+.ap-griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.ap-titolo{grid-column:1/9}
+.ap-titolo h1{font-size:clamp(40px,4.45vw,64px);line-height:1;font-weight:700;letter-spacing:-.02em}
+.ap-titolo .sotto{margin-top:12px;font-size:clamp(18px,1.67vw,24px);line-height:1.3;color:var(--grigio);max-width:24em}
+.chiama{grid-column:1/9;margin-top:36px;display:inline-block;justify-self:start;text-decoration:none;color:var(--rosso);border-radius:2px}
+.chiama .et{display:block;font-size:17px;font-weight:600;color:var(--inchiostro);letter-spacing:.005em}
+.chiama .n{display:block;white-space:nowrap;font-size:clamp(56px,8.9vw,128px);line-height:.92;font-weight:700;letter-spacing:-.035em;margin-top:6px}
+.chiama .ra{font-size:.17em;letter-spacing:0;font-weight:600;margin-left:.3em;vertical-align:.25em;color:var(--grigio)}
+.chiama:hover .n{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:.08em}
+.fatti{grid-column:9/13;grid-row:1/3;align-self:end;font-size:17px;line-height:1.35}
+.fatti li{padding:11px 0;border-top:1px solid var(--filo)}
+.fatti li:first-child{border-top:0;padding-top:0}
+.fatti b{font-weight:600}
+.fatti .orari b{color:var(--rosso)}
+.scrivi{display:inline-block;margin-top:14px;font-weight:600}
+.ap-basso{display:grid;grid-template-columns:minmax(0,1fr) min(939px,65.2%);column-gap:40px;margin-top:52px;margin-right:calc(-1*var(--m));align-items:end}
+.ingressi li{border-top:1px solid var(--filo)}
+.ingressi a{display:block;padding:14px 0 15px;text-decoration:none}
+.ingressi .t{display:block;font-size:22px;line-height:1.15;font-weight:650;letter-spacing:-.01em}
+.ingressi .d{display:block;font-size:15px;color:var(--grigio);margin-top:3px}
+.ingressi a:hover .t{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}
+.striscia img{width:100%}
+.didascalia{font-size:14px;line-height:1.4;color:var(--grigio);margin-top:8px}
+
+/* sezioni */
+.sez{padding:112px 0}
+.h2{font-size:clamp(32px,3.6vw,52px);line-height:1.04;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.lead{font-size:clamp(19px,1.53vw,22px);line-height:1.45}
+.testo-g{color:var(--grigio)}
+.griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+
+/* assistenza */
+.foto-piena{margin-top:0}
+.foto-piena img{width:100%}
+.assistenza{margin-top:96px;padding-top:24px;padding-bottom:104px}
+.assistenza .didascalia{margin-top:0}
+.assistenza .griglia{margin-top:80px}
+.as-testa{grid-column:1/6}
+.as-testa .lead{margin-top:22px}
+.as-lista{grid-column:7/13;columns:2;column-gap:var(--g);font-size:17px;line-height:1.35}
+.as-lista li{break-inside:avoid;padding:0 0 18px}
+.as-lista li b{display:block;font-weight:600}
+.as-lista li span{color:var(--grigio)}
+.sostitutivi{grid-column:1/10;margin-top:72px;font-size:clamp(24px,2.3vw,33px);line-height:1.25;font-weight:500;letter-spacing:-.01em}
+.sostitutivi a{color:var(--rosso);font-weight:700;white-space:nowrap}
+
+/* ricambi */
+.ricambi{border-top:1px solid var(--filo)}
+.ri-testa{grid-column:1/6}
+.ri-testa .lead{margin-top:22px}
+.ri-testa .testo-g{margin-top:18px;font-size:17px}
+.richiesta{grid-column:7/13}
+.richiesta h3{font-size:22px;font-weight:650;letter-spacing:-.005em}
+.richiesta .nota{font-size:16px;color:var(--grigio);margin-top:6px}
+.campi{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);row-gap:4px;margin-top:22px}
+.campo{display:flex;flex-direction:column}
+.campo.largo{grid-column:1/3}
+.campo label{font-size:14px;font-weight:600;color:var(--grigio);padding-top:12px}
+.campo input{font:inherit;font-size:18px;color:var(--inchiostro);background:transparent;border:0;border-bottom:1px solid #8A8F93;border-radius:0;padding:8px 0 9px;min-height:44px}
+.campo input:focus{outline:0;border-bottom:2px solid var(--inchiostro);padding-bottom:8px}
+.campo input:focus-visible{outline:0}
+.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;font:inherit;font-size:17px;font-weight:650;border-radius:2px;border:0;cursor:pointer;text-decoration:none}
+.btn-i{background:var(--inchiostro);color:#fff}
+.btn-i:hover{background:#000;text-decoration:none}
+.btn-r{background:var(--rosso);color:#fff}
+.btn-r:hover{background:var(--rosso-scuro);text-decoration:none}
+.btn-c{background:transparent;color:var(--inchiostro);box-shadow:inset 0 0 0 1.5px var(--inchiostro)}
+.btn-c:hover{background:var(--inchiostro);color:#fff;text-decoration:none}
+.anteprima{margin-top:22px;font-size:15px;line-height:1.45;color:var(--grigio);white-space:pre-line}
+.anteprima b{color:var(--inchiostro);font-weight:600}
+
+/* controlli */
+.controlli{background:var(--intonaco)}
+.co-testa{grid-column:1/6}
+.co-righe{grid-column:7/13;font-size:clamp(19px,1.53vw,22px);line-height:1.45}
+.co-righe li{padding:0 0 20px}
+.co-righe li+li{padding-top:20px;border-top:1px solid #C9CDCF}
+.co-righe .fonte{display:block;font-size:15px;color:var(--grigio);margin-top:4px}
+.controlli .azioni{grid-column:7/13;margin-top:20px}
+
+/* chi siamo */
+.ch-testa{grid-column:1/6}
+.ch-testo{grid-column:7/13}
+.ch-testo p+p{margin-top:18px}
+.vendita{grid-column:1/13;margin-top:88px;padding-top:28px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px}
+.vendita p{font-size:clamp(22px,2.1vw,30px);line-height:1.25;font-weight:500;letter-spacing:-.01em}
+.vendita a{font-size:clamp(22px,2.1vw,30px);font-weight:700;color:var(--rosso);white-space:nowrap}
+
+/* chiusura */
+.chiusura{padding:104px 0 0;background:var(--carta);border-top:1px solid var(--filo)}
+.chiusura h2{font-size:clamp(44px,6.1vw,88px);line-height:.98;font-weight:700;letter-spacing:-.03em;max-width:11em}
+.ch-basso{display:grid;grid-template-columns:minmax(0,1fr) min(939px,65.2%);column-gap:40px;margin-top:56px;margin-right:calc(-1*var(--m));align-items:start;padding-bottom:96px}
+.recapiti{font-size:18px;line-height:1.4}
+.recapiti .tel-g{display:inline-block;font-size:clamp(34px,2.9vw,42px);font-weight:700;letter-spacing:-.02em;color:var(--rosso);text-decoration:none;line-height:1}
+.recapiti .tel-g:hover{text-decoration:underline}
+.recapiti .et{display:block;font-size:15px;font-weight:600;color:var(--grigio);margin-bottom:6px}
+.recapiti p+p{margin-top:14px}
+.recapiti .fax{color:var(--grigio);font-size:16px}
+.chiusura .didascalia{margin-bottom:0}
+
+/* piede */
+.piede{background:var(--intonaco);padding:72px 0 0;font-size:16px;line-height:1.45}
+.pi-griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:40px}
+.pi-chi{grid-column:1/5}
+.pi-chi img{width:120px}
+.pi-chi p{margin-top:18px;color:var(--grigio);max-width:22em}
+.pi-col{grid-column:span 2}
+.pi-col.contatti{grid-column:span 3}
+.pi-col:first-of-type{grid-column:6/8}
+.pi-col h3{font-size:15px;font-weight:650;margin:0 0 14px}
+.pi-col li{padding:4px 0}
+.pi-col a{text-decoration:none}
+.pi-col a:hover{text-decoration:underline}
+.pi-col .tel{color:var(--rosso);font-weight:700;font-size:18px}
+.pi-legale{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin-top:64px;padding:22px 0 28px;border-top:1px solid #C9CDCF;font-size:14px;color:var(--grigio)}
+.pi-legale nav{display:flex;gap:22px}
+.pi-legale a{color:var(--inchiostro)}
+
+/* tablet */
+@media (max-width:1340px){
+  .testata .cami2{display:none}
+}
+@media (max-width:1180px){
+  .testata{position:relative}
+  .nav,.testata .cami2{display:none}
+  .menu-b{display:inline-flex;margin-left:auto;align-items:center;min-height:44px;padding:0 14px;font:inherit;font-size:16px;font-weight:600;background:transparent;color:var(--inchiostro);border:0;box-shadow:inset 0 0 0 1.5px var(--inchiostro);border-radius:2px;cursor:pointer}
+  .menu-b[aria-expanded="true"]{background:var(--inchiostro);color:#fff}
+  .nav.aperto{display:flex;position:absolute;left:0;right:0;top:100%;z-index:5;flex-direction:column;gap:0;padding:4px var(--m) 20px;background:var(--carta);border-bottom:1px solid var(--filo);font-size:19px}
+  .nav.aperto a{padding:12px 0;border-top:1px solid var(--filo)}
+  .nav.aperto .solo-tel{display:block}
+}
+@media (max-width:900px){
+  .testata{height:72px}
+  .testata .tel{display:none}
+  .ap-titolo,.chiama{grid-column:1/13}
+  .fatti{grid-column:1/13;grid-row:auto;margin-top:28px}
+  .ap-basso,.ch-basso{grid-template-columns:1fr;margin-right:calc(-1*var(--m));margin-left:calc(-1*var(--m))}
+  .ap-basso .ingressi{order:2;padding:28px var(--m) 0}
+  .ap-basso .striscia{order:1}
+  .ap-basso .didascalia,.ch-basso .didascalia{padding-left:var(--m);padding-right:var(--m)}
+  .as-testa,.as-lista,.sostitutivi,.ri-testa,.richiesta,.co-testa,.co-righe,.controlli .azioni,.ch-testa,.ch-testo{grid-column:1/13}
+  .as-lista,.richiesta,.co-righe,.ch-testo{margin-top:36px}
+  .recapiti{padding:0 var(--m) 36px}
+  .pi-chi{grid-column:1/13}
+  .pi-col,.pi-col:first-of-type,.pi-col.contatti{grid-column:span 4}
+}
+.solo-tel{display:none}
+
+/* telefono */
+@media (max-width:600px){
+  body{font-size:17px}
+  .testata{height:64px;gap:12px}
+  .marchio{gap:10px}
+  .marchio img{width:72px}
+  .marchio span{font-size:13px;max-width:11em}
+  .apertura{padding-top:18px}
+  .ap-titolo h1{font-size:40px}
+  .ap-titolo .sotto{font-size:18px;margin-top:8px}
+  .chiama{display:block;margin-top:20px;background:var(--rosso);color:#fff;padding:12px 18px 14px;justify-self:stretch}
+  .chiama:hover{background:var(--rosso-scuro)}
+  .chiama:hover .n{text-decoration:none}
+  .chiama .et{color:#fff;font-size:16px}
+  .chiama .n{font-size:clamp(34px,10.4vw,44px);letter-spacing:-.02em;margin-top:2px}
+  .chiama .ra{color:#fff;opacity:1;font-size:.36em}
+  .fatti{margin-top:18px;font-size:16px}
+  .fatti li{padding:8px 0}
+  .scrivi{display:flex;align-items:center;justify-content:center;min-height:50px;margin-top:10px;box-shadow:inset 0 0 0 1.5px var(--inchiostro);border-radius:2px;text-decoration:none}
+  .ap-basso{margin-top:22px}
+  .sez{padding:80px 0}
+  .assistenza{padding-top:14px}
+  .assistenza .didascalia{padding:0}
+  .assistenza .griglia{margin-top:48px}
+  .as-lista{columns:1}
+  .sostitutivi{margin-top:44px}
+  .assistenza{margin-top:56px;padding-bottom:72px}
+  .ch-basso{padding-bottom:64px}
+  .campi{grid-template-columns:1fr}
+  .campo.largo{grid-column:1}
+  .azioni .btn{width:100%}
+  .vendita{margin-top:56px}
+  .chiusura{padding-top:80px}
+  .pi-col,.pi-col:first-of-type,.pi-col.contatti{grid-column:1/13}
+  .pi-griglia{row-gap:32px}
+  .pi-legale{margin-top:48px}
+}
+@media (max-width:340px){
+  .marchio img{width:58px}
+  .marchio span{font-size:12px}
+  .ap-titolo h1{font-size:36px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .btn,.chiama,.menu-b{transition:background-color .15s ease,color .15s ease}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="w testata">
+  <a class="marchio" href="#" aria-label="Unicar, assistenza carrelli elevatori, Padova">
+    <img src="img/logo-unicar.png" width="241" height="100" alt="Unicar">
+    <span>Assistenza carrelli elevatori, Padova</span>
+  </a>
+  <button class="menu-b" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Sezioni">
+    <a href="#assistenza">Assistenza</a>
+    <a href="#ricambi">Ricambi</a>
+    <a href="#controlli">Manutenzione e controlli</a>
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#dove">Dove siamo</a>
+    <a class="solo-tel" href="https://www.cami2.it/" rel="noopener">Vendita e noleggio: Cami2</a>
+  </nav>
+  <a class="cami2" href="https://www.cami2.it/" rel="noopener">Vendita e noleggio: Cami2</a>
+  <a class="tel num" href="tel:+390498792361">049 8792361</a>
+</header>
+
+<main id="contenuto">
+
+<section class="w apertura" aria-labelledby="t-apertura">
+  <div class="ap-griglia">
+    <div class="ap-titolo">
+      <h1 id="t-apertura">Carrello fermo?</h1>
+      <p class="sotto">Un tecnico arriva in azienda con il furgone attrezzato.</p>
+    </div>
+    <a class="chiama" href="tel:+390498792361" aria-label="Chiama l'officina, 049 8792361">
+      <span class="et">Chiama l'officina</span>
+      <span class="n num">049 8792361<span class="ra" aria-hidden="true">r.a.</span></span>
+    </a>
+    <ul class="fatti">
+      <li class="orari" data-orari hidden></li>
+      <li><b>Messa in funzione entro 24 ore dalla chiamata</b></li>
+      <li>Interventi in tutta Padova e provincia</li>
+      <li>Toyota, BT, Cesab e tutte le altre marche</li>
+      <li>Carrelli sostitutivi durante le riparazioni</li>
+      <li style="border:0;padding:0"><a class="scrivi" href="mailto:unicar@protec.it?subject=Carrello%20fermo&amp;body=Azienda%3A%0D%0AIndirizzo%20dove%20si%20trova%20il%20carrello%3A%0D%0AReferente%20e%20telefono%3A%0D%0AMarca%3A%0D%0AModello%3A%0D%0AMatricola%20(dalla%20targhetta)%3A%0D%0ACosa%20succede%3A%0D%0A">Scrivete: carrello fermo</a></li>
+    </ul>
+  </div>
+
+  <div class="ap-basso">
+    <nav class="ingressi" aria-label="Cosa facciamo">
+      <ul>
+        <li><a href="#assistenza"><span class="t">Assistenza e riparazione</span><span class="d">In azienda o in officina, ogni marca</span></a></li>
+        <li><a href="#ricambi"><span class="t">Ricambi</span><span class="d">Originali e di tutte le altre marche</span></a></li>
+        <li><a href="#controlli"><span class="t">Manutenzione e controlli</span><span class="d">Contratti programmati e registro</span></a></li>
+      </ul>
+    </nav>
+    <figure class="striscia" style="margin:0">
+      <picture>
+        <source media="(max-width:600px)" srcset="img/sede-tel-499.webp" type="image/webp" width="499" height="249">
+        <source media="(max-width:600px)" srcset="img/sede-tel-499.jpg" width="499" height="249">
+        <source srcset="img/sede-939.webp" type="image/webp">
+        <img src="img/sede-939.jpg" width="939" height="249" alt="La sede di via Canada 12 a Padova con le insegne Unicar, BT Cesab e Cami2, i furgoni dell'assistenza e due carrelli Cesab sul piazzale" fetchpriority="high">
+      </picture>
+      <figcaption class="didascalia">La sede di via Canada 12, con i furgoni dell'assistenza.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="assistenza" id="assistenza" aria-labelledby="t-assistenza">
+  <figure class="foto-piena" style="margin:0">
+    <picture>
+      <source media="(max-width:600px)" srcset="img/retrattili-tel-780.webp 780w, img/retrattili-tel-1170.webp 1170w" sizes="100vw" type="image/webp">
+      <source media="(max-width:600px)" srcset="img/retrattili-tel-780.jpg 780w, img/retrattili-tel-1170.jpg 1170w" sizes="100vw">
+      <source srcset="img/retrattili-1440.webp 1440w, img/retrattili-2400.webp 2400w" sizes="100vw" type="image/webp">
+      <img src="img/retrattili-1440.jpg" srcset="img/retrattili-1440.jpg 1440w, img/retrattili-2400.jpg 2400w" sizes="100vw" width="1440" height="382" alt="Retrattili BT in ricarica in fila in un magazzino" loading="lazy">
+    </picture>
+  </figure>
+  <div class="w">
+    <p class="didascalia" style="margin-top:8px">Foto indicativa: retrattili BT in ricarica nel magazzino di un'azienda.</p>
+    <div class="griglia">
+      <div class="as-testa">
+        <h2 class="h2" id="t-assistenza">Tutte le marche e i modelli</h2>
+        <p class="lead">I tecnici dedicati agli interventi esterni sono specializzati su tutte le marche e i modelli, in particolare Toyota, BT e Cesab.</p>
+      </div>
+      <ul class="as-lista">
+        <li><b>Riparazione carrelli</b><span>Di marche primarie e di tutte le altre</span></li>
+        <li><b>Batterie</b><span>Riparazione e manutenzione</span></li>
+        <li><b>Caricabatterie</b><span>Assistenza autorizzata per le riparazioni</span></li>
+        <li><b>Impianti elettronici</b><span>Trasformazioni e riparazioni</span></li>
+        <li><b>Anelli gommati</b><span>Vendita e montaggio</span></li>
+        <li><b>Preventivi</b><span>Per telefono o per email</span></li>
+      </ul>
+      <p class="sostitutivi">In caso di riparazione o revisione garantiamo la continuità del vostro ciclo produttivo, con carrelli sostitutivi e un intervento rapido e risolutivo. <a class="num" href="tel:+390498792361">049 8792361</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sez ricambi" id="ricambi" aria-labelledby="t-ricambi">
+  <div class="w griglia">
+    <div class="ri-testa">
+      <h2 class="h2" id="t-ricambi">Qualsiasi ricambio, anche uscito di produzione</h2>
+      <p class="lead">Originali Toyota, BT e Cesab e di tutte le altre marche, anche prodotti all'estero. Kit di aggiornamento e materiali di consumo: batterie, gomme, olio.</p>
+      <p class="testo-g">Il magazzino ricambi è in via Canada 12, Padova, e si occupa anche dello smaltimento dei materiali esausti e dei ricambi sostituiti.</p>
+    </div>
+    <form class="richiesta" id="richiesta" novalidate>
+      <h3>Chiedete un ricambio</h3>
+      <p class="nota">Scrivete quello che avete: prepariamo noi l'email per <span class="num">unicar@protec.it</span>. Allegate una foto della targhetta e una del pezzo.</p>
+      <div class="campi">
+        <div class="campo"><label for="f-marca">Marca del carrello</label><input id="f-marca" name="marca" autocomplete="off" placeholder="Toyota, BT, Cesab, altra"></div>
+        <div class="campo"><label for="f-modello">Modello</label><input id="f-modello" name="modello" autocomplete="off"></div>
+        <div class="campo"><label for="f-matricola">Matricola (dalla targhetta)</label><input id="f-matricola" name="matricola" autocomplete="off" class="num"></div>
+        <div class="campo"><label for="f-qta">Quantità</label><input id="f-qta" name="quantita" inputmode="numeric" autocomplete="off" class="num"></div>
+        <div class="campo largo"><label for="f-pezzo">Pezzo o codice</label><input id="f-pezzo" name="pezzo" autocomplete="off" placeholder="Es. catena del montante"></div>
+        <div class="campo largo"><label for="f-azienda">Azienda e referente</label><input id="f-azienda" name="azienda" autocomplete="organization"></div>
+      </div>
+      <div class="azioni">
+        <button class="btn btn-i" type="submit">Prepara l'email</button>
+        <span>oppure <a class="num" href="tel:+390498792361">049 8792361</a></span>
+      </div>
+      <p class="anteprima" id="anteprima" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="sez controlli" id="controlli" aria-labelledby="t-controlli">
+  <div class="w griglia">
+    <div class="co-testa">
+      <h2 class="h2" id="t-controlli">Manutenzione programmata e controlli di sicurezza</h2>
+    </div>
+    <ul class="co-righe">
+      <li>Contratti di manutenzione programmata per il vostro parco carrelli.</li>
+      <li>Le verifiche si annotano su un registro e si conservano per tre anni.<span class="fonte">D.Lgs. 81/2008, articolo 71</span></li>
+      <li>Funi e catene si controllano ogni tre mesi; la buona prassi è il tagliando annuale.</li>
+    </ul>
+    <div class="azioni">
+      <a class="btn btn-i" href="mailto:unicar@protec.it?subject=Preventivo%20manutenzione%20programmata&amp;body=Azienda%3A%0D%0AReferente%20e%20telefono%3A%0D%0ACarrelli%20(marca%2C%20modello%2C%20quanti)%3A%0D%0A">Chiedete un preventivo</a>
+      <span>oppure <a class="num" href="tel:+390498792361">049 8792361</a></span>
+    </div>
+  </div>
+</section>
+
+<section class="sez chi" id="chi-siamo" aria-labelledby="t-chi">
+  <div class="w griglia">
+    <div class="ch-testa">
+      <h2 class="h2" id="t-chi">Consulenti, più che riparatori</h2>
+    </div>
+    <div class="ch-testo">
+      <p class="lead">Unicar è l'officina a cui Cami2 affida l'assistenza tecnica dei carrelli: Cami2 li vende e li noleggia, noi li ripariamo e li manteniamo. Siamo nella stessa sede, in via Canada a Padova.</p>
+      <p class="testo-g">Lavoriamo per aziende di tutti i settori merceologici. Per ogni nuova unità presa in carico facciamo un esame tecnico approfondito, definiamo il piano d'intervento e concordiamo con voi il metodo.</p>
+    </div>
+    <div class="vendita">
+      <p>Volete comprare o noleggiare un carrello? Cami2, via Canada 16, è la porta accanto.</p>
+      <a href="https://www.cami2.it/" rel="noopener">cami2.it</a>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura" id="dove" aria-labelledby="t-dove">
+  <div class="w">
+    <h2 id="t-dove">Anche nei casi più ostici.</h2>
+    <div class="ch-basso">
+      <div class="recapiti">
+        <p><span class="et">Officina e ricambi</span><a class="tel-g num" href="tel:+390498792361">049 8792361</a></p>
+        <p class="fax num">Fax 049 8792357</p>
+        <p><a href="mailto:unicar@protec.it">unicar@protec.it</a></p>
+        <p>Via Canada 12, 35127 Padova<br><a href="https://www.google.com/maps?cid=7853003542386361464" rel="noopener">Apri la mappa</a></p>
+      </div>
+      <figure style="margin:0">
+        <picture>
+          <source media="(max-width:600px)" srcset="img/squadra-tel-520.webp" type="image/webp" width="520" height="249">
+          <source media="(max-width:600px)" srcset="img/squadra-tel-520.jpg" width="520" height="249">
+          <source srcset="img/squadra-939.webp" type="image/webp">
+          <img src="img/squadra-939.jpg" width="939" height="249" alt="La squadra davanti all'ingresso della sede di via Canada, tra i furgoni dell'assistenza" loading="lazy">
+        </picture>
+        <figcaption class="didascalia">La squadra davanti all'ingresso di via Canada.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="piede">
+  <div class="w">
+    <div class="pi-griglia">
+      <div class="pi-chi">
+        <img src="img/logo-unicar.png" width="241" height="100" alt="Unicar">
+        <p>Assistenza, riparazione e ricambi per carrelli elevatori di ogni marca, in particolare Toyota, BT e Cesab. Officina in via Canada 12, Padova.</p>
+      </div>
+      <div class="pi-col">
+        <h3>Servizi</h3>
+        <ul>
+          <li><a href="#assistenza">Assistenza e riparazione</a></li>
+          <li><a href="#controlli">Manutenzione programmata</a></li>
+          <li><a href="#controlli">Controlli di sicurezza</a></li>
+          <li><a href="#assistenza">Batterie e caricabatterie</a></li>
+          <li><a href="#ricambi">Ricambi</a></li>
+        </ul>
+      </div>
+      <div class="pi-col">
+        <h3>Azienda</h3>
+        <ul>
+          <li><a href="#chi-siamo">Chi siamo</a></li>
+          <li><a href="#dove">Dove siamo</a></li>
+          <li><a href="#controlli">Normative</a></li>
+          <li><a href="https://www.cami2.it/" rel="noopener">Vendita e noleggio: Cami2</a></li>
+        </ul>
+      </div>
+      <div class="pi-col contatti">
+        <h3>Contatti</h3>
+        <ul>
+          <li><a class="tel num" href="tel:+390498792361">049 8792361</a></li>
+          <li class="num">Fax 049 8792357</li>
+          <li><a href="mailto:unicar@protec.it">unicar@protec.it</a></li>
+          <li><a href="https://www.google.com/maps?cid=7853003542386361464" rel="noopener">Via Canada 12, 35127 Padova</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pi-legale">
+      <p>Unicar, via Canada 12, 35127 Padova. Assistenza tecnica della consociata Cami2.</p>
+      <nav aria-label="Note legali"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Menu sul telefono
+  var b=document.querySelector('.menu-b'),n=document.getElementById('nav');
+  if(b&&n){
+    b.addEventListener('click',function(){var a=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!a));n.classList.toggle('aperto',!a);});
+    n.addEventListener('click',function(e){if(e.target.closest('a')){b.setAttribute('aria-expanded','false');n.classList.remove('aperto');}});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('aperto')){b.setAttribute('aria-expanded','false');n.classList.remove('aperto');b.focus();}});
+  }
+
+  // Orari dell'officina: non sono pubblici. Quando Unicar li conferma si scrivono qui
+  // (giorno 1 = lunedì ... 7 = domenica, fasce in ore decimali, es. 8.5 = 8:30)
+  // e la riga "Oggi aperto fino alle ..." compare da sola nell'apertura.
+  // Esempio: var ORARI={1:[[8,12.5],[14,18]],2:[[8,12.5],[14,18]],3:[[8,12.5],[14,18]],4:[[8,12.5],[14,18]],5:[[8,12.5],[14,18]]};
+  var ORARI=window.UNICAR_ORARI||null;
+  var r=document.querySelector('[data-orari]');
+  function ora(h){var hh=Math.floor(h),mm=Math.round((h-hh)*60);return hh+(mm?':'+(mm<10?'0':'')+mm:'');}
+  var GIORNI=['','lunedì','martedì','mercoledì','giovedì','venerdì','sabato','domenica'];
+  if(ORARI&&r){
+    var d=new Date(),g=d.getDay()||7,h=d.getHours()+d.getMinutes()/60,f=ORARI[g]||[],t='';
+    for(var i=0;i<f.length;i++){if(h>=f[i][0]&&h<f[i][1]){t='<b>Aperto ora</b>, fino alle '+ora(f[i][1]);break;}if(h<f[i][0]){t='<b>Oggi apre alle '+ora(f[i][0])+'</b>';break;}}
+    if(!t){for(var k=1;k<=7;k++){var gg=(g-1+k)%7+1;if(ORARI[gg]&&ORARI[gg].length){t='<b>Chiuso ora</b>, riapre '+(k===1?'domani':GIORNI[gg])+' alle '+ora(ORARI[gg][0][0]);break;}}}
+    if(t){r.innerHTML=t;r.hidden=false;}
+  }
+
+  // Richiesta ricambio: compone l'email, non invia nulla dalla pagina
+  var form=document.getElementById('richiesta'),ant=document.getElementById('anteprima');
+  if(form){
+    var v=function(k){return (form.elements[k].value||'').trim();};
+    var testo=function(){
+      var marca=v('marca'),mod=v('modello');
+      var ogg='Richiesta ricambio'+(marca||mod?': '+[marca,mod].filter(Boolean).join(' '):'');
+      var corpo=['Marca: '+marca,'Modello: '+mod,'Matricola: '+v('matricola'),'Pezzo o codice: '+v('pezzo'),'Quantità: '+v('quantita'),'Azienda e referente: '+v('azienda'),'','Allego la foto della targhetta e del pezzo.'].join('\r\n');
+      return {ogg:ogg,corpo:corpo};
+    };
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var t=testo();
+      ant.innerHTML='<b>Si apre il programma di posta con l\'oggetto «'+t.ogg.replace(/[<>&]/g,'')+'».</b>\nSe non si apre, scrivete a unicar@protec.it o chiamate lo 049 8792361.';
+      window.location.href='mailto:unicar@protec.it?subject='+encodeURIComponent(t.ogg)+'&body='+encodeURIComponent(t.corpo);
+    });
+  }
+})();
+</script>
+</body>
+</html>
