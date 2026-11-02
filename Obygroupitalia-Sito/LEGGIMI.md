@@ -103,22 +103,29 @@ Seconda proposta di home, costruita sulla scheda di identità e d'uso (`_prova/u
 
 **Cosa cambia rispetto alla prima.** Prima schermata pensata per il telefono: tasto Chiama fisso, il loro claim "Quando il danno diventa serio, noi entriamo in azione" rimesso al suo posto, due bottoni grandi per cellulare e uffici, il link per mandare le foto per mail, quattro scorciatoie. A 1440 la loro foto del condominio ponteggiato a tutta altezza e tre accessi: Ho avuto un danno, Compagnie assicurative e Starflex, Aziende e bonifiche industriali. Poi i quattro danni con le loro righe, i nove passaggi tutti in vista su un campo nel rosso del logo, l'elenco industriale completo (14 voci più le righe della pagina Pronto intervento) con la richiesta che si compone segnando i lavori, Starflex per le compagnie con il PDF, chi siamo con i dati societari, chiusura con foto e recapiti, piede. Nessuna foto di repertorio: tutte le immagini sono del loro sito.
 
+**Rifinitura dopo le prove (2 novembre).** Tre clienti tipo (danneggiato da telefono, ufficio sinistri, tecnico d'azienda) e il giudice d'identità hanno provato la v2; il dettaglio è nella `NOTA.md`, sezione "Dopo le prove". In breve: fondo bianco; apertura con il claim a tutta riga e tre colonne (telefoni e mail, la loro foto del tetto bruciato con due operatori a misura vera, tre porte); bottone "Manda le foto del danno" a tutta larghezza; barra fissa in basso sul telefono con "Cellulare" e "Uffici"; zona "in Veneto e fuori regione" nella riga d'apertura; tre passi per il cliente prima dei lavori di cantiere; Starflex con il nome del prodotto nel titolo, testo e PDF visibili subito dopo il salto, brochure aziendale accanto e mail precompilata per affidare un sinistro; fune e cunicolo accanto all'elenco industriale; chi siamo e contatti fusi in un blocco con la richiesta di visura, iscrizioni e abilitazioni; pagina a 5501 px a 1440 e 8205 a 390 (prima 6890 e 10909). Prove dei salti: `_prova/uso/script/prova_rifinitura.mjs`.
+
+**Prima di mettere in linea la versione 2.**
+- Il PDF Starflex (`sito-v2/doc/copertura-sicura-starflex-2026.pdf`) scrive "Un'esclusiva partnership", "Durabilità certificata 30 anni" e il refuso "Comagnie": la pagina li ha tolti perché la nota MPM smentisce l'esclusiva. Va chiesta a Oby e MPM un'edizione corretta prima di pubblicare il bottone.
+- La brochure aziendale (`sito-v2/doc/brochure-aziendale-2022.pdf`, copiata dal sito di oggi) dà ancora la sede a Grisignano di Zocco e "nata nel 2011": in pagina è etichettata "edizione 2022"; va rifatta con Longare.
+
 **Carattere.** Atkinson Hyperlegible Next, Google Fonts, SIL Open Font License 1.1 (`sito-v2/fonts/OFL.txt`).
 
 **Da confermare in più per la versione 2** (l'elenco completo è nella `NOTA.md`):
-1. Reperibilità fuori orario e orari degli uffici; se si può usare WhatsApp sul cellulare per le foto.
-2. Le regioni servite (in pagina l'elenco della brochure 2022: Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia).
-3. Se "pratiche burocratiche comprese" vale anche per il rapporto con l'assicurazione e il perito.
-4. Quali foto sono di loro cantieri: il condominio dell'apertura, il cunicolo (il logo sulla tuta è vero?), la mansarda usata per "grandine e maltempo", la pala eolica della chiusura; la foto Starflex del fibrocemento è di Oby o di MPM?
-5. Se robot ATEX ed escavatori a risucchio sono mezzi loro; le abilitazioni da pubblicare.
+1. Reperibilità fuori orario, orari degli uffici e PEC (in pagina non ci sono); se si può usare WhatsApp sul cellulare per le foto.
+2. La zona servita: in pagina c'è solo "in Veneto e fuori regione"; la brochure 2022 elenca sedi operative in Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia. Qual è l'elenco di oggi?
+3. Se "seguiamo noi le pratiche burocratiche" vale anche per il rapporto con l'assicurazione e il perito.
+4. Quali foto sono di loro cantieri: il tetto bruciato dell'apertura (e i due operatori), il condominio della chiusura (il telo "Qui per voi" è loro? che lavoro e dove?), il cunicolo (il logo sulla tuta è vero? oggi è tagliato fuori), la mansarda usata per "infiltrazioni", la pala eolica; la foto Starflex del fibrocemento è di Oby o di MPM?
+5. Se robot ATEX ed escavatori a risucchio sono mezzi loro; iscrizioni e abilitazioni con numero ed ente (Albo gestori ambientali e categorie, amianto, ambienti confinati, lavori in fune), da scrivere nella riga "Documenti" al posto della richiesta per mail.
+6. Una riga di descrizione per le voci industriali che oggi hanno solo il titolo (digestori, escavatori a risucchio, reti gas, spazi a rischio inquinamento, smaltimento, manti stradali, fotovoltaico).
 
 **Foto da rifare dal vero, per la versione 2.** Le foto vere ci sono ma sono piccole (da 450 a 1155 px) e da telefono: oggi coprono il 23,7 % della pagina a 1440, contro il 35 % dei siti di riferimento.
-1. Apertura: lo stesso condominio, o un altro cantiere con il loro telo, in verticale 3:4 a 3000 px o più, luce del mattino, cielo pulito, tutto il ponteggio in quadro; più un taglio orizzontale 21:9 per la striscia del telefono.
+1. Apertura: un loro cantiere dopo un incendio con la squadra al lavoro (come il tetto bruciato di oggi, che è 567 px), dall'alto o dal ponteggio, 4:3 a 2500 px o più, luce naturale, nessun volto né oggetto del cliente riconoscibile; più un taglio orizzontale 21:9 per la striscia del telefono.
 2. I quattro danni: un ambiente vero per ciascuno (incendio, allagamento, tetto dopo la grandine, amianto) il giorno del sopralluogo, orizzontali 4:3 a 2000 px, luce naturale, nessun volto né oggetto personale del cliente riconoscibile.
 3. Industria: la squadra con i suoi DPI dentro un serbatoio o un ambiente confinato, il robot ATEX, l'escavatore a risucchio al lavoro, 4:5 a 2000 px.
-4. Chiusura: un intervento in fune loro, verticale o quadrato a 2500 px.
+4. Chiusura: un loro condominio o capannone ripristinato, con il telo, in verticale 3:4 a 3000 px; in industria un intervento in fune loro, quadrato a 2500 px.
 5. Starflex: una copertura finita da Oby vista dal drone, 21:9 a 3000 px.
 
-**Pagine del sito nuovo.** Valgono quelle della tabella qui sopra. Nella versione 2 i link del piede puntano alle sezioni della home (`#incendio`, `#allagamento`, `#maltempo`, `#amianto`, `#dopo`, `#bonifiche-industriali`, `#ambienti-confinati`, `#escavatori-a-risucchio`, `#lavori-in-fune`, `#sabbiature`, `#opere-edili`, `#assicurazioni`, `#azienda`); nel sito vero andranno a `/interventi/...`, `/pronto-intervento/` e `/copertura-sicura-starflex/`. Privacy e Cookie puntano a `/privacy-policy/` e `/cookie-policy/`.
+**Pagine del sito nuovo.** Valgono quelle della tabella qui sopra. Nella versione 2 i link del piede puntano alle sezioni della home (`#incendio`, `#allagamento`, `#maltempo`, `#amianto`, `#dopo`, `#bonifiche-industriali`, `#ambienti-confinati`, `#escavatori-a-risucchio`, `#lavori-in-fune`, `#sabbiature`, `#opere-edili`, `#assicurazioni`, `#azienda`, `#contatti`) e ai due PDF in `sito-v2/doc/`; nel sito vero andranno a `/interventi/...`, `/pronto-intervento/` e `/copertura-sicura-starflex/`. Privacy e Cookie puntano a `/privacy-policy/` e `/cookie-policy/`.
 
 **Newsletter.** Anche qui niente newsletter, per lo stesso motivo: servizio d'emergenza su chiamata, nessuna novità periodica da comunicare.
