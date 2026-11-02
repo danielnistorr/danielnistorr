@@ -53,12 +53,13 @@ Non c'è e non serve: lavorano solo per aziende, non comunicano novità, fiere o
 
 ## Versione 2 (scheda d'uso)
 
-Una seconda home, costruita sulla scheda d'identità e d'uso (`_prova/uso/SCHEDA.md`) e non sulla home precedente, che resta com'è in `sito/`. Rifinita il 2/11/2026 dopo le prove di tre clienti tipo e del giudice d'identità (cosa è cambiato: `screenshot/home-v2/NOTA.md`).
+Una seconda home, costruita sulla scheda d'identità e d'uso (`_prova/uso/SCHEDA.md`) e non sulla home precedente, che resta com'è in `sito/`. Rifinita il 2/11/2026 dopo le prove di tre clienti tipo e del giudice d'identità, poi ricomposta lo stesso giorno con due caratteri, otto livelli di scala e un impianto diverso per sezione, senza spostare nulla di ciò che serve sul telefono (cosa è cambiato: `screenshot/home-v2/NOTA.md`).
 
-- Pagina: `sito-v2/index.html`, con `sito-v2/privacy.html`, `sito-v2/cookie.html`, `sito-v2/img/` e `sito-v2/fonts/` (Barlow, SIL Open Font License 1.1, `fonts/OFL.txt`); si apre direttamente nel browser.
+- Pagina: `sito-v2/index.html`, con `sito-v2/privacy.html`, `sito-v2/cookie.html`, `sito-v2/img/` e `sito-v2/fonts/`; si apre direttamente nel browser.
+- Caratteri, serviti dalla pagina: Big Shoulders Display (Patric King, Xotype) per titoli, numeri di telefono e cifre grandi, e Asap (Omnibus-Type) per testo, menu, bottoni e dati. Tutti e due da Google Fonts, SIL Open Font License 1.1, uso commerciale libero (`fonts/OFL-BigShoulders.txt`, `fonts/OFL-Asap.txt`). Il perché, la scala e l'impianto di ogni sezione sono nella NOTA.
 - Screenshot e nota di progetto: `screenshot/home-v2/` e `screenshot/home-v2/NOTA.md`.
-- Per rifare tutto: `sh _prova/uso/script/build_v2.sh` (immagini con `v2_img.py`, caratteri, controllo dei caratteri vietati, prove con `v2_prova.mjs`, screenshot con `v2_shoot.py`; `v2_menu.mjs` fotografa il menu aperto a 390).
-- In breve: sul telefono, nei primi 300 px, il bottone rosso a tutta larghezza "Chiamate l'officina 049 8792361 r.a.". Sotto: gli orari con "Aperto ora" o "Chiuso ora, riapre...", le 24 ore, la zona, le marche e i tipi di carrello, i carrelli sostitutivi, indirizzo ed email, e il bottone "Scrivete all'officina: carrello fermo" con la traccia già scritta. La testata resta in vista: sul telefono, appena il bottone rosso esce dallo schermo, compare "Chiama". A 1440 il numero è il titolo grande della pagina, accanto alla loro sede.
+- Per rifare tutto: `sh _prova/uso/script/build_v2.sh` (immagini con `v2_img.py`, caratteri, controllo dei caratteri vietati, prove con `v2_prova.mjs`, screenshot con `v2_shoot.py`; `v2_menu.mjs` fotografa il menu aperto a 390; `v2_misure.mjs` misura dove stanno bottone, orari e recapiti nella prima schermata da 320 a 430, e `v2_largo.mjs` cerca gli elementi che escono a destra).
+- In breve: sul telefono, nei primi 300 px, il bottone rosso a tutta larghezza "Chiamate l'officina 049 8792361 r.a.". Sotto: gli orari con "Aperto ora" o "Chiuso ora, riapre...", le 24 ore, la zona, le marche e i tipi di carrello, i carrelli sostitutivi, indirizzo ed email, e il bottone "Scrivete all'officina: carrello fermo" con la traccia già scritta. La testata resta in vista: sul telefono, appena il bottone rosso esce dallo schermo, compare "Chiama". A 1440 il numero è il titolo grande della pagina (172 px, in Big Shoulders Display), sopra la loro sede; più giù "Toyota, BT, Cesab" a 168 px, le scadenze dei controlli in cifre grandi e la chiusura con la squadra a filo del bordo sinistro.
 
 ### Da confermare per la versione 2 (in ordine di importanza)
 

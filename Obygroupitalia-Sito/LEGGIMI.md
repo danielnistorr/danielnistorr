@@ -109,7 +109,12 @@ Seconda proposta di home, costruita sulla scheda di identità e d'uso (`_prova/u
 - Il PDF Starflex (`sito-v2/doc/copertura-sicura-starflex-2026.pdf`) scrive "Un'esclusiva partnership", "Durabilità certificata 30 anni" e il refuso "Comagnie": la pagina li ha tolti perché la nota MPM smentisce l'esclusiva. Va chiesta a Oby e MPM un'edizione corretta prima di pubblicare il bottone.
 - La brochure aziendale (`sito-v2/doc/brochure-aziendale-2022.pdf`, copiata dal sito di oggi) dà ancora la sede a Grisignano di Zocco e "nata nel 2011": in pagina è etichettata "edizione 2022"; va rifatta con Longare.
 
-**Carattere.** Atkinson Hyperlegible Next, Google Fonts, SIL Open Font License 1.1 (`sito-v2/fonts/OFL.txt`).
+**Caratteri e impaginazioni (giro del 2 novembre, "più accoppiate di font e grandezze e layout mescolati").** Il dettaglio è nella `NOTA.md`, sezione "Caratteri, scala e impaginazioni".
+- Due famiglie con ruoli fissi, tutte e due servite dalla pagina (`sito-v2/fonts/`): **Big Shoulders Display** per i titoli, le frasi grandi, i numeri dei passi e il cellulare grande della chiusura (Google Fonts, SIL Open Font License 1.1, `sito-v2/fonts/OFL-big-shoulders.txt`), un grottesco stretto da segnaletica, come la scritta di un mezzo d'emergenza; **Atkinson Hyperlegible Next** per testo, bottoni, telefoni da toccare, tabelle e didascalie (Google Fonts, SIL Open Font License 1.1, `sito-v2/fonts/OFL.txt`). Nessun monospazio.
+- Scala di otto livelli, da 116 px (il claim) a 13,5 px (le didascalie), con le misure in variabili CSS.
+- Un impianto diverso per ogni sezione: claim enorme sopra tre colonne; danni come indice a righe a tutta larghezza; campo rosso a scacchiera in due colonne sbilanciate con i numeri grandi dei passi e la frase sola; industria con titolo a tutta riga, elenco su tre colonne e mosaico di due foto di misure diverse; Starflex in due colonne sbilanciate più la foto in una fascia a tutta larghezza (nuove immagini `starflex-banda-*`); chiusura con il testo a sinistra e il condominio a destra fino al bordo.
+- L'uso non cambia: a 390 bottoni di chiamata, mail delle foto, altro cellulare e scorciatoie sono 4 px più in alto di prima (misure con `_prova/uso/script/prima_390.mjs`); i salti "Compagnie assicurative" e "Aziende" arrivano sul PDF e sul bottone della richiesta senza scorrere. Pagina a 6910 px a 1440 e 8331 a 390.
+- Da sapere: l'area coperta da foto scende al 21,1 % (prima 23,7 %), perché la tipografia più grande allunga la pagina; la giornata di fotografia qui sotto resta la cura.
 
 **Da confermare in più per la versione 2** (l'elenco completo è nella `NOTA.md`):
 1. Reperibilità fuori orario, orari degli uffici e PEC (in pagina non ci sono); se si può usare WhatsApp sul cellulare per le foto.

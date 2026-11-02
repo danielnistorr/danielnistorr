@@ -1,8 +1,8 @@
 # Unicar, home v2 (scheda d'uso)
 
-Pagina: `sito-v2/index.html`. Costruita sulla scheda `_prova/uso/SCHEDA.md`, non è un ritocco della home in `sito/`. Rifinita il 2/11/2026 dopo le prove di tre clienti tipo e del giudice d'identità. Altezza a 1440: 4887 px compreso il piede; a 390: 7500 px. Per rifare tutto: `sh _prova/uso/script/build_v2.sh`.
+Pagina: `sito-v2/index.html`. Costruita sulla scheda `_prova/uso/SCHEDA.md`, non è un ritocco della home in `sito/`. Rifinita il 2/11/2026 dopo le prove di tre clienti tipo e del giudice d'identità, poi ricomposta lo stesso giorno con due caratteri, una scala a otto livelli e un impianto diverso per ogni sezione (paragrafo "Caratteri, scala e impaginazione"). Altezza a 1440: 5968 px compreso il piede; a 390: 8098 px. Per rifare tutto: `sh _prova/uso/script/build_v2.sh`.
 
-Screenshot in questa cartella: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-320`, `home-768`, `home-1024` (intere e prima schermata). Prove automatiche (`_prova/uso/script/v2_prova.mjs`): nessuno scorrimento orizzontale da 320 a 2560, né a pagina scorsa con la testata compatta; a 320-430 il bottone di chiamata sta tra 189 e 287 px dall'alto, alto da 85 a 94 px; tutti i `tel:` della pagina alti almeno 48 px; prima voce del menu "Chiamate 049 8792361" (56 px); dopo lo scorrimento la testata resta in vista con "Chiama" sul telefono, con il numero e Cami2 a 1280 e 1440; orari visibili senza dati esterni; richiesta ricambio composta e "Copia il testo"; nessun link locale o ancora senza destinazione.
+Screenshot in questa cartella: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-320`, `home-768`, `home-1024` (intere e prima schermata). Prove automatiche (`_prova/uso/script/v2_prova.mjs`): nessuno scorrimento orizzontale da 320 a 2560, né a pagina scorsa con la testata compatta; a 320-430 il bottone di chiamata sta tra 186 e 287 px dall'alto, alto da 85 a 94 px; tutti i `tel:` della pagina alti almeno 48 px; prima voce del menu "Chiamate 049 8792361" (56 px); dopo lo scorrimento la testata resta in vista con "Chiama" sul telefono, con il numero e Cami2 a 1280 e 1440; orari visibili senza dati esterni; richiesta ricambio composta e "Copia il testo"; nessun link locale o ancora senza destinazione.
 
 ## Cosa è cambiato dopo le prove
 
@@ -33,7 +33,47 @@ Screenshot in questa cartella: `home-1440.jpg`, `home-1440-prima-schermata.jpg`,
 - "Messa in funzione entro 24 ore" resta, ma non più in grassetto, con un commento nel file. È il primo punto da confermare.
 
 **Esecuzione**
-- Carattere: Barlow al posto di Sofia Sans, che era già in BCM, Daisyplast, Molon e Teklam. Barlow non è usato in nessun'altra home della campagna (controllato il 2/11/2026).
+- Caratteri: prima Barlow al posto di Sofia Sans (già in BCM, Daisyplast, Molon e Teklam); poi, su richiesta del committente, l'accoppiata Big Shoulders Display e Asap (paragrafo seguente).
+
+## Caratteri, scala e impaginazione (2/11/2026)
+
+Richiesta del committente: "usa più accoppiate di font e grandezze e layout mescolati". Prima la pagina aveva una famiglia sola (Barlow) e cinque sezioni di fila con la stessa griglia: titolo nelle colonne 1-5, testo nelle colonne 7-12. Ora ha due caratteri con ruoli fissi, otto livelli di scala e sei impianti diversi. L'uso non cambia: stessi testi, stessi link, stesso ordine sul telefono. La copia della pagina di prima è in `_prova/uso/prima-tipografia-index.html`.
+
+**L'accoppiata, e perché**
+- **Big Shoulders Display** (Patric King, Xotype; Google Fonts, SIL Open Font License 1.1, `sito-v2/fonts/OFL-BigShoulders.txt`). Fa i titoli, i numeri di telefono, le marche e le cifre dei controlli; mai sotto i 28 px. È un grottesco stretto nato dalla segnaletica industriale di Chicago: ha il passo delle scritte sui mezzi da lavoro e delle targhe di portata, e riprende il condensato della loro vecchia testata ("AFFIDABILI DI NATURA") senza il gioco grafico. Stretto vuol dire anche pratico: sul telefono il numero nel bottone rosso cresce da 44 a 45-50 px nella stessa altezza di riga, e a 1440 lo stesso numero arriva a 172 px in otto colonne.
+- **Asap** (Omnibus-Type; Google Fonts, SIL Open Font License 1.1, `sito-v2/fonts/OFL-Asap.txt`). Fa il testo, il menu, i bottoni, il modulo, gli orari e le didascalie. È una grottesca da schermo, aperta e con l'altezza della x alta (0,52), quindi leggibile a 15-17 px. Le cifre tabellari sono di serie, così gli orari e il fax stanno in colonna. Ha uno scheletro diverso dal titolo, largo dove l'altro è stretto, e non si confondono.
+- Due famiglie, non tre: un monospazio per i dati sarebbe un segnale da IA (guida, regola a.3), e le cifre tabellari di Asap bastano. Due file variabili (latin) serviti dalla pagina, 79 KB in tutto. Pesi usati: Big Shoulders 700 e 800; Asap 400, 500 e 600. Nessuno dei due è in un'altra home della campagna né nelle liste b della guida (controllato il 2/11/2026; Antonio, l'altro condensato possibile, è già in Nardi e Belletti).
+- Le pagine `privacy.html` e `cookie.html` usano gli stessi due caratteri.
+
+**La scala (a 1440 e a 390)**
+
+| Livello | Uso | Carattere | 1440 | 390 |
+|---|---|---|---|---|
+| 1 | il numero dell'officina in apertura | Big Shoulders 800 | 172 px | 45 px, nel bottone |
+| 2 | "Toyota, BT, Cesab" | Big Shoulders 800 | 168 px | 64 px |
+| 3 | le scadenze dei controlli (3 mesi, 1 anno, 3 anni) | Big Shoulders 800 | 150 px | 72 px |
+| 4 | titoli di sezione e della chiusura | Big Shoulders 700-800 | 76-107 px | 40-48 px |
+| 5 | frasi grandi da sole (carrelli sostitutivi, contratto) | Asap 400-600 | 38 px | 24 px |
+| 6 | paragrafo d'apertura di sezione, ingressi | Asap 400 e Big Shoulders 700 | 22 e 31 px | 19 e 28 px |
+| 7 | testo, menu, bottoni, recapiti | Asap 400-600 | 16-18 px | 16-17 px |
+| 8 | didascalie, etichette, fonti, riga legale | Asap 500-600 | 14-15 px | 14-15 px |
+
+I numeri di telefono hanno un corpo proprio in ogni punto: 31 px in testata, 172 in apertura, 30 accanto al preventivo, 58 nel magazzino ricambi, 68 nella chiusura, 30 nel piede. Sono sempre in Big Shoulders 800 e sempre in rosso.
+
+**Un impianto per sezione (nessuna griglia uguale a quella prima)**
+1. *Apertura* (invariata nella struttura): otto colonne al titolo e al numero, quattro ai fatti; sotto, gli ingressi in quattro colonne e la sede al bordo destro.
+2. *Assistenza*, tipografica a tutta larghezza: il titolo, poi "Toyota, BT, Cesab" a 168 px con accanto "e tutte le altre marche, elettrici e diesel" in piccolo; il testo a scalino dalla colonna 5; i sei servizi su tre colonne; infine "Carrelli sostitutivi" come una frase grande da sola, rientrata di una colonna. Chi cerca la sua marca la vede da lontano.
+3. *Ricambi*, due colonne sbilanciate sotto un titolo largo: quattro colonne al testo e al magazzino (numero a 58 px, indirizzo, orari), sette al modulo.
+4. *Manutenzione e controlli*, una tavola di cifre sulla fascia d'intonaco: le tre scadenze della loro Nota informativa in cifre grandi su tre colonne uguali (sul telefono la cifra sta accanto alla sua riga); sotto, il contratto come frase grande con il bottone a sinistra e le due note strette a destra.
+5. *Chi siamo*, testo a scalino: il titolo nelle colonne 1-7, il testo che parte dalla colonna 6 una riga più in basso; sotto, la riga larga verso Cami2 con "cami2.it" a 60 px.
+6. *Chiusura*, la foto a sinistra: la squadra a filo del bordo sinistro (in apertura la sede è a filo del destro), "Via Canada 12, Padova" a 107 px sotto la foto e i recapiti a destra.
+7. *Piede*: logo e riga su chi sono, poi Servizi, Azienda, Contatti in colonne di larghezza diversa, con il numero in Big Shoulders.
+
+**L'uso è rimasto dov'era** (misure in `_prova/uso/misure-prima-tipografia.json` e `misure-dopo-tipografia.json`, script `_prova/uso/script/v2_misure.mjs`)
+- A 390 e a 430 il titolo, il bottone di chiamata (193-284 px a 390), gli orari, le 24 ore, la zona, le marche, l'indirizzo con l'email e "Scrivete all'officina" stanno agli stessi pixel di prima. A 360 è tutto uguale; a 320 tutto più in alto, da 3 a 46 px.
+- Per tenere le altezze, sul telefono il numero nel bottone usa la stessa altezza di riga di prima, e sotto i 380 px la lista dei fatti è stretta di un centesimo di em. Asap infatti è un po' più larga di Barlow e avrebbe mandato a capo due righe.
+- `v2_prova.mjs` passa tutto: nessuno scorrimento orizzontale da 320 a 2560 px, tutti i `tel:` alti almeno 48 px, menu, testata, modulo e "Copia il testo". Nessun U+2014.
+- `segnali.sh` a 1440 dà due famiglie con ruoli fissi (Asap 91 %, Big Shoulders 9 %), nessun carattere delle liste b, nessun monospazio e nessuno schema "titolo a sinistra e paragrafo a destra" (prima erano cinque sezioni). Resta bloccante l'area delle foto, al 5,7 %: le uniche foto vere sono due strisce di 939 x 249 che non si ingrandiscono, e il giudice d'identità ha fatto togliere quella di repertorio. Si risolve solo con le foto da rifare (LEGGIMI). Da guardare: i titoli in 700-800. La guida li ammette per il settore delle macchine (c1), e un condensato regge meglio un peso pieno di un peso leggero.
 
 ## Cosa trova ciascun visitatore, e dove
 
@@ -45,13 +85,12 @@ Screenshot in questa cartella: `home-1440.jpg`, `home-1440-prima-schermata.jpg`,
 
 ## Idea
 
-Il sito serve a far chiamare, e quindi il protagonista è il numero. A 1440 "049 8792361" è composto a 148 px in rosso, con cifre tabellari, ed è il link di chiamata. Sul telefono lo stesso numero diventa il bottone. È la scelta d'impaginazione che manca nelle altre home della campagna: la scala tipografica è costruita su un recapito, non su un titolo. Le due foto vere, strisce panoramiche di 939 x 249, partono dalla stessa colonna della griglia a 12 e arrivano al bordo destro, a misura d'origine.
+Il sito serve a far chiamare, e quindi il protagonista è il numero. A 1440 "049 8792361" è composto a 172 px in Big Shoulders Display 800, in rosso, ed è il link di chiamata. Sul telefono lo stesso numero diventa il bottone. È la scelta d'impaginazione che manca nelle altre home della campagna: la scala tipografica è costruita su un recapito, non su un titolo. Le due foto vere, strisce panoramiche di 939 x 249, toccano i due bordi opposti, a misura d'origine: la sede in apertura arriva al bordo destro, la squadra in chiusura parte dal sinistro.
 
 Niente legende numerate, niente carrello scontornato, niente promemoria .ics, niente numeri del gruppo, nessuna foto di repertorio.
 
-## Caratteri e colori
+## Colori
 
-- **Barlow** di Jeremy Tribby (Google Fonts, SIL Open Font License 1.1, `sito-v2/fonts/OFL.txt`), in quattro pesi (400, 500, 600, 700), solo il sottoinsieme latin, servito dalla pagina. È una grottesca nata dalle scritte stradali e dei mezzi da lavoro, vicina al lettering dei furgoni dell'assistenza. Nelle cifre grandi tiene il numero compatto e leggibile da lontano.
 - Il fondo `#FAFAF8` è il bianco dei furgoni dell'assistenza, che si vedono nella foto della sede. La fascia dei controlli e il piede sono in `#ECEEEE`, l'intonaco grigio della palazzina di via Canada. L'inchiostro è `#141617` e il testo secondario `#53575B` (oltre 6:1 su tutti e due i fondi).
 - Il rosso `#D7141A` è quello della C del logo, scurito quanto basta perché il bianco sul bottone passi AA (5,24:1). È l'unico colore della pagina, e compare solo dove si chiama.
 

@@ -2,7 +2,7 @@
 
 Pagina: `sito-v2/index.html` (statica, si apre con file:///). Costruita sulla scheda `_prova/uso/SCHEDA.md`, non sulla home precedente (`sito/`, che resta com'è). Si rifà tutto con `sh _prova/uso/script/build_v2.sh`.
 
-Schermate in questa cartella: `home-1440.jpg` (5501 px di altezza, piede compreso; 8205 px a 390), `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-1024.jpg`, `home-768.jpg`, `home-320.jpg`. Nessuno scorrimento orizzontale da 320 a 1440 (misurato), nessun U+2014.
+Schermate in questa cartella: `home-1440.jpg` (6910 px di altezza, piede compreso; 8330 px a 390; giro dei caratteri e delle impaginazioni del 2 novembre, vedi sotto), `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-1024.jpg`, `home-768.jpg`, `home-320.jpg`. Nessuno scorrimento orizzontale da 320 a 1440 (misurato), nessun U+2014.
 
 ## Cosa trova ogni visitatore, e dove
 
@@ -41,7 +41,7 @@ Tre clienti tipo hanno provato la v2 (danneggiato da telefono 7,5; ufficio sinis
 - Il cunicolo è tagliato sotto la schiena: il logo sulla tuta, che sembra applicato dopo, resta fuori finché non è confermato.
 - La scheda incendio usa un dettaglio delle travi bruciate dello stesso tetto, per non ripetere l'apertura.
 - Ripetizioni tolte: niente secondo numero degli uffici in testata, niente richiamo "Hai un problema specifico?" con i due numeri, niente "Altro cellulare" nell'apertura a computer, porte con una sola riga sotto il titolo.
-- Pagina più corta: 5501 px a 1440 (prima 6890), 8205 a 390 (prima 10909); a 390 le schede danno hanno una miniatura di 88 px accanto al titolo e una riga di testo.
+- Pagina più corta: 5501 px a 1440 (prima 6890), 8205 a 390 (prima 10909; dopo il giro dei caratteri 6910 e 8330); a 390 le schede danno hanno una miniatura di 88 px accanto al titolo e una riga di testo.
 
 **Controlli dopo la rifinitura**: nessuno scorrimento orizzontale a 320, 390, 768, 1024 e 1440; nessuna U+2014; "esclusiva", "24 ore" e "Fig." assenti; 6 link `tel:+3904441329022`, 5 `tel:+393408349597`, 2 `tel:+393939114656`, mailto con oggetto e testo, mappa `google.com/maps/search/?api=1&query=Via+Ghizzole+41+36023+Longare+VI`. Prove dei salti e della barra: `_prova/uso/script/prova_rifinitura.mjs`; gesto: `prova_gesto_v2.mjs`.
 
@@ -53,13 +53,57 @@ Tre clienti tipo hanno provato la v2 (danneggiato da telefono 7,5; ufficio sinis
 - Zero senza barra: il carattere (Atkinson Hyperlegible Next) non ha l'alternativa; lo zero barrato è parte della sua leggibilità e resta.
 - Correggere il PDF Starflex ("esclusiva", "certificata", "Comagnie"): è un file di Oby e MPM, va rifatto da loro (vedi LEGGIMI).
 
+## Caratteri, scala e impaginazioni (giro del 2 novembre)
+
+Richiesta del committente: "usa più accoppiate di font e grandezze e layout mescolati". Cosa è cambiato, senza toccare i compiti dei visitatori.
+
+**L'accoppiata.**
+- **Big Shoulders Display** (Google Fonts, SIL Open Font License 1.1, testo in `sito-v2/fonts/OFL-big-shoulders.txt`; Patric King e Xotype, disegnato per la segnaletica civica di Chicago), variabile, usato in 700 e 800, servito dalla pagina (`sito-v2/fonts/big-shoulders-display-latin.woff2` e `-latin-ext`, 65 KB). È il carattere dei titoli: un grottesco stretto da cartello, quello che si legge su un furgone d'emergenza, su un cartello di cantiere o su una segnalazione stradale. Dice il loro claim, "noi entriamo in azione", con il tono di un'impresa che arriva sul posto, non di una galleria: diritto, alto, senza giochi. Stretto, permette al claim di stare in due righe a 116 px e ai nomi dei danni di stare grandi in una colonna stretta. Non è nelle liste della guida e nessun'altra home della campagna lo usa (Sofia Sans Condensed e Extra Condensed sono già di BCM Enologia e Daisyplast; Barlow Condensed è un tic di casa; Antonio, League Gothic, Mohave, Asap Condensed e Smooch Sans provati e scartati).
+- **Atkinson Hyperlegible Next** resta il carattere del testo (vedi sotto): bottoni, telefoni dei bottoni e della barra, tabelle, didascalie, menu, elenco dei lavori. I numeri da comporre con il dito restano nel carattere con lo zero barrato.
+- Due famiglie, nessun monospazio: i numeri tecnici (P.IVA, REA) usano le cifre tabellari di Atkinson. Ruoli fissi: Big Shoulders per h1, h2, i nomi dei danni, i numeri 1, 2, 3 dei passi, le frasi grandi ("Ti riconsegnamo il tuo bene nelle condizioni originarie.", "Meno costi oggi. Meno sinistri domani."), il cellulare grande della chiusura, i titoletti del piede e di "Attrezzature" e "Documenti dell'impresa"; Atkinson per tutto il resto. Mai due caratteri nello stesso paragrafo, nessun corsivo (`font-synthesis:none` sui titoli).
+
+**La scala (1440 / 1024 / 390).** Otto livelli, con salti forti voluti tra il grande e il piccolo:
+1. claim, Big Shoulders 800: 116 / 76 / 40 px (interlinea 0,9);
+2. numeri grandi (1, 2, 3 dei passi; il cellulare della chiusura), Big Shoulders 700: 88 / 68 / 56 px;
+3. titolo della sezione industria, Big Shoulders 700: 72 / 54 / 36 px;
+4. titoli di sezione e frasi sole, Big Shoulders 700: 60 / 46 / 36 px;
+5. nomi dei danni e nome Starflex, Big Shoulders 700: 48 / 34 / 28 px;
+6. testo d'apertura delle sezioni e dei passi, Atkinson: 21 / 19 / 18 px;
+7. testo, Atkinson 400: 17 px (16,5 a 390); voci dell'elenco 16,5 px 700; telefoni dei bottoni 26 px 700 (21 a 390), in un corpo loro;
+8. didascalie, descrizioni dell'elenco e dati legali, Atkinson: 13,5 / 14,5 px.
+H2 in tre misure (60, 72, 48 px). Le misure sono variabili CSS (`--s1` ... `--s8`) ridefinite a 1240, 1100 e 900 px.
+
+**Un impianto per sezione, mai due uguali di fila.**
+1. *Apertura*: il claim a tutta riga, enorme, sopra tre colonne 4/5/3 (telefoni e mail, la foto vera del tetto bruciato a misura sua, le tre porte). Stesso ordine di prima.
+2. *Danni*: un **indice a righe a tutta larghezza**: nome grande in Big Shoulders a sinistra, cosa facciamo al centro, la foto a destra; un solo filetto nero in testa. Prima erano quattro colonne uguali. A 390 resta l'elenco con la miniatura di 88 px.
+3. *Dopo la chiamata*, campo rosso: **due colonne sbilanciate a scacchiera** (5 e 6 colonne): in alto a sinistra il titolo, in basso a sinistra gli otto lavori di cantiere in una colonna; a destra i tre passi con il numero grande da 88 px, e in basso la frase sola "Ti riconsegnamo il tuo bene nelle condizioni originarie." a 60 px.
+4. *Industria*: **titolo a tutta riga** a 72 px, l'elenco da segnare su **tre colonne** a tutta larghezza (due a 1024, una a 390), il bottone della mail sotto; poi un **mosaico di misure diverse**: la fune quadrata grande (5 colonne), il cunicolo orizzontale più piccolo allineato in basso (4 colonne), "Attrezzature" e "Documenti dell'impresa" in alto a destra.
+5. *Assicurazioni*: **due colonne sbilanciate** (nome Starflex e la loro frase in rosso a 60 px a sinistra; testo, vantaggi, PDF e mail a destra), poi la loro foto del colmo rivestito in una **fascia a tutta larghezza** (1701 px, la misura piena dell'originale; a 390 resta il taglio 4:3).
+6. *Chi siamo e contatti*: **testo a sinistra e foto a destra fino al bordo** (il condominio), il cellulare a 88 px in Big Shoulders rosso sopra la tabella dei recapiti. Prima la foto era a sinistra: ora si alterna con la sezione Starflex.
+7. *Piede*: logo e riga su chi sono, quattro colonne di link con i titoletti in Big Shoulders, riga legale.
+
+**L'uso, misurato dopo il cambio** (`_prova/uso/script/prima_390.mjs`, `prova_rifinitura.mjs`, `prova_gesto_v2.mjs`, `misura_v2.mjs`):
+- 390x844, prima e dopo: claim 81-184 / 79-189; riga 196-316 / 197-316; "Chiama il cellulare" 334-396 / **330-392**; "Chiama gli uffici" 406-468 / **402-464**; "Manda le foto del danno" 478-530 / **474-526**; "Altro cellulare" 534-578 / **530-574**; scorciatoie 588-696 / **584-692**. Tutto 4 px più in alto, niente tolto né rimpicciolito. A 320: cellulare 349-411 / **336-398**.
+- 1440x900: i bottoni di chiamata (488-561 e 571-645), la mail delle foto (657-709) e le tre porte (358-623) restano nella prima schermata; la foto finisce a 877.
+- Salto "Compagnie assicurative": il PDF è a y 522-591 (prima 629-698). Salto "Aziende": "Prepara la mail di richiesta" a y 807-865 (prima 799-856), dentro la schermata. Il gesto funziona come prima, col dito e con la barra spaziatrice.
+- "pensiamo noi a tutto": a 390 a y 1720 (prima 1710); a 1440 a y 2244 (prima 1669), perché l'indice dei danni è più alto; a 1440 si arriva con il menu "Dopo la chiamata".
+- Nessuno scorrimento orizzontale a 320, 390, 768, 1024, 1440; nessuna sovrapposizione vista nelle schermate a pezzi; nessuna U+2014.
+- Pagina: 6910 px a 1440 (prima 5501), 8331 a 390 (prima 8205), dentro il limite di 7000.
+- `segnali.sh`: 17 soglie su 18, filetti 28 (alcuni filetti tolti: lavori di cantiere, vantaggi Starflex, righe dei danni), famiglie "OK" (Atkinson 91,5 %, Big Shoulders 8,5 %). Resta "da correggere" l'area coperta da foto (21,1 %, prima 23,7 %): la tipografia più grande allunga la pagina più di quanto la fascia Starflex aggiunga; il rimedio resta la giornata di fotografia del LEGGIMI, non le foto di repertorio. "Da guardare": i numeri 1, 2, 3 (sono i passi veri del cliente) e i titoli in 700-800 (un grottesco stretto da cartello regge il nero; il claim è uno solo).
+
+**Respinto in questo giro, con il motivo**
+- Un terzo carattere monospaziato per dati e didascalie: la guida lo sconsiglia (14 riferimenti su 15 non lo hanno) e Atkinson ha già le cifre tabellari e lo zero barrato.
+- Telefoni dei bottoni e della barra in Big Shoulders: restano in Atkinson, il carattere disegnato per distinguere ogni cifra. Solo il cellulare grande della chiusura, a 88 px, passa al carattere dei titoli.
+- Claim in maiuscolo: il loro claim è una frase, e il maiuscolo stretto diventerebbe un cartello di divieto.
+- La fascia Starflex prima del testo: il salto "Compagnie assicurative" deve arrivare sul titolo e sul PDF, quindi la foto viene dopo.
+
 ## L'idea
 
 Un'impresa d'azione che si chiama con un tocco. La pagina è prima di tutto un posto da cui telefonare, scritto con le loro frasi (il claim, "pensiamo noi a tutto", "Ti riconsegnamo il tuo bene nelle condizioni originarie", "Ripristiniamo a nuovo e tutto torna come prima"), con le loro foto vere a misura onesta e tre porte esplicite per i tre pubblici.
 
 Scelte che non ci sono nelle altre home della campagna:
 - **il claim a tutta riga sopra tre colonne** (telefoni, la foto vera a misura sua, le tre porte), su bianco pieno: la foto non è a filo del bordo e non è scontornata;
-- **la chiusura che fonde chi siamo e contatti** in una sola tabella, con il condominio a filo del bordo sinistro;
+- **la chiusura che fonde chi siamo e contatti** in una sola tabella, con il condominio a destra fino al bordo;
 - **un campo pieno nel rosso del logo** (#E41D25) per il loro pronto intervento, l'unico cambio di fondo forte della pagina;
 - **la richiesta che si compone segnando i lavori**, invece di un gesto dimostrativo.
 
@@ -67,7 +111,8 @@ Niente legende numerate sull'oggetto, niente didascalie "Fig.", niente righello:
 
 ## Caratteri e colori
 
-- **Atkinson Hyperlegible Next** (Google Fonts, SIL Open Font License 1.1, testo della licenza in `sito-v2/fonts/OFL.txt`), un solo carattere variabile da 200 a 800, servito dalla pagina (`sito-v2/fonts/`, latin e latin-ext, 53 KB). È disegnato dal Braille Institute per essere letto da chi vede poco o ha fretta: ogni cifra e ogni lettera si distingue (lo zero barrato, la l e la I), ed è quello che serve a chi legge un numero di telefono la sera di un incendio. Cifre proporzionali per i telefoni, tabellari solo per P.IVA e REA. Non è nelle liste della guida e non è usato in nessun'altra home della campagna. Titoli 700, testo 400, etichette 500 e 600.
+- **Big Shoulders Display** per i titoli (vedi "Caratteri, scala e impaginazioni"), SIL Open Font License 1.1, `sito-v2/fonts/OFL-big-shoulders.txt`.
+- **Atkinson Hyperlegible Next** per il testo (Google Fonts, SIL Open Font License 1.1, testo della licenza in `sito-v2/fonts/OFL.txt`), variabile da 200 a 800, servito dalla pagina (`sito-v2/fonts/`, latin e latin-ext, 53 KB). È disegnato dal Braille Institute per essere letto da chi vede poco o ha fretta: ogni cifra e ogni lettera si distingue (lo zero barrato, la l e la I), ed è quello che serve a chi legge un numero di telefono la sera di un incendio. Cifre proporzionali per i telefoni, tabellari solo per P.IVA e REA. Non è nelle liste della guida e non è usato in nessun'altra home della campagna. Testo 400, etichette 500 e 600, voci e bottoni 700.
 - **Colori**: fondo bianco #FFFFFF; inchiostro #231F20 (il nero del logo, 16,3:1); grigio #575D5B per i testi secondari (6,7:1); rosso #E41D25 del logo per i bottoni di chiamata, la barra del telefono e il campo del pronto intervento (bianco sul rosso 4,7:1); rosso #C4161C per il numero grande della chiusura e la frase Starflex (6,0:1). Contrasto AA su tutti i testi.
 
 ## Foto: origine e licenza
@@ -82,9 +127,9 @@ Tutte le foto della pagina vengono dal sito di Oby (`assets/originali/`, scarica
 | Grandine, maltempo e infiltrazioni | `9e96e5_b269c5a1…jpg` 1155x1062 | mansarda con le macchie d'acqua | sul sito oggi sta sotto "ambienti confinati": va confermato che è un danno da infiltrazione |
 | Amianto | `9e96e5_080feb51…jpg` 567x528 | tetto in fibrocemento | |
 | Industria | `9e96e5_ec8a1c18…jpg` 450x496 | operatore in tuta bianca nel cunicolo | tagliato sotto la schiena, senza il logo da confermare |
-| Starflex | `9e96e5_c7d17813…webp` 1701x1687 | fibrocemento rivestito accanto al fotovoltaico | forse foto di MPM: uso da confermare |
-| Industria | `9e96e5_4e684abe…jpg` 582x584 | due tecnici in fune su una pala eolica | provenienza incerta |
-| Chiusura | `9e96e5_2da1fe53…jpg` 733x774 | condominio di 11 piani ponteggiato | a filo del bordo sinistro, misura vera |
+| Starflex | `9e96e5_c7d17813…webp` 1701x1687 | fibrocemento rivestito accanto al fotovoltaico, con le colline | fascia a tutta larghezza a 1440 (taglio 1701x630, `starflex-banda-*`), 4:3 a 390; forse foto di MPM: uso da confermare |
+| Industria | `9e96e5_4e684abe…jpg` 582x584 | due tecnici in fune su una pala eolica | a 1440 a 533 px, sotto la misura vera; provenienza incerta |
+| Chiusura | `9e96e5_2da1fe53…jpg` 733x774 | condominio di 11 piani ponteggiato | a destra fino al bordo, sotto la misura vera |
 
 La foto Starflex con lo skyline di Milano non è usata. Le Pexels della home precedente non sono usate.
 
