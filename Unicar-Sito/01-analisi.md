@@ -92,6 +92,8 @@ Sito: http://www.unicarcarrelli.it (crawl e screenshot del 24/10/2026: home, 6 v
 | Fax | 049 8792357 | `contatti`: "Fax 049.8792357" |
 | Email | unicar@protec.it | `contatti` e piede |
 | PEC | non trovata | |
+| Orari (sede comune, da confermare per Unicar) | lunedì-venerdì 8:00-12:30 e 14:00-18:30, sabato e domenica chiuso | oraridiapertura24.it/filiale/Padova-Cami2-4222699O.html, scheda di Cami2, via Canada 16, "Aggiornato il: 09.09.2026" (letto il 2/11/2026); stesso centralino e stesso complesso di Unicar; nessuna fonte per Unicar da sola |
+| Tipi di carrello seguiti | elettrici e diesel; da magazzino (retrattili BT, "addetti alle attività di magazzino" nel corso) | cami2.it, titolo della pagina Assistenza: "Assistenza carrelli elevatori elettrici e diesel Padova e Venezia"; gas non citato |
 | Mappa | Google Maps, scheda "unicar padova" (cid 7853003542386361464) | `dove_siamo`, iframe |
 | Anno | non pubblico; circa 1982 per stima | `azienda`: "da ormai trenta anni" (testo del 2012) |
 | Sede comune | Cami2 e Unicar nella stessa sede operativa, ampliata a 3000 mq nel 2009 | cami2.it/azienda/storia/: "la sede operativa dove Cami2 e Unicar operano si ingrandisce fino a toccare i 3000 mq" |
@@ -198,7 +200,7 @@ Scartati, con le schermate in `riferimenti/scartati/`:
 - Se "entro 24 ore" vale ancora e su quale zona (Padova e provincia? anche Venezia?).
 - Se sono ancora "assistenza autorizzata" BT e Cesab, cioè Toyota Material Handling Italia.
 - Le certificazioni: quelle citate (ISO 9001, A.S.E.C., OHSAS) sono di Cami2; servono quelle di Unicar, se ci sono.
-- PEC, orari di apertura dell'officina, un eventuale numero per le emergenze.
+- PEC, un eventuale numero per le emergenze; gli orari dell'officina e del magazzino ricambi (oggi si usano quelli dell'elenco di Cami2, sez. 3, da confermare) e i festivi.
 - Se fanno ancora i corsi per carrellisti (la notizia è del 2012) e con quale ente.
 - I diritti delle foto della Gallery (BT e Cesab) e la provenienza dei banner con gli occhi.
 - Il logo vettoriale originale, e se la C rossa a doppio anello si può ridisegnare piatta.

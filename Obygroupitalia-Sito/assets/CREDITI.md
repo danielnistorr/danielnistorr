@@ -38,3 +38,14 @@ Il logo vettoriale `originali/logo-obygroup-dal-pdf.svg` è estratto, senza ridi
 - Chiusura: `esterne/pexels-7031621.jpg` (Max Vakhtbovych), la stanza rifatta, 5:4 e 4:5.
 - Logo: `originali/logo-obygroup-dal-pdf.svg`, copiato in `sito/img/logo-obygroup.svg`.
 - Non più usate nella home finale: `esterne/pexels-11279905.jpg` (il respiratore dell'apertura precedente) e `esterne/pexels-6195952.jpg` (la chiusura precedente), più 5499417, 7031603, 13548818, 29946966, 38867780.
+
+## Uso nella home v2 (`sito-v2/`, 2 novembre 2026)
+
+Solo immagini del sito di Oby, nessuna foto di repertorio e nessuna immagine generata dall'IA. Lavorate con `_prova/uso/script/img_v2.py`.
+
+- Apertura: `originali/9e96e5_2da1fe53087f44aab73a23c178336d35~mv2.jpg` (condominio ponteggiato), intera a 1440 e in striscia a 390.
+- Danni: `9e96e5_719b9e17…jpg` (incendio), `9e96e5_35be21fc…jpg` (allagamento), `9e96e5_b269c5a1…jpg` (grandine e maltempo), `9e96e5_080feb51…jpg` (amianto), in 4:3 e 16:9.
+- Industria: `9e96e5_ec8a1c18…jpg` (cunicolo), alla sua misura.
+- Starflex: `9e96e5_c7d1781343de48b1bd7d9a26cc5394f2~mv2.webp` (fibrocemento accanto al fotovoltaico), diritti da confermare (forse di MPM).
+- Chiusura: `9e96e5_4e684abe…jpg` (lavori in fune su pala eolica), provenienza da confermare.
+- Logo: `originali/logo-obygroup-dal-pdf.svg`. PDF: `originali/brochure-4d63.pdf`, copiato come `sito-v2/doc/copertura-sicura-starflex-2026.pdf`.

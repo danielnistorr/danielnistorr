@@ -50,3 +50,40 @@ C'è solo il PNG 241 x 100 del vecchio sito (`assets/originali/logo-unicar-241x1
 ## Newsletter
 
 Non c'è e non serve: lavorano solo per aziende, non comunicano novità, fiere o cataloghi e non hanno clienti privati. Il gesto utile per i clienti è il promemoria dei controlli, che scarica le date nel calendario.
+
+## Versione 2 (scheda d'uso)
+
+Una seconda home, costruita sulla scheda d'identità e d'uso (`_prova/uso/SCHEDA.md`) e non sulla home precedente, che resta com'è in `sito/`. Rifinita il 2/11/2026 dopo le prove di tre clienti tipo e del giudice d'identità (cosa è cambiato: `screenshot/home-v2/NOTA.md`).
+
+- Pagina: `sito-v2/index.html`, con `sito-v2/privacy.html`, `sito-v2/cookie.html`, `sito-v2/img/` e `sito-v2/fonts/` (Barlow, SIL Open Font License 1.1, `fonts/OFL.txt`); si apre direttamente nel browser.
+- Screenshot e nota di progetto: `screenshot/home-v2/` e `screenshot/home-v2/NOTA.md`.
+- Per rifare tutto: `sh _prova/uso/script/build_v2.sh` (immagini con `v2_img.py`, caratteri, controllo dei caratteri vietati, prove con `v2_prova.mjs`, screenshot con `v2_shoot.py`; `v2_menu.mjs` fotografa il menu aperto a 390).
+- In breve: sul telefono, nei primi 300 px, il bottone rosso a tutta larghezza "Chiamate l'officina 049 8792361 r.a.". Sotto: gli orari con "Aperto ora" o "Chiuso ora, riapre...", le 24 ore, la zona, le marche e i tipi di carrello, i carrelli sostitutivi, indirizzo ed email, e il bottone "Scrivete all'officina: carrello fermo" con la traccia già scritta. La testata resta in vista: sul telefono, appena il bottone rosso esce dallo schermo, compare "Chiama". A 1440 il numero è il titolo grande della pagina, accanto alla loro sede.
+
+### Da confermare per la versione 2 (in ordine di importanza)
+
+1. **"Messa in funzione entro 24 ore dalla chiamata"** (prima schermata, dal loro testo del 2012): se vale ancora oggi e su quale zona. Nel file c'è un commento accanto alla riga. Se non arriva conferma, sostituirla con "Furgoni attrezzati per l'intervento in azienda".
+2. **Gli orari**: in pagina ci sono "Dal lunedì al venerdì, 8-12.30 e 14-18.30, sabato e domenica chiuso". Vengono dalla scheda di Cami2 (stessa sede e stesso centralino) su oraridiapertura24.it, aggiornata il 9/9/2026, e non da una fonte di Unicar. Vanno confermati per l'officina e per il magazzino ricambi, insieme ai festivi e alla chiusura estiva. Se cambiano, si correggono in due posti: la variabile `ORARI` nello script in fondo a `index.html` (calcola "Aperto ora" sull'ora di Padova) e i testi fissi (apertura, magazzino ricambi, dove siamo, piede). Va chiesto anche se esiste un numero per le emergenze o una reperibilità del sabato.
+3. **Chi è il titolare oggi** (P.IVA non valida nel VIES): la riga legale non porta P.IVA, REA né capitale finché non si sa. Le pagine `privacy.html` e `cookie.html` dicono solo cose vere della pagina (nessun cookie, il modulo non invia nulla) e vanno riscritte per il GDPR con il titolare giusto.
+4. **Il ritiro dei ricambi**: se si ritirano al magazzino di via Canada 12 negli stessi orari, se li spediscono o li porta il tecnico con il furgone, e se c'è un interno o un indirizzo email dedicato ai ricambi.
+5. **Tipi di carrello**: in pagina "elettrici e diesel, frontali e da magazzino" (Cami2: "Assistenza carrelli elevatori elettrici e diesel"). Se seguono anche i carrelli a gas, i transpallet e i commissionatori, si aggiungono.
+6. **Zona**: in pagina "Interventi su Padova e provincia" e "Fuori provincia? Chiamateci.". Se coprono anche Venezia, va scritto.
+7. **Formazione carrellisti**: in pagina, nei controlli, come "corso teorico e pratico per i conduttori di carrelli elevatori" con "Chiedeteci le prossime date". È nel loro elenco di servizi ma la notizia è del 2012: confermare che lo fanno ancora e con quale ente; se no, togliere la riga, la voce del piede e "corso carrellisti" dall'email del preventivo.
+8. **Manutenzione programmata**: in pagina "i controlli e il tagliando si fanno alle scadenze concordate con voi". Confermare se il registro lo compilano e lo tengono loro e se il controllo trimestrale di funi e catene è compreso nel contratto; solo allora si può scrivere "ve lo ricordiamo noi".
+9. Se sono ancora assistenza autorizzata BT e Cesab (Toyota Material Handling) e per i caricabatterie; il testo sull'art. 71 da far rileggere.
+10. Le indicazioni per arrivare in via Canada (zona industriale, uscita da prendere): non trovate, non in pagina. Ci sono i link "Indicazioni stradali" e "Apri in Google Maps".
+
+### Pagine che il sito nuovo dovrà avere (link della versione 2)
+
+- Oggi i link puntano alle sezioni della home: `#assistenza`, `#ricambi`, `#controlli`, `#chi-siamo`, `#dove` (Orari e contatti). Nel sito vero diventano Assistenza e riparazione, Ricambi (con il modulo di richiesta), Manutenzione programmata e controlli, Batterie e caricabatterie, Formazione carrellisti, Chi siamo, Dove siamo (con la mappa e gli orari) e Normative (la nota sull'art. 71).
+- `privacy.html` e `cookie.html` esistono già in `sito-v2/` in forma breve, da riscrivere per il GDPR.
+- Vendita e noleggio: link esterno a https://www.cami2.it/.
+- Il modulo "Chiedete un ricambio" non invia nulla: prepara l'email (o la copia negli appunti per chi usa la posta web). Se nel sito vero si vuole un invio diretto con le foto allegate, va collegato a un servizio di posta del sito.
+
+### Foto da rifare dal vero per la versione 2
+
+1. **La sede per l'apertura**: la palazzina di via Canada con l'insegna Unicar e i furgoni allineati, panoramica orizzontale di almeno 4000 px di lato, oppure l'originale ad alta risoluzione della foto di oggi se Unicar o Cami2 ce l'hanno. Stesso taglio della striscia di oggi (circa 3,8:1) più un taglio 2:1 sull'ingresso per il telefono. Luce del mattino, cielo coperto chiaro. Oggi la striscia è 939 px e su schermi retina è morbida.
+2. **Un tecnico al lavoro**: un tecnico Unicar in tuta sul carrello di un cliente, con il furgone aperto alle spalle. Orizzontale, almeno 3000 px, luce naturale, senza marchi di altri concessionari. Va nella sezione Assistenza, dove oggi non c'è nessuna foto (la foto di repertorio dei retrattili è stata tolta).
+3. **Il magazzino ricambi**: gli scaffali o il banco, per la sezione Ricambi.
+4. **La squadra per la chiusura**: la stessa foto di gruppo davanti all'ingresso, rifatta ad alta risoluzione (almeno 4000 px), con i volti leggibili.
+5. Il furgone del service con la livrea che userà Unicar, e il logo in vettoriale.

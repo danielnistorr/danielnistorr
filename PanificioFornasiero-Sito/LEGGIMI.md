@@ -63,3 +63,26 @@ Una mattina di riprese in luce naturale di finestra, senza flash, sempre con la 
 - Caratteri: Sentient e General Sans, Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito), file serviti dalla pagina.
 - Foto: Unsplash T6vI65xwoNA (Karen Sewell, tagliatelle) e Unsplash ytxRXkY8QE4 (Victoria Nazaruk, panini nei sacchetti), Licenza Unsplash. Sono segnaposto da sostituire prima di qualsiasi uso pubblico. Pexels 4198047 e Unsplash W0PDHT_sYoQ, usate nella versione precedente, non sono più in pagina. Le altre foto in pagina sono del panificio, prese dal loro sito. Dettagli in `assets/CREDITI.md`.
 - Le foto della libreria di Wix presenti sul sito di oggi non sono usate (licenza valida solo dentro Wix).
+
+## Versione 2 (scheda d'uso)
+
+Una seconda home, costruita sulla scheda d'identità e d'uso `_prova/uso/SCHEDA.md` (2 novembre 2026): prima l'uso, poi l'identità, poi l'esecuzione. La home precedente in `sito/` resta com'è.
+
+- `sito-v2/index.html` (statica, si apre con file:///), `sito-v2/img/` (solo foto del panificio, WebP a più larghezze), `sito-v2/fonts/` (Erode, ITF Free Font License; Fira Sans, SIL Open Font License).
+- `screenshot/home-v2/`: screenshot a 1440, 390, 320, 768, 1024, chiusura, e `NOTA.md` (cosa trova ogni visitatore e dove, idea, caratteri e colori, foto, controlli, cose da confermare).
+- `_prova/uso/script/build_v2.sh` rifà tutto: immagini (`v2_img.py`), screenshot (`v2_shot.mjs`) e prove d'uso (`v2_prova.mjs`); `v2_misure.mjs` misura le sezioni, `v2_largo.mjs` trova gli elementi che escono dalla pagina.
+
+In breve: a 390 la prima schermata è la vetrina con l'insegna, "Panificio Fornasiero, a Camin dal 1963", lo stato di adesso calcolato sull'ora di Roma ("Aperti ora tutti e due i negozi, fino alle 13.45."), i due negozi con l'orario di oggi, "Chiama" e "Mappa" ciascuno, e in stagione la fascia "Panettone e focaccia di Natale, si prenotano adesso". A 1440 lo stesso a sinistra e le tartarughe nel sacchetto della bottega a destra, con la fascia delle Feste a tutta larghezza. Seguono le Feste (che fuori stagione scendono dopo il pane), il pane, chi siamo, le forniture per bar e ristoranti, la Bacheca di Romina, la chiusura con i due negozi e il piede. Per provare un'altra ora: `index.html?ora=2026-11-04T17:00`.
+
+Pagine che il sito nuovo dovrà avere (link del piede e delle sezioni): `storia.html` (la storia dal 1928 di Villatora al 1963 di Camin e alle feste del 2013 e 2023), `bacheca-di-romina.html` (esiste già sul sito di oggi), `fornitura.html` (pane per bar, alberghi, ristoranti e rivendite, consegne), `privacy-policy.html` e `cookie-policy.html` (da rifare). Il resto sono ancore della home: `#negozi`, `#feste`, `#pane`, `#forno`, `#storia`, `#forniture`, `#bacheca`.
+
+Gli avvisi di Romina (piede): il modulo NON invia nulla; va collegato a un servizio (Brevo, Mailchimp o simili) con doppio consenso e registro dei consensi, e l'informativa privacy va aggiornata. È tenuto piccolo: il canale vero è il telefono.
+
+Da confermare con il panificio (dettagli in `screenshot/home-v2/NOTA.md`): il sabato di via Vigonovese, le domeniche, le ferie e gli orari delle Feste; se via Alsazia 3 è aperta e chi risponde al 338 660 06 64; le date delle prenotazioni di Natale e Pasqua; il consenso a usare le loro foto, la foto con Galileo e Fidalma, i loro nomi e le citazioni dal Mattino di Padova; la ricetta di Galileo anche per Pasqua; "oltre 30 tipi di pane"; zona e giorni della fornitura e delle consegne; il marchio e un vettoriale; REA, PEC e capitale sociale; gli avvisi per email; Instagram e Facebook.
+
+Foto da rifare dal vero per questa versione (una mattina, luce di finestra, niente flash):
+- la vetrina e l'insegna da marciapiede, di mattina, con chi sta al banco sulla porta, larga e ad alta risoluzione (quella di oggi è 640x319 e a 390 e a 768 si vede morbida); anche la vetrina di via Alsazia 3, che oggi non ha nessuna foto;
+- le tartarughe e gli altri pani dai nomi di casa, uno per foto, nel loro sacchetto, senza pangrattato e sessola di plastica, con la sola luce di finestra;
+- i panini per bar e ristoranti nelle cassette o nei sacchi della consegna;
+- i dolci della Bacheca sul banco, con la stessa luce, al posto delle foto da telefono;
+- panettone, focaccia e colomba sul sacco del cinquantesimo con più aria intorno (quelle di oggi reggono).

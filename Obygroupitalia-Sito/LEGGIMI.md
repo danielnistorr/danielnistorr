@@ -92,3 +92,33 @@ Niente newsletter. Oby è un servizio d'emergenza su chiamata, chi lo cerca lo f
 
 - **H2 di due misure (60 e 56 px):** la pagina punta su un solo elemento grande, il titolo d'apertura da 108 px con la foto.
 - **Numerazione 01-09:** sono i nove passi in ordine del loro pronto intervento, dal sopralluogo allo smaltimento, quindi è una procedura vera.
+
+## Versione 2 (scheda d'uso)
+
+Seconda proposta di home, costruita sulla scheda di identità e d'uso (`_prova/uso/SCHEDA.md`) e non come ritocco della prima: prima si serve chi apre il sito (il danneggiato da telefono, l'ufficio sinistri e il tecnico d'azienda da computer), poi si fa sembrare loro, poi si cura l'esecuzione. La prima home (`sito/`) resta com'è.
+
+- Pagina: `sito-v2/index.html` (statica, si apre con file:///); immagini in `sito-v2/img/` (solo foto del loro sito, lavorate e in più larghezze), carattere in `sito-v2/fonts/`, PDF Starflex in `sito-v2/doc/`.
+- Schermate e nota di progetto: `screenshot/home-v2/` (`NOTA.md` dice cosa trova ogni visitatore e dove, l'idea, caratteri, colori, foto e controlli).
+- Si rifà tutto con `sh _prova/uso/script/build_v2.sh` (immagini con `img_v2.py`, screenshot e misure con `misura_v2.mjs`; prova del gesto con `prova_gesto_v2.mjs`).
+
+**Cosa cambia rispetto alla prima.** Prima schermata pensata per il telefono: tasto Chiama fisso, il loro claim "Quando il danno diventa serio, noi entriamo in azione" rimesso al suo posto, due bottoni grandi per cellulare e uffici, il link per mandare le foto per mail, quattro scorciatoie. A 1440 la loro foto del condominio ponteggiato a tutta altezza e tre accessi: Ho avuto un danno, Compagnie assicurative e Starflex, Aziende e bonifiche industriali. Poi i quattro danni con le loro righe, i nove passaggi tutti in vista su un campo nel rosso del logo, l'elenco industriale completo (14 voci più le righe della pagina Pronto intervento) con la richiesta che si compone segnando i lavori, Starflex per le compagnie con il PDF, chi siamo con i dati societari, chiusura con foto e recapiti, piede. Nessuna foto di repertorio: tutte le immagini sono del loro sito.
+
+**Carattere.** Atkinson Hyperlegible Next, Google Fonts, SIL Open Font License 1.1 (`sito-v2/fonts/OFL.txt`).
+
+**Da confermare in più per la versione 2** (l'elenco completo è nella `NOTA.md`):
+1. Reperibilità fuori orario e orari degli uffici; se si può usare WhatsApp sul cellulare per le foto.
+2. Le regioni servite (in pagina l'elenco della brochure 2022: Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia).
+3. Se "pratiche burocratiche comprese" vale anche per il rapporto con l'assicurazione e il perito.
+4. Quali foto sono di loro cantieri: il condominio dell'apertura, il cunicolo (il logo sulla tuta è vero?), la mansarda usata per "grandine e maltempo", la pala eolica della chiusura; la foto Starflex del fibrocemento è di Oby o di MPM?
+5. Se robot ATEX ed escavatori a risucchio sono mezzi loro; le abilitazioni da pubblicare.
+
+**Foto da rifare dal vero, per la versione 2.** Le foto vere ci sono ma sono piccole (da 450 a 1155 px) e da telefono: oggi coprono il 23,7 % della pagina a 1440, contro il 35 % dei siti di riferimento.
+1. Apertura: lo stesso condominio, o un altro cantiere con il loro telo, in verticale 3:4 a 3000 px o più, luce del mattino, cielo pulito, tutto il ponteggio in quadro; più un taglio orizzontale 21:9 per la striscia del telefono.
+2. I quattro danni: un ambiente vero per ciascuno (incendio, allagamento, tetto dopo la grandine, amianto) il giorno del sopralluogo, orizzontali 4:3 a 2000 px, luce naturale, nessun volto né oggetto personale del cliente riconoscibile.
+3. Industria: la squadra con i suoi DPI dentro un serbatoio o un ambiente confinato, il robot ATEX, l'escavatore a risucchio al lavoro, 4:5 a 2000 px.
+4. Chiusura: un intervento in fune loro, verticale o quadrato a 2500 px.
+5. Starflex: una copertura finita da Oby vista dal drone, 21:9 a 3000 px.
+
+**Pagine del sito nuovo.** Valgono quelle della tabella qui sopra. Nella versione 2 i link del piede puntano alle sezioni della home (`#incendio`, `#allagamento`, `#maltempo`, `#amianto`, `#dopo`, `#bonifiche-industriali`, `#ambienti-confinati`, `#escavatori-a-risucchio`, `#lavori-in-fune`, `#sabbiature`, `#opere-edili`, `#assicurazioni`, `#azienda`); nel sito vero andranno a `/interventi/...`, `/pronto-intervento/` e `/copertura-sicura-starflex/`. Privacy e Cookie puntano a `/privacy-policy/` e `/cookie-policy/`.
+
+**Newsletter.** Anche qui niente newsletter, per lo stesso motivo: servizio d'emergenza su chiamata, nessuna novità periodica da comunicare.

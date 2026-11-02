@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Oby Group Italia: bonifiche e ripristino danni</title>
 <meta name="description" content="Bonifiche e ripristino dopo incendi, allagamenti, grandine e amianto, in case, condomini e aziende. Bonifiche industriali e Copertura Sicura Starflex per le compagnie assicurative. Da Longare (VI).">
 <link rel="icon" href="img/logo-obygroup.svg" type="image/svg+xml">
@@ -11,11 +11,10 @@
 @font-face{font-family:"Atkinson Next";src:url(fonts/atkinson-next-latin.woff2) format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Atkinson Next";src:url(fonts/atkinson-next-latin-ext.woff2) format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
 :root{
-  --fondo:#F2F4F3;      /* bianco freddo delle tute monouso e della membrana Starflex */
-  --bianco:#FFFFFF;
+  --fondo:#FFFFFF;      /* bianco pieno: l'unico cambio di fondo e' il rosso del pronto intervento */
   --ink:#231F20;        /* il nero del logo */
   --grigio:#575D5B;
-  --filetto:#CBD1CE;
+  --filetto:#D5D9D7;
   --rosso:#E41D25;      /* il rosso dell'anello del logo */
   --rosso-t:#C4161C;    /* lo stesso rosso, per testo e passaggio su fondo chiaro */
   --m:64px;
@@ -23,18 +22,21 @@
   --testata:72px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--testata)}
 body{margin:0;background:var(--fondo);color:var(--ink);font:400 17px/1.5 "Atkinson Next",system-ui,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-.num{font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.num{font-variant-numeric:proportional-nums lining-nums;white-space:nowrap}
+.tab{font-variant-numeric:tabular-nums lining-nums}
 h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
 figure{margin:0}
+figcaption{font-size:13.5px;color:var(--grigio);margin-top:10px;line-height:1.4}
 .salta{position:absolute;left:-9999px;top:0}
-.salta:focus{left:16px;top:12px;z-index:30;background:var(--bianco);padding:10px 14px}
+.salta:focus{left:16px;top:12px;z-index:30;background:#fff;padding:10px 14px}
 .g{max-width:1440px;margin:0 auto;padding:0 var(--m);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+.solo-tel{display:none}
 
 /* testata */
 .testata{position:sticky;top:0;z-index:20;background:var(--fondo);border-bottom:1px solid var(--filetto)}
@@ -43,153 +45,157 @@ figure{margin:0}
 .menu{display:flex;gap:26px;margin-left:28px;font-size:16px;font-weight:500}
 .menu a{text-decoration:none;padding:8px 0}
 .menu a:hover{text-decoration:underline}
-.t-uff{margin-left:auto;text-decoration:none;font-size:16px;font-weight:700;line-height:1.15;text-align:right}
-.t-uff small{display:block;font-size:13px;font-weight:500;color:var(--grigio)}
-.t-uff:hover{text-decoration:underline}
-.t-chiama{display:inline-flex;align-items:center;gap:.35em;min-height:48px;padding:0 18px;background:var(--rosso);color:#fff;text-decoration:none;font-weight:700;font-size:16px}
+.t-chiama{margin-left:auto;display:inline-flex;align-items:center;gap:.4em;min-height:48px;padding:0 20px;background:var(--rosso);color:#fff;text-decoration:none;font-weight:700;font-size:16px}
 .t-chiama:hover{background:var(--rosso-t)}
-.t-menu{display:none;font:inherit;font-weight:700;font-size:16px;background:none;border:1.5px solid var(--ink);color:var(--ink);min-height:44px;padding:0 14px;cursor:pointer}
+.t-menu{display:none;font:inherit;font-weight:700;font-size:16px;background:none;border:1.5px solid var(--ink);color:var(--ink);min-height:48px;padding:0 16px;cursor:pointer}
 
 /* bottoni */
 .b{display:flex;flex-direction:column;justify-content:center;min-height:72px;padding:10px 22px;text-decoration:none;border:2px solid var(--rosso);line-height:1.2}
 .b .et{font-size:15px;font-weight:600}
-.b .n{font-size:25px;font-weight:800;letter-spacing:.005em}
+.b .n{font-size:26px;font-weight:700;letter-spacing:.01em}
 .b-rosso{background:var(--rosso);color:#fff}
 .b-rosso:hover{background:var(--rosso-t);border-color:var(--rosso-t)}
 .b-bordo{border-color:var(--ink);color:var(--ink)}
 .b-bordo:hover{background:var(--ink);color:#fff}
+.b-mail{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 20px;border:1.5px solid var(--filetto);text-decoration:none;font-weight:700;font-size:16.5px}
+.b-mail svg{flex:none}
+.b-mail:hover{border-color:var(--ink)}
 .b-ink{display:inline-block;min-height:56px;padding:16px 24px;line-height:1.5;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;border:0}
 .b-ink:hover{background:#000}
 
-/* apertura */
+/* apertura: titolo a tutta riga, poi tre colonne (telefoni, la foto vera a misura sua, le tre porte) */
+.apertura{padding:52px 0 64px}
 .apertura .g{align-items:start}
-.ap-testo{grid-column:1/8;padding:56px 24px 40px 0}
-h1{font-weight:800;font-size:68px;line-height:1.0;letter-spacing:-.028em;max-width:10.6em}
-.riga{font-size:20px;line-height:1.45;max-width:30em;margin-top:26px}
-.chiama{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
-.chiama .b{min-width:300px}
-.ap-altri{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:18px;font-size:16px}
-.ap-altri a{font-weight:600}
+h1{grid-column:1/-1;font-weight:700;font-size:60px;line-height:1.02;letter-spacing:-.02em;max-width:17.5em}
+.ap-testo{grid-column:1/5;margin-top:40px}
+.riga{font-size:18px;line-height:1.45}
+.chiama{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.ap-testo .b-mail{margin-top:12px}
+.ap-foto{grid-column:5/10;margin-top:40px}
+.ap-foto img{width:100%;max-width:567px}
+.porte{grid-column:10/13;list-style:none;margin:40px 0 0;padding:0}
+.porte li+li a{border-top:1px solid var(--filetto)}
+.porte a{display:block;padding:16px 0 18px;text-decoration:none;font-size:19px;font-weight:700;line-height:1.25}
+.porte li:first-child a{padding-top:0}
+.porte a span{display:block;font-size:15px;font-weight:500;color:var(--grigio);margin-top:4px}
+.porte a:hover{color:var(--rosso-t);text-decoration:underline;text-decoration-thickness:2px}
 .scorciatoie{display:none}
-.ap-lato{grid-column:8/13;grid-row:1;margin-right:calc(-1 * var(--m));align-self:stretch}
-.ap-foto,.ap-foto picture{height:100%}
-.ap-foto img{width:100%;height:100%;min-height:600px;max-height:calc(100vh - var(--testata));object-fit:cover;object-position:62% 30%}
-.ap-foto figcaption{display:none}
-.porte{list-style:none;margin:36px 0 0;padding:0;max-width:640px}
-.porte a{display:block;padding:13px 0 14px;border-top:1px solid var(--filetto);text-decoration:none}
-.porte strong{display:block;font-size:20px;font-weight:700;line-height:1.2}
-.porte span{display:block;font-size:15px;color:var(--grigio);margin-top:2px}
-.porte a:hover strong{color:var(--rosso-t);text-decoration:underline;text-decoration-thickness:2px}
 
 /* sezioni */
-.sez{padding:104px 0}
-h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
+.sez{padding:80px 0}
+h2{font-size:44px;line-height:1.06;font-weight:700;letter-spacing:-.02em}
 .testa h2{grid-column:1/9}
 .testa .lead{grid-column:9/13;align-self:end;font-size:18px;color:var(--grigio)}
 
 /* danni */
-.danni-griglia{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:56px var(--gap);margin-top:64px}
-.danno img{width:100%;aspect-ratio:3/2;object-fit:cover;background:#dfe3e1}
-.danno h3{font-size:28px;font-weight:800;letter-spacing:-.015em;margin:20px 0 8px}
-.danno p{font-size:16.5px}
-.danno p{max-width:33em}
+.danni{border-top:1px solid var(--filetto)}
+.danni-griglia{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px var(--gap);margin-top:56px}
+.danno,#contatti{scroll-margin-top:16px}
+.danno img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#e4e7e6}
+.danno h3{font-size:26px;font-weight:700;letter-spacing:-.012em;margin:18px 0 8px;line-height:1.12}
+.danno p{font-size:16.5px;max-width:33em}
 .danno .cosa{font-size:15.5px;color:var(--grigio);margin-top:10px}
 .danno .cosa a{color:var(--ink);font-weight:600}
-.richiama{grid-column:1/-1;margin-top:80px;padding-top:28px;border-top:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.richiama p{font-size:28px;font-weight:700;letter-spacing:-.01em}
-.richiama .chiama{margin-top:0}
-.richiama .b{min-height:64px;min-width:0}
 
 /* dopo la chiamata: il campo rosso */
 .campo{background:var(--rosso);color:#fff}
-.campo h2{grid-column:1/10;font-size:52px;font-weight:800;letter-spacing:-.025em}
-.campo .lead{grid-column:1/8;font-size:19px;margin-top:22px}
-.passi{grid-column:1/-1;list-style:none;margin:60px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:var(--gap)}
-.passi li{display:grid;grid-template-columns:44px 1fr;padding:18px 0 20px;border-top:1px solid rgba(255,255,255,.6);font-size:18px;line-height:1.35;font-weight:500}
-.passi .n{font-weight:800}
-.campo .fine{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-top:48px;padding-top:26px;border-top:2px solid #fff}
-.campo .fine p{font-size:24px;font-weight:700;letter-spacing:-.01em}
-.campo .fine a{font-weight:700;font-size:17px}
+.campo h2{grid-column:1/10;font-size:50px;letter-spacing:-.022em}
+.percorso{grid-column:1/-1;list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap)}
+.percorso li{padding-top:18px;border-top:2px solid #fff;font-size:21px;line-height:1.35;font-weight:600;padding-right:12px}
+.percorso .n{display:block;font-size:15px;font-weight:700;margin-bottom:8px}
+.percorso a{font-weight:700}
+.campo h3{grid-column:1/-1;font-size:17px;font-weight:700;margin-top:60px}
+.passi{grid-column:1/-1;list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:var(--gap)}
+.passi li{padding:12px 0 13px;border-top:1px solid rgba(255,255,255,.55);font-size:16.5px;line-height:1.35}
+.campo .fine{grid-column:1/-1;margin-top:40px;font-size:24px;font-weight:700;letter-spacing:-.01em}
 .campo a:focus-visible{outline-color:#fff}
 
 /* industria */
-.ind-foto{grid-column:1/5;margin-top:64px}
-.ind-foto img{width:100%;max-width:450px}
-.ind-foto figcaption{font-size:13.5px;color:var(--grigio);margin-top:10px;max-width:450px}
-.ind-mezzi{margin-top:28px;font-size:16px;max-width:450px}
-.ind-mezzi strong{display:block;font-size:15px;color:var(--grigio);font-weight:600;margin-bottom:4px}
-.ind-lista{grid-column:6/13;margin-top:64px}
-.istr{font-size:16px;color:var(--grigio);max-width:38em}
-.lavori{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap)}
-.lavori label{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:14px 0 15px;border-top:1px solid var(--filetto);cursor:pointer}
-.lavori input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:2px 0 0;border:2px solid var(--ink);background:var(--bianco);display:grid;place-content:center;cursor:pointer}
+.industria{padding-top:36px}
+.ind-lato{grid-column:1/5;grid-row:1}
+.ind-lato figure+figure{margin-top:24px}
+.ind-lato img{width:100%}
+.ind-mezzi{margin-top:24px;font-size:15.5px}
+.ind-mezzi strong{display:block;font-size:15px;font-weight:700;margin-bottom:2px}
+.ind-mezzi+.ind-mezzi{margin-top:16px}
+.ind-mezzi a{font-weight:600}
+.ind-lista{grid-column:6/13;grid-row:1}
+.ind-lista .lead{font-size:17px;color:var(--grigio);margin-top:12px}
+.istr{font-size:16px;margin-top:14px;max-width:40em}
+.istr a{font-weight:600}
+.lavori{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap)}
+.lavori label{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:9px 0 10px;cursor:pointer}
+.lavori input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:2px 0 0;border:2px solid var(--ink);background:#fff;display:grid;place-content:center;cursor:pointer}
 .lavori input:checked{background:var(--rosso);border-color:var(--rosso)}
 .lavori input:checked::after{content:"";width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:translate(0,-1px) rotate(-45deg)}
-.lavori strong{display:block;font-size:17px;font-weight:700;line-height:1.3}
-.lavori .d{display:block;font-size:14.5px;line-height:1.4;color:var(--grigio);margin-top:3px}
+.lavori strong{display:block;font-size:16.5px;font-weight:700;line-height:1.3}
+.lavori .d{display:block;font-size:14.5px;line-height:1.4;color:var(--grigio);margin-top:2px}
 .lavori label:hover strong{text-decoration:underline}
-.invia{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:28px;padding-top:24px;border-top:2px solid var(--ink)}
+.lavori .sotto{grid-column:1/-1;font-size:14.5px;font-weight:700;color:var(--grigio);padding:12px 0 0;border-top:1px solid var(--filetto);margin-top:6px}
+.invia{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:16px;padding-top:18px;border-top:2px solid var(--ink)}
 .invia .scelti{font-size:15px;color:var(--grigio);flex:1 1 220px}
 .invia .tel{font-weight:700}
+.riserva{font-size:14.5px;color:var(--grigio);margin-top:10px}
+.riserva span{color:var(--ink);user-select:all}
 
 /* assicurazioni */
-.assicurazioni{padding-top:0}
-.sf-foto img{width:100%;aspect-ratio:1440/520;object-fit:cover}
-.sf-foto figcaption{grid-column:1/-1;font-size:13.5px;color:var(--grigio);padding-top:10px}
-.sf-testo{grid-column:1/7;margin-top:72px}
-.sf-testo .lead{font-size:18px;margin-top:24px;max-width:31em}
-.sf-testo .per{font-size:18px;margin-top:16px;max-width:31em;font-weight:700}
-.sf-voci{grid-column:8/13;margin-top:72px}
-.sf-voci ul{list-style:none;margin:0;padding:0}
-.sf-voci li{padding:14px 0 15px;border-top:1px solid var(--filetto);font-size:16.5px;line-height:1.4}
-.sf-voci li strong{display:block;font-size:17.5px}
-.sf-voci .nota{font-size:13.5px;color:var(--grigio);margin-top:12px}
-.sf-azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:28px}
-.sf-azioni a.link{font-weight:600}
+.assicurazioni{border-top:1px solid var(--filetto);padding:72px 0}
+.sf-testo{grid-column:1/8}
+.sf-sub{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-top:10px;color:var(--rosso-t)}
+.sf-testo .lead{font-size:17.5px;margin-top:18px;max-width:36em}
+.sf-testo .per{font-size:17.5px;margin-top:10px;max-width:36em;font-weight:700}
+.sf-voci{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap)}
+.sf-voci li{padding:12px 0 14px;border-top:1px solid var(--filetto);font-size:15.5px;line-height:1.4}
+.sf-voci li strong{display:block;font-size:16.5px}
+.sf-azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:22px}
+.sf-azioni a.link{font-weight:600;line-height:1.35}
+.sf-azioni a.link small{display:block;font-weight:500;font-size:14px;color:var(--grigio)}
+.b-ink.doc{padding:12px 22px 13px;line-height:1.35}
+.b-ink.doc small{display:block;font-size:14px;font-weight:500;margin-top:2px}
+.sf-nota{font-size:15.5px;margin-top:18px}
+.sf-nota a{font-weight:700}
+.sf-foto{grid-column:8/13}
+.sf-foto img{width:100%;aspect-ratio:1064/719;object-fit:cover;max-height:360px}
 
-/* azienda */
-.azienda{padding-top:40px}
-.az-testo{grid-column:1/6}
-.az-testo p{font-size:18px;margin-top:22px;max-width:28em}
-.dati{grid-column:7/13;margin:6px 0 0;display:grid;grid-template-columns:168px 1fr}
-.dati dt,.dati dd{padding:13px 0 14px;border-top:1px solid var(--filetto);margin:0}
-.dati dt{font-size:15px;color:var(--grigio);font-weight:600}
-.dati dd{font-size:16.5px}
-
-/* chiusura */
-.chiusura{padding:104px 0}
-.chiusura .g{align-items:center}
+/* chi siamo e contatti, in un blocco solo */
+.chiusura{border-top:1px solid var(--filetto);padding:80px 0}
+.chiusura .g{align-items:start}
 .ch-foto{grid-column:1/6;margin-left:calc(-1 * var(--m))}
-.ch-foto img{width:100%;max-width:600px;aspect-ratio:1/1;object-fit:cover}
-.ch-foto figcaption{font-size:13.5px;color:var(--grigio);padding:10px 0 0 var(--m)}
+.ch-foto img{width:100%;max-width:640px}
+.ch-foto figcaption{padding-left:var(--m)}
 .ch-testo{grid-column:7/13}
-.ch-testo h2{font-size:52px;font-weight:800;letter-spacing:-.025em}
-.recapiti{margin-top:40px}
-.ch-cell{display:block;text-decoration:none;margin-bottom:20px}
+.ch-testo h2{font-size:46px}
+.ch-testo .chi{font-size:17.5px;margin-top:18px;max-width:32em}
+.recapiti{margin-top:32px}
+.ch-cell{display:inline-block;text-decoration:none;margin-bottom:14px}
 .ch-cell small{display:block;font-size:15px;font-weight:600;color:var(--grigio)}
-.ch-cell .num{font-size:44px;font-weight:800;color:var(--rosso-t);letter-spacing:-.01em;line-height:1.1}
+.ch-cell .num{font-size:44px;font-weight:700;color:var(--rosso-t);letter-spacing:-.005em;line-height:1.1}
 .ch-cell:hover .num{text-decoration:underline;text-decoration-thickness:2px}
 .recapiti dl{margin:0;display:grid;grid-template-columns:150px 1fr}
-.recapiti dt,.recapiti dd{margin:0;padding:11px 0 12px;border-top:1px solid var(--filetto)}
+.recapiti dt,.recapiti dd{margin:0;padding:8px 0 9px;border-top:1px solid var(--filetto)}
 .recapiti dt{font-size:15px;color:var(--grigio);font-weight:600}
-.recapiti dd{font-size:17px}
+.recapiti dd{font-size:16.5px}
 .recapiti dd a{font-weight:600}
+.recapiti .sep{border-top:2px solid var(--ink)}
 
 /* piede */
-.piede{background:var(--bianco);border-top:1px solid var(--filetto);padding:72px 0 28px}
+.piede{border-top:1px solid var(--filetto);padding:64px 0 28px}
 .p-marca{grid-column:1/4}
 .p-marca img{width:131px;height:56px}
 .p-marca p{font-size:15px;color:var(--grigio);margin-top:18px;max-width:20em}
 .p-col{grid-column:span 2}
 .p-col:first-of-type{grid-column:5/7}
-.p-col h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.p-col h3{font-size:15px;font-weight:700;margin-bottom:10px}
 .p-col ul{list-style:none;margin:0;padding:0}
 .p-col li{font-size:15px;line-height:1.4;padding:4px 0;overflow-wrap:anywhere}
 .p-col a{text-decoration:none}
 .p-col a:hover{text-decoration:underline}
 .p-col .sub{margin-top:20px}
-.p-legale{grid-column:1/-1;margin-top:56px;padding-top:20px;border-top:1px solid var(--filetto);display:flex;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;font-size:13.5px;color:var(--grigio)}
+.p-legale{grid-column:1/-1;margin-top:52px;padding-top:20px;border-top:1px solid var(--filetto);display:flex;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;font-size:13.5px;color:var(--grigio)}
 .p-legale nav{display:flex;gap:24px}
+
+/* barra di chiamata fissa, solo telefono */
+.barra{display:none}
 
 /* larghezze intermedie */
 @media (max-width:1240px){
@@ -197,15 +203,24 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
   .menu{display:none}
   .menu.aperta{display:flex;position:absolute;left:0;right:0;top:var(--testata);flex-direction:column;gap:0;margin:0;padding:8px var(--m) 20px;background:var(--fondo);border-bottom:1px solid var(--filetto)}
   .menu.aperta a{padding:13px 0;border-top:1px solid var(--filetto);font-size:18px}
+  .t-in{gap:12px}
   .t-menu{display:inline-flex;align-items:center}
-  h1{font-size:58px}
+  h1{font-size:54px}
 }
 @media (max-width:1100px){
-  h2{font-size:40px}
-  .campo h2,.ch-testo h2{font-size:44px}
-  .ind-foto{grid-column:1/6}.ind-lista{grid-column:6/13}
+  h2{font-size:38px}
+  .campo h2{font-size:42px}
+  .ap-testo{grid-column:1/7}
+  .ap-foto{grid-column:7/13}
+  .porte{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);margin-top:36px}
+  .porte a,.porte li:first-child a{padding:14px 0 0;border-top:1px solid var(--filetto)}
+  .ind-lato{grid-column:1/6}.ind-lista{grid-column:6/13}
   .lavori{grid-template-columns:1fr}
   .danni-griglia{grid-template-columns:1fr 1fr}
+  .sf-testo{grid-column:1/-1}
+  .sf-foto{grid-column:1/-1;margin-top:32px}
+  .sf-foto img{max-height:none;aspect-ratio:16/7}
+  .ch-testo h2{font-size:38px}
   .p-marca{grid-column:1/-1;margin-bottom:40px}
   .p-col,.p-col:first-of-type{grid-column:span 3}
 }
@@ -213,85 +228,99 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
 /* telefono e tablet */
 @media (max-width:900px){
   :root{--m:24px;--gap:16px;--testata:60px}
-  body{font-size:16.5px}
+  body{font-size:16.5px;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  body.senza-barra{padding-bottom:0}
+  .solo-tel{display:block}
   .logo img{width:84px;height:36px}
-  .t-in{gap:10px}
-  .t-uff{display:none}
+  .t-chiama{display:none}
   .t-menu{margin-left:auto}
-  .t-chiama{min-height:44px;padding:0 16px}
-  .t-chiama .t-num{display:none}
-  .ap-testo{grid-column:1/-1;padding:22px 0 0}
-  h1{font-size:clamp(31px,8.6vw,46px);line-height:1.04;letter-spacing:-.025em;max-width:13em}
-  .riga{font-size:16.5px;margin-top:14px}
-  .chiama{flex-direction:column;gap:10px;margin-top:20px}
-  .chiama .b{min-width:0;min-height:62px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:8px 18px}
+  .apertura{padding:20px 0 0}
+  h1{font-size:clamp(30px,8.4vw,44px);line-height:1.05;letter-spacing:-.02em;max-width:13em}
+  .ap-testo{grid-column:1/-1;margin-top:12px}
+  .riga{font-size:16.5px}
+  .chiama{margin-top:18px}
+  .chiama .b{min-height:62px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:8px 18px}
   .b .et{font-size:15.5px}
-  .b .n{font-size:20px}
-  .ap-altri{margin-top:12px;font-size:15.5px;gap:6px 20px}
-  .scorciatoie{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
-  .scorciatoie a{display:flex;align-items:center;min-height:50px;padding:0 14px;background:var(--bianco);border:1px solid var(--filetto);text-decoration:none;font-weight:700;font-size:16px}
+  .b .n{font-size:21px}
+  .ap-testo .b-mail{margin-top:10px;justify-content:center}
+  .ap-altro{display:flex;align-items:center;min-height:44px;margin-top:4px;font-size:15.5px}
+  .ap-altro a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;font-weight:700}
+  .scorciatoie{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .scorciatoie a{display:flex;align-items:center;min-height:50px;padding:0 14px;border:1px solid var(--filetto);text-decoration:none;font-weight:700;font-size:16px}
   .scorciatoie a:hover{border-color:var(--ink)}
-  .ap-lato{grid-column:1/-1;grid-row:auto;margin:20px calc(-1 * var(--m)) 0}
-  .ap-foto,.ap-foto picture{height:auto}
-  .ap-foto img{height:auto;min-height:0;max-height:none;aspect-ratio:733/338;object-position:50% 50%}
-  .ap-foto figcaption{display:block;font-size:13.5px;color:var(--grigio);padding:8px var(--m) 0}
+  .ap-foto{grid-column:1/-1;margin:24px calc(-1 * var(--m)) 0}
+  .ap-foto img{max-width:none;aspect-ratio:567/200;object-fit:cover;object-position:50% 40%}
+  .ap-foto figcaption{display:none}
   .porte{display:none}
-  .sez{padding:72px 0}
-  h2{font-size:30px;line-height:1.1}
+  .sez{padding:52px 0}
+  .danni{border-top:0}
+  h2{font-size:29px;line-height:1.1}
   .testa h2,.testa .lead{grid-column:1/-1}
-  .testa .lead{margin-top:14px;font-size:16.5px}
-  .danni-griglia{gap:44px var(--gap);margin-top:40px}
-  .danno h3{font-size:25px;margin-top:16px}
-  .richiama{margin-top:52px}
-  .richiama p{font-size:22px}
-  .richiama .chiama{width:100%}
-  .campo h2{grid-column:1/-1;font-size:32px;line-height:1.08}
-  .campo .lead{grid-column:1/-1;font-size:16.5px}
-  .passi{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;margin-top:36px}
-  .passi li{font-size:16.5px;padding:14px 0 15px;grid-template-columns:36px 1fr}
-  .campo .fine p{font-size:20px}
-  .ind-foto,.ind-lista{grid-column:1/-1;margin-top:36px}
-  .ind-foto img{max-width:none}
-  .assicurazioni{padding-top:0}
-  .sf-foto img{aspect-ratio:4/3}
-  .sf-foto figcaption{padding:8px 0 0}
-  .sf-testo,.sf-voci{grid-column:1/-1;margin-top:36px}
-  .sf-testo .lead,.sf-testo .per{font-size:16.5px}
-  .azienda{padding-top:16px}
-  .az-testo,.dati{grid-column:1/-1}
-  .az-testo p{font-size:16.5px}
-  .dati{margin-top:32px;grid-template-columns:118px 1fr}
-  .dati dd{font-size:15.5px}
-  .chiusura{padding:72px 0}
+  .testa .lead{display:none}
+  .danni-griglia{grid-template-columns:1fr;gap:0;margin-top:20px}
+  .danno{display:grid;grid-template-columns:88px 1fr;column-gap:16px;padding:12px 0;border-top:1px solid var(--filetto)}
+  .danno picture{grid-row:1/3}
+  .danno img{width:88px;height:88px;aspect-ratio:1/1}
+  .danno h3{font-size:21px;margin:0 0 4px}
+  .danno p{font-size:15.5px;line-height:1.4}
+  .danno .cosa{display:none}
+  .campo h2{grid-column:1/-1;font-size:30px;line-height:1.1}
+  .percorso{grid-template-columns:1fr;margin-top:24px;row-gap:12px}
+  .percorso li{font-size:18px;padding-top:14px}
+  .campo h3{margin-top:36px}
+  .passi{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}
+  .passi li{font-size:15.5px;padding:8px 0 9px}
+  .campo .fine{font-size:19px;margin-top:28px}
+  .industria{padding-top:44px}
+  .ind-lato,.ind-lista{grid-column:1/-1}
+  .ind-lista{grid-row:1}
+  .ind-lato{grid-row:2}
+  .ind-lato{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap);align-items:start}
+  .ind-lato figure+figure{margin-top:0}
+  .ind-mezzi{grid-column:1/-1}
+  .assicurazioni{padding:56px 0}
+  .sf-sub{font-size:21px}
+  .sf-testo .lead,.sf-testo .per{font-size:16px}
+  .sf-voci{grid-template-columns:1fr}
+  .sf-foto{margin:28px calc(-1 * var(--m)) 0}
+  .sf-foto img{aspect-ratio:16/9}
+  .sf-foto figcaption{padding:0 var(--m)}
+  .chiusura{padding:0 0 56px}
   .ch-foto{grid-column:1/-1;margin:0 calc(-1 * var(--m))}
-  .ch-foto img{max-width:none;aspect-ratio:4/3}
-  .ch-foto figcaption{padding:8px var(--m) 0}
-  .ch-testo{grid-column:1/-1;margin-top:36px}
-  .ch-testo h2{font-size:32px;line-height:1.08}
-  .recapiti{margin-top:28px}
+  .ch-foto img{max-width:none;aspect-ratio:16/9;object-fit:cover;object-position:50% 40%}
+  .ch-foto figcaption{padding:0 var(--m)}
+  .ch-testo{grid-column:1/-1;margin-top:28px}
+  .ch-testo h2{font-size:29px;line-height:1.1}
+  .ch-testo .chi{font-size:16px}
+  .recapiti{margin-top:24px}
   .ch-cell .num{font-size:34px}
-  .recapiti dl{grid-template-columns:110px 1fr}
-  .recapiti dd{font-size:16px}
-  .piede{padding-top:52px}
-  .p-col,.p-col:first-of-type{grid-column:span 6;margin-top:28px}
-  .p-col:nth-of-type(-n+2){margin-top:0}
+  .recapiti dl{grid-template-columns:116px 1fr}
+  .recapiti dd{font-size:15.5px}
+  .recapiti dd a{display:inline-block;padding:4px 0}
+  .piede{padding-top:48px}
+  .piede .g{row-gap:28px}
+  .p-marca{margin-bottom:0}
+  .p-col,.p-col:first-of-type{grid-column:span 6}
+  .p-col li{padding:5px 0}
   .p-legale{margin-top:40px;flex-direction:column}
-}
-@media (min-width:640px) and (max-width:900px){
-  .p-col,.p-col:first-of-type{grid-column:span 6;margin-top:28px}
-  .p-col:nth-of-type(-n+2){margin-top:0}
-  .ap-foto img{aspect-ratio:733/300}
-}
-@media (max-width:640px){
-  .danni-griglia{grid-template-columns:1fr}
+  .barra{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:25;padding-bottom:env(safe-area-inset-bottom);background:var(--ink)}
+  .barra.nascosta{display:none}
+  .barra a{display:flex;flex-direction:column;justify-content:center;min-height:64px;padding:6px 16px;text-decoration:none;color:#fff;line-height:1.2}
+  .barra a:first-child{background:var(--rosso)}
+  .barra small{font-size:14px;font-weight:600}
+  .barra .num{font-size:18px;font-weight:700}
+  .barra a:focus-visible{outline-color:#fff;outline-offset:-4px}
 }
 @media (max-width:360px){
   :root{--m:16px}
-  .p-col,.p-col:first-of-type{grid-column:1/-1;margin-top:28px}
-  .p-col:first-of-type{margin-top:0}
+  .p-col,.p-col:first-of-type{grid-column:1/-1}
+  .chiama .b{padding:8px 14px}
   .b .et{font-size:14.5px}
   .b .n{font-size:18px}
   .scorciatoie a{font-size:15px;padding:0 10px}
+  .barra a{padding:6px 12px}
+  .barra .num{font-size:16.5px}
+  .recapiti dl{grid-template-columns:104px 1fr}
 }
 </style>
 </head>
@@ -309,9 +338,8 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
       <a href="#azienda">Chi siamo</a>
       <a href="#contatti">Contatti</a>
     </nav>
-    <a class="t-uff" href="tel:+3904441329022"><small>Uffici</small><span class="num">0444 1329022</span></a>
+    <a class="t-chiama" href="tel:+393408349597" aria-label="Chiama il cellulare 340 834 9597">Chiama <span class="num">340 834 9597</span></a>
     <button class="t-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <a class="t-chiama" href="tel:+393408349597" aria-label="Chiama il cellulare 340 834 9597">Chiama<span class="t-num num"> 340 834 9597</span></a>
   </div>
 </header>
 
@@ -319,121 +347,113 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
 
 <section class="apertura" id="apertura" aria-labelledby="titolo">
   <div class="g">
+    <h1 id="titolo">Quando il danno diventa serio, noi entriamo in azione</h1>
     <div class="ap-testo">
-      <h1 id="titolo">Quando il danno diventa serio, noi entriamo in azione.</h1>
-      <p class="riga">Incendi, allagamenti, grandine, amianto: mettiamo in sicurezza, puliamo e ricostruiamo case, condomini e aziende. Pratiche burocratiche comprese. Da Longare (VI).</p>
-      <div class="chiama">
+      <p class="riga">Incendi, allagamenti, grandine, amianto: mettiamo in sicurezza, puliamo e ricostruiamo case, condomini e aziende, pratiche burocratiche comprese. Da Longare (VI), in Veneto e fuori regione.</p>
+      <div class="chiama" id="chiama-apertura">
         <a class="b b-rosso" href="tel:+393408349597"><span class="et">Chiama il cellulare</span><span class="n num">340 834 9597</span></a>
         <a class="b b-bordo" href="tel:+3904441329022"><span class="et">Chiama gli uffici</span><span class="n num">0444 1329022</span></a>
       </div>
-      <p class="ap-altri">
-        <a href="mailto:info@obygroupitalia.com?subject=Foto%20del%20danno&amp;body=Buongiorno%2C%0Avi%20mando%20in%20allegato%20le%20foto%20del%20danno.%0A%0AIndirizzo%20del%20danno%3A%0ATipo%20di%20danno%20%28incendio%2C%20allagamento%2C%20grandine%2C%20altro%29%3A%0ANome%20e%20telefono%3A%0ACompagnia%20assicurativa%2C%20se%20c%27%C3%A8%3A%0A">Manda le foto del danno per mail</a>
-        <span>Altro cellulare <a class="num" href="tel:+393939114656">393 911 4656</a></span>
-      </p>
+      <a class="b-mail" href="mailto:info@obygroupitalia.com?subject=Foto%20del%20danno&amp;body=Buongiorno%2C%0Avi%20mando%20in%20allegato%20le%20foto%20del%20danno.%0A%0AIndirizzo%20del%20danno%3A%0ATipo%20di%20danno%20%28incendio%2C%20allagamento%2C%20grandine%2C%20altro%29%3A%0ANome%20e%20telefono%3A%0ACompagnia%20assicurativa%2C%20se%20c%27%C3%A8%3A%0A"><svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><rect x="1" y="1" width="20" height="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M1.5 1.5 11 9l9.5-7.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Manda le foto del danno</a>
+      <p class="ap-altro solo-tel">Altro cellulare <a class="num" href="tel:+393939114656">393 911 4656</a></p>
       <nav class="scorciatoie" aria-label="Il tuo danno">
         <a href="#incendio">Incendio</a>
         <a href="#allagamento">Allagamento</a>
-        <a href="#maltempo">Grandine e tetti</a>
-        <a href="#industria">Industria</a>
+        <a href="#maltempo">Grandine</a>
+        <a href="#amianto">Amianto</a>
       </nav>
-      <ul class="porte">
-        <li><a href="#danni"><strong>Ho avuto un danno</strong><span>Incendio, allagamento, grandine, amianto: cosa facciamo e cosa succede dopo la chiamata.</span></a></li>
-        <li><a href="#assicurazioni"><strong>Compagnie assicurative e Starflex</strong><span>Copertura Sicura Starflex per i tetti, documentazione tecnica in PDF.</span></a></li>
-        <li><a href="#industria"><strong>Aziende e bonifiche industriali</strong><span>Serbatoi e silos, ambienti confinati, escavatori a risucchio, lavori in fune.</span></a></li>
-      </ul>
     </div>
-    <div class="ap-lato">
-      <figure class="ap-foto">
-        <picture>
-          <source media="(max-width:900px)" srcset="img/apertura-tel-390.jpg 390w, img/apertura-tel-733.jpg 733w" sizes="100vw" width="733" height="338">
-          <img src="img/apertura-733.jpg" width="733" height="774" alt="Un condominio di undici piani coperto dal ponteggio su tutta la facciata, cielo sereno" fetchpriority="high">
-        </picture>
-        <figcaption>Condominio di undici piani, ponteggio su tutta la facciata.</figcaption>
-      </figure>
-
-    </div>
+    <figure class="ap-foto">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/apertura-tel-390.jpg 390w, img/apertura-tel-567.jpg 567w" sizes="100vw" width="567" height="262">
+        <img src="img/apertura-567.jpg" width="567" height="522" alt="Il tetto di una villetta distrutto dall'incendio visto dall'alto: travi carbonizzate, tegole crollate e due operatori con il casco al lavoro" fetchpriority="high">
+      </picture>
+      <figcaption>Un tetto dopo l'incendio, con due operatori al lavoro sulle travi.</figcaption>
+    </figure>
+    <ul class="porte" aria-label="Vai alla tua parte">
+      <li><a href="#danni">Ho avuto un danno<span>Incendio, allagamento, grandine, amianto</span></a></li>
+      <li><a href="#assicurazioni">Compagnie assicurative<span>Copertura Sicura Starflex, documentazione in PDF</span></a></li>
+      <li><a href="#industria">Aziende e industria<span>Serbatoi, ambienti confinati, escavatori a risucchio, fune</span></a></li>
+    </ul>
   </div>
 </section>
 
 <section class="sez danni" id="danni" aria-labelledby="t-danni">
   <div class="g">
-    <div class="testa" style="grid-column:1/-1;display:contents">
-      <h2 id="t-danni">Siamo sempre pronti ad intervenire in ogni tipo di scenario.</h2>
+    <div class="testa" style="display:contents">
+      <h2 id="t-danni">Siamo sempre pronti ad intervenire in ogni tipo di scenario</h2>
       <p class="lead">Case, condomini, negozi e capannoni: interventi civili e industriali, sinistri piccoli e grandi.</p>
     </div>
     <div class="danni-griglia">
       <article class="danno" id="incendio">
-        <img src="img/danno-incendio-567.jpg" srcset="img/danno-incendio-480.jpg 480w, img/danno-incendio-567.jpg 567w" sizes="(max-width:640px) 100vw, 45vw" width="567" height="319" alt="Il tetto di una casa bruciato visto dall'alto: travi carbonizzate e tegole crollate" loading="lazy">
+        <picture>
+          <source media="(max-width:900px)" srcset="img/mini-incendio-192.jpg" width="192" height="192">
+          <img src="img/danno-incendio-484.jpg" width="484" height="272" alt="Travi e tegole carbonizzate di un tetto dopo l'incendio" loading="lazy">
+        </picture>
         <h3>Incendio</h3>
-        <p>Operiamo per il settore civile e industriale e siamo in grado di affrontare sinistri di piccole, medie e grandi dimensioni.</p>
-        <p class="cosa">Messa in sicurezza, rimozione dei materiali danneggiati, pulizia dei contenuti, deodorizzazione, ricostruzione.</p>
+        <p>Messa in sicurezza, rimozione dei materiali danneggiati, pulizia dei contenuti, deodorizzazione, ricostruzione.</p>
+        <p class="cosa">Operiamo per il settore civile e industriale, su sinistri di piccole, medie e grandi dimensioni.</p>
       </article>
       <article class="danno" id="allagamento">
-        <img src="img/danno-allagamento-850.jpg" srcset="img/danno-allagamento-480.jpg 480w, img/danno-allagamento-850.jpg 850w" sizes="(max-width:640px) 100vw, 45vw" width="850" height="478" alt="Un locale tecnico allagato, acqua e detriti sul pavimento" loading="lazy">
+        <picture>
+          <source media="(max-width:900px)" srcset="img/mini-allagamento-192.jpg" width="192" height="192">
+          <img src="img/danno-allagamento-850.jpg" srcset="img/danno-allagamento-480.jpg 480w, img/danno-allagamento-850.jpg 850w" sizes="(max-width:1100px) 45vw, 25vw" width="850" height="478" alt="Un locale tecnico allagato, acqua e detriti sul pavimento" loading="lazy">
+        </picture>
         <h3>Allagamento</h3>
-        <p>Operatori specializzati sono in grado di fornirvi assistenza nella gestione dell'emergenza post alluvione.</p>
-        <p class="cosa">Aspirazione di polveri e liquidi, salvataggio dei beni, ripristino di apparecchiature elettroniche, impianti e macchinari, sanificazione.</p>
+        <p>Aspirazione di polveri e liquidi, salvataggio dei beni, ripristino di apparecchiature elettroniche, impianti e macchinari, sanificazione.</p>
+        <p class="cosa">Operatori specializzati sono in grado di fornirvi assistenza nella gestione dell'emergenza post alluvione.</p>
       </article>
       <article class="danno" id="maltempo">
-        <img src="img/danno-maltempo-960.jpg" srcset="img/danno-maltempo-480.jpg 480w, img/danno-maltempo-960.jpg 960w" sizes="(max-width:640px) 100vw, 45vw" width="960" height="540" alt="Una mansarda con il soffitto in travi di legno e le macchie d'acqua sulla parete" loading="lazy">
-        <h3>Grandine e maltempo</h3>
+        <picture>
+          <source media="(max-width:900px)" srcset="img/mini-maltempo-192.jpg" width="192" height="192">
+          <img src="img/danno-maltempo-960.jpg" srcset="img/danno-maltempo-480.jpg 480w, img/danno-maltempo-960.jpg 960w" sizes="(max-width:1100px) 45vw, 25vw" width="960" height="540" alt="Una mansarda con il soffitto in travi di legno e le macchie d'infiltrazione sulla parete" loading="lazy">
+        </picture>
+        <h3>Grandine, maltempo e infiltrazioni</h3>
         <p>Rimozione dei materiali danneggiati, pulizia e lavaggio dei contenuti, salvataggio e recupero dei beni.</p>
         <p class="cosa">Per i tetti colpiti c'è la <a href="#assicurazioni">Copertura Sicura Starflex</a>, posata sopra la guaina esistente.</p>
       </article>
       <article class="danno" id="amianto">
-        <img src="img/danno-amianto-567.jpg" srcset="img/danno-amianto-480.jpg 480w, img/danno-amianto-567.jpg 567w" sizes="(max-width:640px) 100vw, 45vw" width="567" height="319" alt="Un tetto in lastre ondulate di fibrocemento coperte di muschio" loading="lazy">
+        <picture>
+          <source media="(max-width:900px)" srcset="img/mini-amianto-192.jpg" width="192" height="192">
+          <img src="img/danno-amianto-567.jpg" srcset="img/danno-amianto-480.jpg 480w, img/danno-amianto-567.jpg 567w" sizes="(max-width:1100px) 45vw, 25vw" width="567" height="319" alt="Un tetto in lastre ondulate di fibrocemento coperte di muschio" loading="lazy">
+        </picture>
         <h3>Amianto</h3>
-        <p>Servizio di bonifica, rimozione e smaltimento di amianto compatto, operando secondo le procedure previste dalla legge.</p>
+        <p>Bonifica, rimozione e smaltimento di amianto compatto, secondo le procedure previste dalla legge.</p>
         <p class="cosa">Anche rifiuti pericolosi e materiali danneggiati non pericolosi.</p>
       </article>
-    </div>
-    <div class="richiama">
-      <p>Hai un problema specifico? Chiamaci subito.</p>
-      <div class="chiama">
-        <a class="b b-rosso" href="tel:+393408349597"><span class="et">Cellulare</span><span class="n num">340 834 9597</span></a>
-        <a class="b b-bordo" href="tel:+3904441329022"><span class="et">Uffici</span><span class="n num">0444 1329022</span></a>
-      </div>
     </div>
   </div>
 </section>
 
 <section class="sez campo" id="dopo" aria-labelledby="t-dopo">
   <div class="g">
-    <h2 id="t-dopo">Nessuna incombenza burocratica, pensiamo noi a tutto.</h2>
-    <p class="lead">Dopo la chiamata lavora la nostra squadra, dal sopralluogo alla riconsegna, e segue anche le pratiche. Questo è il nostro pronto intervento, in ordine.</p>
-    <ol class="passi">
-      <li><span class="n num">1</span><span>Sopralluoghi e consulenza nell'immediato</span></li>
-      <li><span class="n num">2</span><span>Rimozione dei materiali danneggiati</span></li>
-      <li><span class="n num">3</span><span>Aspirazione di polveri e liquidi</span></li>
-      <li><span class="n num">4</span><span>Pulizia e lavaggio dei contenuti</span></li>
-      <li><span class="n num">5</span><span>Salvataggio, recupero e ripristino dei beni</span></li>
-      <li><span class="n num">6</span><span>Risanamento e ripristino di apparecchiature elettroniche, impianti e macchinari</span></li>
-      <li><span class="n num">7</span><span>Tinteggiature, intonaci, cartongessi e ogni opera edile</span></li>
-      <li><span class="n num">8</span><span>Deodorizzazione e sanificazione degli ambienti</span></li>
-      <li><span class="n num">9</span><span>Gestione e smaltimento dei materiali danneggiati, pericolosi e non pericolosi</span></li>
+    <h2 id="t-dopo">Nessuna incombenza burocratica, pensiamo noi a tutto</h2>
+    <ol class="percorso">
+      <li><span class="n">1</span>Ci chiami o ci <a href="mailto:info@obygroupitalia.com?subject=Foto%20del%20danno&amp;body=Buongiorno%2C%0Avi%20mando%20in%20allegato%20le%20foto%20del%20danno.%0A%0AIndirizzo%20del%20danno%3A%0ATipo%20di%20danno%20%28incendio%2C%20allagamento%2C%20grandine%2C%20altro%29%3A%0ANome%20e%20telefono%3A%0ACompagnia%20assicurativa%2C%20se%20c%27%C3%A8%3A%0A">mandi le foto del danno</a>.</li>
+      <li><span class="n">2</span>Veniamo a vedere il danno e ti diciamo cosa serve: sopralluogo e consulenza nell'immediato.</li>
+      <li><span class="n">3</span>Seguiamo noi le pratiche burocratiche. Se il danno è assicurato, dicci la compagnia e il numero del sinistro.</li>
     </ol>
-    <div class="fine">
-      <p>Ti riconsegnamo il tuo bene nelle condizioni originarie.</p>
-      <a href="mailto:info@obygroupitalia.com?subject=Foto%20del%20danno&amp;body=Buongiorno%2C%0Avi%20mando%20in%20allegato%20le%20foto%20del%20danno.%0A%0AIndirizzo%20del%20danno%3A%0ATipo%20di%20danno%20%28incendio%2C%20allagamento%2C%20grandine%2C%20altro%29%3A%0ANome%20e%20telefono%3A%0ACompagnia%20assicurativa%2C%20se%20c%27%C3%A8%3A%0A">Intanto mandaci le foto del danno</a>
-    </div>
+    <h3>Poi, in cantiere, facciamo tutto noi</h3>
+    <ul class="passi">
+      <li>Rimozione dei materiali danneggiati</li>
+      <li>Aspirazione di polveri e liquidi</li>
+      <li>Pulizia e lavaggio dei contenuti</li>
+      <li>Salvataggio, recupero e ripristino dei beni</li>
+      <li>Ripristino di apparecchiature elettroniche, impianti e macchinari</li>
+      <li>Tinteggiature, intonaci, cartongessi e ogni opera edile</li>
+      <li>Deodorizzazione e sanificazione degli ambienti</li>
+      <li>Smaltimento dei materiali danneggiati, pericolosi e non pericolosi</li>
+    </ul>
+    <p class="fine">Ti riconsegnamo il tuo bene nelle condizioni originarie.</p>
   </div>
 </section>
 
 <section class="sez industria" id="industria" aria-labelledby="t-ind">
   <div class="g">
-    <div class="testa" style="display:contents">
+    <div class="ind-lista">
       <h2 id="t-ind">Bonifiche industriali e lavori speciali</h2>
       <p class="lead">Interveniamo rapidamente su ogni tipo di emergenza, sia in campo civile che industriale.</p>
-    </div>
-    <div class="ind-foto">
-      <figure>
-        <img src="img/cunicolo-450.jpg" width="450" height="496" alt="Un operatore in tuta bianca accovacciato in un cunicolo in mattoni, con il tubo dell'aspiratore" loading="lazy">
-        <figcaption>Pulizia di un cunicolo in mattoni con l'aspiratore.</figcaption>
-      </figure>
-      <p class="ind-mezzi"><strong>Attrezzature</strong>Robot certificati ATEX per serbatoi e ambienti a rischio, escavatori a risucchio, dispositivi per i lavori in fune.</p>
-    </div>
-    <div class="ind-lista">
-      <p class="istr">Segna i lavori che ti servono: la mail a info@obygroupitalia.com si prepara con l'elenco già scritto. Allega capitolato, foto e indirizzo dell'impianto.</p>
+      <p class="istr">Segna i lavori che ti servono: la mail a <a href="mailto:info@obygroupitalia.com?subject=Richiesta%20di%20intervento">info@obygroupitalia.com</a> si prepara con l'elenco già scritto. Allega capitolato, foto e indirizzo dell'impianto.</p>
       <ul class="lavori" id="lavori">
         <li id="bonifiche-industriali"><label><input type="checkbox" value="Bonifiche e pulizie industriali"><span><strong>Bonifiche e pulizie industriali</strong><span class="d">Rimozione fondami e lavaggio serbatoi, con attrezzature e robot certificati ATEX.</span></span></label></li>
         <li id="ambienti-confinati"><label><input type="checkbox" value="Lavori in ambienti confinati"><span><strong>Lavori in ambienti confinati</strong><span class="d">Serbatoi, silos e cisterne: pulitura, lavaggio, rimozione di fanghi e materiali decantati.</span></span></label></li>
@@ -447,7 +467,8 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
         <li><label><input type="checkbox" value="Smaltimento rifiuti"><span><strong>Smaltimento rifiuti</strong></span></label></li>
         <li><label><input type="checkbox" value="Pulizia grandi superfici e manti stradali"><span><strong>Pulizia grandi superfici e manti stradali</strong></span></label></li>
         <li><label><input type="checkbox" value="Pulizia pannelli fotovoltaici"><span><strong>Pulizia pannelli fotovoltaici</strong></span></label></li>
-        <li id="opere-edili"><label><input type="checkbox" value="Demolizioni, ricostruzioni e opere edili"><span><strong>Demolizioni, ricostruzioni e opere edili</strong><span class="d">Barriere tagliafuoco, pareti in cartongesso, tinteggiature interne ed esterne.</span></span></label></li>
+        <li id="opere-edili"><label><input type="checkbox" value="Demolizioni, ricostruzioni e opere edili"><span><strong>Demolizioni, ricostruzioni e opere edili</strong><span class="d">Barriere tagliafuoco, pareti in cartongesso, tinteggiature.</span></span></label></li>
+        <li class="sotto">Dopo un danno, anche in azienda</li>
         <li><label><input type="checkbox" value="Danni post incendio o da eventi naturali"><span><strong>Danni post incendio o da eventi naturali</strong></span></label></li>
         <li><label><input type="checkbox" value="Bonifiche da allagamento"><span><strong>Bonifiche da allagamento</strong></span></label></li>
       </ul>
@@ -456,74 +477,74 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
         <span class="scelti" id="scelti" aria-live="polite">Nessun lavoro segnato.</span>
         <a class="tel" href="tel:+3904441329022">Uffici <span class="num">0444 1329022</span></a>
       </div>
+      <p class="riserva">Se la posta non si apre, scrivi a <span>info@obygroupitalia.com</span> e allega capitolato e foto.</p>
+    </div>
+    <div class="ind-lato">
+      <figure>
+        <img src="img/fune-582.jpg" srcset="img/fune-400.jpg 400w, img/fune-582.jpg 582w" sizes="(max-width:640px) 100vw, (max-width:900px) 45vw, 30vw" width="582" height="584" alt="Due tecnici appesi alle funi lungo la torre e la pala di un generatore eolico, contro il cielo" loading="lazy">
+        <figcaption>Lavori in fune sulla torre e sulla pala di un generatore eolico.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/cunicolo-450.jpg" width="450" height="281" alt="Un operatore in tuta bianca accovacciato in un cunicolo in mattoni, con il tubo dell'aspiratore" loading="lazy">
+        <figcaption>Aspirazione in un cunicolo in mattoni.</figcaption>
+      </figure>
+      <p class="ind-mezzi"><strong>Attrezzature</strong>Robot certificati ATEX per serbatoi e ambienti a rischio, escavatori a risucchio, dispositivi per i lavori in fune.</p>
+      <p class="ind-mezzi"><strong>Documenti dell'impresa</strong><a href="mailto:info@obygroupitalia.com?subject=Richiesta%20documenti%20dell%27impresa&amp;body=Buongiorno%2C%0Avi%20chiedo%20visura%2C%20iscrizioni%20e%20abilitazioni%20dell%27impresa%20%28Albo%20gestori%20ambientali%2C%20amianto%2C%20ambienti%20confinati%2C%20lavori%20in%20fune%29.%0A%0AAzienda%20o%20compagnia%3A%0AReferente%20e%20telefono%3A%0A">Chiedi visura, iscrizioni e abilitazioni per mail</a></p>
     </div>
   </div>
 </section>
 
-<section class="sez assicurazioni" id="assicurazioni" aria-labelledby="t-sf">
-  <figure class="sf-foto">
-    <picture>
-      <source media="(max-width:900px)" srcset="img/starflex-tel-780.jpg 780w, img/starflex-tel-1100.jpg 1100w" sizes="100vw" width="1100" height="825">
-      <img src="img/starflex-1440.jpg" srcset="img/starflex-960.jpg 960w, img/starflex-1440.jpg 1440w, img/starflex-1701.jpg 1701w" sizes="100vw" width="1440" height="559" alt="Il colmo di una copertura in fibrocemento rivestito di bianco con la membrana liquida, tra le lastre ondulate e i pannelli fotovoltaici" loading="lazy">
-    </picture>
-    <div class="g"><figcaption>Copertura in fibrocemento rivestita accanto all'impianto fotovoltaico, che resta al suo posto.</figcaption></div>
-  </figure>
+<section class="assicurazioni" id="assicurazioni" aria-labelledby="t-sf">
   <div class="g">
     <div class="sf-testo">
-      <h2 id="t-sf">Meno costi oggi. Meno sinistri domani.</h2>
-      <p class="lead">Copertura Sicura Starflex è il nostro servizio per le compagnie assicurative: rifacciamo le coperture danneggiate da grandine e maltempo con la membrana liquida STARFLEX® di MPM, posata sopra la guaina esistente, senza demolirla.</p>
+      <h2 id="t-sf">Copertura Sicura Starflex, per le compagnie assicurative</h2>
+      <p class="sf-sub">Meno costi oggi. Meno sinistri domani.</p>
+      <p class="lead">Rifacciamo le coperture danneggiate da grandine e maltempo con la membrana liquida STARFLEX® di MPM, posata sopra la guaina esistente, senza demolirla.</p>
       <p class="per">Per la compagnia: risarcimenti più bassi e chiusura dei sinistri più veloce.</p>
-    </div>
-    <div class="sf-voci">
-      <ul>
+      <ul class="sf-voci">
         <li><strong>Nessuna rimozione, nessuno smaltimento</strong>La vecchia impermeabilizzazione diventa il supporto del nuovo sistema.</li>
         <li><strong>Posa a freddo</strong>Senza fiamme libere, anche in emergenza dopo un evento atmosferico.</li>
         <li><strong>Anche sul bagnato</strong>STARFLEX® HYBRID si applica su supporti umidi, bagnati o con condensa.</li>
         <li><strong>30 anni di durabilità</strong>Dichiarata da MPM per STARFLEX® ULTRA.</li>
       </ul>
       <div class="sf-azioni">
-        <a class="b-ink" href="doc/copertura-sicura-starflex-2026.pdf">Scarica la documentazione tecnica <span class="num">&nbsp;(PDF, 2,8 MB)</span></a>
-        <a class="link" href="mailto:info@obygroupitalia.com?subject=Copertura%20Sicura%20Starflex">info@obygroupitalia.com</a>
+        <a class="b-ink doc" href="doc/copertura-sicura-starflex-2026.pdf">Scarica la documentazione tecnica<small>PDF, 10 pagine, giugno 2026, 2,8 MB</small></a>
+        <a class="link" href="doc/brochure-aziendale-2022.pdf">Brochure aziendale (PDF)<small>edizione 2022, 7 pagine, 5,7 MB</small></a>
       </div>
-      <p class="nota">Uffici <a class="num" href="tel:+3904441329022">0444 1329022</a>. Lavori eseguiti da personale interno, formato con corsi specifici.</p>
+      <p class="sf-nota"><a href="mailto:info@obygroupitalia.com?subject=Incarico%20da%20compagnia%20assicurativa&amp;body=Buongiorno%2C%0Avi%20affidiamo%20un%20sinistro.%0A%0ACompagnia%3A%0ANumero%20sinistro%3A%0AIndirizzo%20del%20rischio%3A%0APerito%20o%20liquidatore%20e%20telefono%3A%0ATipo%20di%20danno%3A%0A%0AAllego%20perizia%20e%20foto.%0A">Affidaci un sinistro per mail</a> oppure chiama gli uffici <a class="num" href="tel:+3904441329022">0444 1329022</a>. Lavori eseguiti da personale interno, formato con corsi specifici.</p>
     </div>
+    <figure class="sf-foto">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/starflex-tel-780.jpg" width="780" height="585">
+        <img src="img/starflex-1064.jpg" srcset="img/starflex-640.jpg 640w, img/starflex-1064.jpg 1064w" sizes="(max-width:1100px) 100vw, 38vw" width="1064" height="719" alt="Il colmo di una copertura in fibrocemento rivestito di bianco con la membrana liquida, tra le lastre ondulate e i pannelli fotovoltaici" loading="lazy">
+      </picture>
+      <figcaption>Copertura in fibrocemento rivestita accanto all'impianto fotovoltaico, che resta al suo posto.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="sez azienda" id="azienda" aria-labelledby="t-az">
-  <div class="g">
-    <div class="az-testo">
-      <h2 id="t-az">Siamo il tuo partner affidabile e specializzato.</h2>
-      <p>Una squadra di tecnici professionisti è sempre pronta a intervenire in tempi brevi. Facciamo tutto noi: sopralluogo, bonifica, smaltimento, ricostruzione e pratiche.</p>
-      <p><a href="https://www.obygroupitalia.com/_files/ugd/9e96e5_6e2a3e82f5384faebad4337e67325c4a.pdf">Brochure aziendale (PDF)</a></p>
-    </div>
-    <dl class="dati">
-      <dt>Sede operativa</dt><dd>Via Ghizzole 41, 36023 Longare (VI). <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Ghizzole+41+36023+Longare+VI">Apri la mappa</a></dd>
-      <dt>Dove interveniamo</dt><dd>Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia</dd>
-      <dt>Settori</dt><dd>Civile e industriale: case, condomini, aziende, impianti</dd>
-      <dt>Ragione sociale</dt><dd>OBY GROUP ITALIA Srl</dd>
-      <dt>P.IVA e CF</dt><dd class="num">IT 10437520967</dd>
-      <dt>REA</dt><dd class="num">BS583858</dd>
-      <dt>Sede legale</dt><dd>Via Solferino 55, Brescia</dd>
-    </dl>
-  </div>
-</section>
-
-<section class="chiusura" id="contatti" aria-labelledby="t-ch">
+<section class="chiusura" id="azienda" aria-labelledby="t-ch">
   <div class="g">
     <figure class="ch-foto">
-      <img src="img/fune-582.jpg" srcset="img/fune-400.jpg 400w, img/fune-582.jpg 582w" sizes="(max-width:900px) 100vw, 40vw" width="582" height="584" alt="Due tecnici appesi alle funi lungo la torre e la pala di un generatore eolico, contro il cielo" loading="lazy">
-      <figcaption>Lavori in fune sulla torre e sulla pala di un generatore eolico.</figcaption>
+      <img src="img/chiusura-733.jpg" srcset="img/chiusura-480.jpg 480w, img/chiusura-733.jpg 733w" sizes="(max-width:900px) 100vw, 40vw" width="733" height="774" alt="Un condominio di undici piani coperto dal ponteggio su tutta la facciata, cielo sereno" loading="lazy">
+      <figcaption>Un condominio di undici piani con il ponteggio su tutta la facciata.</figcaption>
     </figure>
     <div class="ch-testo">
-      <h2 id="t-ch">Ripristiniamo a nuovo e tutto torna come prima.</h2>
-      <div class="recapiti">
+      <h2 id="t-ch">Ripristiniamo a nuovo e tutto torna come prima</h2>
+      <p class="chi">Siamo il tuo partner affidabile e specializzato: una squadra di tecnici professionisti sempre pronta a intervenire in tempi brevi. Facciamo tutto noi, dal sopralluogo alla bonifica, dallo smaltimento alla ricostruzione.</p>
+      <div class="recapiti" id="contatti">
         <a class="ch-cell" href="tel:+393408349597"><small>Cellulare</small><span class="num">340 834 9597</span></a>
         <dl>
           <dt>Altro cellulare</dt><dd><a class="num" href="tel:+393939114656">393 911 4656</a></dd>
           <dt>Uffici</dt><dd><a class="num" href="tel:+3904441329022">0444 1329022</a></dd>
           <dt>Email</dt><dd><a href="mailto:info@obygroupitalia.com">info@obygroupitalia.com</a></dd>
-          <dt>Sede operativa</dt><dd>Via Ghizzole 41, 36023 Longare (VI)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Ghizzole+41+36023+Longare+VI">Apri la mappa</a></dd>
+          <dt>Sede operativa</dt><dd>Via Ghizzole 41, 36023 Longare (VI), <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Ghizzole+41+36023+Longare+VI">apri la mappa</a></dd>
+          <dt>Interventi</dt><dd>Civili e industriali, in Veneto e fuori regione</dd>
+          <dt>Documenti</dt><dd><a href="mailto:info@obygroupitalia.com?subject=Richiesta%20documenti%20dell%27impresa&amp;body=Buongiorno%2C%0Avi%20chiedo%20visura%2C%20iscrizioni%20e%20abilitazioni%20dell%27impresa%20%28Albo%20gestori%20ambientali%2C%20amianto%2C%20ambienti%20confinati%2C%20lavori%20in%20fune%29.%0A%0AAzienda%20o%20compagnia%3A%0AReferente%20e%20telefono%3A%0A">Chiedi visura, iscrizioni e abilitazioni</a></dd>
+          <dt class="sep">Ragione sociale</dt><dd class="sep">OBY GROUP ITALIA Srl</dd>
+          <dt>P.IVA e CF</dt><dd class="tab">IT 10437520967</dd>
+          <dt>REA</dt><dd class="tab">BS583858</dd>
+          <dt>Sede legale</dt><dd>Via Solferino 55, Brescia</dd>
         </dl>
       </div>
     </div>
@@ -543,9 +564,9 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
       <ul>
         <li><a href="#incendio">Incendio</a></li>
         <li><a href="#allagamento">Allagamento</a></li>
-        <li><a href="#maltempo">Grandine e maltempo</a></li>
+        <li><a href="#maltempo">Grandine e infiltrazioni</a></li>
         <li><a href="#amianto">Amianto</a></li>
-        <li><a href="#dopo">Pronto intervento</a></li>
+        <li><a href="#dopo">Dopo la chiamata</a></li>
       </ul>
     </div>
     <div class="p-col">
@@ -564,7 +585,7 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
       <ul>
         <li><a href="#assicurazioni">Copertura Sicura Starflex</a></li>
         <li><a href="doc/copertura-sicura-starflex-2026.pdf">Documentazione tecnica (PDF)</a></li>
-        <li><a href="https://www.obygroupitalia.com/_files/ugd/9e96e5_6e2a3e82f5384faebad4337e67325c4a.pdf">Brochure aziendale (PDF)</a></li>
+        <li><a href="doc/brochure-aziendale-2022.pdf">Brochure aziendale (PDF)</a></li>
         <li><a href="#azienda">Chi siamo</a></li>
       </ul>
     </div>
@@ -586,21 +607,30 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
   </div>
 </footer>
 
+<nav class="barra" id="barra" aria-label="Chiama">
+  <a href="tel:+393408349597"><small>Cellulare</small><span class="num">340 834 9597</span></a>
+  <a href="tel:+3904441329022"><small>Uffici</small><span class="num">0444 1329022</span></a>
+</nav>
+
 <script>
 (function(){
   var bm=document.querySelector('.t-menu'),menu=document.getElementById('menu');
+  function chiudi(){menu.classList.remove('aperta');bm.setAttribute('aria-expanded','false');bm.textContent='Menu';}
   bm.addEventListener('click',function(){
     var a=menu.classList.toggle('aperta');
     bm.setAttribute('aria-expanded',a);bm.textContent=a?'Chiudi':'Menu';
   });
-  menu.addEventListener('click',function(e){
-    if(e.target.tagName==='A'&&menu.classList.contains('aperta')){
-      menu.classList.remove('aperta');bm.setAttribute('aria-expanded','false');bm.textContent='Menu';
-    }
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&menu.classList.contains('aperta')){menu.classList.remove('aperta');bm.setAttribute('aria-expanded','false');bm.textContent='Menu';bm.focus();}
-  });
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'&&menu.classList.contains('aperta'))chiudi();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperta')){chiudi();bm.focus();}});
+
+  // La barra di chiamata in basso (telefono) resta nascosta finche' si vedono i due bottoni dell'apertura.
+  var barra=document.getElementById('barra'),bottoni=document.getElementById('chiama-apertura');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(v){
+      var vede=v[0].isIntersecting;
+      barra.classList.toggle('nascosta',vede);
+    }).observe(bottoni);
+  }
 
   // Il gesto: i lavori segnati entrano nella mail di richiesta, pronta da mandare con gli allegati.
   var caselle=[].slice.call(document.querySelectorAll('#lavori input')),
@@ -611,7 +641,7 @@ h2{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.022em}
     var corpo='Buongiorno,\nvi chiedo un preventivo per '+(v.length?'questi lavori:\n'+v.map(function(x){return '- '+x}).join('\n')+'\n':'un intervento.\n')+
       '\nAzienda e sede dell\'impianto:\nReferente e telefono:\nTempi:\n\nAllego capitolato e foto.\n';
     link.href='mailto:info@obygroupitalia.com?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
-    scelti.textContent=v.length===0?'Nessun lavoro segnato.':(v.length===1?'1 lavoro segnato: ':v.length+' lavori segnati: ')+(v.length?v.join(', ')+'.':'');
+    scelti.textContent=v.length===0?'Nessun lavoro segnato.':(v.length===1?'1 lavoro segnato: ':v.length+' lavori segnati: ')+v.join(', ')+'.';
   }
   caselle.forEach(function(c){c.addEventListener('change',aggiorna)});
   aggiorna();

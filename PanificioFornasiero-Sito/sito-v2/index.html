@@ -6,13 +6,15 @@
 <title>Panificio Fornasiero, Camin (Padova): orari dei due negozi e prenotazioni</title>
 <meta name="description" content="Panificio Galileo Fornasiero, a Camin dal 1963: pane fatto da noi ogni giorno, pasta fresca, focacce e dolci. Orari e telefoni dei negozi di via Vigonovese 116 e via Alsazia 3. Panettone e focaccia di Natale su prenotazione.">
 <link rel="icon" href="img/logo-bruno-64.png">
-<link rel="preload" href="fonts/atkinson-hyperlegible-next-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/erode-500.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Caratteri serviti dalla pagina.
-   Atkinson Hyperlegible Next (Braille Institute, Google Fonts, SIL Open Font License 1.1): testo, dati, bottoni.
+   Fira Sans (Carrois Apostrophe per Mozilla, Google Fonts, SIL Open Font License 1.1): testo, dati, bottoni.
    Erode (Indian Type Foundry, Fontshare, ITF Free Font License): titoli e citazioni. */
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url("fonts/atkinson-hyperlegible-next-var-latin.woff2") format("woff2"); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-400-latin.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-500-latin.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-600-latin.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 @font-face { font-family: "Erode"; src: url("fonts/erode-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Erode"; src: url("fonts/erode-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 
@@ -28,7 +30,7 @@
   --aperto: #2C6A3C;
   --m: 16px;            /* margine di pagina */
   --hdr: 56px;
-  --sans: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --sans: "Fira Sans", system-ui, sans-serif;
   --serif: "Erode", Georgia, serif;
 }
 @media (min-width: 760px) { :root { --m: 40px; --hdr: 64px; } }
@@ -74,24 +76,25 @@ ul, ol { list-style: none; }
   .nav-lista a { display: block; padding: 14px 0; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,.14); }
 }
 @media (max-width: 380px) { .marchio b { font-size: 17px; letter-spacing: .28em; } }
+@media (max-width: 370px) { .neg .btn { font-size: 16px; padding: 0 12px; } .neg .btn-filo { min-width: 76px; } .btn { padding: 0 14px; } }
 
 /* PRIMA SCHERMATA */
 .apertura { position: relative; }
 .ap-foto-tel img { width: 100%; height: 160px; object-fit: cover; object-position: 50% 40%; }
 .ap-foto-largo { display: none; }
 .ap-testo { padding: 18px var(--m) 0; }
-.ap-testo h1 { font: 500 28px/1.12 var(--serif); letter-spacing: -.012em; max-width: 18ch; }
+.ap-testo h1 { font: 500 28px/1.12 var(--serif); letter-spacing: -.012em; max-width: 20ch; text-wrap: balance; }
 .ap-sotto { margin-top: 6px; font-size: 16px; line-height: 1.42; color: var(--testo2); max-width: 40ch; }
-.stato { margin-top: 16px; font: 650 21px/1.28 var(--sans); letter-spacing: -.005em; max-width: 30ch; }
+.stato { margin-top: 16px; font: 600 21px/1.28 var(--sans); letter-spacing: -.005em; max-width: 30ch; }
 .stato .ora { color: var(--aperto); }
 .stato .chiuso { color: var(--bordeaux); }
 .negozi-ap { margin-top: 14px; display: grid; gap: 14px; }
 .neg { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; row-gap: 8px; align-items: center; }
-.neg-nome { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.neg-nome { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 12px; }
 .neg-nome h2 { font: 500 20px/1.15 var(--serif); }
 .neg-nome small { font-size: 14px; color: var(--testo2); white-space: nowrap; }
 .neg-oggi { grid-column: 1 / -1; font-size: 16px; line-height: 1.3; color: var(--inchiostro); margin-top: -4px; }
-.neg-oggi b { font-weight: 650; }
+.neg-oggi b { font-weight: 600; }
 .pallino { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #B9ADA0; margin-right: 7px; transform: translateY(-1px); }
 .pallino.si { background: var(--aperto); }
 .neg .btn-pieno { width: 100%; }
@@ -105,25 +108,25 @@ ul, ol { list-style: none; }
 .fascia span u { text-decoration-thickness: 1px; text-underline-offset: .18em; }
 .fascia-largo { display: none; }
 
-@media (min-width: 600px) and (max-width: 1099px) {
-  .ap-foto-tel img { height: auto; aspect-ratio: 640 / 262; }
-  .negozi-ap { grid-template-columns: 1fr 1fr; gap: 28px; }
+@media (min-width: 720px) and (max-width: 999px) { .negozi-ap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; } }
+@media (min-width: 600px) and (max-width: 999px) {
+  .ap-foto-tel img { height: 300px; object-position: 50% 30%; }
   .ap-testo h1 { font-size: 40px; }
   .stato { font-size: 26px; }
 }
 
-@media (min-width: 1100px) {
-  .apertura { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); min-height: calc(100svh - var(--hdr) - 92px); }
+@media (min-width: 1000px) {
+  .apertura { display: grid; grid-template-columns: minmax(0, 13fr) minmax(0, 11fr); min-height: calc(100svh - var(--hdr) - 92px); }
   .apertura.senza-fascia { min-height: calc(100svh - var(--hdr)); }
   .ap-foto-tel { display: none; }
   .ap-foto-largo { display: block; position: relative; grid-column: 2; grid-row: 1; }
   .ap-foto-largo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
   .ap-foto-largo figcaption { position: absolute; left: 24px; bottom: 20px; font-size: 14px; color: var(--inchiostro); background: var(--carta); padding: 6px 10px; }
-  .ap-testo { grid-column: 1; padding: 56px 64px 44px var(--m); display: flex; flex-direction: column; justify-content: center; }
+  .ap-testo { grid-column: 1; padding: 40px 56px 36px var(--m); display: flex; flex-direction: column; justify-content: center; }
   .ap-testo h1 { font-size: 52px; line-height: 1.06; letter-spacing: -.018em; max-width: 16ch; }
   .ap-sotto { font-size: 19px; margin-top: 14px; }
-  .stato { margin-top: 34px; font-size: 34px; line-height: 1.18; letter-spacing: -.012em; max-width: 24ch; }
-  .negozi-ap { margin-top: 30px; grid-template-columns: 1fr 1fr; gap: 40px; padding-top: 26px; border-top: 1px solid #DED4C7; }
+  .stato { margin-top: 28px; font-size: 34px; line-height: 1.18; letter-spacing: -.012em; max-width: 24ch; }
+  .negozi-ap { margin-top: 26px; grid-template-columns: 1fr 1fr; gap: 32px; padding-top: 24px; border-top: 1px solid #DED4C7; }
   .neg { grid-template-columns: 1fr; row-gap: 0; align-content: start; }
   .neg-nome { display: block; }
   .neg-nome h2 { font-size: 26px; }
@@ -134,7 +137,7 @@ ul, ol { list-style: none; }
   .neg .btn-filo { margin-top: 10px; min-height: 44px; border: 0; padding: 0; justify-self: start; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; font-weight: 500; font-size: 16px; min-width: 0; }
   .tutti-orari { display: none; }
   .fascia { display: none; }
-  .fascia-largo { display: flex; align-items: center; justify-content: space-between; gap: 32px; background: var(--bordeaux); color: #fff; height: 92px; padding: 0 var(--m); }
+  .fascia-largo { display: flex; align-items: center; justify-content: space-between; gap: 32px; background: var(--bordeaux); color: #fff; height: 90px; padding: 0 var(--m); }
   .fascia-largo[hidden] { display: none; }
   .fascia-largo p { font: 500 28px/1.1 var(--serif); letter-spacing: -.01em; }
   .fascia-largo b { font-weight: 500; }
@@ -143,42 +146,54 @@ ul, ol { list-style: none; }
   .fascia-largo .azioni a:not(.btn) { color: #fff; font-size: 17px; }
 }
 
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .ap-testo { padding-right: 40px; }
+  .neg-sett { display: none; }
+  .tutti-orari { display: inline-block; margin-top: 20px; }
+}
+
 /* SEZIONI */
-section { padding: 64px 0; }
+section { padding: 56px 0; }
 .s-titolo { font: 500 32px/1.1 var(--serif); letter-spacing: -.015em; }
 .didascalia { margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--testo2); padding: 0 var(--m); }
 .fonte { display: block; margin-top: 10px; font: 400 15px/1.4 var(--sans); color: var(--testo2); }
 @media (min-width: 1100px) {
-  section { padding: 120px 0; }
+  section { padding: 88px 0; }
   .s-titolo { font-size: 60px; line-height: 1.02; letter-spacing: -.022em; }
   .didascalia { padding: 0; }
 }
 
 /* LE FESTE */
-.feste { padding-top: 0; }
+.feste { padding-top: 0; display: flex; flex-direction: column; }
+.feste-foto1 { order: -1; }
 .feste-foto1 img, .feste-foto2 img { width: 100%; }
-.feste-testo { padding: 26px var(--m) 0; }
+.feste-tit { padding: 26px var(--m) 0; }
+.feste-testo { padding: 0 var(--m); }
 .feste-testo p { margin-top: 14px; max-width: 34ch; }
 .feste-testo .piccolo { font-size: 16px; color: var(--testo2); }
 .feste-azioni { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
 .feste-azioni .alt { font-size: 16px; padding: 10px 0; }
 .citazione { font: 400 22px/1.32 var(--serif); letter-spacing: -.005em; }
-.feste .citazione { margin: 36px var(--m) 0; max-width: 30ch; }
-.feste-foto2 { margin-top: 40px; padding: 0 var(--m); }
+.feste .citazione { margin: 34px var(--m) 0; max-width: 30ch; }
+.feste-foto2 { margin-top: 34px; padding: 0 var(--m); }
 @media (min-width: 760px) and (max-width: 1099px) {
   .feste-foto1 img { aspect-ratio: 16 / 10; object-fit: cover; }
   .feste-testo, .feste .citazione { max-width: 640px; }
   .feste-foto2 { max-width: 560px; }
 }
 @media (min-width: 1100px) {
-  .feste { padding-top: 120px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; align-items: start; }
-  .feste-foto1 { grid-column: 1; grid-row: 1 / span 3; }
+  .feste { padding-top: 88px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; row-gap: 48px; align-items: stretch; }
+  .feste-tit { grid-column: 1 / -1; grid-row: 1; padding: 0 var(--m); max-width: none; }
+  .feste-foto1 { grid-column: 1; grid-row: 2; }
   .feste-foto1 img { aspect-ratio: 1560 / 1500; object-fit: cover; }
   .feste-foto1 .didascalia { padding-left: var(--m); }
-  .feste-testo { grid-column: 2; grid-row: 1; padding: 0 var(--m) 0 0; }
+  .feste-destra { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; padding-right: var(--m); }
+  .feste-testo { padding: 0; }
   .feste-testo p { font-size: 19px; }
-  .feste .citazione { grid-column: 2; grid-row: 2; margin: 40px var(--m) 0 0; font-size: 26px; }
-  .feste-foto2 { grid-column: 2; grid-row: 3; margin-top: 48px; padding: 0 var(--m) 0 0; max-width: 420px; }
+  .feste-testo p:first-child { margin-top: 0; }
+  .feste .citazione { margin: 32px 0 0; font-size: 24px; }
+  .feste-foto2 { margin-top: auto; padding: 32px 0 0; max-width: 330px; }
+  .pane { padding-top: 24px; }
 }
 
 /* IL PANE */
@@ -188,7 +203,7 @@ section { padding: 64px 0; }
 .pane-foto img { width: 100%; }
 .cap-largo { display: none; }
 .pani { padding: 0 var(--m); margin-top: 34px; }
-.pani h3, .forno h3 { font: 650 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--testo2); }
+.pani h3, .forno h3 { font: 600 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--testo2); }
 .pani-casa { margin-top: 10px; }
 .pani-casa li { font: 500 30px/1.22 var(--serif); letter-spacing: -.01em; }
 .pani-altri { margin-top: 30px; }
@@ -203,7 +218,7 @@ section { padding: 64px 0; }
   .forno { grid-template-columns: 1fr 1fr; gap: 32px 40px; }
 }
 @media (min-width: 1100px) {
-  .pane { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; }
+  .pane { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; }
   .pane-foto { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
   .pane-foto img { aspect-ratio: 1330 / 1280; object-fit: cover; }
   .pane-foto .didascalia { padding-left: var(--m); }
@@ -213,64 +228,75 @@ section { padding: 64px 0; }
   .pane-intro p { font-size: 19px; }
   .pani { grid-column: 2; grid-row: 2; padding: 0 var(--m) 0 0; margin-top: 44px; }
   .pani-casa li { font-size: 40px; line-height: 1.16; }
-  .pani-altri ul { columns: 3; font-size: 16px; }
-  .forno { grid-column: 1 / -1; grid-row: 3; margin-top: 96px; padding: 56px var(--m) 0; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; border-top: 1px solid #DED4C7; }
+  .pani-altri ul { columns: 2; font-size: 16px; }
+  .forno { grid-column: 1 / -1; grid-row: 3; margin-top: 56px; padding: 36px var(--m) 0; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; border-top: 1px solid #DED4C7; }
   .forno div p { font-size: 16px; }
 }
 
 /* CHI SIAMO */
 .storia { background: var(--carta2); }
-.storia-in { padding: 0 var(--m); }
-.storia-in > p { margin-top: 14px; max-width: 42ch; }
-.date { margin-top: 30px; display: grid; gap: 14px; }
+.storia-in { padding: 0 var(--m); display: flex; flex-direction: column; }
+.storia-sx, .storia-dx { display: contents; }
+.storia-in h2 { order: 1; }
+.storia-p { order: 2; margin-top: 14px; max-width: 42ch; }
+.date { order: 3; margin-top: 30px; display: grid; gap: 14px; }
+.storia .citazione { order: 4; margin-top: 40px; font-size: 24px; max-width: 26ch; }
+.link-sez { order: 5; align-self: flex-start; display: inline-block; margin-top: 26px; font-weight: 600; padding: 6px 0; }
 .date li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; font-size: 17px; line-height: 1.4; }
 .date b { font: 500 22px/1.1 var(--serif); color: var(--bordeaux); }
-.storia .citazione { margin-top: 40px; font-size: 24px; max-width: 26ch; }
 .storia-foto { display: none; }
-.link-sez { display: inline-block; margin-top: 26px; font-weight: 600; padding: 6px 0; }
 @media (min-width: 1100px) {
-  .storia-in { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; }
-  .storia-in > .s-titolo { grid-column: 1; grid-row: 1; }
-  .storia-in > p { grid-column: 1; grid-row: 2; font-size: 19px; margin-top: 24px; }
-  .date { grid-column: 1; grid-row: 3; margin-top: 40px; }
+  .storia-in { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; align-items: start; }
+  .storia-sx, .storia-dx { display: block; }
+  .storia-p { font-size: 19px; margin-top: 24px; }
+  .storia .citazione { margin-top: 48px; font-size: 30px; max-width: 22ch; }
+  .storia-foto { display: block; }
+  .storia-foto img { width: 640px; max-width: 100%; }
+  .date { margin-top: 40px; }
   .date li { grid-template-columns: 80px 1fr; }
   .date b { font-size: 26px; }
-  .storia-in > .link-sez { grid-column: 1; grid-row: 4; justify-self: start; }
-  .storia-foto { display: block; grid-column: 2; grid-row: 1 / span 3; align-self: start; }
-  .storia-foto img { width: 640px; max-width: 100%; }
-  .storia .citazione { grid-column: 2; grid-row: 4 / span 2; margin-top: 44px; font-size: 30px; max-width: 22ch; }
 }
 
 /* FORNITURE */
-.forniture-in { padding: 0 var(--m); }
+.forniture { padding-top: 0; }
+.forn-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.forniture-in { padding: 28px var(--m) 0; }
 .forniture-in > p { margin-top: 14px; max-width: 42ch; }
 .forniture .citazione { margin-top: 30px; font-size: 21px; max-width: 34ch; }
+.recapito-lab .btn, .feste-azioni .btn { white-space: normal; text-align: center; line-height: 1.2; padding-top: 10px; padding-bottom: 10px; }
 .recapito-lab { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }
 .recapito-lab a:not(.btn) { padding: 10px 0; font-size: 17px; overflow-wrap: anywhere; }
 .forniture .nota { margin-top: 16px; font-size: 16px; color: var(--testo2); }
+@media (min-width: 760px) and (max-width: 1099px) { .forn-foto img { aspect-ratio: 16 / 9; } }
 @media (min-width: 1100px) {
-  .forniture-in { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; }
-  .forniture-in > .s-titolo { grid-column: 1; grid-row: 1 / span 4; max-width: 12ch; }
-  .forniture-in > p { grid-column: 2; margin-top: 0; font-size: 19px; }
-  .forniture .citazione { grid-column: 2; font-size: 24px; }
-  .recapito-lab, .forniture .nota { grid-column: 2; }
+  .forniture { padding-top: 88px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 72px; align-items: center; }
+  .forn-foto img { aspect-ratio: 1 / 1; }
+  .forniture-in { padding: 0 var(--m) 0 0; }
+  .forniture-in > .s-titolo { max-width: 16ch; }
+  .forniture-in > p { font-size: 19px; margin-top: 24px; }
+  .forniture .citazione { font-size: 24px; }
 }
 
 /* BACHECA */
-.bacheca { padding-top: 0; }
-.bacheca-in { padding: 0 var(--m); display: grid; gap: 22px; }
-.bacheca-in img { width: 180px; }
+.bacheca-in { padding: 0 var(--m); display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
 .bacheca h3 { font: 500 24px/1.15 var(--serif); margin-top: 8px; }
 .bacheca .post p { margin-top: 10px; max-width: 46ch; }
 .firma { font: 400 22px/1.2 var(--serif); margin-top: 12px; }
 .bacheca .link-bach { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 26px; }
 .bacheca .link-bach a { padding: 8px 0; font-size: 17px; }
-.etichetta { font: 650 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--testo2); }
-@media (min-width: 760px) { .bacheca-in { grid-template-columns: 220px 1fr; gap: 40px; align-items: start; } .bacheca-in img { width: 220px; } }
+.etichetta { font: 600 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--testo2); }
+.dolci { display: grid; grid-template-columns: 2fr 1fr; gap: 0 12px; align-items: start; max-width: 760px; }
+.dolci .d1 { grid-column: 1; grid-row: 1 / span 2; }
+.dolci .d2 { grid-column: 2; grid-row: 1; }
+.dolci .d3 { grid-column: 2; grid-row: 2; margin-top: 12px; }
+@media (max-width: 599px) { .dolci .didascalia { display: none; } }
+.dolci img { width: 100%; }
+.dolci .didascalia { padding: 0; }
 @media (min-width: 1100px) {
-  .bacheca-in { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; }
-  .bacheca-in figure { justify-self: end; }
-  .bacheca-in img { width: 300px; }
+  .bacheca-in { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 72px; align-items: start; }
+  .bacheca .post { padding-top: 8px; }
+  .dolci { gap: 0 24px; max-width: none; }
+  .dolci .d3 { margin-top: 24px; }
 }
 
 /* CHIUSURA */
@@ -281,12 +307,15 @@ section { padding: 64px 0; }
 .chiusura .frase-fonte { margin-top: 12px; font-size: 15px; color: var(--testo2); }
 .recapiti { margin-top: 34px; display: grid; gap: 30px; }
 .recapiti h3 { font: 500 23px/1.15 var(--serif); }
-.recapiti .ind { display: inline-block; margin-top: 4px; font-size: 17px; padding: 6px 0; }
-.recapiti .tel { display: block; margin-top: 8px; font: 650 24px/1.2 var(--sans); text-decoration: none; padding: 6px 0; }
+.nw { white-space: nowrap; }
+.recapiti .tipo { margin-top: 2px; font-size: 15px; color: var(--testo2); }
+.recapiti .ind { margin-top: 6px; font-size: 17px; line-height: 1.5; }
+.recapiti .ind a { display: inline-block; padding: 6px 0; }
+.recapiti .tel { display: block; margin-top: 8px; font: 600 24px/1.2 var(--sans); text-decoration: none; padding: 6px 0; }
 .recapiti .tel small { font: 400 15px/1.2 var(--sans); color: var(--testo2); margin-left: 8px; }
 .recapiti .tel:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .recapiti .orari { margin-top: 8px; font-size: 16px; line-height: 1.55; color: var(--inchiostro); }
-.recapiti .orari span { color: var(--testo2); }
+.recapiti .orari .poi { color: var(--testo2); }
 .mail { margin-top: 30px; font-size: 17px; }
 .mail a { display: inline-block; padding: 6px 0; overflow-wrap: anywhere; }
 @media (min-width: 760px) and (max-width: 1099px) {
@@ -294,45 +323,46 @@ section { padding: 64px 0; }
   .recapiti { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 1100px) {
-  .chiusura { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .chiusura { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .chiusura-foto { position: relative; }
   .chiusura-foto img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
-  .chiusura-testo { padding: 112px var(--m) 112px 72px; }
+  .chiusura-testo { padding: 88px var(--m) 88px 64px; }
   .chiusura .frase { font-size: 50px; line-height: 1.06; letter-spacing: -.02em; max-width: 19ch; }
-  .recapiti { margin-top: 52px; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .recapiti { margin-top: 48px; grid-template-columns: 1fr 1fr; gap: 40px; }
   .recapiti .tel { font-size: 26px; }
 }
 
 /* PIEDE: lo stesso legno dell'insegna. */
 .piede { background: var(--legno); color: var(--crema); padding: 52px var(--m) 28px; }
 .piede a { color: #fff; }
-.piede-alto { display: grid; gap: 28px; }
+.piede-alto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .piede-chi img { width: 112px; }
 .piede-chi p { margin-top: 14px; font-size: 16px; line-height: 1.5; color: #E7DACB; max-width: 34ch; }
 .avvisi label, .avvisi .tit { font-size: 16px; }
-.avvisi .tit { font-weight: 650; color: #fff; }
+.avvisi .tit { font-weight: 600; color: #fff; }
 .avvisi p { font-size: 15px; color: #E7DACB; margin-top: 4px; max-width: 40ch; }
 .avvisi .campo { margin-top: 12px; display: flex; gap: 8px; max-width: 440px; }
 .avvisi input[type=email] { flex: 1; min-width: 0; height: 48px; padding: 0 12px; font: 400 17px var(--sans); color: var(--inchiostro); background: #fff; border: 2px solid #fff; border-radius: 2px; }
-.avvisi button { height: 48px; padding: 0 16px; font: 650 16px var(--sans); color: var(--legno); background: var(--crema); border: 2px solid var(--crema); border-radius: 2px; cursor: pointer; transition: background-color .15s; }
+.avvisi button { height: 48px; padding: 0 16px; font: 600 16px var(--sans); color: var(--legno); background: var(--crema); border: 2px solid var(--crema); border-radius: 2px; cursor: pointer; transition: background-color .15s; }
 .avvisi button:hover { background: #fff; }
 .avvisi .consenso { margin-top: 10px; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.4; color: #E7DACB; max-width: 440px; }
 .avvisi .consenso input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--crema); }
 .avvisi .esito { margin-top: 8px; font-size: 14px; color: #fff; min-height: 1.2em; }
 .colonne { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.2); display: grid; gap: 26px; }
-.colonne h2 { font: 650 14px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #D8C6B3; }
+.colonne h2 { font: 600 14px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #D8C6B3; }
 .colonne ul { margin-top: 8px; }
 .colonne li a, .colonne li span { display: inline-block; padding: 8px 0; font-size: 16px; text-decoration: none; }
 .colonne li a:hover { text-decoration: underline; }
 .colonne li span { color: #E7DACB; padding-top: 0; }
-.legale { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.2); font-size: 14px; line-height: 1.6; color: #D8C6B3; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.legale { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.2); font-size: 14px; line-height: 1.6; color: #D8C6B3; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; }
 .legale a { color: #fff; padding: 6px 0; }
 @media (min-width: 600px) { .colonne { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1100px) {
-  .piede { padding: 80px var(--m) 32px; }
+  .piede { padding: 56px var(--m) 24px; }
+  .colonne li a, .colonne li span { padding: 6px 0; }
   .piede-alto { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; align-items: end; }
-  .colonne { margin-top: 56px; padding-top: 36px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
-  .legale { margin-top: 56px; }
+  .colonne { margin-top: 44px; padding-top: 32px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+  .legale { margin-top: 40px; }
 }
 </style>
 <script type="application/ld+json">
@@ -395,11 +425,10 @@ section { padding: 64px 0; }
   </figure>
   <figure class="ap-foto-largo">
     <img src="img/tartarughe-1060.webp" srcset="img/tartarughe-520.webp 520w, img/tartarughe-760.webp 760w, img/tartarughe-1060.webp 1060w" sizes="(min-width: 1100px) 42vw, 1px" width="1060" height="1178" alt="Tre tartarughe nel cesto, davanti al sacchetto di carta con la scritta Fornasiero srl Camin-Padova.">
-    <figcaption>Le tartarughe di stamattina, nel sacchetto della bottega.</figcaption>
   </figure>
 
   <div class="ap-testo">
-    <h1>Panificio Fornasiero, a Camin dal 1963</h1>
+    <h1>Panificio Fornasiero, <span style="white-space:nowrap">a Camin</span> dal 1963</h1>
     <p class="ap-sotto">Pane fatto da noi ogni giorno, pasta fresca all'uovo, focacce e dolci.</p>
 
     <p class="stato" id="stato" aria-live="polite">Aperti dal lunedì al venerdì, mattina e pomeriggio. Il sabato mattina in via Alsazia 3.</p>
@@ -407,15 +436,15 @@ section { padding: 64px 0; }
     <div class="negozi-ap">
       <div class="neg" data-negozio="vig">
         <div class="neg-nome"><h2>Via Vigonovese 116</h2><small>laboratorio e negozio</small></div>
-        <p class="neg-oggi" data-oggi>Lun-ven 8.30-13.45 e 16.30-20.00</p>
-        <p class="neg-sett">Lunedì-venerdì 8.30-13.45 e 16.30-20.00<br>Mercoledì pomeriggio chiuso<br>Sabato e domenica: chiedete al telefono</p>
+        <p class="neg-oggi" data-oggi>Lun-ven <span class="nw">8.30-13.45</span> e <span class="nw">16.30-20.00</span></p>
+        <p class="neg-sett">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-20.00</span><br>Mercoledì pomeriggio chiuso<br>Sabato e domenica: chiedete al telefono</p>
         <a class="btn btn-pieno" href="tel:+390498702658">Chiama 049 870 26 58</a>
         <a class="btn btn-filo" href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Vigonovese%20116%2035127%20Padova" target="_blank" rel="noopener">Mappa<span class="vh"> di via Vigonovese 116</span></a>
       </div>
       <div class="neg" data-negozio="als">
         <div class="neg-nome"><h2>Via Alsazia 3</h2><small>negozio</small></div>
-        <p class="neg-oggi" data-oggi>Lun-ven 8.30-13.45 e 16.30-19.30, sab 8.30-13.30</p>
-        <p class="neg-sett">Lunedì-venerdì 8.30-13.45 e 16.30-19.30<br>Sabato 8.30-13.30<br>Domenica: chiedete al telefono</p>
+        <p class="neg-oggi" data-oggi>Lun-ven <span class="nw">8.30-13.45</span> e <span class="nw">16.30-19.30</span>, sab <span class="nw">8.30-13.30</span></p>
+        <p class="neg-sett">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-19.30</span><br>Sabato <span class="nw">8.30-13.30</span><br>Domenica: chiedete al telefono</p>
         <a class="btn btn-pieno" href="tel:+390498705107">Chiama 049 870 51 07</a>
         <a class="btn btn-filo" href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Alsazia%203%2035127%20Padova" target="_blank" rel="noopener">Mappa<span class="vh"> di via Alsazia 3</span></a>
       </div>
@@ -440,8 +469,9 @@ section { padding: 64px 0; }
     <img src="img/panettone-840.webp" srcset="img/panettone-560.webp 560w, img/panettone-840.webp 840w, img/panettone-1200.webp 1200w, img/panettone-1560.webp 1560w" sizes="(min-width: 1100px) 56vw, 100vw" width="1560" height="1500" loading="lazy" alt="Un panettone del panificio tagliato, con la fetta gialla e l'uvetta, sul sacco di juta con l'etichetta del panificio.">
     <figcaption class="didascalia">Il panettone, sul sacco di juta del panificio.</figcaption>
   </figure>
+  <h2 class="s-titolo feste-tit" id="feste-tit" data-feste-tit>Non è Natale senza i panettoni e le focacce</h2>
+  <div class="feste-destra">
   <div class="feste-testo">
-    <h2 class="s-titolo" id="feste-tit" data-feste-tit>Non è Natale senza i panettoni e le focacce</h2>
     <p data-feste-testo>Panettone e focaccia di Natale, preparati con l'antica ricetta di Galileo Fornasiero. Si prenotano in negozio o al telefono.</p>
     <p class="piccolo">Per le pezzature e l'ultimo giorno utile, chiedete al banco o al telefono. A Pasqua: colomba e focaccia.</p>
     <div class="feste-azioni">
@@ -449,11 +479,12 @@ section { padding: 64px 0; }
       <a class="alt" href="tel:+390498705107">Via Alsazia: 049 870 51 07</a>
     </div>
   </div>
-  <blockquote class="citazione">«Sono tanti quelli che vengono a prenotare le nostre focacce, preparate come 50 anni fa.»<cite class="fonte">Fidalma, al Mattino di Padova, 30 marzo 2023</cite></blockquote>
+  <blockquote class="citazione">«Sono tanti […] quelli che vengono a prenotare le nostre focacce, preparate come 50 anni fa.»<cite class="fonte">Fidalma, al Mattino di Padova, 30 marzo 2023</cite></blockquote>
   <figure class="feste-foto2">
     <img src="img/focaccia-760.webp" srcset="img/focaccia-520.webp 520w, img/focaccia-760.webp 760w, img/focaccia-1080.webp 1080w" sizes="(min-width: 1100px) 420px, (min-width: 760px) 560px, 100vw" width="1520" height="1400" loading="lazy" alt="La focaccia veneta con la glassa di zucchero e le mandorle, sul sacco di juta con l'etichetta 50 anniversario 1963 2013.">
     <figcaption class="didascalia" style="padding:0">La focaccia con la glassa e le mandorle, sul sacco del cinquantesimo: 1963-2013.</figcaption>
   </figure>
+  </div>
 </section>
 
 <section class="pane" id="pane" aria-labelledby="pane-tit">
@@ -511,7 +542,7 @@ section { padding: 64px 0; }
     </div>
     <div>
       <h3>Panini imbottiti</h3>
-      <p class="detto">«Sono tanti quelli che vengono a farsi un panino con il prosciutto o con la mortadella.» Fidalma, 2023</p>
+      <p class="detto">«Sono tanti quelli che vengono a farsi un panino con il prosciutto o con la mortadella […]» Fidalma, 2023</p>
     </div>
     <div>
       <h3>Dolci da forno</h3>
@@ -524,28 +555,35 @@ section { padding: 64px 0; }
 
 <section class="storia" id="storia" aria-labelledby="storia-tit">
   <div class="storia-in">
-    <h2 class="s-titolo" id="storia-tit">Siamo aperti dal 1963</h2>
-    <p>Galileo Fornasiero è arrivato a Camin il primo aprile del 1963. Fidalma è al banco da sessant'anni.</p>
-    <ol class="date">
-      <li><b>1928</b><span>Gli zii Domenico e Pasquale rilevano un forno chiuso a Villatora di Saonara.</span></li>
-      <li><b>1963</b><span>La bottega di via Vigonovese, a Camin. «Tutto rigorosamente a mano.»</span></li>
-      <li><b>2013</b><span>I cinquant'anni, con quattrocento persone in festa a Camin.</span></li>
-      <li><b>2023</b><span>Sessant'anni nello stesso posto.</span></li>
-    </ol>
-    <figure class="storia-foto">
-      <img src="img/vetrina-640.webp" width="640" height="319" loading="lazy" alt="Galileo e Fidalma davanti alla vetrina di via Vigonovese 116, sotto l'insegna di legno FORNASIERO Galileo.">
-      <figcaption class="didascalia">Galileo e Fidalma davanti alla vetrina di via Vigonovese 116.</figcaption>
-    </figure>
-    <blockquote class="citazione">«Siamo Fornasiero, fornai anche nel nome. La storia della mia famiglia è una storia di pane buono, di profumo, di ricerca.»<cite class="fonte">Galileo Fornasiero, al Mattino di Padova, 12 dicembre 2013</cite></blockquote>
-    <a class="link-sez" href="storia.html">La nostra storia</a>
+    <div class="storia-sx">
+      <h2 class="s-titolo" id="storia-tit">Siamo aperti dal 1963</h2>
+      <p class="storia-p">Galileo Fornasiero è arrivato a Camin il primo aprile del 1963. Fidalma è al banco da sessant'anni.</p>
+      <blockquote class="citazione">«Siamo Fornasiero, fornai anche nel nome. La storia della mia famiglia è una storia di pane buono, di profumo, di ricerca.»<cite class="fonte">Galileo Fornasiero, al Mattino di Padova, 12 dicembre 2013</cite></blockquote>
+      <a class="link-sez" href="storia.html">La nostra storia</a>
+    </div>
+    <div class="storia-dx">
+      <figure class="storia-foto">
+        <img src="img/vetrina-640.webp" width="640" height="319" loading="lazy" alt="Galileo e Fidalma davanti alla vetrina di via Vigonovese 116, sotto l'insegna di legno FORNASIERO Galileo.">
+        <figcaption class="didascalia">Galileo e Fidalma davanti alla vetrina di via Vigonovese 116.</figcaption>
+      </figure>
+      <ol class="date">
+        <li><b>1928</b><span>Gli zii Domenico e Pasquale rilevano un forno chiuso a Villatora di Saonara.</span></li>
+        <li><b>1963</b><span>La bottega di via Vigonovese, a Camin. «Tutto rigorosamente a mano.»</span></li>
+        <li><b>2013</b><span>I cinquant'anni, con quattrocento persone in festa a Camin.</span></li>
+        <li><b>2023</b><span>Sessant'anni nello stesso posto.</span></li>
+      </ol>
+    </div>
   </div>
 </section>
 
 <section class="forniture" id="forniture" aria-labelledby="forn-tit">
+  <figure class="forn-foto">
+    <img src="img/panini-900.webp" srcset="img/panini-600.webp 600w, img/panini-900.webp 900w, img/panini-1250.webp 1250w" sizes="(min-width: 1100px) 40vw, 100vw" width="1250" height="1280" loading="lazy" alt="Panini nel cesto, davanti al sacchetto della bottega con l'indirizzo di via Vigonovese 116.">
+  </figure>
   <div class="forniture-in">
     <h2 class="s-titolo" id="forn-tit">Per bar, alberghi, ristoranti e rivendite</h2>
     <p>Siamo specializzati nella fornitura di pane per alberghi, bar, ristoranti e rivendite. Offriamo consegne a domicilio in zona Camin e dintorni.</p>
-    <blockquote class="citazione">«Per decenni abbiamo dato il pane a tante aziende della zona, agli operai delle Officine Meccaniche Stanga, della Snia Viscosa.»<cite class="fonte">Galileo e Fidalma, al Mattino di Padova, 30 marzo 2023</cite></blockquote>
+    <blockquote class="citazione">«Per decenni abbiamo dato il pane a tante aziende della zona, agli operai delle Officine Meccaniche Stanga, della Snia Viscosa […]»<cite class="fonte">Galileo e Fidalma, al Mattino di Padova, 30 marzo 2023</cite></blockquote>
     <div class="recapito-lab">
       <a class="btn btn-pieno" href="tel:+390498702658">Chiama il laboratorio: 049 870 26 58</a>
       <a href="mailto:info@panificiogalileofornasiero.it?subject=Fornitura%20pane&amp;body=Buongiorno%2C%20scrivo%20per%20una%20fornitura%20di%20pane.%0A%0ALocale%3A%0AIndirizzo%3A%0APani%20e%20quantit%C3%A0%3A%0AGiorni%3A%0ATelefono%3A">Scrivete per una fornitura</a>
@@ -556,9 +594,6 @@ section { padding: 64px 0; }
 
 <section class="bacheca" id="bacheca" aria-labelledby="bach-tit">
   <div class="bacheca-in">
-    <figure>
-      <img src="img/dolci-360.webp" srcset="img/dolci-360.webp 360w, img/dolci-756.webp 756w" sizes="(min-width: 1100px) 300px, (min-width: 760px) 220px, 180px" width="756" height="756" loading="lazy" alt="Plumcake appena sfornati negli stampi, sul banco infarinato.">
-    </figure>
     <div class="post">
       <h2 class="etichetta" id="bach-tit">La Bacheca di Romina</h2>
       <h3>Nuovi dolci!</h3>
@@ -569,6 +604,20 @@ section { padding: 64px 0; }
         <a href="bacheca-di-romina.html">Leggi la Bacheca</a>
         <a href="https://www.instagram.com/panificiogalileofornasiero/" target="_blank" rel="noopener">Le ricette su Instagram</a>
       </div>
+    </div>
+    <div class="dolci">
+      <figure class="d1">
+        <img src="img/pandispagna-760.webp" srcset="img/pandispagna-480.webp 480w, img/pandispagna-760.webp 760w, img/pandispagna-1100.webp 1100w" sizes="(min-width: 1100px) 34vw, 100vw" width="1512" height="1516" loading="lazy" alt="Pan di Spagna con la marmellata di albicocche, sul centrino, sul banco d'acciaio.">
+        <figcaption class="didascalia">Pan di Spagna pasticciato con marmellata di albicocche.</figcaption>
+      </figure>
+      <figure class="d2">
+        <img src="img/tortino-360.webp" srcset="img/tortino-360.webp 360w, img/tortino-560.webp 560w, img/tortino-760.webp 760w" sizes="(min-width: 1100px) 17vw, 50vw" width="1512" height="1496" loading="lazy" alt="Tortino di mele con le gocce di cioccolato, sul centrino.">
+        <figcaption class="didascalia">Tortino di mele e gocce di cioccolato.</figcaption>
+      </figure>
+      <figure class="d3">
+        <img src="img/plumcake-360.webp" srcset="img/plumcake-360.webp 360w, img/plumcake-560.webp 560w, img/plumcake-756.webp 756w" sizes="(min-width: 1100px) 17vw, 50vw" width="756" height="756" loading="lazy" alt="Plumcake appena sfornati negli stampi, sul banco infarinato.">
+        <figcaption class="didascalia">Plumcake negli stampi.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -584,16 +633,17 @@ section { padding: 64px 0; }
     <div class="recapiti">
       <div>
         <h3>Via Vigonovese 116</h3>
-        <a class="ind" href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Vigonovese%20116%2035127%20Padova" target="_blank" rel="noopener">35127 Camin (Padova), apri la mappa</a>
-        <a class="tel" href="tel:+390498702658">049 870 26 58 <small>laboratorio e negozio</small></a>
-        <p class="orari">Lunedì-venerdì 8.30-13.45 e 16.30-20.00<br>Mercoledì pomeriggio chiuso<br><span>Sabato e domenica: chiedete al telefono</span></p>
+        <p class="tipo">Laboratorio e negozio</p>
+        <p class="ind">35127 Camin (Padova)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Vigonovese%20116%2035127%20Padova" target="_blank" rel="noopener">Apri la mappa<span class="vh"> di via Vigonovese 116</span></a></p>
+        <a class="tel" href="tel:+390498702658">049 870 26 58</a>
+        <p class="orari">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-20.00</span><br>Mercoledì pomeriggio chiuso<br><span class="poi">Sabato e domenica: chiedete al telefono</span></p>
       </div>
       <div>
         <h3>Via Alsazia 3</h3>
-        <a class="ind" href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Alsazia%203%2035127%20Padova" target="_blank" rel="noopener">35127 Camin (Padova), apri la mappa</a>
+        <p class="ind">35127 Camin (Padova)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Alsazia%203%2035127%20Padova" target="_blank" rel="noopener">Apri la mappa<span class="vh"> di via Alsazia 3</span></a></p>
         <a class="tel" href="tel:+390498705107">049 870 51 07</a>
         <a class="tel" href="tel:+393386600664" style="margin-top:0">338 660 06 64 <small>cellulare</small></a>
-        <p class="orari">Lunedì-venerdì 8.30-13.45 e 16.30-19.30<br>Sabato 8.30-13.30<br><span>Domenica: chiedete al telefono</span></p>
+        <p class="orari">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-19.30</span><br>Sabato <span class="nw">8.30-13.30</span><br><span class="poi">Domenica: chiedete al telefono</span></p>
       </div>
     </div>
     <p class="mail">Per tutti e due i negozi: <a href="mailto:info@panificiogalileofornasiero.it">info@panificiogalileofornasiero.it</a></p>
@@ -695,7 +745,7 @@ section { padding: 64px 0; }
   };
   var GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
   function hh(m) { return Math.floor(m / 60) + '.' + ('0' + m % 60).slice(-2); }
-  function fasce(o) { return o.map(function (f) { return hh(f[0]) + '-' + hh(f[1]); }).join(' e '); }
+  function fasce(o) { return o.map(function (f) { return '<span class="nw">' + hh(f[0]) + '-' + hh(f[1]) + '</span>'; }).join(' e '); }
   function aperto(k) { var o = N[k].o[T.dow]; if (!o) return null; for (var i = 0; i < o.length; i++) if (T.min >= o[i][0] && T.min < o[i][1]) return o[i]; return null; }
   function prossimaOggi(k) { var o = N[k].o[T.dow]; if (!o) return null; for (var i = 0; i < o.length; i++) if (T.min < o[i][0]) return o[i][0]; return null; }
 
@@ -726,7 +776,7 @@ section { padding: 64px 0; }
       if (pv != null && pa != null && pv === pa) frase = '<span class="chiuso">Ora chiusi.</span> Riapriamo alle ' + hh(pv) + ' in tutti e due i negozi.';
       else {
         var kk = (pa == null || (pv != null && pv < pa)) ? 'vig' : 'als', p = kk === 'vig' ? pv : pa;
-        frase = '<span class="chiuso">Ora chiuso.</span> Alle ' + hh(p) + ' apre ' + N[kk].nome + '.';
+        frase = '<span class="chiuso">Ora chiusi.</span> Alle ' + hh(p) + ' apre ' + N[kk].nome + '.';
         if (T.dow === 3 && kk === 'als') frase += ' Via Vigonovese il mercoledì pomeriggio è chiusa.';
       }
     } else {
@@ -737,7 +787,7 @@ section { padding: 64px 0; }
       var quando = n === 1 ? 'Domani' : GIORNI[d].charAt(0).toUpperCase() + GIORNI[d].slice(1);
       var dove = (N.vig.o[d] && N.als.o[d]) ? '' : ' in ' + (N.vig.o[d] ? N.vig.nome : N.als.nome);
       if (!N.vig.o[T.dow] && !N.als.o[T.dow]) frase = '<span class="chiuso">Oggi è ' + GIORNI[T.dow] + ': chiamate prima di passare.</span> ' + quando + ' apriamo alle ' + hh(primo) + dove + '.';
-      else frase = '<span class="chiuso">Ora chiuso.</span> ' + quando + ' apriamo alle ' + hh(primo) + dove + '.' + (nonScritto ? ' La domenica, chiamate.' : '');
+      else frase = '<span class="chiuso">Ora chiusi.</span> ' + quando + ' apriamo alle ' + hh(primo) + dove + '.' + (nonScritto ? ' La domenica, chiamate.' : '');
     }
   }
   s.innerHTML = frase;

@@ -41,6 +41,19 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 - Non più usate: Pexels 4198047 (Karola G) e Unsplash W0PDHT_sYoQ (Laura Tautan), in pagina nella versione precedente; restano in `esterne/` solo come archivio della proposta.
 - Non usate nella home finale: le altre foto di `esterne/`.
 
+## Uso nella home versione 2 (`sito-v2/`, 2 novembre 2026)
+
+Solo foto del panificio, da `originali/`; nessuna foto di `esterne/`, nessuna immagine generata. Lavorate con `_prova/uso/script/v2_img.py`.
+- Vetrina con Galileo e Fidalma (`617993_02eb45f6...`): striscia della prima schermata a 390 e foto di "Chi siamo" a 1440, alla misura nativa.
+- Tartarughe nel cesto (`617993_28aa18bc...`): prima schermata a 1440, pane a 390.
+- Pane a fette nel cesto (`617993_f35f170e...`): pane a 1440.
+- Panini nel cesto davanti al sacchetto con l'indirizzo (`617993_f2c61f63...`): forniture.
+- Pani tondi davanti al sacchetto (`617993_f78248a8...`): chiusura.
+- Panettone tagliato (`b56ebf_5b27b00f...`) e focaccia sul sacco del cinquantesimo (`b56ebf_fabcdffb...`): Feste.
+- Pan di Spagna (`b56ebf_c01687dd...`), tortino di mele (`b56ebf_da6ff058...`), plumcake (`b56ebf_78f7070d...`): Bacheca di Romina.
+- Logo a cesto (`logo-cesto-667x579.png`) a una tinta crema nel piede, bruno per l'icona.
+Sono foto pubblicate dal panificio sul suo sito: per il sito nuovo serve il loro consenso.
+
 ## Immagini del sito attuale in `originali/`
 
 Scaricate il 24/10/2026 da `https://static.wixstatic.com/media/<id>` (originali di Wix, poi ridotte a 2400 px quelle più grandi). Inventario, misure, soggetto e voti in `_prova/inventario-immagini.json`.
