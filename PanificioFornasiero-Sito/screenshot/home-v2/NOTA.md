@@ -2,7 +2,7 @@
 
 Pagina: `sito-v2/index.html` (statica, si apre con file:///), immagini in `sito-v2/img/` (WebP con srcset), caratteri in `sito-v2/fonts/`. Costruita sulla scheda `_prova/uso/SCHEDA.md`, non sulla home precedente (`sito/`, che resta com'è). Tutto si rifà con `bash _prova/uso/script/build_v2.sh` (immagini, screenshot, prove d'uso).
 
-Screenshot (ora simulata lunedì 2 novembre 2026 alle 10.00, ora di Roma): `home-1440.jpg` (5695 px compreso il piede), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7129 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-320.jpg`, `home-768.jpg`, `home-1024.jpg`. La pagina legge l'ora di Roma; per le prove si forza con `index.html?ora=2026-11-15T10:00`.
+Screenshot (ora simulata lunedì 2 novembre 2026 alle 10.00, ora di Roma): `home-1440.jpg` (6361 px compreso il piede), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7279 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, più `home-320.jpg`, `home-768.jpg`, `home-1024.jpg`. La pagina legge l'ora di Roma; per le prove si forza con `index.html?ora=2026-11-15T10:00`.
 
 ## Cosa è cambiato dopo le prove (2 novembre, sera)
 
@@ -33,11 +33,19 @@ Tre clienti tipo l'hanno provata (prima la home attuale, poi questa: voti 4, 3 e
 - **Testata**: solo "FORNASIERO", come sull'insegna; la data la porta il titolo.
 - **Bacheca**: una sola foto, il pan di Spagna, a 240 px (112 a 390) accanto al testo di Romina; via tortino e plumcake.
 
-**Alta gamma, e la richiesta di mescolare caratteri, misure e impaginazioni**
-- **Tre voci con un compito fisso ciascuna.** Aggiunta Josefin Sans come voce dell'insegna: il nome in testata in corsivo spaziato (messo accanto alla foto, ricalca le lettere dipinte sopra la vetrina), le etichette maiuscole e le date grandi di Chi siamo. Erode resta per titoli, nomi dei negozi e dei pani, citazioni; Fira Sans per testo, stato, orari, telefoni e bottoni. Mai due caratteri nello stesso paragrafo.
-- **Misure mescolate**: a 1440 "Vieni a trovarci" a 96 px, i pani padovani a 50 px in una riga sola con le virgole, la citazione di Galileo a 40 px, le date in Josefin a 64 px, le etichette a 14-15 px; il titolo d'apertura sta volutamente a 46 px, perché il dato più grande e più forte della prima schermata è lo stato.
-- **Un'impaginazione diversa per ogni sezione**: apertura centrata e simmetrica sul passe-partout; Feste asimmetriche con la foto a filo del bordo (7 e 5); pane con la foto a sinistra e l'elenco come una lavagna a tre misure; Chi siamo solo parole su fondo grigio caldo, con la citazione grande e le quattro date in fila; forniture con il titolo su una riga intera e due colonne disuguali sotto; Bacheca come una nota piccola e centrata; chiusura con il titolo enorme a sinistra e i due negozi a destra.
-- **Pagina più corta**: 5695 px a 1440 (era 6987) e 7129 a 390 (era 9139). Le foto con la stessa inquadratura (cesto, pangrattato, sacchetto) sono passate da quattro a una.
+**Alta gamma, e la richiesta di mescolare caratteri, misure e impaginazioni** (ripresa la sera del 2 novembre, sezione per sezione; la prima schermata a 390 e a 1440 non è stata toccata)
+- **Tre voci con un compito fisso ciascuna.** Josefin Sans è la voce dell'insegna: il nome in testata in corsivo spaziato (messo accanto alla foto, ricalca le lettere dipinte sopra la vetrina), le etichette maiuscole e le date grandi di Chi siamo. Erode per titoli, nomi dei negozi e dei pani, citazioni; Fira Sans per testo, stato, orari, telefoni e bottoni. Mai due caratteri nello stesso paragrafo. Perché queste: vedi "Caratteri e colori".
+- **Misure mescolate, con contrasti voluti dentro la stessa sezione**: nel pane il titolo scende a 44 px e i cinque pani padovani salgono a 80 px (erano 50), sopra un elenco a 17 px; in Chi siamo il titolo è a 34 px, la frase di Galileo a 58 px (era 40) e le quattro date a 96 px (erano 64) con le righe sotto a 16 px; "Vieni a trovarci" a 96 px accanto ai telefoni a 28 px. Il titolo d'apertura resta a 46 px, perché il dato più forte della prima schermata è lo stato a 34 px.
+- **Un'impaginazione diversa per ogni sezione, mai due uguali di fila** (prima il pane e Chi siamo ripetevano la griglia 5 e 7 delle Feste, con la foto ancora a sinistra):
+  1. apertura: centrata e simmetrica, la vetrina a misura nativa sul passe-partout (invariata);
+  2. fascia delle Feste: una riga a tutta larghezza (invariata);
+  3. Feste: titolo su una riga intera, sotto la foto del panettone a filo del bordo sinistro (7 parti) e il testo a destra (5);
+  4. pane, nuovo: tipografica, come la lavagna del banco. Titolo piccolo e frase, poi i cinque nomi su tutta la larghezza a 80 px; sotto, metà e metà: l'elenco in tre colonne e il forno in due a sinistra, le tartarughe a destra a filo del bordo destro. A 768-1099 i cinque nomi uno sotto l'altro a sinistra e la foto a destra; a 390 i nomi uno per riga a 36 px, senza virgole;
+  5. Chi siamo, nuovo: una frase grande da sola, tutto centrato sul grigio caldo (titolo piccolo, frase di Galileo, firma, le quattro date in fila); a 390 resta a sinistra, con la frase a 26 px e le date a 48;
+  6. forniture: titolo su una riga intera e due colonne disuguali sotto, solo testo (invariata);
+  7. Bacheca: una nota piccola e centrata, 1000 px, con una foto da anteprima (invariata);
+  8. chiusura: titolo enorme a sinistra, i due negozi a destra (invariata).
+- **Pagina**: 6361 px a 1440 (era 5695; resta tra 4500 e 7000) e 7279 a 390 (era 7129). Dopo il clic su "Il pane" a 1440 i 20 nomi stanno ancora tutti nei 900 px.
 
 ## Per ogni visitatore della scheda: cosa trova e dove
 
@@ -49,9 +57,12 @@ Tre clienti tipo l'hanno provata (prima la home attuale, poi questa: voti 4, 3 e
 
 ## Caratteri e colori
 
+Scala a 1440 (dieci livelli, ognuno con un compito): 14-15 px didascalie, etichette e riga legale; 16-17 px piede, elenchi, orari; 19 px testo delle sezioni; 24-28 px nomi dei negozi, telefoni della chiusura, fascia; 34 px stato e titolo di Chi siamo; 44-46 px titolo d'apertura e del pane; 52-60 px titoli di Forniture e Feste; 58 px la frase di Galileo; 80 px i pani padovani; 96 px le date e "Vieni a trovarci". A 390: 14, 16-17, 21 (stato), 26-27 (titolo, frase di Galileo), 32 (titoli), 36 (pani padovani), 40 (chiusura), 48 (date).
+
 - Josefin Sans (Santiago Orozco, Typemade; Google Fonts, SIL Open Font License 1.1), file variabile latin, dritto e corsivo: la voce dell'insegna (nome in testata, etichette, date).
 - Erode 400 e 500 (Indian Type Foundry, Fontshare, ITF Free Font License, uso commerciale gratuito): titoli, nomi dei negozi e dei pani, citazioni; mai in corsivo.
 - Fira Sans 400, 500 e 600 (Carrois Apostrophe per Mozilla, Google Fonts, SIL Open Font License 1.1): testo, stato, orari, bottoni, piede; cifre tabellari, zero senza barra.
+- Perché questa accoppiata, per un panificio di quartiere: le loro tre scritture sono l'insegna di legno (maiuscole bastone spaziate, in corsivo: Josefin Sans ha la stessa geometria anni Trenta), il sacchetto e il logo a cesto (un serif caldo da stampa di bottega: Erode, con le grazie morbide e il contrasto basso, regge i nomi dei pani grandi senza diventare da galleria) e le cose da leggere in fretta, cioè orari e numeri, per clienti spesso anziani al telefono (Fira Sans: occhio grande, cifre chiare e tabellari, molto leggibile a 16-21 px). Niente corsivo serif, niente Inter, nessun carattere delle liste da evitare.
 - I file sono serviti dalla pagina in `sito-v2/fonts/` (copie scaricate in `_prova/crawl/fonts-josefin/`). Nessun carattere delle liste da evitare della guida.
 - Colori (contrasti WCAG): carta del sacchetto #FBFAF7 con inchiostro bruno #2A1E17 (15,5:1) e testo secondario #5C4A3E (8,0:1); passe-partout e Chi siamo #F3EFE8 (il sacchetto in ombra); legno dell'insegna #4A2E1F per testata, bottoni e piede (bianco sul legno 12,3:1; #D8C6B3 e #E7DACB sul legno oltre 7:1); bordeaux della scritta "Fornasiero dal 1963" #733129 per la fascia delle Feste, le date e lo stato "chiuso" (bianco sul bordeaux 9,5:1); verde #2C6A3C solo per "aperto" (6,2:1). Il fondo non è un beige di comodo: è il bianco del loro sacchetto e il legno della loro insegna.
 
@@ -76,10 +87,10 @@ Logo e una riga su chi sono; la riga sulle prenotazioni al telefono e Instagram 
 
 ## Controlli (2 novembre 2026, dopo le prove)
 
-- Screenshot guardati a pezzi: 1440 intera e prima schermata, 390 intera e prima schermata, 320, 640, 690, 768, 1024.
+- Screenshot guardati a pezzi: 1440 intera e prima schermata, 390 intera e prima schermata, 320, 640, 690, 768, 1024; dopo il nuovo impianto del pane e di Chi siamo di nuovo 1440, 390, 320, 768 e 1024 (nessuna sovrapposizione, nessuno scorrimento orizzontale, prima schermata a 390 con le stesse misure: stato a 355 px, quattro tel: e due mappe, fascia a 796).
 - Prove d'uso (`_prova/uso/script/v2_prova.mjs`): stato a 26 ore e giorni diversi, tra cui lunedì 13.40 e 14.15, mercoledì 14.30 e 17.00, venerdì 20.30, sabato 7.30, 10.00 e 14.00, domenica, 8/12, 24/12, 25/12, 31/12 sera, 1/1, 6/1, Pasquetta 2027, 25/4, 13/6, 15/8: nei festivi nessun pallino verde e nessun "aperto". A 390x844 il 15 novembre: quattro tel: (52, 48, 52 e 48 px) e due mappe (52 px) nei primi 844 px, le due eccezioni della settimana visibili, la fascia finisce a 796. Feste il 14/12, il 16/12, il 23/12 alle 12 e alle 14, il 15/6, il 20/3 e il 25/3/2027; con JavaScript spento. Arrivo da "Negozi e orari", "Il pane", "Forniture e consegne", "Chiama" a 390 e a 1440.
 - Nessuno scorrimento orizzontale a 320, 360, 390, 430, 599, 600, 768, 1024, 1099, 1100, 1280, 1440, 1920, 2560 (a 600 c'era: i due negozi affiancati non ci stavano, ora si affiancano da 720); nessuna ancora rotta; nessun link a pagine locali che non esistono.
-- Segnali da IA (`_metodo/kit/segnali.sh` a 1440): 1 soglia da correggere su 10, l'area delle foto, scesa al 16,9 % (era 35,1 %) perché ho tolto le tre foto con la stessa inquadratura del cesto, come chiesto dal giudice d'identità. Non la rialzo con altre foto uguali o di repertorio: la rialzano le riprese elencate nel LEGGIMI. Da guardare: 5 fasce di fondo (passe-partout, fascia delle Feste, Chi siamo, piede, e la carta), le quattro date grandi (sono il contenuto), tre famiglie di caratteri (ognuna con un compito fisso, per la richiesta del committente).
+- Segnali da IA (`_metodo/kit/segnali.sh` a 1440): 1 soglia da correggere su 10, l'area delle foto, al 16,8 % (era 35,1 % prima delle prove; la foto delle tartarughe ora è a metà pagina invece che a 5 parti su 12, ma la pagina è più lunga) perché ho tolto le tre foto con la stessa inquadratura del cesto, come chiesto dal giudice d'identità. Non la rialzo con altre foto uguali o di repertorio: la rialzano le riprese elencate nel LEGGIMI. Titolo a sinistra e paragrafo a destra: 1 sezione (la chiusura; il pane non lo è più). Da guardare: 5 fasce di fondo (passe-partout, fascia delle Feste, Chi siamo, piede, e la carta), le quattro date grandi (sono il contenuto), tre famiglie di caratteri (ognuna con un compito fisso, per la richiesta del committente).
 - Divieti del committente: nessun gradiente, nessuna icona, nessuna card con ombra, niente vetro, niente corsivo serif, niente badge, niente dissolvenze, niente legende numerate, nessun oggetto scontornato.
 - Nessun carattere U+2014 in pagina, negli script e in questa nota.
 
