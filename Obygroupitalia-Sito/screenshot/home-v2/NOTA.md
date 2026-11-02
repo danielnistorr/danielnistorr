@@ -7,9 +7,9 @@ Schermate in questa cartella: `home-1440.jpg` (5501 px di altezza, piede compres
 ## Cosa trova ogni visitatore, e dove
 
 **1. Il danneggiato, da telefono, la sera del danno.**
-- Senza scorrere, a 390x844: il tasto rosso "Chiama" fisso nella testata (chiama il cellulare, resta visibile a ogni altezza di scorrimento); il loro claim "Quando il danno diventa serio, noi entriamo in azione"; una riga con cosa fanno e da dove (incendi, allagamenti, grandine, amianto; case, condomini e aziende; pratiche burocratiche comprese; da Longare, VI); due bottoni alti 62 px "Chiama il cellulare 340 834 9597" e "Chiama gli uffici 0444 1329022"; il link "Manda le foto del danno per mail" (mailto con oggetto "Foto del danno" e un testo già pronto: indirizzo, tipo di danno, nome e telefono, compagnia); il secondo cellulare 393 911 4656; quattro scorciatoie (Incendio, Allagamento, Grandine e tetti, Industria); sotto, la striscia della loro foto del condominio ponteggiato.
-- Allo scorrimento successivo: i quattro danni, ognuno con la loro riga vera, una loro foto e cosa salvano; il richiamo "Hai un problema specifico? Chiamaci subito." con i due numeri.
-- Poi il campo rosso "Nessuna incombenza burocratica, pensiamo noi a tutto": i nove passaggi del loro pronto intervento tutti in vista, in ordine, e di nuovo il link per mandare le foto.
+- Senza scorrere, a 390x844: il loro claim "Quando il danno diventa serio, noi entriamo in azione"; una riga con cosa fanno e dove (incendi, allagamenti, grandine, amianto; case, condomini e aziende; pratiche burocratiche comprese; da Longare, VI, in Veneto e fuori regione); due bottoni alti 62 px "Chiama il cellulare 340 834 9597" e "Chiama gli uffici 0444 1329022"; il bottone "Manda le foto del danno" (mailto con oggetto "Foto del danno" e un testo già pronto: indirizzo, tipo di danno, nome e telefono, compagnia); il secondo cellulare 393 911 4656 con un'area di tocco di 44 px; quattro scorciatoie (Incendio, Allagamento, Grandine, Amianto). Scorrendo, una barra fissa in basso con "Cellulare" e "Uffici", ognuno col suo numero.
+- Allo scorrimento successivo: i quattro danni, ognuno con una loro foto (miniatura di 88 px sul telefono) e una riga su cosa fanno.
+- Poi il campo rosso "Nessuna incombenza burocratica, pensiamo noi a tutto": tre passi per il cliente (chiamata o foto, sopralluogo, pratiche) e sotto gli otto lavori di cantiere del loro pronto intervento, tutti in vista.
 
 **2. L'ufficio sinistri, da computer.**
 - Nella prima schermata a 1440 l'accesso "Compagnie assicurative e Starflex" porta con un clic alla sezione; il PDF è il secondo clic.
@@ -20,7 +20,7 @@ Schermate in questa cartella: `home-1440.jpg` (5501 px di altezza, piede compres
 - Accesso "Aziende e bonifiche industriali" nella prima schermata.
 - La sezione ha l'elenco completo con le loro parole: le 14 voci della home di oggi più le righe della pagina Pronto intervento (ATEX, serbatoi, silos e cisterne, escavatori a risucchio, reti gas, fune, sabbiature, fotovoltaico, manti stradali, smaltimento rifiuti). Si trovano tutte con Ctrl+F.
 - Il gesto della pagina è qui: si segnano i lavori che servono e il bottone "Prepara la mail di richiesta" apre una mail a info@ con l'elenco già scritto nell'oggetto e nel testo, pronta per allegare capitolato e foto. Funziona col dito e con la tastiera (sono caselle vere); senza JavaScript il bottone apre comunque una mail di richiesta. Accanto, il telefono degli uffici.
-- La foto vera di cantiere: l'operatore nel cunicolo; in chiusura i due tecnici in fune sulla pala eolica.
+- Le foto vere di cantiere accanto all'elenco: i tecnici in fune sulla pala eolica e il cunicolo; sotto, attrezzature e la richiesta dei documenti dell'impresa.
 
 ## Dopo le prove con i clienti tipo (rifinitura del 2 novembre)
 
@@ -58,8 +58,8 @@ Tre clienti tipo hanno provato la v2 (danneggiato da telefono 7,5; ufficio sinis
 Un'impresa d'azione che si chiama con un tocco. La pagina è prima di tutto un posto da cui telefonare, scritto con le loro frasi (il claim, "pensiamo noi a tutto", "Ti riconsegnamo il tuo bene nelle condizioni originarie", "Ripristiniamo a nuovo e tutto torna come prima"), con le loro foto vere a misura onesta e tre porte esplicite per i tre pubblici.
 
 Scelte che non ci sono nelle altre home della campagna:
-- **titolo d'apertura pieno, peso 800**, al posto dei titoli sottili: è il loro tono secco e il nero pieno della scritta del logo;
-- **foto verticale a tutta altezza a filo del bordo destro e sotto la testata**, accanto a un elenco di tre porte impilate (non un oggetto scontornato con legende);
+- **il claim a tutta riga sopra tre colonne** (telefoni, la foto vera a misura sua, le tre porte), su bianco pieno: la foto non è a filo del bordo e non è scontornata;
+- **la chiusura che fonde chi siamo e contatti** in una sola tabella, con il condominio a filo del bordo sinistro;
 - **un campo pieno nel rosso del logo** (#E41D25) per il loro pronto intervento, l'unico cambio di fondo forte della pagina;
 - **la richiesta che si compone segnando i lavori**, invece di un gesto dimostrativo.
 
@@ -67,8 +67,8 @@ Niente legende numerate sull'oggetto, niente didascalie "Fig.", niente righello:
 
 ## Caratteri e colori
 
-- **Atkinson Hyperlegible Next** (Google Fonts, SIL Open Font License 1.1, testo della licenza in `sito-v2/fonts/OFL.txt`), un solo carattere variabile da 200 a 800, servito dalla pagina (`sito-v2/fonts/`, latin e latin-ext, 53 KB). È disegnato dal Braille Institute per essere letto da chi vede poco o ha fretta: ogni cifra e ogni lettera si distingue (lo zero barrato, la l e la I), ed è quello che serve a chi legge un numero di telefono la sera di un incendio. Ha le cifre tabellari, usate per tutti i numeri. Non è nelle liste della guida e non è usato in nessun'altra home della campagna. Titoli 700 e 800, testo 400, etichette 500 e 600.
-- **Colori**: fondo #F2F4F3, un bianco freddo come le tute monouso e la membrana bianca di Starflex che compaiono nelle loro foto; inchiostro #231F20 (il nero del logo); grigio #575D5B per i testi secondari (5,5:1 sul fondo); rosso #E41D25 del logo per i bottoni di chiamata e il campo del pronto intervento (bianco sul rosso 4,7:1); rosso #C4161C per il numero grande della chiusura su fondo chiaro (5,5:1). Piede su bianco. Contrasto AA su tutti i testi.
+- **Atkinson Hyperlegible Next** (Google Fonts, SIL Open Font License 1.1, testo della licenza in `sito-v2/fonts/OFL.txt`), un solo carattere variabile da 200 a 800, servito dalla pagina (`sito-v2/fonts/`, latin e latin-ext, 53 KB). È disegnato dal Braille Institute per essere letto da chi vede poco o ha fretta: ogni cifra e ogni lettera si distingue (lo zero barrato, la l e la I), ed è quello che serve a chi legge un numero di telefono la sera di un incendio. Cifre proporzionali per i telefoni, tabellari solo per P.IVA e REA. Non è nelle liste della guida e non è usato in nessun'altra home della campagna. Titoli 700, testo 400, etichette 500 e 600.
+- **Colori**: fondo bianco #FFFFFF; inchiostro #231F20 (il nero del logo, 16,3:1); grigio #575D5B per i testi secondari (6,7:1); rosso #E41D25 del logo per i bottoni di chiamata, la barra del telefono e il campo del pronto intervento (bianco sul rosso 4,7:1); rosso #C4161C per il numero grande della chiusura e la frase Starflex (6,0:1). Contrasto AA su tutti i testi.
 
 ## Foto: origine e licenza
 
@@ -79,7 +79,7 @@ Tutte le foto della pagina vengono dal sito di Oby (`assets/originali/`, scarica
 | Apertura | `9e96e5_719b9e17…jpg` 567x522 | tetto bruciato dall'alto con due operatori | a 1440 a 532 px, sotto la misura vera; a 390 una striscia |
 | Incendio | `9e96e5_719b9e17…jpg` 567x522 | dettaglio delle travi bruciate | stesso scatto dell'apertura, altro taglio |
 | Allagamento | `9e96e5_35be21fc…jpg` 850x585 | locale tecnico allagato | |
-| Grandine e maltempo | `9e96e5_b269c5a1…jpg` 1155x1062 | mansarda con le macchie d'acqua | sul sito oggi sta sotto "ambienti confinati": va confermato che è un danno da infiltrazione |
+| Grandine, maltempo e infiltrazioni | `9e96e5_b269c5a1…jpg` 1155x1062 | mansarda con le macchie d'acqua | sul sito oggi sta sotto "ambienti confinati": va confermato che è un danno da infiltrazione |
 | Amianto | `9e96e5_080feb51…jpg` 567x528 | tetto in fibrocemento | |
 | Industria | `9e96e5_ec8a1c18…jpg` 450x496 | operatore in tuta bianca nel cunicolo | tagliato sotto la schiena, senza il logo da confermare |
 | Starflex | `9e96e5_c7d17813…webp` 1701x1687 | fibrocemento rivestito accanto al fotovoltaico | forse foto di MPM: uso da confermare |
@@ -90,10 +90,8 @@ La foto Starflex con lo skyline di Milano non è usata. Le Pexels della home pre
 
 ## Controlli
 
-- `segnali.sh`: 16 soglie su 18 a posto. Restano due da correggere, con il motivo:
-  - area coperta da foto 23,7 % contro il 35 %: le loro foto vere sono poche e piccole (da 450 a 1155 px) e la scheda chiede di non presentare repertorio come lavoro loro. Il rimedio è la giornata di fotografia scritta nel LEGGIMI, non le Pexels;
-  - un titolo in due frasi, "Meno costi oggi. Meno sinistri domani.": è la frase della loro brochure 2026 per le assicurazioni, lasciata com'è.
-- Prove della scheda a 390x844: due bottoni di chiamata con il numero scritto, interamente sopra y=844, alti 62 px; "Allagamento" a y=534 e "Longare (VI)" a y=202; il mailto delle foto a y=463; "pensiamo noi a tutto" nella seconda sezione; tasto Chiama visibile a metà pagina. A 1440: accesso "assicurazioni" e "Starflex" senza scorrere, PDF in due clic.
+- `segnali.sh` (prima della rifinitura): 16 soglie su 18. Restava l'area coperta da foto, bassa perché le loro foto vere sono poche e piccole: il rimedio è la giornata di fotografia scritta nel LEGGIMI, non le Pexels.
+- Prove della scheda dopo la rifinitura, a 390x844: due bottoni di chiamata con il numero scritto, interamente sopra y=844, alti 62 px; "Allagamento" a y=588 e "Longare (VI)" a y=196; il bottone delle foto a y=478; "pensiamo noi a tutto" a y=1710; barra di chiamata visibile a metà pagina. A 1440: porte "Compagnie assicurative" e "Aziende e industria" senza scorrere, PDF in due clic, bottone della richiesta nella schermata dopo il salto.
 - Gesto provato con il dito e con la barra spaziatrice (`_prova/uso/script/prova_gesto_v2.mjs`): due lavori segnati finiscono nell'oggetto e nel testo della mail.
 
 ## Niente newsletter
