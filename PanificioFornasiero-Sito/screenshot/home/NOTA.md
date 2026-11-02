@@ -2,7 +2,7 @@
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP a più larghezze con srcset), caratteri in `sito/fonts/`. Si rigenera tutto con `_prova/script/build_finale.sh`.
 
-Screenshot: `home-1440.jpg` (6267 px compreso il piede), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7925 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`.
+Screenshot: `home-1440.jpg` (6255 px compreso il piede), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7913 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`.
 
 ## Idea
 
@@ -54,7 +54,7 @@ Logo e una riga su chi sono; newsletter "Gli avvisi di Romina" (prenotazioni del
 
 - Screenshot guardati a pezzi: 1440 intera e prima schermata, 390 intera e prima schermata, 320, 768, 1024, 1280x720, 1920.
 - scrollWidth uguale a innerWidth a 320, 360, 390, 430, 600, 601, 768, 900, 901, 1024, 1100, 1101, 1280, 1440, 1680, 1920 e 2560 (`_prova/script/controlli.mjs`).
-- Altezza a 1440: 6267 px compreso il piede.
+- Altezza a 1440: 6255 px compreso il piede.
 - Gesto (`_prova/script/prova_gesto.mjs`, orologio finto, ora di Roma): lunedì 10.00 e 14.30, mercoledì 10.00 e 17.00 (si apre su via Alsazia), venerdì 21.00, sabato 10.00 (via Alsazia aperta, via Vigonovese "meglio chiamare") e 15.00, domenica 10.00; frecce, Home e Fine da tastiera; tocco a 390; menu del telefono.
 - Collegamenti: tel:+390498702658, tel:+390498705107, tel:+393386600664, mailto:info@panificiogalileofornasiero.it, due link alla mappa (via Vigonovese 116 e via Alsazia 3), nessuna ancora rotta.
 - Segnali da IA (`_metodo/kit/segnali.sh`): 0 soglie bloccanti su 10, 0 da guardare su 8; foto al 38,4 % della pagina, 3 misure di H2, un solo titolo col punto (la citazione di Galileo), 4 filetti larghi, nessun mono, nessun badge, nessuna freccia, nessuna numerazione.
