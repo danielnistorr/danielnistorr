@@ -4,11 +4,20 @@ Proposta non richiesta, solo la home. Azienda: Belletti S.r.l., ascensori, Via d
 
 ## Dove sta cosa
 
-- `sito/index.html`: la home, statica, che si apre con file:///. `sito/img/` contiene solo le immagini usate (WebP alla misura giusta e il logo SVG), `sito/fonts/` il carattere Radio Canada con la licenza `OFL.txt`.
+- `sito/index.html`: la home ibrida del 3/11/2026, statica, che si apre con file:///. `sito/img/` contiene solo le immagini usate (WebP alla misura giusta, il logo SVG e la sua variante chiara per i fondi scuri), `sito/fonts/` il carattere Outfit con la licenza `OFL.txt`.
+- `_prova/alto/`: direzione (`DIREZIONE.md`), provini, misure della sezione D (`misura-d.mjs`, `misura-d.json`), script delle immagini e dei controlli (`script/`). `_prova/versione-pro/`: la home professionale di prima, con i suoi screenshot.
 - `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (che cosa è cambiato, i compiti della scheda d'uso, l'esito delle 15 regole del livello professionale, foto, caratteri, controlli).
 - `_prova/script/build_finale.sh`: rifà immagini (`pro_img.py`), controlli dei testi, screenshot (`shot_finale.mjs`), regole (`pro_controlli.mjs`, esito in `_prova/pro_controlli.json`) e prova d'uso (`pro_prova.mjs`: menu, ancore, modulo).
 - `_prova/versione-1-originale/`: la home di prima ("Il carattere dell'edificio"), con i suoi screenshot e la sua NOTA.
 - `_prova/uso/SCHEDA.md`: chi apre il sito e per fare che cosa. `01-analisi.md`: fatti e fonti. `assets/CREDITI.md`: origine delle foto.
+
+## Home ibrida (3/11/2026): che cosa cambia per questo file
+
+- **Carattere**: Outfit al posto di Radio Canada (sotto, Licenze).
+- **Foto**: le stesse fonti di prima (depliant 2008 e redazionale DiBaio), riscelte e rifatte. Gli originali di `assets/originali/` erano spariti con un riavvio: il depliant è stato riscaricato da bellettiascensori.it (`/pdf/pubblicita/belletti_depliant.pdf`) e le immagini rifatte con `pdfimages` in `assets/originali/depliant/`; il redazionale DiBaio di Martellago non è più online (404), quindi Ca' della Nave viene dalla copia della versione professionale (`assets/originali/dibaio/`). In pagina: `d-027` (apertura, targa sfocata), `d-037` (Galleria Cavour), `d-020` (Ca' Michiel), Ca' della Nave, `d-033` (tecnico), `d-036`, `d-029`, `d-030`, `d-026` (le quattro tessere "Per quale edificio?"), `d-043` (ufficio). Tolte le foto delle gallerie del sito (`fn000053`, `fn000257`, `fn000171`) e `d-002`.
+- **Testi da confermare**: in pagina non ci sono più "di norma i guasti si risolvono entro la stessa giornata" (punto 1), "4 generazioni" e "35 dipendenti" (punti 8 e 9). Il caso fuori orario resta, con la domanda del punto 1. Il secondo caso ora dice "I nostri tecnici analizzano le cause e ripristinano l'impianto nel più breve tempo", parole del sito (`assistenza.aspx`).
+- **Da chiedere in più**: la foto della tessera "Casa" (`d-029`) mostra un piccolo ascensore accanto a una scala in pietra; serve sapere se è una piattaforma in un'abitazione, o una foto vera di una piattaforma in casa.
+- Il link al modulo nel piede e la colonna dei contatti del piede non ci sono più: i recapiti stanno solo nei contatti, il piede tiene i dati legali, le voci del sito, la zona e lo sponsor.
 
 ## Il modulo di contatto va collegato
 
@@ -70,13 +79,13 @@ Se gli originali mancano, servono due giorni di fotografia, un solo fotografo e 
 
 ## Licenze
 
-- **Carattere**: Radio Canada, Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina in `sito/fonts/`, licenza in `sito/fonts/OFL.txt`.
+- **Carattere**: Outfit (The Outfit Project Authors), SIL Open Font License 1.1, uso commerciale libero; file woff2 variabili da `@fontsource-variable/outfit` 5.1.0, serviti dalla pagina in `sito/fonts/`, licenza in `sito/fonts/OFL.txt`. Fino alla versione professionale era Radio Canada (stessa licenza).
 - **Foto**: di Belletti, con i diritti da confermare (sopra). Le foto di repertorio scaricate per i prototipi in `assets/esterne/` (licenze in `assets/CREDITI.md`) non sono nella home.
 - **Logo**: vettoriale vero, estratto dai tracciati della pagina 28 del depliant del 2008 (`assets/originali/logo-belletti-depliant.svg`, script `_prova/script/logo_svg.py`).
 
 ## Link della pagina
 
-- Menu e piede portano alle sezioni della home (`#assistenza`, `#ammodernamento`, `#impianti`, `#lavori`, `#storia`, `#contatti`, `#qualita`); le schede degli impianti e i bottoni "sopralluogo" e "preventivo" aprono il modulo (`#richiesta`) con il tipo già scelto.
+- Menu e piede portano alle sezioni della home (`#assistenza`, `#condominio`, `#casa`, `#edifici`, `#lavori`, `#storia`, `#qualita`, `#contatti`); i link delle tessere "Per quale edificio?" e "Chiedete un preventivo di manutenzione" aprono il modulo (`#richiesta`) con il tipo già scelto.
 - Privacy e Cookie puntano a `privacy/` e `cookie/` del sito nuovo (oggi c'è il PDF `Privacy.pdf`). Aperti da file:// non portano a niente: le due pagine vanno create nel sito vero prima di pubblicare.
 - Fuori dal sito: Google Maps (indicazioni e mappa per Via della Tecnica 29, Mestrino), YouTube https://www.youtube.com/@BellettiAscensori.
 

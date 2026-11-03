@@ -1,5 +1,127 @@
 # Unicar, home: nota di progetto
 
+## Metodo ibrido (novembre 2026)
+
+Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (sito intero e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`. Provini delle foto: `_prova/alto/provini.jpg`. Confronti: `_prova/alto/confronto-1440.jpg` (professionale, ibrida, Eberhard, Auto Bayertz) e `_prova/alto/confronto-390.jpg`.
+
+### Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice ha dato 6,5 (prima 5,5): non passavano D1 (il mestiere non si legge nella miniatura), D8 (6.252 px con i tetti veri) e D12 ("Aperto ora" in tre posti). Questo ritocco vale sopra il resto della sezione: dove le righe più sotto dicono altro (sette sezioni, i 20 comuni, la formazione, lo stato in apertura), vale questo. La home di prima è copiata in `_prova/alto/prima-del-ritocco/index.html` (la striscia `squadra-939.webp` si rifà con la versione precedente di `immagini.py`). Schermate di lavoro in `_prova/alto/ritocco/`, miniatura D1 in `_prova/alto/ritocco/d1-300.jpg`.
+
+**Apertura (D1, D3, D12)**
+- Il mestiere esce dalla fascia in basso e va subito sotto il motto: "Assistenza e ricambi per carrelli elevatori, Padova" a 40 px peso 600, su 8 colonne, 32 px sotto il motto, "carrelli elevatori," mai spezzato (32 px sotto i 1200, 28 sotto i 900, 23 sul telefono). Nella miniatura a 300 px la riga è alta 8 px e si legge.
+- Il blocco motto e mestiere scende in basso (`align-content:end`): il vuoto sta sopra, come cielo; 64 px tra il fondo del mestiere e il filetto a 1440x900 e a 1920x1080. Il motto passa da 176 a 162 px a 1440x900 (`min(12.2vw, 18vh)`), perché le due righe del mestiere ci stiano; a 1920 resta 188.
+- Nella fascia in basso restano solo gli orari a 17 px e il bottone: "Lunedì-venerdì 8-12.30 e 14-18.30. Fuori orario, scriveteci" (email con la traccia del carrello fermo, testo fisso). "Aperto ora" non è più in apertura né in testata.
+- Testata in apertura: il telefono esce con `display:none` invece di `visibility:hidden`, così il menu finisce a 1350 px (1590 a 1920), sul bordo destro della griglia e del bottone.
+
+**Sotto la piega (D8, D10, D12)**
+- Ricambi e Controlli sono una sezione sola, grigia, "Ricambi e normative di sicurezza" (la voce "Normative di sicurezza" è del loro sito), con due colonne uguali: a sinistra il titolo loro dei ricambi a 24 px, il testo, "Cosa mandarci", "Chiedete un ricambio" e "Copia il testo"; a destra "Catene ogni tre mesi, tagliando ogni anno" a 24 px, l'articolo 71 e "Chiedete un preventivo". I link del menu `#ricambi` e `#controlli` portano alle due colonne. Un `h2` in meno; sezioni tra apertura e piede da 6 a 5.
+- Servizi: titolo "Su tutte le marche e modelli" (dal loro "tutte le marche e modelli"), per non ripetere "Ricambi". La riga 08 "Formazione carrellisti" è tolta (da confermare), con la sua voce nel modulo; al suo posto "Vendita e noleggio" con la consociata Cami2 (link a cami2.it, freccia esterna). Il link a cami2.it in Chi siamo è tolto, perché c'è già lì e in testata.
+- Chi siamo, il culmine (914 px): la squadra è solo il pannello centrale del vecchio banner (`testata/008.jpg`, x 309-593), 284 x 249 alla misura vera, senza le due fasce bianche, nelle colonne 1-3, uguale a tutte le larghezze (a 320 si stringe a 280, mai ingrandita). Accanto, colonne 5-12, la loro frase dei tre passi intera, a 28/38, divisa sulle tre azioni (01 esame tecnico approfondito, 02 piano d'intervento, 03 metodo concordato con il cliente), poi Cami2. Il motto a 56 px resta sopra.
+- Orari e contatti (prima "Orari e zona", anche nel menu): l'unico posto dello stato aperto/chiuso, con la riga a 15 px "Orari della sede di via Canada, da confermare con l'officina". Sotto, tre strade: In officina (indirizzo, "negli orari qui sopra", Indicazioni stradali), Per email (unicar@protec.it, per carrello fermo fuori orario, ricambi e preventivi), Per fax.
+- Dati da confermare tolti: l'elenco dei 20 comuni (resta "Padova e provincia", testo loro), "Fuori provincia? Chiamateci", la formazione carrellisti, "il magazzino è in via Canada 12, con l'officina" (anche la didascalia della sede ora dice "Officina e furgoni dell'assistenza"). I carrelli sostitutivi restano con la frase del loro sito (pagina servizi/assistenza, fonte nel commento del codice).
+- Finiture: "r.a." resta sulla riga del numero anche sul telefono (36 px sotto i 360); nel piede ragione sociale, Privacy e Cookie sulla stessa linea di base; sul telefono i due bottoni di Ricambi e Controlli sono larghi come la colonna.
+
+**Misure dopo il ritocco** (`_prova/alto/misura-d.mjs`, ora con i tetti veri della D8: 450-750 parole, al massimo 6 sezioni tra apertura e piede, 4.000-6.000 px): 40 controlli su 40 passano a lunedì 10.00 e a 20.00 (`_prova/alto/ritocco/misure-10.txt` e `misure-20.txt`).
+
+| Controllo | Prima del ritocco | Dopo |
+|---|---|---|
+| Cliccabili a 1440 / a 390 | 6 (7 fuori orario) / 2 | 7 / 3, a tutte le ore (soglie 8 e 4) |
+| Caratteri a 1440 fuori dalla testata | 140 (151) | 152 (soglia 160) |
+| Bottoni in apertura / in pagina | 1 / 5 | 1 / 5 |
+| Bottone di chiamata a 390 | fondo a 479 | fondo a 486, alto 56 |
+| Motto a 1440x900 | 176 px | 162 px (188 a 1920) |
+| Mestiere | 24 px, in fondo | 40 px sotto il motto, 64 px dal filetto |
+| Bordo destro del menu in apertura a 1440 | 1205 | 1350 (griglia 1350) |
+| Parole | 621 | 596 |
+| Sezioni tra apertura e piede | 6 | 5 |
+| Altezza a 1440 / a 390 | 6.252 / 7.451 | 5.938 / 7.438 |
+| Culmine (Chi siamo) | 931 | 914 |
+| "Aperto ora" in pagina | 3 posti | 1 (Orari e contatti) |
+| Formati di foto | 3,77 e 2 | 3,77 e 1,14 a 1440 (più 2 per la sede sul telefono) |
+| Peso | 193 KB | 153 KB |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script; un solo `tel:` e un solo indirizzo email; menu a 5 voci sotto i 1200 px; la riga Batterie porta al modulo con il tipo scelto; il modulo vuoto dice cosa manca e quello pieno compone l'email; dopo lo scorrimento il telefono della testata si vede. Screenshot rifatti con `_prova/alto/script/screenshot.mjs`.
+
+**Cosa resta aperto**
+- Il comune non si cerca più per nome ("il comune si trova nell'elenco dei 20 comuni"): l'elenco torna quando l'azienda conferma la zona.
+- Le due parti dell'apertura che fanno capire il mestiere sono parole, non immagini: la macro della targhetta resta la prima foto da fare (al posto del rosso pieno).
+- Il modulo "titolo a sinistra, contenuto a destra" torna ancora in tre sezioni (carrello fermo, orari, modulo); il contatto non ha ancora le persone con il nome (D12), perché non le conosciamo.
+
+### Cosa è cambiato
+
+- **Idea e gesto (D1)**: "Consulenti, più che riparatori." (dal loro testo: "affiancare il cliente come consulenti più che di riparatori") come un'insegna, in Libre Franklin 800 a 176 px, bianco sul rosso della C del logo, a tutta prima schermata. È l'unico blocco di colore del marchio della pagina e l'unico elemento sopra i 100 px. La frase torna una volta, con lo stesso carattere a 56 px, in testa a Chi siamo.
+- **Modello (D4)**: M (la macro della targhetta, dalla riga del capitolo 5) in attesa della foto; oggi apertura di tipografia, perché D2 non lascia altre strade: le uniche foto vere sono due strisce di 939 x 249, che alla misura vera prendono il 18% della prima schermata (fascia vietata) e non si possono ingrandire. La sede va subito sotto, alla misura vera; a 390 compare già in fondo alla prima schermata.
+- **Registro (D5)**: una sola famiglia, Libre Franklin (SIL OFL 1.1), pesi 400, 600 e 800; testo 19 px a 1440 e 17 a 390; nessuna monospaziata, cifre tabellari. Archivo esce.
+- **Prima schermata**: motto, una riga di mestiere e luogo, orari con lo stato, un bottone "Chiama 049 8792361". Fuori orario lo stato diventa "Chiuso ora · Scriveteci", con l'email già scritta. In testata il telefono si nasconde finché si vede il bottone dell'apertura (uno solo alla volta), poi resta sempre: a 1440 il numero e lo stato, sul telefono "Chiama".
+- **Sotto la piega, sette sezioni su una griglia di 12 colonne** (1260 px a 1440, colonne da 83 px e 24 di spazio: 9 colonne sono 939 px, la misura vera delle foto; tutti i blocchi cadono sulle linee delle colonne, bordi destri allineati a 1350 px):
+  1. apertura;
+  2. la sede alla misura vera, poi "In azienda con il furgone, anche nei casi più ostici": carrello fermo con "Mandateci marca, modello e matricola, con la foto della targhetta" e il bottone "Carrello fermo? Scriveteci" (email con traccia), Padova e provincia con "Fuori provincia? Chiamateci", carrello sostitutivo, ogni marca (Toyota, BT, Cesab);
+  3. gli 8 servizi in un indice a due colonne (le righe portano a Ricambi, a Controlli o al modulo con il tipo già scelto);
+  4. Ricambi, con la loro frase "anche prodotto all'estero o uscito di produzione", "Cosa mandarci" in tre righe, "Chiedete un ricambio" (email con traccia) e "Copia il testo" per la posta nel browser (nuovo, lo chiedeva la scheda);
+  5. Manutenzione e controlli, con le tre scadenze dell'articolo 71 in una frase (non più in cifre grandi) e "Chiedete un preventivo";
+  6. Chi siamo, il culmine (931 px): il motto, la squadra alla misura vera con la didascalia "La squadra all'ingresso di via Canada 12, Padova / Foto sul sito Unicar dal 2012", i tre passi nella loro frase per esteso, il rapporto con Cami2 e il link a cami2.it;
+  7. Orari e zona: il numero a 56 px (l'unico numero sopra i 30 px), lo stato per esteso, la tabella degli orari, sede con "Indicazioni stradali" (una volta sola), email e fax, i 20 comuni, il modulo. Il piede è un biglietto da visita sullo stesso fondo.
+- **Tolto**: la tavola dei quattro fatti in apertura con "24 ore" a 48 px (dato da confermare, ora fuori dalla pagina), il secondo bottone, la fascia scura delle tre garanzie e delle quattro marche, le cifre grandi delle scadenze, tutti gli occhielli maiuscoli, la chiusura rossa (il rosso è in apertura), il piede a quattro colonne che ripeteva servizi, orari e telefono, "Apri la mappa" (resta "Indicazioni stradali"), la frase dei tre passi detta due volte, il campo Email del modulo (l'email la manda chi scrive), il testo d'interfaccia sul modulo in vista (ora 15 px accanto al comando).
+- **Foto**: ricaricate in `assets/originali/` dal loro sito (la cartella era sparita con il riavvio; file sul server dal 30/1/2012). Un solo trattamento (`_prova/alto/script/immagini.py`: mezzo bilanciamento verso il neutro, stessa curva, saturazione 0,88, nitidezza leggera), WebP, due formati (3,77:1 e 2:1 per il telefono), mai ingrandite né scurite. Scartata `pagina-DSC_0050.jpg` (magazzino con retrattili BT, non è il lavoro di Unicar).
+- **Fondi**: rosso (solo apertura), bianco, grigio chiaro; spazi tra le sezioni di 96 e 160 px (72 e 64 sul telefono).
+
+### Misure (`_prova/alto/misura-d.mjs`, risultati in `_prova/alto/misure/`; ora fissata lunedì 10.00 e 20.00)
+
+| Controllo | Aperto (10.00) | Chiuso (20.00) | Soglia |
+|---|---|---|---|
+| Foto nella prima schermata a 1440 | 0,4% (è il logo) | uguale | 60% o più, oppure sotto il 12% |
+| Cliccabili a 1440, testata compresa | 6 | 7 | 8 per S |
+| Bottoni a 1440 / a 390 | 1 / 1 | 1 / 1 | 1 |
+| Caratteri a 1440 fuori dalla testata | 140 (195 con la testata) | 151 | 160 |
+| Fila di ingressi, cifre di 30 px fuori dal gesto | 0, 0 | 0, 0 | 0 |
+| Cliccabili a 390 | 2 | 3 | 4 |
+| Gesto o foto a 390 | 78,5% dello schermo | uguale | 50% |
+| Bottone di chiamata a 390 | fondo a 479 px, alto 56 | uguale | entro 600, 48 |
+| Occhielli sopra h1 e h2 | 0 | | al massimo 1 |
+| h1 | 4 parole, 1 virgola | | 9 e 1 |
+| Parole in pagina | 621 | | 900 |
+| Sezioni | 7 | | 7 |
+| Altezza a 1440 | 6252 px (7451 a 390) | | 7500 |
+| Peso | 193 KB | | 3 MB |
+| Griglia | un solo contenitore 90-1350 px, 0 blocchi fuori dalle linee | | |
+| Foto ingrandite / formati | 0 / 1 a 1440 (2 con il telefono) | | 0 / 3 |
+| Fondi / blocchi del colore del marchio | 3 / 1 | | 3 / 1 |
+| Numeri di 30 px o più in pagina | 1 (il telefono nella chiusura) | | 1 |
+| Link tel: fuori dalla testata / numero scritto | 2 / 2 | | 2 |
+| "Indicazioni" / "Carrello fermo? Scriveteci" | 1 / 1 | 1 / 2 | 1 / 2 |
+| Frasi ripetute, didascalie ripetute | 0, 0 | | 0 |
+| Famiglie, elementi sopra i 100 px, testo minimo | 1, 1, 19 px | | 2, 1, 17 |
+| Lista nera, istruzioni sopra i 15 px | 0, 0 | | 0 |
+| Bottoni in pagina | 5 | | 5 |
+| "indicativ", U+2014, errori di script | 0, 0, 0 | | 0 |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore; un solo `tel:+390498792361` e un solo indirizzo `mailto:unicar@protec.it`; menu a 5 voci sotto i 1200 px; la riga "Batterie e caricabatterie" porta al modulo con il tipo scelto; il modulo vuoto dice cosa manca e quello pieno compone l'email; dopo lo scorrimento il telefono della testata è visibile.
+
+### I compiti della scheda e dove stanno ora (y dalla cima, a 390)
+
+- Chiamare: bottone "Chiama 049 8792361" nella prima schermata (fondo a 479 px, 451 a 320, alto 56, largo quanto la colonna); scorrendo, "Chiama" in testata.
+- Aperto o chiuso: stato e "Lunedì-venerdì 8-12.30 e 14-18.30" nella prima schermata (357-407 px); per esteso con "riapre..." nella sezione Orari e zona.
+- Fuori orario: "Scriveteci" accanto allo stato nella prima schermata; il bottone "Carrello fermo? Scriveteci" a 992-1048 px (entro la schermata e mezza, 1266).
+- Zona e carrello sostitutivo: "Padova e provincia", furgone e "Fuori provincia? Chiamateci" a 1106 px, carrello sostitutivo a 1243 px (entro due schermate, 1688); i 20 comuni da "Orari e zona" nel menu.
+- Ricambi (computer): "Ricambi" nel menu; in un blocco solo la loro frase con Toyota, BT e Cesab, le tre cose da mandare, "Chiedete un ricambio" e "Copia il testo"; il numero e lo stato restano in testata.
+- Controlli: "Controlli" nel menu, le tre scadenze con l'articolo 71 in una frase, "Chiedete un preventivo".
+- Chi c'è dietro: "Chi siamo" nel menu, Cami2, i tre passi, la squadra; "Vendita e noleggio" in testata.
+- Mestiere, luogo, marche e foto della sede in 5 secondi (computer): mestiere e Padova nella prima schermata; marche e sede alla seconda schermata (la sede comincia a 1060 px a 1440). È il compito che la sezione D sposta di più.
+
+### Problemi aperti
+
+- **Manca la macro della targhetta.** Il modello M è sospeso: con la foto (al telefono, luce di finestra, a fuoco sulla matricola, almeno 2400 px) il rosso pieno diventa la foto a tutta prima schermata con il motto sopra. Senza, l'apertura è solo tipografia: la riconoscibilità sta tutta nel colore e nella frase.
+- **Le foto restano due strisce di 939 px del 2012**, cucite e morbide: alla misura vera sono piccole a 1440 e a 1920. Con il servizio fotografico (LEGGIMI) la pagina sale di livello senza cambiare struttura.
+- Fuori orario la prima schermata a 1440 sale a 151 caratteri e 7 cliccabili: dentro le soglie, ma è il caso più pieno.
+- A 1440 le marche e la foto della sede non sono nella prima schermata (compito 1 del visitatore 3 della scheda): stanno alla seconda.
+- Orari da confermare (vengono dalla scheda di Cami2); formazione carrellisti e testo sull'articolo 71 da far rileggere; "24 ore" fuori dalla pagina finché non lo confermano; il modulo non invia nulla.
+- Il controllo D1 (tre persone e la miniatura a 300 px) e quello D4 sull'ondata della zona si fanno a mano, fuori da questo lavoro.
+
+---
+
+## Nota della versione professionale (3/11/2026, resta com'era)
+
 File: `sito/index.html` (statico, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`, con `privacy.html` e `cookie.html`. Tutto si rifà con `sh _prova/script/build_finale.sh` (immagini con `pro_img.py`, controlli con `pro_controlli.mjs`, `pro_prova.mjs` e `pro_orari.mjs`, screenshot con `pro_shoot.py`). Screenshot in questa cartella: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`. Pagina alta 7379 px a 1440 e 10685 px a 390.
 
 Versioni precedenti, copiate com'erano: la home "livello professionale" prima di questo ritocco in `_prova/versione-pro-prima-del-ritocco/index.html` (si apre mettendola al posto di `sito/index.html`); la versione 1 con l'uso (carrello Unsplash sulla corsia gialla, fondo cemento) in `_prova/versione-1-uso/` con i suoi screenshot e la sua nota.

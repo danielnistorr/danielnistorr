@@ -1,5 +1,67 @@
 # Zeta S.r.l., home: nota
 
+## Metodo ibrido (novembre 2026)
+
+3 novembre 2026. La prima schermata segue la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (riga di Zeta nel capitolo 5: M1, modello L); sotto la piega tornano i contenuti e le funzioni della versione professionale, rimessi su una griglia sola a 12 colonne. La versione professionale è copiata com'era in `_prova/versione-pro/` (sito e screenshot). La direzione è in `_prova/alto/DIREZIONE.md`, i provini in `_prova/alto/provini.jpg`.
+
+**Idea**: Zeta vende una materia saldata. La home apre con quattro campioni veri visti da vicino, ognuno con la saldatura in vista e il suo nome di finitura (Trasparente, Goffrato, Opaco, Riciclato al 50%), sotto la frase che loro scrivono in fondo a ogni scheda: "Diamo forma alle vostre idee." (fonte: la chiusa "Diamo forma alle vostre idee" delle schede prodotto del sito di oggi; torna nel piede).
+
+### Che cosa è cambiato
+
+- **Apertura**: via l'occhiello "Zeta S.r.l. · Padova, dal 1969", il titolo nero 70 px, la foto del tavolo a destra in un riquadro, i due bottoni affiancati, la riga dello stato e il testo di 60 parole. Ora: titolo in Instrument Sans 400 a 52 px, una riga di mestiere ("PVC e polipropilene saldati su misura. Padova, dal 1969."), un bottone, e le quattro tessere 1:2 fino al bordo della finestra.
+- **Testata**: logo, ricerca degli articoli (i 45 prodotti e le 10 categorie del loro catalogo, senza le visiere; senza script cerca sul loro sito con `?s=...&post_type=product`), Articoli, Azienda, lingua (IT / EN DE FR ES in un menu), stato aperto/chiuso e "Chiama 049 774299". Sotto i 1100 px: logo, "Chiama" e Menu (ricerca, quattro voci, indirizzo, orari con lo stato, Apri nelle mappe, email da copiare, lingue).
+- **Articoli**: sei famiglie con foto (3 x 2), la riga "Anche" con vinile, portadocumenti auto e moto, album, portaprezzi, pet food e medicali; i settori in una frase. Un solo "Tutto il catalogo" (tolto il secondo ingresso "Tutti i prodotti").
+- **Su misura (culmine)**: la foto del tavolo di taglio alla sua misura (1116 px su 1200 a 1440) con la didascalia "Misura al tavolo di taglio / reparto Zeta, Padova, 2023" e le quattro voci (formati, materiali, finiture e colori, stampe) come righe d'indice.
+- **Azienda**: storia, primati 1986 e 1994 e i settori in frasi; OK Compost e ISCC PLUS (del fornitore); sostenibilità. Via la fascia verde delle cifre 1969, 3, 5, 8 e l'elenco delle sei date.
+- **Preventivo**: è l'unico blocco verde pieno; tre passi, email con "Copia l'indirizzo", modulo con il testo da copiare dopo l'invio. La riga d'interfaccia sta a 14 px accanto al bottone.
+- **Piede**: biglietto da visita con telefono, email, sede, "Il campione da rifare speditelo a questo indirizzo: ve lo rendiamo.", mappe, copia dell'indirizzo, orari, stato, prodotti, azienda, lingue, dati legali.
+- **Caratteri**: Instrument Sans 400 e 500 (SIL OFL 1.1) al posto di General Sans e Switzer (fuori catalogo). Riga aggiunta a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+- **Foto**: le quattro tessere sono nuove (originali da 1938 a 5456 px riscaricati dal loro sito in `assets/originali/`); la cartella blu non sta più tra i raccoglitori (la sua scheda vera è "Cartelle espositive per campionari"): i raccoglitori hanno la foto degli anelli interni, le buste quella del raccoglitore nero con le buste a spazi. Tutte le foto passano da `_prova/alto/script/immagini.py` con lo stesso trattamento (saturazione 0,9, contrasto 1,03).
+
+### Misure (`_prova/alto/misura-d.mjs`, 41 controlli su 41 passano)
+
+| | 1440x900 | 390x844 |
+|---|---|---|
+| Cliccabili in prima schermata | 6 (ricerca, Articoli, Azienda, lingua, Chiama, bottone) | 4 (Chiama, Menu, bottone, Scriveteci) |
+| Bottoni | 1 | 1 |
+| Caratteri fuori dalla testata | 147 (241 con la testata) | 157 |
+| Foto nella prima schermata | 70% dell'area | 56% |
+| Fila di ingressi, cifre di 30 px o più, occhielli | 0, 0, 0 | 0, 0, 0 |
+| `h1` | 5 parole, nessuna virgola | |
+| Parole in pagina | 756 | 740 |
+| Sezioni | 5 più il piede | |
+| Altezza | 5.832 px | 8.037 px |
+| Peso | 266 KB | 225 KB |
+| Foto | 12, tre formati (1:2, 3:2, 12:5), nessuna ingrandita | |
+| Fondi | carta, verde (una sezione), bianco del modulo; piede scuro | |
+| Spazi tra le sezioni | 72, 120, 240 px | |
+| Telefono in vista | 2 volte (testata fissa e piede), "Apri nelle mappe" 1 volta | |
+
+Griglia: lo stesso bordo sinistro e destro (48 e 1392 px a 1440) per tutte le sezioni e il piede, nessun blocco fuori. Contrasto AA su tutto il testo su fondo pieno, alt veri, focus visibile, nessun testo sotto i 14 px, nessun U+2014. Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script, `tel:+39049774299` e `mailto:info@zetaitaly.com` giusti, ricerca ("vinile", "portadocumenti auto", "raccoglitore") e modulo provati.
+
+### Dove stanno ora i compiti della scheda d'uso
+
+- V1.1 (mestiere e famiglie): il mestiere nella riga sotto il titolo; le famiglie cominciano alla seconda schermata (a 900 px), a un clic da "Articoli" e dalla ricerca in testata; vinile e portadocumenti auto con un clic dalla riga "Anche" o dalla ricerca.
+- V1.2 (che cosa mandare): nella sezione del preventivo, sopra i tre passi, a un clic dal bottone; non più accanto al bottone in apertura (non ci sta nei 160 caratteri).
+- V1.3 (modulo): invariato; dopo l'invio, testo e indirizzo si copiano con un clic.
+- V1.4 (fiducia e lingua): storia, primati, materiali certificati e settori nella sezione Azienda (la terza dopo l'apertura, non più entro due schermate); la lingua in testata.
+- V2: "Chiama" in testata fissa (48 px, anche a metà pagina), stato in testata a 1440 e nel menu e nel piede a 390, "Scriveteci" con oggetto "Ordine o file di stampa" nella prima schermata a 390, email da copiare nel menu.
+- V3: indirizzo con ragione sociale, campione, mappe, copia, orari e stato nel piede e nel menu (le mappe stanno nella prima schermata del menu aperto).
+
+### Problemi aperti
+
+- Le famiglie con foto non sono più sopra la piega a 1440 (V1.1) e la riga "che cosa mandare" non è più accanto al bottone (V1.2): è il prezzo del tetto di 6 cliccabili e 160 caratteri. Da verificare con il cliente tipo "tipografia-legatoria".
+- La cartella blu della tessera "Goffrato" è presa dalla scheda "Cartelle espositive per campionari": la finitura (goffrata o similpelle) va confermata. Sul foglio "Opaco" il materiale (PVC o polipropilene) non è scritto nella scheda.
+- Il ritaglio "Riciclato al 50%" taglia la scritta stampata a sinistra ("...zata in plastica riciclata al 50%"): con una foto nuova del pezzo intero si risolve.
+- La didascalia "reparto Zeta, Padova, 2023" presume che il servizio 2023 sia stato fatto nella sede di Viale della Navigazione Interna: va confermato con il nome delle persone (LEGGIMI).
+- Il gruppo di controllo a 300 px (D1) e la media delle aperture della zona (D4) non li ho potuti fare: servono le miniature delle altre home dell'ondata.
+- A 320 px le tessere scendono al 45% dello schermo (a 390 sono al 56%).
+
+---
+
+## Versione professionale (nota di prima)
+
+
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, screenshot con `pro_shot.mjs` all'ora simulata lunedì 2 novembre 2026 alle 10, poi `pro_controlli.mjs`). Per vedere lo stato a un'altra ora: `sito/index.html?ora=2026-11-02T19:00`.
 
 La versione di prima ("Cristal", la busta ricostruita con "Trasparente come il vetro") è copiata com'era in `_prova/versione-1-originale/` (sito e screenshot, con la sua nota).

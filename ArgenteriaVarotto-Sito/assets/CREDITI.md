@@ -31,7 +31,24 @@ Scartate dopo l'anteprima: due foto di Eric Prouzet (argenti ossidati in un nego
 
 I diritti delle foto dello shop e del catalogo vanno confermati con l'azienda: alcune sembrano foto dei fornitori.
 
-## Usate nella home (`sito/`, livello professionale, aggiornato il 03/11/2026)
+## Usate nella home (`sito/`, metodo ibrido, 3/11/2026)
+
+Dopo il riavvio `assets/originali/` non c'era più: le dieci foto dello shop usate nella home sono state riscaricate il 3/11/2026 dallo stesso indirizzo (`egress.storeden.net/gallery/<id>`) in `assets/originali/shop/` (provini con le misure: `_prova/alto/provini.jpg`). Nessuna foto di repertorio, nessuna illustrazione. Le versioni web sono fatte da `_prova/alto/script/img.py`: saturazione 0,88, fondo quasi bianco portato a bianco con una rampa, nessuna scurita, mai ingrandite; nove pezzi in una tela 3:2 con lo stesso ingombro (la forchetta, 600 x 400, in una tela di 529 x 353 per non ingrandirla), il vassoio Regina Anna intero a 1280 x 557 con l'alone grigio sopra il bordo portato a bianco.
+
+| In pagina | File originale | Articolo sullo shop (3/11/2026) | Web |
+|---|---|---|---|
+| Culmine (Dallo shop) | `5bc4dd90ffe48e0d7e8b7e69.jpg`, 1280 x 557 | Royal Queen, vassoio ovale con manici e incisione stile Regina Anna, Sheffield, 47 x 36 cm | `c-regina-1280.webp`, `c-regina-640.webp` |
+| Hotel, buffet | `6322dc0606e58e205e8b456e.jpg`, 1280 x 1067 | Sweet Home, alzata Filo Platino e campana in cristallo | `f-buffet-900/450.webp` |
+| Hotel, bar e pasticceria | `5d807d8a06e58e46648b4568.jpg`, 1280 x 850 | Sweet Home, piatto per torta con campana in vetro | `f-bar-900/450.webp` |
+| Hotel, vassoi | `6a4e879fc15f682f338b456c.jpg`, 1280 x 891 | Royal Queen, vassoio rettangolare classico Inglese, bordo perlinato | `f-vassoi-900/450.webp` |
+| Hotel, secchielli | `6a3ea0e5c15f681c7d8b45b7.jpg`, 1280 x 853 | Royal Queen, secchiello champagne Sheffield con manici a testa di leone | `f-secchielli-900/450.webp` |
+| Hotel, posate | `6abf72a2c15f685c198b45b5.jpg`, 600 x 400 | Sweet Home, forchetta da tavola in alpacca argentata stile Inglese | `f-posate-529/450.webp` |
+| Shop, quattro pezzi | `5d68f02bffe48ef84b8b458f.jpg`, `5dbd540406e58e80118b456b.jpg`, `630e5dce06e58e7f418b4574.jpg`, `6a6b05bac15f6891488b4569.jpg` | sottotorta Perles, vassoio tondo Royal Queen, vassoio ovale stile inglese, scatola porta confetti VarottoHotellerie | `s-*-900/450.webp` |
+
+Non più in pagina: il dettaglio ritagliato del vassoio (`a-incisione-*.webp`) e le vecchie versioni web, tolte da `sito/img/`. L'apertura è fatta dei punzoni in SVG, non di una foto. I diritti delle foto dello shop vanno confermati con l'azienda (LEGGIMI).
+
+## Usate nella home della versione professionale (copia in `_prova/versione-pro/`)
+
 
 Decisione del committente sulle foto: "niente". Nella home **non c'è più nessuna foto di repertorio**: le Unsplash (Wales, Kumpan, Cook, Tewari, Burke e le altre) sono uscite dalla pagina e le loro versioni web sono state tolte da `sito/img/`; i file originali restano in `esterne/` solo come archivio della proposta precedente (copia della pagina di allora in `_prova/versione-1-originale/`). Niente illustrazioni al posto delle foto.
 

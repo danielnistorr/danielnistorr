@@ -46,3 +46,12 @@ Solo foto di Belletti, nessuna foto di repertorio: le nove foto di `assets/ester
 - Impianti nuovi: `gallerie/fn000008.jpg` (cabina tonda nella scala elicoidale), `depliant/d-002.jpg` (torre in vetro), `gallerie/fn000053.jpg` (montacarichi), `depliant/d-030.jpg` (montauto), `gallerie/fn000257.jpg` (piattaforma), `gallerie/fn000165.jpg` (tappeti mobili).
 - Logo: `originali/logo-belletti-depliant.svg`.
 Diritti del fotografo del depliant e dell'editore DiBaio da chiedere a Belletti. Le foto della home di prima (Ca' della Nave in apertura, Galleria Cavour di giorno da `cav-003.jpg`, la scala a chiocciola da `mart-021.jpg`) sono nella copia `_prova/versione-1-originale/sito/img/`.
+
+## Uso nella home ibrida (`sito/`, 3/11/2026)
+
+`assets/originali/` era vuota dopo un riavvio. Il 3/11/2026 ho riscaricato da bellettiascensori.it il depliant del 2008 (`originali/pdf/belletti_depliant.pdf`, da `/pdf/pubblicita/belletti_depliant.pdf`) ed estratto di nuovo le sue immagini con `pdfimages -png` in `originali/depliant/` (stessa numerazione `d-NNN`). Il redazionale `01_DiBaio_Martellago.pdf` non è più online: Ca' della Nave viene dalla WebP della versione professionale (`originali/dibaio/cadellanave-dalla-pro-789.webp`, da `_prova/versione-pro/sito/img/`). Nessuna foto di repertorio, nessuna da `esterne/`. Script: `_prova/alto/script/immagini.py` (un solo trattamento, mai oltre la misura d'origine).
+- Apertura: `d-027`, la sede di sera con il furgone, targa sfocata, 4:5.
+- Culmine: `d-037`, Galleria Cavour di sera, 4:5. Lavori: `d-020` Ca' Michiel (4:5), Ca' della Nave (4:3).
+- Assistenza: `d-033`, il tecnico al quadro. Chi siamo: `d-043`, l'ufficio tecnico.
+- "Per quale edificio?": `d-036` (condominio), `d-029` (casa), `d-030` (negozi e centri storici), `d-026` (edifici nuovi), tutte 4:3.
+Diritti del fotografo del depliant e dell'editore DiBaio da chiedere a Belletti, come prima.

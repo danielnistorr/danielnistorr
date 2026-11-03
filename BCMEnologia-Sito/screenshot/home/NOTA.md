@@ -1,5 +1,122 @@
 # Home di B.C.M. Enologia: nota
 
+## Alto livello, metodo ibrido: ritocco dopo il giudice da agenzia (voto 7, 3/11/2026)
+
+Il giudice ha dato 7 alla home ibrida (prima 6): la prima schermata "ormai è firmata" (da sola 7,5-8), sotto la piega è tornato in parte il fascicolo. Questo giro tocca solo sotto la piega e le foto; la prima schermata della sezione D resta com'è (stesso DAVID, h1, riga, un bottone, 6 cliccabili e 158 caratteri a 1440). La pagina e le immagini di prima sono in `_prova/alto/rit3/prima/` (index.html e i webp di apertura, culmine, officina, targhetta). Le immagini le fa tutte `python3 -I _prova/alto/script/rit3_img.py` (`ibrido_img.py` resta per la storia e non va più lanciato: rifarebbe officina e schede con il trattamento di prima); i controlli in più sono `_prova/alto/rit3/controlli.mjs` (risultati in `rit3/controlli.json`), poi come prima `node _prova/alto/misura-d.mjs` e `node _prova/alto/shots.mjs`.
+
+### Applicati
+- **Culmine, taglio e DAVID (importante)**: la foto è rifatta da `wa0005` in 21:9 (`culmine-900/1328/1600.webp`, 1328x569 a 1440), sulla fila dei manometri. Il DAVID a 96 px non sta più sopra la foto come una filigrana: è sulla ghisa, sopra la foto, a x 56 (il bordo della griglia) e a 32 px dal bordo della foto. Il velo scuro in basso a sinistra (`.c-img::after`) è tolto. Al telefono la foto è in 16:10 sulla stessa fila (`culmine-m-780/1200`), con DAVID a 60 px sopra.
+- **Didascalie e luoghi da confermare (importante)**: officina "Meccanismi in ghisa in fila sui banchi" (senza "Officina di viale Veneto"); culmine "Martinetti DAVID con il manometro, sul carrello / giugno 2022" (senza "in magazzino" e "Saonara"); dall'`alt` dell'apertura è tolto "nel magazzino di Saonara", da quelli di culmine e officina "dell'officina". `viale Veneto` nelle figcaption: 0.
+- **Targhetta (importante)**: al posto del taglio con l'alto sfumato c'è un ritaglio di `martinetto.png` su manometro, volantino e targhetta, appoggiato sulla carta, senza alfa (`targhetta-520.webp`, 520x347, RGB), mostrato a 421 px allineato in alto con l'h2 a y 965. Didascalia: "Sul DAVID la targhetta è sul davanti: fotografala dritta."
+- **Un trattamento colore per le tre foto (importante, D10)**: apertura verso il neutro (circa -200 K) e saturazione 0,56; culmine e officina più calde (circa +250 K, che toglie anche il ciano dalle ombre dell'officina) e saturazione 1,45. Saturazione media HSV: apertura 99 (era 153), culmine 81 (era 44), officina 71 (era 52): entro 28 punti. L'apertura parte dai webp della prova D, perché lo script di allora è perso e il velo locale è già dentro quei file.
+- **Cataloghi senza doppioni (importante)**: le quattro righe PDF sono tolte; ogni URL di PDF compare una volta, nella sua scheda, con peso e lingue. In Cataloghi restano il titolo, le due righe sulle lingue, "Brochure e schede di tutte le linee" e la fila "Come si compra / Preventivo / Rivenditori ed estero". Perché chi arriva da "Cataloghi IT DE EN FR" in testata trovi i PDF, c'è una riga "Cataloghi PDF / Nelle schede, qui sopra" che porta a `#macchine`. Il peso dei PDF è scritto 8 volte, non più 12.
+- **Scala tipografica (importante)**: a 1440 le misure sono 7: 14, 18, 22, 30, 44, 96, 220 (erano 13). `.lead`, `.tel-r`, nomi delle righe dei cataloghi e titoli di "Come si compra" a 22; bottoni, voci di testata e testo delle schede a 18; intestazione della tabella, didascalie e peso dei file a 14; sigle A-50...E-90 a 22 (erano 26); didascalia dell'apertura con interlinea 20. Tra 900 e 1099 px le voci di testata scendono a 14 (a 1024 le misure sono 7). Al telefono sono 7 anche lì: 14, 17, 20, 26, 30, 60, 120.
+- **Schede (minore)**: le otto tessere sono rifatte con l'oggetto alla stessa altezza (530 px nel file, 170 a 1440, misurati 528-530), sulla stessa base (12 px sopra il filetto a 1440), centrato nella campata, con l'alfa eroso di 2 px che toglie l'alone (pigiatrice compresa).
+- **h2 delle macchine (minore)**: "Torchi, pompe e pigiatrici", le stesse parole della voce di testata.
+- **Officina (minore)**: il terzo paragrafo è solo "Per i torchi, la scelta del miglior legno di faggio raffinato e stagionato, la forgiatura a caldo dei perni e la sagomatura dei cerchi." (via l'elenco dei prodotti già scritto nella riga e nelle schede).
+- **Righe dei file nelle schede (minore)**: peso e lingue sono sempre sulla seconda riga, a 14 px, sotto "PDF Catalogo" o "ZIP Brochure"; i link dei file sono alti almeno 56 px. Le righe sono alla stessa y in ogni fila a 390, 1024 e 1440 (prima a 390 c'erano 13 px di differenza).
+- **Parole**: 648 (erano 708), sotto le 650 di D8: via le righe PDF, il paragrafo dell'officina, il link "In fiera" del piede, e frasi più corte nella targhetta e nel preventivo ("Dicci la macchina e la misura o la portata.").
+- **Didascalia dell'apertura al telefono**: la sfumatura dietro la scritta usciva di 8 px sotto la foto (si vedeva a 768); ora finisce sul bordo.
+
+### Respinti o cambiati, con il motivo
+- **Taglio del culmine y 330-1153 a tutta larghezza**: provato (`_prova/alto/rit3/culmine-tagli.jpg`), ha ancora circa un terzo di pavimento e i manometri restano piccoli. Il taglio x 200-1800, y 280-966 (1600x686, stesso 21:9) ha il pavimento sotto un quinto, a occhio, e passa il controllo del giudice (meno del 25%). Il file più grande è di 1600 px e non di 1920, ma a 1440 e a 1920 la foto è mostrata a 1328.
+- **Saturazione 0,8 e +150 K**: con quei valori le tre foto restano a 126, 59 e 61, 67 punti di distanza, e il controllo del giudice (entro 30) non passa. Ho usato 0,56 e 1,45, guardati in `rit3/serie.jpg`: il legno resta caldo, le ombre dell'officina non sono più ciano.
+- **"Sul martinetto DAVID la targhetta è sul davanti: fotografala dritta, che si legga."**: va su due righe e allunga la sezione Ricambi di 20 px, così pompe e pigiatrici a 1440 uscivano dalla seconda schermata (1.817 px su 1.800). Resta la versione corta su una riga.
+- **"giugno 2022" anche sotto l'officina**: con la didascalia dell'apertura "2022" sarebbe scritto 3 volte, contro il tetto delle ripetizioni (2). L'anno resta nel culmine, dove la didascalia deve dire cosa e quando.
+- **`.s-file a` in colonna sotto i 900 px**: metterebbe "PDF", "Catalogo" e il peso su tre righe. Con il peso sempre sulla seconda riga l'allineamento è lo stesso e la riga del tipo resta una.
+- **Voci di testata a 18 tra 900 e 1099 px**: non ci stanno; lì sono a 14, il grado sotto della stessa scala.
+
+### Misure finali (`misura-d.mjs`, 45 controlli su 46; `rit3/controlli.mjs`)
+- Prima schermata invariata: foto al 90% a 1440 e al 62% a 390; 6 cliccabili, 1 bottone, 158 caratteri a 1440; 3 cliccabili e 1 bottone a 390; h1 4 parole a x 56; 0 file di ingressi, 0 cifre di 30 px.
+- 648 parole; 5 sezioni (Ricambi 481 px, Macchine 1.162, culmine 1.413, Officina 823, Cataloghi 584); altezza 5.839 px a 1440 (era 5.996); 2 bottoni; 1 numero di 30 px o più; 2 famiglie, 1 elemento sopra i 100 px; testo corrente 18 px; 1 occhiello.
+- Misure di carattere a 1440: 7 (14, 18, 22, 30, 44, 96, 220). Culmine: DAVID a x 56, 32 px sopra la foto.
+- 12 foto, formati 16:9, 3:2 e 21:9 a 1440 (3:4, 16:10 e 3:2 al telefono); saturazione media 99, 81, 71.
+- Ogni URL di PDF 1 volta in pagina; 0 "viale Veneto" nelle figcaption.
+- Griglia: 33 blocchi sulle linee delle 12 colonne, bordo destro massimo 1384. Fondi carta e ghisa; spazi tra le sezioni 104 e 160 px.
+- 2 `tel:`, 5 `mailto` con l'oggetto; peso 601 kB a 1440, 511 kB a 390, 654 kB a 1920. Pompe e pigiatrici a 1.797 px a 1440, dentro la seconda schermata.
+- 320, 390, 768, 1024, 1440, 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, nessuna immagine ingrandita, nessun errore di script. U+2014 e "indicativ": 0.
+- Non passa, come prima: a 390 le schede di pompe e pigiatrici finiscono a 2.272 px, oltre le due schermate (1.688), perché prima viene Ricambi (vedi "Problemi aperti" qui sotto).
+
+### Aperto
+- Le prove dei clienti tipo su questa pagina mi sono arrivate tagliate: non ho l'elenco dei compiti non riusciti. Le strade dei compiti A1-C4 sono tutte dove erano; l'unica cambiata è B2 da "Cataloghi IT DE EN FR" in testata, che ora porta ai PDF in tre clic (voce, riga "Cataloghi PDF", file nella scheda) invece di due. Da "Torchi, pompe e pigiatrici" resta in due. Giudice e clienti tipo vanno rifatti.
+- Il taglio della targhetta viene ancora dallo stesso scontornato della scheda 02 (in dettaglio, non più sfumato). La foto vera della targhetta resta da fare (LEGGIMI). Sopra l'8 serve il servizio fotografico, come scrive il giudice.
+
+---
+
+## Metodo ibrido (novembre 2026)
+
+Pagina: `sito/index.html`. La prima schermata è quella della prova della sezione D, approvata dal giudice da agenzia, tenuta com'è. Sotto la piega tornano i contenuti e le funzioni della versione professionale (`_prova/versione-pro/sito/index.html`) che i clienti tipo usavano, su una griglia sola. Direzione in `_prova/alto/DIREZIONE.md`, riga dei caratteri in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`. La pagina della prova D com'era prima di questo passaggio è in `_prova/alto/ibrido/index-prova-D.html`.
+
+Rifare tutto: `python3 -I _prova/alto/script/ibrido_img.py` (immagini nuove), `python3 -I _prova/alto/script/provini.py` (provini), `node _prova/alto/shots.mjs` (screenshot all'ora simulata lunedì 2 novembre 2026 alle 10), `node _prova/alto/misura-d.mjs` (controlli, risultati in `_prova/alto/misura-d.json`). Le prime schermate a 1440 di Scharfenberger (coperta dal pop-up della loro festa), Krampe e Voran sono in `_prova/alto/concorrenti/`; il confronto a colonne con la versione professionale e Krampe è `_prova/alto/ibrido/confronto.jpg`.
+
+### Che cosa è cambiato
+
+- **Foto originali**: `assets/originali/` era vuota dopo il riavvio. Ho riscaricato dal loro sito, in sola lettura, le 25 foto della galleria "In azienda" e 16 scontornati delle pagine delle linee (41 file, misure nei provini `_prova/alto/provini.jpg`). Le foto in pagina sono solo queste.
+- **Prima schermata**: invariata (DAVID a 220 px sui torchi con il DAVID, `wa0000`, h1 "Compatibilità con il passato", la riga, un bottone). Unica correzione: la voce di testata "Torchi e pompe" ora è "Torchi, pompe e pigiatrici", e tra 900 e 1099 px le voci passano a 15 px per stare su una riga.
+- **Ricambi**, subito sotto: titolo e "Da oltre 30 anni..." con "Chiama 049 640372" e lo stato nella prima campata; le tre cose da fotografare e "Mandaci le foto per email" (oggetto e traccia) nella seconda; nella terza torna la foto della targhetta del martinetto della versione professionale, con la didascalia "La targhetta è sul davanti: fotografala dritta, che si legga." Al telefono la foto è piccola, accanto alla didascalia, sotto il bottone.
+- **Le otto linee tornano in schede**, come nella versione professionale: scontornato, nome che porta alla scheda, la frase delle misure e, in fondo alla scheda, il file con il peso e le lingue in vista ("PDF Catalogo 1,4 MB, IT DE EN FR", o "ZIP Brochure 1,3 MB, IT EN" dove il catalogo PDF non c'è). Quattro colonne per famiglia: torchi, per il torchio (DAVID e gabbie), pompe (con l'inverter universale fino a 45 kW), pigiatura e frutta. A 1440 pompe e pigiatrici sono nella prima fila e il loro nome finisce a 1.797 px, dentro la seconda schermata.
+- **Culmine**: la foto dei martinetti sul carrello con DAVID a 96 px e la didascalia "Martinetti DAVID con il manometro, sul carrello in magazzino / Saonara, giugno 2022"; "Va su tutti i torchi, dal diametro 45 al 100", la tabella "Quale DAVID per il tuo torchio" e, dalla versione professionale, "Va anche sui torchi con la gabbia in inox o in PVC; a richiesta con tappi e mezzelune". Il link "Scheda del martinetto" è tolto: la scheda è già nella voce 02.
+- **Officina**: una foto sola (`wa0032`, 3:2 su otto colonne) al posto della serie di tre, con "Meccanismi in ghisa in fila sui banchi / Officina di viale Veneto"; nel testo torna la frase del chi-siamo "Produciamo martinetti idraulici per torchi...".
+- **Cataloghi e acquisto**: le quattro righe dei PDF hanno il peso scritto accanto a "PDF". Sotto, su tre campate, "Come si compra" ("Per prezzi e disponibilità chiamaci o scrivici. Spediamo in tutto il mondo."), "Preventivo per una macchina nuova" e "Rivenditori ed estero", con le email con la traccia: le due strade del contatto per bisogno escono dalla sezione Ricambi, che resta solo dei ricambi.
+- **Piede**: indirizzo con "zona artigianale", "Apri la mappa", +39 049 640372 come testo (i link `tel:` sono 2, testata e Ricambi), orari "Lunedì-venerdì 8-18, ora italiana. Sabato e domenica chiuso.", P.IVA, REA. Le voci Macchine portano alle schede in pagina, così ogni pagina di linea è collegata 2 volte e non 3.
+- **Restano fuori** (capitolo 5 e diagnosi): la tabella del torchio idraulico (pagina Misure), i 4 rivenditori e le righe in 4 lingue (manca il permesso), l'elenco delle 10 brochure ZIP, la fascia rossa delle cifre, la linea del tempo con il 2012, gli stand dei SIMEI, il modulo "Scrivici" (pagina Ricambi e assistenza: in home bastano le tre email con la traccia), la riga dei pezzi d'esempio (da confermare). Il peso dei PDF invece torna, per scelta del committente, contro D9.
+
+### Misure (`misura-d.mjs`, 45 controlli su 46 passano)
+
+| Controllo | Valore | Soglia |
+|---|---|---|
+| Foto nella prima schermata | 90% a 1440, 62% a 390 | 60% o più; 50% a 390 |
+| Cliccabili e bottoni nella prima schermata | 6 e 1 a 1440; 3 e 1 a 390 | 6 e 1; 4 e 1 |
+| Caratteri fuori dal menu a 1440 | 158 | 160 |
+| Fila di ingressi, cifre di 30 px nella prima schermata | 0 e 0 | 0 |
+| h1 | 4 parole, nessuna virgola, a 56 px dal bordo | 9 parole |
+| Occhielli | 1, "Martinetto DAVID, brevettato negli anni 80" | 1 con un fatto |
+| Parole | 708 (erano 587 nella prova, 1.351 nella versione professionale) | 900 |
+| Sezioni tra apertura e piede | 5: Ricambi 481 px, Macchine 1.122, culmine 1.500, Officina 823, Cataloghi 694 | 7 |
+| Altezza | 5.996 px a 1440, 7.616 a 390 | 7.500 a 1440 |
+| Griglia | 33 blocchi, tutti sulle linee delle 12 colonne; bordo destro di tutti a 1384 | una griglia |
+| Famiglie, elementi sopra i 100 px, testo corrente | 2 (Source Sans 3, Saira Extra Condensed), 1 (DAVID), 18 px | 2, 1, 17 px |
+| Numeri di 30 px o più in pagina | 1 (h2 del culmine) | 1 |
+| Foto e formati | 12 foto; 16:9 e 3:2 a 1440, più 3:4 dell'apertura al telefono | 12, 3 formati |
+| Fondi | carta e ghisa (culmine e piede); nessun blocco di colore del marchio | 3 |
+| Spazi tra le sezioni | 104 e 160 px (64 sotto l'apertura, 32 al telefono) | due, uno 1,5 volte l'altro |
+| Bottoni in pagina | 2 | 5 |
+| Ripetizioni | nessun link più di 2 volte, nessun numero con l'unità o anno più di 2 volte | 2 |
+| `tel:` e `mailto` | 2 `tel:+39049640372`; 5 `mailto` a info@bcmenologia.com, tutti con l'oggetto, 3 con la traccia | |
+| Peso | 598 kB a 1440 (17 file), 495 kB a 390, 652 kB a 1920 | 3 MB |
+| A4 dopo il tocco sul bottone dell'apertura | a 390: tre cose da y 404 a 598, bottone email da 618 a 670 (52 px), stessa schermata; a 1440 lo stesso | stessa schermata |
+| Testo d'interfaccia | 14 px | 14 px |
+| 320, 390, 768, 1024, 1440, 1920 | nessuno scorrimento orizzontale, nessuna sovrapposizione, nessuna immagine ingrandita (misurata sui pixel veri del file scelto), nessun errore di script; a metà pagina al telefono il telefono in testata è toccabile, 44 px | |
+| U+2014, "indicativ" | 0 e 0 | 0 |
+
+Controllo cambiato: `naturalWidth` di un'immagine con `srcset` è corretto per la densità e a 1024 dava l'apertura "ingrandita 1,41 volte". Ora la misura ricarica il file scelto e legge i pixel veri. Per DAVID le sovrapposizioni si misurano sulla scatola dell'elemento, come nella prova (l'area di contenuto di Saira esce dalle lettere).
+
+### Compiti della SCHEDA, dove stanno ora
+
+- **A1** "ricambi" e "macchine vecchie": riga in grassetto nella prima schermata a 390 e titolo della prima sezione.
+- **A2** chiamare: "Chiama 049 640372" in testata fissa al telefono (44 px, anche a metà pagina) e in Ricambi.
+- **A3** stato: in testata accanto al numero ("Aperto, fino alle 18"), nel menu e in Ricambi.
+- **A4** un tocco sul bottone dell'apertura o su "Ricambi e assistenza": tre cose, telefono, stato e "Mandaci le foto per email" nella stessa schermata; il secondo tocco apre l'email con oggetto e traccia. La foto della targhetta è accanto (sotto al telefono).
+- **B1** tutta la gamma: "Torchi, pompe e pigiatrici" in testata porta alle otto schede, che a 1440 stanno in una schermata e mezza; i nomi portano alle schede del sito.
+- **B2** catalogo: in un clic dalla scheda della linea (PDF, peso e lingue in vista) o in due da "Cataloghi IT DE EN FR".
+- **B3** "Rivenditori ed estero" sotto i cataloghi, email con l'oggetto in due lingue; +39 e "ora italiana" nel piede.
+- **B4** ragione sociale, indirizzo, P.IVA e REA nel piede; PEC e fax non ci sono.
+- **C1** torchi, martinetti DAVID, pompe e pigiatrici nella riga della prima schermata.
+- **C2** misure nelle schede (gabbie da 45 a 90 cm, fino a 250 hl/ora e 950 con il variatore, da 500 a 1500 kg l'ora) e tabella del DAVID nel culmine.
+- **C3** "Chiedi un preventivo per email" in "Come si compra", con oggetto e traccia; telefono in testata.
+- **C4** "Spediamo in tutto il mondo" e "Apri la mappa": cataloghi e piede, un tocco da "Contatti" nel menu.
+
+### Problemi aperti
+
+- **Le schede a 390 non sono nella seconda schermata** (l'unico controllo che non passa): i nomi di pompe e pigiatrici finiscono a 2.305 px, contro i 1.688 delle due schermate, perché al telefono prima viene la sezione Ricambi, che serve al visitatore A. Pompe e pigiatrici sono comunque nominate nella riga della prima schermata, e "Torchi, pompe e pigiatrici" è la seconda voce del menu. Mettere le schede prima dei ricambi al telefono farebbe perdere ad A più di quanto guadagna C.
+- **Il taglio della targhetta** passa sopra le colonne del martinetto: in alto l'alfa sfuma. È lo stesso scontornato della scheda 02, in un taglio diverso; la foto vera della targhetta da sola resta da fare (LEGGIMI).
+- **Il giudice e i clienti tipo vanno rifatti** su questa pagina: le soglie misurabili passano, ma il voto (giudice almeno 7, clienti tipo almeno 7,5-8,5) non l'ho dato io.
+- **Contrasto dell'apertura**: invariato rispetto alla prova (DAVID 9,6:1, h1 5,7:1 sul punto più chiaro a 1440), non rimisurato perché la prima schermata non è cambiata.
+- **Scripts persi con il riavvio**: `pro_img.py`, la vecchia `misura-d.mjs`, `rit/` e `g2/` della prova non ci sono più. I file `apertura-*.webp` e `culmine-*.webp` sono quelli della prova e lo script nuovo non li rifà.
+- Restano quelli di prima: persone e lavori con il nome, recensioni, servizio fotografico (sopra l'8 serve quello), pagine interne (Ricambi con il modulo, Misure, Download, rivenditori).
+
+---
+
 ## Alto livello, prova della sezione D (3/11/2026)
 
 Pagina: `sito/index.html`, riscritta da capo secondo `_prova/alto/DIREZIONE.md` e la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`. La home di prima (livello professionale con il ritocco finale) è copiata com'era in `_prova/versione-pro/` (sito intero e screenshot); la sua nota resta qui sotto come storia.

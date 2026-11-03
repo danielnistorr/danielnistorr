@@ -1,5 +1,57 @@
 # Finiture, home: "Impianti di verniciatura su misura"
 
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (pagina, immagini, screenshot e questa nota) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`; riga del registro in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+### Cosa è cambiato
+
+- **Idea**: l'officina di Villatora che costruisce le linee dei serramentisti di Germania, Svizzera e Francia. **Modello D**, il dato disegnato: la foto della linea Distner a Wiesau (`EasyDNNNews_2160_IMG-20261013-WA0003.jpg`, 1600 x 1200, inaugurazione di ottobre 2026) dal bordo sinistro alla nona colonna e a tutta altezza, con il titolo sopra; accanto, sul grigio chiaro, **la mappa a punti delle linee consegnate** (Wiesau, Schötz, Villers-Farlay, con i fili rossi da Finiture). La mappa è in SVG da dati veri: contorni Natural Earth 1:50m (`world-atlas` 2.0.2) resi a puntini, coordinate dei comuni; Francia, Germania e Italia, Svizzera in tre grigi per leggere i confini. Bruppacher (solo "Alto Reno"), Millet e Arlt (solo il paese) non sono sulla mappa: niente punti inventati.
+- **Titolo**: "Impianti di verniciatura su misura" (5 parole), dal loro carosello ("impianti di verniciatura customizzati", "su misura"). Riga: "Finestre e porte fino a 6000 × 3500 mm. Da Villatora di Saonara (PD)." Didascalia: "Distner, Wiesau" / "2026".
+- **Testata fissa** con 6 cliccabili a 1440: Lavori, Macchine, Usato, lo stato dell'assistenza con il numero intero ("Assistenza aperta fino alle 12:00 +39 049 879 2458", porta al blocco Assistenza), la lingua in un solo comando (IT, con English, Deutsch, Français dentro), "Richiedi un progetto" unico bottone. A 390: il numero è un `tel:` di 48 px con lo stato sopra ("Aperta fino alle 12", a 320 "Aperta ora"), IT, Menu, e "Richiedi un progetto" a tutta larghezza sotto la foto.
+- **Registro**: IBM Plex Sans 400 (500 solo per bottoni ed etichette) e IBM Plex Mono 400 solo per i dati (mappa, fasi 01-06, misure, orari, didascalie). `h1` 64/68, `h2` 40, testo 18 e 17. Archivo esce.
+- **Sotto la piega, sette sezioni su una griglia a 12 colonne** (margine 64, canale 24, bordi a 64 e 1376 px in tutte le sezioni e nel piede): Cosa vuoi verniciare? (quattro tessere 4:3 e, sotto, "Vuoi solo parte di un impianto? Nessun problema!" e "Impianti usati"); Lavori, il culmine (Distner con la foto su 9 colonne, didascalia "Linea per finestre Distner, appena installata" / "notizia del giugno 2026", e i dati accanto; Setz Fensterbau e Malenfer con foto, luogo e tre dati; Millet, Bruppacher e Arlt in elenco; due frasi dei clienti con la fonte); Dentro una linea Finiture (le sei fasi numerate in Plex Mono con i nomi delle macchine e il link alla pagina, Handling & Assembling, Mizar e Giovanni Sedino); Prova i tuoi pezzi in area test; Assistenza, l'unico blocco rosso (stato, orari, quattro lingue, "Chiama", "Scrivi all'assistenza" con la traccia); Richiedi un progetto (il modulo, su tre colonne).
+- **Frase-firma**: "Finiture gestisce internamente tutte le fasi di lavoro." (pagina Company), nella sezione delle fasi e nel piede, stessa misura (26 px) e stesso peso.
+- **Tolto**: il titolo a 96 px con la foto a 820 px e i due bottoni, l'occhiello, la riga delle tre prove, la fascia antracite dell'assistenza sotto la foto a 390, la fascia dei cinque numeri (tre erano da confermare), le schede delle macchine con i render, il blocco Azienda con la foto della squadra ingrandita, gli occhielli sopra ogni `h2`, l'alternanza rosso e antracite, i doppioni (telefono da 4 link a 2, "Apri in Google Maps" da 3 a 1, info@finiture.it da 4 a 2), la tabella a cinque colonne, i campi Materiale e Paese del modulo, "In vendita Finiture 5 e Finiture 6" (da confermare). "Metti alla prova le soluzioni Finiture" diventa "Prova i tuoi pezzi in area test": "soluzioni" è nella lista nera di D7.
+- **Foto**: dieci, tre formati (l'apertura, 4:3, 3:2), un trattamento solo (bianco neutro, curva leggera, saturazione 0,88, `_prova/alto/script/img.py`), nessuna ingrandita, nessuna scurita. Nuove: l'apertura e la linea Distner appena installata (`EasyDNNNews_2161_IMG-20260127-WA0007.jpg`, dalla notizia Distner); nel blocco Assistenza il tecnico al quadro con il logo (`easygalleryimages_1_1092_assistenza.jpg`). Gli originali di `assets/originali/` erano stati cancellati con il riavvio: 49 file riscaricati da finiture.it il 3/11/2026 (provini in `_prova/alto/provini.jpg`).
+
+### Misure (`node _prova/alto/misura-d.mjs`, esito in `_prova/alto/esito.txt` e `misura-d.json`): 40 soglie su 40
+
+| Soglia | Valore |
+|---|---|
+| D2 foto nella prima schermata a 1440 / 390 | 66,5% / 56% dell'area (campionata con `elementFromPoint`, che non conta il titolo e la didascalia sopra la foto: 37% / 29%); nessuna foto mostrata più larga della sua misura (scala massima 1,0) |
+| D3 a 1440 | 6 cliccabili, 1 bottone, 154 caratteri fuori dalla testata (225 fuori dai `nav`, 244 contando la testata), nessuna fila, nessuna cifra di 30 px |
+| D3 a 390 | 4 cliccabili (numero, IT, Menu, Richiedi un progetto), 1 bottone |
+| D5 | 2 famiglie (Plex Sans e Plex Mono per i dati), testo corrente 17-18 px, nessun elemento sopra i 100 px |
+| D6, D7, D9 | 0 occhielli; `h1` di 5 parole senza virgole; lista nera 0; nessuna istruzione sopra i 14 px; nessun numero di 30 px o più |
+| D10, D11 | 10 foto, 3 formati, "indicativ" 0; fondi bianco, grigio chiaro e rosso (piede antracite a parte), 1 sezione rossa; spazi tra sezioni 88 e 144 px |
+| Pagina | 897 parole, 7 sezioni, 7.389 px a 1440, 0,83 MB caricati (pagina, tre caratteri, immagini scelte dal srcset), griglia unica 12 colonne con bordi 64 / 1376 px |
+| Ripetizioni | 5 bottoni in pagina; "6000 × 3500", il numero, info@finiture.it, "Richiedi un progetto" al massimo 2 volte; 2 link `tel:`, "Apri in Google Maps" 1 |
+| Controlli a 320, 390, 768, 1024, 1440, 1920 | nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script, `tel:+390498792458` e `mailto:info@finiture.it` giusti, nessuna ancora rotta, etichette della mappa dentro il pannello, numero in testata toccabile a metà pagina, menu aperto e richiuso, nulla sotto i 14 px |
+| Modulo e orari | invio vuoto fermato sul primo campo; "Chiedi una prova" sceglie "Prova in area test"; l'email composta ha oggetto e "Allegati da aggiungere"; stato giusto alle 10:15, 13:10, 19:30, sabato, 8 dicembre, Pasquetta |
+
+Screenshot (stato fissato a martedì 3/11/2026 alle 10:15): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg`. Guardati a pezzi accanto alla versione professionale (`_prova/versione-pro/screenshot/home/`) e alla prima schermata di Cefla Finishing e Venjakob (`_prova/alto/concorrenti/`; confronto in `_prova/alto/confronto.jpg`). Si rifanno con `node _prova/alto/script/scatti.mjs`.
+
+### Compiti dei clienti tipo: dove stanno ora
+
+- *Serramentista estero, 1440*: mestiere, finestre e luogo nell'`h1` e nella riga, senza scorrere; "6000 × 3500 mm" nella prima schermata; le linee consegnate già nella mappa d'apertura, poi "Lavori" in testata porta in un clic a Distner, Setz Fensterbau e Malenfer con foto, luogo, data e tre o quattro dati, più tre linee in elenco; "Richiedi un progetto" in testata, un clic fino al modulo (prodotto, misure, pezzi al giorno, vernici, lingua, allegati). Le lingue ora sono a un clic (IT), non più in vista.
+- *Tecnico con un impianto, 390*: il numero intero è un `tel:` di 48 px nella testata fissa, con lo stato sopra; si tocca anche a metà pagina. Orari, quattro lingue e "Scrivi all'assistenza" con la traccia sono nel blocco Assistenza, a un tocco dal Menu ("Assistenza: orari e lingue"); prima erano nella prima schermata.
+- *Ampliamento, macchina sola o usato*: "Vuoi solo parte di un impianto? Nessun problema!" e "Impianti usati" sono la seconda schermata; "Usato" e "Macchine" in testata; le macchine per nome nelle sei fasi, ognuna con il link; "Ampliamento o singola macchina" è una scelta del modulo.
+
+### Problemi aperti
+
+1. **Lingue**: `en/`, `de/`, `fr/` non esistono ancora (vedi LEGGIMI). Per il serramentista estero è il problema più grande, e ora la scelta della lingua è dietro un clic.
+2. **Assistenza a 390**: orari, lingue e "Scrivi all'assistenza" non stanno più nella prima schermata (il tetto di D3 è 4 cliccabili). Se i clienti tipo lo chiedono, la strada è una barra in basso solo a 390 con "Chiama" e "Scrivi", che però porta i cliccabili a 5.
+3. **Foto**: l'apertura e la foto di Distner sono foto da telefono di 1600 px (WhatsApp), esattamente la soglia di D2: a 1920 la foto è mostrata a 1282 px. Sopra l'8 serve il servizio fotografico (LEGGIMI). La foto della notizia Malenfer ha il cartello Finiture con "Viale Veneto 13/15, Saonara": va confermato che è la linea di Malenfer e non l'area test.
+4. **Mappa**: i punti sono sui comuni (Wiesau, Schötz, Villers-Farlay); va chiesto il permesso di nominare i clienti in apertura. Bruppacher, Millet e Arlt entrano sulla mappa solo quando si sa il comune.
+5. **Date delle linee**: per Setz e Malenfer la didascalia dice la data della notizia, non l'anno della consegna (da confermare).
+6. **Controlli non fatti da qui**: la prova delle miniature con tre persone (D1) e la media delle prime schermate della zona (D4) vanno fatte sull'ondata intera; i giudizi del controllore da agenzia e dei clienti tipo non sono stati rifatti in questo passaggio.
+7. Restano da collegare il modulo (oggi compone un'email) e l'elenco `CHIUSURE` delle ferie, come prima.
+
+---
+
+## Nota della versione professionale (resta com'era)
+
 Pagina: `sito/index.html` (si apre con file:///, nessuna risorsa esterna). Immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, screenshot con `pro_shoot.mjs`, controlli con `pro_controlli.mjs`, esito in `_prova/pro_controlli.json`).
 La versione 1 (24/10/2026, "Cosa vuoi verniciare?" con le quattro schede e il grafico delle barre) è copiata com'era, pagina, immagini, screenshot e nota, in `_prova/versione-1-originale/`.
 

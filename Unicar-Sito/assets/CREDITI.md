@@ -53,3 +53,7 @@ Avvertenze sui marchi e sull'uso:
 
 - Decisione del committente sulle foto: "niente". Tolte dalla home tutte le foto di repertorio: il carrello di Mathias Reding (`r4Y_VNKzAbw`) e l'officina di Cemrecan Yurtman (`GjmQzjPuF30`) non sono più in `sito/img/` (restano solo nella copia `_prova/versione-1-uso/sito/img/`). Nessuna foto nuova scaricata, nessuna illustrazione, nessuna immagine generata.
 - In pagina solo materiale loro: `originali/testata/007.jpg` (la sede) in apertura e `originali/testata/008.jpg` (la squadra) in Chi siamo, strisce 939 x 249 a misura d'origine, più un taglio 2:1 di ciascuna per il telefono (499 x 249 e 520 x 249); livelli, contrasto e nitidezza leggeri, nessun ritocco del contenuto (`_prova/script/pro_img.py`); il logo PNG ritagliato ai bordi. Da usare con il loro permesso.
+
+## Uso nella home del metodo ibrido (novembre 2026)
+
+- `originali/testata/007.jpg` (la sede) e `originali/testata/008.jpg` (la squadra), ricaricati il 3/11/2026 da http://www.unicarcarrelli.it/images/gallery/ (sul server dal 30/1/2012) perché `assets/originali/` era stata cancellata con un riavvio; ricaricati anche il logo, `pagina-008.jpg` e `pagina-DSC_0050.jpg` (non usato). Un solo trattamento (`_prova/alto/script/immagini.py`), WebP 939 x 249 e tagli 499 x 249 e 520 x 249, mai ingranditi; `sito/img/`. Nessuna foto nuova da altre fonti, nessuna illustrazione.

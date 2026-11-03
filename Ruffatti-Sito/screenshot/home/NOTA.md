@@ -1,5 +1,94 @@
 # Fratelli Ruffatti, home
 
+## Metodo ibrido (novembre 2026)
+
+Richiesta: il committente ha scelto il metodo ibrido dopo la prova della sezione D (giudice da agenzia a 7, clienti tipo giù di mezzo punto o un punto; nel secondo giro la commissione estera a 6,5 con 1 compito su 4). Prima schermata secondo la sezione D, tenuta com'era; sotto, i contenuti e le funzioni della versione professionale (`_prova/versione-pro/sito/index.html`) che i clienti tipo usavano, rimessi su una griglia sola. Direzione in `_prova/alto/DIREZIONE.md` (riscritta: la cartella `_prova/alto/` era sparita con il riavvio). La pagina della prova, prima di questo giro, è copiata in `_prova/alto/prima/index-alto.html`.
+
+### Ritocco dopo il giudice da agenzia (3/11/2026, metodo ibrido, voto 7)
+
+Il giudice ha dato 7 a questa versione: quadrante vuoto nella prima schermata, culmine diluito, foto con trattamenti diversi, targhetta tagliata male, pagina troppo lunga, due attacchi della colonna destra. La pagina prima del ritocco è in `_prova/alto/ibrido2/index-prima.html`, le immagini di prima in `_prova/alto/ibrido2/vecchie-img/`. La prima schermata resta secondo la sezione D: stessa testata, stesso logotipo, stessa riga dell'`h1`. Le misure dicono sempre 6 cliccabili e 1 bottone.
+
+**Che cosa è cambiato**
+- **Prima schermata, colonna destra**: il quadrante vuoto di 515x278 non c'è più. A x 736, alla stessa altezza della foto (y 670), c'è il titolo della sezione "Organi nuovi" (20/30 con il filetto, come "Dicono di noi" e "Video e CD"). Sotto c'è la loro frase "Da Padova abbiamo raggiunto negli anni tutti i continenti." a 32/40, in due righe bilanciate. È solo testo: i caratteri fuori dalla testata passano da 57 a 127 (tetto 160) e i cliccabili restano 6. Sotto la frase restano 85 px di carta.
+- **Uppsala sta da sola alle colonne 1-6**: 624x693, dallo stesso file da 900 px (densità 1,44 a DPR 1), con lo spazio sopra la sezione portato da 80 a 48 px. Nella prima schermata se ne vede l'11,1% (prima l'11,2%) e la striscia arriva alle punte delle torri. Nella colonna destra, in basso e allineate al bordo della foto, ci sono la frase dei Paesi del ventunesimo secolo e la didascalia "Cattedrale di Uppsala, Svezia / 2009 · quattro manuali · trasmissione elettrica · la disposizione fonica, PDF". Il blocco del culmine misura 901 px, dall'inizio della sezione alla serie, e ha una foto sola. Dopo il culmine c'è una pausa di 160 px.
+- **La serie è di quattro organi** in 4:5, a colonne di 3 (296x370): Wayne 2022, con un nuovo ritaglio 4:5 di 497x621 da `2022_10_cantoriajpg.jpg` senza la striscia bianca, poi New Orleans 2022, Buckfast 2017 e Boteå 2015. New Orleans ha "due manuali" e "la notizia" nella didascalia, così la riga dell'indice che la ripeteva è stata tolta. Sotto la serie ci sono Pershore Abbey 2023 (indice con la fonte, colonne 1-6) e "Le 86 opere significative" (colonne 7-12). Sono spariti il titolo "Organi nuovi, gli ultimi" e il blocco "manifesto" con l'h3 dei continenti, che aveva le basi sfalsate.
+- **Una curva sola per le foto** (`_prova/alto/script/ibrido_img.py`, riscritto e ora completo, con i ritagli ritrovati da `trova_ritagli.py`). Tutte le foto a colori sono state rifatte dagli originali. Saturazione media HSV su 100x100 a 0,31 (prima andava da 0,31 a 0,53). Fa eccezione New Orleans, cassa bianca e oro, portata da 0,20 a 0,25. Dominante R-B tra 23,8 e 27 (prima da 17 a 44). Lo scarto massimo di saturazione è 0,06, sotto il limite di 0,08. L'archivio in bianco e nero non è cambiato. Confronto: `_prova/alto/ibrido2/foto-prima-dopo.jpg`.
+- **La targhetta** è stata ritagliata di nuovo dal file intero `2016_04_xP1050195.jpg`: 762x508 in 3:2, da x 10 e y 125. La targhetta sta nel terzo basso, con 45 px di legno sotto, e Bordone dolce è intero: nessuna manopola è più tagliata sul bordo destro. Larghezze 358, 624 e 762. La didascalia ora è a una voce sola e nomina i registri che si vedono interi: Principal 16', Contra Principal 32', Contra Subbasso 32' e Bordone dolce 16'. Le finestre provate sono in `_prova/alto/ibrido2/targhetta-finestre.jpg`. Il giudice proponeva la finestra da y 100, che però taglia a metà Open Wood e Contre Violone. Con la finestra da y 125 si vedono solo i loro gambi e il fondo del pomello.
+- **Didascalie a due voci solo sui lavori** (D10): falegnameria, targhetta e archivio hanno ora una frase sola, in grigio.
+- **Pagina più corta**:
+  - via la riga di Pipedreams (il link ai CD resta);
+  - il concorso è il titolo più una frase ("per giovani organisti sotto i 30 anni. Finale il 5 febbraio 2027 sull'organo Ruffatti della chiesa; premi di US$ 5.000, 2.500 e 1.500"), con il bando, la pagina e Instagram in fila; via la tabella;
+  - "Writing from abroad" è una frase a 17/25 con il telefono;
+  - la famiglia è una frase, con il link;
+  - "Per un restauro..." diventa "Un restauro, o un organo Ruffatti già in chiesa ↑";
+  - due accorciamenti di frasi loro ("una canna per una"; via "con località, anno e autore dell'organo");
+  - spazio delle sezioni da 96 a 80 px, con la pausa del culmine al doppio (160).
+  
+  Risultato: da 827 a 699 parole e da 6.951 a 6.256 px a 1440; 10.153 px a 390.
+- **Un solo attacco della colonna destra**: x 736 (colonne 7-12) per tutti i blocchi. "Video e CD" passa da 845 a 736. Bordi sinistri in pagina: 80 e 736, più la targhetta centrata del restauro, che è il gesto e resta in asse come l'apertura.
+- **Dettagli**:
+  - via il doppio filetto sotto "Video e CD";
+  - i filetti delle tre strade del contatto sono ora color filetto rgb(217,205,182) a 2 px invece del quasi nero (`giudice/bordi.mjs`: sulla carta due colori, filetto e link);
+  - `text-wrap: balance` su titoli, frase del culmine e didascalia della targhetta: "laboratorio" non va più a capo da solo;
+  - a 390 la riga legale del piede è in colonna, con Cookie a 44 px di tocco.
+
+**Misure finali** (`_prova/alto/misura-d.mjs`, esteso con l'obiettivo del giudice, il blocco del culmine e gli attacchi; uscita in `misura-d.txt`): 49 passano, 0 no.
+- D2 11,1%; D3 6 cliccabili, 1 bottone, 127 caratteri; a 390 4 cliccabili, 1 bottone, foto 56,5%.
+- 699 parole e 6.256 px (obiettivo del giudice: 700 e 6.300); 6 sezioni; culmine 901 px con 1 foto; 8 foto, 3 formati (0,90, 0,80, 1,50); 0 ingrandite; 4 bottoni.
+- Peso 1.547 KB.
+- La D8 com'è scritta (650 parole, 6.000 px) ancora non passa: lo script la riporta come INFO.
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`controllo.txt`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore, nessuna area di tocco sotto i 44 px sotto i 900. Il testo è identico senza JavaScript (4.670 caratteri in tutti e due i casi). Screenshot rifatti in questa cartella con gli stessi nomi.
+
+**Dove stanno i compiti**
+- **V1, commissione**: tre strumenti recenti con luogo, anno, manuali e fonte, entro due schermate a 1440 (serie a y 1523-1893, Pershore a y 2077). Uppsala intera nella seconda schermata.
+- **V2, parrocchia**: invariato (testata "Chiama", "Restauro di organi antichi →", lista e due strade).
+- **V3, organista**: nel concorso restano età, finale, premi, bando e Instagram. Non c'è più l'edizione 2024 (Dawon Lee), che resta sulla pagina del concorso.
+
+**Problemi aperti**
+- Le foto restano il limite: il giudice ci mette il 60% della distanza dall'8,5. Serve il servizio fotografico (LEGGIMI).
+- Nel culmine, tra la frase in alto e il testo in basso, la colonna destra lascia circa 400 px di carta accanto a Uppsala. È voluto, come la didascalia di Rieger, ma va guardato con il giudice.
+- La foto di New Orleans resta fuori dall'intervallo 0,30-0,36, perché una cassa bianca più satura diventa gialla.
+- I voti dei clienti tipo e del giudice vanno rifatti su questa versione.
+
+### Che cosa è cambiato
+
+- **Prima schermata**: identica (logotipo d'ottone sul mogano, riga dell'`h1`, "Padova, dal 1940", testata con 6 cliccabili e il solo bottone "Scriveteci", a 390 Menu, EN, "Chiama" e "Restauro di organi antichi →"). Unica differenza: Uppsala è ora larga 733 invece di 624, quindi il bordo che sale sotto il mogano pesa l'11,2% della schermata invece dell'8,5%.
+- **Seconda schermata a 1440 (y 900-1800)**: Uppsala a colonne 1-7 (733x815 dal file da 900, l'organo intero sta in una finestra sotto la testata), con la didascalia "Cattedrale di Uppsala, Svezia / 2009 · quattro manuali · trasmissione elettrica · la disposizione fonica, PDF". A colonne 8-12, nella stessa fila e sotto la piega (parte a y 921): **l'organo recente con la foto**, Santa Caterina da Siena a Wayne, 2022 (`2022_10_cantoriajpg.jpg`, "La parte principale dello strumento, in cantoria" nella loro notizia del 13/10/2022), "tre manuali e 37 registri, due consolle · la notizia"; poi "Organi nuovi, gli ultimi" con Pershore Abbey 2023 (tre manuali e 33 registri, secondo l'abbazia, link all'abbazia) e Notre Dame Seminary 2022 (due manuali, il Grand'Organo in due sezioni, link alla notizia); sotto, "Le 86 opere significative". Poi la frase loro "Da Padova abbiamo raggiunto negli anni tutti i continenti" con i Paesi del ventunesimo secolo, e la serie di tre organi in 4:5 (New Orleans con "in copertina su The Diapason, ottobre 2022", Buckfast 2017, Boteå).
+- **Tornano dalla versione professionale**: le tre testimonianze con nome, ruolo e istituzione (Joyce Jones, Diane Bish, Frederick Swann) accanto a "Video e CD" (Making 32' Reeds in laboratorio, il restauro di La Valletta, i CD, il canale, e Pipedreams in una riga); la lista "che cosa preparare" del restauro come elenco numerato, con "Organo muto, sporco o da revisionare?"; il **Concorso di Miami** come sezione (`#concorso`, dal menu) con le condizioni in quattro righe di testo, nessuna cifra grande: finale a Miami il 5 febbraio 2027 sull'organo Ruffatti della Church of the Epiphany, undicesima edizione (dal bando 2027 in PDF del loro sito); premi US$ 5.000, 2.500 e 1.500; il decimo concorso del 2024 vinto da Dawon Lee; poi "Il bando 2027, PDF in inglese", la pagina e Instagram; nei contatti "Un organo nuovo: che cosa mandarci" in quattro punti con l'email composta.
+- **Il contatto in inglese** (il compito fallito nel secondo giro): nei contatti c'è "Writing from abroad" (`lang="en"`, `#english`), con che cosa scrivere, "Phone +39 049 750 666", il bottone "Write to us in English" (oggetto e traccia in inglese con Institution e Position) e "Contact form, English site" verso `ruffatti.com/en/contact-us/`. "Scriveteci" in testata porta lì: a 1440 il blocco inglese e il suo bottone stanno nella finestra d'arrivo. Nel menu del telefono c'è la voce "Contact us in English".
+- **Una griglia sola**: 12 colonne, margine 80, gronda 32 a 1440. Tutti i blocchi partono e finiscono su una colonna, un solo bordo destro (1360). Le citazioni minori usano una sotto-griglia di 6 colonne con la stessa gronda, così restano sui terzi. Verificato da `misura-d.mjs`.
+- **Ordine al telefono**: nel restauro la strada "Avete un organo Ruffatti in chiesa?" viene subito dopo la targhetta (dal titolo al bottone 874 px), nei contatti il testo prima della foto d'archivio, nel concorso le condizioni prima dei collegamenti (dal titolo al bando 686 px). Aree di tocco di 44 px anche a 768 (prima solo sotto i 700).
+- **Restano fuori** (capitolo 5 e diagnosi): la frase con le cifre del 2016, la fascia delle sei cifre, il modulo di dieci campi (bastano i mailto con la traccia, D12), le cifre grandi del concorso, il video "factory tour", la citazione di Michela, tre dei quattro riconoscimenti, Grand Rapids e Coral Ridge, gli ingressi descritti, "Iscrizione" (le domande si chiudevano il 19/6/2026).
+- **Foto**: una nuova, Wayne, trattata con `_prova/alto/script/ibrido_img.py` (ritaglio 3:2 828x552, larghezze 358, 515, 672 e 828, stesso trattamento descritto per la serie). Gli originali usati sono stati riscaricati il 3/11/2026 dalla libreria media di ruffatti.com in `assets/originali/` (la cartella era vuota); provini in `_prova/alto/provini.jpg`. Le altre immagini di `sito/img/` sono quelle della prova: lo script che le aveva fatte (`alto_img.py`) è andato perso.
+
+### Misure (`_prova/alto/misura-d.mjs`, uscita in `misura-d.txt`: 46 passano, 0 no)
+
+- Prima schermata 1440x900: foto 11,2% (sotto il 12%), 6 cliccabili, 1 bottone, 57 caratteri fuori dalla testata (56 nella testata), nessuna fila di ingressi, nessuna cifra grande, 0 occhielli, `h1` di 8 parole e 0 virgole. 390x844: 4 cliccabili, 1 bottone (la chiamata), foto 56,5%.
+- Pagina: 827 parole a 1440 e 831 a 390 (tetto 900; la prova ne aveva 603), 6 sezioni dopo l'apertura (organi, video e CD, laboratorio, restauro, concorso, contatti), 6.951 px a 1440 (tetto 7.500; la prova 5.962), 10.785 a 390. Una famiglia (EB Garamond), nessun testo oltre i 100 px, testo corrente minimo 17 px. 0 cifre di 30 px o più. 8 foto, 3 formati (0,90, 4:5, 3:2), nessuna ingrandita a 1440 e a 390; la più grande è Uppsala (733x815). Fondi: carta, mogano (solo apertura e testata) e pietra (restauro); spazi 80/144 al culmine e 96 altrove. Il numero di telefono compare 2 volte in `main`, nessun collegamento identico più di 2 volte; 4 bottoni in pagina; 3 `tel:`, 4 `mailto:` tutti con oggetto, 0 "Indicazioni", 0 video, lista nera 0, U+2014 0, "indicativ" 0. Peso: 1.716 KB contando tutte le larghezze di tutte le immagini (a 1440 se ne scarica circa la metà).
+- Controlli (`_prova/alto/controllo.mjs`, uscita in `controllo.txt`) a 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, niente fuori dalla finestra, nessun errore di script, `tel:+39049750666` in tutti e tre i link, il telefono della testata cliccabile a metà pagina, il menu (12 voci) si chiude dopo il tocco e porta il titolo del concorso a 129 px, nessuna area di tocco sotto i 44 px sotto i 900.
+
+### I compiti della scheda d'uso, dove stanno ora
+
+- **V1 commissione, 1440**: (1) mestiere, "costruttori e restauratori" e "Padova, dal 1940" nella prima vista; Uppsala intera con un colpo di rotella. (2) Entro due schermate tre strumenti recenti con luogo, anno, manuali e fonte: Wayne 2022 con la foto, Pershore 2023, New Orleans 2022, e "86 opere significative". (3) "Video e CD" in testata porta a testimonianze, video e CD. (4) EN, +39 049 750 666 e "Scriveteci" in testata; nei contatti che cosa mandare, l'email composta in italiano e quella in inglese, la pagina inglese dei contatti.
+- **V2 parrocchia, 390**: "Chiama 049 750 666" in testata fissa; "Restauro di organi antichi →" nella prima vista e nel menu; nel restauro i costruttori antichi, i circa 120 restauri, la targhetta in foto, la lista, "Chiamate 049 750 666" e "Scrivete con le foto".
+- **V3 organista, 390**: Menu, "Concorso d'organo di Miami", e la sezione con finale, premi, edizione 2024 e bando in una schermata; Menu, "Video e CD"; Instagram accanto al concorso; i social nel piede.
+- Confronto: `_prova/alto/confronto.jpg` (Rieger prima e seconda schermata, Flentrop, la nostra prima e seconda schermata; catture dei concorrenti in `_prova/alto/concorrenti/`). La seconda schermata ora somiglia a quella di Rieger (carta avorio, filetti, una foto grande con il luogo); Rieger resta più forte in apertura perché ha una foto da servizio fotografico.
+
+### Problemi aperti
+
+- **Nessuna prova dei clienti tipo e del giudice su questa versione**: le misure passano, ma i voti vanno rifatti.
+- **La foto d'apertura resta al limite**: 11,2% contro il tetto del 12%. Se si allarga ancora Uppsala, o si alza la piega, la D2 non passa.
+- **A 1024** sotto il mogano salgono sia Uppsala sia la cima di Wayne (la D2 si misura a 1440).
+- **Foto piccole**: Uppsala 900 px mostrata a 733 (densità 1,23, morbida su retina), Wayne 828 a 515. Per l'8 servono gli originali o un servizio fotografico (LEGGIMI).
+- **Il concorso**: la pagina italiana dice "biennale", il bando 2027 "triennial"; in pagina non c'è nessuno dei due. Le domande per il 2027 sono chiuse dal 19/6/2026: il link si chiama "Il bando 2027".
+- **Persona e orario nelle strade del contatto**: non sono nelle fonti (LEGGIMI 6). "Writing from abroad" non promette risposte in inglese.
+- **La home inglese** non c'è: EN porta al sito inglese di oggi.
+- **Il registro dei caratteri**: la riga aggiunta in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md` ha due refusi ("un immagine", un apice in più dopo `h1`): non l'ho corretta per non riscrivere un file che altri agenti scrivono in parallelo.
+- **Testimonianze**: il permesso di usarle va chiesto (LEGGIMI 7).
+
+---
+
 ## Alto livello, prova della sezione D (3/11/2026)
 
 Richiesta: "non è ancora super professionale" (giudice da agenzia a 6). Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), che vince su A e C; direzione artistica in `_prova/alto/DIREZIONE.md` (modello N, il nome come immagine). La home di prima, intera e con i suoi screenshot, è in `_prova/versione-pro/`.

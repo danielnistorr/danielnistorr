@@ -1,4 +1,97 @@
-# Home, Panificio Galileo Fornasiero: livello professionale (3 novembre 2026)
+# Home, Panificio Galileo Fornasiero: metodo ibrido (novembre 2026)
+
+## Metodo ibrido (novembre 2026)
+
+Pagina: `sito/index.html` (statica, si apre con file:///). La versione professionale com'era prima di questo passaggio è copiata in `_prova/versione-pro/` (sito intero e screenshot). Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`; riga nel registro dei caratteri: `_metodo/professionale/alto/REGISTRO-CARATTERI.md`. Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` per la prima schermata; sotto, i contenuti e le funzioni della versione professionale su una griglia sola.
+
+Rifare le misure: `node _prova/alto/misura-d.mjs [ora]` (copia estesa di `alto/diagnosi/misure/misura.mjs`; scrive `_prova/alto/misure/`). Controlli, prove d'uso e screenshot di questa cartella: `node _prova/alto/controlli.mjs`. Immagini: `python3 -I _prova/alto/script/alto_img.py`. Provini delle foto: `_prova/alto/provini.jpg`. Confronto delle prime schermate (professionale, ibrida, Tartine, Hart): `_prova/alto/confronto-1440.jpg`; schermate dei concorrenti rifatte il 3/11 in `_prova/alto/concorrenti/`.
+
+Screenshot (stessi nomi, ora simulata martedì 3 novembre 2026 alle 10, in stagione di Natale): `home-1440.jpg` (7271 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8344 px), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Chi siamo" al piede). Guardati a pezzi accanto alla versione professionale, a Tartine e a Hart Bageri.
+
+### Che cosa è cambiato
+
+- **Idea e gesto (D1, D4 modello A)**: la home apre con l'insegna di legno della bottega ridisegnata. Le lettere FORNASIERO sono tracciate in SVG come quelle vere (bastone monolineare, inclinate, molto spaziate, crema sul legno #6A3825 campionato dalla loro foto), con la targhetta del civico 116 sotto la fuga e la seconda asse "Galileo". L'insegna sta sulla pietra chiara della facciata, non su un fondo scuro. Sotto, l'`h1` "Fornai anche nel nome, a Camin." (la frase di Galileo al Mattino del 2013, "Siamo Fornasiero, fornai anche nel nome.", accorciata) e sul bordo basso le due sedi in due righe con lo stato di adesso, più in stagione la riga "Prenotazioni di Natale aperte".
+- **Foto (D2)**: l'insegna vera è 640x319, quindi l'apertura è di tipografia e nella prima schermata a 1440 non c'è nessuna foto (0%). La vetrina con Galileo e Fidalma apre la seconda schermata, alla misura nativa, con la didascalia "Galileo e Fidalma sulla porta / via Vigonovese 116, vicino al semaforo".
+- **Testata**: nome, quattro voci (Negozi e orari, Il pane, Natale e Pasqua, Per bar e ristoranti) e un solo bottone "Chiama 049 870 26 58", che passa al numero di via Alsazia quando è aperta solo lei. Sotto i 1100 px le voci vanno nel menu, con in più "Indicazioni per via Vigonovese 116"; sotto i 700 px il bottone della testata lascia il posto alla barra fissa in basso con i due Chiama (via Vigonovese e via Alsazia, numero scritto, 64 px).
+- **Sotto la piega, sei sezioni sulla stessa griglia a 12 colonne** (margini 48 px a 1440 e 16 px a 390, bordi destri allineati in tutte):
+  1. apertura;
+  2. Negozi e orari: la vetrina, poi tre strade divise per bisogno: via Vigonovese 116 (stato di adesso, tabella degli orari, Chiama, Indicazioni), via Alsazia 3 (lo stesso, più il cellulare) e "Per bar, alberghi, ristoranti e rivendite" (le loro frasi, chi chiamare e che cosa chiedere, la mail che ha già l'oggetto "Fornitura pane" e la traccia, le consegne a domicilio, "Vedi i pani che facciamo");
+  3. Natale e Pasqua, la sezione culmine (2013 px a 1440): il panettone sul sacco di juta su tutta la griglia (1344x896) con la didascalia "Panettone di Natale, con l'antica ricetta di Galileo / laboratorio di via Vigonovese, dicembre 2020", la focaccia del cinquantesimo e la frase di Fidalma "Le nostre focacce, preparate come 50 anni fa.";
+  4. Il pane di ogni giorno: i cinque pani con il nome di casa in Young Serif, gli altri quindici, la foto delle tartarughe, e il banco (paste all'uovo, pizze e focacce, panini, dolci con la Bacheca di Romina) in righe d'indice al posto delle tessere con le cifre;
+  5. Chi siamo: la frase-firma, la storia in un paragrafo con le persone per nome (gli zii Domenico e Pasquale, Galileo, Fidalma, Filippo, Romina, Michele Daniele), i clienti di un tempo con il nome e i tre articoli del Mattino;
+  6. Scriveteci: il modulo con il tipo di richiesta (mailto, da collegare a un servizio).
+- **Tolto rispetto alla versione professionale**: il titolo maiuscolo e i due negozi con sei righe d'orari in apertura; la fascia scura del manifesto con le cinque cifre (1963, 30+, 2, 60, 400); le date con gli anni a 56 px; le tessere con le cifre grandi (4, 4 + 4, 6); i due Chiama della sezione delle Feste e il telefono grande delle forniture (il numero resta sempre in testata o nella barra); il blocco color legno delle forniture; la seconda frase di Galileo; le righe d'interfaccia in vista ("Si può anche chiamare", "Il modulo prepara l'email..." a 19 px: ora c'è solo una riga di 14 px accanto al bottone); "Chi siamo" nel menu.
+- **Caratteri (D5)**: Young Serif 400 e Albert Sans 400/600, SIL OFL 1.1, in `sito/fonts/` con le licenze; escono Sentient e General Sans (General Sans è fuori catalogo). Il lettering dell'insegna non è un carattere.
+- **Colori (D11)**: tre fondi oltre al piede (bianco, la pietra #ECE6DF dell'apertura e del modulo, il legno delle sole due assi dell'insegna); il colore del marchio pieno solo sull'insegna e sui bottoni; piede e barra nel bruno del sacchetto. Spazi tra le sezioni di 112 px e, per il culmine, 168 px.
+- **Foto (D10)**: quattro, tutte loro (vetrina, panettone, focaccia, tartarughe), con un solo trattamento (bilanciamento verso il neutro, curva leggera, saturazione 0,88), due formati (2:1 e 3:2), nessuna ingrandita né scurita. Le tartarughe tornano in pagina: con il bilanciamento la luce gialla della lampada si legge molto meno. Gli originali sono stati riscaricati il 3/11 in `assets/originali/` (erano stati cancellati con il riavvio).
+
+### Misure (`misura-d.mjs`, martedì 3/11/2026 alle 10)
+
+| Misura | Soglia | 1440x900 | 390x844 | Versione professionale |
+|---|---|---|---|---|
+| Foto nella prima schermata | 60% o più, oppure sotto il 12% | 0% (apertura di tipografia) | 0% | 10,4% (vetrina 520 px) |
+| Cliccabili nella prima schermata | 6 (390: 4) | 6 (4 voci, Chiama, prenotazioni) | 4 (Menu, prenotazioni, i due Chiama della barra) | 14 (390: 9) |
+| Bottoni nella prima schermata | 1 | 1 | 1 (la barra, un componente con due chiamate) | 6 |
+| Caratteri fuori dalla testata | 160 | 153 (FORNASIERO contato come 10) | 269, compreso l'inizio della seconda sezione | 686 |
+| Gesto o foto a 390 | almeno 50% | | facciata con l'insegna 72% (l'insegna sola 15%) | |
+| Cifre di 30 px o più, file di ingressi, occhielli | 0 | 0 | 0 | un occhiello sopra il titolo |
+| `h1` | 9 parole, 1 virgola | "Fornai anche nel nome, a Camin." (6 visibili, 9 con il nome nascosto per i lettori di schermo) | | |
+| Elemento sopra i 100 px | 1 | l'insegna, lettere alte 90 px | | |
+| Famiglie, testo | 2, almeno 17 px | Young Serif, Albert Sans; 18 px | 17 px | |
+| Parole | 900 | 780 | | 1079 |
+| Sezioni | 7 | 6 più il piede | | 6 più il piede, con 8 blocchi |
+| Altezza | 7.500 px | 7271 | 8344 | 7257 |
+| Griglia | stessi margini, bordi destri allineati | 48/48 in tutte le 7 | 16/16 in tutte | |
+| Foto ingrandite, formati | 0, al massimo 3 | 0, 2 | 0 | |
+| Fondi oltre al piede | 3 | 3 | | |
+| Link `tel:` visibili per numero | 2 | via Vigonovese 2, via Alsazia 1, cellulare 1 | 2, 2, 1 | via Vigonovese 8, via Alsazia 4, cellulare 3 |
+| Indicazioni | 2 per negozio | 1 e 1 (più quella del menu sotto i 1100 px) | | 6 |
+| Bottoni in pagina | 5 | 4 | 4 | |
+| Peso | 3 MB | 664 KB | 262 KB | |
+
+Tutte le 35 soglie passano. Elenco completo: `_prova/alto/misure/misure-2026-11-03T1000.json`; la versione professionale misurata con lo stesso script è in `_prova/alto/misure-pro/` (`SITO=... OUT=... node misura-d.mjs`).
+
+### Controlli
+
+- Nessuno scorrimento orizzontale e nessuna sovrapposizione a 320, 390, 768, 1024, 1440 e 1920 (`controlli.mjs`, confronto a coppie dei rettangoli di testo, foto e bottoni); nessun errore di script. Corretti durante il lavoro: lo spazio vuoto in mezzo all'apertura (il gruppo ora sta al centro e la facciata non supera 740 px), i titoli staccati dal testo in "Negozi e orari" e "Chi siamo", le colonne del piede, la riga di via Vigonovese che andava a capo da sola a 390 e 768, il nome e la barra a 320, i `sizes` delle foto che facevano scegliere un file troppo piccolo, i preload dei caratteri che davano errore da file://.
+- Collegamenti: `tel:+390498702658`, `tel:+390498705107`, `tel:+393386600664`; `mailto:info@panificiogalileofornasiero.it` (nelle forniture con oggetto "Fornitura pane" e la traccia; nel piede semplice; il modulo compone oggetto "tipo, nome"); nessuna àncora rotta.
+- Stato e stagione provati a 11 date e ore: aperti, pausa di pranzo, sera, mercoledì pomeriggio (via Vigonovese chiusa, via Alsazia apre alle 16.30), sabato (via Vigonovese "Oggi orario al telefono", testata che chiama via Alsazia), domenica, 8 dicembre, 16 dicembre ("Natale: chiamate per sapere se c'è posto"), 23 dicembre dalle 13 (riga spenta), 20 ottobre (fuori stagione, riga nascosta), 20 marzo 2027 (Pasqua). Senza JavaScript le righe delle sedi dicono gli orari dal lunedì al venerdì e la riga "Natale e Pasqua su prenotazione".
+- Contrasto: testo bruno su pietra 11,8:1, grigio su pietra 5,9:1, verde "Aperto" su pietra 5,3:1, crema sul legno 7,9:1, crema sul bruno 12:1. Focus visibile (filo di 3 px nel legno). Alt veri su tutte le foto; l'insegna ha la sua descrizione.
+- Nessun U+2014 nella pagina, in questa nota, nella direzione e negli script nuovi.
+
+### I compiti della scheda d'uso, e dove stanno ora
+
+| Compito | Dove | Esito della prova |
+|---|---|---|
+| V1.1 aperto adesso e quale negozio | apertura, le due righe delle sedi (390: entro 500 px) | senza scorrere a 390 e 1440 |
+| V1.2 chiamare il negozio giusto | 390: barra fissa con i due Chiama, numero scritto, 64 px, a ogni punto della pagina; da 700 px il bottone della testata | passa; nella prima schermata non c'è più il bottone dentro la scheda del negozio |
+| V1.3 Indicazioni e riconoscere la porta | menu (sotto i 1100 px) e scheda del negozio; la vetrina con l'insegna e "vicino al semaforo" finisce a 1017 px a 390 | due tocchi invece di uno (Menu, Indicazioni); la porta si riconosce entro due schermate |
+| V1.4 l'elenco dei pani | voce "Il pane" | a 390 i nomi di casa e i quindici pani stanno in una schermata dall'àncora |
+| V2.1 prenotazioni aperte | riga "Prenotazioni di Natale aperte" in prima schermata (fondo a 565 px a 390), solo in stagione | passa |
+| V2.2 prenotare al telefono | barra (390) o testata (1440), sempre in vista anche nella sezione delle Feste | la sezione non ha più i suoi due Chiama (regola delle ripetizioni) |
+| V2.3 vedere che cosa si prenota | la riga porta al titolo "A Natale, la ricetta di Galileo"; a 390 il panettone intero sta nella schermata, la focaccia subito dopo | passa a 390; a 1440 il panettone, largo 1344 px, si vede intero solo scorrendo |
+| V2.4 fino a quando e quanto costa | "Pezzature, prezzi e ultimo giorno utile: chiedete al banco o al telefono" accanto all'introduzione; con `SCRIVI_SCADENZA=true` scrive la data | passa (la data va chiesta) |
+| V3.1 trovare la fornitura | voce "Per bar e ristoranti", terza strada di "Negozi e orari": titolo, mail e, nella stessa riga a 1440, il Chiama del laboratorio | passa |
+| V3.2 a chi chiedere e che cosa | "Per i locali, chiamate il laboratorio di via Vigonovese per sapere se arriviamo fino a voi, in che giorni e a che ora." | passa |
+| V3.3 che pani fanno | "Vedi i pani che facciamo", elenco intero in una schermata a 1440 | passa |
+| V3.4 scrivere | mail con oggetto "Fornitura pane"; modulo "Scriveteci" con "Fornitura per bar, albergo, ristorante o rivendita" | il telefono non è più scritto accanto al modulo: sta nella testata, sempre visibile |
+
+### Problemi aperti
+
+- **L'insegna ridisegnata va fatta vedere alla famiglia**: è la loro insegna, rifatta a mano per lo schermo (lettere, inclinazione e civico guardati sulla foto 640x319; "Galileo" è in Young Serif dritto, non nella corsiva dell'insegna, per la regola sui corsivi). Con una foto nuova dell'insegna ad alta risoluzione si possono correggere le proporzioni delle lettere.
+- **Nessuna foto nella prima schermata a 1440**: il mestiere si legge da "Fornai" nell'`h1`, da "Panificio" in testata e dalla riga delle prenotazioni di Natale, non da un'immagine. Il controllo D1 delle miniature a 300 px (indovinare il mestiere senza il logo) non è stato fatto con persone: è il rischio principale. Con un servizio fotografico (la vetrina e il banco di mattina, almeno 4000 px) l'apertura può passare alla strada della foto al 60% o più.
+- La didascalia del panettone dice "laboratorio di via Vigonovese, dicembre 2020": la data viene dai dati della foto (Nikon D3300, 5/12/2020), il luogo è dedotto (è il loro unico laboratorio). Da confermare.
+- D12 chiede per B al massimo 3 link `tel:` in home: qui sono 4 a 1440 e 5 a 390 (due numeri dei negozi due volte ciascuno, più il cellulare). Vale la regola del metodo ibrido, ogni numero al massimo due volte; per stare in D12 andrebbe tolto il cellulare o uno dei Chiama delle schede.
+- Fuori stagione la sezione culmine resta "Natale e Pasqua" con il panettone: è la foto migliore che hanno, ma da gennaio a febbraio e da maggio a ottobre parla di una cosa che non si può prenotare. Con le foto nuove del pane di ogni giorno il culmine fuori stagione dovrebbe passare al pane.
+- "Indicazioni" sul telefono ora chiede due tocchi (Menu, poi Indicazioni) o uno scorrimento fino alla scheda del negozio.
+- Il mercoledì pomeriggio la riga di via Vigonovese dice "Chiuso, domani dalle 8.30", senza la parola "pomeriggio".
+- Nel `REGISTRO-CARATTERI.md` la mia riga dice che Albert Sans non è in altre home: nel frattempo l'ha presa anche AIT Studio Stefano Aiti (Rubano e Mestrino, altra zona). Sono 2 home su 45, dentro il limite; la riga non l'ho riscritta per non toccare il file mentre altri agenti ci aggiungono righe.
+- Restano da chiedere le cose della nota di prima: data di chiusura delle prenotazioni, pezzature e prezzi, sabato di via Vigonovese, domeniche e ferie, via Alsazia 3 e il cellulare, zona servita per i locali, consenso a nominare i clienti di un tempo e a citare il Mattino, consenso per la foto e i nomi di Galileo e Fidalma.
+- I voti del giudice da agenzia e dei clienti tipo non sono stati rifatti in questo passaggio.
+
+---
+
+## Nota di prima: livello professionale (3 novembre 2026)
 
 ## Livello professionale
 

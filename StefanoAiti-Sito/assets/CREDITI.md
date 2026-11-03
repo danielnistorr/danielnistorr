@@ -43,3 +43,20 @@ Nessuna foto di repertorio, nessuna illustrazione e nessuna immagine generata. I
 Logo del piede: `sito/img/logo-ait-studio-bianco.svg`, ricavato da `originali/logo-ait-studio-tracciato.svg` con il nero passato al bianco.
 
 Caratteri: Switzer 400 e 700 (Indian Type Foundry, Fontshare, ITF Free Font License); il 700 è in `fonts-scaricati/`, scaricato da Fontshare il 3/11/2026 (c'è ancora il 600 della prima stesura, non più usato).
+
+## Home con il metodo ibrido (`sito/`), 3 novembre 2026
+
+`originali/` era stata cancellata con un riavvio del container. Il 3/11/2026 ho riscaricato con curl dai due siti dello studio, senza modifiche:
+- `originali/aitistudio/` (31 file): le foto delle pagine di https://www.aitistudio.it/ (cantieri, mezzi, foto aziendali, video, lo studio), con l'EXIF originale; esclusi i mockup e le schermate dei siti e lo schema Bomag;
+- `originali/portfolio/` (154 file): le pagine di https://www.stefanoaiti.com/portfolio/ di Calearo, Calegaro, Marijke, Superoro, Studio 4 Marmicolor (Country, Polo, Tiles, White), Bruno Stocco Fornace Morandi, Artufficio Banca Prealpi.
+
+In home ci sono 12 foto, tutte di Stefano Aiti o di AIT Studio, lavorate con `_prova/alto/script/immagini.py` (WebP, saturazione 0,88, contrasto 0,97):
+- apertura: Salima a Mirano (`Aiti-Salima_CAV_Mirano-93820-1.jpg`), in 16:9 e in 4:5 per il telefono;
+- lo studio: Stefano e Giulia nella sala di posa (`Aiti-Studio-Fotografico-Padova.jpg`, in bianco e nero, non trattata);
+- cantieri: Girardini a Carpane, Salima a Massenza, la fresatura notturna Salima (`Studio-Aiti-Video-Storytelling-Salima-Cantiere-Giro-Italia.jpg`);
+- prodotti: `Calearo-C`, `Marijke-3`, `Calegaro-5`, `Superoro-2`;
+- architettura: `Artufficio-Banca-Prealpi-C`, `Studio-4-marmicolor-White-9` (tagliata in 3:2), `Bruno-Stocco-Fornace-Morandi-C`.
+
+Nessuna foto di repertorio, nessuna illustrazione. I segnaposto Pexels di `esterne/` non ci sono più nella cartella e non sono usati.
+
+Caratteri: Albert Sans 400 e 500 e Spline Sans Mono 400, SIL OFL 1.1, da @fontsource 5.1.0 (jsDelivr), in `sito/fonts/` con le licenze.

@@ -2,6 +2,17 @@
 
 Proposta non richiesta di una nuova homepage per il Panificio Galileo Fornasiero S.r.l. di Camin (Padova). Solo la home. Non è pubblicata, l'azienda non è stata contattata.
 
+## Metodo ibrido (novembre 2026)
+
+Il committente ha scelto il metodo ibrido: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`, sotto i contenuti e le funzioni della versione professionale su una griglia sola. `sito/index.html` è stata rifatta così; la versione professionale com'era è copiata in `_prova/versione-pro/` (sito e screenshot). Direzione in `_prova/alto/DIREZIONE.md`, cambiamenti, misure, compiti della scheda e problemi aperti in `screenshot/home/NOTA.md` ("Metodo ibrido").
+
+- **Apertura**: l'insegna di legno "FORNASIERO Galileo" ridisegnata (lettere tracciate in SVG come quelle vere, il civico 116, la seconda asse "Galileo"), l'`h1` "Fornai anche nel nome, a Camin.", le due sedi con lo stato di adesso e, in stagione, "Prenotazioni di Natale aperte". Sul telefono la barra fissa in basso con i due Chiama.
+- **Caratteri**: escono Sentient e General Sans; entrano Young Serif 400 e Albert Sans 400/600 (SIL Open Font License 1.1, Google Fonts; file e licenze in `sito/fonts/`, copie in `assets/fonts-scaricati/`).
+- **Foto**: vetrina con Galileo e Fidalma (seconda schermata, alla misura nativa 640 px), panettone e focaccia sulla juta (Nikon, 5 dicembre 2020) e, di nuovo in pagina, le tartarughe della galleria; un solo trattamento, due formati. Gli originali sono stati riscaricati dal sito di oggi il 3/11/2026 in `assets/originali/`. Script: `_prova/alto/script/alto_img.py`.
+- **Testi tolti dalla home**: il titolo maiuscolo, la fascia del manifesto con le cinque cifre, le date 1928-1963-2013-2023, le tessere con i numeri, la seconda frase di Galileo ("Non abbandonerei mai Camin..."), "Chi siamo" nel menu.
+- **Testi nuovi o cambiati, da confermare**: l'insegna ridisegnata (la famiglia deve riconoscerla come sua); la didascalia "Panettone di Natale, con l'antica ricetta di Galileo / laboratorio di via Vigonovese, dicembre 2020" (la data è nei dati della foto, il luogo è dedotto); "Oggi con lui ci sono la moglie Fidalma, dietro al banco da sessant'anni, i figli Filippo e Romina e Michele Daniele" (Mattino 2023 e 2025: confermare che si possono nominare tutti); la frase di Fidalma "Le nostre focacce, preparate come 50 anni fa." (Mattino 2023, accorciata); "Il pane si fa ogni giorno nel nostro laboratorio di via Vigonovese e si trova nei due negozi di Camin" (confermare che i pani si trovano in tutti e due i negozi). Restano da chiedere le cose già in elenco sotto (data delle prenotazioni, sabato di via Vigonovese, domeniche e ferie, via Alsazia 3 e il cellulare, zona servita, consensi).
+- **Script**: `_prova/alto/misura-d.mjs` (soglie della sezione D e del metodo ibrido), `_prova/alto/controlli.mjs` (larghezze, sovrapposizioni, collegamenti, prove d'uso e screenshot).
+
 ## Livello professionale (3 novembre 2026)
 
 Il committente ha detto che la home era "ancora troppo poco professionale e di design". `sito/index.html` è stata rifatta regola per regola su `_metodo/professionale/REGOLE.md` (struttura della famiglia B, botteghe artigiane e alimentari). La versione 1 con l'uso com'era prima è copiata in `_prova/versione-1-uso/` (sito e screenshot). Esito di ogni regola e controlli in `screenshot/home/NOTA.md`, sezione "Livello professionale".

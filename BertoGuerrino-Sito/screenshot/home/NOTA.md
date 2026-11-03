@@ -1,3 +1,106 @@
+# Berto Guerrino: metodo ibrido (novembre 2026)
+
+Home ibrida del 3/11/2026: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale (copiata intera in `_prova/versione-pro/`), rimessi su una griglia sola. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; riga del registro in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`. Screenshot di questa cartella rifatti alla stessa ora simulata (martedì 3/11/2026 alle 10) con `_prova/alto/scatti.mjs`.
+
+## Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice ha dato 6,5 alla home ibrida (gesto troppo piccolo, culmine sulla foto più debole, tipografia senza un punto di scala, finiture). Ritocco di `sito/index.html` e di `_prova/alto/script/immagini.py`, senza tornare indietro sulla sezione D. Copia della pagina di prima in `_prova/alto/ritocco/index-prima-del-ritocco.html`, verifiche in `_prova/alto/ritocco/verifica.mjs`.
+
+**Applicati**
+- **La targa** (gesto D1, D4, D5, D7): il titolo sta dentro un rettangolo giallo pieno a spigolo vivo, con il filetto nero all'interno come i cartelli gialli delle loro macchine, appoggiato sulla foto a x=104 (24 px dentro) e sporgente di 32 px sotto il bordo: `h1` maiuscolo 500 a 48 px su due righe e sotto la riga del mestiere. 737x198 px a 1440 (154x41 nella miniatura a 300 px, `_prova/alto/ritocco/miniatura-300.jpg`); l'`h1` sta a x=136, non più a 80. Sta sull'angolo **basso** e non su quello alto, come proponeva il giudice: in alto a sinistra ci sono il trattore, la macchina e il cartello, in basso solo i solchi della terra. A 1024-1279 l'`h1` scende a 40 px per restare su due righe; sotto i 1024 la targa scende sotto la foto e la copre di 48 px.
+- **La frase-firma torna** con lo stesso trattamento: la stessa targa con "Attrezzature vivaistiche da noi prodotte" apre il piede. La targhetta "Instruments for professionals" dell'Azienda è tolta (il payoff resta nel logo del piede), così la targa porta un testo solo.
+- **Il giallo pieno è passato alla targa**: Orari e contatti sono su bianco, aperti da un filetto nero di 2 px, con le righe degli orari in grigio e il modulo su #F1F2F4. Sezioni con il colore del marchio: 0; fondi: bianco e #F1F2F4.
+- **La foto d'apertura intera**: 1280x704 alla sua misura (prima tagliata 2:1), 69,5% della prima schermata a 1440. I 4 pixel del bordo, scuriti dalla compressione di YouTube, sono ripetuti dalla prima colonna buona (stessa misura del file).
+- **A 390**: la targa sta sopra, la foto scende fino alla barra fissa (si sovrappone di 2 px: nessuna striscia grigia) ed è un nuovo taglio verticale 600x704 da x=400 (`piragna-campo-v-600/450.webp`): retro della Piragna con la targhetta BERTO, il vomere e la prima fila di astoni a destra. Foto sul 58,9% dello schermo. L'`h1` va su "ATTREZZATURE / VIVAISTICHE / DA NOI PRODOTTE" (spazi unificatori in "da noi prodotte"), anche a 320.
+- **Culmine**: la trapiantatrice intera (1,82:1, nessun taglio) su 8 colonne, 845x465 px (scala 0,66, file da 960); accanto, su 4 colonne, l'elenco dei video e sotto la zolla e gli astoni a 194 px. La didascalia dice "dal nostro video pubblicato a novembre 2024" (è la data di pubblicazione, non delle riprese). Nessun fotogramma oltre gli 845 px fuori dall'apertura.
+- **Punto di scala (D5)**: la frase della presentazione, "Siamo costruttori di macchine ed attrezzature agricole...", è il manifesto dell'Azienda a 34 px su 10 colonne; gli `h2` scendono da 32 a 28 px (23 a 390), il titolo dello sterrapiante a 28.
+- **Contatto per bisogno (D12)**: sopra il modulo due strade con il filetto, "Macchine per vivai" (prezzo, scheda tecnica e video: "Chiedete il prezzo") e "Negozio, officina e ricambi" ("Chiedete un ricambio"); ognuna apre il modulo con la voce giusta già scelta (provato). Il numero è uno solo, a sinistra, per tutte e due: non lo ripeto nelle strade (tetto di 2 volte nel testo italiano). Nessuna persona: i nomi si aggiungono quando Berto dice chi fa che cosa.
+- **Indicazioni una volta per larghezza**: la parola "Indicazioni" resta solo nella targa a 390; nei contatti il link al percorso è l'indirizzo stesso.
+- **Piede completo** (C15): colonna Contatti con `tel:`, e-mail, "lun-ven 8-12 e 14-19, sab 8-12 (orari di Google)" e YouTube; la "e" di "Privacy e cookie" ha il colore dei link. Il `tel:` del paragrafo inglese è tolto (il numero con +39 resta scritto): i `tel:` restano 3 (testata, contatti, piede).
+- **Allineamenti**: tutte le frasi accanto agli `h2` partono da x=732 (c7-12) e stanno sulla linea di base dell'ultima riga del titolo (`align-items:last baseline`), anche nel culmine e nell'Azienda; la riga del mestiere è dentro la targa, su una riga sola a 1440.
+- **Foto in studio**: lo sfondo di tutte e otto riportato a #F1F2F4 (guadagno per canale dopo il trattamento; nel WebP 241,243,244). **Zolla e astoni** più morbidi: contrasto 0,92, luci sopra 200 compresse, sfocatura 0,35 px, per stare accanto ai fotogrammi.
+- **Parole** tenute sotto 900 (895): tolti i doppioni (Stihl nella riga "Di tutto di più", "YouTube" su ogni video, la riga accanto al culmine accorciata).
+
+**Respinti, con il motivo**
+- **Scalare le macchine in studio all'80% della tessera**: scalzapneus, primi rami e porta innesti sono basse di larghezza perché alte; portarle all'80% della larghezza vorrebbe dire ingrandirle oltre il file (D2, D10) o tagliarle in alto.
+- **Luogo e anno dei lavori (D9)**, **Fausto e Lorena con foto e lingue**, **nomi per le strade del contatto**: non sono nelle fonti (LEGGIMI, "Da chiedere"). Non inventati.
+- **Foto vera in campo** (il 60% della distanza secondo il giudice): serve il servizio fotografico (LEGGIMI, "Foto da fare dal vero").
+- **Lo sterrapiante nella prima schermata** (compito del vivaista): esiste solo in fotogrammi da 500 px, e la sezione D vuole una foto sola in apertura. Resta la prima macchina dopo "Macchine per vivai" nel menu.
+- **D8 parole e altezza** (895 e 7119 px contro 450-650 e 4.000-6.000): deroga voluta dal metodo ibrido.
+
+## Che cosa è cambiato
+
+- **Idea**: la macchina gialla che costruiscono a Saonara, al lavoro tra le file del vivaio, alla sua misura vera; il negozio Honda e Stihl sempre a un tocco, in testata.
+- **Modello F** (riga del capitolo 5, riferimento Damcon), nella strada di D2 per le foto tra 800 e 1600 px: la foto a 1280 px, centrata sulla griglia, con il titolo sopra. **Foto d'apertura**: la trincia Piragna gialla e blu tra le file di un vivaio, fotogramma del loro video "trincia piragna" (canale di Lorena Berto, pubblicato il 6/11/2024, `assets/originali/youtube/yt-5b_3K-YZ2zk-maxres.jpg`, 1280x720, bande nere tolte). Il capitolo 5 indicava lo sterrapiante, ma in campo esiste solo in fotogrammi di 500 px: a tutta larghezza sarebbe stato ingrandito 2,6 volte.
+- **Gesto**: la didascalia è una targhetta gialla a spigolo vivo sull'angolo della foto, come il cartello "20 m" e il cartello BERTO delle loro macchine. Lo stesso trattamento torna una volta, su "Instruments for professionals" nella sezione Azienda.
+- **Registro**: Familjen Grotesk (SIL OFL 1.1, `sito/fonts/OFL.txt`), una famiglia sola, al posto di Anybody. `h1` 500 maiuscolo 48 px, `h2` 500 32 px, testo 18 px, nessun testo oltre i 48 px.
+- **Titolo**: "Attrezzature vivaistiche da noi prodotte", la loro frase della pagina `vivaio/` (5 parole). Mestiere e luogo nella riga accanto: "Saonara (PD), dal 1961. Honda e Stihl con assistenza e ricambi."
+- **Tolto, come chiede il capitolo 5**: il secondo bottone e le due porte dell'apertura, la fascia delle quattro cifre (1961, 12, 11, 4,4), le tre recensioni senza la macchina (resta quella del tagliaerba, con il 4,4 su 58 in una frase), gli occhielli maiuscoli sopra ogni titolo, la fascia blu dell'Azienda, il grigio e il nero alternati, i doppioni ("Chiama" in tre sezioni, "Indicazioni" in quattro punti, la riga "Prezzo su richiesta" con due bottoni, il telefono gigante, il fax). Le sezioni Azienda e Altre lingue sono diventate una.
+- **Tenuto dalla versione professionale**: stato aperto/chiuso calcolato sull'ora di Roma, orari della settimana, telefono, indicazioni, i sette lavori come comandi, lo sterrapiante con la tabella delle tre versioni in testo, le sette schede con Video e Prezzo (il prezzo apre il modulo con la macchina già scelta), i video, i marchi, Officina, Ricambi e Consigli, il modulo con mailto, oggetto e testo da copiare, inglese, tedesco e francese.
+- **Telefono**: a 1440 è l'unico bottone, in testata; sotto i 600 px va in una barra fissa in basso con lo stato ("Aperto ora, chiude alle 12") e "Chiama 049 640282", che resta anche a metà pagina.
+- **Foto**: dodici, tutte di Berto, in WebP con srcset (`_prova/alto/script/immagini.py`): due fotogrammi in campo a 1280x704 (Piragna in apertura, trapiantatrice a ruota nel culmine), due della galleria a 500 px (zolla, astoni), otto in studio a 700 e 420 px. Un solo trattamento (bilanciamento verso il neutro, saturazione 0,88, contrasto 1,05; maschera di contrasto leggera sui due fotogrammi). Nessuna ingrandita, nessuna scurita. `assets/originali/` era stata cancellata con il riavvio: ho riscaricato solo le anteprime dei video dal loro canale (`assets/originali/youtube/`).
+
+## Sezioni (a 1440, 7119 px dopo il ritocco)
+
+1. Apertura (testata, titolo, foto della Piragna).
+2. Macchine per vivai: i sette lavori, lo sterrapiante con la tabella e "Chiedete il prezzo", sette schede, "E poi".
+3. **Culmine**, al lavoro nei vivai (160 px sopra e sotto invece di 104): la trapiantatrice a ruota intera su 8 colonne con "Trapiantatrice a ruota, in un vivaio / dal nostro video pubblicato a novembre 2024"; accanto i video, la zolla e gli astoni.
+4. Negozio e officina (grigio): Honda e Stihl, gli altri marchi, "di tutto di più", Officina, Ricambi e accessori, Consigli.
+5. Azienda e altre lingue: "La nostra ditta nasce nel 1961.", Fausto e Lorena Berto, il manifesto (la presentazione a 34 px), In English, Auf Deutsch, En français.
+6. Orari e contatti (su bianco, con il filetto): stato, orari, telefono, e-mail, indirizzo con il percorso, due strade per bisogno, modulo.
+Piede: la targa con la frase-firma, logo con il payoff, ragione sociale, indirizzo, P.IVA, contatti (telefono, e-mail, orari, YouTube), pagine interne.
+Sul telefono il Negozio sale subito dopo l'apertura.
+
+## Misure (`_prova/alto/misura-d.mjs`, risultati in `_prova/alto/misure/misura-d.json` e `esito.txt`): 68 soglie su 68 passano
+
+| Soglia | Valore |
+|---|---|
+| D2 foto nella prima schermata | 69,5 % a 1440 (1280x704 visibili), 58,9 % a 390 (barra fissa esclusa) |
+| D2 e D10 foto ingrandite | 0 (scala massima 1,0) |
+| D3 a 1440 | 6 cliccabili (logo, tre voci, EN DE FR, telefono), 1 bottone, 144 caratteri fuori dal menu, 0 cifre grandi, nessuna fila di ingressi |
+| D3 a 390 | 4 cliccabili (logo, Menu, Chiama, Indicazioni), 1 bottone |
+| D5 | 1 famiglia, 0 elementi oltre i 100 px, testo corrente 18 px |
+| D6 occhielli | 0 |
+| D7 `h1` | 5 parole, 0 virgole, lista nera 0, istruzioni del modulo a 14 px |
+| Pagina | 895 parole (tetto 900), 6 sezioni, 7119 px a 1440, 573 KB caricati |
+| Griglia | un solo bordo di contenuto (80-1360 a 1440) e tutti i figli delle griglie sulle linee delle 12 colonne |
+| D10 | 12 foto, 3 formati (1,82:1 dei fotogrammi, 4:3, 1:1), nessuna scurita, "indicativ" 0 |
+| D11 | 2 fondi (bianco, grigio #F1F2F4), 0 sezioni gialle (il giallo è nelle due targhe), spazi tra le sezioni 104 e 160 px |
+| D9 | nessuna cifra di 30 px o più ("1961" nell'`h2` ora a 28 px) |
+| Ripetizioni | 3 link `tel:` (testata, contatti, piede), 2 link al percorso (targa a 390, indirizzo nei contatti) con la parola "Indicazioni" una volta, 3 mailto, telefono 2 volte nel testo italiano, 1961 due volte e 4,4 una volta, 4 bottoni in pagina |
+| Controlli a 320, 390, 768, 1024, 1440, 1920 | nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore, `tel:+39049640282` e mailto a bertopd@libero.it |
+
+Confronto guardato a pezzi: `_prova/alto/confronto-1440.jpg` (professionale, ibrida, Damcon ed Egedal dal vivo, prime schermate in `_prova/alto/concorrenti/`).
+
+## Compiti della scheda: dove stanno ora
+
+| Compito | Dove |
+|---|---|
+| Cliente del negozio, 390: aperto adesso | barra fissa in basso, sempre visibile ("Aperto ora, chiude alle 12"); tabella della settimana in Orari e contatti, a un tocco da "Orari e contatti" nel menu |
+| Chiamare senza scorrere e a metà pagina | "Chiama 049 640282" nella barra fissa (52 px) |
+| Indicazioni senza scorrere | "Indicazioni: via Caovilla 27/B" nella targa, solo sotto i 600 px |
+| Honda e Stihl con assistenza e ricambi | riga dentro la targa, nella prima schermata; Negozio e officina subito dopo l'apertura sul telefono e voce del menu |
+| Vivaista, 1440: la macchina per il lavoro | voce "Macchine per vivai" in testata, poi i sette lavori come comandi |
+| La tabella dello sterrapiante | prima macchina della sezione, in testo, intera sullo schermo dopo un tocco |
+| Il video | link Video su ogni scheda che ne ha uno, elenco dei video nel culmine |
+| Chiedere il prezzo | "Chiedete il prezzo" e "Prezzo" su ogni scheda aprono il modulo con la macchina scelta; il testo da copiare resta se la posta non si apre |
+| Estero: la lingua | "EN DE FR" in testata (un link), In English, Auf Deutsch, En français nella sezione Azienda |
+| Estero: chiamare e scrivere | "+39 049 640282" scritto e la e-mail con l'oggetto in inglese nel paragrafo In English; il `tel:` è in testata, sempre visibile a 1440 |
+
+## Problemi aperti
+
+- **La foto d'apertura è un fotogramma di video**: 1280 px, morbida, con la compressione di YouTube. Regge alla sua misura, ma sopra l'8 serve una foto vera in campo (LEGGIMI, "Foto da fare dal vero"). A 1920 la foto resta a 1280 px con il bianco ai lati, per non ingrandirla.
+- **Didascalie senza luogo**: "in un vivaio" e l'anno di pubblicazione del video (2024). Il vivaio, il comune e l'anno vero delle riprese vanno chiesti a Berto.
+- **Lingue di Fausto e Lorena**: la riga di Damcon ("le lingue parlate") non si può fare, perché nelle fonti non ci sono. Non ci sono nemmeno le loro foto.
+- **Parole al limite**: 895 su 900, contando anche le voci del menu a tendina del modulo. Ogni testo nuovo va pagato togliendone un altro.
+- **Il telefono**: `tel:` in testata, nei contatti e nel piede (3, il tetto di D12); nel paragrafo inglese il numero con +39 è scritto ma non è un link.
+- **Indicazioni**: la parola compare una volta (targa a 390); il link al percorso c'è anche nei contatti, sull'indirizzo. Sono 2 link, uno per larghezza in vista nella prima schermata.
+- **Screenshot interi a 390**: nella cattura a tutta pagina la barra fissa compare a metà dell'immagine (a 844 px): è un effetto della cattura, sul telefono resta in basso.
+- **Il modulo non invia nulla** (mailto), come prima: va collegato a un servizio (LEGGIMI).
+- Restano "da confermare" e non dati come certi: orari (in pagina con la nota "sono gli orari indicati su Google"), forma giuridica (in pagina non c'è più "S.a.s."), fax e ingresso in sedia a rotelle (tolti), vendita all'estero (tolta: le altre lingue dicono solo "vendiamo direttamente"), P.IVA (resta nel piede, dai registri pubblici: da verificare prima di pubblicare).
+
+---
+
 # Berto Guerrino, home finale: "Il pezzo giallo, in scala"
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, screenshot e prove del gesto con `finale_shot.mjs`, JPEG con `finale_jpg.py`, misura dei segnali con `_metodo/kit/segnali.sh`). Parte dal prototipo A, poi rifinita dopo il giudice cieco (`_prova/cieco.json`).

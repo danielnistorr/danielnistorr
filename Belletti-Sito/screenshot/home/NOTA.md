@@ -1,5 +1,124 @@
 # Home Belletti
 
+## Metodo ibrido (novembre 2026)
+
+Rifatta il 3/11/2026 con il metodo ibrido scelto dal committente: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale è copiata com'era in `_prova/versione-pro/` (sito e screenshot). Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; riga del carattere aggiunta in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+### Direzione
+
+- **Idea**: Belletti risponde anche quando gli uffici sono chiusi. La sede di Mestrino accesa di sera, con il furgone "Manutenzione Ascensori" davanti alla porta, e sopra la loro frase "in qualsiasi ora del giorno" (`assistenza.aspx`).
+- **Modello Q** (riga di Belletti nel capitolo 5; riferimenti Schmitt + Sohn ed Emch, prime schermate rifatte in `_prova/alto/concorrenti/`). Strada di D2 "tra 800 e 1600 px": la foto più grande del mezzo è di 869x1263, quindi va alla misura vera, centrata, con il titolo sopra. Sta esattamente sulle colonne 3-10 della griglia (866x900 a 1440, scala 0,997) e va dal bordo alto al bordo basso dello schermo. La testata fissa è trasparente sopra la foto (sfumatura locale in alto) e diventa piena appena si scorre; senza JavaScript resta piena.
+- **Gesto**: "In qualsiasi ora del giorno." in Outfit 300 a 144 px sull'asfalto della foto, che esce dai bordi della foto sul fondo notte. È l'unico elemento sopra i 100 px. La sera torna una volta sola, nel culmine (Galleria Cavour accesa, stesso fondo).
+- **Registro**: Outfit (SIL OFL 1.1), una sola famiglia, 300 per i titoli, 400 per il testo, 500 per le etichette e il bottone. `h1` 144 px a 1440 e 52 a 390, `h2` 44 e 32, testo 19 e 17, didascalie e dati 16, interfaccia 14. Radio Canada esce. Outfit non è in nessun'altra delle home (`caratteri-usati.txt`, `REGISTRO-CARATTERI.md`).
+- **Frase che torna**: "in qualsiasi ora del giorno" nell'`h1`, nella prima riga dell'assistenza e nei contatti.
+
+### Che cosa è cambiato
+
+- **Prima schermata a 1440**: logo, cinque voci (Manutenzione, Ammodernamento, Piattaforme e servoscala, Lavori, Contatti), "Uffici 049 508 2430" come link, un solo bottone "Guasti 24 ore 049 900 5131"; sotto, la foto, il titolo e una riga: "Ascensori, piattaforme e servoscala di qualsiasi marca. Mestrino, dal 1908." Tolti l'`h1` di 22 parole, l'occhiello, i due bottoni, i due link e le quattro garanzie in fila.
+- **A 390**: la foto a tutto schermo, il titolo, la riga, e la barra fissa in basso con "Persona bloccata in cabina o guasto: 24 ore su 24, 365 giorni all'anno." e il bottone "Chiama i guasti 049 900 5131" (350x56 px), che resta in ogni schermata. Sopra solo logo e Menu.
+- **Sotto la piega, sette sezioni in tutto** (prima quattordici): apertura; "Cosa succede dopo la chiamata" (i tre casi, la manutenzione in una frase, il cambio di manutentore, la zona con le sette province e il tecnico al quadro); "Per quale edificio?" (la scelta di Schmitt + Sohn: condominio, casa, negozi e aziende, edifici nuovi e di pregio, quattro tessere con la stessa foto 4:3, i prodotti e i loro dati dentro e il sopralluogo con il tipo già scelto nel modulo); il culmine (Galleria Cavour, foto 4:5 di 755x944, didascalia "Galleria Cavour, piazza Cavour, Padova / ottobre 2007", committente, cinque dati, progettisti); Ca' Michiel e Ca' della Nave con i loro dati e "Per i progettisti" con il mailto all'ufficio tecnico; "Un'impresa di famiglia, con i suoi tecnici" con l'ufficio e "Certificati e norme"; i contatti sul verde (l'unico blocco del colore del marchio) con il numero dei guasti grande, gli uffici, l'email, la sede, "Indicazioni stradali" e il modulo di cinque campi.
+- **Una griglia sola**: 12 colonne, margini di 64 px a 1440 (20 a 390), contenuto da 64 a 1376 px in tutte le sezioni, foto con i due bordi sulle linee delle colonne.
+- **Tolti** la fascia dei numeri (4, 35, 20+, 1997), tutti gli occhielli, le sei schede per prodotto, i doppioni dei numeri (ora ognuno al massimo due volte in vista), la colonna dei contatti nel piede, le due citazioni dell'ing. Viel sugli impianti.
+- **Tolti perché da confermare**: "di norma i guasti si risolvono entro la stessa giornata" (LEGGIMI, punto 1; ora "I nostri tecnici analizzano le cause e ripristinano l'impianto nel più breve tempo", da `assistenza.aspx`), "4 generazioni" e "35 dipendenti" (punti 8 e 9). Il caso fuori orario resta come chiede la SCHEDA, con la sua domanda nel LEGGIMI.
+- **Foto**: gli originali in `assets/originali/` erano spariti con il riavvio. Ho riscaricato il depliant del 2008 dal sito Belletti e rifatto le immagini con `pdfimages` (`assets/originali/depliant/`, stessi numeri). Ca' della Nave viene dalla copia della versione professionale (`assets/originali/dibaio/`), perché il redazionale DiBaio non è più online. Dieci foto, tre formati (apertura, 4:5, 4:3), un solo trattamento (`_prova/alto/script/immagini.py`), la targa del furgone sfocata, nessuna ingrandita, nessuna scurita in blocco. Provini in `_prova/alto/provini.jpg`.
+
+### Misure
+
+Con `node _prova/alto/misura-d.mjs`, che è `misura.mjs` della diagnosi esteso alle soglie D e del metodo ibrido (esito anche in `_prova/alto/misura-d.json`). Passano tutte e 31.
+
+| Misura | 1440x900 | 390x844 | Soglia |
+|---|---|---|---|
+| Foto nella prima schermata | 60,2% (866x900, scala 0,997) | 100% | 60% o più; 50% a 390 |
+| Cliccabili nella prima schermata | 8 | 3 | 8 (S); 4 |
+| Bottoni nella prima schermata | 1 | 1 | 1 |
+| Caratteri fuori dal menu | 151 | | 160 |
+| Cifre di 30 px o più in apertura | 0 | 0 | 0 |
+| `h1` | 5 parole, nessuna virgola | | 9 parole |
+| Occhielli | 0 | | 1 con un fatto |
+| Famiglie, elementi oltre i 100 px | 1 (Outfit), 1 | | 2, 1 |
+| Parole | 857 | | 900 |
+| Sezioni | 7 | | 7 |
+| Altezza | 7.434 px | 11.028 px | 7.500 a 1440 |
+| Numeri di 30 px o più in pagina | 1 (il numero dei guasti nei contatti) | | 1 |
+| Foto, formati | 10, 3 | | 12, 3 |
+| Fondi, sezioni verdi | 3 (notte, carta, verde), 1 | | 3, 1 |
+| Spazi tra le sezioni | 96 e 144 px | 56 e 84 px | due valori, uno 1,5 volte l'altro |
+| Numero dei guasti in vista | 2 (testata, contatti) | 2 (barra, contatti) | 2 |
+| Numero degli uffici, email, indirizzo | 2, 2, 2 | 1, 2, 2 | 2 |
+| Bottoni in pagina | 2 | 2 | 5 |
+| Peso | 435 KB | 397 KB | 3 MB |
+| Lista nera, "indicativ", U+2014 | 0, 0, 0 | | 0 |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessun testo fuori dallo schermo, nessuna foto ingrandita, nessun errore di script. L'unica sovrapposizione che lo script segnala ("Note" con il riquadro della targa) è il campo dentro il `details` chiuso, che non si vede; aperto, finisce 118 px sopra il riquadro. Link `tel:` solo `+390499005131` e `+390495082430`; tre `mailto:` a info@bellettiascensori.it (ufficio tecnico con oggetto e traccia, copie dei certificati con oggetto e traccia, contatto semplice) più quello composto dal modulo. Menu sotto i 1100 px: si apre, mostra sei voci, si chiude al tocco e porta l'ancora sotto la testata. Modulo: il link "Sopralluogo per l'ammodernamento" sceglie il tipo, l'invio vuoto si ferma con l'avviso e il fuoco sul nome, l'email composta ha l'oggetto "Richiesta: Sopralluogo per ammodernamento, Selvazzano Dentro". Contrasti: testo secondario #575A5D su #F1F1EE 6,1:1, #B9BCBF su #16191C 9,3:1, bianco sul verde #007A43 5,4:1, link verde su carta 4,8:1, testo su carta 15:1; fuoco visibile con un contorno giallo di 3 px.
+
+Screenshot rifatti con gli stessi nomi, più `home-1024-prima-schermata.jpg` e `home-768-prima-schermata.jpg`. Guardati a pezzi accanto alla versione professionale e a Schmitt + Sohn ed Emch (`_prova/alto/confronto-1440.jpg`).
+
+### I compiti della SCHEDA, dove stanno ora
+
+- **Visitatore 1, telefono.** Chiamare i guasti: barra fissa in basso, bottone `tel:+390499005131` di 350x56 px visibile all'apertura e toccabile a metà pagina. "24 ore su 24, 365 giorni all'anno" e "persona bloccata in cabina" scritti nella barra, accanto al bottone; il numero degli uffici non è in prima schermata, quindi non si confonde (nei contatti ha l'etichetta "Uffici e sopralluoghi"). I tre casi "dopo la chiamata" sono la prima sezione sotto l'apertura: da 1125 a 1571 px, 447 px contro 657 utili, interi in uno schermo al primo scorrimento. "Qualsiasi marca" nella riga sotto il titolo, senza scorrere.
+- **Visitatore 2, computer.** Manutenzione, ammodernamento, piattaforme e servoscala: nel menu della prima schermata, e "qualsiasi marca" nella riga sotto il titolo. Zona: le sette province e il Friuli a 1412 px, nella seconda schermata. Fiducia entro due schermate: "dal 1908" e Mestrino in apertura, "Dal 1997 la linea diretta" nella prima riga dell'assistenza; ISO 9001 e la Galleria Cavour più giù (5842 e 2888 px), un clic da "Lavori" nel menu. Sopralluogo: "Uffici 049 508 2430" nella testata a 1440, il modulo a un clic da "Contatti" e dai link delle tessere, con il tipo già scelto.
+- **Visitatore 3, progettista.** "Lavori" nel menu porta al culmine con la scheda completa di Galleria Cavour; Ca' Michiel e Ca' della Nave subito dopo, con i cinque dati. L'indirizzo dell'ufficio tecnico è scritto per intero con il mailto, l'oggetto e cosa allegare. "Certificati e norme" a un clic dal piede, con le prime emissioni e la richiesta delle copie aggiornate.
+
+### Problemi aperti
+
+- **La foto d'apertura è del 2008 e di 869 px**: il 60,2% passa di poco e solo perché la foto va da bordo a bordo sotto la testata trasparente. A 1920 la quota scende al 45%, sugli schermi 2x la foto è morbida. Serve il servizio fotografico del LEGGIMI (la squadra davanti alla sede, al crepuscolo, almeno 4000 px).
+- **Il mestiere nel titolo**: risolto nel ritocco qui sotto ("Ascensori, in qualsiasi ora del giorno."). Il controllo D1 con persone vere resta da fare.
+- **La "persona bloccata" a 1440 non è nella prima schermata**: il tetto dei 160 caratteri non lascia posto. Il bottone dice "Guasti 24 ore" e la frase completa sta nella prima riga della sezione dopo e nei contatti.
+- **"Casa"**: la foto (`d-029`) mostra un piccolo ascensore accanto a una scala in pietra; non so se è una piattaforma o un'abitazione privata, e l'alt dice solo quello che si vede. Va chiesta una foto vera di una piattaforma in una casa.
+- Anni di fine lavori di Ca' Michiel e Ca' della Nave: ancora mancano (LEGGIMI, punto 14); dopo il ritocco la seconda voce delle didascalie è la data del redazionale (2008) e del concorso (2006).
+- Gli orari degli uffici mancano ancora (punto 2), quindi niente stato aperto o chiuso in testata.
+- Il controllo dell'ondata D4 (media delle prime schermate della zona) va rifatto quando ci sono le altre home di Rubano e Mestrino.
+
+### Alto livello: ritocco dopo il giudice e i clienti tipo (3/11/2026)
+
+Il giudice da agenzia aveva dato 6,5 (prima 5,5): apertura riconoscibile, ma il mestiere non si legge nella miniatura (D1), `h1` a 122,56 px e non a 144 (D5), foto d'apertura senza didascalia (D10), culmine con 600 px di nero vuoto, Ca' Michiel e Ca' della Nave sfalsate, tessere con trattamenti diversi e link ad altezze diverse, logo illeggibile e barra alta 112 px a 390, bottone appeso a metà testata a 1024. I clienti tipo non trovavano: a 390 i tre casi "dopo la chiamata" finivano sotto la barra dei guasti (dopo il menu, terzo caso fino a 799 px con la barra a 721) e non c'era un link nella prima schermata; a 1440 zona, ISO 9001 e Galleria Cavour non c'erano entro due schermate; dopo "Lavori" la scheda di Cavour non stava intera nello schermo. La sezione D non torna indietro: dove un cliente chiedeva di più nella prima schermata, la risposta è in testata, nel menu o nella seconda schermata. La pagina di prima è copiata in `_prova/alto/ritocco/index-prima-del-ritocco.html`, le immagini tolte in `_prova/alto/ritocco/vecchie/`.
+
+**Applicati**
+
+- **Mestiere nel titolo (D1, D7)**: `h1` "Ascensori, in qualsiasi ora del giorno." (6 parole, 1 virgola), su due righe a 144 px da 64 a 1349 px. La miniatura a 300 px (`_prova/alto/ritocco/miniatura-300.jpg`) ha "Ascensori" alto circa 21 px. Il titolo parte ora dal margine (64 px) e non dalla colonna 2: a 144 px "Ascensori, in qualsiasi" è largo 1285 px e da 175 non ci sta.
+- **Scala (D5)**: `font-size:clamp(52px,10vw,144px)`, cioè 144 px a 1440 e 1920, 102 a 1024, 52 a 390.
+- **Riga e didascalia d'apertura (D10)**: sopra i 1100 px, dove il menu nomina già manutenzione, ammodernamento, piattaforme e servoscala, la riga è "Impianti di qualsiasi marca, dal 1908."; la didascalia a due voci "La sede di Mestrino / depliant 2008" sta nelle colonne 11-12, sul fondo notte, con il fondo allineato alla riga. "2008" è l'anno del depliant da cui viene la foto, non la data dello scatto. Fino a 1100 px la riga resta "Piattaforme e servoscala di qualsiasi marca. Mestrino, dal 1908." (il menu è chiuso) e la didascalia si toglie sotto i 900. Caratteri a 1440: 159 su 160.
+- **Culmine**: Galleria Cavour tagliata più bassa dall'originale (`d-037`, 948x839, rapporto 1,13), mostrata 867x767 sulle colonne 1-8 (scala 0,91). Nelle colonne 9-12 il manifesto "Pensiamo che per presentarci bastino i lavori che abbiamo eseguito" in alto a filo della foto (52 px, 4 righe); in basso, a filo del fondo della foto, la didascalia e la scheda. Vuoto nella colonna destra: circa 165 px. Dopo "Lavori" nel menu la foto parte a 88 px e la scheda sta da 526 a 855 px su 900. A 1024 il manifesto va su tutta la riga e foto e scheda sotto (colonne 1-7 e 8-12).
+- **Ca' Michiel e Ca' della Nave**: Ca' della Nave rifatta 789x551 (rapporto 1,43), le due foto alte 527 px; le due colonne sono un `subgrid` a quattro righe, quindi didascalie (4579/4580) e dati (4800/4800) cadono alla stessa altezza. La seconda voce delle didascalie è ora una data delle fonti (LEGGIMI, punto 14): "redazionale del 2008" e "concorso del 2006"; "palazzo gotico" ed "ex scuderie di Villa Grimani Morosini" sono passati nel testo.
+- **Tessere "Per quale edificio?"**: rifatte con `_prova/alto/script/immagini-ritocco.py`, stesso trattamento per le quattro (bianco più forte verso il neutro, saturazione 0,85, poi R e B portati a G+6 e G-6): differenza R-B media 12, 12, 12 e 11. Righe in `subgrid`: i quattro link partono alla stessa altezza (2587 px a 1440).
+- **Chi siamo**: tolta la foto dell'ufficio con i monitor del 2008; la citazione dell'ing. Viel è il manifesto a 32 px nelle colonne 8-12, accanto al racconto. Foto in pagina: 9.
+- **Testata e barra a 390**: logo largo 100 px (prima 45); barra alta 69 px (prima 112): a sinistra "Persona bloccata o guasto: / 24 ore su 24, 365 giorni" a 14 px su due righe fisse, a destra il bottone "Chiama i guasti 049 900 5131" (147x52). Sotto i 340 px la frase si toglie e il bottone prende tutta la larghezza.
+- **Testata a 1024**: il bottone dei guasti finisce a 872 px, 21 px prima di "Menu" (893).
+- **Clienti tipo, telefono**: nella prima schermata a 390 c'è il link "Cosa succede dopo la chiamata" (quarto cliccabile, il tetto è 4) che porta i tre casi da 285 a 732 px, sopra la barra (775); lo stesso dal menu "Manutenzione". Il `lead` scende a 17 px sotto i 600 px.
+- **Clienti tipo, computer**: la seconda schermata ha la zona nel `lead` ("nelle province del Veneto e in parte del Friuli", a 1063 px) e un riquadro "A Mestrino dal 1908" sotto la zona: "ISO 9001 dal 4 novembre 1997, prima emissione", con il link a certificati e norme, e la Galleria Cavour per il Comune di Padova, con il link al culmine (1596-1782 px, dentro le due schermate).
+- **Istruzioni a 14 px (D7)**: "Per un guasto non scrivete..." e "Allegatele all'email..." ora a 14 px. In `misura-d.mjs` le classi `.avv` e `.allega` sono escluse dal controllo del testo corrente (16 px o più), perché sono istruzioni e D7 le vuole a 14.
+
+**Respinti, con il motivo**
+
+- `h1` su tre righe, come proponeva il giudice: a 144 px copriva il furgone. Due righe dal margine tengono il furgone libero.
+- Accorciare i link delle tessere a "Sopralluogo": il `subgrid` li allinea già e il testo lungo dice che cosa si chiede.
+- "Piani serviti" uguale a "Fermate": è la parola del redazionale di Ca' Michiel, resta com'è.
+- Anni di fine lavori di Ca' Michiel e Ca' della Nave: le fonti non li danno; in didascalia ci sono le date vere del redazionale e del concorso.
+- Zona nella prima schermata a 1440: con il titolo, la riga, la didascalia e i due numeri si arriva a 159 caratteri su 160; la zona va nella prima riga della seconda schermata.
+- Quota della foto a 1920 (45%): la foto è di 869 px e non si ingrandisce; resta il servizio fotografico.
+
+**Misure finali** (`node _prova/alto/misura-d.mjs`, 31 controlli, passano tutti)
+
+| Misura | 1440x900 | 390x844 |
+|---|---|---|
+| Foto nella prima schermata | 60,2%, scala 0,997 | 100% |
+| Cliccabili, bottoni | 8, 1 | 4, 1 |
+| Caratteri fuori dal menu | 159 | |
+| `h1` | 144 px, 6 parole, 1 virgola | 52 px |
+| Parole | 899 | |
+| Altezza | 7.149 px | 10.759 px |
+| Foto, formati, ingrandite | 9, 3, 0 | |
+| Famiglie, elementi oltre i 100 px | 1 (Outfit), 1 | |
+| Fondi, sezioni verdi, spazi | 3, 1, 96 e 144 px | 56 e 84 px |
+| Tre casi in uno schermo | 376 su 820 px | 447 su 711 px |
+| Peso | 434 KB | 379 KB |
+| U+2014, lista nera, "indicativ" | 0, 0, 0 | |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessun testo fuori dallo schermo, nessuna foto ingrandita, nessun errore di script; menu, ancore e modulo come prima. Resta segnalata solo la sovrapposizione del campo "Note" chiuso nel `details`, che non si vede. Posizioni dei difetti del giudice con `_prova/alto/ritocco/posizioni.mjs`. Screenshot rifatti con gli stessi nomi (`home-1440.jpg` ora 7.149 px, `home-390.jpg` 10.828 px) e guardati a pezzi.
+
+
+---
+
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `pro_img.py`, controllo dei testi e delle immagini citate, screenshot con `shot_finale.mjs`, poi `pro_controlli.mjs` (le 15 regole, esito anche in `_prova/pro_controlli.json`) e `pro_prova.mjs` (menu, ancore, modulo). Le modifiche del ritocco finale alla pagina sono in `_prova/script/ritocco_css.py` e `ritocco_html.py` (sostituzioni esatte, già applicate).
 
 La home di prima ("Il carattere dell'edificio", con la sua NOTA e i suoi screenshot) è copiata com'era in `_prova/versione-1-originale/`.

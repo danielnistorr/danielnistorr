@@ -29,6 +29,16 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 |---|---|---|---|---|---|
 | `esterne/pexels-4198047-karola-g-panino-lino.jpg` | https://www.pexels.com/photo/4198047/ ("Fresh bread on table covered cloth") | Karola G (kaboompics.com) | 2400x3600 | apertura della versione precedente, oggi non usata | un panino chiaro con un taglio, dall'alto, su lino. Licenza letta il 2/11/2026 sulla pagina della foto: "Free", con il rimando alla Licenza Pexels (https://www.pexels.com/license/: uso gratuito, anche commerciale, attribuzione non obbligatoria; non si vende la foto senza modifiche e non la si usa per far credere a un'approvazione dell'autore). Non è in nessun altro `CREDITI.md` della campagna (controllato il 2/11/2026). Non è un loro pane |
 
+## Uso nella home ibrida (`sito/`, novembre 2026)
+
+Solo foto del panificio, da `originali/` (riscaricati il 3/11/2026 da `static.wixstatic.com/media/<id>`, nomi completi con l'id); nessuna foto di `esterne/`, nessuna illustrazione, nessuna immagine generata. Lavorate con `_prova/alto/script/alto_img.py`, un solo trattamento (bilanciamento verso il neutro, curva leggera, saturazione 0,88).
+- Vetrina con Galileo e Fidalma (`617993_02eb45f6505c45a0b941c382dbb56172~mv2.jpg`, 640x319): seconda schermata, alla misura nativa.
+- Panettone tagliato sul sacco di juta (`b56ebf_5b27b00f6a6c4d49939b531738929d2e~mv2.jpg`, 5337x3935, Nikon D3300, 5/12/2020): sezione di Natale, 3:2, fino a 2016 px.
+- Focaccia sul sacco del cinquantesimo (`b56ebf_fabcdffb7e054258acd47fe9f4aef2d6~mv2.jpg`, 5702x3978, stessa serie): 3:2, fino a 1100 px.
+- Tartarughe nel cesto (`617993_28aa18bc6f6d4cff96afef03b7523587~mv2_d_1920_1280_s_2.jpg`, 1920x1280): taglio 3:2 di 1260x840 senza la sessola di plastica.
+- L'insegna FORNASIERO in apertura non è una foto: è un lettering disegnato in SVG sulla foto della vetrina.
+Sono foto pubblicate dal panificio sul suo sito: per il sito nuovo serve il loro consenso.
+
 ## Uso nella home finale (`sito/`, livello professionale, 3 novembre 2026)
 
 Decisione del committente sulle foto: "niente". Solo foto del panificio che reggono, da `originali/`, nel loro formato; nessuna foto di `esterne/`, nessuna illustrazione, nessuna immagine generata. Lavorate con `_prova/script/pro_img.py`.

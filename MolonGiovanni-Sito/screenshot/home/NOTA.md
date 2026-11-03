@@ -1,6 +1,76 @@
 # Home di Molon Giovanni
 
-## Livello professionale (3/11/2026), con il ritocco finale
+## Metodo ibrido (novembre 2026)
+
+Rifatta il 3/11/2026 con il metodo ibrido scelto dal committente: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), sotto i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; riga nel registro dei caratteri (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`). La versione professionale di partenza è copiata com'era (sito e screenshot) in `_prova/versione-pro/`.
+
+### Che cosa è cambiato
+- **Idea e modello (D1, D4)**: modello F, come nel capitolo 5. La foto vera del frontale rosso nel fieno in collina (`2017_10_11.08_10ritoc.jpg`, 3264 x 2448) a tutta pagina; il titolo scuro scritto nel cielo, a destra dei due alberi sul crinale; un solo bottone rosso, "Va sul vostro mezzo?". Sul telefono la foto in 4:5 sul ranghinatore e il titolo sotto. Riferimenti guardati accanto: Rapid (`riferimenti/rapid-1440-prima-schermata.jpg`) e Reform.
+- **Testi (D7)**: `h1` "Anche sul terreno più irregolare.", accorciato dalla loro pagina dei ranghinatori ("perfetto adattamento a qualsiasi tipo di terreno, anche a quello più irregolare"); torna nel piede con lo stesso trattamento. Sotto: "Ranghinatori a cinghie per portattrezzi, trattori e motofalciatrici, da Arlesega di Mestrino (PD)." Manifesto della culmine: "Rivoltare l'erba. Mettere in andana. Allargare l'andana." (loro).
+- **Registro (D5)**: Anek Latin (Ek Type, SIL OFL 1.1), una famiglia variabile: larghezza 75 e peso 700 per titoli e nomi, 300 per la riga e il manifesto, larghezza 100 e peso 400 per il testo (18 px a 1440, 17 a 390), tabelle in larghezza 87 con cifre tabellari. Al posto di Encode Sans Condensed del capitolo 5, che è già in 3 home; Fira Sans era appena stata presa da Fratelli Zuin, Roboto Condensed è il carattere di Rapid e Reform. Sofia Sans esce.
+- **Testata fissa**: tre voci (Ranghinatori, Ricambi, Rivenditori), DE, telefono 049 900 0103 sempre in vista (a 320 px "Chiama"). Il logo non è un link, per stare nel tetto dei cliccabili. Sul telefono il menu nomina quello che si cerca: Frontali per portattrezzi e trattori, Posteriori a 3 punti, Per motofalciatrici, Ricambi, Rivenditori, Chi siamo, Indirizzo e contatti, English, Français.
+- **Sotto la piega, sei sezioni su una griglia a 12 colonne** (margini 80 px a 1440, 40 fino a 1099, 16 sul telefono; bordo destro di ogni blocco a 1360 px a 1440):
+  1. *Le macchine*: sei schede con la foto, il nome e la misura in una riga (frontali, posteriori, motofalciatrici, gEnio, girelli, scopatrici), poi le tre famiglie con i fatti (presa di forza 540 o 1000 giri/minuto, PRO, gEnio, optional, attacco a 3 punti, cinghie e ruote, MINI, MIKY, MAJOR) e le tre tabelle (frontali aperta; posteriori e motofalciatrici a un tocco, aperte senza JavaScript), con i link a video e schede tedesca e inglese. Accanto alle tabelle "Va sul vostro mezzo?" con Chiama e Scrivete (traccia: marca e modello, presa di forza, ranghinatore, zona, nome e telefono): colonna ferma a sinistra da 720 px in su, barra ferma in basso sul telefono finché si guardano le tabelle.
+  2. *Culmine*: il MAJOR 180.3 dietro una motofalciatrice su un prato di montagna (`2025_03_dok-tc-07-molon-br-scaled.jpg`) a tutta larghezza in 16:9, la didascalia a due voci, il manifesto e il testo dei pettini su cinghie con il video di presentazione.
+  3. *Ricambi*, l'unico blocco rosso: le tre cose da dire, "Chiama per il ricambio", "Manda la foto per email" (traccia come prima), "Se non rispondiamo, mandate la foto con il vostro telefono."
+  4. *Dove si comprano*: i quattro rivenditori per zona con città e sito; la strada per rivenditori e officine (listino, ordini e configurazioni, email con la traccia).
+  5. *Chi siamo*: Enio e Bruno Molon, i 3.000 m² in una frase, le cinque date, l'archivio in bianco e nero e la squadra, con le didascalie.
+  6. Il *piede* come biglietto da visita: firma, telefono, fax, email, indirizzo, "Indicazioni stradali", macchine, lingue, ragione sociale, P.IVA, Privacy, Cookie.
+- **Tolto**: la fila degli ingressi in apertura, il secondo bottone, gli occhielli sopra i titoli, la fascia delle cifre (25 modelli, 5 famiglie, 3.000 m², 5,0 su Google), il telefono a 96 px, il modulo "Richiesta" (al suo posto le tre email con la traccia, una per bisogno), "Va sul vostro mezzo?" ripetuto tre volte, il testo d'interfaccia "si apre un'email già scritta", la foto del lago, i fondi alternati antracite, rosso e grigio, "Vai alla mappa" doppio. Da 11.530 a 6.996 px a 1440.
+- **Foto (D2, D10)**: `assets/originali/` mancava dopo il riavvio; l'ho ricostruita riscaricando dalla libreria media di molonmachinery.com le 111 immagini di almeno 1000 px (elenco `_prova/alto/media/elenco.txt`, provini `_prova/alto/provini.jpg`). Un trattamento per apertura, culmine e squadra (bianco a metà verso il neutro, spalla sulle alte luci, saturazione 0,88, contrasto 1,04), l'archivio in bianco e nero neutro con la stessa curva; nessuna scurita in blocco: dietro al titolo c'è solo una sfumatura chiara locale. Script `_prova/alto/script/img_alto.py`; le sei schede sono gli scontornati della versione professionale. 10 foto in pagina, 3 formati a ogni larghezza.
+
+### Le misure
+`node _prova/alto/misura-d.mjs` (copia estesa di `alto/diagnosi/misure/misura.mjs`), risultati in `_prova/alto/misure/misure.json`.
+
+| Soglia | 1440 x 900 | 390 x 844 | Esito |
+|---|---|---|---|
+| Foto nella prima schermata (D2) | 92,8 % | 57,8 % | passa (60 % o più; a 390 almeno 50 %) |
+| Cliccabili (D3) | 6: Ranghinatori, Ricambi, Rivenditori, DE, telefono, bottone | 4: DE, telefono, Menu, bottone | passa (6 e 4) |
+| Bottoni pieni o bordati | 1 | 1 | passa |
+| Caratteri fuori da testata e menu | 150 | 150 | passa (160) |
+| Fila di ingressi, cifre di 30 px o più, occhielli | 0, 0, 0 | 0, 0, 0 | passa |
+| `h1` | 5 parole, 0 virgole, 68 px | 42 px | passa (9 parole, 1 virgola) |
+| Famiglie di caratteri, elementi sopra 100 px, testo corrente | 1, 0, 18 px | 1, 0, 17 px | passa |
+| Parole | 725 | 706 | passa (900) |
+| Sezioni tra apertura e piede | 5 (6 con l'apertura) | uguale | passa (7) |
+| Altezza | 6.996 px | 9.235 px | passa a 1440 (7.500) |
+| Griglia | 12 colonne, passo 24, margini 80-1360, un solo bordo destro (1360) | 12 colonne, passo 16, 16-374 | passa |
+| Foto ingrandite (file vero contro larghezza resa, anche con `object-fit: cover`) | 0 | 0 | passa, anche a 320, 768, 1024 e 1920 |
+| Formati | 1,7 (apertura), 1,5, 1,8 | 0,8, 1,5, 1,8 | passa (3) |
+| Fondi delle sezioni | bianco, grigio sotto la foto d'apertura, rosso (1 sezione) | bianco, rosso | passa (3, rosso una volta) |
+| Spazi tra le sezioni | 96 e 160 px (culmine) | 64 e 104 | passa (due valori, 1,67 volte) |
+| Link `tel:` | 3 (testata, Va sul vostro mezzo, Ricambi), tutti `tel:+390499000103` | uguale | passa (3 per M) |
+| `mailto:` | 4, tutti a info@molonmachinery.com: "Va sul mio mezzo?", "Ricambio Molon", "Rivenditori: listino e ordini", semplice nel piede | uguale | funzioni diverse, ognuna una volta |
+| "Indicazioni" | 1 | 1 | passa |
+| Numeri ripetuti più di 2 volte fuori dalle tabelle | "120" 3 volte, ma è il nome del modello MINOR MINI 120 e l'inizio della misura dei posteriori | uguale | vedi problemi aperti |
+| Il telefono "049 900 0103" scritto | 2 volte (testata e piede) | uguale | passa |
+| Lista nera, istruzioni sopra 14 px, "indicativ", repertorio | 0 | 0 | passa |
+| Peso caricato | 645 KB (1920: 850 KB) | 436 KB | passa (3 MB) |
+| Bottoni in pagina | 6 | 6 | il tetto ibrido non lo fissa; D8 ne chiede 5 (vedi sotto) |
+
+Contrasto del titolo e della riga sul cielo, misurato sulle fasce senza testo della schermata a 1440: sfondo con luminanza da 0,73 in su, quindi almeno 12:1 con l'antracite. Bianco sul rosso 5,6:1, grigio del testo secondario 6,9:1 sul bianco.
+
+### Controlli a 320, 390, 768, 1024, 1440 e 1920
+Larghezza del documento uguale alla finestra a tutte e sei; 0 sovrapposizioni tra testi e immagini (escluse le scritte volute sulla foto d'apertura e la barra ferma del telefono, che passa sopra le tabelle); 0 errori di script; la testata con il telefono resta davanti a metà pagina a ogni larghezza. Provato a mano con Playwright: la colonna "Va sul vostro mezzo?" resta ferma a 1440 accanto alle tabelle dei posteriori, la barra in basso a 390 accanto alla tabella dei frontali; i bottoni delle tabelle si aprono e si chiudono con `aria-expanded`. Screenshot rifatti in `screenshot/home/` (stessi nomi, più `home-1920-prima-schermata.jpg` e `home-320-prima-schermata.jpg`) e guardati a pezzi accanto alla versione professionale e alle prime schermate di Rapid e Reform.
+
+### Compiti della scheda d'uso e dove stanno ora
+- **Contadino, 390.** (1) Prima schermata: la foto vera al 58 %, il titolo, la riga con il mestiere, i tre mezzi e il luogo. (2) "Va sul vostro mezzo?" porta con un tocco alle tabelle (frontali aperta); dal menu "Frontali", "Posteriori a 3 punti" e "Per motofalciatrici" in due tocchi; le sei schede sono alla seconda schermata. Tabelle a 390 con modello, doppi denti, lavoro, massima e peso, senza scorrimento orizzontale (sotto i 375 px si nasconde "Massima"). (3) La presa di forza è il primo fatto dei frontali; "Va sul vostro mezzo?" con Chiama e Scrivete è una barra ferma in basso finché si guardano le tabelle. Le marche dei mezzi restano fuori. (4) "Rivenditori" in testata e nel menu, zona, nome, città e sito; DE in testata a 44 x 44 px.
+- **Proprietario con guasto, 390.** (1) Telefono in testata fissa, sempre. (2) "Ricambi" nel menu e in testata a 1440: il blocco rosso con le tre cose da dire. (3) "Manda la foto per email" con oggetto e traccia. (4) Orari: non pubblicati, la pagina non li inventa.
+- **Rivenditore, 1440.** (1) Le sei famiglie con foto, nome e misura alla seconda schermata, tutte link. (2) Tabelle in testo selezionabile con cifre tabellari (posteriori e motofalciatrici a un clic). (3) Schede tedesca e inglese sotto ogni tabella; depliant PDF ancora da avere. (4) "Siete un rivenditore o un'officina?" con l'email del listino; email, telefono e indirizzo copiabili nel piede. Il modulo con la scelta "Listino e ordini per rivenditori" non c'è più: lo sostituisce l'email con la traccia.
+
+### Problemi aperti
+- **Didascalia dell'apertura**: il modello F la prevede, ma luogo e anno della foto non si sanno, e i 160 caratteri non bastavano anche per lei: la foto d'apertura non ha didascalia. Quella della culmine dice "MAJOR 180.3 dietro una motofalciatrice / Prato di montagna, foto Molon", senza anno. Vanno chiesti luogo, anno e autore di tutte e due (LEGGIMI).
+- **Il portattrezzi dell'apertura** ha un adesivo "G6" e una piccola targhetta gialla: la marca non è leggibile e non è scritta, ma un contadino la riconosce. Se Molon preferisce, si rifà la foto (LEGGIMI, "Foto da fare").
+- **Telefono nel piede in testo, non link**: per stare nei 3 `tel:` di D12. La testata fissa lo ha sempre in vista.
+- **6 bottoni in pagina** (D8 ne vuole 5): Va sul vostro mezzo, Chiama e Scrivete accanto alle tabelle, i due di Ricambi, il listino. Togliendo "Scrivete per il listino" (diventerebbe un link) si scende a 5.
+- **"120" tre volte** fuori dalle tabelle: è il nome di un modello (MINOR MINI 120) e una misura; lo lascio.
+- **Colonna sinistra vuota nella schermata intera** accanto alle tabelle: dal vivo c'è "Va sul vostro mezzo?" che resta ferma; nella schermata intera resta in alto.
+- **Prove con il nome**: nessun lavoro con cliente, luogo e anno e nessuna recensione con nome nelle fonti (LEGGIMI, punto 7). Le prove in pagina sono le persone (Enio e Bruno Molon), i rivenditori con il nome e l'archivio.
+- **Giudizio**: non ho rifatto il giudice da agenzia né le prove dei clienti tipo; le misure dicono che i tetti passano, il voto va dato da chi guarda.
+- Nessun carattere U+2014 nella pagina, negli script, in DIREZIONE e in questa nota. Nessun commit.
+
+
+## Livello professionale (3/11/2026), con il ritocco finale (sostituito dal metodo ibrido; copia in `_prova/versione-pro/`)
 
 Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori del lusso), struttura A1 adattata a un costruttore di macchine da fieno che vende tramite rivenditori. Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14 (fogli in `_prova/pro-controllo/rif/`), le pagine intere di barth e Cly-Del (a pezzi), più Budri e Odermatt nel controllo. Scheda d'uso: `_prova/uso/SCHEDA.md`.
 

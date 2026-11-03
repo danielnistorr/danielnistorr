@@ -2,16 +2,17 @@
 
 Proposta non richiesta di una nuova home per F.lli Zuin & C. snc (Padova Est): scavi e movimento terra, cassoni scarrabili, demolizioni, fognature e spurgo, lavori stradali, escavatori a risucchio. Solo la home. Nessun contatto con l'azienda, niente di pubblicato.
 
-Versione di oggi: "livello professionale" del 3/11/2026, con il ritocco finale dopo il controllo del livello e le prove dei clienti tipo (cosa è cambiato: `screenshot/home/NOTA.md`) (regole in `_metodo/professionale/REGOLE.md`, famiglia S; scheda d'uso in `_prova/uso/SCHEDA.md`). La versione di prima (fondo giallo, "risucchio" a tutta pagina, foto Unsplash) è in `_prova/versione-1-originale/`.
+Versione di oggi: **metodo ibrido** del 3/11/2026. La prima schermata segue la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`: modello F, la frase loro "In qualsiasi situazione e spazio" nel cielo della foto, un bottone. Sotto ci sono i contenuti della versione professionale su una griglia sola. Direzione in `_prova/alto/DIREZIONE.md`; cambiamenti, misure e problemi aperti in `screenshot/home/NOTA.md`. La versione professionale com'era è in `_prova/versione-pro/` (sito e screenshot). Scheda d'uso: `_prova/uso/SCHEDA.md`.
 
 ## Cosa c'è
 
 - `sito/index.html`: la home, una pagina sola, senza librerie esterne. Si apre anche da file.
-- `sito/img/`: solo foto e logo dal loro sito, JPEG in più larghezze (srcset), nessuna ingrandita.
-- `sito/fonts/archivo-latin-var.woff2` e `OFL.txt`: Archivo variabile, servito dalla pagina (licenza sotto).
-- `screenshot/home/`: home a 1440 e a 390 (intere e prima schermata), chiusura e piede a 1440; `NOTA.md` con le scelte, l'esito delle 15 regole e i controlli.
-- `_prova/script/build_finale.sh`: rifà tutto. Usa `pro_img.py` (immagini), `home-pro.html` (sorgente della pagina), `pro_shoot.py` e `pro_vista.mjs` (screenshot), `pro_controlli.mjs` (15 regole, prove d'uso, larghezze; esito in `_prova/pro_controlli.json`).
-- `01-analisi.md`: fatti con le fonti, voti delle foto.
+- `sito/img/`: solo foto e logo dal loro sito, in WebP con più larghezze (srcset); nessuna è mostrata oltre i suoi pixel.
+- `sito/fonts/`: Fira Sans Extra Condensed 800 e Fira Sans 400 e 500 (sottoinsieme latino in woff2), con `OFL.txt`.
+- `screenshot/home/`: home a 1440 e a 390 (intere e prima schermata), prime schermate a 1024 e 768, `chiusura-1440.jpg`, `NOTA.md`.
+- `_prova/alto/`: `DIREZIONE.md`, `provini.jpg`, `script/foto.py` (trattamento e tagli), `script/screenshot.mjs` (screenshot), `misura-d.mjs` (soglie della sezione D, con l'esito in `esito-d.txt`), `concorrenti/` (Eberhard e Brandenburg a 1440).
+- `assets/originali/`: riscaricata il 3/11/2026 dal loro sito con l'API `wp-json/wp/v2/media`, perché il riavvio l'aveva svuotata. Ho tolto le pale eoliche del tema e le foto di repertorio e di cronaca (`lavori.jpg`, `demolizioni.jpg`). `assets/esterne/` e le Unsplash di `CREDITI.md` non ci sono più e non servono.
+- `01-analisi.md`: i fatti con le fonti e i voti delle foto.
 
 ## Il modulo di preventivo va collegato
 
@@ -21,8 +22,8 @@ Il modulo in home (nome, telefono, email, tipo di lavoro, indirizzo del lavoro, 
 
 1. **Orari** d'ufficio e del piazzale (in pagina non ci sono: la regola 15 li vuole nel piede), e un **cellulare o WhatsApp per le urgenze**, se c'è.
 2. **Zone servite**: l'elenco dei comuni (Padova, Vigonza, Noventa, Cadoneghe...?) per la sezione "Dove siamo" e il piede. Oggi non c'è nessun elenco, per non inventarlo.
-3. **Misure dei cassoni e degli autocarri**: il sito `.it` dice "da 2 a 25 mc", il `.com` "da 3 MC a 18 MC". In pagina 2-25 m³ (sito principale). Nelle cifre c'è anche "30-250 q", autocarri da 30 a 250 quintali, dal sito `.com` (letto nei risultati di ricerca): da confermare.
-4. **Spurgo e canal jet**: lo scrive il sito `.com` ("spurgo e il lavaggio con il sistema canal jet"); confermare che lo fanno ancora, e anche la vendita di materiali e il noleggio mezzi.
+3. **Misure dei cassoni e degli autocarri**: il sito `.it` dice "da 2 a 25 mc", il `.com` "da 3 MC a 18 MC". In pagina c'è 2-25 m³, dal sito principale. "30-250 q" (autocarri da 30 a 250 quintali, dal sito `.com`) è da confermare e nella home ibrida non c'è più.
+4. **Spurgo e canal jet**: lo scrive il sito `.com` ("spurgo e il lavaggio con il sistema canal jet"). Va confermato che lo fanno ancora, e anche la vendita di materiali e il noleggio dei mezzi. Nella home ibrida spurgo e canal jet non ci sono: la riga è "Fognature" e il modulo ha "Fognatura". Se fanno pronto intervento, lo spurgo va in testata come voce a sé.
 5. **SOA**: categorie, classifiche e scadenza, e il PDF dell'attestazione da mettere in "Per enti e imprese" come file scaricabile (come Eggentaler), e il nome dell'organismo SOA. Oggi in pagina ci sono la fascia delle qualifiche (Attestazione SOA, REA PD 82662, ATECO 42.11, senza loghi), la frase del loro sito e il bottone che chiede il documento per email. Con categorie e classifiche la fascia diventa più forte ("OG3 classifica ...").
 6. **PEC** (non trovata), **fax** 049 6458813 ancora attivo?, **nome da mostrare** ("F.lli Zuin & C. snc" del sito, nel piede; la ragione sociale del registro "Fratelli Zuin snc di Zuin Antonio, Luigi, Andrea & C." è nei dati per gli enti).
 7. **Anno**: il sito scrive "nasce nel 1946", il registro "Fondazione 1977" (la snc di oggi). In pagina "dal 1946" e "tre generazioni", come scrive l'azienda.
@@ -30,13 +31,13 @@ Il modulo in home (nome, telefono, email, tipo di lavoro, indirizzo del lavoro, 
 9. **Recensioni e clienti** (regola 10): nessuna recensione in rete (Reteimprese e Pagine Gialle: nessuna). Se vogliono, chiedere ai clienti una recensione su Google; e i nomi di enti e imprese per cui lavorano, con il permesso di citarli.
 10. **Numeri della Ditta**: quanti mezzi (autocarri, escavatori, escavatori a risucchio), quante persone (Atoka stima circa 16 dipendenti: non è in pagina finché non lo confermano).
 11. **Dati e usi del risucchio**: profondità, portata, lunghezza del tubo, che cosa non aspira; e gli usi tipici che fanno davvero (scavi vicino a tubazioni e cavi, pulizia di silos, vasche e capannoni, aspirazione di inerti, fanghi e polveri), da scrivere in un elenco "Si usa per" solo quando li confermano. Oggi la pagina dice di chiederli al telefono.
-12. **Foto**: che tutte quelle in pagina siano mezzi e cantieri loro (`pagina-iniziale-1` in apertura, `movimento-terra-1000x800-1`, `gallery2`, `gallery3`, `gallery4`, `pagina-iniziale-2`, `demolizioni-1000x800-1`, `lavori-stradali-1000x800-1`); in particolare l'escavatore Hitachi e il DAF dell'apertura, che l'inventario segna "loro (probabile)". Nell'ultima il cassone ha una scritta sul portellone ("F.LLI CAMION..."?): verificare che non sia un mezzo di un'altra ditta.
-13. **Frasi** da far approvare: le righe brevi delle schede sono prese dai loro testi (`.it` e `.com`) e accorciate; "Scavi controllati e aspirazione di qualsiasi materiale" corregge la loro frase ("scavi controllati e ideali per aspirare"); "Cosa scriverci", "Per una richiesta bastano luogo, materiale, quantità approssimativa e data", "Portata, profondità di scavo e lunghezza del tubo: chiedetecele al telefono" e le didascalie delle qualifiche sono scritte da noi.
+12. **Foto**: va confermato che tutte quelle in pagina siano mezzi e cantieri loro: `pagina-iniziale-1` in apertura, `gallery3` (risucchio), `lavori-stradali-1000x800-1` e `pagina-iniziale-2` (serie). Le didascalie dicono che cosa si vede, non "Mezzi della Ditta". Vale in particolare per l'escavatore Fiat-Hitachi EX215 e il DAF dell'apertura, che l'inventario segnava "loro (probabile)". Servono anche il luogo e l'anno di ogni foto, perché le didascalie oggi non li hanno. Nell'ultima il cassone ha una scritta sul portellone ("F.LLI CAMION..."?): verificare che non sia un mezzo di un'altra ditta.
+13. **Frasi** da far approvare. Nella home ibrida: "In qualsiasi situazione e spazio", presa dalla loro pagina Azienda e accorciata, che è la frase d'apertura e torna nel piede; le righe dei lavori, prese dai loro testi; "nella ragione sociale ci sono Antonio, Luigi e Andrea Zuin", dal registro; "Per cassoni, scavi e lavori piccoli si fa prima al telefono" e "Scriveteci il lavoro", scritte da noi. Dalla versione professionale: le righe brevi delle schede sono prese dai loro testi (`.it` e `.com`) e accorciate; "Scavi controllati e aspirazione di qualsiasi materiale" corregge la loro frase ("scavi controllati e ideali per aspirare"); "Cosa scriverci", "Per una richiesta bastano luogo, materiale, quantità approssimativa e data", "Portata, profondità di scavo e lunghezza del tubo: chiedetecele al telefono" e le didascalie delle qualifiche sono scritte da noi.
 14. Quale dei due siti (`fratellizuin.it` o `.com`) è quello giusto.
 
 ## Foto
 
-In pagina solo foto loro (`assets/originali/`), con un trattamento unico (`_prova/script/pro_img.py`: livelli puliti, blu del cielo spenti del 45%, saturazione -15%, alte luci compresse a 240, bilanciamento appena freddo, tagli con il cielo attorno al 20%), in tre formati per vista: a 1440 4:5 (l'escavatore che carica il cassone, in apertura), 2:1 (il risucchio), 4:3 (le schede); sotto i 900 px la stessa scena dell'apertura in striscia larga e le schede in 3:2. `gallery1` (il parco autocarri) non è più in pagina. Nessuna foto di repertorio: le sei Unsplash della versione di prima sono state tolte dalla pagina (restano in `assets/esterne/`, vedi `assets/CREDITI.md`). Nessuna immagine generata dall'IA, nessun disegno.
+In pagina ci sono solo foto loro (`assets/originali/`), con un trattamento unico (`_prova/alto/script/foto.py`): livelli comuni ai tre canali contro la foschia, il 35% della correzione verso il neutro, una curva leggera, alte luci a 244, saturazione 0,88. I formati sono tre. La scena larga dell'apertura è `pagina-iniziale-1` a 2000, 1440 e 1024 px, con un taglio 4:3 sotto i 1024 px e uno verticale di 692 px (camion e braccio) sul telefono. Il risucchio `gallery3` è tagliato con il cielo sopra (1365x760, mostrato al massimo a 1280 px), per comporci il titolo. La serie dei lavori è di due foto in 3:2 (`lavori-stradali`, `pagina-iniziale-2`). Escono, dopo il giudice del 3/11/2026, i due dettagli del risucchio (`gallery4`, `gallery5`), l'autobotte `gallery2` (finché lo spurgo non è confermato) e `demolizioni`. Restano fuori `movimento-terra` (stessa scena dell'apertura), `gallery1` (metà è asfalto vuoto), `gallery6` e `1365-1024` (provenienza da confermare). Nessuna foto di repertorio, nessuna immagine generata, nessun disegno. La frase d'apertura sta nel cielo della foto, in alto a destra: se la foto cambia, va rimessa dove il fondo è libero.
 
 ### Da rifare dal vero (in ordine di importanza)
 
@@ -57,7 +58,7 @@ Esiste solo come PNG da scansione di un timbro ovale (765x463, bordi frastagliat
 
 ## Licenze
 
-- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1: uso commerciale libero, file servito da `sito/fonts` con `OFL.txt`.
+- **Fira Sans Extra Condensed** e **Fira Sans** (The Mozilla Foundation e Telefonica S.A.), SIL Open Font License 1.1: uso commerciale libero. Il sottoinsieme latino è fatto con `pyftsubset` dai TTF di google/fonts e servito da `sito/fonts` con `OFL.txt`. Sofia Sans, quella indicata nel capitolo 5, è già in 3 home; Archivo, della versione di prima, è fuori catalogo.
 - **Foto e logo dell'azienda**: dal loro sito, usati solo per la proposta.
 
 ## Newsletter e social

@@ -1,4 +1,91 @@
-# Fratelli Zuin, home: "Scavi, cassoni scarrabili, strade e fognature a Padova, dal 1946"
+# Fratelli Zuin, home: "In qualsiasi situazione e spazio"
+
+## Metodo ibrido (novembre 2026)
+
+Richiesta del committente: la home professionale "non è ancora super professionale" (giudice da agenzia 6). Metodo scelto: **ibrido**, cioè prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` e, sotto, i contenuti e le funzioni della versione professionale, rimessi in ordine su una griglia sola. La versione professionale com'era (sito e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`; riga del registro in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+### Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice da agenzia ha dato 6,5 (prima 5,5): prima schermata riconoscibile, ma sotto la piega la pagina tornava fascicolo, con errori di finitura e il gesto che non tornava sul risucchio. Questo giro corregge i difetti bloccanti e importanti e i compiti dei clienti tipo non riusciti, senza toccare la prima schermata della sezione D (stessa foto, stessa frase, un bottone). La pagina di prima e i suoi screenshot sono in `_prova/alto/prima-del-ritocco/`; le immagini tolte in `_prova/alto/ritocco/img-tolte/`; le prove dei compiti in `_prova/alto/ritocco/compiti.mjs`. Dove i punti qui sotto contraddicono "Che cosa è cambiato", vale questo paragrafo.
+
+- **Modello del mezzo (bloccante).** La didascalia d'apertura diceva "Hitachi EX245": sulla torretta c'è scritto EX215 e sul braccio FIAT HITACHI. Ora è "Fiat-Hitachi EX215 e DAF / Carico di terra", e l'alt dice "L'escavatore arancio Fiat-Hitachi EX215 carica terra nel cassone rosso di un autocarro DAF CF". Corretto anche `DIREZIONE.md`. "CF" resta solo nell'alt: con "Carico di terra" nella didascalia, la prima schermata a 1440 resta a 158 caratteri (il tetto è 160).
+- **"Mezzi della Ditta" tolto** dalla didascalia d'apertura e dall'alt: il LEGGIMI (punto 12) lo dà da confermare. Al suo posto c'è un fatto che si vede, "Carico di terra".
+- **Fascia sotto la foto.** "Preventivo gratuito" non va più a capo (`white-space:nowrap`, colonne 10-13, didascalia 7-10). Con `wrap.mjs` è alto 30 px, su una riga, a 1100, 1180, 1280, 1366, 1400 e 1440. Le tre voci sono allineate sulla linea di base (`align-items:baseline`), non più con i rientri a mano.
+- **Gerarchia sotto la piega.** C'è un solo titolo per i lavori, "Lavori", in condensato a 56 px. "Per casa e cantiere" e "Per imprese ed enti" sono diventate etichette in tondo 24/31 peso 500, in grigio. Il condensato a 56 px resta solo su Lavori, Risucchio e Preventivo. Chi siamo e i Dati vanno a 40 px, come il numero di telefono nel blocco rosso (prima 56). Titoli con `text-wrap:balance` e spazi unificatori dove restava una parola sola a fine riga ("e&nbsp;attestazione", "a&nbsp;risucchio", "attestazione&nbsp;SOA", "ATECO&nbsp;42.11", "Padova&nbsp;Est", "1968-69").
+- **Doppione dei titoli.** La sezione `#enti` si chiama "Dati della Ditta e attestazione SOA" e la voce di menu "Dati e SOA". "Per imprese ed enti" resta solo come etichetta dei lavori.
+- **Ordine e chiusura (D11).** Le sezioni sono ora Lavori, Risucchio, Chi siamo, Dati e SOA, Preventivo e piede. Il rosso chiude la pagina e c'è un'alternanza in meno: bianco, nero, bianco (Chi siamo e Dati, divisi da un filetto), rosso, nero.
+- **Il gesto torna sul risucchio (D1, D7).** La scritta della fiancata, "Escavazioni ed aspirazioni a risucchio controllato", è composta come la frase d'apertura: maiuscolo condensato nero #141414 a 56/54, allineato a destra, in alto a destra nel cielo della foto. Per avere il cielo, `gallery3` è tagliata più in alto (1365x760, `risucchio-cielo`, mostrata al massimo a 1280 px). Il contrasto con il cielo è di 16,8:1. Sotto la foto ci sono la didascalia a sinistra e la frase dei materiali a destra, poi la richiesta. Arrivando da "Risucchio" nel menu, a 1440 titolo, foto (88-801 px) e materiali (fino a 873) stanno in una schermata, grazie allo `scroll-margin` sulla sezione. Sotto i 760 px il titolo sta sopra la foto, in bianco sul nero: il cielo, a quella misura, è alto 40 px.
+- **Serie dei lavori (D9, D10).** Le quattro miniature sono diventate due foto di reportage a 6 colonne, in 3:2 (628 px a 1440, file da 820 e 1000/1280 px). Una è lo scavo tra le case, con la terra scaricata sui tubi nel telo; l'altra la pala CAT 928G che carica le macerie. Ognuna ha la didascalia "che cosa si fa / quale riga dell'indice". L'autobotte esce finché lo spurgo non è confermato, la demolizione per il doppione. La serie mostra che cosa si fa, non lavori con il nome.
+- **Culmine senza miniature.** Tolti i due dettagli da 248 px ("Visto da dietro", "Rosso e blu, con il timbro"). La pagina a 1440 è alta 5.984 px, sotto i 6.000 di D8. In `misura-d.mjs` la soglia è tornata a 6.000.
+- **Lavori a Padova (D9).** Sede dell'Azienda del Gas e Prato della Valle non hanno l'anno, e non si inventa. I tre lavori non sono più presentati come righe di prova: stanno nella storia, con l'unico anno che c'è ("La prima demolizione importante è l'ex Foro Boario di Padova, negli anni 1968-69; in città seguono..."). Via anche "una vasta gamma di mezzi", frase generica.
+- **Compiti dei clienti tipo.** Le righe dei lavori portano a `#modulo` e non più a `#preventivo`. Sul telefono il modulo compare così in cima allo schermo, con il tipo già scelto (`f-tipo` a 397 px a 390, a 291 a 1440). Nel risucchio c'è il link "Formazione e sistemazione delle fognature, tra i lavori", che porta alla riga Fognature, e da lì al modulo con "Fognatura". A 390 cassoni, fognature e cortili finiscono a 852, 942 e 1009 px, entro 1,2 schermate (1013). La sede si trova da Menu, "Contatti e sede", in vista a 548 px. Il risucchio comincia più in basso di prima (2,5 schermate a 1440), ma si arriva con un clic dal menu, e lì titolo, foto e materiali stanno insieme.
+
+**Respinti o rimandati**
+- Il punto di scala a 104 px (riserva su D5) non è stato portato oltre i 140 px: a 140 la frase coprirebbe il braccio dell'escavatore, e la prima schermata non si tocca.
+- Il risucchio non è stato portato più in alto: servirebbe di nuovo la fila degli ingressi, oppure il culmine prima dei lavori. Ci si arriva dal menu.
+- La sede non torna entro due schermate a 390. "Via Bassette 6/A" compare già due volte (contatti e dati), che è il tetto delle ripetizioni. Si arriva dal menu.
+- Le foto (55% della distanza secondo il giudice) restano quelle d'archivio: per andare sopra l'8 serve il servizio fotografico del LEGGIMI.
+
+### Che cosa è cambiato
+
+- **Idea e gesto (D1).** Una Ditta di famiglia che dal 1946 arriva con i suoi mezzi "in qualsiasi situazione e spazio". La frase è loro (pagina Azienda: "scarrabili anche di piccole dimensioni della larghezza di una automobile in grado di intervenire in qualsiasi situazione e spazio"), accorciata e non inventata. È composta in maiuscolo condensato nero nel cielo della foto, allineata a destra sopra l'escavatore che carica il cassone rosso, come una scritta dipinta su un mezzo. Lo stesso trattamento torna sul risucchio, con la scritta della loro fiancata ("Escavazioni ed aspirazioni a risucchio controllato"), e nel piede, con la frase.
+- **Modello F (D4)**, la foto a tutta pagina con la didascalia, come dice il capitolo 5 (riferimenti Eberhard e Brandenburg). Il nome di un lavoro come titolo (Brandenburg) non si può usare: l'unico lavoro con nome e anno è l'ex Foro Boario del 1968-69, e la sua foto non c'è.
+- **Prima schermata a 1440.** Testata bianca fissa con il timbro, cinque voci (Lavori, Risucchio, Chi siamo, Enti e imprese, Contatti e sede) e "Chiama 049 625336", unico bottone. Sotto c'è la foto a tutta larghezza (`pagina-iniziale-1`, 2000 px), mostrata alla scala della sua larghezza e mai ingrandita, con la frase. In una fascia bianca: la riga del mestiere e del luogo ("Scavi, scarrabili e fognature a Padova Est, dal 1946"), la didascalia a due voci e il link "Preventivo gratuito". Tolti il titolo-elenco, l'occhiello, il secondo bottone, l'indirizzo e la fila nera dei sei ingressi.
+- **Prima schermata a 390.** Testata fissa con il timbro, "Chiama 049 625336" (l'unico bottone) e "Menu" senza riquadro. La stessa scena è tagliata in verticale (camion e braccio, 692 px), con la frase nel cielo; sotto, la riga e il link. In fondo allo schermo cominciano le righe dei lavori.
+- **Sotto la piega, i contenuti della versione professionale su una griglia a 12 colonne** (contenitore di 1280 px, margini di 80, 40 e 20 px, bordi destri tutti a 1360 a 1440):
+  1. **Lavori**: due indici a righe, "Per casa e cantiere" (Cassoni scarrabili 2-25 m³, Fognature, Cortili e passi carrai, Scavi e movimento terra, Ritiro di macerie e terra) e "Per imprese ed enti" (Demolizioni, Strade e urbanizzazioni, Escavatori a risucchio, Lavori pubblici con attestazione SOA). Ogni riga ha la frase loro e porta al modulo con il tipo di lavoro già scelto. Sotto c'è la serie di quattro foto 4:3 con la didascalia a due voci. Le sei schede con foto sono diventate righe, perché le foto dei lavori sono quattro.
+  2. **Culmine, il risucchio**: su nero, con 160 px di spazio invece di 96. La scritta della fiancata è il titolo, accanto c'è la loro frase sui materiali, poi la foto dominante 2:1 a 1280 px (`gallery3`, 1365 px) con la didascalia "Escavatore a risucchio su autocarro MAN a quattro assi / Sulla fiancata: Via Bassette 6, Padova". Seguono la richiesta per email con la traccia, l'indirizzo in chiaro a 14 px accanto al comando e due dettagli (`gallery4`, `gallery5`, questa nuova).
+  3. **Chi siamo**: la storia con le loro parole (fratelli, cortile, DOGE, figli, tre generazioni) e i soci che compaiono nella ragione sociale (Antonio, Luigi e Andrea Zuin). I tre lavori a Padova sono in righe.
+  4. **Preventivo e contatti**, l'unico blocco rosso: "Richiedi un preventivo gratuito", il numero (l'unica cifra oltre i 30 px della pagina), email con traccia, fax, sede operativa con le indicazioni a parole (dal loro "Dove siamo") e il link alla mappa. Il modulo è quello della versione professionale: quattro campi obbligatori, il campo mancante detto per nome con il fuoco sopra, la mail composta. Senza JavaScript il modulo cade su `mailto:`.
+  5. **Per enti e imprese**: la frase SOA, "Chiedi l'attestazione SOA" e i dati da copiare (ragione sociale, P.IVA e CF, REA, ATECO, sede legale e operativa).
+  6. **Piede** come biglietto da visita: timbro, frase, nome, P.IVA, Privacy, Cookie. Il menu ripetuto non c'è più.
+- **Tolti** anche la fascia delle cifre (1946 a 144 px, 3 generazioni, 2-25 m³, 30-250 q, quest'ultima da confermare), la fascia delle qualifiche (i dati sono passati agli enti), gli occhielli di sezione e 4 dei 6 link `tel:`. "Spurgo" e "canal jet" escono dalla pagina: nel LEGGIMI sono da confermare. La riga si chiama "Fognature" e il modulo ha "Fognatura".
+- **Caratteri (D5).** Sofia Sans, quella indicata, è già in 3 home. Al suo posto **Fira Sans Extra Condensed 800** (frase e titoli, maiuscolo) e **Fira Sans 400 e 500** (testo), SIL OFL 1.1, in `sito/fonts/` con `OFL.txt`. Fira non è in nessun'altra home. Archivo esce.
+- **Foto.** `assets/originali/` era vuota dopo il riavvio: l'ho riscaricata oggi dal loro sito con l'API `wp-json/wp/v2/media` e ho tolto le foto del tema, di repertorio e di cronaca. Un trattamento solo (`_prova/alto/script/foto.py`): livelli comuni ai tre canali contro la foschia, il 35% della correzione verso il neutro, una curva leggera, alte luci a 244, saturazione 0,88. In pagina ci sono 8 foto in WebP con srcset. Le misure dei formati sono nella tabella qui sotto. Provini: `_prova/alto/provini.jpg`.
+
+### Misure
+
+`node _prova/alto/misura-d.mjs`, cioè `misura.mjs` della diagnosi esteso alle soglie D e ibride. L'esito è in `_prova/alto/esito-d.txt`, i dati in `_prova/alto/misure-d.json`. Passano tutte e 76 le soglie (dopo il ritocco, con l'altezza tornata alla soglia di D8, 6.000 px).
+
+| Soglia | Valore |
+|---|---|
+| Foto nella prima schermata | 80% a 1440, 67% a 390 |
+| Cliccabili / bottoni a 1440 | 7 (massimo 8 per S) / 1 |
+| Cliccabili / bottoni a 390 | 4 / 1, la chiamata |
+| Caratteri fuori dal menu a 1440 | 158 (massimo 160) |
+| Fila di ingressi, cifre di 30 px o più nella prima schermata, occhielli | 0, 0, 0 |
+| `h1` | 5 parole, 0 virgole, 104 px a 1440 e 46 a 390; unico elemento sopra i 100 px |
+| Famiglie, testo corrente | 2; 17 px o più (19 per il testo, 17 per le righe) |
+| Parole, sezioni, altezza a 1440 | 590 (prima 830), 6 sezioni, 5.984 px (prima 7.998; 6.027 prima del ritocco) |
+| Peso caricato | 0,52 MB a 1440, 0,32 MB a 390 |
+| Foto, formati, ingrandite | 4 (prima del ritocco 8); a 1440 la scena larga e 3:2, a 390 anche la verticale; nessuna mostrata oltre i suoi pixel, alle sei larghezze |
+| Didascalie | 4 su 4 a due voci, nessuna ripetuta |
+| Fondi | bianco, nero (culmine) e rosso (un blocco solo); spazi di sezione 96 e 160 px |
+| Ripetizioni | 2 `tel:`, numero scritto 2 volte, email 2, Via Bassette 6/A 2, nessun link più di 2 volte, 4 bottoni in pagina |
+| Controlli a 320, 390, 768, 1024, 1440, 1920 | niente scorrimento orizzontale, niente testi sovrapposti, nessun errore di script; tutti i `tel:` sono +39049625336 e tutti i `mailto:` vanno a info@fratellizuin.it |
+
+**Compiti della scheda e dove stanno ora**
+- *Privato, 390*: "Chiama 049 625336" sta nella testata fissa (44 px), si tocca in cima e a metà pagina. "Cassoni scarrabili 2-25 m³", "Fognature" e "Cortili e passi carrai" finiscono a 830, 919 e 987 px, entro 1,2 schermate (1013), e "anche di piccola entità" a 1010. La richiesta parte dal link "Preventivo gratuito" della prima schermata o da una riga, che sceglie il tipo nel modulo. La sede è in "Contatti e sede", dal menu.
+- *Tecnico, 1440 e 390*: "Risucchio" è nel menu, la sezione comincia a 2,2 schermate a 1440 e a 2,6 a 390 (dal menu o dalla riga "Escavatori a risucchio"). Titolo, materiali e foto stanno insieme in una schermata. La richiesta per email ha la traccia, l'indirizzo è scritto in chiaro e la chiamata è nella testata fissa.
+- *Ente, 1440*: la riga "Lavori pubblici con attestazione SOA" è a 1379 px, nella seconda schermata. I dati si copiano da una schermata sola, l'attestazione si chiede con un clic, la storia e i tre lavori a Padova sono in "Chi siamo".
+
+Screenshot (gli stessi nomi di prima): `home-1440.jpg` e `home-390.jpg` (intere, con la testata resa statica solo per la cattura), le prime schermate a 1440, 390, 1024 e 768, `chiusura-1440.jpg` (preventivo, enti, piede). Li ho guardati a pezzi accanto alla versione professionale (`_prova/versione-pro/screenshot/home/`) e alle prime schermate di Eberhard e Brandenburg rifatte oggi (`_prova/alto/concorrenti/`). Le viste di lavoro sono in `_prova/alto/viste/`.
+
+### Problemi aperti
+
+1. **Didascalie senza luogo e anno.** Non sappiamo dove e quando sono state fatte le foto. Le didascalie dicono che cosa si vede e un fatto visibile (l'indirizzo dipinto sulla fiancata, il carico nel cassone). "Mezzi della Ditta" non c'è più: torna quando l'azienda conferma che le foto sono sue (LEGGIMI, punto 12).
+2. **Il risucchio è più in basso di quanto chiedesse la scheda** (2,5 schermate a 1440 e 2,8 a 390 dopo il ritocco). Per la sezione D il compito passa perché si arriva dal menu con un clic, e all'arrivo titolo, foto e materiali stanno in una schermata; tenerlo più in alto voleva dire tornare alla fila degli ingressi.
+3. **La sede non è più entro due schermate a 390**: compare già due volte (contatti e dati della Ditta), che è il tetto delle ripetizioni. Si arriva dal menu "Contatti e sede" (in vista a 548 px dopo il tocco).
+4. **Spurgo**: il compito "arrivare allo spurgo" del tecnico non si può fare finché l'azienda non conferma il servizio (LEGGIMI, punto 4). Quando lo conferma, va in testata come voce a sé, se c'è il pronto intervento.
+5. **Foto**: luce di mezzogiorno con foschia, nessuna persona, lavori finiti senza foto. La composizione dell'apertura dipende da questa foto, con la frase nel cielo a destra: se la foto cambia, la frase va rimessa dove il fondo è libero. Sugli schermi ad alta densità la foto d'apertura è servita a 2000 px, sotto i 2880 che servirebbero. Sopra l'8, per il gruppo S, serve il servizio fotografico del LEGGIMI.
+6. **Controlli non fatti da me**: la prova D1 (tre persone e le miniature a 300 px) e i voti del giudice da agenzia e dei clienti tipo vanno dati da chi giudica. Il controllo D4 dell'ondata (`media-prime-schermate.jpg` della zona) si fa quando tutte le home della zona sono rifatte.
+7. Orari, zone servite e PEC non ci sono ancora (LEGGIMI, punti 1, 2 e 6).
+8. Nella riga di `REGISTRO-CARATTERI.md` è scritto "d apertura" senza apostrofo, per l'escape nel comando di aggiunta. Non l'ho corretto per non riscrivere un file che altri agenti scrivono in parallelo.
+
+---
+
+*Nota di prima (versione professionale, 3/11/2026). Descrive la home salvata in `_prova/versione-pro/`.*
+
 
 La home di prima (fondo giallo, la parola "risucchio" a tutta pagina, nove lavori in una frase da toccare, sei foto Unsplash "indicative") è salvata con la sua nota in `_prova/versione-1-originale/` (sito e screenshot). Questa nota descrive la home di oggi.
 

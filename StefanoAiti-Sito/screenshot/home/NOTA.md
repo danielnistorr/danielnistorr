@@ -1,3 +1,104 @@
+# Metodo ibrido (novembre 2026)
+
+3 novembre 2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (sito e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`.
+
+## Alto livello: ritocco dopo il giudice da agenzia (3 novembre 2026)
+
+Il giudice da agenzia ha dato 7 (prima 6): la prima schermata regge accanto a Hufton + Crow e Iwan Baan, ma sotto la piega la pagina era "corretta ma senza regia", il culmine non entrava nello schermo, i prodotti erano miniature su quattro bianchi diversi e la riga dello scatto "bisbigliava". Dove questa sezione e le righe sotto non coincidono, vale questa. Copia della pagina prima del ritocco: `_prova/alto/rit/index-prima.html`; script delle immagini di prima: `_prova/alto/rit/immagini-prima.py`.
+
+**Applicato**
+- **La riga dello scatto si legge (difetto 4).** Spline Sans Mono a 16 px in nero (14 px solo sotto i 600), e il tempo di posa dall'EXIF dopo data e ora: "18 marzo 2023, 19:19, posa 1,3 s" sotto Mirano (spiega le scie di luce), "posa 1/60 s", "1/100 s", "1/1600 s" sotto i lavori. Per restare nei 160 caratteri della prima schermata ho tolto "le" ("per imprese di strade e costruzioni"), "ore" da tutte le righe e "(VE)" da Mirano (ora scritto come Padova e Verona Sud): 157 caratteri.
+- **Forma corta sul telefono (difetto 7).** Sotto i 600 px la data è "18.3.2023, 19:19" (due span alternati nel markup, niente JavaScript); sui lavori il tempo di posa sparisce, sull'apertura resta perché ci sta. A 390 ogni riga dei lavori è su una riga sola (31 px con il filetto sopra, 21 di testo). Tra 901 e 1180 px le coppie usano la stessa forma corta.
+- **Il culmine (difetti 1, 2 e 3).** Il culmine ora è la fresatura notturna Salima a **Padova** (18 maggio 2024, ore 0:09): il luogo è nel titolo del video di cui la foto è la copertina su aitistudio.it/video-storytelling ("Padova - Asfaltatura vie urbane per il passaggio del 107esimo Giro d'Italia"), quindi non è più da indovinare. 16:9 (`l-padova`, taglio cy 0,55) con `max-height:calc(100svh - testata - 56px)`, e **apre la sezione Cantieri**, prima del titolo: dopo il clic su "Cantieri" a 1440x900 foto e riga stanno intere nello schermo (foto da 80 a 845, riga fino a 877). Sotto i 600 px va a filo dello schermo, 1:1 (`l-padova-q`, 1267 px, non ingrandita): 390x390 contro 350x233 delle altre. È anche la regia che mancava: Cantieri è l'unica sezione che si apre con la foto.
+- **Persone nei cantieri (difetto 3).** Massenza (Volvo in posa, HDR) e Carpane (mezzi lontani tra montagne e guardrail) escono. La coppia ora è **Salima, A4 Verona Sud** (operaio con le cuffie ai comandi, al tramonto; il luogo è nel titolo del video "A4 Verona Sud - Manutenzione straordinaria") e **Salima, foto aziendale** (il ritratto davanti all'escavatore Volvo, 13 dicembre 2021, ore 13:06). Due foto su tre di cantiere hanno una persona in primo piano; tre lavori su quattro hanno impresa e luogo (Mirano, Padova, Verona Sud). Restano 12 foto. La stesa notturna (`Studio-Aiti-Foto-cantieri-6`) l'ho tenuta fuori: senza luogo, e la notte la dice già Padova.
+- **"Fotografiamo il cantiere quando lavora, anche di notte" tolta (difetto 5).** Resta "Reportage di cantiere, foto aziendali, livree dei mezzi, video e siti web per le imprese di strade e costruzioni. I cantieri di queste foto sono in Veneto." (Trentino esce con Massenza.) `grep "anche di notte" sito/index.html`: 0.
+- **Still life rifiniti (difetto 6).** Nello script delle immagini un passaggio solo sul bianco porta i quattro fondi a 245,245,244 (angoli misurati: 243-245 su tutte e quattro), le tessere hanno `background:#F5F5F4`, e ogni oggetto è ritagliato al 65% dell'altezza della tessera. Superoro passa dalla collana (che usciva dai bordi) all'anello (`Superoro-5.jpg`): didascalia "Superoro, anello". Riga della sezione: "Oggetti, gioielli e componenti, fotografati nella nostra sala di posa a Mestrino."
+- **Architettura, piedi allineati (difetto 8).** Sopra i 1180 px Banca Prealpi è 4:3 con un file tagliato apposta (`a-prealpi-43`, cx 0,85, la persona resta dentro), e la colonna di destra è alta quanto la foto grande (flex, spazio in mezzo): scarto tra i due piedi 0 px a 1440 e a 1920. Sotto i 1180 px la foto grande va a tutta larghezza e le due piccole affiancate sotto. Formati a 1440: 16:9, 3:2, 4:3 (3).
+- **Filetti uguali in testa a ogni sezione (difetto 9).** Ogni apertura di sezione (lo studio, Cantieri, Prodotti, Architettura, Preventivo, Matrimoni) ha lo stesso filetto nero di 1 px con 16 px sopra il titolo, come "Per chi abbiamo lavorato" e "Per le imprese".
+- **La seconda metà meno da modello.** Matrimoni: titolo e dati nella stessa testa delle altre sezioni ("4,9 su 5 con 9 recensioni su Matrimonio.com. Servizio da 1.000 euro."), "Chiama per la data" da solo, e Weddgraphy, le recensioni e info@weddgraphy.it come righe d'indice con filetto e freccia, non più quattro azioni in fila. Nei contatti "Prodotti e architettura" ha ora la persona (Stefano Aiti), come "Cantieri e imprese" (D12).
+- **A 390 la foto dello studio è 3:2** come i lavori, così i formati sul telefono restano 3 (4:5, 3:2, 1:1).
+- File tolti da `sito/img/`: `l-carpane-*`, `l-massenza-*`, `l-fresatura-*` e i vecchi `p-*`; nuovi `l-padova-*`, `l-padova-q-*`, `l-verona-*`, `l-ritratto-*`, `a-prealpi-43-*`, `p-*` (script `_prova/alto/script/immagini.py`). LEGGIMI aggiornato (didascalie e date da confermare, frasi tolte).
+
+**Respinto, con il motivo**
+- **D9, l'anno sotto ogni lavoro d'architettura**: Banca Prealpi, Studio 4 Marmicolor e Fornace Morandi non hanno EXIF né un anno nelle fonti. Resta la categoria finché Stefano non li dà; non li metto a caso.
+- **Gli originali da 3200 px e Stefano al lavoro** (la parte del 55% che dipende dalle foto): vanno chiesti, non si fanno da qui.
+- **La riga dello scatto leggibile nella miniatura a 300 px**: a 300 px un testo di 16 px diventa di 3 px e non si legge con nessun corpo compatibile con D3 e D5. Ora è nera e più lunga e nella miniatura si vede come riga, ma non si legge.
+- **Prodotti più grandi (2x2)**: avrebbero portato la pagina oltre i 7500 px a 1440. Restano in fila, rifiniti.
+
+**Misure dopo il ritocco** (`_prova/alto/misura-d.mjs`, tabella in `_prova/alto/misure/tabella.txt`): passano tutte e 39. Cliccabili 6 / 2, bottoni 1 / 1, caratteri 157 a 1440, foto nella prima schermata 81% a 1440 e 63-67% a 390, 0 occhielli, `h1` di 5 parole, 535 parole, 7 sezioni, altezza 7359 px a 1440 (era 7423), 12 foto, 0 ingrandite, formati 1,78 1,50 1,33 a 1440 e 0,80 1,50 1,00 a 390, culmine 1360x797 con la riga (era 1360x939), 3 `tel:`, 1 mappa, 3 bottoni in pagina, peso 584 KB a 1440 e 329 KB a 390. Controlli (`_prova/alto/controlli.mjs`) a 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, nessuna foto ingrandita, nessun errore, nessun bersaglio sotto i 24 px, nessuna àncora rotta; scheda "Livree dei mezzi" porta al modulo con il lavoro scelto e info@aitistudio.it; "Clienti" a 17 nomi; matrimoni a 390 con voto, "Chiama", Weddgraphy e recensioni nello schermo dopo il tocco. Verifica del culmine e delle righe: `_prova/alto/rit/verifica.mjs`. A 320 le righe di Mirano, Verona Sud e della foto aziendale vanno su due righe (a 390 no). U+2014: nessuno.
+
+## Che cosa è cambiato
+
+- **Idea e gesto (D1).** AIT Studio fotografa i cantieri quando lavorano, e ogni foto porta scritto chi, dove e a che ora è stata scattata. Il gesto è **la riga dello scatto**: sotto la foto, a sinistra impresa e luogo, a destra data e ora in monospaziato ("18 marzo 2023, ore 19:19"), come il bordo di un provino. Torna sotto ogni lavoro di cantiere (dopo il ritocco: Padova 0:09, Verona Sud 19:19, foto aziendale 13:06, con il tempo di posa). Data e ora vengono dall'EXIF dei file.
+- **Apertura, modello F (D2, D4).** Lo Scania di Salima sull'asfalto nuovo a Mirano, ripreso rasoterra la sera, a tutta larghezza: 1360x765 a 1440 (81% della prima schermata), 390x487 in 4:5 a 390 (63%). In basso a sinistra, sull'asfalto, "Foto e video di cantiere" (32 px, 500) e la riga "AIT Studio, per le imprese di strade e costruzioni. Mestrino (PD)". Sotto la foto la riga dello scatto. Nessun bottone sulla foto. Come Hufton + Crow e Iwan Baan (`_prova/alto/concorrenti/confronto-1440.jpg`, con la versione professionale accanto).
+- **Testata fissa.** Segno AIT e "Stefano Aiti", cinque voci (Cantieri, Prodotti, Architettura, Clienti, Preventivo) e il telefono "348 748 58 71" come unico bottone, bordato, 44 px. A 900 px e meno: segno AIT, telefono e "Menu" (un `<details>`, funziona anche senza JavaScript), con Matrimoni e "Scrivici a info@aitistudio.it" in più. Niente barra in basso: il telefono è già fisso in alto e i `tel:` restano 3.
+- **Foto rifatte dagli originali.** `assets/originali/` era stata cancellata con il riavvio: ho riscaricato le foto dai due siti dello studio (31 da aitistudio.it in `assets/originali/aitistudio/`, 154 dai portfolio di stefanoaiti.com in `assets/originali/portfolio/`). Provini: `_prova/alto/provini.jpg`. WebP con srcset in `sito/img/` (script `_prova/alto/script/immagini.py`), un solo trattamento (saturazione 0,88, contrasto 0,97), tre formati (16:9, 3:2, 4:5 solo per l'apertura sul telefono). Le JPEG di prima sono tolte da `sito/img/` (copia in `_prova/versione-pro/`).
+- **Sotto la piega, su una griglia di 12 colonne** con margini di 40 px (32 a 768, 20 a 390) e gli stessi bordi destri in tutte le sezioni:
+  1. **Lo studio e i clienti**: Stefano Aiti e Giulia Morandin nella sala di posa (foto a4, 7 colonne), il testo a destra (lauree Iuav, "dal 1995", "dal 2008" in una frase), la frase-firma "«Le foto sono comunicazione silenziosa.»" a 32 px, e "Per chi abbiamo lavorato" con 17 nomi in tre campi.
+  2. **Cantieri e mezzi**: una riga con i servizi in parole loro, "anche di notte" e "in Veneto e in Trentino"; il **culmine**, Girardini a Carpane a tutta larghezza (1360x907); Massenza e la fresatura notturna Salima affiancate; i quattro servizi come righe d'indice numerate 01-04, ognuna un link al modulo con il lavoro già scelto.
+  3. **Prodotti in sala di posa**: Calearo, Marijke, Calegaro, Superoro, quattro still life su bianco in fila.
+  4. **Architettura e interni**: Banca Prealpi di Artufficio (8 colonne), la scala di Studio 4 Marmicolor e la Fornace Morandi (4 colonne).
+  5. **Chiedi un preventivo**: lo stesso modulo (9 campi, mailto con oggetto e testo, indirizzo che cambia con il tipo di lavoro) e i contatti divisi per bisogno: cantieri e imprese (Stefano, telefono, info@aitistudio.it), prodotti e architettura (stefano@stefanoaiti.com), lo studio con "Vai alla mappa". Sul telefono i contatti vengono prima del modulo.
+  6. **Matrimoni**: Stefano Aiti Weddgraphy, 4,9 su 5 con 9 recensioni, servizio da 1.000 euro, "Chiama per la data", Weddgraphy, le recensioni su Matrimonio.com e info@weddgraphy.it.
+  - Piede nero come biglietto da visita: la frase-firma, il logo, lo studio, i contatti, i lavori, la riga legale.
+- **Tolto**: il titolo nero a 64 px e i due bottoni, le tre porte in apertura, la fascia dei quattro numeri, gli otto occhielli maiuscoli, le fasce grigie e nere alternate, le tre recensioni dei matrimoni (il LEGGIMI dice che vanno ricontrollate parola per parola), il secondo "Scrivici" in testata, due "Vai alla mappa" su tre, due `tel:` su cinque, i quattro "Chiedi un preventivo" ripetuti delle schede, le quattro foto delle schede di cantiere (le foto in home passano da 18 a 12).
+- **Caratteri (D5).** Albert Sans 400 e 500 per tutto, Spline Sans Mono 400 solo per data, ora e numeri dei servizi; entrambi SIL OFL 1.1, in `sito/fonts/` con le licenze `OFL-albert-sans.txt` e `OFL-spline-sans-mono.txt`. Switzer esce. Misure: 32, 22, 18, 16, 14 px. Riga aggiunta in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+- **Colori.** Bianco (le sale di posa: gli still life si fondono con la pagina), nero del logo, grigio del logo #AAAEAD per i filetti, chiaro #EEEFEE solo per il preventivo, piede nero. Il testo bianco sulla foto d'apertura ha una sfumatura locale sotto il testo (mediana 14,5:1, nel caso peggiore misurato 4,4:1 con i bordi delle lettere nel conto); la foto non è scurita in blocco.
+
+## Le misure
+
+`_prova/alto/misura-d.mjs` (da `misura.mjs` della diagnosi, esteso alle soglie D e del metodo ibrido; tabella in `_prova/alto/misure/tabella.txt`, dati in `misure.json`). **Passano tutte e 39.**
+
+| Misura | Oggi | Soglia | Versione pro (stesso script, `_prova/alto/misure-pro/`) |
+|---|---|---|---|
+| Cliccabili 1440 / 390 | 6 / 2 | 6 / 4 | 15 / 7 |
+| Bottoni 1440 / 390 | 1 / 1 | 1 / 1 | 4 / 5 |
+| Caratteri fuori dal menu 1440 / 390 | 157 / 149 | 160 | 516 / 393 |
+| Foto nella prima schermata 1440 / 390 | 81% / 63% | 60% o meno del 12% / 50% | 32% / 25% |
+| Cifre di 30 px o più in pagina | 0 | 1 | 7 |
+| `h1` | 5 parole, 0 virgole | 9 / 1 | 9 parole, 2 virgole |
+| Occhielli | 0 | 0 | 8 |
+| Parole | 538 | 900 | 752 |
+| Sezioni | 7 | 7 | 8 |
+| Altezza 1440 / 390 | 7423 / 8986 px | 7500 a 1440 | 10115 / 12694 |
+| Griglia | un bordo (40/1400 a 1440, 20/370 a 390), 12 colonne | uno | griglie diverse per sezione |
+| Foto / formati / ingrandite | 12 / 2 a 1440, 3 a 390 / 0 a tutte le larghezze | 12 / 3 / 0 | 18 / 2 a 1440, 4 a 390 / 0 |
+| Fondi oltre al piede | 2 | 3 | 3 con alternanza |
+| Spazi tra sezioni | 104 e 160 px (culmine) | due, uno 1,5 volte l'altro | 128 ovunque |
+| `tel:` / mappa / bottoni in pagina | 3 / 1 / 3 | 3 / 1 / 5 | 5 / 3 / 8 |
+| Peso caricato 1440 / 390 | 1008 / 380 KB | 3 MB | 1225 / 871 KB |
+| Famiglie | Albert Sans + Spline Sans Mono (dati) | 2 + mono | Switzer |
+
+Controlli (`_prova/alto/controlli.mjs`, `misure/controlli.json`) a 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione (il testo sulla foto d'apertura è voluto ed è escluso dal conto), nessun errore di script né risorsa mancante, nessuna foto mostrata oltre la misura del file (misurata ricaricando il file scelto dal srcset), nessun bersaglio sotto i 24 px fuori dal piede. Collegamenti: `tel:+393487485871` 3 volte (testata, contatti, matrimoni); `mailto:` a info@aitistudio.it (con oggetto, menu e contatti), stefano@stefanoaiti.com, info@weddgraphy.it, la PEC; Google Maps su Via Galileo Galilei 40, Mestrino; weddgraphy.it e Matrimonio.com; nessuna àncora rotta. U+2014: nessuno.
+
+Screenshot rifatti con gli stessi nomi, più due nuovi: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (dal preventivo al piede). Guardati a pezzi accanto alla versione professionale e alle prime schermate di Hufton + Crow e Iwan Baan (`_prova/alto/concorrenti/`).
+
+## I compiti della scheda, dove stanno ora
+
+- **Impresa, telefono.**
+  - "AIT Studio", "cantiere" e una foto vera di cantiere: tutto nella prima schermata a 390 (foto al 63%, `h1` e riga sotto).
+  - Chiamare: testata fissa con il numero leggibile, bottone di 44 px, in primo piano anche a metà pagina.
+  - Tre lavori: Mirano è l'apertura; "Cantieri" nel menu (un tocco) porta a Carpane e Massenza con impresa, luogo, data e ora, e alla fresatura notturna. Nella stessa schermata del tocco c'è la riga con livree, video e siti, "anche di notte", "in Veneto e in Trentino".
+  - Preventivo: la riga "Livree dei mezzi" porta al modulo con il lavoro già scelto e l'indirizzo info@aitistudio.it scritto sotto il bottone (provato). Il modulo ha 9 campi.
+- **Azienda o architetto, computer.**
+  - I tre campi sono le prime tre voci del menu, Mestrino è nella riga dell'apertura. Non c'è più una foto per campo nella prima schermata: le foto di prodotti e architettura sono alla quarta e quinta schermata, a un clic dal menu.
+  - Quattro still life e tre architetture con il cliente sotto, nessuna ingrandita.
+  - "Clienti" nel menu porta a 17 nomi divisi per campo; Stefano e Giulia, la sala di posa, lo Iuav e il 2008 sono alla seconda schermata (titolo a 982 px).
+  - "Preventivo" nel menu: modulo con cosa, dove, entro quando, per quale uso, e accanto l'indirizzo con "Vai alla mappa". La voce "Scrivici" non c'è più: in testata c'è "Preventivo".
+- **Sposi, telefono.** "Matrimoni" nel menu; dopo il tocco, senza scorrere, voto, 9 recensioni, prezzo, "Chiama per la data", Weddgraphy e Matrimonio.com (provato). Il numero si legge nella testata fissa, non più dentro il bottone.
+
+## Problemi aperti
+
+- **Le date e i luoghi dei lavori vengono dai file** (EXIF e nomi pubblicati su aitistudio.it): vanno confermati con Stefano come prima. La fresatura notturna Salima sembra davanti a Santa Giustina a Padova, ma il luogo non è scritto.
+- **Il terzo lavoro con il luogo**: chiuso nel ritocco (Padova e Verona Sud dai titoli dei video; la foto aziendale è senza luogo).
+- **La foto d'apertura** è di 1900 px: a 1440 regge, sugli schermi ad alta densità è un po' morbida. Servono gli originali da almeno 3200 px (come scritto nel LEGGIMI).
+- **"Fotografiamo il cantiere quando lavora, anche di notte"** è tolta finché non è confermata; va chiesto se è un servizio che offrono sempre.
+- **A 1440 la soglia dei caratteri è al limite** (157 su 160): ogni parola in più in apertura va tolta da un'altra parte.
+- **Le recensioni dei matrimoni** sono fuori finché non sono ricontrollate sulla scheda di Matrimonio.com.
+- Restano da collegare il modulo (allegati, privacy) e da fare le pagine `privacy/` e `cookie/`.
+
+---
+
 # Home di AIT Studio, Stefano Aiti: livello professionale, ritocco finale
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. La home di prima ("Comunicazione silenziosa"), con la sua NOTA, è copiata com'era in `_prova/versione-1-originale/` (sito e screenshot).

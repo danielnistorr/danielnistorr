@@ -1,5 +1,15 @@
 # Crediti delle immagini
 
+## Aggiornamento del 3 novembre 2026 (metodo ibrido)
+
+`originali/` era vuota dopo il riavvio: 49 file riscaricati da https://www.finiture.it/Portals/0/ il 3/11/2026, con i nomi di prima (provini in `../_prova/alto/provini.jpg`). La home ora usa, con un solo trattamento (`../_prova/alto/script/img.py`):
+- apertura: `EasyDNNNews_2160_IMG-20261013-WA0003.jpg` (linea Distner, notizia dell'inaugurazione);
+- culmine dei lavori: `EasyDNNNews_2161_IMG-20260127-WA0007.jpg` (linea Distner appena installata, notizia di giugno 2026);
+- Setz Fensterbau e Malenfer: come prima (`EasyDNNNews_2134_*`, `EasyDNNNews_2133_*`);
+- settori: `Finestre_12_R01`, `Porte_3-taglio-dx_R01`, `CLT_1_taglio-dx-e-no-acqua_R01`, `Sedie_1_R01`;
+- area test: `easygalleryimages_1_1092_cabina-robot.jpg`; assistenza: `easygalleryimages_1_1092_assistenza.jpg`.
+Non più in home: la foto della squadra (`Images_home-fotogallery-5.jpg`, troppo piccola), `easygalleryimages_1_1092_dsc06151.jpg` e i render delle macchine. Nessuna foto di repertorio; `esterne/` non c'è più nella cartella.
+
 ## Aggiornamento del 3 novembre 2026 (livello professionale)
 
 Decisione del committente sulle foto: "niente". La home usa solo materiale di Finiture, preparato da `../_prova/script/pro_img.py` in `../sito/img/` (ritocco finale del 3/11: tutte le foto hanno lo stesso trattamento, bianco neutro, saturazione -12%, stessa curva):

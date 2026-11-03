@@ -4,420 +4,385 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finiture, impianti di verniciatura su misura</title>
-<meta name="description" content="Finiture progetta, costruisce e installa impianti di verniciatura su misura per finestre, porte, CLT, sedie e mobili. Villatora di Saonara (PD). Assistenza +39 049 879 2458.">
+<meta name="description" content="Finiture progetta, costruisce e installa a Villatora di Saonara (PD) impianti di verniciatura su misura per finestre, porte, CLT, sedie e mobili. Linee consegnate in Germania, Svizzera e Francia. Assistenza +39 049 879 2458.">
 <link rel="alternate" hreflang="en" href="en/">
 <link rel="alternate" hreflang="de" href="de/">
 <link rel="alternate" hreflang="fr" href="fr/">
-<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Archivo (Omnibus-Type), SIL Open Font License 1.1, fonts/OFL-Archivo.txt. Una sola famiglia, pesi 400 e 700. */
-@font-face{font-family:"Archivo";src:url(fonts/archivo-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-ext.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+/* IBM Plex Sans e IBM Plex Mono (IBM), SIL Open Font License 1.1: fonts/OFL-IBM-Plex-Sans.txt e fonts/OFL-IBM-Plex-Mono.txt.
+   Plex Sans 400 per titoli e testo, 500 solo per bottoni ed etichette; Plex Mono 400 solo per i dati. */
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
 :root{
-  /* colori del marchio: il rosso delle loro macchine e del logo, l'antracite; poi i grigi */
+  /* colori: il rosso delle loro macchine e del logo, una volta sola in pieno (assistenza); antracite, grigio chiaro, bianco */
   --rosso:#A51329;
   --rosso-scuro:#86101F;
   --antracite:#1D1E20;
+  --testo:#1D1E20;
+  --testo-2:#575757;
+  --carta:#EEEEEB;
   --bianco:#FFFFFF;
-  --testo:#1A1A1A;
-  --testo-2:#565656;
-  --grigio-chiaro:#F2F2F2;
-  --linea:#D4D4D4;
-  --linea-scura:#3C3D40;
-  --testo-chiaro:#CFCFCF;
-  --linea-rosso:#D07884;
-  --bordo-campo:#8A8A8A;
+  --linea:#D2D2CE;
+  --linea-forte:#1D1E20;
+  --linea-scura:#3E3F42;
+  --testo-chiaro:#D0D0CC;
+  /* mappa: Francia, Germania e Italia, Svizzera in tre grigi per leggere i confini; il resto più chiaro */
+  --punti:#8C8C87;
+  --punti-2:#A3A39D;
+  --punti-3:#6A6A65;
+  --punti-chiari:#C6C6C0;
+  --bordo-campo:#85857F;
   --verde-aperto:#1E7A3C;
-  /* scala tipografica: 8 misure */
-  --t14:14px;--t16:16px;--t18:18px;--t22:22px;--t30:30px;--t44:44px;--t64:64px;--t96:96px;
-  --m:80px;--g:24px;--sez:120px;--testa:98px;
-  --f:"Archivo",system-ui,sans-serif;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  /* misure: titolo 64, h2 40, h3 26, testo 18, dati 15-16, interfaccia 14 */
+  --t14:14px;--t15:15px;--t16:16px;--t17:17px;--t18:18px;--t22:22px;--t26:26px;--t40:40px;--t64:64px;
+  /* griglia unica: 12 colonne, margine 64, canale 24, contenuto 1312 a 1440 */
+  --m:64px;--g:24px;--testa:72px;
+  --fuori:calc(var(--m) + max(0px, (100vw - 1440px) / 2));
+  --sez:88px;--sez-l:144px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testa) + 16px)}
-/* dalle voci del menu si arriva al titolo della sezione, non al suo margine vuoto */
-.sezione[id]{scroll-margin-top:calc(var(--sez) * -1 + 24px)}
-body{margin:0;background:var(--bianco);color:var(--testo);font-family:var(--f);font-size:var(--t18);line-height:1.5;font-weight:400;font-stretch:100%;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testa) + 24px)}
+body{margin:0;background:var(--bianco);color:var(--testo);font-family:var(--sans);font-size:var(--t18);line-height:1.56;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 p{margin:0;text-wrap:pretty}
 h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 ul,ol,dl,dd,figure,blockquote{margin:0;padding:0}
-ul{list-style:none}
+ul,ol{list-style:none}
 button,input,select,textarea{font:inherit;color:inherit}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .nb{white-space:nowrap}
+.mono{font-family:var(--mono);font-size:var(--t15);line-height:1.47;letter-spacing:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.salta{position:absolute;left:-9999px;top:8px;z-index:20}
+.salta{position:absolute;left:-9999px;top:8px;z-index:30}
 .salta:focus{left:16px;background:var(--antracite);color:var(--bianco);padding:10px 14px}
 :focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+.rosso :focus-visible,.piede :focus-visible{outline-color:var(--bianco)}
 .giro{max-width:1440px;margin:0 auto;padding:0 var(--m)}
-.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
-.eti{font-size:var(--t14);line-height:1.3;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-h1,h2,.numero{font-stretch:112%;letter-spacing:-.025em}
-h1{font-size:var(--t64);line-height:1.02}
-h2{font-size:var(--t44);line-height:1.08}
-h3{font-size:var(--t22);line-height:1.25;font-weight:700}
-.h3g{font-size:var(--t30);line-height:1.15;font-weight:400;font-stretch:112%;letter-spacing:-.015em}
-.link{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
-.link:hover{color:var(--rosso)}
-.freccia::after{content:" \2192"}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+h1{font-size:var(--t64);line-height:1.06;letter-spacing:-.02em}
+h2{font-size:var(--t40);line-height:1.15;letter-spacing:-.012em}
+h3{font-size:var(--t26);line-height:1.25;letter-spacing:-.005em}
+.link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;text-decoration-color:var(--punti)}
+.link:hover{color:var(--rosso);text-decoration-color:var(--rosso)}
+.va::after{content:"\00a0\2192"}
 .sezione{padding:var(--sez) 0}
-.capo{margin-bottom:56px;max-width:820px}
-.capo .eti{margin-bottom:16px;color:var(--rosso)}
-.capo p:not(.eti){margin-top:20px;color:var(--testo-2);max-width:40em}
-.scuro{background:var(--antracite);color:var(--bianco)}
-.scuro .capo .eti,.scuro .eti{color:var(--testo-chiaro)}
-.scuro .capo p:not(.eti){color:var(--testo-chiaro)}
-.grigio{background:var(--grigio-chiaro)}
+.capo{grid-column:1/9;margin-bottom:44px}
+.capo p{margin-top:20px;color:var(--testo-2);max-width:38em}
+.capo-largo{grid-column:1/-1;margin-bottom:48px}
 
-/* bottoni: un solo modello, pieno o con il bordo; 52 px, raggio 2 px */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:2px;font-size:var(--t16);font-weight:700;line-height:1.2;text-decoration:none;border:1.5px solid var(--rosso);transition:background-color .12s,color .12s,border-color .12s;cursor:pointer;white-space:nowrap}
-.btn-pieno{background:var(--rosso);color:var(--bianco)}
-.btn-pieno:hover{background:var(--rosso-scuro);border-color:var(--rosso-scuro)}
+/* bottoni: un solo modello, pieno o bordato, 52 px, raggio 2; cinque in tutta la pagina */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:2px;font-size:var(--t16);font-weight:500;line-height:1.2;text-decoration:none;border:1.5px solid var(--rosso);background:var(--rosso);color:var(--bianco);cursor:pointer;white-space:nowrap;transition:background-color .12s,border-color .12s,color .12s}
+.btn:hover{background:var(--rosso-scuro);border-color:var(--rosso-scuro)}
 .btn-bordo{background:transparent;color:var(--testo);border-color:var(--testo)}
-.btn-bordo:hover{border-color:var(--rosso);color:var(--rosso)}
-.sul-rosso .btn-pieno{background:var(--bianco);color:var(--rosso);border-color:var(--bianco)}
-.sul-rosso .btn-pieno:hover{background:var(--grigio-chiaro);color:var(--rosso-scuro)}
-.sul-rosso .btn-bordo{color:var(--bianco);border-color:var(--bianco)}
-.sul-rosso .btn-bordo:hover{color:var(--bianco);background:var(--rosso-scuro)}
-.azioni{display:flex;flex-wrap:wrap;gap:12px}
+.btn-bordo:hover{background:var(--testo);border-color:var(--testo);color:var(--bianco)}
 
-/* testata fissa: lingue e orari dell'assistenza sopra, logo, menu, assistenza e richiesta sotto */
-.testata{position:sticky;top:0;z-index:10;background:var(--bianco);border-bottom:1px solid var(--linea)}
-.su{display:flex;align-items:center;justify-content:space-between;gap:24px;height:34px;font-size:var(--t14);border-bottom:1px solid var(--linea)}
-.lingue{display:flex;gap:4px}
-.lingue a{text-decoration:none;color:var(--testo-2);padding:7px 8px;line-height:1.3}
-.lingue a:first-child{padding-left:0}
-.lingue a:hover{color:var(--rosso)}
-.lingue a[aria-current]{color:var(--testo);font-weight:700}
-.lingue .corta{display:none}
-.su .servizio{display:flex;align-items:center;min-width:0;min-height:34px;color:var(--testo-2);line-height:1.3;text-decoration:none;white-space:nowrap}
-.su .servizio:hover .piu{color:var(--rosso)}
-.su .stato{overflow:hidden;text-overflow:ellipsis}
-.st-c,.st-m{display:none}
-.stato{font-weight:700;color:var(--testo)}
-.stato::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px;background:var(--testo-2)}
-.stato.aperto::before{background:var(--verde-aperto)}
-.riga{display:flex;align-items:center;gap:24px;height:64px}
-.logo{flex:none}
+/* testata fissa: logo, tre voci, assistenza con stato e numero, lingua, un bottone */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
+.riga{display:flex;align-items:center;gap:32px;height:var(--testa)}
+.logo{flex:none;display:block}
 .logo img{width:132px}
-.menu{display:flex;gap:28px;margin-left:auto;font-size:var(--t16)}
-.menu a{text-decoration:none;padding:8px 0}
+.menu{display:flex;gap:28px;font-size:var(--t16)}
+.menu a{text-decoration:none;padding:10px 0}
 .menu a:hover{color:var(--rosso)}
 .menu .solo-menu{display:none}
-.riga .btn{min-height:48px;padding:0 16px}
-.tel-testa .chi{font-weight:400}
-.servizio-giu{display:none}
-.apri{display:none;appearance:none;background:none;border:1.5px solid var(--testo);border-radius:2px;min-height:48px;padding:0 14px;font-size:var(--t16);font-weight:700;cursor:pointer}
+.as-testa{margin-left:auto;display:flex;align-items:center;gap:12px;min-height:44px;font-size:var(--t16);text-decoration:none;white-space:nowrap}
+.as-testa:hover .num{color:var(--rosso)}
+.as-testa .num{font-family:var(--mono);font-size:var(--t15)}
+.stato::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px;background:var(--testo-2)}
+.stato.aperto::before{background:var(--verde-aperto)}
+.tel-testa{display:none}
+.lingua{position:relative;font-size:var(--t16)}
+.lingua summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;min-height:44px;padding:0 2px}
+.lingua summary::-webkit-details-marker{display:none}
+.lingua summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.lingua[open] summary::after{transform:translateY(1px) rotate(225deg)}
+.lingua ul{position:absolute;right:0;top:calc(100% + 6px);min-width:150px;background:var(--bianco);border:1px solid var(--linea);padding:6px 0;z-index:5}
+.lingua li a{display:block;padding:10px 16px;text-decoration:none}
+.lingua li a:hover{color:var(--rosso)}
+.lingua li a[aria-current]{font-weight:500}
+.riga .btn{min-height:46px;padding:0 20px}
+.apri{display:none;appearance:none;background:none;border:0;min-height:44px;padding:0 4px;font-size:var(--t16);cursor:pointer;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 
-/* apertura: il titolo a tutta griglia, la seconda riga accanto alla foto */
-.apertura{padding-top:28px}
-.ap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
-.ap-eti{grid-column:1/-1;grid-row:1;color:var(--rosso)}
-.ap h1{grid-column:1/-1;grid-row:2;margin-top:10px;font-size:var(--t96);line-height:1}
-.ap h1 span{display:block;white-space:nowrap}
-.ap-foto{grid-column:6/13;grid-row:3;margin-right:calc(var(--m) * -1);margin-top:calc(var(--t96) * -1 + 8px)}
-.ap-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.ap-testo{grid-column:1/6;grid-row:3;padding-top:30px;padding-right:8px}
-.lead{font-size:var(--t22);line-height:1.4;color:var(--testo-2);max-width:26em}
-.domanda{margin-top:30px}
-.domanda .eti{color:var(--testo)}
-.settori-link{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:10px;font-size:var(--t22);line-height:1.3}
-.settori-link a{display:inline-block;padding:6px 0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:var(--linea)}
-.settori-link a:hover{color:var(--rosso);text-decoration-color:var(--rosso)}
-.anche{margin-top:6px;font-size:var(--t16);color:var(--testo-2)}
-.anche a{color:var(--testo)}
-.ap-testo .azioni{margin-top:30px}
-.servizio-giu{background:var(--antracite);color:var(--testo-chiaro);font-size:var(--t14);line-height:1.45}
-.servizio-giu b{color:var(--bianco)}
-.servizio-giu a{display:inline-block;padding:13px 0;margin:-13px 0;color:var(--bianco);font-size:var(--t16);font-weight:700;text-underline-offset:4px}
-.prove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);margin-top:24px;border-top:1px solid var(--linea)}
-.prove li{padding:14px 24px 0 0}
-.prove .eti{color:var(--testo-2)}
-.prove p:not(.eti){margin-top:6px}
-.prove a{text-decoration-color:var(--linea)}
+/* apertura, modello D: la foto della linea Distner dal bordo sinistro alla nona colonna, il titolo sopra; a destra la mappa */
+.ap{height:clamp(560px,calc(100svh - var(--testa)),960px);align-items:stretch}
+.ap-foto{grid-column:1/10;grid-row:1;position:relative;margin-left:calc(var(--fuori) * -1);overflow:hidden;background:var(--carta)}
+.ap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 62%}
+.ap-foto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(to top,rgba(255,255,255,.9) 0,rgba(255,255,255,.72) 34%,rgba(255,255,255,0) 100%)}
+.ap-foto figcaption{position:absolute;z-index:1;right:28px;bottom:52px;text-align:right;color:var(--testo)}
+.ap-foto figcaption span{display:block}
+.ap-titolo{grid-column:1/8;grid-row:1;align-self:end;position:relative;z-index:2;padding-bottom:48px}
+.ap-titolo h1{display:inline-block}
+.ap-titolo h1 span{display:block}
+.ap-dato{grid-column:10/13;grid-row:1;margin-right:calc(var(--fuori) * -1);margin-left:calc(var(--g) * -1);padding:16px 0 48px;background:var(--carta);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.ap-dato .btn{display:none}
+.ap-riga{font-size:var(--t18);line-height:1.5;max-width:calc(17em + var(--g));padding:0 var(--g)}
+.mappa{display:block;width:100%;max-width:460px;height:auto;max-height:calc(100% - 110px);overflow:visible}
+path[class^=m-]{fill:none;stroke-width:3.2;stroke-linecap:round}
+.m-terra{stroke:var(--punti-chiari)}.m-p1{stroke:var(--punti)}.m-p2{stroke:var(--punti-2)}.m-p3{stroke:var(--punti-3)}
+.m-fili path{fill:none;stroke:var(--rosso);stroke-width:2}
+.m-punto{fill:var(--rosso);stroke:var(--carta);stroke-width:3}
+.m-casa{fill:var(--carta);stroke:var(--rosso);stroke-width:3.5}
+.m-nomi text{font-family:var(--mono);font-size:20px;fill:var(--testo);paint-order:stroke;stroke:var(--carta);stroke-width:6px;stroke-linejoin:round}
 
-/* settori */
-.schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
-.scheda{display:flex;flex-direction:column;background:var(--bianco);text-decoration:none;transition:box-shadow .12s}
-.scheda:hover{box-shadow:0 0 0 1.5px var(--rosso)}
-.scheda img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.scheda .dentro{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1}
-.scheda p{font-size:var(--t16);color:var(--testo-2)}
-.scheda .vai{margin-top:auto;padding-top:6px;font-size:var(--t16);font-weight:700;color:var(--rosso)}
-.parte{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--g)}
-.riquadro{background:var(--bianco);padding:32px}
-.riquadro p{margin-top:12px;color:var(--testo-2)}
-.riquadro .h3g{color:var(--testo)}
-.macchine-link{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:14px}
-.macchine-link a{display:inline-block;padding:6px 0}
-.riquadro .azioni{margin-top:24px}
+/* impianti: quattro tessere con lo stesso taglio, poi singole macchine e usato */
+.tessere{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g)}
+.tessera{display:flex;flex-direction:column;text-decoration:none}
+.tessera img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.tessera h3{margin-top:20px}
+.tessera:hover h3{color:var(--rosso)}
+.tessera p{margin-top:8px;font-size:var(--t17);line-height:1.5;color:var(--testo-2)}
+.inoltre{grid-column:1/-1;margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--linea-forte)}
+.inoltre>div{padding-top:28px}
+.inoltre>div+div{padding-left:var(--g);border-left:1px solid var(--linea)}
+.inoltre p{margin-top:10px;color:var(--testo-2);max-width:30em}
+.inoltre .link{display:inline-block;margin-top:16px}
 
-/* lavori */
-.caso{align-items:start}
-.caso figure{grid-column:1/8}
-.caso figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.caso .testo{grid-column:8/13}
-.caso .luogo{margin-top:8px;color:var(--testo-2)}
-.caso .data{margin-top:18px}
-.dati{margin-top:24px;border-top:1px solid var(--linea)}
-.dati div{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--linea);font-size:var(--t16)}
-.dati dt{color:var(--testo-2)}
-.caso .link{display:inline-block;margin-top:22px;font-size:var(--t16)}
-.caso+.caso{margin-top:96px}
-.caso-dx figure{grid-column:6/13;grid-row:1}
-.caso-dx .testo{grid-column:1/6;grid-row:1}
-.tabella-giro{margin-top:72px}
-.tabella-giro h3{margin-bottom:18px}
-table{width:100%;border-collapse:collapse;font-size:var(--t16);line-height:1.45}
-th{font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--testo-2);padding:0 16px 12px 0;border-bottom:1.5px solid var(--testo)}
-td{padding:16px 16px 16px 0;border-bottom:1px solid var(--linea);vertical-align:top}
-td:first-child{width:24%}
-td b{display:block;font-size:var(--t18)}
-td span{color:var(--testo-2)}
-.voci{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:32px;margin-top:88px;padding-top:48px;border-top:1px solid var(--linea)}
-.voci h3{grid-column:1/-1}
+/* lavori, il culmine: Distner a tutta griglia, poi Setz e Malenfer, poi la tabella */
+.culmine img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.didascalia{display:flex;justify-content:space-between;gap:24px;margin-top:14px;color:var(--testo-2)}
+.didascalia span:first-child{color:var(--testo)}
+.culmine{grid-column:1/10}
+.culmine-t{grid-column:10/13}
+.culmine-t .luogo{margin-top:6px;color:var(--testo-2)}
+.culmine-t p+p{margin-top:16px}
+.culmine-t .dati{margin-top:24px}
+.culmine-t .link{display:inline-block;margin-top:18px;font-size:var(--t16)}
+.dati{border-top:1px solid var(--linea-forte)}
+.dati div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr);gap:var(--g);padding:12px 0;border-bottom:1px solid var(--linea);font-size:var(--t16);line-height:1.5}
+.dati dt{font-family:var(--mono);font-size:var(--t15);color:var(--testo-2)}
+.culmine-t .dati div,.caso .dati div{grid-template-columns:1fr;gap:0;padding:10px 0}
+.coppia{grid-column:1/-1;margin-top:var(--sez);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
+.caso{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.caso .didascalia{flex-direction:column;gap:2px;font-size:var(--t14)}
+
+.caso img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.caso h3{margin-top:-4px}
+.caso .luogo{margin-top:6px;color:var(--testo-2)}
+.caso .dati{margin-top:16px}
+.caso .link{display:inline-block;margin-top:18px;font-size:var(--t16)}
+.altre{grid-column:1/6;margin-top:var(--sez)}
+.altre h3{margin-bottom:16px}
+.altre li{padding:16px 0;border-top:1px solid var(--linea)}
+.altre li:first-child{border-top:1px solid var(--linea-forte)}
+.altre b{font-weight:500}
+.altre .mono{display:block;margin-top:2px;color:var(--testo-2)}
+.altre li p{margin-top:6px;font-size:var(--t17);color:var(--testo-2)}
+.voci{grid-column:7/13;margin-top:var(--sez)}
+.voci blockquote{border-top:1px solid var(--linea);padding:16px 0 20px}
+.voci .voce-1{border-top:1px solid var(--linea-forte);padding-top:24px}
+.voci blockquote p{font-size:var(--t18);line-height:1.45}
+.voci .voce-1 p{font-size:var(--t26);line-height:1.3}
 .voci blockquote p::before{content:"\201C"}
 .voci blockquote p::after{content:"\201D"}
-.voci footer{margin-top:12px;font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
-.voce-grande{grid-column:1/8;align-self:start;padding-left:28px;border-left:3px solid var(--rosso)}
-.voce-grande p{font-size:var(--t44);line-height:1.12;font-stretch:112%;letter-spacing:-.02em}
-.voce-grande footer{margin-top:24px}
-.voci-altre{grid-column:9/13;display:flex;flex-direction:column}
-.voci-altre li{padding:16px 0;border-top:1px solid var(--linea)}
-.voci-altre li:first-child{border-top:0;padding-top:0}
-.voci-altre footer{margin-top:6px}
-.voci .altro{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 32px;font-size:var(--t16);color:var(--testo-2)}
+.voci footer{margin-top:8px;font-size:var(--t16);color:var(--testo-2)}
+.voci .fonte{margin-top:4px;font-size:var(--t14);color:var(--testo-2)}
 
-/* azienda e numeri, su antracite: la squadra a tutta larghezza */
-.az-capo{max-width:900px}
-.az-foto{margin-top:48px}
-.az-foto img{width:100%}
-.az-testo{margin-top:40px;row-gap:20px}
-.az-testo p{grid-column:span 6;color:var(--testo-chiaro)}
-.numeri{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--g);margin-top:88px}
-.numeri li{border-top:1px solid var(--linea-scura);padding:28px 16px 40px 0}
-.numero{display:block;font-size:var(--t96);line-height:1}
-.numeri p{margin-top:14px;color:var(--testo-chiaro)}
-.premi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);padding-top:32px;border-top:1px solid var(--linea-scura)}
-.premi .h3g{margin-top:10px;color:var(--bianco)}
-.premi p:not(.eti):not(.h3g){margin-top:10px;color:var(--testo-chiaro);font-size:var(--t16)}
-.premi a{color:var(--bianco)}
-.premi .collega{display:flex;flex-direction:column;gap:8px;font-size:var(--t16)}
-
-/* macchine */
-.macchine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px var(--g)}
-.macchina{display:flex;flex-direction:column;text-decoration:none}
-.macchina img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:outline-color .12s;outline:1.5px solid transparent;outline-offset:-1.5px}
-.macchina:hover img{outline-color:var(--rosso)}
-.macchina h3{margin-top:16px}
-.macchina p{margin-top:6px;font-size:var(--t16);color:var(--testo-2)}
-.handling{margin-top:64px;padding-top:40px;border-top:1px solid var(--linea)}
-.handling .testo{grid-column:1/7}
-.handling .testo p{margin-top:14px;color:var(--testo-2)}
-.handling blockquote{grid-column:8/13;font-size:var(--t22);line-height:1.4;padding-left:24px;border-left:3px solid var(--rosso)}
-.handling blockquote footer{margin-top:12px;font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
-.handling .macchine-link{margin-top:18px}
+/* la linea in sei fasi, su grigio chiaro */
+.grigio{background:var(--carta)}
+.fasi-capo{grid-column:1/5}
+.fasi-capo p{margin-top:20px;color:var(--testo-2)}
+.firma{font-size:var(--t26);line-height:1.3;color:var(--testo)}
+.fasi-capo .firma{margin-top:28px;color:var(--testo)}
+.fasi-capo .link{display:inline-block;margin-top:24px;font-size:var(--t16)}
+.fasi{grid-column:6/13;border-top:1px solid var(--linea-forte)}
+.fasi li{display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.25fr);column-gap:var(--g);padding:16px 0 18px;border-bottom:1px solid var(--linea)}
+.fasi .n{font-family:var(--mono);font-size:var(--t15);color:var(--rosso);padding-top:5px}
+.fasi h3{font-size:var(--t22);line-height:1.3}
+.fasi h3 a{text-decoration:none}
+.fasi h3 a:hover{color:var(--rosso)}
+.fasi .macchine{margin-top:4px;font-size:var(--t16);color:var(--testo-2)}
+.fasi li>p{font-size:var(--t17);line-height:1.5;color:var(--testo-2);padding-top:3px}
+.dopo{grid-column:6/13;margin-top:20px;font-size:var(--t17);color:var(--testo-2)}
 
 /* area test */
-.prova{align-items:center}
-.prova figure{grid-column:1/8}
+.prova{align-items:start}
+.prova figure{grid-column:1/6;grid-row:1}
 .prova figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.prova .testo{grid-column:8/13;padding-left:16px}
-.prova .testo p{margin-top:18px;color:var(--testo-2)}
-.prova .dove{margin-top:24px;padding-top:20px;border-top:1px solid var(--linea);color:var(--testo)}
-.prova .azioni{margin-top:28px}
+.prova .testo{grid-column:7/13;grid-row:1}
+.prova .testo p{margin-top:20px;color:var(--testo-2)}
+.prova .btn{margin-top:32px}
 
-/* assistenza, sul rosso */
-.sul-rosso{background:var(--rosso);color:var(--bianco)}
-.sul-rosso .eti{color:var(--bianco)}
-.as-testo{grid-column:1/7}
-.as-testo h2{margin-top:16px}
-.as-testo .stato{color:var(--bianco)}
-.as-testo .stato::before{background:var(--bianco)}
-.as-testo .ora{margin-top:24px}
-.as-testo .azioni{margin-top:24px}
-.orari{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);margin-top:64px;border-top:1px solid var(--linea-rosso)}
-.orari div{padding:20px 24px 0 0}
-.orari dd{margin-top:8px}
-.fuori{margin-top:24px;font-size:var(--t16)}
+/* assistenza, l'unico blocco rosso pieno */
+.rosso{background:var(--rosso);color:var(--bianco)}
+.as-testo{grid-column:1/6}
+.as-testo .stato{display:inline-block;margin-top:28px;font-size:var(--t18)}
+.rosso .stato::before{background:var(--bianco);opacity:.6}
+.rosso .stato.aperto::before{opacity:1}
+.orari{margin-top:28px;border-top:1px solid rgba(255,255,255,.55)}
+.orari div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr);gap:var(--g);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.35);font-size:var(--t16)}
+.orari dt{font-family:var(--mono);font-size:var(--t15)}
+.as-azioni{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
+.rosso .btn{background:var(--bianco);color:var(--rosso);border-color:var(--bianco)}
+.rosso .btn:hover{background:var(--antracite);border-color:var(--antracite);color:var(--bianco)}
+.rosso .btn .num{font-family:var(--mono);font-size:var(--t16)}
+.rosso .link{text-decoration-color:rgba(255,255,255,.7);font-size:var(--t16)}
+.rosso .link:hover{color:var(--bianco);text-decoration-color:var(--bianco)}
+.as-azioni .aiuto{flex-basis:100%;font-size:var(--t14);opacity:.92;margin-top:-6px}
 .as-foto{grid-column:7/13}
 .as-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
 
-/* contatti e richiesta */
+/* richiesta */
 .co-testo{grid-column:1/5}
-.co-testo .capo{margin-bottom:0}
-.recapiti{margin-top:36px;display:flex;flex-direction:column;gap:14px}
-.recapiti .grande{font-size:var(--t30);font-stretch:112%;letter-spacing:-.015em;text-decoration:none;line-height:1.15}
-.recapiti .grande:hover{color:var(--rosso)}
-.recapiti .tenue{color:var(--testo-2);font-size:var(--t16)}
-.modulo{grid-column:6/13;background:var(--grigio-chiaro);padding:40px}
+.co-testo p{margin-top:20px;color:var(--testo-2)}
+.recapiti{margin-top:32px;border-top:1px solid var(--linea-forte)}
+.recapiti div{padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--t16)}
+.recapiti dt{font-family:var(--mono);font-size:var(--t14);color:var(--testo-2)}
+.recapiti dd{margin-top:2px}
+.modulo{grid-column:6/13;background:var(--carta);padding:32px}
 .modulo fieldset{border:0;margin:0;padding:0}
-.modulo legend{padding:0;margin-bottom:12px}
-.tipi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.tipi label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;background:var(--bianco);border:1px solid var(--linea);border-radius:2px;font-size:var(--t16);cursor:pointer}
+.modulo legend{padding:0;margin-bottom:12px;font-size:var(--t16);font-weight:500}
+.tipi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tipi label{display:flex;align-items:center;gap:10px;min-height:56px;padding:6px 12px;line-height:1.3;background:var(--bianco);border:1px solid var(--linea);border-radius:2px;font-size:var(--t16);cursor:pointer}
 .tipi label:has(input:checked){border-color:var(--rosso);box-shadow:inset 0 0 0 1px var(--rosso)}
 .tipi input{accent-color:var(--rosso);width:18px;height:18px;margin:0}
-.campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px var(--g);margin-top:28px}
+.campi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px var(--g);margin-top:24px}
 .campo{display:flex;flex-direction:column;gap:6px}
 .campo.largo{grid-column:1/-1}
-.campo label,.campo .titolo{font-size:var(--t14);font-weight:700}
+.campo label,.campo .titolo{font-size:var(--t14);font-weight:500}
 .campo .aiuto{font-size:var(--t14);color:var(--testo-2)}
 .campo input,.campo select,.campo textarea{width:100%;min-height:48px;padding:11px 12px;font-size:var(--t16);background:var(--bianco);border:1px solid var(--bordo-campo);border-radius:2px}
-.campo textarea{min-height:120px;resize:vertical}
+.campo textarea{min-height:96px;resize:vertical}
 .allega{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
-.allega .btn{background:var(--bianco);font-size:var(--t16)}
+.allega .btn{min-height:48px;background:var(--bianco)}
+.allega .btn:hover{background:var(--testo)}
 .allega input.sr{width:1px;height:1px;min-height:0;padding:0;border:0;margin:0}
 .allega input:focus-visible+label{outline:2px solid var(--rosso);outline-offset:3px}
 #f-scelti{font-size:var(--t16);color:var(--testo-2)}
 .campo [aria-invalid=true]{border-color:var(--rosso);box-shadow:inset 0 0 0 1px var(--rosso)}
 .invio{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:28px}
-.invio p{font-size:var(--t14);color:var(--testo-2);max-width:30em}
+.invio p{font-size:var(--t14);line-height:1.45;color:var(--testo-2);flex:1 1 16em}
 .esito{margin-top:16px;font-size:var(--t16);min-height:1.5em}
-.esito.errore{color:var(--rosso);font-weight:700}
+.esito.errore{color:var(--rosso);font-weight:500}
 
-/* piede */
-.piede{background:var(--antracite);color:var(--testo-chiaro);padding:80px 0 40px;font-size:var(--t16)}
+/* piede: biglietto da visita, sulla stessa griglia */
+.piede{background:var(--antracite);color:var(--testo-chiaro);padding:64px 0 36px;font-size:var(--t16);line-height:1.55}
 .piede a{color:var(--bianco);text-decoration:none}
-.piede a:hover{text-decoration:underline;text-underline-offset:3px}
-.colonne{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px var(--g);padding-bottom:56px}
-.colonne .marchio img{width:160px}
-.colonne .marchio p{margin-top:20px;max-width:22em}
-.colonne .marchio .premi-piede{font-size:var(--t14);color:var(--testo-chiaro)}
-.colonne h2{font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-stretch:100%;color:var(--bianco)}
-.colonne ul{margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.colonne .sotto{display:block;color:var(--testo-chiaro);font-size:var(--t14)}
-.legale{display:flex;flex-wrap:wrap;gap:8px 28px;padding-top:24px;border-top:1px solid var(--linea-scura);font-size:var(--t14)}
-.legale .lingue{margin-left:auto}
-.legale .lingue a{color:var(--testo-chiaro);padding:0 0 0 12px}
+.piede a:hover{text-decoration:underline;text-underline-offset:4px}
+.p-marchio{grid-column:1/5}
+.p-marchio img{width:150px}
+.p-marchio p{margin-top:20px}
+.piede .firma{grid-column:1/-1;color:var(--bianco);margin-bottom:40px;max-width:24em}
+.p-col{grid-column:span 2}
+.p-col:first-of-type{grid-column:6/8}
+.p-col h2{font-family:var(--mono);font-size:var(--t14);font-weight:400;letter-spacing:0;color:var(--testo-chiaro)}
+.p-col ul{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.p-premi{grid-column:1/-1;margin-top:40px;font-size:var(--t14)}
+.legale{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:20px;padding-top:20px;border-top:1px solid var(--linea-scura);font-size:var(--t14)}
+.legale .lingue{margin-left:auto;display:flex;gap:16px}
+.legale .lingue a{color:var(--testo-chiaro)}
 .legale .lingue a[aria-current]{color:var(--bianco)}
 
 /* schermi medi */
-@media (max-width:1240px){
-  :root{--m:48px;--t44:40px;--t64:56px;--t96:80px}
-  .menu{gap:20px}
-  .lead{font-size:var(--t18);line-height:1.5}
-}
 @media (max-width:1180px){
+  :root{--m:40px;--t64:56px;--t40:36px}
+  .riga{gap:24px}
+  .menu{gap:22px}
+}
+@media (max-width:1100px){
   .menu{display:none}
   .apri{display:inline-flex;align-items:center}
-  .tel-testa{margin-left:auto}
-  .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea);font-size:var(--t18)}
+  .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea);font-size:var(--t18)}
   .menu.aperto a{padding:12px 0;border-bottom:1px solid var(--linea)}
   .menu.aperto .solo-menu{display:block}
-}
-@media (max-width:1060px){
-  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .caso figure,.caso .testo{grid-column:1/-1}
-  .caso-dx figure,.caso-dx .testo{grid-row:auto}
-  .caso+.caso{margin-top:64px}
-  .caso .testo{margin-top:32px}
-  .az-testo p{grid-column:1/-1}
-  .numeri{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .voce-grande,.voci-altre{grid-column:1/-1}
-  .handling .testo,.handling blockquote{grid-column:1/-1}
-  .handling blockquote{margin-top:32px}
-  .prova figure,.prova .testo{grid-column:1/-1}
-  .prova .testo{margin-top:32px}
+  .ap-foto{grid-column:1/9}
+  .ap-titolo{grid-column:1/8}
+  .ap-dato{grid-column:9/13}
+  .ap-foto figcaption{right:auto;left:var(--fuori);top:16px;bottom:auto;text-align:left;background:rgba(255,255,255,.88);padding:6px 10px}
+  .ap-foto figcaption span{display:inline}
+  .ap-foto figcaption span+span::before{content:", "}
+  .tessere{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .culmine,.culmine-t{grid-column:1/-1}
+  .culmine-t{margin-top:32px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
+  .culmine-t>*{grid-column:1}
+  .culmine-t .dati{grid-column:2;grid-row:1/5;margin-top:0}
+  .fasi-capo,.fasi{grid-column:1/-1}
+  .fasi{margin-top:48px}
+  .dopo{grid-column:1/-1}
+  .prova figure,.prova .testo{grid-column:1/-1;grid-row:auto}
+  .prova .testo{margin-top:36px}
   .as-testo,.as-foto{grid-column:1/-1}
-  .as-foto{margin-top:40px}
+  .as-foto{margin-top:48px}
   .co-testo,.modulo{grid-column:1/-1}
-  .modulo{margin-top:40px}
-  .colonne{grid-template-columns:1fr 1fr}
+  .altre,.voci{grid-column:1/-1}
+  .voci{margin-top:72px}
+  .tipi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .modulo{margin-top:48px}
+  .p-marchio{grid-column:1/-1;margin-bottom:40px}
+  .p-col,.p-col:first-of-type{grid-column:span 4}
 }
 @media (max-width:860px){
-  :root{--m:32px;--sez:88px;--t44:36px;--t64:48px;--t96:72px;--testa:98px}
-  .apertura{padding-top:0}
-  .ap{display:flex;flex-direction:column}
-  .ap-foto{order:1;margin:0 calc(var(--m) * -1)}
-  .servizio-giu{order:2;display:block;margin:0 calc(var(--m) * -1);padding:12px var(--m) 14px}
-  .ap-eti{order:3;margin-top:28px}
-  .ap h1{order:4;margin-top:14px}
-  .ap-testo{order:5;padding:0}
-  .lead{margin-top:22px;max-width:34em}
-  .ap h1 span{white-space:normal}
-  .ap h1{font-size:var(--t64);line-height:1.04}
-  .su .piu{display:none}
-  .prove{grid-template-columns:1fr}
-  .prove li{padding:16px 0;border-bottom:1px solid var(--linea)}
-  .parte{grid-template-columns:1fr}
-  .numeri{grid-template-columns:1fr 1fr}
-  .premi{grid-template-columns:1fr;row-gap:28px}
-  .orari{grid-template-columns:1fr 1fr;row-gap:20px}
-  .macchine{grid-template-columns:1fr 1fr}
+  :root{--m:32px;--sez:88px;--sez-l:128px;--t64:48px;--t40:32px;--t26:24px}
+  .riga .btn{display:none}
+  .ap{display:block;height:auto}
+  .ap-foto{margin:0 calc(var(--m) * -1);height:clamp(320px,55svh,560px)}
+  .ap-titolo{margin-top:calc(var(--t64) * -2.4 - 40px);padding-bottom:40px;min-height:calc(var(--t64) * 2.4 + 40px);display:flex;align-items:flex-end}
+  .ap-foto figcaption{left:var(--m)}
+  .ap-dato{margin:0 calc(var(--m) * -1);padding:24px var(--m) 40px}
+  .ap-riga{padding:0}
+  .ap-dato .btn{display:flex;width:100%;order:1}
+  .ap-riga{order:0;max-width:30em}
+  .mappa{order:2;max-width:440px;max-height:none;margin-top:16px}
+  .coppia{grid-template-columns:1fr;row-gap:56px}
+  .campi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .voci{grid-template-columns:1fr;row-gap:28px}
+  .inoltre{grid-template-columns:1fr}
+  .inoltre>div+div{padding-left:0;border-left:0;margin-top:28px;border-top:1px solid var(--linea)}
+  .fasi li{grid-template-columns:44px minmax(0,1fr)}
+  .fasi li>p{grid-column:2;margin-top:8px}
   table,thead,tbody,tr,td{display:block}
   thead{display:none}
-  tr{padding:16px 0;border-bottom:1px solid var(--linea)}
-  tr:first-child{border-top:1.5px solid var(--testo)}
+  tr{padding:14px 0;border-bottom:1px solid var(--linea)}
+  tbody tr:first-child{border-top:1px solid var(--linea-forte)}
   td{padding:2px 0;border:0;width:auto!important}
-  td:first-child{margin-bottom:6px}
+  td:first-child{margin-bottom:4px}
   td[data-th]::before{content:attr(data-th) ": ";color:var(--testo-2)}
+  .legale .lingue{margin-left:0;flex-basis:100%}
+}
+@media (max-width:760px){
+  .as-testa{display:none}
+  .tel-testa{display:flex;flex-direction:column;justify-content:center;margin-left:auto;min-height:48px;padding:0 4px;text-decoration:none;line-height:1.2;font-size:var(--t14)}
+  .tel-testa .num{font-size:var(--t16);font-weight:500;color:var(--testo);letter-spacing:.01em}
+  .tel-testa{white-space:nowrap}
+  .st-m{display:none}
+  .tel-testa .stato{color:var(--testo-2)}
+  .riga{gap:16px}
 }
 @media (max-width:560px){
-  :root{--m:20px;--g:16px;--sez:72px;--t18:17px;--t22:20px;--t30:24px;--t44:30px;--t64:38px;--t96:56px;--testa:92px}
-  .su{height:36px}
-  .lingue a{padding:9px 6px}
-  .lingue .lunga{display:none}
-  .lingue .corta{display:inline}
-  .su{gap:12px}
-  .st-l{display:none}
-  .st-c{display:inline}
-  .riga{height:56px;gap:10px}
-  .logo img{width:88px}
-  .riga .btn-pieno{display:none}
-  .tel-testa{margin-left:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;min-height:48px!important;padding:0 12px!important;line-height:1.15}
-  .tel-testa .chi{font-size:var(--t16);font-weight:700}
-  .apri{min-height:48px;padding:0 12px}
-  .ap-eti{margin-top:20px}
-  .ap h1{margin-top:10px;line-height:1.02}
-  .ap h1 span{display:inline;white-space:normal}
-  .lead{margin-top:14px;font-size:var(--t18);line-height:1.45}
-  .ap-testo{display:flex;flex-direction:column}
-  .ap-testo .azioni{order:1}
-  .domanda{order:2;margin-top:32px}
-  .settori-link{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:6px}
-  .settori-link a{display:flex;align-items:center;min-height:48px;padding:0;border-bottom:1px solid var(--linea);text-decoration:none}
-  .anche{margin-top:10px}
-  .ap-testo .azioni{margin-top:20px;flex-direction:column;gap:10px}
-  .azioni .btn{width:100%}
-  .prove{margin-top:28px}
-  .capo{margin-bottom:36px}
-  .schede{grid-template-columns:1fr}
-  .scheda .dentro{padding:18px 18px 20px}
-  .riquadro{padding:24px 20px}
-  .dati div{grid-template-columns:7.5em 1fr;gap:12px}
-  .tabella-giro,.voci{margin-top:56px}
-  .voci{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:40px}
-  .voci>*{grid-column:1/-1!important}
-  .voce-grande{padding-left:18px}
-  .voce-grande p{font-size:var(--t30);line-height:1.2}
-  .az-foto{margin:32px calc(var(--m) * -1) 0}
-  .numeri{grid-template-columns:1fr 1fr;margin-top:56px}
-  .numeri li{padding:20px 12px 28px 0}
-  .macchine{gap:28px var(--g)}
-  .macchina h3{margin-top:12px}
-  .handling{margin-top:48px}
-  .orari{grid-template-columns:1fr;margin-top:40px}
-  .orari div{padding:14px 0;border-bottom:1px solid var(--linea-rosso)}
-  .orari dd{margin-top:4px}
-  .modulo{padding:24px 20px;margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1)}
+  :root{--m:20px;--g:16px;--testa:64px;--sez:72px;--sez-l:96px;--t18:17px;--t22:20px;--t26:22px;--t40:30px;--t64:38px}
+  .logo img{width:84px}
+  .riga{gap:12px}
+  .ap-foto{height:clamp(300px,56svh,520px)}
+  .ap-foto img{object-position:62% 60%}
+  .capo{grid-column:1/-1;margin-bottom:36px}
+  .tessere{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .tessera h3{margin-top:12px;font-size:var(--t18);font-weight:500}
+  .tessera p{font-size:var(--t15)}
+  .culmine-t{display:block}
+  .culmine-t .dati{margin-top:24px}
+  .dati div,.orari div,.caso .dati div{grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:12px}
+  .didascalia{flex-direction:column;gap:2px}
+  .altre,.voci{margin-top:72px}
+  .modulo{padding:24px 20px;margin:48px calc(var(--m) * -1) 0}
   .tipi,.campi{grid-template-columns:1fr}
+  .caso{grid-template-columns:1fr}
+  .caso h3{margin-top:24px}
   .invio .btn{width:100%}
-  .colonne{grid-template-columns:1fr;gap:36px}
-  .piede{padding-top:56px}
-  .legale .lingue{margin-left:0;flex-basis:100%}
-  .legale .lingue a:first-child{padding-left:0}
+  .as-azioni .btn{width:100%}
+  .p-col,.p-col:first-of-type{grid-column:1/-1;margin-bottom:28px}
+  .piede{padding-top:64px}
 }
 @media (max-width:360px){
-  .lingue a{padding:9px 5px}
+  .logo img{width:60px}
+  .riga{gap:8px}
+  .apri{padding:0 2px}
+  .tel-testa .num{font-size:var(--t14);letter-spacing:0}
   .st-c{display:none}
   .st-m{display:inline}
-  .riga{gap:8px}
-  .tel-testa{padding:0 9px!important}
-  .tel-testa .num{font-stretch:88%;letter-spacing:-.01em}
-  .apri{padding:0 9px}
-  .logo img{width:72px}
+  .lingua summary{gap:4px}
 }
 </style>
 </head>
@@ -425,29 +390,29 @@ td span{color:var(--testo-2)}
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 
 <header class="testata">
-  <div class="giro su">
-    <nav class="lingue" aria-label="Lingua">
-      <a href="./" lang="it" hreflang="it" aria-current="page"><span class="lunga">Italiano</span><span class="corta">IT</span></a>
-      <a href="en/" lang="en" hreflang="en"><span class="lunga">English</span><span class="corta">EN</span></a>
-      <a href="de/" lang="de" hreflang="de"><span class="lunga">Deutsch</span><span class="corta">DE</span></a>
-      <a href="fr/" lang="fr" hreflang="fr"><span class="lunga">Français</span><span class="corta">FR</span></a>
-    </nav>
-    <a class="servizio" href="#assistenza"><span class="stato" data-stato="testa"><span class="st-l">Assistenza</span><span class="st-c">Assistenza</span><span class="st-m">Assistenza</span></span><span class="piu">&nbsp;· orari e lingue</span></a>
-  </div>
   <div class="giro riga">
-    <a class="logo" href="./" aria-label="Finiture, pagina iniziale"><img src="img/logo-300.png" srcset="img/logo-300.png 300w, img/logo-400.png 400w" sizes="132px" width="300" height="107" alt="finiture, finishing engineering"></a>
+    <span class="logo"><img src="img/logo-300.png" srcset="img/logo-300.png 300w, img/logo-400.png 400w" sizes="(max-width:560px) 84px, 132px" width="300" height="107" alt="Finiture, finishing engineering"></span>
     <nav class="menu" id="menu" aria-label="Menu principale">
-      <a href="#impianti">Impianti</a>
+      <a class="solo-menu" href="#impianti">Impianti</a>
       <a href="#lavori">Lavori</a>
       <a href="#macchine">Macchine</a>
       <a href="#usato">Usato</a>
-      <a href="#assistenza">Assistenza</a>
-      <a href="#azienda">Azienda</a>
       <a class="solo-menu" href="#area-test">Area test</a>
-      <a class="solo-menu" href="#contatti">Richiedi un progetto e contatti</a>
+      <a class="solo-menu" href="#assistenza">Assistenza: orari e lingue</a>
+      <a class="solo-menu" href="#richiesta">Richiedi un progetto</a>
     </nav>
-    <a class="btn btn-bordo tel-testa" href="tel:+390498792458"><span class="chi">Assistenza</span> <span class="num">+39 049 879 2458</span></a>
-    <a class="btn btn-pieno" href="#contatti">Richiedi un progetto</a>
+    <a class="as-testa" href="#assistenza"><span class="stato" data-stato="lungo">Assistenza</span><span class="num">+39 049 879 2458</span></a>
+    <a class="tel-testa" href="tel:+390498792458" aria-label="Chiama l'assistenza, +39 049 879 2458"><span class="stato st-c" data-stato="corto">Assistenza</span><span class="stato st-m" data-stato="minimo">Assistenza</span><span class="num">+39 049 879 2458</span></a>
+    <details class="lingua">
+      <summary aria-label="Lingua: italiano. Altre lingue">IT</summary>
+      <ul>
+        <li><a href="./" lang="it" hreflang="it" aria-current="page">Italiano</a></li>
+        <li><a href="en/" lang="en" hreflang="en">English</a></li>
+        <li><a href="de/" lang="de" hreflang="de">Deutsch</a></li>
+        <li><a href="fr/" lang="fr" hreflang="fr">Français</a></li>
+      </ul>
+    </details>
+    <a class="btn" href="#richiesta" data-tipo="progetto">Richiedi un progetto</a>
     <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
@@ -455,296 +420,199 @@ td span{color:var(--testo-2)}
 <main id="contenuto">
 
 <section class="apertura" aria-labelledby="t-apertura">
-  <div class="giro ap">
-    <p class="eti ap-eti">Villatora di Saonara (PD) · dal 2000</p>
-    <h1 id="t-apertura"><span>Impianti di verniciatura</span> <span>su misura</span></h1>
+  <div class="giro g12 ap">
     <figure class="ap-foto">
-      <img src="img/apertura-1200.webp" srcset="img/apertura-800.webp 800w, img/apertura-1200.webp 1200w, img/apertura-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 820px" width="1200" height="800" fetchpriority="high" alt="Un tecnico Finiture al quadro di comando di una cella con robot di verniciatura RAS; sul quadro il logo Finiture">
+      <img src="img/apertura-1200.webp" srcset="img/apertura-800.webp 800w, img/apertura-1200.webp 1200w, img/apertura-1600.webp 1600w" sizes="(max-width:860px) 100vw, 1100px" width="1600" height="1200" fetchpriority="high" alt="La linea di verniciatura Finiture nel nuovo stabilimento Distner a Wiesau: trasportatore aereo, cabine e telai di finestre appesi; a destra il cartello Finiture">
+      <figcaption class="mono"><span>Distner, Wiesau</span><span>2026</span></figcaption>
     </figure>
-    <p class="servizio-giu"><b>Assistenza</b> lun-ven 8:30-12:00 e 14:00-17:30, ora italiana, in italiano, inglese, tedesco e francese. <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a></p>
-    <div class="ap-testo">
-      <p class="lead">Progettiamo, costruiamo e installiamo linee complete, dal trasportatore Power&amp;Free al robot RAS, per pezzi fino a <span class="nb num">6000 × 3500 mm</span>. Lavorano in Germania, Svizzera e Francia, e fino in Canada, India e Australia.</p>
-      <div class="domanda">
-        <p class="eti">Cosa vuoi verniciare?</p>
-        <ul class="settori-link">
-          <li><a href="#s-finestre">Finestre</a></li>
-          <li><a href="#s-porte">Porte</a></li>
-          <li><a href="#s-clt">CLT</a></li>
-          <li><a href="#s-sedie">Sedie e mobili</a></li>
-        </ul>
-        <p class="anche">Anche <a class="link" href="#parte">singole macchine</a> e <a class="link" href="#usato">impianti usati</a>.</p>
-      </div>
-      <div class="azioni">
-        <a class="btn btn-pieno" href="#contatti" data-tipo="progetto">Richiedi un progetto</a>
-        <a class="btn btn-bordo" href="#area-test">Prova i tuoi pezzi in area test</a>
-      </div>
+    <div class="ap-titolo"><h1 id="t-apertura"><span>Impianti di verniciatura</span> <span>su misura</span></h1></div>
+    <div class="ap-dato">
+      <svg class="mappa" viewBox="0 0 419 564" role="img" aria-labelledby="mappa-t"><title id="mappa-t">Mappa delle linee consegnate: Distner a Wiesau (Germania), Setz Fensterbau a Schötz (Svizzera) e Malenfer a Villers-Farlay (Francia), tutte partite da Finiture a Villatora di Saonara (Italia)</title><path class="m-terra" d="M4 4h0M12 4h0M20 4h0M28 4h0M36 4h0M44 4h0M52 4h0M60 4h0M68 4h0M76 4h0M84 4h0M92 4h0M100 4h0M4 12h0M12 12h0M20 12h0M28 12h0M36 12h0M44 12h0M52 12h0M60 12h0M4 20h0M12 20h0M20 20h0M28 20h0M36 20h0M44 20h0M52 20h0M60 20h0M68 20h0M4 28h0M12 28h0M20 28h0M28 28h0M36 28h0M44 28h0M52 28h0M60 28h0M68 28h0M4 36h0M12 36h0M20 36h0M28 36h0M36 36h0M44 36h0M52 36h0M60 36h0M68 36h0M76 36h0M4 44h0M12 44h0M20 44h0M28 44h0M36 44h0M44 44h0M52 44h0M60 44h0M68 44h0M4 52h0M12 52h0M20 52h0M28 52h0M36 52h0M44 52h0M52 52h0M60 52h0M68 52h0M4 60h0M12 60h0M20 60h0M28 60h0M36 60h0M44 60h0M52 60h0M60 60h0M412 60h0M4 68h0M12 68h0M20 68h0M28 68h0M36 68h0M44 68h0M52 68h0M60 68h0M68 68h0M404 68h0M412 68h0M4 76h0M12 76h0M20 76h0M28 76h0M36 76h0M44 76h0M52 76h0M60 76h0M68 76h0M388 76h0M396 76h0M404 76h0M412 76h0M4 84h0M12 84h0M20 84h0M28 84h0M36 84h0M44 84h0M52 84h0M60 84h0M68 84h0M76 84h0M372 84h0M380 84h0M388 84h0M396 84h0M404 84h0M412 84h0M4 92h0M12 92h0M20 92h0M28 92h0M36 92h0M44 92h0M52 92h0M60 92h0M68 92h0M76 92h0M356 92h0M364 92h0M372 92h0M380 92h0M388 92h0M396 92h0M404 92h0M412 92h0M4 100h0M12 100h0M20 100h0M28 100h0M36 100h0M44 100h0M52 100h0M60 100h0M68 100h0M76 100h0M332 100h0M340 100h0M348 100h0M356 100h0M364 100h0M372 100h0M380 100h0M388 100h0M396 100h0M404 100h0M412 100h0M4 108h0M12 108h0M20 108h0M28 108h0M36 108h0M44 108h0M52 108h0M60 108h0M68 108h0M332 108h0M340 108h0M348 108h0M356 108h0M364 108h0M372 108h0M380 108h0M388 108h0M396 108h0M404 108h0M412 108h0M4 116h0M12 116h0M28 116h0M36 116h0M44 116h0M52 116h0M60 116h0M68 116h0M324 116h0M332 116h0M340 116h0M348 116h0M356 116h0M364 116h0M372 116h0M380 116h0M388 116h0M396 116h0M404 116h0M412 116h0M28 124h0M36 124h0M44 124h0M52 124h0M60 124h0M68 124h0M76 124h0M340 124h0M348 124h0M356 124h0M364 124h0M372 124h0M380 124h0M388 124h0M396 124h0M404 124h0M412 124h0M28 132h0M36 132h0M44 132h0M52 132h0M60 132h0M68 132h0M76 132h0M84 132h0M332 132h0M340 132h0M348 132h0M356 132h0M364 132h0M372 132h0M380 132h0M388 132h0M396 132h0M404 132h0M412 132h0M44 140h0M52 140h0M60 140h0M68 140h0M76 140h0M84 140h0M340 140h0M348 140h0M356 140h0M364 140h0M372 140h0M380 140h0M388 140h0M396 140h0M404 140h0M412 140h0M52 148h0M68 148h0M76 148h0M340 148h0M348 148h0M356 148h0M364 148h0M372 148h0M380 148h0M388 148h0M396 148h0M404 148h0M412 148h0M348 156h0M356 156h0M364 156h0M372 156h0M380 156h0M388 156h0M396 156h0M404 156h0M412 156h0M356 164h0M364 164h0M372 164h0M380 164h0M388 164h0M396 164h0M404 164h0M412 164h0M364 172h0M372 172h0M380 172h0M388 172h0M396 172h0M404 172h0M412 172h0M372 180h0M380 180h0M388 180h0M396 180h0M404 180h0M412 180h0M388 188h0M396 188h0M404 188h0M412 188h0M388 196h0M396 196h0M404 196h0M412 196h0M388 204h0M396 204h0M404 204h0M412 204h0M372 212h0M380 212h0M388 212h0M396 212h0M404 212h0M412 212h0M372 220h0M380 220h0M388 220h0M396 220h0M404 220h0M412 220h0M356 228h0M364 228h0M372 228h0M380 228h0M388 228h0M396 228h0M404 228h0M412 228h0M348 236h0M356 236h0M364 236h0M372 236h0M380 236h0M388 236h0M396 236h0M404 236h0M412 236h0M356 244h0M364 244h0M372 244h0M380 244h0M388 244h0M396 244h0M404 244h0M412 244h0M356 252h0M364 252h0M372 252h0M380 252h0M388 252h0M396 252h0M404 252h0M412 252h0M324 260h0M340 260h0M364 260h0M372 260h0M380 260h0M388 260h0M396 260h0M404 260h0M412 260h0M220 268h0M252 268h0M260 268h0M300 268h0M308 268h0M316 268h0M324 268h0M332 268h0M340 268h0M356 268h0M364 268h0M372 268h0M380 268h0M388 268h0M396 268h0M404 268h0M412 268h0M220 276h0M228 276h0M252 276h0M260 276h0M268 276h0M276 276h0M284 276h0M292 276h0M300 276h0M308 276h0M316 276h0M324 276h0M332 276h0M340 276h0M348 276h0M356 276h0M364 276h0M372 276h0M380 276h0M388 276h0M396 276h0M404 276h0M412 276h0M220 284h0M228 284h0M236 284h0M244 284h0M252 284h0M260 284h0M268 284h0M276 284h0M284 284h0M292 284h0M300 284h0M308 284h0M316 284h0M324 284h0M332 284h0M340 284h0M348 284h0M356 284h0M364 284h0M372 284h0M380 284h0M388 284h0M396 284h0M404 284h0M412 284h0M212 292h0M220 292h0M228 292h0M236 292h0M244 292h0M252 292h0M260 292h0M268 292h0M276 292h0M284 292h0M292 292h0M300 292h0M308 292h0M316 292h0M324 292h0M332 292h0M340 292h0M348 292h0M356 292h0M364 292h0M372 292h0M380 292h0M388 292h0M396 292h0M404 292h0M412 292h0M228 300h0M236 300h0M244 300h0M252 300h0M260 300h0M268 300h0M276 300h0M284 300h0M292 300h0M300 300h0M324 300h0M332 300h0M340 300h0M348 300h0M356 300h0M364 300h0M372 300h0M380 300h0M388 300h0M396 300h0M404 300h0M412 300h0M236 308h0M252 308h0M260 308h0M268 308h0M324 308h0M332 308h0M340 308h0M348 308h0M356 308h0M364 308h0M372 308h0M380 308h0M388 308h0M396 308h0M404 308h0M412 308h0M332 316h0M340 316h0M348 316h0M356 316h0M364 316h0M372 316h0M380 316h0M388 316h0M396 316h0M404 316h0M412 316h0M356 324h0M364 324h0M372 324h0M380 324h0M388 324h0M396 324h0M404 324h0M412 324h0M388 332h0M396 332h0M404 332h0M412 332h0M372 340h0M380 340h0M388 340h0M396 340h0M404 340h0M412 340h0M380 348h0M388 348h0M396 348h0M404 348h0M412 348h0M380 356h0M388 356h0M396 356h0M404 356h0M412 356h0M380 364h0M388 364h0M396 364h0M404 364h0M412 364h0M380 372h0M388 372h0M396 372h0M404 372h0M412 372h0M396 380h0M404 380h0M412 380h0M380 388h0M388 388h0M396 388h0M404 388h0M412 388h0M380 396h0M388 396h0M396 396h0M404 396h0M412 396h0M380 404h0M388 404h0M396 404h0M404 404h0M380 412h0M388 412h0M396 412h0M388 420h0M396 420h0M412 420h0M412 428h0M412 436h0"/><path class="m-p1" d="M20 116h0M4 124h0M12 124h0M20 124h0M4 132h0M12 132h0M20 132h0M4 140h0M12 140h0M20 140h0M28 140h0M36 140h0M4 148h0M12 148h0M20 148h0M28 148h0M36 148h0M44 148h0M60 148h0M4 156h0M12 156h0M20 156h0M28 156h0M36 156h0M44 156h0M52 156h0M60 156h0M68 156h0M76 156h0M84 156h0M4 164h0M12 164h0M20 164h0M28 164h0M36 164h0M44 164h0M52 164h0M60 164h0M68 164h0M76 164h0M84 164h0M92 164h0M4 172h0M12 172h0M20 172h0M28 172h0M36 172h0M44 172h0M52 172h0M60 172h0M68 172h0M76 172h0M84 172h0M92 172h0M100 172h0M108 172h0M124 172h0M4 180h0M12 180h0M20 180h0M28 180h0M36 180h0M44 180h0M52 180h0M60 180h0M68 180h0M76 180h0M84 180h0M92 180h0M100 180h0M108 180h0M116 180h0M124 180h0M132 180h0M140 180h0M148 180h0M4 188h0M12 188h0M20 188h0M28 188h0M36 188h0M44 188h0M52 188h0M60 188h0M68 188h0M76 188h0M84 188h0M92 188h0M100 188h0M108 188h0M116 188h0M124 188h0M132 188h0M140 188h0M148 188h0M4 196h0M12 196h0M20 196h0M28 196h0M36 196h0M44 196h0M52 196h0M60 196h0M68 196h0M76 196h0M84 196h0M92 196h0M100 196h0M108 196h0M116 196h0M124 196h0M132 196h0M140 196h0M148 196h0M4 204h0M12 204h0M20 204h0M28 204h0M36 204h0M44 204h0M52 204h0M60 204h0M68 204h0M76 204h0M84 204h0M92 204h0M100 204h0M108 204h0M116 204h0M124 204h0M132 204h0M140 204h0M4 212h0M12 212h0M20 212h0M28 212h0M36 212h0M44 212h0M52 212h0M60 212h0M68 212h0M76 212h0M84 212h0M92 212h0M100 212h0M108 212h0M116 212h0M124 212h0M132 212h0M140 212h0M4 220h0M12 220h0M20 220h0M28 220h0M36 220h0M44 220h0M52 220h0M60 220h0M68 220h0M76 220h0M84 220h0M92 220h0M100 220h0M108 220h0M116 220h0M124 220h0M132 220h0M4 228h0M12 228h0M20 228h0M28 228h0M36 228h0M44 228h0M52 228h0M60 228h0M68 228h0M76 228h0M84 228h0M92 228h0M100 228h0M108 228h0M116 228h0M124 228h0M132 228h0M4 236h0M12 236h0M20 236h0M28 236h0M36 236h0M44 236h0M52 236h0M60 236h0M68 236h0M76 236h0M84 236h0M92 236h0M100 236h0M108 236h0M116 236h0M124 236h0M132 236h0M4 244h0M12 244h0M20 244h0M28 244h0M36 244h0M44 244h0M52 244h0M60 244h0M68 244h0M76 244h0M84 244h0M92 244h0M100 244h0M108 244h0M116 244h0M124 244h0M132 244h0M4 252h0M12 252h0M20 252h0M28 252h0M36 252h0M44 252h0M52 252h0M60 252h0M68 252h0M76 252h0M84 252h0M92 252h0M100 252h0M108 252h0M116 252h0M124 252h0M132 252h0M4 260h0M12 260h0M20 260h0M28 260h0M36 260h0M44 260h0M52 260h0M60 260h0M68 260h0M76 260h0M84 260h0M92 260h0M100 260h0M108 260h0M116 260h0M124 260h0M4 268h0M12 268h0M20 268h0M28 268h0M36 268h0M44 268h0M52 268h0M60 268h0M68 268h0M76 268h0M84 268h0M92 268h0M100 268h0M108 268h0M116 268h0M124 268h0M4 276h0M12 276h0M20 276h0M28 276h0M36 276h0M44 276h0M52 276h0M60 276h0M68 276h0M76 276h0M84 276h0M92 276h0M100 276h0M4 284h0M12 284h0M20 284h0M28 284h0M36 284h0M44 284h0M52 284h0M60 284h0M68 284h0M76 284h0M84 284h0M92 284h0M100 284h0M4 292h0M12 292h0M20 292h0M28 292h0M36 292h0M44 292h0M52 292h0M60 292h0M68 292h0M76 292h0M84 292h0M92 292h0M100 292h0M4 300h0M12 300h0M20 300h0M28 300h0M36 300h0M44 300h0M52 300h0M60 300h0M68 300h0M76 300h0M84 300h0M92 300h0M4 308h0M12 308h0M20 308h0M28 308h0M36 308h0M44 308h0M52 308h0M60 308h0M68 308h0M76 308h0M84 308h0M4 316h0M12 316h0M20 316h0M28 316h0M36 316h0M44 316h0M52 316h0M60 316h0M68 316h0M76 316h0M84 316h0M4 324h0M12 324h0M20 324h0M28 324h0M36 324h0M44 324h0M52 324h0M60 324h0M68 324h0M4 332h0M12 332h0M20 332h0M28 332h0M36 332h0M44 332h0M52 332h0M60 332h0M68 332h0M4 340h0M12 340h0M20 340h0M28 340h0M36 340h0M44 340h0M52 340h0M60 340h0M68 340h0M84 340h0M92 340h0M100 340h0M4 348h0M12 348h0M20 348h0M28 348h0M36 348h0M44 348h0M52 348h0M60 348h0M84 348h0M92 348h0M100 348h0M4 356h0M12 356h0M20 356h0M28 356h0M36 356h0M44 356h0M52 356h0M60 356h0M68 356h0M76 356h0M84 356h0M92 356h0M100 356h0M4 364h0M12 364h0M20 364h0M28 364h0M36 364h0M44 364h0M52 364h0M60 364h0M68 364h0M76 364h0M84 364h0M92 364h0M100 364h0M108 364h0M4 372h0M12 372h0M20 372h0M28 372h0M36 372h0M44 372h0M52 372h0M60 372h0M68 372h0M76 372h0M84 372h0M92 372h0M100 372h0M4 380h0M12 380h0M20 380h0M28 380h0M36 380h0M44 380h0M52 380h0M60 380h0M68 380h0M76 380h0M84 380h0M92 380h0M100 380h0M4 388h0M12 388h0M20 388h0M28 388h0M36 388h0M44 388h0M52 388h0M60 388h0M68 388h0M76 388h0M84 388h0M92 388h0M100 388h0M108 388h0M4 396h0M12 396h0M20 396h0M28 396h0M36 396h0M44 396h0M52 396h0M60 396h0M68 396h0M76 396h0M84 396h0M92 396h0M100 396h0M108 396h0M116 396h0M4 404h0M12 404h0M20 404h0M28 404h0M36 404h0M44 404h0M52 404h0M60 404h0M68 404h0M76 404h0M84 404h0M92 404h0M100 404h0M108 404h0M4 412h0M12 412h0M20 412h0M28 412h0M36 412h0M44 412h0M52 412h0M60 412h0M68 412h0M76 412h0M84 412h0M92 412h0M4 420h0M12 420h0M20 420h0M28 420h0M36 420h0M44 420h0M52 420h0M60 420h0M68 420h0M76 420h0M84 420h0M92 420h0M4 428h0M12 428h0M20 428h0M28 428h0M36 428h0M44 428h0M52 428h0M60 428h0M68 428h0M76 428h0M84 428h0M92 428h0M100 428h0M4 436h0M12 436h0M20 436h0M28 436h0M36 436h0M44 436h0M52 436h0M60 436h0M68 436h0M76 436h0M84 436h0M92 436h0M100 436h0M108 436h0M4 444h0M12 444h0M20 444h0M28 444h0M36 444h0M44 444h0M52 444h0M60 444h0M68 444h0M76 444h0M84 444h0M92 444h0M100 444h0M4 452h0M12 452h0M20 452h0M28 452h0M36 452h0M44 452h0M52 452h0M60 452h0M68 452h0M76 452h0M84 452h0M92 452h0M100 452h0M4 460h0M12 460h0M20 460h0M28 460h0M36 460h0M44 460h0M52 460h0M60 460h0M68 460h0M76 460h0M84 460h0M92 460h0M100 460h0M4 468h0M12 468h0M20 468h0M28 468h0M36 468h0M44 468h0M52 468h0M60 468h0M68 468h0M76 468h0M84 468h0M92 468h0M100 468h0M108 468h0M116 468h0M4 476h0M12 476h0M20 476h0M28 476h0M36 476h0M44 476h0M52 476h0M60 476h0M68 476h0M76 476h0M84 476h0M92 476h0M100 476h0M108 476h0M116 476h0M124 476h0M132 476h0M4 484h0M12 484h0M20 484h0M28 484h0M36 484h0M44 484h0M52 484h0M60 484h0M68 484h0M76 484h0M84 484h0M92 484h0M100 484h0M108 484h0M116 484h0M124 484h0M132 484h0M4 492h0M12 492h0M20 492h0M28 492h0M36 492h0M44 492h0M52 492h0M60 492h0M68 492h0M76 492h0M84 492h0M92 492h0M100 492h0M108 492h0M116 492h0M124 492h0M4 500h0M12 500h0M20 500h0M28 500h0M36 500h0M44 500h0M52 500h0M60 500h0M68 500h0M76 500h0M84 500h0M92 500h0M100 500h0M108 500h0M116 500h0M4 508h0M12 508h0M20 508h0M28 508h0M36 508h0M44 508h0M52 508h0M60 508h0M68 508h0M76 508h0M84 508h0M92 508h0M100 508h0M108 508h0M12 516h0M36 516h0M44 516h0M52 516h0M60 516h0M68 516h0M76 516h0M84 516h0M92 516h0M100 516h0M44 524h0M52 524h0M60 524h0M68 524h0M76 524h0M84 524h0M92 524h0M60 532h0M68 532h0M76 532h0"/><path class="m-p2" d="M108 4h0M116 4h0M124 4h0M132 4h0M140 4h0M148 4h0M156 4h0M164 4h0M172 4h0M180 4h0M188 4h0M196 4h0M204 4h0M212 4h0M220 4h0M228 4h0M236 4h0M244 4h0M252 4h0M260 4h0M268 4h0M276 4h0M284 4h0M292 4h0M300 4h0M308 4h0M316 4h0M324 4h0M332 4h0M340 4h0M348 4h0M356 4h0M364 4h0M372 4h0M380 4h0M388 4h0M396 4h0M404 4h0M412 4h0M68 12h0M76 12h0M84 12h0M92 12h0M100 12h0M108 12h0M116 12h0M124 12h0M132 12h0M140 12h0M148 12h0M156 12h0M164 12h0M172 12h0M180 12h0M188 12h0M196 12h0M204 12h0M212 12h0M220 12h0M228 12h0M236 12h0M244 12h0M252 12h0M260 12h0M268 12h0M276 12h0M284 12h0M292 12h0M300 12h0M308 12h0M316 12h0M324 12h0M332 12h0M340 12h0M348 12h0M356 12h0M364 12h0M372 12h0M380 12h0M388 12h0M396 12h0M404 12h0M412 12h0M76 20h0M84 20h0M92 20h0M100 20h0M108 20h0M116 20h0M124 20h0M132 20h0M140 20h0M148 20h0M156 20h0M164 20h0M172 20h0M180 20h0M188 20h0M196 20h0M204 20h0M212 20h0M220 20h0M228 20h0M236 20h0M244 20h0M252 20h0M260 20h0M268 20h0M276 20h0M284 20h0M292 20h0M300 20h0M308 20h0M316 20h0M324 20h0M332 20h0M340 20h0M348 20h0M356 20h0M364 20h0M372 20h0M380 20h0M388 20h0M396 20h0M404 20h0M412 20h0M76 28h0M84 28h0M92 28h0M100 28h0M108 28h0M116 28h0M124 28h0M132 28h0M140 28h0M148 28h0M156 28h0M164 28h0M172 28h0M180 28h0M188 28h0M196 28h0M204 28h0M212 28h0M220 28h0M228 28h0M236 28h0M244 28h0M252 28h0M260 28h0M268 28h0M276 28h0M284 28h0M292 28h0M300 28h0M308 28h0M316 28h0M324 28h0M332 28h0M340 28h0M348 28h0M356 28h0M364 28h0M372 28h0M380 28h0M388 28h0M396 28h0M404 28h0M412 28h0M84 36h0M92 36h0M100 36h0M108 36h0M116 36h0M124 36h0M132 36h0M140 36h0M148 36h0M156 36h0M164 36h0M172 36h0M180 36h0M188 36h0M196 36h0M204 36h0M212 36h0M220 36h0M228 36h0M236 36h0M244 36h0M252 36h0M260 36h0M268 36h0M276 36h0M284 36h0M292 36h0M300 36h0M308 36h0M316 36h0M324 36h0M332 36h0M340 36h0M348 36h0M356 36h0M364 36h0M372 36h0M380 36h0M388 36h0M396 36h0M404 36h0M412 36h0M76 44h0M84 44h0M92 44h0M100 44h0M108 44h0M116 44h0M124 44h0M132 44h0M140 44h0M148 44h0M156 44h0M164 44h0M172 44h0M180 44h0M188 44h0M196 44h0M204 44h0M212 44h0M220 44h0M228 44h0M236 44h0M244 44h0M252 44h0M260 44h0M268 44h0M276 44h0M284 44h0M292 44h0M300 44h0M308 44h0M316 44h0M324 44h0M332 44h0M340 44h0M348 44h0M356 44h0M364 44h0M372 44h0M380 44h0M388 44h0M396 44h0M404 44h0M412 44h0M76 52h0M84 52h0M92 52h0M100 52h0M108 52h0M116 52h0M124 52h0M132 52h0M140 52h0M148 52h0M156 52h0M164 52h0M172 52h0M180 52h0M188 52h0M196 52h0M204 52h0M212 52h0M220 52h0M228 52h0M236 52h0M244 52h0M252 52h0M260 52h0M268 52h0M276 52h0M284 52h0M292 52h0M300 52h0M308 52h0M316 52h0M324 52h0M332 52h0M340 52h0M348 52h0M356 52h0M364 52h0M372 52h0M380 52h0M388 52h0M396 52h0M404 52h0M412 52h0M68 60h0M76 60h0M84 60h0M92 60h0M100 60h0M108 60h0M116 60h0M124 60h0M132 60h0M140 60h0M148 60h0M156 60h0M164 60h0M172 60h0M180 60h0M188 60h0M196 60h0M204 60h0M212 60h0M220 60h0M228 60h0M236 60h0M244 60h0M252 60h0M260 60h0M268 60h0M276 60h0M284 60h0M292 60h0M300 60h0M308 60h0M316 60h0M324 60h0M332 60h0M340 60h0M348 60h0M356 60h0M364 60h0M372 60h0M380 60h0M388 60h0M396 60h0M404 60h0M76 68h0M84 68h0M92 68h0M100 68h0M108 68h0M116 68h0M124 68h0M132 68h0M140 68h0M148 68h0M156 68h0M164 68h0M172 68h0M180 68h0M188 68h0M196 68h0M204 68h0M212 68h0M220 68h0M228 68h0M236 68h0M244 68h0M252 68h0M260 68h0M268 68h0M276 68h0M284 68h0M292 68h0M300 68h0M308 68h0M316 68h0M324 68h0M332 68h0M340 68h0M348 68h0M356 68h0M364 68h0M372 68h0M380 68h0M388 68h0M396 68h0M76 76h0M84 76h0M92 76h0M100 76h0M108 76h0M116 76h0M124 76h0M132 76h0M140 76h0M148 76h0M156 76h0M164 76h0M172 76h0M180 76h0M188 76h0M196 76h0M204 76h0M212 76h0M220 76h0M228 76h0M236 76h0M244 76h0M252 76h0M260 76h0M268 76h0M276 76h0M284 76h0M292 76h0M300 76h0M308 76h0M316 76h0M324 76h0M332 76h0M340 76h0M348 76h0M356 76h0M364 76h0M372 76h0M380 76h0M84 84h0M92 84h0M100 84h0M108 84h0M116 84h0M124 84h0M132 84h0M140 84h0M148 84h0M156 84h0M164 84h0M172 84h0M180 84h0M188 84h0M196 84h0M204 84h0M212 84h0M220 84h0M228 84h0M236 84h0M244 84h0M252 84h0M260 84h0M268 84h0M276 84h0M284 84h0M292 84h0M300 84h0M308 84h0M316 84h0M324 84h0M332 84h0M340 84h0M348 84h0M356 84h0M364 84h0M84 92h0M92 92h0M100 92h0M108 92h0M116 92h0M124 92h0M132 92h0M140 92h0M148 92h0M156 92h0M164 92h0M172 92h0M180 92h0M188 92h0M196 92h0M204 92h0M212 92h0M220 92h0M228 92h0M236 92h0M244 92h0M252 92h0M260 92h0M268 92h0M276 92h0M284 92h0M292 92h0M300 92h0M308 92h0M316 92h0M324 92h0M332 92h0M340 92h0M348 92h0M84 100h0M92 100h0M100 100h0M108 100h0M116 100h0M124 100h0M132 100h0M140 100h0M148 100h0M156 100h0M164 100h0M172 100h0M180 100h0M188 100h0M196 100h0M204 100h0M212 100h0M220 100h0M228 100h0M236 100h0M244 100h0M252 100h0M260 100h0M268 100h0M276 100h0M284 100h0M292 100h0M300 100h0M308 100h0M316 100h0M324 100h0M76 108h0M84 108h0M92 108h0M100 108h0M108 108h0M116 108h0M124 108h0M132 108h0M140 108h0M148 108h0M156 108h0M164 108h0M172 108h0M180 108h0M188 108h0M196 108h0M204 108h0M212 108h0M220 108h0M228 108h0M236 108h0M244 108h0M252 108h0M260 108h0M268 108h0M276 108h0M284 108h0M292 108h0M300 108h0M308 108h0M316 108h0M324 108h0M76 116h0M84 116h0M92 116h0M100 116h0M108 116h0M116 116h0M124 116h0M132 116h0M140 116h0M148 116h0M156 116h0M164 116h0M172 116h0M180 116h0M188 116h0M196 116h0M204 116h0M212 116h0M220 116h0M228 116h0M236 116h0M244 116h0M252 116h0M260 116h0M268 116h0M276 116h0M284 116h0M292 116h0M300 116h0M308 116h0M316 116h0M84 124h0M92 124h0M100 124h0M108 124h0M116 124h0M124 124h0M132 124h0M140 124h0M148 124h0M156 124h0M164 124h0M172 124h0M180 124h0M188 124h0M196 124h0M204 124h0M212 124h0M220 124h0M228 124h0M236 124h0M244 124h0M252 124h0M260 124h0M268 124h0M276 124h0M284 124h0M292 124h0M300 124h0M308 124h0M316 124h0M324 124h0M332 124h0M92 132h0M100 132h0M108 132h0M116 132h0M124 132h0M132 132h0M140 132h0M148 132h0M156 132h0M164 132h0M172 132h0M180 132h0M188 132h0M196 132h0M204 132h0M212 132h0M220 132h0M228 132h0M236 132h0M244 132h0M252 132h0M260 132h0M268 132h0M276 132h0M284 132h0M292 132h0M300 132h0M308 132h0M316 132h0M324 132h0M92 140h0M100 140h0M108 140h0M116 140h0M124 140h0M132 140h0M140 140h0M148 140h0M156 140h0M164 140h0M172 140h0M180 140h0M188 140h0M196 140h0M204 140h0M212 140h0M220 140h0M228 140h0M236 140h0M244 140h0M252 140h0M260 140h0M268 140h0M276 140h0M284 140h0M292 140h0M300 140h0M308 140h0M316 140h0M324 140h0M332 140h0M84 148h0M92 148h0M100 148h0M108 148h0M116 148h0M124 148h0M132 148h0M140 148h0M148 148h0M156 148h0M164 148h0M172 148h0M180 148h0M188 148h0M196 148h0M204 148h0M212 148h0M220 148h0M228 148h0M236 148h0M244 148h0M252 148h0M260 148h0M268 148h0M276 148h0M284 148h0M292 148h0M300 148h0M308 148h0M316 148h0M324 148h0M332 148h0M92 156h0M100 156h0M108 156h0M116 156h0M124 156h0M132 156h0M140 156h0M148 156h0M156 156h0M164 156h0M172 156h0M180 156h0M188 156h0M196 156h0M204 156h0M212 156h0M220 156h0M228 156h0M236 156h0M244 156h0M252 156h0M260 156h0M268 156h0M276 156h0M284 156h0M292 156h0M300 156h0M308 156h0M316 156h0M324 156h0M332 156h0M340 156h0M100 164h0M108 164h0M116 164h0M124 164h0M132 164h0M140 164h0M148 164h0M156 164h0M164 164h0M172 164h0M180 164h0M188 164h0M196 164h0M204 164h0M212 164h0M220 164h0M228 164h0M236 164h0M244 164h0M252 164h0M260 164h0M268 164h0M276 164h0M284 164h0M292 164h0M300 164h0M308 164h0M316 164h0M324 164h0M332 164h0M340 164h0M348 164h0M116 172h0M132 172h0M140 172h0M148 172h0M156 172h0M164 172h0M172 172h0M180 172h0M188 172h0M196 172h0M204 172h0M212 172h0M220 172h0M228 172h0M236 172h0M244 172h0M252 172h0M260 172h0M268 172h0M276 172h0M284 172h0M292 172h0M300 172h0M308 172h0M316 172h0M324 172h0M332 172h0M340 172h0M348 172h0M356 172h0M156 180h0M164 180h0M172 180h0M180 180h0M188 180h0M196 180h0M204 180h0M212 180h0M220 180h0M228 180h0M236 180h0M244 180h0M252 180h0M260 180h0M268 180h0M276 180h0M284 180h0M292 180h0M300 180h0M308 180h0M316 180h0M324 180h0M332 180h0M340 180h0M348 180h0M356 180h0M364 180h0M156 188h0M164 188h0M172 188h0M180 188h0M188 188h0M196 188h0M204 188h0M212 188h0M220 188h0M228 188h0M236 188h0M244 188h0M252 188h0M260 188h0M268 188h0M276 188h0M284 188h0M292 188h0M300 188h0M308 188h0M316 188h0M324 188h0M332 188h0M340 188h0M348 188h0M356 188h0M364 188h0M372 188h0M380 188h0M156 196h0M164 196h0M172 196h0M180 196h0M188 196h0M196 196h0M204 196h0M212 196h0M220 196h0M228 196h0M236 196h0M244 196h0M252 196h0M260 196h0M268 196h0M276 196h0M284 196h0M292 196h0M300 196h0M308 196h0M316 196h0M324 196h0M332 196h0M340 196h0M348 196h0M356 196h0M364 196h0M372 196h0M380 196h0M148 204h0M156 204h0M164 204h0M172 204h0M180 204h0M188 204h0M196 204h0M204 204h0M212 204h0M220 204h0M228 204h0M236 204h0M244 204h0M252 204h0M260 204h0M268 204h0M276 204h0M284 204h0M292 204h0M300 204h0M308 204h0M316 204h0M324 204h0M332 204h0M340 204h0M348 204h0M356 204h0M364 204h0M372 204h0M380 204h0M148 212h0M156 212h0M164 212h0M172 212h0M180 212h0M188 212h0M196 212h0M204 212h0M212 212h0M220 212h0M228 212h0M236 212h0M244 212h0M252 212h0M260 212h0M268 212h0M276 212h0M284 212h0M292 212h0M300 212h0M308 212h0M316 212h0M324 212h0M332 212h0M340 212h0M348 212h0M356 212h0M364 212h0M140 220h0M148 220h0M156 220h0M164 220h0M172 220h0M180 220h0M188 220h0M196 220h0M204 220h0M212 220h0M220 220h0M228 220h0M236 220h0M244 220h0M252 220h0M260 220h0M268 220h0M276 220h0M284 220h0M292 220h0M300 220h0M308 220h0M316 220h0M324 220h0M332 220h0M340 220h0M348 220h0M356 220h0M364 220h0M140 228h0M148 228h0M156 228h0M164 228h0M172 228h0M180 228h0M188 228h0M196 228h0M204 228h0M212 228h0M220 228h0M228 228h0M236 228h0M244 228h0M252 228h0M260 228h0M268 228h0M276 228h0M284 228h0M292 228h0M300 228h0M308 228h0M316 228h0M324 228h0M332 228h0M340 228h0M348 228h0M140 236h0M148 236h0M156 236h0M164 236h0M172 236h0M180 236h0M188 236h0M196 236h0M204 236h0M212 236h0M220 236h0M228 236h0M236 236h0M244 236h0M252 236h0M260 236h0M268 236h0M276 236h0M284 236h0M292 236h0M300 236h0M308 236h0M316 236h0M324 236h0M332 236h0M340 236h0M140 244h0M148 244h0M156 244h0M164 244h0M172 244h0M180 244h0M188 244h0M196 244h0M204 244h0M212 244h0M220 244h0M228 244h0M236 244h0M244 244h0M252 244h0M260 244h0M268 244h0M276 244h0M284 244h0M292 244h0M300 244h0M308 244h0M316 244h0M324 244h0M332 244h0M340 244h0M348 244h0M140 252h0M148 252h0M156 252h0M164 252h0M172 252h0M180 252h0M188 252h0M196 252h0M204 252h0M212 252h0M220 252h0M228 252h0M236 252h0M244 252h0M252 252h0M260 252h0M268 252h0M276 252h0M284 252h0M292 252h0M300 252h0M308 252h0M316 252h0M324 252h0M332 252h0M340 252h0M348 252h0M132 260h0M140 260h0M148 260h0M156 260h0M164 260h0M188 260h0M204 260h0M212 260h0M220 260h0M228 260h0M236 260h0M244 260h0M252 260h0M260 260h0M268 260h0M276 260h0M284 260h0M292 260h0M300 260h0M308 260h0M316 260h0M332 260h0M348 260h0M356 260h0M212 268h0M228 268h0M236 268h0M244 268h0M268 268h0M276 268h0M284 268h0M292 268h0M348 268h0M236 276h0M244 276h0M308 300h0M316 300h0M276 308h0M284 308h0M292 308h0M300 308h0M308 308h0M316 308h0M252 316h0M260 316h0M268 316h0M276 316h0M284 316h0M292 316h0M300 316h0M308 316h0M316 316h0M324 316h0M236 324h0M252 324h0M260 324h0M268 324h0M276 324h0M284 324h0M292 324h0M300 324h0M308 324h0M316 324h0M324 324h0M332 324h0M340 324h0M348 324h0M204 332h0M236 332h0M244 332h0M252 332h0M260 332h0M268 332h0M276 332h0M284 332h0M292 332h0M300 332h0M308 332h0M316 332h0M324 332h0M332 332h0M340 332h0M348 332h0M356 332h0M364 332h0M372 332h0M380 332h0M164 340h0M204 340h0M228 340h0M244 340h0M252 340h0M260 340h0M268 340h0M276 340h0M284 340h0M292 340h0M300 340h0M308 340h0M316 340h0M324 340h0M332 340h0M340 340h0M348 340h0M356 340h0M364 340h0M156 348h0M164 348h0M204 348h0M212 348h0M220 348h0M228 348h0M236 348h0M244 348h0M252 348h0M260 348h0M268 348h0M276 348h0M284 348h0M292 348h0M300 348h0M308 348h0M316 348h0M324 348h0M332 348h0M340 348h0M348 348h0M356 348h0M364 348h0M372 348h0M156 356h0M164 356h0M172 356h0M180 356h0M196 356h0M204 356h0M212 356h0M220 356h0M228 356h0M236 356h0M244 356h0M252 356h0M260 356h0M268 356h0M276 356h0M284 356h0M292 356h0M300 356h0M308 356h0M316 356h0M324 356h0M332 356h0M340 356h0M348 356h0M356 356h0M364 356h0M372 356h0M132 364h0M140 364h0M148 364h0M156 364h0M164 364h0M172 364h0M180 364h0M196 364h0M204 364h0M212 364h0M220 364h0M228 364h0M236 364h0M244 364h0M252 364h0M260 364h0M268 364h0M276 364h0M284 364h0M292 364h0M300 364h0M308 364h0M316 364h0M324 364h0M332 364h0M340 364h0M348 364h0M356 364h0M364 364h0M372 364h0M108 372h0M116 372h0M124 372h0M132 372h0M140 372h0M148 372h0M156 372h0M164 372h0M172 372h0M180 372h0M188 372h0M196 372h0M204 372h0M212 372h0M220 372h0M228 372h0M236 372h0M244 372h0M252 372h0M260 372h0M268 372h0M276 372h0M284 372h0M292 372h0M300 372h0M308 372h0M316 372h0M324 372h0M332 372h0M340 372h0M348 372h0M356 372h0M364 372h0M372 372h0M108 380h0M116 380h0M124 380h0M132 380h0M140 380h0M148 380h0M156 380h0M164 380h0M172 380h0M180 380h0M188 380h0M196 380h0M204 380h0M212 380h0M220 380h0M228 380h0M236 380h0M244 380h0M252 380h0M260 380h0M268 380h0M276 380h0M284 380h0M292 380h0M300 380h0M308 380h0M316 380h0M324 380h0M332 380h0M340 380h0M348 380h0M356 380h0M388 380h0M116 388h0M124 388h0M132 388h0M140 388h0M148 388h0M156 388h0M164 388h0M172 388h0M180 388h0M188 388h0M196 388h0M204 388h0M212 388h0M220 388h0M228 388h0M236 388h0M244 388h0M252 388h0M260 388h0M268 388h0M276 388h0M284 388h0M292 388h0M300 388h0M308 388h0M316 388h0M324 388h0M340 388h0M124 396h0M132 396h0M140 396h0M148 396h0M156 396h0M164 396h0M172 396h0M180 396h0M188 396h0M196 396h0M204 396h0M212 396h0M220 396h0M228 396h0M236 396h0M244 396h0M252 396h0M260 396h0M268 396h0M276 396h0M284 396h0M292 396h0M300 396h0M308 396h0M316 396h0M116 404h0M124 404h0M132 404h0M140 404h0M148 404h0M156 404h0M164 404h0M172 404h0M180 404h0M188 404h0M196 404h0M204 404h0M212 404h0M220 404h0M228 404h0M236 404h0M244 404h0M252 404h0M260 404h0M268 404h0M276 404h0M284 404h0M292 404h0M300 404h0M308 404h0M316 404h0M100 412h0M108 412h0M116 412h0M124 412h0M132 412h0M140 412h0M148 412h0M156 412h0M164 412h0M172 412h0M180 412h0M188 412h0M196 412h0M204 412h0M212 412h0M220 412h0M228 412h0M236 412h0M244 412h0M252 412h0M260 412h0M268 412h0M276 412h0M284 412h0M292 412h0M300 412h0M308 412h0M316 412h0M324 412h0M100 420h0M108 420h0M116 420h0M124 420h0M132 420h0M140 420h0M148 420h0M156 420h0M164 420h0M172 420h0M180 420h0M188 420h0M196 420h0M204 420h0M212 420h0M220 420h0M228 420h0M236 420h0M244 420h0M252 420h0M260 420h0M268 420h0M276 420h0M284 420h0M292 420h0M300 420h0M308 420h0M316 420h0M324 420h0M332 420h0M108 428h0M116 428h0M124 428h0M132 428h0M140 428h0M148 428h0M156 428h0M164 428h0M172 428h0M180 428h0M188 428h0M196 428h0M204 428h0M212 428h0M220 428h0M228 428h0M236 428h0M244 428h0M252 428h0M260 428h0M268 428h0M276 428h0M284 428h0M292 428h0M300 428h0M308 428h0M316 428h0M324 428h0M332 428h0M116 436h0M124 436h0M132 436h0M140 436h0M148 436h0M156 436h0M164 436h0M172 436h0M180 436h0M188 436h0M196 436h0M204 436h0M212 436h0M220 436h0M228 436h0M236 436h0M244 436h0M252 436h0M260 436h0M268 436h0M276 436h0M284 436h0M292 436h0M300 436h0M308 436h0M316 436h0M108 444h0M116 444h0M124 444h0M132 444h0M140 444h0M148 444h0M156 444h0M164 444h0M172 444h0M180 444h0M188 444h0M196 444h0M204 444h0M212 444h0M220 444h0M228 444h0M236 444h0M244 444h0M252 444h0M260 444h0M268 444h0M276 444h0M284 444h0M292 444h0M300 444h0M308 444h0M316 444h0M324 444h0M108 452h0M116 452h0M124 452h0M132 452h0M140 452h0M148 452h0M156 452h0M164 452h0M172 452h0M180 452h0M188 452h0M196 452h0M204 452h0M212 452h0M220 452h0M228 452h0M236 452h0M244 452h0M252 452h0M260 452h0M268 452h0M276 452h0M284 452h0M292 452h0M300 452h0M308 452h0M316 452h0M324 452h0M108 460h0M116 460h0M124 460h0M132 460h0M140 460h0M148 460h0M156 460h0M164 460h0M172 460h0M204 460h0M212 460h0M220 460h0M228 460h0M236 460h0M244 460h0M252 460h0M260 460h0M268 460h0M276 460h0M284 460h0M292 460h0M300 460h0M308 460h0M316 460h0M324 460h0M124 468h0M132 468h0M140 468h0M148 468h0M156 468h0M164 468h0M220 468h0M228 468h0M236 468h0M244 468h0M252 468h0M260 468h0M268 468h0M276 468h0M284 468h0M292 468h0M300 468h0M308 468h0M316 468h0M324 468h0M140 476h0M148 476h0M156 476h0M228 476h0M236 476h0M244 476h0M252 476h0M260 476h0M268 476h0M276 476h0M284 476h0M292 476h0M300 476h0M308 476h0M316 476h0M324 476h0M332 476h0M140 484h0M148 484h0M244 484h0M252 484h0M260 484h0M268 484h0M276 484h0M284 484h0M292 484h0M300 484h0M308 484h0M316 484h0M324 484h0M340 484h0M348 484h0M132 492h0M244 492h0M252 492h0M260 492h0M268 492h0M276 492h0M284 492h0M292 492h0M300 492h0M308 492h0M316 492h0M324 492h0M332 492h0M340 492h0M348 492h0M356 492h0M244 500h0M252 500h0M260 500h0M268 500h0M276 500h0M284 500h0M292 500h0M300 500h0M308 500h0M316 500h0M324 500h0M332 500h0M340 500h0M348 500h0M356 500h0M364 500h0M252 508h0M260 508h0M268 508h0M276 508h0M284 508h0M292 508h0M300 508h0M308 508h0M316 508h0M324 508h0M332 508h0M340 508h0M348 508h0M356 508h0M364 508h0M372 508h0M252 516h0M260 516h0M268 516h0M276 516h0M284 516h0M292 516h0M300 516h0M308 516h0M316 516h0M324 516h0M332 516h0M340 516h0M348 516h0M356 516h0M364 516h0M372 516h0M380 516h0M252 524h0M260 524h0M268 524h0M276 524h0M284 524h0M292 524h0M300 524h0M308 524h0M316 524h0M324 524h0M332 524h0M340 524h0M348 524h0M356 524h0M364 524h0M372 524h0M380 524h0M260 532h0M268 532h0M276 532h0M284 532h0M292 532h0M300 532h0M308 532h0M316 532h0M324 532h0M332 532h0M340 532h0M348 532h0M356 532h0M364 532h0M372 532h0M380 532h0M260 540h0M268 540h0M276 540h0M284 540h0M292 540h0M300 540h0M308 540h0M316 540h0M324 540h0M332 540h0M340 540h0M348 540h0M356 540h0M364 540h0M372 540h0M380 540h0M388 540h0M268 548h0M276 548h0M284 548h0M292 548h0M300 548h0M308 548h0M316 548h0M324 548h0M332 548h0M340 548h0M348 548h0M356 548h0M364 548h0M372 548h0M380 548h0M388 548h0M276 556h0M284 556h0M292 556h0M300 556h0M308 556h0M316 556h0M324 556h0M332 556h0M340 556h0M348 556h0M356 556h0M364 556h0M372 556h0M380 556h0M388 556h0"/><path class="m-p3" d="M172 260h0M180 260h0M196 260h0M132 268h0M140 268h0M148 268h0M156 268h0M164 268h0M172 268h0M180 268h0M188 268h0M196 268h0M204 268h0M108 276h0M116 276h0M124 276h0M132 276h0M140 276h0M148 276h0M156 276h0M164 276h0M172 276h0M180 276h0M188 276h0M196 276h0M204 276h0M212 276h0M108 284h0M116 284h0M124 284h0M132 284h0M140 284h0M148 284h0M156 284h0M164 284h0M172 284h0M180 284h0M188 284h0M196 284h0M204 284h0M212 284h0M108 292h0M116 292h0M124 292h0M132 292h0M140 292h0M148 292h0M156 292h0M164 292h0M172 292h0M180 292h0M188 292h0M196 292h0M204 292h0M100 300h0M108 300h0M116 300h0M124 300h0M132 300h0M140 300h0M148 300h0M156 300h0M164 300h0M172 300h0M180 300h0M188 300h0M196 300h0M204 300h0M212 300h0M220 300h0M92 308h0M100 308h0M108 308h0M116 308h0M124 308h0M132 308h0M140 308h0M148 308h0M156 308h0M164 308h0M172 308h0M180 308h0M188 308h0M196 308h0M204 308h0M212 308h0M220 308h0M228 308h0M244 308h0M92 316h0M100 316h0M108 316h0M116 316h0M124 316h0M132 316h0M140 316h0M148 316h0M156 316h0M164 316h0M172 316h0M180 316h0M188 316h0M196 316h0M204 316h0M212 316h0M220 316h0M228 316h0M236 316h0M244 316h0M76 324h0M84 324h0M92 324h0M100 324h0M108 324h0M116 324h0M124 324h0M132 324h0M140 324h0M148 324h0M156 324h0M164 324h0M172 324h0M180 324h0M188 324h0M196 324h0M204 324h0M212 324h0M220 324h0M228 324h0M244 324h0M76 332h0M84 332h0M92 332h0M100 332h0M108 332h0M116 332h0M124 332h0M132 332h0M140 332h0M148 332h0M156 332h0M164 332h0M172 332h0M180 332h0M188 332h0M196 332h0M212 332h0M220 332h0M228 332h0M76 340h0M108 340h0M116 340h0M124 340h0M132 340h0M140 340h0M148 340h0M156 340h0M172 340h0M180 340h0M188 340h0M196 340h0M212 340h0M220 340h0M236 340h0M68 348h0M76 348h0M108 348h0M116 348h0M124 348h0M132 348h0M140 348h0M148 348h0M172 348h0M180 348h0M188 348h0M196 348h0M108 356h0M116 356h0M124 356h0M132 356h0M140 356h0M148 356h0M188 356h0M116 364h0M124 364h0M188 364h0"/><g class="m-fili"><path d="M312.6 397.0Q284.2 260.3 321.0 125.5"/><path d="M312.6 397.0Q218.4 363.0 149.9 290.0"/><path d="M312.6 397.0Q174.5 380.4 59.0 303.0"/></g><circle class="m-punto" cx="321.0" cy="125.5" r="7"/><circle class="m-punto" cx="149.9" cy="290.0" r="5.5"/><circle class="m-punto" cx="59.0" cy="303.0" r="5.5"/><circle class="m-casa" cx="312.6" cy="397.0" r="7"/><g class="m-nomi"><text x="333.0" y="132.0" text-anchor="start">Wiesau</text><text x="160.9" y="296.5" text-anchor="start">Schötz</text><text x="51.0" y="268.0" text-anchor="start">Villers-Farlay</text><text x="312.6" y="428.0" text-anchor="middle">Finiture</text></g></svg>
+      <p class="ap-riga">Finestre e porte fino a <span class="nb num">6000 × 3500 mm</span>. Da Villatora di Saonara (PD).</p>
+      <a class="btn" href="#richiesta" data-tipo="progetto">Richiedi un progetto</a>
     </div>
-  </div>
-  <div class="giro">
-    <ul class="prove">
-      <li><p class="eti">Ultima linea inaugurata</p><p><a class="link" href="#lavori">Distner, Wiesau (Germania), 10 e 11 ottobre 2026</a></p></li>
-      <li><p class="eti">Export</p><p>Oltre il 90% del nostro mercato è all'estero</p></li>
-      <li><p class="eti">Assistenza</p><p>In italiano, inglese, tedesco e francese, anche da remoto</p></li>
-    </ul>
   </div>
 </section>
 
-<section class="sezione grigio" id="impianti" aria-labelledby="t-impianti" style="margin-top:var(--sez)">
-  <div class="giro">
+<section class="sezione" id="impianti" aria-labelledby="t-impianti">
+  <div class="giro g12">
     <div class="capo">
-      <p class="eti">Impianti</p>
-      <h2 id="t-impianti">Una linea intera per quello che produci</h2>
-      <p>Per legno, materiali plastici e metallo, con vernici ad acqua e a solvente. Progetto in CAD 3D, costruzione, installazione e formazione: tutto fatto da noi.</p>
+      <h2 id="t-impianti">Cosa vuoi verniciare?</h2>
+      <p>Linee complete per legno, materiali plastici e metallo, con vernici ad acqua e a solvente.</p>
     </div>
-    <div class="schede">
-      <a class="scheda" id="s-finestre" href="impianti/finestre.html">
-        <img src="img/s-finestre-640.webp" srcset="img/s-finestre-640.webp 640w, img/s-finestre-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Anta di finestra con vetro appesa in cabina, sotto lo spruzzo; sopra, il trasportatore rosso">
-        <span class="dentro"><h3>Finestre</h3><p>Power&amp;Free, robot e flow coating per ante e telai, con pezzi fino a <span class="nb num">6000 × 3500 mm</span>. Per Distner, Setz Fensterbau, Malenfer.</p><span class="vai freccia">Impianti per finestre</span></span>
+    <div class="tessere">
+      <a class="tessera" href="impianti/finestre.html">
+        <img src="img/s-finestre-640.webp" srcset="img/s-finestre-640.webp 640w, img/s-finestre-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1100px) 45vw, 310px" width="640" height="480" loading="lazy" alt="Anta di finestra appesa in cabina sotto lo spruzzo, con il trasportatore rosso sopra">
+        <h3>Finestre</h3><p>Power&amp;Free, robot e flow coating per ante e telai.</p>
       </a>
-      <a class="scheda" id="s-porte" href="impianti/porte.html">
-        <img src="img/s-porte-640.webp" srcset="img/s-porte-640.webp 640w, img/s-porte-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Porta a doghe laccata verde e, accanto, una porta rossa appesa ai ganci del Power&amp;Free">
-        <span class="dentro"><h3>Porte</h3><p>Il Power&amp;Free accumula e dosa le porte; cabine a secco DRY-A, tunnel Pro Dry con sistema LDP, Supervisor con RFID.</p><span class="vai freccia">Impianti per porte</span></span>
+      <a class="tessera" href="impianti/porte.html">
+        <img src="img/s-porte-640.webp" srcset="img/s-porte-640.webp 640w, img/s-porte-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1100px) 45vw, 310px" width="640" height="480" loading="lazy" alt="Porta a doghe laccata verde e, accanto, una porta rossa appesa ai ganci del Power&amp;Free">
+        <h3>Porte</h3><p>Il Power&amp;Free accumula e dosa le porte; cabine a secco DRY-A, tunnel Pro Dry.</p>
       </a>
-      <a class="scheda" id="s-clt" href="impianti/clt.html">
-        <img src="img/s-clt-640.webp" srcset="img/s-clt-640.webp 640w, img/s-clt-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Grande pannello CLT sospeso al trasportatore rosso">
-        <span class="dentro"><h3>CLT e case in legno</h3><p>Travi, pareti e coperture: Power&amp;Free con 100 barre da 3500 mm, robot RAS Large con <span class="nb num">4000 × 2500 mm</span> utili.</p><span class="vai freccia">Impianti per CLT</span></span>
+      <a class="tessera" href="impianti/clt.html">
+        <img src="img/s-clt-640.webp" srcset="img/s-clt-640.webp 640w, img/s-clt-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1100px) 45vw, 310px" width="640" height="480" loading="lazy" alt="Grande pannello CLT sospeso al trasportatore rosso">
+        <h3>CLT e case in legno</h3><p>Power&amp;Free con 100 barre da 3500 mm, robot RAS Large con <span class="nb num">4000 × 2500 mm</span> utili.</p>
       </a>
-      <a class="scheda" id="s-sedie" href="impianti/sedie-mobili.html">
-        <img src="img/s-sedie-640.webp" srcset="img/s-sedie-640.webp 640w, img/s-sedie-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Sedie laccate rosse sui pianali del trasportatore a terra">
-        <span class="dentro"><h3>Sedie e mobili</h3><p>Trasportatori a terra con supporti intercambiabili, a passo fisso o variabile, oppure appesi al trasportatore aereo.</p><span class="vai freccia">Impianti per sedie e mobili</span></span>
+      <a class="tessera" href="impianti/sedie-mobili.html">
+        <img src="img/s-sedie-640.webp" srcset="img/s-sedie-640.webp 640w, img/s-sedie-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1100px) 45vw, 310px" width="640" height="480" loading="lazy" alt="Sedie laccate rosse sui pianali del trasportatore a terra">
+        <h3>Sedie e mobili</h3><p>Trasportatori a terra con supporti intercambiabili, a passo fisso o variabile.</p>
       </a>
     </div>
-    <div class="parte">
-      <div class="riquadro" id="parte">
-        <p class="h3g">Vuoi solo parte di un impianto? Nessun problema!</p>
-        <p>Vendiamo anche le singole macchine, per ampliare o rinnovare la tua linea:</p>
-        <ul class="macchine-link">
-          <li><a class="link" href="macchine/impregnazione.html">Superjet</a></li>
-          <li><a class="link" href="macchine/impregnazione.html">Pro Flow</a></li>
-          <li><a class="link" href="macchine/robot.html">Robot RAS</a></li>
-          <li><a class="link" href="macchine/cabine.html">Cabine</a></li>
-          <li><a class="link" href="macchine/essiccazione.html">Tunnel LDP</a></li>
-          <li><a class="link" href="macchine/handling.html">Banco BM30</a></li>
-          <li><a class="link freccia" href="#macchine">Tutte le macchine</a></li>
-        </ul>
+    <div class="inoltre">
+      <div id="parte">
+        <h3>Vuoi solo parte di un impianto? Nessun problema!</h3>
+        <p>Vendiamo anche le singole macchine, dal robot RAS al banco di montaggio BM30.</p>
+        <a class="link va" href="#macchine">Le macchine, fase per fase</a>
       </div>
-      <div class="riquadro" id="usato">
-        <p class="h3g">Impianti usati</p>
-        <p>In vendita Finiture 5 e Finiture 6: per ognuno componenti, anno, disponibilità e pianta da scaricare. Prezzo: rivolgersi a Finiture.</p>
-        <div class="azioni">
-          <a class="btn btn-bordo" href="usato.html">Vedi gli annunci</a>
-          <a class="btn btn-bordo" href="mailto:info@finiture.it?subject=Impianto%20usato&amp;body=Annuncio%20(Finiture%205%20o%20Finiture%206)%3A%20%0D%0AAzienda%3A%20%0D%0APaese%3A%20%0D%0ATelefono%3A%20">Chiedi dell'usato</a>
-        </div>
+      <div id="usato">
+        <h3>Impianti usati</h3>
+        <p>Annunci con componenti, anno, disponibilità e pianta; il prezzo si chiede a Finiture.</p>
+        <a class="link va" href="usato.html">Vedi gli annunci dell'usato</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sezione" id="lavori" aria-labelledby="t-lavori">
-  <div class="giro">
-    <div class="capo">
-      <p class="eti">Impianti consegnati</p>
+<section class="sezione" id="lavori" aria-labelledby="t-lavori" style="padding-top:var(--sez-l)">
+  <div class="giro g12">
+    <div class="capo capo-largo">
       <h2 id="t-lavori">Linee consegnate in Germania, Svizzera e Francia</h2>
     </div>
-    <article class="griglia caso" aria-labelledby="t-distner">
-      <figure>
-        <img src="img/distner-1200.webp" srcset="img/distner-800.webp 800w, img/distner-1200.webp 1200w, img/distner-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture nel nuovo stabilimento Distner a Wiesau: trasportatore aereo, cabine e telai in legno appesi">
-      </figure>
-      <div class="testo">
-        <h3 class="h3g" id="t-distner">Distner</h3>
-        <p class="luogo">Wiesau, Germania · serramenti dal 1964</p>
-        <p class="data">Nuovo stabilimento inaugurato il 10 e 11 ottobre 2026, dopo cinque anni di pianificazione e quasi due anni di lavori.</p>
+    <figure class="culmine">
+      <img src="img/distner-1200.webp" srcset="img/distner-800.webp 800w, img/distner-1200.webp 1200w, img/distner-1600.webp 1600w" sizes="(max-width:1100px) 100vw, 980px" width="1600" height="1067" loading="lazy" alt="La linea Distner appena installata: trasportatore aereo Power&amp;Free, sollevatore a rulliera, cabine e quadro Finiture">
+      <figcaption class="didascalia mono"><span>Linea per finestre Distner, appena installata</span><span>notizia del giugno 2026</span></figcaption>
+    </figure>
+    <div class="culmine-t">
+      <h3>Distner</h3>
+      <p class="luogo">Serramenti dal 1964.</p>
+      <p>Nuovo stabilimento inaugurato il 10 e 11 ottobre 2026, dopo cinque anni di pianificazione e quasi due anni di lavori.</p>
+      <dl class="dati">
+        <div><dt>Trasportatore</dt><dd>Power&amp;Free con 45 barre da 5 m</dd></div>
+        <div><dt>Spruzzatura</dt><dd>Due robot antropomorfi con cambio colore automatico, su <span class="nb num">5000 × 3000 mm</span></dd></div>
+        <div><dt>Impregnazione</dt><dd>Flow coating Superjet e Superjet Plus</dd></div>
+        <div><dt>Essiccazione</dt><dd>Due tunnel con sistema LDP, chiarificatore</dd></div>
+      </dl>
+      <a class="link va" href="notizie.html">La notizia dell'inaugurazione</a>
+    </div>
+    <div class="coppia">
+      <article class="caso" aria-labelledby="t-setz">
+        <figure>
+          <img src="img/setz-800.webp" srcset="img/setz-800.webp 800w, img/setz-1200.webp 1200w" sizes="(max-width:560px) 100vw, (max-width:860px) 50vw, 310px" width="800" height="533" loading="lazy" alt="Robot di verniciatura con la tuta di protezione, sotto il Power&amp;Free rosso, con pannelli appesi">
+          <figcaption class="didascalia mono"><span>Setz Fensterbau, Schötz (Svizzera)</span><span>notizia del febbraio 2026</span></figcaption>
+        </figure>
+        <div class="caso-t">
+        <h3 id="t-setz">Setz Fensterbau</h3>
+        <p class="luogo">Porte e infissi, fondata nel 1960 da Hans Setz.</p>
         <dl class="dati">
-          <div><dt>Trasportatore</dt><dd>Power&amp;Free, 45 barre da 5 m</dd></div>
-          <div><dt>Spruzzatura</dt><dd>Due robot antropomorfi con cambio colore automatico</dd></div>
-          <div><dt>Superficie</dt><dd class="num"><span class="nb">5000 × 3000 mm</span></dd></div>
-          <div><dt>Impregnazione</dt><dd>Superjet e Superjet Plus</dd></div>
-          <div><dt>Essiccazione e acque</dt><dd>Tunnel con sistema LDP, chiarificatore</dd></div>
-        </dl>
-        <a class="link freccia" href="notizie.html">Leggi la notizia dell'inaugurazione</a>
-      </div>
-    </article>
-
-    <article class="griglia caso caso-dx" aria-labelledby="t-setz">
-      <figure>
-        <img src="img/setz-1200.webp" srcset="img/setz-800.webp 800w, img/setz-1200.webp 1200w, img/setz-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture da Setz Fensterbau: robot in cabina e pezzi appesi al Power&amp;Free rosso">
-      </figure>
-      <div class="testo">
-        <h3 class="h3g" id="t-setz">Setz Fensterbau</h3>
-        <p class="luogo">Schötz, Svizzera · finestre e porte dal 1960</p>
-        <p class="data">Linea per porte e infissi, dalla notizia dell'8 febbraio 2026.</p>
-        <dl class="dati">
-          <div><dt>Trasportatore</dt><dd>Power&amp;Free, 40 barre da 6 m, posizione delle barre con RFID</dd></div>
+          <div><dt>Trasportatore</dt><dd>Power&amp;Free, 40 barre da 6 m, con RFID</dd></div>
           <div><dt>Spruzzatura</dt><dd>Due robot a 6 assi con scanner dei pezzi</dd></div>
-          <div><dt>Pezzi</dt><dd class="num">Fino a <span class="nb">6000 × 3500 mm</span></dd></div>
+          <div><dt>Pezzi</dt><dd>Fino a <span class="nb num">6000 × 3500 mm</span></dd></div>
         </dl>
-        <a class="link freccia" href="notizie.html">Leggi il caso Setz</a>
-      </div>
-    </article>
-
-    <article class="griglia caso" aria-labelledby="t-malenfer">
-      <figure>
-        <img src="img/malenfer-1200.webp" srcset="img/malenfer-800.webp 800w, img/malenfer-1200.webp 1200w, img/malenfer-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture da Malenfer: robot in cabina, cartello Finiture e trasportatore rosso">
-      </figure>
-      <div class="testo">
-        <h3 class="h3g" id="t-malenfer">Malenfer</h3>
-        <p class="luogo">Villers-Farlay, Giura, Francia · dal 1983</p>
-        <p class="data">Linea per serramenti, dalla notizia del 17 maggio 2026.</p>
+        <a class="link va" href="notizie.html">Il caso Setz Fensterbau</a>
+        </div>
+      </article>
+      <article class="caso" aria-labelledby="t-malenfer">
+        <figure>
+          <img src="img/malenfer-800.webp" srcset="img/malenfer-800.webp 800w, img/malenfer-1200.webp 1200w" sizes="(max-width:560px) 100vw, (max-width:860px) 50vw, 310px" width="800" height="533" loading="lazy" alt="Robot di verniciatura con la tuta di protezione accanto alla cabina, con il cartello Finiture e il trasportatore rosso">
+          <figcaption class="didascalia mono"><span>Malenfer, Villers-Farlay (Francia)</span><span>notizia del maggio 2026</span></figcaption>
+        </figure>
+        <div class="caso-t">
+        <h3 id="t-malenfer">Malenfer</h3>
+        <p class="luogo">Serramenti nel Giura, dal 1983.</p>
         <dl class="dati">
           <div><dt>Trasportatore</dt><dd>Power&amp;Free push-pull, 24 barre da 3 m</dd></div>
           <div><dt>Spruzzatura</dt><dd>Robot a 6 assi più mezzo asse, cambio colore su 4 colori</dd></div>
           <div><dt>Impregnazione</dt><dd>Tunnel Superjet</dd></div>
         </dl>
-        <a class="link freccia" href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">Il video della linea su YouTube</a>
-      </div>
-    </article>
-
-    <div class="tabella-giro">
+        <a class="link va" href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">Il video della linea</a>
+        </div>
+      </article>
+    </div>
+    <div class="altre">
       <h3>Altre linee consegnate</h3>
-      <table>
-        <thead><tr><th scope="col">Cliente</th><th scope="col">Trasportatore</th><th scope="col">Robot e colori</th><th scope="col">Altro</th><th scope="col">Quando</th></tr></thead>
-        <tbody>
-          <tr><td><b>Millet</b><span>Francia</span></td><td data-th="Trasportatore">Power&amp;Free da 130 barre</td><td data-th="Robot">Due robot, quattro Superjet</td><td data-th="Altro">Supervisor WinPaint con RFID</td><td data-th="Quando">2026, su LinkedIn</td></tr>
-          <tr><td><b>Bruppacher</b><span>Alto Reno, Francia</span></td><td data-th="Trasportatore">30 barre da 4 m</td><td data-th="Robot">Robot a 6 assi, cambio colore su 5 colori</td><td data-th="Altro">Due banchi di montaggio BM30</td><td data-th="Quando">Notizia dell'11 gennaio 2026</td></tr>
-          <tr><td><b>Arlt</b><span>Germania</span></td><td data-th="Risultato" colspan="3">Il ciclo di lavoro passa da circa 24 ore a 8 ore</td><td data-th="Quando">Impianto del 2017</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="voci">
-      <h3>Lo hanno scritto i clienti</h3>
-      <blockquote class="voce-grande"><p>La messa in funzione dell'impianto e l'istruzione dei nostri dipendenti sono state impeccabili!</p><footer>Wagner Fenster+Türen GmbH</footer></blockquote>
-      <ul class="voci-altre">
-        <li><blockquote><p>Il nostro robot è finalmente operativo!</p><footer>Menuiserie Zimmermann</footer></blockquote></li>
-        <li><blockquote><p>Non ci siamo sbagliati nell'affidarci a voi per la nostra installazione.</p><footer>Menuiserie Foray</footer></blockquote></li>
-        <li><blockquote><p>…per aver configurato i robot con tutto quello che volevamo. Ne è valsa la pena.</p><footer>Huber &amp; Sohn</footer></blockquote></li>
-        <li><blockquote><p>Continuate così!</p><footer>Betz Fensterbau GmbH</footer></blockquote></li>
+      <ul>
+        <li><b>Millet</b><span class="mono">Francia · 2026, su LinkedIn</span><p>Power&amp;Free da 130 barre, due robot, quattro Superjet.</p></li>
+        <li><b>Bruppacher</b><span class="mono">Alto Reno, Francia · notizia del gennaio 2026</span><p>30 barre da 4 m, 5 colori, due banchi di montaggio BM30.</p></li>
+        <li><b>Arlt</b><span class="mono">Germania · impianto del 2017</span><p>Il ciclo di lavoro passa da circa 24 ore a 8 ore.</p></li>
       </ul>
-      <p class="altro"><span>Dalla home di finiture.it, tradotte in italiano.</span><a class="link freccia" href="notizie.html">Casi cliente nelle notizie</a><a class="link freccia" href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Dai cantieri, su LinkedIn</a></p>
+    </div>
+    <div class="voci">
+      <blockquote class="voce-1"><p>La messa in funzione dell'impianto e l'istruzione dei nostri dipendenti sono state impeccabili!</p><footer>Wagner Fenster+Türen GmbH</footer></blockquote>
+      <blockquote><p>Il nostro robot è finalmente operativo!</p><footer>Menuiserie Zimmermann</footer></blockquote>
+      <p class="fonte">Dalla home di finiture.it, tradotte in italiano.</p>
     </div>
   </div>
 </section>
 
-<section class="sezione scuro" id="azienda" aria-labelledby="t-azienda">
-  <div class="giro">
-    <div class="az-capo">
-      <p class="eti">Azienda</p>
-      <h2 id="t-azienda" style="margin-top:16px">25 anni di Finiture, più di 70 di esperienza</h2>
-    </div>
-    <figure class="az-foto">
-      <img src="img/squadra-1167.webp" srcset="img/squadra-800.webp 800w, img/squadra-1167.webp 1167w" sizes="(max-width:1060px) 100vw, 1280px" width="1167" height="397" loading="lazy" alt="La squadra di Finiture davanti alla sede di Villatora di Saonara">
-    </figure>
-    <div class="griglia az-testo">
-      <p>Marco Sedino fonda la Mizar negli anni '50; dal 2000 è Finiture, oggi guidata da Giovanni Sedino. Siamo circa 40 persone a Villatora di Saonara, e c'è chi lavora con noi da 20 e da 40 anni.</p>
-      <p>Finiture gestisce internamente tutte le fasi di lavoro: l'ufficio tecnico progetta l'impianto in CAD 3D, l'officina lo costruisce, i tecnici lo installano e accompagnano il cliente passo passo nell'utilizzo autonomo del proprio impianto.</p>
-    </div>
-    <ul class="numeri">
-      <li><span class="numero num">70+</span><p>anni di esperienza</p></li>
-      <li><span class="numero num">90%</span><p>del mercato all'estero</p></li>
-      <li><span class="numero num">40</span><p>persone in azienda</p></li>
-      <li><span class="numero num">51</span><p>macchine a catalogo</p></li>
-      <li><span class="numero num">4</span><p>lingue dell'assistenza</p></li>
-    </ul>
-    <div class="premi">
-      <div><p class="eti">Riconoscimento</p><p class="h3g">Finalisti Exporter of the Year 2024</p><p>Premio di Confindustria Veneto Est con Fondazione Nord Est e SACE</p></div>
-      <div><p class="eti">Collaborazione</p><p class="h3g">Partner di Finestra+</p><p>Il progetto del Consorzio LegnoLegno sul serramento sostenibile</p></div>
-      <div class="collega"><a class="freccia" href="azienda.html">Chi siamo</a><a class="freccia" href="notizie.html">Notizie</a><a class="freccia" href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Lavora con noi</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="sezione" id="macchine" aria-labelledby="t-macchine">
-  <div class="giro">
-    <div class="capo">
-      <p class="eti">Macchine</p>
+<section class="sezione grigio" id="macchine" aria-labelledby="t-macchine">
+  <div class="giro g12">
+    <div class="fasi-capo">
       <h2 id="t-macchine">Dentro una linea Finiture, dal carico all'essiccazione</h2>
-      <p>Tutte progettate e costruite da noi. Il software Supervisor segue ogni pezzo con l'RFID e imposta tempi, prodotti e numero di mani.</p>
+      <p class="firma">Finiture gestisce internamente tutte le fasi di lavoro.</p>
+      <p>Progetto in CAD 3D, costruzione in officina, installazione: poi i tecnici accompagnano il cliente passo passo nell'utilizzo autonomo del proprio impianto.</p>
+      <p>Marco Sedino fonda la Mizar negli anni '50; dal 2000 è Finiture, oggi guidata da Giovanni Sedino.</p>
+      <a class="link va" href="azienda.html">Chi siamo</a>
     </div>
-    <ul class="macchine">
-      <li><a class="macchina" href="macchine/trasporto.html"><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><h3>Trasportatore birotaia IMB</h3><p>Power&amp;Free: varia il numero di barre in linea e in accumulo</p></a></li>
-      <li><a class="macchina" href="macchine/impregnazione.html"><img src="img/m-superjet-480.webp" srcset="img/m-superjet-480.webp 480w, img/m-superjet-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del flow coating verticale Superjet Plus"><h3>Superjet e Superjet Plus</h3><p>Flow coating verticale; cicli programmati con prelavaggio, lavaggio e cambio colore</p></a></li>
-      <li><a class="macchina" href="macchine/impregnazione.html"><img src="img/m-proflow-480.webp" srcset="img/m-proflow-480.webp 480w, img/m-proflow-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD dell'impregnatrice Pro Flow"><h3>Pro Flow</h3><p>Circuito chiuso, consumo minimo di prodotto (Pro Flow Evo)</p></a></li>
-      <li><a class="macchina" href="macchine/robot.html"><img src="img/m-ras-480.webp" srcset="img/m-ras-480.webp 480w, img/m-ras-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del robot antropomorfo RAS, rosso, sul suo basamento"><h3>Robot antropomorfo RAS</h3><p>6 o più assi, 7° asse per profili grandi; vernici ad acqua e a solvente</p></a></li>
-      <li><a class="macchina" href="macchine/cabine.html"><img src="img/m-drya-480.webp" srcset="img/m-drya-480.webp 480w, img/m-drya-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD della cabina a secco DRY-A"><h3>Cabina a secco DRY-A</h3><p>Aspirazione a flusso orizzontale e verticale</p></a></li>
-      <li><a class="macchina" href="macchine/cabine.html"><img src="img/m-ricircolo-480.webp" srcset="img/m-ricircolo-480.webp 480w, img/m-ricircolo-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD della cabina di spruzzatura a ricircolo"><h3>Cabina a ricircolo</h3><p>Ricircolo fino al 90% dell'aria aspirata</p></a></li>
-      <li><a class="macchina" href="macchine/essiccazione.html"><img src="img/m-ldp-480.webp" srcset="img/m-ldp-480.webp 480w, img/m-ldp-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del tunnel di essiccazione a deumidificazione"><h3>Tunnel con sistema LDP</h3><p>Asciugatura veloce a bassa temperatura, per i prodotti ad acqua</p></a></li>
-      <li><a class="macchina" href="macchine/acqua.html"><img src="img/m-ac-480.webp" srcset="img/m-ac-480.webp 480w, img/m-ac-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del chiarificatore AC per le acque di lavaggio"><h3>Chiarificatore AC</h3><p>Costi di smaltimento più bassi grazie alla coagulazione</p></a></li>
-    </ul>
-    <div class="griglia handling">
-      <div class="testo">
-        <h3 class="h3g">Handling &amp; Assembling</h3>
-        <p>Dopo la verniciatura, il montaggio: banchi di montaggio, vetratura, avvitatura, imballaggio e logistica per serramenti, 26 macchine.</p>
-        <ul class="macchine-link">
-          <li><a class="link" href="macchine/handling.html">Banco di montaggio BM30</a></li>
-          <li><a class="link" href="macchine/handling.html">Vetratura BVC30</a></li>
-          <li><a class="link" href="macchine/handling.html">Avvitatura</a></li>
-          <li><a class="link" href="macchine/handling.html">Imballaggio</a></li>
-          <li><a class="link" href="macchine/handling.html">Logistica</a></li>
-        </ul>
-      </div>
-      <blockquote><p>Il BM30, fiore all'occhiello della nostra Handling &amp; Assembling Division.</p><footer>Dalla notizia della linea Bruppacher</footer></blockquote>
-    </div>
+    <ol class="fasi">
+      <li><span class="n">01</span><div><h3><a href="macchine/trasporto.html">Trasporto</a></h3><p class="macchine">Trasportatore birotaia IMB, Power&amp;Free</p></div><p>Varia il numero di barre in linea e in accumulo.</p></li>
+      <li><span class="n">02</span><div><h3><a href="macchine/impregnazione.html">Impregnazione</a></h3><p class="macchine">Superjet, Superjet Plus, Pro Flow Evo</p></div><p>Flow coating verticale con lavaggio e cambio colore.</p></li>
+      <li><span class="n">03</span><div><h3><a href="macchine/robot.html">Spruzzatura</a></h3><p class="macchine">Robot antropomorfo RAS</p></div><p>6 o più assi, 7° asse per profili grandi; vernici ad acqua e a solvente.</p></li>
+      <li><span class="n">04</span><div><h3><a href="macchine/cabine.html">Cabine e aria</a></h3><p class="macchine">Cabina a secco DRY-A, cabine a ricircolo</p></div><p>Ricircolo fino al 90% dell'aria aspirata.</p></li>
+      <li><span class="n">05</span><div><h3><a href="macchine/essiccazione.html">Essiccazione</a></h3><p class="macchine">Tunnel con sistema LDP</p></div><p>Asciugatura veloce a bassa temperatura, per i prodotti ad acqua.</p></li>
+      <li><span class="n">06</span><div><h3><a href="macchine/acqua.html">Acque e controllo</a></h3><p class="macchine">Chiarificatore AC, software Supervisor</p></div><p>Coagulazione delle acque di lavaggio; il Supervisor segue ogni pezzo con l'RFID.</p></li>
+    </ol>
+    <p class="dopo">Dopo la verniciatura, il montaggio: <a class="link" href="macchine/handling.html">Handling &amp; Assembling</a>, con il banco BM30 e la vetratura BVC30.</p>
   </div>
 </section>
 
-<section class="sezione grigio" id="area-test" aria-labelledby="t-prova">
-  <div class="giro griglia prova">
+<section class="sezione" id="area-test" aria-labelledby="t-prova">
+  <div class="giro g12 prova">
     <figure>
-      <img src="img/areatest-800.webp" srcset="img/areatest-800.webp 800w, img/areatest-1200.webp 1200w" sizes="(max-width:1060px) 100vw, 740px" width="800" height="533" loading="lazy" alt="Area test: cabina robot con telai in legno appesi e un tecnico Finiture in tuta al quadro di comando">
+      <img src="img/areatest-800.webp" srcset="img/areatest-800.webp 800w, img/areatest-1200.webp 1200w" sizes="(max-width:1100px) 100vw, 540px" width="800" height="533" loading="lazy" alt="Area test: cabina robot con telai in legno appesi e un tecnico Finiture in tuta bianca al quadro di comando">
     </figure>
     <div class="testo">
-      <p class="eti" style="color:var(--rosso)">Area test</p>
-      <h2 id="t-prova" style="margin-top:16px">Metti alla prova le soluzioni Finiture</h2>
-      <p>Flow coating verticale, robot di spruzzatura RAS, cabina, tunnel d'essiccazione con sistema LDP, ventilatori assiali e lampade alogene. Qui fai le prove d'applicazione sui pezzi di tua produzione, prima di decidere.</p>
-      <p>Per preparare la prova ci servono i pezzi, la vernice che usi, le misure massime e quanti pezzi fai al giorno.</p>
-      <p class="dove">Viale Veneto 13/15, 35020 Villatora di Saonara (PD) · <a class="link" href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
-      <div class="azioni"><a class="btn btn-pieno" href="#contatti" data-tipo="prova">Chiedi una prova in area test</a></div>
+      <h2 id="t-prova">Prova i tuoi pezzi in area test</h2>
+      <p>Flow coating verticale, robot di spruzzatura RAS, cabina, tunnel d'essiccazione con sistema LDP, ventilatori assiali e lampade alogene: le prove d'applicazione si fanno sui pezzi di tua produzione, prima di decidere.</p>
+      <p>Per la prova servono i pezzi, la vernice che usi, le misure massime e i pezzi al giorno.</p>
+      <a class="btn btn-bordo" href="#richiesta" data-tipo="prova">Chiedi una prova</a>
     </div>
   </div>
 </section>
 
-<section class="sezione sul-rosso" id="assistenza" aria-labelledby="t-assistenza">
-  <div class="giro griglia">
+<section class="sezione rosso" id="assistenza" aria-labelledby="t-assistenza">
+  <div class="giro g12">
     <div class="as-testo">
-      <p class="eti">Assistenza</p>
       <h2 id="t-assistenza">Dal montaggio alla manutenzione: sempre dalla parte del cliente</h2>
-      <p class="ora"><span class="stato" data-stato>Orari dell'assistenza</span></p>
-      <div class="azioni">
-        <a class="btn btn-pieno" href="tel:+390498792458">Chiama <span class="num">+39 049 879 2458</span></a>
-        <a class="btn btn-bordo" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a>
+      <p class="stato" data-stato="frase">Assistenza: lunedì-venerdì, ora italiana</p>
+      <dl class="orari">
+        <div><dt>Orari</dt><dd class="num">Lunedì-venerdì 8:30-12:00 e 14:00-17:30, ora italiana</dd></div>
+        <div><dt>Lingue</dt><dd>Italiano, inglese, tedesco e francese</dd></div>
+        <div><dt>Come</dt><dd>Da remoto, oppure dal cliente: messa in funzione e formazione</dd></div>
+      </dl>
+      <div class="as-azioni">
+        <a class="btn" href="tel:+390498792458">Chiama <span class="num">+39 049 879 2458</span></a>
+        <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a>
+        <p class="aiuto">Fuori orario, l'email parte con la traccia già scritta: azienda, impianto, matricola, cosa succede.</p>
       </div>
-      <p class="fuori">Fuori orario scrivi a <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">info@finiture.it</a> con azienda, impianto e cosa succede.</p>
     </div>
     <figure class="as-foto">
-      <img src="img/formazione-1200.webp" srcset="img/formazione-800.webp 800w, img/formazione-1200.webp 1200w, img/formazione-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 630px" width="1200" height="800" loading="lazy" alt="Un tecnico Finiture spiega il Supervisor a un gruppo di clienti davanti al quadro della linea; sopra, il trasportatore rosso">
+      <img src="img/assistenza-800.webp" srcset="img/assistenza-800.webp 800w, img/assistenza-1200.webp 1200w" sizes="(max-width:1100px) 100vw, 644px" width="800" height="533" loading="lazy" alt="Un tecnico Finiture al quadro di comando di una cella con robot di verniciatura; sul quadro il logo Finiture">
     </figure>
-    <dl class="orari">
-      <div><dt class="eti">Lunedì-venerdì</dt><dd class="num">8:30-12:00 e 14:00-17:30, ora italiana</dd></div>
-      <div><dt class="eti">Lingue</dt><dd>Italiano, inglese, tedesco e francese</dd></div>
-      <div><dt class="eti">Da remoto</dt><dd>Assistenza da remoto sull'impianto</dd></div>
-      <div><dt class="eti">Dal cliente</dt><dd>Installazione, messa in funzione e formazione del personale</dd></div>
-    </dl>
   </div>
 </section>
 
-<section class="sezione" id="contatti" aria-labelledby="t-contatti">
-  <div class="giro griglia">
+<section class="sezione" id="richiesta" aria-labelledby="t-richiesta">
+  <div class="giro g12">
     <div class="co-testo">
-      <div class="capo">
-        <p class="eti">Contatti</p>
-        <h2 id="t-contatti">Richiedi un progetto</h2>
-        <p>Raccontaci cosa produci: prodotto, misure massime dei pezzi, pezzi al giorno e vernici. Allega disegni o foto. Puoi scriverci in italiano, inglese, tedesco o francese.</p>
-      </div>
-      <div class="recapiti">
-        <a class="grande num" href="tel:+390498792458">+39 049 879 2458</a>
-        <a class="link" href="mailto:info@finiture.it?subject=Richiesta%20progetto">info@finiture.it</a>
-        <p>Viale Veneto 13/15, 35020 Villatora di Saonara (PD)<br><a class="link" href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
-        <p class="tenue num">Lunedì-venerdì 8:30-12:00 e 14:00-17:30, ora italiana</p>
-      </div>
+      <h2 id="t-richiesta">Richiedi un progetto</h2>
+      <p>Raccontaci cosa produci e allega disegni o foto. Puoi scriverci in italiano, inglese, tedesco o francese.</p>
+      <dl class="recapiti">
+        <div><dt>Email</dt><dd><a class="link" href="mailto:info@finiture.it?subject=Richiesta%20progetto">info@finiture.it</a></dd></div>
+      </dl>
     </div>
-    <form class="modulo" id="richiesta" action="mailto:info@finiture.it" method="post" enctype="text/plain" novalidate aria-labelledby="t-contatti">
+    <form class="modulo" id="modulo" action="mailto:info@finiture.it" method="post" enctype="text/plain" novalidate aria-labelledby="t-richiesta">
       <fieldset>
-        <legend class="eti">Che cosa ti serve</legend>
+        <legend>Che cosa ti serve</legend>
         <div class="tipi">
           <label><input type="radio" name="tipo" value="Impianto completo" checked> Impianto completo</label>
           <label><input type="radio" name="tipo" value="Ampliamento o singola macchina"> Ampliamento o singola macchina</label>
@@ -755,27 +623,24 @@ td span{color:var(--testo-2)}
       <div class="campi">
         <div class="campo"><label for="f-prodotto">Cosa vuoi verniciare *</label>
           <select id="f-prodotto" name="prodotto" required><option value="">Scegli</option><option>Finestre</option><option>Porte</option><option>CLT e case in legno</option><option>Sedie e mobili</option><option>Altro</option></select></div>
-        <div class="campo"><label for="f-materiale">Materiale</label>
-          <select id="f-materiale" name="materiale"><option>Legno</option><option>Materiali plastici</option><option>Metallo</option><option>Più materiali</option></select></div>
-        <div class="campo"><label for="f-misure">Misure massime dei pezzi</label><input id="f-misure" name="misure" placeholder="per esempio 3000 × 1800 mm"></div>
+        <div class="campo"><label for="f-misure">Misure massime dei pezzi</label><input id="f-misure" name="misure" placeholder="3000 × 1800 mm"></div>
         <div class="campo"><label for="f-quanti">Pezzi al giorno</label><input id="f-quanti" name="quanti" inputmode="numeric"></div>
         <div class="campo"><label for="f-vernici">Vernici</label>
-          <select id="f-vernici" name="vernici"><option>Ad acqua</option><option>A solvente</option><option>Ad acqua e a solvente</option><option>Da definire</option></select></div>
+          <select id="f-vernici" name="vernici"><option>Ad acqua</option><option>A solvente</option><option>Entrambe</option><option>Da definire</option></select></div>
         <div class="campo"><label for="f-lingua">Lingua della risposta</label>
           <select id="f-lingua" name="lingua"><option>Italiano</option><option>English</option><option>Deutsch</option><option>Français</option></select></div>
         <div class="campo"><label for="f-nome">Nome e cognome *</label><input id="f-nome" name="nome" autocomplete="name" required></div>
         <div class="campo"><label for="f-azienda">Azienda *</label><input id="f-azienda" name="azienda" autocomplete="organization" required></div>
-        <div class="campo"><label for="f-paese">Paese</label><input id="f-paese" name="paese" autocomplete="country-name"></div>
         <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
-        <div class="campo largo"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="campo"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="campo largo"><span class="titolo" id="t-file">Disegni o foto</span>
           <div class="allega"><input class="sr" id="f-file" name="file" type="file" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png" aria-labelledby="t-file f-scegli" aria-describedby="f-scelti f-aiuto"><label class="btn btn-bordo" id="f-scegli" for="f-file">Scegli i file</label><span id="f-scelti">Nessun file scelto</span></div>
-          <span class="aiuto" id="f-aiuto">PDF, DWG, DXF, STEP, JPG o PNG. Il programma di posta non li allega da solo: li elenchiamo nell'email e tu li aggiungi prima di inviare.</span></div>
+          <span class="aiuto" id="f-aiuto">PDF, DWG, DXF, STEP, JPG o PNG. Il programma di posta non li allega da solo: li elenchiamo nell'email e li aggiungi tu.</span></div>
         <div class="campo largo"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio" placeholder="Com'è la tua produzione oggi, cosa vuoi cambiare, i tempi che hai in mente"></textarea></div>
       </div>
       <div class="invio">
-        <button class="btn btn-pieno" type="submit">Prepara l'email</button>
-        <p>Si apre il tuo programma di posta con la richiesta già scritta. Nulla parte prima che tu la invii. Se non si apre, scrivi a <a class="link" href="mailto:info@finiture.it?subject=Richiesta%20progetto">info@finiture.it</a>.</p>
+        <button class="btn" type="submit">Prepara l'email</button>
+        <p>Si apre il programma di posta con la richiesta già scritta.</p>
       </div>
       <p class="esito" id="f-esito" role="status" aria-live="polite"></p>
     </form>
@@ -784,23 +649,18 @@ td span{color:var(--testo-2)}
 </main>
 
 <footer class="piede">
-  <div class="giro">
-    <div class="colonne">
-      <div class="marchio">
-        <img src="img/logo-chiaro-300.png" srcset="img/logo-chiaro-300.png 300w, img/logo-chiaro-400.png 400w" sizes="160px" width="300" height="107" loading="lazy" alt="finiture, finishing engineering">
-        <p>Finiture S.r.l.<br>Viale Veneto 13/15, 35020 Villatora di Saonara (PD), Italia<br><a href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
-        <p class="premi-piede">Finalisti Exporter of the Year 2024 · Partner Finestra+ del Consorzio LegnoLegno</p>
-      </div>
-      <nav aria-labelledby="p-impianti"><h2 id="p-impianti">Impianti e macchine</h2><ul>
-        <li><a href="impianti/finestre.html">Finestre</a></li><li><a href="impianti/porte.html">Porte</a></li><li><a href="impianti/clt.html">CLT e case in legno</a></li><li><a href="impianti/sedie-mobili.html">Sedie e mobili</a></li><li><a href="macchine.html">Macchine di verniciatura</a></li><li><a href="macchine/handling.html">Handling &amp; Assembling</a></li><li><a href="usato.html">Usato</a></li></ul></nav>
-      <nav aria-labelledby="p-azienda"><h2 id="p-azienda">Azienda</h2><ul>
-        <li><a href="azienda.html">Chi siamo</a></li><li><a href="area-test.html">Area test</a></li><li><a href="assistenza.html">Assistenza</a></li><li><a href="notizie.html">Notizie</a></li><li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Lavora con noi</a></li></ul></nav>
-      <div><h2>Contatti</h2><ul>
-        <li><a class="num" href="tel:+390498792458">+39 049 879 2458</a><span class="sotto">Lun-ven 8:30-12:00 e 14:00-17:30</span></li>
-        <li><a href="mailto:info@finiture.it">info@finiture.it</a></li>
-        <li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">LinkedIn</a><span class="sotto">Linee consegnate e fiere</span></li>
-        <li><a href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">YouTube</a><span class="sotto">Video degli impianti</span></li></ul></div>
+  <div class="giro g12">
+    <p class="firma">Finiture gestisce internamente tutte le fasi di lavoro.</p>
+    <div class="p-marchio">
+      <img src="img/logo-chiaro-300.png" srcset="img/logo-chiaro-300.png 300w, img/logo-chiaro-400.png 400w" sizes="150px" width="300" height="107" loading="lazy" alt="Finiture, finishing engineering">
+      <p>Finiture S.r.l.<br>Viale Veneto 13/15, 35020 Villatora di Saonara (PD), Italia<br><a href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a> · <a href="mailto:info@finiture.it">info@finiture.it</a></p>
     </div>
+    <nav class="p-col" aria-labelledby="p-impianti"><h2 id="p-impianti">Impianti</h2><ul>
+      <li><a href="impianti/finestre.html">Finestre</a></li><li><a href="impianti/porte.html">Porte</a></li><li><a href="impianti/clt.html">CLT e case in legno</a></li><li><a href="impianti/sedie-mobili.html">Sedie e mobili</a></li><li><a href="macchine.html">Macchine</a></li><li><a href="usato.html">Usato</a></li></ul></nav>
+    <nav class="p-col" aria-labelledby="p-azienda"><h2 id="p-azienda">Azienda</h2><ul>
+      <li><a href="azienda.html">Chi siamo</a></li><li><a href="area-test.html">Area test</a></li><li><a href="assistenza.html">Assistenza</a></li><li><a href="notizie.html">Notizie</a></li>
+      <li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">YouTube</a></li></ul></nav>
+    <p class="p-premi">Finalisti Exporter of the Year 2024 · Partner di Finestra+ del Consorzio LegnoLegno</p>
     <div class="legale num">
       <span>© 2026 Finiture S.r.l.</span><span>P.IVA 03569090289</span><span>REA PD 0317372</span><span>Cap. Soc. € 100.000,00 i.v.</span><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a>
       <nav class="lingue" aria-label="Lingua del sito"><a href="./" lang="it" aria-current="page">Italiano</a><a href="en/" lang="en">English</a><a href="de/" lang="de">Deutsch</a><a href="fr/" lang="fr">Français</a></nav>
@@ -810,10 +670,13 @@ td span{color:var(--testo-2)}
 
 <script>
 (function(){
-  // menu sotto i 1180 px
+  // menu sotto i 1100 px
   var b=document.querySelector('.apri'),m=document.getElementById('menu');
   b.addEventListener('click',function(){var a=m.classList.toggle('aperto');b.setAttribute('aria-expanded',a?'true':'false')});
   [].forEach.call(m.querySelectorAll('a'),function(l){l.addEventListener('click',function(){m.classList.remove('aperto');b.setAttribute('aria-expanded','false')})});
+  // la lingua si chiude cliccando fuori
+  var lg=document.querySelector('.lingua');
+  document.addEventListener('click',function(e){if(lg.open&&!lg.contains(e.target))lg.open=false});
 
   // stato dell'assistenza, ora italiana: lun-ven 8:30-12:00 e 14:00-17:30, chiuso nei festivi nazionali.
   // Per provarlo: index.html?ora=2026-11-03T10:15 (ora italiana).
@@ -834,45 +697,42 @@ td span{color:var(--testo-2)}
   }
   var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
   function lavorativo(dt){var w=dt.getUTCDay();return w>0&&w<6&&!festivo(dt.getUTCFullYear(),dt.getUTCMonth()+1,dt.getUTCDate())}
+  // [aperta, frase intera, testata larga, testata corta]
   function stato(){
     var n=adessoRoma(),oggi=new Date(Date.UTC(n.y,n.mo-1,n.d)),min=n.h*60+n.mi;
     if(lavorativo(oggi)){
-      if(min>=510&&min<720)return [true,'Aperta ora, fino alle 12:00','Aperta, fino alle 12:00'];
-      if(min>=840&&min<1050)return [true,'Aperta ora, fino alle 17:30','Aperta, fino alle 17:30'];
-      if(min<510)return [false,'Chiusa ora, apre alle 8:30','Chiusa, apre alle 8:30'];
-      if(min<840)return [false,'Chiusa ora, riapre alle 14:00','Chiusa, riapre alle 14:00'];
+      if(min>=510&&min<720)return [true,'Aperta ora, fino alle 12:00','aperta fino alle 12:00','Aperta fino alle 12'];
+      if(min>=840&&min<1050)return [true,'Aperta ora, fino alle 17:30','aperta fino alle 17:30','Aperta fino alle 17:30'];
+      if(min<510)return [false,'Chiusa ora, apre alle 8:30','chiusa, apre alle 8:30','Chiusa, apre alle 8:30'];
+      if(min<840)return [false,'Chiusa ora, riapre alle 14:00','chiusa, riapre alle 14:00','Chiusa, riapre alle 14'];
     }
     var fest=!lavorativo(oggi)&&oggi.getUTCDay()>0&&oggi.getUTCDay()<6;
     for(var i=1;i<15;i++){
       var dt=new Date(oggi.getTime()+i*864e5);
       if(lavorativo(dt)){
         var q=i===1?'domani':GIORNI[dt.getUTCDay()];
-        return [false,(fest?'Chiusa oggi, festivo; riapre ':'Chiusa ora, riapre ')+q+' alle 8:30',(fest?'Festivo, riapre ':'Chiusa, riapre ')+q];
+        return [false,(fest?'Chiusa oggi, festivo; riapre ':'Chiusa ora, riapre ')+q+' alle 8:30',(fest?'chiusa, festivo':'chiusa, riapre '+q),(fest?'Festivo, riapre ':'Chiusa, riapre ')+q];
       }
     }
-    return [false,'Orari: lun-ven 8:30-12:00 e 14:00-17:30','Orari'];
+    return [false,'Lunedì-venerdì 8:30-12:00 e 14:00-17:30','orari','Orari'];
   }
   try{
     var s=stato();
     [].forEach.call(document.querySelectorAll('[data-stato]'),function(e){
-      // in testata tre lunghezze (largo, telefono, telefono stretto); nel blocco Assistenza la frase intera
-      if(e.getAttribute('data-stato')==='testa'){
-        e.querySelector('.st-l').textContent='Assistenza '+s[1].charAt(0).toLowerCase()+s[1].slice(1);
-        e.querySelector('.st-c').textContent=s[2];
-        e.querySelector('.st-m').textContent=s[0]?'Aperta ora':'Chiusa ora';
-      }else e.textContent=s[1];
+      var k=e.getAttribute('data-stato');
+      e.textContent=k==='lungo'?'Assistenza '+s[2]:k==='corto'?s[3]:k==='minimo'?(s[0]?'Aperta ora':'Chiusa ora'):s[1];
       e.classList.toggle('aperto',s[0]);
     });
   }catch(err){}
 
-  // i bottoni "Richiedi un progetto" e "Chiedi una prova" scelgono il tipo di richiesta
+  // "Richiedi un progetto" e "Chiedi una prova" scelgono il tipo di richiesta
   [].forEach.call(document.querySelectorAll('[data-tipo]'),function(a){a.addEventListener('click',function(){
     var v=a.getAttribute('data-tipo')==='prova'?'Prova in area test':'Impianto completo';
     var r=document.querySelector('input[name=tipo][value="'+v+'"]');if(r)r.checked=true;
   })});
 
   // modulo: controlla i campi obbligatori e compone un'email a info@finiture.it (va collegato a un servizio, LEGGIMI)
-  var f=document.getElementById('richiesta'),es=document.getElementById('f-esito'),fi=document.getElementById('f-file');
+  var f=document.getElementById('modulo'),es=document.getElementById('f-esito'),fi=document.getElementById('f-file');
   fi.addEventListener('change',function(){var n=[].map.call(fi.files,function(x){return x.name}).join(', ');document.getElementById('f-scelti').textContent=n||'Nessun file scelto'});
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -882,8 +742,8 @@ td span{color:var(--testo-2)}
     if(primo){es.className='esito errore';es.textContent='Mancano dei dati: compila i campi con l’asterisco (email valida).';primo.focus();return}
     var v=function(id){return document.getElementById(id).value.trim()};
     var tipo=(f.querySelector('input[name=tipo]:checked')||{}).value||'';
-    var file=[].map.call(document.getElementById('f-file').files,function(x){return x.name}).join(', ');
-    var righe=['Tipo di richiesta: '+tipo,'Prodotto: '+v('f-prodotto'),'Materiale: '+v('f-materiale'),'Misure massime dei pezzi: '+v('f-misure'),'Pezzi al giorno: '+v('f-quanti'),'Vernici: '+v('f-vernici'),'Lingua della risposta: '+v('f-lingua'),'','Nome: '+v('f-nome'),'Azienda: '+v('f-azienda'),'Paese: '+v('f-paese'),'Telefono: '+v('f-tel'),'Email: '+v('f-email'),'',v('f-msg')];
+    var file=[].map.call(fi.files,function(x){return x.name}).join(', ');
+    var righe=['Tipo di richiesta: '+tipo,'Prodotto: '+v('f-prodotto'),'Misure massime dei pezzi: '+v('f-misure'),'Pezzi al giorno: '+v('f-quanti'),'Vernici: '+v('f-vernici'),'Lingua della risposta: '+v('f-lingua'),'','Nome: '+v('f-nome'),'Azienda: '+v('f-azienda'),'Telefono: '+v('f-tel'),'Email: '+v('f-email'),'',v('f-msg')];
     if(file)righe.push('','Allegati da aggiungere a questa email: '+file);
     var ogg=tipo+': '+v('f-prodotto')+', '+v('f-azienda');
     // finitureMail: apre l'email composta (i controlli la sostituiscono per leggerla senza aprirla)

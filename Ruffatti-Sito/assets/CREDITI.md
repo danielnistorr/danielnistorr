@@ -42,3 +42,7 @@ Logo:
 
 La home usa solo foto della Fratelli Ruffatti da `originali/`, tagliate in 4:5 o 4:3 e mai ingrandite (`_prova/script/pro_img.py`): Notre Dame Seminary di New Orleans `2022_10_notre-dame`, consolle di Wayne `2022_10_consolle`, Uppsala `2016_02_home-ruffatti4`, canne ad ancia `2016_04_xSfondo-trombe-2`, falegnameria `2016_04_falegnami-21`, organo antico restaurato `2016_03_xFile0149`, targhetta `2016_04_xP1050195`, maestranze `2016_03_storia1-575`; il logo viene dalla maschera della newsletter 2020.
 Nessuna foto di `esterne/` (Unsplash, Pexels) è in pagina, nessuna dicitura "foto indicativa", nessuna illustrazione, nessuna immagine generata dall'IA. Tolte dalla versione precedente: la canna ad ancia smontata (`2016_04_xtrompette3`), Davies Symphony Hall, Buckfast, Boteå e le trombe en chamade (foto loro, tolte perché la home ora mostra gli strumenti dal 2022 in poi).
+
+## Home ibrida (3/11/2026)
+
+Gli originali usati sono stati riscaricati il 3/11/2026 dalla libreria media di ruffatti.com in `originali/` (la cartella era vuota dopo un riavvio). Foto nuova in pagina: Santa Caterina da Siena, Wayne, l’organo in cantoria (`originali/2022_10_cantoriajpg.jpg`, dalla notizia "Nuovi organi in USA del 2022"), ritagliata in 3:2 e mai ingrandita (`_prova/alto/script/ibrido_img.py`). Nessuna foto di `esterne/`, nessuna illustrazione.

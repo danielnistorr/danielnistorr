@@ -2,12 +2,34 @@
 
 Proposta non richiesta di una nuova homepage, solo la home, per OBY GROUP ITALIA Srl (www.obygroupitalia.com). Non è pubblicata e l'azienda non è stata contattata.
 
-**Pagina da consegnare: `sito/index.html`, al livello professionale (3 novembre).** È la versione 1 con l'uso, rifatta sulle 15 regole di `_metodo/professionale/REGOLE.md` e senza foto di repertorio. Cosa chiedere all'azienda, quali foto fare e come collegare il modulo è nella sezione **"Livello professionale"** qui sotto, che vale prima di tutte le altre; le sezioni successive sono lo storico dei giri precedenti (dove parlano di foto Pexels, della copertura di Milano in apertura o della barra in basso, non valgono più). La versione 1 con l'uso com'era prima di questo giro è in `_prova/versione-1-uso/`, quella originale in `_prova/versione-1-originale/`.
+**Pagina da consegnare: `sito/index.html`, metodo ibrido (3 novembre 2026).** Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (la frase "Alle pratiche pensiamo noi." su carta, il numero sempre in vista), sotto i contenuti e le funzioni della versione professionale su una griglia sola. La sezione **"Metodo ibrido"** qui sotto vale prima di tutte le altre; la sezione "Livello professionale" resta valida per le domande all'azienda, il modulo e le foto da fare. La versione professionale com'era è in `_prova/versione-pro/` (pagina, immagini, Onest, screenshot).
 
-- Pagina: `sito/index.html`, statica, si apre con file:///. Immagini in `sito/img/` (tre foto vere quadrate e il logo), carattere in `sito/fonts/`, i due PDF in `sito/doc/`.
-- Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md`, sezione "Livello professionale", con l'esito di ogni regola).
-- Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `finale_img_pro.py`, pagina da `finale-pagina.html`, screenshot; controlli con `node _prova/script/pro_controlli.mjs`.
-- Analisi con le fonti: `01-analisi.md`. Prototipi e voti del giudice: `_prova/home/a` (scelto) e `_prova/home/b` (innesti).
+- Pagina: `sito/index.html`, statica, si apre con file:///. Immagini in `sito/img/` (sei foto vere in WebP con srcset e i due loghi), caratteri in `sito/fonts/` con le licenze, i due PDF in `sito/doc/`.
+- Direzione: `_prova/alto/DIREZIONE.md`. Screenshot e nota: `screenshot/home/` (`NOTA.md`, sezione "Metodo ibrido", con le misure e i problemi aperti).
+- Si rifà con `python3 -I _prova/alto/script/img_ibrido.py` (foto), `node _prova/alto/script/screenshot.mjs` (screenshot) e `node _prova/alto/misura-d.mjs` (misure della sezione D e controlli a 320-1920). La pagina si modifica a mano.
+- Analisi con le fonti: `01-analisi.md`.
+
+## Metodo ibrido (3 novembre 2026)
+
+**Caratteri.** Escono Onest e i suoi file. Entrano **Fraunces** 600 per i titoli (SIL Open Font License 1.1, Undercase Type; file "opsz" di @fontsource-variable/fraunces 5.2.9, licenza in `sito/fonts/OFL-fraunces.txt`) e **Atkinson Hyperlegible** 400 e 700 per il testo (SIL OFL 1.1, Braille Institute; @fontsource/atkinson-hyperlegible 5.2.8, licenza in `sito/fonts/OFL-atkinson.txt`). Riga nel registro dei caratteri del metodo.
+
+**Foto.** Gli originali di `assets/originali/` non ci sono più (la cartella contiene solo `CREDITI.md`): le sei foto in pagina sono rifatte dalle versioni lavorate rimaste (`sito-v2/img/` e `_prova/versione-pro/sito/img/`), con un solo trattamento. Vanno richiesti i file originali all'azienda.
+- Escono dall'apertura il tetto bruciato visto dall'alto (ora tagliato 16:9 nella serie dei danni) e non c'è più nessuna foto nella prima schermata.
+- Entrano, dal loro sito, il locale tecnico allagato, la mansarda con l'infiltrazione e il tetto in fibrocemento (serie dei danni, come nella versione 2): **confermare che sono loro interventi**.
+- Il condominio ponteggiato con il telo Oby è la foto del culmine (sezione Azienda): **chiedere comune e anno** per la didascalia, che oggi dice solo "Condominio di undici piani, ponteggio su tutta la facciata / Cantiere Oby Group Italia, con il nostro telo sul ponteggio".
+- La foto Starflex è tagliata 16:9 dalla fascia di 1701 px: resta la domanda se è di Oby o di MPM.
+- Per l'apertura vera serve la foto degli otto della squadra in divisa davanti alla sede (modello Q pieno): con quella la foto prende il 60% o più della prima schermata e la frase resta sopra.
+
+**Testi nuovi o cambiati, da far rileggere** (oltre a quelli del punto 10 dei dati da confermare):
+1. Il titolo d'apertura "Alle pratiche pensiamo noi.", accorciato da "Nessuna incombenza burocratica, pensiamo noi a tutto" e "Adempimento di pratiche burocratiche"; torna come terzo passo dopo la chiamata.
+2. La riga d'apertura "Ripristino e bonifiche dopo incendi, allagamenti, grandine e amianto. Da Longare (VI)."
+3. "Siamo pronti a intervenire in ogni tipo di scenario" (dal loro "Siamo sempre pronti ad intervenire in ogni tipo di scenario").
+4. Le righe dei danni: allagamenti "dall'aspirazione dei liquidi alla sanificazione" (dai nove passaggi) e grandine e maltempo "Infiltrazioni e tetti danneggiati".
+5. Le descrizioni brevi dei lavori industriali e i nomi accorciati ("Smaltimento rifiuti pericolosi e non pericolosi", "Demolizioni, barriere tagliafuoco e opere edili").
+6. Il testo della sezione Azienda, che unisce "personale esclusivamente interno" (brochure 2026) e "Fin da subito stabiliamo con il cliente un rapporto di fiducia" (sito di oggi).
+7. Le quattro strade dei contatti ("Compagnie, periti e amministratori", "Foto del danno", "Aziende e impianti", "Sede operativa a Longare (VI)") e "Se non risponde, l'altro cellulare".
+
+**Cosa non c'è più in pagina:** il peso dei PDF nelle righe dei documenti, l'elenco degli interventi nel piede, le quattro qualifiche della sezione Azienda (il loro contenuto è nel testo e nella sezione Starflex), il campo email e la scelta dell'urgenza nel modulo (restano nome, telefono, tipo, compagnia e sinistro, indirizzo, descrizione).
 
 ## Livello professionale (3 novembre)
 

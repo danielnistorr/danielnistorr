@@ -29,6 +29,16 @@ Non sono di Overdrive Customs, delle sue moto o della sua officina: servono solo
 
 Guardate e scartate: le cafe racer BMW di Gijs Coolen (sono costruzioni di un'altra officina, riconoscibili), la Triumph Bobber di John Paulsen (marchio sul serbatoio), le foto Getty su Unsplash+ (a pagamento), il saldatore di Christopher Burns e di Filipa Saldanha (luce blu fredda, troppo da repertorio).
 
+## Home ibrida (sito/img, 3/11/2026)
+
+`originali/` era stata cancellata con un riavvio. Contiene ora solo due file, ripresi il 3/11/2026 dal sito dell'azienda (overdrivecustoms.it, nella normale apertura della pagina con il browser): `copertina-sito-original.jpg` (2560x1440, la copertina del sito) e `20250421_DItlSo1tnWX-hagane-mostra.jpg` (1080x810, post Instagram del 21/04/2025, "Hagane the boSuzuki chopper made by us"). Lavorate con `_prova/alto/script/img_ibrido.py`: saturazione 0,88 e contrasto 0,97, WebP a più larghezze mai oltre la misura del file.
+
+| Uso | File d'origine | Autore indicato nel post | Note |
+|---|---|---|---|
+| Apertura | `originali/20250421_DItlSo1tnWX-hagane-mostra.jpg` | nessuno | 4:3 a 1076x807 a 1440; sul telefono taglio verticale 700x810 sul davanti della moto; evento della mostra da chiedere |
+| Culmine, officina | `originali/copertina-sito-original.jpg` | da chiedere | 16:9 a tutta griglia |
+| Servizi, trasformazioni, copertine | le WebP della versione professionale qui sotto | come qui sotto | tolte dalla home: Hagane nel campo, 883, Special K, Drakkar, ritratto |
+
 ## Home di livello professionale (sito/img, 3/11/2026)
 
 Solo foto dell'azienda, nessun segnaposto di `esterne/`, nessuna foto nuova scaricata, nessuna immagine generata dall'IA, nessuna illustrazione. Lavorate con `_prova/script/pro_img.py`: taglio 16:9 (schede e Hagane), 3:2 (apertura sul telefono) o 1:1, saturazione e contrasto di Instagram attenuati allo stesso modo per tutte le moto, WebP a più larghezze mai oltre la misura del file. Tolte rispetto alla versione di prima: lo scontorno di Hagane (oggetto scontornato su fondo chiaro), la Envy (è già nella foto dell'apertura) e la foto di Matteo con Special K della chiusura.

@@ -31,3 +31,11 @@ Nessuna foto di repertorio: nessuno dei file di `assets/esterne/` è in pagina (
 - quattro foto della galleria in campo (`vivaio__gallery__FOTO-3.jpg` in apertura, anche ritagliata 500x250 per il telefono, `foto-7.jpg`, `FOTO-2.jpg`, `FOTO-5.jpg`), alla loro misura di 500 px, con la stessa correzione del colore (ritocco finale del 3/11/2026);
 - il logo dal cartello giallo (`images__apertura.png`).
 Tolta rispetto alla versione 1: l'anteprima YouTube `5b_3K-YZ2zk` della trincia Piragna (fotogramma SD ingrandito nella chiusura). Seymour (`Dwt1Ozz1Qfc`) era già stata tolta prima.
+
+## Uso nella home ibrida (`sito/`, metodo ibrido, 3/11/2026)
+
+`assets/originali/` era stata cancellata con un riavvio. Riscaricate il 3/11/2026 solo le anteprime pubbliche dei video del canale di Lorena Berto (https://www.youtube.com/@lorenaberto328), in `assets/originali/youtube/` (7 a 1280x720, 4 a 640x480). In pagina, fatte da `_prova/alto/script/immagini.py` in WebP con un solo trattamento del colore:
+- `yt-5b_3K-YZ2zk-maxres.jpg` ("trincia piragna", pubblicato il 6/11/2024): apertura, 1280x704 senza le bande nere, più un taglio quadrato per il telefono;
+- `yt-VNqg5tPYEBM-maxres.jpg` ("trapiantatrice a ruota", 6/11/2024): culmine, 1280x704;
+- dalla versione professionale (`_prova/versione-pro/sito/img/`): le otto foto in studio, zolla e astoni della galleria, i due ritagli del logo.
+Nessuna foto di repertorio: `assets/esterne/` non c'è più e nessun segnaposto è in pagina.

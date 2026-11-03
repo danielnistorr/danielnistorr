@@ -4,7 +4,8 @@ Proposta non richiesta di una nuova home per https://www.zetaitaly.com (solo la 
 
 ## Cosa c'è
 
-- `sito/index.html`: la home, statica (si apre con file:///). `sito/img/`: solo le immagini usate, WebP in due o tre larghezze. `sito/fonts/`: i tre caratteri serviti dalla pagina (General Sans 700, Switzer 400 e 700).
+- `sito/index.html`: la home, statica (si apre con file:///), nella versione "metodo ibrido" del 3/11/2026 (prima schermata secondo la sezione D, sotto i contenuti della versione professionale). `sito/img/`: solo le immagini usate, WebP in due o tre larghezze. `sito/fonts/`: Instrument Sans 400 e 500 con la licenza `OFL-InstrumentSans.txt`.
+- `_prova/versione-pro/`: la versione professionale com'era (sito e screenshot). `_prova/alto/`: direzione (`DIREZIONE.md`), provini, script delle immagini (`script/immagini.py`), misure (`misura-d.mjs`) e controlli (`script/controlli.mjs`).
 - `screenshot/home/`: screenshot a 1440 e 390 (intera e prima schermata), `chiusura-1440.jpg` (dal preventivo al piede) e `NOTA.md` (livello professionale: cosa è cambiato, esito delle 15 regole, prove d'uso, controlli, caratteri).
 - `01-analisi.md`: fatti con le fonti; `_prova/uso/SCHEDA.md`: chi apre il sito e che cosa ci viene a fare; `assets/CREDITI.md`: origine e licenza di ogni immagine.
 - `_prova/script/build_finale.sh`: rifà immagini (`pro_img.py`), caratteri, screenshot (`pro_shot.mjs`) e controlli (`pro_controlli.mjs`). La pagina è scritta a mano.
@@ -43,9 +44,14 @@ In pagina c'è solo quello che ha una fonte in `01-analisi.md` o nella SCHEDA. M
 7. **Dati societari**: REA e PEC non trovati (il piede mostra ragione sociale, P.IVA e C.F., Registro Imprese, capitale sociale); il codice ATECO dei database (20.10.00) non corrisponde al mestiere; se il fax 049 8070219 è ancora attivo (in home non c'è); correggere l'email sbagliata "info@www.zetaitaly.com" nella pagina Chi siamo di oggi.
 8. **Lingue** del sito nuovo (in home: italiano e i domini .co.uk, .fr, .de, .es; .at, .ch, .be da decidere) e l'errore di oggi (schede in francese nella home italiana).
 
+### Da confermare per la versione ibrida
+
+9. **Le quattro tessere d'apertura**: la cartella blu (`2019_12_couvette-campionario-1.jpg`) è nella scheda "Cartelle espositive per campionari", non tra i raccoglitori: in pagina è "Goffrato"; confermare la finitura. Il foglio bianco a dodici spazi (`2019_12_Prospekthullen-fur-Ringordner.jpg`, scheda "Buste trasparenti con fori") è "Opaco": confermare se è PVC o polipropilene. Le copertine con la scritta "Copertina realizzata in plastica riciclata al 50%" (`2023_10_copertina-libretto-vaccinale-pet-50-riciclata.jpg`) sono "Riciclato al 50%": confermare che siano loro e che il dato valga.
+10. **Didascalie del servizio 2023**: "reparto Zeta, Padova, 2023" sotto il tavolo di taglio e sotto la linea presume che le foto siano state fatte nella sede di Padova nel 2023 (il file è caricato a febbraio 2023): confermare luogo e anno.
+
 ## Foto da fare dal vero
 
-In home ci sono solo foto loro: la serie dei prodotti del 2019 (fondo grigio scuro, tagliate 3:2) e due foto del servizio 2023, ognuna nel suo formato (il tavolo intero a 2,4:1, la linea a 3:2 larga al massimo 560 px). Reggono alla misura a cui sono messe, non di più. Per il sito vero:
+In home ci sono solo foto loro (12): le quattro tessere d'apertura (1:2, da originali di 1938-5456 px riscaricati dal loro sito in `assets/originali/`), sei foto della serie prodotti 2019 su grigio scuro (3:2) e due foto del servizio 2023 nel loro formato (il tavolo a 12:5 largo al massimo 1200 px, la linea a 3:2). Le foto di pet food e medicali sono uscite dalla home: le due famiglie restano come link nella riga "Anche". Per i raccoglitori c'è ora la foto degli anelli interni (`2015_10_anelli-interni-per-raccoglitore-1.jpg`), per le buste il raccoglitore nero con le buste a spazi (`2019_12_custom-binder-plastic-sleeves-2.jpg`). Reggono alla misura a cui sono messe, non di più. Per il sito vero:
 
 - **Gli originali del servizio 2023**: chi l'ha fatto, i diritti e i file in alta risoluzione. In rete ci sono solo il tavolo a 1200x500 e la linea a 1024x683, più miniature da 200 px di saldatrici, bobine e controllo. Con gli originali l'apertura può crescere (anche a tutta larghezza) e si fa una serie "reparto" di 4-6 scatti: saldatrice ad alta frequenza con le mani, controllo al tavolo, bobine, robot che sigilla i cartoncini.
 - **Custodia per vinile**: la scheda "Custodie e accessori" mostra ancora la vaschetta termoformata, perché l'unica foto loro di una custodia per LP è su fondo bianco con la copertina riconoscibile di un disco. Serve una custodia per vinile sullo stesso fondo grigio scuro, con un disco senza etichetta o una copertina neutra: è una ricerca frequente e potrebbe avere una scheda sua.
@@ -58,7 +64,7 @@ In home ci sono solo foto loro: la serie dei prodotti del 2019 (fondo grigio scu
 ## Licenze
 
 - **Foto**: tutte di Zeta S.r.l. (dal loro sito), usate come materiale loro per la proposta. Nessuna foto di repertorio e nessuna immagine generata dall'IA in pagina. Le dieci foto in `assets/esterne/` (Unsplash e Pexels, licenze in `assets/CREDITI.md`) non sono usate.
-- **Caratteri**: General Sans 700 (titoli e cifre), Switzer 400 (testo) e 700 (etichette, bottoni, modulo), Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito, anche web). Per il sito vero vanno scaricati da fontshare.com per il dominio di Zeta.
+- **Caratteri**: Instrument Sans 400 e 500, The Instrument Sans Project Authors, SIL Open Font License 1.1 (uso commerciale libero, anche web; testo in `sito/fonts/OFL-InstrumentSans.txt`), file latini di `@fontsource/instrument-sans` 5.3.0. General Sans e Switzer della versione professionale non sono più usati.
 
 ## Loghi
 

@@ -1,6 +1,102 @@
 # Overdrive Customs, home: nota
 
-## Livello professionale, con il ritocco finale (3 novembre 2026)
+## Metodo ibrido (novembre 2026)
+
+3 novembre 2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (sito intero e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`; riga del registro in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`; provini delle foto: `_prova/alto/provini.jpg`.
+
+Rifare: `python3 -I _prova/alto/script/img_ibrido.py` (immagini nuove), `python3 -I _prova/alto/script/build.py` (pagina dal modello `ibrido.tpl.html`), `node _prova/alto/misura-d.mjs [ora=AAAA-MM-GGTHH:MM]` (misure, esito in `_prova/alto/misure/misure-d.json` e `riassunto.txt`), `node _prova/alto/script/shot.mjs` (screenshot, ora simulata martedì 3/11/2026 alle 10), `node _prova/alto/script/posizioni.mjs` (posizioni dei compiti).
+
+### Ritocco dopo il giudice da agenzia (3 novembre 2026, sera)
+Il giudice dava 6,5 (5,5 alla versione professionale): l'apertura ha un gesto suo, ma restavano la foto da telefono in fiera, una pagina che tornava a sembrare un modello sotto la piega e la finitura. Prima schermata della sezione D invariata nella sostanza (6 cliccabili, 1 bottone, 157 caratteri a 1440). Copia di prima: `_prova/alto/rit/prima/` (index.html, modello e foto d'apertura). Rifare: `python3 -I _prova/alto/script/rit_img.py` (foto d'apertura, copertine, Drakkar), poi `build.py`, `misura-d.mjs`, `shot.mjs`; `_prova/alto/script/inchiostro.mjs` misura dove cade l'inchiostro di HAGANE.
+
+**Applicato**
+- **Didascalia d'apertura**: "Suzuki DR650 costruita a Vigonovo · **in mostra nel 2025**" (l'anno del post e della targa, certo). Non contraddice più la targa "Official Custom Show 2025". Il "1° Metric, Biker Fest di Lignano 2024" è passato nel racconto di Hagane e resta nell'albo. Il Freestyle non si scrive finché Matteo non dice l'evento.
+- **Foto d'apertura ritrattata** dall'originale 1080x810 (`rit_img.py`), senza togliere niente: tolto il 22% del dettaglio di media scala (l'HDR del telefono), alte luci giù del 16% circa nel terzo superiore (il soffitto al neon), spalla sulle alte luci, poi lo stesso trattamento della serie (saturazione 0,88, contrasto 0,97). Sfumatura sotto il nome più piena da 1100 px (48%, da .92 a 0): il tappeto col logo tra le lettere quasi non si legge più.
+- **HAGANE sui bordi**: corpo calcolato su 5,28 e attacco a 0,077 em. L'inchiostro va da 206 a 1234 a 1440 (h1 a 206, didascalia fino a 1234), da 20 a 370 a 390 (h1 e didascalia 20-370), da 446 a 1474 a 1920. La riga sotto non si allarga più quando il nome sborda (colonna `minmax(0,1fr)`).
+- **Tablet**: la foto si ferma 150 px sopra il fondo invece di 92. A 1024x768 l'h1 finisce a 643 e la didascalia a 671, la barra di WhatsApp comincia a 699; a 768x1024 la didascalia finisce a 645 e la barra parte da 955.
+- **1920**: il nero si chiude sulla foto e il culmine parte subito sotto (sopra i 1600 px la sezione non ha spazio in alto). A 1920x1080 la foto occupa il 61% della schermata (prima il 42%, nella fascia vietata).
+- **Il culmine è una sezione a sé**, subito dopo l'apertura: Matteo in officina al vivo, 1440x810 a 1440 (file da 2560, mai ingrandito; 1920x1080 a 1920), didascalia a due voci sulla griglia a 72 px, 144 px sopra e sotto, nessun filetto dopo. È l'unica foto al vivo della pagina sul computer. Sul telefono resta 16:9 a tutta larghezza (390x219), così la didascalia con la Ducati Envy resta vera e i formati restano 3.
+- **Nuova sezione "Tagliandi, riparazioni e restauri, sulla tua moto"**: famiglie, tre servizi con i messaggi WhatsApp, il ritiro col furgone, oli e accessori. Il menu "Officina" porta qui.
+- **Le special con la foto della Drakkar** (960x540 dalla versione professionale, la serie davanti alla lamiera), alla misura vera in c1-6 con la didascalia "Drakkar, Road King bagger / 1° Bagger, American Dream Padova 2021", e la frase-firma sotto. A destra (c7-12) i racconti di Hagane e Drakkar e le copertine. Sotto, l'albo a tutta griglia (una riga per premio). Le riviste in righe corte sotto la frase. Foto in home: 12.
+- **Copertine ritagliate sul loro rettangolo**, senza il margine bianco del post, tutte e due 4:5 e alla stessa altezza (306x383 a 1440, bordi a 732 e 1062 come le loro didascalie). Il 1:1 non c'è più: i formati sono 4:3, 16:9 e 4:5 (al telefono 0,86, 16:9 e 4:5).
+- **Teste di sezione diverse**: tutti gli h2 su c1-6 (72-708). Testo a destra solo in Officina e in Trasformazioni; "Mandami una foto" passa da c1-5 a c1-6; in Le special il titolo sta da solo; in "Orari e dove" il testo sta sotto l'h2, nella stessa colonna. Il culmine non ha testa.
+- **Colonne**: dentro Le special solo 6/6 e la riga intera dell'albo, niente più 8/4.
+- **Virgolette e apostrofi tipografici** nel testo visibile e nel modello `ibrido.tpl.html`: “ ” per tutte le citazioni, ’ per gli apostrofi. Controllo: nel testo visibile 0 virgolette dritte, 0 apostrofi dritti (i messaggi WhatsApp già scritti restano come li scriverebbe chi li manda).
+- **Modulo chiuso** in un `<details>`: "Preferisci l’email? Apri il modulo". Si apre anche dal link "Il modulo per l’email" del piede (l'ancora `#scrivi` lo apre). L'email per riviste e fiere resta in vista. Bottoni in pagina: 4. La pagina passa da 7.445 a 7.481 px a 1440, con il culmine al vivo e la Drakkar in più; a 390 da 10.761 a 10.199.
+- **Strada "Riviste e fiere"** con la persona e l'orario: "Matteo, per email; in officina su appuntamento, martedì-venerdì."
+- **Menu del telefono** (per i clienti tipo, senza toccare la prima schermata): sotto le voci lo stato di oggi e l'indirizzo, "Aperto ora, fino alle 13, solo su appuntamento. Via San Francesco 8/a, Vigonovo (VE)". Senza JavaScript dice gli orari della settimana.
+- **Le special al telefono e al tablet** in quest'ordine: Drakkar, racconti, copertine, frase-firma, riviste, albo.
+- **Misure**: in `misura-d.mjs` quello che sta dentro un `<details>` chiuso non conta come visibile (prima il modulo chiuso risultava sovrapposto al piede).
+
+**Respinto, con il motivo**
+- **Hagane al vivo, a 2000 px o più**: non c'è il file. Serve l'originale del fotografo o lo scatto nuovo davanti al portone (LEGGIMI). È più della metà della distanza dal 7,5 secondo il giudice.
+- **Ruote tagliate dal bordo nelle schede**: sono i tagli dei file 960x540 della serie. Gli originali da cui ritagliarli più larghi sono stati cancellati dal riavvio. `object-fit: contain` lascerebbe bande vuote. Si rifà con i file pieni o con il servizio fotografico.
+- **Una sola luce per la serie**: non si ottiene col trattamento colore. Serve il servizio fotografico.
+- **Le quattro scelte del modulo in vista fuori dal `<details>`**: sarebbero un secondo modulo a metà. In vista restano l'email (strada "Riviste e fiere") e WhatsApp.
+
+### Le misure dopo il ritocco (`misura-d.mjs`, martedì alle 10; tutte le 35 soglie passano)
+1440: foto 67%, 6 cliccabili, 1 bottone, 157 caratteri, 0 cifre di 30 px o più, HAGANE a 194,7 px (unico sopra i 100). 390: 4 cliccabili, 1 bottone, foto e gesto al 53,5%. 1920: foto 61%. Due famiglie (Chivo, Unbounded), testo a 18 px, 0 occhielli, h1 di 9 parole e 1 virgola visibile a 1440 e a 390, lista nera 0. 849 parole, 7 sezioni (apertura, culmine e 5), 7.481 px a 1440. Griglia 72-1368 a 12 colonne. 12 foto, 3 formati per larghezza, 0 ingrandite da 320 a 1920. Fondi nero, bianco e rosso, rosso su un blocco, spazi 0 (culmine sopra i 1600 px), 96 e 144. `tel:` 2, Indicazioni 1, WhatsApp generico 2, ritiro 2, email 2, Instagram 1, numero in vista 2. 4 bottoni in pagina. 710 KB a 1440, 492 KB a 390. 0 scorrimenti orizzontali, 0 sovrapposizioni, 0 errori di script, 0 U+2014.
+
+Posizioni sul telefono (390x844): h1 a 517-563, stato a 616-695, ritiro a 697-741; famiglie a 3390-4363 (prima 3287-4259, in mezzo ora c'è il culmine come sezione); Indicazioni a 8136, a un tocco da Menu, "Orari e dove". A 1440: officina a 2006, trasformazioni a 3214, special a 4444, albo a 5486, orari a 6004.
+
+### Che cosa era cambiato nel primo passaggio ibrido
+- **Idea e gesto** (D1): il nome della special, HAGANE, in Unbounded 500, largo esattamente quanto la sua foto e posato sul pavimento, bianco su una sfumatura scura locale. Modello N, riferimento Fuller Moto ("THE RAPTOR T"). Sotto il nome, sulla stessa foto, una riga: a sinistra l'`h1` "Officina Harley-Davidson e custom giapponesi a Vigonovo" (9 parole con "Overdrive Customs," nascosto per i lettori di schermo), a destra "Suzuki DR650 · 1° Metric, Biker Fest di Lignano 2024".
+- **Foto d'apertura** (D2): Hagane in mostra, post Instagram del 21/04/2025 (`DItlSo1tnWX`, 1080x810), ripreso dal sito dell'azienda insieme alla copertina del sito a 2560x1440 (la cartella `assets/originali/` era stata cancellata dal riavvio). Alla misura vera, centrata su 10 colonne: 1076x807 a 1440, il 67% della prima schermata. Sul telefono lo stesso scatto tagliato in verticale sul davanti (700x810, a 390x451). Hagane nel campo, la foto della versione di prima, esiste solo a 1080x608: alla misura vera sarebbe stata il 51%, nella fascia vietata.
+- **Testata** (D3): logo non cliccabile, quattro voci (Orari e dove, Officina, Trasformazioni, Le special), lo stato di oggi in breve ("Aperto, su appuntamento", "In pausa fino alle 15:30", "Chiuso, riapre martedì"), il numero 340 251 0434 cliccabile e un solo bottone, WhatsApp. Sul telefono e sul tablet: logo, numero, Menu; WhatsApp diventa la barra fissa in basso (lo stesso link, spostato).
+- **Culmine**: Matteo in officina (la copertina del sito) a tutta griglia, 1296x729 a 1440, didascalia "Matteo in officina, via San Francesco 8/a, Vigonovo / accanto alla Ducati Envy, 1° Streetfighter al Biker Fest 2019". La sezione è alta 2141 px, con 144 px di spazio sopra e sotto contro i 96 delle altre.
+- **Sotto la piega** tornano dalla versione professionale: le famiglie di moto, i tre servizi con il messaggio WhatsApp per caso, il blocco del ritiro col furgone, gli oli e gli accessori di Kustomstore, le quattro trasformazioni con i lavori fatti, i tre passi con "Manda la foto della tua moto", le copertine di Kustom World e Bigtwin, Hagane e Drakkar in due righe, l'albo dei primi posti (7 righe), le riviste, gli orari con lo stato e il giorno di oggi, indirizzo e Indicazioni, il contatto diviso in due strade (officina e ritiro; riviste e fiere con le tre fiere), il modulo che prepara l'email. Il piede è un biglietto da visita con la frase-firma.
+- **Tolto**: il titolo grande in apertura, il secondo bottone, l'occhiello, la fascia dei quattro fatti sotto la foto, la fascia delle cifre (2015, 8, 3, 3), le citazioni con il bordo rosso, il ritratto in bianco e nero, le foto in studio della 883 e di Special K (restano nell'albo), la foto della Drakkar, la seconda citazione di Matteo, i doppioni di telefono, Indicazioni, WhatsApp e email nel piede e nell'apertura.
+- **Griglia**: una sola, 12 colonne, margini di 72 px a 1440 (32 dal tablet, 20 sul telefono), colonne di 86 px con 24 di spazio; tutti i blocchi partono a 72 e finiscono a 1368, anche i filetti tra le sezioni.
+- **Caratteri**: Unbounded 500 e Chivo 400-600 al posto di Archivo (licenze in `sito/fonts/`). Sono incorporati nella pagina come data URI: da `file://` Chrome blocca i woff2 esterni con un errore CORS (lo misura `misura-d.mjs`; con ogni probabilità succedeva anche alla versione professionale).
+- **Frase-firma**: "I mostri non sono nella vostra testa.... Li creo io!" (Matteo, ottobre 2023), uguale in "Le special" e nel piede.
+
+### Le misure del primo passaggio ibrido, prima del ritocco
+| Controllo | Soglia | Valore |
+|---|---|---|
+| Foto nella prima schermata a 1440 | 60% o più, o sotto il 12% | 67% (1076x807, file 1080) |
+| Foto o gesto a 390 | almeno 50% | 53,5% |
+| Cliccabili e bottoni a 1440 | 6 e 1 | 6 e 1 |
+| Cliccabili e bottoni a 390 | 4 e 1 | 4 e 1 (numero, Menu, WhatsApp, "Moto ferma? Chiedi il ritiro") |
+| Caratteri fuori dal menu a 1440 | 160 | 146-156 secondo lo stato di oggi (provati festa, pausa, chiuso, prima dell'apertura) |
+| Cifre di 30 px o più | 0, salvo il gesto | 0 |
+| Elementi sopra i 100 px | 1 | 1 (HAGANE, 192 px a 1440, 67 a 390) |
+| Famiglie di caratteri | 2 | Chivo, Unbounded |
+| Testo corrente a 1440 | almeno 17 px | 18 px |
+| Occhielli sopra `h1` e `h2` | al massimo 1 | 0 |
+| `h1` | 9 parole, 1 virgola | 9 parole, 1 virgola, visibile a 1440 e a 390 |
+| Parole | 900 | 887 |
+| Sezioni | 7 | 6 più il piede |
+| Altezza a 1440 | 7.500 px | 7.445 px (prima 10.567); a 390 circa 10.800 (prima 14.085) |
+| Griglia | un bordo sinistro e uno destro | 72 e 1368, 12 colonne ovunque |
+| Foto ingrandite | 0 | 0 a 320, 390, 768, 1024, 1440, 1920 |
+| Foto e formati | 12 e 3 | 11; 4:3, 16:9, 1:1 (a 390 il verticale dell'apertura al posto del 4:3) |
+| Fondi oltre al piede | 3 | nero, bianco, rosso; rosso pieno su un blocco solo ("Come si comincia") |
+| Spazi tra le sezioni | almeno due valori | 96 e 144 |
+| Ripetizioni | al massimo 2 | `tel:` 2, WhatsApp generico 2, ritiro 2, email 2 (link e modulo), Indicazioni 1, Instagram 1, numero in vista 2 |
+| Bottoni in pagina | 5 | 5 |
+| Peso caricato | sotto 3 MB | 680 KB a 1440, 448 KB a 390 |
+| Scorrimento orizzontale, sovrapposizioni, errori di script | 0 | 0 a 320, 390, 768, 1024, 1440, 1920 |
+| U+2014, "indicativ", Inter, dissolvenze | 0 | 0 |
+
+### I compiti della scheda nel primo passaggio ibrido (390x844 e 1440x900)
+- **Motociclista, telefono**: mestiere e luogo nell'`h1` a 517-563 px, sotto il nome; stato di oggi e "Solo su appuntamento" a 616-695; WhatsApp nella barra fissa in basso e il numero in testata, da qualunque punto; "Moto ferma? Chiedi il ritiro" a 697-741, nella prima schermata (il blocco del ritiro a 2493); "Indicazioni" in "Orari e dove", prima voce del menu (a 7722 scorrendo).
+- **Chi vuole trasformare, telefono**: le quattro famiglie a 3287-4259 px, con "Trasformazioni" nel menu; "da un kit fino al telaio fatto qui" nella riga sotto il titolo delle trasformazioni e nel passo 2, Hagane con telaio e forcella fatti in casa in "Le special"; i tre passi con "Come si comincia" nel menu; "Manda la foto della tua moto" apre WhatsApp con il messaggio già scritto, e la nota sulla graffetta è a 14 px accanto al bottone.
+- **Appassionato e stampa, computer**: Hagane con il nome, il premio, la fiera e l'anno nella prima schermata; albo e copertine con "Le special" (un clic, a 4250); email per riviste e fiere e Instagram in "Orari e dove", l'email anche nel piede; le tre fiere con città e mese in "Orari e dove".
+
+### Problemi aperti (aggiornati dopo il ritocco)
+- **L'evento della foto d'apertura**: davanti alla moto c'è la targa "Official Custom Show 2025, 1° Freestyle". La didascalia ora dice solo "in mostra nel 2025". Va chiesto a Matteo l'evento; con l'evento diventa "Hagane in mostra a ..., 2025" e il Freestyle può entrare nell'albo.
+- **1080 px**: a 1440 la foto è alla misura vera ma su uno schermo retina è morbida. A 1920 il culmine subito sotto porta la schermata al 61% di foto, ma Hagane resta di 1076 px al centro del nero. Serve l'originale del fotografo o uno scatto nuovo di Hagane davanti al portone: con quello l'apertura va al vivo.
+- **Le quattro famiglie sul telefono** stanno a 3390-4363 px, cento più di prima, perché il culmine ora è una sezione a sé. Ci si arriva con un tocco da "Trasformazioni" nel menu.
+- **Indicazioni una volta sola** (D12): sul telefono il menu ora mostra l'indirizzo e lo stato di oggi; il link è in "Orari e dove", prima voce del menu.
+- **In testata a 1440 c'è il numero ma non la parola "Chiama"**, per stare nei 160 caratteri. Il link "Chiama 340 251 0434" scritto per intero è in "Orari e dove".
+- **La luce delle foto non è una sola** e le schede hanno le ruote vicine al bordo: serve il servizio fotografico.
+- **Due modelli N con la stessa grammatica nella zona** (questa e BCM): è il massimo, non va ripetuto in altre home.
+- **Non rifatti**: il controllo D1 delle tre persone, la media delle prime schermate della zona (D4) e i nuovi voti del giudice e dei clienti tipo.
+- **Da confermare** come prima: Kustomstore e i cappellini, orari, WhatsApp sullo stesso numero, ritiro (zona e costo), l'evento della foto d'apertura, ragione sociale e P.IVA nel piede.
+
+---
+
+## (Nota di prima) Livello professionale, con il ritocco finale (3 novembre 2026)
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP a più larghezze con srcset), carattere in `sito/fonts/`. La home di prima del livello professionale (Hagane scontornata sul bianco calce, titolo "Special, dal telaio in su", selettore delle moto) è in `_prova/versione-1-originale/`; quella del primo passaggio professionale, prima di questo ritocco, è in `_prova/pro-controllo/` (screenshot del controllore: home-1440-prima.jpg, home-390-prima.jpg e le pagine intere a pezzi).
 
