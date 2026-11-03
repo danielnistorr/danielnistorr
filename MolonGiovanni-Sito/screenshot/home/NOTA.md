@@ -4,6 +4,59 @@
 
 Rifatta il 3/11/2026 con il metodo ibrido scelto dal committente: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), sotto i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; riga nel registro dei caratteri (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`). La versione professionale di partenza è copiata com'era (sito e screenshot) in `_prova/versione-pro/`.
 
+### Alto livello: ritocco dopo il giudice da agenzia e i due clienti tipo (3/11/2026)
+Giudice da agenzia 6,5 (prima 5,5); contadino di collina 7,5 (pro 7); proprietario con guasto 6,5 (pro 8). Ho corretto `sito/index.html` senza tornare indietro sulla sezione D: la prima schermata resta foto a tutta pagina, titolo nel cielo, un bottone, 160 caratteri. Quello che i clienti tipo chiedevano in più sta in testata, nel menu e nella seconda schermata. Le misure e i paragrafi più sotto ("Le misure", "Compiti", "Problemi aperti") descrivono la versione di prima del ritocco: valgono i numeri di questa sezione. Copia della pagina di prima in `_prova/alto/ritocco/index-prima.html`, script delle prove in `_prova/alto/ritocco/`.
+
+**Applicati**
+- *Apertura a 1440*: tolto il velo bianco radiale (`.apertura::after`), senza nessuna sfumatura al suo posto. Il cielo dietro il testo resta da 12:1 in su con l'antracite (5° percentile della luminanza 0,76-0,78 sotto `h1`, tra riga e bottone e sopra il titolo; misura sulla schermata). Il titolo scende di 36 px (`padding-top` 64, 40 sotto gli 800 px d'altezza): `h1` a y=129, il bottone finisce a y=311 a 1440x900, a 283 a 1366x768 e a 1280x720, sempre sopra e a sinistra del tetto della cabina. Tra 960 e 1399 px il testo parte dalla colonna 5 (e `h1` è a 52 o 64 px), così a 960, 1024, 1100 e 1180 non tocca né la cabina né l'albero (provato con le schermate `_prova/alto/ritocco/pc-*.jpg`).
+- *Riga sotto il titolo*: "Ranghinatori a cinghie per portattrezzi, trattori a 3 punti e motofalciatrici, da Arlesega di Mestrino (PD)." Adesso c'è il posteriore, che il contadino non trovava, e il totale è 160 caratteri esatti. Sotto i 720 px è in peso 400.
+- *Didascalia a due voci sull'apertura (D10)*: "Frontale Molon davanti a un portattrezzi / Fienagione in collina", subito sotto la foto. A 1440 e a 390 sta appena fuori dalla prima schermata e dice qual è la macchina Molon (il giudice: "sembra un concessionario di trattori"). Luogo e anno restano da chiedere (LEGGIMI, punto 12).
+- *Foto d'apertura sul telefono*: alta `100svh - testata - 236 px`, inquadrata al 28 %. A 390x844 prende il 65,4 % (prima 57,8 %) e il bottone finisce a 839; a 320x640 il 54,4 %. `sizes` corretto, nessuna foto ingrandita.
+- *Le macchine*: tre colonne da 411 px a 1440 (prima 193), file `t-*-800.webp`. Gli scontornati sono ritagliati di nuovo (`img_alto.py`): la macchina riempie l'80 % della tessera, o il 78 % dell'altezza se è alta, sulla stessa linea di terra. I nomi dicono il mezzo ("Frontali per portattrezzi e trattori", "Posteriori, attacco a 3 punti", "Per motofalciatrici e motocoltivatori"), e la riga sotto dà le larghezze e i pesi presi dalle tabelle (per esempio "9 modelli, 190-280 cm, 210-350 kg"). Al posto di "Altri modelli sono disponibili su richiesta del cliente." c'è il link "Macchina ferma? Ricambi", allineato al bordo 1360.
+- *Modelli e misure*: `.famiglie` ha lo stesso filetto e lo stesso spazio di `.mezzo`, e i due titoli partono a y=1905, alla stessa riga. "Va sul vostro mezzo?" è a 24 px. Le nove righe di link sono diventate un video per famiglia a 15 px e una riga sola con le schede tecniche (Datenblätter: Front, Heck, Motormäher. Data sheets: front, rear, motor mowers). Ho tolto la nota del 300 PRO, che ripeteva la tabella, e "Per il prezzo..." doppio. Le motofalciatrici hanno la loro riga "Attacco" con la frase loro ("si applicano con grande facilità ai gruppi propulsori..."). Sul telefono c'è una riga di tre salti in cima alle famiglie (Portattrezzi, Trattori a 3 punti, Motofalciatrici), e la barra ferma ha "Per un ricambio" accanto al titolo.
+- *Tabelle a un tocco*: un link a `#posteriori` o `#motofalciatrici` (menu, schede, salti, indirizzo con il cancelletto) apre la tabella di quella famiglia. Resta chiusa solo per chi ci arriva scorrendo, e senza JavaScript sono aperte tutte e tre (513, 362, 564 px a 390). Provato a 390 e a 1440 (`_prova/alto/ritocco/vivo.mjs`).
+- *"Scrivete" con la famiglia*: un IntersectionObserver riempie nel testo dell'email la riga "Ranghinatore che vi interessa:" (frontale, posteriore o per motofalciatrice) con la famiglia che si sta guardando. Senza JavaScript resta l'email di prima.
+- *Ricambi*: le due colonne partono alla stessa riga (y=5033 a 1440). A sinistra il titolo, le tre cose, "Chiama 049 900 0103" e "Manda la foto per email" affiancati, e "Se non rispondiamo, mandate la foto con il vostro telefono a info@molonmachinery.com" con l'indirizzo come link. A destra l'esploso vero (`2018_01_esploso.jpg`, documento loro, in grigi su carta bianca, allargato a 3:2 con il bianco), con la didascalia "Esploso di un ranghinatore / Il numero del pezzo si legge qui". Non scrivo "del frontale" perché dal disegno non si può dire con certezza.
+- *Ricambi per chi ha fretta*: in testata, a 390, la parola "Menu" è scritta (prima c'erano solo le tre lineette). Nel menu la prima voce è "Ricambi: macchina ferma", con il filetto rosso, poi "Deutsch" prima di English. "Ricambi" c'è anche nella seconda schermata e nel piede ("Macchine e ricambi"). Da 390: due tocchi, Menu e Ricambi, e titolo, tre cose e due bottoni sono nella stessa schermata. I cliccabili della prima schermata restano 4.
+- *DE in testata*: in nero con un sottolineato fine, non più grigio.
+- *Culmine*: il MAJOR con lo stesso trattamento dell'apertura. Ho tolto la chiarezza locale del telefono (contrasto locale ridotto verso una copia sfocata), ridotto la nitidezza, portato la saturazione a 0,88 e girato la tinta dei verdi: 69,8° contro 66,8° dell'apertura, prima erano 83°. Il taglio è 2:1 dall'alto, senza il bosco in cima: l'andana sul pendio è il soggetto. Didascalia "MAJOR 180.3 al lavoro / L'andana sul pendio". Ho tolto "dietro una motofalciatrice", perché nella foto il ranghinatore sta davanti al mezzo verde, e "foto Molon".
+- *Manifesto*: peso 500, interlinea 1,1, antracite pieno, colonne 1-7, abbassato di 4 px. Resta a 34 px, il tetto di D5.
+- *Chi siamo*: ora c'è "Lo dirigono Enio e Bruno Molon...", senza la frase sull'export (vedi i respinti). A destra della frase c'è la cronologia, sotto ci sono l'archivio e la squadra affiancati alla stessa altezza (393 px, larghezze in proporzione 3:2 e 1,70), così non restano 400 px vuoti. La squadra è a pieno quadro (1,70, lo stesso formato dell'apertura), quindi i formati restano 3 a 1440. Titoli in `text-wrap:balance`.
+- *Rivenditori*: "Scrivete per il listino" è un link a riga, quindi i bottoni in pagina sono 5. Le righe delle zone sono tutte alte 77 px (147 sul telefono). "Vi diciamo a chi rivolgervi" è un'email con oggetto "Rivenditore nella mia zona". Sul telefono le zone vengono prima del riquadro per rivenditori e officine.
+- *Piede a 390*: Macchine e Lingue affiancate, le righe di solo testo senza i 44 px. L'altezza scende da 1.243 a 1.018 px.
+
+**Respinti o fatti in un altro modo, con il motivo**
+- *Frase dell'export*: il giudice chiedeva di sostituire "esportate in tutto il mondo" con "conosciuti e venduti in molti paesi al mondo". Tutte e due sono loro: la prima viene dal Chi siamo di oggi, la seconda dalla loro home (`01-analisi.md`). Ho tolto la frase del tutto per stare sotto le 690 parole, perché la sezione Rivenditori mostra già i paesi. `grep "tutto il mondo"` dà 0.
+- *Didascalia "Esploso del frontale"*: scritta "Esploso di un ranghinatore", perché il disegno non dice il modello.
+- *Bottone d'apertura verso `#t-mezzo` o verso `#macchine`*: il giudice e il contadino chiedevano due cose diverse. Il bottone resta su `#misure`. A 1440 dopo il clic si vedono "Va sul vostro mezzo?" e Chiama. A 390 si vedono i tre salti per mezzo e la barra con Chiama. Provato: le due cose sono in vista in tutti e due i casi.
+- *Riga "Macchina ferma? Ricambi al 049 900 0103." in prima schermata sul telefono*: porterebbe i caratteri da 160 a circa 200. Al suo posto ci sono la parola Menu, Ricambi in cima al menu e il link nella seconda schermata (regola ammorbidita: "5 secondi dal menu o entro due schermate").
+- *Salti per famiglia anche nella colonna ferma a 1440*: li ho provati e tolti, perché a 1440 le sei schede stanno subito sopra e costavano 12 parole.
+- *Nomi nella foto della squadra*: non li sappiamo. La domanda è nel LEGGIMI, e la didascalia resta "La squadra, quattordici persone".
+- *Foto nuova d'apertura*: è da fare dal vero (LEGGIMI, "Foto da fare", con la prova a 300 px). Il taglio di oggi non si può migliorare.
+
+**Misure D finali** (`node _prova/alto/misura-d.mjs`, `_prova/alto/misure/misure.json`; righe complete in `_prova/alto/ritocco/misura-finale.txt`)
+
+| | 1440 x 900 | 390 x 844 | esito |
+|---|---|---|---|
+| Foto nella prima schermata | 92,8 % | 65,4 % (320: 54,4 %) | passa |
+| Cliccabili, bottoni, caratteri | 6, 1, 160 | 4, 1, 160 | passa |
+| Fila d'ingressi, cifre di 30 px o più, occhielli | 0, 0, 0 | 0, 0, 0 | passa |
+| `h1` | 5 parole, 0 virgole, 68 px | 42 px | passa |
+| Parole | 687 (prima 725) | 677 | sotto le 690 del giudice, sopra il tetto D8 di 650 per le tabelle tenute |
+| Altezza | 7.471 px (prima 6.996) | 9.408 | non passa D8 (6.000): crescono le schede a 411 px (+370) e il Ricambi con l'esploso |
+| Bottoni in pagina | 5 | 5 | passa (prima 6) |
+| Sezioni tra apertura e piede | 5 | 5 | passa |
+| Griglia | 12 colonne, un solo bordo destro (1360) | 16-374 | passa |
+| Foto, formati, ingrandite | 11, 3 (1,7, 1,5, 2,0), 0 | 4 formati (0,7 è l'apertura verticale), 0 | passa a 1440 |
+| Fondi, sezioni rosse | 3, 1 | 3, 1 | passa |
+| `tel:`, "Indicazioni", famiglie di caratteri, lista nera, "indicativ" | 3, 1, 1, 0, 0 | uguale | passa |
+| Peso caricato | 610 KB (1920: 743 KB) | 463 KB | passa |
+| Larghezza documento, sovrapposizioni, errori | a 320, 390, 768, 1024, 1440 e 1920: uguale alla finestra, 0, 0 | | passa |
+
+Schermate rifatte in `screenshot/home/` con gli stessi nomi e guardate a pezzi (1440 intera, 390 intera, le sei prime schermate). Ho guardato anche le prove dal vivo: `_prova/alto/ritocco/v390-*.jpg` e `v1440-*.jpg`.
+
+**Ancora aperti**: l'altezza a 1440 resta sopra il tetto D8; per scendere bisognerebbe portare le tabelle in pagine interne, cosa che il metodo ibrido esclude. La foto d'apertura e la squadra restano quelle di oggi finché non c'è il servizio fotografico, che il giudice stima al 60 % della distanza da un 8. Non ho rifatto il giudizio da agenzia né le prove dei clienti tipo. Nessun U+2014, nessun commit.
+
 ### Che cosa è cambiato
 - **Idea e modello (D1, D4)**: modello F, come nel capitolo 5. La foto vera del frontale rosso nel fieno in collina (`2017_10_11.08_10ritoc.jpg`, 3264 x 2448) a tutta pagina; il titolo scuro scritto nel cielo, a destra dei due alberi sul crinale; un solo bottone rosso, "Va sul vostro mezzo?". Sul telefono la foto in 4:5 sul ranghinatore e il titolo sotto. Riferimenti guardati accanto: Rapid (`riferimenti/rapid-1440-prima-schermata.jpg`) e Reform.
 - **Testi (D7)**: `h1` "Anche sul terreno più irregolare.", accorciato dalla loro pagina dei ranghinatori ("perfetto adattamento a qualsiasi tipo di terreno, anche a quello più irregolare"); torna nel piede con lo stesso trattamento. Sotto: "Ranghinatori a cinghie per portattrezzi, trattori e motofalciatrici, da Arlesega di Mestrino (PD)." Manifesto della culmine: "Rivoltare l'erba. Mettere in andana. Allargare l'andana." (loro).

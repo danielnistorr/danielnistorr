@@ -4,9 +4,55 @@
 
 3 novembre 2026. La prima schermata segue la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (riga di Zeta nel capitolo 5: M1, modello L); sotto la piega tornano i contenuti e le funzioni della versione professionale, rimessi su una griglia sola a 12 colonne. La versione professionale è copiata com'era in `_prova/versione-pro/` (sito e screenshot). La direzione è in `_prova/alto/DIREZIONE.md`, i provini in `_prova/alto/provini.jpg`.
 
-**Idea**: Zeta vende una materia saldata. La home apre con quattro campioni veri visti da vicino, ognuno con la saldatura in vista e il suo nome di finitura (Trasparente, Goffrato, Opaco, Riciclato al 50%), sotto la frase che loro scrivono in fondo a ogni scheda: "Diamo forma alle vostre idee." (fonte: la chiusa "Diamo forma alle vostre idee" delle schede prodotto del sito di oggi; torna nel piede).
+**Idea**: Zeta vende una materia saldata. La home apre con quattro campioni veri visti da vicino, ognuno con la saldatura in vista e il nome della sua scheda sotto (Busta a quattro spazi, Cartella blu per campionari, Busta con fori, dodici spazi, Cartella per campionari colore), sotto la frase che loro scrivono in fondo a ogni scheda: "Diamo forma alle vostre idee." (fonte: la chiusa "Diamo forma alle vostre idee" delle schede prodotto del sito di oggi; torna nel piede).
 
-### Che cosa è cambiato
+### Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice ha dato 6,5 (5,5 alla versione professionale): apertura progettata, griglia sola, ma due tessere deboli, nessun punto di scala, il culmine sulla foto più morbida, i testi ripetuti, il contatto non diviso per bisogno e, soprattutto, finiture e didascalie "da confermare" scritte come certe. Le misure di `_prova/alto/misura-d.mjs` ora usano le soglie vere di D8 (prima erano allargate a 900 parole, 7 sezioni e 7.500 px senza dirlo). Copia della pagina prima del ritocco: `_prova/alto/tmp/index-prima-del-ritocco.html`.
+
+**Applicati**
+- **Vincoli (bloccanti)**: tolti "Goffrato", "Opaco", "Riciclato al 50%" dalle didascalie e dagli alt (e dai nomi dei file: `tessera-cartella-*`, `tessera-fori-*`). Le didascalie sono a due voci con i nomi delle loro schede: "Busta a quattro spazi / Buste in PVC", "Cartella blu per campionari / Custodie e accessori", "Busta con fori, dodici spazi / Buste in PVC", "Cartella per campionari colore / Custodie e accessori". Tolto "Padova, 2023" dalla didascalia della linea ("reparto Zeta"). Tolta anche la frase dei robot che sigillano i cartoncini (LEGGIMI, punto 4 dei dati da confermare).
+- **Tessere**: la quarta (le copertine "riciclato al 50%", scritta tagliata) è sostituita dai cartellini dei filati rosa e bordeaux nelle tasche della cartella colore (`2019_12_color-card-display-1.jpg`, ritaglio 1200x2400, nessun marchio leggibile: solo i codici "6RP"). La prima è ritagliata di nuovo sotto il bordo alto della busta, con il dorso bianco e la saldatura orizzontale: nessuna banda scura in alto. I nomi stanno sotto le tessere, appena oltre la piega a 1440 (le tessere arrivano al bordo della finestra senza testo sopra); al telefono stanno sulle tessere come cartellini, con il solo nome (la famiglia resta per gli screen reader).
+- **Tipografia (D5)**: tre misure in tutta la pagina a 1440, 32/40 (manifesto e titoli), 18/28 (testo) e 15/22 (interfaccia, didascalie, note), più i 14 px della sola riga d'istruzione accanto al bottone del modulo (D7). Al telefono 28/36, 18/28 e 15/22. Il titolo è un manifesto a 32 px con sotto, nello stesso blocco, la riga del mestiere: "Buste, cartelle e raccoglitori in PVC e polipropilene saldati su misura. Padova, dal 1969." Il punto di scala restano le tessere (691 px d'altezza a 1440 contro 663).
+- **Frase-firma (D7)**: "Diamo forma alle vostre idee." torna nel piede con lo stesso trattamento dell'`h1` (32/40, peso 400).
+- **Culmine (D8)**: la foto del tavolo esce dalla home; il culmine è una foto prodotto ad alta risoluzione, la vaschetta a scomparti nella cartella per campionari (`2019_12_porta-campioni-1.jpg`, 5456 px), a tutta griglia in 12:5 (1344 px a 1440, file da 2688 per il 2x, rapporto 2) e intera in 3:2 sotto i 600 px. Didascalia "Vaschetta a scomparti in una cartella per campionari / Custodie e accessori". La sezione è alta 1265 px. Il campionario colore, che il giudice indicava anche per il culmine, è lo stesso file di `2019_12_Nuancer.jpg` (stesso md5): l'ho messo nell'apertura, dove decide il riconoscimento a 300 px, e non due volte.
+- **Articoli**: per la vaschetta, ora nel culmine, la famiglia "Custodie e accessori" ha la cartella campionario a dieci spazi (`2019_12_cartella-campionario-10-spazi.jpg`). Le sei foto hanno anche i file da 960 e 1296 px, dove l'originale li regge, con `sizes` "(max-width:1100px) 46vw, min(30vw, 544px)": a 2x il rapporto è 2,22. Fanno eccezione le copertine, il cui originale ritagliato è largo 672 px (rapporto 1,48 a 2x).
+- **Contatto per bisogno (D12)**: nel blocco verde, sotto i tre passi del preventivo (che con il modulo sono la prima strada), due strade con il filetto: "Ordine o file di stampa" (Scriveteci con l'oggetto già scritto, Copia l'indirizzo email) e "Campione da rifare" (indirizzo con ragione sociale, "ve lo rendiamo", orari lunedì-venerdì 8.30-12.30 e 14.00-18.00, stato di adesso, Apri nelle mappe, Copia l'indirizzo). Nessun nome di persona. La colonna sinistra finisce 38 px sopra il fondo del modulo.
+- **Testi (D8)**: titolo del preventivo "Mandateci le misure, o il campione" (dalla loro frase "segnalarci le dimensioni ed inviarci il campione") al posto di "Come chiederci un preventivo"; tolti il paragrafo dei settori (ora completati nella frase di Azienda), la lead del preventivo, il secondo e il terzo "ve lo rendiamo", la riga del campione e la colonna dei prodotti nel piede, le lingue ripetute nel piede, "Portadocumenti auto e moto" dalla riga "Anche" (è la famiglia Portadocumenti e si trova con la ricerca). Il campo "Articolo" del modulo è un campo con suggerimenti (le stesse 12 voci) invece di una tendina: si può scrivere anche un articolo che non è in elenco. 648 parole.
+- **Azienda**: la foto della linea con sotto "Contro la plastica usa e getta"; a destra storia, primati, clienti per settore e materiali. Al telefono il testo viene prima della foto.
+
+**Misure finali** (`misura-d.mjs`, 46 controlli su 46 con le soglie di ALTO-LIVELLO.md)
+
+| | 1440x900 | 390x844 |
+|---|---|---|
+| Cliccabili, bottoni in prima schermata | 6, 1 | 4, 1 |
+| Caratteri fuori dalla testata | 141 | |
+| Foto nella prima schermata | 68% | 56% |
+| Misure di carattere | 15, 18, 32 (+14 della riga d'istruzione) | 15, 18, 28 (+14) |
+| Frase-firma | 2 volte, 32/40/400 | 2 volte, 28/36/400 |
+| Parole, sezioni dopo l'apertura | 648, 4 | 632 |
+| Altezza | 5.749 px | 8.134 px |
+| Culmine | 1265 px, foto a 2x con rapporto 2 | |
+| Foto, formati | 12, tre (1:2, 3:2, 12:5), nessuna ingrandita | |
+| Cifre di 30 px o più | 1 (il telefono del piede) | |
+| Peso | 235 KB | 210 KB |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`script/controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore, nessun bersaglio sotto i 44 px, ricerca ("vinile", "portadocumenti auto", "raccoglitore"), menu a 390 (mappe a 510 px, stato) e modulo con il testo da copiare provati. Screenshot rifatti con gli stessi nomi.
+
+**Respinti o cambiati, con il motivo**
+- Il campionario colore anche nel culmine: è lo stesso file della quarta tessera (vedi sopra).
+- La foto del tavolo nella sezione Azienda a 600 px: con lei le foto diventano 13, oltre il tetto di 12 di D10. È uscita, ed era la più debole.
+- "15/22 anche per la riga d'istruzione": D7 la vuole a 14 px; resta a 14, unica eccezione al registro.
+- Il taglio 4:5 del culmine a 390: avrebbe aggiunto un quarto formato (D10); sotto i 600 px la foto è 3:2 intera (358x239 a 390, non più la striscia di 149 px).
+- Le didascalie a due voci sulle tessere al telefono: sui cartellini da 173 px coprivano un terzo della foto e la foto scendeva sotto il 50% (D3). Al telefono resta il nome; la famiglia è nel testo per gli screen reader.
+
+**Problemi aperti dopo il ritocco**
+- La prima tessera resta un PVC grigio su grigio: la trasparenza si legge dal dorso bianco, ma la serve la macro della saldatura chiesta in "Foto da fare dal vero".
+- La seconda tessera e la quarta e il culmine sono tutte nella famiglia "Custodie e accessori" (cartelle per campionari): è la loro scheda, ma con la still life nuova una tessera dovrebbe andare ai raccoglitori.
+- Il giudice stima 7-7,5 con le foto di oggi; sopra serve la mezza giornata di still life (LEGGIMI).
+- Il pallino dello stato in testata a 1440 resta del colore della nota (grigio), non verde: era così anche prima.
+
+### Che cosa è cambiato (prima versione ibrida, prima del giudice)
 
 - **Apertura**: via l'occhiello "Zeta S.r.l. · Padova, dal 1969", il titolo nero 70 px, la foto del tavolo a destra in un riquadro, i due bottoni affiancati, la riga dello stato e il testo di 60 parole. Ora: titolo in Instrument Sans 400 a 52 px, una riga di mestiere ("PVC e polipropilene saldati su misura. Padova, dal 1969."), un bottone, e le quattro tessere 1:2 fino al bordo della finestra.
 - **Testata**: logo, ricerca degli articoli (i 45 prodotti e le 10 categorie del loro catalogo, senza le visiere; senza script cerca sul loro sito con `?s=...&post_type=product`), Articoli, Azienda, lingua (IT / EN DE FR ES in un menu), stato aperto/chiuso e "Chiama 049 774299". Sotto i 1100 px: logo, "Chiama" e Menu (ricerca, quattro voci, indirizzo, orari con lo stato, Apri nelle mappe, email da copiare, lingue).
@@ -18,7 +64,7 @@
 - **Caratteri**: Instrument Sans 400 e 500 (SIL OFL 1.1) al posto di General Sans e Switzer (fuori catalogo). Riga aggiunta a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
 - **Foto**: le quattro tessere sono nuove (originali da 1938 a 5456 px riscaricati dal loro sito in `assets/originali/`); la cartella blu non sta più tra i raccoglitori (la sua scheda vera è "Cartelle espositive per campionari"): i raccoglitori hanno la foto degli anelli interni, le buste quella del raccoglitore nero con le buste a spazi. Tutte le foto passano da `_prova/alto/script/immagini.py` con lo stesso trattamento (saturazione 0,9, contrasto 1,03).
 
-### Misure (`_prova/alto/misura-d.mjs`, 41 controlli su 41 passano)
+### Misure della prima versione ibrida (`_prova/alto/misura-d.mjs` con le soglie allargate, superate dal ritocco qui sopra)
 
 | | 1440x900 | 390x844 |
 |---|---|---|
@@ -48,7 +94,7 @@ Griglia: lo stesso bordo sinistro e destro (48 e 1392 px a 1440) per tutte le se
 - V2: "Chiama" in testata fissa (48 px, anche a metà pagina), stato in testata a 1440 e nel menu e nel piede a 390, "Scriveteci" con oggetto "Ordine o file di stampa" nella prima schermata a 390, email da copiare nel menu.
 - V3: indirizzo con ragione sociale, campione, mappe, copia, orari e stato nel piede e nel menu (le mappe stanno nella prima schermata del menu aperto).
 
-### Problemi aperti
+### Problemi aperti della prima versione ibrida (in parte risolti dal ritocco)
 
 - Le famiglie con foto non sono più sopra la piega a 1440 (V1.1) e la riga "che cosa mandare" non è più accanto al bottone (V1.2): è il prezzo del tetto di 6 cliccabili e 160 caratteri. Da verificare con il cliente tipo "tipografia-legatoria".
 - La cartella blu della tessera "Goffrato" è presa dalla scheda "Cartelle espositive per campionari": la finitura (goffrata o similpelle) va confermata. Sul foglio "Opaco" il materiale (PVC o polipropilene) non è scritto nella scheda.
