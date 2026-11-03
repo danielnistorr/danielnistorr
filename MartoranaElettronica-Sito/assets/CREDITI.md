@@ -30,7 +30,7 @@ Versioni scaricate con curl dal CDN `images.unsplash.com` a 2400 px sul lato lun
 Nessuna foto esterna in pagina. Per decisione del committente ("niente": nessuna foto di repertorio, nessun disegno al posto delle foto) ho tolto il cestello di Vlad Deep, l'unica foto Unsplash della versione "Corretto o scarto" (`sito/img/chiusura-cestello-*.jpg`, cancellati; la versione precedente resta in `../_prova/versione-1-originale/`). Le dieci foto di `esterne/` restano solo in archivio, con le licenze qui sopra, e non vanno usate in questa home.
 
 In pagina solo immagini dell'azienda, preparate da `../_prova/script/pro_img.py` e mai ingrandite:
-- `2025_Stazione_mod1200_alta.jpg` e `2025_Stazione_mod1000.jpg` (apertura, `sito/img/mod1200.webp`, `mod1000.webp`);
+- `2025_Stazione_mod1200_alta.jpg` e `2025_Stazione_mod1000.jpg` (dal ritocco finale non più in apertura, che è di sola tipografia, ma nella scheda grande "Sicurezza elettrica in linea": `sito/img/mod1200.webp`, `mod1000.webp`);
 - `2025_mod_1200ST-NETD.jpg`, `2025_Stazione_mod1294-A.jpg`, `2025_Stazione_M0524-LED.jpg` (schede delle prove);
 - `PortataMicroperdite_0704N_KB.png` e `Alimentatori_Alimentatore_ManualeKB.png` (gli scontornati gia puliti nella versione 1, `m0704n.webp`, `mod0507.webp`);
 - `Saldatrici_Sistema_Collaudo_Saldatrici_KB.png` (retinatura tolta, su bianco, `saldatrici.webp`);

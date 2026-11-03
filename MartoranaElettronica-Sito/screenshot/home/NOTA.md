@@ -60,8 +60,8 @@ Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli
 
 ### Compiti della scheda d'uso (par. 8)
 
-- *A, manutentore a 390*: senza scorrere "Chiama 049 9003655" (52 px, `tel:`) e "Assistenza su una stazione installata"; un tocco porta alla sezione, dove "Scarica TeamViewerQS" è già in vista (y 701 su 844) e punta al loro file; "Scrivete all'assistenza" apre l'email con oggetto "Assistenza: stazione di collaudo installata" e la traccia (modello, matricola, cosa succede, foto); l'area riservata è a due tocchi (Menu, Area clienti; oppure Assistenza, Accedi). Il telefono resta nella testata fissa.
-- *B, ingegnere a 1440*: senza scorrere "Stazioni di collaudo su misura", sei prove, "Inviateci le specifiche del prodotto" (email con la traccia) e il telefono; nella seconda schermata le prove per famiglia con modelli e misure (rigidità dielettrica e saldatrici, tenuta e piani cottura a gas, con modello e numero, tutto visibile senza toccare); foto vere del catalogo 2025; l'elenco di cosa mandare accanto al modulo.
+- *A, manutentore a 390*: senza scorrere "Chiama 049 9003655" (52 px, `tel:`) e "Assistenza su una stazione installata"; un tocco porta alla sezione, dove "Scarica TeamViewerQS" è già in vista (y 697 su 844, prima 701), punta al loro file in https e sopra c'è l'indirizzo da scrivere sul PC della stazione; "Scrivete all'assistenza" apre l'email con oggetto "Assistenza: stazione di collaudo installata" e la traccia (modello, matricola, cosa succede, foto); l'area riservata è a due tocchi (Menu, Area clienti; oppure Assistenza, Accedi). Interventi e ricambi hanno un bottone proprio con l'email pronta. Il telefono resta nella testata fissa. Attrito rimasto: "Scrivete all'assistenza" è a y 966, uno scorrimento corto come prima.
+- *B, ingegnere a 1440*: senza scorrere "Stazioni di collaudo su misura", l'indice delle sei prove con una riga di fatti ciascuna (un clic porta alla scheda), "Inviateci le specifiche del prodotto" (email con la traccia) e il telefono; nella seconda schermata le prove per famiglia con modelli e misure (rigidità dielettrica e saldatrici, tenuta e piani cottura a gas, con modello e numero, tutto visibile senza toccare); le saldatrici ora dicono quali prove (moduli 0586 di rigidità, terra e dispersione); foto vere del catalogo 2025 (Mod. 1200 e Mod. 1000 nella scheda grande); i link "Modelli e prove" aprono le pagine prodotti di oggi; l'elenco di cosa mandare accanto al modulo.
 - *C, estero*: "EN" in testata a 1440 e a 390; il blocco in inglese ha normative (UL, VDE, BSI), 60 Hz, l'email con la traccia in inglese e l'assistenza remota.
 - *Tutti*: Via Torino 10/B (sede operativa), mappa e indicazioni con un tocco; nessun orario in pagina.
 
@@ -75,9 +75,10 @@ Solo materiale del loro sito (`assets/originali/`), da usare con il loro permess
 
 ### Controlli fatti (3/11/2026)
 
-- `pro_controlli.mjs`: regole 1-9 e 12-14 superate nelle misure; 10, 11 e 15 no (vedi sopra). Nessuna ancora senza destinazione, nessun errore di script.
+- `pro_controlli.mjs` (ritocco finale): regole 1, 2, 4-9 e 12-14 superate nelle misure; 3 no per scelta (apertura senza immagine), 10, 11 e 15 no per dati che mancano (vedi sopra). Nessuna ancora senza destinazione, nessun errore di script.
 - Prove d'uso nello stesso script: tocco su "Assistenza" a 390 (TeamViewerQS in vista), menu aperto e chiuso dopo una voce, modulo vuoto fermato con l'avviso e il fuoco sul nome, email composta e letta senza inviarla.
 - Nessuno scorrimento orizzontale a 320, 360, 390, 768, 1024, 1280, 1440 e 1920; nessuna sovrapposizione nell'apertura e in testata; nessun testo che esce da schede, passi e bottoni.
-- Screenshot guardati a pezzi a 1440 e a 390 (prime schermate e pagine intere) e confrontati con Cly-Del, barth e la prova su Unicar; parti alte a 320, 768 e 1024.
-- Collegamenti: `tel:+390499003655`; `mailto:martorana@martoranaelettronica.com` con 5 oggetti diversi; Google Maps (ricerca e indicazioni) per Via Torino 10/B, 35035 Mestrino; TeamViewerQS, area riservata e area download sul loro sito.
+- Screenshot guardati a pezzi a 1440 e a 390 (prime schermate e pagine intere) e confrontati con le prime schermate dei 14 riferimenti e con le pagine intere di barth e Cly-Del; parti alte a 320, 768 e 1024.
+- Nessun `order` nel CSS: l'ordine del fuoco da tastiera è quello della pagina.
+- Collegamenti: `tel:+390499003655`; `mailto:martorana@martoranaelettronica.com` con 5 oggetti diversi; Google Maps (ricerca e indicazioni) per Via Torino 10/B, 35035 Mestrino; TeamViewerQS, area riservata, area download e le pagine prodotti, softwares, chi-siamo e cookies-policy del loro sito, tutte in https (risposta 200 il 3/11/2026).
 - Nessun U+2014 in pagina, nei .md e negli script.
