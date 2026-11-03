@@ -16,13 +16,13 @@
 /* Colori: oro e grigio del loro logo, antracite del loro tema Wix. Nient'altro fuori da qui. */
 :root{
   --oro:#AF8642;          /* fascia del logo */
-  --oro-scuro:#8C6A33;    /* bottoni e testo d'accento su bianco (5,0:1 con il bianco) */
-  --oro-buio:#6E5327;     /* passaggio del mouse sui bottoni */
+  --oro-scuro:#8C6A33;    /* bottoni, testo d'accento su bianco e fascia dei numeri (bianco sopra: 5,0:1) */
+  --oro-buio:#6E5327;     /* passaggio del mouse */
   --antracite:#2F2E2E;    /* testo e blocchi scuri (tema del sito di oggi) */
   --bianco:#FFFFFF;
   --grigio-fondo:#F2F2F1; /* blocchi chiari, grigio neutro */
   --grigio-testo:#5E5D5B; /* testo secondario su bianco 6,6:1 */
-  --grigio-logo:#B0B0B0;  /* grigio del simbolo, filetti sul nero */
+  --grigio-logo:#B0B0B0;  /* grigio del simbolo, bordi dei campi */
   --su-scuro:#D4D3D1;     /* testo secondario sul nero 9,6:1 */
   --linea:#DCDBD9;
   --linea-scura:#4A4949;
@@ -48,8 +48,10 @@ p{text-wrap:pretty}
 .sezione{padding:var(--sez) 0}
 .scura{background:var(--antracite);color:var(--bianco)}
 .chiara{background:var(--grigio-fondo)}
+.oro{background:var(--oro-scuro);color:var(--bianco)}
 .etichetta{display:block;font-size:14px;line-height:1.4;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--oro-scuro);margin-bottom:20px}
 .scura .etichetta{color:var(--oro)}
+.oro .etichetta{color:var(--bianco)}
 h2{font-size:48px;line-height:1.08;letter-spacing:-.02em}
 .introduzione{font-size:19px;color:var(--grigio-testo);max-width:34em}
 .scura .introduzione{color:var(--su-scuro)}
@@ -85,34 +87,40 @@ h2{font-size:48px;line-height:1.08;letter-spacing:-.02em}
 .apri{display:none}
 .apri .righe{display:none}
 
-/* Apertura */
-.apertura{padding:calc(var(--testata) + 56px) 0 72px}
-.ap-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:start}
-.ap-testo{grid-column:1/8}
-.ap-foto{grid-column:8/13;margin-top:6px}
-.ap-foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.ap-foto figcaption{font-size:14px;color:var(--grigio-testo);margin-top:12px}
+/* Apertura: testo a sinistra, il loro magazzino a filo del bordo destro e a tutta altezza */
+.apertura{padding-top:var(--testata);overflow:hidden}
+.ap-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:stretch}
+.ap-testo{grid-column:1/8;padding:56px 0 72px}
+.ap-foto{grid-column:8/13;position:relative;min-height:520px;
+  margin-right:calc(-1 * var(--m) - max(0px, (100vw - 1280px - 2 * var(--m)) / 2))}
+.ap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
 h1{font-size:72px;line-height:1.02;letter-spacing:-.03em}
 h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;letter-spacing:-.01em;margin-top:20px;max-width:21em}
 .ap-occhiello{display:none}
 .ap-luogo{margin-top:16px;font-size:19px;color:var(--grigio-testo)}
 .apertura .bottoni{margin-top:36px}
-.ap-servizi{margin-top:28px;font-size:17px;padding-top:20px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:6px 28px}
-.ap-servizi li{white-space:nowrap;padding-left:18px;position:relative}
-.ap-servizi li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--oro)}
-.ap-mail{margin-top:12px;font-size:17px;color:var(--grigio-testo)}
+.ap-servizi{margin-top:36px;font-size:17px;line-height:1.35;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--g)}
+.ap-servizi li{border-top:2px solid var(--oro);padding-top:12px}
+.ap-servizi a{font-weight:700}
+.ap-mail{margin-top:24px;font-size:17px;color:var(--grigio-testo)}
 .ap-mail a{color:var(--antracite)}
 
-/* Prodotti: elenco aperto delle 16 famiglie, in 4 gruppi */
-.pr-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:end;margin-bottom:64px}
-.pr-testa h2{grid-column:1/6}
+/* Prodotti: elenco aperto delle 16 famiglie, in 4 gruppi con una testata tipografica */
+.pr-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:end;margin-bottom:56px}
+.pr-testa h2{grid-column:1/7}
 .pr-testa .destra{grid-column:7/13}
-.pr-testa .destra a{display:inline-block;margin-top:12px;font-weight:700;color:var(--antracite)}
+.pr-testa .destra a{display:inline-block;margin-top:12px;padding:10px 0;font-weight:700;color:var(--antracite)}
 .gruppi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px var(--g)}
-.gruppo figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.gruppo h3{font-size:23px;line-height:1.2;margin:24px 0 4px;letter-spacing:-.01em}
-.gruppo .quante{font-size:14px;color:var(--grigio-testo)}
-.famiglie{margin-top:16px;border-top:2px solid var(--antracite)}
+.gt{display:flex;flex-direction:column;justify-content:space-between;gap:24px;aspect-ratio:4/3;padding:24px;
+  background:var(--antracite);color:var(--bianco);text-decoration:none;transition:background-color .15s}
+.gt:hover{background:var(--oro-buio)}
+.sigle{display:block;font-size:23px;line-height:1.3;font-weight:700;color:var(--oro);letter-spacing:-.01em}
+.sigle span{display:block}
+.gt:hover .sigle{color:var(--bianco)}
+.gt h3{font-size:32px;line-height:1.1;letter-spacing:-.02em}
+.gt .quante{display:flex;justify-content:space-between;margin-top:8px;font-size:14px;letter-spacing:.04em;color:var(--su-scuro)}
+.gt .quante::after{content:"→";color:var(--oro);font-size:17px;line-height:1}
+.famiglie{margin-top:8px}
 .famiglie li{border-bottom:1px solid var(--linea)}
 .famiglie a{display:block;padding:16px 0 18px;text-decoration:none}
 .famiglie .fn{display:flex;justify-content:space-between;gap:12px;font-size:19px;font-weight:700;line-height:1.3}
@@ -131,19 +139,19 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 .fr-lista h3{font-size:23px;margin-bottom:16px}
 .fr-lista ul{border-top:2px solid var(--oro)}
 .fr-lista li{padding:16px 0;border-bottom:1px solid var(--linea-scura);font-size:19px}
-.fr-lista .foto{display:inline-block;margin-top:24px;font-size:17px;font-weight:700;color:var(--bianco)}
-.fr-lista .nota{margin-top:8px;font-size:17px;color:var(--su-scuro)}
+.fr-lista .bt{margin-top:32px}
+.fr-lista .nota{margin-top:12px;font-size:17px;color:var(--su-scuro)}
 
-/* Servizio e numeri */
+/* Servizio: fascia piena oro scuro con i numeri in grande */
 .sv-testa{max-width:52rem}
-.numeri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 var(--g);margin-top:64px;border-top:2px solid var(--antracite)}
-.numeri div{padding-top:24px}
-.numeri dt{font-size:48px;line-height:1.1;font-weight:700;letter-spacing:-.02em;color:var(--oro-scuro)}
-.numeri dd{margin-top:8px;font-size:17px;color:var(--grigio-testo);max-width:15em}
-.punti{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--g);margin-top:72px}
-.punti li{border-top:1px solid var(--linea);padding-top:20px}
+.numeri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--g);margin-top:72px}
+.numeri div{border-top:1px solid var(--bianco);padding-top:20px}
+.numeri dt{font-size:160px;line-height:1;font-weight:700;letter-spacing:-.04em;margin-left:-.04em}
+.numeri dd{margin-top:16px;font-size:19px;line-height:1.4;max-width:16em}
+.punti{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--g);margin-top:80px}
+.punti li{border-top:1px solid var(--bianco);padding-top:20px}
 .punti b{display:block;font-size:23px;line-height:1.25;margin-bottom:10px}
-.punti p{font-size:19px;color:var(--grigio-testo)}
+.punti p{font-size:19px}
 
 /* Usato */
 .us-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:end;margin-bottom:48px}
@@ -166,64 +174,70 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 .vendi p{margin-top:8px;color:var(--grigio-testo)}
 .vendi .bottoni{margin-top:24px}
 
-/* Chi e STEMIN */
-.chi-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g)}
+/* Chi siamo: la loro frase come manifesto, poi il testo e STEMIN */
+.manifesto{font-size:48px;line-height:1.15;font-weight:400;letter-spacing:-.02em;max-width:24em}
+.manifesto b{font-weight:700;color:var(--oro-scuro)}
+.chi-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);margin-top:72px;padding-top:40px;border-top:2px solid var(--antracite)}
 .chi-testo{grid-column:1/7}
-.chi-testo p{margin-top:24px}
-.chi-testo .perche{font-size:23px;line-height:1.4;margin-top:32px}
+.chi-testo h3{font-size:23px;line-height:1.3}
+.chi-testo p{margin-top:16px}
+.chi-testo .clienti{margin-top:24px;color:var(--grigio-testo)}
 .chi-lato{grid-column:8/13}
-.rappr{border-top:2px solid var(--antracite);padding-top:24px}
 .rappr .marca{display:block;font-size:32px;line-height:1.2;font-weight:700;margin-bottom:12px}
 .rappr p{color:var(--grigio-testo)}
-.rappr a{display:inline-block;margin-top:16px;font-weight:700}
-.video{margin-top:40px;border-top:1px solid var(--linea);padding-top:24px}
-.video a{font-weight:700}
-.video p{font-size:17px;color:var(--grigio-testo);margin-top:6px}
+.rappr a{display:inline-block;margin-top:12px;padding:10px 0;font-weight:700}
+.video{margin-top:32px;border-top:1px solid var(--linea);padding-top:20px}
+.video a{display:inline-block;padding:10px 0;font-weight:700}
+.video p{font-size:17px;color:var(--grigio-testo)}
 
-/* Contatti e richiesta */
+/* Contatti e richiesta, su grigio chiaro */
 .ct-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g)}
 .ct-recapiti{grid-column:1/6}
 .telgrande{display:inline-block;margin-top:40px;font-size:72px;line-height:1.05;font-weight:700;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
 .telgrande:hover{text-decoration:underline;text-decoration-thickness:3px}
-.ct-recapiti .chi-ris{margin-top:12px;color:var(--su-scuro)}
-.caselle{margin-top:40px;border-top:1px solid var(--linea-scura)}
-.caselle li{padding:16px 0;border-bottom:1px solid var(--linea-scura)}
+.ct-recapiti .chi-ris{margin-top:12px;color:var(--grigio-testo)}
+.caselle{margin-top:40px;border-top:2px solid var(--antracite)}
+.caselle li{padding:16px 0;border-bottom:1px solid var(--linea)}
 .caselle a{font-weight:700;word-break:break-word}
-.caselle span{display:block;font-size:17px;color:var(--su-scuro);margin-top:2px}
-.modulo{grid-column:7/13}
+.caselle span{display:block;font-size:17px;color:var(--grigio-testo);margin-top:2px}
+.caselle .nw{color:var(--antracite);font-size:19px;margin:0}
+.modulo{grid-column:7/13;background:var(--bianco);padding:40px;border-top:3px solid var(--oro)}
 .modulo h3{font-size:32px;line-height:1.2}
 .modulo .introduzione{margin-top:8px;font-size:17px}
 .campi{display:grid;grid-template-columns:1fr 1fr;gap:20px 20px;margin-top:32px}
 .campo{display:flex;flex-direction:column;gap:6px}
 .campo.largo{grid-column:1/-1}
-.campo label{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--su-scuro)}
+.campo label{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--antracite)}
 .campo input,.campo select,.campo textarea{font:400 17px/1.4 "Archivo",system-ui,sans-serif;color:var(--antracite);background:var(--bianco);
   border:1.5px solid var(--grigio-logo);border-radius:3px;padding:14px 14px;min-height:52px;width:100%}
 .campo textarea{min-height:120px;resize:vertical}
-.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--oro);outline-offset:1px}
-.allegati{grid-column:1/-1;font-size:17px;color:var(--su-scuro);border-left:3px solid var(--oro);padding-left:16px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--oro-scuro);outline-offset:1px}
+.allegati{grid-column:1/-1;font-size:17px;color:var(--grigio-testo);border-left:3px solid var(--oro);padding-left:16px}
 .invio{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
-.avviso{font-size:17px;color:var(--bianco)}
+.avviso{font-size:17px;color:var(--antracite);font-weight:700}
 .avviso:empty{display:none}
 
-/* Piede */
-.piede{background:var(--grigio-fondo);padding:96px 0 40px;font-size:17px}
+/* Piede antracite, quattro colonne */
+.piede{background:var(--antracite);color:var(--bianco);padding:96px 0 40px;font-size:17px}
 .piede-griglia{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px var(--g)}
-.piede h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;color:var(--grigio-testo)}
+.piede h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;color:var(--oro)}
 .piede li+li{margin-top:8px}
 .piede a{text-decoration:none}
 .piede a:hover{text-decoration:underline}
-.piede .chi p{margin-top:20px;color:var(--grigio-testo)}
+.piede .marchio .di{color:var(--su-scuro)}
+.piede .chi p{margin-top:20px;color:var(--su-scuro)}
 .piede address{font-style:normal}
-.legale{margin-top:64px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--grigio-testo)}
+.piede .sotto{display:block;color:var(--su-scuro)}
+.legale{margin-top:64px;padding-top:24px;border-top:1px solid var(--linea-scura);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--su-scuro)}
 .legale .dx{margin-left:auto;display:flex;gap:20px}
 
 /* Fra 1000 e 1279 px */
 @media (max-width:1279px){
   :root{--m:56px;--g:24px}
-  h1{font-size:72px}
   .menu{gap:20px}
   .gruppi{grid-template-columns:repeat(2,minmax(0,1fr));gap:64px 48px}
+  .gt{aspect-ratio:2/1}
+  .numeri dt{font-size:112px}
 }
 @media (max-width:1099px){
   .menu{display:none}
@@ -239,15 +253,16 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 /* Tablet */
 @media (max-width:999px){
   :root{--sez:96px}
-  .ap-testo,.ap-foto{grid-column:1/-1}
-  .ap-foto{margin-top:48px}
-  .ap-foto img{aspect-ratio:16/9}
+  .ap-testo{grid-column:1/-1;padding-bottom:0}
+  .ap-foto{grid-column:1/-1;min-height:0;margin:48px calc(-1 * var(--m)) 0}
+  .ap-foto img{position:static;aspect-ratio:16/9;height:auto;object-position:50% 50%}
   .pr-testa h2,.pr-testa .destra,.us-testa h2,.us-testa p,.fr-testo,.fr-lista,.chi-testo,.chi-lato,.ct-recapiti,.modulo,.us-sotto .tutto,.vendi{grid-column:1/-1}
   .pr-testa .destra,.us-testa p{margin-top:20px}
   .fr-lista,.chi-lato,.modulo{margin-top:56px}
-  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--g)}
-  .numeri div{padding-bottom:24px}
+  .numeri{grid-template-columns:1fr;gap:32px}
+  .numeri dt{font-size:96px}
   .punti{grid-template-columns:1fr;gap:28px}
+  .manifesto{font-size:40px}
   .tabella thead{display:none}
   .tabella,.tabella tbody,.tabella tr,.tabella td{display:block;width:auto}
   .tabella tr{padding:20px 0;border-bottom:1px solid var(--linea)}
@@ -257,64 +272,66 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
   .tabella .dx,.tabella .chiedi{text-align:left}
   .tabella .prezzo::before{content:"Prezzo ";font-weight:400;color:var(--grigio-testo)}
   .tabella .nuovo::before{content:"Costo del nuovo ";}
-  .tabella .chiedi{margin-top:10px}
+  .tabella .chiedi{margin-top:4px}
+  .tabella .chiedi a{display:inline-block;padding:12px 0}
   .piede-griglia{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 /* Telefono */
 @media (max-width:640px){
   :root{--m:20px;--g:16px;--sez:72px;--testata:72px}
   body{font-size:17px}
-  .marchio img{width:34px;height:35px}
-  .marchio .pro{font-size:20px}
+  .marchio img{width:32px;height:33px}
+  .marchio .pro{font-size:20px;letter-spacing:0}
   .marchio .di{display:none}
-  .testata .box{gap:6px}
+  .testata .box{gap:8px}
   .marchio{gap:8px}
-  .marchio .pro{letter-spacing:0}
-  .testata .bt{padding:0 10px}
+  .testata .bt{padding:0 8px}
   .testata .apri{width:48px;padding:0}
   .apri .righe{display:block}
   .apri .parola{display:none}
-  .apertura{padding:calc(var(--testata) + 28px) 0 64px}
+  .ap-testo{padding-top:28px}
   .ap-occhiello{display:block}
   h1{font-size:40px;line-height:1.05}
   h1 .mestiere{font-size:20px;line-height:1.35;margin-top:12px}
   .ap-luogo{font-size:17px;margin-top:10px}
   .apertura .bottoni{margin-top:20px;flex-direction:column;gap:10px}
   .apertura .bt{width:100%}
-  .ap-servizi{margin-top:16px;padding-top:0;border-top:0;display:block;font-size:17px}
-  .ap-servizi li{white-space:normal}
+  .ap-servizi{margin-top:12px;display:block}
+  .ap-servizi li{border-top:0;border-bottom:1px solid var(--linea);padding:0;min-height:44px;display:flex;align-items:center}
+  .ap-servizi li::before{content:"";flex:none;width:7px;height:7px;background:var(--oro);margin-right:12px}
+  .ap-servizi a{display:flex;align-items:center;min-height:44px;flex:1}
   .ap-mail{display:none}
   .ap-foto{margin:20px calc(-1 * var(--m)) 0}
-  .ap-foto img{aspect-ratio:16/9}
-  .ap-foto figcaption{padding:0 var(--m)}
   h2{font-size:30px;line-height:1.15}
   .etichetta{margin-bottom:12px}
   .introduzione{font-size:17px}
   .pr-testa{margin-bottom:40px}
-  .gruppi{grid-template-columns:1fr;gap:56px}
-  .gruppo{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:0 16px;align-items:end}
-  .gruppo figure{grid-column:2;grid-row:1}
-  .gruppo .gt{grid-column:1;grid-row:1}
-  .gruppo h3{font-size:20px;margin-top:0}
-  .gruppo .famiglie{grid-column:1/-1}
+  .gruppi{grid-template-columns:1fr;gap:48px}
+  .gt{aspect-ratio:auto;padding:20px;gap:20px}
+  .sigle{font-size:17px}
+  .sigle span{display:inline}
+  .sigle span+span::before{content:" · "}
+  .gt h3{font-size:26px}
   .famiglie .fn{font-size:20px}
   .fr-testo .loro{font-size:20px;padding-left:16px}
   .fr-lista h3{font-size:20px}
   .fr-lista li{font-size:17px}
   .bottoni{flex-direction:column}
-  .bottoni .bt{width:100%}
-  .numeri{margin-top:40px}
-  .numeri dt{font-size:30px}
+  .bottoni .bt,.fr-lista .bt{width:100%}
+  .numeri{margin-top:40px;gap:28px}
   .punti{margin-top:48px}
   .punti b{font-size:20px}
-  .punti p{font-size:17px}
+  .punti p,.numeri dd{font-size:17px}
   .tabella{font-size:17px}
   .vendi{padding:24px 20px}
   .us-sotto .tutto .bt{width:100%}
   .vendi h3{font-size:20px}
-  .chi-testo .perche{font-size:20px}
+  .manifesto{font-size:30px}
+  .chi-griglia{margin-top:40px;padding-top:28px}
+  .chi-testo h3{font-size:20px}
   .rappr .marca{font-size:26px}
   .telgrande{font-size:40px}
+  .modulo{padding:28px 20px;margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
   .modulo h3{font-size:26px}
   .campi{grid-template-columns:1fr}
   .piede{padding:64px 0 32px}
@@ -326,6 +343,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 @media (max-width:379px){
   .marchio .nome{display:none}
   .telgrande{font-size:30px}
+  .numeri dt{font-size:72px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -344,7 +362,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
       <a href="#forni">Forni e ricambi</a>
       <a href="#usato">Usato</a>
       <a href="#chi">Chi siamo</a>
-      <a href="#richiesta">Richiesta</a>
+      <a href="#richiesta">Contatti</a>
       <a class="solo-tel" href="/en/" hreflang="en" lang="en">English</a>
     </nav>
     <a class="lingua" href="/en/" hreflang="en" lang="en">EN</a>
@@ -366,17 +384,16 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
         <a class="bt bt-bordo" href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%20d%27offerta%20dal%20sito&amp;body=Buongiorno%2C%0D%0A%0D%0Avi%20chiedo%20un%27offerta%20per%3A%0D%0AProdotto%20o%20codice%3A%20%0D%0AMisura%3A%20%0D%0AQuantit%C3%A0%3A%20%0D%0A%0D%0AAllego%20disegno%2C%20foto%20o%20scheda%20del%20pezzo.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%3A%20%0D%0ATelefono%3A%20%0D%0A">Scrivi: manda misura, codice o foto</a>
       </div>
       <ul class="ap-servizi">
-        <li>Magazzino a Mestrino</li><li>consegne in tutta Italia</li><li><a href="#forni">manutenzione forni anche nel week-end</a></li>
+        <li>Magazzino crogioli a Mestrino</li><li>Consegne in tutta Italia</li><li><a href="#forni">Manutenzione forni anche nel week-end</a></li>
       </ul>
       <p class="ap-mail">Offerte e ordini: <a href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%20d%27offerta%20dal%20sito">commerciale@progecom-poggese.it</a></p>
     </div>
     <figure class="ap-foto">
       <picture>
         <source media="(max-width:999px)" srcset="img/magazzino-169-640.jpg 640w, img/magazzino-169-960.jpg 960w, img/magazzino-169-1280.jpg 1280w" sizes="100vw" width="1280" height="720">
-        <img src="img/magazzino-43-960.jpg" srcset="img/magazzino-43-640.jpg 640w, img/magazzino-43-960.jpg 960w" sizes="(max-width:999px) 100vw, 520px" width="960" height="720"
+        <img src="img/magazzino-43-960.jpg" srcset="img/magazzino-43-640.jpg 640w, img/magazzino-43-960.jpg 960w" sizes="(max-width:999px) 100vw, 45vw" width="960" height="720"
           alt="Il magazzino crogioli di Progecom: scaffalature con i crogioli imballati su pallet">
       </picture>
-      <figcaption>Il magazzino crogioli, dal nostro video. <a href="https://www.youtube.com/watch?v=BqKKjrjrDq0" rel="noopener">Guarda il video</a></figcaption>
     </figure>
   </div>
 </section>
@@ -393,43 +410,51 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 
     <div class="gruppi">
       <section class="gruppo" aria-labelledby="g1">
-        <figure><img src="img/gruppo-fusione-480.jpg" srcset="img/gruppo-fusione-480.jpg 480w, img/gruppo-fusione-720.jpg 720w, img/gruppo-fusione-960.jpg 960w" sizes="(max-width:640px) 120px, (max-width:1279px) 45vw, 300px" width="480" height="360" alt="Bocca di un forno fusorio aperta, con l'interno incandescente" loading="lazy"></figure>
-        <div class="gt"><h3 id="g1">Fusione e forni</h3><span class="quante">5 famiglie</span></div>
+        <a class="gt" href="/prodotti/#fusione">
+          <span class="sigle"><span>Long-Life ISO</span><span>Resistenze SiC</span><span>Guaine NIT-SIL</span></span>
+          <span><h3 id="g1">Fusione e forni</h3><span class="quante">5 famiglie</span></span>
+        </a>
         <ul class="famiglie">
           <li><a href="/prodotti/crogioli/"><span class="fn"><span>Crogioli</span></span><span class="fd">Long-Life ISO, isostatici e SiC; tasca pirometrica fino al 60% della profondità. Pronti a magazzino.</span></a></li>
           <li><a href="/prodotti/ricambistica-forni/"><span class="fn"><span>Ricambistica forni</span></span><span class="fd">Resistenze a filo e SiC, pinze per crogioli, guaine NIT-SIL per termocoppie, ricambi per forni dosatori e a bassa pressione.</span></a></li>
-          <li><a href="/prodotti/forni-fusione-attesa/"><span class="fn"><span>Forni fusione e attesa</span></span><span class="fd">Forni fusori e di attesa, a gas ed elettrici. Anche usati, con il prezzo.</span></a></li>
-          <li><a href="/prodotti/refrattari/"><span class="fn"><span>Refrattari e isolanti</span></span><span class="fd">Scheda con i materiali.</span></a></li>
-          <li><a href="/prodotti/bruciatori/"><span class="fn"><span>Bruciatori preriscaldo stampi</span></span><span class="fd">Scheda con i modelli.</span></a></li>
+          <li><a href="/prodotti/forni-fusione-attesa/"><span class="fn"><span>Forni fusione e attesa</span></span><span class="fd">A crogiolo fissi e ribaltabili, elettrici e a gas; a bacino fisso, fusione rapida e doppia camera; scaldasiviere. Anche usati, con il prezzo.</span></a></li>
+          <li><a href="/prodotti/refrattari/"><span class="fn"><span>Refrattari e isolanti</span></span><span class="fd">Materassini in fibra ceramica da 64, 96 e 128&nbsp;kg/m³, classe 1200&nbsp;°C (EN 1094-1); guarnizioni, cordoni, maniche esotermiche e isotermiche.</span></a></li>
+          <li><a href="/prodotti/bruciatori/"><span class="fn"><span>Bruciatori preriscaldo stampi</span></span><span class="fd">Per il preriscaldo degli stampi: modelli e disegni nella scheda.</span></a></li>
         </ul>
       </section>
       <section class="gruppo" aria-labelledby="g2">
-        <figure><img src="img/gruppo-trattamento-480.jpg" srcset="img/gruppo-trattamento-480.jpg 480w, img/gruppo-trattamento-720.jpg 720w, img/gruppo-trattamento-960.jpg 960w" sizes="(max-width:640px) 120px, (max-width:1279px) 45vw, 300px" width="480" height="360" alt="Rete filtrante in fibra di vetro vista da vicino" loading="lazy"></figure>
-        <div class="gt"><h3 id="g2">Trattamento del metallo</h3><span class="quante">4 famiglie</span></div>
+        <a class="gt" href="/prodotti/#trattamento">
+          <span class="sigle"><span>Rotore Ø 250 x 80</span><span>2000 cicli</span><span>Ti+B · GR-21</span></span>
+          <span><h3 id="g2">Trattamento del metallo</h3><span class="quante">4 famiglie</span></span>
+        </a>
         <ul class="famiglie">
           <li><a href="/prodotti/degasaggio/"><span class="fn"><span>Degasaggio</span></span><span class="fd">Rotore a effetto pompa Ø 250 x 80&nbsp;mm, albero e rotore fino a 2000 cicli. Degasystem base e plus a colonna fissa.</span></a></li>
-          <li><a href="/prodotti/filtrazione/"><span class="fn"><span>Filtrazione alluminio e metalli</span></span><span class="fd">Rete con maglia da 1,0x1,0 a 2,5x2,5&nbsp;mm in rotoli da 1x100&nbsp;m, anche per getti in rame, ghisa e acciaio. Filtri in schiuma ceramica fino a 850&nbsp;°C.</span></a></li>
+          <li><a href="/prodotti/filtrazione/"><span class="fn"><span>Filtrazione alluminio e metalli</span></span><span class="fd">Rete con maglia 1,0x1,0, 1,5x1,5, 2,0x2,0 e 2,5x2,5&nbsp;mm in rotoli da 1x100&nbsp;m, anche per getti in rame, ghisa e acciaio. Filtri in schiuma ceramica fino a 850&nbsp;°C.</span></a></li>
           <li><a href="/prodotti/scorifica-affinazione/"><span class="fn"><span>Scorifica e affinazione</span></span><span class="fd">Sale scorificante granulare GR-21 e GR-25, pastiglie affinanti Ti+B da 250 e 500&nbsp;g.</span></a></li>
-          <li><a href="/prodotti/madrileghe/"><span class="fn"><span>Madrileghe</span></span><span class="fd">Anche madrileghe di rame.</span></a></li>
+          <li><a href="/prodotti/madrileghe/"><span class="fn"><span>Madrileghe</span></span><span class="fd">Di alluminio: induritori AlMn e AlCu, affinanti del grano AlTiB, AlSr per l'eutettico. Anche madrileghe di rame.</span></a></li>
         </ul>
       </section>
       <section class="gruppo" aria-labelledby="g3">
-        <figure><img src="img/gruppo-pressofusione-480.jpg" srcset="img/gruppo-pressofusione-480.jpg 480w, img/gruppo-pressofusione-720.jpg 720w, img/gruppo-pressofusione-960.jpg 960w" sizes="(max-width:640px) 120px, (max-width:1279px) 45vw, 300px" width="480" height="360" alt="Pistoni e fascia in lega di rame accanto a un pistone in acciaio" loading="lazy"></figure>
-        <div class="gt"><h3 id="g3">Pressofusione</h3><span class="quante">4 famiglie</span></div>
+        <a class="gt" href="/prodotti/#pressofusione">
+          <span class="sigle"><span>CuCo2Be · CuNiSiCr</span><span>420 HB</span><span>Ø 50-180 mm</span></span>
+          <span><h3 id="g3">Pressofusione</h3><span class="quante">4 famiglie</span></span>
+        </a>
         <ul class="famiglie">
           <li><a href="/prodotti/pistoni-iniezione/"><span class="fn"><span>Pistoni iniezione presse</span></span><span class="fd">In CuCo2Be, CuNiSiCr o acciaio indurito fino a 420&nbsp;HB, Ø 50-180&nbsp;mm, a filetto o a baionetta. Certificati di analisi su richiesta.</span></a></li>
           <li><a href="/prodotti/distaccanti/"><span class="fn"><span>Distaccanti e vernici isolanti</span></span><span class="fd">Plungher SE e SE/D, oli sintetici ecologici.</span></a></li>
-          <li><a href="/prodotti/automazioni-lubrificazione/"><span class="fn"><span>Automazioni lubrificazione</span></span><span class="fd">Scheda con gli impianti.</span></a></li>
-          <li><a href="/prodotti/trasporto-metallo-liquido/"><span class="fn"><span>Trasporto metallo liquido</span></span><span class="fd">Siviera ribaltabile MP da 400 e 600&nbsp;kg di alluminio.</span></a></li>
+          <li><a href="/prodotti/automazioni-lubrificazione/"><span class="fn"><span>Automazioni lubrificazione</span></span><span class="fd">Miscelazione acqua-distaccante per 6-8 presse, lubrifica pistoni a 1 o 2 ugelli, lancia flussi con carrello, filtraggio acqua glicole.</span></a></li>
+          <li><a href="/prodotti/trasporto-metallo-liquido/"><span class="fn"><span>Trasporto metallo liquido</span></span><span class="fd">Siviera ribaltabile MP da 400 e 600&nbsp;kg di alluminio; siviere, canaline in refrattario, tazze per caricatori lineari e rotativi.</span></a></li>
         </ul>
       </section>
       <section class="gruppo" aria-labelledby="g4">
-        <figure><img src="img/gruppo-controllo-480.jpg" srcset="img/gruppo-controllo-480.jpg 480w, img/gruppo-controllo-720.jpg 720w, img/gruppo-controllo-960.jpg 960w" sizes="(max-width:640px) 120px, (max-width:1279px) 45vw, 300px" width="480" height="360" alt="Valigetta per macrografia aperta, con reagenti e vaschetta" loading="lazy"></figure>
-        <div class="gt"><h3 id="g4">Leghe e controllo</h3><span class="quante">3 famiglie</span></div>
+        <a class="gt" href="/prodotti/#leghe">
+          <span class="sigle"><span>EN AB 46000</span><span>EN AB 47100</span><span>Al-Si · Al-Mg</span></span>
+          <span><h3 id="g4">Leghe e controllo</h3><span class="quante">3 famiglie</span></span>
+        </a>
         <ul class="famiglie">
-          <li><a href="/prodotti/leghe-di-alluminio/"><span class="fn"><span>Leghe di alluminio</span></span><span class="fd">Secondarie EN AB 46000, 46100, 47100, 47000 e 46400; primarie Al-Si, Al-Cu, Al-Mg e altre.</span></a></li>
-          <li><a href="/prodotti/leghe-di-zinco/"><span class="fn"><span>Leghe di zinco</span></span><span class="fd">Scheda con le norme.</span></a></li>
-          <li><a href="/prodotti/strumenti-di-controllo/"><span class="fn"><span>Strumenti di controllo</span></span><span class="fd">Pirometri, termocoppie, termoanalisi, pompa sottovuoto per l'idrogeno, valigetta per macrografia, liquidi penetranti. Con il corso di formazione.</span></a></li>
+          <li><a href="/prodotti/leghe-di-alluminio/"><span class="fn"><span>Leghe di alluminio</span></span><span class="fd">Secondarie EN AB 46000, 46100, 47100, 47000 e 46400; primarie Al-Si a basso ferro per ruote, volanti e forcelle moto, Al-Cu, Al-Mg e altre.</span></a></li>
+          <li><a href="/prodotti/leghe-di-zinco/"><span class="fn"><span>Leghe di zinco</span></span><span class="fd">In lingotti da 6-8&nbsp;kg circa; le tavole delle norme sono nella scheda.</span></a></li>
+          <li><a href="/prodotti/strumenti-di-controllo/"><span class="fn"><span>Strumenti di controllo</span></span><span class="fd">Bilancia di precisione, microscopio USB, pirometri, termocoppie, termoanalisi, pompa sottovuoto per l'idrogeno, valigetta per macrografia, liquidi penetranti. Con il corso di formazione.</span></a></li>
         </ul>
       </section>
     </div>
@@ -455,13 +480,13 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
         <li>Guaine NIT-SIL per termocoppie</li>
         <li>Ricambi per forni dosatori e a bassa pressione</li>
       </ul>
-      <a class="foto" href="mailto:commerciale@progecom-poggese.it?subject=Ricambio%20forno&amp;body=Buongiorno%2C%0D%0A%0D%0Ami%20serve%20questo%20ricambio%3A%0D%0ARicambio%20(resistenza%2C%20pinza%2C%20guaina%2C%20altro)%3A%20%0D%0AForno%20(marca%20e%20modello)%3A%20%0D%0ACodice%20o%20misura%3A%20%0D%0A%0D%0AAllego%20una%20foto%20del%20pezzo%20e%20della%20targa%20del%20forno.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0A">Manda la foto del pezzo da sostituire</a>
+      <a class="bt bt-bordo" href="mailto:commerciale@progecom-poggese.it?subject=Ricambio%20forno&amp;body=Buongiorno%2C%0D%0A%0D%0Ami%20serve%20questo%20ricambio%3A%0D%0ARicambio%20(resistenza%2C%20pinza%2C%20guaina%2C%20altro)%3A%20%0D%0AForno%20(marca%20e%20modello)%3A%20%0D%0ACodice%20o%20misura%3A%20%0D%0A%0D%0AAllego%20una%20foto%20del%20pezzo%20e%20della%20targa%20del%20forno.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0A">Manda la foto del pezzo da sostituire</a>
       <p class="nota">Nell'email: codice o misura del pezzo, marca e modello del forno, una foto della targa.</p>
     </div>
   </div>
 </section>
 
-<section class="sezione" id="servizio" aria-labelledby="t-servizio">
+<section class="sezione oro" id="servizio" aria-labelledby="t-servizio">
   <div class="box">
     <div class="sv-testa">
       <h2 id="t-servizio"><span class="etichetta">Servizio</span>Ordini evasi in tempi molto brevi, su tutto il territorio nazionale</h2>
@@ -469,8 +494,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
     <dl class="numeri">
       <div><dt class="num">1990</dt><dd>nasce Progecom, come azienda di servizi e di rappresentanza</dd></div>
       <div><dt class="num">16</dt><dd>famiglie di prodotto, ognuna con la sua scheda tecnica</dd></div>
-      <div><dt>Week-end</dt><dd>manutenzione e pulizia periodica dei forni</dd></div>
-      <div><dt>Italia</dt><dd>consegne su tutto il territorio nazionale</dd></div>
+      <div><dt class="num">3</dt><dd>metalli non ferrosi: alluminio, zinco e rame</dd></div>
     </dl>
     <ul class="punti">
       <li><b>Il magazzino lo teniamo noi</b><p>Così la fonderia non sostiene l'oneroso costo di gestione di un magazzino proprio.</p></li>
@@ -517,31 +541,35 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 </section>
 
 <section class="sezione" id="chi" aria-labelledby="t-chi">
-  <div class="box chi-griglia">
-    <div class="chi-testo">
-      <h2 id="t-chi"><span class="etichetta">Chi siamo</span>Progecom di Poggese Mauro, a Mestrino dal 1990</h2>
-      <p>PROGECOM nasce nel 1990 come azienda di servizi e di rappresentanza. Commercializza e assiste una vasta gamma di materie prime, prodotti e impianti per la fusione e il trattamento dei metalli non ferrosi, con i connessi controlli di processo. Oggi è l'impresa di Mauro Poggese, in Via Udine 24 a Mestrino (PD), con il supporto di strutture e tecnici d'importanti esperienze.</p>
-      <p class="perche">Perché Progecom? Offriamo nuove soluzioni tecniche, per migliorare e ottimizzare i processi produttivi.</p>
-    </div>
-    <div class="chi-lato">
-      <div class="rappr">
-        <span class="etichetta">Rappresentanze</span>
-        <span class="marca">STEMIN S.p.A.</span>
-        <p>Recupero, trattamento e valorizzazione di rottami metallici non ferrosi; leghe di alluminio secondario e semi-primario. Per supporto commerciale e tecnico sul territorio, contatta Progecom.</p>
-        <a href="/rappresentanze/stemin/">La rappresentanza STEMIN</a>
+  <div class="box">
+    <span class="etichetta">Chi siamo</span>
+    <h2 class="manifesto" id="t-chi"><b>Perché Progecom?</b> Offriamo nuove soluzioni tecniche, per migliorare e ottimizzare i processi produttivi.</h2>
+    <div class="chi-griglia">
+      <div class="chi-testo">
+        <h3>Progecom di Poggese Mauro, a Mestrino dal 1990</h3>
+        <p>PROGECOM nasce nel 1990 come azienda di servizi e di rappresentanza. Commercializza e assiste una vasta gamma di materie prime, prodotti e impianti per la fusione e il trattamento dei metalli non ferrosi, con i connessi controlli di processo. Oggi è l'impresa di Mauro Poggese, in Via Udine 24 a Mestrino (PD), con il supporto di strutture e tecnici d'importanti esperienze.</p>
+        <p class="clienti">Le soluzioni tecniche nascono dai processi produttivi «richiesti dai clienti, di importanti aziende leader».</p>
       </div>
-      <div class="video">
-        <a href="https://www.youtube.com/watch?v=BqKKjrjrDq0" rel="noopener">Video: il magazzino crogioli Progecom</a>
-        <p>Sul canale YouTube di Mauro Poggese.</p>
+      <div class="chi-lato">
+        <div class="rappr">
+          <span class="etichetta">Rappresentanze</span>
+          <span class="marca">STEMIN S.p.A.</span>
+          <p>Recupero, trattamento e valorizzazione di rottami metallici non ferrosi; leghe di alluminio secondario e semi-primario. Per supporto commerciale e tecnico sul territorio, contatta Progecom.</p>
+          <a href="/rappresentanze/stemin/">La rappresentanza STEMIN</a>
+        </div>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=BqKKjrjrDq0" rel="noopener">Video: il magazzino crogioli Progecom</a>
+          <p>Sul canale YouTube di Mauro Poggese.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sezione scura" id="richiesta" aria-labelledby="t-richiesta">
+<section class="sezione chiara" id="richiesta" aria-labelledby="t-richiesta">
   <div class="box ct-griglia">
     <div class="ct-recapiti">
-      <h2 id="t-richiesta"><span class="etichetta">Richiesta d'offerta</span>Chiamaci, o mandaci il disegno</h2>
+      <h2 id="t-richiesta"><span class="etichetta">Richiesta d'offerta e contatti</span>Chiamaci, o mandaci il disegno</h2>
       <a class="telgrande num" href="tel:+393486046875">348 604 6875</a>
       <p class="chi-ris">+39 348 604 6875, il cellulare di Mauro Poggese.</p>
       <ul class="caselle">
@@ -618,7 +646,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
         <h2>Contatti</h2>
         <address>
           <ul>
-            <li><a class="num" href="tel:+393486046875">+39 348 604 6875</a></li>
+            <li><a class="num" href="tel:+393486046875">+39 348 604 6875</a><span class="sotto">il cellulare di Mauro Poggese</span></li>
             <li><a href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%20d%27offerta%20dal%20sito">commerciale@progecom-poggese.it</a></li>
             <li><a href="mailto:info@progecom-poggese.it?subject=Informazioni%20dal%20sito">info@progecom-poggese.it</a></li>
             <li>Via Udine 24, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Udine+24+35035+Mestrino+PD" rel="noopener">Vai alla mappa</a></li>

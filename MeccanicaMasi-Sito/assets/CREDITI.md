@@ -40,24 +40,24 @@ Scaricate da images.unsplash.com e images.pexels.com e portate a 2400 px di lato
 
 ## Usate nella home (`sito/img/`, livello professionale, aggiornato il 3 novembre 2026)
 
-Solo foto di Meccanica Masi, dalla loro libreria media (`originali/`), uso da confermare con l'azienda. Nessuna foto di repertorio: le dieci di `esterne/` restano scaricate ma **non sono usate** (nessuna era più in pagina già dal 2 novembre; non è stato tolto nulla in questo passaggio). Nessuno scontorno. Tagli e WebP con `_prova/script/pro_img.py` (misure in `_prova/script/pro_img.json`): trattamento comune (bianco verso il grigio neutro a metà, saturazione 0,82, contrasto 1,06), nessuna foto ingrandita oltre la misura del taglio; tolte dai tagli le scritte "SHOT ON MI".
+Solo foto di Meccanica Masi, dalla loro libreria media (`originali/`), uso da confermare con l'azienda. Nessuna foto di repertorio: le dieci di `esterne/` restano scaricate ma **non sono usate** (nessuna era più in pagina già dal 2 novembre; non è stato tolto nulla in questo passaggio). Nessuno scontorno. Tagli e WebP con `_prova/script/pro_img.py` (misure in `_prova/script/pro_img.json`): trattamento comune del ritocco finale (autocontrasto 0,5 %, bianco portato al grigio neutro per l'80 %, saturazione 0,45, contrasto 1,05, leggero viraggio freddo), due soli formati (2:1 e 4:3), nessuna foto ingrandita oltre la misura del taglio; tolte dai tagli le scritte "SHOT ON MI".
 
 | File in `sito/img/` | Origine in `originali/` | Taglio (px dell'originale) | Dove |
 |---|---|---|---|
 | `porta-azienda-*` | `2026-10_IMG20230705092448.jpg` (598x449) | 0,10-598,309, 2:1 | apertura, "In azienda da voi" |
-| `porta-officina-*` | `2026-10_IMG_20200108_174328.jpg` (598x797) | 0,140-598,439, 2:1 | apertura, "In officina da noi" |
+| `porta-officina-*` | `2026-10_IMG20240312141719.jpg` (598x797) | 0,225-598,524, 2:1 | apertura, "In officina da noi" (il tornio CNC sulla puleggia; la Soraluce col pezzo arrugginito non è più usata) |
 | `man-stampa-*` | `2026-10_IMG_20210409_073157.jpg` | 78,0-598,390, 4:3 | scheda macchine da stampa |
 | `man-confez-*` | `2026-10_IMG_20210901_112738.jpg` | 78,0-598,390, 4:3 | scheda sacchettifici e confezionatrici |
 | `man-nastri-*` | `2026-10_IMG-20201212-WA0007.jpg` | 0,150-598,599, 4:3 | scheda nastri trasportatori |
-| `lav-tornitura-*` | `2026-10_IMG20240312141719.jpg` | 0,110-598,559, 4:3 | scheda tornitura |
+| `lav-tornitura-*` | `2026-07_WhatsApp-Image-2026-03-28-at-11.21.23-1.jpeg` (1600x900) | 400,130-1400,880, 4:3 | scheda tornitura (rullo pinza sul banco) |
 | `lav-fresatura-*` | `2026-10_20260728_195648-e1792777395888.jpg` | 55,0-544,367, 4:3 | scheda fresatura CNC |
 | `lav-lamiera-*` | `2026-10_IMG-20250217-WA0011.jpg` | 0,170-512,554, 4:3 | scheda lamiera |
 | `lav-saldatura-*` | `2026-10_IMG20250128164821.jpg` | 0,140-683,652, 4:3 | scheda saldatura |
-| `lavoro-man-roland-*` | `2026-06_Progetti-2.jpeg` | 300,0-1500,900, 4:3 | lavoro: supporto Man-Roland |
+| `lavoro-man-roland-*` | `2026-06_Progetti-2.jpeg` | 440,0-1573,850, 4:3 | lavoro: supporto Man-Roland |
 | `lavoro-pulegge-*` | `2026-06_progetti-parte-3-e1791920314353.jpeg` | 250,0-1463,910, 4:3 | lavoro: pulegge dal pieno |
-| `lavoro-leva-*` | `2026-07_WhatsApp-Image-2026-06-08-at-20.40.41.avif` | 0,0-1200,1500, 4:5 | lavoro: leva in ghisa (foto intera, non scontornata) |
-| `lavoro-mandrino-*` | `2026-06_WhatsApp-Image-2026-06-12-at-19.11.51.webp` | 0,100-1200,1600, 4:5 | lavoro: mandrino espansibile |
-| `lavoro-giornali-*` | `2026-07_WhatsApp-Image-2026-03-28-at-11.24.08-10.jpeg` | 100,20-1140,1320, 4:5 | lavoro: linea spedizione giornali |
+| `lavoro-leva-*` | `2026-07_WhatsApp-Image-2026-06-08-at-20.40.41.avif` | 0,620-1200,1520, 4:3 | lavoro: leva in ghisa (dettaglio della tasca e della dentatura, non scontornata) |
+| `lavoro-mandrino-*` | `2026-06_WhatsApp-Image-2026-06-12-at-19.11.51.webp` | 0,600-1200,1500, 4:3 | lavoro: mandrino espansibile |
+| `lavoro-giornali-*` | `2026-07_WhatsApp-Image-2026-03-28-at-11.24.08-10.jpeg` | 0,480-1200,1380, 4:3 | lavoro: linea spedizione giornali |
 | `logo-masi-scritta.svg`, `logo-masi-scritta-chiaro.svg` | `logo-masi-ingranaggi.svg` | solo la scritta vettoriale | testata e piede (la chiara con il nero portato a bianco) |
 
 Non più usate dalla versione 1 ("Dal pieno", copiata in `_prova/versione-1-originale/`): le due leve scontornate (`leva-grezza-*`, `leva-finita-*`), il mandrino in fascia a tutta larghezza, la linea giornali e le pulegge nei vecchi tagli, l'interno della macchina da stampa a 598 px (ora nel taglio 2:1 dell'apertura).

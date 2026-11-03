@@ -42,6 +42,7 @@ ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 3px solid var(--arancio); outline-offset: 3px; }
 .scuro :focus-visible, .arancio :focus-visible, .piede :focus-visible { outline-color: var(--bianco); }
 [id] { scroll-margin-top: 96px; }
+.intero { white-space: nowrap; }
 .salta { position: absolute; left: -9999px; top: 0; }
 .salta:focus { left: 16px; top: 16px; z-index: 30; background: var(--bianco); padding: 12px 16px; }
 .contenitore { width: 100%; max-width: calc(1280px + 2 * var(--m)); margin: 0 auto; padding: 0 var(--m); }
@@ -66,7 +67,8 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 .testata { position: sticky; top: 0; z-index: 20; background: var(--bianco); border-bottom: 1px solid transparent; transition: border-color .15s; }
 .testata.mossa { border-bottom-color: var(--filetto); }
 .testata .contenitore { display: flex; align-items: center; gap: 40px; height: 88px; }
-.marchio img { width: 176px; }
+.marchio { flex: 0 1 216px; min-width: 0; }
+.marchio img { width: 100%; max-width: 216px; }
 .testata nav { margin-left: auto; }
 .testata nav ul { display: flex; gap: 32px; font-size: 17px; }
 .testata nav a { text-decoration: none; padding: 8px 0; }
@@ -76,11 +78,20 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 .lingua:hover { text-decoration: underline; }
 .tel-testata { min-height: 48px; padding: 0 18px; }
 .menu-bottone { display: none; }
+/* il bottone del menu e' lo stesso bottone bordato, quadrato, con le tre righe */
+.menu-bottone .linee, .menu-bottone .linee::before, .menu-bottone .linee::after { display: block; width: 20px; height: 2px; background: var(--inchiostro); position: relative; transition: transform .15s, background-color .15s; }
+.menu-bottone .linee::before, .menu-bottone .linee::after { content: ""; position: absolute; left: 0; }
+.menu-bottone .linee::before { top: -6px; }
+.menu-bottone .linee::after { top: 6px; }
+.menu-bottone[aria-expanded="true"] .linee { background: transparent; }
+.menu-bottone[aria-expanded="true"] .linee::before { top: 0; transform: rotate(45deg); }
+.menu-bottone[aria-expanded="true"] .linee::after { top: 0; transform: rotate(-45deg); }
 
-/* apertura */
-.apertura { display: grid; grid-template-columns: minmax(0, 1fr) min(44vw, 698px); column-gap: 48px; padding-bottom: 56px; }
-.ap-testo { padding-left: max(var(--m), calc((100vw - 1280px) / 2)); padding-top: 56px; }
-.ap-testo .etichetta { color: var(--arancio); }
+/* apertura: testo e foto nella stessa griglia della testata; la foto arriva al fondo del testo */
+.apertura { padding-bottom: 32px; }
+.apertura .contenitore { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); column-gap: 48px; }
+.ap-testo { padding-top: 40px; }
+.ap-testo .etichetta { color: var(--arancio); font-size: 17px; }
 .apertura h1 { margin-top: 20px; font-size: clamp(36px, 4.45vw, 64px); line-height: 1.05; font-weight: 400; letter-spacing: -0.015em; font-variation-settings: "FLAR" 100, "VOLM" 0; }
 .apertura h1 .sotto { display: block; margin-top: 10px; font-size: clamp(20px, 2.5vw, 36px); line-height: 1.2; letter-spacing: -0.005em; }
 .ap-lead { margin-top: 28px; font-size: 22px; line-height: 1.45; max-width: 31em; }
@@ -88,21 +99,22 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 .ap-azioni .solo-telefono { display: none; }
 .ap-nota { margin-top: 24px; font-size: 17px; line-height: 1.5; color: var(--testo-2); max-width: 36em; }
 .ap-nota a { color: var(--inchiostro); }
+.ap-nota .indirizzo { color: var(--testo-2); }
 .ap-campionatura { margin-top: 8px; }
-.ap-foto { margin-top: 56px; }
-.ap-foto img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.ap-foto { margin-top: 40px; position: relative; min-height: 360px; }
+.ap-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
 
 /* sottopiedi, blocco antracite */
 .scuro { background: var(--inchiostro); color: var(--bianco); }
-.sottopiedi { padding: 64px 0 var(--sezione); }
-.tipi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; margin-top: 40px; }
-.tipo { display: grid; grid-template-columns: 120px minmax(0, 1fr); column-gap: 24px; align-items: center; text-decoration: none; border-radius: var(--raggio); }
-.tipo img { width: 120px; aspect-ratio: 227 / 367; border-radius: var(--raggio); }
+.sottopiedi { padding: 96px 0 var(--sezione); }
+.tipi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; margin-top: 32px; }
+.tipo { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 24px; align-items: center; text-decoration: none; border-radius: var(--raggio); }
+.tipo img { width: 128px; aspect-ratio: 227 / 367; border-radius: var(--raggio); }
 .tipo h3 { font-size: 22px; }
 .tipo .vai { display: inline-block; margin-top: 10px; font-size: 17px; color: var(--testo-2-scuro); text-decoration: underline; text-underline-offset: .2em; }
 .tipo:hover h3 { text-decoration: underline; text-underline-offset: .18em; }
 .tipo:hover .vai { color: var(--bianco); }
-.materiali { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--filetto-scuro); }
+.materiali { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; margin-top: 28px; padding: 24px 0; border-top: 1px solid var(--filetto-scuro); border-bottom: 1px solid var(--filetto-scuro); }
 .materiali div { grid-column: span 6; }
 .materiali .etichetta { color: var(--testo-2-scuro); }
 .materiali p:not(.etichetta) { margin-top: 8px; }
@@ -123,13 +135,15 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 .arancio { background: var(--arancio); color: var(--bianco); }
 .azienda { padding: var(--sezione) 0; }
 .azienda .griglia { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; }
-.az-testo { grid-column: 1 / 6; }
-.az-testo h2 { margin-top: 16px; }
-.az-testo p:not(.etichetta) { margin-top: 20px; }
-.numeri { grid-column: 7 / 13; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 32px; align-content: start; padding-top: 8px; }
-.numeri li { border-top: 1px solid rgba(255, 255, 255, .45); padding-top: 16px; }
-.numeri strong { display: block; font-size: 64px; line-height: 1; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; font-variation-settings: "FLAR" 100, "VOLM" 0; }
-.numeri span { display: block; margin-top: 12px; font-size: 17px; line-height: 1.4; }
+.az-titolo { grid-column: 1 / 7; }
+.az-titolo h2 { margin-top: 16px; }
+.az-testo { grid-column: 7 / 13; padding-top: 36px; }
+.az-testo p + p { margin-top: 16px; }
+/* il gesto di scala della pagina: quattro numeri a tutta larghezza */
+.numeri { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 32px; margin-top: 80px; }
+.numeri li { border-top: 1px solid rgba(255, 255, 255, .5); padding-top: 20px; }
+.numeri strong { display: block; font-size: 120px; line-height: .9; font-weight: 400; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; font-variation-settings: "FLAR" 100, "VOLM" 0; }
+.numeri span { display: block; margin-top: 16px; font-size: 17px; line-height: 1.4; }
 
 /* richiesta di campionatura */
 .richiesta { background: var(--grigio-chiaro); padding: var(--sezione) 0; }
@@ -174,7 +188,7 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 .piede .col li + li { margin-top: 8px; }
 .piede a { text-decoration: none; }
 .piede a:hover { text-decoration: underline; }
-.piede-marchio img { width: 176px; }
+.piede-marchio img { width: 216px; }
 .piede-marchio p { margin-top: 20px; color: var(--testo-2-scuro); max-width: 18em; }
 .piede-basso { display: flex; justify-content: space-between; gap: 24px; padding-top: 24px; padding-bottom: 36px; border-top: 1px solid var(--filetto-scuro); font-size: 14px; line-height: 1.6; color: var(--testo-2-scuro); }
 .piede-basso .legali { white-space: nowrap; }
@@ -186,8 +200,8 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .testata .contenitore { gap: 28px; }
   .testata nav ul { gap: 24px; }
   .tipi { column-gap: 24px; }
-  .tipo { grid-template-columns: 100px minmax(0, 1fr); column-gap: 18px; }
-  .tipo img { width: 100px; }
+  .tipo { grid-template-columns: 110px minmax(0, 1fr); column-gap: 18px; }
+  .tipo img { width: 110px; }
   .tipo h3 { font-size: 19px; }
 }
 /* tablet orizzontale: il menu va nel bottone */
@@ -201,7 +215,10 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .testata nav .lingua-menu { display: block; }
   .testata .contenitore { gap: 16px; }
   .marchio { margin-right: auto; }
-  .menu-bottone { display: inline-flex; align-items: center; min-height: 48px; padding: 0 4px; font: inherit; font-size: 17px; font-weight: 700; background: none; border: 0; color: var(--inchiostro); cursor: pointer; text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+  .menu-bottone { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: none; border: 2px solid var(--inchiostro); border-radius: var(--raggio); color: var(--inchiostro); cursor: pointer; }
+  .menu-bottone:hover { background: var(--grigio-chiaro); }
+  .ap-foto { position: static; min-height: 0; align-self: start; }
+  .ap-foto img { position: static; height: auto; aspect-ratio: 3 / 2; object-position: 50% 50%; }
   .tipi { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; }
   .tipo { grid-template-columns: 80px minmax(0, 1fr); column-gap: 14px; }
   .tipo img { width: 80px; }
@@ -209,8 +226,10 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .reparti { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
   .macchine { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .macchine .etichetta { grid-column: 1 / -1; }
-  .az-testo { grid-column: 1 / -1; }
-  .numeri { grid-column: 1 / -1; margin-top: 56px; }
+  .az-titolo, .az-testo { grid-column: 1 / -1; }
+  .az-testo { padding-top: 0; margin-top: 20px; }
+  .numeri { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; }
+  .numeri strong { font-size: 96px; }
   .ri-testo, .modulo { grid-column: 1 / -1; }
   .modulo { margin-top: 48px; }
   .dv-testo { grid-column: 1 / 7; }
@@ -223,15 +242,16 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   body { font-size: 17px; }
   h2 { font-size: 28px; line-height: 1.15; }
   h3 { font-size: 19px; }
-  .testata .contenitore { height: 64px; gap: 10px; }
-  .marchio img { width: 124px; }
+  .testata .contenitore { height: 72px; gap: 10px; }
+  .marchio { flex-basis: 150px; }
   .lingua { display: none; }
-  .tel-testata { min-height: 44px; padding: 0 14px; font-size: 16px; }
-  .menu-bottone { min-height: 44px; font-size: 16px; }
-  [id] { scroll-margin-top: 72px; }
-  .apertura { grid-template-columns: minmax(0, 1fr); padding-bottom: 0; }
-  .ap-testo { padding: 24px var(--m) 0; }
-  .apertura h1 { margin-top: 12px; font-size: clamp(28px, 8.7vw, 44px); line-height: 1.08; }
+  .tel-testata { flex: none; min-height: 48px; padding: 0 14px; font-size: 16px; }
+  [id] { scroll-margin-top: 80px; }
+  .apertura { padding-bottom: 0; }
+  .apertura .contenitore { grid-template-columns: minmax(0, 1fr); }
+  .ap-testo { padding-top: 24px; }
+  .ap-testo .etichetta { font-size: 14px; }
+  .apertura h1 { margin-top: 12px; font-size: clamp(30px, 9.3vw, 44px); line-height: 1.08; }
   .apertura h1 .sotto { margin-top: 6px; font-size: clamp(18px, 5.2vw, 26px); }
   .ap-lead { margin-top: 16px; font-size: 17px; line-height: 1.5; }
   .ap-azioni { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
@@ -240,8 +260,7 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .ap-azioni .solo-telefono { display: inline-flex; }
   .ap-azioni .solo-computer { display: none; }
   .ap-nota { margin-top: 16px; font-size: 16px; }
-  .ap-nota .indicazioni-testo { display: none; }
-  .ap-foto { margin-top: 28px; }
+  .ap-foto { margin: 28px calc(-1 * var(--m)) 0; }
   .ap-foto img { max-width: 698px; margin: 0 auto; }
   .capo { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
   .contenitore.griglia { grid-template-columns: minmax(0, 1fr); }
@@ -253,7 +272,7 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .tipo img { width: 60px; }
   .tipo h3 { font-size: 17px; }
   .tipo .vai { margin-top: 4px; font-size: 16px; }
-  .materiali { grid-template-columns: minmax(0, 1fr); row-gap: 24px; margin-top: 32px; padding-top: 0; border-top: 0; }
+  .materiali { grid-template-columns: minmax(0, 1fr); row-gap: 20px; margin-top: 28px; padding: 20px 0; border-bottom: 0; }
   .materiali div { grid-column: 1; }
   .reparti { grid-template-columns: minmax(0, 1fr); row-gap: 28px; margin-top: 32px; }
   .reparto { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 16px; align-items: start; }
@@ -264,8 +283,9 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .macchine { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 40px; padding-top: 20px; }
   .macchine li strong { font-size: 19px; }
   .macchine li span { font-size: 16px; }
-  .numeri { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; margin-top: 40px; }
-  .numeri strong { font-size: 44px; }
+  .numeri { gap: 32px 20px; margin-top: 40px; }
+  .numeri li { padding-top: 14px; }
+  .numeri strong { font-size: clamp(48px, 16.4vw, 64px); }
   .numeri span { font-size: 16px; }
   .modulo { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; margin: 36px calc(-1 * var(--m)) 0; border-radius: 0; }
   .recapiti div, .dv-fatti div { grid-template-columns: 84px minmax(0, 1fr); font-size: 16px; }
@@ -282,8 +302,11 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   .piede-alto { grid-template-columns: minmax(0, 1fr); row-gap: 36px; padding-top: 64px; padding-bottom: 40px; }
   .piede-basso { flex-direction: column; gap: 12px; }
 }
+/* sui telefoni stretti Indicazioni e Chiama di "Dove siamo" uno sotto l'altro: il numero non entra in mezza colonna */
+@media (max-width: 419px) {
+  .dv-azioni { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 359px) {
-  .marchio img { width: 104px; }
   .tel-testata { padding: 0 10px; font-size: 15px; }
   .ap-azioni .btn, .dv-azioni .btn { font-size: 15px; padding: 0 8px; }
 }
@@ -307,28 +330,30 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
     </nav>
     <a class="lingua" href="https://www.tollin.it/welcome.html" hreflang="en" lang="en">English</a>
     <a class="btn btn-bordo tel-testata" href="tel:+39049640620" aria-label="Chiama 049 640620">049&nbsp;640620</a>
-    <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span class="linee" aria-hidden="true"></span></button>
   </div>
 </header>
 
 <main id="principale">
 
 <section class="apertura" aria-labelledby="titolo">
+ <div class="contenitore">
   <div class="ap-testo">
-    <p class="etichetta">Solettificio dal 1970 · Villatora di Saonara (PD)</p>
+    <p class="etichetta">Solettificio dal 1970 · <span class="intero">Villatora di Saonara (PD)</span></p>
     <h1 id="titolo">Sottopiedi per calzature <span class="sotto">da uomo, da donna e da bambino</span></h1>
     <p class="ap-lead">Per i calzaturifici: li progettiamo sulla forma del vostro modello, li tagliamo e li garbiamo in via Irpinia&nbsp;15, a&nbsp;Villatora di Saonara.</p>
     <div class="ap-azioni">
       <a class="btn principale" href="tel:+39049640620">Chiama 049&nbsp;640620</a>
-      <a class="btn btn-bordo" href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi&amp;body=Buongiorno%2C%0D%0Avorremmo%20informazioni%20sui%20vostri%20sottopiedi.%0D%0A%0D%0ACalzaturificio%3A%20%0D%0ATipo%20di%20sottopiede%3A%20%0D%0ATelefono%3A%20%0D%0A"><span class="solo-computer">Scrivi a info@tollin.it</span><span class="solo-telefono">Scrivi</span></a>
+      <a class="btn btn-bordo" href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi"><span class="solo-computer">Scrivi a info@tollin.it</span><span class="solo-telefono">Scrivi</span></a>
       <a class="btn btn-bordo solo-telefono" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Indicazioni</a>
     </div>
-    <p class="ap-nota">Via Irpinia 15, Zona Artigianale, 35020 Villatora di Saonara (PD)<span class="indicazioni-testo">, <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">indicazioni</a></span>. Per ritiri e consegne chiamate prima di passare.</p>
+    <p class="ap-nota"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Via Irpinia 15, Zona Artigianale, 35020 Villatora di Saonara (PD)</a>. Per ritiri e consegne chiamate prima di passare.</p>
     <p class="ap-nota ap-campionatura">Per una campionatura si parte dalla forma del vostro modello: <a href="#richiesta">scriveteci tipo, materiale, numerata e quantità</a>.</p>
   </div>
   <figure class="ap-foto">
     <img src="img/mani-698.webp" srcset="img/mani-480.webp 480w, img/mani-698.webp 698w" sizes="(max-width: 859px) 100vw, min(44vw, 698px)" width="698" height="465" fetchpriority="high" alt="Due mani sistemano in una scatola una fila di sottopiedi neri già garbati per il tacco.">
   </figure>
+ </div>
 </section>
 
 <section class="sottopiedi scuro" id="sottopiedi" aria-labelledby="t-sottopiedi">
@@ -337,17 +362,6 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
       <h2 id="t-sottopiedi">I nostri sottopiedi</h2>
       <p>Nove tipi dal nostro catalogo. Ognuno si progetta sulla forma del vostro modello: toccate un tipo per chiederlo.</p>
     </div>
-    <ul class="tipi">
-      <li><a class="tipo" href="#richiesta" data-tipo="Con Ocram schiuma e puntina in Texon"><img src="img/sp1.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con Ocram schiuma e puntina in Texon</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Con materiale Adhegel traspirante"><img src="img/sp2.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con materiale Adhegel traspirante</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Con tessuto sintetico in pianta"><img src="img/sp3.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con tessuto sintetico in pianta</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="In vero cuoio"><img src="img/sp4.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede in vero cuoio</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Con antibatterico Greenlife"><img src="img/sp5.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con antibatterico Greenlife</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Con lana intera"><img src="img/sp6.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con lana intera</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Con fisca in pianta"><img src="img/sp7.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede con fisca in pianta</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Per sandalo con incastri a ragno"><img src="img/sp8.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede per sandalo con incastri a ragno</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-      <li><a class="tipo" href="#richiesta" data-tipo="Per bambino in soffice lattice"><img src="img/sp9.webp" width="227" height="367" loading="lazy" alt=""><div><h3>Sottopiede per bambino in soffice lattice</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
-    </ul>
     <div class="materiali">
       <div>
         <p class="etichetta">Materiali</p>
@@ -358,6 +372,17 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
         <p>Tagliamo anche suole, puntali, contrafforti e tallonette, su cellulosico accoppiato, cartone fibrato, pelle e cuoio.</p>
       </div>
     </div>
+    <ul class="tipi">
+      <li><a class="tipo" href="#richiesta" data-tipo="Con Ocram schiuma e puntina in Texon"><img src="img/sp1.webp" width="227" height="367" loading="lazy" alt="Sottopiede chiaro visto in pianta, con la puntina separata da una riga."><div><h3>Sottopiede con Ocram schiuma e puntina in Texon</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Con materiale Adhegel traspirante"><img src="img/sp2.webp" width="227" height="367" loading="lazy" alt="Sottopiede visto in pianta, chiaro in punta e rosato verso il tallone."><div><h3>Sottopiede con materiale Adhegel traspirante</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Con tessuto sintetico in pianta"><img src="img/sp3.webp" width="227" height="367" loading="lazy" alt="Sottopiede visto in pianta, scuro in punta e chiaro verso il tallone."><div><h3>Sottopiede con tessuto sintetico in pianta</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="In vero cuoio"><img src="img/sp4.webp" width="227" height="367" loading="lazy" alt="Sottopiede chiaro a punta squadrata, visto in pianta."><div><h3>Sottopiede in vero cuoio</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Con antibatterico Greenlife"><img src="img/sp5.webp" width="227" height="367" loading="lazy" alt="Sottopiede visto in pianta, con le scritte verdi del materiale."><div><h3>Sottopiede con antibatterico Greenlife</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Con lana intera"><img src="img/sp6.webp" width="227" height="367" loading="lazy" alt="Sottopiede nero garbato, visto di profilo."><div><h3>Sottopiede con lana intera</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Con fisca in pianta"><img src="img/sp7.webp" width="227" height="367" loading="lazy" alt="Sottopiede garbato per il tacco, color cuoio con la punta chiara, visto di profilo."><div><h3>Sottopiede con fisca in pianta</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Per sandalo con incastri a ragno"><img src="img/sp8.webp" width="227" height="367" loading="lazy" alt="Sottopiede per sandalo visto in pianta, chiaro con le fasce scure degli incastri."><div><h3>Sottopiede per sandalo con incastri a ragno</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+      <li><a class="tipo" href="#richiesta" data-tipo="Per bambino in soffice lattice"><img src="img/sp9.webp" width="227" height="367" loading="lazy" alt="Sottopiede rosa da bambino, visto in pianta."><div><h3>Sottopiede per bambino in soffice lattice</h3><span class="vai">Chiedete questo tipo</span></div></a></li>
+    </ul>
   </div>
 </section>
 
@@ -404,9 +429,11 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
 
 <section class="azienda arancio" id="azienda" aria-labelledby="t-azienda">
   <div class="contenitore griglia">
-    <div class="az-testo">
+    <div class="az-titolo">
       <p class="etichetta">Azienda</p>
       <h2 id="t-azienda">Dal 1970, a conduzione familiare</h2>
+    </div>
+    <div class="az-testo">
       <p>La nostra azienda nasce nel 1970 come piccola realtà a conduzione familiare. Uniamo la tradizione artigianale e l’alta tecnologia della nostra struttura, per un prodotto di qualità rigorosamente Made in Italy.</p>
       <p>Una consegna puntuale in tempi rapidi e un ottimo rapporto qualità-prezzo.</p>
     </div>
@@ -415,9 +442,29 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
       <li><strong>12</strong><span>persone in azienda</span></li>
       <li><strong>4</strong><span>reparti sotto lo stesso tetto</span></li>
       <li><strong>9</strong><span>tipi di sottopiede in catalogo</span></li>
-      <li><strong>7</strong><span>materiali, dal cuoio alla lana</span></li>
-      <li><strong>4</strong><span>altri tagli: suole, puntali, contrafforti, tallonette</span></li>
     </ul>
+  </div>
+</section>
+
+<section class="dove" id="dove" aria-labelledby="t-dove">
+  <div class="contenitore griglia">
+    <div class="dv-testo">
+      <h2 id="t-dove">Dove siamo</h2>
+      <address class="dv-indirizzo">Via Irpinia 15, Zona Artigianale<br>35020 Villatora di Saonara (PD)</address>
+      <div class="dv-azioni">
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Indicazioni</a>
+        <a class="btn btn-bordo" href="tel:+39049640620">Chiama 049&nbsp;640620</a>
+      </div>
+      <dl class="dv-fatti">
+        <div><dt>Orari</dt><dd>Per ritiri e consegne chiamate prima di passare.</dd></div>
+        <div><dt>Consegne</dt><dd>Con il nostro furgone: una consegna puntuale in tempi rapidi.</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">info@tollin.it</a></dd></div>
+        <div><dt>Fax</dt><dd>049&nbsp;644643</dd></div>
+      </dl>
+    </div>
+    <figure class="dv-foto">
+      <img src="img/furgone-720.webp" srcset="img/furgone-480.webp 480w, img/furgone-720.webp 720w" sizes="(max-width: 859px) 100vw, 44vw" width="720" height="480" loading="lazy" alt="Il furgone giallo con la scritta Tollin e il telefono, porte aperte e cartoni sul bancale, davanti al capannone di via Irpinia.">
+    </figure>
   </div>
 </section>
 
@@ -434,11 +481,11 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
       </dl>
     </div>
     <form class="modulo" id="modulo" novalidate>
-      <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
+      <div class="campo"><label for="f-nome">Nome e cognome <span class="facoltativo">(facoltativo)</span></label><input id="f-nome" name="Nome" autocomplete="name"></div>
       <div class="campo"><label for="f-azienda">Calzaturificio</label><input id="f-azienda" name="Calzaturificio" autocomplete="organization" required></div>
-      <div class="campo"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" autocomplete="email" required></div>
-      <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel" required></div>
-      <div class="campo"><label for="f-tipo">Tipo di sottopiede</label>
+      <div class="campo"><label for="f-email">Email <span class="facoltativo">(facoltativo)</span></label><input id="f-email" name="Email" type="email" autocomplete="email"></div>
+      <div class="campo"><label for="f-tel">Telefono <span class="facoltativo">(facoltativo)</span></label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel"></div>
+      <div class="campo largo"><label for="f-tipo">Tipo di sottopiede</label>
         <select id="f-tipo" name="Tipo di sottopiede">
           <option value="">Da definire insieme</option>
           <option>Con Ocram schiuma e puntina in Texon</option>
@@ -459,32 +506,18 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
           <option>Cuoio</option><option>Schiuma di lattice</option><option>Pelle</option><option>Gommapiuma</option><option>Lana</option><option>Tessuto sintetico</option><option>Antibatterico</option>
         </select>
       </div>
+      <div class="campo"><label for="f-forma">Forma o disegno del modello</label>
+        <select id="f-forma" name="Forma o disegno del modello">
+          <option value="">Da definire al telefono</option>
+          <option>Allego il disegno o il file alla mail</option>
+          <option>Ho la forma: ditemi come mandarla</option>
+        </select>
+      </div>
       <div class="campo largo"><label for="f-quantita">Modello, numerata e quantità <span class="facoltativo">(facoltativo)</span></label><input id="f-quantita" name="Modello, numerata e quantità"></div>
       <div class="campo largo"><label for="f-messaggio">Messaggio <span class="facoltativo">(facoltativo)</span></label><textarea id="f-messaggio" name="Messaggio"></textarea></div>
       <p class="nota">Si apre una mail già scritta nel vostro programma di posta: se avete il disegno o il file della forma, allegatelo lì prima di inviarla.</p>
       <div class="invio"><button class="btn" type="submit">Prepara la mail</button><p class="avviso" role="status" aria-live="polite"></p></div>
     </form>
-  </div>
-</section>
-
-<section class="dove" id="dove" aria-labelledby="t-dove">
-  <div class="contenitore griglia">
-    <div class="dv-testo">
-      <h2 id="t-dove">Dove siamo</h2>
-      <address class="dv-indirizzo">Via Irpinia 15, Zona Artigianale<br>35020 Villatora di Saonara (PD)</address>
-      <div class="dv-azioni">
-        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Indicazioni</a>
-        <a class="btn btn-bordo" href="tel:+39049640620">Chiama 049&nbsp;640620</a>
-      </div>
-      <dl class="dv-fatti">
-        <div><dt>Orari</dt><dd>Per ritiri e consegne chiamate prima di passare.</dd></div>
-        <div><dt>Consegne</dt><dd>Con il nostro furgone: una consegna puntuale in tempi rapidi.</dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">info@tollin.it</a></dd></div>
-      </dl>
-    </div>
-    <figure class="dv-foto">
-      <img src="img/furgone-720.webp" srcset="img/furgone-480.webp 480w, img/furgone-720.webp 720w" sizes="(max-width: 859px) 100vw, 44vw" width="720" height="480" loading="lazy" alt="Il furgone giallo con la scritta Tollin e il telefono, porte aperte e cartoni sul bancale, davanti al capannone di via Irpinia.">
-    </figure>
   </div>
 </section>
 
@@ -518,6 +551,8 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
         <li><a href="#sottopiedi">Sottopiedi</a></li>
         <li><a href="#lavorazioni">Lavorazioni</a></li>
         <li><a href="#azienda">Azienda</a></li>
+        <li><a href="#dove">Dove siamo</a></li>
+        <li><a href="#richiesta">Richiesta</a></li>
         <li><a href="https://www.tollin.it/welcome.html" hreflang="en" lang="en">English</a></li>
       </ul>
     </div>
@@ -537,10 +572,10 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
   bottone.addEventListener('click', function () {
     var aperto = menu.classList.toggle('aperto');
     bottone.setAttribute('aria-expanded', aperto ? 'true' : 'false');
-    bottone.textContent = aperto ? 'Chiudi' : 'Menu';
+    bottone.setAttribute('aria-label', aperto ? 'Chiudi il menu' : 'Menu');
   });
   menu.addEventListener('click', function (e) {
-    if (e.target.closest('a') && menu.classList.contains('aperto')) { menu.classList.remove('aperto'); bottone.setAttribute('aria-expanded', 'false'); bottone.textContent = 'Menu'; }
+    if (e.target.closest('a') && menu.classList.contains('aperto')) { menu.classList.remove('aperto'); bottone.setAttribute('aria-expanded', 'false'); bottone.setAttribute('aria-label', 'Menu'); }
   });
   // filetto sotto la testata quando la pagina scorre
   var testata = document.querySelector('.testata');
@@ -567,7 +602,7 @@ h3 { font-size: 22px; line-height: 1.3; font-weight: 700; }
     var righe = ['Buongiorno,', 'vi chiediamo una campionatura di sottopiedi.', ''];
     [].forEach.call(modulo.elements, function (c) {
       if (!c.name) return;
-      righe.push(c.name + ': ' + (c.value.trim() || (c.tagName === 'SELECT' ? 'da definire insieme' : '')));
+      righe.push(c.name + ': ' + (c.tagName === 'SELECT' ? (c.value ? c.value : c.options[c.selectedIndex].text.toLowerCase()) : c.value.trim()));
     });
     righe.push('', 'Grazie.');
     var oggetto = 'Richiesta di campionatura, ' + modulo.elements['Calzaturificio'].value.trim();

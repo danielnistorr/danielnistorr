@@ -85,31 +85,36 @@ h2{font-size:var(--t44);line-height:1.1}
 .testata .bt{min-height:48px;padding:0 18px}
 .apri-menu{display:none}
 
-/* apertura */
-.apertura{padding-top:56px}
-.apertura h1{font-size:var(--t64);line-height:1.05;margin-top:16px;max-width:19em}
-.ap-griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);margin-top:40px}
-.ap-testo{grid-column:1/7;display:flex;flex-direction:column}
-.lead{font-size:var(--t19);line-height:1.5;max-width:31em}
+/* apertura: la dichiarazione a sinistra, i fatti a destra, poi la sede a tutta larghezza */
+.apertura{padding-top:64px}
+.ap-testa{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);align-items:end}
+.ap-titolo{grid-column:1/9}
+.apertura h1{font-size:var(--t64);line-height:1.04;margin-top:18px}
+.ap-lato{grid-column:9/13;padding-bottom:4px}
+.lead{font-size:var(--t19);line-height:1.5}
 .azioni{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.apertura .azioni{margin-top:44px}
 .solo-tel{display:none}
-.stato{margin-top:32px;padding-top:20px;border-top:1px solid var(--linea);font-size:var(--t17);line-height:1.5}
-.stato .ora{display:flex;align-items:center;gap:10px;font-weight:650}
-.stato .ora::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--grigio);flex:none}
+.stato{margin-top:24px;font-size:var(--t17);line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;column-gap:0;color:var(--grigio)}
+.stato>*+*::before{content:"\00b7";display:inline-block;margin:0 12px;color:var(--grigio)}
+.stato .ora{display:inline-flex;align-items:center;gap:10px;font-weight:650;color:var(--testo)}
+.stato .ora::after{content:"";order:-1;width:10px;height:10px;border-radius:50%;background:var(--grigio);flex:none}
 .stato .ora.aperto{color:var(--verde)}
-.stato .ora.aperto::before{background:var(--verde)}
+.stato .ora.aperto::after{background:var(--verde)}
 .stato .ora:empty{display:none}
-.stato p+p{margin-top:2px;color:var(--grigio)}
-.porta-st{margin-top:24px;padding-top:20px;border-top:1px solid var(--linea);font-size:var(--t17);line-height:1.5}
-.sede-riga{margin-top:auto;padding-top:24px;font-size:var(--t17);color:var(--grigio)}
-.sede-riga a{color:var(--testo)}
-.ap-foto{grid-column:7/13;align-self:start}
-.ap-foto img{width:100%;aspect-ratio:1110/720;object-fit:cover;border-radius:var(--r)}
-.fascia-settori{margin-top:40px;background:var(--notte);color:var(--bianco)}
+.stato .ora:empty+*::before{display:none}
+.stato a{color:var(--testo)}
+.stato .sep{margin:0 12px}
+.ap-foto{margin-top:56px;line-height:0;background:var(--chiaro)}
+.ap-foto img{width:100%;aspect-ratio:8/3;object-fit:cover;object-position:50% 40%}
+.fascia-settori{background:var(--notte);color:var(--bianco)}
 .fascia-settori .cornice{display:flex;align-items:center;gap:8px 32px;flex-wrap:wrap;min-height:88px;padding-top:12px;padding-bottom:12px}
 .fascia-settori .occhiello{color:var(--arancio);margin-right:4px}
 .fascia-settori a{font-size:var(--t17);font-weight:650;text-decoration:none;display:inline-flex;align-items:center;min-height:48px;border-bottom:2px solid transparent}
 .fascia-settori a:hover{border-bottom-color:var(--arancio)}
+.fascia-settori .porta{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:0 24px;border-top:1px solid var(--linea-scura);padding-top:8px;margin-top:4px;font-size:var(--t17);color:var(--su-scuro)}
+.fascia-settori .porta a{color:var(--bianco)}
+.fascia-settori .porta .vai-st::after{content:"\2192";margin-left:8px;color:var(--arancio)}
 
 /* la stamperia */
 .stamperia{padding-top:96px;padding-bottom:96px}
@@ -128,14 +133,15 @@ h2{font-size:var(--t44);line-height:1.1}
 .testa-sez h2{grid-column:1/8;margin-top:14px}
 .testa-sez .intro{grid-column:8/13;color:var(--grigio)}
 .scuro .testa-sez .intro,.blu .testa-sez .intro{color:var(--su-scuro)}
-.schede{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.scheda{display:flex;flex-direction:column;min-height:100%;padding:32px 32px 28px;background:var(--chiaro);border-radius:var(--r);text-decoration:none;border-top:4px solid var(--blu);transition:background-color .15s}
-.scheda:hover{background:var(--linea)}
-.scheda .segno{font-size:var(--t32);line-height:1.1;font-weight:650;font-stretch:112%;letter-spacing:-.02em;color:var(--blu)}
-.scheda h3{font-size:var(--t23);line-height:1.25;margin-top:40px;font-stretch:100%;letter-spacing:-.01em}
-.scheda p{font-size:var(--t17);color:var(--grigio);margin-top:10px}
-.scheda .vai{margin-top:auto;padding-top:24px;font-size:var(--t17);font-weight:650;color:var(--blu)}
+.schede{display:grid;grid-template-columns:repeat(3,1fr);gap:56px var(--gap);margin-top:64px}
+.scheda{display:flex;flex-direction:column;height:100%;padding-top:24px;border-top:2px solid var(--blu);text-decoration:none}
+.scheda h3{font-size:var(--t32);line-height:1.1}
+.scheda:hover h3{color:var(--blu)}
+.scheda p{font-size:var(--t17);color:var(--grigio);margin-top:14px;max-width:26em}
+.scheda .breve{display:none}
+.scheda .vai{margin-top:auto;padding-top:20px;font-size:var(--t17);font-weight:650;color:var(--blu)}
 .scheda .vai::after{content:" \2192"}
+.scheda:hover .vai{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 
 /* tecniche */
 .numeri{display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--gap);margin-top:64px;border-top:1px solid var(--linea-scura)}
@@ -159,7 +165,8 @@ h2{font-size:var(--t44);line-height:1.1}
 
 /* qualità */
 .certi{display:grid;grid-template-columns:repeat(3,1fr);column-gap:var(--gap);margin-top:56px}
-.certi li{background:var(--bianco);border-radius:var(--r);padding:32px}
+.certi li{background:var(--bianco);border-radius:var(--r);padding:32px;display:flex;flex-direction:column}
+.certi .scarica{margin-top:auto;padding-top:20px;font-size:var(--t17);align-self:flex-start}
 .certi b{display:block;font-size:var(--t23);line-height:1.25;font-stretch:100%}
 .certi .sigla{display:block;font-size:var(--t14);font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--blu);margin-bottom:14px}
 .certi span:not(.sigla){display:block;margin-top:10px;font-size:var(--t17);color:var(--grigio)}
@@ -167,7 +174,7 @@ h2{font-size:var(--t44);line-height:1.1}
 
 /* preventivo */
 .prev-griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap)}
-.prev-testo{grid-column:1/5}
+.prev-testo{grid-column:1/5;position:sticky;top:calc(var(--alta) + 32px);align-self:start}
 .prev-testo h2{margin-top:14px}
 .prev-testo p{margin-top:20px;color:var(--grigio)}
 .prev-testo .tel-riga{color:var(--testo)}
@@ -214,11 +221,11 @@ h2{font-size:var(--t44);line-height:1.1}
 .tab-orari th{text-align:left;font-weight:650;padding:10px 12px 10px 0;vertical-align:top}
 .tab-orari td{padding:10px 0;color:var(--su-scuro);font-variant-numeric:lining-nums proportional-nums}
 .tab-orari tr+tr th,.tab-orari tr+tr td{border-top:1px solid var(--linea-scura)}
-.blu .stato{border-top:0;padding-top:0;margin-top:16px}
+.blu .stato{margin-top:16px;color:var(--su-scuro)}
 .blu .stato .ora{color:var(--bianco)}
-.blu .stato .ora::before{background:var(--su-scuro)}
+.blu .stato .ora::after{background:var(--su-scuro)}
 .blu .stato .ora.aperto{color:var(--bianco)}
-.blu .stato .ora.aperto::before{background:var(--verde);box-shadow:0 0 0 2px var(--bianco)}
+.blu .stato .ora.aperto::after{background:var(--verde);box-shadow:0 0 0 2px var(--bianco)}
 .divisione .nome{font-size:var(--t23);font-weight:650;line-height:1.25;color:var(--bianco);margin-bottom:8px}
 .divisione .azioni{flex-direction:column;align-items:stretch}
 
@@ -271,7 +278,7 @@ h2{font-size:var(--t44);line-height:1.1}
   .archivio p{grid-column:1/13}
   .archivio .azioni{grid-column:1/13;justify-content:flex-start;margin-top:20px}
   .certi{grid-template-columns:1fr;row-gap:16px}
-  .prev-testo{grid-column:1/13}
+  .prev-testo{grid-column:1/13;position:static}
   .modulo{grid-column:1/13;margin-top:40px}
   .recapiti .principale{grid-column:1/13}
   .recapiti .orari{grid-column:1/7;margin-top:40px}
@@ -279,10 +286,12 @@ h2{font-size:var(--t44);line-height:1.1}
   .piede .marchio{grid-column:1/13;margin-bottom:40px}
   .piede .col,.piede .col:nth-of-type(2){grid-column:span 4}
 }
-@media (max-width:900px){
-  .ap-testo{grid-column:1/13}
-  .ap-foto{grid-column:1/13;margin-top:40px}
-  .sede-riga{margin-top:0}
+@media (max-width:1100px){
+  .ap-titolo,.ap-lato{grid-column:1/13}
+  .ap-lato{margin-top:24px;max-width:40em}
+  .stato{display:block}
+  .stato>*+*::before{display:none}
+  .stato .ora{display:flex}
 }
 
 /* telefono */
@@ -294,18 +303,19 @@ h2{font-size:var(--t44);line-height:1.1}
   .testata .bt{padding:0 12px}
   .testata .prev-t{display:none}
   .apertura{padding-top:20px}
-  .apertura h1{line-height:1.08;margin-top:10px}
-  .ap-griglia{margin-top:14px}
-  .lead{font-size:var(--t19)}
+  .apertura h1{line-height:1.08;margin-top:10px;text-wrap:pretty}
+  .ap-lato{margin-top:14px}
   .solo-pc{display:none}
-  .solo-tel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+  .apertura .solo-tel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
   .solo-tel .bt{padding:0 10px}
   .solo-tel .tutta{grid-column:1/-1}
-  .stato{margin-top:18px;padding-top:14px}
-  .sede-riga,.porta-st{display:none}
-  .apertura h1{text-wrap:pretty}
-  .ap-foto{margin-top:24px}
-  .fascia-settori{margin-top:32px}
+  .stato{margin-top:16px;display:block}
+  .stato>*+*::before{display:none}
+  .stato .ora{display:flex}
+  .stato .dove{display:none}
+  .ap-foto{margin-top:28px}
+  .ap-foto img{aspect-ratio:4/3;object-position:50% 50%}
+  .fascia-settori .porta{display:none}
   .fascia-settori .cornice{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;padding-top:20px;padding-bottom:16px}
   .fascia-settori .occhiello{grid-column:1/-1;margin-bottom:4px}
   .fascia-settori a{border-bottom:1px solid var(--linea-scura);min-height:52px;line-height:1.25}
@@ -318,10 +328,13 @@ h2{font-size:var(--t44);line-height:1.1}
   .st-punti{grid-template-columns:1fr;row-gap:12px;margin-top:20px}
   .st-azioni{flex-direction:column;padding-top:24px;gap:10px}
   .st-azioni .bt{width:100%}
-  .schede{grid-template-columns:1fr;gap:12px;margin-top:32px}
-  .scheda{padding:24px 20px 20px}
-  .scheda h3{margin-top:20px}
-  .scheda .vai{padding-top:16px}
+  .schede{grid-template-columns:1fr;gap:0;margin-top:28px;border-bottom:1px solid var(--linea)}
+  .scheda{display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:center;padding:16px 0;border-top-width:1px;border-top-color:var(--linea)}
+  .schede li:first-child .scheda{border-top:2px solid var(--blu)}
+  .scheda p,.scheda .vai{display:none}
+  .scheda .breve{display:block;grid-column:1;font-size:var(--t17);color:var(--grigio);margin-top:4px;line-height:1.4}
+  .scheda h3{grid-column:1}
+  .scheda::after{content:"\2192";grid-column:2;grid-row:1/3;font-size:var(--t23);font-weight:650;color:var(--blu)}
   .numeri{margin-top:40px;column-gap:16px}
   .numeri li{padding-top:16px}
   .numeri span{margin-top:8px}
@@ -375,32 +388,36 @@ h2{font-size:var(--t44);line-height:1.1}
 <main id="contenuto">
   <section class="apertura" aria-labelledby="titolo">
     <div class="cornice">
-      <p class="occhiello">ISO 9001 dal 2009 &middot; FSC-C146871</p>
-      <h1 id="titolo">Produzione di etichette autoadesive a Saonara (Padova)</h1>
-      <div class="ap-griglia">
-        <div class="ap-testo">
-          <p class="lead">In bobina e a foglio, neutre o personalizzate. Flexo UV, tipografica UV, offset e digitale, fino a 8&nbsp;colori.</p>
-          <div class="azioni solo-pc">
-            <a class="bt" href="#preventivo">Richiedi un preventivo</a>
-            <a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Manda il file</a>
-          </div>
-          <div class="azioni solo-tel">
-            <a class="bt tutta" href="tel:+390498790566">Chiama <span class="num">049&nbsp;879&nbsp;0566</span></a>
-            <a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Manda file o&nbsp;ordine</a>
-            <a class="bt bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2C+35020+Saonara+PD">Come arrivare</a>
-          </div>
-          <div class="stato">
-            <p class="ora js-stato" aria-live="polite"></p>
-            <p>Ufficio: <span class="nw">lunedì-venerdì</span> <span class="nw">8-12 e 13.30-17.30</span></p>
-          </div>
-          <p class="porta-st">Poche etichette o tante varianti? Le stampa in digitale <a class="collega" href="#stamperia">La Stamperia di Padova</a>, la nostra divisione: <a class="collega cifre" href="tel:+39049640459">049&nbsp;640459</a></p>
-          <p class="sede-riga">La sede: via Irpinia 51/53, 35020 Saonara (PD). <a class="collega nw" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2C+35020+Saonara+PD">Come arrivare</a></p>
+      <div class="ap-testa">
+        <div class="ap-titolo">
+          <p class="occhiello"><span class="nw">ISO 9001 TÜV NORD dal 2009</span> &middot; <span class="nw">FSC-C146871</span></p>
+          <h1 id="titolo">Produzione di etichette autoadesive a Saonara (Padova)</h1>
         </div>
-        <figure class="ap-foto">
-          <img src="img/sede-facciata-800.webp" srcset="img/sede-facciata-560.webp 560w, img/sede-facciata-800.webp 800w, img/sede-facciata-1110.webp 1110w" sizes="(max-width:900px) calc(100vw - 40px), 624px" width="1110" height="720" alt="La sede di via Irpinia a Saonara: la facciata dorata con la scritta Etichettificio Veneto in blu" fetchpriority="high">
-        </figure>
+        <div class="ap-lato">
+          <p class="lead">In bobina e a foglio, neutre o personalizzate, su carta, carta gommata e polipropilene. Flexo UV, tipografica UV, offset e digitale, fino a 8&nbsp;colori.</p>
+        </div>
+      </div>
+      <div class="azioni solo-pc">
+        <a class="bt" href="#preventivo">Richiedi un preventivo</a>
+        <a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Ordini e ristampe: manda il file</a>
+      </div>
+      <div class="azioni solo-tel">
+        <a class="bt tutta" href="tel:+390498790566">Chiama <span class="num">049&nbsp;879&nbsp;0566</span></a>
+        <a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Manda file o&nbsp;ordine</a>
+        <a class="bt bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2F53%2C+35020+Saonara+PD">Come arrivare</a>
+      </div>
+      <div class="stato">
+        <p class="ora js-stato" aria-live="polite"></p>
+        <p>Ufficio <span class="nw">lunedì-venerdì</span> <span class="nw">8-12 e 13.30-17.30</span></p>
+        <p class="dove">Via Irpinia 51/53, Saonara (PD)<span class="sep" aria-hidden="true">&middot;</span><a class="collega" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2F53%2C+35020+Saonara+PD">Come arrivare</a></p>
       </div>
     </div>
+    <figure class="ap-foto">
+      <picture>
+        <source media="(max-width:700px)" srcset="img/sede-facciata-4x3-480.webp 480w, img/sede-facciata-4x3-720.webp 720w, img/sede-facciata-4x3-960.webp 960w" sizes="100vw" width="960" height="720">
+        <img src="img/sede-facciata-larga-1440.webp" srcset="img/sede-facciata-larga-960.webp 960w, img/sede-facciata-larga-1440.webp 1440w, img/sede-facciata-larga-1920.webp 1920w" sizes="100vw" width="1920" height="720" alt="La sede di via Irpinia a Saonara: la facciata dorata, piegata come un'etichetta che si stacca, con la scritta Etichettificio Veneto in blu" fetchpriority="high">
+      </picture>
+    </figure>
     <nav class="fascia-settori" aria-label="Etichette per settore">
       <div class="cornice">
         <span class="occhiello">Etichette per</span>
@@ -410,6 +427,7 @@ h2{font-size:var(--t44);line-height:1.1}
         <a href="#s-multipagina">Multipagina</a>
         <a href="#s-non-adesive">Non adesive e cartellini</a>
         <a href="#s-lamina">Dorate e argentate</a>
+        <p class="porta">Poche etichette o tante varianti? <a class="vai-st" href="#stamperia">La Stamperia di Padova, la nostra divisione digitale</a> <a class="cifre" href="tel:+39049640459">049&nbsp;640459</a></p>
       </div>
     </nav>
   </section>
@@ -422,36 +440,53 @@ h2{font-size:var(--t44);line-height:1.1}
       </div>
       <ul class="schede">
         <li><a class="scheda" id="s-alimentare" href="prodotti/etichette-settore-alimentare/">
-          <span class="segno cifre">UE 1169/2011</span>
-          <h3>Alimentare</h3>
+          <h3>Alimentare</h3><span class="breve">UE 1169/2011, inchiostri a bassa migrazione</span>
           <p>Etichette secondo il regolamento UE 1169/2011, stampate con inchiostri a bassa migrazione. Autoadesive per l'imballo secondario.</p>
           <span class="vai">Etichette per alimenti</span></a></li>
         <li><a class="scheda" id="s-cosmesi" href="prodotti/etichette-per-cosmesi-e-settore-chimico/">
-          <span class="segno">A coupon</span>
-          <h3>Cosmesi e chimico</h3>
+          <h3>Cosmesi e chimico</h3><span class="breve">A coupon, cartellini e codici a barre</span>
           <p>Etichette autoadesive a coupon, cartellini e codici a barre per flaconi, bottigliette e dispenser, anche per il settore chimico e industriale.</p>
           <span class="vai">Etichette per cosmesi e chimico</span></a></li>
         <li><a class="scheda" id="s-sicurezza" href="prodotti/etichette-per-la-sicurezza/">
-          <span class="segno">Bar code e RFID</span>
-          <h3>Sicurezza e RFID</h3>
+          <h3>Sicurezza e RFID</h3><span class="breve">Antitaccheggio, numerazione, bar code e RFID</span>
           <p>Etichette antitaccheggio e anticontraffazione, anche con numerazione progressiva e sistemi di controllo dei tentativi di manomissione.</p>
           <span class="vai">Etichette per la sicurezza</span></a></li>
         <li><a class="scheda" id="s-multipagina" href="prodotti/etichette-multipagina/">
-          <span class="segno cifre">3 e 5 pagine</span>
-          <h3>Multipagina</h3>
+          <h3>Multipagina</h3><span class="breve">A libretto di 3 e 5 pagine</span>
           <p>Etichette a libretto e multistrato per composizione, ingredienti, modi d'uso e avvertenze, su bottigliette, blister e flaconi.</p>
           <span class="vai">Etichette multipagina</span></a></li>
         <li><a class="scheda" id="s-non-adesive" href="prodotti/">
-          <span class="segno">Sottobusta</span>
-          <h3>Non adesive e cartellini</h3>
+          <h3>Non adesive e cartellini</h3><span class="breve">Sottobusta, a contatto con l'alimento</span>
           <p>Etichette non adesive e cartellini. Per il sottobusta, idonee al contatto diretto con l'alimento, con dichiarazione di conformità alimentare.</p>
           <span class="vai">Tutti i prodotti</span></a></li>
         <li><a class="scheda" id="s-lamina" href="prodotti/etichette-per-cosmesi-e-settore-chimico/">
-          <span class="segno">Oro e argento</span>
-          <h3>Dorate e argentate</h3>
+          <h3>Dorate e argentate</h3><span class="breve">Oro e argento a cold foil</span>
           <p>Particolari in lamina dorata e argentata stampati a cold foil sull'etichetta autoadesiva, per dare pregio al prodotto.</p>
-          <span class="vai">La stampa a cold foil</span></a></li>
+          <span class="vai">Etichette per cosmesi, con cold foil</span></a></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="sezione scuro" id="tecniche" aria-labelledby="t-tecniche">
+    <div class="cornice">
+      <div class="testa-sez">
+        <h2 id="t-tecniche">Tecniche, colori e supporti</h2>
+        <p class="intro">Etichette autoadesive in bobina e a foglio. Prestampa, studio tecnico del file grafico e produzione dei cliché di stampa li facciamo in casa.</p>
+      </div>
+      <ul class="numeri">
+        <li><b>8</b><span>colori al massimo in stampa</span></li>
+        <li><b>4</b><span>tecniche: flexo UV, tipografica UV, offset e digitale</span></li>
+        <li><b>3&nbsp;e&nbsp;5</b><span>pagine delle etichette multipagina, a libretto</span></li>
+        <li><b>1200</b><span>dpi in digitale, con La Stamperia di Padova</span></li>
+      </ul>
+      <dl class="tavola">
+        <div><dt>Stampa</dt><dd>Flexo UV, tipografica UV, offset e digitale, fino a 8 colori</dd></div>
+        <div><dt>Lamina</dt><dd>Particolari in oro e argento a cold foil</dd></div>
+        <div><dt>Supporti</dt><dd>Carta, carta gommata, polipropilene; dove si può, materiali riciclabili</dd></div>
+        <div><dt>Formato</dt><dd>In bobina e a foglio, neutre o personalizzate</dd></div>
+        <div><dt>Alimentare</dt><dd>Inchiostri a bassa migrazione, regolamento UE 1169/2011</dd></div>
+        <div><dt>Multipagina</dt><dd>A libretto di 3 e 5 pagine, anche multistrato</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -472,29 +507,6 @@ h2{font-size:var(--t44);line-height:1.1}
         <a class="bt bordo" href="https://www.lastamperiadipadova.com/">lastamperiadipadova.com</a>
         <p>Oppure scrivete a <a class="collega" href="mailto:info@lastamperiadipadova.com?subject=Richiesta%20etichette%20in%20digitale">info@lastamperiadipadova.com</a></p>
       </div>
-    </div>
-  </section>
-
-  <section class="sezione scuro" id="tecniche" aria-labelledby="t-tecniche">
-    <div class="cornice">
-      <div class="testa-sez">
-        <h2 id="t-tecniche">Tecniche, colori e supporti</h2>
-        <p class="intro">Etichette autoadesive in bobina e a foglio. Prestampa, studio tecnico del file grafico e produzione dei cliché di stampa li facciamo in casa.</p>
-      </div>
-      <ul class="numeri">
-        <li><b>8</b><span>colori al massimo in stampa</span></li>
-        <li><b>4</b><span>tecniche: flexo UV, tipografica UV, offset e digitale</span></li>
-        <li><b>2009</b><span>prima certificazione ISO 9001, con TÜV NORD</span></li>
-        <li><b>2024</b><span>catena di custodia FSC, licenza FSC-C146871</span></li>
-      </ul>
-      <dl class="tavola">
-        <div><dt>Stampa</dt><dd>Flexo UV, tipografica UV, offset e digitale, fino a 8 colori</dd></div>
-        <div><dt>Lamina</dt><dd>Particolari in oro e argento a cold foil</dd></div>
-        <div><dt>Supporti</dt><dd>Carta, carta gommata, polipropilene; dove si può, materiali riciclabili</dd></div>
-        <div><dt>Formato</dt><dd>In bobina e a foglio, neutre o personalizzate</dd></div>
-        <div><dt>Alimentare</dt><dd>Inchiostri a bassa migrazione, regolamento UE 1169/2011</dd></div>
-        <div><dt>Multipagina</dt><dd>A libretto di 3 e 5 pagine, anche multistrato</dd></div>
-      </dl>
     </div>
   </section>
 
@@ -524,8 +536,8 @@ h2{font-size:var(--t44);line-height:1.1}
         <p class="intro">La nostra azienda si conforma rigorosamente alla normativa, aggiornandosi costantemente.</p>
       </div>
       <ul class="certi">
-        <li><span class="sigla">Qualità</span><b class="cifre">UNI EN ISO 9001:2015</b><span>Sistema qualità certificato da TÜV NORD. Prima certificazione il 30 luglio 2009.</span></li>
-        <li><span class="sigla">Filiera</span><b>FSC Chain-of-Custody</b><span class="cifre">Licenza FSC-C146871, dal 2024, certificata da TÜV NORD.</span></li>
+        <li><span class="sigla">Qualità</span><b class="cifre">UNI EN ISO 9001:2015</b><span>Sistema qualità certificato da TÜV NORD. Prima certificazione il 30 luglio 2009.</span><a class="collega scarica" href="doc/certificato-iso-9001.pdf">Il certificato, in PDF</a></li>
+        <li><span class="sigla">Filiera</span><b>FSC Chain-of-Custody</b><span class="cifre">Licenza FSC-C146871, dal 2024, certificata da TÜV NORD.</span><a class="collega scarica" href="doc/certificato-fsc.pdf">Il certificato, in PDF</a></li>
         <li><span class="sigla">Alimentare</span><b class="cifre">Regolamento UE 1169/2011</b><span>Inchiostri a bassa migrazione e dichiarazioni di conformità per i prodotti a contatto con gli alimenti.</span></li>
       </ul>
       <div class="azioni"><a class="collega" href="azienda/certificazioni/">Le certificazioni</a></div>
@@ -549,7 +561,7 @@ h2{font-size:var(--t44);line-height:1.1}
       </div>
       <form class="modulo" id="modulo" novalidate>
         <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
-        <div class="campo"><label for="f-azienda">Azienda <i>(o "privato")</i></label><input id="f-azienda" name="azienda" type="text" autocomplete="organization" required></div>
+        <div class="campo"><label for="f-azienda">Azienda</label><input id="f-azienda" name="azienda" type="text" autocomplete="organization" placeholder="o &quot;privato&quot;" required></div>
         <div class="campo"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
         <div class="campo"><label for="f-settore">Settore</label>
@@ -570,12 +582,21 @@ h2{font-size:var(--t44);line-height:1.1}
           </div></fieldset>
         <div class="campo"><label for="f-misure">Misure <i>(base x altezza, mm)</i></label><input id="f-misure" name="misure" type="text" inputmode="text"></div>
         <div class="campo"><label for="f-quantita">Quantità</label><input id="f-quantita" name="quantita" type="text"></div>
+        <div class="campo"><label for="f-varianti">Varianti <i>(grafiche diverse)</i></label><input id="f-varianti" name="varianti" type="text" inputmode="numeric"></div>
+        <div class="campo"><label for="f-consegna">Consegna desiderata entro</label><input id="f-consegna" name="consegna" type="text" placeholder="es. 20 novembre"></div>
         <div class="campo"><label for="f-colori">Colori e finiture <i>(es. 4 colori e oro)</i></label><input id="f-colori" name="colori" type="text"></div>
         <div class="campo"><label for="f-avvolgimento">Avvolgimento e anima <i>(se in bobina)</i></label><input id="f-avvolgimento" name="avvolgimento" type="text"></div>
+        <fieldset class="tutta"><legend>Applicazione</legend>
+          <div class="scelte">
+            <label><input type="radio" name="applicazione" value="Manuale"> Manuale</label>
+            <label><input type="radio" name="applicazione" value="Automatica"> Automatica</label>
+            <label><input type="radio" name="applicazione" value="Non so"> Non so</label>
+          </div></fieldset>
         <div class="campo tutta"><span class="etichetta-campo" id="f-file-t">Il file grafico <i>(PDF, AI, EPS, JPG)</i></span>
           <div class="file-riga"><input class="nascosto" id="f-file" name="file" type="file" multiple accept=".pdf,.ai,.eps,.svg,.jpg,.jpeg,.png,.tif,.tiff" aria-labelledby="f-file-t f-file-b"><label class="bt bordo" id="f-file-b" for="f-file">Scegli il file</label><span class="nota-campo" id="f-nomi">Nessun file scelto</span></div>
           <p class="nota-campo">Per ora il file non parte dal modulo: l'email che si apre ne riporta il nome e lo allegate voi.</p></div>
         <div class="campo tutta"><label for="f-note">Note</label><textarea id="f-note" name="note" rows="4"></textarea></div>
+        <p class="nota-campo tutta">I dati servono solo a rispondere alla richiesta: <a class="collega" href="termini-duso-e-informative/informativa-privacy/">informativa privacy</a>.</p>
         <p class="avviso tutta" id="f-avviso" role="alert"></p>
         <p class="esito tutta" id="f-esito" role="status"></p>
         <div class="azioni tutta"><button class="bt" type="submit">Prepara l'email della richiesta</button></div>
@@ -591,14 +612,14 @@ h2{font-size:var(--t44);line-height:1.1}
         <div class="principale">
           <h3>Etichettificio Veneto</h3>
           <a class="tel-grande" href="tel:+390498790566">049&nbsp;879&nbsp;0566</a>
-          <p><a class="collega" href="mailto:info@eveneto.com">info@eveneto.com</a><br>Fax <span class="cifre">049&nbsp;644547</span></p>
+          <p><a class="collega js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">info@eveneto.com</a><br>Fax <span class="cifre">049&nbsp;644547</span></p>
           <p>Via Irpinia 51/53, 35020 Saonara (PD), zona artigianale di Villatora</p>
-          <div class="azioni"><a class="bt" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2C+35020+Saonara+PD">Indicazioni stradali</a><a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Manda il file</a></div>
+          <div class="azioni"><a class="bt" href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2F53%2C+35020+Saonara+PD">Indicazioni stradali</a><a class="bt bordo js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">Manda il file o l'ordine</a></div>
         </div>
         <div class="orari">
           <h3>Orari dell'ufficio</h3>
           <table class="tab-orari">
-            <tr><th scope="row">Lunedì-venerdì</th><td>8.00-12.00<br>13.30-17.30</td></tr>
+            <tr><th scope="row">Lunedì-venerdì</th><td>8-12<br>13.30-17.30</td></tr>
             <tr><th scope="row">Sabato e domenica</th><td>chiuso</td></tr>
           </table>
           <div class="stato"><p class="ora js-stato"></p></div>
@@ -646,8 +667,8 @@ h2{font-size:var(--t44);line-height:1.1}
       <h3>Contatti</h3>
       <ul>
         <li><a class="cifre" href="tel:+390498790566">049&nbsp;879&nbsp;0566</a></li>
-        <li><a href="mailto:info@eveneto.com">info@eveneto.com</a></li>
-        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2C+35020+Saonara+PD">Via Irpinia 51/53, 35020 Saonara (PD)</a></li>
+        <li><a class="js-file" href="mailto:info@eveneto.com?subject=Ordine%20o%20invio%20file">info@eveneto.com</a></li>
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Etichettificio+Veneto%2C+Via+Irpinia+51%2F53%2C+35020+Saonara+PD">Via Irpinia 51/53, 35020 Saonara (PD)</a></li>
         <li class="meno">Lunedì-venerdì 8-12 e 13.30-17.30</li>
         <li class="meno">Fax <span class="cifre">049&nbsp;644547</span></li>
         <li><a href="#preventivo">Preventivo gratuito</a></li>
@@ -684,7 +705,10 @@ h2{font-size:var(--t44);line-height:1.1}
     var p=pasqua(d.getUTCFullYear());p.setUTCDate(p.getUTCDate()+1);
     return p.getUTCMonth()===d.getUTCMonth()&&p.getUTCDate()===d.getUTCDate();
   }
-  function lavora(d){var w=d.getUTCDay();return w>=1&&w<=5&&!festivo(d)}
+  /* chiusure aziendali (ferie, ponti): da compilare con l'azienda, per esempio ['2027-08-09','2027-08-20'] (vedi LEGGIMI) */
+  var CHIUSURE=[];
+  function chiuso(d){var k=d.toISOString().slice(0,10);return CHIUSURE.some(function(c){return k>=c[0]&&k<=c[1]})}
+  function lavora(d){var w=d.getUTCDay();return w>=1&&w<=5&&!festivo(d)&&!chiuso(d)}
   function hm(x){var h=Math.floor(x/60),m=x%60;return h+(m?'.'+(m<10?'0':'')+m:'')}
   function stato(){
     var o=oraRoma(),d=new Date(Date.UTC(o.a,o.m-1,o.g)),t=o.h*60+o.min,i;
@@ -695,9 +719,11 @@ h2{font-size:var(--t44);line-height:1.1}
       }
     }
     var n=new Date(d),k;
-    for(k=1;k<15;k++){n.setUTCDate(n.getUTCDate()+1);if(lavora(n))break}
+    for(k=1;k<40;k++){n.setUTCDate(n.getUTCDate()+1);if(lavora(n))break}
     var quando=k===1?'domani':GIORNI[n.getUTCDay()];
-    return {aperto:false,testo:(lavora(d)||!festivo(d)?'Chiuso ora':'Chiuso oggi, festivo')+', riapre '+quando+' alle '+hm(FASCE[0][0])};
+    var perche=lavora(d)?'Chiuso ora':chiuso(d)?'Chiuso per ferie':festivo(d)?'Chiuso oggi, festivo':'Chiuso ora';
+    if(k>3||(chiuso(d)&&k>1))quando=GIORNI[n.getUTCDay()]+' '+n.getUTCDate();
+    return {aperto:false,testo:perche+', riapre '+quando+' alle '+hm(FASCE[0][0])};
   }
   function aggiorna(){
     var s=stato();
@@ -733,10 +759,12 @@ h2{font-size:var(--t44);line-height:1.1}
     var righe=['Buongiorno,','vi chiedo un preventivo per queste etichette.','',
       'Nome: '+nome,'Azienda: '+az,'Email: '+em,'Telefono: '+tel,'',
       'Settore: '+f.settore.value,'Formato: '+formato,'Misure (mm): '+f.misure.value,'Quantità: '+f.quantita.value,
+      'Varianti: '+f.varianti.value,'Consegna desiderata entro: '+f.consegna.value,
       'Materiale: '+(f.materiale.value||'da consigliare'),'Colori e finiture: '+f.colori.value,'Avvolgimento e anima: '+f.avvolgimento.value,
-      'File: '+(file.length?file.join(', ')+' (allegati a questa email)':'nessuno'),'','Note:',f.note.value,'','Grazie'];
+      'Applicazione: '+((f.querySelector('input[name=applicazione]:checked')||{}).value||''),
+      'File da allegare: '+(file.length?file.join(', '):'nessuno'),'','Note:',f.note.value,'','Grazie'];
     var url='mailto:info@eveneto.com?subject='+encodeURIComponent('Richiesta di preventivo: '+az)+'&body='+encodeURIComponent(righe.join('\r\n'));
-    esi.textContent=file.length?'Si apre la vostra email: allegate il file ('+file.join(', ')+'), controllate e inviate.':'Si apre la vostra email: controllate e inviate.';
+    esi.textContent=(file.length?'Si apre la vostra email: allegate il file ('+file.join(', ')+'), controllate e inviate.':'Si apre la vostra email: controllate e inviate.')+' Se non si apre nessun programma di posta, scrivete a info@eveneto.com'+(file.length?' con il file.':'.');
     f.setAttribute('data-mailto',url);
     if(!/[?&]prova=1/.test(location.search))location.href=url;
   });

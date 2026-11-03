@@ -1,6 +1,61 @@
 # Meccanica Masi, home
 
-## Livello professionale (3 novembre 2026)
+## Ritocco finale del livello professionale (3 novembre 2026)
+
+Fatto sul giudizio del controllore (voto 6: "un buon tema fatto bene, non un progetto d'agenzia con un'identità") e sulle prove dei due clienti tipo (`_prova/pro-prova-0/`, `_prova/pro-prova-1/`). Regole: `_metodo/professionale/REGOLE.md`, famiglia M. Riguardati i riferimenti: le prime schermate di tutti e 14 (foglio unico) e le pagine intere di barth e Cly-Del, a pezzi. Le modifiche sono negli script `_prova/script/ritocco_css.py`, `ritocco_html.py`, `ritocco_js.py` (sostituzioni controllate sulla pagina scritta a mano) e in `pro_img.py` (foto). Si rifà tutto con `bash _prova/script/build_finale.sh`.
+
+### Che cosa è cambiato
+
+- **Identità e gesto di scala** (da barth e Cly-Del): titolo d'apertura a 70 px, Mona Sans larga al 116 % (asse di larghezza del file variabile), su nove colonne; titoli di sezione al 115 %. La fascia dei numeri ha quattro cifre a 120 px (larghezza 120 %), e la pagina chiude su un blocco rosso pieno con il telefono come titolo a 120 px (64 px tra 601 e 899, 44 px al telefono). Il testo d'apertura è nero, non più grigio da didascalia.
+- **Le due porte come due blocchi pieni**, con il colore della sezione dove portano: "In azienda da voi" nera come la sezione Manutenzione, "In officina da noi" grigia come "Mandateci il disegno". Foto a 550 px da originali di 598 (non più 598 su 598). A 1440 l'unico bottone rosso pieno della prima schermata è quello della testata; nelle porte i bottoni hanno il solo bordo.
+- **Foto d'apertura dell'officina**: al posto della Soraluce col pezzo arrugginito, il tornio CNC al lavoro su una puleggia (loro, qualità 5). La scheda Tornitura ora mostra il rullo pinza sul banco (loro, 1600x900): così anche il rullo pinza, prima solo citato, ha una foto.
+- **Foto in serie**: due soli formati (2:1 nelle porte, 4:3 in schede e lavori; al telefono le schede in 2:1). I tre lavori piccoli passano da 4:5 a 4:3 e tutti i lavori sono tagliati più stretti sul pezzo. Trattamento comune più deciso in `pro_img.py`: autocontrasto 0,5 %, bianco al grigio neutro per l'80 %, saturazione 0,45, contrasto 1,05, leggero viraggio freddo; tappetino verde, carta bianca, banco nero e neon di reparto diventano grigi vicini e il rosso del marchio è l'unico colore forte.
+- **Numeri veri, non riempitivi**: 6 persone in azienda, 6 torni (1 a controllo numerico), 1 fresatrice CNC industriale a 3 assi, 3 m la lamiera più lunga. Tolti "3 assi", "5 materiali" e "4 regioni servite sul posto" (dato da confermare).
+- **Dati dei lavori solo dalle fonti**: tolti "alluminio 6082 o 7075", "Fresatura CNC a 3 assi e tornitura", "cuscinetto a rullini montato a pressione", "Ganasce a settori e molle di richiamo", "nastri in PVC, curve a 90°" e "Alluminio, tornitura e fresatura" (venivano dal crawl del vecchio sito, che non c'è più). La leva ora dice "In foto appena fresata, poi verniciata a polvere" (la foto è il pezzo grezzo).
+- **Chi ha una macchina ferma**: toccando "Chiedete un intervento" (o scegliendo manutenzione o installazione nel modulo) la sezione del modulo cambia titolo e istruzioni: "Richiesta di intervento. Una macchina da sistemare o da installare? Scriveteci." con che cosa scrivere (macchina, marca e modello, dove si trova, che cosa non va) e "Se è ferma, chiamate". Fuori orario, accanto allo stato, c'è "Lasciateci la richiesta per email", che apre il modulo già impostato. Nella sezione Manutenzione: "Tempi e costi dipendono dalla macchina e dalla distanza: chiedeteli al telefono" e il rimando "Indirizzo, orari e mappa".
+- **Modulo**: il campo del disegno è un bottone del sistema ("Scegliete il disegno") con il nome dei file scelti accanto e la frase "Da qui il file non parte: allegatelo all'email che si apre"; dopo "Prepara l'email" compare il testo composto con "Copia il testo", per chi non ha un programma di posta.
+- **Officina**: materiali, quantità e "Misure massime: ve le diciamo al telefono, macchina per macchina" sopra le quattro schede, così si leggono subito dopo il clic su Lavorazioni.
+- **Minori**: "Mandateci il disegno" (il voi, come il resto della pagina) in tutte le occorrenze; il verde del pallino è il token `--aperto` ("solo segnale di stato"); i salti dal menu partono dal bordo della sezione (`scroll-padding-top` uguale alla testata).
+
+### Le 15 regole dopo il ritocco
+
+Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`) e screenshot guardati a pezzi a 1440 e 390, prime schermate a 320, 768 e 1024 con lo stato di sabato alle 13.
+
+1. **Telefono come bottone nella testata fissa: passa.** 48 px, visibile e toccabile a metà pagina a 1440 e 390; 8 link `tel:`.
+2. **Mestiere, luogo, prova e azione: passa.** H1 con i due mestieri, Padova nell'occhiello, "6 torni e una fresatrice CNC a 3 assi" (a 1440 nella porta dell'officina, al telefono nel testo d'apertura), Chiama in testata e "Mandateci il disegno" a 804-856 px a 1440; al telefono Chiama a tutta larghezza a 457-509 px.
+3. **Immagine vera in apertura: passa.** Interno di una macchina da stampa e il tornio al lavoro, 345-620 px a 1440; a 390 la prima foto a 646-821 px. Ancora senza persone (foto da fare, LEGGIMI).
+4. **Zero repertorio: passa.** "indicativ" 0, nessuna banca d'immagini, nessuna illustrazione.
+5. **Foto in serie: passa.** Formati 2:1 e 4:3 (2 a 1440 e a 390), nessuna didascalia, stesso trattamento colore su tutte e 16. Restano foto da telefono di giorni diversi: la serie vera viene dal servizio fotografico.
+6. **Palette dal marchio: passa.** Rosso #ED1C24 e nero #231F20 del logo, rosso pieno #C8141C, bianco, grigi neutri; il verde di stato è un token dichiarato.
+7. **Scala corta: passa.** 1440: 14, 17, 18, 21, 23, 44, 70, 120 px (8); 390: 14, 16, 17, 20, 28, 38, 44, 64 px (8). Testo corrente 18 e 16 px, nulla sotto i 14 px; H1 70 e 38 px.
+8. **Due famiglie al massimo: passa.** Una sola, Mona Sans, pesi 400 e 700.
+9. **Servizi in schede con foto: passa.** 3 + 4 schede, tutte cliccabili, stesso taglio.
+10. **Almeno tre tipi di prova: non passa (2 su 4).** Quattro numeri veri e la fascia dei costruttori delle attrezzature con didascalia; recensioni leggibili e clienti con il nome non sono nelle fonti. Da chiedere (LEGGIMI).
+11. **Lavori con un nome: non passa.** Cinque lavori veri con foto loro, ma senza anno e cliente (solo il Veneto per la linea giornali). Da chiedere (LEGGIMI).
+12. **Ritmo a blocchi: passa.** Bianco, nero, bianco, rosso, grigio, bianco, nero, grigio, rosso, piede nero; mai due fondi uguali vicini. 120/72 px tra le sezioni, margini 110/20 px.
+13. **Un solo sistema di bottoni: passa.** Pieno e con il bordo, raggio 4 px, 48-52 px, testo 17/16 px; ogni bottone di chiamata ha il numero.
+14. **Modulo e "dove" per il mestiere: passa.** Campi M con l'allegato del disegno, campo macchina per manutenzione e installazione, mailto con oggetto e campi (da collegare a un servizio, LEGGIMI); nessun iframe; "Apri la mappa" e "Indicazioni stradali".
+15. **Piede completo: passa, senza certificazioni.** Quattro colonne, ragione sociale, P.IVA e C.F., REA, SDI, indirizzo, telefono ed email cliccabili, orari, zone, Privacy. Il link Cookie non c'è: l'indirizzo della cookie policy iubenda non è nelle fonti e un link vuoto non serve (LEGGIMI).
+
+### Compiti dei clienti tipo, dopo il ritocco
+
+- *Macchina ferma, 390*: come prima (Chiama a 457-509 px, stato giusto sabato alle 13, testata fissa), in più dal sabato pomeriggio si può lasciare la richiesta per email e "Chiedete un intervento" porta a un titolo di intervento, non di disegno. Zone a 1024 px (entro una schermata di scorrimento).
+- *Pezzo da fare, 1440*: "Mandateci il disegno" nella prima schermata; materiali, quantità e misure subito sotto il titolo delle lavorazioni; dopo l'invio, il testo da copiare se la posta non si apre.
+- *Candidato, 390*: invariato ("Lavora con noi" dal menu in un tocco).
+
+### Respinti, con il motivo
+
+- Recensioni, clienti con il nome, anni dei lavori, certificazioni: non sono nelle fonti; non inventati.
+- Link Cookie: indirizzo della cookie policy non noto; si rimette con iubenda sul sito vero.
+- Esempi sotto "Cosa facciamo sul posto" (cuscinetti, cinghie, ingranaggi): non sono nelle loro frasi; restano le loro quattro voci.
+- Tempo d'intervento concreto ("in giornata nel padovano"): non confermato.
+- Pagine progetto cliccabili per i lavori: la home non deve rimandare a pagine che non esistono.
+
+---
+
+## Livello professionale (3 novembre 2026), passaggio prima del ritocco
+
+Le righe qui sotto descrivono la pagina prima del ritocco finale; dove sono in conflitto con la sezione sopra, vale quella sopra (numeri, formati delle foto, porte, contatti).
 
 Richiesta del committente: "ancora troppo poco professionale e di design, e design funzionale all'attività" e "secondo me non rappresentano bene l'identità e l'utilizzo corretto di quello che dovrebbe essere il sito". Foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori del lusso), sezioni A, B e C. Scheda d'uso: `_prova/uso/SCHEDA.md`.
 
