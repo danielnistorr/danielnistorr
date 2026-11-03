@@ -7,6 +7,7 @@ Proposta non richiesta, solo la home. Niente è stato inviato all'azienda né pu
 - Rigenerare tutto: `bash _prova/script/build_finale.sh` (immagini `pro_img.py`, sorgente della pagina `pro_pagina.html`, catture `pro_vista.mjs`, tagli `pro_tagli.py`). Controlli delle regole: `node _prova/script/pro_controlli.mjs`. Prodotti e prezzi dello shop letti il 3/11/2026: `_prova/crawl/shop-pro/` (pagine compresse in .gz, estratte con `pro_shop_parse.py` dopo `gunzip -k`, elenco in `pro-prodotti.txt`).
 - Ultimo passaggio (3 novembre, livello professionale): via le foto di repertorio, il banco di posa e il selettore dei metalli; la home è ordinata per i tre visitatori della scheda d'uso (`_prova/uso/SCHEDA.md`): hotel e ristoranti, riparazione, shop. La versione precedente è in `_prova/versione-1-originale/`.
 - Ritocco finale (3 novembre, dopo il controllo del livello professionale e due clienti tipo): apertura fatta di tipografia con i tre punzoni in grande al posto del riquadro del vassoio (che è passato nella sezione shop), fascia delle cifre su blu notte, schede hotel su grigio con le posate in alpacca e la scheda della riargentatura, prezzi pieni barrati come sullo shop, foto rifatte in una serie 3:2, via la foto della sede, segno del logo in SVG, campo per gli allegati nel modulo, "Dove siamo" nella riparazione, voce "Orari" nel piede. Dettagli regola per regola in `screenshot/home/NOTA.md`.
+- Correzione dell'apertura (3 novembre): torna una foto vera del loro argento, un dettaglio a filo del vassoio Regina Anna in Sheffield (incisione e bordo a godroni, senza fondo e senza prezzo, al massimo 355 x 138 px perché il file è di 1280 px), e i tre punzoni passano a misura di marchio in una fila sotto i bottoni. Dettagli in `screenshot/home/NOTA.md`, in fondo alla sezione "Livello professionale".
 - Analisi con le fonti: `01-analisi.md`.
 
 ## Il modulo di contatto va collegato a un servizio
@@ -53,15 +54,15 @@ Le voci del menu Hotel e ristoranti, Riparazione, Chi siamo e Contatti portano a
 
 ## Foto da fare dal vero
 
-Oggi in pagina ci sono solo dieci foto di catalogo dello shop (sul bianco, al massimo 1280 px), tutte nella stessa tela 3:2. Non c'è nessuna foto che dica chi lavora e dove: per questo l'apertura è fatta di tipografia e dei tre punzoni, e la foto della sede (500 x 301, vecchia, con il cielo bruciato) è stata tolta. Una giornata con un fotografo basta, con una sola luce per tutta la serie:
+Oggi in pagina ci sono solo dieci foto di catalogo dello shop (sul bianco, al massimo 1280 px), tutte nella stessa tela 3:2, più il dettaglio dell'apertura ritagliato da una di loro. Non c'è nessuna foto che dica chi lavora e dove: per questo l'apertura mostra solo un dettaglio del vassoio inciso, piccolo (355 x 138 px al massimo, il file non permette di più), e la foto della sede (500 x 301, vecchia, con il cielo bruciato) è stata tolta. Una giornata con un fotografo basta, con una sola luce per tutta la serie:
 
-1. **Apertura**: mani che lucidano o riargentano un vassoio al banco, luce di finestra laterale, fondo del laboratorio leggibile ma non disordinato, 3:2 orizzontale, almeno 2400 px. Può andare nelle colonne di destra dell'apertura (con i punzoni che scendono sotto il titolo) o in testa alla sezione Riparazione.
+1. **Apertura**: mani che lucidano o riargentano un vassoio al banco, luce di finestra laterale, fondo del laboratorio leggibile ma non disordinato, 3:2 orizzontale, almeno 2400 px. Va nelle colonne di destra dell'apertura al posto del dettaglio del vassoio (i punzoni sono già sotto i bottoni), o in testa alla sezione Riparazione.
 2. **Riparazione**: la stessa serie, tre scatti: un pezzo rovinato com'è arrivato, il lavoro (pulitrice, bagno galvanico se c'è, martello), il pezzo finito. 3:2, stessa luce. Rendono vera la sezione su blu e la scheda della riargentatura, che oggi sono solo testo.
 3. **La sede**: facciata di Corso Stati Uniti 23/A con l'insegna, di giorno con cielo coperto, più l'ingresso per chi arriva in auto. 3:2, almeno 2000 px. Torna in "Dove siamo" e nei Contatti, accanto alla mappa.
 4. **Hotel e ristoranti**: un buffet o un tavolo di pasticceria allestito con i loro pezzi (alzate, vassoi, campane), meglio in un hotel cliente con il permesso di nominarlo: è anche il "lavoro con un nome" che manca.
 5. **Punzoni**: macro dei tre punzoni impressi su un pezzo in 925, luce radente da un lato, obiettivo macro 1:1. Può affiancare i punzoni ridisegnati dell'apertura.
 6. **Catalogo**: le foto dello shop reggono come miniature; per le schede servono a 1600 px, tutte con lo stesso fondo, la stessa ombra e la stessa inquadratura (oggi alcune hanno l'ombra e altre no; la forchetta in alpacca è solo 600 x 400).
-7. **Il vassoio inciso** Regina Anna ad almeno 2500 px: quello dello shop è 1280 px e il ritaglio aveva un alone grigio sopra il bordo (tolto da `pro_img.py`).
+7. **Il vassoio inciso** Regina Anna ad almeno 2500 px: quello dello shop è 1280 px e il ritaglio aveva un alone grigio sopra il bordo (tolto da `pro_img.py`). Serve anche all'apertura: con il file di oggi il dettaglio dell'incisione resta nitido a 2x solo fino a 355 px di larghezza; meglio ancora una macro dell'incisione a luce radente, 3:2, almeno 2000 px.
 
 ## Licenze
 
@@ -71,4 +72,4 @@ Oggi in pagina ci sono solo dieci foto di catalogo dello shop (sul bianco, al ma
 ## Loghi
 
 - In testata e nel piede c'è il **segno a onde** del loro logo ridisegnato in SVG dal PNG del sito (`assets/originali/logo-varotto-alfredo-130x153.png`, dove il segno è alto circa 32 px), accanto al nome "Varotto Alfredo" in Boska. Il PNG intero non è più in pagina: a 46 px le lettere non si leggevano. Serve il **vettoriale** del logo (SVG, PDF o AI) per rifare il segno identico e per il favicon, che oggi manca.
-- I tre punzoni sono ridisegnati in SVG dalle GIF del sito (`logo-punzone-364PD.gif`, `logo-punzoni-925-800.gif`, `logo-scritta-varotto-alfredo-168x29.gif`): forma fedele, carattere Rethink Sans. Nell'apertura sono il segno più grande della pagina, quindi con i punzoni veri in alta definizione (o i file dell'incisore) vanno rifatti identici.
+- I tre punzoni sono ridisegnati in SVG dalle GIF del sito (`logo-punzone-364PD.gif`, `logo-punzoni-925-800.gif`, `logo-scritta-varotto-alfredo-168x29.gif`): forma fedele, carattere Rethink Sans. Nell'apertura sono a misura di marchio (alti 30 px, in una fila sotto i bottoni); con i punzoni veri in alta definizione (o i file dell'incisore) vanno comunque rifatti identici.

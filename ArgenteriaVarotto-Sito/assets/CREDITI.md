@@ -35,10 +35,11 @@ I diritti delle foto dello shop e del catalogo vanno confermati con l'azienda: a
 
 Decisione del committente sulle foto: "niente". Nella home **non c'è più nessuna foto di repertorio**: le Unsplash (Wales, Kumpan, Cook, Tewari, Burke e le altre) sono uscite dalla pagina e le loro versioni web sono state tolte da `sito/img/`; i file originali restano in `esterne/` solo come archivio della proposta precedente (copia della pagina di allora in `_prova/versione-1-originale/`). Niente illustrazioni al posto delle foto.
 
-Solo materiale dell'azienda, lavorato con `_prova/script/pro_img.py` (ritocco del 03/11/2026): il fondo bianco originale portato a bianco puro, il pezzo in una tela 3:2 con lo stesso ingombro per tutti (stessa area, al massimo l'80 % di lato), mai ingrandito oltre la misura vera. Un solo formato in pagina, il 3:2.
+Solo materiale dell'azienda, lavorato con `_prova/script/pro_img.py` (ritocco del 03/11/2026): il fondo bianco originale portato a bianco puro, il pezzo in una tela 3:2 con lo stesso ingombro per tutti (stessa area, al massimo l'80 % di lato), mai ingrandito oltre la misura vera. Due formati in pagina: il 3:2 delle schede e il dettaglio dell'apertura (circa 2,57:1, correzione del 03/11/2026).
 
 | In pagina | File | Articolo sullo shop (3/11/2026) |
 |---|---|---|
+| Apertura, dettaglio | `originali/shop/5bc4dd90ffe48e0d7e8b7e69.jpg` | lo stesso vassoio Regina Anna: ritaglio a filo di 710 x 276 px dentro il pezzo (incisione, superficie lucidata, bordo a godroni, nessun fondo), ruotato di 5 gradi per mettere a livello il bordo; in pagina al massimo 355 x 138 px (2x), senza prezzo (`a-incisione-710.webp`, `a-incisione-355.webp`) |
 | Shop, pezzo grande | `originali/shop/5bc4dd90ffe48e0d7e8b7e69.jpg` | Royal Queen, vassoio ovale con manici e incisione stile Regina Anna, Sheffield, 47 x 36 cm (tolto l'alone grigio del ritaglio sopra il bordo) |
 | Buffet e alzate | `originali/shop/6322dc0606e58e205e8b456e.jpg` | Sweet Home, alzata Filo Platino e campana in cristallo |
 | Bar e pasticceria | `originali/shop/5d807d8a06e58e46648b4568.jpg` | Sweet Home, piatto tondo in vetro per torta con campana |
