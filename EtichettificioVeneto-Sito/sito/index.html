@@ -23,10 +23,14 @@
   /* marchio: il blu della scritta del logo, il blu scurito per il passaggio del mouse */
   --blu:#233588;
   --notte:#141C47;
-  /* i quattro passaggi del gesto (solo nella parola d'apertura) */
+  /* inchiostri di quadricromia: la parola d'apertura (ciano e magenta) e la striscia di controllo */
   --p-giallo:#FFE100;
   --p-magenta:#E4007C;
   --p-ciano:#009FE3;
+  /* sovrastampe della striscia di controllo: le coppie di inchiostri moltiplicate */
+  --p-rosso:#E40000;
+  --p-verde:#008C00;
+  --p-viola:#00006E;
   /* neutri freddi */
   --carta:#FFFFFF;
   --chiaro:#F1F3F7;
@@ -37,8 +41,8 @@
   --linea-blu:rgba(255,255,255,.28);
   /* misure */
   --t14:14px;--t16:16px;--t17:17px;--t19:19px;--t28:28px;--t40:40px;--t56:56px;
-  --parola:min(380px,28vw);
-  --m:max(80px,calc((100vw - 1280px) / 2));
+  --parola:min(548px,38vw);
+  --m:max(112px,calc((100vw - 1280px) / 2));
   --gap:32px;
   --sez:120px;
   --sez-culmine:184px;
@@ -86,15 +90,17 @@ b,strong{font-weight:500}
 .menu a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
 .menu a:hover{border-bottom-color:var(--blu)}
 .menu .solo-pannello{display:none}
+.menu .orario-menu{font-size:var(--t16);font-weight:400;color:var(--grigio);padding:14px 0 0;line-height:1.45}
 .t-tel{flex:none;font-size:var(--t17);font-weight:500;text-decoration:none;font-variant-numeric:tabular-nums lining-nums;border-bottom:2px solid var(--testo);padding:4px 0}
 .t-tel:hover{color:var(--blu);border-bottom-color:var(--blu)}
 .testata .bt{min-height:48px;padding:0 18px;flex:none}
 .apri-menu{display:none}
 
-/* apertura: il foglio di prova con la parola in quattro passaggi */
-.apertura{min-height:calc(100vh - var(--alta));min-height:calc(100svh - var(--alta));display:flex;flex-direction:column;justify-content:center;padding-top:48px;padding-bottom:48px}
-.apertura .griglia{width:100%}
+/* apertura: il foglio di prova con la parola stampata in due passaggi trasparenti, il magenta fuori registro */
+.apertura{padding-top:72px;padding-bottom:64px}
 .foglio{grid-column:1/-1;position:relative;display:grid;grid-template-columns:subgrid;align-items:end;row-gap:28px}
+/* il contenitore è la griglia (non il foglio: un subgrid con il contenimento perde le colonne) */
+.apertura .griglia{container-type:inline-size}
 .taglio{position:absolute;width:24px;height:24px;pointer-events:none}
 .taglio::before,.taglio::after{content:"";position:absolute;background:var(--testo)}
 .taglio::before{width:24px;height:1px}
@@ -103,35 +109,46 @@ b,strong{font-weight:500}
 .taglio.ad{right:-36px;top:-36px}.taglio.ad::before{top:35px;right:0}.taglio.ad::after{left:0;top:0}
 .taglio.bs{left:-36px;bottom:-36px}.taglio.bs::before{top:0;left:0}.taglio.bs::after{left:35px;bottom:0}
 .taglio.bd{right:-36px;bottom:-36px}.taglio.bd::before{top:0;right:0}.taglio.bd::after{left:0;bottom:0}
-.barra-colore{grid-column:10/13;grid-row:1;align-self:start;justify-self:end;display:flex;gap:6px}
-.barra-colore i{display:block;width:16px;height:16px}
-.barra-colore i:nth-child(1){background:var(--p-giallo)}
-.barra-colore i:nth-child(2){background:var(--p-magenta)}
-.barra-colore i:nth-child(3){background:var(--p-ciano)}
-.barra-colore i:nth-child(4){background:var(--blu)}
+/* crocino di registro, in filo, fuori dal taglio: in alto e in basso al centro */
+.crocino{position:absolute;left:50%;width:36px;height:36px;margin-left:-18px;pointer-events:none}
+.crocino.su{top:-42px}.crocino.giu{bottom:-42px}
+.crocino::before{content:"";position:absolute;inset:8px;border:1px solid var(--testo);border-radius:50%}
+.crocino::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--testo),var(--testo)) 50% 0/1px 100% no-repeat,linear-gradient(var(--testo),var(--testo)) 0 50%/100% 1px no-repeat}
+/* striscia di controllo colore lungo il bordo basso, fuori dal taglio: pieni e sovrastampe */
+.controllo{position:absolute;left:16px;bottom:-26px;display:flex;height:14px;pointer-events:none}
+.controllo i{display:block;width:18px;height:100%}
+.controllo i:nth-child(1){background:var(--p-giallo)}
+.controllo i:nth-child(2){background:var(--p-magenta)}
+.controllo i:nth-child(3){background:var(--p-ciano)}
+.controllo i:nth-child(4){background:var(--blu)}
+.controllo i:nth-child(5){background:var(--p-rosso)}
+.controllo i:nth-child(6){background:var(--p-verde)}
+.controllo i:nth-child(7){background:var(--p-viola)}
 .apertura h1{display:contents}
 .parola{grid-column:1/-1;grid-row:1;position:relative;isolation:isolate;display:block;width:max-content;font-family:var(--titoli);font-weight:400;font-size:var(--parola);line-height:.8;letter-spacing:-.006em;padding-top:.06em;color:var(--blu)}
-.parola .lastra{display:block;position:absolute;left:0;top:0;padding-top:.06em;mix-blend-mode:multiply;user-select:none;-webkit-user-select:none}
-.parola .lastra.g{color:var(--p-giallo);transform:translate(.013em,.009em)}
-.parola .lastra.m{color:var(--p-magenta);transform:translate(-.011em,.004em)}
-.parola .lastra.c{color:var(--p-ciano);transform:translate(.005em,-.011em)}
-.parola .k{position:relative;display:block}
-.resto{position:relative;z-index:1;grid-column:1/8;grid-row:2;font-size:var(--t40);line-height:1.12;font-weight:500;color:var(--blu);letter-spacing:-.01em}
-.riga{position:relative;z-index:1;grid-column:8/13;grid-row:2;font-size:var(--t19);line-height:1.5}
-.orario-tel{display:none}
+/* larga quanto la griglia: l'inchiostro va dal margine sinistro al bordo destro (il fianco della E è recuperato con il margine negativo) */
+@supports (width:1cqi){.parola{font-size:calc(100cqi / 2.307);margin-left:-.039em}}
+/* il blu di quadricromia: ciano e magenta in due passaggi trasparenti (moltiplica). La lastra magenta
+   è un pseudo-elemento, quindi nel DOM la parola c'è una volta sola */
+.parola::after{content:attr(data-parola);position:absolute;left:0;top:0;padding-top:.06em;color:var(--p-magenta);mix-blend-mode:multiply;pointer-events:none;user-select:none;-webkit-user-select:none;transform:translate(max(4px,.03em),0)}
+.parola .k{position:relative;display:block;color:var(--p-ciano);mix-blend-mode:multiply}
+.resto{position:relative;z-index:1;grid-column:1/6;grid-row:2;font-size:var(--t40);line-height:1.12;font-weight:500;color:var(--blu);letter-spacing:-.01em}
+.riga{position:relative;z-index:1;grid-column:6/13;grid-row:2;font-size:var(--t19);line-height:1.5;max-width:36em}
 
 /* etichette: righe d'indice */
-.indice{grid-column:6/13;border-top:1px solid var(--testo)}
-.voce{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr) auto;column-gap:var(--gap);align-items:baseline;padding:22px 0 24px;border-bottom:1px solid var(--linea);text-decoration:none}
-.voce h3{font-size:var(--t28);line-height:1.15}
-.voce span{font-size:var(--t17);color:var(--grigio);line-height:1.45}
-.voce::after{content:"\2192";font-size:var(--t28);line-height:1;color:var(--blu)}
+.testa-larga{grid-column:1/-1}
+/* l'unica sezione a tutta griglia oltre al culmine: le righe usano le stesse 12 colonne della pagina */
+.indice{grid-column:1/-1;margin-top:48px;border-top:1px solid var(--testo)}
+.voce{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:baseline;padding:24px 0 26px;border-bottom:1px solid var(--linea);text-decoration:none}
+.voce h3{grid-column:1/6;font-size:var(--t40);line-height:1.1;letter-spacing:-.01em}
+.voce span{grid-column:6/12;font-size:var(--t19);color:var(--grigio);line-height:1.45}
+.voce::after{content:"\2192";grid-column:12/13;justify-self:end;font-size:var(--t28);line-height:1;color:var(--blu)}
 .voce:hover h3{color:var(--blu);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
 
 /* la stamperia */
-.st-testo{grid-column:1/7}
-.st-testo p{margin-top:24px;max-width:34em}
-.st-lato{grid-column:8/13;padding-top:8px}
+.st-testo{grid-column:1/6}
+.st-testo p{margin-top:24px}
+.st-lato{grid-column:6/13;padding-top:8px}
 .st-lato ul{border-top:1px solid var(--testo)}
 .st-lato li{border-bottom:1px solid var(--linea);padding:12px 0;font-size:var(--t17);font-weight:500}
 .st-tel{display:inline-block;margin-top:28px;font-size:var(--t28);font-weight:500;line-height:1.2;text-decoration:none;font-variant-numeric:tabular-nums lining-nums;border-bottom:2px solid var(--testo)}
@@ -142,17 +159,17 @@ b,strong{font-weight:500}
 .culmine{padding-top:var(--sez-culmine);padding-bottom:var(--sez)}
 .culmine h2{grid-column:1/11;font-size:var(--t56);margin-bottom:48px}
 .sede{grid-column:1/-1;line-height:0;background:var(--chiaro)}
-.sede img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.sede img{width:100%;aspect-ratio:8/3;object-fit:cover}
 .didascalia{grid-column:1/-1;display:grid;grid-template-columns:subgrid;margin-top:14px;font-size:var(--t16);line-height:1.5;color:var(--grigio)}
-.didascalia span:first-child{grid-column:1/7;color:var(--testo);font-weight:500}
-.didascalia span:last-child{grid-column:7/13;text-align:right}
+.didascalia span:first-child{grid-column:1/6;color:var(--testo);font-weight:500}
+.didascalia span:last-child{grid-column:6/13;text-align:right}
 .lavoro-t{grid-column:1/5;margin-top:88px;font-family:var(--titoli);font-weight:400;font-size:var(--t40);line-height:1.05}
-.passi{grid-column:5/13;margin-top:88px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px var(--gap)}
+.passi{grid-column:6/13;margin-top:88px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px var(--gap)}
 .passi li{border-top:1px solid var(--testo);padding-top:16px}
 .passi .n{font-size:var(--t16);font-weight:500;color:var(--blu);font-variant-numeric:tabular-nums lining-nums}
 .passi h4{margin:6px 0 0;font-size:var(--t19);font-weight:500;line-height:1.35}
 .passi p{font-size:var(--t17);color:var(--grigio);margin-top:6px}
-.archivio{grid-column:5/13;margin-top:48px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px}
+.archivio{grid-column:6/13;margin-top:48px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px}
 .archivio p{max-width:34em;font-size:var(--t17)}
 
 /* tecniche e certificati */
@@ -202,20 +219,20 @@ b,strong{font-weight:500}
 .piede h3{font-size:var(--t16);font-weight:500;color:var(--su-blu);margin-bottom:12px}
 .piede p,.piede li{color:var(--su-blu);line-height:1.55}
 .piede a{color:#fff}
-.piede .r1{grid-column:1/5}
-.piede .r2{grid-column:5/9}
+.piede .r1{grid-column:1/6}
+.piede .r2{grid-column:6/9}
 .piede .r3{grid-column:9/13}
+.piede .orario-nota{margin-top:6px;font-size:var(--t14)}
 .p-tel{display:inline-block;font-size:var(--t28);font-weight:500;line-height:1.2;text-decoration:none;font-variant-numeric:tabular-nums lining-nums;border-bottom:2px solid #fff;margin-bottom:12px}
 .p-tel:hover{border-bottom-width:3px}
 .piede .vai:hover{color:#fff}
-.tab-orari{border-collapse:collapse;font-size:var(--t17)}
-.tab-orari th{text-align:left;font-weight:500;padding:0 20px 8px 0;vertical-align:top;color:#fff}
-.tab-orari td{padding:0 0 8px;color:var(--su-blu);font-variant-numeric:tabular-nums lining-nums}
 .piede .arriva{margin-top:12px}
 .stato{margin-top:8px;color:#fff;font-weight:500}
 .stato:empty{display:none}
 .piede .pagine{grid-column:1/-1;display:grid;grid-template-columns:subgrid;margin-top:56px;padding-top:32px;border-top:1px solid var(--linea-blu)}
-.piede .pagine ul{grid-column:span 4}
+.piede .pagine ul:nth-child(1){grid-column:1/6}
+.piede .pagine ul:nth-child(2){grid-column:6/9}
+.piede .pagine ul:nth-child(3){grid-column:9/13}
 .piede .pagine li+li{margin-top:6px}
 .piede .pagine a{text-decoration:none}
 .piede .pagine a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -243,7 +260,9 @@ b,strong{font-weight:500}
 }
 @media (max-width:1100px){
   .testa,.corpo,.indice,.tavola,.certi,.tutte,.st-testo,.st-lato,.prev-testo,.modulo{grid-column:1/-1}
-  .indice,.tavola,.modulo{margin-top:40px}
+  .tavola,.modulo{margin-top:40px}
+  .voce h3{grid-column:1/7}
+  .voce span{grid-column:7/12}
   .st-lato{margin-top:32px}
   .prev-testo{position:static}
   .resto{grid-column:1/-1}
@@ -255,33 +274,44 @@ b,strong{font-weight:500}
   .piede .r1{grid-column:1/7}
   .piede .r2{grid-column:7/13}
   .piede .r3{grid-column:1/7;margin-top:40px}
+  .piede .pagine ul:nth-child(1){grid-column:1/5}
+  .piede .pagine ul:nth-child(2){grid-column:5/9}
+  .piede .pagine ul:nth-child(3){grid-column:9/13}
 }
 
 /* telefono */
 @media (max-width:700px){
-  :root{--t17:16px;--t19:17px;--t28:22px;--t40:28px;--t56:40px;--parola:33.5vw;--m:20px;--gap:16px;--sez:64px;--sez-culmine:104px;--alta:64px}
+  :root{--t17:16px;--t19:17px;--t28:22px;--t40:28px;--t56:40px;--parola:38.5vw;--m:20px;--gap:16px;--sez:64px;--sez-culmine:104px;--alta:64px}
   body{padding-bottom:76px}
   .logo img{height:44px}
   .t-tel,.testata .bt{display:none}
   .apri-menu{margin-left:auto}
-  .apertura{min-height:calc(100vh - 140px);min-height:calc(100svh - 140px);padding-top:32px;padding-bottom:28px}
+  .apertura{padding-top:40px;padding-bottom:48px}
   .taglio{width:12px;height:12px}
   .taglio::before{width:12px}.taglio::after{height:12px}
   .taglio.as{left:-18px;top:-18px}.taglio.as::before{top:11px}.taglio.as::after{left:11px}
   .taglio.ad{right:-18px;top:-18px}.taglio.ad::before{top:11px}
   .taglio.bs{left:-18px;bottom:-18px}.taglio.bs::after{left:11px}
   .taglio.bd{right:-18px;bottom:-18px}
-  .foglio{row-gap:16px;min-height:492px;align-content:center}
-  .parola{margin-bottom:12px}
-  .barra-colore{grid-column:1/-1;grid-row:4;justify-self:start;margin-top:6px}
-  .barra-colore i{width:12px;height:12px}
+  /* il foglio riempie la prima schermata fino alla barra: la parola in testa, il titolo e i fatti al piede del foglio */
+  .foglio{row-gap:16px;min-height:calc(100vh - 348px);min-height:calc(100svh - 348px);grid-template-rows:1fr auto auto}
+  .parola{align-self:start}
+  .resto{font-size:32px;line-height:1.12;align-self:end}
+  .crocino{width:24px;height:24px;margin-left:-12px}
+  .crocino::before{inset:6px}
+  .crocino.su{top:-30px}.crocino.giu{bottom:-30px}
+  .controllo{left:8px;bottom:-17px;height:9px}
+  .controllo i{width:12px}
   .resto{line-height:1.15}
-  .riga{grid-column:1/-1;grid-row:3}
-  .orario-tel{display:block;grid-column:1/-1;grid-row:5;font-size:var(--t16);color:var(--grigio)}
+  .riga{grid-column:1/-1;grid-row:3;border-bottom:1px solid var(--linea)}
+  /* sul telefono i quattro fatti vanno a righe, come la legenda di un foglio di prova */
+  .riga span{display:block;border-top:1px solid var(--linea);padding:8px 0 9px}
   .voce{grid-template-columns:minmax(0,1fr) auto;padding:14px 0 15px}
+  .voce h3{grid-column:1;font-size:var(--t28)}
   .voce span{display:none}
   .voce::after{grid-column:2;align-self:center}
   .indice{margin-top:28px}
+  .piede .arriva{display:none}
   .st-lato{display:flex;flex-direction:column;grid-row:2;margin-top:24px;padding-top:0}
   .st-testo{display:contents}
   .st-testo h2{grid-column:1/-1;grid-row:1}
@@ -301,7 +331,7 @@ b,strong{font-weight:500}
   .invio .bt{width:100%}
   .piede .r1,.piede .r2,.piede .r3{grid-column:1/-1}
   .piede .r2,.piede .r3{margin-top:32px}
-  .piede .pagine ul{grid-column:1/-1}
+  .piede .pagine ul:nth-child(n){grid-column:1/-1}
   .piede .pagine ul+ul{margin-top:24px}
   .piede .legale{flex-direction:column}
   .solo-tel{display:inline}
@@ -328,6 +358,7 @@ b,strong{font-weight:500}
     <a href="#certificati">Certificati</a>
     <a href="#contatti">Contatti</a>
     <a class="solo-pannello" href="#preventivo">Richiedi un preventivo</a>
+    <p class="solo-pannello orario-menu">Ufficio lunedì-venerdì <span class="nw cifre">8-12 e 13.30-17.30</span>, orario da confermare al telefono.</p>
   </nav>
   <a class="t-tel" href="tel:+390498790566" aria-label="Chiama 049 879 0566">049&nbsp;879&nbsp;0566</a>
   <a class="bt" href="#preventivo">Richiedi un preventivo</a>
@@ -339,20 +370,20 @@ b,strong{font-weight:500}
     <div class="griglia">
       <div class="foglio">
         <span class="taglio as" aria-hidden="true"></span><span class="taglio ad" aria-hidden="true"></span><span class="taglio bs" aria-hidden="true"></span><span class="taglio bd" aria-hidden="true"></span>
-        <span class="barra-colore" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="crocino su" aria-hidden="true"></span><span class="crocino giu" aria-hidden="true"></span>
+        <span class="controllo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         <h1 id="titolo">
-          <span class="parola"><span class="lastra g" aria-hidden="true">Etichette</span><span class="lastra m" aria-hidden="true">Etichette</span><span class="lastra c" aria-hidden="true">Etichette</span><span class="k">Etichette</span></span>
+          <span class="parola" data-parola="Etichette"><span class="k">Etichette</span></span>
           <span class="resto">autoadesive, prodotte a&nbsp;Saonara (Padova)</span>
         </h1>
-        <p class="riga">In bobina e a foglio. Flexo UV, tipografica UV, offset e digitale, fino a 8&nbsp;colori. ISO&nbsp;9001 e&nbsp;FSC.</p>
-        <p class="orario-tel">Ufficio lunedì-venerdì <span class="nw cifre">8-12 e 13.30-17.30</span></p>
+        <p class="riga"><span>In bobina e a foglio.</span> <span>Flexo UV, tipografica UV, offset e digitale.</span> <span>Fino a 8&nbsp;colori.</span> <span>ISO&nbsp;9001 e&nbsp;FSC.</span></p>
       </div>
     </div>
   </section>
 
   <section class="sezione" id="etichette" aria-labelledby="t-etichette">
     <div class="griglia">
-      <div class="testa">
+      <div class="testa testa-larga">
         <h2 id="t-etichette">Per ogni settore, le sue regole</h2>
       </div>
       <ul class="indice">
@@ -390,7 +421,8 @@ b,strong{font-weight:500}
       <figure class="sede">
         <picture>
           <source media="(max-width:700px)" srcset="img/sede-1x1-480.webp 480w, img/sede-1x1-720.webp 720w" sizes="calc(100vw - 40px)" width="720" height="720">
-          <img src="img/sede-16x9-1280.webp" srcset="img/sede-16x9-640.webp 640w, img/sede-16x9-960.webp 960w, img/sede-16x9-1280.webp 1280w" sizes="(min-width:1440px) 1280px, calc(100vw - 96px)" width="1280" height="720" loading="lazy" alt="La facciata della sede di via Irpinia a Saonara: la lastra dorata piegata come un'etichetta che si stacca, con la scritta Etichettificio Veneto in blu">
+          <source media="(max-width:1000px)" srcset="img/sede-8x3-960.webp" width="960" height="360">
+          <img src="img/sede-8x3-1920.webp" width="1920" height="720" loading="lazy" alt="La facciata della sede di via Irpinia a Saonara: la lastra dorata piegata come un'etichetta che si stacca, con la scritta Etichettificio Veneto in blu">
         </picture>
       </figure>
       <p class="didascalia"><span>La sede di via Irpinia 51/53, Saonara (Padova)</span><span>Foto pubblicata sul nostro sito nel 2015</span></p>
@@ -495,10 +527,8 @@ b,strong{font-weight:500}
       </div>
       <div class="r2">
         <h3>Ufficio</h3>
-        <table class="tab-orari">
-          <tr><th scope="row">Lunedì-venerdì</th><td>8-12 e 13.30-17.30</td></tr>
-          <tr><th scope="row">Sabato e domenica</th><td>chiuso</td></tr>
-        </table>
+        <p>Lunedì-venerdì <span class="nw cifre">8-12 e 13.30-17.30</span></p>
+        <p class="orario-nota">Orario da confermare al telefono.</p>
         <p class="stato js-stato" aria-live="polite"></p>
       </div>
       <div class="r3">

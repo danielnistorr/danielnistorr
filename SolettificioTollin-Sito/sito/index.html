@@ -51,6 +51,11 @@ ul, ol { padding: 0; list-style: none; }
 .salta:focus { left: 16px; top: 16px; z-index: 40; background: var(--bianco); padding: 12px 16px; }
 .intero { white-space: nowrap; }
 .mono { font-family: var(--mono); font-size: 14px; line-height: 1.5; letter-spacing: 0; }
+/* recapiti: una regola sola in tutta la pagina, Azeret Mono 15 px, sottolineati solo al passaggio.
+   Lo spazio tra prefisso e numero è quello di Commissioner: nel monospaziato sembrerebbe doppio */
+.recapito { font-family: var(--mono); font-size: 15px; line-height: 1.5; letter-spacing: 0; font-weight: 400; text-decoration: none; }
+a.recapito:hover { text-decoration: underline; }
+.sp { font-family: "Commissioner", system-ui, sans-serif; }
 
 /* una griglia sola: stesso contenitore, 12 colonne, stessi margini, bordi destri allineati */
 .contenitore { width: 100%; max-width: calc(1280px + 2 * var(--m)); margin: 0 auto; padding: 0 var(--m); }
@@ -79,6 +84,7 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 .lingua { font-size: 17px; text-decoration: none; padding: 8px 0; }
 .lingua:hover { text-decoration: underline; }
 .tel-testata { min-height: 46px; padding: 0 16px; font-family: var(--mono); font-size: 15px; font-weight: 400; }
+.tel-testata .sp { font-family: "Commissioner", system-ui, sans-serif; }
 .tel-testata .solo-telefono { display: none; }
 .menu-bottone { display: none; }
 
@@ -94,16 +100,16 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 .richiamo.sx { right: calc(100% - 100px); top: 70px; }          /* punta sulla curva della garbatura */
 .richiamo.sx .filo { width: 176px; }
 .richiamo.sx .filo::after { right: -3px; }
-.richiamo.dx { left: 176px; top: 14px; flex-direction: row; }  /* punta sulla fisca, sopra il tallone */
-.richiamo.dx .filo { width: 159px; }
+.richiamo.dx { left: 130px; top: 40px; flex-direction: row; }  /* punta sulla fisca, nell'arco della pianta */
+.richiamo.dx .filo { width: 205px; }
 .richiamo.dx .filo::after { left: -3px; }
 .ap-testo { grid-column: 1 / 12; }
-.apertura h1 { font-size: 84px; line-height: 1.03; max-width: 12.6em; }
+.apertura h1 { font-size: 84px; line-height: 1.03; max-width: 12.6em; text-wrap: balance; }
 .ap-riga { margin-top: 24px; font-size: 22px; line-height: 1.4; }
 .ap-telefono { display: none; }
 
 /* sottopiedi: materiali sopra, i nove tipi in fila sullo stesso cartoncino */
-.sottopiedi { padding: 80px 0; }
+.sottopiedi { padding: var(--sezione) 0; }
 .capo { row-gap: 20px; align-items: start; }
 .capo h2 { grid-column: 1 / 5; }
 .capo .colonna { grid-column: span 4; font-size: 17px; line-height: 1.55; }
@@ -113,13 +119,13 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 .tipo { display: block; text-decoration: none; }
 .tipo img { width: 100%; max-width: 227px; aspect-ratio: 227 / 367; border-radius: var(--raggio); }
 .tipo .num { display: block; margin-top: 12px; color: var(--testo-2); }
-.tipo .nome { display: block; margin-top: 2px; font-size: 17px; line-height: 1.35; font-weight: 600; }
+.tipo .nome { display: block; margin-top: 2px; min-height: 66px; font-size: 16px; line-height: 22px; font-weight: 400; }
 .tipo:hover .nome { text-decoration: underline; text-underline-offset: .18em; }
 .aiuto { grid-column: 1 / -1; margin-top: 24px; font-size: 14px; line-height: 1.45; color: var(--testo-2); }
 
 /* lavorazioni */
-.lavorazioni { padding: 0 0 var(--sezione); }
-.lavorazioni .capo { padding-top: 64px; border-top: 1px solid var(--filetto); }
+.lavorazioni { padding: 0; }   /* sotto c'è il culmine: la pausa la dà lui */
+.lavorazioni .capo { padding-top: var(--sezione); border-top: 1px solid var(--filetto); }
 .lavorazioni .capo h2 { grid-column: 1 / 7; }
 .lavorazioni .capo p { grid-column: 7 / 13; color: var(--testo-2); padding-top: 8px; }
 .reparti { margin-top: 48px; row-gap: 48px; }
@@ -136,22 +142,22 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 
 /* culmine: il controllo. Una foto sola alla sua misura, la frase della cambratura */
 .culmine { padding: var(--pausa) 0; background: var(--carta); }
-.culmine figure { grid-column: 1 / 8; }
+.culmine figure { grid-column: 1 / 9; }
 .culmine figure img { width: 100%; max-width: 807px; aspect-ratio: 3 / 2; object-fit: cover; }
-.culmine figcaption { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; margin-top: 14px; font-size: 16px; line-height: 1.45; }
+.culmine figcaption { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; max-width: 807px; margin-top: 24px; font-size: 16px; line-height: 1.45; }
 .culmine figcaption span + span { color: var(--testo-2); text-align: right; }
 .cu-testo { grid-column: 9 / 13; align-self: end; }
-.cu-testo .manifesto { margin-top: 28px; font-size: 32px; line-height: 1.3; }
-.cu-testo p:not(.manifesto) { margin-top: 24px; font-size: 17px; line-height: 1.6; }
+.cu-testo h2 { font-size: 40px; line-height: 1.15; text-wrap: balance; }
+.cu-testo .cu-anno { margin-top: 28px; font-size: 19px; line-height: 1.5; }
+.cu-testo .cu-anno + p { margin-top: 12px; font-size: 17px; line-height: 1.6; color: var(--testo-2); }
 
 /* richiesta di campionatura */
 .richiesta { padding: var(--sezione) 0; border-top: 1px solid var(--filetto); }
-.ri-testo { grid-column: 1 / 6; }
+.ri-testo { grid-column: 1 / 6; position: sticky; top: calc(var(--testata) + 32px); align-self: start; }
 .ri-testo p { margin-top: 20px; }
 .recapiti { margin-top: 32px; border-top: 1px solid var(--filetto); }
 .recapiti div { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--filetto); font-size: 17px; }
 .recapiti dt { color: var(--testo-2); }
-.recapiti dd a { font-family: var(--mono); font-size: 16px; }
 .modulo { grid-column: 7 / 13; background: var(--bianco); padding: 40px; border-radius: var(--raggio); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 24px; }
 .campo { display: flex; flex-direction: column; gap: 8px; font-size: 17px; }
 .campo.largo { grid-column: 1 / -1; }
@@ -168,22 +174,21 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 
 /* dove siamo */
 .dove { padding: var(--sezione) 0; border-top: 1px solid var(--filetto); }
-.dv-testo { grid-column: 1 / 6; }
+.dv-testo { grid-column: 1 / 5; }
 .dv-indirizzo { margin-top: 24px; font-style: normal; font-size: 22px; line-height: 1.4; }
 .dv-testo .btn { margin-top: 28px; }
-.dv-fatti { margin-top: 36px; border-top: 1px solid var(--filetto); }
-.dv-fatti div { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--filetto); font-size: 17px; }
-.dv-fatti dt { color: var(--testo-2); }
-.dv-fatti .mono { font-size: 16px; }
-.dv-foto { grid-column: 7 / 13; }
-.dv-foto img { width: 100%; max-width: 783px; aspect-ratio: 3 / 2; object-fit: cover; }
+.dv-strade { grid-column: 5 / 13; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--g); align-self: start; margin-top: 8px; border-top: 1px solid var(--filetto); }
+.dv-strade > div { padding-top: 20px; }
+.dv-strade dt { font-weight: 600; font-size: 19px; }
+.dv-strade dd { margin: 10px 0 0; font-size: 17px; line-height: 1.55; }
+.dv-strade dd + dd { margin-top: 6px; color: var(--testo-2); }
 
 /* piede: il biglietto da visita */
 .piede { background: var(--inchiostro); color: var(--bianco); font-size: 17px; }
-.piede-alto { padding-top: 80px; padding-bottom: 64px; row-gap: 40px; }
+.piede-alto { padding-top: var(--sezione); padding-bottom: 64px; row-gap: 40px; }
 .piede-marchio { grid-column: 1 / 6; }
 .piede-marchio img { width: 200px; }
-.piede-marchio .firma { margin-top: 28px; font-size: 32px; line-height: 1.15; }
+.piede-marchio .firma { margin-top: 28px; font-size: 24px; line-height: 1.25; }
 .piede .contatti { grid-column: 7 / 13; }
 .piede .col h2 { font-size: 15px; line-height: 1.4; font-weight: 400; color: var(--testo-2-scuro); font-variation-settings: normal; letter-spacing: 0; }
 .piede .col ul { margin-top: 12px; line-height: 1.5; }
@@ -201,7 +206,6 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
   .testata nav ul { gap: 22px; }
   .apertura h1 { font-size: 72px; }
   .tipi { gap: 0 12px; }
-  .tipo .nome { font-size: 16px; }
 }
 /* tablet: il menu va nel bottone, i tipi in tre colonne */
 @media (max-width: 1099px) {
@@ -229,7 +233,7 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
   .tipo { display: grid; grid-template-columns: 80px minmax(0, 1fr); column-gap: 14px; align-items: center; }
   .tipo img { grid-row: 1 / span 2; width: 80px; }
   .tipo .num { margin-top: 0; align-self: end; }
-  .tipo .nome { align-self: start; }
+  .tipo .nome { align-self: start; min-height: 0; }
   .lavorazioni .capo h2, .lavorazioni .capo p { grid-column: 1 / -1; }
   .lavorazioni .capo p { padding-top: 0; }
   .reparto { grid-column: span 6; }
@@ -239,9 +243,10 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
   .culmine figure img { max-width: 807px; }
   .cu-testo { grid-column: 1 / 11; margin-top: 48px; }
   .ri-testo, .modulo { grid-column: 1 / -1; }
+  .ri-testo { position: static; }
   .modulo { margin-top: 40px; }
-  .dv-testo { grid-column: 1 / 7; }
-  .dv-foto { grid-column: 7 / 13; align-self: start; }
+  .dv-testo { grid-column: 1 / -1; }
+  .dv-strade { grid-column: 1 / -1; margin-top: 40px; }
   .piede-marchio { grid-column: 1 / -1; }
   .piede .contatti { grid-column: 1 / -1; }
 }
@@ -259,39 +264,47 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
   .tavola { padding: 20px 0 28px; }
   .oggetto { width: auto; display: flex; flex-direction: column; align-items: center; }
   .richiamo.dx { display: none; }
-  .richiamo.sx { position: static; margin-top: 18px; font-size: 14px; }
+  .richiamo.sx { position: static; margin-top: 26px; font-size: 14px; }
   .richiamo.sx .filo { display: none; }
+  /* sul telefono il richiamo resta legato all'oggetto: un filo verticale dal punto sull'arco alla scritta */
+  .oggetto::before, .oggetto::after { content: ""; position: absolute; left: calc(50% + 4.5px); }
+  .oggetto::before { top: 99px; height: 78px; width: 1px; background: var(--filo-arancio); }
+  .oggetto::after { top: 96px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: var(--bianco); }
   .ap-testo { grid-column: 1 / -1; }
   .apertura h1 { font-size: clamp(34px, 9.4vw, 56px); line-height: 1.06; }
   .ap-riga { margin-top: 14px; font-size: 18px; line-height: 1.45; }
   .ap-telefono { display: block; margin-top: 18px; font-size: 16px; line-height: 1.5; }
   .ap-telefono .vai { display: flex; gap: 28px; margin-bottom: 10px; font-size: 17px; font-weight: 600; }
   .ap-telefono .vai a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
-  .sottopiedi { padding: 64px 0; }
   .capo .colonna { grid-column: 1 / -1; }
   .tipi { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 28px; border-top: 1px solid var(--filetto); }
   .tipi li { border-bottom: 1px solid var(--filetto); }
   .tipo { grid-template-columns: 52px minmax(0, 1fr); padding: 10px 0; }
   .tipo img { width: 52px; }
-  .tipo .nome { font-size: 17px; }
-  .lavorazioni .capo { padding-top: 48px; }
-  .reparti { margin-top: 32px; row-gap: 36px; }
-  .reparto { grid-column: 1 / -1; }
+  .tipo .nome { font-size: 17px; line-height: 1.35; }
+  .reparti { margin-top: 28px; row-gap: 0; border-top: 1px solid var(--filetto); }
+  /* ogni reparto diventa una riga, come la lista del catalogo */
+  .reparto { grid-column: 1 / -1; display: grid; grid-template-columns: 120px minmax(0, 1fr); column-gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--filetto); }
+  .reparto img { grid-row: 1 / span 2; width: 120px; }
+  .reparto .num { margin-top: 0; }
+  .reparto h3 { margin-top: 0; }
+  .reparto p:last-child { grid-column: 1 / -1; margin-top: 12px; font-size: 16px; }
   .macchine .m { grid-column: 1 / -1; margin-top: 10px; }
   .cu-testo { grid-column: 1 / -1; margin-top: 36px; }
   .cu-testo .manifesto { font-size: 24px; line-height: 1.33; }
   .culmine figcaption { grid-template-columns: minmax(0, 1fr); }
   .culmine figcaption span + span { text-align: left; }
   .modulo { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; margin: 32px calc(-1 * var(--m)) 0; border-radius: 0; }
-  .recapiti div, .dv-fatti div { grid-template-columns: 84px minmax(0, 1fr); font-size: 16px; }
-  .dv-testo, .dv-foto { grid-column: 1 / -1; }
+  .recapiti div { grid-template-columns: 84px minmax(0, 1fr); font-size: 16px; }
   .dv-indirizzo { font-size: 19px; }
-  .dv-foto { margin-top: 40px; }
+  .dv-strade { grid-template-columns: minmax(0, 1fr); margin-top: 36px; }
+  .dv-strade > div { padding: 16px 0; border-bottom: 1px solid var(--filetto); }
+  .dv-strade dd a { display: inline-block; padding: 6px 0; }
   .piede { font-size: 16px; }
   .piede-alto { padding-top: 56px; padding-bottom: 40px; }
   .piede .contatti { grid-column: 1 / -1; }
   .piede .col li a { display: inline-block; padding: 8px 0; }
-  .piede-marchio .firma { font-size: 26px; }
+  .piede-marchio .firma { font-size: 22px; }
   .piede-basso { flex-direction: column; gap: 12px; }
   .piede-basso .legali a { display: inline-block; padding: 8px 0; }
 }
@@ -318,7 +331,7 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
       </ul>
     </nav>
     <a class="lingua" href="https://www.tollin.it/welcome.html" hreflang="en" lang="en">English</a>
-    <a class="btn btn-bordo tel-testata" href="tel:+39049640620" aria-label="Chiama 049 640620"><span class="solo-computer">049&nbsp;640620</span><span class="solo-telefono">Chiama</span></a>
+    <a class="btn btn-bordo tel-testata" href="tel:+39049640620" aria-label="Chiama 049 640620"><span class="solo-computer">049<span class="sp">&nbsp;</span>640620</span><span class="solo-telefono">Chiama</span></a>
     <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu"><span class="linee" aria-hidden="true"></span><span class="parola">Menu</span></button>
   </div>
 </header>
@@ -338,8 +351,8 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
       <h1 id="titolo" class="firma">Ogni sottopiede parte dalla forma del modello.</h1>
       <p class="ap-riga">Sottopiedi per i calzaturifici, a <span class="intero">Villatora di Saonara</span> dal 1970.</p>
       <div class="ap-telefono">
-        <p class="vai"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Indicazioni</a><a href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">Scrivi</a></p>
-        <p>Via Irpinia 15. Per ritiri e consegne chiamate prima di passare.</p>
+        <p class="vai"><a href="#dove">Via Irpinia 15</a><a href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">Scrivi</a></p>
+        <p>Per ritiri e consegne chiamate prima di passare.</p>
       </div>
     </div>
   </div>
@@ -375,25 +388,25 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
     </div>
     <ol class="griglia reparti">
       <li class="reparto">
-        <img src="img/r1-modelleria-600.webp" srcset="img/r1-modelleria-400.webp 400w, img/r1-modelleria-600.webp 600w, img/r1-modelleria-807.webp 807w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="Dal plotter esce un foglio di cartoncino bianco con le sagome dei sottopiedi già tagliate.">
+        <img src="img/r1-modelleria-600.webp" srcset="img/r1-modelleria-400.webp 400w, img/r1-modelleria-600.webp 600w, img/r1-modelleria-807.webp 807w" sizes="(max-width: 859px) 120px, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="Dal plotter esce un foglio di cartoncino bianco con le sagome dei sottopiedi già tagliate.">
         <p class="num mono">01</p>
         <h3>Studio modelleria</h3>
         <p>La progettazione parte dalle caratteristiche della forma del modello: la sagoma della parte inferiore, le curvature. Modelli, prototipi e campioni nascono con i programmi CAD/CAM per calzature.</p>
       </li>
       <li class="reparto">
-        <img src="img/r2-taglio-600.webp" srcset="img/r2-taglio-400.webp 400w, img/r2-taglio-600.webp 600w, img/r2-taglio-807.webp 807w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="La tranciatrice con un foglio di materiale color cuoio tagliato a sottopiedi sul nastro verde.">
+        <img src="img/r2-taglio-600.webp" srcset="img/r2-taglio-400.webp 400w, img/r2-taglio-600.webp 600w, img/r2-taglio-807.webp 807w" sizes="(max-width: 859px) 120px, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="La tranciatrice con un foglio di materiale color cuoio tagliato a sottopiedi sul nastro verde.">
         <p class="num mono">02</p>
         <h3>Lavorazione automatizzata</h3>
         <p>Le trance CAD/CAM computerizzate tagliano ogni singolo pezzo. Il taglio a punzone e la lama oscillante danno alta produttività e flessibilità.</p>
       </li>
       <li class="reparto">
-        <img src="img/r3-cambratura-600.webp" srcset="img/r3-cambratura-400.webp 400w, img/r3-cambratura-600.webp 600w, img/r3-cambratura-807.webp 807w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="Gli stampi della pressa di cambratura con due forme in plastica.">
+        <img src="img/r3-cambratura-600.webp" srcset="img/r3-cambratura-400.webp 400w, img/r3-cambratura-600.webp 600w, img/r3-cambratura-807.webp 807w" sizes="(max-width: 859px) 120px, (max-width: 1099px) 46vw, 296px" width="807" height="538" loading="lazy" alt="Gli stampi della pressa di cambratura con due forme in plastica.">
         <p class="num mono">03</p>
         <h3>Cambratura</h3>
         <p>Macchinari automatici e numerosi stampi per le varie sagomature ci permettono garbature perfette e precise.</p>
       </li>
       <li class="reparto">
-        <img src="img/r4-controllo-600.webp" srcset="img/r4-controllo-400.webp 400w, img/r4-controllo-600.webp 600w, img/r4-controllo-804.webp 804w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 46vw, 296px" width="804" height="536" loading="lazy" alt="Due mani sistemano in una scatola una fila di sottopiedi neri garbati per il tacco.">
+        <img src="img/r4-controllo-600.webp" srcset="img/r4-controllo-400.webp 400w, img/r4-controllo-600.webp 600w, img/r4-controllo-705.webp 705w" sizes="(max-width: 859px) 120px, (max-width: 1099px) 46vw, 296px" width="705" height="470" loading="lazy" alt="Due mani sistemano in una scatola una fila di sottopiedi neri garbati per il tacco.">
         <p class="num mono">04</p>
         <h3>Supervisione</h3>
         <p>Il controllo minuzioso dei prodotti prima della consegna ai clienti.</p>
@@ -411,12 +424,12 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
 <section class="culmine" id="azienda" aria-labelledby="t-azienda">
   <div class="contenitore griglia">
     <figure>
-      <img src="img/culmine-807.webp" srcset="img/culmine-400.webp 400w, img/culmine-600.webp 600w, img/culmine-807.webp 807w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 92vw, 740px" width="807" height="538" loading="lazy" alt="Una scatola piena di sottopiedi garbati impilati uno sull'altro, con la punta bianca e la pianta color cuoio.">
+      <img src="img/culmine-807.webp" srcset="img/culmine-400.webp 400w, img/culmine-600.webp 600w, img/culmine-807.webp 807w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 92vw, 807px" width="807" height="538" loading="lazy" alt="Una scatola piena di sottopiedi garbati impilati uno sull'altro, con la punta bianca e la pianta color cuoio.">
       <figcaption><span>Sottopiedi garbati, pronti per la consegna</span><span>Reparto supervisione, Villatora di Saonara</span></figcaption>
     </figure>
     <div class="cu-testo">
-      <h2 id="t-azienda">Dal 1970, a conduzione familiare</h2>
-      <p class="manifesto firma">Ogni sottopiede è garbato in modo progressivo, in modo da evitare la formazione di grinze.</p>
+      <h2 id="t-azienda">Garbato in modo progressivo, per evitare le grinze.</h2>
+      <p class="cu-anno">Dal 1970, a conduzione familiare.</p>
       <p>La nostra azienda nasce come piccola realtà a conduzione familiare. Uniamo la tradizione artigianale e l’alta tecnologia della nostra struttura. I prodotti sono controllati minuziosamente dal personale e dai titolari prima di essere consegnati ai clienti, rigorosamente Made in Italy.</p>
     </div>
   </div>
@@ -428,8 +441,7 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
       <h2 id="t-richiesta">Richiesta di campionatura</h2>
       <p>Scriveteci il tipo, il materiale, la numerata e le quantità. Per la forma o il file del modello, chiedeteci al telefono come mandarli.</p>
       <dl class="recapiti">
-        <div><dt>Telefono</dt><dd><a href="tel:+39049640620">+39 049&nbsp;640620</a></dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:info@tollin.it?subject=Richiesta%20di%20campionatura">info@tollin.it</a></dd></div>
+        <div><dt>Email</dt><dd><a class="recapito" href="mailto:info@tollin.it?subject=Richiesta%20di%20campionatura">info@tollin.it</a></dd></div>
       </dl>
     </div>
     <form class="modulo" id="modulo" novalidate>
@@ -478,15 +490,12 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
       <h2 id="t-dove">Dove siamo</h2>
       <address class="dv-indirizzo">Via Irpinia 15, Zona Artigianale<br>35020 Villatora di Saonara (PD)</address>
       <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Irpinia%2015%2C%2035020%20Villatora%20di%20Saonara%20PD">Indicazioni</a>
-      <dl class="dv-fatti">
-        <div><dt>Orari</dt><dd>Per ritiri e consegne chiamate prima di passare.</dd></div>
-        <div><dt>Consegne</dt><dd>Con il nostro furgone: una consegna puntuale in tempi rapidi.</dd></div>
-        <div><dt>Fax</dt><dd class="mono">049 644643</dd></div>
-      </dl>
     </div>
-    <figure class="dv-foto">
-      <img src="img/furgone-600.webp" srcset="img/furgone-400.webp 400w, img/furgone-600.webp 600w, img/furgone-783.webp 783w" sizes="(max-width: 859px) 100vw, (max-width: 1099px) 46vw, 624px" width="783" height="522" loading="lazy" alt="Il furgone giallo con la scritta Tollin, porte aperte e cartoni sul bancale, davanti al capannone di via Irpinia.">
-    </figure>
+    <dl class="dv-strade dv-fatti">
+      <div><dt>Campionature</dt><dd><a href="#richiesta">Richiesta di campionatura</a> o <a class="recapito" href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">info@tollin.it</a></dd></div>
+      <div><dt>Ritiri e consegne</dt><dd><a class="recapito" href="tel:+39049640620">+39<span class="sp">&nbsp;</span>049<span class="sp">&nbsp;</span>640620</a></dd><dd>Chiamate prima di passare.</dd><dd>Con il nostro furgone: una consegna puntuale in tempi rapidi.</dd></div>
+      <div><dt>Fax</dt><dd><span class="recapito">049<span class="sp">&nbsp;</span>644643</span></dd></div>
+    </dl>
   </div>
 </section>
 
@@ -501,9 +510,9 @@ h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
     <div class="col contatti">
       <h2>Contatti</h2>
       <ul>
-        <li><a href="tel:+39049640620">+39 049&nbsp;640620</a></li>
-        <li><a href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">info@tollin.it</a></li>
-        <li>Fax 049&nbsp;644643</li>
+        <li><a class="recapito" href="tel:+39049640620">+39<span class="sp">&nbsp;</span>049<span class="sp">&nbsp;</span>640620</a></li>
+        <li><a class="recapito" href="mailto:info@tollin.it?subject=Richiesta%20sottopiedi">info@tollin.it</a></li>
+        <li><span class="recapito">Fax<span class="sp"> </span>049<span class="sp">&nbsp;</span>644643</span></li>
         <li><a href="https://www.tollin.it/welcome.html" hreflang="en" lang="en">English</a></li>
       </ul>
     </div>

@@ -16,140 +16,148 @@
   --fondo:#FFFFFF; --gesso:#F0F0F0; --bianco:#FFFFFF; --inchiostro:#1C1D1B; --testo-2:#50544F; --linea:#CBCBC6; --linea-forte:#1C1D1B;
   --verde:#276E59; --verde-scuro:#173F33; --su-verde:#C9D8D2;
   --f:"Kumbh Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  /* tipografia: una famiglia, quattro misure di lavoro e una d'interfaccia */
-  --t-h1:32px; --t-h2:28px; --t-nome:19px; --t-testo:19px; --t-pic:16px; --t-int:14px;
+  /* tipografia: una famiglia e quattro misure a 1440 (14/20, 18/28, 28/36, 44/52), interlinee in px su un passo di 4.
+     Il punto di scala è uno solo: la frase-firma a 44 nel culmine (e, con lo stesso trattamento, nel piede). */
+  --t-pic:14px; --l-pic:20px; --t-testo:18px; --l-testo:28px; --t-h2:28px; --l-h2:36px; --t-firma:44px; --l-firma:52px;
+  --t-h1:var(--t-h2); --l-h1:var(--l-h2); --t-nome:var(--t-testo); --t-int:var(--t-pic);
   /* una griglia sola: 12 colonne, stessi margini per tutta la pagina */
   --m:40px; --g:16px; --larghezza:1840px; --testata:76px;
   /* due spazi tra le sezioni: il passo e la pausa del culmine */
   --passo:112px; --pausa:176px;
 }
-@media (max-width:1023px){:root{--m:32px;--t-h2:26px;--passo:88px;--pausa:128px;--testata:68px}}
-@media (max-width:599px){:root{--m:16px;--g:8px;--t-h1:24px;--t-h2:24px;--t-nome:18px;--t-testo:17px;--t-pic:15px;--passo:72px;--pausa:96px;--testata:60px}}
+@media (max-width:1023px){:root{--m:32px;--t-firma:36px;--l-firma:44px;--passo:88px;--pausa:128px;--testata:68px}}
+@media (max-width:599px){:root{--m:16px;--g:8px;--t-h2:24px;--l-h2:32px;--t-testo:17px;--l-testo:28px;--t-firma:28px;--l-firma:36px;--passo:72px;--pausa:96px;--testata:60px}}
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--fondo);color:var(--inchiostro);font:400 var(--t-testo)/1.58 var(--f);font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--fondo);color:var(--inchiostro);font:400 var(--t-testo)/var(--l-testo) var(--f);font-variant-numeric:tabular-nums}
 img{display:block;max-width:100%;height:auto}
 a{color:var(--verde);text-underline-offset:3px;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
-h1{font-size:var(--t-h1);line-height:1.25}
-h2{font-size:var(--t-h2);line-height:1.28}
-h3{font-size:var(--t-nome);line-height:1.35;font-weight:600;letter-spacing:0}
+h1{font-size:var(--t-h1);line-height:var(--l-h1)}
+h2{font-size:var(--t-h2);line-height:var(--l-h2)}
+h3{font-size:var(--t-nome);line-height:var(--l-testo);font-weight:600;letter-spacing:0}
 p{margin:0}
 [id]{scroll-margin-top:calc(var(--testata) + 16px)}
 .nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);max-width:calc(var(--larghezza) + 2 * var(--m));margin:0 auto;padding:0 var(--m)}
 .griglia > *{min-width:0}
-.pic{font-size:var(--t-pic);line-height:1.5}
-.int{font-size:var(--t-int);line-height:1.43}
+.pic,.int{font-size:var(--t-pic);line-height:var(--l-pic)}
 .sec{color:var(--testo-2)}
 
 /* Bottoni: un modello, pieno o con il bordo, angoli vivi, alto 52 */
-.bottone{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:2px solid var(--verde);border-radius:2px;font:600 17px/1.15 var(--f);text-decoration:none;cursor:pointer;text-align:center}
+.bottone{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:2px solid var(--verde);border-radius:2px;font:600 var(--t-testo)/24px var(--f);text-decoration:none;cursor:pointer;text-align:center}
 .pieno{background:var(--verde);color:var(--bianco)}
 .pieno:hover{background:var(--verde-scuro);border-color:var(--verde-scuro)}
 .bordo{background:transparent;color:var(--verde)}
 .bordo:hover{background:var(--bianco)}
 /* collegamento a riga: testo, filetto sotto e freccia */
-.riga-link{font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding:6px 0}
+.riga-link{display:inline-block;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding:10px 0 4px;cursor:pointer}
 .riga-link::after{content:" \2192"}
 .riga-link:hover{border-bottom-width:2px}
 
-/* Testata fissa */
+/* Testata fissa: logo sulla griglia; campo, voci e telefono in una riga che si stringe */
 .testata{position:sticky;top:0;z-index:20;background:var(--fondo);border-bottom:1px solid var(--linea)}
 .testata .griglia{align-items:center;height:var(--testata)}
 .logo{grid-column:1 / span 2;justify-self:start}
 .logo img{width:150px;height:34px}
-.cerca-testa{grid-column:3 / span 3;display:flex}
-.cerca-testa input{width:100%;height:44px;padding:0 14px;border:1px solid var(--testo-2);border-radius:2px;background:var(--bianco);font:400 16px var(--f);color:var(--inchiostro)}
+.testa-destra{grid-column:3 / -1;display:flex;align-items:center;gap:32px;min-width:0}
+/* il campo è largo tre colonne della griglia (da col 3 a col 5) */
+.cerca-testa{flex:0 1 calc((100% - 9 * var(--g)) * .3 + 2 * var(--g));min-width:200px;display:flex}
+.cerca-testa input{width:100%;height:44px;padding:0 14px;border:1px solid var(--testo-2);border-radius:2px;background:var(--bianco);font:400 var(--t-testo) var(--f);color:var(--inchiostro)}
 .cerca-testa input::placeholder,.cerca-grande input::placeholder,.cerca-ap input::placeholder{color:var(--testo-2)}
-.menu{grid-column:6 / span 5;display:flex;gap:28px;justify-content:center}
-.menu a{color:var(--inchiostro);text-decoration:none;font-size:17px}
+.menu{margin-left:auto;display:flex;gap:28px}
+.menu a{color:var(--inchiostro);text-decoration:none;font-size:var(--t-testo);line-height:var(--l-testo);white-space:nowrap}
 .menu a:hover{color:var(--verde);text-decoration:underline}
 .menu .solo-menu{display:none}
-.chiama{grid-column:11 / span 2;justify-self:end;text-align:right;line-height:1.25}
-.chiama a{display:block;color:var(--inchiostro);font-weight:600;font-size:17px;text-decoration:none;padding:2px 0}
+.chiama{text-align:right;white-space:nowrap}
+.chiama a{display:block;color:var(--inchiostro);font-weight:600;font-size:var(--t-testo);line-height:24px;text-decoration:none;padding:2px 0}
 .chiama a:hover{color:var(--verde);text-decoration:underline}
 .chiama a span{font-weight:400}
-.chiama .stato{justify-content:flex-end;font-size:var(--t-int);font-weight:400;color:var(--testo-2)}
-.menu-bottone{display:none;min-height:44px;padding:0 4px 0 12px;border:0;background:none;font:600 17px var(--f);color:var(--inchiostro);cursor:pointer}
+.chiama .stato{justify-content:flex-end;font-size:var(--t-pic);line-height:var(--l-pic);font-weight:400;color:var(--testo-2);white-space:nowrap}
+.menu-bottone{display:none;min-height:44px;padding:0 4px 0 12px;border:0;background:none;font:600 var(--t-testo) var(--f);color:var(--inchiostro);cursor:pointer}
 .stato{display:flex;align-items:center;gap:8px}
 .stato::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--testo-2);flex:none}
 .stato.aperto::before{background:var(--verde)}
-@media (max-width:1179px){
-  .menu{display:none;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;padding:8px var(--m) 24px;background:var(--fondo);border-bottom:1px solid var(--linea)}
+@media (max-width:1279px){
+  .menu{display:none;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;margin:0;padding:8px var(--m) 24px;background:var(--fondo);border-bottom:1px solid var(--linea)}
   .menu.aperto{display:flex}
-  .menu a{padding:13px 0;border-bottom:1px solid var(--linea);font-size:var(--t-testo)}
+  .menu a{padding:12px 0;border-bottom:1px solid var(--linea)}
   .menu .solo-menu{display:block}
-  .cerca-testa{grid-column:3 / span 5}
-  .menu-bottone{display:block;grid-column:8 / span 2;justify-self:center}
-  .chiama{grid-column:10 / span 3}
+  .cerca-testa{flex:1 1 auto;max-width:400px}
+  .chiama{margin-left:auto;order:1}
+  .menu-bottone{display:block;order:2}
 }
 @media (max-width:1023px){
   .cerca-testa{display:none}
   .logo{grid-column:1 / span 4}
-  .menu-bottone{grid-column:11 / span 2;justify-self:end;grid-row:1}
-  .chiama{grid-column:6 / span 5;grid-row:1}
+  .testa-destra{grid-column:5 / -1;gap:16px}
 }
 @media (max-width:599px){
   .logo img{width:118px;height:27px}
-  .chiama{grid-column:5 / span 6}
+  .logo{grid-column:1 / span 4}
+  .testa-destra{grid-column:5 / -1;gap:8px}
   .chiama .stato,.chiama a span{display:none}
   .chiama a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;background:var(--verde);color:var(--bianco);border-radius:2px;font-size:16px}
   .chiama a:hover{background:var(--verde-scuro);color:var(--bianco);text-decoration:none}
 }
 
-/* Apertura: le sei scatole in fila, una per lavoro, sullo stesso fondo */
-.apertura{padding:16px 0 0}
-.tessere{list-style:none;margin:0;padding:0;display:contents}
-.tessera{grid-column:span 2;margin:0}
-.tessera img{width:100%;aspect-ratio:1 / 2.9;object-fit:cover;object-position:50% 100%}
-.tessera figcaption{margin-top:10px;font-size:var(--t-pic);font-weight:600;line-height:1.3}
-.apertura h1{grid-column:1 / span 8;margin-top:40px}
+/* Apertura: il titolo sopra, le sei scatole in fila sotto, una per lavoro, sullo stesso grigio piatto.
+   Strada D2 "alla misura vera": rendering scontornati, mai ingranditi, con aria intorno; ogni scatola apre il suo lavoro. */
+.apertura .griglia{min-height:calc(100svh - var(--testata));align-content:center;padding-top:40px;padding-bottom:88px}
+.apertura h1{grid-column:1 / span 8}
+.tessere{grid-column:1 / -1;list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g)}
+.tessera a{display:block;color:var(--inchiostro);text-decoration:none}
+.tessera img{width:100%;aspect-ratio:713 / 1193;max-height:calc(100svh - var(--testata) - 220px);object-fit:contain;background:#F0F0EE}
+.tessera .didascalia{display:block;margin-top:12px;font-size:var(--t-pic);line-height:var(--l-pic);font-weight:600}
+.tessera .didascalia::after{content:" \2192";color:var(--verde)}
+.tessera a:hover .didascalia{text-decoration:underline;text-underline-offset:3px}
 .cerca-ap{display:none}
-@media (max-width:1023px){.apertura h1{grid-column:1 / span 10}}
+@media (max-width:1023px){
+  .apertura h1{grid-column:1 / span 10}
+  .tessere{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:24px}
+}
 @media (max-width:599px){
-  .apertura{padding-top:8px}
-  .tessera{grid-column:span 4}
-  .tessera:nth-child(n+4){margin-top:10px}
-  .tessera img{aspect-ratio:1 / 2.2}
-  .tessera figcaption{margin-top:6px;font-size:14px}
-  .apertura h1{grid-column:1 / -1;margin-top:18px}
-  .cerca-ap{display:flex;grid-column:1 / -1;margin-top:14px}
-  .cerca-ap input{width:100%;height:52px;padding:0 14px;border:1px solid var(--inchiostro);border-radius:2px;background:var(--bianco);font:400 17px var(--f);color:var(--inchiostro)}
+  .apertura .griglia{min-height:0;padding-top:20px;padding-bottom:0}
+  .apertura h1{grid-column:1 / -1}
+  .tessere{margin-top:20px;row-gap:16px}
+  .tessera .didascalia{margin-top:8px}
+  .cerca-ap{display:flex;grid-column:1 / -1;margin-top:20px}
+  .cerca-ap input{width:100%;height:52px;padding:0 14px;border:1px solid var(--inchiostro);border-radius:2px;background:var(--bianco);font:400 var(--t-testo) var(--f);color:var(--inchiostro)}
 }
 
 /* Sezioni: tutte sulla stessa griglia, divise da un filetto */
 .sezione{padding:var(--passo) 0}
 .sezione + .sezione{border-top:1px solid var(--linea)}
-.testo > p{margin-top:18px;max-width:34em}
+.testo > p{margin-top:16px;max-width:34em}
 .testo h2 + p{margin-top:16px}
-.azioni{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+.azioni{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
 
 /* Cosa devi fare? La ricerca e i sei lavori, sul grigio gesso: è lo strumento della pagina */
-.cerca-sez{background:var(--gesso);margin-top:var(--passo)}
-.cerca-sez .testo{grid-column:1 / span 4}
+.cerca-sez{background:var(--gesso)}
+/* una griglia per tutte le sezioni a due colonne: a sinistra col 1-5, a destra da col 7 (728 px a 1440) */
+.cerca-sez .testo{grid-column:1 / span 5;align-self:start;position:sticky;top:calc(var(--testata) + 32px)}
 .cerca-grande{margin-top:24px;display:flex;gap:8px}
 .cerca-grande input{flex:1;min-width:0;height:56px;padding:0 16px;border:2px solid var(--inchiostro);border-radius:2px;background:var(--bianco);font:400 var(--t-testo) var(--f);color:var(--inchiostro)}
 .cerca-grande .bottone{min-height:56px}
-.lavori{grid-column:6 / span 7;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--linea-forte);align-self:start}
+.lavori{grid-column:7 / span 6;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--linea-forte);align-self:start}
 .lavori li{border-bottom:1px solid var(--linea)}
-.lavori button{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px;width:100%;min-height:76px;padding:12px 0;border:0;background:none;font:inherit;color:var(--inchiostro);text-align:left;cursor:pointer}
-.lavori b{font-size:var(--t-nome);font-weight:600;line-height:1.3}
-.lavori small{grid-column:1;font-size:var(--t-pic);color:var(--testo-2);line-height:1.35}
-.lavori .freccia{grid-row:1 / span 2;grid-column:2;color:var(--verde);font-size:20px}
+.lavori button{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 12px;width:100%;min-height:76px;padding:12px 0;border:0;background:none;font:inherit;color:var(--inchiostro);text-align:left;cursor:pointer}
+.lavori b{font-size:var(--t-nome);font-weight:600;line-height:var(--l-testo)}
+.lavori small{grid-column:1;font-size:var(--t-pic);color:var(--testo-2);line-height:var(--l-pic)}
+.lavori .freccia{grid-row:1 / span 2;grid-column:2;color:var(--verde);font-size:var(--t-testo)}
 .lavori button:hover b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .lavori button[aria-pressed="true"] b{color:var(--verde)}
 .lavori button[aria-pressed="true"]{box-shadow:inset 0 -3px 0 var(--verde)}
-.altre{grid-column:6 / span 7;margin-top:22px;font-size:var(--t-pic);line-height:1.9}
+.altre{grid-column:7 / span 6;margin-top:24px;font-size:var(--t-pic);line-height:28px}
 .altre button{border:0;background:none;padding:0;margin-right:16px;font:600 var(--t-pic) var(--f);color:var(--verde);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 #risultati{grid-column:1 / -1}
 #risultati:empty{display:none}
 #risultati{margin-top:40px;border-top:2px solid var(--linea-forte)}
 .ris-testa{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--linea)}
-.ris-testa p{font-weight:600;font-size:var(--t-pic)}
+.ris-testa p{font-weight:600;font-size:var(--t-pic);line-height:var(--l-pic)}
 .ris-testa button,.ris-altri{border:0;background:none;padding:12px 0;font:600 var(--t-pic) var(--f);color:var(--verde);text-decoration:underline;cursor:pointer}
 .ris-lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
 .prodotto{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:22px 24px 22px 0;border-bottom:1px solid var(--linea);min-width:0}
@@ -157,129 +165,133 @@ p{margin:0}
 .prodotto img{width:96px;height:96px;background:var(--bianco)}
 .prodotto h3 a{color:var(--inchiostro);text-decoration:none}
 .prodotto h3 a:hover{text-decoration:underline}
-.prodotto .linea-p{font-size:var(--t-int);color:var(--testo-2)}
-.prodotto .impiego{margin-top:6px;font-size:var(--t-pic);color:var(--testo-2)}
-.uso{margin:12px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;font-size:var(--t-pic)}
+.prodotto .linea-p{font-size:var(--t-pic);line-height:var(--l-pic);color:var(--testo-2)}
+.prodotto .impiego{margin-top:4px;font-size:var(--t-pic);line-height:var(--l-pic);color:var(--testo-2)}
+.uso{margin:12px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;font-size:var(--t-pic);line-height:var(--l-pic)}
 .uso div{display:flex;flex-wrap:wrap;gap:0 8px;min-width:0}
 .uso dt{font-weight:600}
 .uso dd{margin:0;min-width:0}
-.conf{margin-top:10px;font-size:var(--t-pic)}
+.conf{margin-top:8px;font-size:var(--t-pic);line-height:var(--l-pic)}
 .cod{font-weight:600}
-.prodotto .link{margin-top:8px;display:flex;flex-wrap:wrap;gap:0 24px;font-size:var(--t-pic)}
-.prodotto .link a{display:inline-block;padding:10px 0;font-weight:600}
-.ris-vuoto{padding:16px 0;font-size:var(--t-pic)}
+.prodotto .link{margin-top:8px;display:flex;flex-wrap:wrap;gap:0 24px;font-size:var(--t-pic);line-height:var(--l-pic)}
+.prodotto .link a{display:inline-block;padding:12px 0;font-weight:600}
+.ris-vuoto{padding:16px 0;font-size:var(--t-pic);line-height:var(--l-pic)}
 
 /* Prodotti e codici: le quattro linee come righe d'indice, poi l'elenco completo */
-.prodotti .testo{grid-column:1 / span 4}
-.indice{grid-column:6 / span 7;list-style:none;margin:0;padding:0;border-top:1px solid var(--linea-forte);align-self:start}
+.prodotti .testo{grid-column:1 / span 5}
+.indice{grid-column:7 / span 6;list-style:none;margin:0;padding:0;border-top:1px solid var(--linea-forte);align-self:start}
 .indice li{border-bottom:1px solid var(--linea)}
-.indice a{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr) auto;gap:4px var(--g);align-items:baseline;padding:20px 0;color:var(--inchiostro);text-decoration:none}
-.indice b{font-size:var(--t-nome);font-weight:600}
-.indice span{font-size:var(--t-pic);color:var(--testo-2)}
-.indice em{font-style:normal;font-size:var(--t-pic);font-weight:600;color:var(--verde);white-space:nowrap}
+/* sei colonne della griglia: il nome su due, la descrizione da col 9 (957 px a 1440), il comando sull'ultima */
+.indice a{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g);row-gap:4px;align-items:baseline;padding:20px 0;color:var(--inchiostro);text-decoration:none}
+.indice b{grid-column:1 / span 2;font-size:var(--t-nome);line-height:var(--l-testo);font-weight:600}
+.indice span{grid-column:3 / span 3;font-size:var(--t-pic);line-height:var(--l-pic);color:var(--testo-2)}
+.indice em{grid-column:6;justify-self:end;font-style:normal;font-size:var(--t-pic);line-height:var(--l-pic);font-weight:600;color:var(--verde);white-space:nowrap}
 .indice a:hover b{text-decoration:underline;text-underline-offset:3px}
-.elenco{grid-column:6 / span 7;margin-top:32px}
-.elenco summary{list-style:none;cursor:pointer;display:inline-flex}
+.elenco{grid-column:7 / span 6;margin-top:32px}
+.elenco summary{list-style:none;cursor:pointer;display:inline-block}
+.elenco summary.riga-link::after{content:" \2193"}
+.elenco details[open] summary.riga-link::after{content:" \2191"}
 .elenco summary::-webkit-details-marker{display:none}
 .elenco details[open] summary .chiuso,.elenco details:not([open]) summary .aperto-t{display:none}
 .filtri{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
-.filtri button{min-height:44px;padding:0 16px;border:1px solid var(--linea);border-radius:2px;background:var(--bianco);font:600 var(--t-pic) var(--f);color:var(--inchiostro);cursor:pointer}
+.filtri button{min-height:44px;padding:0 16px;border:1px solid var(--linea);border-radius:2px;background:var(--bianco);font:600 var(--t-pic)/var(--l-pic) var(--f);color:var(--inchiostro);cursor:pointer}
 .filtri button[aria-pressed="true"]{border:2px solid var(--verde);color:var(--verde)}
-.tabella{width:100%;border-collapse:collapse;font-size:var(--t-pic);margin-top:8px}
+.tabella{width:100%;border-collapse:collapse;font-size:var(--t-pic);line-height:var(--l-pic);margin-top:8px}
 .tabella th,.tabella td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid var(--linea)}
-.tabella thead th{font-size:var(--t-int);font-weight:600;color:var(--testo-2)}
-.tabella tbody th{font-weight:600;width:33%}
+.tabella thead th{font-weight:600;color:var(--testo-2)}
+.tabella thead th:first-child,.tabella tbody th{width:34.1%}
+.tabella tbody th{font-weight:600}
 .tabella tbody th a{color:var(--inchiostro)}
-.tabella .gruppo th{padding-top:32px;font-size:var(--t-nome);width:auto;border-bottom:1px solid var(--linea-forte)}
+.tabella .gruppo th{padding-top:32px;font-size:var(--t-nome);line-height:var(--l-testo);width:auto;border-bottom:1px solid var(--linea-forte)}
 .tabella .gruppo span{font-size:var(--t-pic);font-weight:400;color:var(--testo-2);margin-left:8px}
 .tabella .schede a{display:inline-block;margin-right:16px;font-weight:600;padding:2px 0}
 .muto{color:var(--testo-2)}
 .stampa-testa{display:none}
 
-/* Per i negozi: il magazzino e i tre passi; sotto la foto, dove si compra */
-.foto-mag{grid-column:1 / span 7;margin:0}
+/* Per i negozi: il magazzino e, sotto, dove si compra; a destra i tre passi */
+.foto-mag{grid-column:1 / span 5;margin:0}
 .foto-mag img{width:100%;aspect-ratio:16 / 9;object-fit:cover}
-figcaption.due-voci{margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-size:var(--t-pic);line-height:1.4}
+figcaption.due-voci{margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-size:var(--t-pic);line-height:var(--l-pic)}
 figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
-.negozi .testo{grid-column:9 / span 4;grid-row:1 / span 2}
+.negozi .testo{grid-column:7 / span 6;grid-row:1 / span 2}
 .passi{list-style:none;margin:28px 0 0;padding:0;counter-reset:passo;border-top:1px solid var(--linea-forte)}
-.passi li{counter-increment:passo;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
-.passi li::before{content:counter(passo);font-weight:600;color:var(--verde)}
-.passi strong{display:block;font-size:var(--t-nome);font-weight:600;line-height:1.35;margin-bottom:2px}
-.dove{grid-column:1 / span 7;margin-top:56px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));column-gap:var(--g)}
-.dove h3{grid-column:1 / span 3}
-.dove > div{grid-column:4 / span 4}
+.passi li{counter-increment:passo;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic);line-height:var(--l-pic)}
+.passi li::before{content:counter(passo);font-weight:600;color:var(--verde);font-size:var(--t-testo);line-height:var(--l-testo)}
+.passi strong{display:block;font-size:var(--t-nome);font-weight:600;line-height:var(--l-testo);margin-bottom:4px}
+.dove{grid-column:1 / span 5;margin-top:48px;border-top:1px solid var(--linea-forte);padding-top:16px}
+.dove p{margin-top:8px;font-size:var(--t-pic);line-height:var(--l-pic)}
 .dove p + p{margin-top:12px}
 
-/* Professionisti: il sacco in tessera, il testo, la dichiarazione di prestazione */
+/* Professionisti: il testo e la dichiarazione di prestazione */
 .professionisti .testo{grid-column:1 / span 5}
 .dop{grid-column:7 / span 6;border-top:1px solid var(--linea-forte);padding-top:16px;align-self:start}
 .dop dl{margin:16px 0 0}
-.dop dl div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
-.dop dt{color:var(--testo-2)}
-.dop dd{margin:0;font-weight:600}
-.dop .riga-link{display:inline-block;margin-top:20px;font-size:var(--t-pic)}
+.dop dl div{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g);padding:12px 0;border-bottom:1px solid var(--linea)}
+.dop dt{grid-column:1 / span 2;color:var(--testo-2)}
+.dop dd{grid-column:3 / span 4;margin:0;font-weight:600}
+.dop .riga-link{margin-top:20px;font-size:var(--t-pic);line-height:var(--l-pic)}
 
-/* Culmine: la sede, la scatola fatta muro */
+/* Culmine: la sede, la scatola fatta muro, e la frase-firma, l'unico punto di scala della pagina */
 .culmine{padding:var(--pausa) 0}
 .foto-sede{grid-column:1 / -1;margin:0}
-.foto-sede img{width:100%;aspect-ratio:1920 / 700;object-fit:cover}
-.firma{font-size:var(--t-h2);line-height:1.28;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
-.culmine h2{grid-column:1 / span 6;margin-top:56px}
+.foto-sede img{width:100%;aspect-ratio:1360 / 420;object-fit:cover;object-position:50% 35%}
+.firma{font-size:var(--t-firma);line-height:var(--l-firma);font-weight:400;letter-spacing:-.015em;text-wrap:balance}
+.culmine h2{grid-column:1 / span 5;margin-top:56px}
 .culmine .testo{grid-column:7 / span 6;margin-top:56px}
-.culmine .testo p + p{margin-top:14px}
-.culmine .testo > p:first-child{margin-top:4px}
+.culmine .testo > p:first-child{margin-top:8px}
 
 /* Contatti e modulo */
-.contatti .testo{grid-column:1 / span 5}
+.contatti .testo{grid-column:1 / span 5;align-self:start;position:sticky;top:calc(var(--testata) + 32px)}
 .dati{margin:24px 0 0;border-top:1px solid var(--linea-forte)}
-.dati > div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr);gap:var(--g);padding:16px 0;border-bottom:1px solid var(--linea)}
-.dati dt{font-size:var(--t-pic);font-weight:600}
-.dati dd{margin:0;font-size:var(--t-pic)}
-.dati dd .grande{font-size:var(--t-nome);font-weight:600}
-.orari-t{border-collapse:collapse;margin-top:6px}
+.dati > div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--g);padding:16px 0;border-bottom:1px solid var(--linea)}
+.dati dt{grid-column:1 / span 2;font-size:var(--t-pic);line-height:var(--l-pic);font-weight:600;padding-top:4px}
+.dati dd{grid-column:3 / span 3;margin:0;font-size:var(--t-pic);line-height:var(--l-pic)}
+.dati dd .grande{font-size:var(--t-nome);line-height:var(--l-testo);font-weight:600}
+.orari-t{border-collapse:collapse;margin-top:8px;line-height:var(--l-pic)}
 .orari-t th{text-align:left;font-weight:400;padding:2px 24px 2px 0}
 .orari-t td{padding:2px 0}
 .modulo{grid-column:7 / span 6;background:var(--gesso);padding:40px;align-self:start}
-.modulo h3{font-size:var(--t-h2);font-weight:400;line-height:1.28}
-.campi{display:grid;grid-template-columns:1fr 1fr;gap:18px var(--g);margin-top:24px}
-.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.modulo h3{font-size:var(--t-h2);font-weight:400;line-height:var(--l-h2)}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:20px var(--g);margin-top:24px}
+.campo{display:flex;flex-direction:column;gap:8px;min-width:0}
 .campo.largo{grid-column:1 / -1}
-.campo label{font-size:var(--t-pic);font-weight:600}
-.campo input,.campo select,.campo textarea{width:100%;min-height:50px;padding:11px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-pic) var(--f);color:var(--inchiostro);background:var(--bianco)}
+.campo label{font-size:var(--t-pic);line-height:var(--l-pic);font-weight:600}
+.campo input,.campo select,.campo textarea{width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-testo)/var(--l-testo) var(--f);color:var(--inchiostro);background:var(--bianco)}
 .campo textarea{min-height:104px;resize:vertical}
 .campo .aiuto{font-weight:400;color:var(--testo-2)}
 .modulo-invio{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .modulo-invio .int{max-width:24em;color:var(--testo-2)}
-.avviso{font-size:var(--t-pic);font-weight:600;color:var(--verde-scuro);flex-basis:100%}
+.avviso{font-size:var(--t-pic);line-height:var(--l-pic);font-weight:600;color:var(--verde-scuro);flex-basis:100%}
 .avviso:empty{display:none}
 .dopo-invio{margin-top:24px;padding:24px;border:2px solid var(--verde);background:var(--bianco)}
 .dopo-invio[hidden]{display:none}
-.dopo-invio textarea{display:block;width:100%;min-height:180px;margin-top:12px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-pic)/1.45 var(--f);color:var(--inchiostro);background:var(--bianco)}
+.dopo-invio textarea{display:block;width:100%;min-height:180px;margin-top:12px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-pic)/var(--l-pic) var(--f);color:var(--inchiostro);background:var(--bianco)}
 
-/* Piede: biglietto da visita, sul verde scuro */
-.piede{background:var(--verde-scuro);color:var(--bianco);padding:80px 0 40px;font-size:var(--t-pic)}
+/* Piede: biglietto da visita, sul verde scuro, con la frase-firma come nel culmine */
+.piede{background:var(--verde-scuro);color:var(--bianco);padding:96px 0 40px;font-size:var(--t-pic);line-height:var(--l-pic)}
 .piede a{color:var(--bianco)}
-.piede-logo{grid-column:1 / span 2}
+.piede-logo{grid-column:1 / span 2;padding-top:12px}
 .piede-logo img{width:130px;height:30px}
-.piede .firma{grid-column:3 / span 5}
-.piede ul{grid-column:9 / span 4;list-style:none;margin:0;padding:0;columns:2;column-gap:var(--g)}
-.piede li{padding:0 0 10px;break-inside:avoid}
-.legale{grid-column:1 / -1;margin-top:64px;padding-top:20px;border-top:1px solid #3E6257;display:flex;flex-wrap:wrap;gap:6px 28px;font-size:var(--t-int);color:var(--su-verde)}
+.piede .firma{grid-column:3 / span 6}
+.piede ul{grid-column:9 / span 4;list-style:none;margin:0;padding:8px 0 0;columns:2;column-gap:var(--g)}
+.piede li{padding:0 0 12px;break-inside:avoid}
+.legale{grid-column:1 / -1;margin-top:64px;padding-top:20px;border-top:1px solid #3E6257;display:flex;flex-wrap:wrap;gap:4px 28px;font-size:var(--t-pic);color:var(--su-verde)}
 .legale a{color:var(--su-verde)}
 
 @media (max-width:1023px){
-  .cerca-sez .testo,.prodotti .testo,.contatti .testo{grid-column:1 / -1}
+  .cerca-sez .testo,.prodotti .testo,.contatti .testo{grid-column:1 / -1;position:static}
   .lavori,.altre,.indice,.elenco{grid-column:1 / -1}
   .lavori,.indice{margin-top:36px}
   .foto-mag,.negozi .testo,.dove{grid-column:1 / -1;grid-row:auto}
   .negozi .testo{margin-top:40px}
   .professionisti .testo{grid-column:1 / -1}
   .dop{grid-column:1 / -1;margin-top:40px}
-  .culmine h2{grid-column:1 / -1}
-  .culmine .testo{grid-column:1 / -1;margin-top:24px}
+  .culmine h2{grid-column:1 / span 10}
+  .culmine .testo{grid-column:1 / span 10;margin-top:24px}
+  .foto-sede img{aspect-ratio:1920 / 700}
   .modulo{grid-column:1 / -1;margin-top:48px}
   .piede .firma{grid-column:4 / span 9}
+  .dop dt,.dati dt{grid-column:1 / span 2}
   .piede ul{grid-column:1 / -1;margin-top:40px}
 }
 @media (max-width:599px){
@@ -292,19 +304,21 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
   .prodotto img{width:72px;height:72px}
   .uso{grid-template-columns:1fr}
   .indice a{grid-template-columns:1fr auto;padding:16px 0}
+  .indice b{grid-column:1}
+  .indice em{grid-column:2}
   .indice span{grid-column:1 / -1;grid-row:2}
+  .cerca-sez .testo .cerca-grande,#d-cerca{display:none}
   figcaption.due-voci{flex-direction:column;gap:2px}
   figcaption.due-voci span:last-child{text-align:left}
-  .dove{grid-template-columns:1fr;margin-top:48px}
-  .dove h3,.dove > div{grid-column:1 / -1}
-  .dove > div{margin-top:10px}
+  .dove{margin-top:48px}
   .professionisti .testo .azioni .bottone{width:100%}
   .foto-sede img{aspect-ratio:4 / 3;object-position:58% 50%}
   .culmine h2{margin-top:32px}
-  .dati > div{grid-template-columns:1fr;gap:4px}
+  .dati > div,.dop dl div{grid-template-columns:1fr;gap:4px}
+  .dati dt,.dati dd,.dop dt,.dop dd{grid-column:1}
   .modulo{padding:24px 16px}
   .campi{grid-template-columns:1fr}
-  .azioni .bottone,.elenco summary{width:100%}
+  .azioni .bottone{width:100%}
   .tabella thead{display:none}
   .tabella tr{display:grid;grid-template-columns:1fr;padding:12px 0;border-bottom:1px solid var(--linea)}
   .tabella th,.tabella td{border:0;padding:2px 0;width:auto}
@@ -344,6 +358,7 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
 <header class="testata">
   <div class="griglia">
     <a class="logo" href="#principale" aria-label="Nardi, inizio pagina"><img src="img/logo-nardi-verde.png" alt="Nardi" width="150" height="34"></a>
+    <div class="testa-destra">
     <form class="cerca-testa" role="search" data-cerca-form>
       <label class="nascosto" for="q-testa">Cerca un prodotto, un lavoro o un codice</label>
       <input id="q-testa" type="search" placeholder="Cerca un prodotto o un codice" autocomplete="off" enterkeyhint="search">
@@ -364,24 +379,25 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       <a href="tel:+390498790626" aria-label="Chiama gli ordini, 049 879 0626"><span>Ordini </span>049 879 0626</a>
       <p class="stato" data-stato>Lun-ven 8-12 e 14-18</p>
     </div>
+    </div>
   </div>
 </header>
 
 <main id="principale">
 <section class="apertura" aria-labelledby="titolo">
   <div class="griglia">
-    <ul class="tessere" aria-label="Sei scatole Briko Line da 1 kg, una per lavoro">
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-crepe-330.webp" srcset="img/scatola-crepe-220.webp 220w, img/scatola-crepe-330.webp 330w, img/scatola-crepe-440.webp 440w, img/scatola-crepe-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line magenta di stucco in polvere per interni, 1 kg"><figcaption>Crepe e buchi</figcaption></figure></li>
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-fissare-330.webp" srcset="img/scatola-fissare-220.webp 220w, img/scatola-fissare-330.webp 330w, img/scatola-fissare-440.webp 440w, img/scatola-fissare-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line gialla di cemento rapido, 1 kg"><figcaption>Fissaggi</figcaption></figure></li>
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-fughe-330.webp" srcset="img/scatola-fughe-220.webp 220w, img/scatola-fughe-330.webp 330w, img/scatola-fughe-440.webp 440w, img/scatola-fughe-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line rossa di stucco in polvere per fughe, 1 kg"><figcaption>Fughe</figcaption></figure></li>
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-muri-330.webp" srcset="img/scatola-muri-220.webp 220w, img/scatola-muri-330.webp 330w, img/scatola-muri-440.webp 440w, img/scatola-muri-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line viola di malta pronta grigia, 1 kg"><figcaption>Muri</figcaption></figure></li>
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-caminetti-330.webp" srcset="img/scatola-caminetti-220.webp 220w, img/scatola-caminetti-330.webp 330w, img/scatola-caminetti-440.webp 440w, img/scatola-caminetti-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line bruna di malta refrattaria, 1 kg"><figcaption>Caminetti</figcaption></figure></li>
-      <li class="tessera"><figure style="margin:0"><img src="img/scatola-gesso-330.webp" srcset="img/scatola-gesso-220.webp 220w, img/scatola-gesso-330.webp 330w, img/scatola-gesso-440.webp 440w, img/scatola-gesso-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line verde di gesso alabastrino, 1 kg"><figcaption>Calchi</figcaption></figure></li>
-    </ul>
     <h1 id="titolo">Stucchi, gessi e malte da Tombelle di Saonara</h1>
+    <ul class="tessere" aria-label="Sei scatole Briko Line da 1 kg, una per lavoro: tocca il lavoro per vedere i prodotti">
+      <li class="tessera"><a href="#cerca" data-lavoro="crepe"><img src="img/tessera-crepe-360.webp" srcset="img/tessera-crepe-240.webp 240w, img/tessera-crepe-360.webp 360w, img/tessera-crepe-480.webp 480w, img/tessera-crepe-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line magenta di stucco in polvere per interni, 1 kg"><span class="didascalia">Crepe e buchi</span></a></li>
+      <li class="tessera"><a href="#cerca" data-lavoro="fissare"><img src="img/tessera-fissare-360.webp" srcset="img/tessera-fissare-240.webp 240w, img/tessera-fissare-360.webp 360w, img/tessera-fissare-480.webp 480w, img/tessera-fissare-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line gialla di cemento rapido, 1 kg"><span class="didascalia">Fissaggi</span></a></li>
+      <li class="tessera"><a href="#cerca" data-lavoro="fughe"><img src="img/tessera-fughe-360.webp" srcset="img/tessera-fughe-240.webp 240w, img/tessera-fughe-360.webp 360w, img/tessera-fughe-480.webp 480w, img/tessera-fughe-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line rossa di stucco in polvere per fughe, 1 kg"><span class="didascalia">Fughe</span></a></li>
+      <li class="tessera"><a href="#cerca" data-lavoro="muri"><img src="img/tessera-muri-360.webp" srcset="img/tessera-muri-240.webp 240w, img/tessera-muri-360.webp 360w, img/tessera-muri-480.webp 480w, img/tessera-muri-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line viola di malta pronta grigia, 1 kg"><span class="didascalia">Muri</span></a></li>
+      <li class="tessera"><a href="#cerca" data-lavoro="caminetti"><img src="img/tessera-caminetti-360.webp" srcset="img/tessera-caminetti-240.webp 240w, img/tessera-caminetti-360.webp 360w, img/tessera-caminetti-480.webp 480w, img/tessera-caminetti-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line bruna di malta refrattaria, 1 kg"><span class="didascalia">Caminetti</span></a></li>
+      <li class="tessera"><a href="#cerca" data-lavoro="gesso"><img src="img/tessera-gesso-360.webp" srcset="img/tessera-gesso-240.webp 240w, img/tessera-gesso-360.webp 360w, img/tessera-gesso-480.webp 480w, img/tessera-gesso-713.webp 713w" sizes="(min-width:1920px) 294px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 96px) / 3), calc((100vw - 48px) / 3)" width="713" height="1193" alt="Scatola Briko Line verde di gesso alabastrino, 1 kg"><span class="didascalia">Calchi</span></a></li>
+    </ul>
     <form class="cerca-ap" role="search" data-cerca-form>
       <label class="nascosto" for="q-ap">Cerca un prodotto, un lavoro o un codice</label>
-      <input id="q-ap" type="search" placeholder="Cosa devi fare? es. fughe, caminetto" autocomplete="off" enterkeyhint="search">
+      <input id="q-ap" type="search" placeholder="Cerca un prodotto o un codice" autocomplete="off" enterkeyhint="search">
     </form>
   </div>
 </section>
@@ -420,10 +436,10 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       <div class="azioni"><a class="bottone bordo" href="catalogo-codici-nardi.pdf" download>Scarica il catalogo codici (PDF)</a></div>
     </div>
     <ul class="indice">
-      <li><a href="#elenco" data-apri-elenco="Briko Line"><b>Briko Line</b><span>43 prodotti per il fai da te: scatole da 1 kg, secchielli da 750 g, confezioni da 5 kg</span><em>Codici e schede &#8594;</em></a></li>
-      <li><a href="#elenco" data-apri-elenco="Artelinea"><b>Artelinea</b><span>41 prodotti per il professionista, in confezioni da 5, 10 e 25 kg e in secchi</span><em>Codici e schede &#8594;</em></a></li>
-      <li><a href="#elenco" data-apri-elenco="Gli speciali"><b>Gli speciali</b><span>Stucchi e rasanti per grossi spessori, intonaco di finitura, malta risanante</span><em>Codici e schede &#8594;</em></a></li>
-      <li><a href="#elenco" data-apri-elenco="Altri prodotti"><b>Altri prodotti</b><span>Mastice per vetri, rete autoadesiva, isolante al solvente, segatura, secchielli</span><em>Codici e schede &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Briko Line"><b>Briko Line</b><span>43 prodotti per il fai da te: scatole da 1 kg, secchielli da 750 g, confezioni da 5 kg</span><em>Codici &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Artelinea"><b>Artelinea</b><span>41 prodotti per il professionista, in confezioni da 5, 10 e 25 kg e in secchi</span><em>Codici &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Gli speciali"><b>Gli speciali</b><span>Stucchi e rasanti per grossi spessori, intonaco di finitura, malta risanante</span><em>Codici &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Altri prodotti"><b>Altri prodotti</b><span>Mastice per vetri, rete autoadesiva, isolante al solvente, segatura, secchielli</span><em>Codici &#8594;</em></a></li>
     </ul>
     <div class="elenco" id="elenco">
       <div class="stampa-testa" aria-hidden="true">
@@ -431,7 +447,7 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
         <p>NARDI S.r.l. Unipersonale, Via S. Antonio 24/a, 35020 Tombelle di Saonara (PD)<br>Ordini 049 879 0626, dal lunedì al venerdì 8-12 e 14-18 · info@narditalia.com<br>Elenco aggiornato al 3 novembre 2026. Listino prezzi su richiesta.</p>
       </div>
       <details id="elenco-dettagli">
-        <summary class="bottone bordo"><span class="chiuso">Apri l'elenco dei codici</span><span class="aperto-t">Chiudi l'elenco</span></summary>
+        <summary class="riga-link"><span class="chiuso">Apri l'elenco dei codici</span><span class="aperto-t">Chiudi l'elenco</span></summary>
         <div class="filtri" role="group" aria-label="Linea">
           <button type="button" data-filtro="" aria-pressed="true">Tutte le linee</button>
           <button type="button" data-filtro="Briko Line" aria-pressed="false">Briko Line</button>
@@ -569,15 +585,13 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       </ol>
       <div class="azioni">
         <a class="bottone pieno" href="#richiesta" data-tipo="Diventare rivenditore">Diventa rivenditore</a>
-        <a class="bottone bordo" href="#richiesta" data-tipo="Listino prezzi">Chiedi il listino</a>
+        <a class="riga-link" href="#richiesta" data-tipo="Listino prezzi">Chiedi il listino</a>
       </div>
     </div>
     <div class="dove" id="dove">
       <h3>Dove si compra Briko Line</h3>
-      <div>
-        <p class="pic">Nelle ferramenta, nei colorifici, nelle agrarie, nei vivai, nei brico e negli empori. Chiedila al tuo negozio con il nome o il codice scritto sulla scatola. <a href="tel:+390498790626">Non la trovi? Chiama gli ordini</a>.</p>
-        <p class="pic sec">La vendono, tra gli altri, Polato Ferramenta a Monselice (PD), Emporium La Cometa a Castel d'Ario (MN), Santilli Vivai a Celano (AQ), Ferramenta Stella a Vietri sul Mare (SA) e Brico 5 Stelle in provincia di Caserta.</p>
-      </div>
+        <p>Nelle ferramenta, nei colorifici, nelle agrarie, nei vivai, nei brico e negli empori. Chiedila al tuo negozio con il nome o il codice scritto sulla scatola. <a href="tel:+390498790626">Non la trovi? Chiama gli ordini</a>.</p>
+        <p class="sec">La vendono, tra gli altri, Polato Ferramenta a Monselice (PD), Emporium La Cometa a Castel d'Ario (MN), Santilli Vivai a Celano (AQ), Ferramenta Stella a Vietri sul Mare (SA) e Brico 5 Stelle in provincia di Caserta.</p>
     </div>
   </div>
 </section>
@@ -588,7 +602,7 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       <h2 id="t-pro">Sacchi, buste e schede tecniche</h2>
       <p>Artelinea è la linea per muratori, piastrellisti, stuccatori e decoratori. Ogni scheda tecnica ha i campi di impiego, le forniture con i codici e le caratteristiche tecniche.</p>
       <p class="pic">Per quantità e consegna chiama gli ordini.</p>
-      <div class="azioni"><a class="bottone bordo" href="#elenco" data-apri-elenco="Artelinea">Schede tecniche Artelinea</a></div>
+      <div class="azioni"><a class="riga-link" href="#elenco" data-apri-elenco="Artelinea">Schede tecniche Artelinea</a></div>
     </div>
     <div class="dop">
       <h3>Dichiarazione di prestazione n. 1 - E180 - 2017</h3>
@@ -606,12 +620,11 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
   <div class="griglia">
     <figure class="foto-sede">
       <img src="img/sede-1440.webp" srcset="img/sede-960.webp 960w, img/sede-1440.webp 1440w, img/sede-1920.webp 1920w" sizes="(min-width:1920px) 1840px, (min-width:1024px) calc(100vw - 80px), calc(100vw - 32px)" width="1920" height="700" loading="lazy" alt="La sede di Nardi: la facciata bianca con le fasce lilla e gli attrezzi della scatola Briko Line dipinti sul muro, l'ingresso al civico 24 e il pilastro con la scritta NARDI.">
-      <figcaption class="due-voci"><span>La sede di Nardi a Tombelle di Saonara, al civico 24</span><span>maggio 2016</span></figcaption>
+      <figcaption class="due-voci"><span>La sede di Nardi a Tombelle di Saonara, dipinta come la scatola</span><span>maggio 2016</span></figcaption>
     </figure>
     <h2 class="firma" id="t-azienda">Prodotti per l'edilizia professionale e il fai da te</h2>
     <div class="testo">
       <p>La ditta Nardi nasce nel 1985 con Benito Nardi, che crea stucchi artistici decorativi in gesso. Per posarli comincia a produrre da sé lo stucco: è il primo passo nel mondo delle polveri. Con i macchinari per i vari formati la gamma diventa quella di oggi.</p>
-      <p class="pic sec">Dal 2011 un impianto fotovoltaico dà energia alla produzione. Sulle confezioni Briko Line c'è scritto Made in Italy, e la facciata è dipinta come la scatola.</p>
     </div>
   </div>
 </section>
@@ -721,14 +734,14 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
     var t = oraRoma(), m = t.getUTCHours()*60 + t.getUTCMinutes(), oggi = lavorativo(t);
     if (oggi && m >= 480 && m < 720) return [true, 'Aperto ora, fino alle 12'];
     if (oggi && m >= 840 && m < 1080) return [true, 'Aperto ora, fino alle 18'];
-    if (oggi && m < 480) return [false, 'Chiuso ora, apre alle 8'];
-    if (oggi && m >= 720 && m < 840) return [false, 'Chiuso ora, riapre alle 14'];
+    if (oggi && m < 480) return [false, 'Chiuso, apre alle 8'];
+    if (oggi && m >= 720 && m < 840) return [false, 'Chiuso, riapre alle 14'];
     var d = new Date(t.getTime()), n = 0;
     do { d.setUTCDate(d.getUTCDate()+1); n++; } while (!lavorativo(d) && n < 40);
     var quando = n === 1 ? 'domani' : n < 7 ? GIORNI[d.getUTCDay()] : GIORNI[d.getUTCDay()] + ' ' + d.getUTCDate() + '/' + (d.getUTCMonth()+1);
     var ch = chiusura(t);
-    if (ch) return [false, 'Chiuso per ferie: riapre ' + quando + ' alle 8'];
-    return [false, (festivo(t) ? 'Chiuso oggi, festivo: riapre ' : 'Chiuso ora, riapre ') + quando + ' alle 8'];
+    if (ch) return [false, 'Ferie, riapre ' + quando + ' alle 8'];
+    return [false, (festivo(t) ? 'Festivo, riapre ' : 'Chiuso, riapre ') + quando + ' alle 8'];
   }
   function aggiornaStato(){ var s = stato(); $$('[data-stato]').forEach(function(el){ el.textContent = s[1]; el.classList.toggle('aperto', s[0]); }); }
   aggiornaStato(); setInterval(aggiornaStato, 60000);
@@ -839,6 +852,15 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       titolo = LAVORI[k] + ': ' + lista.length + ' prodotti';
       mostra();
       box.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+  /* Le sei scatole dell'apertura: un tocco apre i prodotti di quel lavoro, come le righe dei lavori */
+  $$('.tessera a[data-lavoro]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var b = $('.lavori button[data-lavoro="' + a.getAttribute('data-lavoro') + '"]');
+      if (!b) return;
+      e.preventDefault();
+      b.setAttribute('aria-pressed', 'false'); b.click();
     });
   });
   /* Riconosci la scatola: apre la scheda Briko Line di quella scatola nei risultati */

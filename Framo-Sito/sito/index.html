@@ -31,9 +31,13 @@
   --m:80px;                /* margine laterale */
   --g:24px;                /* spazio tra le colonne */
   --testata:72px;
-  --sez:112px;             /* spazio tra le sezioni */
+  --sez:96px;              /* spazio tra le sezioni (64 dopo la carta, 136 sopra il titolo) */
   --sez-l:176px;           /* il culmine */
   --bx:max(var(--m),calc(50vw - 720px + var(--m)));
+  --rientro:32px;          /* da 1100 px: il titolo comincia sulla prima linea forte della carta (x 112 a 1440) */
+  --x3:768px;              /* il 3 sta 8 pollici a destra del titolo: x 880, sulla linea forte */
+  --tre:411.43px;          /* corpo del 3": cifra alta 288 px */
+  --spalla:calc(var(--tre) * .03);  /* spalla sinistra del 3 nella sua cella: il filetto parte dal tratto, non dalla cella */
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:var(--testata)}
@@ -56,12 +60,12 @@ b,strong{font-weight:500}
 .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
 .sezione{padding:var(--sez) 0}
 
-/* Misure del testo: 14, 15, 16, 18, 22, 26, 40, 64 e il gesto */
+/* Misure del testo a 1440: 14, 16, 18, 22, 40, 64; il gesto alla scala vera: 25,72 (3/16″), 411 (3″) */
 .h2,.firma{font-size:40px;line-height:1.15;font-weight:500;letter-spacing:-.015em}
 .h3{font-size:22px;line-height:1.3;font-weight:500}
 .lead{font-size:18px;line-height:1.56}
 .nota{font-size:14px;line-height:1.45;color:var(--testo-2)}
-.dida{font-family:var(--dati);font-size:15px;line-height:1.45}
+.dida{font-family:var(--dati);font-size:16px;line-height:1.45}
 
 /* Bottoni: uno solo, pieno, 56 px. Al passaggio il testo si sottolinea, il colore non cambia. */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 28px;border:0;border-radius:3px;background:var(--inchiostro);color:var(--carta);font:inherit;font-size:18px;font-weight:500;line-height:1.2;text-decoration:none;cursor:pointer;text-align:center}
@@ -84,60 +88,70 @@ b,strong{font-weight:500}
 .menu{display:flex;gap:28px;margin-left:auto}
 .menu a{display:flex;align-items:center;min-height:48px;font-size:16px;font-weight:500;text-decoration:none;border-bottom:2px solid transparent}
 .menu a:hover{border-bottom-color:var(--giallo)}
-.t-stato{font-size:15px;color:var(--chiaro-2);white-space:nowrap}
-.t-tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--dati);font-size:20px;font-weight:500;color:var(--giallo);text-decoration:none;white-space:nowrap}
+.t-stato{font-size:14px;color:var(--chiaro-2);white-space:nowrap}
+.t-tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--dati);font-size:22px;font-weight:500;color:var(--giallo);text-decoration:none;white-space:nowrap}
 .t-tel:hover{text-decoration:underline}
 .menu-btn{display:none;min-height:48px;padding:0 4px;border:0;background:none;color:var(--bianco);font:inherit;font-size:16px;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:.3em}
 
-/* 1. Apertura: la carta tecnica e la scala dei diametri. Quadretto di 1/8 di pollice (12 px), quadrato di 1 pollice (96 px). */
+/* 1. Apertura: la carta tecnica e la scala dei diametri. Quadretto di 1/8 di pollice (12 px), quadrato di 1 pollice (96 px).
+   Le linee forti partono dal titolo (x 112 a 1440) e dalla linea di base del 3" (72 px sopra il fondo dell'apertura).
+   Da 1100 px l'altezza si ferma a un numero intero di pollici, cosi' anche il 3/16" sta su una linea forte (y 252 a 900). */
+.apertura,.campione{background-color:var(--carta);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cpath d='M12.5 0V96M24.5 0V96M36.5 0V96M48.5 0V96M60.5 0V96M72.5 0V96M84.5 0V96M0 12.5H96M0 24.5H96M0 36.5H96M0 48.5H96M0 60.5H96M0 72.5H96M0 84.5H96' stroke='%23E3DFD3'/%3E%3Cpath d='M.5 0V96M0 .5H96' stroke='%23CBC5B6'/%3E%3C/svg%3E");background-repeat:repeat}
 .apertura{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:calc(var(--testata) + 64px) 0 54px;
-  background:var(--carta) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cpath d='M12.5 0V96M24.5 0V96M36.5 0V96M48.5 0V96M60.5 0V96M72.5 0V96M84.5 0V96M0 12.5H96M0 24.5H96M0 36.5H96M0 48.5H96M0 60.5H96M0 72.5H96M0 84.5H96' stroke='%23E3DFD3'/%3E%3Cpath d='M.5 0V96M0 .5H96' stroke='%23CBC5B6'/%3E%3C/svg%3E") repeat;
-  background-position:right var(--bx) bottom 72px}
-.apertura .c{flex:1;width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto 1fr auto;column-gap:var(--g)}
-.titolo{grid-column:1/13;grid-row:1/5;display:grid;grid-template-columns:subgrid;grid-template-rows:subgrid;font-weight:500}
+  background-position:left calc(var(--bx) + var(--rientro)) bottom 72px}
+@media (min-width:1100px){.apertura{min-height:calc(round(down, 100svh - 132px, 96px) + 132px)}}
+.apertura .c{flex:1;width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto auto 1fr auto;column-gap:var(--g)}
+.titolo{grid-column:1/13;grid-row:1/6;display:grid;grid-template-columns:subgrid;grid-template-rows:subgrid;margin-left:var(--rientro);font-weight:500}
 .t-a{grid-column:1/9;grid-row:1;font-size:64px;line-height:1.06;letter-spacing:-.02em}
-/* le due misure sulla stessa linea di base, che cade su una linea forte della carta; i filetti gialli 12 px sotto */
-.t-b,.t-c{grid-row:4;align-self:end;display:grid;grid-template-columns:auto auto;align-items:baseline;column-gap:.6em;font-family:var(--dati);font-weight:500;font-size:25.72px}
-.t-b{grid-column:1/6;justify-content:start}
-.t-c{grid-column:6/13;grid-row:3/5;justify-content:end;column-gap:28px}
+/* il 3/16" subito sotto il titolo; il 3" in basso, con la linea di base su una linea forte; i filetti gialli 12 px sotto, dal bordo della cifra */
+.t-b,.t-c{display:grid;align-items:baseline;font-family:var(--dati);font-weight:500;font-size:25.72px}
+.t-b{grid-column:1/6;grid-row:2;justify-self:start;grid-template-columns:auto auto;column-gap:.6em;margin-top:30px}
+.t-c{grid-column:1/13;grid-row:5;align-self:end;grid-template-columns:calc(var(--x3) - var(--spalla)) auto;justify-content:start}
+.t-c .fino{justify-self:end;padding-right:28px}
 .t-b>span:not(.filetto),.t-c .fino{line-height:.7}
-.t-c .tre{font-size:411.43px;line-height:.7;letter-spacing:-.02em}   /* cifra alta 288 px: 3 pollici */
-.filetto{display:block;height:6px;margin-top:12px;background:var(--giallo);grid-column:2}
+.t-c .tre{font-size:var(--tre);line-height:.7}  /* cifra alta 288 px: 3 pollici; il tratto del 3 cade sulla linea forte */
+.t-c .pollici{font-size:.45em;line-height:0;vertical-align:.86em;margin-left:-.06em}  /* il segno dei pollici piccolo, in alto, all'altezza della cifra */
+.filetto{display:block;height:6px;margin-top:12px;background:var(--giallo);grid-column:2;justify-self:start}
 .t-b .filetto{width:18px}                                       /* 3/16 di pollice */
-.t-c .filetto{width:288px;justify-self:end}                     /* 3 pollici */
-.fatto{grid-column:1/6;grid-row:2;margin-top:14px;color:var(--testo-2)}
-.ap-sotto{grid-column:1/6;grid-row:3;align-self:center;display:flex;flex-direction:column;align-items:flex-start;padding:48px 0}
+.t-c .filetto{width:288px;margin-left:var(--spalla)}           /* 3 pollici, da x 880 a 1168: tre quadrati della carta */
+.fatto{grid-column:1/6;grid-row:3;margin:20px 0 0 var(--rientro);color:var(--testo-2)}
+.ap-sotto{grid-column:1/6;grid-row:5;align-self:end;display:flex;flex-direction:column;align-items:flex-start;margin:48px 0 18px var(--rientro)}  /* il fondo del bottone sulla linea di base del 3" */
 .ap-sotto .firma{max-width:520px}
 .ap-sotto .btn{margin-top:32px}
 .ap-sotto .chiama{display:none}
 .wa-ap{min-height:48px}
 .dopo-wa,.ap-stato{display:none}
 
-/* 2. Il culmine: porta il tubo vecchio */
-.campione{padding:var(--sez) 0 var(--sez-l)}
-.campione .firma{grid-column:1/8}
-.campione .intro{grid-column:8/13;align-self:end;font-size:17px}
-.f-dopo{grid-column:1/10;margin-top:48px}
-.f-prima{grid-column:10/13;margin-top:48px;align-self:start}
-.campione img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px}
-figcaption{display:flex;flex-direction:column;margin-top:12px;font-family:var(--dati);font-size:15px;line-height:1.45}
+/* 2. Il culmine: porta il tubo vecchio, sulla stessa carta dell'apertura (le linee forti continuano: 24 px sotto l'attacco).
+   Due colonne fisse in tutta la pagina: 1/8 e 8/13 (x 80 e 841 a 1440). */
+.campione{padding:var(--sez) 0;background-position:left calc(var(--bx) + var(--rientro)) top 24px}
+.campione .g{grid-template-rows:auto auto auto 1fr}
+.campione .firma{grid-column:1/8;grid-row:1}
+.campione .intro{grid-column:8/13;grid-row:1;align-self:end}
+.f-dopo{grid-column:1/8;grid-row:2;margin-top:48px}
+.f-prima{grid-column:8/13;grid-row:2;margin-top:48px;align-self:start}
+.campione img{width:100%;aspect-ratio:2/1;object-fit:cover;object-position:50% 60%;border-radius:2px}
+figcaption{display:flex;flex-direction:column;margin-top:12px;font-family:var(--dati);font-size:16px;line-height:1.45}
 figcaption span+span{color:var(--testo-2)}
-.passi-capo{grid-column:1/13;margin-top:96px;padding-top:24px;border-top:1px solid var(--inchiostro)}
-.passi{grid-column:1/13;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);margin-top:32px;counter-reset:p}
-.passi li{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px}
+.passi-capo{grid-column:1/8;grid-row:3;margin-top:64px;padding-top:20px;border-top:1px solid var(--inchiostro)}
+.passi{grid-column:8/13;grid-row:3/5;margin-top:64px;border-top:1px solid var(--inchiostro);counter-reset:p}
+.passi li{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:start;padding:20px 0;border-bottom:1px solid var(--linea)}
 .passi li::before{counter-increment:p;content:counter(p);grid-row:1/3;font-family:var(--dati);font-size:22px;font-weight:500;line-height:1.3}
-.passi p:not(.h3){font-size:17px;color:var(--testo-2);margin-top:4px}
-.campione .misura{grid-column:1/13;justify-self:start;margin-top:24px}
+.passi p:not(.h3){color:var(--testo-2);margin-top:4px}
+.campione .misura{grid-column:1/8;grid-row:4;align-self:start;justify-self:start;margin-top:12px}
 
 /* 3. Tubi su disegno e centraline */
+.ufficio{padding-top:64px}
+.ufficio .c{position:relative}
+.ufficio .c::before{content:"";position:absolute;left:var(--m);right:var(--m);top:-64px;border-top:1px solid var(--inchiostro)}
 .ufficio .sx{grid-column:1/8}
 .ufficio .lead{margin-top:24px}
 .tipologie{margin-top:48px;border-top:1px solid var(--inchiostro)}
 .tipologie div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr);gap:var(--g);padding:18px 0;border-bottom:1px solid var(--linea)}
 .tipologie dt{font-weight:500}
-.tipologie dd{font-size:17px;color:var(--testo-2)}
+.tipologie dd{font-size:16px;color:var(--testo-2)}
 .tipologie .mono{color:var(--inchiostro);font-size:16px;white-space:nowrap}
-.mandare{grid-column:9/13;align-self:start;padding-top:8px}
+.mandare{grid-column:8/13;align-self:start;padding-top:8px}
 .mandare .h3{padding-top:14px;border-top:1px solid var(--inchiostro)}
 .elenco li{padding:9px 0;border-bottom:1px solid var(--linea)}
 .elenco b{display:block}
@@ -150,21 +164,21 @@ figcaption span+span{color:var(--testo-2)}
 .documenti .t span{display:block;font-weight:400;font-size:16px;color:var(--testo-2)}
 
 /* 4. Ricambi e marchi */
-.ricambi .h2{grid-column:1/9}
+.ricambi .h2{grid-column:1/8}
 .ricambi .lead{grid-column:1/8;margin-top:24px}
-.ricambi .wa{grid-column:9/13;justify-self:end;align-self:end}
+.ricambi .wa{grid-column:8/13;grid-row:2;justify-self:start;align-self:end}
 .marchi{grid-column:1/13;display:grid;column-gap:var(--g)}
 .marchi.primi{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:48px;border-top:1px solid var(--inchiostro)}
 .marchi.altri{grid-template-columns:repeat(4,minmax(0,1fr))}
-.marchi a{display:flex;flex-direction:column;justify-content:center;min-height:64px;padding:10px 0;border-bottom:1px solid var(--linea);text-decoration:none}
-.marchi.primi a{min-height:112px;padding:16px 0}
+.marchi a{display:flex;flex-direction:column;justify-content:flex-start;min-height:64px;padding:10px 0;border-bottom:1px solid var(--linea);text-decoration:none}
+.marchi.primi a{min-height:96px;padding:16px 0}
 .marchi a:hover .nome{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
-.marchi .nome{display:flex;align-items:baseline;font-weight:500;font-size:19px;line-height:1.25}
-.marchi.primi .nome{font-size:26px}
-.marchi .cosa{font-size:15px;line-height:1.35;color:var(--testo-2)}
+.marchi .nome{display:flex;align-items:baseline;font-weight:500;font-size:18px;line-height:1.3}
+.marchi.primi .nome{font-size:22px}
+.marchi .cosa{font-size:14px;line-height:1.35;color:var(--testo-2)}
 .marchi .uff{color:var(--inchiostro);font-weight:500}
 .pronta{grid-column:1/13;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 32px;margin-top:28px}
-.pronta p{max-width:720px;font-size:17px}
+.pronta p{max-width:720px}
 .pronta .giu{display:flex;flex-wrap:wrap;gap:0 28px}
 
 /* 5. Dove siamo */
@@ -175,7 +189,7 @@ figcaption span+span{color:var(--testo-2)}
 .dove .lato{grid-column:8/13}
 .dove .stato{font-weight:500;margin-bottom:16px}
 .orari{border-top:1px solid var(--inchiostro)}
-.orari div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:10px 12px;border-bottom:1px solid var(--linea);font-size:17px}
+.orari div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:10px 12px;border-bottom:1px solid var(--linea);font-size:16px}
 .orari dd{font-family:var(--dati);font-size:16px;text-align:right}
 .orari .chiuso dd{color:var(--testo-2)}
 .orari .oggi{background:var(--giallo);font-weight:500}
@@ -183,22 +197,30 @@ figcaption span+span{color:var(--testo-2)}
 
 /* 6. Chiusura: l'unico blocco giallo, con il modulo */
 .chiusura{background:var(--giallo)}
-.chiusura .capo{grid-column:1/6}
+.chiusura .capo{grid-column:1/7}
 .chiusura .lead{margin-top:24px}
 .chiusura .stato{margin-top:32px;font-weight:500}
 .chiusura .stato .punto{background:var(--inchiostro);opacity:.35}
 .chiusura .stato.aperto .punto{opacity:1}
-.modulo{grid-column:7/13;display:grid;grid-template-columns:1fr 1fr;gap:18px var(--g);align-items:end;background:var(--carta);border-radius:3px;padding:32px}
+/* le quattro strade del contatto, ognuna per il suo bisogno (D12) */
+.strade{margin-top:40px;border-top:1px solid var(--inchiostro)}
+.strade li{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:4px var(--g);padding:22px 0;border-bottom:1px solid rgba(26,26,25,.35)}
+.strade b{grid-row:1/3}
+.strade a{justify-self:start;font-weight:500}
+.strade .mono{font-size:22px;line-height:1.2}
+.strade span.mono{font-size:18px;color:var(--inchiostro)}
+.strade span{font-size:16px;color:var(--testo-2)}
+.modulo{grid-column:8/13;display:grid;grid-template-columns:1fr 1fr;gap:18px var(--g);align-items:end;background:var(--carta);border-radius:3px;padding:28px}
 .modulo > *{grid-column:1/3}
 .modulo > .campo.due{grid-column:auto}
 .campo label,.modulo legend{display:block;font-size:16px;font-weight:500;margin-bottom:6px}
 .campo label i{font-style:normal;font-weight:400;color:var(--testo-2)}
-.campo input,.campo select,.campo textarea{width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:3px;background:var(--bianco);color:var(--inchiostro);font:inherit;font-size:17px}
+.campo input,.campo select,.campo textarea{width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:3px;background:var(--bianco);color:var(--inchiostro);font:inherit;font-size:18px}
 .campo textarea{min-height:112px;resize:vertical}
 .campo [aria-invalid="true"]{border:2px solid var(--inchiostro);background:#FFF6CF}
 .modulo fieldset{border:0;padding:0;margin:0;min-width:0}
 .scelte{display:flex;flex-wrap:wrap;gap:8px}
-.scelte label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--testo-2);border-radius:3px;background:var(--bianco);font-size:16px;cursor:pointer}
+.scelte label{flex:1 1 auto;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 10px;border:1px solid var(--testo-2);border-radius:3px;background:var(--bianco);font-size:16px;cursor:pointer}
 .scelte input{width:20px;height:20px;margin:0;accent-color:var(--inchiostro)}
 .scelte label:has(input:checked){outline:2px solid var(--inchiostro);outline-offset:-2px}
 .avviso{font-size:16px;font-weight:500;background:#FFF6CF;padding:12px 16px;border-radius:3px}
@@ -219,11 +241,11 @@ figcaption span+span{color:var(--testo-2)}
 .piede nav{grid-column:span 2}
 .piede .marchio + nav{grid-column:6/8}
 .piede nav.zone{grid-column:span 3}
-.piede h2{font-size:15px;font-weight:500;color:var(--chiaro-2);margin-bottom:10px}
+.piede h2{font-size:14px;font-weight:500;color:var(--chiaro-2);margin-bottom:10px}
 .piede li{padding:3px 0}
 .piede nav a{text-decoration:none}
 .piede nav a:hover{text-decoration:underline}
-.piede .basso{grid-column:1/13;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid var(--linea-scura);color:var(--chiaro-2);font-size:15px}
+.piede .basso{grid-column:1/13;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid var(--linea-scura);color:var(--chiaro-2);font-size:14px}
 .piede .basso ul{display:flex;gap:24px}
 
 /* da 1100 a 1279 */
@@ -232,10 +254,13 @@ figcaption span+span{color:var(--testo-2)}
   .menu{gap:20px}
   .t-stato{display:none}
   .t-a{font-size:56px}
+  .t-b{margin-top:38.4px}   /* il 3/16" resta sulla linea forte anche con il titolo a 56 px */
 }
 /* tablet */
+@media (max-width:1279px){:root{--x3:672px}}
+@media (max-width:1199px){:root{--x3:576px}}
 @media (max-width:1099px){
-  :root{--m:40px;--sez:96px;--sez-l:144px;--testata:64px}
+  :root{--m:40px;--sez:96px;--sez-l:144px;--testata:64px;--rientro:0px}
   .menu{display:none}
   .menu-btn{display:inline-flex;align-items:center}
   .t-tel{margin-left:auto}
@@ -245,22 +270,26 @@ figcaption span+span{color:var(--testo-2)}
   .t-a{grid-column:1/13;font-size:52px}
   .ap-sotto{padding:24px 0}
   .ap-sotto .firma{font-size:32px}
-  .t-c .tre{font-size:min(411.43px,31vw)}
+  .t-c{grid-column:6/13;grid-template-columns:auto auto;justify-content:end}
+  .t-c .fino{padding-right:28px}
+  :root{--tre:min(411.43px,31vw)}
   .ap-sotto .btn{margin-top:24px}
   .ap-sotto .chiama{display:inline-flex;min-width:280px}
   .ap-sotto .wa-ap{background:none;color:var(--inchiostro);padding:0;min-height:48px;justify-content:flex-start;text-decoration:underline;text-decoration-thickness:1px;margin-top:8px}
   .dopo-wa{display:block;font-size:16px;color:var(--testo-2);max-width:360px}
   .ap-stato{display:flex;margin-top:20px;font-size:16px}
   .ap-stato span span{display:block;color:var(--testo-2)}
+  .campione .firma,.campione .intro,.f-dopo,.f-prima,.passi-capo,.passi,.campione .misura{grid-row:auto}
   .campione .firma,.campione .intro{grid-column:1/13}
   .campione .intro{margin-top:20px;max-width:640px}
   .f-dopo{grid-column:1/13;margin-top:40px}
   .f-prima{grid-column:1/7;margin-top:24px}
-  .f-prima+.passi-capo{margin-top:64px}
-  .passi{grid-template-columns:1fr;gap:20px}
+  .passi-capo,.passi,.campione .misura{grid-column:1/13}
+  .passi-capo{margin-top:64px;border-top:0;padding-top:0}
+  .passi{margin-top:16px}
   .ufficio .sx,.ricambi .h2,.ricambi .lead{grid-column:1/13}
   .mandare{grid-column:1/13;margin-top:48px}
-  .ricambi .wa{grid-column:1/13;justify-self:start;margin-top:12px}
+  .ricambi .wa{grid-column:1/13;grid-row:auto;justify-self:start;margin-top:12px}
   .marchi.primi,.marchi.altri{grid-template-columns:repeat(2,minmax(0,1fr))}
   .dove .testo,.dove .lato{grid-column:1/13}
   .dove .lato{margin-top:48px}
@@ -272,13 +301,13 @@ figcaption span+span{color:var(--testo-2)}
 }
 @media (max-width:860px){
   .apertura .c{grid-template-rows:auto auto auto auto 1fr}
-  .fatto{grid-column:1/13}
-  .t-b{grid-column:1/13;grid-row:3;justify-content:start;margin:28px 0 0}
-  .t-c{grid-column:1/13;grid-row:4;grid-template-columns:auto;justify-content:start;justify-items:start;row-gap:20px;margin-top:32px}
+  .t-b{grid-column:1/13;grid-row:2;margin-top:28px}
+  .t-c{grid-column:1/13;grid-row:3;align-self:start;grid-template-columns:auto;justify-content:start;justify-items:start;row-gap:20px;margin-top:32px}
+  .t-c .fino{justify-self:start;padding-right:0}
   .t-c .filetto{grid-column:1}
-  .t-c .tre{font-size:340px}
-  .t-c .filetto{justify-self:end}
-  .ap-sotto{grid-column:1/13;grid-row:5;align-self:start;padding:32px 0 0}
+  :root{--tre:340px}
+  .fatto{grid-column:1/13;grid-row:4;margin-top:24px}
+  .ap-sotto{grid-column:1/13;grid-row:5;align-self:start;margin:0;padding:24px 0 0}
 }
 /* telefono */
 @media (max-width:700px){
@@ -292,10 +321,9 @@ figcaption span+span{color:var(--testo-2)}
   .lead{font-size:17px}
   .apertura{padding:calc(var(--testata) + 20px) 0 32px}
   .t-a{font-size:36px;line-height:1.1}
-  .fatto{margin-top:6px}
   .t-b{margin-top:18px}
   .t-c{margin-top:22px;row-gap:14px}
-  .t-c .tre{font-size:250px}
+  :root{--tre:250px}
   .ap-sotto{padding-top:22px}
   .ap-sotto .firma{font-size:22px}
   .ap-sotto .firma{font-size:24px}
@@ -303,12 +331,13 @@ figcaption span+span{color:var(--testo-2)}
   .ap-sotto .chiama{width:100%}
   .ap-sotto .wa-ap{margin-top:4px}
   .ap-stato{margin-top:8px}
-  .fatto{font-size:14px}
+  .fatto{font-size:14px;margin-top:14px}
   .campione{padding-top:56px}
-  .campione .passi-capo{order:1;margin-top:32px;padding-top:16px}
-  .campione .passi{order:2;margin-top:20px;gap:14px}
-  .campione .f-dopo{order:3;grid-column:1/8;margin-top:36px}
-  .campione .f-prima{order:4;grid-column:8/13;margin-top:36px}
+  .campione .passi-capo{order:1;margin-top:32px}
+  .campione .passi{order:2;margin-top:12px}
+  .passi li{padding:14px 0}
+  .campione .f-dopo{order:3;grid-column:1/13;margin-top:36px}
+  .campione .f-prima{order:4;grid-column:1/13;margin-top:24px}
   .campione .misura{order:5}
   .campione figcaption{font-size:14px}
   .passi-capo{margin-top:48px}
@@ -320,6 +349,9 @@ figcaption span+span{color:var(--testo-2)}
   .marchi .cosa{font-size:14px}
   .orari div{padding:9px 10px;font-size:16px}
   .modulo{padding:20px 16px;gap:16px 12px}
+  .strade li{grid-template-columns:1fr;padding:16px 0}
+  .strade b{grid-row:auto}
+  .strade a{overflow-wrap:anywhere}
   .scelte label{flex:1 1 100%}
   .invio .btn{width:100%}
   .piede{padding-top:56px}
@@ -331,8 +363,8 @@ figcaption span+span{color:var(--testo-2)}
   .logo .intero{display:none}
   .logo .simbolo{display:block}
   .t-a{font-size:32px}
-  .t-c .tre{font-size:220px}
-  .t-c .filetto{width:280px}
+  :root{--tre:220px}
+  .t-c .filetto{width:272px}
   .marchi.primi,.marchi.altri{grid-template-columns:1fr}
   .piede .marchio + nav,.piede nav{grid-column:1/13}
 }
@@ -366,7 +398,7 @@ figcaption span+span{color:var(--testo-2)}
     <h1 class="titolo" id="titolo" aria-label="Tubi oleodinamici da 3/16 di pollice fino a 3 pollici">
       <span class="t-a">Tubi oleodinamici</span>
       <span class="t-b"><span class="da">da</span> <span class="n">3/16″</span><span class="filetto" aria-hidden="true"></span></span>
-      <span class="t-c"><span class="fino">fino a</span> <span class="tre">3″</span><span class="filetto" aria-hidden="true"></span></span>
+      <span class="t-c"><span class="fino">fino a</span> <span class="tre">3<span class="pollici">″</span></span><span class="filetto" aria-hidden="true"></span></span>
     </h1>
     <p class="fatto dida">Saonara (PD), dal 1986</p>
     <div class="ap-sotto">
@@ -383,14 +415,14 @@ figcaption span+span{color:var(--testo-2)}
 <section class="campione" id="campione" aria-labelledby="t-campione">
   <div class="c g">
     <h2 class="firma" id="t-campione">Porta il tubo vecchio: te lo rifacciamo identico</h2>
-    <p class="lead intro">Vieni in azienda con un campione della tubazione che ti serve: in breve tempo i nostri operatori realizzano un nuovo tubo identico nella lunghezza, tipologia e raccordatura. <span class="privati">Anche se sei un privato, con lo spaccalegna, il trattorino o il rimorchio: porta il tubo o manda le foto, ti diciamo noi che cosa serve.</span></p>
+    <p class="lead intro">Vieni in azienda con un campione della tubazione che ti serve: in breve tempo i nostri operatori realizzano un nuovo tubo identico nella lunghezza, tipologia e raccordatura. <span class="privati">Anche da privato: nel modulo in fondo alla pagina la P.IVA non serve.</span></p>
     <figure class="f-dopo">
-      <img src="img/tubo-dopo-1024.webp" srcset="img/tubo-dopo-480.webp 480w, img/tubo-dopo-768.webp 768w, img/tubo-dopo-1024.webp 1024w" sizes="(min-width:1440px) 954px, (min-width:1280px) calc(75vw - 126px), (min-width:1100px) calc(75vw - 90px), (min-width:701px) calc(100vw - 80px), calc(100vw - 40px)" width="1024" height="680" alt="Un tubo flessibile nero con la scritta stampata sulla guaina e, a destra, il raccordo con l'anello rosso già montato, su un tavolo grigio chiaro" loading="lazy">
-      <figcaption><span>Tubo con il raccordo Push Lock montato, senza pressa</span><span>F.R.A.M.O., Saonara (PD) · luglio 2023</span></figcaption>
+      <img src="img/tubo-dopo-1024.webp" srcset="img/tubo-dopo-480.webp 480w, img/tubo-dopo-768.webp 768w, img/tubo-dopo-1024.webp 1024w" sizes="(min-width:1440px) 737px, (min-width:1100px) calc(58.4vw - 104px), (min-width:701px) calc(100vw - 80px), calc(100vw - 40px)" width="1024" height="680" alt="Un tubo flessibile nero con la scritta stampata sulla guaina e, a destra, il raccordo con l'anello rosso già montato, su un tavolo grigio chiaro" loading="lazy">
+      <figcaption><span>Dopo: Push Lock montato, senza pressa</span><span>F.R.A.M.O. · luglio 2023</span></figcaption>
     </figure>
     <figure class="f-prima">
-      <img src="img/tubo-prima-480.webp" srcset="img/tubo-prima-480.webp 480w, img/tubo-prima-768.webp 768w, img/tubo-prima-1024.webp 1024w" sizes="(min-width:1100px) 302px, (min-width:701px) calc(50vw - 52px), calc(50vw - 28px)" width="1024" height="680" alt="Lo stesso tubo tagliato a misura, con il raccordo ancora staccato accanto" loading="lazy">
-      <figcaption><span>Prima: il raccordo ancora staccato</span><span>Sistema Push Lock, fino a 16 bar</span></figcaption>
+      <img src="img/tubo-prima-480.webp" srcset="img/tubo-prima-480.webp 480w, img/tubo-prima-768.webp 768w, img/tubo-prima-1024.webp 1024w" sizes="(min-width:1440px) 519px, (min-width:1100px) calc(41.6vw - 80px), (min-width:701px) calc(50vw - 52px), calc(100vw - 40px)" width="1024" height="680" alt="Lo stesso tubo tagliato a misura, con il raccordo ancora staccato accanto" loading="lazy">
+      <figcaption><span>Prima: raccordo staccato</span><span>Push Lock, fino a 16 bar</span></figcaption>
     </figure>
     <div class="passi-capo"><h3 class="h3">Il tubo è ancora sulla macchina? Mandaci tre foto</h3></div>
     <ol class="passi">
@@ -407,7 +439,7 @@ figcaption span+span{color:var(--testo-2)}
   <div class="c g">
     <div class="sx">
     <h2 class="h2" id="t-ufficio">Un distributore non si sceglie da un codice a&nbsp;catalogo</h2>
-    <p class="lead">Progettiamo e assembliamo centraline oleodinamiche sulla base delle tue specifiche esigenze, e prepariamo i tubi raccordati su ordinazione, anche dal tuo disegno o dalla distinta. Ascoltiamo che cosa ti serve e ti diamo il consiglio tecnico giusto.</p>
+    <p class="lead">Progettiamo e assembliamo centraline oleodinamiche sulla base delle tue specifiche esigenze, e prepariamo i tubi raccordati su ordinazione, anche dal tuo disegno o dalla distinta.</p>
     <dl class="tipologie" aria-label="Tubi che facciamo">
       <div><dt>Alta e altissima pressione</dt><dd><span class="mono">3/16″-3″</span>, su ordinazione o da campione: trecce <span class="mono">1SN 2SN 1SC 2SC</span>, spirali <span class="mono">4SP 4SH</span></dd></div>
       <div><dt>Termoplastici</dt><dd><span class="mono">3/16″-1″</span>, una o due trecce d'acciaio (<span class="mono">1TD 2TD</span>) o treccia tessile (<span class="mono">R7</span>)</dd></div>
@@ -473,7 +505,7 @@ figcaption span+span{color:var(--testo-2)}
     <div class="testo">
       <h2 class="h2" id="t-dove">Officina e banco sono qui</h2>
       <p class="indirizzo mono">Via Liguria 32, 35020 Saonara (PD)</p>
-      <p class="lead">La palazzina bianca con la fascia gialla e blu e il cancello con il numero 32, a sud-est di Padova. Porta il tubo vecchio o il pezzo da cambiare.</p>
+      <p class="lead">La palazzina bianca con la fascia gialla e blu e il cancello con il numero 32, a sud-est di Padova.</p>
       <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=FRAMO%20srl%20-%20Oleodinamica%2C%20Via%20Liguria%2032%2C%2035020%20Saonara%20PD" target="_blank" rel="noopener">Apri la navigazione</a>
     </div>
     <div class="lato">
@@ -498,6 +530,12 @@ figcaption span+span{color:var(--testo-2)}
       <h2 class="h2" id="t-contatti">Fai una prova e in caso di dubbio, chiamaci.</h2>
       <p class="lead">F.R.A.M.O. risponde sempre. Scrivici che cosa ti serve e come richiamarti.</p>
       <p class="stato" data-stato-box><span class="punto" aria-hidden="true"></span><span data-stato>Lunedì-venerdì 8.30-12.30 e 14.00-18.00</span></p>
+      <ul class="strade" aria-label="Come raggiungerci">
+        <li><b>Telefono</b><a class="mono" href="tel:+39049644909">049 644909</a><span>lun-ven 8.30-12.30 e 14.00-18.00</span></li>
+        <li><b>WhatsApp</b><a href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20rifare%20questo%20tubo.%20Vi%20mando%20le%20foto%3A%20il%20tubo%20intero%2C%20i%20due%20raccordi%20e%20la%20scritta%20sulla%20guaina." data-wa="tubo">Le foto del tubo o della targhetta</a><span>allo stesso numero</span></li>
+        <li><b>Email</b><a href="mailto:commerciale@framosrl.com?subject=Richiesta%20preventivo" data-mail="preventivo">commerciale@framosrl.com</a><span>disegni, distinte e preventivi</span></li>
+        <li><b>Al banco</b><span class="mono">via Liguria 32, Saonara</span><span>porta il tubo vecchio negli stessi orari</span></li>
+      </ul>
     </div>
     <form class="modulo" id="modulo" novalidate>
       <div class="campo due"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
@@ -516,7 +554,7 @@ figcaption span+span{color:var(--testo-2)}
       <fieldset>
         <legend>Quando ti serve</legend>
         <div class="scelte">
-          <label><input type="radio" name="urgenza" value="Subito, la macchina è ferma"> Subito, macchina ferma</label>
+          <label><input type="radio" name="urgenza" value="Subito, la macchina è ferma"> Macchina ferma</label>
           <label><input type="radio" name="urgenza" value="In settimana" checked> In settimana</label>
           <label><input type="radio" name="urgenza" value="Senza fretta"> Senza fretta</label>
         </div>

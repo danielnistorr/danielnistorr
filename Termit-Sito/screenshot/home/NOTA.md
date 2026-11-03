@@ -6,6 +6,47 @@
 
 **Si rifà tutto così** (cartella `_prova/alto/`): `python3 -I script/img.py` (provini e WebP), `python3 -I script/build.py` (monta `sito/index.html` dal modello scritto a mano `script/modello.html`, dallo script `script/script.js` e dai dati delle 138 schede della versione professionale), `node misura-d.mjs` (soglie, esito in `misure/misure.json`), `node script/controlli.mjs` (sei larghezze e questi screenshot, esito in `controlli/controlli.json`).
 
+### Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice aveva dato 6,5 (D1, D7, D8 e D12 non passavano). Questa parte vale sopra quello che segue: dove le due dicono cose diverse, vale questa. Si rifà con gli stessi script (`build.py`, `misura-d.mjs`, `controlli.mjs`). Le versioni di prima del modello, dello script e dei controlli sono in `_prova/alto/script/*-prima-ritocco.*`, la pagina di prima in `_prova/alto/index-prima-ritocco.html`.
+
+**Apertura (D1, D3).**
+- `h1` "Cercate un isolante?" al posto di "Cercate un prodotto?": la domanda dice il mestiere, e a 300 px si legge "isolante". Il giudice chiedeva la riga del mestiere più grande; ho cambiato anche la parola perché la riga a 32 px, ridotta a 300 px, resta di 7 px.
+- `h1` a 128/120 su una riga (80/78 a 390). La riga del mestiere va sotto, sulle colonne 1-8, a 32/40 in inchiostro (26/34 a 390), accorciata in "Isolanti termici, acustici e antifuoco a stock, a Saonara (PD)."; il taglio su misura resta al menu e al culmine.
+- Il campo passa a 80 px in Mono, cioè il 62% del titolo (60 px sotto i 1280, 52 sotto i 1024, 40 a 390, 34 sotto i 380, 30 sotto i 360). L'etichetta è a 17 px in inchiostro. A destra, sulla riga del campo, c'è "Invio ↵" in Mono a 15 px, non cliccabile. Con Invio la pagina porta i risultati in vista, e sul telefono chiude la tastiera.
+- Il buco è tolto: niente `margin-top:auto` né `min-height` a tutto schermo, spazi fissi (150 sopra, 72 tra la riga e il campo a tutte le larghezze, quindi anche a 1920). A 1440 il titolo "Otto famiglie, a stock" si vede in fondo alla prima schermata (y 830), a 390 a y 626 con l'introduzione sopra la barra.
+- Esempio nel campo: nell'HTML c'è quello corto ("PS680, K-Flex", per chi non ha JavaScript). Lo script sceglie il più lungo che entra, misurato con `measureText` sul carattere vero: a 1440 e 1920 "PS680, K-Flex, coppella" (1163 px su 1190), sotto "PS680, K-Flex" (246 su 288 a 320, 279 su 328 a 360, 329 su 358 a 390).
+
+**Sotto la piega (ragione 4, D7, D8, D12).**
+- **Consegne**: le quattro condizioni stanno in una riga di 4 colonne, con la voce sopra e il testo sotto (2 colonne sotto i 1024, una sotto i 768). L'introduzione è solo la loro frase di Chi siamo: «L'immediatezza nelle consegne, effettuate il più delle volte con propri mezzi.». L'`h2` va a capo dopo la virgola.
+- **Frase-firma nuova**: "Materiale in pronta consegna.", dalla politica della qualità (`public/Uploads/Politica.pdf`: "il notevole stock di materiale in pronta consegna", `01-analisi.md` riga 29). Sta nel blocco verde e nel titolo dei contatti con lo stesso trattamento (40/46 400, 30/36 a 390). "Telefonate o scrivete per avere il listino aggiornato." scende a testo normale, accanto a "Chiedete il listino". Nel blocco verde restano a 18 px solo "Gli ordini si fanno solo per scritto, via email."; "L'email si apre con la traccia già scritta." va sotto il bottone, a 14 px.
+- **Su misura, il culmine** (strada 800-1600 di D2): la colonna è di 1000 px, centrata. Sopra c'è l'`h2`, con l'a capo dopo la virgola; sotto, la foto alla sua misura vera (1000 px, `sizes` 1000px, rapporto 1 a 1440); sotto ancora testo e citazione a sinistra, "Materiali", "Cosa indicare" e "Mandateci il disegno" a destra, in due colonne da 488. L'imbottitura passa da 192 a 144, e il culmine è alto 1.474 px grazie al contenuto. La didascalia è "Taglio ad acqua a tre teste su un pannello di lana di roccia / Pezzi su misura": il luogo "Reparto taglio, Saonara (PD)" è tolto finché Termit non lo conferma (LEGGIMI punto 16). La seconda voce finisce sul bordo destro della foto.
+- **Settori**: tolta l'introduzione ("la soluzione più adatta"). In Prodotti, "prestazioni eccezionali" è tolto e resta "Aerogel, per problemi di spazio.". L'introduzione di Prodotti è ridotta a "Quasi tutte le schede hanno il PDF tecnico del produttore.".
+- **Azienda**: niente tabelle. C'è una frase a 28/38: "Certificati UNI EN ISO 9001 da RINA dal 2004, medaglia di bronzo EcoVadis, soci di ANICTA e della European Industrial Insulation Foundation.". Sotto, due note a 17 px: il certificato RINA n. 10957/04/S con i due PDF, e i partner con Termit Isolbag 039.
+- **Contatti senza modulo** (D12: in M2 il modulo non resta in home). A sinistra la firma; a destra le tre strade: telefono con orari e stato, ordini e listino per scritto, magazzino con "Come arrivare". Le richieste del modulo restano coperte dalle tracce: "Scrivi un ordine" (Ordine), "Chiedete il listino" (Richiesta listino aggiornato), "Mandateci il disegno" (Pezzi su misura, con "Il disegno allegatelo all'email che si apre." a 14 px). Per il consiglio tecnico c'è il telefono. Il codice del modulo è tolto dallo script.
+- **Piede**: tolta la colonna che ripeteva il menu.
+- Spazi: sezioni a 88 px (72 a 390), culmine a 144, blocco verde 48/52.
+
+**Respinto o non fatto.** La persona nelle tre strade del contatto (D12) non c'è: nelle fonti non ci sono nomi (LEGGIMI punti 9-10). Lavori, persone e clienti con il nome (D9) restano da chiedere. "Scrivi un ordine" a 1440 non entra nella prima schermata, per il tetto di 6 cliccabili: compare in testata appena si scende, e c'è nel blocco verde.
+
+**Misure finali** (`node _prova/alto/misura-d.mjs`: 49 su 49 passano).
+
+*Prima schermata*
+- A 1440x900: 6 cliccabili, 1 bottone, 147 caratteri fuori dalla testata, foto 0%. L'`h1` "Cercate un isolante?" ha 3 parole, è a 128 px, a x 80 e y 222. Il campo è a 80 px (y 514-626), e tra la riga e il campo ci sono 72 px.
+- A 390x844: 4 cliccabili, 1 bottone, il gesto copre lo 0,51 dello schermo.
+
+*Pagina*
+- 641 parole a 1440 (637 a 390), 6 sezioni tra apertura e piede, 3 bottoni in pagina.
+- Altezza: 5.997 px a 1440, 8.499 a 390. Il culmine è alto 1.474 px.
+- Peso: 246 KB a 1440, 224 a 390.
+- Una sola misura sopra i 100 px (l'`h1`) e nessuna cifra di 30 px o più.
+- Fondi: carta, verde (un blocco) e carta-2. Spazi tra le sezioni: 88, 176 e 232 px.
+- Contatti: 2 link `tel:`, "Come arrivare" 1 volta. Contrasto AA, segnaposto 4,69:1.
+
+*Controlli* (`node _prova/alto/script/controlli.mjs`, ora anche a 360): a 320, 360, 390, 768, 1024, 1440 e 1920 nessuno scorrimento orizzontale, nessuna sovrapposizione e nessun errore. C'è un solo `tel:` e un solo `mailto:`, con le tracce Ordine, Richiesta listino aggiornato e Pezzi su misura. L'esempio entra nel campo a tutte le larghezze, e "coppella" dà 5 schede con il primo risultato in vista.
+
+*Schermate*: rifatte con gli stessi nomi, senza nessun modulo compilato, e guardate a pezzi. Il foglio a 300 px con la nuova prima schermata al posto di quella di prima è in `_prova/alto/giudice/riconoscibilita-ritocco.jpg`: si leggono "Cercate un isolante?" e la riga "Isolanti termici, acustici e antifuoco...". Il controllo con tre persone resta da fare.
+
 ### Che cosa è cambiato
 
 - **Prima schermata (modello C).** Fondo carta #F4F3EE al posto del nero; una sola domanda, "Cercate un prodotto?", a 176 px (Atkinson Hyperlegible Next 400), con la riga del mestiere e del luogo accanto: "Isolanti termici, acustici e antifuoco a stock, con taglio su misura, a Saonara (PD)." Sotto, il campo di ricerca grande come un titolo: 56 px in Atkinson Hyperlegible Mono, con gli esempi veri "PS680, K-Flex, coppella", sopra il filetto verde del marchio largo tutta la griglia. I risultati con il PDF del produttore si aprono lì sotto; al primo risultato il campo sale sotto la testata. Sul computer il cursore è già nel campo. Nessuna foto (D2: sotto il 12%, perché l'unica foto loro è di 1000 px).

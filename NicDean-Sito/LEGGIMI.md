@@ -2,7 +2,7 @@
 
 Proposta non richiesta di una nuova homepage per Nic Dean S.r.l., calzaturificio della famiglia Nicoletto a Villatora di Saonara (PD), con lo spaccio di fabbrica in via Lombardia 29. Solo la home.
 
-- **Pagina**: `sito/index.html`, statica (si apre con file:///), con `sito/img/` e `sito/fonts/`. Versione "metodo ibrido" di novembre 2026: prima schermata secondo la sezione D (il titolo "Scarpe fatte a Villatora dal 1975" a 151 px sul muro della foto della fila, alla misura vera), sotto i contenuti della versione professionale su una griglia sola. Dettagli e misure in `screenshot/home/NOTA.md`, sezione "Metodo ibrido"; direzione in `_prova/alto/DIREZIONE.md`.
+- **Pagina**: `sito/index.html`, statica (si apre con file:///), con `sito/img/` e `sito/fonts/`. Versione "metodo ibrido" di novembre 2026: prima schermata secondo la sezione D (il titolo "Scarpe fatte a Villatora dal 1975" a 132 px, in Antonio 500, sul muro della foto della fila, alla misura vera), sotto i contenuti della versione professionale su una griglia sola. Dettagli e misure in `screenshot/home/NOTA.md`, sezione "Metodo ibrido"; direzione in `_prova/alto/DIREZIONE.md`.
 - **Versione professionale** (quella di prima): `_prova/versione-pro/` (sito e screenshot).
 - **Screenshot e nota**: `screenshot/home/` (nota in `screenshot/home/NOTA.md`, sezione "Livello professionale", con l'esito di ogni regola).
 - **Analisi con le fonti**: `01-analisi.md`. Scheda di identità e d'uso: `_prova/uso/SCHEDA.md`.
@@ -29,13 +29,13 @@ In questa versione lo stato è calcolato: in testata da 761 px in su ("Spaccio a
 - **Pagamento** in contanti e carta, **appuntamento** per mail o telefono: dal sito del 2017 ("Se vuoi puoi prendere un appuntamento per mail o telefono"); la pagina non dice più "fuori orario", che non era nelle fonti.
 - **Cosa vende oggi lo spaccio**: se solo produzione propria, se ancora per donna, uomo e ragazzo e "di tutti i numeri".
 - **Le scarpe in pagina** (quattro, dal metodo ibrido: tronchetto, mocassino, polacchino, francesina): sono foto della galleria del loro Flash (ritoccate nel 2015). In pagina non hanno date e il testo dice "Le collezioni cambiano con la stagione: per sapere cosa c'è adesso, chiamaci o passa". Da chiedere: quali modelli ci sono ancora, i nomi che usano loro (oggi i nomi sono descrizioni nostre: "Tronchetto con risvolto, grigio"), i materiali (camoscio, vernice) prima di scriverli.
-- **La fila delle décolleté**: modello, nomi dei colori, se il pitone è vero o stampato; se il modello è ancora in vendita. La didascalia d'apertura dice "Estate 2017" perché nella galleria del loro sito la foto è sotto quel filtro (`foto1_estate2017.jpg`): da confermare.
+- **La fila delle décolleté**: modello, nomi dei colori, se il pitone è vero o stampato; se il modello è ancora in vendita. Nella galleria del loro sito la foto è sotto il filtro "Estate 2017" (`foto1_estate2017.jpg`): l'anno è da confermare e la didascalia d'apertura non lo dice più (oggi "Décolleté con plateau, cinque colori").
 - **La foto dello spaccio** è tornata in pagina, nella sezione dello spaccio, con la didascalia "aperto a tutti dal 5 ottobre 2013": va chiesto se lo spaccio è ancora così.
 - **Spedizione o ritiro** per chi chiede una scarpa per mail (SCHEDA, visitatore 2): non è scritto da nessuna parte, quindi la pagina non promette nulla. Fa solo chiedere: "Se abiti lontano, scrivi anche la tua città e chiedi se si può spedire", e ogni mail delle scarpe ha la riga "Se abiti lontano, la tua città (per chiedere se si può spedire)". È il punto che decide per chi abita lontano (cliente tipo 2, compito non riuscito): va chiesto all'azienda e, se spediscono, scritto chiaro sotto il titolo delle scarpe con costi e tempi; se non spediscono, scrivere "si ritira in spaccio".
 - **Uomo e ragazzo in foto**: la pagina dice "quasi tutti da donna: allo spaccio trovi anche uomo e ragazzo", perché le foto che hanno sono di modelli da donna (da confermare, il mocassino e la francesina potrebbero essere unisex). Servono almeno una scarpa da uomo e una da ragazzo per la griglia.
 - **Gamma dei numeri** ("di tutti i numeri"): se la danno, per esempio "donna dal 35 al 41", va nella sezione delle scarpe.
 - **Ordini di quantità**: la pagina dice "Si possono fare anche ordini con un numero consistente di calzature per negozi, fiere o eventi ... ti mandiamo gratuitamente un preventivo" e "di livello medio-fine" (parole del loro sito). Va confermato che lo facciano ancora.
-- **Mercati**: "Per anni le calzature Nic Dean sono andate soprattutto ai negozi d'Europa e del Nord America" è al passato perché viene dal sito del 2017. Da confermare con loro.
+- **Mercati**: "Per anni le calzature Nic Dean sono andate soprattutto ai negozi d'Europa e del Nord America" è al passato perché viene dal sito del 2017. Da confermare con loro: dal ritocco del 3/11/2026 non è più in pagina, come "di tutti i numeri".
 - **Telefono e fax**: 049 640672 e 049 8791084 vengono dal sito; verificare che rispondano. Il fax si toglie se non è attivo.
 - **Riga legale**: C.F. e P.IVA 02707240285, REA PD-300932, capitale 51.000 euro i.v. da riscontrare con una visura. Sede legale (via Emilia 2, Padova) e PEC non sono in pagina: da decidere con loro.
 - **Facebook "Nic Dean Shop"**: tolto dalla pagina perché non si è potuto verificare che sia viva (si apre solo dopo il login). Il cliente tipo dello spaccio la cerca per ferie, chiusure straordinarie e sconti: se è viva va sotto gli orari ("Chiusure straordinarie e sconti: pagina Facebook Nic Dean Shop") e nel piede con il sottotitolo "la pagina dello spaccio".
@@ -44,7 +44,7 @@ In questa versione lo stato è calcolato: in testata da 761 px in su ("Spaccio a
 ## Prove che mancano (regola 10): da chiedere, non da inventare
 
 Le regole chiedono almeno tre tipi di prove tra recensioni, numeri, certificazioni o fornitori, clienti con il nome. Nella home ibrida le due cifre vere, 1975 e 2013, stanno solo dentro le frasi (il titolo e la didascalia dello spaccio): la fascia delle cifre è tolta (regola D9). Da chiedere:
-- **Recensioni**: una scheda Google dello spaccio con recensioni vere (oggi non trovata). Con 3-5 recensioni con nome e comune si aggiunge una fascia tra lo spaccio e "Chi siamo".
+- **Recensioni**: una scheda Google dello spaccio con recensioni vere (oggi non trovata). Con 3-5 recensioni con nome e comune si aggiunge una fascia tra lo spaccio e il blocco per i negozi ("Chi siamo" ora è la colonna di sinistra del piede).
 - **Negozi clienti** che vendono o hanno venduto le scarpe Nic Dean, con il permesso di nominarli.
 - **Fiere**: l'ultima documentata è MICAM Milano e GDS Düsseldorf, marzo 2012; tolta dalla home perché fa sembrare l'azienda ferma. Se ce ne sono di più recenti, vanno nella sezione per i negozi.
 - **Numeri di produzione**: paia l'anno, modelli a collezione, anni di attività nello stesso capannone, solo se li danno loro.
@@ -66,7 +66,7 @@ La home usa solo foto loro, perché il committente ha deciso "niente" repertorio
 2. **Lo spaccio** in luce naturale, finestre non bruciate: scaffali di scatole, il banco, una scarpa in mano a una cliente, 4:3, almeno 2400 px. La foto di oggi (960x720, compatta, finestre bruciate) è tornata nella home ibrida come foto della sezione culmine, tagliata a 960x640 e mostrata a 845 px: con la foto nuova si sostituisce `spaccio-*.webp`.
 3. **La facciata con l'insegna NIC DEAN** sul cancello, dal marciapiede: serve a riconoscerli arrivando (la foto di oggi sembra una cattura di Street View e non è usata).
 4. **Le scarpe di oggi**, una per modello, tutte con la stessa luce della fila su fondo grigio chiaro continuo (o bianco, che `_prova/alto/script/immagini.py` porta alla carta #ECE9E3 della pagina), stessa inquadratura di profilo, almeno 2000 px: sostituiscono le quattro scarpe di oggi (Olympus del 2001, 500x375). Con 4 o 8 modelli la griglia resta la stessa.
-5. **Macro della firma NicDean sul sottopiede**, stessa luce della fila: può diventare il secondo gesto della pagina, in "Chi siamo".
+5. **Macro della firma NicDean sul sottopiede**, stessa luce della fila: può diventare il secondo gesto della pagina, e con quella "Chi siamo" torna una sezione (oggi è la storia nel piede).
 6. **Le mani al banco a Villatora**, solo se la produzione continua: per la sezione dei negozi, che oggi è solo testo e modulo.
 
 ## Caratteri

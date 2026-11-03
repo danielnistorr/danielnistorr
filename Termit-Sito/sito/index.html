@@ -14,7 +14,7 @@
   --carta:#F4F3EE; --carta-2:#E8E6DF; --inchiostro:#141613; --grigio:#50554D; --segnaposto:#6A6E65;
   --filetto:rgba(20,22,19,.18); --verde:#51B038; --verde-scuro:#2C6A1E; --su-verde:#0F1A0B; --piede-testo:#E6E5DF;
   --sans:"Atkinson Next",system-ui,sans-serif; --mono:"Atkinson Mono",ui-monospace,monospace;
-  --margine:80px; --spazio:24px; --testata:72px; --sez:96px; --sez-culmine:192px;
+  --margine:80px; --spazio:24px; --testata:72px; --sez:88px; --sez-culmine:144px; --g-alto:150px; --g-basso:116px;
 }
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -66,17 +66,16 @@ button,input,textarea{font:inherit;color:inherit}
 .apri{display:none;background:none;border:0;padding:12px 4px;font-weight:700;font-size:16px;cursor:pointer;text-decoration:underline;text-underline-offset:5px}
 
 /* ---------- apertura: la domanda e il campo ---------- */
-.apertura{min-height:calc(100vh - var(--testata));min-height:calc(100svh - var(--testata));display:flex}
-.apertura .wrap{flex:1;display:flex;width:100%}
-.gesto{flex:1;display:flex;flex-direction:column;padding:72px 0 56px}
-.domanda{align-items:end}
-.domanda h1{grid-column:1 / span 8;font-size:176px;line-height:164px;font-weight:400;letter-spacing:-.03em}
-.domanda .mestiere{grid-column:9 / span 4;font-size:20px;line-height:28px;color:var(--grigio);padding-bottom:26px}
-.cerca{margin-top:auto;padding-top:88px}
-.cerca-testa{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:10px}
-.cerca label{font-size:15px;line-height:22px;color:var(--grigio)}
-.campo{position:relative;border-bottom:4px solid var(--verde)}
-.campo input{display:block;width:100%;border:0;border-radius:0;background:transparent;padding:0 0 10px;font-family:var(--mono);font-size:56px;line-height:72px;height:82px;-webkit-appearance:none;appearance:none}
+.apertura{display:block}
+.gesto{padding:var(--g-alto) 0 var(--g-basso)}
+.domanda h1{grid-column:1 / -1;font-size:128px;line-height:120px;font-weight:400;letter-spacing:-.03em}
+.domanda .mestiere{grid-column:1 / span 8;margin-top:28px;font-size:32px;line-height:40px;color:var(--inchiostro)}
+.cerca{padding-top:72px}
+.cerca-testa{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:8px}
+.cerca label{font-size:17px;line-height:24px;color:var(--inchiostro)}
+.campo{position:relative;display:flex;align-items:flex-end;gap:24px;border-bottom:4px solid var(--verde)}
+.campo input{display:block;flex:1;min-width:0;width:100%;border:0;border-radius:0;background:transparent;padding:0 0 12px;font-family:var(--mono);font-size:80px;line-height:96px;height:108px;-webkit-appearance:none;appearance:none}
+.invio{flex:none;font-family:var(--mono);font-size:15px;line-height:22px;color:var(--grigio);padding-bottom:18px;white-space:nowrap;user-select:none}
 .campo input::placeholder{color:var(--segnaposto);opacity:1}
 .campo input:focus{outline:none}
 .campo:focus-within{border-bottom-color:var(--verde-scuro)}
@@ -105,11 +104,11 @@ button,input,textarea{font:inherit;color:inherit}
 .sez{padding:var(--sez) 0}
 .sez + .sez{border-top:1px solid var(--filetto)}
 .h2{grid-column:1 / span 8;font-size:40px;line-height:46px;font-weight:400;letter-spacing:-.01em}
-.intro{grid-column:1 / span 7;margin-top:20px;color:var(--grigio)}
+.intro{grid-column:1 / span 7;margin-top:24px;color:var(--grigio)}
 h3{font-size:22px;line-height:28px;font-weight:700}
 
 /* prodotti: le otto famiglie come indice */
-.famiglie{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--spazio);border-top:1px solid var(--inchiostro)}
+.famiglie{margin-top:48px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--spazio);border-top:1px solid var(--inchiostro)}
 .famiglie a{display:grid;grid-template-columns:48px minmax(0,1fr) auto;column-gap:16px;padding:20px 0 22px;border-bottom:1px solid var(--filetto);text-decoration:none;height:100%;align-content:start}
 .famiglie a:hover h3{text-decoration:underline;text-underline-offset:5px}
 .famiglie .n{font-family:var(--mono);font-size:15px;line-height:28px;color:var(--grigio)}
@@ -123,91 +122,73 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 .filtri button:hover{text-decoration-thickness:2px}
 
 /* consegne e ordini */
-.consegne{margin-top:48px;border-top:1px solid var(--inchiostro)}
-.consegne div{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--spazio);padding:22px 0 24px;border-bottom:1px solid var(--filetto)}
-.consegne dt{grid-column:1 / span 4;font-size:22px;line-height:28px;font-weight:700}
-.consegne dd{grid-column:5 / span 7}
-.ordini{margin-top:72px;background:var(--verde);color:var(--su-verde);padding:56px 0 60px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--spazio)}
+.consegne{margin-top:48px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--spazio);border-top:1px solid var(--inchiostro)}
+.consegne div{padding:24px 0 0}
+.consegne dt{font-size:22px;line-height:28px;font-weight:700}
+.consegne dd{margin-top:12px;font-size:17px;line-height:26px}
+.ordini{margin-top:64px;background:var(--verde);color:var(--su-verde);padding:48px 0 52px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--spazio)}
 .firma{font-size:40px;line-height:46px;font-weight:400;letter-spacing:-.01em}
 .ordini .firma{grid-column:2 / span 6}
-.ordini .o-dx{grid-column:9 / span 3;display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.ordini .o-dx{grid-column:8 / span 4;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 .ordini .o-dx p{font-size:18px;line-height:28px}
+.ordini .o-dx .piccola{font-size:14px;line-height:20px;margin-top:-6px}
+.ordini .o-dx .listino{margin-top:12px;padding-top:16px;border-top:1px solid rgba(15,26,11,.3);align-self:stretch}
 .ordini .link{color:var(--su-verde);font-weight:700}
 
-/* su misura: il culmine */
+/* su misura: il culmine, la foto alla sua misura vera e centrata */
 .culmine{background:var(--carta-2);padding:var(--sez-culmine) 0}
 .culmine + .sez,.sez + .culmine{border-top:0}
-.culmine .h2{grid-column:1 / span 9;font-size:56px;line-height:60px;letter-spacing:-.015em}
-.mis-foto{grid-column:1 / span 8;margin-top:48px}
+.mis{width:100%;max-width:1000px;justify-self:center}
+.culmine .h2{font-size:56px;line-height:60px;letter-spacing:-.015em}
+.mis-foto{margin-top:40px}
 .mis-foto img{width:100%}
-.didascalia{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:var(--spazio);margin-top:14px;font-size:15px;line-height:22px}
-.didascalia span:first-child{grid-column:1 / span 5;font-weight:700}
-.didascalia span:last-child{grid-column:6 / span 3;color:var(--grigio)}
-.mis-testo{grid-column:9 / span 4;margin-top:48px;display:flex;flex-direction:column;gap:20px}
+.didascalia{display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font-size:15px;line-height:22px}
+.didascalia span:first-child{font-weight:700}
+.didascalia span:last-child{color:var(--grigio);text-align:right;margin-left:auto}
+.mis-sotto{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--spazio)}
+.mis-testo{display:flex;flex-direction:column;gap:20px}
 .citazione{font-size:22px;line-height:31px}
-.mis-dati{margin-top:8px;border-top:1px solid var(--inchiostro)}
-.mis-dati div{padding:14px 0 16px;border-bottom:1px solid var(--filetto)}
+.mis-dati{border-top:1px solid var(--inchiostro)}
+.mis-dati div{padding:12px 0 14px;border-bottom:1px solid var(--filetto)}
 .mis-dati dt{font-weight:700;font-size:16px;line-height:24px}
 .mis-dati dd{font-size:17px;line-height:26px}
-.mis-testo .btn{align-self:flex-start;margin-top:12px}
+.mis-azione{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.mis-azione .piccola{font-size:14px;line-height:20px;color:var(--grigio)}
 
 /* settori */
-.settori{margin-top:56px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--spazio);row-gap:48px}
+.settori{margin-top:48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--spazio);row-gap:48px}
 .settori > li{grid-column:span 4;border-top:1px solid var(--inchiostro);padding-top:20px}
-.settori .frase{margin-top:10px;font-size:17px;line-height:26px;color:var(--grigio)}
-.voci{margin-top:18px}
-.voci a{display:flex;justify-content:space-between;gap:16px;padding:9px 0 10px;border-bottom:1px solid var(--filetto);font-size:17px;line-height:24px;text-decoration:none}
+.settori .frase{margin-top:8px;font-size:17px;line-height:26px;color:var(--grigio)}
+.voci{margin-top:14px}
+.voci a{display:flex;justify-content:space-between;gap:16px;padding:8px 0 9px;border-bottom:1px solid var(--filetto);font-size:17px;line-height:24px;text-decoration:none}
 .voci a:hover{text-decoration:underline;text-underline-offset:4px}
 
 /* azienda */
-.storia{grid-column:1 / span 7;margin-top:20px;font-size:22px;line-height:32px}
-.prove{margin-top:56px;grid-column:span 6}
-.prove + .prove{grid-column:7 / span 6}
-.prove h3{padding-bottom:14px;border-bottom:1px solid var(--inchiostro)}
-.elenco li{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--spazio);padding:14px 0 15px;border-bottom:1px solid var(--filetto);font-size:17px;line-height:26px}
-.elenco b{grid-column:1 / span 2;font-weight:700}
-.elenco span{grid-column:3 / span 4}
+.manifesto{grid-column:1 / span 10;margin-top:36px;font-size:28px;line-height:38px}
+.az-note{margin-top:40px;padding-top:20px;border-top:1px solid var(--inchiostro);font-size:17px;line-height:26px}
+.az-note p{grid-column:span 6}
+.az-note b{font-weight:700}
 
-/* contatti */
+/* contatti: la firma a sinistra, le tre strade a destra */
 .con-sx{grid-column:1 / span 5}
-.strade{margin-top:40px;border-top:1px solid var(--inchiostro)}
-.strade div{padding:16px 0 18px;border-bottom:1px solid var(--filetto)}
+.strade{grid-column:7 / span 6;border-top:1px solid var(--inchiostro)}
+.strade div{padding:14px 0 16px;border-bottom:1px solid var(--filetto)}
 .strade dt{font-size:16px;line-height:24px;color:var(--grigio)}
 .strade dd{font-size:18px;line-height:28px}
 .strade .grande{font-size:22px;line-height:32px;font-weight:700;text-decoration:none}
 .strade .grande:hover{text-decoration:underline;text-underline-offset:5px}
-.modulo{grid-column:7 / span 6}
-.modulo h3{padding-bottom:14px;border-bottom:1px solid var(--inchiostro)}
-.tipi{border:0;margin:24px 0 0;padding:0}
-.tipi legend{font-size:16px;font-weight:700;padding:0;margin-bottom:10px}
-.tipi .scelte{display:flex;flex-wrap:wrap;gap:8px 24px}
-.tipi label{display:flex;align-items:center;gap:8px;font-size:17px;min-height:44px;cursor:pointer}
-.tipi input{width:20px;height:20px;margin:0;accent-color:var(--verde-scuro)}
-.campi{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--spazio);row-gap:16px;margin-top:16px}
-.campi > div{grid-column:span 3;display:flex;flex-direction:column;gap:6px}
-.campi .tutta{grid-column:1 / -1}
-.campi label{font-size:16px;line-height:22px;font-weight:700}
-.campi label i{font-style:normal;font-weight:400;color:var(--grigio)}
-.campi input,.campi textarea{width:100%;min-height:48px;border:1px solid #8A8D84;border-radius:2px;background:#fff;padding:10px 12px;font-size:17px}
-.campi textarea{min-height:96px;resize:vertical}
-.campi input:focus,.campi textarea:focus{outline:3px solid var(--verde-scuro);outline-offset:0;border-color:var(--verde-scuro)}
-.allegato{margin-top:14px;font-size:14px;line-height:20px;color:var(--grigio)}
-.invia{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
-.invia .nota{font-size:14px;line-height:20px;color:var(--grigio);max-width:320px}
-.avviso{flex-basis:100%;font-size:16px;font-weight:700;color:#8A1C12}
-.avviso:empty{display:none}
 
 /* barra in basso (telefono e tablet) */
 .barra{display:none}
 
 /* piede */
-.piede{background:var(--inchiostro);color:var(--piede-testo);padding:72px 0 40px;font-size:16px;line-height:24px}
+.piede{background:var(--inchiostro);color:var(--piede-testo);padding:64px 0 32px;font-size:16px;line-height:24px}
 .piede a{color:var(--piede-testo)}
 .piede .alto > *{grid-column:span 4}
 .piede .p-logo img{width:160px}
 .piede .p-logo p{margin-top:16px;max-width:340px}
 .piede ul li{padding:4px 0}
-.piede .legale{margin-top:56px;padding-top:20px;border-top:1px solid rgba(230,229,223,.25);display:flex;flex-wrap:wrap;gap:6px 24px;font-size:15px;line-height:22px}
+.piede .legale{margin-top:48px;padding-top:20px;border-top:1px solid rgba(230,229,223,.25);display:flex;flex-wrap:wrap;gap:6px 24px;font-size:15px;line-height:22px}
 .piede .legale .dx{margin-left:auto;display:flex;gap:24px}
 
 /* ---------- 1279 e sotto: menu a pannello, stato nella barra in basso ---------- */
@@ -218,28 +199,28 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   .testata.aperta .menu{display:flex;flex-direction:column;gap:0;position:absolute;top:var(--testata);left:0;right:0;margin:0;background:var(--carta);border-bottom:1px solid var(--inchiostro);padding:8px var(--margine) 16px}
   .testata.aperta .menu a{display:block;padding:14px 0;border-bottom:1px solid var(--filetto);font-size:19px}
   .testata.aperta .menu .solo-pannello{display:block}
-  .domanda h1{font-size:128px;line-height:120px;grid-column:1 / span 10}
-  .domanda .mestiere{grid-column:1 / span 8;padding:28px 0 0}
-  .campo input{font-size:48px;height:72px;line-height:62px}
+  :root{--g-alto:88px;--g-basso:88px}
+  .domanda h1{font-size:104px;line-height:100px}
+  .domanda .mestiere{grid-column:1 / span 10;font-size:28px;line-height:36px}
+  .campo input{font-size:60px;height:84px;line-height:72px}
   body{padding-bottom:72px}
-  .apertura{min-height:calc(100vh - var(--testata) - 72px);min-height:calc(100svh - var(--testata) - 72px)}
   .barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;min-height:72px;background:var(--carta);border-top:1px solid var(--inchiostro);align-items:center;gap:16px;padding:8px var(--margine)}
   .barra .stato{flex:1}
   .barra .b-ordine{font-size:16px;font-weight:700;color:var(--verde-scuro);padding:12px 0}
   .ordini .firma{grid-column:2 / span 10}
   .ordini .o-dx{grid-column:2 / span 10;margin-top:28px}
-  .culmine .h2{font-size:48px;line-height:54px;grid-column:1 / span 10}
-  .mis-foto,.mis-testo{grid-column:1 / -1}
-  .mis-testo{max-width:720px}
-  .con-sx,.modulo{grid-column:1 / -1}
-  .modulo{margin-top:64px;max-width:760px}
+  .culmine .h2{font-size:48px;line-height:54px}
 }
 @media (max-width:1023px){
-  .campo input{font-size:44px}
+  .campo input{font-size:52px;height:76px;line-height:64px}
+  .domanda h1{grid-column:1 / span 10}
   .settori > li{grid-column:1 / -1}
-  .prove,.prove + .prove{grid-column:1 / -1}
-  .consegne dt{grid-column:1 / -1}
-  .consegne dd{grid-column:1 / -1;margin-top:6px}
+  .consegne{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .mis-sotto{grid-template-columns:1fr;row-gap:32px}
+  .con-sx,.strade{grid-column:1 / -1}
+  .strade{margin-top:40px}
+  .az-note p{grid-column:1 / -1}
+  .az-note p + p{margin-top:12px}
   .famiglie{grid-template-columns:1fr}
   .famiglie li:nth-child(2) a{border-top:0}
   .piede .alto > *{grid-column:span 6}
@@ -252,17 +233,21 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   .chiama{padding:0 14px}
   .chiama .eti{display:none}
   .chiama .num{margin-left:0;font-size:16px}
-  .gesto{padding:32px 0 24px}
-  .domanda h1{font-size:74px;line-height:72px;grid-column:1 / -1;letter-spacing:-.025em}
-  .domanda .mestiere{grid-column:1 / -1;font-size:17px;line-height:26px;padding-top:20px}
-  .cerca{margin-top:0;padding-top:100px}
-  .apertura{min-height:calc(100svh - var(--testata) - 64px)}
-  .gesto{justify-content:flex-start}
-  .campo input{font-size:44px;height:66px;line-height:56px}
+  :root{--g-alto:32px;--g-basso:24px}
+  .domanda h1{font-size:80px;line-height:78px;grid-column:1 / -1;letter-spacing:-.03em}
+  .domanda .mestiere{grid-column:1 / -1;font-size:26px;line-height:34px;margin-top:20px}
+  .cerca{padding-top:56px}
+  .invio{display:none}
+  .campo input{font-size:40px;height:64px;line-height:52px;padding-bottom:10px}
+  .consegne{grid-template-columns:1fr;row-gap:0;border-top:0}
+  .consegne div{padding:18px 0 20px;border-top:1px solid var(--filetto)}
+  .consegne div:first-child{border-top-color:var(--inchiostro)}
+  .consegne dd{margin-top:6px}
+  .manifesto{grid-column:1 / -1;font-size:24px;line-height:32px;margin-top:28px}
   .risultati li{display:flex;flex-direction:column;gap:2px}
   .h2,.culmine .h2,.firma{font-size:30px;line-height:36px;grid-column:1 / -1}
-  .intro,.storia{grid-column:1 / -1}
-  .storia{font-size:19px;line-height:28px}
+  .intro{grid-column:1 / -1}
+  .br-l{display:none}
   .famiglie a{grid-template-columns:36px minmax(0,1fr) auto}
   .filtri dt,.filtri dd{grid-column:1 / -1}
   .filtri button{font-size:17px;padding:6px 0}
@@ -270,22 +255,21 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   .ordini .firma,.ordini .o-dx{grid-column:1 / -1;padding:0 20px}
   .didascalia{display:block}
   .didascalia span{display:block}
+  .didascalia span:last-child{text-align:left}
   .citazione{font-size:20px;line-height:28px}
-  .elenco li{display:block}
-  .elenco b{display:block}
-  .campi > div{grid-column:1 / -1}
   .piede .alto > *{grid-column:1 / -1;margin-top:24px}
   .piede .legale .dx{margin-left:0}
   .barra{min-height:64px}
   body{padding-bottom:64px}
 }
 @media (max-width:379px){
-  .domanda h1{font-size:64px;line-height:64px}
-  .campo input{font-size:38px}
+  .domanda h1{font-size:68px;line-height:68px}
+  .domanda .mestiere{font-size:22px;line-height:30px}
+  .campo input{font-size:34px}
 }
 @media (max-width:359px){
-  .domanda h1{font-size:56px;line-height:56px}
-  .campo input{font-size:32px}
+  .domanda h1{font-size:56px;line-height:58px}
+  .campo input{font-size:30px}
   .logo{width:96px}
   .chiama .num{display:none}
   .chiama .eti{display:inline}
@@ -321,8 +305,8 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   <div class="wrap">
     <div class="gesto">
       <div class="domanda griglia">
-        <h1 id="titolo">Cercate un prodotto?</h1>
-        <p class="mestiere">Isolanti termici, acustici e antifuoco a&nbsp;stock, con taglio su misura, a&nbsp;Saonara&nbsp;(PD).</p>
+        <h1 id="titolo">Cercate un isolante?</h1>
+        <p class="mestiere">Isolanti termici, acustici e antifuoco a&nbsp;stock, a&nbsp;Saonara&nbsp;(PD).</p>
       </div>
       <div class="cerca" id="cerca" role="search">
         <div class="cerca-testa">
@@ -330,7 +314,8 @@ h3{font-size:22px;line-height:28px;font-weight:700}
           <button class="svuota" type="button" id="svuota">Svuota</button>
         </div>
         <div class="campo">
-          <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="PS680, K-Flex, coppella" aria-controls="risultati" aria-describedby="esito">
+          <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="PS680, K-Flex" aria-controls="risultati" aria-describedby="esito">
+          <span class="invio" aria-hidden="true">Invio ↵</span>
         </div>
         <p class="esito" id="esito" aria-live="polite"></p>
         <p class="nota-marca" id="nota-marca"></p>
@@ -347,12 +332,12 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 <section class="sez" id="prodotti" aria-labelledby="t-prod">
   <div class="wrap griglia">
     <h2 class="h2" id="t-prod">Otto famiglie, a&nbsp;stock</h2>
-    <p class="intro">Coppelle, feltri, pannelli, lastre e tubi, nastri e colle. Quasi tutte le schede hanno il PDF tecnico del produttore.</p>
+    <p class="intro">Quasi tutte le schede hanno il PDF tecnico del produttore.</p>
     <ul class="famiglie">
       <li><a href="https://www.termit.biz/contenuti-right-bar/lana-di-roccia-69/elenco/"><span class="n">01</span><h3>Lana di roccia</h3><span class="conta">25 schede</span><p>Coppelle, pannelli, feltri e sfusa.</p></a></li>
       <li><a href="https://www.termit.biz/contenuti-right-bar/lana-di-vetro-70/elenco/"><span class="n">02</span><h3>Lana di vetro</h3><span class="conta">24 schede</span><p>Coppelle, pannelli, feltri e sfusa.</p></a></li>
       <li><a href="https://www.termit.biz/contenuti-right-bar/elastomero-espanso-71/elenco/"><span class="n">03</span><h3>Elastomero espanso</h3><span class="conta">23 schede</span><p>Lastre e tubi, anche Solar e Duct.</p></a></li>
-      <li><a href="https://www.termit.biz/contenuti-right-bar/isolanti-nanotecnologici-78/elenco/"><span class="n">04</span><h3>Isolanti nanotecnologici</h3><span class="conta">15 schede</span><p>Aerogel, per problemi di spazio e prestazioni eccezionali.</p></a></li>
+      <li><a href="https://www.termit.biz/contenuti-right-bar/isolanti-nanotecnologici-78/elenco/"><span class="n">04</span><h3>Isolanti nanotecnologici</h3><span class="conta">15 schede</span><p>Aerogel, per problemi di spazio.</p></a></li>
       <li><a href="https://www.termit.biz/contenuti-right-bar/protezione-incendi-24/elenco/"><span class="n">05</span><h3>Protezione al fuoco</h3><span class="conta">11 schede</span><p>Calcio silicato, lana di roccia, Tecnofire REI&nbsp;120.</p></a></li>
       <li><a href="https://www.termit.biz/contenuti-right-bar/isolanti-acustici-76/elenco/"><span class="n">06</span><h3>Fonoisolanti</h3><span class="conta">15 schede</span><p>Dove il rumore non passa: piramidale, bugnato, accoppiati con massa.</p></a></li>
       <li><a href="https://www.termit.biz/contenuti-right-bar/rivestimenti-73/elenco/"><span class="n">07</span><h3>Rivestimenti</h3><span class="conta">13 schede</span><p>Lamierini, alluminio calandrato, tessuti di vetro.</p></a></li>
@@ -385,8 +370,8 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 
 <section class="sez" id="consegne" aria-labelledby="t-con">
   <div class="wrap griglia">
-    <h2 class="h2" id="t-con">Consegne a sponda camion, niente corrieri espressi</h2>
-    <p class="intro">«L'immediatezza nelle consegne, effettuate il più delle volte con propri mezzi» è, con il materiale a&nbsp;stock, uno dei punti di forza che Termit scrive di sé.</p>
+    <h2 class="h2" id="t-con">Consegne a sponda camion,<br class="br-l"> niente corrieri espressi</h2>
+    <p class="intro">«L'immediatezza nelle consegne, effettuate il più delle volte con propri mezzi.»</p>
     <dl class="consegne">
       <div><dt>Camion di circa 10&nbsp;m</dt><dd>Dove è possibile i trasportatori consegnano con i mezzi grandi, con preavviso telefonico un giorno prima. Nelle strade strette la merce passa al deposito di zona, che consegna con furgoni.</dd></div>
       <div><dt>A piano strada</dt><dd>Sponda camion, nel punto più vicino all'ingresso dove l'automezzo può sostare. Un solo autista, senza aiuto per lo scarico.</dd></div>
@@ -394,11 +379,12 @@ h3{font-size:22px;line-height:28px;font-weight:700}
       <div><dt>Porto franco</dt><dd>Merce assicurata, spese di spedizione in fattura. Se un prodotto non è disponibile entro un mese dall'ordine, vi avvisiamo.</dd></div>
     </dl>
     <div class="ordini">
-      <p class="firma">Telefonate o scrivete per avere il listino aggiornato.</p>
+      <p class="firma">Materiale in pronta consegna.</p>
       <div class="o-dx">
-        <p>Gli ordini si fanno solo per scritto, via email: la traccia è già pronta.</p>
+        <p>Gli ordini si fanno solo per scritto, via email.</p>
         <a class="btn" href="mailto:info@termit.biz?subject=Ordine&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0ACodice%2C%20spessore%20e%20quantit%C3%A0%3A%0D%0A1.%20%0D%0A2.%20%0D%0A3.%20%0D%0A%0D%0AIndirizzo%20di%20consegna%3A%0D%0AData%20richiesta%3A">Scrivi un ordine</a>
-        <a class="link" href="mailto:info@termit.biz?subject=Richiesta%20listino%20aggiornato&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0AProdotti%20o%20famiglie%20che%20ci%20interessano%3A">Chiedete il listino</a>
+        <p class="piccola">L'email si apre con la traccia già scritta.</p>
+        <p class="listino">Telefonate o scrivete per avere il listino aggiornato. <a class="link nw" href="mailto:info@termit.biz?subject=Richiesta%20listino%20aggiornato&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0AProdotti%20o%20famiglie%20che%20ci%20interessano%3A">Chiedete il listino</a></p>
       </div>
     </div>
   </div>
@@ -406,21 +392,30 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 
 <section class="sez culmine" id="su-misura" aria-labelledby="t-mis">
   <div class="wrap griglia">
-    <h2 class="h2" id="t-mis">Mandateci il disegno, lo tagliamo in&nbsp;casa</h2>
-    <figure class="mis-foto">
-      <picture>
-        <img src="img/taglio-acqua-1000.webp" srcset="img/taglio-acqua-640.webp 640w, img/taglio-acqua-1000.webp 1000w" sizes="(max-width:767px) calc(100vw - 32px), (max-width:1279px) min(calc(100vw - 80px), 1000px), 868px" width="1000" height="639" loading="lazy" alt="La macchina da taglio ad acqua con le tre teste numerate 3, 1 e 2 sopra un pannello di lana di roccia">
-      </picture>
-      <figcaption class="didascalia"><span>Taglio ad acqua a tre teste su un pannello di lana di roccia</span><span>Reparto taglio, Saonara&nbsp;(PD)</span></figcaption>
-    </figure>
-    <div class="mis-testo">
-      <p>Un'esperienza ventennale nella produzione di pezzi su misura: insonorizzazione di macchinari, isolamento termico di forni, condizionatori, cisterne o tubi di scarico.</p>
-      <p class="citazione">«Rapidi nei tempi di produzione, competitivi nelle quotazioni economiche e riservati sulla progettazione dei&nbsp;clienti.»</p>
-      <dl class="mis-dati">
-        <div><dt>Materiali</dt><dd>Lana di roccia, lana di vetro, elastomero espanso, prodotti nanotecnologici.</dd></div>
-        <div><dt>Cosa indicare</dt><dd>Materiale o temperatura di esercizio, spessore, misure o disegno quotato in allegato, quantità, data richiesta.</dd></div>
-      </dl>
-      <a class="btn" href="mailto:info@termit.biz?subject=Pezzi%20su%20misura&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0AMateriale%20o%20temperatura%20di%20esercizio%3A%0D%0ASpessore%3A%0D%0AMisure%20%28o%20disegno%20quotato%20in%20allegato%29%3A%0D%0AQuantit%C3%A0%3A%0D%0AData%20richiesta%3A%0D%0A%0D%0A%28Allego%20il%20disegno.%29">Mandateci il disegno</a>
+    <div class="mis">
+      <h2 class="h2" id="t-mis">Mandateci il disegno,<br class="br-l"> lo tagliamo in&nbsp;casa</h2>
+      <figure class="mis-foto">
+        <picture>
+          <img src="img/taglio-acqua-1000.webp" srcset="img/taglio-acqua-640.webp 640w, img/taglio-acqua-1000.webp 1000w" sizes="(max-width:767px) calc(100vw - 32px), (max-width:1079px) calc(100vw - 80px), 1000px" width="1000" height="639" loading="lazy" alt="La macchina da taglio ad acqua con le tre teste numerate 3, 1 e 2 sopra un pannello di lana di roccia">
+        </picture>
+        <figcaption class="didascalia"><span>Taglio ad acqua a tre teste su un pannello di lana di roccia</span><span>Pezzi su misura</span></figcaption>
+      </figure>
+      <div class="mis-sotto">
+        <div class="mis-testo">
+          <p>Un'esperienza ventennale nella produzione di pezzi su misura: insonorizzazione di macchinari, isolamento termico di forni, condizionatori, cisterne o tubi di scarico.</p>
+          <p class="citazione">«Rapidi nei tempi di produzione, competitivi nelle quotazioni economiche e riservati sulla progettazione dei&nbsp;clienti.»</p>
+        </div>
+        <div>
+          <dl class="mis-dati">
+            <div><dt>Materiali</dt><dd>Lana di roccia, lana di vetro, elastomero espanso, prodotti nanotecnologici.</dd></div>
+            <div><dt>Cosa indicare</dt><dd>Materiale o temperatura di esercizio, spessore, misure o disegno quotato in allegato, quantità, data richiesta.</dd></div>
+          </dl>
+          <div class="mis-azione">
+            <a class="btn" href="mailto:info@termit.biz?subject=Pezzi%20su%20misura&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0AMateriale%20o%20temperatura%20di%20esercizio%3A%0D%0ASpessore%3A%0D%0AMisure%20%28o%20disegno%20quotato%20in%20allegato%29%3A%0D%0AQuantit%C3%A0%3A%0D%0AData%20richiesta%3A%0D%0A%0D%0A%28Allego%20il%20disegno.%29">Mandateci il disegno</a>
+            <p class="piccola">Il disegno allegatelo all'email che si apre.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -428,7 +423,6 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 <section class="sez" id="settori" aria-labelledby="t-set">
   <div class="wrap griglia">
     <h2 class="h2" id="t-set">Ogni applicazione ha le sue esigenze</h2>
-    <p class="intro">Vi aiutiamo a individuare la soluzione più adatta, per coibentatori, impiantisti, imprese edili e cantieri navali.</p>
     <ul class="settori">
       <li>
         <h3>Industria</h3>
@@ -474,27 +468,10 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 <section class="sez" id="azienda" aria-labelledby="t-az">
   <div class="wrap griglia">
     <h2 class="h2" id="t-az">Una storia lunga più di cinquant'anni</h2>
-    <p class="storia">Dal 2004 siamo certificati UNI EN ISO&nbsp;9001 da RINA, per la produzione e la vendita di manufatti isolanti termici e acustici per l'industria e l'edilizia.</p>
-    <div class="prove">
-      <h3>Certificazioni e associazioni</h3>
-      <ul class="elenco">
-        <li><b>ISO&nbsp;9001</b><span>RINA n.&nbsp;10957/04/S, valido fino al 15.05.2028. <a class="link nw" href="https://www.termit.biz/public/Uploads/CertificatoInternazionale.pdf">Il certificato</a> e <a class="link nw" href="https://www.termit.biz/public/Uploads/Politica.pdf">la politica della qualità</a>, in PDF.</span></li>
-        <li><b>EcoVadis</b><span>Medaglia di bronzo.</span></li>
-        <li><b>ANICTA</b><span>Associato partecipante, nella categoria dei fornitori dei coibentatori.</span></li>
-        <li><b>EIIF</b><span>Membro della European Industrial Insulation Foundation.</span></li>
-      </ul>
-    </div>
-    <div class="prove">
-      <h3>Partner e marchio Termit</h3>
-      <ul class="elenco">
-        <li><b>Knauf Insulation</b><span>Lana di roccia</span></li>
-        <li><b>Ursa</b><span>Lana di vetro</span></li>
-        <li><b>K-Flex</b><span>Elastomero espanso</span></li>
-        <li><b>Unifrax, Morgan</b><span>Lana di vetro per alte temperature (HT)</span></li>
-        <li><b>Coroplast</b><span>Nastri adesivi, PVC</span></li>
-        <li><b>Dörken Delta</b><span>Membrane e teli, tutta la gamma a&nbsp;stock</span></li>
-        <li><b>Termit Isolbag&nbsp;039</b><span>Il nostro feltro e pannello imbustato, λD&nbsp;0,039&nbsp;W/mK</span></li>
-      </ul>
+    <p class="manifesto">Certificati UNI EN ISO&nbsp;9001 da RINA dal&nbsp;2004, medaglia di bronzo EcoVadis, soci di ANICTA e della European Industrial Insulation Foundation.</p>
+    <div class="az-note griglia">
+      <p><b>Il certificato</b> RINA n.&nbsp;10957/04/S, valido fino al 15.05.2028: <a class="link nw" href="https://www.termit.biz/public/Uploads/CertificatoInternazionale.pdf">certificato</a> e <a class="link nw" href="https://www.termit.biz/public/Uploads/Politica.pdf">politica della qualità</a>, in PDF.</p>
+      <p><b>Partner</b> Knauf Insulation, Ursa, K-Flex, Unifrax e Morgan, Coroplast, Dörken Delta. <b>Il nostro marchio</b> Termit Isolbag&nbsp;039, feltro e pannello imbustato, λD&nbsp;0,039&nbsp;W/mK.</p>
     </div>
   </div>
 </section>
@@ -502,40 +479,13 @@ h3{font-size:22px;line-height:28px;font-weight:700}
 <section class="sez" id="contatti" aria-labelledby="t-cont">
   <div class="wrap griglia">
     <div class="con-sx">
-      <h2 class="firma" id="t-cont">Telefonate o scrivete per avere il listino aggiornato.</h2>
-      <dl class="strade">
-        <div><dt>Telefono, lunedì-venerdì <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></dt><dd><a class="grande" href="tel:+39049640060">049&nbsp;640060</a> <span class="js-stato-t2"></span></dd></div>
-        <div><dt>Ordini e listino, solo per scritto</dt><dd><a class="grande" href="mailto:info@termit.biz">info@termit.biz</a></dd></div>
-        <div><dt>Magazzino e uffici</dt><dd>Via Emilia Romagna 19, 35020 Saonara (PD).<br><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Termit%20srl%2C%20Via%20Emilia%20Romagna%2019%2C%2035020%20Saonara%20PD">Come arrivare</a></dd></div>
-      </dl>
+      <h2 class="firma" id="t-cont">Materiale in pronta consegna.</h2>
     </div>
-    <form class="modulo" id="modulo" novalidate aria-labelledby="t-mod">
-      <h3 id="t-mod">Richiesta a Termit</h3>
-      <fieldset class="tipi">
-        <legend>Che cosa vi serve</legend>
-        <div class="scelte">
-          <label><input type="radio" name="tipo" value="Ordine" checked><span>Ordine</span></label>
-          <label><input type="radio" name="tipo" value="Offerta o listino"><span>Offerta o listino</span></label>
-          <label><input type="radio" name="tipo" value="Pezzi su misura"><span>Pezzo su misura</span></label>
-          <label><input type="radio" name="tipo" value="Consiglio tecnico"><span>Consiglio tecnico</span></label>
-        </div>
-      </fieldset>
-      <div class="campi">
-        <div><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
-        <div><label for="f-az">Azienda</label><input id="f-az" name="azienda" autocomplete="organization" required></div>
-        <div><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" required></div>
-        <div><label for="f-em">Email <i>(facoltativa)</i></label><input id="f-em" name="email" type="email" autocomplete="email"></div>
-        <div class="tutta"><label for="f-mat" id="l-mat">Codici e quantità</label><input id="f-mat" name="materiale" placeholder="Es. PS680 sp. 40 mm, 20 m"></div>
-        <div class="tutta" id="r-cons"><label for="f-cons">Indirizzo di consegna</label><input id="f-cons" name="consegna" autocomplete="street-address"></div>
-        <div class="tutta"><label for="f-msg">Messaggio <i>(facoltativo)</i></label><textarea id="f-msg" name="messaggio"></textarea></div>
-      </div>
-      <p class="allegato" id="allegato" hidden>Il disegno allegatelo all'email che si apre.</p>
-      <div class="invia">
-        <button class="btn" type="submit">Prepara l'email</button>
-        <p class="nota">Si apre un'email a info@termit.biz con i vostri dati: la controllate e la inviate voi.</p>
-        <p class="avviso" id="avviso" role="alert"></p>
-      </div>
-    </form>
+    <dl class="strade">
+      <div><dt>Telefono, lunedì-venerdì <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></dt><dd><a class="grande" href="tel:+39049640060">049&nbsp;640060</a> <span class="js-stato-t2"></span></dd></div>
+      <div><dt>Ordini e listino, solo per scritto</dt><dd><a class="grande" href="mailto:info@termit.biz">info@termit.biz</a></dd></div>
+      <div><dt>Magazzino e uffici</dt><dd>Via Emilia Romagna 19, 35020 Saonara (PD).<br><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Termit%20srl%2C%20Via%20Emilia%20Romagna%2019%2C%2035020%20Saonara%20PD">Come arrivare</a></dd></div>
+    </dl>
   </div>
 </section>
 </main>
@@ -556,11 +506,6 @@ h3{font-size:22px;line-height:28px;font-weight:700}
         <li><a href="https://www.termit.biz/azienda-style-1/termit-srl">Chi siamo</a></li>
         <li><a href="https://www.termit.biz/eventi/condizioni-di-fornitura-5">Condizioni di fornitura</a></li>
         <li><a href="https://www.linkedin.com/company/termit-srl/">LinkedIn</a></li>
-      </ul>
-      <ul>
-        <li><a href="#prodotti">Catalogo e schede tecniche</a></li>
-        <li><a href="#su-misura">Pezzi su misura</a></li>
-        <li><a href="#settori">Industria, edilizia, navale</a></li>
       </ul>
     </div>
     <div class="legale">
@@ -710,7 +655,8 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   }
   function spegni(){ tag = null; chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); }); }
   q.addEventListener('input', function(){ aperto = false; if (tag) spegni(); mostra(); inVista(); });
-  q.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault(); });
+  // Invio: la ricerca è già fatta mentre si scrive; porta i risultati in vista e, sul telefono, chiude la tastiera
+  q.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); mostra(); portato = false; inVista(); if (matchMedia('(pointer:coarse)').matches) q.blur(); } });
   chips.forEach(function(c){
     c.addEventListener('click', function(){
       var g = c.getAttribute('data-g'), on = tag !== g;
@@ -728,9 +674,15 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   tutte.addEventListener('click', function(){ aperto = true; mostra(); var li = lista.querySelectorAll('li')[MAX]; if (li){ var a = li.querySelector('a'); if (a) a.focus(); } });
 
   /* ---------- campo: esempio corto sul telefono, cursore già nel campo sul computer ---------- */
-  var corto = matchMedia('(max-width:559px)');
-  function esempio(){ q.placeholder = corto.matches ? 'PS680, K-Flex' : 'PS680, K-Flex, coppella'; }
-  esempio(); if (corto.addEventListener) corto.addEventListener('change', esempio);
+  // l'esempio più lungo che entra nel campo, misurato sul carattere vero (nell'HTML c'è quello corto, per chi non ha JavaScript)
+  var ESEMPI = ['PS680, K-Flex, coppella', 'PS680, K-Flex', 'PS680'], tela = document.createElement('canvas').getContext('2d');
+  function esempio(){
+    var st = getComputedStyle(q), w = q.clientWidth - 4;
+    tela.font = st.fontSize + ' ' + st.fontFamily;
+    for (var i = 0; i < ESEMPI.length; i++) if (tela.measureText(ESEMPI[i]).width <= w || i === ESEMPI.length - 1){ q.placeholder = ESEMPI[i]; break; }
+  }
+  esempio(); addEventListener('resize', esempio);
+  if (document.fonts && document.fonts.load) document.fonts.load('40px "Atkinson Mono"', 'PS680').then(esempio, function(){});
   if (matchMedia('(pointer:fine) and (min-width:1024px)').matches && !location.hash) q.focus({preventScroll:true});
 
   /* ---------- testata a 1280 e oltre: "Scrivi un ordine" compare quando l'apertura esce dallo schermo ---------- */
@@ -741,34 +693,6 @@ h3{font-size:22px;line-height:28px;font-weight:700}
   b.addEventListener('click', function(){ var o = h.classList.toggle('aperta'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Chiudi' : 'Menu'; });
   h.querySelectorAll('.menu a').forEach(function(a){ a.addEventListener('click', function(){ h.classList.remove('aperta'); b.setAttribute('aria-expanded','false'); b.textContent = 'Menu'; }); });
 
-  /* ---------- modulo: compone un'email (mailto) finché non è collegato a un servizio ---------- */
-  var f = document.getElementById('modulo'), av = document.getElementById('avviso');
-  var lMat = document.getElementById('l-mat'), rCons = document.getElementById('r-cons'), all = document.getElementById('allegato'), mat = document.getElementById('f-mat');
-  var ETIMAT = {'Ordine':['Codici e quantità','Es. PS680 sp. 40 mm, 20 m'], 'Offerta o listino':['Prodotti o famiglie','Es. coppelle in lana di roccia, K-Flex ST'], 'Pezzi su misura':['Materiale, spessore e quantità','Es. lana di roccia sp. 50 mm, 200 pezzi'], 'Consiglio tecnico':["Applicazione ed esigenza",'Es. tubazione a 400 °C, REI 120']};
-  function aggiorna(){
-    var t = f.tipo.value;
-    lMat.textContent = ETIMAT[t][0]; mat.placeholder = ETIMAT[t][1];
-    rCons.hidden = t !== 'Ordine';
-    all.hidden = t !== 'Pezzi su misura';
-  }
-  f.querySelectorAll('input[name=tipo]').forEach(function(r){ r.addEventListener('change', aggiorna); });
-  aggiorna();
-  f.addEventListener('submit', function(e){
-    e.preventDefault();
-    var manca = ['nome','azienda','telefono'].filter(function(n){ return !f[n].value.trim(); });
-    if (manca.length){ av.textContent = 'Scrivete nome, azienda e telefono: servono per richiamarvi.'; f[manca[0]].focus(); return; }
-    av.textContent = '';
-    var t = f.tipo.value, righe = [
-      'Richiesta: ' + t, 'Nome: ' + f.nome.value.trim(), 'Azienda: ' + f.azienda.value.trim(), 'Telefono: ' + f.telefono.value.trim()];
-    if (f.email.value.trim()) righe.push('Email: ' + f.email.value.trim());
-    righe.push(lMat.textContent + ': ' + f.materiale.value.trim());
-    if (t === 'Ordine') righe.push('Indirizzo di consegna: ' + f.consegna.value.trim());
-    if (f.messaggio.value.trim()) righe.push('', f.messaggio.value.trim());
-    if (t === 'Pezzi su misura') righe.push('', '(Allego il disegno.)');
-    var ogg = t + ' - ' + f.azienda.value.trim();
-    var m = 'mailto:info@termit.biz?subject=' + encodeURIComponent(ogg) + '&body=' + encodeURIComponent(righe.join('\r\n'));
-    if (window.__provaMail) window.__provaMail(m); else location.href = m; // __provaMail: solo per i controlli automatici
-  });
 })();
 </script>
 </body>

@@ -17,31 +17,49 @@ Rifare: immagini `python3 -I _prova/alto/script/immagini.py`; screenshot `node _
 - **Tolti**: le tre schede "I nostri servizi" (ingresso doppio con il menu), la fascia delle cifre e il 1955 a 240 px, il secondo blocco verde, sette link `tel:` su nove, i doppi di Indicazioni e WhatsApp, le righe di istruzione in vista (l'esito del modulo compare solo dopo l'invio, a 14 px), "di primissima qualità" (lista nera).
 - **Aggiunto dal sito di oggi**: i link veri all'informativa privacy e cookie di iubenda (`iubenda.com/privacy-policy/91792155` e `/cookie-policy`), che il sito di oggi ha nel piede.
 
-### Misure (`_prova/alto/misura-d.mjs`, martedì 3 novembre 2026 alle 10): 53 su 53 passano
+### Alto livello: ritocco dopo il giudizio da agenzia (3 novembre 2026, sera)
+
+Il giudice da agenzia ha dato 7 (prima 6) e ha chiesto otto correzioni (`_prova/alto/giudice/`). La pagina di prima del ritocco è in `_prova/alto/ritocco/index-prima.html`; le modifiche sono in `_prova/alto/ritocco/applica*.py`, le posizioni si rimisurano con `node _prova/alto/ritocco/pos.mjs`. La sezione D non torna indietro: un bottone, 5 cliccabili a 1440 e 4 a 390, la foto sopra il 60%.
+
+Applicate:
+1. **Fascia sotto la foto**: `--fascia` da 150 a 184 px, `padding` 36 sopra e 32 sotto, titolo e frase-firma da 64 a 72 px (72/76; a 1100 resta 56, a 390 resta 38). A 1440x900 la foto finisce a y 717, l'`h1` parte a y 753 (36 px) e la riga del mestiere finisce a y 865 (35 px dalla piega). La foto scende dal 75 al 72% della schermata.
+2. **Le due sedi**: la fascia è `align-items:stretch` e le sedi sono colonne flex col testo in basso, così il filetto sta a y 753, alla stessa altezza della parte alta dell'`h1` (0 px di scarto), e il testo delle sedi chiude sulla riga del mestiere.
+3. **Il culmine apre con il lavoro**: dopo i 256 px di pausa il primo elemento è la foto della Villa Palladiana (1312x875). Sotto, l'`h2` "Giardini e parchi chiavi in mano" (dalla loro storia: "progettazione e fornitura chiavi in mano di importanti Parchi e Giardini") e a destra il paragrafo dei servizi. Lo slogan "Affidatevi alla nostra esperienza" è tolto.
+4. **Due assi soli**: tutte le colonne di destra partono da x 732 (colonna 7): sedi, orari del Garden, servizi dei Giardini, coppia prima e dopo, modulo, testo e orari dei Vivai, "Per i professionisti", frase del piede. Le colonne a terzi restano solo nel piede.
+5. **Niente buchi**: nel Garden il WhatsApp ("Chiedete se c'è la pianta o il vaso che cercate") passa sotto il testo dell'assortimento, Indicazioni ed email restano con gli orari: le due colonne finiscono a 1355 e 1362 (7 px). Nei Vivai gli orari e "Indicazioni per il vivaio" passano sotto i tre fatti, accanto alla foto delle zolle (fondi a 5366 e 5414); sotto, l'olivo con la gru a sinistra e "Per i professionisti" sull'asse di destra (5864 e 5800). Il link ai 33 album sta sotto il prima e dopo (fondi a 3611 e 3531). A 390 l'ordine dei Vivai è testo, orari, contatti, foto della gru, così gli orari stanno accanto al numero. Nel sopralluogo i 4 passi sono `position:sticky` (da 1101 px in su): mentre si scorre il modulo restano accanto, e in fondo i due blocchi chiudono insieme. Da fermi lo scarto è di 154 px (prima 430).
+6. **Dati da confermare**: la garanzia è ora una citazione della fonte, senza impegno: "Nel book «I nostri giardini» si legge che le piante utilizzate «hanno una garanzia d'attecchimento di un anno»." (la frase intera ha "qualità", parola della lista nera, e resta fuori). Il sabato del vivaio dice "chiamate prima di passare" al posto di "mattina, su appuntamento" (LEGGIMI, punto 5).
+7. **Didascalia d'apertura a due voci**: "Piramide di vetro" e, in grigio chiaro, "1996". Il luogo resta nella riga del Garden subito sotto ("Garden, via dei Vivai 6"): con "Saonara" la prima schermata passerebbe i 160 caratteri di D3 (oggi 156, 160 nel caso peggiore "Chiude tra 15 min, alle 19:00").
+
+Respinte o rimandate:
+- **Nomi, luoghi e anni dei lavori, persone, recensioni** (difetto 8, D9): non ci sono nelle fonti e non si inventano. Vanno chiesti al cliente (LEGGIMI 1, 2 e 12); le didascalie sono pronte per diventare "Villa Palladiana, [comune] / [anno], progetto e impianto".
+- **Foto** (luce mista nei reparti, Villa Palladiana di 1395 px morbida sui retina e con l'arco sul bordo alto): serve il servizio fotografico del LEGGIMI. Il formato 3:2 della Villa è già il file intero, non si può abbassare il taglio senza togliere l'arco.
+- **Manifesto più grande**: resta a 34 px, il massimo che D5 dà al manifesto come punto di scala; il picco della pagina è ora la frase-firma a 72 px.
+
+### Misure dopo il ritocco (`_prova/alto/misura-d.mjs`, martedì 3 novembre 2026 alle 10): 53 su 53 passano
 
 | Misura | 1440x900 | 390x844 | Soglia |
 |---|---|---|---|
-| Foto nella prima schermata | 75% | 59% | 60% o più / 50% o più |
+| Foto nella prima schermata | 72% | 59% | 60% o più / 50% o più |
 | Cliccabili nella prima schermata | 5 | 4 | 6 / 4 |
 | Bottoni nella prima schermata | 1 | 1 | 1 |
-| Caratteri fuori dalla testata | 155 (159 nel caso peggiore, "Chiude tra 15 min, alle 19:00") | | 160 |
+| Caratteri fuori dalla testata | 156 (160 nel caso peggiore, "Chiude tra 15 min, alle 19:00") | | 160 |
 | Fila di ingressi, cifre di 30 px o più, occhielli | 0, 0, 0 | | 0, 0, al massimo 1 |
 | `h1` | 3 parole, nessuna virgola | | 9, una |
-| Parole, sezioni | 722, 6 | | 900, 7 |
-| Altezza | 6.942 px | 8.315 px | 7.500 a 1440 |
-| Culmine | 2.007 px, Villa Palladiana a 1312x875 | | 900 |
+| Parole, sezioni | 726, 6 | | 900, 7 |
+| Altezza | 6.723 px | 8.339 px | 7.500 a 1440 |
+| Culmine | 1.882 px, apre con la Villa Palladiana a 1312x875 | | 900 |
 | Peso | 1,2 MB (2,2 MB a 2x, 2,0 MB a 390 a 3x) | 0,8 MB | 3 MB |
 | Foto, formati, ingrandite | 11, 3, 0 | | 12, 3, 0 |
 | Fondi | bianco, carta #F2F1EA, bosco #17432A (solo i Vivai) | | 3, un blocco di colore |
 | Spazi tra le sezioni | 96 e 192 px, 256 prima del culmine | | due valori, 1,5 volte |
 | Link `tel:`, bottoni in pagina | 2, 3 | 2, 3 | 3, 5 |
 | Stesso numero in vista | ogni telefono, WhatsApp ed email al massimo 2 volte | | 2 |
-| Frase-firma | "Venite a visitarci." in `h1` e in testa al piede, 64/68 (38/40 a 390) | | 2-3 volte, stesso trattamento |
+| Frase-firma | "Venite a visitarci." in `h1` e in testa al piede, 72/76 (38/40 a 390) | | 2-3 volte, stesso trattamento |
 | Famiglie, testo corrente | 2, 18 px | 17 px | 2, 17 |
 
 Controlli a 320, 390, 768, 1024, 1440 e 1920 (`controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione di testo, nessun errore di script, i tre caratteri caricati da file://; `tel:` solo +390498791098 e +39049640156, `mailto:` solo info@bordingarden.it e info@bordinvivai.it. Lo stato è giusto a 9 orari provati (lunedì mattina chiuso, pausa di mezzogiorno, ultimi 30 minuti, sabato sera "riapre lunedì 15:00", domenica, 8 dicembre e Pasquetta "Oggi è festa: chiamate prima"). Senza JavaScript la riga dice "Lun-sab, domenica chiuso" e la tabella degli orari è sotto. Il contrasto della didascalia bianca sulla foto è misurato sui pixel della schermata: 8 a 1 sul fondo mediano.
 
-Screenshot rifatti con gli stessi nomi: `home-1440.jpg` (6.942 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8.315 px), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (dai Vivai al piede). Guardati a pezzi accanto alla versione professionale e ai due concorrenti.
+Screenshot rifatti con gli stessi nomi: `home-1440.jpg` (6.723 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8.339 px), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (dai Vivai al piede). Guardati a pezzi accanto alla versione professionale e ai due concorrenti.
 
 ### I compiti della scheda e dove stanno ora
 
@@ -52,7 +70,7 @@ Screenshot rifatti con gli stessi nomi: `home-1440.jpg` (6.942 px), `home-1440-p
 | V1.3 Indicazioni per via dei Vivai 6 | 390: barra fissa in basso, nella prima schermata; 1440: sezione Garden, seconda schermata |
 | V1.4 WhatsApp con il testo e i reparti | 390: barra fissa; 1440: sezione Garden; reparti a y 1.964 a 390 (entro 3 schermate) e "Garden e orari" prima voce del menu |
 | V2.1 "Giardini" e la porta | riga del mestiere nella prima schermata e voce "Giardini" del menu (la porta "Volete un giardino?" è tolta: era un ingresso doppio) |
-| V2.2 lavori veri | culmine a y 2.202 a 1440: Villa Palladiana a 1312 px, Venezia a 644, il prima e dopo affiancati; link ai 33 album |
+| V2.2 lavori veri | culmine a y 1.985 a 1440 (prima cosa della sezione): Villa Palladiana a 1312 px, Venezia a 644, il prima e dopo affiancati; link ai 33 album |
 | V2.3 i 4 passi | accanto al modulo, alla stessa altezza |
 | V2.4 sopralluogo | modulo di 4 campi corti, 4 caselle e le due righe; WhatsApp per la foto |
 | V3.1 Vivai con il numero e via dei Vivai 14 | prima schermata, riga del Vivai (il numero è scritto, non è un link: il tetto di D3 è pieno) |

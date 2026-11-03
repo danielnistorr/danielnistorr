@@ -30,11 +30,11 @@
   --chiaro:rgba(255,255,255,.86);
   --serif:"Fraunces",Georgia,serif;
   --sans:"Figtree",system-ui,sans-serif;
-  /* registro: 64 (titolo e frase-firma), 40, 34 (manifesto), 24, 18, 15, 14 */
-  --f1:64px; --f2:40px; --fm:34px; --f3:24px; --f4:18px; --f5:15px; --f6:14px;
+  /* registro: 72 (titolo e frase-firma), 40, 34 (manifesto), 24, 18, 15, 14 */
+  --f1:72px; --f2:40px; --fm:34px; --f3:24px; --f4:18px; --f5:15px; --f6:14px;
   /* una griglia sola: 12 colonne, 1312 px, margini 64 */
   --m:64px; --gap:24px; --max:1312px;
-  --testata:76px; --fascia:150px;
+  --testata:76px; --fascia:184px;
   /* due spazi tra le sezioni: 96 e 160 (il culmine) */
   --sez:96px; --sez-l:160px;
 }
@@ -93,11 +93,12 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 /* ---------- apertura: la piramide a tutta larghezza, le due sedi sul bordo basso ---------- */
 .ap-foto{position:relative;max-width:1920px;margin:0 auto}
 .ap-foto img{width:100%;height:min(calc(100svh - var(--testata) - var(--fascia)),56.25vw,1080px);min-height:360px;object-fit:cover;object-position:50% 30%;background:var(--carta)}
-.ap-dida{position:absolute;right:0;bottom:0;padding:56px max(var(--m),calc((100% - var(--max))/2)) 16px 120px;font-size:var(--f5);line-height:1.3;color:var(--bianco);background:radial-gradient(ellipse at 100% 100%,rgba(10,24,16,.62),rgba(10,24,16,.3) 45%,rgba(10,24,16,0) 72%);text-shadow:0 1px 2px rgba(0,0,0,.45)}
-.ap-fascia{align-items:end;padding-top:20px;padding-bottom:22px}
+.ap-dida .dida-2{color:rgba(255,255,255,.8)}
+.ap-dida{position:absolute;right:0;bottom:0;padding:56px max(var(--m),calc((100% - var(--max))/2)) 16px 120px;font-size:var(--f5);line-height:1.35;text-align:right;color:var(--bianco);background:radial-gradient(ellipse at 100% 100%,rgba(10,24,16,.62),rgba(10,24,16,.3) 45%,rgba(10,24,16,0) 72%);text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.ap-fascia{align-items:stretch;padding-top:36px;padding-bottom:32px}
 .ap-tit{grid-column:1 / span 6}
 .ap-riga{margin-top:8px;font-size:var(--f4);color:var(--grigio)}
-.sede-r{grid-column:span 3;padding-top:12px;border-top:1px solid var(--filo);font-size:var(--f5);line-height:1.45}
+.sede-r{grid-column:span 3;display:flex;flex-direction:column;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--filo);font-size:var(--f5);line-height:1.45}
 .sede-r b{display:block;font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.3}
 .sede-r.g{grid-column:7 / span 3}
 .sede-r.v{grid-column:10 / span 3}
@@ -108,7 +109,8 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 .g-capo{grid-column:1 / span 6}
 .g-capo .testo{margin-top:24px}
 .g-capo .piccolo{margin-top:16px}
-.g-orari{grid-column:8 / span 5}
+.g-capo .righe{margin-top:24px}
+.g-orari{grid-column:7 / span 6}
 .orari{margin-top:14px;display:grid;grid-template-columns:auto 1fr;column-gap:24px;font-size:16px;line-height:1.4}
 .orari dt,.orari dd{padding:10px 0;border-top:1px solid var(--filo)}
 .orari dt{font-weight:600}
@@ -124,11 +126,11 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 
 /* ---------- Giardini: il culmine ---------- */
 .culmine{padding-top:var(--sez-l)}
-.gi-capo{grid-column:1 / span 6}
-.gi-servizi{grid-column:8 / span 5;align-self:end}
+.gi-capo{grid-column:1 / span 6;margin-top:56px}
+.gi-servizi{grid-column:7 / span 6;margin-top:56px}
 .dida{margin-top:12px;font-size:var(--f5);line-height:1.45;color:var(--grigio)}
 .dida b{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--inchiostro)}
-.culmine .grande{grid-column:1 / -1;margin-top:56px}
+.culmine .grande{grid-column:1 / -1}
 .culmine .grande img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--carta)}
 .lavoro{margin-top:56px}
 .lavoro.l1{grid-column:1 / span 6}
@@ -136,12 +138,12 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 .lavoro img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--carta)}
 .coppia{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .coppia span{display:block;margin-top:6px;font-size:var(--f5);font-weight:600}
-.album{grid-column:1 / -1;margin-top:48px}
+.album{margin-top:32px}
 
 /* ---------- sopralluogo ---------- */
-.s-capo{grid-column:1 / span 5}
+.s-capo{grid-column:1 / span 5;align-self:start;position:sticky;top:calc(var(--testata) + 32px)}
 .passi{margin-top:32px;border-top:1px solid var(--inchiostro)}
-.passi li{display:grid;grid-template-columns:40px 1fr;column-gap:8px;padding:16px 0;border-bottom:1px solid var(--filo)}
+.passi li{display:grid;grid-template-columns:40px 1fr;column-gap:8px;padding:20px 0;border-bottom:1px solid var(--filo)}
 .passi .n{font-family:var(--serif);font-size:var(--f3);line-height:1.25;color:var(--bosco)}
 .passi .d{grid-column:2;margin-top:2px;font-size:16px;color:var(--grigio)}
 .s-capo .piccolo{margin-top:20px}
@@ -167,11 +169,11 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 .esito:empty{display:none}
 
 /* ---------- Vivai: l'unico blocco verde ---------- */
-.v-foto{grid-column:1 / span 7}
+.v-foto{grid-column:1 / span 6}
 .v-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .v-foto .dida,.v-gru .dida{color:var(--chiaro)}
 .v-foto .dida b,.v-gru .dida b{color:var(--bianco)}
-.v-capo{grid-column:9 / span 4}
+.v-capo{grid-column:7 / span 6}
 .v-capo .testo{margin-top:20px;color:var(--chiaro)}
 .fatti{margin-top:24px}
 .fatti li{padding:12px 0;border-top:1px solid var(--filo-chiaro);font-size:16px;line-height:1.45;color:var(--chiaro)}
@@ -179,8 +181,8 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 .fatti b{font-weight:600;color:var(--bianco)}
 .v-gru{grid-column:1 / span 4;margin-top:72px}
 .v-gru img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.v-contatti{grid-column:5 / span 4;margin-top:72px}
-.v-orari{grid-column:9 / span 4;margin-top:72px}
+.v-contatti{grid-column:7 / span 6;margin-top:72px;max-width:532px}
+.v-orari{margin-top:40px}
 .v-contatti .btn{width:100%;margin-top:18px}
 .mail-l{margin-top:14px;font-size:16px;color:var(--chiaro)}
 
@@ -190,8 +192,8 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 
 /* ---------- piede: biglietto da visita ---------- */
 .piede{padding-top:var(--sez);padding-bottom:40px;border-top:1px solid var(--filo)}
-.piede .firma{grid-column:1 / span 7}
-.piede .arrivo{grid-column:8 / span 5;align-self:end}
+.piede .firma{grid-column:1 / span 6}
+.piede .arrivo{grid-column:7 / span 6;align-self:end}
 .piede .col{grid-column:span 4;margin-top:56px;font-size:16px;line-height:1.55}
 .piede .col h3{margin-bottom:8px}
 .piede .col li{padding:2px 0}
@@ -220,14 +222,16 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .g-orari{margin-top:40px;max-width:640px}
   .reparti{margin-top:48px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .gi-capo,.gi-servizi{grid-column:1 / -1}
+  .gi-capo{margin-top:40px}
   .gi-servizi{margin-top:16px}
   .s-capo,.richiesta{grid-column:1 / -1}
+  .s-capo{position:static}
   .richiesta{margin-top:48px}
   .v-foto,.v-capo{grid-column:1 / -1}
   .v-capo{margin-top:40px}
   .v-gru{grid-column:1 / span 6;margin-top:56px}
   .v-contatti{grid-column:7 / span 6;margin-top:56px}
-  .v-orari{grid-column:1 / -1;margin-top:40px;max-width:640px}
+  .v-orari{max-width:640px}
   .manifesto{grid-column:1 / -1}
   .st-testo{grid-column:1 / span 9}
   .piede .firma,.piede .arrivo{grid-column:1 / -1}
@@ -266,7 +270,8 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .reparti{margin-top:40px;gap:24px 12px}
   .reparti h3{margin-top:10px}
   .reparti p{display:none}
-  .culmine .grande{margin:32px calc(-1 * var(--m)) 0}
+  .culmine .grande{margin:0 calc(-1 * var(--m))}
+  .gi-capo{margin-top:32px}
   .culmine .grande .dida{padding:0 var(--m)}
   .lavoro{margin-top:40px}
   .coppia{gap:8px}
@@ -281,7 +286,8 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .v-foto .dida{padding:0 var(--m)}
   .v-capo{margin-top:32px}
   .v-gru,.v-contatti{grid-column:1 / -1;margin-top:40px}
-  .v-orari{margin-top:32px}
+  .v-contatti{order:1}
+  .v-gru{order:2}
   .st-testo{margin-top:24px}
   .piede{padding-top:64px}
   .piede .col{grid-column:1 / -1;margin-top:36px}
@@ -335,7 +341,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       <source type="image/webp" srcset="img/apertura-piramide-1080.webp 1080w, img/apertura-piramide-1440.webp 1440w, img/apertura-piramide-1920.webp 1920w" sizes="(min-width:1920px) 1920px, 100vw">
       <img src="img/apertura-piramide-1440.jpg" width="1440" height="810" alt="La piramide di vetro del Garden Bordin con l'olivo potato a nuvole, gli agrumi in vaso e le aiuole di aromatiche davanti" fetchpriority="high">
     </picture>
-    <figcaption class="ap-dida">La piramide del 1996</figcaption>
+    <figcaption class="ap-dida">Piramide di vetro<br><span class="dida-2">1996</span></figcaption>
   </figure>
   <div class="ap-fascia wrap griglia">
     <div class="ap-tit">
@@ -353,6 +359,9 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       <h2 class="t" id="t-garden">Un luogo immerso nel verde, a due passi da Padova</h2>
       <p class="testo">Il Garden è uno dei primi garden center di Padova, a forma di piramide. Sono migliaia le proposte da scoprire: piante da interno e da esterno, piante grasse dalle più piccole alle più grandi, anche di rare varietà.</p>
       <p class="piccolo grigio">Trovate anche bonsai e accessori, vasi in terracotta, arredo per il giardino, profumi, detergenti bio e idee regalo.</p>
+      <div class="righe solo-grande">
+        <a class="riga-l" href="https://wa.me/393501376907?text=Buongiorno%2C%20vorrei%20sapere%20se%20avete%20" target="_blank" rel="noopener"><span>WhatsApp <span class="num nobr">350&nbsp;1376907</span><small>Chiedete se c'è la pianta o il vaso che cercate</small></span></a>
+      </div>
     </div>
     <div class="g-orari" id="orari-garden">
       <h3 class="nome">Orari del Garden</h3>
@@ -364,7 +373,6 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       </dl>
       <div class="righe">
         <a class="riga-l solo-grande" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.38608,11.961015" target="_blank" rel="noopener"><span>Indicazioni<small>Via dei Vivai 6, Saonara (PD)</small></span></a>
-        <a class="riga-l solo-grande" href="https://wa.me/393501376907?text=Buongiorno%2C%20vorrei%20sapere%20se%20avete%20" target="_blank" rel="noopener"><span>WhatsApp <span class="num nobr">350&nbsp;1376907</span><small>Chiedete se c'è la pianta o il vaso che cercate</small></span></a>
         <a class="riga-l" href="mailto:info@bordingarden.it"><span>info@bordingarden.it</span></a>
       </div>
     </div>
@@ -407,10 +415,6 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 
 <section class="sez culmine" id="giardini" aria-labelledby="t-giardini">
   <div class="wrap griglia">
-    <div class="gi-capo">
-      <h2 class="t" id="t-giardini">Affidatevi alla nostra esperienza</h2>
-    </div>
-    <p class="gi-servizi testo">Progettazione e realizzazione chiavi in mano di giardini, parchi, terrazze e verde pensile. Restauro di giardini storici, trapianti di piante esemplari, piante da interno per gli uffici.</p>
     <figure class="grande" data-esce>
       <picture>
         <source type="image/webp" srcset="img/lavoro-villa-720.webp 720w, img/lavoro-villa-1100.webp 1100w, img/lavoro-villa-1395.webp 1395w" sizes="(min-width:1440px) 1312px, 100vw">
@@ -418,6 +422,10 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       </picture>
       <figcaption class="dida"><b>Villa Palladiana</b>, il parco di una villa veneta<br>Prato, siepi di bosso e rose intorno all'arco in pietra</figcaption>
     </figure>
+    <div class="gi-capo">
+      <h2 class="t" id="t-giardini">Giardini e parchi chiavi in mano</h2>
+    </div>
+    <p class="gi-servizi testo">Progettazione e realizzazione chiavi in mano di giardini, parchi, terrazze e verde pensile. Restauro di giardini storici, trapianti di piante esemplari, piante da interno per gli uffici.</p>
     <figure class="lavoro l1">
       <picture>
         <source type="image/webp" srcset="img/lavoro-venezia-480.webp 480w, img/lavoro-venezia-720.webp 720w, img/lavoro-venezia-1080.webp 1080w" sizes="(max-width:900px) 100vw, 644px">
@@ -425,27 +433,29 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       </picture>
       <figcaption class="dida"><b>Giardino a Venezia</b>, una corte tra le case<br>Prato, camminamento in pietra e pergola in legno</figcaption>
     </figure>
-    <figure class="lavoro l2">
-      <div class="coppia">
-        <div>
-          <picture>
-            <source type="image/webp" srcset="img/aiuola-prima-480.webp 480w, img/aiuola-prima-720.webp 720w, img/aiuola-prima-945.webp 945w" sizes="(max-width:900px) 50vw, 316px">
-            <img src="img/aiuola-prima-720.jpg" width="720" height="480" alt="Prima: l'aiuola sotto l'albero, con la terra scoperta e il bordo di sassi" loading="lazy">
-          </picture>
-          <span>Prima</span>
+    <div class="lavoro l2">
+      <figure>
+        <div class="coppia">
+          <div>
+            <picture>
+              <source type="image/webp" srcset="img/aiuola-prima-480.webp 480w, img/aiuola-prima-720.webp 720w, img/aiuola-prima-945.webp 945w" sizes="(max-width:900px) 50vw, 316px">
+              <img src="img/aiuola-prima-720.jpg" width="720" height="480" alt="Prima: l'aiuola sotto l'albero, con la terra scoperta e il bordo di sassi" loading="lazy">
+            </picture>
+            <span>Prima</span>
+          </div>
+          <div>
+            <picture>
+              <source type="image/webp" srcset="img/aiuola-dopo-480.webp 480w, img/aiuola-dopo-720.webp 720w, img/aiuola-dopo-945.webp 945w" sizes="(max-width:900px) 50vw, 316px">
+              <img src="img/aiuola-dopo-720.jpg" width="720" height="480" alt="Dopo: la stessa aiuola piena di fiori gialli e bianchi, con il bosso potato a palla" loading="lazy">
+            </picture>
+            <span>Dopo</span>
+          </div>
         </div>
-        <div>
-          <picture>
-            <source type="image/webp" srcset="img/aiuola-dopo-480.webp 480w, img/aiuola-dopo-720.webp 720w, img/aiuola-dopo-945.webp 945w" sizes="(max-width:900px) 50vw, 316px">
-            <img src="img/aiuola-dopo-720.jpg" width="720" height="480" alt="Dopo: la stessa aiuola piena di fiori gialli e bianchi, con il bosso potato a palla" loading="lazy">
-          </picture>
-          <span>Dopo</span>
-        </div>
+        <figcaption class="dida"><b>Un'aiuola, prima e dopo</b><br>Dal nostro book &laquo;I nostri giardini&raquo;</figcaption>
+      </figure>
+      <div class="album righe">
+        <a class="riga-l" href="https://www.bordingarden.it/giardini/album-realizzazioni/" target="_blank" rel="noopener"><span>Tutti i 33 album, con il prima, il durante e il dopo<small>Sul sito di oggi, in una nuova scheda</small></span></a>
       </div>
-      <figcaption class="dida"><b>Un'aiuola, prima e dopo</b><br>Dal nostro book &laquo;I nostri giardini&raquo;</figcaption>
-    </figure>
-    <div class="album righe">
-      <a class="riga-l" href="https://www.bordingarden.it/giardini/album-realizzazioni/" target="_blank" rel="noopener"><span>Tutti i 33 album, con il prima, il durante e il dopo<small>Sul sito di oggi, in una nuova scheda</small></span></a>
     </div>
   </div>
 </section>
@@ -460,7 +470,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
         <li><span class="n num">3</span><span class="nome">Tempi</span><span class="d">Accettato il preventivo, fissiamo insieme le tempistiche.</span></li>
         <li><span class="n num">4</span><span class="nome">Manutenzione</span><span class="d">Interventi straordinari per seguire la crescita corretta del giardino.</span></li>
       </ol>
-      <p class="piccolo grigio">Il nostro book &laquo;I nostri giardini&raquo; dà un anno di garanzia d'attecchimento sulle piante dei nostri giardini.</p>
+      <p class="piccolo grigio">Nel book &laquo;I nostri giardini&raquo; si legge che le piante utilizzate &laquo;hanno una garanzia d'attecchimento di un anno&raquo;.</p>
     </div>
     <div class="richiesta" id="richiesta" data-esce>
       <h3 class="nome">Chiedete un sopralluogo</h3>
@@ -497,7 +507,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   <div class="wrap griglia">
     <figure class="v-foto" data-esce>
       <picture>
-        <source type="image/webp" srcset="img/vivai-zolle-760.webp 760w, img/vivai-zolle-1140.webp 1140w, img/vivai-zolle-1520.webp 1520w" sizes="(max-width:1100px) 100vw, 755px">
+        <source type="image/webp" srcset="img/vivai-zolle-760.webp 760w, img/vivai-zolle-1140.webp 1140w, img/vivai-zolle-1520.webp 1520w" sizes="(max-width:1100px) 100vw, 644px">
         <img src="img/vivai-zolle-1140.jpg" width="1140" height="761" alt="Esemplari appena zollati, con la zolla avvolta nella rete, in fila sul prato dei Vivai Bordin" loading="lazy">
       </picture>
       <figcaption class="dida"><b>Esemplari in zolla</b>, Vivai Bordin, via dei Vivai 14<br>Pronti per essere spediti in tutta Italia</figcaption>
@@ -510,6 +520,16 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
         <li><b>Spedizione</b>: pensiamo noi alla logistica, anche dei grandi esemplari.</li>
         <li><b>Messa a dimora</b> di piante esemplari, in qualsiasi parte d'Italia.</li>
       </ul>
+      <div class="v-orari">
+        <h3 class="nome">Orari del vivaio</h3>
+        <dl class="orari num" data-sede="vivai">
+          <dt data-g="1 2 3 4 5">Lun-ven</dt><dd data-g="1 2 3 4 5">8:00-12:00 e 14:00-18:00</dd>
+          <dt data-g="6">Sabato</dt><dd data-g="6">chiamate prima di passare</dd>
+        </dl>
+        <div class="righe">
+          <a class="riga-l" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.3857,11.9625" target="_blank" rel="noopener"><span>Indicazioni per il vivaio<small>Via dei Vivai 14, Saonara (PD)</small></span></a>
+        </div>
+      </div>
     </div>
     <figure class="v-gru">
       <picture>
@@ -525,16 +545,6 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       <div class="righe">
         <a class="riga-l" href="mailto:info@bordinvivai.it?subject=Lista%20piante%20per%20il%20vivaio&amp;body=Buongiorno%2C%20vi%20mando%20la%20lista%20delle%20piante%20(o%20il%20disegno)%20in%20allegato.%0A%0ANome%3A%0AAzienda%3A%0ATelefono%3A%0ACantiere%20(comune)%3A%0A"><span>Mandate la lista delle piante<small>info@bordinvivai.it</small></span></a>
         <a class="riga-l" href="https://wa.me/393505859658" target="_blank" rel="noopener"><span>WhatsApp del vivaio <span class="num nobr">350&nbsp;5859658</span></span></a>
-      </div>
-    </div>
-    <div class="v-orari">
-      <h3 class="nome">Orari del vivaio</h3>
-      <dl class="orari num" data-sede="vivai">
-        <dt data-g="1 2 3 4 5">Lun-ven</dt><dd data-g="1 2 3 4 5">8:00-12:00 e 14:00-18:00</dd>
-        <dt data-g="6">Sabato</dt><dd data-g="6">mattina, su appuntamento</dd>
-      </dl>
-      <div class="righe">
-        <a class="riga-l" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.3857,11.9625" target="_blank" rel="noopener"><span>Indicazioni per il vivaio<small>Via dei Vivai 14, Saonara (PD)</small></span></a>
       </div>
     </div>
   </div>

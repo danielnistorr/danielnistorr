@@ -2,6 +2,48 @@
 
 Screenshot di oggi (home ibrida): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede). Si rifanno con `node _prova/alto/finali.mjs`.
 
+## Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
+
+Il giudice da agenzia aveva dato 6,5 alla home ibrida (5,5 la versione di prima), con tre regole non passate: D8 (culmine basso), D10 (foto) e D12 (Indicazioni due volte, contatto non diviso). Questo giro corregge la pagina sotto la prima schermata e le finiture. La sezione D della prima schermata non torna indietro: stesso campo arancione, stesso sottopiede, stesso `h1`, stessi 6 cliccabili a 1440 e 4 a 390. Il testo dei giudizi dei due clienti tipo non è arrivato intero in questo giro: ho rifatto le loro prove (`node _prova/alto/uso.mjs`) e tutte passano. L'unico compito che cambia strada è "Indicazioni" sul telefono, che ora richiede un tocco in più (vedi sotto).
+
+### Applicati
+
+- **Culmine (D8).** La foto sta sulle colonne 1-8 alla sua misura vera, 807 px (prima era a 733), e il testo sulle colonne 9-12. Il titolo è uno solo: l'`h2` a 40 px "Garbato in modo progressivo, per evitare le grinze." (frase loro da `pressatura.html`, "ogni sottopiede è garbato in modo progressivo, in modo da evitare la formazione di grinze", accorciata senza aggiungere niente). "Dal 1970, a conduzione familiare." scende a riga da 19 px, e sotto c'è il loro testo. Il manifesto da 32 px non c'è più, quindi i due titoli non si fanno concorrenza. La sezione è alta 905 px a 1440 (soglia 900).
+- **Spazi (D11).** Restano due valori: `--sezione` 96 px per sottopiedi, lavorazioni (dopo il filetto), richiesta, dove e piede, e `--pausa` 160 px solo sopra e sotto il culmine. Le lavorazioni non hanno più il padding in basso, quindi tra la riga delle macchine e la foto del culmine restano 160 px (prima erano 256). Il 64 e l'80 sono tolti.
+- **Foto del reparto 04, Supervisione.** Lo script toglie le bande nere del fotogramma (`senza_bande` in `_prova/alto/script/immagini.py`). Il nuovo file è `r4-controllo-705.webp` (705 x 470), con le misure 600 e 400. Nessun listello nero, né a 1440 né a 390.
+- **Sottopiede d'apertura.** Maschera di contrasto leggera (raggio 0,6 px, 60%) solo su `apertura-sp7-227.webp`, salvato senza perdita per non aggiungere aloni. Il file resta a 227 x 151 alla misura vera e non c'è nessuna scalatura CSS. La soluzione vera resta la foto da fare (LEGGIMI, Foto da fare, punto 1).
+- **Contatto per bisogno (D12).** "Dove siamo" ha l'indirizzo, l'unico bottone "Indicazioni" e tre strade, ognuna col suo recapito: **Campionature** (il link alla richiesta e info@tollin.it), **Ritiri e consegne** (+39 049 640620, "Chiamate prima di passare.", "Con il nostro furgone: una consegna puntuale in tempi rapidi."), **Fax** (049 644643, in testo). Nessuna persona, nessun orario e nessun uso del fax inventati: "Ordini via fax", proposto dal giudice, non c'è, perché non sappiamo se il fax si usa per gli ordini (LEGGIMI punto 7). Il telefono esce dalla richiesta di campionatura, che tiene solo l'email. I link `tel:` restano 3 (testata, Ritiri e consegne, piede).
+- **"Indicazioni" una volta sola (D12).** Nella prima schermata a 390, "Indicazioni" diventa "Via Irpinia 15" e porta a `#dove`, dove il bottone Indicazioni è in vista dopo un tocco (`uso.mjs`, `V2_indicazioniDopoUnTocco`). La riga sotto dice "Per ritiri e consegne chiamate prima di passare."
+- **Foto del furgone tolta** da "Dove siamo" (D10): al suo posto ci sono le tre strade. Le foto in home passano da 16 a 15 (vedi Respinti per il resto).
+- **Lavorazioni a 390.** Ogni reparto è una riga: foto da 120 x 80 a sinistra, numero e nome a destra, frase sotto. La pagina a 390 passa da 8.650 a 7.596 px.
+- **`h1`.** Con `text-wrap: balance` va a capo così: "Ogni sottopiede parte / dalla forma del modello." a 1440 e 1024, e "Ogni sottopiede / parte dalla forma / del modello." a 390, senza la parola sola sull'ultima riga.
+- **Richiamo "Fisca in pianta"**: il punto è passato dal tallone all'arco della pianta. A 390 il richiamo "Garbato in modo progressivo" ha un filo verticale che parte dal punto sull'arco e arriva alla scritta sotto l'oggetto. La posizione della fisca va fatta confermare all'azienda.
+- **Recapiti con una regola sola**: Azeret Mono 15 px, sottolineati solo al passaggio, in richiesta, in "Dove siamo" e nel piede. Lo spazio tra prefisso e numero è quello di Commissioner (`.sp`), perché nel monospaziato sembrava doppio. Lo spazio fine U+2009 non serviva: in Azeret Mono è largo quanto gli altri caratteri (650 unità).
+- **Richiesta**: il testo a sinistra resta accanto al modulo mentre si compila (`position: sticky`, senza animazione). Sotto i 1100 px torna normale.
+- **Nomi dei nove tipi** a peso 400, 16/22, con lo spazio per tre righe, così "Toccate un tipo" parte alla stessa altezza per tutta la fila.
+- **Firma del piede** a 24 px (22 sul telefono). Lo stesso trattamento FLAR 100 dell'`h1`, così il punto di scala resta uno.
+- Didascalia del culmine larga quanto la foto (807 px).
+
+### Respinti, con il motivo
+
+- **Culmine con `lavorazione2` al posto della scatola con "Tecno-Sint".** Il giudice chiede di cambiare foto solo se il permesso non arriva prima dell'invio. La proposta non è ancora inviata e la domanda è già nel LEGGIMI, punto 4. La scatola dei sottopiedi garbati è la sola foto che mostra la frase del culmine. La sostituzione è pronta: `img/r2-taglio-807.webp`, con la didascalia "Tranciatura CAD/CAM / Reparto lavorazione, Villatora di Saonara", e per il reparto 02 si usa `lavorazione1`.
+- **Foto in home al massimo 12 (D10).** Sono 15: l'apertura, i nove tipi, quattro reparti e il culmine. Il reparto 04 resta, perché la foto ora è pulita e i quattro reparti con foto sono un compito dei clienti tipo (V1.3). I nove tipi restano tutti, perché sono il catalogo (V1.2). **Eccezione da far approvare:** i nove tipi del catalogo contano come una serie sola, nello stesso formato e sullo stesso fondo. Contate così, le foto sono 7. La tessera 07 ripete il file dell'apertura con un altro taglio: la tengo, perché senza foto il tipo 07 sarebbe l'unico vuoto della fila.
+- **Titolo a 80 px dal bordo (D4).** Oggi passa, perché è esattamente un terzo della zona. Lo sposto solo se un'altra home della zona rifatta in questa ondata porta il titolo a 80 px: il controllo per zona va rifatto alla fine dell'ondata.
+
+### Misure dopo il ritocco
+
+`node _prova/alto/misura-d.mjs` (esito in `_prova/alto/misure/esito.json`):
+
+| Controllo | 1440 x 900 | 390 x 844 |
+|---|---|---|
+| Cliccabili nella prima schermata | 6 | 4 (Chiama, Menu, Via Irpinia 15, Scrivi) |
+| Bottoni | 1 | 1 |
+| Caratteri | 150 | 203 |
+| Foto e campo del gesto | 3,3% e 91% | 11,8% e 91% |
+| Cifre grandi e occhielli | 0 e 0 | 0 e 0 |
+
+Pagina a 1440: 584 parole, 6 sezioni, 5.159 px, 251 KB caricati e 577 KB per tutta la cartella `sito/`. Culmine di 905 px, spazi di 96 e 160, 2 famiglie, testo minimo 17 px, nessuna cifra di 30 px o più ("Dal 1970" ora è a 19 px). 3 bottoni, 3 link `tel:`, "Indicazioni" 1 volta. Griglia: un contenitore, nessun blocco fuori dalle colonne, un bordo destro (1360). Nessuna foto ingrandita, 2 formati, 15 foto (vedi l'eccezione). Zero parole della lista nera, zero "indicativ", zero U+2014. A 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore in console (a 768 c'era un 404 del vecchio `r4-controllo-804`, ora corretto). Prove d'uso (`uso.mjs`): tutte passano. Screenshot rifatti con `node _prova/alto/finali.mjs`, stessi nomi.
+
 ## Metodo ibrido (novembre 2026)
 
 3/11/2026. Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` per la prima schermata; sotto, i contenuti e le funzioni della versione professionale, su una griglia sola. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; la versione professionale da cui si parte è copiata intera in `_prova/versione-pro/` (sito e screenshot). Registro dei caratteri: riga aggiunta in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
