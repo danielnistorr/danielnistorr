@@ -36,6 +36,19 @@ Note d'uso:
 - Escalante: su un getto si legge una sigla di stampo piccola e sfocata, nessun marchio commerciale.
 - Grieveson: il file è morbido al 100% (compressione visibile); va bene a mezza pagina, non a tutto schermo.
 
-## Uso nella home finale (`sito/`)
+## Uso nella home (`sito/`), livello professionale (3/11/2026)
 
-Repertorio usato: Diecasting Mould (chiusura, carter isolato sul fondo della pagina, con "foto indicativa"), Grieveson (tappa Trasporto). Escalante non è più usata dopo la rifinitura. Dal sito Progecom: pistone d'iniezione `617993_3802f7b2…` (apertura, isolato con `_prova/script/pistone_img.py`), pistoni e fascia in rame `617993_02e7ea19…` (tappa Iniezione), forno a crogiolo `617993_63c4b918…`, degasaggio `617993_22fb7a2c…`, rete `617993_3b181aec…`, valigetta `4a6a7c_da1722af…`, bocca di forno `4a6a7c_804c276f…`, lingotti STEMIN `4a6a7c_dc8cdae2…` (foto di STEMIN S.p.A., consenso da chiedere), logo `logo-simbolo-738.png`. Trattamenti in `_prova/script/finale_img.py` e `pistone_img.py`; nessuna foto nuova scaricata.
+**Nessuna foto di repertorio in pagina.** Decisione del committente ("niente"): tolte dalla home Diecasting Mould (carter con "foto indicativa") e Grieveson (siviera). Restano archiviate qui sopra e in `assets/esterne/` solo come materiale della prova precedente; i file di `sito/img/` che le contenevano sono stati cancellati (la versione precedente è in `_prova/versione-1-originale/`). Tolti anche il pistone isolato su fondo chiaro, il forno a crogiolo dell'usato, l'impianto di degasaggio a 709 px e i lingotti STEMIN.
+
+Immagini in pagina, tutte loro (trattamento comune in `_prova/script/pro_img.py`: bianco portato a neutro su una zona chiara della foto, saturazione all'88 %, contrasto +6 %):
+
+| In pagina | File di partenza | Origine | Diritti |
+|---|---|---|---|
+| Apertura, magazzino crogioli (`magazzino-43-*`, `magazzino-169-*`) | `_prova/crawl/youtube/maxresdefault.jpg` (1280x720) | anteprima del loro video "Magazzino Crogioli PROGECOM", YouTube `BqKKjrjrDq0`, canale di Mauro Poggese (https://i.ytimg.com/vi/BqKKjrjrDq0/maxresdefault.jpg, scaricata il 3/11/2026) | loro; serve l'originale del video o una foto vera del magazzino |
+| Gruppo Fusione e forni (`gruppo-fusione-*`) | `assets/originali/4a6a7c_804c276fec54406abe77f3f84fdfb915.jpg` | sito Progecom, pagina usato | da confermare: forse del venditore del forno |
+| Gruppo Trattamento del metallo (`gruppo-trattamento-*`) | `assets/originali/617993_3b181aec7c864a23b6b424c14cc92736.jpg` | sito Progecom, pagina Filtrazione | da confermare: forse del produttore della rete |
+| Gruppo Pressofusione (`gruppo-pressofusione-*`) | `assets/originali/617993_02e7ea19ab62426cac9487da06fa965d.jpg` | sito Progecom, pagina Pistoni | loro |
+| Gruppo Leghe e controllo (`gruppo-controllo-*`) | `assets/originali/4a6a7c_da1722afe4b04452a44cc09864bc39e1.jpg` | sito Progecom, pagina Strumenti di controllo | loro |
+| Logo nella testata e nel piede (`logo-oro-*.webp`, `favicon-64.png`) | `assets/originali/logo-simbolo-fascia-oro-738.png` | sito Progecom | loro; non ricolorato |
+
+Nessuna immagine generata, nessuna illustrazione al posto delle foto, nessuna foto di marchi concorrenti.

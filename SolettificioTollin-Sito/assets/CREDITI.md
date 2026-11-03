@@ -24,7 +24,8 @@ Nessuna è di Tollin, del suo reparto o dei suoi sottopiedi: servono solo a most
 
 Scartate dopo il controllo: Jez Timms `mLr4_8ioypQ` e Raoul Ortega `2JtF6pYAOOI` (già nella home del Tacchificio Riviera), Simões 13524778 (già usata), Hush Puppies 28157683, Billionaire 38786817, Corio 31935097 e 31935098, Vivaia 32496673 (marchi leggibili in primo piano).
 
-## Uso nella home finale (`sito/`, aggiornato il 24/10/2026 nella rifinitura)
+## Uso nella home (`sito/`, aggiornato il 3/11/2026, livello professionale)
 
-- Solo foto di Tollin da `originali/immagini/`: `modelleria2` (apertura, il foglio scontornato), `modelleria1`, `lavorazione2`, `cambratura3`, `supervisione2` (le quattro schede dei reparti), `supervisione1` (la scatola), `supervisione3` (il furgone della chiusura). Trattamento in `_prova/script/finale_img.py`.
-- Nessuna foto di `esterne/` è più nella home: il segnaposto Pexels `pexels-36581188` (Ivantsov) dell'apertura è stato tolto. `pexels-36589768` e `unsplash-GPdWubhjq-Q` restano solo nei prototipi.
+- Solo foto di Tollin da `originali/immagini/`: `supervisione2` (apertura, le mani e la scatola), `modelleria1`, `lavorazione2`, `cambratura3`, `supervisione1` (i quattro reparti), `supervisione3` (il furgone, Dove siamo), `foto1prod` ... `foto9prod` (le nove miniature del catalogo, fondo arancione uniformato) e il logo `logo-tollin-piedi-it.png` (anche in negativo per il piede). Trattamento in `_prova/script/pro_img.py`.
+- Tolte dalla versione 1: il foglio di cartoncino scontornato da `modelleria2` (apertura) e la scatola `supervisione1` ritoccata (scritte del fornitore cancellate): ora `supervisione1` e' usata com'e', senza ritocco.
+- Nessuna foto di `esterne/` e' nella home (decisione del committente: niente foto di repertorio). I file restano solo come archivio dei prototipi del 24/10/2026 (`_prova/home/a/`, `_prova/home/b/`).

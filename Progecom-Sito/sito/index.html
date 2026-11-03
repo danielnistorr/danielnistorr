@@ -81,11 +81,12 @@ h2{font-size:48px;line-height:1.08;letter-spacing:-.02em}
 .menu .solo-tel{display:none}
 .lingua{font-size:14px;font-weight:700;text-decoration:none;color:var(--grigio-testo);padding:12px 4px}
 .lingua:hover{text-decoration:underline}
-.testata .bt{min-height:48px;padding:0 18px}
+.testata .bt{min-height:48px;padding:0 18px;flex:none}
 .apri{display:none}
+.apri .righe{display:none}
 
 /* Apertura */
-.apertura{padding:calc(var(--testata) + 64px) 0 96px}
+.apertura{padding:calc(var(--testata) + 56px) 0 72px}
 .ap-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:start}
 .ap-testo{grid-column:1/8}
 .ap-foto{grid-column:8/13;margin-top:6px}
@@ -96,9 +97,9 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 .ap-occhiello{display:none}
 .ap-luogo{margin-top:16px;font-size:19px;color:var(--grigio-testo)}
 .apertura .bottoni{margin-top:36px}
-.ap-servizi{margin-top:28px;font-size:17px;padding-top:20px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:6px 0}
-.ap-servizi li{white-space:nowrap}
-.ap-servizi li+li::before{content:"·";margin:0 10px;color:var(--oro-scuro)}
+.ap-servizi{margin-top:28px;font-size:17px;padding-top:20px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:6px 28px}
+.ap-servizi li{white-space:nowrap;padding-left:18px;position:relative}
+.ap-servizi li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--oro)}
 .ap-mail{margin-top:12px;font-size:17px;color:var(--grigio-testo)}
 .ap-mail a{color:var(--antracite)}
 
@@ -146,8 +147,8 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 
 /* Usato */
 .us-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g);align-items:end;margin-bottom:48px}
-.us-testa h2{grid-column:1/6}
-.us-testa p{grid-column:7/13}
+.us-testa h2{grid-column:1/7}
+.us-testa p{grid-column:8/13}
 .tabella{width:100%;border-collapse:collapse;font-size:19px}
 .tabella th{text-align:left;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grigio-testo);padding:0 16px 14px 0;border-bottom:2px solid var(--antracite)}
 .tabella td{padding:20px 16px 20px 0;border-bottom:1px solid var(--linea);vertical-align:top}
@@ -182,7 +183,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 /* Contatti e richiesta */
 .ct-griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g)}
 .ct-recapiti{grid-column:1/6}
-.telgrande{display:inline-block;margin-top:8px;font-size:72px;line-height:1.05;font-weight:700;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+.telgrande{display:inline-block;margin-top:40px;font-size:72px;line-height:1.05;font-weight:700;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
 .telgrande:hover{text-decoration:underline;text-decoration-thickness:3px}
 .ct-recapiti .chi-ris{margin-top:12px;color:var(--su-scuro)}
 .caselle{margin-top:40px;border-top:1px solid var(--linea-scura)}
@@ -240,6 +241,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
   :root{--sez:96px}
   .ap-testo,.ap-foto{grid-column:1/-1}
   .ap-foto{margin-top:48px}
+  .ap-foto img{aspect-ratio:16/9}
   .pr-testa h2,.pr-testa .destra,.us-testa h2,.us-testa p,.fr-testo,.fr-lista,.chi-testo,.chi-lato,.ct-recapiti,.modulo,.us-sotto .tutto,.vendi{grid-column:1/-1}
   .pr-testa .destra,.us-testa p{margin-top:20px}
   .fr-lista,.chi-lato,.modulo{margin-top:56px}
@@ -262,10 +264,16 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 @media (max-width:640px){
   :root{--m:20px;--g:16px;--sez:72px;--testata:72px}
   body{font-size:17px}
-  .marchio img{width:40px;height:41px}
+  .marchio img{width:34px;height:35px}
   .marchio .pro{font-size:20px}
   .marchio .di{display:none}
-  .testata .bt{padding:0 14px}
+  .testata .box{gap:6px}
+  .marchio{gap:8px}
+  .marchio .pro{letter-spacing:0}
+  .testata .bt{padding:0 10px}
+  .testata .apri{width:48px;padding:0}
+  .apri .righe{display:block}
+  .apri .parola{display:none}
   .apertura{padding:calc(var(--testata) + 28px) 0 64px}
   .ap-occhiello{display:block}
   h1{font-size:40px;line-height:1.05}
@@ -274,8 +282,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
   .apertura .bottoni{margin-top:20px;flex-direction:column;gap:10px}
   .apertura .bt{width:100%}
   .ap-servizi{margin-top:16px;padding-top:0;border-top:0;display:block;font-size:17px}
-  .ap-servizi li{display:inline;white-space:normal}
-  .ap-servizi li+li::before{margin:0 6px}
+  .ap-servizi li{white-space:normal}
   .ap-mail{display:none}
   .ap-foto{margin:20px calc(-1 * var(--m)) 0}
   .ap-foto img{aspect-ratio:16/9}
@@ -303,6 +310,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
   .punti p{font-size:17px}
   .tabella{font-size:17px}
   .vendi{padding:24px 20px}
+  .us-sotto .tutto .bt{width:100%}
   .vendi h3{font-size:20px}
   .chi-testo .perche{font-size:20px}
   .rappr .marca{font-size:26px}
@@ -310,7 +318,9 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
   .modulo h3{font-size:26px}
   .campi{grid-template-columns:1fr}
   .piede{padding:64px 0 32px}
-  .piede-griglia{grid-template-columns:1fr}
+  .piede-griglia{grid-template-columns:1fr 1fr;gap:40px 16px}
+  .piede .chi,.piede-griglia>div:last-child{grid-column:1/-1}
+  .invio .bt{width:100%}
   .legale .dx{margin-left:0}
 }
 @media (max-width:379px){
@@ -339,7 +349,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
     </nav>
     <a class="lingua" href="/en/" hreflang="en" lang="en">EN</a>
     <a class="bt bt-bordo tel" href="tel:+393486046875" aria-label="Chiama +39 348 604 6875"><span class="n">348 604 6875</span></a>
-    <button class="bt bt-bordo apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <button class="bt bt-bordo apri" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><svg class="righe" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/></svg><span class="parola">Menu</span></button>
   </div>
 </header>
 
@@ -356,14 +366,14 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
         <a class="bt bt-bordo" href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%20d%27offerta%20dal%20sito&amp;body=Buongiorno%2C%0D%0A%0D%0Avi%20chiedo%20un%27offerta%20per%3A%0D%0AProdotto%20o%20codice%3A%20%0D%0AMisura%3A%20%0D%0AQuantit%C3%A0%3A%20%0D%0A%0D%0AAllego%20disegno%2C%20foto%20o%20scheda%20del%20pezzo.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%3A%20%0D%0ATelefono%3A%20%0D%0A">Scrivi: manda misura, codice o foto</a>
       </div>
       <ul class="ap-servizi">
-        <li>Magazzino a Mestrino</li><li>consegne in tutta Italia</li><li>manutenzione forni anche nel week-end</li>
+        <li>Magazzino a Mestrino</li><li>consegne in tutta Italia</li><li><a href="#forni">manutenzione forni anche nel week-end</a></li>
       </ul>
       <p class="ap-mail">Offerte e ordini: <a href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%20d%27offerta%20dal%20sito">commerciale@progecom-poggese.it</a></p>
     </div>
     <figure class="ap-foto">
       <picture>
-        <source media="(max-width:640px)" srcset="img/magazzino-169-640.jpg 640w, img/magazzino-169-960.jpg 960w, img/magazzino-169-1280.jpg 1280w" sizes="100vw" width="1280" height="720">
-        <img src="img/magazzino-43-960.jpg" srcset="img/magazzino-43-640.jpg 640w, img/magazzino-43-960.jpg 960w" sizes="(max-width:999px) 100vw, 500px" width="960" height="720"
+        <source media="(max-width:999px)" srcset="img/magazzino-169-640.jpg 640w, img/magazzino-169-960.jpg 960w, img/magazzino-169-1280.jpg 1280w" sizes="100vw" width="1280" height="720">
+        <img src="img/magazzino-43-960.jpg" srcset="img/magazzino-43-640.jpg 640w, img/magazzino-43-960.jpg 960w" sizes="(max-width:999px) 100vw, 520px" width="960" height="720"
           alt="Il magazzino crogioli di Progecom: scaffalature con i crogioli imballati su pallet">
       </picture>
       <figcaption>Il magazzino crogioli, dal nostro video. <a href="https://www.youtube.com/watch?v=BqKKjrjrDq0" rel="noopener">Guarda il video</a></figcaption>
@@ -374,7 +384,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 <section class="sezione chiara" id="prodotti" aria-labelledby="t-prodotti">
   <div class="box">
     <div class="pr-testa">
-      <h2 id="t-prodotti"><span class="etichetta">Prodotti</span>Sedici famiglie, dal crogiolo al pistone</h2>
+      <h2 id="t-prodotti"><span class="etichetta">Prodotti</span>Sedici famiglie di prodotto</h2>
       <div class="destra">
         <p class="introduzione">Materie prime, prodotti e impianti per la fusione e il trattamento dei metalli non ferrosi, e per i controlli di processo. Ogni voce ha la sua scheda; i prezzi del nuovo si chiedono con un'offerta.</p>
         <a href="mailto:commerciale@progecom-poggese.it?subject=Richiesta%3A%20voce%20non%20in%20elenco&amp;body=Buongiorno%2C%0D%0A%0D%0Acerco%3A%20%0D%0AMisura%2C%20codice%20o%20norma%3A%20%0D%0AQuantit%C3%A0%3A%20%0D%0A%0D%0AAllego%20disegno%20o%20foto.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0A">Non trovi la voce? Mandaci misura o disegno</a>
@@ -446,7 +456,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
         <li>Ricambi per forni dosatori e a bassa pressione</li>
       </ul>
       <a class="foto" href="mailto:commerciale@progecom-poggese.it?subject=Ricambio%20forno&amp;body=Buongiorno%2C%0D%0A%0D%0Ami%20serve%20questo%20ricambio%3A%0D%0ARicambio%20(resistenza%2C%20pinza%2C%20guaina%2C%20altro)%3A%20%0D%0AForno%20(marca%20e%20modello)%3A%20%0D%0ACodice%20o%20misura%3A%20%0D%0A%0D%0AAllego%20una%20foto%20del%20pezzo%20e%20della%20targa%20del%20forno.%0D%0A%0D%0AAzienda%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0A">Manda la foto del pezzo da sostituire</a>
-      <p class="nota">Con il codice o la foto della targa del forno troviamo prima il ricambio giusto.</p>
+      <p class="nota">Nell'email: codice o misura del pezzo, marca e modello del forno, una foto della targa.</p>
     </div>
   </div>
 </section>
@@ -629,10 +639,11 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
 (function(){
   var b=document.querySelector('.apri'), m=document.getElementById('menu');
   b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';
-    b.setAttribute('aria-expanded',String(!o));m.classList.toggle('aperto',!o);b.textContent=o?'Menu':'Chiudi';});
-  m.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');m.classList.remove('aperto');b.textContent='Menu';}});
+    b.setAttribute('aria-expanded',String(!o));m.classList.toggle('aperto',!o);b.querySelector('.parola').textContent=o?'Menu':'Chiudi';b.setAttribute('aria-label',o?'Menu':'Chiudi il menu');});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');m.classList.remove('aperto');b.querySelector('.parola').textContent='Menu';b.setAttribute('aria-label','Menu');}});
 
   /* Il modulo compone un'email (mailto): va collegato a un servizio di invio, vedi LEGGIMI. */
+  window.apriPosta=window.apriPosta||function(u){window.location.href=u;};
   var f=document.getElementById('modulo'), av=document.getElementById('avviso');
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -648,7 +659,7 @@ h1 .mestiere{display:block;font-size:32px;line-height:1.25;font-weight:400;lette
       v('f-nome')+'\r\n'+v('f-azienda')+'\r\n'+v('f-email')+(v('f-tel')?'\r\nTel. '+v('f-tel'):'')+'\r\n';
     var ogg=tipo+(v('f-voce')?': '+v('f-voce'):'')+' ('+v('f-azienda')+')';
     av.textContent='Si apre il programma di posta: allega disegno o foto e invia.';
-    window.location.href='mailto:commerciale@progecom-poggese.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+    window.apriPosta('mailto:commerciale@progecom-poggese.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo));
   });
 })();
 </script>

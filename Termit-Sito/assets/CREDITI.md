@@ -1,6 +1,14 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026.
+
+## Home attuale (`sito/`), livello professionale, 03/11/2026
+
+Decisione del committente sulle foto: "niente". In pagina non c'è più nessuna foto di repertorio e nessun disegno al posto delle foto.
+
+- In pagina: solo la foto del taglio ad acqua del sito Termit (`originali/sito/contenuti_categorie___thumb_1000_800__imm[000]_TaglioAcqua.jpg`, ritagliata a 1000x645, mostrata a 656 px al massimo, nella sezione Su misura), il logo (`originali/logo-termit-bianco-539x85.png` ricolorato nel verde #51B038) e la favicon del loro sito (`originali/logo-termit-favicon-78x78.jpg`). Script: `_prova/script/pro_img.py`. Che la foto sia loro va confermato (LEGGIMI).
+- Tolte dalla pagina e da `sito/img/`: la coppella in sezione (illustrazione con la fibra di Engin Akyurt, Pexels 9893816) e la chiusura con l'impianto in lamierino (Peter Jochim, Pexels 36824351). I file in `esterne/` restano solo come archivio della proposta precedente e non vanno usati.
+- La versione precedente della home, con quelle immagini, è copiata in `_prova/versione-1-originale/`.
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Termit]
 
@@ -35,7 +43,7 @@ Scaricate il 24/10/2026 da `https://www.termit.biz/public/` (95 file in `origina
 - Il camion con il logo (`sito/menu__CamionTermit2.jpg`) è una foto di repertorio con il logo inserito al computer.
 - Loghi Termit copiati con nome leggibile: `originali/logo-termit-verde-567x112.jpg`, `originali/logo-termit-bianco-539x85.png` (trasparente), `originali/logo-termit-bianco-piede-200x31.png`, `originali/logo-termit-social-600x145.jpg`, `originali/logo-termit-favicon-78x78.jpg`.
 
-## Home finale (`sito/`), 24/10/2026, dopo la rifinitura
+## Home precedente (oggi in `_prova/versione-1-originale/sito/`), 24/10/2026, dopo la rifinitura
 
 - Apertura: la coppella in sezione (`sito/img/coppella-*`), un'illustrazione costruita con PIL da `_prova/script/finale_coppella.py`. La fibra è la foto di Engin Akyurt (Pexels 9893816, `esterne/pexels-9893816-akyurt-fibra-lana.jpg`, licenza "Free" letta il 24/10/2026) avvolta in coordinate polari; il rivestimento in alluminio e il tubo d'acciaio sono disegnati dallo script. Un granello di polvere sulla foto è coperto con la fibra vicina. Non è una foto di Termit e non è generata dall'IA: va sostituita dallo scatto vero della coppella tagliata (LEGGIMI, foto 1). La foto Akyurt non è usata in nessun'altra home della campagna (controllati i `*-Sito/assets/CREDITI.md` il 24/10/2026).
 - Su misura: `originali/sito/contenuti_categorie___thumb_1000_800__imm[000]_TaglioAcqua.jpg` dal sito Termit (macchina da taglio ad acqua, versione più stretta e calda della `Uploads__tag.jpg`), ritagliata a 1000x645 per togliere la fascia bianca e mostrata a non più di 656 px.

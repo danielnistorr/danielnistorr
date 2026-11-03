@@ -57,7 +57,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
 .scuro .secondario{color:var(--grigio-su-nero)}
 
 /* un solo sistema di bottoni: pieno (azione principale) e con il solo bordo */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4em;min-height:52px;padding:0 22px;border:2px solid var(--rosso-pieno);border-radius:var(--r);background:var(--rosso-pieno);color:var(--bianco);font:inherit;font-size:var(--t-btn);font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .12s,border-color .12s,color .12s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:2px solid var(--rosso-pieno);border-radius:var(--r);background:var(--rosso-pieno);color:var(--bianco);font:inherit;font-size:var(--t-btn);font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .12s,border-color .12s,color .12s}
 .btn:hover{background:var(--nero);border-color:var(--nero)}
 .btn.bordo{background:transparent;color:var(--nero);border-color:var(--nero)}
 .btn.bordo:hover{background:var(--nero);color:var(--bianco)}
@@ -83,15 +83,16 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
 .menu a{text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
 .menu a:hover{border-bottom-color:var(--rosso)}
 .testata .chiama{display:flex;align-items:center;gap:16px;flex:none}
-.testata .stato{max-width:11em;text-align:right}
+.testata .stato{white-space:nowrap}
 .apri-menu{display:none}
 
 /* apertura */
-.apertura{padding:40px 0 0}
+.apertura{padding:40px 0 96px}
 .testa{align-items:end}
 .testa .sinistra{grid-column:1 / 9}
 .testa h1{margin-top:14px}
-.testa .lead{grid-column:9 / 13;font-size:var(--t-b);line-height:1.5;color:var(--grigio-testo);padding-bottom:6px}
+.testa h1 .r{display:block}
+.testa .lead{grid-column:9 / 13;font-size:var(--t-b);line-height:1.5;color:var(--grigio-testo);padding-bottom:6px;text-wrap:pretty}
 .azioni-mobile{display:none}
 .porte{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .porta{display:flex;flex-direction:column}
@@ -149,7 +150,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
 .cifre span:last-child{display:block;margin-top:10px;line-height:1.4}
 
 /* disegno: istruzioni e modulo */
-.disegno .istruzioni{grid-column:1 / 6}
+.disegno .istruzioni{grid-column:1 / 6;position:sticky;top:calc(var(--testata) + 40px);align-self:start}
 .disegno .modulo{grid-column:7 / 13}
 .istruzioni h2{margin-top:12px}
 .istruzioni dl{margin-top:32px}
@@ -193,8 +194,8 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
 .marche p{margin-top:14px}
 
 /* lavora con noi */
-.lavora .titolo{grid-column:1 / 8}
-.lavora .testo{grid-column:8 / 13}
+.lavora .titolo{grid-column:1 / 7}
+.lavora .testo{grid-column:7 / 13}
 .lavora .testo p + p{margin-top:14px}
 .lavora .riga{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
@@ -215,11 +216,12 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
 /* piede */
 .piede{background:var(--nero);color:var(--bianco);padding:80px 0 36px;font-size:var(--t-xs)}
 .piede .griglia{row-gap:40px}
-.piede .marchio{grid-column:1 / 4}
+.piede .marchio{grid-column:1 / 5}
 .piede .marchio img{width:136px}
 .piede .marchio p{margin-top:18px;color:var(--grigio-su-nero);line-height:1.6}
-.piede .col{grid-column:span 3}
-.piede .col:nth-of-type(2){grid-column:5 / 7}
+.piede .c1{grid-column:5 / 8}
+.piede .c2{grid-column:8 / 10}
+.piede .c3{grid-column:10 / 13}
 .piede h2{font-size:var(--t-xs);font-stretch:100%;letter-spacing:.12em;text-transform:uppercase;color:var(--grigio-su-nero);margin-bottom:14px}
 .piede li{line-height:1.5}
 .piede li + li{margin-top:8px}
@@ -248,18 +250,17 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
   .dettagli .col1{grid-column:1 / 7}
   .dettagli .col2{grid-column:7 / 13}
   .dettagli .col3{grid-column:1 / 13;margin-top:40px}
-  .disegno .istruzioni{grid-column:1 / 13}
+  .disegno .istruzioni{grid-column:1 / 13;position:static}
   .disegno .modulo{grid-column:1 / 13;margin-top:48px}
   .piede .marchio{grid-column:1 / 13}
-  .piede .col,.piede .col:nth-of-type(2){grid-column:span 4}
+  .piede .c1,.piede .c2,.piede .c3{grid-column:span 4}
 }
 @media (max-width:899px){
   :root{--sez:96px}
   .azioni-mobile{display:block;margin-top:24px}
   .azioni-mobile .btn{width:100%}
   .azioni-mobile .stato{margin:10px 0 12px;font-size:var(--t-b)}
-  .porte{grid-template-columns:1fr;gap:56px;margin-top:48px}
-  .porta img{max-width:none}
+  .porte{margin-top:48px}
   .porta .riga .btn{display:none}
   .capo .titolo,.capo .intro{grid-column:1 / 13}
   .capo .intro{margin-top:20px}
@@ -277,10 +278,10 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
   .testata .chiama .btn{padding:0 14px}
   .solo-largo{display:none}
   .apri-menu{padding:0 12px}
-  .apertura{padding-top:24px}
+  .apertura{padding:24px 0 72px}
   .testa h1{margin-top:10px}
   .testa .lead{font-size:var(--t-lead);color:var(--nero);margin-top:14px}
-  .porte{gap:48px;margin-top:40px}
+  .porte{grid-template-columns:1fr;gap:48px;margin-top:40px}
   .schede{margin-top:40px}
   .schede.tre,.schede.quattro,.lavori-grandi,.lavori-piccoli{grid-template-columns:1fr;gap:40px}
   .lavori-grandi,.lavori-piccoli{margin-top:40px}
@@ -294,7 +295,10 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
   .marche ul{gap:8px 28px}
   .lavora .riga .btn,.zone .btn,.istruzioni .btn,.contatti .righe .btn{width:100%}
   .piede{padding-top:56px}
-  .piede .col,.piede .col:nth-of-type(2){grid-column:1 / 13}
+  .piede .c1,.piede .c2,.piede .c3{grid-column:1 / 13}
+  .scheda img{aspect-ratio:2 / 1;margin-top:16px}
+  .lavori-piccoli .lavoro img{aspect-ratio:4 / 3}
+  .testa h1 .r{display:inline}
 }
 @media (max-width:359px){
   .testata .logo{width:72px}
@@ -320,7 +324,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
     </nav>
     <div class="chiama">
       <p class="stato" data-stato="breve"><span class="pallino"></span>Chiamate lun-ven 8-18, sab 8-12</p>
-      <a class="btn piccolo num" href="tel:+393481693451"><span class="solo-largo">Chiama</span> 348&nbsp;169&nbsp;34&nbsp;51</a>
+      <a class="btn piccolo num" href="tel:+393481693451"><span class="solo-largo">Chiama&nbsp;</span>348&nbsp;169&nbsp;34&nbsp;51</a>
     </div>
     <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
@@ -333,7 +337,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
     <div class="griglia testa">
       <div class="sinistra">
         <span class="etichetta">Officina meccanica a Padova, per tutto il Nord Est</span>
-        <h1 id="t-apertura">Manutenzione sul posto e pezzi su disegno</h1>
+        <h1 id="t-apertura"><span class="r">Manutenzione sul posto</span> <span class="r">e pezzi su disegno</span></h1>
       </div>
       <p class="lead">Interveniamo dove serve, quando serve, su macchine da stampa offset e flexo, sacchettifici, confezionatrici e nastri trasportatori. In officina facciamo pezzi su disegno con 6&nbsp;torni e una fresatrice CNC a 3&nbsp;assi.</p>
     </div>
@@ -694,7 +698,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
       <img src="img/logo-masi-scritta-chiaro.svg" alt="Meccanica Masi S.R.L." width="136" height="64" loading="lazy">
       <p>Officina meccanica di famiglia a Padova. Manutenzione e installazione sul posto, pezzi su disegno in officina.</p>
     </div>
-    <nav class="col" aria-label="Manutenzione e lavorazioni">
+    <nav class="col c1" aria-label="Manutenzione e lavorazioni">
       <h2>Cosa facciamo</h2>
       <ul>
         <li><a href="#manutenzione">Manutenzione sul posto</a></li>
@@ -704,7 +708,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
         <li><a href="#disegno">Mandaci il disegno</a></li>
       </ul>
     </nav>
-    <nav class="col" aria-label="Azienda">
+    <nav class="col c2" aria-label="Azienda">
       <h2>Azienda</h2>
       <ul>
         <li><a href="#lavori">Lavori su commessa</a></li>
@@ -713,7 +717,7 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
         <li><a href="https://maps.google.com/?cid=1922531916466824828" target="_blank" rel="noopener">Recensioni su Google</a></li>
       </ul>
     </nav>
-    <div class="col">
+    <div class="col c3">
       <h2>Contatti</h2>
       <ul>
         <li><a class="num" href="tel:+393481693451">348&nbsp;169&nbsp;34&nbsp;51</a></li>
@@ -817,7 +821,9 @@ h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
       if (file.length) righe.push('Disegni da allegare a questa email: ' + Array.prototype.map.call(file, function(x){ return x.name; }).join(', '));
     }
     righe.push('', v('f-msg'));
-    location.href = 'mailto:info@meccanicamasi.it?subject=' + encodeURIComponent('Richiesta: ' + tipo + ', ' + v('f-azienda')) + '&body=' + encodeURIComponent(righe.join('\n'));
+    var url = 'mailto:info@meccanicamasi.it?subject=' + encodeURIComponent('Richiesta: ' + tipo + ', ' + v('f-azienda')) + '&body=' + encodeURIComponent(righe.join('\n'));
+    f.dataset.ultima = url;   // per le prove automatiche
+    location.href = url;
   });
 })();
 </script>

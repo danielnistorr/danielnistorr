@@ -31,8 +31,9 @@ In pagina restano solo immagini dell'azienda, preparate da `_prova/script/pro_im
 
 | File | Origine | Uso | Lavorazione |
 |---|---|---|---|
-| `ec-smart-480.webp`, `ec-medium-480.webp`, `ec-magnum-480.webp` | loro render `34/35/36-Senza-nome` (pagina Prodotti del sito di oggi) | schede delle versioni, mostrati a circa 411 px a 1440 | ritaglio quadrato 480 x 480 attorno al pezzo, misura d'origine, nessun ritocco |
-| `video-720.webp`, `video-1280.webp` | fotogramma del loro video YouTube (`90-youtube-jxtiioap3hc-maxres.jpg`, canale @Impreservicesrl) | copertina del video nell'apertura, mostrata a 519 px a 1440 | solo conversione e riduzione |
+| `ec-smart-480.webp`, `ec-medium-480.webp`, `ec-magnum-480.webp` | loro render `34/35/36-Senza-nome` (pagina Prodotti del sito di oggi) | schede delle versioni, mostrati a circa 180 px nel riquadro 2:1 a 1440 (112 px a 390) | ritaglio quadrato 480 x 480 attorno al pezzo, misura d'origine, nessun ritocco |
+| `video-720.webp`, `video-1280.webp` | fotogramma del loro video YouTube (`90-youtube-jxtiioap3hc-maxres.jpg`, canale @Impreservicesrl) | copertina del video in "Come funziona", mostrata a 1280 px a 1440 (misura d'origine) | solo conversione e riduzione |
 | `logo-simbolo-*`, `logo-simbolo-bianco-*` | `logo-impreservice-icona-blu-1000.png`, `logo-impreservice-icona-bianca-1500.png` | testata e piede | ritaglio al bordo, PNG a 160 e 240 px |
+| `segno-blu.svg` | `logo-impreservice-icona-bianca-1500.png` (il simbolo dei due semianelli, dal sito di oggi) | il simbolo grande dell'apertura, nel blu del marchio #075A9E, circa 769 x 284 px a 1440 | ricalcato in vettoriale da `_prova/script/segno_svg.py` (contorno dell'alfa sovracampionato 4 volte, scarto 0,1 px), senza cambiare la forma; da sostituire con il vettoriale originale quando l'azienda lo manda |
 
 Il video si carica da YouTube (youtube-nocookie.com) solo quando si fa clic sulla copertina.

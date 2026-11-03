@@ -28,8 +28,8 @@
   --linea-nero:#3A403A;   /* filetti sul nero */
   --tit:"ZS Expanded","ZS",system-ui,sans-serif;
   --txt:"ZS",system-ui,sans-serif;
-  /* scala: 8 misure a 1440 (14 16 18 22 28 44 64 96) e 8 a 390 (14 16 17 20 24 30 38 56) */
-  --f1:14px;--f2:16px;--f3:18px;--f4:22px;--f5:28px;--f6:44px;--f7:64px;--f8:96px;
+  /* scala: 8 misure a 1440 (14 16 18 22 28 44 64 80) e 8 a 390 (14 16 17 20 24 30 38 48) */
+  --f1:14px;--f2:16px;--f3:18px;--f4:22px;--f5:28px;--f6:44px;--f7:64px;--f8:80px;
   --m:80px; --g:24px; --sez:120px; --testa:80px; --btn:52px; --r:3px;
 }
 *{box-sizing:border-box}
@@ -59,7 +59,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .scuro .occhiello{color:var(--verde)}
 
 /* un solo sistema di bottoni: pieno verde (azione principale) e con il solo bordo; stesso raggio, 52 px (48 in testata) */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--btn);padding:0 22px;border-radius:var(--r);border:2px solid var(--nero);font:700 var(--f2)/1.15 var(--txt);text-decoration:none;text-align:center;cursor:pointer;background:transparent;color:var(--nero)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:0;min-height:var(--btn);padding:0 22px;border-radius:var(--r);border:2px solid var(--nero);font:700 var(--f2)/1.15 var(--txt);text-decoration:none;text-align:center;cursor:pointer;background:transparent;color:var(--nero)}
 .btn:hover{background:var(--nero);color:var(--bianco)}
 .btn.pieno{background:var(--verde);border-color:var(--verde);color:var(--nero)}
 .btn.pieno:hover{background:var(--nero);border-color:var(--nero);color:var(--bianco)}
@@ -67,7 +67,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .scuro .btn:hover{background:var(--bianco);color:var(--nero)}
 .scuro .btn.pieno{border-color:var(--verde);color:var(--nero)}
 .scuro .btn.pieno:hover{background:var(--bianco);border-color:var(--bianco)}
-.btn .num{font-weight:700;letter-spacing:.01em}
+.btn .num{font-weight:700;letter-spacing:.01em;margin-left:.35em}
 
 /* testata fissa: logo, menu, ordine scritto, telefono come bottone */
 .testata{position:fixed;inset:0 0 auto 0;z-index:10;background:var(--bianco);border-bottom:1px solid var(--linea)}
@@ -80,9 +80,10 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .t-azioni{margin-left:auto;display:flex;gap:12px;align-items:center}
 .testata .btn{min-height:48px;padding:0 18px}
 .apri{display:none}
+@media (max-width:1180px){.testata nav{display:contents}}
 
 /* apertura */
-.apertura{padding:calc(var(--testa) + 72px) 0 var(--sez)}
+.apertura{padding:calc(var(--testa) + 72px) 0 96px}
 .ap-sx{grid-column:1/8;padding-right:24px}
 .apertura h1{margin-top:20px;font-size:var(--f7);line-height:1.02}
 .apertura h1 .mestiere{display:block;margin-top:22px;font:400 var(--f4)/1.4 var(--tit);letter-spacing:-.01em;max-width:30em}
@@ -93,6 +94,13 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .stato.aperto .pallino{background:var(--verde)}
 .stato .ora{font-size:var(--f3);font-weight:700;color:var(--nero)}
 .stato .orari,.stato .dove{grid-column:2}
+
+/* quattro fatti in fondo all'apertura, ognuno porta alla sua sezione */
+.punti{grid-column:1/13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);margin-top:64px}
+.punti a{display:block;height:100%;padding-top:18px;border-top:2px solid var(--verde);text-decoration:none}
+.punti b{display:block;font-size:var(--f3);line-height:1.3}
+.punti span{display:block;margin-top:6px;font-size:var(--f2);line-height:1.5;color:var(--testo-2)}
+.punti a:hover b{text-decoration:underline;text-underline-offset:4px}
 
 /* pannello del catalogo nell'apertura */
 .cerca{grid-column:8/13;align-self:start;background:var(--nero);color:var(--bianco);border-radius:var(--r);padding:32px 32px 28px}
@@ -141,21 +149,27 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .intro{margin-top:20px;font-size:var(--f3);line-height:1.55;color:var(--testo-2);max-width:36em}
 .scuro .intro{color:var(--su-nero)}
 .testa-sez{grid-column:1/9}
-.testa-sez .occhiello+.h2{margin-top:16px}
+.occhiello+.h2{margin-top:16px}
 
 /* famiglie: indice tipografico, ogni voce è un link alla pagina vera del catalogo */
-.famiglie{grid-column:1/13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px}
-.famiglie a{display:flex;flex-direction:column;height:100%;min-height:212px;padding:22px 0 24px;border-top:2px solid var(--nero);text-decoration:none}
+.famiglie{grid-column:1/13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 24px;margin-top:40px}
+#prodotti{padding-bottom:96px}
+#prodotti .testa-sez{grid-column:1/13;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end}
+#prodotti .testa-sez>*{grid-column:1/8}
+#prodotti .testa-sez .intro{grid-column:8/13;grid-row:2;margin-top:0}
+.famiglie a{display:flex;flex-direction:column;height:100%;padding:20px 0 4px;border-top:2px solid var(--nero);text-decoration:none}
 .famiglie .n{font-size:var(--f1);font-weight:700;color:var(--verde-scuro)}
 .famiglie h3{margin-top:14px;font-size:var(--f5);line-height:1.1}
 .famiglie p{margin-top:12px;font-size:var(--f2);line-height:1.5;color:var(--testo-2)}
-.famiglie .va{margin-top:auto;padding-top:16px;font-size:var(--f2);font-weight:700;color:var(--verde-scuro)}
+.famiglie .va{margin-top:auto;padding-top:12px;font-size:var(--f2);font-weight:700;color:var(--verde-scuro)}
 .famiglie a:hover h3{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--verde)}
 
 /* su misura: la sola foto vera, a misura d'origine o meno */
 .mis-foto{grid-column:1/7;align-self:start}
 .mis-foto img{width:100%;max-width:656px;border-radius:var(--r)}
+.mis-foto .tabella{margin-top:28px;max-width:656px}
 .mis-foto figcaption{margin-top:12px;font-size:var(--f1);color:var(--su-nero)}
+.mis-testo .citazione{margin-top:40px;padding-top:28px;border-top:1px solid var(--linea-nero)}
 .mis-testo{grid-column:7/13}
 .mis-testo .h2{margin-top:16px}
 .mis-testo>p{margin-top:24px}
@@ -210,7 +224,6 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .recapiti{margin-top:36px;border-top:1px solid var(--linea)}
 .recapiti>div{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--g);padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--f2);line-height:1.5}
 .recapiti dt{font-weight:700}
-.recapiti .orari-t{display:grid;grid-template-columns:auto 1fr;gap:0 16px}
 .modulo{grid-column:7/13;background:var(--grigio);border-radius:var(--r);padding:40px}
 .modulo h3{font-size:var(--f5);line-height:1.15}
 .modulo .intro{margin-top:10px;font-size:var(--f2)}
@@ -241,7 +254,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 .p-chi p{margin-top:20px;font-size:var(--f1);line-height:1.6;color:var(--su-nero)}
 .p-col{grid-column:span 3}
 .p-col:first-of-type{grid-column:4/7}
-.p-col h2{font:700 var(--f1)/1.3 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--verde)}
+.p-col h2{font:700 var(--f1)/1.3 var(--tit);letter-spacing:.12em;text-transform:uppercase;color:var(--verde)}
 .p-col ul{margin-top:16px;font-size:var(--f2);line-height:1.5}
 .p-col li+li{margin-top:8px}
 .p-col a{color:var(--bianco);text-decoration:none}
@@ -267,10 +280,20 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
   .testata.aperta .menu a{display:block;padding:12px 0}
   .ap-sx{grid-column:1/13;padding-right:0;max-width:760px}
   .cerca{grid-column:1/13;margin-top:56px;max-width:760px}
+  .punti{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
   .testa-sez{grid-column:1/13}
+  #prodotti .testa-sez{display:block}
+  #prodotti .testa-sez .intro{margin-top:20px}
   .famiglie{grid-template-columns:repeat(2,minmax(0,1fr))}
   .famiglie a{min-height:0}
-  .mis-foto{grid-column:1/13}
+  .mis-foto{display:contents}
+  .mis-foto picture,.mis-foto figcaption,.mis-foto .tabella{grid-column:1/13}
+  .mis-foto picture{order:1}
+  .mis-foto figcaption{order:2}
+  .mis-testo{order:3}
+  .mis-foto .tabella{order:4;max-width:760px}
+  .mis-foto img{max-width:656px}
+  .mis-testo .azioni{margin-bottom:8px}
   .mis-testo{grid-column:1/13;margin-top:48px;max-width:760px}
   .consegne{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
   .ordini .o-t,.ordini .azioni{grid-column:1/13}
@@ -292,14 +315,15 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 }
 /* 390 */
 @media (max-width:560px){
-  :root{--f1:14px;--f2:16px;--f3:17px;--f4:20px;--f5:24px;--f6:30px;--f7:38px;--f8:56px;
+  :root{--f1:14px;--f2:16px;--f3:17px;--f4:20px;--f5:24px;--f6:30px;--f7:38px;--f8:48px;
         --m:20px;--g:16px;--sez:72px;--testa:72px}
   .testata .wrap{gap:10px}
   .logo img{width:112px}
   .t-azioni{gap:8px}
   .testata .btn{padding:0 12px}
   .t-azioni .chiama .eti{display:none}
-  .apertura{padding-top:calc(var(--testa) + 24px)}
+  .t-azioni .chiama .num{margin-left:0}
+  .apertura{padding-top:calc(var(--testa) + 24px);padding-bottom:0}
   .apertura h1{margin-top:12px;line-height:1.05}
   .apertura h1 .mestiere{margin-top:12px;line-height:1.4}
   .ap-azioni{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -308,16 +332,17 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
   .stato{margin-top:18px}
   .cerca{margin:40px calc(-1 * var(--m)) 0;padding:28px var(--m) 24px;border-radius:0}
   .intro{margin-top:14px}
+  .punti{display:none}
   .famiglie{grid-template-columns:1fr;gap:0;margin-top:32px}
   .famiglie a{padding:16px 0 18px;border-top-width:1px}
   .famiglie li:first-child a{border-top-width:2px}
   .famiglie h3{margin-top:6px}
   .famiglie p{margin-top:6px}
   .famiglie .va{display:none}
-  .mis-foto{margin:0 calc(-1 * var(--m))}
+  .mis-foto picture{margin:0 calc(-1 * var(--m))}
   .mis-foto img{border-radius:0;max-width:none}
-  .mis-foto figcaption{padding:0 var(--m)}
   .mis-testo{margin-top:32px}
+  .mis-foto .tabella{margin-top:32px}
   .tabella>div,.recapiti>div{grid-template-columns:1fr;gap:2px}
   .citazione{margin-top:20px}
   .azioni{flex-direction:column;align-items:stretch;margin-top:24px}
@@ -339,9 +364,14 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
 }
 @media (max-width:359px){
   :root{--m:16px}
-  .logo img{width:92px}
-  .testata .btn{padding:0 9px}
-  .apertura h1{font-size:32px}
+  .testata .wrap{gap:6px}
+  .t-azioni{gap:6px}
+  .logo img{width:80px}
+  .testata .btn{padding:0 8px}
+  .apertura h1,.tel-grande{font-size:32px}
+}
+@media (max-width:379px){
+  .numeri{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -371,7 +401,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
   <div class="wrap griglia">
     <div class="ap-sx">
       <p class="occhiello">Saonara (PD) · ISO&nbsp;9001 dal 2004</p>
-      <h1 id="titolo">Isolanti termoacustici <span class="mestiere">Isolanti termici, acustici e antifuoco per industria, edilizia e navale. Magazzino e taglio su misura a&nbsp;Saonara (PD).</span></h1>
+      <h1 id="titolo">Isolanti termoacustici <span class="mestiere">Termici, acustici e antifuoco, per industria, edilizia e navale. Magazzino e taglio su misura a&nbsp;Saonara (PD).</span></h1>
       <div class="ap-azioni">
         <a class="btn pieno" href="tel:+39049640060">Chiama <span class="num">049&nbsp;640060</span></a>
         <a class="btn" href="mailto:info@termit.biz?subject=Ordine&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0ACodice%2C%20spessore%20e%20quantit%C3%A0%3A%0D%0A1.%20%0D%0A2.%20%0D%0A3.%20%0D%0A%0D%0AIndirizzo%20di%20consegna%3A%0D%0AData%20richiesta%3A">Scrivi un ordine</a>
@@ -381,7 +411,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
         <span class="pallino" aria-hidden="true"></span>
         <span class="ora" id="stato-t">Dal lunedì al venerdì</span>
         <span class="orari">Lunedì-venerdì 8.30-12.30 e 14.00-18.00. Gli ordini si fanno per scritto.</span>
-        <span class="dove">Via Emilia Romagna 19, 35020 Saonara (PD)</span>
+        <span class="dove">Via Emilia Romagna 19, 35020 Saonara&nbsp;(PD)</span>
       </p>
     </div>
 
@@ -410,6 +440,13 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
       </div>
       <p class="marche" id="marche"><b>Marche a magazzino:</b> <button type="button" data-cerca="Knauf Insulation">Knauf Insulation</button>, <button type="button" data-cerca="Ursa">Ursa</button>, <button type="button" data-cerca="K-Flex">K-Flex</button>, <button type="button" data-cerca="Unifrax">Unifrax</button>, <button type="button" data-cerca="Morgan">Morgan</button>, <button type="button" data-cerca="Coroplast">Coroplast</button>; deposito <button type="button" data-cerca="Dörken Delta">Dörken Delta</button>.</p>
     </div>
+
+    <ul class="punti" aria-label="In breve">
+      <li><a href="#consegne"><b>Materiale a stock</b><span>Per il listino aggiornato telefonate o scrivete.</span></a></li>
+      <li><a href="#su-misura"><b>Taglio su misura in casa</b><span>Lana di roccia e di vetro, elastomero, nanotecnologici.</span></a></li>
+      <li><a href="#consegne"><b>Consegne con mezzi propri</b><span>A sponda camion, su automezzi di circa 10&nbsp;m. Niente corrieri espressi.</span></a></li>
+      <li><a href="#azienda"><b>Più di cinquant'anni</b><span>Certificati UNI EN ISO&nbsp;9001 dal 2004, da RINA.</span></a></li>
+    </ul>
   </div>
 </section>
 
@@ -441,15 +478,15 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
         <img src="img/taglio-acqua-1000.jpg" srcset="img/taglio-acqua-640.jpg 640w, img/taglio-acqua-1000.jpg 1000w" sizes="(max-width:560px) 100vw, 656px" width="1000" height="645" loading="lazy" alt="La macchina da taglio ad acqua con tre teste numerate sopra un pannello di lana di roccia">
       </picture>
       <figcaption>Il taglio ad acqua a tre teste, su un pannello di lana di roccia.</figcaption>
+      <dl class="tabella">
+        <div><dt>Materiali</dt><dd>Lana di roccia, lana di vetro, elastomero espanso, prodotti nanotecnologici.</dd></div>
+        <div><dt>Cosa indicare</dt><dd>Materiale o temperatura di esercizio, spessore, misure o disegno quotato in allegato, quantità, data richiesta.</dd></div>
+      </dl>
     </figure>
     <div class="mis-testo">
       <p class="occhiello">Pezzi su misura</p>
       <h2 class="h2" id="t-mis">Mandateci il disegno, lo tagliamo in&nbsp;casa</h2>
       <p>Un'esperienza ventennale nella produzione di pezzi su misura: insonorizzazione di macchinari, isolamento termico di forni, condizionatori, cisterne o tubi di scarico.</p>
-      <dl class="tabella">
-        <div><dt>Materiali</dt><dd>Lana di roccia, lana di vetro, elastomero espanso, prodotti nanotecnologici.</dd></div>
-        <div><dt>Cosa indicare</dt><dd>Materiale o temperatura di esercizio, spessore, misure o disegno quotato in allegato, quantità, data richiesta.</dd></div>
-      </dl>
       <p class="citazione">«Rapidi nei tempi di produzione, competitivi nelle quotazioni economiche e riservati sulla progettazione dei&nbsp;clienti.»</p>
       <div class="azioni">
         <a class="btn pieno" href="mailto:info@termit.biz?subject=Pezzi%20su%20misura&amp;body=Azienda%3A%0D%0ARiferimento%20e%20telefono%3A%0D%0A%0D%0AMateriale%20o%20temperatura%20di%20esercizio%3A%0D%0ASpessore%3A%0D%0AMisure%20%28o%20disegno%20quotato%20in%20allegato%29%3A%0D%0AQuantit%C3%A0%3A%0D%0AData%20richiesta%3A%0D%0A%0D%0A%28Allego%20il%20disegno.%29">Mandateci il disegno</a>
@@ -536,7 +573,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
           <li><b>UNI EN ISO&nbsp;9001</b><span>RINA n.&nbsp;10957/04/S, dal 18.05.2004, valido fino al 15.05.2028. <a class="link" href="https://www.termit.biz/public/Uploads/CertificatoInternazionale.pdf">Il certificato (PDF)</a></span></li>
           <li><b>EcoVadis</b><span>Medaglia di bronzo.</span></li>
           <li><b>ANICTA</b><span>Associato partecipante, la categoria dei fornitori dei coibentatori.</span></li>
-          <li><b>EIIF</b><span>Membro della European Industrial Insulation Foundation.</span></li>
+          <li><b>EIIF</b><span>Membro (European Industrial Insulation Foundation).</span></li>
           <li><b>Politica della qualità</b><span><a class="link" href="https://www.termit.biz/public/Uploads/Politica.pdf">Il documento (PDF)</a></span></li>
         </ul>
       </div>
@@ -546,7 +583,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
           <li><b>Knauf Insulation</b><span>Lana di roccia</span></li>
           <li><b>Ursa</b><span>Lana di vetro</span></li>
           <li><b>K-Flex</b><span>Elastomero espanso</span></li>
-          <li><b>Unifrax, Morgan</b><span>Fibre per alte temperature</span></li>
+          <li><b>Unifrax, Morgan</b><span>Lana di vetro per alte temperature</span></li>
           <li><b>Coroplast</b><span>Nastri adesivi, PVC</span></li>
           <li><b>Dörken Delta</b><span>Membrane e teli: siamo deposito, tutta la gamma a&nbsp;stock</span></li>
           <li><b>Termit Isolbag&nbsp;039</b><span>Il nostro feltro e pannello imbustato, λD&nbsp;0,039&nbsp;W/mK</span></li>
@@ -565,7 +602,7 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
       <dl class="recapiti">
         <div><dt>Email</dt><dd><a class="link" href="mailto:info@termit.biz">info@termit.biz</a></dd></div>
         <div><dt>Magazzino e uffici</dt><dd>Via Emilia Romagna 19, 35020 Saonara (PD). <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Termit%20srl%2C%20Via%20Emilia%20Romagna%2019%2C%2035020%20Saonara%20PD">Come arrivare</a></dd></div>
-        <div><dt>Orari</dt><dd><span class="orari-t"><span>Lunedì-venerdì</span><span>8.30-12.30 e 14.00-18.00</span><span>Sabato e domenica</span><span>chiuso</span></span><span class="sec" id="stato-2"></span></dd></div>
+        <div><dt>Orari</dt><dd>Lunedì-venerdì, 8.30-12.30 e 14.00-18.00<br>Sabato e domenica chiuso<br><b id="stato-2"></b></dd></div>
         <div><dt>Ordini</dt><dd>Solo per scritto, via email.</dd></div>
       </dl>
     </div>
@@ -690,13 +727,13 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
   var ETI = {fuoco:'protezione dal fuoco',alte:'alte temperature',navale:'navale',canali:"canali d'aria",tubi:'tubazioni',acustica:'acustica',freddo:'criogenico'};
   // le marche, come le scrive la pagina Partners: a quale famiglia del catalogo corrispondono
   var MARCHE = [
-    {k:['knauf'], n:'Knauf Insulation', f:'Lana di roccia', t:'per la lana di roccia'},
-    {k:['ursa'], n:'Ursa', f:'Lana di vetro', t:'per la lana di vetro'},
-    {k:['k flex','kflex'], n:'K-Flex', f:'Elastomero espanso', t:"per l'elastomero espanso"},
-    {k:['unifrax'], n:'Unifrax', g:'alte', t:'per le fibre ad alta temperatura'},
-    {k:['morgan'], n:'Morgan', g:'alte', t:'per le fibre ad alta temperatura'},
-    {k:['coroplast'], n:'Coroplast', f:'Accessori', w:'nastro', t:'per i nastri adesivi e il PVC'},
-    {k:['dorken','delta'], n:'Dörken Delta', vuoto:true, t:'per membrane e teli: siamo deposito, con tutta la gamma Delta a stock'}
+    {k:['knauf'], c:['knauf'], n:'Knauf Insulation', f:'Lana di roccia', t:'per la lana di roccia', e:'di lana di roccia'},
+    {k:['ursa'], c:['ursa'], n:'Ursa', f:'Lana di vetro', t:'per la lana di vetro', e:'di lana di vetro'},
+    {k:['k flex','kflex'], c:['k-flex','kflex'], n:'K-Flex', f:'Elastomero espanso', t:"per l'elastomero espanso", e:'di elastomero espanso'},
+    {k:['unifrax'], c:['unifrax'], n:'Unifrax', g:'alte', t:'per le fibre ad alta temperatura', e:'per alte temperature'},
+    {k:['morgan'], c:['morgan'], n:'Morgan', g:'alte', t:'per le fibre ad alta temperatura', e:'per alte temperature'},
+    {k:['coroplast'], c:['coroplast'], n:'Coroplast', f:'Accessori', w:'nastro', t:'per i nastri adesivi e il PVC', e:'dei nastri'},
+    {k:['dorken','delta'], c:['dorken'], n:'Dörken Delta', vuoto:true, t:'per membrane e teli: siamo deposito, con tutta la gamma Delta a stock'}
   ];
   var MAX = 6;
   var q = document.getElementById('q'), lista = document.getElementById('risultati'), altri = document.getElementById('altri'),
@@ -725,22 +762,25 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
     var t = norm(q.value), m = null;
     if (!t && !tag) return null;
     var tok = t ? t.split(' ') : [];
+    if (t && !tag && (m = marca(t))) {
+      // una marca: prima le schede che la nominano, poi quelle della famiglia che tratta (pagina Partners)
+      var cita = D.filter(function(o){ return m.c.some(function(c){ return o.s.indexOf(c) >= 0; }); });
+      var fam = m.vuoto ? [] : D.filter(function(o){ return cita.indexOf(o) < 0 && (m.f ? o.f === m.f : true) && (m.g ? o.g.indexOf(m.g) >= 0 : true) && (m.w ? o.s.indexOf(m.w) >= 0 : true); });
+      return {r: cita.concat(ordina(fam, '')).map(function(o, i){ return [o, i]; }).sort(function(a, b){ return (!a[0].p - !b[0].p) || (a[1] - b[1]); }).map(function(x){ return x[0]; }), m: m}; // prima le schede con il PDF
+    }
     var r = D.filter(function(o){
       if (tag && o.g.indexOf(tag) < 0) return false;
       for (var i = 0; i < tok.length; i++) if (o.s.indexOf(tok[i]) < 0 && norm(o.n).indexOf(tok[i]) < 0 && o.s.indexOf(radice(tok[i])) < 0) return false;
       return true;
     });
-    if (!r.length && t && (m = marca(t))) {
-      r = m.vuoto ? [] : D.filter(function(o){ return (m.f ? o.f === m.f : true) && (m.g ? o.g.indexOf(m.g) >= 0 : true) && (m.w ? o.s.indexOf(m.w) >= 0 : true); });
-    } else m = null;
-    return {r: ordina(r, t), m: m};
+    return {r: ordina(r, t), m: null};
   }
   function mostra(){
     var x = trova();
     svuota.classList.toggle('si', !!(q.value || tag));
     if (x === null){ lista.hidden = true; altri.hidden = true; conta.innerHTML = ''; nota.innerHTML = ''; return; }
     var r = x.r, vis = aperto ? r : r.slice(0, MAX);
-    nota.innerHTML = x.m ? esc(x.m.n) + ' è il nostro partner ' + esc(x.m.t) + '.' + (x.m.vuoto ? ' Le schede: chiamate lo <a class="link" href="tel:+39049640060">049&nbsp;640060</a>.' : ' Ecco le schede a catalogo:') : '';
+    nota.innerHTML = x.m ? esc(x.m.n) + ' è il nostro partner ' + esc(x.m.t) + '.' + (x.m.vuoto ? ' Per le schede chiamate lo <a class="link" href="tel:+39049640060">049&nbsp;640060</a>.' : ' Qui le schede che la nominano e quelle ' + esc(x.m.e) + ' a catalogo.') : '';
     lista.hidden = !r.length && !!x.m;
     lista.innerHTML = r.length ? vis.map(riga).join('') : (x.m ? '' : '<li class="vuoto">Nessuna scheda con queste parole. Provate con il materiale, oppure chiamate lo <a class="link" href="tel:+39049640060">049&nbsp;640060</a>.</li>');
     altri.hidden = !r.length;
@@ -799,7 +839,8 @@ a.salta:focus{width:auto;height:auto;clip-path:none;left:16px;top:12px;backgroun
     if (f.messaggio.value.trim()) righe.push('', f.messaggio.value.trim());
     if (t === 'Pezzi su misura') righe.push('', '(Allego il disegno.)');
     var ogg = t + ' - ' + f.azienda.value.trim();
-    location.href = 'mailto:info@termit.biz?subject=' + encodeURIComponent(ogg) + '&body=' + encodeURIComponent(righe.join('\n'));
+    var m = 'mailto:info@termit.biz?subject=' + encodeURIComponent(ogg) + '&body=' + encodeURIComponent(righe.join('\r\n'));
+    if (window.__provaMail) window.__provaMail(m); else location.href = m; // __provaMail: solo per i controlli automatici
   });
 })();
 </script>

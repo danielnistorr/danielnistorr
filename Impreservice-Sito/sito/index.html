@@ -88,7 +88,8 @@ html[lang=en] .pref{display:inline}
 .apertura .lead{margin-top:28px;max-width:27em;color:rgba(255,255,255,.88)}
 .apertura .azioni{margin-top:40px}
 .ap-segno{grid-column:6/13;grid-row:1;align-self:end;min-width:0;padding-left:48px}
-.ap-segno img{width:calc(100% + (100vw - min(100vw - 2 * var(--m), 1280px)) / 2);max-width:none;height:auto}
+.ap-segno{--b:calc((100vw - min(100vw - 2 * var(--m), 1280px)) / 2)}
+.ap-segno img{width:min(100% + var(--b), 920px);max-width:none;height:auto;margin-left:auto;margin-right:calc(-1 * var(--b))}
 .prova-breve{display:none;margin-top:16px;font-size:var(--f1);color:rgba(255,255,255,.78)}
 .ingressi{grid-column:1/-1;grid-row:2;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--filo-chiaro)}
 .ingressi li+li{border-left:1px solid var(--filo-chiaro)}
@@ -102,15 +103,15 @@ html[lang=en] .pref{display:inline}
 .ingressi .ponti-porta .et{color:rgba(255,255,255,.86)}
 
 /* Versioni: un solo modello di scheda per le cinque versioni */
-.versioni{padding:var(--sez) 0}
-.capo{align-items:end;margin-bottom:56px}
+.versioni{padding:calc(var(--sez) - 24px) 0 var(--sez)}
+.capo{align-items:end;margin-bottom:48px}
 .capo .tit{grid-column:1/7}
 .capo .lead{grid-column:7/13;font-size:var(--f3);color:var(--testo-2)}
 .schede{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
 .scheda{display:flex;flex-direction:column;background:var(--nebbia);text-decoration:none;color:var(--testo)}
 .scheda:hover{color:var(--testo);outline:1.5px solid var(--blu)}
-.scheda .vis{display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;border-bottom:1px solid var(--filo)}
-.scheda .vis img{width:auto;height:76%;mix-blend-mode:multiply}
+.scheda .vis{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:2/1;border-bottom:1px solid var(--filo)}
+.scheda .vis img{position:absolute;inset:0;margin:auto;width:auto;height:88%;mix-blend-mode:multiply}
 .scheda .cifra{font-size:var(--f7);line-height:1;letter-spacing:-.03em;color:var(--blu)}
 .scheda .cifra small{font-size:var(--f5);letter-spacing:-.01em}
 .scheda .corpo{padding:24px 28px 28px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -264,6 +265,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 @media (max-width:1320px){
   :root{--m:64px}
   .menu{gap:22px}
+  .ap-segno{grid-column:7/13;padding-left:24px}
 }
 /* 1024: menu nel bottone */
 @media (max-width:1199px){
@@ -273,6 +275,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:100%;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:var(--f4)}
   .menu.aperto a{padding:12px 0;border-bottom:1px solid var(--filo)}
   .menu.aperto .solo-menu{display:block}
+  .ap-segno{grid-column:8/13;padding-left:0}
   .accessori h3{grid-column:1/-1;margin-bottom:20px}
   .accessori .testo{grid-column:1/8}
   .accessori .azioni{grid-column:8/13}
@@ -287,6 +290,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .testata .offerta{display:none}
   .ap-testo{grid-column:1/-1;padding-bottom:0}
   .ap-segno{grid-column:1/-1;grid-row:2;margin-top:48px;padding-left:0}
+  .ap-segno{--b:var(--m)}
   .ap-segno img{width:calc(100% + var(--m))}
   .ingressi{grid-row:3;grid-template-columns:repeat(2,minmax(0,1fr))}
   .ingressi li:nth-child(3){border-left:0}
@@ -339,11 +343,12 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .ingressi a{padding:18px 16px 22px}
   .ingressi li:first-child a,.ingressi li:nth-child(3) a{padding-left:var(--m)}
   .video .play{left:12px;bottom:12px;height:48px;padding:0 16px}
+  .versioni{padding:var(--sez) 0}
   .capo{margin-bottom:36px}
   .schede{grid-template-columns:1fr}
   .scheda{display:grid;grid-template-columns:112px minmax(0,1fr)}
   .scheda .vis{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--filo)}
-  .scheda .vis img{width:100%;height:auto;max-height:112px;object-fit:contain}
+  .scheda .vis img{position:static;width:100%;height:auto;max-height:112px;object-fit:contain}
   .scheda .cifra{font-size:var(--f5)}
   .scheda .corpo{padding:16px}
   .scheda.consiglio{display:flex}
@@ -440,7 +445,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
           <p class="etichetta" data-en="Tunnelling">Gallerie</p>
           <h2 id="t-versioni" data-en="Which Easy Click?">Quale Easy Click?</h2>
         </div>
-        <p class="lead" data-en="Patented connection and alignment system for precast segments: socket and snap-in pin. Five versions, chosen according to the required mechanical characteristics. Shear values and dimensions: ask for the data sheet of each version.">Sistema brevettato di connessione e allineamento per conci prefabbricati: bussola e perno a scatto. Cinque versioni, da scegliere secondo le caratteristiche meccaniche richieste. Valori di taglio e misure: chiedete la scheda tecnica di ogni versione.</p>
+        <p class="lead" data-en="Patented connection and alignment system for precast segments: socket and snap-in pin. Five versions, chosen according to the required mechanical characteristics; Smart HD reaches a shear value of 480 kN. Shear values and dimensions: ask for the data sheet of each version.">Sistema brevettato di connessione e allineamento per conci prefabbricati: bussola e perno a scatto. Cinque versioni, da scegliere secondo le caratteristiche meccaniche richieste; Smart HD arriva a 480&nbsp;kN di taglio. Valori di taglio e misure: chiedete la scheda tecnica di ogni versione.</p>
       </div>
       <div class="schede">
         <a class="scheda" href="#offerta" data-versione="Easy Click Smart">

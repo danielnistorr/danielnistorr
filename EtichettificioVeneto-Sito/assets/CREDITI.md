@@ -1,8 +1,19 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026.
 
-## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Etichettificio Veneto]
+## Nella home di oggi (livello professionale, 3/11/2026)
+
+Decisione del committente sulle foto: "niente". Dalla home sono state **tolte tutte le foto di repertorio e i fotomontaggi**: l'etichetta in lamina oro (Katie Harp, Unsplash, con il logo dell'azienda), i vasetti di Maram, la bottiglia e i flaconcini di Leeloo The First, la striscia di bar code di Anna Shvets (Pexels) e il nastro in macchina di Anthony Roberts (Unsplash). Le loro versioni lavorate sono uscite da `sito/img/`; restano solo nella copia della versione 1 (`_prova/versione-1-originale/sito/img/`) e, come originali, in `esterne/` per i prototipi. Nessuna illustrazione o disegno al loro posto.
+
+In `sito/img/` oggi ci sono solo materiali dell'azienda, presi dal suo sito:
+- `sede-facciata-1110/800/560.webp`: la facciata della sede di via Irpinia (`originali/2015-11-sld02.jpg`, 1920x720), tagliata a 1110x720, cielo meno saturo e riflessi arancio del ricciolo riportati all'oro della lastra (`_prova/script/pro_img.py`). Mai ingrandita oltre il file.
+- `logo-etichetta.png`: il logo con la cornice e il filo arancio (`originali/logo-colore-cornice-337x187.png`), solo rifilato.
+- `favicon.png`: la "E" del logo (`originali/logo-favicon-E-80.png`).
+
+Le sezioni qui sotto restano come registro delle licenze delle foto scaricate il 24/10/2026: nessuna di queste è più nella home.
+
+## Foto esterne in `esterne/` (segnaposto della versione 1, non più usati nella home)
 
 Queste foto NON mostrano etichette stampate da Etichettificio Veneto, i suoi reparti o le sue macchine. Servono solo a mostrare la direzione artistica nella proposta e vanno sostituite con foto vere prima di qualsiasi uso pubblico (lo dirà anche il LEGGIMI). Nessuna immagine generata dall'IA: ho scartato i rendering 3D trovati nelle ricerche (flaconi e vasetti "mockup").
 

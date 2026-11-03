@@ -4,65 +4,77 @@ Proposta non richiesta, solo la home. Non è pubblicata, l'azienda non è stata 
 
 ## Cosa c'è
 
-- `sito/index.html`: la home finale, statica, si apre con file:/// o da qualsiasi server. Immagini in `sito/img/` (WebP in più larghezze), caratteri in `sito/fonts/` (Mona Sans).
-- `screenshot/home/`: `home-1440.jpg` (5850 px), `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`; `NOTA.md` spiega idea, scelte e controlli.
-- `_prova/script/build_finale.sh` rifà tutto: immagini (`finale_img.py`), logo (`finale_logo.py`), pagina (`finale_html.py`), screenshot (`finale_shot.mjs`), controlli (`finale_controlli.mjs` e `segnali.sh`).
-- `01-analisi.md`: fatti con le fonti, foto con i voti, direzioni; `_prova/home/a` e `b`: i due prototipi da cui nasce la finale.
+- `sito/index.html`: la home, livello professionale del 3 novembre 2026; statica, si apre con file:/// o da qualsiasi server. Immagini in `sito/img/` (WebP, solo foto loro), caratteri in `sito/fonts/` (Mona Sans).
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`; `NOTA.md` spiega struttura, scelte ed esito delle 15 regole.
+- `_prova/script/build_finale.sh` rifà tutto: logo (`finale_logo.py`), foto (`pro_img.py`), screenshot (`pro_shot.mjs`), controlli (`pro_controlli.mjs`, esito in `_prova/pro_controlli.json`).
+- `_prova/versione-1-originale/`: la home di prima ("Pezzi dal pieno, su disegno"), con sito e screenshot.
+- `_prova/uso/SCHEDA.md`: chi apre il sito e per cosa; `01-analisi.md`: i fatti con le fonti.
 
-## Dati da confermare con l'azienda
+## Il modulo "Mandaci il disegno" va collegato a un servizio
 
-Nessuno di questi è in pagina come segnaposto; dove serve, la pagina usa solo ciò che il sito dice già.
+Oggi il modulo non invia nulla: compone un'email (mailto) a info@meccanicamasi.it con oggetto e campi già scritti, e apre il programma di posta di chi lo compila. Un mailto non porta allegati: il nome del disegno scelto finisce nel testo e la pagina dice di allegarlo a mano.
 
-- **1977**: in pagina c'è "A Padova dal 1977" nella chiusura, dopo la frase "Chi ci chiama parla con chi lavora..." (non più nella prima schermata), preso da "Fondata nel 1977" e "A PADOVA DAL 1977" del sito di oggi. Il sito dice anche 35 anni, 30 anni, "quasi 50" e "oltre cinquant'anni"; la srl è iscritta il 01/04/2019. Va chiesto di che officina è il 1977 e che legame c'è con "Masi Macchine Grafiche S.R.L." del logo precedente. Se non torna, si toglie la riga.
-- **Permesso per la leva in apertura**: la foto della leva con settore dentato (appena fresata e verniciata) è il centro della pagina; la didascalia dice "Fresata CNC dal pieno, alesatura H7", come la scheda del progetto. Chiedere se il pezzo si può mostrare (sul sito è già pubblicato nei Progetti) e se il cliente va nominato o no.
-- **Orari** lun-ven 8-18, sab 8-12: sono dell'officina o solo delle chiamate.
-- **REA**: in pagina c'è REA PD-450853 (aziende.it, companyreports.it); il sito di oggi scrive "Iscr. Reg. Imp. n. 307590256". Confermare quale vale.
-- **Capitale sociale (30.000 euro) e PEC (meccanicamasisrl@pec.it)**: presi da aziende.it, non dal sito. Non sono in pagina; si aggiungono alla riga legale del piede dopo la conferma.
-- **Camin e Matteo**: la storia del fondatore a Camin e di Matteo che "ha raccolto l'eredità del padre" non è usata in home; va bene per la pagina Chi siamo dopo la conferma (anche se la sede storica è la stessa di via dell'Artigianato). Il cognome di Matteo non va scritto senza conferma.
-- **Titolo "Pezzi dal pieno, su disegno"**: riassume le loro pagine ("lavorazione CNC dal pieno", "Pulegge dal pieno", "realizziamo qualsiasi pezzo su richiesta"); va bene se lavorano davvero quasi sempre su disegno del cliente. Se no: "Pezzi dal pieno, su misura" (dallo slider "lavorazioni CNC su misura").
-- **Linea di spedizione giornali**: in pagina "su commessa di una delle principali aziende di produzione giornali del Veneto". Il sito dice anche "abbiamo progettato e installato"; il giudice ha chiesto di non scrivere "progettata" finché non si conferma. Chiedere se il cliente è citabile.
-- **Supporto Man-Roland**: alluminio "6082 o 7075" e la verifica con macchina di misura tridimensionale (CMM): la CMM non è citata in home finché non si sa se è loro o di un fornitore.
-- **Gruppi stampa completi e prodotti brevettati** (piede del sito e Lavora con noi): non citati finché non si sa quali.
-- **Macchine**: modelli veri dietro i loghi Soraluce, Anselmi, Dahlih, Thomas, New Drill, Bosch; in home ci sono solo "6 torni, 1 a CNC" e "3 assi", come sul sito.
-- **Telefono**: c'è solo il cellulare 348 169 34 51; chiedere se esiste un fisso.
-- **Social e scheda Google**: nessun profilo vero (l'Instagram del sito porta a "#"); c'è un QR "recensioni Google" in libreria. Se esiste una scheda Google, si può aggiungere il link alla mappa con la scheda.
-- **Logo**: in pagina c'è la sola scritta vettoriale "meccanica Masi SRL" del loro SVG del 2026, senza gli ingranaggi in 3D (sono immagini raster dentro l'SVG). Chiedere quale marchio vogliono tenere (scritta con ingranaggi o ingranaggio rosso rotondo) e un vettoriale del marchio rotondo.
+Per il sito vero va collegato a un servizio che riceva i file e li inoltri a info@meccanicamasi.it: per esempio Contact Form 7, che hanno già sul WordPress di oggi, con il campo file aperto a `pdf|dxf|dwg|step|stp|jpg|jpeg|png|heic` (oggi accetta solo immagini, audio e video), un limite di circa 20 MB e una risposta automatica a chi scrive. Stessa cosa per la candidatura di "Lavora con noi" (CV in PDF). Poi, nel codice, al posto di `location.href = url` si invia il modulo al servizio.
+
+## Da chiedere all'azienda
+
+Niente di questo è in pagina come segnaposto.
+
+**Per le prove (regole 10 e 11, oggi non passano)**
+- **Recensioni**: la scheda Google esiste (il loro QR porta a `g.page/r/CXwmW46XNK4aEBM/review`, luogo CID 1922531916466824828) ma il testo non si legge in automatico. Chiedere se si possono citare due o tre recensioni con nome e comune; la pagina ha già il link "Le recensioni su Google".
+- **Clienti con il nome**: quali tipografie, cartotecniche, sacchettifici o aziende si possono nominare (anche solo il nome e la città), compresa "una delle principali aziende di produzione giornali del Veneto".
+- **Anno e luogo dei lavori**: per supporto Man-Roland, pulegge, leva in ghisa, mandrino espansibile, linea giornali, rullo pinza (le schede del vecchio sito hanno "Anno: 2015" e "Wallahia Inc." del tema).
+- **Certificazioni o associazioni** vere, se ce ne sono (il NADCAP del vecchio sito è del tema: non citarlo).
+
+**Per chi chiama**
+- **Tempi d'intervento**: si può scrivere qualcosa come "in giornata nel padovano"? Oggi la pagina dice solo "nel minor tempo possibile", come il loro sito.
+- **Prezzi o diritto di chiamata**: pubblici o no.
+- **Orari**: lun-ven 8-18 e sab 8-12 sono dell'officina o solo delle chiamate; se chiudono nei festivi nazionali (la pagina li dà per chiusi, Pasquetta compresa), il 13 giugno (Sant'Antonio, patrono di Padova) e in agosto.
+- **WhatsApp sul 348 169 34 51**: se sì, si aggiunge "Mandaci una foto su WhatsApp" accanto a "Mandaci il disegno".
+- **Telefono fisso**: c'è solo il cellulare.
+- **Fin dove arrivano**: le regioni del sito (Veneto, Friuli, Trentino, Emilia-Romagna) sono tutte servite sul posto?
+
+**Per chi manda un pezzo**
+- **Misure massime**: diametro e lunghezza al tornio, corsa della fresatrice CNC, spessore della lamiera; modelli veri dietro i loghi Soraluce, Anselmi, Dahlih, Thomas, Bosch, New Drill (in pagina ci sono solo i nomi dei costruttori).
+- **CMM**: la macchina di misura tridimensionale della scheda Man-Roland è loro o di un fornitore (non citata).
+- **Gruppi stampa completi e prodotti brevettati** (piede e Lavora con noi del sito di oggi): quali, e se si possono mostrare.
+
+**Su di loro**
+- **Anno**: 1977 o "oltre cinquant'anni"? Il sito scrive quattro date diverse; la srl è del 2019. Che legame c'è con "Masi Macchine Grafiche S.R.L." del logo vecchio. Non è in pagina finché non lo confermano.
+- **Matteo**: in pagina c'è "Matteo ha raccolto l'eredità del padre" (dal loro Chi siamo); il cognome no. Confermare che va bene.
+- **6 persone**: è il dato 2024 di aziende.it; confermare.
+- **REA**: in pagina PD-450853 (aziende.it, companyreports.it); il sito di oggi scrive "Iscr. Reg. Imp. n. 307590256". Capitale sociale e PEC (aziende.it) non sono in pagina.
+- **Cylex** dà anche via delle Gramogne 56, 35127 Padova: forse la sede di prima.
+- **Logo**: in pagina la sola scritta vettoriale "meccanica Masi SRL" (nera in testata, bianca nel piede); chiedere quale marchio tengono e un vettoriale del marchio rotondo con l'ingranaggio.
+- **Permesso per le foto** della loro libreria e per mostrare i pezzi dei clienti.
 
 ## Foto: cosa rifare dal vero e come
 
-Le foto vere reggono a metà (voti in `_prova/inventario-immagini.json`); la home ora usa solo foto loro, nessuna di repertorio. Il fondo della pagina (#E1E6DE) è il verde grigio del loro tappetino da banco schiarito: se le foto nuove si fanno su un altro fondo, conviene ripensare anche il colore della pagina.
+La home usa solo foto loro (elenco in `assets/CREDITI.md`), mai ingrandite: le più importanti sono caricate a 598 px. Sono foto da telefono di giorni e luci diverse, rese simili con un trattamento comune. Il servizio che serve, mezza giornata con un solo fotografo e una sola luce:
 
-1. **Leva appena fresata e leva verniciata** (apertura e interruttore): oggi due foto da telefono di due lati diversi, la grezza dall'alto su carta, la verniciata di tre quarti su un fondale grigio. In pagina sono come sono state scattate (nessuno specchio) e la didascalia dice "Lo stesso pezzo, visto da due lati". Da rifare in still life sullo stesso fondo (cartoncino verde grigio chiaro, circa #E1E6DE, senza pieghe), **stessa inquadratura per le due fasi**, vista dall'alto come la grezza di oggi, dentatura in basso; luce morbida da sinistra con un pannello bianco a destra, ombra corta; obiettivo 70-100 mm, diaframma 11, almeno 4000 px di lato lungo. Così il prima e dopo coincide al millimetro e l'interruttore diventa un vero confronto.
-2. **Mandrino espansibile** (fascia a tutta larghezza): foto a 1200 px su banco scuro, a 1440 è ingrandita di 1,2 volte. Chiedere l'originale o rifarla dall'alto, pezzo intero, banco pulito, luce di finestra; orizzontale 2:1.
-3. **Supporto Man-Roland e pulegge**: oggi su tappetino verde da banco con segni e riflessi; il supporto è tagliato a sinistra già nella foto. Rifare sullo stesso set della leva, pezzo intero con margine.
-4. **Linea di spedizione giornali**: foto da telefono con grandangolo, ritagli di carta a terra (tagliati fuori). Se si torna dal cliente: inquadratura ad altezza d'occhio sulla curva a 90 gradi, pavimento pulito, luce del reparto.
-5. **Interno della macchina da stampa** (pulegge e cinghie): bella ma caricata a 598 px. Chiedere l'originale a piena risoluzione (scattata il 05/07/2023 secondo il nome del file).
-6. **Reparto**: mezza giornata con luce di finestra per la pagina L'officina (fresatrice CNC a 3 assi con un pezzo in tavola, un tornio con il truciolo, la piegatrice), inquadrature orizzontali larghe 3:1 o 2:1.
-7. **Un rullo per offset o flexo finito**: manca del tutto ed è la loro lavorazione più richiesta; serve per la pagina Rulli per la stampa.
+1. **Apertura, "In azienda da voi"**: un loro tecnico dentro una macchina da stampa di un cliente, mani e attrezzi sul gruppo rulli, la macchina aperta. Orizzontale 2:1, almeno 2400 px. Intanto chiedere l'originale di `IMG20230705092448.jpg` (pulegge e cinghie, 05/07/2023), oggi a 598 px.
+2. **Apertura, "In officina da noi"**: la fresatrice Soraluce o un tornio con un pezzo e una persona al pannello, luce di finestra. Intanto l'originale di `IMG_20200108_174328.jpg`.
+3. **Squadra e sede**: le sei persone davanti all'officina di via dell'Artigianato con l'insegna, e il furgone se c'è; serve per "Chi siamo" e per la regola 3 (oggi in pagina non ci sono persone). Le due foto esterne della libreria sembrano Street View: non usate.
+4. **Manutenzione**: gli originali senza la scritta "SHOT ON MI" di `IMG_20210409_073157.jpg` (rulli) e `IMG_20210901_112738.jpg` (confezionatrice); meglio rifarle con il tecnico al lavoro.
+5. **Lavorazioni**: tornio con il truciolo, fresatrice con il pezzo in tavola, piegatrice con una lamiera lunga, saldatura TIG; tutte 4:3, stessa luce. La foto della lamiera di oggi è un dettaglio poco leggibile.
+6. **Un rullo per offset o flexo finito**: manca ed è la loro lavorazione più richiesta.
+7. **Lavori**: supporto Man-Roland e pulegge rifatti interi su un fondo neutro (oggi tappetino verde e pezzo tagliato a sinistra); la leva sullo stesso fondo.
 
 ## Licenze
 
-- **Mona Sans** (GitHub, distribuita da Google Fonts): SIL Open Font License 1.1, uso commerciale libero; file woff2 variabili (peso e larghezza) serviti dalla pagina in `sito/fonts/`.
-- **Foto dell'azienda**: scaricate dalla libreria media pubblica del loro sito; uso nella proposta da confermare.
-- **Foto di repertorio**: nessuna nella home (la fresatrice di Connor Lucock, Pexels, è stata tolta il 2 novembre 2026). Dettagli in `assets/CREDITI.md`.
-- **Jost** (Google Fonts, SIL Open Font License 1.1): solo le tre lettere "SRL" del logo, convertite in tracciati dentro l'SVG; il file del carattere non è servito dalla pagina.
-- Nessuna immagine generata dall'IA: le cinque immagini Gemini della loro libreria sono escluse.
+- **Mona Sans** (GitHub, distribuita da Google Fonts): SIL Open Font License 1.1, uso commerciale libero; woff2 variabili in `sito/fonts/`.
+- **Jost** (Google Fonts, SIL OFL 1.1): solo "SRL" del logo, in tracciati; non servito dalla pagina.
+- **Foto**: della libreria media pubblica del loro sito; uso da confermare. Nessuna foto di repertorio in pagina (quelle di `assets/esterne/` non sono usate), nessuna immagine generata dall'IA (le cinque Gemini della loro libreria sono escluse), nessuna illustrazione.
 
 ## Loghi
 
-- `sito/img/logo-masi-scritta.svg`: la scritta vettoriale del loro `logo-meccanica-masi-srl-modificato.svg` (Inkscape, 2026), tracciati originali, rosso #ED1C24 e nero #231F20, tolti gli ingranaggi raster, i metadati e i contorni bianchi; riquadro stretto sulla scritta. "SRL", che nell'originale era un testo in Futura Heavy (il browser lo mostrava in Times), è in tracciati presi da Jost 800 nella stessa posizione e corpo. Da sostituire con il vettoriale vero del marchio quando l'azienda lo manda.
-- Usata in testata (112 px) e nel piede (136 px) e come icona della scheda.
+- `sito/img/logo-masi-scritta.svg`: la scritta vettoriale del loro `logo-meccanica-masi-srl-modificato.svg`, rosso #ED1C24 e nero #231F20, senza gli ingranaggi raster; "SRL" in tracciati da Jost 800. `logo-masi-scritta-chiaro.svg` è la stessa con il nero portato a bianco, per il piede.
 
-## Pagine del sito nuovo a cui puntano i link
+## Collegamenti in pagina
 
-La home ha già i link; le pagine sono da fare.
-
-- `chi-siamo.html`, `officina.html`, `lavora-con-noi.html`
-- `lavorazioni/`: `rulli-per-la-stampa.html`, `tornitura.html`, `fresatura-cnc.html`, `lamiera.html`, `saldatura.html`, `manutenzione-sul-posto.html`, `installazione-macchine.html` (sette schede)
-- `progetti/` (elenco) e otto schede: `leva-settore-dentato.html`, `supporto-rullo-man-roland.html`, `pulegge-dal-pieno.html`, `basamento-braccio-robotico.html`, `svolgitore.html`, `linea-spedizione-giornali.html`, `mandrino-espansibile.html`, `rullo-pinza-fondellatrice.html` (la home ne linka sette: il mandrino espansibile compare solo come foto con la didascalia)
-- `privacy.html`, `cookie.html` (oggi `privacy-policy-2` e iubenda)
-- Contatti punta alla chiusura della home (`#contatti`); Settori a `#settori`.
+- Tutti i link interni puntano a sezioni della home (Manutenzione, Lavorazioni, Lavori, Mandaci il disegno, Chi siamo, Lavora con noi, Contatti): nessuna pagina da fare per far funzionare la home. Privacy porta alla loro pagina di oggi (`meccanicamasi.it/privacy-policy-2/`); il cookie banner (iubenda) resta da rimettere sul sito vero.
+- Mappa: "Apri la mappa" sulla scheda Google con il CID; "Indicazioni stradali" con `google.com/maps/dir`.
 
 ## Newsletter
 
-Non c'è: lavorano su commessa per altre aziende, non hanno fiere, cataloghi, collezioni né clienti privati da tenere informati (il plugin Hostinger Reach è installato ma mai usato).
+Non c'è: lavorano su commessa per altre aziende, senza fiere, cataloghi, collezioni né clienti privati da tenere informati.

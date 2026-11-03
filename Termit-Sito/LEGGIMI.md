@@ -1,63 +1,50 @@
 # Termit, proposta di nuova home: leggimi
 
-Proposta non richiesta di nuova homepage per Termit srl (Saonara, PD). Solo la home.
+Proposta non richiesta di nuova homepage per Termit srl (Saonara, PD). Solo la home. Versione del 03/11/2026, "livello professionale": prima l'uso (chi riordina dal telefono, l'ufficio tecnico che cerca un prodotto, chi manda un disegno), poi la loro identità, poi l'esecuzione da studio. Regole in `_metodo/professionale/REGOLE.md`, famiglia M; esito regola per regola in `screenshot/home/NOTA.md`.
 
 ## Cosa c'è
 
-- `sito/index.html`: la home finale, statica, si apre con file:///. Caratteri in `sito/fonts/`, immagini in `sito/img/` (solo quelle usate).
-- `screenshot/home/`: home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg, chiusura-1440.jpg, e `NOTA.md` (idea, schermate, caratteri, colori, interazione, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà immagini (`finale_img.py`, con la coppella da `finale_coppella.py`), pagina (`build_pagina.py` dal modello `finale_modello.html`) e screenshot (`finale_screenshot.mjs`). `finale_prova_ricerca.mjs` prova la ricerca con tastiera e dito; `finale_shot.mjs` fotografa a più larghezze; `finale_controlli.mjs` misura lo scorrimento orizzontale da 320 a 2560 e controlla tel, mailto, mappa e ancore.
-- `01-analisi.md`: fatti con le fonti. `assets/CREDITI.md`: origine e licenza di ogni foto. `_prova/home/a` e `b`: i due prototipi.
+- `sito/index.html`: la home, statica, si apre con file:///. Caratteri in `sito/fonts/`, immagini in `sito/img/` (solo il taglio ad acqua, il logo e la favicon).
+- `screenshot/home/`: home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg, chiusura-1440.jpg, `NOTA.md`.
+- `_prova/script/build_finale.sh`: rifà tutto (immagini `pro_img.py`, pagina `pro_build.py` dal modello `pro_modello.html`, screenshot `finale_screenshot.mjs`, controlli `pro_controlli.mjs` con esito in `_prova/pro_controlli.json`). `pro_schede_pdf.py` rilegge da termit.biz gli indirizzi delle pagine prodotto e dei PDF (`_prova/crawl/schede-pdf.json`).
+- `_prova/versione-1-originale/`: la home di prima (coppella disegnata, foto di repertorio, newsletter) con i suoi screenshot.
+- `01-analisi.md` (fatti con le fonti, sez. 10 aggiunta il 03/11/2026), `_prova/uso/SCHEDA.md` (identità e uso), `assets/CREDITI.md`.
 
-## Dati da confermare con l'azienda (in pagina solo dove indicato)
+## Da chiedere o confermare con l'azienda (in pagina solo ciò che è nelle fonti)
 
-- Anno di inizio dell'attività. In pagina c'è il loro titolo "Una storia lunga più di cinquant'anni" (Chi siamo); LinkedIn dice "oltre 55 anni", la srl è iscritta il 03/01/2000. Esisteva una ditta precedente?
-- Email da mostrare: in pagina info@termitisolanti.com (piede del sito di oggi); le condizioni di fornitura scrivono info@termit.biz, e termitisolanti.com non risponde in https.
-- Macchina da taglio ad acqua: è loro e sta a Saonara? Marca, piano di lavoro, spessori e materiali che taglia. In pagina solo "Pezzi su misura, lavorati in casa" (dal loro "lavorazione interna") e la didascalia delle teste.
-- Mezzi propri: quanti camion, con il logo? In pagina "il più delle volte con mezzi propri" e "automezzi lunghi circa 10 metri" (condizioni di fornitura). "Con i nostri camion" non è usato.
-- Validità della medaglia EcoVadis bronzo (anno) e adesione a EIIF.
-- Grafia del deposito: in pagina "Dörken Delta" (il sito scrive "Dorken").
-- Capitale sociale 5.000.000 € (aziende.it): non mostrato, alto per 11 dipendenti.
-- Fax 049 644900: non mostrato, è ancora attivo?
-- Le schede della ricerca (138 uniche, con spessori, λ ed Euroclasse) vengono dal crawl del 24/10/2026 e dalle schede dei produttori; nel sito vero vanno lette dal catalogo. La scheda FF (filo di ferro) aveva perso uno zero nell'estrazione: corretta in "0,5 e 1,0 mm" come scrive la scheda.
-- La coppella dell'apertura: in pagina "Coppella in lana di roccia, in sezione", "Spessori 20-120 mm" e "λ da 0,037 a 0,044 W/mK", "Rivestimento in alluminio retinato". Sono i valori delle coppelle a catalogo nel crawl (K-ROCK ALU e POWER-TEK PS680 20-120 mm, THERMO-TEK PS PRO ALU λ 0,037, ISOCAMINO λ 0,044): confermare che siano a magazzino e quale coppella fotografare. Nessun codice di fornitore è mostrato in apertura.
-- Nella ricerca le schede navali (SEA-TEK, POWER-TEK, THERMO-TEK) sono messe nella famiglia Lana di roccia, che è il loro materiale; "Navale" resta come esigenza.
-- Tolta dalla chiusura la riga "Nuovo listino dal 28 marzo 2026" (notizia del crawl, non in `01-analisi.md`): il listino resta promesso dalla newsletter del piede.
-- Il certificato Ogyre è intestato ad ANICTA: non è citato.
-- "Leader", "pioniere", "tra le più importanti realtà nazionali": non usati, mancano i numeri.
+1. **Email.** In pagina info@termit.biz (condizioni di fornitura e post LinkedIn); il piede del sito di oggi scrive info@termitisolanti.com, che non risponde in https. Quale usare?
+2. **Ordini per fax.** Le condizioni ammettono il fax (049 644900): è ancora attivo? In pagina non c'è; gli ordini sono "per scritto, via email".
+3. **Ritiro al banco.** Si può ritirare a Saonara? Non è scritto da nessuna parte: in pagina c'è solo "Come arrivare" al magazzino.
+4. **Mezzi propri o trasportatori.** Chi siamo dice "il più delle volte con propri mezzi", le condizioni "trasportatori specializzati" con automezzi di circa 10 metri. In pagina ci sono tutte e due le frasi come le scrivono loro: quanti camion propri ci sono, con il logo?
+5. **Zone servite e tempi tipici.** In pagina solo "da 1 a 7 giorni" dal ritiro in magazzino (condizioni). Consegnano in tutta Italia? Quanto ci vuole di solito nel Veneto?
+6. **Pezzi su misura.** Formati accettati per il disegno (PDF, DXF, STEP?), tempi in giorni, spessori massimi della macchina ad acqua. In pagina "disegno quotato in allegato" senza formati.
+7. **Orari.** Chiusure estive, ponti e patrono di Saonara: lo stato "Aperti ora / Chiusi" conosce solo i festivi nazionali e il lunedì dell'Angelo.
+8. **Numeri.** In pagina: più di cinquant'anni (Chi siamo), ISO 9001 dal 2004 (certificato RINA), 251 schede a catalogo (contate sul sito), 11 dipendenti (aziende.it, 2025). Confermare gli 11 dipendenti e l'anno di inizio dell'attività (la srl è iscritta il 03/01/2000; LinkedIn dice "oltre 55 anni"). Superficie del magazzino e numero di referenze a stock, se si possono dire: sarebbero due numeri forti per la fascia verde. Il fatturato (13,3 milioni, aziende.it) non è in pagina.
+9. **Recensioni.** Nessuna trovata (Google Maps e Pagine Gialle non si aprono in automatico). Guardare a mano la scheda Google e chiedere se si possono citare due o tre clienti con nome e comune.
+10. **Clienti e lavori con nome.** La famiglia M dei riferimenti mostra progetti con cliente, luogo e anno: chiedere 3 lavori su misura (per esempio un forno, una cabina insonorizzata, un cantiere navale) con il permesso di citarli e una foto ciascuno.
+11. **EcoVadis** (anno della medaglia di bronzo) ed **EIIF** (adesione ancora attiva). Il certificato Ogyre è intestato ad ANICTA: non è citato.
+12. **Partner.** In pagina le marche come le scrive la pagina Partners; la ricerca, scrivendo una marca, mostra le schede che la nominano e quelle della famiglia che la pagina Partners le associa (K-Flex per l'elastomero, Ursa per la lana di vetro...). Confermare l'abbinamento marca e famiglia, o dare il marchio di ogni scheda.
+13. **Schede.** 138 schede nella ricerca (crawl del 24/10/2026), 126 con il PDF del produttore e 137 con la pagina su termit.biz; la pagina di Termit Isolbag 039 risponde 404. Nel sito vero la ricerca va letta dal catalogo.
+14. **Link.** Le famiglie, i settori, Chi siamo, il certificato e le condizioni di fornitura aprono le pagine vere di termit.biz di oggi. Privacy e Cookie puntano a `privacy/` e `cookie/`, da scrivere (oggi l'informativa sta su un dominio esterno).
+15. **Logo vettoriale.** Esiste solo in raster (PNG 539x85, ricolorato nel verde #51B038): chiederlo al grafico o a Two Made srl.
+16. **Diritti della foto del taglio ad acqua.** È l'unica foto loro: confermare che sia scattata da Termit nel loro capannone.
 
-## Foto da rifare dal vero (una giornata in azienda)
+## Modulo di contatto: da collegare
 
-Tutte le immagini della home sono segnaposto tranne il taglio ad acqua. Pexels e Unsplash non hanno una coppella o un tubo coibentato in sezione su fondo chiaro senza marchi leggibili, né un magazzino di isolanti (ricerche annotate in `assets/CREDITI.md`). L'apertura è un'illustrazione: la fibra è una foto di repertorio (Akyurt, Pexels) avvolta in cerchio, rivestimento e tubo sono disegnati. Priorità 1: le foto 1 e 2.
+Il modulo in home ("Richiesta a Termit": ordine, offerta o listino, pezzo su misura, consiglio tecnico; nome, azienda, telefono, email, codici o materiale e quantità, indirizzo di consegna, messaggio) oggi **non invia nulla**: controlla nome, azienda e telefono e compone un'email a info@termit.biz con oggetto e campi già scritti, che il visitatore controlla e invia dal suo programma di posta. Il disegno si allega a quell'email. Per il sito vero va collegato a un servizio (per esempio il modulo del CMS con invio SMTP, o Formspree) con l'allegato del file, la ricevuta automatica e l'informativa privacy. Anche i bottoni "Scrivi un ordine", "Mandateci il disegno" e "Chiedete il listino" sono email con oggetto e traccia già compilati.
 
-1. Priorità 1. Apertura, la sezione: un tratto di tubo d'acciaio con la coppella in lana di roccia e il lamierino, tagliato netto a 90 gradi, appoggiato su un piano chiaro (carta grigio caldo, vicina a #F4F3EF). Vista di tre quarti o di fronte, perché si vedano gli anelli: tubo, coppella, nastro, lamierino. Luce morbida da un lato, un pannello bianco dall'altro, ombra corta. Almeno 4000 px sul lato lungo, a fuoco su tutto il taglio (diaframma chiuso o più scatti uniti). Va al posto dell'illustrazione della coppella, con lo stesso fondo #F4F3EF e lo stesso taglio (mezza coppella vista dal piano di taglio, legende sotto). Scattarla anche intera e lunga, per le pagine prodotto.
-2. Priorità 1. La macchina da taglio ad acqua in funzione: orizzontale, almeno 2800 px, luce controllata (niente luce mista del capannone), le teste 1, 2, 3 leggibili e un pezzo appena tagliato con il bordo netto. Va al posto della foto da telefono di oggi nella sezione Su misura.
-3. Il magazzino: pile di rotoli, pannelli e coppelle, corsia in prospettiva, verticale 4:5 per la chiusura (va al posto di Jochim).
-4. Un camion carico vero, con il logo se c'è (quello del sito di oggi è un fotomontaggio).
-5. I materiali in sezione, in macro, affiancati su fondo chiaro: lana di roccia, lana di vetro, elastomero, aerogel, calcio silicato, lamierino. Stessa luce e taglio quadrato: vanno sopra le otto famiglie della home (oggi solo testo) e nelle pagine delle famiglie.
+## Foto da fare dal vero (una giornata in azienda)
+
+Per decisione del committente in pagina non c'è nessuna foto di repertorio e nessun disegno: la home si regge su tipografia, il verde del marchio e i fatti. L'unica foto è il taglio ad acqua del loro sito (1000 px, scattata col telefono), mostrata al massimo a 656 px. Le foto da fare, in ordine di importanza, con un solo fotografo e la stessa luce:
+
+1. **Il magazzino** con le pile di rotoli, pannelli e coppelle, corsia in prospettiva, persone al lavoro che non guardano l'obiettivo. Orizzontale 3:2, almeno 3000 px: va nell'apertura a 1440, sotto il pannello della ricerca, e a 390 sotto i quattro tocchi (regola 3).
+2. **La macchina ad acqua in funzione** con luce controllata, le teste 1, 2, 3 leggibili e un pezzo appena tagliato con il bordo netto. Orizzontale, almeno 2800 px: va al posto della foto da telefono nella sezione Su misura.
+3. **Un camion carico vero** davanti al magazzino, con il logo se c'è (quello del sito di oggi è un fotomontaggio): va nella sezione Consegne.
+4. **I materiali in sezione**, in macro, stesso fondo e taglio quadrato: lana di roccia, lana di vetro, elastomero, aerogel, calcio silicato, lamierino, una coppella, un nastro. Vanno sopra le otto famiglie del catalogo (oggi solo testo, regola 9).
+5. **La squadra** (ufficio, magazzino, taglio), ritratto in magazzino: per la fascia verde "Una storia lunga più di cinquant'anni".
+6. **Tre pezzi su misura finiti** per i lavori con il nome (punto 10 sopra).
 
 ## Licenze
 
-- Caratteri: Zalando Sans e Zalando Sans Expanded, SIL Open Font License 1.1, da Google Fonts, serviti dalla pagina (`sito/fonts/OFL.txt`).
-- Foto: Pexels "Free" (Akyurt 9893816 per la fibra della coppella, Jochim 36824351 per la chiusura), verificata sulla pagina di ogni foto il 24/10/2026; uso commerciale ammesso, attribuzione non obbligatoria. Dettagli in `assets/CREDITI.md`. Nessuna immagine generata dall'IA.
-- Foto del taglio ad acqua: dal sito Termit (versione 1000x800), da confermare che sia loro.
-
-## Loghi
-
-Il logo esiste solo in raster. In pagina il PNG bianco trasparente del sito (539x85) ricolorato in verde #51B038 per la testata e in grafite #1B1C1E per il piede, a circa 3x della misura mostrata. Serve il vettoriale (chiedere al grafico o a Two Made srl, autori del sito di oggi). Un SVG ridisegnato va confrontato al 400 % con il PNG prima di usarlo.
-
-## Pagine del sito nuovo (link della home e del piede)
-
-- Prodotti: `prodotti/lana-di-roccia/`, `lana-di-vetro/`, `elastomero-espanso/`, `isolanti-nanotecnologici/`, `protezione-al-fuoco/`, `fonoisolanti/`, `rivestimenti/`, `accessori/`, ciascuna con le schede e il PDF del produttore.
-- Settori: `settori/industria/` (forni, serbatoi, coibentazioni industriali, impiantistica, fumisteria, insonorizzazione), `settori/edilizia/` (coperture industriali, tetti, sottotetti, controsoffitti, pavimenti, cappotto, pareti, canali d'aria, isolanti acustici), `settori/navale/` (SEA-TEK, POWER-TEK, THERMO-TEK, PYROGEL, FIRE-TEK); i pezzi su misura sono la sezione `#su-misura` della home.
-- Azienda: `azienda/` (chi siamo), `azienda/certificazioni/`, `azienda/partner/`, `news/`, `condizioni-di-fornitura/`.
-- `privacy/` e `cookie/`: da scrivere (oggi l'informativa sta su un dominio esterno e il piede non ha link Privacy né Cookie).
-
-## Newsletter
-
-"Listino e novità" nel piede: campo email, bottone, casella del consenso con il link all'informativa. Ha senso perché Termit pubblica ogni anno il nuovo listino e notizie di prodotto, e i clienti sono professionisti che riordinano. Non invia nulla: va collegata a un servizio (per esempio Brevo o Mailchimp) con doppia conferma e registro dei consensi; fino ad allora il modulo mostra solo un messaggio.
-
-## Note sui controlli
-
-- `segnali.sh`: tutte le soglie OK tranne l'area foto (26,6 % contro 35 %). Motivo: la coppella ha molta carta attorno, il taglio ad acqua da telefono non va mostrato oltre i 656 px e mancano foto vere dei materiali. Con gli scatti dei punti 1, 2 e 5 l'area supera il 35 %.
-- Dettagli della rifinitura e dei controlli in `screenshot/home/NOTA.md`.
+- Caratteri: Zalando Sans Expanded (titoli) e Zalando Sans (testo), SIL Open Font License 1.1, da Google Fonts, serviti dalla pagina (`sito/fonts/OFL.txt`). Uso commerciale libero.
+- Foto: solo la foto del taglio ad acqua del sito Termit e il loro logo (da confermare, punto 16). Nessuna foto di repertorio, nessuna immagine generata dall'IA, nessun disegno. Dettagli in `assets/CREDITI.md`.

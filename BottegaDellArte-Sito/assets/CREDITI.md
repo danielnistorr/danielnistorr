@@ -29,14 +29,14 @@ URL delle immagini scaricate con curl (parametri `?fm=jpg&q=82&w=2400`):
 
 Sono segnaposto: lo dice il LEGGIMI. Nessuna immagine generata dall'IA.
 
-## Home finale (`sito/`), livello professionale (3 novembre 2026)
+## Home finale (`sito/`), livello professionale (3 novembre 2026, con il ritocco finale)
 
 Usa solo foto dell'azienda da `assets/originali/`, ritagliate e trattate da `_prova/script/pro_img.py`:
-- `2020-05_Bottega_dell_Arte_Armadiature-1.jpeg` (sottoscala, apertura: `sottoscala-*`, `sottoscala-43-*`);
-- `2020-05_Bottega_dell_Arte_Librerie-1.jpeg` (`casa-libreria-*`), `2020-06_Bottega_dell_Arte_Finestre-1.jpeg` (`finestre-scuri-*`), `2020-06_universita01.jpg` (`restauro-bo-ponteggi-*`), `2020-05_Bottega_dell_Arte_Negozi_Pasticceria_Bolzano-4.jpg` (`negozi-pasticceria-*`): le quattro schede;
+- `2020-05_Bottega_dell_Arte_Armadiature-1.jpeg` (sottoscala, apertura: `sottoscala-*` 16:9, `sottoscala-43-*` 4:3, `sottoscala-34-*` 3:4);
+- `2020-05_Bottega_dell_Arte_Librerie-1.jpeg` (`casa-libreria-*`), `2020-06_Bottega_dell_Arte_Finestre-1.jpeg` (`finestre-scuri-*`), `2020-06_universita01.jpg` (`restauro-bo-ponteggi-*`), `2020-05_Bottega_dell_Arte_Negozi_Pasticceria_Bolzano-14.jpg` (`negozi-pasticceria-*`, taglio senza l'insegna): le quattro schede;
 - `2020-10_Port.4.jpeg` e `2020-10_Port-3.jpeg` (portone prima e dopo);
-- `2020-06_universita02.jpg` (`lavoro-bo-bussola-667`), `2020-05_Bottega_dell_Arte_Negozi_Pasticceria_Bolzano-15.jpg` (`lavoro-bolzano-*`), `2020-05_centri_estetici.jpg` (`lavoro-lissaro-*`): le realizzazioni;
+- `2020-06_universita02.jpg` (`lavoro-bo-bussola-740`, ingrandita del 10 per cento), `2020-05_Bottega_dell_Arte_Negozi_Pasticceria_Bolzano-4.jpg` (`lavoro-bolzano-*`), `2020-05_819-scaled.jpg` (`lavoro-lissaro-*`): le realizzazioni;
 - `2020-05_falegnameria-a-padova.jpg` (`bottega-via-levico-*`): "Dove siamo";
 - il logo `logo-bottega-arte-1014.png` (anche bianco nel piede, con un filtro CSS) e il monogramma `logo-monogramma-B-512.png`.
 
-Tolte rispetto alla home precedente (foto loro, non di repertorio): `2020-10_Port1.jpg` (maniglione), `2020-06_porte-a-bilico-2-scaled.jpg`, `2020-06_porte_restaurate-n1.jpg`, `2020-06_universita08.jpg` e il portone a tutta altezza. Nessuna foto Unsplash o Pexels, nessuna illustrazione, nessuna immagine generata: le foto di `assets/esterne/` qui sopra non sono usate nella home. Nessuna foto "indicativa" in pagina.
+Nessuna foto di repertorio: le Unsplash di `assets/esterne/` restano scaricate ma non sono usate.

@@ -3,702 +3,848 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eurotecnica Salmaso, impianti audio e video, service e noleggi a Padova</title>
-<meta name="description" content="Impianti audio e video per teatri, sale congressi, aule e chiese. Service per convegni ed eventi e noleggi con ritiro in sede o consegna e montaggio. Padova, dal 1967.">
-<meta name="theme-color" content="#E9F1EF">
+<title>Eurotecnica Salmaso, impianti audio e video, service per eventi e noleggi a Padova</title>
+<meta name="description" content="Impianti audio e video, service per convegni ed eventi e noleggi a Padova, dal 1967: amplificazione, radiomicrofoni, traduzione simultanea, video, riprese e streaming. Impianti per sale consiliari, aule, teatri e chiese. Abilitati MePA.">
+<meta name="theme-color" content="#123E42">
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-<!-- preload dei caratteri (con crossorigin) da rimettere quando la pagina sarà servita in http: aperti come file:// danno errori CORS in console -->
-<link rel="preload" as="image" href="img/microfono-289.webp" imagesrcset="img/microfono-150.webp 150w, img/microfono-220.webp 220w, img/microfono-289.webp 289w" imagesizes="(max-width: 600px) 100px, 140px">
+<!-- con il sito servito in http rimettere il preload dei due caratteri (as="font" type="font/woff2" crossorigin): aperti come file:// danno errori CORS -->
 <style>
-/* General Sans (Fontshare, ITF Free Font License) per titoli e date; Host Grotesk (Google Fonts, SIL OFL 1.1) per il testo */
-@font-face{font-family:"General Sans";src:url(fonts/general-sans-400.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"General Sans";src:url(fonts/general-sans-500.woff2) format("woff2");font-weight:500;font-display:swap}
+/* Due famiglie con ruoli fissi: General Sans 600 (Fontshare, ITF Free Font License) per i titoli e le cifre,
+   Host Grotesk 400 e 600 (Google Fonts, SIL OFL 1.1) per testo, etichette, bottoni e modulo. */
+@font-face{font-family:"General Sans";src:url(fonts/general-sans-600.woff2) format("woff2");font-weight:600;font-display:swap}
 @font-face{font-family:"Host Grotesk";src:url(fonts/host-grotesk-variabile.woff2) format("woff2");font-weight:300 800;font-display:swap}
 
 :root{
-  --fondo:#E9F1EF;     /* il petrolio del marchio (#257B82) appena accennato: fondo della pagina */
-  --fondo-nol:#D7E6E3; /* lo stesso petrolio un tono più pieno: solo la sezione del noleggio, quella da usare */
-  --piede:#123E42;     /* il petrolio del marchio scurito: il piede, come nel loro sito di sempre */
-  --ink:#141A1C;
-  --ink2:#43514F;
-  --filo:rgba(20,26,28,.2);
-  --pet:#1A5E63;       /* petrolio per link e testi d'accento (6,5:1 sul fondo, 5,8:1 sul noleggio) */
-  --pet-grande:#257B82;/* il petrolio del logo, solo in grande (4,3:1) */
-  --m:clamp(16px,5vw,72px);
-  --g:24px;
-  --fuori:max(0px,calc((100vw - 1584px) / 2));
-  --head:"General Sans",system-ui,sans-serif;
-  --text:"Host Grotesk",system-ui,sans-serif;
+  /* due colori dal marchio, più i neutri */
+  --petrolio:#257B82;        /* il colore del logo 2025: bottoni, blocco del noleggio, accenti */
+  --petrolio-scuro:#123E42;  /* il petrolio scuro del piede del loro sito di sempre: blocchi scuri, link sul grigio */
+  --inchiostro:#141A1C;
+  --testo-2:#4A5557;
+  --grigio:#EEF2F2;
+  --bianco:#FFFFFF;
+  --linea:rgba(20,26,28,.16);
+  --linea-chiara:rgba(255,255,255,.24);
+  --chiaro-2:rgba(255,255,255,.78);
+
+  --titoli:"General Sans",system-ui,sans-serif;
+  --testo:"Host Grotesk",system-ui,sans-serif;
+
+  /* scala tipografica: sette misure a 1440 */
+  --f-et:14px; --f-p2:17px; --f-p:19px; --f-h3:23px; --f-h2:48px; --f-h1:56px; --f-big:88px;
+  --m:80px;            /* margine laterale */
+  --g:32px;            /* passo della griglia */
+  --sez:120px;         /* spazio fra le sezioni */
+  --testata:88px;
+  --r:4px;             /* un solo raggio per bottoni, campi e riquadri */
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--fondo);color:var(--ink);font:400 17px/1.55 var(--text);font-kerning:normal;-webkit-font-smoothing:antialiased;overflow-x:clip;text-rendering:geometricPrecision}
-/* geometricPrecision: senza, Chromium arrotonda le posizioni dei glifi e apre vuoti dopo la f ("Amplif icazione") */
+body{margin:0;background:var(--bianco);color:var(--inchiostro);font:400 var(--f-p)/1.5 var(--testo);-webkit-font-smoothing:antialiased;overflow-x:clip;text-rendering:geometricPrecision}
 img{display:block;max-width:100%;height:auto}
 figure{margin:0}
 a{color:inherit}
-h1,h2,h3{font-family:var(--head);font-weight:500;margin:0;font-kerning:normal}
-h2{text-wrap:balance}
+h1,h2,h3{font-family:var(--titoli);font-weight:600;margin:0;letter-spacing:-.01em}
+h2{font-size:var(--f-h2);line-height:1.1;text-wrap:balance}
+h3{font-size:var(--f-h3);line-height:1.25}
 p{margin:0;text-wrap:pretty}
-.wrap{padding-inline:var(--m);max-width:1584px;margin-inline:auto}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--petrolio);outline-offset:3px}
+[id]{scroll-margin-top:calc(var(--testata) + 16px)}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--m)}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
-:focus-visible{outline:2px solid var(--pet);outline-offset:3px}
 .nobr{white-space:nowrap}
-.didascalia{font-size:14px;line-height:1.45;color:var(--ink2)}
-.link{color:var(--pet);font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;transition:color .15s}
-.link:hover{color:var(--ink)}
+.et{font-size:var(--f-et);line-height:1.4;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrolio)}
+.sezione{padding-block:var(--sez)}
+.su-grigio{background:var(--grigio)}
+.su-scuro{background:var(--petrolio-scuro);color:var(--bianco)}
+.su-petrolio{background:var(--petrolio);color:var(--bianco)}
+.su-scuro .et,.su-petrolio .et{color:var(--chiaro-2)}
+.lead{font-size:var(--f-p);color:var(--testo-2);max-width:34em}
+.su-scuro .lead,.su-petrolio .lead{color:var(--chiaro-2)}
+.link{color:var(--petrolio-scuro);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.su-scuro .link,.su-petrolio .link{color:var(--bianco)}
+.link:hover{text-decoration-thickness:2px}
 
-/* ---------- testata: logo, menu sull'asse, telefono ---------- */
-.testata{position:absolute;inset:0 0 auto 0;z-index:5}
-.testata .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:92px}
+/* ---------- bottoni: un solo modello, pieno e bordato ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:var(--r);font:600 var(--f-p2)/1.2 var(--testo);text-decoration:none;white-space:nowrap;border:2px solid var(--petrolio);transition:background-color .15s,color .15s,border-color .15s;cursor:pointer;font-variant-numeric:tabular-nums}
+.btn.pieno{background:var(--petrolio);color:var(--bianco)}
+.btn.pieno:hover{background:var(--petrolio-scuro);border-color:var(--petrolio-scuro)}
+.btn.bordo{background:transparent;color:var(--petrolio-scuro);border-color:var(--petrolio-scuro)}
+.btn.bordo:hover{background:var(--petrolio-scuro);color:var(--bianco)}
+.su-scuro .btn.pieno,.su-petrolio .btn.pieno{background:var(--bianco);color:var(--petrolio-scuro);border-color:var(--bianco)}
+.su-scuro .btn.pieno:hover,.su-petrolio .btn.pieno:hover{background:var(--grigio);border-color:var(--grigio)}
+.su-scuro .btn.bordo,.su-petrolio .btn.bordo{color:var(--bianco);border-color:var(--bianco)}
+.su-scuro .btn.bordo:hover,.su-petrolio .btn.bordo:hover{background:var(--bianco);color:var(--petrolio-scuro)}
+.btn .ic{width:18px;height:18px;flex:none}
+.azioni{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
+
+/* ---------- stato degli orari ---------- */
+.stato{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.stato::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--testo-2);flex:none}
+.stato[data-aperto="1"]::before{background:var(--petrolio)}
+.su-scuro .stato[data-aperto="1"]::before{background:#7FC7CC}
+
+/* ---------- testata fissa ---------- */
+.testata{position:fixed;inset:0 0 auto 0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
+.testata .wrap{display:flex;align-items:center;gap:32px;height:var(--testata)}
+.logo{flex:none;display:block}
 .logo img{width:150px;height:auto}
-.menu{display:flex;gap:34px;list-style:none;margin:0;padding:0}
-.menu a{text-decoration:none;font-size:15.5px;font-weight:500;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .15s}
-.menu a:hover{border-bottom-color:currentColor}
-.tel-top{justify-self:end;font-size:15.5px;font-weight:500;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;font-variant-numeric:tabular-nums}
+.menu{display:flex;gap:28px;margin-left:auto}
+.menu a{font-size:var(--f-p2);font-weight:600;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+.menu a:hover{border-bottom-color:var(--petrolio)}
+.tel-testata{display:flex;align-items:center;gap:16px;flex:none}
+.tel-testata .orario{font-size:var(--f-et);line-height:1.35;color:var(--testo-2);text-align:right}
+.tel-testata .orario .stato{color:var(--inchiostro)}
+.tel-testata .btn{min-height:48px;padding:0 20px}
 .apri{display:none}
-.menu-tel{display:none}
+.pannello{display:none}
 
-/* ---------- apertura: il microfono sull'asse, il titolo diviso dal microfono, il cavo e i tre giorni ---------- */
-.apertura{--h:clamp(780px,100svh,960px);--asse:50%;--varco:calc(var(--h) * .069);position:relative;height:var(--h);overflow:hidden}
-.microfono{position:absolute;z-index:2;left:var(--asse);top:calc(var(--h) * .108);height:calc(var(--h) * .726);width:auto;max-width:none;transform:translateX(-50%)}
-.cavo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
-h1{position:absolute;z-index:1;left:0;right:0;top:calc(var(--h) * .275);font-size:clamp(56px,12.4vw,186px);line-height:.92;letter-spacing:-.045em}
-h1 .riga{display:grid;grid-template-columns:calc(var(--asse) - var(--varco)) 1fr;column-gap:calc(var(--varco) * 2)}
-h1 .sx{text-align:right}
-h1 .dx{text-align:left}
-.sotto-titolo{position:absolute;z-index:3;left:0;right:0;top:calc(var(--h) * .665);display:grid;grid-template-columns:calc(var(--asse) - var(--varco)) 1fr;column-gap:calc(var(--varco) * 2)}
-.apertura .lead{justify-self:start;font-size:18.5px;line-height:1.5;max-width:calc(var(--m) + 29em);padding-left:var(--m)}
-.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;align-self:start;padding-right:var(--m)}
-.bottone{display:inline-flex;align-items:center;white-space:nowrap;height:54px;padding:0 26px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;font-size:16px;font-variant-numeric:tabular-nums;transition:background-color .15s}
-.bottone:hover{background:var(--pet)}
-.linea{position:absolute;z-index:3;left:var(--m);right:var(--m);bottom:calc(var(--h) * .09);height:56px;display:block;text-decoration:none;color:var(--ink)}
-.linea::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(20,26,28,.32)}
-.linea::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:9px;border-inline:1px solid rgba(20,26,28,.5)}
-.tappa{position:absolute;bottom:12px;display:flex;flex-direction:column}
-.tappa small{font-size:13px;color:var(--ink2)}
-.tappa b{font-family:var(--head);font-weight:500;font-size:25px;letter-spacing:-.015em;line-height:1.1;margin-top:2px;white-space:nowrap}
-.tappa.t1{left:0}
-.tappa.t3{right:0;text-align:right}
-.tappa.ev{left:calc(var(--asse-px, 50%) + 24px)}
-.tappa.ev b,.tappa.ev small{color:var(--pet)}
-.linea .nota{position:absolute;top:calc(100% + 12px);left:calc(var(--asse-px, 50%) + 24px);font-size:14px;color:var(--ink2);white-space:nowrap;transition:color .15s}
-.linea:hover .nota{color:var(--pet);text-decoration:underline;text-underline-offset:4px}
+/* ---------- apertura ---------- */
+.apertura{padding-top:calc(var(--testata) + 56px);padding-bottom:56px}
+.apertura .griglia{align-items:start}
+.apertura .testo{grid-column:1 / span 6;display:flex;flex-direction:column}
+.apertura h1{font-size:var(--f-h1);line-height:1.07;margin-top:14px;text-wrap:balance}
+.apertura .servizi{margin-top:22px;font-size:var(--f-p);color:var(--testo-2);max-width:33em}
+.apertura .servizi b{color:var(--inchiostro);font-weight:600}
+.apertura .azioni{margin-top:24px}
+.apertura .nota{margin-top:14px;font-size:var(--f-p2);color:var(--testo-2);max-width:36em}
+.fatti{margin-top:32px;display:grid;grid-template-columns:1fr 1.3fr;column-gap:var(--g)}
+.fatto{border-top:1px solid var(--linea);padding-top:14px;display:flex;flex-direction:column;gap:4px;font-size:var(--f-p2);color:var(--testo-2)}
+.fatto .et{color:var(--testo-2);margin-bottom:2px}
+.fatto .stato{color:var(--inchiostro)}
+.solo-tel{display:none !important}
+.apertura .griglia{align-items:stretch}
+.apertura figure{grid-column:7 / -1;margin-right:calc(-1 * var(--m));margin-top:6px;position:relative;min-height:400px}
+.apertura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;border-radius:var(--r) 0 0 var(--r)}
 
-/* ---------- sezioni: titoli sull'asse ---------- */
-.sez{padding-top:80px}
-h2{font-size:clamp(36px,4.6vw,64px);line-height:1.02;letter-spacing:-.032em}
-.capo{text-align:center;max-width:56rem;margin-inline:auto}
-.intro{font-size:19px;line-height:1.5;margin:24px auto 0;max-width:36em}
+/* ---------- tre porte ---------- */
+.porte{padding-block:44px 48px}
+.porte ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g)}
+.porte li{border-top:1px solid var(--linea-chiara);padding-top:20px}
+.porte a{display:flex;flex-direction:column;gap:8px;text-decoration:none;height:100%}
+.porte h3{display:flex;justify-content:space-between;gap:16px}
+.porte h3::after{content:"\2192";font-family:var(--testo);font-weight:400}
+.porte p{font-size:var(--f-p2);color:var(--chiaro-2);max-width:26em}
+.porte a:hover h3{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
 
-/* service */
-/* le due foto vere del 2024, scatti da telefono: piccole, ai due lati dell'asse, 24 px fra loro */
-.lavori{margin-top:44px;display:flex;justify-content:center;gap:24px}
-.lavori figure{width:420px;flex:0 1 420px}
-.lavori img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.lavori figcaption{margin-top:10px}
-.voci{list-style:none;margin:52px 0 0;padding:0;row-gap:26px;position:relative}
-.voci::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:var(--filo)}
-.voci li{grid-column:span 6;align-self:start;padding-right:48px}
-.voci li:nth-child(even){padding:0 0 0 48px}
-.voci h3{font-size:26px;line-height:1.15;letter-spacing:-.02em}
-.voci p{color:var(--ink2);font-size:17px;margin-top:6px;max-width:31em}
+/* ---------- impianti ---------- */
+.intest{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end}
+.intest .tit{grid-column:1 / span 6}
+.intest .tit h2{margin-top:14px}
+.intest .lead{grid-column:8 / -1}
+.impianti .corpo{margin-top:56px;align-items:start}
+.impianti .sinistra{grid-column:1 / span 6}
+.impianti figure img{width:100%;aspect-ratio:3 / 2;object-fit:cover;border-radius:var(--r)}
+.sale{grid-column:7 / -1;border-top:1px solid var(--linea)}
+.sale li{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr);column-gap:24px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.sale b{font-family:var(--titoli);font-weight:600;font-size:var(--f-h3);line-height:1.25}
+.sale span{font-size:var(--f-p2);color:var(--testo-2);padding-top:3px}
+.garanzie{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g)}
+.garanzia{background:var(--grigio);border-radius:var(--r);padding:28px 28px 30px;display:flex;flex-direction:column;gap:10px}
+.garanzia p{font-size:var(--f-p2);color:var(--testo-2)}
+.garanzia .grande{font-family:var(--titoli);font-weight:600;font-size:var(--f-h3);line-height:1.25;color:var(--inchiostro)}
+.garanzia .azioni{margin-top:auto;padding-top:8px}
+.marche{margin-top:40px}
+.marche .et{color:var(--testo-2);padding-bottom:14px;border-bottom:1px solid var(--linea)}
+.marche ul{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px var(--g)}
+.marche li b{display:block;font-family:var(--titoli);font-weight:600;font-size:var(--f-h3);line-height:1.2}
+.marche li span{display:block;margin-top:4px;font-size:var(--f-et);color:var(--testo-2)}
 
-/* noleggio: il gesto */
-.noleggio{position:relative;background:var(--fondo-nol);margin-top:80px;padding-bottom:80px}
-.comandi{display:flex;flex-wrap:wrap;justify-content:center;gap:24px 44px;margin-top:40px;align-items:flex-end}
-.campo{display:flex;flex-direction:column;gap:10px}
-.etichetta{font-size:14px;font-weight:500;color:var(--ink2)}
-.data{display:flex;align-items:center;gap:6px}
-.data output{min-width:12.2em;text-align:center;font-family:var(--head);font-weight:500;font-size:21px;letter-spacing:-.01em;padding:0 6px}
-.passo{width:48px;height:48px;border:1px solid var(--ink);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background-color .15s,color .15s}
-.passo:hover{background:var(--ink);color:#fff}
-.passo:disabled{border-color:rgba(20,26,28,.3);color:rgba(20,26,28,.35);cursor:default;background:transparent}
-.passo svg{width:18px;height:18px}
-.calendario{font:500 15px var(--text);color:var(--pet);background:none;border:0;padding:12px 0;margin-left:10px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;transition:color .15s}
-.calendario:hover{color:var(--ink)}
-.data input[type=date]{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
-.scelta{display:flex}
-.scelta button{height:48px;padding:0 18px;border:1px solid var(--ink);background:transparent;color:var(--ink);font:500 15px var(--text);cursor:pointer;margin-left:-1px;transition:background-color .15s,color .15s}
-.scelta button:first-child{margin-left:0}
-.scelta button:hover{background:rgba(20,26,28,.08)}
-.scelta button[aria-pressed=true]{background:var(--ink);color:#fff}
-.giorni{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);margin-top:40px;padding-top:44px;position:relative}
-.giorno{position:relative}
-.giorno:nth-child(2){text-align:center}
-.giorno:nth-child(3){text-align:right}
-.giorno .quando{font-family:var(--head);font-weight:500;font-size:clamp(44px,4.6vw,66px);line-height:.95;letter-spacing:-.035em;margin-top:10px;white-space:nowrap}
-.giorno .mese{font-family:var(--head);font-size:21px;margin-top:10px;letter-spacing:-.01em}
-.giorno p{margin-top:14px;color:var(--ink2);max-width:23em}
-.giorno:nth-child(2) p{margin-inline:auto}
-.giorno:nth-child(3) p{margin-left:auto}
-.giorno.evento .quando,.giorno.evento .etichetta{color:var(--pet)}
-.materiale{margin:40px auto 0;max-width:46em;text-align:center}
-.materiale p + p{margin-top:12px}
+/* ---------- service: schede con la foto del lavoro ---------- */
+.schede{margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.scheda{display:flex;flex-direction:column;background:var(--bianco);border-radius:var(--r);overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .15s}
+.scheda:hover{box-shadow:0 0 0 2px var(--petrolio)}
+.scheda img{width:100%;aspect-ratio:3 / 2;object-fit:cover}
+.scheda .dentro{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;flex:1}
+.scheda p{font-size:var(--f-p2);color:var(--testo-2)}
+.scheda .vai{margin-top:auto;padding-top:10px;font-size:var(--f-p2);font-weight:600;color:var(--petrolio-scuro)}
+.schede-testo{margin-top:var(--g);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g)}
+.schede-testo .scheda .dentro{padding:30px 32px 32px}
+.schede-testo ul{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.schede-testo li{font-size:var(--f-p2);color:var(--testo-2);padding-left:22px;position:relative}
+.schede-testo li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--petrolio)}
+.offerta{margin-top:var(--g);background:var(--petrolio-scuro);color:var(--bianco);border-radius:var(--r);padding:36px 40px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;row-gap:24px}
+.offerta .cosa{grid-column:1 / span 7}
+.offerta .cosa p{margin-top:8px;font-size:var(--f-p2);color:var(--chiaro-2)}
+.offerta .azioni{grid-column:8 / -1;justify-content:flex-end}
 
-/* impianti */
-/* impianti: il titolo a sinistra sul margine, appoggiato sulla foto; il paragrafo sotto la foto */
-.impianti .capo{text-align:left;max-width:1584px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end}
-.impianti h2{grid-column:1 / span 7;font-size:clamp(44px,6.4vw,96px);line-height:.96;letter-spacing:-.04em}
-.impianti .intro{grid-column:1 / span 6;margin:0;max-width:34em}
-.impianti .dopo{margin-top:36px}
-.teatro{margin-top:28px}
-.teatro img{width:100%;aspect-ratio:16/9;max-height:820px;object-fit:cover;object-position:50% 45%}
-.teatro figcaption{margin-top:12px}
-.sale{list-style:none;margin:52px 0 0;padding:0;row-gap:34px;position:relative}
-.sale::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:var(--filo)}
-.sale li{grid-column:span 6;align-self:start;padding-right:48px}
-.sale li:nth-child(even){padding:0 0 0 48px}
-.sale h3{font-size:26px;letter-spacing:-.02em;line-height:1.15}
-.sale p{margin-top:6px;color:var(--ink2);max-width:31em}
+/* ---------- noleggi ---------- */
+.noleggi .regola{grid-column:1 / span 9;font-family:var(--titoli);font-weight:600;font-size:var(--f-h2);line-height:1.12;margin-top:14px;text-wrap:balance}
+.passi{list-style:none;padding:0;margin:56px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g)}
+.passi li{border-top:2px solid var(--bianco);padding-top:18px;display:flex;flex-direction:column;gap:8px}
+.passi li:last-child{border-top-style:dashed}
+.passi .quando{font-size:var(--f-et);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--chiaro-2)}
+.passi p{font-size:var(--f-p2);color:var(--chiaro-2)}
+.materiale{margin-top:56px;padding-top:28px;border-top:1px solid var(--linea-chiara);align-items:start;row-gap:28px}
+.materiale .et{grid-column:1 / span 3}
+.materiale ul{grid-column:4 / span 9;columns:3;column-gap:var(--g)}
+.materiale li{font-size:var(--f-p2);padding:6px 0;break-inside:avoid}
+.noleggi .azioni{margin-top:48px}
 
-/* azienda: la foto a sinistra fino al bordo, il 1967 e la storia a destra */
-.azienda .griglia{align-items:stretch}
-.azienda figure{grid-column:1 / span 7;margin-left:calc(-1 * (var(--m) + var(--fuori)));position:relative;min-height:640px}
-.azienda figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
-.azienda figcaption{position:absolute;left:calc(var(--m) + var(--fuori));bottom:-30px}
-.azienda .testo{grid-column:8 / span 5;display:flex;flex-direction:column;justify-content:center;padding:8px 0 8px 40px}
-.azienda .anno{font-family:var(--head);font-weight:500;font-size:clamp(116px,14.5vw,212px);line-height:.78;letter-spacing:-.055em;color:var(--pet-grande);margin:0 0 0 -.04em}
-.azienda h2{font-size:clamp(30px,3vw,42px);line-height:1.08;letter-spacing:-.026em;margin-top:40px}
-.azienda .testo p{margin-top:18px;max-width:34em}
-.fatti{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:16px}
-.fatti b{font-weight:500;margin-right:10px}
-.fatti span{color:var(--ink2)}
+/* ---------- azienda ---------- */
+.azienda .corpo{align-items:center}
+.azienda figure{grid-column:1 / span 5}
+.azienda figure img{width:100%;aspect-ratio:3 / 2;object-fit:cover;border-radius:var(--r)}
+.azienda .testo{grid-column:7 / -1;display:flex;flex-direction:column;gap:20px}
+.azienda .testo h2{margin-top:-6px}
+.azienda .testo p{color:var(--testo-2)}
+.numeri{margin-top:88px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--linea)}
+.numeri li{padding-top:24px;display:flex;flex-direction:column;gap:8px}
+.numeri b{font-family:var(--titoli);font-weight:600;font-size:var(--f-h2);line-height:1;color:var(--petrolio);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.numeri span{font-size:var(--f-p2);color:var(--testo-2);max-width:16em}
 
-/* chiusura: testo sull'asse, la sala ovale sotto a tutta larghezza */
-.chiusura{padding-top:88px;text-align:center}
-.chiusura h2{font-size:clamp(36px,4.4vw,62px);line-height:1.04;max-width:15em;margin-inline:auto}
-.recapiti .tel{display:inline-block;margin-top:36px;font-family:var(--text);font-weight:500;font-size:clamp(40px,4.6vw,64px);letter-spacing:-.02em;line-height:1.1;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:10px;font-variant-numeric:tabular-nums;transition:color .15s}
-.recapiti .tel:hover{color:var(--pet)}
-.recapiti ul{list-style:none;margin:36px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 56px;font-size:17px}
-.recapiti li{display:flex;flex-direction:column;gap:2px}
-.recapiti li span{font-size:14px;color:var(--ink2)}
-.recapiti a:not(.tel):not(.link){text-underline-offset:4px;text-decoration-thickness:1px;transition:color .15s}
-.recapiti a:not(.tel):not(.link):hover{color:var(--pet)}
-.chiusura figure{margin-top:56px}
-.chiusura figure img{width:100%;aspect-ratio:3/2;max-height:960px;object-fit:cover;object-position:50% 46%}
+/* ---------- dove siamo ---------- */
+.dove .corpo{align-items:start}
+.dove .foto{grid-column:1 / span 5;display:grid;grid-template-columns:1fr;gap:16px}
+.dove .foto img{width:100%;aspect-ratio:3 / 2;object-fit:cover;border-radius:var(--r)}
+.dove .testo{grid-column:7 / -1;display:flex;flex-direction:column;gap:18px}
+.dove h2{margin-top:-4px}
+.dove .testo > p{color:var(--testo-2)}
+.orari{width:100%;border-collapse:collapse;font-size:var(--f-p2);font-variant-numeric:tabular-nums}
+.orari th,.orari td{text-align:left;padding:10px 0;border-bottom:1px solid var(--linea);font-weight:400;vertical-align:top}
+.orari th{width:46%;font-weight:600}
+.orari tr.oggi th,.orari tr.oggi td{color:var(--petrolio-scuro);font-weight:600}
+.dove .stato{font-size:var(--f-p2)}
+.recapiti{display:flex;flex-direction:column;gap:6px;font-size:var(--f-p2)}
 
-/* piede */
-.piede{background:var(--piede);color:#E3EFED;padding-block:68px 32px;font-size:15.5px}
-.piede .alto{row-gap:48px}
-.piede .chi{grid-column:1 / span 3}
-.piede .chi img{width:196px}
-.piede .chi p{margin-top:22px;max-width:21em;color:#A9C8C5}
-.piede .colonne{grid-column:4 / span 9;display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;column-gap:32px}
-.piede ul a{white-space:nowrap}
-.piede .mappa{margin-top:3px}
-.piede address{font-style:normal}
-.piede h3{font-family:var(--text);font-weight:500;font-size:14px;letter-spacing:.01em;color:#A9C8C5;margin-bottom:16px}
-.piede ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.piede ul a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
-.piede ul a:hover{border-bottom-color:currentColor}
-.legale .sede{white-space:nowrap}
-.legale{margin-top:64px;padding-top:22px;border-top:1px solid rgba(227,239,237,.22);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:14px;color:#A9C8C5;font-variant-numeric:tabular-nums}
+/* ---------- chiusura con il modulo ---------- */
+.chiusura .corpo{align-items:start}
+.chiusura .sinistra{grid-column:1 / span 5;display:flex;flex-direction:column;gap:22px}
+.tel-grande{font-family:var(--titoli);font-weight:600;font-size:var(--f-big);line-height:1;letter-spacing:-.03em;text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tel-grande:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:10px}
+.chiusura .sinistra p{color:var(--chiaro-2)}
+.chiusura .mail{display:flex;flex-direction:column;gap:14px;margin-top:8px;font-size:var(--f-p2)}
+.chiusura .mail span{display:block;color:var(--chiaro-2)}
+.chiusura .mail a{font-size:var(--f-p);font-weight:600}
+.modulo{grid-column:7 / -1;background:var(--bianco);color:var(--inchiostro);border-radius:var(--r);padding:36px 40px 40px}
+.modulo h3{margin-bottom:6px}
+.su-scuro .modulo .btn.pieno{background:var(--petrolio);color:var(--bianco);border-color:var(--petrolio)}
+.su-scuro .modulo .btn.pieno:hover{background:var(--petrolio-scuro);border-color:var(--petrolio-scuro)}
+.modulo .sotto{font-size:var(--f-p2);color:var(--testo-2)}
+.campi{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo.largo{grid-column:1 / -1}
+.campo label,.campo legend{font-size:var(--f-et);font-weight:600;color:var(--inchiostro)}
+.campo legend{padding:0;margin-bottom:6px}
+fieldset.campo{border:0;margin:0;padding:0}
+input,select,textarea{font:400 var(--f-p2)/1.4 var(--testo);color:var(--inchiostro);background:var(--bianco);border:1px solid var(--testo-2);border-radius:var(--r);padding:12px 14px;min-height:48px;width:100%}
+textarea{min-height:104px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outline-offset:0;border-color:var(--petrolio)}
+.spunte{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}
+.spunte label{display:flex;align-items:center;gap:10px;font-size:var(--f-p2);font-weight:400;min-height:40px;cursor:pointer}
+.spunte input{width:20px;height:20px;min-height:0;accent-color:var(--petrolio);flex:none;margin:0}
+.spunte.riga{grid-template-columns:repeat(3,auto);justify-content:start}
+.modulo .invio{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.modulo .avviso{font-size:var(--f-p2);color:var(--petrolio-scuro);font-weight:600}
+.modulo .avviso:empty{display:none}
+.modulo .nota-mail{margin-top:14px;font-size:var(--f-et);color:var(--testo-2)}
+[hidden]{display:none !important}
+
+/* ---------- piede ---------- */
+.piede{background:var(--inchiostro);color:var(--bianco);padding-block:80px 36px;font-size:var(--f-et)}
+.piede .colonne{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;column-gap:var(--g);row-gap:40px}
+.piede img{width:170px}
+.piede h3{font-family:var(--testo);font-size:var(--f-et);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--chiaro-2);margin-bottom:16px}
+.piede p,.piede li{font-size:var(--f-p2);line-height:1.55}
+.piede .chi p{margin-top:20px;color:var(--chiaro-2)}
+.piede .chi p b{color:var(--bianco);font-weight:600}
+.piede ul{display:flex;flex-direction:column;gap:8px}
+.piede a{text-decoration:none;border-bottom:1px solid transparent}
+.piede a:hover{border-bottom-color:currentColor}
+.piede .chiaro{color:var(--chiaro-2)}
+.legale{margin-top:64px;padding-top:24px;border-top:1px solid var(--linea-chiara);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;color:var(--chiaro-2)}
 .legale ul{flex-direction:row;gap:24px}
-.legale a{color:#A9C8C5}
 
-/* ---------- fino a 1180 ---------- */
+/* ---------- fino a 1180: menu nel pannello ---------- */
 @media (max-width:1180px){
-  .menu{gap:22px}
-  .apertura .lead{font-size:18px}
-  .piede .chi,.piede .colonne{grid-column:1 / -1}
-  .azienda figure{grid-column:1 / span 6}
-  .azienda .testo{grid-column:7 / span 6;padding-left:24px}
+  :root{--m:40px;--g:24px}
+  .menu,.tel-testata .orario{display:none}
+  .tel-testata{margin-left:auto}
+  .apri{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:2px solid var(--petrolio-scuro);border-radius:var(--r);background:transparent;color:var(--petrolio-scuro);font:600 var(--f-p2)/1 var(--testo);cursor:pointer}
+  .apri i{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor;margin-block:6px}
+  .pannello{position:fixed;inset:var(--testata) 0 auto 0;z-index:19;background:var(--bianco);border-bottom:1px solid var(--linea);padding:12px var(--m) 28px;max-height:calc(100svh - var(--testata));overflow:auto}
+  .pannello.aperto{display:block}
+  .pannello a.voce{display:block;font-family:var(--titoli);font-weight:600;font-size:var(--f-h3);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--linea)}
+  .pannello .azioni{margin-top:20px}
+  .pannello .recapiti{margin-top:18px}
 }
-/* fra 901 e 1000 le quattro colonne del piede non stanno in una riga: due per riga */
-@media (max-width:1000px){
-  .piede .colonne{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch;row-gap:36px}
+/* ---------- fino a 980: una colonna ---------- */
+@media (max-width:980px){
+  :root{--f-h1:44px;--f-h2:36px;--f-big:64px;--sez:96px}
+  .apertura .testo,.apertura figure,.intest .tit,.intest .lead,.impianti .sinistra,.sale,.azienda figure,.azienda .testo,.dove .foto,.dove .testo,.chiusura .sinistra,.modulo,.noleggi .regola,.materiale .et,.materiale ul,.offerta .cosa,.offerta .azioni{grid-column:1 / -1}
+  .apertura figure{margin:32px calc(-1 * var(--m)) 0;min-height:0}
+  .apertura figure img{position:static;height:auto;aspect-ratio:3 / 2;object-position:50% 50%;border-radius:0}
+  .intest{row-gap:20px}
+  .impianti .corpo,.azienda .corpo,.dove .corpo,.chiusura .corpo{row-gap:40px}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .garanzie{grid-template-columns:1fr;row-gap:16px}
+  .passi{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .materiale ul{columns:2}
+  .offerta .azioni{justify-content:flex-start}
+  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .piede .colonne{grid-template-columns:1fr 1fr}
 }
-/* ---------- tablet e telefono ---------- */
-@media (max-width:900px){
-  body{font-size:16px}
-  .testata .wrap{height:68px;grid-template-columns:1fr auto}
-  .logo img{width:124px}
-  /* menu del telefono: pannello a tutta altezza, il telefono in fondo, la pagina sotto ferma */
-  .menu-box{position:fixed;inset:68px 0 0 0;background:var(--fondo);padding:12px var(--m) calc(28px + env(safe-area-inset-bottom));display:none;flex-direction:column;justify-content:space-between;overflow-y:auto;border-top:1px solid var(--filo)}
-  .menu-box.aperto{display:flex}
-  .testata.aperta{position:fixed;background:var(--fondo)}
-  body.fermo{overflow:hidden}
-  .menu-tel{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--ink2)}
-  .menu-tel a{font-family:var(--text);font-weight:500;font-size:34px;letter-spacing:-.02em;color:var(--ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:7px;font-variant-numeric:tabular-nums}
-  .menu{flex-direction:column;gap:0}
-  .menu a{display:block;font-family:var(--head);font-size:28px;padding:10px 0;border:0}
-  .apri{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 0 0 14px;background:none;border:0;font:500 15.5px var(--text);color:var(--ink);cursor:pointer}
-  .apri i{display:block;width:22px;height:9px;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
-  .tel-top{display:none}
-  .sez{padding-top:84px}
-  .intro{font-size:17px;margin-top:18px}
-  .lavori{margin-top:36px;gap:20px}
-  .lavori figure{width:auto;flex:1 1 0}
-  .voci,.sale{row-gap:22px;margin-top:40px}
-  .voci::before,.sale::before{display:none}
-  .voci li,.voci li:nth-child(odd),.voci li:nth-child(even),.sale li,.sale li:nth-child(even){grid-column:1 / -1;padding:0}
-  .voci h3,.sale h3{font-size:22px}
-  .voci p{font-size:16px}
-  .impianti h2,.impianti .intro{grid-column:1 / -1}
-  .impianti .dopo{margin-top:28px}
-  .noleggio{margin-top:84px;padding-bottom:84px}
-  .comandi{gap:18px;margin-top:32px}
-  .campo{width:100%}
-  .data{flex-wrap:wrap}
-  .data output{min-width:0;flex:1;font-size:19px}
-  .calendario{flex-basis:100%;margin:0;text-align:center;padding:10px 0 0}
-  .scelta{width:100%}
-  .scelta button{flex:1;padding:0 8px;font-size:14.5px}
-  .teatro{margin-top:40px}
-  .teatro img{aspect-ratio:4/3}
-  .teatro figcaption{padding-inline:var(--m)}
-  .azienda figure{grid-column:1 / -1;margin:0 calc(-1 * var(--m));min-height:0}
-  .azienda figure img{position:static;height:auto;aspect-ratio:4/3}
-  .azienda figcaption{position:static;margin-top:12px;padding-inline:var(--m)}
-  .azienda .testo{grid-column:1 / -1;padding:44px 0 0}
-  .azienda h2{margin-top:28px}
-  .chiusura{padding-top:96px}
-  .chiusura h2{max-width:12em}
-  .recapiti ul{flex-direction:column;gap:18px}
-  .chiusura figure{margin-top:48px}
-  .chiusura figure img{aspect-ratio:5/4}
+/* ---------- telefono ---------- */
+@media (max-width:600px){
+  :root{--f-p2:16px;--f-p:17px;--f-h3:20px;--f-h2:28px;--f-h1:32px;--f-big:44px;--m:20px;--g:16px;--sez:72px;--testata:72px}
+  .logo img{width:116px}
+  .testata .wrap{gap:10px}
+  .tel-testata .btn{min-height:48px;padding:0 14px}
+  .apri{padding:0 12px}
+  .apri span{display:none}
+  .apertura{padding-top:calc(var(--testata) + 22px);padding-bottom:0}
+  .apertura h1{margin-top:8px;line-height:1.1}
+  .apertura .servizi{margin-top:12px}
+  .solo-pc{display:none !important}
+  .solo-tel{display:inline-flex !important}
+  .fatti{display:contents}
+  .fatto{border-top:0;padding-top:0;gap:2px}
+  .fatto .et{display:none}
+  .orari-oggi{order:4;margin-top:14px}
+  .apertura .azioni{order:5;margin-top:14px;flex-direction:column;align-items:stretch;gap:10px}
+  .apertura .azioni .btn{width:100%}
+  .sede-breve{order:6;margin-top:12px}
+  .apertura .nota{order:7;margin-top:10px}
+  .apertura figure{margin-top:28px}
+  .porte{padding-block:28px 36px}
+  .porte ul{grid-template-columns:1fr;row-gap:20px}
+  .porte li{padding-top:16px}
+  .intest .tit h2,.noleggi .regola{margin-top:10px}
+  .impianti .corpo,.schede,.garanzie,.marche,.passi,.materiale{margin-top:36px}
+  .sale li{grid-template-columns:1fr;row-gap:2px;padding:12px 0}
+  .sale span{padding-top:0}
+  .garanzia{padding:22px 20px 24px}
+  .marche ul{grid-template-columns:1fr 1fr;gap:18px var(--g)}
+  .schede{grid-template-columns:1fr}
+  .scheda{display:grid;grid-template-columns:38% 1fr}
+  .scheda img{height:100%;aspect-ratio:auto;min-height:100%}
+  .scheda .dentro{padding:14px 16px 16px;gap:4px}
+  .scheda .vai{padding-top:4px}
+  .schede-testo{grid-template-columns:1fr;gap:var(--g)}
+  .schede-testo .scheda{display:flex}
+  .schede-testo .scheda .dentro{padding:22px 20px 24px}
+  .offerta{padding:26px 20px 24px}
+  .offerta .azioni{flex-direction:column;align-items:stretch}
+  .passi{grid-template-columns:1fr;row-gap:24px}
+  .materiale ul{columns:1}
+  .noleggi .azioni,.dove .azioni,.garanzia .azioni{flex-direction:column;align-items:stretch}
+  .noleggi .azioni .btn,.dove .azioni .btn,.garanzia .azioni .btn{width:100%}
+  .noleggi .azioni{margin-top:36px}
+  .numeri{margin-top:48px}
+  .numeri b{font-size:var(--f-h2)}
+  .dove .foto{grid-template-columns:1fr;gap:10px}
+  .dove .foto img+img{display:none}
+  .modulo{padding:24px 18px 26px;margin-inline:calc(-1 * var(--m) + 8px)}
+  .campi{grid-template-columns:1fr}
+  .spunte{grid-template-columns:1fr}
+  .spunte.riga{grid-template-columns:repeat(3,auto);column-gap:16px}
+  .modulo .invio .btn{width:100%}
   .piede{padding-top:60px}
-  .piede ul{gap:6px}
-  .piede h3{margin-bottom:10px}
-  .piede .colonne{display:grid;grid-template-columns:1fr 1fr;gap:36px var(--g)}
-  .piede ul a{white-space:normal}
-  .piede .alto{row-gap:40px}
+  .piede .colonne{grid-template-columns:1fr}
   .legale{margin-top:44px;flex-direction:column}
   .legale ul{flex-wrap:wrap;gap:8px 20px}
 }
-/* tablet: il titolo diviso resta, piu piccolo */
-@media (min-width:601px) and (max-width:900px){
-  .apertura{--h:max(820px,min(100svh,1000px));--varco:60px}
-  h1{font-size:12.2vw;top:calc(var(--h) * .28)}
-  .sotto-titolo{top:calc(var(--h) * .53)}
-  .apertura .lead{font-size:16.5px;max-width:calc(var(--m) + 300px)}
-  .giorno .quando{font-size:40px}
-}
-/* ---------- telefono: l'asse si sposta a sinistra, il titolo resta diviso dal microfono ---------- */
-@media (max-width:600px){
-  .apertura{--h:max(760px,100svh);--asse:39%;--varco:30px}
-  .microfono{top:84px;height:calc(var(--h) * .5)}
-  h1{top:calc(84px + var(--h) * .5 * .275);font-size:clamp(44px,14.6vw,64px);line-height:.98}
-  .sotto-titolo{position:absolute;top:auto;bottom:calc(var(--h) * .035);display:block;padding-inline:var(--m)}
-  .apertura .lead{padding:0;font-size:16px;line-height:1.5;max-width:none}
-  .azioni{padding:0;margin-top:20px;gap:12px 22px}
-  .bottone{height:50px;padding:0 20px;font-size:15.5px}
-  .linea{bottom:calc(var(--h) * .035 + 238px);height:50px}
-  .tappa b{font-size:19px}
-  .tappa small{font-size:12.5px}
-  .tappa.ev{left:calc(var(--asse-px, 50%) + 14px)}
-  .linea .nota{display:none}
-  .giorni{grid-template-columns:1fr;row-gap:0;margin-top:40px;padding:0 0 0 40px}
-  .giorno,.giorno:nth-child(2),.giorno:nth-child(3){padding:0 0 22px;text-align:left}
-  .giorno:nth-child(2) p,.giorno:nth-child(3) p{margin-inline:0}
-  .giorno .quando{margin-top:6px;font-size:44px}
-  .giorno .mese{font-size:18px;margin-top:6px}
-  .giorno p{margin-top:10px}
-  .materiale{margin-top:28px;text-align:left}
-  .comandi{justify-content:flex-start}
-  .calendario{text-align:left}
-  .data output{font-size:17px;padding:0 2px}
-  .piede .colonne{grid-template-columns:1fr;row-gap:30px}
-  .lavori{flex-direction:column;gap:22px}
-  .lavori figure{flex:none}
-  .menu-tel a{font-size:30px}
-}
-@media (hover:none){
-  button,a{-webkit-tap-highlight-color:transparent}
-  .scelta button:hover{background:transparent}
-  .scelta button[aria-pressed=true]:hover{background:var(--ink)}
-  .passo:hover{background:transparent;color:var(--ink)}
-  .passo:disabled:hover{color:rgba(20,26,28,.35)}
-}
 @media (max-width:360px){
-  .apertura{--h:max(720px,100svh)}
-  .apertura .lead{font-size:15px}
-  .tappa b{font-size:17px}
-  .bottone{padding:0 16px}
+  :root{--m:16px}
+  .tel-testata .ic{display:none}
+  .tel-testata .btn{padding:0 12px}
+  .logo img{width:100px}
+  .apri{padding:0 10px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
 <header class="testata">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Eurotecnica Salmaso, torna all’inizio"><img src="img/logo.svg" width="366" height="101" alt="Eurotecnica Salmaso"></a>
-    <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu <i aria-hidden="true"></i></button>
-    <nav class="menu-box" id="menu" aria-label="Principale">
-      <ul class="menu">
-        <li><a href="#service">Service</a></li>
-        <li><a href="#noleggio">Noleggi</a></li>
-        <li><a href="#impianti">Impianti</a></li>
-        <li><a href="#azienda">Azienda</a></li>
-        <li><a href="#contatti">Contatti</a></li>
-      </ul>
-      <p class="menu-tel">Chiamateci<a href="tel:+39049760348">049 760348</a></p>
+    <a class="logo" href="#" aria-label="Eurotecnica Salmaso, torna all’inizio"><img src="img/logo.svg" alt="Eurotecnica Salmaso" width="366" height="101"></a>
+    <nav class="menu" aria-label="Sezioni">
+      <a href="#service">Service ed eventi</a>
+      <a href="#noleggi">Noleggi</a>
+      <a href="#impianti">Impianti</a>
+      <a href="#azienda">Azienda</a>
+      <a href="#dove">Dove siamo</a>
     </nav>
-    <a class="tel-top" href="tel:+39049760348">049 760348</a>
+    <div class="tel-testata">
+      <p class="orario"><span class="stato" data-stato="breve">Lun-ven 8.30-12.30</span><br><span data-orario-oggi>e 14.30-18.30</span></p>
+      <a class="btn pieno" href="tel:+39049760348" aria-label="Chiama 049 760348"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>049 760348</a>
+    </div>
+    <button class="apri" type="button" aria-expanded="false" aria-controls="pannello" aria-label="Menu"><i aria-hidden="true"></i><span>Menu</span></button>
   </div>
 </header>
+<div class="pannello" id="pannello">
+  <nav aria-label="Sezioni">
+    <a class="voce" href="#service">Service ed eventi</a>
+    <a class="voce" href="#noleggi">Noleggi</a>
+    <a class="voce" href="#impianti">Impianti</a>
+    <a class="voce" href="#azienda">Azienda</a>
+    <a class="voce" href="#dove">Dove siamo e orari</a>
+    <a class="voce" href="#richiesta">Richiesta di offerta</a>
+  </nav>
+  <div class="azioni">
+    <a class="btn pieno" href="tel:+39049760348">Chiama 049 760348</a>
+    <a class="btn bordo" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener">Indicazioni</a>
+  </div>
+  <div class="recapiti">
+    <a class="link" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">service@eurotecnicasalmaso.com</a>
+    <a class="link" href="mailto:info@eurotecnicasalmaso.com?subject=Richiesta%20dal%20sito">info@eurotecnicasalmaso.com</a>
+  </div>
+</div>
 
-<main id="top">
-  <section class="apertura" aria-labelledby="titolo" data-cavo='{"w":289,"h":1385,"x":0.5,"spessore":0.0934}'>
-    <img class="microfono" src="img/microfono-289.webp" srcset="img/microfono-150.webp 150w, img/microfono-220.webp 220w, img/microfono-289.webp 289w" sizes="(max-width: 600px) 100px, 140px" width="289" height="1385" alt="Un radiomicrofono a impugnatura, con la griglia argentata e l’anello color petrolio" fetchpriority="high">
-    <svg class="cavo" aria-hidden="true" focusable="false"></svg>
-    <h1 id="titolo"><span class="riga"><span class="sx">Il</span><span class="dx">giorno</span></span><span class="riga"><span class="sx">dell’</span><span class="dx">evento</span></span></h1>
-    <div class="sotto-titolo">
-      <p class="lead">Impianti audio e video per teatri, sale congressi, aule e chiese: li progettiamo e li installiamo. Per convegni ed eventi li portiamo in sala o li noleggiamo. Da Padova, dal 1967.</p>
+<main>
+<!-- 1. apertura: il mestiere con le loro parole, la prova, chiamare, chiedere un’offerta, orari e sede -->
+<section class="apertura">
+  <div class="wrap griglia">
+    <div class="testo">
+      <p class="et">Padova, dal 1967</p>
+      <h1>Impianti audio e video, service per eventi e noleggi a Padova</h1>
+      <p class="servizi"><b>Amplificazione, radiomicrofoni, traduzione simultanea, video e videowall, riprese e streaming</b> per convegni, congressi e manifestazioni.<span class="solo-pc"> Impianti fissi per sale consiliari, aule, teatri e chiese.</span></p>
       <div class="azioni">
-        <a class="bottone" href="tel:+39049760348">Chiama 049 760348</a>
-        <a class="link" href="#impianti">Impianti per le sale</a>
+        <a class="btn pieno" href="tel:+39049760348"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>Chiama 049 760348</a>
+        <a class="btn bordo solo-tel" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Indicazioni per la sede</a>
+        <a class="btn bordo" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">Chiedi un’offerta per un evento</a>
       </div>
-    </div>
-    <a class="linea" href="#noleggio" aria-label="Un noleggio tipo: ritiro il giorno prima, evento, reso entro il giorno dopo. Si quota solo il giorno dell’evento. Vai al calcolo dei giorni">
-      <span class="tappa t1"><small id="a1n">Ritiro</small><b id="a1">mer 4</b></span>
-      <span class="tappa ev"><small>Evento</small><b id="a2">gio 5</b></span>
-      <span class="tappa t3"><small id="a3n">Reso entro</small><b id="a3">ven 6</b></span>
-      <span class="nota" id="a-nota">Si quota solo il giorno dell’evento.</span>
-    </a>
-  </section>
-
-  <section class="sez service" id="service" aria-labelledby="t-service">
-    <div class="wrap">
-      <div class="capo">
-        <h2 id="t-service">Cosa portiamo in sala</h2>
-        <p class="intro">Per congressi, convegni e manifestazioni, con il nostro personale tecnico.</p>
-      </div>
-      <div class="lavori">
-        <figure>
-          <img src="img/regia-840.jpg" srcset="img/regia-480.jpg 480w, img/regia-840.jpg 840w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 46vw, 420px" width="840" height="560" loading="lazy" alt="La regia di un convegno in una sala storica con soffitto dorato e lanterne: mixer e cavi in primo piano, il pubblico sulle sedie rosse davanti allo schermo">
-          <figcaption class="didascalia">Regia di un convegno in una sala storica.</figcaption>
-        </figure>
-        <figure>
-          <img src="img/palco-840.jpg" srcset="img/palco-480.jpg 480w, img/palco-840.jpg 840w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 46vw, 420px" width="840" height="560" loading="lazy" alt="Un palco all’aperto con aste microfoniche, monitor da palco e diffusori davanti a un palazzo gotico sull’acqua, al tramonto">
-          <figcaption class="didascalia">Palco e diffusori per una serata all’aperto sull’acqua.</figcaption>
-        </figure>
-      </div>
-      <ul class="griglia voci">
-        <li><h3>Amplificazione sonora</h3><p>Sale convegni, teatri, chiese, fabbriche e piazze; sistemi portatili per le visite guidate.</p></li>
-        <li><h3>Traduzione simultanea</h3><p>A infrarossi per più lingue o via radio; cabine in legno per gli ambienti raffinati.</p></li>
-        <li><h3>Sistemi video</h3><p>Videoproiezione anche FullHD, monitor a LED, totem e videowall per i grandi eventi.</p></li>
-        <li><h3>Ripresa video</h3><p>Telecamere senza operatore comandate da una regia centrale; registrazione ed editing.</p></li>
-        <li><h3>Videoconferenza</h3><p>Collegamenti fino al FullHD, anche con i programmi di largo utilizzo.</p></li>
-        <li><h3>Streaming</h3><p>Diretta via internet con pagina web dedicata; archivio dei video su server esterno.</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="sez noleggio" id="noleggio" aria-labelledby="t-noleggio">
-    <svg class="cavo cavo-n" aria-hidden="true" focusable="false"></svg>
-    <div class="wrap">
-      <div class="capo">
-        <h2 id="t-noleggio">Quotiamo solo i giorni di effettivo utilizzo</h2>
-        <p class="intro">Non quelli di consegna e di reso. Scegliete il giorno dell’evento: ecco quando si ritira il materiale e quando si riporta.</p>
-      </div>
-
-      <div class="comandi">
-        <div class="campo">
-          <span class="etichetta" id="l-data">Giorno dell’evento</span>
-          <div class="data" role="group" aria-labelledby="l-data">
-            <button class="passo" type="button" data-passo="-1" aria-label="Giorno prima"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M11.5 3.5 6 9l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-            <output id="data-testo" aria-live="polite">giovedì 5 novembre 2026</output>
-            <button class="passo" type="button" data-passo="1" aria-label="Giorno dopo"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5 3.5 12 9l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-            <button class="calendario" type="button" id="apri-cal">Calendario</button>
-            <input type="date" id="data" aria-label="Scegli la data dell’evento" tabindex="-1">
-          </div>
-        </div>
-        <div class="campo">
-          <span class="etichetta" id="l-durata">Durata</span>
-          <div class="scelta" role="group" aria-labelledby="l-durata" data-gruppo="durata">
-            <button type="button" data-v="1" aria-pressed="true">1 giorno</button>
-            <button type="button" data-v="2" aria-pressed="false">2 giorni</button>
-            <button type="button" data-v="3" aria-pressed="false">3 giorni</button>
-          </div>
-        </div>
-        <div class="campo">
-          <span class="etichetta" id="l-modo">Come</span>
-          <div class="scelta" role="group" aria-labelledby="l-modo" data-gruppo="modo">
-            <button type="button" data-v="ritiro" aria-pressed="true">Ritiro in sede</button>
-            <button type="button" data-v="consegna" aria-pressed="false">Consegna e montaggio</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="giorni" aria-live="polite">
-        <div class="giorno">
-          <span class="etichetta" id="g1-nome">Ritiro</span>
-          <div class="quando" id="g1">mer 4</div>
-          <div class="mese" id="g1m">novembre</div>
-          <p id="g1t">Il giorno prima, in Via Lussemburgo 48. Un tecnico qualificato è a disposizione per spiegazioni e domande. Non si quota.</p>
-        </div>
-        <div class="giorno evento">
-          <span class="etichetta">Evento</span>
-          <div class="quando" id="g2">gio 5</div>
-          <div class="mese" id="g2m">novembre</div>
-          <p id="g2t">Quotiamo solo questo giorno.</p>
-        </div>
-        <div class="giorno">
-          <span class="etichetta" id="g3-nome">Reso</span>
-          <div class="quando" id="g3">gio 5</div>
-          <div class="mese" id="g3m">a fine evento, o venerdì 6 novembre</div>
-          <p id="g3t">La restituzione si fa alla fine dell’evento o il giorno successivo, che non si quota.</p>
-        </div>
-      </div>
-
-      <div class="materiale">
-        <p>Casse amplificate, radiomicrofoni a impugnatura, a cravatta e headset, impianti di traduzione simultanea con cabine interpreti, sistemi per visite guidate, monitor fino a 86&nbsp;pollici.</p>
-        <p>Offerta personalizzata senza impegno: <a class="link nobr" href="tel:+39049760348">049 760348</a> o <a class="link" href="mailto:service@eurotecnicasalmaso.com">service@eurotecnicasalmaso.com</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sez impianti" id="impianti" aria-labelledby="t-impianti">
-    <div class="wrap capo">
-      <h2 id="t-impianti">Impianti che restano in sala</h2>
-    </div>
-    <figure class="teatro">
-      <picture>
-        <source media="(max-width: 900px)" srcset="img/teatro-m-780.jpg 780w, img/teatro-m-1200.jpg 1200w" sizes="100vw">
-        <img src="img/teatro-1440.jpg" srcset="img/teatro-960.jpg 960w, img/teatro-1440.jpg 1440w, img/teatro-1920.jpg 1920w, img/teatro-2400.jpg 2400w, img/teatro-2880.jpg 2880w" sizes="100vw" width="2880" height="1620" loading="lazy" alt="Ordini di palchi di un teatro d’opera, con tende di velluto rosso e parapetti decorati in oro">
-      </picture>
-      <figcaption class="didascalia wrap">Palchi di un teatro d’opera.</figcaption>
-    </figure>
-    <div class="wrap">
-      <div class="capo dopo"><p class="intro">Progettazione, vendita, installazione e collaudo per università, sale riunioni, teatri, centri congressi, luoghi di culto e sale polivalenti; anche impianti di evacuazione, videowall e digital signage.</p></div>
-      <ul class="griglia sale">
-        <li><h3>Teatri e auditorium</h3><p>Audio e video professionali per teatri, sale conferenze, musei e alberghi.</p></li>
-        <li><h3>Sale congressi e riunioni</h3><p>Controllo centralizzato compatibile con i protocolli Crestron, Extron e AMX.</p></li>
-        <li><h3>Aule e università</h3><p>Lavagne e monitor interattivi per la didattica.</p></li>
-        <li><h3>Chiese e basiliche</h3><p>Sonorizzazione con rilevazioni acustiche.</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="sez azienda" id="azienda" aria-labelledby="t-azienda">
-    <div class="wrap griglia">
-      <figure>
-        <picture>
-          <source media="(max-width: 900px)" srcset="img/conferenza-m-780.jpg 780w, img/conferenza-m-1200.jpg 1200w" sizes="100vw">
-          <img src="img/conferenza-1080.jpg" srcset="img/conferenza-720.jpg 720w, img/conferenza-1080.jpg 1080w, img/conferenza-1540.jpg 1540w" sizes="(max-width: 900px) 100vw, 58vw" width="1540" height="1760" loading="lazy" alt="Un’unità microfonica per conferenze sul banco di un’aula consiliare, con i posti dei delegati sfocati sullo sfondo">
-        </picture>
-        <figcaption class="didascalia">Un’unità per conferenze in un’aula consiliare.</figcaption>
-      </figure>
-      <div class="testo">
-        <p class="anno" aria-hidden="true">1967</p>
-        <h2 id="t-azienda">Dal 1967 a Padova, dai sistemi per conferenze agli impianti di oggi</h2>
-        <p>Tutto comincia con i fratelli Salmaso, tra elettrodomestici e impianti per le chiese. Poi l’audio professionale e i sistemi per conferenze progettati e costruiti nella sede di Padova: dalla versione base con microfono a quella con votazione elettronica, fino alla serie per capitoli religiosi.</p>
-        <p id="partner">Oggi l’azienda non produce più in proprio: progetta e installa impianti audio e video scegliendo solo marchi di alta qualità, ed è partner di lavoro di impiantisti, rivenditori e manutentori, dalla progettazione al collaudo.</p>
-        <ul class="fatti">
-          <li><b>MePA</b><span>abilitati dal 2022, anche per i lavori di categoria OS&nbsp;30</span></li>
-          <li><b>Sede</b><span>Via Lussemburgo 48, zona industriale di Padova</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="chiusura" id="contatti" aria-labelledby="t-contatti">
-    <div class="wrap">
-      <h2 id="t-contatti">Avete bisogno di un consiglio o di una consulenza tecnica?</h2>
-      <div class="recapiti">
-        <a class="tel" href="tel:+39049760348">049 760348</a>
-        <ul>
-          <li><span>Informazioni</span><a href="mailto:info@eurotecnicasalmaso.com">info@eurotecnicasalmaso.com</a></li>
-          <li><span>Eventi e noleggi</span><a href="mailto:service@eurotecnicasalmaso.com">service@eurotecnicasalmaso.com</a></li>
-          <li><span>Via Lussemburgo 48, 35127 Padova</span><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Eurotecnica+Salmaso+Via+Lussemburgo+48+35127+Padova">Apri la mappa</a></li>
-        </ul>
+      <p class="nota">Offerta personalizzata senza impegno: scriveteci data, luogo, numero di persone, lingue e se serve la diretta.</p>
+      <div class="fatti">
+        <div class="fatto orari-oggi"><p class="et">Orari</p><p><span class="stato" data-stato="lungo">Lun-ven</span></p><p>Lun-ven 8.30-12.30 e 14.30-18.30, sabato e domenica chiuso</p></div>
+        <div class="fatto sede-breve"><p class="et">Sede ed emporio dell’audio</p><p><span class="nobr">Via Lussemburgo 48,</span> angolo Viale della Regione Veneto, zona industriale di Padova</p><p class="solo-pc"><a class="link" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener">Indicazioni</a></p></div>
       </div>
     </div>
     <figure>
       <picture>
-        <source media="(max-width: 900px)" srcset="img/chiusura-m-780.jpg 780w, img/chiusura-m-1200.jpg 1200w" sizes="100vw">
-        <img src="img/chiusura-1600.jpg" srcset="img/chiusura-800.jpg 800w, img/chiusura-1200.jpg 1200w, img/chiusura-1600.jpg 1600w, img/chiusura-2000.jpg 2000w, img/chiusura-2520.jpg 2520w" sizes="100vw" width="2520" height="1680" loading="lazy" alt="Una sala consiliare simmetrica: il tavolo ovale con i microfoni a collo di cigno ai posti, il lampadario sopra il centro, tende gialle alle finestre">
+        <source media="(max-width: 980px)" srcset="img/regia-480.jpg 480w, img/regia-720.jpg 720w, img/regia-924.jpg 924w" sizes="100vw">
+        <img src="img/apertura-1160.jpg" srcset="img/apertura-800.jpg 800w, img/apertura-1160.jpg 1160w" sizes="1160px" width="1160" height="616" alt="La regia di Eurotecnica Salmaso durante un convegno in una sala storica: mixer e monitor con la ripresa dei relatori, pubblico in sala" fetchpriority="high">
       </picture>
     </figure>
-  </section>
+  </div>
+</section>
+
+<!-- tre porte: i tre mestieri, ognuno con la sua regola -->
+<nav class="porte su-scuro" aria-label="I tre mestieri">
+  <div class="wrap">
+    <ul>
+      <li><a href="#service"><h3>Service ed eventi</h3><p>Servizi tecnici congressuali per congressi, convegni e manifestazioni, con il nostro personale tecnico.</p></a></li>
+      <li><a href="#noleggi"><h3>Noleggi</h3><p>Quotiamo solo il/i giorno/i di effettivo utilizzo e non quello di consegna e di reso.</p></a></li>
+      <li><a href="#impianti"><h3>Impianti per le sale</h3><p>Sale consiliari e congressi, aule, teatri, chiese: dalla progettazione all’installazione al collaudo.</p></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 2. impianti: le sale, MePA, assistenza, marche (visitatore 2, seconda schermata a 1440) -->
+<section class="sezione impianti" id="impianti">
+  <div class="wrap">
+    <div class="intest">
+      <div class="tit">
+        <p class="et">Impianti fissi</p>
+        <h2>Impianti per sale consiliari, aule, teatri e chiese</h2>
+      </div>
+      <p class="lead">Impianti audio e video professionali, progettati, installati e collaudati da noi. Lavoriamo anche come partner di impiantisti, rivenditori e manutentori.</p>
+    </div>
+
+    <div class="garanzie">
+      <div class="garanzia">
+        <p class="et">Pubblica amministrazione</p>
+        <p class="grande">Abilitati MePA dal 2022, anche per OS 30</p>
+        <p>Cinque abilitazioni: dispositivi di comunicazione; fotografia, ottica, audio e video, beni e servizi; OS 30 impianti interni; audio, foto, video e luci.</p>
+      </div>
+      <div class="garanzia">
+        <p class="et">Assistenza</p>
+        <p class="grande">Un impianto già installato che non va?</p>
+        <p>Chiamate o scriveteci la sala, l’impianto e la data del prossimo utilizzo.</p>
+        <div class="azioni"><a class="btn pieno" href="tel:+39049760348">Chiama 049 760348</a><a class="btn bordo" href="mailto:info@eurotecnicasalmaso.com?subject=Assistenza%20su%20un%20impianto%20installato&amp;body=Buongiorno%2C%0D%0Achiediamo%20assistenza%20per%20un%20impianto.%0D%0A%0D%0AEnte%20o%20azienda%3A%0D%0ASala%20e%20indirizzo%3A%0D%0AImpianto%20%28marca%20e%20modello%2C%20se%20li%20conoscete%29%3A%0D%0ACosa%20non%20funziona%3A%0D%0AQuando%20serve%20di%20nuovo%20la%20sala%3A%0D%0A%0D%0ANome%20e%20telefono%3A%0D%0A">Scrivi a info@</a></div>
+      </div>
+      <div class="garanzia">
+        <p class="et">Impianto nuovo</p>
+        <p class="grande">Sopralluogo e consulenza tecnica</p>
+        <p>Avete bisogno di un consiglio o di una consulenza tecnica? Mandateci la planimetria o qualche foto della sala.</p>
+        <div class="azioni"><a class="btn bordo" href="mailto:info@eurotecnicasalmaso.com?subject=Richiesta%20di%20sopralluogo%20per%20un%20impianto&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%20sopralluogo%20e%20una%20consulenza%20per%20un%20impianto%20nuovo.%0D%0A%0D%0AEnte%20o%20azienda%3A%0D%0ATipo%20di%20sala%20%28consiliare%2C%20aula%2C%20teatro%2C%20chiesa%2C%20altro%29%3A%0D%0AIndirizzo%3A%0D%0ACosa%20serve%3A%0D%0APlanimetria%20o%20foto%20della%20sala%3A%20le%20alleghiamo%20a%20questa%20email.%0D%0A%0D%0ANome%20e%20telefono%3A%0D%0A">Chiedi un sopralluogo</a></div>
+      </div>
+    </div>
+
+    <div class="griglia corpo">
+      <div class="sinistra">
+      <figure>
+        <img src="img/teatro-924.jpg" srcset="img/teatro-480.jpg 480w, img/teatro-720.jpg 720w, img/teatro-924.jpg 924w" sizes="(max-width: 980px) 100vw, 624px" width="924" height="616" loading="lazy" alt="Teatro storico con poltrone rosse e palchi, fotografato da Eurotecnica Salmaso">
+      </figure>
+      <div class="marche">
+        <p class="et">I marchi che usiamo</p>
+        <ul>
+          <li><b>Sennheiser</b><span>radiomicrofoni e ricevitori</span></li>
+          <li><b>Yamaha</b><span>mixer digitali</span></li>
+          <li><b>dB Technologies</b><span>casse amplificate</span></li>
+          <li><b>Crestron, Extron, AMX</b><span>controllo centralizzato delle sale</span></li>
+          <li><b>Epson</b><span>videoproiettori</span></li>
+          <li><b>Philips</b><span>monitor</span></li>
+          <li><b>Bose, Kramer, LG</b><span>e gli altri brand di alta qualità e affidabilità</span></li>
+        </ul>
+      </div>
+      </div>
+      <ul class="sale">
+        <li><b>Sale consiliari e congressi</b><span>Microfoni da tavolo, anche con votazione elettronica, traduzione simultanea.</span></li>
+        <li><b>Aule e università</b><span>Sistemi per le aule didattiche, lavagne e monitor interattivi.</span></li>
+        <li><b>Teatri e auditorium</b><span>Impianti audio e video professionali per sale conferenze, teatri, musei e alberghi.</span></li>
+        <li><b>Chiese e basiliche</b><span>Sonorizzazione con rilevazioni acustiche.</span></li>
+        <li><b>Evacuazione</b><span>Amplificazione sonora per la sicurezza negli ambienti pubblici.</span></li>
+        <li><b>Videowall e digital signage</b><span>Videowall, ledwall, totem informativi.</span></li>
+        <li><b>Controllo della sala</b><span>Domotica per sale congressi e riunioni con Crestron, Extron e AMX.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3. service: schede con la foto del lavoro (visitatore 1) -->
+<section class="sezione su-grigio service" id="service">
+  <div class="wrap">
+    <div class="intest">
+      <div class="tit">
+        <p class="et">Service per convegni ed eventi</p>
+        <h2>Cosa portiamo in sala</h2>
+      </div>
+      <p class="lead">Da sempre l’azienda fornisce anche servizi tecnici congressuali: congressi, convegni, manifestazioni, collegamenti audio video, traduzioni simultanee e streaming. Per servizi tecnici ed eventi: <a class="link" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">service@eurotecnicasalmaso.com</a>.</p>
+    </div>
+    <div class="schede">
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Amplificazione">
+        <img src="img/amplificazione-480.jpg" srcset="img/amplificazione-480.jpg 480w, img/amplificazione-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Palco all’aperto con le casse sul Canal Grande al tramonto">
+        <div class="dentro"><h3>Amplificazione</h3><p>Sale convegni, teatri, chiese, piazze; sistemi portatili per visite guidate e processioni.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Radiomicrofoni">
+        <img src="img/radiomicrofoni-480.jpg" srcset="img/radiomicrofoni-480.jpg 480w, img/radiomicrofoni-690.jpg 690w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Rack di ricevitori per radiomicrofoni in regia, durante un evento">
+        <div class="dentro"><h3>Radiomicrofoni</h3><p>A impugnatura, a cravatta e headset, con i ricevitori in regia.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Video">
+        <img src="img/video-480.jpg" srcset="img/video-480.jpg 480w, img/video-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Proiezione luminosa sulla facciata di un palazzo storico, di sera">
+        <div class="dentro"><h3>Video e videowall</h3><p>Videoproiezione, monitor fino a 86", videowall per grandi eventi.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Riprese">
+        <img src="img/riprese-480.jpg" srcset="img/riprese-480.jpg 480w, img/riprese-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Convegno con il tavolo dei relatori e la ripresa del relatore proiettata sullo schermo grande">
+        <div class="dentro"><h3>Riprese video</h3><p>Telecamere senza operatore, comandate da una regia centrale.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+    </div>
+    <div class="schede-testo">
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Traduzione simultanea">
+        <div class="dentro"><h3>Traduzione simultanea</h3>
+          <ul>
+            <li>Sistemi professionali a infrarosso per più lingue.</li>
+            <li>Sistemi via radio, per un costo contenuto con una sola lingua straniera e pubblico limitato.</li>
+            <li>Cabine interpreti in legno, eleganti e funzionali per ambienti raffinati; ricevitori e cuffie.</li>
+          </ul>
+          <span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+      <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Streaming">
+        <div class="dentro"><h3>Streaming e videoconferenza</h3>
+          <ul>
+            <li>Trasmissione in diretta via internet, con la creazione di una pagina web dedicata.</li>
+            <li>Videoconferenza.</li>
+          </ul>
+          <span class="vai">Chiedi l’offerta &rarr;</span></div>
+      </a>
+    </div>
+    <div class="offerta su-scuro">
+      <div class="cosa">
+        <h3>Per l’offerta diteci data, luogo, persone, lingue e se serve la diretta</h3>
+        <p>Offerta personalizzata senza impegno.</p>
+      </div>
+      <div class="azioni">
+        <a class="btn pieno" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">Scrivi a service@</a>
+        <a class="btn bordo" href="tel:+39049760348">Chiama 049 760348</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. noleggi: la regola dei giorni, ritiro, reso, materiale (visitatore 1, compito 3) -->
+<section class="sezione su-petrolio noleggi" id="noleggi">
+  <div class="wrap">
+    <div class="griglia">
+      <p class="et" style="grid-column:1 / -1">Noleggi</p>
+      <p class="regola">Quotiamo solo il/i giorno/i di effettivo utilizzo e non quello di consegna e di reso.</p>
+    </div>
+    <ol class="passi">
+      <li><span class="quando">Il giorno prima</span><h3>Ritiro in sede</h3><p>Un tecnico qualificato è a disposizione per spiegazioni e domande.</p></li>
+      <li><span class="quando">Il giorno dell’evento</span><h3>Lo usate</h3><p>Si paga solo questo giorno, o i giorni in cui lo usate.</p></li>
+      <li><span class="quando">Dopo l’evento</span><h3>Reso</h3><p>La restituzione si può effettuare alla fine dell’evento o il giorno successivo.</p></li>
+      <li><span class="quando">Oppure</span><h3>Consegna e montaggio</h3><p>Il noleggio con consegna e montaggio da parte del nostro personale tecnico.</p></li>
+    </ol>
+    <div class="griglia materiale">
+      <p class="et">Cosa si noleggia</p>
+      <ul>
+        <li>Casse amplificate e trombe per esterno</li>
+        <li>Radiomicrofoni a impugnatura, a cravatta e headset</li>
+        <li>Microfoni da tavolo</li>
+        <li>Traduzione simultanea: cabine interpreti, ricevitori e cuffie</li>
+        <li>Sistemi per visite guidate</li>
+        <li>Videoproiettori e schermi</li>
+        <li>Monitor fino a 86"</li>
+        <li>Luci a LED con controllo DMX</li>
+        <li>Laser per animazioni e feste</li>
+      </ul>
+    </div>
+    <div class="azioni">
+      <a class="btn pieno" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20noleggio&amp;body=Buongiorno%2C%0D%0Avorremmo%20noleggiare%3A%0D%0A%0D%0AMateriale%20e%20quantit%C3%A0%3A%0D%0AGiorno%20o%20giorni%20di%20utilizzo%3A%0D%0ARitiro%20in%20sede%20il%20giorno%20prima%2C%20oppure%20consegna%20e%20montaggio%3A%0D%0ALuogo%20dell%E2%80%99evento%3A%0D%0A%0D%0ANome%20e%20telefono%3A%0D%0A">Chiedi un noleggio</a>
+      <a class="btn bordo" href="tel:+39049760348">Chiama 049 760348</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. azienda: dal 1967, i sistemi per conferenze fatti a Padova, i numeri -->
+<section class="sezione azienda" id="azienda">
+  <div class="wrap">
+    <div class="griglia corpo">
+      <figure>
+        <img src="img/sala-consiliare-654.jpg" srcset="img/sala-consiliare-480.jpg 480w, img/sala-consiliare-654.jpg 654w" sizes="(max-width: 980px) 100vw, 507px" width="654" height="436" loading="lazy" alt="Banchi di una sala consiliare con i microfoni a collo di cigno e un’unità per la votazione">
+      </figure>
+      <div class="testo">
+        <p class="et">Azienda</p>
+        <h2>Dal 1967, a Padova</h2>
+        <p>La storia ha inizio a Padova nel 1967, quando i fratelli Salmaso intraprendono il loro percorso nel mondo degli elettrodomestici e degli impianti per le chiese.</p>
+        <p>Per anni l’azienda ha prodotto i propri sistemi per conferenze, dalla versione base con microfono a quella con votazione elettronica, fino alla serie per capitoli religiosi: progettati e realizzati interamente in Italia presso la sede a Padova. Oggi integra solamente brand di alta qualità e affidabilità.</p>
+      </div>
+    </div>
+    <ul class="numeri">
+      <li><b>1967</b><span>la famiglia Salmaso comincia a Padova</span></li>
+      <li><b>1986</b><span>nasce Eurotecnica Salmaso S.R.L.</span></li>
+      <li><b>5</b><span>abilitazioni MePA dal 2022, compresa la OS 30</span></li>
+      <li><b>86"</b><span>i monitor più grandi a noleggio</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. dove siamo: sede ed emporio dell’audio, orari, indicazioni (visitatore 3) -->
+<section class="sezione su-grigio dove" id="dove">
+  <div class="wrap griglia corpo">
+    <div class="foto">
+      <img src="img/sede-542.jpg" srcset="img/sede-480.jpg 480w, img/sede-542.jpg 542w" sizes="(max-width: 980px) 100vw, 507px" width="542" height="361" loading="lazy" alt="La facciata della sede con l’insegna Eurotecnica Salmaso, emporio dell’audio, e l’ingresso a vetri">
+      <img src="img/emporio-720.jpg" srcset="img/emporio-480.jpg 480w, img/emporio-720.jpg 720w, img/emporio-866.jpg 866w" sizes="(max-width: 980px) 100vw, 507px" width="720" height="480" loading="lazy" alt="L’emporio dell’audio: casse amplificate in esposizione">
+    </div>
+    <div class="testo">
+      <p class="et">Sede ed emporio dell’audio</p>
+      <h2>Via Lussemburgo 48, Padova</h2>
+      <p>Angolo Viale della Regione Veneto, zona industriale, 35127 Padova. Qui si ritirano e si riportano i noleggi; nell’emporio dell’audio, sotto la stessa insegna, casse e microfoni in esposizione.</p>
+      <p class="stato" data-stato="lungo">Lun-ven 8.30-12.30 e 14.30-18.30</p>
+      <table class="orari">
+        <caption class="nascosto" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Orari</caption>
+        <tbody>
+          <tr data-giorni="1,2,3,4,5"><th scope="row">Lunedì-venerdì</th><td>8.30-12.30 e 14.30-18.30</td></tr>
+          <tr data-giorni="6"><th scope="row">Sabato</th><td>chiuso</td></tr>
+          <tr data-giorni="0"><th scope="row">Domenica e festivi</th><td>chiuso</td></tr>
+        </tbody>
+      </table>
+      <div class="azioni">
+        <a class="btn pieno" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Indicazioni</a>
+        <a class="btn bordo" href="tel:+39049760348">Chiama 049 760348</a>
+      </div>
+      <p>Cercate un pezzo? Chiamate prima di passare: vi diciamo se c’è.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. chiusura: il telefono come titolo e il modulo di richiesta -->
+<section class="sezione su-scuro chiusura" id="richiesta">
+  <div class="wrap griglia corpo">
+    <div class="sinistra">
+      <p class="et">Offerte, noleggi, sopralluoghi, assistenza</p>
+      <a class="tel-grande" href="tel:+39049760348">049 760348</a>
+      <p>Avete bisogno di un consiglio o di una consulenza tecnica? Contattateci via email, telefono o di persona. <span class="stato" data-stato="lungo">Lun-ven 8.30-12.30 e 14.30-18.30</span></p>
+      <div class="mail">
+        <p><span>Servizi tecnici, eventi e noleggi</span><a class="link" href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">service@eurotecnicasalmaso.com</a></p>
+        <p><span>Impianti, assistenza, emporio dell’audio</span><a class="link" href="mailto:info@eurotecnicasalmaso.com?subject=Richiesta%20dal%20sito">info@eurotecnicasalmaso.com</a></p>
+      </div>
+    </div>
+
+    <form class="modulo" id="modulo" novalidate>
+      <h3>Richiesta di offerta</h3>
+      <p class="sotto">Il modulo prepara l’email con i dati: la inviate voi dal vostro programma di posta.</p>
+      <div class="campi">
+        <div class="campo largo">
+          <label for="tipo">Che cosa vi serve</label>
+          <select id="tipo" name="tipo">
+            <option value="service">Service per un evento</option>
+            <option value="noleggio">Noleggio con ritiro in sede</option>
+            <option value="montaggio">Noleggio con consegna e montaggio</option>
+            <option value="impianto">Impianto nuovo o sopralluogo</option>
+            <option value="assistenza">Assistenza su un impianto installato</option>
+            <option value="emporio">Emporio dell’audio: un prodotto</option>
+          </select>
+        </div>
+        <div class="campo"><label for="nome">Nome e cognome *</label><input id="nome" name="nome" autocomplete="name" required></div>
+        <div class="campo"><label for="ente">Ente o azienda</label><input id="ente" name="ente" autocomplete="organization"></div>
+        <div class="campo"><label for="telefono">Telefono *</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" required></div>
+        <div class="campo"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+
+        <div class="campo" data-per="service noleggio montaggio"><label for="data">Data dell’evento</label><input id="data" name="data" type="date"></div>
+        <div class="campo" data-per="service noleggio montaggio"><label for="persone">Persone previste</label><input id="persone" name="persone" inputmode="numeric"></div>
+        <div class="campo largo" data-per="service montaggio impianto assistenza"><label for="luogo" data-etichetta-luogo>Luogo e sala</label><input id="luogo" name="luogo" autocomplete="street-address"></div>
+        <fieldset class="campo largo" data-per="service noleggio montaggio">
+          <legend>Cosa serve</legend>
+          <div class="spunte">
+            <label><input type="checkbox" name="serve" value="Amplificazione">Amplificazione</label>
+            <label><input type="checkbox" name="serve" value="Radiomicrofoni">Radiomicrofoni</label>
+            <label><input type="checkbox" name="serve" value="Traduzione simultanea">Traduzione simultanea</label>
+            <label><input type="checkbox" name="serve" value="Video">Video e videowall</label>
+            <label><input type="checkbox" name="serve" value="Riprese">Riprese video</label>
+            <label><input type="checkbox" name="serve" value="Streaming">Streaming</label>
+          </div>
+        </fieldset>
+        <div class="campo" data-per="service noleggio montaggio"><label for="lingue">Lingue per la traduzione</label><input id="lingue" name="lingue" placeholder="per esempio inglese e francese"></div>
+        <fieldset class="campo" data-per="service montaggio">
+          <legend>Diretta o registrazione</legend>
+          <div class="spunte riga">
+            <label><input type="radio" name="diretta" value="sì">Sì</label>
+            <label><input type="radio" name="diretta" value="no">No</label>
+            <label><input type="radio" name="diretta" value="da decidere">Non so</label>
+          </div>
+        </fieldset>
+        <div class="campo" data-per="impianto"><label for="sala">Tipo di sala</label>
+          <select id="sala" name="sala"><option>Sala consiliare o congressi</option><option>Aula o università</option><option>Teatro o auditorium</option><option>Chiesa o basilica</option><option>Evacuazione</option><option>Altro</option></select>
+        </div>
+        <div class="campo" data-per="assistenza impianto"><label for="quando">Entro quando</label>
+          <select id="quando" name="quando"><option>Subito</option><option>Entro la settimana</option><option>Senza fretta</option></select>
+        </div>
+        <div class="campo largo"><label for="messaggio" data-etichetta-messaggio>Altro da sapere</label><textarea id="messaggio" name="messaggio"></textarea></div>
+      </div>
+      <div class="invio">
+        <button class="btn pieno" type="submit">Prepara l’email</button>
+        <p class="avviso" role="status" aria-live="polite"></p>
+      </div>
+      <p class="nota-mail">Planimetrie e foto della sala: allegatele all’email che si apre. Con i dati del modulo ci contattate voi; li usiamo solo per rispondervi.</p>
+    </form>
+  </div>
+</section>
 </main>
 
 <footer class="piede">
   <div class="wrap">
-    <div class="griglia alto">
+    <div class="colonne">
       <div class="chi">
-        <img src="img/logo-chiaro.svg" width="366" height="101" alt="Eurotecnica Salmaso" loading="lazy">
-        <p>Impianti audio e video, service per eventi e noleggi. A Padova dal 1967.</p>
+        <img src="img/logo-chiaro.svg" alt="Eurotecnica Salmaso" width="366" height="101" loading="lazy">
+        <p><b>Eurotecnica Salmaso S.R.L.</b><br>P.IVA 01353510280<br>C.F. 01871990238<br>Abilitata MePA dal 2022, anche OS 30</p>
       </div>
-      <div class="colonne">
-        <nav aria-labelledby="p-az">
-          <h3 id="p-az">Azienda</h3>
-          <ul>
-            <li><a href="azienda/">La storia</a></li>
-            <li><a href="azienda/#partner">Per impiantisti e rivenditori</a></li>
-            <li><a href="azienda/#mepa">MePA e pubblica amministrazione</a></li>
-          </ul>
-        </nav>
-        <nav aria-labelledby="p-imp">
-          <h3 id="p-imp">Impianti</h3>
-          <ul>
-            <li><a href="impianti/#sale-congressi">Sale congressi e riunioni</a></li>
-            <li><a href="impianti/#teatri">Teatri e auditorium</a></li>
-            <li><a href="impianti/#aule">Aule didattiche</a></li>
-            <li><a href="impianti/#chiese">Chiese e basiliche</a></li>
-            <li><a href="impianti/#evacuazione">Evacuazione e sicurezza</a></li>
-          </ul>
-        </nav>
-        <nav aria-labelledby="p-ser">
-          <h3 id="p-ser">Service e noleggi</h3>
-          <ul>
-            <li><a href="service/#amplificazione">Amplificazione</a></li>
-            <li><a href="service/#traduzione">Traduzione simultanea</a></li>
-            <li><a href="service/#video">Video e videowall</a></li>
-            <li><a href="service/#streaming">Riprese e streaming</a></li>
-            <li><a href="noleggi/">Noleggi</a></li>
-          </ul>
-        </nav>
-        <div class="contatti">
-          <h3 id="p-con">Contatti</h3>
-          <ul>
-            <li><a href="tel:+39049760348">049 760348</a></li>
-            <li><a href="mailto:info@eurotecnicasalmaso.com">info@eurotecnicasalmaso.com</a></li>
-            <li><a href="mailto:service@eurotecnicasalmaso.com">service@eurotecnicasalmaso.com</a></li>
-            <li><address>Via Lussemburgo 48<br>35127 Padova</address></li>
-            <li class="mappa"><a href="https://www.google.com/maps/search/?api=1&amp;query=Eurotecnica+Salmaso+Via+Lussemburgo+48+35127+Padova">Apri la mappa</a></li>
-          </ul>
-        </div>
+      <div>
+        <h3>Sede ed emporio</h3>
+        <p><a href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener">Via Lussemburgo 48<br>angolo Viale della Regione Veneto<br>35127 Padova</a></p>
+        <p class="chiaro" style="margin-top:12px">Lun-ven 8.30-12.30 e 14.30-18.30<br>Sabato e domenica chiuso</p>
+      </div>
+      <div>
+        <h3>Contatti</h3>
+        <ul>
+          <li><a href="tel:+39049760348">049 760348</a></li>
+          <li><a href="mailto:info@eurotecnicasalmaso.com?subject=Richiesta%20dal%20sito">info@eurotecnicasalmaso.com</a></li>
+          <li><a href="mailto:service@eurotecnicasalmaso.com?subject=Richiesta%20di%20offerta%20per%20un%20evento&amp;body=Buongiorno%2C%0D%0Avorremmo%20un%E2%80%99offerta%20personalizzata%20per%20un%20evento.%0D%0A%0D%0AData%3A%0D%0ALuogo%20e%20sala%3A%0D%0APersone%20previste%3A%0D%0ACosa%20serve%20%28amplificazione%2C%20radiomicrofoni%2C%20traduzione%20simultanea%2C%20video%2C%20riprese%2C%20streaming%29%3A%0D%0ALingue%20per%20la%20traduzione%20simultanea%3A%0D%0ADiretta%20o%20registrazione%3A%0D%0ARitiro%20in%20sede%20o%20consegna%20e%20montaggio%3A%0D%0A%0D%0ANome%2C%20ente%20e%20telefono%3A%0D%0A">service@eurotecnicasalmaso.com</a></li>
+          <li><a href="https://it.linkedin.com/company/eurotecnica-salmaso-srl" rel="noopener">LinkedIn</a> <span class="chiaro">pagina aziendale</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Il sito</h3>
+        <ul>
+          <li><a href="#service">Service ed eventi</a></li>
+          <li><a href="#noleggi">Noleggi</a></li>
+          <li><a href="#impianti">Impianti</a></li>
+          <li><a href="#azienda">Azienda</a></li>
+          <li><a href="#dove">Dove siamo</a></li>
+        </ul>
       </div>
     </div>
     <div class="legale">
-      <p>Eurotecnica Salmaso S.R.L. · P.IVA 01353510280 · <span class="sede">Via Lussemburgo 48, 35127 Padova</span></p>
-      <ul>
-        <li><a href="privacy/">Privacy</a></li>
-        <li><a href="cookie/">Cookie</a></li>
-      </ul>
+      <p>© 2026 Eurotecnica Salmaso S.R.L., Via Lussemburgo 48, 35127 Padova</p>
+      <ul><li><a href="privacy/">Privacy</a></li><li><a href="cookie/">Cookie</a></li></ul>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var $=function(id){return document.getElementById(id)};
-  var NS='http://www.w3.org/2000/svg';
-
-  /* menu del telefono */
-  var apri=document.querySelector('.apri'), box=$('menu'), testata=document.querySelector('.testata');
-  function menu(a){
-    box.classList.toggle('aperto',a); testata.classList.toggle('aperta',a); document.body.classList.toggle('fermo',a);
-    apri.setAttribute('aria-expanded',a); apri.firstChild.textContent=a?'Chiudi ':'Menu ';
+  /* orari pubblicati da 2GIS: lun-ven 8.30-12.30 e 14.30-18.30; sabato, domenica e festivi nazionali chiuso */
+  var FASCE=[[510,750],[870,1110]];
+  var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  function ora(m){var h=Math.floor(m/60),mi=m%60;return h+(mi?'.'+(mi<10?'0':'')+mi:'');}
+  function pasqua(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mese=Math.floor((h+l-7*m+114)/31),giorno=((h+l-7*m+114)%31)+1;return new Date(y,mese-1,giorno);}
+  function festivo(d){
+    var md=(d.getMonth()+1)+'-'+d.getDate();
+    if(['1-1','1-6','4-25','5-1','6-2','8-15','11-1','12-8','12-25','12-26'].indexOf(md)>=0)return true;
+    var p=pasqua(d.getFullYear());p.setDate(p.getDate()+1);
+    return d.getMonth()===p.getMonth()&&d.getDate()===p.getDate();
   }
-  apri.addEventListener('click',function(){menu(apri.getAttribute('aria-expanded')!=='true')});
-  box.addEventListener('click',function(e){if(e.target.closest('a'))menu(false)});
-  addEventListener('keydown',function(e){if(e.key==='Escape'&&apri.getAttribute('aria-expanded')==='true'){menu(false);apri.focus()}});
-  matchMedia('(min-width: 901px)').addEventListener('change',function(m){if(m.matches)menu(false)});
-
-  /* il cavo: lo stesso cavo nero del microfono, con gli anelli dei giorni.
-     Un tracciato scuro e un riflesso sottile, come nella foto. */
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
-  function cavo(svg,d,dl,w,anelli){
-    svg.textContent='';
-    svg.appendChild(el('path',{d:d,fill:'none',stroke:'#16191b','stroke-width':w,'stroke-linecap':'butt'}));
-    svg.appendChild(el('path',{d:dl,fill:'none',stroke:'#5d6a6b','stroke-opacity':.7,'stroke-width':Math.max(1,w*.22),'stroke-linecap':'butt'}));
-    anelli.forEach(function(a){
-      var lw=Math.max(6,w*1.2), lh=w+6;
-      var r=a.v ? el('rect',{x:a.x-lh/2,y:a.y-lw/2,width:lh,height:lw,rx:1.5}) : el('rect',{x:a.x-lw/2,y:a.y-lh/2,width:lw,height:lh,rx:1.5});
-      r.setAttribute('fill',a.ev?'#257B82':'#A9BDBA');
-      svg.appendChild(r);
+  function lavora(d){var g=d.getDay();return g>=1&&g<=5&&!festivo(d);}
+  function adessoRoma(){
+    try{
+      var s=new Date().toLocaleString('en-US',{timeZone:'Europe/Rome'});return new Date(s);
+    }catch(e){return new Date();}
+  }
+  function stato(){
+    var n=adessoRoma(),m=n.getHours()*60+n.getMinutes();
+    if(lavora(n)){
+      for(var i=0;i<FASCE.length;i++){
+        if(m>=FASCE[i][0]&&m<FASCE[i][1])return {aperto:1,breve:'Aperto ora',lungo:'Aperto ora, fino alle '+ora(FASCE[i][1]),dopo:'fino alle '+ora(FASCE[i][1])};
+        if(m<FASCE[i][0])return {aperto:0,breve:'Chiuso ora',lungo:'Chiuso ora, riapre alle '+ora(FASCE[i][0]),dopo:'riapre alle '+ora(FASCE[i][0])};
+      }
+    }
+    var d=new Date(n.getFullYear(),n.getMonth(),n.getDate()),k=0;
+    do{d.setDate(d.getDate()+1);k++;}while(!lavora(d)&&k<15);
+    var quando=k===1?'domani':GIORNI[d.getDay()];
+    var perche=festivo(n)?'Chiuso oggi, festivo':'Chiuso ora';
+    return {aperto:0,breve:perche,lungo:perche+', riapre '+quando+' alle '+ora(FASCE[0][0]),dopo:'riapre '+quando+' alle '+ora(FASCE[0][0])};
+  }
+  function aggiorna(){
+    var s=stato();
+    document.querySelectorAll('[data-stato]').forEach(function(el){
+      el.textContent=el.getAttribute('data-stato')==='breve'?s.breve:s.lungo;
+      el.setAttribute('data-aperto',s.aperto?'1':'0');
     });
+    var o=document.querySelector('[data-orario-oggi]');if(o)o.textContent=s.dopo;
+    var oggi=adessoRoma().getDay();
+    document.querySelectorAll('.orari tr').forEach(function(tr){tr.classList.toggle('oggi',tr.getAttribute('data-giorni').split(',').indexOf(String(oggi))>=0);});
   }
-  var ap=document.querySelector('.apertura'), mic=ap.querySelector('.microfono'), dati=JSON.parse(ap.dataset.cavo);
-  var linea=ap.querySelector('.linea'), svg1=ap.querySelector('.cavo');
-  var tel=matchMedia('(max-width: 600px)');
-  function cavoApertura(){
-    var R=ap.getBoundingClientRect(), M=mic.getBoundingClientRect(), L=linea.getBoundingClientRect();
-    var x=M.left-R.left+M.width*dati.x, y0=M.bottom-R.top-1, w=Math.max(4,M.width*dati.spessore);
-    var Y=L.bottom-R.top, o=w*.26;
-    linea.style.setProperty('--asse-px',(x-(L.left-R.left))+'px');
-    svg1.setAttribute('viewBox','0 0 '+R.width+' '+R.height);
-    cavo(svg1,'M'+x+' '+y0+'V'+(Y+w*.5),'M'+(x+o)+' '+y0+'V'+(Y+w*.5),w,[{x:x,y:Y,ev:true,v:false}]);
-  }
-  var nol=$('noleggio'), svg2=nol.querySelector('.cavo-n');
-  function cavoNoleggio(){
-    var R=nol.getBoundingClientRect(), gs=nol.querySelectorAll('.giorno'), G=nol.querySelector('.giorni').getBoundingClientRect();
-    var mw=mic.getBoundingClientRect().width*dati.spessore, w=Math.max(3,Math.min(4,mw)), o=w*.26, d, dl, an;
-    svg2.setAttribute('viewBox','0 0 '+R.width+' '+R.height);
-    if(tel.matches){
-      var x=G.left-R.left+7, ya=G.top-R.top-18, yb=gs[2].getBoundingClientRect().top-R.top+64;
-      d='M'+x+' '+ya+'V'+yb; dl='M'+(x+o)+' '+ya+'V'+yb;
-      an=[].map.call(gs,function(g,i){var b=g.getBoundingClientRect();return {x:x,y:b.top-R.top+12,ev:i===1,v:true}});
-    }else{
-      var y=G.top-R.top+6, b0=gs[0].getBoundingClientRect(), b2=gs[2].getBoundingClientRect();
-      var xa=b0.left-R.left, xb=b2.right-R.left;   /* il cavo si ferma sui margini del contenuto */
-      d='M'+xa+' '+y+'H'+xb; dl='M'+xa+' '+(y+o)+'H'+xb;
-      an=[{x:b0.left-R.left+4,y:y},{x:R.width/2,y:y,ev:true},{x:b2.right-R.left-4,y:y}];
-    }
-    cavo(svg2,d,dl,w,an);
-  }
-  function cavi(){cavoApertura();cavoNoleggio()}
+  aggiorna();setInterval(aggiorna,60000);
 
-  /* il noleggio in tre giorni */
-  var GG=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
-  var G3=['dom','lun','mar','mer','gio','ven','sab'];
-  var MM=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
-  var oggi=new Date(); oggi.setHours(12,0,0,0);
-  function piu(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
-  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-  var minimo=piu(oggi,1);
-  /* ritiro e reso solo nei giorni feriali (lun-ven): il sito non dice se il sabato e la domenica sono aperti */
-  function feriale(d,verso){while(d.getDay()===0||d.getDay()===6)d=piu(d,verso);return d}
-  function primaDi(d){return feriale(piu(d,-1),-1)}
-  function valido(d){return d>=minimo&&primaDi(d)>=oggi}
-  var evento=piu(oggi,2); while(evento.getDay()!==4)evento=piu(evento,1);   /* il primo giovedì fra almeno due giorni */
-  var durata=1, modo='ritiro';
-  var input=$('data'); input.min=iso(minimo);
-  function breve(d){return G3[d.getDay()]+' '+d.getDate()}
-  function lungo(d){return GG[d.getDay()]+' '+d.getDate()+' '+MM[d.getMonth()]}
-  function disegna(){
-    var fine=piu(evento,durata-1), prima=primaDi(evento), dopo=feriale(piu(fine,1),1);
-    var subitoPrima=+prima===+piu(evento,-1), subitoDopo=+dopo===+piu(fine,1);
-    var quandoPrima=subitoPrima?'Il giorno prima':'Il '+GG[prima.getDay()]+' prima';
-    var quandoDopo=subitoDopo?'il giorno successivo':'il '+GG[dopo.getDay()]+' successivo';
-    $('data-testo').textContent=lungo(evento)+' '+evento.getFullYear();
-    input.value=iso(evento);
-    document.querySelector('[data-passo="-1"]').disabled = !valido(piu(evento,-1));
-    if(modo==='ritiro'){
-      $('g1-nome').textContent='Ritiro';
-      $('g1t').textContent=quandoPrima+', in Via Lussemburgo 48. Un tecnico qualificato è a disposizione per spiegazioni e domande. Non si quota.';
-      $('g3-nome').textContent='Reso';
-      $('g3t').textContent='La restituzione si fa alla fine dell’evento o '+quandoDopo+', che non si quota.';
-    }else{
-      $('g1-nome').textContent='Consegna e montaggio';
-      $('g1t').textContent=quandoPrima+' il nostro personale tecnico porta il materiale e lo monta in sala. Non si quota.';
-      $('g3-nome').textContent='Ritiro';
-      $('g3t').textContent='Ritiriamo noi il materiale alla fine dell’evento o '+quandoDopo+', che non si quota.';
-    }
-    $('g1m').textContent=MM[prima.getMonth()];
-    $('g1').textContent=breve(prima);
-    $('g2').textContent=breve(evento);
-    $('g2m').textContent= durata>1 ? MM[evento.getMonth()]+', fino a '+lungo(fine) : MM[evento.getMonth()];
-    $('g2t').textContent= durata>1 ? 'Quotiamo '+durata+' giorni, uno per ogni giorno di evento.' : 'Quotiamo solo questo giorno.';
-    $('g3').textContent=breve(fine);
-    $('g3m').textContent='a fine evento, o '+lungo(dopo);
-    $('a1n').textContent= modo==='ritiro' ? 'Ritiro' : 'Consegna';
-    $('a3n').textContent= modo==='ritiro' ? 'Reso entro' : 'Ritiro entro';
-    $('a-nota').textContent= durata>1 ? 'Si quotano solo i '+durata+' giorni dell’evento.' : 'Si quota solo il giorno dell’evento.';
-    $('a1').textContent=breve(prima); $('a2').textContent=breve(evento); $('a3').textContent=breve(dopo);
+  /* menu fino a 1180 px */
+  var apri=document.querySelector('.apri'),pan=document.getElementById('pannello');
+  function chiudi(){pan.classList.remove('aperto');apri.setAttribute('aria-expanded','false');}
+  apri.addEventListener('click',function(){var a=!pan.classList.contains('aperto');pan.classList.toggle('aperto',a);apri.setAttribute('aria-expanded',a?'true':'false');});
+  pan.addEventListener('click',function(e){if(e.target.closest('a'))chiudi();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')chiudi();});
+
+  /* modulo: campi secondo la richiesta, email composta (mailto), niente invio automatico */
+  var f=document.getElementById('modulo'),tipo=document.getElementById('tipo'),avviso=f.querySelector('.avviso');
+  var ETI_LUOGO={service:'Luogo e sala',montaggio:'Luogo e sala',impianto:'Indirizzo della sala',assistenza:'Sala e indirizzo dell’impianto'};
+  var ETI_MSG={service:'Altro da sapere',noleggio:'Materiale e quantità',montaggio:'Materiale e quantità',impianto:'Cosa serve nella sala',assistenza:'Impianto e cosa non funziona',emporio:'Prodotto che cercate'};
+  function campi(){
+    var t=tipo.value;
+    f.querySelectorAll('[data-per]').forEach(function(el){el.hidden=el.getAttribute('data-per').split(' ').indexOf(t)<0;});
+    var l=f.querySelector('[data-etichetta-luogo]');if(ETI_LUOGO[t])l.textContent=ETI_LUOGO[t];
+    f.querySelector('[data-etichetta-messaggio]').textContent=ETI_MSG[t];
   }
-  document.querySelectorAll('.passo').forEach(function(b){b.addEventListener('click',function(){
-    var n=piu(evento,+b.dataset.passo); if(valido(n)){evento=n;disegna()}
-  })});
-  $('apri-cal').addEventListener('click',function(){try{input.showPicker()}catch(e){input.style.pointerEvents='auto';input.focus()}});
-  input.addEventListener('change',function(){if(!input.value)return;var p=input.value.split('-');var d=new Date(+p[0],p[1]-1,+p[2],12);if(valido(d)){evento=d}disegna()});
-  document.querySelectorAll('.scelta').forEach(function(g){g.addEventListener('click',function(e){
-    var b=e.target.closest('button'); if(!b)return;
-    g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-    if(g.dataset.gruppo==='durata')durata=+b.dataset.v; else modo=b.dataset.v;
-    disegna(); cavi();
-  })});
-  disegna();
-  cavi();
-  addEventListener('resize',cavi);
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(cavi);
-  if(!mic.complete)mic.addEventListener('load',cavi);
-  addEventListener('load',cavi);
+  tipo.addEventListener('change',campi);campi();
+  document.querySelectorAll('.scheda[data-tipo]').forEach(function(a){
+    a.addEventListener('click',function(){
+      tipo.value=a.getAttribute('data-tipo');campi();
+      var v=a.getAttribute('data-serve');
+      f.querySelectorAll('input[name=serve]').forEach(function(c){if(c.value===v)c.checked=true;});
+    });
+  });
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var mancano=[];
+    ['nome','telefono'].forEach(function(id){var el=document.getElementById(id);if(!el.value.trim())mancano.push(el);});
+    if(mancano.length){avviso.textContent='Scrivete nome e telefono: vi richiamiamo noi.';mancano[0].focus();return;}
+    avviso.textContent='';
+    var t=tipo.value,testo=tipo.options[tipo.selectedIndex].text;
+    var righe=['Richiesta: '+testo];
+    function add(et,id){var el=document.getElementById(id);if(el&&!el.closest('[hidden]')&&el.value.trim())righe.push(et+': '+el.value.trim());}
+    add('Nome','nome');add('Ente o azienda','ente');add('Telefono','telefono');add('Email','email');
+    add('Data dell’evento','data');add('Persone previste','persone');
+    add(ETI_LUOGO[t]||'Luogo','luogo');
+    var serve=[].slice.call(f.querySelectorAll('input[name=serve]:checked')).map(function(c){return c.value;});
+    if(serve.length&&!f.querySelector('input[name=serve]').closest('[hidden]'))righe.push('Cosa serve: '+serve.join(', '));
+    add('Lingue','lingue');
+    var dir=f.querySelector('input[name=diretta]:checked');if(dir&&!dir.closest('[hidden]'))righe.push('Diretta o registrazione: '+dir.value);
+    add('Tipo di sala','sala');add('Entro quando','quando');
+    add(ETI_MSG[t],'messaggio');
+    var a=(t==='service'||t==='noleggio'||t==='montaggio')?'service@eurotecnicasalmaso.com':'info@eurotecnicasalmaso.com';
+    var ogg='Richiesta dal sito: '+testo.toLowerCase();
+    var corpo='Buongiorno,\n\n'+righe.join('\n')+'\n\n(Planimetrie o foto: allegatele a questa email.)\n';
+    window.location.href='mailto:'+a+'?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+    avviso.textContent='Si apre il vostro programma di posta con l’email pronta.';
+  });
 })();
 </script>
 </body>

@@ -179,3 +179,20 @@ Scartati, con le schermate in `riferimenti/scartati/`:
 - Il logo vettoriale (chiedere al grafico o a Two Made).
 - Il Fax 049 644900: ancora attivo?
 - La newsletter: se vogliono mandare il listino per email, e con quale servizio.
+
+## 10. Aggiunte del 03/11/2026 (home, livello professionale)
+
+Lette di nuovo, senza contattare nessuno, le pagine pubbliche di termit.biz.
+
+- **Condizioni di fornitura** (`eventi/condizioni-di-fornitura-5`, datata 01/09/2022), frasi usate nella sezione Consegne della home:
+  - "La merce è spedita in porto franco, assicurata con addebito dei costi di spedizione in fattura".
+  - "Nel caso in cui un prodotto da voi ordinato non fosse disponibile in breve tempo (entro 1 mese dall'ordine), verrete contattati".
+  - "Gli ordini sono accettati solo ed esclusivamente in forma scritta o a mezzo fax o tramite Internet (on line)."
+  - "Non spediamo con corrieri espressi in quanto non adatti a trasportare oggetti ingombranti."
+  - "La consegna è a piano strada (sponda camion), nel punto più vicino all'ingresso dell'immobile ove sia consentita la sosta dell'automezzo."; "L'automezzo è condotto da un solo autista, non sono previste altre persone per un eventuale aiuto nello scarico della merce."
+  - "I nostri trasportatori utilizzano automezzi lunghi circa 10 metri. Dov'è possibile consegnano direttamente con i mezzi grandi, preavvisando telefonicamente con 1 giorno di anticipo."; nelle "strade strette, centri urbani, zone disagiate" la merce va "al deposito di zona più vicino che consegnerà con furgoni più piccoli".
+  - "Dal momento in cui sarete avvisati che la ditta di trasporti ha ritirato la merce dai nostri magazzini possono passare da 1 a 7 giorni di tempo perchè venga effettuata la consegna."
+  - Email nelle condizioni: "info@termit.biz"; fax "+39 049. 64 49 00".
+  - Nota: le condizioni parlano di "trasportatori specializzati", Chi siamo di consegne "il più delle volte con propri mezzi": in home restano tutte e due, come le scrivono loro (da chiarire, LEGGIMI).
+- **Schede prodotto**: 246 pagine prodotto raggiunte dalle 55 pagine di categoria, 232 con il PDF "Visualizza Scheda Tecnica" (`_prova/crawl/schede-pdf.json`, script `_prova/script/pro_schede_pdf.py`). Delle 138 schede della ricerca, 137 hanno la pagina e 126 il PDF. La pagina di Termit Isolbag 039 risponde "404 - File or directory not found".
+- **Categorie vere** del catalogo usate come link della home: lana-di-roccia-69, lana-di-vetro-70, elastomero-espanso-71, isolanti-nanotecnologici-78, protezione-incendi-24, isolanti-acustici-76, rivestimenti-73, accessori-74; industria (forni-63, serbatoi-64, coibentazioni-industriali-62, impiantistica-66, fumisteria-61, insonorizzazione-65); edilizia (coperture-industriali-59, tetti-piani-58, tetti-a-falda-57, sottotetti-55, isolamento-a-cappotto-53, pareti-divisorie-52, canali-daria-48, membrane-e-teli-traspiranti-77); navale-44.
