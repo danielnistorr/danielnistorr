@@ -1,5 +1,81 @@
 # Fratelli Ruffatti, home
 
+## Alto livello, prova della sezione D (3/11/2026)
+
+Richiesta: "non è ancora super professionale" (giudice da agenzia a 6). Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), che vince su A e C; direzione artistica in `_prova/alto/DIREZIONE.md` (modello N, il nome come immagine). La home di prima, intera e con i suoi screenshot, è in `_prova/versione-pro/`.
+
+Pagina: `sito/index.html` riscritta da capo, statica, si apre con file:///. Alta 5.961 px a 1440 e 7.038 a 390. Peso 498 KB in 16 file (pagina, un carattere, 14 immagini WebP). Screenshot in questa cartella, stessi nomi di prima: home-1440, home-1024, home-768, home-390, home-320 (pagine intere), le prime schermate a 1440, 1024, 768, 390 e 320, chiusura-1440.
+
+### Che cosa è cambiato
+
+- **Apertura.** Il logotipo corsivo "Fratelli Ruffatti" in ottone #D4B06A a 1120x246 sul mogano #3E1406 (358x79 a 390), dentro l'`h1` con la loro riga "Costruttori e restauratori d'organi a canne" (40/48 a 1440: la direzione diceva 32, l'ho alzata come prevede il suo rischio 1, perché nella miniatura a 300 px a 32 px il mestiere non si leggeva). Sotto, "Padova, dal 1940" in maiuscoletto; in basso a sinistra la didascalia "Il nome della targhetta d'ottone / sulle consolle dei nostri organi". Ai due bordi le due coppie di filetti d'intarsio in CSS, che scendono per tutta la pagina. Niente foto nella prima schermata a 1440.
+- **Testata**: Organi nuovi, Restauro, Ascolta, EN, il numero (testo a 1440, bottone bordato a 390) e un solo bottone, "Scriveteci". A 390 il menu è un `<details>`: funziona anche senza script.
+- **Culmine (sezione 2, alta 1.488 px)**: "Da Padova abbiamo raggiunto negli anni tutti i continenti." e la riga sui Paesi del ventunesimo secolo, poi l'organo della Uppsala Cathedral (900x1600) a 540x960, con "Uppsala Cathedral, Svezia / 2009 · quattro manuali · trasmissione elettrica" (dalla loro scheda PDF). A 390 la foto viene prima del titolo ed entra nella prima schermata.
+- **Organi nuovi**: la riga del mestiere e il link alle 86 opere significative; un indice di tre strumenti dal 2022 (Pershore Abbey 2023, con i dati "secondo Pershore Abbey" e il link alla loro pagina; Notre Dame Seminary e Santa Caterina da Siena 2022, con "La notizia"); la serie di quattro organi in 4:5 con la didascalia a due voci (New Orleans, Wayne, Buckfast 2017, Boteå contratto del 2015); la riga Ascolta con «I Principali cantano.» di Joyce Jones (Baylor University) e tre link.
+- **Laboratorio**: "Costruiamo ogni componente possibile in laboratorio / dai somieri alle canne ad anima e ad ancia, fino ai particolari più minuti.", la famiglia con i nomi, la foto d'archivio, e quattro passi numerati in 3:2 con il nome tecnico (Il legname, Lastre per canne, Canne ad anima, Canne ad ancia), ognuno verso la sua pagina. Le righe vengono dalle pagine loro, scaricate il 3/11/2026 in `_prova/alto/fonti/` (API WordPress).
+- **Restauro** (unico fondo pietra): la foto vera della targhetta, che chiude il gesto dell'apertura; "Restauro filologico di organi antichi" e la frase dei costruttori restaurati con l'elenco aggiornato al 2020; due link.
+- **Scriveteci**: tre strade (Un organo nuovo con il mailto e la traccia; Un restauro o un organo Ruffatti in chiesa con "Chiamate 049 750 666" e "Scrivete con le foto"; Per gli organisti con il Concorso di Miami in una frase). Il modulo esce dalla home (D12): va nella pagina Contatti.
+- **Piede** come biglietto da visita: logotipo, frase-firma, sede con "Indicazioni", telefono ed email, pagine, social, English e Русский, P.IVA, Maestro d'Arte e Mestiere 2020, Cookie.
+- **Tolti**: la frase con le cifre del 2016, il secondo bottone dell'apertura, l'email e "che cosa mandarci" in apertura, i due ingressi descritti, la riga degli ultimi strumenti, la fascia di sei cifre, la fascia della citazione di Michela e la sua seconda citazione (permesso da chiedere), due delle tre testimonianze, quattro dei cinque video, la fila dei quattro riconoscimenti, le tre cifre grandi del concorso, il telefono a 64 px, il modulo di dieci campi, "Visite su appuntamento". Grand Rapids e Coral Ridge escono dalla home: le loro date non hanno una fonte certa (vedi sotto).
+- **Carattere**: EB Garamond 400-500 (SIL OFL 1.1), una sola famiglia, in `sito/fonts/` con `OFL-EBGaramond.txt`. Escono Gambetta e Switzer. Nessun corsivo in pagina: il corsivo è solo il logotipo.
+- **Foto**: 11 più il logotipo, tutte loro, in WebP, mai ingrandite, con lo stesso trattamento (`_prova/alto/script/alto_img.py`: colore 0,88, bianco a metà strada verso il neutro, curva calda leggera, luminosità verso 118; l'archivio in bianco e nero). Tre formati: 9:16, 4:5, 3:2.
+
+### Esito delle regole D
+
+Misure con `_prova/alto/misura-d.mjs` (esteso da `alto/diagnosi/misure/vp.mjs` e `misura.mjs`); uscita in `_prova/alto/misura-d.txt` e `misura-d.json`. Le misure "prima" vengono dalla diagnosi (`alto/diagnosi.md` e `diagnosi/misure/nostre-*.json`) e, dove serve, dallo stesso script lanciato sulla copia in `_prova/versione-pro/` (`misura-d-prima.txt`).
+
+| Regola | Prima | Dopo | Esito |
+|---|---|---|---|
+| D1 idea e gesto | il logotipo sotto la piega | il logotipo d'ottone è l'apertura e torna con la foto della targhetta nel restauro | scritto in DIREZIONE; la prova con tre persone sulla miniatura non è fatta |
+| D2 foto nella 1ª schermata a 1440 | 26% (New Orleans 519x649 dalla foto di 574) | 0%; Uppsala apre la seconda a 540x960 dalla foto di 900 | passa |
+| D2 foto ingrandite | nessuna | 0 su 13 immagini a 1440 e a 390 (misurati i pixel veri del file scelto dal `srcset`) | passa |
+| D3 cliccabili / bottoni a 1440 | 18 / 3 | 6 / 1 (Organi nuovi, Restauro, Ascolta, EN, il numero, Scriveteci) | passa |
+| D3 caratteri fuori dal menu a 1440 | 731 | 122 (172 con la testata) | passa |
+| D3 cifre di 30 px nella 1ª schermata | 0 | 0 | passa |
+| D3 a 390: cliccabili / bottoni / foto | 9 / 4 / 19% | 3 / 1 (la chiamata) / 56,7% (Uppsala 390x477) | passa |
+| D5 famiglie | Switzer e Gambetta | 1, EB Garamond (nessuna altra home la usa) | passa |
+| D5 elementi oltre 100 px | 0 (il titolo a 64 px, il logotipo sotto la piega) | 1, il logotipo | passa |
+| D5 testo corrente a 1440 | 14 px nelle note, 17 nel testo | 20 px il testo, 17 il minimo (didascalie 16, piede 16-17) | passa |
+| D6 occhielli sopra h1 e h2 | 6 | 0 ("Padova, dal 1940" sta sotto l'`h1`) | passa |
+| D7 h1 | 6 parole | 8 parole, 0 virgole: il logotipo (alt) e la riga | passa |
+| D7 lista nera, lineetta lunga | 0, 0 | 0, 0 | passa |
+| D7 frase-firma | 2 | 2: apertura e piede, crema su mogano sotto il logotipo | passa |
+| D7 frasi d'istruzione sopra i 14 px | "Si apre il vostro programma di posta..." | nessuna | passa |
+| D8 parole | 1.083 | 568 a 1440, 554 a 390 | passa |
+| D8 sezioni dopo l'apertura | 8 | 5 | passa |
+| D8 bottoni in pagina | 7 a 1440, 8 a 390 | 2 e 2 | passa |
+| D8 altezza a 1440 | 9.200 px | 5.961 px | passa, con 39 px di margine |
+| D8 culmine di almeno 900 px | nessuno | Uppsala, 1.488 px | passa |
+| D9 cifre di 30 px o più in pagina | 10 (fascia dei numeri, concorso, telefono) | 0; tre numeri del concorso in una frase | passa |
+| D9 lavori con nome, luogo e anno | in parte | tutti e 8 (Uppsala, i 3 dell'indice, i 4 della serie); Boteå con l'anno del contratto | passa |
+| D10 foto, formati, "indicativ" | 10 foto, 4 formati | 11 foto, 3 formati (9:16, 4:5, 3:2), 0 | passa |
+| D10 un trattamento, didascalia a due voci solo su apertura e lavori | 0,8 di colore | 0,88; due voci su apertura, Uppsala, 4 lavori e targhetta | passa (la targhetta ripete la didascalia dell'apertura) |
+| D11 fondi oltre al piede | 4 | 3 (mogano, carta, pietra) | passa |
+| D11 sezioni col colore del marchio | 3 fasce scure (apertura, numeri, contatti) e una bordeaux (Ascolta) | 1, l'apertura | passa |
+| D11 spazi tra le sezioni | 96 ovunque | 80 e 128 (culmine), 1,6 volte | passa |
+| D12 tel: / "Indicazioni" / telefono grande e modulo | 5 / 0 / sì e sì | 3 (testata, contatti, piede) / 1 (piede) / no e no | passa |
+| D12 contatto per bisogno | modulo unico | 3 strade, ognuna con il suo contatto | passa in parte: manca la persona e l'orario, non sono nelle fonti |
+| D12 peso, video, pop-up, testo senza JS | 844 KB, 0 | 498 KB, 0, nessuno, tutto il testo c'è anche senza script | passa |
+| D4 modello per zona | | N, come da tabella del capitolo 5 | si controlla sull'ondata, non sulla singola home |
+
+**Controlli a 320, 390, 768, 1024, 1440 e 1920** (`_prova/alto/controllo.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione di testo, nessun testo o immagine fuori dalla finestra, nessun errore di script; il telefono della testata fissa è cliccabile a metà pagina; il menu a 390 si apre (11 voci), si chiude al tocco e porta "Restauro" sotto la testata; il focus si vede (bordeaux su carta, ottone su mogano). Contrasti: crema su mogano 13,6:1, ottone su mogano 7,8:1, grigio caldo #5A4E44 su carta 7,0:1 e su pietra 6,3:1, bordeaux su carta 11:1. `tel:+39049750666` in tutti e tre i link; i tre `mailto:` hanno oggetto, e i due delle strade anche la traccia.
+
+**Guardata accanto a Rieger, Flentrop, Robbe & Berking, Clayworks e al foglio dei 12** (`_prova/alto/giri/lontano.jpg`, `lontano-390.jpg`): da lontano a 1440 è il nome sul legno, come Knupfer con il nome a tutta larghezza; Rieger e Clayworks restano più forti perché hanno una foto da servizio fotografico. A 390 regge accanto a Rieger.
+
+### Problemi aperti
+
+- **Il mestiere a 1440 lo dice solo la riga sotto il logotipo**: va fatta la prova D1 con tre persone. Se non basta, la strada è far salire il bordo alto dell'organo di Uppsala nella prima schermata (sotto il 12%), non rimettere testo.
+- **Le foto sono piccole**: Uppsala 900 px, i quattro lavori tra 484 e 606 px, il laboratorio a 800 px. Sopra l'8 serve il servizio fotografico (LEGGIMI).
+- **Contatto senza persona e senza orario**: chi risponde e quando non è nelle fonti (LEGGIMI 6).
+- **Pershore**: l'anno e i dati vengono dalla pagina di Pershore Abbey e sono scritti "secondo Pershore Abbey". Grand Rapids e Coral Ridge sono fuori dalla home finché l'azienda non dà anno e dati.
+- **Il registro dei caratteri** (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`) dice 32/40 per la riga dell'`h1`: in pagina è 40/48 a 1440 e 34/42 a 1024. Le misure di carattere sono sette (16, 17, 18, 19, 20, 32, 40), non tre.
+- **L'altezza a 1440** passa per 39 px: se si aggiunge una riga, va tolta altrove.
+- **EN** porta ancora al sito inglese di oggi.
+
+---
+
+## Storia: la versione "livello professionale"
+
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh`. Alta 9200 px a 1440 e 13578 a 390, compreso il piede. Screenshot: home-1440, home-390, home-320, home-768, home-1024 (pagine intere), le prime schermate a 1440, 390 e 320, chiusura-1440.
 La versione precedente ("Una canna", con la canna ad ancia smontata e il gioco Noce / Canaletto / Piede) è conservata com'era, con la sua nota, in `_prova/versione-1-originale/`.
 

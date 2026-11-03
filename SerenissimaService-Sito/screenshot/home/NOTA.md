@@ -1,10 +1,89 @@
 # Serenissima Service, home: nota
 
+## Alto livello, prova della sezione D (3/11/2026)
+
+Pagina rifatta da capo secondo `_prova/alto/DIREZIONE.md` e la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (D vince su A e C). La home di prima, con le sue immagini, i caratteri e gli screenshot, è copiata com'era in `_prova/versione-pro/`.
+
+**Come si rifà**
+- Foto: `python3 -I _prova/alto/img.py .` (una serie sola, un solo trattamento: bianco neutro sui grigi, curva morbida con neri a 12 e alte luci a 248, saturazione 0,88, nitidezza dopo la riduzione; WebP 1x e 2x, mai oltre la misura naturale; mail personale sulla portiera del carro coperta, targhe della sede sfocate).
+- Pagina: `sito/index.html`, scritta a mano, statica, si apre da file://. Caratteri in `sito/fonts/` (Barlow 400, 500, 600 e Barlow Condensed 600, 700, 800, sottoinsieme latin, con `OFL.txt`).
+- Misure D: `node _prova/alto/misura-d.mjs` (esito in `_prova/alto/misura-d.json` e `misura-d-soglie.json`). Contrasto del testo sulla foto: `node _prova/alto/contrasto.mjs`. Menu, modulo, stato e mailto: `node _prova/alto/funzioni.mjs`. Targhetta fissa contro il piede: `node _prova/alto/fondo.mjs`. Screenshot: `node _prova/alto/screenshot.mjs`.
+- `bash _prova/script/build_finale.sh` rifà la versione di prima e sovrascrive questa: non va più lanciato.
+
+### Che cosa è cambiato
+
+- **Apertura, modello Q.** La cabina vuota in asse (`2015-04-fornoDentro1.jpg`, 1920 x 1276) a tutta larghezza, con sopra il motto del logo come titolo: **BOTTA? RISPOSTA!** in Barlow Condensed 800 maiuscolo, 146 px a 1440 (la direzione diceva 152: a 152 il punto esclamativo toccava il carrello verde della foto). Sotto, la riga del mestiere e la didascalia a due voci "Una nostra cabina / Corso Stati Uniti 19, Padova", senza anno (cartella 2015-04, EXIF 19/03/2016). Il velo nero è solo sul 45% basso (58% sotto i 640 px). A 390 la stessa foto esce tagliata in verticale (720 x 1276, centrata al 48%).
+- **Numero fisso.** A 1440 la targhetta blu del carro, "Soccorso stradale 335 5639355", in basso a destra a ogni scorrimento (`data-ruolo="emergenza"`, link `tel:`); sotto i 900 px una barra fissa: Chiama 049 760655 (60%) e Soccorso (40%). Il piede ha 112 px in fondo perché a fine pagina la targhetta non copra nulla (controllato con `fondo.mjs`).
+- **Testata**: logo, 4 voci (Incidente, Compagnie e noleggi, Tagliando, Dove siamo) e "Chiama 049 760655". Sul telefono "Menu" apre il pannello con lo stato "Sede aperta ora" e 6 voci; senza JavaScript "Menu" porta al piede.
+- **Culmine** "Hai avuto un incidente? Pensiamo a tutto noi" (1805 px): il percorso dell'auto in cinque tempi, quattro foto 3:2 a 624 px (il carro, il banco accettazione, il carrozziere, le cabine gialle con il loro nome) e la tessera di testo dell'auto sostitutiva. Le foto sono passate da 4:3 a 3:2, come l'apertura, per stare sotto i 6000 px senza accorciare il culmine.
+- **Compagnie e noleggi** su grigio: le 27 compagnie per nome in due colonne, i sei noleggi in righe d'indice con link di testo (niente più 8 bottoni bordati su blu), la frase su che cosa facciamo dopo la denuncia.
+- **Tutto nella stessa sede**: la storia in una frase con tre numeri (1993, 2001, 3000 mq), tre reparti con foto e tre righe di solo testo, numerati 01-06.
+- **Prenota il tagliando**: modulo corto (nome, telefono, targa, auto e km, data, note), orari in tabella. Il modulo resta in home perché per S la richiesta è il mestiere (D12).
+- **Chiusura verde**, l'unico blocco del colore del marchio: tre strade per bisogno con numero a 28 px e orario, la foto della sede 2:1, lo stato, un solo "Indicazioni".
+- **Tolti**: la fascia verde dei quattro percorsi, la fascia delle 5 cifre grandi, la fascia delle prove (ISO 9001 e Polizia di Stato escono finché non sono confermate), la linea del tempo con la Ferrari, le sei schede blu dei noleggi, il telefono a 96 px, l'occhiello, il campo email, "Che cosa ti serve", "Quando" e il ritiro a domicilio dal modulo, Archivo. I bottoni passano da 13-14 a 3, le parole da 1245 a 602, l'altezza da 9959 a 5990 px.
+
+### Le misure D, prima e dopo
+
+Prima: `alto/diagnosi/misure/nostre-*.json` (la home di oggi, misurata dalla diagnosi). Dopo: `_prova/alto/misura-d.json`, finestre 1440 x 900 e 390 x 844, ora di prova martedì alle 10.
+
+| Regola | Soglia | Prima | Dopo | Esito |
+|---|---|---|---|---|
+| D2 foto nella prima schermata, 1440 | 60% o più (o sotto il 12%) | 32-33%, foto di 720 px nel riquadro a destra | 90,3% (cabina 1440 x 828 su 900) | passa |
+| D2 foto nella prima schermata, 390 | 50% o più | 25% | 85% | passa |
+| D2 nessuna foto ingrandita | file vero di almeno la larghezza mostrata, scala con `cover` non oltre 1 | 720 px mostrata a 708 | a 320, 390, 768, 1024, 1440 e 1920 tutte le 9 foto a scala 1 o meno (cabina 1440/1440 e 1920/1920) | passa |
+| D3 cliccabili, 1440 | 8 per S | 14 | 7: logo, 4 voci, Chiama, targhetta del soccorso | passa |
+| D3 bottoni, 1440 | 1 | 3 | 1 (Chiama); la targhetta è il numero d'emergenza separato | passa |
+| D3 caratteri fuori dal menu, 1440 | 160 | 716 | 156 (203 con il menu) | passa |
+| D3 fila di ingressi | 0 | 4 percorsi in fascia | 0 | passa |
+| D3 cifre di 30 px o più | 0 | 0 nella prima schermata, 5 sotto | 0 | passa |
+| D3 a 390 | 4 cliccabili, 1 bottone, foto 50% | 9 cliccabili, 4 bottoni, 25% | 4 (logo, Menu, Chiama, Soccorso), 1 bottone, 85% | passa |
+| D5 famiglie calcolate | 2 | 1 (Archivo, in 9 home) | 2 (Barlow, Barlow Condensed); Barlow solo in Framo, altra zona: 2 su 45 | passa |
+| D5 elementi sopra 100 px | 1 | 0 (h1 a 38 px) | 1, l'h1 a 146 | passa |
+| D5 testo corrente | 17 px a 1440 | 17-19 | 17 minimo, 19 il corpo; a 390 16 per i soli nomi delle compagnie | passa |
+| D6 occhielli sopra h1/h2 | 1, con un fatto | 1 ("Botta? Risposta!" sopra l'h1) più 3 maiuscoli spaziati | 0 | passa |
+| D7 h1 | 9 parole, 1 virgola | 13 parole, 2 virgole | "Botta? Risposta!", 2 parole, 0 virgole, dal logo del 2016 | passa |
+| D7 lista nera, lineetta lunga | 0 | 0 | 0, 0 | passa |
+| D7 frase-firma in 2-3 punti | 2-3 | 1 | 2 ("Pensiamo a tutto noi" negli h2 del culmine e della chiusura) | passa |
+| D8 parole | 450-750 (S) | 1245 | 602 (596 a 390) | passa |
+| D8 sezioni | 6 | 9 | 5 | passa |
+| D8 bottoni nella pagina | 5 | 13 (14 a 390) | 3: Chiama, targhetta, Prepara l'email | passa |
+| D8 altezza a 1440 | 4000-6000 | 9959 | 5990 | passa, al limite |
+| D8 culmine | almeno 900 px | nessuno | 1805 px | passa |
+| D9 numeri di 30 px o più | 1 | 5 in fascia più il telefono a 96 | 0 | passa |
+| D10 foto in home | 12 | 10 | 9 | passa |
+| D10 formati | 3 | 3-4 | 2 (3:2 e 2:1) | passa |
+| D10 "indicativ", repertorio | 0 | 0 | 0 | passa |
+| D11 fondi oltre al piede | 3 | 4 | 3 (bianco, grigio #F1F2F0, verde) | passa |
+| D11 sezioni col colore del marchio | 1 | 2 (percorsi e chiusura) | 1 (chiusura) | passa |
+| D11 spazi tra le sezioni | 2 valori, rapporto 1,5 | 0/120, uno solo | 80 e 128 (1,6) | passa |
+| D12 "Indicazioni" | 1 | 2 | 1 | passa |
+| D12 telefono di 40 px o più e modulo | ammessi solo per S | telefono a 96 e modulo | modulo sì, telefoni a 28 | passa |
+| D12 peso della pagina | sotto 3 MB | | 607 KB a 1440, 489 KB a 390 (665 KB a 1920) | passa |
+| D12 testo senza JavaScript | tutto | | 602 parole su 602; lo stato mostra gli orari | passa |
+
+**Controlli di finitura** (`misura-d.mjs`, `contrasto.mjs`, `funzioni.mjs`): a 320, 390, 768, 1024, 1440 e 1920 nessuno scorrimento orizzontale, nessuna sovrapposizione tra testi, nessun errore di script (i `preload` dei caratteri davano errore CORS da file:// e sono stati tolti). 7 link `tel:` (sede, soccorso, Sifà 800 037631), 2 `mailto:` con oggetto, quello della chiusura anche con la traccia (nome, telefono, targa, di che cosa hai bisogno); il modulo compone "Prenotazione tagliando, targa AB123CD" con tutti i campi e senza JavaScript manda il modulo per posta con `action="mailto:"`. Contrasto del bianco sulla foto, misurato sui pixel sotto ogni riga: h1 da 5,4 a 9,7:1 in media (il 10% più chiaro dei pixel almeno 3,5:1), riga del mestiere e didascalia almeno 4,5:1 anche sul 10% più chiaro. Focus visibile (contorno di 3 px verde, bianco sul verde e sulla foto), alt descrittivi su tutte le foto, nessun testo dentro le immagini.
+
+**Confronto a vista** (`_prova/alto/lavoro/confronto.jpg` con Geser, BELFOR e Pirtek; `lavoro/lontano.jpg` con la pagina intera di Geser a 300 px): la prima schermata regge accanto a Geser (stessa stanza, ma qui il testo è un titolo solo sul pavimento e non un riquadro velato) e a BELFOR (la targhetta fissa fa il lavoro della loro hotline, senza il secondo bottone). Corretto dopo il confronto: il titolo ridotto da 152 a 146 px e a 10,1vw sotto i 1240 px perché a 1024 copriva il carrello; le foto del culmine e dei reparti in 3:2; la tessera 5 su due righe; "Soccorso" senza "stradale" sotto i 360 px; il piede alzato sopra la targhetta.
+
+### Problemi aperti
+
+- **Altezza al limite**: 5990 px su 6000. Qualsiasi riga in più (per esempio la riga ISO nel piede, dopo la conferma) va compensata, prima accorciando le righe 04-06 dei reparti.
+- **La foto d'apertura è di 1920 px** (servizio Nikon, cartella 2015-04): rispetta D2 a 1x, ma sugli schermi 2x è morbida. Resta la richiesta del servizio fotografico (cabina vuota in asse a 4000 px e più), vedi LEGGIMI.
+- **Il passo 3 mostra la Ferrari 488 di un cliente** (serie 2018-09): il taglio tiene solo il passaruota, le mani e il carrozziere, niente marchio; il permesso resta da chiedere (LEGGIMI 13).
+- **`_prova/script/pro_controlli.mjs`** (compiti dei clienti tipo) cerca gli elementi della pagina di prima e va adattato alla soglia nuova ("entro due schermate o un tocco dal menu") prima di ripetere le prove con i clienti tipo e il giudizio da agenzia.
+- **A 390 la pagina è lunga 10031 px** (contro 14606 di prima): D8 conta solo 1440, ma le tre foto dei reparti a tutta larghezza pesano; si possono mettere in due colonne se il telefono va accorciato.
+- **Dati da confermare in pagina**, solo con le parole del loro sito: 335 5639355 come soccorso (1), interno Carrozzeria (2), le 27 compagnie (4), link e scadenze dei noleggi, Sifà che rimanda a Unipol Rental (5), 1993, 2001 e 3000 mq nella frase della storia (6), "fino a 35 quintali" e "smart repair da 1 a 4 ore" (12).
+
+---
+
+## Storia: la nota della versione professionale (copiata in `_prova/versione-pro/`)
+
+
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `_prova/script/index.html`, screenshot). La versione precedente (apertura "Botta? Risposta!" con la Ferrari 488) è copiata com'era in `_prova/versione-1-originale/` (pagina, immagini e la sua nota).
 
 Altezza: 9959 px a 1440, 14606 px a 390.
 
-## Livello professionale, ritocco finale (3/11/2026)
+### Livello professionale, ritocco finale (3/11/2026)
 
 Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessun repertorio, nessun disegno). Regole: `_metodo/professionale/REGOLE.md`, famiglia S (servizi tecnici e imprese). Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14, le pagine intere di Kline e Dulwich Diggers a pezzi (prima anche Kline e Wilson). Scheda d'uso: `_prova/uso/SCHEDA.md`. Il ritocco parte dal giudizio del controllore (voto 6, dieci difetti) e dalle prove dei due clienti tipo (voti 7,5 e 8).
 

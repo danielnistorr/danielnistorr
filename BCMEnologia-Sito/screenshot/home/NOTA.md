@@ -1,5 +1,113 @@
 # Home di B.C.M. Enologia: nota
 
+## Alto livello, prova della sezione D (3/11/2026)
+
+Pagina: `sito/index.html`, riscritta da capo secondo `_prova/alto/DIREZIONE.md` e la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`. La home di prima (livello professionale con il ritocco finale) è copiata com'era in `_prova/versione-pro/` (sito intero e screenshot); la sua nota resta qui sotto come storia.
+
+Rifare tutto: `python3 -I _prova/alto/script/pro_img.py` (immagini), `node _prova/alto/shots.mjs` (screenshot all'ora simulata lunedì 2 novembre 2026 alle 10), `node _prova/alto/misura-d.mjs` (soglie D, risultati in `_prova/alto/misura-d.json`). Le miniature della zona a 300 px per la prova D1 sono in `_prova/alto/miniature-zona.jpg`.
+
+Screenshot (stessi nomi, più due): `home-1440.jpg` (5.903 px dopo il ritocco), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7.942 px), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (cataloghi e piede). Guardati a pezzi a 1440 e 390, e a 320, 768, 1024 e 1920, accanto a Scharfenberger e Krampe (`alto/M2/`) e al foglio dei 12 migliori.
+
+### Ritocco dopo il giudice da agenzia (voto 7, 3/11/2026)
+
+Il giudice ha dato 7 (prima 5,5) per tre ragioni: il mestiere non si capisce dalla foto, sotto la piega il carattere sparisce e ogni sezione ha una griglia sua, il culmine non culmina. La versione prima del ritocco è in `_prova/alto/rit/index-prima.html` e `rit/pro_img-prima.py`. Le prove dei clienti tipo rifatte sulla pagina nuova sono in `_prova/alto/rit/prova-1/` e `rit/prova-2/`. Il controllo della griglia è `_prova/alto/rit/griglia.mjs`. Le tabelle qui sotto riportano i valori di prima del ritocco. Quelli nuovi sono in fondo a questa parte.
+
+**Applicati**
+- **Apertura, foto (bloccante)**: al posto delle basi rosse (`wa0002`) c'è `wa0000`, i torchi con la gabbia in faggio e il martinetto DAVID montato sulla vite. È la variante proposta dal giudice: nome e oggetto coincidono e il mestiere si legge a 300 px. Il taglio 16:9 va da y 290 a 1370, così resta fuori la striscia chiara del pavimento. Il taglio 3:4 per il telefono è di 1020x1360 (x 330-1350) e i file sono `apertura-m-780` e `-1020`. Al posto della passata uniforme c'è un velo dentro la foto, in luce lineare: più scuro in alto, sotto DAVID, e in basso a sinistra, sotto il titolo. Non è un livello sopra la foto. I cartoni in alto restano nella fascia scura.
+- **Apertura, riga (bloccante)**: "Torchi, martinetti DAVID, pompe e pigiatrici per l'enologia. Saonara, dal 1960." Le parole "per l'enologia" vengono dal loro h2. "Pigiatrici" risponde alla prova T2 del cliente tipo: pompe e pigiatrici senza scorrere, che ora passa. Per restare nei 160 caratteri la didascalia dell'apertura è tolta, e data e soggetto stanno nell'`alt`. Così sparisce anche l'etichetta ghisa che usciva di 8 px dalla colonna (minore del giudice). Caratteri: 147.
+- **Culmine (importante)**: l'h2 è la frase-firma "Compatibilità con il passato", a 44/48 500, senza punto e uguale all'h1. Il paragrafo a 44 px sotto l'h2 da 30 è tolto. L'occhiello è "Martinetto DAVID, brevettato negli anni 80" (uno solo, con la cifra). Le sigle A-50...E-90 della tabella sono in Saira Extra Condensed 600: è il ritorno del gesto. Il culmine ha un suo fondo, `#E7E2D8`, e il torchio sta su quel fondo con `multiply`. È il secondo fondo della pagina oltre al piede (D11: al massimo 3).
+- **Griglia unica (importante)**: 12 colonne con spazio di 32 px (`.g`, `.sx`, `.dx`). In Ricambi, culmine, officina, cataloghi e piede la seconda colonna parte dalla colonna 7: x 736 a 1440, 528 a 1024, 976 a 1920, misurato con `griglia.mjs`. Voci delle macchine, serie dell'officina e indice stanno sulle stesse 3 colonne (x 56, 509, 963). Tutte le sezioni si aprono allo stesso modo: titolo in alto a sinistra, contenuto allineato in alto.
+- **Culmine a 1024 (importante)**: con la griglia unica la colonna del testo è larga 456 px, contro i 272 di prima. La foto ha `max-width:600px` e `sizes` corretti, e a nessuna larghezza tra 320 e 1920 c'è un'immagine ingrandita.
+- **Le macchine (importante)**: la fila delle 4 tessere è tolta. Ora c'è una griglia sola di 6 voci con uno scontornato sopra ogni nome: torchio a cricco, martinetto DAVID con la targhetta, gabbia in faggio, Volumex, pompa automatizzata e pigiadiraspatrice. Le tessere sono rifatte in `pro_img.py` in 3:2 (900x600): l'oggetto è alto l'80% della tessera, la base sta all'8,3% dal fondo (24 px a 1440) e l'oggetto è allineato a sinistra sul bordo del nome. Misurato: le basi sono alla stessa y in ogni fila e il left dell'immagine è uguale a quello del nome. Al telefono ogni voce ha lo scontornato a 112 px a sinistra e il testo accanto.
+- **Contatto per bisogno (D12, non passava)**: la sezione Ricambi ha a destra "Per le altre richieste", con due strade: "Preventivo per una macchina nuova" (email con l'oggetto e la traccia) e "Rivenditori ed estero" ("Spediamo in tutto il mondo. Per maggiori informazioni contattaci direttamente.", parole loro, con l'email e il link ai cataloghi). Ognuna ha lo stesso numero e lo stesso orario. Nomi e interni diversi non ci sono nelle fonti e non sono inventati. Non è aggiunto nessun link `tel:` (restano 3). La riga "Spediamo in tutto il mondo" esce dai cataloghi. La prova T3 (rivenditori) ora passa.
+- **Foto, una serie sola (D10)**: dopo il trattamento comune, le quattro foto d'officina (banchi, martinetti, gabbie, pompe) vanno sulla stessa media di colore e di luce con un guadagno per canale (`allinea` in `pro_img.py`). Le gabbie non sono più calde e le pompe non sono più blu. Le foto sono 12, in 3 formati (16:9, 3:4, 3:2). Il martinetto in Ricambi è diventato la voce 02.
+- **Una sola numerazione (minore)**: "01" a due cifre, colore secondario, 600, su una colonna di 40 px, sia nelle tre cose da mandare sia nell'indice. Le misure dei titoli sono due, 44 e 30 px.
+- **Unità (D9)**: "Idraulici con la gabbia da 45 a 90 cm, a cricco da 15 a 80 cm", "con il variatore da 0 a 950 hl/ora", "per le viti da 45 a 100 mm".
+- **Nota orfana**: "In azienda, giugno 2022" sotto la serie è tolta.
+- **Controlli**: in `misura-d.mjs` la didascalia d'apertura si salta se non c'è (prima lo script si fermava).
+
+**Respinti, con il motivo**
+- **Sigle del DAVID a 56/56 px** (giudice): a 56 px sarebbero 5 elementi numerici di 30 px o più, e D9 ne ammette 1 (c'è già l'h2 "nasce nel 1960"). Le sigle sono in Saira a 28/32: il carattere torna, ma la scala resta sotto la soglia.
+- **Taglio di `wa0002` da y 360** (giudice, prima strada): non serve più, perché la seconda strada che indicava il giudice, `wa0000`, risolve anche il mestiere.
+- **Stato "Aperto ora" e orario nella prima schermata** (prova 1, telefono): resterebbe il servizio in apertura, contro D3 e D12. Dopo un tocco sul bottone o su "Ricambi" nel menu, stato, telefono ed email sono nella stessa schermata (verificato in `rit/prova-1`).
+- **Link ai PDF dentro le voci delle macchine e tutta la gamma in una schermata** (prova 2, T1 e T5): i PDF sono a un clic dalla voce "Cataloghi IT DE EN FR" in testata, e le 6 voci con la scheda stanno nelle due schermate dopo il clic su "Macchine". Un link PDF per voce riporterebbe i 99 link di prima.
+- **Servizio fotografico**: resta il limite sopra l'8. La foto d'apertura è ancora uno scatto WhatsApp del 2022, morbido su retina.
+
+**Valori dopo il ritocco** (`misura-d.mjs`, tutti PASSA): 6 cliccabili, 1 bottone e 147 caratteri a 1440; 4 cliccabili e 1 bottone a 390; foto al 90% (1440) e al 62% (390). Famiglie 2, un solo elemento sopra i 100 px. 573 parole, 5 sezioni, 2 bottoni. Altezza 5.903 px a 1440 e 7.942 a 390, culmine 1.152 px. 1 numero di 30 px o più. 12 foto in 3 formati. Fondi: carta, carta del culmine e ghisa del piede. Spazi tra le sezioni di 112 e 176 px. 3 `tel:` e 4 `mailto` con l'oggetto. Peso 404 kB a 1440 e 379 kB a 390. Contrasto sul punto più chiaro: DAVID 3,44:1, h1 4,57:1 e riga 4,87:1 a 1440. Nessuno scorrimento orizzontale e nessuna sovrapposizione tra 320 e 1920. 0 U+2014.
+
+### Che cosa è cambiato
+
+- **Idea e gesto (D1)**: la parola DAVID, il loro marchio registrato, a 220 px color carta sopra la foto vera delle basi rosse dei torchi in fila, ognuna con la sua vite (`wa0002`, giugno 2022). Il titolo è la frase della loro brochure, "Compatibilità con il passato", che torna uguale nel culmine. Sotto, "Torchi, martinetti e pompe. Saonara, dal 1960." e un solo bottone, "Ricambi? Mandaci una foto". Modello N (il nome sopra la foto di serie).
+- **Prima schermata**: da 22 a 6 cliccabili, da 3 a 1 bottone, da 673 a 152 caratteri, la foto dal 32 al 90%. Il telefono è un link di testo rosso in testata, fisso. Il menu passa da 6 voci più "Catalogues" e il bottone a 3 voci: Macchine, Cataloghi IT DE EN FR, Contatti. Al telefono la voce "Menu" è un `details`, quindi si apre anche senza JavaScript.
+- **Cinque sezioni** al posto di nove: Ricambi (l'unica sezione contatti: le tre cose da mandare, il telefono con lo stato "Aperto ora" e l'email con l'oggetto e la traccia), il culmine sul DAVID (il torchio 60 del catalogo a 600x800 con la tabella "Quale DAVID per il tuo torchio" in testo), Le macchine (4 tessere scontornate con il solo nome e un indice 01-06 con una frase di misure ciascuna), L'officina (i banchi con i corpi in ghisa, tre frasi del loro chi-siamo, la serie di tre foto 3:2), Cataloghi (quattro righe, le lingue, la spedizione nel mondo). Il piede è il biglietto da visita, con "Apri la mappa" e i dati legali.
+- **Tolto dalla home**: l'occhiello maiuscolo e il titolo-elenco dell'apertura, il secondo bottone, la fila degli 8 ingressi, gli 8 scontornati con i due link e il peso dei PDF, la tabella del torchio idraulico, la fascia rossa delle 4 cifre a 128 px, i 4 riquadri dei cataloghi con il peso, le 10 brochure ZIP, i 4 rivenditori con il testo in 4 lingue, la riga dei SIMEI, la linea del tempo con le cifre grandi (e il 2012, da confermare), il modulo "Scrivici" e le ripetizioni di indirizzo e orari. I link `tel:` passano da 9 a 3, i bottoni da 6 a 2, le parole da 1.351 a 534.
+- **Caratteri (D5)**: Saira Extra Condensed 600 solo per DAVID; Source Sans 3 (400-600) per tutto il resto, testo a 18/28 (17/26 al telefono), titolo a 44/48 peso 500. Tolti Sofia Sans e Sofia Sans Condensed (già in 4 home). Saira arriva a 2 home su 45 (TreEmme usa Saira, fuori zona), Source Sans 3 è in questa sola.
+- **Colori**: un solo fondo, la carta `#F3F0EA`; ghisa `#1D1E20` per il testo e il piede; il rosso dei cerchi `#9E2B22` solo nel bottone, nel telefono, nel punto dello stato, nei numeri dell'elenco e nel filetto della tabella. Nessuna fascia di colore.
+- **Foto (D10)**: 11, in 3 formati (16:9, 3:4, 3:2), tutte con lo stesso trattamento in `pro_img.py` (verso il neutro sui pixel quasi grigi, contrasto +6%, neri alzati di 4 livelli, saturazione 0,88, una sfocatura di 0,45 px contro il rumore WhatsApp sulle foto d'officina, nessuna nitidezza). L'apertura è scurita in modo uniforme, senza sfumature, a un quarto della luce (2 stop): mezzo stop, come nella direzione, lasciava DAVID a 1,5:1 sul muro chiaro. Il torchio 60 viene dal catalogo PDF (2362x3149 dopo il taglio, in pagina 600x800 con `multiply` sulla carta). Il martinetto è ritagliato sul pezzo e messo al centro del 3:2.
+- **Didascalie**: due voci solo sull'apertura ("Basi dei torchi con la vite / giugno 2022"), su un'etichetta ghisa piena perché a 14 px sopra i riflessi dei piatti arrivava a 2,5:1; i soli nomi sotto la serie e sotto il martinetto, più "In azienda, giugno 2022". Non c'è scritto "DAVID" sotto le foto d'officina.
+
+### Esito regola per regola (misure di `misura-d.mjs`, prima: `alto/diagnosi/misure/nostre-*.json`)
+
+| Regola | Prima | Dopo | Esito |
+|---|---|---|---|
+| D1 idea e gesto | nessun gesto proprio; schema "titolo a sinistra, foto a destra" | DAVID a 220 px sulla foto di serie; nelle miniature della zona (`miniature-zona.jpg`) non somiglia a nessuna delle cinque | passa per la parte misurabile; la prova con tre persone non è fatta |
+| D2 foto in prima schermata 1440 | 32% (576x720, file di 624 px) | 90% geometrica, 74% a campioni (il testo sopra la foto toglie i punti), file di 1440 o 1920 px | passa |
+| D2 foto e gesto a 390 | 27% | 62% geometrica, 51% a campioni | passa |
+| D2 nessuna foto ingrandita | (non misurato) | scala resa al massimo 1 a 320, 390, 768, 1024, 1440 e 1920, anche con `object-fit: cover`, sui pixel veri del file scelto dal `srcset` | passa |
+| D3 cliccabili 1440 | 22 | 6 (logo, 3 voci, telefono, bottone) | passa |
+| D3 bottoni 1440 | 3 | 1 | passa |
+| D3 caratteri fuori dal menu 1440 | 673 (tutto compreso) | 152, più 36 del menu | passa |
+| D3 fila di ingressi | 8 | 0 | passa |
+| D3 cifre di 30 px o più | 0 in prima schermata, 7 in pagina | 0 | passa |
+| D3 a 390 | 9 cliccabili, 4 bottoni | 4 (logo, telefono, Menu, bottone), 1 bottone | passa |
+| D4 distanza del titolo | 80 px, come 27 home su 31 | 56 px; modello N, secondo e ultimo N della zona dopo Overdrive | passa |
+| D5 famiglie | 2 (Sofia Sans, già in 4 home) | 2 (Source Sans 3, Saira Extra Condensed) | passa |
+| D5 elementi oltre 100 px | 4 cifre a 128 px | 1, DAVID | passa |
+| D5 testo corrente | 18 e 16 px | 18 px a 1440, 17 a 390 | passa |
+| D6 occhielli | 13 maiuscoli spaziati, occhiello sopra l'h1 e sopra 5 h2 su 7 | 1, "Brevettato negli anni 80", sopra l'h2 del culmine | passa |
+| D7 h1 | "Torchi, martinetti DAVID e pompe, dal 1960", 7 parole, 1 virgola | "Compatibilità con il passato", 4 parole, nessuna virgola | passa |
+| D7 lista nera | "leader" nel loro sito | 0 | passa |
+| D7 testo d'interfaccia | in vista in più punti, sopra i 14 px | una riga sola, a 14 px accanto al bottone email | passa |
+| D7 frase-firma | nessuna | 2 volte, h1 e culmine, Source Sans 3 500 a 44 px tutte e due (più il `<title>`) | passa |
+| D8 parole | 1.351 | 534 (528 a 390) | passa |
+| D8 sezioni | 8-9 | 5 | passa |
+| D8 bottoni in pagina | 6 (7 a 390) | 2 | passa |
+| D8 altezza a 1440 | 9.328 px | 5.881 px (8.232 a 390) | passa |
+| D8 culmine | nessuno | sezione DAVID alta 1.153 px | passa |
+| D9 numeri di 30 px o più | 7 | 1, l'h2 "La ditta BCM nasce nel 1960" (30 px, la cifra è nella frase) | passa |
+| D9 peso dei PDF in pagina | 24 pesi in MB nel sorgente | 0 (il peso resta nel `title` dei link) | passa |
+| D10 foto | 13 | 11 | passa |
+| D10 formati | 3 | 3 (16:9, 3:2, 3:4) | passa |
+| D10 "indicativ" | 0 | 0 | passa |
+| D11 fondi oltre al piede | 4 | 1 (carta) | passa |
+| D11 sezioni con il colore del marchio | 1 (fascia rossa) | 0 | passa |
+| D11 spazi tra le sezioni | un valore, 120 px | 112 e 176 px (1,57 volte, il culmine); 72 e 112 a 390 | passa |
+| D12 link `tel:` | 9 | 3 (testata, ricambi, piede), tutti `tel:+39049640372` | passa |
+| D12 "Apri la mappa" | 2 | 1, nel piede | passa |
+| D12 telefono grande e modulo | tutti e due | nessuno dei due | passa |
+| D12 contatto per bisogno | contatto unico | non passa del tutto: c'è una strada sola con telefono, orario ed email (i ricambi). Le altre (rivenditori, preventivi) non hanno un numero o una persona propri nelle fonti | in parte |
+| Peso della pagina | cartella da 1,4 MB | 436 kB a 1440, 401 kB a 390 (HTML, 2 caratteri, 13 immagini) | passa |
+| Contrasto sull'apertura (punto più chiaro dietro le lettere, 99,5° percentile) | | 1440: DAVID 3,76:1, h1 4,97:1, riga 4,96:1, didascalia 14,7:1. 390: DAVID 4,17:1, h1 e riga su carta 16,7:1 | passa AA (testo grande 3:1, normale 4,5:1); DAVID resta sotto il 4,5:1 chiesto dalla direzione, vedi sotto |
+| Larghezze 320-1920 | | nessuno scorrimento orizzontale, nessuna sovrapposizione di testo, nessun errore di script; il telefono in testata è toccabile a metà pagina (44 px) | passa |
+| U+2014 | 0 | 0 | passa |
+
+### Quello che non passa o resta aperto
+
+- **DAVID a 4,5:1**: la direzione lo chiedeva sul punto più chiaro dietro le lettere. Sopra il muro di cemento e le viti zincate arriva a 3,76:1 (5,66:1 in mediana): è testo di 220 px, per cui l'AA chiede 3:1. Per arrivare a 4,5:1 la foto andrebbe scurita di un altro stop, e i piatti rossi diventerebbero marroni.
+- **Prova D1 con tre persone**: non fatta. Le miniature a 300 px senza logo, con BCM di prima e le cinque home vicine della zona, sono in `_prova/alto/miniature-zona.jpg`.
+- **Contatto diviso per bisogno (D12)**: le fonti non danno nomi, interni o orari diversi per ricambi, preventivi e rivenditori. In pagina c'è una strada sola, quella dei ricambi.
+- **Persone con il nome**: ci sono i fondatori (Marino Benetazzo e Mario Camerotto) nel testo, ma nessuna foto di persone. Il servizio fotografico resta il limite per salire sopra l'8 (LEGGIMI).
+- **Foto d'apertura**: è uno scatto WhatsApp del 2022. A 1440 la compressione si vede nelle viti al 100%; scurita e alla sua misura regge, ma è la foto da rifare per prima.
+- **Pagine che la home dà per scontate**: Ricambi e assistenza con il modulo, Misure (la tabella del torchio idraulico), Download con le 10 brochure, Dove trovare le macchine BCM (solo dopo il permesso dei rivenditori). Oggi i link portano alle pagine del sito attuale o alle sezioni della home. Il link ai rivenditori non c'è.
+
+### Caratteri e licenze
+
+Saira Extra Condensed 600 (The Saira Project Authors, Omnibus-Type) e Source Sans 3 variabile 400-600 (Paul D. Hunt, Adobe), entrambe SIL Open Font License 1.1, WOFF2 solo latin in `sito/fonts/` con `OFL-Saira-Extra-Condensed.txt` e `OFL-Source-Sans-3.txt`. Tolti Sofia Sans e Sofia Sans Condensed.
+
+---
+
+## Prima della sezione D (livello professionale)
+
 ## Ritocco finale (dopo il controllore del livello professionale, voto 6)
 
 Pagina: `sito/index.html`. La versione prima del ritocco è descritta qui sotto ("Livello professionale"). Le modifiche sono negli script `_prova/script/ritocco_css.py` e `ritocco_html.py` (sostituzioni puntuali, già applicate), le immagini si rifanno con `pro_img.py`, i controlli con `pro_controlli.mjs`: **65 su 66 passano**, non passa solo la regola 11 (lavori con il nome, che non ci sono nelle fonti).
