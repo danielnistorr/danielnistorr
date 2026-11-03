@@ -32,7 +32,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--testata)}
-body{margin:0;overflow-x:clip;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f5);line-height:1.55;word-spacing:.06em;font-synthesis:none;-webkit-font-smoothing:antialiased}
+body{margin:0;overflow-x:clip;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f5);line-height:1.55;word-spacing:.1em;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
@@ -46,7 +46,7 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
 .sez{padding-top:var(--sez);padding-bottom:var(--sez)}
 .nebbia{background:var(--nebbia)}
 .scuro{background:var(--bosco);color:var(--bianco)}
-.occhiello{font:600 var(--f6)/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--bosco)}
+.occhiello{font:600 var(--f6)/1.3 var(--sans);letter-spacing:.08em;font-kerning:none;text-transform:uppercase;color:var(--bosco)}
 .scuro .occhiello{color:var(--foglia)}
 h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.08;letter-spacing:-.015em;text-wrap:balance}
 .occhiello + h2.t{margin-top:16px}
@@ -88,7 +88,7 @@ h1 .r{display:block}
 .ap-sx .stato{margin-top:40px}
 .ap-foto{grid-column:7 / -1;margin-right:calc(-1 * max(var(--m),calc((100vw - 1312px)/2)));height:clamp(600px,calc(100svh - var(--testata)),960px)}
 .ap-foto picture{display:block;height:100%}
-.ap-foto img{width:100%;height:100%;object-fit:cover;object-position:58% 50%;background:var(--nebbia)}
+.ap-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;background:var(--nebbia)}
 .stato{font-family:var(--serif);font-size:var(--f3);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
 .stato .pallino{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--foglia);margin-right:12px;vertical-align:.06em}
 .stato.chiuso .pallino{background:transparent;box-shadow:inset 0 0 0 2px var(--grigio)}
@@ -158,7 +158,7 @@ h1 .r{display:block}
 .lavoro.giro .foto{grid-column:6 / span 7;order:2}
 .lavoro.giro .info{grid-column:1 / span 4;order:1}
 .lavoro img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--nebbia)}
-.coppia{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lavoro .foto.coppia{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .coppia figcaption{margin-top:10px;font-size:var(--f6);font-weight:600}
 .info h3{font-family:var(--serif);font-weight:400;font-size:var(--f3);line-height:1.15}
 .info .dove-l{margin-top:6px;font-size:var(--f6);font-weight:600;color:var(--bosco)}
@@ -187,7 +187,7 @@ input:focus-visible,textarea:focus-visible{outline:2px solid var(--foglia);outli
 fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 .caselle{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .caselle label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(28,36,32,.4);border-radius:3px;font-weight:400;cursor:pointer}
-.caselle input{width:18px;height:18px;margin:0;accent-color:var(--bosco)}
+.caselle input{flex:none;width:18px;height:18px;margin:0;accent-color:var(--bosco)}
 .caselle label:has(input:checked){border-color:var(--bosco);box-shadow:inset 0 0 0 1px var(--bosco)}
 .allegato{grid-column:1 / -1;font-size:var(--f6);color:var(--grigio)}
 .invio{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
@@ -246,8 +246,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .storia h2.t{grid-column:1 / -1}
   .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
   .storia .testo{grid-column:1 / span 6}
-  .anno{grid-column:8 / -1}
-  .reparti{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .anno{grid-column:7 / -1}
   .lavoro .foto,.lavoro.giro .foto{grid-column:1 / span 7}
   .lavoro .info,.lavoro.giro .info{grid-column:8 / -1;order:2}
   .metodo-col,.richiesta{grid-column:1 / -1}
@@ -267,6 +266,8 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .azioni{max-width:560px}
   .lavoro .foto,.lavoro.giro .foto,.lavoro .info,.lavoro.giro .info{grid-column:1 / -1;order:0}
   .lavoro .info{margin-top:20px}
+  .storia .testo,.anno{grid-column:1 / -1}
+  .reparti{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (min-width:1101px){
   .azioni{grid-template-columns:auto 1fr 1fr}
@@ -274,7 +275,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
 }
 /* ---------- telefono ---------- */
 @media (max-width:700px){
-  :root{--f0:128px;--f1:42px;--f2:32px;--f3:24px;--f4:20px;--f5:17px;--m:20px;--sez:72px;--gap:16px;--testata:72px;--btn:48px}
+  :root{--f0:128px;--f1:42px;--f2:32px;--f3:24px;--f4:20px;--f5:17px;--m:20px;--sez:64px;--gap:16px;--testata:72px;--btn:48px}
   .logo img{width:112px}
   .testata .riga{gap:10px}
   .testata .destra{gap:8px}
@@ -294,13 +295,15 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .testa-sez .freccia{display:inline-block;margin-top:16px}
   /* schede in riga: foto 4:3 a sinistra, nome, telefono e link a destra, la riga sotto */
   .schede{grid-template-columns:1fr;gap:0;margin-top:28px;border-bottom:1px solid var(--filo)}
-  .scheda{display:grid;grid-template-columns:136px 1fr;column-gap:16px;padding:20px 0;border-top:1px solid var(--filo)}
+  .scheda{display:grid;grid-template-columns:136px minmax(0,1fr);column-gap:16px;padding:20px 0;border-top:1px solid var(--filo)}
   .scheda picture{grid-row:1 / span 2}
   .scheda h3{margin-top:0}
   .scheda .piedino{grid-column:2;margin-top:4px;padding-top:0;flex-direction:column;align-items:flex-start;gap:0}
   .scheda .piedino .tel{min-height:44px}
+  .scheda .piedino .vai{white-space:normal}
   .scheda p:not(.piedino){grid-column:1 / -1;grid-row:3;margin-top:14px}
-  .garden .elenco{grid-template-columns:1fr}
+  .garden .elenco{column-gap:16px}
+  .garden .elenco li{padding:8px 0;line-height:1.35}
   .reparti{grid-template-columns:1fr 1fr;gap:24px 12px;margin-top:40px}
   .reparti h3{margin-top:10px;font-size:var(--f4)}
   .reparti p{display:none}
@@ -312,7 +315,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .anno span{margin-top:14px}
   .lavori{row-gap:48px;margin-top:32px}
   .lavoro > .foto:not(.coppia){margin:0 calc(-1 * var(--m))}
-  .coppia{gap:8px}
+  .lavoro .foto.coppia{gap:8px}
   .lavoro .info{margin-top:16px}
   .lavoro .info p{margin-top:8px}
   .richiesta{padding:24px 20px;margin:40px calc(-1 * var(--m)) 0}
@@ -323,14 +326,19 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
   .invio .btn{width:100%}
   .vivai .btns .btn{width:100%}
   .vivai figure{margin:0 calc(-1 * var(--m))}
+  .vivai figure img{aspect-ratio:3/2}
   .vivai figcaption{padding:0 var(--m)}
   .piede{padding-top:64px}
   .piede .cols{grid-template-columns:1fr;row-gap:36px}
-  .piede .rip{display:none}
+  .piede .rip,.piede .marchio p,.piede li.grigio{display:none}
+  textarea{min-height:88px}
   .legale{margin-top:48px;flex-direction:column}
 }
 @media (max-width:374px){
   :root{--f0:112px}
+  .scheda{grid-template-columns:104px minmax(0,1fr)}
+  .azioni .btn{padding:0 12px}
+  .caselle{grid-template-columns:1fr}
   .testata .btn .w{display:inline}
   .testata .btn .n{display:none}
   .logo img{width:100px}
@@ -358,7 +366,7 @@ fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
       <a href="#contatti">Contatti</a>
     </nav>
     <div class="destra">
-      <a class="btn" href="tel:+390498791098" aria-label="Chiama il Garden, 049 8791098"><span class="w">Chiama</span><span class="n num">049&nbsp;8791098</span></a>
+      <a class="btn" href="tel:+390498791098" aria-label="Chiama il Garden, 049 8791098"><span class="w">Chiama</span> <span class="n num">049&nbsp;8791098</span></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
     </div>
   </div>

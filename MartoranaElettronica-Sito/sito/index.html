@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Martorana Elettronica, stazioni di collaudo su misura</title>
-<meta name="description" content="Stazioni di collaudo su misura per le linee di produzione: sicurezza elettrica, tenuta e portata, saldatrici, apparecchi illuminanti. Dal 1973, oggi a Mestrino (PD).">
+<meta name="description" content="Stazioni di collaudo su misura per le linee di produzione: sicurezza elettrica, tenuta e portata, saldatrici, trasformatori, impianti refrigeranti, apparecchi LED. Assistenza sulle stazioni installate. Mestrino (PD), dal 1973.">
+<link rel="alternate" hreflang="en" href="#en">
 <link rel="preload" href="fonts/hubot-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Hubot Sans per i titoli; le cifre (lo zero di Hubot è barrato) vengono da Mona Sans, la sorella della stessa famiglia.
-   Tutte e due SIL Open Font License 1.1 (Google Fonts), servite da fonts/. */
+/* Caratteri: Hubot Sans per i titoli, Mona Sans per testo e interfaccia (GitHub, SIL Open Font License 1.1,
+   da Google Fonts, serviti da fonts/). Le cifre dei titoli vengono da Mona Sans: lo zero di Hubot e barrato. */
 @font-face{font-family:"Hubot Sans";src:url(fonts/hubot-sans-latin.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0000-002F,U+003A-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Hubot Sans";src:url(fonts/mona-sans-latin.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0030-0039}
 @font-face{font-family:"Hubot Sans";src:url(fonts/hubot-sans-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
@@ -17,290 +18,351 @@
 @font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
 
 :root{
-  --alu:#EEF0EF;      /* pannello in alluminio */
-  --ink:#16191C;
-  --ink-2:#464C52;
-  --filo:#C9CECD;
-  --blu:#1D5FB8;      /* armadi Martorana */
-  --blu-2:#164B93;
-  --verde:#1F7A45;    /* CORRETTO */
-  --rosso:#B3261E;    /* SCARTO */
-  --grigio-led:#8A9190;
-  --m:72px;           /* margine */
-  --g:24px;           /* canale */
-  --f:"Mona Sans",system-ui,sans-serif;
+  /* tre colori del marchio: il blu notte e il giallo del logo, il blu degli armadi */
+  --notte:#000072;
+  --giallo:#E4FF00;
+  --blu:#0067C2;
+  /* neutri freddi */
+  --testo:#11132B;
+  --testo-2:#4B5068;
+  --chiaro:#F1F3F8;
+  --filo:#D3D8E3;
+  --su-scuro:#C9CCEA;
+  --bianco:#FFFFFF;
   --t:"Hubot Sans","Mona Sans",system-ui,sans-serif;
+  --f:"Mona Sans",system-ui,sans-serif;
+  --m:80px;
+  --sez:120px;
+  --r:4px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--alu);color:var(--ink);font-family:var(--f);font-size:18px;line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+body{margin:0;background:var(--bianco);color:var(--testo);font-family:var(--f);font-size:20px;line-height:1.5;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-p{margin:0;text-wrap:pretty}
-h1,h2,h3{margin:0;font-weight:560;text-wrap:balance}
-h1,h2{font-family:var(--t)}
-.nb{white-space:nowrap}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.salta{position:absolute;left:-9999px;top:8px;background:var(--ink);color:#fff;padding:10px 14px;z-index:20}
-.salta:focus{left:8px}
-:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
-.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+h1,h2,h3{font-family:var(--t);font-weight:700;text-wrap:balance;word-spacing:.08em}
+p{text-wrap:pretty}
+.cont{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.salta{position:absolute;left:-9999px;top:0}
+.salta:focus{left:16px;top:8px;z-index:50;background:var(--giallo);color:var(--notte);padding:12px 16px}
+:focus-visible{outline:3px solid var(--blu);outline-offset:3px}
+.scuro :focus-visible,.testata :focus-visible{outline-color:var(--giallo)}
+.testata :focus-visible{outline-color:var(--blu)}
 
-/* testata */
-.testata{position:relative;z-index:5}
-.testata .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;gap:32px}
-.logo{display:block;width:148px}
-.logo img{width:148px;height:auto}
-.menu{display:flex;gap:34px;list-style:none;margin:0;padding:0;font-size:16px;font-weight:480}
-.menu a,.tel-top{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
-.menu a:hover,.tel-top:hover{color:var(--blu);border-bottom-color:currentColor}
-.tel-top{font-size:16px;font-weight:560}
-.apri{display:none}
+/* etichette */
+.occhiello{font-size:14px;line-height:1.3;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 
-/* apertura: il pannello del Mod. 1294/P, le due scritte del titolo sono i due pulsanti */
-.apertura{position:relative;overflow:hidden;padding-bottom:104px}
-/* titolo e pannello in un solo blocco largo quanto il titolo: il pannello finisce sotto la "o" finale */
-.ap-blocco{width:fit-content;max-width:100%}
-h1{font-size:148px;line-height:.9;letter-spacing:-.04em;word-spacing:.05em;font-stretch:108%;font-weight:540;margin-top:20px;white-space:nowrap}
-.ap-griglia{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0 40px;margin-top:14px}
-.ap-testo{padding-top:44px;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:22px}
-.ap-testo .lead{font-size:19px;line-height:1.5}
-.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
-.btn{display:inline-block;background:var(--blu);color:#fff;text-decoration:none;font-weight:560;font-size:16px;padding:14px 20px;transition:background-color .15s}
-.btn:hover{background:var(--blu-2)}
-.link{font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;transition:color .15s}
-.link:hover{color:var(--blu)}
-.didascalia{font-size:15px;line-height:1.4;color:var(--ink-2)}
-.didascalia b{color:var(--ink);font-weight:600}
-/* il file e largo 1492 px: mostrato al massimo a 746 px, cosi anche sugli schermi 2x ogni pixel del file vale un pixel */
-.macchina{position:relative;margin:6px -30px 0 0;width:min(746px,calc(100% + 30px));justify-self:end}
-.macchina img{width:100%}
-/* legenda: punto sul pulsante, filetto verticale, parola sotto la macchina */
-.leg{position:absolute;width:0;bottom:4.6%;border-left:1px solid var(--ink)}
-.leg::before{content:"";position:absolute;top:-5px;left:-5.5px;width:10px;height:10px;border-radius:50%;background:var(--alu);box-shadow:inset 0 0 0 1.5px var(--ink)}
-.leg span{position:absolute;bottom:-2px;font-size:16px;line-height:1;font-weight:500;white-space:nowrap}
-.leg-c{left:57.98%;top:61.24%}
-.leg-c span{right:10px;color:var(--verde)}
-.leg-s{left:65.68%;top:59.57%}
-.leg-s span{left:10px;color:var(--rosso)}
+/* bottoni: un modello pieno (giallo del logo, testo blu notte) e uno con il solo bordo */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:var(--r);font-family:var(--f);font-size:17px;line-height:1.2;font-weight:700;text-decoration:none;text-align:center;border:2px solid transparent;cursor:pointer;transition:background-color .15s,color .15s,border-color .15s}
+.btn.pieno{background:var(--giallo);color:var(--notte);border-color:var(--giallo)}
+.btn.pieno:hover{background:var(--bianco);border-color:var(--bianco)}
+.chiaro-fondo .btn.pieno:hover,.bianco-fondo .btn.pieno:hover{background:var(--notte);border-color:var(--notte);color:var(--bianco)}
+.btn.bordo{background:transparent;color:inherit;border-color:currentColor}
+.btn.bordo:hover{background:var(--notte);border-color:var(--notte);color:var(--bianco)}
+.scuro .btn.bordo:hover{background:var(--bianco);border-color:var(--bianco);color:var(--notte)}
+.btn .num{white-space:nowrap}
+.freccia{display:inline-block;transition:transform .15s}
+a:hover .freccia{transform:translateX(3px)}
+
+/* testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--filo)}
+.testata .cont{display:flex;align-items:center;gap:32px;height:88px}
+.marchio{flex:none;display:block}
+.marchio img{width:142px}
+.menu{display:flex;align-items:center;gap:28px;margin-left:auto}
+.menu a{font-size:17px;font-weight:700;text-decoration:none;color:var(--notte);padding:12px 0;border-bottom:2px solid transparent}
+.menu a:hover{border-bottom-color:var(--notte)}
+.lingua{font-size:17px;font-weight:700;color:var(--notte);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-width:48px;min-height:48px;border:2px solid var(--filo);border-radius:var(--r)}
+.lingua:hover{border-color:var(--notte)}
+.testata .tel-testata{min-height:48px;padding:10px 18px}
+.apri-menu{display:none}
+
+/* apertura */
+.apertura{background:var(--notte);color:var(--bianco);padding:88px 0 var(--sez)}
+.ap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:stretch}
+.ap .occhiello{color:var(--giallo);margin-bottom:28px}
+.apertura h1{font-size:72px;line-height:1.02;letter-spacing:-.01em;font-stretch:104%}
+.ap-frase{margin-top:32px;font-size:20px;color:var(--bianco);max-width:34em}
+.ap-prove{margin-top:20px;font-size:17px;color:var(--su-scuro);display:flex;flex-wrap:wrap;gap:4px 0;max-width:40em}
+.ap-prove li:not(:last-child)::after{content:"\00B7";margin:0 10px;color:var(--giallo)}
+.azioni{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.ap-link{margin-top:24px;font-size:17px;color:var(--su-scuro)}
+.ap-link a{color:var(--bianco);font-weight:700;text-underline-offset:4px}
+.ap-link a:hover{color:var(--giallo)}
+.solo-tel{display:none}
+.ap-foto{background:var(--bianco);color:var(--testo-2);border-radius:var(--r);display:flex;flex-direction:column;justify-content:flex-end;padding:40px 40px 24px;min-height:100%}
+.fila{display:flex;align-items:flex-end;justify-content:center;gap:56px;border-bottom:2px solid var(--filo);padding-bottom:0}
+.fila img{height:auto}
+.fila .s1200{width:139px}
+.fila .s1000{width:147px}
+.ap-foto figcaption{margin-top:16px;font-size:14px;line-height:1.4}
 
 /* sezioni */
-.sez{padding:104px 0}
-h2{font-size:58px;line-height:1.02;letter-spacing:-.03em;font-stretch:104%}
-h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
-.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 var(--g)}
+.sez{padding:var(--sez) 0}
+.chiaro-fondo{background:var(--chiaro)}
+.bianco-fondo{background:var(--bianco)}
+.scuro{background:var(--notte);color:var(--bianco)}
+.blu-fondo{background:var(--blu);color:var(--bianco)}
+.sez h2{font-size:48px;line-height:1.08;letter-spacing:-.005em}
+.capo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:end;margin-bottom:64px}
+.capo p{font-size:20px;color:var(--testo-2)}
+.scuro .capo p,.blu-fondo .capo p{color:var(--su-scuro)}
+.sez .occhiello{color:var(--blu);margin-bottom:20px}
+.scuro .occhiello,.blu-fondo .occhiello{color:var(--giallo)}
 
-/* azienda */
-.az-sx{grid-column:1/9;display:flex;flex-direction:column;justify-content:space-between;gap:44px}
-.azienda h2{font-size:52px;line-height:1.06;font-weight:520;max-width:15em}
-.az-sx .testo{margin-top:28px;color:var(--ink-2);max-width:34em}
-.fatti{margin:0;border-top:1px solid var(--filo)}
-.fatti div{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr);gap:var(--g);align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--filo)}
-.fatti dt{font-family:var(--t);font-size:30px;line-height:1.1;font-weight:520;letter-spacing:-.02em;font-stretch:104%}
-.fatti dd{margin:0;font-size:16px;color:var(--ink-2)}
-.archivio{grid-column:9/13;margin:0 0 0 48px;align-self:end;display:flex;align-items:flex-end;gap:20px}
-.archivio img{width:150px;flex:none}
-.archivio figcaption{font-size:14px;line-height:1.45;color:var(--ink-2);max-width:200px}
-.archivio figcaption b{color:var(--ink);font-weight:600}
+/* assistenza */
+.passi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.passo{background:var(--bianco);border-radius:var(--r);padding:32px 28px 28px;display:flex;flex-direction:column;gap:14px}
+.passo .n{font-family:var(--t);font-size:24px;font-weight:700;color:var(--blu);line-height:1}
+.passo h3{font-size:24px;line-height:1.2}
+.passo p{font-size:17px;color:var(--testo-2)}
+.passo .btn{margin-top:auto;width:100%;padding:12px 10px}
+.passo .altro{font-weight:700;color:var(--notte);text-underline-offset:4px}
+.nota-assist{margin-top:32px;font-size:17px;color:var(--testo-2)}
+.nota-assist a{color:var(--notte);font-weight:700;text-underline-offset:4px}
 
-/* le prove */
-.prove-testa{margin-bottom:44px}
-.prove-testa h2{grid-column:1/7}
-.prove-testa p{grid-column:1/6;margin-top:22px;color:var(--ink-2)}
-.prove-corpo{position:relative;min-height:520px}
-.voci{list-style:none;margin:0;padding:0;width:calc(41.6% - 12px);border-top:1px solid var(--filo)}
-.voce{border-bottom:1px solid var(--filo)}
-.voce>button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:28px 1fr;align-items:center;width:100%;padding:16px 4px 16px 0;cursor:pointer;font-size:20px;font-weight:500;letter-spacing:-.005em;transition:color .15s}
-.voce>button:hover{color:var(--blu)}
-.voce>button:focus-visible{outline:2px solid var(--blu);outline-offset:2px}
-.led{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--grigio-led)}
-.voce>button[aria-expanded="true"] .led{background:var(--verde);box-shadow:0 0 0 4px rgba(31,122,69,.16)}
-.voce>button[aria-expanded="true"]{color:var(--ink)}
-.dettaglio{display:none}
-.voce>button[aria-expanded="true"]+.dettaglio{display:grid}
-.dettaglio{position:absolute;top:0;right:0;width:calc(58.4% - 36px);grid-template-columns:1fr 1fr;gap:0 var(--g);align-content:start}
-.palco{grid-column:1/3;display:flex;align-items:flex-end;justify-content:flex-start;height:280px;margin-bottom:32px}
-.palco img{max-height:280px;width:auto;max-width:min(520px,100%)}
-.dettaglio h3{grid-column:1/3;font-size:28px;letter-spacing:-.015em;margin-bottom:12px}
-.dettaglio .cosa{grid-column:1/2}
-.dettaglio .chi{grid-column:2/3;font-size:16px;color:var(--ink-2)}
-.dettaglio .chi b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
-.esiti{margin-top:30px;display:flex;gap:26px;font-size:15px;color:var(--ink-2);width:calc(41.6% - 12px)}
-.esiti span,.colori span{display:inline-flex;align-items:center;gap:9px}
-.esiti i,.colori i{width:12px;height:12px;border-radius:50%;display:inline-block}
+/* prove e stazioni: schede con la foto della stazione */
+.schede{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.scheda{display:flex;flex-direction:column;text-decoration:none;color:var(--testo);border:1px solid var(--filo);border-radius:var(--r);overflow:hidden;background:var(--bianco);transition:border-color .15s}
+.scheda:hover{border-color:var(--notte)}
+.scheda .vetrina{position:relative;aspect-ratio:4/3;border-bottom:1px solid var(--filo);background:var(--bianco)}
+/* mai ingrandite: al massimo la misura del file, centrate */
+.scheda .vetrina img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;height:auto;max-width:calc(100% - 56px);max-height:calc(100% - 56px)}
+.scheda .corpo{padding:28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.scheda h3{font-size:24px;line-height:1.2}
+.scheda p{font-size:17px;color:var(--testo-2)}
+.scheda .misure{font-size:17px;border-top:1px solid var(--filo);padding-top:12px;color:var(--testo)}
+.scheda .misure li{padding:2px 0}
+.scheda .misure b{font-weight:700}
+.scheda .vai{margin-top:auto;padding-top:8px;font-size:17px;font-weight:700;color:var(--notte)}
+.anche{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:56px;border-top:2px solid var(--notte);padding-top:32px}
+.anche h3{font-size:24px;line-height:1.2;margin-bottom:10px}
+.anche p{font-size:17px;color:var(--testo-2)}
+.anche a{color:var(--notte);font-weight:700;text-underline-offset:4px}
+.norme{margin-top:72px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:center;background:var(--chiaro);border-radius:var(--r);padding:40px 48px}
+.norme p{font-size:17px;color:var(--testo-2)}
+.norme ul{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px}
+.norme li{font-family:var(--t);font-size:48px;font-weight:700;line-height:1;color:var(--notte);font-stretch:112%}
+.software{margin-top:72px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px}
+.software h3{font-size:32px;line-height:1.15}
+.software .sw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.software .sw h3{font-size:24px;margin-bottom:8px}
+.software .sw p{font-size:17px;color:var(--testo-2)}
+.software > div > p{font-size:17px;color:var(--testo-2);margin-top:16px}
 
-/* famiglie */
-.fam-testa{margin-bottom:40px}
-.fam-testa h2{grid-column:1/8}
-.fam-testa p{grid-column:1/6;margin-top:22px;color:var(--ink-2)}
-.famiglie{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
-.fam{padding:22px 0 21px;border-bottom:1px solid var(--filo);align-items:baseline}
-.fam h3{grid-column:1/4;font-size:24px;letter-spacing:-.015em}
-.fam .mod{grid-column:4/7;font-size:15px;font-weight:500}
-.fam .prova{grid-column:7/13;color:var(--ink-2);font-size:17px}
+/* azienda (blocco blu notte) */
+.sez h2.manifesto{font-family:var(--t);font-size:32px;line-height:1.3;font-weight:400;max-width:30em;margin-bottom:72px}
+.manifesto q{quotes:"\201C" "\201D"}
+.manifesto .chi{display:block;margin-top:16px;font-family:var(--f);font-size:17px;color:var(--su-scuro)}
+.numeri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;border-top:1px solid rgba(255,255,255,.28);padding-top:40px}
+.numeri .cifra{font-family:var(--t);font-size:72px;line-height:1;font-weight:700;color:var(--giallo);letter-spacing:-.02em}
+.numeri .cifra small{font-size:32px;letter-spacing:0}
+.numeri p{margin-top:14px;font-size:17px;color:var(--su-scuro)}
+.storia{margin-top:96px;display:grid;grid-template-columns:202px minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.storia figure{background:var(--bianco);padding:0;border-radius:2px;width:202px}
+.storia img{width:202px}
+.storia h3{font-size:32px;line-height:1.15;margin-bottom:20px}
+.storia p{font-size:17px;color:var(--su-scuro)}
+.storia p + p{margin-top:16px}
+.storia .citaz{font-size:20px;color:var(--bianco)}
+.settori h3{font-size:24px;margin-bottom:16px}
+.settori ul{display:flex;flex-wrap:wrap;gap:10px}
+.settori li{font-size:17px;border:1px solid rgba(255,255,255,.4);border-radius:var(--r);padding:8px 14px;line-height:1.3}
+.settori p{margin-top:20px}
 
-/* alimentatori e software */
-.energia{overflow:hidden;padding-top:0}
-.stazioni{padding-bottom:64px}
-.en-testo{grid-column:1/6;align-self:center}
-.en-testo h2{font-size:52px}
-.en-testo p{margin-top:22px;color:var(--ink-2)}
-.en-foto{grid-column:7/13;margin:0;justify-self:end;width:min(484px,100%)}
-.en-foto img{width:100%}
-.en-foto figcaption{font-size:14px;color:var(--ink-2);margin-top:-6px;padding-left:16px}
-.en-foto figcaption b{color:var(--ink);font-weight:600}
-.software{margin-top:48px}
-.software>h3{grid-column:1/5;font-size:26px;letter-spacing:-.015em}
-.sw{grid-column:5/13;list-style:none;margin:0;padding:0;border-top:1px solid var(--filo)}
-.sw li{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr);gap:var(--g);padding:16px 0 15px;border-bottom:1px solid var(--filo);align-items:baseline}
-.sw b{font-size:19px;font-weight:600}
-.sw p{color:var(--ink-2);font-size:17px}
-.colori{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:8px;font-size:15px;color:var(--ink)}
+/* su misura e modulo */
+.misura-griglia{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+.misura-griglia h2{margin-bottom:24px}
+.misura-griglia > div > p{font-size:20px;color:var(--testo-2)}
+.cosa{margin-top:32px;counter-reset:c;border-top:1px solid var(--filo)}
+.cosa li{counter-increment:c;display:grid;grid-template-columns:40px 1fr;gap:8px;padding:14px 0;border-bottom:1px solid var(--filo);font-size:17px}
+.cosa li::before{content:counter(c);font-family:var(--t);font-weight:700;color:var(--blu)}
+.contatto-diretto{margin-top:32px;display:flex;flex-wrap:wrap;gap:16px}
+.modulo{background:var(--bianco);border-radius:var(--r);padding:40px}
+.modulo fieldset{border:0;margin:0;padding:0}
+.modulo legend{font-size:17px;font-weight:700;margin-bottom:12px;padding:0}
+.campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.largo{grid-column:1 / -1}
+.campo label{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--testo-2)}
+.campo input,.campo textarea,.campo select{font:inherit;font-size:17px;color:var(--testo);background:var(--bianco);border:1px solid var(--testo-2);border-radius:var(--r);padding:12px 14px;min-height:52px;width:100%}
+.campo textarea{min-height:120px;resize:vertical}
+.campo input[type=file]{padding:12px;font-size:17px}
+.campo .aiuto{font-size:14px;color:var(--testo-2)}
+.scelte{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.scelte label{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px 16px;border:1px solid var(--filo);border-radius:var(--r);font-size:17px;cursor:pointer}
+.scelte input{width:20px;height:20px;accent-color:var(--notte);margin:0}
+.scelte label:has(input:checked){border-color:var(--notte);box-shadow:inset 0 0 0 1px var(--notte)}
+.invio{margin-top:28px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center}
+.invio p{font-size:14px;color:var(--testo-2);flex:1;min-width:16em}
+.avviso{margin-top:16px;font-size:17px;font-weight:700;color:var(--notte)}
+.avviso:empty{display:none}
 
-/* chiusura */
-.ch-griglia{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-width:1440px;margin:0 auto;align-items:stretch}
-.ch-testo{padding:104px 64px 88px var(--m);display:flex;flex-direction:column;justify-content:space-between;gap:56px}
-.ch-testo h2{font-size:60px;line-height:1.02;max-width:9.5em}
-.recapiti{display:grid;gap:10px;font-size:18px;font-style:normal}
-.recapiti .tel{font-family:var(--t);font-size:48px;line-height:1.05;font-weight:540;letter-spacing:-.02em;text-decoration:none;font-stretch:104%;margin-bottom:12px;justify-self:start;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
-.recapiti .tel:hover{color:var(--blu);border-bottom-color:currentColor}
-.recapiti .link{justify-self:start;overflow-wrap:anywhere}
-.recapiti .nota{margin-top:14px;color:var(--ink-2);font-size:16px;max-width:30em}
-.ch-foto{margin:0;position:relative;min-height:640px}
-.ch-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-.chiusura{overflow:hidden}
-/* oltre i 1440 px la foto arriva comunque al bordo destro della finestra */
-@media (min-width:1441px){.ch-foto{margin-right:calc((1440px - 100vw) / 2)}}
+/* inglese */
+.en-griglia{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px}
+.en-griglia h2{margin-bottom:24px}
+.en-griglia > div > p{font-size:20px;color:var(--bianco)}
+.en-lista{border-top:1px solid rgba(255,255,255,.4)}
+.en-lista li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.4);font-size:17px}
+.en-lista b{font-weight:700}
+.blu-fondo .azioni{margin-top:32px}
+.blu-fondo .ap-link{color:var(--bianco)}
+
+/* dove siamo */
+.dove{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+.dove h2{margin-bottom:24px}
+.dove > div > p{font-size:20px;color:var(--testo-2)}
+.recapiti{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;border-top:2px solid var(--notte)}
+.recapito{padding:24px 0;border-bottom:1px solid var(--filo)}
+.recapito.largo{grid-column:1 / -1}
+.recapito .occhiello{color:var(--testo-2);margin-bottom:8px}
+.recapito p{font-size:20px}
+.recapito .grande{font-family:var(--t);font-size:32px;font-weight:700;line-height:1.15;color:var(--notte);text-decoration:none}
+.recapito .mail{font-size:24px;overflow-wrap:anywhere}
+.recapito .grande:hover{text-decoration:underline;text-underline-offset:6px}
+.recapito .azioni{margin-top:16px}
+.recapito .riga{font-size:17px;color:var(--testo-2);margin-top:6px}
 
 /* piede */
-.piede{background:var(--blu);color:#fff;padding:72px 0 0}
-.piede a{text-decoration:none;transition:color .15s}
-.piede a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
-.pd-marchio{grid-column:1/4}
-.pd-marchio img{width:180px}
-.pd-marchio p{margin-top:22px;font-size:15px;line-height:1.5;color:#DCE6F6;max-width:250px}
-.pd-col{font-size:15px;line-height:1.45}
-.pd-col h2{font-family:var(--f);font-size:15px;line-height:1.3;font-weight:600;letter-spacing:0;font-stretch:100%;margin-bottom:16px;color:#fff}
-.pd-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.pd-col a,.pd-col li{color:#DCE6F6}
-.pd-c1{grid-column:5/7}.pd-c2{grid-column:7/9}.pd-c3{grid-column:9/11}.pd-c4{grid-column:11/13}
-.pd-basso{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-top:56px;padding:22px 0 28px;border-top:1px solid rgba(255,255,255,.32);font-size:14px;color:#DCE6F6}
-.pd-basso nav{display:flex;gap:24px}
-.pd-basso a{color:#DCE6F6}
+.piede{background:var(--notte);color:var(--bianco);padding:96px 0 40px}
+.piede-griglia{display:grid;grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2.6fr));gap:40px}
+.piede img{width:180px;margin-bottom:24px}
+.piede p,.piede li{font-size:17px;line-height:1.55;color:var(--su-scuro)}
+.piede h2{font-family:var(--f);font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--giallo);margin-bottom:16px}
+.piede li a{display:inline-block;padding:4px 0;color:var(--bianco);text-decoration:none}
+.piede li a:hover{text-decoration:underline;text-underline-offset:4px}
+.piede .forte{color:var(--bianco);font-weight:700}
+.legale{margin-top:72px;padding-top:24px;border-top:1px solid rgba(255,255,255,.28);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--su-scuro)}
+.legale a{color:var(--su-scuro)}
 
-/* fino a 1200 */
-@media (max-width:1200px){
+/* 1024 */
+@media (max-width:1199px){
   :root{--m:48px}
-  h1{font-size:98px}
-  .menu{gap:24px;font-size:15px}
-  .ap-griglia{grid-template-columns:260px minmax(0,1fr);gap:0 32px}
-  .ap-testo{padding-top:28px;padding-bottom:12px}
-  .ap-testo .lead{font-size:18px}
-  h2{font-size:46px}
-  .azienda h2{font-size:40px}
-  .fatti dt{font-size:24px}
-  .archivio{flex-direction:column;align-items:flex-start;gap:12px}
-  .archivio figcaption{max-width:180px}
-  .dettaglio{grid-template-columns:minmax(0,1fr)}
-  .dettaglio .cosa,.dettaglio .chi{grid-column:1/-1}
-  .dettaglio .chi{margin-top:14px}
-  .palco{height:250px}.palco img{max-height:250px}
-  .fam h3{grid-column:1/5}.fam .mod{grid-column:5/8}.fam .prova{grid-column:8/13}
-  .en-testo{grid-column:1/7}.en-testo h2{font-size:42px}
-  .en-foto{grid-column:7/13}
-  .ch-testo h2{font-size:46px}
-  .recapiti .tel{font-size:38px}
-  .pd-marchio{grid-column:1/13;margin-bottom:48px}
-  .pd-c1{grid-column:1/4}.pd-c2{grid-column:4/7}.pd-c3{grid-column:7/10}.pd-c4{grid-column:10/13}
+  .menu{gap:20px}
+  .menu a{font-size:17px}
+  .menu .facolt{display:none}
+  .apertura h1{font-size:72px}
+  .passi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .storia{grid-template-columns:202px minmax(0,1fr)}
+  .settori{grid-column:1 / -1}
+  .software{grid-template-columns:1fr;gap:32px}
+  .piede-griglia{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media (max-width:900px){
-  .menu-nav{display:none}
-  .menu-nav.aperto{display:block;position:absolute;top:72px;left:0;right:0;background:var(--alu);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
-  .menu-nav.aperto .menu{flex-direction:column;gap:0;font-size:20px}
-  .menu-nav.aperto .menu a{display:block;padding:12px 0}
-  .apri{display:inline-flex;align-items:center;gap:10px;background:none;border:0;font:inherit;font-size:16px;font-weight:560;color:var(--ink);padding:10px 0;cursor:pointer}
-  .apri span{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor,0 -6px 0 currentColor}
-  .testata .wrap{height:72px}
-  .tel-top{margin-left:auto}
-  h1{font-size:84px;white-space:normal}
-  .apertura{padding-bottom:0}
-  .ap-blocco{width:auto}
-  .ap-griglia{grid-template-columns:minmax(0,1fr)}
-  .macchina{order:-1;margin:24px 0 40px -8px;width:min(746px,calc(100% + var(--m) + 70px));justify-self:start}
-  .ap-testo{padding:0 0 64px}
-  .didascalia{display:none}
-  .az-sx,.archivio{grid-column:1/-1}
-  .archivio{justify-self:start;margin:48px 0 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:end}
-  .archivio img{width:120px}
-  .archivio figcaption{margin-top:0;max-width:22em}
-  .prove-testa h2,.prove-testa p,.fam-testa h2,.fam-testa p{grid-column:1/-1}
-  .prove-testa p,.fam-testa p{max-width:34em}
-  .voci,.esiti{width:100%}
-  .dettaglio{position:static;width:auto;padding:4px 0 28px}
-  .palco{height:240px;margin-bottom:20px}.palco img{max-height:240px}
-  .prove-corpo{min-height:0}
-  .fam h3{grid-column:1/7}.fam .mod{grid-column:7/13}
-  .fam .prova{grid-column:1/-1;margin-top:8px}
-  .en-testo,.en-foto,.software>h3,.sw{grid-column:1/-1}
-  .en-foto{margin:40px 0 0;justify-self:start}
-  .en-foto figcaption{padding-left:0}
-  .software>h3{margin-bottom:18px}
-  .ch-griglia{grid-template-columns:minmax(0,1fr)}
-  .ch-testo{padding:96px var(--m) 56px;gap:48px}
-  .ch-foto{min-height:0;aspect-ratio:5/4}
+@media (max-width:1023px){
+  .ap{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:40px}
+  .apertura h1{font-size:48px}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .norme li{font-size:32px}
 }
-@media (max-width:600px){
-  :root{--m:20px;--g:16px}
-  body{font-size:17px}
-  .logo,.logo img{width:118px}
-  .testata .wrap{gap:18px}
-  .tel-top{font-size:15px}
-  h1{font-size:62px;line-height:.92;margin-top:10px;letter-spacing:-.035em}
-  .macchina{margin:24px 0 40px -6px;width:calc(118% + var(--m))}
-  .leg::before{width:8px;height:8px;top:-4px;left:-4.5px}
-  .leg span{font-size:14px}
-  .leg-c span{right:7px}.leg-s span{left:7px}
-  .ap-testo .lead{font-size:17px}
-  .ap-testo{padding-bottom:56px}
-  .azioni{margin-top:22px}
-  .sez{padding:88px 0}
-  h2{font-size:36px}
-  .azienda h2{font-size:31px;line-height:1.12}
-  .fatti div{grid-template-columns:minmax(0,1fr);gap:2px}
-  .fatti dt{font-size:22px}
-  .archivio{grid-template-columns:101px minmax(0,1fr)}
-  .archivio img{width:101px}
-  .prove-testa{margin-bottom:36px}
-  .voce>button{font-size:18px;padding:15px 0}
-  .dettaglio{grid-template-columns:minmax(0,1fr)}
-  .dettaglio h3{font-size:24px}
-  .dettaglio .cosa,.dettaglio .chi{grid-column:1/-1}
-  .dettaglio .chi{margin-top:14px}
-  .palco{height:200px}.palco img{max-height:200px}
-  .fam-testa{margin-bottom:32px}
-  .fam{padding:18px 0 17px}
-  .fam h3,.fam .mod,.fam .prova{grid-column:1/-1}
-  .fam h3{font-size:22px}
-  .fam .mod{margin-top:4px;font-size:14px}
-  .fam .prova{font-size:16px;margin-top:6px}
-  .en-testo h2{font-size:34px}
-  .en-foto{margin:32px 0 0;width:100%}
-  .software{margin-top:56px}
-  .sw li{grid-template-columns:minmax(0,1fr);gap:4px}
-  .ch-testo{padding:88px var(--m) 48px}
-  .ch-testo h2{font-size:38px}
-  .recapiti .tel{font-size:36px}
-  .recapiti{font-size:17px}
-  .piede{padding-top:64px}
-  .pd-alto{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pd-marchio{grid-column:1/-1}
-  .pd-c1,.pd-c2,.pd-c3,.pd-c4{grid-column:auto;margin-bottom:40px}
-  .pd-c4{grid-column:1/-1}
-  .pd-basso{margin-top:8px;flex-direction:column}
+
+/* telefono e tablet */
+@media (max-width:899px){
+  :root{--m:20px;--sez:72px}
+  html{scroll-padding-top:80px}
+  body{font-size:16px}
+  .testata .cont{height:72px;gap:8px}
+  .marchio img{width:104px}
+  .menu{display:none;position:absolute;top:72px;left:0;right:0;background:var(--bianco);flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;border-bottom:1px solid var(--filo);box-shadow:0 12px 24px rgba(17,19,43,.12)}
+  .menu.aperto{display:flex}
+  .menu a{font-size:20px;padding:14px 0;border-bottom:1px solid var(--filo)}
+  .menu .facolt{display:block}
+  .lingua{margin-left:auto;min-width:44px;font-size:16px}
+  .testata .tel-testata{font-size:16px;padding:8px 12px;min-height:48px}
+  .apri-menu{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:48px;padding:0 10px;border:2px solid var(--filo);border-radius:var(--r);background:var(--bianco);color:var(--notte);font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+  .apertura{padding:32px 0 0}
+  .ap{grid-template-columns:1fr;gap:28px}
+  .ap .occhiello{margin-bottom:14px}
+  .apertura h1{font-size:40px;line-height:1.05}
+  .ap-frase{display:none}
+  .ap-prove{margin-top:16px;font-size:16px}
+  .ap-prove li:not(:last-child)::after{margin:0 7px}
+  .azioni{margin-top:24px;gap:12px}
+  .azioni .btn{width:100%}
+  .solo-pc{display:none}
+  .solo-tel{display:block}
+  .azioni.solo-tel{display:flex}
+  .ap-link{margin-top:16px;font-size:16px}
+  .ap-foto{margin:0 calc(-1 * var(--m));border-radius:0;padding:20px 20px 14px}
+  .fila{gap:36px}
+  .fila .s1200{width:72px}
+  .fila .s1000{width:76px}
+  .ap-foto figcaption{margin-top:10px}
+  .sez h2{font-size:28px;line-height:1.15}
+  .capo{grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+  .capo p{font-size:17px}
+  .passi{grid-template-columns:1fr;gap:16px}
+  .passo{padding:24px 20px}
+  .passo h3,.passo .n{font-size:20px}
+  .passo p{font-size:16px}
+  .schede{grid-template-columns:1fr;gap:20px}
+  .scheda .vetrina{aspect-ratio:auto;height:190px}
+  .scheda .vetrina img{max-width:calc(100% - 40px);max-height:calc(100% - 40px)}
+  .scheda .corpo{padding:20px}
+  .scheda h3{font-size:20px}
+  .scheda p,.scheda .misure,.scheda .vai{font-size:16px}
+  .anche{grid-template-columns:1fr;gap:24px;margin-top:40px}
+  .anche h3{font-size:20px}
+  .anche p{font-size:16px}
+  .norme{grid-template-columns:1fr;gap:20px;padding:24px 20px;margin-top:48px}
+  .norme ul{justify-content:flex-start;gap:12px 28px}
+  .norme li{font-size:28px}
+  .norme p{font-size:16px}
+  .software{margin-top:48px}
+  .software h3{font-size:24px}
+  .software .sw{grid-template-columns:1fr;gap:20px}
+  .software .sw h3{font-size:20px}
+  .software .sw p,.software > div > p{font-size:16px}
+  .sez h2.manifesto{font-size:20px;margin-bottom:40px}
+  .manifesto .chi{font-size:16px}
+  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;padding-top:28px}
+  .numeri .cifra{font-size:40px}
+  .numeri .cifra small{font-size:20px}
+  .numeri p{font-size:16px;margin-top:8px}
+  .storia{margin-top:56px;grid-template-columns:1fr;gap:28px}
+  .storia figure{width:150px}
+  .storia img{width:150px}
+  .storia h3{font-size:24px;margin-bottom:14px}
+  .storia p{font-size:16px}
+  .storia .citaz{font-size:17px}
+  .settori h3{font-size:20px}
+  .settori li{font-size:16px}
+  .misura-griglia,.en-griglia,.dove{grid-template-columns:1fr;gap:32px}
+  .misura-griglia > div > p,.en-griglia > div > p,.dove > div > p{font-size:17px}
+  .cosa li{font-size:16px;grid-template-columns:32px 1fr}
+  .contatto-diretto .btn{width:100%}
+  .modulo{padding:24px 20px;margin:0 calc(-1 * var(--m) + 8px)}
+  .campi{grid-template-columns:1fr;gap:16px}
+  .campo input,.campo textarea,.campo select,.scelte label,.modulo legend{font-size:16px}
+  .invio .btn{width:100%}
+  .en-lista li{grid-template-columns:1fr;gap:4px;font-size:16px}
+  .blu-fondo .azioni .btn{width:100%}
+  .recapiti{grid-template-columns:1fr}
+  .recapito p{font-size:17px}
+  .recapito .grande{font-size:24px}
+  .recapito .azioni .btn{width:100%}
+  .recapito .riga{font-size:16px}
+  .piede{padding:64px 0 32px}
+  .piede-griglia{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 20px}
+  .piede-griglia > div:first-child{grid-column:1 / -1}
+  .piede p,.piede li{font-size:16px}
+  .legale{margin-top:48px;font-size:14px}
+}
+@media (min-width:600px) and (max-width:899px){
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .passi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .azioni .btn{width:auto}
+  .fila .s1200{width:96px}
+  .fila .s1000{width:101px}
 }
 @media (max-width:359px){
-  h1{font-size:52px}
-  .pd-alto{grid-template-columns:minmax(0,1fr)}
+  .testata .cont{gap:6px}
+  .marchio img{width:84px}
+  .testata .tel-testata{font-size:14px;padding:8px}
+  .lingua,.apri-menu{min-width:44px;font-size:14px}
+  .apri-menu{padding:0 6px}
+  .apertura h1{font-size:34px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -309,228 +371,350 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 
 <header class="testata">
-  <div class="wrap">
-    <a class="logo" href="#"><img src="img/logo-inchiostro.png" width="471" height="143" alt="Martorana Elettronica S.r.l."></a>
-    <nav class="menu-nav" id="menu" aria-label="Principale">
-      <ul class="menu">
-        <li><a href="#azienda">Azienda</a></li>
-        <li><a href="#prove">Le prove</a></li>
-        <li><a href="#stazioni">Stazioni</a></li>
-        <li><a href="#energia">Alimentatori e software</a></li>
-        <li><a href="#contatti">Contatti</a></li>
-      </ul>
+  <div class="cont">
+    <a class="marchio" href="#inizio" aria-label="Martorana Elettronica, inizio pagina"><img src="img/logo.png" width="237" height="84" alt="Martorana Elettronica S.r.l."></a>
+    <nav class="menu" id="menu" aria-label="Menu principale">
+      <a href="#prove">Prove e stazioni</a>
+      <a href="#assistenza">Assistenza</a>
+      <a href="http://www.martoranaelettronica.com/index.php/it/area-riservata">Area clienti</a>
+      <a class="facolt" href="#azienda">Azienda</a>
+      <a href="#contatti">Contatti</a>
     </nav>
-    <a class="tel-top" href="tel:+390499003655">049&nbsp;9003655</a>
-    <button class="apri" type="button" aria-expanded="false" aria-controls="menu"><span aria-hidden="true"></span>Menu</button>
+    <a class="lingua" href="#en" hreflang="en" lang="en" title="English">EN</a>
+    <a class="btn pieno tel-testata" href="tel:+390499003655" aria-label="Chiama 049 9003655"><span class="num">049 9003655</span></a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
 
 <main id="contenuto">
-<section class="apertura" aria-labelledby="titolo">
-  <div class="wrap">
-    <div class="ap-blocco">
-    <h1 id="titolo">Corretto o scarto</h1>
-    <div class="ap-griglia">
-      <div class="ap-testo">
-        <div>
-          <p class="lead">Stazioni di collaudo su misura per le linee di produzione, con hardware e software nostri. Dal&nbsp;1973, oggi a&nbsp;Mestrino.</p>
-          <div class="azioni">
-            <a class="btn" href="tel:+390499003655">Chiama 049&nbsp;9003655</a>
-            <a class="link" href="mailto:martorana@martoranaelettronica.com">Scrivete una email</a>
-          </div>
-        </div>
-        <p class="didascalia"><b>Mod.&nbsp;1294/P</b>, stazione da banco</p>
-      </div>
-      <figure class="macchina">
-        <img src="img/mod1294p-760.webp" srcset="img/mod1294p-760.webp 760w, img/mod1294p-1100.webp 1100w, img/mod1294p-1492.webp 1492w" sizes="(max-width:600px) 118vw, 746px" width="1492" height="836" alt="Stazione di collaudo Mod. 1294/P: pannello in alluminio con due display rossi, spie delle prove in corso, presa per l'apparecchio da provare e i pulsanti verde Corretto e rosso Scarto" fetchpriority="high">
-        <span class="leg leg-c"><span>Corretto</span></span>
-        <span class="leg leg-s"><span>Scarto</span></span>
-      </figure>
-    </div>
-    </div>
-  </div>
-</section>
 
-<section class="sez azienda" id="azienda" aria-labelledby="t-azienda">
-  <div class="wrap griglia">
-    <div class="az-sx">
-      <div>
-        <h2 id="t-azienda">Concetti così lungimiranti che per molti versi sono ancora validi</h2>
-        <p class="testo">Siamo specializzati in stazioni di collaudo su misura, studiate per velocizzare la produzione. Hardware e software li progetta il nostro reparto di ricerca e sviluppo.</p>
+<section class="apertura scuro" id="inizio" aria-labelledby="titolo">
+  <div class="cont ap">
+    <div class="ap-testo">
+      <p class="occhiello">Mestrino (Padova), dal 1973</p>
+      <h1 id="titolo">Stazioni di collaudo su misura</h1>
+      <p class="ap-frase">Siamo specializzati nella costruzione di stazioni di collaudo su misura appositamente studiate per velocizzare la produzione in qualsiasi situazione.</p>
+      <ul class="ap-prove" aria-label="Le prove">
+        <li>Sicurezza elettrica</li><li>Tenuta e portata</li><li>Saldatrici</li><li>Trasformatori</li><li>Impianti refrigeranti</li><li>Apparecchi LED</li>
+      </ul>
+      <div class="azioni solo-pc">
+        <a class="btn pieno" href="mailto:martorana@martoranaelettronica.com?subject=Richiesta%3A%20stazione%20di%20collaudo%20su%20misura&amp;body=Buongiorno%2C%0Avi%20mando%20il%20caso%20per%20una%20stazione%20di%20collaudo.%0A%0AProdotto%20da%20collaudare%3A%0ANorma%20%28CEI%2C%20EN%2C%20VDE%2C%20UL...%29%3A%0AProve%20e%20valori%3A%0ACadenza%20della%20linea%20%28pezzi%20all%27ora%29%3A%0AAlimentazione%20%28V%2C%20Hz%29%3A%0A%0AAllego%20scheda%20del%20prodotto%2C%20disegno%20o%20foto.%0A%0ANome%3A%0AAzienda%3A%0ATelefono%3A%0A">Inviateci le specifiche del prodotto</a>
+        <a class="btn bordo" href="tel:+390499003655">Chiama <span class="num">049 9003655</span></a>
       </div>
-      <dl class="fatti">
-        <div><dt>1973</dt><dd>L'azienda nasce, fondata dall'ing. Vincenzo Martorana</dd></div>
-        <div><dt>CEI, VDE, EN, UL</dt><dd>Le normative secondo cui le stazioni fanno le prove</dd></div>
-        <div><dt>Italia ed estero</dt><dd>Stazioni in Europa, Sud America, Africa e Asia</dd></div>
-      </dl>
+      <p class="ap-link solo-pc">Avete già una nostra stazione in linea? <a href="#assistenza">Assistenza, TeamViewerQS e area clienti <span class="freccia" aria-hidden="true">&#8594;</span></a></p>
+      <div class="azioni solo-tel">
+        <a class="btn pieno" href="tel:+390499003655">Chiama <span class="num">049 9003655</span></a>
+        <a class="btn bordo" href="#assistenza">Assistenza su una stazione installata</a>
+      </div>
+      <p class="ap-link solo-tel">Una stazione nuova? <a href="#su-misura">Inviateci le specifiche del prodotto <span class="freccia" aria-hidden="true">&#8594;</span></a></p>
     </div>
-    <figure class="archivio">
-      <img src="img/archivio-anni70-202.jpg" srcset="img/archivio-anni70-202.jpg 202w, img/archivio-anni70-404.jpg 404w" sizes="(max-width:600px) 101px, (max-width:900px) 120px, 150px" width="202" height="541" alt="Stazione di collaudo degli anni Settanta in un mobile marrone, con monitor e strumenti a pannello" loading="lazy">
-      <figcaption><b>Anni '70.</b> Stazione di collaudo realizzata per la Zanussi Grandi Impianti.</figcaption>
+    <figure class="ap-foto">
+      <div class="fila">
+        <img class="s1200" src="img/mod1200.webp" width="191" height="551" alt="Stazione di collaudo Mod. 1200: armadio blu con monitor e moduli di prova">
+        <img class="s1000" src="img/mod1000.webp" width="201" height="417" alt="Stazione di collaudo Mod. 1000 a carrello, con monitor touch screen">
+      </div>
+      <figcaption>Mod. 1200 e Mod. 1000, dal catalogo 2025</figcaption>
     </figure>
   </div>
 </section>
 
-<section class="sez prove" id="prove" aria-labelledby="t-prove">
-  <div class="wrap">
-    <div class="griglia prove-testa">
-      <h2 id="t-prove">Otto prove, un esito</h2>
-      <p>Il Mod.&nbsp;1200 le fa tutte in una sola stazione e a fine collaudo decreta l'esito. Toccate una prova per vedere cosa misura e quali stazioni la fanno.</p>
+<section class="sez chiaro-fondo" id="assistenza" aria-labelledby="t-assistenza">
+  <div class="cont">
+    <div class="capo">
+      <div>
+        <p class="occhiello">Per chi ha una nostra stazione</p>
+        <h2 id="t-assistenza">Assistenza sulle stazioni installate</h2>
+      </div>
+      <p>Una stazione in errore, che scarta pezzi buoni, da tarare o con un ricambio da cambiare: chiamateci, avviate l'assistenza remota o scriveteci con il modello e la matricola.</p>
     </div>
-    <div class="prove-corpo">
-      <ul class="voci">
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p1"><i class="led" aria-hidden="true"></i>Continuità di terra</button>
-          <div class="dettaglio" id="p1">
-            <div class="palco"><img src="img/m0586tn-900.webp" srcset="img/m0586tn-520.webp 520w, img/m0586tn-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="475" alt="Modulo 0586_TN per la prova di terra" loading="lazy"></div>
-            <h3>Continuità di terra</h3>
-            <p class="cosa">Verifica che le parti metalliche accessibili siano collegate al conduttore di protezione e misura la resistenza del circuito di terra.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_TN</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p2"><i class="led" aria-hidden="true"></i>Rigidità dielettrica</button>
-          <div class="dettaglio" id="p2">
-            <div class="palco"><img src="img/m0586rn-900.webp" srcset="img/m0586rn-520.webp 520w, img/m0586rn-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="475" alt="Modulo 0586_RN per la prova di rigidità dielettrica" loading="lazy"></div>
-            <h3>Rigidità dielettrica</h3>
-            <p class="cosa">Applica un'alta tensione tra le parti attive e la carcassa e controlla che l'isolamento regga senza scariche.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_RN</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p3"><i class="led" aria-hidden="true"></i>Isolamento</button>
-          <div class="dettaglio" id="p3">
-            <div class="palco"><img src="img/m1200inv-531.webp" srcset="img/m1200inv-360.webp 360w, img/m1200inv-531.webp 531w" sizes="(max-width:900px) 40vw, 18vw" width="531" height="1218" alt="Stazione di collaudo Mod. 1200 Inverter, armadio blu a rack" loading="lazy"></div>
-            <h3>Isolamento elettrico</h3>
-            <p class="cosa">Misura la resistenza d'isolamento tra il circuito di alimentazione e le parti che si possono toccare.</p>
-            <p class="chi"><b>La fa</b>Mod.&nbsp;1200, nella foto la versione Inverter</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="true" aria-controls="p4"><i class="led" aria-hidden="true"></i>Dispersione</button>
-          <div class="dettaglio" id="p4">
-            <div class="palco"><img src="img/m0586ad-900.webp" srcset="img/m0586ad-520.webp 520w, img/m0586ad-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="558" alt="Modulo 0586_AD per la prova di dispersione, con display rossi di tensione e corrente" loading="lazy"></div>
-            <h3>Dispersione</h3>
-            <p class="cosa">Misura la corrente che passa verso terra con l'apparecchio acceso alla tensione di alimentazione.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200, modulo 0586_AD</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p5"><i class="led" aria-hidden="true"></i>Assorbimento</button>
-          <div class="dettaglio" id="p5">
-            <div class="palco"><img src="img/m1294exp1-900.webp" srcset="img/m1294exp1-520.webp 520w, img/m1294exp1-900.webp 900w" sizes="(max-width:900px) 90vw, 46vw" width="900" height="453" alt="Modulo test assorbimento Mod. 1294A_EXP1 con due prese" loading="lazy"></div>
-            <h3>Assorbimento elettrico</h3>
-            <p class="cosa">Misura quanto assorbe l'apparecchio in funzione, in monofase, bifase e trifase.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200; modulo M1294A_EXP1 a 115 e 230&nbsp;Vac e in corrente continua</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p6"><i class="led" aria-hidden="true"></i>Pressione e portata</button>
-          <div class="dettaglio" id="p6">
-            <div class="palco"><img src="img/m1200g-472.webp" srcset="img/m1200g-360.webp 360w, img/m1200g-472.webp 472w" sizes="(max-width:900px) 34vw, 14vw" width="472" height="1148" alt="Misuratore di portata e pressione Mod. 1200G con i raccordi del gas" loading="lazy"></div>
-            <h3>Pressione e portata del gas</h3>
-            <p class="cosa">Collauda in linea i piani di cottura a gas, con la correzione automatica della portata in funzione della pressione.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200; Mod.&nbsp;1200G, fino a <span class="nb">70&nbsp;mbar</span> e <span class="nb">1200&nbsp;l/h</span> d'aria</p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p7"><i class="led" aria-hidden="true"></i>Microperdite</button>
-          <div class="dettaglio" id="p7">
-            <div class="palco"><img src="img/m0704n-900.webp" srcset="img/m0704n-520.webp 520w, img/m0704n-900.webp 900w" sizes="(max-width:900px) 80vw, 34vw" width="900" height="839" alt="Stazione portatile M0704N verde acqua con maniglia bianca" loading="lazy"></div>
-            <h3>Tenuta e microperdite</h3>
-            <p class="cosa">Rileva le perdite dei circuiti idraulici prima che il prodotto lasci la linea.</p>
-            <p class="chi"><b>La fanno</b>Mod.&nbsp;1200; M0704N, perdita fino a <span class="nb">396&nbsp;cc/h</span> con precisione dello <span class="nb">0,1&nbsp;%FS</span></p>
-          </div>
-        </li>
-        <li class="voce">
-          <button type="button" aria-expanded="false" aria-controls="p8"><i class="led" aria-hidden="true"></i>Interruttore differenziale</button>
-          <div class="dettaglio" id="p8">
-            <div class="palco"><img src="img/m1200-620.webp" srcset="img/m1200-360.webp 360w, img/m1200-620.webp 620w" sizes="(max-width:900px) 50vw, 22vw" width="620" height="1030" alt="Stazione di collaudo Mod. 1200 Climatizzata con pulsantiera" loading="lazy"></div>
-            <h3>Interruttore differenziale</h3>
-            <p class="cosa">Verifica che il differenziale dell'apparecchio intervenga come deve.</p>
-            <p class="chi"><b>La fa</b>Mod.&nbsp;1200, nella foto la versione Climatizzata</p>
-          </div>
-        </li>
+    <ol class="passi">
+      <li class="passo">
+        <span class="n">1</span>
+        <h3>Chiamateci</h3>
+        <p>Tenete pronto il modello, scritto sul pannello della stazione.</p>
+        <a class="btn pieno" href="tel:+390499003655">Chiama <span class="num">049 9003655</span></a>
+      </li>
+      <li class="passo">
+        <span class="n">2</span>
+        <h3>Assistenza remota</h3>
+        <p>Scarica la nostra versione di TeamViewerQS per ricevere assistenza remota: avviatelo sul computer della stazione e dateci l'ID che compare.</p>
+        <a class="btn bordo" href="http://www.martoranaelettronica.com/download/TeamViewerQS.exe?v=15" download>Scarica TeamViewerQS</a>
+      </li>
+      <li class="passo">
+        <span class="n">3</span>
+        <h3>Scriveteci</h3>
+        <p>Modello, matricola e una foto del display o dell'errore: l'email si apre già pronta.</p>
+        <a class="btn bordo" href="mailto:martorana@martoranaelettronica.com?subject=Assistenza%3A%20stazione%20di%20collaudo%20installata&amp;body=Buongiorno%2C%0Achiedo%20assistenza%20su%20una%20vostra%20stazione.%0A%0AModello%20%28scritto%20sul%20pannello%29%3A%0AMatricola%3A%0ACosa%20succede%20%28errore%2C%20scarti%2C%20taratura%2C%20ricambio%29%3A%0ALa%20linea%20%C3%A8%20ferma%3F%20%28s%C3%AC%20o%20no%29%3A%0A%0AAllego%20una%20foto%20del%20display%20o%20dell%27errore.%0A%0AAzienda%20e%20sede%20della%20linea%3A%0ANome%20e%20telefono%3A%0A">Scrivete all'assistenza</a>
+      </li>
+      <li class="passo">
+        <span class="n">4</span>
+        <h3>Area clienti</h3>
+        <p>Manuali e programmi riservati a chi ha una nostra stazione, e l'<a class="altro" href="http://www.martoranaelettronica.com/index.php/it/area-download">area download</a>.</p>
+        <a class="btn bordo" href="http://www.martoranaelettronica.com/index.php/it/area-riservata">Accedi all'area riservata</a>
+      </li>
+    </ol>
+    <p class="nota-assist">Interventi in azienda e ricambi: <a href="mailto:martorana@martoranaelettronica.com?subject=Richiesta%3A%20intervento%20in%20azienda%20o%20ricambio&amp;body=Buongiorno%2C%0A%0AModello%20della%20stazione%3A%0AMatricola%3A%0AIntervento%20o%20ricambio%20richiesto%3A%0ASede%20della%20linea%3A%0A%0ANome%2C%20azienda%20e%20telefono%3A%0A">chiedeteli per email</a> o al telefono, con il modello della stazione.</p>
+  </div>
+</section>
+
+<section class="sez bianco-fondo" id="prove" aria-labelledby="t-prove">
+  <div class="cont">
+    <div class="capo">
+      <div>
+        <p class="occhiello">Prove e stazioni</p>
+        <h2 id="t-prove">Stazioni di collaudo computerizzate</h2>
+      </div>
+      <p>Ecco alcuni esempi delle nostre produzioni: ogni stazione si costruisce su specifica esigenza del cliente, con prove secondo le normative CEI, VDE, EN e UL.</p>
+    </div>
+    <div class="schede">
+      <a class="scheda" href="sicurezza-elettrica.html">
+        <div class="vetrina"><img src="img/mod1200st-net.webp" width="261" height="151" alt="Mod. 1200 ST-NET D, stazione a modulo unico della serie /NET" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Sicurezza elettrica in linea</h3>
+          <p>Continuità di terra, rigidità dielettrica, isolamento, dispersione, assorbimento monofase, bifase e trifase, interruttore differenziale.</p>
+          <ul class="misure">
+            <li><b>Mod. 1200</b> a rack, <b>Mod. 1000</b> con touch screen, <b>serie /NET</b> a modulo unico</li>
+            <li>Inverter per 120 V monofase, 240 V bifase, 208 V trifase a 60 Hz</li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+      <a class="scheda" href="sicurezza-elettrica.html#mod-1294a">
+        <div class="vetrina"><img src="img/mod1294a.webp" width="378" height="228" alt="Stazione di collaudo da banco Mod. 1294/A con i pulsanti corretto e scarto" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Da banco, tutto in uno</h3>
+          <p>Il Mod. 1294/A, compatto "all in one" con il software Iridium: ideale per laboratori di produzione di apparecchi illuminanti e produttori di elettroutensili.</p>
+          <ul class="misure">
+            <li><b>M1294A_EXP1</b>: modulo di assorbimento a 115 e 230 Vac e in corrente continua</li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+      <a class="scheda" href="apparecchi-illuminanti.html">
+        <div class="vetrina"><img src="img/m0524-led.webp" width="526" height="276" alt="Stazione M0524-LED con pulsantiera e pulsanti PASS e FAIL" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Apparecchi illuminanti LED</h3>
+          <p>La M0524-LED, progettata e realizzata in collaborazione con i principali produttori del settore illuminotecnico.</p>
+          <ul class="misure">
+            <li><b>DALI, DALI2, DMX512</b></li>
+            <li><b>0-10 V e 1-10 V</b></li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+      <a class="scheda" href="tenuta-portata.html">
+        <div class="vetrina"><img src="img/m0704n.webp" width="520" height="485" alt="M0704N per il collaudo della tenuta di circuiti idraulici" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Tenuta e portata</h3>
+          <p>Il Mod. 1200G per il collaudo in linea dei piani di cottura a gas, con correzione automatica della portata in funzione della pressione; il M0704N per la tenuta di circuiti idraulici.</p>
+          <ul class="misure">
+            <li><b>Mod. 1200G</b>: fino a 70 mbar e 1200 l/h (aria)</li>
+            <li><b>M0704N</b>: perdita fino a 396 cc/h, precisione 0,1 %FS</li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+      <a class="scheda" href="saldatrici.html">
+        <div class="vetrina"><img src="img/saldatrici.webp" width="972" height="634" alt="Sistema di collaudo per saldatrici: tre armadi blu, carico e banco con pedale" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Saldatrici</h3>
+          <p>Stazioni computerizzate per prova saldatrici a Tig, Mig, Plasma, Inverter, Trascinatori, Caricabatterie. Siamo fornitori ufficiali delle aziende più prestigiose del settore della saldatura.</p>
+          <ul class="misure">
+            <li><b>Mod. 1200DB, 1200RS, 0586, 0103, 200, 0507</b></li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+      <a class="scheda" href="alimentatori.html">
+        <div class="vetrina"><img src="img/mod0507.webp" width="560" height="435" alt="Regolatore di tensione Mod. 0507 con manopola graduata" loading="lazy"></div>
+        <div class="corpo">
+          <h3>Alimentatori e stabilizzatori</h3>
+          <p>Alimentatori e stabilizzatori da 0,5 a 100 kVA, anche per le prove a 60 Hz.</p>
+          <ul class="misure">
+            <li><b>Inverter da 15 e 60 kVA</b>, doppio alimentatore Mod. 0204, alimentatore manuale Mod. 0507, Mod. 0290</li>
+            <li>Da 12 a 1000 V, a 50, 60 e 100 Hz</li>
+          </ul>
+          <span class="vai">Modelli e prove <span class="freccia" aria-hidden="true">&#8594;</span></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="anche">
+      <div>
+        <h3>Trasformatori</h3>
+        <p>Prova "surge" a tensione progressiva per la determinazione dell'incidenza delle falle nel filo smaltato. <a href="trasformatori.html">Trasformatori <span class="freccia" aria-hidden="true">&#8594;</span></a></p>
+      </div>
+      <div>
+        <h3>Impianti refrigeranti</h3>
+        <p>Stazioni di collaudo computerizzate per prova impianti refrigeranti, dotate di alimentatori e stabilizzatori fino a 65 kVA.</p>
+      </div>
+      <div>
+        <h3>Su misura</h3>
+        <p>Simulatori guasti per prove giornaliere, settimanali e quindicinali, basi pneumatiche porta pezzo. Si eseguono su misura apparecchiature speciali di vario genere.</p>
+      </div>
+    </div>
+
+    <div class="norme">
+      <p>Le nostre stazioni effettuano prove secondo le normative:</p>
+      <ul aria-label="Normative">
+        <li>CEI</li><li>EN</li><li>VDE</li><li>UL</li><li>BSI</li>
       </ul>
-      <p class="esiti" aria-label="Esiti"><span><i style="background:var(--verde)"></i>Corretto</span><span><i style="background:var(--rosso)"></i>Scarto</span></p>
+    </div>
+
+    <div class="software">
+      <div>
+        <h3>Hardware e software fatti da noi</h3>
+        <p>A fine collaudo la stazione decreta l'esito del test. I nostri programmi sono Iridium, MccManager e MccDotNet: gestiscono codici a barre, stampanti e salvataggio in rete.</p>
+      </div>
+      <div class="sw">
+        <div><h3>Iridium</h3><p>Iridium è un software pensato e sviluppato da noi: ogni prova esce verde (buono), grigia (non rilevato) oppure rossa (scarto).</p></div>
+        <div><h3>MccDotNet</h3><p>Multibaia: permette di eseguire più collaudi in parallelo e integra un servizio REST.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sez stazioni" id="stazioni" aria-labelledby="t-stazioni">
-  <div class="wrap">
-    <div class="griglia fam-testa">
-      <h2 id="t-stazioni">Quattro famiglie di prova</h2>
-      <p>Stazioni computerizzate per chi produce elettrodomestici, piani cottura, saldatrici e apparecchi illuminanti.</p>
+<section class="sez scuro" id="azienda" aria-labelledby="t-azienda">
+  <div class="cont">
+    <p class="occhiello">Azienda</p>
+    <h2 id="t-azienda" class="manifesto"><q>Martorana Elettronica, con il suo reparto di ricerca e sviluppo, è diventata famosa per la velocità e competenza delle sue realizzazioni, sia in Italia che nel mondo!</q></h2>
+    <ul class="numeri">
+      <li><span class="cifra">1973</span><p>l'anno di fondazione, con l'ing. Vincenzo Martorana</p></li>
+      <li><span class="cifra">4</span><p>continenti: Europa, Sud America, Africa e Asia, oltre all'Italia</p></li>
+      <li><span class="cifra">100<small> kVA</small></span><p>gli alimentatori e gli stabilizzatori più grandi, da 0,5 a 100 kVA</p></li>
+      <li><span class="cifra">3</span><p>programmi di collaudo nostri: Iridium, MccManager, MccDotNet</p></li>
+    </ul>
+    <div class="storia">
+      <figure><img src="img/anni70.jpg" width="202" height="541" alt="Stazione di collaudo degli anni Settanta: mobile con strumenti, display e monitor" loading="lazy"></figure>
+      <div>
+        <h3>Dal 1973, ancora validi</h3>
+        <p class="citaz">"In questa immagine potete vedere una Stazione di collaudo realizzata negli anni '70 per la Zanussi Grandi Impianti: i concetti alla base della sua progettazione erano così lungimiranti che per molti versi sono ancora validi."</p>
+        <p>L'azienda è sorta nel 1973, fondata dall'ing. Vincenzo Martorana. A più di cinquant'anni dalla sua fondazione, prosegue nella sua missione di costruire apparecchiature di prova affidabili e precise, ponendo sempre al primo posto le esigenze e le specifiche del cliente.</p>
+      </div>
+      <div class="settori">
+        <h3>Chi le usa</h3>
+        <ul aria-label="Settori">
+          <li>Elettrodomestici</li><li>Piani cottura a gas</li><li>Saldatrici</li><li>Apparecchi illuminanti</li><li>Elettroutensili</li><li>Trasformatori</li><li>Impianti refrigeranti</li>
+        </ul>
+        <p>In Italia e all'estero: siamo presenti in Europa, Sud America, Africa e Asia.</p>
+      </div>
     </div>
-    <ul class="famiglie">
-      <li class="fam griglia"><h3>Sicurezza elettrica</h3><p class="mod">Mod.&nbsp;1200, Mod.&nbsp;1000, <span class="nb">serie /NET</span>, Mod.&nbsp;1294A</p><p class="prova">Dal Mod.&nbsp;1200 personalizzabile al Mod.&nbsp;1294A compatto, tutto in uno. Con l'inverter, prove a <span class="nb">120</span>, <span class="nb">240</span> e <span class="nb">208&nbsp;V</span> a <span class="nb">60&nbsp;Hz</span>.</p></li>
-      <li class="fam griglia"><h3>Tenuta e portata</h3><p class="mod">Mod.&nbsp;1200G, M0704N</p><p class="prova">Collaudo in linea dei piani di cottura a gas e della tenuta dei circuiti idraulici.</p></li>
-      <li class="fam griglia"><h3>Saldatrici</h3><p class="mod">Mod.&nbsp;1200DB, 1200rs, 0586, 0103, 200</p><p class="prova">Saldatrici a Tig, Mig, plasma e inverter, trascinatori e caricabatterie.</p></li>
-      <li class="fam griglia"><h3>Apparecchi illuminanti</h3><p class="mod">M0524-LED, Mod.&nbsp;1294A</p><p class="prova">DALI, DALI2, DMX512, <span class="nb">0-10&nbsp;V</span> e <span class="nb">1-10&nbsp;V</span>. La M0524-LED è nata con i principali produttori del settore.</p></li>
-      <li class="fam griglia"><h3>Anche su misura</h3><p class="mod">Apparecchiature speciali</p><p class="prova">Prova surge per il filo smaltato, impianti refrigeranti con alimentatori fino a <span class="nb">65&nbsp;kVA</span>, simulatori guasti, basi pneumatiche porta pezzo.</p></li>
+  </div>
+</section>
+
+<section class="sez chiaro-fondo" id="su-misura" aria-labelledby="t-misura">
+  <div class="cont misura-griglia">
+    <div>
+      <p class="occhiello">Una stazione nuova</p>
+      <h2 id="t-misura">Inviateci le specifiche del prodotto</h2>
+      <p>Costruiamo ogni stazione su specifica esigenza del cliente. Per studiare la vostra ci servono:</p>
+      <ol class="cosa">
+        <li>la scheda del prodotto da collaudare</li>
+        <li>la norma e le prove richieste, con i valori</li>
+        <li>la cadenza della linea</li>
+        <li>l'alimentazione del paese di destinazione</li>
+        <li>un disegno o una foto del pezzo</li>
+      </ol>
+      <div class="contatto-diretto">
+        <a class="btn bordo" href="tel:+390499003655">Chiama <span class="num">049 9003655</span></a>
+      </div>
+    </div>
+    <form class="modulo" id="modulo" novalidate>
+      <fieldset>
+        <legend>Che cosa vi serve</legend>
+        <div class="scelte">
+          <label><input type="radio" name="tipo" value="Stazione di collaudo nuova" checked> Stazione nuova</label>
+          <label><input type="radio" name="tipo" value="Assistenza o ricambio su una stazione installata"> Assistenza o ricambio</label>
+          <label><input type="radio" name="tipo" value="Altra richiesta"> Altro</label>
+        </div>
+      </fieldset>
+      <div class="campi">
+        <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
+        <div class="campo"><label for="f-azienda">Azienda</label><input id="f-azienda" name="Azienda" autocomplete="organization" required></div>
+        <div class="campo"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" autocomplete="email" required></div>
+        <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel"></div>
+        <div class="campo largo"><label for="f-prodotto">Prodotto da collaudare</label><input id="f-prodotto" name="Prodotto da collaudare" placeholder="Per esempio: piano cottura a gas, saldatrice inverter"></div>
+        <div class="campo"><label for="f-norma">Norma</label><input id="f-norma" name="Norma" placeholder="CEI, EN, VDE, UL..."></div>
+        <div class="campo"><label for="f-cadenza">Cadenza della linea</label><input id="f-cadenza" name="Cadenza della linea" placeholder="pezzi all'ora"></div>
+        <div class="campo"><label for="f-prove">Prove e valori</label><input id="f-prove" name="Prove e valori"></div>
+        <div class="campo"><label for="f-alim">Alimentazione</label><input id="f-alim" name="Alimentazione" placeholder="V e Hz"></div>
+        <div class="campo largo"><label for="f-file">Disegno, scheda o foto</label><input id="f-file" name="Allegati" type="file" multiple accept=".pdf,.dxf,.dwg,.step,.stp,.jpg,.jpeg,.png"><span class="aiuto">PDF, DXF, DWG, STEP o foto: aggiungeteli all'email che si apre.</span></div>
+        <div class="campo largo"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="Messaggio"></textarea></div>
+      </div>
+      <div class="invio">
+        <button class="btn pieno" type="submit">Prepara l'email</button>
+        <p>Si apre il vostro programma di posta con la richiesta già scritta, indirizzata a martorana@martoranaelettronica.com.</p>
+      </div>
+      <p class="avviso" id="avviso" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="sez blu-fondo" id="en" lang="en" aria-labelledby="t-en">
+  <div class="cont en-griglia">
+    <div>
+      <p class="occhiello">In English</p>
+      <h2 id="t-en">Custom test stations, since 1973</h2>
+      <p>We design and build computerised end-of-line test stations, with our own hardware and software, for customers in Italy and in Europe, South America, Africa and Asia.</p>
+      <div class="azioni">
+        <a class="btn pieno" href="mailto:martorana@martoranaelettronica.com?subject=Enquiry%3A%20custom%20test%20station&amp;body=Hello%2C%0Ahere%20is%20our%20case%20for%20a%20test%20station.%0A%0AProduct%20to%20be%20tested%3A%0AStandard%20%28IEC%2C%20EN%2C%20VDE%2C%20UL...%29%3A%0ATests%20and%20values%3A%0ALine%20rate%20%28pieces%20per%20hour%29%3A%0AMains%20supply%20%28V%2C%20Hz%29%3A%0A%0AAttached%3A%20product%20data%20sheet%2C%20drawing%20or%20photo.%0A%0AName%3A%0ACompany%20and%20country%3A%0APhone%3A%0A">Email us your product specifications</a>
+        <a class="btn bordo" href="tel:+390499003655">Call <span class="num">+39 049 9003655</span></a>
+      </div>
+      <p class="ap-link">Remote assistance: <a href="http://www.martoranaelettronica.com/download/TeamViewerQS.exe?v=15" download>download our TeamViewerQS</a> or <a href="mailto:martorana@martoranaelettronica.com?subject=Remote%20assistance%3A%20installed%20test%20station&amp;body=Hello%2C%0Awe%20need%20assistance%20on%20one%20of%20your%20stations.%0A%0AModel%20%28printed%20on%20the%20panel%29%3A%0ASerial%20number%3A%0AWhat%20happens%20%28error%2C%20rejects%2C%20calibration%2C%20spare%20part%29%3A%0A%0AAttached%3A%20a%20photo%20of%20the%20display%20or%20of%20the%20error.%0A%0ACompany%20and%20country%3A%0AName%20and%20phone%3A%0A">email our service team</a>.</p>
+    </div>
+    <ul class="en-lista">
+      <li><b>Electrical safety</b><span>Earth continuity, dielectric strength, insulation, leakage current, power absorption (single, two and three phase), RCD test. Mod. 1200, Mod. 1000, /NET series, Mod. 1294/A.</span></li>
+      <li><b>60 Hz markets</b><span>Inverter for 120 V single phase, 240 V two phase and 208 V three phase at 60 Hz. Power supplies from 0.5 to 100 kVA, 12 to 1000 V, 50, 60 and 100 Hz.</span></li>
+      <li><b>Standards</b><span>Tests according to CEI, EN, VDE, UL and BSI standards.</span></li>
+      <li><b>Leak and flow</b><span>Mod. 1200G for gas hobs in line: up to 70 mbar and 1200 l/h (air). M0704N for water circuits: leaks up to 396 cc/h, 0.1 %FS.</span></li>
+      <li><b>Welding machines</b><span>TIG, MIG, plasma, inverter welders, wire feeders and battery chargers.</span></li>
+      <li><b>LED luminaires</b><span>M0524-LED: DALI, DALI2, DMX512, 0-10 V and 1-10 V, PASS and FAIL.</span></li>
     </ul>
   </div>
 </section>
 
-<section class="sez energia" id="energia" aria-labelledby="t-energia">
-  <div class="wrap">
-    <div class="griglia">
-      <div class="en-testo">
-        <h2 id="t-energia">Alimentatori da 0,5 a 100&nbsp;kVA</h2>
-        <p>Alimentatori e stabilizzatori, dai regolatori manuali agli inverter da 15 e 60&nbsp;kVA, anche in versione doppia.</p>
-      </div>
-      <figure class="en-foto">
-        <img src="img/m0507-969.webp" srcset="img/m0507-560.webp 560w, img/m0507-969.webp 969w" sizes="(max-width:900px) 100vw, 56vw" width="969" height="753" alt="Regolatore di tensione Mod. 0507 con la grande manopola nera graduata da 0 a 22 in una cornice blu" loading="lazy">
-        <figcaption><b>Mod.&nbsp;0507</b>, alimentatore manuale</figcaption>
-      </figure>
+<section class="sez bianco-fondo" id="contatti" aria-labelledby="t-contatti">
+  <div class="cont dove">
+    <div>
+      <p class="occhiello">Contatti</p>
+      <h2 id="t-contatti">Dove siamo</h2>
+      <p>Telefono, email e indirizzo della sede: per una stazione nuova o per l'assistenza.</p>
     </div>
-    <div class="griglia software">
-      <h3>Il software lo scriviamo noi</h3>
-      <ul class="sw">
-        <li><b>Iridium</b><div><p>Pensato e sviluppato da noi: ogni prova si chiude con un colore.</p><p class="colori"><span><i style="background:var(--verde)"></i>Buono</span><span><i style="background:var(--grigio-led)"></i>Non rilevato</span><span><i style="background:var(--rosso)"></i>Scarto</span></p></div></li>
-        <li><b>MccDotNet Multibaia</b><p>Più collaudi in parallelo, con un servizio REST integrato.</p></li>
-        <li><b>Assistenza remota</b><p>Assistenza a distanza sulle stazioni installate.</p></li>
-      </ul>
+    <div class="recapiti">
+      <div class="recapito largo">
+        <p class="occhiello">Sede operativa</p>
+        <p class="grande">Via Torino 10/B, 35035 Mestrino (PD)</p>
+        <div class="azioni">
+          <a class="btn bordo" href="https://www.google.com/maps/search/?api=1&amp;query=Martorana%20Elettronica%2C%20Via%20Torino%2010%2FB%2C%2035035%20Mestrino%20PD">Apri la mappa</a>
+          <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Torino%2010%2FB%2C%2035035%20Mestrino%20PD">Indicazioni stradali</a>
+        </div>
+      </div>
+      <div class="recapito">
+        <p class="occhiello">Telefono</p>
+        <a class="grande" href="tel:+390499003655">049 9003655</a>
+        <p class="riga">Dall'estero +39 049 9003655</p>
+      </div>
+      <div class="recapito">
+        <p class="occhiello">Email</p>
+        <a class="grande mail" href="mailto:martorana@martoranaelettronica.com">martorana@<wbr>martoranaelettronica.com</a>
+        <p class="riga">Per richieste, specifiche e assistenza</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
-  <div class="ch-griglia">
-    <div class="ch-testo">
-      <h2 id="t-contatti">Al primo posto, le specifiche del cliente</h2>
-      <address class="recapiti">
-        <a class="tel" href="tel:+390499003655">049&nbsp;9003655</a>
-        <a class="link" href="mailto:martorana@martoranaelettronica.com">martorana@martoranaelettronica.com</a>
-        <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Torino+10%2FB+35035+Mestrino+PD">Via Torino 10/B, 35035 Mestrino (PD)</a>
-        <span class="nota">Per una stazione nuova, mandateci il prodotto da provare.</span>
-      </address>
-    </div>
-    <figure class="ch-foto">
-      <img src="img/chiusura-cestello-960.jpg" srcset="img/chiusura-cestello-640.jpg 640w, img/chiusura-cestello-960.jpg 960w, img/chiusura-cestello-1400.jpg 1400w" sizes="(max-width:900px) 100vw, 50vw" width="960" height="1043" alt="Cestello in acciaio di una lavatrice visto dall'oblò" loading="lazy">
-    </figure>
-  </div>
-</section>
 </main>
 
 <footer class="piede">
-  <div class="wrap">
-    <div class="griglia pd-alto">
-      <div class="pd-marchio">
+  <div class="cont">
+    <div class="piede-griglia">
+      <div>
         <img src="img/logo-bianco.png" width="471" height="143" alt="Martorana Elettronica S.r.l." loading="lazy">
-        <p>Stazioni di collaudo su misura per l'industria, con hardware e software propri. Dal&nbsp;1973, oggi a&nbsp;Mestrino (PD).</p>
+        <p class="forte">Martorana Elettronica S.r.l.</p>
+        <p>Stazioni di collaudo su misura, dal 1973.<br>Via Torino 10/B, 35035 Mestrino (PD)</p>
       </div>
-      <nav class="pd-col pd-c1" aria-labelledby="pd-az">
-        <h2 id="pd-az">Azienda</h2>
-        <ul>
-          <li><a href="chi-siamo.html">Chi siamo</a></li>
-          <li><a href="chi-siamo.html#ricerca">Ricerca e sviluppo</a></li>
-          <li><a href="contatti.html">Contatti</a></li>
-        </ul>
-      </nav>
-      <nav class="pd-col pd-c2" aria-labelledby="pd-st">
-        <h2 id="pd-st">Stazioni di collaudo</h2>
+      <div>
+        <h2>Prove e stazioni</h2>
         <ul>
           <li><a href="sicurezza-elettrica.html">Sicurezza elettrica</a></li>
           <li><a href="tenuta-portata.html">Tenuta e portata</a></li>
@@ -539,57 +723,57 @@ h3{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
           <li><a href="apparecchi-illuminanti.html">Apparecchi illuminanti LED</a></li>
           <li><a href="alimentatori.html">Alimentatori</a></li>
         </ul>
-      </nav>
-      <nav class="pd-col pd-c3" aria-labelledby="pd-sw">
-        <h2 id="pd-sw">Software e assistenza</h2>
+      </div>
+      <div>
+        <h2>Software e assistenza</h2>
         <ul>
-          <li><a href="software.html#iridium">Iridium</a></li>
-          <li><a href="software.html#mccmanager">MccManager</a></li>
-          <li><a href="software.html#mccdotnet">MccDotNet</a></li>
-          <li><a href="assistenza.html">Assistenza remota</a></li>
-          <li><a href="area-riservata.html">Area riservata</a></li>
+          <li><a href="software.html#iridium">Iridium, MccManager, MccDotNet</a></li>
+          <li><a href="http://www.martoranaelettronica.com/download/TeamViewerQS.exe?v=15" download>Scarica TeamViewerQS</a></li>
+          <li><a href="http://www.martoranaelettronica.com/index.php/it/area-riservata">Area riservata</a></li>
+          <li><a href="http://www.martoranaelettronica.com/index.php/it/area-download">Area download</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
         </ul>
-      </nav>
-      <div class="pd-col pd-c4">
+      </div>
+      <div>
         <h2>Contatti</h2>
         <ul>
-          <li><a href="tel:+390499003655">049&nbsp;9003655</a></li>
+          <li><a href="tel:+390499003655">049 9003655</a></li>
           <li><a href="mailto:martorana@martoranaelettronica.com">martorana@<wbr>martoranaelettronica.com</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Martorana%20Elettronica%2C%20Via%20Torino%2010%2FB%2C%2035035%20Mestrino%20PD">Via Torino 10/B, Mestrino</a></li>
+          <li><a href="#en" hreflang="en" lang="en">English</a></li>
         </ul>
       </div>
     </div>
-    <div class="pd-basso">
-      <p>Martorana Elettronica S.r.l., P.IVA 03711900286, Via Torino 10/B, 35035 Mestrino (PD)</p>
-      <nav aria-label="Note legali"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></nav>
-    </div>
+    <p class="legale"><span>&#169; Martorana Elettronica S.r.l.</span><span>P.IVA 03711900286</span><span>Via Torino 10/B, 35035 Mestrino (PD)</span><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></p>
   </div>
 </footer>
 
 <script>
-(function(){
-  var bottoni=[].slice.call(document.querySelectorAll('.voce>button'));
-  bottoni.forEach(function(b,i){
-    b.addEventListener('click',function(){
-      var prima=b.getBoundingClientRect().top;
-      bottoni.forEach(function(x){x.setAttribute('aria-expanded',x===b?'true':'false')});
-      /* a una colonna il dettaglio sopra si chiude: si compensa lo scorrimento, la riga resta dov'era */
-      if(window.innerWidth<=900){var d=b.getBoundingClientRect().top-prima;if(Math.abs(d)>1)window.scrollBy(0,d);}
-    });
-    b.addEventListener('keydown',function(e){
-      var j=null;
-      if(e.key==='ArrowDown')j=(i+1)%bottoni.length;
-      if(e.key==='ArrowUp')j=(i-1+bottoni.length)%bottoni.length;
-      if(j!==null){e.preventDefault();bottoni[j].focus();bottoni[j].click();}
-    });
+(function () {
+  var b = document.querySelector('.apri-menu'), m = document.getElementById('menu');
+  b.addEventListener('click', function () {
+    var a = m.classList.toggle('aperto'); b.setAttribute('aria-expanded', a ? 'true' : 'false'); b.textContent = a ? 'Chiudi' : 'Menu';
   });
-  var apri=document.querySelector('.apri'),menu=document.getElementById('menu');
-  apri.addEventListener('click',function(){
-    var on=apri.getAttribute('aria-expanded')!=='true';
-    apri.setAttribute('aria-expanded',on?'true':'false');
-    menu.classList.toggle('aperto',on);
+  m.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { m.classList.remove('aperto'); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Menu'; }
   });
-  menu.addEventListener('click',function(e){
-    if(e.target.tagName==='A'&&apri.getAttribute('aria-expanded')==='true'){apri.click();}
+  // il modulo compone un'email (da collegare a un servizio di invio: vedi LEGGIMI.md)
+  var f = document.getElementById('modulo'), av = document.getElementById('avviso');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var manca = [].slice.call(f.querySelectorAll('[required]')).filter(function (i) { return !i.value.trim(); });
+    if (manca.length) {
+      av.textContent = 'Mancano: ' + manca.map(function (i) { return f.querySelector('label[for="' + i.id + '"]').textContent.toLowerCase(); }).join(', ') + '.';
+      manca[0].focus(); return;
+    }
+    var tipo = f.querySelector('input[name=tipo]:checked').value, righe = ['Richiesta: ' + tipo, ''];
+    [].slice.call(f.querySelectorAll('.campi input, .campi textarea')).forEach(function (i) {
+      if (i.type === 'file') {
+        if (i.files.length) righe.push('Allegati da aggiungere a questa email: ' + [].slice.call(i.files).map(function (x) { return x.name; }).join(', '));
+      } else if (i.value.trim()) righe.push(i.name + ': ' + i.value.trim());
+    });
+    av.textContent = 'Si apre il programma di posta: se avete scelto dei file, aggiungeteli come allegati prima di inviare.';
+    location.href = 'mailto:martorana@martoranaelettronica.com?subject=' + encodeURIComponent(tipo + ' (dal sito)') + '&body=' + encodeURIComponent(righe.join('\n'));
   });
 })();
 </script>

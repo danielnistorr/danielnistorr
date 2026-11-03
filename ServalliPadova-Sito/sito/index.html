@@ -3,461 +3,711 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Servalli Padova, tessile casa dal 1895</title>
-<meta name="description" content="Biancheria per la casa e per l'albergo, piumini, coperte, tende e tappeti annodati a mano. Circa 20.000 articoli all'ingrosso a Padova, dal 1895, e anche online.">
+<title>Servalli - biancheria e tessile casa dal 1895, Padova</title>
+<meta name="description" content="Servalli Padova: biancheria e tessile per la casa dal 1895. Lenzuola, piumini e trapunte, spugna, tende e tappeti. Negozio online per i privati, forniture su misura con il vostro logo per alberghi e strutture, condizioni riservate a rivenditori e grossisti. Centro Grossisti, Via Portogallo 11, Padova.">
+<link rel="icon" href="img/logo-testata-240.webp">
 <link rel="preload" href="fonts/caslon-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/golos-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Libre Caslon Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/caslon-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Libre Caslon Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/caslon-latinext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Golos Text";font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/golos-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Golos Text";font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/golos-latinext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Golos Text";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/golos-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Golos Text";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/golos-latinext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
+/* Colori: dal logo. Nero della scritta SERVALLI, arancio e oro dello stemma; il resto è bianco e grigi. */
 :root{
-  /* il fondo è il bianco della biancheria d'albergo, la parte più grande del loro lavoro: le foto delle lenzuola e della spugna ci finiscono dentro senza bordo */
-  --carta:#F7F6F2;
-  --carta-2:#ECEAE4;
-  --inchiostro:#23201B;
-  --nota:#675F55;
-  --robbia:#9A2E22;
-  --robbia-scura:#7C2219;
-  --filo:rgba(35,32,27,.18);
-  --m:64px;
-  --g:24px;
-  --testata:88px;
+  --nero:#17140f;
+  --arancio:#d86c30;
+  --oro:#e4b448;
+  --bianco:#ffffff;
+  --grigio:#5b5750;
+  --grigio-chiaro:#f0f0ee;
+  --filetto:#d6d4cf;
+  --grigio-scuro:#2a2722;
   --serif:"Libre Caslon Display",Georgia,serif;
   --sans:"Golos Text",system-ui,sans-serif;
+  --gutter:80px;
+  --sez:112px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;overflow-x:clip}
-body{margin:0;background:var(--carta);color:var(--inchiostro);font:400 18px/1.6 var(--sans);overflow-x:clip;font-synthesis:none;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;background:var(--bianco);color:var(--nero);font-family:var(--sans);font-size:19px;line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-@media (hover:hover){a:hover{color:var(--robbia)}.btn:hover{background:var(--robbia-scura);color:#fff}}
-:focus-visible{outline:2px solid var(--robbia);outline-offset:3px}
-h1,h2,h3,p{margin:0}
-h1,h2{font-family:var(--serif);font-weight:400;text-wrap:balance}
-p{text-wrap:pretty}
-.num{font-variant-numeric:tabular-nums lining-nums}
-.wrap{padding-inline:var(--m)}
-.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.num{font-variant-numeric:tabular-nums}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:16px;top:8px;z-index:50;background:var(--nero);color:var(--bianco);padding:12px 16px}
+:focus-visible{outline:3px solid var(--arancio);outline-offset:2px}
+.contenitore{max-width:calc(1280px + 2 * var(--gutter));margin:0 auto;padding:0 var(--gutter)}
+[id]{scroll-margin-top:104px}
 
-/* testata */
-/* testata in asse: menu a sinistra, stemma al centro sopra il tappeto, telefono a destra */
-.testata{position:relative;z-index:5;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:32px;height:var(--testata);padding-inline:var(--m)}
-.testata .logo{grid-column:2;grid-row:1}
-.testata .logo img{width:132px;height:auto}
-.testata nav{grid-column:1;grid-row:1}
-.testata nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:16px}
-.testata nav a{text-decoration:none}
-@media (hover:hover){.testata nav a:hover{text-decoration:underline}}
-.testata .tel{grid-column:3;grid-row:1;justify-self:end;font-size:16px;font-weight:500;text-decoration:none;white-space:nowrap}
+/* Bottoni: un solo modello, pieno o con il bordo; raggio 4 px; 52 px (48 in testata) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:2px solid var(--nero);border-radius:4px;background:var(--nero);color:var(--bianco);font:700 16px/1.2 var(--sans);text-decoration:none;white-space:nowrap;cursor:pointer}
+.btn--bordo{background:transparent;color:var(--nero)}
+.btn .num{font-weight:700}
+.su-scuro .btn{border-color:var(--bianco);background:var(--bianco);color:var(--nero)}
+.su-scuro .btn--bordo{background:transparent;color:var(--bianco)}
+@media (hover:hover){
+  .btn:hover{background:var(--grigio-scuro);border-color:var(--grigio-scuro)}
+  .btn--bordo:hover{background:var(--nero);color:var(--bianco);border-color:var(--nero)}
+  .su-scuro .btn:hover{background:var(--oro);border-color:var(--oro)}
+  .su-scuro .btn--bordo:hover{background:var(--bianco);color:var(--nero)}
+}
+.link{font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;text-decoration-color:var(--arancio)}
+.su-scuro .link{text-decoration-color:var(--oro)}
+
+/* Testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--filetto)}
+.testata .contenitore{display:flex;align-items:center;gap:24px;height:88px}
+.logo{flex:none;display:block}
+.logo img{width:120px;height:auto}
+.testata nav{margin-right:auto}
+.menu{display:flex;gap:24px;font-size:16px;font-weight:700;white-space:nowrap}
+.menu a{text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+@media (hover:hover){.menu a:hover{border-bottom-color:var(--arancio)}}
+.t-orari{font-size:16px;line-height:1.3;text-align:right;color:var(--grigio);white-space:nowrap}
+.carrello{font-size:16px;font-weight:700;white-space:nowrap}
+.t-orari b{color:var(--nero)}
+.testata .btn{min-height:48px;padding:0 18px}
 .menu-btn{display:none}
+.stato-pallino{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--grigio);margin-right:8px;vertical-align:1px}
+.aperto .stato-pallino{background:#2f7d3a}
 
-/* apertura in asse, come il tappeto: il Tabriz al centro, il titolo lo attraversa come la trama attraversa l'ordito.
-   "Tessile | casa" sulla prima riga, "dal | 1895" sulla seconda, una parola per lato; il corpo nasce dalla larghezza del lato */
-.apertura{--ag:48px;--tw:min(42vw,calc((100svh - var(--testata) + 40px) / 1.5421));--lato:calc((100vw - 2 * var(--m) - var(--tw) - 2 * var(--ag)) / 2);--fs:clamp(60px,calc(var(--lato) / 2.76),180px);
-  display:grid;grid-template-columns:minmax(0,1fr) var(--tw) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto auto;column-gap:var(--ag);padding:8px var(--m) 0}
-.apertura h1{grid-column:1/4;grid-row:2;display:grid;grid-template-columns:minmax(0,1fr) var(--tw) minmax(0,1fr);column-gap:var(--ag);font-size:var(--fs);line-height:.96;letter-spacing:-.012em;text-wrap:nowrap}
-.apertura h1 .riga{display:contents}
-.apertura h1 .a{grid-column:1;text-align:right}
-.apertura h1 .b{grid-column:3;text-align:left}
-.apertura .lead{font-size:clamp(18px,1.32vw,23px);line-height:1.5}
-.apertura .lead-a{grid-column:1;grid-row:3;justify-self:end;max-width:17em;margin-top:36px;text-align:right}
-.apertura .lato-b{grid-column:3;grid-row:3;max-width:17em;margin-top:36px}
-.azioni{display:flex;align-items:center;gap:28px;margin-top:32px;flex-wrap:wrap}
-.btn{display:inline-block;background:var(--robbia);color:#fff;text-decoration:none;font-weight:500;font-size:16px;padding:15px 24px;transition:background-color .15s}
-.azioni .link{font-size:16px}
-.tappeto{grid-column:2;grid-row:1/5}
-.tappeto img{width:100%;height:auto}
-.didascalia{grid-column:1;grid-row:4;align-self:end;justify-self:end;margin:24px 0 72px;max-width:21em;font-size:14px;line-height:1.5;color:var(--nota);text-align:right}
-.didascalia strong{color:var(--inchiostro);font-weight:500}
+/* Apertura */
+.apertura{display:grid;grid-template-columns:minmax(0,1fr) minmax(600px,calc(50vw - 120px));column-gap:64px;padding-left:max(var(--gutter),calc((100vw - 1280px)/2));min-height:560px}
+.apertura > *{grid-column:1}
+.ap-foto{grid-column:2;grid-row:1 / span 6;position:relative;min-height:100%}
+.ap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.occhiello{padding-top:48px;font-size:16px;font-weight:700;line-height:1.4}
+h1{font-family:var(--serif);font-weight:400;text-transform:uppercase;font-size:88px;line-height:1.0;letter-spacing:.005em;margin-top:24px;max-width:640px}
+.tessere li,.prodotti li,.articoli li{display:flex}
+.tessera,.prodotto,.articolo{flex:1 1 auto}
+.lead{margin-top:24px;max-width:34em}
+.ap-alberghi{margin-top:20px;font-size:16px}
+.azioni{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+.ap-note{margin-top:24px;font-size:16px;line-height:1.5;padding-bottom:44px}
+.ap-note p + p{margin-top:4px}
+.ap-note b{font-weight:700}
+.ap-orari{display:none}
 
-/* prodotti */
-.prodotti{padding-top:130px}
-.prodotti h2{font-size:64px;line-height:1.02;letter-spacing:-.01em;max-width:12em}
-.elenco-tutto{margin-top:28px;max-width:36em;font-size:20px;line-height:1.55}
-.coppia{display:grid;grid-template-columns:1fr 1fr;gap:var(--g);margin-top:88px}
-.coppia figure{margin:0}
-.coppia img{width:100%;aspect-ratio:4/3.6;object-fit:cover}
-.coppia .txt{padding:30px var(--m) 0 0;max-width:560px}
-.coppia .dx .txt{padding-left:var(--m)}
-.coppia .sx .txt{margin-left:var(--m)}
-.coppia h3{font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.1}
-.coppia p{margin-top:12px}
-.coppia .link{display:inline-block;margin-top:16px;font-weight:500;font-size:16px}
+/* Categorie del negozio */
+.categorie{padding:36px 0 var(--sez);border-top:1px solid var(--filetto)}
+.riga-titolo{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:24px}
+.h-piccolo{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.15}
+.tessere{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
+.tessera{display:flex;flex-direction:column;gap:8px;min-height:176px;padding:24px;background:var(--grigio-chiaro);border-radius:4px;text-decoration:none}
+.tessera h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.15}
+.tessera p{font-size:16px;line-height:1.45;color:var(--grigio)}
+.tessera .vai{margin-top:auto;font-size:16px;font-weight:700}
+@media (hover:hover){.tessera:hover{background:var(--nero);color:var(--bianco)}.tessera:hover p{color:#cfccc6}}
 
-/* storia */
-.storia{padding-top:130px}
-.storia .testa{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
-.storia h2{grid-column:1/8;font-size:64px;line-height:1.02;letter-spacing:-.01em}
-.storia .testa p{grid-column:1/7;margin-top:24px;font-size:20px;line-height:1.55}
-.archivio{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);margin-top:64px;padding-right:var(--m)}
-.archivio figure{grid-column:1/10;margin:0;background:var(--carta-2)}
-.archivio figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.archivio .scheda{grid-column:10/13;align-self:end;padding-bottom:4px}
-.anno-grande{font-family:var(--serif);font-size:96px;line-height:.9;color:var(--robbia);letter-spacing:-.01em}
-.archivio .cit{margin-top:22px;font-size:17px;line-height:1.55}
-.archivio .foto-nota{margin-top:14px;font-size:14px;color:var(--nota)}
-.anni{display:flex;margin:28px var(--m) 0;padding:0;list-style:none;border-top:1px solid var(--filo)}
-.anni li{flex:1}
-.anni button{all:unset;box-sizing:border-box;display:block;width:100%;padding:18px 0 6px;cursor:pointer;font-family:var(--serif);font-size:44px;line-height:1;color:var(--nota);border-top:3px solid transparent;margin-top:-2px;transition:color .12s}
-.anni button small{display:block;margin-top:10px;font:400 14px/1.3 var(--sans);color:var(--nota)}
-.anni button:hover{color:var(--inchiostro)}
-.anni button[aria-pressed="true"]{color:var(--inchiostro);border-top-color:var(--robbia)}
-.anni button:focus-visible{outline:2px solid var(--robbia);outline-offset:0}
-.premi{margin:56px var(--m) 0;max-width:64em;font-size:16px;line-height:1.55;color:var(--nota)}
-.premi a{color:var(--inchiostro);font-weight:500}
+/* Sezioni */
+.sez{padding:var(--sez) 0}
+.sez--grigio{background:var(--grigio-chiaro)}
+.sez--arancio{background:var(--arancio)}
+.sez--nero{background:var(--nero);color:var(--bianco)}
+h2{font-family:var(--serif);font-weight:400;font-size:56px;line-height:1.08;max-width:18em}
+.sottotitolo{margin-top:20px;max-width:36em}
+.su-scuro .sottotitolo,.su-scuro .tenue{color:#d4d1cb}
 
-/* chiusura: frase loro, recapiti, la pila di tappeti a filo del bordo destro */
-.chiusura{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);margin-top:130px;padding-left:var(--m)}
-.chiusura .txt{grid-column:1/6;align-self:end;padding:0 24px 0 0}
-.chiusura h2{font-size:56px;line-height:1.06;letter-spacing:-.01em;max-width:11em}
-.recapiti{margin-top:64px;font-size:18px;line-height:1.6}
-.recapiti .tel{display:inline-block;font-family:var(--serif);font-size:52px;line-height:1;text-decoration:none;margin-bottom:24px}
-.recapiti .tel:hover{text-decoration:underline;text-decoration-thickness:2px}
-.recapiti p+p{margin-top:12px}
-.recapiti .orari{color:var(--nota)}
-.chiusura figure{grid-column:6/13;margin:0}
-.chiusura figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
+/* Prodotti con il prezzo */
+.prodotti{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+.prodotto{display:flex;flex-direction:column;background:var(--bianco);border-radius:4px;padding:28px 24px 24px;text-decoration:none;min-height:248px}
+.prodotto .cat{font-size:16px;color:var(--grigio)}
+.prodotto h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;margin-top:12px}
+.prodotto .misura{font-size:16px;margin-top:8px}
+.prodotto .prezzo{font-family:var(--serif);font-size:32px;line-height:1;margin-top:auto;padding-top:24px}
+.prodotto .vai{font-size:16px;font-weight:700;margin-top:16px}
+@media (hover:hover){.prodotto:hover{outline:2px solid var(--nero)}}
+.nota-prezzi{margin-top:24px;font-size:16px;color:var(--grigio)}
 
-/* piede */
-.piede{margin-top:110px;padding:72px var(--m) 40px;border-top:1px solid var(--filo);font-size:16px}
-.piede .griglia{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
-.piede .chi{grid-column:1/4}
-.piede .chi img{width:190px}
-.piede .chi p{margin-top:22px;max-width:17em;color:var(--nota);line-height:1.5}
-.piede .c1{grid-column:4/6}
-.piede .c2{grid-column:6/8}
-.piede .c3{grid-column:8/10}
-.piede h2{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 18px}
-.piede ul{list-style:none;margin:0;padding:0;line-height:1.5}
-.piede li+li{margin-top:9px}
-.piede .col a{text-decoration:none}
-.piede .col a:hover{text-decoration:underline}
-.piede .col .rec{margin-top:18px}
-.piede .news{grid-column:10/13}
-.news p{color:var(--nota);line-height:1.5}
-.news form{margin-top:18px}
-.news .campo{display:flex;border-bottom:1px solid var(--inchiostro)}
-.news input[type=email]{flex:1;min-width:0;border:0;background:transparent;font:inherit;color:inherit;padding:12px 0}
-.news input[type=email]::placeholder{color:var(--nota)}
-.news input[type=email]:focus-visible{outline:none}
-.news .campo:focus-within{border-bottom-color:var(--robbia);box-shadow:0 1px 0 var(--robbia)}
-.news button{border:0;background:transparent;font:500 16px var(--sans);color:var(--robbia);padding:12px 0 12px 16px;cursor:pointer}
-.news button:hover{color:var(--robbia-scura);text-decoration:underline}
-.news label.ok{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;line-height:1.45;color:var(--nota)}
-.news label.ok input{margin:3px 0 0;accent-color:var(--robbia);width:16px;height:16px;flex:none}
-.news .esito{margin-top:10px;font-size:14px;min-height:1.4em}
-.legale{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 28px;margin-top:72px;padding-top:22px;border-top:1px solid var(--filo);font-size:14px;line-height:1.6;color:var(--nota)}
-.legale .societa{flex:1 1 640px;margin:0;text-wrap:balance}
-.legale .voci{display:flex;flex-wrap:wrap;gap:6px 28px}
-.legale a{color:var(--nota)}
-.legale a:hover{color:var(--robbia)}
+/* Alberghi e strutture */
+.alberghi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.alberghi .azioni{margin-top:40px}
+.citazione{margin-top:24px;max-width:30em}
+.voci{border-top:2px solid var(--nero)}
+.voci li{padding:18px 0;border-bottom:1px solid rgba(23,20,15,.35);display:grid;grid-template-columns:200px 1fr;gap:16px}
+.voci b{font-weight:700}
+.rivenditori{margin-top:64px;padding-top:40px;border-top:2px solid var(--nero);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
+.rivenditori h3{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.15}
+.rivenditori p{margin-top:8px}
 
-/* 1200 */
-@media (max-width:1200px){
-  :root{--m:48px}
-  .testata{gap:32px}
-  .testata nav ul{gap:22px}
-  .apertura{--ag:36px}
-  .prodotti h2,.storia h2{font-size:54px}
-  .anno-grande{font-size:76px}
-  .anni button{font-size:38px}
-  .piede .chi{grid-column:1/13;display:flex;align-items:flex-end;gap:40px;margin-bottom:48px}
-  .piede .chi p{margin:0}
-  .piede .c1{grid-column:1/4}.piede .c2{grid-column:4/7}.piede .c3{grid-column:7/10}
+/* Tappeti */
+.tappeti{display:grid;grid-template-columns:380px minmax(0,1fr);gap:80px;align-items:center}
+.tappeti .tabriz img{width:380px}
+.tappeti-testo .scheda{margin-top:40px;padding:24px 0;border-top:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.35);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.scheda h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2}
+.scheda p{font-size:16px;margin-top:6px}
+.scheda .prezzo{font-family:var(--serif);font-size:32px;line-height:1;color:var(--oro);white-space:nowrap}
+.tappeti .azioni{margin-top:32px}
+
+/* Storia e numeri */
+.manifesto{font-family:var(--serif);font-size:56px;line-height:1.08;max-width:16em}
+.numeri{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px;margin-top:64px}
+.numeri li{border-top:4px solid var(--arancio);padding-top:20px}
+.numeri .cifra{display:block;font-family:var(--serif);font-size:56px;line-height:1}
+.numeri .etichetta{display:block;font-size:16px;line-height:1.45;margin-top:12px}
+.archivio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:80px}
+.archivio figcaption{grid-column:1 / -1;font-size:16px;color:var(--grigio)}
+.date{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+.date li{padding-top:16px;border-top:2px solid var(--nero);font-size:16px;line-height:1.45}
+.date b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1;margin-bottom:8px}
+
+/* Marchi e riconoscimenti */
+.fascia{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:64px}
+.marchi{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:40px}
+.marchi img{height:auto}
+.premi li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.3)}
+.premi li:first-child{border-top:2px solid var(--bianco)}
+.premi b{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1;color:var(--oro)}
+.premi span{font-size:16px;line-height:1.45}
+.premi strong{display:block;font-size:19px;font-weight:700}
+.didascalia-fascia{font-size:16px;margin-top:16px;color:#d4d1cb}
+
+/* Arte tessile */
+.articoli{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
+.articolo{display:flex;flex-direction:column;gap:12px;background:var(--bianco);border-radius:4px;padding:28px;text-decoration:none;min-height:300px}
+.articolo time{font-size:16px;color:var(--grigio)}
+.articolo h3{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.15}
+.articolo p{font-size:16px;line-height:1.5}
+.articolo .vai{margin-top:auto;font-size:16px;font-weight:700}
+@media (hover:hover){.articolo:hover{outline:2px solid var(--nero)}}
+
+/* Sede, orari e richieste */
+.contatti{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+.sede{border-top:2px solid var(--nero);padding-top:28px}
+.sede h3{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.15}
+.sede address{font-style:normal;margin-top:12px}
+.stato{margin-top:20px;font-weight:700}
+.orari{width:100%;border-collapse:collapse;margin-top:16px;font-size:16px}
+.orari th,.orari td{padding:10px 0;border-bottom:1px solid var(--filetto);text-align:left;font-weight:400}
+.orari td{text-align:right}
+.orari tr.oggi th,.orari tr.oggi td{font-weight:700}
+.sede .azioni{margin-top:28px}
+.sede .riga{margin-top:20px;font-size:16px}
+.privati{margin-top:20px;font-size:16px;padding:16px 20px;background:var(--grigio-chiaro);border-radius:4px}
+
+.modulo{background:var(--grigio-chiaro);border-radius:4px;padding:40px}
+.modulo h3{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.15}
+.modulo .sottotitolo{font-size:16px;margin-top:8px}
+fieldset{border:0;padding:0;margin:28px 0 0}
+legend{font-size:16px;font-weight:700;padding:0;margin-bottom:12px}
+.scelte{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.scelta{position:relative}
+.scelta input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.scelta span{display:flex;align-items:center;min-height:52px;height:100%;padding:12px 16px;border:2px solid var(--filetto);border-radius:4px;background:var(--bianco);font-size:16px;line-height:1.3}
+.scelta input:checked + span{border-color:var(--nero);box-shadow:inset 0 0 0 1px var(--nero);font-weight:700}
+.scelta input:focus-visible + span{outline:3px solid var(--arancio);outline-offset:2px}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px 16px;margin-top:24px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo--largo{grid-column:1 / -1}
+.campo label{font-size:16px;font-weight:700}
+.campo input,.campo textarea{font:400 17px/1.4 var(--sans);color:var(--nero);background:var(--bianco);border:2px solid var(--filetto);border-radius:4px;padding:12px 14px;min-height:52px;width:100%}
+.campo textarea{min-height:132px;resize:vertical}
+.campo input:focus,.campo textarea:focus{border-color:var(--nero);outline:none}
+.pro[hidden]{display:none}
+.invio{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:28px}
+.invio p,.allegati{font-size:16px}
+.allegati{margin-top:20px}
+.errore{font-size:16px;font-weight:700;color:#9b2c14;margin-top:16px}
+.errore:empty{display:none}
+
+/* Piede */
+.piede{background:var(--nero);color:var(--bianco);padding:96px 0 48px;font-size:16px;line-height:1.6}
+.piede-colonne{display:grid;grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,3fr));gap:48px}
+.piede h2{font-family:var(--sans);font-size:16px;font-weight:700;line-height:1.4;margin-bottom:16px;max-width:none}
+.piede li + li{margin-top:8px}
+.piede a{text-decoration:none}
+@media (hover:hover){.piede a:hover{text-decoration:underline;text-decoration-color:var(--oro);text-underline-offset:4px}}
+.piede address{font-style:normal;margin-top:24px}
+.piede .logo-piede{width:200px}
+.piede .tenue{color:#bdb9b2}
+.legale{margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.25);font-size:14px;line-height:1.6;color:#bdb9b2;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+.legale ul{display:flex;gap:24px;flex-wrap:wrap}
+.legale li + li{margin-top:0}
+
+/* Larghezze intermedie */
+@media (max-width:1360px){.t-orari{display:none}.ap-orari{display:block}}
+@media (max-width:1280px){
+  :root{--gutter:56px}
+  h1{font-size:76px}
+  .tessere{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tessera{min-height:150px}
+  .numeri{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
 }
 @media (max-width:1100px){
-  .menu-btn{grid-column:1;grid-row:1;justify-self:start;display:inline-block;border:1px solid var(--inchiostro);background:transparent;font:500 15px var(--sans);color:var(--inchiostro);padding:8px 14px;cursor:pointer}
-  @media (hover:hover){.menu-btn:hover{background:var(--inchiostro);color:var(--carta)}}
-  .testata nav{position:absolute;top:100%;left:0;right:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
-  .testata nav[hidden]{display:none}
-  .testata nav:not([hidden]){display:block}
-  .testata nav ul{flex-direction:column;gap:0;font-size:20px}
-  .testata nav li a{display:block;padding:12px 0}
-  .apertura .lead{font-size:17px}
+  .menu-btn{display:inline-flex;margin-left:auto}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bianco);border-bottom:1px solid var(--filetto);flex-direction:column;gap:0;padding:8px var(--gutter) 24px;margin:0}
+  .menu.aperto{display:flex}
+  .menu a{display:block;padding:14px 0;border-bottom:1px solid var(--filetto);font-size:17px}
+  .testata .contenitore{position:relative}
+  .apertura{grid-template-columns:minmax(0,1fr) minmax(0,44%);column-gap:40px}
+  h1{font-size:56px;max-width:none}
+  .prodotti{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alberghi,.contatti,.fascia{grid-template-columns:1fr;gap:48px}
+  .tappeti{grid-template-columns:300px minmax(0,1fr);gap:48px}
+  .tappeti .tabriz img{width:300px}
+  .date{grid-template-columns:1fr 1fr;row-gap:32px}
+  .piede-colonne{grid-template-columns:1fr 1fr}
 }
-/* 900: sempre in asse; "Tessile casa" sopra il tappeto e "dal 1895" sotto. Il titolo lascia in mezzo lo spazio esatto
-   del tappeto (--rw x 1,5421 più due respiri), e il tappeto si centra nella stessa cella */
 @media (max-width:900px){
-  :root{--m:32px;--g:16px}
-  .apertura{--rw:min(360px,60vw);--rg:22px;--fs:76px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;justify-items:center;padding:28px var(--m) 0;text-align:center}
-  .apertura h1{grid-column:1;grid-row:1;grid-template-columns:minmax(0,1fr);grid-template-rows:auto calc(var(--rw) * 1.5421 + 2 * var(--rg)) auto;text-align:center}
-  .apertura h1 .riga{display:block;grid-column:1}
-  .apertura h1 .riga + .riga{grid-row:3}
-  .tappeto{grid-column:1;grid-row:1;align-self:center;width:var(--rw)}
-  .apertura .lead-a,.apertura .lato-b,.didascalia{grid-column:1;justify-self:center;max-width:30em;text-align:center}
-  .apertura .lead-a{grid-row:2;margin-top:28px}
-  .apertura .lato-b{grid-row:3;margin-top:4px}
-  .azioni{justify-content:center;margin-top:28px}
-  .didascalia{grid-row:4;margin:28px 0 0;max-width:26em}
-  .prodotti{padding-top:110px}
-  .coppia{grid-template-columns:1fr;gap:64px}
-  .coppia .txt,.coppia .dx .txt,.coppia .sx .txt{padding:24px var(--m) 0;margin:0}
-  .storia h2,.storia .testa p{grid-column:1/13}
-  .anni button{font-size:32px}
-  .piede .chi{display:block;margin-bottom:0}
-  .piede .chi p{margin-top:22px}
-  .archivio{padding-right:0}
-  .archivio figure{grid-column:1/13}
-  .archivio .scheda{grid-column:1/13;padding:0 var(--m)}
-  .chiusura{padding-left:0}
-  .chiusura .txt{grid-column:1/13;padding:0 var(--m)}
-  .chiusura figure{grid-column:1/13;margin-top:56px}
-  .piede .chi{grid-column:1/13}
-  .piede .c1{grid-column:1/5}.piede .c2{grid-column:5/9}.piede .c3{grid-column:9/13}
-  .piede .col{margin-top:40px}
-  .piede .news{grid-column:1/13;margin-top:32px;max-width:460px}
+  .apertura{display:flex;flex-direction:column;padding:0;min-height:0}
+  .apertura > *{padding-left:var(--gutter);padding-right:var(--gutter)}
+  .occhiello{order:1;padding-top:40px}
+  h1{order:2;margin-top:16px}
+  .ap-foto{order:3;padding:0;margin-top:28px;height:300px;min-height:0}
+  .lead{order:4}
+  .azioni{order:5}
+  .ap-note{order:6;padding-bottom:40px}
 }
-/* 390 */
-@media (max-width:560px){
-  :root{--m:20px;--testata:68px}
+@media (max-width:760px){
+  :root{--gutter:20px;--sez:72px}
   body{font-size:17px}
-  .testata .logo img{width:104px}
-  .testata .tel{font-size:15px}
-  .apertura{--rw:62vw;--rg:16px;--fs:58px;padding-top:20px}
-  .apertura .lead{font-size:16px;line-height:1.5}
-  .apertura .lead-a{margin-top:20px}
-  .azioni{margin-top:20px;gap:20px}
-  .didascalia{margin-top:24px;font-size:13px}
-  .btn{padding:13px 18px}
-  .prodotti{padding-top:88px}
-  .prodotti h2,.storia h2{font-size:38px;line-height:1.06}
-  .elenco-tutto{font-size:17px;margin-top:20px}
-  .coppia{margin-top:56px;gap:52px}
-  .coppia h3{font-size:30px}
-  .storia{padding-top:110px}
-  .storia .testa p{font-size:17px}
-  .archivio{margin-top:40px}
-  .archivio .scheda{margin-top:4px}
-  .anno-grande{font-size:56px}
-  .anni{margin-top:22px;gap:10px;justify-content:space-between}
-  .anni li{flex:none}
-  .anni button{font-size:24px;padding-top:14px;white-space:nowrap}
-  .anni button small{font-size:12px;margin-top:6px}
-  .premi{margin-top:40px;font-size:15px}
-  .chiusura{margin-top:110px}
-  .chiusura h2{font-size:36px}
-  .recapiti{margin-top:36px}
-  .recapiti .tel{font-size:42px;margin-bottom:18px}
-  .chiusura figure{margin-top:44px}
-  .piede{margin-top:96px;padding-top:56px}
-  .piede .c1,.piede .c2,.piede .c3{grid-column:1/13;margin-top:36px}
-  .piede .news{margin-top:36px}
-  .legale{margin-top:48px;flex-direction:column;gap:14px}
-  .legale .voci{gap:6px 24px}
-  .legale .societa{flex:none}
+  .testata .contenitore{height:68px;gap:10px}
+  .logo img{width:98px}
+  .testata .btn{min-height:48px;padding:0 14px}
+  .testata .carrello{display:none}
+  .apertura{display:flex;flex-direction:column;padding:0;min-height:0}
+  .apertura > *{padding-left:var(--gutter);padding-right:var(--gutter)}
+  .occhiello{order:1;padding-top:24px}
+  h1{order:2;font-size:42px;line-height:1.0;margin-top:12px}
+  .ap-foto{order:3;padding:0;margin-top:20px;height:150px;min-height:0}
+  .occ-lungo{display:none}
+  .lead{order:4;margin-top:16px}
+  .azioni{order:5}
+  .apertura .azioni{margin-top:20px}
+  .ap-note{order:6;margin-top:14px;padding-bottom:28px}
+  .ap-orari{display:block}
+  .apertura .azioni .btn{flex:1 1 100%}
+  .lead-lungo{display:none}
+  .categorie{padding-top:32px}
+  .riga-titolo{margin-bottom:20px}
+  .h-piccolo{font-size:24px}
+  .tessere{grid-template-columns:1fr 1fr;gap:12px}
+  .tessera{min-height:0;padding:18px 16px}
+  .tessera p{display:none}
+  .tessera .vai{margin-top:8px}
+  h2,.manifesto{font-size:32px;line-height:1.12}
+  .prodotti{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .prodotto{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:20px}
+  .prodotto > *{grid-column:1}
+  .prodotto .prezzo{grid-column:2;grid-row:1 / span 3;align-self:start;padding-top:0;margin-top:0;font-size:24px}
+  .prodotto h3{margin-top:4px}
+  .prodotto .vai{margin-top:12px}
+  .alberghi .azioni .btn,.sede .azioni .btn,.tappeti .azioni .btn,.rivenditori .btn{flex:1 1 100%}
+  .voci li{grid-template-columns:1fr;gap:2px}
+  .rivenditori{grid-template-columns:1fr;gap:20px;margin-top:48px}
+  .rivenditori h3,.sede h3,.modulo h3,.articolo h3{font-size:24px}
+  .tappeti{grid-template-columns:1fr;gap:32px}
+  .tappeti .tabriz{justify-self:center}
+  .tappeti .tabriz img{width:220px}
+  .tappeti-testo .scheda{grid-template-columns:1fr;gap:12px}
+  .scheda .prezzo{font-size:24px}
+  .numeri{grid-template-columns:1fr 1fr;gap:32px 16px;margin-top:40px}
+  .numeri .cifra{font-size:32px}
+  .archivio{grid-template-columns:1fr;margin-top:48px;gap:16px}
+  .date{grid-template-columns:1fr;gap:20px}
+  .premi b{font-size:24px}
+  .premi li{grid-template-columns:72px 1fr}
+  .articoli{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .articolo{min-height:0;padding:20px}
+  .modulo{padding:24px 16px}
+  .scelte,.campi{grid-template-columns:1fr}
+  .piede{padding:64px 0 32px}
+  .piede-colonne{grid-template-columns:1fr;gap:36px}
+  .legale{margin-top:40px}
+  .invio .btn{flex:1 1 100%}
 }
 @media (max-width:360px){
-  .apertura{--fs:50px;--rw:60vw}
-  .testata{column-gap:12px}
-  .testata .logo img{width:86px}
-  .testata .tel{font-size:14px}
-  .menu-btn{padding:7px 11px;font-size:14px}
-  .anni{gap:6px}
-  .anni button{font-size:21px}
+  .testata .btn{padding:0 10px}
+  .logo img{width:84px}
+  h1{font-size:40px}
 }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"Servalli Padova","legalName":"Servalli Padova sas di Servalli Francesco e Alessandro","url":"https://www.servalli.net/","telephone":"+39 049 761943","email":"info@servalli.net","vatID":"IT01646090280","foundingDate":"1895","address":{"@type":"PostalAddress","streetAddress":"Via Portogallo 11, int. 34-35, Centro Grossisti","postalCode":"35127","addressLocality":"Padova","addressRegion":"PD","addressCountry":"IT"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"17:30"}]}
+</script>
 </head>
 <body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
 
 <header class="testata">
-  <a class="logo" href="#"><img src="img/logo-testata-280.webp" srcset="img/logo-testata-280.webp 280w, img/logo-testata-420.webp 420w" sizes="(max-width:560px) 104px, 132px" width="280" height="103" alt="Servalli"></a>
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-  <nav id="menu" aria-label="Principale">
-    <ul>
-      <li><a href="#prodotti">Prodotti</a></li>
-      <li><a href="#alberghi">Alberghi e rivenditori</a></li>
-      <li><a href="#storia">Storia</a></li>
-      <li><a href="negozio/">Negozio online</a></li>
-    </ul>
-  </nav>
-  <a class="tel num" href="tel:+39049761943">049 761943</a>
+  <div class="contenitore">
+    <a class="logo" href="#"><img src="img/logo-testata-240.webp" srcset="img/logo-testata-240.webp 240w, img/logo-testata-360.webp 360w" sizes="(max-width:760px) 98px, 120px" width="240" height="88" alt="Servalli, tessile casa dal 1895"></a>
+    <nav aria-label="Principale">
+      <ul class="menu" id="menu">
+        <li><a href="negozio/">Negozio online</a></li>
+        <li><a href="#alberghi">Alberghi e strutture</a></li>
+        <li><a href="#rivenditori">Rivenditori</a></li>
+        <li><a href="#arte-tessile">Arte tessile</a></li>
+        <li><a href="#sede">Orari e sede</a></li>
+      </ul>
+    </nav>
+    <p class="t-orari"><span class="stato-testo" data-stato="breve">Lun-ven <b class="num">9:00-17:30</b></span></p>
+    <a class="link carrello" href="negozio/cart">Carrello</a>
+    <a class="btn tel" href="tel:+39049761943" aria-label="Chiama Servalli: 049 761943"><span class="num">049 761943</span></a>
+    <button class="btn btn--bordo menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
 </header>
 
-<main>
+<main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
-  <h1 id="titolo"><span class="riga"><span class="a">Tessile</span> <span class="b">casa</span></span> <span class="riga"><span class="a">dal</span> <span class="b num">1895</span></span></h1>
-  <div class="tappeto">
-    <img src="img/tabriz-760.webp" srcset="img/tabriz-360.webp 360w, img/tabriz-560.webp 560w, img/tabriz-760.webp 760w, img/tabriz-960.webp 960w" sizes="(max-width:560px) 62vw, (max-width:900px) 360px, 42vw" width="749" height="1155" fetchpriority="high" aria-describedby="didascalia" alt="Tappeto Tabriz annodato a mano visto dall'alto: campo rosso con medaglione centrale blu e avorio, bordura blu scuro, frange alle due estremità">
-  </div>
-  <p class="lead lead-a">Biancheria per la casa e per l'albergo, piumini, coperte, tende e tappeti annodati a&nbsp;mano.</p>
-  <div class="lato-b">
-    <p class="lead">All'ingrosso da quattro generazioni, a&nbsp;Padova, e anche online.</p>
-    <div class="azioni">
-      <a class="btn" href="negozio/">Il negozio online</a>
-      <a class="link" href="#alberghi">Per alberghi e rivenditori</a>
-    </div>
-  </div>
-  <p class="didascalia" id="didascalia"><strong>Tabriz ghali</strong>, lana annodata a mano con inserti in seta, <span class="num">205&nbsp;×&nbsp;298&nbsp;cm</span>, marchio Alans. I tappeti li importiamo direttamente dagli anni&nbsp;70.</p>
-</section>
-
-<section class="prodotti" id="prodotti" aria-labelledby="t-prodotti">
-  <div class="wrap">
-    <h2 id="t-prodotti">Circa ventimila articoli, dal letto al tappeto</h2>
-    <p class="elenco-tutto">Dai tendaggi ai materassi, dalle tovaglie agli accappatoi, con i nostri marchi Servalli, Serline, Alans e Colorcasa. La maggior parte degli articoli si fa su misura e nei colori che servono.</p>
-  </div>
-  <div class="coppia">
-    <figure class="sx" id="casa">
-      <img src="img/casa-960.webp" srcset="img/casa-480.webp 480w, img/casa-720.webp 720w, img/casa-960.webp 960w, img/casa-1400.webp 1400w" sizes="(max-width:900px) 100vw, 50vw" width="960" height="864" loading="lazy" alt="Lenzuola e federe bianche piegate, in pila">
-      <figcaption class="txt">
-        <h3>Per la casa</h3>
-        <p>Lenzuola e copripiumini, piumini e trapunte, bagno, tappeti, articoli da bambino e mare. Dal 2022 si comprano anche online, con consegna in tutta Italia.</p>
-        <a class="link" href="negozio/">Entra nel negozio</a>
-      </figcaption>
-    </figure>
-    <figure class="dx" id="alberghi">
-      <img src="img/albergo-960.webp" srcset="img/albergo-480.webp 480w, img/albergo-720.webp 720w, img/albergo-960.webp 960w, img/albergo-1400.webp 1400w" sizes="(max-width:900px) 100vw, 50vw" width="960" height="864" loading="lazy" alt="Asciugamani bianchi di spugna piegati, in pila">
-      <figcaption class="txt">
-        <h3>Per alberghi e rivenditori</h3>
-        <p>Su misura per hotel, SPA, residence, lavanderie e comunità, con il vostro logo stampato o ricamato, anche in versione ignifuga. Rivenditori, grossisti e alberghi hanno condizioni riservate.</p>
-        <a class="link" href="#contatti">Chiedete le condizioni</a>
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="storia" id="storia" aria-labelledby="t-storia">
-  <div class="testa wrap">
-    <h2 id="t-storia">Dal 1895, a&nbsp;Padova dal&nbsp;1967</h2>
-    <p>Le prime notizie della famiglia Servalli come produttori e mercanti tessili, tra Venezia e Bergamo, sono del Seicento. L'azienda nasce a Gandino, in provincia di Bergamo; oggi è al Centro Grossisti di Padova.</p>
-  </div>
-  <div class="archivio">
-    <figure>
-      <img id="arch-img" src="img/arch-1910-1120.webp" srcset="img/arch-1910-480.webp 480w, img/arch-1910-800.webp 800w, img/arch-1910-1120.webp 1120w, img/arch-1910-1440.webp 1440w" sizes="(max-width:900px) 100vw, 72vw" width="1120" height="840" loading="lazy" alt="Reparto di tessitura con i telai e le operaie, in bianco e nero">
-    </figure>
-    <div class="scheda" aria-live="polite">
-      <p class="anno-grande num" id="arch-anno">1895</p>
-      <p class="cit" id="arch-cit">«La storia recente inizia alla fine del 1800 con Andrea Servalli in provincia di Bergamo, con l'apertura di una tessitura e l'acquisizione dello storico Lanificio Testa a Gandino (BG), fornitore delle camicie per la spedizione dei Mille di Garibaldi.»</p>
-      <p class="foto-nota" id="arch-nota">Il reparto di tessitura, 1910.</p>
-    </div>
-  </div>
-  <ul class="anni" aria-label="Anni dell'archivio">
-    <li><button type="button" aria-pressed="true" data-k="1910" data-anno="1895" data-nota="Il reparto di tessitura, 1910." data-alt="Reparto di tessitura con i telai e le operaie, in bianco e nero" data-cit="«La storia recente inizia alla fine del 1800 con Andrea Servalli in provincia di Bergamo, con l'apertura di una tessitura e l'acquisizione dello storico Lanificio Testa a Gandino (BG), fornitore delle camicie per la spedizione dei Mille di Garibaldi.»">1895<small>Gandino</small></button></li>
-    <li><button type="button" aria-pressed="false" data-k="1949" data-anno="1949" data-nota="Camion e furgone MADIVAL davanti alla manifattura in Val Gandino." data-alt="Un camion e un furgone con la scritta MADIVAL davanti alla manifattura, in bianco e nero" data-cit="«Nel 1949 una scissione porta alla costituzione di Lanificio Pastore e MADIVAL (Manifattura di Valgandino di Michele e Francesco Servalli).»">1949<small>Madival</small></button></li>
-    <li><button type="button" aria-pressed="false" data-k="1967" data-anno="1967" data-nota="La Giardiniera di Manifatture Tessili Servalli davanti al negozio di Padova." data-alt="Fiat 500 Giardiniera con la scritta Manifatture Tessili Servalli davanti a un negozio, in bianco e nero" data-cit="«Nel 1967 Franco Servalli apre il punto vendita di Padova, in Via Davila e poi in Via Trieste.»">1967<small>Padova</small></button></li>
-    <li><button type="button" aria-pressed="false" data-k="1970" data-anno="Anni 70" data-nota="Una tessitrice al telaio in Persia. Foto di Franco Servalli." data-alt="Tessitrice al telaio, sopra di lei le matasse di lana appese, sotto il tappeto in lavorazione" data-cit="«Negli anni '70 Franco Servalli inizia l'importazione diretta di tappeti costruendo relazioni anche di amicizia con gli artigiani e commercianti in Persia, Cina e gli altri principali Paesi produttori.»">Anni 70<small>Persia</small></button></li>
-    <li><button type="button" aria-pressed="false" data-k="1994" data-anno="1994" data-nota="Tehran, 1994." data-alt="Franco Servalli seduto davanti ai tappeti appesi, intervistato da un operatore con le cuffie" data-cit="«Franco Servalli intervistato dalla TV Iraniana in occasione della 3rd Grand Persian Carpet Exhibition, Tehran Iran 1994.»">1994<small>Tehran</small></button></li>
-  </ul>
-
-  <p class="premi" id="riconoscimenti"><a href="riconoscimenti/">Riconoscimenti</a>: Premio Città di Padova <span class="num">1976</span>, primo classificato; Premio regionale per lo sviluppo economico <span class="num">1986</span>, dall'Unione regionale delle Camere di commercio del Veneto; Franco Servalli Imprenditore '93 al Salone Nuova Impresa di Padova.</p>
-</section>
-
-<section class="chiusura" id="contatti" aria-labelledby="t-chiusura">
-  <div class="txt">
-    <h2 id="t-chiusura">Possiamo fornire tutti i prodotti tessili di cui potreste avere bisogno</h2>
-    <div class="recapiti">
-      <a class="tel num" href="tel:+39049761943">049&nbsp;761943</a>
-      <p><a href="mailto:info@servalli.net">info@servalli.net</a></p>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Portogallo+11+35127+Padova">Via Portogallo 11, int. 34-35, 35127 Padova</a><br>al Centro Grossisti, zona industriale</p>
-      <p class="orari num">Lunedì-venerdì 9:00-17:30, sabato e domenica chiuso</p>
-    </div>
-  </div>
-  <figure>
-    <img src="img/chiusura-1000.webp" srcset="img/chiusura-480.webp 480w, img/chiusura-760.webp 760w, img/chiusura-1000.webp 1000w, img/chiusura-1400.webp 1400w" sizes="(max-width:900px) 100vw, 58vw" width="1000" height="1000" loading="lazy" alt="Tappeti orientali piegati e impilati, visti di taglio">
+  <p class="occhiello">Grossisti e importatori di tessile per la casa<span class="occ-lungo">, dal 1895</span>. Centro Grossisti di Padova.</p>
+  <h1 id="titolo">Biancheria e tessile casa dal 1895</h1>
+  <figure class="ap-foto">
+    <img src="img/sinfonia-1000.webp" srcset="img/sinfonia-640.webp 640w, img/sinfonia-1000.webp 1000w, img/sinfonia-1500.webp 1500w" sizes="(max-width:760px) 100vw, 600px" width="1500" height="1002" alt="Dettaglio della trapunta in seta SINFONIA, con il disegno barocco e il cordoncino oro, dal negozio online Servalli" fetchpriority="high">
   </figure>
+  <p class="lead">Lenzuola, piumini e trapunte, spugna, tende e tappeti, da quattro generazioni.<span class="lead-lungo"> Per la casa si compra online; per alberghi, negozi e rivenditori, all'ingrosso.</span></p>
+  <div class="azioni">
+    <a class="btn" href="negozio/">Entra nel negozio</a>
+  </div>
+  <div class="ap-note">
+    <p><b>Spedizione gratuita in Italia sopra i 150 euro.</b> Reso entro 14 giorni.</p>
+    <p class="ap-alberghi"><a class="link" href="#alberghi">Per alberghi e strutture: su misura, con il vostro logo</a></p>
+    <p class="ap-orari"><span class="stato-testo" data-stato="lungo">Ufficio e magazzino: lun-ven <span class="num">9:00-17:30</span></span></p>
+  </div>
 </section>
-</main>
 
-<footer class="piede">
-  <div class="griglia">
-    <div class="chi">
-      <img src="img/logo-piede-380.webp" srcset="img/logo-piede-380.webp 380w, img/logo-piede-570.webp 570w" sizes="190px" width="380" height="161" alt="Servalli, tessile casa dal 1895" loading="lazy">
-      <p>Tessile per la casa e per l'albergo, all'ingrosso e online. Dal 1895, a Padova dal 1967.</p>
+<section class="categorie" aria-labelledby="t-categorie">
+  <div class="contenitore">
+    <div class="riga-titolo">
+      <h2 class="h-piccolo" id="t-categorie">Nel negozio online</h2>
+      <a class="link" href="negozio/">Tutto il negozio</a>
     </div>
-    <div class="col c1">
-      <h2>Azienda</h2>
-      <ul>
-        <li><a href="storia/">Storia</a></li>
-        <li><a href="riconoscimenti/">Riconoscimenti</a></li>
-        <li><a href="marchi/">Marchi</a></li>
-        <li><a href="arte-tessile/">Arte tessile</a></li>
-      </ul>
-    </div>
-    <div class="col c2">
-      <h2>Prodotti</h2>
-      <ul>
-        <li><a href="negozio/lenzuola-e-copripiumini/">Lenzuola e copripiumini</a></li>
-        <li><a href="negozio/piumini-e-trapunte/">Piumini e trapunte</a></li>
-        <li><a href="negozio/bagno/">Bagno</a></li>
-        <li><a href="negozio/tappeti/">Tappeti</a></li>
-        <li><a href="negozio/bambino/">Articoli da bambino</a></li>
-        <li><a href="negozio/mare/">Mare</a></li>
-      </ul>
-    </div>
-    <div class="col c3">
-      <h2>Servizi</h2>
-      <ul>
-        <li><a href="alberghi-e-contract/">Alberghi e contract</a></li>
-        <li><a href="rivenditori/">Rivenditori e grossisti</a></li>
-        <li><a href="negozio/">Negozio online</a></li>
-        <li><a href="contatti/">Contatti</a></li>
-      </ul>
-      <ul class="rec">
-        <li><a class="num" href="tel:+39049761943">049 761943</a></li>
-        <li><a href="mailto:info@servalli.net">info@servalli.net</a></li>
-      </ul>
-    </div>
-    <div class="news">
-      <h2>Newsletter</h2>
-      <p>Offerte e nuovi prodotti del negozio online.</p>
-      <form id="news" novalidate>
-        <div class="campo">
-          <label class="vh" for="news-email">Email</label>
-          <input id="news-email" type="email" name="email" placeholder="La vostra email" autocomplete="email" required>
-          <button type="submit">Iscriviti</button>
+    <ul class="tessere">
+      <li><a class="tessera" href="negozio/Piumini-e-trapunte-c50916463"><h3>Piumini e trapunte</h3><p>FIORDO, M.B. oca bianca, SIBERIA, ISLANDA</p><span class="vai">Vedi</span></a></li>
+      <li><a class="tessera" href="negozio/Lenzuola-e-copripiumini-c50916440"><h3>Lenzuola e copripiumini</h3><p>Completi copripiumino in raso di cotone</p><span class="vai">Vedi</span></a></li>
+      <li><a class="tessera" href="negozio/BAGNO-c66394044"><h3>Bagno</h3><p>Accappatoi in spugna cimata jacquard</p><span class="vai">Vedi</span></a></li>
+      <li><a class="tessera" href="negozio/Tappeti-c135147502"><h3>Tappeti</h3><p>Annodati a mano e moderni, da 29,10 euro</p><span class="vai">Vedi</span></a></li>
+      <li><a class="tessera" href="negozio/Articoli-da-bambino-c135116047"><h3>Bambino</h3><p>Tappeti Disney top line</p><span class="vai">Vedi</span></a></li>
+      <li><a class="tessera" href="negozio/Mare-c136128767"><h3>Mare</h3><p>Teli mare e fouta in cotone jacquard</p><span class="vai">Vedi</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sez sez--grigio" id="prodotti" aria-labelledby="t-prodotti">
+  <div class="contenitore">
+    <h2 id="t-prodotti">Piumini per l'inverno, e qualche prezzo</h2>
+    <p class="sottotitolo">Quattro articoli del negozio online, con la misura e il prezzo. Per sceglierli, sotto ci sono le nostre guide; per un consiglio, chiamateci.</p>
+    <ul class="prodotti">
+      <li><a class="prodotto" href="negozio/FIORDO-90-piumino-1p-155x200-p199857429"><span class="cat">Piumino</span><h3>FIORDO 90</h3><span class="misura num">1 piazza, 155 x 200 cm</span><span class="prezzo num">178,12 euro</span><span class="vai">Vedi nel negozio</span></a></li>
+      <li><a class="prodotto" href="negozio/M-B-piumino-100-oca-bianca-2P-250X200-p199857441"><span class="cat">Piumino 100% oca bianca</span><h3>M.B.</h3><span class="misura num">2 piazze, 250 x 200 cm</span><span class="prezzo num">329,40 euro</span><span class="vai">Vedi nel negozio</span></a></li>
+      <li><a class="prodotto" href="negozio/ISLANDA-2P-270X260-Trapunta-100-piumino-doca-extra-warm-p199857721"><span class="cat">Trapunta 100% piumino d'oca</span><h3>ISLANDA extra warm</h3><span class="misura num">2 piazze, 270 x 260 cm</span><span class="prezzo num">597,80 euro</span><span class="vai">Vedi nel negozio</span></a></li>
+      <li><a class="prodotto" href="negozio/PIETRA-tappeto-80x150-p751201322"><span class="cat">Tappeto</span><h3>PIETRA</h3><span class="misura num">80 x 150 cm</span><span class="prezzo num">29,10 euro</span><span class="vai">Vedi nel negozio</span></a></li>
+    </ul>
+    <p class="nota-prezzi">Prezzi del negozio online al 3 novembre 2026. Spedizione gratuita in Italia sopra i 150 euro, escluse isole, laguna di Venezia e alcune zone.</p>
+  </div>
+</section>
+
+<section class="sez sez--arancio" id="alberghi" aria-labelledby="t-alberghi">
+  <div class="contenitore">
+    <div class="alberghi">
+      <div>
+        <h2 id="t-alberghi">Per alberghi e strutture: su misura, con il vostro logo</h2>
+        <p class="citazione">"Possiamo fornire tutti i prodotti tessili di cui potreste avere bisogno, anche se non presenti su questo sito." Per hotel, centri benessere, SPA, residence, lavanderie, resort e comunità.</p>
+        <div class="azioni">
+          <a class="btn" href="#richiesta" data-tipo="albergo">Chiedete un preventivo</a>
+          <a class="btn btn--bordo" href="tel:+39049761943">Chiamate <span class="num">049 761943</span></a>
         </div>
-        <label class="ok"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="privacy/">informativa sulla privacy</a> e accetto di ricevere la newsletter.</span></label>
-        <p class="esito" id="news-esito" role="status"></p>
+      </div>
+      <ul class="voci">
+        <li><b>Che cosa</b><span>Spugna e accappatoi, lenzuola, piumini e coperte, tende e tappeti bagno</span></li>
+        <li><b>Su misura</b><span>Misure e colori a richiesta</span></li>
+        <li><b>Il vostro logo</b><span>Ricamato o stampato, anche slogan e altre idee</span></li>
+        <li><b>Ignifughi</b><span>Articoli disponibili anche in versione ignifuga</span></li>
+        <li><b>Pronto</b><span>Vasto assortimento sempre pronto, consegna in tutta Italia</span></li>
+        <li><b>Il logo e le quantità</b><span>Mandateli a <a class="link" href="mailto:info@servalli.net?subject=Richiesta%20per%20struttura%20(logo%20e%20quantit%C3%A0)">info@servalli.net</a></span></li>
+      </ul>
+    </div>
+    <div class="rivenditori" id="rivenditori">
+      <div>
+        <h3>Rivenditori e grossisti: condizioni a voi riservate</h3>
+        <p>Negozi, grossisti e alberghi acquistano alle condizioni riservate. Chiedetele con il modulo, con la partita IVA.</p>
+      </div>
+      <a class="btn btn--bordo" href="#richiesta" data-tipo="rivenditore">Chiedete le condizioni</a>
+    </div>
+  </div>
+</section>
+
+<section class="sez sez--nero su-scuro" id="tappeti" aria-labelledby="t-tappeti">
+  <div class="contenitore tappeti">
+    <figure class="tabriz">
+      <img src="img/tabriz-560.webp" srcset="img/tabriz-380.webp 380w, img/tabriz-560.webp 560w, img/tabriz-749.webp 749w" sizes="(max-width:760px) 220px, (max-width:1100px) 300px, 380px" width="749" height="1155" alt="Tappeto Tabriz ghali annodato a mano, campo rosso con medaglione centrale e bordura blu" loading="lazy">
+    </figure>
+    <div class="tappeti-testo">
+      <h2 id="t-tappeti">Tappeti annodati a mano, importati direttamente dagli anni 70</h2>
+      <p class="sottotitolo">Negli anni 70 Franco Servalli inizia l'importazione diretta di tappeti dalla Persia e dalla Cina. Nel negozio: Tabriz, Azlah, tibetani in lana e seta, Gabbeh.</p>
+      <div class="scheda">
+        <div>
+          <h3>Tabriz ghali</h3>
+          <p>Lana annodata a mano con inserti in seta, <span class="num">205 x 298 cm</span>, marchio Alans</p>
+        </div>
+        <span class="prezzo num">6.191,50 euro</span>
+      </div>
+      <div class="azioni">
+        <a class="btn" href="negozio/Tappeti-annodati-a-mano-c50916480">Vedi i tappeti annodati</a>
+        <a class="btn btn--bordo" href="formato-tappeto-poshti-zaronim-ghali">I formati dei tappeti</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sez" id="chi-siamo" aria-labelledby="t-storia">
+  <div class="contenitore">
+    <h2 class="manifesto" id="t-storia">Passione per il tessile da quattro secoli.</h2>
+    <p class="sottotitolo">"Una notevole esperienza maturata nell'arco di ben quattro generazioni nell'ambito della produzione, importazione e vendita all'ingrosso."</p>
+    <ul class="numeri">
+      <li><span class="cifra num">1895</span><span class="etichetta">Andrea Servalli apre la tessitura a Gandino (BG)</span></li>
+      <li><span class="cifra num">1967</span><span class="etichetta">Franco Servalli apre il punto vendita di Padova</span></li>
+      <li><span class="cifra">4</span><span class="etichetta">generazioni nel tessile per la casa</span></li>
+      <li><span class="cifra num">20.000</span><span class="etichetta">articoli circa, dal letto al tappeto</span></li>
+      <li><span class="cifra">3</span><span class="etichetta">marchi registrati: Servalli, Alans, Colorcasa</span></li>
+      <li><span class="cifra num">2022</span><span class="etichetta">la vendita ai privati, solo online</span></li>
+    </ul>
+    <figure class="archivio">
+      <img src="img/telai-800.webp" srcset="img/telai-480.webp 480w, img/telai-800.webp 800w, img/telai-1024.webp 1024w" sizes="(max-width:760px) 100vw, 410px" width="1400" height="1050" alt="Il reparto di tessitura con i telai jacquard e le operaie, foto d'archivio della famiglia Servalli" loading="lazy">
+      <img src="img/padova-1967-800.webp" srcset="img/padova-1967-480.webp 480w, img/padova-1967-800.webp 800w, img/padova-1967-1024.webp 1024w" sizes="(max-width:760px) 100vw, 410px" width="1024" height="768" alt="La Fiat 500 Giardiniera con la scritta Manifatture Tessili Servalli davanti al negozio di Padova" loading="lazy">
+      <img src="img/persia-800.webp" srcset="img/persia-480.webp 480w, img/persia-800.webp 800w, img/persia-1024.webp 1024w" sizes="(max-width:760px) 100vw, 410px" width="1440" height="1080" alt="Una tessitrice in Persia al telaio, sotto le matasse di lana; foto di Franco Servalli" loading="lazy">
+      <figcaption>Dall'archivio di famiglia: i telai jacquard, la Giardiniera davanti al negozio di Padova nel 1967, una tessitrice in Persia fotografata da Franco Servalli.</figcaption>
+    </figure>
+    <ol class="date">
+        <li><b class="num">1949</b><span>MADIVAL, Manifattura di Valgandino, con punti vendita a Milano, Roma, Bologna, Padova, Pescara e Pesaro</span></li>
+        <li><b class="num">1982</b><span>Manifatture Tessili Servalli diventa Servalli Padova</span></li>
+        <li><b class="num">1994</b><span>Nasce Alans, la società dedicata all'importazione</span></li>
+        <li><b>Oggi</b><span>Al Centro Grossisti di Padova, di cui Franco Servalli è fondatore. <a class="link" href="storia">La storia per intero</a></span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sez sez--nero su-scuro" aria-labelledby="t-premi">
+  <div class="contenitore fascia">
+    <div>
+      <h2 class="h-piccolo" id="t-premi">I nostri marchi</h2>
+      <div class="marchi">
+        <img src="img/logo-piede-400.webp" srcset="img/logo-piede-400.webp 400w, img/logo-piede-600.webp 600w" sizes="160px" width="400" height="170" alt="Servalli, tessile casa dal 1895" style="width:160px" loading="lazy">
+        <img src="img/marchio-alans.webp" width="393" height="110" alt="Alans, tessile per sognare" style="width:150px" loading="lazy">
+        <img src="img/marchio-colorcasa.webp" width="392" height="180" alt="Colorcasa" style="width:150px" loading="lazy">
+      </div>
+      <p class="didascalia-fascia">Servalli, Alans e Colorcasa sono marchi registrati di Servalli Padova sas.</p>
+    </div>
+    <div>
+      <h2 class="h-piccolo">Riconoscimenti</h2>
+      <ul class="premi" style="margin-top:32px">
+        <li><b class="num">1976</b><span><strong>Premio Città di Padova</strong>Primo classificato, Manifatture Tessili Servalli</span></li>
+        <li><b class="num">1986</b><span><strong>Premio regionale per lo sviluppo economico</strong>Unione regionale delle Camere di Commercio del Veneto</span></li>
+        <li><b class="num">1994</b><span><strong>Franco Servalli, Imprenditore '93</strong>Salone Nuova Impresa, Padova Fiere con Ascom</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sez sez--grigio" id="arte-tessile" aria-labelledby="t-blog">
+  <div class="contenitore">
+    <div class="riga-titolo" style="margin-bottom:0">
+      <h2 id="t-blog">Arte tessile: come scegliere</h2>
+      <a class="link" href="blog">Tutti gli articoli</a>
+    </div>
+    <ul class="articoli">
+      <li><a class="articolo" href="100-piuma-cosa-intendi-piuma-piumino-e-piumetta"><time datetime="2025-10-29">29 ottobre 2025</time><h3>100% piuma? Cosa intendi? Piuma, piumino e piumetta</h3><p>"Piumino: la parte più pregiata della piuma, si presenta in forma di fiocco ed è quella che trattiene più aria e quindi mantiene meglio il calore."</p><span class="vai">Leggi</span></a></li>
+      <li><a class="articolo" href="piumini-classi-en-12934"><time datetime="2020-05-13">13 maggio 2020</time><h3>Le classi dei piumini e la norma EN 12934</h3><p>"Soltanto le imbottiture di classe I o IV garantiscono l'impiego esclusivo di materiale nuovo e consentono la dicitura PIUMINO VERGINE."</p><span class="vai">Leggi</span></a></li>
+      <li><a class="articolo" href="formato-tappeto-poshti-zaronim-ghali"><time datetime="2020-06-09">9 giugno 2020</time><h3>Il tappeto: Poshti, Zaronim, Ghali...</h3><p>"Dal nome del tappeto alla sua misura: cosa significa Poshti, Zaronim, Sejade...?"</p><span class="vai">Leggi</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sez" id="sede" aria-labelledby="t-sede">
+  <div class="contenitore">
+    <h2 id="t-sede">Orari, sede e richieste</h2>
+    <div class="contatti" style="margin-top:48px">
+      <div class="sede">
+        <h3>Ufficio e magazzino</h3>
+        <address>Via Portogallo 11, int. 34-35<br>Centro Grossisti, 35127 Padova</address>
+        <p class="stato" id="stato" aria-live="polite">Lunedì-venerdì 9:00-17:30</p>
+        <table class="orari num" aria-label="Orari">
+          <tbody>
+            <tr data-giorni="1,2,3,4,5"><th scope="row">Lunedì-venerdì</th><td>9:00-17:30</td></tr>
+            <tr data-giorni="6"><th scope="row">Sabato</th><td>Chiuso</td></tr>
+            <tr data-giorni="0"><th scope="row">Domenica</th><td>Chiuso</td></tr>
+          </tbody>
+        </table>
+        <div class="azioni">
+          <a class="btn" href="tel:+39049761943">Chiama <span class="num">049 761943</span></a>
+          <a class="btn btn--bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Portogallo%2011%2C%2035127%20Padova%20PD" target="_blank" rel="noopener">Indicazioni</a>
+        </div>
+        <p class="riga">Email: <a class="link" href="mailto:info@servalli.net">info@servalli.net</a></p>
+        <p class="privati">Ai privati vendiamo solo online, dal <a class="link" href="negozio/">negozio</a>: per un consiglio su un acquisto chiamateci o scriveteci.</p>
+      </div>
+
+      <form class="modulo" id="richiesta" novalidate>
+        <h3>Scriveteci</h3>
+        <p class="sottotitolo">Si apre un'email già compilata per info@servalli.net: la mandate voi.</p>
+        <fieldset>
+          <legend>Che cosa vi serve?</legend>
+          <div class="scelte">
+            <label class="scelta"><input type="radio" name="tipo" value="albergo"><span>Preventivo per albergo o struttura</span></label>
+            <label class="scelta"><input type="radio" name="tipo" value="rivenditore"><span>Condizioni per rivenditori e grossisti</span></label>
+            <label class="scelta"><input type="radio" name="tipo" value="privato"><span>Un consiglio o un ordine online</span></label>
+            <label class="scelta"><input type="radio" name="tipo" value="altro"><span>Altro</span></label>
+          </div>
+        </fieldset>
+        <div class="campi">
+          <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+          <div class="campo pro"><label for="f-societa">Società</label><input id="f-societa" name="societa" autocomplete="organization"></div>
+          <div class="campo pro"><label for="f-ruolo">Ruolo</label><input id="f-ruolo" name="ruolo" autocomplete="organization-title"></div>
+          <div class="campo pro"><label for="f-piva">Partita IVA</label><input id="f-piva" name="piva" inputmode="numeric"></div>
+          <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+          <div class="campo"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="campo campo--largo"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio" required placeholder="Articoli, misure, colori, quantità, il logo da ricamare..."></textarea></div>
+        </div>
+        <p class="allegati">Il logo o l'elenco delle quantità: allegateli all'email che si apre.</p>
+        <p class="errore" id="errore" role="alert"></p>
+        <div class="invio">
+          <button class="btn" type="submit">Prepara l'email</button>
+          <p>Oppure chiamate il <a class="link num" href="tel:+39049761943">049 761943</a></p>
+        </div>
       </form>
     </div>
   </div>
-  <div class="legale">
-    <p class="societa">Servalli Padova sas di Servalli Francesco e Alessandro, P.IVA e C.F. <span class="num">01646090280</span>, Capitale sociale <span class="num">154.934,07</span> euro, Registro imprese di Padova n. <span class="num">01646090280</span></p>
-    <span class="voci"><a href="privacy/">Privacy</a><a href="cookie/">Cookie</a><a href="condizioni-di-vendita/">Condizioni di vendita</a></span>
+</section>
+</main>
+
+<footer class="piede su-scuro">
+  <div class="contenitore">
+    <div class="piede-colonne">
+      <div>
+        <img class="logo-piede" src="img/logo-piede-400.webp" srcset="img/logo-piede-400.webp 400w, img/logo-piede-600.webp 600w" sizes="200px" width="400" height="170" alt="Servalli, tessile casa dal 1895" loading="lazy">
+        <address>
+          Servalli Padova sas<br>
+          Via Portogallo 11, int. 34-35<br>
+          Centro Grossisti, 35127 Padova<br>
+          <a href="tel:+39049761943" class="num">Tel. 049 761943</a><br>
+          <a href="mailto:info@servalli.net">info@servalli.net</a>
+        </address>
+        <p class="tenue" style="margin-top:16px">Lun-ven <span class="num">9:00-17:30</span>, sabato e domenica chiuso<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Servalli%20Padova%20Via%20Portogallo%2011%2035127%20Padova" target="_blank" rel="noopener">Apri la mappa</a></p>
+      </div>
+      <div>
+        <h2>Negozio online</h2>
+        <ul>
+          <li><a href="negozio/Lenzuola-e-copripiumini-c50916440">Lenzuola e copripiumini</a></li>
+          <li><a href="negozio/Piumini-e-trapunte-c50916463">Piumini e trapunte</a></li>
+          <li><a href="negozio/BAGNO-c66394044">Bagno</a></li>
+          <li><a href="negozio/Tappeti-c135147502">Tappeti</a></li>
+          <li><a href="negozio/Articoli-da-bambino-c135116047">Articoli da bambino</a></li>
+          <li><a href="negozio/Mare-c136128767">Mare</a></li>
+          <li><a href="negozio/cart">Carrello</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Per i professionisti</h2>
+        <ul>
+          <li><a href="alberghi">Forniture alberghiere</a></li>
+          <li><a href="partners">Rivenditori e grossisti</a></li>
+          <li><a href="#richiesta" data-tipo="albergo">Richiesta di preventivo</a></li>
+        </ul>
+        <h2 style="margin-top:32px">Azienda</h2>
+        <ul>
+          <li><a href="storia">Storia</a></li>
+          <li><a href="premi-e-riconoscimenti">Riconoscimenti</a></li>
+          <li><a href="informazioni">Informazioni</a></li>
+          <li><a href="blog">Arte tessile</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Condizioni e privacy</h2>
+        <ul>
+          <li><a href="negozio/pages/terms">Condizioni di vendita, pagamento e spedizioni</a></li>
+          <li><a href="privacy/">Privacy</a></li>
+          <li><a href="cookie/">Cookie</a></li>
+          <li><a href="informazioni-legali">Informazioni legali</a></li>
+        </ul>
+        <p class="tenue" style="margin-top:24px">"Là dove sei felice, sei a casa."<br>Proverbio tibetano</p>
+      </div>
+    </div>
+    <div class="legale">
+      <p>Servalli Padova sas di Servalli Francesco e Alessandro · P.IVA e C.F. <span class="num">01646090280</span> · Capitale sociale <span class="num">154.934,07</span> euro · Registro imprese di Padova n. <span class="num">01646090280</span></p>
+      <p>Servalli, Alans e Colorcasa sono marchi registrati di Servalli Padova sas</p>
+    </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  // menu sul telefono
-  var b=document.querySelector('.menu-btn'), m=document.getElementById('menu');
-  function syncMenu(){ if(getComputedStyle(b).display==='none'){m.hidden=false;} else if(b.getAttribute('aria-expanded')!=='true'){m.hidden=true;} }
-  b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));m.hidden=o;});
-  m.addEventListener('click',function(e){if(e.target.tagName==='A'&&getComputedStyle(b).display!=='none'){b.setAttribute('aria-expanded','false');m.hidden=true;}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){b.setAttribute('aria-expanded','false');m.hidden=true;b.focus();}});
-  window.addEventListener('resize',syncMenu); syncMenu();
+  // Menu sotto i 1100 px
+  var btn=document.querySelector('.menu-btn'), menu=document.getElementById('menu');
+  function chiudi(){menu.classList.remove('aperto');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click',function(){var a=menu.classList.toggle('aperto');btn.setAttribute('aria-expanded',a?'true':'false');});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))chiudi();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')chiudi();});
 
-  // archivio: un anno, una foto, una frase
-  var img=document.getElementById('arch-img'), anno=document.getElementById('arch-anno'),
-      cit=document.getElementById('arch-cit'), nota=document.getElementById('arch-nota'),
-      btns=[].slice.call(document.querySelectorAll('.anni button')),
-      w={'1910':[480,800,1120,1440],'1949':[480,800,1120,1440],'1967':[480,800,1120],'1970':[480,800,1120,1440],'1994':[480,800,1120,1440]};
-  var caricate=false;
-  function precarica(){ if(caricate)return; caricate=true; btns.forEach(function(x){ var p=new Image(); p.src='img/arch-'+x.dataset.k+'-800.webp'; }); }
-  function scegli(x){
-    btns.forEach(function(y){y.setAttribute('aria-pressed',String(y===x));});
-    var k=x.dataset.k;
-    img.srcset=w[k].map(function(n){return 'img/arch-'+k+'-'+n+'.webp '+n+'w';}).join(', ');
-    img.src='img/arch-'+k+'-1120.webp'; img.alt=x.dataset.alt;
-    anno.textContent=x.dataset.anno; cit.textContent=x.dataset.cit; nota.textContent=x.dataset.nota;
+  // Aperto o chiuso adesso, sull'ora di Roma (orario d'ufficio lun-ven 9:00-17:30).
+  // Per le prove: index.html?ora=2026-11-02T10:00 (ora di Roma).
+  function oraRoma(){
+    var q=/[?&]ora=([0-9T:\-]+)/.exec(location.search);
+    if(q){var m=q[1].match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/);return {a:+m[1],me:+m[2],g:+m[3],h:+m[4],mi:+m[5],gs:new Date(+m[1],+m[2]-1,+m[3]).getDay()};}
+    var p={};new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
+    var a=+p.year,me=+p.month,g=+p.day;return {a:a,me:me,g:g,h:(+p.hour)%24,mi:+p.minute,gs:new Date(a,me-1,g).getDay()};
   }
-  btns.forEach(function(x,i){
-    x.addEventListener('pointerenter',precarica); x.addEventListener('focus',precarica); x.addEventListener('touchstart',precarica,{passive:true});
-    x.addEventListener('click',function(){scegli(x);});
-    x.addEventListener('keydown',function(e){
-      var j=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;
-      if(j===null)return; e.preventDefault(); j=(j+btns.length)%btns.length; btns[j].focus(); scegli(btns[j]);
-    });
+  function pasqua(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),gi=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,gi);}
+  function festivo(a,me,g){
+    var f=['1-1','6-1','25-4','1-5','2-6','15-8','1-11','8-12','25-12','26-12'];
+    if(f.indexOf(g+'-'+me)>=0)return true;
+    var p=pasqua(a);p.setDate(p.getDate()+1);return p.getMonth()+1===me&&p.getDate()===g;
+  }
+  var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var t=oraRoma(), min=t.h*60+t.mi, feriale=t.gs>=1&&t.gs<=5, fest=festivo(t.a,t.me,t.g);
+  var aperto=feriale&&!fest&&min>=540&&min<1050, breve, lungo;
+  if(fest){breve='Oggi è festivo';lungo='oggi è festivo. Lun-ven 9:00-17:30';}
+  else if(aperto){breve='Aperto ora, fino alle 17:30';lungo='aperto ora, fino alle 17:30. Lun-ven 9:00-17:30';}
+  else{
+    var quando;
+    if(feriale&&min<540)quando='alle 9:00';
+    else if(t.gs>=1&&t.gs<=4)quando='domani alle 9:00';
+    else quando='lunedì alle 9:00';
+    breve='Chiuso, riapre '+quando;lungo='chiuso ora, riapre '+quando+'. Lun-ven 9:00-17:30';
+  }
+  document.querySelectorAll('.stato-testo').forEach(function(el){
+    el.innerHTML='<span class="stato-pallino" aria-hidden="true"></span>'+(el.getAttribute('data-stato')==='breve'?breve:'Ufficio lun-ven 9:00-17:30: '+(fest?'oggi è festivo':aperto?'aperto ora':'chiuso ora'));
+    el.parentNode.classList.toggle('aperto',aperto);
   });
+  var st=document.getElementById('stato');
+  st.innerHTML='<span class="stato-pallino" aria-hidden="true"></span>'+lungo.charAt(0).toUpperCase()+lungo.slice(1).replace(/\. Lun-ven.*$/,'');st.classList.toggle('aperto',aperto);
+  document.querySelectorAll('.orari tr').forEach(function(r){if(r.getAttribute('data-giorni').split(',').indexOf(String(t.gs))>=0){r.classList.add('oggi');r.querySelector('th').insertAdjacentHTML('beforeend',' (oggi)');}});
 
-  // newsletter: da collegare a un servizio di invio (vedi LEGGIMI)
-  var f=document.getElementById('news'), es=document.getElementById('news-esito');
-  f.addEventListener('submit',function(e){
+  // Modulo: sceglie il tipo dai bottoni, mostra Società, Ruolo e P.IVA solo ai professionisti, compone l'email
+  var form=document.getElementById('richiesta'), err=document.getElementById('errore');
+  function aggiorna(){
+    var v=(form.querySelector('input[name=tipo]:checked')||{}).value;
+    var pro=v==='albergo'||v==='rivenditore'||!v;
+    form.querySelectorAll('.pro').forEach(function(c){c.hidden=!pro;});
+  }
+  form.addEventListener('change',aggiorna);
+  document.querySelectorAll('[data-tipo]').forEach(function(a){a.addEventListener('click',function(){var r=form.querySelector('input[name=tipo][value='+a.getAttribute('data-tipo')+']');if(r){r.checked=true;aggiorna();}});});
+  aggiorna();
+  var NOMI={albergo:'Preventivo per albergo o struttura',rivenditore:'Condizioni per rivenditori e grossisti',privato:'Consiglio o ordine online',altro:'Richiesta'};
+  form.addEventListener('submit',function(e){
     e.preventDefault();
-    if(!f.email.value||!f.email.checkValidity()){es.textContent='Scrivete un indirizzo email valido.';f.email.focus();return;}
-    if(!f.consenso.checked){es.textContent='Serve il consenso per iscrivervi.';return;}
-    es.textContent='Grazie: la newsletter non è ancora attiva in questa proposta.';
+    var tipo=(form.querySelector('input[name=tipo]:checked')||{}).value, nome=form.nome.value.trim(), email=form.email.value.trim(), msg=form.messaggio.value.trim();
+    var manca=[];
+    if(!tipo)manca.push('che cosa vi serve');
+    if(!nome)manca.push('il nome');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))manca.push('un\u2019email valida');
+    if(!msg)manca.push('il messaggio');
+    if(manca.length){err.textContent='Manca '+manca.join(', ')+'.';(tipo?(!nome?form.nome:(manca.length&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)?form.email:form.messaggio)):form.querySelector('input[name=tipo]')).focus();return;}
+    err.textContent='';
+    var righe=['Tipo di richiesta: '+NOMI[tipo],'Nome: '+nome];
+    if(tipo==='albergo'||tipo==='rivenditore'){
+      if(form.societa.value.trim())righe.push('Società: '+form.societa.value.trim());
+      if(form.ruolo.value.trim())righe.push('Ruolo: '+form.ruolo.value.trim());
+      if(form.piva.value.trim())righe.push('Partita IVA: '+form.piva.value.trim());
+    }
+    if(form.telefono.value.trim())righe.push('Telefono: '+form.telefono.value.trim());
+    righe.push('Email: '+email,'','Messaggio:',msg);
+    var ogg=NOMI[tipo]+', '+nome+(form.societa.value.trim()&&(tipo==='albergo'||tipo==='rivenditore')?' ('+form.societa.value.trim()+')':'');
+    var url='mailto:info@servalli.net?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n'));
+    form.setAttribute('data-ultima-email',url);
+    location.href=url;
   });
 })();
 </script>
