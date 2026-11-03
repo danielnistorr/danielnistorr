@@ -35,8 +35,9 @@ Solo foto del panificio, da `originali/` (riscaricati il 3/11/2026 da `static.wi
 - Vetrina con Galileo e Fidalma (`617993_02eb45f6505c45a0b941c382dbb56172~mv2.jpg`, 640x319): seconda schermata, alla misura nativa.
 - Panettone tagliato sul sacco di juta (`b56ebf_5b27b00f6a6c4d49939b531738929d2e~mv2.jpg`, 5337x3935, Nikon D3300, 5/12/2020): sezione di Natale, 3:2, fino a 2016 px.
 - Focaccia sul sacco del cinquantesimo (`b56ebf_fabcdffb7e054258acd47fe9f4aef2d6~mv2.jpg`, 5702x3978, stessa serie): 3:2, fino a 1100 px.
-- Tartarughe nel cesto (`617993_28aa18bc6f6d4cff96afef03b7523587~mv2_d_1920_1280_s_2.jpg`, 1920x1280): taglio 3:2 di 1260x840 senza la sessola di plastica.
-- L'insegna FORNASIERO in apertura non è una foto: è un lettering disegnato in SVG sulla foto della vetrina.
+- Tartarughe nel cesto (`617993_28aa18bc6f6d4cff96afef03b7523587~mv2_d_1920_1280_s_2.jpg`, 1920x1280): dal ritocco del 3/11 taglio 4:5 di 1024x1280 con il sacchetto "Fornasiero, Camin-Padova" in alto, bilanciato sul bianco del sacchetto (`_prova/alto/script/ritocco_img.py`), 546 e 1024 px.
+- Ritocco del 3/11: la porta di via Vigonovese con Galileo e Fidalma, taglio 390x256 della foto della vetrina sotto l'insegna, alla misura nativa, solo nell'apertura del telefono; il panettone in taglio 4:5 (780x975) per il telefono, dallo stesso originale.
+- L'insegna in apertura non è una foto: FORNASIERO e il corsivo "Galileo" sono lettere ricalcate in SVG sulla foto della vetrina.
 Sono foto pubblicate dal panificio sul suo sito: per il sito nuovo serve il loro consenso.
 
 ## Uso nella home finale (`sito/`, livello professionale, 3 novembre 2026)

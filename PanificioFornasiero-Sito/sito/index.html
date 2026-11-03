@@ -48,7 +48,7 @@
   /* insegna: altezza delle lettere uguale per FORNASIERO e Galileo, come sull'insegna vera */
   --lettera:min(70px,4.8vw);
   --cornice:8px;
-  --fuga:clamp(28px,3.9vw,56px);
+  --fuga:clamp(48px,3.9vw,56px);
   --serif:"Young Serif",Georgia,serif;
   --sans:"Albert Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -159,10 +159,10 @@ figcaption span::before{content:" / "}
 .pane-elenchi{grid-column:1/7;margin-top:40px;display:flex;flex-direction:column;gap:32px}
 .pane h3.et{font-family:var(--sans);font-size:17px;font-weight:600;line-height:1.3}
 .casa ul{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 28px;font-family:var(--serif);font-size:var(--f-detto);line-height:1.3}
-.anche ul{margin-top:10px;border-top:1px solid var(--filo)}
-.anche li{padding:4px 0;border-bottom:1px solid var(--filo);break-inside:avoid}
+.anche ul{margin-top:10px;columns:2;column-gap:var(--g)}
+.anche li{padding:6px 0;border-top:1px solid var(--filo);break-inside:avoid}
 .anche li span{color:var(--grigio)}
-.f-tart{grid-column:7/13;grid-row:1/4;align-self:start}
+.f-tart{grid-column:7/12;grid-row:1/4;align-self:start}
 .f-tart img{width:100%}
 .banco{grid-column:1/13;margin-top:clamp(56px,6.2vw,88px)}
 .banco>h3{font-family:var(--sans);font-size:17px;font-weight:600;padding-bottom:12px}
@@ -261,12 +261,12 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
   .asse{min-height:0;padding:22px 12px}
   .asse-a{grid-column:1/13;margin-right:0}
   .asse-b{grid-column:5/13;margin-top:10px}
-  .ap-porta{display:block;margin:10px calc(var(--m) * -1) 0}
+  .ap-porta{display:block;margin:6px calc(var(--m) * -1) 0}
   .ap-porta img{width:100%;max-width:390px;margin:0 auto}
-  .ap-porta figcaption{margin-top:6px;padding:0 var(--m);font-size:14px}
-  .ap-fondo{margin-top:12px;grid-template-rows:auto}
+  .ap-porta figcaption{margin-top:4px;padding:0 var(--m);font-size:14px}
+  .ap-fondo{margin-top:8px;grid-template-rows:auto}
   .ap-fondo h1,.sedi{grid-column:1/13}
-  .ap-fondo h1{margin:0 0 10px;font-size:27px;line-height:1.14}
+  .ap-fondo h1{margin:0 0 8px;font-size:27px;line-height:1.14}
   .sedi li{padding:9px 0;gap:2px 12px;flex-direction:row;align-items:baseline}
   .sede-via{font-size:18px}
   .sede-ora{font-size:15px}
@@ -275,8 +275,8 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
   .strada .btn{display:none}
   .f-pan{margin:0 calc(var(--m) * -1)}
   .f-pan figcaption{padding:0 var(--m)}
-  .anche ul{columns:2;column-gap:16px;border-top:0}
-  .anche li{border-bottom:0;padding:3px 0}
+  .anche ul{columns:2;column-gap:16px}
+  .anche li{border-top:0;padding:3px 0}
   .strada,.strada:last-child{grid-column:1/13}
   .campi{grid-template-columns:1fr}
   .campi .largo{grid-column:auto}
@@ -341,7 +341,7 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
       </div>
     </div>
     <figure class="ap-porta" data-al-vivo>
-      <img src="img/porta-390.webp" width="390" height="259" alt="Galileo e Fidalma Fornasiero sulla porta del negozio di via Vigonovese 116, tra le due vetrine">
+      <img src="img/porta-390.webp" width="390" height="256" alt="Galileo e Fidalma Fornasiero sulla porta del negozio di via Vigonovese 116, tra le due vetrine">
       <figcaption><b>Galileo e Fidalma sulla porta</b><span>via Vigonovese 116</span></figcaption>
     </figure>
     <div class="ap-fondo">
@@ -457,7 +457,7 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
       </div>
     </div>
     <figure class="f-tart">
-      <img src="img/tartarughe-4x5-546.webp" srcset="img/tartarughe-4x5-546.webp 546w, img/tartarughe-4x5-1024.webp 1024w" sizes="(max-width:599px) 100vw, (max-width:899px) 546px, 46vw" width="1024" height="1280" alt="Tre tartarughe, i panini con la crosta a scaglie, nel cesto davanti al sacchetto del panificio con la scritta Fornasiero, Camin-Padova" loading="lazy">
+      <img src="img/tartarughe-4x5-546.webp" srcset="img/tartarughe-4x5-546.webp 546w, img/tartarughe-4x5-1024.webp 1024w" sizes="(max-width:599px) 100vw, (max-width:899px) 546px, 38vw" width="1024" height="1280" alt="Tre tartarughe, i panini con la crosta a scaglie, nel cesto davanti al sacchetto del panificio con la scritta Fornasiero, Camin-Padova" loading="lazy">
       <figcaption><b>Tartarughe</b><span>uno dei cinque pani con il nome di casa</span></figcaption>
     </figure>
     <div class="banco">
@@ -623,7 +623,7 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
         if(o==='festa')continue;
         if(!o)return null;
         var quando=n===1?'domani':GIORNI[new Date(ms).getUTCDay()];
-        return quando+(o[0][0]>=12*60?' pomeriggio':' mattina')+' dalle '+hh(o[0][0]);
+        return [quando+' dalle '+hh(o[0][0]),quando+(o[0][0]>=12*60?' pomeriggio':' mattina')+' dalle '+hh(o[0][0])];
       }
       return null;
     }
@@ -632,13 +632,14 @@ legend{font-weight:600;padding:0;margin-bottom:8px}
     [['vig',oV,fv],['als',oA,fa]].forEach(function(x){
       var k=x[0],o=x[1],f=x[2],riga=document.querySelector('[data-oggi="'+k+'"]'),sc=document.querySelector('.ora[data-negozio="'+k+'"]'),r,t;
       if(k==='als'&&!ALSAZIA_CONFERMATA){r='Orario al telefono';t='Orario di oggi al telefono.'}
-      else if(o==='festa'){r='Oggi è festa: chiamate';t='Oggi è festa: orario al telefono.'}
+      else if(o==='festa'){r='Festa: orario al telefono';t='Oggi è festa: orario al telefono.'}
       else if(!o){r='Oggi orario al telefono';t='Oggi è '+GIORNI[T.dow]+': orario al telefono.'}
       else if(f){r='<b class="si">Aperto</b> fino alle '+hh(f[1]);t='<b class="si">Aperto ora</b>, chiude alle '+hh(f[1])+'.'}
       else{
         var pt=piuTardi(o),rr=pt==null?riapre(k):null;
-        r=pt!=null?'Chiuso, apre alle '+hh(pt):(rr?'Chiuso, '+rr:'Chiuso per oggi');
-        t=pt!=null?'Ora chiuso, apre alle '+hh(pt)+'.':(rr?'Chiuso per oggi, riapre '+rr+'.':'Chiuso per oggi.');
+        /* nella riga dell'apertura la forma corta, nella scheda del negozio quella con mattina o pomeriggio */
+        r=pt!=null?'Chiuso, apre alle '+hh(pt):(rr?'Chiuso, '+rr[0]:'Chiuso per oggi');
+        t=pt!=null?'Ora chiuso, apre alle '+hh(pt)+'.':(rr?'Chiuso per oggi, riapre '+rr[1]+'.':'Chiuso per oggi.');
       }
       if(T.m===12&&T.g>=20)t+=' Sotto Natale gli orari possono cambiare.';
       riga.innerHTML=r;sc.innerHTML=t;
