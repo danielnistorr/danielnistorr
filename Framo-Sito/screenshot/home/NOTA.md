@@ -1,5 +1,60 @@
 # F.R.A.M.O., home: nota
 
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Richiesta: "non è ancora super professionale" (giudice da agenzia a 6). Metodo scelto dal committente: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`, sotto i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (pagina, immagini, caratteri e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`. Riga aggiunta in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+### Che cosa è cambiato
+
+- **Apertura, modello T (tipografia che mostra il mestiere).** Riferimenti: Pirtek UK (la carta millimetrata, un carattere, la didascalia di fatto; il sito oggi blocca le visite automatiche, quindi ci si è basati sulla scheda `alto/S.md`) e HANSA-FLEX (schermata del 3/11 in `_prova/alto/concorrenti/`). Il titolo è la scala dei diametri: "Tubi oleodinamici / da 3/16″ / fino a 3″", parole del loro articolo ("dal diametro di 3/16" fino a 3""). Il 3″ è alla misura vera: Red Hat Mono a 411 px, cifra alta 288 px, cioè tre quadrati da un pollice (96 px) della carta tecnica in CSS; la linea di base cade su una linea forte della carta (misurata: 828 px su 828). Il 3/16″ è alla stessa scala (cifra di 18 px). Sotto le due misure due filetti gialli lunghi quanto i diametri, 18 e 288 px. Niente cerchi né sezioni disegnate: solo cifre, filetti e carta. Sopra: la frase-firma "Porta il tubo vecchio: te lo rifacciamo identico", un solo bottone ("Manda la foto su WhatsApp" a 1440, "Chiama" a tutta colonna sotto i 1100 px) e "Saonara (PD), dal 1986". Nessuna foto (sono tutte di 1024 px: strada D2 tra 800 e 1600, alla misura vera e sotto).
+- **Testata nera fissa**: logo vero (non più cliccabile), quattro voci che nominano quello che si cerca ("Tubi da campione", "Tubi su disegno e centraline", "Ricambi e marchi", "Come arrivare"), lo stato calcolato ("Aperto fino alle 12.30", solo da 1280 px in su) e il numero 049 644909 come link giallo alto 48 px, sempre in vista. Niente barra in basso sul telefono: il numero è già fisso in testata e sarebbe stato il terzo.
+- **Culmine "Porta il tubo vecchio"**: la frase-firma come titolo (stesso trattamento dell'apertura, 40 px 500), la frase loro "identico nella lunghezza, tipologia e raccordatura" con la riga per i privati, il dopo (IMG-9596) a 954x634 su 9 colonne e il prima (IMG-9594) su 3, didascalie a due voci; i tre passi della foto in sola tipografia; "Come misurare un tubo". Le foto vengono dall'articolo "Il sistema Push Lock" del loro sito (25/7/2023): le didascalie lo dicono ("raccordo Push Lock montato, senza pressa", "fino a 16 bar") invece di farle passare per un tubo ad alta pressione.
+- **Tubi su disegno e centraline**: titolo loro "Un distributore non si sceglie da un codice a catalogo", tipologie con le sigle in Red Hat Mono, "Che cosa mandarci", "Manda il disegno per email" (oggetto "Richiesta preventivo" e traccia), catalogo, centraline e condizioni di fornitura.
+- **Ricambi e marchi**: i 16 marchi come righe d'indice (AMI, Manuli, Walvoil, Danfoss a 26 px, gli altri 12 a 19 px), tutti in una schermata dal menu; 600 mq dentro una frase; WhatsApp per la foto del pezzo come link.
+- **Come arrivare**: "Officina e banco sono qui", indirizzo, descrizione della palazzina, "Apri la navigazione" (una volta sola in pagina), stato e tabella dei sette giorni con oggi in giallo.
+- **Chiusura**, l'unico blocco giallo: "Fai una prova e in caso di dubbio, chiamaci.", "F.R.A.M.O. risponde sempre", lo stato e il modulo che compone l'email (campi ridotti: tolti email e quantità, che stanno nella traccia del preventivo).
+- **Tolto**: la fascia gialla delle quattro cifre, le sei schede dei servizi, la sezione Settori e zone con i 16 comuni (le sei pagine per zona e i tre settori sono nel piede), gli occhielli maiuscoli, il numero a 120 px, i testi d'interfaccia in vista (restano a 14 px accanto al comando), la scheda Google Maps come secondo link, le fasce nere e grigie alternate. Da 9 a 6 sezioni, da 10.107 a 6.271 px a 1440.
+- **Caratteri**: Red Hat Mono (gesto e dati) e Reddit Sans (titoli e testo), SIL OFL 1.1, in `sito/fonts/` con `OFL-RedHatMono.txt` e `OFL-RedditSans.txt`. Red Hat Text della riga del capitolo 5 è già in Griste e Tecnoplastic: Reddit Sans ha la stessa voce (grottesco aperto, tecnico, senza vezzi) e non è in nessuna home. Escono Anybody e Barlow.
+- **Foto**: `assets/originali/` riscaricato dal loro sito (API dei media); provini in `_prova/alto/provini.jpg`; un solo trattamento (`_prova/alto/script/img.py`: bianco del tavolo verso il neutro, stessa curva, saturazione 0,88), WebP a 480, 768 e 1024 px con srcset. 2 foto, un formato (3:2), nessuna ingrandita a nessuna larghezza.
+- **Colori**: carta #F3F1EA, inchiostro #1A1A19 e giallo #FFCD05 del logo. Due fondi di sezione (carta, giallo) più il piede nero. Contrasti: testo su carta 15,4:1, secondario su carta 6,7:1 e su giallo 5:1, giallo su nero 11,6:1.
+
+### Misure (`node _prova/alto/misura-d.mjs`, esito in `_prova/alto/esito-d.txt`, dati in `misure-d.json`)
+
+98 controlli su 98 passano.
+
+- **Prima schermata 1440x900**: foto 0% (apertura di tipografia), 6 cliccabili (4 voci, numero, WhatsApp), 1 bottone, 159 caratteri fuori dal menu, nessuna fila d'ingressi, una sola cifra oltre i 30 px (il 3″ del gesto), nessun occhiello, `h1` di 7 parole senza virgole.
+- **Prima schermata 390x844**: 4 cliccabili (numero, Menu, Chiama, WhatsApp), 1 bottone (Chiama, 350x56, a tutta colonna), carta tecnica con il gesto sul 90% dello schermo; stato con gli orari e "sabato chiuso", WhatsApp con il messaggio e la riga su che cosa fotografare, tutto sopra gli 844 px.
+- **Pagina**: 747 parole, 6 sezioni, 6.271 px a 1440 (8.190 a 390), 0,24 MB a 1440 e 0,15 a 390; una griglia a 12 colonne con gli stessi bordi in tutte le sezioni e nel piede (80-1360 a 1440, 320-1600 a 1920, 20-370 a 390), bordi destri allineati; 2 famiglie; testo corrente di almeno 17 px; un solo elemento sopra i 100 px; frase-firma 2 volte con lo stesso trattamento; spazi tra le sezioni 54, 112, 136 e 176 px.
+- **Ripetizioni**: numero scritto 2 volte (testata e piede), link `tel:` 2 a 1440 e 3 a 390 (più il Chiama dell'apertura), WhatsApp 2, `mailto:` 2, email scritta 2, navigazione 1, "Come misurare", catalogo e condizioni 2 ciascuno, 4 bottoni a 1440 e 5 a 390.
+- Nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script a 320, 390, 768, 1024, 1440 e 1920. Nessun U+2014, nessun "indicativ", nessun repertorio, nessun gradiente, dissolvenza, transizione, vetro, corsivo o iframe nel sorgente; nessuna ISO 9001 in vista.
+
+### Compiti della scheda: dove stanno ora
+
+- **V1.1 aperto adesso**: a 390 sotto WhatsApp nella prima schermata ("Aperto ora, chiude alle 12.30" con gli orari e "sabato chiuso"); a 1280 px e oltre nella testata. Provato alle 10.00 e alle 13.00 di martedì, sabato, l'8 dicembre e venerdì alle 18.30.
+- **V1.2 chiamare**: numero nella testata fissa (48 px, si tocca anche a metà pagina) e "Chiama" 350x56 nella prima schermata.
+- **V1.3 WhatsApp**: nella prima schermata con il messaggio pronto e la riga su che cosa fotografare; i tre passi finiscono a 1.562 px a 390 (entro due schermate).
+- **V1.4 da campione e come arrivare**: la frase "identico nella lunghezza, tipologia e raccordatura" finisce a 1.173 px; prima e dopo cominciano a 1.598 px (il dopo finisce a 1.729, 41 px oltre le due schermate); "Come arrivare" è nel menu e dopo il salto "Apri la navigazione" e il numero in testata sono nello schermo.
+- **V2.1 mestiere e scala**: `h1` "Tubi oleodinamici da 3/16″ fino a 3″", "Saonara (PD), dal 1986", voce di menu "Tubi su disegno e centraline". L'email non è più nella prima schermata (tetto di 160 caratteri): sta nella sezione dal menu, scritta accanto al bottone.
+- **V2.2 marchi**: dal menu "Ricambi e marchi" i 16 marchi sono tutti nello schermo a 1440x900 (l'ultimo finisce a 740 px).
+- **V2.3 e V2.4**: dal menu, tipologie, "Manda il disegno per email" con la traccia, catalogo e condizioni entro la schermata (le condizioni finiscono a circa 880 px); P.IVA nel piede.
+- **V3**: la riga per i privati è nel testo del culmine (finisce a circa 1.170 px a 390); "Come misurare un tubo" nel culmine e nel piede; orari e strada senza altre pagine; modulo con "(se sei un privato, lascia vuoto)", campo mancante detto per nome con il fuoco sul nome, mail composta con "Azienda e P.IVA: privato".
+
+### Guardato a pezzi
+
+Pagine intere a 1440 e a 390 in colonne, prime schermate a 320, 768, 1024 e 1920, chiusura a 1440, accanto alla versione professionale e a HANSA-FLEX (`_prova/alto/confronto-1440.jpg`). Screenshot rifatti con gli stessi nomi (`node _prova/alto/script/screenshot.mjs`, ora del test martedì 10.00).
+
+### Problemi aperti
+
+- **La foto vera manca ancora.** Il gesto regge senza foto, ma la riga del capitolo 5 chiede accanto la macro della guaina di un loro tubo a due trecce con la scritta stampata: va fatta (LEGGIMI, foto da fare). La macro IMG-9592 resta fuori (TEXMASTER, SAE 100R6 a bassa pressione).
+- **Il prima e dopo è un Push Lock** (fino a 16 bar), non un tubo da campione pressato: le didascalie lo dicono, ma la coppia "campione usurato / tubo nuovo" va fotografata. Il luogo dello scatto (sede di Saonara) è presunto: va confermato con l'autore delle foto.
+- **La scala vera vale solo sul monitor a 96 px per pollice** (1440 e 1920). Sul telefono il 3″ è a 250 px; restano veri i filetti di 18 e 288 px.
+- A 390 il dopo finisce 41 px oltre le due schermate (comincia dentro); a 1440 finisce a 1.829 px, comincia a 1.193.
+- Il servizio fotografico e i nomi delle persone (squadra, chi risponde) restano le cose che servono per andare oltre l'8, come per tutto il gruppo S.
+- Restano aperti i punti del LEGGIMI: privati, ISO 9001, recensioni, lavori con il nome, tempi del servizio da campione, ferie.
+- Gli script di prima in `_prova/script/` (build_finale.sh, pro_controlli.mjs) non sono più sul disco dopo il riavvio: per questa versione valgono `_prova/alto/script/img.py`, `screenshot.mjs` e `_prova/alto/misura-d.mjs`.
+
+---
+
 Pagina: `sito/index.html` (statica, si apre anche da file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini da `_prova/script/pro_img.py`, pagina da `_prova/script/pagina.html`, caratteri da `_prova/home/a/fonts/` e `assets/fonts-barlow/`, screenshot con gli stessi nomi di prima). Controlli: `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`), `node _prova/script/pro_largo.mjs 320 390 768 1024 1440 1920` (scorrimento orizzontale) e `node _prova/script/altezze.mjs 390 mobile` (altezza di ogni sezione).
 
 La versione di prima (la "tavola tecnica" con il calibro) è copiata com'era in `_prova/versione-1-originale/`.

@@ -2,9 +2,9 @@
 
 Proposta non richiesta, solo la home. Non è stato contattato nessuno, niente è pubblicato.
 
-- **Home**: `sito/index.html` (statica, si apre col browser), `sito/img/`, `sito/fonts/`. Livello professionale del 3 novembre 2026, con il ritocco finale dello stesso giorno (apertura a tutta altezza, 1955 grande, lavori uno per riga con un prima e dopo vero, pagina a 390 più corta); la versione 1 di prima è in `_prova/versione-1-originale/`.
-- **Screenshot**: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440) e la nota `screenshot/home/NOTA.md` (sezione "Livello professionale", con l'esito delle 15 regole).
-- **Rifare tutto**: `bash _prova/script/build_finale.sh --immagini` (immagini `pro_img.py`, screenshot `pro_shoot.mjs`, controlli `pro_controlli.mjs`); prove d'uso (stato aperto/chiuso, menu, modulo, JavaScript spento): `node _prova/script/pro_uso.mjs`.
+- **Home**: `sito/index.html` (statica, si apre col browser), `sito/img/`, `sito/fonts/`. **Metodo ibrido del 3 novembre 2026**: prima schermata secondo la sezione D (la piramide a tutta larghezza, "Venite a visitarci.", le due sedi sul bordo basso, un bottone), sotto i contenuti della versione professionale su una griglia sola. Direzione in `_prova/alto/DIREZIONE.md`. La versione professionale com'era è in `_prova/versione-pro/`.
+- **Screenshot**: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, home-1024-prima-schermata, home-768-prima-schermata, chiusura-1440) e la nota `screenshot/home/NOTA.md` (sezione "Metodo ibrido" in testa, con le misure e i problemi aperti; sotto, la nota di prima).
+- **Rifare tutto**: immagini `python3 -I _prova/alto/script/immagini.py`; screenshot `node _prova/alto/script/screenshot.mjs`; misure della sezione D `node _prova/alto/misura-d.mjs`; controlli (sei larghezze, stato a nove orari, menu, modulo, JavaScript spento) `node _prova/alto/script/controlli.mjs`. Gli script della versione professionale (`_prova/script/`) sono andati persi con il riavvio.
 - Analisi con le fonti: `01-analisi.md`; scheda d'uso: `_prova/uso/SCHEDA.md`; crediti delle immagini: `assets/CREDITI.md`.
 
 ## Il modulo da collegare
@@ -26,14 +26,15 @@ Il modulo "Chiedete un sopralluogo" oggi **non invia nulla da solo**: il bottone
 5. **Orari**: stagionali, domeniche di primavera (Cylex segnala domeniche mattina), chiusure estive, festività (oggi nei giorni di festa la pagina dice "Oggi è festa: chiamate prima di passare"). Il sabato del vivaio è ancora "mattina, su appuntamento"? Se cambiano, vanno cambiati nell'oggetto `ORARI` dello script in fondo alla pagina, nelle due tabelle e nel piede.
 6. **Consegna a domicilio**: Google la dichiara per il Garden; non è in pagina finché non la confermano. Il cliente tipo del Garden l'ha cercata (vasi grandi, terriccio): appena confermata, una voce nell'elenco del Garden e una riga nella scheda.
 7. **Ragione sociale nel piede**: ho messo quella dei registri (Bordin Garden & Vivai S.n.c. di Bordin Omero e Giuliano Società Agricola, P.IVA 01315760288, REA PD-231319). Va chiarito il ruolo di Commerciale Garden Bordin snc (P.IVA 02463340287, via dei Vivai 6) per il Garden e per i giardini. PEC e capitale sociale non trovati.
-8. **Privacy e cookie**: l'indirizzo dell'informativa iubenda (nel piede oggi "Privacy e cookie" è scritto ma non è un link). Nella riga legale manca anche il **credito dello studio**: va aggiunto quando è deciso il nome con cui firmiamo (nel modello della PEC è ancora "[Agenzia]").
+8. **Privacy e cookie**: nel piede ora ci sono i link all'informativa iubenda che il sito di oggi usa (`https://www.iubenda.com/privacy-policy/91792155` e `/cookie-policy`): da confermare che valga anche per il sito nuovo. Nella riga legale manca anche il **credito dello studio**: va aggiunto quando è deciso il nome con cui firmiamo (nel modello della PEC è ancora "[Agenzia]").
 9. **Terza generazione**: nomi e ruoli, se vogliono comparire (con una foto delle persone la storia sarebbe loro davvero).
 10. **Firewall del sito attuale** (BitNinja): verificare da un telefono in 4G se blocca anche i visitatori veri (analisi, sez. 9). Il link "Tutti i 33 album" porta al sito di oggi.
+12. **Persone e anni**: per la home ibrida mancano soprattutto due cose: l'anno di ogni lavoro (le didascalie hanno lavoro e luogo, non l'anno) e i nomi di chi segue Garden, Giardini e Vivai (come i colleghi con il nome di Lorenz von Ehren).
 11. **Tempi e manutenzione**: nel passo 3 "Tempi" manca un ordine di grandezza (entro quanto fate il sopralluogo, in che mesi si pianta); il book parla solo di "manutenzioni straordinarie": fate anche la manutenzione ordinaria? Con le risposte si riscrivono i passi 3 e 4.
 
 ## Foto da rifare dal vero
 
-Oggi la pagina usa solo foto di Bordin prese dal loro sito, ma non sono una serie: luci e anni diversi, due album con il logo stampato nell'angolo (tagliato). Serve una giornata di foto con un solo fotografo, macchina su cavalletto, 6000 px di lato lungo, file RAW, stessa luce (mattino presto o cielo velato), senza auto e cartelli in vista.
+Oggi la pagina usa solo foto di Bordin prese dal loro sito (dal 3 novembre in `assets/originali/grandi/`, riscaricate al percorso originale, e in `assets/originali/lavorate/` per album e book), ma non sono una serie: luci e anni diversi, due album con il logo stampato nell'angolo (tagliato). Serve una giornata di foto con un solo fotografo, macchina su cavalletto, 6000 px di lato lungo, file RAW, stessa luce (mattino presto o cielo velato), senza auto e cartelli in vista.
 
 1. **L'apertura (la più importante)**: la piramide dal punto di vista di G6, con l'olivo a nuvole, in formato 4:3 e 3:2, cielo velato o luce radente del mattino, piazzale vuoto.
 2. **Le persone**: le commesse al banco o tra i bancali mentre aiutano un cliente (lo lodano tutte le recensioni), la famiglia davanti alla piramide, la squadra dei giardini con il mezzo.
@@ -44,11 +45,11 @@ Oggi la pagina usa solo foto di Bordin prese dal loro sito, ma non sono una seri
 ## Licenze
 
 - **Foto in pagina**: tutte di Bordin Garden & Vivai (dal sito bordingarden.it e dal loro book "I nostri giardini" su sfogliami.it), usate come materiale loro: G6, G8, G5, G1, G10, VB2, BB1, gli album Villa Palladiana (DO_Mix_146 e 148) e Giardino a Venezia (DO_MorosiniDopo4), le pagine 12 e 13 del book (prima e dopo), il logo. Nessuna foto di repertorio, nessuna illustrazione, nessuna immagine generata dall'IA (decisione del committente: "niente").
-- **Caratteri**: Zodiak (400) e Switzer (400, 600), Indian Type Foundry, da Fontshare, licenza ITF Free Font License (uso commerciale libero; i file non vanno ridistribuiti da soli). Serviti dalla pagina in `sito/fonts/`.
+- **Caratteri** (home ibrida): Fraunces (Undercase Type, file variabile `opsz` di `@fontsource-variable/fraunces` 5.2.9) e Figtree 400 e 600 (Erik Kennedy, `@fontsource/figtree` 5.2.10), entrambi SIL Open Font License 1.1, in `sito/fonts/` con le licenze `LICENSE-Fraunces-OFL.txt` e `LICENSE-Figtree-OFL.txt`. Zodiak e Switzer (Fontshare, ITF Free Font License) restano solo nella copia della versione professionale.
 
 ## Loghi
 
-- Esiste solo il PNG 360x126 con trasparenza (`assets/originali/logo-bordin-360x126.png`): in pagina è a 150 px nella testata (112 sul telefono, 100 sotto i 375 px) e a 170 px nel piede, cioè a 2x o più. Basta fino a 180 px.
+- Esiste solo il PNG 360x126 con trasparenza (oggi in `assets/originali/lavorate/logo-bordin-360.png`): nella home ibrida è a 140 px nella testata (104 sul telefono, 92 sotto i 360 px), non è un link (il tetto dei cliccabili è pieno) e non è nel piede. Basta fino a 180 px.
 - Serve il **vettoriale** (SVG o PDF): chiedere a chi l'ha disegnato e il nome del carattere della scritta "Bordin".
 
 ## Pagine che il sito nuovo deve avere

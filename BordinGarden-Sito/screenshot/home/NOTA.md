@@ -1,5 +1,76 @@
 # Home di Bordin Garden & Vivai: nota
 
+## Metodo ibrido (novembre 2026)
+
+Rifatta il 3 novembre 2026 con il metodo ibrido scelto dal committente: prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`, sotto i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (sito e screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`; riga nel registro dei caratteri: `_metodo/professionale/alto/REGISTRO-CARATTERI.md` (in coda).
+
+**Idea**: Bordin è un posto da visitare, una piramide di vetro del 1996 in mezzo alle piante e, sulla stessa via, il vivaio che produce dal 1955. **Gesto**: la piramide (G6) a tutta larghezza, con le due sedi sul bordo basso come due righe d'indirizzo ("Garden, via dei Vivai 6" con lo stato di adesso, "Vivai, via dei Vivai 14" con il suo numero). **Modello**: F (capitolo 5). **Registro**: Fraunces 400 (titoli, nomi, manifesto) e Figtree 400/600 (testo e interfaccia), entrambi SIL OFL, in `sito/fonts/` con la licenza accanto; escono Zodiak e Switzer.
+
+Rifare: immagini `python3 -I _prova/alto/script/immagini.py`; screenshot `node _prova/alto/script/screenshot.mjs`; misure `node _prova/alto/misura-d.mjs` (esito in `_prova/alto/misure/esito.txt`); controlli a sei larghezze, orari, menu, modulo e JavaScript spento `node _prova/alto/script/controlli.mjs`; peso sui retina `node _prova/alto/script/peso2x.mjs`. Provini delle foto: `_prova/alto/provini.jpg`. Prima schermata dei concorrenti (Architectural Plants, Lorenz von Ehren) rifatta a 1440 in `_prova/alto/concorrenti/` e messa accanto alla nostra e alla versione professionale in `_prova/alto/viste/confronto-concorrenti.jpg`.
+
+### Che cosa è cambiato
+
+- **Foto**: `assets/originali/` era sparita con il riavvio. Le foto del Garden e dei Vivai (G1, G5, G6, G8, G10, VB1, VB2, VB4, VB5, V6, VBesemplariR, BB1, BB2, 3-Cartolina e la fascia "garden") sono state riscaricate dal loro sito, al percorso originale senza cache, in `assets/originali/grandi/` (G6 è di 1920x1080). Album e book non li ho riscaricati: le loro versioni lavorate della home professionale sono in `assets/originali/lavorate/`. Un solo trattamento sulle foto riscaricate (saturazione 0,88, gamma 0,97, un filo più calde, maschera leggera). Undici foto, tre formati (apertura, 3:2, 4:3), nessuna ingrandita né a 1x né sui retina.
+- **Prima schermata a 1440**: la piramide a tutta larghezza (1440x674, il 75% della schermata), la didascalia "La piramide del 1996" sull'angolo con una sfumatura locale; sotto, su una fascia bianca della griglia, il titolo "Venite a visitarci." (frase loro, "Venite a visitarci!"), la riga "Giardini e vivai a Saonara dal 1955" e le due sedi. Un bottone solo, "Chiama 049 8791098" in testata. Tolti l'occhiello, i tre bottoni, la riga degli orari, le due porte descritte. Il titolo "Passione per il verde" esce: "passione" è nella lista nera di D7.
+- **Prima schermata a 390**: testata con il logo, il bottone "049 8791098" e "Menu" (scritto, senza bordo); la piramide in un taglio verticale (957x1080) sul 59% dello schermo; titolo, riga, Garden con lo stato e Vivai con il numero; barra fissa in basso con "Indicazioni" (Garden) e "WhatsApp" (testo pronto).
+- **Sotto la piega**, sei sezioni su una griglia sola di 12 colonne (1312 px, margini 64, 48, 40 e 20 px, bordi destri allineati a 1376 a 1440): il Garden (testo, orari con il giorno di oggi, Indicazioni, WhatsApp, email, i quattro reparti in tessere 4:3); i Giardini come culmine (Villa Palladiana a tutta griglia, 1312x875, poi Venezia e il prima e dopo, il link ai 33 album); il sopralluogo (i 4 passi accanto al modulo, che resta quello di prima con la traccia mailto e WhatsApp); i Vivai, l'unico blocco verde (VB2, i tre fatti, "Per i professionisti" con il telefono, la lista per email con oggetto pronto, WhatsApp, gli orari del vivaio e le indicazioni per il vivaio); la storia, con la loro frase come manifesto a 34 px e le tre date in una frase; il piede, che riapre con "Venite a visitarci." e dice le due sedi a parole.
+- **Tolti**: le tre schede "I nostri servizi" (ingresso doppio con il menu), la fascia delle cifre e il 1955 a 240 px, il secondo blocco verde, sette link `tel:` su nove, i doppi di Indicazioni e WhatsApp, le righe di istruzione in vista (l'esito del modulo compare solo dopo l'invio, a 14 px), "di primissima qualità" (lista nera).
+- **Aggiunto dal sito di oggi**: i link veri all'informativa privacy e cookie di iubenda (`iubenda.com/privacy-policy/91792155` e `/cookie-policy`), che il sito di oggi ha nel piede.
+
+### Misure (`_prova/alto/misura-d.mjs`, martedì 3 novembre 2026 alle 10): 53 su 53 passano
+
+| Misura | 1440x900 | 390x844 | Soglia |
+|---|---|---|---|
+| Foto nella prima schermata | 75% | 59% | 60% o più / 50% o più |
+| Cliccabili nella prima schermata | 5 | 4 | 6 / 4 |
+| Bottoni nella prima schermata | 1 | 1 | 1 |
+| Caratteri fuori dalla testata | 155 (159 nel caso peggiore, "Chiude tra 15 min, alle 19:00") | | 160 |
+| Fila di ingressi, cifre di 30 px o più, occhielli | 0, 0, 0 | | 0, 0, al massimo 1 |
+| `h1` | 3 parole, nessuna virgola | | 9, una |
+| Parole, sezioni | 722, 6 | | 900, 7 |
+| Altezza | 6.942 px | 8.315 px | 7.500 a 1440 |
+| Culmine | 2.007 px, Villa Palladiana a 1312x875 | | 900 |
+| Peso | 1,2 MB (2,2 MB a 2x, 2,0 MB a 390 a 3x) | 0,8 MB | 3 MB |
+| Foto, formati, ingrandite | 11, 3, 0 | | 12, 3, 0 |
+| Fondi | bianco, carta #F2F1EA, bosco #17432A (solo i Vivai) | | 3, un blocco di colore |
+| Spazi tra le sezioni | 96 e 192 px, 256 prima del culmine | | due valori, 1,5 volte |
+| Link `tel:`, bottoni in pagina | 2, 3 | 2, 3 | 3, 5 |
+| Stesso numero in vista | ogni telefono, WhatsApp ed email al massimo 2 volte | | 2 |
+| Frase-firma | "Venite a visitarci." in `h1` e in testa al piede, 64/68 (38/40 a 390) | | 2-3 volte, stesso trattamento |
+| Famiglie, testo corrente | 2, 18 px | 17 px | 2, 17 |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione di testo, nessun errore di script, i tre caratteri caricati da file://; `tel:` solo +390498791098 e +39049640156, `mailto:` solo info@bordingarden.it e info@bordinvivai.it. Lo stato è giusto a 9 orari provati (lunedì mattina chiuso, pausa di mezzogiorno, ultimi 30 minuti, sabato sera "riapre lunedì 15:00", domenica, 8 dicembre e Pasquetta "Oggi è festa: chiamate prima"). Senza JavaScript la riga dice "Lun-sab, domenica chiuso" e la tabella degli orari è sotto. Il contrasto della didascalia bianca sulla foto è misurato sui pixel della schermata: 8 a 1 sul fondo mediano.
+
+Screenshot rifatti con gli stessi nomi: `home-1440.jpg` (6.942 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8.315 px), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (dai Vivai al piede). Guardati a pezzi accanto alla versione professionale e ai due concorrenti.
+
+### I compiti della scheda e dove stanno ora
+
+| Compito | Dove |
+|---|---|
+| V1.1 aperto adesso e fino a che ora | prima schermata, riga del Garden sotto la foto (1440 e 390) |
+| V1.2 chiamare il Garden | testata fissa, bottone con il numero (48 px a 390), sempre in vista |
+| V1.3 Indicazioni per via dei Vivai 6 | 390: barra fissa in basso, nella prima schermata; 1440: sezione Garden, seconda schermata |
+| V1.4 WhatsApp con il testo e i reparti | 390: barra fissa; 1440: sezione Garden; reparti a y 1.964 a 390 (entro 3 schermate) e "Garden e orari" prima voce del menu |
+| V2.1 "Giardini" e la porta | riga del mestiere nella prima schermata e voce "Giardini" del menu (la porta "Volete un giardino?" è tolta: era un ingresso doppio) |
+| V2.2 lavori veri | culmine a y 2.202 a 1440: Villa Palladiana a 1312 px, Venezia a 644, il prima e dopo affiancati; link ai 33 album |
+| V2.3 i 4 passi | accanto al modulo, alla stessa altezza |
+| V2.4 sopralluogo | modulo di 4 campi corti, 4 caselle e le due righe; WhatsApp per la foto |
+| V3.1 Vivai con il numero e via dei Vivai 14 | prima schermata, riga del Vivai (il numero è scritto, non è un link: il tetto di D3 è pieno) |
+| V3.2-V3.4 vivaio | sezione Vivai (voce del menu): zolla o vaso, spedizione, messa a dimora; telefono, lista per email con oggetto pronto, WhatsApp; orari e indicazioni nella stessa schermata del numero |
+
+### Problemi aperti
+
+- **Anno dei lavori**: le didascalie a due voci hanno lavoro e luogo, ma non l'anno, che non è nelle fonti (né nei nomi dei file degli album, né nel book). Va chiesto con i dati di Villa Palladiana, Venezia e dell'aiuola (LEGGIMI, punto 2).
+- **Persone con il nome**: Lorenz von Ehren mette i colleghi con il nome; Bordin ha la terza generazione ma nessun nome né foto. Finché non arrivano, la storia resta di tre righe sotto il manifesto.
+- **La porta "Volete un giardino?"** non è più nella prima schermata: il compito V2.1 passa con la parola "Giardini" nella riga e nel menu (un clic). Se il cliente tipo dei giardini la cerca e non la trova, si può tornare a mettere al posto della voce "Contatti".
+- **Il numero del vivaio nella prima schermata non si tocca** (a 390 sarebbe il quinto cliccabile): chi è in cantiere lo legge e lo trova come bottone nella sezione Vivai.
+- **Piede senza numeri di telefono**: il telefono del Garden è sempre in testata, quello del vivaio nella sua sezione; nel piede ripeterli porterebbe ogni numero a tre volte.
+- **Garanzia d'attecchimento**: è scritta come frase del book ("Il nostro book... dà un anno di garanzia"), in piccolo, non come dato certo (LEGGIMI, punto 4).
+- **Due "Indicazioni"**: una per sede (Garden e Vivai), non una sola come in D12, perché le sedi sono due e confonderle è il problema principale della scheda.
+- **Le foto** restano di anni e luci diversi (la gru BB1 è una vecchia foto digitale morbida, mostrata a 420 px): la giornata di foto del LEGGIMI resta la cosa che porta sopra l'8.
+- **Misure di carattere**: oltre a quelle del registro (64, 40, 34, 24, 18, 15, 14) ci sono 20 px (le due sedi e i nomi nelle didascalie) e 16 px (menu, tabelle, modulo, bottoni).
+
+
 ## Livello professionale
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP in tre larghezze più un JPEG di riserva), caratteri in `sito/fonts/`. La versione 1 com'era prima del livello professionale (sito e screenshot) è copiata in `_prova/versione-1-originale/`.

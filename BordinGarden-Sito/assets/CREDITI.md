@@ -30,3 +30,11 @@ Sono segnaposto: nel sito vero vanno sostituite con foto di Bordin (vedi LEGGIMI
 ## Home (livello professionale, 3 novembre 2026)
 
 La home (`sito/`) usa solo foto di Bordin prese dal loro sito e dal loro book (`originali/`), lavorate da `_prova/script/pro_img.py`: G6 (apertura), G8, DO_Mix_148 e VB2 (le tre schede), G5, G1, G8 e G10 (reparti), DO_Mix_146 e DO_MorosiniDopo4 (lavori), le pagine 12 e 13 del loro book (prima e dopo, `originali/book/`), BB1 (vivai), il logo. Giardini_3ok è tolta dalla pagina (non confermata come loro lavoro). Le foto degli album sono tagliate sotto il logo stampato nell'angolo. Tolte rispetto alla versione 1: VB4 e lo scontorno di VB2. **Nessuna foto di `esterne/` (Unsplash) è in pagina**, per decisione del committente sulle foto di repertorio ("niente"): restano in `esterne/` solo come archivio della proposta, con la loro licenza qui sopra, e non vanno usate.
+
+## Home ibrida (metodo ibrido, 3 novembre 2026)
+
+`originali/` era stata cancellata con il riavvio. Ricostruita così:
+- `originali/grandi/`: foto riscaricate il 3/11/2026 da https://www.bordingarden.it al percorso originale `assets/uploads/images/...` (senza cache): G1, G2, G5, G6, G8, G10 e la fascia `parallax/garden` (pagina Garden), VB1, VB2, VB4, VB5, V6, VBesemplariR (pagina Vivai), BB1, BB2, 3-Cartolina (pagina Bordin). GB1, GB2 e VB3 il server non li ha dati.
+- `originali/lavorate/`: le versioni già lavorate della home professionale (album Villa Palladiana DO_Mix_146 e 148, Giardino a Venezia DO_MorosiniDopo4, pagine 12 e 13 del book, il logo), usate come sorgente perché album e book non si riscaricano senza insistere col firewall.
+
+In pagina, lavorate da `_prova/alto/script/immagini.py` (un solo trattamento): G6 (apertura, intera e in un taglio verticale), G5, G1, G8, G10 (reparti), Villa Palladiana, Giardino a Venezia, prima e dopo del book (lavori), VB2 e BB1 (vivai), il logo. Nessuna foto di `esterne/` (Unsplash), nessuna illustrazione.

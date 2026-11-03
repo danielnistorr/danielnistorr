@@ -1,5 +1,68 @@
 # Solettificio Tollin, home: nota
 
+Screenshot di oggi (home ibrida): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede). Si rifanno con `node _prova/alto/finali.mjs`.
+
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` per la prima schermata; sotto, i contenuti e le funzioni della versione professionale, su una griglia sola. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; la versione professionale da cui si parte è copiata intera in `_prova/versione-pro/` (sito e screenshot). Registro dei caratteri: riga aggiunta in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+### Che cosa è cambiato
+
+- **Apertura (modello D, la tavola del catalogo).** Tutta la prima schermata è il cartoncino arancione #B4491E su cui Tollin fotografa i suoi sottopiedi. Al centro c'è il loro sottopiede con fisca in pianta, garbato per il tacco (`foto7prod.jpg`), alla misura vera di 227 x 151 px: il fondo della foto è uniformato al colore della pagina. Accanto ci sono due richiami a filetto in Azeret Mono, scritti con parole loro: "Garbato in modo progressivo" e "Fisca in pianta". Sotto, l'`h1` a 84 px "Ogni sottopiede parte dalla forma del modello." (fonte: `studio.html`, "La progettazione parte dalle caratteristiche della forma del modello") e la riga "Sottopiedi per i calzaturifici, a Villatora di Saonara dal 1970." Rispetto al capitolo 5 non c'è il disegno CAD quotato: sarebbe un disegno tecnico inventato. Restano solo i richiami in testo.
+- **Strada di D2**: nessuna foto arriva a 1600 px (i reparti sono 850 x 600 con la cornice, il catalogo 227 x 367). Una foto di reparto alla sua misura coprirebbe il 33% della prima schermata, che è nella fascia vietata. Quindi l'apertura è di tipografia con l'oggetto piccolo: foto al 3% a 1440 e al 12% a 390.
+- **Tolti** (capitolo 5 e diagnosi): la foto delle mani nel riquadro accanto al titolo (passa al reparto Supervisione), la fascia antracite del catalogo con "Chiedete questo tipo" ripetuto nove volte (resta una riga a 14 px sotto la fila), la fascia arancione delle cifre 1970, 12, 4 e 9 (il 1970 sta in una frase; le 12 persone sono da confermare e non si usano più), l'occhiello sopra il titolo e quelli "Reparto 1-4" e "Materiali", il secondo e il terzo bottone dell'apertura, il paragrafo sotto il titolo, il secondo "Chiama" di Dove siamo, la colonna "Pagine" e la colonna "Sede" del piede (l'indirizzo resta nella riga legale), l'email e il fax ripetuti in tre punti. Via anche il preload del carattere, che da file:// dava un errore di CORS in console.
+- **Sotto la piega**, su una griglia sola a 12 colonne (a 1440 margini di 80 px, contenuto di 1280, colonne da 77 px con 32 di spazio, bordo destro a 1360 per tutte le sezioni), sei sezioni:
+  1. **I nostri sottopiedi**: i materiali e "Non solo sottopiedi" (suole, puntali, contrafforti e tallonette) sopra la fila; i nove tipi in fila sullo stesso cartoncino, con il numero 01-09 e il nome. Ogni tipo porta alla richiesta con il tipo già scelto.
+  2. **Quattro reparti sotto lo stesso tetto**: la foto, il numero, il nome e la frase loro per ogni reparto; sotto, "Le macchine nelle foto dei reparti" (Comelz CN, Comelz CM44S, Comec SPM12). La formula "nelle foto" vale finché l'azienda non conferma che sono ancora quelle.
+  3. **Culmine, "Dal 1970, a conduzione familiare"**: la scatola dei sottopiedi garbati (`supervisione1`) a 733 px, con la didascalia a due voci "Sottopiedi garbati, pronti per la consegna / Reparto supervisione, Villatora di Saonara". Accanto, la loro frase "Ogni sottopiede è garbato in modo progressivo, in modo da evitare la formazione di grinze" a 32 px e il testo dell'azienda.
+  4. **Richiesta di campionatura**: il modulo della versione professionale, con il calzaturificio come unico campo obbligatorio, il tipo, il materiale, la forma e la numerata. Compone la mail con oggetto e campi nel testo. Accanto, i recapiti +39 049 640620 e info@tollin.it.
+  5. **Dove siamo**: l'indirizzo, il bottone Indicazioni, "Per ritiri e consegne chiamate prima di passare", le consegne con il furgone, il fax in testo e la foto del furgone.
+  6. **Piede**: la frase-firma, i contatti, English, la riga legale, Privacy e Cookie.
+- **Caratteri**: Commissioner (SIL OFL 1.1) per titoli e testo, 400, 600 per nomi e bottoni, asse FLAR a 100 nei titoli; Azeret Mono (SIL OFL 1.1, nuovo, `sito/fonts/azeret-mono-latin-400.woff2` con `OFL-AzeretMono.txt`) solo per i dati.
+- **Colori**: arancione #B4491E pieno solo sull'apertura, carta #F5F3EF per tutta la pagina, bianco solo nel riquadro del modulo, antracite #1C1D1E per testo e piede. Contrasti: bianco su arancione 5,37:1, grigio delle note su carta 6,45:1, testo 15,2:1, note del piede 8,9:1.
+- **Foto**: originali riscaricati da `tollin.it/immagini/` in `assets/originali/immagini/` (37 file), provini in `_prova/alto/provini.jpg`. Lo script è `_prova/alto/script/immagini.py` e fa un solo trattamento: toglie la cornice, porta il bilanciamento a metà verso il neutro (tranne sul cartoncino, dove virerebbe al blu), applica saturazione 0,88 e la stessa curva. Il fondo del catalogo è uniformato con una crescita dal bordo, e il sottopiede non è toccato. Due formati, 3:2 e 227:367.
+
+### Misure
+
+Con `node _prova/alto/misura-d.mjs`, copia estesa di `alto/diagnosi/misure/misura.mjs`. L'esito è in `_prova/alto/misure/esito.json`.
+
+| Controllo | 1440 x 900 | 390 x 844 | Soglia |
+|---|---|---|---|
+| Cliccabili nella prima schermata | 6 (5 voci, telefono) | 4 (Chiama, Menu, Indicazioni, Scrivi) | 6 / 4 |
+| Bottoni | 1 (telefono in testata) | 1 (Chiama) | 1 |
+| Caratteri fuori dalla testata | 150 | 216 | 160 a 1440 |
+| Foto nella prima schermata | 3,3% | 11,8% | sotto il 12% o almeno il 60% |
+| Campo del gesto | 91% | 91% | almeno 50% a 390 |
+| Cifre di 30 px o più, file di ingressi, occhielli | 0, 0, 0 | 0, 0, 0 | 0 |
+| `h1` | 7 parole, 0 virgole, 84 px | 36 px | 9 parole, 1 virgola |
+
+Pagina a 1440: 589 parole (tetto 900), 6 sezioni (7), 5.372 px (7.500), 266 KB caricati e 620 KB per tutta la cartella `sito/` (3 MB). Griglia: un solo contenitore, nessun blocco fuori dalle linee delle colonne, un solo bordo destro (1360). Nessuna foto ingrandita, 2 formati, nessun filtro. 2 fondi oltre al piede, 1 sezione arancione, spazi di 80, 96 e 160 px. 2 famiglie di carattere, nessun elemento sopra i 100 px, testo minimo 17 px. Una cifra sopra i 30 px nel `h2` "Dal 1970, a conduzione familiare" (D9: al massimo 1). Bottoni in pagina: 3. Link `tel:`: 3 (testata, richiesta, piede). Telefono, 1970 e la frase della garbatura compaiono al massimo 2 volte fuori dal piede. Zero parole della lista nera, zero "indicativ", zero U+2014.
+
+Prove d'uso della SCHEDA (`node _prova/alto/uso.mjs`): tutte passano (vedi sotto). Controlli a 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script. Un solo `tel:+39049640620` e un solo `mailto:info@tollin.it`. Il menu a bottone si apre fino a 1099 px.
+
+### I compiti della scheda, dove stanno ora
+
+- **V1.1** "sottopiedi", "calzaturifici", "Villatora di Saonara" e "1970" stanno nella riga sotto l'`h1`, nella prima schermata.
+- **V1.2** Si clicca "Sottopiedi" oppure si preme una volta PagGiù: i nove tipi, i materiali e "Non solo sottopiedi" stanno interi in una schermata.
+- **V1.3** Con "Lavorazioni" i quattro reparti, con foto e frase, si vedono in una schermata; le macchine finiscono a 849 px.
+- **V1.4** Dal menu, "Richiesta di campionatura" porta al modulo con un clic. Si può anche toccare un tipo: il modulo lo ha già scelto.
+- **V2.1** "Chiama" sta nella testata fissa, in un bottone di 48 px, sempre in vista.
+- **V2.2-V2.4** Nella prima schermata a 390 ci sono "Indicazioni", "Scrivi" e la riga "Via Irpinia 15. Per ritiri e consegne chiamate prima di passare.". Il fax sta in testo in "Dove siamo", a un tocco dal menu.
+- **V3** "English" sta in testata a 1440 e nel menu sotto i 1100 px. Il "+39 049 640620" cliccabile sta nella richiesta e nel piede.
+
+### Problemi aperti
+
+- **Foto in home: 16 contro le 12 di D10.** Sono l'apertura, i nove tipi, i quattro reparti, il culmine e il furgone. I nove tipi con foto sono un compito della scheda (V1.2). Li tengo come una serie sola di miniature, nello stesso formato e sullo stesso fondo.
+- **La foto d'apertura è piccola e morbida** (227 px, del 2016 o prima): sugli schermi ad alta densità si vede. Il gesto regge per il colore e la scala. Per salire davvero serve la foto da fare del capitolo 5: il sottopiede garbato sullo stesso cartoncino, di almeno 1600 px. Con quella foto la tavola diventa il modello D completo, ma senza il disegno CAD finché l'azienda non dà il suo file.
+- **Didascalia del culmine senza l'anno**: le foto non hanno dati EXIF e la data non è scritta da nessuna parte. Va chiesta all'azienda.
+- **Macchine, marchi dei materiali e 12 persone**: restano da confermare, come prima (LEGGIMI punti 3, 4 e 5). Le 12 persone non sono più in pagina.
+- **Titolo a 80 px dal bordo**, come nello scheletro di prima (D4), anche se in basso e senza foto accanto: il controllo per zona va rifatto con le altre home dell'ondata.
+- **Il giudizio dei clienti tipo e del giudice da agenzia** non è stato rifatto in questo giro: le misure e le prove d'uso passano, ma il voto va chiesto.
+- Confronto a 1440 con la versione professionale, OrthoLite e Hikinoro (schermate del 3/11 in `_prova/alto/concorrenti/`): `_prova/alto/confronto-1440.jpg`.
+
+Nota di prima, del livello professionale, qui sotto.
+
+
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP, logo PNG), carattere in `sito/fonts/` con la licenza `OFL.txt`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini `pro_img.py`, pagina dal sorgente `pro_index.html`, screenshot `pro_shoot.mjs`, controlli `pro_controlli.mjs` con l'esito in `_prova/pro_controlli.json`; con `--tieni` restano le prove a 320, 768 e 1024 in `_prova/tmp-build/`).
 
 Screenshot (stessi nomi di prima): `home-1440.jpg` (5400 px circa), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8700 px circa), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede).

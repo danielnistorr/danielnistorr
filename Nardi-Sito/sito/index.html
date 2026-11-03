@@ -3,364 +3,330 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nardi: stucchi, gessi e malte dal 1985</title>
+<title>Nardi: stucchi, gessi e malte da Tombelle di Saonara</title>
 <meta name="description" content="Nardi produce stucchi, gessi e malte in polvere e in pasta a Tombelle di Saonara (PD) dal 1985: Briko Line per il fai da te, Artelinea per il professionista. Ordini dei negozi 049 879 0626, lun-ven 8-12 e 14-18.">
 <link rel="icon" href="img/logo-nardi-verde.png">
 <style>
-@font-face{font-family:"Encode Sans";font-style:normal;font-weight:400 700;font-stretch:75% 100%;font-display:swap;src:url(fonts/encode-sans-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Encode Sans";font-style:normal;font-weight:400 700;font-stretch:75% 100%;font-display:swap;src:url(fonts/encode-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Kumbh Sans";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/kumbh-sans-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Kumbh Sans";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/kumbh-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-/* Colori: il verde del logo (scurito per il testo), il suo scuro per i blocchi pieni, il lilla della facciata. Neutri freddi. */
+/* Colori. Fondo bianco; il grigio gesso (#F0F0F0) è il fondo da studio delle scatole e torna solo nella sezione della ricerca.
+   Il verde del logo, scurito per il testo, è l'unico accento; il suo scuro fa il piede. I colori pieni vengono solo dalle scatole. */
 :root{
-  --verde:#276E59; --verde-scuro:#173F33; --lilla:#9396C8; --lilla-chiaro:#C9CBE4;
-  --nero:#17201C; --testo-2:#4A5450; --linea:#D3D9D6; --linea-scura:#3E6257; --grigio:#F1F3F2; --bianco:#FFFFFF;
-  --f:"Encode Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  /* otto misure di carattere a 1440 e otto a 390 */
-  --t-et:14px; --t-pic:17px; --t-cor:19px; --t-lead:23px; --t-h3:23px; --t-tel:32px; --t-h2:48px; --t-h1:68px; --t-num:120px;
-  --margine:80px; --sezione:120px; --testata:88px;
+  --fondo:#FFFFFF; --gesso:#F0F0F0; --bianco:#FFFFFF; --inchiostro:#1C1D1B; --testo-2:#50544F; --linea:#CBCBC6; --linea-forte:#1C1D1B;
+  --verde:#276E59; --verde-scuro:#173F33; --su-verde:#C9D8D2;
+  --f:"Kumbh Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* tipografia: una famiglia, quattro misure di lavoro e una d'interfaccia */
+  --t-h1:32px; --t-h2:28px; --t-nome:19px; --t-testo:19px; --t-pic:16px; --t-int:14px;
+  /* una griglia sola: 12 colonne, stessi margini per tutta la pagina */
+  --m:40px; --g:16px; --larghezza:1840px; --testata:76px;
+  /* due spazi tra le sezioni: il passo e la pausa del culmine */
+  --passo:112px; --pausa:176px;
 }
-@media (max-width:1279px){:root{--t-num:96px}}
-@media (max-width:1023px){:root{--t-h1:56px;--t-h2:40px;--t-num:96px;--margine:40px;--sezione:96px;--testata:72px}}
-@media (max-width:599px){:root{--t-pic:16px;--t-cor:17px;--t-lead:19px;--t-h3:19px;--t-tel:24px;--t-h2:30px;--t-h1:40px;--t-num:64px;--margine:20px;--sezione:72px}}
+@media (max-width:1023px){:root{--m:32px;--t-h2:26px;--passo:88px;--pausa:128px;--testata:68px}}
+@media (max-width:599px){:root{--m:16px;--g:8px;--t-h1:24px;--t-h2:24px;--t-nome:18px;--t-testo:17px;--t-pic:15px;--passo:72px;--pausa:96px;--testata:60px}}
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bianco);color:var(--nero);font:400 var(--t-cor)/1.55 var(--f);font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--fondo);color:var(--inchiostro);font:400 var(--t-testo)/1.58 var(--f);font-variant-numeric:tabular-nums}
 img{display:block;max-width:100%;height:auto}
 a{color:var(--verde);text-underline-offset:3px;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--lilla);outline-offset:2px}
-h1,h2,h3{margin:0;font-weight:700;font-stretch:75%;letter-spacing:-.005em}
-h1{font-size:var(--t-h1);line-height:1}
-h2{font-size:var(--t-h2);line-height:1.05}
-h3{font-size:var(--t-h3);line-height:1.2}
+:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:var(--t-h1);line-height:1.25}
+h2{font-size:var(--t-h2);line-height:1.28}
+h3{font-size:var(--t-nome);line-height:1.35;font-weight:600;letter-spacing:0}
 p{margin:0}
 [id]{scroll-margin-top:calc(var(--testata) + 16px)}
-main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
-.contenitore{max-width:calc(1280px + 2 * var(--margine));margin:0 auto;padding:0 var(--margine)}
-.etichetta{font-size:var(--t-et);line-height:1.3;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde)}
-.piccolo{font-size:var(--t-pic);line-height:1.5}
-.secondario{color:var(--testo-2)}
 .nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);max-width:calc(var(--larghezza) + 2 * var(--m));margin:0 auto;padding:0 var(--m)}
+.griglia > *{min-width:0}
+.pic{font-size:var(--t-pic);line-height:1.5}
+.int{font-size:var(--t-int);line-height:1.43}
+.sec{color:var(--testo-2)}
 
-/* Bottoni: un modello, pieno o con il bordo, raggio 4, alti 56 (48 in testata, 58 il telefono) */
-.bottone{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border:2px solid var(--verde);border-radius:4px;font:700 var(--t-pic)/1.1 var(--f);text-decoration:none;cursor:pointer;white-space:nowrap;text-align:center}
+/* Bottoni: un modello, pieno o con il bordo, angoli vivi, alto 52 */
+.bottone{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:2px solid var(--verde);border-radius:2px;font:600 17px/1.15 var(--f);text-decoration:none;cursor:pointer;text-align:center}
 .pieno{background:var(--verde);color:var(--bianco)}
 .pieno:hover{background:var(--verde-scuro);border-color:var(--verde-scuro)}
 .bordo{background:transparent;color:var(--verde)}
-.bordo:hover{background:var(--grigio)}
-.grigio .bordo:hover,.certificato .bordo:hover{background:var(--bianco)}
-.su-scuro .pieno{background:var(--bianco);border-color:var(--bianco);color:var(--verde-scuro)}
-.su-scuro .pieno:hover{background:var(--lilla-chiaro);border-color:var(--lilla-chiaro)}
-.su-scuro .bordo{border-color:var(--bianco);color:var(--bianco)}
-.su-scuro .bordo:hover{background:var(--linea-scura)}
-.bottone.tel-grande{min-height:58px;font-size:var(--t-tel);font-stretch:75%;padding:0 28px;letter-spacing:.01em}
-.alto{min-height:58px}
+.bordo:hover{background:var(--bianco)}
+/* collegamento a riga: testo, filetto sotto e freccia */
+.riga-link{font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding:6px 0}
+.riga-link::after{content:" \2192"}
+.riga-link:hover{border-bottom-width:2px}
 
 /* Testata fissa */
-.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
-.testata-riga{display:flex;align-items:center;gap:32px;height:var(--testata)}
-.logo img{width:180px;height:41px}
-.menu{display:flex;gap:28px;margin-left:8px}
-.menu a{color:var(--nero);text-decoration:none;font-size:var(--t-pic);font-weight:400}
+.testata{position:sticky;top:0;z-index:20;background:var(--fondo);border-bottom:1px solid var(--linea)}
+.testata .griglia{align-items:center;height:var(--testata)}
+.logo{grid-column:1 / span 2;justify-self:start}
+.logo img{width:150px;height:34px}
+.cerca-testa{grid-column:3 / span 3;display:flex}
+.cerca-testa input{width:100%;height:44px;padding:0 14px;border:1px solid var(--testo-2);border-radius:2px;background:var(--bianco);font:400 16px var(--f);color:var(--inchiostro)}
+.cerca-testa input::placeholder,.cerca-grande input::placeholder,.cerca-ap input::placeholder{color:var(--testo-2)}
+.menu{grid-column:6 / span 5;display:flex;gap:28px;justify-content:center}
+.menu a{color:var(--inchiostro);text-decoration:none;font-size:17px}
 .menu a:hover{color:var(--verde);text-decoration:underline}
 .menu .solo-menu{display:none}
-.testata-azioni{margin-left:auto;display:flex;gap:12px}
-.testata .bottone{min-height:48px;padding:0 18px}
-.menu-bottone{display:none;min-height:48px;padding:0 4px 0 12px;border:0;background:none;font:700 var(--t-pic) var(--f);color:var(--nero);cursor:pointer}
-@media (max-width:1279px){.menu{gap:20px}.testata-riga{gap:24px}}
+.chiama{grid-column:11 / span 2;justify-self:end;text-align:right;line-height:1.25}
+.chiama a{display:block;color:var(--inchiostro);font-weight:600;font-size:17px;text-decoration:none;padding:2px 0}
+.chiama a:hover{color:var(--verde);text-decoration:underline}
+.chiama a span{font-weight:400}
+.chiama .stato{justify-content:flex-end;font-size:var(--t-int);font-weight:400;color:var(--testo-2)}
+.menu-bottone{display:none;min-height:44px;padding:0 4px 0 12px;border:0;background:none;font:600 17px var(--f);color:var(--inchiostro);cursor:pointer}
+.stato{display:flex;align-items:center;gap:8px}
+.stato::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--testo-2);flex:none}
+.stato.aperto::before{background:var(--verde)}
 @media (max-width:1179px){
-  .menu{display:none;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;margin:0;padding:8px var(--margine) 24px;background:var(--bianco);border-bottom:1px solid var(--linea)}
+  .menu{display:none;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;padding:8px var(--m) 24px;background:var(--fondo);border-bottom:1px solid var(--linea)}
   .menu.aperto{display:flex}
-  .menu a{padding:12px 0;border-bottom:1px solid var(--linea);font-size:var(--t-cor)}
-  .menu .solo-menu{display:inline-flex;margin-top:16px;border-bottom:2px solid var(--verde);padding:0 24px}
-  .testata-richiesta{display:none}
-  .menu-bottone{display:block}
-  .testata-azioni{gap:4px}
+  .menu a{padding:13px 0;border-bottom:1px solid var(--linea);font-size:var(--t-testo)}
+  .menu .solo-menu{display:block}
+  .cerca-testa{grid-column:3 / span 5}
+  .menu-bottone{display:block;grid-column:8 / span 2;justify-self:center}
+  .chiama{grid-column:10 / span 3}
+}
+@media (max-width:1023px){
+  .cerca-testa{display:none}
+  .logo{grid-column:1 / span 4}
+  .menu-bottone{grid-column:11 / span 2;justify-self:end;grid-row:1}
+  .chiama{grid-column:6 / span 5;grid-row:1}
 }
 @media (max-width:599px){
-  .logo img{width:128px;height:29px}
-  .testata-riga{gap:10px}
-  .testata .bottone{padding:0 14px}
-  .testata .ordini-parola{display:none}
+  .logo img{width:118px;height:27px}
+  .chiama{grid-column:5 / span 6}
+  .chiama .stato,.chiama a span{display:none}
+  .chiama a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;background:var(--verde);color:var(--bianco);border-radius:2px;font-size:16px}
+  .chiama a:hover{background:var(--verde-scuro);color:var(--bianco);text-decoration:none}
 }
 
-/* Apertura: testo e ordini a sinistra, il magazzino a vivo a destra; sotto, la fascia della ricerca */
-.apertura{display:grid;grid-template-columns:minmax(var(--margine),1fr) minmax(0,640px) minmax(0,640px) minmax(var(--margine),1fr);
-  grid-template-areas:". testo foto foto" ". ordini foto foto" "cerca cerca cerca cerca"}
-.apertura > *{min-width:0}
-.ap-testo{grid-area:testo;padding:56px 32px 0 0}
-.ap-ordini{grid-area:ordini;padding:36px 64px 52px 0}
-.ap-foto{grid-area:foto;margin:0;position:relative;background:var(--grigio)}
-.ap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ap-cerca{grid-area:cerca;background:var(--grigio)}
-.apertura h1{margin-top:16px}
-.apertura .lead{margin-top:20px;font-size:var(--t-lead);line-height:1.4;max-width:30em}
-.ordini{border-top:2px solid var(--nero);padding-top:18px}
-.ordini-testa{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.ordini .bottoni{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px}
-.ordini .orari{margin-top:14px}
-.ordini .orari a{font-weight:700}
-.stato{display:flex;align-items:center;gap:10px;font-size:var(--t-pic);font-weight:700}
-.stato::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--testo-2);flex:none}
-.stato.aperto::before{background:var(--verde)}
-.su-scuro .stato::before{background:var(--lilla-chiaro)}
-.su-scuro .stato.aperto::before{background:var(--bianco)}
+/* Apertura: le sei scatole in fila, una per lavoro, sullo stesso fondo */
+.apertura{padding:16px 0 0}
+.tessere{list-style:none;margin:0;padding:0;display:contents}
+.tessera{grid-column:span 2;margin:0}
+.tessera img{width:100%;aspect-ratio:1 / 2.9;object-fit:cover;object-position:50% 100%}
+.tessera figcaption{margin-top:10px;font-size:var(--t-pic);font-weight:600;line-height:1.3}
+.apertura h1{grid-column:1 / span 8;margin-top:40px}
+.cerca-ap{display:none}
+@media (max-width:1023px){.apertura h1{grid-column:1 / span 10}}
+@media (max-width:599px){
+  .apertura{padding-top:8px}
+  .tessera{grid-column:span 4}
+  .tessera:nth-child(n+4){margin-top:10px}
+  .tessera img{aspect-ratio:1 / 2.2}
+  .tessera figcaption{margin-top:6px;font-size:14px}
+  .apertura h1{grid-column:1 / -1;margin-top:18px}
+  .cerca-ap{display:flex;grid-column:1 / -1;margin-top:14px}
+  .cerca-ap input{width:100%;height:52px;padding:0 14px;border:1px solid var(--inchiostro);border-radius:2px;background:var(--bianco);font:400 17px var(--f);color:var(--inchiostro)}
+}
 
-.ap-cerca .contenitore{padding-top:28px;padding-bottom:28px}
-.cerca{display:grid;grid-template-columns:300px minmax(0,1fr);gap:8px 32px;align-items:center}
-.cerca label{font-size:var(--t-pic);line-height:1.35;font-weight:400}
-.cerca label b{display:block;font-weight:700}
-.cerca-riga{display:flex;gap:8px}
-.cerca input{flex:1;min-width:0;height:56px;padding:0 18px;border:2px solid var(--nero);border-radius:4px;font:400 var(--t-cor) var(--f);color:var(--nero);background:var(--bianco)}
-.cerca input::placeholder{color:var(--testo-2)}
-.lavori-titolo{margin:20px 0 10px}
-.lavori{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
-.lavori button{white-space:normal;display:flex;align-items:center;gap:10px;width:100%;min-height:72px;height:100%;padding:3px 12px 3px 3px;border:1px solid var(--linea);border-radius:4px;background:var(--bianco);font:700 var(--t-pic)/1.15 var(--f);color:var(--nero);text-align:left;cursor:pointer}
-.lavori button:hover{border-color:var(--verde)}
-.lavori button[aria-pressed="true"]{border:2px solid var(--verde);padding:2px 11px 2px 2px}
-.lavori img{width:64px;height:64px;flex:none;border-radius:2px}
-.lavori .freccia{margin-left:auto;color:var(--verde);flex:none}
-.dove-breve{margin-top:16px;font-size:var(--t-pic);line-height:1.7}
-.solo-stretto{display:none}
-@media (min-width:1024px){.lavori .freccia{display:none}}
+/* Sezioni: tutte sulla stessa griglia, divise da un filetto */
+.sezione{padding:var(--passo) 0}
+.sezione + .sezione{border-top:1px solid var(--linea)}
+.testo > p{margin-top:18px;max-width:34em}
+.testo h2 + p{margin-top:16px}
+.azioni{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
 
-/* Risultati della ricerca */
+/* Cosa devi fare? La ricerca e i sei lavori, sul grigio gesso: è lo strumento della pagina */
+.cerca-sez{background:var(--gesso);margin-top:var(--passo)}
+.cerca-sez .testo{grid-column:1 / span 4}
+.cerca-grande{margin-top:24px;display:flex;gap:8px}
+.cerca-grande input{flex:1;min-width:0;height:56px;padding:0 16px;border:2px solid var(--inchiostro);border-radius:2px;background:var(--bianco);font:400 var(--t-testo) var(--f);color:var(--inchiostro)}
+.cerca-grande .bottone{min-height:56px}
+.lavori{grid-column:6 / span 7;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-top:1px solid var(--linea-forte);align-self:start}
+.lavori li{border-bottom:1px solid var(--linea)}
+.lavori button{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px;width:100%;min-height:76px;padding:12px 0;border:0;background:none;font:inherit;color:var(--inchiostro);text-align:left;cursor:pointer}
+.lavori b{font-size:var(--t-nome);font-weight:600;line-height:1.3}
+.lavori small{grid-column:1;font-size:var(--t-pic);color:var(--testo-2);line-height:1.35}
+.lavori .freccia{grid-row:1 / span 2;grid-column:2;color:var(--verde);font-size:20px}
+.lavori button:hover b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.lavori button[aria-pressed="true"] b{color:var(--verde)}
+.lavori button[aria-pressed="true"]{box-shadow:inset 0 -3px 0 var(--verde)}
+.altre{grid-column:6 / span 7;margin-top:22px;font-size:var(--t-pic);line-height:1.9}
+.altre button{border:0;background:none;padding:0;margin-right:16px;font:600 var(--t-pic) var(--f);color:var(--verde);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#risultati{grid-column:1 / -1}
 #risultati:empty{display:none}
-#risultati{margin-top:24px;border-top:2px solid var(--nero);background:var(--grigio)}
+#risultati{margin-top:40px;border-top:2px solid var(--linea-forte)}
 .ris-testa{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--linea)}
-.ris-testa p{font-weight:700;font-size:var(--t-pic)}
-.ris-testa button,.ris-altri{border:0;background:none;padding:12px 0;font:700 var(--t-pic) var(--f);color:var(--verde);text-decoration:underline;cursor:pointer}
-.ris-lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
-.prodotto{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--linea);min-width:0}
+.ris-testa p{font-weight:600;font-size:var(--t-pic)}
+.ris-testa button,.ris-altri{border:0;background:none;padding:12px 0;font:600 var(--t-pic) var(--f);color:var(--verde);text-decoration:underline;cursor:pointer}
+.ris-lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
+.prodotto{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:22px 24px 22px 0;border-bottom:1px solid var(--linea);min-width:0}
 .prodotto.senza-foto{grid-template-columns:1fr}
-.prodotto img{width:96px;height:96px;border-radius:4px;background:var(--bianco)}
-.prodotto h3 a{color:var(--nero);text-decoration:none}
+.prodotto img{width:96px;height:96px;background:var(--bianco)}
+.prodotto h3 a{color:var(--inchiostro);text-decoration:none}
 .prodotto h3 a:hover{text-decoration:underline}
+.prodotto .linea-p{font-size:var(--t-int);color:var(--testo-2)}
 .prodotto .impiego{margin-top:6px;font-size:var(--t-pic);color:var(--testo-2)}
 .uso{margin:12px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;font-size:var(--t-pic)}
 .uso div{display:flex;flex-wrap:wrap;gap:0 8px;min-width:0}
-.uso dt{font-weight:700}
+.uso dt{font-weight:600}
 .uso dd{margin:0;min-width:0}
 .conf{margin-top:10px;font-size:var(--t-pic)}
-.cod{font-weight:700}
-.prodotto .link{margin-top:10px;display:flex;flex-wrap:wrap;gap:0 24px;font-size:var(--t-pic)}
-.prodotto .link a{display:inline-block;padding:10px 0;font-weight:700}
+.cod{font-weight:600}
+.prodotto .link{margin-top:8px;display:flex;flex-wrap:wrap;gap:0 24px;font-size:var(--t-pic)}
+.prodotto .link a{display:inline-block;padding:10px 0;font-weight:600}
 .ris-vuoto{padding:16px 0;font-size:var(--t-pic)}
 
-/* Blocchi */
-.blocco{padding:var(--sezione) 0}
-.scuro{background:var(--verde-scuro);color:var(--bianco)}
-.scuro .etichetta{color:var(--lilla-chiaro)}
-.scuro a:not(.bottone){color:var(--bianco)}
-.lilla{background:var(--lilla);color:var(--nero)}
-.lilla .etichetta{color:var(--nero)}
-.lilla a:not(.bottone){color:var(--nero)}
-.grigio{background:var(--grigio)}
-.due{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
-.due.inverso{grid-template-columns:7fr 5fr}
-.due > *,.contatti-griglia > *{min-width:0}
-.testo-sezione h2{margin-top:14px}
-.testo-sezione > p:not(.etichetta){margin-top:20px;max-width:34em}
-.azioni{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
-
-/* Numeri: il gesto di scala della pagina */
-.numeri{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
-.numeri li{padding:4px 32px 0;border-left:1px solid var(--linea-scura)}
-.numeri li:first-child{border-left:0;padding-left:0}
-.numeri b{display:block;font-size:var(--t-num);line-height:1;font-stretch:75%;font-weight:700;letter-spacing:-.01em}
-.numeri span{display:block;margin-top:16px;font-size:var(--t-pic);line-height:1.4;color:var(--lilla-chiaro);max-width:16em}
-
-/* Negozi */
-.passi{list-style:none;margin:0;padding:0;counter-reset:passo;border-top:2px solid var(--nero)}
-.passi li{counter-increment:passo;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid var(--linea)}
-.passi li::before{content:counter(passo);font-weight:700;font-stretch:75%;font-size:var(--t-tel);line-height:1;color:var(--verde)}
-.passi strong{display:block;font-size:var(--t-h3);font-stretch:75%;line-height:1.2;margin-bottom:6px}
-
-/* Linee e scatole */
-.linee{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-.linea a{display:block;color:var(--nero);text-decoration:none;height:100%}
-.linea img{width:100%;aspect-ratio:1;border-radius:4px;background:var(--bianco)}
-.linea h3{margin-top:18px}
-.linea p{margin-top:8px;font-size:var(--t-pic);color:var(--testo-2)}
-.linea .vai{display:inline-block;margin-top:12px;color:var(--verde);font-weight:700;font-size:var(--t-pic);text-decoration:underline}
-.linea a:hover h3{text-decoration:underline}
-.scatole-testa{margin-top:96px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.scatole{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
-.scatole button{display:block;width:100%;padding:0;border:0;background:none;font:700 var(--t-pic)/1.25 var(--f);color:var(--nero);text-align:left;cursor:pointer}
-.scatole img{width:100%;aspect-ratio:1;border-radius:4px;background:var(--bianco);border:1px solid transparent}
-.scatole button:hover img{border-color:var(--verde)}
-.scatole button:hover span{text-decoration:underline}
-.scatole span{display:block;margin-top:12px}
-
-/* Elenco codici */
-.elenco{margin-top:96px;border-top:2px solid var(--nero);padding-top:32px}
-.elenco-testa{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.elenco-testa p{margin-top:6px}
-.elenco details{margin-top:24px}
-.elenco summary{list-style:none;cursor:pointer}
+/* Prodotti e codici: le quattro linee come righe d'indice, poi l'elenco completo */
+.prodotti .testo{grid-column:1 / span 4}
+.indice{grid-column:6 / span 7;list-style:none;margin:0;padding:0;border-top:1px solid var(--linea-forte);align-self:start}
+.indice li{border-bottom:1px solid var(--linea)}
+.indice a{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr) auto;gap:4px var(--g);align-items:baseline;padding:20px 0;color:var(--inchiostro);text-decoration:none}
+.indice b{font-size:var(--t-nome);font-weight:600}
+.indice span{font-size:var(--t-pic);color:var(--testo-2)}
+.indice em{font-style:normal;font-size:var(--t-pic);font-weight:600;color:var(--verde);white-space:nowrap}
+.indice a:hover b{text-decoration:underline;text-underline-offset:3px}
+.elenco{grid-column:6 / span 7;margin-top:32px}
+.elenco summary{list-style:none;cursor:pointer;display:inline-flex}
 .elenco summary::-webkit-details-marker{display:none}
 .elenco details[open] summary .chiuso,.elenco details:not([open]) summary .aperto-t{display:none}
 .filtri{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
-.filtri button{min-height:48px;padding:0 18px;border:1px solid var(--linea);border-radius:4px;background:var(--bianco);font:700 var(--t-pic) var(--f);color:var(--nero);cursor:pointer}
+.filtri button{min-height:44px;padding:0 16px;border:1px solid var(--linea);border-radius:2px;background:var(--bianco);font:600 var(--t-pic) var(--f);color:var(--inchiostro);cursor:pointer}
 .filtri button[aria-pressed="true"]{border:2px solid var(--verde);color:var(--verde)}
 .tabella{width:100%;border-collapse:collapse;font-size:var(--t-pic);margin-top:8px}
 .tabella th,.tabella td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid var(--linea)}
-.tabella thead th{font-size:var(--t-et);text-transform:uppercase;letter-spacing:.08em;color:var(--testo-2)}
-.tabella tbody th{font-weight:700;width:32%}
-.tabella tbody th a{color:var(--nero)}
-.tabella .gruppo th{padding-top:32px;font-size:var(--t-h3);font-stretch:75%;width:auto;border-bottom:2px solid var(--nero)}
-.tabella .gruppo span{font-size:var(--t-pic);font-stretch:100%;font-weight:400;color:var(--testo-2);margin-left:8px}
-.tabella .schede a{display:inline-block;margin-right:16px;font-weight:700;padding:2px 0}
+.tabella thead th{font-size:var(--t-int);font-weight:600;color:var(--testo-2)}
+.tabella tbody th{font-weight:600;width:33%}
+.tabella tbody th a{color:var(--inchiostro)}
+.tabella .gruppo th{padding-top:32px;font-size:var(--t-nome);width:auto;border-bottom:1px solid var(--linea-forte)}
+.tabella .gruppo span{font-size:var(--t-pic);font-weight:400;color:var(--testo-2);margin-left:8px}
+.tabella .schede a{display:inline-block;margin-right:16px;font-weight:600;padding:2px 0}
 .muto{color:var(--testo-2)}
 .stampa-testa{display:none}
 
-/* Professionisti: la dichiarazione di prestazione in un riquadro */
-.certificato{background:var(--grigio);border-radius:4px;padding:40px;display:grid;grid-template-columns:168px 1fr;gap:32px;align-items:start}
-.certificato img{width:168px;height:168px;border-radius:4px;background:var(--bianco)}
-.certificato h3{margin-top:10px}
-.cert-dati{margin:20px 0 0;border-top:1px solid var(--linea)}
-.cert-dati div{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
-.cert-dati dt{color:var(--testo-2)}
-.cert-dati dd{margin:0;font-weight:700}
-.certificato .bottone{margin-top:24px}
+/* Per i negozi: il magazzino e i tre passi; sotto la foto, dove si compra */
+.foto-mag{grid-column:1 / span 7;margin:0}
+.foto-mag img{width:100%;aspect-ratio:16 / 9;object-fit:cover}
+figcaption.due-voci{margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-size:var(--t-pic);line-height:1.4}
+figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
+.negozi .testo{grid-column:9 / span 4;grid-row:1 / span 2}
+.passi{list-style:none;margin:28px 0 0;padding:0;counter-reset:passo;border-top:1px solid var(--linea-forte)}
+.passi li{counter-increment:passo;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
+.passi li::before{content:counter(passo);font-weight:600;color:var(--verde)}
+.passi strong{display:block;font-size:var(--t-nome);font-weight:600;line-height:1.35;margin-bottom:2px}
+.dove{grid-column:1 / span 7;margin-top:56px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));column-gap:var(--g)}
+.dove h3{grid-column:1 / span 3}
+.dove > div{grid-column:4 / span 4}
+.dove p + p{margin-top:12px}
 
-/* Dove */
-.negozi-elenco{list-style:none;margin:14px 0 0;padding:0;border-top:2px solid var(--nero)}
-.negozi-elenco li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
-.negozi-elenco span{color:var(--testo-2);text-align:right}
-.dove-foto{margin:0}
-.dove-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
-.alcuni{margin-top:48px}
+/* Professionisti: il sacco in tessera, il testo, la dichiarazione di prestazione */
+.professionisti .testo{grid-column:1 / span 5}
+.dop{grid-column:7 / span 6;border-top:1px solid var(--linea-forte);padding-top:16px;align-self:start}
+.dop dl{margin:16px 0 0}
+.dop dl div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:var(--t-pic)}
+.dop dt{color:var(--testo-2)}
+.dop dd{margin:0;font-weight:600}
+.dop .riga-link{display:inline-block;margin-top:20px;font-size:var(--t-pic)}
 
-/* Azienda */
-.azienda-foto{margin:0;max-width:533px}
-.azienda-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
-.azienda-foto figcaption{margin-top:12px;font-size:var(--t-pic)}
-.fatti{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--nero)}
-.fatti li{padding:14px 0;border-bottom:1px solid var(--nero);font-size:var(--t-pic)}
-.fatti b{font-stretch:75%;font-size:var(--t-h3);margin-right:10px}
+/* Culmine: la sede, la scatola fatta muro */
+.culmine{padding:var(--pausa) 0}
+.foto-sede{grid-column:1 / -1;margin:0}
+.foto-sede img{width:100%;aspect-ratio:1920 / 700;object-fit:cover}
+.firma{font-size:var(--t-h2);line-height:1.28;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+.culmine h2{grid-column:1 / span 6;margin-top:56px}
+.culmine .testo{grid-column:7 / span 6;margin-top:56px}
+.culmine .testo p + p{margin-top:14px}
+.culmine .testo > p:first-child{margin-top:4px}
 
 /* Contatti e modulo */
-.contatti-griglia{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
-.dati{margin-top:28px;border-top:2px solid var(--nero)}
-.dati > div{padding:16px 0;border-bottom:1px solid var(--linea)}
-.dati dt{font-size:var(--t-et);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
-.dati dd{margin:6px 0 0}
-.dati dd a{font-weight:700}
-.orari-t{width:100%;border-collapse:collapse;font-size:var(--t-pic);margin-top:8px}
-.orari-t th{text-align:left;font-weight:400;padding:2px 16px 2px 0}
-.orari-t td{text-align:right;padding:2px 0}
-.contatti-azioni{margin-top:24px;display:grid;gap:8px}
-.modulo{background:var(--bianco);border:1px solid var(--linea);border-radius:4px;padding:40px}
-.modulo h3{font-size:var(--t-h3)}
-.modulo > p{margin-top:8px;font-size:var(--t-pic);color:var(--testo-2)}
-.campi{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:24px}
+.contatti .testo{grid-column:1 / span 5}
+.dati{margin:24px 0 0;border-top:1px solid var(--linea-forte)}
+.dati > div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr);gap:var(--g);padding:16px 0;border-bottom:1px solid var(--linea)}
+.dati dt{font-size:var(--t-pic);font-weight:600}
+.dati dd{margin:0;font-size:var(--t-pic)}
+.dati dd .grande{font-size:var(--t-nome);font-weight:600}
+.orari-t{border-collapse:collapse;margin-top:6px}
+.orari-t th{text-align:left;font-weight:400;padding:2px 24px 2px 0}
+.orari-t td{padding:2px 0}
+.modulo{grid-column:7 / span 6;background:var(--gesso);padding:40px;align-self:start}
+.modulo h3{font-size:var(--t-h2);font-weight:400;line-height:1.28}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:18px var(--g);margin-top:24px}
 .campo{display:flex;flex-direction:column;gap:6px;min-width:0}
-.campo.largo{grid-column:1/-1}
-.campo label{font-size:var(--t-pic);font-weight:700}
-.campo input,.campo select,.campo textarea{width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:4px;font:400 var(--t-pic) var(--f);color:var(--nero);background:var(--bianco)}
-.campo textarea{min-height:110px;resize:vertical}
+.campo.largo{grid-column:1 / -1}
+.campo label{font-size:var(--t-pic);font-weight:600}
+.campo input,.campo select,.campo textarea{width:100%;min-height:50px;padding:11px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-pic) var(--f);color:var(--inchiostro);background:var(--bianco)}
+.campo textarea{min-height:104px;resize:vertical}
 .campo .aiuto{font-weight:400;color:var(--testo-2)}
-.modulo-invio{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.avviso{font-size:var(--t-pic);font-weight:700;color:var(--verde-scuro)}
+.modulo-invio{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.modulo-invio .int{max-width:24em;color:var(--testo-2)}
+.avviso{font-size:var(--t-pic);font-weight:600;color:var(--verde-scuro);flex-basis:100%}
 .avviso:empty{display:none}
-.dopo-invio{margin-top:24px;padding:24px;border:2px solid var(--verde);border-radius:4px;background:var(--grigio)}
+.dopo-invio{margin-top:24px;padding:24px;border:2px solid var(--verde);background:var(--bianco)}
 .dopo-invio[hidden]{display:none}
-.dopo-invio p{font-size:var(--t-pic)}
-.dopo-invio textarea{display:block;width:100%;min-height:180px;margin-top:12px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:4px;font:400 var(--t-pic)/1.45 var(--f);color:var(--nero);background:var(--bianco)}
-.dopo-invio .azioni{margin-top:16px}
+.dopo-invio textarea{display:block;width:100%;min-height:180px;margin-top:12px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:2px;font:400 var(--t-pic)/1.45 var(--f);color:var(--inchiostro);background:var(--bianco)}
 
-/* Piede */
-.piede{background:var(--verde-scuro);color:var(--bianco);padding:96px 0 40px;font-size:var(--t-pic)}
+/* Piede: biglietto da visita, sul verde scuro */
+.piede{background:var(--verde-scuro);color:var(--bianco);padding:80px 0 40px;font-size:var(--t-pic)}
 .piede a{color:var(--bianco)}
-.piede-griglia{display:grid;grid-template-columns:4fr 2fr 2fr 3fr;gap:48px}
-.piede .logo-piede{width:146px;height:33px}
-.piede h2{font-size:var(--t-et);font-stretch:100%;letter-spacing:.08em;text-transform:uppercase;color:var(--lilla-chiaro);margin-bottom:14px}
-.piede ul{list-style:none;margin:0;padding:0}
-.piede li{padding:5px 0}
-.piede p{margin-top:14px}
-.legale{margin-top:72px;padding-top:24px;border-top:1px solid var(--linea-scura);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:var(--t-et);color:var(--lilla-chiaro)}
-.legale a{color:var(--lilla-chiaro)}
+.piede-logo{grid-column:1 / span 2}
+.piede-logo img{width:130px;height:30px}
+.piede .firma{grid-column:3 / span 5}
+.piede ul{grid-column:9 / span 4;list-style:none;margin:0;padding:0;columns:2;column-gap:var(--g)}
+.piede li{padding:0 0 10px;break-inside:avoid}
+.legale{grid-column:1 / -1;margin-top:64px;padding-top:20px;border-top:1px solid #3E6257;display:flex;flex-wrap:wrap;gap:6px 28px;font-size:var(--t-int);color:var(--su-verde)}
+.legale a{color:var(--su-verde)}
 
 @media (max-width:1023px){
-  .apertura{grid-template-columns:minmax(0,1fr);grid-template-areas:"testo" "cerca" "ordini" "foto"}
-  .ap-testo{padding:40px var(--margine) 32px}
-  .ap-ordini{padding:32px var(--margine) 40px}
-  .ap-foto img{position:static;aspect-ratio:4/3}
-  .cerca{grid-template-columns:minmax(0,1fr)}
-  .lavori{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .ris-lista{grid-template-columns:1fr}
-  .due,.due.inverso,.contatti-griglia{grid-template-columns:1fr;gap:48px}
-  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}
-  .numeri li:nth-child(odd){border-left:0;padding-left:0}
-  .linee{grid-template-columns:repeat(2,1fr)}
-  .scatole{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .piede-griglia{grid-template-columns:1fr 1fr}
+  .cerca-sez .testo,.prodotti .testo,.contatti .testo{grid-column:1 / -1}
+  .lavori,.altre,.indice,.elenco{grid-column:1 / -1}
+  .lavori,.indice{margin-top:36px}
+  .foto-mag,.negozi .testo,.dove{grid-column:1 / -1;grid-row:auto}
+  .negozi .testo{margin-top:40px}
+  .professionisti .testo{grid-column:1 / -1}
+  .dop{grid-column:1 / -1;margin-top:40px}
+  .culmine h2{grid-column:1 / -1}
+  .culmine .testo{grid-column:1 / -1;margin-top:24px}
+  .modulo{grid-column:1 / -1;margin-top:48px}
+  .piede .firma{grid-column:4 / span 9}
+  .piede ul{grid-column:1 / -1;margin-top:40px}
 }
 @media (max-width:599px){
-  .ap-testo{padding:28px var(--margine) 20px}
-  .apertura h1{margin-top:10px}
-  .apertura .lead{margin-top:12px}
-  .ap-cerca .contenitore{padding-top:16px;padding-bottom:16px}
-  .cerca label b{display:inline}
-  .lavori-titolo{margin:16px 0 8px}
-  .lavori-titolo + .lavori{margin-top:0}
-  .lavori{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .lavori button{min-height:64px;gap:8px;padding:3px 8px 3px 3px}
-  .lavori button[aria-pressed="true"]{padding:2px 7px 2px 2px}
-  .lavori img{width:56px;height:56px}
-  .lavori .freccia{display:none}
-  .solo-largo{display:none}
-  .solo-stretto{display:block}
-  .dove-breve{margin-top:12px}
-  .dove-breve.solo-stretto{display:flex;flex-wrap:wrap;gap:0 20px}
-  .ap-ordini{padding:24px var(--margine) 32px}
-  .ordini{padding-top:14px}
-  .ordini .bottoni{display:grid;grid-template-columns:1fr}
-  .prodotto{grid-template-columns:72px 1fr;gap:14px}
+  .cerca-sez{margin-top:56px}
+  .cerca-grande .bottone{padding:0 16px}
+  .lavori{grid-template-columns:1fr}
+  .lavori button{min-height:64px}
+  .ris-lista{grid-template-columns:1fr}
+  .prodotto{grid-template-columns:72px 1fr;gap:14px;padding-right:0}
   .prodotto img{width:72px;height:72px}
   .uso{grid-template-columns:1fr}
-  .numeri{row-gap:40px}
-  .numeri li{padding:0 0 0 20px}
-  .numeri span{margin-top:10px}
-  .passi li{grid-template-columns:40px 1fr;gap:12px;padding:20px 0}
-  .linee{grid-template-columns:1fr 1fr;gap:24px 16px}
-  .scatole-testa{margin-top:72px}
-  .scatole{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px}
-  .scatole span{margin-top:8px}
-  .elenco{margin-top:72px}
-  .azioni .bottone,.contatti-azioni .bottone,.elenco-testa .bottone,.elenco summary,.certificato .bottone{width:100%}
-  .certificato{grid-template-columns:1fr;padding:24px 20px;gap:20px}
-  .certificato img{width:120px;height:120px}
-  .cert-dati div{grid-template-columns:1fr;gap:2px}
-  .alcuni{margin-top:40px}
+  .indice a{grid-template-columns:1fr auto;padding:16px 0}
+  .indice span{grid-column:1 / -1;grid-row:2}
+  figcaption.due-voci{flex-direction:column;gap:2px}
+  figcaption.due-voci span:last-child{text-align:left}
+  .dove{grid-template-columns:1fr;margin-top:48px}
+  .dove h3,.dove > div{grid-column:1 / -1}
+  .dove > div{margin-top:10px}
+  .professionisti .testo .azioni .bottone{width:100%}
+  .foto-sede img{aspect-ratio:4 / 3;object-position:58% 50%}
+  .culmine h2{margin-top:32px}
+  .dati > div{grid-template-columns:1fr;gap:4px}
+  .modulo{padding:24px 16px}
+  .campi{grid-template-columns:1fr}
+  .azioni .bottone,.elenco summary{width:100%}
   .tabella thead{display:none}
   .tabella tr{display:grid;grid-template-columns:1fr;padding:12px 0;border-bottom:1px solid var(--linea)}
   .tabella th,.tabella td{border:0;padding:2px 0;width:auto}
   .tabella tbody th{width:auto}
-  .tabella .gruppo{border-bottom:2px solid var(--nero)}
-  .modulo{padding:24px 20px}
-  .campi{grid-template-columns:1fr}
-  .piede{padding-top:72px}
-  .piede-griglia{grid-template-columns:1fr;gap:36px}
+  .tabella .gruppo{border-bottom:1px solid var(--linea-forte)}
+  .piede{padding-top:64px}
+  .piede-logo{grid-column:1 / -1}
+  .piede .firma{grid-column:1 / -1;margin-top:28px}
+  .piede ul{columns:1}
 }
 @media (max-width:359px){
-  .lavori img{display:none}
-  .numeri b{font-size:52px}
-  .numeri li{padding-left:14px}
-  .lavori button{min-height:56px;padding:6px 10px}
-  .lavori button[aria-pressed="true"]{padding:5px 9px}
+  .chiama a{padding:0 10px;font-size:15px}
+  .logo img{width:100px;height:23px}
 }
 @media print{
   .testata{position:static}
-  .stampa-elenco body > *:not(main),.stampa-elenco main > *:not(#prodotti),.stampa-elenco #prodotti .contenitore > *:not(#elenco){display:none!important}
-  .stampa-elenco #prodotti{padding:0;background:none}
-  .stampa-elenco #elenco{margin:0;border:0;padding:0}
-  .stampa-elenco .elenco-testa,.stampa-elenco .filtri,.stampa-elenco #elenco summary{display:none}
-  .stampa-elenco .stampa-testa{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--nero);font:400 11px/1.4 var(--f)}
+  .stampa-elenco body > *:not(main),.stampa-elenco main > *:not(#prodotti),.stampa-elenco #prodotti .griglia > *:not(#elenco){display:none!important}
+  .stampa-elenco #prodotti{padding:0;border:0}
+  .stampa-elenco .filtri,.stampa-elenco #elenco summary{display:none}
+  .stampa-elenco .stampa-testa{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--inchiostro);font:400 11px/1.4 var(--f)}
   .stampa-elenco .stampa-testa img{width:120px;height:27px}
-  .stampa-elenco .stampa-titolo{font-size:20px;font-weight:700;font-stretch:75%;margin-top:8px}
+  .stampa-elenco .stampa-titolo{font-size:20px;font-weight:600;margin-top:8px}
   .stampa-elenco .stampa-testa p{text-align:right}
   .stampa-elenco .tabella{font-size:10.5px}
   .stampa-elenco .tabella th,.stampa-elenco .tabella td{padding:3px 10px 3px 0}
@@ -376,151 +342,96 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
 <body>
 <a class="nascosto" href="#principale">Vai al contenuto</a>
 <header class="testata">
-  <div class="contenitore testata-riga">
-    <a class="logo" href="#principale" aria-label="Nardi, inizio pagina"><img src="img/logo-nardi-verde.png" alt="Nardi" width="180" height="41"></a>
+  <div class="griglia">
+    <a class="logo" href="#principale" aria-label="Nardi, inizio pagina"><img src="img/logo-nardi-verde.png" alt="Nardi" width="150" height="34"></a>
+    <form class="cerca-testa" role="search" data-cerca-form>
+      <label class="nascosto" for="q-testa">Cerca un prodotto, un lavoro o un codice</label>
+      <input id="q-testa" type="search" placeholder="Cerca un prodotto o un codice" autocomplete="off" enterkeyhint="search">
+    </form>
     <nav class="menu" id="menu" aria-label="Principale">
-      <a href="#prodotti">Prodotti</a>
-      <a href="#negozi">Per i negozi</a>
-      <a href="#professionisti">Professionisti</a>
-      <a href="#dove">Dove si comprano</a>
-      <a href="#azienda">Azienda</a>
-      <a href="#contatti">Contatti</a>
-      <a class="bottone bordo solo-menu" href="#richiesta" data-tipo="Ordine">Richiesta o ordine</a>
+      <a class="solo-menu" href="#cerca">Cosa devi fare?</a>
+      <a href="#prodotti">Codici e schede</a>
+      <a class="solo-menu" href="#elenco" data-apri-elenco="Artelinea">Schede tecniche Artelinea</a>
+      <a href="#richiesta" data-tipo="Diventare rivenditore">Diventa rivenditore</a>
+      <a class="solo-menu" href="#negozi">Per i negozi</a>
+      <a class="solo-menu" href="#dove">Dove lo compro?</a>
+      <a class="solo-menu" href="#professionisti">Professionisti</a>
+      <a class="solo-menu" href="#azienda">Azienda</a>
+      <a href="#contatti">Contatti e orari</a>
     </nav>
-    <div class="testata-azioni">
-      <a class="bottone bordo testata-richiesta" href="#richiesta" data-tipo="Ordine">Richiesta</a>
-      <a class="bottone pieno" href="tel:+390498790626" aria-label="Chiama gli ordini, 049 879 0626"><span class="ordini-parola">Ordini</span> 049 879 0626</a>
-      <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <button class="menu-bottone" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <div class="chiama">
+      <a href="tel:+390498790626" aria-label="Chiama gli ordini, 049 879 0626"><span>Ordini </span>049 879 0626</a>
+      <p class="stato" data-stato>Lun-ven 8-12 e 14-18</p>
     </div>
   </div>
 </header>
 
 <main id="principale">
 <section class="apertura" aria-labelledby="titolo">
-  <div class="ap-testo">
-    <p class="etichetta"><span class="solo-largo">Produttori </span>dal 1985, Tombelle di Saonara (PD)</p>
-    <h1 id="titolo">Stucchi, gessi e malte</h1>
-    <p class="lead">In polvere e in pasta. Li produciamo a Tombelle di Saonara e li vendiamo ai negozi in tutta Italia.</p>
+  <div class="griglia">
+    <ul class="tessere" aria-label="Sei scatole Briko Line da 1 kg, una per lavoro">
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-crepe-330.webp" srcset="img/scatola-crepe-220.webp 220w, img/scatola-crepe-330.webp 330w, img/scatola-crepe-440.webp 440w, img/scatola-crepe-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line magenta di stucco in polvere per interni, 1 kg"><figcaption>Crepe e buchi</figcaption></figure></li>
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-fissare-330.webp" srcset="img/scatola-fissare-220.webp 220w, img/scatola-fissare-330.webp 330w, img/scatola-fissare-440.webp 440w, img/scatola-fissare-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line gialla di cemento rapido, 1 kg"><figcaption>Fissaggi</figcaption></figure></li>
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-fughe-330.webp" srcset="img/scatola-fughe-220.webp 220w, img/scatola-fughe-330.webp 330w, img/scatola-fughe-440.webp 440w, img/scatola-fughe-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line rossa di stucco in polvere per fughe, 1 kg"><figcaption>Fughe</figcaption></figure></li>
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-muri-330.webp" srcset="img/scatola-muri-220.webp 220w, img/scatola-muri-330.webp 330w, img/scatola-muri-440.webp 440w, img/scatola-muri-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line viola di malta pronta grigia, 1 kg"><figcaption>Muri</figcaption></figure></li>
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-caminetti-330.webp" srcset="img/scatola-caminetti-220.webp 220w, img/scatola-caminetti-330.webp 330w, img/scatola-caminetti-440.webp 440w, img/scatola-caminetti-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line bruna di malta refrattaria, 1 kg"><figcaption>Caminetti</figcaption></figure></li>
+      <li class="tessera"><figure style="margin:0"><img src="img/scatola-gesso-330.webp" srcset="img/scatola-gesso-220.webp 220w, img/scatola-gesso-330.webp 330w, img/scatola-gesso-440.webp 440w, img/scatola-gesso-704.webp 704w" sizes="(min-width:1920px) 280px, (min-width:1024px) calc((100vw - 160px) / 6), (min-width:600px) calc((100vw - 144px) / 6), calc((100vw - 48px) / 3)" width="704" height="2042" alt="Scatola Briko Line verde di gesso alabastrino, 1 kg"><figcaption>Calchi</figcaption></figure></li>
+    </ul>
+    <h1 id="titolo">Stucchi, gessi e malte da Tombelle di Saonara</h1>
+    <form class="cerca-ap" role="search" data-cerca-form>
+      <label class="nascosto" for="q-ap">Cerca un prodotto, un lavoro o un codice</label>
+      <input id="q-ap" type="search" placeholder="Cosa devi fare? es. fughe, caminetto" autocomplete="off" enterkeyhint="search">
+    </form>
   </div>
+</section>
 
-  <div class="ap-ordini">
-    <div class="ordini">
-      <div class="ordini-testa"><p class="etichetta">Ordini<span class="solo-largo"> dei negozi</span></p><p class="stato" data-stato>Dal lunedì al venerdì, 8-12 e 14-18</p></div>
-      <div class="bottoni">
-        <a class="bottone pieno tel-grande" href="tel:+390498790626" aria-label="Chiama gli ordini, 049 879 0626">Ordini 049 879 0626</a>
-        <a class="bottone bordo alto" href="#richiesta" data-tipo="Diventare rivenditore">Diventa rivenditore</a>
-      </div>
-      <p class="orari piccolo secondario">Dal lunedì al venerdì 8-12 e 14-18 · <a href="mailto:info@narditalia.com?subject=Ordine&amp;body=Negozio%3A%20%0ACitt%C3%A0%3A%20%0ACodici%20e%20quantit%C3%A0%3A%20%0A">info@narditalia.com</a><br><a href="#elenco" data-apri-elenco>Codici, confezioni e catalogo in PDF</a></p>
-    </div>
-  </div>
-
-  <figure class="ap-foto">
-    <img src="img/magazzino-1080.jpg" srcset="img/magazzino-720.jpg 720w, img/magazzino-1080.jpg 1080w, img/magazzino-1440.jpg 1440w, img/magazzino-1920.jpg 1920w" sizes="(min-width:1024px) 50vw, 100vw" width="1920" height="1440" alt="Il magazzino di Nardi: bancali di scatole Briko Line sulle scaffalature.">
-  </figure>
-
-  <div class="ap-cerca">
-    <div class="contenitore">
-      <form class="cerca" id="cerca" role="search" action="#risultati">
-        <label for="q"><b>Cosa devi fare?</b> Cerca un prodotto, un lavoro o un codice</label>
-        <div class="cerca-riga">
-          <input id="q" name="q" type="search" placeholder="es. fughe, caminetto" autocomplete="off" enterkeyhint="search">
-          <button class="bottone pieno" type="submit">Cerca</button>
-        </div>
+<section class="sezione cerca-sez" id="cerca" aria-labelledby="t-cerca">
+  <div class="griglia">
+    <div class="testo">
+      <h2 id="t-cerca">Cosa devi fare?</h2>
+      <p class="pic sec" id="d-cerca">Scrivi il lavoro, il nome sulla scatola o il codice.</p>
+      <form class="cerca-grande" role="search" data-cerca-form>
+        <label class="nascosto" for="q">Cerca un prodotto, un lavoro o un codice</label>
+        <input id="q" name="q" type="search" placeholder="es. fughe, caminetto, 4302010" autocomplete="off" enterkeyhint="search" aria-describedby="d-cerca">
+        <button class="bottone pieno" type="submit">Cerca</button>
       </form>
-      <div id="risultati" aria-live="polite"></div>
-      <p class="etichetta lavori-titolo solo-stretto" id="lavori-titolo">Oppure scegli il lavoro</p>
-      <ul class="lavori" aria-label="Oppure scegli il lavoro">
-        <li><button type="button" data-lavoro="crepe" aria-pressed="false"><img src="img/p-briko-line-stucco-polvere-interni-300x230-1-120.webp" alt="" width="64" height="64">Riempire crepe e buchi<span class="freccia" aria-hidden="true">→</span></button></li>
-        <li><button type="button" data-lavoro="fissare" aria-pressed="false"><img src="img/p-briko-line-cemento-rapido-120.webp" alt="" width="64" height="64">Fissare in fretta<span class="freccia" aria-hidden="true">→</span></button></li>
-        <li><button type="button" data-lavoro="fughe" aria-pressed="false"><img src="img/p-briko-line-stucco-polvere-fughe-300x230-1-1-120.webp" alt="" width="64" height="64">Fughe e piastrelle<span class="freccia" aria-hidden="true">→</span></button></li>
-        <li><button type="button" data-lavoro="muri" aria-pressed="false"><img src="img/p-briko-line-malta-pronta-grigia-120.webp" alt="" width="64" height="64">Muri e intonaci<span class="freccia" aria-hidden="true">→</span></button></li>
-        <li><button type="button" data-lavoro="caminetti" aria-pressed="false"><img src="img/p-briko-line-malta-refrattaria-120.webp" alt="" width="64" height="64">Caminetti e stufe<span class="freccia" aria-hidden="true">→</span></button></li>
-        <li><button type="button" data-lavoro="gesso" aria-pressed="false"><img src="img/p-briko-line-alabastrino-120.webp" alt="" width="64" height="64">Gesso per calchi e decori<span class="freccia" aria-hidden="true">→</span></button></li>
-      </ul>
-      <p class="dove-breve solo-stretto"><a href="#dove">Dove lo compro?</a><a href="#professionisti">Schede per professionisti</a></p>
     </div>
-  </div>
-</section>
-
-<section class="blocco scuro su-scuro numeri-fascia" aria-label="Nardi in numeri">
-  <div class="contenitore">
-    <ul class="numeri">
-      <li><b>1985</b><span>nasce la ditta Nardi, con gli stucchi decorativi in gesso</span></li>
-      <li><b>96</b><span>prodotti in catalogo</span></li>
-      <li><b>89</b><span>prodotti con la scheda tecnica in PDF</span></li>
-      <li><b>2011</b><span>l'impianto fotovoltaico per la produzione</span></li>
+    <ul class="lavori" aria-label="Scegli il lavoro">
+      <li><button type="button" data-lavoro="crepe" aria-pressed="false"><b>Riempire crepe e buchi</b><small>Stucco in polvere per interni</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
+      <li><button type="button" data-lavoro="fissare" aria-pressed="false"><b>Fissare in fretta</b><small>Cemento rapido</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
+      <li><button type="button" data-lavoro="fughe" aria-pressed="false"><b>Fughe e piastrelle</b><small>Stucco in polvere per fughe</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
+      <li><button type="button" data-lavoro="muri" aria-pressed="false"><b>Muri e intonaci</b><small>Malta pronta grigia</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
+      <li><button type="button" data-lavoro="caminetti" aria-pressed="false"><b>Caminetti e stufe</b><small>Malta refrattaria</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
+      <li><button type="button" data-lavoro="gesso" aria-pressed="false"><b>Gesso per calchi e decori</b><small>Gesso alabastrino</small><span class="freccia" aria-hidden="true">&#8594;</span></button></li>
     </ul>
+    <p class="altre">Le altre scatole da 1 kg:
+      <button type="button" data-cerca="Gesso murario">Gesso murario</button><button type="button" data-cerca="Gesso scagliola">Gesso scagliola</button><button type="button" data-cerca="Cemento grigio">Cemento grigio</button><button type="button" data-cerca="Cemento bianco">Cemento bianco</button><button type="button" data-cerca="Malta bianca">Malta pronta bianca</button><button type="button" data-cerca="Polvere ceramica bianca">Polvere ceramica</button>
+    </p>
+    <div id="risultati" aria-live="polite"></div>
   </div>
 </section>
 
-<section class="blocco" id="negozi" aria-labelledby="t-negozi">
-  <div class="contenitore due">
-    <div class="testo-sezione">
-      <p class="etichetta">Per i negozi</p>
-      <h2 id="t-negozi">Hai un negozio? Ordina per codice</h2>
-      <p>Vendiamo ai negozi in tutta Italia: ferramenta, colorifici, agrarie, brico, empori e rivendite edili. Le scatole Briko Line da 1 kg si ordinano in confezioni da 12 pezzi e a bancali.</p>
-      <div class="azioni">
-        <a class="bottone pieno" href="#richiesta" data-tipo="Diventare rivenditore">Diventa rivenditore</a>
-        <a class="bottone bordo" href="#richiesta" data-tipo="Listino prezzi">Chiedi il listino</a>
-      </div>
-    </div>
-    <ol class="passi">
-      <li><div><strong>Trova il codice</strong>Nella ricerca o nell'<a href="#elenco" data-apri-elenco>elenco dei codici e delle confezioni</a>, che si scarica anche in PDF.</div></li>
-      <li><div><strong>Chiama o scrivi</strong>Al <a href="tel:+390498790626">049 879 0626</a> dal lunedì al venerdì, 8-12 e 14-18, o a <a href="mailto:info@narditalia.com?subject=Ordine&amp;body=Negozio%3A%20%0ACitt%C3%A0%3A%20%0ACodici%20e%20quantit%C3%A0%3A%20%0A">info@narditalia.com</a> con codici e quantità.</div></li>
-      <li><div><strong>Tieni le schede di sicurezza</strong>Le <a href="#elenco" data-apri-elenco>schede di sicurezza</a> di ogni prodotto sono nell'elenco e nella ricerca. Per le domande: <a href="mailto:sicurezza@narditalia.com?subject=Schede%20di%20sicurezza">sicurezza@narditalia.com</a>.</div></li>
-    </ol>
-  </div>
-</section>
-
-<section class="blocco grigio" id="prodotti" aria-labelledby="t-prodotti">
-  <div class="contenitore">
-    <div class="testo-sezione">
-      <p class="etichetta">Prodotti</p>
+<section class="sezione prodotti" id="prodotti" aria-labelledby="t-prodotti">
+  <div class="griglia">
+    <div class="testo">
       <h2 id="t-prodotti">Quattro linee, 96 prodotti</h2>
-      <p>Per il privato e per il professionista: la scatola da 1 kg per la crepa di casa, il sacco da 25 kg per il cantiere.</p>
+      <p>La scatola da 1 kg per la crepa di casa, il sacco da 25 kg per il cantiere. Codici e confezioni come sulle schede; il listino prezzi è su richiesta.</p>
+      <div class="azioni"><a class="bottone bordo" href="catalogo-codici-nardi.pdf" download>Scarica il catalogo codici (PDF)</a></div>
     </div>
-    <ul class="linee">
-      <li class="linea"><a href="#elenco" data-apri-elenco="Briko Line"><img src="img/p-briko-line-alabastrino-480.webp" srcset="img/p-briko-line-alabastrino-240.webp 240w, img/p-briko-line-alabastrino-480.webp 480w" sizes="(min-width:1024px) 300px, 45vw" width="480" height="480" loading="lazy" alt="Scatola Briko Line di gesso alabastrino"><h3>Briko Line</h3><p>43 prodotti per il fai da te: scatole da 1 kg, secchielli da 750 g, confezioni da 5 kg.</p><span class="vai">Codici e schede</span></a></li>
-      <li class="linea"><a href="#elenco" data-apri-elenco="Artelinea"><img src="img/p-artelinea-artestucco-e180-480.webp" srcset="img/p-artelinea-artestucco-e180-240.webp 240w, img/p-artelinea-artestucco-e180-480.webp 480w" sizes="(min-width:1024px) 300px, 45vw" width="480" height="480" loading="lazy" alt="Sacco Artelinea da 25 kg di stucco in polvere Artestucco E180"><h3>Artelinea</h3><p>41 prodotti per il professionista: confezioni da 5, 10 e 25 kg e secchi.</p><span class="vai">Codici e schede</span></a></li>
-      <li class="linea"><a href="#elenco" data-apri-elenco="Gli speciali"><img src="img/p-briko-line-stucco-polvere-grossi-spessori-480.webp" srcset="img/p-briko-line-stucco-polvere-grossi-spessori-240.webp 240w, img/p-briko-line-stucco-polvere-grossi-spessori-480.webp 480w" sizes="(min-width:1024px) 300px, 45vw" width="480" height="480" loading="lazy" alt="Scatola di stucco in polvere per grossi spessori"><h3>Gli speciali</h3><p>6 prodotti: stucchi e rasanti per grossi spessori, intonaco di finitura, malta risanante.</p><span class="vai">Codici e schede</span></a></li>
-      <li class="linea"><a href="#elenco" data-apri-elenco="Altri prodotti"><img src="img/p-mastice-480.webp" srcset="img/p-mastice-240.webp 240w, img/p-mastice-480.webp 480w" sizes="(min-width:1024px) 300px, 45vw" width="480" height="480" loading="lazy" alt="Panetti di mastice per vetri da 1 kg"><h3>Altri prodotti</h3><p>6 prodotti: mastice per vetri, rete autoadesiva, isolante al solvente, segatura, secchielli.</p><span class="vai">Codici e schede</span></a></li>
+    <ul class="indice">
+      <li><a href="#elenco" data-apri-elenco="Briko Line"><b>Briko Line</b><span>43 prodotti per il fai da te: scatole da 1 kg, secchielli da 750 g, confezioni da 5 kg</span><em>Codici e schede &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Artelinea"><b>Artelinea</b><span>41 prodotti per il professionista, in confezioni da 5, 10 e 25 kg e in secchi</span><em>Codici e schede &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Gli speciali"><b>Gli speciali</b><span>Stucchi e rasanti per grossi spessori, intonaco di finitura, malta risanante</span><em>Codici e schede &#8594;</em></a></li>
+      <li><a href="#elenco" data-apri-elenco="Altri prodotti"><b>Altri prodotti</b><span>Mastice per vetri, rete autoadesiva, isolante al solvente, segatura, secchielli</span><em>Codici e schede &#8594;</em></a></li>
     </ul>
-
-    <div class="scatole-testa">
-      <div>
-        <h3>Riconosci la scatola</h3>
-        <p class="piccolo secondario">Le scatole Briko Line da 1 kg: tocca la tua per leggere come si usa.</p>
-      </div>
-    </div>
-    <ul class="scatole">
-      <li><button type="button" data-cerca="Stucco in polvere interno"><img src="img/p-briko-line-stucco-polvere-interni-300x230-1-240.webp" srcset="img/p-briko-line-stucco-polvere-interni-300x230-1-240.webp 240w, img/p-briko-line-stucco-polvere-interni-300x230-1-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Stucco in polvere per interni</span></button></li>
-      <li><button type="button" data-cerca="Stucco per fughe piastrelle bianco"><img src="img/p-briko-line-stucco-polvere-fughe-300x230-1-1-240.webp" srcset="img/p-briko-line-stucco-polvere-fughe-300x230-1-1-240.webp 240w, img/p-briko-line-stucco-polvere-fughe-300x230-1-1-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Stucco per fughe</span></button></li>
-      <li><button type="button" data-cerca="Cemento rapido"><img src="img/p-briko-line-cemento-rapido-240.webp" srcset="img/p-briko-line-cemento-rapido-240.webp 240w, img/p-briko-line-cemento-rapido-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Cemento rapido</span></button></li>
-      <li><button type="button" data-cerca="Gesso murario"><img src="img/p-briko-line-gesso-murario-240.webp" srcset="img/p-briko-line-gesso-murario-240.webp 240w, img/p-briko-line-gesso-murario-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Gesso murario</span></button></li>
-      <li><button type="button" data-cerca="Malta grigia"><img src="img/p-briko-line-malta-pronta-grigia-240.webp" srcset="img/p-briko-line-malta-pronta-grigia-240.webp 240w, img/p-briko-line-malta-pronta-grigia-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Malta pronta grigia</span></button></li>
-      <li><button type="button" data-cerca="Malta bianca"><img src="img/p-briko-line-malta-pronta-bianca-240.webp" srcset="img/p-briko-line-malta-pronta-bianca-240.webp 240w, img/p-briko-line-malta-pronta-bianca-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Malta pronta bianca</span></button></li>
-      <li><button type="button" data-cerca="Malta refrattaria"><img src="img/p-briko-line-malta-refrattaria-240.webp" srcset="img/p-briko-line-malta-refrattaria-240.webp 240w, img/p-briko-line-malta-refrattaria-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Malta refrattaria</span></button></li>
-      <li><button type="button" data-cerca="Gesso alabastrino"><img src="img/p-briko-line-alabastrino-240.webp" srcset="img/p-briko-line-alabastrino-240.webp 240w, img/p-briko-line-alabastrino-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Gesso alabastrino</span></button></li>
-      <li><button type="button" data-cerca="Gesso scagliola"><img src="img/p-briko-line-scagliola-fine-240.webp" srcset="img/p-briko-line-scagliola-fine-240.webp 240w, img/p-briko-line-scagliola-fine-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Gesso scagliola</span></button></li>
-      <li><button type="button" data-cerca="Polvere ceramica bianca"><img src="img/p-briko-line-polvere-ceramica-bianca-240.webp" srcset="img/p-briko-line-polvere-ceramica-bianca-240.webp 240w, img/p-briko-line-polvere-ceramica-bianca-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Polvere ceramica</span></button></li>
-      <li><button type="button" data-cerca="Cemento grigio"><img src="img/p-briko-line-cemento-240.webp" srcset="img/p-briko-line-cemento-240.webp 240w, img/p-briko-line-cemento-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Cemento grigio</span></button></li>
-      <li><button type="button" data-cerca="Cemento bianco"><img src="img/p-briko-line-cemento-bianco-240.webp" srcset="img/p-briko-line-cemento-bianco-240.webp 240w, img/p-briko-line-cemento-bianco-480.webp 480w" sizes="(min-width:1024px) 194px, 30vw" width="240" height="240" loading="lazy" alt=""><span>Cemento bianco</span></button></li>
-    </ul>
-
     <div class="elenco" id="elenco">
       <div class="stampa-testa" aria-hidden="true">
         <div><img src="img/logo-nardi-verde.png" alt="" width="120" height="27"><p class="stampa-titolo">Codici e confezioni</p></div>
         <p>NARDI S.r.l. Unipersonale, Via S. Antonio 24/a, 35020 Tombelle di Saonara (PD)<br>Ordini 049 879 0626, dal lunedì al venerdì 8-12 e 14-18 · info@narditalia.com<br>Elenco aggiornato al 3 novembre 2026. Listino prezzi su richiesta.</p>
       </div>
-      <div class="elenco-testa">
-        <div>
-          <h3>Codici, confezioni e schede di tutti i prodotti</h3>
-          <p class="piccolo secondario">Codici e confezioni come sulle schede, 5 pagine A4. Il listino prezzi è su richiesta.</p>
-        </div>
-        <a class="bottone pieno" href="catalogo-codici-nardi.pdf" download>Scarica il catalogo codici (PDF)</a>
-      </div>
       <details id="elenco-dettagli">
-        <summary class="bottone bordo"><span class="chiuso">Apri l'elenco dei 96 prodotti</span><span class="aperto-t">Chiudi l'elenco</span></summary>
+        <summary class="bottone bordo"><span class="chiuso">Apri l'elenco dei codici</span><span class="aperto-t">Chiudi l'elenco</span></summary>
         <div class="filtri" role="group" aria-label="Linea">
           <button type="button" data-filtro="" aria-pressed="true">Tutte le linee</button>
           <button type="button" data-filtro="Briko Line" aria-pressed="false">Briko Line</button>
@@ -642,98 +553,84 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
   </div>
 </section>
 
-<section class="blocco" id="professionisti" aria-labelledby="t-pro">
-  <div class="contenitore due">
-    <div class="testo-sezione">
-      <p class="etichetta">Per i professionisti</p>
-      <h2 id="t-pro">Sacchi, buste e schede tecniche</h2>
-      <p>Artelinea è la linea per muratori, piastrellisti, stuccatori e decoratori: 41 prodotti in confezioni da 5, 10 e 25 kg e in secchi. Ogni scheda tecnica ha i campi di impiego, le forniture con i codici e le caratteristiche tecniche.</p>
-      <p class="piccolo">Per quantità e consegna: <a href="tel:+390498790626">049 879 0626</a>, dal lunedì al venerdì 8-12 e 14-18.</p>
+<section class="sezione negozi" id="negozi" aria-labelledby="t-negozi">
+  <div class="griglia">
+    <figure class="foto-mag">
+      <img src="img/magazzino-800.webp" srcset="img/magazzino-800.webp 800w, img/magazzino-1200.webp 1200w, img/magazzino-1600.webp 1600w" sizes="(min-width:1024px) 57vw, 100vw" width="1600" height="900" loading="lazy" alt="Bancali di scatole Briko Line sulle scaffalature di un magazzino: confezioni bianche con le fasce colorate e pacchi avvolti nel film.">
+      <figcaption class="due-voci"><span>Scatole Briko Line a bancali, in magazzino</span><span>27 maggio 2016</span></figcaption>
+    </figure>
+    <div class="testo">
+      <h2 id="t-negozi">Hai un negozio? Ordina per codice</h2>
+      <p>Ferramenta, colorifici, agrarie, brico, empori e rivendite edili: le scatole Briko Line da 1 kg si ordinano in confezioni da 12 pezzi e a bancali.</p>
+      <ol class="passi">
+        <li><div><strong>Trova il codice</strong>Nella ricerca o nell'<a href="#elenco" data-apri-elenco>elenco dei codici</a>, che si scarica anche in PDF.</div></li>
+        <li><div><strong>Chiama o scrivi</strong>Agli ordini o a <a href="mailto:info@narditalia.com?subject=Ordine&amp;body=Negozio%3A%20%0ACitt%C3%A0%3A%20%0ACodici%20e%20quantit%C3%A0%3A%20%0A">info@narditalia.com</a> con codici e quantità.</div></li>
+        <li><div><strong>Tieni le schede di sicurezza</strong>Sono nell'<a href="#elenco" data-apri-elenco>elenco</a> e in ogni risultato della ricerca; per le domande, <a href="mailto:sicurezza@narditalia.com?subject=Schede%20di%20sicurezza">sicurezza@narditalia.com</a>.</div></li>
+      </ol>
       <div class="azioni">
-        <a class="bottone pieno" href="#elenco" data-apri-elenco="Artelinea">Schede tecniche Artelinea</a>
-        <a class="bottone bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Sant%27Antonio%2024%2Fa%2C%2035020%20Tombelle%20di%20Saonara%20PD">Sede nel navigatore</a>
+        <a class="bottone pieno" href="#richiesta" data-tipo="Diventare rivenditore">Diventa rivenditore</a>
+        <a class="bottone bordo" href="#richiesta" data-tipo="Listino prezzi">Chiedi il listino</a>
       </div>
     </div>
-    <div class="certificato">
-      <img src="img/p-artelinea-artestucco-e180-240.webp" alt="Sacco da 25 kg di Artestucco E180" width="168" height="168" loading="lazy">
+    <div class="dove" id="dove">
+      <h3>Dove si compra Briko Line</h3>
       <div>
-        <p class="etichetta">Dichiarazione di prestazione CE</p>
-        <h3>Dichiarazione di prestazione n. 1 - E180 - 2017</h3>
-        <dl class="cert-dati">
-          <div><dt>Prodotto</dt><dd>Artestucco E180, stucco in polvere</dd></div>
-          <div><dt>Norma</dt><dd>UNI EN 13279-1</dd></div>
-          <div><dt>Reazione al fuoco</dt><dd>Classe A1</dd></div>
-        </dl>
-        <a class="bottone bordo" href="https://narditalia.com/wp-content/uploads/2016/10/DICHIARAZIONE-DI-PRESTAZIONE-E1803085.pdf">Scarica il PDF</a>
+        <p class="pic">Nelle ferramenta, nei colorifici, nelle agrarie, nei vivai, nei brico e negli empori. Chiedila al tuo negozio con il nome o il codice scritto sulla scatola. <a href="tel:+390498790626">Non la trovi? Chiama gli ordini</a>.</p>
+        <p class="pic sec">La vendono, tra gli altri, Polato Ferramenta a Monselice (PD), Emporium La Cometa a Castel d'Ario (MN), Santilli Vivai a Celano (AQ), Ferramenta Stella a Vietri sul Mare (SA) e Brico 5 Stelle in provincia di Caserta.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="blocco grigio" id="dove" aria-labelledby="t-dove">
-  <div class="contenitore due">
-    <div class="testo-sezione">
-      <p class="etichetta">Dove si comprano</p>
-      <h2 id="t-dove">Nel tuo negozio di fiducia</h2>
-      <p>Briko Line si trova nelle ferramenta, nei colorifici, nelle agrarie, nei vivai, nei brico e negli empori, in tutta Italia. Chiedila al tuo negozio con il nome o il codice scritto sulla scatola: se non ce l'ha, può ordinarla a noi.</p>
-      <div class="azioni"><a class="bottone bordo" href="tel:+390498790626">Non la trovi? Chiama 049 879 0626</a></div>
-      <div class="alcuni">
-        <p class="etichetta" id="t-alcuni">Alcuni negozi che la vendono</p>
-        <ul class="negozi-elenco" aria-labelledby="t-alcuni">
-          <li><b>Polato Ferramenta</b><span>Monselice (PD)</span></li>
-          <li><b>Emporium La Cometa</b><span>Castel d'Ario (MN)</span></li>
-          <li><b>Santilli Vivai</b><span>Celano (AQ)</span></li>
-          <li><b>Ferramenta Stella</b><span>Vietri sul Mare (SA)</span></li>
-          <li><b>Brico 5 Stelle</b><span>Provincia di Caserta</span></li>
-        </ul>
-      </div>
+<section class="sezione professionisti" id="professionisti" aria-labelledby="t-pro">
+  <div class="griglia">
+    <div class="testo">
+      <h2 id="t-pro">Sacchi, buste e schede tecniche</h2>
+      <p>Artelinea è la linea per muratori, piastrellisti, stuccatori e decoratori. Ogni scheda tecnica ha i campi di impiego, le forniture con i codici e le caratteristiche tecniche.</p>
+      <p class="pic">Per quantità e consegna chiama gli ordini.</p>
+      <div class="azioni"><a class="bottone bordo" href="#elenco" data-apri-elenco="Artelinea">Schede tecniche Artelinea</a></div>
     </div>
-    <figure class="dove-foto">
-      <img src="img/scaffale-900.jpg" srcset="img/scaffale-600.jpg 600w, img/scaffale-900.jpg 900w, img/scaffale-1200.jpg 1200w" sizes="(min-width:1024px) 720px, 100vw" width="1200" height="900" loading="lazy" alt="Le scatole Briko Line in fila sugli scaffali di un negozio: polvere ceramica, scagliola, cemento rapido, malte, stucco cementizio, colla per piastrelle, stucco per fughe.">
-    </figure>
+    <div class="dop">
+      <h3>Dichiarazione di prestazione n. 1 - E180 - 2017</h3>
+      <dl>
+        <div><dt>Prodotto</dt><dd>Artestucco E180, stucco in polvere</dd></div>
+        <div><dt>Norma</dt><dd>UNI EN 13279-1</dd></div>
+        <div><dt>Reazione al fuoco</dt><dd>Classe A1</dd></div>
+      </dl>
+      <a class="riga-link" href="https://narditalia.com/wp-content/uploads/2016/10/DICHIARAZIONE-DI-PRESTAZIONE-E1803085.pdf">Scarica il PDF</a>
+    </div>
   </div>
 </section>
 
-<section class="blocco lilla" id="azienda" aria-labelledby="t-azienda">
-  <div class="contenitore due inverso">
-    <figure class="azienda-foto">
-      <img src="img/sede-747.jpg" srcset="img/sede-540.jpg 540w, img/sede-747.jpg 747w" sizes="(min-width:600px) 533px, 100vw" width="747" height="560" loading="lazy" alt="La sede di Nardi: l'ingresso al civico 24, le fasce lilla con gli attrezzi della scatola Briko Line, il pilastro con la scritta NARDI.">
-      <figcaption>La sede in Via S. Antonio 24/a, con le fasce e gli attrezzi della scatola Briko Line.</figcaption>
+<section class="sezione culmine" id="azienda" aria-labelledby="t-azienda">
+  <div class="griglia">
+    <figure class="foto-sede">
+      <img src="img/sede-1440.webp" srcset="img/sede-960.webp 960w, img/sede-1440.webp 1440w, img/sede-1920.webp 1920w" sizes="(min-width:1920px) 1840px, (min-width:1024px) calc(100vw - 80px), calc(100vw - 32px)" width="1920" height="700" loading="lazy" alt="La sede di Nardi: la facciata bianca con le fasce lilla e gli attrezzi della scatola Briko Line dipinti sul muro, l'ingresso al civico 24 e il pilastro con la scritta NARDI.">
+      <figcaption class="due-voci"><span>La sede di Nardi a Tombelle di Saonara, al civico 24</span><span>maggio 2016</span></figcaption>
     </figure>
-    <div class="testo-sezione">
-      <p class="etichetta">Azienda</p>
-      <h2 id="t-azienda">Dallo stucco decorativo alle polveri</h2>
+    <h2 class="firma" id="t-azienda">Prodotti per l'edilizia professionale e il fai da te</h2>
+    <div class="testo">
       <p>La ditta Nardi nasce nel 1985 con Benito Nardi, che crea stucchi artistici decorativi in gesso. Per posarli comincia a produrre da sé lo stucco: è il primo passo nel mondo delle polveri. Con i macchinari per i vari formati la gamma diventa quella di oggi.</p>
-      <ul class="fatti">
-        <li><b>1985</b>Benito Nardi e gli stucchi decorativi in gesso</li>
-        <li><b>2011</b>Un impianto fotovoltaico dà energia alla produzione</li>
-        <li><b>Made in Italy</b>Scritto sulle confezioni Briko Line</li>
-      </ul>
+      <p class="pic sec">Dal 2011 un impianto fotovoltaico dà energia alla produzione. Sulle confezioni Briko Line c'è scritto Made in Italy, e la facciata è dipinta come la scatola.</p>
     </div>
   </div>
 </section>
 
-<section class="blocco grigio" id="contatti" aria-labelledby="t-contatti">
-  <div class="contenitore contatti-griglia">
-    <div>
-      <p class="etichetta">Contatti</p>
-      <h2 id="t-contatti" style="margin-top:14px">Ordini, domande e richieste</h2>
+<section class="sezione contatti" id="contatti" aria-labelledby="t-contatti">
+  <div class="griglia">
+    <div class="testo">
+      <h2 id="t-contatti">Ordini, domande e richieste</h2>
       <dl class="dati">
-        <div><dt>Telefono</dt><dd><a href="tel:+390498790626">049 879 0626</a> · fax 049 830 4579</dd></div>
+        <div><dt>Ordini</dt><dd><a class="grande" href="tel:+390498790626">049 879 0626</a><br>fax 049 830 4579</dd></div>
         <div><dt>Orari</dt><dd><p class="stato" data-stato>Dal lunedì al venerdì</p>
           <table class="orari-t"><tr><th scope="row">Lunedì-venerdì</th><td>8-12 e 14-18</td></tr><tr><th scope="row">Sabato e domenica</th><td>chiuso</td></tr></table></dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:info@narditalia.com?subject=Richiesta">info@narditalia.com</a><br><span class="piccolo">Schede di sicurezza: <a href="mailto:sicurezza@narditalia.com?subject=Schede%20di%20sicurezza">sicurezza@narditalia.com</a></span></dd></div>
-        <div><dt>Sede</dt><dd>Via S. Antonio, 24/a<br>35020 Tombelle di Saonara (PD)</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:info@narditalia.com?subject=Richiesta">info@narditalia.com</a> per ordini e listino<br><a href="mailto:sicurezza@narditalia.com?subject=Schede%20di%20sicurezza">sicurezza@narditalia.com</a> per le schede di sicurezza</dd></div>
+        <div><dt>Sede</dt><dd>Via S. Antonio, 24/a, 35020 Tombelle di Saonara (PD)<br><a class="riga-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Sant%27Antonio%2024%2Fa%2C%2035020%20Tombelle%20di%20Saonara%20PD">Apri la sede nel navigatore</a></dd></div>
       </dl>
-      <div class="contatti-azioni">
-        <a class="bottone pieno" href="tel:+390498790626">Chiama 049 879 0626</a>
-        <a class="bottone bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Sant%27Antonio%2024%2Fa%2C%2035020%20Tombelle%20di%20Saonara%20PD">Apri la sede nel navigatore</a>
-      </div>
     </div>
 
     <form class="modulo" id="richiesta" novalidate>
       <h3>Richiesta o ordine</h3>
-      <p>Si apre un'email già scritta a info@narditalia.com: la controlli e la invii tu. Se hai l'ordine in un file, allegalo all'email.</p>
       <div class="campi">
         <div class="campo largo"><label for="f-tipo">Che cosa ti serve</label>
           <select id="f-tipo" name="tipo">
@@ -750,10 +647,11 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
       </div>
       <div class="modulo-invio">
         <button class="bottone pieno" type="submit">Prepara l'email</button>
+        <p class="int">Si apre un'email già scritta: la controlli e la invii tu. L'ordine in un file va allegato all'email.</p>
         <p class="avviso" id="avviso" role="alert"></p>
       </div>
       <div class="dopo-invio" id="dopo-invio" hidden>
-        <p><b>Si è aperta l'email?</b> Se non si apre il programma di posta, copia il testo e incollalo in una nuova email a <a href="mailto:info@narditalia.com">info@narditalia.com</a>, oppure chiama il <a href="tel:+390498790626">049 879 0626</a>.</p>
+        <p class="pic"><b>Si è aperta l'email?</b> Se il programma di posta non si apre, copia il testo e incollalo in una nuova email a info@narditalia.com.</p>
         <label class="nascosto" for="testo-email">Testo dell'email</label>
         <textarea id="testo-email" readonly></textarea>
         <div class="azioni"><button class="bottone bordo" type="button" id="copia">Copia il testo</button></div>
@@ -763,55 +661,23 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
 </section>
 </main>
 
-<footer class="piede su-scuro">
-  <div class="contenitore">
-    <div class="piede-griglia">
-      <div>
-        <img class="logo-piede" src="img/logo-nardi-bianco.png" alt="Nardi" width="146" height="33" loading="lazy">
-        <p>NARDI S.r.l. Unipersonale<br>Via S. Antonio, 24/a, 35020 Tombelle di Saonara (PD)</p>
-        <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Sant%27Antonio%2024%2Fa%2C%2035020%20Tombelle%20di%20Saonara%20PD">Indicazioni stradali</a></p>
-      </div>
-      <div>
-        <h2>Prodotti</h2>
-        <ul>
-          <li><a href="#elenco" data-apri-elenco="Briko Line">Briko Line</a></li>
-          <li><a href="#elenco" data-apri-elenco="Artelinea">Artelinea</a></li>
-          <li><a href="#elenco" data-apri-elenco="Gli speciali">Gli speciali</a></li>
-          <li><a href="#elenco" data-apri-elenco="Altri prodotti">Altri prodotti</a></li>
-          <li><a href="#elenco" data-apri-elenco>Schede di sicurezza</a></li>
-          <li><a href="catalogo-codici-nardi.pdf" download>Catalogo codici (PDF)</a></li>
-          <li><a href="#cerca">Cerca una scheda</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Azienda</h2>
-        <ul>
-          <li><a href="#negozi">Per i negozi</a></li>
-          <li><a href="#professionisti">Per i professionisti</a></li>
-          <li><a href="#dove">Dove si comprano</a></li>
-          <li><a href="#azienda">Chi siamo</a></li>
-          <li><a href="https://narditalia.com/wp-content/uploads/2016/10/DICHIARAZIONE-DI-PRESTAZIONE-E1803085.pdf">Dichiarazione di prestazione E180</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Contatti</h2>
-        <ul>
-          <li>Telefono <a href="tel:+390498790626">049 879 0626</a></li>
-          <li>Fax 049 830 4579</li>
-          <li><a href="mailto:info@narditalia.com?subject=Richiesta">info@narditalia.com</a></li>
-          <li><a href="mailto:sicurezza@narditalia.com?subject=Schede%20di%20sicurezza">sicurezza@narditalia.com</a></li>
-          <li>Lunedì-venerdì 8-12 e 14-18</li>
-          <li class="stato" data-stato></li>
-        </ul>
-      </div>
-    </div>
+<footer class="piede">
+  <div class="griglia">
+    <div class="piede-logo"><img src="img/logo-nardi-bianco.png" alt="Nardi" width="130" height="30" loading="lazy"></div>
+    <p class="firma">Prodotti per l'edilizia professionale e il fai da te</p>
+    <ul>
+      <li><a href="#elenco" data-apri-elenco>Schede di sicurezza</a></li>
+      <li><a href="catalogo-codici-nardi.pdf" download>Catalogo codici (PDF)</a></li>
+      <li><a href="https://narditalia.com/wp-content/uploads/2016/10/DICHIARAZIONE-DI-PRESTAZIONE-E1803085.pdf">Dichiarazione E180 (PDF)</a></li>
+      <li><a href="#azienda">Chi siamo</a></li>
+      <li><a href="https://narditalia.com/privacy-policy/">Privacy</a></li>
+      <li><a href="https://narditalia.com/cookie-policy/">Cookie</a></li>
+    </ul>
     <div class="legale">
-      <span>NARDI S.r.l. Unipersonale</span>
+      <span>NARDI S.r.l. Unipersonale, Via S. Antonio 24/a, 35020 Tombelle di Saonara (PD)</span>
       <span>P.IVA e C.F. 02009150281</span>
       <span>REA PD 197644</span>
       <span>Cap. Soc. 50.000,00 euro i.v.</span>
-      <a href="https://narditalia.com/privacy-policy/">Privacy</a>
-      <a href="https://narditalia.com/cookie-policy/">Cookie</a>
     </div>
   </div>
 </footer>
@@ -911,7 +777,7 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
     if (p.st) link.push('<a href="' + esc(p.st) + '">Scheda tecnica (PDF)</a>');
     if (p.sds) link.push('<a href="' + esc(p.sds) + '">Scheda di sicurezza (PDF)</a>');
     link.push('<a href="' + esc(p.u) + '">Pagina del prodotto</a>');
-    return '<article class="prodotto' + (p.i ? '' : ' senza-foto') + '">' + img + '<div><p class="etichetta">' + esc(p.l) + '</p><h3><a href="' + esc(p.u) + '">' + esc(p.n) + '</a></h3><p class="impiego">' + esc(p.t) + '</p>' + uso + conf + '<p class="link">' + link.join('') + '</p></div></article>';
+    return '<article class="prodotto' + (p.i ? '' : ' senza-foto') + '">' + img + '<div><p class="linea-p">' + esc(p.l) + '</p><h3><a href="' + esc(p.u) + '">' + esc(p.n) + '</a></h3><p class="impiego">' + esc(p.t) + '</p>' + uso + conf + '<p class="link">' + link.join('') + '</p></div></article>';
   }
   function mostra(tutti){
     if (!titolo){ box.innerHTML = ''; return; }
@@ -950,7 +816,14 @@ main > section[id]{scroll-margin-top:calc(var(--testata) + 1px)}
     titolo = lista.length ? (lista.length === 1 ? '1 prodotto' : lista.length + ' prodotti') + ' per "' + q.trim() + '"' + (pieni.length ? '' : ', con una parte delle parole') : 'Nessun risultato per "' + q.trim() + '"';
     mostra();
   }
-  $('#cerca').addEventListener('submit', function(e){ e.preventDefault(); cerca(input.value); });
+  $$('[data-cerca-form]').forEach(function(fm){
+    fm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = fm.querySelector('input').value;
+      input.value = v; cerca(v);
+      if (fm !== input.form) box.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
   var attesa; input.addEventListener('input', function(){ clearTimeout(attesa); attesa = setTimeout(function(){ if (input.value.trim().length >= 3 || !input.value.trim()) cerca(input.value); }, 250); });
   box.addEventListener('click', function(e){
     if (e.target.closest('[data-chiudi]')){ titolo = ''; mostra(); $$('.lavori button').forEach(function(b){ b.setAttribute('aria-pressed', 'false'); }); input.focus(); }

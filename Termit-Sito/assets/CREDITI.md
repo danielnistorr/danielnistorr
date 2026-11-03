@@ -2,6 +2,11 @@
 
 Aggiornato il 3 novembre 2026.
 
+## Home ibrida (`sito/`), 03/11/2026
+
+- `originali/` riscaricato da termit.biz dopo il riavvio: `sito/contenuti_categorie___thumb_1000_800__imm[000]_TaglioAcqua.jpg` (1000x800), `sito/Uploads__tag.jpg` (1000x345), `logo-termit-bianco-LogoBianco2.png` (539x85), `logo-termit-favicon-IconaTermit.jpg` (78x78).
+- In pagina: solo la prima foto, ritagliata a 1000x639, con un trattamento unico (metà strada verso il neutro, saturazione 0,88, contrasto +4%), in `sito/img/taglio-acqua-640.webp` e `taglio-acqua-1000.webp` (script `_prova/alto/script/img.py`), nel culmine Su misura; il logo e la favicon come prima. Nessuna foto di repertorio, nessun disegno.
+
 ## Home attuale (`sito/`), livello professionale, 03/11/2026
 
 Decisione del committente sulle foto: "niente". In pagina non c'è più nessuna foto di repertorio e nessun disegno al posto delle foto.

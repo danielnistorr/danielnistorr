@@ -1,5 +1,62 @@
 # Home di Etichettificio Veneto
 
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Regole: `_metodo/professionale/ALTO-LIVELLO.md`, sezione D ("Carattere e finitura"), con la riga di Etichettificio Veneto nel capitolo 5 (gruppo M1, modello T, riferimento The Label Makers). Metodo scelto dal committente: prima schermata secondo la sezione D, sotto i contenuti e le funzioni della versione professionale su una griglia sola. La versione professionale com'era è copiata in `_prova/versione-pro/` (sito e screenshot). Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`. Misure: `_prova/alto/misura-d.mjs` (copia estesa di `alto/diagnosi/misure/misura.mjs`), esito in `_prova/alto/misura-d-esito.txt` e `misura-d.json`; la stessa misura sulla versione professionale è in `misura-d-esito.pro.txt`.
+
+### Che cosa è cambiato
+
+- **Apertura di tipografia (modello T).** La parola "Etichette" in League Gothic a 380 px, stampata in quattro passaggi (giallo, magenta, ciano e per ultimo il blu del logo) appena fuori registro, su un foglio di prova con i segni di taglio agli angoli e la barra dei quattro colori. Sotto, nello stesso `h1`, "autoadesive, prodotte a Saonara (Padova)" (la loro frase "Produzione di etichette autoadesive" con il comune) e la riga dei fatti: bobina e foglio, le quattro tecniche, fino a 8 colori, ISO 9001 e FSC. Tutto in CSS, nessun disegno, nessuna animazione.
+- **Tolto dalla prima schermata** (capitolo 5): la facciata, l'occhiello "ISO 9001 TÜV NORD dal 2009 · FSC-C146871", il secondo bottone, lo stato e l'indirizzo, la fascia scura dei sei settori. Il logo in testata non è più un link (la home è la home).
+- **I compiti spostati.** Il telefono sta nella testata fissa a 1440 (049 879 0566 leggibile) e nella barra fissa in basso sul telefono ("Chiama", con il numero sotto, più "Manda il file" e "Come arrivare"). Il menu nomina quello che il cliente cerca: Etichette, Piccole tirature, Certificati, Contatti. "Richiedi un preventivo" è l'unico bottone della testata.
+- **Sotto la piega, la versione professionale rimessa in ordine** su una griglia a 12 colonne (margini 80 px a 1440, bordo destro a 1360 per tutte le sezioni e il piede): i sei tipi di etichetta come righe d'indice con il link alla pagina del settore; La Stamperia di Padova con telefono, sito, email, consulenza grafica e prestampa; il culmine con la facciata a 1280x720 (didascalia "La sede di via Irpinia 51/53, Saonara (Padova)" / "Foto pubblicata sul nostro sito nel 2015"), la frase-firma, i quattro passi dal file alla consegna e l'archivio per le ristampe; la tavola di tecniche e supporti e i due certificati in PDF; il modulo del preventivo completo; contatti e piede in un solo blocco nel blu del marchio.
+- **Tolto come riempitivo o ripetizione:** la fascia di cifre grandi (8, 4, 3 e 5, 1200 a 104 px), gli occhielli sopra i titoli, l'elenco dei dati accanto al modulo, "Preferite il telefono?", il terzo riquadro dei certificati (UE 1169/2011 è già nella riga dell'Alimentare e nella tavola), il secondo telefono della Stamperia nel piede, il testo d'interfaccia sopra i 14 px.
+- **Tolto perché "da confermare" nel LEGGIMI:** il fax, lo stato "Aperto ora" calcolato (il codice resta in pagina, spento con `MOSTRA_STATO = false`), "clienti in tutto il Nord Italia", "zona artigianale di Villatora" (non trovata nelle fonti). L'orario resta scritto, come chiede la scheda d'uso.
+- **Caratteri:** League Gothic 400 (parola e titoli) e Karla 400, 500, 700 (testo), SIL OFL 1.1, in `sito/fonts/` con `OFL-league-gothic.txt` e `OFL-karla.txt`. Esce Mona Sans, già in 8 home. Riga aggiunta in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md` (lì il gesto a 390 è scritto "120 px": in pagina è 131 px, il 33,5% della larghezza).
+- **Foto:** una sola, la facciata, dal file del loro sito (`assets/originali/2015-11-sld02.jpg`, 1920x720, ricaricato dal loro sito perché `assets/originali/` era andata persa con il riavvio). Un trattamento (`_prova/alto/script/immagini.py`: saturazione 0,88, cielo spento, riflessi arancio riportati all'oro, scritta blu lasciata blu), due tagli: 16:9 a 1280x720 (a 1440 si vede 1:1) e 1:1 a 720 per il telefono. Provini in `_prova/alto/provini.jpg`. Le altre immagini del loro sito e della Stamperia sono di repertorio (`_prova/alto/candidati.jpg`) e non si usano.
+- **Frase-firma**: "Etichette uniche per i vostri prodotti, studiate per dargli il giusto valore", dallo slider della loro home (`_prova/alto/uso-crawl/x.html`). Torna due volte con lo stesso trattamento (League Gothic 56): intera sopra la foto del culmine, accorciata ("Etichette uniche per i vostri prodotti.") in testa al piede.
+
+### Misure (misura-d.mjs, 3/11/2026)
+
+| Soglia | Versione professionale | Ibrida |
+|---|---|---|
+| Cliccabili nella prima schermata a 1440 (max 6) | 12 | 6 |
+| Bottoni a 1440 (max 1) | 4 | 1 |
+| Caratteri fuori dal menu a 1440 (max 160) | 410 | 148 |
+| Foto nella prima schermata a 1440 (60% o più, oppure sotto il 12%) | 35% | 0% (apertura di tipografia; il foglio di prova occupa il 44%) |
+| Cliccabili e bottoni a 390 (max 4 e 1) | 6 e 4 | 4 e 1 |
+| Foto o gesto a 390 (almeno 50%) | 24% | 52% |
+| Occhielli (max 1) | 4 | 0 |
+| `h1` (max 9 parole) | 7 | 6 |
+| Parole (max 900) | 996 | 654 |
+| Sezioni con il piede (max 7) | 9 | 7 |
+| Altezza a 1440 (max 7.500 px) | 7.822 | 7.363 |
+| Numeri di 30 px o più (max 1) | 5 | 0 |
+| Peso caricato a 1440 (sotto i 3 MB) | 262 KB | 188 KB |
+| Fondi oltre il piede (max 3) | 3 | 2 (bianco, grigio chiaro della Stamperia), più il blu del piede |
+| Famiglie di caratteri (max 2) | 1 | 2 |
+
+Passano anche: una griglia sola (stesso margine e bordo destro in tutte le sezioni), nessuna foto ingrandita a 320-1920 (1280x720 mostrata a 1280x720 a 1440 e a 1920), un solo formato, un solo blocco nel colore del marchio, due spazi tra le sezioni (120 e 184 px attorno al culmine), un solo elemento sopra i 100 px, nessuna istruzione sopra i 14 px, nessun termine della lista nera, nessun link e nessun fatto più di due volte, 3 link `tel:` visibili, nessun U+2014. A 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script. Link: `tel:+390498790566`, `tel:+39049640459`, `mailto:info@eveneto.com` con oggetto "Ordine o invio file" e traccia, `mailto:info@lastamperiadipadova.com`, il modulo compone `mailto:info@eveneto.com` con oggetto "Richiesta di preventivo: <azienda>".
+
+### Compiti della scheda d'uso, dove stanno ora
+
+- *V1, 1440*: mestiere, Saonara (Padova), bobina e foglio, le quattro tecniche, 8 colori, ISO e FSC nella prima schermata (y 621-680); i sei tipi di etichetta, ognuno con il link al settore, tra 1.052 e 1.567 px (seconda schermata); "Certificati" nel menu porta alla sezione con i due PDF (4.749 px); "Richiedi un preventivo" fisso in testata, modulo completo con il file.
+- *V2, 390*: "Chiama 049 879 0566", "Manda il file" (email con traccia) e "Come arrivare" sempre nella barra fissa in basso; l'orario scritto nella prima schermata (642 px).
+- *V3, 390*: righe "Dorate e argentate" a 1.190 px, "Poche etichette, o tante varianti?" a 1.357, "Etichette dorate e plastificate" a 1.581, "Chiama La Stamperia di Padova, 049 640459" a 1.637 (tutto entro 1.700); consulenza grafica e prestampa nel testo della stessa sezione, con il link a lastamperiadipadova.com. Sul telefono la sezione mette prima l'elenco e il telefono, poi il testo.
+
+### Problemi aperti
+
+- **La sola foto è la facciata**, 1920x720, ritoccata in origine: regge il culmine a 1280 px ma non un'apertura né uno schermo retina. Le bobine fotografate in reparto (capitolo 5, "sotto, le bobine fotografate in reparto su fondo uniforme") non esistono: senza il servizio fotografico del LEGGIMI la pagina resta senza nessuna etichetta loro stampata, ed è il limite principale per salire oltre il 7.
+- **Il gesto non dice un fatto sull'azienda**: i quattro passaggi sono il segno del mestiere (la flexo), non un dato. Non è legato a una loro macchina o a un loro lavoro.
+- **Orari ancora da confermare**: in pagina c'è l'orario scritto (2GIS, 2012), senza lo stato. Il fax è tolto finché non lo confermano.
+- **Prova D1 con le persone** (tre persone, miniatura a 300 px senza logo tra altre cinque della zona) non fatta: va fatta prima dell'ondata.
+- **Il modulo** compone ancora un'email e non invia il file (vedi LEGGIMI).
+- Lo spazio tra il foglio di prova e la prima sezione a 1440 è largo (l'apertura è alta quanto lo schermo e il foglio sta al centro): è voluto, ma nella pagina intera si legge come una pausa lunga.
+
+---
+
+## Nota di prima (versione professionale)
+
 Pagina: `sito/index.html`, statica, si apre anche con file:///. Immagini in `sito/img/` (solo la facciata della sede, il logo con la cornice e la favicon), caratteri in `sito/fonts/`, i due certificati in PDF (ISO 9001 e FSC, dal loro sito) in `sito/doc/`. Tutto si rifà con `sh _prova/script/build_finale.sh` (immagini con `pro_img.py`, screenshot, poi i controlli di `pro_controlli.mjs`, esito in `_prova/pro_controlli.json`).
 
 Screenshot (stessi nomi di prima): `home-1440.jpg` (7770 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (11779 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (contatti e piede). La versione 1 com'era prima di questo passaggio (etichetta in lamina oro, settori a schede da cliccare, foto di repertorio) è copiata in `_prova/versione-1-originale/` con la sua nota.

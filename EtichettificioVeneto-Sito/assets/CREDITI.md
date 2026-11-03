@@ -2,7 +2,15 @@
 
 Aggiornato il 3 novembre 2026.
 
-## Nella home di oggi (livello professionale, 3/11/2026)
+## Nella home di oggi (metodo ibrido, 3/11/2026)
+
+In `sito/img/` ci sono solo materiali dell'azienda, presi dal suo sito e salvati in `assets/originali/` (cartella rifatta il 3/11/2026 dopo il riavvio, riscaricando i file):
+- `sede-16x9-1280/960/640.webp` e `sede-1x1-720/480.webp`: la facciata della sede di via Irpinia (`originali/2015-11-sld02.jpg`, 1920x720, da `wp-content/uploads/2015/11/sld02.jpg`), con un solo trattamento (`_prova/alto/script/immagini.py`: saturazione 0,88, cielo spento, riflessi arancio riportati all'oro, scritta blu lasciata blu). Mai ingrandita.
+- `logo-etichetta.png` e `favicon.png`: invariati; gli originali sono `originali/logo-colore-cornice-337x187.png` (`uploads/2015/11/logo2.png`), `originali/logo-bianco-350x203.png` (`logo-wht.png`, non usato) e `originali/logo-favicon-E-80.png`.
+
+Le altre immagini dei due siti (supermercato, farmacia, enoteca, archivio, operatore alla stampante, CMYK, la donna dorata della Stamperia) sono di repertorio: guardate in `_prova/alto/candidati.jpg`, cancellate, mai usate. La sezione qui sotto è la nota della versione professionale.
+
+## Versione professionale (3/11/2026, ora in `_prova/versione-pro/`)
 
 Decisione del committente sulle foto: "niente". Dalla home sono state **tolte tutte le foto di repertorio e i fotomontaggi**: l'etichetta in lamina oro (Katie Harp, Unsplash, con il logo dell'azienda), i vasetti di Maram, la bottiglia e i flaconcini di Leeloo The First, la striscia di bar code di Anna Shvets (Pexels) e il nastro in macchina di Anthony Roberts (Unsplash). Le loro versioni lavorate sono uscite da `sito/img/`; restano solo nella copia della versione 1 (`_prova/versione-1-originale/sito/img/`) e, come originali, in `esterne/` per i prototipi. Nessuna illustrazione o disegno al loro posto.
 

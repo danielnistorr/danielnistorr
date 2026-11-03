@@ -1,5 +1,9 @@
 # Crediti delle immagini
 
+**Home ibrida, 3 novembre 2026.** In pagina ci sono 7 foto loro, tutte da `originali/`, con un solo trattamento (`../_prova/alto/script/immagini.py`) e in WebP: apertura `uploads_2014_04_rete_ondul2.jpg` (macro della rete ondulata sulla macchina, 8:9) e `gallery_cancelli_canc082204.jpeg` (4:3); lavori `canc082202`, `canc082201`, `gallery_ringhiere_ringh082202.jpeg`, `ringh082203` (4:3); culmine `gallery_reti-ondulate_IMG_1139-1.JPG` (3:2). Uscite le foto del negozio e dell'esposizione Betafence. Nessuna foto di repertorio, nessuna illustrazione. `originali/` era stata cancellata con un riavvio: il 3/11/2026 ho riscaricato dal sito di oggi 175 file (gallerie NextGEN, libreria media, i tre negozi `uploads_2014_04_IMG_1133`-`1135` a 4752x3168). Le note qui sotto valgono anche per questi file.
+
+Versione professionale (sotto):
+
 Aggiornato il 3 novembre 2026 (home "livello professionale"). **Nella home non c'è più nessuna foto di repertorio**: per decisione del committente ("niente") sono uscite la ringhiera Pexels 38439497 della chiusura e ogni altra foto di `esterne/`, e nessuna è stata sostituita da illustrazioni. In pagina ci sono solo foto loro, tagliate in 4:3 (l'apertura in 16:10) e trattate allo stesso modo da `../_prova/script/pro_img.py`:
 - apertura: `gallery_cancelli_canc082204.jpeg` (16:10, senza il terzo inferiore di piazzale);
 - lavori (4, dal ritocco del 3 novembre): `gallery_cancelli_canc082202.jpeg`, `canc082201`, `gallery_ringhiere_ringh082202.jpeg`, `ringh082203` (uscite `canc082203` e `canc082206`, doppioni delle schede);

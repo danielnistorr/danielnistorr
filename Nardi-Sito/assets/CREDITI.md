@@ -33,3 +33,7 @@ Scaricate con curl dai CDN `images.unsplash.com` e `images.pexels.com`, lato lun
 Scaricate il 24/10/2026 dalla libreria media di WordPress di narditalia.com (`/wp-json/wp/v2/media`, 139 immagini su 535 file; gli altri sono 395 PDF di schede tecniche e di sicurezza e un .docx). Inventario con misure, soggetto e voti in `_prova/inventario-immagini.json`; fogli provino in `_prova/fogli/`. Appartengono a Nardi. Due prodotti della categoria "Altri prodotti" e "Artelinea" mostrano marchi di terzi (latta "GESCOL", sacco del solfato di calcio): da non usare. `slide-nardi-2.jpg` (betoniera) ha l'aria di una foto di repertorio: diritti da chiarire.
 
 I file `logo-*` sono copie del logo per il piede: `logo-nardi-bianco-500x139.png` e `logo-nardi-verde-250x70.jpg` dal sito, `logo-nardi-grigio-pdf-540x117.jpg` e `logo-nardi-intestazione-pdf-869x152.jpg` estratti dalla scheda tecnica `st-INTONACO-di-finitura-cementizio-liscio-bianco-1.pdf`.
+
+## Home ibrida (3/11/2026)
+
+`assets/originali/` era vuota dopo il riavvio: riscaricate il 3/11/2026 le 111 immagini della libreria media di narditalia.com (`/wp-json/wp/v2/media`). In pagina: sei rendering di scatole Briko Line da 1 kg (`scatola-*.webp`, tagliati e con il fondo da studio allungato in alto da `_prova/alto/script/scatole.py`), il magazzino `IMG_4232` (16:9) e la sede `TESTATA6` (panoramica intera), da `_prova/alto/script/foto.py`, tutti con lo stesso trattamento (saturazione 0,88, contrasto 1,04). Nessuna foto esterna, nessuna immagine generata, nessun disegno.

@@ -1,4 +1,63 @@
-# Nardi, home: livello professionale
+# Nardi, home: metodo ibrido e livello professionale
+
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (modello L della riga di Nardi nel capitolo 5); sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola a 12 colonne. Direzione scritta prima dell'HTML in `_prova/alto/DIREZIONE.md`; la versione professionale è copiata intatta in `_prova/versione-pro/` (`sito/` e `screenshot/home/`). Si rifà tutto con gli script di `_prova/alto/script/` (vedi LEGGIMI).
+
+### Che cosa è cambiato
+
+1. **Apertura: le sei scatole Briko Line da 1 kg in fila**, una per lavoro, in sei tessere alte 213 x 619 px a 1440 (due righe da tre a 390), tutte con lo stesso taglio, lo stesso fondo da studio e lo stesso trattamento; sotto ogni tessera una parola, il lavoro (Crepe e buchi, Fissaggi, Fughe, Muri, Caminetti, Calchi). Sotto la fila, solo l'`h1` "Stucchi, gessi e malte da Tombelle di Saonara" a 32 px. Nessun bottone, nessuna cifra, nessun occhiello. La riga del capitolo 5 chiedeva le tessere del materiale fotografato piatto: quella foto non esiste, quindi le tessere sono i rendering delle scatole del loro sito, tagliati su 704 px della sorgente e mostrati a 213 (mai ingranditi). Sopra la scatola il fondo da studio è allungato con il colore delle sue righe di bordo (#F0F0F0 uniforme): è solo fondo.
+2. **Testata fissa con i compiti che lasciano l'apertura**: a 1440 logo, campo "Cerca un prodotto o un codice", tre voci che dicono che cosa si trova ("Codici e schede", "Diventa rivenditore", "Contatti e orari") e "Ordini 049 879 0626" con lo stato aperto o chiuso sotto. A 390 logo, "049 879 0626" (l'unico bottone) e "Menu", con tutte le voci (anche "Dove lo compro?" e "Schede tecniche Artelinea"); il campo di ricerca sta nella prima schermata, sotto la frase.
+3. **Sotto la piega, sette sezioni su una griglia sola** (margini 40 px a 1440, 32 a 768, 16 a 390; colonne di 12 con 16 px di passo; tutti i bordi destri sullo stesso filo): Cosa devi fare? (ricerca grande, i sei lavori come righe d'indice con il prodotto sotto, le altre sei scatole da 1 kg per nome, i risultati con le quattro righe d'uso e le schede in PDF), Quattro linee e 96 prodotti (righe d'indice, catalogo PDF, elenco dei 193 codici filtrabile), Per i negozi (il magazzino in 16:9 con la didascalia a due voci, i tre passi, "Diventa rivenditore" e "Chiedi il listino", Dove si compra con i cinque negozi in una frase), Professionisti (testo, "Schede tecniche Artelinea", la dichiarazione di prestazione E180 in una tabella a filetti), il culmine con la sede a tutta griglia (1360 x 496 su una sorgente di 1920, didascalia "La sede di Nardi a Tombelle di Saonara, al civico 24 / maggio 2016") e la frase-firma, Contatti e modulo, piede.
+4. **Carattere**: Kumbh Sans 400 e 600 (SIL OFL 1.1) al posto di Encode Sans; Hanken Grotesk, indicato dal capitolo 5, è già in due home. Niente oltre i 32 px.
+5. **Colore**: fondo bianco, grigio gesso #F0F0F0 solo per la ricerca e il modulo, verde scuro solo nel piede; il verde del logo è l'unico accento. I colori pieni vengono dalle scatole.
+6. **Tolto**: la fascia delle cifre (1985, 96, 89, 2011), la griglia delle dodici scatole, le quattro schede-linea con le foto, gli occhielli sopra i titoli, la foto dello scaffale con i prezzi, il sacco dell'E180 in un riquadro grigio, le fasce grigie, verde e lilla alternate, il telefono ripetuto (da 10 link a 3, scritto 2 volte), "Diventa rivenditore" in tre punti (ora 2), l'indirizzo e l'email ripetuti, il testo d'interfaccia sopra il modulo (ora accanto al bottone a 14 px).
+7. **Frase-firma**: "Prodotti per l'edilizia professionale e il fai da te", dallo stand in fiera (`NARDI-AZIENDA-768x543.jpg`, citata in `01-analisi.md`); torna nel culmine e nel piede con lo stesso trattamento (28 px, 400).
+
+### Misure
+
+`node _prova/alto/misura-d.mjs` (copiato da `_metodo/professionale/alto/diagnosi/misure/misura.mjs` ed esteso), esito in `_prova/alto/misure-d.json` e `misure-d.txt`: 34 controlli su 34 passano.
+- **Prima schermata 1440 x 900**: 6 cliccabili (logo, ricerca, tre voci, telefono), 0 bottoni, 132 caratteri, nessuna fila di ingressi, nessuna cifra di 30 px; foto sul 61,1%; `h1` di 8 parole con una virgola; una famiglia; testo corrente 19 px; niente oltre i 32 px; 0 occhielli.
+- **Prima schermata 390 x 844**: 4 cliccabili (logo, telefono, Menu, ricerca), 1 bottone (il telefono), foto sul 52,1%.
+- **Pagina**: 727 parole a 1440 (714 a 390), 7 sezioni, 6.201 px a 1440, una griglia (40/1400, 12 colonne) con i bordi destri e sinistri di tutte le sezioni sullo stesso filo, 8 foto da 3 formati (tessera 1:2,9, 16:9, panoramica 2,74:1), nessuna mostrata più grande del file, 2 fondi oltre al piede, due spazi tra le sezioni (112 e 176 px), nessun numero di 30 px o più, nessuna parola della lista nera, frase-firma 2 volte; telefono scritto 2 volte e 3 link `tel:`; info@, sicurezza@, indirizzo, rivenditore, catalogo, dichiarazione, stato e ricerca al massimo 2 volte; navigatore 1; 582 KB a 1440 e 453 KB a 390; nessun errore di script; nessun U+2014.
+
+### Controlli e compiti
+
+`node _prova/alto/script/controlli.mjs`, esito in `_prova/alto/controlli.json`, schermate di prova in `_prova/alto/prove/`.
+- A 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessun testo che esce dal suo riquadro, nessuna sovrapposizione tra testi, nessun testo sopra le foto, nessun errore in console; un solo `tel:+390498790626`, `mailto:` solo a info@ e sicurezza@ con l'oggetto, il navigatore su `google.com/maps/dir`.
+- 29 prove d'uso su 29 riuscite. Negoziante (1440): telefono e "Aperto ora, fino alle 12" senza scorrere; il codice 4302010 scritto nella testata dà il gesso murario con confezione e bancale (un'azione, meno di un secondo); "gesso murario" dà la scheda di sicurezza in un clic; catalogo PDF in due clic; elenco filtrato per linea; "Diventa rivenditore" dalla testata apre il modulo con il tipo già scelto; modulo vuoto si ferma, pieno compone l'email e lascia il testo; stato giusto alle 13.10, 19.30, di sabato, l'8 dicembre e a Pasquetta. Privato (390): ricerca nella prima schermata (campo fino a 773 px); i sei lavori nella seconda schermata (da 1086 px), mentre la prima mostra le sei scatole con il nome del lavoro; "fughe", "calco", "crepa", "caminetto", "stuko", "alabastrno" e "scatola elettrica" danno per primo il prodotto giusto; un tocco su "Caminetti e stufe" mette per prima la malta refrattaria Briko Line; le altre scatole da 1 kg aprono la loro scheda con la foto; "Dove lo compro?" a un tocco dal menu con "Non la trovi? Chiama gli ordini". Professionista: telefono a un tocco a metà pagina; "Schede tecniche Artelinea" dal menu apre l'elenco filtrato con 81 PDF; "Apri la sede nel navigatore" dal menu Contatti; dichiarazione E180 con norma, classe e PDF.
+- Schermate rifatte in `screenshot/home/` con gli stessi nomi (più `home-1024-prima-schermata.jpg` e `home-768-prima-schermata.jpg`), guardate a pezzi accanto a quelle della versione professionale (`_prova/versione-pro/screenshot/home/`) e alla prima schermata di Clayworks e Tierrafino rifatta sul loro dominio (`_prova/alto/concorrenti/`).
+
+### Dove stanno ora i compiti della scheda d'uso
+
+| Compito | Prima (versione professionale) | Ora |
+|---|---|---|
+| Negoziante: telefono, orari, stato | apertura e testata | testata fissa (numero e stato), Contatti (orari) |
+| Negoziante: codice e confezione | ricerca nella fascia dell'apertura, elenco | campo nella testata fissa a ogni altezza, ricerca grande nella seconda schermata, elenco in Prodotti |
+| Negoziante: catalogo PDF | apertura, Prodotti, piede | Prodotti e piede |
+| Negoziante: diventa rivenditore, listino | apertura, testata, Per i negozi | voce della testata (modulo con il tipo scelto), Per i negozi |
+| Negoziante: scheda di sicurezza | risultati, elenco, piede | uguale |
+| Privato: ricerca e sei lavori | prima schermata a 390 | ricerca nella prima schermata; sei scatole con il lavoro nella prima, sei lavori cliccabili nella seconda |
+| Privato: come si usa | risultati | uguale (quattro righe d'uso e scheda tecnica) |
+| Privato: riconoscere la scatola | dodici scatole in Prodotti | sei scatole in foto nell'apertura e nei lavori, le altre sei per nome subito sotto; ogni risultato ha la foto |
+| Privato: dove comprarlo | link nell'apertura a 390, sezione | voce "Dove lo compro?" del menu, blocco in Per i negozi con "Non la trovi? Chiama gli ordini" |
+| Professionista: schede Artelinea | Professionisti, menu | voce del menu a 390, Professionisti, righe di Prodotti |
+| Professionista: dichiarazione E180 | riquadro in Professionisti | tabella in Professionisti, piede |
+| Professionista: chiamare, arrivare in sede | testata, Contatti | testata fissa, Contatti con "Apri la sede nel navigatore" |
+
+### Problemi aperti
+
+- **Le tessere sono rendering delle confezioni, non foto del materiale.** Il modello L chiedeva alabastrino, scagliola e stucco in pasta fotografati piatti: finché quelle foto non ci sono, le scatole fanno il lavoro, e la metà alta di ogni tessera è fondo da studio. La misura del 61% conta tutta la tessera: a occhio le scatole occupano circa il 35% della prima schermata. Con le sei foto del materiale (LEGGIMI, "Foto da fare dal vero") le tessere si riempiono senza cambiare la pagina.
+- **Il magazzino**: la didascalia dice "in magazzino" e la data dello scatto (EXIF, 27/5/2016, Canon EOS 1100D), non di chi è il magazzino. `IMG_4232` viene subito dopo `IMG_4228`, la foto della sede, ed è dello stesso giorno della `TESTATA6`: è probabile che sia il loro, ma va confermato (LEGGIMI punto 10).
+- **La data della sede** ("maggio 2016") viene dal file `TESTATA6.jpg` salvato il 27/5/2016 con Photoshop: è la data del ritocco, lo scatto può essere di poco prima.
+- **A 768 e 1024** la prima schermata non ha il campo di ricerca (a 1024 è in testata, a 768 è nella sezione subito sotto): il campo nella prima schermata c'è solo sotto i 600 px.
+- **Sotto la prima schermata i lavori non hanno più la miniatura della scatola**: la foto è nell'apertura, la riga dice il prodotto. Le dodici scatole in foto sono diventate sei in foto e sei per nome.
+- **Restano da confermare** i punti del LEGGIMI: il numero degli ordini (049 879 0626 contro 049 879 9070), la vendita diretta ai negozi, i cinque negozi (in pagina solo come "la vendono, tra gli altri", come dicono i loro siti), le chiusure aziendali per lo stato, il magazzino e la sede.
+- **Il controllo D1 con tre persone e il controllo D4 dell'ondata** (aperture sovrapposte della zona) non si possono fare da qui: vanno fatti con le altre home di Saonara, Villatora, Tombelle e Vigonovo.
+
+---
+
+*Nota della versione professionale, invariata.*
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh`. La versione precedente ("Una scatola sola", con il selettore delle sei famiglie e la foto Unsplash delle mani) è copiata intatta in `_prova/versione-1-originale/`.
 

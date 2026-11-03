@@ -1,5 +1,67 @@
 # Nic Dean, home: nota
 
+## Metodo ibrido (novembre 2026)
+
+Pagina: `sito/index.html`, statica, si apre da file://. La versione professionale com'era prima di questo passaggio è copiata in `_prova/versione-pro/` (sito e screenshot). Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`. Regole: `_metodo/professionale/ALTO-LIVELLO.md`, sezione D per la prima schermata, contenuti e funzioni della versione professionale sotto. Screenshot fatti all'ora simulata martedì 3 novembre 2026 alle 10 (`index.html?ora=2026-11-03T10:00`, spaccio aperto).
+
+Rifare tutto: `python3 _prova/alto/script/immagini.py` (immagini WebP da `assets/originali/`), poi `node _prova/alto/misura-d.mjs --foto` (misure, controlli a 320, 390, 768, 1024, 1440 e 1920, screenshot in questa cartella; il dettaglio in `_prova/alto/controlli/misure.json`, le schermate di controllo in `_prova/alto/controlli/`).
+
+### Che cosa è cambiato
+
+- **Idea e modello.** Modello O del capitolo 5: la frase "Scarpe fatte a Villatora dal 1975" a 151 px in Antonio 600, centrata, che scende sul muro della loro foto; sotto, la fila delle cinque décolleté alla sua misura vera, 1024x683, poggiata sul bordo basso della prima schermata. Il fondo della pagina è il muro della foto portato al bianco caldo (#ECE9E3) con lo stesso trattamento di tutte le foto, e i bordi della foto sfumano nella carta con una maschera locale: la foto non è più un riquadro. Didascalia a due voci: "Décolleté con plateau / Estate 2017" (nella galleria del loro sito del 2017 la foto è sotto "Estate 2017").
+- **Prima schermata.** Tolti la colonna degli orari, il secondo bottone, l'occhiello, "preventivo gratuito" e la riga "Per donna, uomo e ragazzo". A 1440: logo, quattro voci di menu, lo stato breve ("Spaccio aperto fino alle 12") e un bottone con il numero, tutto in testata fissa. A 390: logo e "Menu" in testata; titolo, una riga, lo stato a 22 px, la fila da bordo a bordo; in basso una barra fissa con "Chiama 049 640672" e "Indicazioni".
+- **Sotto la piega, una griglia sola** a 12 colonne, margini 80 px a 1440 (bordo destro a 1360 in tutte le sezioni, misurato), 20 px a 390.
+  1. **Le scarpe**: il titolo con la loro frase ("Cerca la scarpa che ti piace e mandaci il nome"), "Se abiti lontano...", il link della décolleté con i cinque colori, quattro scarpe al posto di otto (tronchetto, mocassino, polacchino, francesina), senza tessera grigia: il fondo bianco delle loro foto è portato alla carta e i bordi sfumano come nella fila. Ogni scarpa è una mail con il nome nell'oggetto. "Chiedi il tuo numero" non è più ripetuto: resta una riga a 14 px accanto alla griglia, con l'email in chiaro e "chiamaci".
+  2. **Lo spaccio, la sezione culmine** (1.040 px a 1440): la foto vera dell'interno, tornata in pagina alla sua misura (960x640, mostrata a 845), con la didascalia "Lo spaccio di fabbrica, via Lombardia 29, Villatora / aperto a tutti dal 5 ottobre 2013"; accanto lo stato a 24 px, la tabella degli orari con la riga di oggi, le feste, l'indirizzo con "Indicazioni", i quattro fatti (donna, uomo e ragazzo; tutti i numeri; contanti o carta; appuntamento).
+  3. **Chi siamo**: il manifesto loro "Calzature prodotte interamente in azienda, di tutti i tipi e di tutti i numeri." e la storia della famiglia Nicoletto. Tolte le cifre 1975 e 2013 a 200 px e la fascia rossa.
+  4. **Per negozi, fiere ed eventi**: l'unico blocco di rosso pieno. Le loro parole sugli ordini e sul preventivo gratuito, la gamma, "Scrivi a info@nicdean.it" (oggetto "Richiesta di preventivo") e il modulo con il tipo di richiesta che compone l'email.
+  5. **Piede** come biglietto da visita: logo e la frase-firma in Antonio, lo spaccio con indirizzo e orari, telefono, fax, email, la riga legale e la privacy.
+- **Caratteri.** Antonio 600 solo per il titolo e la frase-firma; Instrument Sans 400 e 500 per tutto il resto (SIL OFL 1.1, file e licenze in `sito/fonts/`). Esce League Spartan. Riga in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+- **Foto.** `assets/originali/` mancava dopo il riavvio: le foto sono state riscaricate dal loro sito (`nicdean.it/newWebSite/images/` e le dieci del Flash da `foto.xml`). Un solo trattamento: bilanciamento verso il neutro sul fondo, livelli che portano il fondo alla carta, saturazione 0,9. Nessuna immagine ingrandita, nemmeno sul file: la fila non ha più la versione a 1480 px (era ingrandita 1,45 volte), le scarpe sono a 500 px come l'originale. Tutto in WebP con srcset e `sizes` calcolati sulla griglia.
+- **Funzioni tenute dalla versione professionale**: lo stato calcolato sull'ora italiana (stesso script e stesse regole, con l'elenco `CHIUSURE`), la riga di oggi negli orari, il testo senza JavaScript, i mailto con la traccia, il modulo, la riga legale.
+
+### Misure (`_prova/alto/misura-d.mjs`, 1440x900 e 390x844)
+
+| Controllo | 1440 | 390 | Soglia |
+|---|---|---|---|
+| Foto nella prima schermata | 54% (1024x683, misura vera) | 31%; titolo e foto insieme 52% | 60% o più, o sotto il 12%; a 390 il 50% |
+| Cliccabili | 6 | 4 | 6 / 4 |
+| Bottoni | 1 | 1 | 1 |
+| Caratteri fuori dal menu | 151 (al massimo 157 con lo stato più lungo) | | 160 |
+| Cifre di 30 px o più | solo "1975" nel titolo | | solo il gesto |
+| Occhielli | 0 | 0 | al massimo 1 |
+| `h1` | 6 parole, 0 virgole | | 9 parole, 1 virgola |
+| Parole | 472 | 480 | 900 |
+| Sezioni | 5 più il piede | | 7 |
+| Altezza | 4.497 px | 6.038 px | 7.500 a 1440 |
+| Griglia | una, 12 colonne, 80/1360 in tutte le sezioni | 20/370 | una sola |
+| Foto | 6, formati 3:2 e 4:3, nessuna ingrandita a nessuna misura | | 12, 3 formati |
+| Fondi | carta e rosso (un blocco) | | 3, rosso su 1 |
+| Spazi tra le sezioni | 96, 128, 160, 192 px | 80, 96, 112, 160 | due valori, uno 1,5 volte l'altro |
+| Ripetizioni visibili | telefono 1 testo, 2 link; 1975 due volte; 2013 due volte; stato 2; Indicazioni 1 | telefono 2; Indicazioni 2; stato 2 | al massimo 2 |
+| Famiglie, elementi sopra i 100 px, testo corrente | 2; 1; 19 px | 17 px | 2; 1; 17 px |
+| Bottoni in pagina | 3 | 3 | 5 |
+| Peso | 243 KB | | 3 MB |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione di testi, nessun errore di script (prima c'erano due errori CORS dei `preload` dei caratteri da file://: tolti i `preload`, i caratteri si caricano lo stesso), un solo `tel:+39049640672`, 8 mailto tutti verso info@nicdean.it, "indicativ" 0, U+2014 0, nessuna parola della lista nera. Stato provato a 7 ore e giorni (martedì 7:30, 13, 17:30; sabato; 12 agosto; 8 dicembre; Pasquetta 2027): giusto in tutti.
+
+### I compiti della scheda, dove stanno ora
+
+- **V1, cliente dello spaccio (390)**: lo stato a 22 px sotto il titolo, nella prima schermata (y 340); "Chiama 049 640672" e "Indicazioni" nella barra fissa in basso, alti 52 px, in ogni punto della pagina; che cosa trova e come paga nella sezione dello spaccio (prima voce del menu), con l'indirizzo per intero; gli orari della settimana nella stessa sezione, a un tocco da "Spaccio e orari". Il criterio di prima "cosa trova entro la prima schermata" non c'è più: è passato nella sezione dello spaccio, come chiede la sezione D.
+- **V2, chi vuole una scarpa (390)**: la fila intera nella prima schermata; le quattro scarpe nella seconda e terza schermata, a un tocco da "Le scarpe"; ogni scarpa apre la mail con il nome nell'oggetto e le righe da riempire; "Se abiti lontano..." sotto il titolo delle scarpe; email in chiaro e "chiamaci" sotto la griglia, telefono sempre nella barra.
+- **V3, negozio o evento (1440)**: "Calzaturificio" nella riga sotto il titolo e "Per negozi ed eventi" nel menu, nella prima schermata; la gamma in serie e nella frase "décolleté, tronchetti, stivali..." nel blocco rosso; mailto con "Richiesta di preventivo", modulo con il tipo di richiesta e "Modelli, numeri e quantità" nella stessa schermata, telefono in testata; nel piede ragione sociale, P.IVA, REA, capitale, indirizzo, telefono, fax ed email.
+
+### Problemi aperti
+
+- **D2 non passa e non può passare**: la foto più forte che hanno è di 1024x683 e a 1440x900 copre al massimo il 54% della schermata. Per arrivare al 60% andrebbe ingrandita, che è vietato. Si è presa la strada di mezzo di D2 (alla misura vera, centrata, titolo sopra) e la foto non si legge come riquadro, perché il suo muro è il fondo della pagina. Passa solo con la foto nuova della fila, di almeno 2400 px (LEGGIMI, "Foto da fare").
+- **A 390 la foto è al 31%**: la fila intera, cinque colori, a 390x260. Il 50% di D3 si raggiunge solo con il titolo e la foto insieme (52%). Tagliare la fila in verticale avrebbe lasciato fuori due colori.
+- **Le foto restano deboli**: la fila è di autore ignoto (EXIF "Software: Google"); le scarpe sono Olympus del 2001 a 500 px, e sui telefoni ad alta densità sono morbide; la foto dello spaccio ha le finestre bruciate e non si recupera. La serie è una sola per trattamento e fondo, non per luce.
+- **Lo spaccio aperto va verificato prima di tutto** (ATECO 68.20, sito fermo al 2017): se è chiuso, questa home non ha un cliente.
+- Il "Chiedi il tuo numero" con un bersaglio di 44 px chiesto dalla scheda non c'è più su ogni scarpa: tutta la scheda della scarpa è il bersaglio (302x290 px a 1440, 167x250 a 390).
+- Il giudizio del controllore da agenzia e dei clienti tipo va rifatto su queste schermate.
+
+---
+
 ## Livello professionale (con il ritocco finale del 3 novembre 2026)
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. La versione 1 com'era prima del livello professionale è copiata in `_prova/versione-1-originale/` (sito e screenshot). Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole). Scheda d'uso e d'identità: `_prova/uso/SCHEDA.md`. Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di Petersham e Poilâne (a pezzi, nel ritocco finale) e prima di Union e Joseph Brot.

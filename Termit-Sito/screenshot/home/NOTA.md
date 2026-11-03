@@ -1,5 +1,55 @@
 # Termit, home: nota
 
+## Metodo ibrido (novembre 2026)
+
+3/11/2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (riga di Termit nel capitolo 5: modello C, riferimento RATH, Atkinson Hyperlegible); sotto, i contenuti e le funzioni della versione professionale, copiata com'era in `_prova/versione-pro/` (sito e screenshot). Direzione in `_prova/alto/DIREZIONE.md`; registro dei caratteri in coda a `_metodo/professionale/alto/REGISTRO-CARATTERI.md`.
+
+**Si rifà tutto così** (cartella `_prova/alto/`): `python3 -I script/img.py` (provini e WebP), `python3 -I script/build.py` (monta `sito/index.html` dal modello scritto a mano `script/modello.html`, dallo script `script/script.js` e dai dati delle 138 schede della versione professionale), `node misura-d.mjs` (soglie, esito in `misure/misure.json`), `node script/controlli.mjs` (sei larghezze e questi screenshot, esito in `controlli/controlli.json`).
+
+### Che cosa è cambiato
+
+- **Prima schermata (modello C).** Fondo carta #F4F3EE al posto del nero; una sola domanda, "Cercate un prodotto?", a 176 px (Atkinson Hyperlegible Next 400), con la riga del mestiere e del luogo accanto: "Isolanti termici, acustici e antifuoco a stock, con taglio su misura, a Saonara (PD)." Sotto, il campo di ricerca grande come un titolo: 56 px in Atkinson Hyperlegible Mono, con gli esempi veri "PS680, K-Flex, coppella", sopra il filetto verde del marchio largo tutta la griglia. I risultati con il PDF del produttore si aprono lì sotto; al primo risultato il campo sale sotto la testata. Sul computer il cursore è già nel campo. Nessuna foto (D2: sotto il 12%, perché l'unica foto loro è di 1000 px).
+- **Tolto dall'apertura** (capitolo 5 e diagnosi): fondo nero con tre bottoni, orari e indirizzo, i quattro fatti in fila, le esigenze a pillola, le marche, l'occhiello "Saonara (PD) · ISO 9001 dal 2004". **Tolti dalla pagina**: la fascia verde delle cifre (50+, 2004, 251, 11: resta una frase con il 2004; gli 11 dipendenti sono da confermare e non ci sono più), tutti gli occhielli sopra gli `h2`, il secondo bottone "Chiamate" in Su misura, il telefono gigante, il riquadro nero degli ordini, i `details` "Altre voci" (le voci dei settori sono tutte in vista), l'email ripetuta nel testo, il testo d'interfaccia del modulo a 17 px (ora 14 px, accanto a "Prepara l'email"). Escono Zalando Sans e Zalando Sans Expanded.
+- **Sotto la piega, su una griglia sola a 12 colonne** (margini 80 px a 1440, 40 tra 768 e 1279, 16 al telefono; stessi bordi in testata, sezioni e piede): Prodotti (le otto famiglie come indice numerato con le schede e il link alla categoria di termit.biz, poi "Per esigenza" e "Marche a magazzino" come righe di testo che riempiono la ricerca), Consegne (le quattro condizioni come tabella e il blocco verde degli ordini con la frase-firma, "Scrivi un ordine" e "Chiedete il listino"), Su misura come culmine (foto alla misura vera, didascalia a due voci, testo, "Materiali", "Cosa indicare", "Mandateci il disegno"), Settori (Industria, Edilizia, Navale con tutte le voci), Azienda (una frase, certificazioni con i PDF, partner e Termit Isolbag 039), Contatti divisi per bisogno (telefono con orari e stato, ordini e listino per scritto, magazzino con "Come arrivare") e il modulo con le quattro richieste. Piede da biglietto da visita: indirizzo, Chi siamo, Condizioni di fornitura, LinkedIn, dati legali, Privacy e Cookie.
+- **Frase-firma** (D7): "Telefonate o scrivete per avere il listino aggiornato", loro (notizia del listino sul sito di oggi, `01-analisi.md` sez. 8), in due punti con lo stesso trattamento (40/46 400): il blocco verde degli ordini e il titolo dei contatti. "Cercate un prodotto?" viene dalla riga del capitolo 5 ed è nel "voi" con cui scrivono loro; la ricerca del loro sito dice "Digita per cercare".
+- **Foto.** `assets/originali/` era stato cancellato con il riavvio: l'ho riscaricato da termit.biz (`sito/contenuti_categorie___thumb_1000_800__imm[000]_TaglioAcqua.jpg` 1000x800, `sito/Uploads__tag.jpg` 1000x345, il logo bianco 539x85 e la favicon). In pagina c'è solo la prima, ritagliata a 1000x639, con un trattamento unico (metà strada verso il neutro, saturazione 0,88, contrasto +4%), in WebP a 640 e 1000 px con srcset, mostrata a 868 px a 1440 e mai ingrandita. La panoramica ripete la stessa macchina ed esce. Provini: `_prova/alto/provini.jpg`.
+- **Caratteri**: Atkinson Hyperlegible Next 400 e 700 (variabile) e Atkinson Hyperlegible Mono 400 solo per i dati (campo, numeri delle famiglie, schede, numero di telefono nel bottone, risultati), SIL OFL 1.1, in `sito/fonts/` con le due licenze.
+
+### Dove stanno i compiti della scheda d'uso (V1, telefono)
+
+| Compito | Dove sta ora |
+|---|---|
+| Chiamare con un tocco | Bottone verde nella testata fissa, alto 48 px, l'unico bottone della prima schermata: "049 640060" a 390, "Chiama 049 640060" da 768 in su, "Chiama" sotto i 360 px. Resta in vista a metà pagina. Il secondo `tel:` è nei contatti. |
+| Aperti adesso e orari, senza scorrere | A 1280 e oltre nella testata ("Aperti ora, fino alle 12.30" e gli orari); sotto i 1280 nella barra fissa in basso. Senza JavaScript dice "Orari d'ufficio" con gli orari. Ripetuto nei contatti accanto al numero. |
+| Scrivere l'ordine con un tocco | Sotto i 1280 "Scrivi un ordine" nella barra fissa in basso, dalla prima schermata; a 1440 compare in testata appena si scende sotto la domanda, e c'è nel blocco verde degli ordini. Sempre con la traccia (azienda, riferimento, codici e quantità, indirizzo di consegna, data). |
+| Le consegne con un tocco dal menu | Voce "Consegne" della testata a 1440 (a 390 dopo "Menu"): sponda camion, camion di circa 10 m, da 1 a 7 giorni, porto franco, niente corrieri espressi. |
+
+V2 e V3: la ricerca è la prima schermata; le otto famiglie finiscono a y 1597 a 1440 (seconda schermata); "Azienda" nel menu porta a certificazioni e partner; "Su misura" nel menu porta al culmine con "Cosa indicare" e "Mandateci il disegno"; il modulo ha "Pezzo su misura" con l'avviso dell'allegato.
+
+### Misure (`node _prova/alto/misura-d.mjs`, 49 su 49 passano)
+
+- **Prima schermata 1440x900**: 6 cliccabili (Prodotti, Su misura, Consegne, Azienda, Chiama, il campo; il logo non è un link), 1 bottone, 140 caratteri fuori dalla testata, foto 0%, nessuna fila di ingressi, nessuna cifra di 30 px, `h1` di 3 parole a 176 px.
+- **Prima schermata 390x844**: 4 cliccabili (il telefono, Menu, il campo, Scrivi un ordine), 1 bottone, il gesto (dalla domanda al filetto del campo) sul 50% dello schermo.
+- **Pagina**: 794 parole a 1440 (791 a 390), 7 sezioni, 7.047 px a 1440 (11.119 a 390), 252 KB a 1440 e 230 KB a 390; una foto, un formato, nessuna ingrandita (a 2x il file è 1,18 volte la misura mostrata a 1440, 2,79 a 390); fondi: carta, carta scura del culmine, verde del blocco ordini; spazi tra le sezioni 96, 192 e 288 px; culmine alto 1.128 px; nessun occhiello, nessuna parola della lista nera, nessuna cifra di 30 px o più; un solo elemento sopra i 100 px (l'`h1`); 2 `tel:` in vista; numero, email, orari, indirizzo e "Scrivi un ordine" al massimo 2 volte, "Come arrivare" 1; contrasto AA ovunque, segnaposto del campo 4,69:1.
+- **Ricerca**: K-Flex 6 risultati, REI 120 1, coppella 5, PS680 1, RINA 6, alte temperature 6, Unifrax 6 (con la nota che nessuna scheda lo nomina), senza ricaricare.
+- **Controlli a 320, 390, 768, 1024, 1440 e 1920** (`_prova/alto/controlli/controlli.json`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script, un solo `tel:` (+39049640060) e un solo `mailto:` (info@termit.biz) con le tracce Ordine, Richiesta listino aggiornato e Pezzi su misura; il modulo compone l'email giusta.
+- Screenshot rifatti con gli stessi nomi, più `home-1024-prima-schermata.jpg` e `home-768-prima-schermata.jpg`; guardati a pezzi accanto alla versione professionale e a RATH e Promat (`_prova/alto/concorrenti/`, prime schermate del 3/11/2026 sul loro dominio).
+
+### Problemi aperti
+
+- **La foto è una sola e piccola** (1000 px, da telefono): regge il culmine alla sua misura ma non un'apertura fotografica. Sopra l'8 servono le foto del LEGGIMI (magazzino, macchina in funzione, camion vero, materiali in sezione).
+- **La didascalia del culmine ha "cosa" e "dove", non l'anno**: l'anno dello scatto non è nel file né nelle fonti (la data del server, aprile 2026, è quella del caricamento). "Reparto taglio, Saonara (PD)" presuppone che la foto sia loro: va confermato (LEGGIMI punto 16).
+- **"Scrivi un ordine" a 1440 non è nella prima schermata**: il tetto di 6 cliccabili lo tiene fuori; compare in testata appena si scende e nel blocco verde, a 2.625 px. A 1440 non c'è nemmeno "Contatti" nel menu (c'è nel pannello sotto i 1280): i contatti si raggiungono dal bottone del telefono, da "Azienda" (la sezione dopo) e dal piede.
+- **"ISO 9001 dal 2004" e "più di 50 anni" non sono più nella prima schermata** (la scheda V2.4 li chiedeva; la sezione D li toglie): stanno a un clic, in "Azienda".
+- **L'autofocus** sul computer mette il cursore nel campo: un lettore di schermo legge prima il campo e poi la pagina; se dà fastidio si toglie la riga `q.focus` in `script/script.js`.
+- **Il controllo D1 con tre persone** (miniatura a 300 px senza logo) e il voto del giudice da agenzia e dei clienti tipo non li posso fare io: sono da fare.
+- Restano aperti tutti i punti del LEGGIMI (email da confermare, ritiro al banco, mezzi propri o trasportatori, numeri, recensioni, lavori con nome, logo vettoriale).
+
+---
+
+## Nota precedente (livello professionale)
+
+
 Pagina: `sito/index.html` (statica, si apre con file:///). Si rifà tutto con `sh _prova/script/build_finale.sh`. Altezza: 8247 px a 1440, 12851 px a 390. La nota della versione precedente (coppella disegnata) è in `_prova/versione-1-originale/screenshot/home/NOTA.md`.
 
 ## Livello professionale (3/11/2026)

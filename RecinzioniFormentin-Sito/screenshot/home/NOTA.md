@@ -1,4 +1,72 @@
-# Home "Recinzioni e cancelli, dalla vendita alla posa": nota
+# Home "Produciamo e montiamo": nota
+
+## Metodo ibrido (novembre 2026)
+
+3 novembre 2026. Prima schermata secondo la sezione D di `_metodo/professionale/ALTO-LIVELLO.md`; sotto, i contenuti e le funzioni della versione professionale, rimessi su una griglia sola. La versione professionale com'era (pagina, immagini, carattere, screenshot) è in `_prova/versione-pro/`. Direzione scritta prima dell'HTML: `_prova/alto/DIREZIONE.md`. Provini delle foto: `_prova/alto/provini.jpg`.
+
+Screenshot in questa cartella, ora simulata lunedì 2 novembre 2026 alle 10.00 ("Aperto"): `home-1440.jpg` (5962 px, prima 10668), `home-1440-prima-schermata.jpg`, `home-390.jpg` (8250 px, prima 12856), `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` (banco, orari e strada). Confronto con la versione professionale e con Gust. Alberts e Jacksons (prime schermate rifatte sul loro dominio il 3/11/2026, `_prova/alto/concorrenti/`): `_prova/alto/shots/confronto-1440.jpg`.
+
+### Che cosa è cambiato
+
+- **Idea e gesto.** "Produciamo e montiamo" è una frase loro (pagina Ringhiere e cancelli; "Produciamo direttamente al nostro interno robuste reti ondulate" nella pagina Reti ondulate). È in Big Shoulders Display 700 maiuscolo, a 144 px, bianca sulla macro della loro rete ondulata sulla macchina (`uploads_2014_04_rete_ondul2.jpg`, 800 x 900 alla misura vera, a filo del bordo sinistro). Accanto c'è il secondo verbo: il cancello scorrevole antracite posato (`canc082204`, 4:3). La frase torna uguale nel culmine e nel piede. Modello M del capitolo 5 (riferimento Alberts, "Made in Herscheid").
+- **Scostamenti dalla riga del capitolo 5.** La macro non va "a tutta larghezza": sarebbe ingrandita 1,8 volte, perché nessuna foto loro supera gli 800 px (a parte il negozio del 2014). Il titolo non è "Fatte a Villatora": le foto della macchina sono del 2014, prima del trasloco del 2018, e nessuna fonte dice dove si produce oggi.
+- **Prima schermata.** A 1440 restano il marchio, cinque voci di menu (l'ultima porta lo stato, "Orari: aperto" o "Orari: chiuso"), il telefono, una riga ("Recinzioni e cancelli, dalla vendita alla posa. Villatora di Saonara."), un bottone ("Manda foto e misure") e "Preventivo gratuito". A 390 ci sono il marchio con "Formentin", "Chiama", "Menu", la riga, lo stato e il bottone, con le due foto.
+- **Tolti.** La fila delle quattro garanzie, il bollino "50+" (era due volte), la fascia verde dei quattro ingressi, il secondo bottone dell'apertura, gli occhielli sopra ogni titolo, i numeri dei passi a 48 px, il telefono a 96 px, il modulo (rifaceva il "Manda foto e misure" con un'email), la sezione "Chi siamo" in tre colonne (resta una frase sotto la foto del culmine), le schede prodotto con foto (diventano quattro righe numerate), i doppioni di "Indicazioni stradali", del cellulare e del telefono, il link "Apri la mappa", le foto del negozio e dell'esposizione Betafence (2014 e 2015, probabilmente la sede di prima).
+- **Rimasti, su una griglia sola.** La griglia ha 12 colonne, margini di 40 px a 1440 e solchi da 24 px. Le sezioni sono sei, più il piede: 1) apertura; 2) preventivo in tre passi, l'unico blocco nel verde del marchio, con "Manda foto e misure" (email con oggetto e traccia); 3) per la casa, con i quattro lavori in alluminio (ingrandibili con un tocco, didascalie a due voci), i quattro prodotti in righe numerate e l'esposizione su appuntamento con il bottone "Chiedi l'appuntamento" (email con traccia); 4) culmine su fondo antracite, alto 1049 px a 1440, con la rete ondulata sulla macchina, la didascalia "Rete ondulata a maglia intrecciata, sulla nostra macchina. Foto del 2014", la tabella delle maglie (dalla pagina Reti ondulate), le colonne zincate a caldo e la frase sugli inizi; 5) aziende e Betafence, con i cinque sistemi e le altezze, "Mandateci il disegno", l'elenco dei dati e il bottone "Manda il disegno" (email con traccia); 6) banco, orari e strada, con le dodici categorie, carpenteria e grigliati, lo stato aperto o chiuso calcolato con i festivi, la tabella degli orari, l'indirizzo, come arrivare, "Indicazioni stradali", telefono, cellulare ed email. Il piede è un biglietto da visita con la frase, la ragione sociale e la P.IVA.
+- **Caratteri.** Esce Geologica. Entrano Big Shoulders Display 700 e Public Sans 400 e 600 (SIL OFL 1.1, licenze in `sito/fonts/`). Riga aggiunta in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`; lì il titolo è scritto a 152 px, in pagina è a 144 (a 152 la seconda riga andava a capo), e il registro non l'ho riscritto perché altri agenti lo aggiornano in parallelo.
+- **Foto.** 7 in pagina, un solo trattamento (`_prova/alto/script/immagini.py`: bilanciamento verso il neutro a metà, saturazione 0,88, contrasto 1,05), WebP con srcset, tre formati (8:9, 4:3, 3:2), nessuna ingrandita. La cartella `assets/originali/` mancava dopo il riavvio: l'ho riscaricata dal sito di oggi (175 file, la libreria e le gallerie; le macro e i negozi a misura piena).
+
+### Misure (`_prova/alto/misura-d.mjs`, esito in `_prova/alto/misure/misure-d.json` e `esito.txt`)
+
+35 controlli su 35 passano.
+
+| Controllo | Soglia | Oggi | Versione professionale, stesso script |
+|---|---|---|---|
+| Foto nella prima schermata 1440 (area delle immagini) | 60% o più | 72% (a campione, senza le lettere del titolo: 59%) | 20% |
+| Cliccabili 1440 / 390 | 8 / 4 | 8 / 4 | 16 / 7 |
+| Bottoni nella prima schermata 1440 / 390 | 1 / 1 | 1 / 1 | 3 / 4 |
+| Caratteri fuori dal menu, 1440 | 160 | 156 | 643 |
+| Foto a 390 | 50% | 65% | 29% |
+| Famiglie di caratteri | 2 | 2 | 1 |
+| Elementi sopra i 100 px | 1 | 1 (il titolo) | 0 |
+| Occhielli | al massimo 1 | 0 | 9 |
+| Parole | 900 | 712 | 1056 |
+| Sezioni | 7 | 6 più il piede | 9 più la fascia degli ingressi |
+| Altezza a 1440 | 7.500 px | 5.962 px | 10.668 px |
+| Cifre di 30 px o più | al massimo 1 | 0 | 8 |
+| Foto e formati | 12 e 3 | 7 e 3 | 11 e 2 |
+| Fondi | 3 | 3 (bianco, verde, antracite) | 4 |
+| Spazi tra le sezioni | due, uno 1,5 volte l'altro | 96 e 160 px | 40 e 120 px |
+| Bottoni in pagina | 5 | 5 | 13 |
+| Stesso numero o stessa funzione | al massimo 2 volte | 049 760801 due volte (testata e orari), "Manda foto e misure" due volte | 049 760801 nove volte, link alla mappa sei |
+| Lista nera, istruzioni sopra i 14 px | 0 | 0 | "soluzioni"; "Il modulo prepara un'email..." |
+| Peso caricato | 3 MB | 0,34 MB (cartella `sito/` 0,54 MB) | 1,34 MB |
+
+La versione professionale si rimisura con `SITO=.../_prova/versione-pro/sito/ node misura-d.mjs` (esito in `_prova/alto/misure/pro-misure-d.json`).
+
+Contrasto del titolo bianco sulla foto (`_prova/alto/script/contrasto-h1.mjs`, testo nascosto e fondo misurato sotto le lettere): in media 10,6:1 a 1440 e 11,5:1 a 390; 6,8:1 sul 2% più chiaro. Il resto: verde e bianco 5,5:1, secondario su verde 4,7:1, secondario su antracite 8,4:1, secondario su bianco 6,0:1.
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/shots.mjs`, esito in `_prova/alto/shots/controlli-finali.json`): nessuno scorrimento orizzontale, nessuna sovrapposizione di testi, nessun errore di script, `tel:` e `mailto:` giusti, nessun cliccabile sotto i 44 px fuori dal testo. A 1920 la pagina resta larga 1440 px e centrata, perché le foto non reggono di più.
+
+### Compiti della scheda d'uso: dove stanno ora
+
+Posizioni a 390 in `_prova/alto/script/posizioni.mjs`.
+- **Privato.** 1) Il mestiere, il luogo, la parola "posa" e due foto loro (la rete e il cancello posato) si leggono senza scorrere. 2) "Manda foto e misure" è senza scorrere, alto 56 px, ed è sempre il bottone pieno. I tre passi, con che cosa mandare, finiscono a 1527 px, entro uno scorrimento. 3) "Preventivo gratuito" è senza scorrere. "Esposizione in sede, su appuntamento" con il suo bottone sta a 2645 px, entro tre scorrimenti. 4) I quattro lavori in alluminio finiscono 1485 px dopo l'apertura, entro due scorrimenti; ci si arriva anche dal menu ("Lavori e prodotti") e si ingrandiscono con un tocco.
+- **Impresa.** 1) Lo stato si legge a 441 px, senza scorrere: a 1440 sta nel menu. 2) "Chiama" è nella testata fissa, sempre. 3) **La strada non è più a un tocco**: Menu, "Orari e strada", poi "Indicazioni stradali" (D3: a 390 ci sono al massimo 4 cliccabili). 4) Il banco è a un tocco dal menu ("Attrezzature edili"); carpenteria e grigliati stanno nella stessa sezione.
+- **Tecnico.** 1) "Betafence" è nel menu della prima schermata; "Rivenditori e installatori ufficiali" è il titolo della sezione Aziende, a un clic. 2) I sistemi e le altezze sono in testo, a un clic. 3) L'elenco dei dati e "Manda il disegno" stanno nella stessa schermata. 4) Il telefono è nella testata. **L'email non è più nella prima schermata**: sta in "Orari e strada" e nelle email già scritte. La P.IVA è nel piede.
+
+### Problemi aperti
+
+- **Le foto restano da telefono e piccole.** È il limite più grande: la macro dell'apertura è nitida in primo piano ma ha 800 px, e la serie dei lavori ha luci diverse. Sopra il 7,5 serve la giornata di foto (LEGGIMI, "Foto da fare dal vero"): prima di tutto la macro della rete ondulata sulla macchina di oggi, a 2400 px almeno. Con quella l'apertura diventa davvero a tutta larghezza.
+- **La macchina della rete c'è ancora?** Le foto sono del 2014. "Produciamo direttamente al nostro interno" è scritto sul sito di oggi, ma va confermato che la rete si fa ancora, e dove. Se non è più così, la frase va cambiata (LEGGIMI, punto 16).
+- **I lavori non hanno né luogo né anno** (LEGGIMI, punto 5). La didascalia del culmine ha cosa, dove e anno ("sulla nostra macchina", 2014); quelle dei lavori hanno lavoro e materiale.
+- **La misura della foto a campione** dà il 59% a 1440, perché le lettere del titolo coprono la foto. L'area delle immagini dà il 72%. Ho tenuto la seconda, perché la regola misura la foto e non il testo sopra.
+- **La strada a un tocco per l'impresa** e **l'email nella prima schermata per il tecnico**: sono usciti per i tetti di D3. Il cliente tipo li trova in due tocchi dal menu.
+- La P.IVA del piede viene da atoka e va confermata (LEGGIMI, punto 9).
+
+---
+
+## Nota di prima: home "Recinzioni e cancelli, dalla vendita alla posa" (livello professionale)
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, screenshot con `pro_shots.mjs` e `pro_shots.py`, controlli con `pro_controlli.mjs`; con l'argomento `tutte` anche 320, 768 e 1024). `largo.mjs` trova gli elementi che escono dalla larghezza. La versione di prima ("La rete ondulata la facciamo noi") è in `_prova/versione-1-originale/`.
 

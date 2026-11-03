@@ -2,8 +2,9 @@
 
 Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubblicato.
 
-- Home: `sito/index.html` con `sito/img/` e `sito/fonts/`. Screenshot e nota in `screenshot/home/` (`NOTA.md`, sezione "Livello professionale").
-- Rifare tutto: `bash _prova/script/build_finale.sh` (immagini, pagina, screenshot). Controlli: `node _prova/script/pro_controlli.mjs`.
+- Home: `sito/index.html` con `sito/img/` e `sito/fonts/`, versione del metodo ibrido (3/11/2026). Screenshot e nota in `screenshot/home/` (`NOTA.md`, sezione "Metodo ibrido"). Direzione: `_prova/alto/DIREZIONE.md`.
+- Versione professionale da cui parte (pagina, immagini, caratteri, screenshot): `_prova/versione-pro/`.
+- Rifare le immagini: `python3 -I _prova/alto/script/img.py`; screenshot: `node _prova/alto/script/screenshot.mjs`; controlli: `node _prova/alto/misura-d.mjs`. Gli script di prima in `_prova/script/` non sono più sul disco dopo il riavvio.
 - Versione di prima (tavola tecnica con il calibro): `_prova/versione-1-originale/`. Analisi con le fonti: `01-analisi.md`. Scheda d'uso: `_prova/uso/SCHEDA.md`.
 
 ## Da collegare prima di pubblicare
@@ -15,7 +16,7 @@ Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubbl
 
 ## Da chiedere all'azienda
 
-1. **Privati** (in pagina, da confermare): la home scrive "Anche se sei un privato, con lo spaccalegna, il trattorino o il rimorchio: porta il tubo o manda le foto, ti diciamo noi che cosa serve", dalla scelta "Privato" del loro modulo. Se non servono i privati, togliere la riga `.privati` e la nota "(se sei un privato, lascia vuoto)" nel modulo.
+1. **Privati** (in pagina, da confermare): la home scrive "Anche se sei un privato, con lo spaccalegna, il trattorino o il rimorchio: porta il tubo o manda le foto, ti diciamo noi che cosa serve", dalla scelta "Privato" del loro modulo. Se non servono i privati, togliere lo `span.privati` nel testo del culmine e la nota "(se sei un privato, lascia vuoto)" nel modulo.
 2. **Certificazione ISO 9001:2015** (RINA 44143/23/S, IQNet IT-146659): il PDF sul sito scadeva il 22.06.2026. Per questo il piede non ha più i link "Certificazioni" e "Politica per la qualità" (PDF del 05.12.2022). Con il rinnovo: "ISO 9001, certificato n. ..., valido fino al ..." nella fascia dei numeri con il PDF, e i due link di nuovo nel piede.
 3. **Recensioni**: la scheda Google dà 4,8 su 11. Se si possono citare, con due o tre testi veri (nome e comune del cliente), servono per la regola delle prove; i testi non si leggono senza accesso.
 4. **Lavori con un nome**: tre lavori fatti (cliente o luogo, anno, due-tre dati: per esempio tubi per un costruttore di macchine, una centralina, un intervento urgente in campo) con una foto larga. Oggi la home non ne ha.
@@ -26,7 +27,7 @@ Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubbl
 9. **Uscite**: se fanno interventi fuori sede (in campo, in cantiere): se sì, il modulo deve chiedere anche l'indirizzo della macchina.
 10. Dati legali: REA PD 200928, dipendenti e fatturato vengono da companyreports.it e non dalla visura (non in pagina); capitale sociale e PEC non trovati; CAP 35020 (sito) o 35022 (certificato RINA), in pagina 35020; email su dominio .com con sito .it: quale tenere.
 11. Se FOR, NUMATICS, Cast, Donaldson, MP, Emmegi e Stopflex sono ancora distribuiti (non messi nella griglia dei marchi, che tiene i 16 della scheda).
-12. Chi ha scattato IMG-9594 e IMG-9596 (il prima e dopo in pagina) e se esistono gli originali più grandi (oggi 1024 px).
+12. Chi ha scattato IMG-9594 e IMG-9596 (il prima e dopo in pagina, dall'articolo "Il sistema Push Lock" del 25/7/2023) e se esistono gli originali più grandi (oggi 1024 px). La didascalia dice "F.R.A.M.O., Saonara (PD) · luglio 2023": il luogo dello scatto va confermato.
 13. **Foto della sede** (`azienda-01` e `azienda-02` del loro sito): portano la filigrana "© 2018 Google", sono catture di Google Street View. Non sono in pagina; vanno tolte anche dal sito di oggi o sostituite (foto 2 qui sotto).
 14. **Centraline**: una foto di una centralina loro e tre dati tipici (pressioni, potenze, componenti montati), solo se confermati: oggi la home dice solo "progettiamo e assembliamo".
 15. **Loghi** in vettoriale dei marchi distribuiti (almeno AMI, Manuli, Walvoil, Danfoss), con il permesso d'uso: oggi i marchi sono scritti, non disegnati.
@@ -34,9 +35,9 @@ Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubbl
 
 ## Foto da fare dal vero (mezza giornata in via Liguria 32)
 
-Il committente ha deciso: niente foto di repertorio e niente disegni. In pagina oggi c'è solo il prima e dopo (IMG-9594 e IMG-9596). Tolte nel ritocco: la macro IMG-9592 (la scritta più grande è il marchio TEXMASTER, ed è un SAE 100R6 a bassa pressione) e la sede azienda-01 (cattura di Street View). L'apertura oggi è un blocco tipografico giallo con 3/16" e 3"; i servizi hanno copertine tipografiche. Un solo fotografo, una sola luce, un formato (3:2), almeno 3000 px di lato lungo:
+Il committente ha deciso: niente foto di repertorio e niente disegni. In pagina oggi c'è solo il prima e dopo (IMG-9594 e IMG-9596, un raccordo Push Lock), sotto l'apertura di sola tipografia (il 3" alla misura vera sulla carta tecnica). Tolte nel ritocco: la macro IMG-9592 (la scritta più grande è il marchio TEXMASTER, ed è un SAE 100R6 a bassa pressione) e la sede azienda-01 (cattura di Street View). L'apertura oggi è un blocco tipografico giallo con 3/16" e 3"; i servizi hanno copertine tipografiche. Un solo fotografo, una sola luce, un formato (3:2), almeno 3000 px di lato lungo:
 
-1. **Apertura**: il banco con la pressa raccordatrice e una persona di F.R.A.M.O. al lavoro su un tubo ad alta pressione a due trecce, luce di giorno dalla porta dell'officina, la persona guarda il pezzo. Va al posto del blocco giallo (o accanto, con il blocco più stretto).
+1. **Accanto all'apertura** (riga del capitolo 5): la macro della guaina di un loro tubo a due trecce con la scritta stampata, a fuoco sul codice, luce di finestra laterale. Poi il banco con la pressa raccordatrice e una persona di F.R.A.M.O. al lavoro su un tubo ad alta pressione a due trecce, luce di giorno dalla porta dell'officina, la persona guarda il pezzo. Va nella prima schermata accanto alla scala dei diametri, senza toglierle spazio.
 2. **La sede**, fatta da loro di giorno con il cielo pulito, dal marciapiede di fronte al cancello: palazzina, fascia gialla e blu, numero 32, insegna. 3:2. Va nella sezione "Dove siamo", a sinistra della tabella degli orari: serve a riconoscere il posto.
 3. **Da campione**: la coppia "tubo vecchio portato dal cliente / tubo nuovo rifatto", stesso fondo e stessa luce, al posto del Push Lock (che il loro articolo dà "fino a 16 BAR" e non è la specialità).
 4. **Una foto per ogni servizio**, per le sei schede di "Che cosa facciamo" (regola 9), nell'area 3:2 della copertina: tubi su misura, tubo da campione al banco, magazzino di 600 mq (scaffali e bobine), centraline assemblate, pneumatica, sollevamento (funi e brache).
@@ -51,8 +52,8 @@ Niente newsletter e niente social (non esistono; c'è solo WhatsApp Business sul
 
 ## Licenze
 
-- Caratteri: Anybody (Etcetera Type Co.) per titoli e cifre e Barlow (The Barlow Project) per testo e interfaccia, Google Fonts, SIL Open Font License 1.1 (uso commerciale libero), serviti dalla pagina in `sito/fonts/` con le licenze `OFL-Anybody.txt` e `OFL-Barlow.txt`.
-- Foto F.R.A.M.O. (IMG-9594, IMG-9596) e logo: dal loro sito, da usare solo per la loro proposta.
+- Caratteri (metodo ibrido): Red Hat Mono (The Red Hat Project Authors) solo per il gesto e i dati e Reddit Sans (Reddit Inc.) per titoli e testo, SIL Open Font License 1.1 (uso commerciale libero), file variabili da `@fontsource-variable/red-hat-mono` 5.2.8 e `@fontsource-variable/reddit-sans` 5.3.0, serviti da `sito/fonts/` con le licenze `OFL-RedHatMono.txt` e `OFL-RedditSans.txt`. Anybody e Barlow della versione professionale sono in `_prova/versione-pro/sito/fonts/`.
+- Foto F.R.A.M.O. (IMG-9594, IMG-9596) e logo: dal loro sito, da usare solo per la loro proposta. `assets/originali/` è stato riscaricato il 3/11/2026 dall'archivio media del loro sito (le tre foto vere IMG-9592, 9594 e 9596, più cinque immagini di fornitori e di repertorio non usate).
 - Nessuna foto di repertorio in pagina. Le foto Unsplash e Pexels scaricate per i prototipi restano in `assets/esterne/` (vedi `assets/CREDITI.md`) ma non sono usate. Le foto Adobe Stock del sito vecchio non sono usate.
 
 ## Logo

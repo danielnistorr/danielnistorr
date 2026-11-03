@@ -3,9 +3,10 @@
 Proposta non richiesta di una nuova home per narditalia.com. Solo la home; nessun contatto con l'azienda, niente pubblicato.
 
 - **Pagina**: `sito/index.html` (si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/` (con `OFL.txt`), catalogo codici `sito/catalogo-codici-nardi.pdf`.
-- **Screenshot e nota**: `screenshot/home/`; la `NOTA.md` ha la sezione "Livello professionale" con l'esito delle 15 regole.
-- **Rigenerare tutto**: `bash _prova/script/build_finale.sh` (dati dei prodotti, immagini, dati in pagina, catalogo PDF, screenshot, prove d'uso, controlli). Con `scarica_pagine=1` riscarica le 96 pagine prodotto da narditalia.com.
-- **Versione precedente**: copia intatta di `sito/` e `screenshot/home/` in `_prova/versione-1-originale/`.
+- **Screenshot e nota**: `screenshot/home/`; la `NOTA.md` ha in testa la sezione "Metodo ibrido (novembre 2026)" con le misure della sezione D, e sotto la nota della versione professionale.
+- **Metodo ibrido (3/11/2026)**: prima schermata con le sei scatole Briko Line in tessere (modello L), sotto i contenuti della versione professionale su una griglia sola. Direzione in `_prova/alto/DIREZIONE.md`. Si rifà con: `python3 -I _prova/alto/script/scatole.py` (tessere), `python3 -I _prova/alto/script/foto.py` (magazzino e sede), `python3 -I _prova/alto/script/build.py` (monta `sito/index.html` da `_prova/alto/script/home.html` e `script.js`, con l'elenco dei codici e i dati dei 96 prodotti presi da `_prova/versione-pro/sito/index.html`), poi `node _prova/alto/misura-d.mjs` (misure) e `node _prova/alto/script/controlli.mjs` (controlli, prove d'uso e screenshot).
+- **Rigenerare la versione professionale** (gli script non ci sono più dopo il riavvio; la copia è in `_prova/versione-pro/`): `bash _prova/script/build_finale.sh` (dati dei prodotti, immagini, dati in pagina, catalogo PDF, screenshot, prove d'uso, controlli). Con `scarica_pagine=1` riscarica le 96 pagine prodotto da narditalia.com.
+- **Versioni precedenti**: la versione professionale intatta (`sito/` e `screenshot/home/`) in `_prova/versione-pro/`; la prima versione in `_prova/versione-1-originale/` (se c'è ancora).
 - **Fonti**: `01-analisi.md`, `_prova/uso/SCHEDA.md`; dati dei 96 prodotti in `_prova/dati-prodotti.json` (Store API di WooCommerce, pagine prodotto e libreria media di narditalia.com, letti il 3/11/2026).
 
 ## Che cosa fa la home
@@ -34,7 +35,7 @@ Il modulo "Richiesta o ordine" oggi **compone un'email** (mailto a info@nardital
 7. **Orari**: lo stato aperto o chiuso usa lun-ven 8-12 e 14-18, i festivi nazionali e Pasquetta. Mancano il patrono di Saonara e le chiusure aziendali (ferie di agosto, 24 e 31 dicembre, ponti): lo script ha già l'elenco `CHIUSURE` (vuoto), da riempire una volta l'anno con le date che dà Nardi; in quei giorni la pagina dirà "Chiuso per ferie: riapre ...".
 8. **Schede**: nei risultati ogni prodotto ha le stesse quattro righe (acqua, tempi, spessore, uso); dove la scheda del sito non dà il dato c'è "vedi scheda tecnica". Servono da Nardi, in parole semplici, almeno per le scatole Briko Line: acqua per 1 kg, spessore massimo, quando è asciutto o pedonabile (stucco per fughe), larghezza delle fughe, temperatura e tempo prima di accendere il fuoco (malta refrattaria). Le schede tecniche sono del 2016-2019 e la dichiarazione di prestazione dell'E180 del 2017: sono ancora valide? Quali prodotti sono fuori produzione? Errori da correggere nelle schede del sito: la colla per piastrelle grigia riporta "Acqua d'impasto: Bianca 28%", la polvere ceramica terracotta usa la foto della bianca, la malta grigia dice "Colore Bianco"; tre prodotti non hanno codici (Malta risanante idrorepellente, Artecoll AV 104, Secchielli anonimi bianchi).
 9. **Fotovoltaico**: in pagina c'è solo "Dal 2011 un impianto fotovoltaico dà energia alla produzione"; "riducendo a zero le emissioni" resta fuori finché non lo confermano.
-10. **La sede in foto** (`TESTATA6`): è la sede di Via S. Antonio 24/a (si vede il civico 24)? Si può pubblicare il magazzino (`IMG_4232`), che ora è la foto dell'apertura? È il loro magazzino o quello di un cliente?
+10. **La sede in foto** (`TESTATA6`, salvata il 27/5/2016): è la sede di Via S. Antonio 24/a (si vede il civico 24)? Nella home ibrida è il culmine, a tutta griglia, con la didascalia "La sede di Nardi a Tombelle di Saonara, al civico 24 / maggio 2016". Si può pubblicare il magazzino (`IMG_4232`, scattato il 27/5/2016 subito dopo `IMG_4228` della sede), ora in "Per i negozi" con la didascalia "Scatole Briko Line a bancali, in magazzino / 27 maggio 2016"? È il loro magazzino o quello di un cliente?
 11. Titolare attuale (Leonardo Nardi secondo Reteimprese?), PEC, social veri (oggi nessuno), logo vettoriale.
 12. **Sito compromesso**: 2809 articoli di spam e 717 categorie spam sono ancora pubblici su narditalia.com. Vanno tolti prima della migrazione, con i redirect 301 delle schede prodotto.
 13. **Made in Italy**: in pagina "Scritto sulle confezioni Briko Line"; l'abbiamo letto su un'etichetta (ossido di ferro rosso). Confermare che compare su tutte.
@@ -45,6 +46,8 @@ In questa proposta i PDF e le pagine prodotto puntano a narditalia.com di oggi (
 
 ## Foto da fare dal vero
 
+**Per la home ibrida, prima di tutto**: le sei tessere dell'apertura oggi sono i rendering delle scatole Briko Line (stucco in polvere, cemento rapido, stucco per fughe, malta pronta, malta refrattaria, alabastrino), con il fondo da studio allungato in alto. La direzione chiede al loro posto il materiale fotografato piatto, alla luce di una finestra, anche con il telefono: sei campioni (per esempio alabastrino, scagliola, stucco in pasta, stucco per fughe, malta refrattaria, cemento rapido) su un foglio grigio, stessa luce, verticali, almeno 1200 px di lato corto. Le didascalie restano quelle dei lavori.
+
 Nella home ci sono solo foto e rendering di Nardi: le tre foto hanno lo stesso trattamento (bianco neutro, arancio delle scaffalature attenuato, stessa curva) e sono tutte in 4:3; i rendering delle confezioni sono su bianco pieno, senza riflesso, tutti alla stessa altezza (`_prova/script/pro_rendering.py`). La luce dei tre scatti resta diversa. Per arrivare al livello dei riferimenti serve mezza giornata con un fotografo, una sola luce e lo stesso trattamento per tutte:
 - **La produzione e le persone** (oggi non c'è nessuna foto): le macchine che riempiono le scatole, le mani che chiudono un cartone da 12, chi prepara un bancale; luce naturale o luce di reparto morbida, orizzontali 16:9, almeno 3000 px di lato lungo. È la foto che manca di più: la regola 3 chiede persone o laboratorio.
 - **Lo scaffale** (oggi `IMG_2282`, foto da telefono 1600x900 con i cartellini dei prezzi sfocati, in "Dove si comprano"): rifarlo in un negozio cliente con il loro permesso, frontale, senza prezzi e senza prodotti di altri marchi, 4:3.
@@ -54,8 +57,8 @@ Nella home ci sono solo foto e rendering di Nardi: le tre foto hanno lo stesso t
 
 ## Licenze
 
-- **Caratteri**: Encode Sans (The Encode Project Authors), Google Fonts, SIL Open Font License 1.1: uso commerciale libero; file serviti dal sito in `sito/fonts/`, licenza in `sito/fonts/OFL.txt`.
-- **Foto e rendering**: tutti di Nardi, dalla libreria media di narditalia.com (`assets/originali/`); da usare con il loro permesso. Nessuna foto di repertorio, nessuna immagine generata dall'IA, nessun disegno. Dettagli in `assets/CREDITI.md`.
+- **Caratteri**: Kumbh Sans (The KumbhSans Project Authors, https://github.com/xconsau/KumbhSans), SIL Open Font License 1.1: uso commerciale libero; file variabili di `@fontsource-variable/kumbh-sans` 5.1.0 serviti dal sito in `sito/fonts/`, licenza in `sito/fonts/OFL.txt`. Ha preso il posto di Encode Sans della versione professionale.
+- **Foto e rendering**: tutti di Nardi, dalla libreria media di narditalia.com (`assets/originali/`, riscaricata il 3/11/2026 dopo il riavvio: 111 file); da usare con il loro permesso. In pagina: le sei scatole, il magazzino e la sede, in WebP con srcset in `sito/img/`; lo scaffale `IMG_2282` non è più in home. Nessuna foto di repertorio, nessuna immagine generata dall'IA, nessun disegno. Dettagli in `assets/CREDITI.md`.
 
 ## Loghi
 

@@ -4,8 +4,9 @@ Proposta non richiesta di nuova home per Formentin Srl (insegna Recinzioni Forme
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home, statica (si apre con file:///). `sito/img/`: solo foto loro in 4:3, l'apertura in 16:10 (versioni da 400-480 e da 700-800 px), e `marchio.svg`. `sito/fonts/`: Geologica e la sua licenza.
-- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (struttura, le 15 regole una per una, compiti d'uso, caratteri, foto, controlli).
+- `sito/index.html`: la home ibrida del 3/11/2026 ("Produciamo e montiamo"), statica (si apre con file:///). `sito/img/`: 7 foto loro in WebP (la macro della rete in 8:9, i lavori in 4:3, la rete del culmine in 3:2, da 400 a 800 px) e `marchio.svg`. `sito/fonts/`: Big Shoulders Display e Public Sans con le licenze.
+- `_prova/versione-pro/`: la home professionale di prima (pagina, immagini, Geologica, screenshot), com'era. `_prova/alto/`: direzione (`DIREZIONE.md`), provini, script delle immagini e degli screenshot, misure della sezione D (`misura-d.mjs`).
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `home-1024-prima-schermata.jpg`, `home-768-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (in testa il metodo ibrido con le misure; sotto la nota della versione professionale).
 - `_prova/script/build_finale.sh`: rifà immagini (`pro_img.py`), pagina (copia `index.sorgente.html` in `sito/`), screenshot (`pro_shots.mjs`, `pro_shots.py`) e controlli (`pro_controlli.mjs`, esito in `_prova/pro_controlli.json`). `pro_misura.mjs`: misure rapide di testata e scorrimento a 12 larghezze. `largo.mjs`: elementi che escono dalla larghezza.
 - `_prova/versione-1-originale/`: la home di prima ("La rete ondulata la facciamo noi"), pagina, immagini e screenshot, com'era.
 - `_prova/uso/SCHEDA.md`: chi apre il sito e che cosa ci viene a fare. `01-analisi.md`: fatti con le fonti. `assets/CREDITI.md`: origine e licenza di ogni immagine.
@@ -28,11 +29,15 @@ In pagina ci sono solo fatti del sito di oggi e di atoka (citati in `01-analisi.
 12. **Social**: nessun profilo trovato; se ci sono, una riga nel piede.
 13. **Numeri veri per la fascia dei numeri** (regola 10, ne servono almeno 4): metri quadri dell'esposizione, modelli esposti, recinzioni o metri posati in un anno o in totale, comuni serviti, anno di fondazione preciso. Oggi in pagina c'è solo "50+ anni": i conteggi di prima ("4 materiali", "3 usi", "3,0 m") sono stati tolti perché sembravano riempitivi. La fascia si rimette quando ce ne sono quattro.
 14. **Tempi di risposta**: entro quanti giorni richiamano dopo una richiesta (Wilson scrive "entro 48 ore" accanto al modulo). Non è scritto in pagina finché non lo dicono loro.
-15. **Cellulare ai privati**: il 335 7740278 è sul sito di oggi ed è ora anche nel blocco del preventivo e nel riquadro del banco; da togliere da lì se il titolare preferisce che i privati chiamino il fisso.
+15. **Cellulare ai privati**: il 335 7740278 è sul sito di oggi; nella home ibrida compare una volta sola, in "Orari e strada". Da togliere se il titolare preferisce che i privati chiamino il fisso.
+16. **La rete ondulata e le colonne**: la frase della home, "Produciamo e montiamo", e il culmine dicono che le reti ondulate e le colonne le producono loro (pagine Reti ondulate e Colonne del sito di oggi). Le foto della macchina sono del 2014, prima del trasloco: va confermato che la macchina c'è ancora e dove lavora, e se si possono scrivere "fatte a Villatora". Se la rete non si produce più, frase e culmine vanno cambiati. Da confermare anche le maglie in tabella (10 x 10 filo 2 ... 40 x 40 filo 4).
+17. **Esposizione su appuntamento**: il bottone "Chiedi l'appuntamento" prepara un'email con giorni e orari preferiti. Se preferiscono il telefono, diventa un `tel:`.
 
 ## Il modulo di contatto
 
-Il modulo in home ("Richiesta di preventivo") oggi **compone un'email** (`mailto:` a info@recinzioniformentin.it con oggetto "Preventivo: <tipo di lavoro>" e nel testo nome, telefono, email, tipo, indirizzo, metri, altezza, cancelli, urgenza, giorni preferiti per l'appuntamento, descrizione e se le foto sono allegate) e la apre nel programma di posta di chi scrive; le foto si allegano lì. Nel sito vero va **collegato a un servizio di invio** (per esempio il modulo del CMS con allegati, o un servizio come Formspree o Netlify Forms) con: allegati per le foto e i disegni (JPEG, PDF, DWG), una casella del consenso privacy, un filtro anti-spam e la risposta automatica con i tempi che l'azienda può promettere. Anche i bottoni "Manda foto e misure" e "Manda il disegno" sono `mailto:` con la traccia: possono restare.
+Nella home ibrida il modulo non c'è più: rifaceva con un'email lo stesso lavoro del bottone "Manda foto e misure". Restano tre email già scritte, con oggetto e traccia: "Preventivo recinzione" (apertura e preventivo), "Appuntamento per l'esposizione" e "Richiesta per azienda o impianto sportivo". Quello che segue vale per la versione professionale (`_prova/versione-pro/`).
+
+Il modulo in home ("Richiesta di preventivo") **compone un'email** (`mailto:` a info@recinzioniformentin.it con oggetto "Preventivo: <tipo di lavoro>" e nel testo nome, telefono, email, tipo, indirizzo, metri, altezza, cancelli, urgenza, giorni preferiti per l'appuntamento, descrizione e se le foto sono allegate) e la apre nel programma di posta di chi scrive; le foto si allegano lì. Nel sito vero va **collegato a un servizio di invio** (per esempio il modulo del CMS con allegati, o un servizio come Formspree o Netlify Forms) con: allegati per le foto e i disegni (JPEG, PDF, DWG), una casella del consenso privacy, un filtro anti-spam e la risposta automatica con i tempi che l'azienda può promettere. Anche i bottoni "Manda foto e misure" e "Manda il disegno" sono `mailto:` con la traccia: possono restare.
 
 ## Foto da fare dal vero
 
@@ -51,9 +56,9 @@ I link della testata e delle schede portano alle sezioni della home o al modulo.
 
 ## Licenze
 
-- **Carattere**: Geologica, Google Fonts, SIL Open Font License 1.1 (uso commerciale libero), servito da `sito/fonts/` con la licenza in `sito/fonts/OFL.txt`.
+- **Caratteri**: Big Shoulders Display 700 (The Big Shoulders Project Authors) e Public Sans 400 e 600 (The Public Sans Project Authors), tutte e due SIL Open Font License 1.1 (uso commerciale libero), file di `@fontsource` 5.1.0 serviti da `sito/fonts/` con le licenze `OFL-big-shoulders-display.txt` e `OFL-public-sans.txt`. Geologica è uscita (resta in `_prova/versione-pro/`).
 - **Foto**: solo foto del loro sito (elenco in `assets/CREDITI.md` e nella NOTA); l'uso va confermato con l'azienda e, per le case riconoscibili, con i clienti. Nessuna foto di repertorio in pagina: le foto Unsplash e Pexels di `assets/esterne/` non sono più usate.
 
 ## Logo
 
-Non esiste un vettoriale pubblico: la versione migliore è `logoOmbra.gif` 740x744 (`assets/originali/logo-ombra-740x744.gif`). In pagina c'è un ridisegno in SVG fedele a forma e colori (rete a rombo azzurra #5A94F7, F verde #08B508), senza l'ombra e con il numero di maglie stimato; accanto, il nome "Recinzioni Formentin" composto in Geologica, senza ridisegnare il logotipo di oggi. Va chiesto il vettoriale originale con i colori ufficiali.
+Non esiste un vettoriale pubblico: la versione migliore è `logoOmbra.gif` 740x744 (`assets/originali/logo-ombra-740x744.gif`). In pagina c'è un ridisegno in SVG fedele a forma e colori (rete a rombo azzurra #5A94F7, F verde #08B508), senza l'ombra e con il numero di maglie stimato; accanto, il nome "Recinzioni Formentin" composto in Public Sans 600, senza ridisegnare il logotipo di oggi. Va chiesto il vettoriale originale con i colori ufficiali.
