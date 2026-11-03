@@ -1,8 +1,8 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026.
 
-## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Poli-Art]
+## Foto esterne in `esterne/` (in archivio, NON usate nella home)
 
 Queste foto NON mostrano lavori, persone o il laboratorio di Poli-Art. Servono solo a mostrare la direzione artistica nella proposta e vanno sostituite con foto vere prima di qualsiasi uso pubblico (lo dirà anche il LEGGIMI). In pagina mai didascalie del tipo "un nostro lavoro". Nessuna immagine generata dall'IA: ho scartato i rendering 3D trovati nelle ricerche e tutte le foto Unsplash+.
 
@@ -35,6 +35,6 @@ Scaricate il 24/10/2026 dalla libreria media di WordPress (`/wp-json/wp/v2/media
 - Non scaricato: `CALABRIA.tif` (14,7 MB, non usato in pagina).
 - `Testi.docx`: è il testo della pagina Chi siamo, lasciato pubblico tra i caricamenti.
 
-## Home finale (`sito/`)
+## Home (`sito/`), livello professionale del 3/11/2026
 
-Usa solo foto di Poli-Art da `originali/` (Face-of-GOD, Face-of-GOD2 specchiata, Oggetti2, 3Db, Chesslong, CorniciORO4, Pawson3, Pallone1) e il loro logo. Nessuna foto di `esterne/`. Carattere Mona Sans (SIL Open Font License 1.1) in `fonts/`.
+Usa solo foto di Poli-Art da `originali/` (Pallone1, Vino1, IMG_20190531_181254_resized_20191023_075428502, CorniciORO2, 3Da, Oggetti2, Pasticceria, Scarpa-converse3, Scarpa-converse1, Fotovoltaico-working) e il loro logo (blu e bianco). Nessuna foto di `esterne/`: per decisione del committente ("niente") la home non ha foto di repertorio, e le foto Unsplash e Pexels elencate sopra restano solo in archivio. Tolte rispetto alla versione precedente: Face-of-GOD e Face-of-GOD2 (testa cromata e grezza, specchiata), Pawson3, Chesslong, 3Db, CorniciORO4 (erano foto loro, uscite perché non servivano ai visitatori o non erano certe). Carattere Mona Sans (SIL Open Font License 1.1) in `fonts/`, licenza in `fonts/OFL.txt`.

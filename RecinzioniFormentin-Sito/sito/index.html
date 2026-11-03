@@ -268,12 +268,23 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 }
 /* telefono */
 @media (max-width:767px){
-  :root{--m:20px;--sez:72px;--gap:20px;--t19:17px;--t23:20px;--t32:24px;--t48:30px;--t64:36px;--t96:44px}
+  main{display:flex;flex-direction:column}
+  .apertura{order:1}
+  #preventivo{order:2}
+  #lavori{order:3}
+  .indice{order:4}
+  main > :nth-child(n+5){order:5}
+  .passi li{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:8px;padding-top:20px}
+  .passi .nn{font-size:var(--t32);grid-row:span 2}
+  .passi h3{margin-top:0}
+  :root{--m:20px;--sez:64px;--gap:20px;--t19:17px;--t23:20px;--t32:24px;--t48:30px;--t64:36px;--t96:44px}
   html{scroll-padding-top:84px}
   .testata-in{height:72px;gap:8px}
+  .logo{gap:8px}
   .logo svg{width:36px;height:36px}
   .logo small,.logo .r{display:none}
-  .t-tel{padding:0 14px}
+  .t-tel{padding:0 10px}
+  .btn-menu{padding:0 10px}
   .apertura{padding-top:0;padding-bottom:48px}
   .ap-griglia{grid-template-columns:minmax(0,1fr);gap:20px}
   .ap-foto,.ap-testo{grid-column:1}
@@ -293,13 +304,13 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .indice span{margin-top:4px}
   .h2{margin-top:12px}
   .intro{font-size:var(--t17);margin-top:16px}
-  .passi{grid-template-columns:minmax(0,1fr);margin-top:32px;gap:28px}
-  .passi h3{margin-top:12px}
+  .passi{grid-template-columns:minmax(0,1fr);margin-top:28px;gap:24px}
   .prev-azioni{margin-top:32px}
   .prev-azioni .bottoni,.lav-fondo .bottoni,.disegno .bottoni,.modulo .bottoni,.cartello .bottoni{flex-direction:column;align-items:stretch;width:100%}
   .schede{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:32px}
   .lavori{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px;margin-top:32px}
   .lavori h3{margin-top:8px}
+  .lavori li:nth-child(n+5){display:none}
   .lav-fondo{margin-top:40px;padding-top:28px}
   .lav-fondo p{font-size:var(--t17)}
   .az-griglia,.banco-griglia,.chi-griglia,.rich-griglia,.dove-griglia{grid-template-columns:minmax(0,1fr);gap:40px}
@@ -409,7 +420,32 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   </div>
 </section>
 
-<!-- 4. prodotti in schede con la foto di un loro lavoro -->
+<!-- 4. lavori recenti -->
+<section class="sez scuro" id="lavori" aria-labelledby="t-lav">
+  <div class="wrap">
+    <div class="testa">
+      <p class="occhiello">Lavori recenti</p>
+      <h2 class="h2" id="t-lav">Recinzioni e cancelli in alluminio, posati per abitazioni</h2>
+    </div>
+    <ul class="lavori">
+      <li><img src="img/l-sera-800.jpg" srcset="img/l-sera-400.jpg 400w, img/l-sera-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Casa nuova di sera con recinzione in alluminio antracite su muretto"><h3>Recinzione antracite su muretto</h3></li>
+      <li><img src="img/l-portale-800.jpg" srcset="img/l-portale-400.jpg 400w, img/l-portale-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Portale d'ingresso in lamiera antracite con luci a striscia sopra il vialetto"><h3>Portale d'ingresso in lamiera</h3></li>
+      <li><img src="img/l-scorrevole-800.jpg" srcset="img/l-scorrevole-400.jpg 400w, img/l-scorrevole-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Cancello scorrevole e recinzione a doghe antracite davanti al garage"><h3>Cancello scorrevole e recinzione</h3></li>
+      <li><img src="img/l-doghe-800.jpg" srcset="img/l-doghe-400.jpg 400w, img/l-doghe-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione a doghe antracite sul muretto di una casa a schiera"><h3>Doghe antracite sul muretto</h3></li>
+      <li><img src="img/l-bianca-800.jpg" srcset="img/l-bianca-400.jpg 400w, img/l-bianca-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione a doghe bianche su muretto in cemento"><h3>Recinzione a doghe bianche</h3></li>
+      <li><img src="img/l-bianca2-800.jpg" srcset="img/l-bianca2-400.jpg 400w, img/l-bianca2-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione bianca a doghe lungo il cortile, con la tettoia dietro"><h3>Doghe bianche lungo il cortile</h3></li>
+    </ul>
+    <div class="lav-fondo">
+      <p>Volete vedere i modelli dal vero? L'esposizione è in sede, su appuntamento.</p>
+      <div class="bottoni">
+        <a class="btn" href="tel:+39049760801">Appuntamento <span class="n">049 760801</span></a>
+        <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Lombardia%2017%2C%2035020%20Saonara%20PD">Indicazioni stradali</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. prodotti in schede con la foto di un loro lavoro -->
 <section class="sez" id="prodotti" aria-labelledby="t-prod">
   <div class="wrap">
     <div class="testa">
@@ -450,31 +486,6 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         <span class="vai freccia">Cosa teniamo e orari</span></a></li>
     </ul>
     <p class="anche">Anche tettoie, recinzioni in grigliato e porte di sicurezza.</p>
-  </div>
-</section>
-
-<!-- 5. lavori recenti -->
-<section class="sez scuro" id="lavori" aria-labelledby="t-lav">
-  <div class="wrap">
-    <div class="testa">
-      <p class="occhiello">Lavori recenti</p>
-      <h2 class="h2" id="t-lav">Recinzioni e cancelli in alluminio, posati per abitazioni</h2>
-    </div>
-    <ul class="lavori">
-      <li><img src="img/l-sera-800.jpg" srcset="img/l-sera-400.jpg 400w, img/l-sera-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Casa nuova di sera con recinzione in alluminio antracite su muretto"><h3>Recinzione antracite su muretto</h3></li>
-      <li><img src="img/l-portale-800.jpg" srcset="img/l-portale-400.jpg 400w, img/l-portale-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Portale d'ingresso in lamiera antracite con luci a striscia sopra il vialetto"><h3>Portale d'ingresso in lamiera</h3></li>
-      <li><img src="img/l-scorrevole-800.jpg" srcset="img/l-scorrevole-400.jpg 400w, img/l-scorrevole-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Cancello scorrevole e recinzione a doghe antracite davanti al garage"><h3>Cancello scorrevole e recinzione</h3></li>
-      <li><img src="img/l-doghe-800.jpg" srcset="img/l-doghe-400.jpg 400w, img/l-doghe-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione a doghe antracite sul muretto di una casa a schiera"><h3>Doghe antracite sul muretto</h3></li>
-      <li><img src="img/l-bianca-800.jpg" srcset="img/l-bianca-400.jpg 400w, img/l-bianca-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione a doghe bianche su muretto in cemento"><h3>Recinzione a doghe bianche</h3></li>
-      <li><img src="img/l-bianca2-800.jpg" srcset="img/l-bianca2-400.jpg 400w, img/l-bianca2-800.jpg 800w" sizes="(max-width:767px) 50vw, (max-width:1023px) 50vw, 410px" width="800" height="600" loading="lazy" alt="Recinzione bianca a doghe lungo il cortile, con la tettoia dietro"><h3>Doghe bianche lungo il cortile</h3></li>
-    </ul>
-    <div class="lav-fondo">
-      <p>Volete vedere i modelli dal vero? L'esposizione è in sede, su appuntamento.</p>
-      <div class="bottoni">
-        <a class="btn" href="tel:+39049760801">Appuntamento <span class="n">049 760801</span></a>
-        <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Lombardia%2017%2C%2035020%20Saonara%20PD">Indicazioni stradali</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -739,6 +750,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 
   // il modulo compone l'email (mailto): da collegare a un servizio di invio, vedi LEGGIMI
   var f=document.getElementById('modulo'), av=document.getElementById('avviso');
+  function apri(u){(window.apriPosta||function(x){location.href=x;})(u);}
   f.addEventListener('submit',function(e){e.preventDefault();
     var manca=['f-nome','f-tel','f-dove'].filter(function(id){return !document.getElementById(id).value.trim();});
     if(manca.length){av.textContent='Mancano nome, telefono o indirizzo del lavoro: servono per richiamarvi.';document.getElementById(manca[0]).focus();return;}
@@ -746,7 +758,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     var v=function(id){return document.getElementById(id).value.trim();};
     var quando=(f.querySelector('input[name=quando]:checked')||{}).value||'';
     var corpo='Buongiorno, vorrei un preventivo.\n\nNome: '+v('f-nome')+'\nTelefono: '+v('f-tel')+'\nTipo di lavoro: '+v('f-tipo')+'\nIndirizzo del lavoro: '+v('f-dove')+'\nMetri lineari: '+v('f-metri')+'\nAltezza: '+v('f-alt')+'\nCancelli: '+v('f-acc')+'\nQuando: '+quando+'\n\n'+v('f-desc')+'\n\nAllego le foto.\n';
-    location.href='mailto:info@recinzioniformentin.it?subject='+encodeURIComponent('Preventivo: '+v('f-tipo'))+'&body='+encodeURIComponent(corpo);
+    apri('mailto:info@recinzioniformentin.it?subject='+encodeURIComponent('Preventivo: '+v('f-tipo'))+'&body='+encodeURIComponent(corpo));
   });
 })();
 </script>
