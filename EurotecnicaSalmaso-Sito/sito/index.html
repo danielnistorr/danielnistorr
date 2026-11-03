@@ -82,7 +82,7 @@ ul{margin:0;padding:0;list-style:none}
 .stato{display:inline-flex;align-items:center;gap:8px;font-weight:600}
 .stato::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--testo-2);flex:none}
 .stato[data-aperto="1"]::before{background:var(--petrolio)}
-.su-scuro .stato[data-aperto="1"]::before{background:#7FC7CC}
+.su-scuro .stato[data-aperto="1"]::before,.su-petrolio .stato[data-aperto="1"]::before{background:var(--bianco)}
 
 /* ---------- testata fissa ---------- */
 .testata{position:fixed;inset:0 0 auto 0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
@@ -100,22 +100,22 @@ ul{margin:0;padding:0;list-style:none}
 .pannello{display:none}
 
 /* ---------- apertura ---------- */
-.apertura{padding-top:calc(var(--testata) + 56px);padding-bottom:56px}
+.apertura{padding-top:calc(var(--testata) + 36px);padding-bottom:44px}
 .apertura .griglia{align-items:start}
 .apertura .testo{grid-column:1 / span 6;display:flex;flex-direction:column}
 .apertura h1{font-size:var(--f-h1);line-height:1.07;margin-top:14px;text-wrap:balance}
-.apertura .servizi{margin-top:22px;font-size:var(--f-p);color:var(--testo-2);max-width:33em}
+.apertura .servizi{margin-top:16px;font-size:var(--f-p);color:var(--testo-2);max-width:33em}
 .apertura .servizi b{color:var(--inchiostro);font-weight:600}
-.apertura .azioni{margin-top:24px}
+.apertura .azioni{margin-top:22px}
 .apertura .nota{margin-top:14px;font-size:var(--f-p2);color:var(--testo-2);max-width:36em}
-.fatti{margin-top:32px;display:grid;grid-template-columns:1fr 1.3fr;column-gap:var(--g)}
+.fatti{margin-top:24px;display:grid;grid-template-columns:1fr 1.1fr;column-gap:var(--g)}
 .fatto{border-top:1px solid var(--linea);padding-top:14px;display:flex;flex-direction:column;gap:4px;font-size:var(--f-p2);color:var(--testo-2)}
 .fatto .et{color:var(--testo-2);margin-bottom:2px}
 .fatto .stato{color:var(--inchiostro)}
 .solo-tel{display:none !important}
 .apertura .griglia{align-items:stretch}
 .apertura figure{grid-column:7 / -1;margin-right:calc(-1 * var(--m));margin-top:6px;position:relative;min-height:400px}
-.apertura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;border-radius:var(--r) 0 0 var(--r)}
+.apertura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:34% 50%;border-radius:var(--r) 0 0 var(--r)}
 
 /* ---------- tre porte ---------- */
 .porte{padding-block:44px 48px}
@@ -202,7 +202,8 @@ ul{margin:0;padding:0;list-style:none}
 .dove .testo > p{color:var(--testo-2)}
 .orari{width:100%;border-collapse:collapse;font-size:var(--f-p2);font-variant-numeric:tabular-nums}
 .orari th,.orari td{text-align:left;padding:10px 0;border-bottom:1px solid var(--linea);font-weight:400;vertical-align:top}
-.orari th{width:46%;font-weight:600}
+.orari th{width:44%;font-weight:600;padding-right:16px}
+.orari td{white-space:nowrap}
 .orari tr.oggi th,.orari tr.oggi td{color:var(--petrolio-scuro);font-weight:600}
 .dove .stato{font-size:var(--f-p2)}
 .recapiti{display:flex;flex-direction:column;gap:6px;font-size:var(--f-p2)}
@@ -268,12 +269,12 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
   .pannello .azioni{margin-top:20px}
   .pannello .recapiti{margin-top:18px}
 }
-/* ---------- fino a 980: una colonna ---------- */
-@media (max-width:980px){
+/* ---------- fino a 1100: una colonna ---------- */
+@media (max-width:1100px){
   :root{--f-h1:44px;--f-h2:36px;--f-big:64px;--sez:96px}
   .apertura .testo,.apertura figure,.intest .tit,.intest .lead,.impianti .sinistra,.sale,.azienda figure,.azienda .testo,.dove .foto,.dove .testo,.chiusura .sinistra,.modulo,.noleggi .regola,.materiale .et,.materiale ul,.offerta .cosa,.offerta .azioni{grid-column:1 / -1}
   .apertura figure{margin:32px calc(-1 * var(--m)) 0;min-height:0}
-  .apertura figure img{position:static;height:auto;aspect-ratio:3 / 2;object-position:50% 50%;border-radius:0}
+  .apertura figure img{position:static;height:auto;aspect-ratio:2 / 1;object-position:34% 50%;border-radius:0}
   .intest{row-gap:20px}
   .impianti .corpo,.azienda .corpo,.dove .corpo,.chiusura .corpo{row-gap:40px}
   .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -306,6 +307,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
   .sede-breve{order:6;margin-top:12px}
   .apertura .nota{order:7;margin-top:10px}
   .apertura figure{margin-top:28px}
+  .apertura figure img{aspect-ratio:3 / 2;object-position:50% 50%}
   .porte{padding-block:28px 36px}
   .porte ul{grid-template-columns:1fr;row-gap:20px}
   .porte li{padding-top:16px}
@@ -406,14 +408,14 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
       </div>
       <p class="nota">Offerta personalizzata senza impegno: scriveteci data, luogo, numero di persone, lingue e se serve la diretta.</p>
       <div class="fatti">
-        <div class="fatto orari-oggi"><p class="et">Orari</p><p><span class="stato" data-stato="lungo">Lun-ven</span></p><p>Lun-ven 8.30-12.30 e 14.30-18.30, sabato e domenica chiuso</p></div>
-        <div class="fatto sede-breve"><p class="et">Sede ed emporio dell’audio</p><p><span class="nobr">Via Lussemburgo 48,</span> angolo Viale della Regione Veneto, zona industriale di Padova</p><p class="solo-pc"><a class="link" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener">Indicazioni</a></p></div>
+        <div class="fatto orari-oggi"><p class="et">Orari</p><p><span class="stato" data-stato="lungo">Lun-ven</span></p><p><span class="nobr">Lun-ven 8.30-12.30, 14.30-18.30</span><br>Sabato e domenica chiuso</p></div>
+        <div class="fatto sede-breve"><p class="et">Sede ed emporio dell’audio</p><p><span class="nobr">Via Lussemburgo 48,</span> angolo Viale della Regione Veneto, zona industriale di Padova<span class="solo-pc"> <a class="link" href="https://www.google.com/maps?cid=13052135561717271527" rel="noopener">Indicazioni</a></span></p></div>
       </div>
     </div>
     <figure>
       <picture>
-        <source media="(max-width: 980px)" srcset="img/regia-480.jpg 480w, img/regia-720.jpg 720w, img/regia-924.jpg 924w" sizes="100vw">
-        <img src="img/apertura-1160.jpg" srcset="img/apertura-800.jpg 800w, img/apertura-1160.jpg 1160w" sizes="1160px" width="1160" height="616" alt="La regia di Eurotecnica Salmaso durante un convegno in una sala storica: mixer e monitor con la ripresa dei relatori, pubblico in sala" fetchpriority="high">
+        <source media="(max-width: 600px)" srcset="img/regia-480.jpg 480w, img/regia-720.jpg 720w, img/regia-924.jpg 924w" sizes="100vw">
+        <img src="img/apertura-1600.jpg" srcset="img/apertura-800.jpg 800w, img/apertura-1200.jpg 1200w, img/apertura-1600.jpg 1600w" sizes="(max-width: 1100px) 100vw, 1600px" width="1600" height="616" alt="La regia di Eurotecnica Salmaso durante un convegno in una sala storica: mixer e monitor con la ripresa dei relatori, pubblico in sala" fetchpriority="high">
       </picture>
     </figure>
   </div>
@@ -464,7 +466,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
     <div class="griglia corpo">
       <div class="sinistra">
       <figure>
-        <img src="img/teatro-924.jpg" srcset="img/teatro-480.jpg 480w, img/teatro-720.jpg 720w, img/teatro-924.jpg 924w" sizes="(max-width: 980px) 100vw, 624px" width="924" height="616" loading="lazy" alt="Teatro storico con poltrone rosse e palchi, fotografato da Eurotecnica Salmaso">
+        <img src="img/teatro-924.jpg" srcset="img/teatro-480.jpg 480w, img/teatro-720.jpg 720w, img/teatro-924.jpg 924w" sizes="(max-width: 1100px) 100vw, 624px" width="924" height="616" loading="lazy" alt="Teatro storico con poltrone rosse e palchi, fotografato da Eurotecnica Salmaso">
       </figure>
       <div class="marche">
         <p class="et">I marchi che usiamo</p>
@@ -504,19 +506,19 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
     </div>
     <div class="schede">
       <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Amplificazione">
-        <img src="img/amplificazione-480.jpg" srcset="img/amplificazione-480.jpg 480w, img/amplificazione-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Palco all’aperto con le casse sul Canal Grande al tramonto">
+        <img src="img/amplificazione-480.jpg" srcset="img/amplificazione-480.jpg 480w, img/amplificazione-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 1100px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Palco all’aperto con le casse sul Canal Grande al tramonto">
         <div class="dentro"><h3>Amplificazione</h3><p>Sale convegni, teatri, chiese, piazze; sistemi portatili per visite guidate e processioni.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
       </a>
       <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Radiomicrofoni">
-        <img src="img/radiomicrofoni-480.jpg" srcset="img/radiomicrofoni-480.jpg 480w, img/radiomicrofoni-690.jpg 690w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Rack di ricevitori per radiomicrofoni in regia, durante un evento">
+        <img src="img/radiomicrofoni-480.jpg" srcset="img/radiomicrofoni-480.jpg 480w, img/radiomicrofoni-690.jpg 690w" sizes="(max-width: 600px) 38vw, (max-width: 1100px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Rack di ricevitori per radiomicrofoni in regia, durante un evento">
         <div class="dentro"><h3>Radiomicrofoni</h3><p>A impugnatura, a cravatta e headset, con i ricevitori in regia.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
       </a>
       <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Video">
-        <img src="img/video-480.jpg" srcset="img/video-480.jpg 480w, img/video-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Proiezione luminosa sulla facciata di un palazzo storico, di sera">
+        <img src="img/video-480.jpg" srcset="img/video-480.jpg 480w, img/video-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 1100px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Proiezione luminosa sulla facciata di un palazzo storico, di sera">
         <div class="dentro"><h3>Video e videowall</h3><p>Videoproiezione, monitor fino a 86", videowall per grandi eventi.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
       </a>
       <a class="scheda" href="#richiesta" data-tipo="service" data-serve="Riprese">
-        <img src="img/riprese-480.jpg" srcset="img/riprese-480.jpg 480w, img/riprese-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 980px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Convegno con il tavolo dei relatori e la ripresa del relatore proiettata sullo schermo grande">
+        <img src="img/riprese-480.jpg" srcset="img/riprese-480.jpg 480w, img/riprese-720.jpg 720w" sizes="(max-width: 600px) 38vw, (max-width: 1100px) 50vw, 300px" width="480" height="320" loading="lazy" alt="Convegno con il tavolo dei relatori e la ripresa del relatore proiettata sullo schermo grande">
         <div class="dentro"><h3>Riprese video</h3><p>Telecamere senza operatore, comandate da una regia centrale.</p><span class="vai">Chiedi l’offerta &rarr;</span></div>
       </a>
     </div>
@@ -591,7 +593,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
   <div class="wrap">
     <div class="griglia corpo">
       <figure>
-        <img src="img/sala-consiliare-654.jpg" srcset="img/sala-consiliare-480.jpg 480w, img/sala-consiliare-654.jpg 654w" sizes="(max-width: 980px) 100vw, 507px" width="654" height="436" loading="lazy" alt="Banchi di una sala consiliare con i microfoni a collo di cigno e un’unità per la votazione">
+        <img src="img/sala-consiliare-654.jpg" srcset="img/sala-consiliare-480.jpg 480w, img/sala-consiliare-654.jpg 654w" sizes="(max-width: 1100px) 100vw, 507px" width="654" height="436" loading="lazy" alt="Banchi di una sala consiliare con i microfoni a collo di cigno e un’unità per la votazione">
       </figure>
       <div class="testo">
         <p class="et">Azienda</p>
@@ -613,8 +615,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
 <section class="sezione su-grigio dove" id="dove">
   <div class="wrap griglia corpo">
     <div class="foto">
-      <img src="img/sede-542.jpg" srcset="img/sede-480.jpg 480w, img/sede-542.jpg 542w" sizes="(max-width: 980px) 100vw, 507px" width="542" height="361" loading="lazy" alt="La facciata della sede con l’insegna Eurotecnica Salmaso, emporio dell’audio, e l’ingresso a vetri">
-      <img src="img/emporio-720.jpg" srcset="img/emporio-480.jpg 480w, img/emporio-720.jpg 720w, img/emporio-866.jpg 866w" sizes="(max-width: 980px) 100vw, 507px" width="720" height="480" loading="lazy" alt="L’emporio dell’audio: casse amplificate in esposizione">
+      <img src="img/sede-542.jpg" srcset="img/sede-480.jpg 480w, img/sede-542.jpg 542w" sizes="(max-width: 1100px) 100vw, 507px" width="542" height="361" loading="lazy" alt="La facciata della sede con l’insegna Eurotecnica Salmaso, emporio dell’audio, e l’ingresso a vetri">
+      <img src="img/emporio-720.jpg" srcset="img/emporio-480.jpg 480w, img/emporio-720.jpg 720w, img/emporio-866.jpg 866w" sizes="(max-width: 1100px) 100vw, 507px" width="720" height="480" loading="lazy" alt="L’emporio dell’audio: casse amplificate in esposizione">
     </div>
     <div class="testo">
       <p class="et">Sede ed emporio dell’audio</p>
@@ -842,7 +844,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--petrolio);outlin
     var a=(t==='service'||t==='noleggio'||t==='montaggio')?'service@eurotecnicasalmaso.com':'info@eurotecnicasalmaso.com';
     var ogg='Richiesta dal sito: '+testo.toLowerCase();
     var corpo='Buongiorno,\n\n'+righe.join('\n')+'\n\n(Planimetrie o foto: allegatele a questa email.)\n';
-    window.location.href='mailto:'+a+'?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+    var url='mailto:'+a+'?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+    f.setAttribute('data-ultima-email',url);
+    window.location.href=url;
     avviso.textContent='Si apre il vostro programma di posta con l’email pronta.';
   });
 })();

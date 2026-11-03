@@ -1,86 +1,73 @@
-# Home finale Eurotecnica Salmaso, "Il giorno dell’evento" (seconda versione, rifinita il 2 novembre 2026)
+# Home Eurotecnica Salmaso, livello professionale (3 novembre 2026)
 
-Pagina: `sito/index.html` (statica, si apre anche da file), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini, pagina, screenshot e controlli); i controlli finali sono in `_prova/script/controlli.mjs`. Base: prototipo B scelto dal giudice, con gli innesti di A; questa versione sostituisce quella del 24 ottobre per la richiesta del committente ("più alta gamma, meno uguali tra loro") ed è rifinita sul giudizio cieco del 2 novembre (62/80, passa).
+Pagina: `sito/index.html` (statica, si apre anche da file), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `_prova/script/index.src.html`, screenshot, controlli `pro_controlli.mjs`; prova degli orari con `pro_orari.mjs`). La versione di prima ("Il giorno dell’evento", 2 novembre) è copiata com’era in `_prova/versione-1-originale/` (sito, screenshot, nota e script).
 
-Altezza: 6997 px a 1440 con il piede, 8119 px a 390.
+File in questa cartella: `home-1440.jpg` e `home-390.jpg` (pagine intere), `home-1440-prima-schermata.jpg` (1440 x 900), `home-390-prima-schermata.jpg` (390 x 844), `chiusura-1440.jpg` (telefono grande, modulo e piede).
 
-## L’idea
+Altezza: 8503 px a 1440, 13210 a 390.
 
-Il radiomicrofono sta sull’asse della pagina e divide il titolo come uno spazio fra le parole: "Il | giorno / dell’ | evento". Il suo cavo scende fino alla linea dei tre giorni del noleggio, dove l’anello petrolio segna il giorno dell’evento: a sinistra il ritiro, a destra il reso. È la loro regola vera ("Quotiamo solo il/i giorno/i di effettivo utilizzo e non quello di consegna e di reso") disegnata con il loro oggetto. L’asse torna dove serve: il filo verticale fra le due colonne del service e delle sale, i tre giorni del calcolo a sinistra, al centro e a destra, le due foto del service ai due lati dell’asse, la sala consiliare simmetrica della chiusura con il lampadario sull’asse.
+## Livello professionale
 
-Con il nome di un concorrente la pagina non regge: la linea è la loro regola del noleggio, i testi sono i loro (sistemi per conferenze fatti a Padova, MePA OS 30, Via Lussemburgo).
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all’attività"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Nuovo criterio: prima l’uso, poi l’identità, poi l’esecuzione. Regole: `_metodo/professionale/REGOLE.md`, famiglia S (servizi tecnici e imprese). Riferimenti guardati: le prime schermate a 1440 di tutti e 14 (foglio `riferimenti.jpg`) e a 390 dei cinque della famiglia S, le pagine intere di Kline e Wilson a pezzi; la prova su Unicar, Oby e Fornasiero (`_invio/zona/home/livello-professionale.jpg` e la nota di Unicar).
 
-### Rispetto alla richiesta del 2 novembre
+### Che cosa è cambiato rispetto alla versione 1
 
-1. Nessuna legenda sull’oggetto: il microfono non ha etichette, solo il cavo che porta ai giorni.
-2. Il fondo viene dal marchio: il petrolio del logo (#257B82) appena accennato, #E9F1EF, e un tono più pieno, #D7E6E3, solo nella sezione del noleggio, quella da usare. Lo stesso petrolio è nel logo in testata, nell’anello della griglia del microfono (portato dall’azzurro della foto al petrolio del logo), nel 1967 e, scurito, nel piede (#123E42, come il piede petrolio del loro sito di sempre).
-3. Una scelta d’impaginazione che nelle altre home della campagna non c’è (controllate le copertine di Grisignano e le prime schermate delle altre cartelle: tutte hanno titolo a sinistra e oggetto a destra o sotto): composizione simmetrica sull’asse, con il titolo spezzato dall’oggetto, che a quella scala si legge come una lettera del titolo.
+- **Via il titolo slogan e il microfono di repertorio.** "Il giorno dell’evento", spezzato da un radiomicrofono Unsplash scontornato, non diceva chi sono e la scheda d’uso lo indica come cosa "da grafico". Il titolo ora è il titolo del loro sito: "Impianti audio e video, service per eventi e noleggi a Padova", con l’occhiello "Padova, dal 1967".
+- **Via tutte le foto di repertorio** (DESIGNECOLOGIST, Karisch, Emale, Dang): in pagina restano solo foto loro, dalla libreria del loro sito.
+- **Via la linea "Ritiro mer 4 / Evento gio 5 / Reso ven 6" e il calcolo dei giorni feriali**: usava regole inventate da noi. Al loro posto la loro regola scritta in grande ("Quotiamo solo il/i giorno/i di effettivo utilizzo e non quello di consegna e di reso") e i quattro passi con le loro frasi.
+- **Restano**: i due caratteri (General Sans per i titoli, ora nel peso 600; Host Grotesk per il testo), il petrolio del logo #257B82 e il petrolio scuro del loro piede di sempre #123E42, la bozza vettoriale del logo, MePA e la storia dei sistemi per conferenze fatti a Padova.
+- **Fondo**: bianco e un grigio freddo #EEF2F2, niente beige né il verde acqua chiaro di prima; tre blocchi pieni (petrolio scuro, petrolio, petrolio scuro) e il piede antracite.
 
-## Rifinitura sul giudizio cieco (2 novembre)
+### Struttura (famiglia S, adattata)
 
-Applicato:
-- **Fondo**: da #D7E6E3 ovunque a #E9F1EF per la pagina, #D7E6E3 solo per il noleggio (fascia piena da bordo a bordo). Contrasti rifatti: inchiostro 15,3:1, testo secondario #43514F 7,2:1, petrolio #1A5E63 6,5:1 (5,8:1 sul noleggio), #257B82 4,3:1 solo nel 1967 a 212 px.
-- **Foto del service**: le due foto del 2024 da telefono ora sono tagli 3:2 larghi 420 px, ai due lati dell’asse con 24 px fra loro; la regia è tagliata prima del monitor di controllo, così il testo sullo schermo resta fuori. A 601-900 restano affiancate, a 390 una sotto l’altra.
-- **Colonne a specchio**: tolto l’allineamento a destra della colonna sinistra; entrambe le colonne a sinistra, il filo verticale fa da divisorio. Il difetto di "Videoconferenza" veniva dalle righe interne del `li` in griglia che si allungavano: ora `align-self:start`, le coppie partono alla stessa altezza.
-- **Ritmo**: "Impianti che restano in sala" a sinistra sul margine, a 92 px, appoggiato a 28 px sulla foto del teatro; il paragrafo va sotto la foto. Nella chiusura tolto il paragrafo d’introduzione: restano la loro frase e il telefono. Il paragrafo del service ridotto a una riga.
-- **Teatro**: dall’originale più grande (3600x2395, stessa foto Unsplash) tagli 16:9 in cinque larghezze fino a 2880; a 1440 nessun ingrandimento né a 1x né a 2x.
-- **Chiusura**: dall’originale 3200x4800 (stessa foto) tagli 3:2 fino a 2520 px, centrati sull’asse del tavolo; i cordoni rossi del museo e il visitatore dietro la vetrata tolti con un ritocco per diffusione (`ritocca_rosso` in `finale_img.py`), le fasce che legano le tende restano. A 2x il lato utile è 2520 su 2880 richiesti (ingrandimento 1,14): oltre non si può senza riprendere i cordoni.
-- **Giorni feriali**: ritiro e reso solo dal lunedì al venerdì finché non sappiamo se sabato e domenica sono aperti; la pagina parte dal primo giovedì fra almeno due giorni (oggi: ritiro mer 4, evento gio 5, reso entro ven 6). Un evento di lunedì dà "Il venerdì prima", uno di sabato "il lunedì successivo".
-- **Telefono** scritto 049 760348 dappertutto (6 link `tel:+39049760348`).
-- **Paragrafo dell’apertura**: parte dal margine a 72 px come il logo e "Ritiro", tre righe; a 768 parte da 38 px, largo al massimo 300 px, alzato di circa 100 px.
-- **Cavo del noleggio**: spesso come quello dell’apertura (4 px, stesso riflesso #5d6a6b), fermo sui margini del contenuto.
-- **Piede**: indirizzo su due righe e "Apri la mappa" a parte; nella colonna Azienda "MePA e pubblica amministrazione" al posto di "Contatti" (duplicato); a 390 una colonna sola per tutti e quattro i gruppi, fra 601 e 1000 due per riga; l’indirizzo della riga legale non si spezza.
-- **Preload dei caratteri** tolti (aperti come file:// davano errori CORS): console a zero errori. Da rimettere con il sito in http.
-- **Menu del telefono**: pannello a tutta altezza, il telefono grande in fondo, la pagina sotto ferma, "Chiudi", Esc chiude, una voce chiude e porta alla sezione.
-- **Storia**: la foto sale a sette colonne (fino a 818 px) e il testo ha 40 px d’aria dal bordo della foto; serve anche a tenere le foto sopra il 35 % della pagina dopo aver rimpicciolito quelle del service.
+1. Testata fissa: logo, cinque voci con le loro parole (Service ed eventi, Noleggi, Impianti, Azienda, Dove siamo), stato "Aperto ora, fino alle 12.30" e il bottone "049 760348". A 390: logo, bottone del numero, Menu.
+2. Apertura: occhiello con la prova (dal 1967), titolo con mestiere e città, la riga dei servizi (amplificazione, radiomicrofoni, traduzione simultanea, video e videowall, riprese e streaming), "Chiama 049 760348" e "Chiedi un’offerta per un evento" (email a service@ con oggetto e traccia: data, luogo e sala, persone, cosa serve, lingue, diretta, ritiro o montaggio), "Offerta personalizzata senza impegno", poi orari con lo stato e sede con "Indicazioni". A destra la loro foto della regia in sala storica (2024-05-1). A 390 l’ordine è quello di chi passa in sede: stato e orari, Chiama, "Indicazioni per la sede" (Google Maps con il cid), "Chiedi un’offerta", indirizzo con l’angolo della via.
+3. Tre porte su petrolio scuro, al posto della fascia delle garanzie: Service ed eventi, Noleggi (con la regola dei giorni), Impianti per le sale. Sono le loro tre promesse, con le loro frasi.
+4. Impianti (seconda schermata a 1440, per chi gestisce una sala): tre riquadri "Abilitati MePA dal 2022, anche per OS 30" con le cinque abilitazioni, "Un impianto già installato che non va?" (Chiama e email di assistenza a info@ con la traccia) e "Sopralluogo e consulenza tecnica" (email con la traccia e la planimetria); il teatro (2024-05-5), i sette tipi di sala con le loro frasi e la fascia dei marchi con quello che fanno.
+5. Service: quattro schede con la foto del lavoro (amplificazione 2024-05-3, radiomicrofoni 2024-05-6, video 2024-05-4, riprese 2024-05-2), due schede di testo per traduzione simultanea e streaming, e il riquadro "Per l’offerta diteci data, luogo, persone, lingue e se serve la diretta". Ogni scheda porta al modulo con la richiesta e la voce già spuntate.
+6. Noleggi su petrolio: la regola in 48 px, ritiro il giorno prima con il tecnico, uso, reso a fine evento o il giorno dopo, oppure consegna e montaggio; il materiale in tre colonne; "Chiedi un noleggio" (email con la traccia) e Chiama.
+7. Azienda: i banchi con i microfoni e l’unità di voto (sala_vicenza), la storia con le loro parole e quattro numeri veri (1967, 1986, 5 abilitazioni MePA, monitor fino a 86").
+8. Dove siamo: facciata con l’insegna "emporio dell’audio" e showroom, indirizzo con l’angolo, stato, tabella degli orari con il giorno di oggi evidenziato, Indicazioni e Chiama, "Cercate un pezzo? Chiamate prima di passare".
+9. Chiusura su petrolio scuro: "049 760348" in 88 px, la loro frase "Avete bisogno di un consiglio o di una consulenza tecnica?", le due email con a che cosa servono, e il modulo.
+10. Piede in quattro colonne.
 
-Respinto: nessun difetto respinto del tutto. Per la chiusura a 2x il limite di 2520 px è spiegato sopra.
+### Le 15 regole, una per una
 
-## Le prime due schermate
+Misure di `node _prova/script/pro_controlli.mjs` (esito completo in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi a 1440 e 390 e le catture a 320, 768, 1024.
 
-1. **Apertura** (1440x900). Testata con il logo, il menu centrato sopra il microfono e il telefono. Il microfono alto 650 px sull’asse; il titolo in General Sans 500 a 178 px diviso dal microfono; sotto, a sinistra dal margine le tre righe che dicono il mestiere ("Impianti audio e video per teatri, sale congressi, aule e chiese: li progettiamo e li installiamo. Per convegni ed eventi li portiamo in sala o li noleggiamo. Da Padova, dal 1967."), a destra il bottone "Chiama 049 760348" e il link "Impianti per le sale". In basso la linea dei tre giorni a tutta larghezza, con "Si quota solo il giorno dell’evento." sotto l’anello. Tutta la linea porta al calcolo.
-   A 390 (390x844): l’asse si sposta al 39 % perché le due metà del titolo stiano nella larghezza; microfono, titolo diviso, linea dei tre giorni, le tre righe, bottone e link: tutto nei primi 844 px.
-2. **Cosa portiamo in sala**: titolo centrato e una riga, le due foto vere del 2024 piccole ai due lati dell’asse con didascalia, poi le sei voci del service in due colonne con il filo in mezzo.
+1. **Telefono come bottone nella testata fissa: passa.** Testata fissa alta 89 px a 1440 e 73 a 390, bottone "049 760348" alto 48 px con la cornetta. A metà pagina, a 1440 e a 390, il bottone si vede e si tocca (`elementFromPoint`). 9 link `tel:`, tutti `tel:+39049760348`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440 x 900: H1 con il mestiere e "Padova", occhiello "Padova, dal 1967", bottone "Chiama 049 760348" e la mail dell’offerta, orari, sede, le tre porte. A 390 x 844: lo stesso titolo, stato e orari, "Chiama 049 760348" largo 350 px, "Indicazioni per la sede", "Chiedi un’offerta", indirizzo e traccia dell’offerta, tutto senza scorrere.
+3. **Immagine vera nell’apertura: passa.** La loro regia di un convegno in una sala storica con il soffitto dorato, il mixer Yamaha in primo piano e il pubblico. Riserva: è uno scatto da telefono (1600 x 616), mostrato senza ingrandirlo (a 1440 lo riquadro alto 622 px sui 616 d’origine); senza persone dell’azienda e senza mezzi con il marchio: la ripresa vera è nel LEGGIMI.
+4. **Zero repertorio: passa.** `indicativ` compare 0 volte; in `sito/img/` solo tagli delle foto del loro sito e il logo; nessun file da Unsplash o Pexels.
+5. **Foto in serie: passa.** Nove foto, tutte dalla loro libreria, con lo stesso trattamento (`pro_img.py`: rumore da telefono smorzato, bianco portato a metà verso il neutro, saturazione 0,9, contrasto leggero); due formati a 1440 (3:2 per tutte, l’apertura riquadrata dalla colonna, circa 1,18:1), nessuna didascalia, nessuna ingrandita oltre la misura d’origine.
+6. **Palette dal marchio: passa.** `--petrolio` #257B82 (logo 2025) e `--petrolio-scuro` #123E42 (piede del loro sito), più neutri (inchiostro, testo secondario, grigio freddo, bianco, filetti). Nessun colore scritto a mano fuori da `:root`. Nessun beige. Il rosso della facciata resta nella foto.
+7. **Scala tipografica corta: passa.** 7 misure a 1440 (14, 17, 19, 23, 48, 56, 88) e 7 a 390 (14, 16, 17, 20, 28, 32, 44); testo corrente 19 px a 1440 e 17 a 390 (schede 17 e 16); nessun testo sotto i 14 px; H1 56 px a 1440 e 32 a 390.
+8. **Due famiglie al massimo: passa.** General Sans 600 per titoli e cifre, Host Grotesk 400 e 600 per testo, etichette, bottoni e modulo, in tutta la pagina.
+9. **Servizi in schede con la foto: passa, con riserva.** Quattro colonne, quattro schede con la foto del loro lavoro, tutte 3:2, nome, riga e "Chiedi l’offerta", tutta la scheda cliccabile. Traduzione simultanea e streaming sono due schede di testo a parte, perché non c’è una loro foto che regga (le vecchie `trad` e `streaming` sono 397 px e cataloghi): sono nel LEGGIMI tra le foto da fare.
+10. **Almeno tre tipi di prova: non passa (2 su 4).** Ci sono i numeri aziendali (1967, 1986, 5 abilitazioni MePA, monitor fino a 86") e la fascia di certificazioni e fornitori (MePA con le cinque abilitazioni, marchi con quello che fanno). Mancano recensioni (nessuna leggibile, nessuna inventata) e clienti con il nome: Camera di Commercio di Padova e Università di Udine risultano da atti pubblici ma vanno citati solo con il loro permesso (LEGGIMI).
+11. **Lavori con un nome: non passa.** Le foto del 2024 sono lavori veri ma senza luogo, cliente e anno confermati; nessuna didascalia inventata. Cosa chiedere è nel LEGGIMI.
+12. **Ritmo a blocchi: passa.** Tre blocchi pieni oltre al piede: le porte (petrolio scuro), i noleggi (petrolio), la chiusura (petrolio scuro); service e dove siamo su grigio; piede antracite. Spazio fra le sezioni 120 px a 1440 e 72 a 390; margini 80 px a 1440 e 20 a 390 (16 sotto i 360 px).
+13. **Un solo sistema di bottoni: passa.** Pieno e bordato, raggio 4 px, altezza 56 px (48 in testata), testo 17 px (16 sul telefono); i bottoni di chiamata contengono il numero; sui blocchi scuri le stesse due varianti in bianco.
+14. **Modulo e "dove" per il mestiere: passa, con riserva.** Modulo in home con: che cosa vi serve (service, noleggio con ritiro, noleggio con montaggio, impianto nuovo o sopralluogo, assistenza, emporio), nome e telefono obbligatori, ente, email, data dell’evento, persone, luogo e sala (indirizzo dell’impianto per impianti e assistenza), cosa serve (sei voci), lingue, diretta, tipo di sala, entro quando (urgenza), descrizione, istruzione per allegare planimetrie e foto (un mailto non porta allegati). Compone l’email a service@ (eventi e noleggi) o a info@ (impianti, assistenza, emporio): niente invio automatico. Nessun iframe di mappa: "Indicazioni" apre la loro scheda Google con il cid. Manca l’elenco dei comuni serviti: non è nelle fonti (LEGGIMI).
+15. **Piede completo: passa.** Quattro colonne a 1440, testo di almeno 14 px: Eurotecnica Salmaso S.R.L., P.IVA 01353510280, C.F. 01871990238, "Abilitata MePA dal 2022, anche OS 30"; sede ed emporio con indirizzo cliccabile e orari; telefono, info@, service@, LinkedIn con il sottotitolo; le sezioni; Privacy e Cookie. Le zone servite mancano per la stessa ragione della regola 14.
 
-Poi: il noleggio sul suo fondo (il gesto), gli impianti con il titolo a sinistra sul teatro a tutta larghezza e le quattro sale, la storia con la foto a sinistra fino al bordo e il 1967 a destra, la chiusura con la sala consiliare a tutta larghezza, il piede.
+### Compiti della scheda d’uso (par. 8)
 
-## Caratteri
+- *Evento, 1440*: "traduzione simultanea" e "radiomicrofoni" nella prima schermata (riga dei servizi, in grassetto). "Chiedi un’offerta per un evento" apre l’email a service@ con oggetto e traccia, con accanto "scriveteci data, luogo, numero di persone, lingue e se serve la diretta". La regola dei giorni è nella porta "Noleggi" a 900-1000 px e in grande nella sezione Noleggi, con "Il giorno prima, ritiro in sede" e il tecnico; nessun calcolatore.
+- *Evento, 390*: `tel:+39049760348` a tutta larghezza a 444 px, senza scorrere.
+- *Sala, 1440*: sezione Impianti nella seconda schermata, con MePA e OS 30, l’assistenza con telefono e info@, i sette tipi di sala (sale consiliari e chiese comprese) e i marchi come testo; P.IVA e C.F. selezionabili nel piede.
+- *Sede, 390*: stato e orari a 360 px, "Indicazioni per la sede" (cid) a 512 px, indirizzo con l’angolo a 650 px; la sezione Dove siamo con la facciata, "emporio dell’audio" e la tabella degli orari; il bottone del numero resta in testata scorrendo.
+- *Identità*: nessuna foto di sala altrui, nessun prezzo, numero o cliente inventato; titolo e frasi dal loro sito; nessun U+2014.
 
-- **General Sans 400 e 500** (Indian Type Foundry, Fontshare, licenza ITF Free Font License: uso commerciale e web gratuito) per titoli, date e numeri grandi. Riferimenti: d&b audiotechnik (grotesk geometrica, frase breve su fondo chiaro) e Genelec (titolo grande accanto a un solo prodotto vero). Spaziatura -0,045em nel titolo, interlinea 0,92.
-- **Host Grotesk** variabile (Element Type, Google Fonts, SIL Open Font License 1.1) per testo, telefono, P.IVA e date dei comandi, con cifre tabellari.
-- I file sono serviti dalla pagina (`sito/fonts/`, licenze in `sito/fonts/LICENZE.md` e `OFL-host-grotesk.txt`). Nessun carattere delle liste b della guida, nessun monospazio, niente corsivi. `text-rendering: geometricPrecision` evita i vuoti dopo la f che Chromium apriva con la spaziatura negativa.
-- Apostrofo tipografico ’ in tutta la pagina, titolo compreso; la build si ferma se trova un apostrofo dritto nel testo.
+### Caratteri e licenze
 
-## Colori
+- **General Sans 600** (Indian Type Foundry), da Fontshare, ITF Free Font License (uso commerciale ammesso, anche sul web); `sito/fonts/general-sans-600.woff2`.
+- **Host Grotesk** (Element Type), da Google Fonts, SIL Open Font License 1.1, file variabile usato nei pesi 400 e 600; `sito/fonts/host-grotesk-variabile.woff2`, licenza in `sito/fonts/OFL-host-grotesk.txt`, note in `sito/fonts/LICENZE.md`.
+- Foto: solo materiale del loro sito (libreria media di WordPress, `assets/originali/`), da usare con il loro permesso; i diritti delle sei foto del 2024 vanno chiariti (EXIF, vedi LEGGIMI). Nessuna immagine generata, nessun disegno.
 
-Fondo #E9F1EF (petrolio del logo appena accennato), noleggio #D7E6E3, piede #123E42 (petrolio scurito). Inchiostro #141A1C (15,3:1), testo secondario #43514F (7,2:1), link e accenti #1A5E63 (6,5:1), #257B82 solo in grande (1967, 4,3:1). Nel piede testo #E3EFED (9,9:1) e titoletti #A9C8C5 (6,6:1). Il rosso del velluto, l’oro e il giallo delle tende stanno solo dentro le foto.
+### Controlli fatti (3/11/2026)
 
-## L’interazione (una sola)
-
-"Quotiamo solo i giorni di effettivo utilizzo": comandi centrati su una riga (giorno dell’evento con frecce e calendario nativo, durata 1, 2 o 3 giorni, ritiro in sede o consegna e montaggio). La linea dei tre giorni sotto, sul cavo, mostra ritiro o consegna nel giorno feriale prima, i giorni quotati, il reso o il ritiro a fine evento o nel primo giorno feriale dopo, con le frasi del loro sito; lo stesso stato si aggiorna nella linea dell’apertura. Nessun prezzo. Bottoni veri (`aria-pressed`, `aria-live` sui risultati), provati con tastiera e tocco. Transizioni di 150 ms solo sui colori di bottoni e link; nessuna animazione allo scorrere, nessun effetto che segue il cursore. Il cavo è un SVG di poche righe che parte dal pressacavo del microfono (posizione scritta dalla build in `cavo.json`) e si ridisegna al cambio di misura.
-
-## Foto, origine e licenza
-
-- **Microfono**: DESIGNECOLOGIST, Unsplash hvgd0ygXuQQ, Unsplash License. Lavorato con PIL in `_prova/script/finale_img.py`: tolta la scritta "SPEAK UP", sfumate le scritte sul connettore, scontornato (WebP con trasparenza, 150, 220 e 289 px di larghezza), anello della griglia portato al petrolio del logo, cavo vero tolto sotto il pressacavo. Segnaposto.
-- **Service**: due foto dell’azienda dallo slider del 2024 (`2024-05-1.jpg`, `2024-05-3.jpg`), scatti da telefono 1600x616: tagli 3:2 (924x616) a 420 px, nitidezza smorzata. Diritti da chiarire.
-- **Impianti**: Valentin Karisch, Unsplash igNLOmbJBhg (palchi della Staatsoper di Vienna), Unsplash License; originale 3600 px, 16:9 a tutta larghezza.
-- **Storia**: Daniel Emale, Unsplash zBZZfr8_0ME (unità per conferenze in un’aula consiliare, come i sistemi che progettavano a Padova), Unsplash License, a sinistra fino al bordo.
-- **Chiusura**: Nguyen Dang, Unsplash ft2Gpg_fNVY (sala consiliare ovale con i microfoni a collo di cigno, simmetrica), Unsplash License; originale 3200 px, 3:2 a tutta larghezza, cordoni del museo ritoccati via.
-- Licenze rilette il 2/11/2026 sulle pagine di Karisch e Dang ("Free to use under the Unsplash License"). Nessuna di queste foto è usata in un’altra home della campagna (ID cercati in tutti i `*-Sito/assets/CREDITI.md`). Nessuna immagine generata dall’IA.
-- Trattamento unico: neri sollevati verso il petrolio, saturazione all’82-86 %, JPEG progressivi in più larghezze con `srcset`.
-
-## Chiusura e piede
-
-Chiusura "b con foto", testo sopra e foto a tutta larghezza sotto: la loro frase "Avete bisogno di un consiglio o di una consulenza tecnica?" come titolo, telefono a 64 px sottolineato con `tel:`, info@ e service@ con `mailto:`, indirizzo con "Apri la mappa". Nessun orario: non è pubblicato.
-Piede petrolio scuro: logo chiaro (bozza SVG fedele, ricolorata), una riga su chi sono, colonne Azienda, Impianti, Service e noleggi, Contatti (indirizzo su due righe, "Apri la mappa" a parte); riga legale con Eurotecnica Salmaso S.R.L., P.IVA 01353510280, indirizzo, Privacy, Cookie. A 390 una colonna sola, in ordine.
-Niente newsletter: il sito non pubblica notizie, fiere o cataloghi, il lavoro è a progetto per enti, scuole e parrocchie e una squadra di quattro persone non la alimenterebbe; per i privati del noleggio basta il telefono. Niente "Seguici": nessun profilo social trovato.
-
-## Controlli (2 novembre, dopo la rifinitura)
-
-- `_prova/script/controlli.mjs`: scrollWidth uguale a innerWidth a 320, 360, 390, 414, 600, 601, 768, 900, 901, 1024, 1180, 1280, 1440, 1680, 1920, 2560 (a 901 il piede sforava di 46 px: corretto con due colonne per riga fino a 1000); console a 0 errori aperta come file://; 6 link `tel:` tutti +39049760348, 5 `mailto:` coerenti, 2 link alla mappa; nessun U+2014; telefono scritto sempre uguale.
-- Nitidezza a 1440: teatro, storia e service a 1x e 2x senza ingrandimento; chiusura 1x senza, 2x 1,14 (vedi sopra).
-- Gesto: tastiera a 1440 (Invio sulle frecce, Tab fino a "3 giorni", Invio, Tab, Spazio su "Consegna e montaggio"), tocco a 390 (2 giorni, consegna, freccia); giorni feriali verificati su un evento di lunedì e uno di sabato; la linea dell’apertura segue. Menu a 390: pannello 68-844 px, pagina ferma, `aria-expanded`, Esc e voce chiudono.
-- Screenshot a 320, 390, 768, 1024, 1440, 1920 guardati a pezzi: nessun testo fuori finestra, il titolo non tocca il microfono.
-- `segnali.sh` (kit): 0 soglie bloccanti, 0 da guardare. Foto al 35,6 % della pagina a 1440; 4 misure di H2 (64, 92, 42, 62 px); 4 fasce di fondo; 4 filetti larghi; 2 famiglie (Host Grotesk 87,5 %, General Sans 12,5 %); un solo numero grande (1967); nessuna etichetta maiuscola sopra i titoli; nessuna freccia; nessun titolo a sinistra con paragrafo a destra. Uscite in `_prova/segnali-finale/`.
-- Nessun carattere U+2014 nella pagina, negli script e nei .md di questo compito.
-- Dati in pagina tutti da `01-analisi.md`.
+- `pro_controlli.mjs`: regole 1-9 e 12-15 superate nelle misure; 10 e 11 no. Nessuno scorrimento orizzontale a 320, 390, 768, 1024, 1440, 1920; nessuna sovrapposizione nell’apertura; nessun errore di script; tutte le ancore hanno la destinazione; tutti i `tel:` sono `+39049760348`, tutti i mailto hanno l’oggetto, la sola mappa è il cid 13052135561717271527.
+- Menu a 390: si apre, si chiude dopo il clic su una voce, l’ancora si ferma sotto la testata. Modulo: invio vuoto fermato con l’avviso e il fuoco sul nome; la scheda "Traduzione simultanea" spunta la voce nel modulo; email composta a service@ per il service e a info@ per l’assistenza (con sei campi da evento nascosti), lette senza inviarle.
+- `pro_orari.mjs`: martedì 10.00 aperto fino alle 12.30; 13.10 riapre alle 14.30; 19.00 riapre domani; venerdì sera e sabato riapre lunedì; 8 dicembre e Pasquetta "Chiuso oggi, festivo"; vigilia di Natale sera riapre lunedì.
+- Screenshot guardati a pezzi a 1440 e 390, prime schermate e pagine intere a 320, 768 e 1024. Nessun U+2014 in pagina, nei .md e negli script.

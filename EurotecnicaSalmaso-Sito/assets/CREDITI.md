@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026; uso nella home finale aggiornato il 2 novembre 2026 (sezione in fondo).
+Aggiornato il 24 ottobre 2026; uso nella home aggiornato il 3 novembre 2026 (sezione in fondo): oggi in pagina ci sono solo foto dell'azienda.
 
 ## Foto esterne in `esterne/` (SEGNAPOSTO, da sostituire con foto vere di Eurotecnica Salmaso)
 
@@ -42,16 +42,22 @@ Diritti:
 - `originali/logo-colore-289x94.png`, `originali/logo-bianco-366x101.png`, `originali/logo-monogramma-100.png`, `originali/logo-vecchio-400x142.png`: dal sito, proprietà dell'azienda.
 - `logo-ricostruito-bozza.svg`: tracciato da me il 24/10/2026 dal PNG bianco 366x101 (`_prova/script/traccia_logo.py`, contorni ingranditi 8 volte e semplificati), colore #257B82. Il confronto a 1100 px è fedele nelle forme; differenze minime negli angoli arrotondati. Va sostituito dal vettoriale originale se l'azienda lo ha.
 
-## Uso nella home finale (versione del 2 novembre 2026)
+## Uso nella home (versione "livello professionale" del 3 novembre 2026)
 
-Controllato di nuovo il 2/11/2026 che nessuno di questi ID compaia nei `CREDITI.md` delle altre aziende della campagna.
+Per decisione del committente ("niente" foto di repertorio, niente disegni al posto delle foto) **nessuna foto di `esterne/` è più in pagina**: tolte DESIGNECOLOGIST hvgd0ygXuQQ (microfono dell'apertura), Valentin Karisch igNLOmbJBhg (teatro), Daniel Emale zBZZfr8_0ME (storia) e Nguyen Dang ft2Gpg_fNVY (chiusura), e i loro tagli in `sito/img/`. I file restano in `esterne/` solo come archivio della proposta di prima (copia completa in `_prova/versione-1-originale/`).
 
-| Foto | Dove | Lavorazione (`_prova/script/finale_img.py`) |
+In pagina solo immagini dell'azienda, da `originali/`, lavorate da `_prova/script/pro_img.py` (taglio 3:2, rumore smorzato, bianco portato a metà verso il neutro, saturazione 0,9, mai oltre la misura d'origine):
+
+| File d'origine | In pagina | Taglio |
 |---|---|---|
-| DESIGNECOLOGIST hvgd0ygXuQQ | apertura, `sito/img/microfono-*.webp` | scritta "SPEAK UP" e scritte del connettore tolte, scontornato (WebP con trasparenza), anello della griglia portato al petrolio del logo, cavo tolto sotto il pressacavo |
-| Valentin Karisch igNLOmbJBhg | impianti, `teatro-*.jpg` | dall’originale 3600x2395 (`_prova/crawl/hr/karisch-3600.jpg`), taglio 16:9 e 4:3, neri verso il petrolio |
-| Daniel Emale zBZZfr8_0ME | storia, `conferenza-*.jpg` | taglio quasi quadrato e 4:3 |
-| Nguyen Dang ft2Gpg_fNVY | chiusura, `chiusura-*.jpg` | dall’originale 3200x4800 (`_prova/crawl/hr/dang-3200.jpg`), taglio 3:2 e 5:4 centrati sul tavolo; cordoni rossi del museo e visitatore dietro la vetrata tolti con un ritocco |
-| `originali/2024-05-1.jpg`, `2024-05-3.jpg` (azienda) | service, `regia-*.jpg`, `palco-*.jpg` | tagli 3:2 a 420 px (la regia senza il monitor con il testo), rumore smorzato; diritti da chiarire |
+| `2024-05-1.jpg` | apertura (`apertura-*.jpg` da 601 px in su, `regia-*.jpg` sul telefono) | intera 1600x616 riquadrata dalla colonna; sul telefono 3:2 da x 640 |
+| `2024-05-3.jpg` | scheda Amplificazione (`amplificazione-*.jpg`) | 3:2 da x 380 |
+| `2024-05-6.jpg` | scheda Radiomicrofoni (`radiomicrofoni-*.jpg`) | 690x460 in alto a sinistra, sopra la bottiglia d'acqua |
+| `2024-05-4.jpg` | scheda Video e videowall (`video-*.jpg`) | 3:2 da x 420 |
+| `2024-05-2.jpg` | scheda Riprese video (`riprese-*.jpg`) | 3:2 da x 560, senza i cartelli del committente |
+| `2024-05-5.jpg` | Impianti (`teatro-*.jpg`) | 3:2 da x 300 |
+| `2016-02-sala_vicenza.jpg` | Azienda (`sala-consiliare-*.jpg`) | 654x436 |
+| `2016-02-Untitled-1-2.jpg` | Dove siamo (`sede-*.jpg`) | 542x361 |
+| `2024-05-Negozio-6.jpg` | Dove siamo (`emporio-*.jpg`) | 866x577 da x 60 |
 
-Originali più grandi scaricati il 2/11/2026 dal CDN di Unsplash (`images.unsplash.com/photo-1778962390083-ae4c125ba770` per Karisch, `photo-1775492783108-5714035b298b` per Dang, indirizzi letti nelle pagine delle foto), confrontati con i file di `esterne/`: stesse foto. Licenza riletta lo stesso giorno: "Free to use under the Unsplash License".
+Diritti delle foto del 2024 da chiarire con l'azienda (EXIF, vedi sopra).

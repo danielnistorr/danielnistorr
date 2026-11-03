@@ -1,8 +1,8 @@
 # Crediti delle immagini
 
-Aggiornato il 3 novembre 2026 (home "livello professionale"). **Nella home non c'è più nessuna foto di repertorio**: per decisione del committente ("niente") sono uscite la ringhiera Pexels 38439497 della chiusura e ogni altra foto di `esterne/`, e nessuna è stata sostituita da illustrazioni. In pagina ci sono solo foto loro, tutte tagliate in 4:3 e trattate allo stesso modo da `../_prova/script/pro_img.py`:
-- apertura: `gallery_cancelli_canc082204.jpeg`;
-- lavori: `gallery_cancelli_canc082201.jpeg`, `canc082202`, `canc082203`, `canc082206`, `gallery_ringhiere_ringh082202.jpeg`, `ringh082203`;
+Aggiornato il 3 novembre 2026 (home "livello professionale"). **Nella home non c'è più nessuna foto di repertorio**: per decisione del committente ("niente") sono uscite la ringhiera Pexels 38439497 della chiusura e ogni altra foto di `esterne/`, e nessuna è stata sostituita da illustrazioni. In pagina ci sono solo foto loro, tagliate in 4:3 (l'apertura in 16:10) e trattate allo stesso modo da `../_prova/script/pro_img.py`:
+- apertura: `gallery_cancelli_canc082204.jpeg` (16:10, senza il terzo inferiore di piazzale);
+- lavori (4, dal ritocco del 3 novembre): `gallery_cancelli_canc082202.jpeg`, `canc082201`, `gallery_ringhiere_ringh082202.jpeg`, `ringh082203` (uscite `canc082203` e `canc082206`, doppioni delle schede);
 - schede: `gallery_ringhiere_ringh082201.jpeg`, `gallery_cancelli_canc082207.jpeg`, `gallery_ringhiere_img_1061.jpg`, `gallery_reti-ondulate_IMG_1130-1.JPG`, `uploads_2016_01_20151223_103842n.jpg` (esposizione con i pannelli Betafence, dicembre 2015, probabilmente nella sede di prima), `uploads_2014_04_IMG_1135.jpg` (banco, 2014, probabilmente nella sede di prima).
 Uscite rispetto alla versione 1: `uploads_2014_04_rete_ondul01.jpg` e il disegno SVG della rete ondulata. L'uso delle foto loro va confermato con l'azienda e, per le case riconoscibili, con i clienti (LEGGIMI).
 
