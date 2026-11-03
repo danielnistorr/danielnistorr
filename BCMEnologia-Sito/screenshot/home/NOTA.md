@@ -1,6 +1,66 @@
 # Home di B.C.M. Enologia: nota
 
-## Livello professionale
+## Ritocco finale (dopo il controllore del livello professionale, voto 6)
+
+Pagina: `sito/index.html`. La versione prima del ritocco è descritta qui sotto ("Livello professionale"). Le modifiche sono negli script `_prova/script/ritocco_css.py` e `ritocco_html.py` (sostituzioni puntuali, già applicate), le immagini si rifanno con `pro_img.py`, i controlli con `pro_controlli.mjs`: **65 su 66 passano**, non passa solo la regola 11 (lavori con il nome, che non ci sono nelle fonti).
+
+Screenshot rifatti (stessi nomi, ora simulata lunedì 2 novembre 2026 alle 10): `home-1440.jpg` (9.328 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (13.420 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`. Guardati a pezzi a 1440 e 390, e a 320, 768, 1024, 1280 e 1920: nessuno scorrimento orizzontale (anche le tabelle a 320 ora stanno nella colonna), nessuna sovrapposizione.
+
+### Che cosa è cambiato
+
+- **Apertura**: la foto dei torchi in magazzino non è più un quadrato con gli angoli arrotondati dentro la colonna. È tagliata in 4:5 sul torchio centrale e sui martinetti (980x1225 nativi), a filo del bordo destro della pagina e alta quanto la prima schermata meno testata e indice (720 px a 1440x900, al massimo 780). La fascia bianca in basso e parte degli scatoloni restano fuori; nel LEGGIMI resta la richiesta dello scatto nuovo. Occhiello "Macchine enologiche e ricambi a Saonara, Padova", la promessa dei ricambi in grassetto nella riga sotto il titolo, due PDF diretti sotto i bottoni (torchi 1,9 MB, pompe con inverter 2,3 MB, "IT DE EN FR") e "Tutti i cataloghi".
+- **Gesto di scala**: la fascia rossa ha quattro cifre su una riga a 128 px (1960, 30+, 400, 950), quasi il doppio del titolo (68 px), con l'etichetta di 18 px sotto. Tolti "8 modelli" e "4 lingue", deboli.
+- **Foto in serie**: tolta l'ombra a terra disegnata dagli scontornati, che ora stanno sullo stesso piano grigio #E6E5E2. Le due foto d'officina (magazzino e banco) hanno lo stesso trattamento (`grade` in `pro_img.py`): bilanciamento del bianco sui pixel quasi grigi, la stessa tinta calda, la stessa curva e lo stesso colore. Il banco non è più grigio-verde e il magazzino è meno arancio. Il martinetto dei ricambi è nello stesso quadrato delle schede.
+- **Ricambi**: dopo il titolo, una riga con i pezzi (manometro del DAVID, listelli e cerchi della gabbia, tappi e mezzelune, girante della pompa); i tre passi; subito dopo la foto della targhetta con la didascalia (al telefono piccola, accanto alla didascalia); poi Chiama e "Manda le foto per email". Tolta la formula "Siamo sempre a tua disposizione"; al suo posto "Fuori orario puoi mandarci le foto per email... allegale dalla galleria". Punto 1: "Se non si legge, una foto intera della macchina".
+- **Fuori orario**: quando lo stato è "Chiuso", sotto compare "Fuori orario? Mandaci le foto della targhetta per email" (mailto dei ricambi), nella prima schermata a 390. Lo script ha un elenco `chiusure` per ferie e ponti (oggi vuoto, da far confermare a BCM): in quei giorni dice "Chiusi per ferie, riapriamo il ...".
+- **Rivenditori**: la fascia "Dove trovi le macchine BCM" nei cataloghi, a 4 colonne, con i quattro rivenditori delle fonti (Vivi in Campagna e Enologys in Italia, Kidonakis ad Atene, KOL-Technik in Austria), poi quattro colonne per rivenditori e importatori in italiano, inglese, tedesco e francese (email con l'oggetto nella lingua, telefono +39 cliccabile, orari), poi la riga dei titoli: DAVID marchio registrato e i quattro SIMEI con le foto degli stand (tolta dal "Chi siamo" per non ripeterla).
+- **Brochure ZIP**: in un `details` "Le 10 brochure delle linee, in ZIP", aperto sui monitor e chiuso al telefono; i link ZIP hanno `download`, i PDF `target="_blank"`.
+- **Contatti**: "Come si compra" spostato nella colonna dei recapiti, che non ha più il vuoto di 449 px sotto lo stato; il numero grande e quello del piede sono "+39 049 640372".
+- **Modulo**: "Macchina e modello" e "Quantità" sulla stessa riga, l'allegato vero (`input type="file"`, JPEG, PNG o PDF, più file) e la nota "Le foto non partono da sole: il modulo apre un'email, allegale lì". Il corpo dell'email scrive i nomi dei file scelti; dopo l'invio compare "Si è aperta l'email: ricordati di allegare le foto". Con "Sono un rivenditore" il campo diventa "Paese e linee che ti interessano", l'allegato sparisce e l'oggetto è "Rivenditori: listino e condizioni, <azienda>".
+- **Tono**: "Siamo nati nel 1960 con i soci...", "l'anno in cui siamo nati", "Nasce la nostra ditta". Nessuna frase in terza persona su BCM (controllato).
+- **Misure del testo**: descrizioni delle schede, cataloghi, tabelle e date a 18 px a 1440 (16 px al telefono). Nessuna misura nuova: a 1440 sono 128, 68, 44, 26, 20, 18, 16, 14; a 390 72, 38, 30, 22, 18, 17, 16, 14.
+
+### Esito regola per regola dopo il ritocco
+
+1. **Telefono in testata fissa**: PASSA. A 390, al 50% della pagina, il bottone "049 640372" è a 12 px dall'alto, 125x48, toccabile; 9 link `tel:`, tutti +39049640372.
+2. **Prima schermata**: PASSA a 1440x900 e 390x844: mestiere in H1, Saonara nell'occhiello, "dal 1960", "Aperto ora", "Chiama 049 640372" pieno (350 px a tutta larghezza a 390).
+3. **Immagine vera in apertura**: PASSA. I torchi BCM in magazzino, ora a filo del bordo in 4:5, alta 720 px. Riserva: è uno scatto da telefono (vedi LEGGIMI).
+4. **Zero repertorio**: PASSA. "indicativ" 0, nessuna foto di banche, nessuna illustrazione.
+5. **Foto in serie**: PASSA, con un limite più piccolo di prima. Tre formati a 1440 (4:5, 1:1, 16:9), due a 390; 2 didascalie su 11 foto. Ombre disegnate tolte, stesso piano per gli scontornati, stesso trattamento per le due foto d'officina. Il limite resta: scatti di telefono e scatti da catalogo, non una giornata di un solo fotografo.
+6. **Palette dal marchio**: PASSA. Rosso #9E2B22 e ghisa #1F1E1C, verde solo per lo stato, più i neutri (bianco, due grigi freddi, testo secondario, filo, chiaro).
+7. **Scala corta**: PASSA. 8 misure a 1440 e 8 a 390; testo corrente 18 e 17 px; niente sotto i 14 px; H1 68 e 38 px.
+8. **Due famiglie**: PASSA. Sofia Sans Condensed (titoli, cifre, nomi dei rivenditori) e Sofia Sans (testo e interfaccia).
+9. **Schede con la foto**: PASSA. Otto schede in 4 colonne, stesso quadrato 1:1, nome, scheda della linea e PDF o ZIP. Riserva: sono scontornati del catalogo, non foto del lavoro.
+10. **Tre tipi di prove**: PASSA IN PARTE. Numeri: 4 cifre grandi. Clienti e collaborazioni con il nome: i 4 rivenditori in una fascia con il titolo "Dove trovi le macchine BCM". Al posto delle certificazioni, che non hanno: la riga dei titoli (DAVID marchio registrato, SIMEI 2009-2019). Recensioni: nessuna nelle fonti, non inventate.
+11. **Lavori con il nome**: NON PASSA. Nessuna cantina nominata nelle fonti; nulla inventato, richiesta nel LEGGIMI.
+12. **Ritmo a blocchi**: PASSA. Ghisa (ricambi) e rosso (numeri) oltre al piede, grigi per indice, misure e chi siamo; 120 px tra le sezioni a 1440, 72 a 390; margini 80 e 20 px.
+13. **Un solo sistema di bottoni**: PASSA. Pieno rosso e con il bordo, raggio 4 px, 52 px (48 in testata e nelle caselle del modulo), testo 16 e 18 px; ogni bottone di chiamata ha il numero.
+14. **Modulo e "dove e quando"**: PASSA. Tipo di richiesta, macchina e modello, quantità, allegato (foto della targhetta e del pezzo), nome, azienda, email, telefono, messaggio; compone un mailto (da collegare a un servizio, LEGGIMI). Indirizzo con "Apri la mappa", tabella degli orari, nessun iframe.
+15. **Piede completo**: PASSA. Ragione sociale, P.IVA e C.F., REA, capitale, sede con la mappa, +39 049 640372 ed email cliccabili, orari, le linee, Privacy e Cookie, 4 colonne, testo da 14 px. Certificazioni: non ne hanno.
+
+### Prove d'uso della SCHEDA dopo il ritocco
+
+- **A, ricambio al telefono**: nella prima schermata "ricambi" è nell'occhiello e in grassetto nella riga sotto il titolo, con lo stato, Chiama e "Ricambi e assistenza"; fuori orario c'è anche la riga per mandare le foto per email. Un tocco su "Ricambi e assistenza" porta a titolo, pezzi e passi; con mezzo scorrimento si vedono la targhetta d'esempio e poi i bottoni (prima la foto stava dopo i bottoni). Il tempo è lo stesso, ma chi scrive ha visto che cosa fotografare.
+- **B, rivenditore a 1440**: il PDF giusto ora si scarica in un clic dalla prima schermata (torchi e pompe con inverter) o dalle schede, in una scheda nuova; "Catalogues EN · DE · FR" porta ai cataloghi e, subito sotto, alla fascia dei rivenditori con una colonna per lingua; il modulo da rivenditore non chiede più le foto.
+- **C, scelta**: invariata (indice delle linee, tabelle, "Quale DAVID per il tuo torchio", come si compra ora nei contatti, "Apri la mappa").
+
+### Respinti, con il motivo
+
+- **Scheda propria per l'inverter universale**: una nona scheda romperebbe la griglia 4x2. La pagina della linea sul sito ha un solo prodotto e il suo indirizzo rimanda (301) a quel prodotto (`41-filocontrollo-14`): il link del piede porta quindi al posto giusto. Lo ZIP dell'inverter universale è nelle brochure. Da rivedere quando ci sarà la pagina nuova della linea.
+- **Siti dei rivenditori e "da confermare con BCM" nella didascalia**: i siti non sono nelle fonti e una scritta "da confermare" in pagina è un segnaposto; la conferma è nel LEGGIMI.
+- **Tempo di risposta ("rispondiamo in giornata")** e **guarnizioni** tra i pezzi: non sono nelle fonti.
+- **Dove sta la targhetta su torchio e pompa**: non è nelle fonti; c'è "Se non si legge, una foto intera della macchina".
+- **Misure e cataloghi richiudibili al telefono**: le tabelle servono alla scelta del DAVID (prova C) e i cataloghi al rivenditore; si chiude solo l'elenco degli ZIP. La pagina a 390 resta lunga (13.420 px), per la fascia dei rivenditori nelle quattro lingue.
+- **"1960" a 240 px nel Chi siamo**: basta un gesto di scala, quello della fascia rossa.
+
+### Caratteri e licenze
+
+Invariati: Sofia Sans e Sofia Sans Condensed (Lettersoup, Google Fonts, SIL Open Font License 1.1), serviti da `sito/fonts/`, pesi 400 e 700.
+
+---
+
+
+## Livello professionale (prima del ritocco finale)
 
 Pagina: `sito/index.html` (statica, si apre con file:///). La versione di prima ("Il torchio" sulla carta, con il selettore del diametro) è copiata in `_prova/versione-1-originale/` (sito, screenshot, LEGGIMI). Per BCM non c'era una "versione 1 con l'uso" separata: le prove d'uso della SCHEDA (`_prova/uso/SCHEDA.md`, paragrafo 8) sono state risolte in questo stesso passaggio e sono tra i controlli.
 
