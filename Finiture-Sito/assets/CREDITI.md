@@ -2,11 +2,11 @@
 
 ## Aggiornamento del 3 novembre 2026 (livello professionale)
 
-Decisione del committente sulle foto: "niente". La home usa solo materiale di Finiture, preparato da `../_prova/script/pro_img.py` in `../sito/img/`:
-- apertura: `EasyGalleryImages_1_17_Porte_3-taglio-dx_R01.jpg`;
-- settori: `EasyGalleryImages_1_16_Finestre_12_R01.jpg`, `easygalleryimages_1_17_porte_4_r01.jpg`, `easygalleryimages_1_18_clt_1_taglio-dx-e-no-acqua_r01.jpg`, `easygalleryimages_1_19_sedie_1_r01.jpg`;
-- impianti consegnati: `EasyDNNNews_2160_IMG-20261013-WA0003.jpg` (linea Distner, notizia di ottobre 2026);
-- area test e assistenza: `easygalleryimages_1_1092_cabina-robot.jpg`, `easygalleryimages_1_1092_assistenza.jpg`;
+Decisione del committente sulle foto: "niente". La home usa solo materiale di Finiture, preparato da `../_prova/script/pro_img.py` in `../sito/img/` (ritocco finale del 3/11: tutte le foto hanno lo stesso trattamento, bianco neutro, saturazione -12%, stessa curva):
+- apertura: `easygalleryimages_1_1092_assistenza.jpg` (tecnico al quadro, logo Finiture sul quadro);
+- settori: `EasyGalleryImages_1_16_Finestre_12_R01.jpg`, `EasyGalleryImages_1_17_Porte_3-taglio-dx_R01.jpg` (la porta verde, ora nella scheda Porte), `easygalleryimages_1_18_clt_1_taglio-dx-e-no-acqua_r01.jpg`, `easygalleryimages_1_19_sedie_1_r01.jpg`;
+- impianti consegnati: `EasyDNNNews_2160_IMG-20261013-WA0003.jpg` (Distner), `EasyDNNNews_2134_IMG20230905164125.jpg` (dalla notizia Setz Fensterbau), `EasyDNNNews_2133_IMG20231118172507.jpg` (dalla notizia Malenfer);
+- area test: `easygalleryimages_1_1092_cabina-robot.jpg`; assistenza: `easygalleryimages_1_1092_dsc06151.jpg` (tecnico che spiega il Supervisor ai clienti);
 - squadra: `Images_home-fotogallery-5.jpg`;
 - render CAD: `EasyDNNnews_19`, `_20`, `_24`, `_27`, `_30`, `_35`, `_36`, `_40`;
 - logo: `logo-finiture-da-youtube-ritagliato.png`.

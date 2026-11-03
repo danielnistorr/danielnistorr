@@ -112,10 +112,10 @@ h3{font-size:var(--t22);line-height:1.25;font-weight:700}
 .apri{display:none;appearance:none;background:none;border:1.5px solid var(--testo);border-radius:2px;min-height:48px;padding:0 14px;font-size:var(--t16);font-weight:700;cursor:pointer}
 
 /* apertura: il titolo a tutta griglia, la seconda riga accanto alla foto */
-.apertura{padding-top:48px}
+.apertura{padding-top:28px}
 .ap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
 .ap-eti{grid-column:1/-1;grid-row:1;color:var(--rosso)}
-.ap h1{grid-column:1/-1;grid-row:2;margin-top:18px;font-size:var(--t96);line-height:1}
+.ap h1{grid-column:1/-1;grid-row:2;margin-top:10px;font-size:var(--t96);line-height:1}
 .ap h1 span{display:block;white-space:nowrap}
 .ap-foto{grid-column:6/13;grid-row:3;margin-right:calc(var(--m) * -1);margin-top:calc(var(--t96) * -1 + 8px)}
 .ap-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
@@ -132,8 +132,8 @@ h3{font-size:var(--t22);line-height:1.25;font-weight:700}
 .servizio-giu{background:var(--antracite);color:var(--testo-chiaro);font-size:var(--t14);line-height:1.45}
 .servizio-giu b{color:var(--bianco)}
 .servizio-giu a{display:inline-block;padding:13px 0;margin:-13px 0;color:var(--bianco);font-size:var(--t16);font-weight:700;text-underline-offset:4px}
-.prove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);margin-top:36px;border-top:1px solid var(--linea)}
-.prove li{padding:18px 24px 0 0}
+.prove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);margin-top:24px;border-top:1px solid var(--linea)}
+.prove li{padding:14px 24px 0 0}
 .prove .eti{color:var(--testo-2)}
 .prove p:not(.eti){margin-top:6px}
 .prove a{text-decoration-color:var(--linea)}
@@ -181,7 +181,7 @@ td span{color:var(--testo-2)}
 .voci blockquote p::before{content:"\201C"}
 .voci blockquote p::after{content:"\201D"}
 .voci footer{margin-top:12px;font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
-.voce-grande{grid-column:1/8;padding-left:28px;border-left:3px solid var(--rosso)}
+.voce-grande{grid-column:1/8;align-self:start;padding-left:28px;border-left:3px solid var(--rosso)}
 .voce-grande p{font-size:var(--t44);line-height:1.12;font-stretch:112%;letter-spacing:-.02em}
 .voce-grande footer{margin-top:24px}
 .voci-altre{grid-column:9/13;display:flex;flex-direction:column}
@@ -297,6 +297,7 @@ td span{color:var(--testo-2)}
 @media (max-width:1240px){
   :root{--m:48px;--t44:40px;--t64:56px;--t96:80px}
   .menu{gap:20px}
+  .lead{font-size:var(--t18);line-height:1.5}
 }
 @media (max-width:1180px){
   .menu{display:none}
@@ -307,14 +308,6 @@ td span{color:var(--testo-2)}
   .menu.aperto .solo-menu{display:block}
 }
 @media (max-width:1060px){
-  .apertura{padding-top:0}
-  .ap{display:flex;flex-direction:column}
-  .ap-foto{order:1;margin:0 calc(var(--m) * -1)}
-  .servizio-giu{order:2;display:block;margin:0 calc(var(--m) * -1);padding:12px var(--m) 14px}
-  .ap-eti{order:3;margin-top:28px}
-  .ap h1{order:4;margin-top:14px}
-  .ap-testo{order:5;padding:0}
-  .lead{margin-top:22px;max-width:34em}
   .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
   .caso figure,.caso .testo{grid-column:1/-1}
   .caso-dx figure,.caso-dx .testo{grid-row:auto}
@@ -335,6 +328,15 @@ td span{color:var(--testo-2)}
 }
 @media (max-width:860px){
   :root{--m:32px;--sez:88px;--t44:36px;--t64:48px;--t96:72px;--testa:98px}
+  .apertura{padding-top:0}
+  .ap{display:flex;flex-direction:column}
+  .ap-foto{order:1;margin:0 calc(var(--m) * -1)}
+  .servizio-giu{order:2;display:block;margin:0 calc(var(--m) * -1);padding:12px var(--m) 14px}
+  .ap-eti{order:3;margin-top:28px}
+  .ap h1{order:4;margin-top:14px}
+  .ap-testo{order:5;padding:0}
+  .lead{margin-top:22px;max-width:34em}
+  .ap h1 span{white-space:normal}
   .ap h1{font-size:var(--t64);line-height:1.04}
   .su .piu{display:none}
   .prove{grid-template-columns:1fr}
@@ -386,7 +388,8 @@ td span{color:var(--testo-2)}
   .riquadro{padding:24px 20px}
   .dati div{grid-template-columns:7.5em 1fr;gap:12px}
   .tabella-giro,.voci{margin-top:56px}
-  .voci{gap:28px;padding-top:40px}
+  .voci{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:40px}
+  .voci>*{grid-column:1/-1!important}
   .voce-grande{padding-left:18px}
   .voce-grande p{font-size:var(--t30);line-height:1.2}
   .az-foto{margin:32px calc(var(--m) * -1) 0}
@@ -458,7 +461,7 @@ td span{color:var(--testo-2)}
     <figure class="ap-foto">
       <img src="img/apertura-1200.webp" srcset="img/apertura-800.webp 800w, img/apertura-1200.webp 1200w, img/apertura-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 820px" width="1200" height="800" fetchpriority="high" alt="Un tecnico Finiture al quadro di comando di una cella con robot di verniciatura RAS; sul quadro il logo Finiture">
     </figure>
-    <p class="servizio-giu"><b>Assistenza</b> lun-ven 8:30-12:00 e 14:00-17:30, ora italiana, in italiano, inglese, tedesco e francese · <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a></p>
+    <p class="servizio-giu"><b>Assistenza</b> lun-ven 8:30-12:00 e 14:00-17:30, ora italiana, in italiano, inglese, tedesco e francese. <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a></p>
     <div class="ap-testo">
       <p class="lead">Progettiamo, costruiamo e installiamo linee complete, dal trasportatore Power&amp;Free al robot RAS, per pezzi fino a <span class="nb num">6000 × 3500 mm</span>. Lavorano in Germania, Svizzera e Francia, e fino in Canada, India e Australia.</p>
       <div class="domanda">
@@ -815,9 +818,11 @@ td span{color:var(--testo-2)}
   // stato dell'assistenza, ora italiana: lun-ven 8:30-12:00 e 14:00-17:30, chiuso nei festivi nazionali.
   // Per provarlo: index.html?ora=2026-11-03T10:15 (ora italiana).
   function pasqua(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,n=Math.floor((a+11*h+22*l)/451),mm=Math.floor((h+l-7*n+114)/31),dd=((h+l-7*n+114)%31)+1;return [mm,dd]}
+  // chiusure aziendali (ferie, ponti, patrono): da chiedere a Finiture e scrivere qui come 'AAAA-M-G', per esempio '2026-8-14'
+  var CHIUSURE=[];
   function festivo(y,mo,d){
     var f=['1-1','1-6','4-25','5-1','6-2','8-15','11-1','12-8','12-25','12-26'];
-    if(f.indexOf(mo+'-'+d)>=0)return true;
+    if(f.indexOf(mo+'-'+d)>=0||CHIUSURE.indexOf(y+'-'+mo+'-'+d)>=0)return true;
     var p=pasqua(y),lun=new Date(Date.UTC(y,p[0]-1,p[1]+1));
     return lun.getUTCMonth()+1===mo&&lun.getUTCDate()===d;
   }
