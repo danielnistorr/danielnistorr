@@ -4,29 +4,45 @@ Proposta non richiesta di una nuova homepage per Bottega dell'Arte (falegnameria
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale, statica (si apre con file:///). `sito/img/` solo le immagini usate, `sito/fonts/` i caratteri con le licenze.
-- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, e `NOTA.md` (idea, schermate, caratteri, colori, interazione, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà immagini, caratteri, screenshot, controlli e segnali. Usa `finale_img.py`, `scatti_finale.cjs` e `verifica.cjs` (scorrimento da 320 a 2560, piega, tastiera, tocco, menu, collegamenti).
+- `sito/index.html`: la home finale "livello professionale" (3 novembre 2026), statica (si apre con file:///). `sito/img/` solo le immagini usate, `sito/fonts/` i caratteri con le licenze.
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, e `NOTA.md` (sezione "Livello professionale": esito delle 15 regole, compiti della scheda, controlli, licenze).
+- `_prova/script/build_finale.sh [--immagini]`: rifà immagini (`pro_img.py`), screenshot (`pro_scatti.mjs`), controlli delle 15 regole (`pro_controlli.mjs`) e posizioni dei compiti della scheda (`pro_misura.mjs`).
+- `_prova/versione-1-originale/`: la home precedente (portone a tutta altezza con Prima/Dopo), pagina e screenshot. `_prova/uso/SCHEDA.md`: chi apre il sito e cosa ci viene a fare. `_prova/crawl/progetti.txt`: i testi delle 22 schede del sito di oggi (wp-json, 3/11/2026).
 - `01-analisi.md`: fatti con fonti, voti delle foto, direzioni e riferimenti. `_prova/home/a` e `b`: i due prototipi.
+
+## Il modulo da collegare
+
+Il modulo "Cosa possiamo fare per te?" in fondo alla home oggi **non invia nulla**: compone un'email (mailto a info@bottegadellartesnc.it con oggetto "Richiesta dal sito: tipo di lavoro, nome" e i campi nel testo) che il visitatore spedisce dal suo programma di posta, allegando lui le foto. Prima di pubblicare va collegato a un servizio di invio (per esempio il Contact Form 7 che hanno già su WordPress, o un servizio di moduli), con: campo allegato per foto e disegni (JPG, PDF, fino a qualche MB), consenso privacy con il link a iubenda, protezione dallo spam, risposta automatica. Lo stesso vale per i tre bottoni "Manda una foto o un disegno", "Manda una foto del pezzo" e l'email "Disegno da preventivare", che oggi aprono un'email con l'oggetto già scritto.
+
+## Da chiedere all'azienda (per il livello professionale)
+
+- **Orari della bottega**: l'unica fonte è oraridiapertura24 (lun-ven 8:00-19:30, sabato e domenica chiuso), non ufficiale. In pagina c'è solo "Chiamate prima di passare". Se li confermano, vanno in tabella nella scheda "Dove siamo" (giorni a sinistra, orari a destra), nella prima schermata sotto l'indirizzo e nel piede. Se ricevono solo su appuntamento, scriverlo.
+- **WhatsApp**: se si possono mandare le foto ai 347 di Mauro o Giuliano su WhatsApp (le foto del sito arrivano da WhatsApp). Se sì, il bottone "Manda una foto" può aprire WhatsApp.
+- **Recensioni**: nessuna trovata (la scheda Google "Falegnameria Bottega Dell`Arte" ha un captcha, prontoimprese e reteimprese a zero). Chiedere il link della scheda Google e il permesso di riportare 2-3 recensioni vere con nome e comune; oppure 2-3 frasi di clienti con il loro consenso. Non ne è stata inventata nessuna.
+- **Nomi dei clienti**: se si possono scrivere Pasticceria Cadario (l'insegna si vede nella foto del negozio) e il nome del centro estetico di Lissaro (il marchio si vede sul banco); oggi in pagina sono "una pasticceria vicino a Bolzano" e "un centro estetico a Lissaro". Anche l'anno di ogni lavoro (le schede del sito sono del 2020, che non è la data del lavoro) e due o tre dati in più (metri, pezzi, tempi).
+- **I quattro numeri**: "40 anni di esperienza" è scritto sul loro sito (2018-2020): va riconfermato o aggiornato. "22 lavori" e "8 con la colorazione al campione" sono contati sulle loro schede. Altri numeri veri utili: anno di fondazione (2004 secondo companyreports), persone in bottega, lavori all'anno, comuni dove lavorano di più.
+- **Zone servite**: non dichiarate; chiedere i comuni dove posano di solito (Mestrino, Rubano, Selvazzano, Padova...) e se vanno fuori provincia.
+- **Fornitori e marchi**: se sono ancora rivenditori o installatori Dierre, quali marchi di vetrocamera, ferramenta e vernici usano, e i loghi con il permesso di mostrarli; certificazioni dei serramenti (la scheda delle finestre parla di "certificazione energetica", quella dei portoncini di "portoncini certificati").
+- **Macchine** a controllo numerico: quali, se vogliono nominarle.
 
 ## Dati da confermare (fuori dalla pagina o da verificare prima di pubblicare)
 
-- **Forma giuridica.** "Snc" su VIES, nel dominio e su reteimprese; "S.R.L." su companyreports. In pagina è scritto "Snc" come da VIES: va controllato in visura.
+- **Forma giuridica.** "Snc" su VIES, nel dominio, su reteimprese, Pagine Bianche e Pagine Gialle ("Bottega dell'Arte S.n.c. di Nosarini Mauro e Saibene Giuliano", come ora nel piede); "S.R.L." su companyreports. Va controllato in visura.
 - **Sede legale** Via Vangadizza 28, 35030 Rubano (VIES la scrive "Vagandizza"); confermare che il laboratorio resta in Via Levico 18 a Mestrino.
 - **REA** "PD 344749" (companyreports): non messo nella riga legale finché non c'è la visura. Capitale sociale e PEC non pubblici. Orari del laboratorio non pubblicati, quindi assenti dalla chiusura: se ci sono, vanno aggiunti sotto l'indirizzo.
-- **Anno di fondazione 2004** e **"40 anni di esperienza"**: non messi in pagina. Se confermati, una data in home aiuta (per esempio nella frase dei soci).
+- **Anno di fondazione 2004**: non in pagina. **"40 anni di esperienza"**: ora in pagina (apertura e numeri) perché è una frase del loro sito; va riconfermata.
 - **Il portone prima e dopo.** Che `Port.4` e `Port-3` siano lo stesso portone (lo dicono la stessa scheda e le stesse specchiature) e che il cliente lo permetta.
-- **Le porte a vetri piombati** della chiusura (`porte_restaurate.jpg`): il sito le mette tra i restauri senza scheda; confermare che siano un loro restauro e che si possano mostrare. Didascalia: "Porte con vetri a piombo, restaurate."
-- **Palazzo del Bo.** Se si possono nominare in home l'Università di Padova, il Palazzo del Bo e Gio Ponti; anno e lavori esatti; che la foto delle porte scorrevoli sia davvero del Bo (viene dalla scheda `progetti/universita-di-padova/`) e che si possa pubblicare. La didascalia "Porte scorrevoli, Palazzo del Bo, Università di Padova" va confermata.
+- **Le porte a vetri piombati** (`porte_restaurate.jpg`): non sono più in home.
+- **Palazzo del Bo.** Se si possono nominare in home l'Università di Padova, il Palazzo del Bo e Gio Ponti; anno e lavori esatti; che le foto della bussola d'ingresso (`universita02`) e dei ponteggi (`universita01`, con loro due al lavoro) siano del Bo, come dice la scheda `progetti/universita-di-padova/`, e che si possano pubblicare.
 - **Finiture.** In pagina ci sono solo vernice all'acqua, laccatura e gommalacca. Foglia d'oro e patinatura veneziana le cita la pagina Arredo, ma senza foto né lavori: vanno aggiunte solo se le fanno ancora.
 - **Persone.** In pagina ci sono solo i due soci; il registro dice "da 2 a 5" dipendenti. La frase "disegnano, costruiscono e verniciano" non dice "da soli" per questo.
-- **Macchine** a controllo numerico: quali, se vogliono citarle (oggi non sono in pagina). Porte blindate Dierre: se sono ancora rivenditori o installatori (oggi non in home).
+- **Macchine** a controllo numerico: citate in "Come lavoriamo" senza modello. Porte blindate Dierre: in pagina nella scheda "Finestre e porte" e nella fascia dei materiali; confermare che le montino ancora.
 - Il nome della "nota falegnameria artigiana di Padova" dove hanno iniziato, se vogliono dirlo.
 - Privacy: il link va alla policy iubenda di oggi (`iubenda.com/privacy-policy/16689485`); la Cookie Policy resta alla pagina di oggi.
 
 ## Pagine a cui puntano i link (il sito nuovo deve averle)
 
-Stessi indirizzi del sito di oggi, così non servono redirect: `arredo/`, `serramenti/`, `restauri/`, `azienda/`, `progetti/` (Realizzazioni, archivio delle 22 schede, da creare), `progetti/universita-di-padova/`, `cookie-policy/`. "Contatti" nella testata porta alla chiusura della home (`#contatti`); la pagina `contatti/` di oggi può restare, ma la home non la richiama più. Nella proposta statica i link relativi non portano a nulla. La pagina `/testimonials/` di oggi, con testo finto in latino, va tolta subito.
+Stessi indirizzi del sito di oggi, così non servono redirect: `arredo/`, `serramenti/`, `restauri/`, `azienda/`, `progetti/` (Realizzazioni, archivio delle 22 schede, da creare), `progetti/universita-di-padova/`, `cookie-policy/`. Le voci della testata portano alle sezioni della home (`#dove`, `#lavorazioni`, `#restauro`, `#lavori`, `#richiesta`); le schede portano anche a `progetti/pasticceria-bolzano/` e `progetti/centri-eststici/` (indirizzo di oggi, con il refuso); la pagina `contatti/` di oggi può restare, ma la home non la richiama più. Nella proposta statica i link relativi non portano a nulla. La pagina `/testimonials/` di oggi, con testo finto in latino, va tolta subito.
 
 ## Scelte del piede
 
@@ -35,18 +51,19 @@ Stessi indirizzi del sito di oggi, così non servono redirect: `arredo/`, `serra
 
 ## Foto da rifare dal vero
 
-Oggi sono tutte foto di telefono fatte al montaggio. Per la versione pubblicata servono, con luce di finestra laterale morbida, cavalletto, obiettivo normale (35-50 mm equivalenti), file a piena risoluzione:
-1. **Il portone prima e dopo**, la foto chiave, che ora riempie in altezza la prima schermata (a 1440 il pezzo è largo 592 px e la foto di oggi è morbida perché la porta occupa solo 482 px della foto originale): stesso punto di ripresa, frontale e a metà altezza della porta (niente dall'alto), stessa luce di finestra laterale, a piena risoluzione (almeno 2000 px sul lato corto della porta), la porta intera e dritta. Una per stato. Se possibile anche per i prossimi restauri: diventa una serie.
-2. **Il maniglione da vicino**, per le pagine interne: luce radente da sinistra che fa uscire la venatura, senza le finestre del capannone nel riflesso.
-3. **Il sottoscala con la nicchia in ottone**: frontale, senza lampadario e pianta del cliente, nicchia accesa e luce del giorno bilanciate.
-4. **La porta a bilico**: intera, aperta a metà, in una stanza finita, senza letto e cantiere sul fondo.
-5. **Le porte a vetri piombati** della chiusura a piena risoluzione (oggi 1200 x 800, taglio di 726 px), frontali, senza prese, sensori e arredi del cliente nel vano.
-6. **Il Palazzo del Bo**, se l'Università lo permette: le porte scorrevoli, la boiserie e i banchi, a luce naturale e a piena risoluzione (oggi 700 x 500 px; in pagina c'è una copia ingrandita per gli schermi densi, morbida).
-7. Utili per le pagine interne: mani al lavoro con la gommalacca a tampone, un pezzo con foglia d'oro se la fanno ancora, il laboratorio con le macchine.
+Oggi sono tutte foto di telefono fatte al montaggio, con luci diverse; in pagina hanno lo stesso trattamento colore ma restano una serie debole. Per la versione pubblicata serve un solo fotografo e una sola luce (luce di finestra laterale morbida, cavalletto, obiettivo normale 35-50 mm equivalenti, file a piena risoluzione, almeno 2400 px sul lato lungo), nei tre formati della pagina (16:9 e 4:3 orizzontali, 3:4 verticale):
+1. **Mauro e Giuliano in bottega**, al banco o alla macchina, che guardano il lavoro (non l'obiettivo), e un ritratto dei due davanti al capannone con il furgone: è la foto che manca di più (la regola chiede persone o laboratorio in apertura).
+2. **Il laboratorio** con le macchine e un pezzo in lavorazione; le mani con la gommalacca a tampone; un campione di colore accanto al pezzo (la colorazione al campione è in 8 schede su 22).
+3. **Il sottoscala con la nicchia in ottone** (apertura): frontale, senza lampadario e pianta del cliente, nicchia accesa e luce del giorno bilanciate, 16:9 e 4:3.
+4. **Il portone prima e dopo** (sezione restauro): stesso punto di ripresa, frontale a metà altezza, porta intera e dritta, fondo neutro (oggi c'è il capannone con la bicicletta). Lo stesso per i prossimi restauri: diventa una serie.
+5. **Una finestra vecchia restaurata e i suoi scuri**, a casa del cliente, prima e dopo (oggi c'è solo la portafinestra con gli scuri, 777 px di larghezza).
+6. **Una cucina e un armadio a muro** finiti, in luce di giorno, per la scheda "Per la casa" (oggi c'è la libreria).
+7. **Il Palazzo del Bo**, se l'Università lo permette: la bussola, le porte scorrevoli, la boiserie, a piena risoluzione (oggi 700 x 500 px, mai ingrandite in pagina).
+8. **La facciata della bottega** di giorno, con l'insegna leggibile e il portone aperto (oggi 1140 x 758).
 
 ## Licenze
 
-- **Foto:** tutte dell'azienda, dal suo sito (`assets/originali/`, elenco in `assets/CREDITI.md`), usate solo per la proposta. Nessuna foto di repertorio, nessun segnaposto esterno nella home finale, nessuna immagine generata. Le foto Unsplash in `assets/esterne/` restano scaricate ma non sono usate.
+- **Foto:** tutte dell'azienda, dal suo sito (`assets/originali/`, elenco in `assets/CREDITI.md`), usate solo per la proposta. Nessuna foto di repertorio, nessun segnaposto esterno, nessuna illustrazione, nessuna immagine generata (decisione del committente: dove non ci sono foto vere che reggono, nessuna immagine). Le foto Unsplash in `assets/esterne/` restano scaricate ma non sono usate. Da chiedere: il permesso di mostrare i lavori della pasticceria, del centro estetico e del Bo.
 - **Caratteri:** Zodiak (Indian Type Foundry, Fontshare, ITF Free Font License, uso commerciale gratuito) e Schibsted Grotesk (Google Fonts, SIL Open Font License 1.1), serviti dalla pagina in `sito/fonts/`; dettagli in `sito/fonts/LICENZE.txt`.
 
 ## Logo
@@ -55,4 +72,4 @@ Usato il PNG originale `assets/originali/logo-bottega-arte-1014.png` (firma call
 
 ## Segnali da IA
 
-`segnali.sh` a 1440: vedi `screenshot/home/NOTA.md`, paragrafo Controlli. Nessuna data in pagina finché anno e anni di esperienza non sono confermati.
+Nella versione professionale in pagina c'è "40 anni di esperienza" (frase del loro sito, `/azienda/`), da riconfermare; nessun anno di fondazione. Controlli in `screenshot/home/NOTA.md`, sezione "Livello professionale".

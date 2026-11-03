@@ -3,347 +3,600 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bottega dell’Arte, falegnameria a Mestrino</title>
-<meta name="description" content="Arredi su misura, serramenti e restauro di mobili, porte e portoni. Bottega dell’Arte, Via Levico 18, Mestrino (Padova).">
+<title>Bottega dell’Arte, falegnameria a Mestrino (Padova)</title>
+<meta name="description" content="Falegnameria a Mestrino, Padova: arredi su misura, finestre e porte, restauro di mobili, porte e portoni. Mauro Nosarini e Giuliano Saibene, Via Levico 18. Tel. 049 900 4916.">
 <link rel="icon" type="image/png" sizes="64x64" href="img/icona-64.png">
 <link rel="apple-touch-icon" href="img/icona-180.png">
 <link rel="preload" href="fonts/zodiak-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/schibsted-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Bottega dell’Arte Snc","description":"Falegnameria: arredi su misura, serramenti e restauro","telephone":"+39 049 900 4916","email":"info@bottegadellartesnc.it","url":"https://www.bottegadellartesnc.it/","vatID":"IT03880730282",
+"address":{"@type":"PostalAddress","streetAddress":"Via Levico 18","postalCode":"35035","addressLocality":"Mestrino","addressRegion":"PD","addressCountry":"IT"},
+"geo":{"@type":"GeoCoordinates","latitude":45.44661,"longitude":11.74425},
+"employee":[{"@type":"Person","name":"Mauro Nosarini","telephone":"+39 347 764 1720"},{"@type":"Person","name":"Giuliano Saibene","telephone":"+39 347 410 9263"}]}
+</script>
 <style>
-/* Zodiak: Indian Type Foundry, Fontshare, ITF Free Font License (uso commerciale gratuito).
-   Schibsted Grotesk: Google Fonts, SIL Open Font License 1.1 (fonts/OFL-Schibsted-Grotesk.txt). */
+/* Caratteri: Zodiak (Indian Type Foundry, Fontshare, ITF Free Font License, uso commerciale) per titoli e cifre;
+   Schibsted Grotesk (Google Fonts, SIL Open Font License 1.1) per testo, etichette e bottoni. */
 @font-face{font-family:"Zodiak";src:url("fonts/zodiak-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Schibsted Grotesk";src:url("fonts/schibsted-grotesk-var.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
 
 :root{
-  --calce:#F4F2EC;      /* muro */
-  --pavimento:#ECE8DF;  /* pavimento della prima schermata e piede */
-  --inchiostro:#2A2119; /* noce scuro, 14:1 sulla calce */
-  --grigio:#5F574F;     /* testi secondari, 6,3:1 sulla calce e 5,8:1 sul pavimento */
-  --noce:#6F3219;       /* il marrone del logo */
-  --noce-scuro:#55230F;
-  --filo:#D6CFC2;
-  --m:64px; --g:32px;
+  /* colori: il marrone del logo, il noce scuro, il bianco del loro sito, due grigi */
+  --marrone:#6F3219;   /* logo: bottoni, cifre, blocco "come lavoriamo" (10,1:1 sul bianco) */
+  --noce:#21170F;      /* testo e blocco scuro (17,6:1 sul bianco) */
+  --bianco:#FFFFFF;
+  --grigio:#5C5650;    /* testi secondari, 7,0:1 sul bianco e 6,2:1 sul grigio chiaro */
+  --chiaro:#F0EFED;    /* grigio chiaro neutro: blocchi chiari */
+  --filo:#D9D6D2;
   --serif:"Zodiak", Georgia, "Times New Roman", serif;
   --sans:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --th:76px;            /* altezza della testata */
-  --su:76px;            /* quanto della prima schermata prende la testata sopra l'apertura */
+  /* scala tipografica: otto misure al massimo per larghezza */
+  --f-num:120px; --f-h1:86px; --f-h2:48px; --f-h3:26px; --f-lede:20px; --f-testo:18px; --f-ui:16px; --f-pic:14px;
+  --m:80px; --g:24px; --sez:128px; --th:80px; --bh:52px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{background:var(--calce);color:var(--inchiostro);font:400 18px/1.6 var(--sans);font-kerning:normal;-webkit-font-smoothing:antialiased;overflow-x:clip}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--th) + 16px)}
+body{background:var(--bianco);color:var(--noce);font:400 var(--f-testo)/1.55 var(--sans);font-kerning:normal;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.24em}
-a:hover{color:var(--noce)}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--noce);outline-offset:3px}
-.num{font-variant-numeric:tabular-nums lining-nums}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--marrone)}
+:focus-visible{outline:2px solid var(--marrone);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
 .salta{position:absolute;left:-9999px}
-.salta:focus{left:16px;top:12px;background:var(--calce);padding:8px 12px;z-index:9}
+.salta:focus{left:16px;top:12px;background:var(--bianco);padding:8px 12px;z-index:20}
+.giro{padding-left:var(--m);padding-right:var(--m)}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.occhiello{font:700 var(--f-pic)/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--serif);font-weight:400;text-wrap:balance}
+h1{font-size:var(--f-h1);line-height:1;letter-spacing:-.025em}
+h2{font-size:var(--f-h2);line-height:1.08;letter-spacing:-.02em}
+h3{font-size:var(--f-h3);line-height:1.2;letter-spacing:-.01em}
+p{text-wrap:pretty}
 
-/* ---------- testata ---------- */
-.testata{position:relative;z-index:2;display:flex;align-items:center;gap:48px;padding:0 var(--m);height:var(--th)}
-.testata .logo{display:block;width:200px;flex:none}
+/* ---------- bottoni: un solo modello, pieno e a filo ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:var(--bh);padding:0 22px;border:1.5px solid var(--marrone);border-radius:3px;
+  font:700 var(--f-ui)/1.2 var(--sans);text-decoration:none;text-align:center;transition:background-color .15s,color .15s,border-color .15s}
+.btn .num{font-weight:400}
+.pieno{background:var(--marrone);color:var(--bianco)}
+.pieno:hover{background:var(--noce);border-color:var(--noce);color:var(--bianco)}
+.filo{background:transparent;color:var(--marrone)}
+.filo:hover{background:var(--marrone);color:var(--bianco)}
+.scuro .pieno{background:var(--bianco);border-color:var(--bianco);color:var(--noce)}
+.scuro .pieno:hover{background:var(--chiaro);border-color:var(--chiaro);color:var(--noce)}
+.scuro .filo{border-color:var(--bianco);color:var(--bianco)}
+.scuro .filo:hover{background:var(--bianco);color:var(--noce)}
+.freccia::after{content:"\2192";font-weight:400}
+
+/* ---------- testata fissa ---------- */
+.testata{position:sticky;top:0;z-index:10;background:var(--bianco);height:var(--th);display:flex;align-items:center;gap:40px;border-bottom:1px solid transparent;transition:border-color .2s}
+.testata.giu{border-bottom-color:var(--filo)}
+.testata .logo{display:block;width:196px;flex:none}
 .testata .logo img{width:100%}
-.menu{order:1;display:flex;gap:30px;margin-left:auto;font-size:16px;font-weight:500;list-style:none}
-.menu a{text-decoration:none}
+.menu{display:flex;gap:28px;margin-left:auto;list-style:none;font:400 var(--f-ui)/1.2 var(--sans)}
+.menu a{text-decoration:none;padding:8px 0}
 .menu a:hover{text-decoration:underline}
-.testata .tel{order:2;font-weight:500;font-size:16px;text-decoration:none;margin-left:12px}
-.testata .tel:hover{text-decoration:underline}
+.testata .chiama{flex:none}
 .apri-menu{display:none}
 
-/* ---------- apertura: il portone da vicino, alto quanto lo schermo, a filo del bordo destro ---------- */
-.apertura{grid-template-rows:minmax(0,1fr) auto;padding:0 var(--m);height:clamp(600px, calc(100svh - var(--su)), 1100px)}
-.apertura .testo{grid-row:1;grid-column:1 / span 7;align-self:center;padding:24px 0}
-h1{font:400 clamp(44px,6.4vw,92px)/.98 var(--serif);letter-spacing:-.026em;max-width:8.4em}
-.lede{font-size:21px;line-height:1.5;max-width:26em;margin-top:32px;text-wrap:pretty}
-.recapito{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 28px;margin-top:26px;font-size:17px}
-.recapito .t{font-size:21px;font-weight:500}
-.bottone{display:none;align-items:center;height:52px;padding:0 22px;background:var(--noce);color:var(--calce);
-  font-weight:500;font-size:17px;text-decoration:none;transition:background-color .15s}
-.bottone:hover{background:var(--noce-scuro);color:var(--calce)}
-
-.gesto{grid-row:2;grid-column:1 / span 7;padding:0 0 48px}
-.titoletto{font-size:14px;font-weight:500;line-height:1.3;color:var(--grigio);margin-bottom:12px}
-.fila{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
-.scelta{display:flex;width:288px;flex:none;border:1px solid var(--inchiostro)}
-.scelta button{flex:1;height:52px;font-size:16px;font-weight:500;transition:background-color .12s,color .12s}
-.scelta button[aria-pressed="true"]{background:var(--inchiostro);color:var(--calce)}
-.scelta button[aria-pressed="false"]:hover{background:var(--pavimento)}
-.riga{flex:1 1 15em;font-size:16px;line-height:1.45;max-width:24em;text-wrap:pretty}
-
-.tela{grid-row:1 / 3;grid-column:8 / -1;margin:0 calc(-1 * var(--m)) 0 0;position:relative;overflow:hidden;background:#6a4a2e}
-.tela img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 42%}
-.tela img[hidden]{display:none}
+/* ---------- apertura ---------- */
+.apertura{padding-top:32px;padding-bottom:64px;align-items:start}
+.apertura .testo{grid-column:1 / span 6;grid-row:1}
+.apertura .occhiello{color:var(--marrone)}
+.apertura h1{margin-top:20px}
+.prova{margin-top:26px;font-size:var(--f-lede);line-height:1.5;max-width:30em}
+.azioni{margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;max-width:560px}
+.azioni .chiama-bottega{grid-column:1 / -1}
+.azioni .foto{grid-column:1 / -1}
+.btn .chi{font-weight:700}
+.dove-riga{margin-top:20px;font-size:var(--f-testo);line-height:1.6;display:flex;flex-wrap:wrap;gap:4px 18px}
+.dove-riga a{white-space:nowrap;padding:10px 0;margin:-10px 0}
+.dove-riga .pic{color:var(--grigio)}
+.apertura .quadro{grid-column:7 / -1;grid-row:1;margin-right:calc(-1 * var(--m))}
+.apertura .quadro img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--chiaro)}
+.mestieri{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:18px;padding-right:var(--m);font:700 var(--f-ui)/1.4 var(--sans)}
+.mestieri a{text-decoration:none;color:var(--marrone)}
+.mestieri a:hover{text-decoration:underline}
+.disegno{margin-top:14px;padding-right:var(--m);font-size:var(--f-testo);line-height:1.5}
+.firma{margin-top:22px;padding:16px var(--m) 0 0;border-top:1px solid var(--filo);font:400 var(--f-h3)/1.25 var(--serif);color:var(--marrone)}
+.solo-tel{display:none}
 
 /* ---------- sezioni ---------- */
-.sez{padding:200px var(--m) 0}
-h2{font:400 clamp(34px,4vw,58px)/1.04 var(--serif);letter-spacing:-.02em;text-wrap:balance}
-h3{font:400 27px/1.15 var(--serif);letter-spacing:-.01em}
-h3 a{text-decoration:none}
-h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
-.lavori{row-gap:0}
-.lavori .intro{grid-row:1;grid-column:1 / span 7;padding-bottom:88px}
-.lavori .intro p{margin-top:28px;max-width:33em;font-size:19px;text-wrap:pretty}
-.lavoro img{width:100%;height:auto;background:var(--pavimento)}
-.lavoro h3{margin-top:22px}
-.lavoro p{margin-top:8px;font-size:16px;line-height:1.55;max-width:28em;color:var(--grigio)}
-.l-grande{grid-row:2;grid-column:1 / span 7;margin-left:calc(-1 * var(--m))}
-.l-grande img{aspect-ratio:790/660}
-.l-grande h3,.l-grande p{margin-left:var(--m)}
-.l-piccolo{grid-row:1 / 3;grid-column:9 / -1;align-self:end;margin-right:calc(-1 * var(--m))}
-.l-piccolo img{aspect-ratio:4/5}
-.l-piccolo h3,.l-piccolo p{margin-right:var(--m)}
+.sez{padding-top:var(--sez);padding-bottom:var(--sez)}
+.chiara{background:var(--chiaro)}
+.scuro{background:var(--noce);color:var(--bianco)}
+.scuro a:hover{color:var(--bianco)}
+.marrone{background:var(--marrone);color:var(--bianco)}
+.marrone a:hover{color:var(--bianco)}
+.capo{grid-column:1 / span 7}
+.capo .occhiello{margin-bottom:16px;color:var(--marrone)}
+.scuro .capo .occhiello,.marrone .capo .occhiello{color:rgba(255,255,255,.78)}
+.capo p{margin-top:22px;font-size:var(--f-lede);max-width:34em}
 
-/* restauro: le porte del Bo a filo del bordo sinistro */
-.restauro{padding:200px var(--m) 0 0;align-items:center}
-.restauro figure{grid-column:1 / span 7}
-.restauro figure img{width:100%;aspect-ratio:7/5;object-fit:cover}
-.restauro figcaption{font-size:14px;color:var(--grigio);padding:14px 0 0 var(--m)}
-.restauro .testo{grid-column:9 / span 4}
-.restauro .testo > p{margin-top:26px;font-size:19px;text-wrap:pretty;max-width:30em}
-.bo{margin-top:40px}
-.bo h3{font-size:24px}
-.bo p{margin-top:10px;font-size:17px;text-wrap:pretty;max-width:30em}
-.finiture{margin-top:36px;padding-top:18px;border-top:1px solid var(--filo)}
-.finiture h3{font:500 14px/1.4 var(--sans);letter-spacing:0;color:var(--grigio)}
-.finiture p{margin-top:6px;font:400 22px/1.3 var(--serif);letter-spacing:-.01em}
+/* cosa facciamo: quattro schede con la foto del lavoro */
+.schede{grid-column:1 / -1;margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none}
+.scheda{display:flex;flex-direction:column;height:100%;text-decoration:none;background:var(--bianco)}
+.scheda img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.scheda .corpo{display:flex;flex-direction:column;flex:1;padding:22px 22px 24px}
+.scheda h3{color:var(--noce)}
+.scheda .voci{margin-top:12px;font-size:var(--f-ui);line-height:1.5;color:var(--noce);list-style:none}
+.scheda .voci li{padding:5px 0;border-top:1px solid var(--filo)}
+.scheda .voci li:first-child{border-top:0}
+.scheda .vai{margin-top:auto;padding-top:18px;font:700 var(--f-ui)/1.3 var(--sans);color:var(--marrone)}
+.scheda:hover .vai{text-decoration:underline}
+.scheda:hover h3{color:var(--marrone)}
 
-/* chiusura: testo a sinistra, le porte restaurate a filo del bordo destro */
-.chiusura{padding:200px 0 0 var(--m);align-items:center}
-.chiusura .testo{grid-column:1 / span 6}
-.chiusura h2{font-size:clamp(40px,4.6vw,64px);max-width:9.5em}
-.chiusura .sotto{margin-top:22px;font-size:19px;max-width:27em;text-wrap:pretty}
-.recapiti{margin-top:44px;font-size:17px;line-height:1.8;list-style:none}
-.recapiti .grande{font:400 clamp(32px,3vw,44px)/1.1 var(--serif);letter-spacing:-.01em;display:inline-block;margin-bottom:12px}
-.recapiti .pic{color:var(--grigio)}
-.chiusura figure{grid-column:7 / -1}
-.chiusura figure img{width:100%;aspect-ratio:1;object-fit:cover}
-.chiusura figcaption{font-size:14px;color:var(--grigio);padding:12px var(--m) 0 0;max-width:40em}
+/* restauro: prima e dopo */
+.restauro .capo{grid-column:1 / span 5;grid-row:1}
+.restauro .dittico{grid-column:7 / -1;grid-row:1 / span 2;align-self:start;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dittico figure{position:relative}
+.dittico img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.dittico .stato{position:absolute;left:12px;top:12px;background:var(--bianco);color:var(--noce);font:700 var(--f-pic)/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 10px;border-radius:2px}
+.dittico figcaption.sotto{grid-column:1 / -1;font-size:var(--f-ui);color:rgba(255,255,255,.78);margin-top:4px}
+.manda{grid-column:1 / span 5;grid-row:2;align-self:end;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.28)}
+.manda h3{margin-bottom:10px}
+.manda p{font-size:var(--f-testo);line-height:1.6;color:rgba(255,255,255,.86);max-width:32em}
+.manda .btn{margin-top:20px}
+.manda .in-bottega{margin-top:22px}
+.manda .in-bottega a{color:var(--bianco)}
+
+/* come lavoriamo: numeri e passi */
+.numeri{grid-column:1 / -1;margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none}
+.numeri li{border-top:1px solid rgba(255,255,255,.4);padding-top:18px}
+.numeri .cifra{display:block;font:400 var(--f-num)/1 var(--serif);letter-spacing:-.03em}
+.numeri .cosa{display:block;margin-top:14px;font-size:var(--f-ui);line-height:1.5;max-width:16em}
+.passi{grid-column:1 / -1;margin-top:88px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;counter-reset:passo}
+.passi li{counter-increment:passo}
+.passi li::before{content:counter(passo);display:block;font:400 var(--f-h3)/1 var(--serif);margin-bottom:14px}
+.passi h3{font:700 var(--f-ui)/1.4 var(--sans);letter-spacing:0;margin-bottom:6px}
+.passi p{font-size:var(--f-testo);line-height:1.55;color:rgba(255,255,255,.88)}
+.materiali{grid-column:1 / -1;margin-top:80px;padding-top:22px;border-top:1px solid rgba(255,255,255,.4);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.materiali .occhiello{grid-column:1 / span 3;color:rgba(255,255,255,.78);padding-top:4px}
+.materiali ul{grid-column:4 / -1;list-style:none;display:flex;flex-wrap:wrap;gap:10px 36px;font:400 var(--f-h3)/1.3 var(--serif)}
+
+/* lavori con un nome */
+.lavori .capo{grid-column:1 / span 7}
+.lavoro{grid-column:1 / -1;margin-top:72px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center}
+.lavoro img{grid-column:1 / span 7;width:100%;max-width:var(--nat,none);aspect-ratio:4/3;object-fit:cover;background:var(--chiaro)}
+.lavoro .scritto{grid-column:9 / -1}
+.lavoro.giro-destra img{grid-column:6 / -1;grid-row:1}
+.lavoro.giro-destra .scritto{grid-column:1 / span 4;grid-row:1}
+.lavoro h3{font-size:var(--f-h2);line-height:1.08;letter-spacing:-.02em}
+.lavoro .dove{margin-top:10px;font:700 var(--f-pic)/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--marrone)}
+.lavoro p{margin-top:18px}
+.lavoro dl{margin-top:22px;font-size:var(--f-ui);line-height:1.5;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;border-top:1px solid var(--filo);padding-top:16px}
+.lavoro dt{color:var(--grigio)}
+.lavoro .vai{display:inline-block;margin-top:22px;font:700 var(--f-ui)/1.3 var(--sans);color:var(--marrone);text-decoration:none}
+.lavoro .vai:hover{text-decoration:underline}
+.tutti{grid-column:1 / -1;margin-top:72px}
+
+/* dove siamo e richiesta */
+.dove .capo{grid-column:1 / span 6}
+.sede{grid-column:1 / span 6;grid-row:2;margin-top:44px;background:var(--bianco)}
+.sede img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.sede .corpo{padding:28px 28px 30px}
+.sede .indirizzo{font:400 var(--f-h3)/1.25 var(--serif)}
+.sede table{margin-top:20px;width:100%;border-collapse:collapse;font-size:var(--f-ui);line-height:1.5}
+.sede th,.sede td{text-align:left;vertical-align:top;padding:10px 0;border-top:1px solid var(--filo)}
+.sede th{font-weight:400;color:var(--grigio);width:34%;padding-right:16px}
+.sede td a{white-space:nowrap}
+.sede .bottoni{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+.richiesta{grid-column:8 / -1;grid-row:1 / span 2;align-self:start}
+.richiesta h3{font-size:var(--f-h2);line-height:1.08;letter-spacing:-.02em}
+.richiesta > p{margin-top:14px;font-size:var(--f-testo);color:var(--grigio)}
+form{margin-top:26px;display:grid;gap:18px}
+label,legend{display:block;font:700 var(--f-ui)/1.3 var(--sans);margin-bottom:8px}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;min-height:52px;padding:12px 14px;border:1.5px solid #A9A39C;border-radius:3px;background:var(--bianco);color:var(--noce);font:400 var(--f-ui)/1.4 var(--sans)}
+textarea{min-height:132px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--marrone);outline-offset:1px;border-color:var(--marrone)}
+.due{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+fieldset{border:0}
+.tipi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tipi label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1.5px solid #A9A39C;border-radius:3px;background:var(--bianco);font-weight:400;margin:0;cursor:pointer}
+.tipi input{accent-color:var(--marrone);width:18px;height:18px;flex:none}
+.tipi label:has(input:checked){border-color:var(--marrone);box-shadow:inset 0 0 0 1px var(--marrone)}
+.nota-modulo{font-size:var(--f-ui);color:var(--grigio)}
+form .btn{justify-self:start}
 
 /* ---------- piede ---------- */
-.piede{margin-top:160px;background:var(--pavimento);padding:88px var(--m) 36px}
+.piede{background:var(--noce);color:var(--bianco);padding-top:96px;padding-bottom:36px;font-size:var(--f-ui)}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline;color:var(--bianco)}
 .piede .chi{grid-column:1 / span 4}
-.piede .chi img{width:260px}
-.piede .chi p{margin-top:22px;font-size:15px;line-height:1.6;color:var(--grigio);max-width:22em}
-.colonna h2{font:500 14px/1.4 var(--sans);letter-spacing:.01em;color:var(--inchiostro);margin-bottom:12px}
-.colonna ul{list-style:none;font-size:15px;line-height:2}
-.colonna a{text-decoration:none}
-.colonna a:hover{text-decoration:underline;color:var(--noce)}
-.colonna .pic{color:var(--grigio)}
-.c-lav{grid-column:6 / span 2}
+.piede .chi img{width:240px;filter:brightness(0) invert(1)}
+.piede .chi p{margin-top:22px;line-height:1.6;color:rgba(255,255,255,.8);max-width:22em}
+.colonna h2{font:700 var(--f-pic)/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px}
+.colonna ul{list-style:none;line-height:1.5}
+.colonna li{padding:5px 0}
+.colonna .pic{color:rgba(255,255,255,.72)}
+.c-lav{grid-column:5 / span 3}
 .c-bot{grid-column:8 / span 2}
 .c-con{grid-column:10 / span 3}
-.piede .basso{margin-top:72px;padding-top:20px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:14px;color:var(--grigio)}
-.piede .basso a{color:var(--grigio)}
-.piede .basso a:hover{color:var(--noce)}
+.piede .basso{margin-top:72px;padding-top:20px;border-top:1px solid rgba(255,255,255,.28);display:flex;flex-wrap:wrap;gap:6px 26px;font-size:var(--f-pic);color:rgba(255,255,255,.72)}
+.piede .basso a{color:rgba(255,255,255,.72)}
 .piede .basso .su{margin-left:auto}
 
-/* ---------- da 1181: il portone sale fino in cima, la testata gli sta accanto ---------- */
-@media (min-width:1181px){
-  :root{--su:0px}
-  .testata{padding-right:calc(41.6667% + var(--m) / 6 - var(--g) * 7 / 12 + 48px)}
-  .testata .tel{display:none}
-  .apertura{margin-top:calc(-1 * var(--th));padding-top:var(--th)}
-  .tela{margin-top:calc(-1 * var(--th))}
-}
-/* ---------- 1024 ---------- */
+/* ---------- 1180 ---------- */
 @media (max-width:1180px){
-  :root{--m:48px;--g:24px}
-  .menu{gap:26px}
-  .testata .tel{display:none}
-  .lede{font-size:19px;margin-top:26px}
-  .recapito{margin-top:20px}
-  .recapito .t{font-size:19px}
-  .gesto{padding-bottom:40px}
+  :root{--f-num:96px;--f-h1:68px;--f-h2:42px;--m:48px;--sez:112px}
+  .testata{gap:28px}
+  .testata .logo{width:170px}
+  .menu{gap:20px}
+  .menu li.facolt{display:none}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .numeri,.passi{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
+  .lavoro .scritto{grid-column:8 / -1}
+  .lavoro.giro-destra .scritto{grid-column:1 / span 5}
   .c-lav{grid-column:5 / span 3}.c-bot{grid-column:8 / span 2}.c-con{grid-column:10 / span 3}
 }
-/* ---------- 768 ---------- */
+/* ---------- 900: menu chiuso ---------- */
 @media (max-width:900px){
-  :root{--m:32px;--g:20px;--th:68px}
-  .testata{gap:16px}
-  .testata .logo{width:160px}
-  .testata .tel{display:inline;order:0;margin-left:auto;font-size:15px}
-  .apri-menu{order:1;display:inline-flex;align-items:center;height:44px;padding:0 0 0 6px;font-weight:500;font-size:15px}
-  .menu{display:none;position:absolute;top:var(--th);left:0;right:0;background:var(--calce);flex-direction:column;gap:0;
-    padding:6px var(--m) 18px;border-bottom:1px solid var(--filo);z-index:5;font-size:19px}
+  :root{--f-h1:56px;--f-h2:38px;--f-h3:24px;--m:32px;--g:20px;--sez:96px;--th:72px}
+  .testata{gap:12px}
+  .testata .logo{width:150px;margin-right:auto}
+  .apri-menu{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 14px;border:1.5px solid var(--noce);border-radius:3px;background:none;font:700 var(--f-ui)/1 var(--sans);color:var(--noce);cursor:pointer}
+  .menu{display:none;position:absolute;top:var(--th);left:0;right:0;background:var(--bianco);flex-direction:column;gap:0;padding:8px var(--m) 20px;border-bottom:1px solid var(--filo);font-size:var(--f-testo)}
   .menu.aperto{display:flex}
-  .menu a{display:block;padding:10px 0}
-  .apertura{height:auto;grid-template-rows:auto auto minmax(0,1fr) auto}
-  .apertura .testo{display:contents}
-  h1{grid-row:1;grid-column:1 / -1;font-size:clamp(34px,8.4vw,64px);padding:12px 0 28px}
-  .lede,.recapito{grid-column:1 / span 6}
-  .lede{grid-row:2;align-self:start;margin-top:0;font-size:18px}
-  .recapito{grid-row:3;align-self:start;flex-direction:column;align-items:flex-start;gap:4px}
-  .gesto{grid-row:4;grid-column:1 / span 6;padding:36px 0 0}
-  .scelta{width:100%}
-  .fila{flex-direction:column;align-items:stretch}
-  .riga{flex:none;font-size:15px}
-  .tela{grid-row:2 / 5;grid-column:7 / -1;height:clamp(460px, calc(100svh - 300px), 760px)}
-  .sez{padding-top:112px}
-  .lavori .intro{grid-column:1 / -1;padding-bottom:44px}
-  .l-grande{grid-column:1 / -1;margin:0 calc(-1 * var(--m))}
-  .l-piccolo{grid-row:3;grid-column:7 / -1;margin-top:48px}
-  .restauro{display:block;padding:112px 0 0}
-  .restauro .testo{padding:40px var(--m) 0}
-  .chiusura{display:flex;flex-direction:column;align-items:stretch;padding:112px 0 0}
-  .chiusura .testo{padding:0 var(--m)}
-  .chiusura figure{margin-top:44px;padding-left:28%}
-  .chiusura figure img{aspect-ratio:1}
-  .chiusura figcaption{padding:12px var(--m) 0 0}
-  .piede{margin-top:96px;padding-top:64px}
+  .menu li.facolt{display:list-item}
+  .menu a{display:block;padding:12px 0}
+  .apertura .testo{grid-column:1 / -1}
+  .apertura .quadro{grid-column:1 / -1;grid-row:2;margin:36px calc(-1 * var(--m)) 0}
+  .mestieri,.disegno{padding:0 var(--m)}
+  .firma{margin-left:var(--m);margin-right:var(--m);padding-right:0}
+  .capo,.restauro .capo,.lavori .capo,.dove .capo{grid-column:1 / -1}
+  .restauro .dittico{grid-column:1 / -1;grid-row:2;margin-top:40px}
+  .manda{grid-column:1 / -1;grid-row:3}
+  .lavoro img,.lavoro.giro-destra img{grid-column:1 / -1;grid-row:1}
+  .lavoro .scritto,.lavoro.giro-destra .scritto{grid-column:1 / -1;grid-row:2;margin-top:24px}
+  .sede{grid-column:1 / -1;grid-row:2}
+  .richiesta{grid-column:1 / -1;grid-row:3;margin-top:64px}
+  .materiali .occhiello,.materiali ul{grid-column:1 / -1}
+  .materiali ul{margin-top:14px}
   .piede .alto{row-gap:44px}
   .piede .chi{grid-column:1 / -1}
   .c-lav{grid-column:1 / span 4}.c-bot{grid-column:5 / span 3}.c-con{grid-column:8 / span 5}
-  .piede .basso{margin-top:56px}
 }
 /* ---------- telefono ---------- */
-@media (max-width:560px){
-  :root{--m:16px;--g:16px;--th:64px}
-  body{font-size:17px}
-  .testata .logo{width:142px}
-  .apertura{grid-template-rows:auto auto auto auto}
-  h1{padding:8px 0 18px}
-  .lede{display:none}
-  .tela{grid-row:2;grid-column:1 / -1;margin:0 calc(-1 * var(--m));height:clamp(260px, calc(100svh - 440px), 460px)}
-  .gesto{grid-row:3;grid-column:1 / -1;padding:14px 0 0}
-  .titoletto{margin-bottom:10px}
-  .fila{gap:10px}
-  .recapito{grid-row:4;grid-column:1 / -1;flex-direction:row;align-items:center;gap:8px 20px;margin:16px 0 0;font-size:16px}
-  .recapito .t{display:none}
-  .bottone{display:inline-flex}
-  .sez{padding-top:96px}
-  .restauro,.chiusura{padding-top:96px}
-  .l-piccolo{grid-column:3 / -1;margin-top:40px}
-  .chiusura figure{padding-left:var(--m)}
-  .piede .alto{display:flex;flex-direction:column;gap:40px}
-  .lavoro h3{font-size:24px;margin-top:16px}
-  .lavoro p{font-size:15px}
-  .restauro .testo > p{font-size:18px}
-  .finiture p{font-size:21px}
-  .recapiti{margin-top:36px}
-  .piede{margin-top:96px}
-  .piede .chi img{width:220px}
+@media (max-width:600px){
+  :root{--f-num:56px;--f-h1:40px;--f-h2:30px;--f-h3:22px;--f-lede:17px;--f-testo:17px;--m:20px;--g:16px;--sez:64px;--th:68px;--bh:48px}
+  .testata .logo{width:128px}
+  .testata .chiama{padding:0 14px}
+  .apri-menu{padding:0 12px}
+  .apertura{padding-top:20px;padding-bottom:40px;display:flex;flex-direction:column;align-items:stretch}
+  .non-tel{display:none}
+  .apertura .testo{display:contents}
+  .apertura .occhiello{order:1}
+  .apertura h1{order:2;margin-top:10px}
+  .apertura .quadro{order:3;margin:18px calc(-1 * var(--m)) 0}
+  .apertura .quadro img{aspect-ratio:16/9}
+  .apertura .prova{order:4;margin-top:16px;line-height:1.45}
+  .apertura .azioni{order:5;margin-top:16px;max-width:none;gap:10px}
+  .azioni .cell{flex-direction:column;gap:1px;padding:4px 8px;line-height:1.2}
+  .apertura .dove-riga{order:6;margin-top:14px;gap:2px 14px}
+  .mestieri,.disegno,.firma{display:none}
+  .solo-tel{display:inline}
+  .schede{grid-template-columns:1fr;gap:10px;margin-top:28px}
+  .scheda{display:grid;grid-template-columns:96px 1fr;column-gap:14px;padding:12px}
+  .scheda img{grid-row:1;width:96px}
+  .scheda .corpo{display:contents}
+  .scheda h3{grid-column:2;align-self:center}
+  .scheda h3::after{content:" \2192";font:400 var(--f-ui)/1 var(--sans);color:var(--marrone)}
+  .scheda .voci{grid-column:1 / -1;margin-top:10px;line-height:1.45}
+  .scheda .voci li{display:inline;padding:0;border:0}
+  .scheda .voci li:not(:last-child)::after{content:" \00B7 ";color:var(--marrone)}
+  .scheda .vai{display:none}
+  .restauro{display:flex;flex-direction:column}
+  .restauro .capo{display:contents}
+  .restauro .capo .occhiello{order:1;margin-bottom:12px}
+  .restauro .dittico{order:2;margin-top:0}
+  .restauro h2{order:3;margin-top:28px}
+  .restauro .capo p{order:4;margin-top:24px}
+  .restauro .manda{order:5}
+  .capo p{margin-top:14px}
+  .restauro .dittico{margin-top:28px;gap:8px}
+  .manda{margin-top:32px}
+  .numeri{margin-top:40px;gap:28px 16px}
+  .passi{margin-top:56px;grid-template-columns:1fr;row-gap:28px}
+  .materiali{margin-top:52px}
+  .materiali ul{gap:6px 22px}
+  .lavoro{margin-top:48px}
+  .lavoro img{margin:0 calc(-1 * var(--m));width:calc(100% + 2 * var(--m));max-width:none}
+  .lavoro h3{font-size:var(--f-h2)}
+  .tutti{margin-top:48px}
+  .sede{margin-top:28px;margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
+  .sede .corpo{padding:22px var(--m) 26px}
+  .richiesta{margin-top:56px}
+  .tipi{grid-template-columns:1fr}
+  .due{grid-template-columns:1fr}
+  form .btn{justify-self:stretch}
+  .piede{padding-top:64px}
+  .piede .alto{display:flex;flex-direction:column;gap:36px}
+  .piede .chi img{width:200px}
+  .piede .basso{margin-top:48px}
   .piede .basso .su{margin-left:0}
 }
-@media (max-width:360px){
-  .testata{gap:12px}
-  .testata .logo{width:120px}
-  .testata .tel{font-size:14px}
-  .recapito{font-size:15px}
+@media (max-width:374px){
+  :root{--f-h1:36px;--m:16px}
+  .testata{gap:8px}
+  .testata .logo{width:104px}
+  .testata .chiama{padding:0 10px;font-size:15px}
+  .apri-menu{padding:0 10px}
+  .azioni .cell{padding:0 8px}
+  .lungo{display:none}
 }
 </style>
 </head>
 <body>
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 
-<header class="testata">
+<header class="testata giro" id="testata">
   <a class="logo" href="./" aria-label="Bottega dell’Arte, home">
-    <img src="img/logo-400.png" srcset="img/logo-400.png 400w, img/logo-800.png 800w" sizes="(max-width:560px) 142px, (max-width:900px) 160px, 200px" width="400" height="79" alt="Bottega dell’Arte">
+    <img src="img/logo-400.png" srcset="img/logo-400.png 400w, img/logo-800.png 800w" sizes="(max-width:374px) 104px, (max-width:600px) 128px, (max-width:900px) 150px, (max-width:1180px) 170px, 196px" width="400" height="79" alt="Bottega dell’Arte">
   </a>
-  <a class="tel num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a>
-  <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   <ul class="menu" id="menu">
-    <li><a href="arredo/">Arredo</a></li>
-    <li><a href="serramenti/">Serramenti</a></li>
-    <li><a href="restauri/">Restauri</a></li>
-    <li><a href="azienda/">Azienda</a></li>
-    <li><a href="#contatti">Contatti</a></li>
+    <li><a href="#dove">Dove siamo</a></li>
+    <li><a href="#lavorazioni">Cosa facciamo</a></li>
+    <li><a href="#restauro">Restauro</a></li>
+    <li class="facolt"><a href="#lavori">Realizzazioni</a></li>
+    <li><a href="#richiesta">Manda un disegno</a></li>
   </ul>
+  <a class="btn pieno chiama num" href="tel:+390499004916" aria-label="Chiama la bottega, 049 900 4916">049&nbsp;900&nbsp;4916</a>
+  <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
 </header>
 
 <main id="contenuto">
-<section class="apertura griglia" aria-labelledby="titolo">
+<section class="apertura griglia giro" aria-labelledby="titolo">
   <div class="testo">
-    <h1 id="titolo">L’arte di lavorare il&nbsp;legno come nel&nbsp;passato</h1>
-    <p class="lede">Arredi su misura, serramenti e restauro. Due falegnami e una bottega a&nbsp;Mestrino, Padova.</p>
-    <p class="recapito">
-      <a class="t num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a>
-      <a class="bottone num" href="tel:+390499004916">Chiama 049&nbsp;900&nbsp;4916</a>
-      <a href="mailto:info@bottegadellartesnc.it">info@bottegadellartesnc.it</a>
+    <p class="occhiello">Falegnameria a Mestrino, Padova</p>
+    <h1 id="titolo">Arredi su misura, serramenti e&nbsp;restauro</h1>
+    <p class="prova">Mauro Nosarini e Giuliano Saibene, i tuoi falegnami: 40 anni di esperienza e i restauri al Palazzo del Bo dell’Università di&nbsp;Padova.</p>
+    <div class="azioni">
+      <a class="btn pieno chiama-bottega" href="tel:+390499004916"><span>Chiama<span class="lungo"> la bottega</span></span><span class="num">049&nbsp;900&nbsp;4916</span></a>
+      <a class="btn filo cell" href="tel:+393477641720"><span class="chi">Mauro</span> <span class="num">347&nbsp;764&nbsp;1720</span></a>
+      <a class="btn filo cell" href="tel:+393474109263"><span class="chi">Giuliano</span> <span class="num">347&nbsp;410&nbsp;9263</span></a>
+      <a class="btn filo foto" href="mailto:info@bottegadellartesnc.it?subject=Foto%20o%20disegno%20da%20valutare&amp;body=Buongiorno%2C%20vi%20mando%20in%20allegato%20le%20foto%20o%20il%20disegno.%0A%0ACosa%20mi%20serve%3A%20%0ADove%20si%20trova%20il%20lavoro%20(comune)%3A%20%0AMisure%20a%20occhio%3A%20%0AIl%20mio%20telefono%3A%20%0A">Manda una foto o un disegno</a>
+    </div>
+    <p class="dove-riga">
+      <span>Via Levico 18, Mestrino</span>
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Bottega+dell%27Arte%2C+Via+Levico+18%2C+35035+Mestrino+PD" target="_blank" rel="noopener">Indicazioni</a>
+      <span class="pic">Chiamate prima di passare</span>
+      <a class="solo-tel" href="mailto:info@bottegadellartesnc.it">info@bottegadellartesnc.it</a>
     </p>
   </div>
-
-  <div class="gesto">
-    <p class="titoletto" id="t-gesto">Restauro di un portone d’ingresso</p>
-    <div class="fila">
-      <div class="scelta" role="group" aria-labelledby="t-gesto">
-        <button type="button" data-stato="prima" aria-pressed="false">Prima</button>
-        <button type="button" data-stato="dopo" aria-pressed="true">Dopo</button>
-      </div>
-      <p class="riga" id="riga" aria-live="polite">Portato a legno grezzo, tre mani di vernice all’acqua, ferramenta nuova.</p>
-    </div>
-  </div>
-
-  <div class="tela" id="tavola" data-stato="dopo">
-    <img class="f-dopo" src="img/portone-dopo-640.webp" srcset="img/portone-dopo-420.webp 420w, img/portone-dopo-640.webp 640w, img/portone-dopo-900.webp 900w" sizes="(max-width:560px) 100vw, (max-width:900px) 50vw, 42vw" width="900" height="2760" fetchpriority="high" alt="Il portone d’ingresso dopo il restauro: legno massiccio con la venatura a vista e il maniglione nuovo in ottone">
-    <img class="f-prima" hidden src="img/portone-prima-640.webp" srcset="img/portone-prima-420.webp 420w, img/portone-prima-640.webp 640w, img/portone-prima-900.webp 900w" sizes="(max-width:560px) 100vw, (max-width:900px) 50vw, 42vw" width="900" height="2760" alt="Lo stesso portone prima del restauro: vernice scurita e i fori della ferramenta tolta">
-  </div>
-</section>
-
-<section class="sez" id="lavorazioni" aria-labelledby="t-lav">
-  <div class="lavori griglia">
-    <div class="intro">
-      <h2 id="t-lav">Su misura, <span style="white-space:nowrap">in stile o moderni</span></h2>
-      <p>Interpretiamo i disegni degli architetti o semplici schizzi, oppure progettiamo da zero. Costruiamo in laboratorio e la posa la curiamo noi, senza personale esterno.</p>
-    </div>
-    <div class="lavoro l-grande">
-      <img src="img/lavoro-sottoscala-790.webp" srcset="img/lavoro-sottoscala-480.webp 480w, img/lavoro-sottoscala-790.webp 790w" sizes="(max-width:900px) 100vw, 57vw" width="790" height="660" loading="lazy" alt="Sottoscala bianco ad ante push sotto una scala in ferro battuto, con una nicchia rivestita in ottone e illuminata">
-      <h3><a href="arredo/">Arredo su misura</a></h3>
-      <p>Un sottoscala a otto ante con apertura a push e una nicchia centrale in ottone, con la luce a led.</p>
-    </div>
-    <div class="lavoro l-piccolo">
-      <img src="img/lavoro-bilico-640.webp" srcset="img/lavoro-bilico-420.webp 420w, img/lavoro-bilico-640.webp 640w, img/lavoro-bilico-900.webp 900w" sizes="(max-width:560px) 86vw, (max-width:900px) 50vw, 34vw" width="900" height="1125" loading="lazy" alt="Porta a bilico in legno a tutta altezza, aperta">
-      <h3><a href="serramenti/">Serramenti e porte</a></h3>
-      <p>Porte interne a bilico, classiche, moderne e scorrevoli. Finestre, balconi e portoncini.</p>
-    </div>
-  </div>
-</section>
-
-<section class="restauro griglia" id="restauro" aria-labelledby="t-res">
-  <figure>
-    <img src="img/bo-porte-1050.webp" srcset="img/bo-porte-700.webp 700w, img/bo-porte-1050.webp 1050w" sizes="(max-width:900px) 100vw, 57vw" width="700" height="500" loading="lazy" alt="Porte scorrevoli a due ante in legno a listelli, in una parete bianca">
-    <figcaption>Porte scorrevoli, Palazzo del Bo, Università di Padova.</figcaption>
+  <figure class="quadro">
+    <picture>
+      <source media="(min-width:601px)" srcset="img/sottoscala-43-900.webp 900w, img/sottoscala-43-1200.webp 1200w" sizes="(max-width:900px) 100vw, 50vw" width="1200" height="900">
+      <img src="img/sottoscala-800.webp" srcset="img/sottoscala-800.webp 800w, img/sottoscala-1200.webp 1200w, img/sottoscala-1600.webp 1600w" sizes="100vw" width="1600" height="900" fetchpriority="high" alt="Sottoscala su misura a otto ante bianche con apertura a push e una nicchia rivestita in ottone illuminata a led, sotto una scala in ferro battuto">
+    </picture>
+    <p class="mestieri"><a href="arredo/">Arredo su misura</a><a href="serramenti/">Finestre e porte</a><a href="restauri/">Restauro</a><a href="#lavori">Realizzazioni</a></p>
+    <p class="disegno">Hai un disegno da far costruire? Scrivi a <a href="mailto:info@bottegadellartesnc.it?subject=Disegno%20da%20preventivare&amp;body=Buongiorno%2C%20vi%20mando%20in%20allegato%20il%20disegno%20da%20preventivare.%0A%0ACosa%20%C3%A8%3A%20%0ADove%20va%20posato%20(comune)%3A%20%0ATempi%3A%20%0AIl%20mio%20telefono%3A%20%0A">info@bottegadellartesnc.it</a></p>
+    <p class="firma">L’arte di lavorare il legno come nel&nbsp;passato.</p>
   </figure>
-  <div class="testo">
-    <h2 id="t-res">Legno vecchio, della stessa essenza</h2>
-    <p>Restauriamo mobili antichi di qualsiasi epoca. Il lavoro può comprendere il trattamento antitarlo e la verniciatura a gommalacca che si usava un tempo, resina sciolta in alcool. Usiamo legno vecchio della stessa essenza del mobile da restaurare.</p>
-    <div class="bo">
-      <h3>Palazzo del Bo, Padova</h3>
-      <p>Nella sede dell’Università abbiamo restaurato mobili, oggetti, porte scorrevoli e pareti divisorie che portano la firma di Gio Ponti.</p>
-    </div>
-    <div class="finiture">
-      <h3>Le finiture</h3>
-      <p>Vernice all’acqua, laccatura e gommalacca.</p>
-    </div>
-  </div>
 </section>
 
-<section class="chiusura griglia" id="contatti" aria-labelledby="t-chi">
-  <div class="testo">
-    <h2 id="t-chi">Vi aspettiamo nella nostra bottega</h2>
-    <p class="sotto">Mauro Nosarini e Giuliano Saibene hanno cominciato da ragazzini in una nota falegnameria artigiana di Padova. Oggi disegnano, costruiscono e verniciano nel loro laboratorio di Mestrino.</p>
-    <ul class="recapiti">
-      <li><a class="grande num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a></li>
-      <li><span class="pic">Mauro</span> <a class="num" href="tel:+393477641720">347&nbsp;764&nbsp;1720</a></li>
-      <li><span class="pic">Giuliano</span> <a class="num" href="tel:+393474109263">347&nbsp;410&nbsp;9263</a></li>
-      <li><a href="mailto:info@bottegadellartesnc.it">info@bottegadellartesnc.it</a></li>
-      <li>Via Levico 18, 35035 Mestrino (PD), <a href="https://goo.gl/maps/QuC7VTkbjjd1Gpvh6" rel="noopener">apri&nbsp;la&nbsp;mappa</a></li>
+<section class="sez chiara giro" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="griglia">
+    <div class="capo">
+      <p class="occhiello">Cosa facciamo</p>
+      <h2 id="t-lav">Dal mobile alla finestra, su disegno o da zero</h2>
+      <p>Interpretiamo disegni di architetti o semplici schizzi, oppure progettiamo da zero.<span class="non-tel"> Costruiamo e verniciamo nel nostro laboratorio e la posa la curiamo noi, senza personale esterno.</span></p>
+    </div>
+    <ul class="schede">
+      <li><a class="scheda" href="arredo/">
+        <img src="img/casa-libreria-400.webp" srcset="img/casa-libreria-400.webp 400w, img/casa-libreria-800.webp 800w" sizes="(max-width:600px) 112px, (max-width:1180px) 46vw, 23vw" width="800" height="600" loading="lazy" alt="Libreria su misura laccata bianca con i led, su tutta la parete di un soggiorno">
+        <div class="corpo">
+          <h3>Per la casa</h3>
+          <ul class="voci">
+            <li>Cucine, anche con l’anteprima in 3D</li>
+            <li>Armadi a muro e sottoscala</li>
+            <li>Librerie e mobili da soggiorno</li>
+            <li>Bagni in corian, controsoffitti</li>
+            <li>Interni di camper e barche</li>
+          </ul>
+          <span class="vai freccia">Arredo su misura </span>
+        </div>
+      </a></li>
+      <li><a class="scheda" href="serramenti/">
+        <img src="img/finestre-scuri-400.webp" srcset="img/finestre-scuri-400.webp 400w, img/finestre-scuri-777.webp 777w" sizes="(max-width:600px) 112px, (max-width:1180px) 46vw, 23vw" width="777" height="583" loading="lazy" alt="Portafinestra in legno bianco con gli scuri verde acqua, su una casa in mattoni">
+        <div class="corpo">
+          <h3>Finestre e porte</h3>
+          <ul class="voci">
+            <li>Finestre e portefinestre in legno o PVC</li>
+            <li>Finestre vecchie restaurate, con vetrocamera</li>
+            <li>Balconi e scuri in okumè</li>
+            <li>Portoncini, porte interne, blindate Dierre</li>
+            <li>Gazebi, pompeiane e tettoie</li>
+          </ul>
+          <span class="vai freccia">Serramenti </span>
+        </div>
+      </a></li>
+      <li><a class="scheda" href="restauri/">
+        <img src="img/restauro-bo-ponteggi-400.webp" srcset="img/restauro-bo-ponteggi-400.webp 400w, img/restauro-bo-ponteggi-667.webp 667w" sizes="(max-width:600px) 112px, (max-width:1180px) 46vw, 23vw" width="667" height="500" loading="lazy" alt="Restauro di una bussola d’ingresso in legno e vetri al Palazzo del Bo, con il ponteggio montato">
+        <div class="corpo">
+          <h3>Restauro</h3>
+          <ul class="voci">
+            <li>Mobili antichi di qualsiasi epoca</li>
+            <li>Porte, portoni e portoni da garage</li>
+            <li>Finestre e balconi</li>
+            <li>Ambienti interni: travi, porte, legno</li>
+            <li>Gli arredi di Gio Ponti al Palazzo del Bo</li>
+          </ul>
+          <span class="vai freccia">Restauri </span>
+        </div>
+      </a></li>
+      <li><a class="scheda" href="progetti/pasticceria-bolzano/">
+        <img src="img/negozi-pasticceria-400.webp" srcset="img/negozi-pasticceria-400.webp 400w, img/negozi-pasticceria-800.webp 800w" sizes="(max-width:600px) 112px, (max-width:1180px) 46vw, 23vw" width="800" height="600" loading="lazy" alt="Banco vetrina nero di una pasticceria, con le scaffalature in legno chiaro sopra">
+        <div class="corpo">
+          <h3>Negozi e locali</h3>
+          <ul class="voci">
+            <li>Negozi e bar conto terzi, su disegno del committente</li>
+            <li>Centri estetici, dal mobilio ai lettini</li>
+            <li>Ristoranti e banchi frigo</li>
+            <li>Stand per le fiere, con una ditta associata</li>
+          </ul>
+          <span class="vai freccia">Il negozio vicino a Bolzano </span>
+        </div>
+      </a></li>
     </ul>
   </div>
-  <figure>
-    <img src="img/porte-restaurate-726.webp" srcset="img/porte-restaurate-480.webp 480w, img/porte-restaurate-726.webp 726w" sizes="(max-width:900px) 92vw, 49vw" width="726" height="726" loading="lazy" alt="Due porte in legno con vetri a piombo e cornici, restaurate, in un ingresso chiaro">
-    <figcaption>Porte con vetri a piombo, restaurate.</figcaption>
-  </figure>
+</section>
+
+<section class="sez scuro giro" id="restauro" aria-labelledby="t-res">
+  <div class="griglia restauro">
+    <div class="capo">
+      <p class="occhiello">Restauro</p>
+      <h2 id="t-res">Portato a legno grezzo, per ridare nuova vita e&nbsp;colore</h2>
+      <p>Restauriamo mobili antichi, porte, portoni e finestre. Il lavoro può comprendere il trattamento antitarlo e la verniciatura a gommalacca che si usava un tempo. Usiamo legno vecchio della stessa essenza e il colore lo facciamo al campione, o ripristiniamo quello originale.</p>
+    </div>
+    <div class="dittico">
+      <figure>
+        <img src="img/portone-prima-450.webp" srcset="img/portone-prima-450.webp 450w, img/portone-prima-900.webp 900w" sizes="(max-width:900px) 46vw, 21vw" width="900" height="1200" loading="lazy" alt="Il portone d’ingresso prima del restauro, in laboratorio: vernice scurita e consumata">
+        <span class="stato">Prima</span>
+      </figure>
+      <figure>
+        <img src="img/portone-dopo-450.webp" srcset="img/portone-dopo-450.webp 450w, img/portone-dopo-900.webp 900w" sizes="(max-width:900px) 46vw, 21vw" width="900" height="1200" loading="lazy" alt="Lo stesso portone dopo il restauro: legno massiccio con la venatura a vista e il maniglione in ottone nuovo">
+        <span class="stato">Dopo</span>
+      </figure>
+      <p class="sotto">Portone d’ingresso: portato a legno grezzo, tre mani di vernice all’acqua, ferramenta nuova.</p>
+    </div>
+    <div class="manda">
+      <h3>Mandaci una foto del pezzo</h3>
+      <p>Una foto intera, una di un dettaglio e le misure a occhio. Ti rispondiamo con un preventivo senza impegno.</p>
+      <a class="btn pieno" href="mailto:info@bottegadellartesnc.it?subject=Restauro%3A%20foto%20del%20pezzo&amp;body=Buongiorno%2C%20vi%20mando%20in%20allegato%20le%20foto%20del%20pezzo%20da%20restaurare%20(una%20intera%20e%20una%20di%20un%20dettaglio).%0A%0ACos'%C3%A8%3A%20%0AMisure%20a%20occhio%3A%20%0ADove%20si%20trova%20(comune)%3A%20%0AIl%20mio%20telefono%3A%20%0A">Manda una foto del pezzo</a>
+      <p class="in-bottega">Puoi anche portarlo in bottega, in Via Levico 18 a Mestrino (<a href="https://www.google.com/maps/dir/?api=1&amp;destination=Bottega+dell%27Arte%2C+Via+Levico+18%2C+35035+Mestrino+PD" target="_blank" rel="noopener">indicazioni</a>). Chiamate prima di passare: <a class="num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sez marrone giro" id="come" aria-labelledby="t-come">
+  <div class="griglia">
+    <div class="capo">
+      <p class="occhiello">Come lavoriamo</p>
+      <h2 id="t-come">Dal disegno alla posa, tutto da noi</h2>
+    </div>
+    <ul class="numeri">
+      <li><span class="cifra num">40</span><span class="cosa">anni di esperienza: Mauro e Giuliano hanno cominciato da ragazzini in una falegnameria di Padova</span></li>
+      <li><span class="cifra num">2</span><span class="cosa">soci in bottega, con il loro numero di cellulare</span></li>
+      <li><span class="cifra num">22</span><span class="cosa">lavori raccontati nelle nostre Realizzazioni</span></li>
+      <li><span class="cifra num">8</span><span class="cosa">di questi con la colorazione al campione</span></li>
+    </ul>
+    <ol class="passi">
+      <li><h3>Ci chiamate o ci scrivete</h3><p>Con foto, misure o un disegno, anche un semplice schizzo.</p></li>
+      <li><h3>Preventivo senza impegno</h3><p>Per le cucine anche un’anteprima con immagini rendering e 3D, da modificare prima di costruire.</p></li>
+      <li><h3>In laboratorio</h3><p>Costruiamo con macchinari a controllo numerico e verniciamo da noi, a ciclo d’acqua.</p></li>
+      <li><h3>La posa</h3><p>La curiamo personalmente, senza personale esterno od occasionale.</p></li>
+    </ol>
+    <div class="materiali">
+      <p class="occhiello">Materiali e marchi che usiamo</p>
+      <ul>
+        <li>Porte blindate Dierre</li>
+        <li>Corian per i bagni</li>
+        <li>Vetrocamera con gas argon</li>
+        <li>Multistrato marino certificato</li>
+        <li>Okumè per balconi e scuri</li>
+        <li>Vernici all’acqua</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sez lavori giro" id="lavori" aria-labelledby="t-real">
+  <div class="griglia">
+    <div class="capo">
+      <p class="occhiello">Realizzazioni</p>
+      <h2 id="t-real">Tre lavori, tre committenti</h2>
+    </div>
+    <article class="lavoro">
+      <img style="--nat:667px" src="img/lavoro-bo-bussola-667.webp" width="667" height="500" loading="lazy" alt="La bussola d’ingresso in legno e vetri del Palazzo del Bo dopo il restauro">
+      <div class="scritto">
+        <h3>Palazzo del Bo</h3>
+        <p class="dove">Università di Padova</p>
+        <p>Nella sede del Bo abbiamo restaurato mobili, oggetti, porte scorrevoli e pareti divisorie che portano la firma di Gio Ponti, con i complimenti dei responsabili dell’Università.</p>
+        <dl><dt>Committente</dt><dd>Università di Padova</dd><dt>Lavoro</dt><dd>Restauro di arredi, porte scorrevoli e pareti divisorie</dd></dl>
+        <a class="vai freccia" href="progetti/universita-di-padova/">La scheda del lavoro </a>
+      </div>
+    </article>
+    <article class="lavoro giro-destra">
+      <img src="img/lavoro-bolzano-640.webp" srcset="img/lavoro-bolzano-640.webp 640w, img/lavoro-bolzano-1000.webp 1000w" sizes="(max-width:900px) 100vw, 55vw" width="1000" height="750" loading="lazy" alt="Il negozio della pasticceria: bancone in frassino chiaro con gli sgabelli e banchi vetrina neri">
+      <div class="scritto">
+        <h3>Una pasticceria</h3>
+        <p class="dove">Vicino a Bolzano</p>
+        <p>Il negozio, realizzato su disegno del committente: ferro nero e legno massiccio di frassino naturale chiaro, per un contrasto tra chiaro e scuro.</p>
+        <dl><dt>Committente</dt><dd>Una pasticceria, conto terzi</dd><dt>Lavoro</dt><dd>Arredo completo del negozio su disegno</dd></dl>
+        <a class="vai freccia" href="progetti/pasticceria-bolzano/">La scheda del lavoro </a>
+      </div>
+    </article>
+    <article class="lavoro">
+      <img src="img/lavoro-lissaro-640.webp" srcset="img/lavoro-lissaro-640.webp 640w, img/lavoro-lissaro-1000.webp 1000w" sizes="(max-width:900px) 100vw, 55vw" width="1000" height="750" loading="lazy" alt="La reception bianca del centro estetico con le mensole e le nicchie illuminate">
+      <div class="scritto">
+        <h3>Un centro estetico</h3>
+        <p class="dove">Lissaro</p>
+        <p>L’arredamento completo, dal mobilio ai lettini, con gli incassi per i led per un’atmosfera tranquilla e rilassante.</p>
+        <dl><dt>Committente</dt><dd>Un centro estetico</dd><dt>Lavoro</dt><dd>Arredo completo su misura</dd></dl>
+        <a class="vai freccia" href="progetti/centri-eststici/">La scheda del lavoro </a>
+      </div>
+    </article>
+    <p class="tutti"><a class="btn filo freccia" href="progetti/">Tutte le 22 realizzazioni </a></p>
+  </div>
+</section>
+
+<section class="sez chiara dove giro" id="dove" aria-labelledby="t-dove">
+  <div class="griglia">
+    <div class="capo">
+      <p class="occhiello">Dove siamo</p>
+      <h2 id="t-dove">Vi aspettiamo nella nostra bottega</h2>
+      <p>Per vedere e toccare con mano i nostri lavori, o per portarci un mobile da restaurare. Siamo nella zona artigianale di Mestrino.</p>
+    </div>
+    <div class="sede">
+      <img src="img/bottega-via-levico-640.webp" srcset="img/bottega-via-levico-640.webp 640w, img/bottega-via-levico-1000.webp 1000w" sizes="(max-width:900px) 100vw, 46vw" width="1000" height="750" loading="lazy" alt="Il capannone della bottega in Via Levico, con il furgone davanti all’ingresso">
+      <div class="corpo">
+        <p class="indirizzo">Via Levico 18, 35035 Mestrino (PD)</p>
+        <table>
+          <tr><th scope="row">Quando passare</th><td>Chiamate prima: vi diciamo quando trovarci in bottega.</td></tr>
+          <tr><th scope="row">Bottega</th><td><a class="num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a></td></tr>
+          <tr><th scope="row">Mauro Nosarini</th><td><a class="num" href="tel:+393477641720">347&nbsp;764&nbsp;1720</a></td></tr>
+          <tr><th scope="row">Giuliano Saibene</th><td><a class="num" href="tel:+393474109263">347&nbsp;410&nbsp;9263</a></td></tr>
+          <tr><th scope="row">Email</th><td><a href="mailto:info@bottegadellartesnc.it">info@bottegadellartesnc.it</a></td></tr>
+        </table>
+        <div class="bottoni">
+          <a class="btn pieno" href="tel:+390499004916">Chiama <span class="num">049&nbsp;900&nbsp;4916</span></a>
+          <a class="btn filo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bottega+dell%27Arte%2C+Via+Levico+18%2C+35035+Mestrino+PD" target="_blank" rel="noopener">Indicazioni</a>
+        </div>
+      </div>
+    </div>
+    <div class="richiesta" id="richiesta">
+      <h3>Cosa possiamo fare per te?</h3>
+      <p>Scrivi due righe: si apre la tua email già compilata, e le foto o il disegno li alleghi lì. Se preferisci, chiama senza impegno.</p>
+      <form id="modulo" action="mailto:info@bottegadellartesnc.it" method="post" enctype="text/plain">
+        <div class="due">
+          <div><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
+          <div><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel"></div>
+        </div>
+        <div><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        <fieldset>
+          <legend>Che lavoro ti serve?</legend>
+          <div class="tipi">
+            <label><input type="radio" name="tipo" value="Arredo per la casa" checked> Arredo per la casa</label>
+            <label><input type="radio" name="tipo" value="Finestre e porte"> Finestre e porte</label>
+            <label><input type="radio" name="tipo" value="Restauro"> Restauro</label>
+            <label><input type="radio" name="tipo" value="Negozio o locale su disegno"> Negozio o locale su disegno</label>
+          </div>
+        </fieldset>
+        <div><label for="f-dove">Dove si trova il lavoro (comune)</label><input id="f-dove" name="comune" type="text" autocomplete="address-level2"></div>
+        <div><label for="f-msg">Due righe sul lavoro</label><textarea id="f-msg" name="messaggio" placeholder="Per esempio: due finestre da restaurare, misure 120 x 140"></textarea></div>
+        <p class="nota-modulo">Foto e disegni li alleghi alla email che si apre.</p>
+        <button class="btn pieno" type="submit">Prepara l’email</button>
+      </form>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer class="piede">
+<footer class="piede giro">
   <div class="alto griglia">
     <div class="chi">
-      <img src="img/logo-520.png" srcset="img/logo-520.png 520w, img/logo-800.png 800w" sizes="(max-width:560px) 220px, 260px" width="520" height="103" alt="Bottega dell’Arte" loading="lazy">
-      <p>Falegnameria a Mestrino, Padova: arredo su misura, serramenti e restauro, dal disegno alla posa.</p>
+      <img src="img/logo-520.png" srcset="img/logo-520.png 520w, img/logo-800.png 800w" sizes="(max-width:600px) 200px, 240px" width="520" height="103" alt="Bottega dell’Arte" loading="lazy">
+      <p>Falegnameria a Mestrino, Padova: arredo su misura, finestre e porte, restauro. Dal disegno alla posa.</p>
     </div>
     <nav class="colonna c-lav" aria-labelledby="p-lav">
       <h2 id="p-lav">Lavorazioni</h2>
@@ -351,29 +604,31 @@ h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
         <li><a href="arredo/">Arredo su misura</a></li>
         <li><a href="serramenti/">Serramenti e porte</a></li>
         <li><a href="restauri/">Restauri</a></li>
-      </ul>
-    </nav>
-    <nav class="colonna c-bot" aria-labelledby="p-bot">
-      <h2 id="p-bot">Bottega</h2>
-      <ul>
-        <li><a href="azienda/">Chi siamo</a></li>
         <li><a href="progetti/">Realizzazioni</a></li>
         <li><a href="progetti/universita-di-padova/">Palazzo del Bo</a></li>
       </ul>
     </nav>
+    <div class="colonna c-bot">
+      <h2>Bottega</h2>
+      <ul>
+        <li><a href="azienda/">Chi siamo</a></li>
+        <li>Via Levico 18<br>35035 Mestrino (PD)</li>
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Bottega+dell%27Arte%2C+Via+Levico+18%2C+35035+Mestrino+PD" target="_blank" rel="noopener">Indicazioni</a></li>
+        <li class="pic">Chiamate prima di passare</li>
+      </ul>
+    </div>
     <div class="colonna c-con">
       <h2>Contatti</h2>
       <ul>
-        <li><a class="num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a></li>
+        <li><span class="pic">Bottega</span> <a class="num" href="tel:+390499004916">049&nbsp;900&nbsp;4916</a></li>
         <li><span class="pic">Mauro</span> <a class="num" href="tel:+393477641720">347&nbsp;764&nbsp;1720</a></li>
         <li><span class="pic">Giuliano</span> <a class="num" href="tel:+393474109263">347&nbsp;410&nbsp;9263</a></li>
         <li><a href="mailto:info@bottegadellartesnc.it">info@bottegadellartesnc.it</a></li>
-        <li><a href="https://goo.gl/maps/QuC7VTkbjjd1Gpvh6" rel="noopener">Via Levico 18, 35035 Mestrino (PD)</a></li>
       </ul>
     </div>
   </div>
   <div class="basso">
-    <span>Bottega dell’Arte Snc, sede legale Via Vangadizza 28, 35030 Rubano (PD)</span>
+    <span>Bottega dell’Arte Snc di Nosarini Mauro e Saibene Giuliano, sede legale Via Vangadizza 28, 35030 Rubano (PD)</span>
     <span>P.IVA 03880730282</span>
     <a href="https://www.iubenda.com/privacy-policy/16689485" rel="noopener">Privacy</a>
     <a href="cookie-policy/">Cookie</a>
@@ -383,29 +638,26 @@ h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
 
 <script>
 (function(){
-  var tav=document.getElementById('tavola'), riga=document.getElementById('riga');
-  var bott=document.querySelectorAll('.scelta button');
-  var testi={
-    prima:'Prima: la ferramenta consumata dagli agenti atmosferici e dal tempo.',
-    dopo:'Portato a legno grezzo, tre mani di vernice all’acqua, ferramenta nuova.'
-  };
-  function mostra(s){
-    tav.dataset.stato=s;
-    tav.querySelector('.f-dopo').hidden=(s!=='dopo');
-    tav.querySelector('.f-prima').hidden=(s!=='prima');
-    bott.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.stato===s?'true':'false')});
-    riga.textContent=testi[s];
-  }
-  bott.forEach(function(b,i){
-    b.addEventListener('click',function(){mostra(b.dataset.stato)});
-    b.addEventListener('keydown',function(e){
-      if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();var o=bott[1-i];o.focus();mostra(o.dataset.stato)}
-    });
-  });
+  var t=document.getElementById('testata');
+  function bordo(){t.classList.toggle('giu',window.scrollY>4)}
+  window.addEventListener('scroll',bordo,{passive:true});bordo();
+
   var am=document.querySelector('.apri-menu'), menu=document.getElementById('menu');
+  function chiudi(){menu.classList.remove('aperto');am.setAttribute('aria-expanded','false')}
   am.addEventListener('click',function(){var a=menu.classList.toggle('aperto');am.setAttribute('aria-expanded',a?'true':'false')});
-  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('aperto');am.setAttribute('aria-expanded','false')})});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto')){menu.classList.remove('aperto');am.setAttribute('aria-expanded','false');am.focus()}});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',chiudi)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto')){chiudi();am.focus()}});
+
+  /* il modulo compone un'email (da collegare a un servizio di invio: vedi LEGGIMI) */
+  var f=document.getElementById('modulo');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(n){var el=f.elements[n];return el?String(el.value||'').trim():''};
+    var tipo=(f.querySelector('input[name=tipo]:checked')||{}).value||'';
+    var corpo=['Nome: '+v('nome'),'Telefono: '+v('telefono'),'Email: '+v('email'),'Lavoro: '+tipo,'Comune: '+v('comune'),'',v('messaggio'),'','(allego le foto o il disegno)'].join('\n');
+    var ogg='Richiesta dal sito: '+tipo+(v('nome')?', '+v('nome'):'');
+    window.location.href='mailto:info@bottegadellartesnc.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+  });
 })();
 </script>
 </body>

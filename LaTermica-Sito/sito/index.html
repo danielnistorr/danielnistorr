@@ -68,8 +68,6 @@ h3{font-size:var(--f-h3);line-height:1.25}
 .menu a:hover{color:var(--rosso)}
 .menu .solo-tel{display:none}
 .tel-testata{min-height:48px;padding:0 18px}
-.tel-testata.calmo{background:transparent;color:var(--rosso)}
-.tel-testata.calmo:hover{background:var(--rosso);color:var(--bianco)}
 .apri-menu{display:none}
 @media (max-width:1099px){
   .testata .c{gap:12px}
@@ -78,6 +76,7 @@ h3{font-size:var(--f-h3);line-height:1.25}
   .menu a{padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--f-testo)}
   .tel-testata{margin-left:auto}
   .apri-menu{display:inline-flex;min-height:48px;padding:0 14px}
+  .menu .solo-tel{display:block}
 }
 @media (max-width:760px){
   .logo img{width:112px}
@@ -87,29 +86,33 @@ h3{font-size:var(--f-h3);line-height:1.25}
 @media (max-width:389px){.testata .c{gap:8px}.logo img{width:100px}.tel-testata svg{display:none}.tel-testata{padding:0 10px}.apri-menu{padding:0 10px}}
 @media (max-width:359px){:root{--m:16px}.testata .c{gap:6px}.logo img{width:84px}.tel-testata{padding:0 8px}.apri-menu{padding:0 8px}}
 
-/* apertura */
-.apertura{padding:48px 0 72px}
-.apertura .c{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
-.ap-testo{grid-column:1 / span 7;padding-top:8px}
-.ap-media{grid-column:9 / span 4}
+/* apertura: fondo grafite pieno, foto loro al vivo fino al bordo destro della finestra */
+.apertura{position:relative;overflow:hidden}
+.apertura .c{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;min-height:clamp(640px,calc(100vh - var(--testata)),860px);padding-top:56px;padding-bottom:64px}
+.ap-testo{grid-column:1 / span 7}
+.apertura h1{color:var(--bianco)}
+.apertura .et{color:var(--chiaro)}
 h1{font-size:var(--f-h1);line-height:1.04;letter-spacing:-.02em}
-h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;font-weight:400;letter-spacing:0;max-width:20em}
+h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;font-weight:400;letter-spacing:0;max-width:20em;color:var(--chiaro)}
 .apertura .azioni{margin-top:36px;gap:10px}
 .apertura .azioni .btn{padding:0 20px}
-.fatti{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap);margin-top:40px;border-top:1px solid var(--linea)}
-.fatti > div{padding:18px 0;border-bottom:1px solid var(--linea)}
-.fatti dt{font-size:var(--f-et);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-2)}
-.fatti dd{font-size:var(--f-ui);line-height:1.45;margin-top:4px}
-.fatti dd a{font-weight:700}
-.ap-media img{width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:var(--raggio)}
-@media (min-width:1200px){.ap-media{grid-column:8 / span 5}}
-@media (max-width:1099px){.ap-testo{grid-column:1 / span 7}.ap-media{grid-column:8 / span 5}}
+.fatti{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap);margin-top:40px;border-top:1px solid var(--linea-scura)}
+.fatti > div{padding:16px 0;border-bottom:1px solid var(--linea-scura)}
+.fatti dt{font-size:var(--f-et);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--chiaro)}
+.apertura .fatti dd{font-size:var(--f-ui);line-height:1.45;margin-top:4px;color:var(--bianco)}
+.fatti dd a{font-weight:700;color:var(--bianco);display:inline-block;padding:12px 0;margin:-12px 0}
+.fatti dd a:hover{color:var(--giallo)}
+.ap-media{position:absolute;top:0;right:0;bottom:0;left:calc(50% + 125px)}
+.ap-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+@media (max-width:1199px){.ap-media{left:calc(50% + 100px)}}
 @media (max-width:900px){
-  .ap-testo,.ap-media{grid-column:1 / -1}
-  .ap-media{margin-top:32px}
+  .apertura .c{min-height:0;padding-bottom:0}
+  .ap-testo{grid-column:1 / -1}
+  .ap-media{position:static;grid-column:1 / -1;margin:40px calc(-1 * var(--m)) 0}
+  .ap-media img{height:auto;aspect-ratio:16 / 9}
 }
 @media (max-width:760px){
-  .apertura{padding:20px 0 48px}
+  .apertura .c{padding-top:20px}
   .et{margin-bottom:14px}
   h1 .sotto{margin-top:12px}
   .apertura .azioni{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -117,9 +120,9 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
   .apertura .azioni .chiama{grid-column:1 / -1}
   .apertura .azioni .d{display:none}
   .apertura .azioni .m{display:inline}
-  .ap-media{margin-top:20px}
-  .ap-media img{aspect-ratio:3 / 2}
-  .fatti{grid-template-columns:1fr;margin-top:24px}
+  .ap-media{margin-top:24px}
+  .fatti{grid-template-columns:1fr;margin-top:20px}
+  .fatti > div{padding:12px 0}
   .fatti .solo-largo{display:none}
 }
 
@@ -140,27 +143,55 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 /* garanzie e numeri */
 .numeri{display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--gap)}
 .numeri > div{border-top:4px solid var(--giallo);padding-top:20px}
-.numeri .cifra{display:block;font-size:var(--f-h2);line-height:1.05;font-weight:700;color:var(--bianco)}
-.numeri p{margin-top:10px;font-size:var(--f-ui)}
+.numeri .cifra{display:block;font-size:var(--f-h1);line-height:1;font-weight:700;letter-spacing:-.02em;color:var(--bianco)}
+.numeri p{margin-top:12px;font-size:var(--f-ui)}
+.intro > .chi-testo{grid-column:9 / span 4}
+.chi-testo .frase{font-size:var(--f-h3);line-height:1.35;font-weight:700;color:var(--bianco)}
+.chi-testo p + p{margin-top:16px}
+.scuro .intro > .chi-testo{color:var(--chiaro)}
 .garanzie{display:grid;grid-template-columns:repeat(3,1fr);column-gap:var(--gap);margin-top:72px;border-top:1px solid var(--linea-scura)}
 .garanzie > div{padding:28px 32px 0 0}
 .garanzie p{margin-top:10px;font-size:var(--f-ui)}
-@media (max-width:900px){.numeri{grid-template-columns:1fr 1fr;row-gap:32px}.garanzie{grid-template-columns:1fr;margin-top:48px}.garanzie > div{padding:24px 0;border-bottom:1px solid var(--linea-scura)}}
+@media (max-width:900px){.intro > .chi-testo{grid-column:1 / -1;margin-top:20px}.numeri{grid-template-columns:1fr 1fr;row-gap:32px}.garanzie{grid-template-columns:1fr;margin-top:48px}.garanzie > div{padding:24px 0;border-bottom:1px solid var(--linea-scura)}}
 
-/* servizi: schede tutte cliccabili, portano al modulo con il tipo già scelto */
-.schede{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.scheda{display:flex;flex-direction:column;background:var(--bianco);border-radius:var(--raggio);padding:32px;text-decoration:none;min-height:100%;border:1px solid transparent;transition:border-color .12s}
-.scheda:hover{border-color:var(--rosso)}
-.scheda .et{margin-bottom:16px;color:var(--testo-2)}
+/* servizi: schede numerate, filetto rosso in testa, tutta la scheda porta al modulo con il tipo già scelto;
+   la chiamata diretta sta sopra il collegamento della scheda */
+.schede{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.scheda{position:relative;display:flex;flex-direction:column;background:var(--bianco);border-top:4px solid var(--rosso);border-radius:0 0 var(--raggio) var(--raggio);padding:28px 32px 20px;transition:box-shadow .12s}
+.scheda:hover{box-shadow:0 0 0 1px var(--rosso) inset}
+.scheda .num{font-size:var(--f-h2);line-height:1;font-weight:700;color:var(--rosso);letter-spacing:-.02em}
+.scheda h3{margin-top:24px}
+.scheda h3 a{text-decoration:none}
+.scheda h3 a::after{content:"";position:absolute;inset:0}
+.scheda h3 a:focus-visible{outline:0}
+.scheda:focus-within{outline:3px solid var(--giallo);outline-offset:2px}
 .scheda p{margin-top:12px;font-size:var(--f-ui);color:var(--testo-2)}
-.scheda .vai{margin-top:auto;padding-top:24px;font-size:var(--f-ui);font-weight:700;color:var(--rosso)}
+.scheda-piede{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.scheda .vai{font-size:var(--f-ui);font-weight:700;color:var(--rosso)}
+.scheda-tel{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;min-height:48px;font-size:var(--f-ui);font-weight:700;text-decoration:none;color:var(--grafite)}
+.scheda-tel svg{width:18px;height:18px;color:var(--rosso)}
+.scheda-tel:hover{color:var(--rosso)}
 .servizi-sotto{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;margin-top:40px}
 .servizi-sotto p{font-size:var(--f-testo)}
+.servizi-sotto p b{font-weight:700}
 .ispezione{grid-column:9 / span 4 !important}
 .ispezione img{width:100%;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--raggio)}
 @media (max-width:1099px){.schede{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){.ispezione{grid-column:1 / -1 !important;margin-top:28px}}
-@media (max-width:760px){.schede{grid-template-columns:1fr;gap:12px}.scheda{padding:20px}.scheda p{display:none}.scheda .et{margin-bottom:10px}.scheda .vai{padding-top:10px}.ispezione{display:none}}
+@media (max-width:760px){
+  .schede{grid-template-columns:1fr;gap:12px}
+  .scheda{display:grid;grid-template-columns:44px 1fr;column-gap:8px;padding:18px 20px 8px}
+  .scheda .num{grid-row:1 / span 3}
+  .scheda h3{margin-top:2px}
+  .scheda p{margin-top:6px}
+  .scheda-piede{grid-column:2;padding-top:4px}
+  #servizi .intro > div > p:not(.et),.ispezione{display:none}
+  .scheda h3{padding-right:52px}
+  .scheda-tel{position:absolute;top:14px;right:14px;width:48px;height:48px;justify-content:center;border:1px solid var(--linea);border-radius:var(--raggio)}
+  .scheda-tel .t{display:none}
+  .scheda-tel svg{width:20px;height:20px}
+  .scheda-piede{padding-top:8px;padding-bottom:10px}
+}
 
 /* magazzino e cataloghi */
 .mag{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);grid-template-rows:auto 1fr}
@@ -170,6 +201,8 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 .mag-sx p{margin-top:20px}
 .mag-sx .azioni{margin-top:32px}
 .mag-foto img{margin-top:48px;width:100%;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--raggio)}
+.mag-dx .azioni{margin-top:24px}
+@media (min-width:901px){.mag-dx .azioni{display:none}}
 .serie-tit{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--grafite)}
 .serie-tit h3{font-size:var(--f-h3)}
 .serie-tit span{font-size:var(--f-et);color:var(--testo-2)}
@@ -181,7 +214,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 .serie-nota{margin-top:20px;font-size:var(--f-ui);color:var(--testo-2)}
 @media (max-width:1099px){.mag-sx,.mag-foto{grid-column:1 / span 6}.mag-dx{grid-column:7 / span 6}}
 @media (max-width:900px){.mag{grid-template-rows:none}.mag-sx,.mag-dx,.mag-foto{grid-column:1 / -1;grid-row:auto}.mag-dx{margin-top:48px}.mag-foto img{margin-top:40px}}
-@media (max-width:760px){.serie a{min-height:52px}}
+@media (max-width:760px){.serie{columns:2;column-gap:16px}.serie a{min-height:56px;padding:8px 0;line-height:1.25}.serie a span{display:none}.serie-tit span{display:none}}
 
 /* lavori: schede con la foto, stesso taglio 4:5 */
 .lavori{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -198,23 +231,15 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 
 /* su misura */
 .misura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center}
-.misura figure{grid-column:1 / span 6}
-.misura figure img{width:100%;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--raggio)}
-.misura > div{grid-column:8 / span 5}
+.misura figure{grid-column:2 / span 4}
+.misura figure img{width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:var(--raggio)}
+.misura > div{grid-column:7 / span 6}
 .misura > div > p{margin-top:20px}
 .elenco{margin-top:28px;border-top:1px solid var(--linea)}
 .elenco li{padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--f-ui)}
 .elenco b{font-weight:700}
 .misura .azioni{margin-top:32px}
-@media (max-width:900px){.misura figure,.misura > div{grid-column:1 / -1}.misura > div{margin-top:32px}}
-
-/* chi siamo */
-.chi{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
-.chi > div:first-child{grid-column:1 / span 5}
-.chi > div:last-child{grid-column:7 / span 6}
-.chi p + p{margin-top:20px}
-.chi .frase{font-size:var(--f-h3);line-height:1.35;font-weight:700}
-@media (max-width:900px){.chi > div:first-child,.chi > div:last-child{grid-column:1 / -1}.chi > div:last-child{margin-top:24px}}
+@media (max-width:900px){.misura figure,.misura > div{grid-column:1 / -1}.misura figure{max-width:440px}.misura > div{margin-top:32px}}
 
 /* chiusura: il telefono come titolo grande e il modulo */
 .chiusura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
@@ -233,6 +258,8 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 .ch-dove address{font-style:normal;font-size:var(--f-testo);margin-top:8px}
 .ch-dove img{margin-top:24px;width:100%;max-width:600px;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--raggio)}
 .ch-dove > p{margin-top:16px;font-size:var(--f-ui)}
+.ch-dove .orari{margin-top:12px;font-size:var(--f-ui)}
+.ch-dove .orari a{font-weight:700;display:inline-block;padding:12px 0;margin:-12px 0}
 .ch-dove .azioni{margin-top:24px}
 .ch-dove .saluto{margin-top:40px;font-size:var(--f-h3);font-weight:700}
 .modulo{grid-column:7 / span 6;background:var(--bianco);color:var(--grafite);border-radius:var(--raggio);padding:40px}
@@ -266,7 +293,8 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 .piede{background:var(--grafite);color:var(--chiaro);padding:80px 0 40px;font-size:var(--f-ui)}
 .piede-col{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:var(--gap)}
 .piede h2{font-size:var(--f-et);letter-spacing:.12em;text-transform:uppercase;color:var(--bianco);margin-bottom:16px}
-.piede li{margin-bottom:10px}
+.piede li{margin-bottom:4px}
+.piede li a{display:inline-flex;align-items:center;min-height:44px}
 .piede a{text-decoration:none}
 .piede a:hover{color:var(--bianco);text-decoration:underline}
 .piede .forte{color:var(--bianco);font-weight:700}
@@ -298,7 +326,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 
 <main id="contenuto">
 
-<section class="apertura" aria-labelledby="titolo">
+<section class="apertura scuro" id="apertura" aria-labelledby="titolo">
   <div class="c">
     <div class="ap-testo">
       <p class="et">Canne fumarie e camini inox · Mestrino (PD) · dal 1978</p>
@@ -309,34 +337,17 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
         <a class="btn bordo" href="#richiesta"><span class="d">Mandate un disegno</span><span class="m">Preventivo</span></a>
       </div>
       <dl class="fatti">
-        <div><dt>Magazzino e banco</dt><dd>Via Bologna 6, zona industriale, Mestrino (PD). <a href="https://www.google.com/maps/search/?api=1&amp;query=La%20Termica%2C%20Via%20Bologna%206%2C%2035035%20Mestrino%20PD">Apri la mappa</a></dd></div>
+        <div><dt>Magazzino e banco</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=La%20Termica%2C%20Via%20Bologna%206%2C%2035035%20Mestrino%20PD">Via Bologna 6, zona industriale, Mestrino (PD): apri la mappa</a></dd></div>
+        <div><dt>Orari del banco</dt><dd>Prima di passare, chiamate il banco: <a href="tel:+390499002522">049 9002522</a></dd></div>
         <div><dt>In regola</dt><dd>Autorizzati dalla camera di commercio, con la certificazione del prodotto e dell'installazione.</dd></div>
         <div class="solo-largo"><dt>Al banco</dt><dd>Al dettaglio e all'ingrosso, oltre 500 m² di magazzino. <a href="#magazzino">Le serie a magazzino</a></dd></div>
-        <div class="solo-largo"><dt>Lavori grandi</dt><dd>Condomini, camini autoportanti e industria. <a href="#lavori">Guardate i lavori</a></dd></div>
       </dl>
     </div>
     <div class="ap-media">
       <picture>
-        <source media="(max-width:760px)" srcset="img/apertura-tel-780.webp" width="780" height="520">
-        <img src="img/apertura-560.webp" srcset="img/apertura-560.webp 560w, img/apertura-1040.webp 1040w" sizes="(max-width:900px) 100vw, 520px" width="560" height="700" alt="Il furgone La Termica camini inox davanti a un condominio, con due canne fumarie inox nuove lungo la facciata" fetchpriority="high">
+        <source media="(max-width:900px)" srcset="img/apertura-tel-780.webp 780w, img/apertura-tel-1244.webp 1244w" sizes="100vw" width="780" height="439">
+        <img src="img/apertura-640.webp" srcset="img/apertura-640.webp 640w, img/apertura-1200.webp 1200w" sizes="(max-width:1199px) 40vw, 600px" width="640" height="853" alt="Il furgone La Termica con la scritta camini inox davanti a un condominio, con la canna fumaria inox nuova che sale lungo la facciata fino al tetto" fetchpriority="high">
       </picture>
-    </div>
-  </div>
-</section>
-
-<section class="sez scuro" aria-labelledby="t-garanzie">
-  <div class="c">
-    <h2 id="t-garanzie" class="et">La Termica in quattro numeri</h2>
-    <div class="numeri">
-      <div><span class="cifra">1978</span><p>La ditta nasce, nelle coibentazioni termiche di tubazioni.</p></div>
-      <div><span class="cifra">500 m²</span><p>Oltre, di magazzino di vendita a Mestrino.</p></div>
-      <div><span class="cifra">15</span><p>Serie di canne fumarie, ognuna con il suo catalogo tecnico.</p></div>
-      <div><span class="cifra">360°</span><p>Vendita, consegna e assistenza anche in cantiere.</p></div>
-    </div>
-    <div class="garanzie">
-      <div><h3>Autorizzati dalla camera di commercio</h3><p>L'installazione di canne fumarie deve essere sempre eseguita da ditte autorizzate dalla camera di commercio.</p></div>
-      <div><h3>Prodotto e installazione certificati</h3><p>Tutti i nostri prodotti sono certificati e forniamo tutte le certificazioni necessarie per legge.</p></div>
-      <div><h3>Tecnici specializzati</h3><p>Tecnici certificati e specializzati nelle canne fumarie inox, nel rispetto del D.Lgs. 81/2008.</p></div>
     </div>
   </div>
 </section>
@@ -352,16 +363,42 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
       <figure class="ispezione"><img src="img/videoispezione-600.webp" srcset="img/videoispezione-600.webp 600w, img/videoispezione-1000.webp 1000w" sizes="(max-width:900px) 100vw, 400px" width="600" height="450" loading="lazy" alt="Video ispezione: la telecamera di La Termica dentro una canna fumaria inox"></figure>
     </div>
     <ul class="schede">
-      <li><a class="scheda" href="#richiesta" data-tipo="Canna fumaria nuova"><span class="et">Progettazione e installazione</span><h3>Stufa, caminetto o caldaia nuova da collegare</h3><p>Progettiamo con voi l'impianto più adatto e costruiamo la canna fumaria su misura, con la certificazione.</p><span class="vai">Chiedete un preventivo →</span></a></li>
-      <li><a class="scheda" href="#richiesta" data-tipo="Pulizia e spazzacamino"><span class="et">Spazzacamino</span><h3>Canna da pulire prima dell'inverno</h3><p>Pulizia e servizio di spazzacamino, anche per le canne fumarie preesistenti.</p><span class="vai">Chiedete la pulizia →</span></a></li>
-      <li><a class="scheda" href="#richiesta" data-tipo="Video ispezione"><span class="et">Video ispezioni</span><h3>Fumo in casa o canna da controllare</h3><p>La telecamera entra nella canna fumaria e la vediamo dentro, tratto per tratto.</p><span class="vai">Chiedete una video ispezione →</span></a></li>
-      <li><a class="scheda" href="#richiesta" data-tipo="Intubamento o messa a norma"><span class="et">Messa a norma</span><h3>Canna vecchia da intubare o mettere a norma</h3><p>Intubamento, risanamento e messa a norma delle canne fumarie esistenti.</p><span class="vai">Chiedete un sopralluogo →</span></a></li>
-      <li><a class="scheda" href="#richiesta" data-tipo="Stufa o caminetto"><span class="et">Stufe e caminetti</span><h3>Una stufa a legna o a pellet</h3><p>Vendita e installazione di stufe a legna e a pellet, caminetti e termocamini.</p><span class="vai">Chiedete un consiglio →</span></a></li>
-      <li><a class="scheda" href="#richiesta" data-tipo="Abbattitore di fuliggine"><span class="et">Stop alla fuliggine</span><h3>Fuliggine e fumi da abbattere</h3><p>Abbattitori, aspiratori e depuratori dei fumi, contro la fuliggine.</p><span class="vai">Chiedete informazioni →</span></a></li>
+      <li class="scheda"><span class="num" aria-hidden="true">01</span><h3><a href="#richiesta" data-tipo="Canna fumaria nuova">Stufa, caminetto o caldaia nuova da collegare</a></h3><p>Per stufe a pellet e a legna, caminetti e caldaie: progettiamo con voi l'impianto più adatto e costruiamo la canna fumaria su misura, con la certificazione.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete un preventivo →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
+      <li class="scheda"><span class="num" aria-hidden="true">02</span><h3><a href="#richiesta" data-tipo="Pulizia e spazzacamino">Canna da pulire prima dell'inverno</a></h3><p>Pulizia e servizio di spazzacamino, anche per le canne fumarie preesistenti.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete la pulizia →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
+      <li class="scheda"><span class="num" aria-hidden="true">03</span><h3><a href="#richiesta" data-tipo="Video ispezione">Fumo in casa o canna da controllare</a></h3><p>Video ispezione: la telecamera entra nella canna fumaria e la vediamo dentro, tratto per tratto.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete l'ispezione →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
+      <li class="scheda"><span class="num" aria-hidden="true">04</span><h3><a href="#richiesta" data-tipo="Intubamento o messa a norma">Canna vecchia da intubare o mettere a norma</a></h3><p>Intubamento, risanamento e messa a norma delle canne fumarie esistenti, con le certificazioni necessarie per legge.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete un sopralluogo →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
+      <li class="scheda"><span class="num" aria-hidden="true">05</span><h3><a href="#richiesta" data-tipo="Stufa o caminetto">Una stufa a legna o a pellet</a></h3><p>Vendita e installazione di stufe a legna e a pellet, caminetti e termocamini, con la loro canna fumaria.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete un consiglio →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
+      <li class="scheda"><span class="num" aria-hidden="true">06</span><h3><a href="#richiesta" data-tipo="Abbattitore di fuliggine">Fuliggine e fumi da abbattere</a></h3><p>Abbattitori, aspiratori e depuratori dei fumi, contro la fuliggine.</p><div class="scheda-piede"><span class="vai" aria-hidden="true">Chiedete informazioni →</span><a class="scheda-tel" href="tel:+390499002522" aria-label="Chiamate lo 049 9002522"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span class="t">Chiamate</span></a></div></li>
     </ul>
     <div class="servizi-sotto">
-      <p>Preferite parlarne? Senza impegno, chiamateci.</p>
+      <p><b>Veniamo noi:</b> vendita, consegna e assistenza anche in cantiere. Preferite parlarne? Senza impegno, chiamateci.</p>
       <a class="btn" href="tel:+390499002522">Chiamate 049 9002522</a>
+    </div>
+  </div>
+</section>
+
+<section class="sez scuro" id="chi-siamo" aria-labelledby="t-chi">
+  <div class="c">
+    <div class="intro">
+      <div>
+        <p class="et">Chi siamo</p>
+        <h2 id="t-chi">La famiglia Camporese, dal 1978</h2>
+      </div>
+      <div class="chi-testo">
+        <p class="frase">Mario Camporese guida l'azienda con i suoi due figli, che nel corso degli anni si sono inseriti in azienda.</p>
+        <p>Noi amiamo ciò che facciamo: metteteci alla prova!</p>
+      </div>
+    </div>
+    <div class="numeri">
+      <div><span class="cifra">1978</span><p>La ditta nasce, nelle coibentazioni termiche di tubazioni. Oggi è specializzata nelle canne fumarie.</p></div>
+      <div><span class="cifra">2</span><p>Generazioni in azienda: il titolare Mario Camporese e i suoi due figli.</p></div>
+      <div><span class="cifra">500+ m²</span><p>Di magazzino di vendita in Via Bologna 6, al dettaglio e all'ingrosso.</p></div>
+      <div><span class="cifra">15</span><p>Serie di canne fumarie al banco, ognuna con il suo catalogo tecnico.</p></div>
+    </div>
+    <div class="garanzie">
+      <div><h3>Autorizzati dalla camera di commercio</h3><p>L'installazione di canne fumarie deve essere sempre eseguita da ditte autorizzate dalla camera di commercio.</p></div>
+      <div><h3>Prodotto e installazione certificati</h3><p>Tutti i nostri prodotti sono certificati e forniamo tutte le certificazioni necessarie per legge.</p></div>
+      <div><h3>Tecnici specializzati</h3><p>Tecnici certificati e specializzati nelle canne fumarie inox, nel rispetto del D.Lgs. 81/2008.</p></div>
     </div>
   </div>
 </section>
@@ -382,25 +419,29 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
     <div class="mag-dx">
       <div class="serie-tit" id="cataloghi"><h3>Le serie a magazzino</h3><span>Catalogo tecnico in PDF</span></div>
       <ul class="serie">
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/01-dop-parete-inox-SERIE-DPG_CAT-_IT.pdf" target="_blank" rel="noopener">Doppia parete inox 316L<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/02-dop-parete-RAME_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Doppia parete rame<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/03-dop-parete-inox-SERIE-10DPG_CAT-TECNICO_it.pdf" target="_blank" rel="noopener">Doppia parete SP10<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/04-316_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Monoparete inox 316<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/05-monoparete-304-CAT-TECNICO-LMP-IT-rev01.pdf" target="_blank" rel="noopener">Monoparete inox 304<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/06-serie-PELLET_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Serie pellet<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/07-serie-2-MM_CAT-TECNICO1_IT.pdf" target="_blank" rel="noopener">Serie legna 2 mm<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/08-OVALE_CAT-TECNICO_IT-Rev01.pdf" target="_blank" rel="noopener">Ovali inox<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/09-DISPOSITIVO-NEW_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Attr. tetti in legno<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/10-alluminato_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Alluminato<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/11-FLESSIBILI_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Flessibili<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/12-COMIGNOLI_2CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Comignoli<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/13-accessori_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Accessori<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/14-TUBO_RETTANG_cat-tecnico.pdf" target="_blank" rel="noopener">Tubi rettangolari<span>PDF ↓</span></a></li>
-        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/15-vaso-espansione_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Vaso di espansione<span>PDF ↓</span></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/01-dop-parete-inox-SERIE-DPG_CAT-_IT.pdf" target="_blank" rel="noopener">Doppia parete inox 316L<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/02-dop-parete-RAME_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Doppia parete rame<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/03-dop-parete-inox-SERIE-10DPG_CAT-TECNICO_it.pdf" target="_blank" rel="noopener">Doppia parete SP10<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/04-316_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Monoparete inox 316<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/05-monoparete-304-CAT-TECNICO-LMP-IT-rev01.pdf" target="_blank" rel="noopener">Monoparete inox 304<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/06-serie-PELLET_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Serie pellet<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/07-serie-2-MM_CAT-TECNICO1_IT.pdf" target="_blank" rel="noopener">Serie legna 2 mm<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/08-OVALE_CAT-TECNICO_IT-Rev01.pdf" target="_blank" rel="noopener">Ovali inox<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/09-DISPOSITIVO-NEW_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Attr. tetti in legno<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/10-alluminato_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Alluminato<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/11-FLESSIBILI_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Flessibili<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/12-COMIGNOLI_2CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Comignoli<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/13-accessori_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Accessori<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/14-TUBO_RETTANG_cat-tecnico.pdf" target="_blank" rel="noopener">Tubi rettangolari<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
+        <li><a href="https://www.latermica.it/wp-content/uploads/2014/05/15-vaso-espansione_CAT-TECNICO_IT.pdf" target="_blank" rel="noopener">Vaso di espansione<span>Apri PDF</span><b class="vh"> (catalogo PDF, si apre in una nuova scheda)</b></a></li>
       </ul>
       <p class="serie-nota">Cataloghi tecnici del produttore. Le serie si ordinano al banco, per telefono o per email.</p>
+      <div class="azioni">
+        <a class="btn" href="mailto:info@latermicacamini.com?subject=Disponibilit%C3%A0%20a%20magazzino&amp;body=Ditta%3A%20%0ASerie%20e%20diametro%3A%20%0APezzi%20e%20quantit%C3%A0%3A%20%0ARitiro%20al%20banco%20o%20consegna%3A%20%0ATelefono%3A%20%0A">Chiedete disponibilità</a>
+        <a class="btn bordo" href="tel:+390499002522">Banco 049 9002522</a>
+      </div>
     </div>
-    <figure class="mag-foto"><img src="img/magazzino-700.webp" srcset="img/magazzino-700.webp 700w, img/magazzino-1200.webp 1200w" sizes="(max-width:900px) 100vw, 500px" width="700" height="525" loading="lazy" alt="Il magazzino La Termica a Mestrino: scaffali pieni di tubi e raccordi inox"></figure>
+    <figure class="mag-foto"><img src="img/magazzino-700.webp" srcset="img/magazzino-700.webp 700w, img/magazzino-1240.webp 1240w" sizes="(max-width:900px) 100vw, 500px" width="700" height="525" loading="lazy" alt="Il magazzino La Termica a Mestrino: scaffali pieni di raccordi e tubi inox"></figure>
   </div>
 </section>
 
@@ -414,7 +455,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
       <p>Non lasciamo niente al caso. Progettiamo con voi l'impianto più adatto alle vostre richieste e costruiamo canne fumarie e camini su misura.</p>
     </div>
     <ul class="lavori">
-      <li><a class="lavoro" href="https://www.latermica.it/galleria-canne-fumarie-inox/lavori-ultimati/" target="_blank" rel="noopener"><img src="img/lav-condominio-420.webp" srcset="img/lav-condominio-420.webp 420w, img/lav-condominio-840.webp 840w" sizes="(max-width:760px) 100vw, (max-width:1099px) 33vw, 400px" width="420" height="525" loading="lazy" alt="Condominio con una canna fumaria inox nuova che sale lungo la facciata fino al tetto, il furgone La Termica davanti"><h3>Condomini</h3><p>Canne inox nuove lungo le facciate, dal piano terra al tetto.</p><span class="vai">Galleria dei lavori ↗</span></a></li>
+      <li><a class="lavoro" href="https://www.latermica.it/galleria-canne-fumarie-inox/lavori-ultimati/" target="_blank" rel="noopener"><img src="img/lav-condominio-420.webp" srcset="img/lav-condominio-420.webp 420w, img/lav-condominio-840.webp 840w" sizes="(max-width:760px) 100vw, (max-width:1099px) 33vw, 400px" width="420" height="525" loading="lazy" alt="Canna fumaria inox nuova che sale lungo la facciata di un condominio e supera la gronda, vista dal basso"><h3>Condomini</h3><p>Canne inox nuove lungo le facciate, dal piano terra al tetto.</p><span class="vai">Galleria dei lavori ↗</span></a></li>
       <li><a class="lavoro" href="https://www.latermica.it/galleria-canne-fumarie-inox/camini-autoportanti/" target="_blank" rel="noopener"><img src="img/lav-autoportante-420.webp" srcset="img/lav-autoportante-420.webp 420w, img/lav-autoportante-840.webp 840w" sizes="(max-width:760px) 100vw, (max-width:1099px) 33vw, 400px" width="420" height="525" loading="lazy" alt="Camino autoportante: tre canne inox dentro un traliccio d'acciaio, visto dal basso"><h3>Camini autoportanti</h3><p>Tre canne inox in un traliccio d'acciaio che sta in piedi da solo.</p><span class="vai">Galleria dei camini ↗</span></a></li>
       <li><a class="lavoro" href="https://www.latermica.it/galleria-canne-fumarie-inox/lavori-ultimati/" target="_blank" rel="noopener"><img src="img/lav-rame-420.webp" srcset="img/lav-rame-420.webp 420w, img/lav-rame-840.webp 840w" sizes="(max-width:760px) 100vw, (max-width:1099px) 33vw, 400px" width="420" height="525" loading="lazy" alt="Tre canne fumarie in rame che corrono sui coppi di un tetto in centro storico e salgono in verticale"><h3>Case e centri storici</h3><p>Canne fumarie in rame sui tetti in coppi, accanto ai comignoli.</p><span class="vai">Galleria dei lavori ↗</span></a></li>
     </ul>
@@ -429,7 +470,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
 
 <section class="sez" id="su-misura" aria-labelledby="t-misura">
   <div class="c misura">
-    <figure><img src="img/armadio-700.webp" srcset="img/armadio-700.webp 700w, img/armadio-1200.webp 1200w" sizes="(max-width:900px) 100vw, 600px" width="700" height="525" loading="lazy" alt="Armadio a due ante in acciaio inox costruito su misura da La Termica"></figure>
+    <figure><img src="img/armadio-560.webp" srcset="img/armadio-560.webp 560w, img/armadio-1120.webp 1120w" sizes="(max-width:900px) 440px, 400px" width="560" height="700" loading="lazy" alt="Armadio a due ante in acciaio inox costruito su misura da La Termica"></figure>
     <div>
       <p class="et">Lavorazioni in proprio</p>
       <h2 id="t-misura">Armadi inox su misura e Pronto Lamiera</h2>
@@ -444,20 +485,6 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
         <a class="btn" href="mailto:info@latermicacamini.com?subject=Lavorazione%20su%20misura%3A%20disegno&amp;body=Nome%20e%20ditta%3A%20%0ATelefono%3A%20%0ACosa%20serve%20(armadio%20caldaia%2C%20contatori%20gas%2C%20cassetta%20crash%2C%20lamiera)%3A%20%0AMisure%20(larghezza%20x%20altezza%20x%20profondit%C3%A0)%3A%20%0AMateriale%20(inox%20o%20alluminio)%3A%20%0AQuantit%C3%A0%3A%20%0A%0AAllego%20il%20disegno%20o%20una%20foto%20con%20le%20misure.%0A">Mandate il disegno</a>
         <a class="btn bordo" href="tel:+390499002522">Chiamate 049 9002522</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="sez grigio" id="chi-siamo" aria-labelledby="t-chi">
-  <div class="c chi">
-    <div>
-      <p class="et">Chi siamo</p>
-      <h2 id="t-chi">La famiglia Camporese, dal 1978</h2>
-    </div>
-    <div>
-      <p class="frase">Mario Camporese guida l'azienda con i suoi due figli, che nel corso degli anni si sono inseriti in azienda.</p>
-      <p>La ditta La Termica nasce nel 1978 occupandosi di coibentazioni termiche di tubazioni; oggi è specializzata nelle canne fumarie. Vendiamo al banco, consegniamo, installiamo e manteniamo, con tecnici certificati e specializzati nelle canne fumarie inox.</p>
-      <p>Noi amiamo ciò che facciamo: metteteci alla prova!</p>
     </div>
   </div>
 </section>
@@ -478,7 +505,8 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
         <h3>Dove siamo</h3>
         <address>Via Bologna 6, zona industriale<br>35035 Mestrino (PD)</address>
         <img src="img/sede-600.webp" srcset="img/sede-600.webp 600w, img/sede-1200.webp 1200w" sizes="(max-width:900px) 100vw, 520px" width="600" height="450" loading="lazy" alt="La sede La Termica in Via Bologna 6 a Mestrino: il capannone con l'insegna LATERMICA e il cancello">
-        <p>Cercate l'insegna LATERMICA sopra il capannone. Prima di passare al banco, chiamateci.</p>
+        <p class="orari"><b>Orari del banco:</b> prima di passare, chiamate lo <a href="tel:+390499002522">049 9002522</a>.</p>
+        <p>Cercate l'insegna LATERMICA sopra il capannone.</p>
         <div class="azioni">
           <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=La%20Termica%2C%20Via%20Bologna%206%2C%2035035%20Mestrino%20PD">Indicazioni stradali</a>
           <a class="btn bordo" href="https://www.google.com/maps/search/?api=1&amp;query=La%20Termica%2C%20Via%20Bologna%206%2C%2035035%20Mestrino%20PD">Apri la mappa</a>
@@ -519,7 +547,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
           <label><input type="radio" name="Quando" value="Entro un mese" checked> Entro un mese</label>
           <label><input type="radio" name="Quando" value="Senza fretta"> Senza fretta</label>
         </fieldset>
-        <p class="allegati" id="nota-allegati"><b>Da allegare all'email:</b> pianta o disegno, foto del tetto e della canna, tipo e potenza della stufa o della caldaia.</p>
+        <p class="allegati" id="nota-allegati"><b>Foto e disegni: allegateli all'email che si apre.</b> Servono pianta o disegno, foto del tetto e della canna, tipo e potenza della stufa o della caldaia.</p>
         <p class="avviso" id="f-avviso" role="alert"></p>
       </div>
       <button class="btn" type="submit">Componi l'email</button>
@@ -544,6 +572,7 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
           <li><a class="forte" href="tel:+390499002522">Tel. 049 9002522</a></li>
           <li><a href="mailto:info@latermicacamini.com?subject=Richiesta%20di%20informazioni">info@latermicacamini.com</a></li>
           <li>Via Bologna 6, Z.I.<br>35035 Mestrino (PD)</li>
+          <li>Orari del banco: chiamate prima di passare</li>
           <li><a href="https://www.google.com/maps/search/?api=1&amp;query=La%20Termica%2C%20Via%20Bologna%206%2C%2035035%20Mestrino%20PD">Apri la mappa</a></li>
         </ul>
       </div>
@@ -584,10 +613,6 @@ h1 .sotto{display:block;margin-top:20px;font-size:var(--f-sub);line-height:1.3;f
   am.addEventListener('click',function(){var ap=am.getAttribute('aria-expanded')==='true';am.setAttribute('aria-expanded',ap?'false':'true');menu.classList.toggle('aperto',!ap);});
   menu.addEventListener('click',function(e){if(e.target.tagName==='A')chiudi();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto')){chiudi();am.focus();}});
-
-  // un solo rosso pieno alla volta: finché il bottone di chiamata dell'apertura è in vista, quello della testata è bordato
-  var tt=document.querySelector('.tel-testata'), ch=document.querySelector('.apertura .chiama');
-  if('IntersectionObserver' in window&&ch){new IntersectionObserver(function(v){tt.classList.toggle('calmo',v[0].isIntersecting);}).observe(ch);}
 
   // le schede dei servizi portano al modulo con il tipo già scelto
   var tipo=document.getElementById('f-tipo');

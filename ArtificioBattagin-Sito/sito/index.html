@@ -14,6 +14,7 @@
   /* due colori del marchio e i neutri */
   --verde:#17633A;      /* il verde di BATTAGIN nel logo, scurito: 7,3:1 col bianco */
   --parete:#D9E8E4;     /* il turchese della parete degli angolari, schiarito */
+  --oro:#D8A000;        /* l'oro della L del logo (cornice), solo per i filetti, mai per il testo */
   --inchiostro:#1F1B17;
   --grigio:#505A58;     /* testo secondario, 7,1:1 sul bianco, 5,6:1 sulla parete */
   --chiaro:#F3F5F4;     /* grigio chiarissimo per il modulo */
@@ -42,7 +43,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 .salta:focus{left:8px}
 :focus-visible{outline:3px solid var(--verde);outline-offset:3px}
 
-/* scala tipografica: 88, 56, 32, 24, 19, 16, 14 a 1440; 40, 32, 24, 17, 16, 14 a 390 */
+/* scala tipografica: 88, 56, 32, 24, 19, 17, 16, 14 a 1440; 40, 32, 24, 17, 16, 14 a 390
+   a 1440 il testo corrente è a 19 (racconti) o 17 (descrizioni, note); i 16 solo per etichette, bottoni e date */
 .t-h1{font-size:40px;line-height:1;text-transform:uppercase;letter-spacing:-.005em}
 .t-h2{font-size:32px;line-height:1.1;letter-spacing:-.01em}
 .t-32{font-size:24px;line-height:1.2}
@@ -85,7 +87,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 @media (min-width:430px){.logo{width:96px}}
 @media (min-width:1100px){
   .testata .wrap{height:88px;gap:32px}
-  .logo{width:120px}
+  .logo{width:150px}
   .menu{display:flex;gap:28px;margin-left:auto}
   .menu a{font:600 16px/1 var(--sans);text-decoration:none;padding:16px 0}
   .menu a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:.3em}
@@ -101,7 +103,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 
 /* apertura */
 .apertura{padding-bottom:var(--sez)}
-.apertura .foto-tel{display:block;height:120px;width:100%;object-fit:cover;object-position:50% 60%}
+.apertura .foto-tel{display:block;height:150px;width:100%;object-fit:cover;object-position:50% 60%}
 .apertura .griglia{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;padding-top:16px}
 .apertura .foto-pc{display:none}
 .occhiello{color:var(--verde);margin-bottom:12px}
@@ -109,11 +111,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 .occhiello .lungo,.sotto-azioni .lungo{display:none}
 @media (min-width:430px){.occhiello .lungo,.sotto-azioni .lungo{display:inline}}
 .apertura .lede{max-width:34em}
-.stato{margin-top:14px;padding:10px 0 12px;border-top:1px solid var(--filo);border-bottom:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:2px 16px;align-items:baseline;justify-content:space-between}
+.stato{margin-top:14px;padding:10px 0;border-top:1px solid var(--filo);border-bottom:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
 .stato .etichetta{color:var(--grigio)}
-.stato .ora{flex:1 1 100%}
+.stato .ora{flex:1 1 auto}
 .stato .ora b{font-weight:600}
 .stato a{font-size:16px}
+.stato a[hidden]{display:none}
+.btn .w-num{display:none}
+@media (min-width:760px){.btn .w-num{display:inline}}
 .azioni{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:14px}
 .azioni .btn{padding:0 10px;white-space:normal;text-align:center}
 .azioni .prima{grid-column:1 / -1}
@@ -130,21 +135,24 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
   .azioni{display:flex;flex-wrap:wrap}
   .azioni .btn{padding:0 22px}
 }
+/* dal computer: testo a sinistra, la foto dei cavalletti a destra a filo del bordo e alta quanto la prima schermata */
 @media (min-width:1100px){
+  .apertura{padding-bottom:0}
   .apertura .foto-tel{display:none}
-  .apertura .griglia{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 64px;padding-top:40px;align-items:start}
-  .apertura .titolo{grid-column:1 / -1}
-  .apertura .t-h1 .r{display:inline}
-  .apertura .t-h1 .r.a{display:block}
-  .apertura .foto-pc{display:block;margin-top:8px}
-  .apertura .foto-pc img{width:100%;aspect-ratio:4/3;object-fit:cover}
-  .stato{margin-top:28px}
+  .apertura .griglia{grid-template-columns:minmax(0,1fr) 46%;grid-template-rows:auto 1fr;gap:0 64px;padding-top:0;padding-right:0;min-height:clamp(640px,calc(100vh - 89px),860px)}
+  .apertura .titolo{grid-column:1;padding-top:48px}
+  .apertura .testo{grid-column:1;padding:28px 0 48px}
+  .apertura .foto-pc{display:block;grid-column:2;grid-row:1 / span 2;position:relative;margin:0;min-height:100%}
+  .apertura .foto-pc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+  .apertura .spedizione{display:none}
+  .stato{margin-top:24px}
   .azioni{margin-top:24px}
-  .cerca{margin-top:24px;max-width:560px}
+  .cerca{margin-top:20px;max-width:560px}
 }
 
 /* tre porte */
 .porte{padding-bottom:var(--sez)}
+@media (min-width:1100px){.porte{padding-top:96px}}
 .porte ul{display:grid;gap:12px}
 .porta a{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;text-decoration:none;padding:12px 0;border-top:1px solid var(--filo)}
 .porta img{width:120px;aspect-ratio:4/3;object-fit:cover}
@@ -165,10 +173,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 .su-verde{background:var(--verde);color:#fff;padding:var(--sez) 0}
 .manifesto{max-width:21em}
 .manifesto + .fonte{margin-top:16px;color:#D3E4D9}
-.numeri{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.35)}
+.numeri{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;margin-top:48px;padding-top:32px;border-top:2px solid var(--oro)}
 .numeri b{display:block;font:400 32px/1.05 var(--serif);margin-bottom:6px}
 .numeri span{display:block;font-size:16px;line-height:1.4;color:#E3EEE7}
-@media (min-width:760px){.numeri{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px;margin-top:64px}}
+@media (min-width:760px){.numeri{gap:40px 32px;margin-top:64px}}
+@media (min-width:1000px){.numeri{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:1200px){.numeri b{font-size:56px}}
 
 /* sezioni */
@@ -203,6 +212,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 .cornici{display:grid;gap:40px}
 .passi{counter-reset:p;display:grid;gap:0;margin:28px 0}
 .passi li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-top:1px solid rgba(31,27,23,.22)}
+.passi li:first-child{border-top:2px solid var(--oro)}
+.dove-qui{margin-top:16px}
+.dove-qui a{white-space:nowrap}
 .passi li::before{counter-increment:p;content:counter(p);font:400 32px/1 var(--serif);color:var(--verde)}
 .chiedi{margin-bottom:20px}
 .bottoni{display:flex;flex-wrap:wrap;gap:8px}
@@ -235,14 +247,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
   .calendario .iscr{grid-column:4;grid-row:1 / span 2}
 }
 .dopo-cal{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;margin-top:24px}
-.novita{margin-top:var(--sez)}
-.novita h3{margin-bottom:16px}
-.novita ul{display:grid;gap:0}
-.novita li a{display:block;padding:14px 0;border-top:1px solid var(--filo);text-decoration:none}
-.novita li a:hover .tit{text-decoration:underline;text-underline-offset:.2em}
-.novita time{display:block;color:var(--grigio);font-size:16px}
-.novita .tit{font:400 24px/1.25 var(--serif)}
-@media (min-width:760px){.novita ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}}
+.novita{margin-top:48px;padding-top:20px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:4px 20px;align-items:baseline}
+.novita .etichetta{color:var(--grigio)}
+.novita a{display:inline-flex;align-items:center;min-height:44px;color:var(--inchiostro);text-decoration:underline;text-decoration-color:var(--filo);text-underline-offset:.25em}
+.novita a:hover{text-decoration-color:var(--verde)}
 
 /* chi siamo */
 .storia{display:grid;gap:32px}
@@ -282,15 +290,21 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 @media (min-width:760px){.richiesta{padding:40px}.campi.tre{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:1100px){.dove{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}}
 
+/* firma: il logo in grande, sul bianco, prima del piede */
+.firma{padding:var(--sez) 0;border-top:1px solid var(--filo)}
+.firma .wrap{display:grid;gap:24px;align-items:center}
+.firma img{width:200px}
+.firma p{max-width:16em;font-family:var(--serif)}
+@media (min-width:760px){.firma .wrap{grid-template-columns:250px minmax(0,1fr);gap:64px}.firma img{width:250px}}
+
 /* piede */
 .piede{background:var(--inchiostro);color:#fff;padding:64px 0 32px}
 .piede a{text-decoration:none}
 .piede a:hover{text-decoration:underline;text-underline-offset:.2em}
 .piede .colonne{display:grid;grid-template-columns:1fr 1fr;gap:32px 20px}
 .piede .marchio{grid-column:1 / -1}
-.piede .marchio img{width:125px;background:#fff;padding:10px 12px;border-radius:4px;box-sizing:content-box;margin-bottom:16px}
 .piede h2{font:600 16px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#B9C9C1;margin-bottom:12px}
-.piede li a,.piede li span{display:inline-block;padding:7px 0;font-size:16px;line-height:1.4}
+.piede li a,.piede li span{display:inline-flex;align-items:center;min-height:44px;padding:0;font-size:16px;line-height:1.35}
 .piede p{font-size:16px;line-height:1.5;color:#E6E9E8}
 .piede .colonne > div{min-width:0;overflow-wrap:anywhere}
 .piede .contatti{grid-column:1 / -1}
@@ -299,6 +313,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 .piede .legale a{display:inline-block;padding:4px 0}
 @media (min-width:760px){.piede .colonne{grid-template-columns:repeat(4,minmax(0,1fr))}.piede .marchio{grid-column:auto}}
 @media (min-width:1200px){.piede{padding:96px 0 40px}}
+/* a 1440 il testo corrente non scende sotto i 17 px (regola 7): descrizioni dei corsi, etichette dei numeri, note, piede */
+@media (min-width:1200px){
+  .t-16,.calendario .chi,.numeri span,.piede p,.piede li a,.piede li span,.cornici figcaption{font-size:17px}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Store","name":"L'Artificio Battagin","legalName":"A.B. s.r.l.","vatID":"IT04191710286","url":"https://artificiobattagin.it/","telephone":"+39 049 7811043","email":"negozio@artificiobattagin.it","address":{"@type":"PostalAddress","streetAddress":"Via della Croce Rossa 5/a","postalCode":"35129","addressLocality":"Padova","addressRegion":"PD","addressCountry":"IT"},"sameAs":["https://www.instagram.com/lartificiobattagin/","https://www.facebook.com/artificiobattagin/"]}
@@ -347,13 +365,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
     <div class="testo">
       <p class="lede">Colori, carte, tele, pennelli e cavalletti, cornici su misura fatte nel nostro laboratorio e i corsi Artinpratica. Per i professionisti e gli amanti dell’arte.</p>
       <div class="stato">
-        <span class="etichetta">Orari di oggi</span>
-        <a class="link" href="#dove">Tutta la settimana</a>
-        <span class="ora" id="ora-oggi">Prima di venire, chiamaci o scrivici su WhatsApp per gli orari di oggi.</span>
+        <span class="etichetta" id="ora-etichetta">Orari</span>
+        <span class="ora" id="ora-oggi">Chiamaci prima di venire.</span>
+        <a class="link" id="ora-settimana" href="#dove" hidden>Tutta la settimana</a>
       </div>
       <div class="azioni">
         <a class="btn prima" href="tel:+390497811043">Chiama <span class="num">049 7811043</span></a>
-        <a class="btn bordo" href="https://wa.me/393802308602">WhatsApp</a>
+        <a class="btn bordo" href="https://wa.me/393802308602">WhatsApp<span class="num w-num"> 380 2308602</span></a>
         <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=L%27Artificio%20Battagin%2C%20Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">Come arrivare</a>
       </div>
       <p class="sotto-azioni t-16">Via della Croce Rossa 5/a<span class="lungo">, Padova</span> · <span class="lungo">ampio </span>parcheggio privato</p>
@@ -366,7 +384,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
       <p class="spedizione t-16">Shop online: spedizione 10 €, gratis oltre 79 €.</p>
     </div>
     <figure class="foto-pc">
-      <img src="img/negozio-43-749.jpg" srcset="img/negozio-43-480.jpg 480w, img/negozio-43-749.jpg 749w" sizes="(min-width:1100px) 45vw, 100vw" width="749" height="562" alt="Il reparto belle arti in via della Croce Rossa: scaffali di colori, pennelli e carte sul pavimento blu." fetchpriority="high">
+      <img src="img/apertura-cavalletti-800.jpg" srcset="img/apertura-cavalletti-800.jpg 800w, img/apertura-cavalletti-1200.jpg 1200w" sizes="46vw" width="1200" height="1500" alt="I cavalletti in faggio nel reparto di via della Croce Rossa, con il cassetto e i galletti in ottone in primo piano." fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -406,12 +424,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
   <div class="wrap">
     <h2 class="t-h2 manifesto" id="manifesto">Uno spazio dedicato agli amanti dell’arte: 1000 mq dove trovare prodotti per dipingere, modellare, restaurare e incorniciare.</h2>
     <ul class="numeri">
-      <li><b>1000 mq</b><span>di negozio in via della Croce Rossa, con il laboratorio di cornici e lo spazio Artinpratica</span></li>
-      <li><b>Anni ’70</b><span>quando Antonio Battagin apre in centro a Padova la sua prima bottega</span></li>
       <li><b>5 sedi</b><span>in città in cinquant’anni; in via della Croce Rossa dal 2007</span></li>
-      <li><b>Oltre 20 anni</b><span>di mestiere di Matteo Battagin, corniciaio</span></li>
+      <li><b>Oltre 20</b><span>anni di mestiere di Matteo Battagin, corniciaio</span></li>
       <li><b>22</b><span>corsi e workshop in calendario nel 2026</span></li>
-      <li><b>79 €</b><span>oltre questa cifra la spedizione dallo shop online è gratis</span></li>
+      <li><b>186</b><span>prodotti nello shop online, con spedizione in tutta Italia</span></li>
     </ul>
   </div>
 </section>
@@ -468,6 +484,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
         <a class="btn" href="https://wa.me/393802308602?text=Ciao%2C%20vorrei%20una%20cornice%20su%20misura.%20Ti%20mando%20la%20foto%20dell%27opera%3B%20le%20misure%20sono%3A%20">Manda la foto su WhatsApp</a>
         <a class="btn bordo" href="tel:+390497811043">Chiama <span class="num">049 7811043</span></a>
       </div>
+      <p class="dove-qui t-16">Via della Croce Rossa 5/a, Padova · ampio parcheggio privato · <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=L%27Artificio%20Battagin%2C%20Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">Come arrivare</a></p>
     </div>
     <div>
       <figure>
@@ -516,20 +533,21 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
       <a class="btn" href="https://artificiobattagin.it/workshop/">Tutto il calendario</a>
       <p class="t-16">Il materiale che serve per i corsi lo trovi in negozio.</p>
     </div>
-    <div class="novita">
-      <h3 class="t-32">Dalle news</h3>
-      <ul>
-        <li><a href="https://artificiobattagin.it/matteo-felloni-lartista-con-la-penna-biro/"><time datetime="2026-09-23">23 settembre 2026</time><span class="tit">Matteo Felloni, l’Artista con la penna biro</span></a></li>
-        <li><a href="https://artificiobattagin.it/offerta-speciale-liquitex/"><time datetime="2026-09-08">8 settembre 2026</time><span class="tit">Offerta speciale Liquitex!</span></a></li>
-        <li><a href="https://artificiobattagin.it/palette-acquerelli-extrafini-divolo/"><time datetime="2026-07-08">8 luglio 2026</time><span class="tit">Palette acquerelli extrafini Divolo</span></a></li>
-      </ul>
-    </div>
+    <p class="novita t-16">
+      <span class="etichetta">Dalle news</span>
+      <a href="https://artificiobattagin.it/matteo-felloni-lartista-con-la-penna-biro/">Matteo Felloni, l’Artista con la penna biro</a>
+      <a href="https://artificiobattagin.it/offerta-speciale-liquitex/">Offerta speciale Liquitex!</a>
+      <a href="https://artificiobattagin.it/palette-acquerelli-extrafini-divolo/">Palette acquerelli extrafini Divolo</a>
+    </p>
   </div>
 </section>
 
 <section class="sezione" style="padding-top:0" aria-labelledby="t-storia">
   <div class="wrap storia">
-    <img src="img/cavalletti-1000.jpg" srcset="img/cavalletti-640.jpg 640w, img/cavalletti-1000.jpg 1000w, img/cavalletti-1600.jpg 1600w" sizes="(min-width:1100px) 55vw, 100vw" width="1600" height="900" alt="Cavalletti in faggio nel reparto, con il cassetto e i galletti in ottone in primo piano." loading="lazy">
+    <picture>
+      <source media="(min-width:1100px)" srcset="img/negozio-169-640.jpg 640w, img/negozio-169-1000.jpg 1000w" sizes="55vw" width="1000" height="562">
+      <img src="img/cavalletti-1000.jpg" srcset="img/cavalletti-640.jpg 640w, img/cavalletti-1000.jpg 1000w" sizes="100vw" width="1000" height="562" alt="Il negozio di via della Croce Rossa: dal computer il reparto belle arti con gli scaffali pieni, dal telefono i cavalletti in faggio." loading="lazy">
+    </picture>
     <div>
       <p class="etichetta" style="color:var(--verde);margin-bottom:12px">Chi siamo</p>
       <h2 class="t-h2" id="t-storia">Una famiglia amante dell’arte</h2>
@@ -543,8 +561,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 <section class="sezione su-parete" id="dove" aria-labelledby="t-dove">
   <div class="wrap">
     <div class="testa-sez">
-      <p class="etichetta">Orari e dove siamo</p>
-      <h2 class="t-h2" id="t-dove">Via della Croce Rossa 5/a, Padova</h2>
+      <p class="etichetta">Il negozio</p>
+      <h2 class="t-h2" id="t-dove">Orari e dove siamo</h2>
     </div>
     <div class="dove">
       <div class="negozio">
@@ -595,12 +613,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 
 </main>
 
+<section class="firma" aria-label="L’Artificio Battagin">
+  <div class="wrap">
+    <img src="img/logo-artificio-battagin.png" width="250" height="117" alt="L’Artificio Battagin" loading="lazy">
+    <p class="t-h2">Per i professionisti e gli amanti dell’arte.</p>
+  </div>
+</section>
+
 <footer class="piede">
   <div class="wrap">
     <div class="colonne">
       <div class="marchio">
-        <img src="img/logo-artificio-battagin.png" width="250" height="117" alt="L’Artificio Battagin" loading="lazy">
-        <p>Per i professionisti e gli amanti dell’arte. Negozio di belle arti, cornici su misura e corsi a Padova.</p>
+        <h2>L’Artificio Battagin</h2>
+        <p>Negozio di belle arti, cornici su misura e corsi a Padova, in via della Croce Rossa dal 2007.</p>
       </div>
       <div>
         <h2>Negozio</h2>
@@ -628,7 +653,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
           <li><a href="https://wa.me/393802308602">WhatsApp 380 2308602</a></li>
           <li><a href="mailto:negozio@artificiobattagin.it">negozio@artificiobattagin.it</a></li>
           <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=L%27Artificio%20Battagin%2C%20Via%20della%20Croce%20Rossa%205%2Fa%2C%2035129%20Padova">Via della Croce Rossa 5/a, 35129 Padova</a></li>
-          <li><a href="#dove">Orari</a></li>
+          <li><span id="orari-piede">Orari: chiamaci prima di venire</span></li>
         </ul>
       </div>
     </div>
@@ -646,7 +671,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400}
 <script>
 /* Orari: sul sito non sono pubblicati. Quando l'azienda li conferma si scrivono qui
    (0 = domenica ... 6 = sabato; ogni giorno una lista di fasce ["9:00","12:30"]; [] = chiuso).
-   Finché ORARI è null la pagina mostra il testo che invita a chiamare. */
+   Finché ORARI è null la pagina mostra il testo che invita a chiamare e nasconde il link "Tutta la settimana". */
 var ORARI = null;
 var GIORNI = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
 function adessoRoma(){
@@ -672,13 +697,16 @@ function scriviOrari(){
     }
   }
   document.getElementById('ora-oggi').innerHTML = testo;
+  document.getElementById('ora-etichetta').textContent = 'Orari di oggi';
+  document.getElementById('ora-settimana').hidden = false;
+  document.getElementById('orari-piede').textContent = 'Orari: ' + [1,2,3,4,5,6,0].map(function(x){return GIORNI[x].slice(0,3).toLowerCase()+' '+fasce(x);}).join('; ');
   var righe = [1,2,3,4,5,6,0].map(function(x){return '<tr'+(x===g?' class="oggi"':'')+'><th scope="row">'+GIORNI[x]+'</th><td>'+fasce(x)+'</td></tr>';}).join('');
   document.getElementById('orari-settimana').innerHTML = '<table class="orari"><caption class="etichetta" style="text-align:left;padding-bottom:8px">Orari della settimana</caption>'+righe+'</table>';
 }
 scriviOrari();
 
 /* sui telefoni stretti il suggerimento del campo di ricerca si accorcia, per stare intero */
-if (matchMedia('(max-width:429px)').matches) document.querySelectorAll('.cerca input[name=s]').forEach(function(i){ i.placeholder = 'Cerca marca o prodotto'; });
+if (matchMedia('(max-width:429px)').matches) document.querySelectorAll('.cerca input[name=s]').forEach(function(i){ i.placeholder = matchMedia('(max-width:359px)').matches ? 'Marca o prodotto' : 'Cerca marca o prodotto'; });
 
 /* testata: filetto quando la pagina scorre; menu del telefono */
 var testata = document.getElementById('testata');

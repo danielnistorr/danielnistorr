@@ -64,7 +64,7 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--filo)}
 .testata .c{display:flex;align-items:center;gap:24px;height:var(--h-testata)}
 .marchio{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--testo);margin-right:auto}
-.marchio img{width:56px;height:auto}
+.marchio img{width:56px;height:auto;flex:none}
 .marchio span{font-size:var(--f4);font-weight:700;letter-spacing:-.01em}
 .menu{display:flex;gap:28px;font-size:var(--f2)}
 .menu a{text-decoration:none;padding:8px 0}
@@ -85,6 +85,7 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .apertura .lead{margin-top:28px;max-width:30em;color:rgba(255,255,255,.88)}
 .apertura .azioni{margin-top:40px}
 .ap-lato{grid-column:8/13}
+.prova-breve{display:none;margin-top:16px;font-size:var(--f1);color:rgba(255,255,255,.78)}
 .video-box{position:relative;aspect-ratio:16/9;background:var(--notte)}
 .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;overflow:hidden;background:var(--notte);color:var(--bianco);font:inherit}
@@ -94,7 +95,7 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .video .play svg{width:16px;height:16px;fill:var(--blu)}
 .video-nota{margin-top:14px;font-size:var(--f1);line-height:1.45;color:rgba(255,255,255,.72)}
 .video-nota a{color:rgba(255,255,255,.86)}
-.ingressi{list-style:none;margin:72px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--filo-chiaro)}
+.ingressi{grid-column:1/-1;list-style:none;margin:72px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--filo-chiaro)}
 .ingressi li+li{border-left:1px solid var(--filo-chiaro)}
 .ingressi a{display:flex;flex-direction:column;gap:8px;height:100%;padding:28px 24px 36px;text-decoration:none;color:var(--bianco)}
 .ingressi li:first-child a{padding-left:0}
@@ -172,17 +173,17 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .ponti .sx .lead{margin-top:28px;color:rgba(255,255,255,.9)}
 .ponti .azioni{margin-top:40px}
 .ponti .dx{grid-column:8/13}
-.ponti .dx ul{list-style:none;margin:0;padding:0}
-.ponti .dx li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--filo-chiaro);font-size:var(--f5);line-height:1.2;letter-spacing:-.015em}
-.ponti .dx li:first-child{border-top:1px solid var(--filo-chiaro)}
-.ponti .dx li small{font-size:var(--f2);letter-spacing:0;color:rgba(255,255,255,.72);text-align:right}
+.ponti .dx>ul{list-style:none;margin:0;padding:0}
+.ponti .dx>ul>li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--filo-chiaro);font-size:var(--f5);line-height:1.2;letter-spacing:-.015em}
+.ponti .dx>ul>li:first-child{border-top:1px solid var(--filo-chiaro)}
+.ponti .dx>ul>li small{font-size:var(--f2);letter-spacing:0;color:rgba(255,255,255,.72);text-align:right}
 .enti{margin-top:48px}
 .enti p{font-size:var(--f1);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72)}
 .enti ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 40px;font-size:var(--f4);font-weight:700;letter-spacing:-.01em}
 
 /* Contatti e richiesta */
 .contatti{padding:var(--sez) 0}
-.contatti .sx{grid-column:1/6}
+.contatti .sx{grid-column:1/6;position:sticky;top:calc(var(--h-testata) + 40px);align-self:start}
 .contatti .sx .lead{margin-top:24px;font-size:var(--f3);color:var(--testo-2)}
 .sede{margin-top:48px;padding-top:28px;border-top:1px solid var(--filo)}
 .sede h3{font-weight:700;font-size:var(--f3)}
@@ -193,14 +194,14 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .modulo{grid-column:7/13;background:var(--nebbia);padding:40px}
 .modulo h3{font-size:var(--f5);letter-spacing:-.02em}
 .modulo>p{margin-top:10px;font-size:var(--f2);color:var(--testo-2)}
-.campi{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px var(--g)}
-.campo{display:flex;flex-direction:column;gap:8px}
+.campi{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px var(--g)}
+.campo{display:flex;flex-direction:column;gap:8px;min-width:0}
 .campo.largo{grid-column:1/-1}
 .campo label,.campo legend{font-size:var(--f2);font-weight:700;padding:0}
-.campo label small,.campo legend small{font-weight:400;color:var(--testo-2)}
+.campo label small,.campo legend small{font-size:inherit;font-weight:400;color:var(--testo-2)}
 .campo input[type=text],.campo input[type=email],.campo input[type=tel],.campo select,.campo textarea{font:inherit;font-size:var(--f2);color:var(--testo);background:var(--bianco);border:1px solid var(--testo-2);border-radius:3px;padding:0 14px;height:52px;width:100%}
 .campo textarea{height:auto;min-height:120px;padding:12px 14px;resize:vertical}
-.campo input[type=file]{font:inherit;font-size:var(--f2);color:var(--testo-2)}
+.campo input[type=file]{max-width:100%;font:inherit;font-size:var(--f2);color:var(--testo-2)}
 .campo input[type=file]::file-selector-button{font:inherit;font-weight:700;font-size:var(--f2);height:48px;padding:0 18px;margin-right:14px;border:1.5px solid var(--testo);border-radius:3px;background:var(--bianco);color:var(--testo);cursor:pointer}
 fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 .scelte{display:flex;flex-wrap:wrap;gap:8px 24px}
@@ -251,13 +252,15 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .accessori .testo{grid-column:1/8}
   .accessori .azioni{grid-column:8/13}
   .prove ul{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
-  .contatti .sx{grid-column:1/-1}
+  .contatti .sx{grid-column:1/-1;position:static}
   .modulo{grid-column:1/-1;margin-top:56px}
   .piede .col{grid-column:span 6}
 }
 /* 768 */
 @media (max-width:900px){
   :root{--m:32px;--sez:96px}
+  .testata .c{gap:12px}
+  .testata .offerta{display:none}
   .ap-testo,.ap-lato{grid-column:1/-1}
   .ap-lato{margin-top:56px;max-width:640px}
   .ingressi{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:56px}
@@ -281,7 +284,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 @media (max-width:560px){
   :root{--m:20px;--g:16px;--sez:72px;--h-testata:72px;--f3:17px;--f4:20px;--f5:26px;--f6:30px;--f7:36px}
   .marchio{gap:0}
-  .marchio img{width:44px}
+  .marchio img{width:40px}
+  .testata .tel-testata svg{display:none}
+  .etichetta{letter-spacing:.06em}
   .marchio span{display:none}
   .testata .c{gap:8px}
   .testata .lingua,.testata .offerta{display:none}
@@ -293,8 +298,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .etichetta{margin-bottom:14px}
   .apertura .lead{margin-top:18px}
   .apertura .azioni{margin-top:24px;flex-direction:column}
-  .apertura .azioni .btn{width:100%}
+  .apertura .azioni .btn{width:100%;white-space:normal;text-align:center;height:auto;min-height:52px;padding:12px 16px;line-height:1.3}
   .ap-lato{margin-top:40px}
+  .prova-breve{display:block}
   .ingressi{margin:40px calc(-1 * var(--m)) 0;grid-template-columns:1fr 1fr}
   .ingressi a{padding:18px 16px 22px}
   .ingressi li:first-child a,.ingressi li:nth-child(3) a{padding-left:var(--m)}
@@ -313,11 +319,11 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .numeri dd{font-size:var(--f2)}
   .accessori{margin-top:48px}
   .prove ul{grid-template-columns:1fr;row-gap:28px;padding-top:28px}
-  .ponti .dx li{flex-direction:column;gap:4px}
-  .ponti .dx li small{text-align:left}
+  .ponti .dx>ul>li{flex-direction:column;gap:4px}
+  .ponti .dx>ul>li small{text-align:left}
   .ponti .azioni .btn,.contatti .btn,.referenze .azioni .btn{width:100%}
   .modulo{padding:24px 16px;margin-top:48px;margin-inline:calc(-1 * var(--m))}
-  .campi{grid-template-columns:1fr}
+  .campi{grid-template-columns:minmax(0,1fr)}
   .invio .btn{width:100%}
   .piede{padding-top:64px}
   .piede .col{grid-column:1/-1}
@@ -364,6 +370,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
           <a class="btn" href="#offerta" data-en="Request a quote, send the drawing">Richiedi un'offerta, manda il disegno</a>
           <a class="btn bordo" href="#versioni" data-en="Versions and data sheets">Versioni e schede tecniche</a>
         </div>
+        <p class="prova-breve num" data-en="Patent IT 1391815 · 42 projects in 11 countries">Brevetto IT&nbsp;1391815 · 42 cantieri in 11 paesi</p>
       </div>
       <div class="ap-lato">
         <div class="video-box"><button class="video" type="button" id="video" aria-label="Guarda il video Easy Click su YouTube (si avvia al clic)" data-en-aria="Watch the Easy Click video on YouTube (starts on click)">
@@ -737,7 +744,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     if(file.length) righe.push((en?'Drawing to attach':'Disegno da allegare')+': '+[].map.call(file,function(x){return x.name;}).join(', '));
     var prod=prodotto.options[prodotto.selectedIndex].textContent;
     var ogg=(en?'Quote request: ':'Richiesta offerta: ')+prod+' ('+f.querySelector('#f-azienda').value.trim()+')';
-    location.href='mailto:info@impreservicesrl.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n')+'\n');
+    var url='mailto:info@impreservicesrl.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n')+'\n');
+    f.setAttribute('data-ultima-email',url);
+    location.href=url;
   });
 })();
 </script>

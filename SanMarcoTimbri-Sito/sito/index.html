@@ -18,16 +18,19 @@
 :root{
   --nero:#161616;
   --rosso:#B8261D;
+  --rosso-scuro:#9A1F17;   /* solo per il bottone rosso toccato */
   --bianco:#FFFFFF;
-  --grigio:#EEEEEC;
-  --testo2:#55554F;
-  --filetto:#D6D6D2;
+  --grigio:#EEEEEC;        /* blocchi chiari, neutro e non beige */
+  --testo2:#55554F;        /* testo secondario su chiaro, e bordi dei campi */
+  --filetto:#D6D6D2;       /* filetti su chiaro */
+  --chiaro:#D2D2CE;        /* testo secondario su nero */
+  --linea-scura:#4A4A46;   /* filetti su nero */
   --m:clamp(20px, 5.6vw, 80px);
   --sez:clamp(64px, 8.4vw, 120px);
   /* otto misure di carattere */
   --f-tel:clamp(56px, 8.4vw, 120px);
   --f-num:clamp(40px, 3.9vw, 56px);
-  --f-h2:clamp(30px, 3.06vw, 44px);
+  --f-h2:clamp(32px, 4.45vw, 64px);
   --f-h3:clamp(21px, 1.67vw, 24px);
   --f-testo:clamp(17px, 1.32vw, 19px);
   --f-ui:16px;
@@ -40,17 +43,17 @@ img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
 ul,ol{padding:0;list-style:none}
-.titolo{font-weight:700;font-stretch:108%;letter-spacing:-.01em}
+.titolo{font-weight:700;font-stretch:112%;letter-spacing:-.015em}
 .dentro{padding-inline:var(--m);max-width:1440px;margin-inline:auto}
 .sez{padding-block:var(--sez)}
-#timbri{padding-top:clamp(56px, 6.7vw, 96px)}
+#timbri{padding-top:clamp(64px, 6.7vw, 96px)}
 .salta{position:absolute;left:-9999px}
 .salta:focus{left:16px;top:16px;z-index:50;background:var(--bianco);padding:12px 16px}
 :focus-visible{outline:3px solid var(--rosso);outline-offset:3px}
 
 /* bottoni: un solo modello, pieno o con il bordo */
 .bt{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:0 24px;border:2px solid var(--rosso);border-radius:4px;background:var(--rosso);color:var(--bianco);font:700 var(--f-ui)/1.2 "Encode Sans",sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .12s,color .12s}
-.bt:hover{background:#9A1F17;border-color:#9A1F17}
+.bt:hover{background:var(--rosso-scuro);border-color:var(--rosso-scuro)}
 .bt.bordo{background:transparent;color:var(--nero);border-color:var(--nero)}
 .bt.bordo:hover{background:var(--nero);color:var(--bianco)}
 .bt .n{font-variant-numeric:tabular-nums;font-weight:400}
@@ -59,78 +62,94 @@ ul,ol{padding:0;list-style:none}
 .rosso .bt.pieno{background:var(--bianco);border-color:var(--bianco);color:var(--rosso)}
 .rosso .bt.pieno:hover{background:var(--grigio)}
 .link{font-weight:700;text-underline-offset:4px}
+.nw{white-space:nowrap}
 
 /* testata */
 .testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid transparent;transition:border-color .12s}
 .testata.giu{border-bottom-color:var(--filetto)}
 .testata .dentro{display:flex;align-items:center;gap:32px;height:88px}
-.logo img{height:44px;width:auto}
+.logo img{height:52px;width:auto}
 .menu{display:flex;gap:28px;margin-left:auto;font-size:var(--f-ui)}
 .menu a{text-decoration:none;font-weight:400}
 .menu a:hover{text-decoration:underline;text-underline-offset:6px}
-.testata .chiama{min-height:52px}
-.apri{display:none}
+.apri{display:none;width:52px;padding:0;flex-direction:column;gap:5px}
+.apri i{display:block;width:20px;height:2px;background:currentColor}
+.testata .chiama .corto{display:none}
 
-/* apertura */
-.apertura{display:grid;grid-template-columns:minmax(0,1fr) 460px;align-items:stretch}
-.ap-testo{padding:56px 48px 64px max(var(--m), calc((100vw - 1440px) / 2 + var(--m)));display:flex;flex-direction:column}
+/* apertura: tipografia a tutta misura, niente oggetto accanto */
+.apertura{padding-block:48px 56px}
 .occhiello{font-size:var(--f-ui);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rosso);margin-bottom:20px}
-h1{font-size:min(88px, calc((100vw - 460px - var(--m) - 48px) / 9.75));line-height:.98;text-transform:uppercase;font-weight:700;font-stretch:100%;letter-spacing:-.015em;margin-bottom:28px}
-.attacco{max-width:34em;margin-bottom:32px}
+.occhiello .corto{display:none}
+h1{font-size:min(120px, calc((100vw - 2 * var(--m)) / 10.4));line-height:.94;text-transform:uppercase;font-weight:700;font-stretch:116%;letter-spacing:-.015em;margin-bottom:40px}
+h1 span{display:block}
+h1 .inchiostro{color:var(--rosso)}
+.ap-riga{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 64px;align-items:start;margin-bottom:32px}
+.attacco{max-width:34em}
+.ap-riga .azioni{grid-column:1/-1}
+.servizio{font-size:var(--f-ui);border-left:2px solid var(--nero);padding-left:20px}
+.servizio .ind{display:block;font-weight:700}
+.servizio .st{display:block;color:var(--testo2)}
+.servizio .link{margin-left:.6em}
 .azioni{display:flex;flex-wrap:wrap;gap:12px}
-.servizio{margin-top:36px;padding-top:24px;border-top:1px solid var(--filetto);display:grid;grid-template-columns:auto auto;gap:6px 48px;justify-content:start;font-size:var(--f-ui)}
-.servizio dt{font-weight:700}
-.servizio dd{color:var(--testo2)}
-.servizio dd a{color:var(--nero)}
-.ap-foto{position:relative;background:#E4E4E2}
-.ap-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
-.ap-foto .striscia,.solo-tel{display:none}
+.solo-tel{display:none}
+.prove{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 48px;border-top:2px solid var(--nero);padding-top:20px;font-size:var(--f-ui);line-height:1.45;color:var(--testo2)}
+.prove b{display:block;color:var(--nero);font-weight:700;margin-bottom:2px}
 
 /* sezioni a blocchi */
 .grigio{background:var(--grigio)}
 .scuro{background:var(--nero);color:var(--bianco)}
 .rosso{background:var(--rosso);color:var(--bianco)}
-h2{font-size:var(--f-h2);line-height:1.08;margin-bottom:20px}
+h2{font-size:var(--f-h2);line-height:1.02;margin-bottom:20px}
 h3{font-size:var(--f-h3);line-height:1.25;font-weight:700;font-stretch:104%}
 .intro{max-width:36em;color:var(--testo2)}
-.scuro .intro,.rosso .intro{color:#E6E6E3}
-.capo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;align-items:end;margin-bottom:56px}
+.scuro .intro{color:var(--chiaro)}
+.rosso .intro{color:var(--bianco)}
+.capo{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 64px;align-items:end;margin-bottom:64px}
 .capo h2{margin-bottom:0}
 
 /* che timbro vi serve */
-.tipi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 48px;border-top:2px solid var(--nero)}
-.tipi li{padding-top:28px}
-.tipi h3{margin-bottom:14px}
+.timbri{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 64px;align-items:start}
+.tipi{border-top:2px solid var(--nero)}
+.tipi li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:12px 32px;padding:28px 0;border-bottom:1px solid var(--filetto)}
 .tipi p{color:var(--testo2)}
 .tipi strong{color:var(--nero);font-weight:700}
-.ordina{margin-top:72px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 64px;background:var(--bianco);padding:48px}
+.punzone img{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--bianco)}
+.punzone figcaption{margin-top:12px;font-size:var(--f-ui);color:var(--testo2)}
+.fornitore{margin-top:56px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 64px;align-items:center;background:var(--bianco);padding:32px 48px}
+.fornitore .marca{font-size:var(--f-num);line-height:1;font-weight:700;font-stretch:100%;letter-spacing:-.02em}
+.fornitore .marca small{display:block;font-size:var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--testo2);margin-bottom:10px;font-weight:700}
+.ordina{margin-top:28px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 64px;background:var(--bianco);padding:48px}
+.ordina .garanzia{margin-top:20px;font-weight:700}
 .ordina ol{counter-reset:r;display:grid;gap:12px}
 .ordina ol li{counter-increment:r;display:grid;grid-template-columns:36px 1fr}
 .ordina ol li::before{content:counter(r);font-weight:700;color:var(--rosso)}
 .ordina .azioni{margin-top:28px}
-.ordina .nota{margin-top:20px;color:var(--testo2);font-size:var(--f-ui)}
+.ordina .urgente{margin-top:20px;color:var(--testo2);font-size:var(--f-ui)}
+.ordina .urgente a{color:var(--nero);font-weight:700}
 
 /* lavori su misura: schede con la foto, tutta la scheda si tocca */
 .schede{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 28px}
-.scheda{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.scheda{display:flex;flex-direction:column;text-decoration:none;color:inherit;height:100%}
 .scheda img{aspect-ratio:4/3;object-fit:cover;width:100%;background:var(--grigio)}
 .scheda h3{margin-top:20px}
 .scheda p{color:var(--testo2);margin-top:6px}
 .scheda .vai{margin-top:12px;font-size:var(--f-ui);font-weight:700;color:var(--rosso);text-decoration:underline;text-underline-offset:4px}
+.scheda .vai .corto{display:none}
 .scheda:hover h3{text-decoration:underline;text-underline-offset:5px}
 .anche{margin-top:64px;padding-top:28px;border-top:1px solid var(--filetto);display:flex;flex-wrap:wrap;gap:20px 48px;align-items:center;justify-content:space-between}
 .anche p{max-width:46em}
 
 /* come funziona: blocco nero */
-.manifesto{font-size:var(--f-h2);line-height:1.18;font-weight:700;font-stretch:104%;max-width:24em;margin-bottom:72px}
-.manifesto span{color:#BDBDB8;font-weight:400}
-.passi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 40px;border-top:1px solid #4A4A46}
+.manifesto{font-size:var(--f-h2);line-height:1.06;font-weight:700;font-stretch:112%;letter-spacing:-.015em;max-width:17em}
+.manifesto-sotto{margin-top:28px;max-width:36em;color:var(--chiaro)}
+.scuro h2.sotto{font-size:var(--f-h3);line-height:1.25;font-stretch:104%;letter-spacing:0;margin:96px 0 0;padding-bottom:20px}
+.passi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 40px;border-top:1px solid var(--linea-scura)}
 .passi li{padding-top:28px}
 .passi h3{margin-bottom:10px}
-.passi p{color:#D2D2CE}
-.numeri{margin-top:96px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
-.numeri b{display:block;font-size:var(--f-num);line-height:1;font-weight:700;font-stretch:108%;margin-bottom:12px}
-.numeri span{display:block;color:#D2D2CE;font-size:var(--f-ui)}
+.passi p{color:var(--chiaro)}
+.numeri{margin-top:96px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;border-top:1px solid var(--linea-scura);padding-top:32px}
+.numeri b{display:block;font-size:var(--f-num);line-height:1;font-weight:700;font-stretch:108%;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.numeri span{display:block;color:var(--chiaro);font-size:var(--f-ui)}
 
 /* uffici ed enti */
 .enti{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:48px 64px}
@@ -138,7 +157,9 @@ h3{font-size:var(--f-h3);line-height:1.25;font-weight:700;font-stretch:104%}
 .dati{display:grid;grid-template-columns:auto 1fr;border-top:2px solid var(--nero)}
 .dati dt,.dati dd{padding:14px 0;border-bottom:1px solid var(--filetto)}
 .dati dt{font-weight:700;padding-right:32px;font-size:var(--f-ui);padding-top:16px}
-.dati dd{font-variant-numeric:tabular-nums}
+.dati dd{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.dati dd.chiedi{font-size:var(--f-ui);color:var(--testo2);padding-top:16px}
+.dati dd.chiedi a{color:var(--nero)}
 .zone{margin-top:72px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px}
 .zone ul{columns:3;column-gap:32px}
 .zone li{break-inside:avoid;padding:4px 0}
@@ -158,7 +179,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
 .campo{display:flex;flex-direction:column;gap:8px}
 .campo.largo{grid-column:1/-1}
 .campo label{font-weight:700;font-size:var(--f-ui)}
-.campo input,.campo textarea,.campo select{font:400 var(--f-ui)/1.4 "Encode Sans",sans-serif;color:var(--nero);background:var(--bianco);border:1px solid #8C8C86;border-radius:4px;min-height:52px;padding:12px 14px;width:100%}
+.campo input,.campo textarea,.campo select{font:400 var(--f-ui)/1.4 "Encode Sans",sans-serif;color:var(--nero);background:var(--bianco);border:1px solid var(--testo2);border-radius:4px;min-height:52px;padding:12px 14px;width:100%}
 .campo textarea{min-height:140px;resize:vertical}
 .invia{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center}
 .invia p{color:var(--testo2);font-size:var(--f-ui);max-width:30em}
@@ -169,7 +190,6 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
 .tel-grande:hover{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:10px}
 .dove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 48px;border-top:1px solid rgba(255,255,255,.45);padding-top:32px}
 .dove h3{margin-bottom:10px}
-.dove p{color:#FBE9E7}
 .dove p a{color:var(--bianco)}
 .dove .azioni{margin-top:20px}
 .orari{border-collapse:collapse;width:100%;max-width:340px;font-size:var(--f-ui);font-variant-numeric:tabular-nums}
@@ -179,14 +199,16 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
 .stato{font-weight:700}
 
 /* piede */
-.piede{background:var(--nero);color:#E6E6E3;font-size:var(--f-ui);padding-block:88px 40px}
+.piede{background:var(--nero);color:var(--chiaro);font-size:var(--f-ui);padding-block:88px 40px}
 .piede .col{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:40px 48px}
-.piede h3{font-size:var(--f-ui);font-weight:700;color:var(--bianco);margin-bottom:14px;font-stretch:100%}
-.piede li{padding:3px 0}
-.piede a{text-decoration:none}
+.piede h3{font-size:var(--f-ui);font-weight:700;color:var(--bianco);margin-bottom:6px;font-stretch:100%}
+.piede li{padding:0}
+.piede li > span{display:flex;align-items:center;min-height:44px}
+.piede a{text-decoration:none;display:flex;align-items:center;min-height:44px;padding-block:6px}
 .piede a:hover{text-decoration:underline}
 .piede .marchio img{width:128px;height:auto;margin-bottom:20px}
-.legale{margin-top:64px;padding-top:24px;border-top:1px solid #3A3A37;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:var(--f-legale);color:#BDBDB8}
+.legale{margin-top:56px;padding-top:24px;border-top:1px solid var(--linea-scura);display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;font-size:var(--f-legale);color:var(--chiaro)}
+.legale a{min-height:44px}
 
 /* sotto i 1100 px il menu si chiude */
 @media (max-width:1100px){
@@ -194,46 +216,39 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
   .menu.aperto{display:flex}
   .menu a{padding:14px 0;border-bottom:1px solid var(--filetto)}
   .apri{display:inline-flex;margin-left:auto}
-  .testata .chiama{margin-left:0}
-  .apertura{grid-template-columns:minmax(0,1fr) 40%}
-  h1{font-size:calc((60vw - var(--m) - 48px) / 9.75)}
-  .ap-foto img{object-position:72% 60%}
+  .logo img{height:44px}
   .passi,.numeri{grid-template-columns:repeat(2,minmax(0,1fr))}
   .piede .col{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
-  .apertura{grid-template-columns:minmax(0,1fr)}
-  .ap-testo{padding-right:var(--m)}
-  h1{font-size:min(64px, calc((100vw - 2 * var(--m)) / 9.3))}
-  .ap-foto .alta{display:none}
-  .ap-foto .striscia{display:block;width:100%;max-height:420px}
-  .capo,.ordina,.enti,.zone,.modulo{grid-template-columns:1fr}
-  .tipi{grid-template-columns:1fr;gap:0}
-  .tipi li+li{border-top:1px solid var(--filetto);margin-top:28px}
+  .ap-riga,.capo,.timbri,.fornitore,.ordina,.enti,.zone,.modulo{grid-template-columns:minmax(0,1fr)}
+  .punzone{max-width:560px}
   .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
   .dove{grid-template-columns:1fr 1fr}
 }
 /* telefono */
 @media (max-width:700px){
-  html{scroll-padding-top:76px}
-  .testata .dentro{height:68px;gap:10px}
-  .logo img{height:26px}
-  .testata .bt{min-height:44px;padding:0 14px}
-  .testata .chiama .n{display:none}
-  .apertura{grid-template-columns:minmax(0,1fr)}
-  .ap-testo{padding:24px var(--m) 28px}
+  html{scroll-padding-top:80px}
+  .testata .dentro{height:72px;gap:8px}
+  .logo img{height:22px}
+  .testata .bt{min-height:48px}
+  .apri{width:48px}
+  .testata .chiama{padding:0 14px}
+  .apertura{padding-block:24px 48px}
   .occhiello{margin-bottom:12px}
-  h1{font-size:min(40px, calc((100vw - 2 * var(--m)) / 8.7));font-stretch:85%;margin-bottom:16px;line-height:1}
-  .ap-testo{padding-right:var(--m)}
+  .occhiello .lungo{display:none}
+  .occhiello .corto{display:inline}
+  h1{font-size:min(40px, calc((100vw - 2 * var(--m)) / 8.66));font-stretch:84%;margin-bottom:16px;line-height:1}
+  .ap-riga{display:flex;flex-direction:column;align-items:stretch;gap:0;margin-bottom:0}
+  .attacco{margin-bottom:20px}
   .solo-tel{display:flex}
-  .solo-pc,.servizio .ind{display:none}
-  .attacco{margin-bottom:22px}
+  .solo-pc{display:none}
   .azioni{flex-direction:column;gap:10px}
   .azioni .bt{width:100%;min-height:52px;white-space:normal;text-align:center;padding-block:8px}
-  .servizio{margin-top:22px;padding-top:16px;grid-template-columns:1fr;gap:2px}
-  .servizio dd+dt{margin-top:10px}
-  .ap-foto .alta{display:none}
-  .ap-foto .striscia{display:block}
+  .ap-riga .azioni{order:2}
+  .servizio{order:3;margin-top:20px;padding-left:14px}
+  .servizio .link{display:none}
+  .prove{margin-top:28px;grid-template-columns:1fr;gap:14px;padding-top:16px}
   /* sul telefono i lavori su misura vengono subito dopo l'apertura */
   .ordine{display:flex;flex-direction:column}
   #su-misura{order:1}
@@ -241,27 +256,43 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
   #metodo{order:3}
   #enti{order:4}
   #scrivi{order:5}
-  .schede{grid-template-columns:1fr;gap:40px}
-  .ordina{padding:28px 20px;margin-top:56px}
+  .capo{margin-bottom:36px}
+  .tipi li{grid-template-columns:1fr;gap:8px;padding:22px 0}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .scheda h3{margin-top:12px;font-size:var(--f-testo)}
+  .scheda p{font-size:var(--f-ui);line-height:1.45}
+  .scheda .vai{margin-top:8px}
+  .scheda .vai .lungo{display:none}
+  .scheda .vai .corto{display:inline}
+  .anche{margin-top:44px}
+  .fornitore{margin-top:40px;padding:24px 20px}
+  .ordina{padding:28px 20px;margin-top:20px}
+  .manifesto{line-height:1.12}
+  .scuro h2.sotto{margin-top:56px}
   .passi,.numeri{grid-template-columns:1fr 1fr;gap:28px 20px}
-  .numeri{margin-top:64px}
-  .manifesto{margin-bottom:48px;font-size:var(--f-h3);line-height:1.35}
+  .numeri{margin-top:56px}
   .zone ul{columns:2}
   form{grid-template-columns:1fr}
   .dove{grid-template-columns:1fr}
   .tel-grande{margin-bottom:36px}
   .piede{padding-block:64px 32px}
-  .piede .col{grid-template-columns:1fr 1fr;gap:36px 20px}
+  .piede .col{grid-template-columns:1fr 1fr;gap:28px 20px}
   .piede .marchio{grid-column:1/-1}
 }
+@media (max-width:400px){
+  .testata .chiama .parola{display:none}
+}
 @media (max-width:360px){
-  .logo img{height:22px}
-  .testata .bt{padding:0 12px}
+  .logo img{height:18px}
+  .testata .chiama{padding:0 12px}
+  .testata .chiama .n{display:none}
+  .testata .chiama .corto{display:inline}
   .passi{grid-template-columns:1fr}
+  .schede{grid-template-columns:1fr}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"San Marco Timbri di Tosato Andrea","description":"Laboratorio artigiano di timbri e targhe","telephone":"+39049776126","faxNumber":"+39049776126","email":"info@sanmarcotimbri.it","vatID":"IT04289090286","url":"https://sanmarcotimbri.it/","address":{"@type":"PostalAddress","streetAddress":"Via Giacinto Andrea Longhin 91","postalCode":"35129","addressLocality":"Padova","addressRegion":"PD","addressCountry":"IT"}}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"San Marco Timbri di Tosato Andrea","description":"Laboratorio artigiano di timbri e targhe","telephone":"+39049776126","faxNumber":"+39049776126","email":"info@sanmarcotimbri.it","vatID":"04289090286","url":"https://sanmarcotimbri.it/","address":{"@type":"PostalAddress","streetAddress":"Via Giacinto Andrea Longhin 91","postalCode":"35129","addressLocality":"Padova","addressRegion":"PD","addressCountry":"IT"}}
 </script>
 </head>
 <body>
@@ -277,34 +308,35 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
       <a href="#metodo">Come lavoriamo</a>
       <a href="#enti">Uffici ed enti</a>
     </nav>
-    <button class="bt bordo apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <a class="bt chiama" href="tel:+39049776126">Chiama <span class="n">049 776126</span></a>
+    <button class="bt bordo apri" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i><i></i><i></i></button>
+    <a class="bt chiama" href="tel:+39049776126" aria-label="Chiama lo 049 776126"><span class="parola">Chiama</span> <span class="n">049 776126</span><span class="corto">Chiama</span></a>
   </div>
 </header>
 
 <main id="contenuto">
 <section class="apertura" aria-labelledby="titolo">
-  <div class="ap-testo">
-    <p class="occhiello">Laboratorio di timbri e targhe a Padova</p>
-    <h1 id="titolo">Personalizziamo timbri e targhe</h1>
-    <p class="attacco">Timbri in gomma e in metallo, targhe, pulsantiere e incisioni, fatti nel nostro laboratorio di via Longhin con fresa, laser e controllo numerico. Per privati, aziende e strutture pubbliche.</p>
-    <div class="azioni">
-      <a class="bt" href="tel:+39049776126">Chiama <span class="n">049 776126</span></a>
-      <a class="bt bordo" data-wa="Buongiorno, vorrei un timbro. Vi mando il testo (o la foto del vecchio timbro): " href="https://wa.me/393761673361">Mandaci testo o foto su WhatsApp</a>
-      <a class="bt bordo solo-pc" data-mail="timbro" href="mailto:info@sanmarcotimbri.it?subject=Richiesta%20timbro">Scrivi a info@sanmarcotimbri.it</a>
-      <a class="bt bordo solo-tel" data-mappa href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giacinto%20Andrea%20Longhin%2091%2C%2035129%20Padova" target="_blank" rel="noopener">Indicazioni per via Longhin 91</a>
+  <div class="dentro">
+    <p class="occhiello"><span class="lungo">Laboratorio di timbri e targhe a Padova</span><span class="corto">Timbri e targhe a Padova</span></p>
+    <h1 id="titolo"><span>Personalizziamo</span> <span class="inchiostro">timbri e targhe</span></h1>
+    <div class="ap-riga">
+      <p class="attacco">Timbri in gomma e in metallo, targhe, pulsantiere e incisioni, fatti nel nostro laboratorio di via Longhin. Per privati, aziende e strutture pubbliche.</p>
+      <p class="servizio">
+        <span class="ind">Via G. A. Longhin 91, 35129 Padova<a class="link" data-mappa href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giacinto%20Andrea%20Longhin%2091%2C%2035129%20Padova" target="_blank" rel="noopener">Indicazioni</a></span>
+        <span class="st">Prima di passare chiamateci.</span>
+      </p>
+      <div class="azioni">
+        <a class="bt" href="tel:+39049776126">Chiama <span class="n">049 776126</span></a>
+        <a class="bt bordo" data-wa="Buongiorno, vorrei un timbro.&#10;Testo, riga per riga: &#10;Misura o modello: &#10;Quantità: &#10;Ritiro o spedizione: " href="https://wa.me/393761673361">Mandaci testo o foto su WhatsApp</a>
+        <a class="bt bordo solo-pc" data-mail="timbro" href="mailto:info@sanmarcotimbri.it?subject=Richiesta%20timbro">Scrivi a info@sanmarcotimbri.it</a>
+        <a class="bt bordo solo-tel" data-mappa href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giacinto%20Andrea%20Longhin%2091%2C%2035129%20Padova" target="_blank" rel="noopener">Indicazioni per via Longhin 91</a>
+      </div>
     </div>
-    <dl class="servizio">
-      <dt class="ind">Via G. A. Longhin 91, 35129 Padova</dt>
-      <dd class="ind"><a class="link" data-mappa href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giacinto%20Andrea%20Longhin%2091%2C%2035129%20Padova" target="_blank" rel="noopener">Indicazioni</a></dd>
-      <dt class="st-tit">Prima di passare</dt>
-      <dd class="st-val">chiamateci allo <a href="tel:+39049776126">049 776126</a></dd>
-    </dl>
+    <ul class="prove" aria-label="Chi siamo, in tre fatti">
+      <li><b>Nel 2018</b>tra i fornitori invitati da Agenzia delle Entrate alla gara sul MEPA per i timbri</li>
+      <li><b>Fresa, laser e controllo numerico</b>e stampa digitale a colori, nel nostro laboratorio</li>
+      <li><b>Il file lo prepariamo noi</b>nei colori RAL o PANTONE, e ve lo mandiamo da approvare</li>
+    </ul>
   </div>
-  <figure class="ap-foto">
-    <img class="alta" src="img/punzone-alto-560.webp" srcset="img/punzone-alto-560.webp 560w, img/punzone-alto-760.webp 760w" sizes="(max-width:1100px) 40vw, 560px" width="760" height="960" alt="Punzone in ottone per la stampa a caldo con le iniziali W.E. e un punzone ovale EUR 120x80, fatti in laboratorio">
-    <img class="striscia" src="img/punzone-striscia-390.webp" srcset="img/punzone-striscia-390.webp 390w, img/punzone-striscia-780.webp 780w" sizes="(max-width:900px) 100vw, 1px" width="780" height="390" alt="Punzone in ottone per la stampa a caldo con le iniziali W.E. e un punzone ovale EUR 120x80" loading="lazy">
-  </figure>
 </section>
 
 <div class="ordine">
@@ -314,25 +346,36 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
       <h2 class="titolo" id="t-timbri">Che timbro vi serve?</h2>
       <p class="intro">Timbri per qualsiasi esigenza, sia in gomma che in metallo. Se dovete rifarne uno uguale, basta la foto dell'impronta: il modello del vecchio timbro è scritto sotto.</p>
     </div>
-    <ul class="tipi">
-      <li>
-        <h3>In gomma</h3>
-        <p><strong>Autoinchiostranti Trodat</strong>, preinchiostrati, manuali e <strong>datari</strong>: i timbri di tutti i giorni per l'ufficio, lo studio e il negozio.</p>
-      </li>
-      <li>
-        <h3>In metallo</h3>
-        <p>Con la montatura in legno o in ottone. <strong>A caldo</strong>, per marcare il legno e altri materiali, o <strong>punzoni in acciaio temperato</strong> per marcare metallo e plastica. Li chiedono soprattutto amministrazioni pubbliche, notai e avvocati.</p>
-      </li>
-      <li>
-        <h3>Sigilli e presse a secco</h3>
-        <p>Timbri in metallo per la <strong>ceralacca</strong>, per personalizzare documenti, sigillare plichi o buste e convalidare diplomi, e per chiudere inviti e partecipazioni di matrimonio. Ceralacca in 40 colori. <strong>Presse a secco</strong>.</p>
-      </li>
-    </ul>
+    <div class="timbri">
+      <ul class="tipi">
+        <li>
+          <h3>In gomma</h3>
+          <p><strong>Autoinchiostranti Trodat</strong>, preinchiostrati, manuali e <strong>datari</strong>: i timbri di tutti i giorni per l'ufficio, lo studio e il negozio.</p>
+        </li>
+        <li>
+          <h3>In metallo</h3>
+          <p>Con la montatura in legno o in ottone. <strong>A caldo</strong>, per marcare il legno e altri materiali, o <strong>punzoni in acciaio temperato</strong> per marcare metallo e plastica. Li chiedono soprattutto amministrazioni pubbliche, notai e avvocati.</p>
+        </li>
+        <li>
+          <h3>Sigilli e presse a secco</h3>
+          <p>Timbri in metallo per la <strong>ceralacca</strong>, per personalizzare documenti, sigillare plichi o buste e convalidare diplomi, e per chiudere inviti e partecipazioni di matrimonio. Ceralacca in 40 colori. <strong>Presse a secco</strong>.</p>
+        </li>
+      </ul>
+      <figure class="punzone">
+        <img src="img/punzone-560.webp" srcset="img/punzone-560.webp 560w, img/punzone-800.webp 800w" sizes="(max-width:900px) min(560px, 100vw), 40vw" width="800" height="800" alt="Punzone in ottone per la marcatura a caldo con le iniziali W.E. e un punzone ovale EUR 120x80" loading="lazy">
+        <figcaption>Punzoni in ottone per la marcatura a caldo: le iniziali W.E. e l'ovale EUR 120x80.</figcaption>
+      </figure>
+    </div>
+
+    <div class="fornitore">
+      <p class="marca"><small>Timbri autoinchiostranti</small>Trodat</p>
+      <p>Montiamo i timbri autoinchiostranti Trodat. Per rifarne uno uguale al vecchio basta il modello, che è scritto sotto il timbro, o la foto dell'impronta.</p>
+    </div>
 
     <div class="ordina" id="ordinare">
       <div>
         <h3>Per ordinare un timbro, mandateci</h3>
-        <p class="nota">I file ed i loghi li elaboriamo noi per la migliore resa possibile e ve li mandiamo da approvare.</p>
+        <p class="garanzia">I file ed i loghi li elaboriamo noi per la migliore resa possibile, e prima di produrre ve li mandiamo da approvare.</p>
       </div>
       <div>
         <ol>
@@ -345,6 +388,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
           <a class="bt" data-wa="Buongiorno, vorrei un timbro.&#10;Testo, riga per riga: &#10;Misura o modello: &#10;Quantità: &#10;Ritiro o spedizione: " href="https://wa.me/393761673361">WhatsApp 376 167 3361</a>
           <a class="bt bordo" data-mail="timbro" href="mailto:info@sanmarcotimbri.it?subject=Richiesta%20timbro">Email con le voci già scritte</a>
         </div>
+        <p class="urgente">Vi serve con urgenza? Scrivetelo nel messaggio, o chiamate lo <a href="tel:+39049776126">049 776126</a> e chiedete se si fa in tempo.</p>
       </div>
     </div>
   </div>
@@ -354,39 +398,39 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
   <div class="dentro">
     <div class="capo">
       <h2 class="titolo" id="t-misura">Targhe e lavori su misura</h2>
-      <p class="intro">Fotografate la pulsantiera vecchia, la parete o il disegno e mandatecelo con le misure: vi rispondiamo con il preventivo. Ogni foto qui sotto è un lavoro uscito dal nostro laboratorio.</p>
+      <p class="intro">Fotografate la pulsantiera vecchia, la parete o il disegno e mandatecelo con le misure: vi rispondiamo con il preventivo.</p>
     </div>
     <ul class="schede">
       <li><a class="scheda" data-wa="Buongiorno, vi mando foto e misure per il preventivo di una pulsantiera." href="https://wa.me/393761673361">
-        <img src="img/pulsantiera-440.webp" srcset="img/pulsantiera-440.webp 440w, img/pulsantiera-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Pulsantiera in pietra con cornice a corda e componenti in ottone lucido" loading="lazy">
+        <img src="img/pulsantiera-440.webp" srcset="img/pulsantiera-440.webp 440w, img/pulsantiera-800.webp 800w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Pulsantiera in pietra con cornice a corda e componenti in ottone lucido" loading="lazy">
         <h3>Pulsantiere</h3>
         <p>Standard e su misura, in ottone, alluminio e pietra.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
       <li><a class="scheda" data-wa="Buongiorno, vi mando testo e misure per il preventivo di una targa." href="https://wa.me/393761673361">
-        <img src="img/targa-440.webp" srcset="img/targa-440.webp 440w, img/targa-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Targhe in ottone a rilievo TOILETTES e 101 su legno" loading="lazy">
+        <img src="img/targa-440.webp" srcset="img/targa-440.webp 440w, img/targa-800.webp 800w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Targhe in ottone a rilievo TOILETTES e 101 su legno" loading="lazy">
         <h3>Targhe</h3>
         <p>Professionali, in ottone, alluminio, plexiglass ed altri materiali.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
       <li><a class="scheda" data-wa="Buongiorno, vi mando il disegno per il preventivo di una scritta o un'incisione." href="https://wa.me/393761673361">
-        <img src="img/scritta-440.webp" srcset="img/scritta-440.webp 440w, img/scritta-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Lettere corsive ritagliate a rilievo in ottone brunito, viste da vicino" loading="lazy">
+        <img src="img/scritta-440.webp" srcset="img/scritta-440.webp 440w, img/scritta-800.webp 800w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Lettere corsive ritagliate a rilievo in ottone brunito, viste da vicino" loading="lazy">
         <h3>Incisioni e scritte</h3>
         <p>Su qualsiasi materiale, a fresa o a laser; lettere ritagliate in ottone.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
       <li><a class="scheda" data-wa="Buongiorno, vi mando il disegno per il preventivo di un'insegna." href="https://wa.me/393761673361">
-        <img src="img/insegna-440.webp" srcset="img/insegna-440.webp 440w, img/insegna-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Insegna tonda traforata in metallo con un cavallo rampante, appesa a una barra" loading="lazy">
+        <img src="img/insegna-440.webp" srcset="img/insegna-440.webp 440w, img/insegna-800.webp 800w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Insegna tonda traforata in metallo con un cavallo rampante, appesa a una barra" loading="lazy">
         <h3>Insegne</h3>
         <p>Luminose a cassonetto e su disegno del cliente.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
       <li><a class="scheda" data-wa="Buongiorno, vi mando foto e misure per il preventivo di segnaletica." href="https://wa.me/393761673361">
-        <img src="img/segnaletica-440.webp" srcset="img/segnaletica-440.webp 440w, img/segnaletica-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Targa direzionale in acciaio corten montata su un pilastro in mattoni" loading="lazy">
+        <img src="img/segnaletica-440.webp" srcset="img/segnaletica-440.webp 440w, img/segnaletica-800.webp 648w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="648" height="486" alt="Targa direzionale in acciaio corten montata su un pilastro in mattoni" loading="lazy">
         <h3>Segnaletica</h3>
         <p>Aziendale, per interno ed esterno.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
       <li><a class="scheda" data-wa="Buongiorno, vi mando il disegno per il preventivo di una premiazione." href="https://wa.me/393761673361">
-        <img src="img/premiazione-440.webp" srcset="img/premiazione-440.webp 440w, img/premiazione-800.webp 800w" sizes="(max-width:700px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Trofeo su disegno: sfere concentriche in ottone con segmenti colorati su una base in legno intarsiato" loading="lazy">
+        <img src="img/premiazione-440.webp" srcset="img/premiazione-440.webp 440w, img/premiazione-800.webp 800w" sizes="(max-width:360px) 100vw, (max-width:900px) 46vw, 31vw" width="800" height="600" alt="Trofeo su disegno: sfere concentriche in ottone con segmenti colorati su una base in legno intarsiato" loading="lazy">
         <h3>Premiazioni</h3>
         <p>Coppe, trofei, medaglie e realizzazioni speciali su disegno del cliente.</p>
-        <span class="vai">Chiedete il preventivo su WhatsApp</span></a></li>
+        <span class="vai"><span class="lungo">Chiedete il preventivo su WhatsApp</span><span class="corto">Preventivo</span></span></a></li>
     </ul>
     <div class="anche">
       <p>Facciamo anche <strong>casellari postali</strong>, standard e su misura, <strong>vetrinistica</strong>, decorazioni ed etichette adesive, e lavoriamo il <strong>plexiglass</strong> con la formatura a caldo.</p>
@@ -397,8 +441,9 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
 
 <section class="sez scuro" id="metodo" aria-labelledby="t-metodo">
   <div class="dentro">
-    <p class="manifesto">Una realtà artigiana da molti anni, per privati, aziende e strutture pubbliche. <span>In laboratorio: controllo numerico, incisione a fresa e a laser, stampa digitale a colori su moltissimi tipi di materiale.</span></p>
-    <h2 class="titolo" id="t-metodo">Come funziona un lavoro su misura</h2>
+    <p class="manifesto">Una realtà artigiana da molti anni, per privati, aziende e strutture pubbliche.</p>
+    <p class="manifesto-sotto">In laboratorio: controllo numerico, incisione a fresa e a laser, stampa digitale a colori su moltissimi tipi di materiale.</p>
+    <h2 class="titolo sotto" id="t-metodo">Come funziona un lavoro su misura</h2>
     <ol class="passi">
       <li><h3>Ci mandate l'idea</h3><p>Una foto, le misure, un disegno a mano o il vostro logo, su WhatsApp o per email.</p></li>
       <li><h3>Il file lo prepariamo noi</h3><p>Lo elaboriamo per la migliore resa e rispettiamo i colori originali a tabella RAL o PANTONE.</p></li>
@@ -407,9 +452,9 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
     </ol>
     <ul class="numeri">
       <li><b>10</b><span>lavorazioni, dal timbro all'insegna</span></li>
-      <li><b>4</b><span>tecniche in laboratorio: CNC, fresa, laser, stampa a colori</span></li>
-      <li><b>4</b><span>tipi di timbro in gomma: autoinchiostranti, preinchiostrati, manuali, datari</span></li>
-      <li><b>5</b><span>materiali per targhe e pulsantiere: ottone, alluminio, plexiglass, acciaio, pietra</span></li>
+      <li><b>40</b><span>colori di ceralacca per i sigilli</span></li>
+      <li><b>16</b><span>comuni nella nostra zona, da Cittadella a Chioggia</span></li>
+      <li><b>2018</b><span>invitati da Agenzia delle Entrate alla gara MEPA per i timbri</span></li>
     </ul>
   </div>
 </section>
@@ -419,7 +464,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
     <div class="enti">
       <div class="testo">
         <h2 class="titolo" id="t-enti">Per uffici, studi ed enti</h2>
-        <p>Lavoriamo per privati, aziende, studi professionali, condomini e strutture pubbliche. Nel 2018 eravamo tra i fornitori invitati da Agenzia delle Entrate alla gara sul MEPA per la fornitura di timbri.</p>
+        <p>Lavoriamo per privati, aziende, studi professionali, condomini e strutture pubbliche. Nel 2018 eravamo tra i fornitori invitati da Agenzia delle Entrate alla gara sul MEPA per la fornitura di timbri. Per acquisti tramite MEPA o con affidamento diretto chiedeteci la situazione aggiornata.</p>
         <p>Per l'ordine o la fattura vi servono i nostri dati: sono qui accanto. Scriveteci la ragione sociale, l'indirizzo e il riferimento dell'ufficio.</p>
       </div>
       <dl class="dati">
@@ -428,6 +473,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
         <dt>Sede</dt><dd>Via G. A. Longhin 91, 35129 Padova</dd>
         <dt>Telefono e fax</dt><dd><a href="tel:+39049776126">049 776126</a></dd>
         <dt>Email</dt><dd><a href="mailto:info@sanmarcotimbri.it">info@sanmarcotimbri.it</a></dd>
+        <dt>PEC e codice destinatario</dt><dd class="chiedi">Per la fattura elettronica chiedeteli allo <a href="tel:+39049776126">049 776126</a> o a <a href="mailto:info@sanmarcotimbri.it">info@sanmarcotimbri.it</a>.</dd>
       </dl>
     </div>
     <div class="zone">
@@ -473,7 +519,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
       <div class="campo"><label for="f-misura">Misura o modello</label><input id="f-misura" name="misura"></div>
       <div class="campo"><label for="f-qta">Quantità</label><input id="f-qta" name="qta" inputmode="numeric"></div>
       <div class="campo largo"><label for="f-ritiro">Ritiro o spedizione</label>
-        <select id="f-ritiro" name="ritiro"><option>Ritiro in laboratorio</option><option>Spedizione</option><option>Da decidere</option></select></div>
+        <select id="f-ritiro" name="ritiro"><option>Ritiro in laboratorio</option><option>Da decidere con voi</option></select></div>
       <div class="invia">
         <button class="bt" type="submit">Prepara l'email</button>
         <p>Si apre il vostro programma di posta: controllate e premete invia.</p>
@@ -502,7 +548,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
         <h3>Scriveteci</h3>
         <p>WhatsApp <a data-wa="Buongiorno, " href="https://wa.me/393761673361">376 167 3361</a><br>
         <a data-mail="generico" href="mailto:info@sanmarcotimbri.it">info@sanmarcotimbri.it</a><br>
-        Telefono e fax 049 776126</p>
+        Telefono e fax <a href="tel:+39049776126">049 776126</a></p>
       </div>
     </div>
   </div>
@@ -519,11 +565,11 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
       <div>
         <h3>Contatti</h3>
         <ul>
-          <li><a href="tel:+39049776126">Telefono e fax 049 776126</a></li>
+          <li><a href="tel:+39049776126">Telefono e fax&nbsp;<span class="nw">049 776126</span></a></li>
           <li><a data-wa="Buongiorno, " href="https://wa.me/393761673361">WhatsApp 376 167 3361</a></li>
           <li><a href="mailto:info@sanmarcotimbri.it">info@sanmarcotimbri.it</a></li>
           <li><a data-mappa href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giacinto%20Andrea%20Longhin%2091%2C%2035129%20Padova" target="_blank" rel="noopener">Via G. A. Longhin 91, Padova</a></li>
-          <li>Prima di passare, chiamateci</li>
+          <li><span>Prima di passare, chiamateci</span></li>
         </ul>
       </div>
       <div>
@@ -617,8 +663,7 @@ legend{font-weight:700;font-size:var(--f-ui);margin-bottom:12px;padding:0}
     var min=function(s){var p=s.split(':');return +p[0]*60+ +p[1];};
     var fasce=ORARI[g]||[], aperto=fasce.some(function(x){return m>=min(x[0])&&m<min(x[1]);});
     var testo=function(fs){return fs&&fs.length?fs.map(function(x){return x[0].replace(':','.')+'-'+x[1].replace(':','.');}).join(', '):'chiuso';};
-    document.querySelectorAll('.st-tit').forEach(function(e){e.textContent=aperto?'Aperto ora':'Ora chiuso';});
-    document.querySelectorAll('.st-val').forEach(function(e){e.textContent='oggi '+testo(fasce);});
+    document.querySelectorAll('.servizio .st').forEach(function(e){e.textContent=(aperto?'Aperto ora':'Ora chiuso')+', oggi '+testo(fasce);});
     var tab='<table class="orari"><caption class="salta">Orari della settimana</caption>';
     [1,2,3,4,5,6,0].forEach(function(d){tab+='<tr'+(d===g?' class="oggi"':'')+'><th scope="row">'+GIORNI[d]+'</th><td>'+testo(ORARI[d])+'</td></tr>';});
     var box=document.getElementById('orari');

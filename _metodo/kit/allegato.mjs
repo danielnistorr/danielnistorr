@@ -5,7 +5,7 @@
 //   3. due sezioni della home da computer e il prossimo passo
 //   4. (se c'è "servizio_foto") le foto da rifare dal vero: dove vanno nella home, cosa si fotografa, la formula
 //   5. la home intera da computer, larga 297 mm come le altre e alta quanto serve ("completa": false la toglie)
-// "servizio_foto": {"titolo", "testo", "formula", "scatti": [{"dove", "cosa", "sel"?}]}; "sel" è il selettore CSS
+// "servizio_foto": {"titolo", "testo", "formula", "diritti"?, "scatti": [{"dove", "cosa", "perche"?, "sel"?}]}; "sel" è il selettore CSS
 // dell'immagine di oggi in quel punto, che esce piccola accanto alla voce.
 // L'orologio della pagina è fermo a --ora (di default un martedì alle 10 a Roma): così gli orari "aperto adesso" escono sempre uguali.
 // Le immagini si scattano adesso dalla pagina statica (<cartella>/sito/index.html) a densità 2 e 3,
@@ -73,13 +73,20 @@ async function apri(ctxOpts) {
   }
   await ctx.close();
 }
-// computer: la home intera (densità 1,5, sotto il limite di 16000 px di altezza della cattura)
+// computer: la home intera (densità 1,5 o meno, sotto il limite di 16000 px di altezza della cattura)
 const completa = S.completa !== false;
 let altCompleta = 0;
 if (completa) {
-  const { ctx, page } = await apri({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 });
+  // densità 1,5; per le home più alte di circa 10.600 px scende quanto basta per restare sotto i 16000 px della cattura
+  let { ctx, page } = await apri({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 });
   const H = await page.evaluate(() => document.documentElement.scrollHeight);
-  if (H * 1.5 > 16000) { await ctx.close(); console.error(`pagina troppo alta per la cattura intera: ${H} px`); process.exit(1); }
+  if (H * 1.5 > 15800) {
+    const dsf = Math.floor(15800 / H * 100) / 100;
+    if (dsf < 0.9) { await ctx.close(); console.error(`pagina troppo alta per la cattura intera: ${H} px`); process.exit(1); }
+    await ctx.close();
+    ({ ctx, page } = await apri({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: dsf }));
+    console.log(`home alta ${H} px: pagina intera a densità ${dsf}`);
+  }
   await page.screenshot({ path: path.join(work, 'completa.jpg'), type: 'jpeg', quality: 74, fullPage: true });
   altCompleta = H * 297 / 1440;
   await ctx.close();
@@ -229,7 +236,7 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
   <div class="fo">
     <div class="su"><h2>${esc(FOTO.titolo || 'Le foto, dal vero')}</h2><p>${esc(FOTO.testo)}</p></div>
     <ol>${FOTO.scatti.map((sc, i) => `<li>${fs.existsSync(path.join(work, `scatto-${i + 1}.jpg`)) ? `<img class="ft" src="file://${work}/scatto-${i + 1}.jpg" alt="">` : '<div class="manca">oggi non c\'è</div>'}<i>${String(i + 1).padStart(2, '0')} · ${esc(sc.dove)}</i><b>${esc(sc.cosa)}</b>${sc.perche ? `<p>${esc(sc.perche)}</p>` : ''}</li>`).join('')}</ol>
-    <div class="formula">${esc(FOTO.formula || 'Mezza giornata in sede, circa 30 foto lavorate.')}<span>Le foto restano vostre, anche per cataloghi, fiere e social.</span></div>
+    <div class="formula">${esc(FOTO.formula || 'Mezza giornata in sede, circa 30 foto lavorate.')}<span>${esc(FOTO.diritti || 'Le foto restano vostre, da usare dove volete.')}</span></div>
   </div>
   <div class="n">4 / ${tot}</div>
 </section>` : ''}

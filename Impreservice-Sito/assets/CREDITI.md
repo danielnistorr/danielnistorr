@@ -23,11 +23,16 @@ Scaricate da images.pexels.com e images.unsplash.com con curl, alla larghezza di
 
 Scaricate da impreservicesrl.it il 24/10/2026: elenco, misure e voti in `_prova/inventario-immagini.json`. Molte non sono di Impreservice (Pexels, Unsplash, Pixabay, foto stampa di progetti, render Alstom, catture di altri siti): non vanno riusate senza chiarire i diritti. Il fotogramma `90-youtube-jxtiioap3hc-maxres.jpg` è la copertina del loro video YouTube (il video non è stato scaricato).
 
-## Uso nella home finale (sito/img/)
+## Uso nella home (sito/img/), livello professionale del 03/11/2026
 
-- `sez-sx-*`, `sez-dx-*`, `sez-dx-b-*` (apertura): i due conci sono la superficie di calcestruzzo di Dvoretskyi, Pexels 20818874 (due ritagli diversi, grana tenuta, macchie larghe tolte, tono caldo); il connettore Easy Click Smart è reso dallo script `_prova/script/sezione_img.py` come solido di rivoluzione, con i profili misurati sui disegni CAD dell'azienda (`12-bussola-smart.png`, `13-asm-smart.jpg`, `14-perno-smart.png`) e il colore nero dei loro render (`34/35/36-Senza-nome`). Nessuna immagine generata dall'IA.
-- `galleria-*`: Mishin, Pexels 11424325 (sezione Easy Click).
-- `viadotto-*`: Nagda, Pexels 27808651 (ponti e viadotti).
-- `scudo-*`: Mpikakis, Unsplash CPI7JAIVaDU (chiusura).
-- `logo-simbolo-*`: simbolo dell'azienda (`logo-impreservice-icona-blu-1000.png`).
-- Non più in pagina: il pozzo di Ballıdağ (Pexels 16227437) e i livelli `ec-*` ricavati dai disegni CAD.
+Per decisione del committente ("foto: niente") in pagina non c'è più nessuna foto di repertorio e nessun disegno al posto delle foto. Tolte da `sito/img/`: `galleria-*` (Mishin, Pexels 11424325), `viadotto-*` (Nagda, Pexels 27808651), `scudo-*` (Mpikakis, Unsplash CPI7JAIVaDU) e i livelli `sez-*` dell'apertura (calcestruzzo di Dvoretskyi, Pexels 20818874, con il connettore ricostruito). Le copie restano in `_prova/versione-1-originale/sito/img/` e gli originali in `assets/esterne/`, solo come archivio.
+
+In pagina restano solo immagini dell'azienda, preparate da `_prova/script/pro_img.py`:
+
+| File | Origine | Uso | Lavorazione |
+|---|---|---|---|
+| `ec-smart-480.webp`, `ec-medium-480.webp`, `ec-magnum-480.webp` | loro render `34/35/36-Senza-nome` (pagina Prodotti del sito di oggi) | schede delle versioni, mostrati a circa 411 px a 1440 | ritaglio quadrato 480 x 480 attorno al pezzo, misura d'origine, nessun ritocco |
+| `video-720.webp`, `video-1280.webp` | fotogramma del loro video YouTube (`90-youtube-jxtiioap3hc-maxres.jpg`, canale @Impreservicesrl) | copertina del video nell'apertura, mostrata a 519 px a 1440 | solo conversione e riduzione |
+| `logo-simbolo-*`, `logo-simbolo-bianco-*` | `logo-impreservice-icona-blu-1000.png`, `logo-impreservice-icona-bianca-1500.png` | testata e piede | ritaglio al bordo, PNG a 160 e 240 px |
+
+Il video si carica da YouTube (youtube-nocookie.com) solo quando si fa clic sulla copertina.

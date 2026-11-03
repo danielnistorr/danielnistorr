@@ -1,70 +1,64 @@
-# Impreservice, home finale: nota
+# Impreservice, home: nota
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP in più larghezze), caratteri in `sito/fonts/`. Rigenerazione: `bash _prova/script/build_finale.sh` (foto con `_prova/script/finale_img.py`, apertura con `_prova/script/sezione_img.py`, controlli, screenshot). Prova di gesti, larghezze e collegamenti: `node _prova/script/prova_gesti.mjs file://<cartella>/sito/index.html`.
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri e licenza in `sito/fonts/`. Rigenerazione e controlli: `bash _prova/script/build_finale.sh`. La nota della versione precedente (sezione ricostruita, interruttore Aperto / Agganciato, foto di repertorio) è in `_prova/versione-1-originale/screenshot/home/NOTA.md`, con la pagina e gli screenshot di allora.
 
-## L'idea
+Screenshot in questa cartella: `home-1440.jpg` e `home-390.jpg` (pagine intere), prime schermate a 320, 390, 768, 1024, 1440 e 1920, `home-1440-en-prima-schermata.jpg` (la stessa pagina in inglese), `chiusura-1440.jpg` (ponti, contatti, piede). `home-1440-agganciato.jpg` non c'è più: l'interruttore è stato tolto.
 
-Il prodotto di Impreservice è un oggetto preciso: due bussole annegate in due conci e un perno che le aggancia a scatto attraverso il giunto. La prima schermata mostra proprio questo, in sezione: due conci di calcestruzzo chiaro tagliati lungo l'asse del connettore, a tutta larghezza sotto il titolo, con Easy Click Smart nero dentro. L'interruttore Aperto / Agganciato chiude il giunto: i due conci scorrono uno verso l'altro, il perno entra nella seconda bussola, resta una linea sottile con i due smussi. Il nome del prodotto diventa il gesto della pagina. Con il nome di un concorrente la pagina non regge: il pezzo, il brevetto, il titolo del loro video e i 42 cantieri sono loro.
+## Livello professionale (03/11/2026)
 
-## Cosa è cambiato dopo il giudizio cieco (ultimo passaggio)
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente". Criterio: prima l'uso (chi apre il sito trova subito ciò per cui è venuto), poi l'identità (parole e tono loro), poi l'esecuzione da studio. Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori), adattata a un produttore tecnico che vende a imprese di scavo, prefabbricatori ed enti gestori di ponti. Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14 (foglio `riferimenti.jpg` e le 14 catture a 390), le pagine intere di Cly-Del e barth a pezzi. Da Cly-Del: apertura con la dichiarazione di competenza, blocco scuro, fascia dei numeri, schede in griglia, piede scuro a quattro colonne; da barth: i numeri aziendali in griglia, la lingua nella testata, l'uso del colore del marchio come blocco pieno.
 
-- **Apertura rifatta dentro la stessa idea (K6, K0, K5, K7)**: via il pezzo in diagonale con le tre legende numerate, che ripeteva il gesto di campagna ed era quasi uguale a DZ Stampi. Ora il connettore sta orizzontale in due conci tagliati, a tutta larghezza; nessuna legenda. Affiancata alla prima schermata di DZ Stampi non ha in comune né il fondo né l'impaginazione né le legende.
-- **Il pezzo non è più una cattura CAD ritoccata**: è reso da uno script (`sezione_img.py`) come solido di rivoluzione visto di fianco, con i profili misurati sui disegni dell'azienda (bussola con collo, spalla, corpo e flangia con le alette; perno con corona, gola, coni, collarino, gambo e filetto). Materiale nero satinato come nei loro render 34/35/36, una sola luce morbida dall'alto a sinistra con il riflesso di un pannello, sovracampionato 3 volte: niente spigoli di mesh, niente cuciture, le due bussole hanno la stessa luce (sono lo stesso profilo specchiato).
-- **Calore e materia**: i conci sono la superficie di calcestruzzo vero di una foto (Dvoretskyi, Pexels 20818874), con pori e grana, in un grigio caldo; la sede del perno è una parete concava in ombra in alto e in luce in basso. Il nero del pezzo contro il calcestruzzo chiaro dà il contrasto che mancava. Il fondo della pagina resta `#ECEAE5` pieno (tolta la sfumatura radiale).
-- **Titolo non più ambiguo (K4)**: sotto "Sistemi di connessione" la riga "per conci di galleria" a 31 px (dal titolo del loro video "Conci attrezzati con tecnologia EasyClick" e dalla pagina Prodotti "adatti alla sezione gallerie"); la frase lunga è salita accanto al titolo, letta subito dopo.
-- **Stato agganciato bilanciato**: i due conci si muovono di metà apertura ciascuno, quindi il giunto chiuso resta al centro dello schermo (misurato: livelli a 836 px aperti, 720 px chiusi, a 1440).
-- **Pozzo tolto**: era l'immagine più disordinata. La sezione Referenze ora è solo testo (titolo, frase, tre elenchi), e la pagina non ripete più tre volte titolo, paragrafo e foto a tutta larghezza.
-- **Foto omogenee**: una sola correzione per tutte (dominante tolta all'80 %, saturazione 0,42, stesso filo caldo, neri non pieni). Il viadotto ora è un taglio 3:2 a filo del bordo sinistro con il testo a destra.
-- **Collegamenti**: "Tutti i 42 cantieri" porta a `referenze.html`, "La linea ponti" a `ponti-e-viadotti.html`, "Azienda" nel menu a `azienda.html`; nel piede i prodotti vanno a `easy-click.html` con le ancore, Privacy e Cookie a `privacy.html` e `cookie.html`. Le pagine sono elencate nel LEGGIMI.
-- **Chiusura**: il titolo è "Conci attrezzati con tecnologia Easy Click" (titolo del loro video); "Copriamo consegne in tutto il mondo" è sceso in piccolo come "Consegne in tutto il mondo, con tempi secondo quantità". La sezione 2 ha preso un titolo nuovo dal loro comunicato del 2013 ("Entra senza fatica, tiene serrato e allineato").
-- **Legende**: tolte anche quella sulla foto della galleria; la didascalia dice già "Le linee sottili sono i giunti".
-- Foto più grandi (galleria 2,1:1, viadotto su 8 colonne, scudo su 7) per tenere l'area delle foto sopra il 35 %.
+### Cosa è cambiato rispetto alla versione 1
 
-## Le prime due schermate
+- **Via la sezione ricostruita e l'interruttore** (la scheda d'uso la indica come il rischio peggiore: un ingegnere che vede il suo pezzo disegnato male). Via tutte le foto di repertorio (galleria di Mishin, viadotto di Nagda, scudo di Mpikakis, calcestruzzo di Dvoretskyi). Via "Siamo in ventidue" e "Dal Brennero a Brisbane", frasi non loro.
+- **Restano** il titolo con le loro parole ("Sistemi di connessione", dal titolo del loro video "SISTEMI DI CONNESSIONE / Conci attrezzati con tecnologia EasyClick"), ora "Sistemi di connessione per conci attrezzati" come chiede la scheda; Geologica, una sola famiglia; il blu del simbolo `#075A9E`; i dati legali, il link alle segnalazioni e l'elenco dei cantieri, ora completo per Europa e Mondo.
+- **Apertura** su blocco scuro `--notte` (il sottosuolo del loro video): luogo nell'occhiello, titolo a 64 px, la riga dei due mestieri ("Easy Click per i conci delle gallerie scavate con la fresa. Giunti, appoggi e vincoli antisismici per ponti e viadotti, con la posa."), "Richiedi un'offerta, manda il disegno" pieno e "Versioni e schede tecniche" con il bordo. A destra la copertina del loro video, che si carica da YouTube solo al clic. Sotto, una striscia di quattro ingressi: Brevetto IT 1391815 (link a Google Patents), 42 cantieri in 11 paesi, Consegne in tutto il mondo secondo quantità, e Ponti e viadotti su blu pieno.
+- **Testata fissa** con il telefono come bottone ("0444 1939838"), "Richiedi un'offerta" e IT / EN sempre in vista a 1440; a 390 il telefono pieno blu, "Scrivi" e "Menu" (nel menu anche "Mappa: Via Serenissima 8/b" e la lingua).
+- **Quale Easy Click?** su grigio freddo: Smart, Medium, Magnum con i loro render nello stesso taglio; Smart HD con "480 kN" e Hybrid con "L140" in cifre grandi al posto della foto che non c'è. Ogni scheda porta al modulo con la versione scelta e la scheda tecnica spuntata.
+- **Numeri** su blu pieno (il gesto di scala della pagina): 42, 11, 18, 5, 480 kN, 2008, sotto il titolo preso dal loro profilo ("rewarded by the references of leading contractors, both in Italy and around the world").
+- **Come funziona** con le tre frasi del loro comunicato 2013 (inserimento facile, serraggio affidabile, meno gap e offset), gli altri accessori (sistemi di connessione, bulloni e barre di guida) e la fascia brevetto, laboratori indipendenti, WTC 2022, Viatec 2013.
+- **Ponti e viadotti** su blocco scuro: "Ricerca e sviluppo nella produzione e nella posa di giunti antisismici, appoggi e vincoli", i tre prodotti con "produzione e posa", "Si affidano a Impreservice: ANAS, Autostrade per l'Italia, Province autonome", "Chiedi un sopralluogo o un'offerta" (email con l'oggetto già scritto) e il telefono.
+- **Contatti**: a sinistra sede, telefono, mappa, due email (colonna che resta ferma mentre si scorre il modulo); a destra il modulo per il mestiere.
+- **Inglese**: tutta la pagina, con le loro frasi inglesi dove esistono; `?lang=en` la apre già in inglese.
 
-1. **1440x900**: testata chiara (simbolo vero + nome composto, menu, telefono). "Sistemi di / connessione" a 94 px in alto a sinistra, sotto "per conci di galleria"; a destra la frase "Easy Click unisce e allinea i conci prefabbricati delle gallerie scavate con la fresa...". Sotto, a tutta larghezza (alta 408 px), la sezione dei due conci con il giunto aperto e il perno che sporge dal concio sinistro. Sotto la sezione, a sinistra l'interruttore, a destra la didascalia "Easy Click Smart in sezione tra due conci, ricostruito dai disegni tecnici Impreservice. Brevetto IT 1391815." Tutto dentro i 900 px (interruttore a 815-865). **390x844**: titolo in due righe e la riga "per conci di galleria", frase, sezione alta 191 px con le due bussole intere, interruttore a tutta riga, didascalia.
-2. "Entra senza fatica, tiene serrato e allineato" e la galleria a conci a tutta larghezza; poi il testo dal comunicato del 2013 e quattro righe di dati (versioni, Smart HD 480 kN, Hybrid L140 passo 5 mm, brevetto con la data).
+### Le 15 regole, una per una
 
-Poi: "Dal Brennero a Brisbane" con tre elenchi corti (Italia 24, Europa 8, Mondo 10) e "Tutti i 42 cantieri"; "Giunti per ponti e viadotti" con il viadotto a sinistra; chiusura con telefono, due email, indirizzo e mappa, consegne, e la foto dello scudo a destra fino al bordo; piede.
+Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi.
 
-Altezze: 5.146 px a 1440, 5.767 px a 390, 4.516 px a 1024, 5.767 px a 1920 (piede compreso).
+1. **Telefono come bottone nella testata fissa: passa.** Testata fissa 88 px a 1440 e 72 a 390; bottone "0444 1939838" alto 48 px (pieno blu sul telefono, sotto i 375 px diventa "Chiama"). A metà pagina, a 390 e a 1440, si vede e si tocca (`elementFromPoint`). Per la famiglia M c'è anche "Richiedi un'offerta" in testata. 4 link `tel:`, tutti `tel:+3904441939838`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440 x 900: titolo e riga dei due mestieri, "Grisignano di Zocco (VI)" nell'occhiello, Brevetto IT 1391815 e 42 cantieri nella striscia, "Richiedi un'offerta" a 468 px, EN in testata, l'ingresso Ponti e viadotti a 593 px. A 390 x 844: titolo, riga, bottone a tutta larghezza (350 px) a 412 px, "Brevetto IT 1391815 · 42 cantieri in 11 paesi", telefono e Scrivi in testata.
+3. **Immagine vera nell'apertura: non passa del tutto.** C'è l'unica immagine vera di cantiere che hanno, il fotogramma del loro video (1280 x 720, mostrato a 519 px, sotto la misura d'origine), ma non mostra persone di Impreservice, la sede o il pezzo. Nessuna illustrazione, per scelta del committente. Le foto da fare sono nel LEGGIMI.
+4. **Zero repertorio: passa.** `indicativ` compare 0 volte; in `sito/img/` solo render, fotogramma del video e simbolo del logo.
+5. **Foto in serie: passa.** Tre render della stessa serie (stesso fondo, stessa luce, stesso taglio quadrato) e il fotogramma; due formati (16:9 e 3:2 delle schede); nessuna didascalia sotto le foto; nessuna ingrandita oltre la misura d'origine.
+6. **Palette dal marchio: passa.** `--blu` #075A9E (simbolo del logo) con `--blu-scuro` per il passaggio del mouse e `--notte` #0A1A2A per i blocchi scuri; neutri freddi (`--bianco`, `--nebbia` #EEF1F4, `--testo`, `--testo-2`). Nessun colore scritto fuori da `:root`. Nessun beige.
+7. **Scala tipografica corta: passa.** 7 misure a 1440 (14, 16, 18, 22, 30, 44, 64) e 7 a 390 (14, 16, 17, 20, 26, 30, 36); testo corrente 18 px a 1440 e 17 a 390; nessun testo sotto i 14 px; titolo 64 / 36 px, titoli di sezione 44 / 30. Due pesi, 400 e 700.
+8. **Due famiglie al massimo: passa.** Una sola, Geologica.
+9. **Servizi in schede con la foto: passa, con riserva.** Griglia di 3 colonne con Smart, Medium, Magnum e i loro render nello stesso taglio, poi Smart HD e Hybrid in 2 colonne con la cifra al posto della foto (il render non esiste); tutte le schede sono cliccabili. La linea ponti è un elenco tipografico, senza foto: non ne hanno.
+10. **Almeno tre tipi di prova: passa (3 su 4, con riserva).** Sei numeri aziendali; clienti con il nome (ANAS, Autostrade per l'Italia, Province autonome); fascia con didascalia di brevetto, laboratori indipendenti e due fiere, che però non è una fascia di certificazioni. Recensioni: nessuna, non esistono (LEGGIMI, punto 8).
+11. **Lavori con un nome: non passa.** 26 cantieri con nome e luogo, ma senza anno, dati e foto: le fonti non li danno (LEGGIMI, punto 7).
+12. **Ritmo a blocchi: passa.** Tre blocchi scuri o di colore pieno oltre al piede (apertura e ponti `--notte`, numeri blu), due grigi (versioni, referenze); sezioni a 120 px a 1440 e 72 a 390; contenitore di 1280 px con margini di 80 px a 1440 e 20 a 390. La fascia delle prove continua la sezione sopra, senza spazio in alto.
+13. **Un solo sistema di bottoni: passa.** Pieno blu e con il bordo, raggio 3 px ovunque, 52 px (48 in testata), testo 16 px in grassetto; i bottoni di chiamata contengono il numero. A 320 px il bottone principale va su due righe e supera i 58 px.
+14. **Modulo e "dove" per il mestiere: passa.** Campi della famiglia M: nome, azienda, email, telefono, prodotto (le cinque versioni, "Non so, consigliatemi", bulloni e barre di guida, ponti), cosa serve (offerta, scheda tecnica, sopralluogo), progetto, quantità in conci o anelli, consegna, **disegno del concio** (PDF, DWG, DXF, STEP), messaggio. Il modulo compone l'email e va collegato a un servizio (LEGGIMI). Indirizzo con "Apri la mappa" (Google Maps), nessun iframe di mappa.
+15. **Piede completo: non passa.** Quattro colonne a 1440, testo di almeno 14 px, ragione sociale, P.IVA e C.F., REA, capitale, indirizzo con la mappa, telefono ed email cliccabili, prodotti, azienda, YouTube con il sottotitolo, segnalazioni, Privacy e Cookie. Mancano gli orari e le certificazioni, che oggi non sono pubblicati (LEGGIMI, punti 5 e 6).
 
-## Caratteri e colori
+### Compiti della scheda d'uso (par. 8)
 
-- **Geologica** (Monokrom, Google Fonts, SIL Open Font License 1.1, uso commerciale libero), una sola famiglia variabile, servita dalla pagina in `sito/fonts/` (latin e latin-ext). Titoli 300, testo 400, etichette e bottoni 500; cifre tabellari per telefono, kN, mm, codici, P.IVA. Motivo: i riferimenti del mestiere usano grotesk neutre e larghe (Univers da Herrenknecht, Akkurat da Knight Architects); Geologica ha la stessa calma con un disegno proprio e non è Inter.
-- **Colori**: carta `#ECEAE5` fondo unico, inchiostro `#14171A`, grigio testo `#4F5256` (6,5:1 sul fondo), blu del logo `#075A9E` (5,9:1) nel simbolo, nei passaggi del mouse e nel fuoco da tastiera. Il calcestruzzo dei conci è intorno a `#CBC6BE`, il pezzo nero. Niente fasce colorate.
+- *Ufficio tecnico, 1440*: in 5 secondi titolo e riga dicono connettori per conci e giunti per ponti; "Richiedi un'offerta, manda il disegno" porta al modulo con il campo file; "480 kN" di Smart HD è nella seconda schermata (e nella fascia dei numeri); ogni versione porta alla richiesta della scheda tecnica (i PDF non esistono ancora); EN in testata con un clic; brevetto con il numero e il link già nella prima schermata; le metropolitane sono nelle prime righe di ogni elenco.
+- *Ponti e viadotti, 1440*: ingresso su blu nella prima schermata, a destra della striscia, e voce di menu; nel blocco giunti, appoggi e vincoli, "produzione e posa", ANAS e Autostrade per l'Italia, e i due contatti.
+- *Cliente in cantiere, 390*: telefono pieno e "Scrivi" in testata senza scorrere (48 px), restano in vista scorrendo; la mappa a due tocchi (Menu, "Mappa: Via Serenissima 8/b"). Gli orari non ci sono (non pubblicati).
+- Nessuno scorrimento orizzontale a 320, 360, 390, 768, 1024, 1280, 1440 e 1920, in italiano e in inglese; nessuna sovrapposizione tra testata, titolo, bottoni, video e striscia.
 
-## Interazione
+### Gesti provati (pro_controlli.mjs)
 
-Interruttore Aperto / Agganciato: due bottoni nativi con `aria-pressed`, stato letto da `aria-live` ("Giunto aperto..." / "Giunto chiuso..."). La pagina si apre col giunto aperto; con "Agganciato" i due conci scorrono in 320 ms uno verso l'altro, con "Aperto" si separano. Con `prefers-reduced-motion` il cambio è immediato (durata 0 s). Provato con Tab, Invio, Spazio e con il tocco a 390 (`prova_gesti.mjs`). È l'unico gesto della pagina; nessuna animazione allo scorrere, nessun effetto sul cursore. Menu a 390 con vero bottone (`aria-expanded`), piede a fisarmonica con veri bottoni.
+Menu a 390 aperto e chiuso dopo il clic, ancora "Ponti" che si ferma sotto la testata; IT / EN avanti e indietro (titolo, `lang`, oggetti delle email); la scheda Smart HD sceglie il prodotto e spunta la scheda tecnica; invio vuoto fermato con l'avviso e il fuoco sul nome; email composta e letta senza inviarla ("Richiesta offerta: Easy Click Smart HD (480 kN) (Prova Srl)", con tutti i campi); nessun iframe prima del clic sul video, quello di youtube-nocookie dopo; nessun errore di script.
 
-## Immagini
+### Caratteri e licenze
 
-| In pagina | Origine | Licenza | Lavorazione |
-|---|---|---|---|
-| Apertura, tre livelli `sez-*` | connettore: profili dai disegni CAD dell'azienda (`12`, `13`, `14`), colore dai loro render; conci: Артем Дворецкий, Pexels 20818874 | dell'azienda; Pexels, gratuita | reso con `sezione_img.py` (solido di rivoluzione, materiale nero satinato, ombre portate, sede conica del perno, smussi sugli spigoli del giunto); WebP con trasparenza a 1x e 2x |
-| Galleria di metropolitana a conci | Max Mishin, Pexels 11424325 | Pexels, gratuita | trattamento comune, ombre aperte; 2,1:1 e verticale per il telefono |
-| Viadotto | Kewal Nagda, Pexels 27808651 | Pexels, gratuita | trattamento comune; 3:2 |
-| Chiusura, scudo della fresa sulla culla | Evangelos Mpikakis, Unsplash CPI7JAIVaDU | Unsplash License | trattamento comune; 4:3 |
-| Logo | `logo-impreservice-icona-blu-1000.png` del loro sito | dell'azienda | ritagliato, PNG a 160 e 240 px |
+- **Geologica** (Monokrom), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; licenza in `sito/fonts/OFL.txt`. Servita dalla pagina (`geologica-latin.woff2`, `geologica-latin-ext.woff2`), pesi 400 e 700.
+- Immagini: solo materiale loro (render della pagina Prodotti, fotogramma del video YouTube, simbolo del logo), da usare con il loro permesso; dettagli in `assets/CREDITI.md`. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
 
-Tutte le foto di repertorio sono in `assets/esterne/` con pagina e licenza in `assets/CREDITI.md`; nessuna compare nei CREDITI.md delle altre home della campagna (controllato per identificativo), nessuna è generata dall'IA. La fresa nella foto di chiusura non ha marchi leggibili in primo piano; i costruttori di frese non sono concorrenti di Impreservice. Le didascalie non citano la fonte.
+### Controlli fatti
 
-## Newsletter
-
-Non c'è. Impreservice vende a imprese di scavo e prefabbricatori, ha due notizie in dieci anni (Viatec 2013, WTC 2022), nessun catalogo da scaricare e nessun cliente privato; il blocco newsletter di oggi con ogni probabilità non è collegato a niente. Meglio il contatto diretto e la pagina "Fiere e notizie".
-
-## Controlli (24/10/2026, dopo le correzioni)
-
-- Larghezza del documento uguale alla finestra a 320, 360, 390, 414, 600, 768, 860, 1024, 1180, 1280, 1440, 1680, 1920 e 2560, con il giunto aperto e chiuso. I conci coprono la fascia fino ai bordi anche a 2560.
-- Screenshot guardati a pezzi: 1440 intera, 390 intera, prime schermate a 320, 390, 768, 1024, 1440 (aperto e agganciato), 1920; pagina intera a 1024.
-- Interruttore: Invio e Spazio da tastiera, tocco a 390, `aria-pressed` e `aria-live` corretti, movimento ridotto a 0 s. Menu e fisarmonica con `aria-expanded`.
-- Collegamenti: `tel:+3904441939838`, `mailto:info@impreservicesrl.it`, `mailto:carlo@impreservicesrl.it`, mappa Google con l'indirizzo di via Serenissima 8/b; tutte le ancore interne esistono; i link alle pagine future sono nel LEGGIMI.
-- `segnali.sh` del kit a 1440: 0 soglie da correggere su 10, 0 da guardare su 8 (foto 36,3 % della pagina, una famiglia, niente mono, niente etichette sopra i titoli, nessun numero grande con etichetta, 11 filetti larghi).
-- Contrasto AA: testo `#4F5256` 6,5:1, blu 5,9:1, bottone attivo 15:1.
-- Nessun U+2014 in pagina, nella NOTA, nel LEGGIMI e nei crediti; nessun segnaposto in pagina.
-- Divieti del committente: niente gradienti viola-blu, testo in gradiente, emoji, Inter, card con bordo colorato, glassmorphism, tre box con icona, badge sopra il titolo, icone Lucide, dissolvenze allo scorrere, effetti sul cursore, corsivi d'accento, legende numerate.
-
-## Da confermare (dettagli nel LEGGIMI)
-
-La sezione dell'apertura è una ricostruzione (profondità e verso della bussola nel concio, forma della sede del perno, perno avvitato in un concio prima della posa, giunto in cui lavora); "una per concio"; il rivestimento in materiale composito (fonte del 2013); Smart HD e Hybrid ancora in produzione; la linea ponti ancora attiva; materiale e finitura del pezzo nero.
+- `pro_controlli.mjs`: regole 1, 2, 4-10, 12-14 superate nelle misure; 3, 11 e 15 no (vedi sopra).
+- Collegamenti: `tel:+3904441939838`; `mailto:info@impreservicesrl.it` e `mailto:carlo@impreservicesrl.it` con oggetti in italiano e in inglese; mappa `https://www.google.com/maps/search/?api=1&query=Via+Serenissima+8b+36040+Grisignano+di+Zocco+VI`; tutte le ancore interne esistono.
+- Screenshot guardati a pezzi a 1440 e 390 (pagine intere), prime schermate a 320, 768, 1024, 1920 e 1440 in inglese, confrontati con Cly-Del e barth. Nessun U+2014 in pagina, nei .md e negli script; nessun segnaposto in pagina.
