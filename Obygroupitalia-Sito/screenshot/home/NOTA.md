@@ -76,6 +76,30 @@ Il committente: "non è ancora super professionale"; scelto il **metodo ibrido**
 
 Si rifà con: `python3 -I _prova/alto/script/img_ibrido.py` (Starflex e condominio) e `python3 -I _prova/alto/script/img_alto.py` (serie dei danni), pagina a mano in `sito/index.html`, `node _prova/alto/script/screenshot.mjs` (screenshot in questa cartella, con in più `home-1024-prima-schermata.jpg` e `home-768-prima-schermata.jpg`), `node _prova/alto/misura-d.mjs` (misure).
 
+
+### Secondo giro (3 novembre 2026, sera)
+
+Dopo il primo ritocco il giudice da agenzia dava 6,5 (la versione professionale 5) e i clienti tipo erano scesi (danneggiato da 7,5 a 7, ufficio sinistri fermo a 8). Il secondo giro ha due obiettivi insieme: rimettere i compiti persi senza toccare i tetti della prima schermata (D3) ed eseguire sotto la piega quello che il giudice chiedeva. Script della prima parte delle modifiche: `_prova/alto/script/giro2.py` (le rifiniture dopo sono fatte a mano); pagina com'era prima: `_prova/alto/tmp/g2/index-prima-g2.html`.
+
+**Per i clienti tipo.** Al telefono, subito sotto la piega (y 846-950 a 390), ci sono di nuovo le scorciatoie "Il tuo danno": Incendio, Allagamento, Grandine e maltempo, Amianto, quattro link da 52 px che portano alla scheda giusta. I quattro passi restano nelle prime due schermate (titoli a y 1195, 1323, 1498 e 1626), perché al telefono il numero del passo sta accanto al titolo. I nove passaggi sono entrati nelle righe dei passi 02 e 04, con le loro parole, e non si ripetono più in un elenco. Sulle schede dei danni non è più cliccabile tutta la scheda: c'è il link visibile "Chiedi il sopralluogo", che apre il modulo con il tipo già scelto, e la riga della sezione dice "Se è urgente, chiama il cellulare 340 834 9597". La barra in basso dice "Manda le foto del danno", su due righe. Uffici in testata (a 390 accanto a Menu, a 1440 nel menu): nel menu aperto al telefono non sono più ripetuti. Per l'ufficio sinistri, i due PDF hanno di nuovo formato, pagine, data e peso ("PDF, 10 pagine, giugno 2026, 2,8 MB" e "PDF, 7 pagine, edizione 2022, 5,7 MB", pagine e peso verificati sui file). Accanto ad "Affidaci un sinistro" c'è la mail scritta in chiaro. Il salto del menu arriva sotto la testata senza la striscia nera di Industria, e "Azienda" lascia 59 px d'aria. Lo stato "aperto ora / chiuso ora" non c'è, perché gli orari non sono pubblicati da nessuna parte (LEGGIMI).
+
+**Sotto la piega.**
+- Il culmine è sulla griglia: la foto del condominio sta sulle colonne 1-6 (660 px, sotto i 733 naturali). Sulle colonne 7-12 c'è la loro frase "Ripristiniamo a nuovo e tutto torna come prima." a 88 px, con il punto rosso: è il gesto dell'apertura che torna una volta. Sotto la frase, la riga sull'azienda presa dalla versione professionale. La didascalia chiude la colonna di destra sul filo basso della foto (scarto 0 px). La didascalia è "Condominio di undici piani / Ponteggio su tutta la facciata": il "nostro telo" non si dà per certo finché l'azienda non lo conferma.
+- Danni con il loro "Eliminiamo ogni traccia del danno" e la riga d'uso sulla colonna di destra, al posto di "Siamo pronti a intervenire in ogni tipo di scenario". Le schede stanno su righe comuni (subgrid), quindi titoli, testi e inviti partono alla stessa altezza; "Allagamenti e alluvioni" sta su una riga.
+- Un solo h3 (Fraunces 600, 26 px) per passi, danni, modulo e azienda. Le misure di carattere a 1440 sono 8 (176, 88, 52, 26, 22, 19, 16, 14), prima erano 12. Il testo delle schede è a 19 px come il resto.
+- Le cifre non cambiano più carattere dentro una parola: i valori delle tabelle, i dati dei documenti, l'indirizzo e la riga legale del piede sono interi in Fraunces, lettere comprese. Le etichette restano in Atkinson. In Fraunces da sole restano solo le cifre dei telefoni e dei passi.
+- In apertura "Manda le foto" sta sulla stessa linea di base di "Da Longare (VI).", in fondo a destra. La riga del mestiere è a 56 px dal titolo, con la prima frase in grassetto. Tra 641 e 1180 px l'apertura non ha più la carta vuota sopra il titolo.
+- Spazi: sezioni a 80 px e culmine a 96 sopra e 144 sotto. Nessuna fascia vuota oltre i 200 px, la colonna sinistra dei contatti arriva a 708 come le altre, le frecce dell'indice industriale sono nel rosso del logo e non più rosa.
+
+**Misure finali** (`node _prova/alto/misura-d.mjs`, esito in `_prova/alto/tmp/misura-d.txt`): passano tutti i 58 controlli, compresi i 10 nuovi (cifre dentro le parole, un solo h3, misure di carattere, culmine sulla griglia, fasce vuote, peso dei PDF, scorciatoie e passi al telefono, salti del menu).
+- Prima schermata a 1440: 8 cliccabili, 1 bottone, 153 caratteri, foto 0%.
+- Prima schermata a 390: 4 cliccabili, 1 bottone, gesto sul 51,8% dello schermo.
+- Pagina a 1440: 716 parole, 6 sezioni, **5.931 px** (D8 vera passa, prima 6.825), 4 bottoni, 1 cifra oltre i 30 px.
+- 6 foto, nessuna ingrandita né scurita, 3 formati, 3 fondi e 1 blocco rosso. Peso circa 530 KB.
+- Viste 320-1920 senza scorrimento orizzontale, sovrapposizioni o errori: altezze 10.966, 10.474, 7.124, 7.353, 5.931 e 5.989 px.
+- Senza JavaScript tutto il testo resta visibile. Nessun U+2014.
+
+**Resta aperto:** la prova del mestiere sulla miniatura a 300 px (D1) con tre persone, comune e anno del condominio, i diritti della foto Starflex, la foto della squadra e gli orari. Prove con il giudice e con i clienti tipo da rifare su questa versione.
 ---
 
 ## Livello professionale (3 novembre), con il ritocco finale

@@ -16,7 +16,7 @@ Proposta non richiesta di una nuova homepage, solo la home, per OBY GROUP ITALIA
 **Foto.** Gli originali di `assets/originali/` non ci sono più (la cartella contiene solo `CREDITI.md`): le sei foto in pagina sono rifatte dalle versioni lavorate rimaste (`sito-v2/img/` e `_prova/versione-pro/sito/img/`), con un solo trattamento. Vanno richiesti i file originali all'azienda.
 - Escono dall'apertura il tetto bruciato visto dall'alto (ora tagliato 16:9 nella serie dei danni) e non c'è più nessuna foto nella prima schermata.
 - Entrano, dal loro sito, il locale tecnico allagato, la mansarda con l'infiltrazione e il tetto in fibrocemento (serie dei danni, come nella versione 2): **confermare che sono loro interventi**.
-- Il condominio ponteggiato con il telo Oby è la foto del culmine (sezione Azienda): **chiedere comune e anno** per la didascalia, che oggi dice solo "Condominio di undici piani, ponteggio su tutta la facciata / Cantiere Oby Group Italia, con il nostro telo sul ponteggio".
+- Il condominio ponteggiato è la foto del culmine: **chiedere comune, anno e se il telo sul ponteggio è loro**. Dal secondo giro la didascalia dice solo "Condominio di undici piani / Ponteggio su tutta la facciata"; con la conferma diventa "Condominio di undici piani, [comune] / [tipo di danno], [anno]".
 - La foto Starflex è tagliata 16:9 dalla fascia di 1701 px: resta la domanda se è di Oby o di MPM.
 - Per l'apertura vera serve la foto degli otto della squadra in divisa davanti alla sede (modello Q pieno): con quella la foto prende il 60% o più della prima schermata e la frase resta sopra.
 
@@ -29,7 +29,9 @@ Proposta non richiesta di una nuova homepage, solo la home, per OBY GROUP ITALIA
 6. Il testo della sezione Azienda, che unisce "personale esclusivamente interno" (brochure 2026) e "Fin da subito stabiliamo con il cliente un rapporto di fiducia" (sito di oggi).
 7. Le quattro strade dei contatti ("Compagnie, periti e amministratori", "Foto del danno", "Aziende e impianti", "Sede operativa a Longare (VI)") e "Se non risponde, l'altro cellulare".
 
-**Cosa non c'è più in pagina:** il peso dei PDF nelle righe dei documenti, l'elenco degli interventi nel piede, le quattro qualifiche della sezione Azienda (il loro contenuto è nel testo e nella sezione Starflex), il campo email e la scelta dell'urgenza nel modulo (restano nome, telefono, tipo, compagnia e sinistro, indirizzo, descrizione).
+**Secondo giro (stesso giorno), testi nuovi o cambiati da far rileggere:** "Eliminiamo ogni traccia del danno" come titolo dei danni (è il loro, al posto di "Siamo pronti a intervenire in ogni tipo di scenario") con la riga "Scegli il danno e chiedi il sopralluogo: la richiesta parte con il tipo già scritto. Se è urgente, chiama il cellulare 340 834 9597."; i passi 02 e 04, che ora contengono i nove passaggi ("Sopralluogo e consulenza nell'immediato, con personale esclusivamente interno; rimuoviamo i materiali danneggiati." e "Puliamo e recuperiamo i beni, ripristiniamo impianti e macchinari, rifacciamo intonaci e tinteggiature, sanifichiamo e smaltiamo i materiali."); la riga del culmine "Lavoriamo nel risanamento e nel ripristino dei danni da sinistro, in ambienti ed edifici di qualsiasi tipo, per aiutare chi li ha subiti a recuperare la serenità compromessa dal danno." (dal loro testo della sezione Azienda); i titoli brevi "Allagamenti e alluvioni" e "Grandine e maltempo". Tornano il peso e le pagine dei due PDF. In pagina non c'è nessun logotipo né insegna ridisegnati: si usa il loro logo com'è.
+
+**Cosa non c'è più in pagina:** l'elenco a parte dei nove passaggi (sono nelle righe dei passi), l'elenco degli interventi nel piede, le quattro qualifiche della sezione Azienda (il loro contenuto è nel testo e nella sezione Starflex), il campo email e la scelta dell'urgenza nel modulo (restano nome, telefono, tipo, compagnia e sinistro, indirizzo, descrizione).
 
 ## Livello professionale (3 novembre)
 
