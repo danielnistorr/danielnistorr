@@ -1,6 +1,80 @@
 # Foralberg, home finale
 
-## Livello professionale (3 novembre 2026)
+## Ritocco finale (3 novembre 2026, dopo il controllo del livello professionale)
+
+Il controllore (voto agenzia 6) e le due prove con i clienti tipo (compratore a 1440, voto 7; titolare che apre un locale a 390, voto 7,5) hanno chiesto: un gesto di scala e una tipografia con carattere, testo corrente a 17 px, schede dei prodotti meno da foglio di calcolo, la citazione dei piatti in evidenza, cifre pulite, un solo sistema di bottoni, fascia delle aree chiusa dentro la prima schermata, testata più alta sul telefono e un modulo che non dica cose false. Pagina rifatta con `bash _prova/script/build_finale.sh` (la sorgente `_prova/script/index.sorgente.html` è identica a `sito/index.html`); prova del modulo con `node _prova/script/ritocco_modulo.mjs <percorso>/sito/index.html <cartella>`.
+
+Screenshot rigenerati (stessi nomi): `home-1440.jpg` (9427 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (15427 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`. Guardati a pezzi a 1440 e 390, e interi a 320, 768 e 1024, accanto alle prime schermate dei 14 riferimenti e alle pagine intere di Union e Joseph Brot.
+
+### Che cosa è cambiato
+
+- **Due famiglie con ruoli fissi** (A4 per le botteghe): Newsreader 400 con l'asse ottico per H1, H2, H3, cifre, date e citazione; Schibsted Grotesk 400 e 700 (quella della versione 1) per testo, etichette, bottoni, menu e piede. Il titolo "Forniture alberghiere dal 1953" a 88 px ora ha la voce di una casa dell'ospitalità, non di un modello aziendale.
+- **Gesto di scala** nel blocco blu: "Più di / 6.000 / articoli in pronta consegna" con la cifra a 232 px (200 a 1024, 168 a 768, 120 a 390), un fatto vero (catalogo p. 3, pagina Company).
+- **Cifre pulite**: tolti 1953 (già nel titolo e nella riga del tempo) e "516 pagine"; restano oltre 800 m² di showroom a Padova, oltre 30.000 articoli, 11 agenti e commerciali, 6 portali e albi della PA (il conteggio dell'elenco in Acquisti PA). "oltre" sta piccolo sopra la cifra.
+- **Testo corrente a 17 px a 1440** (`--t6`), 16 px sul telefono. Misure a 1440: 232, 88, 56, 32, 24, 19, 17, 14 (otto); a 390: 120, 44, 32, 24, 20, 17, 16, 14 (otto).
+- **Schede dei prodotti come blocchi**: fondo nebbia, padding 32 px, nome in Newsreader a 32 px, marchi in una riga in grassetto, capitoli in un elenco compatto con una sola linea in testa e la pagina a destra, in fondo due bottoni con il bordo, "Disponibilità" e "Campionatura" (prima un solo link che sceglieva sempre Disponibilità); Impianti con "Mandaci la planimetria". Schede alte uguali. Sul telefono i capitoli restano chiusi in "Apri".
+- **La citazione** «Il tuo biglietto da visita? Un piatto su misura.» è un blocco a sé a 56 px (32 a 390), con accanto la personalizzazione e il link "Piatti personalizzati, catalogo p. 103 (PDF, 56 MB)".
+- **Marchi**: Cambro solo con il nome (il sito non lo descrive), RAK "Porcellana" (capitolo del catalogo), "Revol e altri" diventato "Revol".
+- **Un solo sistema di bottoni**: le voci "Che cosa guardiamo" non hanno più bordo e raggio da bottone, sono un elenco a due colonne con il filetto in alto.
+- **Testata**: tolta la voce "Cataloghi" (portava allo stesso punto di Prodotti); restano 5 voci, "Privati: La Vetrinetta" e il telefono. Sul telefono la testata è alta 72 px (prima 64).
+- **Prima schermata 1440**: la fascia blu delle aree finisce a 862 px, con i marchi (Steelite, RAK, Revol, Rona, BIT, Wüsthof, Berto's). Il secondo bottone si chiama "Capitoli del catalogo 2026/2027": dice che porta all'elenco dei capitoli, non a un download.
+- **Ancore**: arrivando da un link su una sezione (#prodotti, #pa, #negozi...) il contenuto parte circa 44 px sotto la testata, non più dopo una banda vuota di 130 px.
+- **Modulo** (difetto bloccante delle due prove):
+  - i link "Mandaci la planimetria", "Disponibilità", "Campionatura" e "Fissate una visita" portano direttamente al modulo (#modulo), non al titolo e ai recapiti;
+  - con "Progetto o impianto" l'allegato sale subito sotto i tipi, con il bottone "Scatta o scegli la planimetria", seguito da spazio, pasti e tipologia di cucina (a 390 l'allegato è a 309 px dall'alto dopo il tocco);
+  - sul telefono i recapiti vanno sotto il modulo;
+  - prima del clic: "Si apre il vostro programma di posta con la richiesta già scritta per servizioclienti@foralberg.it: l'allegato, se c'è, va aggiunto lì";
+  - dopo il clic niente più "Si è aperta l'email": la pagina dice che ha provato ad aprire la posta e, se non si è aperta, di copiare il testo e mandarlo a servizioclienti@foralberg.it o di chiamare il 335 142 6521; mostra il testo pronto (destinatario, oggetto, campi) con "Copia il testo" e "Copia l'indirizzo email";
+  - se la condivisione del telefono viene annullata, si ripiega sull'email invece di non dire nulla;
+  - "Copia" anche accanto a servizioclienti@foralberg.it nei recapiti; il messaggio è dichiarato facoltativo.
+  Provato in Playwright a 390 e 1440: tipo "Progetto o impianto", mailto con oggetto "Richiesta: Progetto o impianto, Ristorante o banqueting, Mario Rossi", testo pronto visibile, nessun errore in console.
+
+### Esito regola per regola (`_prova/pro_controlli.json` e screenshot)
+
+1. **Telefono in testata fissa**: PASSA. Bottone "049 760955" di 48 px in testata `position:sticky`, alta 88 px a 1440 e 72 px a 390; a metà pagina a 390 si vede e si tocca; 12 link `tel:`; prima voce "Showroom e orari".
+2. **Prima schermata**: PASSA. Occhiello "Consulenti dell'ospitalità, a Padova", H1 "Forniture alberghiere dal 1953", oltre 30.000 articoli e 800 m², "Chiedi un preventivo" (1440) e "Chiama 049 760955" largo 350 px (390).
+3. **Immagine vera nell'apertura**: PASSA, con riserva. Il furgone OM Lupetto 30 con la firma, archivio Foralberg; a 390 sotto le due sedi, quindi appena visibile nella prima schermata. Manca una foto di oggi (LEGGIMI).
+4. **Zero repertorio**: PASSA. "indicativ" 0; immagini: furgone, stand della 38a Fiera, due loghi.
+5. **Foto in serie**: PASSA. Due foto d'archivio, stesso trattamento, un formato (4:3), nessuna didascalia.
+6. **Palette dal marchio**: PASSA. Blu #00699A (dalla copertina del catalogo), blu scuro per il passaggio del mouse, inchiostro, verde solo per "Aperto ora"; neutri; fondo bianco.
+7. **Scala corta e leggibile**: PASSA (prima non passava). Otto misure a 1440 e otto a 390; testo corrente 17 px a 1440 e 16 a 390; nulla sotto i 14 px (a 14 solo etichette, note del modulo e riga legale); H1 88 px (fascia B 85-90) e 44 px a 390 (40-46).
+8. **Due famiglie**: PASSA. Newsreader per i titoli e le cifre, Schibsted Grotesk per testo e interfaccia.
+9. **Schede con la foto del lavoro**: NON PASSA (limite dichiarato). Sei schede in tre colonne, blocchi pieni con nome, marchi, capitoli e bottoni, senza foto (decisione del committente: niente repertorio, niente disegni) e non cliccabili per intero perché ognuna ha più link ai capitoli. Le foto da fare sono nel LEGGIMI.
+10. **Prove di almeno tre tipi**: NON PASSA (2 su 4). Quattro cifre più il 6.000 grande, e la fascia dei marchi con la didascalia (più i portali PA). Recensioni con nome e clienti con il nome non sono nelle fonti: da chiedere (LEGGIMI), non inventati.
+11. **Lavori con un nome**: NON PASSA. Nessun lavoro con cliente, luogo, anno e dati nelle fonti; da chiedere.
+12. **Ritmo a blocchi**: PASSA. Blocchi pieni: fascia delle aree e marchi in blu, progetti e chi siamo in inchiostro, richiesta in nebbia; sezioni 128 px a 1440 e 72 a 390; margini 80 e 20 px.
+13. **Un solo sistema di bottoni**: PASSA. Pieno e con il bordo, raggio 4 px, 52 px (48 in testata), testo 17 px (16 sul telefono) in 700; le voci non cliccabili non sembrano più bottoni; i bottoni di chiamata hanno il numero.
+14. **Modulo e "dove e quando"**: PASSA. Tipo di richiesta in caselle, settore, allegato; per le due sedi stato, tabella degli orari, Chiama e Indicazioni; nessun iframe.
+15. **Piede completo**: PASSA (senza certificazioni, che non hanno: c'è "Fornitore abilitato PA"). Quattro colonne, testo 17 px, riga legale 14 px.
+
+### Prove d'uso, dopo il ritocco
+
+- Compratore, 1440: categorie e sette marchi su otto nella prima schermata (Cambro nel blocco Marchi); Porcellana in due clic con "(PDF, 56 MB)" scritto prima; Disponibilità e Campionatura scelgono il tipo giusto; email del servizio clienti copiabile con un clic; PA in un clic dal menu.
+- Nuova apertura, 390: Chiama senza scorrere; "progettiamo, installiamo e assistiamo" a 1713 px e "Mandaci la planimetria" a 1801 px (due scorrimenti); il tocco porta al modulo con il tipo scelto e l'allegato in testa; lo showroom con stato, tabella e Indicazioni in un tocco.
+- Privato, 390: La Vetrinetta con lo stato nella prima schermata.
+- Stato aperto o chiuso giusto alle otto ore di prova (`?ora=`).
+
+### Controlli generali
+
+- Nessuno scorrimento orizzontale da 320 a 2560 (14 larghezze); nessuna sovrapposizione negli screenshot a 320, 390, 768, 1024, 1440 (corretto durante il lavoro: la riga "Capitoli nel catalogo (PDF, 56 MB) Apri" a 320, ora senza il peso sotto i 375 px, dove i capitoli dicono comunque che aprono il PDF del catalogo).
+- Console senza errori; nessuna ancora senza destinazione; nessun carattere U+2014 nella pagina, negli script, in questa nota e nel LEGGIMI.
+
+### Caratteri e licenze
+
+- Newsreader (Production Type), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina (`sito/fonts/newsreader-latin.woff2`, `newsreader-latin-ext.woff2`, variabile con l'asse ottico 6-72, peso 400; licenza in `sito/fonts/OFL-Newsreader.txt`).
+- Schibsted Grotesk (Schibsted, Bakken & Bæck), Google Fonts, SIL Open Font License 1.1; `sito/fonts/schibsted-*.woff2`, pesi 400 e 700; licenza in `sito/fonts/OFL.txt`.
+- Foto: solo archivio Foralberg; nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
+
+### Non applicato, apposta
+
+- Tutta la scheda cliccabile (regola 9): ogni scheda ha da uno a cinque link ai capitoli; rendere cliccabile la scheda li annullerebbe.
+- Foto a tutto schermo nell'apertura: l'unica foto che regge è d'archivio e la scheda d'uso la vuole accanto al testo.
+- Asteria & Nyx e "Nuovo catalogo 2026/2027" come novità: la linea compare solo nei post LinkedIn, senza marca né area certa; nel LEGGIMI.
+- Invio vero del modulo: va collegato a un servizio (LEGGIMI); la pagina ora non promette più che l'email sia partita.
+
+## Livello professionale, prima del ritocco finale (3 novembre 2026)
+
+Quello che segue descrive la pagina prima del ritocco qui sopra; i numeri e le misure non sono più quelli attuali.
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (due foto d'archivio in JPEG a quattro larghezze e i due loghi SVG), caratteri in `sito/fonts/`. La versione 1 com'era prima di questo passaggio è in `_prova/versione-1-originale/` (sito e screenshot). Rifare tutto: `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, screenshot con `pro_shots.mjs` all'ora simulata martedì 3 novembre 2026 alle 10.00, poi `pro_controlli.mjs`, esito in `_prova/pro_controlli.json`).
 

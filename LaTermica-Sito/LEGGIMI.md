@@ -4,7 +4,7 @@ Proposta non richiesta di una nuova homepage per La Termica snc di Camporese Mar
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale, statica (livello professionale, 3/11/2026). Accanto ci sono `sito/img/` (solo le foto loro usate, WebP alla misura giusta, logo PNG a 3x e logo negativo per il piede) e `sito/fonts/` (Host Grotesk woff2 e `OFL.txt`).
+- `sito/index.html`: la home finale, statica (livello professionale con il ritocco finale, 3/11/2026: apertura su fondo grafite con la foto del furgone al vivo, servizi subito dopo, chi siamo e numeri in un blocco solo). Accanto ci sono `sito/img/` (solo le foto loro usate, WebP alla misura giusta, logo PNG a 3x e logo negativo per il piede) e `sito/fonts/` (Host Grotesk woff2 e `OFL.txt`).
 - `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (che cosa è cambiato, le 15 regole una per una, i compiti della scheda d'uso, caratteri, foto, controlli).
 - `_prova/script/build_finale.sh`: rifà immagini (`pro_img.py`), controlli delle 15 regole (`pro_controlli.mjs`, esito in `_prova/pro_controlli.json`) e screenshot (`pro_shoot.mjs`; `pro_mosaico.py` affianca i pezzi delle pagine strette per guardarle).
 - `_prova/versione-1-originale/`: la home di prima ("Rame sui coppi"), con pagina, immagini, caratteri, schermate e nota, com'era prima di questo giro.
@@ -12,8 +12,8 @@ Proposta non richiesta di una nuova homepage per La Termica snc di Camporese Mar
 
 ## Da chiedere all'azienda, in ordine di importanza
 
-1. **Orari del magazzino e del banco.** Sono la prima domanda del privato e dell'installatore e oggi non sono in pagina: le schede pubbliche non concordano ("lun-ven 8-12:15" su trova-aperto, "8-12, 14-18" su infobel). Appena arrivano vanno in tre punti: la tavola dell'apertura (al posto di "Magazzino e banco", con lo stato "aperto ora / chiuso ora"), la chiusura accanto all'indirizzo e la colonna Contatti del piede. Chiedere anche sabato, chiusure estive e festivi, e se il banco ha orari diversi dalla posa.
-2. **Zone servite** per posa, pulizia e spazzacamino: l'elenco dei comuni (per esempio Mestrino, Rubano, Selvazzano, Padova ovest, est vicentino, se è così). Va in un elenco sotto i servizi e nel piede. Oggi non c'è perché non è nelle fonti.
+1. **Orari del magazzino e del banco.** Sono la prima domanda del privato e dell'installatore e oggi non sono in pagina: le schede pubbliche non concordano ("lun-ven 8-12:15" su trova-aperto, "8-12, 14-18" su infobel). Il posto c'è già, con la riga "Orari del banco" in tre punti: la tavola dell'apertura (seconda riga, oggi "Prima di passare, chiamate il banco: 049 9002522"), la chiusura sotto la foto della facciata (`p.orari`) e la colonna Contatti del piede. Quando arrivano gli orari veri, il testo di quelle tre righe si sostituisce con i giorni e le fasce, ed eventualmente lo stato "aperto ora / chiuso ora". A 1440 vanno anche in testata, accanto al telefono, come chiede la scheda d'uso. Non ho scritto orari "da confermare", perché le fonti non concordano. Chiedere anche sabato, chiusure estive e festivi, e se il banco ha orari diversi dalla posa.
+2. **Zone servite** per posa, pulizia e spazzacamino: l'elenco dei comuni (per esempio Mestrino, Rubano, Selvazzano, Padova ovest, est vicentino, se è così). Va in un elenco sotto i servizi, accanto a "Veniamo noi: vendita, consegna e assistenza anche in cantiere", e nel piede. È la risposta a "venite voi?" del privato. Oggi non c'è perché non è nelle fonti.
 3. **Recensioni.** Non ce ne sono di pubbliche leggibili (Pagine Gialle "Nessuna recensione"). Se hanno una scheda Google con recensioni, o lettere di amministratori e imprese, servono testo, nome e comune, con il permesso. Non sono state inventate.
 4. **Lavori con un nome.** Per tre o quattro lavori: luogo (comune o via, se si può dire), anno, e due o tre dati (per esempio altezza della canna, numero di appartamenti, diametro, numero di canne nel traliccio). Oggi le schede dei lavori dicono solo il tipo.
 5. **Clienti con il nome**: condomini, imprese o aziende che si possono citare, con il permesso.
@@ -36,7 +36,7 @@ Prima di andare in linea va collegato a un servizio di invio (il modulo del CMS,
 - la casella del consenso e il link all'informativa, che va aggiornata con il trattamento dei dati del modulo;
 - la risposta automatica a chi scrive e, se l'azienda la vuole dare, la promessa dei tempi di risposta (oggi non c'è perché non è nelle fonti).
 
-Le schede dei servizi portano al modulo con il tipo già scelto: i valori sono quelli della tendina (`data-tipo`).
+Le schede dei servizi portano al modulo con il tipo già scelto: i valori sono quelli della tendina (`data-tipo` sul collegamento del titolo, che copre tutta la scheda). Ogni scheda ha anche un collegamento "Chiamate" diretto. Il campo foto manca perché un mailto non porta allegati: per ora la nota dice "Foto e disegni: allegateli all'email che si apre".
 
 ## Collegamenti che dipendono dal sito di oggi
 
@@ -46,9 +46,9 @@ Le schede dei servizi portano al modulo con il tipo già scelto: i valori sono q
 
 ## Foto da fare dal vero
 
-Le foto in pagina sono tutte loro, ma sono del 2012-2014, da compatta e telefono. Mezza giornata con un fotografo basta, con la stessa luce per tutta la serie (giornata di cielo coperto chiaro o mattina presto), formati 4:5 e 4:3, tutto a piena risoluzione:
+Le foto in pagina sono tutte loro, ma sono del 2012-2014, da compatta e telefono. Il trattamento comune (bianco portato al neutro, livelli, saturazione) toglie le dominanti peggiori, ma non basta a fare una serie (regola 5). Mezza giornata con un fotografo basta, con la stessa luce per tutta la serie (giornata di cielo coperto chiaro o mattina presto), formati 4:5 e 4:3, tutto a piena risoluzione:
 
-1. **La squadra con il furgone**: Mario Camporese e i figli, in divisa o con la maglia con il logo, davanti al furgone con la livrea "camini inox" e al capannone di Via Bologna. È la foto d'apertura che manca (regola 3: persone e mezzo con il marchio). Una orizzontale per il computer, una verticale per il telefono.
+1. **La squadra con il furgone**: Mario Camporese e i figli, in divisa o con la maglia con il logo, davanti al furgone con la livrea "camini inox" e al capannone di Via Bologna. È la foto d'apertura che manca (regola 3: persone e mezzo con il marchio). Oggi in apertura c'è il furgone del 2014 davanti al condominio (`DSC03569`), senza persone. Servono una verticale 3:4 per la colonna al vivo del computer e una orizzontale 16:9 per il telefono.
 2. **Il banco e gli scaffali** ordinati, con luce calda, e una persona al banco con un cliente: per il magazzino e per chi viene a comprare.
 3. **Una foto per ogni servizio**, stesso taglio 4:3 o quadrato, per fare delle sei schede dei servizi schede con la foto (regola 9): canna fumaria nuova per una stufa a pellet in una casa; spazzacamino al lavoro sul tetto con la spazzola; la telecamera della video ispezione con lo schermo (oggi c'è un fotogramma del 2014); intubamento di una canna vecchia; una stufa installata da loro; un abbattitore di fuliggine montato.
 4. **Tre o quattro lavori recenti** visti da fuori, con il teleobiettivo e le verticali dritte: un condominio, un camino autoportante, un tetto di centro storico, un impianto industriale. Con luogo e anno da scrivere sotto (vedi sopra).
