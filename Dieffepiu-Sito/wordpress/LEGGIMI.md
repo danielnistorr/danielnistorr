@@ -64,6 +64,20 @@ Tutti i numeri vengono dalle schede "Dati Tecnici" del catalogo generale 2023, c
 
 Si può rilanciare quando vuoi: non crea doppioni. Se togli la spunta "Riscrivi il contenuto", lascia i testi che hai già cambiato.
 
+## Installare con SSH, con un comando solo
+
+Se hai SSH sul server, `installa-su-server.sh` fa i passi 2-5 da solo con WP-CLI: tema, Elementor, pagine, notizie, menu, impostazioni. Se nella cartella non c'è WordPress, installa anche WordPress.
+
+1. Dal pannello crea il sottodominio e, se WordPress non c'è ancora, un database vuoto con il suo utente.
+2. Entra via SSH con l'utente del sito e lancia:
+   ```
+   curl -sSLO https://raw.githubusercontent.com/danielnistorr/danielnistorr/claude/benvegnu-sito/Dieffepiu-Sito/wordpress/installa-su-server.sh
+   bash installa-su-server.sh /percorso/cartella/sottodominio https://dieffepiu.tuodominio.it tua@email.it
+   ```
+3. Se deve installare WordPress, lo script ti chiede i dati del database. La password non si vede mentre la scrivi e non viene salvata. Alla fine stampa una volta sola la password dell'utente `dieffepiu-admin`.
+
+Lo script si ferma da solo se la cartella contiene già file che non sono WordPress. Provato qui su un WordPress esistente: ha scaricato il tema da GitHub e Elementor da WordPress.org e ha costruito le pagine in Elementor. Il ramo con l'installazione da cartella vuota (che crea anche `wp-config.php`) non l'ho potuto provare, perché qui non c'è un database MySQL.
+
 ## Collaudo fatto il 3 novembre 2026
 
 Il collaudo è su WordPress 7.1.4 appena installato, seguendo i passi 2-4 dal pannello come li farai tu.
