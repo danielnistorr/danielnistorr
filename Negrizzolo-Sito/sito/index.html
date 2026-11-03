@@ -32,7 +32,7 @@
 
   --m:max(16px, min(80px, 5.2vw));
   --sez:clamp(64px, 8.4vw, 120px);
-  --gap:clamp(16px, 2.2vw, 32px);
+  --gap:clamp(16px, 2vw, 28px);
 
   /* scala: sette misure */
   --f-et:14px;
@@ -85,8 +85,8 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .menu a{font-size:var(--f-et);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 0;border-bottom:2px solid transparent;transition:border-color .15s}
 .menu a:hover{border-bottom-color:var(--rosso)}
 .tel-testa{min-height:48px;padding:0 18px}
-.tel-testa.calma{background:transparent;color:var(--rosso)}
-.tel-testa.calma:hover{background:var(--rosso);color:#fff}
+.tel-testa.calma{background:transparent;color:var(--inchiostro);border-color:var(--inchiostro)}
+.tel-testa.calma:hover{background:var(--inchiostro);border-color:var(--inchiostro);color:#fff}
 .apri-menu{display:none}
 
 /* ---------- apertura ---------- */
@@ -96,7 +96,8 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .ap-foto{grid-column:7 / -1;margin:0}
 .ap-foto img{width:100%;aspect-ratio:10/7;object-fit:cover;border-radius:2px}
 .apertura .et{color:var(--rosso)}
-.apertura h1{font-size:var(--f-h1);line-height:1.02;margin-bottom:24px}
+.apertura h1{font-size:var(--f-h1);line-height:1.02;margin-bottom:20px}
+.apertura .prova{font-size:var(--f-sub);line-height:1.4;margin:0 0 24px;max-width:30em}
 .stato{display:flex;gap:10px;align-items:baseline;margin:0 0 24px}
 .stato .punto{flex:none;width:10px;height:10px;border-radius:50%;background:var(--grigio);transform:translateY(-1px)}
 .stato.aperto .punto{background:var(--verde)}
@@ -106,16 +107,17 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .azioni{display:flex;flex-wrap:wrap;gap:12px}
 
 /* ---------- tre porte: un indice di link, come lo cercano ---------- */
-.porte{background:var(--zinco)}
+.porte{background:var(--zinco);padding-top:24px}
 .tre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap)}
 .porta{padding:28px 0 32px;border-top:3px solid var(--inchiostro)}
 .porta:first-child{border-top-color:var(--rosso)}
-.porte h2{font-size:var(--f-h3);line-height:1.1;margin-bottom:10px}
+.porte h2{font-size:var(--f-h3);line-height:1.1;margin-bottom:16px}
 .indice li{border-bottom:1px solid var(--linea)}
 .indice a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;padding:6px 0;text-decoration:none;line-height:1.3}
 .indice a::after{content:"\2192";flex:none;transition:transform .15s}
 .indice a:hover{color:var(--rosso)}
 .indice a:hover::after{transform:translateX(3px)}
+.indice a.qui::after{content:none}
 .indice a span.num{margin-left:auto;font-weight:700;white-space:nowrap}
 
 /* ---------- prodotti ---------- */
@@ -141,7 +143,11 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .numeri dl > div{border-top:1px solid var(--linea-scura);padding-top:20px}
 .numeri dt{font-size:var(--f-num);line-height:.95;font-weight:700;font-stretch:74%;font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.02em;margin-bottom:12px}
 .numeri dd{max-width:22em;color:rgba(255,255,255,.86)}
-.numeri .fonte{margin-top:clamp(40px, 5vw, 64px);font-size:var(--f-testo);color:rgba(255,255,255,.86);max-width:44em}
+.cert{margin-top:clamp(56px, 6vw, 88px);padding-top:24px;border-top:1px solid var(--linea-scura)}
+.cert > .et{color:var(--grigio-chiaro);margin-bottom:20px}
+.cert ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px var(--gap)}
+.cert li .et{color:#fff;margin-bottom:6px}
+.cert li p{margin:0;color:rgba(255,255,255,.86);max-width:24em}
 
 /* ---------- riparazioni ---------- */
 .rip .griglia{align-items:start}
@@ -151,6 +157,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .rip-punti{margin-top:28px;border-top:1px solid var(--linea)}
 .rip-punti li{padding:16px 0;border-bottom:1px solid var(--linea);display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr);gap:16px}
 .rip-punti b{font-weight:700}
+.rip-testo .bt{margin-top:28px}
 .rip-box{grid-column:8 / -1;background:var(--zinco);padding:clamp(24px, 2.8vw, 40px);border-top:3px solid var(--rosso)}
 .rip-box h3{font-size:var(--f-h3);line-height:1.1;margin-bottom:12px}
 .rip-box .bt{width:100%;margin-top:8px}
@@ -209,7 +216,10 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .campo input,.campo select,.campo textarea{font:inherit;font-size:var(--f-testo);color:var(--inchiostro);background:var(--bianco);border:1px solid var(--grigio);border-radius:4px;min-height:52px;padding:12px 14px;width:100%}
 .campo textarea{min-height:128px;resize:vertical}
 .campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--rosso);outline-offset:0;border-color:var(--rosso)}
-.modulo .allegati{margin:20px 0;color:var(--grigio)}
+.campo input[type=file]{cursor:pointer;padding:12px 14px;line-height:1.6}
+.campo input[type=file]::file-selector-button{font:inherit;font-weight:700;color:var(--inchiostro);background:transparent;border:2px solid var(--inchiostro);border-radius:4px;padding:4px 14px;margin-right:14px;cursor:pointer}
+.campo .aiuto{margin:2px 0 0;color:var(--grigio)}
+.modulo .campi{margin-bottom:24px}
 .modulo .avviso{color:var(--rosso);font-weight:700;margin:0 0 12px}
 .modulo .avviso:empty{display:none}
 .modulo .bt{width:100%}
@@ -225,9 +235,10 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 .piede img{width:150px;margin-bottom:20px}
 .piede p,.piede li{font-size:var(--f-testo);line-height:1.45;color:rgba(255,255,255,.86);margin:0 0 6px}
 .piede .et{color:var(--grigio-chiaro);margin-bottom:16px}
-.piede li a{display:inline-block;padding:3px 0}
+.piede li{margin:0}
+.piede li a,.piede p a{display:inline-block;padding:10px 0}
 .piede .sotto{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:56px;padding-top:24px;border-top:1px solid var(--linea-scura);color:rgba(255,255,255,.7);font-size:var(--f-et)}
-.piede .sotto a{color:rgba(255,255,255,.86)}
+.piede .sotto a{color:rgba(255,255,255,.86);padding:12px 0;margin-block:-12px}
 
 /* ---------- larghezze intermedie ---------- */
 @media (max-width:1180px){
@@ -247,8 +258,8 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
   .testata{position:sticky}
   .tel-testa{margin-left:auto;padding:0 14px}
   .apri-menu{margin-left:0}
-  .ap-testo{grid-column:1 / -1;order:2}
-  .ap-foto{grid-column:1 / -1;order:1;margin-bottom:20px}
+  .ap-testo{grid-column:1 / -1}
+  .ap-foto{grid-column:1 / -1;margin-top:24px}
   .ap-foto img{max-width:720px}
   .rip-testo,.rip-box,.laser-testo,.laser-lato,.dove,.modulo{grid-column:1 / -1}
   .rip-box,.laser-lato,.modulo{margin-top:40px}
@@ -266,14 +277,14 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
   .porta + .porta{border-top-width:1px;border-top-color:var(--inchiostro)}
 }
 @media (max-width:719px){
+  .apertura .et{margin-bottom:10px}
+  .apertura .prova,.apertura .stato{margin-bottom:16px}
+  .azioni{gap:8px}
+  .ap-foto{margin-top:16px}
   .otto{flex-direction:column;gap:8px}
-  .schede{grid-template-columns:1fr;gap:0;border-top:1px solid var(--linea)}
-  .scheda{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 16px;padding:16px 0;border-bottom:1px solid var(--linea);align-items:start}
-  .scheda img{grid-row:1 / span 4;width:120px;margin:0}
-  .scheda .et{margin:0}
-  .scheda h3{margin:0;font-size:var(--f-sub)}
-  .scheda .gamma{margin:0}
-  .scheda p:not(.et):not(.gamma),.scheda .vai{display:none}
+  .schede{grid-template-columns:1fr;gap:44px}
+  .scheda img{margin-bottom:14px}
+  .cert ul{grid-template-columns:1fr}
   .numeri dl{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px var(--gap)}
   .rip-punti li{grid-template-columns:1fr;gap:2px}
   .materiali{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -295,7 +306,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"AutoRepair","name":"Negrizzolo S.a.S. di Negrizzolo ing. Paolo & C.","alternateName":"Officine Negrizzolo","telephone":"+39 0444 614515","email":"info@negrizzolo.it","address":{"@type":"PostalAddress","streetAddress":"Via Ferramosca 14","postalCode":"36040","addressLocality":"Grisignano di Zocco","addressRegion":"VI","addressCountry":"IT"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"12:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:00","closes":"18:00"}],"vatID":"IT02825640242"}
+{"@context":"https://schema.org","@type":"AutoRepair","name":"Negrizzolo S.a.S. di Negrizzolo ing. Paolo & C.","alternateName":"Officine Negrizzolo","telephone":"+39 0444 614515","faxNumber":"+39 0444 614515","email":"info@negrizzolo.it","address":{"@type":"PostalAddress","streetAddress":"Via Ferramosca 14","postalCode":"36040","addressLocality":"Grisignano di Zocco","addressRegion":"VI","addressCountry":"IT"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"12:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:00","closes":"18:00"}],"vatID":"IT02825640242"}
 </script>
 </head>
 <body>
@@ -321,8 +332,9 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
 <section class="apertura" aria-labelledby="titolo">
   <div class="wrap griglia">
     <div class="ap-testo">
-      <p class="et">Officina meccanica dagli anni '50 · Grisignano di Zocco (VI)</p>
+      <p class="et">Officina meccanica · Grisignano di Zocco (VI)</p>
       <h1 id="titolo">Rimorchi, carribotte e vasche inox. Riparazioni di qualsiasi marca. Taglio laser.</h1>
+      <p class="prova">Fabbri dal 1800, officina dagli anni '50.<br> Carribotte certificati CE ed omologati.</p>
       <p class="stato" id="stato"><span class="punto" aria-hidden="true"></span><span><b id="stato-ora"></b><span class="orario">Lunedì-venerdì 8-12 e 14-18, sabato mattina su appuntamento</span></span></p>
       <div class="azioni">
         <a class="bt" href="tel:+390444614515">Chiama <span class="num">0444 614515</span></a>
@@ -330,7 +342,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
       </div>
     </div>
     <figure class="ap-foto">
-      <img src="img/apertura-1000.webp" srcset="img/apertura-720.webp 720w, img/apertura-1000.webp 1000w" sizes="(max-width:1023px) calc(100vw - 32px), 46vw" width="1000" height="700" alt="Un rimorchio ribaltabile dumper rosso a due assi con la scritta NE GRI ZZO LO, davanti alla facciata blu dell'officina con l'insegna NEGRIZZOLO" fetchpriority="high">
+      <img src="img/apertura-854.webp" srcset="img/apertura-640.webp 640w, img/apertura-854.webp 854w" sizes="(max-width:1023px) calc(100vw - 32px), 46vw" width="854" height="598" alt="Un rimorchio ribaltabile dumper rosso a due assi con la scritta NE GRI ZZO LO, davanti alla facciata blu dell'officina con l'insegna NEGRIZZOLO" fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -345,23 +357,23 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
           <li><a href="rimorchi-fissi.html"><span>Rimorchi fissi</span><span class="num">30-200 q</span></a></li>
           <li><a href="carribotte.html"><span>Carribotte</span><span class="num">14-250 hl</span></a></li>
           <li><a href="vasche-inox-uva.html"><span>Vasche inox, anche sul vostro rimorchio</span></a></li>
-          <li><a href="#usato"><span>Usato: rimorchio 60 q.li</span><span class="num">7.800 €</span></a></li>
+          <li><a class="qui" href="#usato"><span>Usato: rimorchio 60 q.li</span><span class="num">7.800 €</span></a></li>
         </ul>
       </div>
       <div class="porta">
         <h2>Ripariamo</h2>
         <ul class="indice">
-          <li><a href="#riparazioni"><span>Macchine agricole di qualsiasi marca</span></a></li>
-          <li><a href="#riparazioni"><span>Magazzino ricambi</span></a></li>
+          <li><a class="qui" href="#riparazioni"><span>Macchine agricole di qualsiasi marca</span></a></li>
+          <li><a class="qui" href="#richiesta" data-tipo="Ricambio"><span>Magazzino ricambi: chiedete un pezzo</span></a></li>
           <li><a href="tel:+390444614515"><span>Macchina ferma?</span><span class="num">0444 614515</span></a></li>
-          <li><a href="#contatti"><span>Orari e come arrivare</span></a></li>
+          <li><a class="qui" href="#contatti"><span>Orari e come arrivare</span></a></li>
         </ul>
       </div>
       <div class="porta">
         <h2>Taglio laser, conto terzi</h2>
         <ul class="indice">
-          <li><a href="#laser"><span>Pezzi singoli e piccole serie</span><span class="num">8 ore lavorative</span></a></li>
-          <li><a href="#laser"><span>Ferro, inox, alluminio, Cor-ten e altri</span></a></li>
+          <li><a class="qui" href="#laser"><span>Pezzi singoli e piccole serie</span><span class="num">8 ore lavorative</span></a></li>
+          <li><a class="qui" href="#laser"><span>Ferro, inox, alluminio, Cor-ten e altri</span></a></li>
           <li><a href="mailto:laser@negrizzolo.it?subject=Richiesta%20di%20taglio%20laser&amp;body=Materiale%3A%0ASpessore%3A%0AQuantit%C3%A0%3A%0ALavorazioni%20dopo%20il%20taglio%3A%0AConsegna%20richiesta%3A%0A%0AAllego%20il%20disegno.%0A%0ANome%20e%20azienda%3A%0ATelefono%3A%0A"><span>Mandate il disegno a laser@negrizzolo.it</span></a></li>
         </ul>
       </div>
@@ -440,6 +452,14 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
       <div><dt>5.000</dt><dd>Metri quadri di piazzale esterno.</dd></div>
       <div><dt>8 ore</dt><dd>Lavorative, per il taglio laser di pezzi singoli e piccole serie.</dd></div>
     </dl>
+    <div class="cert">
+      <p class="et">Certificazioni e stampa</p>
+      <ul>
+        <li><p class="et">Carribotte</p><p>Certificati CE ed omologati per la circolazione stradale.</p></li>
+        <li><p class="et">Vasche inox</p><p>Certificate CE, a scarico laterale o posteriore.</p></li>
+        <li><p class="et">Ne hanno scritto</p><p>AgroNotizie, 19 ottobre 2008: "Negrizzolo Sas: carribotte e rimorchi".</p></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -454,6 +474,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
         <li><b>Magazzino ricambi</b><span>Veloce ed efficiente.</span></li>
         <li><b>Fermo macchina</b><span>Ridotto al minimo: il servizio di riparazione è da sempre uno dei fiori all'occhiello della ditta.</span></li>
       </ul>
+      <a class="bt bt--filo" href="#richiesta" data-tipo="Ricambio">Chiedete un ricambio</a>
     </div>
     <aside class="rip-box" aria-labelledby="t-ferma">
       <h3 id="t-ferma">Macchina ferma? Chiamate l'officina</h3>
@@ -527,7 +548,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
         <a class="bt bt--filo" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Ferramosca+14%2C+36040+Grisignano+di+Zocco+VI">Apri la mappa</a>
       </div>
       <ul class="recapiti">
-        <li><span>Telefono</span><a class="num" href="tel:+390444614515">0444 614515</a></li>
+        <li><span>Telefono e fax</span><a class="num" href="tel:+390444614515">0444 614515</a></li>
         <li><span>Agricoltura</span><a href="mailto:info@negrizzolo.it?subject=Richiesta%20dal%20sito">info@negrizzolo.it</a></li>
         <li><span>Laser e carpenteria</span><a href="mailto:laser@negrizzolo.it?subject=Richiesta%20di%20taglio%20laser">laser@negrizzolo.it</a></li>
         <li><span>Orari</span><p style="margin:0">Lunedì-venerdì 8-12 e 14-18<br>Sabato mattina su appuntamento</p></li>
@@ -556,8 +577,12 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
         <div class="campo"><label for="cosa" id="l-cosa">Macchina e portata</label><input id="cosa" name="cosa"></div>
         <div class="campo"><label for="quanti" id="l-quanti">Trattore o marca</label><input id="quanti" name="quanti"></div>
         <div class="campo campo--largo"><label for="msg">Messaggio</label><textarea id="msg" name="msg"></textarea></div>
+        <div class="campo campo--largo">
+          <label for="file" id="l-file">Foto o disegni</label>
+          <input id="file" name="file" type="file" multiple>
+          <p class="aiuto" id="allegati">Con l'email che si apre il file non parte da solo: allegatelo voi.</p>
+        </div>
       </div>
-      <p class="allegati" id="allegati">Foto o disegni: allegateli alla mail che si apre.</p>
       <p class="avviso" id="avviso" role="alert"></p>
       <button class="bt" type="submit">Componi l'email</button>
     </form>
@@ -577,7 +602,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
     <div class="col">
       <p class="et">Contatti e orari</p>
       <ul>
-        <li><a class="num" href="tel:+390444614515">0444 614515</a></li>
+        <li>Tel. e fax <a class="num" href="tel:+390444614515">0444 614515</a></li>
         <li>Agricoltura: <a href="mailto:info@negrizzolo.it?subject=Richiesta%20dal%20sito">info@negrizzolo.it</a></li>
         <li>Laser: <a href="mailto:laser@negrizzolo.it?subject=Richiesta%20di%20taglio%20laser">laser@negrizzolo.it</a></li>
         <li>Lunedì-venerdì 8-12 e 14-18</li>
@@ -669,17 +694,20 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
   stato();setInterval(stato,60000);
 
   /* richiesta: compone l'email, non invia nulla */
-  var f=document.getElementById('richiesta'),tipo=document.getElementById('tipo'),lc=document.getElementById('l-cosa'),lq=document.getElementById('l-quanti'),al=document.getElementById('allegati'),av=document.getElementById('avviso');
+  var f=document.getElementById('richiesta'),tipo=document.getElementById('tipo'),lc=document.getElementById('l-cosa'),lq=document.getElementById('l-quanti'),lf=document.getElementById('l-file'),al=document.getElementById('allegati'),fi=document.getElementById('file'),av=document.getElementById('avviso');
+  var NOTA='Con l\'email che si apre il file non parte da solo: allegatelo voi.';
   var ETI={
-    'Macchina nuova su misura':['Macchina e portata','Trattore o marca','Foto o disegni: allegateli alla mail che si apre.'],
-    'Vasca inox sul mio rimorchio':['Rimorchio (marca, portata)','Misure del cassone','Una foto del rimorchio: allegatela alla mail che si apre.'],
-    'Usato':['Che cosa cercate','Portata','Vi richiamiamo con le macchine usate disponibili.'],
-    'Riparazione':['Macchina e marca','Dove si trova','Una foto del guasto: allegatela alla mail che si apre. Se è urgente, chiamate.'],
-    'Ricambio':['Pezzo o codice','Macchina e marca','Una foto del pezzo: allegatela alla mail che si apre.'],
-    'Taglio laser e carpenteria':['Materiale e spessore','Quantità','Il disegno: allegatelo alla mail che si apre.']
+    'Macchina nuova su misura':['Macchina e portata','Trattore o marca','Foto o disegni',NOTA],
+    'Vasca inox sul mio rimorchio':['Rimorchio (marca, portata)','Misure del cassone','Foto del rimorchio',NOTA],
+    'Usato':['Che cosa cercate','Portata','Foto (se serve)',NOTA],
+    'Riparazione':['Macchina e marca','Dove si trova','Foto del guasto',NOTA+' Se è urgente, chiamate.'],
+    'Ricambio':['Pezzo o codice','Macchina e marca','Foto del pezzo',NOTA],
+    'Taglio laser e carpenteria':['Materiale e spessore','Quantità','Disegno',NOTA]
   };
-  function aggiorna(){var e=ETI[tipo.value];lc.textContent=e[0];lq.textContent=e[1];al.textContent=e[2];}
+  function aggiorna(){var e=ETI[tipo.value];lc.textContent=e[0];lq.textContent=e[1];lf.textContent=e[2];al.textContent=e[3];}
   tipo.addEventListener('change',aggiorna);aggiorna();
+  /* i link "chiedete un ricambio" scelgono il tipo nel modulo */
+  document.querySelectorAll('a[data-tipo]').forEach(function(a){a.addEventListener('click',function(){tipo.value=a.getAttribute('data-tipo');aggiorna();});});
   f.addEventListener('submit',function(ev){
     ev.preventDefault();
     var v=function(id){return document.getElementById(id).value.trim();};
@@ -687,7 +715,7 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
     if(!v('tel')&&!v('email')){av.textContent='Lasciate un telefono o un\'email per la risposta.';document.getElementById('tel').focus();return;}
     av.textContent='';
     var laser=tipo.value==='Taglio laser e carpenteria',a=laser?'laser@negrizzolo.it':'info@negrizzolo.it';
-    var corpo=['Tipo di richiesta: '+tipo.value,'Nome: '+v('nome'),'Azienda: '+v('azienda'),'Telefono: '+v('tel'),'Email: '+v('email'),lc.textContent+': '+v('cosa'),lq.textContent+': '+v('quanti'),'','Messaggio:',v('msg'),'',laser?'Allego il disegno.':''].join('\n');
+    var corpo=['Tipo di richiesta: '+tipo.value,'Nome: '+v('nome'),'Azienda: '+v('azienda'),'Telefono: '+v('tel'),'Email: '+v('email'),lc.textContent+': '+v('cosa'),lq.textContent+': '+v('quanti'),'','Messaggio:',v('msg'),'','File da allegare: '+(fi.files.length?Array.prototype.map.call(fi.files,function(x){return x.name;}).join(', '):'nessuno')].join('\n');
     var u='mailto:'+a+'?subject='+encodeURIComponent(tipo.value+', richiesta dal sito')+'&body='+encodeURIComponent(corpo);
     f.setAttribute('data-mail',u);location.href=u;
   });

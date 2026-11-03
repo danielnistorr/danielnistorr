@@ -94,59 +94,70 @@ h3{font-size:var(--f4);line-height:1.2;font-weight:700}
 @media (max-width:519px){.testata .btn .lungo{display:none}.testata .btn .corto{display:inline}.testata .btn{padding:0 12px}}
 @media (max-width:359px){.logo img{height:36px}.menu-tel summary{padding:0 10px}}
 
-/* apertura */
-.apertura{padding:calc(var(--testata) + 48px) 0 96px}
-.ap{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--g);align-items:start}
-.ap-testo{grid-column:1 / span 7;padding-right:24px}
-.ap-foto{grid-column:8 / span 5}
-.ap .etichetta{color:var(--arancio-scuro);margin-bottom:20px}
+/* apertura: blocco nero a tutta larghezza, foto della cabina a filo del bordo destro */
+.apertura{background:var(--nero);color:var(--bianco);padding-top:var(--testata)}
+.ap{display:grid;grid-template-columns:minmax(0,1fr) min(42vw,620px)}
+.ap-testo{padding:64px 56px 64px max(var(--m), calc((100vw - 1440px) / 2 + var(--m)));display:flex;flex-direction:column}
+.ap-testo .ap-fatti{margin-top:auto}
+.ap-foto{position:relative;background:var(--grigio);min-height:calc(min(42vw,620px) * 1.25)}
+.ap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.ap .etichetta{color:var(--arancio);margin-bottom:20px}
 h1{font-size:var(--f6);line-height:1.02;margin-bottom:24px}
-.lead{max-width:34em;margin-bottom:12px}
-.lead a{text-decoration-color:var(--arancio);text-decoration-thickness:2px}
-.prova{display:flex;gap:12px;align-items:baseline;font-size:var(--f2);color:var(--testo-2);margin-bottom:32px}
-.prova::before{content:"";flex:none;width:24px;height:3px;background:var(--arancio);transform:translateY(-4px)}
-.azioni{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
-.servizio{display:grid;grid-template-columns:1fr 1fr;gap:var(--g);border-top:1px solid var(--linea);padding-top:20px;font-size:var(--f2)}
-.servizio dt{font-size:var(--f1);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2);margin-bottom:6px}
-.servizio a{display:inline-block;padding-block:8px;font-weight:700}
+.lead{max-width:34em;margin-bottom:32px;color:rgba(255,255,255,.88)}
+.lead a{color:var(--bianco);text-decoration-color:var(--arancio);text-decoration-thickness:2px}
+.azioni{display:flex;flex-wrap:wrap;gap:12px}
+.apertura .btn.bordo{border-color:var(--bianco);color:var(--bianco)}
+.apertura .btn.bordo:hover{background:var(--bianco);color:var(--nero)}
+.apertura .btn.pieno:hover{background:var(--bianco);border-color:var(--bianco);color:var(--nero)}
+.mail-chiaro{font-size:var(--f2);color:rgba(255,255,255,.78);margin:4px 0 36px}
+.mail-chiaro a{display:inline-block;padding-block:10px;color:var(--bianco);font-weight:700;text-decoration-color:var(--arancio)}
+.ap-fatti{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:var(--g);border-top:1px solid var(--linea-scura);padding-top:24px;font-size:var(--f2)}
+.prova{display:flex;gap:14px;align-items:flex-start}
+.prova .cifra{font-size:var(--f5);line-height:.9;color:var(--arancio);flex:none}
+.prova p{color:rgba(255,255,255,.88)}
+.servizio dt{font-size:var(--f1);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.servizio a{display:inline-block;padding-block:8px;font-weight:700;text-decoration-color:var(--arancio)}
 .stato{display:flex;align-items:center;gap:8px;font-weight:700}
 .stato::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--grigio);flex:none}
 .stato.aperto::before{background:var(--arancio)}
 .stato:empty{display:none}
-.ap-foto img{width:100%;border-radius:4px}
-.ap-mezzi{grid-column:1 / -1;display:flex;align-items:center;gap:32px;margin-top:48px;padding-top:20px;border-top:1px solid var(--linea)}
-.ap-mezzi .etichetta{margin:0;color:var(--testo-2);flex:none}
-.ap-mezzi ul{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:var(--f2);font-weight:700}
-.ap-mezzi a{display:inline-block;padding-block:8px;text-decoration-color:var(--arancio);text-decoration-thickness:2px}
-@media (max-width:1199px){.ap-mezzi{display:block}.ap-mezzi .etichetta{margin-bottom:4px}}
+@media (max-width:1199px){.ap{grid-template-columns:minmax(0,1fr) 38vw}.ap-foto{min-height:calc(38vw * 1.25)}.ap-testo{padding-right:40px}
+  .ap-fatti{grid-template-columns:1fr 1fr;gap:20px var(--g)}.prova{grid-column:1 / -1}.prova p{max-width:none}}
 @media (max-width:899px){
-  .apertura{padding-top:calc(var(--testata) + 24px)}
-  .ap{display:block}
-  .ap-testo{padding-right:0}
-  .ap .etichetta{margin-bottom:12px}
+  .ap{display:block;min-height:0}
+  .ap-testo{padding:24px var(--m) 28px}
+  .ap .etichetta{margin-bottom:12px;letter-spacing:.04em}
   h1{margin-bottom:14px}
-  .lead{margin-bottom:10px}
-  .prova{margin-bottom:20px}
-  .azioni{flex-direction:column;gap:10px;margin-bottom:20px}
+  .lead{margin-bottom:20px}
+  .azioni{flex-direction:column;gap:10px}
   .azioni .btn{width:100%}
-  .servizio{grid-template-columns:1fr;gap:0;padding-top:0}
-  .servizio>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;min-height:52px;border-bottom:1px solid var(--linea)}
+  .mail-chiaro{margin:2px 0 16px}
+  .ap-testo{display:block}
+  .ap-fatti{display:block;padding-top:0;border-top:0}
+  .prova{align-items:center;padding:12px 0 14px;border-top:1px solid var(--linea-scura)}
+  .prova .cifra{line-height:1}
+  .servizio>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;min-height:52px;border-top:1px solid var(--linea-scura)}
   .servizio dt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .servizio a{padding-block:12px}
-  .ap-foto{margin-top:24px}
-  .ap-mezzi,.solo-largo{display:none}
-  .ap .etichetta{letter-spacing:.04em}
+  .ap-foto{aspect-ratio:4 / 3;min-height:0}
 }
 
-/* mezzi: blocco nero, sei schede con le loro foto */
-.mezzi{background:var(--nero);color:var(--bianco)}
-.mezzi .testa-sez p{color:rgba(255,255,255,.78)}
+/* garanzie: fascia arancio piena subito dopo l'apertura */
+.fascia{background:var(--arancio);color:var(--nero);padding-block:56px}
+.garanzie{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
+.garanzie li{border-top:2px solid var(--nero);padding-top:18px}
+.garanzie h3{margin-bottom:8px}
+.garanzie p{font-size:var(--f2)}
+@media (max-width:899px){main{display:flex;flex-direction:column}main>section{order:3}.apertura{order:1}#mezzi{order:2}
+  .fascia{padding-block:36px}.garanzie{grid-template-columns:1fr;gap:20px}.garanzie li{padding-top:12px}.garanzie h3{margin-bottom:4px}}
+
+/* schede con la foto: mezzi e lavorazioni, tutta la scheda cliccabile */
 .schede{display:grid;grid-template-columns:repeat(3,1fr);gap:40px var(--g)}
 .scheda{display:block;text-decoration:none;color:inherit;height:100%}
 .scheda img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;margin-bottom:18px}
 .scheda h3{margin-bottom:6px}
-.scheda p{font-size:var(--f2);color:rgba(255,255,255,.78);margin-bottom:12px}
-.scheda .freccia{color:var(--arancio)}
+.scheda p{font-size:var(--f2);color:var(--testo-2);margin-bottom:12px}
+.scheda .freccia{color:var(--arancio-scuro)}
 .scheda:hover h3{text-decoration:underline;text-underline-offset:.2em}
 @media (max-width:899px){.schede{grid-template-columns:1fr 1fr;gap:28px var(--g)}}
 @media (max-width:519px){.schede{grid-template-columns:1fr}
@@ -154,47 +165,53 @@ h1{font-size:var(--f6);line-height:1.02;margin-bottom:24px}
   .scheda img{grid-row:1 / span 3;margin-bottom:0}
   .scheda p{margin-bottom:6px}}
 
-/* lavorazioni */
-.garanzie{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g);margin-bottom:72px}
-.garanzie li{border-top:3px solid var(--arancio);padding-top:20px}
-.garanzie h3{margin-bottom:8px}
-.garanzie p{font-size:var(--f2);color:var(--testo-2)}
-.lavorazioni{display:grid;grid-template-columns:repeat(3,1fr);gap:0 var(--g);border-top:1px solid var(--linea)}
-.lavorazioni li{display:flex;flex-direction:column;gap:10px;padding:32px 0 40px;border-bottom:1px solid var(--linea)}
-.lavorazioni .n{font-size:var(--f4);font-weight:700;color:var(--arancio-scuro);font-variant-numeric:tabular-nums}
-.lavorazioni p{font-size:var(--f2);color:var(--testo-2);flex:1}
-.lavorazioni .link{display:flex;flex-wrap:wrap;gap:4px 20px}
-.lavorazioni .link a{padding-block:8px}
-@media (max-width:899px){.garanzie,.lavorazioni{grid-template-columns:1fr}.garanzie{margin-bottom:48px;gap:28px}
-  .lavorazioni li{padding:24px 0 28px}}
+/* lavorazioni: grigio chiaro, tre schede con la foto, poi vetri (nero) e le altre due */
+.lavorazioni{background:var(--chiaro)}
+.lav-altre{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);margin-top:56px;align-items:stretch}
+.vetri{grid-column:1 / span 6;background:var(--nero);color:var(--bianco);border-radius:4px;padding:36px 40px}
+.vetri h3{margin-bottom:8px}
+.vetri p{font-size:var(--f2);color:rgba(255,255,255,.82);margin-bottom:24px;max-width:30em}
+.vetri .fermo{display:block;color:var(--bianco);margin-top:4px}
+.vetri .riga{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+.vetri .freccia{color:var(--bianco);text-decoration-color:var(--arancio)}
+.lav-testo{grid-column:span 3;border-top:2px solid var(--nero);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+.lav-testo p{font-size:var(--f2);color:var(--testo-2);flex:1}
+.lav-testo .freccia{padding-block:8px;color:var(--arancio-scuro)}
+@media (max-width:1099px){.vetri{grid-column:1 / -1}.lav-testo{grid-column:span 6}}
+@media (max-width:899px){.lav-altre{margin-top:40px;gap:32px var(--g)}.vetri{padding:28px 20px}}
+@media (max-width:599px){.lav-testo{grid-column:1 / -1}}
 
-/* lavori: grigio chiaro */
-.lavori{background:var(--chiaro)}
-.seq{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g);margin-bottom:80px}
-.seq img,.altri img{width:100%;border-radius:4px;margin-bottom:16px}
-.seq .passo{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
-.seq .passo span,.altri p{font-size:var(--f2);color:var(--testo-2)}
-.altri-testa{margin-bottom:32px}
-.altri{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
-.altri img{aspect-ratio:4/3;object-fit:cover}
-.altri h3{margin-bottom:4px}
-@media (max-width:899px){.seq{gap:10px;margin-bottom:56px}.seq h3{font-size:var(--f2)}.seq .passo span{font-size:var(--f1)}
-  .seq img{margin-bottom:10px}}
+/* lavori: blocco nero, il D8R in tre passi con il finito grande */
+.lavori{background:var(--nero);color:var(--bianco)}
+.lavori .testa-sez p{color:rgba(255,255,255,.78)}
+.seq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);grid-template-rows:auto auto;gap:24px var(--g);margin-bottom:88px}
+.seq li{display:flex;flex-direction:column}
+.seq li:nth-child(3){grid-column:2;grid-row:1 / span 2}
+.seq img{width:100%;border-radius:4px}
+.seq .riq{position:relative;aspect-ratio:4 / 3}
+.seq li:nth-child(2){align-self:end}
+.seq .riq img{position:absolute;inset:0;height:100%;object-fit:cover}
+.seq .passo{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;margin-top:12px}
+.seq .passo span{font-size:var(--f2);color:rgba(255,255,255,.78)}
+.altri-testa{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;margin-bottom:28px;border-top:1px solid var(--linea-scura);padding-top:28px}
+.altri-testa h3{color:var(--arancio)}
+.altri-testa p{font-size:var(--f2);color:rgba(255,255,255,.78)}
+.altri{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--g)}
+.altri img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;margin-bottom:16px}
+@media (max-width:899px){.seq{grid-template-columns:1fr 1fr;gap:16px 12px;margin-bottom:56px}
+  .seq li:nth-child(3){grid-column:1 / -1;grid-row:2}
+  .seq .passo{margin-top:8px;flex-direction:column;gap:0}.seq h3{font-size:var(--f2)}}
 @media (max-width:599px){.altri{grid-template-columns:1fr;gap:32px}}
 
-/* chi siamo: grigio del logo */
-.chi{background:var(--grigio);color:var(--bianco)}
+/* chi siamo: bianco, i nomi come titolo e i dati della societa */
 .chi-griglia{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
-.chi h2{grid-column:1 / span 5}
+.chi-titolo{grid-column:1 / span 5}
+.chi-titolo .etichetta{color:var(--arancio-scuro);margin-bottom:16px}
 .chi .storia{grid-column:7 / span 6}
 .chi .storia p{font-size:var(--f4);line-height:1.4}
-.cifre{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g);margin-top:72px;border-top:1px solid var(--linea-scura);padding-top:32px}
-.cifra{display:block;font-size:var(--f6);line-height:1;margin-bottom:12px;color:var(--arancio)}
-.cifre p{font-size:var(--f2);color:rgba(255,255,255,.86);max-width:18em}
-.societa{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:56px;font-size:var(--f2)}
-.societa dt{font-size:var(--f1);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:6px}
+.societa{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:64px;border-top:1px solid var(--linea);padding-top:24px;font-size:var(--f2)}
+.societa dt{font-size:var(--f1);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2);margin-bottom:6px}
 @media (max-width:899px){.chi-griglia{display:block}.chi .storia{margin-top:20px}.chi .storia p{font-size:var(--f3)}
-  .cifre{margin-top:40px;grid-template-columns:1fr;gap:24px}.cifra{margin-bottom:4px}
   .societa{grid-template-columns:1fr 1fr;margin-top:40px}}
 
 /* contatti: blocco arancio pieno, telefono come titolo grande e modulo */
@@ -215,7 +232,6 @@ h1{font-size:var(--f6);line-height:1.02;margin-bottom:24px}
 .scrivere li{padding-left:22px;position:relative}
 .scrivere li::before{content:"";position:absolute;left:0;top:.65em;width:10px;height:2px;background:var(--nero)}
 .modulo{grid-column:7 / span 6;background:var(--bianco);border-radius:4px;padding:40px}
-.modulo h3{margin-bottom:8px}
 .modulo .aiuto{font-size:var(--f2);color:var(--testo-2);margin-bottom:24px}
 .campi{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
 .campo{display:flex;flex-direction:column;gap:6px;font-size:var(--f1);font-weight:700}
@@ -228,10 +244,19 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
 .scelte{display:flex;flex-wrap:wrap;gap:8px}
 .scelte label{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 14px;border:1px solid var(--testo-2);border-radius:4px;font-size:var(--f2);font-weight:400;cursor:pointer}
 .scelte input{accent-color:var(--arancio-scuro);width:18px;height:18px;margin:0}
-.nota-foto{grid-column:1 / -1;font-size:var(--f2);color:var(--testo-2);border-left:3px solid var(--arancio);padding-left:14px}
+.nota-foto{font-size:var(--f2);color:var(--testo-2);border-left:3px solid var(--arancio);padding-left:14px}
 .modulo .btn{margin-top:24px;width:100%}
 .avviso{font-size:var(--f2);font-weight:700;color:var(--arancio-scuro);margin-top:12px}
 .avviso:empty{display:none}
+.modulo-testa{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px;margin-bottom:8px}
+.modulo-testa a{font-size:var(--f2);font-weight:700;padding-block:8px;text-decoration-color:var(--arancio)}
+.modulo .nota-foto{margin-bottom:24px}
+.composta{margin-top:20px;border-top:1px solid var(--linea);padding-top:20px;font-size:var(--f2)}
+.composta[hidden]{display:none}
+.composta p{margin-bottom:12px}
+.composta a{font-weight:700}
+.composta textarea{width:100%;min-height:160px;font:400 var(--f1)/1.5 "Archivo",system-ui,sans-serif;border:1px solid var(--testo-2);border-radius:4px;padding:12px 14px;color:var(--nero);background:var(--chiaro)}
+.modulo .composta .btn{margin-top:12px}
 @media (max-width:1099px){.recapiti{grid-column:1 / span 6}.modulo{grid-column:7 / span 6;padding:28px}}
 @media (max-width:899px){.contatti-griglia{display:block}.modulo{margin-top:48px;padding:24px 20px}.campi{grid-template-columns:1fr}}
 
@@ -282,48 +307,52 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
 <main id="contenuto">
 
 <section class="apertura" aria-labelledby="titolo">
-  <div class="wrap ap">
+  <div class="ap">
     <div class="ap-testo">
       <p class="etichetta">Carrozzeria industriale a Mestrino (PD)</p>
       <h1 id="titolo">Verniciatura e sabbiatura industriale</h1>
       <p class="lead">Carrozzeria e <a href="#lav-vetri">vetri</a> di <a href="#terra">macchine da lavoro</a>, <a href="#camion">camion e rimorchi</a> e <a href="#agricoli">mezzi agricoli</a>: tutta la macchina o un pezzo solo.</p>
-      <p class="prova"><span>Da oltre 40 anni nel settore<span class="solo-largo">: Stefano Barbieri e il figlio Leonardo</span>.</span></p>
       <div class="azioni">
         <a class="btn pieno" href="tel:+390499005162">Chiama <span class="n">049 900 5162</span></a>
-        <a class="btn bordo" href="mailto:info@nordservice.net?subject=Foto%20della%20macchina%20da%20valutare&amp;body=Ciao%2C%20vi%20mando%20le%20foto%20della%20macchina.%0D%0A%0D%0AMarca%20e%20modello%3A%0D%0ACosa%20c%27%C3%A8%20da%20fare%3A%0D%0ADove%20si%20trova%20la%20macchina%3A%0D%0ANome%20e%20telefono%3A%0D%0A%0D%0A%28Allego%203%20o%204%20foto%20da%20lati%20diversi%20e%20una%20del%20danno%20da%20vicino.%29">Manda le foto della macchina</a>
+        <a class="btn bordo" href="mailto:info@nordservice.net?subject=Foto%20della%20macchina%20da%20valutare&amp;body=Ciao%2C%20vi%20mando%20le%20foto%20della%20macchina.%0D%0A%0D%0AMarca%20e%20modello%3A%0D%0ACosa%20c%27%C3%A8%20da%20fare%3A%0D%0ADove%20si%20trova%20la%20macchina%3A%0D%0ANome%20e%20telefono%3A%0D%0A%0D%0A%28Allego%203%20o%204%20foto%20da%20lati%20diversi%20e%20una%20del%20danno%20da%20vicino.%29">Manda le foto per mail</a>
       </div>
-      <dl class="servizio">
-        <div>
-          <dt>Orari</dt>
-          <dd class="num">Lun-ven 7:00-17:30</dd>
-          <dd class="stato" data-stato></dd>
-        </div>
-        <div>
-          <dt>Officina</dt>
-          <dd>Via Levico 20, Mestrino</dd>
-          <dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Nord+Service+Via+Levico+20+35035+Mestrino+PD">Indicazioni</a></dd>
-        </div>
-      </dl>
+      <p class="mail-chiaro">oppure scrivi a <a href="mailto:info@nordservice.net?subject=Foto%20della%20macchina%20da%20valutare&amp;body=Ciao%2C%20vi%20mando%20le%20foto%20della%20macchina.%0D%0A%0D%0AMarca%20e%20modello%3A%0D%0ACosa%20c%27%C3%A8%20da%20fare%3A%0D%0ADove%20si%20trova%20la%20macchina%3A%0D%0ANome%20e%20telefono%3A%0D%0A%0D%0A%28Allego%203%20o%204%20foto%20da%20lati%20diversi%20e%20una%20del%20danno%20da%20vicino.%29">info@nordservice.net</a></p>
+      <div class="ap-fatti">
+        <div class="prova"><span class="cifra num">40+</span><p>anni di Stefano Barbieri nel settore, oggi con il figlio Leonardo.</p></div>
+        <dl class="servizio">
+          <div>
+            <dt>Orari</dt>
+            <dd class="num">Lun-ven 7:00-17:30</dd>
+            <dd class="stato" data-stato></dd>
+          </div>
+        </dl>
+        <dl class="servizio">
+          <div>
+            <dt>Officina</dt>
+            <dd>Via Levico 20, Mestrino</dd>
+            <dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Nord+Service+Via+Levico+20+35035+Mestrino+PD">Indicazioni</a></dd>
+          </div>
+        </dl>
+      </div>
     </div>
     <figure class="ap-foto">
       <picture>
-        <source media="(max-width:899px)" srcset="img/wa320-tel-720.jpg 720w, img/wa320-tel-1080.jpg 1080w" sizes="calc(100vw - 40px)" width="1080" height="900">
-        <img src="img/wa320-1080.jpg" srcset="img/wa320-720.jpg 720w, img/wa320-1080.jpg 1080w, img/wa320-1440.jpg 1440w"
-          sizes="(max-width:1199px) 40vw, 500px" width="1080" height="1080" fetchpriority="high"
-          alt="Pala gommata Komatsu WA320 gialla con la benna alzata, sul piazzale dell'officina di Mestrino">
+        <source media="(max-width:899px)" srcset="img/cabina-tel-720.jpg 720w, img/cabina-tel-1080.jpg 1080w" sizes="100vw" width="1080" height="810">
+        <img src="img/cabina-1080.jpg" srcset="img/cabina-720.jpg 720w, img/cabina-1080.jpg 1080w, img/cabina-1440.jpg 1440w"
+          sizes="(max-width:1199px) 38vw, 42vw" width="1080" height="1350" fetchpriority="high"
+          alt="Macchina coperta da carta, nastro e nylon nella cabina di verniciatura dell'officina di Mestrino, pronta per la vernice">
       </picture>
     </figure>
-    <nav class="ap-mezzi" aria-labelledby="ap-mezzi-t">
-      <p class="etichetta" id="ap-mezzi-t">Su che mezzi lavoriamo</p>
-      <ul>
-        <li><a href="#terra">Movimento terra</a></li>
-        <li><a href="#movimentatori">Movimentatori</a></li>
-        <li><a href="#gru">Gru e sollevatori</a></li>
-        <li><a href="#camion">Camion e rimorchi</a></li>
-        <li><a href="#agricoli">Mezzi agricoli</a></li>
-        <li><a href="#pezzi">Pezzi e componenti</a></li>
-      </ul>
-    </nav>
+  </div>
+</section>
+
+<section class="fascia" aria-label="Come lavoriamo">
+  <div class="wrap">
+    <ul class="garanzie">
+      <li><h3>Un numero solo</h3><p>Sabbiatura, fondi e vernici, vetroresina, carpenteria, vetri e ricambi: una sola officina da chiamare.</p></li>
+      <li><h3>Sul punto del danno</h3><p>La vernice a liquido permette interventi localizzati: non serve rifare tutta la macchina.</p></li>
+      <li><h3>Sabbiatura con garnet</h3><p>Ridotta produzione di polvere, possibilità di riutilizzo e meno rischi per la salute.</p></li>
+    </ul>
   </div>
 </section>
 
@@ -335,58 +364,64 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
     </div>
     <ul class="schede">
       <li id="terra"><a class="scheda" href="#richiesta" data-mezzo="Movimento terra">
-        <img src="img/mezzo-terra-480.jpg" srcset="img/mezzo-terra-480.jpg 480w, img/mezzo-terra-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Escavatore CAT 330C giallo davanti al capannone">
+        <img src="img/mezzo-terra-480.jpg" srcset="img/mezzo-terra-480.jpg 480w, img/mezzo-terra-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Pala gommata Komatsu WA320 gialla con la benna alzata, sul piazzale">
         <h3>Movimento terra</h3><p>Escavatori, pale gommate, apripista, mini escavatori.</p><span class="freccia">Chiedi per il tuo mezzo</span></a></li>
       <li id="movimentatori"><a class="scheda" href="#richiesta" data-mezzo="Movimentatore">
-        <img src="img/mezzo-movimentatori-480.jpg" srcset="img/mezzo-movimentatori-480.jpg 480w, img/mezzo-movimentatori-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Due movimentatori arancioni sul piazzale all'alba">
+        <img src="img/mezzo-movimentatori-480.jpg" srcset="img/mezzo-movimentatori-480.jpg 480w, img/mezzo-movimentatori-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Due movimentatori arancioni sul piazzale all'alba">
         <h3>Movimentatori</h3><p>Movimentatori per rottami e materiali, con le loro torrette e i bracci.</p><span class="freccia">Chiedi per il tuo mezzo</span></a></li>
       <li id="gru"><a class="scheda" href="#richiesta" data-mezzo="Gru o sollevatore">
-        <img src="img/mezzo-gru-480.jpg" srcset="img/mezzo-gru-480.jpg 480w, img/mezzo-gru-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Autogru rossa e gialla su strada">
+        <img src="img/mezzo-gru-480.jpg" srcset="img/mezzo-gru-480.jpg 480w, img/mezzo-gru-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Autogru rossa e gialla su strada">
         <h3>Gru e sollevatori</h3><p>Autogru, gru e sollevatori telescopici.</p><span class="freccia">Chiedi per il tuo mezzo</span></a></li>
       <li id="camion"><a class="scheda" href="#richiesta" data-mezzo="Camion o rimorchio">
-        <img src="img/mezzo-camion-480.jpg" srcset="img/mezzo-camion-480.jpg 480w, img/mezzo-camion-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Camion scarrabile bianco a quattro assi">
+        <img src="img/mezzo-camion-480.jpg" srcset="img/mezzo-camion-480.jpg 480w, img/mezzo-camion-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Camion scarrabile bianco a quattro assi">
         <h3>Camion e rimorchi</h3><p>Trattori stradali, scarrabili, semirimorchi e cassoni.</p><span class="freccia">Chiedi per il tuo mezzo</span></a></li>
       <li id="agricoli"><a class="scheda" href="#richiesta" data-mezzo="Mezzo agricolo">
-        <img src="img/mezzo-agricoli-480.jpg" srcset="img/mezzo-agricoli-480.jpg 480w, img/mezzo-agricoli-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Rimorchio agricolo blu e rosso riverniciato in cabina">
+        <img src="img/mezzo-agricoli-480.jpg" srcset="img/mezzo-agricoli-480.jpg 480w, img/mezzo-agricoli-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Rimorchio agricolo blu e rosso riverniciato in cabina">
         <h3>Mezzi agricoli</h3><p>Macchine agricole e rimorchi, con i relativi componenti.</p><span class="freccia">Chiedi per il tuo mezzo</span></a></li>
       <li id="pezzi"><a class="scheda" href="#richiesta" data-mezzo="Pezzo o componente">
-        <img src="img/mezzo-pezzi-480.jpg" srcset="img/mezzo-pezzi-480.jpg 480w, img/mezzo-pezzi-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 400px" width="480" height="360" loading="lazy" alt="Torretta gialla con fascia rossa e numero 813">
+        <img src="img/mezzo-pezzi-480.jpg" srcset="img/mezzo-pezzi-480.jpg 480w, img/mezzo-pezzi-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Torretta gialla con fascia rossa e numero 813">
         <h3>Pezzi e componenti</h3><p>Torrette, bracci, tralicci, cassoni, virole: anche un pezzo solo.</p><span class="freccia">Chiedi per il tuo pezzo</span></a></li>
     </ul>
   </div>
 </section>
 
-<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+<section class="sezione lavorazioni" id="lavorazioni" aria-labelledby="t-lav">
   <div class="wrap">
     <div class="testa-sez">
       <h2 id="t-lav">Le lavorazioni</h2>
-      <p>Da 40 anni lavoriamo nel settore e sappiamo offrirti servizi di qualità e altamente personalizzati, con cura nei dettagli.</p>
+      <p>Dal metallo nudo alla vernice, sulla macchina intera o su un pezzo solo.</p>
     </div>
-    <ul class="garanzie">
-      <li><h3>Intera o un pezzo solo</h3><p>Tutta la carrozzeria della macchina, oppure il singolo componente da rifare.</p></li>
-      <li><h3>Sul punto del danno</h3><p>La vernice a liquido permette interventi localizzati in caso di danni.</p></li>
-      <li><h3>Sabbiatura con garnet</h3><p>Ridotta produzione di polvere, possibilità di riutilizzo e meno rischi per la salute.</p></li>
+    <ul class="schede">
+      <li id="lav-sabbiatura"><a class="scheda" href="#richiesta" data-lav="Sabbiatura con garnet">
+        <img src="img/lav-sabbiatura-480.jpg" srcset="img/lav-sabbiatura-480.jpg 480w, img/lav-sabbiatura-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Cingoli e telaio di un apripista appena sabbiati, metallo grigio a vista e garnet a terra nella cabina di sabbiatura">
+        <h3>Sabbiatura a secco con garnet</h3><p>Il garnet, un abrasivo naturale, toglie vernici, ruggine e incrostazioni, arriva in ogni angolo della macchina e lascia una base grezza perfetta per la vernice.</p><span class="freccia">Chiedi un preventivo</span></a></li>
+      <li id="lav-vernici"><a class="scheda" href="#richiesta" data-lav="Fondi e vernici">
+        <img src="img/lav-vernici-480.jpg" srcset="img/lav-vernici-480.jpg 480w, img/lav-vernici-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Mini escavatore in cabina coperto da carta e nastro, con il braccio arancio scoperto">
+        <h3>Fondi e vernici a liquido</h3><p>Prima i fondi, che assicurano la migliore adesione, poi la vernice a spruzzo. Anche solo dove c'è il danno.</p><span class="freccia">Chiedi un preventivo</span></a></li>
+      <li id="lav-vetroresina"><a class="scheda" href="#richiesta" data-lav="Vetroresina e plastica">
+        <img src="img/lav-vetroresina-480.jpg" srcset="img/lav-vetroresina-480.jpg 480w, img/lav-vetroresina-900.jpg 900w" sizes="(max-width:519px) 132px, (max-width:899px) 45vw, 411px" width="480" height="360" loading="lazy" alt="Pannello grigio con le stuccature chiare, riparazione in corso in officina">
+        <h3>Vetroresina e plastica</h3><p>Saldatrici a plastica e a graffe per rinforzare le crepe; per la vetroresina fogli con resine bicomponenti o spatolabili.</p><span class="freccia">Chiedi un preventivo</span></a></li>
     </ul>
-    <ol class="lavorazioni">
-      <li id="lav-sabbiatura"><span class="n">01</span><h3>Sabbiatura a secco con garnet</h3>
-        <p>Un abrasivo naturale, il garnet, toglie vernici, ruggine e incrostazioni e lascia una base grezza perfetta per la vernice. Arriva in ogni angolo della macchina.</p>
-        <div class="link"><a class="freccia" href="#richiesta" data-lav="Sabbiatura con garnet">Chiedi un preventivo</a></div></li>
-      <li id="lav-vernici"><span class="n">02</span><h3>Fondi e vernici a liquido</h3>
-        <p>Prima i fondi, che assicurano la migliore adesione, poi la vernice a spruzzo. Anche solo dove c'è il danno.</p>
-        <div class="link"><a class="freccia" href="#richiesta" data-lav="Fondi e vernici">Chiedi un preventivo</a></div></li>
-      <li id="lav-vetroresina"><span class="n">03</span><h3>Vetroresina e plastica</h3>
-        <p>Saldatrici a plastica e a graffe per rinforzare le crepe; per la vetroresina fogli con resine bicomponenti o spatolabili.</p>
-        <div class="link"><a class="freccia" href="#richiesta" data-lav="Vetroresina e plastica">Chiedi un preventivo</a></div></li>
-      <li id="lav-carpenteria"><span class="n">04</span><h3>Carpenteria in ferro e acciaio</h3>
+    <div class="lav-altre">
+      <div class="vetri" id="lav-vetri">
+        <h3>Sostituzione vetri</h3>
+        <p>Dal finestrino del camion al parabrezza di una pala gommata. <strong class="fermo">Mezzo fermo? Chiama l'officina.</strong></p>
+        <div class="riga">
+          <a class="btn pieno" href="tel:+390499005162">Chiama <span class="n">049 900 5162</span></a>
+          <a class="freccia" href="#richiesta" data-lav="Sostituzione vetri">Scrivici</a>
+        </div>
+      </div>
+      <div class="lav-testo" id="lav-carpenteria">
+        <h3>Carpenteria in ferro e acciaio</h3>
         <p>Modifiche di carpenteria: tagliamo, saldiamo, raddrizziamo e creiamo tutto quello di cui hai bisogno.</p>
-        <div class="link"><a class="freccia" href="#richiesta" data-lav="Carpenteria">Chiedi un preventivo</a></div></li>
-      <li id="lav-vetri"><span class="n">05</span><h3>Sostituzione vetri</h3>
-        <p>Dal finestrino del camion al parabrezza di una pala gommata.</p>
-        <div class="link"><a class="freccia" href="tel:+390499005162">Mezzo fermo? Chiama</a><a class="freccia" href="#richiesta" data-lav="Sostituzione vetri">Scrivici</a></div></li>
-      <li id="lav-consulenza"><span class="n">06</span><h3>Consulenza sui ricambi</h3>
+        <a class="freccia" href="#richiesta" data-lav="Carpenteria">Chiedi un preventivo</a>
+      </div>
+      <div class="lav-testo" id="lav-consulenza">
+        <h3>Consulenza sui ricambi</h3>
         <p>Ti indirizziamo nella ricerca delle componenti di cui hai bisogno.</p>
-        <div class="link"><a class="freccia" href="#richiesta" data-lav="Consulenza">Chiedi una consulenza</a></div></li>
-    </ol>
+        <a class="freccia" href="#richiesta" data-lav="Consulenza">Chiedi una consulenza</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -397,36 +432,35 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
       <p>Ottobre 2024: sabbiato, verniciato e finito in officina, con le scritte rimesse.</p>
     </div>
     <ol class="seq">
-      <li><img src="img/d8r-sabbiato-480.jpg" srcset="img/d8r-sabbiato-480.jpg 480w, img/d8r-sabbiato-900.jpg 900w" sizes="(max-width:899px) 31vw, 400px" width="480" height="480" loading="lazy" alt="Apripista appena sabbiato, metallo grigio a vista, nella cabina di sabbiatura">
+      <li><img src="img/d8r-sabbiato-480.jpg" srcset="img/d8r-sabbiato-480.jpg 480w, img/d8r-sabbiato-900.jpg 900w" sizes="(max-width:899px) 46vw, 314px" width="480" height="480" loading="lazy" alt="Apripista appena sabbiato, metallo grigio a vista, nella cabina di sabbiatura">
         <div class="passo"><h3>Sabbiato</h3><span class="num">3 ottobre</span></div></li>
-      <li><img src="img/d8r-verniciato-480.jpg" srcset="img/d8r-verniciato-480.jpg 480w, img/d8r-verniciato-900.jpg 900w" sizes="(max-width:899px) 31vw, 400px" width="480" height="480" loading="lazy" alt="Apripista appena verniciato di giallo in cabina, con le mascherature ancora montate">
+      <li><img src="img/d8r-verniciato-480.jpg" srcset="img/d8r-verniciato-480.jpg 480w, img/d8r-verniciato-900.jpg 900w" sizes="(max-width:899px) 46vw, 314px" width="480" height="480" loading="lazy" alt="Apripista appena verniciato di giallo in cabina, con le mascherature ancora montate">
         <div class="passo"><h3>Verniciato</h3><span class="num">10 ottobre</span></div></li>
-      <li><img src="img/d8r-finito-480.jpg" srcset="img/d8r-finito-480.jpg 480w, img/d8r-finito-900.jpg 900w" sizes="(max-width:899px) 31vw, 400px" width="480" height="480" loading="lazy" alt="Apripista CAT D8R finito, giallo, con le scritte rimesse">
-        <div class="passo"><h3>Finito</h3><span class="num">16 ottobre</span></div></li>
+      <li><div class="riq"><img src="img/d8r-finito-960.jpg" srcset="img/d8r-finito-960.jpg 960w, img/d8r-finito-1440.jpg 1440w" sizes="(max-width:899px) calc(100vw - 40px), 942px" width="960" height="720" loading="lazy" alt="Apripista CAT D8R finito, giallo, con le scritte rimesse"></div>
+        <div class="passo"><h3>Finito</h3><span class="num">16 ottobre 2024</span></div></li>
     </ol>
-    <h3 class="altri-testa etichetta">Altri lavori in officina</h3>
+    <div class="altri-testa">
+      <h3 class="etichetta">Altri lavori in officina</h3>
+      <p>Anche un pezzo solo: torrette, bracci, tralicci, cassoni, virole.</p>
+    </div>
     <ul class="altri">
-      <li><img src="img/lavoro-mascheratura-480.jpg" srcset="img/lavoro-mascheratura-480.jpg 480w, img/lavoro-mascheratura-900.jpg 900w" sizes="(max-width:599px) calc(100vw - 40px), 400px" width="480" height="360" loading="lazy" alt="Mini escavatore in cabina coperto da carta e nastro, con il braccio arancio scoperto">
-        <h3>Mini escavatore</h3><p>In cabina con carta e nastro, prima della vernice. Dicembre 2024.</p></li>
-      <li><img src="img/lavoro-virole-480.jpg" srcset="img/lavoro-virole-480.jpg 480w, img/lavoro-virole-900.jpg 900w" sizes="(max-width:599px) calc(100vw - 40px), 400px" width="480" height="360" loading="lazy" alt="Due grandi virole blu su un camion, davanti all'officina">
-        <h3>Due virole blu</h3><p>Componenti pronti sul camion, davanti all'officina. Maggio 2025.</p></li>
-      <li><img src="img/lavoro-t916-480.jpg" srcset="img/lavoro-t916-480.jpg 480w, img/lavoro-t916-900.jpg 900w" sizes="(max-width:599px) calc(100vw - 40px), 400px" width="480" height="360" loading="lazy" alt="Movimentatore blu e bianco T916 sul carrellone">
-        <h3>Movimentatore T916</h3><p>Blu e bianco, sul carrellone. Febbraio 2025.</p></li>
+      <li><img src="img/lavoro-virole-640.jpg" srcset="img/lavoro-virole-640.jpg 640w, img/lavoro-virole-960.jpg 960w, img/lavoro-virole-1280.jpg 1280w" sizes="(max-width:599px) calc(100vw - 40px), (max-width:1439px) 46vw, 628px" width="640" height="480" loading="lazy" alt="Due grandi virole blu su un camion, davanti all'officina">
+        <h3>Due virole blu</h3></li>
+      <li><img src="img/lavoro-traliccio-640.jpg" srcset="img/lavoro-traliccio-640.jpg 640w, img/lavoro-traliccio-960.jpg 960w, img/lavoro-traliccio-1280.jpg 1280w" sizes="(max-width:599px) calc(100vw - 40px), (max-width:1439px) 46vw, 628px" width="640" height="480" loading="lazy" alt="Traliccio giallo di un braccio di gru, verniciato, nella cabina">
+        <h3>Traliccio giallo in cabina</h3></li>
     </ul>
   </div>
 </section>
 
 <section class="sezione chi" id="chi-siamo" aria-labelledby="t-chi">
   <div class="wrap chi-griglia">
-    <h2 id="t-chi">Un'officina di famiglia</h2>
+    <div class="chi-titolo">
+      <p class="etichetta">Chi siamo: un'officina di famiglia</p>
+      <h2 id="t-chi">Stefano e Leonardo Barbieri</h2>
+    </div>
     <div class="storia">
       <p>Nord Service è un'azienda a conduzione familiare guidata con passione e competenza da Stefano Barbieri, che da oltre quarant'anni opera con serietà nel settore. Oggi al suo fianco c'è il figlio Leonardo.</p>
     </div>
-    <ul class="cifre">
-      <li><span class="cifra num">40+</span><p>anni di Stefano Barbieri nel settore</p></li>
-      <li><span class="cifra num">2</span><p>generazioni in officina: Stefano e il figlio Leonardo</p></li>
-      <li><span class="cifra num">6</span><p>lavorazioni in un'officina sola, dalla sabbiatura ai vetri</p></li>
-    </ul>
     <dl class="societa">
       <div><dt>Ragione sociale</dt><dd>Nord Service SRL</dd></div>
       <div><dt>Partita IVA</dt><dd class="num">04717810289</dd></div>
@@ -463,8 +497,9 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
     </div>
 
     <form class="modulo" id="richiesta" action="mailto:info@nordservice.net" method="post" enctype="text/plain" novalidate>
-      <h3>Chiedi un preventivo</h3>
-      <p class="aiuto">Più sei specifico nel messaggio più ci aiuterai a capire già di cosa hai bisogno!</p>
+      <div class="modulo-testa"><h3>Chiedi un preventivo</h3><a href="tel:+390499005162">Hai fretta? Chiama <span class="num nb">049 900 5162</span></a></div>
+      <p class="aiuto">Più sei specifico nel messaggio, più ci aiuterai a capire già di cosa hai bisogno.</p>
+      <p class="nota-foto">Le foto le alleghi alla mail che si apre con il bottone in fondo.</p>
       <div class="campi">
         <label class="campo">Nome e cognome *<input name="nome" autocomplete="name" required></label>
         <label class="campo">Azienda<input name="azienda" autocomplete="organization"></label>
@@ -477,6 +512,7 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
             <option>Camion o rimorchio</option><option>Mezzo agricolo</option><option>Pezzo o componente</option>
           </select></label>
         <label class="campo">Marca e modello<input name="modello"></label>
+        <label class="campo tutta">Quanti pezzi o macchine<input name="quanti" inputmode="numeric" placeholder="Es. 1 macchina, 4 torrette"></label>
         <label class="campo tutta">Lavorazione
           <select name="lavorazione">
             <option value="">Scegli, o lasciaci consigliare</option>
@@ -484,7 +520,7 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
             <option>Carpenteria</option><option>Sostituzione vetri</option><option>Consulenza</option><option>Tutta la carrozzeria</option>
           </select></label>
         <label class="campo tutta">Cosa c'è da fare<textarea name="messaggio"></textarea></label>
-        <label class="campo tutta">Dove si trova la macchina<input name="dove" placeholder="Comune, oppure: la porto io in officina"></label>
+        <label class="campo tutta">Dove si trova la macchina<input name="dove" placeholder="Comune, o: la porto io"></label>
         <fieldset class="campo tutta">
           <legend>Quanto è urgente</legend>
           <div class="scelte">
@@ -493,10 +529,14 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
             <label><input type="radio" name="urgenza" value="Senza fretta">Senza fretta</label>
           </div>
         </fieldset>
-        <p class="nota-foto">Le foto le alleghi alla mail che si apre quando premi il bottone.</p>
       </div>
       <button class="btn pieno" type="submit">Prepara la mail</button>
       <p class="avviso" role="alert"></p>
+      <div class="composta" hidden>
+        <p>Se non si è aperto il programma di posta, copia il testo e mandalo a <a href="mailto:info@nordservice.net?subject=Richiesta%20di%20preventivo">info@nordservice.net</a>, con le foto.</p>
+        <textarea readonly aria-label="Testo della richiesta"></textarea>
+        <button class="btn bordo" type="button">Copia il testo</button>
+      </div>
     </form>
   </div>
 </section>
@@ -619,6 +659,7 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
       'Email: '+f.email.value.trim(),
       'Mezzo: '+f.mezzo.value,
       'Marca e modello: '+f.modello.value.trim(),
+      'Quanti pezzi o macchine: '+f.quanti.value.trim(),
       'Lavorazione: '+(f.lavorazione.value||'da consigliare'),
       'Dove si trova la macchina: '+f.dove.value.trim(),
       'Urgenza: '+(u?u.value:''),
@@ -630,7 +671,18 @@ fieldset.campo legend{padding:0;margin-bottom:6px}
     ];
     var ogg='Preventivo: '+[f.mezzo.value,f.modello.value.trim(),f.nome.value.trim()].filter(Boolean).join(', ');
     var u2='mailto:info@nordservice.net?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\r\n'));
+    var box=f.querySelector('.composta'), ta=box.querySelector('textarea');
+    ta.value='A: info@nordservice.net\r\nOggetto: '+ogg+'\r\n\r\n'+righe.join('\r\n');
+    box.hidden=false;
     (window.nsApriMail||function(x){location.href=x})(u2); /* nsApriMail: solo per le prove automatiche */
+  });
+  /* ripiego per chi non ha un programma di posta: copia il testo composto */
+  f.querySelector('.composta button').addEventListener('click',function(){
+    var ta=f.querySelector('.composta textarea'), b=this;
+    ta.select();
+    var fatto=function(){b.textContent='Testo copiato';};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(fatto,function(){try{document.execCommand('copy');fatto();}catch(e){}});}
+    else{try{document.execCommand('copy');fatto();}catch(e){}}
   });
 })();
 </script>
