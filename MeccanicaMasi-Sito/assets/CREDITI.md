@@ -38,19 +38,26 @@ Scaricate da images.unsplash.com e images.pexels.com e portate a 2400 px di lato
 | `esterne/pexels-lucock-28752154.jpg` | https://www.pexels.com/photo/close-up-of-industrial-gears-and-machinery-28752154/ | Connor Lucock | 03/10/2024 | 1600x2400 | B, verticale | ingranaggi e riduttore su una macchina, colori freddi |
 | `esterne/unsplash-gunkel-6kfQvW5eync.jpg` | https://unsplash.com/photos/6kfQvW5eync | Wilhelm Gunkel | 20/07/2019 | 2400x1351 | B | dentatura di un ingranaggio che emerge dal nero |
 
-## Usate nella home finale (`sito/img/`, aggiornato il 2 novembre 2026)
+## Usate nella home (`sito/img/`, livello professionale, aggiornato il 3 novembre 2026)
 
-Tutte rielaborate con `_prova/script/finale_img.py` (tagli, WebP in più larghezze). Le foto hanno un trattamento comune: luci riportate a grigio neutro (via il rosa e il giallo del telefono dal metallo), il verde e l'azzurro del tappetino da banco meno saturi e portati verso il verde grigio della pagina, una velatura minima verso lo stesso verde. Nessuna foto di repertorio nella home.
+Solo foto di Meccanica Masi, dalla loro libreria media (`originali/`), uso da confermare con l'azienda. Nessuna foto di repertorio: le dieci di `esterne/` restano scaricate ma **non sono usate** (nessuna era più in pagina già dal 2 novembre; non è stato tolto nulla in questo passaggio). Nessuno scontorno. Tagli e WebP con `_prova/script/pro_img.py` (misure in `_prova/script/pro_img.json`): trattamento comune (bianco verso il grigio neutro a metà, saturazione 0,82, contrasto 1,06), nessuna foto ingrandita oltre la misura del taglio; tolte dai tagli le scritte "SHOT ON MI".
 
-| File in `sito/img/` | Origine | Licenza | Note |
+| File in `sito/img/` | Origine in `originali/` | Taglio (px dell'originale) | Dove |
 |---|---|---|---|
-| `leva-grezza-*` (apertura, stato predefinito) | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-06-08-at-20.40.41.avif` | dell'azienda, uso da confermare | scontornata (grabCut), ombra presa dalla foto, WebP con trasparenza; **non ruotata e non specchiata**: è come è stata fotografata, dall'alto |
-| `leva-finita-*` (apertura, stato Verniciato) | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-06-08-at-20.40.35-1.avif` | dell'azienda, uso da confermare | scontornata, ombra corta presa dalla foto, WebP con trasparenza; non ruotata né specchiata |
-| `mandrino-*`, `mandrino-v-*` (fascia a tutta larghezza) | Meccanica Masi, `originali/2026-06_WhatsApp-Image-2026-06-12-at-19.11.51.webp` | dell'azienda | progetto "Gruppo mandrino espansibile per ribobinatrice filo saldatura"; foto a 1200 px, a 1440 è ingrandita di 1,2 volte |
-| `man-roland-*` | Meccanica Masi, `originali/2026-06_Progetti-2.jpeg` | dell'azienda | progetto "Supporto rullo silicone Man Roland"; il pezzo è tagliato a sinistra già nella foto originale |
-| `linea-giornali-*` | Meccanica Masi, `originali/2026-07_WhatsApp-Image-2026-03-28-at-11.24.08-10.jpeg` | dell'azienda | tagliata sopra i ritagli di carta a terra |
-| `stampa-interno-*` | Meccanica Masi, `originali/2026-10_IMG20230705092448.jpg` (598 px) | dell'azienda | dalla pagina Manutenzione meccanica sul posto |
-| `pulegge-*` (chiusura) | Meccanica Masi, `originali/2026-06_progetti-parte-3-e1791920314353.jpeg` | dell'azienda | progetto "Pulegge dal pieno" |
-| `logo-masi-scritta.svg` | Meccanica Masi, `originali/logo-masi-ingranaggi.svg` | marchio dell'azienda | solo la scritta vettoriale, tolti gli ingranaggi raster e i contorni bianchi; "SRL", che nell'originale era un testo in Futura Heavy, è in tracciati presi da Jost 800 (`font-logo/`, SIL OFL 1.1) (`_prova/script/finale_logo.py`) |
+| `porta-azienda-*` | `2026-10_IMG20230705092448.jpg` (598x449) | 0,10-598,309, 2:1 | apertura, "In azienda da voi" |
+| `porta-officina-*` | `2026-10_IMG_20200108_174328.jpg` (598x797) | 0,140-598,439, 2:1 | apertura, "In officina da noi" |
+| `man-stampa-*` | `2026-10_IMG_20210409_073157.jpg` | 78,0-598,390, 4:3 | scheda macchine da stampa |
+| `man-confez-*` | `2026-10_IMG_20210901_112738.jpg` | 78,0-598,390, 4:3 | scheda sacchettifici e confezionatrici |
+| `man-nastri-*` | `2026-10_IMG-20201212-WA0007.jpg` | 0,150-598,599, 4:3 | scheda nastri trasportatori |
+| `lav-tornitura-*` | `2026-10_IMG20240312141719.jpg` | 0,110-598,559, 4:3 | scheda tornitura |
+| `lav-fresatura-*` | `2026-10_20260728_195648-e1792777395888.jpg` | 55,0-544,367, 4:3 | scheda fresatura CNC |
+| `lav-lamiera-*` | `2026-10_IMG-20250217-WA0011.jpg` | 0,170-512,554, 4:3 | scheda lamiera |
+| `lav-saldatura-*` | `2026-10_IMG20250128164821.jpg` | 0,140-683,652, 4:3 | scheda saldatura |
+| `lavoro-man-roland-*` | `2026-06_Progetti-2.jpeg` | 300,0-1500,900, 4:3 | lavoro: supporto Man-Roland |
+| `lavoro-pulegge-*` | `2026-06_progetti-parte-3-e1791920314353.jpeg` | 250,0-1463,910, 4:3 | lavoro: pulegge dal pieno |
+| `lavoro-leva-*` | `2026-07_WhatsApp-Image-2026-06-08-at-20.40.41.avif` | 0,0-1200,1500, 4:5 | lavoro: leva in ghisa (foto intera, non scontornata) |
+| `lavoro-mandrino-*` | `2026-06_WhatsApp-Image-2026-06-12-at-19.11.51.webp` | 0,100-1200,1600, 4:5 | lavoro: mandrino espansibile |
+| `lavoro-giornali-*` | `2026-07_WhatsApp-Image-2026-03-28-at-11.24.08-10.jpeg` | 100,20-1140,1320, 4:5 | lavoro: linea spedizione giornali |
+| `logo-masi-scritta.svg`, `logo-masi-scritta-chiaro.svg` | `logo-masi-ingranaggi.svg` | solo la scritta vettoriale | testata e piede (la chiara con il nero portato a bianco) |
 
-Non più usate nella versione finale: la fresatrice di Connor Lucock (Pexels 28929513, tolta il 2 novembre 2026: era l'unica foto di repertorio, con "Foto indicativa"), Mastars `cJpvBX_gNrg` e Bank Phrom `Tzm3Oyu_6sk` (prototipo A), il tornio sulla puleggia `2026-10_IMG20240312141719.jpg` (troppo piccolo e scuro per la chiusura).
+Non più usate dalla versione 1 ("Dal pieno", copiata in `_prova/versione-1-originale/`): le due leve scontornate (`leva-grezza-*`, `leva-finita-*`), il mandrino in fascia a tutta larghezza, la linea giornali e le pulegge nei vecchi tagli, l'interno della macchina da stampa a 598 px (ora nel taglio 2:1 dell'apertura).
