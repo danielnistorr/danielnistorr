@@ -1,71 +1,65 @@
-# Nardi, home finale: "Una scatola sola"
+# Nardi, home: livello professionale
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (63 file, JPEG e WebP in più larghezze), caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, screenshot e controlli con `finale_shots.mjs`, segnali con `_metodo/kit/segnali.sh`).
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh`. La versione precedente ("Una scatola sola", con il selettore delle sei famiglie e la foto Unsplash delle mani) è copiata intatta in `_prova/versione-1-originale/`.
 
-Screenshot: `home-1440.jpg` (4808 px, piede compreso), `home-1440-prima-schermata.jpg`, `home-390.jpg` (6034 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`. Guardati a pezzi anche a 320, 768, 1024 e 1920, più gli stati del selettore (Stucchi, Cementi, Ossidi), il menu e la fisarmonica del piede a 390.
+Screenshot: `home-1440.jpg` (6.900 px circa, piede compreso), `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (contatti, modulo e piede). Guardati a pezzi a 1440 e a 390; prime schermate e pagine intere anche a 320, 768, 1024 e 1920; stati della ricerca ("fughe" a 390, "gesso murario" a 1440), elenco dei codici aperto con il filtro Artelinea, menu aperto a 390.
 
-## Idea
+## Livello professionale (3/11/2026)
 
-La scatola Briko Line è l'oggetto più riconoscibile che Nardi ha: il motivo degli attrezzi e un colore per famiglia. La home la mette in scena da sola, grande e scontornata su un fondo color gesso, accanto a un titolo che dice il mestiere, "Stucchi, gessi e malte". A destra, in colonna, i due dati della scatola attiva e le sei famiglie con il colore preso dalle confezioni: un tocco cambia la scatola. Con il nome di Kerakoll la pagina non regge: la scatola, i suoi colori, le sue frasi e il magazzino sono di Nardi.
+Richiesta: "secondo me non rappresentano bene l'identità e l'utilizzo corretto di quello che dovrebbe essere il sito" e "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura), adattata a un produttore che vende ai negozi. Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14, le pagine intere di Cly-Del e barth (più l'apertura di Budri).
 
-## Le prime due schermate
+### L'idea
 
-1. **Apertura** (1440x900). Testata con il logo vero ricolorato in verde, quattro voci e il telefono a destra. A sinistra il titolo a 130 px, due righe su cosa fanno, dove e da quando, il bottone "I 96 prodotti" e il link "Dove trovarli". Sulle colonne 7-10 la scatola di gesso alabastrino, alta 636 px, con una sola ombra a terra; sotto, la frase stampata sulla scatola e il suo uso. Sulle colonne 11-12, in alto, due dati veri in cifre tabellari ("Inizio presa 15-25 min", "Acqua/gesso 100/140"); in basso, sotto un filetto, le sei famiglie in colonna, ognuna con il suo quadratino di colore che si allunga quando è attiva. Nessun elemento dell'apertura va da margine a margine.
-   A 390: titolo su due righe, testo e bottoni sopra la piega, poi la scatola a sinistra con i dati e la colonna delle famiglie accanto, la didascalia ad altezza fissa (tre righe), così le famiglie non si spostano sotto il dito.
-2. **Quattro linee, 96 prodotti**. Titolo a 76 px e una frase; la fila di 12 scatole da 1 kg a passo costante, sovrapposte del 20 % solo sul fianco, con cinque etichette di gruppo; tre colonne brevi (Briko Line 43, Artelinea 41, Speciali e altri 12) e, nella stessa sezione sotto un filetto, i sei barattoli degli ossidi alti 120 px.
+Nardi non è un marchio da showroom: è un piccolo produttore di polveri che vende ai negozi e la cui scatola finisce in mano a chi fa la crepa di casa. La home è quindi uno strumento, nel registro delle loro schede ("Inizio presa 5 - 8 min", "Massimo spessore 2-3 mm per mano") e con le loro foto vere: lo scaffale con le scatole in fila, il magazzino con i bancali, la sede dipinta come la scatola. Della versione 1 restano il titolo "Stucchi, gessi e malte" (dice il mestiere), Encode Sans, il verde del logo e il logo vero. Via il fondo beige, la scatola scontornata come scultura, il selettore delle sei famiglie e le mani di Unsplash.
 
-Poi: una foto a tutta larghezza delle mani con la spatola e lo stucco (segnaposto, senza didascalia: la nota sta nel LEGGIMI); "Dal gesso decorativo alle polveri", con la storia in due paragrafi e la lista dei tempi di inizio presa, dal gesso murario (5-8 min) alla scagliola (60-90 min); la chiusura; il piede.
+### Struttura (famiglia M adattata)
 
-## Chiusura e piede
+1. **Testata fissa** con sei voci con le loro parole (Prodotti, Per i negozi, Professionisti, Dove si comprano, Azienda, Contatti), "Richiesta" bordato e "Ordini 049 879 0626" pieno. A 390 restano il logo, il bottone del telefono e "Menu".
+2. **Apertura**: occhiello "Produttori dal 1985, Tombelle di Saonara (PD)", H1 "Stucchi, gessi e malte", la frase della scheda d'uso ("Li produciamo a Tombelle di Saonara e li vendiamo ai negozi in tutta Italia"), il campo "Cosa devi fare?" e i sei lavori con la scatola vera; a destra lo scaffale (foto loro) e il blocco "Ordini dei negozi" con lo stato aperto o chiuso, il telefono a 32 px, gli orari, "Codici e confezioni" e "Diventa rivenditore".
+3. **Per i negozi** (verde scuro pieno): come si ordina in tre passi, il magazzino, "Diventa rivenditore" e "Chiedi il listino", la fascia dei sei numeri (1985, 96, 4, 12, 89, 2011).
+4. **Quattro linee, 96 prodotti**: quattro schede quadrate con la confezione vera (Briko Line, Artelinea, Gli speciali, Altri prodotti), ognuna apre l'elenco filtrato; sotto, l'elenco di codici, confezioni e schede PDF dei 96 prodotti (193 codici), filtrabile e da stampare.
+5. **Per i professionisti** (grigio): Artelinea, schede, dichiarazione di prestazione E180 in PDF, telefono per quantità e consegna, sede nel navigatore.
+6. **Dove si comprano**: nei negozi, con il nome o il codice della scatola, e cinque negozi che la vendono.
+7. **Azienda** (lilla pieno, il colore della facciata): la sede vera, la storia in tre righe, 1985, 2011, Made in Italy.
+8. **Contatti e modulo** (grigio): telefono, fax, orari in tabella con lo stato, email, email per le schede di sicurezza, sede con il navigatore; modulo "Richiesta o ordine".
+9. **Piede** (verde scuro) in quattro colonne e riga legale.
 
-- **Chiusura** ("b con foto", testo a sinistra e foto a destra fino al bordo): "Ricostruire, livellare, tappare", la frase stampata sulla scatola dello stucco cementizio, a 76 px; sotto "Prodotti per il privato e per il professionista. Chiamateci per sapere dove trovarli."; il telefono a 52 px con `tel:`, l'email con `mailto:`, l'indirizzo con il link a Google Maps, gli orari. La foto è il magazzino (`IMG_4232`, 4272x2848): taglio stretto sui due bancali di scatole Briko Line, dal traverso alto a quello basso, arancio delle scaffalature spento, sorgente 1752x1165 servita a 720, 1080, 1440 e 1600 px. Didascalia "In magazzino: bancali di scatole Briko Line."
-- **Piede**: logo vero (PNG del sito, tagliato sul disegno e ricolorato in #276E59, 436 px per una resa a 146 px, 3x) con una riga su chi sono; quattro colonne Azienda, Prodotti, Gessi, Contatti (telefono, fax, email, indirizzo, orari); riga legale con ragione sociale, P.IVA e C.F., REA, capitale sociale, Privacy, Cookie, su una riga flessibile che a capo riparte dal margine. Fondo #ECE7DC. A 390 le colonne diventano una fisarmonica: i bottoni con `aria-expanded` si creano solo sotto i 600 px; sopra, i titoli sono testo.
-- **Nessuna colonna Seguici**: non esiste un social verificato (l'icona Facebook del sito di oggi punta a "#").
-- **Nessuna newsletter**: Nardi non ha notizie, cataloghi sfogliabili, fiere datate o collezioni da annunciare, e chi compra passa dal negozio o ordina per telefono.
+### Le 15 regole, una per una
 
-## Caratteri e colori
+Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi.
 
-- **Encode Sans**, una sola famiglia variabile (Impallari, Torresi, Le Bailly; Google Fonts, SIL Open Font License 1.1, uso commerciale libero, file ospitati in `sito/fonts/`, sottoinsiemi latin e latin-ext). Stretta (wdth 75) a 500 per titoli, famiglie, dati e nomi; normale a 400 e 600 per testi, menu, bottone e piede. Due misure di titolo, 130 e 76 px; passi verticali 120, 64 e 28 px. Cifre tabellari per telefono, tempi, orari, misure e dati societari. Perché: i nomi dei prodotti sulle scatole Briko Line sono in un grottesco stretto e chiaro.
-- **Colori**: fondo gesso #F4F1EA, piede #ECE7DC, inchiostro #1B1A17, testo secondario #57534B (6,8:1 sul fondo), famiglie non attive #6F6A60 (4,8:1, testo grande), filetti #D6CFC1, verde Nardi scurito #276E59 per bottone e link (5,4:1; bianco sul verde 6,1:1). I colori pieni vengono solo dalle confezioni (verde alabastrino #8CAA97, azzurro stucco #6CC2F8, viola malta #7A70B5, giallo cemento #EDD836, arancio colla #D0934B, rosso ossido #C03532).
-- **Riferimenti**: Bauwerk Colour (il colore della confezione come materia e nome), Kerakoll (marchio e titolo grandi, poche voci), Farrow & Ball e Mylands per la misura del fondo chiaro.
+1. **Telefono come bottone nella testata fissa: passa.** Testata `sticky` di 88 px a 1440 e 72 a 390; bottone "Ordini 049 879 0626" alto 48 px (a 390 solo il numero). A metà pagina a 390 il bottone si vede e si tocca (`elementFromPoint`). 9 link `tel:`, tutti `tel:+390498790626`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440 x 900: H1 "Stucchi, gessi e malte", Tombelle di Saonara nell'occhiello e nella frase, "dal 1985", il telefono ordini come bottone a tutta colonna, lo stato e i due bottoni del negoziante, la ricerca e i sei lavori. A 390 x 844: il campo di ricerca entro 395 px, i sei lavori entro 623, il bottone del telefono a tutta larghezza (350 px) da 765 px; il telefono resta anche in testata.
+3. **Immagine vera nell'apertura: passa, con riserva.** Lo scaffale con le scatole Briko Line (`IMG_2282`, foto del loro sito) a destra del titolo a 1440, nella seconda schermata a 390. Non ci sono persone né la produzione: è la prima foto da fare (LEGGIMI). Nessuna illustrazione, per scelta del committente.
+4. **Zero repertorio: passa.** `indicativ` compare 0 volte; nessun file Unsplash o Pexels in pagina (tolte le mani con la spatola).
+5. **Foto in serie: passa, con riserva.** Tre foto d'ambiente tutte 16:9 con lo stesso trattamento (bianco neutro, un filo di contrasto, colore più quieto) e miniature 1:1 dei rendering: due formati. Una sola didascalia (la sede, perché aggiunge l'indirizzo). La luce resta diversa tra scaffale, magazzino e facciata: la serie vera richiede il servizio fotografico del LEGGIMI.
+6. **Palette dal marchio: passa.** `--verde` #276E59 (verde del logo #46A589 scurito per il contrasto) con `--verde-scuro` #173F33 per i blocchi pieni, `--lilla` #9396C8 della facciata con `--lilla-chiaro`; neutri freddi; nessun colore fuori da `:root`. Fondo bianco, nessun beige.
+7. **Scala tipografica corta: passa.** 7 misure a 1440 (14, 17, 19, 23, 32, 48, 72) e 8 a 390 (14, 16, 17, 19, 20, 24, 30, 40); testo corrente 19 px a 1440 e 17 a 390; nessun testo sotto i 14 px; H1 72/40, H2 48/30.
+8. **Due famiglie al massimo: passa.** Una sola, Encode Sans: stretta (75 %) a 700 per titoli, lavori, numeri e telefono; normale a 400 e 700 per testo e interfaccia.
+9. **Servizi in schede con foto: passa.** Le quattro linee in 4 colonne (2 a 390), confezione vera quadrata per tutte, nome, riga e "Codici e schede"; tutta la scheda è un link. In più i sei lavori in apertura, ognuno con la sua scatola.
+10. **Almeno tre tipi di prova: passa, con riserva (3 su 4).** Sei numeri aziendali in fascia; la dichiarazione di prestazione dell'E180 scaricabile (UNI EN 13279-1, classe A1), anche nel piede; cinque negozi con nome e comune. I negozi sono presi dai loro siti e non sappiamo se comprano da Nardi: da confermare (LEGGIMI, punto 3). Recensioni: nessuna nelle fonti, non inventate.
+11. **Lavori con un nome: non passa.** Nessun lavoro con cliente, luogo e anno nelle fonti (LEGGIMI, punto 5).
+12. **Ritmo a blocchi: passa.** Blocchi pieni oltre al piede: Per i negozi in verde scuro, Azienda in lilla; Professionisti e Contatti in grigio. Sezioni a 120 px a 1440 e 72 a 390 (l'apertura parte a 56 e 28 sotto la testata); contenitore di 1280 px con margini di 80 a 1440 e 20 a 390.
+13. **Un solo sistema di bottoni: passa.** Pieno verde e bordato, raggio 4 px, 56 px (48 in testata, 58 il telefono grande), testo 17 px (16 a 390, 32 e 24 nel telefono grande); i bottoni di chiamata contengono il numero. Sul verde scuro le stesse due varianti in bianco.
+14. **Modulo e "dove" per il mestiere: passa, con riserva.** Campi per chi ordina: che cosa ti serve (ordine, diventare rivenditore, listino, schede di sicurezza, quantità per un cantiere, altro), nome, negozio o impresa, città e provincia, partita IVA, telefono, email, prodotti, codici e quantità, messaggio; controllo dei campi obbligatori. L'allegato (ordine in file) non si può mettere in un mailto: la pagina chiede di allegarlo all'email, il LEGGIMI di collegare il modulo a un servizio. Sede con "Apri la mappa" e "Apri la sede nel navigatore"; nessun iframe di mappa.
+15. **Piede completo: passa.** Quattro colonne: ragione sociale e indirizzo con indicazioni; Prodotti; Azienda con la dichiarazione di prestazione; Contatti con telefono, fax, due email, orari e stato. Riga legale con ragione sociale, P.IVA e C.F., REA, capitale sociale, Privacy e Cookie. Testo di almeno 14 px.
 
-## Interazione
+### Compiti della scheda d'uso (`_prova/uso/SCHEDA.md`, par. 8)
 
-Un solo gesto: le sei famiglie (Gessi, Stucchi, Malte, Cementi, Colle, Ossidi) sono bottoni veri con `aria-pressed`. Un tocco cambia la scatola protagonista, il testo alternativo, i due dati e la didascalia. Dati dalle schede: alabastrino 15-25 min e 100/140; stucco cementizio strati da 1 a 5 cm e impasto 2 ore; malta pronta grigia tempo di impiego 2 ore e acqua 18 %; cemento rapido 20/100 e almeno 3 MPa a 30 minuti; colla per piastrelle 3-4 kg/m² e pedonabile in 24 ore; ossidi barattolo da 500 g, si mescolano con malte e pitture. Tastiera: Tab arriva ai bottoni, le frecce passano alla famiglia vicina e girano (provato: da Ossidi con la freccia destra si torna a Gessi, con il fuoco). Tocco provato a 390 su tutte e sei le famiglie: la colonna resta ferma (top 548 px in tutti gli stati), la didascalia sempre alta 63 px. Transizioni di 120 ms solo su ciò che si tocca. Niente animazioni allo scorrere, niente effetti sul cursore.
+Prove di `node _prova/script/pro_shots.mjs` (41 su 41 riuscite):
+- *Negoziante, 1440*: telefono ordini, orari e stato senza scorrere (martedì 10.00 "Aperto ora, fino alle 12"); "Codici e confezioni" apre l'elenco dei 96 prodotti con 179 link PDF, filtro Artelinea; "Diventa rivenditore" porta al modulo con il tipo già scelto, il modulo vuoto si ferma con l'avviso, pieno compone l'email (letta, non inviata); "gesso murario" nella ricerca mostra in un clic la scheda di sicurezza; il codice 4302010 trova il gesso murario. Il catalogo in PDF non esiste: l'elenco si stampa o si salva in PDF dalla pagina.
+- *Privato, 390*: ricerca e "Chiama" senza scorrere; "fughe" porta allo stucco per fughe con la scatola; "Caminetti e stufe" in un tocco porta alla malta refrattaria con "Inizio presa 30 minuti" e "Uso interno/esterno"; "Dove lo compro?" nella prima schermata porta alla risposta; dal menu "Dove si comprano" si ferma sotto la testata e il menu si chiude.
+- *Professionista*: "Schede per professionisti" nella prima schermata a 390 (a 1440 "Sacchi Artelinea e schede tecniche"); l'elenco filtrato Artelinea ha formati, codici e PDF; la sede si apre nel navigatore in un tocco.
+- *Orari*: 13.10 "riapre alle 14"; 19.30 "riapre domani alle 8"; sabato "riapre lunedì alle 8"; 8 dicembre e Pasquetta "Chiuso oggi, festivo"; 15.00 "Aperto ora, fino alle 18".
 
-## Foto, origine e licenza
+### Caratteri e licenze
 
-- **Scatole Briko Line da 1 kg** (rendering 1600x1226 del sito): scontornate con un contorno unico, WebP a 522, 680 (nativa) e 784 px. A 1440 la scatola è larga 415 px: sul retina il 784 dà 1,9x.
-- **Secchiello e barattoli degli ossidi** (rendering del sito): WebP a 180 e 360 px (fila) e 522 e 812 px (apertura).
-- **Magazzino** (`IMG_4232`, foto dell'azienda): vedi Chiusura.
-- **Mani con spatola e stucco**: segnaposto esterno, Sasun Bughdaryan su Unsplash (Unsplash License), in `assets/CREDITI.md`; non è usata in nessun'altra home della campagna. Nessuna didascalia in pagina; nel LEGGIMI come va rifatta con un prodotto Nardi.
-- **Logo**: `logo-nardi-bianco-500x139.png` del sito, maschera ricolorata. Non ricostruito in SVG: il corsivo è a mano libera e senza il file originale non sarebbe fedele.
-- Nessuna immagine generata dall'IA; nessun marchio concorrente.
+- **Encode Sans** (The Encode Project Authors), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; file variabili (peso 100-900, larghezza 75-125 %) serviti dalla pagina in `sito/fonts/`, licenza in `sito/fonts/OFL.txt`. Pesi usati 400 e 700, larghezze 100 % e 75 %.
+- **Foto**: solo materiale di Nardi dalla libreria media di narditalia.com (scaffale, magazzino, sede, rendering delle confezioni, logo), da usare con il loro permesso. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno (`assets/CREDITI.md`).
 
-## Ultimo passaggio: cosa è cambiato dopo il giudice cieco
+### Controlli fatti (3/11/2026)
 
-- Le sei famiglie non sono più una fila a tutta larghezza in basso (il gesto di FM Sistemi): stanno in colonna a destra sotto i due dati, con un quadratino del colore della scatola.
-- Scatola protagonista ridotta da circa 800 a 636 px di altezza a 1440 (1,9x sul retina con il 784), una sola ombra a terra, senza drop-shadow.
-- Chiusura: via la facciata `TESTATA6` (700 px di sorgente, cassetta delle lettere, lampeggiante, ghiaia); al suo posto il magazzino `IMG_4232`, tagliato stretto sui bancali Briko Line senza il ripiano di sotto, arancio spento, 1600 px per il 768. Titolo "Ricostruire, livellare, tappare" al posto della frase da brochure.
-- Tolta la didascalia "Foto indicativa" sotto le mani.
-- Ossidi uniti alla sezione delle linee, barattoli a 120 px.
-- Riga legale del piede in flex con spazio fisso: a 768 "Privacy" parte dal margine.
-- 768: scatola e dati a 32 px di distanza (griglia con `justify-content:start`).
-- 390: didascalia ad altezza fissa di tre righe; i bottoni non saltano.
-- Stato Ossidi: "Si mescola con malte e pitture" al posto di "Colori 6".
-- Piede: i bottoni della fisarmonica esistono solo sotto i 600 px.
-- Tolto "1 kg" dalle didascalie di colla e stucco cementizio; tolto il preload del carattere (errore CORS in file://).
-- Logo tagliato sul disegno: il corsivo parte esattamente dal margine della griglia in testata e nel piede.
-
-## Controlli
-
-- `scrollWidth` uguale a `innerWidth` a 320, 360, 375, 414, 480, 600, 601, 700, 768, 900, 901, 1024, 1180, 1181, 1280, 1366, 1440, 1680, 1920 e 2560; nessuna sovrapposizione di testi (controllo sui riquadri e a occhio sui pezzi). Altezza a 1440: 4808 px, piede compreso.
-- Collegamenti: `tel:+390498790626` (testata, chiusura, piede), `mailto:info@narditalia.com`, Google Maps su Via Sant'Antonio 24/a, 35020 Tombelle di Saonara PD.
-- Menu a 390 con bottone vero e `aria-expanded`; fisarmonica del piede provata (si apre "Contatti", le altre restano chiuse).
-- Nessun U+2014 in pagina, nella NOTA, nel LEGGIMI e negli script (controllo nel `build_finale.sh`).
-- `segnali.sh`: 15 soglie OK, 1 da guardare, 2 segnate da correggere che non sono segnali veri:
-  - **Monospazio 100 %**: falso positivo dello strumento, che cerca "code" nel nome della famiglia; "En**code** Sans" è un grottesco proporzionale.
-  - **Foto 27,2 % (soglia 35)**: la pagina è guidata da prodotti veri scontornati su fondo chiaro, come chiede la direzione; la chiusura usa una foto di Nardi a metà larghezza come da impaginazione scelta. Salirà con lo still life indicato nel LEGGIMI.
-  - Da guardare: due misure di H2 (76 e 15 px del piede), voluto.
-- Divieti del committente: nessun gradiente, nessun testo in gradiente, nessuna emoji, nessun Inter, nessuna card con bordo colorato, nessun vetro smerigliato, nessun modo scuro, nessuna fila di tre box con icona, nessun badge, nessuna icona Lucide, nessuna dissolvenza allo scorrere, nessun effetto sul cursore, nessun bottone che sbiadisce, nessuna lineetta lunga, nessun corsivo.
-- Dati: ogni numero in pagina viene da `01-analisi.md` o dalle schede in `_prova/crawl/prodotti.json`. Quello che è dubbio sta nel LEGGIMI.
+- Nessuno scorrimento orizzontale e nessuna sovrapposizione di testi a 320, 390, 768, 1024, 1440 e 1920; nessun errore di script.
+- `tel:+390498790626` ovunque; `mailto:` con oggetto (info@ per ordini e richieste, sicurezza@ per le schede di sicurezza); mappe con `google.com/maps/dir/?api=1&destination=Via Sant'Antonio 24/a, 35020 Tombelle di Saonara PD`; 176 PDF delle schede controllati (tutti rispondono 200) più la dichiarazione di prestazione.
+- Nessun U+2014 in pagina, nei .md e negli script (controllo nel `build_finale.sh`).
+- Dati: ogni fatto in pagina viene da `01-analisi.md`, dalla scheda d'uso o dalle schede prodotto del loro sito; quello che è dubbio sta nel LEGGIMI.

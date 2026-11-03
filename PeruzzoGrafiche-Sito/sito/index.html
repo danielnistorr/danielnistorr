@@ -80,8 +80,7 @@ p{text-wrap:pretty}
 .tendina{display:none}
 
 /* ---------- apertura */
-.apertura{padding-top:56px;padding-bottom:56px}
-.ap-testo{grid-column:1 / span 6;padding-right:16px;align-self:center}
+.ap-testo{grid-column:1 / span 6;padding:56px 16px 56px 0;align-self:center}
 .ap-testo .etichetta{color:var(--grigio-3)}
 .apertura h1{font-size:var(--t6);line-height:1.04;letter-spacing:-.025em;margin-top:18px}
 .apertura .lead{font-size:var(--t3);line-height:1.5;margin-top:22px;max-width:30em}
@@ -89,11 +88,13 @@ p{text-wrap:pretty}
 .ap-recapiti{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:20px;font-size:var(--t2)}
 .ap-recapiti a{display:inline-block;padding:4px 0}
 .ap-recapiti a.solo-tel{display:none}
-.ap-foto{grid-column:7 / -1;margin-right:calc(-1 * var(--m));align-self:center}
+.ap-foto{grid-column:7 / -1;margin-right:calc(-1 * var(--m));align-self:end}
 .ap-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.prove{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px;margin-top:48px;border-top:2px solid var(--grafite)}
-.prove li{padding-top:16px;padding-right:12px}
-.prove .etichetta{color:var(--rosso-scuro);margin-bottom:4px}
+/* la riga delle prove chiude l'apertura su un blocco grafite a tutta larghezza, con il rosso del marchio */
+.fascia-prove{background:var(--grafite);color:var(--bianco)}
+.prove{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px;padding-bottom:32px}
+.prove li{border-top:3px solid var(--rosso);padding-top:18px;padding-right:12px}
+.prove .etichetta{color:var(--grigio-4);margin-bottom:6px}
 
 /* ---------- lavori: schede con la foto, tutta la scheda cliccabile */
 .schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
@@ -103,12 +104,20 @@ p{text-wrap:pretty}
 .scheda .etichetta{color:var(--rosso-scuro)}
 .scheda h3{font-size:var(--t4);line-height:1.15;letter-spacing:-.01em;margin-top:10px}
 .scheda .chi{color:var(--grigio-3);margin-top:2px}
-.scheda .anche{margin-top:14px;padding-top:14px;border-top:1px solid var(--grigio-2)}
 .scheda .vai{margin-top:auto;padding-top:18px;font-weight:700}
 .scheda:hover{color:inherit}
+/* il lavoro in evidenza: foto larga oltre meta' pagina, testo accanto */
+.schede .primo{grid-column:1 / -1}
+.scheda.grande{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.scheda.grande img{grid-column:1 / span 7}
+.scheda.grande .corpo{grid-column:8 / -1;justify-content:center;padding:48px 48px 48px 8px}
+.scheda.grande h3{font-size:var(--t5);line-height:1.08;letter-spacing:-.02em;margin-top:14px}
+.scheda.grande .chi{font-size:var(--t3);margin-top:8px}
+.scheda.grande .anche{margin-top:24px;padding-top:20px;border-top:1px solid var(--grigio-2);max-width:26em}
+.scheda.grande .vai{margin-top:0;padding-top:28px}
 .scheda:hover .vai{color:var(--rosso-scuro);text-decoration:underline}
 .lavori-dopo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;margin-top:48px}
-.lavori-dopo p{grid-column:1 / span 7;font-size:var(--t3);line-height:1.5}
+.lavori-dopo p{grid-column:1 / span 8;font-size:var(--t3);line-height:1.5}
 .lavori-dopo .link{grid-column:9 / -1;align-self:end;justify-self:end;display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;font-size:var(--t2)}
 
 /* ---------- confezioni e specifiche */
@@ -138,7 +147,7 @@ p{text-wrap:pretty}
 .reparto .vai{margin-top:auto;padding-top:16px;font-weight:700}
 .reparto:hover{color:var(--bianco)}
 .reparto:hover .vai{text-decoration:underline}
-.numeri{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:24px;margin-top:96px;border-top:1px solid var(--grigio-5)}
+.numeri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px;margin-top:96px;border-top:1px solid var(--grigio-5)}
 .numeri li{padding-top:24px;padding-right:8px}
 .numeri b{display:block;font-size:var(--t6);line-height:1;letter-spacing:-.03em;font-weight:700}
 .numeri li > span{display:block;margin-top:12px;color:var(--grigio-4)}
@@ -170,6 +179,36 @@ input,select,textarea{font:400 var(--t2)/1.4 var(--sans);color:var(--grafite);ba
 textarea{min-height:120px;resize:vertical}
 .modulo .invio{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:28px}
 .modulo .nota{color:var(--grigio-3);max-width:30em}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{display:block;padding:0;margin-bottom:20px;font-size:var(--t4);line-height:1.15;font-weight:700}
+.passo + .passo{margin-top:40px;padding-top:32px;border-top:1px solid var(--grigio-2)}
+.passi{display:none}
+.indietro,.avanti{display:none}
+.solo-cartonato[hidden]{display:none}
+.aiuto{color:var(--grigio-3);font-size:var(--t1)}
+/* con lo script il modulo va a passi: un passo alla volta, indicatore 1-2-3, Avanti e Indietro */
+.a-passi .passo{display:none}
+.a-passi .passo.attivo{display:block;margin-top:0;padding-top:0;border-top:0}
+.a-passi .passi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:32px}
+.passi li{border-top:3px solid var(--grigio-2);padding-top:10px;font-size:var(--t1);font-weight:700;color:var(--grigio-3)}
+.passi li.fatto{border-color:var(--grafite);color:var(--grafite)}
+.passi li[aria-current]{border-color:var(--rosso-scuro);color:var(--rosso-scuro)}
+.a-passi .avanti,.a-passi .indietro{display:inline-flex}
+.a-passi .invio .componi{display:none}
+.a-passi.ultimo .invio .componi{display:inline-flex}
+.a-passi.ultimo .avanti{display:none}
+.a-passi.primo-passo .indietro{display:none}
+.a-passi .invio .nota{display:none}
+.a-passi.ultimo .invio .nota{display:block}
+.pronta{margin-top:28px;padding:24px;border:2px solid var(--grafite);background:var(--bianco);color:var(--grafite)}
+.pronta[hidden]{display:none}
+.pronta h3{font-size:var(--t3);margin:0}
+.pronta p{margin-top:8px}
+.pronta textarea{margin-top:16px;min-height:160px;font-size:var(--t1)}
+.pronta .azioni{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.richiamo .pronta .btn{margin-top:0;background:var(--rosso-scuro);border-color:var(--rosso-scuro);color:var(--bianco)}
+.richiamo .pronta .btn.bordo{background:transparent;border-color:var(--grafite);color:var(--grafite)}
+.richiamo .pronta .btn:hover{background:var(--grafite);border-color:var(--grafite);color:var(--bianco)}
 .avviso{color:var(--rosso-scuro);font-weight:700}
 .avviso:empty{display:none}
 
@@ -189,6 +228,8 @@ textarea{min-height:120px;resize:vertical}
 .dove .grande{font-size:var(--t4);line-height:1.2;font-weight:700;text-decoration:none}
 .dove .btn{margin-top:18px}
 .dove a{overflow-wrap:anywhere}
+.dove p a:not(.btn){display:inline-block;padding:8px 0}
+.dove .orari{margin-top:14px;color:var(--grigio-4)}
 
 /* ---------- piede */
 .piede{padding-top:88px;padding-bottom:40px;border-top:1px solid var(--grigio-2)}
@@ -196,8 +237,9 @@ textarea{min-height:120px;resize:vertical}
 .piede img{width:200px;height:48px}
 .piede .marchio p{margin-top:18px;color:var(--grigio-3);max-width:20em}
 .piede h2{font-size:var(--t2);margin-bottom:12px}
-.piede li{margin-bottom:8px}
-.piede li a{text-decoration:none;color:var(--grigio-3);overflow-wrap:anywhere}
+.piede li{margin-bottom:2px}
+.piede li a{display:inline-block;padding:5px 0;text-decoration:none;color:var(--grigio-3);overflow-wrap:anywhere}
+.piede li.testo{color:var(--grigio-3);padding:5px 0}
 .piede li a:hover{color:var(--rosso-scuro);text-decoration:underline}
 .legale{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:64px;padding-top:20px;border-top:1px solid var(--grigio-2);font-size:var(--t1);color:var(--grigio-3)}
 .legale .dx{margin-left:auto;display:flex;gap:20px}
@@ -215,8 +257,11 @@ textarea{min-height:120px;resize:vertical}
   .tendina ul{padding:8px var(--m) 24px}
   .tendina li{border-top:1px solid var(--grigio-2)}
   .tendina a{display:block;padding:14px 0;text-decoration:none;font-size:var(--t3)}
+  .tendina li.bottoni{display:flex;flex-wrap:wrap;gap:10px;padding-top:16px}
+  .tendina li.bottoni .btn{flex:1 1 140px;padding-top:0;padding-bottom:0;font-size:var(--t2)}
   .schede,.reparti{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .numeri{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:32px}
+  .scheda.grande img{grid-column:1 / span 6}
+  .scheda.grande .corpo{grid-column:7 / -1;padding:32px 32px 32px 0}
   .prev-sx{grid-column:1 / span 6}
   .prev-dx{grid-column:7 / -1}
   .chi-testo{grid-column:8 / -1}
@@ -226,8 +271,11 @@ textarea{min-height:120px;resize:vertical}
   .testata .prev-t{display:none}
   .ap-testo,.ap-foto{grid-column:1 / -1}
   .ap-testo{padding-right:0}
+  .ap-testo{padding-bottom:0}
   .ap-foto{margin:40px calc(-1 * var(--m)) 0}
-  .prove{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:20px}
+  .prove{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px;padding-top:28px}
+  .scheda.grande{display:flex}
+  .scheda.grande .corpo{padding:28px 28px 32px}
   .lavori-dopo p,.lavori-dopo .link{grid-column:1 / -1;justify-self:start}
   .lavori-dopo .link{margin-top:20px}
   .confezioni{grid-template-columns:1fr}
@@ -253,7 +301,7 @@ textarea{min-height:120px;resize:vertical}
   .testata .logo img{width:116px;height:28px}
   .testata .azioni-t{gap:8px}
   .testata .btn.piccolo{padding:0 14px}
-  .apertura{padding-top:24px;padding-bottom:48px}
+  .ap-testo{padding-top:24px}
   .apertura h1{margin-top:12px}
   .apertura .lead{margin-top:14px}
   .btn{white-space:normal;text-align:center;padding-top:10px;padding-bottom:10px}
@@ -262,32 +310,41 @@ textarea{min-height:120px;resize:vertical}
   .ap-recapiti{margin-top:12px;gap:0 24px}
   .ap-recapiti a{padding:12px 0}
   .ap-foto{margin-top:28px}
-  .prove{grid-template-columns:1fr;margin-top:32px;row-gap:0}
-  .prove li{padding:14px 0;border-bottom:1px solid var(--grigio-2)}
+  .prove{grid-template-columns:1fr;row-gap:0;padding-top:0;padding-bottom:16px}
+  .prove li{border-top:1px solid var(--grigio-5);padding:16px 0}
+  .prove li:first-child{border-top:3px solid var(--rosso)}
   .sez-testa{margin-bottom:36px}
   .sez-testa p{margin-top:14px}
-  .schede,.reparti{grid-template-columns:1fr;gap:16px}
-  .scheda,.reparto{display:grid;grid-template-columns:40% minmax(0,1fr);column-gap:16px;align-items:start}
-  .scheda img,.reparto img{grid-row:1 / span 6;aspect-ratio:1/1}
-  .scheda .corpo{padding:14px 14px 16px 0}
-  .scheda h3{margin-top:6px}
-  .scheda .anche{margin-top:10px;padding-top:10px}
-  .scheda .vai{padding-top:10px}
+  .schede{grid-template-columns:1fr;gap:20px}
+  .reparti{grid-template-columns:1fr;gap:16px}
+  /* i lavori restano in colonna con la foto a tutta larghezza: si giudica la stampa */
+  .scheda .corpo,.scheda.grande .corpo{padding:18px 18px 22px}
+  .scheda.grande h3{font-size:var(--t5)}
+  .reparto{display:grid;grid-template-columns:40% minmax(0,1fr);column-gap:16px;align-items:start}
+  .reparto img{grid-row:1 / span 6;aspect-ratio:1/1}
   .reparto .n{margin-top:0}
   .reparto .vai{padding-top:10px}
   .lavori-dopo{margin-top:32px}
   .specifiche{margin-top:48px}
   .manifesto-blocco{margin-bottom:56px}
-  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:64px;row-gap:28px}
+  .numeri{grid-template-columns:1fr;margin-top:64px;row-gap:0}
+  .numeri li{display:grid;grid-template-columns:7.2em minmax(0,1fr);column-gap:12px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--grigio-5)}
+  .numeri b{font-size:var(--t5)}
+  .numeri li > span{margin-top:0}
   .modulo{padding:24px 20px;margin:0 calc(-1 * var(--m))}
   .modulo .campi,.richiamo .campi{grid-template-columns:1fr}
-  .modulo .invio .btn{width:100%}
   .richiamo{padding:24px 20px;margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m))}
   .richiamo .btn{width:100%}
   .chi-testo .citazione{margin-top:28px;padding-top:22px}
   .sede{margin:0 calc(-1 * var(--m))}
   .dove{grid-template-columns:1fr;margin-top:36px;row-gap:28px}
   .dove .btn{width:100%}
+  .dove p a:not(.btn){padding:12px 0;min-height:44px}
+  .piede li a{padding:12px 0;min-height:44px}
+  .ap-recapiti a{min-height:44px}
+  .pronta{padding:20px}
+  .pronta .azioni .btn{width:100%}
+  .modulo .invio .btn{width:100%}
   .piede{padding-top:56px}
   .piede .cols{grid-template-columns:1fr 1fr;row-gap:32px}
   .piede .marchio,.piede .cols > div:nth-child(2){grid-column:1 / -1}
@@ -314,8 +371,8 @@ textarea{min-height:120px;resize:vertical}
       <a href="#dove">Dove siamo</a>
     </nav>
     <div class="azioni-t">
-      <a class="btn piccolo bordo num tel-t" href="tel:+390499002884" aria-label="Chiama 049 9002884">049 9002884</a>
-      <a class="btn piccolo prev-t" href="#preventivo">Chiedi un preventivo</a>
+      <a class="btn piccolo bordo num tel-t" href="tel:+390499002884" aria-label="Chiamate lo 049 9002884">049 9002884</a>
+      <a class="btn piccolo prev-t" href="#preventivo">Chiedete un preventivo</a>
       <button class="btn piccolo bordo apri" type="button" aria-expanded="false" aria-controls="tendina">Menu</button>
     </div>
   </div>
@@ -324,10 +381,11 @@ textarea{min-height:120px;resize:vertical}
       <li><a href="#lavori">Lavori</a></li>
       <li><a href="#confezioni">Confezioni e carte</a></li>
       <li><a href="#reparti">Reparti</a></li>
-      <li><a href="#preventivo">Chiedi un preventivo</a></li>
+      <li><a href="#preventivo">Chiedete un preventivo</a></li>
       <li><a href="#richiamo">Ti chiamiamo noi</a></li>
       <li><a href="#dove">Dove siamo</a></li>
       <li><a href="mailto:info@graficheperuzzo.it">info@graficheperuzzo.it</a></li>
+      <li class="bottoni"><a class="btn num" href="tel:+390499002884">Chiamate 049 9002884</a><a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Come arrivare</a></li>
     </ul>
   </nav>
 </header>
@@ -340,26 +398,29 @@ textarea{min-height:120px;resize:vertical}
       <h1 id="titolo">Stampa e legatoria di libri, fumetti e cataloghi d’arte</h1>
       <p class="lead">Per case editrici, gallerie e aziende. Il ciclo completo nel nostro stabilimento: prestampa, stampa offset e digitale, legatoria e consegna con i nostri mezzi.</p>
       <div class="ap-azioni">
-        <a class="btn solo-desk" href="#preventivo">Chiedi un preventivo</a>
-        <a class="btn bordo solo-desk num" href="tel:+390499002884">Chiama 049 9002884</a>
-        <a class="btn solo-tel num tel-ap" href="tel:+390499002884">Chiama 049 9002884</a>
-        <a class="btn bordo solo-tel" href="mailto:info@graficheperuzzo.it?subject=Richiesta%20dal%20sito">Scrivi un’email</a>
+        <a class="btn solo-desk" href="#preventivo">Chiedete un preventivo</a>
+        <a class="btn bordo solo-desk num" href="tel:+390499002884">Chiamate 049 9002884</a>
+        <a class="btn solo-tel num tel-ap" href="tel:+390499002884">Chiamate 049 9002884</a>
+        <a class="btn bordo solo-tel" href="mailto:info@graficheperuzzo.it?subject=Richiesta%20dal%20sito">Scrivete a info@<wbr>graficheperuzzo.it</a>
         <a class="btn bordo solo-tel" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Come arrivare</a>
       </div>
       <p class="ap-recapiti">
         <a class="solo-desk" href="mailto:info@graficheperuzzo.it?subject=Richiesta%20dal%20sito">info@graficheperuzzo.it</a>
         <a class="solo-desk" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Via Marco Polo 10/12, Mestrino</a>
-        <a class="solo-tel" href="#preventivo">Chiedi un preventivo</a>
+        <a class="solo-tel" href="mailto:info@graficheperuzzo.it?subject=Lavoro%20in%20corso&amp;body=Titolo%20del%20lavoro%3A%20%0AEditore%20o%20azienda%3A%20%0ACosa%20vi%20serve%20(bozza%2C%20file%20corretto%2C%20consegna%2C%20ritiro)%3A%20%0A">Lavoro in corso? Scrivete qui</a>
+        <a class="solo-tel" href="#preventivo">Chiedete un preventivo</a>
         <a href="#richiamo">Ti chiamiamo noi</a>
       </p>
     </div>
     <figure class="ap-foto">
-      <img src="img/legatoria-1300.jpg" srcset="img/legatoria-800.jpg 800w, img/legatoria-1300.jpg 1300w, img/legatoria-2000.jpg 2000w" sizes="(max-width:900px) 100vw, 50vw" width="1300" height="867" alt="La nostra legatoria a Mestrino: la linea Müller Martini di raccolta e cucitura, un legatore al lavoro e le pile di segnature sui bancali" fetchpriority="high">
+      <img src="img/legatoria-1300.jpg" srcset="img/legatoria-800.jpg 800w, img/legatoria-1300.jpg 1300w, img/legatoria-1800.jpg 1800w" sizes="(max-width:900px) 100vw, 50vw" width="1300" height="867" alt="La nostra legatoria a Mestrino: la linea Müller Martini di raccolta e cucitura, un legatore al lavoro e le pile di segnature sui bancali" fetchpriority="high">
     </figure>
-    <ul class="prove">
+  </div>
+  <div class="fascia-prove">
+    <ul class="prove wrap">
+      <li><span class="etichetta">Stampiamo per</span>Bao Publishing, BeccoGiallo, Coconino Press, Franco Cosimo Panini</li>
       <li><span class="etichetta">Confezioni</span>Punto metallico, brossura fresata o cucita, cartonato</li>
-      <li><span class="etichetta">Stampa</span>Offset e digitale, quadricromia, bicromia, Pantone</li>
-      <li><span class="etichetta">Carte</span>Usomano e patinate, interni da <span class="num">70</span> a <span class="num">170</span>&nbsp;g, copertine fino a <span class="num">350</span>&nbsp;g</li>
+      <li><span class="etichetta">Stampa e carte</span>Offset e digitale su usomano e patinate da <span class="num">70</span> a <span class="num">170</span>&nbsp;g, copertine fino a <span class="num">350</span>&nbsp;g</li>
       <li><span class="etichetta">Certificazione</span>Carta certificata FSC®</li>
     </ul>
   </div>
@@ -373,25 +434,29 @@ textarea{min-height:120px;resize:vertical}
       <p>Collaboriamo con numerose case editrici in tutta Italia, con artisti, gallerie e aziende: libri e fumetti, cataloghi per le mostre, riviste, volantini e brochure. Alcuni lavori usciti dalle nostre macchine:</p>
     </div>
     <ul class="schede">
-      <li><a class="scheda" href="lavori.html#fumetti">
-        <img src="img/lav-sposa-yemenita-480.jpg" srcset="img/lav-sposa-yemenita-480.jpg 480w, img/lav-sposa-yemenita-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="La sposa yemenita aperta su una doppia pagina a fumetti in rosso, blu e ocra" loading="lazy">
-        <div class="corpo"><span class="etichetta">Graphic novel</span><h3>La sposa yemenita</h3><span class="chi">BeccoGiallo</span><span class="anche">Anche per Coconino Press e Tunuè</span><span class="vai">Altri fumetti →</span></div>
+      <li class="primo"><a class="scheda grande" href="lavori.html#fumetti">
+        <img src="img/lav-porto-proibito-900.jpg" srcset="img/lav-porto-proibito-480.jpg 480w, img/lav-porto-proibito-800.jpg 800w, img/lav-porto-proibito-900.jpg 900w" sizes="(max-width:900px) 100vw, 52vw" width="900" height="900" alt="Il porto proibito, Artist Edition: il volume cartonato con la copertina blu accanto a una copia aperta sulle tavole in bianco e nero" loading="lazy">
+        <div class="corpo"><span class="etichetta">Fumetti</span><h3>Il porto proibito</h3><span class="chi">Bao Publishing</span><span class="anche">Per Bao Publishing anche Paper Girls 2, Fight Club 2, The Private Eye, Orfani, John Doe e Il buio in sala.</span><span class="vai">Altri fumetti →</span></div>
       </a></li>
       <li><a class="scheda" href="lavori.html#fumetti">
-        <img src="img/lav-paper-girls-480.jpg" srcset="img/lav-paper-girls-480.jpg 480w, img/lav-paper-girls-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="Due copie di Paper Girls 2, volumi cartonati con la copertina rosa, una sull’altra" loading="lazy">
-        <div class="corpo"><span class="etichetta">Fumetti</span><h3>Paper Girls 2</h3><span class="chi">Bao Publishing</span><span class="anche">Anche per Saldapress e i taccuini di Lucca Comics &amp; Games</span><span class="vai">Altri fumetti →</span></div>
+        <img src="img/lav-sposa-yemenita-480.jpg" srcset="img/lav-sposa-yemenita-480.jpg 480w, img/lav-sposa-yemenita-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="La sposa yemenita aperta su una doppia pagina a fumetti in rosso, blu e ocra" loading="lazy">
+        <div class="corpo"><span class="etichetta">Graphic novel</span><h3>La sposa yemenita</h3><span class="chi">BeccoGiallo</span><span class="vai">Altre graphic novel →</span></div>
       </a></li>
       <li><a class="scheda" href="lavori.html#libri">
         <img src="img/lav-ferrari-480.jpg" srcset="img/lav-ferrari-480.jpg 480w, img/lav-ferrari-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="Ferrari cerca e trova aperto: una doppia pagina illustrata con le case colorate di una città" loading="lazy">
-        <div class="corpo"><span class="etichetta">Libri illustrati</span><h3>Ferrari cerca e trova</h3><span class="chi">Franco Cosimo Panini</span><span class="anche">Anche per Il Castoro e Baldini e Castoldi</span><span class="vai">Altri libri →</span></div>
+        <div class="corpo"><span class="etichetta">Libri illustrati</span><h3>Ferrari cerca e trova</h3><span class="chi">Franco Cosimo Panini</span><span class="vai">Altri libri →</span></div>
       </a></li>
       <li><a class="scheda" href="lavori.html#cataloghi">
-        <img src="img/lav-xhixha-480.jpg" srcset="img/lav-xhixha-480.jpg 480w, img/lav-xhixha-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="Il catalogo Refractive Vibes di Helidon Xhixha, cartonato con la copertina argento, su fondo nero" loading="lazy">
-        <div class="corpo"><span class="etichetta">Cataloghi d’arte</span><h3>Helidon Xhixha, Refractive Vibes</h3><span class="chi">Contini Art UK</span><span class="anche">Anche per Galleria Contini e Vecchiato Arte</span><span class="vai">Altri cataloghi →</span></div>
+        <img src="img/lav-begbie-480.jpg" srcset="img/lav-begbie-480.jpg 480w, img/lav-begbie-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="Una pagina del catalogo di David Begbie: la scultura in rete metallica stampata in nero, fino al bordo del foglio" loading="lazy">
+        <div class="corpo"><span class="etichetta">Cataloghi d’arte</span><h3>David Begbie</h3><span class="chi">Contini Art UK</span><span class="vai">Altri cataloghi →</span></div>
+      </a></li>
+      <li><a class="scheda" href="lavori.html#aziende">
+        <img src="img/lav-siloma-480.jpg" srcset="img/lav-siloma-480.jpg 480w, img/lav-siloma-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="480" height="480" alt="Tag Contract Project di Siloma aperto su una doppia pagina con due ambienti arredati" loading="lazy">
+        <div class="corpo"><span class="etichetta">Cataloghi aziendali</span><h3>Tag Contract Project</h3><span class="chi">Siloma</span><span class="vai">Altri lavori per aziende →</span></div>
       </a></li>
     </ul>
     <div class="lavori-dopo">
-      <p>E per aziende come Atala, Selle Royal e Calpeda: cataloghi commerciali, riviste di settore, volantini, pieghevoli, depliant, manifesti e cartoline.</p>
+      <p>Anche per Coconino Press, Tunuè, Saldapress, i taccuini di Lucca Comics &amp; Games, Il Castoro, Baldini e Castoldi, Galleria Contini e Vecchiato Arte. E per aziende come Atala, Selle Royal e Calpeda: cataloghi commerciali, riviste di settore, volantini, pieghevoli, depliant, manifesti e cartoline.</p>
       <p class="link">Non sapete da dove cominciare? <a class="btn bordo" href="#richiamo">Ti chiamiamo noi</a></p>
     </div>
   </div>
@@ -409,18 +474,18 @@ textarea{min-height:120px;resize:vertical}
         <h3>Punto metallico</h3>
         <p>A punto sella o a punto omega.</p>
         <p class="per">Per riviste, cataloghi e libretti con poche pagine.</p>
-        <a href="#preventivo" data-confezione="Punto metallico a punto sella">Preventivo per un punto metallico →</a>
+        <a href="#preventivo" data-confezione="Punto metallico, a sella o a omega">Preventivo per un punto metallico →</a>
       </article>
       <article class="conf">
         <h3>Brossura</h3>
         <p>Fresata o cucita, con la copertina al vivo o con le alette.</p>
         <p class="per">Per libri, fumetti e cataloghi.</p>
-        <a href="#preventivo" data-confezione="Brossura cucita">Preventivo per una brossura →</a>
+        <a href="#preventivo" data-confezione="Brossura, fresata o cucita">Preventivo per una brossura →</a>
       </article>
       <article class="conf">
         <h3>Cartonato</h3>
         <p>Fresato o cucito, con il risguardo o autorisguardato. Dorso quadro o tondo, cartone da <span class="num">2</span>, <span class="num">2,5</span> o <span class="num">3</span>&nbsp;mm, capitelli e sovracoperta.</p>
-        <a href="#preventivo" data-confezione="Cartonato cucito">Preventivo per un cartonato →</a>
+        <a href="#preventivo" data-confezione="Cartonato, fresato o cucito">Preventivo per un cartonato →</a>
       </article>
     </div>
     <dl class="specifiche">
@@ -454,7 +519,7 @@ textarea{min-height:120px;resize:vertical}
       </a></li>
       <li><a class="reparto" href="legatoria.html">
         <img src="img/rep-legatoria-560.jpg" srcset="img/rep-legatoria-560.jpg 560w, img/rep-legatoria-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="560" height="373" alt="Due mani aprono un blocco di pagine cucito a filo refe: si vedono le segnature e i punti" loading="lazy">
-        <span class="n num">.3</span><h3>Legatoria</h3><p>Brossura, punto metallico e cartonato, piegatura e plastificazione.</p><span class="vai">Il reparto →</span>
+        <span class="n num">.3</span><h3>Legatoria</h3><p>Piegatura, cucitura, plastificazione e confezione, fino al libro finito.</p><span class="vai">Il reparto →</span>
       </a></li>
       <li><a class="reparto" href="logistica.html">
         <img src="img/rep-logistica-560.jpg" srcset="img/rep-logistica-560.jpg 560w, img/rep-logistica-800.jpg 800w" sizes="(max-width:640px) 100vw, (max-width:1240px) 50vw, 25vw" width="560" height="373" alt="Un magazziniere sposta con il transpallet un bancale di scatole pronte per la consegna" loading="lazy">
@@ -463,10 +528,9 @@ textarea{min-height:120px;resize:vertical}
     </ul>
     <ul class="numeri">
       <li><b class="num">1989</b><span>l’anno in cui Alberto Peruzzo, a <span class="num">24</span> anni, avvia l’attività</span></li>
-      <li><b class="num">4</b><span>reparti nello stesso stabilimento</span></li>
-      <li><b class="num">3</b><span>confezioni: punto metallico, brossura, cartonato</span></li>
-      <li><b class="num">70-170</b><span>grammi, le carte per gli interni</span></li>
-      <li><b class="num">350</b><span>grammi, la carta più spessa per le copertine</span></li>
+      <li><b class="num">4</b><span>reparti nello stesso stabilimento, dal file alla consegna</span></li>
+      <li><b class="num">3</b><span>confezioni in legatoria, dal punto metallico al cartonato</span></li>
+      <li><b class="num">48</b><span>clienti con il loro marchio nella nostra Libreria: case editrici, gallerie, aziende e fiere</span></li>
     </ul>
   </div>
 </section>
@@ -487,6 +551,7 @@ textarea{min-height:120px;resize:vertical}
       </ol>
       <h3>Come mandare i file</h3>
       <p class="file">Il modulo apre un’email già compilata per <a href="mailto:info@graficheperuzzo.it">info@graficheperuzzo.it</a>: allegate lì i PDF, oppure scrivete nel modulo il link di trasferimento per i file pesanti.</p>
+      <p class="file">Per le specifiche degli esecutivi (PDF, abbondanze, profilo colore) chiedete alla prestampa allo <a class="num" href="tel:+390499002884">049 9002884</a> prima di chiudere i file.</p>
       <div class="richiamo" id="richiamo">
         <h3>Ti chiamiamo noi</h3>
         <p>Non conoscete i termini tecnici? Lasciate nome e telefono.</p>
@@ -497,32 +562,59 @@ textarea{min-height:120px;resize:vertical}
           </div>
           <p class="avviso" aria-live="polite"></p>
           <button class="btn" type="submit">Richiamatemi</button>
+          <div class="pronta" hidden aria-live="polite"></div>
         </form>
       </div>
     </div>
     <div class="prev-dx">
       <form class="modulo" id="modulo" action="mailto:info@graficheperuzzo.it?subject=Richiesta%20di%20preventivo" method="post" enctype="text/plain" novalidate>
-        <div class="campi">
-          <div class="campo"><label for="f-nome">Nome e cognome *</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
-          <div class="campo"><label for="f-ditta">Casa editrice, galleria o azienda</label><input id="f-ditta" name="Casa editrice o azienda" autocomplete="organization"></div>
-          <div class="campo"><label for="f-mail">Email *</label><input id="f-mail" name="Email" type="email" autocomplete="email" required></div>
-          <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel" inputmode="tel"></div>
-          <div class="campo"><label for="f-tipo">Tipo di lavoro</label><select id="f-tipo" name="Tipo di lavoro"><option>Libro</option><option>Fumetto o graphic novel</option><option>Catalogo d’arte</option><option>Rivista</option><option>Catalogo commerciale</option><option>Volantini, pieghevoli, brochure</option><option>Altro</option></select></div>
-          <div class="campo"><label for="f-conf">Confezione</label><select id="f-conf" name="Confezione"><option>Da decidere insieme</option><option>Punto metallico a punto sella</option><option>Punto metallico a punto omega</option><option>Brossura fresata</option><option>Brossura cucita</option><option>Cartonato fresato</option><option>Cartonato cucito</option></select></div>
-          <div class="campo"><label for="f-formato">Formato chiuso (cm)</label><input id="f-formato" name="Formato chiuso" placeholder="17 x 24"></div>
-          <div class="campo"><label for="f-pagine">Pagine dell’interno</label><input id="f-pagine" name="Pagine dell'interno" type="number" min="4" step="4" inputmode="numeric" placeholder="multipli di 4"></div>
-          <div class="campo"><label for="f-copie">Copie</label><input id="f-copie" name="Copie" type="number" min="1" inputmode="numeric"></div>
-          <div class="campo"><label for="f-carta">Carta dell’interno</label><select id="f-carta" name="Carta dell'interno"><option>Da decidere insieme</option><option>Usomano</option><option>Patinata opaca</option><option>Patinata lucida</option></select></div>
-          <div class="campo"><label for="f-stampa">Stampa</label><select id="f-stampa" name="Stampa"><option>Quadricromia</option><option>Bicromia</option><option>Monocromia Pantone</option></select></div>
-          <div class="campo"><label for="f-quando">Quando vi serve</label><input id="f-quando" name="Quando serve" placeholder="per esempio, entro il 15 marzo"></div>
-          <div class="campo largo"><label for="f-file">Link ai file (facoltativo)</label><input id="f-file" name="Link ai file" type="url" inputmode="url" placeholder="https://"></div>
-          <div class="campo largo"><label for="f-note">Note: copertina, finiture, sovracoperta</label><textarea id="f-note" name="Note"></textarea></div>
-        </div>
+        <ol class="passi" aria-label="Passi del preventivo">
+          <li data-n="1">1. Il lavoro</li>
+          <li data-n="2">2. Carte e finiture</li>
+          <li data-n="3">3. Contatti e file</li>
+        </ol>
+        <fieldset class="passo" data-n="1">
+          <legend>Il lavoro</legend>
+          <div class="campi">
+            <div class="campo"><label for="f-tipo">Tipo di lavoro</label><select id="f-tipo" name="Tipo di lavoro"><option>Libro</option><option>Fumetto o graphic novel</option><option>Catalogo d’arte</option><option>Rivista</option><option>Catalogo commerciale</option><option>Volantini, pieghevoli, brochure</option><option>Altro</option></select></div>
+            <div class="campo"><label for="f-conf">Confezione</label><select id="f-conf" name="Confezione"><option>Da decidere insieme</option><option>Punto metallico, a sella o a omega</option><option>Punto metallico a punto sella</option><option>Punto metallico a punto omega</option><option>Brossura, fresata o cucita</option><option>Brossura fresata</option><option>Brossura cucita</option><option>Cartonato, fresato o cucito</option><option>Cartonato fresato</option><option>Cartonato cucito</option></select></div>
+            <div class="campo"><label for="f-formato">Formato chiuso (cm)</label><input id="f-formato" name="Formato chiuso" placeholder="17 x 24"></div>
+            <div class="campo"><label for="f-pagine">Pagine dell’interno</label><input id="f-pagine" name="Pagine dell'interno" type="number" min="4" step="4" inputmode="numeric" placeholder="multipli di 4" aria-describedby="a-pagine"><span class="aiuto" id="a-pagine">In multipli di 4, copertina esclusa.</span></div>
+            <div class="campo"><label for="f-copie">Copie</label><input id="f-copie" name="Copie" type="number" min="1" inputmode="numeric"></div>
+          </div>
+        </fieldset>
+        <fieldset class="passo" data-n="2">
+          <legend>Carte e finiture</legend>
+          <div class="campi">
+            <div class="campo"><label for="f-carta">Carta dell’interno</label><select id="f-carta" name="Carta dell'interno"><option>Da decidere insieme</option><option>Usomano</option><option>Patinata opaca</option><option>Patinata lucida</option></select></div>
+            <div class="campo"><label for="f-stampa">Stampa</label><select id="f-stampa" name="Stampa"><option>Quadricromia</option><option>Bicromia</option><option>Monocromia Pantone</option></select></div>
+            <div class="campo"><label for="f-copertina">Carta e grammatura della copertina</label><input id="f-copertina" name="Copertina" placeholder="patinata opaca 300 g"></div>
+            <div class="campo"><label for="f-finitura">Finitura della copertina</label><select id="f-finitura" name="Finitura copertina"><option>Da decidere insieme</option><option>Plastificazione opaca</option><option>Plastificazione lucida</option><option>Plastificazione soft touch</option><option>Plastificazione antigraffio</option><option>Verniciatura UV</option><option>Foil o embossing</option></select></div>
+            <div class="campo solo-cartonato"><label for="f-dorso">Dorso (cartonato)</label><select id="f-dorso" name="Dorso"><option value="">Da decidere insieme</option><option>Quadro</option><option>Tondo</option></select></div>
+            <div class="campo solo-cartonato"><label for="f-cartone">Cartone (cartonato)</label><select id="f-cartone" name="Cartone"><option value="">Da decidere insieme</option><option>2 mm</option><option>2,5 mm</option><option>3 mm</option></select></div>
+            <div class="campo solo-cartonato"><label for="f-sovra">Sovracoperta (cartonato)</label><select id="f-sovra" name="Sovracoperta"><option value="">Da decidere insieme</option><option>Sì</option><option>No</option></select></div>
+            <div class="campo"><label for="f-quando">Quando vi serve</label><input id="f-quando" name="Quando serve" placeholder="per esempio, entro il 15 marzo" aria-describedby="a-quando"><span class="aiuto" id="a-quando">Con il preventivo vi diciamo se la data è possibile.</span></div>
+          </div>
+        </fieldset>
+        <fieldset class="passo" data-n="3">
+          <legend>Contatti e file</legend>
+          <div class="campi">
+            <div class="campo"><label for="f-nome">Nome e cognome *</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
+            <div class="campo"><label for="f-ditta">Casa editrice, galleria o azienda</label><input id="f-ditta" name="Casa editrice o azienda" autocomplete="organization"></div>
+            <div class="campo"><label for="f-mail">Email *</label><input id="f-mail" name="Email" type="email" autocomplete="email" required></div>
+            <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel" inputmode="tel"></div>
+            <div class="campo largo"><label for="f-file">Link ai file (facoltativo)</label><input id="f-file" name="Link ai file" type="url" inputmode="url" placeholder="https://"></div>
+            <div class="campo largo"><label for="f-note">Note: capitelli, nobilitazioni, altro</label><textarea id="f-note" name="Note"></textarea></div>
+          </div>
+        </fieldset>
         <p class="avviso" aria-live="polite"></p>
         <div class="invio">
-          <button class="btn" type="submit">Componi l’email del preventivo</button>
+          <button class="btn bordo indietro" type="button">Indietro</button>
+          <button class="btn avanti" type="button">Avanti</button>
+          <button class="btn componi" type="submit">Componi l’email del preventivo</button>
           <p class="nota">Si apre il vostro programma di posta con i dati già scritti: allegate i PDF e inviate.</p>
         </div>
+        <div class="pronta" hidden aria-live="polite"></div>
       </form>
     </div>
   </div>
@@ -546,8 +638,8 @@ textarea{min-height:120px;resize:vertical}
 <section class="sezione scuro" id="dove" aria-labelledby="t-dove">
   <div class="wrap">
     <div class="sez-testa">
-      <span class="etichetta">Dove siamo</span>
-      <h2 id="t-dove">Via Marco Polo 10/12, Mestrino</h2>
+      <span class="etichetta">Mestrino (Padova)</span>
+      <h2 id="t-dove">Dove siamo e come raggiungerci</h2>
     </div>
     <figure class="sede">
       <img src="img/sede-notte-1300.jpg" srcset="img/sede-notte-800.jpg 800w, img/sede-notte-1300.jpg 1300w, img/sede-notte-2400.jpg 2400w" sizes="(max-width:640px) 100vw, calc(100vw - 2 * var(--m))" width="1300" height="457" alt="La sede e lo stabilimento di Peruzzo Grafiche di notte: la facciata vetrata a due piani illuminata" loading="lazy">
@@ -557,11 +649,14 @@ textarea{min-height:120px;resize:vertical}
         <span class="etichetta">Sede e stabilimento</span>
         <p>Via Marco Polo 10/12<br>35035 Mestrino (PD)</p>
         <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Indicazioni stradali</a>
+        <p class="orari">Orari di ufficio e di carico e scarico: telefonate prima di passare.</p>
+        <a class="btn num" href="tel:+390499002884">Chiamate 049 9002884</a>
       </div>
       <div>
-        <span class="etichetta">Telefono</span>
+        <span class="etichetta">Telefono, due linee</span>
         <p><a class="grande num" href="tel:+390499002884">049 9002884</a></p>
         <p><a class="num" href="tel:+390499002885">049 9002885</a></p>
+        <p class="orari">PEC e recapiti per l’amministrazione: chiedeteli allo stesso numero.</p>
       </div>
       <div>
         <span class="etichetta">Email</span>
@@ -570,8 +665,7 @@ textarea{min-height:120px;resize:vertical}
       </div>
       <div>
         <span class="etichetta">Ritiri e consegne</span>
-        <p>Prima di passare per un ritiro o una consegna, chiamateci.</p>
-        <p>Consegniamo con i nostri mezzi, in Italia e all’estero.</p>
+        <p>Consegniamo con i nostri mezzi, auto aziendale, furgone e cargo, in Italia e all’estero.</p>
       </div>
     </div>
   </div>
@@ -591,8 +685,9 @@ textarea{min-height:120px;resize:vertical}
           <li><a class="num" href="tel:+390499002884">049 9002884</a></li>
           <li><a class="num" href="tel:+390499002885">049 9002885</a></li>
           <li><a href="mailto:info@graficheperuzzo.it">info@<wbr>graficheperuzzo.it</a></li>
-          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Via Marco Polo 10/12, 35035 Mestrino (PD)</a></li>
-          <li><a href="#preventivo">Chiedi un preventivo</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD" rel="noopener">Via Marco Polo 10/12, 35035 Mestrino (PD)</a></li>
+          <li class="testo">Orari di ufficio e di carico: telefonate prima di passare</li>
+          <li><a href="#preventivo">Chiedete un preventivo</a></li>
         </ul>
       </div>
       <nav aria-labelledby="p-lav">
@@ -646,30 +741,71 @@ textarea{min-height:120px;resize:vertical}
     tt.classList.toggle('bordo',vis||!mq.matches);
   }).observe(ap);
 })();
-// Le confezioni portano al modulo con la confezione gia' scelta.
+// Modulo del preventivo a tre passi (senza script resta un modulo unico, tutto visibile).
+var modulo=document.getElementById('modulo'),passo=1;
+var passi=[].slice.call(modulo.querySelectorAll('.passo')),segni=[].slice.call(modulo.querySelectorAll('.passi li'));
+function vai(n,fuoco){
+  passo=n;
+  passi.forEach(function(f){f.classList.toggle('attivo',+f.getAttribute('data-n')===n)});
+  segni.forEach(function(l){var k=+l.getAttribute('data-n');l.classList.toggle('fatto',k<n);if(k===n){l.setAttribute('aria-current','step')}else{l.removeAttribute('aria-current')}});
+  modulo.classList.toggle('primo-passo',n===1);modulo.classList.toggle('ultimo',n===3);
+  if(fuoco){var c=passi[n-1].querySelector('input,select,textarea');if(c)c.focus({preventScroll:true});modulo.scrollIntoView({block:'start'})}
+}
+modulo.classList.add('a-passi');vai(1);
+// le pagine dell'interno vanno in multipli di 4: avviso in italiano accanto al campo
+function controllaPagine(){
+  var c=document.getElementById('f-pagine'),v=parseInt(c.value,10),av=modulo.querySelector('.avviso');
+  if(c.value.trim()&&(isNaN(v)||v<4||v%4)){
+    var giu=Math.max(4,Math.floor(v/4)*4),su=Math.max(4,Math.ceil(v/4)*4);
+    av.textContent='Le pagine dell’interno vanno in multipli di 4'+(isNaN(v)?'.':(giu===su?': intendete '+su+'?':': intendete '+giu+' o '+su+'?'));
+    if(passo!==1)vai(1);c.focus();return false}
+  av.textContent='';return true
+}
+modulo.querySelector('.avanti').addEventListener('click',function(){if(passo===1&&!controllaPagine())return;vai(Math.min(3,passo+1),true)});
+modulo.querySelector('.indietro').addEventListener('click',function(){modulo.querySelector('.avviso').textContent='';vai(Math.max(1,passo-1),true)});
+// i campi del cartonato (dorso, cartone, sovracoperta) si vedono solo se la confezione e' un cartonato o e' da decidere
+var conf=document.getElementById('f-conf');
+function cartonato(){var si=/^Cartonato|^Da decidere/.test(conf.value);modulo.querySelectorAll('.solo-cartonato').forEach(function(d){d.hidden=!si;if(!si)d.querySelector('select').value=''})}
+conf.addEventListener('change',cartonato);cartonato();
+// Le confezioni portano al modulo, al primo passo, con la confezione gia' scelta (fresata o cucita resta da decidere).
 document.querySelectorAll('[data-confezione]').forEach(function(a){
-  a.addEventListener('click',function(){document.getElementById('f-conf').value=a.getAttribute('data-confezione')});
+  a.addEventListener('click',function(){conf.value=a.getAttribute('data-confezione');cartonato();vai(1)});
 });
+document.querySelectorAll('a[href="#preventivo"]').forEach(function(a){a.addEventListener('click',function(){if(!a.hasAttribute('data-confezione'))vai(1)})});
 // I moduli compongono un'email (mailto) con oggetto e campi; non inviano niente da soli.
+// Dopo il clic resta in pagina un riquadro con il testo pronto da copiare, se il programma di posta non si apre.
 // Nel sito pubblicato vanno collegati a un servizio di invio (vedi LEGGIMI.md).
-function componi(form,oggetto,obbligatori){
+function componi(form,oggetto,obbligatori,primaDi){
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var avviso=form.querySelector('.avviso'),manca=null;
+    if(primaDi&&!primaDi())return;
     obbligatori.forEach(function(id){var c=document.getElementById(id);if(!manca&&!c.value.trim())manca=c});
-    if(manca){avviso.textContent='Manca: '+form.querySelector('label[for="'+manca.id+'"]').textContent.replace(' *','')+'.';manca.focus();return}
+    if(manca){
+      if(form===modulo)vai(+manca.closest('.passo').getAttribute('data-n'));
+      avviso.textContent='Manca: '+form.querySelector('label[for="'+manca.id+'"]').textContent.replace(' *','')+'.';manca.focus();return}
     avviso.textContent='';
-    var righe=[].slice.call(form.querySelectorAll('input,select,textarea')).filter(function(c){return c.value.trim()}).map(function(c){return c.name+': '+c.value.trim()});
-    var ogg=typeof oggetto==='function'?oggetto():oggetto;
-    var url='mailto:info@graficheperuzzo.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n')+'\n');
+    var righe=[].slice.call(form.querySelectorAll('input,select,textarea')).filter(function(c){return c.name&&c.value.trim()&&!c.closest('[hidden]')}).map(function(c){return c.name+': '+c.value.trim()});
+    var ogg=typeof oggetto==='function'?oggetto():oggetto,testo=righe.join('\n')+'\n';
+    var url='mailto:info@graficheperuzzo.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(testo);
     form.setAttribute('data-ultima',url);
+    var p=form.querySelector('.pronta');
+    p.innerHTML='<h3>La vostra email è pronta</h3><p>Se il programma di posta non si è aperto, copiate il testo e mandatelo a <a href="mailto:info@graficheperuzzo.it">info@graficheperuzzo.it</a>, oggetto «'+ogg.replace(/</g,'&lt;')+'».</p><textarea readonly aria-label="Testo della richiesta"></textarea><div class="azioni"><button class="btn copia" type="button">Copia il testo</button><a class="btn bordo" href="">Apri di nuovo l’email</a></div>';
+    p.querySelector('textarea').value='Oggetto: '+ogg+'\n\n'+testo;
+    p.querySelector('a.btn').href=url;
+    p.querySelector('.copia').addEventListener('click',function(){
+      var t=p.querySelector('textarea'),b=this;
+      function ok(){b.textContent='Testo copiato'}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(ok,function(){t.select();document.execCommand('copy');ok()})}else{t.select();document.execCommand('copy');ok()}
+    });
+    p.hidden=false;
     location.href=url;
   });
 }
-componi(document.getElementById('modulo'),function(){
+componi(modulo,function(){
   var t=document.getElementById('f-tipo').value,c=document.getElementById('f-copie').value.trim();
   return 'Richiesta di preventivo: '+t+(c?', '+c+' copie':'');
-},['f-nome','f-mail']);
+},['f-nome','f-mail'],controllaPagine);
 componi(document.querySelector('.form-richiamo'),'Ti chiamiamo noi',['r-nome','r-tel']);
 </script>
 </body>

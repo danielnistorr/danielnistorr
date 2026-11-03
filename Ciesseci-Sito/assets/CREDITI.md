@@ -44,7 +44,7 @@ Scartata dopo la verifica: la polo blu con ricamo di TuanAnh Blue (https://unspl
 
 Decisione del committente sulle foto: "niente". **Nessuna foto di `esterne/` è più in pagina**: tolte la maglietta di Mr. Mockup (Pexels 12025472), i coni di Wallace, il telaio di emarts, la maglietta sulla pressa di Compagnons (Unsplash) e l'incisore laser di Sóc Năng Động (Pexels 38030790). I file restano in `esterne/` solo come archivio della proposta di prima (`_prova/versione-1-originale/`) e non vanno usati.
 
-Foto di Ciesseci in pagina, tutte in 3:2 (l'apertura in 4:3 sopra i 900 px) con lo stesso trattamento (`_prova/script/pro_img.py`), esportate a 1020 e 640 px in `sito/img/`:
+Foto di Ciesseci in pagina, tutte in 3:2 (l'apertura in 16:9 sopra i 900 px). Nel ritocco finale del 3/11/2026 ho tolto i ricami RicaMarty e il bancone, che non reggevano. Tutte hanno lo stesso trattamento (`_prova/script/pro_img.py`), esportate a 1020 e 640 px in `sito/img/`:
 
 | In pagina | File in `sito/img/` | Originale in `originali/` |
 |---|---|---|
@@ -54,8 +54,6 @@ Foto di Ciesseci in pagina, tutte in 3:2 (l'apertura in 4:3 sopra i 900 px) con 
 | Scheda Ricamo, la ricamatrice | `ricamo-*.jpg` | `2018-02-ricamo.jpg` |
 | Scheda Furgoni e vetrine, il loro furgone | `furgone-*.jpg` | `2021-03-evi-prodotti.jpg` |
 | Scheda Targhe, plex e gadget | `plex-*.jpg` | `2019-10-sld-stampe-plexiglass.jpg` |
-| Shop, i ricami RicaMarty | `ricamarty-*.jpg` | `shop-2024-04-rica-marty_01.jpg` |
-| Chi siamo, il bancone con la coccarda | `bancone-*.jpg` | `2019-02-ciesseci-nuova-sede-3.jpg` |
 | Orari e dove, la facciata con l'insegna | `facciata-*.jpg` | `2022-04-sede-nuova-1.jpg` |
 | Logo | `logo-csc-96.png`, `-192.png` | `logo-badge-500x486.png` |
 

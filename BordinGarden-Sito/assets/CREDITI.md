@@ -27,6 +27,6 @@ Sono segnaposto: nel sito vero vanno sostituite con foto di Bordin (vedi LEGGIMI
 - `originali/book/`: le 13 pagine pubblicate del book "I NOSTRI GIARDINI" su sfogliami.it (https://www.sfogliami.it/fl/221690/jj7jk3cuuqfz73k7g71ks31ydv4v3s), 1024x721.
 - Diritti: foto e testi sono di Bordin Garden & Vivai; vanno usati nella proposta solo come materiale loro, mai ceduti a terzi.
 
-## Home finale
+## Home (livello professionale, 3 novembre 2026)
 
-La home finale (`sito/`) usa solo foto di Bordin, prese dal loro sito: VB2 (apertura, foto intera non scontornata, in due tagli), VB4 ("In vivaio"), Giardini_3ok della home ("In giardino"), G6, G1 e il logo. Lo scontorno di VB2 e la foto dell'album Villa Palladiana non sono più usati (giro di rifinitura del 24/10/2026). Nessuna foto di `esterne/` è in pagina.
+La home (`sito/`) usa solo foto di Bordin prese dal loro sito (`originali/`), lavorate da `_prova/script/pro_img.py`: G6 (apertura), G8, DO_Mix_148 e VB2 (le tre schede), G5, G1 e G10 (reparti), DO_Mix_146, DO_MorosiniDopo4 e Giardini_3ok (lavori), BB1 (vivai), il logo. Le foto degli album sono tagliate sotto il logo stampato nell'angolo. Tolte rispetto alla versione 1: VB4 e lo scontorno di VB2. **Nessuna foto di `esterne/` (Unsplash) è in pagina**, per decisione del committente sulle foto di repertorio ("niente"): restano in `esterne/` solo come archivio della proposta, con la loro licenza qui sopra, e non vanno usate.

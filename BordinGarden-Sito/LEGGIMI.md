@@ -2,57 +2,54 @@
 
 Proposta non richiesta, solo la home. Non è stato contattato nessuno, niente è pubblicato.
 
-- **Home finale**: `sito/index.html` (statica, si apre col browser), `sito/img/`, `sito/fonts/`.
-- **Screenshot**: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440) e la nota `screenshot/home/NOTA.md`.
-- **Rifare tutto**: `bash _prova/script/build_finale.sh` (immagini `fin_img.py`, screenshot `fin_shoot.mjs`, segnali); prove di larghezze, tastiera, tocco e collegamenti: `node _prova/script/fin_prove.mjs`. Gli script dello scontorno (`fin_esemplare_vb2.py` e simili) restano solo come traccia: la home non li usa più.
-- Analisi con le fonti: `01-analisi.md`. Prototipi e giudizio: `_prova/home/a`, `_prova/home/b`, `_prova/giudizio.json`. Crediti delle immagini: `assets/CREDITI.md`.
+- **Home**: `sito/index.html` (statica, si apre col browser), `sito/img/`, `sito/fonts/`. Livello professionale del 3 novembre 2026; la versione 1 di prima è in `_prova/versione-1-originale/`.
+- **Screenshot**: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440) e la nota `screenshot/home/NOTA.md` (sezione "Livello professionale", con l'esito delle 15 regole).
+- **Rifare tutto**: `bash _prova/script/build_finale.sh --immagini` (immagini `pro_img.py`, screenshot `pro_shoot.mjs`, controlli `pro_controlli.mjs`); prove d'uso (stato aperto/chiuso, menu, modulo, JavaScript spento): `node _prova/script/pro_uso.mjs`.
+- Analisi con le fonti: `01-analisi.md`; scheda d'uso: `_prova/uso/SCHEDA.md`; crediti delle immagini: `assets/CREDITI.md`.
 
-## Dati da confermare con l'azienda
+## Il modulo da collegare
 
-In pagina ci sono senza segni di dubbio, ma vanno fatti rileggere:
+Il modulo "Chiedete un sopralluogo" oggi **non invia nulla da solo**: compone un'email (mailto a info@bordingarden.it, oggetto "Richiesta di sopralluogo, comune (tipi)", nel testo nome, telefono, comune, che cosa serve e le due righe) che il visitatore spedisce dal suo programma di posta. Nel sito vero va collegato a un servizio di invio (per esempio il modulo del CMS, Formspree o un piccolo script sul server) che:
 
-1. **Garanzia d'attecchimento di un anno** (book "I nostri giardini": "Tutte le piante utilizzate ... hanno una garanzia d'attecchimento di un anno"): vale ancora? In pagina è una frase grande: "Tutte le piante dei nostri giardini hanno un anno di garanzia d'attecchimento".
-2. **Foto dell'apertura (VB2)**: la didascalia dice "Vivai Bordin. Esemplari a foglia caduca appena zollati". È stata fatta nel loro vivaio (via dei Vivai 14)? Che specie sono? Se lo confermano, la didascalia può dire il luogo e la specie.
-3. **"In zolla o in vaso, spediti in tutta Italia"** (didascalia dell'apertura) e "Spedizione in tutta Italia, anche dei grandi esemplari": dal sito (pagina Vivai), da far rileggere.
-4. **Foto "In giardino"** (`home--Giardini_3ok`, dalla slide "Giardini" della loro home): è un giardino fatto da loro? Si può mostrare (casa privata riconoscibile)? Serve l'originale senza il filtro con la vignettatura. **Foto "In vivaio"** (VB4): sono i loro campi?
-5. **Orari**: stagionali, domeniche di primavera, chiusure estive? Il sabato dei Vivai è ancora "mattina, su appuntamento"? La riga "aperto adesso" usa gli orari della pagina Contatti: se cambiano, vanno cambiati nello script in fondo alla pagina (oggetto `ORARI`) e nella tabella della chiusura.
-6. **Ragione sociale nel piede**: ho messo quella dei registri (Bordin Garden & Vivai S.n.c. di Bordin Omero e Giuliano Società Agricola, P.IVA 01315760288, REA PD-231319). Va chiarito il ruolo di Commerciale Garden Bordin snc (P.IVA 02463340287, via dei Vivai 6) per il Garden. PEC e capitale sociale non trovati.
-7. **Terza generazione**: nomi e ruoli, se vogliono comparire.
-8. **Firewall del sito attuale** (BitNinja): verificare da un telefono in 4G se blocca anche i visitatori veri (analisi, sez. 9).
+- accetti l'**allegato** (foto o disegno dello spazio; oggi va aggiunto a mano all'email o mandato su WhatsApp);
+- mandi la richiesta a chi la segue davvero e una conferma al cliente;
+- abbia l'informativa privacy e la casella del consenso.
+
+Da far decidere a loro e poi scrivere sotto il modulo: **chi risponde alle richieste di giardino ed entro quando** (una recensione del 2023 racconta un preventivo chiesto e mai richiamato) e se l'indirizzo giusto è info@bordingarden.it o un altro.
+
+## Da chiedere all'azienda
+
+1. **Recensioni**: oggi in pagina non ce n'è nessuna. Nelle fonti ci sono solo sintesi degli estratti (voto Google 4,3 su 95 recensioni secondo Angoli Verdi, 4,23 su 136 su Cylex): chiedere il link alla scheda Google e il permesso di citare 3 o 4 recensioni intere con nome e comune (quelle sulle commesse, sull'assortimento, sull'aiuto a imballare). Con quelle la regola delle prove passa.
+2. **Lavori con i dati**: per Villa Palladiana, il Giardino a Venezia e il giardino privato con l'acero: anno, comune, metri quadri, che cosa hanno fatto (progetto, impianto, trapianto, manutenzione), e se i nomi si possono citare. Il giardino con l'acero (`Giardini_3ok`, dalla slide "Giardini" della loro home) è un loro lavoro? Si può mostrare?
+3. **Clienti, fornitori, associazioni**: architetti o imprese con cui lavorano (il book li cita senza nomi), marchi di vasi o arredo che vendono, associazioni (florovivaisti, garden center): con il permesso, una fascia di nomi.
+4. **Garanzia d'attecchimento di un anno** (book "I nostri giardini"): vale ancora e per quali piante? In pagina è nei numeri ("1 anno") e sotto i 4 passi.
+5. **Orari**: stagionali, domeniche di primavera (Cylex segnala domeniche mattina), chiusure estive, festività (oggi nei giorni di festa la pagina dice "Oggi è festa: chiamate prima di passare"). Il sabato del vivaio è ancora "mattina, su appuntamento"? Se cambiano, vanno cambiati nell'oggetto `ORARI` dello script in fondo alla pagina, nelle due tabelle e nel piede.
+6. **Consegna a domicilio**: Google la dichiara per il Garden; non è in pagina finché non la confermano.
+7. **Ragione sociale nel piede**: ho messo quella dei registri (Bordin Garden & Vivai S.n.c. di Bordin Omero e Giuliano Società Agricola, P.IVA 01315760288, REA PD-231319). Va chiarito il ruolo di Commerciale Garden Bordin snc (P.IVA 02463340287, via dei Vivai 6) per il Garden e per i giardini. PEC e capitale sociale non trovati.
+8. **Privacy e cookie**: l'indirizzo dell'informativa iubenda (nel piede oggi "Privacy e cookie" è scritto ma non è un link).
+9. **Terza generazione**: nomi e ruoli, se vogliono comparire (con una foto delle persone la storia sarebbe loro davvero).
+10. **Firewall del sito attuale** (BitNinja): verificare da un telefono in 4G se blocca anche i visitatori veri (analisi, sez. 9). Il link "Tutti i 33 album" porta al sito di oggi.
 
 ## Foto da rifare dal vero
 
-Oggi la pagina usa solo foto di Bordin prese dal loro sito, ma nessuna è all'altezza della proposta. Serve una giornata di foto, con la macchina su cavalletto, 6000 px di lato lungo, file RAW.
+Oggi la pagina usa solo foto di Bordin prese dal loro sito, ma non sono una serie: luci e anni diversi, due album con il logo stampato nell'angolo (tagliato). Serve una giornata di foto con un solo fotografo, macchina su cavalletto, 6000 px di lato lungo, file RAW, stessa luce (mattino presto o cielo velato), senza auto e cartelli in vista.
 
-1. **L'apertura (la più importante)**: la stessa scena di VB2 rifatta bene: la fila degli esemplari appena zollati sul prato, in primavera con le prime foglie o in autunno con la chioma colorata, in luce radente del mattino o con cielo velato; macchina bassa, all'altezza delle zolle, obiettivo da 35 a 50 mm, formato orizzontale 2:1 con una seconda inquadratura quadrata per il telefono; sfondo pulito (siepe, senza case e ghiaia), rete delle zolle nitida a 2x. Una seconda foto ravvicinata della zolla (rete e legatura) per le pagine interne.
-2. **L'interruttore**: lo stesso esemplare due volte, nei campi del vivaio e messo a dimora nel giardino del cliente, stessa inquadratura e stessa ora del giorno; in alternativa le coppie PRIMA e DOPO degli album "Impianto esemplari", se ci sono gli originali senza logo.
-3. **Il Garden**: la piramide all'alba o col cielo velato, senza auto, carrelli e cartelli, dal punto di vista di G6.
-4. **La chiusura**: le bletille davanti all'ingresso in luce radente del mattino, con la piramide sfocata dietro, in formato quadrato o 4:5.
-5. **Album dei giardini**: due o tre giardini finiti in luce radente, senza persone e senza logo stampato.
+1. **L'apertura (la più importante)**: la piramide dal punto di vista di G6, con l'olivo a nuvole, in formato 4:3 e 3:2, cielo velato o luce radente del mattino, piazzale vuoto.
+2. **Le persone**: le commesse al banco o tra i bancali mentre aiutano un cliente (lo lodano tutte le recensioni), la famiglia davanti alla piramide, la squadra dei giardini con il mezzo.
+3. **I reparti, tutti 4:3 con la stessa luce**: piante grasse e bonsai, terracotta, piante da interno, piante da esterno, arredo e regali.
+4. **I giardini**: gli originali senza logo degli album (Villa Palladiana, Venezia), meglio se in coppia prima e dopo con la stessa inquadratura; due o tre giardini finiti in luce radente.
+5. **Il vivaio**: un trapianto con la gru rifatto oggi, i filari, un esemplare in zolla in primo piano; il cartello o il camion con il marchio.
 
 ## Licenze
 
-- **Foto in pagina**: tutte di Bordin Garden & Vivai (dal sito bordingarden.it), usate come materiale loro: VB2, VB4, Giardini_3ok, G6, G1, logo. Le foto Unsplash di `assets/esterne/` (con licenza in `assets/CREDITI.md`) non sono usate nella home finale; l'olivo di Marsiglia del prototipo A e lo scontorno di VB2 sono stati tolti.
-- **Caratteri**: Zodiak e Switzer, Indian Type Foundry, da Fontshare, licenza ITF Free Font License (uso commerciale libero; i file non vanno ridistribuiti da soli). Serviti dalla pagina in `sito/fonts/`.
+- **Foto in pagina**: tutte di Bordin Garden & Vivai (dal sito bordingarden.it), usate come materiale loro: G6, G8, G5, G1, G10, VB2, BB1, gli album Villa Palladiana (DO_Mix_146 e 148) e Giardino a Venezia (DO_MorosiniDopo4), Giardini_3ok, il logo. Nessuna foto di repertorio, nessuna illustrazione, nessuna immagine generata dall'IA (decisione del committente: "niente").
+- **Caratteri**: Zodiak (400) e Switzer (400, 600), Indian Type Foundry, da Fontshare, licenza ITF Free Font License (uso commerciale libero; i file non vanno ridistribuiti da soli). Serviti dalla pagina in `sito/fonts/`.
 
 ## Loghi
 
-- Esiste solo il PNG 360x126 con trasparenza (`assets/originali/logo-bordin-360x126.png`): in pagina è a 150 px nella testata e a 180 px nel piede, cioè a 2x. Basta fino a 180 px.
-- Serve il **vettoriale** (SVG o PDF): chiedere a chi l'ha disegnato e il nome del carattere della scritta "Bordin". Non l'ho ricostruito in SVG perché il carattere non è riconosciuto con certezza e il risultato non sarebbe fedele.
+- Esiste solo il PNG 360x126 con trasparenza (`assets/originali/logo-bordin-360x126.png`): in pagina è a 150 px nella testata (112 sul telefono) e a 170 px nel piede, cioè a 2x o più. Basta fino a 180 px.
+- Serve il **vettoriale** (SVG o PDF): chiedere a chi l'ha disegnato e il nome del carattere della scritta "Bordin".
 
-## Pagine che il sito nuovo deve avere (link del menu e del piede)
+## Pagine che il sito nuovo deve avere
 
-Oggi i link portano alle sezioni della home o a `#`; nel sito vero vanno a queste pagine:
-
-- **La storia** (dal 1955, la famiglia, la terza generazione)
-- **Vivai** (la produzione, gli esemplari, in zolla e in vaso, la spedizione)
-- **Garden** (la piramide, i reparti, gli orari)
-- **Giardini**, con le cinque voci di servizio: Progetto chiavi in mano, Trapianto di esemplari, Giardini storici, Piante per uffici, Manutenzione
-- **Album dei giardini** (i 33 album, prima, durante, dopo)
-- **Notizie**
-- **Lavora con noi**
-- **Privacy** e **Cookie** (oggi su iubenda)
-
-## Newsletter
-
-Il modulo "Notizie dal Garden" (email, bottone "Iscriviti", consenso privacy) **non invia nulla**: va collegato a un servizio (Brevo o Mailchimp), con doppia conferma dell'iscrizione e l'informativa privacy aggiornata. Da decidere chi la scrive e ogni quanto (novità, fioriture, piante appena arrivate).
+Oggi i link portano alle sezioni della home (e il link agli album al sito di oggi); nel sito vero vanno a queste pagine: La storia; Garden (reparti, orari); Giardini con le voci di servizio (progetto chiavi in mano, trapianto di esemplari, giardini storici, piante per uffici, manutenzione) e l'album dei 33 giardini; Vivai (produzione, esemplari, spedizione); Lavora con noi; Privacy e Cookie.

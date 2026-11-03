@@ -17,4 +17,4 @@ Licenze: Unsplash License https://unsplash.com/license ; Pexels License https://
 
 Scartata: "A blue braided hose tied in a knot" (Unsplash VzVugVJtP5I), perché la pagina la descrive come "3D Render".
 
-Home finale (`sito/`): usate Westbeek (magazzino) e Zhukova (chiusura); le altre restano solo nei prototipi.
+Home (`sito/`), livello professionale del 3/11/2026: **nessuna di queste foto è usata**. Per decisione del committente ("niente") la home non ha foto di repertorio: tolte Westbeek (magazzino) e Zhukova (chiusura), che c'erano nella versione di prima (copia in `_prova/versione-1-originale/`). In pagina solo foto di F.R.A.M.O. dal loro sito (IMG-9592, IMG-9594, IMG-9596, azienda-01) e il logo. I file restano qui per i prototipi in `_prova/home/`.

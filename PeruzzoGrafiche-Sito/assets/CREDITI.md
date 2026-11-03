@@ -38,17 +38,18 @@ Era l'apertura della prima versione della home finale (in monocromia, con "Foto 
 
 Superata dalla versione "livello professionale" qui sotto. La tabella di allora è nella copia `_prova/versione-1-originale/` (pagina e nota): apertura The Private Eye (Bao Publishing), editori Paper Girls 2, Il club delle baby-sitter, La sposa yemenita, reparti IMG_8866, chiusura IMG_8364.
 
-### Foto in pagina, livello professionale (3/11/2026)
+### Foto in pagina, livello professionale (3/11/2026, ritocco finale)
 
 Nessuna foto di repertorio in pagina (decisione del committente: "niente"): i segnaposto Unsplash e Pexels qui sopra restano solo come archivio e la pagina non li usa. Nessuna illustrazione, nessuna immagine generata. Le foto in pagina sono tutte dal sito di Peruzzo (`assets/originali/`), usate solo per la proposta; trattamento in `_prova/script/pro_img.py`.
 
 | In pagina (`sito/img/`) | File originale | Fonte sul sito di oggi |
 |---|---|---|
-| `legatoria-*` (apertura) | `2020-11-IMG_8866.jpg` (2400x1600, Canon EOS 6D, 16/01/2018), taglio da x 170 | libreria media del sito |
+| `legatoria-*` (apertura, 800, 1300 e 1800 px) | `2020-11-IMG_8866.jpg` (2400x1600, Canon EOS 6D, 16/01/2018), finestra 3:2 di 1800x1200 da x 420, y 400 (via ventilatore, controsoffitto, neon e cartello) | libreria media del sito |
+| `lav-porto-proibito-*` (lavoro in evidenza, fino a 900 px) | `2017-11-Il-porto-Proibito_Bao-Publishing.jpg` (1200x900), quadrato a destra | pagina Prodotti |
 | `lav-sposa-yemenita-*` | `2017-11-La-Sposa-Yemenita_BeccoGiallo.jpg` | pagina Prodotti |
-| `lav-paper-girls-*` | `2017-11-Paper-Girls-2_Bao-Publishing.jpg` | pagina Prodotti |
 | `lav-ferrari-*` | `2017-11-Ferrari-cerca-e-trova_Franco-Cosimo-Panini.jpg` | pagina Prodotti |
-| `lav-xhixha-*` | `2017-11-Helidon-Xhixha-Refractive-Vibes_Contini-Art-UK.jpg` | pagina Prodotti |
+| `lav-begbie-*` | `2017-11-David-Begbie_Contini-Art-UK.jpg` (1200x900), quadrato a sinistra | pagina Prodotti |
+| `lav-siloma-*` | `2017-11-Tag-Contract-Project_Siloma.jpg` (1200x900) | pagina Prodotti |
 | `rep-prestampa-*` | `2018-04-prestampa_04.jpg` (800x533) | libreria media del sito |
 | `rep-stampa-*` | `2018-04-stampa_02.jpg` (800x533) | libreria media del sito |
 | `rep-legatoria-*` | `2018-05-IMG_7955.jpg` (800x533) | libreria media del sito |
@@ -57,4 +58,4 @@ Nessuna foto di repertorio in pagina (decisione del committente: "niente"): i se
 | `sede-notte-*` | `2017-11-Notturna-In-Alta2.jpg` (2400x1043), tolto il cielo in alto | home |
 | `logo-grafite.png` | `logo-peruzzo-grafiche-bianco-2022-686x165.png`, ricolorato | testata del sito |
 
-Tolte dalla pagina rispetto alla versione precedente: The Private Eye, Il club delle baby-sitter e il foglio in oro `2018-07-IMG_8364.jpg` (marchio storico). Le copertine e le tavole dei lavori sono opere di terzi (editori e autori): per pubblicare servono i permessi (vedi LEGGIMI.md, punto 4).
+Tolte dalla pagina rispetto alla versione precedente: The Private Eye, Il club delle baby-sitter e il foglio in oro `2018-07-IMG_8364.jpg` (marchio storico); nel ritocco finale anche Paper Girls 2 (fondo grigio caldo) e Helidon Xhixha, Refractive Vibes (fondo nero), perché la fila dei lavori sia una serie su fondo chiaro. I cinque lavori hanno lo stesso trattamento: fondo (mediana di una cornice di 20 px) portato allo stesso grigio chiaro neutro, saturazione -10%, contrasto +4%. Le copertine e le tavole dei lavori sono opere di terzi (editori e autori): per pubblicare servono i permessi (vedi LEGGIMI.md, punto 4).

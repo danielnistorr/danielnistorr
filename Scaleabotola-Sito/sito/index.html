@@ -20,7 +20,7 @@
   --sez:120px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:104px}
 body{margin:0;background:var(--bianco);color:var(--inchiostro);font-family:"Archivo",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;font-stretch:100%;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img,svg{display:block;max-width:100%}
 input,button,textarea{font-family:inherit}
@@ -29,6 +29,7 @@ p,ul,ol,dl,dd,figure,h1,h2,h3{margin:0}
 ul,ol{padding:0;list-style:none}
 h1,h2,h3{font-weight:700;text-wrap:balance}
 strong,b{font-weight:700}
+[hidden]{display:none!important}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .salta{position:absolute;left:-9999px;top:8px;z-index:20;background:var(--bianco);padding:12px 16px}
@@ -66,17 +67,19 @@ strong,b{font-weight:700}
 .apri-menu{display:none}
 
 /* apertura */
-.apertura{padding:48px 0 72px}
+.apertura{padding:48px 0 72px;position:relative}
 .apertura .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:calc(var(--g) * 4);align-items:start}
 .occhiello{color:var(--grigio)}
-h1{font-size:84px;line-height:1.0;letter-spacing:-.025em;font-stretch:92%;margin-top:16px;max-width:9.6em}
+h1{font-size:88px;line-height:1.0;letter-spacing:-.025em;font-stretch:92%;margin-top:16px;max-width:9.6em}
 .lead{font-size:24px;line-height:1.4;margin-top:24px;max-width:28em}
-.fori-t{margin-top:32px}
+.lead b{background:linear-gradient(transparent 62%,var(--giallo) 62%);padding:0 2px;white-space:nowrap}
+.fori-riga{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:32px}
+.fori-riga .link{font-size:16px;padding:10px 0;margin:-10px 0;white-space:nowrap}
 .fori{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
-.fori a{display:block;padding:14px 16px 12px;border:2px solid var(--inchiostro);border-radius:4px;text-decoration:none;min-height:88px}
-.fori a:hover{background:var(--inchiostro);color:var(--bianco)}
+.fori a{display:block;padding:16px 18px 14px;background:var(--giallo);border:2px solid var(--giallo);color:var(--inchiostro);border-radius:4px;text-decoration:none;min-height:96px;transition:background-color .15s,color .15s}
+.fori a:hover{background:var(--inchiostro);border-color:var(--inchiostro);color:var(--bianco)}
 .fori b{display:block;font-size:24px;line-height:1.15}
-.fori span{display:block;font-size:16px;margin-top:6px}
+.fori span{display:block;font-size:16px;margin-top:8px}
 .azioni{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .servono{font-size:16px;color:var(--grigio);margin-top:14px}
 .lato figure img{width:100%;height:auto;border-radius:4px}
@@ -88,6 +91,22 @@ h1{font-size:84px;line-height:1.0;letter-spacing:-.025em;font-stretch:92%;margin
 .dove{font-size:16px;margin-top:6px;padding-left:20px}
 .dove a,.interno-vai a{display:inline-block;padding:12px 0;margin:-12px 0}
 .interno-vai{font-size:16px;margin-top:18px;padding-left:20px}
+/* da 1180 px: la foto della PLUS sborda a destra per tutta l'altezza dell'apertura */
+@media (min-width:1180px){
+  .apertura{padding:40px 0 48px;min-height:740px}
+  .apertura h1{margin-top:12px}
+  .apertura .lead{margin-top:20px}
+  .apertura .fori-riga{margin-top:28px}
+  .apertura .azioni{margin-top:24px}
+  .apertura .servono{margin-top:12px}
+  .apertura .wrap{display:block}
+  .apertura .testo-a{max-width:calc(60vw - 64px - var(--m) - max(0px, (100vw - 1600px) / 2))}
+  .apertura .lato{position:absolute;top:0;right:0;bottom:0;width:40vw;margin:0}
+  .apertura .lato figure{position:absolute;inset:0}
+  .apertura .lato figure img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;border-radius:0}
+  .apertura .targa{position:absolute;left:0;bottom:0;background:var(--bianco);padding:22px 28px 22px 24px;max-width:calc(100% - 48px)}
+  .apertura .targa .stato{margin-top:0}
+}
 
 /* blocchi scuri */
 .scuro{background:var(--inchiostro);color:var(--bianco)}
@@ -104,22 +123,31 @@ h2{font-size:56px;line-height:1.05;letter-spacing:-.02em;font-stretch:92%}
 
 /* misure del foro */
 .foro-griglia{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
-.foro{border-top:4px solid var(--inchiostro);padding-top:20px;display:flex;flex-direction:column}
+.foro{border-top:4px solid var(--inchiostro);padding-top:20px;display:flex;flex-direction:column;scroll-margin-top:104px}
 .foro h3{font-size:24px;line-height:1.2}
 .foro .cosa{margin-top:8px;color:var(--grigio)}
-.foro table{border-collapse:collapse;width:100%;margin-top:20px;font-size:16px}
-.foro th,.foro td{text-align:left;padding:7px 0;border-bottom:1px solid var(--grigio-filo);vertical-align:top}
-.foro th{font-weight:700;width:3.2em;white-space:nowrap}
-.foro td{word-spacing:.35em}
-.foro .prezzo{margin-top:20px;font-weight:700}
-.foro .nota{margin-top:6px;font-size:16px;color:var(--grigio)}
-.foro .link{margin-top:auto;padding-top:18px;align-self:flex-start;font-size:16px}
-.foro .vai{padding:10px 0}
+.foro .prezzo{margin-top:14px;font-weight:700}
+.tutte{margin-top:18px}
+.tutte summary{font-size:16px;font-weight:700;list-style:none;cursor:default;padding:4px 0}
+.tutte summary::-webkit-details-marker{display:none}
+.misure-lista{margin-top:10px}
+.misure-lista li{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mis{display:inline-block;font-size:16px;line-height:1;padding:9px 9px 8px;border:1px solid var(--grigio-filo);border-radius:4px;white-space:nowrap;text-decoration:none}
+a.mis{border-color:var(--blu);color:var(--blu);font-weight:700}
+a.mis:hover{background:var(--blu);color:var(--bianco)}
+.foro .nota{margin-top:12px;font-size:16px;color:var(--grigio)}
+.foro .vai{align-self:flex-start;font-size:16px;padding:10px 0}
+.foro .vai:first-of-type{margin-top:auto;padding-top:20px}
 .comune{margin-top:48px;max-width:52em}
 
 /* scale da interno */
 .chiaro{background:var(--grigio-chiaro)}
-.schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.racconto{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:calc(var(--g)*3);align-items:end;margin-bottom:72px}
+.racconto img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.racconto-testo .cit{font-size:24px;line-height:1.35;font-weight:700;margin-top:16px}
+.racconto-testo p+p{margin-top:16px}
+.racconto-testo .link{display:inline-block;margin-top:16px;padding:8px 0;font-size:16px}
+.schede{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
 .scheda{display:flex;flex-direction:column;text-decoration:none;background:var(--bianco);border-radius:4px;overflow:hidden}
 .scheda img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .scheda .corpo{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
@@ -134,14 +162,13 @@ h2{font-size:56px;line-height:1.05;letter-spacing:-.02em;font-stretch:92%}
 .disegno{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:56px;padding-top:32px;border-top:1px solid var(--grigio-filo)}
 .disegno p{font-size:24px;line-height:1.35;max-width:24em;font-weight:700}
 
-/* la PLUS */
-.plus{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);column-gap:calc(var(--g)*4);align-items:start}
-.plus figure img{width:100%;height:auto;border-radius:4px}
-.plus .testo p{margin-top:20px;max-width:32em}
-.gamma{margin-top:36px;border-top:1px solid var(--grigio-filo)}
-.gamma div{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--grigio-filo)}
-.gamma dt{font-weight:700}
-.plus .azioni{margin-top:28px;align-items:center}
+/* la PLUS: blocco tipografico con la gamma in quattro schede */
+.gamma{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.gamma li{border-top:4px solid var(--inchiostro);padding-top:20px;display:flex;flex-direction:column}
+.gamma h3{font-size:56px;line-height:1;letter-spacing:-.02em;font-stretch:92%}
+.gamma p{margin-top:12px}
+.gamma .g-dato{margin-top:auto;padding-top:16px;font-weight:700;color:var(--blu)}
+#plus .azioni{margin-top:48px;align-items:center;gap:12px 28px}
 
 /* richiesta */
 .giallo{background:var(--giallo)}
@@ -186,7 +213,7 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
 .orari th{font-weight:700;padding-right:24px;white-space:nowrap}
 .orari tr.oggi th,.orari tr.oggi td{color:var(--giallo)}
 .negozio .azioni{margin-top:32px}
-.telgrande{display:block;font-size:84px;line-height:1;letter-spacing:-.025em;font-stretch:92%;font-weight:700;text-decoration:none;color:var(--giallo);margin-top:20px;white-space:nowrap}
+.telgrande{display:block;font-size:88px;line-height:1;letter-spacing:-.025em;font-stretch:92%;font-weight:700;text-decoration:none;color:var(--giallo);margin-top:20px;white-space:nowrap}
 .telgrande:hover{color:var(--bianco)}
 .negozio .destra p{margin-top:20px;max-width:28em}
 .negozio .destra .prima{margin-top:0}
@@ -210,7 +237,8 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   :root{--m:56px;--sez:104px}
   h1{font-size:72px}
   .menu{gap:20px}
-  .foro-griglia,.schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foro-griglia,.gamma{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gamma{row-gap:40px}
   .fori{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fori a{min-height:0}
   .foro-griglia{row-gap:48px}
@@ -226,11 +254,12 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   .menu.aperto a{padding:14px 0;border-bottom:1px solid var(--grigio-filo)}
 }
 @media (max-width:1023px){
-  .apertura .wrap,.testa,.plus,.richiesta,.negozio{grid-template-columns:minmax(0,1fr)}
+  .apertura .wrap,.testa,.racconto,.richiesta,.negozio{grid-template-columns:minmax(0,1fr)}
+  .racconto-testo{margin-top:28px}
+  .racconto{margin-bottom:56px}
   .lato{margin-top:12px;display:flex;flex-direction:column}
   .lato figure{order:3;margin-top:28px}
   .testa{row-gap:20px}
-  .plus .testo{margin-top:40px}
   .richiesta .modulo{margin-top:48px}
   .negozio .destra{margin-top:48px}
 }
@@ -246,19 +275,19 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   .testata .btn{padding:0 10px;min-height:48px;font-stretch:90%}
   .testata .btn .parola{display:none}
   .apri-menu{padding:0 10px}
-  .apertura{padding:20px 0 56px}
+  .apertura{padding:16px 0 56px}
   .occhiello{font-size:16px}
   h1{font-size:40px;line-height:1.02;margin-top:10px;letter-spacing:-.02em}
   .lead{font-size:17px;margin-top:12px}
-  .fori-t{margin-top:18px}
+  .fori-riga{margin-top:14px}
   .fori{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
   .fori a{min-height:0;padding:10px 12px 9px}
   .fori b{font-size:22px}
   .fori span{margin-top:2px}
-  .azioni{flex-direction:column;gap:10px;margin-top:16px}
+  .azioni{flex-direction:column;gap:10px;margin-top:14px}
   .azioni .btn{width:100%;white-space:normal;text-align:center;padding-top:6px;padding-bottom:6px}
-  .servono{margin-top:10px}
-  .stato{margin-top:14px;font-size:17px}
+  .servono{margin-top:8px}
+  .stato{margin-top:10px;font-size:17px}
   .dove{margin-top:2px}
   .interno-vai{margin-top:14px}
   .lato{margin-top:6px}
@@ -271,15 +300,30 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   .cifre span{margin-top:8px}
   .consegna{margin-top:32px}
   .foro-griglia,.altri{grid-template-columns:1fr}
-  .schede{grid-template-columns:1fr 1fr;gap:12px}
+  .foro-griglia{row-gap:36px}
+  .foro{padding-top:16px}
+  .foro .vai{order:4}
+  .foro .vai:first-of-type{margin-top:0;padding-top:12px}
+  .tutte{order:5;margin-top:14px}
+  .tutte summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:48px;padding:0 14px;border:2px solid var(--grigio-filo);border-radius:4px}
+  .tutte summary::after{content:"+";font-size:22px;line-height:1}
+  .tutte[open] summary::after{content:"−"}
+  .tutte[open] summary{border-color:var(--inchiostro)}
+  .schede{grid-template-columns:1fr;gap:12px}
+  .scheda{flex-direction:row}
+  .scheda img{width:40%;flex:none;aspect-ratio:4/5}
   .scheda .corpo{padding:12px 12px 14px}
+  .racconto-testo .cit{font-size:22px}
+  .gamma{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .gamma h3{font-size:22px;line-height:1.2}
+  .gamma .g-dato{font-size:16px}
+  #plus .azioni{margin-top:32px}
   .scheda p{font-size:16px}
   .scheda .vai{padding-top:10px}
   .foro h3,.scheda h3,.altri h3,.disegno p,.negozio .indirizzo,.tre li::before{font-size:22px}
   .altri{margin-top:36px;row-gap:28px}
   .disegno{margin-top:40px}
   .disegno .btn{width:100%}
-  .gamma div{grid-template-columns:1fr;gap:2px}
   .modulo{padding:24px 16px}
   .campi{grid-template-columns:minmax(0,1fr)}
   .tipi{gap:8px}
@@ -328,30 +372,32 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
 
 <section class="apertura" aria-labelledby="titolo">
   <div class="wrap">
-    <div>
+    <div class="testo-a">
       <p class="etichetta occhiello">Scalarredo, <span class="largo">negozio e magazzino a </span>Mestrino (PD)</p>
       <h1 id="titolo">Scale retrattili per la soffitta, pronte o su misura</h1>
-      <p class="lead">Un fornito magazzino in pronta consegna, di solito in 5 giorni lavorativi. Il fuori misura lo realizziamo in tempi rapidi.</p>
-      <p class="etichetta fori-t" id="t-fori">Dove va il foro?</p>
+      <p class="lead">Un fornito magazzino in pronta consegna: di solito in <b>5&nbsp;giorni lavorativi</b>. Il fuori misura in <b>2-6&nbsp;settimane</b>.</p>
+      <div class="fori-riga"><p class="etichetta" id="t-fori">Dove va il foro?</p><a class="link" href="#consegna">Tempi e consegna</a></div>
       <nav class="fori num" aria-labelledby="t-fori">
-        <a href="#soffitto"><b>Soffitto</b><span>da 238&nbsp;€ + IVA</span></a>
-        <a href="#parete"><b>Parete</b><span>da 425&nbsp;€ + IVA</span></a>
-        <a href="#terrazzo"><b>Terrazzo</b><span>foro da 60×80</span></a>
-        <a href="#soppalco"><b>Soppalco</b><span>foro 70×100</span></a>
+        <a href="#soffitto" data-tipo="soffitto"><b>Soffitto</b><span>da 238&nbsp;€ + IVA</span></a>
+        <a href="#parete" data-tipo="parete"><b>Parete</b><span>da 425&nbsp;€ + IVA</span></a>
+        <a href="#terrazzo" data-tipo="terrazzo"><b>Terrazzo</b><span>prezzo al telefono</span></a>
+        <a href="#soppalco" data-tipo="soppalco"><b>Soppalco</b><span>prezzo al telefono</span></a>
       </nav>
       <div class="azioni">
         <a class="btn" href="tel:+390499000099">Chiama l’ufficio tecnico <span class="num">049 900 00 99</span></a>
         <a class="btn bordo" id="manda-misure" href="mailto:scalarredo@scalarredo.it?subject=Misure%20del%20foro&amp;body=Buongiorno%2C%0D%0Avi%20mando%20le%20misure%20per%20una%20scala%20retrattile.%0D%0A%0D%0A1.%20Foro%20(larghezza%20x%20lunghezza%2C%20cm)%3A%20%0D%0A2.%20Altezza%20da%20pavimento%20a%20soffitto%20(cm)%3A%20%0D%0A3.%20Spessore%20del%20solaio%20(cm)%3A%20%0D%0A%0D%0AComune%3A%20%0D%0ATelefono%3A%20%0D%0A%0D%0A(allego%20una%20foto%20del%20foro)">Manda le misure del foro</a>
       </div>
-      <p class="servono">Servono tre misure: il foro, l’altezza da pavimento a soffitto e lo spessore del solaio.</p>
+      <p class="servono">Servono il foro, l’altezza pavimento-soffitto, lo spessore del solaio e una foto.</p>
     </div>
     <div class="lato">
       <figure>
-        <img src="img/plus-900.jpg" srcset="img/plus-480.jpg 480w, img/plus-900.jpg 900w" sizes="(max-width:1023px) 360px, 30vw" width="900" height="1125" alt="La scala retrattile PLUS a pantografo, tutta bianca, aperta e vista dall’alto dentro la botola">
+        <img src="img/plus-900.jpg" srcset="img/plus-480.jpg 480w, img/plus-900.jpg 900w" sizes="(max-width:1023px) 360px, (max-width:1179px) 30vw, 40vw" width="900" height="1155" alt="La scala retrattile PLUS a pantografo, tutta bianca, aperta e vista dall’alto dentro la botola">
       </figure>
-      <p class="stato" id="stato-alto" data-stato><span><b>Lunedì-venerdì 9.00-12.30 e 15.00-19.00</b>, sabato solo la mattina.</span></p>
-      <p class="dove">Via Marco Polo 2, Mestrino, statale 11<span class="largo"> Padova-Vicenza</span>. <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Scalarredo%2C%20Via%20Marco%20Polo%202%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener">Indicazioni</a></p>
-      <p class="interno-vai">Anche scale da interno su misura: <a class="link" href="#interno">vedete le scale posate</a></p>
+      <div class="targa">
+        <p class="stato" id="stato-alto" data-stato><span><b>Lunedì-venerdì 9.00-12.30 e 15.00-19.00</b>, sabato solo la mattina.</span></p>
+        <p class="dove">Via Marco Polo 2, Mestrino, statale 11<span class="largo"> Padova-Vicenza</span>. <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Scalarredo%2C%20Via%20Marco%20Polo%202%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener">Indicazioni</a></p>
+        <p class="interno-vai">Anche scale da interno su misura: <a class="link" href="#interno">vedete le scale posate</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -376,72 +422,76 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   <div class="wrap">
     <div class="testa">
       <h2 id="t-misure">La vostra misura c’è?</h2>
-      <p>Misure standard del foro in centimetri, larghezza per lunghezza. Altezza da pavimento a soffitto 300&nbsp;cm: per altezze diverse e fori fuori standard chiamate l’ufficio tecnico.</p>
+      <p>Misure standard del foro in centimetri, larghezza per lunghezza. Fori e altezze fuori standard li realizziamo su misura: chiamate l’ufficio tecnico. Prezzi IVA esclusa, letti nel negozio online.</p>
     </div>
     <div class="foro-griglia num">
       <article class="foro" id="soffitto" aria-labelledby="t-soffitto">
         <h3 id="t-soffitto">Soffitto</h3>
         <p class="cosa">A pantografo o a elementi rigidi, anche motorizzata.</p>
-        <table>
-          <caption class="sr">Fori standard a soffitto, in cm</caption>
-          <tbody>
-            <tr><th scope="row">45 ×</th><td>70 80 90 100</td></tr>
-            <tr><th scope="row">50 ×</th><td>70 80 90 100</td></tr>
-            <tr><th scope="row">60 ×</th><td>80 90 100</td></tr>
-            <tr><th scope="row">70 ×</th><td>80 90 100 110 120 130</td></tr>
-            <tr><th scope="row">80 ×</th><td>80 90 100</td></tr>
-          </tbody>
-        </table>
-        <p class="prezzo">Easy da 238&nbsp;€ + IVA, PLUS da 320&nbsp;€ + IVA</p>
-        <p class="nota">Nel negozio anche 80×120 e 100×100.</p>
-        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/">Vedi le retrattili a soffitto</a>
+        <p class="prezzo">Easy 50×90 238&nbsp;€ + IVA<br>PLUS 50×80 320&nbsp;€ + IVA</p>
+        <details class="tutte" open>
+          <summary>Fori standard: 22 misure</summary>
+          <ul class="misure-lista" aria-label="Fori standard a soffitto, in cm">
+            <li><span class="mis">45×70</span><span class="mis">45×80</span><span class="mis">45×90</span><span class="mis">45×100</span></li>
+            <li><span class="mis">50×70</span><span class="mis">50×80</span><span class="mis">50×90</span><span class="mis">50×100</span></li>
+            <li><span class="mis">60×80</span><span class="mis">60×90</span><span class="mis">60×100</span></li>
+            <li><span class="mis">70×80</span><span class="mis">70×90</span><span class="mis">70×100</span><span class="mis">70×110</span><span class="mis">70×120</span><span class="mis">70×130</span></li>
+            <li><span class="mis">80×80</span><span class="mis">80×90</span><span class="mis">80×100</span></li>
+            <li><a class="mis" href="https://www.scalarredo.it/prodotto/scale-retrattili-80x120-soffitto-plus/" target="_blank" rel="noopener">80×120</a></li>
+            <li><a class="mis" href="https://www.scalarredo.it/prodotto/scale-retrattili-100x100-soffitto-plus/" target="_blank" rel="noopener">100×100</a></li>
+          </ul>
+          <p class="nota">80×120 e 100×100 solo nel negozio online, nella linea PLUS. Misure per un’altezza da pavimento a soffitto di 300&nbsp;cm; per altezze diverse chiamate l’ufficio tecnico.</p>
+        </details>
+        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-easy/" target="_blank" rel="noopener">Vedi le Easy</a>
+        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-plus/" target="_blank" rel="noopener">Vedi le PLUS</a>
       </article>
       <article class="foro" id="parete" aria-labelledby="t-parete">
         <h3 id="t-parete">Parete</h3>
         <p class="cosa">Per le aperture verticali nella parete.</p>
-        <table>
-          <caption class="sr">Fori standard a parete, in cm</caption>
-          <tbody>
-            <tr><th scope="row">50 ×</th><td>80 90 100</td></tr>
-            <tr><th scope="row">60 ×</th><td>80 90 100</td></tr>
-            <tr><th scope="row">70 ×</th><td>80 90 100 110 120 130</td></tr>
-            <tr><th scope="row">80 ×</th><td>80 90 100</td></tr>
-          </tbody>
-        </table>
-        <p class="prezzo">70×100 da 425&nbsp;€ + IVA</p>
-        <p class="nota">Nel negozio anche 80×130, 489&nbsp;€ + IVA.</p>
-        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-parete/">Vedi le retrattili a parete</a>
+        <p class="prezzo">70×100 425&nbsp;€ + IVA<br>80×130 489&nbsp;€ + IVA</p>
+        <details class="tutte" open>
+          <summary>Fori standard: 16 misure</summary>
+          <ul class="misure-lista" aria-label="Fori standard a parete, in cm">
+            <li><span class="mis">50×80</span><span class="mis">50×90</span><span class="mis">50×100</span></li>
+            <li><span class="mis">60×80</span><span class="mis">60×90</span><span class="mis">60×100</span></li>
+            <li><span class="mis">70×80</span><span class="mis">70×90</span><a class="mis" href="https://www.scalarredo.it/prodotto/scala-retrattile-verticale-parete-70x100/" target="_blank" rel="noopener">70×100</a><span class="mis">70×110</span><span class="mis">70×120</span><span class="mis">70×130</span></li>
+            <li><span class="mis">80×80</span><span class="mis">80×90</span><span class="mis">80×100</span></li>
+            <li><a class="mis" href="https://www.scalarredo.it/prodotto/scala-retrattile-verticale-parete-80x130/" target="_blank" rel="noopener">80×130</a></li>
+          </ul>
+          <p class="nota">Misure per un’altezza da pavimento a soffitto di 300&nbsp;cm; per altezze diverse chiamate l’ufficio tecnico.</p>
+        </details>
+        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-parete/" target="_blank" rel="noopener">Vedi le retrattili a parete</a>
       </article>
       <article class="foro" id="terrazzo" aria-labelledby="t-terrazzo">
         <h3 id="t-terrazzo">Terrazzo</h3>
         <p class="cosa">Per uscire sul tetto piano, con il coperchio esterno.</p>
-        <table>
-          <caption class="sr">Fori standard da terrazzo, in cm</caption>
-          <tbody>
-            <tr><th scope="row">60 ×</th><td>80 90 100</td></tr>
-            <tr><th scope="row">70 ×</th><td>80 90 100 110 120 130</td></tr>
-            <tr><th scope="row">80 ×</th><td>80 90 100</td></tr>
-          </tbody>
-        </table>
-        <p class="prezzo">Anche su misura</p>
-        <p class="nota">Il prezzo ve lo dà l’ufficio tecnico.</p>
-        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-esterno/">Vedi le retrattili per esterno</a>
+        <p class="prezzo">Anche su misura: il prezzo ve lo dà l’ufficio tecnico</p>
+        <details class="tutte" open>
+          <summary>Fori standard: 12 misure</summary>
+          <ul class="misure-lista" aria-label="Fori standard da terrazzo, in cm">
+            <li><span class="mis">60×80</span><span class="mis">60×90</span><span class="mis">60×100</span></li>
+            <li><span class="mis">70×80</span><span class="mis">70×90</span><span class="mis">70×100</span><span class="mis">70×110</span><span class="mis">70×120</span><span class="mis">70×130</span></li>
+            <li><span class="mis">80×80</span><span class="mis">80×90</span><span class="mis">80×100</span></li>
+          </ul>
+          <p class="nota">Misure per un’altezza da pavimento a soffitto di 300&nbsp;cm; per altezze diverse chiamate l’ufficio tecnico.</p>
+        </details>
+        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-esterno/" target="_blank" rel="noopener">Vedi le retrattili per esterno</a>
       </article>
       <article class="foro" id="soppalco" aria-labelledby="t-soppalco">
         <h3 id="t-soppalco">Soppalco</h3>
-        <p class="cosa">Si fissa al pavimento del soppalco, con il corrimano che sale 100&nbsp;cm.</p>
-        <table>
-          <caption class="sr">Foro standard da soppalco, in cm</caption>
-          <tbody>
-            <tr><th scope="row">70 ×</th><td>100</td></tr>
-          </tbody>
-        </table>
-        <p class="prezzo">Misura standard 70×100</p>
-        <p class="nota">Gradini da 10×35&nbsp;cm. Il prezzo ve lo dà l’ufficio tecnico.</p>
-        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-soppalco/">Vedi la retrattile da soppalco</a>
+        <p class="cosa">Si fissa al pavimento del soppalco, con il corrimano che sale 100&nbsp;cm. Gradini da 10×35&nbsp;cm.</p>
+        <p class="prezzo">Il prezzo ve lo dà l’ufficio tecnico</p>
+        <details class="tutte" open>
+          <summary>Foro standard: 70×100</summary>
+          <ul class="misure-lista" aria-label="Foro standard da soppalco, in cm">
+            <li><span class="mis">70×100</span></li>
+          </ul>
+          <p class="nota">Misure per un’altezza da pavimento a soffitto di 300&nbsp;cm; per altezze diverse chiamate l’ufficio tecnico.</p>
+        </details>
+        <a class="link vai" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/scale-retrattili-soppalco/" target="_blank" rel="noopener">Vedi la retrattile da soppalco</a>
       </article>
     </div>
-    <p class="comune">Per tutti i modelli: portata 150&nbsp;kg, prova a 260&nbsp;kg. Da aperta la scala arriva a terra a 140&nbsp;cm dalla parete; per aprirla servono 170&nbsp;cm liberi. Prezzi IVA esclusa, letti nel negozio online.</p>
+    <p class="comune">Per tutti i modelli: portata 150&nbsp;kg, prova a 260&nbsp;kg. Da aperta la scala arriva a terra a 140&nbsp;cm dalla parete; per aprirla servono 170&nbsp;cm liberi.</p>
   </div>
 </section>
 
@@ -449,57 +499,61 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   <div class="wrap">
     <div class="testa">
       <h2 id="t-interno">Scale da interno su misura, anche su vostro disegno</h2>
-      <p>Da due generazioni facciamo scale per interno. Un team esperto segue la produzione, la progettazione e la posa in opera, tenendo conto delle vostre esigenze e del budget a disposizione.</p>
+      <p>Un team esperto segue la produzione, la progettazione e la posa in opera, tenendo conto delle vostre esigenze e del budget a disposizione.</p>
+    </div>
+    <div class="racconto">
+      <figure>
+        <img src="img/montreal-1600.jpg" srcset="img/montreal-900.jpg 900w, img/montreal-1600.jpg 1600w" sizes="(max-width:1023px) 100vw, 58vw" width="1600" height="1067" loading="lazy" alt="Scala a giorno Montreal con doppia fascia antracite, gradini bianchi e parapetto inox, posata in un soggiorno su due piani">
+      </figure>
+      <div class="racconto-testo">
+        <p class="etichetta">A giorno e a rampa</p>
+        <p class="cit">«La nostra azienda, che produce scale per interno, opera in questo settore da due generazioni.»</p>
+        <p>Nella foto la Montreal: doppia fascia in acciaio da 8&nbsp;mm, gradini in legno da 40, 50 o 60&nbsp;mm, parapetto in acciaio.</p>
+        <a class="link" href="https://www.scalarredo.it/scale-rampa-scala-giorno-padova/" target="_blank" rel="noopener">Vedi le scale a giorno</a>
+      </div>
     </div>
     <div class="schede">
-      <a class="scheda" href="https://www.scalarredo.it/scale-rampa-scala-giorno-padova/">
-        <img src="img/montreal-720.jpg" srcset="img/montreal-400.jpg 400w, img/montreal-720.jpg 720w" sizes="(max-width:640px) 100vw, (max-width:1279px) 45vw, 22vw" width="720" height="900" loading="lazy" alt="Scala a giorno Montreal con doppia fascia antracite, gradini bianchi e parapetto inox, posata in un soggiorno">
-        <div class="corpo"><h3>A giorno e a rampa</h3><p>Montreal: doppia fascia in acciaio da 8&nbsp;mm, gradini in legno da 40, 50 o 60&nbsp;mm.</p><span class="vai">Scale a giorno</span></div>
+      <a class="scheda" href="https://www.scalarredo.it/scala-giorno-doppia-struttura-zeta/" target="_blank" rel="noopener">
+        <img src="img/newyork-720.jpg" srcset="img/newyork-400.jpg 400w, img/newyork-720.jpg 720w" sizes="(max-width:640px) 50vw, (max-width:1279px) 45vw, 30vw" width="720" height="900" loading="lazy" alt="Scala New York bianca con la struttura sagomata a zeta e gradini in legno, posata accanto agli armadi a muro">
+        <div class="corpo"><h3>A zeta</h3><p>New York: doppia struttura laterale sagomata a zeta, lamiera ad alto spessore tagliata al laser.</p><span class="vai">Vedi le scale a zeta</span></div>
       </a>
-      <a class="scheda" href="https://www.scalarredo.it/scala-giorno-doppia-struttura-zeta/">
-        <img src="img/newyork-720.jpg" srcset="img/newyork-400.jpg 400w, img/newyork-720.jpg 720w" sizes="(max-width:640px) 100vw, (max-width:1279px) 45vw, 22vw" width="720" height="900" loading="lazy" alt="Scala New York bianca con la struttura sagomata a zeta e gradini in legno, posata accanto agli armadi a muro">
-        <div class="corpo"><h3>A zeta</h3><p>New York: doppia struttura laterale sagomata a zeta, lamiera ad alto spessore tagliata al laser.</p><span class="vai">Scale a zeta</span></div>
+      <a class="scheda" href="https://www.scalarredo.it/scale-a-sbalzo-scala-a-rampa-per-interni/" target="_blank" rel="noopener">
+        <img src="img/boston-480.jpg" srcset="img/boston-400.jpg 400w, img/boston-480.jpg 480w" sizes="(max-width:640px) 50vw, (max-width:1279px) 45vw, 30vw" width="480" height="600" loading="lazy" alt="Scala Boston con la struttura a cremagliera antracite e gradini in legno, in un soggiorno luminoso">
+        <div class="corpo"><h3>A rampa, su cremagliera</h3><p>Boston: doppia struttura portante a cremagliera, gradini in legno.</p><span class="vai">Vedi le scale a rampa</span></div>
       </a>
-      <a class="scheda" href="https://www.scalarredo.it/scale-a-sbalzo-scala-a-rampa-per-interni/">
-        <img src="img/boston-480.jpg" srcset="img/boston-400.jpg 400w, img/boston-480.jpg 480w" sizes="(max-width:640px) 100vw, (max-width:1279px) 45vw, 22vw" width="480" height="600" loading="lazy" alt="Scala Boston con la struttura a cremagliera antracite e gradini in legno, in un soggiorno luminoso">
-        <div class="corpo"><h3>A cremagliera</h3><p>Boston: doppia struttura portante a cremagliera, gradini in legno.</p><span class="vai">Scale a rampa</span></div>
-      </a>
-      <a class="scheda" href="https://www.scalarredo.it/scale-elicoidali-scala-elicoidale-padova/">
-        <img src="img/elicoidale-480.jpg" srcset="img/elicoidale-400.jpg 400w, img/elicoidale-480.jpg 480w" sizes="(max-width:640px) 100vw, (max-width:1279px) 45vw, 22vw" width="480" height="600" loading="lazy" alt="Scala elicoidale bianca con gradini in legno e ringhiera a correnti">
-        <div class="corpo"><h3>Elicoidale</h3><p>Foro nel solaio da 100&nbsp;cm minimo, ma consigliamo 130 o 140&nbsp;cm.</p><span class="vai">Scale elicoidali</span></div>
+      <a class="scheda" href="https://www.scalarredo.it/scale-elicoidali-scala-elicoidale-padova/" target="_blank" rel="noopener">
+        <img src="img/elicoidale-480.jpg" srcset="img/elicoidale-400.jpg 400w, img/elicoidale-480.jpg 480w" sizes="(max-width:640px) 50vw, (max-width:1279px) 45vw, 30vw" width="480" height="600" loading="lazy" alt="Scala elicoidale bianca con gradini in legno e ringhiera a correnti">
+        <div class="corpo"><h3>Elicoidale</h3><p>Foro nel solaio da 100&nbsp;cm minimo, ma consigliamo 130 o 140&nbsp;cm.</p><span class="vai">Vedi le scale elicoidali</span></div>
       </a>
     </div>
     <div class="altri num">
-      <div><h3>A chiocciola</h3><p>Londra in legno e metallo, Parigi in metallo. Diametro da 110 a 160&nbsp;cm; in kit da 1.290&nbsp;€ + IVA.</p><a class="link" href="https://www.scalarredo.it/scale-a-chiocciola-padova/">Scale a chiocciola</a></div>
-      <div><h3>A pedata alternata</h3><p>Salva spazio, pendenza di 60 gradi: 200&nbsp;cm sul pavimento per salire di 300.</p><a class="link" href="https://www.scalarredo.it/scale-salva-spazio-pedata-alternata/">Scale a pedata alternata</a></div>
-      <div><h3>Ringhiere in vetro</h3><p>Vetro extrachiaro 8+8 stratificato con PVB 1.52, ancoraggi puntuali in acciaio da 50&nbsp;mm.</p><a class="link" href="https://www.scalarredo.it/ringhiere-scala-balaustre-scale-vetro/">Ringhiere e parapetti</a></div>
+      <div><h3>A chiocciola</h3><p>Londra in legno e metallo, Parigi in metallo. Diametro da 110 a 160&nbsp;cm; in kit da 1.290&nbsp;€ + IVA.</p><a class="link" href="https://www.scalarredo.it/scale-a-chiocciola-padova/" target="_blank" rel="noopener">Vedi le scale a chiocciola</a></div>
+      <div><h3>A pedata alternata</h3><p>Salva spazio, pendenza di 60 gradi: 200&nbsp;cm sul pavimento per salire di 300.</p><a class="link" href="https://www.scalarredo.it/scale-salva-spazio-pedata-alternata/" target="_blank" rel="noopener">Vedi le scale a pedata alternata</a></div>
+      <div><h3>Ringhiere in vetro</h3><p>Vetro extrachiaro 8+8 stratificato con PVB 1.52, ancoraggi puntuali in acciaio da 50&nbsp;mm.</p><a class="link" href="https://www.scalarredo.it/ringhiere-scala-balaustre-scale-vetro/" target="_blank" rel="noopener">Vedi ringhiere e parapetti</a></div>
     </div>
     <div class="disegno">
       <p>Avete la pianta del geometra o le misure del foro nel solaio? Mandatecele per un preventivo.</p>
-      <a class="btn" href="#richiesta">Mandateci il disegno</a>
+      <a class="btn" href="#richiesta" data-tipo-modulo="interno">Mandateci il disegno</a>
       <a class="btn bordo" href="#negozio">Venite in showroom</a>
     </div>
   </div>
 </section>
 
 <section class="sezione" id="plus" aria-labelledby="t-plus">
-  <div class="wrap plus">
-    <figure>
-      <img src="img/frassino-1136.jpg" srcset="img/frassino-700.jpg 700w, img/frassino-1136.jpg 1136w" sizes="(max-width:1023px) 100vw, 50vw" width="1136" height="757" loading="lazy" alt="I gradini in frassino spazzolato della PLUS ripiegati sul pantografo bianco">
-    </figure>
-    <div class="testo">
+  <div class="wrap">
+    <div class="testa">
       <h2 id="t-plus">La scala retrattile comoda e bella</h2>
       <p>La PLUS è tutta verniciata di bianco, cornice e telaio, ma anche la struttura. Il pannello della botola è da 18&nbsp;mm, 27&nbsp;mm nella coibentata, e arriva già bianco: non dovete riverniciarlo. Con i gradini in frassino spazzolato la profondità del gradino sale a 14&nbsp;cm e somiglia a una vera scala da interno.</p>
-      <dl class="gamma num">
-        <div><dt>Easy</dt><dd>la linea d’ingresso, a pantografo o rigida, da 238&nbsp;€ + IVA</dd></div>
-        <div><dt>PLUS</dt><dd>tutta bianca, gradini in metallo antiscivolo da 10&nbsp;cm o in frassino</dd></div>
-        <div><dt>Motorizzata</dt><dd>motore a 220 volt e telecomando, si apre in 20 secondi</dd></div>
-        <div><dt>ISO 50</dt><dd>motorizzata, pannello bianco coibentato da 50&nbsp;mm, cerniere a scomparsa</dd></div>
-      </dl>
-      <div class="azioni">
-        <a class="btn bordo" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/">Tutte le retrattili nel negozio</a>
-        <a class="link" href="https://www.youtube.com/@giorgiotiziana4735">I video delle scale aperte</a>
-      </div>
+    </div>
+    <ul class="gamma num">
+      <li><h3>Easy</h3><p>La linea d’ingresso, a pantografo o rigida.</p><p class="g-dato">da 238&nbsp;€ + IVA</p></li>
+      <li><h3>PLUS</h3><p>Tutta bianca, gradini in metallo antiscivolo da 10&nbsp;cm o in frassino da 14.</p><p class="g-dato">da 320&nbsp;€ + IVA</p></li>
+      <li><h3>Motorizzata</h3><p>Motore a 220 volt e telecomando.</p><p class="g-dato">si apre in 20 secondi</p></li>
+      <li><h3>ISO 50</h3><p>Motorizzata, pannello bianco, cerniere a scomparsa.</p><p class="g-dato">coibentata, pannello da 50&nbsp;mm</p></li>
+    </ul>
+    <div class="azioni">
+      <a class="btn bordo" href="https://www.scalarredo.it/categoria-prodotto/scale-retrattili/" target="_blank" rel="noopener">Tutte le retrattili nel negozio</a>
+      <a class="link" href="https://www.youtube.com/@giorgiotiziana4735" target="_blank" rel="noopener">I video delle scale aperte</a>
     </div>
   </div>
 </section>
@@ -509,10 +563,10 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
     <div>
       <h2 id="t-richiesta">Mandateci le misure o il disegno</h2>
       <p class="cit">Prima di ordinare chiamate sempre il nostro ufficio tecnico: la consulenza sarà rapida, esaustiva e gratuita.</p>
-      <ol class="tre">
+      <ol class="tre" id="tre" aria-live="polite">
         <li>La misura del foro, larghezza per lunghezza</li>
         <li>L’altezza da pavimento a soffitto</li>
-        <li>Lo spessore del solaio</li>
+        <li>Lo spessore del solaio, e se potete una foto del foro</li>
       </ol>
       <div class="azioni">
         <a class="btn" href="tel:+390499000099">Chiama <span class="num">049 900 00 99</span></a>
@@ -535,15 +589,15 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
         <div class="campo"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
         <div class="campo"><label for="f-comune">Comune</label><input id="f-comune" name="comune" autocomplete="address-level2"></div>
         <div class="campo tutta misure-campi" id="f-misure">
-          <div><label for="f-foro">Foro (cm)</label><input id="f-foro" name="foro" inputmode="text" placeholder="60 × 90"></div>
-          <div><label for="f-alt">Altezza (cm)</label><input id="f-alt" name="altezza" inputmode="numeric" placeholder="300"></div>
-          <div><label for="f-sol">Solaio (cm)</label><input id="f-sol" name="solaio" inputmode="numeric"></div>
+          <div><label for="f-foro" data-r="Foro (cm)" data-i="Foro nel solaio (cm)">Foro (cm)</label><input id="f-foro" name="foro" inputmode="text" placeholder="60 × 90"></div>
+          <div><label for="f-alt" data-r="Altezza (cm)" data-i="Da piano a piano (cm)">Altezza (cm)</label><input id="f-alt" name="altezza" inputmode="numeric" placeholder="300"></div>
+          <div><label for="f-sol" data-r="Solaio (cm)" data-i="Solaio (cm)">Solaio (cm)</label><input id="f-sol" name="solaio" inputmode="numeric"></div>
         </div>
         <div class="campo tutta"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio"></textarea></div>
       </div>
       <div class="invio">
         <button class="btn" type="submit">Prepara l’email</button>
-        <p>Si apre la vostra email già compilata: allegate lì la foto del foro o il disegno.</p>
+        <p>Si apre la vostra email già compilata: la foto del foro o il disegno allegateli lì. Se non si apre nulla, scrivete a <a class="link" href="mailto:scalarredo@scalarredo.it?subject=Richiesta%20dal%20sito">scalarredo@scalarredo.it</a>.</p>
       </div>
     </form>
   </div>
@@ -682,19 +736,50 @@ table.orari{border-collapse:collapse;width:100%;margin-top:20px}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto'))chiudi(true);});
 
   /* il modulo compone un'email (da collegare a un servizio di invio: vedi LEGGIMI) */
-  var f=document.getElementById('modulo'), fm=document.getElementById('f-misure');
+  var f=document.getElementById('modulo'), fm=document.getElementById('f-misure'), tre=document.getElementById('tre');
+  var LISTE={
+    r:['La misura del foro, larghezza per lunghezza','L’altezza da pavimento a soffitto','Lo spessore del solaio, e se potete una foto del foro'],
+    i:['La pianta o il disegno del geometra, da allegare all’email','La misura del foro nel solaio','L’altezza da piano a piano e lo spessore del solaio']
+  };
   function tipo(){return (f.querySelector('input[name=tipo]:checked')||{}).value||'Richiesta';}
-  [].forEach.call(f.querySelectorAll('input[name=tipo]'),function(r){r.addEventListener('change',function(){fm.hidden=tipo()!=='Scala retrattile';});});
+  function chiave(){var t=tipo();return t==='Scala retrattile'?'r':(t==='Scala da interno su misura'?'i':'');}
+  function aggiorna(){
+    var k=chiave();
+    fm.hidden=!k;
+    [].forEach.call(fm.querySelectorAll('label'),function(l){l.textContent=l.getAttribute('data-'+(k||'r'));});
+    tre.innerHTML=LISTE[k||'r'].map(function(t){return '<li>'+t+'</li>';}).join('');
+  }
+  [].forEach.call(f.querySelectorAll('input[name=tipo]'),function(r){r.addEventListener('change',aggiorna);});
+  [].forEach.call(document.querySelectorAll('[data-tipo-modulo]'),function(a){
+    a.addEventListener('click',function(){
+      var r=f.querySelector('input[name=tipo][value="Scala da interno su misura"]');
+      if(r){r.checked=true;aggiorna();}
+    });
+  });
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var v=function(n){return (f.elements[n].value||'').trim();};
     var righe=['Richiesta: '+tipo(),'Nome: '+v('nome'),'Telefono: '+v('telefono'),'Email: '+v('email'),'Comune: '+v('comune')];
-    if(tipo()==='Scala retrattile') righe.push('Foro (cm): '+v('foro'),'Altezza da pavimento a soffitto (cm): '+v('altezza'),'Spessore del solaio (cm): '+v('solaio'));
+    var et=chiave()==='i'?{foro:'Foro nel solaio (cm)',altezza:'Altezza da piano a piano (cm)',solaio:'Spessore del solaio (cm)'}:{foro:'Foro (cm)',altezza:'Altezza da pavimento a soffitto (cm)',solaio:'Spessore del solaio (cm)'};
+    ['foro','altezza','solaio'].forEach(function(n){if(chiave()||v(n)) righe.push(et[n]+': '+v(n));});
     righe.push('','Messaggio:',v('messaggio'));
+    if(chiave()) righe.push('',chiave()==='i'?'(allego la pianta o il disegno)':'(allego una foto del foro)');
     var oggetto=(tipo()==='Scala retrattile'?'Misure del foro':tipo())+(v('nome')?', '+v('nome'):'');
     var url='mailto:scalarredo@scalarredo.it?subject='+encodeURIComponent(oggetto)+'&body='+encodeURIComponent(righe.join('\r\n'));
     f.setAttribute('data-ultima',url);
     location.href=url;
+  });
+
+  /* misure del foro: sotto i 641 px ogni tipo si apre a richiesta; il tipo scelto in apertura si apre da solo */
+  var stretto=window.matchMedia('(max-width:640px)');
+  var tutte=[].slice.call(document.querySelectorAll('.foro details'));
+  function apri(id){var a=document.getElementById(id);if(a){var d=a.querySelector('details');if(d)d.open=true;}}
+  function adatta(){tutte.forEach(function(d){d.open=!stretto.matches;});if(location.hash)apri(location.hash.slice(1));}
+  adatta();
+  if(stretto.addEventListener) stretto.addEventListener('change',adatta);
+  window.addEventListener('hashchange',function(){apri(location.hash.slice(1));});
+  [].forEach.call(document.querySelectorAll('.fori a, .piede a[href^="#"]'),function(a){
+    a.addEventListener('click',function(){apri(a.getAttribute('href').slice(1));});
   });
 })();
 </script>

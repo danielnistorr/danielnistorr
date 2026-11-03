@@ -26,12 +26,13 @@
   --serif:"Zodiak",Georgia,serif;
   --sans:"Switzer",system-ui,sans-serif;
   /* scala: sette misure per schermo */
-  --f1:86px; --f2:56px; --f3:30px; --f4:22px; --f5:18px; --f6:16px; --f7:14px;
+  /* --f0 è il gesto di scala: il 1955 della storia */
+  --f0:240px; --f1:86px; --f2:56px; --f3:30px; --f4:22px; --f5:18px; --f6:16px; --f7:14px;
   --m:64px; --sez:120px; --gap:24px; --testata:88px; --btn:52px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
-body{margin:0;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f5);line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--testata)}
+body{margin:0;overflow-x:clip;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f5);line-height:1.55;word-spacing:.06em;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
@@ -71,6 +72,7 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 .testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid transparent;transition:border-color .2s}
 .testata.giu{border-bottom-color:var(--filo)}
 .testata .riga{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--testata)}
+.logo{flex:none}
 .logo img{width:150px;height:auto}
 .nav{display:flex;gap:30px;font-size:var(--f6);font-weight:600}
 .nav a{text-decoration:none;padding:8px 0}
@@ -78,22 +80,23 @@ h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.
 .testata .destra{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none}
 
-/* ---------- apertura ---------- */
-.apertura{padding-top:32px;padding-bottom:8px;row-gap:0}
-.apertura .capo{grid-column:1 / -1}
-h1{margin-top:10px;font-family:var(--serif);font-weight:400;font-size:var(--f1);line-height:1.02;letter-spacing:-.025em}
-.ap-sx{grid-column:1 / span 5;margin-top:36px;display:flex;flex-direction:column}
-.ap-foto{grid-column:6 / span 7;margin-top:36px}
-.ap-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--nebbia)}
+/* ---------- apertura: a sinistra il Garden, a destra la piramide fino al bordo ---------- */
+.apertura{row-gap:0;align-items:stretch}
+h1{margin-top:14px;font-family:var(--serif);font-weight:400;font-size:var(--f1);line-height:1;letter-spacing:-.025em}
+h1 .r{display:block}
+.ap-sx{grid-column:1 / span 6;padding-top:44px;padding-bottom:40px;display:flex;flex-direction:column}
+.ap-sx .stato{margin-top:40px}
+.ap-foto{grid-column:7 / -1;margin-right:calc(-1 * max(var(--m),calc((100vw - 1312px)/2)));height:clamp(600px,calc(100svh - var(--testata)),960px)}
+.ap-foto picture{display:block;height:100%}
+.ap-foto img{width:100%;height:100%;object-fit:cover;object-position:58% 50%;background:var(--nebbia)}
 .stato{font-family:var(--serif);font-size:var(--f3);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
 .stato .pallino{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--foglia);margin-right:12px;vertical-align:.06em}
 .stato.chiuso .pallino{background:transparent;box-shadow:inset 0 0 0 2px var(--grigio)}
 .oggi{margin-top:10px;font-size:var(--f6);color:var(--grigio)}
-.oggi a{color:var(--inchiostro);font-weight:600}
+.oggi a{display:inline-block;padding:12px 0;margin:-12px 0;color:var(--inchiostro);font-weight:600}
 .azioni{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .azioni .btn:first-child{grid-column:1 / -1}
-.ap-sx .lead{margin-top:28px;font-size:var(--f5);color:var(--grigio)}
-.porte{margin-top:auto;padding-top:28px}
+.porte{margin-top:auto;padding-top:40px}
 .porte a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 16px;padding:14px 0;border-top:1px solid var(--filo);text-decoration:none}
 .porte a:last-child{border-bottom:1px solid var(--filo)}
 .porte b{font-family:var(--serif);font-weight:400;font-size:var(--f4);line-height:1.2}

@@ -1,8 +1,12 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026.
 
-## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Nardi]
+## Livello professionale (3/11/2026): nessuna foto esterna in pagina
+
+Per decisione del committente ("niente") la home non usa più nessuna foto di repertorio: tolta la foto Unsplash delle mani con la spatola (Sasun Bughdaryan, `stucco-*.jpg` in `sito/img/`, cancellati). In `sito/img/` ci sono solo immagini di Nardi, tutte dalla libreria media di narditalia.com: lo scaffale `IMG_2282-136498.jpg`, il magazzino `IMG_4232.jpg`, la sede `TESTATA6.jpg` (tagli 16:9, cartellini dei prezzi dello scaffale sfocati), le miniature quadrate dei rendering dei prodotti (esclusi `stucco-sintetico.jpg`, `solfato-calcio.jpg` e `segatura.jpg`, che mostrano marchi di terzi) e il logo. Le nove foto qui sotto restano in `esterne/` solo come archivio della proposta precedente: non sono in pagina e non vanno usate.
+
+## Foto esterne in `esterne/` (archivio, non usate in home dal 3/11/2026)
 
 Queste foto NON sono di Nardi, della sua sede o dei suoi prodotti. Servono solo a mostrare la direzione artistica nella proposta e vanno sostituite con foto vere dell'azienda prima di qualsiasi uso pubblico (lo dirà anche il LEGGIMI). Nessuna immagine è generata dall'IA. Nessuna compare nei CREDITI.md delle altre home della campagna (controllo per identificativo il 24/10/2026).
 
