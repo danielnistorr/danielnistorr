@@ -4,7 +4,33 @@
 
 Richiesta: "non è ancora super professionale" (giudice da agenzia a 6). Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), che vince su A e C; direzione artistica in `_prova/alto/DIREZIONE.md` (modello N, il nome come immagine). La home di prima, intera e con i suoi screenshot, è in `_prova/versione-pro/`.
 
-Pagina: `sito/index.html` riscritta da capo, statica, si apre con file:///. Alta 5.961 px a 1440 e 7.038 a 390. Peso 498 KB in 16 file (pagina, un carattere, 14 immagini WebP). Screenshot in questa cartella, stessi nomi di prima: home-1440, home-1024, home-768, home-390, home-320 (pagine intere), le prime schermate a 1440, 1024, 768, 390 e 320, chiusura-1440.
+Pagina: `sito/index.html` riscritta da capo, statica, si apre con file:///. Dopo il ritocco è alta 5.979 px a 1440 e 7.133 a 390. Peso 602 KB in 16 file. Screenshot in questa cartella, stessi nomi di prima: home-1440, home-1024, home-768, home-390, home-320 (pagine intere), le prime schermate a 1440, 1024, 768, 390 e 320, chiusura-1440.
+
+### Ritocco dopo il giudice da agenzia (3/11/2026, voto 7)
+
+Il giudice ha dato 7 (prima 6): il D1 non passa perché a 1440 né la prima né la seconda schermata mostrano un organo. Le prove dei due clienti tipo, rilanciate sulla pagina di prima, davano tre compiti non riusciti: nessuna foto d'organo nella prima vista a 1440 (commissione), "Restauro" non in vista a 390 (parrocchia), e dopo il ritocco anche "Ascolta" tolto dalla testata. La copia della pagina di prima è in `_prova/alto/ritocco/index-prima.html`; prove, fogli e verifiche nuove in `_prova/alto/ritocco/`.
+
+**Applicati**
+- **Culmine (bloccante).** L'Uppsala ora è il ritaglio basso (rosone e cassa) anche a 1440: 900x1100 da `2016_02_home-ruffatti2.jpg`, mostrato a 720x880 centrato (file da 720 e 900 px, mai ingrandito). La figura apre la sezione con 64 px sopra; sotto, sullo stesso asse, la didascalia centrata "Cattedrale di Uppsala, Svezia / 2009 · quattro manuali · trasmissione elettrica", il titolo (ora 48/56, per dare scala alla pagina dopo il logotipo) e il paragrafo. Verifica (`ritocco/verifica.mjs`): a scrollY 812 l'organo intero (canne, rosone e base) sta nella finestra 1440x900 e ne occupa il 64% dell'altezza visibile; con un colpo di rotella (scrollY 900) è ancora tutto in vista.
+- **Il bordo alto della foto nella prima schermata.** L'apertura a 1440 è alta 700 px (`--piega:112px`): sotto il mogano salgono 47 px della volta di Uppsala (1,7% della schermata, sotto il 12% di D2). La commissione ora trova una foto loro già nella prima vista, e la pagina dice che sotto c'è qualcosa. Così si guadagnano anche i 112 px per restare sotto i 6.000.
+- **Riga dell'h1** da 40/48 a 48/56 a 1440 (40/48 a 1024, 22/28 a 390; a 320 va a capo come "Costruttori e restauratori / d'organi a canne"). Nella miniatura a 300 px ora si legge (`ritocco/riconoscibilita-A-dopo.jpg`).
+- **Didascalia dell'apertura** a due voci, 17 px: "Il nome della targhetta d'ottone" / "Qui sotto: l'organo della cattedrale di Uppsala, 2009".
+- **Una colonna destra sola** per i blocchi a due colonne: indice degli organi, archivio, foto delle canne e testo del restauro attaccano tutti a x 736 (colonna 7); la foto della targhetta occupa le colonne 1-6 (624 px dal file da 800), quindi tra foto e testo resta la gronda di 32 px. Restano gli attacchi a terzi (x 517 e 955) delle tre strade dei contatti e del piede: è l'altro passo della stessa griglia, non un quarto allineamento.
+- **I passi come indice di testo**: quattro righe numerate con filetto (Il legname, Lastre per canne, Canne ad anima, Canne ad ancia, ognuna verso la sua pagina), a colonne 1-6; accanto una sola foto, la macro delle canne ad anima a 592 px, la sua misura. Le quattro foto da fermo-immagine escono: in home le foto passano da 11 a 8, la serie dei quattro organi resta l'unica fila. La riga 3 usa la loro pagina ("Il metallo è battuto a mano...", "tutte le canne, grandi e piccole, vengono singolarmente lucidate").
+- **"Ascolta" non promette più un suono.** In testata a 1440 la voce diventa "Video e CD" (a 390 nel menu, dopo Restauro). Il blocco è la citazione da sola, «I Principali cantano.» a 32/40 con 128 px sopra, e sotto una riga "Video e CD" con i tre collegamenti (CD incisi su organi Ruffatti, Making 32' Reeds su YouTube, il canale).
+- **Restauro a 390 in prima vista**: in testata, accanto a "Menu", c'è "Restauro" (a 320 EN passa nel menu per fare posto). A 390 i cliccabili sono 4, il tetto di D3; il bottone resta uno, la chiamata.
+- **Minori**: la didascalia della targhetta ora si verifica dalla foto ("Targhetta d'ottone tra i registri / Contra Principal 32', Contra Subbasso 32', Principal 16', Bordone dolce 16'"), e la frase dell'apertura compare una volta sola; Pershore: "Tre manuali e 33 registri." e il link "Fonte: l'abbazia"; "Cattedrale di Uppsala" e "organo del coro" al posto di "Uppsala Cathedral" e "Quire"; didascalia del culmine centrata come il titolo.
+- **Immagini**: `_prova/alto/script/alto_img.py` aggiornato (uppsala-basso a 390, 720, 780 e 900; anima a 358 e 592; archivio anche a 592). Escono uppsala-540/900, legname, lastre, ancia e anima-296.
+
+**Respinti, con il motivo**
+- **L'ancora a #uppsala nella didascalia dell'apertura.** Con "Video e CD" in testata i cliccabili a 1440 sarebbero 7 (tetto 6). Ho tenuto la voce di testata, che serve il compito 3 della commissione, e la didascalia senza link; la foto che sale sotto la piega fa lo stesso lavoro.
+- **Testata a 5 voci.** Sono 6 (Organi nuovi, Restauro, Video e CD, EN, numero, Scriveteci), dentro il tetto di D3: togliere "Video e CD" faceva fallire la prova della commissione ("Ascolta" in testata: 0).
+- **La barra di mogano fissa** resta: la parrocchia deve avere il numero a un tocco anche a metà pagina (provato a 320, 390, 768 e 1024).
+- **Rifare la prova "due persone su tre dicono organi"**: il foglio è rifatto, la prova con le persone non la posso fare io.
+
+**Misure finali** (`_prova/alto/misura-d.txt`): tutte passano. D2 1,7% di foto nella prima schermata a 1440, 0 ingrandite; D3 a 1440 6 cliccabili, 1 bottone, 142 caratteri, 0 cifre grandi; a 390 4 cliccabili, 1 bottone, 56,7% di foto; D5 una famiglia, 1 elemento oltre 100 px, testo corrente minimo 17 px; D6 0 occhielli; D7 h1 8 parole, 0 virgole, lista nera 0, U+2014 0, frase-firma 2; D8 586 parole a 1440 e 568 a 390, 5 sezioni, 2 bottoni, 5.979 px, culmine 1.384 px; D9 0 cifre grandi; D10 8 foto, 3 formati (0,82, 0,80, 1,50); D11 3 fondi, 1 sezione di marchio, spazi 64, 80 e 128; D12 3 tel:, 3 mailto con oggetto, 1 "Indicazioni", 0 video, 602 KB. Controlli a 320, 390, 768, 1024, 1440 e 1920 (`controllo.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, niente fuori dalla finestra, telefono raggiungibile a metà pagina, menu che si apre e si chiude, nessun errore.
+
+**Clienti tipo dopo il ritocco** (`ritocco/prova-1/` e `ritocco/prova-2/`, le prove del giudice con la sola uscita spostata; nella prova 1 la voce si cerca come "Ascolta" o "Video"): commissione a 1440, una foto loro già nella prima vista (il bordo alto di Uppsala: è la volta, non ancora l'organo) e l'organo intero dopo un colpo di rotella, "Video e CD" in testata porta alla citazione e ai tre link, EN e Scriveteci in vista; parrocchia a 390, numero in testata, "Restauro" in vista senza scorrere, il menu porta a "Restauro filologico di organi antichi" a 486 px senza coprirlo, "Elenco dei restauri" e "Chiamate 049 750 666" nella sezione.
 
 ### Che cosa è cambiato
 
@@ -64,12 +90,12 @@ Misure con `_prova/alto/misura-d.mjs` (esteso da `alto/diagnosi/misure/vp.mjs` e
 
 ### Problemi aperti
 
-- **Il mestiere a 1440 lo dice solo la riga sotto il logotipo**: va fatta la prova D1 con tre persone. Se non basta, la strada è far salire il bordo alto dell'organo di Uppsala nella prima schermata (sotto il 12%), non rimettere testo.
+- **Il mestiere a 1440** lo dicono la riga dell'h1 a 48 px e il bordo della foto di Uppsala sotto la piega: la prova D1 con tre persone sul foglio `ritocco/riconoscibilita-A-dopo.jpg` è ancora da fare.
 - **Le foto sono piccole**: Uppsala 900 px, i quattro lavori tra 484 e 606 px, il laboratorio a 800 px. Sopra l'8 serve il servizio fotografico (LEGGIMI).
 - **Contatto senza persona e senza orario**: chi risponde e quando non è nelle fonti (LEGGIMI 6).
 - **Pershore**: l'anno e i dati vengono dalla pagina di Pershore Abbey e sono scritti "secondo Pershore Abbey". Grand Rapids e Coral Ridge sono fuori dalla home finché l'azienda non dà anno e dati.
-- **Il registro dei caratteri** (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`) dice 32/40 per la riga dell'`h1`: in pagina è 40/48 a 1440 e 34/42 a 1024. Le misure di carattere sono sette (16, 17, 18, 19, 20, 32, 40), non tre.
-- **L'altezza a 1440** passa per 39 px: se si aggiunge una riga, va tolta altrove.
+- **Il registro dei caratteri** (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`) dice 32/40 per la riga dell'`h1`: in pagina è 48/56 a 1440 e 40/48 a 1024. Le misure di carattere a 1440 sono sette (16, 17, 18, 19, 20, 32, 48), non tre.
+- **L'altezza a 1440** passa per 21 px: se si aggiunge una riga, va tolta altrove.
 - **EN** porta ancora al sito inglese di oggi.
 
 ---
