@@ -4,7 +4,40 @@
 
 Richiesta: "non è ancora super professionale" (giudice da agenzia a 6). Regole: sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (cap. 4), che vince su A e C; direzione artistica in `_prova/alto/DIREZIONE.md` (modello N, il nome come immagine). La home di prima, intera e con i suoi screenshot, è in `_prova/versione-pro/`.
 
-Pagina: `sito/index.html` riscritta da capo, statica, si apre con file:///. Dopo il ritocco è alta 5.979 px a 1440 e 7.133 a 390. Peso 602 KB in 16 file. Screenshot in questa cartella, stessi nomi di prima: home-1440, home-1024, home-768, home-390, home-320 (pagine intere), le prime schermate a 1440, 1024, 768, 390 e 320, chiusura-1440.
+Pagina: `sito/index.html` riscritta da capo, statica, si apre con file:///. Dopo il secondo giro è alta 5.962 px a 1440, 5.762 a 1024, 7.881 a 768, 8.483 a 390 e 8.642 a 320. Peso 555 KB in 15 file. Screenshot in questa cartella, stessi nomi di prima: home-1440, home-1024, home-768, home-390, home-320 (pagine intere), le prime schermate a 1440, 1024, 768, 390 e 320, chiusura-1440.
+
+### Secondo giro (3/11/2026, dopo il voto 7 del giudice e le prove dei clienti tipo)
+
+Il giudice cieco dava 7 (obiettivo 7,5-8); i clienti tipo erano scesi rispetto alla versione di prima (parrocchia da 8,5 a 7,5). Copia della pagina e dello script delle immagini prima di questo giro: `_prova/alto/giro2/index-prima.html` e `giro2/alto_img-prima.py`; prove, viste e verifiche nuove in `_prova/alto/giro2/` (`compiti.mjs`, `viste.mjs`, `bordi.mjs`, `rapido.sh`).
+
+**Per i clienti tipo** (rifatti a mano i compiti della scheda d'uso con `giro2/compiti.mjs`)
+- **Testata al telefono**: Menu, EN e il bottone "Chiama 049 750 666" (sotto i 360 px solo il numero; `aria-label` "Chiama il numero 049 750 666"). "Restauro" esce dalla testata, come chiedeva il giudice, e passa nell'apertura come una riga sola sotto "Padova, dal 1940": "Restauro di organi antichi →" (201x44, porta il titolo della sezione a 128 px). Cliccabili a 390: 4 (Menu, EN, Chiama, Restauro), un bottone; la foto di Uppsala resta al 56,7% dello schermo. A 1440 il numero è "+39 049 750 666", per la commissione estera.
+- **Menu** nell'ordine della testata e della scheda, con voci che nominano le cose: Organi nuovi, Restauro di organi antichi, Video e CD, Il laboratorio, Concorso d'organo di Miami, "Contatti: chiamate o scriveteci".
+- **Restauro con la sua strada**: sotto il testo e i due collegamenti c'è "Avete un organo Ruffatti in chiesa?" con che cosa preparare per la prima telefonata (chiesa e comune, costruttore e anno, foto della consolle e della targhetta, "e che cosa non funziona", come nella versione di prima), il bottone "Chiamate 049 750 666" e "Scrivete con le foto". È spostata dai contatti, non copiata: nei contatti resta un rimando "Per un restauro, o un organo Ruffatti già in chiesa... ↑". A 390 dal titolo al bottone ci sono 922 px (prima 1.249).
+- **Aree di tocco** a 390: tutte le frecce, i collegamenti delle didascalie, le righe "Video e CD" e il piede almeno 44 px (verificato: nessuna sotto).
+- **Commissione a 1440**: nella prima vista sale sotto il mogano la parte alta dell'organo di Uppsala (rosone e punte delle torri, 198 px, 8,5% della schermata); con un colpo di rotella l'organo intero e la didascalia stanno in vista (foto da y 102 a 795). Nella didascalia c'è ora "La disposizione fonica, PDF ↗" (la loro scheda Uppsala.pdf, già collegata da Alcune opere significative): i registri li legge lì, senza un conteggio fatto da me. New Orleans torna con "In copertina su The Diapason, ottobre 2022" e il dettaglio della loro notizia (il Grand'Organo in due sezioni, aperta e in cassa espressiva). "Video e CD" porta a quattro collegamenti: le parole di Diane Bish e Frederick Swann (Dicono di noi), i CD, il video di laboratorio con l'etichetta onesta "In laboratorio: Making 32' Reeds" e il canale. Nei contatti, accanto a "Scrivete a organs@ruffatti.com", c'è "Write to us in English" (`lang="en"`, oggetto e traccia in inglese con "Institution" e "Position" del loro modulo).
+- **Piede**: via "Indicazioni ↗"; l'indirizzo resta come testo.
+
+**Sotto la piega** (le correzioni del giudice)
+- **Una griglia sola**: 12 colonne, margine 80, gronda 32. I blocchi partono a x 80 o 736 (metà) e finiscono a 704 o 1360; la serie e il piede usano i terzi e i sesti della stessa griglia (517, 955, 1173), la targhetta le colonne 4-9 (408-1032). Verificato con `giro2/bordi.mjs`: nessun bordo fuori griglia, le foto del laboratorio e dei contatti finiscono a 1360 e 704, i filetti dei passi hanno una lunghezza sola (80-704). Il doppio filetto ai lati diventa un filetto solo per lato.
+- **Il culmine**: Uppsala apre la seconda schermata a colonne 1-6, 624x693 (ritaglio 9:10 da rosone a base, file da 900: densità 1,44 su retina, come chiedeva il giudice), alta quanto lo schermo sotto la testata; a destra, in basso, il titolo a 48/56, il paragrafo e la didascalia "Cattedrale di Uppsala, Svezia / 2009 · quattro manuali · trasmissione elettrica" sopra un filetto. È la foto più grande della pagina; la serie sotto è di tre tessere da 405. Il blu delle casse e il ciano del rosone sono smorzati (saturazione del blu 0,62, colore 0,82): saturazione media del blu 21%, il 90% sotto il 41%. Al telefono resta il taglio 9:11 con la volta (`<picture>`).
+- **Niente doppioni**: New Orleans e Wayne non sono più due volte. L'indice dei lavori senza foto ha Pershore Abbey 2023 e Santa Caterina da Siena, Wayne, 2022 (tre manuali e 37 registri, due consolle, il Positivo diviso ai lati dell'altare maggiore, dalla loro notizia); la serie ha solo interni: New Orleans, Buckfast, Boteå. La consolle di Wayne esce (prodotto in mezzo al reportage). "Dicono di noi" e "CD, DVD e video" escono dal piede, perché stanno già nella riga "Video e CD".
+- **Un solo sistema di numerazione**: i numeri 1-4 restano solo sui passi del laboratorio; gli indici usano l'anno. Un'etichetta sola per le notizie, "La notizia", con ↗ per i siti esterni e → per ruffatti.com, in una colonna fissa di 120 px.
+- **Didascalie vere e non ripetute**: la falegnameria (`2016_04_falegnami-21.jpg`, 1597 px, dalla loro pagina "L'interno di un organo Ruffatti") sostituisce la macro sfocata delle canne: "La falegnameria, nel laboratorio di Padova / un organo montato tra i banchi di lavoro", cioè quello che si vede. La targhetta è la variante più stretta della stessa foto (`xP1050195-1.jpg`), con i registri che si leggono davvero: "Principal 16', Contra Principal 32' e Contra Subbasso 32'".
+- **Il gesto torna una volta più giù**: il restauro è l'unica sezione centrata come l'apertura, con il titolo e la targhetta d'ottone in asse ("La targhetta d'ottone sulla consolle, con il nome del logotipo"); sotto, il testo a sinistra e la strada a destra. Il logotipo torna poi solo come firma: nel piede e nella testata fissa.
+- **Testata fissa col marchio**: quando il logotipo grande esce dallo schermo compare al centro della testata il logotipo piccolo (160x34, sfondo CSS, link all'inizio). Senza script resta nascosto; nella prima schermata non c'è, quindi i cliccabili a 1440 restano 6. Nessun altro elemento fisso: a 1440 la testata copre solo i suoi 88 px, e le ancore si fermano sotto (`scroll-padding-top`).
+- **Laboratorio**: titolo, "dai somieri..." a 12 px sotto e i passi a sinistra, la falegnameria a destra. La famiglia (1940, Piero e Francesco, Michela) diventa la didascalia lunga della foto d'archivio, che passa nei contatti: chi c'è dietro sta accanto a come si scrive.
+- **Contatti**: due strade con la stessa struttura (titolo, che cosa preparare, un bottone, un collegamento), "Un organo nuovo" qui e "Avete un organo Ruffatti in chiesa?" nel restauro. Il Concorso di Miami esce dai contatti e va nel piede (era già nel menu).
+- **Logotipo**: la maschera si pulisce con il massimo a blocchi e non più con un pixel ogni quattro, così il puntino sopra la R sparisce (nel file a 2240 la riga 0 è ora la punta della F, x 312-335, e non c'è più nessun pixel isolato sopra le lettere); una sfocatura leggera con una curva stretta arrotonda la scaletta della maschera a 1 bit. Il file è ora 1120x237.
+- **Scala**: cinque misure di testo a 1440 (16, 17, 20, 32, 48: testo e testata 20/30, dati, link e didascalie 17/24-25, piede legale 16/22); spazi 80 e 144 per il culmine, 96 per le altre sezioni.
+
+**Misure D finali** (`_prova/alto/misura-d.txt`, tutte passano): D2 8,5% di foto nella prima schermata a 1440, 0 ingrandite; D3 a 1440 6 cliccabili, 1 bottone, 57 caratteri, 0 cifre grandi; a 390 4 cliccabili, 1 bottone, 56,7% di foto; D5 una famiglia, 1 elemento oltre 100 px, testo corrente minimo 17 px, cinque misure; D6 0 occhielli; D7 h1 8 parole e 0 virgole, lista nera 0, U+2014 0, frase-firma 2; D8 603 parole a 1440 e 601 a 390, 5 sezioni, 3 bottoni, 5.962 px, culmine 917 px; D9 0 cifre grandi; D10 7 foto, 3 formati (0,90, 0,80, 1,50); D11 3 fondi, 1 sezione di marchio, spazi 80, 96 e 144; D12 3 tel:, 4 mailto con oggetto, 0 "Indicazioni", 0 video, 555 KB. Controlli a 320, 390, 768, 1024, 1440 e 1920 (`controllo.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, niente fuori dalla finestra, telefono raggiungibile a metà pagina, menu che si apre (11 voci) e si chiude al tocco, nessun errore di script.
+
+**Non fatto, con il motivo**
+- **La home gemella in inglese** (`sito/en/`): è un sito a parte, non un ritocco; EN porta ancora al sito inglese di oggi.
+- **Grand Rapids e Coral Ridge**: restano fuori finché l'azienda non conferma anno e dati (LEGGIMI 4). Il dato più recente in home resta Pershore 2023.
+- **Il numero dei registri di Uppsala**: la loro scheda elenca registri prestati e trasmessi (en chamade dal Solo, Bourdon dello Swell al pedale), quindi un conteggio sarebbe mio; c'è il collegamento alla scheda.
+- **Persona e orario nelle strade del contatto**: non sono nelle fonti (LEGGIMI 2 e 6).
 
 ### Ritocco dopo il giudice da agenzia (3/11/2026, voto 7)
 
@@ -90,13 +123,13 @@ Misure con `_prova/alto/misura-d.mjs` (esteso da `alto/diagnosi/misure/vp.mjs` e
 
 ### Problemi aperti
 
-- **Il mestiere a 1440** lo dicono la riga dell'h1 a 48 px e il bordo della foto di Uppsala sotto la piega: la prova D1 con tre persone sul foglio `ritocco/riconoscibilita-A-dopo.jpg` è ancora da fare.
-- **Le foto sono piccole**: Uppsala 900 px, i quattro lavori tra 484 e 606 px, il laboratorio a 800 px. Sopra l'8 serve il servizio fotografico (LEGGIMI).
+- **Il mestiere a 1440** lo dicono la riga dell'h1 a 48 px e, dal secondo giro, la parte alta dell'organo di Uppsala che sale sotto il mogano: la prova D1 con tre persone sulla miniatura è ancora da fare.
+- **Le foto sono piccole**: Uppsala 900 px (mostrata a 624), New Orleans 574, Buckfast 606, la targhetta 800. Per l'8 serve l'originale di Uppsala o un servizio fotografico di un organo recente (LEGGIMI).
 - **Contatto senza persona e senza orario**: chi risponde e quando non è nelle fonti (LEGGIMI 6).
-- **Pershore**: l'anno e i dati vengono dalla pagina di Pershore Abbey e sono scritti "secondo Pershore Abbey". Grand Rapids e Coral Ridge sono fuori dalla home finché l'azienda non dà anno e dati.
-- **Il registro dei caratteri** (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`) dice 32/40 per la riga dell'`h1`: in pagina è 48/56 a 1440 e 40/48 a 1024. Le misure di carattere a 1440 sono sette (16, 17, 18, 19, 20, 32, 48), non tre.
-- **L'altezza a 1440** passa per 21 px: se si aggiunge una riga, va tolta altrove.
-- **EN** porta ancora al sito inglese di oggi.
+- **Pershore**: l'anno e i dati vengono dalla pagina di Pershore Abbey e sono scritti "secondo l'abbazia". Grand Rapids e Coral Ridge sono fuori dalla home finché l'azienda non dà anno e dati.
+- **Il registro dei caratteri** (`_metodo/professionale/alto/REGISTRO-CARATTERI.md`) dice 32/40 per la riga dell'`h1`: in pagina è 48/56 a 1440 e 40/48 a 1024. Le misure a 1440 sono ora cinque (16, 17, 20, 32, 48).
+- **L'altezza a 1440** passa per 38 px: se si aggiunge una riga, va tolta altrove.
+- **EN** porta ancora al sito inglese di oggi; nei contatti c'è "Write to us in English".
 
 ---
 

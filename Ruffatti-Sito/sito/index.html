@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fratelli Ruffatti, costruttori e restauratori d’organi a canne, Padova</title>
 <meta name="description" content="Fratelli Ruffatti, Padova, dal 1940: organi a canne nuovi per chiese, cattedrali, università e sale da concerto, e restauro filologico di organi antichi. Telefono 049 750 666, organs@ruffatti.com.">
-<link rel="preload" href="img/logotipo-1120.webp" as="image" imagesrcset="img/logotipo-1120.webp 1120w, img/logotipo-2240.webp 2240w" imagesizes="(max-width:767px) calc(100vw - 32px), min(1120px, calc(100vw - 160px))">
+<link rel="preload" href="img/logotipo-1120.webp" as="image" imagesrcset="img/logotipo-1120.webp 1120w, img/logotipo-2240.webp 2240w" imagesizes="(max-width:699px) calc(100vw - 32px), min(1120px, calc(100vw - 160px))">
 <style>
 /* Carattere: EB Garamond (SIL Open Font License 1.1, The EB Garamond Project Authors), pesi 400-500,
    sottoinsieme latino, latino esteso e cirillico, in fonts/ con la licenza accanto (OFL-EBGaramond.txt).
-   Il logotipo corsivo e quello della targhetta d'ottone: e un'immagine, non un carattere. */
+   Il logotipo corsivo e quello della targhetta d'ottone: e un'immagine, non un carattere.
+   Secondo giro: una griglia sola (12 colonne, margine 80, gronda 32; i blocchi partono a x 80 o 736 e finiscono a 704 o 1360),
+   cinque misure di testo (16, 17, 20, 32, 48), spazi da una scala sola (16, 24, 32, 48, 64, 96, 144). */
 @font-face{font-family:'EB Garamond';src:url('fonts/ebgaramond-400-500.woff2') format('woff2');font-weight:400 500;font-style:normal;font-display:swap}
 :root{
   /* dalla consolle: il mogano, l'ottone della targhetta, l'intarsio; poi la carta e l'inchiostro */
@@ -27,12 +29,10 @@
   --filo:#D9CDB6;
   --f:'EB Garamond',Georgia,'Times New Roman',serif;
   --m:80px;          /* margine del contenuto */
-  --fx:40px;         /* filetti d'intarsio */
+  --fx:40px;         /* filetto d'intarsio, uno per lato */
   --t:88px;          /* testata */
-  --sez:80px;        /* spazio tra le sezioni */
-  --culmine-su:64px;
-  --piega:112px;     /* l'apertura lascia salire nella prima schermata il bordo alto della foto di Uppsala */
-  --culmine-giu:128px;
+  --sez:96px;        /* spazio delle sezioni */
+  --pausa:144px;     /* la pausa dopo il culmine */
   --g:32px;          /* gronda della griglia */
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -52,124 +52,132 @@ h1,h2,h3{font-weight:400}
 .salta:focus{top:8px}
 .wrap{max-width:calc(1280px + 2 * var(--m));margin:0 auto;padding:0 var(--m)}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.meta-s{grid-column:1 / span 6}
+.meta-d{grid-column:7 / span 6}
 
-/* i filetti d'intarsio: due coppie di linee sottili ai bordi, su tutta la pagina */
+/* il filetto d'intarsio: una linea sottile per lato, su tutta la pagina */
 .sez,.apertura,.piede{position:relative}
-.sez::before,.sez::after,.apertura::before,.apertura::after,.piede::before,.piede::after{content:"";position:absolute;top:0;bottom:0;width:3px;border-left:1px solid var(--fil,var(--filo));border-right:1px solid var(--fil,var(--filo));pointer-events:none}
+.sez::before,.sez::after,.apertura::before,.apertura::after,.piede::before,.piede::after{content:"";position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--fil,var(--filo));pointer-events:none}
 .sez::before,.apertura::before,.piede::before{left:max(var(--fx),calc(50% - 680px))}
 .sez::after,.apertura::after,.piede::after{right:max(var(--fx),calc(50% - 680px))}
 .scuro{--fil:var(--ottone-filo);background:var(--mogano);color:var(--crema)}
 .scuro a{color:var(--crema)}
 
-/* testata */
+/* testata fissa: il marchio compare quando il logotipo grande esce dallo schermo */
 .testata{position:sticky;top:0;z-index:20;background:var(--mogano);color:var(--crema);border-bottom:1px solid var(--mogano-filo)}
 .testata .wrap{height:var(--t);display:flex;align-items:center;gap:40px}
 .testata a{color:var(--crema);text-decoration:none}
 .testata a:hover{text-decoration:underline;text-decoration-thickness:1px}
-.voci{display:flex;gap:40px;font-weight:500;font-size:19px;line-height:24px}
+.testata .wrap{position:relative}
+.marchio{display:none;position:absolute;left:50%;top:50%;width:160px;height:34px;margin:-17px 0 0 -80px;background:url('img/logotipo-piede-240.webp') left center / 160px auto no-repeat;background-image:image-set(url('img/logotipo-piede-240.webp') 1x,url('img/logotipo-piede-480.webp') 2x)}
+.testata.dopo .marchio{display:block}
+.voci{display:flex;gap:40px;font-weight:500;font-size:20px;line-height:24px}
 .voci a{padding:8px 0}
 .destra{margin-left:auto;display:flex;align-items:center;gap:32px}
 .lingua{font-size:17px;font-weight:500;letter-spacing:.06em;padding:10px 0}
-.t-tel{font-size:20px;line-height:24px;font-variant-numeric:lining-nums tabular-nums;padding:10px 0}
+.t-tel{font-size:20px;line-height:24px;font-variant-numeric:lining-nums tabular-nums;padding:10px 0;white-space:nowrap}
+.t-tel .verbo{display:none}
 .bottone{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:1px solid currentColor;font:500 17px/20px var(--f);letter-spacing:.04em;text-decoration:none;white-space:nowrap}
 .testata .bottone{color:var(--ottone);border-color:var(--ottone)}
 .testata .bottone:hover{background:var(--ottone);color:var(--mogano);text-decoration:none}
-.menu,.t-rest{display:none}
+.menu{display:none}
 
-/* apertura: il nome come immagine */
-.apertura{min-height:min(calc(100vh - var(--t) - var(--piega)),calc(62vw + 120px));min-height:min(calc(100svh - var(--t) - var(--piega)),calc(62vw + 120px));display:flex;flex-direction:column}
-.apertura .wrap{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-top:80px;padding-bottom:80px;width:100%}
+/* 1. apertura: il nome come immagine */
+.apertura .wrap{display:flex;flex-direction:column;align-items:center;padding-top:72px;padding-bottom:72px}
 .apertura h1{display:flex;flex-direction:column;align-items:center;text-align:center}
 .apertura h1 img{width:min(1120px,100%);height:auto}
 .apertura h1>span{display:block;margin-top:56px;font-size:48px;line-height:56px;color:var(--crema)}
-.apertura .da{margin-top:16px;font-size:18px;line-height:24px;color:var(--ottone)}
-.apertura .targa-nota{position:absolute;left:max(var(--m),calc(50% - 640px));bottom:40px;font-size:17px;line-height:24px;color:var(--crema)}
-.apertura .targa-nota>span{display:block;color:var(--crema-2)}
+.apertura .da{margin-top:16px;font-size:17px;line-height:24px;color:var(--ottone)}
+.apertura .a-rest{display:none}
 
 /* sezioni */
 .sez{padding:var(--sez) 0}
 .sez h2{font-size:32px;line-height:40px}
 .sez p+p{margin-top:16px}
-.grigio{color:var(--grigio)}
 .freccia{display:inline-block;padding:4px 0;text-decoration:none;border-bottom:1px solid currentColor}
 .freccia:hover{border-bottom-width:2px;text-decoration:none}
-.didas{margin-top:16px;font-size:16px;line-height:22px}
+.didas{margin-top:16px;font-size:17px;line-height:24px}
 .didas b{display:block;font-weight:500;color:var(--inchiostro)}
 .didas>span{display:block;color:var(--grigio)}
+.didas a{text-underline-offset:.18em}
 
-/* 2. Uppsala, il culmine: l'organo apre la seconda schermata, il titolo sta sotto; tutto sullo stesso asse */
-.culmine{padding:var(--culmine-su) 0 var(--culmine-giu)}
-.colonna{width:720px;max-width:100%;margin:0 auto;text-align:center}
-.culmine img{width:100%}
-.culmine .didas{margin-top:16px}
-.culmine .testo{margin-top:56px}
+/* 2. il culmine: Uppsala a colonne 1-6, alta quanto lo schermo; titolo in alto e didascalia in basso a colonne 7-12 */
+.culmine{padding:80px 0 var(--pausa)}
+.culmine .griglia{grid-template-rows:1fr auto}
+.culmine figure{display:contents}
+.culmine picture{grid-column:1 / span 6;grid-row:1 / 3}
+.culmine picture img{width:100%}
+.culmine .c-testo{grid-column:7 / span 6;grid-row:1;align-self:end;padding-bottom:48px}
 .culmine h2{font-size:48px;line-height:56px}
-.culmine .testo p{max-width:560px;margin:24px auto 0;color:var(--grigio)}
+.culmine .c-testo p{margin-top:24px;color:var(--grigio)}
+.culmine figcaption{grid-column:7 / span 6;grid-row:2;align-self:end;margin:0;border-top:1px solid var(--filo);padding-top:16px}
+.culmine figcaption a{display:inline-block;margin-top:8px}
 
 /* 3. organi nuovi */
-.organi .capo{grid-column:1 / span 5}
 .organi .capo p{margin-top:24px;color:var(--grigio)}
 .organi .capo .freccia{margin-top:32px}
-.indice{grid-column:7 / span 6;border-top:1px solid var(--filo)}
-.indice li{display:grid;grid-template-columns:72px 1fr auto;column-gap:24px;padding:16px 0 18px;border-bottom:1px solid var(--filo)}
+.indice{border-top:1px solid var(--filo);align-self:start}
+.indice li{display:grid;grid-template-columns:72px minmax(0,1fr) 120px;column-gap:24px;padding:16px 0;border-bottom:1px solid var(--filo)}
 .indice .anno{font-variant-numeric:lining-nums tabular-nums;color:var(--grigio)}
-.indice .chi{font-weight:400}
 .indice .chi b{font-weight:500;font-variant-caps:small-caps;letter-spacing:.04em}
-.indice .dati{grid-column:2;color:var(--grigio);font-size:18px;line-height:27px}
-.indice .vai{grid-column:3;grid-row:1 / span 2;align-self:start;font-size:17px}
-.serie{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);margin-top:48px}
+.indice .dati{grid-column:2;color:var(--grigio);font-size:17px;line-height:25px;margin-top:4px}
+.indice .vai{grid-column:3;grid-row:1 / span 2;align-self:start;justify-self:start;font-size:17px;line-height:30px}
+.serie{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);margin-top:64px}
 .serie img{aspect-ratio:4 / 5;width:100%;object-fit:cover;background:var(--pietra)}
-.ascolta{grid-column:1 / span 8;margin-top:128px;scroll-margin-top:calc(var(--t) + 48px)}
-.ascolta blockquote{font-size:32px;line-height:40px}
-.ascolta .chi{margin-top:16px;max-width:624px;font-size:17px;line-height:25px;color:var(--grigio)}
-.ascolta .video{margin-top:24px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 32px;font-size:17px;line-height:25px}
-.ascolta .video b{font-weight:500}
+.ascolta{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);margin-top:96px;padding-top:48px;border-top:1px solid var(--filo);scroll-margin-top:calc(var(--t) + 16px)}
+.ascolta blockquote{grid-column:1 / span 6;font-size:32px;line-height:40px}
+.ascolta .chi{grid-column:1 / span 6;grid-row:2;margin-top:16px;font-size:17px;line-height:25px;color:var(--grigio)}
+.ascolta .chi a{display:inline-block;margin-top:8px}
+.ascolta .lista{grid-column:7 / span 6;grid-row:1 / 3}
+.ascolta h3{font-size:20px;line-height:30px;font-weight:500;padding-bottom:12px}
+.righe-indice{border-top:1px solid var(--filo)}
+.righe-indice a{display:block;padding:12px 0;border-bottom:1px solid var(--filo);text-decoration:none;font-size:17px;line-height:25px}
+.righe-indice a:hover{text-decoration:underline;text-decoration-thickness:1px}
 
 /* 4. laboratorio */
-.lab .capo{grid-column:1 / span 6;padding-right:32px}
-.lab .capo .seguito{margin-top:8px;color:var(--grigio)}
-.lab .capo .fam{margin-top:24px}
-.lab .capo .freccia{margin-top:24px}
-.lab .archivio,.lab .canne{grid-column:7 / span 6;max-width:592px}
-.lab .archivio img,.lab .canne img{width:100%}
-.lab figcaption{margin-top:16px;font-size:16px;line-height:22px;color:var(--grigio)}
-/* i passi: un indice di sola tipografia, come in Kayrock e Flentrop */
-.passi{grid-column:1 / span 6;align-self:start;margin-top:48px;padding-right:32px;border-top:1px solid var(--filo)}
+.lab .seguito{margin-top:12px;color:var(--grigio)}
+.passi{margin-top:48px;border-top:1px solid var(--filo)}
 .passi li{border-bottom:1px solid var(--filo)}
-.passi a{display:grid;grid-template-columns:40px 1fr;column-gap:16px;padding:16px 0 18px;text-decoration:none;color:var(--inchiostro)}
-.passi i{font-style:normal;font-variant-numeric:lining-nums tabular-nums;color:var(--grigio)}
+.passi a{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:16px;padding:16px 0;text-decoration:none;color:var(--inchiostro)}
+.passi i{font-style:normal;font-variant-numeric:lining-nums tabular-nums;color:var(--grigio);font-size:17px}
 .passi b{font-weight:500}
 .passi a:hover b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
-.passi span{grid-column:2;font-size:18px;line-height:27px;color:var(--grigio)}
-.lab .canne{margin-top:48px}
+.passi span{grid-column:2;font-size:17px;line-height:25px;color:var(--grigio);margin-top:4px}
+.lab figure img{width:100%}
 
-/* 5. restauro */
+/* 5. restauro: il gesto torna, centrato come l'apertura */
 .restauro{background:var(--pietra);--fil:#CFC2AA}
 .organi,.lab{border-top:1px solid var(--filo)}
-.restauro figure{grid-column:1 / span 6;max-width:624px}
+.restauro h2{grid-column:1 / -1;text-align:center}
+.restauro figure{grid-column:4 / span 6;margin-top:48px;text-align:center}
 .restauro figure img{width:100%}
-.restauro .testo{grid-column:7 / span 6;align-self:center}
-.restauro .testo p{margin-top:24px}
-.restauro .righe{margin-top:32px;display:flex;gap:32px;flex-wrap:wrap}
+.restauro .r-testo{margin-top:64px}
+.restauro .righe{margin-top:32px;display:flex;gap:16px 32px;flex-wrap:wrap}
+.restauro .strada{margin-top:64px}
 
-/* 6. contatti */
-.contatti h2{grid-column:1 / -1;margin-bottom:40px}
-.strada{grid-column:span 4;border-top:1px solid var(--inchiostro);padding-top:24px}
+/* le due strade del contatto: stessa struttura (titolo, che cosa preparare, un bottone, un collegamento) */
+.strada{border-top:1px solid var(--inchiostro);padding-top:24px;align-self:start}
 .strada h3{font-size:20px;line-height:30px;font-weight:500}
 .strada p{margin-top:12px}
-.strada .azione{margin-top:24px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.strada .azione{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px}
 .strada .bottone{color:var(--bordeaux);border-color:var(--bordeaux)}
 .strada .bottone:hover{background:var(--bordeaux);color:var(--carta)}
-.strada .mail{font-size:20px}
+
+/* 6. contatti */
+.contatti figure img{width:100%}
+.contatti .fam{margin-top:16px;color:var(--grigio)}
+.contatti .fam a{display:inline-block;margin-top:8px}
+.contatti h2{margin-bottom:40px}
+.contatti .rimando{margin-top:48px;font-size:17px;line-height:25px}
 
 /* piede: il biglietto da visita */
 .piede{padding:64px 0 32px;font-size:17px;line-height:26px}
-.piede .griglia{row-gap:40px}
-.piede .firma{grid-column:1 / span 4}
+.piede .griglia{row-gap:48px}
 .piede .firma img{width:240px}
-.piede .firma p{margin-top:16px;font-size:20px;line-height:28px}
+.piede .firma p{margin-top:16px;font-size:20px;line-height:30px}
 .piede .col{grid-column:span 2}
-.piede h2{font-size:16px;line-height:22px;font-weight:400;color:var(--crema-2);margin-bottom:12px}
+.piede .tit{font-size:16px;line-height:22px;color:var(--crema-2);margin-bottom:12px}
+.piede .col p+p{margin-top:12px}
 .piede a{text-decoration:none}
 .piede a:hover{text-decoration:underline}
 .piede .legale{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px 32px;padding-top:24px;border-top:1px solid var(--mogano-filo);font-size:16px;line-height:22px;color:var(--crema-2)}
@@ -179,77 +187,85 @@ h1,h2,h3{font-weight:400}
 @media (max-width:1199px){
   :root{--m:64px;--fx:24px;--g:24px}
   .apertura h1>span{font-size:40px;line-height:48px;margin-top:40px}
-  .organi .capo{grid-column:1 / -1}
-  .indice{grid-column:1 / -1;margin-top:48px}
-  .lab .capo,.passi{padding-right:0}
+  .culmine h2{font-size:40px;line-height:48px}
+  .marchio{width:128px;height:28px;margin:-14px 0 0 -64px;background-size:128px auto}
+  .testata .wrap,.voci{gap:32px}
+  .destra{gap:24px}
+  .organi .capo,.organi .indice{grid-column:1 / -1}
+  .organi .indice{margin-top:48px}
   .piede .firma{grid-column:1 / -1}
-  .piede .col{grid-column:span 3}
+  .piede .col{grid-column:span 4}
 }
 /* 768 */
 @media (max-width:899px){
-  :root{--m:48px;--fx:16px;--t:64px}
-  .voci,.testata .bottone.scrivi{display:none}
+  :root{--m:48px;--fx:16px;--t:64px;--sez:80px;--pausa:112px}
+  .marchio,.testata.dopo .marchio,.voci,.testata .bottone.scrivi{display:none}
   .t-tel{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--ottone);color:var(--ottone)!important;font-size:18px}
+  .t-tel .verbo{display:inline}
+  .t-tel .pre{display:none}
   .t-tel:hover{background:var(--ottone);color:var(--mogano)!important;text-decoration:none!important}
   .menu{display:block;position:static}
-  .menu summary{list-style:none;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;font-weight:500;font-size:19px}
+  .menu summary{list-style:none;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;font-weight:500;font-size:20px}
   .menu summary::-webkit-details-marker{display:none}
   .menu[open] summary .apri{display:none}
   .menu:not([open]) summary .chiudi{display:none}
   .pannello{position:absolute;left:0;right:0;top:var(--t);background:var(--mogano);border-top:1px solid var(--mogano-filo);padding:8px var(--m) 32px;max-height:calc(100vh - var(--t));overflow:auto}
-  .pannello li a{display:block;padding:12px 0;font-size:20px;border-bottom:1px solid var(--mogano-filo)}
-  .pannello .altri{display:flex;flex-wrap:wrap;gap:4px 24px;margin-top:16px}
-  .pannello .altri a{border:0;font-size:17px;padding:10px 0}
+  .pannello li a{display:flex;align-items:center;min-height:52px;font-size:20px;border-bottom:1px solid var(--mogano-filo)}
+  .pannello .altri{display:flex;flex-wrap:wrap;gap:0 24px;margin-top:16px}
+  .pannello .altri a{border:0;font-size:17px;min-height:44px;display:inline-flex;align-items:center}
   .destra{gap:16px}
   .lingua{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
   .testata .bottone{min-height:44px;padding:0 16px}
-  .t-rest{display:flex;align-items:center;min-height:44px;margin-left:24px;font-weight:500;font-size:19px}
-  .ascolta{grid-column:1 / -1;margin-top:96px}
-  .serie{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .lab .capo,.lab .archivio,.passi,.lab .canne{grid-column:1 / -1}
-  .lab .archivio{margin-top:48px}
-  .lab .canne{margin-top:40px}
-  .restauro figure{max-width:592px}
-  .restauro figure,.restauro .testo{grid-column:1 / -1}
-  .restauro .testo{margin-top:40px}
-  .strada{grid-column:1 / -1}
-  .strada+.strada{margin-top:48px}
+  .apertura .a-rest{display:block;margin-top:16px}
+  .apertura .a-rest a{display:inline-flex;align-items:center;min-height:44px;padding:0;color:var(--ottone);border-color:var(--ottone-filo);font-size:18px}
+  .meta-s,.meta-d,.culmine picture,.culmine .c-testo,.culmine figcaption,.restauro figure{grid-column:1 / -1;grid-row:auto}
+  .culmine figcaption{border-top:0;padding-top:0;margin-top:16px}
+  .culmine .c-testo{margin-top:48px}
+  .indice{margin-top:48px}
+  .serie{gap:16px}
+  .ascolta blockquote,.ascolta .chi,.ascolta .lista{grid-column:1 / -1;grid-row:auto}
+  .ascolta .lista{margin-top:40px}
+  .lab figure{margin-top:48px}
+  .restauro .r-testo{margin-top:48px}
+  .restauro .strada{margin-top:48px}
+  .contatti .c-testo{margin-top:64px}
   .piede .col{grid-column:span 6}
 }
 /* 390 */
 @media (max-width:699px){
-  :root{--m:16px;--sez:64px;--culmine-su:0px;--culmine-giu:96px;--g:16px}
+  :root{--m:16px;--sez:64px;--pausa:96px;--g:16px}
   body{font-size:18px;line-height:28px}
   .sez::before,.sez::after,.apertura::before,.apertura::after,.piede::before,.piede::after{display:none}
   .testata .wrap{gap:8px}
-  .apertura{min-height:0}
-  .apertura .wrap{padding-top:32px;padding-bottom:32px}
+  .apertura .wrap{padding-top:24px;padding-bottom:24px}
   .apertura h1>span{margin-top:20px;font-size:22px;line-height:28px}
   .apertura .da{margin-top:8px;font-size:16px;line-height:22px}
-  .apertura .targa-nota{display:none}
+  .apertura .a-rest{margin-top:8px}
   .sez h2,.ascolta blockquote{font-size:26px;line-height:32px}
+  .culmine{padding-top:0}
   .culmine .wrap{padding:0}
-  .culmine .colonna{width:100%;text-align:left}
-  .culmine figure .didas{padding:0 16px}
-  .culmine .testo{margin-top:0;padding:48px 16px 0}
+  .culmine figcaption,.culmine .c-testo{padding:0 16px}
   .culmine h2{font-size:30px;line-height:36px}
-  .culmine .testo p{margin-left:0}
-  .indice li{grid-template-columns:56px 1fr;column-gap:16px}
-  .indice .vai{grid-column:2;grid-row:auto;margin-top:8px}
-  .indice .dati{font-size:17px;line-height:25px}
-  .serie,.passi{margin-top:48px}
-  .ascolta{margin-top:80px}
-  .ascolta .video{gap:4px 24px}
-  .didas{font-size:15px;line-height:21px}
-  .passi a{grid-template-columns:28px 1fr;column-gap:12px}
-  .passi span{font-size:17px;line-height:25px}
-  .piede .col{grid-column:span 6}
+  .indice li{grid-template-columns:56px minmax(0,1fr);column-gap:16px}
+  .indice .vai{grid-column:2;grid-row:auto;margin-top:4px}
+  .serie{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:48px}
+  .didas{font-size:16px;line-height:22px}
+  .passi a{grid-template-columns:28px minmax(0,1fr);column-gap:12px}
+  .freccia,.indice .vai{display:inline-flex;align-items:center;min-height:44px;padding:0}
+  .righe-indice a{padding:13px 0}
+  .contatti .fam a,.ascolta .chi a,.culmine figcaption a,.serie figcaption a,.contatti .rimando a{display:inline-flex;align-items:center;min-height:44px;margin-top:0}
+  .piede .legale a{padding:11px 0}
+  .restauro h2,.restauro figure{text-align:left}
+  .restauro figure{margin-top:32px}
+  .restauro .righe{gap:8px 24px}
+  .strada .azione{gap:16px 24px}
+  .piede a{display:inline-block;padding:9px 0}
+  .piede .col li a,.piede .col p a{padding:9px 0}
   .piede .firma p{font-size:18px}
 }
 @media (max-width:359px){
   .t-tel{padding:0 10px;font-size:17px}
-  .testata .lingua{display:none}
-  .t-rest{margin-left:16px;font-size:18px}
+  .t-tel .verbo{display:none}
 }
 @media print{.testata{position:static}}
 </style>
@@ -263,16 +279,16 @@ h1,h2,h3{font-weight:400}
 <nav class="pannello" aria-label="Menu">
 <ul>
 <li><a href="#organi">Organi nuovi</a></li>
-<li><a href="#laboratorio">Laboratorio</a></li>
-<li><a href="#restauro">Restauro</a></li>
+<li><a href="#restauro">Restauro di organi antichi</a></li>
 <li><a href="#ascolta">Video e CD</a></li>
-<li><a href="https://ruffatti.com/il-concorso-internazionale-dorgano-di-miami/">Concorso di Miami</a></li>
-<li><a href="#contatti">Scriveteci</a></li>
+<li><a href="#laboratorio">Il laboratorio</a></li>
+<li><a href="https://ruffatti.com/il-concorso-internazionale-dorgano-di-miami/">Concorso d’organo di Miami</a></li>
+<li><a href="#contatti">Contatti: chiamate o scriveteci</a></li>
 </ul>
 <p class="altri"><a href="https://ruffatti.com/en/" lang="en" hreflang="en">English</a><a href="https://ruffatti.com/ru/" lang="ru" hreflang="ru">Русский</a><a href="https://www.instagram.com/ruffattiorgans/">Instagram</a><a href="https://www.youtube.com/channel/UCKZF90tJyL8150NZr8Qm48g">YouTube</a><a href="https://facebook.com/ruffattiorgans">Facebook</a></p>
 </nav>
 </details>
-<a class="t-rest" href="#restauro">Restauro</a>
+<a class="marchio" href="#titolo" aria-label="Fratelli Ruffatti, inizio della pagina"></a>
 <nav class="voci" aria-label="Sezioni">
 <a href="#organi">Organi nuovi</a>
 <a href="#restauro">Restauro</a>
@@ -280,7 +296,7 @@ h1,h2,h3{font-weight:400}
 </nav>
 <div class="destra">
 <a class="lingua" href="https://ruffatti.com/en/" lang="en" hreflang="en" title="English site">EN</a>
-<a class="t-tel" href="tel:+39049750666" aria-label="Telefono 049 750 666">049&nbsp;750&nbsp;666</a>
+<a class="t-tel" href="tel:+39049750666" aria-label="Chiama il numero 049 750 666"><span class="verbo">Chiama&nbsp;</span><span class="pre">+39&nbsp;</span>049&nbsp;750&nbsp;666</a>
 <a class="bottone scrivi" href="#contatti">Scriveteci</a>
 </div>
 </div>
@@ -289,108 +305,111 @@ h1,h2,h3{font-weight:400}
 <main id="contenuto">
 <section class="apertura scuro" aria-labelledby="titolo">
 <div class="wrap">
-<h1 id="titolo"><img class="logotipo" src="img/logotipo-1120.webp" srcset="img/logotipo-1120.webp 1120w, img/logotipo-2240.webp 2240w" sizes="(max-width:699px) calc(100vw - 32px), min(1120px, calc(100vw - 160px))" width="1120" height="246" alt="Fratelli Ruffatti" fetchpriority="high"><span>Costruttori e restauratori <span class="nw">d’organi a&nbsp;canne</span></span></h1>
+<h1 id="titolo"><img class="logotipo" src="img/logotipo-1120.webp" srcset="img/logotipo-1120.webp 1120w, img/logotipo-2240.webp 2240w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:1199px) calc(100vw - 128px), 1120px" width="1120" height="237" alt="Fratelli Ruffatti" fetchpriority="high"><span>Costruttori e restauratori <span class="nw">d’organi a&nbsp;canne</span></span></h1>
 <p class="da mc">Padova, dal <span class="num">1940</span></p>
+<p class="a-rest"><a class="freccia" href="#restauro">Restauro di organi antichi&nbsp;→</a></p>
 </div>
-<p class="targa-nota">Il nome della targhetta d’ottone <span>Qui sotto: l’organo della cattedrale di Uppsala, <span class="num">2009</span></span></p>
 </section>
 
 <section class="sez culmine" id="uppsala" aria-labelledby="t-uppsala">
-<div class="wrap">
-<div class="colonna">
+<div class="wrap griglia">
 <figure>
-<img src="img/uppsala-basso-720.webp" srcset="img/uppsala-basso-390.webp 390w, img/uppsala-basso-720.webp 720w, img/uppsala-basso-780.webp 780w, img/uppsala-basso-900.webp 900w" sizes="(max-width:699px) 100vw, (max-width:899px) calc(100vw - 96px), 720px" width="720" height="880" alt="L’organo Fratelli Ruffatti della cattedrale di Uppsala: due torri di canne in casse di legno chiaro ai lati del rosone, sotto le volte dipinte della navata">
-<figcaption class="didas"><b>Cattedrale di Uppsala, Svezia</b><span><span class="num">2009</span> · quattro manuali · trasmissione elettrica</span></figcaption>
+<picture>
+<source media="(max-width:699px)" srcset="img/uppsala-telefono-390.webp 390w, img/uppsala-telefono-780.webp 780w, img/uppsala-telefono-900.webp 900w" sizes="100vw">
+<img src="img/uppsala-624.webp" srcset="img/uppsala-436.webp 436w, img/uppsala-624.webp 624w, img/uppsala-900.webp 900w" sizes="(max-width:899px) calc(100vw - 96px), (max-width:1199px) calc(50vw - 76px), 624px" width="624" height="693" alt="L’organo Fratelli Ruffatti della cattedrale di Uppsala: due torri di canne in casse di legno chiaro ai lati del rosone, sotto le volte dipinte della navata">
+</picture>
+<figcaption class="didas"><b>Cattedrale di Uppsala, Svezia</b><span><span class="num">2009</span> · quattro manuali · trasmissione elettrica</span><a href="https://ruffatti.com/wp-content/uploads/2018/11/Uppsala.pdf">La disposizione fonica, PDF&nbsp;↗</a></figcaption>
 </figure>
-<div class="testo">
+<div class="c-testo">
 <h2 id="t-uppsala">Da Padova abbiamo raggiunto negli anni tutti i continenti.</h2>
 <p>Nel ventunesimo secolo abbiamo aggiunto il Messico, l’Australia, la Svezia, l’Irlanda e la Cina ai Paesi che ospitano i nostri strumenti.</p>
-</div>
 </div>
 </div>
 </section>
 
 <section class="sez organi" id="organi" aria-labelledby="t-organi">
 <div class="wrap griglia">
-<div class="capo">
+<div class="capo meta-s">
 <h2 id="t-organi">Organi nuovi</h2>
 <p>Per chiese, cattedrali, università e sale da concerto, a trasmissione meccanica o elettrica.</p>
 <a class="freccia" href="https://ruffatti.com/realizzazioni/alcune-opere-significative/">Le 86 opere significative, da una a sei tastiere&nbsp;→</a>
 </div>
-<ol class="indice" aria-label="Organi nuovi dal 2022">
-<li><span class="anno">2023</span><span class="chi"><b>Pershore Abbey</b>, Worcestershire, Inghilterra</span><span class="dati">Tre manuali e <span class="num">33</span> registri.</span><a class="vai" href="https://pershoreabbey.org.uk/?p=7451" hreflang="en">Fonte: l’abbazia&nbsp;↗</a></li>
-<li><span class="anno">2022</span><span class="chi"><b>Notre Dame Seminary</b>, New Orleans, Louisiana</span><span class="dati">Due manuali; cassa laccata in bianco con foglia d’oro a <span class="num">24</span> carati.</span><a class="vai" href="https://ruffatti.com/ultime-notizie/il-nuovo-organo-di-new-orleans-fa-notizia/">La notizia&nbsp;→</a></li>
-<li><span class="anno">2022</span><span class="chi"><b>Santa Caterina da Siena</b>, Wayne, Pennsylvania</span><span class="dati">Tre manuali e <span class="num">37</span> registri, due consolle.</span><a class="vai" href="https://ruffatti.com/ultime-notizie/nuovi-organi-in-usa-del-2022/">La notizia&nbsp;→</a></li>
+<ol class="indice meta-d" aria-label="Organi nuovi del 2022 e del 2023, senza foto">
+<li><span class="anno">2023</span><span class="chi"><b>Pershore Abbey</b>, Worcestershire, Inghilterra</span><span class="dati">Tre manuali e <span class="num">33</span> registri, secondo l’abbazia.</span><a class="vai" href="https://pershoreabbey.org.uk/?p=7451" hreflang="en">La notizia&nbsp;↗</a></li>
+<li><span class="anno">2022</span><span class="chi"><b>Santa Caterina da Siena</b>, Wayne, Pennsylvania</span><span class="dati">Tre manuali e <span class="num">37</span> registri, due consolle; il Positivo diviso ai due lati dell’altare maggiore.</span><a class="vai" href="https://ruffatti.com/ultime-notizie/nuovi-organi-in-usa-del-2022/">La notizia&nbsp;→</a></li>
 </ol>
-<ul class="serie" aria-label="Quattro organi nella loro chiesa">
-<li><figure><img src="img/neworleans-296.webp" srcset="img/neworleans-296.webp 296w, img/neworleans-574.webp 574w" sizes="(max-width:699px) calc(50vw - 24px), (max-width:899px) calc(50vw - 60px), (max-width:1199px) calc(25vw - 50px), 296px" width="296" height="370" loading="lazy" alt="L’organo del Notre Dame Seminary di New Orleans: cassa bianca con decorazioni dorate sopra il portale, canne di facciata in metallo chiaro"><figcaption class="didas"><b>Notre Dame Seminary, New Orleans</b><span><span class="num">2022</span> · due manuali</span></figcaption></figure></li>
-<li><figure><img src="img/wayne-296.webp" srcset="img/wayne-296.webp 296w, img/wayne-484.webp 484w" sizes="(max-width:699px) calc(50vw - 24px), (max-width:899px) calc(50vw - 60px), (max-width:1199px) calc(25vw - 50px), 296px" width="296" height="370" loading="lazy" alt="La consolle di Santa Caterina da Siena a Wayne, in legno, con tre manuali e i pomelli dei registri ai lati"><figcaption class="didas"><b>Santa Caterina da Siena, Wayne, Pennsylvania</b><span><span class="num">2022</span> · la consolle, tre manuali</span></figcaption></figure></li>
-<li><figure><img src="img/buckfast-296.webp" srcset="img/buckfast-296.webp 296w, img/buckfast-592.webp 592w" sizes="(max-width:699px) calc(50vw - 24px), (max-width:899px) calc(50vw - 60px), (max-width:1199px) calc(25vw - 50px), 296px" width="296" height="370" loading="lazy" alt="Buckfast Abbey: le casse di rovere dell’organo sopra gli stalli del coro, sotto le vetrate della navata"><figcaption class="didas"><b>Buckfast Abbey, Devon</b><span><span class="num">2017</span> · organo del coro, casse di rovere massiccio</span></figcaption></figure></li>
-<li><figure><img src="img/botea-296.webp" srcset="img/botea-296.webp 296w, img/botea-592.webp 592w" sizes="(max-width:699px) calc(50vw - 24px), (max-width:899px) calc(50vw - 60px), (max-width:1199px) calc(25vw - 50px), 296px" width="296" height="370" loading="lazy" alt="La chiesa di Boteå: l’organo con la cassa grigio perla nella cantoria dorata, sopra le panche della navata bianca"><figcaption class="didas"><b>Chiesa parrocchiale di Boteå, Svezia</b><span>contratto del <span class="num">2015</span> · trasmissione meccanica</span></figcaption></figure></li>
+<ul class="serie" aria-label="Tre organi nella loro chiesa">
+<li><figure><img src="img/neworleans-405.webp" srcset="img/neworleans-405.webp 405w, img/neworleans-574.webp 574w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(33vw - 42px), (max-width:1199px) calc(33vw - 59px), 405px" width="405" height="506" loading="lazy" alt="L’organo del Notre Dame Seminary di New Orleans: cassa bianca con decorazioni dorate sopra il portale, canne di facciata in metallo chiaro"><figcaption class="didas"><b>Notre Dame Seminary, New Orleans</b><span><span class="num">2022</span> · due manuali, il Grand’Organo in due sezioni, aperta e in cassa espressiva</span><span>In copertina su <span lang="en">The Diapason</span>, ottobre <span class="num">2022</span> · <a href="https://ruffatti.com/ultime-notizie/il-nuovo-organo-di-new-orleans-fa-notizia/">la notizia&nbsp;→</a></span></figcaption></figure></li>
+<li><figure><img src="img/buckfast-405.webp" srcset="img/buckfast-405.webp 405w, img/buckfast-606.webp 606w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(33vw - 42px), (max-width:1199px) calc(33vw - 59px), 405px" width="405" height="506" loading="lazy" alt="Buckfast Abbey: le casse di rovere dell’organo sopra gli stalli del coro, sotto le vetrate della navata"><figcaption class="didas"><b>Buckfast Abbey, Devon, Inghilterra</b><span><span class="num">2017</span> · organo del coro, casse di rovere massiccio</span></figcaption></figure></li>
+<li><figure><img src="img/botea-405.webp" srcset="img/botea-405.webp 405w, img/botea-810.webp 810w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(33vw - 42px), (max-width:1199px) calc(33vw - 59px), 405px" width="405" height="506" loading="lazy" alt="La chiesa di Boteå: l’organo con la cassa grigio perla nella cantoria dorata, sopra le panche della navata bianca"><figcaption class="didas"><b>Chiesa parrocchiale di Boteå, Svezia</b><span>contratto del <span class="num">2015</span> · trasmissione meccanica</span></figcaption></figure></li>
 </ul>
 <div class="ascolta" id="ascolta">
 <blockquote><p>«I Principali cantano.»</p></blockquote>
-<p class="chi">Joyce Jones, concertista, già docente di musica e organista titolare della Baylor University, Waco, Texas, sul loro organo Ruffatti</p>
-<p class="video"><b>Video e CD</b><a class="freccia" href="https://ruffatti.com/cd-dvd-video/cd/">CD incisi su organi Ruffatti&nbsp;→</a><a class="freccia" href="https://www.youtube.com/watch?v=8TxRrDsmd4M"><span lang="en">Making 32’ Reeds</span>, YouTube&nbsp;↗</a><a class="freccia" href="https://www.youtube.com/channel/UCKZF90tJyL8150NZr8Qm48g">Il canale Ruffatti organs&nbsp;↗</a></p>
+<p class="chi">Joyce Jones, concertista, già docente di musica e organista titolare della Baylor University, Waco, Texas, sul loro organo Ruffatti.<br><a href="https://ruffatti.com/dicono-di-noi/">Le parole di Diane Bish e Frederick Swann&nbsp;→</a></p>
+<div class="lista">
+<h3>Video e CD</h3>
+<ul class="righe-indice">
+<li><a href="https://ruffatti.com/cd-dvd-video/cd/">CD incisi su organi Ruffatti&nbsp;→</a></li>
+<li><a href="https://www.youtube.com/watch?v=8TxRrDsmd4M">In laboratorio: <span lang="en">Making 32’ Reeds</span>, YouTube&nbsp;↗</a></li>
+<li><a href="https://www.youtube.com/channel/UCKZF90tJyL8150NZr8Qm48g">Il canale Ruffatti organs, YouTube&nbsp;↗</a></li>
+</ul>
+</div>
 </div>
 </div>
 </section>
 
 <section class="sez lab" id="laboratorio" aria-labelledby="t-lab">
 <div class="wrap griglia">
-<div class="capo">
+<div class="capo meta-s">
 <h2 id="t-lab">Costruiamo ogni componente possibile in laboratorio</h2>
 <p class="seguito">dai somieri alle canne ad anima e ad ancia, fino ai particolari più minuti.</p>
-<p class="fam">Nel <span class="num">1940</span> i tre fratelli Alessio, Antonio e Giuseppe Ruffatti danno vita alla «Famiglia Artigiana Fratelli Ruffatti». Oggi la guidano Piero e Francesco, figli di Antonio e soci dal <span class="num">1968</span>; con loro lavora dal <span class="num">2004</span> Michela Ruffatti, architetto.</p>
-<a class="freccia" href="https://ruffatti.com/nostra-storia/famiglia-ruffatti/">La famiglia Ruffatti&nbsp;→</a>
-</div>
-<figure class="archivio">
-<img src="img/archivio-592.webp" srcset="img/archivio-520.webp 520w, img/archivio-592.webp 592w, img/archivio-862.webp 862w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) min(592px, calc(100vw - 96px)), 592px" width="592" height="395" loading="lazy" alt="Foto d’archivio in bianco e nero: le maestranze in posa davanti all’ingresso della F.lli Ruffatti Fabbrica Organi">
-<figcaption>Le maestranze davanti alla F.lli Ruffatti Fabbrica Organi, foto d’archivio.</figcaption>
-</figure>
 <ol class="passi" aria-label="Dal legno alla canna">
 <li><a href="https://ruffatti.com/come-costruiamo-i-nostri-organi/i-materiali/il-legname/"><i>1</i><b>Il legname</b><span>Mogano sipo certificato FSC, stagionato naturalmente per cinque anni.</span></a></li>
 <li><a href="https://ruffatti.com/come-costruiamo-i-nostri-organi/le-canne/lastre-per-canne/"><i>2</i><b>Lastre per canne</b><span>Stagno e piombo fusi in un crogiolo, colati sul banco di marmo.</span></a></li>
 <li><a href="https://ruffatti.com/come-costruiamo-i-nostri-organi/le-canne/canne-ad-anima/"><i>3</i><b>Canne ad anima</b><span>Il metallo battuto a mano sulle forme, saldato e lucidato a mano: tutte le canne, grandi e piccole, una per una.</span></a></li>
 <li><a href="https://ruffatti.com/come-costruiamo-i-nostri-organi/le-canne/canne-ad-ancia/"><i>4</i><b>Canne ad ancia</b><span>Le noci fuse a mano e tornite una per una.</span></a></li>
 </ol>
-<figure class="canne">
-<img src="img/anima-592.webp" srcset="img/anima-358.webp 358w, img/anima-592.webp 592w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) min(592px, calc(100vw - 96px)), 592px" width="592" height="395" loading="lazy" alt="Piedi conici di canne ad anima in metallo, lucidati a specchio e allineati sul banco">
+</div>
+<figure class="meta-d">
+<img src="img/falegnami-624.webp" srcset="img/falegnami-358.webp 358w, img/falegnami-624.webp 624w, img/falegnami-716.webp 716w, img/falegnami-1248.webp 1248w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(100vw - 96px), (max-width:1199px) calc(50vw - 76px), 624px" width="624" height="416" loading="lazy" alt="La falegnameria del laboratorio: due artigiani ai banchi di lavoro, dietro di loro un organo con la cassa di mogano e le canne di facciata già montato">
+<figcaption class="didas"><b>La falegnameria, nel laboratorio di Padova</b><span>un organo montato tra i banchi di lavoro</span></figcaption>
 </figure>
 </div>
 </section>
 
 <section class="sez restauro" id="restauro" aria-labelledby="t-restauro">
 <div class="wrap griglia">
-<figure>
-<img src="img/targhetta-800.webp" srcset="img/targhetta-520.webp 520w, img/targhetta-800.webp 800w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) min(592px, calc(100vw - 96px)), (max-width:1199px) calc(50vw - 76px), 624px" width="624" height="416" loading="lazy" alt="La targhetta d’ottone con la scritta corsiva «Fratelli Ruffatti» sul mogano della consolle, sotto i pomelli dei registri e tra due filetti d’intarsio">
-<figcaption class="didas"><b>Targhetta d’ottone tra i registri</b><span>Contra Principal <span class="num">32’</span>, Contra Subbasso <span class="num">32’</span>, Principal <span class="num">16’</span>, Bordone dolce <span class="num">16’</span></span></figcaption>
-</figure>
-<div class="testo">
 <h2 id="t-restauro">Restauro filologico di organi antichi</h2>
+<figure>
+<img src="img/targhetta-624.webp" srcset="img/targhetta-358.webp 358w, img/targhetta-624.webp 624w, img/targhetta-800.webp 800w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(100vw - 96px), (max-width:1199px) calc(50vw - 76px), 624px" width="624" height="416" loading="lazy" alt="La targhetta d’ottone con la scritta corsiva «Fratelli Ruffatti» sul legno della consolle, tra due filetti d’intarsio, sotto i pomelli dei registri">
+<figcaption class="didas"><b>La targhetta d’ottone sulla consolle, con il nome del logotipo</b><span>tra i registri Principal <span class="num">16’</span>, Contra Principal <span class="num">32’</span> e Contra Subbasso <span class="num">32’</span></span></figcaption>
+</figure>
+<div class="r-testo meta-s">
 <p>Restauriamo organi di ogni epoca e anche di altri costruttori, da Giovanni Guglielmi (Roma, Vallicella, <span class="num">1612</span>) a Gaetano Callido e Girolamo Zavarise: circa <span class="num">120</span> restauri, con località e anno, nell’elenco delle opere eseguite, aggiornato al <span class="num">2020</span>.</p>
 <p class="righe"><a class="freccia" href="https://ruffatti.com/il-restauro-di-organi-antichi/opere-eseguite/">Elenco dei restauri&nbsp;→</a><a class="freccia" href="https://ruffatti.com/il-restauro-di-organi-antichi/procedure-di-restauro/">Procedure di restauro&nbsp;→</a></p>
+</div>
+<div class="strada meta-d" id="avete">
+<h3>Avete un organo Ruffatti in chiesa?</h3>
+<p>Per la prima telefonata tenete a portata di mano il nome della chiesa e il comune, il costruttore e l’anno dell’organo se li conoscete, una foto della consolle e della targhetta, e che cosa non funziona.</p>
+<p class="azione"><a class="bottone" href="tel:+39049750666">Chiamate <span class="num">&nbsp;049&nbsp;750&nbsp;666</span></a><a class="freccia" href="mailto:organs@ruffatti.com?subject=Organo%20da%20restaurare%3A%20chiesa%2C%20comune&amp;body=Chiesa%20e%20comune%3A%0ACostruttore%20e%20anno%20dell%E2%80%99organo%20(se%20noti)%3A%0ACosa%20non%20funziona%3A%0ARecapito%20telefonico%3A%0A%0A%5BAllegate%20qui%20le%20foto%20della%20consolle%20e%20della%20targhetta%5D">Scrivete con le foto</a></p>
 </div>
 </div>
 </section>
 
 <section class="sez contatti" id="contatti" aria-labelledby="t-contatti">
 <div class="wrap griglia">
-<h2 id="t-contatti">Scriveteci</h2>
+<figure class="meta-s">
+<img src="img/archivio-624.webp" srcset="img/archivio-358.webp 358w, img/archivio-624.webp 624w, img/archivio-862.webp 862w" sizes="(max-width:699px) calc(100vw - 32px), (max-width:899px) calc(100vw - 96px), (max-width:1199px) calc(50vw - 76px), 624px" width="624" height="416" loading="lazy" alt="Foto d’archivio in bianco e nero: le maestranze in posa davanti all’ingresso della F.lli Ruffatti Fabbrica Organi">
+<figcaption class="didas"><b>Le maestranze davanti alla F.lli Ruffatti Fabbrica Organi</b><span>foto d’archivio</span><span class="fam">Nel <span class="num">1940</span> i tre fratelli Alessio, Antonio e Giuseppe Ruffatti danno vita alla «Famiglia Artigiana Fratelli Ruffatti». Oggi la guidano Piero e Francesco, figli di Antonio e soci dal <span class="num">1968</span>; con loro lavora dal <span class="num">2004</span> Michela Ruffatti, architetto.<br><a href="https://ruffatti.com/nostra-storia/famiglia-ruffatti/">La famiglia Ruffatti&nbsp;→</a></span></figcaption>
+</figure>
+<div class="c-testo meta-d">
+<h2 id="t-contatti">Contatti</h2>
 <div class="strada">
 <h3>Un organo nuovo</h3>
 <p>Diteci l’istituzione e il vostro ruolo, la chiesa o la sala con la città, l’organo di oggi se c’è; allegate la pianta o qualche foto della cantoria.</p>
-<p class="azione"><a class="freccia mail" href="mailto:organs@ruffatti.com?subject=Organo%20nuovo%3A%20istituzione%2C%20citt%C3%A0&amp;body=Istituzione%20e%20ruolo%3A%0AChiesa%20o%20sala%2C%20citt%C3%A0%20e%20Paese%3A%0AL%E2%80%99organo%20di%20oggi%2C%20se%20c%E2%80%99%C3%A8%20(costruttore%2C%20anno%2C%20manuali%20e%20registri)%3A%0AIdea%20di%20dimensione%20e%20di%20tempi%3A%0ARecapito%20telefonico%3A%0A%0A%5BAllegate%20qui%20la%20pianta%20o%20le%20foto%20della%20chiesa%20e%20della%20cantoria%5D">organs@ruffatti.com</a></p>
+<p class="azione"><a class="bottone" href="mailto:organs@ruffatti.com?subject=Organo%20nuovo%3A%20istituzione%2C%20citt%C3%A0&amp;body=Istituzione%20e%20ruolo%3A%0AChiesa%20o%20sala%2C%20citt%C3%A0%20e%20Paese%3A%0AL%E2%80%99organo%20di%20oggi%2C%20se%20c%E2%80%99%C3%A8%20(costruttore%2C%20anno%2C%20manuali%20e%20registri)%3A%0AIdea%20di%20dimensione%20e%20di%20tempi%3A%0ARecapito%20telefonico%3A%0A%0A%5BAllegate%20qui%20la%20pianta%20o%20le%20foto%20della%20chiesa%20e%20della%20cantoria%5D">Scrivete a organs@ruffatti.com</a><a class="freccia" lang="en" href="mailto:organs@ruffatti.com?subject=New%20organ%3A%20institution%2C%20city&amp;body=Institution%20and%20position%3A%0AChurch%20or%20hall%2C%20city%20and%20country%3A%0APresent%20organ%20(builder%2C%20year%2C%20manuals%2C%20stops)%3A%0ASize%20and%20timing%3A%0APhone%3A%0A%0A%5BPlease%20attach%20the%20floor%20plan%20or%20photos%20of%20the%20church%20and%20the%20organ%20loft%5D">Write to us in English</a></p>
 </div>
-<div class="strada">
-<h3>Un restauro, o un organo Ruffatti in chiesa</h3>
-<p>Per la prima telefonata tenete a portata di mano il nome della chiesa, il costruttore e l’anno dell’organo se li conoscete, una foto della consolle e della targhetta.</p>
-<p class="azione"><a class="bottone" href="tel:+39049750666">Chiamate <span class="num">&nbsp;049&nbsp;750&nbsp;666</span></a><a class="freccia" href="mailto:organs@ruffatti.com?subject=Organo%20da%20restaurare%3A%20chiesa%2C%20comune&amp;body=Chiesa%20e%20comune%3A%0ACostruttore%20e%20anno%20dell%E2%80%99organo%20(se%20noti)%3A%0ACosa%20non%20funziona%3A%0ARecapito%20telefonico%3A%0A%0A%5BAllegate%20qui%20le%20foto%20della%20consolle%20e%20della%20targhetta%5D">Scrivete con le foto</a></p>
-</div>
-<div class="strada">
-<h3>Per gli organisti</h3>
-<p>Il Concorso internazionale d’organo di Miami, biennale, per organisti di età inferiore ai <span class="num">30</span> anni: primo premio US$&nbsp;<span class="num">5.000</span>, prossima edizione nel <span class="num">2027</span>.</p>
-<p class="azione"><a class="freccia" href="https://ruffatti.com/il-concorso-internazionale-dorgano-di-miami/">Bando e iscrizione&nbsp;→</a><a class="freccia" href="https://www.instagram.com/ruffattiorgans/">Instagram&nbsp;↗</a></p>
+<p class="rimando"><a href="#avete">Per un restauro, o un organo Ruffatti già in chiesa: che cosa preparare per la prima telefonata&nbsp;↑</a></p>
 </div>
 </div>
 </section>
@@ -398,31 +417,26 @@ h1,h2,h3{font-weight:400}
 
 <footer class="piede scuro">
 <div class="wrap griglia">
-<div class="firma">
-<img src="img/logotipo-piede-240.webp" srcset="img/logotipo-piede-240.webp 1x, img/logotipo-piede-480.webp 2x" width="240" height="53" alt="Fratelli Ruffatti" loading="lazy">
+<div class="firma meta-s">
+<img src="img/logotipo-piede-240.webp" srcset="img/logotipo-piede-240.webp 1x, img/logotipo-piede-480.webp 2x" width="240" height="51" alt="Fratelli Ruffatti" loading="lazy">
 <p>Costruttori e restauratori d’organi a canne</p>
 </div>
 <div class="col">
-<h2>Sede</h2>
+<p class="tit">Sede e contatti</p>
 <p>Fratelli Ruffatti<br>Via Facciolati <span class="num">166</span><br><span class="num">35127</span> Padova</p>
-<p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Facciolati+166+35127+Padova">Indicazioni&nbsp;↗</a></p>
-</div>
-<div class="col">
-<h2>Contatti</h2>
 <p><a class="num" href="tel:+39049750666">+39&nbsp;049&nbsp;750&nbsp;666</a><br><a href="mailto:organs@ruffatti.com?subject=Richiesta%20dal%20sito">organs@ruffatti.com</a></p>
 </div>
 <div class="col">
-<h2>Il sito</h2>
+<p class="tit">Il sito</p>
 <ul>
 <li><a href="https://ruffatti.com/come-costruiamo-i-nostri-organi/">Come costruiamo</a></li>
 <li><a href="https://ruffatti.com/il-restauro-di-organi-antichi/">Il restauro</a></li>
-<li><a href="https://ruffatti.com/dicono-di-noi/">Dicono di noi</a></li>
-<li><a href="https://ruffatti.com/cd-dvd-video/">CD, DVD e video</a></li>
+<li><a href="https://ruffatti.com/il-concorso-internazionale-dorgano-di-miami/">Concorso di Miami</a></li>
 <li><a href="https://ruffatti.com/ultime-notizie/">Ultime notizie</a></li>
 </ul>
 </div>
 <div class="col">
-<h2>Altrove</h2>
+<p class="tit">Altrove</p>
 <ul>
 <li><a href="https://www.instagram.com/ruffattiorgans/">Instagram</a></li>
 <li><a href="https://www.youtube.com/channel/UCKZF90tJyL8150NZr8Qm48g">YouTube</a></li>
@@ -435,11 +449,16 @@ h1,h2,h3{font-weight:400}
 </div>
 </footer>
 <script>
-/* il menu a 390 e un <details>: funziona anche senza script; qui si chiude dopo un tocco o con Esc */
+/* il menu del telefono e un <details>: funziona anche senza script; qui si chiude dopo un tocco o con Esc.
+   Il marchio della testata compare quando il logotipo grande esce dallo schermo (senza script resta nascosto). */
 (function(){
-var m=document.querySelector('.menu');if(!m)return;
+var m=document.querySelector('.menu');
+if(m){
 m.addEventListener('click',function(e){if(e.target.closest('.pannello a'))m.removeAttribute('open');});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.removeAttribute('open');m.querySelector('summary').focus();}});
+}
+var t=document.querySelector('.testata'),l=document.querySelector('.apertura h1 img');
+if(t&&l&&'IntersectionObserver' in window){new IntersectionObserver(function(v){t.classList.toggle('dopo',!v[0].isIntersecting);},{rootMargin:'-88px 0px 0px 0px'}).observe(l);}
 })();
 </script>
 </body>
