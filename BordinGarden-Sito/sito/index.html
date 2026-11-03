@@ -3,556 +3,715 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bordin Garden &amp; Vivai, Saonara (PD): vivaio, garden center e giardini dal 1955</title>
-<meta name="description" content="Vivaio di piante ornamentali ed esemplari in zolla, garden center a forma di piramide e giardini chiavi in mano. In via dei Vivai a Saonara, a due passi da Padova, dal 1955.">
-<meta name="theme-color" content="#F3F0E8">
+<title>Bordin Garden &amp; Vivai, Saonara (PD): garden center, giardini e vivai dal 1955</title>
+<meta name="description" content="Il Garden Bordin, il centro del verde a forma di piramide in via dei Vivai 6 a Saonara, a due passi da Padova. Orari, telefono e indicazioni; giardini chiavi in mano; vivaio di piante ornamentali ed esemplari in zolla. Dal 1955.">
+<meta name="theme-color" content="#17432A">
+<link rel="icon" href="img/logo-bordin-360.png">
 <style>
-@font-face{font-family:"Zodiak";src:url("fonts/zodiak-300.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+/* Caratteri: Zodiak (titoli, cifre, stato) e Switzer (testo e interfaccia), Indian Type Foundry, Fontshare, ITF Free Font License */
 @font-face{font-family:"Zodiak";src:url("fonts/zodiak-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Switzer";src:url("fonts/switzer-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Switzer";src:url("fonts/switzer-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url("fonts/switzer-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
 :root{
-  --carta:#F3F0E8;
-  --carta-2:#EAE5D9;
-  --inchiostro:#1F2A1F;
-  --verde-scuro:#3A4F35;
-  --grigio:#575653;
-  --filo:rgba(31,42,31,.16);
-  --m:72px;
+  /* due colori dal marchio: la foglia del logo e il suo verde scuro; poi i neutri */
+  --foglia:#39A559;
+  --bosco:#17432A;
+  --bianco:#FFFFFF;
+  --nebbia:#F1F3EF;
+  --inchiostro:#1C2420;
+  --grigio:#5A5959;
+  --filo:rgba(28,36,32,.16);
+  --filo-chiaro:rgba(255,255,255,.22);
   --serif:"Zodiak",Georgia,serif;
   --sans:"Switzer",system-ui,sans-serif;
+  /* scala: sette misure per schermo */
+  --f1:86px; --f2:56px; --f3:30px; --f4:22px; --f5:18px; --f6:16px; --f7:14px;
+  --m:64px; --sez:120px; --gap:24px; --testata:88px; --btn:52px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--sans);font-size:18px;line-height:1.6;font-synthesis:none;text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+body{margin:0;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f5);line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
-button,input{text-rendering:geometricPrecision;font-synthesis:none}
-a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-a:hover{color:var(--verde-scuro)}
-:focus-visible{outline:2px solid var(--inchiostro);outline-offset:3px}
 h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+:focus-visible{outline:2px solid var(--foglia);outline-offset:3px}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .nobr{white-space:nowrap}
-.wrap{padding-left:var(--m);padding-right:var(--m)}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{padding-left:max(var(--m),calc((100vw - 1312px)/2));padding-right:max(var(--m),calc((100vw - 1312px)/2))}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+.sez{padding-top:var(--sez);padding-bottom:var(--sez)}
+.nebbia{background:var(--nebbia)}
+.scuro{background:var(--bosco);color:var(--bianco)}
+.occhiello{font:600 var(--f6)/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--bosco)}
+.scuro .occhiello{color:var(--foglia)}
+h2.t{font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1.08;letter-spacing:-.015em;text-wrap:balance}
+.occhiello + h2.t{margin-top:16px}
+.lead{font-size:var(--f4);line-height:1.45;text-wrap:pretty}
+.testo{font-size:var(--f5);line-height:1.6;text-wrap:pretty}
+.grigio{color:var(--grigio)}
+.scuro .grigio{color:rgba(255,255,255,.78)}
 
-/* ---------- testata ---------- */
-.testata{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;padding-top:30px}
-.testata .logo img{width:150px;height:auto}
-.nav{display:flex;gap:34px;font-size:16px}
-.nav a{text-decoration:none}
+/* ---------- bottoni: un solo modello, pieno e a filo ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--btn);padding:0 22px;border:1.5px solid var(--bosco);border-radius:3px;background:var(--bosco);color:var(--bianco);font:600 var(--f6)/1.2 var(--sans);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:#0F2F1D;border-color:#0F2F1D}
+.btn.filo{background:transparent;color:var(--bosco)}
+.btn.filo:hover{background:var(--nebbia)}
+.scuro .btn{background:var(--bianco);border-color:var(--bianco);color:var(--bosco)}
+.scuro .btn:hover{background:var(--nebbia)}
+.scuro .btn.filo{background:transparent;color:var(--bianco);border-color:rgba(255,255,255,.7)}
+.scuro .btn.filo:hover{background:rgba(255,255,255,.08)}
+.btn .n{font-weight:400}
+.freccia{font-weight:600;color:var(--bosco);text-decoration:none;font-size:var(--f6)}
+.freccia::after{content:"\00a0\2192"}
+
+/* ---------- testata fissa ---------- */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid transparent;transition:border-color .2s}
+.testata.giu{border-bottom-color:var(--filo)}
+.testata .riga{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--testata)}
+.logo img{width:150px;height:auto}
+.nav{display:flex;gap:30px;font-size:var(--f6);font-weight:600}
+.nav a{text-decoration:none;padding:8px 0}
 .nav a:hover{text-decoration:underline}
-.testata .tel{font-size:16px;text-decoration:none}
-.testata .tel span{color:var(--grigio);margin-right:8px}
+.testata .destra{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none}
 
-/* ---------- apertura: gli esemplari in zolla, foto vera ---------- */
-.apertura{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:0 var(--m)}
-h1{grid-column:1 / span 7;align-self:end;margin-top:72px;font-family:var(--serif);font-weight:300;font-size:clamp(52px,6.4vw,112px);line-height:.94;letter-spacing:-.028em}
-.accanto{grid-column:8 / span 5;align-self:end;margin-top:72px;padding-bottom:4px}
-.lead{max-width:29em;text-wrap:pretty;font-size:18px;line-height:1.5}
-.azioni{margin-top:24px}
-.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;background:var(--inchiostro);color:var(--carta);font:500 16px/1 var(--sans);text-decoration:none;border:0;cursor:pointer}
-.btn:hover{background:var(--verde-scuro);color:var(--carta)}
-.adesso{margin-top:16px;font-size:15px;line-height:1.5}
-.adesso .pallino{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--inchiostro);margin-right:10px;vertical-align:0}
-.adesso.chiuso .pallino{background:transparent;box-shadow:inset 0 0 0 1.5px var(--inchiostro)}
-.adesso .sep{color:var(--grigio);margin:0 4px 0 8px}
-.vista{grid-column:1 / -1;margin-top:44px}
-.vista img{width:100%;height:auto;aspect-ratio:1940/880;max-height:820px;object-fit:cover;object-position:50% 60%;background:var(--carta-2)}
-.vista figcaption{display:flex;justify-content:space-between;gap:24px;margin-top:14px;font-size:15px;color:var(--grigio)}
-.vista figcaption b{font-weight:500;color:var(--inchiostro)}
+/* ---------- apertura ---------- */
+.apertura{padding-top:32px;padding-bottom:8px;row-gap:0}
+.apertura .capo{grid-column:1 / -1}
+h1{margin-top:10px;font-family:var(--serif);font-weight:400;font-size:var(--f1);line-height:1.02;letter-spacing:-.025em}
+.ap-sx{grid-column:1 / span 5;margin-top:36px;display:flex;flex-direction:column}
+.ap-foto{grid-column:6 / span 7;margin-top:36px}
+.ap-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--nebbia)}
+.stato{font-family:var(--serif);font-size:var(--f3);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.stato .pallino{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--foglia);margin-right:12px;vertical-align:.06em}
+.stato.chiuso .pallino{background:transparent;box-shadow:inset 0 0 0 2px var(--grigio)}
+.oggi{margin-top:10px;font-size:var(--f6);color:var(--grigio)}
+.oggi a{color:var(--inchiostro);font-weight:600}
+.azioni{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.azioni .btn:first-child{grid-column:1 / -1}
+.ap-sx .lead{margin-top:28px;font-size:var(--f5);color:var(--grigio)}
+.porte{margin-top:auto;padding-top:28px}
+.porte a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 16px;padding:14px 0;border-top:1px solid var(--filo);text-decoration:none}
+.porte a:last-child{border-bottom:1px solid var(--filo)}
+.porte b{font-family:var(--serif);font-weight:400;font-size:var(--f4);line-height:1.2}
+.porte span{grid-column:1;font-size:var(--f6);color:var(--grigio)}
+.porte i{grid-row:1 / span 2;grid-column:2;font-style:normal;font-weight:600;color:var(--bosco)}
+.porte a:hover b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 
-/* ---------- sezioni ---------- */
-.sez{padding-top:124px}
-h2.t{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,68px);line-height:1.02;letter-spacing:-.022em;text-wrap:balance}
-.intro{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
-.intro h2{grid-column:1 / span 7}
-.intro p{grid-column:1 / span 6;margin-top:28px;font-size:19px;line-height:1.6;text-wrap:pretty}
-#mestieri .intro h2{grid-column:1 / -1}
-#mestieri .intro p{grid-column:5 / span 6}
+/* ---------- tre ingressi ---------- */
+.testa-sez{display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.schede{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.scheda{position:relative;display:flex;flex-direction:column}
+.scheda img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--nebbia)}
+.scheda h3{margin-top:22px;font-family:var(--serif);font-weight:400;font-size:var(--f3);line-height:1.15}
+.scheda h3 a{text-decoration:none}
+.scheda h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.scheda p{margin-top:10px;font-size:var(--f5);line-height:1.55;text-wrap:pretty}
+.scheda .piedino{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:var(--f6)}
+.scheda .piedino .tel{position:relative;z-index:2;display:inline-flex;align-items:center;min-height:44px;font-weight:600;color:var(--inchiostro)}
+.scheda .piedino .vai{font-weight:600;color:var(--bosco)}
+.scheda:hover h3 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 
-/* tre mestieri */
-.mestieri{margin-top:72px;border-top:1px solid var(--filo)}
-.mestiere{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:baseline;padding:34px 0 36px;border-bottom:1px solid var(--filo)}
-.mestiere h3{grid-column:1 / span 4;font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.4vw,64px);line-height:1;letter-spacing:-.02em}
-.mestiere p{grid-column:5 / span 5;font-size:17px;line-height:1.55}
-.mestiere .dove{grid-column:10 / span 3;font-size:15px;color:var(--grigio);text-align:right}
-.mestiere .vai{display:block;margin-top:6px;font-size:16px;color:var(--inchiostro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.25em}
-.mestiere .vai:hover{color:var(--verde-scuro)}
+/* ---------- garden ---------- */
+.garden .capo{grid-column:1 / span 6}
+.garden .capo .testo{margin-top:24px}
+.garden .elenco{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;column-gap:24px;font-size:var(--f6)}
+.garden .elenco li{padding:10px 0;border-top:1px solid var(--filo)}
+.sede{grid-column:8 / span 5;background:var(--bianco);padding:32px}
+.sede h3{font-family:var(--serif);font-weight:400;font-size:var(--f3);line-height:1.15}
+.sede .indirizzo{margin-top:6px;font-size:var(--f6);color:var(--grigio)}
+.orari{margin-top:20px;display:grid;grid-template-columns:auto 1fr;column-gap:24px;font-size:var(--f6);line-height:1.4}
+.orari dt,.orari dd{padding:9px 0;border-top:1px solid var(--filo)}
+.orari dt{font-weight:600}
+.orari .oggi-r{color:var(--bosco);font-weight:600}
+.orari .oggi-r.dd::after{content:" \00b7 oggi";font-weight:600}
+.sede .btns{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sede .btns .btn:first-child{grid-column:1 / -1}
+.sede .mail{margin-top:16px;font-size:var(--f6)}
+.reparti{grid-column:1 / -1;margin-top:64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.reparti img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.reparti h3{margin-top:18px;font-family:var(--serif);font-weight:400;font-size:var(--f4);line-height:1.2}
+.reparti p{margin-top:6px;font-size:var(--f6);color:var(--grigio)}
 
-/* dal vivaio al giardino */
-.passaggio .testa{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
-.passaggio .testa div{max-width:780px}
-.passaggio .testa p{margin-top:24px;font-size:19px;max-width:34em}
-.scambio{display:inline-flex;border:1px solid var(--inchiostro);flex:none}
-.scambio button{min-height:48px;padding:0 22px;background:transparent;color:var(--inchiostro);font:500 16px/1 var(--sans);border:0;cursor:pointer}
-.scambio button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
-.scambio button[aria-pressed="false"]:hover{background:var(--carta-2)}
-.quadro{margin-top:48px}
-.quadro figure{aspect-ratio:2.2;max-height:680px;width:100%;overflow:hidden;background:var(--carta-2)}
-.quadro figure img{width:100%;height:100%;object-fit:cover;object-position:50% 70%}
-.quadro figure[hidden]{display:none}
-.didascalia{display:flex;gap:24px;justify-content:space-between;margin-top:14px;font-size:15px;color:var(--grigio)}
-.didascalia b{font-weight:500;color:var(--inchiostro)}
+/* ---------- storia e numeri ---------- */
+.storia h2.t{grid-column:1 / span 10}
+.storia .testo{grid-column:1 / span 6;margin-top:36px;color:rgba(255,255,255,.86)}
+.numeri{grid-column:1 / -1;margin-top:72px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
+.numeri li{border-top:1px solid var(--filo-chiaro);padding-top:20px}
+.numeri b{display:block;font-family:var(--serif);font-weight:400;font-size:var(--f2);line-height:1;color:var(--foglia)}
+.numeri span{display:block;margin-top:14px;font-size:var(--f6);line-height:1.45;color:rgba(255,255,255,.86)}
 
-.metodo{margin-top:96px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
-.metodo h3{grid-column:1 / -1;font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-.01em}
-.metodo ol{grid-column:1 / -1;margin-top:28px;border-top:1px solid var(--inchiostro)}
-.metodo li{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:baseline;padding:20px 0 22px;border-bottom:1px solid var(--filo)}
-.metodo li .n{grid-column:1;font-family:var(--serif);font-weight:300;font-size:30px;line-height:1}
-.metodo li b{grid-column:2 / span 3;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;letter-spacing:-.008em}
-.metodo li .d{grid-column:5 / span 7;font-size:17px;line-height:1.55}
-.garanzia{grid-column:5 / span 7;max-width:20em;font-family:var(--serif);font-weight:300;font-size:clamp(28px,2.6vw,38px);line-height:1.18;letter-spacing:-.012em;margin-top:48px;text-wrap:balance}
+/* ---------- giardini: lavori ---------- */
+.lavori{margin-top:48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:56px}
+.lavoro img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--nebbia)}
+.lavoro.grande{grid-column:1 / span 8}
+.lavoro.grande + .info{grid-column:9 / span 4;align-self:end}
+.lavoro.meta{grid-column:span 6}
+.lavoro h3,.info h3{margin-top:18px;font-family:var(--serif);font-weight:400;font-size:var(--f3);line-height:1.15}
+.info h3{margin-top:0}
+.lavoro p,.info p{margin-top:8px;font-size:var(--f5);color:var(--grigio)}
+.info .freccia{display:inline-block;margin-top:22px}
 
-/* garden */
-.garden .intro p{grid-column:1 / span 6}
-.articoli{grid-column:8 / span 5;grid-row:1 / span 2;align-self:end;columns:2;column-gap:24px;font-size:16px;line-height:1.45}
-.articoli li{break-inside:avoid;padding:10px 0;border-top:1px solid var(--filo)}
-.grande{margin:64px calc(-1 * var(--m)) 0}
-.grande img{width:100%;aspect-ratio:1.85;object-fit:cover}
+/* ---------- metodo e richiesta ---------- */
+.metodo-col{grid-column:1 / span 5}
+.passi{margin-top:36px;border-top:1px solid var(--inchiostro)}
+.passi li{display:grid;grid-template-columns:48px 1fr;column-gap:12px;padding:18px 0;border-bottom:1px solid var(--filo)}
+.passi .n{font-family:var(--serif);font-size:var(--f3);line-height:1;color:var(--bosco)}
+.passi b{font-weight:600}
+.passi span.d{grid-column:2;font-size:var(--f6);color:var(--grigio);margin-top:4px}
+.garanzia{margin-top:36px;font-family:var(--serif);font-size:var(--f3);line-height:1.25;text-wrap:balance}
+.garanzia small{display:block;margin-top:10px;font-family:var(--sans);font-size:var(--f6);color:var(--grigio)}
+.richiesta{grid-column:7 / span 6;background:var(--bianco);padding:40px}
+.richiesta h3{font-family:var(--serif);font-weight:400;font-size:var(--f3);line-height:1.15}
+.richiesta .sotto{margin-top:8px;font-size:var(--f6);color:var(--grigio)}
+form{margin-top:24px}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.tutta{grid-column:1 / -1}
+label,.etich{font-size:var(--f6);font-weight:600}
+input[type=text],input[type=tel],textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid rgba(28,36,32,.4);border-radius:3px;background:var(--bianco);font:400 var(--f6)/1.4 var(--sans);color:var(--inchiostro)}
+textarea{min-height:110px;resize:vertical}
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--foglia);outline-offset:0;border-color:var(--bosco)}
+fieldset{grid-column:1 / -1;margin:0;padding:0;border:0}
+.caselle{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
+.caselle label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(28,36,32,.4);border-radius:3px;font-weight:400;cursor:pointer}
+.caselle input{width:18px;height:18px;margin:0;accent-color:var(--bosco)}
+.caselle label:has(input:checked){border-color:var(--bosco);box-shadow:inset 0 0 0 1px var(--bosco)}
+.allegato{grid-column:1 / -1;font-size:var(--f6);color:var(--grigio)}
+.invio{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+.esito{margin-top:12px;font-size:var(--f6)}
+.esito:empty{display:none}
 
-/* chiusura */
-.chiusura{margin-top:124px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-left:var(--m);align-items:start}
-.chiusura .testo{grid-column:1 / span 4}
-.chiusura .foto{grid-column:5 / span 8}
-.chiusura .frase{font-family:var(--serif);font-weight:300;font-size:clamp(56px,7vw,112px);line-height:.95;letter-spacing:-.028em;margin-top:-.13em}
-.chiusura .sotto{margin-top:26px;font-size:19px;max-width:28em}
-.sedi{margin-top:52px;display:grid;grid-template-columns:1fr;row-gap:40px}
-.sede h3{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.008em;margin-bottom:14px}
-.sede .tel{display:inline-block;font-size:28px;line-height:1.2;margin-bottom:10px;text-decoration:none;border-bottom:1px solid currentColor}
-.sede p{font-size:16px;line-height:1.6}
-.orari{margin-top:16px;display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:3px;font-size:15px;line-height:1.45}
-.orari dt{color:var(--grigio)}
-.orari .oggi{color:var(--inchiostro);font-weight:500}
-.orari .oggi-tag{margin-left:10px;font-weight:500}
-.sede .riga-orari{margin-top:6px;font-size:15px;color:var(--grigio)}
-.chiusura .foto img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
-.chiusura .foto figcaption{margin-top:12px;font-size:15px;color:var(--grigio);padding-right:var(--m)}
+/* ---------- vivai ---------- */
+.vivai .sx{grid-column:1 / span 6}
+.vivai .dx{grid-column:8 / span 5}
+.vivai .testo{margin-top:24px;color:rgba(255,255,255,.88)}
+.fatti{margin-top:32px}
+.fatti li{padding:14px 0;border-top:1px solid var(--filo-chiaro);font-size:var(--f5)}
+.fatti li:last-child{border-bottom:1px solid var(--filo-chiaro)}
+.fatti b{font-weight:600}
+.vivai .btns{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px}
+.vivai .orari dt,.vivai .orari dd{border-top-color:var(--filo-chiaro)}
+.vivai .orari .oggi-r{color:var(--foglia)}
+.vivai .dove{margin-top:28px}
+.vivai .dove h3{font-family:var(--serif);font-weight:400;font-size:var(--f4)}
+.vivai .dove .indirizzo{margin-top:4px;font-size:var(--f6);color:rgba(255,255,255,.78)}
+.vivai .dove .freccia{color:var(--bianco);display:inline-flex;align-items:center;min-height:44px;margin-top:8px}
+.vivai figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.vivai figcaption{margin-top:12px;font-size:var(--f6);color:rgba(255,255,255,.78)}
 
 /* ---------- piede ---------- */
-.piede{margin-top:112px;padding-top:64px;padding-bottom:40px;border-top:1px solid var(--filo)}
-.piede .alto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;row-gap:48px}
-.piede .marchio{grid-column:1 / span 3}
-.piede .marchio img{width:180px}
-.piede .marchio p{margin-top:22px;font-size:15px;line-height:1.55;color:var(--grigio);max-width:22em}
-.piede nav{grid-column:4 / span 6;display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px}
-.piede h2{font:500 14px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--grigio);margin-bottom:16px}
-.piede nav li{font-size:15px;line-height:1.4;padding:4px 0}
-.piede nav a{text-decoration:none}
-.piede nav a:hover{text-decoration:underline;color:var(--inchiostro)}
-.lettera{grid-column:10 / span 3}
-.lettera p{font-size:15px;line-height:1.5;color:var(--grigio)}
-.lettera form{margin-top:16px}
-.lettera .riga{display:flex;gap:8px}
-.lettera input[type=email]{flex:1;min-width:0;min-height:48px;border:1px solid rgba(31,42,31,.45);background:transparent;font:400 16px var(--sans);color:var(--inchiostro);padding:0 12px;border-radius:0}
-.lettera input[type=email]::placeholder{color:#6B6A64}
-.lettera input[type=email]:focus-visible{outline:2px solid var(--inchiostro);outline-offset:0}
-.lettera button{flex:none;min-height:48px;border:0;background:var(--inchiostro);color:var(--carta);font:500 16px var(--sans);cursor:pointer;padding:0 18px}
-.lettera button:hover{background:var(--verde-scuro)}
-.consenso{display:grid;grid-template-columns:22px 1fr;gap:8px;margin-top:14px;font-size:14px;line-height:1.45;color:var(--grigio)}
-.consenso input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--inchiostro)}
-.esito{margin-top:6px;font-size:14px}
-.esito:empty{margin:0}
-.seguici{margin-top:24px;display:flex;gap:22px;font-size:15px}
-.seguici a{text-decoration:none;border-bottom:1px solid var(--filo)}
-.seguici a:hover{border-color:var(--inchiostro)}
-.legale{margin-top:72px;padding-top:20px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--grigio)}
-.legale a{color:var(--grigio)}
-.legale a:hover{color:var(--inchiostro)}
+.piede{padding-top:96px;padding-bottom:40px;border-top:1px solid var(--filo)}
+.piede .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.piede .logo img{width:170px}
+.piede p,.piede li{font-size:var(--f6);line-height:1.55}
+.piede .marchio p{margin-top:18px;color:var(--grigio);max-width:22em}
+.piede h2{font:600 var(--f6)/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--bosco);margin-bottom:14px}
+.piede li{padding:3px 0}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline}
+.piede .grigio{color:var(--grigio)}
+.legale{margin-top:64px;padding-top:20px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:var(--f7);color:var(--grigio)}
 
-/* ---------- schermi larghi ---------- */
-
-/* ---------- 1024 ---------- */
-@media (max-width:1200px){
-  :root{--m:48px}
-  .nav{gap:24px}
-  h1{grid-column:1 / span 7;margin-top:56px}
-  .accanto{grid-column:8 / span 5;margin-top:56px}
-  .lead{font-size:17px}
-  .metodo li b{grid-column:2 / span 4}
-  .metodo li .d,.garanzia{grid-column:6 / span 7}
-  .articoli{grid-column:1 / span 12;grid-row:auto;margin-top:36px;columns:3}
-  .garden .intro p{grid-column:1 / span 8}
-  .chiusura .testo{grid-column:1 / span 5}
-  .chiusura .foto{grid-column:6 / span 7}
-  .piede .marchio{grid-column:1 / span 5;grid-row:1}
-  .lettera{grid-column:7 / span 6;grid-row:1}
-  .piede nav{grid-column:1 / -1;grid-row:2}
+/* ---------- da 1101 a 1300 ---------- */
+@media (max-width:1300px){
+  :root{--f1:76px;--f2:50px;--m:48px}
+  .nav{gap:22px}
 }
-
-/* ---------- tablet e telefono ---------- */
-@media (max-width:900px){
-  :root{--m:24px}
-  body{font-size:17px}
-  .apertura{display:flex;flex-direction:column;padding:0}
-  .apertura .vista{order:2}
-  .apertura .accanto{order:3}
-  .testata{padding:16px var(--m);flex-wrap:wrap}
-  .testata .logo img{width:124px}
-  .testata .tel{display:none}
-  .menu-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;background:none;border:0;font:500 16px var(--sans);color:var(--inchiostro);cursor:pointer;text-decoration:underline;text-underline-offset:.25em}
-  .nav{display:none;width:100%;flex-direction:column;gap:0;padding-top:12px}
+/* ---------- tablet ---------- */
+@media (max-width:1100px){
+  :root{--f1:64px;--f2:44px;--f3:26px;--f4:20px;--f5:17px;--m:40px;--sez:96px;--testata:80px}
+  .nav{display:none;position:absolute;left:0;right:0;top:var(--testata);flex-direction:column;gap:0;background:var(--bianco);padding:8px var(--m) 20px;border-bottom:1px solid var(--filo)}
   .nav.aperto{display:flex}
-  .nav a{padding:12px 0;border-top:1px solid var(--filo);font-size:18px}
-  h1{align-self:auto;margin:18px var(--m) 0;font-size:clamp(46px,12.6vw,84px)}
-  .vista{margin-top:24px}
-  .vista img{aspect-ratio:auto}
-  .vista figcaption{display:block;margin-top:10px;padding:0 var(--m);font-size:14px}
-  .vista figcaption span{display:block}
-  .vista figcaption span + span{display:none}
-  .lead .seconda{display:none}
-  .accanto{align-self:stretch;margin-top:0;padding:20px var(--m) 0}
-  .lead{font-size:16px;max-width:34em}
-  .azioni{margin-top:18px}
-  .adesso{margin-top:14px;font-size:15px}
-  .sez{padding-top:80px}
-  .intro{display:block}
-  .intro p{margin-top:20px;font-size:17px}
-  .mestieri{margin-top:40px}
-  .mestiere{display:grid;grid-template-columns:1fr auto;column-gap:16px;padding:22px 0 22px}
-  .mestiere h3{grid-column:1 / -1;font-size:40px}
-  .mestiere p{grid-column:1 / -1;margin-top:10px;font-size:16px}
-  .mestiere .dove{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:left;margin-top:10px}
-  .mestiere .vai{margin-top:0}
-  .passaggio .testa{display:block}
-  .passaggio .testa p{font-size:17px;margin-top:18px}
-  .scambio{margin-top:24px;width:100%}
-  .scambio button{flex:1;padding:0 10px}
-  .quadro{margin-top:20px}
-  .quadro figure{aspect-ratio:4/3}
-  .didascalia{display:block;padding:0 var(--m)}
-  .didascalia span{display:block}
-  .metodo{display:block;margin-top:56px}
-  .metodo h3{font-size:26px}
-  .metodo ol{margin-top:20px}
-  .metodo li{grid-template-columns:36px 1fr;column-gap:8px;padding:14px 0}
-  .metodo li .n{grid-row:1 / span 2;font-size:24px;line-height:1.1}
-  .metodo li b{grid-column:2;font-size:20px}
-  .metodo li .d{grid-column:2;margin-top:4px;font-size:15px}
-  .garanzia{margin-top:32px;font-size:26px}
-  .articoli{columns:2;column-gap:16px;margin-top:24px;font-size:15px}
-  .grande{margin-top:32px}
-  .grande img{aspect-ratio:4/3}
-  .chiusura{display:block;margin-top:80px;padding-left:0}
-  .chiusura .testo{padding:0 var(--m)}
-  .chiusura .frase{font-size:clamp(48px,13vw,84px);margin-top:0}
-  .chiusura .sotto{font-size:17px}
-  .sedi{margin-top:36px;grid-template-columns:1fr}
-  .chiusura .foto{margin-top:44px}
-  .chiusura .foto img{aspect-ratio:4/3}
-  .chiusura .foto figcaption{padding:0 var(--m)}
-  .piede{margin-top:72px;padding-top:44px}
-  .piede .alto{display:block}
-  .piede .marchio img{width:150px}
-  .piede nav{display:grid;grid-template-columns:1fr 1fr;row-gap:32px;margin-top:40px}
-  .piede nav > div:nth-child(3){grid-column:1 / span 2}
-  .lettera{margin-top:40px}
-  .legale{margin-top:44px;flex-direction:column;gap:6px}
+  .nav a{padding:14px 0;border-top:1px solid var(--filo);font-size:var(--f5)}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px;border:1.5px solid var(--bosco);border-radius:3px;background:transparent;font:600 var(--f6)/1 var(--sans);color:var(--bosco);cursor:pointer}
+  .ap-sx{grid-column:1 / span 6}
+  .ap-foto{grid-column:7 / span 6}
+  .ap-sx .lead{display:none}
+  .scheda .piedino{flex-wrap:wrap;row-gap:0}
+  .scheda .piedino .vai{white-space:nowrap}
+  .schede,.reparti{gap:20px}
+  .garden .capo{grid-column:1 / -1}
+  .sede{grid-column:1 / -1;margin-top:40px;order:3}
+  .reparti{order:2}
+  .storia h2.t{grid-column:1 / -1}
+  .storia .testo{grid-column:1 / span 9}
+  .numeri{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
+  .lavoro.grande{grid-column:1 / -1}
+  .lavoro.grande + .info{grid-column:1 / -1;margin-top:-32px}
+  .metodo-col,.richiesta{grid-column:1 / -1}
+  .richiesta{margin-top:48px}
+  .vivai .sx,.vivai .dx{grid-column:1 / -1}
+  .vivai .dx{margin-top:48px}
+  .piede .cols{grid-template-columns:1fr 1fr;row-gap:48px}
 }
-@media (max-width:360px){
-  .articoli{columns:1}
-  .adesso{font-size:14px}
+/* ---------- apertura in colonna ---------- */
+@media (max-width:900px){
+  .ap-sx{grid-column:1 / -1;margin-top:28px}
+  .ap-foto{grid-column:1 / -1;margin-top:32px;order:3}
+  .ap-foto img{aspect-ratio:3/2}
+  .porte{display:none}
+  .azioni{max-width:560px}
+}
+/* ---------- telefono ---------- */
+@media (max-width:700px){
+  :root{--f1:42px;--f2:32px;--f3:24px;--f4:20px;--f5:17px;--m:20px;--sez:72px;--gap:16px;--testata:64px;--btn:48px}
+  .logo img{width:112px}
+  .testata .riga{gap:10px}
+  .testata .destra{gap:8px}
+  .testata .btn{min-height:44px;padding:0 12px}
+  .apertura{padding-top:20px;padding-bottom:0}
+  .apertura .occhiello{font-size:var(--f7);letter-spacing:.06em}
+  h1{margin-top:8px;line-height:1.04}
+  .ap-sx{margin-top:20px}
+  .stato .pallino{width:12px;height:12px;margin-right:10px}
+  .oggi{margin-top:8px}
+  .azioni{margin-top:18px;gap:8px;max-width:none}
+  .ap-foto{margin:24px calc(-1 * var(--m)) 0}
+  .testa-sez{display:block}
+  .testa-sez .freccia{display:inline-block;margin-top:16px}
+  .schede{grid-template-columns:1fr;gap:44px;margin-top:32px}
+  .scheda h3{margin-top:16px}
+  .garden .elenco{grid-template-columns:1fr}
+  .reparti{grid-template-columns:1fr 1fr;gap:20px 12px;margin-top:40px}
+  .reparti .r3{grid-column:1 / -1}
+  .reparti .r3 img{aspect-ratio:3/2}
+  .reparti h3{margin-top:10px;font-size:var(--f5);font-family:var(--sans);font-weight:600}
+  .reparti p{display:none}
+  .sede{padding:24px 20px;margin:40px calc(-1 * var(--m)) 0}
+  .orari{column-gap:16px}
+  .numeri{grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:48px}
+  .numeri li:last-child{grid-column:1 / -1}
+  .storia .testo{grid-column:1 / -1;margin-top:24px}
+  .lavori{row-gap:40px;margin-top:32px}
+  .lavoro.grande,.lavoro.meta{grid-column:1 / -1}
+  .lavoro.grande{margin:0 calc(-1 * var(--m))}
+  .lavoro.grande + .info{margin-top:-24px}
+  .lavoro h3{margin-top:14px}
+  .richiesta{padding:24px 20px;margin:40px calc(-1 * var(--m)) 0}
+  .campi{grid-template-columns:1fr}
+  .invio .btn{width:100%}
+  .vivai .btns .btn{width:100%}
+  .vivai figure{margin:0 calc(-1 * var(--m))}
+  .vivai figcaption{padding:0 var(--m)}
+  .piede{padding-top:64px}
+  .piede .cols{grid-template-columns:1fr;row-gap:40px}
+  .legale{margin-top:48px;flex-direction:column}
+}
+@media (max-width:374px){
+  .testata .btn .n{display:none}
+  .logo img{width:100px}
 }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"GardenStore","name":"Bordin Garden","telephone":"+39 049 8791098","email":"info@bordingarden.it","address":{"@type":"PostalAddress","streetAddress":"Via dei Vivai 6","addressLocality":"Saonara","addressRegion":"PD","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.38608,"longitude":11.961015},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"15:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],"opens":"08:30","closes":"12:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"15:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:30"}]},
+{"@type":"LocalBusiness","name":"Bordin Vivai","telephone":"+39 049 640156","email":"info@bordinvivai.it","address":{"@type":"PostalAddress","streetAddress":"Via dei Vivai 14","postalCode":"35020","addressLocality":"Saonara","addressRegion":"PD","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.3857,"longitude":11.9625},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"12:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:00","closes":"18:00"}]}
+]}
+</script>
 </head>
 <body>
 
-<main>
-<section class="apertura" aria-labelledby="titolo">
-  <header class="testata">
-    <a class="logo" href="#"><img src="img/logo-bordin-360.png" width="360" height="126" alt="Bordin, Garden &amp; Vivai, 1955"></a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+<header class="testata" id="testata">
+  <div class="riga wrap">
+    <a class="logo" href="#inizio" aria-label="Bordin Garden &amp; Vivai, inizio pagina"><img src="img/logo-bordin-360.png" width="360" height="126" alt="Bordin, Garden &amp; Vivai, 1955"></a>
     <nav class="nav" id="nav" aria-label="Principale">
-      <a href="#mestieri">Vivai</a>
-      <a href="#garden">Garden</a>
-      <a href="#passaggio">Giardini</a>
-      <a href="#mestieri">La storia</a>
-      <a href="#visita">Orari e contatti</a>
+      <a href="#garden">Garden e orari</a>
+      <a href="#giardini">Giardini</a>
+      <a href="#vivai">Vivai</a>
+      <a href="#storia">La storia</a>
+      <a href="#contatti">Contatti</a>
     </nav>
-    <a class="tel num" href="tel:+390498791098"><span>Garden</span>049&nbsp;8791098</a>
-  </header>
-
-  <h1 id="titolo">Produciamo<br>natura dal&nbsp;1955</h1>
-  <div class="accanto">
-    <p class="lead">Vivaio di piante ornamentali, garden center e giardini chiavi in mano.<span class="seconda"> La famiglia Bordin, in via dei Vivai a Saonara, a due passi da Padova.</span></p>
-    <p class="azioni"><a class="btn" href="#visita">Orari e indicazioni</a></p>
-    <p class="adesso" id="adesso"><span class="pallino" aria-hidden="true"></span><span id="adesso-testo">Garden, via dei Vivai 6</span><span class="nobr"><span class="sep" aria-hidden="true">·</span> <a href="https://www.google.com/maps/search/?api=1&amp;query=45.38608,11.961015">Indicazioni</a></span></p>
+    <div class="destra">
+      <a class="btn" href="tel:+390498791098" aria-label="Chiama il Garden, 049 8791098">Chiama<span class="n num"> 049&nbsp;8791098</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
   </div>
+</header>
 
-  <figure class="vista">
+<main id="inizio">
+
+<section class="apertura wrap griglia" aria-labelledby="titolo">
+  <div class="capo">
+    <p class="occhiello">Garden center, giardini e vivai a Saonara, Padova</p>
+    <h1 id="titolo">Passione per il verde dal&nbsp;1955</h1>
+  </div>
+  <div class="ap-sx">
+    <p class="stato" id="stato" aria-live="polite"><span class="pallino" aria-hidden="true"></span><span id="stato-testo">Il Garden è aperto dal lunedì pomeriggio al sabato</span></p>
+    <p class="oggi num" id="oggi">Lun 15–19, mar–ven 8:30–12:30 e 15–19, sab 9–12:30 e 15–19. <a href="#orari-garden">Orari</a></p>
+    <div class="azioni">
+      <a class="btn" href="tel:+390498791098">Chiama il Garden <span class="n num">049&nbsp;8791098</span></a>
+      <a class="btn filo" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.38608,11.961015" target="_blank" rel="noopener">Indicazioni</a>
+      <a class="btn filo" href="https://wa.me/393501376907" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="lead">Venite a visitarci: il Garden è la piramide di vetro in via dei Vivai 6, a due passi da Padova.</p>
+    <div class="porte" aria-label="Gli altri servizi">
+      <a href="#giardini"><b>Volete un giardino?</b><span>Vedete i lavori e chiedete un sopralluogo</span><i aria-hidden="true">&rarr;</i></a>
+      <a href="#vivai"><b>Vivai, esemplari in zolla</b><span>Per professionisti: <span class="num">049&nbsp;640156</span>, via dei Vivai 14</span><i aria-hidden="true">&rarr;</i></a>
+    </div>
+  </div>
+  <figure class="ap-foto">
     <picture>
-      <source media="(max-width:640px)" type="image/webp" srcset="img/zolle-quadro-600.webp 600w, img/zolle-quadro-800.webp 800w, img/zolle-quadro-1010.webp 1010w" sizes="100vw">
-      <source media="(max-width:640px)" srcset="img/zolle-quadro-600.jpg 600w, img/zolle-quadro-800.jpg 800w, img/zolle-quadro-1010.jpg 1010w" sizes="100vw">
-      <source type="image/webp" srcset="img/zolle-largo-960.webp 960w, img/zolle-largo-1440.webp 1440w, img/zolle-largo-1940.webp 1940w" sizes="(max-width:900px) 100vw, calc(100vw - 144px)">
-      <img src="img/zolle-largo-1440.jpg" srcset="img/zolle-largo-960.jpg 960w, img/zolle-largo-1440.jpg 1440w, img/zolle-largo-1940.jpg 1940w" sizes="(max-width:900px) 100vw, calc(100vw - 144px)" width="1940" height="880" alt="Esemplari a foglia caduca appena zollati, con la zolla avvolta nella rete, in fila sul prato dei Vivai Bordin" fetchpriority="high">
+      <source media="(max-width:900px)" type="image/webp" srcset="img/garden-piramide-32-600.webp 600w, img/garden-piramide-32-900.webp 900w, img/garden-piramide-32-1200.webp 1200w" sizes="100vw">
+      <source media="(max-width:900px)" srcset="img/garden-piramide-32-900.jpg 900w" sizes="100vw">
+      <source type="image/webp" srcset="img/garden-piramide-43-760.webp 760w, img/garden-piramide-43-1140.webp 1140w, img/garden-piramide-43-1440.webp 1440w" sizes="(min-width:1440px) 756px, 53vw">
+      <img src="img/garden-piramide-43-1140.jpg" width="1140" height="855" alt="La piramide di vetro del Garden Bordin, con l'olivo potato a nuvole e le aiuole di aromatiche davanti" fetchpriority="high">
     </picture>
-    <figcaption><span><b>Vivai Bordin.</b> Esemplari a foglia caduca appena zollati, la zolla avvolta nella rete.</span><span>In zolla o in vaso, spediti in tutta Italia</span></figcaption>
   </figure>
 </section>
 
-<section class="sez wrap" id="mestieri" aria-labelledby="t-mestieri">
-  <div class="intro">
-    <h2 class="t" id="t-mestieri">Tre mestieri sulla stessa strada</h2>
-    <p>Nel 1955 i fratelli Saverio e Alcide fondano i Vivai Piante Bordin: prima piante da frutto e rose, poi piante ornamentali. Nel 1996 apre il Garden, uno dei primi garden center di Padova. Oggi in azienda lavora la terza generazione.</p>
+<section class="sez wrap" id="servizi" aria-labelledby="t-servizi">
+  <div class="testa-sez">
+    <h2 class="t" id="t-servizi">I nostri servizi</h2>
   </div>
-  <div class="mestieri">
-    <div class="mestiere">
-      <h3>Vivai</h3>
-      <p>Piante ornamentali dai piccoli arbusti agli esemplari unici, in zolla o in vaso. Spedizione in tutta Italia, anche dei grandi esemplari.</p>
-      <p class="dove"><span>Via dei Vivai 14</span><a class="vai" href="#passaggio">La produzione</a></p>
-    </div>
-    <div class="mestiere">
-      <h3>Garden</h3>
-      <p>La piramide di vetro con piante da interno e da esterno, bonsai, piante grasse, terracotte e arredo per il giardino.</p>
-      <p class="dove"><span>Via dei Vivai 6</span><a class="vai" href="#garden">Il Garden</a></p>
-    </div>
-    <div class="mestiere">
-      <h3>Giardini</h3>
-      <p>Progetto e realizzazione chiavi in mano di giardini, parchi, terrazze e verde pensile. Trapianti di esemplari, restauro di giardini storici, manutenzione.</p>
-      <p class="dove"><span class="num">33 album di lavori</span><a class="vai" href="#passaggio">I giardini realizzati</a></p>
-    </div>
+  <div class="schede">
+    <article class="scheda">
+      <picture>
+        <source type="image/webp" srcset="img/garden-grasse-43-480.webp 480w, img/garden-grasse-43-720.webp 720w, img/garden-grasse-43-960.webp 960w" sizes="(max-width:700px) 100vw, 30vw">
+        <img src="img/garden-grasse-43-720.jpg" width="720" height="540" alt="Il reparto delle piante grasse e dei bonsai dentro il Garden, con i vasi in terracotta" loading="lazy">
+      </picture>
+      <h3><a href="#garden">Garden</a></h3>
+      <p>Piante da interno e da esterno, piante grasse anche rare, bonsai, vasi in terracotta, arredo per il giardino e idee regalo.</p>
+      <p class="piedino"><a class="tel num" href="tel:+390498791098">049&nbsp;8791098</a><span class="vai">Cosa trovate &rarr;</span></p>
+    </article>
+    <article class="scheda">
+      <picture>
+        <source type="image/webp" srcset="img/giardini-villa-43-480.webp 480w, img/giardini-villa-43-720.webp 720w, img/giardini-villa-43-960.webp 960w" sizes="(max-width:700px) 100vw, 30vw">
+        <img src="img/giardini-villa-43-720.jpg" width="720" height="540" alt="Il parco di Villa Palladiana fatto da Bordin: prato, siepi di bosso e la barchessa con la torre colombara" loading="lazy">
+      </picture>
+      <h3><a href="#giardini">Giardini</a></h3>
+      <p>Progetto e realizzazione chiavi in mano di giardini, parchi, terrazze e verde pensile. Trapianto di esemplari, giardini storici, manutenzione.</p>
+      <p class="piedino"><a class="tel num" href="tel:+390498791098">049&nbsp;8791098</a><span class="vai">Chiedete un sopralluogo &rarr;</span></p>
+    </article>
+    <article class="scheda">
+      <picture>
+        <source type="image/webp" srcset="img/vivai-zolle-43-480.webp 480w, img/vivai-zolle-43-720.webp 720w, img/vivai-zolle-43-960.webp 960w" sizes="(max-width:700px) 100vw, 30vw">
+        <img src="img/vivai-zolle-43-720.jpg" width="720" height="540" alt="Esemplari appena zollati, con la zolla avvolta nella rete, in fila sul prato dei Vivai Bordin" loading="lazy">
+      </picture>
+      <h3><a href="#vivai">Vivai</a></h3>
+      <p>Piante ornamentali dai piccoli arbusti agli esemplari unici, in zolla o in vaso, pronte per essere spedite in tutta Italia.</p>
+      <p class="piedino"><a class="tel num" href="tel:+39049640156">049&nbsp;640156</a><span class="vai">Per professionisti &rarr;</span></p>
+    </article>
   </div>
 </section>
 
-<section class="sez passaggio" id="passaggio" aria-labelledby="t-passaggio">
-  <div class="testa wrap">
-    <div>
-      <h2 class="t" id="t-passaggio">Dal vivaio al giardino</h2>
-      <p>Gli esemplari crescono nei nostri campi, escono con la zolla avvolta nella rete e vengono messi a dimora da noi, con il progetto e la manutenzione.</p>
-    </div>
-    <div class="scambio" role="group" aria-label="Scegli la fotografia">
-      <button type="button" aria-pressed="true" aria-controls="q-vivaio q-giardino" data-vista="vivaio">In vivaio</button>
-      <button type="button" aria-pressed="false" aria-controls="q-vivaio q-giardino" data-vista="giardino">In giardino</button>
-    </div>
-  </div>
-  <div class="quadro">
-    <figure id="q-vivaio" data-vista="vivaio">
-      <picture>
-        <source type="image/webp" srcset="img/vivaio-campo-960.webp 960w, img/vivaio-campo-1440.webp 1440w, img/vivaio-campo-2128.webp 2128w" sizes="100vw">
-        <img src="img/vivaio-campo-1440.jpg" srcset="img/vivaio-campo-960.jpg 960w, img/vivaio-campo-1440.jpg 1440w, img/vivaio-campo-2128.jpg 2128w" sizes="100vw" width="1440" height="654" alt="Filari di esemplari in foglia nei campi dei Vivai Bordin, in primavera" loading="lazy">
-      </picture>
-    </figure>
-    <figure id="q-giardino" data-vista="giardino" hidden>
-      <picture>
-        <source type="image/webp" srcset="img/giardino-finito-960.webp 960w, img/giardino-finito-1440.webp 1440w, img/giardino-finito-1820.webp 1820w" sizes="100vw">
-        <img src="img/giardino-finito-1440.jpg" srcset="img/giardino-finito-960.jpg 960w, img/giardino-finito-1440.jpg 1440w, img/giardino-finito-1820.jpg 1820w" sizes="100vw" width="1440" height="654" alt="Un giardino privato finito: prato, un albero multitronco, bordure e una casa bianca" loading="lazy">
-      </picture>
-    </figure>
-    <p class="didascalia wrap" aria-live="polite"><span id="did"><b>In vivaio.</b> Filari di esemplari nei campi, in primavera.</span></p>
-  </div>
-
-  <div class="metodo wrap">
-    <h3>Come nasce un giardino</h3>
-    <ol>
-      <li><span class="n num">1</span><b>Sopralluogo</b><span class="d">Veniamo a vedere il terreno, in cantiere.</span></li>
-      <li><span class="n num">2</span><b>Proposta e visita in vivaio</b><span class="d">Progetto e preventivo chiavi in mano; le piante proposte si vedono dal vivo nei nostri campi.</span></li>
-      <li><span class="n num">3</span><b>Tempi</b><span class="d">Accettato il preventivo, fissiamo insieme le tempistiche.</span></li>
-      <li><span class="n num">4</span><b>Manutenzione</b><span class="d">Interventi straordinari per seguire la crescita corretta del giardino.</span></li>
-    </ol>
-    <p class="garanzia">Tutte le piante dei nostri giardini hanno un anno di garanzia d'attecchimento.</p>
-  </div>
-</section>
-
-<section class="sez garden wrap" id="garden" aria-labelledby="t-garden">
-  <div class="intro">
+<section class="sez wrap nebbia griglia garden" id="garden" aria-labelledby="t-garden">
+  <div class="capo">
+    <p class="occhiello">Bordin Garden, via dei Vivai 6</p>
     <h2 class="t" id="t-garden">Il Garden, una piramide di vetro dal&nbsp;1996</h2>
-    <p>Un centro del verde a forma di piramide, a due passi da Padova, con migliaia di proposte da scoprire.</p>
-    <ul class="articoli">
+    <p class="testo">Un luogo piacevole e immerso nel verde a due passi da Padova, uno dei primi garden center della città. Sono migliaia le proposte da scoprire.</p>
+    <ul class="elenco">
       <li>Piante da interno e da esterno</li>
-      <li>Bonsai e accessori</li>
       <li>Piante grasse, anche rare</li>
+      <li>Bonsai e accessori</li>
       <li>Vasi in terracotta</li>
       <li>Arredo per il giardino</li>
       <li>Profumi, detergenti bio e idee regalo</li>
     </ul>
   </div>
-  <figure class="grande">
-    <picture>
-      <source type="image/webp" srcset="img/garden-piramide-960.webp 960w, img/garden-piramide-1440.webp 1440w, img/garden-piramide-1920.webp 1920w" sizes="100vw">
-      <img src="img/garden-piramide-1440.jpg" srcset="img/garden-piramide-960.jpg 960w, img/garden-piramide-1440.jpg 1440w, img/garden-piramide-1920.jpg 1920w" sizes="100vw" width="1440" height="778" alt="La piramide di vetro del Garden, con un olivo potato a nuvole e le aiuole di aromatiche davanti" loading="lazy">
-    </picture>
-  </figure>
-</section>
-
-<section class="chiusura" id="visita" aria-labelledby="t-visita">
-  <div class="testo">
-    <h2 class="frase" id="t-visita">Venite a visitarci</h2>
-    <p class="sotto">Il Garden e i vivai sono sulla stessa strada, a Saonara, a due passi da Padova.</p>
-    <div class="sedi">
-      <div class="sede">
-        <h3>Garden</h3>
-        <a class="tel num" href="tel:+390498791098">049&nbsp;8791098</a>
-        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=45.38608,11.961015">Via dei Vivai 6, Saonara (PD)</a><br>
-        <a href="mailto:info@bordingarden.it">info@bordingarden.it</a><br>
-        <a href="https://wa.me/393501376907">WhatsApp 350&nbsp;1376907</a></p>
-        <dl class="orari num" data-sede="garden">
-          <dt data-g="1">Lunedì</dt><dd data-g="1">15:00–19:00</dd>
-          <dt data-g="2 3 4 5">Mar–ven</dt><dd data-g="2 3 4 5">8:30–12:30, 15:00–19:00</dd>
-          <dt data-g="6">Sabato</dt><dd data-g="6">9:00–12:30, 15:00–19:00</dd>
-          <dt data-g="0">Domenica</dt><dd data-g="0">chiuso</dd>
-        </dl>
-      </div>
-      <div class="sede">
-        <h3>Vivai</h3>
-        <a class="tel num" href="tel:+39049640156">049&nbsp;640156</a>
-        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=45.3857,11.9625">Via dei Vivai 14, Saonara (PD)</a></p>
-        <p class="riga-orari num">Lun–ven 8–12 e 14–18 · sabato mattina su appuntamento</p>
-      </div>
+  <div class="sede" id="orari-garden">
+    <h3>Orari del Garden</h3>
+    <p class="indirizzo">Via dei Vivai 6, Saonara (PD)</p>
+    <dl class="orari num" data-sede="garden">
+      <dt data-g="1">Lunedì</dt><dd data-g="1">15:00–19:00</dd>
+      <dt data-g="2 3 4 5">Mar–ven</dt><dd data-g="2 3 4 5">8:30–12:30 e 15:00–19:00</dd>
+      <dt data-g="6">Sabato</dt><dd data-g="6">9:00–12:30 e 15:00–19:00</dd>
+      <dt data-g="0">Domenica</dt><dd data-g="0">chiuso</dd>
+    </dl>
+    <div class="btns">
+      <a class="btn" href="tel:+390498791098">Chiama <span class="n num">049&nbsp;8791098</span></a>
+      <a class="btn filo" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.38608,11.961015" target="_blank" rel="noopener">Indicazioni</a>
+      <a class="btn filo" href="https://wa.me/393501376907" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="mail">Oppure scrivete a <a href="mailto:info@bordingarden.it">info@bordingarden.it</a></p>
+  </div>
+  <div class="reparti">
+    <div class="r1">
+      <picture>
+        <source type="image/webp" srcset="img/garden-interno-43-480.webp 480w, img/garden-interno-43-720.webp 720w, img/garden-interno-43-960.webp 960w" sizes="(max-width:700px) 50vw, 30vw">
+        <img src="img/garden-interno-43-720.jpg" width="720" height="540" alt="La serra delle piante da interno, con dracene e croton in fila" loading="lazy">
+      </picture>
+      <h3>Piante da interno</h3>
+      <p>Una vasta scelta, nella serra del Garden.</p>
+    </div>
+    <div class="r2">
+      <picture>
+        <source type="image/webp" srcset="img/garden-esterno-43-480.webp 480w, img/garden-esterno-43-720.webp 720w, img/garden-esterno-43-960.webp 960w" sizes="(max-width:700px) 50vw, 30vw">
+        <img src="img/garden-esterno-43-720.jpg" width="720" height="540" alt="Bletille in fiore sul laghetto davanti all'ingresso del Garden" loading="lazy">
+      </picture>
+      <h3>Piante da esterno</h3>
+      <p>Fiori e piante per il giardino, il terrazzo e il balcone.</p>
+    </div>
+    <div class="r3">
+      <picture>
+        <source type="image/webp" srcset="img/garden-regali-43-480.webp 480w, img/garden-regali-43-720.webp 720w, img/garden-regali-43-960.webp 960w" sizes="(max-width:700px) 100vw, 30vw">
+        <img src="img/garden-regali-43-720.jpg" width="720" height="540" alt="Un banco del Garden con fiori, vasi, lanterne e tazze da regalo" loading="lazy">
+      </picture>
+      <h3>Vasi, arredo e idee regalo</h3>
+      <p>Per la casa e per gli spazi verdi.</p>
     </div>
   </div>
-  <figure class="foto">
-    <picture>
-      <source type="image/webp" srcset="img/garden-ingresso-540.webp 540w, img/garden-ingresso-800.webp 800w, img/garden-ingresso-1080.webp 1080w" sizes="(max-width:900px) 100vw, 63vw">
-      <img src="img/garden-ingresso-800.jpg" srcset="img/garden-ingresso-540.jpg 540w, img/garden-ingresso-800.jpg 800w, img/garden-ingresso-1080.jpg 1080w" sizes="(max-width:900px) 100vw, 63vw" width="800" height="800" alt="Bletille in fiore sul laghetto davanti all'ingresso del Garden" loading="lazy">
-    </picture>
-    <figcaption>Le bletille sul laghetto, davanti all'ingresso del Garden.</figcaption>
-  </figure>
+</section>
+
+<section class="sez wrap scuro griglia storia" id="storia" aria-labelledby="t-storia">
+  <p class="occhiello" style="grid-column:1 / -1">La storia</p>
+  <h2 class="t" id="t-storia">Siamo sempre alla ricerca di nuove specie botaniche e piante particolari, che testiamo nei nostri vivai.</h2>
+  <p class="testo">Nel 1955 i fratelli Saverio e Alcide fondano i Vivai Piante Bordin: prima piante da frutto e rose, poi piante ornamentali di primissima qualità. Nel 1996 apre il Garden, uno dei primi garden center di Padova. Oggi in azienda lavora la terza generazione.</p>
+  <ul class="numeri num">
+    <li><b>1955</b><span>i fratelli Saverio e Alcide fondano i Vivai Piante Bordin</span></li>
+    <li><b>1996</b><span>apre il Garden a forma di piramide</span></li>
+    <li><b>3ª</b><span>generazione della famiglia al lavoro in azienda</span></li>
+    <li><b>33</b><span>album di giardini realizzati, con il prima e il dopo</span></li>
+    <li><b>1 anno</b><span>di garanzia d'attecchimento sulle piante dei nostri giardini</span></li>
+  </ul>
+</section>
+
+<section class="sez wrap" id="giardini" aria-labelledby="t-giardini">
+  <div class="testa-sez">
+    <div>
+      <p class="occhiello">Giardini chiavi in mano</p>
+      <h2 class="t" id="t-giardini">Affidatevi alla nostra esperienza</h2>
+    </div>
+    <a class="freccia" href="https://www.bordingarden.it/giardini/album-realizzazioni/" target="_blank" rel="noopener">Tutti i 33 album</a>
+  </div>
+  <div class="lavori">
+    <figure class="lavoro grande">
+      <picture>
+        <source type="image/webp" srcset="img/lavoro-villa-32-720.webp 720w, img/lavoro-villa-32-1100.webp 1100w, img/lavoro-villa-32-1395.webp 1395w" sizes="(max-width:1100px) 100vw, 64vw">
+        <img src="img/lavoro-villa-32-1100.jpg" width="1100" height="733" alt="Villa Palladiana: l'arco in pietra tra le siepi di bosso, le rose e il prato" loading="lazy">
+      </picture>
+    </figure>
+    <div class="info">
+      <h3>Villa Palladiana</h3>
+      <p>Il parco di una villa veneta: prato, siepi di bosso e rose intorno all'arco in pietra e alla barchessa con la torre colombara.</p>
+      <p>Nell'album: prima, durante e dopo.</p>
+    </div>
+    <figure class="lavoro meta">
+      <picture>
+        <source type="image/webp" srcset="img/lavoro-venezia-32-480.webp 480w, img/lavoro-venezia-32-720.webp 720w, img/lavoro-venezia-32-1080.webp 1080w" sizes="(max-width:700px) 100vw, 48vw">
+        <img src="img/lavoro-venezia-32-720.jpg" width="720" height="480" alt="Giardino a Venezia: la corte tra le case, il prato, il camminamento in pietra e la pergola in legno" loading="lazy">
+      </picture>
+      <figcaption><h3>Giardino a Venezia</h3><p>Una corte tra le case: prato, camminamento in pietra e pergola in legno.</p></figcaption>
+    </figure>
+    <figure class="lavoro meta">
+      <picture>
+        <source type="image/webp" srcset="img/lavoro-acero-32-480.webp 480w, img/lavoro-acero-32-720.webp 720w, img/lavoro-acero-32-1080.webp 1080w" sizes="(max-width:700px) 100vw, 48vw">
+        <img src="img/lavoro-acero-32-720.jpg" width="720" height="480" alt="Un giardino privato: il prato e un acero davanti a una casa moderna bianca" loading="lazy">
+      </picture>
+      <figcaption><h3>Giardino privato</h3><p>Prato e acero davanti a una casa moderna: un giardino che cresce armoniosamente.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sez wrap nebbia griglia" id="sopralluogo" aria-labelledby="t-metodo">
+  <div class="metodo-col">
+    <h2 class="t" id="t-metodo">Come nasce un giardino</h2>
+    <ol class="passi">
+      <li><span class="n num">1</span><b>Sopralluogo in cantiere</b><span class="d">Veniamo a vedere lo spazio e il terreno.</span></li>
+      <li><span class="n num">2</span><b>Progetto e preventivo chiavi in mano</b><span class="d">E una visita in vivaio, per vedere dal vivo le piante proposte.</span></li>
+      <li><span class="n num">3</span><b>Tempi</b><span class="d">Accettato il preventivo, fissiamo insieme le tempistiche.</span></li>
+      <li><span class="n num">4</span><b>Manutenzione</b><span class="d">Interventi straordinari per seguire la crescita corretta del giardino.</span></li>
+    </ol>
+    <p class="garanzia">Tutte le piante dei nostri giardini hanno un anno di garanzia d'attecchimento.<small>Dal nostro book &laquo;I nostri giardini&raquo;.</small></p>
+  </div>
+  <div class="richiesta" id="richiesta">
+    <h3>Chiedete un sopralluogo</h3>
+    <p class="sotto">Bastano due righe e, se l'avete, una foto o un disegno dello spazio.</p>
+    <form id="modulo" action="mailto:info@bordingarden.it" method="post" enctype="text/plain" novalidate>
+      <div class="campi">
+        <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
+        <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="campo tutta"><label for="f-comune">Comune del giardino</label><input id="f-comune" name="comune" type="text" autocomplete="address-level2"></div>
+        <fieldset>
+          <legend class="etich">Che cosa vi serve</legend>
+          <div class="caselle">
+            <label><input type="checkbox" name="tipo" value="Giardino nuovo">Giardino nuovo</label>
+            <label><input type="checkbox" name="tipo" value="Terrazzo o verde pensile">Terrazzo o verde pensile</label>
+            <label><input type="checkbox" name="tipo" value="Trapianto di esemplari">Trapianto di esemplari</label>
+            <label><input type="checkbox" name="tipo" value="Giardino storico">Giardino storico</label>
+            <label><input type="checkbox" name="tipo" value="Manutenzione">Manutenzione</label>
+            <label><input type="checkbox" name="tipo" value="Piante per uffici">Piante per uffici</label>
+          </div>
+        </fieldset>
+        <div class="campo tutta"><label for="f-msg">Due righe sullo spazio</label><textarea id="f-msg" name="messaggio" placeholder="Per esempio: giardino di una casa nuova, circa 300 m², da fare in primavera."></textarea></div>
+        <p class="allegato">Foto o disegno: allegateli all'email che si apre, oppure mandateli su WhatsApp al <span class="num nobr">350&nbsp;1376907</span>.</p>
+      </div>
+      <div class="invio">
+        <button class="btn" type="submit">Prepara l'email</button>
+        <a class="btn filo" id="wa-giardino" href="https://wa.me/393501376907?text=Buongiorno%2C%20vorrei%20un%20sopralluogo%20per%20un%20giardino." target="_blank" rel="noopener">Scrivete su WhatsApp</a>
+      </div>
+      <p class="esito" id="esito" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="sez wrap scuro griglia vivai" id="vivai" aria-labelledby="t-vivai">
+  <div class="sx">
+    <p class="occhiello">Bordin Vivai, via dei Vivai 14</p>
+    <h2 class="t" id="t-vivai">Produciamo natura</h2>
+    <p class="testo">Piante ornamentali dai piccoli arbusti fino a esemplari unici e di rara bellezza, dalle più comuni alle poco conosciute. Per architetti, impresari e privati.</p>
+    <ul class="fatti">
+      <li><b>In zolla o in vaso.</b> Anche i grandi esemplari.</li>
+      <li><b>Spedizione in tutta Italia.</b> Pensiamo noi alla logistica.</li>
+      <li><b>Messa a dimora.</b> Trapianti di piante esemplari, in qualsiasi parte d'Italia.</li>
+    </ul>
+    <div class="btns">
+      <a class="btn" href="tel:+39049640156">Chiama il vivaio <span class="n num">049&nbsp;640156</span></a>
+      <a class="btn filo" href="https://wa.me/393505859658" target="_blank" rel="noopener">WhatsApp <span class="n num">350&nbsp;5859658</span></a>
+      <a class="btn filo" href="mailto:info@bordinvivai.it?subject=Richiesta%20piante%20dal%20vivaio&amp;body=Buongiorno%2C%20vi%20mando%20la%20lista%20delle%20piante%20(o%20il%20disegno)%20in%20allegato.%0A%0ANome%3A%0AAzienda%3A%0ATelefono%3A%0A">Mandate la lista delle piante</a>
+    </div>
+  </div>
+  <div class="dx">
+    <figure>
+      <picture>
+        <source type="image/webp" srcset="img/vivai-gru-43-720.webp 720w, img/vivai-gru-43-1080.webp 1080w, img/vivai-gru-43-1600.webp 1600w" sizes="(max-width:1100px) 100vw, 40vw">
+        <img src="img/vivai-gru-43-1080.jpg" width="1080" height="810" alt="Un grande olivo con la zolla nella rete sollevato con la gru per il trapianto" loading="lazy">
+      </picture>
+      <figcaption>Un olivo in zolla sollevato con la gru per il trapianto.</figcaption>
+    </figure>
+    <div class="dove">
+      <h3>Orari del vivaio</h3>
+      <p class="indirizzo">Via dei Vivai 14, Saonara (PD) · <a href="mailto:info@bordinvivai.it">info@bordinvivai.it</a></p>
+      <dl class="orari num" data-sede="vivai">
+        <dt data-g="1 2 3 4 5">Lun–ven</dt><dd data-g="1 2 3 4 5">8:00–12:00 e 14:00–18:00</dd>
+        <dt data-g="6">Sabato</dt><dd data-g="6">mattina, su appuntamento</dd>
+      </dl>
+      <a class="freccia" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.3857,11.9625" target="_blank" rel="noopener">Indicazioni per il vivaio</a>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer class="piede wrap">
-  <div class="alto">
+<footer class="piede wrap" id="contatti">
+  <div class="cols">
     <div class="marchio">
-      <img src="img/logo-bordin-360.png" width="360" height="126" alt="Bordin, Garden &amp; Vivai, 1955" loading="lazy">
-      <p>Vivaio di piante ornamentali, garden center e giardini chiavi in mano. Una famiglia di Saonara, dal 1955.</p>
+      <a class="logo" href="#inizio"><img src="img/logo-bordin-360.png" width="360" height="126" alt="Bordin, Garden &amp; Vivai, 1955" loading="lazy"></a>
+      <p>Garden center, giardini chiavi in mano e vivaio di piante ornamentali. Una famiglia di Saonara, dal 1955.</p>
     </div>
-    <nav aria-label="Piede">
-      <div>
-        <h2>Bordin</h2>
-        <ul>
-          <li><a href="#mestieri">La storia</a></li>
-          <li><a href="#mestieri">Vivai</a></li>
-          <li><a href="#garden">Garden</a></li>
-          <li><a href="#passaggio">Giardini</a></li>
-          <li><a href="#passaggio">Album dei giardini</a></li>
-          <li><a href="#">Notizie</a></li>
-          <li><a href="#">Lavora con noi</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Giardini</h2>
-        <ul>
-          <li><a href="#passaggio">Progetto chiavi in mano</a></li>
-          <li><a href="#passaggio">Trapianto di esemplari</a></li>
-          <li><a href="#passaggio">Giardini storici</a></li>
-          <li><a href="#passaggio">Piante per uffici</a></li>
-          <li><a href="#passaggio">Manutenzione</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Contatti</h2>
-        <ul class="num">
-          <li><a href="tel:+390498791098">Garden 049&nbsp;8791098</a></li>
-          <li><a href="tel:+39049640156">Vivai 049&nbsp;640156</a></li>
-          <li><a href="mailto:info@bordingarden.it">info@bordingarden.it</a></li>
-          <li><a href="mailto:info@bordinvivai.it">info@bordinvivai.it</a></li>
-          <li><a href="#visita">Orari</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="lettera">
-      <h2>Notizie dal Garden</h2>
-      <p>Novità, fioriture e piante appena arrivate.</p>
-      <form id="newsletter" action="#" method="post" novalidate>
-        <div class="riga">
-          <label class="vh" for="email-lettera">Indirizzo email</label>
-          <input id="email-lettera" type="email" name="email" placeholder="Il vostro indirizzo email" autocomplete="email" required>
-          <button type="submit">Iscriviti</button>
-        </div>
-        <label class="consenso"><input type="checkbox" name="privacy" required><span>Ho letto l'<a href="#">informativa sulla privacy</a> e accetto di ricevere le email.</span></label>
-        <p class="esito" id="nl-esito" aria-live="polite"></p>
-      </form>
-      <p class="seguici"><a href="https://www.facebook.com/BordinGarden">Facebook</a><a href="https://www.instagram.com/bordingardenvivai/">Instagram</a></p>
+    <div>
+      <h2>Garden</h2>
+      <ul class="num">
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=45.38608,11.961015" target="_blank" rel="noopener">Via dei Vivai 6, Saonara (PD)</a></li>
+        <li><a href="tel:+390498791098">049&nbsp;8791098</a></li>
+        <li><a href="https://wa.me/393501376907" target="_blank" rel="noopener">WhatsApp 350&nbsp;1376907</a></li>
+        <li><a href="mailto:info@bordingarden.it">info@bordingarden.it</a></li>
+        <li class="grigio">Lun 15–19; mar–ven 8:30–12:30 e 15–19; sab 9–12:30 e 15–19</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Vivai</h2>
+      <ul class="num">
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=45.3857,11.9625" target="_blank" rel="noopener">Via dei Vivai 14, Saonara (PD)</a></li>
+        <li><a href="tel:+39049640156">049&nbsp;640156</a></li>
+        <li><a href="https://wa.me/393505859658" target="_blank" rel="noopener">WhatsApp 350&nbsp;5859658</a></li>
+        <li><a href="mailto:info@bordinvivai.it">info@bordinvivai.it</a></li>
+        <li class="grigio">Lun–ven 8–12 e 14–18; sabato mattina su appuntamento</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Bordin</h2>
+      <ul>
+        <li><a href="#garden">Garden e orari</a></li>
+        <li><a href="#giardini">Giardini</a></li>
+        <li><a href="#sopralluogo">Chiedete un sopralluogo</a></li>
+        <li><a href="#vivai">Vivai</a></li>
+        <li><a href="#storia">La storia</a></li>
+        <li><a href="mailto:info@bordinvivai.it?subject=Lavora%20con%20noi">Lavora con noi: il curriculum a info@bordinvivai.it</a></li>
+        <li><a href="https://www.facebook.com/BordinGarden" target="_blank" rel="noopener">Facebook</a> <span class="grigio">e</span> <a href="https://www.instagram.com/bordingardenvivai/" target="_blank" rel="noopener">Instagram</a><span class="grigio">: novità e promozioni</span></li>
+      </ul>
     </div>
   </div>
   <p class="legale num">
     <span>Bordin Garden &amp; Vivai S.n.c. di Bordin Omero e Giuliano Società Agricola</span>
-    <span>Via dei Vivai 14, 35020 Saonara (PD)</span>
+    <span>Sede legale via dei Vivai 14, 35020 Saonara (PD)</span>
     <span>P.IVA e C.F. 01315760288</span>
     <span>REA PD-231319</span>
-    <a href="#">Privacy</a>
-    <a href="#">Cookie</a>
+    <span>Privacy e cookie</span>
   </p>
 </footer>
 
 <script>
 (function(){
-  /* interruttore In vivaio / In giardino: cambio netto, nessuna dissolvenza */
-  var btns=document.querySelectorAll('.scambio button');
-  var figs=document.querySelectorAll('.quadro figure');
-  var did=document.getElementById('did');
-  var testi={
-    vivaio:'<b>In vivaio.</b> Filari di esemplari nei campi, in primavera.',
-    giardino:'<b>In giardino.</b> Un giardino privato finito: il prato, un albero multitronco, le bordure.'
-  };
-  function mostra(v){
-    btns.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.vista===v ? 'true':'false');});
-    figs.forEach(function(f){f.hidden = f.dataset.vista!==v;});
-    did.innerHTML=testi[v];
-  }
-  btns.forEach(function(b,i){
-    b.addEventListener('click',function(){mostra(b.dataset.vista);});
-    b.addEventListener('keydown',function(e){
-      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
-        e.preventDefault();var o=btns[(i+1)%btns.length];o.focus();mostra(o.dataset.vista);
-      }
-    });
-  });
-
-  /* aperto adesso: orari veri (pagina Contatti), ora di Roma; minuti dalla mezzanotte, 0 = domenica */
+  /* orari veri (pagina Contatti): minuti dalla mezzanotte, 0 = domenica */
   var ORARI={
     garden:{0:[],1:[[900,1140]],2:[[510,750],[900,1140]],3:[[510,750],[900,1140]],4:[[510,750],[900,1140]],5:[[510,750],[900,1140]],6:[[540,750],[900,1140]]},
     vivai:{0:[],1:[[480,720],[840,1080]],2:[[480,720],[840,1080]],3:[[480,720],[840,1080]],4:[[480,720],[840,1080]],5:[[480,720],[840,1080]],6:[]}
   };
   var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
-  function ora(){
+  /* festività nazionali (giorno-mese) e Pasquetta: gli orari di quei giorni non sono pubblicati */
+  var FESTE=['1-1','6-1','25-4','1-5','2-6','15-8','1-11','8-12','25-12','26-12'];
+  function pasquetta(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;var p=new Date(Date.UTC(y,mo-1,da+1));return p.getUTCDate()+'-'+(p.getUTCMonth()+1);}
+  function adesso(){
+    /* ?ora=2026-11-03T10:00 per le prove */
+    var q=/[?&]ora=(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(location.search);
+    if(q){var d=new Date(Date.UTC(+q[1],+q[2]-1,+q[3]));return {g:d.getUTCDay(),m:(+q[4])*60+(+q[5]),gm:(+q[3])+'-'+(+q[2]),y:+q[1]};}
     var p={};
     try{
-      new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
-      return {g:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday), m:(+p.hour)*60+(+p.minute)};
-    }catch(e){var d=new Date();return {g:d.getDay(), m:d.getHours()*60+d.getMinutes()};}
+      new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',weekday:'short',hour:'2-digit',minute:'2-digit',day:'numeric',month:'numeric',year:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
+      return {g:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday),m:(+p.hour)*60+(+p.minute),gm:(+p.day)+'-'+(+p.month),y:+p.year};
+    }catch(e){var n=new Date();return {g:n.getDay(),m:n.getHours()*60+n.getMinutes(),gm:n.getDate()+'-'+(n.getMonth()+1),y:n.getFullYear()};}
   }
   function hh(m){return Math.floor(m/60)+':'+('0'+m%60).slice(-2);}
-  function stato(k,n){
-    var oggi=ORARI[k][n.g],i,f;
-    for(i=0;i<oggi.length;i++){if(n.m>=oggi[i][0]&&n.m<oggi[i][1])return {aperto:true,testo:'aperto, fino alle '+hh(oggi[i][1])};}
-    for(i=0;i<oggi.length;i++){if(oggi[i][0]>n.m)return {aperto:false,testo:'chiuso, riapre alle '+hh(oggi[i][0])};}
-    for(f=1;f<=7;f++){
-      var g=(n.g+f)%7,fasce=ORARI[k][g];
-      if(fasce.length)return {aperto:false,testo:'chiuso, riapre '+(f===1?'domani':GIORNI[g])+' alle '+hh(fasce[0][0])};
-    }
-    return {aperto:false,testo:''};
+  function fasce(f){return f.map(function(x){return hh(x[0])+'–'+hh(x[1]);}).join(' e ');}
+  function prossima(k,n){
+    for(var s=1;s<=7;s++){var g=(n.g+s)%7,f=ORARI[k][g];if(f.length)return (s===1?'domani':GIORNI[g])+' alle '+hh(f[0][0]);}
+    return '';
   }
-  var n=ora(), st=stato('garden',n);
-  var riga=document.getElementById('adesso');
-  document.getElementById('adesso-testo').textContent='Garden, via dei Vivai 6: '+st.testo;
-  riga.classList.toggle('chiuso',!st.aperto);
+  var n=adesso(), oggi=ORARI.garden[n.g], festa=FESTE.indexOf(n.gm)>=0||pasquetta(n.y)===n.gm;
+  var t='',aperto=false,i;
+  if(festa){t='Oggi è festa: chiamate prima di passare';}
+  else{
+    for(i=0;i<oggi.length;i++){if(n.m>=oggi[i][0]&&n.m<oggi[i][1]){aperto=true;t='Il Garden è aperto, chiude alle '+hh(oggi[i][1]);}}
+    if(!aperto){
+      for(i=0;i<oggi.length;i++){if(oggi[i][0]>n.m){t='Il Garden ora è chiuso, riapre alle '+hh(oggi[i][0]);break;}}
+      if(!t)t='Il Garden ora è chiuso, riapre '+prossima('garden',n);
+    }
+  }
+  document.getElementById('stato-testo').textContent=t;
+  document.getElementById('stato').classList.toggle('chiuso',!aperto);
+  var o=document.getElementById('oggi');
+  o.innerHTML='';
+  o.appendChild(document.createTextNode(festa?'Nei giorni di festa gli orari possono cambiare. ':'Oggi, '+GIORNI[n.g]+': '+(oggi.length?fasce(oggi):'chiuso')+'. '));
+  var a=document.createElement('a');a.href='#orari-garden';a.className='nobr';a.textContent='Tutti gli orari';o.appendChild(a);
   /* la riga di oggi nelle tabelle degli orari */
   document.querySelectorAll('.orari [data-g]').forEach(function(el){
     if((' '+el.getAttribute('data-g')+' ').indexOf(' '+n.g+' ')<0)return;
-    el.classList.add('oggi');
-    if(el.tagName==='DD'){var t=document.createElement('span');t.className='oggi-tag';t.textContent='oggi';el.appendChild(t);}
+    el.classList.add('oggi-r');if(el.tagName==='DD')el.classList.add('dd');
   });
 
-  /* menu sul telefono */
+  /* testata: filetto quando la pagina scorre; menu sotto i 1100 px */
+  var te=document.getElementById('testata');
+  function filo(){te.classList.toggle('giu',window.scrollY>8);}
+  window.addEventListener('scroll',filo,{passive:true});filo();
   var mb=document.querySelector('.menu-btn'),nav=document.getElementById('nav');
   mb.addEventListener('click',function(){
-    var a=mb.getAttribute('aria-expanded')==='true';
-    mb.setAttribute('aria-expanded',a?'false':'true');nav.classList.toggle('aperto',!a);
-    mb.textContent=a?'Menu':'Chiudi';
+    var ap=mb.getAttribute('aria-expanded')==='true';
+    mb.setAttribute('aria-expanded',ap?'false':'true');nav.classList.toggle('aperto',!ap);mb.textContent=ap?'Menu':'Chiudi';
   });
-  nav.addEventListener('click',function(e){if(e.target.tagName==='A'&&mb.getAttribute('aria-expanded')==='true'){mb.click();}});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A'&&mb.getAttribute('aria-expanded')==='true')mb.click();});
 
-  /* newsletter: da collegare a un servizio (vedi LEGGIMI); qui non invia nulla */
-  document.getElementById('newsletter').addEventListener('submit',function(e){
+  /* modulo: compone un'email (da collegare a un servizio, vedi LEGGIMI) */
+  var f=document.getElementById('modulo'),es=document.getElementById('esito');
+  f.addEventListener('submit',function(e){
     e.preventDefault();
-    var f=e.target,es=document.getElementById('nl-esito');
-    if(!f.email.value||!f.email.checkValidity()){es.textContent='Scrivete un indirizzo email valido.';f.email.focus();return;}
-    if(!f.privacy.checked){es.textContent='Serve il consenso alla privacy per iscriversi.';return;}
-    es.textContent='Grazie. L\'iscrizione sarà attiva quando il modulo verrà collegato al servizio di invio.';
+    if(!f.nome.value.trim()){es.textContent='Scrivete il vostro nome.';f.nome.focus();return;}
+    if(!f.telefono.value.trim()){es.textContent='Scrivete un telefono, così vi possiamo richiamare.';f.telefono.focus();return;}
+    var tipi=[].slice.call(f.querySelectorAll('input[name=tipo]:checked')).map(function(x){return x.value;});
+    var com=f.comune.value.trim();
+    var ogg='Richiesta di sopralluogo'+(com?', '+com:'')+(tipi.length?' ('+tipi.join(', ')+')':'');
+    var corpo='Nome: '+f.nome.value.trim()+'\nTelefono: '+f.telefono.value.trim()+'\nComune: '+com+'\nChe cosa serve: '+tipi.join(', ')+'\n\n'+f.messaggio.value.trim()+'\n\n(Foto o disegno in allegato, se li avete.)';
+    location.href='mailto:info@bordingarden.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo);
+    es.textContent='Si apre la vostra email con la richiesta già scritta: aggiungete la foto o il disegno e inviate.';
+  });
+  /* WhatsApp con il comune, se scritto */
+  document.getElementById('wa-giardino').addEventListener('click',function(){
+    var com=f.comune.value.trim();
+    this.href='https://wa.me/393501376907?text='+encodeURIComponent('Buongiorno, vorrei un sopralluogo per un giardino'+(com?' a '+com:'')+'.');
   });
 })();
 </script>

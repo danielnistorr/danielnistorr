@@ -3,7 +3,10 @@
 //   1. la prima schermata della home a tutta pagina, con nome e frase sotto
 //   2. due schermate da telefono e tre punti "cosa cambia"
 //   3. due sezioni della home da computer e il prossimo passo
-//   4. la home intera da computer, larga 297 mm come le altre e alta quanto serve ("completa": false la toglie)
+//   4. (se c'è "servizio_foto") le foto da rifare dal vero: dove vanno nella home, cosa si fotografa, la formula
+//   5. la home intera da computer, larga 297 mm come le altre e alta quanto serve ("completa": false la toglie)
+// "servizio_foto": {"titolo", "testo", "formula", "scatti": [{"dove", "cosa", "sel"?}]}; "sel" è il selettore CSS
+// dell'immagine di oggi in quel punto, che esce piccola accanto alla voce.
 // L'orologio della pagina è fermo a --ora (di default un martedì alle 10 a Roma): così gli orari "aperto adesso" escono sempre uguali.
 // Le immagini si scattano adesso dalla pagina statica (<cartella>/sito/index.html) a densità 2 e 3,
 // così il PDF resta nitido anche stampato. Accanto al PDF scrive pagine-<n>.png per guardarlo.
@@ -57,6 +60,17 @@ async function apri(ctxOpts) {
     const y0 = Math.max(0, s.y0), y1 = Math.min(H, s.y1);
     await page.screenshot({ path: path.join(work, `sezione-${i + 1}.jpg`), type: 'jpeg', quality: 78, fullPage: true, clip: { x: 0, y: y0, width: 1440, height: y1 - y0 } });
   }
+  for (const [i, sc] of ((S.servizio_foto && S.servizio_foto.scatti) || []).entries()) {
+    const f = path.join(work, `scatto-${i + 1}.jpg`);
+    if (fs.existsSync(f)) fs.rmSync(f);
+    if (!sc.sel) continue;
+    try {
+      const el = page.locator(sc.sel).first();
+      await el.scrollIntoViewIfNeeded({ timeout: 5000 });
+      await page.waitForTimeout(300);
+      await el.screenshot({ path: f, type: 'jpeg', quality: 78, timeout: 10000 });
+    } catch (e) { console.log(`avviso: scatto ${i + 1}, selettore ${sc.sel} non catturato`); }
+  }
   await ctx.close();
 }
 // computer: la home intera (densità 1,5, sotto il limite di 16000 px di altezza della cattura)
@@ -70,7 +84,8 @@ if (completa) {
   altCompleta = H * 297 / 1440;
   await ctx.close();
 }
-const tot = completa ? 4 : 3;
+const FOTO = S.servizio_foto && (S.servizio_foto.scatti || []).length ? S.servizio_foto : null;
+const tot = 3 + (FOTO ? 1 : 0) + (completa ? 1 : 0);
 // telefono: prima schermata e una seconda più in basso
 {
   const { ctx, page } = await apri({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
@@ -166,6 +181,20 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
 .sez .testo p{font-size:10.5pt;line-height:1.5}
 .sez .piccolo{margin-top:auto;font-size:7.8pt;line-height:1.45;color:var(--muto);border-top:.25mm solid var(--filo);padding-top:3.5mm}
 .sez .mitt{margin-top:3mm;font-size:8.5pt;color:var(--ink)}
+/* 4 */
+.fo{padding:16mm 16mm 0;height:194mm;display:flex;flex-direction:column}
+.fo .su{display:flex;gap:14mm;align-items:flex-start}
+.fo .su h2{flex:none;width:96mm;margin:0}
+.fo .su p{flex:1;font-size:10.5pt;line-height:1.5;padding-top:1.2mm}
+.fo ol{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);column-gap:9mm;row-gap:7mm;margin-top:10mm}
+.fo li{border-top:.25mm solid var(--filo);padding-top:3.4mm}
+.fo .ft{display:block;width:100%;height:36mm;object-fit:cover;border:.25mm solid var(--filo);margin-bottom:3mm}
+.fo .manca{height:36mm;margin-bottom:3mm;border:.25mm solid var(--filo);display:flex;align-items:flex-end;padding:2.5mm 3mm;font-size:7.5pt;color:var(--muto);letter-spacing:.02em}
+.fo li i{font-style:normal;font-size:8pt;color:var(--muto);display:block;margin-bottom:1mm;letter-spacing:.02em}
+.fo li b{display:block;font-size:10.5pt;font-weight:500;line-height:1.25;margin-bottom:1mm}
+.fo li p{font-size:8.8pt;line-height:1.4;color:var(--muto)}
+.fo .formula{margin-top:auto;border-top:.25mm solid var(--filo);padding:4mm 0 0;display:flex;justify-content:space-between;align-items:baseline;gap:14mm;font-size:11pt;font-weight:500}
+.fo .formula span{font-size:8pt;font-weight:400;color:var(--muto)}
 </style></head><body>
 <section class="p cop">
   <img src="file://${work}/copertina.jpg" alt="">
@@ -195,7 +224,15 @@ h2{font-size:22pt;font-weight:400;letter-spacing:-.015em;line-height:1.1;margin-
     </div>
   </div>
   <div class="n">3 / ${tot}</div>
-</section>
+</section>${FOTO ? `
+<section class="p">
+  <div class="fo">
+    <div class="su"><h2>${esc(FOTO.titolo || 'Le foto, dal vero')}</h2><p>${esc(FOTO.testo)}</p></div>
+    <ol>${FOTO.scatti.map((sc, i) => `<li>${fs.existsSync(path.join(work, `scatto-${i + 1}.jpg`)) ? `<img class="ft" src="file://${work}/scatto-${i + 1}.jpg" alt="">` : '<div class="manca">oggi non c\'è</div>'}<i>${String(i + 1).padStart(2, '0')} · ${esc(sc.dove)}</i><b>${esc(sc.cosa)}</b>${sc.perche ? `<p>${esc(sc.perche)}</p>` : ''}</li>`).join('')}</ol>
+    <div class="formula">${esc(FOTO.formula || 'Mezza giornata in sede, circa 30 foto lavorate.')}<span>Le foto restano vostre, anche per cataloghi, fiere e social.</span></div>
+  </div>
+  <div class="n">4 / ${tot}</div>
+</section>` : ''}
 </body></html>`;
 // pagina 4 in un documento a parte (altra misura di pagina), poi si uniscono con pdfunite
 const STRISCIA = 20;
@@ -203,7 +240,7 @@ const html4 = html.replace(/@page\{[^}]*\}/, `@page{size:297mm ${(STRISCIA + alt
   .replace(/<body>[\s\S]*<\/body>/, `<body><section style="width:297mm;height:${(STRISCIA + altCompleta).toFixed(2)}mm;position:relative;overflow:hidden">
   <div style="height:${STRISCIA}mm;display:flex;align-items:center;justify-content:space-between;padding:0 16mm">
     <div style="font-size:10pt"><b style="font-weight:500">${esc(S.azienda)}</b><span style="color:var(--muto)">, la home intera come si vede da un computer</span></div>
-    <div class="n" style="position:static">4 / 4</div>
+    <div class="n" style="position:static">${tot} / ${tot}</div>
   </div>
   <img src="file://${work}/completa.jpg" alt="" style="display:block;width:297mm;height:${altCompleta.toFixed(2)}mm">
 </section></body>`);

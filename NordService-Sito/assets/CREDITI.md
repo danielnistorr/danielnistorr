@@ -3,9 +3,12 @@
 ## Foto dell'azienda (assets/originali/)
 
 Scaricate da https://nordservice.net il 24/10/2026, solo per la proposta. Sono di Nord Service SRL; prima di pubblicarle va chiesto chi ha scattato le tre foto Sony (DSC07356, DSC07369, DSC07377, del 28 e 29 maggio 2025) e se si possono usare.
+Foto usate nella home livello professionale (3/11/2026), tagliate e trattate con `_prova/script/pro_img.py`: DSC07377 (WA320, apertura), IMG_20220427 (CAT 330C), IMG_20210216 (due T510), IMG_20191218 (autogru), WhatsApp 17.24.35 (Scania, tagliata la scritta del telefono), WhatsApp 17.23.43 (rimorchio agricolo, tagliata la scritta del telefono), IMG_20250123 (torretta 813), IMG_20241003, IMG_20241010, IMG_20241016 (apripista D8R), IMG_20241202 (mini escavatore), DSC07369 (virole), IMG_20250220 (T916); il logo PNG con S.R.L., anche nella versione con le lettere bianche per il piede scuro (ricolorata, non ridisegnata).
 Le sei immagini `2025-04-1-3.png` e `2025-06-2.png` ... `2025-06-6.png` sono foto di repertorio di provenienza ignota (non sono loro): non usarle.
 
-## Segnaposto Unsplash (assets/esterne/)
+## Segnaposto Unsplash (assets/esterne/): NON usati in pagina
+
+Decisione del committente sulle foto ("niente"): nella home livello professionale (3/11/2026) non c'è nessuna foto di repertorio, solo foto dell'azienda. I file restano qui solo come archivio della ricerca; non vanno messi in pagina.
 
 Tutte con licenza verificata sulla pagina della foto il 24/10/2026: "Free to use under the Unsplash License" (https://unsplash.com/license), nessuna Unsplash+. Scaricate da images.unsplash.com a 2400 px di lato lungo. Nessuna è generata dall'IA. Nessuna compare nei CREDITI.md delle altre home della campagna (controllo per ID il 24/10/2026).
 

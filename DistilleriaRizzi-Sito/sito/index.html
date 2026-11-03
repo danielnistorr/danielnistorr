@@ -3,448 +3,886 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Distilleria Rizzi, liquori e amari a Mestrino dal 1926</title>
-<meta name="description" content="Liquori, amari, sciroppi e aromi per la pasticceria a Mestrino, a due passi da Padova, dal 1926. Spaccio aziendale in via G. Negri 7.">
+<title>Distilleria Rizzi, liquori, amari e aromi per la pasticceria a Mestrino dal 1926</title>
+<meta name="description" content="Distilleria Rizzi, di Maddalena e Alessandro: liquori, amari, sciroppi e aromi per la pasticceria a Mestrino, a due passi da Padova, dal 1926. Spaccio in via G. Negri 7: chiamaci prima di passare, 049 900 0053.">
+<link rel="icon" href="img/calice.png">
 <style>
-/* Zodiak e Switzer: Indian Type Foundry, Fontshare, ITF Free Font License (uso commerciale gratuito). Pacchetti completi, con crenatura. */
-@font-face{font-family:"Zodiak";src:url("fonts/zodiak-300.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+/* Caratteri: Zodiak (titoli e cifre) e Switzer (testo e interfaccia), Indian Type Foundry, Fontshare,
+   ITF Free Font License (uso commerciale gratuito). Serviti dalla pagina. Due pesi: 400 e 600. */
 @font-face{font-family:"Zodiak";src:url("fonts/zodiak-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Switzer";src:url("fonts/switzer-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Switzer";src:url("fonts/switzer-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url("fonts/switzer-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
+/* Colori dal marchio: il rosso del sito, del banco dello spaccio e dello scudo RIZZI; il nero della scritta a pennello.
+   Il verde serve solo a "aperto ora". Il resto sono grigi neutri. */
 :root{
-  --carta:#F3EEE6;
-  --carta-2:#ECE6DC;
+  --rosso:#DD0000;
   --inchiostro:#1C1815;
-  --grigio:#5B524A;
-  --rosso:#B8231C;
-  --filo:rgba(28,24,21,.18);
-  --m:clamp(20px,4.45vw,64px);
+  --verde:#17743A;
+  --bianco:#FFFFFF;
+  --grigio:#F1F1EF;
+  --grigio-testo:#57534F;
+  --filetto:#D9D7D3;
   --serif:"Zodiak",Georgia,serif;
-  --sans:"Switzer",system-ui,sans-serif;
+  --sans:"Switzer",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* scala tipografica: sette misure per larghezza */
+  --f-apertura:86px; --f-sezione:56px; --f-nome:26px; --f-attacco:21px; --f-testo:18px; --f-ui:16px; --f-legale:14px;
+  --f-gesto:200px;
+  --m:80px; --sez:120px; --testata:80px; --btn:52px;
+}
+@media (max-width:1099px){
+  :root{--f-apertura:60px; --f-sezione:44px; --f-nome:24px; --f-attacco:20px; --f-gesto:150px; --m:40px; --sez:96px}
+}
+@media (max-width:600px){
+  :root{--f-apertura:42px; --f-sezione:32px; --f-nome:22px; --f-attacco:18px; --f-testo:17px; --f-gesto:96px; --m:16px; --sez:64px; --testata:72px; --btn:48px}
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
-body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--sans);font-size:18px;line-height:1.55;font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+body{margin:0;background:var(--bianco);color:var(--inchiostro);font-family:var(--sans);font-size:var(--f-testo);line-height:1.55;font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.24em}
-a:hover{color:var(--rosso)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
-.num{font-variant-numeric:tabular-nums lining-nums}
-.wrap{padding-inline:var(--m);max-width:1440px;margin-inline:auto}
-h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;text-wrap:balance}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--rosso);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;text-wrap:balance}
 p{margin:0;text-wrap:pretty}
+ul{margin:0;padding:0;list-style:none}
+.cifre{font-variant-numeric:tabular-nums lining-nums}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:calc(1280px + 2*var(--m));margin-inline:auto;padding-inline:var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.occhiello{font-family:var(--sans);font-size:var(--f-ui);font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+.sezione{padding-block:var(--sez)}
+.h-sezione{font-size:var(--f-sezione);line-height:1.06;letter-spacing:-.015em}
+.attacco{font-size:var(--f-attacco);line-height:1.5}
 
-/* testata */
-.testata{position:absolute;inset:0 0 auto 0;z-index:5}
-.testata .wrap{display:flex;align-items:center;gap:40px;height:92px}
-.logo{display:block;width:228px;flex:none}
+/* Bottoni: un solo modello, pieno o con il solo bordo, stesso raggio e stessa altezza ovunque */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--btn);padding:0 22px;border-radius:4px;border:2px solid transparent;font:600 var(--f-ui)/1.2 var(--sans);text-decoration:none;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-pieno{background:var(--rosso);color:var(--bianco)}
+.btn-pieno:hover{background:#B80000}
+.btn-bordo{background:transparent;border-color:currentColor;color:inherit}
+.btn-bordo:hover{background:rgba(28,24,21,.06)}
+.su-scuro .btn-bordo:hover,.su-rosso .btn-bordo:hover{background:rgba(255,255,255,.12)}
+.su-rosso .btn-pieno{background:var(--bianco);color:var(--rosso)}
+.bottoni{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Fascia del centenario */
+.fascia{background:var(--rosso);color:var(--bianco);font-size:var(--f-ui);font-weight:600}
+.fascia a{display:flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:8px var(--m);text-decoration:none;text-align:center}
+.fascia a span.vai{text-decoration:underline;text-underline-offset:.22em}
+.fascia[hidden]{display:none}
+.fascia .corto{display:none}
+@media (max-width:600px){.fascia .lungo{display:none}.fascia .corto{display:inline}}
+
+/* Testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--filetto)}
+.testata .wrap{display:flex;align-items:center;gap:32px;height:var(--testata)}
+.logo{display:block;flex:none;width:200px}
 .logo img{width:100%}
-.menu{display:flex;gap:30px;margin-left:auto;font-size:16px}
-.menu a{text-decoration:none}
-.menu a:hover{text-decoration:underline}
-.tel-testata{font-size:16px;font-weight:500;text-decoration:none;padding-left:30px;border-left:1px solid var(--filo);line-height:1.2}
-.apri-menu{display:none}
-.solo-menu{display:none}
-
-/* apertura: la tavola. A sinistra titolo e nomi, al centro la bottiglia ritta sul filo, a destra la sua scheda */
-.apertura{position:relative;overflow:hidden}
-.apertura .wrap{position:relative;min-height:clamp(760px,100svh,940px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-content:end;padding-top:124px;padding-bottom:40px}
-.apertura h1{grid-column:1 / span 6;grid-row:1;font-size:clamp(56px,8.6vw,124px);line-height:.94;letter-spacing:-.026em;margin-left:-.045em;max-width:4.4em}
-.attacco{grid-column:1 / span 6;grid-row:2;margin-top:30px;font-size:19px;line-height:1.5;max-width:28em}
-.scelta{grid-column:1 / span 6;grid-row:3;margin-top:120px;align-self:end}
-.nomi{display:grid;grid-template-columns:repeat(3,max-content);gap:0 40px;padding:0;margin:0;list-style:none}
-.nomi button{appearance:none;background:none;border:0;padding:6px 0 7px;margin:0;font:inherit;color:var(--grigio);cursor:pointer;display:flex;align-items:baseline;gap:8px;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;-webkit-tap-highlight-color:transparent}
-.nomi .n{font-family:var(--serif);font-size:27px;line-height:1.12;letter-spacing:-.008em}
-.nomi .g{font-size:14px;font-variant-numeric:tabular-nums lining-nums}
-.nomi button:hover{color:var(--inchiostro)}
-.nomi button[aria-checked="true"]{color:var(--inchiostro);border-bottom-color:var(--rosso)}
-/* la scheda della bottiglia scelta: grado grande, nome, uso e formato */
-.scheda{grid-column:10 / span 3;grid-row:2 / 4;align-self:end;margin:0;padding-bottom:6px}
-.scheda .grado{font-family:var(--serif);font-weight:300;font-size:clamp(64px,6.4vw,92px);line-height:.86;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums;margin-left:-.04em}
-.scheda .nome{font-family:var(--serif);font-size:22px;line-height:1.2;margin-top:22px;letter-spacing:-.005em}
-.scheda .testo{font-size:16px;line-height:1.5;color:var(--grigio);margin-top:10px;max-width:19em;min-height:4.5em}
-.piano{grid-column:1 / -1;grid-row:4;margin-top:18px;border-bottom:1px solid var(--inchiostro)}
-
-/* la bottiglia: tela 1000x2000, bottiglia alta il 90 % (700 px al massimo), base al 92,5 % della tela, al centro delle colonne 7-9 */
-.tavola{position:absolute;margin:0;--h:clamp(600px,calc(100svh - 150px),778px);--col:calc((100% - 2 * var(--m) - 264px) / 12);height:var(--h);aspect-ratio:1/2;
-  left:calc(var(--m) + 6 * (var(--col) + 24px) + (3 * var(--col) + 48px) / 2 - var(--h) * .2);bottom:calc(40px - var(--h) * .075 + 1px)}
-.tavola img{width:100%;height:100%;object-fit:contain}
-
-/* mestiere: due righe con il titolo nelle colonne 1-6 e il testo nelle colonne 7-12; l'Alchermes ritto sul filo */
-.mestiere{padding:128px 0 132px}
-.riga{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
-.riga h2{grid-column:1 / span 6;font-size:clamp(38px,4.3vw,62px);line-height:1.02;letter-spacing:-.02em;max-width:9.5em}
-.riga-1 .intro{grid-column:1 / span 5;grid-row:2;margin-top:24px;max-width:26em;color:var(--grigio)}
-.riga-1 figure{grid-column:8 / span 4;grid-row:1 / 4;margin:0;align-self:end;justify-self:center}
-.riga-1 figure img{height:450px;width:auto;margin-bottom:-34px}
-.past-testo{grid-column:1 / span 6;grid-row:3;margin-top:48px}
-.famiglie{list-style:none;padding:0;margin:0;border-top:1px solid var(--filo)}
-.famiglie li{display:grid;grid-template-columns:minmax(0,14em) minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--filo);align-items:baseline}
-.famiglie h3{font-size:24px;line-height:1.15;letter-spacing:-.01em}
-.famiglie p{font-size:16px;color:var(--grigio)}
-.nota-vodka{margin-top:16px;font-size:14px;color:var(--grigio);max-width:36em}
-.nota-vodka b{font-weight:500;color:var(--inchiostro)}
-.collegamenti{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:32px;margin-bottom:40px;font-size:16px}
-.collegamenti a{font-weight:500}
-.riga-1::after{content:"";grid-column:1 / -1;grid-row:4;border-bottom:1px solid var(--inchiostro)}
-.riga-2{padding-top:104px}
-.riga .col{grid-column:7 / span 6;padding-top:.55em}
-.riga .col p{font-size:19px;max-width:30em}
-.riga .col p+p{margin-top:16px}
-.riga .col a{display:inline-block;margin-top:20px;font-size:16px;font-weight:500}
-.riga-3::before{content:"";grid-column:1 / -1;border-top:1px solid var(--filo);margin:88px 0 56px}
-.riga-3 h2{grid-row:2;grid-column:1 / span 10;max-width:none;font-size:clamp(30px,3.1vw,44px);line-height:1.12;letter-spacing:-.015em}
-.riga-3 .col{grid-row:3;grid-column:1 / span 6;padding-top:24px}
-
-/* centenario */
-.centenario{background:var(--rosso);color:var(--carta);padding:112px 0 124px}
-.centenario .wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
-.cent-date{grid-column:1 / -1;font-family:var(--serif);font-weight:300;font-size:clamp(34px,9.6vw,136px);line-height:.96;letter-spacing:-.03em;font-variant-numeric:lining-nums}
-.cent-date span{display:block}
-.cent-testo{grid-column:1 / span 5;margin-top:56px}
-.cent-testo h2{font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-.015em}
-.cent-testo p{margin-top:18px;font-size:17px}
-.cent-testo a{display:inline-block;margin-top:26px;font-size:17px;font-weight:500;color:var(--carta)}
-.cent-testo a:hover{color:#fff}
-.anni{grid-column:7 / span 6;margin:56px 0 0;padding:0;list-style:none;border-top:1px solid rgba(243,238,230,.3)}
-.anni li{display:grid;grid-template-columns:5em minmax(0,1fr);gap:18px;padding:16px 0;border-bottom:1px solid rgba(243,238,230,.3);font-size:17px;align-items:baseline}
-.anni .a{font-family:var(--serif);font-size:26px;line-height:1;font-variant-numeric:lining-nums}
-
-/* chiusura */
-.chiusura{--pw:min(40vw,600px);display:grid;grid-template-columns:minmax(0,1fr) var(--pw);align-items:stretch}
-.chiu-testo{padding:128px var(--m) 112px max(var(--m),calc((100vw - 1440px)/2 + var(--m)));display:flex;flex-direction:column;justify-content:space-between;gap:64px}
-.chiu-testo h2{font-size:clamp(40px,3.9vw,56px);line-height:1.02;letter-spacing:-.022em;max-width:11em}
-.recapiti{font-size:17px;line-height:1.5}
-.recapiti .tel{display:inline-block;font-family:var(--serif);font-size:clamp(36px,3.4vw,48px);line-height:1;letter-spacing:-.01em;text-decoration:none;margin-bottom:22px;font-variant-numeric:lining-nums}
-.recapiti .tel:hover{color:var(--rosso)}
-.recapiti p+p{margin-top:12px}
-.recapiti .tenue{color:var(--grigio)}
-.chiusura figure{margin:0;position:relative;min-width:0;width:100%;aspect-ratio:588/908;align-self:end;background:#5a2a16}
-.chiusura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.didascalia{font-size:13px;line-height:1.45;color:var(--grigio);max-width:30em;margin-top:28px}
-
-/* piede */
-.piede{background:var(--carta-2);padding:88px 0 36px;font-size:15px;border-top:1px solid var(--filo)}
-.piede-alto{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:48px}
-.piede-marchio{grid-column:1 / span 3}
-.piede-marchio img{width:300px}
-.piede-marchio p{margin-top:20px;color:var(--grigio);max-width:18em}
-.piede-col{grid-column:span 2}
-.piede-col h3,.newsletter h3{font-family:var(--sans);font-weight:500;font-size:15px;margin-bottom:14px}
-.piede-col ul{list-style:none;margin:0;padding:0}
-.piede-col li+li{margin-top:9px}
-.piede-col a{text-decoration:none;color:var(--grigio)}
-.piede-col a:hover{color:var(--inchiostro);text-decoration:underline}
-.newsletter{grid-column:10 / span 3}
-.newsletter p{color:var(--grigio);margin-bottom:16px}
-.campo{display:flex;border-bottom:1px solid var(--inchiostro)}
-.campo input{flex:1;min-width:0;border:0;border-radius:0;background:transparent;font:inherit;font-size:16px;padding:11px 0;color:var(--inchiostro)}
-.campo input::placeholder{color:#6f665e}
-.campo button{border:0;border-radius:0;background:var(--inchiostro);color:var(--carta);font:inherit;font-weight:500;font-size:15px;padding:0 18px;cursor:pointer;transition:background-color .12s}
-.campo button:hover{background:var(--rosso)}
-.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;color:var(--grigio);line-height:1.45}
-.consenso input{margin:2px 0 0;accent-color:var(--rosso);width:16px;height:16px;flex:none}
-.esito{margin:12px 0 0;font-size:14px;color:var(--inchiostro);min-height:1.45em}
-.esito:empty{min-height:0}
-.piede-basso{margin-top:76px;padding-top:22px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;font-size:13px;color:var(--grigio)}
-.piede-basso nav{display:flex;gap:22px}
-.piede-basso a{color:var(--grigio)}
-
-/* tablet */
-@media (max-width:1180px){
-  .menu{gap:22px}
-  .nomi{gap:0 24px}
-  .nomi .n{font-size:24px}
-  .scheda .nome{font-size:20px}
-  .scheda .testo{font-size:15px}
-  .piede-marchio{grid-column:1 / -1}
-  .piede-col,.newsletter{grid-column:span 3}
-  .chiusura{--pw:42vw}
-  .chiu-testo{padding-top:96px;padding-bottom:80px;gap:48px}
+.logo .calice{display:none;width:34px}
+.nav{display:flex;gap:28px;margin-left:auto;font-size:var(--f-ui)}
+.nav a{text-decoration:none;padding-block:8px}
+.nav a:hover{text-decoration:underline}
+.testata .chiama{margin-left:8px}
+.apri-menu{display:none;margin-left:8px;width:var(--btn);min-height:var(--btn);padding:0;border:2px solid var(--inchiostro);border-radius:4px;background:var(--bianco);color:var(--inchiostro);cursor:pointer}
+.apri-menu svg{width:22px;height:22px;margin:auto}
+.pannello{display:none}
+@media (max-width:1099px){
+  .nav{display:none}
+  .testata .chiama{margin-left:auto}
+  .apri-menu{display:inline-flex;align-items:center;justify-content:center}
+  .pannello{position:fixed;inset:calc(var(--testata) + var(--fascia-h,0px)) 0 auto 0;background:var(--bianco);border-bottom:1px solid var(--filetto);z-index:19;padding:8px var(--m) 24px}
+  .pannello.aperto{display:block}
+  .pannello a{display:flex;align-items:center;min-height:52px;border-bottom:1px solid var(--filetto);font-size:var(--f-nome);font-family:var(--serif);text-decoration:none}
 }
-@media (max-width:1000px){
-  .menu,.tel-testata{display:none}
-  .apri-menu{display:inline-flex;margin-left:auto;align-items:center;border:1px solid var(--inchiostro);background:none;font:inherit;font-size:15px;font-weight:500;padding:9px 16px;cursor:pointer;color:var(--inchiostro)}
-  .testata.aperta .menu{display:flex;position:absolute;top:92px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:20px}
-  .testata.aperta .menu a{padding:12px 0;border-bottom:1px solid var(--filo)}
-  .testata.aperta .menu .solo-menu{display:block;font-weight:500;border-bottom:0}
-  .tavola{left:auto;right:var(--m);--h:clamp(640px,calc(100svh - 120px),760px)}
-  .apertura .wrap{min-height:900px}
-  .apertura h1,.attacco,.scelta{grid-column:1 / span 7}
-  .nomi{grid-template-columns:repeat(2,max-content)}
-  .scheda{grid-column:1 / span 6;grid-row:4;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:20px;align-items:start;margin-top:28px;padding-bottom:0}
-  .scheda .grado{grid-row:1 / 3;font-size:64px}
-  .scheda .nome{margin-top:0}
-  .scheda .testo{margin-top:4px;max-width:17em;min-height:4.5em}
-  .piano{grid-row:5}
-  .riga h2,.riga-1 .intro{grid-column:1 / span 8}
-  .past-testo{grid-column:1 / span 8}
-  .riga-1 figure{grid-column:9 / span 4}
-  .riga-1 figure img{height:380px;margin-bottom:-29px}
-  .famiglie li{grid-template-columns:1fr;gap:4px}
-  .riga-2 h2,.riga-3 h2{grid-column:1 / -1}
-  .riga .col{grid-column:1 / span 10;padding-top:28px}
-  .riga-3 .col{grid-row:3;grid-column:1 / span 8}
-  .cent-testo,.anni{grid-column:1 / -1}
-  .chiusura{--pw:44vw}
-  .chiu-testo{padding-top:72px;padding-bottom:64px;gap:40px}
-  .chiu-testo h2{font-size:34px}
-  .recapiti .tel{font-size:34px;margin-bottom:16px}
-  .newsletter{grid-column:1 / span 8}
-  .piede-col{grid-column:span 4}
+@media (max-width:600px){
+  .testata .wrap{gap:8px}
+  .logo{width:128px}
+  .testata .chiama{padding:0 12px;gap:8px}
+}
+@media (max-width:379px){
+  .regali .btn{padding:0 12px}
+  .regali .btn svg{display:none}
+}
+@media (max-width:359px){
+  .logo{width:34px}
+  .logo .scritta{display:none}
+  .logo .calice{display:block}
 }
 
-/* telefono: titolo a tutta larghezza; sotto i nomi in colonna e la bottiglia; poi grado e paragrafo */
-@media (max-width:700px){
-  body{font-size:17px}
-  .testata .wrap{height:68px;gap:16px}
-  .logo{width:150px}
-  .testata.aperta .menu{top:68px}
-  .apri-menu{padding:8px 14px;font-size:15px;min-height:42px}
-  .apertura .wrap{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 196px;column-gap:8px;align-content:start;padding-top:94px;padding-bottom:36px;
-    grid-template-areas:"titolo titolo" "scelta tavola" "scheda scheda" "attacco attacco"}
-  .piano{display:none}
-  .apertura h1{grid-area:titolo;font-size:clamp(42px,13.8vw,56px);line-height:.95;max-width:none}
-  .scelta{grid-area:scelta;margin-top:0;align-self:end;padding-bottom:20px}
-  .nomi{display:flex;flex-direction:column;gap:0;align-items:flex-start}
-  .nomi button{padding:7px 0 6px;min-height:44px;align-items:center}
-  .nomi .n{font-size:22px}
-  .nomi .g{font-size:13px}
-  .tavola{grid-area:tavola;position:relative;right:auto;bottom:auto;--h:440px;height:calc(var(--h) * .932);width:auto;aspect-ratio:auto;margin:14px -30px 0 0;overflow:hidden}
-  .tavola img{width:calc(var(--h) / 2);height:var(--h);max-width:none;object-fit:fill}
-  .scheda{grid-area:scheda;margin-top:0;padding:16px 0 0;border-top:1px solid var(--inchiostro);column-gap:16px}
-  .scheda .grado{font-size:52px}
-  .scheda .nome{font-size:19px}
-  .scheda .testo{font-size:15px;line-height:1.45;min-height:5.8em;max-width:none}
-  .attacco{grid-area:attacco;margin-top:22px;font-size:17px;max-width:21em}
-  .mestiere{padding:88px 0 92px}
-  .riga{grid-template-columns:minmax(0,1fr)}
-  .riga h2{grid-column:1 / -1}
-  .riga-1 .intro{grid-column:1 / -1}
-  .past-testo{grid-column:1 / -1;grid-row:3;margin-top:36px}
-  .collegamenti{margin-bottom:0}
-  .riga-1 figure{grid-column:1 / -1;grid-row:4;margin-top:40px;justify-self:center}
-  .riga-1 figure img{height:300px;margin-bottom:-23px}
-  .riga-1::after{grid-row:5}
-  .riga-2{padding-top:72px}
-  .riga .col{grid-column:1 / -1;padding-top:20px}
-  .riga .col p{font-size:17px}
-  .riga-3::before{margin:64px 0 40px}
-  .centenario{padding:84px 0 90px}
-  .cent-date{font-size:clamp(30px,10.4vw,46px)}
-  .cent-testo,.anni{margin-top:40px}
-  .anni li{grid-template-columns:3.6em minmax(0,1fr);font-size:16px}
-  .anni .a{font-size:22px}
-  .chiusura{grid-template-columns:1fr;--pw:100vw}
-  .chiu-testo{padding:88px var(--m) 56px;gap:40px}
-  .chiu-testo h2{font-size:clamp(34px,10vw,40px)}
-  .piede{padding-top:64px}
-  .piede-marchio img{width:240px}
-  .piede-marchio,.newsletter{grid-column:1 / -1}
-  .piede-col{grid-column:span 6}
-  .piede-col.social{grid-column:1 / -1}
-  .piede-basso{margin-top:56px;flex-direction:column}
+/* Apertura */
+.apertura{padding-top:32px;padding-bottom:24px}
+.apertura .testo{grid-column:1 / span 7;align-self:start}
+.apertura .foto{grid-column:9 / span 4;align-self:start}
+.apertura .foto img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.apertura .occhiello{color:var(--rosso)}
+.apertura h1{font-size:var(--f-apertura);line-height:1.0;letter-spacing:-.02em;margin-top:12px}
+.apertura .biglietto{margin-top:20px;max-width:34em}
+.spaccio-riga{margin-top:24px;padding-top:18px;border-top:1px solid var(--filetto);max-width:640px}
+.stato{display:flex;align-items:baseline;gap:10px;font-weight:600}
+.stato::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--grigio-testo);transform:translateY(-1px)}
+.stato.aperto::before{background:var(--verde)}
+.stato.aperto .ora{color:var(--verde)}
+.spaccio-riga p.dove{margin-top:6px}
+.spaccio-riga .bottoni{margin-top:14px}
+@media (max-width:1099px){
+  .apertura .testo{grid-column:1 / span 7}
+  .apertura .foto{grid-column:8 / span 5}
 }
-@media (max-width:350px){
-  .apertura .wrap{grid-template-columns:minmax(0,1fr) 168px}
-  .tavola{--h:400px}
-  .nomi .n{font-size:20px}
+@media (max-width:600px){
+  .apertura{padding-top:24px;padding-bottom:0}
+  .apertura .testo,.apertura .foto{grid-column:1 / -1}
+  .apertura h1{margin-top:12px}
+  .apertura .biglietto{margin-top:16px}
+  .spaccio-riga{margin-top:20px;padding-top:16px}
+  .spaccio-riga .bottoni{margin-top:14px}
+  .spaccio-riga .bottoni .btn{width:100%}
+  .apertura .foto{margin-top:20px!important}
+  .apertura .foto img{aspect-ratio:4/3}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Blocco per il professionista, subito sotto l'apertura */
+.su-scuro{background:var(--inchiostro);color:var(--bianco)}
+.su-rosso{background:var(--rosso);color:var(--bianco)}
+.pro{padding-block:20px}
+.pro .testa{grid-column:1 / span 8}
+.pro .testa .occhiello{color:rgba(255,255,255,.72)}
+.pro h2{font-size:var(--f-nome);line-height:1.25;margin-top:4px;text-wrap:wrap}
+.pro .azioni{grid-column:9 / span 4;justify-self:end;align-self:center;text-align:right}
+.pro .azioni .bottoni{justify-content:flex-end}
+.pro .azioni p{margin-top:10px;font-size:var(--f-ui);color:rgba(255,255,255,.8)}
+.pro .famiglie{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);font-size:var(--f-ui);line-height:1.45}
+.pro .famiglie b{display:block;font-weight:600}
+.pro .famiglie span{color:rgba(255,255,255,.8)}
+@media (max-width:1099px){
+  .pro .testa,.pro .azioni{grid-column:1 / -1;justify-self:start;text-align:left}
+  .pro .azioni{margin-top:20px}
+  .pro .azioni .bottoni{justify-content:flex-start}
+  .pro .famiglie{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .pro{padding-block:28px}
+  .pro .azioni .btn{width:100%}
+  .pro .famiglie{display:none}
+}
+
+/* Allo spaccio: liquori e regali */
+.liquori{background:var(--grigio)}
+.liquori .intesta{grid-column:1 / span 7}
+.liquori .intesta .attacco{margin-top:20px;max-width:32em}
+.regali{grid-column:9 / span 4;align-self:end;background:var(--bianco);padding:28px;border-radius:4px}
+.regali h3{font-size:var(--f-nome);line-height:1.2}
+.regali p{margin-top:10px}
+.regali .bottoni{margin-top:18px;flex-direction:column}
+.regali .btn{width:100%;justify-content:flex-start}
+.regali .btn .n{margin-left:auto;font-weight:400}
+.tessere{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px}
+.tessere li{display:flex}
+.tessere .tessera{flex:1}
+.tessera{position:relative;display:flex;flex-direction:column;background:var(--bianco);border-radius:4px;overflow:hidden;text-decoration:none}
+.tessera img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.tessera .corpo{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1}
+.tessera h3{font-size:var(--f-nome);line-height:1.15;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.tessera h3 .g{font-family:var(--sans);font-size:var(--f-ui);color:var(--grigio-testo)}
+.tessera p{margin-top:8px;font-size:var(--f-ui);line-height:1.5;color:var(--grigio-testo)}
+.tessera .vai{margin-top:auto;padding-top:14px;font-size:var(--f-ui);font-weight:600;color:var(--rosso)}
+.tessera:hover h3 .nome{text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
+.dove-comprare{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding-top:28px;border-top:1px solid var(--filetto)}
+.dove-comprare p{max-width:36em}
+@media (max-width:1099px){
+  .liquori .intesta{grid-column:1 / -1}
+  .regali{grid-column:1 / -1;margin-top:32px}
+  .regali .bottoni{flex-direction:row}
+  .regali .btn{width:auto}
+  .tessere{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .regali{padding:16px}
+  .regali .bottoni{flex-direction:column}
+  .regali .btn{width:100%}
+  .tessere{grid-template-columns:1fr;gap:8px;margin-top:28px}
+  .tessera{flex-direction:row}
+  .tessera img{width:104px;flex:none}
+  .tessera .corpo{padding:10px 14px}
+  .tessera h3 .g{display:none}
+  .tessera p{margin-top:4px}
+  .tessera .vai{padding-top:4px}
+  .dove-comprare .bottoni,.dove-comprare .btn{width:100%}
+}
+
+/* Per la pasticceria (blocco scuro) */
+.pasticceria .intesta{grid-column:1 / span 7}
+.pasticceria .intesta .occhiello{color:rgba(255,255,255,.72)}
+.pasticceria .intesta h2{margin-top:16px}
+.pasticceria .intesta .attacco{margin-top:20px;color:rgba(255,255,255,.86)}
+.ordina{grid-column:9 / span 4;align-self:end;border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:28px}
+.ordina h3{font-size:var(--f-nome);line-height:1.2}
+.ordina p{margin-top:8px;color:rgba(255,255,255,.86)}
+.ordina .bottoni{margin-top:18px;flex-direction:column}
+.ordina .btn{width:100%}
+.ordina .clienti-fissi{margin-top:16px;font-size:var(--f-ui)}
+.ordina a.link{color:var(--bianco)}
+.famiglia-griglia{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.famiglia{position:relative;display:flex;flex-direction:column}
+.famiglia img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
+.famiglia h3{font-size:var(--f-nome);line-height:1.2;margin-top:20px}
+.famiglia .descr{margin-top:8px;color:rgba(255,255,255,.86)}
+.famiglia dl{margin:16px 0 0;font-size:var(--f-ui);line-height:1.5}
+.famiglia dt{font-weight:600;margin-top:10px}
+.famiglia dd{margin:0;color:rgba(255,255,255,.8)}
+.famiglia a.vai{margin-top:18px;font-size:var(--f-ui);font-weight:600;color:var(--bianco)}
+.famiglia a.vai::after{content:"";position:absolute;inset:0}
+.formati{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:72px;padding-top:40px;border-top:1px solid rgba(255,255,255,.22)}
+.formati .cifra{font-family:var(--serif);font-size:var(--f-sezione);line-height:1}
+.formati p{margin-top:12px;font-size:var(--f-ui);color:rgba(255,255,255,.86)}
+.clienti{margin-top:72px}
+.clienti h3{font-size:var(--f-nome)}
+.clienti ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;margin-top:20px}
+.clienti li{padding:14px 0;border-top:1px solid rgba(255,255,255,.22);font-size:var(--f-ui)}
+.clienti li b{display:block;font-family:var(--serif);font-weight:400;font-size:var(--f-attacco)}
+.clienti li span{color:rgba(255,255,255,.8)}
+@media (max-width:1099px){
+  .pasticceria .intesta{grid-column:1 / -1}
+  .ordina{grid-column:1 / -1;margin-top:32px}
+  .famiglia-griglia{grid-template-columns:1fr 1fr}
+  .formati{grid-template-columns:1fr 1fr}
+  .clienti ul{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .ordina{padding:20px}
+  .famiglia-griglia,.clienti ul{grid-template-columns:1fr}
+  .famiglia{display:grid;grid-template-columns:104px 1fr;column-gap:16px}
+  .famiglia img{grid-row:1 / span 2}
+  .famiglia h3{margin-top:0;align-self:end}
+  .famiglia .descr{align-self:start}
+  .famiglia dl,.famiglia a.vai{grid-column:1 / -1}
+  .formati{gap:28px 16px;margin-top:56px}
+  .clienti{margin-top:56px}
+}
+
+/* Centenario (blocco rosso) */
+.centenario .gesto{grid-column:1 / span 5;font-family:var(--serif);font-size:var(--f-gesto);line-height:.86;letter-spacing:-.03em}
+.centenario .gesto small{display:block;font-size:var(--f-sezione);letter-spacing:-.01em;line-height:1.1;margin-top:8px}
+.centenario .racconto{grid-column:7 / span 6}
+.centenario .racconto .occhiello{color:rgba(255,255,255,.86)}
+.centenario .racconto h2{margin-top:14px}
+.centenario .racconto p.lungo{margin-top:20px}
+.centenario .racconto .programma{margin-top:20px;font-weight:600}
+.centenario .bottoni{margin-top:18px}
+.date{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:80px;padding-top:32px;border-top:1px solid rgba(255,255,255,.4)}
+.date .anno{font-family:var(--serif);font-size:var(--f-sezione);line-height:1}
+.date p{margin-top:12px;font-size:var(--f-ui)}
+@media (max-width:1099px){
+  .centenario .gesto,.centenario .racconto{grid-column:1 / -1}
+  .centenario .racconto{margin-top:32px}
+  .date{grid-template-columns:1fr 1fr;row-gap:32px}
+}
+@media (max-width:600px){
+  .centenario .bottoni .btn{width:100%}
+  .date{margin-top:56px}
+}
+
+/* Chi siamo */
+.manifesto{grid-column:1 / span 10;font-family:var(--serif);font-size:var(--f-sezione);line-height:1.12;letter-spacing:-.015em}
+.manifesto .rosso{color:var(--rosso)}
+.chi .foto{grid-column:1 / span 5;margin-top:72px}
+.chi .foto img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.chi .testo{grid-column:7 / span 6;margin-top:72px;align-self:center}
+.chi .testo .occhiello{color:var(--rosso)}
+.chi .testo h3{font-size:var(--f-sezione);line-height:1.1;margin-top:14px}
+.chi .testo p{margin-top:18px}
+.chi .testo p.attacco{margin-top:20px}
+.stampa{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:96px;padding-top:28px;border-top:1px solid var(--filetto)}
+.stampa h3{grid-column:1 / -1;font-size:var(--f-nome)}
+.stampa li{font-size:var(--f-ui);line-height:1.5}
+.stampa li b{display:block;font-family:var(--serif);font-weight:400;font-size:var(--f-attacco);line-height:1.3;margin-bottom:4px}
+.stampa li span{color:var(--grigio-testo)}
+@media (max-width:1099px){
+  .manifesto,.chi .foto,.chi .testo{grid-column:1 / -1}
+  .chi .foto{max-width:480px}
+  .chi .testo{margin-top:40px}
+  .stampa{grid-template-columns:1fr 1fr;row-gap:28px}
+}
+@media (max-width:600px){
+  .chi .foto{margin-top:40px}
+  .stampa{grid-template-columns:1fr;margin-top:64px}
+}
+
+/* Spaccio e orari */
+.spaccio{background:var(--grigio)}
+.spaccio .intesta{grid-column:1 / -1}
+.scheda-negozio{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;background:var(--bianco);border-radius:4px;overflow:hidden;margin-top:48px}
+.scheda-negozio .lato{grid-column:1 / span 6;padding-bottom:32px}
+.scheda-negozio .foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.scheda-negozio .lato .didascalia{padding-inline:32px}
+.scheda-negozio .cellulari{margin:24px 32px 0}
+.scheda-negozio .info{grid-column:7 / span 6;padding:40px 40px 40px 16px}
+.scheda-negozio .nota-mail{margin-top:20px;font-size:var(--f-ui)}
+.scheda-negozio h3{font-size:var(--f-nome);line-height:1.25}
+.scheda-negozio .stato{margin-top:14px}
+.scheda-negozio .nota{margin-top:6px}
+table.orari{width:100%;border-collapse:collapse;margin-top:20px;font-size:var(--f-ui)}
+.orari th,.orari td{padding:9px 0;border-top:1px solid var(--filetto);text-align:left;font-weight:400;vertical-align:top}
+.orari td{text-align:right}
+.orari tr.oggi th,.orari tr.oggi td{font-weight:600}
+.orari caption{text-align:left;font-weight:600;padding-bottom:6px}
+.scheda-negozio .bottoni{margin-top:20px}
+.cellulari{padding-top:20px;border-top:1px solid var(--filetto)}
+.cellulari ul{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.cellulari li{display:flex;flex-direction:column;gap:8px}
+.cellulari li b{font-weight:600}
+.cellulari .btn{width:100%}
+.didascalia{font-size:var(--f-ui);color:var(--grigio-testo);margin-top:16px}
+@media (max-width:1099px){
+  .scheda-negozio .lato,.scheda-negozio .info{grid-column:1 / -1}
+  .scheda-negozio .lato{order:2;padding-bottom:28px}
+  .scheda-negozio .info{order:1}
+  .scheda-negozio .info{padding:28px}
+}
+@media (max-width:600px){
+  .scheda-negozio{margin-top:32px}
+  .scheda-negozio .info{padding:20px}
+  .scheda-negozio .lato .didascalia{padding-inline:20px}
+  .scheda-negozio .cellulari{margin:20px 20px 0}
+  .scheda-negozio .bottoni .btn{width:100%}
+  .cellulari ul{grid-template-columns:1fr}
+}
+
+/* Scrivici: modulo che prepara l'email */
+.scrivici .intesta{grid-column:1 / span 5}
+.scrivici .intesta p{margin-top:18px}
+.scrivici .intesta ul{margin-top:24px}
+.scrivici .intesta li{padding:12px 0;border-top:1px solid var(--filetto);font-size:var(--f-ui)}
+.modulo{grid-column:7 / span 6}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:600;padding:0;margin-bottom:12px}
+.tipi{display:flex;flex-wrap:wrap;gap:10px}
+.tipi label{position:relative}
+.tipi input{position:absolute;opacity:0;inset:0;margin:0}
+.tipi span{display:inline-flex;align-items:center;min-height:48px;padding:0 16px;border:2px solid var(--filetto);border-radius:4px;font-size:var(--f-ui);cursor:pointer}
+.tipi input:checked + span{border-color:var(--inchiostro);background:var(--inchiostro);color:var(--bianco)}
+.tipi input:focus-visible + span{outline:3px solid var(--rosso);outline-offset:3px}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-top:28px}
+.campo{display:flex;flex-direction:column;gap:8px}
+.campo.largo{grid-column:1 / -1}
+.campo label{font-size:var(--f-ui);font-weight:600}
+.campo input,.campo textarea{font:inherit;font-size:var(--f-ui);color:var(--inchiostro);background:var(--bianco);border:2px solid var(--filetto);border-radius:4px;min-height:52px;padding:12px 14px;width:100%}
+.campo textarea{min-height:140px;resize:vertical}
+.modulo .invia{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.modulo .esito{font-size:var(--f-ui);color:var(--grigio-testo)}
+@media (max-width:1099px){
+  .scrivici .intesta,.modulo{grid-column:1 / -1}
+  .modulo{margin-top:40px}
+}
+@media (max-width:600px){
+  .campi{grid-template-columns:1fr}
+  .modulo .invia .btn{width:100%}
+}
+
+/* Piede */
+.piede{background:var(--inchiostro);color:var(--bianco);padding:80px 0 32px;font-size:var(--f-ui);line-height:1.6}
+.piede .colonne{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.piede .logo-piede{width:200px}
+.piede h2{font-family:var(--sans);font-size:var(--f-ui);font-weight:600;margin-bottom:12px}
+.piede p,.piede li{color:rgba(255,255,255,.82)}
+.piede li{margin-bottom:6px}
+.piede a{color:var(--bianco)}
+.piede li small{display:block;font-size:var(--f-ui);color:rgba(255,255,255,.66)}
+.piede .legale{margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);display:flex;flex-wrap:wrap;gap:8px 24px;font-size:var(--f-legale);color:rgba(255,255,255,.72)}
+.piede .legale a{color:rgba(255,255,255,.86)}
+@media (max-width:1099px){.piede .colonne{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.piede{padding-top:56px}.piede .colonne{grid-template-columns:1fr}}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LiquorStore","name":"Distilleria Rizzi S.r.l.","description":"Liquori, amari, sciroppi e aromi per la pasticceria dal 1926. Spaccio aziendale.","foundingDate":"1926-12-15","founder":[{"@type":"Person","name":"Carlo Rizzi"},{"@type":"Person","name":"Ferruccio Rizzi"}],"telephone":"+39 049 900 0053","email":"info@distilleriarizzi.com","vatID":"IT03273220289","address":{"@type":"PostalAddress","streetAddress":"Via G. Negri 7","postalCode":"35035","addressLocality":"Mestrino","addressRegion":"PD","addressCountry":"IT"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"12:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"13:30","closes":"17:00"}],"sameAs":["https://www.instagram.com/distilleriarizzi/","https://www.facebook.com/distilleriarizzi","https://www.linkedin.com/company/distilleria-rizzi/"]}
+</script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <symbol id="i-via" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="i-sms" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2zm3 6v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></symbol>
+  <symbol id="i-chiudi" viewBox="0 0 24 24"><path fill="currentColor" d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></symbol>
+</svg>
+
+<div class="fascia" id="fascia">
+  <a href="#centenario"><span class="lungo">15 dicembre: la Distilleria Rizzi compie 100 anni</span><span class="corto" aria-hidden="true">15 dicembre: compiamo 100 anni</span><span class="vai">La festa</span></a>
+</div>
 
 <header class="testata" id="testata">
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Distilleria Rizzi, home"><img src="img/logo-rizzi-scritta.png" width="1286" height="168" alt="Distilleria Rizzi"></a>
-    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <nav class="menu" id="menu" aria-label="Principale">
-      <a href="/liquori-e-amari/">Liquori e amari</a>
+    <a class="logo" href="#inizio" aria-label="Distilleria Rizzi, inizio pagina">
+      <img class="scritta" src="img/logo-scritta-nero.png" width="640" height="78" alt="Distilleria Rizzi">
+      <img class="calice" src="img/calice.png" width="98" height="128" alt="">
+    </a>
+    <nav class="nav" aria-label="Sezioni">
+      <a href="#spaccio">Spaccio e orari</a>
+      <a href="#liquori">Liquori e regali</a>
       <a href="#pasticceria">Per la pasticceria</a>
-      <a href="#centenario">La storia</a>
-      <a href="#contatti">Spaccio e contatti</a>
-      <a class="solo-menu num" href="tel:+390499000053">Chiama lo 049 900 0053</a>
+      <a href="#centenario">100 anni</a>
+      <a href="#chi-siamo">Chi siamo</a>
     </nav>
-    <a class="tel-testata num" href="tel:+390499000053">049 900 0053</a>
+    <a class="btn btn-pieno chiama" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="vh">Chiama </span><span class="cifre">049 900 0053</span></a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="pannello"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="vh">Menu</span></button>
   </div>
 </header>
+<nav class="pannello" id="pannello" aria-label="Menu">
+  <a href="#spaccio">Spaccio e orari</a>
+  <a href="#liquori">Liquori e regali</a>
+  <a href="#pasticceria">Per la pasticceria</a>
+  <a href="#centenario">100 anni</a>
+  <a href="#chi-siamo">Chi siamo</a>
+  <a href="#scrivici">Scrivici</a>
+</nav>
 
-<main>
-<section class="apertura" id="liquori" aria-labelledby="titolo">
-  <div class="wrap">
-    <h1 id="titolo">Liquori e amari dal 1926</h1>
-    <p class="attacco">Liquori, amari e aromi per la pasticceria a Mestrino, a due passi da Padova. Dal 2022 la distilleria è di Maddalena e Alessandro.</p>
-    <div class="scelta">
-      <ul class="nomi" role="radiogroup" aria-label="Sei etichette di casa Rizzi">
-        <li><button type="button" role="radio" aria-checked="true" data-k="felsina"><span class="n">Felsina</span><span class="g">21°</span></button></li>
-        <li><button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="fernet"><span class="n">Fernet</span><span class="g">45°</span></button></li>
-        <li><button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="garofano"><span class="n">Garofano</span><span class="g">21°</span></button></li>
-        <li><button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="pinalpe"><span class="n">Pinalpe</span><span class="g">40°</span></button></li>
-        <li><button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="prugna"><span class="n">Prugna</span><span class="g">35°</span></button></li>
-        <li><button type="button" role="radio" aria-checked="false" tabindex="-1" data-k="punch"><span class="n">Punch</span><span class="g">30°</span></button></li>
-      </ul>
+<main id="inizio">
+
+<!-- 1. Apertura: chi siete e posso passare? -->
+<section class="apertura" aria-labelledby="titolo">
+  <div class="wrap griglia">
+    <div class="testo">
+      <p class="occhiello">Mestrino, Padova, dal 1926</p>
+      <h1 id="titolo">Liquori, amari e aromi per la pasticceria</h1>
+      <p class="attacco biglietto">Distilleria Rizzi, di Maddalena e Alessandro: liquori, amari, sciroppi e aromi per la pasticceria a Mestrino dal 1926.</p>
+      <div class="spaccio-riga">
+        <p class="stato" data-stato><span><span class="ora">Ufficio dal lunedì al venerdì</span>, <span class="resto">9:00-12:30 e 13:30-17:00</span></span></p>
+        <p class="dove">Spaccio in via G. Negri 7: chiamaci prima di passare.</p>
+        <div class="bottoni">
+          <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Chiama <span class="cifre">049 900 0053</span></a>
+          <a class="btn btn-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Distilleria%20Rizzi%2C%20Via%20Guido%20Negri%207%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-via"/></svg>Indicazioni</a>
+        </div>
+      </div>
     </div>
-    <div class="scheda" aria-live="polite">
-      <p class="grado" id="sch-grado">21°</p>
-      <p class="nome" id="sch-nome">Amaro Felsina</p>
-      <p class="testo" id="sch-testo">Amaro alle erbe delicato, tra i più amati per il dopo pasto.</p>
-    </div>
-    <div class="piano" aria-hidden="true"></div>
-    <figure class="tavola" id="tavola">
-      <img id="bottiglia" src="img/felsina-760.webp" srcset="img/felsina-480.webp 480w, img/felsina-760.webp 760w, img/felsina-1000.webp 1000w" sizes="(max-width:700px) 220px, 390px" width="1000" height="2000" alt="Bottiglia di Amaro Felsina con l'etichetta storica: scudo RIZZI rosso, medaglie, fondo blu" fetchpriority="high">
+    <figure class="foto" style="margin:0">
+      <img src="img/spaccio-760.webp" srcset="img/spaccio-480.webp 480w, img/spaccio-760.webp 760w, img/spaccio-1040.webp 1040w, img/spaccio-1280.webp 1280w" sizes="(max-width:600px) 100vw, (max-width:1099px) 40vw, 412px" width="760" height="950" alt="Il nostro spaccio in via Negri addobbato per Natale: il banco rosso, le confezioni regalo e le mensole con le bottiglie" fetchpriority="high">
     </figure>
   </div>
 </section>
 
-<section class="mestiere" id="pasticceria" aria-labelledby="past-tit">
-  <div class="wrap riga riga-1">
-    <h2 id="past-tit">Oltre 40 aromi e ingredienti per la pasticceria</h2>
-    <p class="intro">Una linea pensata per laboratori artigianali, professionisti e appassionati: creme, impasti, bagne e dessert.</p>
-    <figure>
-      <img src="img/alchermes-480.webp" srcset="img/alchermes-480.webp 480w, img/alchermes-760.webp 760w" sizes="(max-width:700px) 150px, 220px" width="1000" height="2000" alt="Bottiglia di Alchermes Rizzi con l'etichetta della dama" loading="lazy">
-    </figure>
-    <div class="past-testo">
-      <ul class="famiglie">
-        <li><h3>Sciroppi di zucchero</h3><p><span class="num">20</span> gusti, da Arancia a Cola.</p></li>
-        <li><h3>Aromi alcolici a 70°</h3><p>Da Alchermes a King George.</p></li>
-        <li><h3>Creme e vini</h3><p>Marsala fine ambra secco DOP <span class="num">17,5°</span>, Cremovo e Ovorizzi <span class="num">18°</span>.</p></li>
-      </ul>
-      <p class="nota-vodka"><b>Vodka 70° per uso professionale:</b> tanica da <span class="num">5, 10, 20</span> e <span class="num">30</span>&nbsp;L, fusto da <span class="num">50</span> e <span class="num">225</span>&nbsp;L.</p>
-      <div class="collegamenti"><a href="/pasticceria/">Il catalogo per la pasticceria</a><a href="/sciroppi-per-granite/">Sciroppi per granite</a></div>
+<!-- Per il professionista, nella prima schermata a 1440 -->
+<section class="pro su-scuro" aria-labelledby="titolo-pro">
+  <div class="wrap griglia">
+    <div class="testa">
+      <p class="occhiello">Per pasticcerie, bar e ristoranti</p>
+      <h2 id="titolo-pro">Oltre 40 aromi e ingredienti per la pasticceria professionale</h2>
     </div>
-  </div>
-  <div class="wrap riga riga-2">
-    <h2 id="lab-tit">Facciamo tutto noi, dall'inizio alla fine</h2>
-    <div class="col">
-      <p>Infusi, alcolati e sciroppi nascono nel laboratorio di via Negri, a Mestrino, seguendo ancora le ricette e le procedure scritte dai fondatori. Gli strumenti del fondatore e alcuni ricettari originali sono in vetrina, nello spaccio.</p>
-      <p>Dal 14 dicembre 2022, quando Maddalena e Alessandro hanno preso in mano la distilleria, sono uscite <span class="num">16.540</span> bottiglie.</p>
+    <div class="azioni">
+      <div class="bottoni">
+        <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Ufficio <span class="cifre">049 900 0053</span></a>
+        <a class="btn btn-bordo" href="#pasticceria">Gusti e formati</a>
+      </div>
     </div>
+    <ul class="famiglie">
+      <li><b>Sciroppi di zucchero</b><span>per bagne, da Arancia a Cola</span></li>
+      <li><b>Aromi alcolici a 70°</b><span>da Alchermes a King George</span></li>
+      <li><b>Creme e vini</b><span>Marsala DOP, Cremovo, Ovorizzi, Vermouth bianco</span></li>
+      <li><b>Formati e listino</b><span class="cifre">bottiglioni da 2 L, Vodka 70° da 5 a 225 L, listino su richiesta</span></li>
+    </ul>
   </div>
-  <div class="wrap riga riga-3">
-    <h2 id="chi-tit">Lavoriamo soprattutto con pasticcerie, bar, ristoranti e distributori del Veneto</h2>
-    <div class="col">
-      <p>Dal 29 settembre 2024, in via Negri, c'è anche lo spaccio aziendale aperto ai privati.</p>
-      <a href="/spaccio/">Spaccio e orari</a>
+</section>
+
+<!-- 2. Cosa trovo allo spaccio, cosa regalo? -->
+<section class="sezione liquori" id="liquori" aria-labelledby="titolo-liquori">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="intesta">
+        <h2 class="h-sezione" id="titolo-liquori">Allo spaccio: liquori, amari, punch e grappe</h2>
+        <p class="attacco">I nostri liquori, oggi come una volta: cura, pazienza e materie prime eccellenti. Non sono prodotti da “bere”: assaggiali, scoprili, innamorati.</p>
+      </div>
+      <aside class="regali" aria-labelledby="titolo-regali">
+        <h3 id="titolo-regali">Regali e cofanetti</h3>
+        <p>Si prenotano inviando un SMS con nome e cognome.</p>
+        <div class="bottoni">
+          <a class="btn btn-pieno" href="sms:+393513070422?&amp;body=Ciao%20Maddalena%2C%20vorrei%20prenotare%20un%20regalo.%20Nome%20e%20cognome%3A%20"><svg aria-hidden="true"><use href="#i-sms"/></svg>SMS a Maddalena <span class="n cifre">351 307 0422</span></a>
+          <a class="btn btn-bordo" href="sms:+393513858112?&amp;body=Ciao%20Alessandro%2C%20vorrei%20prenotare%20un%20regalo.%20Nome%20e%20cognome%3A%20"><svg aria-hidden="true"><use href="#i-sms"/></svg>SMS ad Alessandro <span class="n cifre">351 385 8112</span></a>
+        </div>
+      </aside>
+    </div>
+
+    <ul class="tessere">
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/carciofo-400.webp" width="400" height="500" loading="lazy" alt="Bottiglia di Carciofo Rizzi, etichetta rossa">
+        <div class="corpo"><h3><span class="nome">Carciofo</span><span class="g cifre">16°</span></h3><p>Assolutamente da provare come aggiunta allo spritz classico.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/garofano-400.webp" srcset="img/garofano-400.webp 400w, img/garofano-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Garofano Rizzi">
+        <div class="corpo"><h3><span class="nome">Garofano</span><span class="g cifre">21°</span></h3><p>Amaro speziato con chiodi di garofano, cannella, bucce di agrumi e mele. D’inverno, anche nel vin brulè.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/felsina-400.webp" srcset="img/felsina-400.webp 400w, img/felsina-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Amaro Felsina con lo scudo RIZZI e le medaglie">
+        <div class="corpo"><h3><span class="nome">Felsina</span><span class="g cifre">21°</span></h3><p>Amaro alle erbe delicato: il nostro per il dopo pasto.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/prugna-400.webp" srcset="img/prugna-400.webp 400w, img/prugna-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Prugna Veneta Rizzi">
+        <div class="corpo"><h3><span class="nome">Prugna</span><span class="g cifre">35°</span></h3><p>Liquore tipico veneto.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/punch-400.webp" srcset="img/punch-400.webp 400w, img/punch-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Punch Arancio Rizzi">
+        <div class="corpo"><h3><span class="nome">Punch</span><span class="g cifre">30°</span></h3><p>Si può servire caldo, con una fettina d’arancia. Arancio, Mandarino e Jamaica.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/pinalpe-400.webp" srcset="img/pinalpe-400.webp 400w, img/pinalpe-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia verde di Pinalpe con l'abete in etichetta">
+        <div class="corpo"><h3><span class="nome">Pinalpe</span><span class="g cifre">40°</span></h3><p>Infuso di erbe alpine balsamiche.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/fernet-400.webp" srcset="img/fernet-400.webp 400w, img/fernet-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Fernet Rizzi con l'etichetta in corsivo">
+        <div class="corpo"><h3><span class="nome">Fernet</span><span class="g cifre">45°</span></h3><p>Amaro gran riserva di oltre 40 anni, per i palati più coraggiosi.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+      <li><a class="tessera" href="#spaccio">
+        <img src="img/grappa-400.webp" srcset="img/grappa-400.webp 400w, img/grappa-640.webp 640w" sizes="(max-width:600px) 104px, (max-width:1099px) 45vw, 302px" width="400" height="500" loading="lazy" alt="Bottiglia di Grappa Veneta Rizzi">
+        <div class="corpo"><h3><span class="nome">Grappa Veneta</span><span class="g cifre">38°</span></h3><p>Grappa bianca da uve dei Colli Berici.</p><span class="vai">Allo spaccio</span></div>
+      </a></li>
+    </ul>
+
+    <div class="dove-comprare">
+      <p><strong>Li trovi allo spaccio in via G. Negri 7, a Mestrino.</strong> Chiamaci prima di passare, anche per sapere se il liquore che cerchi è disponibile.</p>
+      <div class="bottoni">
+        <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Chiama <span class="cifre">049 900 0053</span></a>
+        <a class="btn btn-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Distilleria%20Rizzi%2C%20Via%20Guido%20Negri%207%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-via"/></svg>Indicazioni</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="centenario" id="centenario" aria-labelledby="cent-tit">
+<!-- 3. Fate prodotti per la mia pasticceria o il mio bar? -->
+<section class="sezione pasticceria su-scuro" id="pasticceria" aria-labelledby="titolo-pasticceria">
   <div class="wrap">
-    <p class="cent-date" aria-hidden="true"><span>15 dicembre 1926</span><span>15 dicembre 2026</span></p>
-    <div class="cent-testo">
-      <h2 id="cent-tit">La distilleria compie cento anni</h2>
-      <p>Nello stesso giorno festeggiamo i quattro anni dall'inizio della nostra attività. Rivivremo la storia dell'azienda con una mostra fotografica, ti faremo assaggiare liquori fatti con le ricette più antiche e potrai visitare la distilleria.</p>
-      <a href="#newsletter">Ricevi l'invito per email</a>
+    <div class="griglia">
+      <div class="intesta">
+        <p class="occhiello">Per pasticcerie, bar, ristoranti e distributori</p>
+        <h2 class="h-sezione" id="titolo-pasticceria">Oltre 40 aromi e ingredienti per la pasticceria professionale</h2>
+        <p class="attacco">Una linea pensata per laboratori artigianali, professionisti e appassionati che cercano ingredienti capaci di esaltare creme, impasti, bagne e dessert.</p>
+      </div>
+      <aside class="ordina" aria-labelledby="titolo-ordina">
+        <h3 id="titolo-ordina">Listino su richiesta</h3>
+        <p class="cifre">Ordini e listino in ufficio, dal lunedì al venerdì, 9:00-12:30 e 13:30-17:00.</p>
+        <div class="bottoni">
+          <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Ufficio <span class="cifre">049 900 0053</span></a>
+          <a class="btn btn-bordo" href="mailto:info@distilleriarizzi.com?subject=Richiesta%20listino%20pasticceria&amp;body=Attivit%C3%A0%20e%20comune%3A%20%0AProdotti%20e%20formati%3A%20%0ATelefono%3A%20">info@distilleriarizzi.com</a>
+        </div>
+        <p class="clienti-fissi">Il catalogo completo è sul <a class="link" href="https://distilleriarizzi.com/prodotti-per-pasticceria/">sito di oggi</a>.</p>
+      </aside>
     </div>
-    <ol class="anni">
-      <li><span class="a">1926</span><span>I fratelli Carlo e Ferruccio Rizzi iniziano a produrre liquori.</span></li>
-      <li><span class="a">1945</span><span>Acquistano il marchio Genzial e prendono nel logo il leone veneziano con la scritta «casa fondata nel 1850».</span></li>
-      <li><span class="a">2022</span><span>Il 14 dicembre la distilleria passa a Maddalena e Alessandro.</span></li>
-      <li><span class="a">2024</span><span>Il 29 settembre apre lo spaccio aziendale, in via Negri.</span></li>
+
+    <div class="famiglia-griglia">
+      <article class="famiglia">
+        <img src="img/sciroppi-400.webp" srcset="img/sciroppi-400.webp 400w, img/sciroppi-640.webp 640w" sizes="(max-width:600px) 60vw, (max-width:1099px) 45vw, 411px" width="400" height="500" loading="lazy" alt="Quattro bottiglie di sciroppo Rizzi: amarena, limone, menta e anice">
+        <h3>Sciroppi di zucchero</h3>
+        <p class="descr">Preparazioni aromatiche ideali per bagne e aromatizzazioni, bilanciate e pronte all’uso.</p>
+        <dl>
+          <dt>Agrumi</dt><dd>Arancia, Limone, Pompelmo</dd>
+          <dt>Frutti</dt><dd>Amarena, Ananas, Fragola, Frutti di bosco, Mango, Mela verde, Melone, Mirtillo, Tropical</dd>
+          <dt>Spezie ed erbe</dt><dd>Anice, Liquirizia, Menta</dd>
+          <dt>Altri aromi</dt><dd>Caffè, Cocco, Cola</dd>
+        </dl>
+        <a class="vai" href="https://distilleriarizzi.com/prodotti-per-pasticceria/">Nel catalogo</a>
+      </article>
+      <article class="famiglia">
+        <img src="img/bagne-400.webp" srcset="img/bagne-400.webp 400w, img/bagne-640.webp 640w" sizes="(max-width:600px) 60vw, (max-width:1099px) 45vw, 411px" width="400" height="500" loading="lazy" alt="Maraschino e Curaçao Rizzi in bottiglioni da 2 litri, specialità per uso esclusivo di laboratorio">
+        <h3>Aromi alcolici a 70°</h3>
+        <p class="descr">Aromi concentrati ad alta gradazione per creme, impasti e farciture, anche in bottiglioni da 2 L per il laboratorio.</p>
+        <dl>
+          <dt>Agrumi</dt><dd>Arancio, Limone, Mandarino, Curaçao</dd>
+          <dt>Frutta</dt><dd>Cherry, Fragola, Maraschino</dd>
+          <dt>Classici della pasticceria</dt><dd>Alchermes, Amaretto, Cacao, Caffè, Vaniglia</dd>
+          <dt>Liquori e aromi tradizionali</dt><dd>Anice, Benevento, Jamaica, King George, Trio. Disponibile anche l’Aroma Vodka.</dd>
+        </dl>
+        <a class="vai" href="https://distilleriarizzi.com/prodotti-per-pasticceria/">Nel catalogo</a>
+      </article>
+      <article class="famiglia">
+        <img src="img/aromi-400.webp" srcset="img/aromi-400.webp 400w, img/aromi-640.webp 640w" sizes="(max-width:600px) 60vw, (max-width:1099px) 45vw, 411px" width="400" height="500" loading="lazy" alt="Bottiglie Rizzi per pasticceria: Jamaica, Curaçao, OvoRizzi e Crema Rizzi all'uovo">
+        <h3>Creme e vini per pasticceria</h3>
+        <p class="descr">Ingredienti tradizionali per bagne, creme e lavorazioni classiche.</p>
+        <dl>
+          <dt>Prodotti disponibili</dt>
+          <dd>Vermouth bianco 16,5°</dd>
+          <dd>Marsala fine ambra secco 17,5°</dd>
+          <dd>Marsala fine ambra secco DOP 17,5°</dd>
+          <dd>Cremovo (Marsala all’uovo) 18°</dd>
+          <dd>Ovorizzi (Liquore all’uovo) 18°</dd>
+        </dl>
+        <a class="vai" href="https://distilleriarizzi.com/prodotti-per-pasticceria/">Nel catalogo</a>
+      </article>
+    </div>
+
+    <ul class="formati" aria-label="Formati">
+      <li><span class="cifra cifre">40+</span><p>aromi e ingredienti per la pasticceria, in tre famiglie</p></li>
+      <li><span class="cifra cifre">2 L</span><p>i bottiglioni delle specialità per uso esclusivo di laboratorio</p></li>
+      <li><span class="cifra cifre">5-225 L</span><p>la Vodka 70° per uso professionale: tanica da 5, 10, 20 e 30 L, fusto da 50 e 225 L</p></li>
+      <li><span class="cifra cifre">12</span><p>bottiglie per cartone: liquori e amari in vetro da 100 cl</p></li>
+    </ul>
+
+    <div class="clienti">
+      <h3>Fra i nostri migliori clienti</h3>
+      <ul>
+        <li><b>Serenissima</b><span>Pasticceria, Campolongo Maggiore (VE)</span></li>
+        <li><b>Casa del Dolce</b><span>Pasticceria, Campagna Lupia (VE)</span></li>
+        <li><b>Zizzola</b><span>Pasticceria, Resana (TV)</span></li>
+        <li><b>San Marco</b><span>Pasticceria, Vittorio Veneto (TV)</span></li>
+        <li><b>Birra Ingross</b><span>Distributore, Belvedere di Tezze sul Brenta (VI)</span></li>
+        <li><b>Poggiana F.lli</b><span>Distributore, Rosà (VI)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Quando è la festa dei 100 anni? -->
+<section class="sezione centenario su-rosso" id="centenario" aria-labelledby="titolo-centenario">
+  <div class="wrap griglia">
+    <p class="gesto cifre" aria-hidden="true">100<small>anni</small></p>
+    <div class="racconto">
+      <p class="occhiello cifre" data-cent-occhiello>15 dicembre 1926, 15 dicembre 2026</p>
+      <h2 class="h-sezione" id="titolo-centenario" data-cent-titolo>Stiamo preparando la festa!</h2>
+      <p class="lungo">Il 15 dicembre 2026, esattamente nel giorno in cui festeggeremo i 4 anni dall’inizio della nostra attività, Distilleria Rizzi compirà ben 100 anni. Rivivremo il percorso della nostra Azienda con una mostra fotografica, ti faremo assaggiare liquori prodotti con le più antiche ricette, potrai visitare la distilleria e molto altro...</p>
+      <div data-cent-programma>
+        <p class="programma">Orari e programma: chiamaci o seguici su Facebook e Instagram.</p>
+        <div class="bottoni">
+          <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Chiama <span class="cifre">049 900 0053</span></a>
+          <a class="btn btn-bordo" href="https://www.facebook.com/distilleriarizzi" target="_blank" rel="noopener">Facebook</a>
+          <a class="btn btn-bordo" href="https://www.instagram.com/distilleriarizzi/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <ol class="date" aria-label="La nostra storia in quattro date" style="list-style:none;padding-left:0">
+      <li><span class="anno cifre">1926</span><p>Il 15 dicembre i fratelli Carlo e Ferruccio Rizzi iniziano a produrre liquori.</p></li>
+      <li><span class="anno cifre">1945</span><p>Acquistano il marchio Genzial e prendono nel logo il leone veneziano con la scritta «casa fondata nel 1850».</p></li>
+      <li><span class="anno cifre">2022</span><p>Il 14 dicembre la distilleria passa a Maddalena e Alessandro.</p></li>
+      <li><span class="anno cifre">2024</span><p>Il 29 settembre apriamo lo spaccio aziendale in via Negri, anche per i privati.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="chiusura" id="contatti" aria-labelledby="chiu-tit">
-  <div class="chiu-testo">
-    <h2 id="chiu-tit">Dal nostro laboratorio al tuo bicchiere, senza tappe inutili</h2>
-    <div class="recapiti">
-      <a class="tel" href="tel:+390499000053">049 900 0053</a>
-      <p><a href="mailto:info@distilleriarizzi.com">info@distilleriarizzi.com</a></p>
-      <p>Via G. Negri 7, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Distilleria+Rizzi+via+G.+Negri+7+Mestrino" rel="noopener">Apri la mappa</a></p>
-      <p class="tenue">Ufficio dal lunedì al venerdì, <span class="num">9:00-12:30</span> e <span class="num">13:30-17:00</span>.<br>Spaccio: chiamaci per sapere quando passare.</p>
-      <p class="didascalia" id="did-manifesto">Accanto, il manifesto storico «i classici prodotti Rizzi Padova» alla mostra «Padova da gustare», <span class="num">2025</span>. Collezione Simone Marzari.</p>
+<!-- 5. Chi c'è dietro? -->
+<section class="sezione chi" id="chi-siamo" aria-labelledby="titolo-chi">
+  <div class="wrap griglia">
+    <p class="manifesto">Il punto è semplice: <span class="rosso">facciamo tutto noi, dall’inizio alla fine.</span> Dal nostro laboratorio al tuo bicchiere, senza tappe inutili.</p>
+    <figure class="foto" style="margin-inline:0;margin-bottom:0">
+      <img src="img/nastro-760.webp" srcset="img/nastro-480.webp 480w, img/nastro-760.webp 760w, img/nastro-1200.webp 1200w" sizes="(max-width:600px) 100vw, (max-width:1099px) 480px, 517px" width="760" height="950" loading="lazy" alt="Maddalena e Alessandro tagliano il nastro rosso sulla porta dello spaccio">
+    </figure>
+    <div class="testo">
+      <p class="occhiello">Chi siamo</p>
+      <h3 id="titolo-chi">Piacere di conoscervi!</h3>
+      <p class="attacco">Questi, semplicemente, siamo noi: Alessandro e Maddalena. Dal 14 dicembre 2022 la Distilleria Rizzi prosegue con noi la sua attività.</p>
+      <p>Produciamo i nostri liquori in maniera artigianale nel nostro stabilimento di Mestrino, seguendo ancora le ricette e le procedure scritte dai fondatori della distilleria, aggiornate ai gusti di oggi. Infusi, alcolati e sciroppi nascono qui; frutta e agrumi li lavoriamo noi, con l’estrattore e l’essiccatore.</p>
+      <p>Abbiamo trovato una serie di strumenti del fondatore, oggi esposti in una vetrina, tra cui alcuni ricettari originali.</p>
+    </div>
+    <div class="stampa">
+      <h3>Dove ci avete conosciuto</h3>
+      <ul style="display:contents">
+        <li><b>La Difesa del Popolo</b><span class="cifre">L’articolo su di noi, 16 marzo 2025</span></li>
+        <li><b>Padova da gustare</b><span class="cifre">La mostra a Palazzo Santo Stefano, Padova, dal 22 marzo al 4 maggio 2025</span></li>
+        <li><b>Hospitality</b><span class="cifre">La fiera di Riva del Garda, febbraio 2024</span></li>
+        <li><b>Colori e Sapori</b><span class="cifre">Il nostro gazebo a Monselice, autunno 2023 e aprile 2024</span></li>
+      </ul>
     </div>
   </div>
-  <figure>
-    <img src="img/manifesto-588.jpg" srcset="img/manifesto-400.jpg 400w, img/manifesto-588.jpg 588w" sizes="(max-width:700px) 100vw, 40vw" width="588" height="908" alt="Manifesto d'epoca: le bottiglie di Bitter, Pinalpe e Crema Marsala all'uovo su un panno rosso, con le scritte aperitivo, digestivo, energetico e «i classici prodotti RIZZI Padova»" aria-describedby="did-manifesto" loading="lazy">
-  </figure>
 </section>
+
+<!-- 6. Dove siete, come vi contatto? -->
+<section class="sezione spaccio" id="spaccio" aria-labelledby="titolo-spaccio">
+  <div class="wrap griglia">
+    <div class="intesta">
+      <h2 class="h-sezione" id="titolo-spaccio">Spaccio e orari</h2>
+    </div>
+    <div class="scheda-negozio">
+      <div class="lato">
+        <figure class="foto" style="margin:0">
+          <img src="img/sede-760.webp" srcset="img/sede-480.webp 480w, img/sede-760.webp 760w, img/sede-1200.webp 1200w, img/sede-1600.webp 1600w" sizes="(max-width:1099px) 100vw, 628px" width="760" height="570" loading="lazy" alt="La nostra sede in via G. Negri 7 a Mestrino, la sera dell'inaugurazione dello spaccio, con il gazebo davanti all'ingresso">
+          <figcaption class="didascalia cifre">La sede la sera del 29 settembre 2024, quando abbiamo aperto lo spaccio.</figcaption>
+        </figure>
+        <div class="cellulari">
+          <p>Per prenotare un regalo puoi scrivere o chiamare anche noi due:</p>
+          <ul>
+            <li><b>Maddalena</b><a class="btn btn-bordo" href="sms:+393513070422?&amp;body=Ciao%20Maddalena%2C%20vorrei%20prenotare%20un%20regalo.%20Nome%20e%20cognome%3A%20"><svg aria-hidden="true"><use href="#i-sms"/></svg>SMS</a><a class="btn btn-bordo" href="tel:+393513070422"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="cifre">351 307 0422</span></a></li>
+            <li><b>Alessandro</b><a class="btn btn-bordo" href="sms:+393513858112?&amp;body=Ciao%20Alessandro%2C%20vorrei%20prenotare%20un%20regalo.%20Nome%20e%20cognome%3A%20"><svg aria-hidden="true"><use href="#i-sms"/></svg>SMS</a><a class="btn btn-bordo" href="tel:+393513858112"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="cifre">351 385 8112</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Via G. Negri 7, 35035 Mestrino (PD)</h3>
+        <p class="stato" data-stato><span><span class="ora">Ufficio dal lunedì al venerdì</span>, <span class="resto">9:00-12:30 e 13:30-17:00</span></span></p>
+        <p class="nota">Spaccio: contattare per disponibilità. Chiamaci prima di passare.</p>
+        <div class="bottoni">
+          <a class="btn btn-pieno" href="tel:+390499000053"><svg aria-hidden="true"><use href="#i-tel"/></svg>Chiama <span class="cifre">049 900 0053</span></a>
+          <a class="btn btn-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Distilleria%20Rizzi%2C%20Via%20Guido%20Negri%207%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-via"/></svg>Indicazioni</a>
+        </div>
+        <table class="orari cifre">
+          <caption>Orari dell’ufficio</caption>
+          <tbody>
+            <tr data-giorno="1"><th scope="row">Lunedì</th><td>9:00-12:30, 13:30-17:00</td></tr>
+            <tr data-giorno="2"><th scope="row">Martedì</th><td>9:00-12:30, 13:30-17:00</td></tr>
+            <tr data-giorno="3"><th scope="row">Mercoledì</th><td>9:00-12:30, 13:30-17:00</td></tr>
+            <tr data-giorno="4"><th scope="row">Giovedì</th><td>9:00-12:30, 13:30-17:00</td></tr>
+            <tr data-giorno="5"><th scope="row">Venerdì</th><td>9:00-12:30, 13:30-17:00</td></tr>
+            <tr data-giorno="6"><th scope="row">Sabato</th><td>chiuso</td></tr>
+            <tr data-giorno="0"><th scope="row">Domenica</th><td>chiuso</td></tr>
+          </tbody>
+        </table>
+        <p class="nota-mail">Email <a href="mailto:info@distilleriarizzi.com">info@distilleriarizzi.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scrivici: il modulo prepara un'email -->
+<section class="sezione scrivici" id="scrivici" aria-labelledby="titolo-scrivici">
+  <div class="wrap griglia">
+    <div class="intesta">
+      <h2 class="h-sezione" id="titolo-scrivici">Scrivici</h2>
+      <p>Per un ordine, il listino o un regalo da prenotare. Il modulo prepara un’email per noi: la controlli e la invii dal tuo programma di posta.</p>
+      <ul>
+        <li>Email <a href="mailto:info@distilleriarizzi.com">info@distilleriarizzi.com</a></li>
+        <li>Ufficio <a class="cifre" href="tel:+390499000053">049 900 0053</a></li>
+        <li>PEC <a href="mailto:distilleriarizzi@pec.it">distilleriarizzi@pec.it</a></li>
+      </ul>
+    </div>
+    <form class="modulo" id="modulo" action="mailto:info@distilleriarizzi.com" method="post" enctype="text/plain">
+      <fieldset>
+        <legend>Di che cosa hai bisogno?</legend>
+        <div class="tipi">
+          <label><input type="radio" name="tipo" value="Regalo o prenotazione allo spaccio" checked><span>Un regalo o una prenotazione allo spaccio</span></label>
+          <label><input type="radio" name="tipo" value="Ordine o listino per pasticceria, bar, ristorante"><span>Ordine o listino per pasticceria, bar, ristorante</span></label>
+          <label><input type="radio" name="tipo" value="Distribuzione"><span>Distribuzione</span></label>
+          <label><input type="radio" name="tipo" value="Altro"><span>Altro</span></label>
+        </div>
+      </fieldset>
+      <div class="campi">
+        <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+        <div class="campo"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+        <div class="campo"><label for="f-att">Attività e comune <span style="font-weight:400">(per i professionisti)</span></label><input id="f-att" name="attivita" autocomplete="organization"></div>
+        <div class="campo largo"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio" placeholder="Prodotti, quantità, formati, quando vorresti passare"></textarea></div>
+      </div>
+      <div class="invia">
+        <button class="btn btn-pieno" type="submit">Prepara l’email</button>
+        <p class="esito" id="esito" role="status"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
 </main>
 
 <footer class="piede">
   <div class="wrap">
-    <div class="piede-alto">
-      <div class="piede-marchio">
-        <img src="img/logo-rizzi-completo.png" width="720" height="122" alt="Distilleria Rizzi" loading="lazy">
-        <p>Liquori, amari, sciroppi e aromi per la pasticceria a Mestrino, dal 1926.</p>
+    <div class="colonne">
+      <div>
+        <img class="logo-piede" src="img/logo-scritta-bianco.png" width="640" height="78" alt="Distilleria Rizzi" loading="lazy">
+        <p style="margin-top:16px">Liquori, amari, sciroppi e aromi per la pasticceria. A Mestrino dal 1926, di Maddalena e Alessandro.</p>
       </div>
-      <nav class="piede-col" aria-labelledby="pc1"><h3 id="pc1">Prodotti</h3>
-        <ul><li><a href="/liquori-e-amari/">Liquori e amari</a></li><li><a href="/pasticceria/">Per la pasticceria</a></li><li><a href="/sciroppi-per-granite/">Sciroppi per granite</a></li></ul>
-      </nav>
-      <nav class="piede-col" aria-labelledby="pc2"><h3 id="pc2">Distilleria</h3>
-        <ul><li><a href="/storia/">La storia, 1926&#8209;2026</a></li><li><a href="/spaccio/">Spaccio e orari</a></li><li><a href="/notizie/">Notizie</a></li><li><a href="#contatti">Contatti</a></li></ul>
-      </nav>
-      <nav class="piede-col social" aria-labelledby="pc3"><h3 id="pc3">Seguici</h3>
-        <ul><li><a href="https://www.instagram.com/distilleriarizzi/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/distilleriarizzi" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/distilleria-rizzi/" rel="noopener">LinkedIn</a></li></ul>
-      </nav>
-      <form class="newsletter" id="newsletter" action="#" aria-labelledby="nl-tit">
-        <h3 id="nl-tit">Lettere dalla distilleria</h3>
-        <p>Il centenario, i cofanetti delle feste, le fiere: una email quando c'è qualcosa da assaggiare.</p>
-        <div class="campo">
-          <label class="vh" for="nl-email">Il tuo indirizzo email</label>
-          <input id="nl-email" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
-          <button type="submit">Iscrivimi</button>
-        </div>
-        <label class="consenso"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="/privacy/">informativa privacy</a> e accetto di ricevere le email della distilleria.</span></label>
-        <p class="esito" role="status" aria-live="polite"></p>
-      </form>
+      <div>
+        <h2>Spaccio e ufficio</h2>
+        <ul>
+          <li>Via G. Negri 7, 35035 Mestrino (PD)<small><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Distilleria%20Rizzi%2C%20Via%20Guido%20Negri%207%2C%2035035%20Mestrino%20PD" target="_blank" rel="noopener">Indicazioni</a></small></li>
+          <li class="cifre">Ufficio dal lunedì al venerdì, 9:00-12:30 e 13:30-17:00<small>Spaccio: chiamaci prima di passare</small></li>
+          <li><a class="cifre" href="tel:+390499000053">049 900 0053</a></li>
+          <li><a href="mailto:info@distilleriarizzi.com">info@distilleriarizzi.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Prodotti</h2>
+        <ul>
+          <li><a href="#liquori">Liquori, amari, punch e grappe</a></li>
+          <li><a href="#pasticceria">Aromi e ingredienti per la pasticceria</a></li>
+          <li><a href="https://distilleriarizzi.com/sciroppi-e-topping/">Sciroppi per granite e bar</a></li>
+          <li><a href="#centenario">La festa dei 100 anni</a></li>
+          <li><a href="#scrivici">Scrivici</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Seguici</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/distilleriarizzi" target="_blank" rel="noopener">Facebook</a><small>le aperture dello spaccio e le feste</small></li>
+          <li><a href="https://www.instagram.com/distilleriarizzi/" target="_blank" rel="noopener">Instagram</a><small>@distilleriarizzi, le novità e le fiere</small></li>
+          <li><a href="https://www.linkedin.com/company/distilleria-rizzi/" target="_blank" rel="noopener">LinkedIn</a><small>per i professionisti</small></li>
+        </ul>
+      </div>
     </div>
-    <div class="piede-basso">
-      <p>Distilleria Rizzi S.r.l., via G. Negri 7, 35035 Mestrino (PD), P.IVA <span class="num">03273220289</span>, PEC distilleriarizzi@pec.it</p>
-      <nav aria-label="Note legali"><a href="/privacy/">Privacy</a><a href="/cookie/">Cookie</a></nav>
+    <div class="legale">
+      <span>Distilleria Rizzi S.r.l.</span>
+      <span class="cifre">P.IVA 03273220289</span>
+      <span>PEC <a href="mailto:distilleriarizzi@pec.it">distilleriarizzi@pec.it</a></span>
+      <span>Bevi responsabilmente. Alcolici venduti solo ai maggiorenni.</span>
+      <a href="/privacy/">Privacy</a>
+      <a href="/cookie/">Cookie</a>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var B={
-    felsina:{nome:"Amaro Felsina",g:"21°",t:"Amaro alle erbe delicato, tra i più amati per il dopo pasto.",alt:"Bottiglia di Amaro Felsina con l'etichetta storica: scudo RIZZI rosso, medaglie, fondo blu"},
-    fernet:{nome:"Fernet Rizzi",g:"45°",t:"Amaro gran riserva di oltre 40 anni, per i palati più coraggiosi.",alt:"Bottiglia di Fernet Rizzi con l'etichetta color paglia e la firma in corsivo"},
-    garofano:{nome:"Garofano",g:"21°",t:"Amaro speziato con chiodi di garofano, cannella, bucce di agrumi e mele. D'inverno, anche nel vin brulè.",alt:"Bottiglia di Garofano Rizzi, etichetta nera con il triangolo blu e le fiamme rosse"},
-    pinalpe:{nome:"Pinalpe",g:"40°",t:"Infuso di erbe alpine balsamiche, da bere dopo pasto. Bottiglia da 75 cl, cartoni da 20.",alt:"Bottiglia piatta di Pinalpe, liquore verde con l'abete in etichetta"},
-    prugna:{nome:"Prugna Veneta",g:"35°",t:"Liquore tipico veneto, spesso nel caffè, buono anche liscio con ghiaccio. Bottiglia da 100 cl.",alt:"Bottiglia di Prugna Veneta Rizzi, etichetta gialla con le prugne"},
-    punch:{nome:"Punch",g:"30°",t:"Arancio, Jamaica o Mandarino. Si serve anche caldo, con una fettina d'arancia. Bottiglia da 100 cl.",alt:"Bottiglia di Punch Arancio Rizzi, etichetta nera con la scritta a fiamma"}
-  };
-  var ordine=["felsina","fernet","garofano","pinalpe","prugna","punch"];
-  var img=document.getElementById("bottiglia");
-  var sg=document.getElementById("sch-grado"),sn=document.getElementById("sch-nome"),st=document.getElementById("sch-testo");
-  var btn=[].slice.call(document.querySelectorAll(".nomi button"));
-  // precarica le bottiglie nella misura che il browser userà: il cambio è netto, senza dissolvenza
-  var dpr=window.devicePixelRatio||1,tel=window.matchMedia("(max-width:700px)").matches;
-  var mis=tel?(dpr>1.5?760:480):(dpr>1.3?1000:(dpr>1?760:480));
-  ordine.forEach(function(k){var i=new Image();i.src="img/"+k+"-"+mis+".webp";});
-  function scegli(k,focus){
-    var b=B[k];
-    img.srcset="img/"+k+"-480.webp 480w, img/"+k+"-760.webp 760w, img/"+k+"-1000.webp 1000w";
-    img.src="img/"+k+"-760.webp";
-    img.alt=b.alt;
-    sg.textContent=b.g; sn.textContent=b.nome; st.textContent=b.t;
-    btn.forEach(function(x){var on=x.dataset.k===k;x.setAttribute("aria-checked",on);x.tabIndex=on?0:-1;if(on&&focus)x.focus();});
+  // Ora di Roma; per le prove si può forzare con ?ora=2026-11-03T10:00 (ora di Roma)
+  var q = new URLSearchParams(location.search).get('ora');
+  function adesso(){
+    if (q) { var m = q.match(/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/); if (m) return {a:+m[1], me:+m[2], g:+m[3], h:+m[4], mi:+m[5]}; }
+    var p = {}; new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
+    return {a:+p.year, me:+p.month, g:+p.day, h:+p.hour, mi:+p.minute};
   }
-  btn.forEach(function(x,i){
-    x.addEventListener("click",function(){scegli(x.dataset.k);});
-    x.addEventListener("keydown",function(e){
-      var d=(e.key==="ArrowRight"||e.key==="ArrowDown")?1:(e.key==="ArrowLeft"||e.key==="ArrowUp")?-1:0;
-      if(e.key==="Home"){d=-i;} if(e.key==="End"){d=btn.length-1-i;}
-      if(!d)return; e.preventDefault();
-      var j=(i+d+btn.length)%btn.length; scegli(btn[j].dataset.k,true);
-    });
+  function pasqua(a){ var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451),me=Math.floor((i+m-7*n+114)/31),g2=((i+m-7*n+114)%31)+1; return new Date(Date.UTC(a,me-1,g2)); }
+  function festivo(dt){ // dt: Date UTC a mezzanotte
+    var a=dt.getUTCFullYear(), k=(dt.getUTCMonth()+1)+'-'+dt.getUTCDate();
+    if (['1-1','1-6','4-25','5-1','6-2','8-15','11-1','12-8','12-25','12-26'].indexOf(k)>=0) return true;
+    var lp=pasqua(a); lp.setUTCDate(lp.getUTCDate()+1);
+    return lp.getTime()===dt.getTime();
+  }
+  var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var FASCE=[[540,750],[810,1020]]; // 9:00-12:30, 13:30-17:00
+  function hhmm(m){ return Math.floor(m/60)+':'+('0'+(m%60)).slice(-2); }
+  function lavorativo(dt){ var d=dt.getUTCDay(); return d>=1 && d<=5 && !festivo(dt); }
+  var t=adesso(), oggi=new Date(Date.UTC(t.a,t.me-1,t.g)), min=t.h*60+t.mi;
+  var ora, resto, aperto=false;
+  if (lavorativo(oggi)) {
+    if (min>=FASCE[0][0] && min<FASCE[0][1]) { aperto=true; ora='Ufficio aperto ora'; resto='fino alle 12:30'; }
+    else if (min>=FASCE[1][0] && min<FASCE[1][1]) { aperto=true; ora='Ufficio aperto ora'; resto='fino alle 17:00'; }
+    else if (min<FASCE[0][0]) { ora='Ufficio chiuso'; resto='apre oggi alle 9:00'; }
+    else if (min<FASCE[1][0]) { ora='Ufficio chiuso per pranzo'; resto='riapre alle 13:30'; }
+  }
+  if (!ora) {
+    var d=new Date(oggi), n=0;
+    do { d.setUTCDate(d.getUTCDate()+1); n++; } while (!lavorativo(d) && n<10);
+    ora = festivo(oggi) ? 'Oggi è festa, ufficio chiuso' : 'Ufficio chiuso';
+    resto = 'riapre ' + (n===1 ? 'domani' : GIORNI[d.getUTCDay()]) + ' alle 9:00';
+  }
+  document.querySelectorAll('[data-stato]').forEach(function(el){
+    el.classList.toggle('aperto', aperto);
+    el.querySelector('.ora').textContent = ora;
+    el.querySelector('.resto').textContent = resto;
   });
-  // menu su tablet e telefono: il bottone dice cosa farà, Esc lo chiude
-  var t=document.getElementById("testata"),m=t.querySelector(".apri-menu");
-  function menu(a){t.classList.toggle("aperta",a);m.setAttribute("aria-expanded",a);m.textContent=a?"Chiudi":"Menu";}
-  m.addEventListener("click",function(){menu(!t.classList.contains("aperta"));});
-  t.querySelectorAll(".menu a").forEach(function(a){a.addEventListener("click",function(){menu(false);});});
-  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&t.classList.contains("aperta")){menu(false);m.focus();}});
-  // newsletter: il modulo non invia nulla finché non è collegato a un servizio con doppio consenso
-  var nl=document.getElementById("newsletter");
-  nl.addEventListener("submit",function(e){e.preventDefault();nl.querySelector(".esito").textContent="Grazie: ti scriveremo per confermare l'iscrizione.";});
+  var riga = document.querySelector('.orari tr[data-giorno="'+oggi.getUTCDay()+'"]');
+  if (riga) { riga.classList.add('oggi'); riga.querySelector('th').insertAdjacentHTML('beforeend',' <span class="vh">(oggi)</span>'); }
+
+  // Centenario: la fascia resta fino al 15 dicembre 2026 compreso, poi la sezione racconta la festa al passato
+  var dopo = (t.a>2026) || (t.a===2026 && (t.me>12 || (t.me===12 && t.g>15)));
+  if (dopo) {
+    document.getElementById('fascia').hidden = true;
+    document.querySelector('[data-cent-titolo]').textContent = 'Il 15 dicembre 2026 abbiamo compiuto 100 anni';
+    document.querySelector('[data-cent-programma]').hidden = true;
+  }
+
+  // Menu sul telefono e sul tablet
+  var b=document.querySelector('.apri-menu'), pan=document.getElementById('pannello');
+  function chiudi(){ pan.classList.remove('aperto'); b.setAttribute('aria-expanded','false'); b.querySelector('use').setAttribute('href','#i-menu'); b.querySelector('.vh').textContent='Menu'; }
+  b.addEventListener('click', function(){
+    var ap=!pan.classList.contains('aperto');
+    var f=document.getElementById('fascia'); var fh=(!f.hidden && f.getBoundingClientRect().bottom>0)?Math.max(0,f.getBoundingClientRect().bottom):0;
+    document.documentElement.style.setProperty('--fascia-h', fh+'px');
+    pan.classList.toggle('aperto', ap); b.setAttribute('aria-expanded', ap?'true':'false');
+    b.querySelector('use').setAttribute('href', ap?'#i-chiudi':'#i-menu'); b.querySelector('.vh').textContent = ap?'Chiudi':'Menu';
+  });
+  pan.addEventListener('click', function(e){ if (e.target.closest('a')) chiudi(); });
+  document.addEventListener('keydown', function(e){ if (e.key==='Escape' && pan.classList.contains('aperto')) { chiudi(); b.focus(); } });
+
+  // Modulo: compone l'email con oggetto e campi (va collegato a un servizio: vedi LEGGIMI)
+  var fm=document.getElementById('modulo');
+  fm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v=function(n){ var x=fm.elements[n]; return x ? (x.value||'').trim() : ''; };
+    var tipo=(fm.querySelector('input[name=tipo]:checked')||{}).value||'Richiesta';
+    if (!v('nome')) { fm.elements.nome.focus(); document.getElementById('esito').textContent='Scrivi il tuo nome e cognome.'; return; }
+    var corpo=['Richiesta: '+tipo,'Nome e cognome: '+v('nome'),'Telefono: '+v('telefono'),'Email: '+v('email'),'Attività e comune: '+v('attivita'),'','Messaggio:',v('messaggio')].join('\n');
+    location.href='mailto:info@distilleriarizzi.com?subject='+encodeURIComponent(tipo+', '+v('nome'))+'&body='+encodeURIComponent(corpo);
+    document.getElementById('esito').textContent='Si apre il tuo programma di posta con l’email pronta: controllala e premi Invia.';
+  });
 })();
 </script>
 </body>

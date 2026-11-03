@@ -24,8 +24,15 @@ Scaricate con curl da images.unsplash.com e images.pexels.com a 2400 px sul lato
 
 Nessuna foto segnaposto mostra un rimorchio o un carrobotte: quelli devono essere i loro. Nessun rimorchio di marchi concorrenti in primo piano (scartata per questo una foto Unsplash con un rimorchio J&M riconoscibile).
 
-## Uso nella home finale (sito/)
+## Uso nella home finale (sito/), livello professionale del 03/11/2026
 
-- Usate: le foto dell'azienda `images_rimorchi-ribaltabili_e.jpg` (apertura, scontorno con maschera corretta a mano), `images_rimorchi-ribaltabili_q.jpg`, `images_rimorchi-fissi_n.jpg`, `images_carribotte_6.jpg`, `images_vasche-inox_9.jpg` (scontorni), `images_vasche-inox_1.jpg` (chiusura: la sede con l'insegna, non ritoccata), `images_foto-antica.jpg` (archivio), `images_og-negrizzolo.png` (logo SVG).
-- Nessuna foto segnaposto nella home finale: la fascia dell'uva (`esterne/unsplash-schaefer-ApoYbda6_3Y.jpg`) è stata tolta nell'ultima rifinitura; la foto dell'usato `wfolder_filesusato_..._20240926_140048.jpg` non è più usata.
-- Nessuna foto nuova scaricata per la versione finale.
+- Solo foto dell'azienda, intere, mai scontornate né ritoccate (stessa leggera curva di contrasto e saturazione per tutte, `_prova/script/pro_img.py`), mai oltre la loro misura:
+  - `images_rimorchi-ribaltabili_e.jpg`: apertura (`apertura-*.webp`, 10:7 nativo, 1000 e 720 px);
+  - `images_rimorchi-ribaltabili_q.jpg`, `images_rimorchi-fissi_gallery_6.jpg`, `images_carribotte_6.jpg`, `images_vasche-inox_1.jpg`, `images_applicazioni-speciali_5.jpg`: schede dei prodotti (4:3, 800 e 480 px);
+  - `wfolder_filesusato_filekc_images_20240926_140048.jpg`: scheda dell'usato (4:3 tagliato dalla foto 4032x2268);
+  - `images_esterno-negrizzolo.jpg`: la sede dall'alto in "Orari e contatti" (4:3, 720 e 480 px);
+  - `images_foto-antica.jpg`: archivio, in bianco e nero alla sua misura (263x197);
+  - logo SVG ricostruito da `images_og-negrizzolo.png` (`logo.svg`, e `logo-chiaro.svg` per il piede scuro).
+- Tolte dalla home le versioni scontornate della versione 1 (dumper, ribaltabile, fisso, carrobotte, vasca con ombra disegnata) e il file `archivio-288.jpg`: restano in `_prova/versione-1-originale/`.
+- Nessuna foto segnaposto: le otto foto Unsplash e Pexels di `assets/esterne/` non sono usate in nessun punto della home (decisione del committente sulle foto: "niente"); restano nella cartella solo come archivio delle ricerche, da non usare.
+- Nessuna foto nuova scaricata.

@@ -1,8 +1,81 @@
-# Nic Dean, home finale: nota
+# Nic Dean, home: nota
+
+## Livello professionale
+
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. La versione 1 com'era prima di questo passaggio è copiata in `_prova/versione-1-originale/` (sito e screenshot). Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole). Scheda d'uso e d'identità: `_prova/uso/SCHEDA.md`. Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di Union e Joseph Brot (a pezzi), e la prova del committente su Unicar, Oby e Fornasiero (`_invio/zona/home/livello-professionale.jpg`, colonna di destra).
+
+Rifare tutto: `bash _prova/script/build_finale.sh` (con `--immagini` rifà anche le immagini con `pro_img.py`); i controlli della sezione C e le prove d'uso sono in `_prova/script/pro_controlli.mjs`. Gli screenshot sono fatti all'ora simulata martedì 3 novembre 2026 alle 10 (`index.html?ora=2026-11-03T10:00`, spaccio aperto).
+
+Screenshot (stessi nomi di prima): `home-1440.jpg` (5684 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (7462 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Per negozi, fiere ed eventi" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti, e a 320, 768, 1024, 1280 e 1920, più il menu aperto e il sabato a 390.
+
+### L'idea
+
+Uno spaccio di fabbrica di paese fatto con cura, non una boutique: la pagina dice prima di tutto se lo spaccio è aperto, come chiamarlo e come arrivarci, poi mostra le scarpe con il loro modo di vendere ("cerca la scarpa che ti piace e inviaci il nome per email"). Il gesto è tipografico: il titolo della versione 1 "Scarpe fatte a Villatora dal 1975" in League Spartan 700 maiuscolo, come la scritta squadrata del logo, e due blocchi pieni nei colori del marchio ND, il rosso per "Chi siamo" e il nero per i negozi. Il colore delle scarpe lo portano le loro foto.
+
+### Struttura (famiglia B adattata)
+
+1. **Testata fissa**: logo; "Spaccio e orari" prima voce, poi "Le scarpe", "Per negozi ed eventi", "Chi siamo"; da 1280 px lo stato breve ("Spaccio aperto fino alle 12"); bottone rosso con il numero. Sotto 1101 px il menu va dietro "Menu" e il bottone del telefono resta.
+2. **Apertura**: occhiello "Calzaturificio e spaccio di fabbrica, Villatora di Saonara (PD)", titolo a 88 px (42 al telefono); accanto la scheda "Lo spaccio, oggi": stato calcolato a 28 px (verde se aperto), orari su tre righe (sabato e domenica chiuso, agosto chiuso per ferie), "Chiama 049 640672" e "Indicazioni", indirizzo, "Per donna, uomo e ragazzo. Da ginnastica, eleganti e sportive, di tutti i numeri. Paghi in contanti o con carta." e il link al preventivo. Sotto il titolo la loro fila di décolleté, intera, con "Chiedi se c'è il tuo numero".
+3. **Le scarpe** (fondo grigio chiaro): "Cerca la scarpa che ti piace e mandaci il nome"; otto schede in 4 colonne (2 al telefono), ognuna un link mailto con il nome nell'oggetto e il testo già pronto per numero, colore, nome e telefono; "Preferisci chiedere a voce?" con il Chiama.
+4. **Lo spaccio di via Lombardia**: la loro foto dell'interno; dal 5 ottobre 2013; quattro fatti con filetti; tabella degli orari con la riga di oggi in grassetto; indirizzo, Chiama e Indicazioni (come la scheda negozio di Union).
+5. **Chi siamo** (blocco rosso): il manifesto è una loro frase, "Calzature prodotte interamente in azienda, di tutti i tipi e di tutti i numeri."; tre righe di storia (con il Nord America al passato); quattro numeri a 88 px: 1975, 2013, 3, Tutti.
+6. **Per negozi, fiere ed eventi** (blocco nero): "Ordini di quantità, con il preventivo gratuito", le loro parole su ordini e preventivo, "di livello medio-fine"; email con oggetto e telefono; modulo con il tipo di richiesta che compone un'email.
+7. **Piede** in 4 colonne: chi sono, lo spaccio (indirizzo, orari, Indicazioni), contatti (telefono, fax, email), le voci della pagina e la privacy; riga legale con ragione sociale, P.IVA, REA e capitale.
+
+Rispetto alla A1 mancano, apposta: l'apertura a tutto schermo con una foto (non c'è una foto loro che regga a quella misura), i racconti foto e testo alternati (c'è solo la foto dello spaccio), le novità di stagione (nessuna nelle fonti) e la newsletter (tolta: non inviava nulla).
+
+### Uso (scheda, par. 8): come riescono i compiti
+
+- **Cliente dello spaccio, 390x844, senza scorrere**: lo stato a 24 px in nero o verde (fondo a 308 px; 336 quando va su due righe); "Chiama 049 640672" (`tel:+39049640672`, 194x52 px) e "Indicazioni" (Google Maps, percorso verso via Lombardia 29) affiancati; "Sabato e domenica chiuso" sempre scritto, e il sabato lo stato dice "Chiuso il sabato e la domenica, riapre lunedì alle 8"; "uomo e ragazzo" e "carta" a 477 px. La fila intera finisce a 721 px.
+- **Chi vuole una scarpa senza andare**: la prima scarpa che si tocca è la décolleté della prima schermata; le otto schede partono dalla seconda schermata (sezione a 833 px, prima scheda a 1180); ogni scheda ha un nome e apre una mail a info@nicdean.it con il nome nell'oggetto. Spedizione o ritiro: non è nelle fonti, quindi non è in pagina (LEGGIMI).
+- **Negozio o evento, 1440x900**: "Per negozi ed eventi" nel menu e "preventivo gratuito" nella scheda dell'apertura; nella sezione il mailto ha l'oggetto "Richiesta di preventivo" e il testo con i campi; nel piede ragione sociale, P.IVA 02707240285 e indirizzo.
+- **Per tutti**: nessun link a pagine che non esistono (tolti `collezioni.html`, `storia.html`, `spaccio.html`, `negozi.html`, `privacy.html`, `cookie.html`); nessuna foto che non sia loro.
+- **Stato provato** a 11 ore e giorni (martedì 7:30, 10, 13, 15, 17:30; venerdì sera; sabato; domenica; 12 agosto; 8 dicembre; Pasquetta 2027): tutti giusti. Con JavaScript spento la riga dice "Aperto dal lunedì al venerdì" e gli orari restano scritti.
+
+### Esito regola per regola (controlli di `_prova/script/pro_controlli.mjs` e screenshot)
+
+1. **Telefono in testata fissa, sempre visibile**: PASSA. Testata `position:sticky`; a 390, a metà pagina, il bottone è a 8 px dall'alto, 115x48 px; sotto 375 px dice "Chiama". 6 link `tel:` (per B basta "Spaccio e orari" prima voce, che c'è).
+2. **Prima schermata con mestiere, luogo, prova, azione**: PASSA a 1440x900 e 390x844. Mestiere nell'occhiello e nel titolo ("Calzaturificio e spaccio di fabbrica", "Scarpe fatte"), luogo (Villatora di Saonara), prova ("dal 1975"), azione (Chiama e Indicazioni; a 390 i due bottoni riempiono la riga, sotto 375 px uno sotto l'altro a tutta larghezza).
+3. **Immagine vera nell'apertura**: PASSA, con il limite delle foto che hanno. È la loro fila di décolleté (non scontornata: una foto con il suo fondo, portato a un grigio chiaro neutro), 737 px a 1440, mai ingrandita sul file (972 px nativi del taglio; il 1480 per gli schermi 2x è ricampionato con nitidezza). Non mostra persone, sede o laboratorio: non ci sono foto loro che lo facciano (LEGGIMI, foto da fare).
+4. **Zero repertorio**: PASSA. "indicativ" 0; nessuna immagine da Pexels o Unsplash; nessuna illustrazione. Tolte le mani di Simões e i tronchetti di Segura (CREDITI aggiornato).
+5. **Foto in serie**: PASSA in parte. Due formati (2,26:1 la fila, 4:3 schede e spaccio), una didascalia su dieci foto. Le otto schede sono una serie vera (stessa macchina, fondo bianco portato a 255, scarpa centrata, mai oltre 1,2 volte); fila e spaccio hanno un'altra luce: si è uniformato solo il bianco (fondo neutro, muro dello spaccio neutro, curva a S leggera).
+6. **Palette dal marchio**: PASSA. Bianco, inchiostro #141414, rosso #C21F28 (il rosso del logo ND #EE252F scurito perché il testo bianco regga: 5,9:1), verde #2E6B3A solo per "Aperto", più tre grigi (#EBEBE9 per le scarpe, #595956 per le note, filetto). Tolto il gesso beige della versione 1.
+7. **Scala corta e leggibile**: PASSA. 1440: 88, 48, 28, 22, 19, 16, 14 px (sette); 390: 42, 30, 24, 19, 17, 16, 14 px. Testo 19/17 px; titolo 88 px maiuscolo, interlinea 0,95 (fascia B 85-90); 42 px a 390 (fascia 40-46). I 14 px sono le note legali e, al telefono, l'occhiello in maiuscolo spaziato.
+8. **Al massimo due famiglie**: PASSA. Una sola, League Spartan, pesi 400 e 700 (campi del modulo compresi).
+9. **Servizi in schede con foto**: PASSA. Otto scarpe in 4 colonne (passo 24 px; 2 colonne sotto 900 px), foto 4:3 uguale per tutte, nome a 22 px, colore, "Chiedi se c'è il tuo numero"; tutta la scheda è il link.
+10. **Almeno tre tipi di prove**: NON PASSA. C'è solo la fascia dei numeri (1975, 2013, 3, Tutti). Recensioni, certificazioni, fornitori e clienti con il nome non sono nelle fonti (nessuna recensione pubblica trovata): non inventati, da chiedere (LEGGIMI, "Prove che mancano").
+11. **Lavori con un nome**: NON SI APPLICA (spaccio, nessun lavoro su commessa nelle fonti).
+12. **Ritmo a blocchi**: PASSA. Bianco, grigio (scarpe), bianco (spaccio), rosso pieno (chi siamo), nero pieno (negozi), piede bianco; spazio tra le sezioni 128 px a 1440 e 72 px a 390; margini 80 px a 1440 e 20 px a 390.
+13. **Un solo sistema di bottoni**: PASSA. Pieno rosso e con il bordo, raggio 4 px, 52 px (48 nella testata), testo 16 px 700; ogni bottone di chiamata ha il numero (in testata sotto 375 px dice "Chiama").
+14. **Modulo e "dove e quando"**: PASSA. Modulo con il tipo di richiesta in caselle (Ordine per un negozio, Fiera o evento, Una scarpa per me, Altro), nome, telefono, email, modelli e quantità: compone un'email (da collegare a un servizio, LEGGIMI); per lo spaccio orari in tabella, Indicazioni e Chiama; nessun iframe di mappa.
+15. **Piede completo**: PASSA, senza certificazioni (non ne hanno). Ragione sociale, P.IVA, REA, indirizzo, telefono ed email cliccabili, fax, orari, Indicazioni, privacy (ancora a una riga vera, non a una pagina che non esiste), 4 colonne (2 al telefono), testo 16 px, note legali 14 px.
+
+### Della versione 1: cosa è rimasto e cosa no
+
+- **Rimasti**: il titolo "Scarpe fatte a Villatora dal 1975"; League Spartan (ora 400 e 700 invece di 300-500, per un titolo pieno come la scritta del logo); il rosso del marchio (ora anche sui bottoni e nel blocco "Chi siamo"); la fila delle décolleté con la stessa pulizia del camoscio (`build_img.py`, passi 1-4, riusati da `pro_img.py`); le frasi loro dello spaccio; la riga legale; lo script dello stato, ora acceso.
+- **Tolti**: le pastiglie dei colori e le sei versioni della fila (un gioco che non serviva a nessun visitatore: il "chiedi se c'è" è ora su ogni scarpa); il fondo gesso beige; le due foto di repertorio; la newsletter che non inviava nulla; i link a pagine inesistenti; la data della srl (1997); "per i negozi d'Europa e del Nord America" al presente nella prima schermata (ora al passato in "Chi siamo"); la fila ingrandita 1,75 volte e tagliata al telefono (ora intera).
+
+### Caratteri e licenze
+
+League Spartan (The League of Moveable Type), da Google Fonts, SIL Open Font License 1.1 (uso commerciale libero), testo in `sito/fonts/OFL.txt`; file woff2 latin e latin-ext, pesi 400-700, scaricati il 3/11/2026 e serviti dalla pagina.
+
+### Controlli generali
+
+- **Scorrimento orizzontale**: nessuno a 320, 360, 375, 390, 414, 600, 768, 900, 1024, 1100, 1280, 1440, 1600, 1920 e 2560.
+- **Sovrapposizioni**: nessuna negli screenshot a 320, 390, 768, 1024, 1280, 1440 e 1920. Corretti durante il lavoro: a 1024x768 i bottoni finivano sotto la piega (ora la scheda dello spaccio sta sotto il titolo e prima della foto fino a 1100 px), il vuoto nella scheda dell'apertura a 1440, i campi del modulo in Arial, la scheda orfana a 768.
+- **Collegamenti**: `tel:+39049640672` (6), 10 `mailto:info@nicdean.it` con oggetto e uno semplice nel piede, mappe `google.com/maps/dir/?api=1&destination=Via Lombardia 29, 35020 Villatora di Saonara PD`; nessuna ancora senza destinazione, nessun link a file che non esistono.
+- **Nessun carattere U+2014** nella pagina, in questa nota, nel LEGGIMI, nei crediti e negli script nuovi (controllo in `build_finale.sh`).
+- **Dato strutturato**: ShoeStore con indirizzo, telefono, orari e pagamenti.
+
+---
+
+## Versione 1 (24 ottobre 2026), prima del livello professionale
+
+Quello che segue descrive la versione copiata in `_prova/versione-1-originale/`.
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `build_img.py`, caratteri, screenshot con `scatti.mjs`, controllo U+2014 e segnali da IA). Parte dal prototipo A, "La décolleté", con le indicazioni del giudice e gli innesti da B.
 
-## L'idea
+### L'idea
 
 La loro fila vera di décolleté con plateau (pitone, arancio, senape, oliva, lilla, firma NicDean sul sottopiede) posata sul gesso della pagina, senza riquadro, e il titolo sotto, come la base su cui stanno le scarpe. Sotto ogni scarpa il suo colore: un tocco spegne le altre quattro (in grigio) e propone "Chiedi se c'è in spaccio", cioè il loro modo di vendere ("cerca la scarpa che ti piace e inviaci il nome per email"). Con il nome di un concorrente la pagina non regge: la foto e la firma sono loro.
 
@@ -11,7 +84,7 @@ Il giudice aveva dato K0 6: la prima schermata è stata ripensata dentro la stes
 - **Ora**: la fila apre la pagina subito sotto la testata. Il titolo "Scarpe fatte a Villatora dal 1975" chiude la schermata in basso a sinistra, le tre righe su chi sono e "Orari dello spaccio" stanno in basso a destra. La didascalia "Cinque colori" è allineata in basso con la riga delle pastiglie, che stanno sotto l'asse di ogni scarpa.
 - **Foto rifatta**: ingrandimento 1,09 volte a 1440 (massimo 1,3 sui file), nitidezza leggera (raggio 1,2, 60 %), segni d'uso attenuati su lilla e oliva, confini pitone-arancio e arancio-senape decisi anche dal colore.
 
-## Le schermate
+### Le schermate
 
 1. **1440x900.** Testata: logo, Spaccio, Storia, Per i negozi, Collezioni, telefono. Sotto, la fila larga 1060 px fino a 24 px dal bordo destro, con le cinque pastiglie; a sinistra "Cinque colori" a 28 px con "Décolleté con plateau, firma NicDean sul sottopiede." e "Tocca un colore per vederlo da solo". In basso il titolo "Scarpe fatte a Villatora dal 1975" in League Spartan 300 a 120 px su due righe; a destra le tre righe, "Orari dello spaccio" (porta a `#contatti`) e la riga degli orari "Dal lunedì al venerdì, 8-12 e 14:30-17" (link alla mappa).
 2. **Sotto la piega**, quattro blocchi soltanto:
@@ -26,7 +99,7 @@ Il giudice aveva dato K0 6: la prima schermata è stata ripensata dentro la stes
    - Il titolo a 52 px, le tre righe e gli orari: tutto nella prima schermata da 844 px.
 - **Altezze**: 4606 px a 1440, 5100 a 390, 5302 a 320, 4720 a 768, 4663 a 1024, 4660 a 1920 (da 4429 a 5447 tra 320 e 2560).
 
-## Caratteri e colori
+### Caratteri e colori
 
 - **League Spartan** (Google Fonts, SIL Open Font License 1.1, testo in `sito/fonts/OFL.txt`), una sola famiglia, servita dalla pagina in woff2 (latin e latin-ext, pesi 300-500 variabili).
   - Pesi: 300 per titolo, titoli di sezione, anni e telefono grande; 400 per il testo; 500 per menu, link e bottoni.
@@ -44,7 +117,7 @@ Il giudice aveva dato K0 6: la prima schermata è stata ripensata dentro la stes
 
   Il colore lo portano le scarpe.
 
-## Interazione
+### Interazione
 
 Cinque bottoni veri (`aria-pressed`), uno per colore.
 - **Tocco o clic**: la foto passa di colpo alla versione con quel colore acceso e gli altri in grigio (saturazione al 18 %, schiariti di un quinto), senza dissolvenza. Sono sei immagini preparate con PIL e caricate dopo la pagina.
@@ -57,7 +130,7 @@ Nient'altro si muove: niente animazioni allo scorrere, niente effetti che seguon
 
 **Stato dello spaccio (innesto da B, spento).** Il codice c'è ma oggi la riga mostra solo gli orari, come chiesto, finché non si conferma che lo spaccio è aperto. Per accenderlo basta `STATO_ACCESO = true` nello script della pagina. Il calcolo usa l'ora italiana ed esclude il sabato, la domenica, agosto e i festivi nazionali: Pasquetta compresa, e il 4 ottobre dal 2026. Il testo è del tipo "Chiuso, riapre lunedì alle 8:00". Non c'è nessuna barra delle ore disegnata.
 
-## Foto: origine e licenza
+### Foto: origine e licenza
 
 | File in sito/img/ | Origine | Licenza | Lavorazione |
 |---|---|---|---|
@@ -68,7 +141,7 @@ Nient'altro si muove: niente animazioni allo scorrere, niente effetti che seguon
 
 Le foto di repertorio sono in `assets/CREDITI.md` (licenza verificata il 24/10/2026) e non compaiono nei CREDITI delle altre home della campagna (controllato di nuovo). Nessuna immagine generata. Nessuna foto di repertorio ha una didascalia o un testo che la faccia passare per loro: la sola didascalia è sulla fila, che è loro. I mocassini di repertorio, che stavano accanto a "prodotte interamente in azienda", sono stati tolti. La foto della chiusura non compare altrove nella pagina.
 
-## Piede
+### Piede
 
 - **In alto**: a sinistra il logo e una riga su chi sono; a destra la newsletter "Le novità dello spaccio" su una riga (campo, bottone inchiostro) con il consenso sotto.
 - **Sotto un filetto, quattro colonne**:
@@ -79,7 +152,7 @@ Le foto di repertorio sono in `assets/CREDITI.md` (licenza verificata il 24/10/2
 - **Riga legale**: "Nic Dean S.r.l., C.F. e P.IVA 02707240285, REA PD-300932, capitale sociale 51.000 euro i.v." con Privacy e Cookie a destra; a 390 diventa un testo continuo.
 - **Newsletter**: sì, perché lo spaccio ha clienti privati e il loro sito dava già collezioni per stagione, sconti e chiusure per ferie. Il browser controlla email e consenso (campi obbligatori, con il suo avviso accanto al campo); se sono a posto una riga `aria-live` dice "Grazie, la newsletter sarà attiva a breve." Non invia nulla finché non si collega un servizio (LEGGIMI).
 
-## Giro finale: cosa è cambiato dopo il giudice cieco (57 su 80)
+### Giro finale: cosa è cambiato dopo il giudice cieco (57 su 80)
 
 - **La fila**: chiazze attenuate su tutto il camoscio, non solo sulla punta di lilla e oliva; file da 1060, 1600 e 2120 px nello srcset (prima il più grande era 1264). Resta una foto da 1024 px: nitida a 1x, non un 2x vero. La foto in studio è la condizione per mandare la home (LEGGIMI).
 - **Il gesto**: scarpe spente in grigio invece che bianco latte, fondo che resta gesso; tolta la scheggia marrone a sinistra del tacco arancio (il colore decide solo dove l'arancio è chiaro e saturo) e i puntini grigi sul bordo destro dell'arancio; confini senape-oliva e oliva-lilla lisciati (media su 31 righe), niente più scaletta; al telefono niente ingrandimento a 2,2 volte.
@@ -89,7 +162,7 @@ Le foto di repertorio sono in `assets/CREDITI.md` (licenza verificata il 24/10/2
 - **Foto**: negozi scaldata con gli azzurri spenti; chiusura ritagliata sopra l'arco dello specchio e scaldata.
 - **Minori**: "Orari dello spaccio" porta a `#contatti`; nella chiusura testo dall'alto con 64 px tra titolo e recapiti (niente più vuoto da space-between); a 768 il testo d'apertura va su tutta la riga (52ch); newsletter con risposta; a 320 orari su una colonna.
 
-## Controlli
+### Controlli
 
 - **Larghezze guardate a pezzi**: 1440 intera, 390 intera, 320 intera, 768, 1024 e 1920 (prime schermate e pagine). `scrollWidth` uguale a `innerWidth` a 320, 360, 390, 414, 600, 768, 900, 1024, 1100, 1280, 1440, 1600, 1920 e 2560 (`_prova/script/controlli.mjs`).
 - **Gesto provato** con Playwright: Invio, frecce destra e sinistra, Esc, spazio due volte; tocco a 390 su oliva, lilla, pitone e secondo tocco; `aria-pressed`, immagine caricata, didascalia e oggetto della mail corretti in ogni stato. Stati guardati ingranditi tre volte nei punti dove le scarpe si toccano.

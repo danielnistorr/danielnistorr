@@ -27,7 +27,17 @@ Avvertenze:
 - Sono segnaposto d'atmosfera: nessuna mostra un prodotto Rizzi. Il protagonista della home deve restare una bottiglia vera loro (vedi `01-analisi.md`, sez. 4 e 5).
 - Scartate: le foto Pexels di bottiglie di marchi riconoscibili (Jägermeister, Disaronno, Aperol, Licor 43, Amarula), presenti in quasi tutti i risultati per "liqueur bottle", e la foto del museo di Heidelberg (29555900) con etichette leggibili di altri.
 
-## Usate nella home finale (sito/img/)
+## Usate nella home, livello professionale (3/11/2026, sito/img/)
+
+Solo foto e grafiche dell'azienda, dalla libreria media del loro sito (diritti da confermare con loro):
+- `spaccio-*.webp`: `2025-08-5.jpg`, lo spaccio addobbato per Natale, tagliato 4:5, HDR calmato in `_prova/script/pro_img.py`.
+- `sede-*.webp`: `2024-10-1000070111-01.jpeg`, la sede la sera dell'inaugurazione (4:3, stesso trattamento).
+- `nastro-*.webp`: `2024-10-1000070154-02.jpeg`, Maddalena e Alessandro al taglio del nastro (4:5, stesso trattamento).
+- Tessere 4:5 su bianco: `2024-02-CARCIOFO-e1744722640639.png`, `2024-02-GAROFANO.png`, `2024-02-FELSINA.png`, `2024-02-PRUGNA.png`, `2024-02-PUNCHARANCIO.png`, `2024-02-PINALPE.png`, `2024-02-FERNET.png`, `2024-02-GRAPPA.png`, `2024-01-sciroppi.png`, `2023-02-bott-bagne.png`, `2024-01-aromi.png`.
+- Logo: `logo-distilleria-rizzi-scritta-1286x168.png` ricolorato in inchiostro (testata) e in bianco (piede); `logo-calice-500x500.png` per l'icona e la testata sotto i 360 px.
+- Tolti rispetto alla versione 1: il manifesto storico della collezione Marzari (`manifesto-*.jpg`) e l'Alchermes. Nessuna foto di `assets/esterne/` (Pexels) è in pagina: restano nella cartella solo come archivio delle ricerche, da non usare nella home.
+
+## Usate nella home della versione 1 (24/10/2026, ora in _prova/versione-1-originale/sito/img/)
 
 - Bottiglie Felsina, Fernet, Garofano, Pinalpe, Prugna, Punch Arancio e Alchermes: originali dell'azienda (`2024-02-*.png`, `2023-02-bott-alchermes.png`), scontornate e messe in scena con PIL (`_prova/script/finale_img.py`).
 - `manifesto-*.jpg`: dalla foto `2025-04-1000098150-01.jpeg` della libreria media dell'azienda (mostra «Padova da gustare», 2025), raddrizzata in prospettiva e ritagliata sul solo manifesto «i classici prodotti RIZZI PADOVA», senza gli altri oggetti della parete (Amaro Bareggi, Iperchina, Vedaldi e gli altri marchi di terzi restano fuori). Originale della collezione di Simone Marzari: diritti da chiedere prima di pubblicare.

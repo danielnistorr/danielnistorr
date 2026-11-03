@@ -3,488 +3,708 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>F.R.A.M.O. | Tubi oleodinamici su misura a Saonara, Padova</title>
-<meta name="description" content="Tubi oleodinamici raccordati da 3/16&quot; a 3&quot;, su ordinazione o da campione. Officina e magazzino di 600 mq a Saonara (PD), dal 1986.">
-<meta name="theme-color" content="#EFEDE8">
+<title>F.R.A.M.O. | Tubi oleodinamici su misura e ricambi a Saonara (PD)</title>
+<meta name="description" content="Tubi oleodinamici raccordati da 3/16&quot; a 3&quot;, su ordinazione o da campione, e 600 mq di ricambi in pronta consegna. Via Liguria 32, Saonara (PD), dal 1986. Tel. e WhatsApp 049 644909.">
+<meta name="theme-color" content="#1A1A19">
+<link rel="icon" href="img/simbolo-96.png" type="image/png">
 <link rel="preload" href="fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Anybody";src:url(fonts/anybody-latin.woff2) format("woff2");font-weight:100 900;font-stretch:50% 150%;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Anybody";src:url(fonts/anybody-latin-ext.woff2) format("woff2");font-weight:100 900;font-stretch:50% 150%;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
+/* Colori: giallo del marchio e nero del logo, piu' i neutri. Nessun altro colore in pagina. */
 :root{
-  --carta:#EFEDE8;
-  --inchiostro:#161616;
-  --acciaio:#55595D;
-  --filo:rgba(22,22,22,.16);
-  --giallo:#FFCD05;
-  --m:64px;           /* margine laterale */
-  --col:24px;         /* spazio tra le colonne */
-  --sez:152px;        /* ritmo verticale tra le sezioni */
-  --fuori:max(var(--m), calc((100vw - 1440px) / 2 + var(--m)));  /* margine allineato alla gabbia, per i pezzi a filo del bordo */
+  --giallo:#FFCD05;        /* simbolo F e insegna di via Liguria */
+  --giallo-scuro:#E9B900;  /* solo per il passaggio del mouse sui bottoni gialli */
+  --nero:#1A1A19;          /* scritta FRAMO del logo */
+  --bianco:#FFFFFF;
+  --grigio:#F1F2F3;        /* fondo delle sezioni chiare alternate */
+  --testo-2:#55595E;       /* testo secondario su chiaro (7:1 sul bianco) */
+  --chiaro-2:#B8BBBF;      /* testo secondario su nero (9:1) */
+  --linea:#D9DCDF;
+  --linea-scura:#3A3B3D;
+  --nero-2:#242423;        /* schede su nero al passaggio del mouse */
+  --piede:#111110;
+  --giallo-chiaro:#FFF6CC; /* avvisi del modulo */
+  --m:80px;                /* margine laterale */
+  --g:24px;                /* spazio tra le colonne */
+  --sez:120px;             /* spazio tra le sezioni */
+  --testata:84px;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light}
-body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Anybody",system-ui,sans-serif;font-stretch:104%;font-weight:400;font-size:17.5px;line-height:1.56;font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:var(--testata)}
+body{margin:0;background:var(--bianco);color:var(--nero);font-family:"Anybody",Arial,sans-serif;font-stretch:100%;font-weight:400;font-size:19px;line-height:1.5;font-kerning:normal;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
 a:hover{text-decoration-thickness:2px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--inchiostro);outline-offset:3px}
+:focus-visible{outline:3px solid var(--giallo);outline-offset:3px}
 h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
 ul,ol{padding:0;list-style:none}
+b,strong{font-weight:700}
 .fr{font-feature-settings:"frac" 1}
 .nw{white-space:nowrap}
 .num{font-variant-numeric:tabular-nums lining-nums}
-.salta{position:absolute;left:-9999px;top:0;background:var(--inchiostro);color:var(--carta);padding:10px 16px;z-index:20}
+.salta{position:absolute;left:-9999px;top:0;background:var(--giallo);color:var(--nero);padding:12px 16px;z-index:30;font-weight:700}
 .salta:focus{left:16px;top:16px}
 
 .gabbia{max-width:1440px;margin:0 auto;padding:0 var(--m)}
-.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.sezione{padding:var(--sez) 0}
+.scuro{background:var(--nero);color:var(--bianco)}
+.grigio{background:var(--grigio)}
+.giallo{background:var(--giallo);color:var(--nero)}
 
-/* tipografia: Anybody largo, come la scritta FRAMO del marchio */
-.display{font-stretch:128%;font-weight:360;font-size:clamp(46px,7.3vw,104px);line-height:.95;letter-spacing:-.028em}
-.h2{font-stretch:120%;font-weight:400;font-size:clamp(34px,4.1vw,58px);line-height:1.02;letter-spacing:-.022em}
-.h2-g{font-size:clamp(38px,4.8vw,68px)}
-.lead{font-size:19.5px;line-height:1.5}
-.piccolo{font-size:15px;line-height:1.45;color:var(--acciaio)}
-.didascalia{font-size:13.5px;line-height:1.4;color:var(--acciaio);font-stretch:108%}
+/* Tipografia: una famiglia (Anybody), due pesi (400 e 700). Otto misure in tutta la pagina. */
+.etichetta{font-size:15px;line-height:1.4;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-stretch:110%}
+.scuro .etichetta{color:var(--giallo)}
+.h1{font-size:72px;line-height:1.02;font-weight:700;font-stretch:108%;letter-spacing:-.02em}
+.h1 .riga{display:block;font-size:32px;line-height:1.2;font-weight:400;letter-spacing:-.005em;margin-top:16px;font-stretch:100%}
+.h2{font-size:48px;line-height:1.1;font-weight:700;font-stretch:106%;letter-spacing:-.015em}
+.h3{font-size:23px;line-height:1.25;font-weight:700;font-stretch:104%}
+.lead{font-size:19px;line-height:1.5}
+.nota{font-size:17px;line-height:1.5;color:var(--testo-2)}
+.scuro .nota,.scuro .lead{color:var(--chiaro-2)}
+.scuro .lead b{color:var(--bianco)}
 
-/* bottoni */
-.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;background:var(--inchiostro);color:var(--carta);font-stretch:112%;font-weight:560;font-size:15.5px;letter-spacing:.005em;text-decoration:none;border:0;border-radius:0;transition:background-color .12s,color .12s}
-.btn:hover{background:var(--giallo);color:var(--inchiostro)}
-.link{font-stretch:112%;font-weight:540;font-size:15.5px}
+/* Bottoni: un modello pieno (giallo) e uno con il solo bordo. Stesso raggio, 56 px. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:4px;border:2px solid var(--giallo);background:var(--giallo);color:var(--nero);font:inherit;font-size:17px;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer;transition:background-color .12s,border-color .12s,color .12s;text-align:center}
+.btn:hover{background:var(--giallo-scuro);border-color:var(--giallo-scuro)}
+.btn.bordo{background:transparent;border-color:currentColor;color:inherit}
+.btn.bordo:hover{background:var(--nero);border-color:var(--nero);color:var(--bianco)}
+.scuro .btn.bordo:hover{background:var(--bianco);border-color:var(--bianco);color:var(--nero)}
+.giallo .btn{background:var(--nero);border-color:var(--nero);color:var(--bianco)}
+.giallo .btn:hover{background:var(--nero-2);border-color:var(--nero-2)}
+.btn .tel{font-variant-numeric:tabular-nums lining-nums}
+.azioni{display:flex;flex-wrap:wrap;gap:12px}
+.freccia::after{content:"";display:inline-block;width:.75em;height:.75em;margin-left:.45em;vertical-align:-.04em;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1 6h9M6.5 2.5 10 6l-3.5 3.5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1 6h9M6.5 2.5 10 6l-3.5 3.5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center/contain}
+.link{font-weight:700;font-size:17px}
 
-/* testata */
-.testata{position:absolute;inset:0 0 auto 0;z-index:5}
-.testata .gabbia{display:flex;align-items:center;justify-content:space-between;height:92px}
-.logo{display:block;width:172px}
-.logo img{width:172px;height:auto}
-.menu{display:flex;gap:34px;font-stretch:110%;font-weight:480;font-size:15px}
-.menu a{text-decoration:none}
-.menu a:hover{text-decoration:underline;text-decoration-thickness:1px}
-.destra{display:flex;align-items:center;gap:22px}
-.tel-testata{font-stretch:112%;font-weight:560;font-size:15.5px;text-decoration:none}
+/* Stato aperto o chiuso: calcolato sull'ora di Roma */
+.stato{display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.45}
+.stato .punto{flex:none;width:12px;height:12px;border-radius:50%;margin-top:6px;background:var(--chiaro-2)}
+.stato.aperto .punto{background:var(--giallo)}
+.stato [data-stato]{display:block;font-weight:700}
+.stato .ore{display:block;color:var(--testo-2)}
+.scuro .stato .ore{color:var(--chiaro-2)}
+
+/* Testata fissa */
+.testata{position:fixed;inset:0 0 auto 0;z-index:20;background:var(--nero);color:var(--bianco);border-bottom:1px solid var(--linea-scura)}
+.testata .gabbia{display:flex;align-items:center;gap:32px;height:var(--testata)}
+.logo{flex:none;display:block}
+.logo img{width:178px;height:auto}
+.logo .simbolo{display:none;width:40px}
+.menu{display:flex;gap:28px;margin-left:auto}
+.menu a{font-size:17px;font-weight:700;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+.menu a:hover{border-bottom-color:var(--giallo)}
+.testata .btn{min-height:48px;padding:0 18px;flex:none;white-space:nowrap}
 .apri-menu{display:none}
 
-/* apertura: lo stesso tubo, prima e dopo il raccordo, come una tavola tecnica: titolo su una riga,
-   la tavola sotto, in fondo la riga dei dati come il cartiglio di un disegno */
-.apertura{position:relative;border-bottom:1px solid var(--filo)}
-.apertura .gabbia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);padding-top:136px;padding-bottom:36px}
-.apertura h1{grid-column:1 / -1;grid-row:1;font-size:min(78px,calc((100vw - 2 * var(--m)) / 17.4));line-height:1;white-space:nowrap}
-/* larghezza della tavola: dieci colonne della gabbia */
-.coppia{--C:calc((min(100vw,1440px) - 2 * var(--m) - 11 * var(--col)) / 12 * 10 + 9 * var(--col));grid-column:1 / -1;grid-row:2;width:var(--C);margin-top:12px;margin-bottom:52px}
-.foto-di{grid-column:11 / span 2;grid-row:2;align-self:end;margin-bottom:52px}
-.apertura-lato{grid-column:1 / -1;grid-row:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding-top:20px;border-top:1px solid var(--filo)}
-.intro{font-size:17px;line-height:1.5;max-width:31em}
-.intro span{display:block}
-.azioni{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
-.pezzo{position:relative;margin:0}
-.pezzo + .pezzo{margin-top:-6px}
-.pezzo img{width:100%;height:auto}
-.leg{position:absolute;margin:0;font-stretch:110%;font-weight:560;font-size:14.5px;line-height:1.3;white-space:nowrap}
-.leg::before{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 2px var(--carta)}
-.leg::after{content:"";position:absolute;background:var(--inchiostro)}
-/* sul raccordo: filo orizzontale fino alla colonna delle legende */
-.leg-r{left:91.9%;top:var(--ry);transform:translateY(-50%);padding-left:calc(var(--C) * .081 + 32px)}
-.leg-r::before{left:-3px;top:calc(50% - 3px)}
-.leg-r::after{left:0;top:50%;width:calc(var(--C) * .081 + 22px);height:1px}
-.prima .leg-r{--ry:52%}
-.dopo .leg-r{--ry:53.6%}
-/* sul codice stampato: filo verso il basso */
-.leg-t{left:29.1%;top:65.9%;padding-top:calc(var(--C) * .0742 + 14px)}
-.leg-t::before{left:-3px;top:-3px}
-.leg-t::after{left:0;top:0;width:1px;height:calc(var(--C) * .0742 + 6px)}
-.leg-t span{color:var(--acciaio);font-weight:480}
-/* quota della lunghezza: linee di richiamo dalle due estremità, linea di misura sotto il tubo */
-.quota{position:absolute;left:3.76%;right:3.9%;top:66%;height:calc(34% + 26px);border-left:1px solid var(--acciaio);border-right:1px solid var(--acciaio)}
-.quota::after{content:"";position:absolute;left:0;right:0;bottom:7px;height:1px;background:var(--acciaio)}
-.quota span{position:absolute;z-index:1;left:50%;bottom:0;transform:translateX(-50%);padding:0 14px;background:var(--carta);font-stretch:110%;font-weight:560;font-size:14.5px;line-height:15px;white-space:nowrap}
-.foto-di{grid-column:11 / span 2;grid-row:2;align-self:end;margin-bottom:40px;text-align:left}
+/* Apertura */
+.apertura{padding:calc(var(--testata) + 56px) 0 0}
+.apertura .griglia{align-items:center}
+.apertura .testo{grid-column:1/8}
+.apertura .etichetta{margin-bottom:20px}
+.apertura .lead{margin-top:24px;max-width:600px}
+.apertura .stato{margin-top:28px}
+.apertura .azioni{margin-top:28px}
+.apertura .altri{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:20px}
+.apertura .altri a{font-size:17px;font-weight:700}
+.apertura .foto{grid-column:8/13;justify-self:end;width:100%;max-width:520px}
+.apertura .foto img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px}
+.accessi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);margin-top:48px;border-top:1px solid var(--linea-scura)}
+.accessi a{display:flex;align-items:center;justify-content:space-between;min-height:88px;font-size:19px;font-weight:700;text-decoration:none;border-bottom:2px solid transparent}
+.accessi a:hover{border-bottom-color:var(--giallo)}
+.accessi a::after{margin-left:12px}
 
-/* calibro */
-.misure{padding:var(--sez) 0 calc(var(--sez) - 16px)}
-.misure .testo{grid-column:1 / span 5}
-.misure .testo .lead{margin-top:28px;max-width:30em}
-.misure .testo .piccolo{margin-top:20px;max-width:30em}
-.calibro{grid-column:6 / span 4;display:flex;align-items:center;justify-content:center;min-height:360px}
-.calibro svg{width:340px;height:340px;max-width:100%;overflow:visible}
-.calibro circle{fill:none;stroke:rgba(22,22,22,.28);stroke-width:.2}
-.calibro circle.sel{fill:var(--giallo);stroke:var(--inchiostro);stroke-width:.3}
-.calibro circle.dentro{stroke:rgba(22,22,22,.22)}
-.lettura{grid-column:10 / span 3;align-self:center}
-.lettura .valore{font-stretch:124%;font-weight:380;font-size:clamp(64px,7vw,104px);line-height:.9;letter-spacing:-.03em;white-space:nowrap}
-.lettura dl{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:16px}
-.lettura dt{color:var(--acciaio)}
-.lettura dd{font-variant-numeric:tabular-nums lining-nums;font-weight:500}
-.lettura .nota-tipo{margin-top:16px;font-size:15px;line-height:1.45;max-width:17em;min-height:4.35em}
-.lettura .btn{margin-top:20px}
-.misure-scelta{grid-column:1 / -1;margin-top:72px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px 0}
-.misure-scelta button{appearance:none;background:transparent;border:0;border-top:1px solid var(--filo);color:var(--inchiostro);font-family:inherit;font-stretch:118%;font-weight:420;font-size:clamp(19px,1.9vw,28px);line-height:1;min-height:44px;padding:18px 12px 16px;text-align:left;cursor:pointer;transition:background-color .12s,border-color .12s}
-.misure-scelta button span.dn{display:block;margin-top:8px;font-size:13px;font-stretch:108%;font-weight:450;color:var(--acciaio);font-variant-numeric:tabular-nums}
-.misure-scelta button:hover{border-top-color:var(--inchiostro);background:rgba(22,22,22,.04)}
-.misure-scelta button[aria-checked="true"]{background:var(--giallo);border-top-color:var(--inchiostro)}
-.misure-scelta button[aria-checked="true"] span.dn{color:var(--inchiostro)}
-.misure-scelta button[aria-checked="true"]:hover{background:var(--giallo)}
+/* Numeri */
+.numeri{padding:56px 0}
+.numeri ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.numeri li{border-left:2px solid var(--nero);padding-left:20px}
+.numeri .cifra{display:block;font-size:48px;line-height:1.1;font-weight:700;font-stretch:106%;letter-spacing:-.015em}
+.numeri .cosa{display:block;font-size:17px;line-height:1.45;margin-top:8px}
 
-/* da campione: la macro vera a filo del bordo sinistro, il testo a destra */
-.campione{display:grid;grid-template-columns:432px minmax(0,1fr);column-gap:0;align-items:start}
-.campione figure{margin:0}
-.campione figure img{width:100%;height:auto}
-.campione figcaption{margin-top:12px;padding-left:max(16px,calc(var(--fuori) - (100vw - 1440px) / 2))}
-.campione .testo{padding:0 var(--fuori) 0 76px}
-.campione h2{max-width:10em}
-.campione .citazione{margin-top:32px;font-size:20px;line-height:1.5;font-stretch:106%;max-width:27em}
-.campione .foto{margin-top:18px;max-width:30em}
-.metodi{margin-top:36px;border-top:1px solid var(--filo);max-width:32em}
-.metodi li{display:grid;grid-template-columns:13.5em 1fr;column-gap:20px;padding:13px 0;border-bottom:1px solid var(--filo);font-size:16px;line-height:1.4}
-.metodi b{font-weight:560;font-stretch:110%}
-.metodi span{color:var(--acciaio)}
-.campione .rimandi{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px 28px}
+/* Da campione */
+.capo{grid-column:1/8}
+.capo .etichetta{margin-bottom:16px}
+.capo .lead{margin-top:24px}
+.campione .foto{grid-column:8/13;grid-row:1/3;display:grid;gap:var(--g);align-content:start}
+.campione .foto img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px}
+.campione .foto figcaption{font-size:17px;line-height:1.45;color:var(--testo-2)}
+.tipologie{grid-column:1/8;margin-top:48px;border-top:1px solid var(--linea)}
+.tipologie div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--g);padding:20px 0;border-bottom:1px solid var(--linea)}
+.tipologie dt{font-weight:700}
+.tipologie dd{color:var(--testo-2)}
+.passi-capo{grid-column:1/13;margin-top:96px;display:flex;justify-content:space-between;align-items:end;gap:var(--g);flex-wrap:wrap}
+.passi{grid-column:1/13;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);margin-top:40px;counter-reset:p}
+.passi li{background:var(--grigio);border-radius:4px;padding:32px}
+.passi li::before{counter-increment:p;content:counter(p);display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:4px;background:var(--giallo);font-size:23px;font-weight:700;margin-bottom:24px}
+.passi .h3{margin-bottom:8px}
+.passi p{font-size:17px;line-height:1.5;color:var(--testo-2)}
+.dopo-passi{grid-column:1/13;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;margin-top:40px}
+.privati{max-width:620px}
 
-/* magazzino */
-.magazzino{padding-top:var(--sez)}
-.magazzino figure img{width:100%;height:auto}
-.magazzino figcaption{margin-top:12px}
-.magazzino .capo{margin-top:72px}
-.magazzino h2{grid-column:1 / span 10}
-.marchi{grid-column:1 / span 8;margin-top:36px;font-stretch:106%;font-weight:370;font-size:clamp(20px,1.65vw,23px);line-height:1.5;letter-spacing:-.004em;max-width:36em}
-.marchi .link{display:block;width:fit-content;margin-top:14px;font-size:16px}
-.marchi b{font-weight:600}
-.settori{grid-column:1 / span 8;margin-top:40px;padding-top:22px;border-top:1px solid var(--filo);font-size:17.5px;max-width:42em}
-.settori a{font-weight:540}
-.margine{grid-column:10 / span 3;grid-row:2 / span 2;margin-top:40px;border-top:1px solid var(--filo)}
-.margine div{padding:16px 0 18px;border-bottom:1px solid var(--filo)}
-.margine dt{font-stretch:118%;font-weight:440;font-size:26px;line-height:1.1;letter-spacing:-.012em}
-.margine dd{margin-top:6px;font-size:15px;line-height:1.45;color:var(--acciaio)}
+/* Ricambi e marchi */
+.ricambi .capo{grid-column:1/9}
+.ricambi .azioni{grid-column:9/13;align-self:end;justify-content:flex-end}
+.marchi{grid-column:1/13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);margin-top:64px}
+.marchi a{display:flex;flex-direction:column;justify-content:space-between;min-height:148px;padding:24px;border:1px solid var(--linea-scura);border-radius:4px;text-decoration:none;transition:border-color .12s,background-color .12s}
+.marchi a:hover{border-color:var(--giallo);background:var(--nero-2)}
+.marchi li{min-width:0}
+.marchi .h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;overflow-wrap:anywhere}
+.marchi .h3::after{flex:none}
+.marchi .cosa{hyphens:auto;overflow-wrap:break-word;font-size:17px;line-height:1.45;color:var(--chiaro-2);margin-top:12px}
+.marchi .uff{color:var(--giallo)}
+.pronta{grid-column:1/13;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--g);margin-top:48px;padding-top:32px;border-top:1px solid var(--linea-scura)}
+.pronta .giu{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:flex-end;align-content:start}
 
-/* chiusura: frase loro, recapiti, foto a filo del bordo destro */
-.chiusura{margin-top:var(--sez);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:stretch}
-.chiusura .testo{padding:8px 64px 24px var(--fuori);display:flex;flex-direction:column}
-.chiusura .h2-g{max-width:11em;font-size:clamp(34px,3.9vw,56px)}
-.recapiti{padding-top:56px}
-.recapiti .tel{display:inline-block;font-stretch:122%;font-weight:420;font-size:clamp(34px,3.6vw,52px);line-height:1;letter-spacing:-.02em;text-decoration:none;font-variant-numeric:tabular-nums lining-nums}
-.recapiti .tel:hover{text-decoration:underline;text-decoration-thickness:2px}
-.recapiti dl{margin-top:30px;display:grid;grid-template-columns:7.5em 1fr;gap:10px 20px;font-size:16.5px}
-.recapiti dt{color:var(--acciaio)}
-.recapiti dd{font-variant-numeric:tabular-nums lining-nums}
-.chiusura figure{margin:0;position:relative;min-height:900px}
-.chiusura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 30%}
-.chiusura figcaption{position:absolute;right:16px;bottom:12px;color:var(--inchiostro);background:rgba(239,237,232,.92);padding:3px 8px}
+/* Ufficio tecnico */
+.ufficio .capo{grid-column:1/7}
+.ufficio .azioni{margin-top:40px}
+.ufficio .lato{grid-column:8/13}
+.elenco{border-top:1px solid var(--linea)}
+.elenco li{padding:16px 0;border-bottom:1px solid var(--linea);font-size:19px}
+.elenco li b{display:block}
+.elenco li span{display:block;font-size:17px;color:var(--testo-2)}
+.lato .etichetta{margin-bottom:16px}
+.documenti{margin-top:48px}
+.documenti a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--linea);font-weight:700;text-decoration:none;min-height:56px}
+.documenti a:hover{text-decoration:underline}
+.documenti a .t span{display:block;font-weight:400;font-size:17px;color:var(--testo-2)}
 
-/* piede */
-.piede{margin-top:var(--sez);padding:88px 0 36px;border-top:1px solid var(--filo)}
+/* Dove siamo */
+.dove .foto{grid-column:1/8}
+.dove .foto img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px}
+.dove .testo{grid-column:8/13;align-self:center}
+.dove .lead{margin-top:20px}
+.orari{margin-top:32px;border-top:1px solid var(--linea-scura)}
+.orari div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid var(--linea-scura);font-size:17px}
+.orari dd{text-align:right;font-variant-numeric:tabular-nums lining-nums}
+.dove .stato{margin-top:24px}
+.dove .azioni{margin-top:32px}
+.dove .altri{margin-top:20px}
+
+/* Settori e zone */
+.zone .capo{grid-column:1/9}
+.settori{grid-column:1/13;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);margin-top:56px}
+.settori a{display:block;padding:32px;background:var(--grigio);border-radius:4px;text-decoration:none;min-height:200px;border:1px solid transparent;transition:border-color .12s}
+.settori a:hover{border-color:var(--nero)}
+.settori .h3{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.settori p{font-size:17px;line-height:1.5;color:var(--testo-2);margin-top:12px}
+.comuni-capo{grid-column:1/13;margin-top:72px}
+.comuni{grid-column:1/13;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 var(--g);margin-top:24px;border-top:1px solid var(--linea)}
+.comuni a{display:flex;justify-content:space-between;align-items:center;min-height:64px;border-bottom:1px solid var(--linea);font-weight:700;font-size:17px;text-decoration:none}
+.comuni a:hover{text-decoration:underline}
+
+/* Chiusura con il modulo */
+.chiusura .capo{grid-column:1/13}
+.grande{display:inline-block;font-size:120px;line-height:1;font-weight:700;font-stretch:106%;letter-spacing:-.03em;text-decoration:none;margin-top:24px;font-variant-numeric:tabular-nums lining-nums}
+.grande:hover{text-decoration:underline;text-decoration-thickness:4px}
+.chiusura .recapiti{grid-column:1/6;margin-top:56px}
+.recapiti li{padding:16px 0;border-top:2px solid var(--nero);font-size:19px}
+.recapiti li:last-child{border-bottom:2px solid var(--nero)}
+.recapiti span{display:block;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.recapiti a{font-weight:700}
+.recapiti .ora-qui{padding-top:24px}
+.recapiti .azioni{margin-top:24px}
+.recapiti .btn{font-weight:700}
+.giallo .stato .punto{background:var(--nero);opacity:.35}
+.giallo .stato.aperto .punto{opacity:1}
+.giallo .stato .ore{color:var(--nero)}
+.modulo{grid-column:7/13;margin-top:56px;align-items:end;background:var(--bianco);border-radius:4px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px var(--g)}
+.modulo .h3,.modulo .intero,.modulo fieldset,.modulo .avviso,.modulo .invio{grid-column:1/3}
+.campo label,.modulo legend{display:block;font-size:17px;font-weight:700;margin-bottom:8px}
+.campo label i,.modulo legend i{font-style:normal;font-weight:400;color:var(--testo-2)}
+.campo input,.campo select,.campo textarea{width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--testo-2);border-radius:4px;background:var(--bianco);color:var(--nero);font:inherit;font-size:17px}
+.campo textarea{min-height:120px;resize:vertical}
+.campo [aria-invalid="true"]{border:2px solid var(--nero);background:var(--giallo-chiaro)}
+.modulo fieldset{border:0;padding:0;margin:0}
+.scelte{display:flex;flex-wrap:wrap;gap:10px}
+.scelte label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:1px solid var(--testo-2);border-radius:4px;font-size:17px;cursor:pointer}
+.scelte input{width:20px;height:20px;margin:0;accent-color:var(--nero)}
+.scelte label:has(input:checked){border:2px solid var(--nero);background:var(--grigio)}
+.modulo .nota{font-size:17px}
+.avviso{font-size:17px;font-weight:700;background:var(--giallo-chiaro);border-left:4px solid var(--nero);padding:12px 16px}
+.invio{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.invio .btn{min-width:240px}
+
+/* Piede */
+.piede{background:var(--piede);color:var(--bianco);padding:96px 0 40px;font-size:17px}
 .piede .alto{row-gap:48px}
-.piede .marchio{grid-column:1 / span 3}
-.piede .marchio img{width:196px;height:auto}
-.piede .marchio p{margin-top:20px;font-size:15px;line-height:1.5;max-width:20em}
-.piede nav{grid-column:span 2}
-.piede nav.contatti{grid-column:span 3}
-.piede h2{font-stretch:112%;font-weight:620;font-size:14.5px;line-height:1.3;margin-bottom:14px}
-.piede h2.dopo{margin-top:30px}
-.piede nav li{margin-top:9px;font-size:15px;line-height:1.35}
-.piede nav a{text-decoration:none}
-.piede nav a:hover{text-decoration:underline;text-decoration-thickness:1px}
-.piede .basso{margin-top:80px;padding-top:22px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:13.5px;line-height:1.5;color:var(--acciaio)}
-.piede .basso ul{display:flex;flex-wrap:wrap;gap:6px 22px}
-.piede .basso a{text-decoration:none;color:var(--inchiostro)}
-.piede .basso a:hover{text-decoration:underline}
+.piede .marchio{grid-column:1/4}
+.piede .marchio img{width:196px}
+.piede .marchio p{margin-top:24px;color:var(--chiaro-2)}
+.piede nav{grid-column:span 3}
+.piede .marchio + nav{grid-column:4/7}
+.piede h2{font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--giallo);margin-bottom:16px}
+.piede li{padding:5px 0}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline}
+.piede .az{grid-column:1/13;margin-top:56px}
+.piede .az ul{display:flex;flex-wrap:wrap;gap:0 28px}
+.piede .basso{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;margin-top:72px;padding-top:24px;border-top:1px solid var(--linea-scura);color:var(--chiaro-2);font-size:15px}
+.piede .basso ul{display:flex;gap:24px;flex-wrap:wrap}
 
-/* da 1100 a 1279: stessa apertura, più stretta */
+/* da 1100 a 1279 */
 @media (max-width:1279px){
-  :root{--m:48px}
-  .menu{gap:26px}
-  .apertura .gabbia{padding-top:120px}
-  .coppia{margin-bottom:34px}
-  .foto-di{grid-column:1 / -1;grid-row:3;margin:0 0 20px}
-  .apertura-lato{grid-row:4}
-  .intro{max-width:30em}
+  :root{--m:56px}
+  .h1{font-size:64px}
+  .menu{gap:22px}
+  .menu a{font-size:17px}
 }
-/* sotto 1100: stessa apertura; le altre sezioni si impilano */
+/* tablet */
 @media (max-width:1099px){
-  :root{--m:40px;--sez:120px}
-  .leg,.quota span{font-size:13.5px}
-  .misure .testo{grid-column:1 / -1}
-  .misure .testo .lead,.misure .testo .piccolo{max-width:36em}
-  .calibro{grid-column:1 / span 6;margin-top:48px}
-  .lettura{grid-column:7 / span 6;margin-top:48px}
-  .misure-scelta{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .campione .testo{padding-left:40px}
-  .metodi li{grid-template-columns:1fr}
-  .metodi span{margin-top:2px}
-  .magazzino h2,.marchi,.settori,.margine{grid-column:1 / -1}
-  .margine{grid-row:auto;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--col)}
-  .settori{border-top:0;padding-top:0;margin-top:28px}
-  .piede .marchio{grid-column:1 / -1}
-  .piede nav,.piede nav.contatti{grid-column:span 3}
-}
-@media (max-width:900px){
-  :root{--m:28px;--col:20px}
-  .coppia{--C:calc((100vw - 2 * var(--m) - 11 * var(--col)) / 12 * 9 + 8 * var(--col))}
+  :root{--m:40px;--sez:96px}
   .menu{display:none}
-  .apri-menu{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;background:none;border:0;font:inherit;font-stretch:112%;font-weight:560;font-size:15.5px;color:var(--inchiostro);cursor:pointer;text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1px}
-  .menu.aperto{display:flex;position:absolute;top:84px;left:0;right:0;flex-direction:column;gap:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
-  .menu.aperto a{padding:12px 0;font-size:18px}
-  .campione{grid-template-columns:1fr}
-  .campione figure img{height:auto;aspect-ratio:864/680}
-  .campione figcaption{padding:0 var(--m)}
-  .campione .testo{padding:44px var(--m) 0}
-  .chiusura{grid-template-columns:1fr}
-  .chiusura .testo{padding:0 var(--m) 56px}
-  .chiusura figure{min-height:0}
-  .chiusura figure img{position:static;height:auto;aspect-ratio:1/1}
-  .piede nav,.piede nav.contatti{grid-column:span 6}
+  .apri-menu{display:inline-flex;margin-left:12px}
+  .testata .btn{margin-left:auto}
+  .testata.aperta .menu{display:flex;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;background:var(--nero);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea-scura)}
+  .testata.aperta .menu a{padding:14px 0;border-bottom:1px solid var(--linea-scura)}
+  .h1{font-size:56px}
+  .h1 .riga{font-size:26px}
+  .h2{font-size:40px}
+  .grande{font-size:96px}
+  .apertura .testo{grid-column:1/8}
+  .apertura .foto{grid-column:8/13}
+  .accessi{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
+  .accessi a{min-height:72px;border-bottom:1px solid var(--linea-scura)}
+  .numeri ul{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .capo,.ricambi .capo,.ufficio .capo,.zone .capo{grid-column:1/13}
+  .campione .foto{grid-column:1/13;grid-row:auto;grid-template-columns:1fr 1fr;margin-top:48px}
+  .campione .foto figcaption{grid-column:1/3}
+  .tipologie{grid-column:1/13}
+  .passi{grid-template-columns:1fr}
+  .ricambi .azioni{grid-column:1/13;justify-content:flex-start;margin-top:32px}
+  .marchi{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pronta{grid-template-columns:1fr}
+  .pronta .giu{justify-content:flex-start}
+  .ufficio .lato{grid-column:1/13;margin-top:56px}
+  .dove .foto,.dove .testo{grid-column:1/13}
+  .dove .testo{margin-top:40px}
+  .settori{grid-template-columns:1fr}
+  .settori a{min-height:0}
+  .comuni{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chiusura .recapiti,.modulo{grid-column:1/13}
+  .piede .marchio{grid-column:1/13}
+  .piede .marchio + nav,.piede nav{grid-column:span 6}
 }
-@media (max-width:360px){
-  .tel-testata{display:none}
-  .h2-g{font-size:34px}
-}
+/* telefono */
 @media (max-width:700px){
-  :root{--m:20px;--sez:96px}
+  :root{--m:20px;--g:16px;--sez:72px;--testata:72px}
   body{font-size:17px}
-  .testata .gabbia{height:72px}
-  .logo,.logo img{width:138px}
-  .menu.aperto{top:68px}
-  /* telefono: la tavola gira in verticale, il raccordo in alto; prima il titolo e il pezzo, poi il testo */
-  .apertura .gabbia{display:block;padding-top:100px;padding-bottom:36px}
-  .apertura h1{font-size:clamp(40px,12.4vw,56px);font-stretch:118%;white-space:normal;line-height:.95}
-  .coppia{display:grid;grid-template-columns:84px 84px;column-gap:18px;width:auto;margin:26px 0 0;padding-top:58px}
-  .pezzo + .pezzo{margin-top:0}
-  .leg,.quota span{font-size:13px}
-  .leg-t{display:none}
-  .leg-r{left:50.5%;top:auto;bottom:calc(100% - 36px);transform:none;padding:0 0 46px 0;white-space:normal;width:7.4em;line-height:1.25}
-  .leg-r::before{left:-3px;top:auto;bottom:-3px}
-  .leg-r::after{left:0;top:auto;bottom:0;width:1px;height:46px}
-  .prima .leg-r{left:52%}
-  .dopo .leg-r{left:53.6%}
-  /* quota: richiami orizzontali dalle due estremità, misura verticale a destra */
-  .quota{left:64%;right:auto;top:3.9%;bottom:3.76%;height:auto;width:calc(36% + 24px);border:0;border-top:1px solid var(--acciaio);border-bottom:1px solid var(--acciaio)}
-  .quota::after{left:auto;right:7px;top:0;bottom:0;width:1px;height:auto}
-  .quota span{left:calc(100% + 4px);bottom:auto;top:50%;transform:translateY(-50%);padding:0;background:none}
-  .foto-di{margin:14px 0 0;max-width:22em}
-  .apertura-lato{display:block;margin-top:28px;padding-top:18px}
-  .intro{font-size:17px}
-  .intro span{display:inline}
-  .azioni{margin-top:20px}
-  .misure .testo .lead{font-size:18px}
-  .calibro{grid-column:1 / -1;min-height:0;margin-top:36px}
-  .calibro svg{width:240px;height:240px}
-  .lettura{grid-column:1 / -1;margin-top:28px}
-  .lettura .valore{font-size:64px}
-  .lettura .nota-tipo{max-width:none;min-height:0}
-  .misure-scelta{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:36px}
-  .misure-scelta button{padding:12px 0 10px;font-size:20px}
-  .misure-scelta button span.dn{margin-top:4px}
-  .misure-scelta button[aria-checked="true"]{padding-top:9px}
-  .campione .citazione{font-size:18.5px}
-  .magazzino figure img{aspect-ratio:390/330;object-fit:cover}
-  .magazzino .capo{margin-top:44px}
-  .marchi{font-size:19px;line-height:1.5}
-  .margine{grid-template-columns:1fr}
-  .recapiti{padding-top:40px}
-  .recapiti dl{grid-template-columns:1fr;gap:2px}
-  .recapiti dd{margin-bottom:12px}
-  .piede{padding-top:56px}
+  .logo img{width:132px}
+  .testata .gabbia{gap:10px}
+  .testata .btn{min-height:48px;padding:0 14px;font-size:16px}
+  .apri-menu{margin-left:0;padding:0 12px}
+  .etichetta{font-size:15px;letter-spacing:.1em}
+  .h1{font-size:40px;line-height:1.04}
+  .h1 .riga{font-size:22px;margin-top:10px}
+  .h2{font-size:30px;line-height:1.15}
+  .h3{font-size:20px}
+  .lead{font-size:17px}
+  .nota,.stato,.link,.campione .foto figcaption,.passi p,.marchi .cosa,.settori p,.numeri .cosa,.orari div,.comuni a,.documenti a span,.elenco li span{font-size:16px}
+  .elenco li,.recapiti li{font-size:17px}
+  .btn{font-size:17px}
+  .apertura{padding-top:calc(var(--testata) + 24px)}
+  .apertura .testo,.apertura .foto{grid-column:1/13}
+  .apertura .etichetta{margin-bottom:12px}
+  .apertura .lead{margin-top:14px}
+  .apertura .stato{margin-top:16px}
+  .apertura .azioni{margin-top:18px;flex-direction:column;gap:10px}
+  .apertura .azioni .btn{width:100%}
+  .apertura .altri{margin-top:14px;gap:6px 20px}
+  .apertura .altri a{font-size:16px;min-height:32px;display:inline-flex;align-items:center}
+  .apertura .foto{max-width:none;margin-top:20px}
+  .apertura .foto picture,.apertura .foto img{aspect-ratio:3/2}
+  .accessi{grid-template-columns:1fr;margin-top:32px;border-top:0}
+  .accessi a{min-height:56px;font-size:17px}
+  .numeri{padding:48px 0}
+  .numeri .cifra{font-size:30px}
+  .numeri li{padding-left:14px}
+  .tipologie div{grid-template-columns:1fr;gap:4px;padding:16px 0}
+  .campione .foto{grid-template-columns:1fr 1fr;gap:12px}
+  .passi-capo{margin-top:64px}
+  .passi li{padding:24px}
+  .passi li::before{margin-bottom:16px}
+  .dopo-passi .azioni,.ricambi .azioni,.ufficio .azioni,.dove .azioni{flex-direction:column;width:100%}
+  .dopo-passi .azioni .btn,.ricambi .azioni .btn,.ufficio .azioni .btn,.dove .azioni .btn{width:100%}
+  .marchi{grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+  .marchi a{min-height:0;padding:16px}
+  .comuni{grid-template-columns:1fr 1fr}
+  .comuni a{min-height:52px}
+  .settori a{padding:24px}
+  .grande{font-size:56px;margin-top:16px}
+  .chiusura .recapiti{margin-top:32px}
+  .modulo{grid-template-columns:1fr;padding:24px 20px;margin-top:40px;gap:18px}
+  .modulo .h3,.modulo .intero,.modulo fieldset,.modulo .avviso,.modulo .invio{grid-column:1/2}
+  .invio .btn{width:100%}
+  .piede{padding-top:72px;font-size:16px}
+  .piede .marchio + nav{grid-column:1/13}
   .piede nav{grid-column:span 6}
-  .piede nav.contatti{grid-column:1 / -1}
-  .piede .alto{row-gap:36px}
-  .piede .basso{margin-top:56px;flex-direction:column}
+  .piede .basso{font-size:15px;margin-top:48px}
 }
+@media (max-width:379px){
+  .logo img{display:none}
+  .logo .simbolo{display:block}
+  .h1{font-size:34px}
+  .marchi{grid-template-columns:1fr}
+  .numeri ul{grid-template-columns:1fr}
+  .comuni{grid-template-columns:1fr}
+  .piede nav{grid-column:1/13}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (min-width:1100px){html{scroll-behavior:smooth}}
 </style>
 </head>
 <body>
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 
-<header class="testata">
+<header class="testata" id="testata">
   <div class="gabbia">
-    <a class="logo" href="#" aria-label="F.R.A.M.O., pagina iniziale"><img src="img/logo-framo.png" width="500" height="90" alt="FRAMO"></a>
+    <a class="logo" href="#" aria-label="F.R.A.M.O., inizio pagina">
+      <img src="img/logo-framo-chiaro.png" width="500" height="90" alt="FRAMO">
+      <img class="simbolo" src="img/simbolo-96.png" width="96" height="96" alt="FRAMO">
+    </a>
     <nav class="menu" id="menu" aria-label="Menu principale">
-      <a href="#misure">Tubi su misura</a>
-      <a href="#campione">Da campione</a>
-      <a href="#magazzino">Magazzino</a>
-      <a href="#contatti">Contatti</a>
+      <a href="#campione">Tubi su misura</a>
+      <a href="#ricambi">Ricambi e marchi</a>
+      <a href="#ufficio">Centraline</a>
+      <a href="#zone">Zone</a>
+      <a href="#dove">Dove siamo</a>
     </nav>
-    <div class="destra">
-      <a class="tel-testata num" href="tel:+39049644909">049 644909</a>
-      <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    </div>
+    <a class="btn" href="tel:+39049644909" aria-label="Chiama F.R.A.M.O. allo 049 644909"><span class="tel">049 644909</span></a>
+    <button class="btn bordo apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
 
 <main id="contenuto">
-<section class="apertura" aria-labelledby="titolo">
+
+<!-- 1. Apertura: che cosa fanno, dove, se sono aperti, chiamare, WhatsApp, come arrivare -->
+<section class="apertura scuro" aria-labelledby="titolo">
   <div class="gabbia">
-    <h1 class="display" id="titolo">Tubi oleodinamici su&nbsp;misura</h1>
-    <div class="coppia">
-      <figure class="pezzo prima">
+    <div class="griglia">
+      <div class="testo">
+        <p class="etichetta">Saonara (PD) · dal 1986</p>
+        <h1 class="h1" id="titolo">Tubi oleodinamici su&nbsp;misura <span class="riga">e ricambi in pronta consegna</span></h1>
+        <p class="lead"><b>Porta il tubo vecchio: te lo rifacciamo identico</b> nella lunghezza, tipologia e raccordatura. Da 3/16" a 3", anche per alte e altissime pressioni.</p>
+        <p class="stato" data-stato-box><span class="punto" aria-hidden="true"></span><span><span data-stato>Lunedì-venerdì</span><span class="ore">8.30-12.30 e 14.00-18.00, sabato e domenica chiuso</span></span></p>
+        <div class="azioni">
+          <a class="btn" id="chiama" href="tel:+39049644909">Chiama <span class="tel">049 644909</span></a>
+          <a class="btn bordo" href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20rifare%20questo%20tubo.%20Vi%20mando%20le%20foto%3A%20il%20tubo%20intero%2C%20i%20due%20raccordi%20e%20la%20scritta%20sulla%20guaina." data-wa="tubo">Manda la foto su WhatsApp</a>
+        </div>
+        <p class="altri">
+          <a class="freccia" href="#dove">Come arrivare, via Liguria 32</a>
+          <a href="mailto:commerciale@framosrl.com?subject=Richiesta%20preventivo" data-mail="preventivo">commerciale@framosrl.com</a>
+        </p>
+      </div>
+      <figure class="foto">
         <picture>
-          <source media="(max-width:700px)" type="image/webp" srcset="img/tubo-prima-v-115.webp 115w, img/tubo-prima-v-172.webp 172w, img/tubo-prima-v-230.webp 230w" sizes="84px">
-          <source media="(max-width:700px)" srcset="img/tubo-prima-v-115.jpg 115w, img/tubo-prima-v-172.jpg 172w, img/tubo-prima-v-230.jpg 230w" sizes="84px">
-          <source type="image/webp" srcset="img/tubo-prima-480.webp 480w, img/tubo-prima-720.webp 720w, img/tubo-prima-1056.webp 1056w" sizes="(max-width:1279px) 80vw, 1090px">
-          <img src="img/tubo-prima-1056.jpg" srcset="img/tubo-prima-480.jpg 480w, img/tubo-prima-720.jpg 720w, img/tubo-prima-1056.jpg 1056w" sizes="(max-width:1279px) 80vw, 1090px" width="1056" height="230" alt="Un tubo flessibile nero tagliato a misura, con il codice stampato sulla guaina, e accanto il suo raccordo con anello rosso e dado esagonale, ancora staccato" fetchpriority="high">
+          <source media="(max-width:700px)" type="image/webp" srcset="img/macro-720.webp 720w, img/macro-1024.webp 1024w" sizes="calc(100vw - 40px)">
+          <source media="(max-width:700px)" srcset="img/macro-720.jpg 720w, img/macro-1024.jpg 1024w" sizes="calc(100vw - 40px)">
+          <source type="image/webp" srcset="img/macro-q-480.webp 480w, img/macro-q-680.webp 680w" sizes="(max-width:1099px) 38vw, 520px">
+          <img src="img/macro-q-680.jpg" srcset="img/macro-q-480.jpg 480w, img/macro-q-680.jpg 680w" sizes="(max-width:1099px) 38vw, 520px" width="680" height="680" alt="Tubi oleodinamici in bobina, con le scritte stampate sulla guaina: DN10, 3/8 di pollice, SAE 100R6, e la sezione di un tubo con la treccia" fetchpriority="high">
         </picture>
-        <p class="leg leg-t">Tipologia <span>il codice sulla guaina</span></p>
-        <p class="leg leg-r">Tubo e raccordo</p>
-      </figure>
-      <figure class="pezzo dopo">
-        <picture>
-          <source media="(max-width:700px)" type="image/webp" srcset="img/tubo-dopo-v-115.webp 115w, img/tubo-dopo-v-172.webp 172w, img/tubo-dopo-v-230.webp 230w" sizes="84px">
-          <source media="(max-width:700px)" srcset="img/tubo-dopo-v-115.jpg 115w, img/tubo-dopo-v-172.jpg 172w, img/tubo-dopo-v-230.jpg 230w" sizes="84px">
-          <source type="image/webp" srcset="img/tubo-dopo-480.webp 480w, img/tubo-dopo-720.webp 720w, img/tubo-dopo-1056.webp 1056w" sizes="(max-width:1279px) 80vw, 1090px">
-          <img src="img/tubo-dopo-1056.jpg" srcset="img/tubo-dopo-480.jpg 480w, img/tubo-dopo-720.jpg 720w, img/tubo-dopo-1056.jpg 1056w" sizes="(max-width:1279px) 80vw, 1090px" width="1056" height="230" alt="Lo stesso tubo con il raccordo montato" fetchpriority="high">
-        </picture>
-        <p class="leg leg-r">Raccordatura</p>
-        <p class="quota"><span>Lunghezza</span></p>
       </figure>
     </div>
-    <p class="didascalia foto-di">Foto provvisoria F.R.A.M.O.: lo stesso tubo prima e dopo il montaggio di un raccordo Push Lock.</p>
-    <div class="apertura-lato">
-      <p class="intro"><span>Officina e magazzino a Saonara, Padova, dal 1986.</span> <span>Su ordinazione o da campione, da 3/16" a&nbsp;3".</span></p>
+    <nav class="accessi" aria-label="Vai a">
+      <a class="freccia" href="#campione">Tubi su misura e da campione</a>
+      <a class="freccia" href="#ricambi">Ricambi e marchi</a>
+      <a class="freccia" href="#ufficio">Centraline</a>
+      <a class="freccia" href="#dove">Come arrivare</a>
+    </nav>
+  </div>
+</section>
+
+<!-- 2. Numeri veri (01-analisi) -->
+<section class="numeri giallo" aria-label="F.R.A.M.O. in numeri">
+  <div class="gabbia">
+    <ul>
+      <li><span class="cifra num">1986</span><span class="cosa">sul mercato, un'azienda indipendente a conduzione familiare</span></li>
+      <li><span class="cifra num">600 mq</span><span class="cosa">di magazzino, accanto all'officina</span></li>
+      <li><span class="cifra num">3/16"-3"</span><span class="cosa">i diametri dei tubi che raccordiamo, anche ad altissima pressione</span></li>
+      <li><span class="cifra num">21</span><span class="cosa">schede tubo Manuli, Balflex e ZEC nel <a href="/catalogo/">catalogo</a></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. Mi rifate questo tubo? -->
+<section class="sezione campione" id="campione" aria-labelledby="t-campione">
+  <div class="gabbia griglia">
+    <div class="capo">
+      <p class="etichetta">Tubi su misura e da campione</p>
+      <h2 class="h2" id="t-campione">Vieni in azienda con il campione, ti rifacciamo il&nbsp;tubo</h2>
+      <p class="lead">Porta la tubazione che ti serve: in breve tempo i nostri operatori realizzano un nuovo tubo identico nella lunghezza, tipologia e raccordatura. Oppure lo facciamo su ordinazione, con le tue misure.</p>
+    </div>
+    <figure class="foto">
+      <picture>
+        <source type="image/webp" srcset="img/tubo-prima-600.webp 600w, img/tubo-prima-1024.webp 1024w" sizes="(max-width:700px) 46vw, (max-width:1099px) 45vw, 520px">
+        <img src="img/tubo-prima-600.jpg" srcset="img/tubo-prima-600.jpg 600w, img/tubo-prima-1024.jpg 1024w" sizes="(max-width:700px) 46vw, (max-width:1099px) 45vw, 520px" width="1024" height="680" alt="Un tubo flessibile nero tagliato a misura e, accanto, il raccordo ancora staccato" loading="lazy">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="img/tubo-dopo-600.webp 600w, img/tubo-dopo-1024.webp 1024w" sizes="(max-width:700px) 46vw, (max-width:1099px) 45vw, 520px">
+        <img src="img/tubo-dopo-600.jpg" srcset="img/tubo-dopo-600.jpg 600w, img/tubo-dopo-1024.jpg 1024w" sizes="(max-width:700px) 46vw, (max-width:1099px) 45vw, 520px" width="1024" height="680" alt="Lo stesso tubo con il raccordo montato" loading="lazy">
+      </picture>
+      <figcaption>Lo stesso tubo, prima e dopo il montaggio del raccordo.</figcaption>
+    </figure>
+    <dl class="tipologie">
+      <div><dt>Alta e altissima pressione</dt><dd>Tubi raccordati da 3/16" a 3", su ordinazione o da campione.</dd></div>
+      <div><dt>Termoplastici</dt><dd>Da 3/16" a 1", con una o due trecce d'acciaio (1TD e 2TD) o con treccia tessile (R7).</dd></div>
+      <div><dt>Rigidi</dt><dd>Acciaio bonderizzato, zincato bianco o inox AISI 316 e 304, con raccorderia a ogiva 24° DIN.</dd></div>
+      <div><dt>Raccordi</dt><dd>Rastelli DIN, GAS e JIC; adattatori e raccordi a pressare anche in zinco nichel.</dd></div>
+    </dl>
+
+    <div class="passi-capo">
+      <h3 class="h2">Il tubo è ancora sulla macchina? Mandaci tre&nbsp;foto</h3>
+    </div>
+    <ol class="passi">
+      <li><p class="h3">Il tubo intero</p><p>Con tutti e due i raccordi, così vediamo la lunghezza e l'orientamento delle curve.</p></li>
+      <li><p class="h3">I due raccordi da vicino</p><p>Uno per volta, con il filetto in vista: BSP, JIC, ORFS, metrico DIN o NPT, lo riconosciamo noi.</p></li>
+      <li><p class="h3">La scritta sulla guaina</p><p>Il codice stampato sul tubo, per esempio DN10, 3/8", SAE 100R6. Se puoi, misura la lunghezza: estremità/estremità per i raccordi dritti, centro/centro per quelli curvi.</p></li>
+    </ol>
+    <div class="dopo-passi">
+      <p class="privati lead">Anche se sei un privato, con lo spaccalegna, il trattorino o il rimorchio: porta il tubo o manda le foto, ti diciamo noi che cosa serve.</p>
       <div class="azioni">
-        <a class="btn num" href="tel:+39049644909">Chiama 049 644909</a>
-        <a class="link" href="https://api.whatsapp.com/send?phone=39049644909">Manda la foto del tubo su WhatsApp</a>
+        <a class="btn" href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20rifare%20questo%20tubo.%20Vi%20mando%20le%20foto%3A%20il%20tubo%20intero%2C%20i%20due%20raccordi%20e%20la%20scritta%20sulla%20guaina." data-wa="tubo">Manda le foto su WhatsApp</a>
+        <a class="btn bordo" href="/come-misurare-un-tubo-oleodinamico/">Come misurare un tubo</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="misure" id="misure" aria-labelledby="t-misure">
+<!-- 4. Avete il pezzo di quella marca? -->
+<section class="sezione ricambi scuro" id="ricambi" aria-labelledby="t-ricambi">
   <div class="gabbia griglia">
-    <div class="testo">
-      <h2 class="h2 h2-g" id="t-misure">Da <span class="fr">3/16</span>" a&nbsp;3"</h2>
-      <p class="lead">Le tubazioni per alte e altissime pressioni, dal diametro di 3/16" fino a 3", sono la nostra specialità. Anche termoplastiche, inox e rigide, con la raccorderia adatta.</p>
-      <p class="piccolo">Scegli una misura: il cerchio giallo è il diametro interno, in scala con gli altri. DN indicativi, secondo le norme EN e SAE.</p>
+    <div class="capo">
+      <p class="etichetta">Ricambi e marchi · 600 mq di magazzino</p>
+      <h2 class="h2" id="t-ricambi">Pompa malfunzionante, innesto rapido che perde, elettrovalvola rotta?</h2>
+      <p class="lead">Fotografa il pezzo e la targhetta con il codice e mandaci tutto su WhatsApp. Se non troviamo il componente dello stesso produttore, ti proponiamo un'alternativa altrettanto valida.</p>
     </div>
-    <div class="calibro" aria-hidden="true">
-      <svg viewBox="0 0 80 80" id="cerchi"></svg>
+    <div class="azioni">
+      <a class="btn" href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20questo%20ricambio.%20Vi%20mando%20la%20foto%20del%20pezzo%20e%20della%20targhetta%20con%20il%20codice." data-wa="pezzo">Manda la foto del pezzo</a>
+      <a class="btn bordo" href="tel:+39049644909">Chiama <span class="tel">049 644909</span></a>
     </div>
-    <div class="lettura" aria-live="polite">
-      <p class="valore num" id="valore">1"</p>
-      <dl>
-        <dt>Nominale</dt><dd id="dn">DN 25</dd>
-      </dl>
-      <p class="nota-tipo" id="tipo">Anche in termoplastico, con una o due trecce d'acciaio (1TD e 2TD) o con treccia tessile (R7).</p>
-      <a class="btn" id="chiedi" href="https://api.whatsapp.com/send?phone=39049644909">Chiedi un tubo da&nbsp;<span id="chiedi-mis">1"</span></a>
-    </div>
-    <div class="misure-scelta" role="radiogroup" aria-label="Diametro interno del tubo" id="scelta"></div>
-  </div>
-</section>
-
-<section class="campione" id="campione" aria-labelledby="t-campione">
-  <figure>
-    <picture>
-      <source type="image/webp" srcset="img/macro-dn10-480.webp 480w, img/macro-dn10-720.webp 720w, img/macro-dn10-864.webp 864w" sizes="(max-width:900px) 100vw, 432px">
-      <img src="img/macro-dn10-720.jpg" srcset="img/macro-dn10-480.jpg 480w, img/macro-dn10-720.jpg 720w, img/macro-dn10-864.jpg 864w" sizes="(max-width:900px) 100vw, 432px" width="864" height="680" alt="Primo piano di tubi in bobina con le scritte DN10, 3/8 di pollice, SAE 100R6 e la sezione di un tubo con la treccia tessile" loading="lazy">
-    </picture>
-    <figcaption class="didascalia">Tubo DN10, <span class="fr">3/8</span>", SAE 100R6. Foto F.R.A.M.O.</figcaption>
-  </figure>
-  <div class="testo">
-    <h2 class="h2" id="t-campione">Porti il tubo vecchio, esce un tubo&nbsp;nuovo</h2>
-    <p class="citazione">Vieni in azienda con il campione: in breve tempo i nostri operatori realizzano un nuovo tubo identico nella lunghezza, tipologia e raccordatura.</p>
-    <p class="foto">Se il tubo è ancora sulla macchina, manda la foto del tubo e dei raccordi su WhatsApp, con il codice stampato sulla guaina.</p>
-    <ul class="metodi" aria-label="Come si misura la lunghezza">
-      <li><b>Estremità / estremità</b><span>per i raccordi dritti</span></li>
-      <li><b>Centro / centro</b><span>per i raccordi curvi</span></li>
-      <li><b>Sottocono / sottocono</b><span>dal punto di tenuta del raccordo</span></li>
+    <ul class="marchi" aria-label="I marchi che trattiamo">
+      <li><a href="/catalogo/manuli/"><span class="h3 freccia">Manuli</span><span class="cosa">Tubi flessibili, schede nel catalogo</span></a></li>
+      <li><a href="/catalogo/balflex/"><span class="h3 freccia">Balflex</span><span class="cosa">Tubi flessibili, schede nel catalogo</span></a></li>
+      <li><a href="/catalogo/zec/"><span class="h3 freccia">ZEC</span><span class="cosa">Tubi flessibili, schede nel catalogo</span></a></li>
+      <li><a href="/prodotti/oleodinamica/raccordi/rastelli/"><span class="h3 freccia">Rastelli</span><span class="cosa">Raccordi DIN, GAS e JIC</span></a></li>
+      <li><a href="/prodotti/oleodinamica/distributore-ufficiale-ami-a-padova/"><span class="h3 freccia">AMI</span><span class="cosa"><b class="uff">Distributore ufficiale</b>, distributori oleodinamici</span></a></li>
+      <li><a href="/prodotti/oleodinamica/distributori-walvoil/"><span class="h3 freccia">Walvoil</span><span class="cosa">Distributori</span></a></li>
+      <li><a href="/prodotti/oleodinamica/innesti-rapidi-faster/"><span class="h3 freccia">Faster</span><span class="cosa">Innesti rapidi</span></a></li>
+      <li><a href="/prodotti/oleodinamica/valvole-bosch-rexroth/"><span class="h3 freccia">Bosch Rexroth</span><span class="cosa">Valvole ed elettrovalvole</span></a></li>
+      <li><a href="/prodotti/oleodinamica/motori-orbitali-danfoss/"><span class="h3 freccia">Danfoss</span><span class="cosa">Motori orbitali</span></a></li>
+      <li><a href="/prodotti/oleodinamica/pompe-a-ingranaggi-marzocchi-pompe/"><span class="h3 freccia">Marzocchi</span><span class="cosa">Pompe e motori a ingranaggi</span></a></li>
+      <li><a href="/prodotti/oleodinamica/elettrovalvole/atos/"><span class="h3 freccia">Atos</span><span class="cosa">Elettrovalvole</span></a></li>
+      <li><a href="/prodotti/oleodinamica/elettrovalvole/hydac/"><span class="h3 freccia">Hydac</span><span class="cosa">Elettrovalvole</span></a></li>
+      <li><a href="/prodotti/oleodinamica/accumulatori-fox/"><span class="h3 freccia">Fox</span><span class="cosa">Accumulatori</span></a></li>
+      <li><a href="/prodotti/oleodinamica/collari-pieffeci/"><span class="h3 freccia">Pieffeci</span><span class="cosa">Collari</span></a></li>
+      <li><a href="/prodotti/pneumatica/univer/"><span class="h3 freccia">Univer</span><span class="cosa">Pneumatica</span></a></li>
+      <li><a href="/prodotti/pneumatica/"><span class="h3 freccia">Waircom</span><span class="cosa">Pneumatica</span></a></li>
     </ul>
-    <p class="rimandi">
-      <a class="link" href="/news/come-misurare-un-tubo-oleodinamico/">Come misurare un tubo</a>
-      <a class="link" href="https://api.whatsapp.com/send?phone=39049644909">Manda la foto su WhatsApp</a>
-    </p>
-  </div>
-</section>
-
-<section class="magazzino" id="magazzino" aria-labelledby="t-magazzino">
-  <figure>
-    <picture>
-      <source media="(max-width:700px)" type="image/webp" srcset="img/boccole-stretto-390.webp 390w, img/boccole-stretto-780.webp 780w" sizes="100vw">
-      <source type="image/webp" srcset="img/boccole-720.webp 720w, img/boccole-1080.webp 1080w, img/boccole-1440.webp 1440w" sizes="100vw">
-      <img src="img/boccole-1440.jpg" srcset="img/boccole-720.jpg 720w, img/boccole-1080.jpg 1080w, img/boccole-1440.jpg 1440w" sizes="100vw" width="1440" height="600" alt="Boccole in acciaio zincato da pressare sui tubi, alla rinfusa" loading="lazy">
-    </picture>
-    <figcaption class="didascalia gabbia">Boccole da pressare. Foto indicativa</figcaption>
-  </figure>
-  <div class="gabbia griglia capo">
-    <h2 class="h2 h2-g" id="t-magazzino">600 mq di magazzino, accanto all'officina</h2>
-    <p class="marchi">Raccordi <b>Rastelli</b> DIN, GAS e JIC, innesti rapidi <b>Faster</b>, valvole <b>Bosch Rexroth</b>, distributori <b>Walvoil</b>, motori orbitali <b>Danfoss</b>; e poi elettrovalvole Atos e Hydac, pompe Marzocchi, accumulatori Fox, collari Pieffeci, pneumatica Univer e Waircom, funi d'acciaio a 8 e 9&nbsp;trefoli. E le centraline, che progettiamo e assembliamo&nbsp;noi. <a class="link" href="/brochure/">Brochure prodotti</a></p>
-    <dl class="margine">
-      <div><dt class="num">1986</dt><dd>sul mercato, un'azienda indipendente a conduzione familiare</dd></div>
-      <div><dt>Pronta consegna</dt><dd>valvole, elettrovalvole, filtri, pompe e motori, funi, brache, cinghie, utensileria</dd></div>
-    </dl>
-    <p class="settori">Per officine, manutentori e industrie di Padova e del Nord Est: <a href="/settori/agricoltura/">agricoltura</a>, <a href="/settori/edilizia/">edilizia e movimento terra</a>, <a href="/settori/industria/">industria</a>.</p>
-  </div>
-</section>
-
-<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
-  <div class="testo">
-    <h2 class="h2 h2-g" id="t-contatti">Gli specialisti di&nbsp;Padova</h2>
-    <div class="recapiti">
-      <a class="tel" href="tel:+39049644909">049 644909</a>
-      <dl>
-        <dt>WhatsApp</dt><dd><a href="https://api.whatsapp.com/send?phone=39049644909">049 644909, anche per le foto</a></dd>
-        <dt>Email</dt><dd><a href="mailto:commerciale@framosrl.com">commerciale@framosrl.com</a></dd>
-        <dt>Dove</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=F.R.A.M.O.%20via%20Liguria%2032%20Saonara%20PD">via Liguria 32, 35020 Saonara (PD)</a></dd>
-        <dt>Orari</dt><dd>dal lunedì al venerdì<br><span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></dd>
-      </dl>
+    <div class="pronta">
+      <p class="lead"><b>In pronta consegna anche</b> valvole, elettrovalvole, filtri, pompe e motori, funi d'acciaio a 8 e 9 trefoli, brache, cinghie e utensileria.</p>
+      <p class="giu">
+        <a class="link freccia" href="/prodotti/oleodinamica/">Oleodinamica</a>
+        <a class="link freccia" href="/prodotti/pneumatica/">Pneumatica</a>
+        <a class="link freccia" href="/prodotti/sollevamento/">Sollevamento</a>
+        <a class="link freccia" href="/brochure-prodotti/">Brochure prodotti</a>
+      </p>
     </div>
   </div>
-  <figure>
-    <picture>
-      <source type="image/webp" srcset="img/chiusura-480.webp 480w, img/chiusura-720.webp 720w, img/chiusura-960.webp 960w, img/chiusura-1380.webp 1380w" sizes="(max-width:900px) 100vw, 59vw">
-      <img src="img/chiusura-960.jpg" srcset="img/chiusura-480.jpg 480w, img/chiusura-720.jpg 720w, img/chiusura-960.jpg 960w, img/chiusura-1380.jpg 1380w" sizes="(max-width:900px) 100vw, 59vw" width="1380" height="1380" alt="Tubi oleodinamici neri con raccordi pressati montati su un cilindro giallo di una macchina da cantiere" loading="lazy">
-    </picture>
-    <figcaption class="didascalia">Foto indicativa</figcaption>
-  </figure>
+</section>
+
+<!-- 5. Ufficio tecnico: centraline, disegni, distinte, documenti -->
+<section class="sezione ufficio grigio" id="ufficio" aria-labelledby="t-ufficio">
+  <div class="gabbia griglia">
+    <div class="capo">
+      <p class="etichetta">Centraline e forniture per costruttori</p>
+      <h2 class="h2" id="t-ufficio">Costruttori, impiantisti e officine ci chiamano prima di&nbsp;ordinare</h2>
+      <p class="lead">Progettiamo e assembliamo centraline oleodinamiche e prepariamo i tubi raccordati su ordinazione. Un distributore non si sceglie da un codice a catalogo, ma dall'impianto su cui deve lavorare: ascoltiamo che cosa ti serve e ti diamo il consiglio tecnico giusto.</p>
+      <div class="azioni">
+        <a class="btn" href="mailto:commerciale@framosrl.com" data-mail="preventivo">Manda il disegno per email</a>
+        <a class="btn bordo" href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20vi%20chiedo%20un%20preventivo.%20Vi%20mando%20il%20disegno%20o%20la%20distinta." data-wa="ufficio">WhatsApp, anche da PC</a>
+      </div>
+    </div>
+    <div class="lato">
+      <p class="etichetta">Che cosa mandarci</p>
+      <ul class="elenco">
+        <li><b>Disegno, distinta o codice</b><span>in allegato alla mail o in foto su WhatsApp</span></li>
+        <li><b>Diametro e pressione di esercizio</b><span>in pollici o DN; fluido e temperatura di lavoro</span></li>
+        <li><b>Lunghezza e raccordi</b><span>il tipo alle due estremità, con l'orientamento delle curve</span></li>
+        <li><b>Quantità</b><span>e quando ti servono</span></li>
+      </ul>
+      <div class="documenti">
+        <a class="freccia" href="/catalogo/"><span class="t">Catalogo tubi<span>Manuli, Balflex e ZEC, 21 schede con PDF</span></span></a>
+        <a class="freccia" href="/prodotti/oleodinamica/centraline/"><span class="t">Centraline oleodinamiche<span>progettate e assemblate da noi</span></span></a>
+        <a class="freccia" href="/wp-content/uploads/2025/03/condizioni-generali-fornitura.pdf"><span class="t">Condizioni generali di fornitura<span>PDF da scaricare</span></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Dove siamo -->
+<section class="sezione dove scuro" id="dove" aria-labelledby="t-dove">
+  <div class="gabbia griglia">
+    <figure class="foto">
+      <picture>
+        <source type="image/webp" srcset="img/sede-720.webp 720w, img/sede-1024.webp 1024w" sizes="(max-width:1099px) calc(100vw - 40px), 740px">
+        <img src="img/sede-720.jpg" srcset="img/sede-720.jpg 720w, img/sede-1024.jpg 1024w" sizes="(max-width:1099px) calc(100vw - 40px), 740px" width="1024" height="680" alt="La sede di via Liguria 32: palazzina bianca con la fascia gialla e blu, il cancello con il numero 32, la palma e l'insegna F.R.A.M.O." loading="lazy">
+      </picture>
+    </figure>
+    <div class="testo">
+      <p class="etichetta">Dove siamo</p>
+      <h2 class="h2" id="t-dove">Via Liguria 32, Saonara&nbsp;(PD)</h2>
+      <p class="lead">La palazzina bianca con la fascia gialla e blu, a sud-est di Padova. Officina e banco sono qui: porta il tubo vecchio e te lo rifacciamo identico.</p>
+      <dl class="orari" aria-label="Orari">
+        <div><dt>Lunedì-venerdì</dt><dd>8.30-12.30 · 14.00-18.00</dd></div>
+        <div><dt>Sabato e domenica</dt><dd>chiuso</dd></div>
+      </dl>
+      <p class="stato" data-stato-box><span class="punto" aria-hidden="true"></span><span><span data-stato>Lunedì-venerdì</span><span class="ore">8.30-12.30 e 14.00-18.00</span></span></p>
+      <div class="azioni">
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=FRAMO%20srl%20-%20Oleodinamica%2C%20Via%20Liguria%2032%2C%2035020%20Saonara%20PD" target="_blank" rel="noopener">Apri la navigazione</a>
+        <a class="btn bordo" href="tel:+39049644909">Chiama <span class="tel">049 644909</span></a>
+      </div>
+      <p class="altri"><a class="link freccia" href="https://www.google.com/maps/search/?api=1&amp;query=FRAMO%20srl%20-%20Oleodinamica%2C%20Via%20Liguria%2032%2C%20Saonara" target="_blank" rel="noopener">La scheda su Google Maps</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Settori e zone servite (dalle pagine per zona del sito) -->
+<section class="sezione zone" id="zone" aria-labelledby="t-zone">
+  <div class="gabbia griglia">
+    <div class="capo">
+      <p class="etichetta">Settori e zone</p>
+      <h2 class="h2" id="t-zone">Per officine, manutentori e industrie di Padova e del Nord&nbsp;Est</h2>
+    </div>
+    <div class="settori">
+      <a href="/agricoltura/"><span class="h3 freccia">Agricoltura</span><p>Rimorchi, caricatori compatti, trinciatrici. Tubi da campione in fretta, per le emergenze in campo.</p></a>
+      <a href="/edilizia/"><span class="h3 freccia">Edilizia e movimento terra</span><p>Tubi e ricambi per le macchine di cantiere, anche per le manutenzioni in quota.</p></a>
+      <a href="/industria/"><span class="h3 freccia">Industria</span><p>Centraline, distributori e tubi raccordati per gli impianti e la manutenzione di reparto.</p></a>
+    </div>
+    <h3 class="h3 comuni-capo">Tubi, raccordi e centraline per i clienti di</h3>
+    <!-- un link per ogni pagina per zona del sito di oggi -->
+    <ul class="comuni">
+      <li><a class="freccia" href="/oleodinamica-padova/">Padova</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-piove-di-sacco-bovolenta-arzergrande/">Piove di Sacco</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-piove-di-sacco-bovolenta-arzergrande/">Bovolenta</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-piove-di-sacco-bovolenta-arzergrande/">Arzergrande</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-camposampiero-e-campodarsego/">Camposampiero</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-camposampiero-e-campodarsego/">Campodarsego</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestrino-rubano-limena/">Mestrino</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestrino-rubano-limena/">Rubano</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestrino-rubano-limena/">Limena</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-monselice-ed-este/">Monselice</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-monselice-ed-este/">Este</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestre-chioggia-mira-fiesso/">Mestre</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestre-chioggia-mira-fiesso/">Chioggia</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestre-chioggia-mira-fiesso/">Mira</a></li>
+      <li><a class="freccia" href="/tubazioni-oleodinamiche-mestre-chioggia-mira-fiesso/">Fiesso</a></li>
+      <li><a class="freccia" href="#dove">Saonara</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8. Chiusura: telefono in grande e modulo che compone l'email -->
+<section class="sezione chiusura giallo" id="contatti" aria-labelledby="t-contatti">
+  <div class="gabbia griglia">
+    <div class="capo">
+      <p class="etichetta">Contatti · F.R.A.M.O. risponde sempre</p>
+      <h2 class="h2" id="t-contatti">Fai una prova e in caso di dubbio, chiamaci.</h2>
+      <a class="grande" href="tel:+39049644909">049 644909</a>
+    </div>
+    <ul class="recapiti">
+      <li><span>Telefono e WhatsApp</span><a href="tel:+39049644909">049 644909</a> · <a href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20rifare%20questo%20tubo.%20Vi%20mando%20le%20foto%3A%20il%20tubo%20intero%2C%20i%20due%20raccordi%20e%20la%20scritta%20sulla%20guaina." data-wa="tubo">scrivi su WhatsApp</a></li>
+      <li><span>Email</span><a href="mailto:commerciale@framosrl.com?subject=Richiesta%20preventivo" data-mail="preventivo">commerciale@framosrl.com</a></li>
+      <li><span>Indirizzo</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=FRAMO%20srl%20-%20Oleodinamica%2C%20Via%20Liguria%2032%2C%2035020%20Saonara%20PD" target="_blank" rel="noopener">via Liguria 32, 35020 Saonara (PD)</a></li>
+      <li><span>Orari</span>lunedì-venerdì 8.30-12.30 e 14.00-18.00</li>
+      <li class="ora-qui"><p class="stato" data-stato-box><span class="punto" aria-hidden="true"></span><span><span data-stato>Lunedì-venerdì</span><span class="ore">sabato e domenica chiuso</span></span></p>
+        <div class="azioni"><a class="btn" href="https://api.whatsapp.com/send?phone=39049644909&amp;text=Buongiorno%2C%20mi%20serve%20rifare%20questo%20tubo.%20Vi%20mando%20le%20foto%3A%20il%20tubo%20intero%2C%20i%20due%20raccordi%20e%20la%20scritta%20sulla%20guaina." data-wa="tubo">Manda le foto su WhatsApp</a></div></li>
+    </ul>
+
+    <form class="modulo" id="modulo" novalidate>
+      <p class="h3 intero">Scrivici che cosa ti serve</p>
+      <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+      <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required></div>
+      <div class="campo"><label for="f-azienda">Azienda <i>(se sei un privato, lascia vuoto)</i></label><input id="f-azienda" name="azienda" autocomplete="organization"></div>
+      <div class="campo"><label for="f-email">Email <i>(facoltativa)</i></label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+      <div class="campo intero"><label for="f-tipo">Che cosa ti serve</label>
+        <select id="f-tipo" name="tipo">
+          <option>Un tubo da rifare uguale (da campione)</option>
+          <option>Tubi su misura o in serie</option>
+          <option>Un ricambio o un componente</option>
+          <option>Una centralina oleodinamica</option>
+          <option>Altro</option>
+        </select></div>
+      <div class="campo"><label for="f-macchina">Macchina o impianto <i>(marca e modello)</i></label><input id="f-macchina" name="macchina"></div>
+      <div class="campo"><label for="f-codice">Misura, codice o sigla <i>(se li hai)</i></label><input id="f-codice" name="codice"></div>
+      <fieldset>
+        <legend>Quando ti serve</legend>
+        <div class="scelte">
+          <label><input type="radio" name="urgenza" value="Subito, la macchina è ferma"> Subito, la macchina è ferma</label>
+          <label><input type="radio" name="urgenza" value="In settimana" checked> In settimana</label>
+          <label><input type="radio" name="urgenza" value="Senza fretta"> Senza fretta</label>
+        </div>
+      </fieldset>
+      <div class="campo intero"><label for="f-cosa">Descrivi il pezzo o il lavoro</label><textarea id="f-cosa" name="descrizione"></textarea></div>
+      <p class="nota intero">Le foto del tubo, dei raccordi o della targhetta allegale alla mail che si apre, oppure mandale su WhatsApp allo 049&nbsp;644909.</p>
+      <p class="avviso" id="avviso" role="alert" hidden></p>
+      <div class="invio"><button class="btn" type="submit">Prepara l'email</button><span class="nota">Si apre il tuo programma di posta, già compilato.</span></div>
+    </form>
+  </div>
 </section>
 </main>
 
 <footer class="piede">
   <div class="gabbia griglia alto">
     <div class="marchio">
-      <img src="img/logo-framo.png" width="500" height="90" alt="F.R.A.M.O.">
-      <p>Tubi oleodinamici su misura e componenti per oleodinamica, pneumatica e sollevamento. Saonara, Padova, dal 1986.</p>
+      <img src="img/logo-framo-chiaro.png" width="500" height="90" alt="F.R.A.M.O." loading="lazy">
+      <p>Tubi oleodinamici su misura e da campione, ricambi per oleodinamica, pneumatica e sollevamento. Saonara, Padova, dal&nbsp;1986.</p>
     </div>
-    <nav aria-labelledby="p-az">
+    <nav aria-labelledby="p-con">
+      <h2 id="p-con">Contatti</h2>
+      <ul>
+        <li><a href="tel:+39049644909">Tel. 049 644909</a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=39049644909" data-wa="generico">WhatsApp 049 644909</a></li>
+        <li><a href="mailto:commerciale@framosrl.com?subject=Richiesta%20informazioni">commerciale@framosrl.com</a></li>
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=FRAMO%20srl%20-%20Oleodinamica%2C%20Via%20Liguria%2032%2C%2035020%20Saonara%20PD" target="_blank" rel="noopener">via Liguria 32, 35020 Saonara (PD)</a></li>
+        <li>lun-ven <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></li>
+        <li>sabato e domenica chiuso</li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="p-lav">
+      <h2 id="p-lav">Lavorazioni e prodotti</h2>
+      <ul>
+        <li><a href="#campione">Tubi su misura e da campione</a></li>
+        <li><a href="/prodotti/oleodinamica/tubazioni/">Tubazioni</a></li>
+        <li><a href="/prodotti/oleodinamica/centraline/">Centraline</a></li>
+        <li><a href="/prodotti/oleodinamica/raccordi/">Raccordi</a></li>
+        <li><a href="/prodotti/pneumatica/">Pneumatica</a></li>
+        <li><a href="/prodotti/sollevamento/">Sollevamento</a></li>
+        <li><a href="/catalogo/">Catalogo tubi</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="p-zone">
+      <h2 id="p-zone">Zone e settori</h2>
+      <ul>
+        <li><a href="/oleodinamica-padova/">Padova</a></li>
+        <li><a href="/tubazioni-oleodinamiche-piove-di-sacco-bovolenta-arzergrande/">Piove di Sacco</a></li>
+        <li><a href="/tubazioni-oleodinamiche-camposampiero-e-campodarsego/">Camposampiero</a></li>
+        <li><a href="/tubazioni-oleodinamiche-monselice-ed-este/">Monselice ed Este</a></li>
+        <li><a href="/tubazioni-oleodinamiche-mestre-chioggia-mira-fiesso/">Mestre e Chioggia</a></li>
+        <li><a href="/agricoltura/">Agricoltura</a> · <a href="/edilizia/">Edilizia</a> · <a href="/industria/">Industria</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="gabbia griglia">
+    <nav class="az" aria-labelledby="p-az">
       <h2 id="p-az">Azienda</h2>
       <ul>
         <li><a href="/azienda/">Chi siamo</a></li>
         <li><a href="/azienda/certificazioni/">Certificazioni</a></li>
         <li><a href="/news/">News e guide</a></li>
-        <li><a href="/documenti/politica-qualita.pdf">Politica per la qualità</a></li>
-        <li><a href="/documenti/condizioni-generali-fornitura.pdf">Condizioni di fornitura</a></li>
-      </ul>
-    </nav>
-    <nav aria-labelledby="p-lav">
-      <h2 id="p-lav">Lavorazioni</h2>
-      <ul>
-        <li><a href="#misure">Tubi su misura</a></li>
-        <li><a href="#campione">Tubi da campione</a></li>
-        <li><a href="/prodotti/centraline/">Centraline</a></li>
-        <li><a href="/catalogo/">Catalogo tubi</a></li>
-      </ul>
-      <h2 class="dopo" id="p-set">Settori</h2>
-      <ul aria-labelledby="p-set">
-        <li><a href="/settori/agricoltura/">Agricoltura</a></li>
-        <li><a href="/settori/edilizia/">Edilizia e movimento terra</a></li>
-        <li><a href="/settori/industria/">Industria</a></li>
-      </ul>
-    </nav>
-    <nav aria-labelledby="p-pro">
-      <h2 id="p-pro">Prodotti</h2>
-      <ul>
-        <li><a href="/prodotti/raccordi/">Raccordi e innesti</a></li>
-        <li><a href="/prodotti/valvole/">Valvole e distributori</a></li>
-        <li><a href="/prodotti/pompe-motori/">Pompe e motori</a></li>
-        <li><a href="/prodotti/pneumatica/">Pneumatica</a></li>
-        <li><a href="/prodotti/sollevamento/">Sollevamento</a></li>
-        <li><a href="/brochure/">Brochure prodotti</a></li>
-      </ul>
-    </nav>
-    <nav class="contatti" aria-labelledby="p-con">
-      <h2 id="p-con">Contatti</h2>
-      <ul class="num">
-        <li><a href="tel:+39049644909">Tel. 049 644909</a></li>
-        <li><a href="https://api.whatsapp.com/send?phone=39049644909">WhatsApp 049 644909</a></li>
-        <li><a href="mailto:commerciale@framosrl.com">commerciale@framosrl.com</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=F.R.A.M.O.%20via%20Liguria%2032%20Saonara%20PD">via Liguria 32, 35020 Saonara (PD)</a></li>
-        <li>lun-ven <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></li>
+        <li><a href="/wp-content/uploads/2023/05/Mod.-POLITICA-05.12.2022.pdf">Politica per la qualità</a></li>
+        <li><a href="/wp-content/uploads/2025/03/condizioni-generali-fornitura.pdf">Condizioni di fornitura</a></li>
       </ul>
     </nav>
   </div>
@@ -492,9 +712,8 @@ ul,ol{padding:0;list-style:none}
     <div class="basso">
       <p class="num">F.R.A.M.O. S.r.l. · via Liguria 32, 35020 Saonara (PD) · P.IVA e C.F. 02075000287</p>
       <ul>
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/cookie/">Cookie</a></li>
-        <li><a href="/termini-d-uso/">Termini d'uso</a></li>
+        <li><a href="/termini-duso-e-informative/informativa-privacy/">Privacy</a></li>
+        <li><a href="/termini-duso-e-informative/">Termini d'uso e informative</a></li>
       </ul>
     </div>
   </div>
@@ -502,53 +721,68 @@ ul,ol{padding:0;list-style:none}
 
 <script>
 (function(){
-  // menu sul telefono
-  var b=document.querySelector('.apri-menu'),m=document.getElementById('menu');
-  b.addEventListener('click',function(){var a=m.classList.toggle('aperto');b.setAttribute('aria-expanded',a?'true':'false');});
-  m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('aperto');b.setAttribute('aria-expanded','false');}});
+  var MAIL='commerciale@framosrl.com';
+  // menu nel bottone (sotto i 1100 px)
+  var t=document.getElementById('testata'), b=t.querySelector('.apri-menu');
+  b.addEventListener('click',function(){var a=t.classList.toggle('aperta');b.setAttribute('aria-expanded',a?'true':'false');b.textContent=a?'Chiudi':'Menu';});
+  t.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';});});
 
-  // calibro: pollici, DN e diametro interno nominale (tabella da far confermare a F.R.A.M.O., vedi LEGGIMI)
-  var M=[['','3/16',5,4.8],['','1/4',6,6.4],['','5/16',8,7.9],['','3/8',10,9.5],['','1/2',12,12.7],['','5/8',16,15.9],
-         ['','3/4',19,19.1],['1','',25,25.4],['1','1/4',31,31.8],['1','1/2',38,38.1],['2','',51,50.8],['3','',76,76.2]];
-  var svg=document.getElementById('cerchi'),NS='http://www.w3.org/2000/svg',sc=document.getElementById('scelta');
-  var cerchi=[],bottoni=[],sel=7;
-  function et(m){return (m[0]?m[0]:'')+(m[0]&&m[1]?' ':'')+(m[1]?'<span class="fr">'+m[1]+'</span>':'')+'"';}
-  function testo(m){return (m[0]?m[0]:'')+(m[0]&&m[1]?' ':'')+m[1]+'"';}
-  function parole(m){
-    if(!m[0])return m[1]+' di pollice';
-    if(m[1])return m[0]+' pollice e '+m[1];
-    return m[0]==='1'?'1 pollice':m[0]+' pollici';
+  // email del preventivo: oggetto e traccia gia' scritti (dalla guida "Come misurare un tubo oleodinamico?")
+  var TRACCIA=['Buongiorno,','vi chiedo un preventivo per:','','Disegno, distinta o codice (in allegato): ','Diametro (pollici o DN) e pressione di esercizio: ','Lunghezza e raccordi alle due estremità, con l\'orientamento: ','Fluido e temperatura di lavoro: ','Quantità e quando servono: ','','Azienda: ','Referente e telefono: '].join('\r\n');
+  document.querySelectorAll('a[data-mail="preventivo"]').forEach(function(a){a.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Richiesta preventivo')+'&body='+encodeURIComponent(TRACCIA);});
+
+  // aperto o chiuso adesso, sull'ora di Roma anche se il telefono e' su un altro fuso.
+  // Orari dalla pagina Contatti: lunedi'-venerdi' 8.30-12.30 e 14.00-18.00. Giorno 1 = lunedi' ... 7 = domenica.
+  // Festivi nazionali e Pasquetta: chiuso. Patrono, ferie e ponti da confermare (LEGGIMI), non gestiti.
+  var ORARI={1:[[8.5,12.5],[14,18]],2:[[8.5,12.5],[14,18]],3:[[8.5,12.5],[14,18]],4:[[8.5,12.5],[14,18]],5:[[8.5,12.5],[14,18]]};
+  var FESTIVI=['01-01','01-06','04-25','05-01','06-02','08-15','11-01','12-08','12-25','12-26'];
+  var GIORNI=['','lunedì','martedì','mercoledì','giovedì','venerdì','sabato','domenica'];
+  function pad(n){return (n<10?'0':'')+n;}
+  function ora(h){var hh=Math.floor(h),mm=Math.round((h-hh)*60);return hh+'.'+pad(mm);}
+  function pasquetta(a){ // lunedi' dopo Pasqua (calcolo gregoriano)
+    var c=Math.floor(a/100),n=a-19*Math.floor(a/19),k=Math.floor((c-17)/25),i=c-Math.floor(c/4)-Math.floor((c-k)/3)+19*n+15;
+    i=i-30*Math.floor(i/30);i=i-Math.floor(i/28)*(1-Math.floor(i/28)*Math.floor(29/(i+1))*Math.floor((21-n)/11));
+    var j=a+Math.floor(a/4)+i+2-c+Math.floor(c/4);j=j-7*Math.floor(j/7);var l=i-j,m=3+Math.floor((l+40)/44),d=l+28-31*Math.floor(m/4);
+    var x=new Date(Date.UTC(a,m-1,d+1));return pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate());
   }
-  M.forEach(function(m,i){
-    var c=document.createElementNS(NS,'circle');c.setAttribute('cx',40);c.setAttribute('cy',40);c.setAttribute('r',m[3]/2);
-    svg.insertBefore(c,svg.firstChild);cerchi.push(c);
-    var x=document.createElement('button');x.type='button';x.setAttribute('role','radio');
-    x.innerHTML=et(m)+'<span class="dn">DN '+m[2]+'</span>';
-    x.setAttribute('aria-label',parole(m)+', DN '+m[2]);
-    x.addEventListener('click',function(){scegli(i,false);});
-    x.addEventListener('keydown',function(e){
-      var k=e.key,n=null;
-      if(k==='ArrowRight'||k==='ArrowDown')n=(i+1)%M.length;
-      if(k==='ArrowLeft'||k==='ArrowUp')n=(i-1+M.length)%M.length;
-      if(k==='Home')n=0; if(k==='End')n=M.length-1;
-      if(n!==null){e.preventDefault();scegli(n,true);}
-    });
-    sc.appendChild(x);bottoni.push(x);
+  function adesso(){
+    try{
+      var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
+      var g={Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6,Sun:7}[p.weekday];
+      if(g)return {g:g,h:(+p.hour)+(+p.minute)/60,a:+p.year,md:p.month+'-'+p.day};
+    }catch(e){}
+    var d=new Date();return {g:d.getDay()||7,h:d.getHours()+d.getMinutes()/60,a:d.getFullYear(),md:pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+  }
+  var ad=adesso();
+  function festivo(md){return FESTIVI.indexOf(md)>-1||md===pasquetta(ad.a);}
+  function mdTra(s){var x=new Date(Date.UTC(ad.a,+ad.md.slice(0,2)-1,+ad.md.slice(3)+s));return pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate());}
+  var st='',aperto=false,oggiFesta=festivo(ad.md),fa=oggiFesta?[]:(ORARI[ad.g]||[]);
+  for(var f=0;f<fa.length;f++){
+    if(ad.h>=fa[f][0]&&ad.h<fa[f][1]){st='Aperto ora, chiude alle '+ora(fa[f][1]);aperto=true;break;}
+    if(ad.h<fa[f][0]){st='Chiuso ora, riapre alle '+ora(fa[f][0]);break;}
+  }
+  if(!st){for(var s=1;s<=10;s++){var gg=(ad.g-1+s)%7+1;if(ORARI[gg]&&!festivo(mdTra(s))){st='Chiuso '+(oggiFesta?'oggi, festivo':'ora')+', riapre '+(s===1?'domani':GIORNI[gg])+' alle '+ora(ORARI[gg][0][0]);break;}}}
+  if(st){
+    document.querySelectorAll('[data-stato]').forEach(function(x){x.textContent=st;});
+    document.querySelectorAll('[data-stato-box]').forEach(function(x){x.classList.toggle('aperto',aperto);});
+  }
+
+  // modulo: compone l'email (oggetto e campi) e la apre nel programma di posta. Da collegare a un servizio (LEGGIMI).
+  var fm=document.getElementById('modulo'), avv=document.getElementById('avviso');
+  fm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return (document.getElementById(id).value||'').trim();};
+    var manca=[['f-nome','il nome'],['f-tel','il telefono']].filter(function(c){var el=document.getElementById(c[0]);var no=!v(c[0]);el.setAttribute('aria-invalid',no?'true':'false');return no;});
+    if(manca.length){avv.textContent=(manca.length>1?'Mancano il nome e il telefono':'Manca '+manca[0][1])+': ci servono per richiamarti.';avv.hidden=false;document.getElementById(manca[0][0]).focus();return;}
+    avv.hidden=true;
+    var urg=(fm.querySelector('input[name="urgenza"]:checked')||{}).value||'';
+    var tipo=v('f-tipo'), az=v('f-azienda');
+    var righe=['Richiesta: '+tipo,'Quando serve: '+urg,'','Nome e cognome: '+v('f-nome'),'Telefono: '+v('f-tel'),'Azienda: '+(az||'privato'),'Email: '+v('f-email'),'Macchina o impianto: '+v('f-macchina'),'Misura, codice o sigla: '+v('f-codice'),'','Descrizione:',v('f-cosa'),'','(Allegate qui le foto del tubo, dei raccordi o della targhetta.)'];
+    var ogg=tipo+(urg.indexOf('ferma')>-1?' - macchina ferma':'')+' - '+(az||v('f-nome'));
+    var url='mailto:'+MAIL+'?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\r\n'));
+    fm.setAttribute('data-email',url);   // per le prove: l'ultima email composta
+    window.location.href=url;
   });
-  function scegli(i,fuoco){
-    sel=i;var m=M[i];
-    bottoni.forEach(function(x,j){x.setAttribute('aria-checked',j===i?'true':'false');x.tabIndex=j===i?0:-1;});
-    cerchi.forEach(function(c,j){c.setAttribute('class',j===i?'sel':(j<i?'dentro':''));});
-    cerchi.slice().reverse().forEach(function(c){svg.appendChild(c);});
-    document.getElementById('valore').innerHTML=et(m);
-    document.getElementById('dn').textContent='DN '+m[2];
-    document.getElementById('tipo').textContent=(m[3]<=25.4)?"Anche in termoplastico, con una o due trecce d'acciaio (1TD e 2TD) o con treccia tessile (R7).":'Su ordinazione o da campione, con la raccordatura che serve.';
-    document.getElementById('chiedi-mis').textContent=testo(m);
-    var t='Buongiorno, mi serve un tubo oleodinamico da '+testo(m)+' (DN '+m[2]+').';
-    document.getElementById('chiedi').href='https://api.whatsapp.com/send?phone=39049644909&text='+encodeURIComponent(t);
-    if(fuoco)bottoni[i].focus();
-  }
-  scegli(sel,false);
 })();
 </script>
 </body>

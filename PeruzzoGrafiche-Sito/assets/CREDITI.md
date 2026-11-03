@@ -36,13 +36,25 @@ Era l'apertura della prima versione della home finale (in monocromia, con "Foto 
 
 ### Foto di Peruzzo in pagina dopo la revisione (24/10/2026)
 
-Nessuna foto di repertorio nella home finale. Le foto in pagina sono tutte dal sito di Peruzzo (`assets/originali/`), usate solo per la proposta:
+Superata dalla versione "livello professionale" qui sotto. La tabella di allora è nella copia `_prova/versione-1-originale/` (pagina e nota): apertura The Private Eye (Bao Publishing), editori Paper Girls 2, Il club delle baby-sitter, La sposa yemenita, reparti IMG_8866, chiusura IMG_8364.
 
-| In pagina | File originale | Fonte sul sito di oggi |
+### Foto in pagina, livello professionale (3/11/2026)
+
+Nessuna foto di repertorio in pagina (decisione del committente: "niente"): i segnaposto Unsplash e Pexels qui sopra restano solo come archivio e la pagina non li usa. Nessuna illustrazione, nessuna immagine generata. Le foto in pagina sono tutte dal sito di Peruzzo (`assets/originali/`), usate solo per la proposta; trattamento in `_prova/script/pro_img.py`.
+
+| In pagina (`sito/img/`) | File originale | Fonte sul sito di oggi |
 |---|---|---|
-| Apertura | `2017-11-The-Private-Eye_Bao-Publishing.jpg` (1200x885) | pagina Prodotti, "The Private Eye, Bao Publishing" |
-| Editori | `2017-11-Paper-Girls-2_Bao-Publishing.jpg`, `2017-11-Il-club-delle-baby-sitter_Il-Castoro.jpg`, `2017-11-La-Sposa-Yemenita_BeccoGiallo.jpg` | pagina Prodotti |
-| Reparti | `2020-11-IMG_8866.jpg` | libreria media del sito |
-| Chiusura | `2018-07-IMG_8364.jpg` | libreria media del sito |
+| `legatoria-*` (apertura) | `2020-11-IMG_8866.jpg` (2400x1600, Canon EOS 6D, 16/01/2018), taglio da x 170 | libreria media del sito |
+| `lav-sposa-yemenita-*` | `2017-11-La-Sposa-Yemenita_BeccoGiallo.jpg` | pagina Prodotti |
+| `lav-paper-girls-*` | `2017-11-Paper-Girls-2_Bao-Publishing.jpg` | pagina Prodotti |
+| `lav-ferrari-*` | `2017-11-Ferrari-cerca-e-trova_Franco-Cosimo-Panini.jpg` | pagina Prodotti |
+| `lav-xhixha-*` | `2017-11-Helidon-Xhixha-Refractive-Vibes_Contini-Art-UK.jpg` | pagina Prodotti |
+| `rep-prestampa-*` | `2018-04-prestampa_04.jpg` (800x533) | libreria media del sito |
+| `rep-stampa-*` | `2018-04-stampa_02.jpg` (800x533) | libreria media del sito |
+| `rep-legatoria-*` | `2018-05-IMG_7955.jpg` (800x533) | libreria media del sito |
+| `rep-logistica-*` | `2018-07-IMG_8357.jpg` (1200x800) | libreria media del sito |
+| `alberto-*` | `2020-11-IMG_8479.jpg` (2400x1600) | libreria media del sito |
+| `sede-notte-*` | `2017-11-Notturna-In-Alta2.jpg` (2400x1043), tolto il cielo in alto | home |
+| `logo-grafite.png` | `logo-peruzzo-grafiche-bianco-2022-686x165.png`, ricolorato | testata del sito |
 
-Le copertine sono opere di terzi (editori e autori): per pubblicare servono i permessi (vedi LEGGIMI.md).
+Tolte dalla pagina rispetto alla versione precedente: The Private Eye, Il club delle baby-sitter e il foglio in oro `2018-07-IMG_8364.jpg` (marchio storico). Le copertine e le tavole dei lavori sono opere di terzi (editori e autori): per pubblicare servono i permessi (vedi LEGGIMI.md, punto 4).

@@ -1,4 +1,8 @@
-# Crediti delle immagini esterne (segnaposto)
+# Crediti delle immagini esterne (non più in pagina)
+
+**3 novembre 2026, livello professionale: nessuna di queste foto è più nella home.** Decisione del committente sulle foto ("niente"): dove l'azienda non ha foto vere che reggono non si mette nessuna immagine, niente repertorio. Tolte da `sito/index.html` e da `sito/img/` le due che c'erano (Fernanda Simões, Pexels 13524888, in "Per negozi"; José Martin Segura Benites, Pexels 27256471, in chiusura). La home usa solo foto di Nic Dean: la fila delle décolleté, otto scarpe della loro galleria e l'interno dello spaccio (`assets/originali/`, lavorate da `_prova/script/pro_img.py`). I file qui sotto restano in `assets/esterne/` solo come archivio della versione 1 (`_prova/versione-1-originale/`); non vanno rimessi in pagina.
+
+---
 
 Queste foto NON sono di Nic Dean. Servono solo a mostrare la direzione artistica nella proposta e vanno sostituite con foto vere dell'azienda (vedi LEGGIMI). Nessuna immagine generata dall'IA. Nessun marchio riconoscibile in primo piano (controllato sulle miniature: scartate le foto con "ZARA" o altri nomi stampati sul sottopiede e quelle con la suola rossa di un marchio noto).
 

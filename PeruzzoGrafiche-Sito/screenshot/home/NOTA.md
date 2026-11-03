@@ -1,76 +1,105 @@
-# Home finale, Peruzzo Grafiche: "Stampare è un'arte"
+# Home, Peruzzo Grafiche: livello professionale (3/11/2026)
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh` (immagini con `finale_img.py`, prove e screenshot con `finale_shot.mjs`; misure veloci a più larghezze con `rapido.mjs`). Parte dal prototipo A scelto dal giudice; dopo il giudizio cieco del 24/10/2026 l'apertura è stata rifatta dentro la stessa direzione (sotto, "Cosa è cambiato").
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. La home di prima ("Stampare è un'arte" con The Private Eye in apertura e il disegno del dorso) e la sua nota sono copiate com'erano in `_prova/versione-1-originale/` (sito e screenshot).
 
-Screenshot in questa cartella: `home-1440.jpg` (4512 px, piede compreso), `home-1440-prima-schermata.jpg`, `home-390.jpg` (5332 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (chiusura e piede).
+Rifare tutto: `sh _prova/script/build_finale.sh --immagini` (immagini con `pro_img.py`, controlli con `pro_controlli.mjs`, screenshot con `pro_shot.mjs`). Misure veloci a una larghezza: `node _prova/script/pro_misura.mjs <larghezza> <altezza> [mobile]`.
 
-## Idea
+Screenshot (stessi nomi di prima): `home-1440.jpg` (8189 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (12165 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti, e a 320, 768 e 1024.
 
-Il libro finito è l'oggetto del mestiere di Peruzzo, e la prima schermata ne mostra uno loro: The Private Eye, un cartonato che hanno stampato per Bao Publishing (dalla pagina Prodotti del loro sito), con la copertina arancio, grande e a colori. Il fondo bianco della foto di prodotto diventa esattamente la carta della pagina, così non c'è un riquadro: c'è il libro posato sul tavolo, con la sua ombra corta. Il titolo preso dal loro Chi siamo, "Stampare è un'arte", si appoggia nel vuoto in alto a sinistra della foto; sotto il titolo, nella stessa schermata, l'unico gesto della pagina: le tre confezioni del loro modulo preventivi.
+## Livello professionale
 
-Con il nome di un concorrente la pagina non regge: il libro in apertura e i tre della sezione editori sono lavori loro, il titolo e le frasi sono loro (Chi siamo e il poster "La carta stampata è la nostra storia"), le confezioni e le varianti vengono dal loro modulo, la legatoria è la loro linea di raccolta e cucitura e la chiusura è il loro foglio stampato in oro.
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori del lusso), sezione B (difetti delle nostre home) e sezione C (15 regole). Riferimenti guardati: le prime schermate a 1440 (foglio `riferimenti.jpg`) e a 390 di tutti e 14, le pagine intere di barth e Cly-Del (a pezzi). Ordine seguito: prima l'uso (scheda `_prova/uso/SCHEDA.md`), poi l'identità, poi l'esecuzione.
 
-## Prime due schermate
+### L'idea
 
-- 1440, prima schermata: testata con logo 2022 ricolorato in nero caldo, quattro voci (Confezioni, Editori, Reparti, Contatti) e il telefono. A sinistra "Stampare è un'arte" in Piazzolla a 116 px su due righe, due righe su chi sono (Mestrino, 1989, i quattro reparti, i prodotti), poi "Che confezione vi serve?" con le schede Punto metallico, Brossura, Cartonato, la sezione del dorso disegnata, la variante e il bottone rosso "Chiedi un preventivo". A destra, da y 130 a 700, il cartonato arancio di tre quarti: il dorso scende in diagonale verso il basso a sinistra e lascia il posto al titolo, che gli si appoggia accanto. Didascalia: "The Private Eye per Bao Publishing, cartonato."
-- 1440, seconda schermata: "Fumetti, libri e cataloghi d'arte per case editrici di tutta Italia", poi tre loro lavori posati sulla stessa carta (Paper Girls 2 per Bao Publishing, Il club delle baby-sitter per Il Castoro, La sposa yemenita aperta per BeccoGiallo) con titolo ed editore sotto, poi i nomi degli editori in serif come un colophon.
-- Dopo: i quattro reparti numerati come sul loro sito (.1 ... .4) con le misure vere, la foto della legatoria dentro la griglia, la chiusura e il piede.
-- 390, prima schermata: titolo a 60 px su due righe, le due righe di presentazione, il libro a tutta larghezza (taglio stretto) con la didascalia; le schede e il disegno del dorso seguono subito sotto.
-- 1024 e 768: titolo, presentazione, libro a tutta larghezza, poi le schede. Tra 1240 e 1380 px il libro si stringe (65vw) per non toccare il titolo.
+Una tipografia industriale che si presenta come si presenta Cly-Del: in apertura la dichiarazione di mestiere in chiaro, accanto la loro fabbrica vera, sotto una riga di prove tecniche; poi i lavori con il nome dell'editore, le confezioni come una tabella da preventivista, il ciclo in casa su grafite pieno con il manifesto "Stampare è un'arte." in grande (il gesto di scala, preso dal loro Chi siamo), il modulo per il mestiere, Alberto Peruzzo, la sede di notte. Due blocchi grafite, due grigi chiari, il rosso del logo solo sui bottoni, sulle etichette e sul blocco "Ti chiamiamo noi". Nessun beige: il fondo è bianco.
 
-## Caratteri e colori
+### Struttura (A1, famiglia M, adattata)
 
-- Titoli, schede, nomi degli editori, titoli dei lavori, telefono grande: **Piazzolla** 400 e 500 (Huerta Tipográfica), asse ottico a 30 nelle misure grandi. È un serif disegnato per la stampa e per i libri: il registro degli editori d'arte dei riferimenti (TASCHEN, Ofset Yapımevi), non quello di una startup. Niente corsivi.
-- Testo, menu, didascalie, dati, etichette del disegno del dorso: **Funnel Sans** 400 e 500 (NORD ID), cifre tabellari per telefono, grammature, P.IVA. Nessuna delle due è nelle liste b della guida né in un'altra home finita della campagna.
-- Licenza: tutte e due SIL Open Font License 1.1, si possono ospitare e usare commercialmente. File serviti dalla pagina: `sito/fonts/piazzolla-latin.woff2`, `piazzolla-latin-ext.woff2`, `funnel-sans-latin.woff2`, `funnel-sans-latin-ext.woff2`, scaricati da Google Fonts il 24/10/2026; testi della licenza in `sito/fonts/OFL-Piazzolla.txt` e `OFL-FunnelSans.txt`.
-- Colori: carta #F5F1E8, nero caldo #1B1916 (15,6:1), grigio #5A5650 per il testo secondario e le etichette del disegno (6,5:1), schede non scelte #6E6A63 (4,8:1), filetti #D6D0C4. Il rosso Peruzzo #FF2A13 solo sul filetto della scheda scelta; il bottone e i numeri dei reparti in #C41D0A (5,3:1 sulla carta, testo bianco sopra 5,95:1). Il colore vero arriva dai libri: l'arancio di The Private Eye, il rosa di Paper Girls, il giallo del Club delle baby-sitter, i rossi, blu e ocra della Sposa yemenita, l'oro della chiusura.
-- Riferimenti: TASCHEN per il libro come unico oggetto su un fondo pieno; Graphicom per il libro a destra con il titolo a sinistra; Corraini per la prima schermata chiara con il titolo grande; Ofset Yapımevi per la tipografia che parla come un editore.
+1. **Testata fissa** (sticky, 88 px a 1440 e 72 a 390): logo 2022, quattro voci (Lavori, Confezioni e carte, Reparti, Dove siamo), il telefono come bottone con il numero e "Chiedi un preventivo". Sotto i 1240 px le voci vanno nella tendina "Menu" (si chiude con Esc o scegliendo una voce). Sul telefono il bottone del numero è bordato finché si vede il "Chiama" dell'apertura, poi diventa rosso pieno.
+2. **Apertura**: occhiello "Peruzzo Grafiche, Mestrino (Padova), dal 1989"; H1 "Stampa e legatoria di libri, fumetti e cataloghi d'arte"; una riga su per chi e sul ciclo completo; a 1440 "Chiedi un preventivo" e "Chiama 049 9002884", poi email, indirizzo e "Ti chiamiamo noi"; a 390 tre bottoni a tutta larghezza Chiama, Scrivi un'email, Come arrivare, poi "Chiedi un preventivo" e "Ti chiamiamo noi". A destra, a filo del bordo, la loro legatoria (linea Müller Martini, il rosso della macchina è il rosso del marchio). Sotto, quattro prove: confezioni, stampa, carte, FSC.
+3. **Cosa stampiamo e per chi** (grigio chiaro): titolo con le loro parole ("fumetti e libri di qualunque genere e qualunque formato"), quattro schede cliccabili con la foto del libro stampato, il tipo, il titolo, l'editore e "Anche per" con gli altri clienti; sotto, le aziende (Atala, Selle Royal, Calpeda) e i lavori semplici in parole semplici, con "Ti chiamiamo noi".
+4. **Che confezione vi serve?** (bianco): punto metallico, brossura, cartonato con le varianti del loro modulo preventivi e un link che apre il modulo con la confezione già scelta; poi la tabella Stampa, Carte, Finiture, Legatoria, Certificazione (come la tabella delle macchine di DZStampi, sezione B13).
+5. **Il ciclo in casa** (grafite): "Stampare è un'arte." in Piazzolla a 112 px con la frase loro sulla bagnatura e il registro; quattro reparti numerati come sul loro sito (.1-.4) con la foto del servizio 2018; cinque numeri (1989, 4 reparti, 3 confezioni, 70-170 g, 350 g).
+6. **Preventivo** (grigio chiaro): cosa preparare, come mandare i file, il blocco rosso "Ti chiamiamo noi" (nome e telefono) e il modulo del mestiere.
+7. **Chi c'è dietro** (bianco): Alberto Peruzzo al banco, l'inizio nel 1989 a 24 anni, i volumi Modern Art, "La carta è la nostra materia prima." in Piazzolla.
+8. **Dove siamo** (grafite): la sede di notte, indirizzo con "Indicazioni stradali", i due telefoni, l'email e "Lavoro in corso? Scrivete qui" (email con oggetto e traccia), ritiri e consegne.
+9. **Piede** in quattro colonne e riga legale.
 
-## Interazione
+### Le 15 regole, una per una
 
-Un solo gesto, nella prima schermata: tre schede (`role="tablist"`) con le opzioni vere del modulo preventivi. Ogni scheda mostra la sezione del dorso disegnata a tratto nero (300 x 140 px, con tre o quattro etichette: copertina e fogli piegati con il punto nella piega; copertina, blocco e colla sul dorso; cartone, blocco, dorso arrotondato e unghiatura), la variante (a punto sella o a punto omega; fresata o cucita, copertina al vivo o con le alette; fresato o cucito, con il risguardo o autorisguardato) e il bottone "Chiedi un preventivo" che porta a `preventivi.html?confezione=...`: nel sito nuovo il modulo deve aprirsi già impostato su quella confezione. Clic, tocco, frecce, Home e Fine; cambio netto, senza dissolvenze; al passaggio cambia solo il colore. Niente animazioni allo scorrere, niente effetti sul cursore.
+Misure di `node _prova/script/pro_controlli.mjs` (esito completo in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi.
 
-La foto del libro non cambia con le schede: tra i loro lavori fotografati non ci sono un punto metallico, una brossura e un cartonato con la stessa luce e la stessa inquadratura, e mescolarli darebbe tre foto diverse a ogni clic. Il disegno del dorso fa il lavoro; quando arriveranno le tre foto di still life chieste nel LEGGIMI, ogni scheda potrà mostrare anche la sua.
+1. **Telefono come bottone nella testata fissa: passa.** Testata `position:sticky`, bottone "049 9002884" alto 48 px; a metà pagina, a 1440 e a 390, si vede e si tocca (`elementFromPoint`). 7 link `tel:` (due numeri).
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** 1440 x 900: H1 "Stampa e legatoria di libri, fumetti e cataloghi d'arte", "Mestrino (Padova)" e "dal 1989" nell'occhiello, "Chiedi un preventivo" a 525 px, la riga delle prove a 683-775 px, la foto intera (154-626 px). 390 x 844: stesso H1 e occhiello, "Chiama 049 9002884" largo quanto la colonna (350 px) a 395 px, poi Scrivi e Come arrivare; la foto comincia a 660 px.
+3. **Immagine vera nell'apertura: passa.** La loro legatoria (servizio Canon EOS 6D del 2018, `2020-11-IMG_8866`, 2400 px), con il legatore al lavoro e le segnature sui bancali. Nessun oggetto scontornato, nessuna copertina di terzi in apertura (SCHEDA par. 7).
+4. **Zero repertorio: passa.** `indicativ` compare 0 volte; nessun file Unsplash o Pexels in `sito/img/` né in pagina.
+5. **Foto in serie: passa.** Tre formati: 3:2 (apertura, reparti, Alberto), 1:1 (i quattro libri), 2400:843 (la sede). Le foto di reparto sono tutte dello stesso servizio, con lo stesso trattamento (`pro_img.py`: tolta la dominante del neon, un po' di contrasto); i libri sono tutti foto di prodotto della loro pagina Prodotti con lo stesso trattamento. Nessuna didascalia, nessuna foto ingrandita oltre la misura d'origine.
+6. **Palette dal marchio: passa.** `--rosso` #FF2A13 (logo e sito di oggi), `--rosso-scuro` #C41D0A per bottoni e testo, `--rosso-cupo` per il passaggio del mouse, `--grafite` #272727 (il grigio scuro del sito di oggi), poi bianco e cinque grigi neutri. Fondo bianco, nessun beige; i blocchi pieni sono grafite e grigio chiaro.
+7. **Scala tipografica corta: passa.** 7 misure a 1440 (14, 17, 20, 26, 44, 64, 112) e 7 a 390 (14, 16, 18, 22, 30, 34, 56); testo corrente 17 px a 1440 e 16 a 390; nessun testo sotto i 14 px; H1 64/34 (fascia M: 60-70 e 34-40), H2 44/30.
+8. **Due famiglie al massimo: passa.** Funnel Sans (400 e 700) per titoli, testo e interfaccia; Piazzolla 400 solo per le due frasi loro del manifesto ("Stampare è un'arte.", "La carta è la nostra materia prima."), come il serif per il manifesto di Holzrausch e Odermatt.
+9. **Servizi in schede con la foto: passa.** Quattro schede dei lavori in 4 colonne (2 sotto i 1240 px, una per riga con la foto a sinistra sul telefono), stesso taglio quadrato, tutta la scheda è un link; anche i quattro reparti sono schede con la foto, tutte 3:2.
+10. **Almeno tre tipi di prova: passa (3 su 4).** Cinque numeri aziendali; clienti con il nome (BeccoGiallo, Bao Publishing, Franco Cosimo Panini, Contini Art UK, più Coconino Press, Tunuè, Saldapress, Lucca Comics & Games, Il Castoro, Baldini e Castoldi, Galleria Contini, Vecchiato Arte, Atala, Selle Royal, Calpeda); la certificazione FSC con la sua didascalia nella tabella. Mancano le recensioni: non ce ne sono di pubbliche (SCHEDA, Reteimprese "Nessuna recensione") e non sono state inventate.
+11. **I lavori hanno un nome: non passa del tutto.** Quattro lavori con titolo, tipo ed editore, ma senza anno e senza dati di tiratura (pagine, copie, confezione): non sono nelle fonti. Le foto sono a un quarto di pagina, non a metà: sono foto da telefono a 900-1200 px e ingrandite non reggono. Cosa chiedere è nel LEGGIMI.
+12. **Ritmo a blocchi: passa.** Due blocchi grafite (reparti e dove siamo) e due grigi chiari (lavori e preventivo), più il blocco rosso "Ti chiamiamo noi". Spazio tra le sezioni 128 px a 1440 e 72 a 390; margini 80 px a 1440 e 20 a 390 (contenitore di 1440 px al massimo).
+13. **Un solo sistema di bottoni: passa.** Pieno rosso e con il bordo, raggio 3 px ovunque, 56 px (48 in testata, 52 i tre dell'apertura sul telefono), testo 17 px (16 sul telefono); i bottoni di chiamata contengono il numero.
+14. **Modulo e "dove" per il mestiere: passa.** Il modulo chiede nome, casa editrice o azienda, email, telefono, tipo di lavoro, confezione, formato chiuso, pagine dell'interno (multipli di 4), copie, carta, stampa, quando serve, link ai file e note; l'allegato (A6, famiglia M) è risolto così: i PDF si allegano all'email che il modulo compone, i file pesanti con un link di trasferimento nel campo apposito. Controlla nome ed email prima di comporre (avviso e fuoco sul primo campo vuoto). Indirizzo con "Indicazioni stradali" (Google Maps, percorso). Nessun iframe di mappa.
+15. **Piede completo: non passa.** Quattro colonne a 1440, testo di almeno 14 px, ragione sociale, P.IVA 05078210282, indirizzo, telefoni ed email cliccabili, sede con la mappa, FSC, Privacy e Cookie. Mancano gli orari: non sono pubblicati e non sono stati inventati (LEGGIMI).
 
-Altro: link "Vai al contenuto" come primo elemento della tastiera; sotto i 900 px il menu è un bottone con `aria-expanded` che diventa "Chiudi" quando è aperto e si chiude con Esc o scegliendo una voce; sotto i 640 px le colonne del piede si aprono a fisarmonica con un vero bottone. Bottoni senza l'evidenziazione blu di WebKit al tocco.
+### Compiti della scheda d'uso (par. 8)
 
-## Foto, origine e licenza
+- *Editore, 1440*: nella prima schermata "Stampa e legatoria" e "libri, fumetti, cataloghi d'arte", "case editrici, gallerie e aziende"; "Chiedi un preventivo" porta con un clic al modulo (provato); brossura, cucita, cartonato, usomano e patinate sono già nella riga delle prove a 685 px, e la tabella completa è subito dopo i lavori. Come mandare i file: l'email è nella prima schermata, le istruzioni nel blocco preventivo (5235 px a 1440, dalla voce "Chiedi un preventivo"). Quattro lavori con il nome dell'editore e la foto della legatoria in apertura.
+- *Lavoro in corso, 390*: Chiama (52 px, `tel:+390499002884`), Scrivi un'email (`mailto:` con oggetto) e Come arrivare (percorso per Via Marco Polo 10, Mestrino) nella prima schermata, più il numero sempre in testata; in "Dove siamo" anche "Lavoro in corso? Scrivete qui" con la traccia titolo, editore, cosa serve. Gli orari accanto all'indirizzo mancano (non pubblicati): al loro posto "Prima di passare per un ritiro o una consegna, chiamateci."
+- *Non del mestiere, 390*: "libri e fumetti, cataloghi per le mostre, riviste, volantini e brochure" a 1596 px (meno di due scorrimenti); "Ti chiamiamo noi" nella prima schermata, porta al blocco con solo nome e telefono, che compone l'email "Ti chiamiamo noi" (provato); i quattro libri stampati in foto prima dei contatti.
+- Nessun popup e nessun banner sopra i bottoni.
 
-| In pagina | File | Origine | Licenza |
-|---|---|---|---|
-| Apertura (desktop e telefono) | `apertura-*`, `apertura-tel-*` | Peruzzo, `2017-11-The-Private-Eye_Bao-Publishing.jpg` (1200x885, pagina Prodotti), fondo portato alla carta della pagina | dell'azienda; copertina di Bao Publishing e degli autori |
-| Editori | `lavoro-paper-girls-*`, `lavoro-baby-sitter-*`, `lavoro-sposa-yemenita-*` | Peruzzo, pagina Prodotti (1200 e 900x1200), stesso trattamento | dell'azienda; copertine e tavole degli editori |
-| Legatoria | `legatoria-*` | Peruzzo, `2020-11-IMG_8866.jpg`, Canon EOS 6D, 16/01/2018, schiarita, tolto l'azzurro del neon, ritagliata da x 500 (fuori estintore e scatoloni) | dell'azienda |
-| Chiusura | `chiusura-*` | Peruzzo, `2018-07-IMG_8364.jpg` (1200x800, ritaglio 1053x800): foglio stampato in oro con frasi scritte a mano e il marchio storico | dell'azienda |
-| Logo | `logo-peruzzo-grafiche.png` | Peruzzo, `logo-peruzzo-grafiche-bianco-2022-686x165.png` ricolorato | dell'azienda |
+### Applicati
 
-Trattamento, uguale per tutti i libri: `finale_img.py` stima il fondo della foto con una superficie liscia (polinomio di secondo grado sui pixel lontani dal libro), divide e moltiplica per il colore carta. Il fondo diventa #F5F1E8, l'ombra corta resta; per la Sposa yemenita aperta le pagine più chiare del fondo vanno verso il bianco, così il foglio si stacca dalla carta della pagina. Bordi sfumati, nessun riquadro. Le foto restano a colori. Nessuna foto di repertorio in pagina, nessuna immagine generata; nessuna di queste foto è in un'altra home della campagna.
+- Titolo che dice il mestiere al posto di "Stampare è un'arte" (SCHEDA par. 7: la frase poetica va più sotto); la frase resta come manifesto in grande nel blocco dei reparti.
+- Via la copertina di The Private Eye dall'apertura e il disegno del dorso: al loro posto la legatoria vera e le confezioni in chiaro.
+- Via il beige (#F5F1E8): fondo bianco, blocchi grafite e grigio chiaro, rosso del logo.
+- Via il foglio in oro con il marchio storico in chiusura (SCHEDA par. 7: confonde il marchio).
+- Testata fissa con il numero come bottone; tre bottoni a tutta larghezza sul telefono.
+- "Ti chiamiamo noi" (loro, su ogni pagina del sito di oggi) come blocco con due campi; modulo preventivo con i campi del loro modulo a tre passi.
+- Contatti, mappa e indirizzo nella prima schermata a 1440 e a 390, non più solo in fondo.
+- Persone in pagina: il legatore, i grafici, il tipografo con il contafili, il magazziniere, Alberto Peruzzo.
 
-Risoluzione: le foto di prodotto sono a 1200 px. A 1440 il libro dell'apertura è largo circa 1037 px CSS (1,14x), i tre lavori 421 px CSS (2,3x); la legatoria è a 1900 px per 1312 px CSS (1,45x); la chiusura a 1053 px per 676 px CSS (1,56x). Sugli schermi retina l'apertura è un po' morbida: va rifatta con lo still life chiesto nel LEGGIMI.
+### Respinti, con il motivo
 
-## Newsletter
+- Le recensioni (regola 10): non ce ne sono di pubbliche.
+- L'anno e i dati di tiratura dei lavori (regola 11): non sono nelle fonti.
+- Gli orari nel piede e accanto all'indirizzo (regola 15, SCHEDA par. 8): non pubblicati.
+- Il parco macchine (3 Heidelberg 8 colori, raccoglitrice a 18 stazioni, Stampamedia 2014), i 22 dipendenti e il fatturato: dati vecchi o di aggregatori, da confermare; non in pagina.
+- La PEC: trovata solo su aziende.it, da confermare; non in pagina.
+- Peruzzo Editoriale, le Peruzzine e la parete degli autori: non si sa se sono attivi; tolti dalla pagina e dal piede finché non arriva conferma.
+- La Fondazione Peruzzo: il legame con il fondatore è probabile ma non confermato.
+- La foto dell'operatrice al controllo (`IMG_8093`, verticale): sarebbe un quarto formato.
+- La foto con il camion: sulla fiancata c'è ancora "S.P.A." e il marchio storico.
 
-Niente newsletter: servirebbe per Peruzzo Editoriale, le Peruzzine e le fiere del fumetto, ma l'ultimo titolo dello shop è del 2018, la pagina News è rotta e peruzzine.com non risponde. Se confermano che l'editoriale è attivo si aggiunge nel piede (campo email, bottone, consenso privacy, collegata a un servizio).
+### Caratteri e licenze
 
-## Cosa è cambiato dopo il giudizio cieco (24/10/2026)
+- **Funnel Sans** (NORD ID), Google Fonts, SIL Open Font License 1.1: uso commerciale e ospitalità consentiti. File variabile 300-800 servito dalla pagina: `sito/fonts/funnel-sans-latin.woff2` e `funnel-sans-latin-ext.woff2`; licenza in `sito/fonts/OFL-FunnelSans.txt`. In pagina pesi 400 e 700.
+- **Piazzolla** (Huerta Tipográfica), Google Fonts, SIL Open Font License 1.1: `sito/fonts/piazzolla-latin.woff2`, licenza in `sito/fonts/OFL-Piazzolla.txt`. Peso 400, asse ottico 30. Il file `piazzolla-latin-ext.woff2` resta nella cartella ma la pagina non lo usa.
+- Sono gli stessi due caratteri della versione 1.
 
-1. **Apertura** (K1, K6, K7): via la foto di repertorio Pexels in monocromia con "Foto indicativa"; al suo posto The Private Eye, un cartonato che Peruzzo ha stampato per Bao, a colori, posato sulla carta. Il libro sale fino all'altezza del titolo (da y 130) e sta a destra quasi a filo del bordo; il titolo si appoggia nel vuoto della foto, un solo blocco. Niente più vuoto sotto il testo di destra: il testo è tutto a sinistra.
-2. **Schede delle confezioni** (gesto debole): spostate nella prima schermata, sotto il titolo; ogni scheda cambia il disegno in sezione del dorso, la variante e il bottone del preventivo. La sezione separata sotto la foto non c'è più.
-3. **Sezione editori** (colonna destra vuota): tolto il disegno con la dedica (200 px, appoggiato in basso); al suo posto tre loro lavori nello stesso trattamento dell'apertura, in tre colonne uguali, poi l'elenco degli editori. Il disegno può tornare se l'azienda dà il permesso (LEGGIMI).
-4. **Chiusura**: foto da 862 a 1053 px di larghezza, mostrata a 676 x 514 px CSS (1,56x); didascalia che dichiara il marchio storico "Peruzzo Industrie Grafiche" sul foglio.
-5. **Legatoria**: dentro la griglia (1312 x 560 a 1440), ritagliata senza estintore e scatoloni.
-6. **Piede**: sotto i 1240 px il logo prende una riga e le colonne sono quattro da tre colonne di griglia (due per riga sotto i 900 px); l'email ha un punto di a capo dopo la @ e `overflow-wrap:anywhere`. Misurato: bordo destro dell'email 930 su 976 a 1024, 564 su 736 a 768.
-7. **Testata**: niente evidenziazione blu al tocco su "Menu" e sulle schede; il bottone dice "Chiudi" quando il menu è aperto.
-8. Ritmo verticale un po' più ampio tra le sezioni (160-184 px) per tenere la pagina tra 4500 e 7000 px a 1440 dopo aver tolto la sezione delle schede.
+### Foto, origine
 
-Non cambiato: i social nel piede (Facebook e Instagram). Ho provato a verificare l'ultimo post, ma Instagram risponde 401 ("require_login") e Facebook rimanda al login: non si può vedere da qui. I link sono quelli del sito di oggi; la verifica resta nel LEGGIMI, da fare prima di pubblicare.
+Tutte di Peruzzo, dal loro sito (`assets/originali/`), solo per la proposta. Nessuna di repertorio, nessuna generata, nessun disegno. Tabella completa in `assets/CREDITI.md`.
 
-## Controlli
+| In pagina | File originale |
+|---|---|
+| Apertura | `2020-11-IMG_8866.jpg` (legatoria), tagliata a sinistra (via il ventilatore) |
+| Lavori | `2017-11-La-Sposa-Yemenita_BeccoGiallo.jpg`, `2017-11-Paper-Girls-2_Bao-Publishing.jpg`, `2017-11-Ferrari-cerca-e-trova_Franco-Cosimo-Panini.jpg`, `2017-11-Helidon-Xhixha-Refractive-Vibes_Contini-Art-UK.jpg` |
+| Reparti | `2018-04-prestampa_04.jpg`, `2018-04-stampa_02.jpg`, `2018-05-IMG_7955.jpg`, `2018-07-IMG_8357.jpg` |
+| Chi c'è dietro | `2020-11-IMG_8479.jpg` |
+| Dove siamo | `2017-11-Notturna-In-Alta2.jpg`, tolto il cielo nero in alto |
+| Logo | `logo-peruzzo-grafiche-bianco-2022-686x165.png` ricolorato in grafite |
 
-- Altezze: 4512 px a 1440 (tra 4500 e 7000), 5332 a 390, 5299 a 320, 5537 a 768, 4886 a 1024, 5003 a 1920.
-- scrollWidth uguale a innerWidth a 320, 360, 390, 414, 600, 768, 900, 1024, 1241, 1280, 1366, 1440, 1600, 1920 e 2560; nessun testo oltre il margine (`rapido.mjs`); nessuna sovrapposizione negli screenshot guardati a pezzi (320, 390, 768, 1024, 1280, 1440, 1920).
-- Schede, provate con Playwright: all'avvio Cartonato; clic su Punto metallico cambia disegno, variante e link (`?confezione=punto-metallico`); freccia destra porta il fuoco e la scelta su Brossura (`?confezione=brossura`); Fine porta a Cartonato, Home a Punto metallico; a 390 il tocco su Brossura la sceglie. Primo Tab: "Vai al contenuto". Menu a 390: al tocco si apre e dice "Chiudi", con Esc si chiude, il fuoco torna sul bottone e torna "Menu". Fisarmonica del piede: si apre al tocco.
-- Collegamenti: `tel:+390499002884`, `tel:+390499002885`, `mailto:info@graficheperuzzo.it`, mappa `https://www.google.com/maps/search/?api=1&query=Peruzzo+Grafiche+Via+Marco+Polo+10+35035+Mestrino`.
-- `segnali.sh` (paragrafo f della guida): 0 soglie bloccanti, 0 da guardare; foto al 35,2 % della pagina, Funnel Sans 83 % e Piazzolla 17 %, 4 filetti larghi, nessun monospazio, nessuna etichetta maiuscola, una sola sezione con titolo a sinistra e paragrafo a destra (i reparti).
-- Contrasti AA (valori sopra). Nessun carattere U+2014 nella pagina, negli script e nei testi (controllato da `build_finale.sh`).
-- Divieti del committente: niente gradienti, testo in gradiente, emoji, Inter, card con bordo colorato, vetro, modo scuro, tre box con icona, badge, icone Lucide, comparse allo scorrere, effetti sul cursore, bottoni che sbiadiscono, serif corsivo. I tre lavori della sezione editori sono foto di libri con titolo ed editore, senza riquadri né icone.
+Le foto di reparto online sono a 800 px: nelle schede (309 px CSS a 1440, circa 2,6x) reggono, più grandi no.
+
+### Controlli fatti (3/11/2026)
+
+- `pro_controlli.mjs`: regole 1-10 e 12-14 superate nelle misure; 11 e 15 no (sopra). Prove d'uso: preventivo in un clic, confezione già scelta dal link della scheda, modulo vuoto fermato con l'avviso e il fuoco sul nome, email del preventivo composta con oggetto "Richiesta di preventivo: Fumetto o graphic novel, 1500 copie", "Ti chiamiamo noi" composto con nome e telefono, tendina aperta e chiusa con Esc; nessun errore di script. Nessuna email inviata.
+- Scorrimento orizzontale: nessuno a 320, 390, 768, 1024, 1280, 1440 e 1920; nessuna sovrapposizione nell'apertura a quelle larghezze; screenshot guardati a pezzi a 320, 390, 768, 1024 e 1440.
+- Collegamenti: `tel:+390499002884`, `tel:+390499002885`, `mailto:info@graficheperuzzo.it` (con oggetto "Richiesta dal sito", "Lavoro in corso", e quelli composti dai moduli), mappe `https://www.google.com/maps/dir/?api=1&destination=Peruzzo+Grafiche,+Via+Marco+Polo+10,+35035+Mestrino+PD` (percorso) e `.../maps/search/?api=1&query=...` (piede). Nessuna ancora senza destinazione.
+- Nessun carattere U+2014 nella pagina, nei .md e negli script (controllato anche da `build_finale.sh`).

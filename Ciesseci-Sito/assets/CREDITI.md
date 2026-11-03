@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026 (livello professionale: nessuna foto esterna in pagina).
 
 ## Foto dell'azienda in `originali/`
 
@@ -40,15 +40,23 @@ Manca, e nessun archivio libero ce l'ha in modo decente: **un capo da lavoro ver
 
 Scartata dopo la verifica: la polo blu con ricamo di TuanAnh Blue (https://unsplash.com/photos/M-MwtidrO1g), perché il ricamo è tagliato dal bordo e il colletto mostra il marchio del produttore.
 
-## Uso nella home finale (24/10/2026, dopo la rifinitura)
+## Uso nella home (3/11/2026, livello professionale)
 
-Nella home finale (`sito/`) restano cinque segnaposto esterni:
-- Mr. Mockup (Pexels 12025472): l'apertura, la maglietta bianca intera; il fondo grigio è stato stimato e portato al colore carta, la maglietta tiene la sua ombra vera;
-- Wallace (scheda Ricamo, con le scritte del marchio dei fili tolte con inpaint);
-- emarts (scheda Serigrafia);
-- Compagnons (scheda Sublimazione, con l'etichetta del produttore tolta con inpaint);
-- Sóc Năng Động (Pexels 38030790): scheda Incisione laser, al posto della foto loro della macchina (1024 px, a tutta larghezza si ingrandiva 1,4x).
+Decisione del committente sulle foto: "niente". **Nessuna foto di `esterne/` è più in pagina**: tolte la maglietta di Mr. Mockup (Pexels 12025472), i coni di Wallace, il telaio di emarts, la maglietta sulla pressa di Compagnons (Unsplash) e l'incisore laser di Sóc Năng Động (Pexels 38030790). I file restano in `esterne/` solo come archivio della proposta di prima (`_prova/versione-1-originale/`) e non vanno usati.
 
-Non sono più usate: la felpa scontornata in apertura (`originali/2018-02-csc-factory-26.jpg`), Paquet (caschi e gilet), Novantino, Nguyen e le due di Roberts.
+Foto di Ciesseci in pagina, tutte in 3:2 (l'apertura in 4:3 sopra i 900 px) con lo stesso trattamento (`_prova/script/pro_img.py`), esportate a 1020 e 640 px in `sito/img/`:
 
-Foto di Ciesseci in pagina: la felpa "82" da vicino nella sezione 1982 (`originali/2018-02-csc-factory-14.jpg`), lo showroom di Via Zanella nella sezione abbigliamento (`originali/2019-02-ciesseci-nuova-sede-2.jpg`, ritaglio 4:5), la stampa UV su plexiglass nella scheda (`originali/2019-10-sld-stampe-plexiglass.jpg`), la facciata di Via Zanella nella chiusura (`originali/2022-04-sede-nuova-1.jpg`), il logo (`originali/logo-badge-500x486.png`).
+| In pagina | File in `sito/img/` | Originale in `originali/` |
+|---|---|---|
+| Apertura, lo showroom con la parete delle scarpe | `showroom-*.jpg` | `2019-02-ciesseci-nuova-sede-2.jpg` |
+| In negozio, scarpe, giacche da lavoro e guanti | `scarpe-dpi-*.jpg` | `2019-02-ciesseci-nuova-sede-6.jpg` |
+| Scheda Capi e divise (shopper, polo con logo, felpa 82) | `capi-logo-*.jpg` | `2018-02-csc-factory-26.jpg` |
+| Scheda Ricamo, la ricamatrice | `ricamo-*.jpg` | `2018-02-ricamo.jpg` |
+| Scheda Furgoni e vetrine, il loro furgone | `furgone-*.jpg` | `2021-03-evi-prodotti.jpg` |
+| Scheda Targhe, plex e gadget | `plex-*.jpg` | `2019-10-sld-stampe-plexiglass.jpg` |
+| Shop, i ricami RicaMarty | `ricamarty-*.jpg` | `shop-2024-04-rica-marty_01.jpg` |
+| Chi siamo, il bancone con la coccarda | `bancone-*.jpg` | `2019-02-ciesseci-nuova-sede-3.jpg` |
+| Orari e dove, la facciata con l'insegna | `facciata-*.jpg` | `2022-04-sede-nuova-1.jpg` |
+| Logo | `logo-csc-96.png`, `-192.png` | `logo-badge-500x486.png` |
+
+Tutte da rifare dal vero: istruzioni nel `LEGGIMI.md`, sezione "Foto da rifare dal vero".

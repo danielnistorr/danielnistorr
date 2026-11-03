@@ -2,61 +2,74 @@
 
 Proposta non richiesta, solo la home. Non pubblicata, azienda non contattata.
 
-- Pagina: `sito/index.html` con `sito/img/` e `sito/fonts/` (statica, si apre con file:///).
-- Screenshot: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440). Nota di progetto: `screenshot/home/NOTA.md`.
-- Rigenerare tutto: `sh _prova/script/build_finale.sh` (con `controlli` anche 320, 768, 1024, 1920, il menu aperto a 390 e `controlli.mjs`).
-- Sorgenti: `_prova/script/home_finale.src.html`, `marchio.part` (marchio SVG), `quote.part` (quota della foto d'apertura), `disegno.py` (disegno in sezione di "Dove va il foro?"), `finale_img.py` (tutte le immagini).
-- Analisi e fonti: `01-analisi.md`; prototipi e giudizio: `_prova/home/a`, `_prova/home/b`, `_prova/giudizio.json`.
+- Pagina: `sito/index.html` con `sito/img/` e `sito/fonts/` (statica, si apre con file:///). Versione "livello professionale" del 3 novembre 2026, scritta a mano.
+- Screenshot: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440). Nota di progetto ed esito delle 15 regole: `screenshot/home/NOTA.md`, sezione "Livello professionale".
+- Rigenerare: `sh _prova/script/build_finale.sh --immagini controlli` (immagini con `pro_img.py`, screenshot, controlli con `pro_controlli.mjs`).
+- Versione di prima (24 ottobre): `_prova/versione-1-originale/` (sito, screenshot, LEGGIMI e CREDITI di allora).
+- Analisi e fonti: `01-analisi.md`; scheda d'identità e d'uso: `_prova/uso/SCHEDA.md`.
 
-## Dati da confermare con l'azienda
+## Modulo da collegare
 
-In pagina ci sono solo dati presi dai loro siti; questi vanno comunque verificati prima di pubblicare:
-- **Foto d'apertura**: `PLUS-pantografo.jpg` è sul loro sito (scalarredo.it, 2026) ma ha l'aria di una foto di catalogo del produttore: chiedere se si può usare. La quota "10 cm" è disegnata sui due spigoli del primo gradino in metallo (profondità dichiarata "10 cm" nella pagina PLUS a pantografo); la scritta "pannello 18 mm" sta sulla superficie bianca sotto la scala, che leggo come il pannello della botola aperto: da confermare con loro.
-- **Chiusura**: la Montreal bianca (`scale-giorno-Montreal-1.jpg`, foto loro da telefono) è ritoccata (nastri decorativi tolti dal muro, correnti ricostruiti, una vite tolta): il ritocco va accettato dal cliente della foto, e va confermato che sia una Montreal con fascia da 8 mm. Confermare anche `montreal-012` (Montreal antracite) e `banner-bg2` (PLUS in frassino).
-- "Progettate, prodotte e posate da noi" e "posa in opera della nostra squadra" per le scale da interno; se le retrattili sono prodotte o rivendute ("fornitura vendita e installazione").
-- Misure delle retrattili prese dalle tavole "MISURE STANDARD DISPONIBILI" di scaleabotola.com (probabile fornitore): fori 45 x 70-80 x 100 (soffitto), 50 x 80-80 x 100 (parete), 60 x 80-80 x 100 (terrazzo), 70 x 100 (soppalco), altezza 300 cm, 140 cm a terra e 170 per aprirla, gradini 10 x 35 cm. Il disegno in sezione è ridisegnato in scala (1 cm = 1,25 unità, pendenza di circa 65 gradi, 12 alzate) ma resta schematico: da rivedere con loro, in particolare la parete (portina incernierata in basso) e il soppalco.
-- Prezzi del negozio letti il 24/10/2026 (da 238 euro più IVA a soffitto, da 425 euro più IVA a parete): cambiano, vanno letti dal negozio al momento della pubblicazione o tolti.
-- Consegna "di solito in 5 giorni" dal magazzino e "2-6 settimane" fuori misura (dalle condizioni di vendita), portata 150 kg e collaudo a 260 kg: sono nel cartiglio della prima schermata, vanno confermati. La norma UNI EN 14975 (citata con anni diversi nei due siti, e "EN 131" nella pagina PLUS) non è in pagina finché non confermano quale norma e quale anno.
-- Email da mettere in pagina: oggi scalarredo@scalarredo.it (dalle condizioni di vendita); in alternativa info@scaleabotola.com.
-- Indirizzo: il CAP 35035 di Mestrino non è scritto sul loro sito, quindi in pagina non c'è; da aggiungere se lo confermano.
-- Orario esatto del sabato (oggi "solo al mattino"); provincia del REA 295631 (presumibilmente Padova).
-- "Da due generazioni": anno di inizio della famiglia (srl dal 1997, "più di 40 anni" e "trentennale" nei testi), nomi delle due generazioni, un lavoro con città e anno da mettere in pagina come prova.
-- Il secondo numero 049 900 48 34: fax o telefono? Oggi non è in pagina.
-- Canale YouTube: l'indirizzo è col nome personale (@giorgiotiziana4735); meglio un indirizzo col nome dell'azienda.
+Il modulo "Mandateci le misure o il disegno" oggi non invia niente: compone un'email a scalarredo@scalarredo.it con l'oggetto ("Misure del foro, Nome" per le retrattili, altrimenti il tipo di richiesta) e i campi (tipo, nome, telefono, email, comune, foro, altezza, solaio, messaggio), e chi scrive allega lì foto e disegni. Prima di pubblicare va collegato a un servizio di invio (per esempio il modulo del loro WordPress, Contact Form 7 o WPForms, già sul sito di oggi), con:
+- il caricamento di foto del foro e disegni (JPG, PDF, DWG), che con l'email si fa a mano;
+- l'avviso di ricezione e la riga sulla privacy (oggi iubenda);
+- la promessa dei tempi di risposta, se la vogliono dare (non c'è nelle fonti, quindi non è in pagina).
 
-## Foto da rifare dal vero
+## Da chiedere o confermare con l'azienda
 
-Una giornata di foto nello showroom di Mestrino e da due o tre clienti basta per sostituire tutto:
-1. **Apertura**: una PLUS montata nello showroom, aperta, ripresa dall'alto dentro il foro come oggi (cavalletto sopra la botola, ottica 35 mm in asse con la scala), parquet chiaro sotto, niente cavi né arredi del piano di sotto, luce morbida dall'alto; almeno 4000 px sul lato lungo, così si serve a 2x anche a 960 px. Stessa inquadratura per non spostare la quota del gradino. Meglio ancora con i gradini in frassino.
-2. **Retrattili**: macro del gradino in frassino spazzolato con luce radente per la venatura, la cerniera e il bordo del pannello da 18 mm. Sostituisce `banner-bg2`, vecchia e morbida.
-3. **Scale da interno**: la Montreal antracite (o una New York) posata, inquadrata solo sulla rampa, casa svuotata di oggetti, pavimento chiaro, luce naturale; almeno 3000 px, così il taglio verticale si serve a 2x (oggi è a 1,35x perché allargando entra uno sgabello).
-4. **Chiusura**: la Montreal bianca rifotografata con la reflex dalla stessa posizione, muro sgombro, oppure una foto vera dello showroom sulla statale 11 (interno con le scale esposte, luce del pomeriggio, nessuna persona riconoscibile senza liberatoria).
+In pagina ci sono solo dati presi dai loro siti e dalla scheda; vanno comunque verificati prima di pubblicare:
+- **Prezzi** letti nel negozio il 03/11/2026 (soffitto Easy da 238 euro, PLUS da 320, parete 70x100 425, 80x130 489, chiocciola in kit da 1.290, tutti IVA esclusa) e **306 prodotti** nel negozio: cambiano, vanno riletti alla pubblicazione o collegati al negozio.
+- **Prezzi di terrazzo e soppalco**: non sono nelle fonti, in pagina c'è "Il prezzo ve lo dà l'ufficio tecnico".
+- **Misure dei fori**: prese dalle tavole "MISURE STANDARD DISPONIBILI" di scaleabotola.com (probabile fornitore): soffitto da 45x70 a 80x100, parete da 50x80 a 80x100, terrazzo da 60x80 a 80x100, soppalco 70x100; altezza 300 cm; 140 cm a terra e 170 per aprirla; gradini del soppalco 10x35 cm. Confermare che valgono per le scale che vendono oggi (il negozio ha anche 80x120, 100x100 e la parete 80x130, che la tavola non ha).
+- **Tempi**: "solitamente in 5 gg. lavorativi" dal magazzino e "dalle 2 settimane alle 6 settimane" fuori misura (condizioni di vendita); se la posa in zona Padova, Vicenza e Venezia la fanno sempre loro.
+- **Portata**: 150 kg con prova a 260 kg sono scritti; la norma (UNI EN 14975 con anni diversi nei due siti, "EN 131" nella pagina PLUS) resta fuori finché non dicono quale. Se c'è un certificato in PDF, va nel piede come prova (regola 10).
+- **Orario del sabato**: oggi "solo al mattino". Serve l'ora di apertura e di chiusura: la riga "Aperto ora" il sabato dice "Il sabato solo la mattina: chiamate prima di passare" e dalle 12.30 dice chiuso (ora presa dal feriale, da confermare). Se chiudono nelle feste nazionali (la pagina lo dà per chiuso) e ad agosto.
+- **Email da mettere in pagina**: oggi scalarredo@scalarredo.it (dalle condizioni di vendita); in alternativa info@scaleabotola.com. Il secondo numero 049 900 48 34 è un fax? Non è in pagina.
+- **CAP 35035** di Mestrino: viene da un elenco pubblico (infoisinfo), non dal loro sito; REA "CCIAA 295631": provincia (presumibilmente Padova).
+- **"Da due generazioni"**: anno d'inizio della famiglia (srl dal 1997, "più di 40 anni" e "trentennale" nei testi) e nomi; se vogliono, una riga con la loro storia e una data in apertura (oggi la prova è il magazzino in 5 giorni).
+- **Chi produce che cosa**: per le scale da interno la pagina dice "Un team esperto segue la produzione, la progettazione e la posa in opera" (loro frase); per le retrattili non dice "prodotte da noi" (loro: "fornitura vendita e installazione").
+- **Modelli nelle schede**: confermare che `montreal-012` è una Montreal (doppia fascia da 8 mm), `scala-giorno-New-York-1` una New York a zeta, `Scala-giorno-Boston-A` una Boston a cremagliera, `scala-elicoidale-B` una loro elicoidale, e che le foto si possono pubblicare (case di clienti).
 
-Formato: RAW o JPEG alla massima qualità, bilanciamento del bianco neutro sul muro.
+## Per arrivare al livello dei riferimenti mancano (da chiedere, non inventati)
+
+- **Recensioni** con nome e comune: oggi non ce ne sono di pubbliche (infoisinfo "0 commenti", Google non leggibile). Chiedere il profilo Google Business, o 3-5 clienti disposti a una frase con nome e comune.
+- **Lavori con un nome**: tre scale da interno posate con comune, anno e due-tre dati (tipo, legno, foro), con una foto larga.
+- **Certificazioni o fornitori**: il certificato della portata, il produttore delle retrattili se si può nominare.
+- **Le persone**: chi risponde all'"ufficio tecnico" (nome e ruolo), da mettere accanto al telefono.
+
+## Foto da fare dal vero
+
+Oggi in pagina ci sono solo foto loro (o del fornitore), mai foto di repertorio; mancano quelle che una bottega mette in apertura (persone, negozio, magazzino). Una giornata nello showroom di Mestrino, un solo fotografo e una sola luce:
+1. **Facciata e insegna sulla statale 11**, di giorno, con il giallo dell'insegna se c'è: va nella scheda "Negozio e orari" e nel piede.
+2. **Showroom e magazzino**: le scale esposte, le retrattili in pronta consegna sugli scaffali (prova del "fornito magazzino"), luce del pomeriggio.
+3. **La persona dell'ufficio tecnico** al telefono o al banco con una tavola misure, che guarda il lavoro e non l'obiettivo (con liberatoria).
+4. **La PLUS montata nello showroom**, aperta, ripresa dall'alto dentro il foro come la foto di oggi (cavalletto sopra la botola, ottica 35 mm), e la stessa chiusa: sostituisce `PLUS-pantografo.jpg` se i diritti non sono loro. Almeno 4000 px sul lato lungo.
+5. **Macro del gradino in frassino** con luce radente e del pannello da 18 mm: sostituisce `banner-bg2.jpg`, vecchia e morbida.
+6. **Scale da interno posate**, inquadrate sulla scala, casa sgombra, luce naturale, almeno 3000 px, in verticale 4:5 come le schede: una per tipo (a giorno, a zeta, a cremagliera, elicoidale, chiocciola, pedata alternata, ringhiera in vetro).
+Formato: RAW o JPEG alla massima qualità, bianco neutro sul muro.
+
+## Foto in pagina e diritti
+
+- `plus-*`: `scalarredo/PLUS-pantografo.jpg` (sul loro sito, ma ha l'aria di una foto di catalogo del produttore): chiedere se si può usare.
+- `frassino-*`: `scaleabotola/banner-bg2.jpg` (PLUS vera, sfondo del loro sito).
+- `montreal-*`, `newyork-*`, `elicoidale-*`: foto loro di scale posate presso clienti.
+- `boston-*`: `scalarredo/Scala-giorno-Boston-A.jpg`, 800x600, professionale, forse di catalogo: confermare.
+- Tolta la Montreal bianca ritoccata a mano della versione 1 (oggetti di casa cancellati), che non era più una foto fedele.
+- Nessuna foto di repertorio in pagina (quelle scaricate in `assets/esterne/` restano non usate, vedi `assets/CREDITI.md`).
 
 ## Licenze
 
 - Carattere: Archivo (Google Fonts), SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina in `sito/fonts/archivo-latin.woff2`.
-- Foto di repertorio: nessuna in pagina. L'elicoidale di Gayatri Dhea (Pexels) usata nella chiusura del giro precedente è stata tolta; resta scaricata in `assets/esterne/` con la licenza in `assets/CREDITI.md`.
-- Foto dell'azienda e del fornitore: diritti da confermare (vedi sopra e `assets/CREDITI.md`).
 
 ## Logo
 
-- In testata e nel piede: marchio a triangolo in SVG tracciato dai contorni del PNG vero (fedele) più la scritta "Scalarredo scale" estratta dal PNG e ricolorata in blu #1F4FA8. Nel piede è più grande (marchio 50 px, scritta alta 30 px); il quadrato giallo del logo originale non c'è più perché nel piede era il blocco più saturo della pagina e la riga "Le scale a Padova" veniva di 8 px.
-- Da chiedere: un vettoriale del logo e il nome del carattere della scritta (oggi simile a un Times); se il favicon "SC" giallo su blu è voluto.
+- In testata e nel piede: blocco giallo #FFD700 con il marchio a triangolo in SVG (tracciato dai contorni del PNG vero) e la scritta "Scalarredo scale" estratta dal PNG nel blu del logo #0075FF (`sito/img/scritta.png`). Sotto i 385 px resta il quadrato giallo con il marchio.
+- Da chiedere: un vettoriale del logo e il nome del carattere della scritta (simile a un Times); se il favicon "SC" giallo su blu è voluto.
 
-## Pagine che il sito nuovo deve avere (link del piede)
+## Collegamenti
 
-I link del piede puntano a sezioni della home o a queste pagine, che oggi non esistono nella proposta:
-- `scale-da-interno/a-giorno-e-a-rampa/`, `scale-da-interno/elicoidali/`, `scale-da-interno/a-chiocciola/`, `scale-da-interno/a-pedata-alternata/`, `scale-da-interno/ringhiere-e-parapetti/`
-- `scale-retrattili/a-soffitto/`, `scale-retrattili/a-parete/`, `scale-retrattili/per-terrazzo/`, `scale-retrattili/per-soppalco/`, `scale-retrattili/motorizzate/` (le misure del foro portano a `#foro` della home)
-- `negozio/` (negozio online), `catalogo-scale-retrattili.pdf` (oggi `Cat-Retrattili-1.pdf`), `condizioni-di-vendita/`, `privacy/`, `cookie/`
-- Lo showroom di Mestrino porta alla chiusura della home (`#showroom`).
-
-## Newsletter
-
-Non c'è e non serve: non pubblicano novità, fiere o collezioni e una scala si compra una volta. Al suo posto, nel piede, il catalogo PDF delle retrattili.
+Le voci della pagina portano alle pagine vere di oggi su scalarredo.it (categorie del negozio, pagine dei tipi di scala, catalogo PDF `Cat-Retrattili-1.pdf`, condizioni di vendita, cookie policy iubenda) e al canale YouTube. Con il sito nuovo vanno rifatte puntando alle pagine nuove. Il canale ha un indirizzo col nome personale (@giorgiotiziana4735): meglio uno col nome dell'azienda.
 
 ## Dominio
 
-scaleabotola.com va reindirizzato alle pagine delle retrattili del sito nuovo (scalarredo.it), da decidere con loro.
+scaleabotola.com (e scale-botola.it) vanno reindirizzati alle pagine delle retrattili del sito nuovo (scalarredo.it), da decidere con loro.

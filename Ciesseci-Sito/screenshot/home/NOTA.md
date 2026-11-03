@@ -1,71 +1,75 @@
-# Home finale Ciesseci (CSC Factory): "Il segno sul capo"
+# Home Ciesseci (CSC Factory): livello professionale
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `build_img.py`, carattere, screenshot con `shots.mjs`); il collaudo è `_prova/script/prova_finale.mjs`. Pagina alta 5911 px a 1440 (piede compreso), 7730 px a 390.
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. La home di prima ("Il segno sul capo", con la maglietta di Pexels in apertura) è copiata com'era in `_prova/versione-1-originale/` (sito e screenshot, con la sua NOTA).
 
-Base: il prototipo A scelto dal giudice (Archivo, carta, inchiostro e verde, schede delle tecniche, chiusura, piede). L'ultima rifinitura risponde al giudizio cieco in `_prova/cieco.json`.
+Rifare tutto: `bash _prova/script/build_finale.sh` (con `--immagini` rifà anche le foto con `pro_img.py`); screenshot all'ora simulata martedì 3 novembre 2026 alle 10:00 (`index.html?ora=2026-11-03T10:00`), poi `pro_controlli.mjs` (esito in `_prova/pro_controlli.json`).
 
-## Idea
+Screenshot (stessi nomi di prima): `home-1440.jpg` (7576 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (13464 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Orari e dove" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti; anche 320, 768 e 1024.
 
-Il mestiere di Ciesseci è mettere un segno su un capo. La prima schermata mostra il capo prima del segno: una maglietta bianca intera, grande, al centro, sotto il titolo loro "Stampa e ricamo: diffondiamo il tuo brand." Il titolo dice il segno, il capo è il supporto. Il resto della pagina mostra il segno vero: le cinque lavorazioni, il loro showroom, la loro felpa con il 1982 stampato come un numero di maglia, la loro sede.
+## Livello professionale (3 novembre 2026)
 
-## Cosa è cambiato in questa rifinitura
+Richiesta: "secondo me non rappresentano bene l'identità e l'utilizzo corretto di quello che dovrebbe essere il sito" e "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente". Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori del lusso), sezioni A, B e C. Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di barth e Cly-Del (a pezzi), più le prove già fatte su Unicar, Oby e Fornasiero.
 
-- **Apertura rifatta** (bloccanti 1 e 2). Tolto il ritaglio della felpa (421 px, già tagliato nel file, mostrato a 1:1 e morbido). Ora c'è un capo intero: una maglietta bianca stesa piana e ripresa dall'alto (Pexels, segnaposto dichiarato nel LEGGIMI), sorgente 3800 px, esportata a 1400 px e mostrata a 680 px a 1440 (2,06 pixel del file per pixel CSS), 560 px a 768 (2,5), 366 px a 390 (2,7, file da 1000 px). La maglietta prende circa il 44 % della larghezza a 1440 ed è intera nella prima schermata, orlo e ombra compresi. Impianto nuovo: titolo centrato in due righe sopra, capo al centro, a sinistra le due righe di presentazione e a destra preventivo e telefono, allineati a metà del capo. Non è più "titolo a sinistra, scontorno a destra" come in Innovatex e Hambro.
-- **Nessun taglio dritto sul capo** (importante 3). La maglietta non è scontornata: lo script stima il fondo grigio della foto con una superficie polinomiale sui pixel lontani dal capo, lo divide via e lo porta esattamente al colore carta #F4F3EF. La maglietta tiene la sua ombra vera e l'immagine finisce sulla carta senza bordi.
-- **Didascalia dell'apertura tolta** (minore 4): il capo si spiega da solo. La felpa 82 è scesa nella sezione 1982, in un dettaglio di 421 px accanto al numero grande (sorgente 900 px), con la didascalia "La felpa CSC Factory. Il 1982 stampato come un numero di maglia." allineata sotto la foto.
-- **768 e 1024** (importante 5, minore 10): tra 561 e 1100 px il capo sta al centro (al massimo 620 px), testo e azioni sotto su due colonne; nessun vuoto grande. Nella sezione 1982 la frase e la felpa stanno accanto al numero fino a 861 px.
-- **Scheda Incisione laser** (importante 6): la foto loro della macchina era larga 1024 px e a tutta larghezza si ingrandiva 1,4x. Sostituita con un segnaposto Pexels di 2400 px (testa laser su legno); quella vera va rifatta (LEGGIMI). Tutte e cinque le schede ora sono in 2:1 con sorgenti da 1440 a 2400 px: a 1440 nessuna è ingrandita. Il palco delle schede si ferma a 1680 px sugli schermi molto larghi.
-- **Chiusura** (importante 7): ora c'è la facciata di Via Zanella con l'insegna (foto loro, 1020 px) in 3:2, mostrata a 793 x 528 a 1440: nessun ingrandimento, niente parete dei marchi.
-- **Sezione abbigliamento** (importante 8): via i caschi e i gilet di repertorio (Paquet). Ora c'è lo showroom loro del 2019, ritagliato in 4:5 sulla giacca verde, i capi e le magliette stampate in vetrina (544 x 680), mostrato al massimo a 544 px, mai ingrandito.
-- **Piede** (minore 9): Seguici è diventata la quarta colonna (Lavorazioni, Abbigliamento, Azienda, Seguici); la newsletter è una riga a sé sotto, testo a sinistra e campo a destra. La riga legale non spezza più le voci (ogni voce in `nowrap`, separate da spazio e non da puntini, così a capo non resta un puntino in testa alla riga).
-- **Newsletter** (minore 11): all'invio controlla email e consenso e scrive in una zona `aria-live` "Modulo dimostrativo: non ancora collegato al servizio di invio."
-- **Preload del carattere tolto** (minore 12): su file:// la console ora è senza errori.
-- **Schede, testi** (minore 13): un'etichetta sola "Su cosa", a 14 px nel colore #4A4C47; tolta la coda "Cinque, da vicino:". Per la Sublimazione, al posto di "Colori", "Tessuto: la stampa entra nella tinta. Non ci sono limiti di colore." (dalle loro frasi).
+Per Ciesseci non esisteva una "versione 1 con l'uso": la home di prima era quella del 24 ottobre. In questo passaggio ho fatto insieme l'uso della scheda (`_prova/uso/SCHEDA.md`) e il livello professionale.
 
-## Caratteri e colori
+### L'idea
 
-- Una famiglia: **Archivo** (Omnibus-Type, Google Fonts), variabile in peso e larghezza, servita dalla pagina in `sito/fonts/archivo-latin-var.woff2` (sottoinsieme latino, 90 KB). Licenza SIL Open Font License 1.1, uso commerciale libero; il testo è in `sito/fonts/OFL-Archivo.txt`.
-- Titoli larghi (wdth 112-118, peso 460-560, spaziatura da -0,02 a -0,03em) come le lettere della coccarda CSC; etichette strette e maiuscole (wdth 68) solo nella testata e nei titoletti del piede, come "FACTORY" sotto il logo; testo a wdth 100; cifre tabellari per telefoni, orari, date, "50 mm", "1982". Niente corsivi.
-- Riferimenti: Stanley/Stella per il tono (il capo basico trattato come un prodotto di valore, titolo grande e pulito); Hand & Lock per l'idea che un solo capo fotografato bene basta in apertura.
-- Colori: carta #F4F3EF, piede #EAE8E2, inchiostro #151714, testo secondario #4A4C47 (8,1:1 su carta, 7,4:1 sul piede), didascalie #5C5E58 (6,1:1 su carta, 5,6:1 sul piede), verde del logo #0B6B35 per bottone, link e scheda attiva (6,1:1; testo carta sul verde 6,1:1). Il verde fluo solo nella foto della felpa, il verde chiaro solo nel logo.
+È un negozio di paese con il laboratorio dietro, che fa alla pari due mestieri, come dice l'insegna: vestire chi lavora (scarpe antinfortunistiche, divise, DPI) e mettere il logo su tutto. La pagina parte da lì: la prima schermata dice se è aperto, fa chiamare, scrivere su WhatsApp e arrivare in Via Zanella, mostra il loro showroom vero con la parete delle scarpe e fa mandare il logo. Dalla famiglia M prende l'impianto: dichiarazione di competenza grande, competenze in schede con le foto, cifre in fila, piede a quattro colonne. Dal bancone prende il tono: dal tu, frasi loro ("Ti aspettiamo a Mestrino", "Farti un preventivo per noi è rapido e non ti costerà nulla", "Su richiesta mettiamo anche il tuo nome e quello dei tuoi dipendenti"), nessuna frase tra virgolette.
 
-## Interazione
+### Struttura (famiglia M adattata)
 
-Le cinque schede delle lavorazioni sono veri bottoni con ruolo tab: al clic o al tocco cambiano di netto foto, frase e supporti, senza dissolvenze; i pannelli hanno la stessa altezza, così la pagina sotto non salta. Da tastiera: Tab entra sulla scheda attiva, frecce destra e sinistra con ritorno all'inizio, Home e Fine; un altro Tab esce sul link del pannello; il fuoco è visibile. Il menu si apre con un bottone sotto i 1100 px. Nessuna animazione allo scorrere, nessun effetto che segue il cursore.
+1. **Testata fissa** (80 px, 72 sul telefono): coccarda, "CSC Factory / Ciesseci, Mestrino", cinque voci (Negozio, Il tuo logo, Preventivo, Shop, Orari e dove) e il bottone "Chiama 049 634423", bordato finché si vede quello dell'apertura, poi pieno.
+2. **Apertura**: occhiello "Mestrino (PD), dal 1982"; titolo loro "Stampa e ricamo: diffondiamo il tuo brand." e, nello stesso H1, il mestiere "Abbigliamento da lavoro, scarpe antinfortunistiche e DPI, con il tuo logo e il tuo nome."; stato "Aperto ora / Chiuso ora" calcolato; Chiama, WhatsApp, Come arrivare; "Hai un logo da mettere su capi, furgoni o vetrine? Il preventivo è gratuito." con Manda il logo (WhatsApp con il testo pronto) e Per email (oggetto e traccia); a destra lo showroom vero. Sotto, la tavola di cinque fatti: Orari, Dove, In negozio (con le marche in testo), Il tuo logo (ogni supporto è un link), Shop online.
+3. **In negozio** (grigio): abbigliamento da lavoro, scarpe per settore, DPI e alta visibilità, tempo libero, cataloghi, in righe tutte cliccabili; la foto loro degli scaffali di scarpe e giacche; la fascia "Le marche che trattiamo" in testo (scarpe, abbigliamento, capi da stampare).
+4. **Su cosa mettiamo il tuo logo** (antracite, il grigio del furgone): quattro schede con le loro foto (capi e divise, ricamo, furgoni e vetrine, targhe plex e gadget), poi "E poi" con striscioni, zerbini, timbri, incisioni laser, tampografia, studio grafico, e "Il logo non ce l'hai? Abbiamo uno studio di grafica".
+5. **Mandaci il logo** (verde del logo): tre passi, WhatsApp e email, il modulo per il mestiere.
+6. **È per un regalo?**: shop, foto caricata dal cliente, "Spediamo in tutta Italia", RicaMarty.
+7. **Chi siamo** (grigio): i tre amici di Rubano, Via Zanella dal 2019, il bancone con la coccarda; cinque cifre in verde a 64 px.
+8. **Orari e dove**: indirizzo, Come arrivare, stato, tabella degli orari con "oggi", telefono, cellulare e WhatsApp, email; la facciata con l'insegna.
+9. **Piede** antracite in quattro colonne.
 
-## Foto: origine e licenza
+### Le 15 regole, una per una
 
-Trattamento unico: a colori, luci portate al colore carta, neri all'inchiostro, saturazione appena ridotta (0,88-0,9); la felpa tiene il fluo pieno. Esportate in più larghezze con srcset (`_prova/script/build_img.py`); il capo dell'apertura con `picture` (1400 px sopra i 560 px, 1000 px sotto).
+Misure di `node _prova/script/pro_controlli.mjs`, più gli screenshot guardati a pezzi.
 
-| In pagina | File | Origine | Licenza |
-|---|---|---|---|
-| Apertura, maglietta bianca | `img/capo-1400.jpg`, `-1000.jpg` | Mr. Mockup, Pexels 12025472 (segnaposto): fondo stimato e portato al colore carta, ombra vera | Pexels License |
-| Scheda Ricamo, coni di filo | `img/tec-ricamo-*.jpg` | PJ Wallace, Unsplash KAMaLRggG9g (segnaposto), scritte del marchio dei fili tolte | Unsplash License |
-| Scheda Serigrafia, telaio alla finestra | `img/tec-serigrafia-*.jpg` | emarts, Unsplash ZCTh4f4mv18 (segnaposto) | Unsplash License |
-| Scheda Sublimazione, maglietta sulla pressa | `img/tec-sublimazione-*.jpg` | Compagnons, Unsplash EY0BPl2rpME (segnaposto), etichetta tolta | Unsplash License |
-| Scheda Stampa UV, plexiglass stampati | `img/tec-stampa-uv-*.jpg` | Ciesseci, `2019-10-sld-stampe-plexiglass.jpg` | materiale del cliente |
-| Scheda Incisione laser | `img/tec-laser-*.jpg` | Sóc Năng Động, Pexels 38030790 (segnaposto) | Pexels License |
-| Abbigliamento, showroom | `img/showroom-544.jpg`, `-400.jpg` | Ciesseci, `2019-02-ciesseci-nuova-sede-2.jpg`, ritaglio 4:5 | materiale del cliente |
-| 1982, la felpa 82 da vicino | `img/felpa82-900.jpg`, `-640.jpg` | Ciesseci, `2018-02-csc-factory-14.jpg` | materiale del cliente |
-| Chiusura, facciata di Via Zanella | `img/sede-1020.jpg`, `-700.jpg` | Ciesseci, `2022-04-sede-nuova-1.jpg` | materiale del cliente |
-| Logo | `img/logo-csc-128.png`, `-240.png` (2x) | Ciesseci, `logo-badge-500x486.png` | marchio del cliente |
+1. **Telefono come bottone nella testata fissa: passa.** Testata `sticky`, bottone "Chiama 049 634423" alto 52 px (sotto i 360 px solo il numero). A metà pagina, a 1440 e a 390, si vede e si tocca (`elementFromPoint`). 6 link `tel:`, tutti `tel:+39049634423`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440x900 e 390x844: H1 con "scarpe antinfortunistiche", "Mestrino (PD), dal 1982", stato, Chiama (a 390 largo 350 px su 350, a 409 px dall'alto), WhatsApp e Come arrivare; a 1440 anche Manda il logo e Per email.
+3. **Immagine vera nell'apertura: passa, con riserva.** Lo showroom di Via Zanella (foto loro del 2019, 1024 px), mostrato a 628 x 471 a 1440 e 350 x 233 a 390, mai ingrandito. È una foto da telefono: va rifatta (LEGGIMI). Nessuna illustrazione.
+4. **Zero repertorio: passa.** "indicativ" 0 volte; tolte le cinque foto Unsplash e Pexels (maglietta, coni, telaio, pressa, laser); in `sito/img/` solo foto loro e il logo.
+5. **Foto in serie: passa.** Nove foto loro, stesso trattamento (`pro_img.py`: livelli, saturazione 0,94, nitidezza leggera); due formati a 1440 (4:3 nell'apertura, 3:2 altrove), uno solo a 390; una didascalia su nove foto (la facciata); nessuna ingrandita (file da 640 e 1020 px).
+6. **Palette dal marchio: passa.** Verde scuro della coccarda #00622B (con il suo scuro per il passaggio del mouse), verde chiaro della coccarda #72BA6A solo su fondi scuri, antracite #24292C del furgone e della facciata; neutri freddi. Fondo bianco, nessun beige. Il rosa fluo della shopper e il verde fluo della felpa ci sono nelle loro foto, non come colori della pagina.
+7. **Scala corta e leggibile: passa.** 7 misure a 1440 (14, 17, 20, 24, 32, 44, 64) e 7 a 390 (14, 16, 18, 20, 24, 28, 34); testo 17 e 16 px; nulla sotto i 14 px; H1 64 e 34 px, H2 44 e 28 (fascia della famiglia M).
+8. **Due famiglie al massimo: passa.** Una sola, Archivo: titoli a larghezza 112 % in 700 (come le lettere della coccarda), testo e interfaccia al 100 % in 400 e 700.
+9. **Servizi in schede con la foto: passa.** Quattro schede in quattro colonne (due a 1024, una a 390), tutte cliccabili, stesso taglio 3:2, con nome, riga e link. Le foto sono loro ma deboli (1024 px, telefono): da rifare.
+10. **Almeno tre tipi di prove: non passa (2 su 4).** Cinque cifre dalle fonti (1982, 2019, 50 mm, 1 pezzo, 6 giorni) e la fascia delle marche con la didascalia. Mancano recensioni (nessuna leggibile: Google 429, Facebook con login, Rete Imprese "Nessuna recensione"), clienti con il nome e certificazioni: non inventati, da chiedere (LEGGIMI).
+11. **Lavori con un nome: non passa.** Nelle fonti non c'è nessun lavoro con cliente, luogo e anno; il furgone e i plex sono loro. Da chiedere tre lavori con il permesso del cliente (LEGGIMI).
+12. **Ritmo a blocchi: passa.** Grigio (negozio), antracite (logo), verde pieno (preventivo), grigio (chi siamo), piede antracite; sezioni a 120 px a 1440 e 72 a 390; margini 80 e 20 px.
+13. **Un solo sistema di bottoni: passa.** Pieno e bordato, raggio 6 px, 52 px, testo 17 (16 sul telefono); sui fondi scuri la stessa forma in bianco; ogni chiamata ha il numero.
+14. **Modulo e "dove e quando" per il mestiere: passa, con riserva.** Modulo con su cosa va il logo (11 voci), quanti pezzi, per quando, il logo (lo allego alla mail, lo mando su WhatsApp, non ce l'ho), idea; controlla nome, telefono e supporto e compone un'email con oggetto "Preventivo: supporto, nome". Il file non si allega dal modulo (un mailto non porta allegati): la pagina lo dice e porta a WhatsApp; il campo file va aggiunto quando si collega un servizio (LEGGIMI). Orari in tabella, "Come arrivare" al percorso Google Maps, nessun iframe.
+15. **Piede completo: passa.** Quattro colonne a 1440, testo di almeno 14 px: ragione sociale, P.IVA e C.F., REA, capitale, sede legale, indirizzo operativo, telefono, cellulare, email, orari, Come arrivare, lavorazioni, social con il sottotitolo, Privacy e Cookie. Certificazioni: nessuna nelle fonti.
 
-Nessuna immagine generata dall'IA. Le due foto Pexels nuove sono controllate contro `_prova/usate-campagna.txt` e i `CREDITI.md` delle altre home della campagna: nessuna ripetuta.
+### Compiti della scheda d'uso (par. 8)
 
-## Chiusura e piede
+- **Artigiano, 390x844**: senza scorrere stato "Aperto ora, chiude alle 12:30, riapre alle 14:00", Chiama (`tel:+39049634423`, 52 px), WhatsApp (`wa.me/393278831747`), Come arrivare (Via Zanella 1, Mestrino), la foto dello showroom intera (233 px). "Diadora" in testo a 1326 px (meno di uno scorrimento oltre la prima schermata), "Sabato 8:00-11:00" a 1056 px; la riga delle ferie compare da 30 giorni prima della chiusura. Stato giusto in 11 prove: martedì 10:00 aperto, 13:00 "riapre alle 14:00", 19:00 "riapre domani alle 8:00", sabato 10:30 "chiude alle 11:00", sabato 11:30 "riapre lunedì", domenica, 8 dicembre e Pasquetta festivi, vigilia di Natale sera "riapre lunedì", 21 luglio 2025 con l'avviso "Chiusura estiva: chiuso dal 7 agosto al 24 agosto", 12 agosto 2025 "Chiuso per ferie, riapre lunedì 25 agosto alle 8:00".
+- **Logo da applicare, 1440x900**: "logo", "Stampa" e "ricamo" nella prima schermata, Manda il logo (WhatsApp con il testo) e Per email (oggetto e traccia); furgone, vetrine, striscioni, targhe, timbri e zerbini nominati e linkati nella tavola dei fatti a 856 px; preventivo gratuito e "anche pochi pezzi" sopra i bottoni e nei fatti, "anche su singolo pezzo" nella scheda dei plex; Cataloghi nella sezione del negozio (1677 px).
+- **Regalo, 390x844**: "Entra nello shop" con "la carichi tu" e "Spediamo in tutta Italia" a 1700 px (due scorrimenti), poi la sezione dello shop con RicaMarty e Instagram.
+- **Per tutte**: nessuna foto di repertorio, nessuna frase loro tra virgolette, nessun popup, nessuno scorrimento orizzontale a 320, 360, 390, 768, 1024, 1280, 1440 e 1920 px, nessuna sovrapposizione nell'apertura e nella testata.
 
-- Chiusura "b con foto": "Ti aspettiamo a Mestrino" (frase loro dalla home), testo a sinistra, facciata fino al bordo destro; telefono grande `tel:+39049634423`, cellulare `tel:+393278831747` e WhatsApp, email `mailto:info@ciessecisrl.it`, indirizzo con "Apri la mappa" (Google Maps, ricerca di Via Zanella 1, 35035 Mestrino PD), orari. Nessun riquadro, nessuna tabella.
-- Piede su #EAE8E2: logo PNG a 2x con una riga su chi sono e i recapiti; colonne Lavorazioni, Abbigliamento, Azienda, Seguici (i quattro profili veri, come parole); sotto, la newsletter "Novità e promozioni" (email, bottone, consenso; dimostrativa finché non si collega un servizio, vedi LEGGIMI); riga legale CIESSECI SRL, sede legale Via Cavour 8 Rubano, P.IVA e C.F. 03866700283, REA PD-343821, capitale sociale 10.200,00 €, Privacy, Cookie. A 1024 le quattro colonne stanno in una riga; a 768 due per riga; a 390 si impilano in ordine.
+### Controlli generali
 
-## Controlli (24/10/2026, dopo la rifinitura)
+- Collegamenti: `tel:+39049634423`, `https://wa.me/393278831747` (anche con il testo "vi mando il logo"), `mailto:info@ciessecisrl.it` (con oggetto), una sola mappa: `https://www.google.com/maps/dir/?api=1&destination=Via+Zanella+1,+35035+Mestrino+PD`. Nessuna ancora senza destinazione. Le pagine interne (`abbigliamento/...`, `pubblicita/...`, `shop/`) sono i percorsi del sito di oggi.
+- Console senza errori; con JavaScript spento la riga dello stato mostra gli orari della settimana.
+- Nessun U+2014 nella pagina, negli script, in questa nota, nel LEGGIMI e nei crediti.
+- Dato strutturato `Store` con indirizzo, telefono e orari.
 
-- Screenshot guardati a pezzi: 1440 (prima schermata e pagina intera), 390, 320, 768, 1024, 1920.
-- `scrollWidth` uguale a `innerWidth` da 320 a 2560 px (passo 20 px fino a 1500, poi 80): nessuno scorrimento orizzontale.
-- Schede provate con clic (le cinque), tocco a 390 (tre), tastiera (Tab, frecce con ritorno, Home, Fine, uscita con Tab): `aria-selected`, pannello visibile e altezza della pagina corretti. Menu al tocco a 390: si apre, `aria-expanded` giusto.
-- Newsletter: vuota, senza consenso, completa; tre risposte giuste, la pagina non cambia.
-- Link: `tel:+39049634423` in tre punti, `tel:+393278831747`, WhatsApp, `mailto:info@ciessecisrl.it`, mappa.
-- Console senza errori su file://.
-- Foto (pixel del file per pixel di schermo, schermo 1x): a 1440 nessuna sotto 1 (capo 2,06, schede 1,00, showroom 1,02, felpa 1,52, facciata 1,29); a 1024, 768 e 390 nessuna sotto 1. Sugli schermi 2x restano sotto 1 le foto loro da 1024 px (showroom, facciata) e le schede a tutta larghezza (sorgenti da 1680 a 2400 px per 2880 px di schermo): vanno rifatte dal vero (LEGGIMI). A 1920 la facciata è a 0,99.
-- Nessun U+2014 nella pagina, negli script, nella NOTA e nel LEGGIMI.
-- Strumento dei segnali (`kit/segnali.sh`, home a 1440): 17 soglie su 18 OK. Da correggere: area foto 28,8 % (soglia 35 %). Non la forzo: le foto loro sono di 1024 px e il giudice ha chiesto di non ingrandirne nessuna e di ridurre i segnaposto fuori dalle schede; l'apertura è un capo su carta, che è la ricetta del committente (un oggetto, tanta aria). Con gli scatti veri (LEGGIMI) showroom e facciata potranno crescere. Da guardare: due misure di H2 (58 e 66 px), lasciate così. Nessun gradiente, nessun badge sopra il titolo, nessuna icona, nessuna card, nessuna dissolvenza allo scorrere.
-- Altezza a 1440: 5911 px, dentro 4500-7000.
+### Caratteri e licenze
+
+- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina (`sito/fonts/archivo-latin-var.woff2`, licenza in `sito/fonts/OFL-Archivo.txt`).
+- Foto: solo materiale del loro sito (`assets/originali/`), da usare con il loro permesso; il logo è il PNG originale ridotto. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
+
+### Non applicato, apposta
+
+- Apertura a tutto schermo con il logotipo o una foto grande (barth, Cly-Del): la foto migliore è di 1024 px e a tutta larghezza si ingrandirebbe; il titolo resta il gesto tipografico e la foto sta a 628 px.
+- Progetti con il nome del cliente, clienti in fascia, certificati scaricabili (punti 6, 7, 8 della famiglia M): non ci sono nelle fonti.
+- Newsletter del piede: tolta (non inviava nulla); in pagina resta un solo modulo, quello del preventivo.
+- Il "1982" gigante e la felpa 82 come segno grafico: la scheda d'uso li indica come cosa "da grafico"; il 1982 è nell'occhiello e nelle cifre, la felpa nella foto della prima scheda.
