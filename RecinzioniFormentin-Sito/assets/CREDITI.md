@@ -1,6 +1,10 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026. Nella home finale (dopo la rifinitura) delle foto di repertorio resta solo `pexels-vanderwolf-38439497.jpg` (chiusura); l'apertura è un disegno SVG della loro rete ondulata; delle foto loro sono usate `uploads_2014_04_rete_ondul01.jpg`, `gallery_reti-ondulate_IMG_1130-1.JPG`, `gallery_cancelli_canc082202.jpeg`, `gallery_cancelli_canc082204.jpeg` e `gallery_ringhiere_ringh082202.jpeg`. Licenze lette sulla pagina di ogni foto il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026 (home "livello professionale"). **Nella home non c'è più nessuna foto di repertorio**: per decisione del committente ("niente") sono uscite la ringhiera Pexels 38439497 della chiusura e ogni altra foto di `esterne/`, e nessuna è stata sostituita da illustrazioni. In pagina ci sono solo foto loro, tutte tagliate in 4:3 e trattate allo stesso modo da `../_prova/script/pro_img.py`:
+- apertura: `gallery_cancelli_canc082204.jpeg`;
+- lavori: `gallery_cancelli_canc082201.jpeg`, `canc082202`, `canc082203`, `canc082206`, `gallery_ringhiere_ringh082202.jpeg`, `ringh082203`;
+- schede: `gallery_ringhiere_ringh082201.jpeg`, `gallery_cancelli_canc082207.jpeg`, `gallery_ringhiere_img_1061.jpg`, `gallery_reti-ondulate_IMG_1130-1.JPG`, `uploads_2016_01_20151223_103842n.jpg` (esposizione con i pannelli Betafence, dicembre 2015, probabilmente nella sede di prima), `uploads_2014_04_IMG_1135.jpg` (banco, 2014, probabilmente nella sede di prima).
+Uscite rispetto alla versione 1: `uploads_2014_04_rete_ondul01.jpg` e il disegno SVG della rete ondulata. L'uso delle foto loro va confermato con l'azienda e, per le case riconoscibili, con i clienti (LEGGIMI).
 
 ## Materiale dell'azienda in `originali/`
 
@@ -21,7 +25,7 @@ Logo:
 - `logo-marchio-piatto.svg`: la stessa forma senza ombra, con la rete in un solo colore, come sull'insegna del negozio che si vede in `uploads_2014_04_IMG_1135.jpg`. È una proposta di uso, non un logo nuovo.
 - La favicon (`uploads_2014_01_favicon.ico`) è 32x32 e quasi vuota.
 
-## Foto di repertorio in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Formentin]
+## Foto di repertorio in `esterne/` (non usate nella home attuale)
 
 Nessuna è di Formentin, dei suoi lavori o della sua sede: servono solo a mostrare la direzione artistica nella proposta, e il LEGGIMI lo dirà. Nessuna immagine generata dall'IA, nessun marchio riconoscibile in primo piano. Nessuna è già usata in un'altra home della campagna: ho cercato ID e numeri di tutte le foto in tutti i `*-Sito/assets/CREDITI.md` e `*-Sito/LEGGIMI.md` il 24/10/2026 (0 risultati per ciascuna).
 

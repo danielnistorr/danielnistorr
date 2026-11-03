@@ -1,61 +1,81 @@
-# Home finale, "La rete ondulata": nota
+# Home "Recinzioni e cancelli, dalla vendita alla posa": nota
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `index.sorgente.html`, screenshot con `shots.mjs`; con l'argomento `tutte` anche 320, 768, 1024 e 1920). Controlli: `misura.mjs` (scorrimento orizzontale da 320 a 2560) e `prova_gesti.mjs` (campionario, menu, fisarmonica, console, nitidezza, collegamenti).
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, carattere in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, screenshot con `pro_shots.mjs` e `pro_shots.py`, controlli con `pro_controlli.mjs`; con l'argomento `tutte` anche 320, 768 e 1024). La versione di prima ("La rete ondulata la facciamo noi") è copiata com'era in `_prova/versione-1-originale/` (pagina, immagini e screenshot).
+
+Screenshot in questa cartella (ora simulata lunedì 2 novembre 2026, 10.00, quindi "Aperto ora"): `home-1440.jpg` (10015 px), `home-1440-prima-schermata.jpg` (1440 x 900), `home-390.jpg` (14465 px), `home-390-prima-schermata.jpg` (390 x 844), `chiusura-1440.jpg` (richiesta e piede).
 
 ## L'idea
 
-Una parete chiara e, a filo del fondo della prima schermata, la recinzione: è il confine della pagina e il titolo sta sulla parete sopra di lei. In questo giro la recinzione non è più il pannello verde di repertorio ma la cosa che solo Formentin fa: la loro rete ondulata a maglia intrecciata, disegnata in SVG con le misure vere di maglia e filo, i fili ondulati che passano sopra e sotto agli incroci e l'ombra sulla parete. Il titolo la nomina: "La rete ondulata la facciamo noi". Con il nome di un concorrente la prima schermata non regge: le sette maglie sono quelle della loro pagina `reti-ondulate/`.
-L'unico gesto della pagina sta nella prima schermata: le sette maglie di serie sono un gruppo di scelta sopra la rete; toccandone una, la rete in fondo alla schermata si ridisegna con quella maglia e quel filo. Il disegno è vettoriale, quindi nitido a ogni densità di pixel e a ogni larghezza.
+Prima l'uso, poi l'identità, poi la forma. La scheda d'uso (`_prova/uso/SCHEDA.md`) dice chi apre il sito: il privato con la casa nuova, al telefono la sera (preventivo); l'impresa in furgone (è aperto adesso? che cosa tengono? come arrivo?); il tecnico al computer (Betafence, altezze, dove mando il disegno). La home risponde a tutti e tre nella prima schermata e poi si apre come un sito di servizi tecnici (famiglia S): testata fissa con il telefono come bottone, apertura con mestiere, luogo, prova e azioni, indice dei tre usi più il banco, preventivo in tre passi, lavori, prodotti in schede con foto loro, aziende e Betafence, banco, dove e orari, chi siamo con i numeri, chiusura con il telefono grande e il modulo, piede in quattro colonne.
+
+Identità: le loro parole e il loro tono al "noi" e al "voi" ("Offriamo un servizio completo", "dalla più semplice ed economica a quella più complessa", "Per un preventivo senza impegno, vi invitiamo a contattarci", "Facilmente raggiungibile da corso Stati Uniti..."), il loro marchio (rombo di rete azzurra e F verde), il loro verde come colore delle azioni e l'antracite dei loro lavori in alluminio come colore dei blocchi scuri. Nessun gioco di parole, nessun campionario interattivo, nessun disegno al posto delle foto.
 
 ## La pagina, in ordine
 
-1. **Apertura** (1440x900): testata con il marchio fedele, Produzione, Prodotti, Lavori, Esposizione e 049 760801. Titolo a 116 px su due righe; frase "Recinzioni e cancelli dal progetto alla posa, per abitazioni, aziende e campi sportivi. A Saonara, dai primi anni Settanta."; a sinistra "Le sette maglie di serie, disegnate in proporzione." con un righello di 40 mm disegnato nella stessa unità del disegno; a destra le sette maglie; sotto, a tutta larghezza, la rete. A 390 il titolo va su due righe a 40 px, le maglie su due file da quattro e la rete occupa il fondo della schermata (circa 300 px).
-2. **Chi siamo e produzione** (inizia a y 900 a 1440): il paragrafo grande dalla pagina Azienda, poi due foto loro della rete ondulata (sul banco; posata in pannelli con telaio) mostrate a 400 px CSS, e il testo della produzione (filo nero o zincato, su ordinazione in rotolo o in pannelli; colonne, ringhiere, inferriate e tettoie).
-3. **Per la casa, per l'azienda, per il campo sportivo**: tre righe, nome grande e una frase; sotto una riga sola su Betafence, materiali ed esposizione. Nessuna sigla di norma e nessuna misura in mm.
-4. **Lavori recenti in alluminio**: tre foto loro, intere in 4:3, a 400 px CSS.
-5. **Chiusura** e **piede**. Pagina alta 4524 px a 1440, piede compreso.
+1. **Testata fissa** (88 px a 1440, 72 a 390): marchio, "Recinzioni Formentin / Villatora di Saonara" (a 390 solo "Formentin", sotto i 380 px solo il marchio), Prodotti, Lavori, Aziende, Attrezzature edili, Dove siamo, l'email (da 1400 px) e il bottone "049 760801". Finché i bottoni dell'apertura sono in vista il bottone della testata è bordato, poi diventa verde pieno: un solo verde pieno alla volta. Sotto i 1180 px il menu va nel bottone "Menu".
+2. **Apertura**: a 1440 testo a sinistra e il loro cancello scorrevole antracite (`canc082204`) a destra, 600 px CSS. Occhiello "Villatora di Saonara (PD)", H1 "Recinzioni e cancelli, dalla vendita alla posa" (64 px), "Dai primi anni Settanta, rivenditori e installatori ufficiali Betafence. La posa la esegue anche il nostro personale.", bottoni "Chiama 049 760801" e "Manda foto e misure" (email con oggetto e traccia), stato "Aperto ora, fino alle 12.00" con "Mappa", indirizzo ed email. A 390 la foto va in cima a tutta larghezza (293 px), poi lo stesso testo, i due bottoni a tutta larghezza e lo stato: tutto in 818 px.
+3. **Indice su antracite**: Per la casa, Per le aziende, Per gli impianti sportivi, Per le imprese (con cinque categorie del banco). A 1440 comincia a 774 px, dentro la prima schermata.
+4. **Come chiedere il preventivo** (grigio zinco): tre passi numerati (foto e misure, vi richiamiamo, venite a vedere i modelli; "Preventivo gratuito, previo appuntamento"), "Manda foto e misure", "Chiama", "Oppure compilate la richiesta".
+5. **Lavori recenti** (antracite): sei lavori loro in alluminio, 4:3, con il nome del lavoro (a 390 i primi quattro), poi "Volete vedere i modelli dal vero? L'esposizione è in sede, su appuntamento." con "Appuntamento 049 760801" e "Indicazioni stradali".
+6. **Prodotti** (bianco): sei schede con la foto loro, tutte cliccabili: Recinzioni in alluminio, Cancelli carrai e pedonali, Ringhiere parapetti e inferriate, Rete metallica e pali (portano al modulo con il tipo di lavoro già scelto), Betafence per aziende e impianti sportivi (porta alla sezione aziende), Attrezzature edili e ferramenta (porta al banco).
+7. **Aziende, condomini, impianti sportivi**: "Rivenditori e installatori ufficiali Betafence", tabella dei sistemi (Securifor 2,0 e 2,4 m, su ordinazione 3,0; Nylofor; Decofor; maglia sciolta Extra Forte; ForFence), riquadro "Mandateci il disegno" con i dati che servono e l'email con la traccia per l'azienda; fascia Betafence, ForFence, EN 13241-1 con la didascalia.
+8. **Attrezzature edili e ferramenta al banco** (grigio): dodici categorie, "Si eseguono lavori di carpenteria e lavorazione di grigliati elettrosaldati", riquadro con lo stato, gli orari, "Chiama" e "Indicazioni stradali".
+9. **Dove siamo**: indirizzo grande, come arrivare, "Indicazioni stradali" e "Apri la mappa"; tabella degli orari con il giorno di oggi in verde e lo stato; telefono, cellulare, email.
+10. **Chi siamo** (antracite): la frase della pagina Azienda e quattro numeri in azzurro a 96 px (50+ anni, 4 materiali, 3 usi, 3,0 m).
+11. **Richiesta** (grigio): "Chiamateci o scriveteci", il telefono a 96 px, cellulare, email, orari; modulo che compone l'email.
+12. **Piede** (antracite): marchio e riga, Prodotti, Orari, Contatti; riga legale con ragione sociale, indirizzo, P.IVA, Privacy e Cookie.
 
-## Caratteri e colori
+## Livello professionale
 
-- **Geologica** (Google Fonts, SIL Open Font License 1.1, uso commerciale libero; file `sito/fonts/geologica-latin-var.woff2`, licenza in `sito/fonts/OFL.txt`), una sola famiglia variabile: 300 per i titoli, 400 per il testo, 500 per enfasi e nomi; cifre tabellari per telefono, orari e maglie. Riferimento: Heras (sez. 7 dell'analisi), titolo grande e leggero in un grottesco razionale.
-- Colori, scaldati in questo giro: calce calda #F2F0EB, parete dell'apertura #E8E5DE, piede #E9E6DF, antracite #1F2629 per i testi (13,5:1 sulla calce, 12,2:1 sulla parete), grigio #50585B per i secondari (6,4:1 sulla calce, 5,8:1 su parete e piede), verde scuro #0B5A4C per la maglia scelta (7,1:1), filetti #CFC9BE. La rete: filo zincato #A7AEB0 con bordo #3A4245 e un riflesso chiaro. Il marchio usa i suoi colori (#5A94F7, #08B508).
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività", e per le foto "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia S (servizi tecnici e imprese), struttura A1 adattata: le recensioni, la squadra e le zone servite non ci sono perché non sono nelle fonti (vedi LEGGIMI). Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14 (`riferimenti.jpg` e i file `-390`), le pagine intere di Kline e Wilson a pezzi; confronto con la colonna di destra di `_invio/zona/home/livello-professionale.jpg` e le note di Unicar e Fornasiero.
 
-## Interazione
+Dalla versione 1 tengo: i colori del marchio (azzurro #5A94F7 e verde #08B508 nel marchio, il verde scurito per le azioni), il carattere Geologica (una sola famiglia), il marchio ridisegnato, le foto loro dei lavori in alluminio, il telefono e l'email con i loro numeri. Tolgo: il titolo "La rete ondulata la facciamo noi" (la scheda d'uso lo indica come prodotto di nicchia e registro da grafico), il campionario di maglie disegnato in SVG, la foto Pexels della chiusura, la calce beige, il verde petrolio #0B5A4C, le due foto della rete ondulata in apertura di sezione.
 
-Campionario delle sette maglie (10x10 filo 2; 12x12 filo 2; 15x15 filo 2,5; 20x20 filo 3; 30x30 filo 3; 30x30 filo 4; 40x40 filo 4): gruppo di scelta ARIA con clic, tocco, frecce, Home e Fine; la maglia scelta prende il filetto verde e la rete si ridisegna. Ogni filo è una sinusoide con due onde per maglia (come nelle foto loro), fili orizzontali e verticali in controfase; agli incroci alterni il filo orizzontale torna sopra il verticale. Scala: 1 mm = 96/25,4 px CSS; la pagina non promette più la "scala 1:1" né la "misura vera" (la grandezza fisica cambia con lo schermo): dice "in proporzione" e mostra il righello nella stessa unità. Cambio netto, senza dissolvenze; transizioni di 0,15 s solo su bottoni e link. Sotto i 900 px un bottone Menu; a 600 px e meno il piede si apre a fisarmonica con veri bottoni.
+### Le 15 regole, una per una
 
-## Chiusura e piede
+Misure di `node _prova/script/pro_controlli.mjs <cartella>` (esito in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi a 1440, 1280, 1024, 768, 390 e 320.
 
-- **Chiusura** ("b con foto", testo a sinistra e foto a destra fino al bordo; a 900 px e meno foto a tutta larghezza sotto): "Ampia esposizione in sede, su appuntamento, e preventivi gratuiti" (dalla home di oggi, con "previo appuntamento"), telefono grande con `tel:`, cellulare, `mailto:`, indirizzo con "Apri la mappa", orari, "Facilmente raggiungibile da corso Stati Uniti e dal casello Padova Zona Industriale."
-- **Piede**: marchio con "Formentin / Recinzioni e cancelli" in antracite e una riga su chi sono; colonne Prodotti (Reti ondulate in testa), Azienda, Contatti (solo telefono, mail e Apri la mappa, per non ripetere la chiusura); riga legale con ragione sociale, indirizzo, P.IVA, Privacy e Cookie. Niente colonna social: nessun profilo trovato. **Niente newsletter**: il sito è fermo dal 2016, non hanno cataloghi propri, fiere né collezioni, e una recinzione si compra una volta ogni vent'anni; resterebbe vuota.
+1. **Telefono come bottone nella testata fissa: passa.** Testata sticky 88/72 px, bottone "049 760801" alto 48 px; a metà pagina, a 1440 e a 390, il bottone si vede e si tocca (`elementFromPoint`). 12 link `tel:`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** H1 "Recinzioni e cancelli, dalla vendita alla posa", occhiello "Villatora di Saonara (PD)", prova "Dai primi anni Settanta, rivenditori e installatori ufficiali Betafence", "Chiama 049 760801". A 390 il bottone è largo quanto la colonna (350 px) e alto 56; a 390 si vedono anche "Manda foto e misure", lo stato e "Mappa".
+3. **Immagine vera nell'apertura: passa, con riserva.** È un loro lavoro (`canc082204`, cancello scorrevole e recinzione antracite) e non un oggetto scontornato; ma non mostra persone, mezzi o la sede, e il file è di 800 px (a 1440 è a 600 px CSS, 1,33x). La foto da fare è nel LEGGIMI.
+4. **Zero repertorio: passa.** "indicativ" 0 volte; nessuna immagine da `assets/esterne`, Unsplash o Pexels; in `sito/img/` solo foto loro e il marchio.
+5. **Foto in serie: passa.** 13 foto, un solo formato (4:3), stesso trattamento in `pro_img.py` (chiari compressi sopra 200, colore 0,9, contrasto 1,04); nessuna didascalia: le righe sotto i lavori e le schede sono i loro nomi, non didascalie. Restano foto da telefono di giorni e luci diverse: la serie vera la fa la giornata di foto del LEGGIMI.
+6. **Palette dal marchio: passa.** Colori: `--verde` #0A7A32 (F del marchio, scurito: 5,5:1 sul bianco), `--verde-scuro` per il passaggio del mouse, `--azzurro` #5A94F7 (rete del marchio, solo cifre grandi e frecce su antracite), `--antracite` #2B3134 (il colore dei loro lavori in alluminio); neutri bianco, grigio zinco #EEF1F2, grigi di testo e filetti. Nessun colore scritto fuori da `:root` (a parte i due colori del marchio dentro l'SVG). Nessun beige.
+7. **Scala tipografica corta: passa.** 8 misure a 1440 (14, 17, 19, 23, 32, 48, 64, 96) e 7 a 390 (14, 17, 20, 24, 30, 36, 44); testo corrente 19 px a 1440 e 17 a 390; niente sotto i 14 px; H1 64/36, H2 48/30.
+8. **Due famiglie al massimo: passa.** Una: Geologica 400 e 700, anche per campi e bottoni.
+9. **Servizi in schede con la foto: passa.** Griglia di 3 colonne a 1440 (2 a 768-1023, 1 al telefono), sei schede con la foto loro in 4:3, nome a 23 px, riga e link; tutta la scheda è un link.
+10. **Almeno tre tipi di prova: non passa (2 su 4).** Ci sono i numeri (50+ anni, 4 materiali, 3 usi, 3,0 m) e la fascia dei fornitori con la didascalia (Betafence, ForFence, EN 13241-1). Mancano le recensioni (le frasi trovate sono copie da directory, da ricontrollare su Google Maps e da usare solo con il permesso: LEGGIMI) e i clienti con il nome (nessuno nelle fonti). Non inventati.
+11. **I lavori hanno un nome: non passa.** Sei lavori con il nome del lavoro, ma senza luogo né anno (non sono nelle fonti), e le foto sono di 800 px: a 405 px CSS per restare nitide, non a metà pagina. Da chiedere (LEGGIMI).
+12. **Ritmo a blocchi: passa.** Tre blocchi antracite oltre al piede (indice, lavori, chi siamo) e tre grigi (preventivo, banco, richiesta); sezioni a 120 px a 1440 e 64 px a 390; margini 80 px a 1440 e 20 a 390.
+13. **Un solo sistema di bottoni: passa.** Pieno verde e bordato, raggio 4 px, 56 px (48 in testata), testo 17 px; tutti i bottoni di chiamata contengono il numero.
+14. **Modulo e "dove" per il mestiere: passa in parte.** Modulo in home con tipo di lavoro, comune e via, metri lineari, altezza, cancelli, quando serve (urgenza), descrizione e la riga sulle foto (un mailto non porta allegati: si allegano nella mail che si apre); controllo di nome, telefono e indirizzo. Nessun iframe di mappa. Manca l'elenco dei comuni serviti: la zona di posa non è nelle fonti (LEGGIMI).
+15. **Piede completo: passa in parte.** Quattro colonne, testo di almeno 14 px, ragione sociale, P.IVA (da atoka, da confermare), indirizzo che apre la mappa, telefono, cellulare ed email cliccabili, orari, Betafence, Privacy e Cookie. Mancano le zone servite (come al punto 14).
 
-## Foto
+### Compiti della scheda d'uso
 
-| In pagina | Origine | Licenza |
-|---|---|---|
-| Apertura: la rete ondulata | disegno SVG nella pagina, dalle misure di `reti-ondulate/` | nessuna foto |
-| Rete ondulata sul banco | sito Formentin, `uploads_2014_04_rete_ondul01.jpg` (800 px) | dell'azienda |
-| Rete ondulata posata in pannelli | sito Formentin, `gallery_reti-ondulate_IMG_1130-1.JPG` (800 px) | dell'azienda |
-| Lavori: portale, recinzione e cancello, doghe sul muretto | sito Formentin, `canc082202`, `canc082204`, `ringh082202` (800x600) | dell'azienda, permesso dei clienti da chiedere |
-| Chiusura, ringhiera e ombra sul muro | Jan van der Wolf, Pexels 38439497 | Pexels License |
+- *Privato, 390 x 844*: senza scorrere la foto di un loro cancello e recinzione, "dalla vendita alla posa", "Villatora di Saonara", "Chiama 049 760801" (`tel:+39049760801`, 350 x 56) e "Manda foto e misure" (`mailto:` con oggetto "Preventivo recinzione" e la traccia: nome, telefono, indirizzo, metri, altezza, cancelli, "Allego le foto"). Con uno scorrimento i tre passi del preventivo (y 1122) e la mail (y 1673), con "Preventivo gratuito, previo appuntamento". Con due scorrimenti quattro lavori loro (y 2507). "L'esposizione è in sede, su appuntamento" e "Indicazioni stradali" subito sotto i lavori.
+- *Impresa, 390 x 844*: lo stato nella prima schermata, giusto a lunedì 10.00 ("Aperto ora, fino alle 12.00"), lunedì 12.30 ("Chiuso ora, riapre alle 13.30"), venerdì 18.00 ("riapre lunedì alle 8.00"), sabato ("su appuntamento, chiamate prima"), domenica e festivi nazionali con Pasquetta. "Mappa" con un tocco nella prima schermata, "Indicazioni stradali" (navigazione verso via Lombardia 17) nel banco e in Dove siamo. "Per le imprese" con cinque categorie nell'indice (y 3275, entro tre scorrimenti) e la sezione del banco con dodici categorie dal menu.
+- *Tecnico, 1440 x 900*: telefono ed email in testata e nell'apertura; "rivenditori e installatori ufficiali Betafence" nell'apertura e nell'indice "Per le aziende" e "Per gli impianti sportivi"; nella sezione aziende i sistemi con le altezze, "Mandateci il disegno" con i dati che servono (metri lineari e altezza, accessi, indirizzo, referente) e l'email con oggetto "Richiesta per azienda o impianto sportivo"; "La posa in opera è eseguita anche da nostro personale".
+- Nessuno scorrimento orizzontale a 320, 360, 390, 430, 768, 1024, 1280, 1440 e 1920; nessuna sovrapposizione in testata e apertura; zoom permesso.
 
-Uscite in questo giro: il pannello verde di repertorio (Pexels 20182917) e la recinzione a doghe bianche (Unsplash YCEJqQeEsYA). Trattamento in PIL: chiari verso la calce calda, colore naturale (saturazione 0,85-0,95 invece di 0,2-0,62), leggera dominante calda. Ogni foto ha la versione 2x con `srcset`: le foto loro a 800 px per 400 px CSS, la chiusura a 1440 px per 720 px CSS.
+### Caratteri e licenze
 
-## Cosa è cambiato dopo il giudizio cieco
+- **Geologica** (Google Fonts, SIL Open Font License 1.1, uso commerciale libero), file variabile `sito/fonts/geologica-latin-var.woff2` servito dalla pagina, licenza in `sito/fonts/OFL.txt`. Pesi 400 e 700, cifre tabellari per numeri e orari.
+- Foto: solo materiale del loro sito (gallerie e libreria media), da usare con il loro permesso e, per le case riconoscibili, con quello dei clienti. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
 
-- Apertura: la rete ondulata loro al posto del pannello di repertorio, il titolo che la nomina, niente legende, niente bottone e link sotto la frase (il telefono resta in testata); il campionario sale nella prima schermata e diventa il gesto dell'apertura.
-- La produzione segue subito l'apertura (y 900 a 1440); il paragrafo di chi siamo è fuso in quella sezione.
-- Disegno della rete rifatto: fili ondulati riempiti in grigio zinco con bordo antracite e riflesso, sopra e sotto agli incroci, ombra sulla parete.
-- "Scala 1:1" e "misura vera" tolte; "in proporzione" con righello in mm.
-- Sezione degli usi: tolta la foto di repertorio e la terza colonna di sigle e norme; una frase per uso.
-- Colori scaldati e foto loro senza desaturazione forzata.
-- Foto 2x; tre lavori visibili anche a 768 (tre colonne); marchio del piede in antracite; colonna Contatti del piede ridotta; "su appuntamento" nella chiusura e frase sui materiali corretta; tolto il preload del carattere (nessun errore in console su file://); `-webkit-tap-highlight-color:transparent` su bottoni e link.
+| In pagina | File d'origine (`assets/originali/`) |
+|---|---|
+| Apertura | `gallery_cancelli_canc082204.jpeg` |
+| Lavori | `canc082201`, `canc082202`, `canc082203`, `ringh082202`, `ringh082203`, `canc082206` |
+| Schede | `ringh082201` (alluminio), `canc082207` (cancelli), `gallery_ringhiere_img_1061.jpg` (ringhiere), `gallery_reti-ondulate_IMG_1130-1.JPG` (rete), `uploads_2016_01_20151223_103842n.jpg` (esposizione Betafence), `uploads_2014_04_IMG_1135.jpg` (banco) |
 
-## Controlli
+Ogni foto ha la versione da 400 px e quella da 700-800 px con `srcset` (a 1440 le schede sono a 405 px CSS: 2x).
 
-- Screenshot in questa cartella: `home-1440.jpg` (4524 px), `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`; guardati a pezzi, più 320, 768, 1024 e 1920 (intere e prime schermate).
-- `scrollWidth` uguale a `innerWidth` a 320, 360, 390, 430, 600, 768, 900, 1024, 1180, 1280, 1440, 1920 e 2560 (`misura.mjs`).
-- Gesti (`prova_gesti.mjs`): clic su 40x40, freccia destra (passa a 10x10 con il fuoco), End e freccia sinistra (30x30 filo 4), Home, tocco a 390 su 30x30; menu e fisarmonica al tocco; zero errori e zero messaggi di errore in console su file://. A DPR 2 il browser carica i file da 800 px per le foto da 400 px CSS (rapporto 2,0; a 390 2,3) e quello da 1440 px per la chiusura da 720 px CSS (2,0).
-- Collegamenti: `tel:+39049760801`, `tel:+393357740278`, `mailto:info@recinzioniformentin.it`, Google Maps su "Via Lombardia 17 35020 Saonara PD".
-- `segnali.sh` a 1440: 16 soglie su 18 a posto; "contenuto datato" da guardare (un anno preciso manca, vedi LEGGIMI); "area foto" al 20,1 % contro il 35 % perché lo strumento conta solo img, video e canvas: l'oggetto dell'apertura è un disegno SVG a tutta larghezza (con lui l'area d'immagine sale a circa il 26 %). Scelta voluta: le foto loro sono a 800 px e mostrate più grandi sarebbero sfocate; la rete torna in foto vera appena c'è lo scatto del punto 1 del LEGGIMI.
-- Nessun carattere U+2014 nella pagina, nella nota e nel LEGGIMI. Nessuna icona Lucide, nessun gradiente, nessuna dissolvenza allo scorrere, nessun effetto che segue il cursore.
+### Controlli fatti (3/11/2026)
+
+- `pro_controlli.mjs`: regole 1-9, 12 e 13 superate nelle misure; 10 e 11 no; 14 e 15 in parte (mancano i comuni). Compiti d'uso, collegamenti, ancore, larghezze, errori di script: tutti a posto.
+- Collegamenti: `tel:+39049760801`, `tel:+393357740278`, `mailto:info@recinzioniformentin.it` con oggetto (e traccia dove serve), Google Maps `search` su "Recinzioni Formentin, Via Lombardia 17, 35020 Saonara PD" e `dir` su "Via Lombardia 17, 35020 Saonara PD".
+- Modulo: invio vuoto fermato con l'avviso e il fuoco sul nome; con i campi pieni compone `mailto:` con oggetto "Preventivo: <tipo>" (letto nella prova, non aperto); le schede scelgono il tipo di lavoro.
+- Menu a 390 aperto e chiuso dopo il tocco su una voce.
+- Screenshot guardati a pezzi a 1440 e a 390, pagine intere a 320, 768 e 1024. Nessun U+2014 in pagina, nei .md e negli script.
+- Niente newsletter e niente social: nessun profilo trovato, e una recinzione si compra una volta ogni vent'anni.

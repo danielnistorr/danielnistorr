@@ -23,8 +23,8 @@
   --testo-2:#4A5562;
   --filo:rgba(15,23,32,.16);
   --filo-chiaro:rgba(255,255,255,.22);
-  /* scala tipografica: 7 misure */
-  --f1:14px; --f2:16px; --f3:18px; --f4:22px; --f5:30px; --f6:44px; --f7:64px;
+  /* scala tipografica: 8 misure, l'ottava solo per le tre cifre forti */
+  --f1:14px; --f2:16px; --f3:18px; --f4:22px; --f5:30px; --f6:44px; --f7:64px; --f8:128px;
   --m:80px; --g:24px; --sez:120px; --h-testata:88px;
 }
 *{box-sizing:border-box}
@@ -75,27 +75,22 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .lingua button[aria-pressed="true"]{color:var(--testo);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.4em}
 .testata .btn{height:48px;padding:0 18px}
 .testata .scrivi,.apri-menu{display:none}
-.tel-breve{display:none}
+.tel-breve,.pref{display:none}
+html[lang=en] .pref{display:inline}
+.apri-menu svg,.scrivi svg{width:22px;height:22px;stroke-width:1.7}
+.apri-menu svg{display:none}
 
-/* Apertura: blocco scuro, come il sottosuolo del video */
-.apertura{background:var(--notte);color:var(--bianco);padding:72px 0 0}
-.apertura .griglia{align-items:start}
-.ap-testo{grid-column:1/8;padding-top:4px}
-.apertura h1{font-size:var(--f7);line-height:1.04;letter-spacing:-.032em;max-width:11.5em}
-.apertura .lead{margin-top:28px;max-width:30em;color:rgba(255,255,255,.88)}
+/* Apertura: blocco scuro; il gesto è il simbolo del marchio, grande, appoggiato sulla striscia */
+.apertura{background:var(--notte);color:var(--bianco);padding:88px 0 0;overflow:hidden}
+.apertura .griglia{align-items:end}
+.ap-testo{grid-column:1/8;grid-row:1;padding:4px 0 72px;position:relative;z-index:1}
+.apertura h1{font-size:var(--f7);line-height:1.04;letter-spacing:-.032em}
+.apertura .lead{margin-top:28px;max-width:27em;color:rgba(255,255,255,.88)}
 .apertura .azioni{margin-top:40px}
-.ap-lato{grid-column:8/13}
+.ap-segno{grid-column:6/13;grid-row:1;align-self:end;min-width:0;padding-left:48px}
+.ap-segno img{width:calc(100% + (100vw - min(100vw - 2 * var(--m), 1280px)) / 2);max-width:none;height:auto}
 .prova-breve{display:none;margin-top:16px;font-size:var(--f1);color:rgba(255,255,255,.78)}
-.video-box{position:relative;aspect-ratio:16/9;background:var(--notte)}
-.video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;overflow:hidden;background:var(--notte);color:var(--bianco);font:inherit}
-.video img{width:100%;height:100%;object-fit:cover;opacity:.9;transition:opacity .15s}
-.video:hover img{opacity:1}
-.video .play{position:absolute;left:20px;bottom:20px;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 20px 0 16px;border-radius:3px;background:var(--bianco);color:var(--testo);font-size:var(--f2);font-weight:700}
-.video .play svg{width:16px;height:16px;fill:var(--blu)}
-.video-nota{margin-top:14px;font-size:var(--f1);line-height:1.45;color:rgba(255,255,255,.72)}
-.video-nota a{color:rgba(255,255,255,.86)}
-.ingressi{grid-column:1/-1;list-style:none;margin:72px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--filo-chiaro)}
+.ingressi{grid-column:1/-1;grid-row:2;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--filo-chiaro)}
 .ingressi li+li{border-left:1px solid var(--filo-chiaro)}
 .ingressi a{display:flex;flex-direction:column;gap:8px;height:100%;padding:28px 24px 36px;text-decoration:none;color:var(--bianco)}
 .ingressi li:first-child a{padding-left:0}
@@ -106,65 +101,95 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .ingressi .ponti-porta a:hover{background:var(--blu-scuro)}
 .ingressi .ponti-porta .et{color:rgba(255,255,255,.86)}
 
-/* Versioni */
-.versioni{background:var(--nebbia);padding:var(--sez) 0}
+/* Versioni: un solo modello di scheda per le cinque versioni */
+.versioni{padding:var(--sez) 0}
 .capo{align-items:end;margin-bottom:56px}
 .capo .tit{grid-column:1/7}
 .capo .lead{grid-column:7/13;font-size:var(--f3);color:var(--testo-2)}
 .schede{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
-.scheda{position:relative;display:flex;flex-direction:column;background:var(--bianco);padding:0 0 24px;text-decoration:none;color:var(--testo)}
+.scheda{display:flex;flex-direction:column;background:var(--nebbia);text-decoration:none;color:var(--testo)}
 .scheda:hover{color:var(--testo);outline:1.5px solid var(--blu)}
-.scheda img{width:100%;aspect-ratio:3/2;object-fit:contain;background:var(--bianco);padding:16px 0 0}
-.scheda .corpo{padding:16px 24px 0;display:flex;flex-direction:column;gap:8px;flex:1}
+.scheda .vis{display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;border-bottom:1px solid var(--filo)}
+.scheda .vis img{width:auto;height:76%;mix-blend-mode:multiply}
+.scheda .cifra{font-size:var(--f7);line-height:1;letter-spacing:-.03em;color:var(--blu)}
+.scheda .cifra small{font-size:var(--f5);letter-spacing:-.01em}
+.scheda .corpo{padding:24px 28px 28px;display:flex;flex-direction:column;gap:8px;flex:1}
 .scheda h3 small{display:block;font-size:var(--f1);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-2);margin-bottom:6px}
 .scheda p{font-size:var(--f2);line-height:1.5;color:var(--testo-2)}
 .scheda .vai{margin-top:auto;padding-top:16px;font-size:var(--f2);font-weight:700;color:var(--blu)}
-.schede.due{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:var(--g)}
-.scheda.dato{padding-top:28px}
-.scheda.dato .cifra{padding:0 24px;font-size:var(--f7);line-height:1;letter-spacing:-.03em;color:var(--blu)}
-.scheda.dato .cifra small{font-size:var(--f5);letter-spacing:-.01em}
-.consiglio{margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding-top:32px;border-top:1px solid var(--filo)}
-.consiglio p{font-size:var(--f4);line-height:1.4;max-width:30em}
+.scheda.consiglio{background:var(--blu);color:var(--bianco)}
+.scheda.consiglio:hover{background:var(--blu-scuro);color:var(--bianco);outline:0}
+.scheda.consiglio .corpo{padding:40px 32px 32px}
+.scheda.consiglio h3{font-size:var(--f5);line-height:1.15;letter-spacing:-.02em}
+.scheda.consiglio p{font-size:var(--f3);color:rgba(255,255,255,.88);margin-top:8px}
+.scheda.consiglio .vai{color:var(--bianco)}
 
-/* Numeri */
+/* Numeri: il blocco blu, tre cifre grandi e tre di contorno */
 .numeri{background:var(--blu);color:var(--bianco);padding:var(--sez) 0}
 .numeri h2{max-width:16em}
-.numeri dl{margin:64px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);row-gap:48px}
+.numeri dl{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g)}
 .numeri dl div{border-top:1px solid var(--filo-chiaro);padding-top:20px}
-.numeri dt{font-size:var(--f7);line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums}
+.numeri dt{line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums}
 .numeri dt small{font-size:var(--f5)}
 .numeri dd{margin:14px 0 0;font-size:var(--f3);line-height:1.45;max-width:18em;color:rgba(255,255,255,.86)}
+.numeri .forti{margin-top:72px}
+.numeri .forti dt{font-size:var(--f8);letter-spacing:-.045em}
+.numeri .forti dd{margin-top:20px}
+.numeri .altri{margin-top:56px}
+.numeri .altri dt{font-size:var(--f6)}
 
-/* Come funziona */
+/* Brevetto, prove e fiere: su grigio, il brevetto per primo e in grande */
+.prove{background:var(--nebbia);padding:var(--sez) 0}
+.prove .griglia{align-items:start}
+.brevetto{grid-column:1/6}
+.brevetto .numero{margin-top:4px;font-size:var(--f7);line-height:1;letter-spacing:-.03em}
+.brevetto .numero a{color:var(--blu);text-decoration:none}
+.brevetto .numero a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.brevetto p+p{margin-top:20px}
+.brevetto .meta{font-size:var(--f2);color:var(--testo-2)}
+.brevetto .meta a{font-weight:700;color:var(--blu)}
+.prove ul{grid-column:7/13;list-style:none;margin:0;padding:0}
+.prove li{padding:24px 0 26px;border-top:1px solid var(--filo)}
+.prove li:last-child{border-bottom:1px solid var(--filo)}
+.prove h3{font-size:var(--f4);font-weight:700}
+.prove li p{margin-top:8px}
+
+/* Come funziona: il loro video a tutta larghezza del contenitore */
 .funziona{padding:var(--sez) 0}
-.punti{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
+.video-box{position:relative;aspect-ratio:16/9;background:var(--notte)}
+.video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;overflow:hidden;background:var(--notte);color:var(--bianco);font:inherit}
+.video img{width:100%;height:100%;object-fit:cover}
+.video .play{position:absolute;left:32px;bottom:32px}
+.video:hover .play{background:var(--blu-scuro);border-color:var(--blu-scuro)}
+.video .play svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.video-nota{margin-top:14px;font-size:var(--f1);line-height:1.45;color:var(--testo-2)}
+.video-nota a{color:var(--testo)}
+.punti{list-style:none;margin:72px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
 .punti li{border-top:2px solid var(--testo);padding-top:20px}
 .punti .n{display:block;font-size:var(--f1);font-weight:700;letter-spacing:.1em;color:var(--blu);margin-bottom:14px}
 .punti p{margin-top:10px;color:var(--testo-2)}
 .accessori{margin-top:72px;align-items:start}
 .accessori h3{grid-column:1/5;font-size:var(--f5);line-height:1.2;letter-spacing:-.02em}
 .accessori .testo{grid-column:5/10}
-.accessori .testo p+p{margin-top:12px}
 .accessori .azioni{grid-column:10/13;justify-content:flex-end}
-
-/* Prove */
-.prove{padding:0 0 var(--sez)}
-.prove ul{list-style:none;margin:0;padding:40px 0 0;border-top:1px solid var(--filo);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
-.prove h3{font-size:var(--f4)}
-.prove p{margin-top:10px;font-size:var(--f2);line-height:1.5;color:var(--testo-2)}
-.prove a{font-weight:700;color:var(--blu)}
 
 /* Referenze */
 .referenze{background:var(--nebbia);padding:var(--sez) 0}
+.lavoro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end;background:var(--bianco);padding:48px;margin-bottom:64px;border-left:4px solid var(--blu)}
+.lavoro .etichetta{grid-column:1/-1}
+.lavoro h3{grid-column:1/7;font-size:var(--f6);line-height:1.08;letter-spacing:-.025em}
+.lavoro p:not(.etichetta){grid-column:7/13;font-size:var(--f4);line-height:1.4}
+.linguette{display:none}
 .elenchi{align-items:start}
 .elenchi>div{grid-column:span 4}
 .elenchi h3{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:2px solid var(--testo);font-weight:700}
 .elenchi h3 span{font-size:var(--f5);font-weight:400;color:var(--blu)}
+.elenchi h3 span.nome{font-size:inherit;font-weight:700;color:inherit}
 .elenchi ul{list-style:none;margin:0;padding:0}
 .elenchi li{padding:11px 0;border-bottom:1px solid var(--filo);line-height:1.4}
 .elenchi li small{display:block;font-size:var(--f2);color:var(--testo-2)}
 .elenchi .altri{color:var(--testo-2)}
-.referenze .azioni{margin-top:48px}
 
 /* Ponti e viadotti */
 .ponti{background:var(--notte);color:var(--bianco);padding:var(--sez) 0}
@@ -173,13 +198,14 @@ h3{font-size:var(--f4);line-height:1.25;letter-spacing:-.01em}
 .ponti .sx .lead{margin-top:28px;color:rgba(255,255,255,.9)}
 .ponti .azioni{margin-top:40px}
 .ponti .dx{grid-column:8/13}
+.ponti .sopra{font-size:var(--f1);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:16px}
 .ponti .dx>ul{list-style:none;margin:0;padding:0}
-.ponti .dx>ul>li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--filo-chiaro);font-size:var(--f5);line-height:1.2;letter-spacing:-.015em}
+.ponti .dx>ul>li{padding:18px 0;border-bottom:1px solid var(--filo-chiaro);font-size:var(--f5);line-height:1.2;letter-spacing:-.015em}
 .ponti .dx>ul>li:first-child{border-top:1px solid var(--filo-chiaro)}
-.ponti .dx>ul>li small{font-size:var(--f2);letter-spacing:0;color:rgba(255,255,255,.72);text-align:right}
 .enti{margin-top:48px}
 .enti p{font-size:var(--f1);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72)}
 .enti ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 40px;font-size:var(--f4);font-weight:700;letter-spacing:-.01em}
+
 
 /* Contatti e richiesta */
 .contatti{padding:var(--sez) 0}
@@ -221,6 +247,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 .piede .col{grid-column:span 3}
 .piede .marchio{color:var(--bianco)}
 .piede .marchio img{width:64px}
+.piede .marchio span{display:inline}
 .piede .col>p{margin-top:20px;color:rgba(255,255,255,.78);line-height:1.5;max-width:20em}
 .piede h2{font-size:var(--f1);font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.3;color:rgba(255,255,255,.62);margin:0 0 18px}
 .piede ul{list-style:none;margin:0;padding:0}
@@ -240,41 +267,43 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 }
 /* 1024: menu nel bottone */
 @media (max-width:1199px){
-  :root{--m:48px;--f6:40px;--f7:56px}
+  :root{--m:48px;--f6:40px;--f7:56px;--f8:112px}
   .menu{display:none}
   .apri-menu{display:inline-flex}
   .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:100%;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:var(--f4)}
   .menu.aperto a{padding:12px 0;border-bottom:1px solid var(--filo)}
   .menu.aperto .solo-menu{display:block}
-  .ap-testo{grid-column:1/8}
-  .ap-lato{grid-column:8/13}
   .accessori h3{grid-column:1/-1;margin-bottom:20px}
   .accessori .testo{grid-column:1/8}
   .accessori .azioni{grid-column:8/13}
-  .prove ul{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
   .contatti .sx{grid-column:1/-1;position:static}
   .modulo{grid-column:1/-1;margin-top:56px}
   .piede .col{grid-column:span 6}
 }
 /* 768 */
 @media (max-width:900px){
-  :root{--m:32px;--sez:96px}
+  :root{--m:32px;--sez:96px;--f8:96px}
   .testata .c{gap:12px}
   .testata .offerta{display:none}
-  .ap-testo,.ap-lato{grid-column:1/-1}
-  .ap-lato{margin-top:56px;max-width:640px}
-  .ingressi{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:56px}
+  .ap-testo{grid-column:1/-1;padding-bottom:0}
+  .ap-segno{grid-column:1/-1;grid-row:2;margin-top:48px;padding-left:0}
+  .ap-segno img{width:calc(100% + var(--m))}
+  .ingressi{grid-row:3;grid-template-columns:repeat(2,minmax(0,1fr))}
   .ingressi li:nth-child(3){border-left:0}
   .ingressi li:nth-child(n+3){border-top:1px solid var(--filo-chiaro)}
   .ingressi li:nth-child(3) a{padding-left:0}
   .capo .tit,.capo .lead{grid-column:1/-1}
   .capo .lead{margin-top:20px}
   .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .schede .scheda:last-child:nth-child(odd){grid-column:1/-1}
-  .numeri dl{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .punti{grid-template-columns:1fr;row-gap:36px}
+  .numeri .altri dt{font-size:var(--f5)}
+  .brevetto,.prove ul{grid-column:1/-1}
+  .prove ul{margin-top:48px}
+  .punti{grid-template-columns:1fr;row-gap:36px;margin-top:56px}
   .accessori .testo,.accessori .azioni{grid-column:1/-1}
   .accessori .azioni{justify-content:flex-start;margin-top:24px}
+  .lavoro{padding:36px 32px}
+  .lavoro h3,.lavoro p:not(.etichetta){grid-column:1/-1}
+  .lavoro p:not(.etichetta){margin-top:16px}
   .elenchi>div{grid-column:1/-1}
   .elenchi>div+div{margin-top:40px}
   .ponti .sx,.ponti .dx{grid-column:1/-1}
@@ -282,46 +311,67 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 }
 /* telefono */
 @media (max-width:560px){
-  :root{--m:20px;--g:16px;--sez:72px;--h-testata:72px;--f3:17px;--f4:20px;--f5:26px;--f6:30px;--f7:36px}
-  .marchio{gap:0}
-  .marchio img{width:40px}
+  :root{--m:20px;--g:16px;--sez:72px;--h-testata:72px;--f3:17px;--f4:20px;--f5:26px;--f6:30px;--f7:36px;--f8:72px}
+  .marchio{gap:8px}
+  .testata .marchio img{display:none}
+  .testata .marchio span{font-size:var(--f3)}
+  html[lang=en] .pref{display:none}
   .testata .tel-testata svg{display:none}
   .etichetta{letter-spacing:.06em}
-  .marchio span{display:none}
-  .testata .c{gap:8px}
+  .testata .c{gap:4px}
   .testata .lingua,.testata .offerta{display:none}
   .testata .scrivi{display:inline-flex}
   .testata .tel-testata{background:var(--blu);border-color:var(--blu);color:var(--bianco)}
-  .testata .btn,.apri-menu{height:48px;padding:0 14px}
+  .testata .btn,.apri-menu{height:48px;padding:0 10px}
+  .testata .scrivi,.testata .apri-menu{width:44px;padding:0;flex:none}
+  .testata .tel-testata{margin-left:2px;flex:none}
+  .scrivi-t,.menu-t{display:none}
+  .apri-menu svg{display:block}
   .menu.aperto .lingua-menu{display:flex}
   .apertura{padding-top:32px}
   .etichetta{margin-bottom:14px}
   .apertura .lead{margin-top:18px}
   .apertura .azioni{margin-top:24px;flex-direction:column}
   .apertura .azioni .btn{width:100%;white-space:normal;text-align:center;height:auto;min-height:52px;padding:12px 16px;line-height:1.3}
-  .ap-lato{margin-top:40px}
+  .ap-segno{margin-top:36px}
   .prova-breve{display:block}
-  .ingressi{margin:40px calc(-1 * var(--m)) 0;grid-template-columns:1fr 1fr}
+  .ingressi{margin:0 calc(-1 * var(--m));grid-template-columns:1fr 1fr}
   .ingressi a{padding:18px 16px 22px}
   .ingressi li:first-child a,.ingressi li:nth-child(3) a{padding-left:var(--m)}
-  .video .play{left:12px;bottom:12px}
+  .video .play{left:12px;bottom:12px;height:48px;padding:0 16px}
   .capo{margin-bottom:36px}
-  .schede,.schede.due{grid-template-columns:1fr}
-  .scheda{display:grid;grid-template-columns:120px 1fr;padding:0}
-  .scheda img{aspect-ratio:1/1;height:100%;padding:8px}
-  .scheda .corpo{padding:16px 16px 16px 4px}
-  .scheda.dato{display:flex;padding:20px 0}
-  .scheda.dato .cifra{padding:0 16px}
-  .scheda.dato .corpo{padding:12px 16px 0}
-  .consiglio{margin-top:32px}
-  .consiglio .btn{width:100%}
-  .numeri dl{margin-top:40px;row-gap:28px}
-  .numeri dd{font-size:var(--f2)}
+  .schede{grid-template-columns:1fr}
+  .scheda{display:grid;grid-template-columns:112px minmax(0,1fr)}
+  .scheda .vis{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--filo)}
+  .scheda .vis img{width:100%;height:auto;max-height:112px;object-fit:contain}
+  .scheda .cifra{font-size:var(--f5)}
+  .scheda .corpo{padding:16px}
+  .scheda.consiglio{display:flex}
+  .scheda.consiglio .corpo{padding:24px 20px}
+  .numeri .forti{margin-top:40px}
+  .numeri dl{grid-template-columns:1fr}
+  .numeri dl div{display:grid;grid-template-columns:108px minmax(0,1fr);column-gap:16px;align-items:baseline;padding:16px 0 18px}
+  .numeri .forti dd,.numeri dd{margin:0;font-size:var(--f2)}
+  .numeri .altri{margin-top:0}
+  .numeri .altri dt{font-size:var(--f5)}
+  .numeri .altri div:last-child{border-bottom:1px solid var(--filo-chiaro)}
+  .numeri .altri dt small{font-size:var(--f3)}
+  .brevetto .numero{font-size:var(--f6)}
+  .prove ul{margin-top:36px}
   .accessori{margin-top:48px}
-  .prove ul{grid-template-columns:1fr;row-gap:28px;padding-top:28px}
-  .ponti .dx>ul>li{flex-direction:column;gap:4px}
-  .ponti .dx>ul>li small{text-align:left}
-  .ponti .azioni .btn,.contatti .btn,.referenze .azioni .btn{width:100%}
+  .lavoro{padding:24px 20px;margin-bottom:40px}
+  .a-linguette .linguette{display:flex;margin-bottom:24px}
+  .linguette button{flex:1;font:inherit;font-size:var(--f2);font-weight:700;height:48px;background:transparent;color:var(--testo);border:1.5px solid var(--testo);border-radius:3px;cursor:pointer}
+  .linguette button+button{margin-left:-1.5px}
+  .linguette button:first-child{border-radius:3px 0 0 3px}
+  .linguette button:last-child{border-radius:0 3px 3px 0}
+  .linguette button:not(:first-child):not(:last-child){border-radius:0}
+  .linguette button[aria-pressed="true"]{background:var(--testo);color:var(--bianco)}
+  .linguette .num{font-weight:400}
+  .a-linguette .elenchi>div{display:none}
+  .a-linguette .elenchi>div.scelta{display:block;margin-top:0}
+  .a-linguette .elenchi h3{display:none}
+  .ponti .azioni .btn,.contatti .btn{width:100%}
   .modulo{padding:24px 16px;margin-top:48px;margin-inline:calc(-1 * var(--m))}
   .campi{grid-template-columns:minmax(0,1fr)}
   .invio .btn{width:100%}
@@ -331,9 +381,10 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .legale p{flex-direction:column}
 }
 @media (max-width:374px){
-  .tel-lungo{display:none}
-  .tel-breve{display:inline}
-  .testata .btn,.apri-menu{padding:0 12px}
+  .coda{display:none}
+  .testata .scrivi,.testata .apri-menu{width:44px;padding:0}
+  .testata .marchio img{display:block;width:30px}
+  .testata .marchio span{display:none}
 }
 .lingua-menu{display:none}
 </style>
@@ -352,10 +403,10 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
       <div class="lingua lingua-menu" role="group" aria-label="Lingua"><button type="button" data-lingua="it" aria-pressed="true">Italiano</button><button type="button" data-lingua="en" aria-pressed="false">English</button></div>
     </nav>
     <div class="lingua" role="group" aria-label="Lingua / Language"><button type="button" data-lingua="it" aria-pressed="true" lang="it" title="Italiano">IT</button><button type="button" data-lingua="en" aria-pressed="false" lang="en" title="English">EN</button></div>
-    <a class="btn bordo tel-testata num" href="tel:+3904441939838" aria-label="Chiama +39 0444 1939838" data-en-aria="Call +39 0444 1939838"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><span class="tel-lungo">0444&nbsp;1939838</span><span class="tel-breve" data-en="Call">Chiama</span></a>
-    <a class="btn bordo scrivi" href="mailto:info@impreservicesrl.it?subject=Richiesta%20da%20cantiere" data-en-href="mailto:info@impreservicesrl.it?subject=Request%20from%20site" data-en="Email">Scrivi</a>
+    <a class="btn bordo tel-testata num" href="tel:+3904441939838" aria-label="Chiama +39 0444 1939838" data-en-aria="Call +39 0444 1939838"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><span class="tel-lungo"><span class="pref">+39&nbsp;</span>0444&nbsp;1939838</span><span class="tel-breve" data-en="Call">Chiama</span></a>
+    <a class="btn bordo scrivi" href="mailto:info@impreservicesrl.it?subject=Richiesta%20da%20cantiere" data-en-href="mailto:info@impreservicesrl.it?subject=Request%20from%20site" aria-label="Scrivi a info@impreservicesrl.it" data-en-aria="Email info@impreservicesrl.it"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span class="scrivi-t" data-en="Email">Scrivi</span></a>
     <a class="btn offerta" href="#offerta" data-en="Request a quote">Richiedi un'offerta</a>
-    <button class="btn bordo apri-menu" type="button" aria-expanded="false" aria-controls="menu" data-en="Menu">Menu</button>
+    <button class="btn bordo apri-menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="menu-t">Menu</span></button>
   </div>
 </header>
 
@@ -367,18 +418,12 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         <h1 id="titolo" data-en="Connection systems for equipped segments">Sistemi di connessione per conci attrezzati</h1>
         <p class="lead" data-en="Easy Click for the precast segments of tunnels bored with a TBM. Anti-seismic joints, bearings and restraints for bridges and viaducts, supplied and installed.">Easy Click per i conci delle gallerie scavate con la fresa. Giunti, appoggi e vincoli antisismici per ponti e viadotti, con la posa.</p>
         <div class="azioni">
-          <a class="btn" href="#offerta" data-en="Request a quote, send the drawing">Richiedi un'offerta, manda il disegno</a>
-          <a class="btn bordo" href="#versioni" data-en="Versions and data sheets">Versioni e schede tecniche</a>
+          <a class="btn" href="#offerta"><span data-en="Request a quote&lt;span class=&quot;coda&quot;&gt;, send the drawing&lt;/span&gt;">Richiedi un'offerta<span class="coda">, manda il disegno</span></span></a>
+          <a class="btn bordo" href="#versioni" data-en="The five versions">Le cinque versioni</a>
         </div>
         <p class="prova-breve num" data-en="Patent IT 1391815 · 42 projects in 11 countries">Brevetto IT&nbsp;1391815 · 42 cantieri in 11 paesi</p>
       </div>
-      <div class="ap-lato">
-        <div class="video-box"><button class="video" type="button" id="video" aria-label="Guarda il video Easy Click su YouTube (si avvia al clic)" data-en-aria="Watch the Easy Click video on YouTube (starts on click)">
-          <img src="img/video-720.webp" srcset="img/video-720.webp 720w, img/video-1280.webp 1280w" sizes="(max-width:900px) 100vw, 520px" width="1280" height="720" alt="Il treno di servizio di una fresa in galleria, dal video Impreservice" data-en-alt="The back-up train of a TBM in a tunnel, from the Impreservice video">
-          <span class="play"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13L14.5 8z"/></svg><span data-en="Watch the video">Guarda il video</span></span>
-        </button></div>
-        <p class="video-nota" data-en="Conci attrezzati con tecnologia EasyClick, the Impreservice video. &lt;a href=&quot;https://www.youtube.com/watch?v=jxtiioap3hc&quot; rel=&quot;noopener&quot;&gt;Open on YouTube&lt;/a&gt;">Conci attrezzati con tecnologia EasyClick, il video di Impreservice. <a href="https://www.youtube.com/watch?v=jxtiioap3hc" rel="noopener">Apri su YouTube</a></p>
-      </div>
+      <div class="ap-segno" aria-hidden="true"><img src="img/segno-blu.svg" width="938" height="346" alt=""></div>
       <ul class="ingressi num">
         <li><a href="https://patents.google.com/patent/IT1391815B1" rel="noopener"><span class="et" data-en="Patent">Brevetto</span><span class="val">IT&nbsp;1391815</span></a></li>
         <li><a href="#referenze"><span class="et" data-en="References">Referenze</span><span class="val" data-en="42 projects in 11 countries">42 cantieri in 11 paesi</span></a></li>
@@ -395,35 +440,32 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
           <p class="etichetta" data-en="Tunnelling">Gallerie</p>
           <h2 id="t-versioni" data-en="Which Easy Click?">Quale Easy Click?</h2>
         </div>
-        <p class="lead" data-en="Patented connection and alignment system for precast segments: socket and snap-in pin. Five versions, chosen according to the required mechanical characteristics. Shear values and dimensions are in the data sheet of each version.">Sistema brevettato di connessione e allineamento per conci prefabbricati: bussola e perno a scatto. Cinque versioni, da scegliere secondo le caratteristiche meccaniche richieste. Valori di taglio e misure sono nella scheda tecnica di ogni versione.</p>
+        <p class="lead" data-en="Patented connection and alignment system for precast segments: socket and snap-in pin. Five versions, chosen according to the required mechanical characteristics. Shear values and dimensions: ask for the data sheet of each version.">Sistema brevettato di connessione e allineamento per conci prefabbricati: bussola e perno a scatto. Cinque versioni, da scegliere secondo le caratteristiche meccaniche richieste. Valori di taglio e misure: chiedete la scheda tecnica di ogni versione.</p>
       </div>
       <div class="schede">
         <a class="scheda" href="#offerta" data-versione="Easy Click Smart">
-          <img src="img/ec-smart-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Smart, render del connettore: due bussole e il perno" data-en-alt="Easy Click Smart, render of the connector: two sockets and the pin">
+          <div class="vis"><img src="img/ec-smart-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Smart, render del connettore: due bussole e il perno" data-en-alt="Easy Click Smart, render of the connector: two sockets and the pin"></div>
           <div class="corpo"><h3><small data-en="Version">Versione</small>Easy Click Smart</h3><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
         </a>
         <a class="scheda" href="#offerta" data-versione="Easy Click Medium">
-          <img src="img/ec-medium-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Medium, render del connettore" data-en-alt="Easy Click Medium, render of the connector">
+          <div class="vis"><img src="img/ec-medium-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Medium, render del connettore" data-en-alt="Easy Click Medium, render of the connector"></div>
           <div class="corpo"><h3><small data-en="Version">Versione</small>Easy Click Medium</h3><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
         </a>
         <a class="scheda" href="#offerta" data-versione="Easy Click Magnum">
-          <img src="img/ec-magnum-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Magnum, render del connettore" data-en-alt="Easy Click Magnum, render of the connector">
+          <div class="vis"><img src="img/ec-magnum-480.webp" width="480" height="480" loading="lazy" alt="Easy Click Magnum, render del connettore" data-en-alt="Easy Click Magnum, render of the connector"></div>
           <div class="corpo"><h3><small data-en="Version">Versione</small>Easy Click Magnum</h3><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
         </a>
-      </div>
-      <div class="schede due">
-        <a class="scheda dato" href="#offerta" data-versione="Easy Click Smart HD">
-          <p class="cifra num">480<small>&nbsp;kN</small></p>
-          <div class="corpo"><h3><small data-en="New version">Nuova versione</small>Easy Click Smart HD</h3><p data-en="Brings the shear value up to 480 kN.">Porta il valore di taglio a 480&nbsp;kN.</p><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
+        <a class="scheda" href="#offerta" data-versione="Easy Click Smart HD">
+          <div class="vis"><span class="cifra num">480<small>&nbsp;kN</small></span></div>
+          <div class="corpo"><h3><small data-en="Since 2022">Dal 2022</small>Easy Click Smart HD</h3><p data-en="Brings the shear value up to 480 kN.">Porta il valore di taglio a 480&nbsp;kN.</p><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
         </a>
-        <a class="scheda dato" href="#offerta" data-versione="Easy Click Hybrid">
-          <p class="cifra num">L140</p>
-          <div class="corpo"><h3><small data-en="New version">Nuova versione</small>Easy Click Hybrid</h3><p data-en="Hybrid connection: L140 bushing with 5 mm pitch on one side, the classic snap-in system on the other.">Connessione ibrida: boccola L140 passo 5&nbsp;mm da un lato, sistema classico a scatto dall'altro.</p><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
+        <a class="scheda" href="#offerta" data-versione="Easy Click Hybrid">
+          <div class="vis"><span class="cifra num">L140</span></div>
+          <div class="corpo"><h3><small data-en="Since 2022">Dal 2022</small>Easy Click Hybrid</h3><p data-en="Hybrid connection: L140 bushing with 5 mm pitch on one side, the classic snap-in system on the other.">Connessione ibrida: boccola L140 passo 5&nbsp;mm da un lato, sistema classico a scatto dall'altro.</p><span class="vai" data-en="Data sheet and quote">Scheda tecnica e offerta</span></div>
         </a>
-      </div>
-      <div class="consiglio">
-        <p data-en="Not sure which one? Send us the segment drawing and the quantities: lead times and prices depend on quantity.">Non sapete quale? Mandateci il disegno del concio e le quantità: tempi e prezzi secondo quantità.</p>
-        <a class="btn" href="#offerta" data-versione="Non so, consigliatemi" data-en="Send the segment drawing">Manda il disegno del concio</a>
+        <a class="scheda consiglio" href="#offerta" data-versione="Non so, consigliatemi">
+          <div class="corpo"><h3 data-en="Not sure which one?">Non sapete quale?</h3><p data-en="Send us the segment drawing and the quantities: lead times and prices depend on quantity.">Mandateci il disegno del concio e le quantità: tempi e prezzi secondo quantità.</p><span class="vai"><span data-en="Send the segment drawing">Manda il disegno del concio</span><svg class="fr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></div>
+        </a>
       </div>
     </div>
   </section>
@@ -432,14 +474,32 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     <div class="c">
       <p class="etichetta" data-en="In figures">In numeri</p>
       <h2 id="t-numeri" data-en="References from leading contractors, in Italy and around the world">Le referenze di imprese di primo piano, in Italia e nel mondo</h2>
-      <dl class="num">
+      <dl class="num forti">
         <div><dt>42</dt><dd data-en="tunnelling projects in the reference list">cantieri nell'elenco delle referenze</dd></div>
         <div><dt>11</dt><dd data-en="countries, from Poland to Australia">paesi, dalla Polonia all'Australia</dd></div>
         <div><dt>18</dt><dd data-en="projects outside Italy: 8 in Europe, 10 in the rest of the world">cantieri fuori dall'Italia: 8 in Europa, 10 nel resto del mondo</dd></div>
+      </dl>
+      <dl class="num altri">
         <div><dt>5</dt><dd data-en="Easy Click versions: Smart, Medium, Magnum, Smart HD, Hybrid">versioni di Easy Click: Smart, Medium, Magnum, Smart HD, Hybrid</dd></div>
         <div><dt>480<small>&nbsp;kN</small></dt><dd data-en="shear value of Easy Click Smart HD">valore di taglio di Easy Click Smart HD</dd></div>
         <div><dt>2008</dt><dd data-en="filing of Italian patent IT 1391815">deposito del brevetto italiano IT&nbsp;1391815</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <section class="prove" aria-labelledby="t-prove">
+    <div class="c griglia">
+      <div class="brevetto">
+        <h2 id="t-prove" class="etichetta" data-en="Patent, tests and trade fairs">Brevetto, prove e fiere</h2>
+        <p class="numero num"><a href="https://patents.google.com/patent/IT1391815B1" rel="noopener">IT&nbsp;1391815</a></p>
+        <p data-en="Italian patent. Fixing pin for precast concrete and/or steel building elements.">Brevetto italiano. Vitone di fissaggio per elementi prefabbricati in calcestruzzo e/o acciaio.</p>
+        <p class="meta num"><span data-en="Filed on 29 October 2008">Depositato il 29&nbsp;ottobre 2008</span> · <a href="https://patents.google.com/patent/IT1391815B1" rel="noopener">Google Patents</a></p>
+      </div>
+      <ul>
+        <li><h3 data-en="Independent laboratories">Laboratori indipendenti</h3><p data-en="Materials and systems certified and authenticated through independent laboratory assessments and approvals.">Materiali e sistemi certificati e approvati con prove di laboratori indipendenti.</p></li>
+        <li><h3>WTC 2022</h3><p data-en="World Tunnel Congress, Copenhagen: presentation of Smart HD and Hybrid.">World Tunnel Congress, Copenaghen: presentati Smart HD e Hybrid.</p></li>
+        <li><h3>Viatec 2013</h3><p data-en="Bolzano, stand B09/26: connection systems, bolts and guiding rods.">Bolzano, stand B09/26: sistemi di connessione, bulloni e barre di guida.</p></li>
+      </ul>
     </div>
   </section>
 
@@ -452,6 +512,11 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         </div>
         <p class="lead" data-en="Connector and aligner for the joints between segments: socket and snap-in pin.">Connettore e allineatore per i giunti tra i conci: bussola e perno a scatto.</p>
       </div>
+      <div class="video-box"><button class="video" type="button" id="video" aria-label="Guarda il video Easy Click su YouTube (si avvia al clic)" data-en-aria="Watch the Easy Click video on YouTube (starts on click)">
+        <img src="img/video-1280.webp" srcset="img/video-720.webp 720w, img/video-1280.webp 1280w" sizes="(max-width:1360px) 100vw, 1280px" width="1280" height="720" loading="lazy" alt="Il treno di servizio di una fresa in galleria, dal video Impreservice" data-en-alt="The back-up train of a TBM in a tunnel, from the Impreservice video">
+        <span class="btn play"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13L14.5 8z"/></svg><span data-en="Watch the video">Guarda il video</span></span>
+      </button></div>
+      <p class="video-nota" data-en="“Conci attrezzati con tecnologia EasyClick” (equipped segments with EasyClick technology), the Impreservice video. &lt;a href=&quot;https://www.youtube.com/watch?v=jxtiioap3hc&quot; rel=&quot;noopener&quot;&gt;Open on YouTube&lt;/a&gt;">“Conci attrezzati con tecnologia EasyClick”, il video di Impreservice. <a href="https://www.youtube.com/watch?v=jxtiioap3hc" rel="noopener">Apri su YouTube</a></p>
       <ol class="punti">
         <li><span class="n">01</span><h3 data-en="Easy insertion">Inserimento facile</h3><p data-en="The pin goes in with little effort.">Il perno si inserisce con poco sforzo.</p></li>
         <li><span class="n">02</span><h3 data-en="Reliable tightening">Serraggio affidabile</h3><p data-en="The pin stays tightened in a reliable and resistant way.">Il perno resta serrato in modo affidabile e resistente.</p></li>
@@ -465,18 +530,6 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     </div>
   </section>
 
-  <section class="prove" aria-labelledby="t-prove">
-    <div class="c">
-      <h2 id="t-prove" class="vn" data-en="Patent, tests and trade fairs">Brevetto, prove e fiere</h2>
-      <ul>
-        <li><h3 data-en="Patent IT 1391815">Brevetto IT&nbsp;1391815</h3><p data-en="Fixing pin for precast concrete and/or steel building elements. Filed on 29 October 2008. &lt;a href=&quot;https://patents.google.com/patent/IT1391815B1&quot; rel=&quot;noopener&quot;&gt;Google Patents&lt;/a&gt;">Vitone di fissaggio per elementi prefabbricati in calcestruzzo e/o acciaio. Depositato il 29&nbsp;ottobre 2008. <a href="https://patents.google.com/patent/IT1391815B1" rel="noopener">Google Patents</a></p></li>
-        <li><h3 data-en="Independent laboratories">Laboratori indipendenti</h3><p data-en="Materials and systems certified and authenticated through independent laboratory assessments and approvals.">Materiali e sistemi certificati e approvati con prove di laboratori indipendenti.</p></li>
-        <li><h3>WTC 2022</h3><p data-en="World Tunnel Congress, Copenhagen: presentation of Smart HD and Hybrid.">World Tunnel Congress, Copenaghen: presentati Smart HD e Hybrid.</p></li>
-        <li><h3>Viatec 2013</h3><p data-en="Bolzano, stand B09/26: connection systems, bolts and guiding rods.">Bolzano, stand B09/26: sistemi di connessione, bulloni e barre di guida.</p></li>
-      </ul>
-    </div>
-  </section>
-
   <section class="referenze" id="referenze" aria-labelledby="t-referenze">
     <div class="c">
       <div class="capo griglia">
@@ -486,22 +539,32 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         </div>
         <p class="lead" data-en="Metros, railway and road tunnels, water conduits and drainage tunnels bored with a TBM.">Metropolitane, gallerie ferroviarie e stradali, condotte d'acqua e drenaggi scavati con la fresa.</p>
       </div>
+      <div class="lavoro">
+        <p class="etichetta" data-en="A named project">Un cantiere con il nome</p>
+        <h3 data-en="Metro line 2, Warsaw">Metro linea 2, Varsavia</h3>
+        <p data-en="Impreservice among the suppliers of the segment package of the Astaldi Gulermak joint venture.">Impreservice tra i fornitori del pacchetto conci della JV Astaldi Gulermak.</p>
+      </div>
+      <div class="linguette" role="group" aria-label="Area" data-en-aria="Area">
+        <button type="button" data-area="it" aria-pressed="true"><span data-en="Italy">Italia</span> <span class="num">24</span></button>
+        <button type="button" data-area="eu" aria-pressed="false"><span data-en="Europe">Europa</span> <span class="num">8</span></button>
+        <button type="button" data-area="mondo" aria-pressed="false"><span data-en="World">Mondo</span> <span class="num">10</span></button>
+      </div>
       <div class="elenchi griglia">
-        <div>
+        <div data-area="it">
           <h3><span class="nome" data-en="Italy">Italia</span><span class="num">24</span></h3>
           <ul>
-            <li>BBT lato Italia <small>Mules, Bolzano</small></li>
-            <li>Metro blu <small>Milano</small></li>
-            <li>Metro linea 1 <small>Napoli</small></li>
-            <li>Nodo di Firenze <small>Firenze</small></li>
-            <li>Galleria del Catajo <small>Padova</small></li>
+            <li><span data-en="BBT, Italian side">BBT lato Italia</span> <small>Mules, Bolzano</small></li>
+            <li><span data-en="Blue metro line">Metro blu</span> <small>Milano</small></li>
+            <li><span data-en="Metro line 1">Metro linea 1</span> <small>Napoli</small></li>
+            <li><span data-en="Florence rail node">Nodo di Firenze</span> <small>Firenze</small></li>
+            <li><span data-en="Catajo tunnel">Galleria del Catajo</span> <small>Padova</small></li>
             <li>Gran San Bernardo <small>Aosta</small></li>
-            <li>Tunnel di Martignano <small>Trento</small></li>
+            <li><span data-en="Martignano tunnel">Tunnel di Martignano</span> <small>Trento</small></li>
             <li>CEPAV 2</li>
             <li class="altri" data-en="and 16 more projects">e altri 16 cantieri</li>
           </ul>
         </div>
-        <div>
+        <div data-area="eu">
           <h3><span class="nome" data-en="Europe">Europa</span><span class="num">8</span></h3>
           <ul>
             <li>Metro <small data-en="Copenhagen, Denmark">Copenaghen, Danimarca</small></li>
@@ -510,11 +573,11 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
             <li>Gulermak Spolka <small data-en="Warsaw, Poland">Varsavia, Polonia</small></li>
             <li>AGP Metro Polska <small data-en="Poland">Polonia</small></li>
             <li>S19 Tunel <small data-en="Poland">Polonia</small></li>
-            <li>Metro linea 5 <small data-en="Bucharest, Romania">Bucarest, Romania</small></li>
+            <li><span data-en="Metro line 5">Metro linea 5</span> <small data-en="Bucharest, Romania">Bucarest, Romania</small></li>
             <li>SM-BAM <small data-en="water conduit, Belgium">condotta, Belgio</small></li>
           </ul>
         </div>
-        <div>
+        <div data-area="mondo">
           <h3><span class="nome" data-en="World">Mondo</span><span class="num">10</span></h3>
           <ul>
             <li>Legacy Way Transcity <small data-en="Brisbane, Australia">Brisbane, Australia</small></li>
@@ -523,14 +586,13 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
             <li>El Alto Tunnel <small>Panama</small></li>
             <li>Beni Haroun <small data-en="Algeria">Algeria</small></li>
             <li>Water Transfer Tunnel <small data-en="Algeria">Algeria</small></li>
-            <li>Condotta acqua Seli <small data-en="Algeria">Algeria</small></li>
+            <li><span data-en="Seli water pipeline">Condotta acqua Seli</span> <small data-en="Algeria">Algeria</small></li>
             <li>Consorzio G &amp; S <small>Buenos Aires</small></li>
             <li>Tunnel Rio Lomas <small>Buenos Aires</small></li>
             <li>CMI Puerto Madero <small data-en="Argentina">Argentina</small></li>
           </ul>
         </div>
       </div>
-      <div class="azioni"><a class="btn bordo" href="referenze.html" data-en="All references">Tutte le referenze</a></div>
     </div>
   </section>
 
@@ -546,10 +608,11 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         </div>
       </div>
       <div class="dx">
+        <p class="sopra" data-en="Production and installation">Produzione e posa</p>
         <ul>
-          <li><span data-en="Anti-seismic joints">Giunti antisismici</span><small data-en="production and installation">produzione e posa</small></li>
-          <li><span data-en="Bearings">Appoggi</span><small data-en="production and installation">produzione e posa</small></li>
-          <li><span data-en="Restraints">Vincoli</span><small data-en="production and installation">produzione e posa</small></li>
+          <li data-en="Anti-seismic joints">Giunti antisismici</li>
+          <li data-en="Bearings">Appoggi</li>
+          <li data-en="Restraints">Vincoli</li>
         </ul>
         <div class="enti">
           <p data-en="They trust Impreservice">Si affidano a Impreservice</p>
@@ -607,9 +670,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
             </div>
           </fieldset>
           <div class="campo"><label for="f-progetto"><span data-en="Project or site">Progetto o cantiere</span></label><input type="text" id="f-progetto" name="Progetto"></div>
-          <div class="campo"><label for="f-quantita"><span data-en="Quantity &lt;small&gt;(segments or rings)&lt;/small&gt;">Quantità <small>(conci o anelli)</small></span></label><input type="text" id="f-quantita" name="Quantità"></div>
+          <div class="campo"><label for="f-quantita"><span id="l-quantita" data-en="Quantity &lt;small&gt;(segments or rings)&lt;/small&gt;">Quantità <small>(conci o anelli)</small></span></label><input type="text" id="f-quantita" name="Quantità"></div>
           <div class="campo largo"><label for="f-consegna"><span data-en="Delivery to &lt;small&gt;(city, country)&lt;/small&gt;">Consegna a <small>(città, paese)</small></span></label><input type="text" id="f-consegna" name="Consegna"></div>
-          <div class="campo largo"><label for="f-disegno"><span data-en="Segment drawing &lt;small&gt;(PDF, DWG, DXF, STEP)&lt;/small&gt;">Disegno del concio <small>(PDF, DWG, DXF, STEP)</small></span></label><input type="file" id="f-disegno" name="Disegno" accept=".pdf,.dwg,.dxf,.step,.stp" multiple><span class="aiuto" data-en="Your email program opens with the text ready: attach the file there.">Si apre il vostro programma di posta con il testo pronto: allegate lì il file.</span></div>
+          <div class="campo largo"><label for="f-disegno"><span id="l-disegno" data-en="Segment drawing &lt;small&gt;(PDF, DWG, DXF, STEP)&lt;/small&gt;">Disegno del concio <small>(PDF, DWG, DXF, STEP)</small></span></label><input type="file" id="f-disegno" name="Disegno" accept=".pdf,.dwg,.dxf,.step,.stp" multiple><span class="aiuto" data-en="Your email program opens with the text ready: attach the file there.">Si apre il vostro programma di posta con il testo pronto: allegate lì il file.</span></div>
           <div class="campo largo"><label for="f-messaggio"><span data-en="Message">Messaggio</span></label><textarea id="f-messaggio" name="Messaggio" rows="4"></textarea></div>
         </div>
         <p class="avviso" id="avviso" role="alert"></p>
@@ -632,19 +695,19 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
       <div class="col">
         <h2 data-en="Products">Prodotti</h2>
         <ul>
-          <li><a href="easy-click.html#smart">Easy Click Smart</a></li>
-          <li><a href="easy-click.html#medium">Easy Click Medium</a></li>
-          <li><a href="easy-click.html#magnum">Easy Click Magnum</a></li>
-          <li><a href="easy-click.html#smart-hd-hybrid">Smart HD e Hybrid</a></li>
-          <li><a href="ponti-e-viadotti.html" data-en="Bridges and viaducts">Ponti e viadotti</a></li>
+          <li><a href="#versioni">Easy Click Smart</a></li>
+          <li><a href="#versioni">Easy Click Medium</a></li>
+          <li><a href="#versioni">Easy Click Magnum</a></li>
+          <li><a href="#versioni" data-en="Smart HD and Hybrid">Smart HD e Hybrid</a></li>
+          <li><a href="#ponti" data-en="Bridges and viaducts">Ponti e viadotti</a></li>
         </ul>
       </div>
       <div class="col">
         <h2 data-en="Company">Azienda</h2>
         <ul>
-          <li><a href="azienda.html" data-en="Company and patents">Azienda e brevetti</a></li>
-          <li><a href="referenze.html" data-en="References">Referenze</a></li>
-          <li><a href="notizie.html" data-en="Trade fairs and news">Fiere e notizie</a></li>
+          <li><a href="#t-prove" data-en="Patent and tests">Brevetto e prove</a></li>
+          <li><a href="#referenze" data-en="References">Referenze</a></li>
+          <li><a href="#t-prove" data-en="Trade fairs: WTC 2022, Viatec 2013">Fiere: WTC 2022, Viatec 2013</a></li>
           <li><a class="yt" href="https://www.youtube.com/@Impreservicesrl" rel="noopener"><svg viewBox="0 0 20 14" aria-hidden="true"><rect x=".75" y=".75" width="18.5" height="12.5" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.2v5.6l4.8-2.8z" fill="currentColor"/></svg><span data-en="YouTube: the Easy Click video">YouTube: il video Easy Click</span></a></li>
         </ul>
       </div>
@@ -719,9 +782,39 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   document.querySelectorAll('[data-versione]').forEach(function(a){
     a.addEventListener('click',function(){
       prodotto.value=a.getAttribute('data-versione');
-      if(a.classList.contains('scheda')) document.querySelector('input[value="Scheda tecnica"]').checked=true;
+      if(a.classList.contains('scheda')&&!a.classList.contains('consiglio')) document.querySelector('input[value="Scheda tecnica"]').checked=true;
+      etichettePonti();
     });
   });
+
+  // modulo: se il prodotto è la linea ponti, quantità e disegno parlano di giunti e impalcati
+  var testi={
+    q:{it:['Quantità <small>(conci o anelli)</small>','Quantità <small>(metri di giunto, numero di appoggi)</small>'],en:['Quantity <small>(segments or rings)</small>','Quantity <small>(metres of joint, number of bearings)</small>']},
+    d:{it:['Disegno del concio <small>(PDF, DWG, DXF, STEP)</small>','Progetto o disegno dell\'impalcato <small>(PDF, DWG)</small>'],en:['Segment drawing <small>(PDF, DWG, DXF, STEP)</small>','Deck design or drawing <small>(PDF, DWG)</small>']}
+  };
+  function etichettePonti(){
+    var k=prodotto.value==='Ponti e viadotti'?1:0;
+    [['l-quantita','q'],['l-disegno','d']].forEach(function(c){
+      var e=document.getElementById(c[0]);
+      e.setAttribute('data-it',testi[c[1]].it[k]); e.setAttribute('data-en',testi[c[1]].en[k]);
+      e.innerHTML=testi[c[1]][lingua][k];
+    });
+  }
+  prodotto.addEventListener('change',function(){
+    if(prodotto.value==='Ponti e viadotti') document.querySelector('input[value="Sopralluogo"]').checked=true;
+    etichettePonti();
+  });
+
+  // referenze sul telefono: un elenco alla volta (Italia, Europa, Mondo)
+  var aree=document.querySelectorAll('.linguette button');
+  document.querySelector('.referenze').classList.add('a-linguette');
+  aree.forEach(function(b){
+    b.addEventListener('click',function(){
+      aree.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      document.querySelectorAll('.elenchi>[data-area]').forEach(function(d){d.classList.toggle('scelta',d.getAttribute('data-area')===b.getAttribute('data-area'));});
+    });
+  });
+  document.querySelector('.elenchi>[data-area="it"]').classList.add('scelta');
 
   // modulo: compone l'email (da collegare a un servizio di invio, vedi LEGGIMI)
   var f=document.getElementById('offerta'), avviso=document.getElementById('avviso');
