@@ -1,111 +1,98 @@
-# San Marco Timbri, home: livello professionale (3 novembre 2026)
+# San Marco Timbri, home: livello professionale, ritocco finale (3 novembre 2026)
 
 ## Livello professionale
 
-Pagina: `sito/index.html` (statica, si apre con file:///, nessuna risorsa esterna). La home com'era prima di questo passaggio ("L'impronta", fondo blu e leone LEO) è copiata in `_prova/versione-1-originale/` (sito e screenshot). Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole); scheda d'uso e d'identità `_prova/uso/SCHEDA.md`. Riferimenti guardati: le prime schermate a 1440 di tutti e 14 (`riferimenti.jpg`), le pagine intere di Union, Joseph Brot e Poilâne a pezzi, e la prova già vista dal committente (`_invio/zona/home/livello-professionale.jpg`, colonna di destra; note di Unicar e Panificio Fornasiero).
+Pagina: `sito/index.html` (statica, si apre con file:///, nessuna risorsa esterna). La home com'era prima del livello professionale ("L'impronta", fondo blu e leone LEO) è copiata in `_prova/versione-1-originale/`. Regole seguite: `_metodo/professionale/REGOLE.md` (sezione A per la famiglia B, botteghe artigiane e alimentari; sezione B, difetti delle nostre home; sezione C, 15 regole), la scheda d'uso `_prova/uso/SCHEDA.md`, il controllo del livello professionale e le due prove con i clienti tipo (`_prova/pro-controllo/`, `_prova/pro-prova-0/`, `_prova/pro-prova-1/`). Riferimenti guardati: le prime schermate di tutti e 14 e, a pezzi, le pagine intere di Union e Joseph Brot (famiglia B) e di barth e Holzrausch (home fatte di tipografia, la strada di A7 quando mancano le foto).
 
-Rifare tutto: `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, caratteri, screenshot con `fin_shoot.mjs`, poi `pro_controlli.mjs`). Elementi che escono di lato: `node _prova/script/pro_largo.mjs <url> <larghezze...>`.
+Rifare tutto: `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, caratteri, screenshot con `fin_shoot.mjs`, poi `pro_controlli.mjs`). A parte: `node _prova/script/pro_largo.mjs <url> <larghezze...>` (scorrimento orizzontale) e `node _prova/script/pro_uso.mjs` (menu, WhatsApp in cima, bersagli del piede, invio del modulo, errori in console).
 
-Screenshot (stessi nomi di prima): `home-1440.jpg` (7359 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (11875 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti, e a 320, 768, 1024 e 1920.
+Screenshot (stessi nomi di prima): `home-1440.jpg` (8326 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (11308 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Dove siamo" al piede). Guardati a pezzi a 1440 e 390, e a 320, 768, 1024 e 1920.
 
-### Che cosa è cambiato, in breve
+### Che cosa è cambiato in questo ritocco
 
-- **Prima l'uso.** La vecchia apertura non aveva né WhatsApp, né indirizzo, né orari, né "come arrivare": l'unica azione grande era il gioco "Prova la tua impronta". Ora:
-  - a 1440 la prima schermata ha il mestiere, il luogo, una prova e le tre azioni del visitatore 1 sulla stessa riga: "Chiama 049 776126" (pieno), "Mandaci testo o foto su WhatsApp" e "Scrivi a info@sanmarcotimbri.it" (con il solo bordo, email con oggetto "Richiesta timbro" e le voci già scritte). Sotto, via Longhin 91 con "Indicazioni" e "Prima di passare chiamateci". In fondo alla schermata compare già "Che timbro vi serve?" (a 849 px su 900);
-  - a 390 ci sono logo, "Menu" e "Chiama" in testata, il titolo, tre bottoni a tutta larghezza alti 52 px ("Chiama 049 776126", "Mandaci testo o foto su WhatsApp", "Indicazioni per via Longhin 91") e la riga "Prima di passare chiamateci allo 049 776126". Nessun elemento fisso copre i bottoni. Subito dopo la foto del punzone vengono i lavori su misura con le foto (visitatore 3), poi i timbri (l'ordine cambia solo sotto i 700 px).
-- **Identità.**
-  - In testata c'è il logo vero, intero (scritta e leone di San Marco con il libro "TARGHE"), nero su bianco come nel loro JPEG. Il leone traforato LEO (un lavoro per un cliente) non c'è più.
-  - Il titolo è il loro: "Personalizziamo timbri e targhe", in maiuscolo come sul sito di oggi, senza il punto esclamativo.
-  - I colori sono quelli del marchio, nero e rosso: il blu #26389C, che non è mai stato loro, è tolto.
-  - Le frasi vengono dal loro sito, con il voi: "Timbri per qualsiasi esigenza, sia in gomma che in metallo", "I file ed i loghi li elaboriamo noi per la migliore resa possibile", "colori originali a tabella RAL o PANTONE", "su disegno del cliente".
-  - Trodat è detto in parole ("Autoinchiostranti Trodat"), senza le foto del catalogo.
-- **Struttura della famiglia B adattata.**
-  1. Testata con "Dove siamo" come prima voce e il bottone "Chiama 049 776126".
-  2. Apertura con la foto loro a tutta altezza.
-  3. "Che timbro vi serve?" (gomma, metallo, sigilli e presse a secco) con il riquadro "Per ordinare un timbro, mandateci": quattro righe, WhatsApp con il messaggio già avviato, email con le voci.
-  4. "Targhe e lavori su misura": sei schede con foto loro, nome, riga loro e preventivo su WhatsApp, con il messaggio già scritto per quel lavoro.
-  5. Blocco nero con il manifesto (la loro presentazione), "Come funziona un lavoro su misura" in quattro passi e quattro numeri.
-  6. "Per uffici, studi ed enti", con i dati per l'ordine, la gara MEPA del 2018 e i comuni serviti.
-  7. Modulo con il tipo di richiesta.
-  8. "Dove siamo e come raggiungerci", blocco rosso con il telefono a 120 px.
-  9. Piede in quattro colonne.
-- **Foto, decisione "niente".**
-  - Nessuna foto di repertorio, nessuna illustrazione, nessun "Foto indicativa".
-  - Restano solo foto loro dalla libreria del sito, tutte alla loro misura o più piccole e con lo stesso trattamento (`pro_img.py`: colore 90 %, contrasto 105 %, nitidezza leggera). L'apertura è il punzone W.E. con l'ovale EUR 120x80: taglio verticale 760x960 mostrato a 460 px a 1440, striscia 2:1 sul telefono. Nelle sei schede, tutte 4:3, ci sono la pulsantiera in pietra, la targa TOILETTES 101, le lettere in ottone brunito, l'insegna traforata, la targa in corten e il trofeo su disegno.
-  - Tolti il leone LEO, le lettere brunite grandi e la targa in corten della chiusura, insieme ai loro file in `sito/img`.
+- **Apertura tipografica a tutta misura.** Tolti l'oggetto su fondo grigio a destra e la striscia del telefono (lo schema B1 e B2: titolo a sinistra e oggetto su fondo chiaro). Ora:
+  - occhiello rosso "Laboratorio di timbri e targhe a Padova";
+  - H1 su tutta la larghezza del contenitore, 120 px a 1440 con larghezza del carattere 116 %, in due righe: "PERSONALIZZIAMO" in nero e "TIMBRI E TARGHE" nel rosso del marchio, come l'inchiostro del timbro. È il gesto di scala in alto che mancava;
+  - sotto, il testo d'attacco a sinistra e a destra l'indirizzo pieno "Via G. A. Longhin 91, 35129 Padova" con "Indicazioni" e "Prima di passare chiamateci" su una riga sola (la frase prima era spezzata in due colonne);
+  - le tre azioni in fila;
+  - una fascia di tre prove vere su un filetto nero: "Nel 2018 tra i fornitori invitati da Agenzia delle Entrate alla gara sul MEPA per i timbri", "Fresa, laser e controllo numerico e stampa digitale a colori, nel nostro laboratorio", "Il file lo prepariamo noi nei colori RAL o PANTONE, e ve lo mandiamo da approvare".
+  A 390 la stessa cosa in colonna: occhiello corto ("Timbri e targhe a Padova", su una riga), H1 a 40 px, attacco, "Chiama 049 776126", WhatsApp, "Indicazioni per via Longhin 91", poi l'indirizzo pieno con il CAP e "Prima di passare chiamateci", poi le tre prove. Tutto dentro 844 px, tranne l'ultima riga della terza prova.
+- **Il punzone W.E. passa nella sezione dei timbri**, accanto a "In gomma, In metallo, Sigilli e presse a secco", in un quadrato di al massimo 560 px (taglio 800x800 dell'originale 1000x1000) con l'unica didascalia della pagina, che dice che cos'è: "Punzoni in ottone per la marcatura a caldo: le iniziali W.E. e l'ovale EUR 120x80". Lì fa da prova del mestiere, non da apertura.
+- **Fascia del fornitore Trodat** sotto i tipi di timbro: il nome "Trodat" scritto in testo, a 56 px, con la sopra-riga "Timbri autoinchiostranti" e la didascalia "Montiamo i timbri autoinchiostranti Trodat. Per rifarne uno uguale al vecchio basta il modello, che è scritto sotto il timbro, o la foto dell'impronta". È solo testo, non il logo, finché non c'è il permesso (LEGGIMI).
+- **Per ordinare un timbro**: la promessa "I file ed i loghi li elaboriamo noi per la migliore resa possibile, e prima di produrre ve li mandiamo da approvare" passa dal grigio piccolo al testo pieno, in grassetto. Sotto i bottoni c'è la riga onesta sull'urgenza: "Vi serve con urgenza? Scrivetelo nel messaggio, o chiamate lo 049 776126 e chiedete se si fa in tempo." Non promette nessun tempo.
+- **WhatsApp in cima** avvia lo stesso messaggio con le voci del riquadro "Per ordinare" (testo riga per riga, misura o modello, quantità, ritiro o spedizione). Prima i due bottoni avviavano testi diversi.
+- **Foto in serie** (`pro_img.py`): per ogni foto il bianco è bilanciato su un punto neutro (la pietra, il muro, il fondo del banco, la pietra del pilastro), poi tutte vanno alla stessa luminanza media (L circa 0,62: misurate 0,59-0,63), con la stessa desaturazione (82 %), lo stesso contrasto e la stessa nitidezza. Via la dominante oliva dalle lettere brunite. La segnaletica è tagliata stretta su pilastro e targa, senza prato e cielo. Il trofeo è tagliato senza i fogli sulla scrivania.
+- **Tolta la frase** "Ogni foto qui sotto è un lavoro uscito dal nostro laboratorio": le fonti non lo confermano per tutte (targa in corten, insegna, TOILETTES).
+- **Numeri**: via "4 tipi di timbro in gomma" e "5 materiali". Restano 10 lavorazioni, 40 colori di ceralacca, 16 comuni (quelli elencati in "Dove lavoriamo", da Cittadella a Chioggia) e 2018 (gara MEPA di Agenzia delle Entrate).
+- **Titoli di sezione** da 44 a 64 px (`clamp(32px, 4.45vw, 64px)`, larghezza 112 %). Il manifesto del blocco nero ("Una realtà artigiana da molti anni, per privati, aziende e strutture pubbliche.") è a quella misura anche a 390 (32 px); sotto, la riga sulle macchine e il titoletto "Come funziona un lavoro su misura".
+- **Testata**: logo a 52 px a 1440 (prima 44), così si leggono il leone e il libro. A 390 la testata è alta 72 px, il menu è un bottone quadrato di 48x48 con tre linee (`aria-label` "Menu") e il bottone di chiamata, alto 48 px, mostra il numero "049 776126". Sotto i 360 px torna la parola "Chiama", perché il numero non ci sta.
+- **Su misura a 390 in due colonne** (passo 16 px, 12 a 320): le sei foto finiscono a 1306, 1623 e 1917 px dalla cima. Il link si accorcia in "Preventivo".
+- **Uffici ed enti**: nuova riga "PEC e codice destinatario: per la fattura elettronica chiedeteli allo 049 776126 o a info@sanmarcotimbri.it". Dopo il fatto del 2018 c'è "Per acquisti tramite MEPA o con affidamento diretto chiedeteci la situazione aggiornata". Non c'è nessuno stato attuale inventato. Sul telefono la tabella va su una colonna.
+- **Piccoli**: il numero in "Scriveteci" (blocco rosso) è un link `tel:`; i link del piede sono blocchi alti 44 px; il telefono grande non va a capo a 320; `vatID` senza il prefisso IT nel JSON-LD (il VIES risponde valid:false); nel modulo, al posto di "Spedizione", c'è l'opzione "Da decidere con voi"; i 9 colori scritti a mano sono diventati token.
 
-### Esito regola per regola (controlli di `_prova/script/pro_controlli.mjs` e screenshot)
+### Esito regola per regola (`pro_controlli.mjs` e screenshot)
 
-1. **Telefono in testata fissa, sempre visibile**: PASSA. La testata resta in alto (`position:sticky`). A 1440 c'è il bottone "Chiama 049 776126"; a 390, scorrendo a metà pagina, il bottone "Chiama" è a 12 px, alto 44 px e si tocca. "Dove siamo" è la prima voce del menu. I link `tel:` sono 7.
-2. **Prima schermata con mestiere, luogo, prova e azione**: PASSA a 1440x900 e 390x844. Occhiello "Laboratorio di timbri e targhe a Padova", H1 "Personalizziamo timbri e targhe". La prova sta nella riga sotto: "fatti nel nostro laboratorio di via Longhin con fresa, laser e controllo numerico. Per privati, aziende e strutture pubbliche". Il bottone "Chiama" è pieno e, a 390, a tutta larghezza (346 su 346 px). La prova è debole perché non hanno anni, voti né certificazioni pubblici (LEGGIMI).
-3. **Immagine vera nell'apertura**: PASSA CON IL LIMITE DELLE FOTO CHE HANNO. È una loro foto vera, non scontornata: il punzone in ottone, il loro mestiere, a tutta altezza accanto al testo. Non esiste nessuna foto loro di persone, del banco o della sede, quindi non c'è "chi lavora e dove": va fatta (LEGGIMI).
-4. **Zero repertorio**: PASSA. "indicativ" compare 0 volte e nessuna immagine viene da una banca d'immagini.
-5. **Foto in serie**: PASSA NEL CONTROLLO, CON RISERVA A VISTA. Ci sono due formati (apertura verticale, schede 4:3; il logo escluso) e 0 didascalie su 7 immagini; il nome sotto ogni scheda fa da titolo, non da didascalia. Il trattamento è comune, ma le foto sono scatti da banco con luci e fondi diversi (pietra bianca, legno grigio, esterno col sole): una vera serie si ottiene solo con la giornata di still life (LEGGIMI).
-6. **Palette dal marchio**: PASSA. Nero #161616 e rosso #B8261D (il #FF0000 del loro sito, scaldato), più bianco #FFFFFF, grigio #EEEEEC dei blocchi chiari (neutro, non beige), grigio del testo secondario #55554F e filetti #D6D6D2. Bianco su rosso 6,3:1, nero su grigio 15:1.
-7. **Scala corta e leggibile**: PASSA. A 1440 ci sono otto misure: 120, 87, 56, 44, 24, 19, 16, 14 px. A 390 sono otto: 56, 40, 30, 21, 17, 16, 14 px, più il titolo a 39,8 px. Il testo corrente è 19 px (390: 17 px); a 14 px ci sono solo la riga legale e le note legali; il titolo è a 87 px in maiuscolo con interlinea 0,98. Sotto i 700 px il titolo stringe la larghezza del carattere (85 %), così "PERSONALIZZIAMO" sta su una riga da 320 px in su.
-8. **Due famiglie al massimo**: PASSA, con una sola famiglia, Encode Sans, in due ruoli: titoli in 700 un poco larghi (108 %), testo e interfaccia in 400. Era già il carattere della versione 1.
-9. **Servizi in schede con foto**: PASSA. Una griglia di 3 colonne a 1440 e 1024 (2 a 768, 1 sul telefono) con sei schede, tutte cliccabili: foto 4:3, nome a 24 px, la loro riga e "Chiedete il preventivo su WhatsApp", che apre WhatsApp con il messaggio per quel lavoro. Casellari, vetrinistica e plexiglass sono in una riga sotto, perché non hanno foto loro che reggano (i casellari sono foto di catalogo).
-10. **Almeno tre tipi di prove**: NON PASSA, PER LIMITE DELLE FONTI. Due tipi su quattro:
-    - quattro numeri contati dai loro elenchi (10 lavorazioni, 4 tecniche in laboratorio, 4 tipi di timbro in gomma, 5 materiali per targhe e pulsantiere);
-    - un ente con il nome: Agenzia delle Entrate, che nel 2018 li ha invitati alla gara MEPA per i timbri (dalla SCHEDA, fonte il PDF di agenziaentrate.gov.it).
-    Recensioni e certificazioni non ce ne sono (Maps 429, Facebook solo con login, 2gis e Yelp senza recensioni); non sono inventate (LEGGIMI).
-11. **Lavori con un nome**: NON SI APPLICA. Nelle fonti non c'è nessun lavoro con cliente e anno: ogni scheda dice che cos'è e di che materiale.
-12. **Ritmo a blocchi**: PASSA. Sequenza dei fondi: bianco, grigio (timbri), bianco (su misura), nero (come lavoriamo), bianco (enti), grigio (modulo), rosso (dove siamo), nero (piede). Spazi di 96-120 px a 1440 e 56-64 px a 390. I 96 px sopra "Che timbro vi serve?" servono perché si veda in fondo alla prima schermata; i 56 px a 390 sono sotto la soglia di 64 per la stessa ragione. Margini di 80 px a 1440 e 22 px a 390.
-13. **Un solo sistema di bottoni**: PASSA. Bottone pieno rosso e bottone con il solo bordo (nero, o bianco sui blocchi scuri), raggio 4 px, alti 52 px (44 px solo nella testata del telefono, per stare in 68 px), testo a 16 px. Il bottone di chiamata contiene il numero (a 390, in testata, solo "Chiama" per lo spazio; il numero è nel primo bottone sotto il titolo).
-14. **Modulo e "dove e quando" per il mestiere**: PASSA IN PARTE.
-    - Il modulo in home ha il tipo di richiesta in quattro caselle (timbro in gomma, timbro in metallo o sigillo, targa o pulsantiera, altro lavoro su misura) e i campi nome, ragione sociale, telefono, email, testo riga per riga o descrizione, misura o modello, quantità, ritiro o spedizione. Compone un'email (mailto con oggetto "tipo, ragione sociale o nome" e tutte le voci); va collegato a un servizio (LEGGIMI).
-    - Per il laboratorio ci sono indirizzo, "Indicazioni" (Google Maps con il percorso fino a via Giacinto Andrea Longhin 91; solo l'indirizzo, non il nome dell'attività, perché la scheda di Maps potrebbe essere ancora su via Turazza) e "Chiama". Nessun iframe.
-    - La tabella degli orari manca: gli orari non sono confermati. Il meccanismo è pronto: con la costante `ORARI` in cima allo script, la pagina scrive "Aperto ora" o "Ora chiuso" con le fasce di oggi nell'apertura e la tabella della settimana in "Quando passare" (provato su una copia con orari di esempio, poi cancellata).
-15. **Piede completo**: PASSA, senza certificazioni (non ne hanno). Logo verticale vero in bianco, poi quattro colonne: chi sono; Contatti (telefono e fax, WhatsApp, email, indirizzo con la mappa, "Prima di passare, chiamateci"); Lavorazioni; Per chi (enti, preventivo, zone). Riga legale "San Marco Timbri di Tosato Andrea, via G. A. Longhin 91, 35129 Padova, P.IVA 04289090286, Privacy, Cookie". Testo a 16 px, la riga legale a 14.
+1. **Telefono in testata fissa, sempre visibile**: PASSA. Testata `position:sticky`, 88 px a 1440 e 72 px a 390. A 390, scorrendo a metà pagina, il bottone di chiamata della testata è a 12 px, alto 48 px, mostra "049 776126" e si tocca (elementFromPoint). 9 link `tel:`. "Dove siamo" è la prima voce del menu.
+2. **Prima schermata con mestiere, luogo, prova e azione**: PASSA a 1440x900 e 390x844. Mestiere nell'occhiello e nell'H1, Padova e via G. A. Longhin 91 con il CAP. La prova è la fascia "Nel 2018 tra i fornitori invitati da Agenzia delle Entrate alla gara sul MEPA per i timbri", in vista in tutte e due. "Chiama 049 776126" è pieno; a 390 è largo 346 su 346 px.
+3. **Immagine vera nell'apertura**: NON APPLICABILE NELLA FORMA DELLA REGOLA, RISOLTA CON LA STRADA DI A7. Non esiste nessuna foto del laboratorio, della sede o delle persone, e il committente ha escluso foto di repertorio e illustrazioni. L'apertura è quindi fatta di tipografia, come barth e Holzrausch: H1 a tutta misura, il rosso del marchio e la fascia delle prove, nessun oggetto su fondo chiaro. La foto dell'apertura resta la prima da fare (LEGGIMI).
+4. **Zero repertorio**: PASSA. "indicativ" compare 0 volte, nessuna immagine viene da Unsplash, Pexels o altre banche, nessun file di `assets/esterne` è in pagina.
+5. **Foto in serie**: PASSA. Due formati, 1:1 per il punzone e 4:3 per le sei schede (loghi esclusi). Una didascalia su 7 foto. Stesso bianco neutro, stessa luminanza media, stessa desaturazione e stessi tagli stretti. Restano scatti da banco a 1000 px: per una serie vera serve la giornata di still life (LEGGIMI).
+6. **Palette dal marchio**: PASSA. Token: nero #161616 (logo), rosso #B8261D (il #FF0000 del loro sito, scaldato) e la sua variante #9A1F17, solo per il bottone toccato, più bianco e grigi neutri (#EEEEEC, #55554F, #D6D6D2, #D2D2CE, #4A4A46). Nessun beige. Fuori dai token non c'è più nessun colore scritto a mano.
+7. **Scala corta e leggibile**: PASSA. 7 misure a 1440: 120 (H1 e telefono), 64, 56, 24, 19, 16, 14. 7 a 390: 56, 40, 32, 21, 17, 16, 14. Testo corrente 19 px (390: 17). A 14 px c'è solo la riga legale. H1 a 120 px maiuscolo con interlinea 0,94 (A4 per B: 85-90 px; qui è più grande perché è il gesto di scala di una home tipografica). A 390 l'H1 è 40 px, dentro i 40-46 di A4.
+8. **Due famiglie al massimo**: PASSA, una sola: Encode Sans. Pesi 400 e 700. Ruoli fissi: titoli in 700, larghi 104-116 %; testo e interfaccia in 400. Sul telefono l'H1 è stretto all'84 %.
+9. **Servizi in schede con foto**: PASSA. Griglia di 3 colonne a 1440 e 1024, 2 a 768, 390 e 320. Sei schede, tutte link: foto 4:3, nome, la loro riga e il preventivo su WhatsApp, con il messaggio per quel lavoro.
+10. **Almeno tre tipi di prove**: NON PASSA, PER LIMITE DELLE FONTI. I tipi presenti sono 2 su 4: quattro numeri (10, 40, 16, 2018) e la fascia del fornitore Trodat con la didascalia. Recensioni: nessuna leggibile in nessuna fonte. Clienti con il nome: nessuno; l'invito di Agenzia delle Entrate è un invito e non va presentato come cliente. Niente è inventato; nel LEGGIMI c'è che cosa chiedere.
+11. **Lavori con un nome**: NON SI APPLICA. Nelle fonti non c'è nessun lavoro con cliente o luogo e anno (LEGGIMI, regola 11).
+12. **Ritmo a blocchi**: PASSA. Fondi: bianco (apertura), grigio (timbri), bianco (su misura), nero (come lavoriamo), bianco (enti), grigio (modulo), rosso (dove siamo), nero (piede). Fanno 2 blocchi pieni scuri oltre al piede. Spazio sopra le sezioni di 96-120 px a 1440 (96 sopra "Che timbro vi serve?", che così compare sul bordo della prima schermata a 891 px) e di 64 px a 390. Margini di 80 px a 1440 e 22 px a 390.
+13. **Un solo sistema di bottoni**: PASSA. Pieno rosso e con il solo bordo (nero, o bianco sui blocchi scuri), raggio 4 px ovunque, altezza 48-52 px, testo a 16 px. Il bottone di chiamata contiene il numero: "Chiama 049 776126", e "049 776126" nella testata del telefono. Solo sotto i 360 px la testata dice "Chiama", con il numero nell'`aria-label`.
+14. **Modulo e "dove e quando" per il mestiere**: PASSA PER IL MODULO E PER "INDICAZIONI" E "CHIAMA". Il modulo ha il tipo di richiesta in quattro caselle e i campi del mestiere. Compone un'email (mailto con oggetto "tipo, ragione sociale o nome" e tutte le voci); va collegato a un servizio (LEGGIMI). Provato con `pro_uso.mjs`: oggetto "Timbro in gomma, Studio Rossi", nessun errore. Nessun iframe. La tabella degli orari manca perché gli orari non sono confermati. Il meccanismo `ORARI` è pronto: provato su una copia con orari di esempio, poi cancellata, scrive "Aperto ora, oggi 08.30-12.30, 15.00-19.00" nell'apertura e la tabella della settimana in "Quando passare".
+15. **Piede completo**: PASSA, senza certificazioni (non ne hanno). Quattro colonne a 1440: chi sono; Contatti (telefono e fax, WhatsApp, email, indirizzo con la mappa, "Prima di passare, chiamateci"); Lavorazioni; Per chi (enti, preventivo, zone). Riga legale con ragione sociale, indirizzo, P.IVA 04289090286, Privacy e Cookie. Testo a 16 px, la riga legale a 14 px, link alti 44 px.
 
-### Prove d'uso della scheda (par. 8), con `pro_controlli.mjs`
+### Prove d'uso della scheda (par. 8), prima e dopo il ritocco
 
-- **Visitatore 1, 1440x900**:
-  - senza scorrere vede Chiama, WhatsApp, email, via Longhin e Indicazioni;
-  - il clic su "Scrivi a" apre l'email con oggetto "Richiesta timbro" e le voci testo, misura o modello, quantità, ritiro o spedizione, nome;
-  - con uno scorrimento trova "Autoinchiostranti Trodat", "datari", "In metallo" e la frase del file preparato da loro e mandato da approvare;
-  - P.IVA in "Per uffici, studi ed enti" e nel piede.
-- **Visitatore 2, 390x844**:
-  - senza scorrere trova "Chiama 049 776126" (52 px, `tel:+39049776126`), "Indicazioni per via Longhin 91" e "Prima di passare chiamateci";
-  - gli orari di oggi non ci sono (da confermare);
+- **Visitatore 1, 1440x900** (come prima o meglio):
+  - senza scorrere ha Chiama, WhatsApp ed email. L'email ha oggetto "Richiesta timbro" e le voci; il WhatsApp in cima ora ha le stesse voci;
+  - con uno scorrimento trova "Autoinchiostranti Trodat", "datari", "In metallo" e ora anche la fascia "Trodat" con il modello sotto il timbro;
+  - la promessa del file preparato da loro e della bozza da approvare è già nella prima schermata (fascia delle prove) e, in grassetto, nel riquadro "Per ordinare";
+  - in "Per uffici, studi ed enti" ci sono la P.IVA e la riga per PEC e codice destinatario, con chi chiamare. La PEC vera non c'è ancora (da confermare).
+- **Visitatore 2, 390x844** (come prima o meglio):
+  - senza scorrere trova "Chiama 049 776126" (52 px), il numero anche nella testata, "Indicazioni per via Longhin 91", l'indirizzo pieno "Via G. A. Longhin 91, 35129 Padova" (prima nascosto) e "Prima di passare chiamateci";
+  - gli orari non ci sono, perché non sono confermati;
   - "Turazza" non compare in nessun punto;
-  - nessun elemento fisso, nessuno scorrimento di lato a 320, 360, 390, 414, 768, 1024, 1100, 1101, 1280, 1440 e 1920 (`pro_largo.mjs`).
-- **Visitatore 3, 390x844**:
-  - le foto delle prime tre schede su misura (pulsantiere, targhe, incisioni e scritte) finiscono a 1477, 1919 e 2360 px dalla cima, entro due scorrimenti (2532 px), ognuna con il suo nome;
-  - ogni scheda apre WhatsApp verso 376 167 3361 con il messaggio già avviato ("Buongiorno, vi mando foto e misure per il preventivo di una pulsantiera.");
-  - "Come funziona un lavoro su misura" dice idea, file, RAL o PANTONE, bozza e campionatura;
-  - i comuni serviti sono elencati uno per uno.
-- **Collegamenti**: `tel:+39049776126`; `mailto:info@sanmarcotimbri.it` (con oggetto e testo); `https://wa.me/393761673361?text=...`; `https://www.google.com/maps/dir/?api=1&destination=Via Giacinto Andrea Longhin 91, 35129 Padova`. Nessuna ancora rotta e nessun errore in console (provato anche il menu, aperto con il tocco e chiuso con Esc, e l'invio del modulo).
+  - nessun elemento fisso copre i bottoni e nessuno scorrimento di lato a 320, 360, 390, 414, 768, 1024, 1100, 1101, 1280, 1440 e 1920.
+- **Visitatore 3, 390x844** (meglio): le foto delle sei schede finiscono entro 1917 px (prima le prime tre entro 2360). Ogni scheda apre WhatsApp con il messaggio per quel lavoro. I quattro passi e i comuni serviti sono come prima.
+- **Collegamenti**: `tel:+39049776126`, `mailto:info@sanmarcotimbri.it` (con oggetto e testo), `https://wa.me/393761673361?text=...`, `https://www.google.com/maps/dir/?api=1&destination=Via Giacinto Andrea Longhin 91, 35129 Padova`. Nessuna ancora rotta. Nessun errore in console. Il menu si apre con il tocco e si chiude con Esc.
 - Nessun carattere U+2014 nella pagina, in questa nota, nel LEGGIMI, nei crediti e negli script.
 
 ### Respinti o non applicati, con il motivo
 
-- **Orari in pagina** (SCHEDA par. 4): l'unico dato è 2gis, sulla scheda della vecchia sede di via Turazza. Non è confermato, quindi non va a vista; c'è "Prima di passare chiamateci" e il meccanismo `ORARI` è pronto.
-- **PEC e "ancora su MEPA"**: la PEC è vista solo in un riassunto di ricerca; l'iscrizione attuale al MEPA non è verificata. In pagina c'è solo il fatto del 2018.
-- **Apertura a tutto schermo con il laboratorio** (famiglia B, punto 2) **e facciata del negozio** (punto 7): non esiste nessuna foto del laboratorio, del banco o dell'ingresso.
-- **Novità di stagione e newsletter**: tolte. La pagina "Promozioni & News" è vuota e la newsletter non inviava nulla; c'è un solo modulo, quello delle richieste.
-- **"Prova la tua impronta"**: tolto. La SCHEDA lo ammetteva solo se finiva nell'invio del testo, e ora quel compito lo fanno l'email con le voci e il modulo.
-- **Didascalie sotto le foto**: nessuna. Il nome della scheda dice già che cosa è; cliente e anno non sono noti.
-- **Timbri in gomma con foto**: non c'è nessuna foto loro di un timbro in gomma, solo foto del catalogo Trodat. La sezione dei timbri è fatta di tipografia.
+- **Alternativa minima del controllore (punzone grande in apertura, almeno metà larghezza)**: respinta. L'originale è 1000x1000: a mezza pagina su 1440 andrebbe ingrandito, e resterebbe lo schema "oggetto su fondo chiaro" di B2. Il punzone è nella sezione dei timbri, alla sua misura.
+- **H1 nella fascia 85-90 px di A4 per B**: superata di proposito. In una home senza foto il titolo a tutta misura (120 px) è il gesto di scala della pagina (A5, A7).
+- **"Che timbro vi serve?" in vista intera nella prima schermata a 1440** (SCHEDA par. 4): se ne vede solo il bordo, a 891 px. Per farlo salire di più bisognerebbe scendere sotto i 96 px della regola 12, o rimpicciolire il titolo o la fascia delle prove. Il compito (Trodat con uno scorrimento) riesce comunque.
+- **Prove in apertura sopra "Prima di passare" a 390**: non spostate. L'indirizzo pieno e "Prima di passare" servono al visitatore 2 senza scorrere, e devono stare sopra la fascia delle prove.
+- **Logo Trodat**: solo il nome in testo, finché non c'è il permesso.
+- **Orari, PEC, MEPA di oggi, tempi di consegna**: non confermati, quindi non a vista. Ci sono i ripieghi onesti ("Prima di passare chiamateci", "chiedeteli allo...", "chiedeteci la situazione aggiornata", "chiedete se si fa in tempo").
+- **Foto di un timbro in gomma loro**: non esiste. Le foto dei timbri sono del catalogo Trodat e non si usano.
+- **Novità di stagione, newsletter, "Prova la tua impronta"**: restano tolti, come nel passaggio precedente.
 
 ### Caratteri e licenze
 
-Encode Sans (Impallari Type, Andres Torresi, Jacques Le Bailly; Google Fonts), file variabile con peso 100-900 e larghezza 75-125 %, servito dalla pagina in `sito/fonts/` (latin e latin-ext). Licenza SIL Open Font License 1.1, uso commerciale libero; testo in `sito/fonts/OFL.txt`. Usati due pesi (400 e 700) e tre larghezze (100 % per testo e titolo d'apertura, 104-108 % per titoli e cifre, 85 % per il titolo sul telefono).
+Encode Sans (Impallari Type, Andres Torresi, Jacques Le Bailly; Google Fonts), file variabile con peso 100-900 e larghezza 75-125 %, servito dalla pagina in `sito/fonts/` (latin e latin-ext). Licenza SIL Open Font License 1.1, uso commerciale libero; testo in `sito/fonts/OFL.txt`. Usati due pesi (400 e 700) e le larghezze 100 % (testo), 104-116 % (titoli, cifre, H1) e 84 % (H1 sul telefono).
 
 ### Foto, origine
 
 | Dove | Foto | Origine |
 |---|---|---|
-| Apertura | punzone in ottone per la stampa a caldo W.E. e ovale EUR 120x80 (`punzone-in-ottone-per-stampa-a-caldo.jpg`, 1000x1000) | libreria media del sito sanmarcotimbri.it, foto loro |
+| Che timbro vi serve | punzone in ottone per la stampa a caldo W.E. e ovale EUR 120x80 (`punzone-in-ottone-per-stampa-a-caldo.jpg`, 1000x1000, taglio 800x800) | libreria media del sito sanmarcotimbri.it, foto loro |
 | Pulsantiere | pulsantiera in pietra con componenti in ottone lucido (1000x750) | idem |
 | Targhe | targhe in ottone a rilievo TOILETTES e 101 (1000x750) | idem |
-| Incisioni e scritte | lettere ritagliate a rilievo in ottone brunito (1000x1000, taglio 4:3) | idem |
+| Incisioni e scritte | lettere ritagliate a rilievo in ottone brunito (1000x1000, taglio 4:3, bianco neutro) | idem |
 | Insegne | insegna traforata in metallo con cavallo (1000x1000, taglio 4:3) | idem |
-| Segnaletica | targa in acciaio corten su pilastro (1000x666, taglio 800x600 senza il cielo) | idem, che sia loro va confermato |
-| Premiazioni | trofeo in ottone su base in legno intarsiato (1000x750) | idem |
+| Segnaletica | targa in acciaio corten su pilastro (1000x666, taglio 648x486 senza prato e cielo) | idem; che sia loro va confermato |
+| Premiazioni | trofeo in ottone su base in legno intarsiato (1000x750, taglio 800x600 senza i fogli) | idem |
 | Testata e piede | logo orizzontale (JPEG 641x114) e logo verticale in bianco (dal PNG 256x200) | sito sanmarcotimbri.it |
 
-Nessuna foto generata dall'IA, nessuna di repertorio, nessun marchio concorrente in primo piano. Diritti e consenso per i lavori fatti per clienti da confermare con l'azienda (LEGGIMI).
+Nessuna foto generata dall'IA, nessuna di repertorio, nessun marchio concorrente in primo piano. Diritti e consenso per i lavori fatti per clienti sono da confermare con l'azienda (LEGGIMI).
 
 ---
 

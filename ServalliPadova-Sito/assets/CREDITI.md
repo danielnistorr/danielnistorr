@@ -38,8 +38,9 @@ Scaricate il 24/10/2026 da `https://irp-cdn.multiscreensite.com/2821c4aa/dms3rep
 
 Decisione del committente sulle foto: "niente" repertorio. **Nessuna foto di `esterne/` è più in pagina**: tolte Pinales (Pexels 31902663), Hansen (Unsplash qPNgpYUCW0c) e Moradian (Unsplash NvdxYHt5CHM), usate fino al 2/11/2026. Restano scaricate qui con la loro licenza, non usate.
 
-In pagina solo immagini del sito attuale (diritti e permessi da chiarire, vedi LEGGIMI):
-- `originali/negozio/2656204814.jpg`, trapunta in seta SINFONIA (marca Molina), apertura;
+In pagina solo immagini del sito attuale (diritti e permessi da chiarire, vedi LEGGIMI; ritocco finale del 3/11/2026):
+- `originali/manifatture_tessili_Servalli_Padova_1967web.jpg` (Giardiniera "Manifatture Tessili Servalli", Padova 1967), apertura, in bicromia;
 - `originali/negozio/4126147316.jpg`, Tabriz ghali (marca Alans), scontornato, sezione tappeti;
-- `originali/Servalli1895-59539f29.jpg` (telai jacquard), `originali/manifatture_tessili_Servalli_Padova_1967web.jpg` (Giardiniera, Padova 1967), `originali/IMG_2245-ba4affe8-1ee72a8b.JPG` (tessitrice in Persia, "© Franco Servalli"), archivio di famiglia, in bicromia;
+- `originali/Servalli1895-59539f29.jpg` (telai jacquard), `originali/MadivalMicheleFrancescoServalli.jpg` (camion MADIVAL in Val Gandino), `originali/IMG_2245-ba4affe8-1ee72a8b.JPG` (tessitrice in Persia, "© Franco Servalli"), archivio di famiglia, in bicromia;
+- tolta dalla pagina: `originali/negozio/2656204814.jpg`, trapunta in seta SINFONIA (marca Molina, foto di terzi), che era in apertura fino al ritocco;
 - loghi: `originali/logo-servalli-stemma.png`, `originali/logo-alans-bianco.png`, `originali/logo-colorcasa-bianco.png`.

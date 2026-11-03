@@ -68,15 +68,16 @@ p{text-wrap:pretty}
 
 /* testata fissa */
 .testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
-.testata-in{display:flex;align-items:center;gap:32px;height:88px}
+.testata-in{display:flex;align-items:center;gap:28px;height:88px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
 .logo svg{width:44px;height:44px;flex:none}
-.logo b{display:block;font-size:var(--t17);line-height:1.15;font-weight:700}
-.logo span{display:block;font-size:var(--t14);line-height:1.3;color:var(--testo-2)}
+.logo b{display:block;font-size:var(--t17);line-height:1.15;font-weight:700;white-space:nowrap}
+.logo small{display:block;font-size:var(--t14);line-height:1.3;color:var(--testo-2)}
+.nw{white-space:nowrap}
 .menu{display:flex;gap:28px;margin-left:auto}
-.menu a{font-size:var(--t17);text-decoration:none;padding:12px 0;border-bottom:2px solid transparent}
+.menu a{font-size:var(--t17);text-decoration:none;padding:12px 0;border-bottom:2px solid transparent;white-space:nowrap}
 .menu a:hover{border-bottom-color:var(--verde)}
-.t-mail{font-size:var(--t17);color:var(--testo-2);text-decoration:none;padding:12px 0}
+.t-mail{font-size:var(--t17);color:var(--testo-2);text-decoration:none;padding:12px 0;white-space:nowrap}
 .t-mail:hover{color:var(--antracite);text-decoration:underline}
 .t-tel{min-height:48px;padding:0 18px}
 .t-tel.quieto{background:transparent;color:var(--verde)}
@@ -91,11 +92,11 @@ p{text-wrap:pretty}
 .ap-testo{grid-column:1;grid-row:1}
 .ap-testo h1{font-size:var(--t64);line-height:1.04;letter-spacing:-.02em;margin-top:20px}
 .ap-lead{font-size:var(--t23);line-height:1.45;color:var(--testo-2);margin-top:24px;max-width:34ch}
-.stato{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;margin-top:24px;font-size:var(--t17)}
-.stato .pallino{width:10px;height:10px;border-radius:50%;background:var(--testo-2);flex:none}
+.stato{display:block;margin-top:24px;font-size:var(--t17);line-height:1.5}
+.stato .pallino{display:inline-block;vertical-align:middle;width:10px;height:10px;border-radius:50%;background:var(--testo-2);margin:-3px 10px 0 0}
 .stato.aperto .pallino{background:var(--verde)}
 .stato .st{font-weight:700}
-.stato a{display:inline-flex;align-items:center;min-height:44px}
+.stato a{display:inline-flex;align-items:center;min-height:44px;margin-left:16px}
 .ap-dove{font-size:var(--t17);color:var(--testo-2);margin-top:4px}
 .ap-dove a{color:inherit}
 
@@ -188,8 +189,8 @@ p{text-wrap:pretty}
 .numeri span{display:block;font-size:var(--t17);line-height:1.45;color:var(--su-scuro);margin-top:16px}
 
 /* richiesta: chiusura con il telefono come titolo e il modulo */
-.rich-griglia{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
-.grande{display:inline-block;font-size:var(--t96);line-height:1;font-weight:700;letter-spacing:-.03em;text-decoration:none;margin-top:40px;color:var(--antracite)}
+.rich-griglia{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.grande{display:inline-block;font-size:var(--t96);line-height:1;font-weight:700;letter-spacing:-.03em;text-decoration:none;margin-top:40px;color:var(--antracite);white-space:nowrap}
 .grande:hover{color:var(--verde)}
 .rich-rec{font-size:var(--t19);margin-top:24px}
 .rich-rec li{padding:6px 0}
@@ -219,35 +220,49 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 .piede a{color:var(--bianco);text-decoration:none}
 .piede a:hover{text-decoration:underline}
 .piede .logo b{color:var(--bianco)}
-.piede .logo span{color:var(--su-scuro)}
+.piede .logo small{color:var(--su-scuro)}
 .piede-chi{margin-top:20px;max-width:34ch}
 .legale{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:72px;padding-top:24px;border-top:1px solid var(--linea-scura);font-size:var(--t14);color:var(--su-scuro)}
 .legale a{color:var(--su-scuro)}
 
 /* computer piccolo */
+@media (max-width:1399px){
+  .t-mail{display:none}
+  .ap-griglia{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
 @media (max-width:1279px){
   :root{--m:48px}
-  .t-mail{display:none}
   .menu{gap:22px}
   .ap-testo h1{font-size:var(--t48)}
+  .grande{font-size:var(--t64)}
 }
-@media (max-width:1023px){
-  :root{--sez:96px;--gap:24px}
+@media (max-width:1179px){
   .menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bianco);flex-direction:column;gap:0;padding:8px var(--m) 24px;border-bottom:1px solid var(--linea)}
   .menu.aperto{display:flex}
   .menu a{padding:14px 0;border-bottom:1px solid var(--linea)}
   .btn-menu{display:inline-flex;align-items:center}
   .t-tel{margin-left:auto}
   .testata-in{gap:16px}
+  .az-griglia,.banco-griglia,.chi-griglia,.rich-griglia{grid-template-columns:minmax(0,1fr)}
+  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .cartello .bottoni{flex-direction:row}
+}
+@media (max-width:1023px){
+  :root{--sez:96px;--gap:24px}
   .ap-griglia{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
   .indice ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .indice li:nth-child(3){border-left:0}
   .indice li:nth-child(n+3) a{border-top:1px solid var(--linea-scura)}
   .indice li:nth-child(3) a{padding-left:0}
   .schede,.lavori{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .az-griglia,.banco-griglia,.chi-griglia,.rich-griglia{grid-template-columns:minmax(0,1fr)}
-  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .dove-griglia{grid-template-columns:minmax(0,1fr);gap:48px}
   .piede-col{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+}
+@media (max-width:899px){
+  .ap-griglia{grid-template-columns:minmax(0,1fr);gap:32px}
+  .ap-foto{grid-column:1;grid-row:1}
+  .ap-testo{grid-column:1;grid-row:2}
+  .ap-foto img{max-height:440px}
 }
 /* telefono */
 @media (max-width:767px){
@@ -255,7 +270,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   html{scroll-padding-top:84px}
   .testata-in{height:72px;gap:8px}
   .logo svg{width:36px;height:36px}
-  .logo span{display:none}
+  .logo small,.logo .r{display:none}
   .t-tel{padding:0 14px}
   .apertura{padding-top:0;padding-bottom:48px}
   .ap-griglia{grid-template-columns:minmax(0,1fr);gap:20px}
@@ -279,7 +294,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .passi{grid-template-columns:minmax(0,1fr);margin-top:32px;gap:28px}
   .passi h3{margin-top:12px}
   .prev-azioni{margin-top:32px}
-  .prev-azioni .bottoni,.lav-fondo .bottoni,.disegno .bottoni,.modulo .bottoni{flex-direction:column;align-items:stretch;width:100%}
+  .prev-azioni .bottoni,.lav-fondo .bottoni,.disegno .bottoni,.modulo .bottoni,.cartello .bottoni{flex-direction:column;align-items:stretch;width:100%}
   .schede{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:32px}
   .lavori{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px;margin-top:32px}
   .lavori h3{margin-top:8px}
@@ -302,8 +317,10 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .piede-col{grid-template-columns:minmax(0,1fr);row-gap:40px}
   .legale{margin-top:48px}
 }
-@media (max-width:359px){
+@media (max-width:379px){
   .logo b{display:none}
+}
+@media (max-width:359px){
   .t-tel{padding:0 10px}
   .btn{padding:0 14px;white-space:normal;text-align:center}
 }
@@ -318,12 +335,12 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     <a class="logo" href="#top" aria-label="Recinzioni Formentin, inizio pagina">
       <!-- marchio ridisegnato sul GIF del sito: rombo di rete azzurra e F verde (da sostituire con il vettoriale originale) -->
       <svg viewBox="0 0 740 744" aria-hidden="true"><path transform="translate(360 359) rotate(45)" fill="none" stroke="#5A94F7" stroke-width="12" stroke-linecap="square" d="M-243 -243V243M-202.5 -243V243M-162 -243V243M-121.5 -243V243M-81 -243V243M-40.5 -243V243M0 -243V243M40.5 -243V243M81 -243V243M121.5 -243V243M162 -243V243M202.5 -243V243M243 -243V243M-243 -243H243M-243 -202.5H243M-243 -162H243M-243 -121.5H243M-243 -81H243M-243 -40.5H243M-243 0H243M-243 40.5H243M-243 81H243M-243 121.5H243M-243 162H243M-243 202.5H243M-243 243H243"/><g fill="#08B508"><path d="M222 222H498V322H322V499H222Z"/><rect x="358" y="358" width="100" height="100"/></g></svg>
-      <span><b>Recinzioni Formentin</b><span>Villatora di Saonara</span></span>
+      <span><b><span class="r">Recinzioni </span>Formentin</b><small>Villatora di Saonara</small></span>
     </a>
     <nav class="menu" id="menu" aria-label="Sezioni">
       <a href="#prodotti">Prodotti</a>
       <a href="#lavori">Lavori</a>
-      <a href="#aziende">Aziende e Betafence</a>
+      <a href="#aziende">Aziende</a>
       <a href="#banco">Attrezzature edili</a>
       <a href="#dove">Dove siamo</a>
     </nav>
@@ -373,7 +390,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     <div class="testa">
       <p class="occhiello">Preventivo gratuito</p>
       <h2 class="h2" id="t-prev">Come chiedere il preventivo</h2>
-      <p class="intro">Per un preventivo senza impegno, vi invitiamo a contattarci. Così si fa prima.</p>
+      <p class="intro">Per un preventivo senza impegno, vi invitiamo a contattarci.</p>
     </div>
     <ol class="passi">
       <li><span class="nn num">1</span><h3>Mandateci foto e misure</h3><p>Due o tre foto del punto da chiudere, i metri lineari, l'altezza e l'indirizzo del lavoro. Per email, oppure diteceli al telefono.</p></li>
@@ -452,7 +469,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     <div class="lav-fondo">
       <p>Volete vedere i modelli dal vero? L'esposizione è in sede, su appuntamento.</p>
       <div class="bottoni">
-        <a class="btn" href="tel:+39049760801">Fissate l'appuntamento <span class="n">049 760801</span></a>
+        <a class="btn" href="tel:+39049760801">Appuntamento <span class="n">049 760801</span></a>
         <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Lombardia%2017%2C%2035020%20Saonara%20PD">Indicazioni stradali</a>
       </div>
     </div>
@@ -514,7 +531,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     </div>
     <div class="cartello">
       <p class="stato" data-stato><span class="pallino" aria-hidden="true"></span><span class="st num">Lunedì-venerdì 8.00-12.00 e 13.30-17.30</span></p>
-      <p class="num">Lunedì-venerdì 8.00-12.00 e 13.30-17.30. Sabato su appuntamento.</p>
+      <p class="num">Lunedì-venerdì <span class="nw">8.00-12.00</span> e <span class="nw">13.30-17.30</span>. Sabato su appuntamento.</p>
       <p>Non sapete se c'è quello che vi serve? Chiamate prima di passare.</p>
       <div class="bottoni">
         <a class="btn" href="tel:+39049760801">Chiama <span class="n">049 760801</span></a>
@@ -545,7 +562,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         <table class="orari num">
           <caption class="salta">Orari</caption>
           <tbody>
-            <tr data-giorni="1,2,3,4,5"><th scope="row">Lunedì-venerdì</th><td>8.00-12.00 e 13.30-17.30</td></tr>
+            <tr data-giorni="1,2,3,4,5"><th scope="row">Lunedì-venerdì</th><td><span class="nw">8.00-12.00</span> e <span class="nw">13.30-17.30</span></td></tr>
             <tr data-giorni="6"><th scope="row">Sabato</th><td>su appuntamento</td></tr>
             <tr data-giorni="0"><th scope="row">Domenica</th><td>chiuso</td></tr>
           </tbody>
@@ -590,7 +607,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
       <ul class="rich-rec num">
         <li>Cellulare <a href="tel:+393357740278">335 7740278</a></li>
         <li><a href="mailto:info@recinzioniformentin.it?subject=Preventivo%20recinzione">info@recinzioniformentin.it</a></li>
-        <li>Lunedì-venerdì 8.00-12.00 e 13.30-17.30</li>
+        <li>Lunedì-venerdì <span class="nw">8.00-12.00</span> e <span class="nw">13.30-17.30</span></li>
       </ul>
     </div>
     <form class="modulo" id="modulo" novalidate aria-labelledby="t-mod">
@@ -641,7 +658,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
       <div>
         <a class="logo" href="#top" aria-label="Recinzioni Formentin, inizio pagina">
           <svg viewBox="0 0 740 744" aria-hidden="true"><path transform="translate(360 359) rotate(45)" fill="none" stroke="#5A94F7" stroke-width="12" stroke-linecap="square" d="M-243 -243V243M-202.5 -243V243M-162 -243V243M-121.5 -243V243M-81 -243V243M-40.5 -243V243M0 -243V243M40.5 -243V243M81 -243V243M121.5 -243V243M162 -243V243M202.5 -243V243M243 -243V243M-243 -243H243M-243 -202.5H243M-243 -162H243M-243 -121.5H243M-243 -81H243M-243 -40.5H243M-243 0H243M-243 40.5H243M-243 81H243M-243 121.5H243M-243 162H243M-243 202.5H243M-243 243H243"/><g fill="#08B508"><path d="M222 222H498V322H322V499H222Z"/><rect x="358" y="358" width="100" height="100"/></g></svg>
-          <span><b>Recinzioni Formentin</b><span>Formentin Srl</span></span>
+          <span><b>Recinzioni Formentin</b><small>Formentin Srl</small></span>
         </a>
         <p class="piede-chi">Recinzioni e cancelli dalla vendita alla posa, attrezzature edili e ferramenta. Rivenditori e installatori ufficiali Betafence.</p>
       </div>
