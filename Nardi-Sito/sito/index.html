@@ -778,6 +778,7 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
     }
     return err + (a.length - i) + (b.length - j) <= 1;
   }
+  var PRIMO = {crepe:'Stucco in polvere interno', fissare:'Cemento rapido', fughe:'Stucco per fughe piastrelle bianco', muri:'Malta grigia', caminetti:'Malta refrattaria', gesso:'Gesso alabastrino'};
   var LAVORI = {crepe:'Riempire crepe e buchi', fissare:'Fissare in fretta', fughe:'Fughe e piastrelle', muri:'Muri e intonaci', caminetti:'Caminetti e stufe', gesso:'Gesso per calchi e decori'};
   var box = $('#risultati'), input = $('#q'), lista = [], titolo = '';
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -848,6 +849,9 @@ figcaption.due-voci span:last-child{color:var(--testo-2);text-align:right}
       if (gia){ titolo = ''; mostra(); return; }
       b.setAttribute('aria-pressed', 'true'); input.value = '';
       lista = D.filter(function(p){ return p.j.indexOf(k) >= 0; }).sort(function(a, c){ return rango(a, k) - rango(c, k); });
+      /* per primo il prodotto della scatola in foto e della riga (Briko Line da 1 kg) */
+      var pr = lista.findIndex(function(p){ return p.n === PRIMO[k] && p.l === 'Briko Line'; });
+      if (pr > 0) lista.unshift(lista.splice(pr, 1)[0]);
       titolo = LAVORI[k] + ': ' + lista.length + ' prodotti';
       mostra();
       box.scrollIntoView({behavior: 'smooth', block: 'start'});

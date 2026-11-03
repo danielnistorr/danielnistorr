@@ -16,7 +16,7 @@ Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubbl
 
 ## Da chiedere all'azienda
 
-1. **Privati** (in pagina, da confermare): la home scrive "Anche se sei un privato, con lo spaccalegna, il trattorino o il rimorchio: porta il tubo o manda le foto, ti diciamo noi che cosa serve", dalla scelta "Privato" del loro modulo. Se non servono i privati, togliere lo `span.privati` nel testo del culmine e la nota "(se sei un privato, lascia vuoto)" nel modulo.
+1. **Privati** (da confermare): la home scrive solo "Anche da privato: nel modulo in fondo alla pagina la P.IVA non serve.", dalla scelta "Privato" del loro modulo; la frase di prima con lo spaccalegna, il trattorino e il rimorchio è tolta finché l'azienda non conferma che lavora anche per i privati. Se non servono i privati, togliere lo `span.privati` nel testo del culmine e la nota "(se sei un privato, lascia vuoto)" nel modulo.
 2. **Certificazione ISO 9001:2015** (RINA 44143/23/S, IQNet IT-146659): il PDF sul sito scadeva il 22.06.2026. Per questo il piede non ha più i link "Certificazioni" e "Politica per la qualità" (PDF del 05.12.2022). Con il rinnovo: "ISO 9001, certificato n. ..., valido fino al ..." nella fascia dei numeri con il PDF, e i due link di nuovo nel piede.
 3. **Recensioni**: la scheda Google dà 4,8 su 11. Se si possono citare, con due o tre testi veri (nome e comune del cliente), servono per la regola delle prove; i testi non si leggono senza accesso.
 4. **Lavori con un nome**: tre lavori fatti (cliente o luogo, anno, due-tre dati: per esempio tubi per un costruttore di macchine, una centralina, un intervento urgente in campo) con una foto larga. Oggi la home non ne ha.
@@ -27,7 +27,7 @@ Proposta non richiesta, solo la home. Nessun contatto con l'azienda, nulla pubbl
 9. **Uscite**: se fanno interventi fuori sede (in campo, in cantiere): se sì, il modulo deve chiedere anche l'indirizzo della macchina.
 10. Dati legali: REA PD 200928, dipendenti e fatturato vengono da companyreports.it e non dalla visura (non in pagina); capitale sociale e PEC non trovati; CAP 35020 (sito) o 35022 (certificato RINA), in pagina 35020; email su dominio .com con sito .it: quale tenere.
 11. Se FOR, NUMATICS, Cast, Donaldson, MP, Emmegi e Stopflex sono ancora distribuiti (non messi nella griglia dei marchi, che tiene i 16 della scheda).
-12. Chi ha scattato IMG-9594 e IMG-9596 (il prima e dopo in pagina, dall'articolo "Il sistema Push Lock" del 25/7/2023) e se esistono gli originali più grandi (oggi 1024 px). La didascalia dice "F.R.A.M.O., Saonara (PD) · luglio 2023": il luogo dello scatto va confermato.
+12. Chi ha scattato IMG-9594 e IMG-9596 (il prima e dopo in pagina, dall'articolo "Il sistema Push Lock" del 25/7/2023) e se esistono gli originali più grandi (oggi 1024 px). La didascalia dice solo "F.R.A.M.O. · luglio 2023" (la data dell'articolo): il luogo dello scatto si aggiunge quando è confermato.
 13. **Foto della sede** (`azienda-01` e `azienda-02` del loro sito): portano la filigrana "© 2018 Google", sono catture di Google Street View. Non sono in pagina; vanno tolte anche dal sito di oggi o sostituite (foto 2 qui sotto).
 14. **Centraline**: una foto di una centralina loro e tre dati tipici (pressioni, potenze, componenti montati), solo se confermati: oggi la home dice solo "progettiamo e assembliamo".
 15. **Loghi** in vettoriale dei marchi distribuiti (almeno AMI, Manuli, Walvoil, Danfoss), con il permesso d'uso: oggi i marchi sono scritti, non disegnati.
