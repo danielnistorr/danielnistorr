@@ -35,11 +35,12 @@ Solo foto dell'azienda, nessun segnaposto di `esterne/`, nessuna foto nuova scar
 
 | Uso | File d'origine | Autore indicato nel post | Note |
 |---|---|---|---|
-| Apertura | `originali/copertina-sito-original.jpg` | da chiedere | 2560x1440; 16:9 dal tablet in su, 3:2 su Matteo e la Sportster sul telefono |
+| Apertura | `originali/copertina-sito-original.jpg` | da chiedere | 2560x1440; a tutta larghezza in 2,04:1 dal computer (ritocco del 3/11/2026), 16:9 sul tablet, 3:2 su Matteo e la Sportster sul telefono |
 | Officina, tagliandi | `originali/feed/20230608_CtOfZW5IrjK.jpg` | nessuno | Softail Springer in manutenzione |
 | Officina, ripristino | `originali/feed/20220729_CgmuJHsoQ7o.jpg` | nessuno | Sportster dopo una caduta |
 | Officina, restauro | `originali/feed/20211107_CV-3bqeo002.jpg` | nessuno | Road King restaurata |
-| Trasformazioni, Sportster | `originali/feed/20231202_C0Wverwo_GZ.jpg` | @boemphoto | 883 chopper con Matteo, 704 px |
+| Trasformazioni, Sportster | `originali/feed/20210108_CJyG4jSBwp0.jpg` | nessuno | Sportster 48 "Jericho", davanti alla lamiera, 1080x566 tagliata a 16:9 (ritocco del 3/11/2026) |
+| Le special, 883 Old Style | `originali/feed/20231202_C0Wverwo_GZ.jpg` | @boemphoto | 883 chopper con Matteo, 704 px (prima era nella scheda Sportster) |
 | Trasformazioni, Softail | `originali/feed/20200701_CCG1eo5I_Ga.jpg` | nessuno | Heritage bobber |
 | Trasformazioni, Touring | `originali/feed/20220709_CfyT18uIR6O.jpg` | nessuno | Electra Glide '94 diventata Road King |
 | Trasformazioni, giapponesi | `originali/feed/20220517_CdqncOvIOrf.jpg` | nessuno | La Morelia, Honda Shadow VT600 |

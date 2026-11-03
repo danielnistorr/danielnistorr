@@ -1,127 +1,73 @@
-# Home di AIT Studio, Stefano Aiti: livello professionale
+# Home di AIT Studio, Stefano Aiti: livello professionale, ritocco finale
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. La home di prima ("Comunicazione silenziosa"), con la sua NOTA, è copiata com'era in `_prova/versione-1-originale/` (sito e screenshot).
 
-Rifare tutto: `bash _prova/script/build_finale.sh --immagini` (immagini con `pro_img.py`, screenshot con `pro_shoot.mjs`, poi `pro_controlli.mjs`). Prove d'uso della scheda: `node _prova/script/pro_uso.mjs`. Scorrimento orizzontale, elemento per elemento: `node _prova/script/trova_largo.mjs <larghezza>`.
+Rifare tutto: `bash _prova/script/build_finale.sh --immagini` (immagini con `pro_img.py`, screenshot con `pro_shoot.mjs`, poi `pro_controlli.mjs`). Prove d'uso della scheda: `node _prova/script/pro_uso.mjs`. Scorrimento orizzontale, elemento per elemento: `node _prova/script/trova_largo.mjs <larghezza>`. Larghezze delle lettere in Chromium: `node _prova/script/kern_prova.mjs`.
 
-Screenshot (stessi nomi di prima): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da Matrimoni al piede). Misure: 9128 px a 1440, 13293 a 390.
+Screenshot (stessi nomi di prima): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (dal preventivo al piede). Misure: circa 10100 px a 1440 e 12700 a 390.
 
 ## Livello professionale
 
-Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia M (manifattura e fornitori del lusso), sezione B (difetti delle nostre home), sezione C (15 regole). Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di Cly-Del e barth (a pezzi), e la prova già vista dal committente (Unicar, Oby, Fornasiero, colonna di destra di `_invio/zona/home/livello-professionale.jpg`).
+Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia M (manifattura e fornitori del lusso), sezione B (difetti delle nostre home), sezione C (15 regole). Riferimenti guardati per questo ritocco: le prime schermate a 1440 e 390 di tutti e 14 e le pagine intere di Odermatt, Budri e Holzrausch, a pezzi (prima erano state viste Cly-Del e barth).
 
-### Che cosa è cambiato, in breve
+### Che cosa cambia nel ritocco finale (dal controllo del livello e dalle prove dei clienti tipo)
 
-- **Uso prima di tutto (scheda `_prova/uso/SCHEDA.md`).** La home di prima apriva con un aforisma, un indice di nomi alla maniera di una galleria e i cantieri a due terzi della pagina. Ora:
-  - in testata, fissa, c'è il bottone "Chiama 348 748 58 71" (a 390 il numero con la cornetta) e, a 1440, "Scrivici" (mailto con oggetto);
-  - l'apertura dice il mestiere e il luogo e ha le tre porte con foto vere: Cantieri e mezzi, Prodotti in sala di posa, Architettura e interni, ognuna con i suoi clienti;
-  - sotto le porte c'è l'uscita "Matrimoni: Stefano Aiti Weddgraphy, 4,9 su 5 su Matrimonio.com".
-- **Struttura M adattata a uno studio fotografico:**
-  1. testata sobria con le cinque voci e i due bottoni;
-  2. apertura con la dichiarazione del mestiere (H1 "Foto e video per le aziende: cantieri, prodotti, architetture") e le tre porte, che fanno da settori;
-  3. lo studio (la sala di posa vera, `a4`, con Stefano e Giulia) e quattro numeri: 1995, 2008, 2 lauree Iuav, 5 servizi per le costruzioni;
-  4. cantieri e mezzi su blocco nero: quattro schede di servizio con foto (reportage, foto aziendali, livree, video e siti) e tre lavori con il nome del cliente e il luogo;
-  5. prodotti in sala di posa: tre still life con il nome del cliente;
-  6. architettura e interni: tre lavori con il cliente;
-  7. clienti per campo, su nero, e in chiusura la frase di Stefano, usata una volta sola;
-  8. matrimoni: voto, prezzo, tre recensioni vere, Weddgraphy e "Chiama per la data";
-  9. preventivo: modulo per il mestiere, telefono grande, email, indirizzo con "Vai alla mappa", zone;
-  10. piede in quattro colonne.
-- **Foto, decisione "niente".** Nessuna foto di repertorio (i Pexels di `assets/esterne/` non erano e non sono usati), nessuna illustrazione, nessuna schermata di sito o mockup usati come foto. Sono 19 foto, tutte di Stefano Aiti o di AIT Studio, in tre formati. Le foto di cantiere di aitistudio.it sono calmate come serie: saturazione all'86 % e contrasto al 96 %, perché l'HDR è spinto.
-- **Colori del marchio.** Tolto il fondo carta #F6F5F2 (beige di comodo). Ora ci sono:
-  - il bianco;
-  - il nero del logo (#0B0A0A, dal #040000);
-  - il grigio del logo #AAAEAD per filetti e testo secondario sul nero;
-  - il chiaro #EDEFEE, lo stesso grigio schiarito, per i blocchi chiari;
-  - il grigio dei testi secondari #565A59 (7:1 sul bianco).
-- **Caratteri.** Resta la sola famiglia della home di prima, Switzer, con due pesi distanti: 400 e 600 (il 500 è tolto).
+- **Un gesto di scala in apertura.** Prima le foto erano tre tessere di 411x308 a 1440 e tre miniature di 96x96 a 390. Ora:
+  - a 1440 il titolo sta a sinistra (8 colonne) e a destra ci sono la riga del luogo e i due bottoni impilati;
+  - sotto, la porta Cantieri è grande (7 colonne, 737x414, 16:9): la stesa notturna con il semirimorchio Salima, con il marchio leggibile;
+  - accanto, Prodotti e Architettura sono due porte più piccole, con la foto e i clienti, e sotto c'è la riga dei matrimoni;
+  - a 390 la porta Cantieri è a tutta larghezza (350x197) e le altre due sono righe con la miniatura da 80 px. Tutte e tre stanno nella prima schermata.
+- **Luogo e prova in chiaro.** L'occhiello dice "AIT Studio, Stefano Aiti" (chi conosce AIT Studio dai mezzi ha subito la conferma). Sotto il titolo, in 18 px nero (17 a 390): "Studio fotografico a Mestrino (PD), dal 2008. Lavoriamo in Veneto e in Trentino."
+- **Bottoni senza doppi spazi.** L'etichetta è chiusa in un solo span ("Chiama Stefano 348 748 58 71", "Chiama per la data 348 748 58 71").
+- **Spaziatura delle lettere.** "Stef ano", "St udio", "Mest rino": Chromium su Linux arrotondava le larghezze delle lettere (la f a 16 px passava da 4,8 a 7 px, misurato con `kern_prova.mjs`). Con `text-rendering:geometricPrecision` sul body la f torna a 5,1 px e le parole si chiudono.
+- **Pesi distanti.** Switzer 400 e 700 (prima 400 e 600), come chiede A4.
+- **Cantieri senza schemi ripetuti.** Dopo le quattro schede, "Lavori recenti 2022-2023" apre con la foto di Mirano a tutta larghezza (fino a 1600 px, 16:9) e prosegue con Carpane e Massenza affiancati (6+6). "Avete un cantiere da documentare? Scriveteci" viene dopo le foto, non prima.
+- **Lavori con anno e tre dati.** "Salima, Mirano (VE) · marzo 2023 · reportage di cantiere", "Girardini, Carpane (VI) · ottobre 2022 · cantiere Anas, reportage", "Salima, Massenza (TN) · marzo 2022 · parco mezzi, Volvo FL250". Mese e anno vengono dall'EXIF dei file originali. Tolto "all'alba" da Mirano: l'EXIF dice ore 19:19.
+- **Prodotti con quattro foto e il nome.** Testo a lato (4 colonne, fermo mentre si scorre) e quattro still life in 2x2: Calearo (prima c'era solo nella porta, senza nome), Marijke, Calegaro, Superoro. A 390 restano in 2x2, così la sezione è corta.
+- **Architettura speculare e con Studio 4 Marmicolor.** Foto grande a destra (Artufficio, Banca Prealpi), a sinistra la scala di Studio 4 Marmicolor e la Fornace Morandi, ognuna con il nome. Tolta Brendola, che ripeteva Artufficio.
+- **Clienti come testo.** I nomi sono composti in 44 px (28 a 390), separati da un punto, con il campo in 14 px maiuscolo sopra ogni gruppo. Prima erano tre colonne in 24 px.
+- **Numeri veri.** Tolti "2 lauree" e "5 servizi". Ora: 1995, 2008, "2 persone: ideazione, scatto ed editing, tutto fatto da noi", "6 banche e casse rurali arredate da Artufficio, fotografate da noi" (01-analisi, sez. 1). Le lauree Iuav sono nel testo dello studio.
+- **Ritmo.** Il chiaro passa da #EDEFEE a #E2E4E3 (stesso grigio del logo), così i blocchi chiari si distinguono dal bianco. Il testo secondario #565A59 sul chiaro resta a 5,5:1.
+- **Menu e contatti.** Il menu ora ha Cantieri e mezzi, Prodotti, Architettura, Clienti, Matrimoni, Preventivo (6 voci); sul telefono c'è anche "Scrivici a info@aitistudio.it". "Lo studio" è il primo blocco dopo l'apertura e non serve nel menu. Le email nei contatti sono bersagli alti 44 px.
+- **Modulo.** La tendina parte da "Scegli il tipo di lavoro". L'email va a info@aitistudio.it per i lavori di cantiere e a stefano@stefanoaiti.com per gli altri, e sotto il bottone è scritto a quale indirizzo parte. La frase sugli allegati è in nero a 16 px.
+- **Matrimoni dopo il preventivo.** Per chi viene per lavoro non è più un intoppo tra i clienti e il modulo. Chi cerca i matrimoni ha la riga in apertura e la voce nel menu.
 
 ### Esito regola per regola (controlli di `_prova/script/pro_controlli.mjs` e screenshot)
 
-1. **Telefono in testata fissa, sempre visibile: PASSA.**
-   - Testata `position:sticky`. A 390, scorsa a metà pagina, il bottone "348 748 58 71" (48 px) si vede e si tocca.
-   - In pagina ci sono 5 link `tel:`. La voce di richiesta della famiglia M c'è: "Scrivici" in testata, "Chiedi un preventivo" nell'apertura e "Preventivo e contatti" nel menu del telefono.
-2. **Prima schermata con mestiere, luogo, prova, azione: PASSA** a 1440x900 e 390x844.
-   - Il mestiere è nell'H1; il luogo e la prova sono nell'occhiello ("Stefano Aiti, studio fotografico a Mestrino (PD), dal 2008"); i clienti stanno sotto ogni porta.
-   - L'azione è "Chiama Stefano 348 748 58 71", che a 390 è a tutta larghezza (350 px).
-   - A 390 si vedono anche le tre porte intere e il link ai matrimoni.
-3. **Immagine vera nell'apertura: PASSA.**
-   - La prima porta è la stesa notturna con il semirimorchio Salima: un mezzo con il marchio, in cantiere. Accanto ci sono l'antenna Calearo e la scala di Studio 4 Marmicolor.
-   - L'antenna è un oggetto su fondo bianco, ma qui è il lavoro stesso che lo studio vende, ed è una sua foto da 9 su 10.
-   - Le persone (Stefano e Giulia nella sala di posa) sono il primo blocco dopo l'apertura.
-4. **Zero repertorio: PASSA.** "indicativ" compare 0 volte; Pexels, Unsplash ed `esterne/` 0 volte.
-5. **Foto in serie: PASSA, con un limite dichiarato.**
-   - Tre formati: 4:3 (porte, schede, lavori), 1:1 (solo le miniature delle porte sul telefono) e 16:9 (la sala di posa, nel suo formato nativo).
-   - Ci sono 6 nomi di lavoro sotto 19 foto, quindi meno di una didascalia ogni tre foto.
-   - Il trattamento è comune dentro ogni sezione: i cantieri sono calmati insieme, gli still life e l'architettura sono lasciati con la loro luce pulita.
-   - Il limite: la luce non può essere una sola, perché lo studio vende tre generi diversi (notte di cantiere, bianco di sala di posa, interni). Ogni genere sta nella sua sezione.
-6. **Palette dal marchio: PASSA.** Cinque token, cioè bianco, nero e grigio del logo, più due grigi neutri. Niente beige.
-7. **Scala corta e leggibile: PASSA.**
-   - A 1440 ci sono 6 misure: 64, 44, 24, 18, 16, 14. A 390 ce ne sono 8: 44, 34, 28, 20, 17, 16, 15, 14.
-   - Il testo corrente è a 18 px a 1440 e a 17 a 390; le introduzioni a 24 e 20. Il 16 è solo per etichette, dati sotto le foto e piede.
-   - Niente sotto i 14 px; il 14 è solo nelle etichette in maiuscolo spaziato e nella riga legale.
-   - Il titolo è a 64 px a 1440 e a 34 a 390, nella fascia M (60-70 e 34-40).
-8. **Due famiglie al massimo: PASSA.** Una sola, Switzer, come barth: 600 per titoli, nomi, cifre e bottoni, 400 per il testo.
-9. **Servizi in schede con foto: PASSA.**
-   - Quattro schede per le costruzioni, in 4 colonne a 1440 (2 a 1024 e 768, 1 a 390), con foto 4:3, nome, una riga con le loro parole e "Chiedi un preventivo". Tutta la scheda è un link.
-   - Il link porta al modulo con il tipo di lavoro già scelto: provato con `pro_uso.mjs`, "Livree dei mezzi" arriva nel campo.
-   - I siti web stanno nella scheda "Video e siti web", perché non c'è una foto di un sito che non sia una schermata.
-10. **Almeno tre tipi di prove: PASSA (3 su 4).**
-    - Recensioni: tre testi veri da Matrimonio.com con nome, mese e fonte. Il comune non è nella fonte.
-    - Numeri: quattro (1995, 2008, 2, 5).
-    - Clienti con il nome: 17, divisi per campo.
-    - Certificazioni: non ne hanno. Il socio TAU Visual va confermato ed è nel LEGGIMI.
-11. **I lavori hanno un nome: PASSA IN PARTE.**
-    - Sei lavori con il cliente e il luogo o l'oggetto, per esempio "Salima, Mirano (VE), cantiere stradale all'alba, reportage" e "Girardini, Cantiere Anas a Carpane". In ogni sezione ce n'è uno largo più di metà pagina (845 px a 1440).
-    - Manca l'anno di ogni lavoro: le fonti dicono solo che il materiale di cantiere è di aitistudio.it (2024-2025) e il portfolio del 2017. Va chiesto (LEGGIMI).
-12. **Ritmo a blocchi: PASSA.**
-    - Oltre al piede ci sono due blocchi neri (cantieri, clienti) e tre chiari (studio, architettura, matrimoni).
-    - Spazio tra le sezioni: 128 px a 1440 e 72 a 390. Margini: 80 px a 1440 e 20 a 390.
-13. **Un solo sistema di bottoni: PASSA.**
-    - Due varianti, piena e con il bordo, raggio 2 px ovunque. Altezza 52 px (48 in testata), testo 16 px in 600.
-    - Ogni bottone di chiamata contiene il numero: "Chiama 348 748 58 71", "Chiama Stefano 348 748 58 71", "Chiama per la data 348 748 58 71".
-14. **Modulo e "dove e quando": PASSA.**
-    - Il modulo ha i campi di uno studio che lavora su commessa: nome, azienda, telefono, email, cosa fotografare (tendina con i sette lavori più "Altro"), dove, entro quando, per quale uso e due righe sul lavoro.
-    - "Prepara l'email" compone un mailto a stefano@stefanoaiti.com con l'oggetto "Richiesta di preventivo: tipo, azienda" e tutti i campi nel testo. Va collegato a un servizio (LEGGIMI).
-    - L'allegato: un mailto non porta file, quindi la riga sotto il bottone dice di allegare planimetrie, logo o foto dei mezzi nella mail che si apre.
-    - Le zone: "In Veneto e in Trentino: Padova, Mirano, Carpane, Massenza". L'indirizzo ha il bottone "Vai alla mappa" (Google Maps). Nessun iframe.
-15. **Piede completo: PASSA, senza orari né certificazioni** (non sono nelle fonti).
-    - Quattro colonne: logo e mestiere, lavori, lo studio (indirizzo, mappa, zone), contatti (telefono, due email, preventivo).
-    - Riga legale: "Stefano Aiti Fotografo, ditta individuale, P.IVA 04257170284, PEC", Privacy, Cookie. Testo di almeno 14 px.
-    - Il logo AIT STUDIO è quello tracciato, con il nero passato al bianco per il fondo nero.
+1. **Telefono in testata fissa, sempre visibile: PASSA.** Testata `position:sticky`, 80 px a 1440 e 72 a 390. A 390, scorsa a metà pagina, il bottone "348 748 58 71" (48 px) si vede e si tocca. In pagina ci sono 5 link `tel:`. Voce di richiesta M: "Preventivo" nel menu e "Scrivici" in testata a 1440.
+2. **Prima schermata con mestiere, luogo, prova, azione: PASSA** a 1440x900 e 390x844. Mestiere nell'H1; luogo e prova ("Mestrino (PD), dal 2008") nella riga in 18 px nero sotto il titolo; azione "Chiama Stefano 348 748 58 71", a 390 a tutta larghezza.
+3. **Immagine vera nell'apertura: PASSA.** La stesa notturna di AIT Studio con il semirimorchio Salima, grande: 737x414 a 1440, 350x197 a 390. Accanto l'antenna Calearo e la scala di Studio 4 Marmicolor, foto loro.
+4. **Zero repertorio: PASSA.** "indicativ", Pexels, Unsplash ed `esterne/` compaiono 0 volte. Le uniche immagini non fotografiche sono i due SVG del logo.
+5. **Foto in serie: PASSA IN PARTE, con una deroga dichiarata.**
+   - Formati: 2 a 1440 (16:9 e 4:3), 3 a 390 (16:9, 4:3 e 1:1 per le due miniature).
+   - Didascalie: 18 foto, 10 con il nome sotto (3 lavori di cantiere con i dati, 4 still life, 3 di architettura), cioè circa 1 ogni 2. La prima stesura diceva "6 su 19": il conteggio era sbagliato. Le righe che descrivevano solo ciò che si vede ("vaso di cubetti metallici", "la facciata in mattoni" e simili) sono tolte.
+   - Deroga: per un fotografo il nome del cliente sotto la foto è il fatto che conta (A7: cliente, luogo, anno), e la scheda chiede "ogni foto con il nome del cliente". Restano solo nomi e dati, mai descrizioni.
+   - Luce: non può essere una sola, perché lo studio vende tre generi (notte di cantiere, bianco di sala di posa, interni). Ogni genere sta nella sua sezione, e le foto di cantiere sono calmate insieme (saturazione 86 %, contrasto 96 %).
+6. **Palette dal marchio: PASSA.** Cinque token: bianco, nero del logo (#0B0A0A dal #040000), grigio del logo #AAAEAD, chiaro #E2E4E3 (lo stesso grigio schiarito), testo secondario #565A59. Niente beige.
+7. **Scala corta e leggibile: PASSA.** 6 misure a 1440 (64, 44, 24, 18, 16, 14) e 8 a 390 (44, 34, 28, 20, 17, 16, 15, 14). Testo corrente 18 px a 1440 e 17 a 390. Niente sotto i 14 px. H1 64 px a 1440 (fascia M 60-70) e 34 a 390 (34-40).
+8. **Due famiglie al massimo: PASSA.** Una sola, Switzer, come barth: 700 per titoli, nomi, cifre e bottoni, 400 per il testo.
+9. **Servizi in schede con foto: PASSA.** Quattro schede per le costruzioni, 4 colonne a 1440 (2 a 1024 e 768, 1 a 390), foto 4:3, nome, una riga con le loro parole e "Chiedi un preventivo". Tutta la scheda è il link e porta al modulo con il tipo già scelto (provato: "Livree dei mezzi" arriva nel campo, e l'email va a info@aitistudio.it).
+10. **Almeno tre tipi di prove: PASSA (3 su 4).** Clienti con il nome (17, per campo, come testo grande); quattro numeri dalle fonti (1995, 2008, 2 persone, 6 banche e casse rurali); tre recensioni vere con nome, mese e fonte (Matrimonio.com, solo dei matrimoni; il comune non è nella fonte). Certificazioni: nessuna (TAU Visual da confermare, nel LEGGIMI).
+11. **I lavori hanno un nome: PASSA.** Tre lavori di cantiere con cliente, luogo, mese e anno e il tipo di servizio; Mirano è a tutta larghezza (1440 px), Carpane e Massenza a 628 px ciascuno. In più tre lavori di architettura con il cliente (anni da chiedere, nel LEGGIMI).
+12. **Ritmo a blocchi: PASSA.** Due blocchi neri (cantieri, clienti) più il piede, tre chiari (studio, architettura, matrimoni) e tre bianchi alternati. Spazio tra le sezioni 128 px a 1440 e 72 a 390. Margini 80 px a 1440 e 20 a 390.
+13. **Un solo sistema di bottoni: PASSA.** Pieno e con il bordo, raggio 2 px ovunque, 52 px (48 in testata), testo 16 px in 700. I bottoni di chiamata contengono il numero, senza doppi spazi.
+14. **Modulo e "dove e quando": PASSA IN PARTE.** Nome, azienda, telefono, email, cosa fotografare (tendina vuota all'inizio, con sette lavori più "Altro"), dove, entro quando, per quale uso, messaggio; mailto con oggetto e campi (provato). Indirizzo con "Vai alla mappa", zone scritte, nessun iframe. Manca il campo allegato chiesto per M: un mailto non porta file e un campo finto non funzionerebbe. È il primo campo da aggiungere quando il modulo sarà collegato a un servizio (LEGGIMI).
+15. **Piede completo: PASSA, senza orari né certificazioni** (non sono nelle fonti, chiesti nel LEGGIMI). Quattro colonne: logo e mestiere, lavori, lo studio, contatti; riga legale con ragione sociale, P.IVA, PEC, Privacy e Cookie; testo di almeno 14 px.
 
 ### Prove d'uso della scheda (`_prova/script/pro_uso.mjs` e screenshot)
 
-- **Impresa di costruzioni, 390x844.**
-  - Senza scorrere ci sono "Cantieri e mezzi" con la foto della stesa Salima e due `tel:`: la testata e il bottone a tutta larghezza.
-  - Un tocco sulla porta porta alla sezione.
-  - Livree dei mezzi, video e i nomi Salima, Girardini e Martini Silvestro sono già nell'introduzione della sezione, nella prima schermata. Le schede di livree e video stanno a 1548 e 1983 px dall'inizio della sezione.
-  - Le zone (Veneto e Trentino) sono nell'introduzione e nei contatti.
-- **Azienda o architetto, 1440x900.**
-  - Senza scorrere ci sono il mestiere, i tre generi, Mestrino, il telefono e "Scrivici" (mailto).
-  - Un clic su "Prodotti in sala di posa" porta a tre still life con il cliente (Marijke, Calegaro, Superoro).
-  - Il preventivo dice cosa scrivere e ha l'indirizzo con la mappa.
-  - La sala di posa vera, con le due persone, è il primo blocco dopo l'apertura.
-- **Coppia di sposi, 390x844.**
-  - Il link ai matrimoni con il voto è nella prima schermata e "Matrimoni" è nel menu.
-  - Dalla sezione si vedono 4,9 su 5, il prezzo da 1.000 euro, "Chiama per la data" e "Vai a Weddgraphy" senza scorrere.
+- **Impresa di costruzioni, 390x844.** Senza scorrere: "AIT Studio" nell'occhiello, "cantieri" nel titolo, la stesa Salima grande e leggibile, due `tel:` (testata e bottone a tutta larghezza). Un tocco sulla porta porta alla sezione. Livree, video, Salima, Girardini e Martini Silvestro sono nell'introduzione della sezione; le zone sono lì e nei contatti. Nel menu c'è "Scrivici a info@aitistudio.it". Come prima o meglio.
+- **Azienda o architetto, 1440x900.** Senza scorrere: mestiere, i tre generi, Mestrino, telefono e "Scrivici". Un clic su "Prodotti" porta a quattro still life con il cliente sotto, Calearo compreso; un clic su "Architettura" a tre lavori con il cliente, Studio 4 Marmicolor compreso. "Clienti" e "Preventivo" sono nel menu. Il preventivo dice cosa scrivere e ha l'indirizzo con la mappa; il blocco matrimoni non sta più in mezzo.
+- **Coppia di sposi, 390x844.** "Matrimoni" è nel menu (un tocco: voto 4,9, prezzo, "Chiama per la data" e "Vai a Weddgraphy" visibili) e c'è la riga con il voto subito sotto le porte, all'inizio della seconda schermata.
 
 ### Controlli generali
 
-- Screenshot guardati a pezzi a 1440 e 390 (interi e prime schermate) accanto ai riferimenti, e a 320, 768, 1024, 1280 e 1920. Guardati anche il menu aperto a 390 e l'àncora del preventivo.
-- **Scorrimento orizzontale**: nessuno a 320, 390, 768, 1024, 1280, 1440 e 1920. Trovati e corretti durante il lavoro:
-  - la testata a 390 (il nome accanto al logo e la parola "Chiama" sono tolti sotto 600 px, e il nome è passato nell'occhiello);
-  - la griglia dei lavori e i bottoni lunghi a 320.
-- **Sovrapposizioni**: nessuna.
-- **Immagini ingrandite oltre la misura del file**: nessuna, a nessuna larghezza. Corretti i `sizes` per 1920.
-- **Collegamenti**:
-  - `tel:+393487485871`, 5 volte;
-  - `mailto:` per stefano@stefanoaiti.com (con oggetto), info@aitistudio.it, info@weddgraphy.it e la PEC;
-  - Google Maps su Via Galileo Galilei 40, 35035 Mestrino;
-  - https://www.weddgraphy.it e la scheda di Matrimonio.com;
-  - nessuna àncora rotta. Restano i link a `privacy/` e `cookie/`, pagine da fare.
-- **U+2014**: nessuno, nella pagina, in questa NOTA, nel LEGGIMI, nei CREDITI e negli script nuovi.
+- Screenshot guardati a pezzi a 1440 e 390 (interi e prime schermate) e a 320, 768 e 1024; il menu aperto a 390.
+- **Scorrimento orizzontale**: nessuno a 320, 390, 768, 1024, 1280, 1440 e 1920. Trovato e corretto durante il lavoro: i nomi dei clienti senza spazi tra i separatori (ora il punto resta attaccato al nome che lo precede e non apre mai una riga).
+- **Immagini ingrandite oltre la misura del file**: nessuna, a nessuna larghezza (corretti i `sizes` per 1024, 1280 e 1920).
+- **Collegamenti**: `tel:+393487485871` 5 volte; `mailto:` per stefano@stefanoaiti.com (con oggetto), info@aitistudio.it, info@weddgraphy.it e la PEC; Google Maps su Via Galileo Galilei 40, 35035 Mestrino; weddgraphy.it e la scheda di Matrimonio.com; nessuna àncora rotta. Restano i link a `privacy/` e `cookie/`, pagine da fare.
+- **U+2014**: nessuno, nella pagina, in questa NOTA, nel LEGGIMI, nei CREDITI e negli script.
 
 ### Caratteri e licenze
 
-Switzer (Indian Type Foundry, da Fontshare), pesi 400 e 600, con la ITF Free Font License, che permette l'uso commerciale gratuito. I file woff2 sono serviti dalla pagina in `sito/fonts/`. Il 600 è stato scaricato il 3/11/2026 da Fontshare; la copia è in `assets/fonts-scaricati/`.
+Switzer (Indian Type Foundry, da Fontshare), pesi 400 e 700, con la ITF Free Font License, che permette l'uso commerciale gratuito. I file woff2 sono serviti dalla pagina in `sito/fonts/`. Il 700 è stato scaricato da Fontshare il 3/11/2026; la copia è in `assets/fonts-scaricati/`.

@@ -108,11 +108,11 @@ b,strong{font-weight:800}
 .ap-bottoni{display:grid;gap:10px;margin-top:16px}
 .apertura .btn.bordo{color:var(--bianco);border-color:var(--bianco)}
 @media (hover:hover){.apertura .btn.bordo:hover{background:var(--bianco);color:var(--nero)}}
-.ap-banda{display:grid;gap:14px;padding-top:18px;padding-bottom:var(--sez);font-size:var(--t6)}
+.ap-banda{display:grid;gap:20px;padding-top:20px;padding-bottom:var(--sez);font-size:var(--t6)}
 .ap-banda b{font-weight:800}
-.ap-banda a,.tocco{display:inline-flex;align-items:center;min-height:44px;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.ap-banda a{font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;padding:13px 0;margin:-13px 0}
+.tocco{display:inline-flex;align-items:center;min-height:44px}
 .ap-banda p{margin:0}
-.ap-banda .ap-ritiro,.ap-banda .ap-dove{line-height:1.4}
 .ap-banda .ap-prova b{display:block}
 @media (max-width:599px){.no-tel{display:none}}
 @media (max-width:374px){:root{--t1:34px}}
@@ -125,10 +125,11 @@ b,strong{font-weight:800}
   .apertura{padding-top:40px}
   .ap-foto{order:0;width:100%;max-width:1600px;margin:36px auto 0}
   .ap-foto img{aspect-ratio:51/25;object-position:50% 60%}
-  .ap-testa{padding-top:0;display:grid;grid-template-columns:1fr 300px;column-gap:40px;align-items:end}
+  .ap-testa{padding-top:0}
+  .ap-azioni{display:flex;align-items:center;justify-content:space-between;gap:16px 40px;margin-top:28px;flex-wrap:wrap}
   .ap-azioni .stato{margin-top:0}
-  .ap-bottoni{grid-template-columns:1fr}
-  .ap-banda{grid-template-columns:repeat(4,1fr);column-gap:var(--gap);padding-top:28px;align-items:start}
+  .ap-bottoni{margin-top:0;grid-template-columns:auto auto}
+  .ap-banda{grid-template-columns:repeat(4,1fr);column-gap:var(--gap);padding-top:28px;padding-bottom:72px;align-items:start}
   .ap-banda > *{border-top:2px solid var(--rosso);padding-top:14px}
 }
 
@@ -750,17 +751,17 @@ form .btn{justify-self:start}
     return 'martedì';
   }
   var t=ora(), oggi=new Date(Date.UTC(t.y,t.mo-1,t.d)), g=oggi.getUTCDay(), min=t.h*60+t.mi;
-  var A='<span class="si">', C='<span class="no">', F='</span>', ORARI='Oggi 9:30-13 e 15:30-19, solo su appuntamento.';
+  var A='<span class="si">', C='<span class="no">', F='</span>', ORARI='Oggi 9:30-13 e 15:30-19.';
   var testo, sotto;
-  if(festa(oggi)){testo=C+'Oggi chiuso per festa,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19, solo su appuntamento.';}
-  else if(!lavora(oggi)){testo=C+'Oggi chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19, solo su appuntamento.';}
+  if(festa(oggi)){testo=C+'Oggi chiuso per festa,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19.';}
+  else if(!lavora(oggi)){testo=C+'Oggi chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19.';}
   else if(min<570){testo=C+'Apre oggi alle 9:30.'+F;sotto=ORARI;}
-  else if(min<780){testo=A+'Aperto ora,'+F+' su appuntamento, fino alle 13.';sotto=ORARI;}
+  else if(min<780){testo=A+'Aperto ora,'+F+' fino alle 13.';sotto=ORARI;}
   else if(min<930){testo=C+'In pausa,'+F+' riapre alle 15:30.';sotto=ORARI;}
-  else if(min<1140){testo=A+'Aperto ora,'+F+' su appuntamento, fino alle 19.';sotto=ORARI;}
-  else{testo=C+'Chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19, solo su appuntamento.';}
+  else if(min<1140){testo=A+'Aperto ora,'+F+' fino alle 19.';sotto=ORARI;}
+  else{testo=C+'Chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';sotto='Martedì-venerdì 9:30-13 e 15:30-19.';}
   var s1=document.getElementById('stato'), s2=document.getElementById('stato2');
-  if(s1) s1.innerHTML=testo+'<small>'+sotto+' Scrivimi prima di passare.</small>';
+  if(s1) s1.innerHTML=testo+'<small>Solo su appuntamento: scrivimi prima di passare. '+sotto+'</small>';
   if(s2) s2.innerHTML=testo;
   var r=document.querySelector('.orari tr[data-g="'+g+'"]'); if(r) r.className='oggi';
 

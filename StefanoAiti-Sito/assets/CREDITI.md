@@ -31,15 +31,15 @@ Unsplash non è stato usato: le pagine di download rispondono con un controllo a
 ## Home al livello professionale (`sito/`), 3 novembre 2026
 
 La home usa solo foto di Stefano Aiti e di AIT Studio, tutte da `originali/` e lavorate con `_prova/script/pro_img.py`:
-- **porte d'apertura**: la stesa notturna Salima (a37), l'antenna Calearo (202), la scala di Studio 4 Marmicolor (819);
+- **porte d'apertura**: la stesa notturna Salima (a37, grande in 16:9), l'antenna Calearo (202), la scala di Studio 4 Marmicolor (819);
 - **lo studio**: Stefano e Giulia nella sala di posa (a4);
 - **schede di cantiere**: fresatura notturna (a19), operai Martini Silvestro (a22), escavatore con la livrea Salima (a26), operaio sulla finitrice (a38);
-- **lavori di cantiere**: Scania a Mirano (a3), Girardini a Carpane (a1), autocisterna Salima a Massenza (a2);
-- **prodotti**: Marijke (638), Calegaro (207), Superoro (828);
-- **architettura**: Banca Prealpi (13), Credito Cooperativo di Brendola (67), Fornace Morandi (195).
+- **lavori di cantiere**: Scania a Mirano (a3, fascia a tutta larghezza in 16:9), Girardini a Carpane (a1), autocisterna Salima a Massenza (a2); mese e anno dall'EXIF dei file (18/03/2023, 10/10/2022, 11/03/2022);
+- **prodotti**: Calearo (202, la stessa della porta), Marijke (638), Calegaro (207), Superoro (828);
+- **architettura**: Banca Prealpi (13), la scala di Studio 4 Marmicolor (819, la stessa della porta), Fornace Morandi (195).
 
-Nessuna foto di repertorio, nessuna illustrazione e nessuna immagine generata. I segnaposto Pexels di `esterne/` non sono usati (non lo erano neanche nella home di prima, copiata in `_prova/versione-1-originale/`) e restano solo come archivio. Tolte dalla home, rispetto a prima, l'oblò di Brendola in 2:1 e il frangisole del Gregorianum (cliente non confermato).
+Nessuna foto di repertorio, nessuna illustrazione e nessuna immagine generata. I segnaposto Pexels di `esterne/` non sono usati (non lo erano neanche nella home di prima, copiata in `_prova/versione-1-originale/`) e restano solo come archivio. Tolte dalla home, rispetto alla versione 1, l'oblò di Brendola in 2:1 e il frangisole del Gregorianum (cliente non confermato); nel ritocco finale è tolta anche la foto del Credito Cooperativo di Brendola, sostituita dalla scala di Studio 4 Marmicolor.
 
 Logo del piede: `sito/img/logo-ait-studio-bianco.svg`, ricavato da `originali/logo-ait-studio-tracciato.svg` con il nero passato al bianco.
 
-Caratteri: Switzer 400 e 600 (Indian Type Foundry, Fontshare, ITF Free Font License); il 600 è in `fonts-scaricati/`, scaricato il 3/11/2026.
+Caratteri: Switzer 400 e 700 (Indian Type Foundry, Fontshare, ITF Free Font License); il 700 è in `fonts-scaricati/`, scaricato da Fontshare il 3/11/2026 (c'è ancora il 600 della prima stesura, non più usato).
