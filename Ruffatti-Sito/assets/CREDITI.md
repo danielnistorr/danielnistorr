@@ -38,6 +38,7 @@ Logo:
 - `originali/2016_03_logo-web-bianco1.png` (500x119) e varianti 300/350: il logo bianco del sito di oggi.
 - `originali/2021_01_Logo_MAM_lungo.jpg`: il marchio "Maestro d'Arte e Mestiere" mostrato nella colonna del sito (della Fondazione Cologni, non loro: usarlo solo come riconoscimento, con permesso).
 
-## Home finale (`sito/`)
+## Home finale (`sito/`), livello professionale del 3/11/2026
 
-La home finale usa solo foto della Fratelli Ruffatti da `originali/` (canna `2016_04_xtrompette3`, registro di Tromba `2016_04_xSfondo-trombe-2`, Davies, Buckfast `2018_11_756A0922-3`, Boteå `2018_11_P1270600-1`, archivio `2016_03_storia1-575`, trombe `2016_04_xOrgan064modif`) e il logo dalla maschera della newsletter 2020. Nessuna foto di `esterne/` è in pagina: la foto Pexels di Rene Terp usata nel prototipo A è stata tolta.
+La home usa solo foto della Fratelli Ruffatti da `originali/`, tagliate in 4:5 o 4:3 e mai ingrandite (`_prova/script/pro_img.py`): Notre Dame Seminary di New Orleans `2022_10_notre-dame`, consolle di Wayne `2022_10_consolle`, Uppsala `2016_02_home-ruffatti4`, canne ad ancia `2016_04_xSfondo-trombe-2`, falegnameria `2016_04_falegnami-21`, organo antico restaurato `2016_03_xFile0149`, targhetta `2016_04_xP1050195`, maestranze `2016_03_storia1-575`; il logo viene dalla maschera della newsletter 2020.
+Nessuna foto di `esterne/` (Unsplash, Pexels) è in pagina, nessuna dicitura "foto indicativa", nessuna illustrazione, nessuna immagine generata dall'IA. Tolte dalla versione precedente: la canna ad ancia smontata (`2016_04_xtrompette3`), Davies Symphony Hall, Buckfast, Boteå e le trombe en chamade (foto loro, tolte perché la home ora mostra gli strumenti dal 2022 in poi).

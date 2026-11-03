@@ -1,79 +1,69 @@
 # B.C.M. Enologia: proposta di nuova home
 
-È una proposta non richiesta: una nuova homepage per B.C.M. Enologia S.r.l. di Saonara (PD), torchi, martinetti DAVID, gabbie, pompe e pigiatrici. Riguarda solo la home.
+È una proposta non richiesta: una nuova homepage per B.C.M. Enologia S.r.l. di Saonara (PD), torchi, martinetti DAVID, gabbie, pompe Volumex con inverter e pigiatrici. Riguarda solo la home.
 
 - **Pagina**: `sito/index.html`. È statica, si apre con un doppio clic. Le immagini sono in `sito/img/` e i caratteri in `sito/fonts/`.
-- **Screenshot e nota**: `screenshot/home/`. La nota (`NOTA.md`) spiega l’idea, i caratteri, i colori, il gesto e i controlli.
-- **Rifare tutto**: `bash _prova/script/build_finale.sh`. Rifà immagini, controlli e screenshot. I controlli dell'ultimo passaggio (larghezze da 320 a 2560, tastiera, tocco, link) si rifanno con `node _prova/script/controlli_finali.mjs`.
-- **Analisi con le fonti**: `01-analisi.md`. Prototipi in `_prova/home/a` (scelto) e `_prova/home/b`.
+- **Screenshot e nota**: `screenshot/home/`. La nota (`NOTA.md`, sezione "Livello professionale") dice regola per regola che cosa passa e che cosa no.
+- **Rifare tutto**: `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, screenshot con `pro_shots.mjs` all'ora simulata lunedì 2 novembre 2026 alle 10, controlli con `pro_controlli.mjs`). La pagina prende anche `?ora=AAAA-MM-GGTHH:MM` (ora di Roma) per provare lo stato "Aperto ora".
+- **Versione di prima** (il torchio sulla carta con il selettore): `_prova/versione-1-originale/` (sito, screenshot, LEGGIMI).
+- **Analisi con le fonti**: `01-analisi.md`; chi apre il sito e perché: `_prova/uso/SCHEDA.md`.
 
-Nessun contatto con l’azienda, nessun modulo inviato, niente pubblicato.
+Nessun contatto con l'azienda, nessun modulo inviato, niente pubblicato.
 
-## Dati da confermare con BCM prima di inviare
+## Il modulo di contatto va collegato a un servizio
+
+Il modulo "Scrivici" (tipo di richiesta, macchina e modello, nome, azienda, email, telefono, messaggio) oggi **non invia nulla**: compone un'email a info@bcmenologia.com con l'oggetto ("Ricambio o assistenza: Torchio idraulico 60, Mario Rossi") e i campi già scritti, e la apre nel programma di posta di chi scrive. Le foto della targhetta si allegano lì.
+- Nel sito vero va collegato a un servizio di invio (per esempio il modulo del CMS con SMTP, Formspree o Netlify Forms), con il caricamento delle foto (targhetta e pezzo, JPEG fino a 10 MB), l'informativa privacy e una risposta automatica.
+- Va deciso con BCM chi legge le richieste e in quanto tempo risponde: in pagina non c'è nessuna promessa di tempi perché non è nelle fonti.
+
+## Da chiedere o confermare con BCM prima di inviare
 
 - **Stato della società**: un estratto la diceva cessata, mentre aziende.it la dà "Attiva" e reportaziende pubblica ricavi 2025. Va verificato per primo.
-- **Ragione sociale da scrivere**: in pagina c’è "B.C.M. Enologia S.r.l." (registro). Il sito dice "BCM srl", i cataloghi "BCM Enologia s.r.l.".
-- **Civico**: 10 (sito) o 10-12 (cataloghi e registro). In pagina c’è 10-12.
-- **Brevetto DAVID**: in pagina c’è solo "progettato e brevettato negli anni 80, oggi marchio registrato". Non c’è scritto che il brevetto sia in vigore.
-- **"Costruiti a Saonara"**: confermare che forgiatura dei perni, gabbie e montaggio sono tutti in casa, e che il faggio è ancora "evaporato".
-- **Didascalia dell’officina**: "Meccanismi in ghisa e ottone sul banco dell’officina, 2022". Va chiesto se sono corpi del DAVID o teste dei torchi a cricco, e se la foto è di Saonara. Se sono DAVID, la didascalia può dirlo.
-- **Ricambi per le macchine vecchie**: in pagina c’è la loro frase "compatibilità con il passato" (brochure martinetti). Un esempio concreto, come un torchio degli anni 70 rimesso in funzione, la renderebbe più forte.
+- **Ragione sociale e civico**: in pagina "B.C.M. Enologia S.r.l." (registro) e viale Veneto 10-12 (cataloghi e registro; il sito dice 10).
+- **Orari e chiusure**: lo stato "Aperto ora" usa lunedì-venerdì 8-18 e chiude nei festivi nazionali e a Pasquetta. Vanno chiesti la pausa pranzo, le ferie d'agosto e di Natale e l'orario in vendemmia, da aggiungere allo script.
+- **Ricambi**: in pagina "da oltre 30 anni teniamo i ricambi e facciamo la manutenzione di ogni singolo componente" e "compatibilità con il passato", parole loro. Vanno chiesti l'elenco dei ricambi più richiesti (martinetti, manometri, listelli, cerchi, tappi e mezzelune, giranti e tenute delle pompe), se tengono anche i pezzi delle macchine della vecchia B.C.M. snc e un esempio vero di macchina vecchia rimessa in funzione.
+- **WhatsApp**: se BCM ha un numero per ricevere le foto della targhetta, va messo accanto a "Manda le foto per email". Oggi non c'è perché non è nelle fonti.
+- **Vendita diretta e rivenditori**: in pagina "Per prezzi e disponibilità chiamaci", "Spediamo in tutto il mondo" (chi-siamo) e quattro rivenditori con il nome (Vivi in Campagna, Enologys, Kidonakis ad Atene, KOL-Technik in Austria: vendono BCM, vedi SCHEDA). Va chiesto se BCM vende anche ai privati, se vuole i rivenditori nominati in home e quali sono quelli ufficiali, con il paese e il sito.
+- **Rivenditori e importatori**: "cataloghi, schede e condizioni a info@bcmenologia.com". Se c'è un listino per i rivenditori e in quali lingue rispondono (tedesco, inglese, francese), la riga può dirlo.
+- **Brevetto DAVID**: in pagina solo "progettato e brevettato negli anni 80, oggi marchio registrato". Non c'è scritto che il brevetto sia in vigore.
+- **"Li produciamo nella nostra officina di Saonara"**: confermare che forgiatura dei perni, gabbie e montaggio sono tutti in casa.
+- **Didascalia dell'officina**: "Meccanismi in ghisa sul banco dell'officina, viale Veneto, 2022". Va chiesto se sono corpi del DAVID o teste dei torchi a cricco.
+- **2011 o 2012**: la srl è iscritta nel 2011 (registro), il sito dice "nel 2012" per le pompe; in pagina c'è 2012 solo per le pompe.
+- **Vite del modello 45**: la brochure dà 45 mm, il catalogo generale 50 mm.
+- **Lingue delle brochure ZIP**: torchi, martinetti e gabbie contengono italiano e inglese (controllato); per le altre sei non lo so e in pagina c'è solo il peso.
 - **SIMEI 2026** (Fiera Milano, 17-20 novembre 2026): se ci vanno, la riga "In fiera" va aggiornata con date e padiglione.
-- **Newsletter**: chi la scrive e quante volte. In pagina c’è "una volta l’anno", da confermare.
-- **Clienti tipo e paesi di spedizione**: cantine piccole, hobbisti, rivenditori, estero.
 - **PEC e fax** (bcmenologia@pec.it, 049 5018355): non sono in pagina e vanno confermati prima di metterli.
-- **Settori "caseario, oleario, miele, glasse"**: lavori reali o solo possibili? Oggi non sono in pagina.
-- **Vite del modello 45**: la brochure del torchio idraulico dà 45 mm, il catalogo generale 50 mm. In pagina c'è 45 (brochure): va chiesto quale vale.
-- **Torchio in scala nel selettore**: la foto è del modello 60 e viene riscalata sull'altezza della gabbia (da 60 a 105 cm). Vite, martinetto e carrello non crescono davvero in proporzione: la didascalia lo dice ("Foto del modello 60, in proporzione alla gabbia del…"). Con le foto nuove servirebbe uno scatto per ogni misura, o almeno del 45, del 60 e del 90, alla stessa distanza.
 
-## Pagine del sito nuovo
+## Che cosa manca per il livello pieno (da chiedere, non inventato)
 
-Oggi i link della home portano alle sezioni della home stessa (`#macchine`, `#martinetti`, `#ricambi`, `#storia`, `#contatti`) o alle pagine del sito attuale bcmenologia.com: le sei linee (`/it/prodotti/linea-torchi`, `linea-martinetti`, `linea-gabbie`, `linea-pompe-standard`, `linea-pigiatrici-e-pigiadiraspatrici`, `linea-frutta`), `/it/download`, `/it/gallery/in-fiera`, `/it/privacy-policy` e `/it/cookies`. Nel sito nuovo diventano le pagine qui sotto, con gli stessi percorsi o con un redirect.
-
-- **Macchine**: Torchi, Martinetti DAVID, Gabbie, Pompe e inverter (con gli optional e l’inverter universale), Pigiatrici, Presse per frutta.
-- **BCM**: Dal 1960 (chi siamo), Ricambi e assistenza (pagina nuova: oggi è solo una frase ripetuta nelle schede), Cataloghi (download), In fiera (galleria).
-- **Contatti, Privacy, Cookie**.
-- **Versione inglese**: i PDF ci sono già in quattro lingue. Oggi `/en/` dà errore 404.
-
-## Newsletter
-
-Il modulo del piede (email, bottone "Iscriviti", casella del consenso privacy) **non invia nulla finché non si collega a un servizio**, per esempio Brevo, Mailchimp o MailerLite, con doppio consenso e l’informativa aggiornata.
-- Ha senso per BCM: cataloghi in quattro lingue, fiere, vendita anche a chi fa il vino in casa, una stagione precisa. Una lettera prima della vendemmia, con ricambi, cataloghi e fiere.
-- Se nessuno la scriverà, meglio toglierla.
+- **Recensioni**: nessuna trovata (Google Maps, Facebook e Pagine Gialle non hanno restituito nulla). Chiedere 3 o 4 frasi vere di clienti (una cantina, un hobbista, un rivenditore) con nome e comune e il permesso di pubblicarle.
+- **Lavori con il nome**: nessuno nelle fonti. Chiedere 3 cantine che usano un torchio o una pompa BCM, con il nome, il comune, l'anno e 2 dati (modello, quintali lavorati), e una foto larga per ognuna.
+- **Certificazioni**: nessuna nelle fonti. Se le pompe hanno dichiarazioni CE o MOCA (girante per uso alimentare), vanno messe in PDF nella fascia dei cataloghi.
+- **Persone**: nessuna foto della squadra; un ritratto in officina con i nomi e gli anni di mestiere renderebbe la pagina loro.
 
 ## Foto da rifare dal vero
 
-Oggi le foto coprono il 29,5 % della pagina a 1440, contro il 35 % che la guida chiede. Il motivo è che BCM non ha foto grandi: le più larghe sono scatti da telefono di 1.920 px, il resto è scontornato dal sito. Gli scatti qui sotto risolvono anche questo: con una chiusura e un'officina vere a 4.000 px le due fasce possono andare a tutta larghezza e più alte.
+La decisione del committente sulle foto è "niente": in pagina non c'è nessuna foto di repertorio e nessuna illustrazione. Ci sono solo foto di BCM dal loro sito: la fila di torchi in magazzino e la fila di meccanismi in officina (galleria "In azienda", giugno 2022, scatti da telefono) e gli scontornati del sito. Reggono per una proposta, non per il sito vero. Basta una giornata di scatti, tutti con la stessa luce:
 
-Le foto in pagina sono tutte di BCM e vengono dal loro sito. Reggono per una proposta, non per il sito vero. Basta una giornata di scatti:
+1. **Apertura**: i torchi pronti in magazzino come oggi (wa0000), con la luce del pomeriggio ma senza imballi e scatole sullo sfondo, in quadrato (almeno 3.000 px) e in 16:9 per il telefono; meglio ancora una persona di BCM che monta un martinetto su un torchio.
+2. **Le otto linee**: torchio idraulico, torchio a cricco, DAVID, gabbia, pompa Volumex, pompa con inverter, pigiatrice, pressafrutta, sullo stesso fondo grigio chiaro, con la stessa luce laterale da finestra e alla stessa altezza di ripresa, in quadrato, 3.000 px; oggi pompe e pigiatrici hanno riflessi duri da catalogo.
+3. **Ricambi**: il martinetto DAVID di fronte, con la targhetta nitida e leggibile (oggi la foto è 781 px), e un dettaglio della targhetta da sola: è la foto che spiega che cosa mandare.
+4. **Officina**: la fila di meccanismi sul banco con luce naturale, pavimento pulito, niente neon né teli colorati, in 16:9 a 4.000 px; mani al lavoro sulla forgiatura dei perni e sulla gabbia in faggio.
+5. **Una cantina vera** con un torchio BCM in vendemmia, con il nome della cantina se acconsente (serve anche per "lavori con il nome").
 
-1. **Torchio idraulico 60 per l’apertura**:
-   - intero, su fondo carta neutro, con luce da finestra laterale da sinistra e un pannello bianco a destra;
-   - fotocamera ad altezza gabbia, obiettivo 70-100 mm per non deformare;
-   - almeno 45 MP, file da 4.000 px di altezza (oggi il torchio regge fino a circa 900 px a schermo, e il bordo dello scontorno è duro);
-   - uno scatto con e uno senza ombra a terra.
-2. **Le sei macchine** (torchio a cricco, DAVID, gabbia, pompa Volumex, pigiatrice, pressafrutta):
-   - stessa luce, stesso fondo, stessa altezza di ripresa del torchio, così la griglia è omogenea;
-   - oggi pompe e pigiatrici hanno riflessi duri da catalogo.
-3. **Officina**:
-   - la fila di meccanismi sul banco con luce naturale, pavimento pulito, niente neon né teli colorati;
-   - un orizzontale largo (rapporto 2:1) e un verticale 3:2 per il telefono;
-   - macro del faggio, dei perni forgiati, del manometro e della targhetta.
-4. **Chiusura**:
-   - i torchi pronti in magazzino, come la foto di oggi (wa0000), con la stessa luce del pomeriggio ma senza imballi in plastica e scatole, in orizzontale largo (almeno 2:1, 4.000 px) e in un taglio 16:10 per il telefono; oggi la foto è rifilata in alto per togliere la plastica, e a 2560 px di schermo risulta ingrandita;
-   - meglio ancora un torchio BCM al lavoro in una cantina vera durante la vendemmia, con il nome della cantina se acconsente.
+## Pagine del sito nuovo
+
+I link della home portano alle sezioni della home o alle pagine e ai file del sito attuale bcmenologia.com: le linee (`/it/prodotti/linea-torchi`, `linea-martinetti`, `linea-gabbie`, `linea-pompe-standard`, `linea-pompe-automatizzate-con-inverter`, `linea-inverter-universale-pronto-all-uso`, `linea-pigiatrici-e-pigiadiraspatrici`, `linea-frutta`), i 4 cataloghi PDF in `/images/guida-alluso/` e le 10 brochure ZIP in `/images/prodotti/` (pesi letti il 3/11/2026), `/it/gallery/in-fiera`, `/it/privacy-policy`, `/it/cookies`. Nel sito nuovo vanno tenuti gli stessi percorsi o messi i redirect.
+- **Ricambi e assistenza**: pagina nuova (oggi è solo una frase nelle schede), con il modulo e il caricamento delle foto.
+- **Versione inglese**: i cataloghi sono già in quattro lingue, ma `/en/` oggi dà errore 404. In home c'è "Catalogues EN · DE · FR" in testata, che porta ai PDF.
 
 ## Licenze
 
-- **Foto**: tutte dell’azienda (`assets/originali/`, scaricate dal sito bcmenologia.com). Va chiesto a BCM di confermarne i diritti.
-  - Le foto di repertorio di `assets/esterne/` (licenze in `assets/CREDITI.md`) non sono usate nella home finale. L’uva di David Köhler (Unsplash) era solo nel prototipo.
-  - Le slide di uva del sito di oggi sembrano di repertorio, con diritti da chiarire: non sono usate.
-- **Caratteri** (serviti dalla pagina da `sito/fonts/`):
-  - Zodiak (Indian Type Foundry, Fontshare, ITF Free Font License, uso commerciale gratuito);
-  - Sofia Sans e Sofia Sans Condensed (Lettersoup, Google Fonts, SIL Open Font License 1.1).
+- **Foto**: tutte dell'azienda (`assets/originali/`, scaricate dal sito bcmenologia.com). Va chiesto a BCM di confermarne i diritti. Le foto di repertorio di `assets/esterne/` (licenze in `assets/CREDITI.md`) non sono usate.
+- **Caratteri** (serviti dalla pagina da `sito/fonts/`): Sofia Sans e Sofia Sans Condensed (Lettersoup, Google Fonts, SIL Open Font License 1.1). Zodiak, della versione di prima, è tolto.
 
 ## Logo
 
-- Il logo in pagina è il PNG bianco del sito (170x96), ricolorato in inchiostro: in testata a 85x48 (2x), nel piede a 128x72 (1,33x, perché a 85x48 la riga "MACCHINE ENOLOGICHE" non si legge). Non l’ho ricostruito in SVG per non tradirlo.
-- Va chiesto il file vettoriale, e quale versione usano oggi: quella bianca del sito ("BCM" con grazie e "MACCHINE ENOLOGICHE") o quella rossa dei cataloghi 2022 ("BCM Enologia s.r.l." in Times bold).
+- Il logo in pagina è il PNG bianco del sito (170x96): in inchiostro in testata e bianco nel piede scuro, a 85x48 (2x). Non l'ho ricostruito in SVG per non tradirlo.
+- Va chiesto il file vettoriale, e quale versione usano oggi: quella bianca del sito o quella rossa dei cataloghi 2022 ("BCM Enologia s.r.l.").
 - Manca anche una favicon decente: oggi è 16x16.

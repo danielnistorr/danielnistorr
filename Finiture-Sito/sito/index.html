@@ -4,529 +4,887 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finiture, impianti di verniciatura su misura</title>
-<meta name="description" content="Finiture progetta, costruisce e installa impianti di verniciatura su misura per finestre, porte, CLT, sedie e mobili. Villatora di Saonara (PD).">
+<meta name="description" content="Finiture progetta, costruisce e installa impianti di verniciatura su misura per finestre, porte, CLT, sedie e mobili. Villatora di Saonara (PD). Assistenza +39 049 879 2458.">
+<link rel="alternate" hreflang="en" href="en/">
+<link rel="alternate" hreflang="de" href="de/">
+<link rel="alternate" hreflang="fr" href="fr/">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Archivo, Omnibus-Type, SIL Open Font License 1.1 (fonts/OFL-Archivo.txt), variabile in larghezza e peso */
+/* Archivo (Omnibus-Type), SIL Open Font License 1.1, fonts/OFL-Archivo.txt. Una sola famiglia, pesi 400 e 700. */
 @font-face{font-family:"Archivo";src:url(fonts/archivo-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Archivo";src:url(fonts/archivo-latin-ext.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 :root{
-  --carta:#F4F3F0;
-  --cemento:#E7E6E2;
-  --inchiostro:#1C1C1A;
-  --grigio:#5C5C58;
-  --filetto:#D3D0C9;
+  /* colori del marchio: il rosso delle loro macchine e del logo, l'antracite; poi i grigi */
   --rosso:#A51329;
-  --m:64px;
-  --g:24px;
-  --sez:96px;
-  --wg:calc(min(100vw, 1440px) - 2 * var(--m));
-  --fh:calc((var(--wg) * .75 - var(--g) * .25) / 1.52);
+  --rosso-scuro:#86101F;
+  --antracite:#1D1E20;
+  --bianco:#FFFFFF;
+  --testo:#1A1A1A;
+  --testo-2:#565656;
+  --grigio-chiaro:#F2F2F2;
+  --linea:#D4D4D4;
+  --linea-scura:#3C3D40;
+  --testo-chiaro:#CFCFCF;
+  --linea-rosso:#D07884;
+  --bordo-campo:#8A8A8A;
+  --verde-aperto:#1E7A3C;
+  /* scala tipografica: 8 misure */
+  --t14:14px;--t16:16px;--t18:18px;--t22:22px;--t30:30px;--t44:44px;--t64:64px;--t96:96px;
+  --m:80px;--g:24px;--sez:120px;--testa:98px;
   --f:"Archivo",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--f);font-size:18px;line-height:1.55;font-weight:400;font-stretch:100%;font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testa) + 16px)}
+/* dalle voci del menu si arriva al titolo della sezione, non al suo margine vuoto */
+.sezione[id]{scroll-margin-top:calc(var(--sez) * -1 + 24px)}
+body{margin:0;background:var(--bianco);color:var(--testo);font-family:var(--f);font-size:var(--t18);line-height:1.5;font-weight:400;font-stretch:100%;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 p{margin:0;text-wrap:pretty}
-h1,h2,h3{margin:0;font-weight:420;text-wrap:balance}
-ul{margin:0;padding:0;list-style:none}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+ul,ol,dl,dd,figure,blockquote{margin:0;padding:0}
+ul{list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .nb{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.salta{position:absolute;left:-9999px;top:8px}
-.salta:focus{left:var(--m);background:var(--inchiostro);color:var(--carta);padding:8px 12px;z-index:10}
+.salta{position:absolute;left:-9999px;top:8px;z-index:20}
+.salta:focus{left:16px;background:var(--antracite);color:var(--bianco);padding:10px 14px}
 :focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
 .giro{max-width:1440px;margin:0 auto;padding:0 var(--m)}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
-.link{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;transition:color .12s}
+.eti{font-size:var(--t14);line-height:1.3;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1,h2,.numero{font-stretch:112%;letter-spacing:-.025em}
+h1{font-size:var(--t64);line-height:1.02}
+h2{font-size:var(--t44);line-height:1.08}
+h3{font-size:var(--t22);line-height:1.25;font-weight:700}
+.h3g{font-size:var(--t30);line-height:1.15;font-weight:400;font-stretch:112%;letter-spacing:-.015em}
+.link{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .link:hover{color:var(--rosso)}
-.didascalia{font-size:14px;line-height:1.45;color:var(--grigio)}
+.freccia::after{content:" \2192"}
+.sezione{padding:var(--sez) 0}
+.capo{margin-bottom:56px;max-width:820px}
+.capo .eti{margin-bottom:16px;color:var(--rosso)}
+.capo p:not(.eti){margin-top:20px;color:var(--testo-2);max-width:40em}
+.scuro{background:var(--antracite);color:var(--bianco)}
+.scuro .capo .eti,.scuro .eti{color:var(--testo-chiaro)}
+.scuro .capo p:not(.eti){color:var(--testo-chiaro)}
+.grigio{background:var(--grigio-chiaro)}
 
-/* testata */
-.testata{display:flex;align-items:center;justify-content:space-between;height:88px;position:relative;z-index:3}
-.testata .logo img{width:150px}
-.menu{display:flex;gap:32px;align-items:center;font-size:16px}
-.menu a{text-decoration:none;transition:color .12s}
+/* bottoni: un solo modello, pieno o con il bordo; 52 px, raggio 2 px */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:2px;font-size:var(--t16);font-weight:700;line-height:1.2;text-decoration:none;border:1.5px solid var(--rosso);transition:background-color .12s,color .12s,border-color .12s;cursor:pointer;white-space:nowrap}
+.btn-pieno{background:var(--rosso);color:var(--bianco)}
+.btn-pieno:hover{background:var(--rosso-scuro);border-color:var(--rosso-scuro)}
+.btn-bordo{background:transparent;color:var(--testo);border-color:var(--testo)}
+.btn-bordo:hover{border-color:var(--rosso);color:var(--rosso)}
+.sul-rosso .btn-pieno{background:var(--bianco);color:var(--rosso);border-color:var(--bianco)}
+.sul-rosso .btn-pieno:hover{background:var(--grigio-chiaro);color:var(--rosso-scuro)}
+.sul-rosso .btn-bordo{color:var(--bianco);border-color:var(--bianco)}
+.sul-rosso .btn-bordo:hover{color:var(--bianco);background:var(--rosso-scuro)}
+.azioni{display:flex;flex-wrap:wrap;gap:12px}
+
+/* testata fissa: lingue e orari dell'assistenza sopra, logo, menu, assistenza e richiesta sotto */
+.testata{position:sticky;top:0;z-index:10;background:var(--bianco);border-bottom:1px solid var(--linea)}
+.su{display:flex;align-items:center;justify-content:space-between;gap:24px;height:34px;font-size:var(--t14);border-bottom:1px solid var(--linea)}
+.lingue{display:flex;gap:4px}
+.lingue a{text-decoration:none;color:var(--testo-2);padding:7px 8px;line-height:1.3}
+.lingue a:first-child{padding-left:0}
+.lingue a:hover{color:var(--rosso)}
+.lingue a[aria-current]{color:var(--testo);font-weight:700}
+.lingue .corta{display:none}
+.su .servizio{display:flex;align-items:center;min-width:0;min-height:34px;color:var(--testo-2);line-height:1.3;text-decoration:none;white-space:nowrap}
+.su .servizio:hover .piu{color:var(--rosso)}
+.su .stato{overflow:hidden;text-overflow:ellipsis}
+.st-c,.st-m{display:none}
+.stato{font-weight:700;color:var(--testo)}
+.stato::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px;background:var(--testo-2)}
+.stato.aperto::before{background:var(--verde-aperto)}
+.riga{display:flex;align-items:center;gap:24px;height:64px}
+.logo{flex:none}
+.logo img{width:132px}
+.menu{display:flex;gap:28px;margin-left:auto;font-size:var(--t16)}
+.menu a{text-decoration:none;padding:8px 0}
 .menu a:hover{color:var(--rosso)}
-.destra{display:flex;gap:28px;align-items:center;font-size:16px}
-.lingue{display:flex;gap:12px;color:var(--grigio);font-size:14px;letter-spacing:.04em}
-.lingue a{text-decoration:none}
-.lingue a:hover{color:var(--inchiostro)}
-.lingue a[aria-current]{color:var(--inchiostro);font-weight:600}
-.tel{font-weight:560;text-decoration:none;font-variant-numeric:tabular-nums;transition:color .12s}
-.tel:hover{color:var(--rosso)}
-.apri{display:none}
+.menu .solo-menu{display:none}
+.riga .btn{min-height:48px;padding:0 16px}
+.tel-testa .chi{font-weight:400}
+.servizio-giu{display:none}
+.apri{display:none;appearance:none;background:none;border:1.5px solid var(--testo);border-radius:2px;min-height:48px;padding:0 14px;font-size:var(--t16);font-weight:700;cursor:pointer}
 
-/* apertura: la loro domanda e il pezzo appena verniciato, appeso alla loro macchina */
-.bottone{display:inline-block;background:var(--inchiostro);color:var(--carta);text-decoration:none;font-size:17px;font-weight:540;padding:16px 22px;line-height:1.2;transition:background-color .12s}
-.bottone:hover{background:var(--rosso)}
-h2{font-size:54px;line-height:1.04;letter-spacing:-.026em;font-stretch:110%}
-.apertura{padding-top:24px}
-h1{font-size:116px;line-height:.96;letter-spacing:-.036em;font-stretch:110%;font-weight:430;white-space:nowrap}
-.scelta{margin-top:30px;align-items:start}
-.lato{grid-column:1/4;padding-right:24px;height:var(--fh);display:flex;flex-direction:column;justify-content:space-between}
-.schede{display:flex;flex-direction:column;align-items:flex-start;border-top:1px solid var(--filetto)}
-.scheda{appearance:none;background:none;border:0;border-radius:0;margin:0;padding:14px 0 13px;width:100%;text-align:left;font:inherit;font-size:32px;line-height:1.1;letter-spacing:-.02em;font-stretch:110%;color:#6E6D68;cursor:pointer;border-bottom:1px solid var(--filetto);display:flex;align-items:baseline;justify-content:space-between;transition:color .12s}
-.scheda::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--rosso);opacity:0;align-self:center}
-.scheda:hover{color:var(--inchiostro)}
-.scheda[aria-selected="true"]{color:var(--inchiostro)}
-.scheda[aria-selected="true"]::after{opacity:1}
-.chi .lead{font-size:17px;line-height:1.5;max-width:24em}
-.chi .bottone{margin-top:24px}
-.pannelli{grid-column:4/13}
-.pannello[hidden]{display:none}
-.pannello:focus-visible{outline-offset:4px}
-.fascia{width:100%;height:var(--fh);object-fit:cover}
-.pannello .didascalia{padding-top:12px}
-.corpo{padding-top:36px}
-.pannello .corpo{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));column-gap:var(--g)}
-.pannello .spiega{grid-column:1/5}
-.pannello h3{font-size:30px;line-height:1.15;letter-spacing:-.016em;font-stretch:108%;margin-bottom:12px}
-.pannello .spiega p{font-size:17px}
-.caso{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:22px;font-size:16px}
-.caso b{font-weight:560}
-.caso span{color:var(--grigio)}
-.macchine{grid-column:5/10;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);row-gap:28px;align-content:start}
-.macchine img{width:100%;aspect-ratio:3/2}
-.macchine b{display:block;font-weight:560;font-size:16px;margin-top:2px}
-.macchine span{display:block;font-size:15px;color:var(--grigio);line-height:1.4;margin-top:2px}
+/* apertura: il titolo a tutta griglia, la seconda riga accanto alla foto */
+.apertura{padding-top:48px}
+.ap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.ap-eti{grid-column:1/-1;grid-row:1;color:var(--rosso)}
+.ap h1{grid-column:1/-1;grid-row:2;margin-top:18px;font-size:var(--t96);line-height:1}
+.ap h1 span{display:block;white-space:nowrap}
+.ap-foto{grid-column:6/13;grid-row:3;margin-right:calc(var(--m) * -1);margin-top:calc(var(--t96) * -1 + 8px)}
+.ap-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.ap-testo{grid-column:1/6;grid-row:3;padding-top:30px;padding-right:8px}
+.lead{font-size:var(--t22);line-height:1.4;color:var(--testo-2);max-width:26em}
+.domanda{margin-top:30px}
+.domanda .eti{color:var(--testo)}
+.settori-link{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:10px;font-size:var(--t22);line-height:1.3}
+.settori-link a{display:inline-block;padding:6px 0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:var(--linea)}
+.settori-link a:hover{color:var(--rosso);text-decoration-color:var(--rosso)}
+.anche{margin-top:6px;font-size:var(--t16);color:var(--testo-2)}
+.anche a{color:var(--testo)}
+.ap-testo .azioni{margin-top:30px}
+.servizio-giu{background:var(--antracite);color:var(--testo-chiaro);font-size:var(--t14);line-height:1.45}
+.servizio-giu b{color:var(--bianco)}
+.servizio-giu a{display:inline-block;padding:13px 0;margin:-13px 0;color:var(--bianco);font-size:var(--t16);font-weight:700;text-underline-offset:4px}
+.prove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);margin-top:36px;border-top:1px solid var(--linea)}
+.prove li{padding:18px 24px 0 0}
+.prove .eti{color:var(--testo-2)}
+.prove p:not(.eti){margin-top:6px}
+.prove a{text-decoration-color:var(--linea)}
 
-/* area test e linee: stesso asse dell'apertura, la quarta colonna */
-.prova{padding-top:var(--sez)}
-.prova .foto{width:100%;height:auto;aspect-ratio:1.8;object-fit:cover}
-.prova .testo{grid-column:4/10;padding-top:12px}
-.prova h2{margin-top:32px}
-.prova .testo p.spiega{margin-top:20px;max-width:34em}
-.prova .testo .link{display:inline-block;margin-top:20px}
-.linee{padding-top:var(--sez)}
-.linee .capo2{grid-column:4/12}
-.linee .capo2 p{margin-top:20px;max-width:36em}
-.linee .tabella{grid-column:1/13;margin-top:44px}
-.linee .spiega2{font-size:15px;color:var(--grigio);margin-bottom:16px}
-.riga{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start;padding:16px 0 12px;border-top:1px solid var(--filetto)}
-.riga:last-child{border-bottom:1px solid var(--filetto)}
-.riga .cliente{grid-column:1/4;font-size:17px;line-height:1.35}
-.riga .cliente b{display:block;font-weight:560}
-.riga .cliente span{color:var(--grigio);font-size:15px}
-.riga svg{grid-column:4/9;width:100%;height:auto;margin-top:4px}
-.riga .dati{grid-column:9/13;font-size:16px;line-height:1.45}
-.riga .dati b{font-weight:560}
+/* settori */
+.schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.scheda{display:flex;flex-direction:column;background:var(--bianco);text-decoration:none;transition:box-shadow .12s}
+.scheda:hover{box-shadow:0 0 0 1.5px var(--rosso)}
+.scheda img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.scheda .dentro{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1}
+.scheda p{font-size:var(--t16);color:var(--testo-2)}
+.scheda .vai{margin-top:auto;padding-top:6px;font-size:var(--t16);font-weight:700;color:var(--rosso)}
+.parte{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--g)}
+.riquadro{background:var(--bianco);padding:32px}
+.riquadro p{margin-top:12px;color:var(--testo-2)}
+.riquadro .h3g{color:var(--testo)}
+.macchine-link{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:14px}
+.macchine-link a{display:inline-block;padding:6px 0}
+.riquadro .azioni{margin-top:24px}
 
-/* chiusura */
-.chiusura{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);margin-top:var(--sez);align-items:stretch}
-.chiusura .testo{padding:8px 72px 0 var(--m);display:flex;flex-direction:column;justify-content:space-between}
-.chiusura h2{font-size:52px;max-width:11em}
-.recapiti{margin-top:48px;font-size:18px;line-height:1.55}
-.recapiti .grande{display:inline-block;font-size:44px;line-height:1.1;font-stretch:110%;letter-spacing:-.02em;font-weight:440;text-decoration:none;margin-bottom:14px;transition:color .12s}
+/* lavori */
+.caso{align-items:start}
+.caso figure{grid-column:1/8}
+.caso figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.caso .testo{grid-column:8/13}
+.caso .luogo{margin-top:8px;color:var(--testo-2)}
+.caso .data{margin-top:18px}
+.dati{margin-top:24px;border-top:1px solid var(--linea)}
+.dati div{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--linea);font-size:var(--t16)}
+.dati dt{color:var(--testo-2)}
+.caso .link{display:inline-block;margin-top:22px;font-size:var(--t16)}
+.caso+.caso{margin-top:96px}
+.caso-dx figure{grid-column:6/13;grid-row:1}
+.caso-dx .testo{grid-column:1/6;grid-row:1}
+.tabella-giro{margin-top:72px}
+.tabella-giro h3{margin-bottom:18px}
+table{width:100%;border-collapse:collapse;font-size:var(--t16);line-height:1.45}
+th{font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--testo-2);padding:0 16px 12px 0;border-bottom:1.5px solid var(--testo)}
+td{padding:16px 16px 16px 0;border-bottom:1px solid var(--linea);vertical-align:top}
+td:first-child{width:24%}
+td b{display:block;font-size:var(--t18)}
+td span{color:var(--testo-2)}
+.voci{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:32px;margin-top:88px;padding-top:48px;border-top:1px solid var(--linea)}
+.voci h3{grid-column:1/-1}
+.voci blockquote p::before{content:"\201C"}
+.voci blockquote p::after{content:"\201D"}
+.voci footer{margin-top:12px;font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
+.voce-grande{grid-column:1/8;padding-left:28px;border-left:3px solid var(--rosso)}
+.voce-grande p{font-size:var(--t44);line-height:1.12;font-stretch:112%;letter-spacing:-.02em}
+.voce-grande footer{margin-top:24px}
+.voci-altre{grid-column:9/13;display:flex;flex-direction:column}
+.voci-altre li{padding:16px 0;border-top:1px solid var(--linea)}
+.voci-altre li:first-child{border-top:0;padding-top:0}
+.voci-altre footer{margin-top:6px}
+.voci .altro{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 32px;font-size:var(--t16);color:var(--testo-2)}
+
+/* azienda e numeri, su antracite: la squadra a tutta larghezza */
+.az-capo{max-width:900px}
+.az-foto{margin-top:48px}
+.az-foto img{width:100%}
+.az-testo{margin-top:40px;row-gap:20px}
+.az-testo p{grid-column:span 6;color:var(--testo-chiaro)}
+.numeri{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--g);margin-top:88px}
+.numeri li{border-top:1px solid var(--linea-scura);padding:28px 16px 40px 0}
+.numero{display:block;font-size:var(--t96);line-height:1}
+.numeri p{margin-top:14px;color:var(--testo-chiaro)}
+.premi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);padding-top:32px;border-top:1px solid var(--linea-scura)}
+.premi .h3g{margin-top:10px;color:var(--bianco)}
+.premi p:not(.eti):not(.h3g){margin-top:10px;color:var(--testo-chiaro);font-size:var(--t16)}
+.premi a{color:var(--bianco)}
+.premi .collega{display:flex;flex-direction:column;gap:8px;font-size:var(--t16)}
+
+/* macchine */
+.macchine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px var(--g)}
+.macchina{display:flex;flex-direction:column;text-decoration:none}
+.macchina img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:outline-color .12s;outline:1.5px solid transparent;outline-offset:-1.5px}
+.macchina:hover img{outline-color:var(--rosso)}
+.macchina h3{margin-top:16px}
+.macchina p{margin-top:6px;font-size:var(--t16);color:var(--testo-2)}
+.handling{margin-top:64px;padding-top:40px;border-top:1px solid var(--linea)}
+.handling .testo{grid-column:1/7}
+.handling .testo p{margin-top:14px;color:var(--testo-2)}
+.handling blockquote{grid-column:8/13;font-size:var(--t22);line-height:1.4;padding-left:24px;border-left:3px solid var(--rosso)}
+.handling blockquote footer{margin-top:12px;font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--testo-2)}
+.handling .macchine-link{margin-top:18px}
+
+/* area test */
+.prova{align-items:center}
+.prova figure{grid-column:1/8}
+.prova figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.prova .testo{grid-column:8/13;padding-left:16px}
+.prova .testo p{margin-top:18px;color:var(--testo-2)}
+.prova .dove{margin-top:24px;padding-top:20px;border-top:1px solid var(--linea);color:var(--testo)}
+.prova .azioni{margin-top:28px}
+
+/* assistenza, sul rosso */
+.sul-rosso{background:var(--rosso);color:var(--bianco)}
+.sul-rosso .eti{color:var(--bianco)}
+.as-testo{grid-column:1/7}
+.as-testo h2{margin-top:16px}
+.as-testo .stato{color:var(--bianco)}
+.as-testo .stato::before{background:var(--bianco)}
+.as-testo .ora{margin-top:24px}
+.as-testo .azioni{margin-top:24px}
+.orari{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);margin-top:64px;border-top:1px solid var(--linea-rosso)}
+.orari div{padding:20px 24px 0 0}
+.orari dd{margin-top:8px}
+.fuori{margin-top:24px;font-size:var(--t16)}
+.as-foto{grid-column:7/13}
+.as-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+
+/* contatti e richiesta */
+.co-testo{grid-column:1/5}
+.co-testo .capo{margin-bottom:0}
+.recapiti{margin-top:36px;display:flex;flex-direction:column;gap:14px}
+.recapiti .grande{font-size:var(--t30);font-stretch:112%;letter-spacing:-.015em;text-decoration:none;line-height:1.15}
 .recapiti .grande:hover{color:var(--rosso)}
-.recapiti p+p{margin-top:10px}
-.recapiti .tenue{color:var(--grigio);font-size:16px;margin-top:20px}
-.chiusura .foto{width:100%;height:720px;object-fit:cover}
-@media (min-width:1441px){.chiusura{padding-left:calc((100vw - 1440px) / 2)}}
+.recapiti .tenue{color:var(--testo-2);font-size:var(--t16)}
+.modulo{grid-column:6/13;background:var(--grigio-chiaro);padding:40px}
+.modulo fieldset{border:0;margin:0;padding:0}
+.modulo legend{padding:0;margin-bottom:12px}
+.tipi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tipi label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;background:var(--bianco);border:1px solid var(--linea);border-radius:2px;font-size:var(--t16);cursor:pointer}
+.tipi label:has(input:checked){border-color:var(--rosso);box-shadow:inset 0 0 0 1px var(--rosso)}
+.tipi input{accent-color:var(--rosso);width:18px;height:18px;margin:0}
+.campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px var(--g);margin-top:28px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.largo{grid-column:1/-1}
+.campo label,.campo .titolo{font-size:var(--t14);font-weight:700}
+.campo .aiuto{font-size:var(--t14);color:var(--testo-2)}
+.campo input,.campo select,.campo textarea{width:100%;min-height:48px;padding:11px 12px;font-size:var(--t16);background:var(--bianco);border:1px solid var(--bordo-campo);border-radius:2px}
+.campo textarea{min-height:120px;resize:vertical}
+.allega{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.allega .btn{background:var(--bianco);font-size:var(--t16)}
+.allega input.sr{width:1px;height:1px;min-height:0;padding:0;border:0;margin:0}
+.allega input:focus-visible+label{outline:2px solid var(--rosso);outline-offset:3px}
+#f-scelti{font-size:var(--t16);color:var(--testo-2)}
+.campo [aria-invalid=true]{border-color:var(--rosso);box-shadow:inset 0 0 0 1px var(--rosso)}
+.invio{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:28px}
+.invio p{font-size:var(--t14);color:var(--testo-2);max-width:30em}
+.esito{margin-top:16px;font-size:var(--t16);min-height:1.5em}
+.esito.errore{color:var(--rosso);font-weight:700}
 
 /* piede */
-.piede{background:var(--cemento);margin-top:var(--sez);padding:72px 0 32px;font-size:16px;line-height:1.5}
-.piede .alto{padding-bottom:56px}
-.marchio{grid-column:1/6}
-.marchio img{width:180px}
-.marchio p{margin-top:20px;max-width:26em}
-.notizie{grid-column:8/13}
-.notizie h2,.colonne h2{font-size:16px;font-weight:600;letter-spacing:0;font-stretch:100%;line-height:1.3}
-.notizie p{color:var(--grigio);margin-top:4px}
-.campo{display:flex;margin-top:18px;border-bottom:1px solid var(--inchiostro)}
-.campo input{flex:1;min-width:0;border:0;border-radius:0;background:transparent;font:inherit;font-size:17px;padding:12px 0;color:var(--inchiostro)}
-.campo input::placeholder{color:#63625E}
-.campo button{border:0;border-radius:0;background:var(--inchiostro);color:var(--carta);font:inherit;font-size:16px;font-weight:540;padding:0 22px;margin:6px 0;cursor:pointer;transition:background-color .12s}
-.campo button:hover{background:var(--rosso)}
-.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--grigio);line-height:1.45}
-.consenso input{margin:1px 0 0;width:18px;height:18px;flex:none;accent-color:var(--inchiostro)}
-.consenso a{color:var(--inchiostro)}
-.esito{margin-top:10px;font-size:14px;min-height:1.45em;color:var(--inchiostro)}
-.esito.errore{color:var(--rosso)}
-.campo:has(input[aria-invalid]){border-bottom-color:var(--rosso)}
-.colonne{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);padding:40px 0 48px;border-top:1px solid #C9C7C0}
-.colonne ul{margin-top:14px}
-.fis{appearance:none;background:none;border:0;border-radius:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;pointer-events:none;cursor:default}
-.colonne li+li{margin-top:7px}
-.colonne a{text-decoration:none}
-.colonne a:hover{text-decoration:underline;text-underline-offset:3px;color:var(--rosso)}
-.colonne .tenue{color:var(--grigio)}
-.legale{display:flex;flex-wrap:wrap;gap:6px 28px;padding-top:20px;border-top:1px solid #C9C7C0;font-size:14px;color:var(--grigio)}
-.legale a{color:var(--grigio)}
-.legale a:hover{color:var(--inchiostro)}
+.piede{background:var(--antracite);color:var(--testo-chiaro);padding:80px 0 40px;font-size:var(--t16)}
+.piede a{color:var(--bianco);text-decoration:none}
+.piede a:hover{text-decoration:underline;text-underline-offset:3px}
+.colonne{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px var(--g);padding-bottom:56px}
+.colonne .marchio img{width:160px}
+.colonne .marchio p{margin-top:20px;max-width:22em}
+.colonne .marchio .premi-piede{font-size:var(--t14);color:var(--testo-chiaro)}
+.colonne h2{font-size:var(--t14);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-stretch:100%;color:var(--bianco)}
+.colonne ul{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.colonne .sotto{display:block;color:var(--testo-chiaro);font-size:var(--t14)}
+.legale{display:flex;flex-wrap:wrap;gap:8px 28px;padding-top:24px;border-top:1px solid var(--linea-scura);font-size:var(--t14)}
 .legale .lingue{margin-left:auto}
+.legale .lingue a{color:var(--testo-chiaro);padding:0 0 0 12px}
+.legale .lingue a[aria-current]{color:var(--bianco)}
 
 /* schermi medi */
 @media (max-width:1240px){
-  :root{--m:48px;--fh:calc((var(--wg) * 2 / 3 - var(--g) / 3) / 1.52)}
-  h1{font-size:96px}
-  .lato{grid-column:1/5}
-  .pannelli{grid-column:5/13}
-  .pannello .corpo{grid-template-columns:repeat(8,minmax(0,1fr))}
-  .pannello .spiega{grid-column:1/5}
-  .macchine{grid-column:5/9;column-gap:16px}
-  .scheda{font-size:27px}
-  .prova .testo{grid-column:3/11}
-  .linee .capo2{grid-column:3/12}
-  h2{font-size:46px}
-  .chiusura h2{font-size:44px}
+  :root{--m:48px;--t44:40px;--t64:56px;--t96:80px}
+  .menu{gap:20px}
+}
+@media (max-width:1180px){
+  .menu{display:none}
+  .apri{display:inline-flex;align-items:center}
+  .tel-testa{margin-left:auto}
+  .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea);font-size:var(--t18)}
+  .menu.aperto a{padding:12px 0;border-bottom:1px solid var(--linea)}
+  .menu.aperto .solo-menu{display:block}
 }
 @media (max-width:1060px){
-  .menu{display:none}
-  .apri{display:inline-block;appearance:none;background:none;border:1px solid var(--inchiostro);border-radius:0;font:inherit;font-size:15px;padding:8px 14px;cursor:pointer;color:var(--inchiostro)}
-  .menu.aperto{display:flex;position:absolute;top:88px;left:calc(var(--m) * -1);right:calc(var(--m) * -1);flex-direction:column;align-items:flex-start;gap:16px;background:var(--carta);padding:24px var(--m) 32px;border-bottom:1px solid var(--filetto);font-size:20px}
-  .testata .lingue{display:none}
-  h1{font-size:min(76px, calc((100vw - 2 * var(--m)) / 10.3))}
-  .scelta{display:flex;flex-direction:column;margin-top:24px}
-  .lato{display:contents}
-  .chi{order:1}
-  .chi .lead{font-size:17px;max-width:34em}
-  .schede{order:2;flex-direction:row;flex-wrap:nowrap;gap:32px;border-top:0;margin-top:32px}
-  .scheda{width:auto;padding:0 0 8px;border-bottom:2px solid transparent;white-space:nowrap}
-  .scheda::after{display:none}
-  .scheda[aria-selected="true"]{border-bottom-color:var(--rosso)}
-  .pannelli{order:3;margin-top:20px}
-  .fascia{width:calc(100% + 2 * var(--m));max-width:none;margin:0 calc(var(--m) * -1);height:auto;aspect-ratio:1.52}
-  .pannello .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));padding-top:28px}
-  .pannello .spiega{grid-column:1/7}
-  .macchine{grid-column:7/13;column-gap:var(--g)}
-  .scheda{font-size:26px}
-  .chi .bottone{font-size:16px;padding:14px 18px}
-  .pannello h3{font-size:26px}
-  .riga .cliente{grid-column:1/5}.riga svg{grid-column:5/10}.riga .dati{grid-column:10/13;font-size:15px}
-  .chiusura .testo{padding-right:40px}
-  .chiusura h2{font-size:38px}
-  .recapiti .grande{font-size:34px}
-  .marchio{grid-column:1/7}.notizie{grid-column:7/13}
+  .apertura{padding-top:0}
+  .ap{display:flex;flex-direction:column}
+  .ap-foto{order:1;margin:0 calc(var(--m) * -1)}
+  .servizio-giu{order:2;display:block;margin:0 calc(var(--m) * -1);padding:12px var(--m) 14px}
+  .ap-eti{order:3;margin-top:28px}
+  .ap h1{order:4;margin-top:14px}
+  .ap-testo{order:5;padding:0}
+  .lead{margin-top:22px;max-width:34em}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .caso figure,.caso .testo{grid-column:1/-1}
+  .caso-dx figure,.caso-dx .testo{grid-row:auto}
+  .caso+.caso{margin-top:64px}
+  .caso .testo{margin-top:32px}
+  .az-testo p{grid-column:1/-1}
+  .numeri{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .voce-grande,.voci-altre{grid-column:1/-1}
+  .handling .testo,.handling blockquote{grid-column:1/-1}
+  .handling blockquote{margin-top:32px}
+  .prova figure,.prova .testo{grid-column:1/-1}
+  .prova .testo{margin-top:32px}
+  .as-testo,.as-foto{grid-column:1/-1}
+  .as-foto{margin-top:40px}
+  .co-testo,.modulo{grid-column:1/-1}
+  .modulo{margin-top:40px}
+  .colonne{grid-template-columns:1fr 1fr}
 }
 @media (max-width:860px){
-  :root{--m:32px;--g:20px;--sez:80px}
-  .apertura{padding-top:28px}
-  .pannello .corpo{display:block}
-  .macchine{margin-top:32px}
-  .prova .testo{grid-column:1/13}
-  .linee .capo2{grid-column:1/13}
-  .chiusura{grid-template-columns:1fr}
-  .chiusura .testo{padding:0 var(--m)}
-  .chiusura .foto{height:auto;aspect-ratio:3/2;margin-top:48px}
-  .marchio,.notizie{grid-column:1/13}
-  .notizie{margin-top:40px}
-  .colonne{grid-template-columns:1fr 1fr;row-gap:36px}
-  .legale .lingue{margin-left:0}
+  :root{--m:32px;--sez:88px;--t44:36px;--t64:48px;--t96:72px;--testa:98px}
+  .ap h1{font-size:var(--t64);line-height:1.04}
+  .su .piu{display:none}
+  .prove{grid-template-columns:1fr}
+  .prove li{padding:16px 0;border-bottom:1px solid var(--linea)}
+  .parte{grid-template-columns:1fr}
+  .numeri{grid-template-columns:1fr 1fr}
+  .premi{grid-template-columns:1fr;row-gap:28px}
+  .orari{grid-template-columns:1fr 1fr;row-gap:20px}
+  .macchine{grid-template-columns:1fr 1fr}
+  table,thead,tbody,tr,td{display:block}
+  thead{display:none}
+  tr{padding:16px 0;border-bottom:1px solid var(--linea)}
+  tr:first-child{border-top:1.5px solid var(--testo)}
+  td{padding:2px 0;border:0;width:auto!important}
+  td:first-child{margin-bottom:6px}
+  td[data-th]::before{content:attr(data-th) ": ";color:var(--testo-2)}
 }
 @media (max-width:560px){
-  :root{--m:20px;--g:16px;--sez:64px}
-  body{font-size:17px}
-  .testata{height:68px}
-  .testata .logo img{width:116px}
-  .destra{gap:14px}
-  .destra .tel{font-size:15px}
-  .menu.aperto{top:68px}
-  .apertura{padding-top:20px}
-  h1{font-size:min(46px, 12.6vw);line-height:.98;letter-spacing:-.032em;font-stretch:106%;white-space:normal}
-  .scelta{margin-top:18px}
-  .chi .lead{font-size:16px}
-  .chi .bottone{margin-top:18px;padding:13px 16px}
-  .schede{gap:18px;margin-top:28px}
-  .scheda{font-size:18px;letter-spacing:-.01em;font-stretch:104%}
-  .pannelli{margin-top:16px}
-  .fascia{aspect-ratio:1/1}
-  .pannello h3{font-size:24px}
-  .macchine{column-gap:var(--g);row-gap:20px}
-  .macchine b{font-size:15px}
-  .macchine span{font-size:14px}
-  h2{font-size:34px}
-  .riga{grid-template-columns:1fr;row-gap:8px;padding:14px 0 12px}
-  .riga .cliente,.riga svg,.riga .dati{grid-column:auto}
-  .riga .cliente b{display:inline;margin-right:8px}
-  .riga svg{max-height:44px;width:auto;max-width:100%}
-  .linee .tabella{margin-top:32px}
-  .chiusura h2{font-size:32px}
-  .recapiti{margin-top:32px}
-  .recapiti .grande{font-size:30px}
-  .chiusura .foto{aspect-ratio:4/3;margin-top:40px}
-  .prova .foto{aspect-ratio:4/3}
-  .piede{padding-top:48px}
-  .legale{gap:4px 18px}
-  .legale .lingue{flex-basis:100%;margin-top:6px}
-  .colonne{grid-template-columns:1fr;row-gap:0;padding:8px 0 28px}
-  .colonne>div{border-bottom:1px solid #C9C7C0}
-  .colonne>div:last-child{border-bottom:0;padding-top:16px}
-  .colonne>div:last-child ul{margin-top:10px}
-  .colonne h2{font-size:17px}
-  .fis{pointer-events:auto;cursor:pointer;display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 0;min-height:48px}
-  .fis::after{content:"";width:10px;height:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .12s}
-  .fis[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
-  .colonne ul[hidden]{display:none}
-  .colonne div:not(:last-child) ul{margin:0 0 18px}
+  :root{--m:20px;--g:16px;--sez:72px;--t18:17px;--t22:20px;--t30:24px;--t44:30px;--t64:38px;--t96:56px;--testa:92px}
+  .su{height:36px}
+  .lingue a{padding:9px 6px}
+  .lingue .lunga{display:none}
+  .lingue .corta{display:inline}
+  .su{gap:12px}
+  .st-l{display:none}
+  .st-c{display:inline}
+  .riga{height:56px;gap:10px}
+  .logo img{width:88px}
+  .riga .btn-pieno{display:none}
+  .tel-testa{margin-left:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;min-height:48px!important;padding:0 12px!important;line-height:1.15}
+  .tel-testa .chi{font-size:var(--t16);font-weight:700}
+  .apri{min-height:48px;padding:0 12px}
+  .ap-eti{margin-top:20px}
+  .ap h1{margin-top:10px;line-height:1.02}
+  .ap h1 span{display:inline;white-space:normal}
+  .lead{margin-top:14px;font-size:var(--t18);line-height:1.45}
+  .ap-testo{display:flex;flex-direction:column}
+  .ap-testo .azioni{order:1}
+  .domanda{order:2;margin-top:32px}
+  .settori-link{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:6px}
+  .settori-link a{display:flex;align-items:center;min-height:48px;padding:0;border-bottom:1px solid var(--linea);text-decoration:none}
+  .anche{margin-top:10px}
+  .ap-testo .azioni{margin-top:20px;flex-direction:column;gap:10px}
+  .azioni .btn{width:100%}
+  .prove{margin-top:28px}
+  .capo{margin-bottom:36px}
+  .schede{grid-template-columns:1fr}
+  .scheda .dentro{padding:18px 18px 20px}
+  .riquadro{padding:24px 20px}
+  .dati div{grid-template-columns:7.5em 1fr;gap:12px}
+  .tabella-giro,.voci{margin-top:56px}
+  .voci{gap:28px;padding-top:40px}
+  .voce-grande{padding-left:18px}
+  .voce-grande p{font-size:var(--t30);line-height:1.2}
+  .az-foto{margin:32px calc(var(--m) * -1) 0}
+  .numeri{grid-template-columns:1fr 1fr;margin-top:56px}
+  .numeri li{padding:20px 12px 28px 0}
+  .macchine{gap:28px var(--g)}
+  .macchina h3{margin-top:12px}
+  .handling{margin-top:48px}
+  .orari{grid-template-columns:1fr;margin-top:40px}
+  .orari div{padding:14px 0;border-bottom:1px solid var(--linea-rosso)}
+  .orari dd{margin-top:4px}
+  .modulo{padding:24px 20px;margin-left:calc(var(--m) * -1);margin-right:calc(var(--m) * -1)}
+  .tipi,.campi{grid-template-columns:1fr}
+  .invio .btn{width:100%}
+  .colonne{grid-template-columns:1fr;gap:36px}
+  .piede{padding-top:56px}
+  .legale .lingue{margin-left:0;flex-basis:100%}
+  .legale .lingue a:first-child{padding-left:0}
 }
 @media (max-width:360px){
-  .destra .tel{display:none}
-  .schede{gap:13px}
-  .scheda{font-size:16.5px;font-stretch:100%}
+  .lingue a{padding:9px 5px}
+  .st-c{display:none}
+  .st-m{display:inline}
+  .riga{gap:8px}
+  .tel-testa{padding:0 9px!important}
+  .tel-testa .num{font-stretch:88%;letter-spacing:-.01em}
+  .apri{padding:0 9px}
+  .logo img{width:72px}
 }
 </style>
 </head>
 <body>
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 
-<div class="giro">
 <header class="testata">
-  <a class="logo" href="./" aria-label="Finiture, pagina iniziale"><img src="img/logo-300.png" srcset="img/logo-300.png 300w, img/logo-400.png 400w" sizes="150px" width="300" height="107" alt="finiture, finishing engineering"></a>
-  <nav class="menu" id="menu" aria-label="Menu principale">
-    <a href="#impianti">Impianti</a>
-    <a href="macchine.html">Macchine</a>
-    <a href="#prova">Area test</a>
-    <a href="assistenza.html">Assistenza</a>
-    <a href="azienda.html">Azienda</a>
-    <a href="#contatti">Contatti</a>
-  </nav>
-  <div class="destra">
-    <div class="lingue"><a href="./" aria-current="true">IT</a><a href="en/" lang="en">EN</a><a href="de/" lang="de">DE</a><a href="fr/" lang="fr">FR</a></div>
-    <a class="tel" href="tel:+390498792458">049&nbsp;879&nbsp;2458</a>
+  <div class="giro su">
+    <nav class="lingue" aria-label="Lingua">
+      <a href="./" lang="it" hreflang="it" aria-current="page"><span class="lunga">Italiano</span><span class="corta">IT</span></a>
+      <a href="en/" lang="en" hreflang="en"><span class="lunga">English</span><span class="corta">EN</span></a>
+      <a href="de/" lang="de" hreflang="de"><span class="lunga">Deutsch</span><span class="corta">DE</span></a>
+      <a href="fr/" lang="fr" hreflang="fr"><span class="lunga">Français</span><span class="corta">FR</span></a>
+    </nav>
+    <a class="servizio" href="#assistenza"><span class="stato" data-stato="testa"><span class="st-l">Assistenza</span><span class="st-c">Assistenza</span><span class="st-m">Assistenza</span></span><span class="piu">&nbsp;· orari e lingue</span></a>
+  </div>
+  <div class="giro riga">
+    <a class="logo" href="./" aria-label="Finiture, pagina iniziale"><img src="img/logo-300.png" srcset="img/logo-300.png 300w, img/logo-400.png 400w" sizes="132px" width="300" height="107" alt="finiture, finishing engineering"></a>
+    <nav class="menu" id="menu" aria-label="Menu principale">
+      <a href="#impianti">Impianti</a>
+      <a href="#lavori">Lavori</a>
+      <a href="#macchine">Macchine</a>
+      <a href="#usato">Usato</a>
+      <a href="#assistenza">Assistenza</a>
+      <a href="#azienda">Azienda</a>
+      <a class="solo-menu" href="#area-test">Area test</a>
+      <a class="solo-menu" href="#contatti">Richiedi un progetto e contatti</a>
+    </nav>
+    <a class="btn btn-bordo tel-testa" href="tel:+390498792458"><span class="chi">Assistenza</span> <span class="num">+39 049 879 2458</span></a>
+    <a class="btn btn-pieno" href="#contatti">Richiedi un progetto</a>
     <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
-</div>
 
 <main id="contenuto">
-<section class="apertura giro" id="impianti" aria-labelledby="domanda">
-  <h1 id="domanda">Cosa vuoi verniciare?</h1>
-  <div class="griglia scelta">
-    <div class="lato">
-      <div class="schede" role="tablist" aria-label="Settori" aria-orientation="vertical">
-        <button class="scheda" type="button" role="tab" id="t-finestre" aria-controls="p-finestre" aria-selected="false" tabindex="-1">Finestre</button>
-        <button class="scheda" type="button" role="tab" id="t-porte" aria-controls="p-porte" aria-selected="true">Porte</button>
-        <button class="scheda" type="button" role="tab" id="t-clt" aria-controls="p-clt" aria-selected="false" tabindex="-1">CLT</button>
-        <button class="scheda" type="button" role="tab" id="t-sedie" aria-controls="p-sedie" aria-selected="false" tabindex="-1">Sedie e mobili</button>
+
+<section class="apertura" aria-labelledby="t-apertura">
+  <div class="giro ap">
+    <p class="eti ap-eti">Villatora di Saonara (PD) · dal 2000</p>
+    <h1 id="t-apertura"><span>Impianti di verniciatura</span> <span>su misura</span></h1>
+    <figure class="ap-foto">
+      <img src="img/apertura-1200.webp" srcset="img/apertura-800.webp 800w, img/apertura-1200.webp 1200w, img/apertura-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 820px" width="1200" height="800" fetchpriority="high" alt="Un tecnico Finiture al quadro di comando di una cella con robot di verniciatura RAS; sul quadro il logo Finiture">
+    </figure>
+    <p class="servizio-giu"><b>Assistenza</b> lun-ven 8:30-12:00 e 14:00-17:30, ora italiana, in italiano, inglese, tedesco e francese · <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a></p>
+    <div class="ap-testo">
+      <p class="lead">Progettiamo, costruiamo e installiamo linee complete, dal trasportatore Power&amp;Free al robot RAS, per pezzi fino a <span class="nb num">6000 × 3500 mm</span>. Lavorano in Germania, Svizzera e Francia, e fino in Canada, India e Australia.</p>
+      <div class="domanda">
+        <p class="eti">Cosa vuoi verniciare?</p>
+        <ul class="settori-link">
+          <li><a href="#s-finestre">Finestre</a></li>
+          <li><a href="#s-porte">Porte</a></li>
+          <li><a href="#s-clt">CLT</a></li>
+          <li><a href="#s-sedie">Sedie e mobili</a></li>
+        </ul>
+        <p class="anche">Anche <a class="link" href="#parte">singole macchine</a> e <a class="link" href="#usato">impianti usati</a>.</p>
       </div>
-      <div class="chi">
-        <p class="lead">Impianti di verniciatura su misura per il legno e altri materiali: li progettiamo e costruiamo a Villatora di Saonara (PD) e li installiamo in Europa, Asia, Australia e Nord America.</p>
-        <a class="bottone" href="#prova">Prova i tuoi pezzi in area test</a>
+      <div class="azioni">
+        <a class="btn btn-pieno" href="#contatti" data-tipo="progetto">Richiedi un progetto</a>
+        <a class="btn btn-bordo" href="#area-test">Prova i tuoi pezzi in area test</a>
       </div>
     </div>
-    <div class="pannelli">
-    <div class="pannello" role="tabpanel" id="p-finestre" aria-labelledby="t-finestre" tabindex="0" hidden>
-      <picture>
-        <source media="(max-width:560px)" srcset="img/finestre-quadro-720.webp 720w, img/finestre-quadro-1080.webp 1080w" sizes="100vw">
-        <img class="fascia" src="img/finestre-largo-980.webp" srcset="img/finestre-largo-980.webp 980w, img/finestre-largo-1440.webp 1440w" sizes="(max-width:1060px) 100vw, (max-width:1240px) 66vw, min(68vw, 980px)" width="980" height="645" loading="lazy" alt="Anta di finestra in legno con vetro, laccata chiara, appesa in cabina mentre un ugello spruzza dall'alto; sopra, il trasportatore rosso">
-      </picture>
-      <p class="didascalia">Anta con vetro appesa in cabina, sotto lo spruzzo.</p>
-      <div class="corpo">
-        <div class="spiega">
-          <h3>Una linea per finestre</h3>
-          <p>Per Distner, serramentista tedesco dal 1964: un Power&amp;Free con 45&nbsp;barre da 5&nbsp;metri, due robot antropomorfi con cambio colore automatico su una superficie di lavoro di <span class="num nb">5000 × 3000 mm</span>, due flow coating verticali Superjet e Superjet Plus, due tunnel con sistema LDP per i prodotti ad acqua e un chiarificatore per le acque di lavaggio.</p>
-          <div class="caso"><b>Distner, Wiesau (Germania)</b><span class="num">All'inaugurazione del nuovo stabilimento, 10 e 11 ottobre 2026</span><a class="link" href="impianti/finestre.html">Impianti per finestre</a></div>
-        </div>
-        <ul class="macchine">
-          <li><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><b>Trasportatore birotaia IMB</b><span>Power&amp;Free: barre variabili in linea e in accumulo</span></li>
-          <li><img src="img/m-ras-480.webp" srcset="img/m-ras-480.webp 480w, img/m-ras-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del robot antropomorfo RAS, rosso, sul suo basamento"><b>Robot antropomorfo RAS</b><span>6 o più assi, 7° asse per profili di grandi dimensioni</span></li>
-          <li><img src="img/m-superjetplus-480.webp" srcset="img/m-superjetplus-480.webp 480w, img/m-superjetplus-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del flow coating verticale Superjet Plus"><b>Superjet Plus</b><span>Cicli programmati: prelavaggio, lavaggio, cambio colore</span></li>
-          <li><img src="img/m-ricircolo-480.webp" srcset="img/m-ricircolo-480.webp 480w, img/m-ricircolo-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD di una cabina di spruzzatura a ricircolo"><b>Cabina a ricircolo</b><span>Ricircolo fino al 90% dell'aria aspirata</span></li>
+  </div>
+  <div class="giro">
+    <ul class="prove">
+      <li><p class="eti">Ultima linea inaugurata</p><p><a class="link" href="#lavori">Distner, Wiesau (Germania), 10 e 11 ottobre 2026</a></p></li>
+      <li><p class="eti">Export</p><p>Oltre il 90% del nostro mercato è all'estero</p></li>
+      <li><p class="eti">Assistenza</p><p>In italiano, inglese, tedesco e francese, anche da remoto</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sezione grigio" id="impianti" aria-labelledby="t-impianti" style="margin-top:var(--sez)">
+  <div class="giro">
+    <div class="capo">
+      <p class="eti">Impianti</p>
+      <h2 id="t-impianti">Una linea intera per quello che produci</h2>
+      <p>Per legno, materiali plastici e metallo, con vernici ad acqua e a solvente. Progetto in CAD 3D, costruzione, installazione e formazione: tutto fatto da noi.</p>
+    </div>
+    <div class="schede">
+      <a class="scheda" id="s-finestre" href="impianti/finestre.html">
+        <img src="img/s-finestre-640.webp" srcset="img/s-finestre-640.webp 640w, img/s-finestre-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Anta di finestra con vetro appesa in cabina, sotto lo spruzzo; sopra, il trasportatore rosso">
+        <span class="dentro"><h3>Finestre</h3><p>Power&amp;Free, robot e flow coating per ante e telai, con pezzi fino a <span class="nb num">6000 × 3500 mm</span>. Per Distner, Setz Fensterbau, Malenfer.</p><span class="vai freccia">Impianti per finestre</span></span>
+      </a>
+      <a class="scheda" id="s-porte" href="impianti/porte.html">
+        <img src="img/s-porte-640.webp" srcset="img/s-porte-640.webp 640w, img/s-porte-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Porta a doghe laccata verde e, accanto, una porta rossa appesa ai ganci del Power&amp;Free">
+        <span class="dentro"><h3>Porte</h3><p>Il Power&amp;Free accumula e dosa le porte; cabine a secco DRY-A, tunnel Pro Dry con sistema LDP, Supervisor con RFID.</p><span class="vai freccia">Impianti per porte</span></span>
+      </a>
+      <a class="scheda" id="s-clt" href="impianti/clt.html">
+        <img src="img/s-clt-640.webp" srcset="img/s-clt-640.webp 640w, img/s-clt-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Grande pannello CLT sospeso al trasportatore rosso">
+        <span class="dentro"><h3>CLT e case in legno</h3><p>Travi, pareti e coperture: Power&amp;Free con 100 barre da 3500 mm, robot RAS Large con <span class="nb num">4000 × 2500 mm</span> utili.</p><span class="vai freccia">Impianti per CLT</span></span>
+      </a>
+      <a class="scheda" id="s-sedie" href="impianti/sedie-mobili.html">
+        <img src="img/s-sedie-640.webp" srcset="img/s-sedie-640.webp 640w, img/s-sedie-960.webp 960w" sizes="(max-width:560px) 100vw, (max-width:1060px) 45vw, 300px" width="640" height="480" loading="lazy" alt="Sedie laccate rosse sui pianali del trasportatore a terra">
+        <span class="dentro"><h3>Sedie e mobili</h3><p>Trasportatori a terra con supporti intercambiabili, a passo fisso o variabile, oppure appesi al trasportatore aereo.</p><span class="vai freccia">Impianti per sedie e mobili</span></span>
+      </a>
+    </div>
+    <div class="parte">
+      <div class="riquadro" id="parte">
+        <p class="h3g">Vuoi solo parte di un impianto? Nessun problema!</p>
+        <p>Vendiamo anche le singole macchine, per ampliare o rinnovare la tua linea:</p>
+        <ul class="macchine-link">
+          <li><a class="link" href="macchine/impregnazione.html">Superjet</a></li>
+          <li><a class="link" href="macchine/impregnazione.html">Pro Flow</a></li>
+          <li><a class="link" href="macchine/robot.html">Robot RAS</a></li>
+          <li><a class="link" href="macchine/cabine.html">Cabine</a></li>
+          <li><a class="link" href="macchine/essiccazione.html">Tunnel LDP</a></li>
+          <li><a class="link" href="macchine/handling.html">Banco BM30</a></li>
+          <li><a class="link freccia" href="#macchine">Tutte le macchine</a></li>
         </ul>
       </div>
-    </div>
-    <div class="pannello" role="tabpanel" id="p-porte" aria-labelledby="t-porte" tabindex="0">
-      <picture>
-        <source media="(max-width:560px)" srcset="img/porte-quadro-720.webp 720w, img/porte-quadro-1080.webp 1080w" sizes="100vw">
-        <img class="fascia" src="img/porte-largo-980.webp" srcset="img/porte-largo-980.webp 980w, img/porte-largo-1440.webp 1440w, img/porte-largo-1914.webp 1914w" sizes="(max-width:1060px) 100vw, (max-width:1240px) 66vw, min(68vw, 980px)" width="980" height="645" fetchpriority="high" alt="Porta a doghe diagonali laccata verde lucido in primo piano; dietro, una porta rossa appesa ai ganci rossi del trasportatore aereo">
-      </picture>
-      <p class="didascalia">Porta a doghe laccata verde; dietro, una porta rossa appesa ai ganci del trasportatore.</p>
-      <div class="corpo">
-        <div class="spiega">
-          <h3>Una linea per porte</h3>
-          <p>Il Power&amp;Free accumula, divide e dosa le porte secondo la capacità della linea. Si spruzza in cabine a secco DRY-A, oggi manuali e già predisposte per il robot; si asciuga nel tunnel Pro Dry con sistema LDP; il Supervisor segue ogni pezzo con l'RFID e imposta tempi, prodotti e numero di mani.</p>
-          <div class="caso"><span>Legno, materiali plastici, metallo</span><a class="link" href="impianti/porte.html">Impianti per porte</a></div>
+      <div class="riquadro" id="usato">
+        <p class="h3g">Impianti usati</p>
+        <p>In vendita Finiture 5 e Finiture 6: per ognuno componenti, anno, disponibilità e pianta da scaricare. Prezzo: rivolgersi a Finiture.</p>
+        <div class="azioni">
+          <a class="btn btn-bordo" href="usato.html">Vedi gli annunci</a>
+          <a class="btn btn-bordo" href="mailto:info@finiture.it?subject=Impianto%20usato&amp;body=Annuncio%20(Finiture%205%20o%20Finiture%206)%3A%20%0D%0AAzienda%3A%20%0D%0APaese%3A%20%0D%0ATelefono%3A%20">Chiedi dell'usato</a>
         </div>
-        <ul class="macchine">
-          <li><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><b>Trasportatore birotaia IMB</b><span>Power&amp;Free: barre variabili in linea e in accumulo</span></li>
-          <li><img src="img/m-drya-480.webp" srcset="img/m-drya-480.webp 480w, img/m-drya-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" alt="Disegno CAD della cabina a secco DRY-A"><b>Cabina a secco DRY-A</b><span>Aspirazione a flusso orizzontale e verticale</span></li>
-        </ul>
       </div>
-    </div>
-    <div class="pannello" role="tabpanel" id="p-clt" aria-labelledby="t-clt" tabindex="0" hidden>
-      <picture>
-        <source media="(max-width:560px)" srcset="img/clt-quadro-720.webp 720w, img/clt-quadro-1080.webp 1080w" sizes="100vw">
-        <img class="fascia" src="img/clt-largo-980.webp" srcset="img/clt-largo-980.webp 980w, img/clt-largo-1440.webp 1440w, img/clt-largo-1920.webp 1920w" sizes="(max-width:1060px) 100vw, (max-width:1240px) 66vw, min(68vw, 980px)" width="980" height="645" loading="lazy" alt="Grande pannello di legno lamellare a strati incrociati sospeso al trasportatore rosso">
-      </picture>
-      <p class="didascalia">Pannello CLT appeso al trasportatore aereo.</p>
-      <div class="corpo">
-        <div class="spiega">
-          <h3>Una linea per CLT e case in legno</h3>
-          <p>Per travi, pareti e coperture: un Power&amp;Free con 100&nbsp;barre da 3500&nbsp;mm, l'impregnazione nel flow coating Superjet, la cabina a secco DRY-A e il robot RAS in versione Large, a 6&nbsp;assi, con <span class="num nb">4000 × 2500 mm</span> di superficie utile e un sensore laser che legge l'inclinazione dei pezzi.</p>
-          <div class="caso"><span>Travi, pareti, coperture, serramenti</span><a class="link" href="impianti/clt.html">Impianti per CLT</a></div>
-        </div>
-        <ul class="macchine">
-          <li><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><b>Trasportatore birotaia IMB</b><span>Power&amp;Free: barre variabili in linea e in accumulo</span></li>
-          <li><img src="img/m-superjet-480.webp" srcset="img/m-superjet-480.webp 480w, img/m-superjet-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del flow coating verticale Superjet"><b>Superjet</b><span>Flow coating verticale, il prodotto in eccesso torna in circolo</span></li>
-          <li><img src="img/m-drya-480.webp" srcset="img/m-drya-480.webp 480w, img/m-drya-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD della cabina a secco DRY-A"><b>Cabina a secco DRY-A</b><span>Aspirazione a flusso orizzontale e verticale</span></li>
-          <li><img src="img/m-ras-480.webp" srcset="img/m-ras-480.webp 480w, img/m-ras-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del robot antropomorfo RAS, rosso, sul suo basamento"><b>Robot antropomorfo RAS</b><span>Versione Large, superficie utile <span class="num nb">4000 × 2500 mm</span></span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="pannello" role="tabpanel" id="p-sedie" aria-labelledby="t-sedie" tabindex="0" hidden>
-      <picture>
-        <source media="(max-width:560px)" srcset="img/sedie-quadro-720.webp 720w, img/sedie-quadro-1080.webp 1080w" sizes="100vw">
-        <img class="fascia" src="img/sedie-largo-980.webp" srcset="img/sedie-largo-980.webp 980w, img/sedie-largo-1440.webp 1440w, img/sedie-largo-1920.webp 1920w" sizes="(max-width:1060px) 100vw, (max-width:1240px) 66vw, min(68vw, 980px)" width="980" height="645" loading="lazy" alt="Sedie in legno laccate arancio sui pianali del trasportatore a terra, sotto il trasportatore aereo rosso">
-      </picture>
-      <p class="didascalia">Sedie laccate arancio sui pianali del trasportatore a terra.</p>
-      <div class="corpo">
-        <div class="spiega">
-          <h3>Sedie, tavoli e mobili</h3>
-          <p>Sedie, tavoli, mobili ed elementi tridimensionali viaggiano sui trasportatori a terra, con supporti intercambiabili, su ruote o su binari sopraelevati, a passo fisso o variabile. Oppure appesi al trasportatore aereo.</p>
-          <div class="caso"><span>Legno, materiali plastici, metallo</span><a class="link" href="impianti/sedie-mobili.html">Impianti per sedie e mobili</a></div>
-        </div>
-        <ul class="macchine">
-          <li><img src="img/m-terra-480.webp" srcset="img/m-terra-480.webp 480w, img/m-terra-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD di un trasportatore a terra ad anello, rosso"><b>Trasportatore a terra</b><span>Supporti intercambiabili, passo fisso o variabile</span></li>
-          <li><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 260px" width="720" height="480" loading="lazy" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><b>Trasportatore birotaia IMB</b><span>Per elementi bi e tridimensionali</span></li>
-        </ul>
-      </div>
-    </div>
     </div>
   </div>
 </section>
 
-<section class="prova" id="prova" aria-labelledby="t-prova">
-  <picture>
-    <source media="(max-width:560px)" srcset="img/areatest-quadro-720.webp 720w, img/areatest-quadro-1080.webp 1080w" sizes="100vw">
-    <img class="foto" src="img/areatest-largo-1600.webp" srcset="img/areatest-largo-1000.webp 1000w, img/areatest-largo-1600.webp 1600w, img/areatest-largo-2400.webp 2400w" sizes="100vw" width="1600" height="889" loading="lazy" alt="Cabina con robot coperto dal telo e telai in legno appesi; un tecnico Finiture in tuta bianca al quadro di comando">
-  </picture>
-  <div class="giro griglia">
+<section class="sezione" id="lavori" aria-labelledby="t-lavori">
+  <div class="giro">
+    <div class="capo">
+      <p class="eti">Impianti consegnati</p>
+      <h2 id="t-lavori">Linee consegnate in Germania, Svizzera e Francia</h2>
+    </div>
+    <article class="griglia caso" aria-labelledby="t-distner">
+      <figure>
+        <img src="img/distner-1200.webp" srcset="img/distner-800.webp 800w, img/distner-1200.webp 1200w, img/distner-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture nel nuovo stabilimento Distner a Wiesau: trasportatore aereo, cabine e telai in legno appesi">
+      </figure>
+      <div class="testo">
+        <h3 class="h3g" id="t-distner">Distner</h3>
+        <p class="luogo">Wiesau, Germania · serramenti dal 1964</p>
+        <p class="data">Nuovo stabilimento inaugurato il 10 e 11 ottobre 2026, dopo cinque anni di pianificazione e quasi due anni di lavori.</p>
+        <dl class="dati">
+          <div><dt>Trasportatore</dt><dd>Power&amp;Free, 45 barre da 5 m</dd></div>
+          <div><dt>Spruzzatura</dt><dd>Due robot antropomorfi con cambio colore automatico</dd></div>
+          <div><dt>Superficie</dt><dd class="num"><span class="nb">5000 × 3000 mm</span></dd></div>
+          <div><dt>Impregnazione</dt><dd>Superjet e Superjet Plus</dd></div>
+          <div><dt>Essiccazione e acque</dt><dd>Tunnel con sistema LDP, chiarificatore</dd></div>
+        </dl>
+        <a class="link freccia" href="notizie.html">Leggi la notizia dell'inaugurazione</a>
+      </div>
+    </article>
+
+    <article class="griglia caso caso-dx" aria-labelledby="t-setz">
+      <figure>
+        <img src="img/setz-1200.webp" srcset="img/setz-800.webp 800w, img/setz-1200.webp 1200w, img/setz-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture da Setz Fensterbau: robot in cabina e pezzi appesi al Power&amp;Free rosso">
+      </figure>
+      <div class="testo">
+        <h3 class="h3g" id="t-setz">Setz Fensterbau</h3>
+        <p class="luogo">Schötz, Svizzera · finestre e porte dal 1960</p>
+        <p class="data">Linea per porte e infissi, dalla notizia dell'8 febbraio 2026.</p>
+        <dl class="dati">
+          <div><dt>Trasportatore</dt><dd>Power&amp;Free, 40 barre da 6 m, posizione delle barre con RFID</dd></div>
+          <div><dt>Spruzzatura</dt><dd>Due robot a 6 assi con scanner dei pezzi</dd></div>
+          <div><dt>Pezzi</dt><dd class="num">Fino a <span class="nb">6000 × 3500 mm</span></dd></div>
+        </dl>
+        <a class="link freccia" href="notizie.html">Leggi il caso Setz</a>
+      </div>
+    </article>
+
+    <article class="griglia caso" aria-labelledby="t-malenfer">
+      <figure>
+        <img src="img/malenfer-1200.webp" srcset="img/malenfer-800.webp 800w, img/malenfer-1200.webp 1200w, img/malenfer-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 740px" width="1200" height="800" loading="lazy" alt="La linea Finiture da Malenfer: robot in cabina, cartello Finiture e trasportatore rosso">
+      </figure>
+      <div class="testo">
+        <h3 class="h3g" id="t-malenfer">Malenfer</h3>
+        <p class="luogo">Villers-Farlay, Giura, Francia · dal 1983</p>
+        <p class="data">Linea per serramenti, dalla notizia del 17 maggio 2026.</p>
+        <dl class="dati">
+          <div><dt>Trasportatore</dt><dd>Power&amp;Free push-pull, 24 barre da 3 m</dd></div>
+          <div><dt>Spruzzatura</dt><dd>Robot a 6 assi più mezzo asse, cambio colore su 4 colori</dd></div>
+          <div><dt>Impregnazione</dt><dd>Tunnel Superjet</dd></div>
+        </dl>
+        <a class="link freccia" href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">Il video della linea su YouTube</a>
+      </div>
+    </article>
+
+    <div class="tabella-giro">
+      <h3>Altre linee consegnate</h3>
+      <table>
+        <thead><tr><th scope="col">Cliente</th><th scope="col">Trasportatore</th><th scope="col">Robot e colori</th><th scope="col">Altro</th><th scope="col">Quando</th></tr></thead>
+        <tbody>
+          <tr><td><b>Millet</b><span>Francia</span></td><td data-th="Trasportatore">Power&amp;Free da 130 barre</td><td data-th="Robot">Due robot, quattro Superjet</td><td data-th="Altro">Supervisor WinPaint con RFID</td><td data-th="Quando">2026, su LinkedIn</td></tr>
+          <tr><td><b>Bruppacher</b><span>Alto Reno, Francia</span></td><td data-th="Trasportatore">30 barre da 4 m</td><td data-th="Robot">Robot a 6 assi, cambio colore su 5 colori</td><td data-th="Altro">Due banchi di montaggio BM30</td><td data-th="Quando">Notizia dell'11 gennaio 2026</td></tr>
+          <tr><td><b>Arlt</b><span>Germania</span></td><td data-th="Risultato" colspan="3">Il ciclo di lavoro passa da circa 24 ore a 8 ore</td><td data-th="Quando">Impianto del 2017</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="voci">
+      <h3>Lo hanno scritto i clienti</h3>
+      <blockquote class="voce-grande"><p>La messa in funzione dell'impianto e l'istruzione dei nostri dipendenti sono state impeccabili!</p><footer>Wagner Fenster+Türen GmbH</footer></blockquote>
+      <ul class="voci-altre">
+        <li><blockquote><p>Il nostro robot è finalmente operativo!</p><footer>Menuiserie Zimmermann</footer></blockquote></li>
+        <li><blockquote><p>Non ci siamo sbagliati nell'affidarci a voi per la nostra installazione.</p><footer>Menuiserie Foray</footer></blockquote></li>
+        <li><blockquote><p>…per aver configurato i robot con tutto quello che volevamo. Ne è valsa la pena.</p><footer>Huber &amp; Sohn</footer></blockquote></li>
+        <li><blockquote><p>Continuate così!</p><footer>Betz Fensterbau GmbH</footer></blockquote></li>
+      </ul>
+      <p class="altro"><span>Dalla home di finiture.it, tradotte in italiano.</span><a class="link freccia" href="notizie.html">Casi cliente nelle notizie</a><a class="link freccia" href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Dai cantieri, su LinkedIn</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sezione scuro" id="azienda" aria-labelledby="t-azienda">
+  <div class="giro">
+    <div class="az-capo">
+      <p class="eti">Azienda</p>
+      <h2 id="t-azienda" style="margin-top:16px">25 anni di Finiture, più di 70 di esperienza</h2>
+    </div>
+    <figure class="az-foto">
+      <img src="img/squadra-1167.webp" srcset="img/squadra-800.webp 800w, img/squadra-1167.webp 1167w" sizes="(max-width:1060px) 100vw, 1280px" width="1167" height="397" loading="lazy" alt="La squadra di Finiture davanti alla sede di Villatora di Saonara">
+    </figure>
+    <div class="griglia az-testo">
+      <p>Marco Sedino fonda la Mizar negli anni '50; dal 2000 è Finiture, oggi guidata da Giovanni Sedino. Siamo circa 40 persone a Villatora di Saonara, e c'è chi lavora con noi da 20 e da 40 anni.</p>
+      <p>Finiture gestisce internamente tutte le fasi di lavoro: l'ufficio tecnico progetta l'impianto in CAD 3D, l'officina lo costruisce, i tecnici lo installano e accompagnano il cliente passo passo nell'utilizzo autonomo del proprio impianto.</p>
+    </div>
+    <ul class="numeri">
+      <li><span class="numero num">70+</span><p>anni di esperienza</p></li>
+      <li><span class="numero num">90%</span><p>del mercato all'estero</p></li>
+      <li><span class="numero num">40</span><p>persone in azienda</p></li>
+      <li><span class="numero num">51</span><p>macchine a catalogo</p></li>
+      <li><span class="numero num">4</span><p>lingue dell'assistenza</p></li>
+    </ul>
+    <div class="premi">
+      <div><p class="eti">Riconoscimento</p><p class="h3g">Finalisti Exporter of the Year 2024</p><p>Premio di Confindustria Veneto Est con Fondazione Nord Est e SACE</p></div>
+      <div><p class="eti">Collaborazione</p><p class="h3g">Partner di Finestra+</p><p>Il progetto del Consorzio LegnoLegno sul serramento sostenibile</p></div>
+      <div class="collega"><a class="freccia" href="azienda.html">Chi siamo</a><a class="freccia" href="notizie.html">Notizie</a><a class="freccia" href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Lavora con noi</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione" id="macchine" aria-labelledby="t-macchine">
+  <div class="giro">
+    <div class="capo">
+      <p class="eti">Macchine</p>
+      <h2 id="t-macchine">Dentro una linea Finiture, dal carico all'essiccazione</h2>
+      <p>Tutte progettate e costruite da noi. Il software Supervisor segue ogni pezzo con l'RFID e imposta tempi, prodotti e numero di mani.</p>
+    </div>
+    <ul class="macchine">
+      <li><a class="macchina" href="macchine/trasporto.html"><img src="img/m-imb-480.webp" srcset="img/m-imb-480.webp 480w, img/m-imb-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del trasportatore birotaia IMB con telai appesi"><h3>Trasportatore birotaia IMB</h3><p>Power&amp;Free: varia il numero di barre in linea e in accumulo</p></a></li>
+      <li><a class="macchina" href="macchine/impregnazione.html"><img src="img/m-superjet-480.webp" srcset="img/m-superjet-480.webp 480w, img/m-superjet-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del flow coating verticale Superjet Plus"><h3>Superjet e Superjet Plus</h3><p>Flow coating verticale; cicli programmati con prelavaggio, lavaggio e cambio colore</p></a></li>
+      <li><a class="macchina" href="macchine/impregnazione.html"><img src="img/m-proflow-480.webp" srcset="img/m-proflow-480.webp 480w, img/m-proflow-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD dell'impregnatrice Pro Flow"><h3>Pro Flow</h3><p>Circuito chiuso, consumo minimo di prodotto (Pro Flow Evo)</p></a></li>
+      <li><a class="macchina" href="macchine/robot.html"><img src="img/m-ras-480.webp" srcset="img/m-ras-480.webp 480w, img/m-ras-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del robot antropomorfo RAS, rosso, sul suo basamento"><h3>Robot antropomorfo RAS</h3><p>6 o più assi, 7° asse per profili grandi; vernici ad acqua e a solvente</p></a></li>
+      <li><a class="macchina" href="macchine/cabine.html"><img src="img/m-drya-480.webp" srcset="img/m-drya-480.webp 480w, img/m-drya-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD della cabina a secco DRY-A"><h3>Cabina a secco DRY-A</h3><p>Aspirazione a flusso orizzontale e verticale</p></a></li>
+      <li><a class="macchina" href="macchine/cabine.html"><img src="img/m-ricircolo-480.webp" srcset="img/m-ricircolo-480.webp 480w, img/m-ricircolo-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD della cabina di spruzzatura a ricircolo"><h3>Cabina a ricircolo</h3><p>Ricircolo fino al 90% dell'aria aspirata</p></a></li>
+      <li><a class="macchina" href="macchine/essiccazione.html"><img src="img/m-ldp-480.webp" srcset="img/m-ldp-480.webp 480w, img/m-ldp-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del tunnel di essiccazione a deumidificazione"><h3>Tunnel con sistema LDP</h3><p>Asciugatura veloce a bassa temperatura, per i prodotti ad acqua</p></a></li>
+      <li><a class="macchina" href="macchine/acqua.html"><img src="img/m-ac-480.webp" srcset="img/m-ac-480.webp 480w, img/m-ac-720.webp 720w" sizes="(max-width:860px) 45vw, 300px" width="480" height="360" loading="lazy" alt="Disegno CAD del chiarificatore AC per le acque di lavaggio"><h3>Chiarificatore AC</h3><p>Costi di smaltimento più bassi grazie alla coagulazione</p></a></li>
+    </ul>
+    <div class="griglia handling">
+      <div class="testo">
+        <h3 class="h3g">Handling &amp; Assembling</h3>
+        <p>Dopo la verniciatura, il montaggio: banchi di montaggio, vetratura, avvitatura, imballaggio e logistica per serramenti, 26 macchine.</p>
+        <ul class="macchine-link">
+          <li><a class="link" href="macchine/handling.html">Banco di montaggio BM30</a></li>
+          <li><a class="link" href="macchine/handling.html">Vetratura BVC30</a></li>
+          <li><a class="link" href="macchine/handling.html">Avvitatura</a></li>
+          <li><a class="link" href="macchine/handling.html">Imballaggio</a></li>
+          <li><a class="link" href="macchine/handling.html">Logistica</a></li>
+        </ul>
+      </div>
+      <blockquote><p>Il BM30, fiore all'occhiello della nostra Handling &amp; Assembling Division.</p><footer>Dalla notizia della linea Bruppacher</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sezione grigio" id="area-test" aria-labelledby="t-prova">
+  <div class="giro griglia prova">
+    <figure>
+      <img src="img/areatest-800.webp" srcset="img/areatest-800.webp 800w, img/areatest-1200.webp 1200w" sizes="(max-width:1060px) 100vw, 740px" width="800" height="533" loading="lazy" alt="Area test: cabina robot con telai in legno appesi e un tecnico Finiture in tuta al quadro di comando">
+    </figure>
     <div class="testo">
-      <p class="didascalia">Cabina robot con telai in legno appesi; al quadro, un tecnico Finiture.</p>
-      <h2 id="t-prova">Prova i tuoi pezzi nella nostra area test</h2>
-      <p class="spiega">Flow coating verticale, robot di spruzzatura RAS, cabina, tunnel d'essiccazione con sistema LDP, ventilatori assiali e lampade alogene; in più una linea orizzontale per i profili. Il cliente fa le prove d'applicazione sui manufatti di sua produzione.</p>
-      <a class="link" href="mailto:info@finiture.it?subject=Prova%20in%20area%20test">Chiedi una prova</a>
+      <p class="eti" style="color:var(--rosso)">Area test</p>
+      <h2 id="t-prova" style="margin-top:16px">Metti alla prova le soluzioni Finiture</h2>
+      <p>Flow coating verticale, robot di spruzzatura RAS, cabina, tunnel d'essiccazione con sistema LDP, ventilatori assiali e lampade alogene. Qui fai le prove d'applicazione sui pezzi di tua produzione, prima di decidere.</p>
+      <p>Per preparare la prova ci servono i pezzi, la vernice che usi, le misure massime e quanti pezzi fai al giorno.</p>
+      <p class="dove">Viale Veneto 13/15, 35020 Villatora di Saonara (PD) · <a class="link" href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
+      <div class="azioni"><a class="btn btn-pieno" href="#contatti" data-tipo="prova">Chiedi una prova in area test</a></div>
     </div>
   </div>
 </section>
 
-<section class="linee" id="azienda" aria-labelledby="t-linee">
+<section class="sezione sul-rosso" id="assistenza" aria-labelledby="t-assistenza">
   <div class="giro griglia">
-    <div class="capo2">
-      <h2 id="t-linee">Quattro linee consegnate, barra per barra</h2>
-      <p>Marco Sedino fonda la Mizar negli anni '50; dal 2000 è Finiture, oggi diretta da Giovanni Sedino. Oltre il 90% del nostro mercato è all'estero, l'assistenza parla italiano, inglese, tedesco e francese, e nel 2024 siamo stati tra i finalisti dell'Exporter of the Year di Confindustria Veneto Est.</p>
+    <div class="as-testo">
+      <p class="eti">Assistenza</p>
+      <h2 id="t-assistenza">Dal montaggio alla manutenzione: sempre dalla parte del cliente</h2>
+      <p class="ora"><span class="stato" data-stato>Orari dell'assistenza</span></p>
+      <div class="azioni">
+        <a class="btn btn-pieno" href="tel:+390498792458">Chiama <span class="num">+39 049 879 2458</span></a>
+        <a class="btn btn-bordo" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">Scrivi all'assistenza</a>
+      </div>
+      <p class="fuori">Fuori orario scrivi a <a class="link" href="mailto:info@finiture.it?subject=Assistenza%20impianto&amp;body=Azienda%3A%20%0D%0AImpianto%20o%20macchina%3A%20%0D%0AMatricola%20(se%20la%20conosci)%3A%20%0D%0ACosa%20succede%3A%20%0D%0ATelefono%3A%20">info@finiture.it</a> con azienda, impianto e cosa succede.</p>
     </div>
-    <div class="tabella">
-      <p class="spiega2">Ogni trattino è una barra del trasportatore Power&amp;Free, lungo in proporzione.</p>
-        <div class="riga"><p class="cliente"><b>Distner</b><span>Wiesau, Germania</span></p><svg viewBox="0 0 548 74" role="img" aria-label="45 barre da 5 metri" preserveAspectRatio="xMinYMin meet"><line x1="1" y1="4" x2="535" y2="4" stroke="#A51329" stroke-width="3"/><g stroke="#5C5C58" stroke-width="1.5"><line x1="4" y1="6" x2="4" y2="61"/><line x1="16" y1="6" x2="16" y2="61"/><line x1="28" y1="6" x2="28" y2="61"/><line x1="40" y1="6" x2="40" y2="61"/><line x1="52" y1="6" x2="52" y2="61"/><line x1="64" y1="6" x2="64" y2="61"/><line x1="76" y1="6" x2="76" y2="61"/><line x1="88" y1="6" x2="88" y2="61"/><line x1="100" y1="6" x2="100" y2="61"/><line x1="112" y1="6" x2="112" y2="61"/><line x1="124" y1="6" x2="124" y2="61"/><line x1="136" y1="6" x2="136" y2="61"/><line x1="148" y1="6" x2="148" y2="61"/><line x1="160" y1="6" x2="160" y2="61"/><line x1="172" y1="6" x2="172" y2="61"/><line x1="184" y1="6" x2="184" y2="61"/><line x1="196" y1="6" x2="196" y2="61"/><line x1="208" y1="6" x2="208" y2="61"/><line x1="220" y1="6" x2="220" y2="61"/><line x1="232" y1="6" x2="232" y2="61"/><line x1="244" y1="6" x2="244" y2="61"/><line x1="256" y1="6" x2="256" y2="61"/><line x1="268" y1="6" x2="268" y2="61"/><line x1="280" y1="6" x2="280" y2="61"/><line x1="292" y1="6" x2="292" y2="61"/><line x1="304" y1="6" x2="304" y2="61"/><line x1="316" y1="6" x2="316" y2="61"/><line x1="328" y1="6" x2="328" y2="61"/><line x1="340" y1="6" x2="340" y2="61"/><line x1="352" y1="6" x2="352" y2="61"/><line x1="364" y1="6" x2="364" y2="61"/><line x1="376" y1="6" x2="376" y2="61"/><line x1="388" y1="6" x2="388" y2="61"/><line x1="400" y1="6" x2="400" y2="61"/><line x1="412" y1="6" x2="412" y2="61"/><line x1="424" y1="6" x2="424" y2="61"/><line x1="436" y1="6" x2="436" y2="61"/><line x1="448" y1="6" x2="448" y2="61"/><line x1="460" y1="6" x2="460" y2="61"/><line x1="472" y1="6" x2="472" y2="61"/><line x1="484" y1="6" x2="484" y2="61"/><line x1="496" y1="6" x2="496" y2="61"/><line x1="508" y1="6" x2="508" y2="61"/><line x1="520" y1="6" x2="520" y2="61"/><line x1="532" y1="6" x2="532" y2="61"/></g></svg><p class="dati num"><b>45 barre da 5&nbsp;m</b>, due robot antropomorfi, superficie di lavoro di <span class="nb">5000 × 3000 mm</span></p></div>
-        <div class="riga"><p class="cliente"><b>Setz Fensterbau</b><span>Schötz, Svizzera</span></p><svg viewBox="0 0 548 74" role="img" aria-label="40 barre da 6 metri" preserveAspectRatio="xMinYMin meet"><line x1="1" y1="4" x2="475" y2="4" stroke="#A51329" stroke-width="3"/><g stroke="#5C5C58" stroke-width="1.5"><line x1="4" y1="6" x2="4" y2="72"/><line x1="16" y1="6" x2="16" y2="72"/><line x1="28" y1="6" x2="28" y2="72"/><line x1="40" y1="6" x2="40" y2="72"/><line x1="52" y1="6" x2="52" y2="72"/><line x1="64" y1="6" x2="64" y2="72"/><line x1="76" y1="6" x2="76" y2="72"/><line x1="88" y1="6" x2="88" y2="72"/><line x1="100" y1="6" x2="100" y2="72"/><line x1="112" y1="6" x2="112" y2="72"/><line x1="124" y1="6" x2="124" y2="72"/><line x1="136" y1="6" x2="136" y2="72"/><line x1="148" y1="6" x2="148" y2="72"/><line x1="160" y1="6" x2="160" y2="72"/><line x1="172" y1="6" x2="172" y2="72"/><line x1="184" y1="6" x2="184" y2="72"/><line x1="196" y1="6" x2="196" y2="72"/><line x1="208" y1="6" x2="208" y2="72"/><line x1="220" y1="6" x2="220" y2="72"/><line x1="232" y1="6" x2="232" y2="72"/><line x1="244" y1="6" x2="244" y2="72"/><line x1="256" y1="6" x2="256" y2="72"/><line x1="268" y1="6" x2="268" y2="72"/><line x1="280" y1="6" x2="280" y2="72"/><line x1="292" y1="6" x2="292" y2="72"/><line x1="304" y1="6" x2="304" y2="72"/><line x1="316" y1="6" x2="316" y2="72"/><line x1="328" y1="6" x2="328" y2="72"/><line x1="340" y1="6" x2="340" y2="72"/><line x1="352" y1="6" x2="352" y2="72"/><line x1="364" y1="6" x2="364" y2="72"/><line x1="376" y1="6" x2="376" y2="72"/><line x1="388" y1="6" x2="388" y2="72"/><line x1="400" y1="6" x2="400" y2="72"/><line x1="412" y1="6" x2="412" y2="72"/><line x1="424" y1="6" x2="424" y2="72"/><line x1="436" y1="6" x2="436" y2="72"/><line x1="448" y1="6" x2="448" y2="72"/><line x1="460" y1="6" x2="460" y2="72"/><line x1="472" y1="6" x2="472" y2="72"/></g></svg><p class="dati num"><b>40 barre da 6&nbsp;m</b>, due robot a 6 assi con scanner, pezzi fino a <span class="nb">6000 × 3500 mm</span></p></div>
-        <div class="riga"><p class="cliente"><b>Bruppacher</b><span>Francia</span></p><svg viewBox="0 0 548 74" role="img" aria-label="30 barre da 4 metri" preserveAspectRatio="xMinYMin meet"><line x1="1" y1="4" x2="355" y2="4" stroke="#A51329" stroke-width="3"/><g stroke="#5C5C58" stroke-width="1.5"><line x1="4" y1="6" x2="4" y2="50"/><line x1="16" y1="6" x2="16" y2="50"/><line x1="28" y1="6" x2="28" y2="50"/><line x1="40" y1="6" x2="40" y2="50"/><line x1="52" y1="6" x2="52" y2="50"/><line x1="64" y1="6" x2="64" y2="50"/><line x1="76" y1="6" x2="76" y2="50"/><line x1="88" y1="6" x2="88" y2="50"/><line x1="100" y1="6" x2="100" y2="50"/><line x1="112" y1="6" x2="112" y2="50"/><line x1="124" y1="6" x2="124" y2="50"/><line x1="136" y1="6" x2="136" y2="50"/><line x1="148" y1="6" x2="148" y2="50"/><line x1="160" y1="6" x2="160" y2="50"/><line x1="172" y1="6" x2="172" y2="50"/><line x1="184" y1="6" x2="184" y2="50"/><line x1="196" y1="6" x2="196" y2="50"/><line x1="208" y1="6" x2="208" y2="50"/><line x1="220" y1="6" x2="220" y2="50"/><line x1="232" y1="6" x2="232" y2="50"/><line x1="244" y1="6" x2="244" y2="50"/><line x1="256" y1="6" x2="256" y2="50"/><line x1="268" y1="6" x2="268" y2="50"/><line x1="280" y1="6" x2="280" y2="50"/><line x1="292" y1="6" x2="292" y2="50"/><line x1="304" y1="6" x2="304" y2="50"/><line x1="316" y1="6" x2="316" y2="50"/><line x1="328" y1="6" x2="328" y2="50"/><line x1="340" y1="6" x2="340" y2="50"/><line x1="352" y1="6" x2="352" y2="50"/></g></svg><p class="dati num"><b>30 barre da 4&nbsp;m</b>, robot a 6 assi con cambio colore su 5 colori</p></div>
-        <div class="riga"><p class="cliente"><b>Malenfer</b><span>Villers-Farlay, Francia</span></p><svg viewBox="0 0 548 74" role="img" aria-label="24 barre da 3 metri" preserveAspectRatio="xMinYMin meet"><line x1="1" y1="4" x2="283" y2="4" stroke="#A51329" stroke-width="3"/><g stroke="#5C5C58" stroke-width="1.5"><line x1="4" y1="6" x2="4" y2="39"/><line x1="16" y1="6" x2="16" y2="39"/><line x1="28" y1="6" x2="28" y2="39"/><line x1="40" y1="6" x2="40" y2="39"/><line x1="52" y1="6" x2="52" y2="39"/><line x1="64" y1="6" x2="64" y2="39"/><line x1="76" y1="6" x2="76" y2="39"/><line x1="88" y1="6" x2="88" y2="39"/><line x1="100" y1="6" x2="100" y2="39"/><line x1="112" y1="6" x2="112" y2="39"/><line x1="124" y1="6" x2="124" y2="39"/><line x1="136" y1="6" x2="136" y2="39"/><line x1="148" y1="6" x2="148" y2="39"/><line x1="160" y1="6" x2="160" y2="39"/><line x1="172" y1="6" x2="172" y2="39"/><line x1="184" y1="6" x2="184" y2="39"/><line x1="196" y1="6" x2="196" y2="39"/><line x1="208" y1="6" x2="208" y2="39"/><line x1="220" y1="6" x2="220" y2="39"/><line x1="232" y1="6" x2="232" y2="39"/><line x1="244" y1="6" x2="244" y2="39"/><line x1="256" y1="6" x2="256" y2="39"/><line x1="268" y1="6" x2="268" y2="39"/><line x1="280" y1="6" x2="280" y2="39"/></g></svg><p class="dati num"><b>24 barre da 3&nbsp;m</b>, robot a 6 assi con cambio colore su 4 colori</p></div>
-    </div>
+    <figure class="as-foto">
+      <img src="img/formazione-1200.webp" srcset="img/formazione-800.webp 800w, img/formazione-1200.webp 1200w, img/formazione-1600.webp 1600w" sizes="(max-width:1060px) 100vw, 630px" width="1200" height="800" loading="lazy" alt="Un tecnico Finiture spiega il Supervisor a un gruppo di clienti davanti al quadro della linea; sopra, il trasportatore rosso">
+    </figure>
+    <dl class="orari">
+      <div><dt class="eti">Lunedì-venerdì</dt><dd class="num">8:30-12:00 e 14:00-17:30, ora italiana</dd></div>
+      <div><dt class="eti">Lingue</dt><dd>Italiano, inglese, tedesco e francese</dd></div>
+      <div><dt class="eti">Da remoto</dt><dd>Assistenza da remoto sull'impianto</dd></div>
+      <div><dt class="eti">Dal cliente</dt><dd>Installazione, messa in funzione e formazione del personale</dd></div>
+    </dl>
   </div>
 </section>
 
-<section class="chiusura" id="contatti" aria-labelledby="t-chiusura">
-  <div class="testo">
-    <h2 id="t-chiusura">Dal montaggio alla manutenzione: sempre dalla parte del cliente</h2>
-    <div class="recapiti">
-      <a class="grande num" href="tel:+390498792458">+39&nbsp;049&nbsp;879&nbsp;2458</a>
-      <p><a class="link" href="mailto:info@finiture.it">info@finiture.it</a></p>
-      <p><a class="link" href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Viale Veneto 13/15, 35020 Villatora di Saonara (PD)</a></p>
-      <p class="tenue num">Dal lunedì al venerdì, 8:30-12:00 e 14:00-17:30.<br>Assistenza in italiano, inglese, tedesco e francese.</p>
+<section class="sezione" id="contatti" aria-labelledby="t-contatti">
+  <div class="giro griglia">
+    <div class="co-testo">
+      <div class="capo">
+        <p class="eti">Contatti</p>
+        <h2 id="t-contatti">Richiedi un progetto</h2>
+        <p>Raccontaci cosa produci: prodotto, misure massime dei pezzi, pezzi al giorno e vernici. Allega disegni o foto. Puoi scriverci in italiano, inglese, tedesco o francese.</p>
+      </div>
+      <div class="recapiti">
+        <a class="grande num" href="tel:+390498792458">+39 049 879 2458</a>
+        <a class="link" href="mailto:info@finiture.it?subject=Richiesta%20progetto">info@finiture.it</a>
+        <p>Viale Veneto 13/15, 35020 Villatora di Saonara (PD)<br><a class="link" href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
+        <p class="tenue num">Lunedì-venerdì 8:30-12:00 e 14:00-17:30, ora italiana</p>
+      </div>
     </div>
+    <form class="modulo" id="richiesta" action="mailto:info@finiture.it" method="post" enctype="text/plain" novalidate aria-labelledby="t-contatti">
+      <fieldset>
+        <legend class="eti">Che cosa ti serve</legend>
+        <div class="tipi">
+          <label><input type="radio" name="tipo" value="Impianto completo" checked> Impianto completo</label>
+          <label><input type="radio" name="tipo" value="Ampliamento o singola macchina"> Ampliamento o singola macchina</label>
+          <label><input type="radio" name="tipo" value="Prova in area test"> Prova in area test</label>
+          <label><input type="radio" name="tipo" value="Impianto usato"> Impianto usato</label>
+        </div>
+      </fieldset>
+      <div class="campi">
+        <div class="campo"><label for="f-prodotto">Cosa vuoi verniciare *</label>
+          <select id="f-prodotto" name="prodotto" required><option value="">Scegli</option><option>Finestre</option><option>Porte</option><option>CLT e case in legno</option><option>Sedie e mobili</option><option>Altro</option></select></div>
+        <div class="campo"><label for="f-materiale">Materiale</label>
+          <select id="f-materiale" name="materiale"><option>Legno</option><option>Materiali plastici</option><option>Metallo</option><option>Più materiali</option></select></div>
+        <div class="campo"><label for="f-misure">Misure massime dei pezzi</label><input id="f-misure" name="misure" placeholder="per esempio 3000 × 1800 mm"></div>
+        <div class="campo"><label for="f-quanti">Pezzi al giorno</label><input id="f-quanti" name="quanti" inputmode="numeric"></div>
+        <div class="campo"><label for="f-vernici">Vernici</label>
+          <select id="f-vernici" name="vernici"><option>Ad acqua</option><option>A solvente</option><option>Ad acqua e a solvente</option><option>Da definire</option></select></div>
+        <div class="campo"><label for="f-lingua">Lingua della risposta</label>
+          <select id="f-lingua" name="lingua"><option>Italiano</option><option>English</option><option>Deutsch</option><option>Français</option></select></div>
+        <div class="campo"><label for="f-nome">Nome e cognome *</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="campo"><label for="f-azienda">Azienda *</label><input id="f-azienda" name="azienda" autocomplete="organization" required></div>
+        <div class="campo"><label for="f-paese">Paese</label><input id="f-paese" name="paese" autocomplete="country-name"></div>
+        <div class="campo"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+        <div class="campo largo"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="campo largo"><span class="titolo" id="t-file">Disegni o foto</span>
+          <div class="allega"><input class="sr" id="f-file" name="file" type="file" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png" aria-labelledby="t-file f-scegli" aria-describedby="f-scelti f-aiuto"><label class="btn btn-bordo" id="f-scegli" for="f-file">Scegli i file</label><span id="f-scelti">Nessun file scelto</span></div>
+          <span class="aiuto" id="f-aiuto">PDF, DWG, DXF, STEP, JPG o PNG. Il programma di posta non li allega da solo: li elenchiamo nell'email e tu li aggiungi prima di inviare.</span></div>
+        <div class="campo largo"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio" placeholder="Com'è la tua produzione oggi, cosa vuoi cambiare, i tempi che hai in mente"></textarea></div>
+      </div>
+      <div class="invio">
+        <button class="btn btn-pieno" type="submit">Prepara l'email</button>
+        <p>Si apre il tuo programma di posta con la richiesta già scritta. Nulla parte prima che tu la invii. Se non si apre, scrivi a <a class="link" href="mailto:info@finiture.it?subject=Richiesta%20progetto">info@finiture.it</a>.</p>
+      </div>
+      <p class="esito" id="f-esito" role="status" aria-live="polite"></p>
+    </form>
   </div>
-  <picture>
-    <source media="(max-width:860px)" srcset="img/powerfree-720.webp 720w, img/powerfree-1080.webp 1080w" sizes="100vw">
-    <img class="foto" src="img/powerfree-720.webp" srcset="img/powerfree-480.webp 480w, img/powerfree-720.webp 720w, img/powerfree-1080.webp 1080w" sizes="54vw" width="1080" height="895" loading="lazy" alt="Curve del trasportatore aereo Power&amp;Free rosso viste dal basso, sotto le travi del capannone">
-  </picture>
 </section>
 </main>
 
 <footer class="piede">
   <div class="giro">
-    <div class="griglia alto">
+    <div class="colonne">
       <div class="marchio">
-        <img src="img/logo-400.png" srcset="img/logo-300.png 300w, img/logo-400.png 400w" sizes="180px" width="400" height="142" loading="lazy" alt="finiture, finishing engineering">
-        <p>Impianti di verniciatura su misura per il legno e altri materiali, dal progetto in CAD&nbsp;3D all'assistenza.</p>
+        <img src="img/logo-chiaro-300.png" srcset="img/logo-chiaro-300.png 300w, img/logo-chiaro-400.png 400w" sizes="160px" width="300" height="107" loading="lazy" alt="finiture, finishing engineering">
+        <p>Finiture S.r.l.<br>Viale Veneto 13/15, 35020 Villatora di Saonara (PD), Italia<br><a href="https://goo.gl/maps/h7pm1kBKtmKQNUDn8" rel="noopener">Apri in Google Maps</a></p>
+        <p class="premi-piede">Finalisti Exporter of the Year 2024 · Partner Finestra+ del Consorzio LegnoLegno</p>
       </div>
-      <form class="notizie" action="#" novalidate aria-labelledby="t-nl">
-        <h2 id="t-nl">Newsletter</h2>
-        <p>Nuove linee consegnate, fiere e impianti usati in vendita.</p>
-        <div class="campo">
-          <label class="sr" for="nl-email">Indirizzo email</label>
-          <input id="nl-email" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
-          <button type="submit">Iscriviti</button>
-        </div>
-        <label class="consenso"><input id="nl-consenso" type="checkbox" name="privacy" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento a ricevere la newsletter.</span></label>
-        <p class="esito" id="nl-esito" role="status" aria-live="polite"></p>
-      </form>
+      <nav aria-labelledby="p-impianti"><h2 id="p-impianti">Impianti e macchine</h2><ul>
+        <li><a href="impianti/finestre.html">Finestre</a></li><li><a href="impianti/porte.html">Porte</a></li><li><a href="impianti/clt.html">CLT e case in legno</a></li><li><a href="impianti/sedie-mobili.html">Sedie e mobili</a></li><li><a href="macchine.html">Macchine di verniciatura</a></li><li><a href="macchine/handling.html">Handling &amp; Assembling</a></li><li><a href="usato.html">Usato</a></li></ul></nav>
+      <nav aria-labelledby="p-azienda"><h2 id="p-azienda">Azienda</h2><ul>
+        <li><a href="azienda.html">Chi siamo</a></li><li><a href="area-test.html">Area test</a></li><li><a href="assistenza.html">Assistenza</a></li><li><a href="notizie.html">Notizie</a></li><li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">Lavora con noi</a></li></ul></nav>
+      <div><h2>Contatti</h2><ul>
+        <li><a class="num" href="tel:+390498792458">+39 049 879 2458</a><span class="sotto">Lun-ven 8:30-12:00 e 14:00-17:30</span></li>
+        <li><a href="mailto:info@finiture.it">info@finiture.it</a></li>
+        <li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">LinkedIn</a><span class="sotto">Linee consegnate e fiere</span></li>
+        <li><a href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">YouTube</a><span class="sotto">Video degli impianti</span></li></ul></div>
     </div>
-    <nav class="colonne" aria-label="Mappa del sito">
-      <div><h2><button class="fis" type="button" aria-expanded="true" aria-controls="c-azienda">Azienda</button></h2><ul id="c-azienda"><li><a href="azienda.html">Chi siamo</a></li><li><a href="area-test.html">Area test</a></li><li><a href="assistenza.html">Assistenza</a></li><li><a href="usato.html">Usato</a></li><li><a href="notizie.html">Notizie</a></li></ul></div>
-      <div><h2><button class="fis" type="button" aria-expanded="true" aria-controls="c-impianti">Impianti</button></h2><ul id="c-impianti"><li><a href="impianti/finestre.html">Finestre</a></li><li><a href="impianti/porte.html">Porte</a></li><li><a href="impianti/clt.html">CLT</a></li><li><a href="impianti/sedie-mobili.html">Sedie e mobili</a></li></ul></div>
-      <div><h2><button class="fis" type="button" aria-expanded="true" aria-controls="c-macchine">Macchine</button></h2><ul id="c-macchine"><li><a href="macchine/robot.html">Robot</a></li><li><a href="macchine/impregnazione.html">Impregnazione</a></li><li><a href="macchine/trasporto.html">Trasporto</a></li><li><a href="macchine/essiccazione.html">Essiccazione</a></li><li><a href="macchine/cabine.html">Cabine e trattamento aria</a></li><li><a href="macchine/acqua.html">Trattamento acqua</a></li><li><a href="macchine/handling.html">Handling &amp; Assembling</a></li></ul></div>
-      <div><h2>Contatti</h2><ul><li><a class="num" href="tel:+390498792458">+39&nbsp;049&nbsp;879&nbsp;2458</a></li><li><a href="mailto:info@finiture.it">info@finiture.it</a></li><li class="tenue">Viale Veneto 13/15<br>35020 Villatora di Saonara (PD)</li><li><a href="https://www.linkedin.com/company/finiture-srl" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/channel/UCtKaMdmIG0QfzVQkNlvt2uA" rel="noopener">YouTube</a></li></ul></div>
-    </nav>
     <div class="legale num">
-      <span>© 2026 Finiture S.r.l.</span><span>P.IVA 03569090289</span><span>REA PD 0317372</span><span>Cap. Soc. €&nbsp;100.000,00 i.v.</span><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a>
-      <span class="lingue"><a href="./" aria-current="true">IT</a><a href="en/" lang="en">EN</a><a href="de/" lang="de">DE</a><a href="fr/" lang="fr">FR</a></span>
+      <span>© 2026 Finiture S.r.l.</span><span>P.IVA 03569090289</span><span>REA PD 0317372</span><span>Cap. Soc. € 100.000,00 i.v.</span><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a>
+      <nav class="lingue" aria-label="Lingua del sito"><a href="./" lang="it" aria-current="page">Italiano</a><a href="en/" lang="en">English</a><a href="de/" lang="de">Deutsch</a><a href="fr/" lang="fr">Français</a></nav>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var schede=[].slice.call(document.querySelectorAll('.scheda'));
-  function scegli(s,fuoco){
-    schede.forEach(function(t){
-      var on=t===s;
-      t.setAttribute('aria-selected',on?'true':'false');
-      t.tabIndex=on?0:-1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
-    });
-    if(fuoco)s.focus();
-  }
-  schede.forEach(function(s,i){
-    s.addEventListener('click',function(){scegli(s)});
-    s.addEventListener('keydown',function(e){
-      var j=null;
-      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%schede.length;
-      if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+schede.length)%schede.length;
-      if(e.key==='Home')j=0;
-      if(e.key==='End')j=schede.length-1;
-      if(j!==null){e.preventDefault();scegli(schede[j],true)}
-    });
-  });
+  // menu sotto i 1180 px
   var b=document.querySelector('.apri'),m=document.getElementById('menu');
-  b.addEventListener('click',function(){
-    var a=m.classList.toggle('aperto');
-    b.setAttribute('aria-expanded',a?'true':'false');
-  });
-  [].forEach.call(m.querySelectorAll('a'),function(l){l.addEventListener('click',function(){
-    m.classList.remove('aperto');b.setAttribute('aria-expanded','false');
-  })});
-  // newsletter: controllo dell'email e del consenso, con un messaggio letto anche dagli screen reader.
-  // Il modulo non invia nulla finche non viene collegato a un servizio (LEGGIMI).
-  var nl=document.querySelector('.notizie'),em=document.getElementById('nl-email'),ok=document.getElementById('nl-consenso'),es=document.getElementById('nl-esito');
-  nl.addEventListener('submit',function(e){
-    e.preventDefault();
-    em.removeAttribute('aria-invalid');ok.removeAttribute('aria-invalid');es.className='esito';
-    if(!em.value.trim()||!em.checkValidity()){em.setAttribute('aria-invalid','true');es.className='esito errore';es.textContent='Scrivi un indirizzo email valido.';em.focus();return}
-    if(!ok.checked){ok.setAttribute('aria-invalid','true');es.className='esito errore';es.textContent='Per iscriverti serve il consenso all\u2019informativa privacy.';ok.focus();return}
-    es.textContent='Grazie. Questo modulo è dimostrativo: verrà collegato al servizio della newsletter.';
-  });
-  var mqs=window.matchMedia('(max-width:1060px)'),lista=document.querySelector('.schede');
-  function orienta(){lista.setAttribute('aria-orientation',mqs.matches?'horizontal':'vertical')}
-  orienta();if(mqs.addEventListener)mqs.addEventListener('change',orienta);
-  var fis=[].slice.call(document.querySelectorAll('.fis')),mq=window.matchMedia('(max-width:560px)');
-  function adatta(){
-    fis.forEach(function(f){
-      var u=document.getElementById(f.getAttribute('aria-controls'));
-      if(mq.matches){f.removeAttribute('tabindex');f.setAttribute('aria-expanded','false');u.hidden=true}
-      else{f.setAttribute('tabindex','-1');f.setAttribute('aria-expanded','true');u.hidden=false}
-    });
+  b.addEventListener('click',function(){var a=m.classList.toggle('aperto');b.setAttribute('aria-expanded',a?'true':'false')});
+  [].forEach.call(m.querySelectorAll('a'),function(l){l.addEventListener('click',function(){m.classList.remove('aperto');b.setAttribute('aria-expanded','false')})});
+
+  // stato dell'assistenza, ora italiana: lun-ven 8:30-12:00 e 14:00-17:30, chiuso nei festivi nazionali.
+  // Per provarlo: index.html?ora=2026-11-03T10:15 (ora italiana).
+  function pasqua(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,n=Math.floor((a+11*h+22*l)/451),mm=Math.floor((h+l-7*n+114)/31),dd=((h+l-7*n+114)%31)+1;return [mm,dd]}
+  function festivo(y,mo,d){
+    var f=['1-1','1-6','4-25','5-1','6-2','8-15','11-1','12-8','12-25','12-26'];
+    if(f.indexOf(mo+'-'+d)>=0)return true;
+    var p=pasqua(y),lun=new Date(Date.UTC(y,p[0]-1,p[1]+1));
+    return lun.getUTCMonth()+1===mo&&lun.getUTCDate()===d;
   }
-  fis.forEach(function(f){f.addEventListener('click',function(){
-    if(!mq.matches)return;
-    var u=document.getElementById(f.getAttribute('aria-controls')),a=f.getAttribute('aria-expanded')==='true';
-    f.setAttribute('aria-expanded',a?'false':'true');u.hidden=a;
+  function adessoRoma(){
+    var q=(location.search.match(/[?&]ora=([0-9T:-]+)/)||[])[1];
+    if(q){var t=q.split(/[-T:]/).map(Number);return {y:t[0],mo:t[1],d:t[2],h:t[3]||0,mi:t[4]||0}}
+    var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    return {y:+p.year,mo:+p.month,d:+p.day,h:+p.hour,mi:+p.minute};
+  }
+  var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  function lavorativo(dt){var w=dt.getUTCDay();return w>0&&w<6&&!festivo(dt.getUTCFullYear(),dt.getUTCMonth()+1,dt.getUTCDate())}
+  function stato(){
+    var n=adessoRoma(),oggi=new Date(Date.UTC(n.y,n.mo-1,n.d)),min=n.h*60+n.mi;
+    if(lavorativo(oggi)){
+      if(min>=510&&min<720)return [true,'Aperta ora, fino alle 12:00','Aperta, fino alle 12:00'];
+      if(min>=840&&min<1050)return [true,'Aperta ora, fino alle 17:30','Aperta, fino alle 17:30'];
+      if(min<510)return [false,'Chiusa ora, apre alle 8:30','Chiusa, apre alle 8:30'];
+      if(min<840)return [false,'Chiusa ora, riapre alle 14:00','Chiusa, riapre alle 14:00'];
+    }
+    var fest=!lavorativo(oggi)&&oggi.getUTCDay()>0&&oggi.getUTCDay()<6;
+    for(var i=1;i<15;i++){
+      var dt=new Date(oggi.getTime()+i*864e5);
+      if(lavorativo(dt)){
+        var q=i===1?'domani':GIORNI[dt.getUTCDay()];
+        return [false,(fest?'Chiusa oggi, festivo; riapre ':'Chiusa ora, riapre ')+q+' alle 8:30',(fest?'Festivo, riapre ':'Chiusa, riapre ')+q];
+      }
+    }
+    return [false,'Orari: lun-ven 8:30-12:00 e 14:00-17:30','Orari'];
+  }
+  try{
+    var s=stato();
+    [].forEach.call(document.querySelectorAll('[data-stato]'),function(e){
+      // in testata tre lunghezze (largo, telefono, telefono stretto); nel blocco Assistenza la frase intera
+      if(e.getAttribute('data-stato')==='testa'){
+        e.querySelector('.st-l').textContent='Assistenza '+s[1].charAt(0).toLowerCase()+s[1].slice(1);
+        e.querySelector('.st-c').textContent=s[2];
+        e.querySelector('.st-m').textContent=s[0]?'Aperta ora':'Chiusa ora';
+      }else e.textContent=s[1];
+      e.classList.toggle('aperto',s[0]);
+    });
+  }catch(err){}
+
+  // i bottoni "Richiedi un progetto" e "Chiedi una prova" scelgono il tipo di richiesta
+  [].forEach.call(document.querySelectorAll('[data-tipo]'),function(a){a.addEventListener('click',function(){
+    var v=a.getAttribute('data-tipo')==='prova'?'Prova in area test':'Impianto completo';
+    var r=document.querySelector('input[name=tipo][value="'+v+'"]');if(r)r.checked=true;
   })});
-  adatta();
-  if(mq.addEventListener)mq.addEventListener('change',adatta);
+
+  // modulo: controlla i campi obbligatori e compone un'email a info@finiture.it (va collegato a un servizio, LEGGIMI)
+  var f=document.getElementById('richiesta'),es=document.getElementById('f-esito'),fi=document.getElementById('f-file');
+  fi.addEventListener('change',function(){var n=[].map.call(fi.files,function(x){return x.name}).join(', ');document.getElementById('f-scelti').textContent=n||'Nessun file scelto'});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var obbl=['f-prodotto','f-nome','f-azienda','f-email'],primo=null;
+    obbl.forEach(function(id){var c=document.getElementById(id);c.removeAttribute('aria-invalid');if(!c.value.trim()||(c.type==='email'&&!c.checkValidity())){c.setAttribute('aria-invalid','true');if(!primo)primo=c}});
+    es.className='esito';
+    if(primo){es.className='esito errore';es.textContent='Mancano dei dati: compila i campi con l’asterisco (email valida).';primo.focus();return}
+    var v=function(id){return document.getElementById(id).value.trim()};
+    var tipo=(f.querySelector('input[name=tipo]:checked')||{}).value||'';
+    var file=[].map.call(document.getElementById('f-file').files,function(x){return x.name}).join(', ');
+    var righe=['Tipo di richiesta: '+tipo,'Prodotto: '+v('f-prodotto'),'Materiale: '+v('f-materiale'),'Misure massime dei pezzi: '+v('f-misure'),'Pezzi al giorno: '+v('f-quanti'),'Vernici: '+v('f-vernici'),'Lingua della risposta: '+v('f-lingua'),'','Nome: '+v('f-nome'),'Azienda: '+v('f-azienda'),'Paese: '+v('f-paese'),'Telefono: '+v('f-tel'),'Email: '+v('f-email'),'',v('f-msg')];
+    if(file)righe.push('','Allegati da aggiungere a questa email: '+file);
+    var ogg=tipo+': '+v('f-prodotto')+', '+v('f-azienda');
+    // finitureMail: apre l'email composta (i controlli la sostituiscono per leggerla senza aprirla)
+    (window.finitureMail||function(u){location.href=u})('mailto:info@finiture.it?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\r\n')));
+    es.textContent='Richiesta pronta nel programma di posta. '+(file?'Allega i file ('+file+') e invia.':'Allega disegni o foto, se li hai, e invia.')+' Se non si è aperto nulla, scrivi a info@finiture.it.';
+  });
 })();
 </script>
 </body>

@@ -1,5 +1,18 @@
 # Crediti delle immagini
 
+## Aggiornamento del 3 novembre 2026 (livello professionale)
+
+Decisione del committente sulle foto: "niente". La home usa solo materiale di Finiture, preparato da `../_prova/script/pro_img.py` in `../sito/img/`:
+- apertura: `EasyGalleryImages_1_17_Porte_3-taglio-dx_R01.jpg`;
+- settori: `EasyGalleryImages_1_16_Finestre_12_R01.jpg`, `easygalleryimages_1_17_porte_4_r01.jpg`, `easygalleryimages_1_18_clt_1_taglio-dx-e-no-acqua_r01.jpg`, `easygalleryimages_1_19_sedie_1_r01.jpg`;
+- impianti consegnati: `EasyDNNNews_2160_IMG-20261013-WA0003.jpg` (linea Distner, notizia di ottobre 2026);
+- area test e assistenza: `easygalleryimages_1_1092_cabina-robot.jpg`, `easygalleryimages_1_1092_assistenza.jpg`;
+- squadra: `Images_home-fotogallery-5.jpg`;
+- render CAD: `EasyDNNnews_19`, `_20`, `_24`, `_27`, `_30`, `_35`, `_36`, `_40`;
+- logo: `logo-finiture-da-youtube-ritagliato.png`.
+
+Le nove foto di repertorio di `esterne/` (sotto) **non sono usate in pagina e non vanno usate**: restano nella cartella solo come traccia del lavoro precedente. Tolte dalla pagina anche le curve del Power&Free (`EasyGalleryImages_1_82_Birotaia-dettaglio_2.jpg`), che erano la foto della chiusura della versione 1.
+
 Aggiornato il 24 ottobre 2026. Licenze lette sulla pagina di ogni foto il 24 ottobre 2026.
 
 ## Materiale dell'azienda in `originali/`

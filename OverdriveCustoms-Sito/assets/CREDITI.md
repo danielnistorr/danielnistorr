@@ -29,7 +29,29 @@ Non sono di Overdrive Customs, delle sue moto o della sua officina: servono solo
 
 Guardate e scartate: le cafe racer BMW di Gijs Coolen (sono costruzioni di un'altra officina, riconoscibili), la Triumph Bobber di John Paulsen (marchio sul serbatoio), le foto Getty su Unsplash+ (a pagamento), il saldatore di Christopher Burns e di Filipa Saldanha (luce blu fredda, troppo da repertorio).
 
-## Versione finale della home (sito/img)
+## Home di livello professionale (sito/img, 3/11/2026)
+
+Solo foto dell'azienda, nessun segnaposto di `esterne/`, nessuna foto nuova scaricata, nessuna immagine generata dall'IA, nessuna illustrazione. Lavorate con `_prova/script/pro_img.py`: taglio 16:9 (schede e Hagane), 3:2 (apertura sul telefono) o 1:1, saturazione e contrasto di Instagram attenuati allo stesso modo per tutte le moto, WebP a più larghezze mai oltre la misura del file. Tolte rispetto alla versione di prima: lo scontorno di Hagane (oggetto scontornato su fondo chiaro), la Envy (è già nella foto dell'apertura) e la foto di Matteo con Special K della chiusura.
+
+| Uso | File d'origine | Autore indicato nel post | Note |
+|---|---|---|---|
+| Apertura | `originali/copertina-sito-original.jpg` | da chiedere | 2560x1440; 16:9 dal tablet in su, 3:2 su Matteo e la Sportster sul telefono |
+| Officina, tagliandi | `originali/feed/20230608_CtOfZW5IrjK.jpg` | nessuno | Softail Springer in manutenzione |
+| Officina, ripristino | `originali/feed/20220729_CgmuJHsoQ7o.jpg` | nessuno | Sportster dopo una caduta |
+| Officina, restauro | `originali/feed/20211107_CV-3bqeo002.jpg` | nessuno | Road King restaurata |
+| Trasformazioni, Sportster | `originali/feed/20231202_C0Wverwo_GZ.jpg` | @boemphoto | 883 chopper con Matteo, 704 px |
+| Trasformazioni, Softail | `originali/feed/20200701_CCG1eo5I_Ga.jpg` | nessuno | Heritage bobber |
+| Trasformazioni, Touring | `originali/feed/20220709_CfyT18uIR6O.jpg` | nessuno | Electra Glide '94 diventata Road King |
+| Trasformazioni, giapponesi | `originali/feed/20220517_CdqncOvIOrf.jpg` | nessuno | La Morelia, Honda Shadow VT600 |
+| Le special, Hagane | `originali/feed/20240522_C7QjkJVIRt0.jpg` | nessuno | nel campo, taglio 16:9 |
+| Le special, Special K | `originali/feed/20230828_Cwfiz3-oi3b.jpg` | nessuno (servizio in studio) | 720 px |
+| Le special, Drakkar | `originali/feed/20210816_CSo4M02INbn.jpg` | nessuno | davanti alla lamiera |
+| Copertine | `originali/feed/20240819_C-20QVBoqJR.jpg`, `originali/feed/20250327_DHsQHfYN4bp.jpg` | riviste Kustom World e Bigtwin | permesso delle riviste |
+| Chi c'è dietro | `originali/feed/20211106_CV8C8QsIq1Z.jpg` | @luciodebiase | ritratto di Matteo, 703 px |
+
+Carattere: Archivo (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, file in `sito/fonts/` con `OFL-Archivo.txt`.
+
+## Versione di prima (24/10/2026), oggi in `_prova/versione-1-originale/`
 
 Solo foto dell'azienda, nessun segnaposto di `esterne/` e nessuna foto nuova scaricata. Lavorate con `_prova/script/finale_taglio.py` e `finale_img.py`.
 

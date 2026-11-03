@@ -1,62 +1,64 @@
-# Serenissima Service, home finale: nota
+# Serenissima Service, home: nota
 
-Pagina: `sito/index.html` (statica, si apre con file:///). Immagini in `sito/img/` (solo quelle usate, WebP in 2-5 larghezze, loghi PNG a 1x e 2x), caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `finale_img.py`, pagina da `_prova/script/index.html`, screenshot). Base: prototipo A "La cabina", con le indicazioni del giudice cieco e la richiesta del committente del 2 novembre ("più alta gamma, meno uguali tra loro").
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `_prova/script/index.html`, screenshot). La versione precedente (apertura "Botta? Risposta!" con la Ferrari 488) è copiata com'era in `_prova/versione-1-originale/` (pagina, immagini e la sua nota).
 
-Altezza: 5168 px a 1440 (piede compreso), 6130 px a 390.
+Altezza: 9959 px a 1440, 14606 px a 390.
 
-## Idea
+## Livello professionale, ritocco finale (3/11/2026)
 
-La promessa del loro logo, "Botta? Risposta!", detta da una carrozzeria che ha nove cabine di verniciatura. La prima schermata è un trittico in asse: al centro una sola foto alta e stretta, la cabina vista come una porta con dentro la Ferrari 488 che hanno riparato nel 2018; a sinistra la domanda "Botta?" in alto, a destra la risposta "Risposta!" più in basso, all'altezza del tetto dell'auto, e sotto la risposta cosa fanno e il telefono. La domanda e la risposta stringono la cabina: il mestiere è quello che sta in mezzo.
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessun repertorio, nessun disegno). Regole: `_metodo/professionale/REGOLE.md`, famiglia S (servizi tecnici e imprese). Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14, le pagine intere di Kline e Dulwich Diggers a pezzi (prima anche Kline e Wilson). Scheda d'uso: `_prova/uso/SCHEDA.md`. Il ritocco parte dal giudizio del controllore (voto 6, dieci difetti) e dalle prove dei due clienti tipo (voti 7,5 e 8).
 
-## Cosa è cambiato in questo passaggio (2 novembre)
+### Che cosa è cambiato in questo ritocco
 
-- **Apertura rifatta dentro la stessa idea**: niente più titolo a sinistra e foto sfumata a destra con le legende. Foto verticale 1478 x 2180 in asse su cinque colonne (4-8), a filo della testata e lunga fino alla piega; "Botta?" sulle colonne 1-3 allineato alla foto, "Risposta!" sulle colonne 9-12, sfalsato di 1,6 righe. È un'impaginazione che nella campagna non c'è: tutte le altre home hanno il titolo a sinistra e l'oggetto a destra, oppure il titolo sopra una foto larga.
-- **Niente legende con pallino e filetto**: tolte le due legende numerate; resta una didascalia sobria in basso a sinistra, allineata a destra contro la foto ("Una delle 9 cabine di verniciatura di Corso Stati Uniti, con la Ferrari 488 riparata nel settembre 2018"), visibile a tutte le larghezze e collegata alla figura con `aria-describedby`.
-- **Colore di fondo dal mestiere**: il beige #F4F2EC è diventato il "bianco cabina" #EEF1ED, il bianco freddo e appena verde che hanno i pannelli e il film protettivo di una cabina di verniciatura sotto le lampade, campionato dalla foto stessa. La ragione si vede: le pareti della cabina nella foto e la pagina sono lo stesso bianco, e tutte le foto sono trattate moltiplicandole per quel colore. Il piede è lo stesso bianco in ombra (#E1E7E1).
-- **Scala tipografica nuova**: titoli in Archivo stretto (larghezza 75 %, peso 600) a 124 px nell'apertura e nella chiusura, 68 px negli H2; il testo resta Archivo normale e i titoletti dei reparti semi larghi. Nella campagna nessuna home usa un titolo stretto e alto: qui fa da eco alla foto verticale e alle scritte dei mezzi da corsa e da soccorso.
-- **Foto più grandi**: le foto dei reparti vanno a tutta larghezza fino a 1440 px (1,9:1, esportate fino a 1900 px); la lucidatura passa a sei colonne a filo del bordo sinistro; la sede nella chiusura a sei colonne a filo del bordo destro, con un taglio più largo (995 x 865, sempre senza le auto con le targhe).
-- Intro dell'apertura con cinque reparti come il titolo della sezione (carrozzeria, officina e meccatronica, cristalli, grandine, soccorso stradale).
-- Menu del telefono: la voce diventa "Chiudi" quando è aperto, senza il riquadro azzurro del tocco.
-- `sizes` corretti per le foto tagliate con `object-fit: cover`, così il browser non sceglie mai un file più piccolo della misura mostrata a 1x.
+- **Apertura con un tratto proprio.** La foto della sede con il carro attrezzi arriva fino al bordo destro e copre tutta l'altezza dell'apertura (niente più riquadro arrotondato a destra del titolo). Sotto, i quattro percorsi stanno su una **fascia piena verde del logo**, in bianco: il colore del marchio è nella prima schermata a 1440 e a 390. La fascia delle garanzie, subito sotto, è passata su grigio chiaro per non avere due verdi di fila.
+- **Foto d'apertura ritagliata di nuovo** (`pro_img.py`): solo la parte sinistra dell'originale, così il cartello di terzi "egroup / Consorzio Zambelli Revisioni" (servizio non confermato) resta fuori campo; via anche la fascia alta di cielo. Restano l'insegna "SERENISSIMA, officina e carrozzeria" e il carro blu "Soccorso stradale Serenissima Service" con "Il Socio" sulla cabina.
+- **Il motto come testo**: "Botta? Risposta!" in verde, della misura di una riga, sopra il titolo (nel logo a 390 non si leggeva). Logo più grande: 76 px di altezza a 1440 (testata di 100 px), 56 px a 390 (testata di 76 px); a 390 il bottone della testata mostra solo il numero, come la pillola di Wilson.
+- **Gesto di scala**: il telefono della chiusura è a 96 px a 1440 (80 a 1240, 72 a 900, 56 a 390), su una riga sua sopra le due colonne.
+- **Prove in alto**: sotto i numeri, una fascia bianca con didascalia: "Certificazione ISO 9001, sistema di gestione per la qualità"; "Albo fornitori della Polizia di Stato, nel triennio 2023-2025"; "Carrozzeria fiduciaria di 27 compagnie, e punto di riparazione per sei società di noleggio". In "Chi siamo" le stesse prove sono state sostituite dalle loro date (anni Sessanta, 1993, 2001, 2018, 2023-2025), così non si ripetono.
+- **Sinistro e compagnie**: "Non anticipi nulla" come titolo della prima garanzia, con la loro frase "Il cliente non dovrà anticipare nulla" nel testo (la lead dell'apertura non la ripete più). Sotto il CID il collegamento "La tua compagnia è convenzionata? Vedi le 27 compagnie"; titolo "Le 27 compagnie fiduciarie"; voce "Compagnie" nel menu ("Chi siamo" resta nel menu del telefono). Grandine, smart repair e parabrezza sono dopo l'elenco delle compagnie, con il titolo "Grandine, piccoli danni e cristalli".
+- **Noleggi**: Alphabet e Leasys hanno due bottoni uguali (senza controparte, con controparte) al posto della scheda tutta cliccabile, e Leasys anche il PDF DEN001; l'etichetta "Entro 3 giorni" accanto al nome di Alphabet e Leasys, "Subito, 8-19" per Sifà, con il bottone "Chiama Sifà 800 037631". I quattro passi di Serenissima dopo la denuncia stanno prima delle schede (a 1440 e a 768 in colonne; sul telefono riassunti in una riga del testo d'apertura, così Alphabet resta in vista dopo il salto).
+- **Stato**: "Sede aperta ora" / "Sede chiusa ora", così non sembra valere per il soccorso stradale.
+- **Prima schermata del telefono**: "Indicazioni: Corso Stati Uniti 19" (si sa dove porta prima di toccare).
+- **Chiusura**: un solo bottone "Indicazioni stradali (Google Maps)"; l'indirizzo è testo. Etichette di sezione in minuscolo, in grassetto (niente maiuscolo spaziato nei titoli).
+- **Modulo**: se si chiede il ritiro a domicilio, l'indirizzo è obbligatorio (avviso e fuoco sul campo).
+- **Minori**: a 390 "3000 mq" a tutta larghezza e le altre quattro cifre in 2x2; la scheda del soccorso dice "Soccorso stradale a disposizione, con il nostro carro attrezzi" (la loro frase, senza la parafrasi di prima); Alphabet punta all'indirizzo nuovo della pagina (`...-e-furti.html`, il vecchio rimanda lì).
 
-Erano già stati sistemati nel passaggio precedente (verificati): auto vera nella prima schermata al posto della cabina vuota; titolo "Botta? Risposta!" al posto dello slogan generico; pannello Carrozzeria con la mascheratura della Ferrari (1742 px, mai ingrandita) al posto della parete colorimetria; storia e chiusura con impaginazioni diverse; albo della Polizia di Stato al passato ("Nel triennio 2023-2025"); "Certificazione ISO 9001" senza durata; "Centralino. Per i sinistri scegli l'interno Carrozzeria"; logo del piede a 240 px con il motto leggibile; menu del telefono a tutta larghezza; "Hai avuto un incidente?" dentro il paragrafo e non come etichetta sopra il titolo.
+### Le 15 regole, una per una
 
-## Le prime schermate
+Misure di `node _prova/script/pro_controlli.mjs` (esito completo in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi a 1440 e 390 e le pagine intere a 320, 768 e 1024.
 
-1. 1440: testata (scritta del logo, cinque voci, telefono), il trittico. L'auto è larga 400 px su 533 della foto, intera sopra la piega (finisce a 805 px su 900). A 1024 il trittico resta, con il titolo calcolato sulle colonne (86 px). Oltre 1440 la composizione resta centrata nella griglia di 1440.
-2. Sotto 900 px: "Botta?" a sinistra e "Risposta!" a destra su due righe, poi la cabina a tutta larghezza (16:10 a 768, quasi quadrata a 390 con l'auto all'82 % della larghezza), poi testo, bottone verde con gli orari e didascalia. A 390 il bottone è dentro la prima schermata (finisce a 814 px su 844).
-3. "Cinque reparti, una sede": cinque linguette, la foto del reparto a tutta larghezza, una frase vera, i dettagli, il link e il numero giusto.
+1. **Telefono come bottone nella testata fissa: passa.** Testata `sticky` di 100 px a 1440 e 76 a 390; bottone pieno alto 48 px ("Chiama 049 760655" a 1440, "049 760655" a 390), visibile e toccabile a metà pagina (`elementFromPoint`). 12 link `tel:`.
+2. **Mestiere, luogo, prova e azione: passa.** H1 "Pensiamo a tutto noi / Carrozzeria, officina e soccorso stradale a Padova, dal 1993"; stato "Sede aperta ora, fino alle 12"; "Chiama 049 760655" a 553 px a 1440 e a 279 px a 390, a tutta larghezza (350 px). I quattro percorsi sono interi nella prima schermata a 1440 (fascia verde fino a 894 px) e a 390 (fino a 839 px).
+3. **Immagine vera nell'apertura: passa.** Sede con insegna e carro attrezzi con la livrea, 708 x 600 a 1440 (a tutta altezza, fino al bordo), 390 x 195 a 390; il cartello delle revisioni è fuori campo.
+4. **Zero repertorio: passa.** `indicativ` 0 volte; 0 svg, nessun `background-image`; in `sito/img/` solo foto e logo dell'azienda; i segnaposto Pexels di `assets/esterne/` non sono usati.
+5. **Foto in serie: passa, con riserva.** Stesso trattamento per tutte (`pro_img.py`); tre formati a vista: apertura circa 8:7 a 1440 (1,15), 4:3 delle sei schede, 2:1 (apertura a 390 e facciata); una didascalia su otto foto; nessuna foto ingrandita. Riserva: scatti del 2015, 2018 e 2019, non un solo servizio (LEGGIMI).
+6. **Palette dal marchio: passa.** `--verde` #076633 (logo e insegna), `--verde-scuro` (passaggio del mouse), `--blu` #16306E (il carro), neutri freddi. Fondo bianco, nessun beige.
+7. **Scala tipografica corta: passa.** 8 misure a 1440 (14, 17, 19, 23, 32, 48, 64, 96) e 8 a 390 (14, 17, 19, 20, 26, 32, 40, 56); testo corrente 19/17 px; nulla sotto i 14 px; H1 64/32, H2 48/26; il telefono a 96 px è il gesto fuori scala.
+8. **Due famiglie al massimo: passa.** Una sola, Archivo, pesi 400 e 700.
+9. **Servizi in schede con la foto: passa.** Sei schede in tre colonne, tutte 4:3, nome, riga e link; tutta la scheda è il link; a 390 righe con la miniatura.
+10. **Almeno tre tipi di prova: passa (3 su 4).** Cinque numeri della sede; fascia di certificazioni con didascalia (ISO 9001, albo fornitori della Polizia di Stato 2023-2025, fiduciaria di 27 compagnie), senza loghi; compagnie e noleggi per nome. Mancano le recensioni: nessuna fonte verificata (LEGGIMI).
+11. **Lavori con un nome: non passa.** Nelle fonti c'è un solo lavoro con anno (la Ferrari 488 del 2018, ora nelle date di "Chi siamo"), senza dati e senza foto. Servono tre lavori con luogo, anno e dati (LEGGIMI).
+12. **Ritmo a blocchi: passa.** Blocchi pieni oltre al piede: fascia verde dei percorsi nell'apertura, noleggi su blu, chiusura su verde; garanzie, compagnie e tagliando su grigio chiaro, alternati al bianco. Sezioni a 120 px a 1440 e 72 a 390; margini 80 a 1440 e 20 a 390. Nessuno scorrimento orizzontale da 320 a 1920.
+13. **Un solo sistema di bottoni: passa.** Pieno e bordato, raggio 4 px, 56 px (48 in testata e dentro le schede dei noleggi), testo 17 px; i bottoni di chiamata contengono il numero (anche "Chiama Sifà 800 037631").
+14. **Modulo e "dove" per il mestiere: passa in parte.** Tipo di cliente, che cosa serve (9 voci), urgenza, ritiro con l'indirizzo (ora obbligatorio se richiesto), note con l'istruzione per allegare le foto; compone l'email a info@ con oggetto. Nessun iframe. Non c'è un campo foto (un `mailto` non porta allegati: va con il servizio vero, LEGGIMI) e manca l'elenco dei comuni serviti, che nessuna fonte dà.
+15. **Piede completo: passa.** Quattro colonne a 1440, ragione sociale, P.IVA e C.F., indirizzo, telefoni ed email cliccabili, mappa, orari, servizi, ISO 9001, Privacy e Cookie, Facebook con il sottotitolo; testo di almeno 14 px. Zone servite: solo la sede (vedi 14).
 
-Poi: "Dal 1993 in Corso Stati Uniti" (le mani che lucidano una portiera bianca, a filo del bordo sinistro), "Il sinistro, senza anticipi" con i cinque passi numerati perché sono una procedura, la chiusura "Pensiamo a tutto noi" con la sede a filo del bordo destro, il piede.
+### Compiti della scheda d'uso (par. 8)
 
-## Caratteri e colori
+- *Botta, telefono*: chiamata e soccorso con un tocco nella prima schermata, interno Carrozzeria scritto sotto il bottone, "Sede aperta/chiusa ora" sull'ora di Roma (prove: lunedì 9, mercoledì 13, venerdì 18.30, sabato 11 e 15, 8 dicembre, Pasquetta, tutte giuste). "Non anticipi nulla" e auto sostitutiva uno scorrimento sotto. Compagnie: 27 nomi, ricercabili, raggiungibili dal menu ("Compagnie") o dal collegamento sotto il CID. CID con un tocco da "Ho avuto un incidente". Grandine e cristalli con i tempi, subito dopo le compagnie.
+- *Noleggio, telefono*: "Auto a noleggio: denuncia il danno" nella prima schermata; dopo il tocco Ayvens e Alphabet sono in vista (Alphabet a 627 px con l'etichetta "Entro 3 giorni"); il secondo tocco apre il modulo giusto. Per Leasys due bottoni uguali, con e senza controparte, più il PDF DEN001. Indicazioni con un tocco dalla prima schermata.
+- *Tagliando, computer*: "Prenota il tagliando" nella prima schermata; un clic porta al modulo; orari in tabella accanto al modulo e nella chiusura.
+- *Identità*: logo più grande e motto scritto sopra il titolo; la loro sede e il loro carro nell'apertura; frasi loro, a tu, senza maiuscolo urlato.
 
-- **Archivo** (Google Fonts, SIL Open Font License 1.1, testo in `sito/fonts/OFL.txt`), una sola famiglia variabile servita da `sito/fonts/` (woff2 latin e latin-ext, nessuna chiamata a Google). Titoli a larghezza 75 % e peso 600; testo a 100 % e 400; titoletti dei reparti a 112 % e 500; cifre tabellari per telefoni, orari e dotazione. Riferimento: Thornley Kelham (restauro auto, titoli in Archivo).
-- Colori: bianco cabina #EEF1ED, piede #E1E7E1, inchiostro #161714, grigio #5C5E58 (5,8:1 sul fondo, 5,2:1 nel piede), verde del logo #076633 (6,2:1; testo bianco sul bottone 7,1:1) per il bottone e il passaggio sui link, giallo #F2C200 delle loro cabine e dell'ingresso solo come barra sotto la linguetta scelta, mai per il testo.
-- Riferimenti: Lanzante (un'auto sola, nitida, molta aria), Touring Superleggera (titolo grande e niente altro), Thornley Kelham (l'officina come luogo bello).
+### Caratteri e licenze
 
-## Interazione
+- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; testo della licenza in `sito/fonts/OFL.txt`. Servito dalla pagina (`sito/fonts/archivo-latin.woff2`, `archivo-latin-ext.woff2`), nessuna chiamata a Google.
+- Foto: solo materiale del loro sito (`assets/CREDITI.md`), da usare con il loro permesso. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
 
-Un solo gesto: le linguette Carrozzeria, Officina, Cristalli, Grandine, Soccorso stradale cambiano di colpo foto, frase e azioni del reparto, senza dissolvenza; Soccorso porta al cellulare 335 5639355. È un vero `tablist`: frecce con giro, Home e Fine, fuoco visibile, tocco. A 390 le linguette stanno su una riga che scorre, con la sfumatura a destra come indizio, e la linguetta scelta viene portata in vista. Le foto degli altri reparti si caricano dopo la pagina. Senza JavaScript i cinque pannelli si vedono in fila. Sotto 900 px il menu è un `details` nativo. Nessuna animazione allo scorrere, nessun effetto sul cursore.
+### Controlli fatti (3/11/2026)
 
-## Foto: origine e licenza
-
-Tutte dell'azienda, dalla libreria media pubblica di serenissimaservice.it (`assets/CREDITI.md`): solo per la proposta e, nel sito vero, con il loro consenso. Nessuna foto di repertorio, nessuna immagine generata.
-- Apertura: `2018-09-F480inCabina.jpg` (iPhone 6s, 2196 x 2400), tre tagli: verticale per il computer, 4:3 per il tablet, quasi quadrato per il telefono. La Ferrari è l'auto di un cliente con il marchio visibile: va chiesto il permesso (LEGGIMI).
-- Reparti: `2018-09-Mascheratura.jpg`, `2015-04-DSC_0101.jpg` (rossi del pavimento spenti), `2015-04-IMG_1435-1.jpg`, `2019-08-christian.jpg`, `2015-04-IMG_1387.jpg` (mail personale sulla portiera coperta).
-- Storia: `2015-04-lucidat.jpg`. Chiusura: `2015-04-ESTERNO.jpg`, cielo desaturato, tagliata a sinistra delle auto in fila.
-- Loghi: `logo-2016-03-LOGO-02.png` nel piede (240 px, 1x e 2x), scritta 2022 in testata (162 px, 1x e 2x).
-- Trattamento unico (`_prova/script/finale_img.py`): bilanciamento verso il grigio neutro, livelli, moltiplicazione per il bianco cabina, saturazione 0,7-0,9, nitidezza dopo il ridimensionamento.
-
-## Piede
-
-Logo intero e una riga su chi sono; quattro colonne con titoletti (`p` collegati alle `nav` con `aria-labelledby`): Servizi, Per te, Azienda, Seguici (solo Facebook, l'unico social che esiste). Riga legale: Serenissima Service S.r.l., Corso Stati Uniti 19/19-A, 35127 Padova, P.IVA e C.F. 00019100288, Privacy, Cookie. A 390 le colonne si impilano in ordine, separate da un filetto. **Niente newsletter**: nessuna novità periodica (l'ultima news è del 22/02/2024) e i promemoria utili (tagliando, revisione, gomme) vanno legati al veicolo e passano dalla prenotazione, non da una lettera a tutti.
-
-## Controlli (2 novembre)
-
-- Larghezze 320, 360, 390, 414, 600, 768, 900, 1024, 1180, 1280, 1440, 1680, 1920, 2560: scrollWidth uguale a innerWidth ovunque (`_prova/script/finale_controlla.mjs`). Screenshot guardati a pezzi a 1440 e 390, pagine intere a 320, 768, 1024 e 1920, prima schermata a 1280 (`_prova/script/finale_apertura.mjs`).
-- Immagini: a DPR 1 nessuna mostrata più grande del file a 320-1920 (misurati i pixel veri del file scelto da `srcset`). A DPR 2 l'apertura è nitida; le foto del 2015 (1920 px all'origine) e la sede restano sotto il 2x a 1440: è il limite delle sorgenti, scritto nel LEGGIMI.
-- Linguette: tastiera (frecce con giro, Home, Fine) e tocco a 390, con la riga che porta in vista la linguetta scelta. Menu del telefono aperto a tutta larghezza.
-- Collegamenti: `tel:+39049760655` (testata, apertura, carrozzeria, chiusura, menu), `tel:+393355639355` (soccorso, chiusura), `mailto:info@serenissimaservice.it`, indirizzo con il link a Google Maps.
-- Segnali da IA (`segnali.sh`): foto 36,2 % della pagina, 9 filetti, nessuna freccia, nessun numero grande con etichetta, una famiglia. Unica soglia segnalata: "titolo in due frasi" per "Botta? Risposta!". È il motto stampato nel loro logo dal 2016, parola per parola, non una formula: lo tengo, con la conferma chiesta nel LEGGIMI. Da guardare: due misure di H2 (68 e 124 px), voluta, perché la chiusura fa eco all'apertura.
-- Nessun carattere U+2014 nella pagina, in questa nota e nel LEGGIMI.
+- `pro_controlli.mjs`: regole 1-10 e 12-15 superate nelle misure (14 e 15 senza elenco dei comuni), 11 no. Il controllo della regola 10 ora verifica la fascia delle prove; quello della 13 accetta anche il numero di Sifà. Nessuna ancora senza destinazione, nessun errore di script.
+- Prove con il browser (390, tocchi veri): salto a "Noleggio" con Alphabet in vista; modulo con il ritiro chiesto e l'indirizzo vuoto fermato con l'avviso e il fuoco su "Indirizzo per il ritiro"; invio vuoto fermato sul nome; email composta e letta senza inviarla; menu del telefono con 7 voci che si chiude dopo il clic.
+- Larghezze 320, 360, 390, 768, 1024, 1280, 1440, 1920: nessuno scorrimento orizzontale, nessuna sovrapposizione nell'apertura. Pagine intere a 320, 768 e 1024 guardate a pezzi.
+- Collegamenti dei noleggi provati il 3/11/2026: Ayvens (nemo.aldautomotive.it) e Athlon rispondono; Alphabet rimanda all'indirizzo con `.html`, già messo; Sifà rimanda a unipolrental.it; Leasys (leasysdenunciasinistri.com) e Volkswagen Lease non hanno risposto dalla prova (LEGGIMI, punto 5).
+- Nessun carattere U+2014 nella pagina, in questa nota, nel LEGGIMI, in CREDITI e negli script.

@@ -170,3 +170,19 @@ Scartati: Deus Ex Machina (è un negozio di abbigliamento, video sgranato), Old 
 - La pagina Facebook e il Pinterest: sono loro e sono attivi?
 - La sede di via IV Novembre 3 e il numero 342 761 3224: sono chiusi?
 - Se esiste una foto del "prima" per le trasformazioni (direzione B).
+
+## 10. Fatti aggiunti per la home di livello professionale (3/11/2026)
+
+Dalle didascalie dei post (in `_prova/inventario-immagini.json`, campo `didascalia`, e sul profilo Instagram). Servono alle schede dell'officina e delle trasformazioni.
+
+- Softail Springer in manutenzione: "Softail Springer Maintenance @overdrive_customs" (08/06/2023, `p/CtOfZW5IrjK`).
+- Sportster rimessa a posto dopo una caduta: "rebuilt after little crash....now better than new" (29/07/2022, `p/CgmuJHsoQ7o`).
+- Road King restaurata: "HD- Road King restored and delivered by" (07/11/2021, `p/CV-3bqeo002`).
+- PanShovel del 1958: "Pronti per ricostruire questa PanShovel del 1958 appena atterrata all'Overdrive Customs" (23/12/2023, `p/C1MHUIoI8l9`).
+- Heritage diventata bobber: "HD Heritage Bobber" (01/07/2020, `p/CCG1eo5I_Ga`); cambio a mano: "Harley Davidson Eritage Bobber - Suicide shift" (13/12/2021, `p/CXb5wUJIMqq`); ruota da 21 pollici: "Last build - Eritage style ... New 21' front wheel" (28/07/2023, `p/CvQJLimI2ah`).
+- Dyna: "New exhaust for Dyna from @vanceandhines" (03/10/2018, `p/BoeXAVVh8CS`).
+- La Morelia: "Chopper telaio rigido in nero/verde fluo" (17/05/2022, `p/CdqncOvIOrf`).
+- Altre giapponesi passate in officina: "Yamaha Dragstar bobber" (05/05/2019, `p/BxFa9rQgCsO`), "New Yamaha XVS 650 Bobber" (19/06/2020, `p/CBoE5BBoxA2`), Honda Shadow VT600 (più post 2018-2020).
+- Altre marche: BMW "R850 R" (03/04/2022, `p/Cb4p5dDo5Gs`), oltre alla Ducati Monster Envy e alla MV Agusta Ipotesi (sez. 2).
+- Una quinta rivista: "Special K Su Special Cafe....in edicola!" (08/09/2023, `p/Cw8a5exoQ3Y`). Non usata nei numeri della home (che non contano le riviste).
+- Primi posti con l'evento scritto, dal 2018 al 2024 (sez. 2): Bonebreaker 2018, Envy 2019, Night Train 2019, Drakkar 2021, Special K 2022 due volte (Cesena e Vicenza), 883 Old Style 2023, Hagane 2024. In tutto 8. Il primo posto "freestyle" di Hagane del 21/04/2025 non è contato perché manca l'evento; "King of metric cat." della Morelia non è contato perché non è chiaro se sia un primo posto.

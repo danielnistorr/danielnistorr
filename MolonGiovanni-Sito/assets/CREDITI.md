@@ -4,11 +4,13 @@
 
 Scaricate il 24/10/2026 da https://www.molonmachinery.com (pagine e libreria media di WordPress, `wp-json/wp/v2/media`). Sono di Molon Giovanni: si usano nella proposta come materiale loro, ma per il sito vero vanno chieste le versioni originali e confermati i diritti (alcune foto in campo sono state fatte da rivenditori o clienti: Val d'Ultimo, Snopex, Agrometal). Inventario e voti in `_prova/inventario-immagini.json`.
 
-Usate nella home finale (`sito/img/`): `2017_10_230_5-scont.jpg` (apertura), `2017_10_RANGHINATORE-POST09noEtichette.jpg`, `2018_01_MAJOR160_sf.jpg`, `2017_10_380-2.jpg`, `2017_10_SCOPA-lamiera.jpg` (gamma), `2017_10_foto4.jpg` (archivio), `2017_10_11.08_10ritoc.jpg` (chiusura, dal passaggio di rifinitura finale; prima c'era `2025_03_dok-tc-07-molon-br.jpg`).
+Usate nella home "livello professionale" (3/11/2026, `sito/img/`, script `_prova/script/pro_img.py`): `2017_10_11.08_10ritoc.jpg` (apertura), `2017_10_11.08_4-copia.jpg` (frontali), `2025_03_dok-tc-07-molon-br.jpg` (motofalciatrici), `2017_10_foto4.jpg` (archivio), `2017_10_P1090586_mod-1.jpg` (squadra), e gli scontornati `2017_10_230_5-scont.jpg`, `2017_10_RANGHINATORE-POST09noEtichette.jpg`, `2018_01_MAJOR160_sf.jpg`, `2017_10_girello-380.jpg`, `2017_10_SCOPA-lamiera.jpg` (schede). Non più usate: `2017_10_380-2.jpg` (sostituita da `2017_10_girello-380.jpg`). La versione 1 ("Il pettine") è archiviata in `_prova/versione-1-originale/`.
 
 Esclusi dall'uso: i loghi dei partner (Gasser, Agrometal, Kalinke, Snopex, Agrisorg, Earth Tools) e il banner FederUnacoma di EIMA 2024, che sono marchi di terzi.
 
 ## Segnaposto esterni (assets/esterne/)
+
+**Non usati nella home** (nessuna foto di repertorio in pagina, decisione del committente del 3/11/2026). Restano nella cartella solo come materiale scaricato.
 
 Tutte da Pexels, licenza Pexels ("Free" sulla pagina della foto, https://www.pexels.com/license/: uso gratuito anche commerciale, attribuzione non obbligatoria, vietato rivenderle così come sono). Licenza letta sulla pagina di ogni foto il 24/10/2026. Scaricate con curl da images.pexels.com a 2400 px sul lato lungo (la foto dell'erba ridotta a 1500x2000). Nessuna compare nei CREDITI delle altre home della campagna; nessuna è generata dall'IA.
 

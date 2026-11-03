@@ -3,439 +3,794 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BCM Enologia, torchi e martinetti dal 1960</title>
-<meta name="description" content="Torchi per vinacce, martinetti idraulici DAVID, gabbie in faggio, elettropompe e pigiatrici. B.C.M. Enologia, Saonara (PD), dal 1960.">
-<link rel="preload" href="fonts/zodiak-400.woff2" as="font" type="font/woff2" crossorigin>
+<title>BCM Enologia, torchi, martinetti DAVID e pompe dal 1960</title>
+<meta name="description" content="Torchi per vinacce, martinetti idraulici DAVID, gabbie, pompe Volumex con inverter e pigiatrici. Ricambi anche per le macchine vecchie. B.C.M. Enologia, Saonara (PD), dal 1960.">
+<link rel="preload" href="fonts/sofia-sans-condensed-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/sofia-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Caratteri serviti dalla pagina: Zodiak (Fontshare, ITF Free Font License), Sofia Sans e Sofia Sans Condensed (Google Fonts, SIL OFL 1.1) */
-@font-face{font-family:"Zodiak";src:url("fonts/zodiak-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Sofia Sans";src:url("fonts/sofia-sans-latin.woff2") format("woff2");font-weight:1 1000;font-style:normal;font-display:swap}
+/* Due famiglie, servite dalla pagina: Sofia Sans Condensed (titoli e cifre) e Sofia Sans (testo e interfaccia),
+   Lettersoup, Google Fonts, SIL Open Font License 1.1. Pesi usati: 400 e 700. */
 @font-face{font-family:"Sofia Sans Condensed";src:url("fonts/sofia-sans-condensed-latin.woff2") format("woff2");font-weight:1 1000;font-style:normal;font-display:swap}
+@font-face{font-family:"Sofia Sans";src:url("fonts/sofia-sans-latin.woff2") format("woff2");font-weight:1 1000;font-style:normal;font-display:swap}
 
 :root{
-  --carta:#F2F0EB;
-  --carta-2:#E8E4DC;
-  --ink:#1C1B1A;
-  --ink-2:#57534E;
-  --filo:#CFC9BF;
-  --rosso:#9E2B22;      /* i cerchi del torchio */
-  --rosso-scuro:#7E2019;
-  --m:72px;             /* margine laterale */
-  --max:1296px;
-  --serif:"Zodiak", Georgia, serif;
-  --sans:"Sofia Sans", system-ui, sans-serif;
-  --cond:"Sofia Sans Condensed", "Sofia Sans", system-ui, sans-serif;
+  /* colori del marchio: il rosso dei cerchi, dei bacini e del logo dei cataloghi; la ghisa dei martinetti */
+  --rosso:#9E2B22;
+  --ghisa:#1F1E1C;
+  --verde:#2A6234;      /* solo per "Aperto ora" */
+  /* neutri */
+  --bianco:#FFFFFF;
+  --grigio:#F0F0EE;
+  --grigio-2:#E6E5E2;   /* il piano delle schede delle macchine */
+  --testo-2:#55524E;
+  --filo:#D5D3CF;
+  --chiaro-2:#C9C5BF;   /* testo secondario sui fondi scuri */
+  --m:80px;
+  --max:1280px;
+  --titoli:"Sofia Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --testo:"Sofia Sans",system-ui,sans-serif;
+  --raggio:4px;
+  --testata:80px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;font-synthesis:none}
-body{margin:0;background:var(--carta);color:var(--ink);font:400 18px/1.55 var(--sans);text-rendering:optimizeLegibility}
+html{-webkit-text-size-adjust:100%;font-synthesis:none;scroll-padding-top:calc(var(--testata) + 16px)}
+body{margin:0;background:var(--bianco);color:var(--ghisa);font:400 18px/1.55 var(--testo);text-rendering:optimizeLegibility}
 img{display:block;max-width:100%;height:auto}
 figure{margin:0}
-a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-a:hover{color:var(--rosso)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
 :focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
-.wrap{max-width:calc(var(--max) + 2*var(--m));margin:0 auto;padding:0 var(--m)}
-.num{font-family:var(--cond);font-variant-numeric:tabular-nums lining-nums;font-weight:500;font-style:normal}
-h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;text-wrap:balance}
+h1,h2,h3{margin:0;font-family:var(--titoli);font-weight:700;text-wrap:balance}
 p{margin:0;text-wrap:pretty}
+ul,ol{margin:0;padding:0}
+.wrap{max-width:calc(var(--max) + 2*var(--m));margin:0 auto;padding:0 var(--m)}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cifra{font-family:var(--titoli);font-weight:700;font-variant-numeric:tabular-nums lining-nums}
+.etichetta{font-size:14px;line-height:1.3;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sez{padding:120px 0}
+.sez-grigio{background:var(--grigio)}
+.sez-scuro{background:var(--ghisa);color:#fff}
+.sez-rosso{background:var(--rosso);color:#fff}
+.sez h2{font-size:44px;line-height:1.05;letter-spacing:-.005em}
+.lead{font-size:20px;line-height:1.5;color:var(--testo-2);max-width:36em;margin-top:20px}
+.sez-scuro .lead,.sez-rosso .lead{color:var(--chiaro-2)}
+.sez-scuro .etichetta{color:var(--chiaro-2)}
+.testa-sez{margin-bottom:56px}
+.testa-sez .etichetta{display:block;margin-bottom:14px;color:var(--rosso)}
 
-/* testata: logo e menu a sinistra, telefono a destra; il centro resta libero per la vite del torchio */
-.top{position:absolute;top:0;left:0;right:0;z-index:5}
-.top .wrap{display:flex;align-items:center;height:96px;gap:56px}
+/* bottoni: un solo modello, pieno o con il bordo; stesso raggio, 52 px */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:var(--raggio);font:700 18px/1.2 var(--testo);text-decoration:none;border:2px solid var(--rosso);background:var(--rosso);color:#fff;cursor:pointer;transition:background-color .12s,color .12s,border-color .12s;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:#7E2019;border-color:#7E2019}
+.btn-bordo{background:transparent;color:var(--ghisa);border-color:var(--ghisa)}
+.btn-bordo:hover{background:var(--ghisa);color:#fff;border-color:var(--ghisa)}
+.sez-scuro .btn-bordo{color:#fff;border-color:#fff}
+.sez-scuro .btn-bordo:hover{background:#fff;color:var(--ghisa)}
+.btn .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.azioni{display:flex;flex-wrap:wrap;gap:12px}
+.freccia{text-decoration:none;font-weight:700;border-bottom:2px solid currentColor;padding-bottom:2px}
+.freccia:hover{color:var(--rosso)}
+
+/* testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--filo)}
+.testata .wrap{display:flex;align-items:center;height:var(--testata);gap:40px}
 .logo img{width:85px;height:48px}
-.nav{display:flex;gap:28px;align-items:center;font-size:16px}
-.nav a{text-decoration:none;padding:6px 0}
-.nav a:hover{text-decoration:underline}
-.top-dx{margin-left:auto;display:flex;align-items:center;gap:14px}
-.tel-top{font-family:var(--cond);font-weight:500;font-size:19px;color:var(--rosso);text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap}
-.tel-top:hover{color:var(--rosso-scuro);text-decoration:underline}
-.menu-btn{display:none;-webkit-tap-highlight-color:transparent}
+.nav{display:flex;gap:28px;font-size:16px;font-weight:700}
+.nav a{text-decoration:none;padding:8px 0}
+.nav a:hover{color:var(--rosso)}
+.testata-dx{margin-left:auto;display:flex;align-items:center;gap:20px}
+.lingue{font-size:16px;text-decoration:none;color:var(--testo-2);white-space:nowrap}
+.lingue:hover{color:var(--rosso)}
+.testata .btn{min-height:48px;padding:0 18px;font-size:16px}
+.menu-btn{display:none}
 
-/* apertura: una tavola di catalogo. Il torchio sta in piedi sulla linea di terra, le legende leggono il pezzo vero */
-.hero{
-  --hh:clamp(760px,100svh,940px);              /* altezza della prima schermata */
-  --k:.7143;                                   /* scala della foto: gabbia del modello scelto / 105 cm (gabbia del 90) */
-  --IH:min(880px,calc(var(--hh) - 54px));      /* altezza della figura, ombra compresa */
-  --W:calc(var(--IH) * .6132);                 /* larghezza della figura (959 x 1564) */
-  --leg:222px;                                 /* colonna delle legende */
-  --gap:70px;
-  --figL:calc(100% - var(--leg) - var(--gap) - var(--W) * .833);
-  --terra:calc(var(--hh) - 40px - var(--IH) * .0288);  /* dove le ruote toccano terra */
-  background:radial-gradient(ellipse 40% 60% at 62% 54%,#F9F7F3 0%,rgba(249,247,243,0) 100%);
-}
-.hero-in{position:relative;height:var(--hh)}
-.terra{position:absolute;left:0;right:0;top:var(--terra);height:1px;background:var(--filo)}
-.hero-testo{position:absolute;left:0;top:96px;bottom:calc(var(--hh) - var(--terra) + 30px);width:calc(var(--figL) - 32px);display:flex;flex-direction:column;justify-content:flex-end}
-.hero h1{font-size:min(7.8vw,calc(15.5vh - 25px),114px);line-height:.98;letter-spacing:-.025em}
-.hero .sotto{font-size:21px;line-height:1.45;color:var(--ink-2);max-width:30em;margin-top:28px}
-.scelta{margin-top:clamp(24px,calc(100vh - 860px),40px)}
-.scelta fieldset{border:0;margin:0;padding:0;min-width:0}
-.scelta legend{padding:0;font-size:15px;color:var(--ink-2);margin-bottom:12px}
-.diam{display:flex;gap:5px;flex-wrap:wrap}
-.diam label{position:relative;cursor:pointer}
-.diam input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
-.diam span{display:flex;align-items:center;justify-content:center;min-width:48px;height:46px;padding:0 6px;font-family:var(--cond);font-weight:500;font-size:20px;font-variant-numeric:tabular-nums lining-nums;border:1px solid var(--filo);color:var(--ink);transition:background-color .12s,color .12s,border-color .12s}
-.diam label:hover span{border-color:var(--ink)}
-.diam input:checked + span{background:var(--rosso);border-color:var(--rosso);color:#fff}
-.diam input:focus-visible + span{outline:2px solid var(--ink);outline-offset:3px}
-.dati{display:flex;gap:48px;margin:24px 0 0;padding:0}
-.dati div{margin:0}
-.dati dt{font-size:15px;color:var(--ink-2)}
-.dati dd{margin:2px 0 0;font-family:var(--cond);font-weight:500;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums lining-nums}
-.dati .solo-tel{display:none}
-.prev{margin-top:20px;font-size:16px;color:var(--ink-2)}
-.prev a{color:var(--ink)}
-.prev .num{font-size:18px}
+/* apertura */
+.apertura{padding:0;overflow-x:clip;--h-ap:clamp(560px,calc(100svh - var(--testata) - 100px),780px);--fuori:max(0px,(100vw - 1440px) / 2)}
+.apertura .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:64px;align-items:center}
+.testo-apertura{padding:48px 0 56px}
+.occhiello{color:var(--rosso);margin-bottom:22px}
+.apertura h1{font-size:68px;line-height:1.0;letter-spacing:-.01em;max-width:11em}
+.apertura .lead{margin-top:24px;max-width:30em}
+.apertura .lead strong{color:var(--ghisa)}
+.stato{display:flex;align-items:baseline;gap:10px;margin-top:28px;font-size:18px}
+.stato .pallino{flex:none;width:10px;height:10px;border-radius:50%;background:var(--testo-2);transform:translateY(-1px)}
+.stato.aperto .pallino{background:var(--verde)}
+.stato.aperto strong{color:var(--verde)}
+.stato .orari{color:var(--testo-2)}
+.stato .orari::before{content:"\00B7";margin-right:10px}
+.apertura .azioni{margin-top:20px}
+.fuori{margin-top:12px;font-size:16px;color:var(--testo-2)}
+.fuori a{color:var(--ghisa);font-weight:700}
+.accessi{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px;margin-top:28px;font-size:16px}
+.accessi span{color:var(--testo-2)}
+.foto-apertura{margin-right:calc(-1 * (var(--m) + var(--fuori)))}
+.foto-apertura img{height:var(--h-ap);width:auto;aspect-ratio:4/5;object-fit:cover}
+.foto-apertura-m{display:none}
 
-.fig{position:absolute;left:var(--figL);bottom:40px;width:var(--W);height:var(--IH)}
-/* il torchio cresce e cala dalle ruote (origine sul punto di appoggio, centro della macchina) */
-.fig img{width:100%;height:100%;transform:scale(var(--k));transform-origin:41.66% 97.12%}
-.leg{position:absolute;display:flex;align-items:center;right:0;pointer-events:none;
-  left:calc(var(--figL) + var(--W) * (.4166 + (var(--x) - .4166) * var(--k)));
-  top:calc(var(--hh) - 40px - var(--IH) + var(--IH) * (.9712 + (var(--y) - .9712) * var(--k)))}
-.leg i{display:block;width:7px;height:7px;border-radius:50%;background:var(--ink);flex:none;margin-left:-3px}
-.leg b{display:block;flex:1;height:1px;background:var(--ink);opacity:.55;min-width:16px}
-.leg span{flex:none;width:calc(var(--leg) + 14px);padding-left:14px;font-size:15px;line-height:1.35;color:var(--ink-2);transform:translateY(-.67em)}
-.leg strong{display:block;color:var(--ink);font-weight:600}
-.didas{position:absolute;right:0;width:var(--leg);bottom:calc(var(--hh) - var(--terra) + 10px);font-size:14px;line-height:1.4;color:var(--ink-2)}
+/* indice delle linee */
+.indice{background:var(--grigio);border-top:1px solid var(--filo)}
+.indice ul{list-style:none;display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
+.indice li{border-left:1px solid var(--filo)}
+.indice li:first-child{border-left:0}
+.indice a{display:block;height:100%;padding:20px 16px 22px;text-decoration:none;font-size:16px;line-height:1.35}
+.indice li:first-child a{padding-left:0}
+.indice a strong{display:block;font-weight:700}
+.indice a span{color:var(--testo-2)}
+.indice a:hover strong{color:var(--rosso);text-decoration:underline}
 
-/* sezioni */
-.sez{padding:152px 0 0}
-.sez h2,.storia h2{font-size:clamp(34px,4.2vw,60px);line-height:1.04;letter-spacing:-.02em}
-.intro{font-size:20px;color:var(--ink-2);max-width:34em;margin-top:22px}
+/* ricambi */
+.ricambi .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"testo foto" "azioni foto";column-gap:80px;align-items:start}
+.r-testo{grid-area:testo}
+.r-foto{grid-area:foto;align-self:center}
+.r-azioni{grid-area:azioni}
+.r-foto img{width:100%;aspect-ratio:1/1;object-fit:contain}
+.ricambi h2{max-width:12em}
+.ricambi .pezzi{margin-top:24px;font-size:18px;color:var(--chiaro-2);max-width:36em}
+.ricambi .pezzi strong{color:#fff}
+.passi{list-style:none;counter-reset:p;margin-top:40px;border-top:1px solid #45423E}
+.passi li{counter-increment:p;display:grid;grid-template-columns:48px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid #45423E;font-size:18px}
+.passi li::before{content:counter(p);font-family:var(--titoli);font-weight:700;font-size:26px;line-height:1.1;color:#fff}
+.ricambi .azioni{margin-top:36px}
+.ricambi .nota{margin-top:18px;font-size:16px;color:var(--chiaro-2)}
+.ricambi figcaption{margin-top:18px;font-size:16px;color:var(--chiaro-2);max-width:26em}
+.ricambi .nota a{color:#fff;font-weight:700}
 
-.linee{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:48px;row-gap:96px;margin:80px 0 0;padding:0;list-style:none}
-.linee a{display:block;text-decoration:none;color:inherit}
-.linee .ogg{height:360px;display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid var(--filo)}
-.linee .ogg img{max-height:calc(100% * var(--s,1));width:auto;max-width:calc(100% * var(--sw,1))}
-.linee h3{font-size:30px;line-height:1.1;letter-spacing:-.012em;margin-top:24px}
-.linee p{font-size:16px;line-height:1.5;color:var(--ink-2);margin-top:8px;max-width:25em}
-.linee a:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+/* macchine: schede, tutte con lo stesso quadrato */
+.linee{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:56px 28px}
+.linea{display:flex;flex-direction:column}
+.linea > a{display:block;text-decoration:none;flex:1}
+.linea .ogg{background:var(--grigio-2);border-radius:var(--raggio);aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.linea .ogg img{width:100%;height:100%;object-fit:contain}
+.linea h3{font-size:26px;line-height:1.1;margin-top:20px}
+.linea p{font-size:18px;line-height:1.45;color:var(--testo-2);margin-top:8px}
+.linea .vai{display:inline-block;margin-top:12px;font-size:16px;font-weight:700;border-bottom:2px solid currentColor;padding-bottom:1px}
+.linea > a:hover h3,.linea > a:hover .vai{color:var(--rosso)}
+.linea .pdf{flex:none;display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--filo);font-size:16px;color:var(--testo-2);text-decoration:none}
+.linea .pdf strong{color:var(--ghisa)}
+.linea .pdf:hover strong{color:var(--rosso);text-decoration:underline}
 
-.officina{padding-top:152px;display:grid;grid-template-columns:minmax(0,9fr) minmax(0,3fr);align-items:end}
-.officina img{width:100%}
-.officina figcaption{font-size:14px;line-height:1.45;color:var(--ink-2);padding:0 0 0 32px;max-width:17em}
-.storia{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:calc(100% / 12);padding-top:64px}
-.storia p.lungo{font-size:20px;line-height:1.6;margin-top:24px;max-width:36em}
-.storia p.lungo + p.lungo{margin-top:16px}
-.fatti{margin:10px 0 0;padding:0}
-.fatti div{padding:16px 0}
-.fatti dt{font-size:15px;color:var(--ink-2)}
-.fatti dd{margin:2px 0 0;font-size:18px}
+/* misure */
+.tabelle{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:start}
+.tabelle h3{font-size:26px;line-height:1.1;margin-bottom:16px}
+.tab{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:18px;font-variant-numeric:tabular-nums lining-nums}
+th{text-align:left;font-weight:700;padding:10px 12px 10px 0;border-bottom:2px solid var(--ghisa);vertical-align:bottom;line-height:1.3}
+td{padding:11px 12px 11px 0;border-bottom:1px solid var(--filo)}
+td:first-child{font-weight:700}
+td.nw{white-space:nowrap}
+.tabelle .nota{margin-top:18px;font-size:16px;color:var(--testo-2)}
 
-/* chiusura: frase e recapiti sopra, la fila di torchi a tutta larghezza sotto */
-.chiusura{margin-top:152px}
-.chiusura .righe{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:calc(100% / 12);align-items:end}
-.chiusura h2{font-size:clamp(38px,4.6vw,66px);line-height:1.03;letter-spacing:-.022em;max-width:9.5em}
-.recapiti{font-size:18px;line-height:1.55}
-.recapiti .tel{display:inline-block;font-family:var(--cond);font-weight:500;font-size:44px;line-height:1.05;font-variant-numeric:tabular-nums lining-nums;color:var(--rosso);text-decoration:none}
-.recapiti .tel:hover{color:var(--rosso-scuro);text-decoration:underline;text-decoration-thickness:2px}
+/* numeri */
+.numeri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 32px;list-style:none;margin-top:8px}
+.numeri li{border-top:1px solid rgba(255,255,255,.4);padding-top:24px}
+.numeri .cifra{display:block;font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.01em}
+.numeri span:last-child{display:block;margin-top:18px;font-size:18px;line-height:1.45;color:#F3DCD9;max-width:15em}
+.sez-rosso .etichetta{color:#F3DCD9}
+
+/* cataloghi */
+.cataloghi{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.cataloghi a{display:block;height:100%;padding:24px 24px 26px;border:1px solid var(--filo);border-top:4px solid var(--rosso);border-radius:var(--raggio);text-decoration:none}
+.cataloghi a:hover{border-color:var(--ghisa);border-top-color:var(--rosso)}
+.cataloghi h3{font-size:26px;line-height:1.1}
+.cataloghi p{font-size:18px;line-height:1.45;color:var(--testo-2);margin-top:8px}
+.cataloghi .scarica{display:inline-block;margin-top:16px;font-weight:700;font-size:16px;color:var(--ghisa);border-bottom:2px solid currentColor}
+.cataloghi a:hover .scarica{color:var(--rosso)}
+.rivenditori{margin-top:96px;padding-top:40px;border-top:2px solid var(--ghisa)}
+.rivenditori h3,.brochure summary{font-size:26px;line-height:1.1}
+.rivenditori .sotto{margin-top:10px;font-size:18px;color:var(--testo-2)}
+.riv{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 28px;margin-top:32px}
+.riv li{border-top:1px solid var(--filo);padding-top:16px}
+.riv strong{display:block;font-family:var(--titoli);font-size:26px;line-height:1.1}
+.riv span{display:block;margin-top:6px;font-size:16px;color:var(--testo-2)}
+.lingue-riv{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 28px;margin-top:48px}
+.lingue-riv li{font-size:16px;line-height:1.5}
+.lingue-riv .etichetta{display:block;margin-bottom:8px;color:var(--rosso)}
+.lingue-riv a{font-weight:700;white-space:nowrap}
+.titoli{margin-top:40px;padding:18px 0;border-top:1px solid var(--filo);border-bottom:1px solid var(--filo);font-size:16px;color:var(--testo-2)}
+.titoli strong{color:var(--ghisa)}
+.titoli a{color:var(--ghisa);font-weight:700}
+.brochure{margin-top:56px}
+.brochure summary{font-family:var(--titoli);font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;min-height:48px}
+.brochure summary::-webkit-details-marker{display:none}
+.brochure summary::after{content:"+";font-family:var(--testo);font-weight:400;color:var(--rosso)}
+.brochure[open] summary::after{content:"\2212"}
+.brochure summary:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+.zip{list-style:none;columns:3;column-gap:32px;font-size:16px;margin-top:14px}
+.zip li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--filo)}
+.zip a{text-decoration:none;font-weight:700}
+.zip a:hover{color:var(--rosso);text-decoration:underline}
+.zip span{color:var(--testo-2);font-weight:400}
+.compra{margin-top:40px;padding-top:28px;border-top:1px solid var(--filo)}
+.compra h3{font-size:26px;line-height:1.1}
+.compra p{font-size:18px;margin-top:12px}
+
+/* chi siamo */
+.chi .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:start}
+.chi figure img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raggio)}
+.chi figcaption{margin-top:12px;font-size:16px;color:var(--testo-2)}
+.chi .testo p{font-size:18px;margin-top:16px}
+.chi .testo p.lead{font-size:20px;margin-top:20px}
+.date{grid-column:1 / -1;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:24px}
+.date li{border-top:2px solid var(--ghisa);padding-top:16px;font-size:18px;line-height:1.45}
+.date .cifra{display:block;font-size:44px;line-height:1;margin-bottom:10px;color:var(--rosso)}
+
+/* contatti e modulo */
+.contatti .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
+.tel-grande{display:inline-block;margin-top:28px;font-family:var(--titoli);font-weight:700;font-size:44px;line-height:1;color:var(--rosso);text-decoration:none;font-variant-numeric:tabular-nums}
+.tel-grande:hover{text-decoration:underline;text-decoration-thickness:2px}
+.recapiti{margin-top:20px;font-size:18px}
 .recapiti p{margin-top:16px}
-.recapiti .tel + p{margin-top:12px}
-.recapiti .orari{color:var(--ink-2)}
-.chiusura .foto{margin-top:72px}
-.chiusura .foto img{width:100%;height:auto}
+.orari-tab{margin-top:28px;max-width:360px}
+.orari-tab td{font-weight:400}
+.orari-tab td:first-child{font-weight:700}
+.modulo{background:var(--grigio);border-radius:var(--raggio);padding:40px}
+.modulo h3{font-size:26px;line-height:1.1}
+.modulo .sotto{font-size:16px;color:var(--testo-2);margin-top:8px}
+.modulo fieldset{border:0;padding:0;margin:24px 0 0;min-width:0}
+.modulo legend{font-size:16px;font-weight:700;padding:0;margin-bottom:10px}
+.tipi{display:flex;flex-wrap:wrap;gap:8px}
+.tipi label{position:relative;cursor:pointer}
+.tipi input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.tipi span{display:inline-flex;align-items:center;min-height:48px;padding:0 16px;border:2px solid var(--ghisa);border-radius:var(--raggio);font-size:16px;font-weight:700;background:var(--bianco)}
+.tipi input:checked + span{background:var(--ghisa);color:#fff}
+.tipi input:focus-visible + span{outline:2px solid var(--rosso);outline-offset:3px}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;margin-top:20px;align-items:end}
+.campo{display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:700}
+.campo.largo{grid-column:1 / -1}
+.campo small{font-weight:400;color:var(--testo-2);font-size:16px}
+.campo input,.campo textarea{font:400 18px/1.4 var(--testo);color:var(--ghisa);background:var(--bianco);border:1px solid #8E8A84;border-radius:var(--raggio);padding:12px 14px;min-height:52px;width:100%}
+.campo textarea{min-height:120px;resize:vertical}
+.campo input[type=file]{padding:12px 14px;font-size:16px;cursor:pointer}
+.campo input[type=file]::file-selector-button{font:700 16px/1.2 var(--testo);color:var(--ghisa);background:var(--bianco);border:2px solid var(--ghisa);border-radius:var(--raggio);padding:8px 14px;margin-right:14px;cursor:pointer}
+.campo[hidden],.foto-nota[hidden]{display:none}
+.modulo .dopo{margin-top:14px;font-size:16px;font-weight:700;color:var(--verde)}
+.modulo .foto-nota{margin-top:18px;font-size:16px}
+.modulo .btn{margin-top:22px}
+.modulo .priv{margin-top:14px;font-size:16px;color:var(--testo-2)}
 
 /* piede */
-.piede{background:var(--carta-2);padding:96px 0 40px;font-size:16px}
-.piede-griglia{display:grid;grid-template-columns:minmax(0,4.2fr) repeat(3,minmax(0,2fr));grid-template-areas:"chi mac bcm con" "let mac bcm con";grid-template-rows:auto 1fr;column-gap:48px}
-.p-chi{grid-area:chi}.p-mac{grid-area:mac}.p-bcm{grid-area:bcm}.p-con{grid-area:con}.lettera{grid-area:let}
-.p-chi img{width:128px;height:72px}
-.p-chi p{margin-top:20px;max-width:24em;color:var(--ink-2)}
-.piede h3{font-family:var(--sans);font-weight:600;font-size:15px;line-height:1.3;margin:0 0 16px}
-.piede ul{list-style:none;margin:0;padding:0}
-.piede li{margin:0 0 9px}
-.piede nav li a{text-decoration:none}
-.piede nav li a:hover{text-decoration:underline}
-.p-con a{text-decoration:underline}
-.p-con .tel-p{font-family:var(--cond);font-weight:500;font-size:20px;font-variant-numeric:tabular-nums}
-.esito{margin-top:10px;font-size:14px;color:var(--ink)}
-.esito:empty{display:none}
-.lettera{margin-top:44px;max-width:27em}
-.lettera p{color:var(--ink-2)}
-.lettera .riga{display:flex;gap:8px;margin-top:14px}
-.lettera input[type=email]{flex:1;min-width:0;height:48px;padding:0 14px;font:inherit;font-size:16px;color:var(--ink);background:var(--carta);border:1px solid #8F887D;border-radius:0}
-.lettera input[type=email]::placeholder{color:#6E6962}
-.lettera button{height:48px;padding:0 22px;font:600 16px var(--sans);color:#fff;background:var(--ink);border:0;border-radius:0;cursor:pointer;transition:background-color .12s}
-.lettera button:hover{background:var(--rosso)}
-.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;line-height:1.45;color:var(--ink-2)}
-.consenso input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--rosso);flex:none}
-.legale{display:flex;justify-content:space-between;gap:24px;margin-top:72px;padding-top:22px;border-top:1px solid var(--filo);font-size:14px;color:var(--ink-2)}
-.legale nav{display:flex;gap:22px;flex:none}
-.legale a{text-decoration:none}
-.legale a:hover{text-decoration:underline}
+.piede{background:var(--ghisa);color:#fff;padding:96px 0 40px;font-size:16px}
+.piede-griglia{display:grid;grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2.6fr));gap:48px}
+.piede img{width:85px;height:48px}
+.piede h3{font-family:var(--testo);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--chiaro-2);margin-bottom:16px}
+.piede ul{list-style:none}
+.piede li{margin-bottom:10px}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline}
+.piede .chi-p p{margin-top:20px;color:var(--chiaro-2)}
+.piede .chi-p p strong{color:#fff}
+.piede .chi-p a{text-decoration:underline}
+.piede .tel-p{font-family:var(--titoli);font-weight:700;font-size:26px}
+.legale{display:flex;justify-content:space-between;gap:24px;margin-top:72px;padding-top:24px;border-top:1px solid #45423E;font-size:14px;color:var(--chiaro-2)}
+.legale nav{display:flex;gap:24px;flex:none}
 
-/* fino a 1180: legende più strette, il torchio scende sotto la testata */
-@media (max-width:1180px){
+/* fino a 1240: il menu si stringe */
+@media (max-width:1240px){
   :root{--m:48px}
-  .hero{--leg:176px;--gap:48px;--IH:min(820px,calc(var(--hh) - 136px),calc((100vw - 2 * var(--m) - 624px) * 1.957))}  /* tetto anche sulla larghezza: alla colonna del titolo restano almeno 400 px */
-  .hero h1{font-size:min(6.2vw,11vh,96px)}
-  .hero .sotto{font-size:19px}
-  .leg span{font-size:14px}
-  /* la didascalia scende sotto la linea di terra: qui le legende vanno a capo e la toccherebbero */
-  .didas{bottom:auto;top:calc(var(--terra) + 12px);font-size:13px}
-  .diam{gap:4px}
-  .diam span{min-width:38px;padding:0 4px}
-  .nav{gap:22px}
-  .top .wrap{gap:40px}
+  .nav{gap:20px}
+  .testata .wrap{gap:28px}
+  .lingue{display:none}
+  .indice ul{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .indice li:nth-child(5){border-left:0}
+  .indice li:nth-child(5) a{padding-left:0}
+  .indice li:nth-child(n+5){border-top:1px solid var(--filo)}
 }
-/* telefono e tablet (fino a 960: sotto, accanto al torchio il titolo non ha più spazio) */
-@media (max-width:960px){
-  :root{--m:24px}
-  .top{position:relative}
-  .top .wrap{height:72px}
-  .logo img{width:71px;height:40px}
-  .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--carta);padding:8px var(--m) 20px;border-bottom:1px solid var(--filo)}
+/* tablet: menu nascosto dietro il bottone */
+@media (max-width:1100px){
+  .nav{display:none;position:absolute;top:var(--testata);left:0;right:0;flex-direction:column;gap:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo);font-size:18px}
   .nav.aperta{display:flex}
-  .nav a{padding:10px 0;font-size:18px}
-  .menu-btn{display:inline-flex;align-items:center;justify-content:center;min-width:76px;height:44px;padding:0 14px;font:600 16px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--filo);cursor:pointer}
-  .hero{background:none}
-  .hero-in{height:auto;display:flex;flex-direction:column}
-  .terra,.leg,.didas{display:none}
-  .hero-testo{display:contents}
-  .hero h1{order:1;padding-top:16px;font-size:clamp(44px,12.4vw,72px)}
-  .fig{order:2;position:relative;left:auto;bottom:auto;align-self:center;width:min(420px,74vw);height:auto;margin:18px 0 0;transform:translateX(7%)}
-  .fig img{height:auto;transform:none}
-  .hero .sotto{order:3;font-size:18px;margin-top:20px}
-  .scelta{order:4;margin-top:28px}
-  .diam{gap:4px}
-  .diam span{min-width:39px;height:46px;font-size:18px;padding:0 4px}
-  .dati{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
-  .dati .solo-tel{display:block}
-  .prev{order:5;margin-top:22px}
-  .dati dd{font-size:24px}
-  .sez{padding-top:96px}
-  .linee{grid-template-columns:1fr;row-gap:56px;margin-top:44px}
-  .linee .ogg{height:240px}
-  .linee .ogg img{max-width:calc(300px * var(--sw,1))}
-  .linee h3{font-size:28px;margin-top:18px}
-  .linee p{font-size:16px}
-  .officina{padding-top:96px;grid-template-columns:1fr}
-  .officina figcaption{padding:12px 0 0}
-  .storia{grid-template-columns:1fr;padding-top:36px}
-  .storia p.lungo{font-size:18px}
-  .fatti{margin-top:24px}
-  .chiusura{margin-top:96px}
-  .chiusura .righe{grid-template-columns:1fr;row-gap:32px}
-  .chiusura .foto{margin-top:44px}
-  .recapiti .tel{font-size:38px}
-  .piede{padding-top:56px}
-  .piede-griglia{grid-template-columns:1fr 1fr;grid-template-areas:"chi chi" "mac bcm" "con con" "let let";grid-template-rows:auto;row-gap:40px;column-gap:24px}
-  .lettera{margin-top:0}
+  .nav a{padding:12px 0;border-bottom:1px solid var(--grigio)}
+  .menu-btn{display:inline-flex;min-width:84px;min-height:48px;padding:0 14px;font-size:16px}
+  .apertura h1{font-size:54px}
+  .linee{gap:48px 20px}
+  .linea h3{font-size:22px}
+  .cataloghi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .numeri{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .riv,.lingue-riv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .zip{columns:2}
+  .brochure,.tabelle,.chi .wrap,.contatti .wrap{grid-template-columns:minmax(0,1fr);gap:48px}
+  .ricambi .wrap{gap:48px}
+  .piede-griglia{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .apertura .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  .testo-apertura{padding:40px 0 0}
+  .foto-apertura{display:none}
+  .linee{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ricambi .wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"testo" "foto" "azioni"}
+  .r-foto{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;align-items:center;margin-top:24px}
+  .ricambi figcaption{margin-top:0}
+  .r-azioni .azioni{margin-top:28px}
+  .foto-apertura-m{display:block;margin:28px calc(-1 * var(--m)) 0}
+  .foto-apertura-m img{width:100%;aspect-ratio:16/9;object-fit:cover}
+}
+/* telefono */
+@media (max-width:760px){
+  :root{--m:20px;--testata:72px}
+  body{font-size:17px}
+  .logo img{width:64px;height:36px}
+  .testata .wrap{gap:12px}
+  .testata-dx{gap:8px}
+  .testata .btn{padding:0 14px}
+  .testata .btn .parola{display:none}
+  .menu-btn{min-width:72px;padding:0 10px}
+  .sez{padding:72px 0}
+  .sez h2{font-size:30px;line-height:1.1}
+  .lead{font-size:18px}
+  .testa-sez{margin-bottom:40px}
+  .testo-apertura{padding:20px 0 0}
+  .occhiello{margin-bottom:12px}
+  .apertura h1{font-size:38px;line-height:1.04}
+  .apertura .lead{margin-top:14px;font-size:17px}
+  .stato{margin-top:16px;font-size:17px;flex-wrap:wrap;row-gap:0}
+  .stato .testo-stato{flex:1}
+  .stato .orari{display:none}
+  .apertura .azioni{margin-top:16px;flex-direction:column;gap:10px}
+  .apertura .azioni .btn{width:100%}
+  .accessi{display:none}
+  .foto-apertura-m{margin-top:20px}
+  .indice ul{grid-template-columns:1fr 1fr}
+  .indice li{border-left:0;border-top:1px solid var(--filo)}
+  .indice li:nth-child(-n+2){border-top:0}
+  .indice li:nth-child(even){border-left:1px solid var(--filo)}
+  .indice li a,.indice li:first-child a,.indice li:nth-child(5) a{padding:16px 12px 16px 0}
+  .indice li:nth-child(even) a{padding-left:14px}
+  .passi li{grid-template-columns:36px 1fr;font-size:17px}
+  .passi li::before{font-size:22px}
+  .ricambi .azioni{flex-direction:column}
+  .ricambi .azioni .btn{width:100%}
+  .linee{gap:40px 16px}
+  .linea h3{font-size:22px;margin-top:14px}
+  .linea p{font-size:16px}
+  .tabelle h3,.cataloghi h3,.brochure h3,.modulo h3{font-size:22px}
+  .piede .tel-p{font-size:22px}
+  table{font-size:16px}
+  th,td{padding-right:8px}
+  .numeri{grid-template-columns:1fr 1fr;gap:40px 20px}
+  .numeri .cifra{font-size:72px}
+  .numeri span:last-child{font-size:16px;margin-top:12px}
+  .linea p,.cataloghi p,.date li{font-size:16px}
+  .rivenditori{margin-top:64px;padding-top:32px}
+  .riv{gap:20px 16px;margin-top:24px}
+  .riv strong,.rivenditori h3,.brochure summary,.compra h3{font-size:22px}
+  .lingue-riv{grid-template-columns:1fr;gap:20px;margin-top:32px}
+  .lingue-riv a{white-space:normal}
+  .brochure{margin-top:40px}
+  .cataloghi{grid-template-columns:1fr;gap:12px}
+  .cataloghi a{padding:16px 18px 18px}
+  .cataloghi .scarica{margin-top:10px}
+  .brochure{margin-top:56px}
+  .zip{columns:1}
+  .compra p{font-size:17px}
+  .compra p{font-size:17px}
+  .chi .testo p,.chi .testo p.lead{font-size:17px}
+  .chi .testo p.lead{font-size:18px}
+  .chi figure{margin:0 calc(-1 * var(--m))}
+  .chi figure img{border-radius:0}
+  .chi figcaption{padding:0 var(--m)}
+  .date{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .date .cifra{font-size:30px}
+  .tel-grande{font-size:38px}
+  .recapiti{font-size:17px}
+  .modulo{padding:28px 20px;margin:0 calc(-1 * var(--m));border-radius:0}
+  .campi{grid-template-columns:1fr}
+  .tipi{flex-direction:column}
+  .tipi span{width:100%}
+  .modulo .btn{width:100%}
+  .piede{padding-top:64px}
+  .piede-griglia{grid-template-columns:1fr 1fr;gap:40px 20px}
+  .piede .chi-p{grid-column:1 / -1}
   .legale{flex-direction:column;margin-top:48px}
 }
-@media (min-width:600px) and (max-width:960px){
-  .linee{grid-template-columns:1fr 1fr;column-gap:32px}
-}
-@media (max-width:520px){
-  .lettera .riga{flex-direction:column}
-  .lettera input[type=email]{flex:none;width:100%}
-  .lettera button{width:100%}
-}
-@media (max-width:359px){
-  .diam{gap:3px}
-  .diam span{min-width:30px;padding:0 2px;font-size:16px}
-  .tel-top{font-size:17px}
+@media (max-width:360px){
+  .testata .btn{padding:0 10px;font-size:15px}
+  .menu-btn{min-width:64px}
+  .apertura h1{font-size:34px}
+  .numeri .cifra{font-size:64px}
+  th,td{padding-right:5px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"B.C.M. Enologia S.r.l.","alternateName":"BCM Macchine enologiche","foundingDate":"1960","telephone":"+39 049 640372","email":"info@bcmenologia.com","vatID":"IT04565020288","url":"https://www.bcmenologia.com/","address":{"@type":"PostalAddress","streetAddress":"Viale Veneto 10-12, zona artigianale","postalCode":"35020","addressLocality":"Saonara","addressRegion":"PD","addressCountry":"IT"},"openingHours":"Mo-Fr 08:00-18:00"}
+</script>
 </head>
 <body>
 
-<header class="top">
+<header class="testata">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="BCM Macchine enologiche, pagina iniziale"><img src="img/logo-bcm.png" width="85" height="48" alt="BCM Macchine enologiche"></a>
     <nav class="nav" id="nav" aria-label="Principale">
-      <a href="#macchine">Macchine</a>
-      <a href="#martinetti">Martinetti DAVID</a>
       <a href="#ricambi">Ricambi</a>
-      <a href="#storia">Dal 1960</a>
+      <a href="#macchine">Macchine</a>
+      <a href="#misure">Misure</a>
+      <a href="#cataloghi">Cataloghi</a>
+      <a href="#chi-siamo">Chi siamo</a>
       <a href="#contatti">Contatti</a>
     </nav>
-    <div class="top-dx">
-      <a class="tel-top" href="tel:+39049640372">049&nbsp;640372</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <div class="testata-dx">
+      <a class="lingue" href="#cataloghi" lang="en" hreflang="en">Catalogues EN · DE · FR</a>
+      <a class="btn" href="tel:+39049640372"><span class="parola">Chiama</span> <span class="num">049&nbsp;640372</span></a>
+      <button class="btn btn-bordo menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
     </div>
   </div>
 </header>
 
 <main>
-<section class="hero" aria-labelledby="titolo">
+<section class="apertura" aria-labelledby="titolo">
   <div class="wrap">
-    <div class="hero-in">
-      <div class="terra" aria-hidden="true"></div>
-      <div class="hero-testo">
-        <h1 id="titolo">Torchi e martinetti, dal&nbsp;1960</h1>
-        <p class="sotto">Faggio stagionato, perni forgiati a caldo, 400&nbsp;atmosfere. Costruiti a Saonara, vicino a Padova, per le piccole e medie produzioni.</p>
-        <form class="scelta" onsubmit="return false">
-          <fieldset>
-            <legend>Diametro della gabbia, in centimetri</legend>
-            <div class="diam">
-              <label><input type="radio" name="d" value="45"><span>45</span></label>
-              <label><input type="radio" name="d" value="50"><span>50</span></label>
-              <label><input type="radio" name="d" value="55"><span>55</span></label>
-              <label><input type="radio" name="d" value="60" checked><span>60</span></label>
-              <label><input type="radio" name="d" value="65"><span>65</span></label>
-              <label><input type="radio" name="d" value="70"><span>70</span></label>
-              <label><input type="radio" name="d" value="80"><span>80</span></label>
-              <label><input type="radio" name="d" value="90"><span>90</span></label>
-            </div>
-          </fieldset>
-          <dl class="dati" aria-live="polite">
-            <div><dt>Capacità della gabbia</dt><dd><span data-k="cap">210</span>&nbsp;kg</dd></div>
-            <div><dt>Peso del torchio</dt><dd><span data-k="peso">230</span>&nbsp;kg</dd></div>
-            <div class="solo-tel"><dt>Gabbia</dt><dd><span data-k="gab">60&nbsp;×&nbsp;75</span>&nbsp;cm</dd></div>
-            <div class="solo-tel"><dt>Martinetto DAVID</dt><dd data-k="mart">B-60</dd></div>
-          </dl>
-        </form>
-        <p class="prev">Per un preventivo: <a class="num" href="tel:+39049640372">049&nbsp;640372</a> o <a href="mailto:info@bcmenologia.com">info@bcmenologia.com</a></p>
+    <div class="testo-apertura">
+      <p class="occhiello etichetta">Macchine enologiche e ricambi a Saonara, Padova</p>
+      <h1 id="titolo">Torchi, martinetti DAVID e&nbsp;pompe, dal&nbsp;1960</h1>
+      <p class="lead">Li produciamo nella nostra officina di Saonara e <strong>teniamo i ricambi di ogni componente, anche per le macchine vecchie.</strong></p>
+      <p class="stato" id="stato"><span class="pallino" aria-hidden="true"></span><span class="testo-stato" data-stato>Dal lunedì al venerdì, 8-18</span><span class="orari" data-orari hidden>Lunedì-venerdì 8-18</span></p>
+      <div class="azioni">
+        <a class="btn" href="tel:+39049640372">Chiama <span class="num">049&nbsp;640372</span></a>
+        <a class="btn btn-bordo" href="#ricambi">Ricambi e assistenza</a>
       </div>
+      <p class="fuori" data-fuori hidden>Fuori orario? <a href="mailto:info@bcmenologia.com?subject=Ricambio%20per%20la%20mia%20macchina%20BCM&amp;body=Macchina%20e%20modello%20(dalla%20targhetta)%3A%20%0ADiametro%20della%20gabbia%20o%20della%20vite%3A%20%0APezzo%20da%20cambiare%3A%20%0ANome%20e%20telefono%3A%20%0A%0AAllego%20le%20foto%20della%20targhetta%20e%20del%20pezzo.">Mandaci le foto della targhetta per email</a></p>
+      <p class="accessi"><span>Cataloghi PDF, IT DE EN FR:</span><a class="freccia" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-torchi.pdf" target="_blank" rel="noopener">Torchi, 1,9&nbsp;MB</a><a class="freccia" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pompe-automatizzate.pdf" target="_blank" rel="noopener">Pompe con inverter, 2,3&nbsp;MB</a><a class="freccia" href="#cataloghi">Tutti i cataloghi</a></p>
+    </div>
+    <figure class="foto-apertura">
+      <img src="img/apertura-torchi-980.webp" srcset="img/apertura-torchi-640.webp 640w, img/apertura-torchi-980.webp 980w" sizes="(max-width:860px) 1px, 624px" width="980" height="1225" fetchpriority="high"
+           alt="Una fila di torchi idraulici BCM pronti in magazzino: gabbie in faggio, cerchi rossi e martinetti DAVID">
+    </figure>
+    <figure class="foto-apertura-m">
+      <img src="img/apertura-torchi-m-780.webp" srcset="img/apertura-torchi-m-780.webp 780w, img/apertura-torchi-m-1200.webp 1200w" sizes="100vw" width="1200" height="675" loading="lazy"
+           alt="Una fila di torchi idraulici BCM pronti in magazzino: gabbie in faggio, cerchi rossi e martinetti DAVID">
+    </figure>
+  </div>
+</section>
 
-      <figure class="fig">
-        <img src="img/torchio-idraulico-720.webp"
-             srcset="img/torchio-idraulico-480.webp 480w, img/torchio-idraulico-720.webp 720w, img/torchio-idraulico-959.webp 959w"
-             sizes="(max-width: 960px) 74vw, 520px" width="959" height="1564" fetchpriority="high"
-             alt="Torchio idraulico BCM carrellato: gabbia in faggio con il numero 60 impresso, cerchi rossi, martinetto DAVID in ghisa con manometro e vite in acciaio">
-      </figure>
-      <div class="leg" style="--x:.362;--y:.105" aria-hidden="true"><i></i><b></b><span><strong>Vite in acciaio</strong>ad alta resistenza, Ø&nbsp;<em class="num" data-k="vite">60</em>&nbsp;mm</span></div>
-      <div class="leg" style="--x:.525;--y:.2415" aria-hidden="true"><i></i><b></b><span><strong>Martinetto DAVID <em class="num" data-k="mart2">B-60</em></strong>spinta <em class="num" data-k="spinta">22.600</em>&nbsp;kg, con manometro</span></div>
-      <div class="leg" style="--x:.633;--y:.5226" aria-hidden="true"><i></i><b></b><span><strong>Gabbia in faggio evaporato</strong>Ø&nbsp;<em class="num" data-k="gab2">60&nbsp;×&nbsp;75</em>&nbsp;cm, bulloni passanti</span></div>
-      <div class="leg" style="--x:.717;--y:.7184" aria-hidden="true"><i></i><b></b><span><strong>Bacino stampato e rinforzato</strong>6 tappi e 2 mezzelune di serie</span></div>
-      <p class="didas" data-k="didas">Torchio idraulico 60, carrellato</p>
+<nav class="indice" aria-label="Le linee">
+  <div class="wrap">
+    <ul>
+      <li><a href="#linea-idraulici"><strong>Torchi</strong><span>da 15 a 90&nbsp;cm</span></a></li>
+      <li><a href="#linea-martinetti"><strong>Martinetti DAVID</strong><span>da A-50 a E-90</span></a></li>
+      <li><a href="#linea-gabbie"><strong>Gabbie</strong><span>da 15 a 100&nbsp;cm</span></a></li>
+      <li><a href="#linea-pompe"><strong>Pompe Volumex</strong><span>fino a 950&nbsp;hl/ora</span></a></li>
+      <li><a href="#linea-automatizzate"><strong>Pompe con inverter</strong><span>fino a 300&nbsp;hl/ora</span></a></li>
+      <li><a href="#linea-automatizzate"><strong>Inverter universale</strong><span>fino a 45&nbsp;kW</span></a></li>
+      <li><a href="#linea-pigiatrici"><strong>Pigiatrici</strong><span>500-1500&nbsp;kg/ora</span></a></li>
+      <li><a href="#linea-frutta"><strong>Presse per frutta</strong><span>e idropressa</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="sez sez-scuro ricambi" id="ricambi" aria-labelledby="t-ricambi">
+  <div class="wrap">
+    <div class="r-testo">
+      <p class="etichetta">Ricambi e assistenza</p>
+      <h2 id="t-ricambi" style="margin-top:14px">I ricambi di ogni macchina BCM, anche vecchia</h2>
+      <p class="lead">Compatibilità con il passato: da oltre 30&nbsp;anni teniamo i ricambi e facciamo la manutenzione di ogni singolo componente.</p>
+      <p class="pezzi">Per esempio <strong>il manometro del DAVID, i listelli e i cerchi della gabbia, i tappi e le mezzelune, la girante della pompa.</strong></p>
+      <ol class="passi" aria-label="Che cosa mandarci">
+        <li>La foto della targhetta del martinetto o della pompa. Se non si legge, una foto intera della macchina.</li>
+        <li>Il diametro della gabbia o della vite, se è un torchio.</li>
+        <li>La foto del pezzo da cambiare.</li>
+      </ol>
+    </div>
+    <figure class="r-foto">
+      <img src="img/ricambi-martinetto-800.webp" srcset="img/ricambi-martinetto-400.webp 400w, img/ricambi-martinetto-800.webp 800w" sizes="(max-width:860px) 132px, 500px" width="800" height="800" loading="lazy"
+           alt="Martinetto idraulico DAVID visto di fronte, con il manometro e la targhetta Macchine enologiche B.C.M., viale Veneto, Saonara">
+      <figcaption>La targhetta sta sul davanti del martinetto: fotografala dritta, che si leggano le scritte.</figcaption>
+    </figure>
+    <div class="r-azioni">
+      <div class="azioni">
+        <a class="btn" href="tel:+39049640372">Chiama <span class="num">049&nbsp;640372</span></a>
+        <a class="btn btn-bordo" href="mailto:info@bcmenologia.com?subject=Ricambio%20per%20la%20mia%20macchina%20BCM&amp;body=Macchina%20e%20modello%20(dalla%20targhetta)%3A%20%0ADiametro%20della%20gabbia%20o%20della%20vite%3A%20%0APezzo%20da%20cambiare%3A%20%0ANome%20e%20telefono%3A%20%0A%0AAllego%20le%20foto%20della%20targhetta%20e%20del%20pezzo.">Manda le foto per email</a>
+      </div>
+      <p class="nota">Dal lunedì al venerdì, 8-18. Fuori orario puoi mandarci le foto per email, anche dal telefono: allegale dalla galleria.</p>
     </div>
   </div>
 </section>
 
 <section class="sez" id="macchine" aria-labelledby="t-macchine">
   <div class="wrap">
-    <h2 id="t-macchine">Attrezzatura per l’enologia, dalla pigiatura al travaso</h2>
-    <p class="intro">Sei linee di macchine per la cantina, e i ricambi di ogni componente.</p>
+    <div class="testa-sez">
+      <p class="etichetta">Le macchine</p>
+      <h2 id="t-macchine">Attrezzatura e automazione per l’enologia</h2>
+      <p class="lead">Otto linee, dalla pigiatura al travaso. Per ognuna la pagina con le schede e il catalogo da scaricare.</p>
+    </div>
     <ul class="linee">
-      <li id="torchi"><a href="https://www.bcmenologia.com/it/prodotti/linea-torchi">
-        <div class="ogg"><img src="img/linea-torchi-300.webp" srcset="img/linea-torchi-300.webp 300w, img/linea-torchi-520.webp 520w" sizes="200px" width="520" height="814" alt="Torchio a cricco BCM con gabbia in faggio e gambe rosse" loading="lazy"></div>
-        <h3>Torchi</h3>
-        <p>Idraulici in 8 modelli da 45 a 90&nbsp;cm, a cricco in 13 da 15 a 80&nbsp;cm, a vite in 5. Listelli di faggio con bulloni passanti.</p>
-      </a></li>
-      <li id="martinetti" style="--s:.72"><a href="https://www.bcmenologia.com/it/prodotti/linea-martinetti">
-        <div class="ogg"><img src="img/linea-martinetti-420.webp" srcset="img/linea-martinetti-420.webp 420w, img/linea-martinetti-781.webp 781w" sizes="(max-width:960px) 80vw, 330px" width="781" height="718" alt="Martinetto idraulico DAVID in ghisa con manometro, piatto in ottone e targhetta BCM" loading="lazy"></div>
-        <h3>Martinetti DAVID</h3>
-        <p>Il DAVID è progettato e brevettato da BCM negli anni 80, oggi marchio registrato. Cinque misure, da A50 a E90, fino a 400&nbsp;atmosfere.</p>
-      </a></li>
-      <li id="gabbie" style="--s:.74"><a href="https://www.bcmenologia.com/it/prodotti/linea-gabbie">
-        <div class="ogg"><img src="img/linea-gabbie-360.webp" srcset="img/linea-gabbie-360.webp 360w, img/linea-gabbie-640.webp 640w" sizes="260px" width="640" height="701" alt="Gabbia per torchio in listelli di faggio con cerchi in acciaio" loading="lazy"></div>
-        <h3>Gabbie</h3>
-        <p>In faggio evaporato, in inox o in PVC, da 15 a 100&nbsp;cm. A 3 o 4 cerchi, al posto delle vecchie ceste equivalenti.</p>
-      </a></li>
-      <li id="pompe" style="--s:.92"><a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-standard">
-        <div class="ogg"><img src="img/linea-pompe-400.webp" srcset="img/linea-pompe-400.webp 400w, img/linea-pompe-700.webp 700w" sizes="300px" width="700" height="743" alt="Elettropompa Volumex in acciaio inox su carrello, con variatore di velocità" loading="lazy"></div>
-        <h3>Pompe e inverter</h3>
-        <p>Volumex a girante in neoprene, struttura in inox AISI&nbsp;304. Con il variatore, fino a 950&nbsp;hl l’ora.</p>
-      </a></li>
-      <li id="pigiatrici" style="--sw:.76"><a href="https://www.bcmenologia.com/it/prodotti/linea-pigiatrici-e-pigiadiraspatrici">
-        <div class="ogg"><img src="img/linea-pigiatrici-440.webp" srcset="img/linea-pigiatrici-440.webp 440w, img/linea-pigiatrici-760.webp 760w" sizes="(max-width:960px) 90vw, 360px" width="760" height="516" alt="Pigiatrice manuale rossa con tramoggia e volano" loading="lazy"></div>
-        <h3>Pigiatrici</h3>
-        <p>Pigiatrici e pigiadiraspatrici, manuali e a motore: da 500 a 1500&nbsp;kg l’ora.</p>
-      </a></li>
-      <li id="frutta"><a href="https://www.bcmenologia.com/it/prodotti/linea-frutta">
-        <div class="ogg"><img src="img/linea-frutta-320.webp" srcset="img/linea-frutta-320.webp 320w, img/linea-frutta-560.webp 560w" sizes="210px" width="560" height="814" alt="Pressa per frutta con gabbia in faggio e struttura rossa" loading="lazy"></div>
-        <h3>Presse per frutta</h3>
-        <p>Pressafrutta, presse versatili e l’idropressa, che spreme con l’acqua dell’acquedotto.</p>
-      </a></li>
+      <li class="linea" id="linea-idraulici">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-torchi">
+          <div class="ogg"><img src="img/linea-idraulico-360.webp" srcset="img/linea-idraulico-360.webp 360w, img/linea-idraulico-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Torchio idraulico BCM carrellato, gabbia in faggio e cerchi rossi"></div>
+          <h3>Torchi idraulici</h3>
+          <p>Otto modelli, gabbia da 45 a 90&nbsp;cm, da 100 a 660&nbsp;kg di vinaccia. Con il martinetto DAVID.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-torchi.pdf"><strong>Catalogo PDF</strong>, 1,9&nbsp;MB, IT DE EN FR</a>
+      </li>
+      <li class="linea" id="linea-cricco">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-torchi">
+          <div class="ogg"><img src="img/linea-cricco-360.webp" srcset="img/linea-cricco-360.webp 360w, img/linea-cricco-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Torchio a cricco BCM con gabbia in faggio e gambe rosse"></div>
+          <h3>Torchi a cricco e a vite</h3>
+          <p>A cricco in 13 misure da 15 a 80&nbsp;cm, a vite in 5. Faggio stagionato, perni forgiati a caldo.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" download href="https://www.bcmenologia.com/images/prodotti/torchi/br-linea-torchi.zip"><strong>Brochure ZIP</strong>, 6,1&nbsp;MB, IT EN</a>
+      </li>
+      <li class="linea" id="linea-martinetti">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-martinetti">
+          <div class="ogg"><img src="img/linea-martinetti-360.webp" srcset="img/linea-martinetti-360.webp 360w, img/linea-martinetti-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Martinetto idraulico DAVID in ghisa con manometro e piatto in ottone"></div>
+          <h3>Martinetti DAVID</h3>
+          <p>Cinque misure, da A-50 a E-90, fino a 400&nbsp;atmosfere. Per torchi con la vite da 45 a 100&nbsp;mm.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" download href="https://www.bcmenologia.com/images/prodotti/martinetti/br-linea-martinetti.zip"><strong>Brochure ZIP</strong>, 1,3&nbsp;MB, IT EN</a>
+      </li>
+      <li class="linea" id="linea-gabbie">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-gabbie">
+          <div class="ogg"><img src="img/linea-gabbie-360.webp" srcset="img/linea-gabbie-360.webp 360w, img/linea-gabbie-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Gabbia per torchio in listelli di faggio con cerchi in acciaio"></div>
+          <h3>Gabbie</h3>
+          <p>In faggio evaporato, in inox o in PVC, da 15 a 100&nbsp;cm, a 3 o 4 cerchi.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" download href="https://www.bcmenologia.com/images/prodotti/gabbie/br-linea-gabbie.zip"><strong>Brochure ZIP</strong>, 4,4&nbsp;MB, IT EN</a>
+      </li>
+      <li class="linea" id="linea-pompe">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-standard">
+          <div class="ogg"><img src="img/linea-pompe-360.webp" srcset="img/linea-pompe-360.webp 360w, img/linea-pompe-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Elettropompa Volumex in acciaio inox su carrello con il motore"></div>
+          <h3>Pompe Volumex</h3>
+          <p>Inox AISI&nbsp;304, girante in neoprene per uso alimentare. Fino a 100 o 250&nbsp;hl/ora, con il variatore fino a 950.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pompe-standard.pdf"><strong>Catalogo PDF</strong>, 1,4&nbsp;MB, IT DE EN FR</a>
+      </li>
+      <li class="linea" id="linea-automatizzate">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-automatizzate-con-inverter">
+          <div class="ogg"><img src="img/linea-automatizzate-360.webp" srcset="img/linea-automatizzate-360.webp 360w, img/linea-automatizzate-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Pompa Volumex automatizzata in inox con l’inverter a bordo, su carrello"></div>
+          <h3>Pompe con inverter</h3>
+          <p>Volumex 50, 60 e 70 con l’inverter a bordo, fino a 300&nbsp;hl/ora, con radiocontrollo, sensori e timer. Inverter universale fino a 45&nbsp;kW.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pompe-automatizzate.pdf"><strong>Catalogo PDF</strong>, 2,3&nbsp;MB, IT DE EN FR</a>
+      </li>
+      <li class="linea" id="linea-pigiatrici">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-pigiatrici-e-pigiadiraspatrici">
+          <div class="ogg"><img src="img/linea-pigiatrici-360.webp" srcset="img/linea-pigiatrici-360.webp 360w, img/linea-pigiatrici-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Pigiatrice manuale rossa con tramoggia e volano"></div>
+          <h3>Pigiatrici</h3>
+          <p>Pigiatrici e pigiadiraspatrici, a mano e a motore, da 500 a 1500&nbsp;kg l’ora.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pigiatrici.pdf"><strong>Catalogo PDF</strong>, 1,6&nbsp;MB, IT DE EN FR</a>
+      </li>
+      <li class="linea" id="linea-frutta">
+        <a href="https://www.bcmenologia.com/it/prodotti/linea-frutta">
+          <div class="ogg"><img src="img/linea-frutta-360.webp" srcset="img/linea-frutta-360.webp 360w, img/linea-frutta-600.webp 600w" sizes="(max-width:760px) 45vw, (max-width:1100px) 44vw, 300px" width="600" height="600" loading="lazy" alt="Pressa per frutta con gabbia in faggio e struttura rossa"></div>
+          <h3>Presse per frutta</h3>
+          <p>Pressafrutta, presse versatili e l’idropressa, che spreme con l’acqua dell’acquedotto.</p>
+          <span class="vai">Scheda della linea</span>
+        </a>
+        <a class="pdf" download href="https://www.bcmenologia.com/images/prodotti/linea-frutta/br-linea-frutta.zip"><strong>Brochure ZIP</strong>, 5,8&nbsp;MB</a>
+      </li>
     </ul>
   </div>
 </section>
 
-<section id="storia" aria-labelledby="t-storia">
+<section class="sez sez-grigio" id="misure" aria-labelledby="t-misure">
   <div class="wrap">
-    <figure class="officina">
-      <picture>
-        <source media="(max-width:600px)" srcset="img/officina-m-780.webp 780w, img/officina-m-1060.webp 1060w" sizes="100vw" width="1060" height="707">
-        <img src="img/officina-1060.webp" srcset="img/officina-800.webp 800w, img/officina-1060.webp 1060w" sizes="(max-width:960px) 92vw, 972px" width="1060" height="596" alt="Una fila di meccanismi in ghisa con le piastrine in ottone, sul banco dell’officina BCM" loading="lazy">
-      </picture>
-      <figcaption>Meccanismi in ghisa e ottone sul banco dell’officina, 2022</figcaption>
-    </figure>
-    <div class="storia">
+    <div class="testa-sez">
+      <p class="etichetta">Misure</p>
+      <h2 id="t-misure">Torchio idraulico e martinetto DAVID</h2>
+      <p class="lead">Le misure delle nostre brochure. Per il martinetto basta il diametro della vite centrale del tuo torchio.</p>
+    </div>
+    <div class="tabelle">
       <div>
-        <h2 id="t-storia">Dal 1960, i torchi e i loro ricambi</h2>
-        <p class="lungo">BCM nasce nel 1960 con Marino Benetazzo e Mario Camerotto, tra famiglie che si conoscono. Negli anni 80 progetta e brevetta il martinetto idraulico DAVID, oggi marchio registrato costruito solo da BCM.</p>
-        <p class="lungo" id="ricambi">Di ogni macchina BCM tiene i ricambi e la manutenzione di ogni singolo componente, da oltre 30&nbsp;anni: compatibilità con il passato.</p>
+        <h3>Torchio idraulico, otto modelli</h3>
+        <div class="tab">
+          <table>
+            <thead><tr><th scope="col">Modello</th><th scope="col">Gabbia, cm</th><th scope="col">Vinaccia, kg</th><th scope="col">Peso, kg</th><th scope="col">DAVID</th></tr></thead>
+            <tbody>
+              <tr><td>45</td><td class="nw">45 × 60</td><td>100</td><td>130</td><td>A-50</td></tr>
+              <tr><td>50</td><td class="nw">50 × 65</td><td>125</td><td>140</td><td>A-50</td></tr>
+              <tr><td>55</td><td class="nw">55 × 70</td><td>165</td><td>220</td><td>A-50</td></tr>
+              <tr><td>60</td><td class="nw">60 × 75</td><td>210</td><td>230</td><td>B-60</td></tr>
+              <tr><td>65</td><td class="nw">65 × 80</td><td>265</td><td>280</td><td>B-60</td></tr>
+              <tr><td>70</td><td class="nw">70 × 85</td><td>315</td><td>320</td><td>C-70</td></tr>
+              <tr><td>80</td><td class="nw">80 × 95</td><td>475</td><td>460</td><td>D-80</td></tr>
+              <tr><td>90</td><td class="nw">90 × 105</td><td>660</td><td>630</td><td>E-90</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <dl class="fatti">
-        <div><dt>In fiera</dt><dd>SIMEI 2009, 2011, 2015 e 2019</dd></div>
-        <div><dt>Spedizioni</dt><dd>In tutto il mondo</dd></div>
-        <div><dt>Cataloghi</dt><dd><a href="https://www.bcmenologia.com/it/download">In italiano, tedesco, inglese e francese</a></dd></div>
-      </dl>
+      <div>
+        <h3>Quale DAVID per il tuo torchio</h3>
+        <div class="tab">
+          <table>
+            <thead><tr><th scope="col">DAVID</th><th scope="col">Vite del torchio, mm</th><th scope="col">Spinta, kg</th></tr></thead>
+            <tbody>
+              <tr><td>A-50</td><td>45, 50, 55</td><td>16.000</td></tr>
+              <tr><td>B-60</td><td>60, 65</td><td>22.600</td></tr>
+              <tr><td>C-70</td><td>70, 75</td><td>30.700</td></tr>
+              <tr><td>D-80</td><td>80, 85</td><td>40.000</td></tr>
+              <tr><td>E-90</td><td>90, 95, 100</td><td>50.850</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota">Il DAVID è compatibile con tutti i tipi di torchio dal diametro 45 al 100, anche con la gabbia in inox o in PVC. A richiesta con tappi e mezzelune.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
-  <div class="wrap righe">
-    <h2 id="t-contatti">Piccola e seria azienda artigianale</h2>
-    <div class="recapiti">
-      <a class="tel" href="tel:+39049640372">049&nbsp;640372</a>
-      <p><a href="mailto:info@bcmenologia.com">info@bcmenologia.com</a></p>
-      <p>Viale Veneto 10-12, zona artigianale<br>35020 Saonara (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Veneto+10-12+35020+Saonara+PD">Apri la mappa</a></p>
-      <p class="orari">Dal lunedì al venerdì, 8-18</p>
+<section class="sez sez-rosso" aria-labelledby="t-numeri">
+  <div class="wrap">
+    <div class="testa-sez">
+      <h2 id="t-numeri" class="etichetta" style="font-family:var(--testo);font-size:14px;line-height:1.3">BCM in numeri</h2>
     </div>
+    <ul class="numeri">
+      <li><span class="cifra">1960</span><span>l’anno in cui siamo nati</span></li>
+      <li><span class="cifra">30+</span><span>anni di ricambi e manutenzione di ogni componente</span></li>
+      <li><span class="cifra">400</span><span>atmosfere di esercizio del martinetto DAVID</span></li>
+      <li><span class="cifra">950</span><span>hl l’ora, la portata più alta delle Volumex con il variatore</span></li>
+    </ul>
   </div>
-  <figure class="foto">
-    <picture>
-      <source media="(max-width:960px)" srcset="img/chiusura-torchi-m-640.webp 640w, img/chiusura-torchi-m-1000.webp 1000w, img/chiusura-torchi-m-1280.webp 1280w" sizes="100vw" width="1280" height="800">
-      <img src="img/chiusura-torchi-1440.webp" srcset="img/chiusura-torchi-960.webp 960w, img/chiusura-torchi-1440.webp 1440w, img/chiusura-torchi-1920.webp 1920w" sizes="100vw" width="1920" height="760" alt="Una fila di torchi BCM pronti in magazzino: gabbie in faggio, cerchi rossi e martinetti, nella luce del pomeriggio" loading="lazy">
-    </picture>
-  </figure>
+</section>
+
+<section class="sez" id="cataloghi" aria-labelledby="t-cataloghi">
+  <div class="wrap">
+    <div class="testa-sez">
+      <p class="etichetta">Cataloghi</p>
+      <h2 id="t-cataloghi">Cataloghi PDF in quattro lingue</h2>
+      <p class="lead">Ogni catalogo generale è un solo PDF di 4 pagine in italiano, tedesco, inglese e francese.</p>
+      <p class="lead" lang="en" style="margin-top:8px">Catalogues in English, Deutsch and Français: every PDF below has all four languages.</p>
+    </div>
+    <ul class="cataloghi">
+      <li><a target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-torchi.pdf"><h3>Torchi</h3><p>Idraulici, a cricco, a vite. PDF, 1,9&nbsp;MB, IT DE EN FR</p><span class="scarica">Scarica il PDF</span></a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pompe-standard.pdf"><h3>Pompe standard</h3><p>Elettropompe Volumex. PDF, 1,4&nbsp;MB, IT DE EN FR</p><span class="scarica">Scarica il PDF</span></a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pompe-automatizzate.pdf"><h3>Pompe automatizzate</h3><p>Con inverter e optional. PDF, 2,3&nbsp;MB, IT DE EN FR</p><span class="scarica">Scarica il PDF</span></a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.bcmenologia.com/images/guida-alluso/catalogo-generale-pigiatrici.pdf"><h3>Pigiatrici</h3><p>Pigiatrici e pigiadiraspatrici. PDF, 1,6&nbsp;MB, IT DE EN FR</p><span class="scarica">Scarica il PDF</span></a></li>
+    </ul>
+    <div class="rivenditori" id="rivenditori">
+      <h3>Dove trovi le macchine BCM</h3>
+      <p class="sotto">Alcuni rivenditori che vendono le nostre macchine, in Italia e all’estero.</p>
+      <ul class="riv">
+        <li><strong>Vivi in Campagna</strong><span>Italia</span></li>
+        <li><strong>Enologys</strong><span>Italia</span></li>
+        <li><strong>Kidonakis</strong><span>Atene, Grecia</span></li>
+        <li><strong>KOL-Technik</strong><span>Austria</span></li>
+      </ul>
+      <ul class="lingue-riv" aria-label="Per rivenditori e importatori">
+        <li><span class="etichetta">Rivenditori e importatori</span>Cataloghi, schede e condizioni: <a href="mailto:info@bcmenologia.com?subject=Rivenditori%3A%20cataloghi%20e%20condizioni">info@bcmenologia.com</a> o <a href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a>.</li>
+        <li lang="en"><span class="etichetta">Dealers and importers</span>Catalogues, data sheets and terms: <a href="mailto:info@bcmenologia.com?subject=Dealer%20enquiry">info@bcmenologia.com</a> or <a href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a>, Monday to Friday, 8&nbsp;am to 6&nbsp;pm, Italian time.</li>
+        <li lang="de"><span class="etichetta">Händler und Importeure</span>Kataloge, Datenblätter und Konditionen: <a href="mailto:info@bcmenologia.com?subject=H%C3%A4ndleranfrage">info@bcmenologia.com</a> oder <a href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a>, Montag bis Freitag, 8 bis 18&nbsp;Uhr.</li>
+        <li lang="fr"><span class="etichetta">Revendeurs et importateurs</span>Catalogues, fiches techniques et conditions&nbsp;: <a href="mailto:info@bcmenologia.com?subject=Demande%20revendeur">info@bcmenologia.com</a> ou <a href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a>, du lundi au vendredi, de 8&nbsp;h à 18&nbsp;h.</li>
+      </ul>
+      <p class="titoli"><strong>DAVID</strong>, marchio registrato, costruito solo da noi. <strong>SIMEI</strong> di Milano, in fiera nel 2009, 2011, 2015 e 2019: <a href="https://www.bcmenologia.com/it/gallery/in-fiera">le foto degli stand</a>.</p>
+    </div>
+    <details class="brochure" data-aperto-largo>
+      <summary>Le 10 brochure delle linee, in ZIP</summary>
+      <ul class="zip">
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/torchi/br-linea-torchi.zip">Torchi</a> <span>6,1&nbsp;MB, IT EN</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/martinetti/br-linea-martinetti.zip">Martinetti DAVID</a> <span>1,3&nbsp;MB, IT EN</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/gabbie/br-linea-gabbie.zip">Gabbie</a> <span>4,4&nbsp;MB, IT EN</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/pompe/br-pompe-standard.zip">Pompe standard</a> <span>4,8&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/pompe-standard-opt/br-opt-pompe-standard.zip">Optional pompe standard</a> <span>9,2&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/pompe-automatizzate-inverter/br-pompe-automizzate.zip">Pompe automatizzate</a> <span>2,8&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/pompe-automatizzate-opt/br-opt-pompe-automatizzate.zip">Optional pompe automatizzate</a> <span>10,8&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/inverter-universale/br-inv-universale.zip">Inverter universale</a> <span>1,4&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/pigiatrici/br-pigiatrici.zip">Pigiatrici</a> <span>4,5&nbsp;MB</span></li>
+          <li><a download href="https://www.bcmenologia.com/images/prodotti/linea-frutta/br-linea-frutta.zip">Presse per frutta</a> <span>5,8&nbsp;MB</span></li>
+        </ul>
+    </details>
+  </div>
+</section>
+
+<section class="sez sez-grigio chi" id="chi-siamo" aria-labelledby="t-chi">
+  <div class="wrap">
+    <figure>
+      <img src="img/officina-1060.webp" srcset="img/officina-800.webp 800w, img/officina-1060.webp 1060w" sizes="(max-width:760px) 100vw, (max-width:1100px) 90vw, 700px" width="1060" height="596" loading="lazy" alt="Una fila di meccanismi in ghisa con le piastrine in ottone, sul banco della nostra officina">
+      <figcaption>Meccanismi in ghisa sul banco dell’officina, viale Veneto, 2022.</figcaption>
+    </figure>
+    <div class="testo">
+      <p class="etichetta" style="color:var(--rosso)">Chi siamo</p>
+      <h2 id="t-chi" style="margin-top:14px">Una piccola e seria azienda artigianale</h2>
+      <p class="lead">Siamo nati nel 1960 con i soci Marino Benetazzo e Mario Camerotto, tra famiglie che si conoscono.</p>
+      <p>Produciamo martinetti idraulici per torchi, torchi meccanici, idraulici e idropneumatici, gabbie in legno e inox ed elettropompe a girante in gomma. Con ogni cliente cerchiamo di mantenere un rapporto di massima fiducia e disponibilità.</p>
+    </div>
+    <ol class="date">
+      <li><span class="cifra">1960</span>Nasce la nostra ditta, con Marino Benetazzo e Mario Camerotto.</li>
+      <li><span class="cifra">Anni 80</span>Progettiamo e brevettiamo il martinetto idraulico DAVID, oggi marchio registrato costruito solo da noi.</li>
+      <li><span class="cifra">2012</span>Le pompe per il trasporto dei liquidi, poi l’automazione con l’inverter.</li>
+      <li><span class="cifra">Oggi</span>Ricambi per le macchine di ieri, cataloghi in quattro lingue, spedizioni in tutto il mondo.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sez contatti" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap">
+    <div>
+      <p class="etichetta" style="color:var(--rosso)">Contatti</p>
+      <h2 id="t-contatti" style="margin-top:14px">La sede, a Saonara</h2>
+      <a class="tel-grande" href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a>
+      <div class="recapiti">
+        <p><a href="mailto:info@bcmenologia.com">info@bcmenologia.com</a></p>
+        <p>Viale Veneto 10-12, zona artigianale<br>35020 Saonara (PD), Italia<br><a class="freccia" href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Veneto+10-12+35020+Saonara+PD" target="_blank" rel="noopener">Apri la mappa</a></p>
+      </div>
+      <table class="orari-tab">
+        <caption class="vh">Orari</caption>
+        <tbody>
+          <tr><td>Lunedì-venerdì</td><td>8-18</td></tr>
+          <tr><td>Sabato e domenica</td><td>chiuso</td></tr>
+        </tbody>
+      </table>
+      <p class="stato" data-stato-2><span class="pallino" aria-hidden="true"></span><span class="testo-stato" data-stato>Dal lunedì al venerdì, 8-18</span></p>
+      <div class="compra" id="come-si-compra">
+        <h3>Come si compra</h3>
+        <p>Per prezzi e disponibilità chiamaci o scrivi a <a href="mailto:info@bcmenologia.com?subject=Richiesta%20di%20preventivo">info@bcmenologia.com</a>. Spediamo in tutto il mondo.</p>
+        <p>Le macchine BCM si trovano anche dai rivenditori, in Italia e all’estero: <a href="#rivenditori">dove trovarle</a>.</p>
+      </div>
+    </div>
+    <form class="modulo" id="modulo" novalidate aria-labelledby="t-modulo">
+      <h3 id="t-modulo">Scrivici</h3>
+      <p class="sotto">Il modulo prepara un’email a info@bcmenologia.com con i dati già scritti: la mandi tu dal tuo programma di posta.</p>
+      <fieldset>
+        <legend>Che cosa ti serve</legend>
+        <div class="tipi">
+          <label><input type="radio" name="tipo" value="Ricambio o assistenza" checked><span>Ricambio o assistenza</span></label>
+          <label><input type="radio" name="tipo" value="Preventivo per una macchina"><span>Preventivo per una macchina</span></label>
+          <label><input type="radio" name="tipo" value="Rivenditore o importatore"><span>Sono un rivenditore</span></label>
+        </div>
+      </fieldset>
+      <div class="campi">
+        <label class="campo"><span data-et-macchina>Macchina e modello</span> <small data-sotto-macchina>Dalla targhetta, per esempio torchio idraulico 60, DAVID B-60, Volumex 50</small><input name="macchina" autocomplete="off"></label>
+        <label class="campo">Quantità <small>Pezzi o macchine</small><input name="quantita" inputmode="numeric" autocomplete="off"></label>
+        <label class="campo">Nome e cognome<input name="nome" autocomplete="name" required></label>
+        <label class="campo">Azienda o cantina, facoltativo<input name="azienda" autocomplete="organization"></label>
+        <label class="campo">Email<input name="email" type="email" autocomplete="email"></label>
+        <label class="campo">Telefono<input name="telefono" type="tel" autocomplete="tel"></label>
+        <label class="campo largo">Messaggio<textarea name="messaggio"></textarea></label>
+        <label class="campo largo" data-campo-foto>Foto della targhetta e del pezzo <small>JPEG, PNG o PDF, puoi sceglierne più di una</small><input type="file" name="foto" accept="image/jpeg,image/png,application/pdf" multiple></label>
+      </div>
+      <p class="foto-nota" data-foto-nota><strong>Le foto non partono da sole:</strong> il modulo apre un’email, allegale lì.</p>
+      <button class="btn" type="submit">Prepara l’email</button>
+      <p class="dopo" data-dopo aria-live="polite"></p>
+      <p class="priv">Leggi l’<a href="https://www.bcmenologia.com/it/privacy-policy">informativa privacy</a>.</p>
+    </form>
+  </div>
 </section>
 </main>
 
 <footer class="piede">
   <div class="wrap">
     <div class="piede-griglia">
-      <div class="p-chi">
-        <img src="img/logo-bcm.png" width="128" height="72" alt="BCM Macchine enologiche">
-        <p>Torchi, martinetti DAVID, gabbie, pompe e pigiatrici per la cantina. Saonara, Padova, dal 1960.</p>
+      <div class="chi-p">
+        <img src="img/logo-bcm-bianco.png" width="85" height="48" alt="BCM Macchine enologiche">
+        <p><strong>B.C.M. Enologia S.r.l.</strong><br>Viale Veneto 10-12, zona artigianale<br>35020 Saonara (PD), Italia<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Veneto+10-12+35020+Saonara+PD" target="_blank" rel="noopener">Apri la mappa</a></p>
       </div>
-      <nav class="p-mac" aria-labelledby="f-macchine">
+      <nav aria-labelledby="f-macchine">
         <h3 id="f-macchine">Macchine</h3>
         <ul>
           <li><a href="https://www.bcmenologia.com/it/prodotti/linea-torchi">Torchi</a></li>
           <li><a href="https://www.bcmenologia.com/it/prodotti/linea-martinetti">Martinetti DAVID</a></li>
           <li><a href="https://www.bcmenologia.com/it/prodotti/linea-gabbie">Gabbie</a></li>
-          <li><a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-standard">Pompe e inverter</a></li>
+          <li><a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-standard">Pompe Volumex</a></li>
+          <li><a href="https://www.bcmenologia.com/it/prodotti/linea-pompe-automatizzate-con-inverter">Pompe con inverter</a></li>
+          <li><a href="https://www.bcmenologia.com/it/prodotti/linea-inverter-universale-pronto-all-uso">Inverter universale</a></li>
           <li><a href="https://www.bcmenologia.com/it/prodotti/linea-pigiatrici-e-pigiadiraspatrici">Pigiatrici</a></li>
           <li><a href="https://www.bcmenologia.com/it/prodotti/linea-frutta">Presse per frutta</a></li>
         </ul>
       </nav>
-      <nav class="p-bcm" aria-labelledby="f-bcm">
+      <nav aria-labelledby="f-bcm">
         <h3 id="f-bcm">BCM</h3>
         <ul>
-          <li><a href="#storia">Dal 1960</a></li>
           <li><a href="#ricambi">Ricambi e assistenza</a></li>
-          <li><a href="https://www.bcmenologia.com/it/download">Cataloghi</a></li>
+          <li><a href="#misure">Misure</a></li>
+          <li><a href="#cataloghi">Cataloghi PDF</a></li>
+          <li><a href="#come-si-compra">Come si compra</a></li>
+          <li><a href="#chi-siamo">Chi siamo</a></li>
           <li><a href="https://www.bcmenologia.com/it/gallery/in-fiera">In fiera</a></li>
         </ul>
       </nav>
-      <div class="p-con">
+      <div>
         <h3>Contatti</h3>
         <ul>
-          <li><a class="tel-p" href="tel:+39049640372">049&nbsp;640372</a></li>
+          <li><a class="tel-p" href="tel:+39049640372">+39&nbsp;049&nbsp;640372</a></li>
           <li><a href="mailto:info@bcmenologia.com">info@bcmenologia.com</a></li>
-          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale+Veneto+10-12+35020+Saonara+PD">Viale Veneto 10-12, Saonara</a></li>
-          <li><a href="https://www.bcmenologia.com/it/download">Cataloghi PDF</a></li>
+          <li>Lunedì-venerdì 8-18</li>
+          <li><a href="#cataloghi" lang="en">Catalogues EN · DE · FR</a></li>
         </ul>
       </div>
-      <form class="lettera" id="lettera" action="#" aria-labelledby="t-lettera">
-        <h3 id="t-lettera" style="margin-bottom:6px">Una lettera prima della vendemmia</h3>
-        <p>Ricambi, cataloghi nuovi e fiere, una volta l’anno.</p>
-        <div class="riga">
-          <label class="vh" for="em">Indirizzo email</label>
-          <input id="em" type="email" name="email" placeholder="La tua email" autocomplete="email" required>
-          <button type="submit">Iscriviti</button>
-        </div>
-        <label class="consenso"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="https://www.bcmenologia.com/it/privacy-policy">informativa privacy</a> e voglio ricevere la lettera di BCM.</span></label>
-        <p class="esito" id="esito" aria-live="polite"></p>
-      </form>
     </div>
     <div class="legale">
       <p>B.C.M. Enologia S.r.l., viale Veneto 10-12, 35020 Saonara (PD). P.IVA e C.F. 04565020288, REA PD&nbsp;400140, capitale sociale 100.000&nbsp;euro i.v.</p>
@@ -446,39 +801,78 @@ p{margin:0;text-wrap:pretty}
 
 <script>
 (function(){
-  // Scheda tecnica del torchio idraulico e tabella dei martinetti DAVID (brochure BCM 2022):
-  // A-50 per viti 45/50/55, B-60 per 60/65, poi C-70, D-80, E-90.
-  var T={
-    45:{h:60,gab:"45 × 60",cap:100,peso:130,mart:"A-50",spinta:"16.000"},
-    50:{h:65,gab:"50 × 65",cap:125,peso:140,mart:"A-50",spinta:"16.000"},
-    55:{h:70,gab:"55 × 70",cap:165,peso:220,mart:"A-50",spinta:"16.000"},
-    60:{h:75,gab:"60 × 75",cap:210,peso:230,mart:"B-60",spinta:"22.600"},
-    65:{h:80,gab:"65 × 80",cap:265,peso:280,mart:"B-60",spinta:"22.600"},
-    70:{h:85,gab:"70 × 85",cap:315,peso:320,mart:"C-70",spinta:"30.700"},
-    80:{h:95,gab:"80 × 95",cap:475,peso:460,mart:"D-80",spinta:"40.000"},
-    90:{h:105,gab:"90 × 105",cap:660,peso:630,mart:"E-90",spinta:"50.850"}
-  };
-  var hero=document.querySelector('.hero'), didas=document.querySelector('.didas');
-  function nb(s){return String(s).replace(/ /g," ")}
-  function set(k,v){document.querySelectorAll('[data-k="'+k+'"]').forEach(function(el){el.textContent=nb(v)})}
-  document.querySelectorAll('.diam input').forEach(function(r){
-    r.addEventListener('change',function(){
-      var d=T[r.value]; if(!d) return;
-      set('cap',d.cap); set('peso',d.peso); set('gab',d.gab); set('gab2',d.gab);
-      set('mart',d.mart); set('mart2',d.mart); set('spinta',d.spinta); set('vite',r.value);
-      // la foto è del modello 60: la riporto in proporzione all'altezza della gabbia scelta (105 cm = 1)
-      hero.style.setProperty('--k',(d.h/105).toFixed(4));
-      didas.textContent=r.value==='60'?'Torchio idraulico 60, carrellato':'Foto del modello 60, in proporzione alla gabbia del\u00a0'+r.value;
-    });
+  // Stato di apertura sull'ora di Roma: lunedì-venerdì 8-18, chiuso nei festivi nazionali.
+  // Per le prove: index.html?ora=2026-11-02T10:00 (ora di Roma).
+  function oraRoma(){
+    var q=(location.search.match(/[?&]ora=([0-9T:\-]+)/)||[])[1];
+    if(q){var m=q.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/);if(m)return {a:+m[1],me:+m[2],g:+m[3],h:+m[4],mi:+m[5]};}
+    var p={};new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    return {a:+p.year,me:+p.month,g:+p.day,h:+p.hour,mi:+p.minute};
+  }
+  function pasqua(a){var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451),me=Math.floor((i+m-7*n+114)/31),gi=((i+m-7*n+114)%31)+1;return new Date(Date.UTC(a,me-1,gi));}
+  function festa(dt){
+    var k=(dt.getUTCMonth()+1)+'-'+dt.getUTCDate();
+    if(['1-1','1-6','4-25','5-1','6-2','8-15','11-1','12-8','12-25','12-26'].indexOf(k)>=0)return true;
+    var p=pasqua(dt.getUTCFullYear());p.setUTCDate(p.getUTCDate()+1);
+    return p.getTime()===dt.getTime();
+  }
+  // Chiusure dell'azienda (ferie, ponti), da far confermare a BCM ogni anno (LEGGIMI):
+  // ogni chiusura è una coppia di date: [['2027-08-09','2027-08-20']] chiude dal 9 al 20 agosto 2027 compresi.
+  var chiusure=[];
+  function chiusa(dt){var k=dt.toISOString().slice(0,10);return chiusure.some(function(c){return k>=c[0]&&k<=c[1];});}
+  function lavora(dt){var w=dt.getUTCDay();return w>=1&&w<=5&&!festa(dt)&&!chiusa(dt);}
+  var giorni=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var t=oraRoma(), oggi=new Date(Date.UTC(t.a,t.me-1,t.g)), min=t.h*60+t.mi, testo, aperto=false;
+  if(lavora(oggi)&&min>=480&&min<1080){aperto=true;testo='<strong>Aperto ora</strong>, fino alle 18';}
+  else if(lavora(oggi)&&min<480){testo='<strong>Chiuso ora</strong>, apriamo alle 8';}
+  else{
+    var d=new Date(oggi.getTime()),n=0;
+    do{d.setUTCDate(d.getUTCDate()+1);n++;}while(!lavora(d)&&n<40);
+    var quando=n===1?'domani':giorni[d.getUTCDay()];
+    testo=(festa(oggi)?'<strong>Oggi è festa</strong>':chiusa(oggi)?'<strong>Chiusi per ferie</strong>':'<strong>Chiuso ora</strong>')+', riapriamo '+(n>6?'il '+d.getUTCDate()+'/'+(d.getUTCMonth()+1):quando)+' alle 8';
+  }
+  document.querySelectorAll('[data-stato]').forEach(function(el){
+    el.innerHTML=testo;el.parentNode.classList.toggle('aperto',aperto);
   });
+  var o=document.querySelector('[data-orari]');if(o)o.hidden=false;
+  var fu=document.querySelector('[data-fuori]');if(fu)fu.hidden=aperto;
+  // brochure ZIP: aperte sui monitor, richiudibili al telefono
+  if(window.matchMedia('(min-width:761px)').matches)document.querySelectorAll('[data-aperto-largo]').forEach(function(d){d.open=true;});
+
+  // menu del telefono e del tablet
   var b=document.querySelector('.menu-btn'), n=document.getElementById('nav');
-  function menu(o){n.classList.toggle('aperta',o);b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Chiudi':'Menu'}
+  function menu(a){n.classList.toggle('aperta',a);b.setAttribute('aria-expanded',a?'true':'false');b.textContent=a?'Chiudi':'Menu';}
   b.addEventListener('click',function(){menu(!n.classList.contains('aperta'))});
   n.addEventListener('click',function(e){if(e.target.tagName==='A')menu(false)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('aperta')){menu(false);b.focus()}});
-  // newsletter: la validazione è quella del browser; il modulo è dimostrativo e non invia nulla
-  var f=document.getElementById('lettera'), es=document.getElementById('esito');
-  f.addEventListener('submit',function(e){e.preventDefault();es.textContent='Grazie. (Modulo dimostrativo, da collegare al servizio di invio.)'});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('aperta')){menu(false);b.focus();}});
+
+  // modulo: compone un'email (mailto) con oggetto e campi; da collegare a un servizio di invio (LEGGIMI)
+  var f=document.getElementById('modulo');
+  var etM=f.querySelector('[data-et-macchina]'),sotM=f.querySelector('[data-sotto-macchina]'),campoFoto=f.querySelector('[data-campo-foto]'),notaFoto=f.querySelector('[data-foto-nota]'),dopo=f.querySelector('[data-dopo]');
+  function rivenditore(){var t=f.querySelector('input[name=tipo]:checked');return !!t&&t.value==='Rivenditore o importatore';}
+  function adatta(){
+    var r=rivenditore();
+    etM.textContent=r?'Paese e linee che ti interessano':'Macchina e modello';
+    sotM.textContent=r?'Per esempio Austria, pompe con inverter e torchi':'Dalla targhetta, per esempio torchio idraulico 60, DAVID B-60, Volumex 50';
+    campoFoto.hidden=r;notaFoto.hidden=r;
+  }
+  f.querySelectorAll('input[name=tipo]').forEach(function(x){x.addEventListener('change',adatta)});
+  function componi(){
+    var v=function(k){var x=f.elements[k];return x?String(x.value||'').trim():''};
+    var tipo=(f.querySelector('input[name=tipo]:checked')||{}).value||'Richiesta';
+    var r=rivenditore(), ogg, corpo;
+    if(r){
+      ogg='Rivenditori: listino e condizioni'+(v('azienda')?', '+v('azienda'):(v('nome')?', '+v('nome'):''));
+      corpo=['Richiesta: '+tipo,'Paese e linee: '+v('macchina'),'Quantità: '+v('quantita'),'Nome: '+v('nome'),'Azienda: '+v('azienda'),'Email: '+v('email'),'Telefono: '+v('telefono'),'','Messaggio:',v('messaggio')];
+    }else{
+      var nomi=[].map.call(f.elements.foto.files||[],function(x){return x.name}).join(', ');
+      ogg=tipo+(v('macchina')?': '+v('macchina'):'')+(v('nome')?', '+v('nome'):'');
+      corpo=['Richiesta: '+tipo,'Macchina e modello: '+v('macchina'),'Quantità: '+v('quantita'),'Nome: '+v('nome'),'Azienda o cantina: '+v('azienda'),'Email: '+v('email'),'Telefono: '+v('telefono'),'','Messaggio:',v('messaggio'),'','Foto da allegare: '+(nomi||'le foto della targhetta e del pezzo')];
+    }
+    return 'mailto:info@bcmenologia.com?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(corpo.join('\n'));
+  }
+  window.bcmComponiMail=componi;
+  f.addEventListener('submit',function(e){e.preventDefault();var m=componi();dopo.textContent=rivenditore()?'Si è aperta l’email: controllala e mandala.':'Si è aperta l’email: ricordati di allegare le foto.';location.href=m;});
 })();
 </script>
 </body>

@@ -1,5 +1,7 @@
 # Crediti delle immagini esterne
 
+**Livello professionale (3/11/2026)**: nessuna di queste foto è usata nella home, per decisione del committente ("niente" foto di repertorio). In pagina ci sono solo foto di BCM da `assets/originali/`. I file restano qui solo come archivio della ricerca e non vanno usati.
+
 Foto segnaposto per la proposta di B.C.M. Enologia. Sono tutte scaricate il 24/10/2026 da Unsplash o Pexels, con il lato lungo ridotto a 2400 px al massimo, in `assets/esterne/`. Nessuna è generata dall'IA, nessuna è Unsplash+, nessuna mostra un marchio riconoscibile. Ho controllato che nessun ID sia già usato in un altro `*-Sito/assets/CREDITI.md` della campagna (275 ID letti).
 
 Licenze:

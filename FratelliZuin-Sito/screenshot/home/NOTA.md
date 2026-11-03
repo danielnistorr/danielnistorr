@@ -1,58 +1,63 @@
-# Fratelli Zuin, home finale: "Il risucchio"
+# Fratelli Zuin, home: "Scavi, cassoni scarrabili, strade e fognature a Padova, dal 1946"
 
-## Idea
+La home di prima (fondo giallo, la parola "risucchio" a tutta pagina, nove lavori in una frase da toccare, sei foto Unsplash "indicative") è salvata con la sua nota in `_prova/versione-1-originale/` (sito e screenshot). Questa nota descrive la home di oggi.
 
-La pagina porta la livrea del loro escavatore a risucchio. Il titolo è la scritta dipinta sulla fiancata, "Escavazioni ed aspirazioni a risucchio controllato", con "risucchio" a tutta griglia (276 px contro i 30 px delle due righe piccole). Davanti c'è il mezzo vero, intero e scontornato, muso compreso. Il fondo è il giallo della cabina MAN, schiarito; il piede è la fascia bordeaux con la scritta e il timbro in giallo, com'è dipinta sui mezzi; il rosso del cassone è il bottone "Chiama". Con il nome di un concorrente la pagina non regge: scritta, colori, timbro e indirizzo dipinto sono loro. Sotto ci sono poche sezioni: i nove lavori in una frase che si tocca, la storia in tre righe (1946, 1968–69, Oggi), la chiusura con la loro frase, quattro righe di recapiti e una foto, e il piede completo.
+Screenshot in questa cartella: `home-1440.jpg` e `home-390.jpg` (pagine intere), `home-1440-prima-schermata.jpg` e `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (preventivo, enti, dove siamo, piede).
 
-## Cosa è cambiato in questo giro (2 novembre)
+## Livello professionale, ritocco finale (3/11/2026)
 
-Richiesta del committente: più alta gamma, home meno uguali tra loro. Giudizio cieco: K0 7, K1 7,5, totale 59,5.
-- **Fondo**: niente più crema "polvere di cava". Il fondo #ECD675 è il giallo della cabina MAN schiarito, e la ragione si vede perché il mezzo è lì davanti. Il piede #5A2830 è il bordeaux della fascia con la scritta, misurato sulla foto, con testo e timbro in giallo.
-- **Impaginazione nuova nella campagna**: una scala tipografica estrema, con una parola sola a tutta griglia e le due righe piccole sopra e sotto, e il mezzo posato sotto la parola. Nelle altre home il titolo è di 90-112 px su due righe accanto all'oggetto.
-- **Titolo corretto**: non lega più gli scavi controllati al 1946. Ora è la frase della fiancata; "dal 1946" sta nel testo ("Impresa di famiglia a Padova dal 1946"). Aggiornati title e meta description.
-- **Il mezzo** (bloccante del giudice): scontorno rifatto da gallery3 senza aloni. Il contorno destro della cabina (visiera, montante, fianco, paraurti) è disegnato a mano, perché il parabrezza riflette il cielo bianco. Il muso, che la foto non taglia, ora è intero, e il mezzo non sta più a filo del bordo ma sul margine destro della griglia. È largo 884 px a 1440: a DPR 2 l'ingrandimento massimo è 1,5 volte sui 1350 px del ritaglio. Nessuna maschera di nitidezza. L'ombra è calda, perché sul giallo un grigio neutro sembrava sporco. Controllato su fondo verde e con uno screenshot a DPR 2: scritte della fiancata leggibili, nessun alone.
-- **Didascalia**: "Il nostro escavatore a risucchio, MAN TGA 35.410", allineata a destra al muso e al margine, sotto la linea di terra.
-- **Storia**: tolta la foto della fiancata, che era la terza volta del risucchio, satura e impaginata con foto da un lato e testo dall'altro. "Oggi" è la terza riga della stessa griglia. Il 1968–69 dice solo il Foro Boario, l'Azienda del Gas e il Prato della Valle; l'ingresso dei figli sta nella riga 1946 ("con gli anni"), come dice la fonte.
-- **Quadro dei lavori**: ogni foto ha come larghezza massima la sua misura vera; i "sizes" tengono conto del taglio 4:3 a 390. "n di 9" e "Foto indicativa" stanno in una cella a destra, una sotto l'altro. La didascalia ha un'altezza minima, così la pagina non salta da una voce all'altra: misurato, la posizione di "Tre generazioni" resta ferma a 1440 e a 390. La voce scelta è rossa con una sottolineatura rossa da 3 px.
-- **Segnaposto**: tutti da terra o quasi. Via Bruno BD (sul braccio c'erano i telefoni di un'impresa britannica) e le riprese col drone. Nuove: Studzinski, Kharkivska, Kakuk, Mortier, Spratt; Weiser ritagliata stretta sui rulli. "Ritiro del materiale" usa una foto loro (la pala CAT sulle macerie, pagina-iniziale-2). Restano segnaposto sei voci su nove.
-- **Chiusura**: la frase intera della fonte, "Scarrabili della larghezza di un'automobile, in grado di intervenire in qualsiasi situazione e spazio". Foto più alta (2,2:1, 820 px a 1440), ritagliata di nuovo dall'originale per non ingrandirla a 1920.
-- **Piede**: nove voci nella colonna Lavori, come i nove lavori della home.
-- Tolto il preload del carattere, che aperto da file:// dava un errore CORS in console. Un file solo, con font-display:swap.
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia S. Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14, le pagine intere di Eggentaler e di Wilson, a pezzi. Scheda d'uso: `_prova/uso/SCHEDA.md`. Questo giro applica il controllo del livello professionale (voto 6) e le prove dei due clienti tipo (privato a 390, tecnico a 1440).
 
-## Prime due schermate
+### Che cosa è cambiato in questo giro e perché
 
-- **1440x900**: testata con il timbro in inchiostro, tre voci e il telefono. "Escavazioni ed aspirazioni a" a 30 px, "risucchio" a 276 px (Archivo 500, larghezza 125 %), "controllato" a 30 px. Il mezzo, 884 px, poggia in basso a destra sul margine. A sinistra ci sono tre righe, il bottone rosso e l'email; la riga del bottone sta sulla linea di terra della ruota anteriore. Sotto, la didascalia.
-- **Seconda schermata**: "Nove lavori, per enti pubblici e privati" e le nove voci a 32 px, poi il quadro 2:1 (all'apertura è scelta la voce del risucchio, con il retro del braccio ad arco, una foto loro).
-- **390x844**: le tre righe del titolo con "risucchio" a tutta larghezza, il mezzo intero, la didascalia, il testo, il bottone e l'email, tutto nella prima schermata.
-- **Altezze**: 4819 px a 1440 e 4022 a 390, piede compreso.
+- **Apertura a 1440 con la foto vera a destra**, come chiede la scheda (par. 4) e come fanno Eggentaler e Kline: griglia 7/5, a sinistra occhiello, H1 a 64 px, la riga loro, "Chiama 049 625336" e "Scrivi per un preventivo", l'indirizzo con la mappa; a destra una foto verticale 4:5 alta 633 px, l'escavatore della Ditta che carica il cassone rosso del DAF (`pagina-iniziale-1`, 2000 px, ritagliata a 704x880 e servita senza ingrandire). Via il pannello di sei riquadri bordati, che sembrava un'interfaccia.
+- **Le sei voci in una striscia nera sotto l'apertura**, sei colonne divise da filetti verticali, testo bianco: tutte e sei dentro la prima schermata a 1440. A 390 restano dov'erano (sotto i bottoni, prima dell'indirizzo), ma senza bordo: righe a due colonne con filetto, alte 52 px, con la freccia rossa. "Strade e cortili" diventa "Cortili e passi carrai" (le strade sono già nel titolo): il privato legge "passi carrai" senza toccare.
+- **Sotto i 900 px la foto dell'apertura è la stessa scena intera** (striscia larga, art direction con `<picture>`): a 390 resta alta 140 px in fondo alla prima schermata.
+- **Un gesto di scala nella seconda schermata**: "1946" a 144 px (52 a 390) con "La Ditta nasce nel cortile di casa dei tre fratelli Zuin, con il primo autocarro, un DOGE."; accanto tre cifre a 48 px in righe con filetto: 3 generazioni, 2-25 m³ cassoni scarrabili, 30-250 q autocarri (dato del sito `.com`, in SCHEDA par. 1). "SOA" non è più una cifra.
+- **Fascia delle qualifiche**, con filetti e senza loghi (non abbiamo il certificato): Attestazione SOA, qualificazione per i lavori pubblici; REA PD 82662, iscritta alla Camera di Commercio di Padova; ATECO 42.11, costruzione di strade e autostrade.
+- **Serie fotografica** (`_prova/script/pro_img.py`): stessa curva per tutte. Blu del cielo spenti del 45%, saturazione -15%, alte luci compresse fino a 240 (il bianco bruciato diventa il grigio chiaro della pagina), bilanciamento appena freddo. Nelle 4:3 il taglio scende perché il cielo stia attorno al 20% (ritiro, demolizioni, fognature, scavi). La scheda "Scavi e movimento terra" usa ora `movimento-terra-1000x800-1` (stessa giornata dell'apertura, altro punto di vista), così nessuna foto si ripete.
+- **Risucchio**: la frase corretta ("Scavi controllati e aspirazione di qualsiasi materiale: liquido, secco, solido e polveri, anche in luoghi confinati"); i quattro materiali come testo in grassetto separato da punti, non più riquadri che sembrano bottoni; l'autobotte combinata è un link alla scheda "Fognature e spurgo"; la riga "Portata, profondità di scavo e lunghezza del tubo: chiedetecele al telefono, per il vostro lavoro"; i bottoni sotto la foto (niente vuoto nero) e "oppure scrivete a info@fratellizuin.it" in chiaro, da copiare se il computer non ha un programma di posta. "Quantità indicativa" diventa "quantità approssimativa" (anche nella mail).
+- **Sul telefono il risucchio viene subito dopo l'apertura** (comincia a 747 px, la foto si intravede già in fondo alla prima schermata), poi le cifre e le qualifiche: il tecnico vede foto e materiali entro la seconda schermata come prima; a 1440 l'ordine resta apertura, cifre, risucchio (il risucchio comincia a 1,54 schermate).
+- **Schede dei servizi a 390**: foto a tutta larghezza in 3:2 e il testo sotto, invece della miniatura con il testo in una colonna di 182 px.
+- **Lavori a Padova** in righe con filetto (nome a 24 px, a destra tipo e anno), non più schede grigie con "Città Padova" ripetuto.
+- **Per enti e imprese** in una sezione a sé su grigio, dopo il preventivo: il privato arriva prima al modulo. "Dove siamo" passa a bianco.
+- **Modulo**: nessuna scelta preimpostata su "Per quando" (se resta vuota la mail dice "Per quando: da concordare"); le righe dei campi facoltativi vuoti (email, descrizione) non compaiono nella mail.
+- **Testata**: timbro a 128 px a 1440 (testata 88 px) e 84 px a 390 (testata 72). **Piede**: link alti 44 px per il dito, voce "Dati per enti e imprese".
 
-## Caratteri e colori
+### Le 15 regole, una per una
 
-- **Archivo** (Omnibus-Type, Google Fonts, SIL Open Font License 1.1, uso commerciale libero), un solo file variabile servito da `sito/fonts`. Titoli 500 larghi 112-125 %, testo 400 a 18 px; cifre tabellari per telefono, date, codici e m³. La larghezza richiama le scritte dipinte sui mezzi e i nomi dei modelli nei siti di RSP e Sennebogen.
-- **Colori**: fondo #ECD675 (giallo cabina); inchiostro #1B1B19 (11,9:1); testo secondario #36332A; note e virgole #4A4636 (6,5:1). Rosso testo #8E1C17 (6,3:1) per la voce scelta e i passaggi del mouse; bottone #B42620 con il bianco a 6,5:1. Piede #5A2830, con testo #ECD675 e note #E6D9AE, tutte e due oltre 7:1.
-- **Riferimenti**: RSP (il mezzo intero come prodotto, il nome grande), Sennebogen (un colore di marca coerente ovunque), Van Oord (un mezzo solo, titolo sicuro, menu corto), KIBAG (l'anno di fondazione come prova).
+Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi a 1440, 390, 320, 768 e 1024.
 
-## Interazione
+1. **Telefono come bottone nella testata fissa: passa.** Testata fissa 88 px a 1440 e 72 a 390, bottone rosso "049 625336" alto 48 px con la cornetta; a metà pagina si vede e si tocca (`elementFromPoint`) a 1440 e a 390. 6 link `tel:`, tutti `tel:+39049625336`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** H1 con mestiere, "Padova" e "dal 1946"; a 1440 bottone di chiamata a 609 px, foto intera (633 px), le sei voci e l'indirizzo dentro i 900 px; a 390 bottone a tutta colonna (350 su 350) a 251 px, "Scrivi", le sei voci, l'indirizzo con la mappa e la foto (140 px) dentro gli 844 px.
+3. **Immagine vera nell'apertura: passa, con riserva.** Escavatore e autocarro con il cassone rosso al lavoro, foto loro; nessun oggetto scontornato. Riserva: nessuna persona, e la provenienza della foto è "loro (probabile)" (LEGGIMI, foto).
+4. **Zero repertorio: passa.** `grep -ci indicativ index.html` = 0; in `sito/img/` solo foto e logo dal loro sito (`assets/originali/`); nessuna Unsplash o Pexels.
+5. **Foto in serie: passa.** Otto foto dallo stesso archivio con lo stesso trattamento (sopra); formati: a 1440 4:5, 2:1 e 4:3; a 390 striscia 2,79:1, 2:1 e 3:2; nessuna didascalia; nessuna ingrandita. Restano foto d'archivio di giornate diverse: il livello di Klindworth o Wilson arriva solo con la ripresa nuova (LEGGIMI).
+6. **Palette dal marchio: passa.** `--rosso` #B42620 (cassoni), `--rosso-scuro` per il passaggio del mouse, `--nero` #141414 (timbro), `--bianco`; grigi neutri freddi. Fondo bianco, nessun beige.
+7. **Scala tipografica corta: passa.** 7 misure a 1440 (14, 17, 20, 24, 48, 64, 144) e 7 a 390 (14, 16, 18, 20, 30, 34, 52); testo corrente 17 e 16 px; niente sotto i 14 px; H1 64/34, H2 48/30.
+8. **Due famiglie al massimo: passa.** Una sola, Archivo, pesi 400 e 700.
+9. **Servizi in schede con la foto: passa.** Griglia di 3 colonne a 1440 (2 a 1024 e 768, una a 390), sei schede con foto loro, stesso taglio (4:3, 3:2 sul telefono), nome e link, tutta la scheda cliccabile. Strade, cortili, urbanizzazioni e SOA in elenco a righe: le foto di questi lavori non ci sono.
+10. **Almeno tre tipi di prova: non passa (2 su 4).** Ci sono 4 cifre (1946, 3 generazioni, 2-25 m³, 30-250 q) e la fascia delle qualifiche con didascalia (SOA, REA, ATECO). Mancano recensioni (nessuna in rete) e clienti con il nome: non si inventano (LEGGIMI punti 9 e 10).
+11. **Lavori con un nome: non passa.** Tre lavori con luogo e tipo (Ex Foro Boario 1968-69, Azienda del Gas di Via Trieste, Prato della Valle), anno solo per il primo, nessuna foto e nessun numero. Servono lavori recenti con committente, anno, dati e foto (LEGGIMI punto 8).
+12. **Ritmo a blocchi: passa.** Bianco (apertura), nero (striscia, cifre, qualifiche, risucchio), grigio (lavori), bianco (chi siamo), rosso (preventivo), grigio (enti), bianco (dove siamo), nero (piede): 3 blocchi pieni oltre al piede. Sezioni a 120 px a 1440 e 72 a 390; contenitore 1280 px, margini 80 e 20 px.
+13. **Un solo sistema di bottoni: passa.** Pieno rosso e bordato (nero sul chiaro, bianco sul nero), raggio 4 px, 56 px (48 in testata e Menu), testo 17 e 16 px; i bottoni di chiamata contengono il numero. Tolti gli altri stili bordati (riquadri delle voci, materiali); restano solo le radio del modulo, che sono controlli.
+14. **Modulo e "dove" per il mestiere: non passa (manca l'elenco dei comuni).** Modulo con nome, telefono, email, tipo di lavoro (10 voci), indirizzo del lavoro, descrizione, per quando (nessuna scelta preimpostata) e l'istruzione per le foto (un mailto non porta allegati); nessun iframe di mappa. Le zone servite non sono note (LEGGIMI punto 2).
+15. **Piede completo: non passa (mancano orari e zone).** Quattro colonne, testo di almeno 14 px, logo, nome, telefono, fax, email, sedi con la mappa, lavori, P.IVA, REA, SOA, Privacy e Cookie. Orari, zone e PEC non sono nelle fonti (LEGGIMI punti 1, 2 e 6).
 
-Un gesto solo: le nove voci dei lavori sono bottoni dentro una frase. Al clic o al tocco cambiano la foto (cambio netto quando è caricata), il nome, la frase e "n di 9". Da tastiera funzionano Tab, Invio, Spazio e le frecce; lo stato sta in `aria-pressed` e l'area ha `aria-live`. L'unica transizione è il colore della voce, 0,12 s. Niente animazioni allo scorrere, niente effetti sul cursore. Sul telefono il menu e le colonne del piede si aprono con bottoni veri (`aria-expanded`).
+### Compiti dei clienti tipo e della scheda (par. 8)
 
-## Piede
+- *Privato, 390*: bottone tel: alto 56 px a 251 px, la testata con il numero resta fissa; "Cassoni scarrabili 2-25 m³", "Fognature e spurgo" e "Cortili e passi carrai" visibili senza toccare; "Via Bassette 6/A, Padova Est" visibile e apre Maps; "Scrivi per un preventivo" apre con un tocco l'email con oggetto e traccia (indirizzo, foto); il modulo arriva prima dei dati per gli enti; nessun orario inventato.
+- *Tecnico, 1440 e 390*: a 1440 il risucchio comincia a 1,54 schermate, foto e "liquido, secco, solido e polveri" nella seconda schermata (a 390 la sezione comincia a 0,88 schermate); chiamata, email ed email in chiaro dalla sezione; l'autobotte porta alla scheda dello spurgo.
+- *Ente, 1440*: SOA, REA e ATECO nella seconda schermata; ragione sociale, P.IVA, sedi in "Per enti e imprese" e nel piede, senza fisarmoniche; storia dal 1946 e tre lavori di Padova per nome.
+- Prove automatiche (`pro_controlli.mjs`): menu del telefono aperto e chiuso; "Dove siamo" sotto la testata; la scheda "Fognature e spurgo" sceglie "Fognatura o spurgo" nel modulo; invio vuoto fermato con "Mancano: nome e cognome, telefono, indirizzo del lavoro." e il fuoco sul nome; email composta senza la riga vuota "Email:" e con "Per quando: da concordare"; nessun errore di script.
 
-Fondo bordeaux della fascia, timbro giallo (PNG a 2x) e una riga su chi sono. Tre colonne:
-- Azienda: Chi siamo, La storia dal 1946, Dove siamo, Preventivi.
-- Lavori: le nove voci.
-- Contatti: telefono con tel:, fax, email con mailto:, sede operativa con il link alla mappa, sede legale.
+### Caratteri e licenze
 
-In fondo la riga legale: F.lli Zuin & C. snc, P.IVA e C.F. 00259210284, REA PD 82662, Privacy, Cookie. A 768 le colonne restano tre, a 390 diventano una fisarmonica. Niente newsletter: l'azienda non ha novità, fiere o cataloghi da comunicare, e i clienti chiamano per un preventivo. Niente Seguici: non hanno social.
+- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina (`sito/fonts/archivo-latin-var.woff2`), licenza in `sito/fonts/OFL.txt`. Pesi 400 e 700.
+- Foto e logo: solo materiale del loro sito (`assets/originali/`), da usare con il loro permesso. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
 
-## Controlli (2 novembre)
+### Controlli fatti (3/11/2026)
 
-- **Scorrimento orizzontale**: scrollWidth uguale a innerWidth a 320, 360, 390, 414, 600, 768, 860, 1024, 1180, 1280, 1440, 1680, 1920 e 2560 (`_prova/script/finale_prova.mjs`). Screenshot a 1440 e 390, e prime schermate a 320, 768, 1024 e 1920, guardati a pezzi.
-- **Gesto**:
-  - Frecce provate su tutte e nove le voci, poi Spazio e Invio: una sola voce premuta alla volta, "Foto indicativa" solo sui sei segnaposto, posizione della sezione seguente ferma.
-  - Tocco a 390 su cassoni e movimento terra.
-  - Fisarmonica del piede aperta e chiusa col tocco, menu aperto col bottone.
-- **Collegamenti**: tel:+39049625336, mailto:info@fratellizuin.it (con l'oggetto "Richiesta di preventivo" nei bottoni), Google Maps su Via Bassette 6/A 35129 Padova.
-- **Segnali da IA** (`segnali.sh`): 0 soglie bloccanti su 10. Foto al 35,4 % della pagina, una sola famiglia, nessun titolo nero, niente monospazio, niente etichette maiuscole. Un "da guardare": due misure di H2 (56 e 60 px), scelta voluta.
-- **Testo**: nessun carattere U+2014 in pagina, nota e LEGGIMI; nessun segnaposto in pagina. L'unico trattino è U+2013 in "1968–69".
-- **Dati**: ogni fatto viene da `01-analisi.md`. Restano da confermare nel LEGGIMI: 1946 contro 1977, MAN TGA 35.410, le frasi dei lavori scritte da noi e la provenienza delle foto.
+- `sh _prova/script/build_finale.sh`: immagini, pagina, controlli di testo, screenshot, `pro_controlli.mjs` (regole 1-9, 12 e 13 superate nelle misure; 10, 11, 14 e 15 no, per i motivi sopra).
+- Nessuno scorrimento orizzontale a 320, 390, 768, 1024, 1280, 1440 e 1920; nessuna sovrapposizione nell'apertura e nessun testo che esce da bottoni, schede, cifre o qualifiche.
+- Screenshot guardati a pezzi a 1440 e a 390, prime schermate e pezzi a 320, 768 e 1024. Nessun U+2014 in pagina, nelle note e negli script.

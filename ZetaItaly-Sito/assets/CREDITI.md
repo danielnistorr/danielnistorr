@@ -31,6 +31,12 @@ Scaricate il 24/10/2026 dal codice delle 69 pagine della sitemap di https://www.
 
 I file `logo-*` vengono dal sito: `logo-zeta-2268x1098.png` (logo della testata, PNG con trasparenza), `logo-zeta-2270x1098-originale.png` (lo stesso prima del ritaglio), favicon 96, 180 e 512 px, `logo-favicon-svg-con-png-dentro.svg` (un SVG che contiene solo un PNG) e `logo-zeta-variante-arrotondata-da-pdf.svg`, estratto dai tracciati vettoriali della scheda `2024_02_plastica-naturale.pdf`: è un ridisegno con angoli arrotondati, la A senza occhiello e "s.r.l." più sottile, quindi NON è fedele al logo della testata.
 
-## Usate nella home finale (`sito/img/`, 24/10/2026)
+## Usate nella home (`sito/img/`, livello professionale, 3/11/2026)
 
-Solo foto di Zeta S.r.l. da `originali/`, lavorate con `_prova/script/finale_img.py`: `2019_12_couvette-campionario-1.jpg` (apertura, scontornata, specchiata, ruotata di 7 gradi, interno schiarito, scritta della copertina tolta; e il primo piano del bordo saldato nel selettore), `2019_12_porta-campioni-1.jpg` e `2019_12_cartella-campionario.jpg` (selettore, scontornate su piano chiaro), `2023_02_LAVORAZIONE-PLASTICA-RICICLATA.jpg` (storia), `2023_02_BUSTE-PVC-SU-MISURA.jpg` (chiusura, taglio 4:3), `logo-zeta-2268x1098.png` (WebP 300 e 600 px). Nessuna foto esterna è usata nella home finale.
+Solo foto di Zeta S.r.l. da `originali/`, ritagliate con `_prova/script/pro_img.py` (ritaglio, misura e un filo di contrasto uguale per la serie; nessun ritocco, nessuno scontorno, nessuna rotazione):
+
+- prodotti, serie 2019 su fondo grigio scuro, 3:2 a 400 e 640 px (aggiornato il 3/11/2026): `2019_12_couvette-campionario-1.jpg` (raccoglitori), `2019_12_busta-perforazione-universale.jpg` (buste), `2019_12_cartelline-a-L-fondo-colorato-semirigido.jpg` (cartelle), `2019_12_copertina-agenda-1.jpg` (copertine, tagliata sotto la copertina con il bambino, senza pezzi arancio), `2019_12_portalibretto-auto-porta-libretto-moto.jpg` (portadocumenti), `2019_12_porta-campioni-1.jpg` (custodie e accessori), `2019_12_custodia-libretto-vaccinazioni-cane.jpg` (pet food), `2019_12_portapenne-salva-camice-medico.jpg` (medicali, al posto di `2019_12_box-campionario-farmacia.jpg`, che aveva grana e grigi diversi dalla serie);
+- reparto, servizio 2023: `2023_02_BUSTE-PVC-SU-MISURA.jpg` (apertura, intera 1200x500, a 600, 900 e 1200 px) e `2023_02_LAVORAZIONE-PLASTICA-RICICLATA.jpg` (azienda, 640 e 1024 px, in pagina 3:2 larga al massimo 560 px);
+- `logo-zeta-2268x1098.png` (WebP 300 e 600 px, già pronti).
+
+Tolte dalla home rispetto alla versione di prima (copiata in `_prova/versione-1-originale/`): la busta a quattro spazi ricostruita come film e ruotata (`2019_12_busta-pvc-4-spazi.jpg`) e le tre foto del selettore dei materiali. Nessuna foto esterna è usata: le dieci di `esterne/` restano solo come archivio della proposta e non vanno pubblicate.

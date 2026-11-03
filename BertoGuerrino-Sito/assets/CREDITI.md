@@ -24,6 +24,10 @@ Licenza verificata il 24/10/2026 sulla pagina di ogni foto. Unsplash: "Free to u
 
 Nota sul rullo giallo di Eiermann: è una macchina di un altro costruttore (giallo e rosso sono i colori di un marchio noto). Nell'inquadratura c'è solo il giallo e nessun logo; usarla solo come dettaglio di acciaio, mai come "macchina Berto".
 
-## Uso nella home finale (`sito/`)
+## Uso nella home finale (`sito/`, livello professionale, 3/11/2026)
 
-Nessuna foto di repertorio. Tutte le immagini della pagina sono dell'azienda: foto in studio delle schede, `FOTO-3` della galleria, l'anteprima del video YouTube `5b_3K-YZ2zk` del loro canale (chiusura) e il logo dal cartello giallo. Seymour (`Dwt1Ozz1Qfc`), usata nella chiusura della versione giudicata, è stata tolta.
+Nessuna foto di repertorio: nessuno dei file di `assets/esterne/` è in pagina (restano qui con la loro licenza, non usati). Tutte le immagini della pagina sono dell'azienda, fatte da `_prova/script/pro_img.py`:
+- otto foto in studio delle schede (`vivaio__images__STERRAPIANTE.png`, `SCALZAPNEUS.png` solo il modello a destra, `PORTA-INNESTI.png`, `PRIMI-RAMI-CEPPAIA.png`, `FRESATRICE.png`, `TRAPIANTATRICE.png`, `AGEVOLATRICE.png`, `PIRAGNA.png`), cornice e didascalia tolte, nello stesso riquadro 4:3 sul grigio #F1F2F4, mai ingrandite;
+- quattro foto della galleria in campo (`vivaio__gallery__FOTO-3.jpg` in apertura, anche ritagliata 500x250 per il telefono, `foto-7.jpg`, `FOTO-2.jpg`, `FOTO-5.jpg`), alla loro misura di 500 px, con la stessa correzione del colore (ritocco finale del 3/11/2026);
+- il logo dal cartello giallo (`images__apertura.png`).
+Tolta rispetto alla versione 1: l'anteprima YouTube `5b_3K-YZ2zk` della trincia Piragna (fotogramma SD ingrandito nella chiusura). Seymour (`Dwt1Ozz1Qfc`) era già stata tolta prima.

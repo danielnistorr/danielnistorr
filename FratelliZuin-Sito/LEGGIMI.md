@@ -1,76 +1,66 @@
 # Fratelli Zuin: proposta di nuova homepage
 
-Proposta non richiesta di una nuova home per F.lli Zuin & C. snc (Padova), movimento terra, lavori stradali, demolizioni e aspirazioni con escavatori a risucchio. Solo la home. Nessun contatto con l'azienda, niente di pubblicato.
+Proposta non richiesta di una nuova home per F.lli Zuin & C. snc (Padova Est): scavi e movimento terra, cassoni scarrabili, demolizioni, fognature e spurgo, lavori stradali, escavatori a risucchio. Solo la home. Nessun contatto con l'azienda, niente di pubblicato.
+
+Versione di oggi: "livello professionale" del 3/11/2026, con il ritocco finale dopo il controllo del livello e le prove dei clienti tipo (cosa è cambiato: `screenshot/home/NOTA.md`) (regole in `_metodo/professionale/REGOLE.md`, famiglia S; scheda d'uso in `_prova/uso/SCHEDA.md`). La versione di prima (fondo giallo, "risucchio" a tutta pagina, foto Unsplash) è in `_prova/versione-1-originale/`.
 
 ## Cosa c'è
 
-- `sito/index.html`: la home, una pagina sola, senza librerie esterne.
-- `sito/img/`: solo le immagini usate, JPEG o WebP in più larghezze (srcset).
-- `sito/fonts/archivo-latin-var.woff2`: Archivo variabile, servito dalla pagina (licenza sotto).
-- `screenshot/home/`: home a 1440 e a 390 (intere e prima schermata), chiusura e piede a 1440; `NOTA.md` con idea, scelte, controlli e cosa è cambiato il 2 novembre.
-- `_prova/script/build_finale.sh`: rifà immagini, pagina, controlli di testo e screenshot. Usa `finale_img.py` (scontorno e trattamento delle foto), `home-finale.html` (sorgente della pagina) e `finale_shoot.mjs` (screenshot JPEG); `finale_prova.mjs` prova scorrimento orizzontale, tastiera, tocco e collegamenti. La pagina si prova meglio da un server (`python3 -m http.server` dentro `sito/`), anche se si apre pure da file.
-- `01-analisi.md`: fatti con le fonti, voti delle foto, direzioni e riferimenti. `_prova/home/a` e `_prova/home/b`: i due prototipi; la home finale parte da A, "Il risucchio".
+- `sito/index.html`: la home, una pagina sola, senza librerie esterne. Si apre anche da file.
+- `sito/img/`: solo foto e logo dal loro sito, JPEG in più larghezze (srcset), nessuna ingrandita.
+- `sito/fonts/archivo-latin-var.woff2` e `OFL.txt`: Archivo variabile, servito dalla pagina (licenza sotto).
+- `screenshot/home/`: home a 1440 e a 390 (intere e prima schermata), chiusura e piede a 1440; `NOTA.md` con le scelte, l'esito delle 15 regole e i controlli.
+- `_prova/script/build_finale.sh`: rifà tutto. Usa `pro_img.py` (immagini), `home-pro.html` (sorgente della pagina), `pro_shoot.py` e `pro_vista.mjs` (screenshot), `pro_controlli.mjs` (15 regole, prove d'uso, larghezze; esito in `_prova/pro_controlli.json`).
+- `01-analisi.md`: fatti con le fonti, voti delle foto.
 
-## Pagine del sito nuovo a cui puntano i link del piede
+## Il modulo di preventivo va collegato
 
-Oggi esistono solo nella proposta; i nomi dei file sono indicativi.
+Il modulo in home (nome, telefono, email, tipo di lavoro, indirizzo del lavoro, descrizione, per quando) oggi **compone un'email** a info@fratellizuin.it con oggetto "Richiesta di preventivo: <tipo>" e i campi compilati nel testo ("Per quando: da concordare" se non si sceglie), e chi scrive aggiunge le foto a mano. Al computer senza programma di posta il mailto non si apre: per questo nella sezione del risucchio l'indirizzo è scritto anche in chiaro. Per la pubblicazione va collegato a un servizio di invio (il modulo del CMS, oppure Formspree, Netlify Forms o simili) con: caricamento delle foto (2-3 immagini, fino a 10 MB), consenso privacy, risposta automatica a chi scrive, protezione dallo spam. Da decidere con l'azienda chi riceve le richieste e in quanto tempo risponde (una promessa come "entro 48 ore" si scrive solo se la danno loro).
 
-- `azienda.html` (Chi siamo) e `azienda.html#storia` (La storia dal 1946)
-- `servizi.html` con le ancore dei nove lavori: `#risucchio`, `#movimento-terra`, `#lavori-stradali`, `#demolizioni`, `#urbanizzazioni`, `#fognature`, `#esterne`, `#ritiro` (il noleggio ha una pagina sua)
-- `noleggio-scarrabili.html` (cassoni da 2 a 25 m³)
-- `dove-siamo.html` (istruzioni dal casello di Padova Est, cartina)
-- `contatti.html` (Preventivi, modulo con consenso privacy)
-- `privacy.html` e `cookie.html` (oggi la cookie policy è dentro la privacy policy: va separata, e il banner deve chiedere un consenso vero, non "se continui a leggere accetti")
+## Da chiedere all'azienda prima di pubblicare
 
-La testata e i link della pagina portano alle sezioni della home (Lavori, Storia, Dove siamo).
-
-## Dati da confermare con l'azienda
-
-- **Anno**: il sito scrive "nasce nel 1946", il registro delle imprese "Fondazione 1977" (la snc di oggi). In pagina "dal 1946" e "tre generazioni", come scrive l'azienda.
-- **Mezzo dell'apertura**: "MAN TGA 35.410" è letto sulla cabina nella foto; i quattro assi sono contati nella foto. Confermare modello e che sia ancora in uso.
-- **Titolo**: è la scritta dipinta sulla fiancata ("Escavazioni ed aspirazioni a risucchio controllato"), con "risucchio" in grande. Va bene come prima frase del sito? In alternativa si tiene la stessa impaginazione con un'altra parola loro.
-- **Colori**: il giallo del fondo (#ECD675) è il giallo della cabina MAN schiarito, il bordeaux del piede (#5A2830) è la fascia con la scritta, il rosso (#B42620) è il cassone: misurati sulle foto, da confrontare con i codici RAL della carrozzeria se il carrozziere li ha.
-- **Foto loro o no**: gallery1 (autocarri sul piazzale), gallery4 (risucchio da dietro), pagina-iniziale-2 (pala CAT sulle macerie, usata per il ritiro del materiale) e pagina-iniziale-1 (Hitachi e DAF, chiusura): sono loro mezzi e loro cantieri?
-- **Frasi brevi dei lavori** da far approvare: per urbanizzazioni ("Opere di urbanizzazione per committenti pubblici e privati"), fognature, ritiro del materiale e sistemazioni esterne il sito ha solo il nome della voce; le frasi in pagina sono scritte da noi a partire dai loro testi.
-- **Frase della chiusura**: "Scarrabili della larghezza di un'automobile, in grado di intervenire in qualsiasi situazione e spazio" è la loro frase della pagina Azienda; confermare che gli scarrabili piccoli ci siano ancora.
-- **SOA**: categorie, classifiche e scadenza. In pagina solo "attestazione di qualificazione SOA", come sul sito.
-- **Nome nel piede**: "F.lli Zuin & C. snc" (sito) oppure "FRATELLI ZUIN SNC DI ZUIN ANTONIO, LUIGI, ANDREA & C." (registro).
-- **PEC** (non trovata), **orari** di ufficio e del piazzale (non indicati: in pagina non ci sono), un eventuale cellulare per le urgenze, **fax** 049 6458813 ancora attivo.
-- Un paio di **lavori recenti veri** (committente, luogo, anno) e le **foto d'archivio** di famiglia (autocarro DOGE, Foro Boario 1968-69) con il permesso di pubblicarle: darebbero alla storia le immagini che oggi mancano.
+1. **Orari** d'ufficio e del piazzale (in pagina non ci sono: la regola 15 li vuole nel piede), e un **cellulare o WhatsApp per le urgenze**, se c'è.
+2. **Zone servite**: l'elenco dei comuni (Padova, Vigonza, Noventa, Cadoneghe...?) per la sezione "Dove siamo" e il piede. Oggi non c'è nessun elenco, per non inventarlo.
+3. **Misure dei cassoni e degli autocarri**: il sito `.it` dice "da 2 a 25 mc", il `.com` "da 3 MC a 18 MC". In pagina 2-25 m³ (sito principale). Nelle cifre c'è anche "30-250 q", autocarri da 30 a 250 quintali, dal sito `.com` (letto nei risultati di ricerca): da confermare.
+4. **Spurgo e canal jet**: lo scrive il sito `.com` ("spurgo e il lavaggio con il sistema canal jet"); confermare che lo fanno ancora, e anche la vendita di materiali e il noleggio mezzi.
+5. **SOA**: categorie, classifiche e scadenza, e il PDF dell'attestazione da mettere in "Per enti e imprese" come file scaricabile (come Eggentaler), e il nome dell'organismo SOA. Oggi in pagina ci sono la fascia delle qualifiche (Attestazione SOA, REA PD 82662, ATECO 42.11, senza loghi), la frase del loro sito e il bottone che chiede il documento per email. Con categorie e classifiche la fascia diventa più forte ("OG3 classifica ...").
+6. **PEC** (non trovata), **fax** 049 6458813 ancora attivo?, **nome da mostrare** ("F.lli Zuin & C. snc" del sito, nel piede; la ragione sociale del registro "Fratelli Zuin snc di Zuin Antonio, Luigi, Andrea & C." è nei dati per gli enti).
+7. **Anno**: il sito scrive "nasce nel 1946", il registro "Fondazione 1977" (la snc di oggi). In pagina "dal 1946" e "tre generazioni", come scrive l'azienda.
+8. **Lavori con un nome** (regola 11): tre o quattro lavori recenti con committente o luogo, anno, due o tre numeri (metri di strada, m³ di scavo, giorni) e una foto ciascuno. Per i lavori storici (Foro Boario 1968-69, Azienda del Gas di Via Trieste, Prato della Valle) gli anni mancanti e le foto d'archivio.
+9. **Recensioni e clienti** (regola 10): nessuna recensione in rete (Reteimprese e Pagine Gialle: nessuna). Se vogliono, chiedere ai clienti una recensione su Google; e i nomi di enti e imprese per cui lavorano, con il permesso di citarli.
+10. **Numeri della Ditta**: quanti mezzi (autocarri, escavatori, escavatori a risucchio), quante persone (Atoka stima circa 16 dipendenti: non è in pagina finché non lo confermano).
+11. **Dati e usi del risucchio**: profondità, portata, lunghezza del tubo, che cosa non aspira; e gli usi tipici che fanno davvero (scavi vicino a tubazioni e cavi, pulizia di silos, vasche e capannoni, aspirazione di inerti, fanghi e polveri), da scrivere in un elenco "Si usa per" solo quando li confermano. Oggi la pagina dice di chiederli al telefono.
+12. **Foto**: che tutte quelle in pagina siano mezzi e cantieri loro (`pagina-iniziale-1` in apertura, `movimento-terra-1000x800-1`, `gallery2`, `gallery3`, `gallery4`, `pagina-iniziale-2`, `demolizioni-1000x800-1`, `lavori-stradali-1000x800-1`); in particolare l'escavatore Hitachi e il DAF dell'apertura, che l'inventario segna "loro (probabile)". Nell'ultima il cassone ha una scritta sul portellone ("F.LLI CAMION..."?): verificare che non sia un mezzo di un'altra ditta.
+13. **Frasi** da far approvare: le righe brevi delle schede sono prese dai loro testi (`.it` e `.com`) e accorciate; "Scavi controllati e aspirazione di qualsiasi materiale" corregge la loro frase ("scavi controllati e ideali per aspirare"); "Cosa scriverci", "Per una richiesta bastano luogo, materiale, quantità approssimativa e data", "Portata, profondità di scavo e lunghezza del tubo: chiedetecele al telefono" e le didascalie delle qualifiche sono scritte da noi.
+14. Quale dei due siti (`fratellizuin.it` o `.com`) è quello giusto.
 
 ## Foto
 
-Trattamento unico (PIL): colori un po' spenti e caldi, neri sollevati; lo scontorno non ha maschera di nitidezza (sarebbe andata sopra gli artefatti JPEG), il bordo è ripulito dal bianco del cielo. Nessuna immagine generata dall'IA, nessuna foto ingrandita oltre l'originale.
+In pagina solo foto loro (`assets/originali/`), con un trattamento unico (`_prova/script/pro_img.py`: livelli puliti, blu del cielo spenti del 45%, saturazione -15%, alte luci compresse a 240, bilanciamento appena freddo, tagli con il cielo attorno al 20%), in tre formati per vista: a 1440 4:5 (l'escavatore che carica il cassone, in apertura), 2:1 (il risucchio), 4:3 (le schede); sotto i 900 px la stessa scena dell'apertura in striscia larga e le schede in 3:2. `gallery1` (il parco autocarri) non è più in pagina. Nessuna foto di repertorio: le sei Unsplash della versione di prima sono state tolte dalla pagina (restano in `assets/esterne/`, vedi `assets/CREDITI.md`). Nessuna immagine generata dall'IA, nessun disegno.
 
-Loro (dal sito di oggi, `assets/originali/`):
-- `gallery3.jpg`, escavatore a risucchio scontornato con il muso intero (contorno destro della cabina disegnato a mano) e ombra disegnata: apertura, 884 px a 1440.
-- `gallery4.jpg` (retro col braccio ad arco), `gallery1.jpg` (autocarri), `pagina-iniziale-2.jpg` (pala CAT sulle macerie): tre dei nove lavori.
-- `pagina-iniziale-1.jpg`, Hitachi che carica il DAF: chiusura, taglio 2,2:1.
-- Logo: `logo-zuin-nero-765x463.png` ricolorato in inchiostro #1B1B19 (testata) e in giallo #ECD675 (piede), PNG a 300 px (2x).
+### Da rifare dal vero (in ordine di importanza)
 
-Segnaposto Unsplash (licenza Unsplash verificata sulla pagina di ogni foto, autori e pagine in `assets/CREDITI.md`; in pagina con "Foto indicativa"), tutti ripresi da terra come le foto loro: Marek Studzinski (demolizioni), Anna Kharkivska (urbanizzazioni), John Kakuk (fognature), Wolfgang Weiser (lavori stradali, ritaglio stretto), Troy Mortier VOgZMixWOHo (movimento terra), Annie Spratt (sistemazioni esterne). Nessuna è usata in un'altra home della campagna (controllato sui CREDITI.md delle altre cartelle il 02/11/2026).
+1. **Apertura: la squadra davanti ai mezzi**, in divisa, nel piazzale di Via Bassette, con due o tre autocarri con il timbro sulle portiere leggibile e un cassone rosso. Mattino presto o cielo coperto chiaro, niente ombre dure; obiettivo 35-50 mm da 10-15 m, camera ad altezza d'uomo; almeno 4000 px sul lato lungo, orizzontale e una verticale per il telefono. Sostituisce l'apertura di oggi (`pagina-iniziale-1`: mezzi al lavoro ma nessuna persona, luce di mezzogiorno con foschia) e il parco autocarri `gallery1`. Se possibile, tutta la serie nella stessa giornata e con la stessa luce: è quello che oggi il trattamento comune può solo avvicinare.
+2. **Il risucchio al lavoro**: il mezzo di tre quarti dal lato del braccio con il tubo aperto su uno scavo vero (vicino a tubi o cavi) e un operaio; poi un dettaglio della bocca del tubo. Stessa luce della serie.
+3. **Un cassone scarrabile piccolo** "della larghezza di un'automobile" in una via stretta o un cortile, mentre viene posato.
+4. **Le schede, una foto per lavoro, stesso taglio 4:3**: scavo per un allaccio, demolizione con pinza, ritiro macerie, spurgo con l'autobotte, un cortile o passo carraio finito, una strada o rotatoria finita (anche con drone, mezzogiorno coperto). Le schede di strade, cortili e urbanizzazioni oggi non hanno foto.
+5. **Ritratti** dei titolari e di chi risponde al telefono (per una futura sezione "squadra", regola A1 punto 6), luce naturale.
+6. **Archivio di famiglia**: il DOGE, il Foro Boario, il Prato della Valle, digitalizzati a 600 dpi, con il permesso di pubblicarli.
 
-### Da rifare dal vero
+## Pagine collegate dal piede
 
-1. **Il risucchio, per l'apertura** (la più importante): mezzo intero di tre quarti dal lato del braccio, con almeno due metri di spazio davanti al muso (oggi il muso arriva a 4 px dal bordo della foto e il contorno destro della cabina è disegnato a mano; la foto è di 1365 px, per questo in pagina il mezzo non supera i 884 px). Fondo neutro: in pagina il giallo lo mette il sito. Piazzale pulito, cielo coperto chiaro o mattino presto, nessuna ombra dura; macchina ferma su treppiede, obiettivo 50-85 mm da 15-20 m per non deformare, altezza della camera a metà cassone; almeno 4000 px sul lato lungo. Uno scatto anche col braccio aperto.
-2. **Il braccio ad arco e il tubo** in dettaglio, stessa luce.
-3. **Un cassone scarrabile piccolo**, "della larghezza di un'automobile", in una via stretta.
-4. **Un lavoro stradale finito** (rotatoria, pista ciclabile) dall'alto con drone, mezzogiorno coperto; e uno scavo con il risucchio in un luogo confinato.
-5. **Movimento terra e demolizioni** con i loro escavatori, per sostituire i segnaposto Unsplash.
-6. **La squadra** davanti ai mezzi, in divisa, luce naturale.
-7. **Archivio di famiglia**: DOGE, Foro Boario, Prato della Valle, digitalizzati a 600 dpi.
-
-## Licenze
-
-- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1: uso commerciale libero, file servito da `sito/fonts`.
-- **Foto Unsplash**: Unsplash License (uso commerciale, attribuzione non obbligatoria; vietato rivenderle senza modifiche). Restano segnaposto da sostituire.
-- **Foto e logo dell'azienda**: dal loro sito, usati solo per la proposta.
+Oggi esistono solo come nomi: `privacy.html` e `cookie.html` (la cookie policy di oggi è dentro la privacy policy: va separata, e il banner deve chiedere un consenso vero, non "se continui a leggere accetti"). Tutti gli altri collegamenti della home portano alle sezioni della pagina.
 
 ## Logo
 
-Esiste solo come PNG da scansione di un timbro ovale (765x463, bordi frastagliati): nessun SVG nel sito. In pagina è il PNG ricolorato in inchiostro a 2x, nitido alle misure usate (96 e 150 px). Un SVG va ridisegnato a mano dal file originale (tipografia o carrozziere che dipinge i mezzi) e approvato dall'azienda; il rosso del timbro (#FF0000) resta da usare solo dove lo vogliono loro.
+Esiste solo come PNG da scansione di un timbro ovale (765x463, bordi frastagliati): in pagina è ricolorato in nero #141414 (testata) e in bianco (piede), PNG a 2x; l'icona del browser è il timbro rosso a 64 px. Un SVG va ridisegnato a mano dal file originale (tipografia o carrozziere che dipinge i mezzi) e approvato dall'azienda.
+
+## Licenze
+
+- **Archivo** (Omnibus-Type), Google Fonts, SIL Open Font License 1.1: uso commerciale libero, file servito da `sito/fonts` con `OFL.txt`.
+- **Foto e logo dell'azienda**: dal loro sito, usati solo per la proposta.
 
 ## Newsletter e social
 
-- **Newsletter: no.** L'azienda non ha novità, fiere, cataloghi o collezioni da comunicare; enti, imprese e privati chiamano per un preventivo.
+- **Newsletter: no.** L'azienda non ha novità, cataloghi o eventi da comunicare; si chiama per un preventivo.
 - **Seguici: no.** Nessun profilo social esiste (né nel codice del sito né in rete).

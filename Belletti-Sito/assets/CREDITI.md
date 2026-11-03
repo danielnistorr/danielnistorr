@@ -37,11 +37,12 @@ Estratte il 24/10/2026 con `pdfimages` dai PDF dei redazionali DiBaio pubblicati
 - Dalle gallerie del sito: `fn000008` cabina tonda nella scala elicoidale (tessera Ascensori), `fn000053` montacarichi con il carrello elevatore (tessera Montacarichi).
 - Segnaposto di repertorio già elencati sopra: Charkoftaki (`pexels-16261027`, Rodolfo), Erdoğan (`pexels-32684366`, Paolo ed Elvira), Jeromin (`pexels-11572257`, Assistenza). In pagina hanno la didascalia "Foto indicativa". Nessuna nuova foto scaricata.
 
-## Uso nella home finale (`sito/`)
+## Uso nella home finale (`sito/`, livello professionale, 3/11/2026)
 
-Solo foto di impianti Belletti, nessuna foto di repertorio. Script: `_prova/script/finale_img.py`.
-- Apertura: Ca' della Nave, Martellago, dalla corte (`_prova/crawl/pdfimg/mart-007.jpg`, dal redazionale `01_DiBaio_Martellago.pdf`, 942x694, la più grande nel PDF), inquadratura intera senza le panchine, 942x592, mostrata al massimo a 900 px; per il telefono taglio 4:5 di 456x570.
-- Lavori: Galleria Cavour (`cav-003.jpg`, `02_DiBaio_Cavour.pdf`), Ca' Michiel (`depliant/d-020.jpg`, taglio alto sulla cabina col mosaico), Ca' della Nave dall'alto (`mart-021.jpg`).
-- Chiusura: la sede di Mestrino di sera con il furgone dell'assistenza (`depliant/d-027.jpg`), targa sfocata.
+Solo foto di Belletti, nessuna foto di repertorio: le nove foto di `assets/esterne/` (Pexels e Unsplash) non sono in pagina e nessuna è stata scaricata di nuovo. Script: `_prova/script/pro_img.py` (stesso trattamento per tutte, mai oltre la misura d'origine).
+- Apertura: la sede di Mestrino di sera con il furgone dell'assistenza (`depliant/d-027.jpg`, targa sfocata), 4:5 e striscia per il telefono.
+- Assistenza: il tecnico al quadro (`depliant/d-033.jpg`). Ammodernamento: la scala del palazzo con la cabina d'epoca (`depliant/d-036.jpg`).
+- Lavori: Galleria Cavour di sera (`depliant/d-037.jpg`), Ca' Michiel (`depliant/d-020.jpg`), Ca' della Nave dalla corte (estratta al momento da `pdf/01_DiBaio_Martellago.pdf`, 942x694, senza le panchine).
+- Impianti nuovi: `gallerie/fn000008.jpg` (cabina tonda nella scala elicoidale), `depliant/d-002.jpg` (torre in vetro), `gallerie/fn000053.jpg` (montacarichi), `depliant/d-030.jpg` (montauto), `gallerie/fn000257.jpg` (piattaforma), `gallerie/fn000165.jpg` (tappeti mobili).
 - Logo: `originali/logo-belletti-depliant.svg`.
-Diritti del fotografo e dell'editore DiBaio da chiedere a Belletti. Per provare la conversione delle foto CMYK di Villa Pavan è stato scaricato, solo come strumento e poi cancellato, il profilo "Artifex CMYK SWOP" di Ghostscript (github.com/ArtifexSoftware/ghostpdl); Villa Pavan non è nella home finale.
+Diritti del fotografo del depliant e dell'editore DiBaio da chiedere a Belletti. Le foto della home di prima (Ca' della Nave in apertura, Galleria Cavour di giorno da `cav-003.jpg`, la scala a chiocciola da `mart-021.jpg`) sono nella copia `_prova/versione-1-originale/sito/img/`.

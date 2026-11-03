@@ -2,71 +2,59 @@
 
 Proposta non richiesta di una nuova home per ruffatti.com (solo la home). Non è stata inviata, pubblicata o mostrata all'azienda.
 
+Versione attuale: **livello professionale** (3/11/2026), costruita sulla scheda d'uso `_prova/uso/SCHEDA.md` e sulle regole di `_metodo/professionale/REGOLE.md` (famiglia M, manifattura e fornitori del lusso). La versione precedente ("Una canna", con la canna ad ancia smontata in apertura) è conservata com'era in `_prova/versione-1-originale/` (pagina, immagini e screenshot).
+
 ## Dove sono le cose
 
-- **Home finale**: `sito/index.html`, con `sito/img/` (solo le immagini usate, JPEG in più larghezze) e `sito/fonts/` (Gambetta e Switzer in woff2). Si apre con file:///, senza server.
-- **Screenshot**: `screenshot/home/`, cioè home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg e chiusura-1440.jpg. Idea, caratteri, colori, foto e controlli sono in `screenshot/home/NOTA.md`.
-- **Rifare tutto**: `sh _prova/script/build_finale.sh`. Rifà le immagini (`finale_img.py`), controlla U+2014 e le immagini mancanti o inutili, prova il gesto e lo scorrimento a sette larghezze (`finale_prova.mjs`) e rifà gli screenshot (`finale_shot.mjs`).
-- **Materiali di lavoro**: analisi con le fonti in `01-analisi.md`, prototipi A e B in `_prova/home/a` e `_prova/home/b`, inventario e voti delle foto in `_prova/inventario-immagini.json`, testi scaricati in `_prova/crawl/`, crediti in `assets/CREDITI.md`.
+- **Home**: `sito/index.html`, con `sito/img/` (solo le immagini usate, JPEG in una o due larghezze) e `sito/fonts/` (Gambetta 400, Switzer 400 e 500 in woff2). Si apre con file:///, senza server.
+- **Screenshot**: `screenshot/home/` (home-1440.jpg, home-1440-prima-schermata.jpg, home-390.jpg, home-390-prima-schermata.jpg, chiusura-1440.jpg). Scelte, controlli e l'esito delle 15 regole sono in `screenshot/home/NOTA.md`, sezione "Livello professionale".
+- **Rifare tutto**: `sh _prova/script/build_finale.sh`. Rifà le immagini (`pro_img.py`), controlla U+2014 e le immagini mancanti o inutili, misura le 15 regole (`pro_controlli.mjs`, esito in `_prova/pro_controlli.json`) e rifà gli screenshot (`pro_shot.mjs`).
+- **Materiali di lavoro**: analisi con le fonti in `01-analisi.md`, scheda d'uso in `_prova/uso/SCHEDA.md`, inventario e voti delle foto in `_prova/inventario-immagini.json`, crediti in `assets/CREDITI.md`, pagine del concorso e delle testimonianze e l'elenco dei video YouTube scaricati il 3/11/2026 in `_prova/crawl/pro/`.
 
-## Dati da confermare con l'azienda
+## Il modulo di contatto va collegato
 
-In pagina c'è solo ciò che ha una fonte. Restano da chiedere:
+Il modulo "Scriveteci" nella sezione Contatti **non invia nulla**: controlla i campi obbligatori e poi apre il programma di posta di chi scrive con un'email già composta per organs@ruffatti.com (oggetto "Richiesta: tipo, istituzione, città"; nel testo nome, istituzione, ruolo, luogo, email, telefono, organo di oggi, richiesta e messaggio). Pianta e foto si allegano a mano, perché un link mailto non porta allegati.
+Nel sito vero va collegato a un servizio di invio (il Contact Form 7 che usano oggi, oppure Formspree, Brevo o simili) con caricamento dei file (pianta della chiesa, foto della consolle e della targhetta), informativa privacy e un messaggio di conferma. Il modulo di oggi in inglese chiede anche "Institution" e "Position": i campi della home sono gli stessi.
 
-1. **Ragione sociale completa** con forma giuridica, REA, capitale sociale e PEC: non trovati. Per questo la riga in fondo al piede ha solo "Fratelli Ruffatti" e la P.IVA.
-2. **Numeri di oggi.** "Oltre 500 organi in Italia" e "oltre 50 negli Stati Uniti" vengono da testi del 2016, e sono in pagina così. Vale lo stesso per "oltre un centinaio" di restauri e "da mezzo secolo" (altrove il sito dice "più di quarant'anni"). Quanti sono oggi, e quanti organi in tutto?
-3. **Buckfast**: in pagina "consegnato tra il 2017 e il 2018" (container arrivati nell'aprile 2017). Servono la data dell'inaugurazione, la conferma che la foto mostra l'organo in cantoria e la disposizione finale: "cento file di canne, due consolle" viene da un testo del 2016 scritto al futuro, per questo in pagina non c'è più.
-4. **Boteå**: l'anno di consegna; si sa solo il contratto, agosto 2015. Per questo in pagina non c'è l'anno. Va confermato anche se i tiranti in fibra di carbonio sono stati davvero realizzati (la notizia del 2015 dice "saranno utilizzati"): finché non lo confermano, in pagina non ci sono.
-5. **Le parti della canna**: noce, canaletto e piede sono la mia lettura della foto `xtrompette3`, e anche le tre fasce che il gesto lascia piene (noce dal 10 al 38 % dell'altezza, canaletto dal 38 al 74 %, piede dal 78 %). Va fatta controllare a loro. La frase iniziale accanto alla canna unisce la loro "Costruire canne ad ancia è diventata attività rara per gli organari" (pagina Canne ad ancia) con "Le nostre nascono in laboratorio, parte per parte", che riassume "costruiamo ogni componente possibile in laboratorio": va approvata.
-6. **Indirizzo e mappa**: Homo Faber scrive "Address upon request" e "By appointment only". Va confermato che via Facciolati 166 e il link alla mappa si possono pubblicare. "Su appuntamento" va aggiunto sotto l'indirizzo solo se lo confermano.
-7. **Orari**: non pubblici, quindi non ci sono.
-8. **Le trombe en chamade della chiusura** (`xOrgan064modif`): in quale chiesa sono? Il luogo va in didascalia.
-9. **La foto delle maestranze**: l'anno (il nome di un file dice 1960).
-10. **Newsletter**: è ancora attiva? L'ultimo numero è del 2020. Con quale servizio la mandano?
-11. **Maestri d'Arte e Mestiere 2020**: va chiesto il permesso di citarlo; il marchio della Fondazione Cologni non è usato.
-12. **La citazione di Michela Ruffatti** (Rockit, 13/05/2026): conferma che si può usare come titolo della sezione Opere.
+## Da chiedere all'azienda
 
-## Foto da rifare dal vero
+In pagina c'è solo ciò che ha una fonte (`01-analisi.md`, `_prova/uso/SCHEDA.md`, pagine del loro sito). Restano da chiedere:
 
-Le foto in pagina sono tutte loro, ma quasi tutte sono a 800 px. Per prima cosa vanno chiesti gli originali ad alta risoluzione: le foto a 800 px sono riduzioni dei file `P1…` e `DSC…`.
+1. **Ragione sociale completa** con forma giuridica, REA, capitale sociale e PEC: non trovati. Nel piede ci sono solo "Fratelli Ruffatti" e la P.IVA 00207160284.
+2. **Orari e visite.** Non sono pubblici, quindi non ci sono (la regola 15 del piede per questo non passa). Homo Faber scrive "Address upon request" e "By appointment only": va confermato se via Facciolati 166 e il link "Vai alla mappa" del piede si possono pubblicare, e se si può scrivere "visite su appuntamento".
+3. **Numeri di oggi.** "Oltre 500 organi in Italia" e "oltre 50 negli Stati Uniti" vengono da testi del 2016; "circa 120 restauri" dall'elenco aggiornato al 2020. In pagina sono datati con una nota sotto la fascia dei numeri. Quanti sono oggi, e quanti organi in tutto? Quante persone lavorano in laboratorio?
+4. **Ultimi strumenti** (dati dalla scheda d'uso, fonti The Diapason, Pershore Abbey, Main Line Tonight): confermare per ciascuno nome esatto del committente, anno di inaugurazione, manuali e registri.
+   - Sacred Heart, Grand Rapids: 3 manuali, 39 file, 2780 canne, intonazione da gennaio 2026 (in pagina con l'anno 2026: va confermato se è già inaugurato).
+   - Pershore Abbey: 3 manuali, 33 registri, 2023.
+   - Coral Ridge Presbyterian Church, Fort Lauderdale: restauro, 5 manuali, 117 file, 2023.
+   - Notre Dame Seminary, New Orleans: 3 manuali (quanti registri?), 2022.
+   - Wayne, Pennsylvania: 3 manuali, 37 registri, 2022: il nome della chiesa non è nelle fonti.
+   - La ricostruzione per la cattedrale di Tucson non è in pagina: la fonte dice solo "canne in Italia da inizio 2026". Va chiesto a che punto è.
+5. **Manutenzione e accordatura.** Seguono gli organi Ruffatti già installati (in Italia e negli USA, anche i Rodgers/Ruffatti)? Fanno sopralluoghi? Se sì, va scritto nel riquadro "Avete un organo Ruffatti?"; finché non lo confermano, il riquadro dice solo cosa preparare per la prima telefonata.
+6. **Chi risponde** a organs@ruffatti.com e al telefono (Michela?), e in quali lingue: in pagina non c'è.
+7. **Citazioni di Michela Ruffatti** (Rockit, 13/05/2026: "Ogni organo è diverso..." nella fascia dei numeri e "Prestiamo grande attenzione all'utilizzo degli stessi materiali usati in origine" nella sezione Restauro): conferma che si possono usare. Vale lo stesso per le tre testimonianze di "Dicono di noi" (Joyce Jones, Diane Bish, Frederick Swann), riportate dalla loro pagina in italiano.
+8. **Maestri d'Arte e Mestiere 2020** e **Homo Faber**: permesso di citarli; il marchio della Fondazione Cologni non è usato.
+9. **Recensioni.** Non hanno recensioni Google o simili (la sede non riceve pubblico): le prove sono le testimonianze degli organisti, i committenti con il nome e la stampa. Se hanno lettere più recenti di committenti (Pershore, Grand Rapids, Coral Ridge), sono la cosa più utile da aggiungere.
+10. **Video per "Ascolta".** Il canale YouTube ha sette video (2016-2020: laboratorio, canne ad ancia da 32', restauro di La Valletta, visita della fabbrica): nessuno fa sentire un organo recente. Servono uno o due video o registrazioni degli strumenti 2022-2026 (anche di terzi, con il permesso), e il link a una piattaforma con le incisioni dei CD.
+11. **Le pagine del sito nuovo.** I link della home portano alle pagine di oggi (Come costruiamo, Canne ad ancia, Il legname, Realizzazioni, Opere eseguite, Procedure di restauro, Dicono di noi, CD, Concorso di Miami, Ultime notizie, Cookie, versioni EN e RU). Mancano una pagina Privacy e un elenco delle realizzazioni filtrabile per manuali e Paese (il filtro del prototipo B in `_prova/home/b` è pronto: "86 strumenti in 14 Paesi" va dichiarato come conteggio dell'elenco "Alcune opere significative").
+12. **Newsletter**: è ancora attiva? L'ultimo numero è del 2020. Nella home non c'è più il modulo finto; se la riprendono, si aggiunge nel piede collegata a un servizio vero.
+13. **Logo vettoriale**: in pagina c'è il PNG a 2x ricavato dalla maschera della newsletter 2020 (`assets/originali/logo-newsletter2020-1bit-5024.png`). Va chiesto il file originale.
 
-| Foto | Problema | Come rifarla |
-|---|---|---|
-| Canna ad ancia aperta (apertura) | 595x800 dopo la rotazione; in pagina è mostrata alla sua misura vera (mai ingrandita a 1x da 1024 px in su, ridotta sotto), ma sugli schermi retina è 2 volte, quindi morbida. È l'immagine che regge l'idea | Still life su carta avorio (o fondo bianco caldo), luce morbida da sinistra con un pannello di rimbalzo a destra. Canna intera in verticale, noce tornita e canaletto a fuoco (focus stacking se serve), almeno 4000 px sul lato lungo. Ombra corta e morbida, nessun riflesso di lampade sul metallo |
-| Registro di Tromba (seconda sezione) | taglio 800x800, in pagina al massimo 800 px (1 volta), morbida a 2x; il terzo alto del file originale è sfocato | Le canne ad ancia di un registro sul somiere, in laboratorio, con luce naturale da una finestra laterale e senza flash; ottica lunga, diaframma 4-5,6; almeno 4000 px |
-| Trombe en chamade (chiusura) | 600x600 dal file da 800x600, in pagina circa 676x780, ingrandita 1,3 volte | Chiedere l'originale di `xOrgan064modif` e il luogo, oppure rifarla nella chiesa con la luce del giorno, dal basso, con la parete chiara dietro |
-| Maestranze (archivio) | 900x575, ingrandita 1,16 volte | Scansione dell'originale cartaceo a 1200 dpi |
-| Buckfast | il file da 800 px è un ingrandimento 1,4 volte del taglio da 568 px | File originale della reflex (`756A…`) o le foto del fotografo dell'abbazia, con il permesso |
-| Davies Symphony Hall | 800x1085, buona a 1x | Originale o foto del committente, con il permesso |
+## Foto: che cosa c'è e che cosa va fatto
 
-## Colore di fondo
+In pagina ci sono solo foto loro, dalla libreria media di ruffatti.com, mai ingrandite; nessuna foto di repertorio, nessuna illustrazione, nessuna immagine generata. Vanno confermati i diritti delle foto delle installazioni (forse di fotografi dei committenti).
 
-Il fondo della pagina è #E7E8E2, il grigio chiaro della lega di stagno delle canne (lo stesso tono del metallo della canna in apertura e delle canne di facciata nelle foto delle opere); il piede è #DCDDD7, la lastra appena più scura. Sostituisce la carta avorio #F4F1EA della prima versione. Se l'azienda preferisce un fondo caldo, l'alternativa coerente col mestiere è il legno chiaro del somiere, non un beige generico.
+| Foto in pagina | File originale | Problema | Che cosa chiedere o rifare |
+|---|---|---|---|
+| Apertura, Notre Dame Seminary, New Orleans | `2022_10_notre-dame.jpg`, 574x744 | in pagina a 519 px: nitida a 1x, morbida sugli schermi retina | l'originale ad alta risoluzione (è la foto della copertina di The Diapason) o il file del fotografo |
+| Consolle di Wayne | `2022_10_consolle.jpg`, 843x605 | come sopra, a 736 px | l'originale; e una foto dell'organo intero nella chiesa |
+| Le quattro schede (Uppsala, canne ad ancia, falegnameria, organo antico restaurato) | `2016_02_home-ruffatti4`, `2016_04_xSfondo-trombe-2`, `2016_04_falegnami-21`, `2016_03_xFile0149` | buone a 302 px, ma di epoche e luci diverse; l'organo restaurato non ha luogo né anno | una serie unica dal vero: stesso fotografo, luce naturale di giorno, formato 4:5, almeno 3000 px; per il restauro un organo restaurato di recente con luogo e anno |
+| Targhetta "Fratelli Ruffatti" tra i pomelli | `2016_04_xP1050195.jpg`, 800x633 | 800 px, a 519 in pagina | rifarla dal vero su una consolle, luce radente da una finestra, senza flash, 4:3 |
+| Maestranze davanti alla fabbrica | `2016_03_storia1-575.jpg`, 900x575 | piccola; anno ignoto (un nome di file dice 1960) | scansione dell'originale a 1200 dpi e l'anno |
+
+Foto che mancano e servono di più: **Pershore Abbey, Grand Rapids e Coral Ridge** (una per strumento, l'organo intero nella sua chiesa, di giorno, 4:3, almeno 3000 px): con queste la sezione "Ultimi strumenti" diventa una galleria di lavori con foto per ognuno. Poi **mani al lavoro in laboratorio** (fusione delle lastre, tornitura delle noci, intonazione), con una sola luce e lo stesso fotografo.
 
 ## Licenze
 
-- **Caratteri**: Gambetta e Switzer di Indian Type Foundry, da Fontshare, con licenza ITF Free Font License (uso commerciale gratuito, anche sul web). Sono serviti dalla pagina in `sito/fonts/`.
-- **Foto**: tutte della Fratelli Ruffatti o dei committenti dei loro strumenti, prese dalla libreria media di ruffatti.com. Nella home finale non c'è nessuna foto di repertorio: la foto Pexels di Rene Terp del prototipo A è stata tolta. Le foto esterne in `assets/esterne/` restano solo come materiale dei prototipi (licenze in `assets/CREDITI.md`). Nessuna immagine è generata dall'IA. Va confermato chi ha i diritti delle foto delle installazioni (Buckfast, Davies, forse di fotografi terzi).
-
-## Logo
-
-- In testata e nel piede c'è il logo corsivo "Fratelli Ruffatti" nel bordeaux storico #6A0C10. È un PNG a 2x e 3x (`sito/img/logo-360.png`, `logo-640.png`), ricavato dalla maschera a 1 bit da 5024 px della newsletter 2020 (`assets/originali/logo-newsletter2020-1bit-5024.png`).
-- Non l'ho vettorializzato: qui non c'è potrace, e un SVG fatto a mano non sarebbe fedele sulle code delle lettere. Va chiesto il file vettoriale originale e chi l'ha disegnato.
-
-## Newsletter
-
-Nel piede c'è un modulo con email, bottone "Iscriviti" e casella del consenso privacy. Ha senso tenerla: esiste già, con l'archivio 2017-2020, e hanno notizie da mandare (nuovi strumenti, incisioni, il concorso biennale di Miami).
-
-**Il modulo oggi non fa nulla** (`action="#"`, invio bloccato). Va collegato a un servizio di invio (per esempio Brevo o Mailchimp, oppure al modulo che usano ora), con doppio consenso e un link all'informativa privacy vera.
-
-## Pagine che il sito nuovo deve avere (link del menu e del piede)
-
-Nella proposta tutti i link sono "#" oppure ancore della home. Servono queste pagine:
-- **Azienda**: La nostra storia, La famiglia Ruffatti, La ricerca, Dicono di noi.
-- **Organi**:
-  - Come costruiamo; Le canne, con Canne ad ancia e Lastre per canne.
-  - Realizzazioni: l'elenco delle opere significative, con il filtro per numero di tastiere (6, 5, 4, 3, 2, 1) e per Paese del prototipo B, che filtra senza ricaricare e mostra il conteggio, per esempio "7 strumenti a cinque tastiere". Il conteggio "86 strumenti in 14 Paesi" va dichiarato come conteggio dell'elenco "Alcune opere significative".
-  - Il restauro, con Gli organi restaurati.
-- **Notizie**: Ultime notizie, Concorso di Miami, CD DVD e video, Newsletter (archivio e iscrizione).
-- **Servizio e lingue**: Privacy (oggi manca), Cookie, versioni EN e RU (IT EN RU sono in testata a 1440 e nel piede).
-- **Da decidere**: la pagina `prova`, pubblicata per errore, e la pagina della petizione per S. Sofia.
+- **Caratteri**: Gambetta e Switzer di Indian Type Foundry, da Fontshare, con licenza ITF Free Font License (uso commerciale gratuito, anche sul web), serviti dalla pagina in `sito/fonts/`.
+- **Foto**: tutte della Fratelli Ruffatti o dei committenti dei loro strumenti. Le foto Unsplash e Pexels di `assets/esterne/` non sono in pagina e non vanno usate (restano solo come materiale dei prototipi, licenze in `assets/CREDITI.md`).

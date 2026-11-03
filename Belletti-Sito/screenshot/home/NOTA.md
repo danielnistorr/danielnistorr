@@ -1,109 +1,89 @@
-# Home finale, Belletti: "Il carattere dell'edificio"
+# Home Belletti
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh` (immagini con `finale_img.py`, controlli sulla pagina, screenshot con `shot_finale.mjs`). Il collaudo dell'interazione e delle misure è in `_prova/script/prova_finale.mjs`.
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `pro_img.py`, controllo dei testi e delle immagini citate, screenshot con `shot_finale.mjs`, poi `pro_controlli.mjs` (le 15 regole, esito anche in `_prova/pro_controlli.json`) e `pro_prova.mjs` (menu, ancore, modulo).
 
-## Idea
+La home di prima ("Il carattere dell'edificio", con la sua NOTA e i suoi screenshot) è copiata com'era in `_prova/versione-1-originale/`.
 
-La loro frase, "L'ascensore rispecchia il carattere dell'edificio", è il titolo, e sotto c'è la prova: un solo lavoro vero, al centro della pagina. È il cilindro di vetro di Ca' della Nave accanto all'ala seicentesca delle ex scuderie di Villa Grimani Morosini. Il vecchio e il nuovo stanno nella stessa foto, che si vede intera, alla sua misura reale, con tanta calce intorno. È il mestiere di Belletti: disegna l'ascensore attorno all'edificio. Con il nome di un concorrente la pagina non regge, perché frase, foto e schede sono loro.
+Screenshot, stessi nomi di prima: `home-1440.jpg` (10354 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (14175 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (contatti e piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti (prime schermate di tutti e 14, pagine intere di Kline e Wilson); prime schermate e pagine intere anche a 320, 768, 1024 e 1920 (PNG cancellati dopo la lettura).
 
-## Cosa è cambiato in questo passaggio (dopo il giudizio cieco)
+## Livello professionale (3/11/2026)
 
-- **Prima schermata**:
-  - Il titolo era "Ascensori dal 1908" con il testo a sinistra e la foto a destra fino al bordo. Ora c'è la loro frase su due righe, centrata, e sotto la foto centrata.
-  - Lead e bottone sono scesi sotto la foto, in una riga larga quanto l'immagine. Il 1908 è passato nel lead ("Dal 1908 progettiamo…").
-- **Nitidezza**: la foto d'apertura era un ritaglio di 660 px mostrato a 900. Ora è l'inquadratura intera del redazionale (942x592, senza le panchine) mostrata a 900 px. Il rapporto naturalWidth / larghezza mostrata vale 1,00 o più da 320 a 2560 px (misurato).
-- **Legende e quota tolte**: niente linea di quota senza misura e niente legende sulla foto. Resta una sola didascalia sotto l'immagine, con il link "La scheda del lavoro", che apre direttamente la scheda Ca' della Nave nel selettore.
-- **Ca' della Nave non si ripete più con gli stessi dati**: i dati tecnici (480 kg, 5 persone, 4 fermate) ora stanno solo nella scheda del selettore, che ha un'altra foto (la scala a chiocciola dall'alto). L'apertura mostra il lavoro, la scheda lo spiega.
-- **Storia**: i tre fatti in colonna sono diventati l'ultima frase del racconto (trenta addetti, oltre venti tecnici, Veneto e Friuli). "Per chi" è passato sotto il titolo degli Impianti.
-- **Assistenza**: è diventata una fascia corta, con titolo e una frase a sinistra e il numero dei guasti grande a destra. La griglia dei quattro servizi è tolta, i servizi stanno in una frase, e con lei è sparita la riga "Ogni anno…" contestata dal giudice. Nota: il sito di Belletti dice davvero "ogni anno gli impianti vengono sottoposti ad accurati controlli" (`assistenza.aspx`); il depliant dice invece "con frequenza variabile". In pagina non c'è più nessuna delle due.
-- **Telefoni**:
-  - Il numero dei guasti c'è tre volte: nell'apertura, nella fascia Assistenza e nel piede. Dalla chiusura è tolto e non ci sono più due blocchi di telefoni di seguito.
-  - Il numero degli uffici sta in testata, nel bottone d'apertura e nella chiusura.
-- **Ca' Michiel**: nuovo taglio alto sulla cabina col mosaico, il tetto in inox e i fiori del balcone, senza il fondo buio del cortile.
-- **Grafia**: "Ca’ della Nave" con l'apostrofo, come "Ca’ Michiel", in schede, didascalie e alt.
-- **Testata a 390**: ora mostra anche il numero degli uffici, che sotto i 375 px si nasconde.
-- **Piede**:
-  - A 1440 le quattro colonne hanno la stessa larghezza (due colonne di griglia ciascuna), con spazi uguali.
-  - A 390 "Seguici: YouTube" è una riga semplice, senza fisarmonica.
-  - Tutti i link del piede, della riga legale e dei recapiti sono alti almeno 24 px a 390 (misurato).
-- **Preload del carattere tolto**: a file:// la console non ha più errori.
-- **Altezza**: 5300 px a 1440 piede compreso (prima 5151), 6253 px a 390.
+Richieste del committente: "secondo me non rappresentano bene l'identità e l'utilizzo corretto di quello che dovrebbe essere il sito" e "ancora troppo poco professionale e di design, e design funzionale all'attività"; per le foto "niente" (nessun repertorio, nessun disegno al posto delle foto). Regole: `_metodo/professionale/REGOLE.md`, famiglia S (servizi tecnici e imprese), sezioni A, B e C. Scheda d'uso: `_prova/uso/SCHEDA.md`.
 
-## Prime due schermate
+### Che cosa è cambiato rispetto alla home di prima
 
-- **1440**:
-  - Testata di 88 px con il logo vero in SVG, cinque voci e il telefono.
-  - Il titolo in Radio Canada 300, stretto al 75 %, 100 px su due righe centrate, va da 112 a 300 px.
-  - La foto, larga 900 px e centrata, parte a 336 px e finisce a 902: sta quasi tutta nella prima schermata.
-  - Sotto: la didascalia con il link alla scheda; poi il lead a sinistra e il bottone verde con il numero dei guasti a destra, allineati ai bordi della foto.
-- **390**:
-  - Testata con logo, telefono e Menu.
-  - Il titolo va su quattro righe a 55 px; la foto a tutta larghezza, in 4:5 sullo spigolo dell'ala e sul cilindro, chiude la prima schermata.
-  - Sotto: didascalia, lead, bottone e guasti.
-- Ho controllato anche 320, 768, 1024 e 1920. Da 641 a 1080 la foto è centrata e larga quanto il testo; sotto i 640 va a tutta larghezza.
+- **Il numero giusto in alto.** Prima in testata e nel bottone verde c'era lo 049 508 2430 degli uffici, e il numero dei guasti era una riga grigia fuori dalla prima schermata (SCHEDA, par. 7). Ora la testata è fissa e il bottone pieno verde è "Guasti 24 ore 049 900 5131"; gli uffici sono il bottone bordato accanto (da 1101 px in su e a 1024; sul telefono solo il numero dei guasti, più il Menu).
+- **La prima schermata dice il mestiere.** Il titolo "L'ascensore rispecchia il carattere dell'edificio" è una loro frase ma è un titolo-manifesto: la SCHEDA (par. 5 e 7) chiede che in apertura si legga cosa fanno. È passato a titolo della sezione degli impianti nuovi, dove dice proprio quello. Ora l'H1 è "Ascensori, piattaforme e servoscala" e, nello stesso H1, "Installazione, manutenzione, ammodernamento e assistenza su impianti di qualsiasi marca, nelle province del Veneto e in parte del Friuli." Sopra c'è l'occhiello "Ascensoristi a Mestrino (Padova), dal 1908".
+- **La foto d'apertura è la sede con il furgone dell'assistenza** (depliant 2008, `d-027`, targa sfocata): mezzo con il marchio e sede, come chiedono le regole per la famiglia S. A 1440 è un 4:5 di 519 px (nativa 869) a destra del testo, a 390 una striscia che chiude la prima schermata (nativa 869 px per 390).
+- **L'assistenza viene subito dopo**: tre garanzie su antracite, poi "La marcia in più di Belletti" con i tre casi della chiamata (persone bloccate, guasto in orario, guasto fuori orario), i servizi, le province e "Fuori zona? Chiamate gli uffici". Sul telefono l'assistenza viene prima delle garanzie, così il caso "fuori orario" si legge in uno scorrimento.
+- **Ammodernamento, piattaforme e servoscala** hanno una sezione, con le frasi dell'ing. Viel (La Piazza Web, 2024) e "Chiedete un sopralluogo". Prima la parola ammodernamento non c'era.
+- **Lavori**: niente più selettore a schede. I tre lavori si vedono tutti, ognuno con la foto a 740 px (51 % della pagina), il luogo, i cinque dati tecnici verbatim e i progettisti; sotto, Legnago e Cannaregio con il link ai video.
+- **Impianti nuovi in sei schede con la foto vera** (prima: sei righe di testo), tutte cliccabili, che aprono il modulo con il tipo già scelto. Sotto, il riquadro "Per i progettisti" con l'email all'ufficio tecnico già scritta (oggetto e cosa allegare).
+- **Chi siamo**: "Ascensoristi da quattro generazioni" (non più "tre generazioni"), il racconto della famiglia, quattro numeri, e la fascia "Qualità e norme" con le date di prima emissione e il link per chiedere le copie aggiornate dei certificati.
+- **Contatti su verde pieno**: il numero dei guasti a 96 px come titolo, gli uffici, l'email, l'indirizzo con "Indicazioni stradali" e "Apri la mappa", e il modulo per sopralluogo e preventivo.
+- **Piede in quattro colonne**, con la Pallavolo Padova (la SCHEDA chiede di non toglierla).
+- **Fuori**: il fondo calce e il grigio caldo (beige di comodo), il selettore dei lavori, la foto di Ca' della Nave come apertura, le didascalie da 14 px sotto ogni foto, il peso 300 dei titoli.
 
-## Sezioni
+### Uso: i compiti della SCHEDA (par. 8)
 
-1. Apertura.
-2. Storia: un solo racconto, da Rodolfo all'ing. Viel, fino ai trenta addetti di oggi.
-3. Lavori: il titolo è la loro frase "Pensiamo che per presentarci bastino i lavori che abbiamo eseguito". Tre schede in fila (Galleria Cavour, Ca' Michiel, Ca' della Nave); sotto, la foto a filo del bordo sinistro e, a destra, la descrizione, i cinque dati e i progettisti.
-4. Impianti: "Per chi" in una riga, poi sei famiglie in 3 colonne per 2 righe, con descrizioni di una riga, senza foto e senza icone.
-5. Assistenza, una fascia corta.
-6. Chiusura con foto: la sede di sera, a filo del bordo sinistro. A destra la loro frase "Trenta cuori e una sola anima" e i recapiti: uffici a 32 px con tel:, email con mailto:, indirizzo con "Apri la mappa". Gli orari non sono pubblicati, quindi non ci sono.
-7. Piede:
-   - logo SVG con una riga su chi sono;
-   - le colonne Azienda, Impianti, Assistenza e Seguici (solo YouTube);
-   - la riga legale con ragione sociale, P.IVA, REA, Privacy e Cookie.
+- **Visitatore 1, telefono 390x844.** Senza scorrere: testata con il bottone 049 900 5131 (48 px, tel:+390499005131); "Guasto o persona bloccata in cabina? L'assistenza risponde 24 ore su 24, 365 giorni all'anno."; bottone a tutta larghezza "Assistenza 24 ore 049 900 5131" (350x56 px, a 493 px); sotto, il bottone bordato degli uffici e i link "Dopo la chiamata", "Sopralluogo", "Lavori"; la striscia della sede chiude lo schermo (691-879 px). "Qualsiasi marca" è nell'H1 (289 px). Il caso fuori orario è a 1564 px, cioè dentro il primo scorrimento (fino a 1688). A metà pagina il bottone della testata si vede e si tocca (misurato con `elementFromPoint`).
+- **Visitatore 2, computer 1440x900.** Nella prima schermata: manutenzione e ammodernamento nell'H1, i due numeri, "Chiedete un sopralluogo". Zona per esteso nelle garanzie (da 883 px) e l'elenco delle province da 1744 px. Piattaforme e servoscala sono nell'H1 e nella loro sezione (da 2315 px). Sopralluogo in un passo: tel: uffici, mailto: con oggetto e traccia, oppure il modulo. Orari degli uffici: non pubblicati, quindi non in pagina.
+- **Visitatore 3, progettista.** "Progettisti: i lavori" nella prima schermata porta alla sezione con un clic; a 1440 la prima scheda tecnica completa (Galleria Cavour) è a 437-989 px dopo il clic. L'email all'ufficio tecnico è scritta per intero, con cosa allegare. Certificati: niente link a copie scadute, c'è la richiesta delle copie aggiornate.
+- Provato con `pro_prova.mjs`: menu aperto e chiuso al tocco; ancore sotto la testata (72 px sul telefono, 88 a 1440); "Chiedete un sopralluogo" e la scheda Montauto scelgono il tipo nel modulo; invio vuoto fermato con l'avviso e il fuoco sul nome; email composta con oggetto "Richiesta: Impianto nuovo: montauto, Selvazzano Dentro" e corpo completo, letta e non inviata; nessun errore di script.
 
-## Caratteri e colori
+### Le 15 regole, una per una
 
-- **Carattere**: Radio Canada (Google Fonts, SIL Open Font License 1.1, uso commerciale libero), servito da `sito/fonts/`.
-  - Titoli in 300; quello d'apertura è stretto al 75 % come le lettere condensate del logo.
-  - Testo in 400, enfasi in 500, cifre tabellari per misure e telefoni.
-  - Niente Inter, niente monospazio, niente corsivo.
-- **Colori**:
-  - Calce #F6F5F2, inchiostro #1B1D1F, grigio #58595B (6,4:1 sul fondo, 5,8:1 sul piede #ECEAE5).
-  - Verde #007A43 (5,4:1 con il bianco) solo sul bottone, sui link al passaggio e sulla scheda attiva.
+Misure di `node _prova/script/pro_controlli.mjs`, più gli screenshot guardati a pezzi.
 
-## Interazione
+1. **Telefono come bottone nella testata fissa: passa.** Testata fissa di 88 px a 1440 e 72 a 390. Bottone pieno "Guasti 24 ore 049 900 5131" di 48 px; a metà pagina si vede e si tocca a 1440 e a 390. 14 link `tel:` (sette per numero), solo `+390499005131` e `+390495082430`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440x900 e 390x844: il mestiere nell'H1, Mestrino e "dal 1908" nell'occhiello, il bottone di chiamata dei guasti (a 390 largo quanto la colonna, 350 px; a 320, 280 px). Nessuna sovrapposizione tra i blocchi dell'apertura.
+3. **Immagine vera nell'apertura: passa.** La sede Belletti con il furgone bianco e verde e il logo sulla fiancata. È del 2008 e non mostra la squadra: la foto da rifare è nel LEGGIMI.
+4. **Zero repertorio: passa.** `indicativ` 0 volte; nessuna immagine da banche o da `assets/esterne/`.
+5. **Foto in serie: passa, con riserva.** Tre formati (4:5, 4:3, la striscia del telefono), una sola didascalia (l'apertura) su 12 foto. Stesso trattamento per tutte (autocontrasto leggero, saturazione 0,9, contrasto 1,03). La riserva: le foto vengono da tre servizi diversi (depliant 2008, redazionale DiBaio di Ca' della Nave, quattro foto delle gallerie del sito nelle schede), quindi luce e grana non sono identiche.
+6. **Palette dal marchio: passa.** Verde #007A43 (il verde del logo #009A54 scurito per il contrasto, bottoni e blocco dei contatti), verde del logo solo sul fondo scuro, una sua variante per il passaggio del mouse, antracite #1C1E20, il grigio del logo #646567 per il testo secondario, neutri freddi. Nessun colore scritto fuori da `:root`. Niente beige.
+7. **Scala tipografica corta: passa.** 8 misure a 1440 (14, 17, 19, 24, 32, 48, 72, 96) e 7 a 390 (14, 17, 20, 24, 30, 40, 48). Testo corrente 19 px a 1440 e 17 a 390. Niente sotto i 14 px. H1 72 px (390: 40), H2 48 px (390: 30).
+8. **Due famiglie al massimo: passa.** Una sola, Radio Canada, pesi 400 e 700; i titoli e le cifre in larghezza 88 %, come le lettere strette del logo.
+9. **Servizi in schede con la foto: passa.** Sei schede in tre colonne a 1440 (due a 1024 e sul telefono), tutte 4:3, con foto vera, nome, una riga e "Sopralluogo e preventivo"; tutta la scheda è un link. Mostrate al massimo a 411 px su originali di 500-822 px. Il servizio di ogni giorno (assistenza e ammodernamento) ha le sue due sezioni, non una scheda.
+10. **Almeno tre tipi di prova: passa (3 su 4).** Quattro numeri (4 generazioni, 35 dipendenti, oltre 20 tecnici, 1997); la fascia "Qualità e norme" con didascalia (ISO 9001 DNV, Allegato XI Eurofins, EN 81-28); clienti e progettisti con il nome nei lavori (Comune di Padova, gli architetti Zambusi, Danzi, Rigo). Mancano le recensioni: non ce ne sono nelle fonti (SCHEDA, "Recensioni") e non sono state inventate.
+11. **Lavori con un nome: non passa del tutto.** Tre lavori con luogo, cinque dati e foto larga il 51 % della pagina, più Legnago e Cannaregio. L'anno c'è solo per la Galleria Cavour (ottobre 2007): per Ca' Michiel e Ca' della Nave le fonti non lo danno (LEGGIMI).
+12. **Ritmo a blocchi: passa.** Blocchi pieni oltre al piede: garanzie e lavori su antracite, contatti su verde; assistenza e impianti su grigio chiaro, il resto bianco. Sezioni a 120 px sopra e sotto a 1440, 72 a 390. Margini di 80 px a 1440 (contenitore 1280) e di 20 a 390.
+13. **Un solo sistema di bottoni: passa.** Pieno verde e bordato, raggio 4 px ovunque, 56 px (48 in testata), testo a 17 px; i bottoni di chiamata contengono il numero (a 24 px).
+14. **Modulo e "dove" per il mestiere: passa.** Modulo con nome, telefono, comune e indirizzo dell'impianto, tipo di richiesta (10 voci), urgenza (Appena possibile, Entro un mese, Senza fretta), note facoltative per la marca, e l'istruzione per le foto della targa o del vano (un mailto non porta allegati). I campi da scrivere obbligatori sono tre. Zona: le sette province del Veneto e parte del Friuli, scritte una per una. Nessun iframe di mappa: "Indicazioni stradali" e "Apri la mappa" aprono Google Maps.
+15. **Piede completo: passa.** Quattro colonne, testo di almeno 14 px: ragione sociale, P.IVA e C.F., REA, indirizzo con le indicazioni, i due telefoni e l'email cliccabili, l'orario che c'è (assistenza 24 ore su 24; gli orari degli uffici non sono pubblicati), le province, le certificazioni, YouTube con il sottotitolo, Privacy e Cookie, lo sponsor.
 
-C'è un solo gesto, il selettore dei lavori, con i ruoli ARIA tablist e tabpanel. Clic, tocco, frecce, Inizio e Fine cambiano foto, descrizione e scheda tecnica, senza transizioni. Il link della didascalia d'apertura apre la scheda Ca' della Nave. Non ci sono animazioni allo scorrere né effetti sul cursore.
+### Caratteri e licenze
 
-## Foto
+- **Radio Canada** (The Radio-Canada Project Authors), Google Fonts, SIL Open Font License 1.1, uso commerciale libero. Servita dalla pagina (`sito/fonts/radio-canada-latin.woff2` e `-latin-ext.woff2`), licenza in `sito/fonts/OFL.txt`. È il carattere della home di prima: una famiglia sola.
+- **Foto**: solo materiale di Belletti (depliant 2008, gallerie del sito, redazionale DiBaio), con i diritti da chiedere (LEGGIMI). Nessuna foto di repertorio, nessuna immagine generata, nessun disegno. Il logo è il vettoriale vero del depliant.
 
-Tutte di impianti Belletti, dai PDF del loro sito; nessuna foto di repertorio. Trattamento comune: autocontrasto leggero, saturazione 0,9, contrasto 1,03 e una maschera di contrasto lieve. Esportate in WebP in più larghezze per srcset, mai oltre la larghezza reale.
+### Foto in pagina
 
-| File in `sito/img/` | Soggetto | Origine |
-|---|---|---|
-| `apertura-cadellanave-*` | Ca' della Nave dalla corte | `01_DiBaio_Martellago.pdf`, `mart-007.jpg` 942x694, taglio 942x592 |
-| `apertura-cadellanave-tel-*` | lo stesso, 4:5 per il telefono | taglio 456x570 |
-| `lavoro-cavour-*` | Galleria Cavour di giorno | `02_DiBaio_Cavour.pdf`, `cav-003.jpg` |
-| `lavoro-camichiel-*` | Ca' Michiel, cabina dall'alto | depliant 2008, `d-020.jpg`, taglio alto |
-| `lavoro-cadellanave-*` | Ca' della Nave, scala a chiocciola dall'alto | `mart-021.jpg` |
-| `chiusura-sede-*` | sede di Mestrino di sera | depliant 2008, `d-027.jpg`, targa sfocata |
-| `logo-belletti.svg` | logo vero | tracciati del depliant 2008 |
+| File in `sito/img/` | Soggetto | Origine | Mostrata al massimo |
+|---|---|---|---|
+| `apertura-sede-*` | sede di Mestrino di sera con il furgone | depliant, `d-027` (869x1263), targa sfocata | 519 px su 869 |
+| `apertura-sede-striscia-*` | lo stesso, striscia per il telefono | `d-027`, taglio 869x420 | 390-900 px su 869 |
+| `assistenza-tecnico-347` | tecnico al quadro | depliant, `d-033` (347x553) | 347 px |
+| `ammodernamento-scala-470` | scala del palazzo con la cabina d'epoca | depliant, `d-036` (470x704) | 470 px |
+| `lavoro-cavour-*` | Galleria Cavour di sera | depliant, `d-037` (948x1263), 4:3 | 740 px su 948 |
+| `lavoro-camichiel-*` | Ca' Michiel, la cabina col mosaico | depliant, `d-020`, 4:3 | 740 px su 790 |
+| `lavoro-cadellanave-*` | Ca' della Nave dalla corte | `01_DiBaio_Martellago.pdf` (942x694), senza le panchine, 4:3 | 740 px su 789 |
+| `impianto-*` | cabina tonda, torre in vetro, montacarichi, montauto, piattaforma, tappeti mobili | gallerie `fn000008`, `fn000053`, `fn000257`, `fn000165`; depliant `d-002`, `d-030` | 411 px su 500-640 |
 
-## Controlli
+### Respinti, con il motivo
 
-- **Scorrimento orizzontale**: scrollWidth uguale a innerWidth a 320, 360, 390, 414, 600, 640, 641, 768, 900, 1024, 1080, 1180, 1280, 1440, 1680, 1920 e 2560 (`prova_finale.mjs`).
-- **Interazione**: provata con `prova_finale.mjs`:
-  - con la tastiera: Tab raggiunge il selettore; frecce destra e sinistra (anche col giro), Inizio e Fine spostano il fuoco e aria-selected;
-  - con il mouse: clic su Ca' Michiel; il link della didascalia porta a #lavori con Ca' della Nave aperta;
-  - con il tocco a 390: scheda, menu, fisarmonica del piede.
-- **Collegamenti**:
-  - tel:+390495082430 e tel:+390499005131;
-  - mailto:info@bellettiascensori.it;
-  - la mappa Google con Via della Tecnica 29, Mestrino;
-  - YouTube @BellettiAscensori.
-- **Console**: nessun errore a file://.
-- **Testi**: nessun U+2014 nella pagina, nella NOTA e nel LEGGIMI (controllo dentro `build_finale.sh`).
-- **Segnali da IA** (`_metodo/kit/segnali.sh`, uscita cancellata dopo la lettura): 16 soglie su 18 a posto.
-  - Area foto 20,3 %, sotto il 35 %. È una scelta: il giudice ha chiesto che l'unico oggetto sia nitido, quindi nessuna foto è mostrata oltre la sua larghezza reale (590-950 px). Gli originali del fotografo sono la prima cosa da chiedere a Belletti (LEGGIMI).
-  - Numeri grandi: 2 ("6" persone e "2" fermate). Sono i dati tecnici veri della scheda del lavoro, cioè il prodotto.
-  - Il resto è a posto:
-    - una famiglia sola, 0 % di monospazio, 0 frecce, 4 filetti;
-    - 2 fasce di fondo (pagina e piede);
-    - 0 sezioni "titolo a sinistra e paragrafo a destra";
-    - nessun titolo col punto e nessuna etichetta maiuscola.
-- **Screenshot guardati a pezzi**: `home-1440.jpg`, `home-390.jpg`, le prime schermate e le pagine di controllo a 320, 768, 1024 e 1920 (PNG cancellati dopo la lettura).
-- **Newsletter**: non c'è, e non avrebbe senso. La pagina News è vuota da anni e non ci sono fiere né cataloghi nuovi (il depliant è del 2008). I clienti sono condomini, progettisti ed enti: cercano un numero di telefono, non aggiornamenti.
+- **Il titolo di prima in apertura**: è un manifesto senza il mestiere dentro; la SCHEDA (par. 5, 7 e 8) e la regola 2 chiedono cosa fanno nel titolo. La frase resta, come titolo degli impianti nuovi.
+- **Recensioni**: non ce ne sono nelle fonti.
+- **Squadra con nome, anni e ruolo (A1, punto 6)**: le fonti nominano solo Gaetano e Irma Belletti e l'ing. Viel, senza foto; niente ritratti inventati. Da chiedere.
+- **Ritratti seppia della famiglia (`storia1-4`, 227 px, voto 3)**: troppo piccoli e senza nomi; sarebbero stati il quarto formato in pagina. Da chiedere in originale.
+- **Elenco dei comuni (A1, punto 8)**: le fonti dicono "le province del Veneto e in parte del Friuli". In pagina ci sono le sette province; i comuni e la parte del Friuli vanno chiesti.
+- **Fascia dei loghi delle certificazioni**: il logo DNV accanto a un certificato di cui online c'è solo la copia scaduta sembrerebbe un certificato valido. Ci sono le date di prima emissione e la richiesta delle copie aggiornate.
+- **Promessa dei tempi di risposta accanto al modulo (A6)**: non è nelle fonti.
+- **Safety Lift Group per il resto d'Italia**: da confermare (il dominio non risponde); al suo posto "Fuori zona? Chiamate gli uffici".
+- **Foto della sede di notte `d-051`**: bella, ma il blocco dei contatti regge senza e la sede è già nell'apertura.
+
+### Controlli fatti (3/11/2026)
+
+- `pro_controlli.mjs`: regole 1-10 e 12-15 superate nelle misure, 11 no (l'anno di due lavori). Nessuna ancora senza destinazione; nessun errore in console.
+- Scorrimento orizzontale: nessuno a 320, 360, 390, 768, 1024, 1280, 1440 e 1920 (scrollWidth uguale alla finestra).
+- Collegamenti: `tel:+390499005131` (assistenza) e `tel:+390495082430` (uffici); `mailto:info@bellettiascensori.it` con oggetto e traccia per sopralluogo, ufficio tecnico, certificati e modulo; Google Maps con Via della Tecnica 29, 35035 Mestrino (ricerca e indicazioni); YouTube @BellettiAscensori.
+- Nessun U+2014 nella pagina, negli script, nella NOTA, nel LEGGIMI e nei CREDITI (controllo dentro `build_finale.sh`).

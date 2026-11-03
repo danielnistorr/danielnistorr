@@ -2,48 +2,53 @@
 
 Proposta non richiesta, solo la home. Nessun contatto con l'azienda, niente pubblicato.
 
-- Pagina: `sito/index.html`, con `sito/img/` (WebP in più larghezze e il logo SVG) e `sito/fonts/` (Sofia Sans, OFL).
-- Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md`).
+- Pagina: `sito/index.html`, con `sito/img/` (WebP alla misura giusta, logo SVG scuro e bianco) e `sito/fonts/` (Sofia Sans, OFL).
+- Versione attuale: "livello professionale" del 3/11/2026. Nota di progetto ed esito delle 15 regole: `screenshot/home/NOTA.md`. Misure: `_prova/pro_controlli.json`.
 - Per rifare tutto: `bash _prova/script/build_finale.sh`.
-- Analisi con le fonti: `01-analisi.md`. Prototipi e voti: `_prova/home/a` (scelto) e `_prova/home/b`.
+- Versione precedente ("Il pettine", 24/10/2026): copiata com'era in `_prova/versione-1-originale/`.
+- Analisi con le fonti: `01-analisi.md`; scheda d'uso: `_prova/uso/SCHEDA.md`; tabelle dei modelli lette sul sito il 3/11/2026 in `_prova/crawl/`.
 
-## Dati da confermare prima di pubblicare
+## Il modulo di contatto va collegato
+Oggi il modulo "Richiesta" in fondo alla home compone un'email (mailto a info@molonmachinery.com, con oggetto secondo il tipo di richiesta e tutti i campi nel testo) e la apre nel programma di posta di chi scrive. Un mailto non porta allegati: la pagina chiede di allegare le foto all'email che si apre. Per il sito vero va collegato a un servizio di invio (il modulo del CMS o un servizio di moduli) che accetti anche le foto della targhetta e del pezzo (JPEG o PNG, qualche MB) e mandi una conferma a chi scrive. Lo stesso vale per i bottoni "Manda la foto per email" (Ricambi) e "Scrivete a info@molonmachinery.com" (Rivenditori), che oggi sono mailto con oggetto e traccia.
+
+## Da chiedere all'azienda prima di pubblicare
 Nessuno di questi compare in pagina come segnaposto.
-- **Ragione sociale**: in pagina "Molon Giovanni S.r.l.", come nell'intestazione, in Chi siamo e nella privacy del sito di oggi e nei registri; il piede del sito, il manuale del 2009 e gli elenchi telefonici dicono "Molon Giovanni s.n.c. di Molon Enio e Bruno". Da confermare la forma attuale e la data della trasformazione.
-- REA PD-147285 (solo estratto di ricerca, non messo), capitale sociale e PEC (non trovati, non messi).
-- **Anno di gEnio**: in pagina la riga della storia dice "Oggi"; il 2025 è solo dedotto dalla data della pagina (10/03/2025) e del depliant (02/2025). Se l'azienda conferma l'anno, va scritto al posto di "Oggi".
-- "Dal 1936" (oggi solo nel titolo della scheda del browser e nella storia) contro "da oltre cinquant'anni" di Chi siamo: quale anno vogliono in evidenza.
-- **Rivenditori**: in pagina Gasser Landmaschinen (Chiusa, Bolzano), Agrometal (Slovenia), Kalinke (Berg-Höhenrain, Germania), Agrisorg (Romania), Tracmaster (Regno Unito). Lasciati fuori Earth Tools (probabilmente Stati Uniti) e Snopex (sito non raggiungibile); Tracmaster non è tra i partner del sito ma cita Molon sul suo. Serve l'elenco aggiornato.
-- Misure delle quattro parti sotto la prima schermata: lette dalla tavola `2017_10_superFRONT-ita.jpg` del sito (4, 5 o 6 doppi denti per pettine, ruote ballon 15x6.00-6 o 16x6,50-8 sul PRO, bandella registrabile, bandella idraulica tra gli optional); il modello esatto della macchina fotografata (il file si chiama "230").
-- **Macchina in scala**: in apertura la stessa foto del 230 è riportata in proporzione alla larghezza massima di ogni modello (la pagina lo dice nella nota). Per il sito vero servirebbe una foto per modello con la stessa camera, oppure si tiene la proporzione dichiarata.
-- Valori del selettore: ricontrollati il 24/10/2026 sulla tabella di `ranghinatori-frontali-per-trattori`; da riconfermare se la tabella cambia.
-- Canali YouTube "alessandra molon" (@alemolon1, @alessandramolon9857): se sono ufficiali, si aggiungono la voce "Video delle macchine" e una colonna Seguici nel piede.
-- Orari di apertura e visite in sede (non trovati, non messi); se vendono anche ai privati.
-- Il codice del rosso Molon (in pagina #C8231B, campionato vicino alla vernice delle foto).
+1. **Orari** dell'ufficio e del magazzino ricambi, chiusure estive, se ricevono in sede e se vendono anche ai privati. Servono nel blocco Ricambi, nei contatti e nel piede (regola 15).
+2. **Ricambi**: se si possono mandare le foto anche su WhatsApp (e a quale numero); tempi di consegna; se i rivenditori tengono i ricambi; se esiste un esploso per modello da mettere in PDF.
+3. **Compatibilità per mezzo**: con quali portattrezzi e motofalciatrici funzionano i frontali e i MAJOR (negli annunci dei rivenditori compaiono Aebi, Reform, Rasant, Carraro, Brielmaier, Rapid, BCS, Agria: in pagina non ci sono finché Molon non le conferma), il verso della presa di forza e gli adattamenti. Con questi dati il contadino trova "va sul mio Reform a 540 giri" senza telefonare.
+4. **Notazione dei rivenditori**: se 230/4, 250/5, 300/6 Pro (larghezza e file di denti, come negli annunci) corrispondono ai loro modelli, per scriverla accanto ai nomi delle tabelle. Se MINI 120 (motofalciatrici) e MINOR MINI 120 (posteriori) sono la stessa macchina con due attacchi.
+5. **Rivenditori**: l'elenco aggiornato con città e telefono, compresi Austria e Svizzera (sul mercato si vedono Gailer, Stöckl, Rietzler, Wohllaib, JK Landmaschinen, Lagerhaus, BayWa, Sepp Knüsel, ma non sappiamo quali sono partner); Earth Tools (Stati Uniti?), Snopex (sito non raggiungibile) e Tracmaster (Regno Unito, non tra i partner del sito) sono fuori dalla pagina. In pagina oggi: Gasser (Chiusa, BZ), Agrometal (Slovenia), Kalinke (Berg-Höhenrain, Germania), Agrisorg (Romania), con il sito.
+6. **Depliant** in PDF in italiano, tedesco, inglese e francese, per famiglia: oggi sotto le tabelle ci sono i link alle pagine tedesca e inglese del sito di oggi.
+7. **Prove (regole 10 e 11)**: il permesso di citare 2-3 recensioni Google con nome e comune (oggi 5,0 su 8, testi non leggibili); clienti o lavori che si possono nominare (un'azienda agricola, un consorzio, un comune che usa le scopatrici) con luogo, anno e due dati; certificazioni o dichiarazioni CE da mettere nel piede; le fiere (EIMA 2024 c'era?).
+8. **Ragione sociale**: in pagina "Molon Giovanni S.r.l." come nell'intestazione, in Chi siamo e nella privacy di oggi; il piede del sito e gli elenchi dicono "Molon Giovanni s.n.c. di Molon Enio e Bruno". Da confermare la forma attuale, il REA (PD-147285, solo estratto), PEC e capitale sociale.
+9. **Anno di gEnio** (in pagina "Oggi"; il 2025 è solo dedotto) e quale anno vogliono in evidenza tra 1936 (fabbro) e 1967 (ranghinatori a cinghie): in apertura ci sono tutti e due.
+10. **Video**: se i canali YouTube "alessandra molon" sono ufficiali; in pagina ci sono solo i video già incorporati nelle loro pagine prodotto e quello di presentazione.
+11. Il codice del **rosso Molon** (in pagina #C8231B, campionato vicino alla vernice) e il **logo vettoriale** originale (oggi SVG ricostruito dal logo piatto grigio).
 
 ## Pagine del sito nuovo a cui puntano i link
-Oggi i link della home vanno alle sezioni della pagina o a "#". Il sito nuovo dovrà avere:
-- Ranghinatori frontali per trattori, Ranghinatori posteriori per trattori, Ranghinatori per motofalciatrici e motocoltivatori, Girelli spandivoltafieno, Scopatrici per trattori (le quattro della gamma e la voce Ranghinatori);
-- Ricambi (oggi è solo un riquadro senza pagina);
-- nella home la voce "Ranghinatori" della testata e "Ranghinatori frontali" del piede puntano alla sezione `#frontali`; Gamma, Storia, Rivenditori e Contatti alle loro sezioni;
-- Chi siamo, Rivenditori;
-- Informativa sulla privacy, Informativa sui cookie;
-- le versioni EN, DE e FR della home (oggi WPML).
-Nessuna newsletter: non serve collegare servizi.
+Oggi i link della home vanno alle sezioni della pagina o alle pagine vere del sito di oggi (nessun link "#"):
+- lingue IT, DE, EN, FR e "Datenblatt auf Deutsch" / "Data sheet in English": alle versioni WPML di oggi; nel sito nuovo andranno le versioni tradotte della home e delle schede;
+- Girelli spandivoltafieno e Scopatrici: alle pagine di oggi;
+- Privacy e Cookie: alle informative di oggi (D.Lgs. 196/2003, da aggiornare al GDPR);
+- da creare: una pagina per ogni famiglia con tabella, optional e depliant; Ricambi con l'esploso; Rivenditori con la mappa disegnata dei paesi; Chi siamo.
+Nessuna newsletter: non serve collegare servizi oltre al modulo.
 
-## Foto da rifare dal vero
-Le foto in pagina sono tutte dell'azienda; reggono la proposta, non il sito vero a piena risoluzione.
-- **Apertura** (`2017_10_230_5-scont.jpg`, scontornato del 2017, morbido a 2x): still life del frontale PRO in studio su fondo chiaro senza giunte, luce morbida da sinistra e un controluce per i denti, stessa inquadratura di tre quarti dall'alto (circa 25°), obiettivo lungo (85-100 mm) per non deformare la barra, almeno 6000 px di lato lungo; più tre dettagli: il pettine con i denti doppi, la cinghia con il cuscinetto in plastica, la bandella.
-- **Gamma**: le quattro famiglie con la stessa luce, la stessa altezza di camera e lo stesso angolo, su fondo chiaro, così che gli scontornati abbiano davvero la stessa scala.
-- **Chiusura** (`2017_10_11.08_10ritoc.jpg`, la foto migliore che hanno, ritoccata e del 2017): sul bordo destro restano lo specchio e un pezzo della cabina del portattrezzi. Da rifare: una mattina di fienagione in collina con luce bassa di lato, la macchina che lascia l'andana, camera bassa all'altezza dei denti, il trattore fuori campo o di spalle, senza fettucce e pubblico; chiedere anche l'originale non ritoccato.
-- **Archivio** (`2017_10_foto4.jpg`): chiedere la stampa originale e scansionarla a 1200 dpi.
-- Mancano del tutto l'officina (saldatura, montaggio delle cinghie, verniciatura) e le persone: un'ora in officina servirebbe alle pagine Chi siamo.
+## Foto da fare dal vero
+In pagina ci sono solo foto dell'azienda. Reggono la proposta, ma sono di anni, luci e mani diverse (regola 5). Per il sito vero, una serie con un solo fotografo e la stessa luce:
+- **Apertura**: una mattina di fienagione in collina, luce bassa di lato, il frontale che lascia l'andana davanti a un portattrezzi senza marchi in vista, camera bassa all'altezza dei denti; taglio largo 3:2 e taglio 16:9 per il telefono, almeno 4000 px. Chiedere anche l'originale non ritoccato di `2017_10_11.08_10ritoc.jpg` e chi l'ha scattata.
+- **Posteriori**: manca del tutto una foto in campo di un posteriore a 3 punti dietro un trattore (oggi la sezione ha solo la tabella).
+- **Motofalciatrici**: un MINI o un MIKY con la motofalciatrice su un prato ripido, con la persona che guida.
+- **Girelli e scopatrici** al lavoro (fieno sparso in pendenza; nocciole o foglie).
+- **Ricambi**: la targhetta di una macchina (per mostrare dove si legge modello e anno), la cinghia con il cuscinetto in plastica, un pettine con i denti doppi: tre dettagli su fondo neutro, stessa luce.
+- **Officina e persone**: saldatura, montaggio delle cinghie, verniciatura, Enio e Bruno Molon; la squadra di nuovo con luce morbida all'aperto (la foto di oggi è piatta).
+- **Archivio**: chiedere le stampe originali e scansionarle a 1200 dpi.
+- **Schede delle famiglie**: i cinque scontornati rifatti con la stessa camera, la stessa luce e lo stesso angolo.
 
 ## Licenze
-- Foto: di Molon Giovanni, scaricate da molonmachinery.com (`assets/CREDITI.md`). Per il sito vero vanno chiesti gli originali e confermati i diritti delle foto in campo fatte da rivenditori o clienti (Val d'Ultimo, Snopex, Agrometal); la foto della chiusura (`2017_10_11.08_10ritoc.jpg`) viene dalla pagina dei frontali, autore da confermare.
-- Le foto Pexels in `assets/esterne/` non sono usate nella home finale.
+- Foto: di Molon Giovanni, scaricate da molonmachinery.com (`assets/CREDITI.md`). Vanno chiesti gli originali e confermati i diritti delle foto in campo fatte da rivenditori o clienti.
+- Le foto Pexels in `assets/esterne/` non sono usate nella home.
 - Carattere: Sofia Sans, SIL Open Font License 1.1 (`sito/fonts/OFL-Sofia-Sans.txt`), servito dalla pagina.
 
 ## Loghi
-- `sito/img/logo-molon.svg` è ricostruito dal logo piatto grigio del sito (599x139 px): M, L e N come poligoni, le O come anelli; confrontato al 400 % con l'originale, forme e proporzioni coincidono. Se esiste il vettoriale originale (chi l'ha disegnato?), va usato quello.
-- I loghi dei partner e il banner EIMA non sono usati: sono marchi di terzi.
+- `sito/img/logo-molon.svg` è ricostruito dal logo piatto grigio del sito (599 x 139 px); `logo-molon-bianco.svg` è lo stesso tracciato in bianco per il piede. Se esiste il vettoriale originale, va usato quello.
+- I loghi dei partner e il banner EIMA non sono usati: sono marchi di terzi. I partner sono scritti in testo con il loro sito.

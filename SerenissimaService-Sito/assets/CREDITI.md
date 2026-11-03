@@ -25,3 +25,15 @@ Tutte da Pexels, licenza "Free" verificata il 24/10/2026 sulla pagina di ogni fo
 | `pexels-razumov-officina-luminosa-33814732.jpg` | officina bianca con ponte, cabina a vetri, luce al neon | Renee Razumov | https://www.pexels.com/photo/modern-car-repair-garage-interior-view-33814732/ | 8148x5432 |
 
 Scartate: "Man Insulating car windscreen with Silicone" (Pexels 11950154), caricata dall'account di un'azienda di cristalli (UK Car Glass); "Top View of White Sedan" (Pexels 14848422), caricata da Hyundai Motor Group, è una foto di prodotto di una casa.
+
+## Home "livello professionale" (3/11/2026)
+
+Decisione del committente sulle foto: "niente" repertorio. Nella home ci sono solo foto di Serenissima Service, nessuna foto Pexels o Unsplash, nessuna immagine generata, nessun disegno. I sette segnaposto Pexels qui sopra restano in `assets/esterne/` ma **non sono usati** in nessuna versione della home (non lo erano neanche nella versione 1). Nessuna foto è segnata "Foto indicativa".
+
+Foto usate in `sito/img/` (lavorate da `_prova/script/pro_img.py`, stesso trattamento per tutte):
+- `2015-04-esternoCarroAttr.jpg`: apertura (4:3 a 1440, 2:1 sul telefono); mail personale sulla portiera del carro coperta.
+- `2018-09-Mascheratura.jpg`, `2015-04-DSC_0014.jpg`, `2015-04-DSC_0101.jpg` (rossi del pavimento spenti), `2015-04-IMG_1435-1.jpg`, `2019-08-christian.jpg`, `2015-04-IMG_1387.jpg` (mail sulla portiera coperta): le sei schede dei servizi, 4:3.
+- `2015-04-ESTERNO.jpg`: la facciata in "Dove siamo", 2:1, targhe delle auto in fila sfocate.
+- `logo-2016-03-LOGO-02.png`: testata e piede.
+
+Tolte rispetto alla versione 1: `2018-09-F480inCabina.jpg` (Ferrari 488 di un cliente, marchio in primo piano), `2015-04-lucidat.jpg`.

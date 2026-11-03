@@ -1,126 +1,54 @@
-# Fratelli Ruffatti, home finale: "Una canna"
+# Fratelli Ruffatti, home
 
-Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Tutto si rifà con `_prova/script/build_finale.sh` (immagini con `finale_img.py`, controlli con `finale_prova.mjs`, screenshot con `finale_shot.mjs`). Alta 6649 px a 1440 compreso il piede.
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh`. Alta 8768 px a 1440 e 12512 a 390, compreso il piede.
+La versione precedente ("Una canna", con la canna ad ancia smontata e il gioco Noce / Canaletto / Piede) è conservata com'era, con la sua nota, in `_prova/versione-1-originale/`.
 
-## Idea
+## Livello professionale (3/11/2026)
 
-Una sola canna ad ancia vera della Fratelli Ruffatti, aperta e messa in piedi, sull'asse della pagina. La prima schermata è simmetrica come il prospetto di un organo, che si legge attorno alla torre centrale.
-- Il titolo, la loro frase "Tutte le canne, costruite in casa", corre su una riga sola a tutta misura, come la scritta sulla cornice di una cassa d'organo.
-- Sotto il titolo, al centro, c'è la canna alla sua misura vera, 800 px, mai ingrandita. Scende oltre la piega e si chiude in dissolvenza sulla sezione dopo.
-- Ai lati, sulla stessa linea, ci sono due testi brevi. A sinistra chi sono, il bottone e il telefono; a destra le tre parti della canna.
+Richiesta: "ancora troppo poco professionale e di design, e design funzionale all'attività"; poi "non rappresentano bene l'identità e l'utilizzo corretto"; foto: "niente" (nessuna foto di repertorio, nessun disegno al posto delle foto). Ordine seguito: uso, identità, alta gamma.
+Regole: `_metodo/professionale/REGOLE.md`, famiglia M (manifattura e fornitori del lusso). Riferimenti guardati: le prime schermate a 1440 e a 390 di tutti e 14, e le pagine intere di barth e Budri a pezzi. Scheda d'uso: `_prova/uso/SCHEDA.md`.
 
-Con il nome di Mascioni o di Rieger la pagina non regge, perché la canna, il titolo e le frasi sono loro.
+### Che cosa è cambiato rispetto alla versione 1
 
-## Cosa è cambiato in quest'ultimo passaggio
+- **Via la canna smontata in apertura** e il gioco delle tre parti (la scheda d'uso le indica come cosa "da grafico": nessuno dei tre visitatori viene per un componente). Via le frasi di sintesi messe tra le loro ("Le nostre nascono in laboratorio, parte per parte", "Qui si fondono le lastre..."), le tre "misure" a metà pagina, il fondo grigio stagno #E7E8E2 e la bicromia dell'archivio, la newsletter con il modulo finto, "Apri la mappa" come invito in chiusura.
+- **Apertura come la vuole la scheda.** A sinistra la loro riga "Costruttori e restauratori d'organi a canne" come titolo, l'occhiello "Padova, dal 1940", la loro frase sul primato americano ("Nell'esigente mercato statunitense abbiamo costruito oltre 50 strumenti..."), "Scriveteci" e "Chiamate 049 750 666", l'email, le due strade Organi nuovi e Restauro, e la riga "Ultimi strumenti: Grand Rapids 2026, Pershore 2023, Coral Ridge 2023". A destra l'organo del Notre Dame Seminary di New Orleans (2022) nella sua chiesa, alla misura d'origine, con didascalia di luogo, anno e manuali.
+- **Struttura della famiglia M adattata.** Testata sobria con Contatti, lingue e telefono; dichiarazione di competenza con la foto; ultimi strumenti con committente, luogo, anno, manuali e registri (i progetti di barth); quattro schede dei mestieri con la foto (competenze e processi); i numeri aziendali in una fascia scura; testimonianze degli organisti con nome e istituzione e i video (Ascolta); il restauro con "Avete un organo Ruffatti?"; la famiglia con i riconoscimenti e la stampa in fascia; il concorso di Miami; i contatti con il modulo per il mestiere; il piede in quattro colonne.
+- **Colori del marchio**: bordeaux del logo #6A0C10 (la scritta della targhetta sulla consolle), ottone #C29A5B delle trombe per le cifre sul fondo scuro, mogano scurissimo #1C1311 per i blocchi scuri e il testo, bianco delle chiese per il fondo. Grigi: #5A5552 (testo secondario, 7,4:1 sul bianco e 6,6:1 sul grigio chiaro), #B9B1AC (note sul mogano, 8,6:1); ottone sul mogano 7,0:1, bianco sul bordeaux 12,6:1, #E2DEDB (filetti), #F3F2F1 (blocchi chiari). Nessun beige.
 
-Sono cambiate tre cose chieste dal committente il 2 novembre ("più alta gamma, meno uguali tra loro"):
-1. **Niente legende sull'oggetto.** Sono spariti i numeri sulla canna. Resta solo la didascalia "Una canna ad ancia Ruffatti, aperta" sopra l'indice. Il legame tra l'indice e l'oggetto ora è il gesto (vedi Interazione), non un segno disegnato.
-2. **Il fondo viene dal mestiere.** Il fondo #E7E8E2 è il grigio chiaro della lega di stagno, lo stesso tono del metallo della canna e delle canne di facciata nelle foto delle opere. La ragione si vede: la canna sembra fatta del fondo. Il piede è #DCDDD7, la lastra appena più scura. Il bordeaux del logo resta l'unico colore caldo, con l'ottone del canaletto. Il fondo della foto della canna è portato con PIL esattamente al colore della pagina e salvato senza sottocampionamento del colore, quindi non si vede nessun riquadro.
-3. **Un'impaginazione che nella campagna non c'è.** Tutte le altre home hanno il titolo a sinistra. Qui la composizione è simmetrica sull'asse, il titolo è una sola riga a tutta larghezza (102 px a 1440, fino a 132 px) e la foto è un taglio verticale stretto, alto 800 px, al centro. A 390 tutto resta sull'asse, centrato.
+### Le 15 regole, una per una
 
-Dal giudizio cieco, oltre a quanto sopra (alcune cose erano già state fatte in un passaggio precedente e sono state verificate):
-- La canna non è mai ingrandita: rapporto 1,0 da 1024 px in su, ridotta sotto. `canna-890.jpg` non c'è più.
-- La foto sfuma in alto e in basso a tutte le larghezze, quindi non ci sono più bordi netti sul metallo.
-- La chiusura da 768 a 1023 px ha la foto alla stessa altezza della frase.
-- Il gesto a 390: indice e frase stanno sopra la canna, la frase cambia dentro la prima schermata e non c'è più il riquadro azzurro al tocco.
-- Laboratorio:
-  - foto a filo del bordo sinistro, larga al massimo 800 px;
-  - taglio 800x800 sulle campane a fuoco;
-  - colore portato al neutro, con lo stagno grigio e il legno bruno, senza più la dominante salmone.
-- Opere: tre sulla stessa riga anche a 768, stesso bianco neutro, taglio 3:5.
-- Testi:
-  - "dal 1968 sono soci";
-  - niente fibra di carbonio per Boteå e niente "cento file" per Buckfast (vanno confermati, LEGGIMI);
-  - la frase "Ben pochi organari" è tolta;
-  - accanto alla canna c'è la loro frase "Costruire canne ad ancia è diventata attività rara per gli organari".
-- Il bottone "Iscriviti" è bordeaux come l'azione principale.
-- Il menu dice "Chiudi" quando è aperto e si chiude con Esc e toccando una voce.
-- Il ritmo verticale è un po' più stretto (sezioni a 88 px e attacchi a 56 px): la pagina resta sotto 7000 px.
+Misure di `node _prova/script/pro_controlli.mjs` (esito in `_prova/pro_controlli.json`), più gli screenshot guardati a pezzi a 1440 e a 390 (e pagine intere a 768 e 1024, prime schermate a 320).
 
-## Le prime due schermate
+1. **Telefono come bottone nella testata fissa: passa.** Testata fissa (sticky) di 88 px a 1440 e 72 a 390, con il bottone bordato "049 750 666" alto 48 px. A metà pagina, a 1440 e a 390, il bottone si vede e si tocca (`elementFromPoint`). C'è anche la voce Contatti. 5 link `tel:`, tutti `tel:+39049750666`.
+2. **Mestiere, luogo, prova e azione nella prima schermata: passa.** A 1440 x 900: H1 "Costruttori e restauratori d'organi a canne", "Padova, dal 1940", "oltre 50 strumenti... un primato in campo europeo", bottone "Scriveteci" a 476 px, foto e didascalia tutte in vista. A 390 x 844: stesso titolo, occhiello e frase; "Chiamate 049 750 666" pieno a tutta larghezza (347 px su 347) a 396 px, l'email, i due bottoni Organi nuovi e Restauro, la riga degli ultimi strumenti e l'inizio della foto (168 px).
+3. **Immagine vera nell'apertura: passa.** Un loro organo recente nella sua chiesa (New Orleans 2022), non un oggetto scontornato. Riserva: 574 px d'origine, a 519 px in pagina; va chiesto l'originale (LEGGIMI).
+4. **Zero repertorio: passa.** `indicativ` compare 0 volte; in `sito/img/` solo foto loro e il logo; nessun file di `assets/esterne/` è citato.
+5. **Foto in serie: passa, con riserva.** 8 foto, 2 formati (4:5 per apertura e schede, 4:3 per consolle, targhetta e archivio), 2 didascalie (apertura e consolle di Wayne), nessuna ingrandita (controllo sui pixel veri del file). Stesso trattamento (livelli, colore un po' più sobrio, contrasto leggero; l'archivio in bianco e nero puro). Ma sono scatti di anni e fotografi diversi: la serie vera va fatta dal vero (LEGGIMI).
+6. **Palette dal marchio: passa.** 4 colori (bordeaux, ottone, mogano, bianco) più 4 grigi, tutti token in `:root`; il bordeaux è quello del logo; fondo bianco.
+7. **Scala tipografica corta: passa.** 8 misure a 1440 (14, 16, 18, 22, 28, 44, 64, 96) e 8 a 390 (14, 16, 17, 20, 24, 30, 38, 48). Testo corrente 18 px a 1440 e 17 a 390; niente sotto i 14 px (le etichette maiuscole spaziate sono a 14). H1 64 / 38, H2 44 / 30, il telefono dei contatti 96 / 48 come gesto di scala.
+8. **Due famiglie al massimo: passa.** Gambetta 400 per titoli, cifre e citazioni; Switzer 400 e 500 per testo e interfaccia. Il peso 300 di Gambetta della versione 1 è tolto. Il corsivo resta solo nel logo.
+9. **Servizi in schede con la foto: passa.** Griglia di 4 schede (2 a 390 e fino a 1199 px): Come costruiamo, Le canne, Il laboratorio, Il restauro, ognuna con foto loro in 4:5, nome, una riga e freccia, tutta la scheda è un link.
+10. **Almeno tre tipi di prova: passa (4 su 4, con una precisazione).** Tre testimonianze di organisti con nome, istituzione e città (Jones, Bish, Swann, dalla loro pagina "Dicono di noi"; non sono recensioni Google, che non esistono); 6 numeri aziendali (1940, oltre 500, oltre 50, circa 120, 6 tastiere, 3 generazioni), datati con una nota; fascia di riconoscimenti e stampa con la didascalia (Maestri d'Arte e Mestiere 2020, The Diapason ottobre 2022, Homo Faber, legno FSC); committenti con il nome (cinque strumenti 2022-2026).
+11. **Lavori con un nome: passa, con riserva.** Cinque strumenti con committente o luogo, anno e 2-3 dati (manuali, registri o file, tipo di lavoro), con la foto della consolle di Wayne larga 737 px a 1440 (più di metà pagina). Per Grand Rapids, Pershore e Coral Ridge non ci sono foto: vanno chieste.
+12. **Ritmo a blocchi: passa.** Blocchi pieni oltre al piede: numeri e voce su mogano, Ascolta su bordeaux, Contatti su mogano; Ultimi strumenti e Famiglia su grigio chiaro. Sezioni a 128 px a 1440 e 72 a 390 (l'apertura parte a 48 / 24 sotto la testata). Margini 80 px a 1440 (contenitore 1440 con 80 di gutter) e 22 a 390.
+13. **Un solo sistema di bottoni: passa.** Pieno bordeaux e bordato, raggio 2 px ovunque, altezza 56 (48 in testata), testo 16 px. Tutti i bottoni di chiamata contengono il numero. A 390 "Chiamate" diventa il pieno e "Scriveteci" lascia il posto all'email, perché lì il primo compito è chiamare.
+14. **Modulo e "dove" per il mestiere: passa.** Campi della commissione e della parrocchia: nome, istituzione, ruolo, città e Paese, email, telefono, che cosa vi serve (organo nuovo, restauro di un organo antico, un organo Ruffatti già in chiesa, altro), l'organo di oggi (costruttore, anno, manuali e registri), messaggio; per l'allegato (pianta, foto della consolle e della targhetta) un'istruzione accanto al bottone, perché un mailto non porta allegati. Controllo dei campi obbligatori con avviso e fuoco sul primo campo vuoto (provato). Accanto, "Che cosa mandarci" in quattro punti. Indirizzo con "Vai alla mappa" nel piede (come Budri), nessun iframe.
+15. **Piede completo: non passa.** Quattro colonne a 1440 (due a 390), testo di almeno 14 px: logo e riga loro, sede con indirizzo, mappa, telefono ed email cliccabili, le pagine del sito, i social con il sottotitolo e le lingue; in fondo © 2026, P.IVA 00207160284, Maestri d'Arte e Mestiere 2020, Cookie. Mancano la ragione sociale completa, gli orari e la Privacy: non sono nelle fonti e non si scrivono (LEGGIMI, punti 1, 2 e 11).
 
-1. **A 1440x900.**
-   - In testata: logo corsivo bordeaux, quattro voci, IT EN RU e telefono.
-   - Sotto, il titolo su una riga, centrato, in Gambetta 300.
-   - Al centro la canna. Si vedono la noce tornita, il canaletto d'ottone con la molla d'accordatura e l'imboccatura del piede.
-   - A sinistra "Organi a canne nuovi e restauri, a Padova dal 1940.", il bottone "Scriveteci" (mailto:) e il telefono (tel:).
-   - A destra la didascalia, l'indice 1 Noce, 2 Canaletto, 3 Piede e la frase.
-2. **A 390x844.** Titolo su due righe, centrato. Sotto la riga, l'indice e la frase, poi la canna (alta 434 px), poi bottone e telefono.
+### Compiti della scheda d'uso
 
-Dopo vengono:
-- **Laboratorio**: "Ogni componente possibile, in laboratorio", la foto del registro di Tromba a filo del bordo sinistro con il testo a destra, poi tre misure tra filetti sottili (95 % di stagno, mogano sipo stagionato cinque anni, pannelli da 48 mm).
-- **Opere**: la frase di Michela Ruffatti, poi Davies Symphony Hall, Buckfast e Boteå, poi la riga dei numeri.
-- **Storia**: la foto delle maestranze in bicromia inchiostro e stagno, poi La famiglia e Il restauro.
-- **Chiusura "b con foto"**: la loro frase "La tradizione è forte solo se continua ad evolversi", il telefono grande con tel:, l'email con mailto:, l'indirizzo e "Apri la mappa" (Google Maps). Le trombe en chamade arrivano fino al bordo destro.
-- **Piede**:
-  - logo e una riga su chi sono;
-  - la newsletter, che esiste già e ha notizie da mandare, con email, bottone e consenso privacy;
-  - quattro colonne: Azienda, Organi, Notizie, e Contatti con Seguici (Facebook, Instagram, YouTube, che esistono tutti);
-  - in fondo © 2026 Fratelli Ruffatti, P.IVA 00207160284, Privacy, Cookie, IT EN RU.
-  - A 390 le colonne vanno due per riga, in ordine.
+- *Commissione, computer 1440*: in prima vista organi nuovi e restauro scritti (titolo e strade), Padova dal 1940, la foto di New Orleans con luogo, anno e manuali, EN in testata (porta a ruffatti.com/en/), Scriveteci e il telefono, la riga degli ultimi strumenti. Con uno scorrimento i cinque strumenti 2022-2026 con manuali e registri; poi "Tutte le realizzazioni: 86 strumenti" e "Gli organi restaurati". Ascolta è a un clic (menu) e i video a due. In Contatti email, telefono e "Che cosa mandarci".
+- *Parrocchia, telefono 390*: bottone di chiamata a tutta larghezza e numero in testata senza scorrere; Restauro in prima vista; nella sezione Restauro "restauro filologico", circa 120 restauri con località, anno e autore, "Elenco dei restauri", la targhetta "Fratelli Ruffatti" in foto, che cosa preparare per la prima telefonata, "Chiamate 049 750 666" e "Scrivete con le foto" (email con la traccia).
+- *Organista, telefono 390*: Menu, poi "Concorso di Miami" (provato: la sezione arriva in vista e il menu si chiude), primo premio US$ 5.000, under 30, "Bando e iscrizione 2027"; Instagram nella stessa sezione, YouTube in Ascolta, tutti e tre i social nel piede.
+- Nessuno scorrimento orizzontale a 320, 390, 768, 1024, 1280, 1440 e 1920; nessuna sovrapposizione tra testata, titolo, testo, bottoni, strade e foto dell'apertura a tutte queste larghezze. A 320 l'EN passa nel menu (nella testata non c'è posto) e i bottoni Organi nuovi e Restauro scendono appena sotto la prima vista.
 
-## Caratteri e colori
+### Caratteri e licenze
 
-- **Gambetta** (titoli, pesi 300 e 400) e **Switzer** (testo, pesi 400 e 500), tutti e due di Indian Type Foundry su Fontshare.
-  - Licenza ITF Free Font License, uso commerciale gratuito. I woff2 sono serviti dalla pagina in `sito/fonts/`.
-  - Perché: Rieger, il riferimento più vicino del mestiere, abbina un serif da frontespizio a un grottesco sobrio. Gambetta ha la voce di un'iscrizione incisa e sta accanto al corsivo del logo senza imitarlo.
-  - Nessun corsivo in pagina. Numeri tabellari su anni, misure e telefoni; apostrofi tipografici.
-- **Colori.**
-  - Stagno #E7E8E2 per la pagina, #DCDDD7 per il piede.
-  - Inchiostro #1C1A17.
-  - Grigio #52554F solo per didascalie e note: contrasto 6,2:1 sulla pagina e 5,5:1 sul piede.
-  - Bordeaux del logo #6A0C10 per logo, bottoni e voce scelta: 10,1:1; il bianco sul bordeaux 12,6:1.
-  - Bordo del campo email #7E8279, cioè 3,2:1.
+- **Gambetta** e **Switzer** di Indian Type Foundry, da Fontshare, licenza ITF Free Font License (uso commerciale gratuito, anche sul web), serviti dalla pagina in `sito/fonts/` (gambetta-400, switzer-400, switzer-500 in woff2). Sono le due famiglie della versione 1, tenute.
+- **Foto**: solo loro, dalla libreria media di ruffatti.com (elenco in `assets/CREDITI.md`). Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
 
-## Interazione
+### Collegamenti
 
-Le tre voci dell'indice sono bottoni veri, con `aria-pressed` e `aria-controls`.
-- **All'inizio** la canna è intera e la frase è quella generale.
-- **Toccando una voce** compare la sua frase, presa parola per parola dalla pagina "Canne ad ancia". La parte scelta della canna resta piena e il resto si vela del colore dello stagno (velo al 58 %). Il cambio è netto, senza animazione.
-- **Un secondo tocco** sulla stessa voce torna alla canna intera.
-
-È l'unico gesto della pagina. Le sole transizioni sono il cambio di colore di fondo dei due bottoni (0,15 s). Niente comparse allo scorrere, niente effetti al cursore.
-
-## Foto: origine e licenza
-
-Sono tutte della Fratelli Ruffatti, prese dalla libreria media di ruffatti.com: nessuna foto di repertorio, nessuna foto di altri costruttori, nessuna immagine generata dall'IA. I diritti delle foto delle installazioni vanno confermati (LEGGIMI).
-
-| Foto in pagina | File originale | Misura vera | In pagina a 1440 |
-|---|---|---|---|
-| Canna ad ancia aperta | `2016_04_xtrompette3.jpg` | 800x603 (ruotata 595x800) | 595x800, 1 volta |
-| Registro di Tromba | `2016_04_xSfondo-trombe-2.jpg`, taglio 800x800 | 800x800 | 800x800, 1 volta |
-| Davies Symphony Hall | `2016_03_xDavies-Symphony-e1480329573331.jpg` | 800x1085 | 421 px di larghezza |
-| Abbazia di Buckfast | `2018_11_756A0922-3.jpg` | 1028x758 (taglio 505x758) | 421 px |
-| Boteå | `2018_11_P1270600-1.jpg` | 3264x2448 | 421 px |
-| Maestranze, archivio | `2016_03_storia1-575.jpg` | 900x575 | circa 1040x665, ingrandita 1,16 volte |
-| Trombe en chamade | `2016_04_xOrgan064modif.jpg`, taglio 600x600 | 600x600 | circa 676x780, ingrandita 1,3 volte |
-
-Il trattamento è lo stesso per tutte: colore portato verso uno stesso bianco neutro e un po' più sobrio, contrasto appena più deciso; l'archivio è in bicromia inchiostro e stagno. Ogni foto è esportata in due o tre larghezze con srcset. Quello che a 2x resta morbido è elencato nel LEGGIMI, con come rifarlo.
-
-## Controlli fatti
-
-- **Larghezze.**
-  - Guardati a pezzi gli screenshot interi a 1440 e a 390, le prime schermate a 320, 768, 1024 e 1920 e la chiusura a 768.
-  - scrollWidth uguale a innerWidth a 2560, 1920, 1440, 1280, 1100, 1024, 1000, 768, 390, 360 e 320.
-  - Nessun testo sopra l'oggetto (`finale_prova.mjs`).
-  - Sotto i 1200 px il menu si apre con un vero bottone.
-- **Gesto.**
-  - Con la tastiera, Tab e Invio, a 2560, 1920, 1440, 1280, 1100 e 1024. Col dito a 1000, 768, 390, 360 e 320.
-  - Voce premuta, frase visibile e parte lasciata piena cambiano insieme.
-  - La frase è nella vista dopo il tocco a tutte le larghezze.
-  - Il secondo tocco torna alla canna intera.
-- **Collegamenti.**
-  - tel:+39049750666 in testata, in apertura, nella chiusura e nel piede.
-  - mailto:organs@ruffatti.com.
-  - La mappa va su Google Maps con l'indirizzo "Via Facciolati 166, 35127 Padova".
-  - I social sono le tre pagine che esistono.
-- **Segnali da IA.** `_metodo/kit/segnali.sh` dà tutte le 18 soglie OK:
-  - foto al 35,1 % della pagina;
-  - Switzer 85 % e Gambetta 15 %;
-  - nessuna etichetta maiuscola, nessun numero grande con etichetta, nessuna freccia;
-  - 7 filetti larghi;
-  - due fasce di fondo, la pagina e il piede.
-- **Testo.**
-  - Nessun U+2014 nella pagina, nella NOTA e nel LEGGIMI (controllato dallo script).
-  - Nessun dato fuori da `01-analisi.md` e dai testi scaricati; nessun segnaposto in pagina.
-- **Divieti del committente.** Niente Inter, niente icone Lucide, niente gradienti nei colori, niente card, niente badge, niente legende con pallino e filetto, niente oggetti disegnati.
+- `tel:+39049750666` in testata, apertura, restauro, contatti e piede; `mailto:organs@ruffatti.com` con oggetto (e nel restauro con la traccia dei dati); il modulo compone l'email e va collegato a un servizio (LEGGIMI).
+- Mappa: `https://www.google.com/maps/search/?api=1&query=Via+Facciolati+166+35127+Padova`, solo nel piede (l'indirizzo va confermato).
+- Lingue: ruffatti.com/en/ e /ru/ (rispondono 200). Video: tre video del canale YouTube "Ruffatti organs" (dal feed del canale) e il canale; CD, Dicono di noi, Concorso di Miami, Opere eseguite e Procedure di restauro sono pagine del sito di oggi. Nessuna ancora senza destinazione; nessun U+2014 in pagina, nei .md e negli script.

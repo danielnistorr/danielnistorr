@@ -3,407 +3,658 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stefano Aiti, fotografo a Mestrino (PD): still life, architettura, cantieri</title>
-<meta name="description" content="Stefano Aiti fotografa oggetti, architetture e cantieri per le aziende dal suo studio di Mestrino, in provincia di Padova. Professionista dal 2008.">
+<title>AIT Studio, Stefano Aiti: foto e video per le aziende a Mestrino (PD)</title>
+<meta name="description" content="Studio fotografico di Stefano Aiti e Giulia Morandin a Mestrino (PD): reportage di cantiere, foto aziendali, livree dei mezzi e video per le imprese di costruzioni; prodotti in sala di posa; architettura e interni. Tel. 348 748 58 71.">
 <style>
 @font-face{font-family:"Switzer";src:url("fonts/switzer-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Switzer";src:url("fonts/switzer-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url("fonts/switzer-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
 
 :root{
-  --carta:#F6F5F2;
-  --inchiostro:#141414;
-  --grigio:#5C5F5E;      /* testo secondario, 6,1:1 sulla carta */
-  --filo:#A9ADAC;        /* il grigio del logo: solo filetti */
-  --m:max(56px, calc((100vw - 1808px) / 2)); /* margine laterale; oltre 1920 la pagina resta larga 1808 */
-  --gap:24px;
-  --s1:16px; --s2:32px; --s3:64px; --s4:128px;
-  --testata:80px;
-  --indice:60px;
+  /* colori del logo AIT STUDIO: il nero #040000 e il grigio #AAAEAD, piu' il bianco */
+  --bianco:#FFFFFF;
+  --nero:#0B0A0A;
+  --grigio:#AAAEAD;     /* il grigio del logo: filetti e testo secondario sul nero (8,8:1) */
+  --testo2:#565A59;     /* testo secondario sul bianco (7:1) e sul chiaro (5,5:1) */
+  --chiaro:#E2E4E3;     /* il grigio del logo schiarito: fondo dei blocchi chiari */
+  --m:80px; --gap:24px; --sez:128px; --testata:80px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--carta);color:var(--inchiostro);font-family:"Switzer",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 12px)}
+/* geometricPrecision: senza, Chromium su Linux arrotonda le larghezze delle lettere e apre "Stef ano" */
+body{background:var(--bianco);color:var(--nero);font-family:"Switzer",system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:400;font-synthesis:none;text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;transition:color .15s}
-a:hover{color:var(--grigio)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--inchiostro);outline-offset:3px}
+a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 .num{font-variant-numeric:tabular-nums lining-nums}
-.wrap{padding-inline:var(--m)}
-.cap{font-size:14px;line-height:1.4;color:var(--grigio);font-variant-numeric:tabular-nums lining-nums}
-.cap b{font-weight:500;color:var(--inchiostro)}
-h1,h2{font-weight:500;text-wrap:balance}
+.wrap{padding-inline:var(--m);max-width:1600px;margin-inline:auto}
+h1,h2,h3,strong,b{font-weight:700}
+h1,h2{text-wrap:balance;letter-spacing:-.025em}
 p{text-wrap:pretty}
-.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+.occhiello{font-size:14px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--testo2)}
+.scuro .occhiello{color:var(--grigio)}
+h2{font-size:44px;line-height:1.08}
+.lead{font-size:24px;line-height:1.38;letter-spacing:-.01em;margin-top:24px;max-width:30em}
+.sez{padding-block:var(--sez)}
+.scuro{background:var(--nero);color:var(--bianco)}
+.chiaro{background:var(--chiaro)}
+.testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);margin-bottom:56px}
+.testa > div{grid-column:1 / span 8}
+.testa .occhiello{margin-bottom:16px}
 
-/* testata */
-.testata{display:flex;align-items:center;justify-content:space-between;height:var(--testata);gap:var(--s2);position:relative}
-.marchio{display:flex;align-items:center;gap:14px;text-decoration:none}
-.marchio img{width:58px;height:auto}
-.marchio span{font-size:16px;font-weight:500;line-height:1.15}
-.marchio span small{display:block;font-size:14px;font-weight:400;color:var(--grigio)}
-.menu{display:flex;align-items:center;gap:32px;list-style:none;font-size:16px}
-.menu a{text-decoration:none}
-.tel{font-size:16px;font-weight:500;text-decoration:none}
-.lato{display:flex;align-items:center;gap:24px}
-.chiama,.apri{display:none}
+/* bottoni: un solo modello, pieno e con il bordo */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1.5px solid var(--nero);border-radius:2px;font:inherit;font-size:16px;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .15s,color .15s}
+.btn.pieno{background:var(--nero);color:var(--bianco)}
+.btn.pieno:hover{background:#2A2828;border-color:#2A2828}
+.btn.bordo{background:transparent;color:var(--nero)}
+.btn.bordo:hover{background:var(--nero);color:var(--bianco)}
+.scuro .btn{border-color:var(--bianco)}
+.scuro .btn.pieno{background:var(--bianco);color:var(--nero)}
+.scuro .btn.pieno:hover{background:var(--grigio);border-color:var(--grigio)}
+.scuro .btn.bordo{color:var(--bianco)}
+.scuro .btn.bordo:hover{background:var(--bianco);color:var(--nero)}
+.btn svg{width:18px;height:18px;flex:none}
+.azioni{display:flex;flex-wrap:wrap;gap:12px}
 
-/* apertura: una fotografia intera da margine a margine, il titolo sopra su una riga, l'indice sotto */
-.apertura{display:flex;flex-direction:column;height:clamp(600px, calc(100svh - var(--testata)), calc((100vw - 2 * var(--m)) / 2 + 210px))}
-.apertura h1{flex:none;padding-top:10px;padding-bottom:26px;font-size:calc((100vw - 2 * var(--m)) / 16.95);line-height:1;letter-spacing:-.032em;word-spacing:.04em;white-space:nowrap}
-.foto{flex:1 1 auto;min-height:0;margin-inline:var(--m)}
-.foto picture,.foto img{width:100%;height:100%}
-.foto img{object-fit:cover;object-position:50% 50%;background:#E4E3DF}
-.indice{flex:none;height:var(--indice);display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
-.indice ul{display:flex;gap:0 30px;list-style:none}
-.indice button{font:inherit;font-size:16px;background:none;border:0;color:var(--grigio);cursor:pointer;min-height:44px;padding:10px 0 8px;border-bottom:1px solid transparent;transition:color .15s}
-.indice button:hover{color:var(--inchiostro)}
-.indice button[aria-pressed="true"]{color:var(--inchiostro);border-bottom-color:var(--inchiostro)}
-.indice .dida{font-size:14px;color:var(--grigio);text-align:right}
-.indice .dida b{color:var(--inchiostro);font-weight:500}
+/* testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid #DFE1E0}
+.testata .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--testata)}
+.marchio{display:flex;align-items:center;gap:14px;text-decoration:none;flex:none}
+.marchio img{width:56px;height:auto}
+.marchio span{font-size:16px;font-weight:700;line-height:1.2}
+.marchio small{display:block;font-size:14px;font-weight:400;color:var(--testo2)}
+.menu{display:flex;gap:28px;list-style:none;font-size:16px}
+.menu a{text-decoration:none;padding:12px 0}
+.menu a:hover{text-decoration:underline}
+.menu .solo-mobile{display:none}
+.lato{display:flex;align-items:center;gap:12px;flex:none}
+.lato .btn{min-height:48px;padding:0 18px}
+.apri{display:none}
 
-/* chi e cosa: subito sotto l'apertura */
-.intro{padding-top:var(--s3);row-gap:var(--s2)}
-.intro .chi{grid-column:1 / span 7;font-size:28px;line-height:1.3;letter-spacing:-.012em}
-.intro .fatti{grid-column:9 / span 4;font-size:16px;line-height:1.5;color:var(--grigio);padding-top:6px}
-.intro .fatti b{font-weight:500;color:var(--inchiostro)}
-.intro .fatti p + p{margin-top:12px}
-.recapiti-su{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:20px;font-size:17px;font-weight:500;color:var(--inchiostro)}
+/* apertura: titolo a sinistra, luogo e azioni a destra; sotto la porta Cantieri grande e le altre due */
+.apertura{padding-top:40px;padding-bottom:56px}
+.intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end}
+.intro .titoli{grid-column:1 / span 8}
+.apertura h1{font-size:64px;line-height:1.04;letter-spacing:-.03em;margin-top:14px}
+.intro .fianco{grid-column:9 / span 4}
+.sotto{font-size:18px;line-height:1.5;max-width:24em}
+.intro .azioni{margin-top:20px;flex-direction:column;gap:10px}
+.intro .azioni .btn{width:100%}
+.porte{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);margin-top:44px;align-items:start}
+.porta{display:block;text-decoration:none;color:inherit}
+.porta img{width:100%;object-fit:cover;background:var(--chiaro)}
+.porta .t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:24px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.porta .t i{font-style:normal;font-weight:400}
+.porta .c{display:block;margin-top:4px;font-size:16px;line-height:1.4;color:var(--testo2)}
+.porta:hover .t span{text-decoration:underline;text-decoration-thickness:1.5px}
+.porta.grande{grid-column:1 / span 7}
+.porta.grande img{aspect-ratio:16/9}
+.porta.grande .t{margin-top:16px}
+.piccole{grid-column:8 / span 5;display:grid;gap:var(--gap);list-style:none}
+.piccole .porta{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:var(--gap);align-items:end}
+.piccole picture,.piccole img{width:100%}
+.piccole img{aspect-ratio:4/3}
+.piccole .testo-porta{padding-top:2px}
+.piccole .t{display:block}
+.piccole .t i{margin-left:.3em}
+.uscita{margin-top:4px;padding-top:18px;border-top:1px solid #DFE1E0;font-size:16px;color:var(--testo2)}
+.uscita a{color:var(--nero);font-weight:700}
 
-/* sezioni */
-.sez{padding-top:var(--s4)}
-.testa{margin-bottom:var(--s3)}
-.testa > div{max-width:760px}
-h2{font-size:60px;line-height:1;letter-spacing:-.032em}
-.testa p{margin-top:24px;font-size:19px;max-width:34em}
-.piena img{width:100%}
-.piena figcaption,.coppia figcaption{margin-top:12px}
-.coppia{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:var(--gap)}
-.coppia img{width:100%;aspect-ratio:1/1;object-fit:cover}
+/* lo studio */
+.studio .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
+.studio figure{grid-column:1 / span 7}
+.studio figure img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.studio .testo{grid-column:9 / span 4}
+.studio .testo p + p{margin-top:16px}
+.studio .dove{margin-top:28px;font-size:16px}
+.numeri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);list-style:none;margin-top:80px;border-top:1px solid var(--grigio)}
+.numeri li{padding-top:24px}
+.numeri b{display:block;font-size:64px;line-height:1;letter-spacing:-.03em}
+.numeri span{display:block;margin-top:12px;font-size:16px;line-height:1.45;color:var(--testo2);max-width:17em}
 
-/* cantieri: la foto senza testo sopra, poi servizi a sinistra e citazione a destra */
-.servizi{padding-top:var(--s3);align-items:start}
-.servizi > p{grid-column:1 / span 6;font-size:19px}
-.servizi .citazione{grid-column:8 / span 5}
-.servizi blockquote{font-size:28px;line-height:1.24;letter-spacing:-.015em}
-.servizi blockquote + .cap{margin-top:14px}
+/* schede dei servizi */
+.schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px var(--gap);list-style:none}
+.scheda{display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit}
+.scheda img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.scheda h3{margin-top:18px;font-size:24px;line-height:1.2;letter-spacing:-.01em}
+.scheda p{margin-top:8px;font-size:18px;line-height:1.5;color:var(--grigio)}
+.scheda .vai{margin-top:auto;padding-top:14px;font-size:16px;font-weight:700}
+.scheda:hover .vai span{text-decoration:underline}
 
-/* studio e clienti */
-.clienti{font-size:44px;line-height:1.16;letter-spacing:-.025em;max-width:26em;margin-top:var(--s2);text-wrap:balance}
-.clienti span{color:var(--grigio)}
+/* lavori */
+.titolo-lavori{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-top:1px solid #3A3838;padding-top:24px;margin-top:112px}
+.titolo-lavori h3{font-size:24px;line-height:1.2}
+.titolo-lavori span{font-size:16px;color:var(--grigio)}
+.fascia{margin:32px auto 0;max-width:1600px}
+.fascia img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.nome{font-size:24px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+figcaption .nome,.prodotti .nome{margin-top:14px}
+.dati{margin-top:4px;font-size:16px;color:var(--testo2)}
+.scuro .dati{color:var(--grigio)}
+.coppia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px var(--gap);margin-top:48px}
+.coppia img,.lavoro img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.dopo-lavori{margin-top:48px;font-size:18px}
+.dopo-lavori a{font-weight:700}
+.lavori{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px var(--gap)}
+.lavori .grande{grid-column:5 / span 8;grid-row:1 / span 2}
+.lavori .piccolo{grid-column:1 / span 4}
 
-/* chiusura: foto a filo del bordo sinistro, frase e recapiti a destra */
-.chiusura{display:grid;grid-template-columns:55% 1fr;column-gap:64px;margin-top:var(--s4);align-items:end}
-.chiusura img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.chiusura figcaption{margin:12px 0 0 var(--m)}
-.chiusura .testo{padding-right:var(--m);padding-bottom:34px}
-.chiusura h2{font-size:52px;line-height:1.02;letter-spacing:-.03em;max-width:9.5em}
-.recapiti{margin-top:40px;list-style:none;font-size:18px;line-height:1.5}
-.recapiti li + li{margin-top:10px}
-.recapiti .grande{font-size:32px;font-weight:500;letter-spacing:-.015em;line-height:1.15;text-underline-offset:.16em}
-.recapiti li.dopo{margin-top:22px}
+/* prodotti: testo a lato, quattro foto */
+.prodotti .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
+.prodotti .lato-testo{grid-column:1 / span 4;position:sticky;top:calc(var(--testata) + 40px)}
+.prodotti .lato-testo .occhiello{margin-bottom:16px}
+.prodotti .lato-testo .lead{max-width:none}
+.prodotti .quattro{grid-column:5 / span 8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px var(--gap);list-style:none}
+.prodotti .quattro img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* clienti: i nomi come testo */
+.nomi p{font-size:44px;line-height:1.25;letter-spacing:-.02em;max-width:28em}
+.nomi p + p{margin-top:40px}
+.nomi .campo{display:block;margin-bottom:8px;font-size:14px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--grigio)}
+.nomi i{font-style:normal;color:#5E6261}
+.citazione{margin-top:80px;padding-top:32px;border-top:1px solid #3A3838;font-size:24px;line-height:1.38;letter-spacing:-.01em;max-width:36em}
+.citazione + .fonte{margin-top:10px;font-size:16px;color:var(--grigio)}
+
+/* preventivo e contatti */
+.contatti .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:56px;align-items:start}
+.modulo{grid-column:1 / span 7;display:grid;grid-template-columns:1fr 1fr;gap:20px var(--gap)}
+.campo-f{display:flex;flex-direction:column;gap:8px}
+.campo-f.largo{grid-column:1 / -1}
+.campo-f label{font-size:16px;font-weight:700}
+.campo-f label small{font-weight:400;color:var(--testo2);font-size:16px}
+.campo-f input,.campo-f select,.campo-f textarea{font:inherit;font-size:17px;color:var(--nero);background:var(--bianco);border:1.5px solid #9EA2A1;border-radius:2px;min-height:52px;padding:12px 14px;width:100%}
+.campo-f textarea{min-height:140px;resize:vertical}
+.campo-f select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--nero) 50%),linear-gradient(135deg,var(--nero) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px}
+.modulo .invio{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.modulo .invio p{font-size:16px;max-width:32em}
+.recapiti{grid-column:9 / span 4;list-style:none}
+.recapiti li + li{margin-top:28px}
+.recapiti .etichetta{display:block;font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--testo2);margin-bottom:6px}
+.recapiti .tel-grande{display:inline-block;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-.025em;text-decoration:none}
+.recapiti .tel-grande:hover{text-decoration:underline}
+.recapiti .mail{display:flex;align-items:center;min-height:44px;font-weight:700}
+.recapiti .btn{margin-top:12px}
+
+/* matrimoni */
+.matrimoni .corpo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:40px;align-items:start}
+.matrimoni .sinistra{grid-column:1 / span 5}
+.matrimoni .voto{display:flex;align-items:baseline;gap:16px;margin-top:28px}
+.matrimoni .voto b{font-size:64px;line-height:1;letter-spacing:-.03em}
+.matrimoni .voto span{font-size:16px;line-height:1.45;color:var(--testo2)}
+.matrimoni .azioni{margin-top:32px}
+.matrimoni .recensioni{grid-column:7 / span 6;list-style:none;display:grid;gap:32px}
+.recensioni blockquote{font-size:24px;line-height:1.38;letter-spacing:-.01em}
+.recensioni p{margin-top:10px;font-size:16px;color:var(--testo2)}
 
 /* piede */
-.piede{margin-top:64px;border-top:1px solid var(--filo);padding-top:var(--s3)}
-.piede .cols{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);row-gap:var(--s2)}
-.piede .chi{grid-column:1 / span 4}
-.piede .chi img{width:96px}
-.piede .chi p{margin-top:20px;font-size:16px;line-height:1.5;color:var(--grigio);max-width:22em}
-.piede nav{grid-column:span 2}
-.piede nav.lavori{grid-column:6 / span 2}
-.piede nav.contatti{grid-column:span 3}
-.piede h3{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--inchiostro);margin-bottom:16px}
-.piede nav ul{list-style:none;font-size:16px;line-height:1.5}
-.piede nav li + li{margin-top:8px}
-.piede nav a{text-decoration:none;color:var(--grigio)}
-.piede nav a:hover{color:var(--inchiostro);text-decoration:underline}
-.piede nav.contatti a{text-decoration:underline;color:var(--inchiostro)}
-.piede nav.contatti a:hover{color:var(--grigio)}
-.legale{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 32px;margin-top:var(--s3);padding:20px 0 28px;border-top:1px solid #DCDDDA;font-size:14px;color:var(--grigio)}
-.legale ul{display:flex;gap:24px;list-style:none}
-.legale a{color:var(--grigio)}
-.legale a:hover{color:var(--inchiostro)}
+.piede{background:var(--nero);color:var(--bianco);padding-top:96px}
+.piede .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);row-gap:40px}
+.piede img{width:104px}
+.piede .chi p{margin-top:20px;font-size:16px;line-height:1.5;color:var(--grigio);max-width:20em}
+.piede h3{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--grigio);margin-bottom:16px}
+.piede ul{list-style:none;font-size:16px;line-height:1.5}
+.piede li + li{margin-top:10px}
+.piede a{color:var(--bianco);text-decoration:none}
+.piede a:hover{text-decoration:underline}
+.piede address{font-style:normal;font-size:16px;line-height:1.5}
+.legale{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 32px;margin-top:72px;padding:24px 0 32px;border-top:1px solid #3A3838;font-size:14px;color:var(--grigio)}
+.legale ul{display:flex;gap:24px;list-style:none;font-size:14px}
+.legale a{color:var(--grigio);text-decoration:underline}
+.legale li + li{margin-top:0}
 
-@media (min-width:1921px){
-  .piena picture{display:block;padding-inline:var(--m)}
+/* 1280 */
+@media (max-width:1300px){
+  :root{--m:56px}
+  .menu{gap:20px}
 }
 /* 1024 */
 @media (max-width:1180px){
-  :root{--m:40px}
-  .indice ul{gap:0 22px}
-  .intro .chi{grid-column:1 / span 7;font-size:24px}
-  .intro .fatti{grid-column:9 / span 4}
-  h2{font-size:48px}
-  .clienti{font-size:36px}
-  .servizi blockquote{font-size:24px}
-  .chiusura{column-gap:40px}
-  .chiusura h2{font-size:40px}
-  .recapiti .grande{font-size:30px}
-  .menu{gap:22px}
+  .menu{display:none}
+  .apri{display:inline-flex}
+  .testata.aperta .menu{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:var(--testata);background:var(--bianco);border-bottom:1px solid #DFE1E0;padding:8px var(--m) 24px;font-size:20px}
+  .testata.aperta .menu a{display:block;padding:12px 0}
+  .menu .solo-mobile{display:list-item}
+  .apertura h1{font-size:56px}
+  .intro .titoli{grid-column:1 / -1}
+  .intro .fianco{grid-column:1 / span 8;margin-top:24px}
+  .intro .azioni{flex-direction:row}
+  .intro .azioni .btn{width:auto}
+  .piccole .porta{grid-template-columns:minmax(0,1fr)}
+  .piccole .testo-porta{padding-top:12px}
+  .piccole .t{flex-direction:row;font-size:20px}
+  .piccole{gap:28px}
+  .studio .testo{grid-column:8 / span 5}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prodotti .lato-testo{grid-column:1 / -1;position:static;margin-bottom:48px;max-width:40em}
+  .prodotti .quattro{grid-column:1 / -1}
+  .nomi p{font-size:36px}
+  .recapiti .tel-grande{font-size:34px}
 }
 /* 768 */
 @media (max-width:900px){
-  :root{--m:28px;--s4:96px;--testata:72px}
-  .menu,.testata .tel{display:none}
-  .chiama{display:inline-block;font-size:16px;font-weight:500;padding:10px 0}
-  .apri{display:inline-block;font:inherit;font-size:16px;font-weight:500;background:none;border:0;color:var(--inchiostro);padding:10px 0;cursor:pointer}
-  .testata.aperta .menu{display:flex;flex-direction:column;align-items:flex-start;gap:14px;position:absolute;top:calc(var(--testata) - 8px);left:calc(var(--m) * -1);right:calc(var(--m) * -1);background:var(--carta);padding:20px var(--m) 28px;border-bottom:1px solid var(--filo);z-index:5;font-size:20px}
-  .apertura{height:auto}
-  .apertura h1{font-size:64px;line-height:.98;white-space:normal;padding:12px var(--m) 28px}
-  .foto{margin-inline:0}
-  .foto picture,.foto img{height:auto}
-  .foto img{aspect-ratio:4/3}
-  .indice{height:auto;flex-wrap:wrap;gap:0 24px;padding-top:4px}
-  .indice ul{flex:0 0 100%}
-  .indice .dida{text-align:left}
-  .intro{padding-top:var(--s2)}
-  .intro .chi,.intro .fatti{grid-column:1 / -1}
-  .intro .chi{font-size:24px}
-  .intro .fatti{padding-top:0;max-width:34em}
-  .servizi > p,.servizi .citazione{grid-column:1 / -1}
-  .servizi .citazione{margin-top:var(--s2)}
-  .chiusura{display:block}
-  .chiusura .testo{padding:40px var(--m) 0}
-  .piede{margin-top:var(--s4)}
-  .piede .chi{grid-column:1 / -1}
-  .piede nav,.piede nav.lavori,.piede nav.contatti{grid-column:span 4}
+  :root{--m:32px;--sez:96px;--testata:72px}
+  .scrivi{display:none}
+  .apertura h1{font-size:48px}
+  .intro .fianco{grid-column:1 / -1}
+  .porta.grande,.piccole{grid-column:1 / -1}
+  .piccole{grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:32px}
+  .studio figure,.studio .testo{grid-column:1 / -1}
+  .studio .testo{margin-top:32px;max-width:36em}
+  .numeri{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .testa > div{grid-column:1 / -1}
+  .lavori .grande,.lavori .piccolo{grid-column:1 / -1;grid-row:auto}
+  .titolo-lavori{margin-top:80px}
+  .nomi p{font-size:32px}
+  .matrimoni .sinistra,.matrimoni .recensioni{grid-column:1 / -1}
+  .modulo,.recapiti{grid-column:1 / -1}
+  .recapiti{order:-1;display:grid;grid-template-columns:1fr 1fr;gap:28px var(--gap)}
+  .recapiti li + li{margin-top:0}
+  .piede .cols{grid-template-columns:1fr 1fr}
 }
 /* 390 */
-@media (max-width:560px){
-  :root{--m:20px;--gap:12px;--s3:44px;--s4:80px;--testata:64px}
+@media (max-width:600px){
+  :root{--m:20px;--gap:16px;--sez:72px;--testata:72px}
   body{font-size:17px}
-  .marchio{gap:12px}
-  .marchio img{width:48px}
-  .marchio span{font-size:15px}
-  .marchio span small{font-size:13px}
-  .lato{gap:20px}
-  .apertura h1{font-size:47px;line-height:.98;letter-spacing:-.03em;padding:8px var(--m) 22px}
-  .apertura h1 span{display:block;max-width:9em}
-  .foto img{aspect-ratio:1/1}
-  .indice ul{gap:0 16px}
-  .indice button{font-size:15px}
-  .intro .chi{font-size:21px;line-height:1.35}
-  .recapiti-su{font-size:16px;gap:6px 20px;margin-top:14px}
-  h2{font-size:34px;line-height:1.04}
-  .testa p,.servizi > p{font-size:17px}
-  .coppia{grid-template-columns:1fr}
-  .servizi blockquote{font-size:22px}
-  .clienti{font-size:26px;line-height:1.2}
-  .chiusura .testo{padding-top:32px}
-  .chiusura h2{font-size:32px}
-  .recapiti{margin-top:28px}
-  .recapiti .grande{font-size:30px}
-  .piede nav,.piede nav.lavori,.piede nav.contatti{grid-column:1 / -1}
-  .piede .cols{row-gap:28px}
-  .legale{flex-direction:column}
+  h2{font-size:28px;line-height:1.14}
+  .lead{font-size:20px;margin-top:16px}
+  .testa{margin-bottom:36px}
+  .marchio{gap:10px}
+  .marchio img{width:46px}
+  .marchio span{display:none}
+  .lato .btn .lungo{display:none}
+  .lato .btn.apri{padding:0 12px}
+  .lato{gap:8px}
+  .lato .btn{padding:0 14px}
+  .apertura{padding-top:20px;padding-bottom:40px}
+  .apertura .occhiello{font-size:14px;letter-spacing:.1em}
+  .apertura h1{font-size:34px;line-height:1.06;margin-top:8px}
+  .intro .fianco{margin-top:12px}
+  .sotto{font-size:17px;line-height:1.45}
+  .intro .azioni{margin-top:16px}
+  .intro .azioni .btn{flex:1 1 100%;min-height:52px}
+  .intro .azioni .bordo{display:none}
+  .porte{margin-top:20px}
+  .porta .t{font-size:20px}
+  .porta .c{font-size:15px;line-height:1.35}
+  .porta.grande .t{margin-top:10px}
+  .porta.grande .c{margin-top:2px}
+  .piccole{grid-template-columns:1fr;gap:8px;margin-top:14px}
+  .piccole .porta{grid-template-columns:80px minmax(0,1fr);column-gap:14px;align-items:center;border:1px solid #DFE1E0;border-radius:2px;padding:0 12px 0 0;overflow:hidden}
+  .piccole img{aspect-ratio:1/1;width:80px;height:80px}
+  .piccole .testo-porta{padding-top:0}
+  .piccole .t{font-size:20px;gap:8px}
+  .uscita{margin-top:14px;padding-top:14px;font-size:16px}
+  .numeri{margin-top:48px}
+  .numeri b{font-size:44px}
+  .schede{grid-template-columns:1fr;gap:36px}
+  .scheda h3,.nome,.titolo-lavori h3{font-size:20px}
+  .scheda p{font-size:16px}
+  .titolo-lavori{margin-top:64px;flex-direction:column;gap:4px}
+  .fascia{margin-top:20px}
+  .coppia{grid-template-columns:1fr;gap:32px;margin-top:32px}
+  .dopo-lavori{margin-top:36px;font-size:17px}
+  .lavori{gap:32px;grid-template-columns:minmax(0,1fr)}
+  .prodotti .lato-testo{margin-bottom:32px}
+  .prodotti .quattro{gap:28px var(--gap)}
+  .prodotti .nome{font-size:17px;margin-top:10px}
+  .nomi p{font-size:28px;line-height:1.3}
+  .nomi p + p{margin-top:28px}
+  .citazione{font-size:20px;margin-top:48px}
+  .matrimoni .voto b{font-size:44px}
+  .recensioni blockquote{font-size:20px}
+  .matrimoni .azioni .btn{flex:1 1 100%}
+  .modulo{grid-template-columns:1fr}
+  .recapiti{grid-template-columns:1fr}
+  .modulo .invio .btn{flex:1 1 100%}
+  .recapiti .tel-grande{font-size:34px}
+  .piede{padding-top:64px}
+  .piede .cols{grid-template-columns:1fr}
+  .legale{flex-direction:column;margin-top:48px}
 }
-@media (max-width:350px){
-  .indice ul{gap:0 10px}
-  .indice button{font-size:13.5px}
-  .apertura h1{font-size:40px}
-  .lato{gap:14px}
-  .marchio span{white-space:nowrap}
+@media (max-width:359px){
+  .lato .btn svg{display:none}
+  .lato .btn{padding:0 10px}
+  .testata .wrap{gap:8px}
+  .marchio img{width:42px}
+  .apertura h1{font-size:30px}
+  .nome-c{display:none}
+  .intro .azioni .btn,.matrimoni .azioni .btn{white-space:normal;padding:0 12px;gap:8px}
+  .nomi p{font-size:24px}
 }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"AIT Studio, Stefano Aiti Fotografo","telephone":"+39 348 748 58 71","email":"stefano@stefanoaiti.com","address":{"@type":"PostalAddress","streetAddress":"Via Galileo Galilei 40 int. 26","postalCode":"35035","addressLocality":"Mestrino","addressRegion":"PD","addressCountry":"IT"},"vatID":"IT04257170284","foundingDate":"2008","areaServed":["Veneto","Trentino"]}
+</script>
 </head>
 <body>
 
-<header class="wrap">
-  <div class="testata" id="testata">
-    <a class="marchio" href="#" aria-label="AIT Studio, Stefano Aiti fotografo: inizio pagina">
-      <img src="img/logo-ait.svg" alt="" width="58" height="36">
-      <span>Stefano Aiti<small>fotografo</small></span>
+<header class="testata" id="testata">
+  <div class="wrap">
+    <a class="marchio" href="#inizio" aria-label="AIT Studio, Stefano Aiti: inizio pagina">
+      <img src="img/logo-ait.svg" alt="" width="56" height="35">
+      <span>Stefano Aiti<small>AIT Studio, Mestrino</small></span>
     </a>
     <ul class="menu" id="menu">
+      <li><a href="#cantieri">Cantieri e mezzi</a></li>
+      <li><a href="#prodotti">Prodotti</a></li>
       <li><a href="#architettura">Architettura</a></li>
-      <li><a href="#cantieri">Cantieri</a></li>
-      <li><a href="#studio">Clienti</a></li>
-      <li><a href="#contatti">Contatti</a></li>
+      <li><a href="#clienti">Clienti</a></li>
+      <li><a href="#matrimoni">Matrimoni</a></li>
+      <li><a href="#preventivo">Preventivo</a></li>
+      <li class="solo-mobile"><a href="mailto:info@aitistudio.it?subject=Richiesta%20di%20preventivo">Scrivici a info@aitistudio.it</a></li>
     </ul>
     <div class="lato">
-      <a class="tel num" href="tel:+393487485871">348&nbsp;748&nbsp;58&nbsp;71</a>
-      <a class="chiama" href="tel:+393487485871" aria-label="Chiama 348 748 58 71">Chiama</a>
-      <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <a class="btn bordo scrivi" href="mailto:stefano@stefanoaiti.com?subject=Richiesta%20di%20preventivo">Scrivici</a>
+      <a class="btn pieno" href="tel:+393487485871" aria-label="Chiama Stefano Aiti al 348 748 58 71"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg><span><span class="lungo">Chiama </span><span class="num">348&nbsp;748&nbsp;58&nbsp;71</span></span></a>
+      <button class="btn bordo apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
     </div>
   </div>
 </header>
 
-<main>
-<section class="apertura" id="apertura" aria-label="Fotografie">
-  <h1 class="wrap"><span>Le foto sono comunicazione silenziosa</span></h1>
-  <figure class="foto">
-    <picture>
-      <source id="foto-m" media="(max-width:900px)" srcset="img/ap-calegaro-m-600.jpg 600w, img/ap-calegaro-m-900.jpg 900w, img/ap-calegaro-m-1200.jpg 1200w" sizes="100vw" width="1200" height="1200">
-      <img id="foto" src="img/ap-calegaro-1600.jpg" srcset="img/ap-calegaro-800.jpg 800w, img/ap-calegaro-1200.jpg 1200w, img/ap-calegaro-1600.jpg 1600w, img/ap-calegaro-1900.jpg 1900w"
-        sizes="(min-width:1921px) 1808px, (max-width:1180px) calc(100vw - 80px), calc(100vw - 112px)" width="1900" height="950" fetchpriority="high"
-        alt="Tre ciotole in argento smaltato arancio, giallo e azzurro, fotografia di Stefano Aiti per Calegaro">
-    </picture>
-  </figure>
-  <div class="indice wrap">
-    <ul id="lista" aria-label="Scegli la fotografia">
-      <li><button type="button" aria-pressed="true">Calegaro</button></li>
-      <li><button type="button" aria-pressed="false">Marijke</button></li>
-      <li><button type="button" aria-pressed="false">Artufficio</button></li>
-      <li><button type="button" aria-pressed="false">Gregorianum</button></li>
+<main id="inizio">
+<section class="apertura wrap" aria-labelledby="titolo">
+  <div class="intro">
+    <div class="titoli">
+      <p class="occhiello">AIT Studio, Stefano Aiti</p>
+      <h1 id="titolo">Foto e video per le aziende: cantieri, prodotti, architetture</h1>
+    </div>
+    <div class="fianco">
+      <p class="sotto">Studio fotografico a Mestrino (PD), dal 2008. Lavoriamo in Veneto e in Trentino.</p>
+      <div class="azioni">
+        <a class="btn pieno" href="tel:+393487485871"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg><span>Chiama<span class="nome-c"> Stefano</span> <span class="num">348&nbsp;748&nbsp;58&nbsp;71</span></span></a>
+        <a class="btn bordo" href="#preventivo">Chiedi un preventivo</a>
+      </div>
+    </div>
+  </div>
+  <div class="porte">
+    <a class="porta grande" href="#cantieri">
+      <img src="img/h-cantieri-900.jpg" srcset="img/h-cantieri-600.jpg 600w, img/h-cantieri-900.jpg 900w, img/h-cantieri-1200.jpg 1200w, img/h-cantieri-1600.jpg 1600w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:900px) calc(100vw - 64px), min(52vw, 840px)" width="1600" height="900" fetchpriority="high" alt="Stesa notturna in città con un semirimorchio Salima, fotografia di AIT Studio">
+      <span class="t"><span>Cantieri e mezzi</span><i aria-hidden="true">&rarr;</i></span>
+      <span class="c">Salima, Girardini, Martini Silvestro</span>
+    </a>
+    <ul class="piccole">
+      <li><a class="porta" href="#prodotti">
+        <picture>
+          <source media="(max-width:600px)" srcset="img/q-prodotti-240.jpg 240w, img/q-prodotti-360.jpg 360w" sizes="80px">
+          <img src="img/p-prodotti-600.jpg" srcset="img/p-prodotti-600.jpg 600w, img/p-prodotti-900.jpg 900w" sizes="(max-width:900px) 46vw, min(19vw, 300px)" width="1200" height="900" alt="Antenna nera per auto su fondo bianco, fotografia di Stefano Aiti per Calearo">
+        </picture>
+        <span class="testo-porta">
+          <span class="t"><span>Prodotti in sala di posa</span><i aria-hidden="true">&rarr;</i></span>
+          <span class="c">Calearo, Calegaro, Marijke, Superoro</span>
+        </span>
+      </a></li>
+      <li><a class="porta" href="#architettura">
+        <picture>
+          <source media="(max-width:600px)" srcset="img/q-architettura-240.jpg 240w, img/q-architettura-360.jpg 360w" sizes="80px">
+          <img src="img/p-architettura-600.jpg" srcset="img/p-architettura-600.jpg 600w, img/p-architettura-900.jpg 900w" sizes="(max-width:900px) 46vw, min(19vw, 300px)" width="1200" height="900" alt="Scala a chiocciola in marmo bianco vista dall'alto, fotografia di Stefano Aiti per Studio 4 Marmicolor">
+        </picture>
+        <span class="testo-porta">
+          <span class="t"><span>Architettura e interni</span><i aria-hidden="true">&rarr;</i></span>
+          <span class="c">Artufficio, Studio 4 Marmicolor, Fornace Morandi</span>
+        </span>
+      </a></li>
+      <li><p class="uscita">Matrimoni: <a href="#matrimoni">Stefano Aiti Weddgraphy, 4,9 su 5 su Matrimonio.com</a></p></li>
     </ul>
-    <p class="dida" id="dida" aria-live="polite"><b>Calegaro</b>, ciotole in argento smaltato <span class="num">1/4</span></p>
   </div>
 </section>
 
-<section class="intro wrap griglia" aria-label="Lo studio">
-  <p class="chi">Stefano Aiti fotografa oggetti, architetture e cantieri per le aziende, dal suo studio di Mestrino, in provincia di Padova.</p>
-  <div class="fatti">
-    <p>Fotografa dal 1995, <b>professionista dal 2008</b>. Laureato allo Iuav in Architettura e in Comunicazioni visive e multimediali.</p>
-    <p class="recapiti-su"><a class="num" href="tel:+393487485871">348&nbsp;748&nbsp;58&nbsp;71</a><a href="mailto:stefano@stefanoaiti.com">stefano@stefanoaiti.com</a></p>
+<section class="sez chiaro studio" id="studio" aria-labelledby="t-studio">
+  <div class="wrap">
+    <div class="corpo">
+      <figure>
+        <img src="img/studio-1200.jpg" srcset="img/studio-800.jpg 800w, img/studio-1200.jpg 1200w, img/studio-1600.jpg 1600w, img/studio-2000.jpg 2000w" sizes="(max-width:900px) calc(100vw - 40px), 58vw" width="2000" height="1125" loading="lazy" alt="Stefano Aiti e Giulia Morandin nella sala di posa di Mestrino, tra le luci, il banco e due portatili">
+      </figure>
+      <div class="testo">
+        <p class="occhiello">Lo studio</p>
+        <h2 id="t-studio" style="margin-top:16px">Siamo in due, con la nostra sala di posa a Mestrino</h2>
+        <p style="margin-top:24px">Stefano Aiti e Giulia Morandin. Ideazione, realizzazione ed editing vengono svolti totalmente da noi e con la nostra attrezzatura, per lavorare con flessibilità e velocità.</p>
+        <p>Stefano si è laureato allo Iuav in Architettura e in Comunicazioni visive e multimediali.</p>
+        <p class="dove">Via G. Galilei 40 int.&nbsp;26, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Galileo+Galilei+40%2C+35035+Mestrino+PD" rel="noopener">Vai alla mappa</a></p>
+      </div>
+    </div>
+    <ul class="numeri">
+      <li><b class="num">1995</b><span>Stefano comincia a fotografare</span></li>
+      <li><b class="num">2008</b><span>diventa professionista e nasce lo Studio Aiti</span></li>
+      <li><b class="num">2</b><span>persone: ideazione, scatto ed editing, tutto fatto da noi</span></li>
+      <li><b class="num">6</b><span>banche e casse rurali arredate da Artufficio, fotografate da noi</span></li>
+    </ul>
   </div>
 </section>
 
-<section class="sez" id="architettura">
-  <div class="testa wrap">
-    <div>
-      <h2>Architettura e contract</h2>
-      <p>Banche e casse rurali arredate da Artufficio, le scale in marmo di Studio&nbsp;4&nbsp;Marmicolor, la Fornace Morandi.</p>
+<section class="sez scuro" id="cantieri" aria-labelledby="t-cantieri">
+  <div class="wrap">
+    <div class="testa"><div>
+      <p class="occhiello">Per le imprese di strade e costruzioni</p>
+      <h2 id="t-cantieri">Cantieri e mezzi</h2>
+      <p class="lead">Reportage di cantiere, foto aziendali, livree dei mezzi, video e siti web per Salima, Girardini, Martini Silvestro e le altre imprese. Veniamo in cantiere anche di notte, in Veneto e in Trentino.</p>
+    </div></div>
+    <ul class="schede">
+      <li><a class="scheda" href="#preventivo" data-tipo="Reportage di cantiere">
+        <img src="img/s-reportage-600.jpg" srcset="img/s-reportage-600.jpg 600w, img/s-reportage-900.jpg 900w" sizes="(max-width:600px) 100vw, (max-width:1180px) 46vw, 350px" width="900" height="675" loading="lazy" alt="Fresatura dell'asfalto di notte con le luci della fresatrice e degli operai">
+        <h3>Reportage di cantiere</h3>
+        <p>La storia del cantiere e il suo processo, dando risalto alle tecnologie, alle maestranze impiegate e ai mezzi di lavoro.</p>
+        <span class="vai"><span>Chiedi un preventivo</span> &rarr;</span>
+      </a></li>
+      <li><a class="scheda" href="#preventivo" data-tipo="Foto aziendali">
+        <img src="img/s-aziendale-600.jpg" srcset="img/s-aziendale-600.jpg 600w, img/s-aziendale-900.jpg 900w" sizes="(max-width:600px) 100vw, (max-width:1180px) 46vw, 350px" width="900" height="675" loading="lazy" alt="Due operai Martini Silvestro di spalle guardano un escavatore al lavoro">
+        <h3>Foto aziendali</h3>
+        <p>Squadre, sede e parco mezzi. Monografie aziendali come racconti per immagini della vostra realtà.</p>
+        <span class="vai"><span>Chiedi un preventivo</span> &rarr;</span>
+      </a></li>
+      <li><a class="scheda" href="#preventivo" data-tipo="Livree dei mezzi">
+        <img src="img/s-livree-600.jpg" srcset="img/s-livree-600.jpg 600w, img/s-livree-900.jpg 900w" sizes="(max-width:600px) 100vw, (max-width:1180px) 46vw, 350px" width="900" height="675" loading="lazy" alt="Escavatore gommato Volvo con la livrea Salima davanti all'impianto">
+        <h3>Livree dei mezzi</h3>
+        <p>Decoriamo i veicoli con i vostri colori aziendali e il vostro logo.</p>
+        <span class="vai"><span>Chiedi un preventivo</span> &rarr;</span>
+      </a></li>
+      <li><a class="scheda" href="#preventivo" data-tipo="Video e sito web">
+        <img src="img/s-video-600.jpg" srcset="img/s-video-600.jpg 600w, img/s-video-900.jpg 900w" sizes="(max-width:600px) 100vw, (max-width:1180px) 46vw, 350px" width="900" height="675" loading="lazy" alt="Operaio sulla finitrice al tramonto, con le cuffie, sotto un cavalcavia">
+        <h3>Video e siti web</h3>
+        <p>Video per il movimento terra, le costruzioni e le strade, e i siti web delle imprese, come per Salima, Girardini e Martini Silvestro.</p>
+        <span class="vai"><span>Chiedi un preventivo</span> &rarr;</span>
+      </a></li>
+    </ul>
+    <div class="titolo-lavori"><h3>Lavori recenti</h3><span>2022-2023</span></div>
+  </div>
+  <figure class="fascia">
+    <img src="img/b-mirano-1600.jpg" srcset="img/b-mirano-900.jpg 900w, img/b-mirano-1200.jpg 1200w, img/b-mirano-1600.jpg 1600w, img/b-mirano-1900.jpg 1900w" sizes="min(100vw, 1600px)" width="1900" height="1069" loading="lazy" alt="Camion Scania di Salima sull'asfalto nuovo, ripreso rasoterra con i fari accesi">
+    <figcaption class="wrap"><p class="nome">Salima</p><p class="dati">Mirano (VE) &middot; marzo 2023 &middot; reportage di cantiere</p></figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="coppia">
+      <figure>
+        <img src="img/l-carpane-900.jpg" srcset="img/l-carpane-600.jpg 600w, img/l-carpane-900.jpg 900w, img/l-carpane-1200.jpg 1200w" sizes="(max-width:600px) calc(100vw - 40px), min(45vw, 760px)" width="1200" height="900" loading="lazy" alt="Cantiere stradale con la fresatrice sul viadotto, montagne sullo sfondo">
+        <figcaption><p class="nome">Girardini</p><p class="dati">Carpane (VI) &middot; ottobre 2022 &middot; cantiere Anas, reportage</p></figcaption>
+      </figure>
+      <figure>
+        <img src="img/l-massenza-900.jpg" srcset="img/l-massenza-600.jpg 600w, img/l-massenza-900.jpg 900w, img/l-massenza-1200.jpg 1200w" sizes="(max-width:600px) calc(100vw - 40px), min(45vw, 760px)" width="1200" height="900" loading="lazy" alt="Autocisterna Volvo FL250 di Salima davanti all'impianto">
+        <figcaption><p class="nome">Salima</p><p class="dati">Massenza (TN) &middot; marzo 2022 &middot; parco mezzi, Volvo FL250</p></figcaption>
+      </figure>
+    </div>
+    <p class="dopo-lavori">Avete un cantiere da documentare? <a href="#preventivo">Scriveteci &rarr;</a></p>
+  </div>
+</section>
+
+<section class="sez prodotti" id="prodotti" aria-labelledby="t-prodotti">
+  <div class="wrap corpo">
+    <div class="lato-testo">
+      <p class="occhiello">Still life</p>
+      <h2 id="t-prodotti">Prodotti in sala di posa</h2>
+      <p class="lead">Oggetti, gioielli e componenti, su bianco o su nero. Quello che cerchiamo è un'elevatissima qualità e pulizia d'immagine.</p>
+    </div>
+    <ul class="quattro">
+      <li><img src="img/p-prodotti-900.jpg" srcset="img/p-prodotti-600.jpg 600w, img/p-prodotti-900.jpg 900w, img/p-prodotti-1200.jpg 1200w" sizes="(max-width:600px) 46vw, (max-width:1180px) 46vw, min(29vw, 470px)" width="1200" height="900" loading="lazy" alt="Antenna nera per auto su fondo bianco, fotografia di Stefano Aiti per Calearo"><p class="nome">Calearo</p></li>
+      <li><img src="img/v-marijke-900.jpg" srcset="img/v-marijke-600.jpg 600w, img/v-marijke-900.jpg 900w, img/v-marijke-1200.jpg 1200w" sizes="(max-width:600px) 46vw, (max-width:1180px) 46vw, min(29vw, 470px)" width="1200" height="900" loading="lazy" alt="Vaso fatto di cubetti metallici brillanti, fotografia di Stefano Aiti per Marijke"><p class="nome">Marijke</p></li>
+      <li><img src="img/v-calegaro-900.jpg" srcset="img/v-calegaro-600.jpg 600w, img/v-calegaro-900.jpg 900w, img/v-calegaro-1200.jpg 1200w" sizes="(max-width:600px) 46vw, (max-width:1180px) 46vw, min(29vw, 470px)" width="1200" height="900" loading="lazy" alt="Ciotole in argento smaltato arancio, giallo e azzurro al sole radente, fotografia di Stefano Aiti per Calegaro"><p class="nome">Calegaro</p></li>
+      <li><img src="img/v-superoro-900.jpg" srcset="img/v-superoro-600.jpg 600w, img/v-superoro-900.jpg 900w, img/v-superoro-1070.jpg 1070w" sizes="(max-width:600px) 46vw, (max-width:1180px) 46vw, min(29vw, 470px)" width="1070" height="803" loading="lazy" alt="Collana e orecchini in oro rosa con pietre lilla su fondo bianco, fotografia di Stefano Aiti per Superoro"><p class="nome">Superoro</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sez chiaro" id="architettura" aria-labelledby="t-architettura">
+  <div class="wrap">
+    <div class="testa"><div>
+      <p class="occhiello">Architettura, contract e interni</p>
+      <h2 id="t-architettura">Architettura e interni</h2>
+      <p class="lead">Le banche e casse rurali arredate da Artufficio, le scale in marmo di Studio&nbsp;4&nbsp;Marmicolor, la Fornace Morandi.</p>
+    </div></div>
+    <div class="lavori">
+      <figure class="grande">
+        <img src="img/a-prealpi-1200.jpg" srcset="img/a-prealpi-900.jpg 900w, img/a-prealpi-1200.jpg 1200w, img/a-prealpi-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), min(59vw, 950px)" width="1600" height="1200" loading="lazy" alt="Parete curva rivestita di lamelle lucide in una hall con il pavimento in pietra chiara">
+        <figcaption><p class="nome">Artufficio</p><p class="dati">Banca Prealpi</p></figcaption>
+      </figure>
+      <figure class="piccolo">
+        <img src="img/p-architettura-600.jpg" srcset="img/p-architettura-600.jpg 600w, img/p-architettura-900.jpg 900w, img/p-architettura-1200.jpg 1200w" sizes="(max-width:900px) calc(100vw - 40px), min(29vw, 470px)" width="1200" height="900" loading="lazy" alt="Scala a chiocciola in marmo bianco vista dall'alto, fotografia di Stefano Aiti per Studio 4 Marmicolor">
+        <figcaption><p class="nome">Studio 4 Marmicolor</p></figcaption>
+      </figure>
+      <figure class="piccolo">
+        <img src="img/a-fornace-600.jpg" srcset="img/a-fornace-600.jpg 600w, img/a-fornace-900.jpg 900w" sizes="(max-width:900px) calc(100vw - 40px), min(29vw, 470px)" width="900" height="675" loading="lazy" alt="Facciata in mattoni della Fornace Morandi con le finestre ad arco">
+        <figcaption><p class="nome">Fornace Morandi</p></figcaption>
+      </figure>
     </div>
   </div>
-  <figure class="piena">
-    <picture>
-      <source media="(max-width:560px)" srcset="img/arch-prealpi-v-500.jpg 500w, img/arch-prealpi-v-800.jpg 800w, img/arch-prealpi-v-1013.jpg 1013w" sizes="100vw" width="1013" height="1267">
-      <img src="img/arch-prealpi-w-1600.jpg" srcset="img/arch-prealpi-w-800.jpg 800w, img/arch-prealpi-w-1200.jpg 1200w, img/arch-prealpi-w-1600.jpg 1600w, img/arch-prealpi-w-1900.jpg 1900w" sizes="100vw" width="1900" height="950" loading="lazy" alt="Parete curva rivestita di lamelle lucide in una hall con pavimento in pietra chiara, una donna passa sulla destra">
-    </picture>
-    <figcaption class="cap wrap"><b>Banca Prealpi</b>, arredo Artufficio</figcaption>
-  </figure>
-  <div class="coppia wrap">
-    <figure>
-      <img src="img/arch-scala-q-900.jpg" srcset="img/arch-scala-q-600.jpg 600w, img/arch-scala-q-900.jpg 900w, img/arch-scala-q-1300.jpg 1300w" sizes="(max-width:560px) 100vw, 50vw" width="1300" height="1300" loading="lazy" alt="Scala a chiocciola in marmo bianco vista dall'alto">
-      <figcaption class="cap"><b>Studio 4 Marmicolor</b>, scala a chiocciola in marmo</figcaption>
-    </figure>
-    <figure>
-      <img src="img/arch-fornace-900.jpg" srcset="img/arch-fornace-600.jpg 600w, img/arch-fornace-900.jpg 900w, img/arch-fornace-1300.jpg 1300w" sizes="(max-width:560px) 100vw, 50vw" width="1300" height="1300" loading="lazy" alt="Ciminiera in mattoni della Fornace Morandi sopra la facciata ad archi">
-      <figcaption class="cap"><b>Fornace Morandi</b>, la ciminiera e la facciata</figcaption>
-    </figure>
+</section>
+
+<section class="sez scuro" id="clienti" aria-labelledby="t-clienti">
+  <div class="wrap">
+    <div class="testa"><div>
+      <p class="occhiello">Clienti</p>
+      <h2 id="t-clienti">Lavoriamo con aziende orgogliose di ciò che fanno</h2>
+    </div></div>
+    <div class="nomi">
+      <p><span class="campo">Strade e costruzioni</span>Salima <i>&middot;</i> Girardini <i>&middot;</i> Martini Silvestro</p>
+      <p><span class="campo">Prodotti e design</span>Calearo <i>&middot;</i> Calegaro <i>&middot;</i> Marijke <i>&middot;</i> Superoro <i>&middot;</i> Pianegonda <i>&middot;</i> Luceplan <i>&middot;</i> Bellissima Vodka <i>&middot;</i> Trek <i>&middot;</i> Goppion Caffè <i>&middot;</i> Saip</p>
+      <p><span class="campo">Architettura e arredo</span>Artufficio <i>&middot;</i> Lago <i>&middot;</i> Studio 4 Marmicolor <i>&middot;</i> Fornace Morandi</p>
+    </div>
+    <p class="citazione">«Le foto sono comunicazione silenziosa, ma è il passaparola della qualità a creare il gran rumore.»</p>
+    <p class="fonte">Stefano Aiti</p>
   </div>
 </section>
 
-<section class="sez" id="cantieri">
-  <div class="testa wrap">
-    <div>
-      <h2>Industria e cantieri</h2>
+<section class="sez contatti" id="preventivo" aria-labelledby="t-preventivo">
+  <div class="wrap">
+    <div class="testa"><div>
+      <p class="occhiello">Preventivo e contatti</p>
+      <h2 id="t-preventivo">Chiedi un preventivo</h2>
+      <p class="lead">Scriveteci cosa fotografare, dove, entro quando e per quale uso. Vi rispondiamo con un preventivo.</p>
+    </div></div>
+    <div class="corpo">
+      <form class="modulo" id="modulo" action="mailto:stefano@stefanoaiti.com" method="post" enctype="text/plain" novalidate>
+        <div class="campo-f"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="campo-f"><label for="f-azienda">Azienda <small>(se c'è)</small></label><input id="f-azienda" name="azienda" autocomplete="organization"></div>
+        <div class="campo-f"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="campo-f"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        <div class="campo-f largo"><label for="f-tipo">Cosa fotografare</label>
+          <select id="f-tipo" name="tipo">
+            <option value="">Scegli il tipo di lavoro</option>
+            <option>Reportage di cantiere</option>
+            <option>Foto aziendali</option>
+            <option>Livree dei mezzi</option>
+            <option>Video e sito web</option>
+            <option>Prodotti in sala di posa</option>
+            <option>Architettura e interni</option>
+            <option>Matrimonio</option>
+            <option>Altro</option>
+          </select></div>
+        <div class="campo-f"><label for="f-dove">Dove <small>(cantiere, sede o in studio)</small></label><input id="f-dove" name="dove"></div>
+        <div class="campo-f"><label for="f-quando">Entro quando</label><input id="f-quando" name="quando"></div>
+        <div class="campo-f largo"><label for="f-uso">Per quale uso <small>(sito, catalogo, gara, archivio, mezzi)</small></label><input id="f-uso" name="uso"></div>
+        <div class="campo-f largo"><label for="f-msg">Due righe sul lavoro</label><textarea id="f-msg" name="messaggio"></textarea></div>
+        <div class="invio">
+          <button class="btn pieno" type="submit">Prepara l'email</button>
+          <p>Si apre la vostra posta con i campi già scritti, indirizzata a <b id="f-dest">stefano@stefanoaiti.com</b>. Planimetrie, logo o foto dei mezzi si allegano lì.</p>
+        </div>
+      </form>
+      <ul class="recapiti">
+        <li><span class="etichetta">Stefano Aiti</span><a class="tel-grande num" href="tel:+393487485871">348&nbsp;748&nbsp;58&nbsp;71</a></li>
+        <li><span class="etichetta">Email</span><a class="mail" href="mailto:stefano@stefanoaiti.com?subject=Richiesta%20di%20preventivo">stefano@stefanoaiti.com</a><a class="mail" href="mailto:info@aitistudio.it?subject=Richiesta%20di%20preventivo">info@aitistudio.it</a></li>
+        <li><span class="etichetta">Lo studio</span>Via G. Galilei 40 int.&nbsp;26<br>35035 Mestrino (PD)<br><a class="btn bordo" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Galileo+Galilei+40%2C+35035+Mestrino+PD" rel="noopener">Vai alla mappa</a></li>
+        <li><span class="etichetta">Dove lavoriamo</span>In Veneto e in Trentino: Padova, Mirano, Carpane, Massenza.</li>
+      </ul>
     </div>
   </div>
-  <figure class="piena">
-    <picture>
-      <source media="(max-width:560px)" srcset="img/cant-scania-v-600.jpg 600w, img/cant-scania-v-900.jpg 900w" sizes="100vw" width="900" height="1117">
-      <img src="img/cant-scania-w-1600.jpg" srcset="img/cant-scania-w-800.jpg 800w, img/cant-scania-w-1200.jpg 1200w, img/cant-scania-w-1600.jpg 1600w, img/cant-scania-w-1900.jpg 1900w" sizes="100vw" width="1900" height="1000" loading="lazy" alt="Camion sull'asfalto nuovo all'alba, ripreso rasoterra">
-    </picture>
-    <figcaption class="cap wrap"><b>Salima</b>, cantiere stradale all'alba</figcaption>
-  </figure>
-  <div class="servizi wrap griglia">
-    <p>Con Aiti Studio il lavoro va dove si costruiscono strade e infrastrutture: reportage di cantiere e fotografia aziendale. Per Salima, Girardini, Martini Silvestro e per il cantiere Anas di Carpane.</p>
-    <div class="citazione">
-      <blockquote>«Ideazione, realizzazione ed editing vengono svolti totalmente da noi e con la nostra attrezzatura»</blockquote>
-      <p class="cap">Aiti Studio, Mestrino</p>
+</section>
+
+<section class="sez chiaro matrimoni" id="matrimoni" aria-labelledby="t-matrimoni">
+  <div class="wrap corpo">
+    <div class="sinistra">
+      <p class="occhiello">Matrimoni</p>
+      <h2 id="t-matrimoni" style="margin-top:16px">Stefano Aiti Weddgraphy</h2>
+      <div class="voto"><b class="num">4,9</b><span>su 5, con 9 recensioni su Matrimonio.com.<br>Servizio da 1.000 euro.</span></div>
+      <div class="azioni">
+        <a class="btn pieno" href="tel:+393487485871"><span>Chiama per la data <span class="num">348&nbsp;748&nbsp;58&nbsp;71</span></span></a>
+        <a class="btn bordo" href="https://www.weddgraphy.it" rel="noopener">Vai a Weddgraphy</a>
+      </div>
+      <p style="margin-top:20px;font-size:16px"><a href="https://www.matrimonio.com/fotografo-matrimonio/stefano-aiti-weddgraphy--e159440" rel="noopener">Leggi tutte le recensioni su Matrimonio.com</a> &middot; <a href="mailto:info@weddgraphy.it?subject=Data%20del%20matrimonio">info@weddgraphy.it</a></p>
     </div>
-  </div>
-</section>
-
-<section class="sez wrap" id="studio">
-  <h2>Per aziende orgogliose di ciò che fanno</h2>
-  <p class="clienti">Lago, Luceplan, Artufficio, Calearo, Calegaro, Bellissima Vodka, Trek, Goppion Caffè, Saip, Superoro, Pianegonda, <span>e nei cantieri</span> Salima, Girardini, Martini Silvestro</p>
-</section>
-
-<section class="chiusura" id="contatti" aria-label="Contatti">
-  <figure>
-    <img src="img/chiusura-superoro-900.jpg" srcset="img/chiusura-superoro-600.jpg 600w, img/chiusura-superoro-900.jpg 900w, img/chiusura-superoro-1200.jpg 1200w" sizes="(max-width:900px) 100vw, 55vw" width="1200" height="750" loading="lazy" alt="Collana e orecchini in oro rosa con pietre lilla, posati su fondo bianco con luce morbida">
-    <figcaption class="cap"><b>Superoro</b>, gioielli in oro rosa</figcaption>
-  </figure>
-  <div class="testo">
-    <h2>È il passaparola della qualità a creare il gran rumore</h2>
-    <ul class="recapiti">
-      <li><a class="grande num" href="tel:+393487485871">348&nbsp;748&nbsp;58&nbsp;71</a></li>
-      <li class="dopo"><a href="mailto:stefano@stefanoaiti.com">stefano@stefanoaiti.com</a></li>
-      <li><a href="mailto:info@aitistudio.it">info@aitistudio.it</a></li>
-      <li class="dopo"><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Galileo+Galilei+40%2C+35035+Mestrino+PD" rel="noopener">Via Galileo Galilei 40 int.&nbsp;26<br>35035 Mestrino (PD)</a></li>
+    <ul class="recensioni">
+      <li><blockquote>«Stefano è stato molto professionale e veloce nella risposta. Si è rivelato disponibile in ogni richiesta.»</blockquote><p>Ornella, febbraio 2026, su Matrimonio.com</p></li>
+      <li><blockquote>«Fin da subito abbiamo trovato una sintonia con Stefano e il suo studio.»</blockquote><p>Elena, febbraio 2026, su Matrimonio.com</p></li>
+      <li><blockquote>«Più che un fotografo sembrava un amico!»</blockquote><p>Melissa, giugno 2026, su Matrimonio.com</p></li>
     </ul>
   </div>
 </section>
 </main>
 
-<footer class="piede wrap">
-  <div class="cols">
-    <div class="chi">
-      <img src="img/logo-ait-studio.svg" alt="AIT Studio" width="96" height="74">
-      <p>Stefano Aiti, fotografo. Still life, architettura e cantieri per le aziende, dallo studio di Mestrino.</p>
+<footer class="piede">
+  <div class="wrap">
+    <div class="cols">
+      <div class="chi">
+        <img src="img/logo-ait-studio-bianco.svg" alt="AIT Studio" width="104" height="81">
+        <p>Foto e video per le aziende: cantieri e mezzi, prodotti in sala di posa, architettura e interni.</p>
+      </div>
+      <nav aria-label="Lavori">
+        <h3>Lavori</h3>
+        <ul>
+          <li><a href="#cantieri">Cantieri e mezzi</a></li>
+          <li><a href="#prodotti">Prodotti in sala di posa</a></li>
+          <li><a href="#architettura">Architettura e interni</a></li>
+          <li><a href="#clienti">Clienti</a></li>
+          <li><a href="https://www.weddgraphy.it" rel="noopener">Matrimoni, Weddgraphy</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Lo studio</h3>
+        <address>Via G. Galilei 40 int.&nbsp;26<br>35035 Mestrino (PD)</address>
+        <ul style="margin-top:10px"><li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Galileo+Galilei+40%2C+35035+Mestrino+PD" rel="noopener" style="text-decoration:underline">Vai alla mappa</a></li><li>Cantieri in Veneto e in Trentino</li></ul>
+      </div>
+      <nav aria-label="Contatti">
+        <h3>Contatti</h3>
+        <ul>
+          <li><a class="num" href="tel:+393487485871" style="text-decoration:underline">348&nbsp;748&nbsp;58&nbsp;71</a></li>
+          <li><a href="mailto:stefano@stefanoaiti.com" style="text-decoration:underline">stefano@stefanoaiti.com</a></li>
+          <li><a href="mailto:info@aitistudio.it" style="text-decoration:underline">info@aitistudio.it</a></li>
+          <li><a href="#preventivo" style="text-decoration:underline">Chiedi un preventivo</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav aria-label="Lavori" class="lavori">
-      <h3>Lavori</h3>
-      <ul>
-        <li><a href="still-life/">Still life</a></li>
-        <li><a href="#architettura">Architettura e contract</a></li>
-        <li><a href="#cantieri">Industria e cantieri</a></li>
-        <li><a href="corporate/">Corporate</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Studio">
-      <h3>Studio</h3>
-      <ul>
-        <li><a href="studio/">Stefano Aiti</a></li>
-        <li><a href="costruzioni/">Per le costruzioni</a></li>
-        <li><a href="clienti/">Clienti</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Contatti" class="contatti">
-      <h3>Contatti</h3>
-      <ul>
-        <li><a class="num" href="tel:+393487485871">348&nbsp;748&nbsp;58&nbsp;71</a></li>
-        <li><a href="mailto:stefano@stefanoaiti.com">Scrivere a Stefano</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Galileo+Galilei+40%2C+35035+Mestrino+PD" rel="noopener">Come arrivare a Mestrino</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="legale">
-    <p>Stefano Aiti Fotografo, ditta individuale, <span class="num">P.IVA 04257170284</span>, PEC <a href="mailto:stefanoaiti@pec.it">stefanoaiti@pec.it</a></p>
-    <ul>
-      <li><a href="privacy/">Privacy</a></li>
-      <li><a href="cookie/">Cookie</a></li>
-    </ul>
+    <div class="legale">
+      <p>Stefano Aiti Fotografo, ditta individuale, <span class="num">P.IVA 04257170284</span>, PEC <a href="mailto:stefanoaiti@pec.it">stefanoaiti@pec.it</a></p>
+      <ul><li><a href="privacy/">Privacy</a></li><li><a href="cookie/">Cookie</a></li></ul>
+    </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var O=[
-    {c:'Calegaro',d:'ciotole in argento smaltato',f:'calegaro',w:[800,1200,1600,1900],m:[600,900,1200],a:'Tre ciotole in argento smaltato arancio, giallo e azzurro, fotografia di Stefano Aiti per Calegaro'},
-    {c:'Marijke',d:'vaso di cubetti metallici',f:'marijke',w:[800,1200,1600,1900],m:[600,900,1200],a:'Vaso fatto di cubetti metallici brillanti su fondo chiaro, fotografia di Stefano Aiti per Marijke'},
-    {c:'Artufficio',d:'Credito Cooperativo di Brendola',f:'brendola',w:[800,1200,1600,1900],m:[600,900,1200],a:'Parete bianca curva con un oblò aperto sul cielo, fotografia di Stefano Aiti per Artufficio'},
-    {c:'Gregorianum',d:'frangisole in mattoni',f:'gregorianum',w:[800,1200,1600,1900],m:[600,900,1200],a:'Parete frangisole di mattoni chiari posati a giorno, con il verde dietro, fotografia di Stefano Aiti'}
-  ];
-  var img=document.getElementById('foto'), srcm=document.getElementById('foto-m'), dida=document.getElementById('dida');
-  var bt=[].slice.call(document.querySelectorAll('#lista button'));
-  var mq=window.matchMedia('(max-width:900px)');
-  function set(o){return o.w.map(function(w){return 'img/ap-'+o.f+'-'+w+'.jpg '+w+'w'}).join(', ')}
-  function setm(o){return o.m.map(function(w){return 'img/ap-'+o.f+'-m-'+w+'.jpg '+w+'w'}).join(', ')}
-  var pronte=false;
-  function precarica(){if(pronte)return;pronte=true;O.forEach(function(o){var i=new Image();if(mq.matches){i.sizes='100vw';i.srcset=setm(o);}else{i.sizes=img.sizes;i.srcset=set(o);}});}
-  var lista=document.getElementById('lista');
-  lista.addEventListener('pointerenter',precarica);
-  lista.addEventListener('focusin',precarica);
-  lista.addEventListener('touchstart',precarica,{passive:true});
-  function vai(k,focus){
-    var o=O[k];
-    srcm.srcset=setm(o); img.srcset=set(o); img.src='img/ap-'+o.f+'-'+o.w[Math.min(2,o.w.length-1)]+'.jpg'; img.alt=o.a;
-    dida.innerHTML='<b>'+o.c+'</b>, '+o.d+' <span class="num">'+(k+1)+'/'+O.length+'</span>';
-    bt.forEach(function(b,i){b.setAttribute('aria-pressed',i===k?'true':'false');});
-    if(focus) bt[k].focus();
+  var t=document.getElementById('testata'), b=t.querySelector('.apri'), menu=document.getElementById('menu');
+  b.addEventListener('click',function(){var a=t.classList.toggle('aperta');b.setAttribute('aria-expanded',a?'true':'false');b.textContent=a?'Chiudi':'Menu';});
+  menu.addEventListener('click',function(e){if(e.target.closest('a')){t.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';}});
+  var f=document.getElementById('modulo'), tipo=document.getElementById('f-tipo'), dest=document.getElementById('f-dest');
+  // i lavori per le costruzioni vanno alla casella di AIT Studio, gli altri a quella di Stefano
+  var cantiere=['Reportage di cantiere','Foto aziendali','Livree dei mezzi','Video e sito web'];
+  function indirizzo(){return cantiere.indexOf(tipo.value)>=0?'info@aitistudio.it':'stefano@stefanoaiti.com';}
+  function aggiorna(){dest.textContent=indirizzo();f.setAttribute('action','mailto:'+indirizzo());}
+  tipo.addEventListener('change',aggiorna);
+  [].forEach.call(document.querySelectorAll('[data-tipo]'),function(a){a.addEventListener('click',function(){tipo.value=a.getAttribute('data-tipo');aggiorna();});});
+  function componi(){
+    var v=function(n){return (f.elements[n].value||'').trim();};
+    var ogg='Richiesta di preventivo'+(v('tipo')?': '+v('tipo'):'')+(v('azienda')?', '+v('azienda'):(v('nome')?', '+v('nome'):''));
+    var righe=['Nome: '+v('nome'),'Azienda: '+v('azienda'),'Telefono: '+v('telefono'),'Email: '+v('email'),'Cosa fotografare: '+v('tipo'),'Dove: '+v('dove'),'Entro quando: '+v('quando'),'Per quale uso: '+v('uso'),'',v('messaggio')];
+    return 'mailto:'+indirizzo()+'?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n'));
   }
-  bt.forEach(function(b,i){
-    b.addEventListener('click',function(){vai(i)});
-    b.addEventListener('keydown',function(e){
-      if(e.key==='ArrowRight'){e.preventDefault();vai((i+1)%O.length,true)}
-      if(e.key==='ArrowLeft'){e.preventDefault();vai((i+O.length-1)%O.length,true)}
-    });
-  });
-  var t=document.getElementById('testata'), ap=t.querySelector('.apri');
-  ap.addEventListener('click',function(){var on=t.classList.toggle('aperta');ap.setAttribute('aria-expanded',on?'true':'false');ap.textContent=on?'Chiudi':'Menu';});
-  t.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('aperta');ap.setAttribute('aria-expanded','false');ap.textContent='Menu';})});
+  window.aitiMailto=componi;
+  f.addEventListener('submit',function(e){e.preventDefault();window.location.href=componi();});
 })();
 </script>
 </body>
