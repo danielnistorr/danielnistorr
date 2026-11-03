@@ -2,12 +2,52 @@
 
 Proposta non richiesta di una nuova homepage, solo la home, per OBY GROUP ITALIA Srl (www.obygroupitalia.com). Non è pubblicata e l'azienda non è stata contattata.
 
-**Scelta del committente (2 novembre): la versione 1 (`sito/`), con l'uso.** È la pagina da consegnare. Cosa è cambiato e cosa resta da confermare è nella sezione "Versione 1 con l'uso" in fondo; la versione 1 com'era prima è copiata in `_prova/versione-1-originale/`.
+**Pagina da consegnare: `sito/index.html`, al livello professionale (3 novembre).** È la versione 1 con l'uso, rifatta sulle 15 regole di `_metodo/professionale/REGOLE.md` e senza foto di repertorio. Cosa chiedere all'azienda, quali foto fare e come collegare il modulo è nella sezione **"Livello professionale"** qui sotto, che vale prima di tutte le altre; le sezioni successive sono lo storico dei giri precedenti (dove parlano di foto Pexels, della copertura di Milano in apertura o della barra in basso, non valgono più). La versione 1 con l'uso com'era prima di questo giro è in `_prova/versione-1-uso/`, quella originale in `_prova/versione-1-originale/`.
 
-- Pagina: `sito/index.html`, statica, si apre con file:///. Immagini in `sito/img/` (solo quelle usate, JPEG in più larghezze), carattere in `sito/fonts/`.
-- Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md` spiega idea, caratteri, colori, interazione, foto e controlli).
-- Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `finale_img.py`, pagina da `finale-pagina.html`, screenshot. Le modifiche dell'ultimo giro (dopo il giudizio cieco) sono in `_prova/script/rifinitura_pagina.py`, che parte da `finale-pagina-prima-del-giudizio.html`.
+- Pagina: `sito/index.html`, statica, si apre con file:///. Immagini in `sito/img/` (tre foto vere quadrate e il logo), carattere in `sito/fonts/`, i due PDF in `sito/doc/`.
+- Screenshot e nota di progetto: `screenshot/home/` (`NOTA.md`, sezione "Livello professionale", con l'esito di ogni regola).
+- Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `finale_img_pro.py`, pagina da `finale-pagina.html`, screenshot; controlli con `node _prova/script/pro_controlli.mjs`.
 - Analisi con le fonti: `01-analisi.md`. Prototipi e voti del giudice: `_prova/home/a` (scelto) e `_prova/home/b` (innesti).
+
+## Livello professionale (3 novembre)
+
+Il committente ha chiesto una home più professionale e "funzionale all'attività", e sulle foto ha deciso: "niente" (nessuna foto di repertorio, nessuna illustrazione al loro posto). La pagina ha la struttura dei siti di imprese di servizi tecnici scelti dallo studio (Kline, Wilson, Eggentaler): testata fissa con i numeri come bottoni, apertura con mestiere, luogo, tre fatti e due bottoni di chiamata, pronto intervento subito dopo (cosa succede dopo la chiamata e i nove passaggi), interventi in schede, industria su fondo nero, Starflex per le compagnie con i documenti da scaricare, azienda con i dati societari in alto, chiusura con il cellulare in grande e il modulo, piede a quattro colonne. Al telefono, scorrendo, compare in basso la barra con "Cellulare" e "Uffici". Dettaglio ed esito regola per regola in `screenshot/home/NOTA.md`.
+
+**Ritocco finale (stesso giorno), dopo il controllo del livello e la prova dei tre clienti tipo:** tolti la fascia "In numeri" (14 interventi e 9 passaggi contavano voci della pagina, "2 sedi" era riempimento, "30 anni" è un dato di MPM e ora resta solo nella tabella Starflex) e la fascia delle tre garanzie (il loro contenuto è nei quattro passi "Dopo la chiamata"); le dodici voci industriali sono sei schede con la descrizione e un indice delle altre sei; il pronto intervento è salito subito dopo l'apertura; la brochure è un documento da scaricare con lo stesso peso della documentazione tecnica; i link Privacy e Cookie puntano alle pagine del sito di oggi.
+
+**Foto in pagina (solo del loro sito, nessuna di repertorio):** il tetto bruciato con i due operatori (apertura: è l'unica con persone al lavoro e mostra il mestiere), il condominio ponteggiato con il telo Oby (pronto intervento), il fibrocemento rivestito accanto al fotovoltaico (Starflex). Tutte quadrate, con lo stesso trattamento (livelli uguali, colore all'80 %), mai ingrandite oltre la loro misura. Uscite dalla pagina: i tecnici in fune sulla pala eolica (provenienza incerta, qualità bassa: vedi punto 9), la copertura di Milano (forse di MPM), la cucina e la stanza Pexels "Foto indicativa", il cunicolo (logo forse incollato). Le foto Pexels restano in `assets/esterne/` ma non sono usate.
+
+### Il modulo di richiesta va collegato a un servizio
+
+Oggi il modulo in fondo alla home ("Richiesta di sopralluogo o preventivo") **non invia niente**: compone una mail a info@obygroupitalia.com con oggetto ("Richiesta di sopralluogo: <tipo> (urgente)") e tutti i campi nel testo, e apre il programma di posta di chi lo compila. Le schede e le righe degli interventi aprono il modulo con il tipo già scelto. Prima di pubblicare va collegato a un servizio di invio (il modulo del sito nuovo, per esempio Contact Form 7 su WordPress, Formspree o un indirizzo del provider), con:
+- invio vero a info@obygroupitalia.com e risposta automatica a chi scrive;
+- **caricamento delle foto e dei capitolati** (oggi c'è solo la casella "li allego alla mail che si apre", perché una mail composta dal sito non può portare allegati);
+- informativa privacy vera (il link del modulo e del piede punta per ora all'informativa del sito di oggi, `https://www.obygroupitalia.com/privacy-policy-obygroupitalia`, che è copiata da uno studio legale e va rifatta; Cookie punta a `https://www.obygroupitalia.com/cookie-policy`) e protezione dallo spam;
+- se l'azienda lo conferma, la promessa dei tempi di risposta accanto al modulo (oggi non c'è perché nessuna fonte la dà).
+
+### Cosa chiedere all'azienda per questa versione
+
+Valgono tutti i punti da confermare delle sezioni sotto. In più, per le regole che oggi non si possono rispettare senza inventare:
+1. **Lavori con il nome (regola 11, oggi assente):** tre interventi veri da mostrare, con il permesso del cliente: luogo (comune), anno, tipo di danno e due o tre dati (metri quadri, giorni di lavoro, piani, volumi smaltiti). Per esempio il condominio ponteggiato e il tetto bruciato: dove sono, che lavoro era, quando, cosa dice il telo ("Qui per voi"?).
+2. **Recensioni e clienti (regola 10, oggi assenti):** recensioni Google o lettere di clienti con nome e comune; compagnie assicurative, amministratori o aziende che si possono nominare.
+3. **Certificazioni e iscrizioni (regola 10 e piede):** Albo gestori ambientali con categorie e numero (la brochure 2022 scrive "Smaltimento rifiuti iscrizione categoria 4 / 5": è ancora valida? con quale numero?), abilitazioni per amianto, ambienti confinati e lavori in fune, eventuali ISO o SOA, con i PDF. Con questi la fascia "Personale, fornitori e qualifiche" diventa una fascia di certificazioni con i loghi e i PDF da scaricare (come Eggentaler), e nel piede va una riga con le iscrizioni.
+4. **Orari (piede, oggi assenti) e reperibilità:** orari degli uffici e chi risponde al cellulare fuori orario. Nel piede vanno in una riga "Uffici: lunedì-venerdì ..." sotto Contatti.
+5. **Comuni serviti (regola 14, oggi "in Veneto e fuori regione"):** l'unica traccia nelle fonti sono le sedi operative della brochure 2022 (Veneto, Lombardia, Emilia Romagna, Toscana, Friuli Venezia Giulia). Valgono ancora? Con la conferma si fa un elenco di regioni e province a righe nei contatti e nel piede.
+6. **La squadra (struttura S, sezione Squadra, oggi assente):** nomi, ruoli e anni di mestiere delle persone che si possono presentare, compresa chi risponde al telefono.
+7. **Frasi nostre da far rileggere:** i tre fatti dell'apertura ("Personale interno", "Civile e industriale", "Attrezzature e robot ATEX", presi dalla brochure 2026 e dalla pagina Pronto intervento); i quattro passi "Dopo la chiamata" ("Ci chiami o ci mandi le foto", "Sopralluogo e messa in sicurezza", "Alle pratiche pensiamo noi", "Ripristino a nuovo", con una riga ciascuno fatta con le loro frasi); il titolo della sezione industria; la riga della scheda "Smaltimento rifiuti" (presa dal nono passaggio del pronto intervento); "Scegli il tuo danno: si apre la richiesta di sopralluogo già impostata".
+8. **Un dato forte per l'apertura e quattro numeri aziendali (regole 2 e 10):** oggi l'apertura ha tre fatti senza cifre e la pagina non ha una fascia di numeri, perché quelli di prima erano di riempimento. Da chiedere: anno di nascita (2018 o 2011), numero di persone in squadra (atoka dice 8 dipendenti), mezzi speciali (quanti escavatori a risucchio, robot ATEX), interventi l'anno veri. Con la conferma, il dato più forte va per primo tra i fatti dell'apertura e quattro numeri tornano nella sezione Azienda, accanto ai dati societari.
+9. **Le foto:** confermare che il tetto bruciato e il condominio sono loro cantieri, e che il fibrocemento Starflex si può usare (Oby o MPM). La foto dei tecnici in fune sulla pala eolica è uscita: se l'azienda conferma che è un suo lavoro, può tornare nella sezione industria al massimo a 411 px, senza didascalia; meglio una foto nuova di un loro intervento in fune.
+
+### Foto da fare dal vero, per questa versione
+
+Con la decisione "niente" la pagina si regge senza repertorio, ma le foto vere sono piccole (522-733 px) e scattate col telefono, con luci diverse. Una giornata di fotografia, un solo fotografo, stessa luce morbida del giorno, tutte quadrate (1:1, 2400 px o più) più qualche 4:5 per il telefono:
+1. **Apertura:** la squadra in tuta e DPI con il logo, davanti al furgone o al ponteggio con il telo Oby, su un cantiere vero; le persone guardano il lavoro, non l'obiettivo. Sostituisce il tetto bruciato, che oggi è piccolo (522 px) e scattato dall'alto col telefono.
+2. **Schede dei quattro danni:** un ambiente vero per ciascuno (incendio, allagamento, tetto dopo la grandine, amianto compatto), il giorno del sopralluogo, nessun volto né oggetto personale del cliente; con queste le schede tornano ad avere la foto (regola 9).
+3. **Industria:** la squadra dentro un serbatoio o un ambiente confinato, il robot ATEX, l'escavatore a risucchio al lavoro, un intervento in fune loro.
+4. **Starflex:** una copertura finita da Oby vista dal drone.
+5. **Squadra:** ritratti a mezzo busto, stesso fondo, per la sezione Squadra.
+6. **Tre lavori con il nome** (punto 1 sopra): per ciascuno una foto larga del lavoro finito, vista da fuori.
+
 
 ## Dati da confermare con l'azienda
 

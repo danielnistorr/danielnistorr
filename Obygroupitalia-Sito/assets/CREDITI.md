@@ -49,3 +49,14 @@ Solo immagini del sito di Oby, nessuna foto di repertorio e nessuna immagine gen
 - Starflex: `9e96e5_c7d1781343de48b1bd7d9a26cc5394f2~mv2.webp` (fibrocemento accanto al fotovoltaico), diritti da confermare (forse di MPM).
 - Chiusura: `9e96e5_4e684abe…jpg` (lavori in fune su pala eolica), provenienza da confermare.
 - Logo: `originali/logo-obygroup-dal-pdf.svg`. PDF: `originali/brochure-4d63.pdf`, copiato come `sito-v2/doc/copertura-sicura-starflex-2026.pdf`.
+
+## Uso nella home al livello professionale (`sito/`, 3 novembre 2026)
+
+Decisione del committente sulle foto: "niente". Nella pagina non c'è più nessuna foto di repertorio: le Pexels di `esterne/` (cucina 10252682 e stanza 7031621 della versione 1) sono uscite dalla pagina e restano qui solo come archivio, non usate. Nessuna immagine generata dall'IA, nessuna illustrazione.
+
+Solo foto del sito di Oby, lavorate con `_prova/script/finale_img_pro.py` (taglio quadrato, colore smorzato al 86 %, contrasto +5 %, mai ingrandite):
+- Apertura: `originali/9e96e5_2da1fe53087f44aab73a23c178336d35~mv2.jpg` (condominio ponteggiato con il telo Oby), `sito/img/condominio-480.jpg` e `-733.jpg`.
+- Pronto intervento: `originali/9e96e5_719b9e17b06146beae502e5439e2b31c~mv2.jpg` (tetto bruciato con due operatori), `sito/img/incendio-522.jpg`.
+- Industria: `originali/9e96e5_4e684abef29c4fe49174f341fa0bbc21~mv2.jpg` (tecnici in fune su una pala eolica, provenienza da confermare), `sito/img/fune-582.jpg`.
+- Starflex: `originali/9e96e5_c7d1781343de48b1bd7d9a26cc5394f2~mv2.webp` (fibrocemento rivestito accanto al fotovoltaico, Oby o MPM da confermare), `sito/img/starflex-640.jpg` e `-960.jpg`.
+- Logo: `originali/logo-obygroup-dal-pdf.svg` in testata, `originali/logo-obygroup-negativo.svg` nel piede.

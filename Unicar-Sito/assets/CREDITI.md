@@ -48,3 +48,8 @@ Avvertenze sui marchi e sull'uso:
 - `duc-le-retrattili-in-fila.jpg` (Duc LE, Unsplash License, `p0VP_TOAd5E`): sezione Assistenza, taglio panoramico 2400 x 637 (lo stesso rapporto delle strisce della sede) e taglio 3:2 per il telefono, un po' più chiaro e meno saturo; in pagina con la dicitura "Foto indicativa". Resta visibile, piccolo, l'adesivo "e-lm.com" su un montante a destra. `sito-v2/img/retrattili-*`.
 - Dopo le prove d'uso (2/11/2026) la foto di Duc LE è stata tolta dalla home v2: non era loro ed era l'immagine più grande della pagina. I file `sito-v2/img/retrattili-*` sono cancellati; in v2 restano solo le due foto loro e il logo.
 - Nessuna foto nuova scaricata. Controllo di riuso ripetuto il 2/11/2026 su tutti i `*-Sito/assets/CREDITI.md`: `p0VP_TOAd5E` compare solo in questo file.
+
+## Uso nella home "livello professionale" (3/11/2026)
+
+- Decisione del committente sulle foto: "niente". Tolte dalla home tutte le foto di repertorio: il carrello di Mathias Reding (`r4Y_VNKzAbw`) e l'officina di Cemrecan Yurtman (`GjmQzjPuF30`) non sono più in `sito/img/` (restano solo nella copia `_prova/versione-1-uso/sito/img/`). Nessuna foto nuova scaricata, nessuna illustrazione, nessuna immagine generata.
+- In pagina solo materiale loro: `originali/testata/007.jpg` (la sede) in apertura e `originali/testata/008.jpg` (la squadra) in Chi siamo, strisce 939 x 249 a misura d'origine, più un taglio 2:1 di ciascuna per il telefono (499 x 249 e 520 x 249); livelli, contrasto e nitidezza leggeri, nessun ritocco del contenuto (`_prova/script/pro_img.py`); il logo PNG ritagliato ai bordi. Da usare con il loro permesso.

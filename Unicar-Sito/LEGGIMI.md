@@ -1,89 +1,73 @@
 # Unicar: proposta di nuova home
 
-Proposta non richiesta di una nuova homepage per Unicar srl (assistenza carrelli elevatori, via Canada 12, Padova). Solo la home.
+Proposta non richiesta di una nuova homepage per Unicar (assistenza carrelli elevatori, via Canada 12, Padova; officina di assistenza della consociata Cami2). Solo la home.
 
-- Pagina: `sito/index.html` con `sito/privacy.html`, `sito/cookie.html`, `sito/img/` e `sito/fonts/`; si apre direttamente nel browser. È la versione scelta dal committente, con le aggiunte per l'uso descritte in "Versione 1 con l'uso" più sotto; la copia di prima è in `_prova/versione-1-originale/`.
-- Screenshot: `screenshot/home/` (home-1440, home-1440-prima-schermata, home-390, home-390-prima-schermata, chiusura-1440) e la nota di progetto `screenshot/home/NOTA.md`.
-- Analisi con le fonti: `01-analisi.md`. Giudizio sui prototipi: `_prova/giudizio.json`.
-- Per rifare tutto: `sh _prova/script/build_finale.sh`.
-- Prove: `node _prova/script/v1uso_misure.mjs` (apertura da 320 a 2560, bottone di chiamata, collegamenti, stato aperto o chiuso, menu), `node _prova/script/finale_prova.mjs` (promemoria con clic, frecce e tocco, menu, piede), `node _prova/script/finale_larghezze.mjs` (scorrimento orizzontale da 320 a 2560, impaginazione dell'apertura, collegamenti), `node _prova/script/finale_viste.mjs` (larghezze di confine e righello, scrive in `_prova/tmp-finale/`, da cancellare).
+- Pagina: `sito/index.html` con `sito/privacy.html`, `sito/cookie.html`, `sito/img/` e `sito/fonts/`; si apre direttamente nel browser. È la versione 1 portata al "livello professionale" e poi ritoccata dopo il controllore del livello e i tre clienti tipo (3/11/2026).
+- Screenshot e nota di progetto, con l'esito regola per regola: `screenshot/home/` e `screenshot/home/NOTA.md`.
+- Per tornare indietro: la home professionale prima del ritocco è in `_prova/versione-pro-prima-del-ritocco/index.html` (va messa al posto di `sito/index.html`, usa le stesse immagini); la versione di prima (versione 1 con l'uso, con il carrello Unsplash e la corsia gialla), copiata com'era con i suoi screenshot, è in `_prova/versione-1-uso/`; quella ancora precedente in `_prova/versione-1-originale/`.
+- Analisi con le fonti: `01-analisi.md`. Scheda d'identità e d'uso: `_prova/uso/SCHEDA.md`.
+- Per rifare tutto: `sh _prova/script/build_finale.sh` (immagini con `pro_img.py`, controlli delle 15 regole con `pro_controlli.mjs`, prove dei gesti con `pro_prova.mjs`, stato aperto/chiuso con l'orologio fissato con `pro_orari.mjs`, screenshot con `pro_shoot.py`).
 
-## Da confermare con Unicar (non messo in pagina, o messo solo nella forma sicura)
+## Livello professionale (3/11/2026)
 
-- **Prima di tutto**: se Unicar esiste ancora come società a sé. La P.IVA 01014160285 non risulta attiva nel VIES (24/10/2026), Cami2 è in maggioranza del Gruppo Selini dal 5/11/2024 e il furgone del service porta la livrea Toyota e Cami2. Se Unicar è stata fusa in Cami2, la proposta va rivolta a Cami2.
-- "Messa in funzione entro 24 ore dalla chiamata": è nel loro testo del 2012. Non è in pagina; se lo confermano, può tornare come titolo ("In funzione entro 24 ore dalla chiamata") e "Consulenti, più che riparatori" passa alla chiusura.
-- Zona degli interventi: in pagina "Padova e provincia" (dal loro testo); se arrivano anche a Venezia, va detto.
-- Se sono ancora assistenza autorizzata BT e Cesab, cioè Toyota Material Handling; quanti furgoni e tecnici ha oggi Unicar da sola (12 mezzi nel 2012).
-- I numeri del gruppo (cami2.it/azienda/: 25 tecnici esterni con furgone, circa 3500/4000 carrelli dei clienti tra Padova e Venezia, sede di oltre 4000 mq; 3000 mq nel 2009 secondo la pagina storia): non sono più in pagina dal passaggio "con l'uso", perché confondevano chi è chi. Possono tornare solo detti come Cami2 e riconfermati.
-- Se fanno ancora la formazione dei carrellisti e con quale ente; le certificazioni di Unicar (quelle trovate sono di Cami2: ISO 9001, Toyota A.S.E.C., OHSAS).
-- Anno di costituzione (stima intorno al 1982, non in pagina), PEC, un numero per le emergenze: non trovati, non in pagina. Gli orari ora sono in pagina: vedi "Versione 1 con l'uso".
-- Il promemoria riprende la loro "Nota informativa" sull'art. 71 del D.Lgs. 81/2008 (funi e catene ogni tre mesi, tagliando annuale, registro conservato tre anni): il testo e il calcolo vanno fatti rileggere a loro prima della pubblicazione.
-- Il link "Vendita e noleggio (cami2.it)": se nel sito nuovo vendita e noleggio restano un rimando a Cami2.
+Il committente ha chiesto una home "più professionale e di design, e funzionale all'attività", e per le foto ha deciso "niente": nessuna foto di repertorio e nessun disegno al posto delle foto. La pagina segue la struttura delle home di agenzia per i servizi tecnici (`_metodo/professionale/REGOLE.md`, famiglia S): testata fissa con il telefono come bottone; apertura con il titolo loro e, nello stesso H1, il mestiere e Padova, i due bottoni e una tavola di quattro fatti (24 ore, orari con lo stato, zona con il carrello sostitutivo, marche e ricambi); la loro sede su fondo antracite con indirizzo e mappe, poi tre garanzie e la fascia delle marche nello stesso blocco scuro; otto servizi in un indice tipografico a due colonne; Ricambi; Manutenzione e controlli con le tre scadenze in cifre; Chi siamo con la squadra e i tre passi; Dove interveniamo con i comuni; chiusura rossa con il numero grande e il modulo; piede in quattro colonne. Colori del logo (rosso e antracite), un solo carattere (Archivo, 400 e 700), otto misure di testo. Cosa è cambiato e l'esito di ogni regola: `screenshot/home/NOTA.md`.
 
-## Foto da rifare dal vero (una mattina in via Canada)
+### Il modulo di contatto va collegato a un servizio
 
-Tutte le foto della home sono segnaposto tranne la sede, che è loro ma piccola (in pagina un taglio di 455 x 249 dalla striscia di 939 x 249, mai ingrandito). L'apertura è un segnaposto a tutti gli effetti: un carrello Toyota qualunque, usato, da Unsplash. È progettata perché ci vada il loro.
-1. **Il carrello dell'apertura** (oggi Reding, Unsplash): un carrello appena revisionato in officina Unicar, pulito, fotografato intero (montante, cabina, contrappeso e ruote dentro l'inquadratura, con margine), di tre quarti da dietro come quello della pagina, a 1,2 m da terra, parcheggiato dentro una corsia gialla vera del loro pavimento, su fondo il più possibile neutro (un muro chiaro o il cielo coperto), luce diffusa del mattino, obiettivo 50-85 mm per non deformare, ripresa a 24 MP o più. Serve anche uno scatto con il solo fondo per scontornare. Con i vetri della cabina chiusi e puliti si evita il vetro fumé ricostruito. Se possibile un Toyota o un BT di un cliente, senza adesivi di altri concessionari.
-2. **L'officina** (oggi Yurtman, Unsplash, in piccolo): un tecnico Unicar in tuta da lavoro sul montante o sulle catene, mani e attrezzo in primo piano, luce naturale dai lucernari, formato orizzontale 4:3 almeno 3000 px di lato.
-3. **La sede** (oggi un taglio della striscia del loro vecchio sito): la palazzina di via Canada con l'insegna UNICAR, i furgoni dell'assistenza allineati sul piazzale, cielo sereno o coperto chiaro, panoramica orizzontale ad almeno 4000 px di lato; per la chiusura serve un taglio 3:2 di almeno 2000 px sulla palazzina con l'insegna UNICAR, che in pagina potrà crescere fino a metà larghezza.
-4. Per le altre pagine: il magazzino ricambi, un furgone attrezzato aperto, il pavimento d'officina con la corsia gialla.
+Il modulo "Chiedete un intervento o un preventivo" in fondo alla home **non invia nulla**: compone un'email a unicar@protec.it (oggetto "Tipo di intervento: Azienda", poi i campi in ordine) e la apre nel programma di posta di chi lo compila, che la manda lui. Così non serve nessun server, ma chi usa la posta web (Gmail nel browser) può non vedere aprirsi nulla, e le foto vanno allegate a mano. Nel sito vero va collegato a un servizio di invio (un modulo del CMS, come Contact Form 7 su WordPress, o un servizio come Formspree o Netlify Forms), con:
+- invio diretto a unicar@protec.it (o a un indirizzo dell'officina e uno dei ricambi, se ci sono) e una copia a chi scrive;
+- il campo "Foto della targhetta o del pezzo" come vero allegato (JPEG, PNG, PDF, qualche MB);
+- una risposta automatica con i tempi in cui richiamano, solo se ce li confermano;
+- l'informativa privacy aggiornata (oggi `privacy.html` dice che il modulo non invia nulla: va riscritta insieme).
+Il modulo controlla già che ci siano nome, azienda e telefono; con il tipo "Ricambio" chiede pezzo e quantità invece dell'indirizzo; le righe dei servizi (Riparazione, Batterie, Impianti elettronici, Anelli gommati, Formazione) portano al modulo con il tipo già scelto. Il servizio vero dovrà tenere questi campi. Il codice è in fondo a `sito/index.html` (`fm.addEventListener('submit', ...)`); senza JavaScript il modulo cade su `action="mailto:"`.
 
-## Licenze
+### Cosa chiedere all'azienda (in ordine di importanza)
 
-- Foto Unsplash (Reding `r4Y_VNKzAbw`, Yurtman `GjmQzjPuF30`): Unsplash License, uso commerciale libero, attribuzione non obbligatoria; dettagli, ritocchi e avvertenze sui marchi in `assets/CREDITI.md`.
-- Sede (`assets/originali/testata/007.jpg`) e logo: materiale del loro sito, da usare con il loro permesso.
-- Carattere Archivo: SIL Open Font License 1.1 (`sito/fonts/OFL.txt`), servito dalla pagina.
+1. **Chi è oggi il titolare.** La P.IVA 01014160285 non risulta valida nel VIES (24/10 e 2/11/2026), Cami2 è in maggioranza del Gruppo Selini dal 5/11/2024 e il furgone del service porta la livrea Toyota e Cami2. Da questo dipendono la riga legale (oggi senza P.IVA, REA e capitale: la regola del piede completo resta in parte scoperta), la privacy e il destinatario della proposta (Unicar o Cami2). Va fatta rileggere anche la riga "Unicar è l'officina a cui la consociata Cami2 affida l'assistenza tecnica dei carrelli; Cami2, al numero 16, li vende e li noleggia".
+2. **"Messa in funzione entro 24 ore dalla chiamata"** (loro testo del 2012): ora è la prova grande della prima schermata, prima voce della tavola dei fatti ("Intervento", cifre da 48 px) e ripresa nella prima garanzia ("anche nei casi più ostici"). Va confermato che valga oggi e per quale zona. Se non vale, la voce si cambia in "Carrello sostitutivo" o si toglie (primo `li` di `ul.fatti`, con un commento nel codice).
+3. **Recensioni.** Non ne abbiamo trovate (nessun profilo pubblico leggibile; la scheda Google Maps "unicar padova" esiste ma non si legge senza browser). Chiedere se hanno recensioni Google o lettere di clienti da citare con nome, azienda e comune, e il permesso: è la prova che manca di più (regola 10).
+4. **Clienti con il nome.** La pagina Referenze di cami2.it elenca circa 120 aziende (ABB, Alì, Carraro, Safilo, IKEA, Luxardo, ZF Padova, Azienda Ospedaliera di Padova...). Sono clienti di Cami2: chiedere quali seguono loro per l'assistenza e se si possono nominare, con il settore (regola 10).
+5. **Lavori da raccontare** (regola 11): tre interventi con cliente o luogo, anno e due-tre dati (per esempio: parco di N carrelli preso in carico, carrello fermo rimesso in funzione in N ore, revisione di un retrattile BT, contratto di manutenzione da N anni). In pagina non ce n'è nessuno, perché non ci sono nelle fonti.
+6. **Numeri di Unicar da sola** (regola 10): quanti tecnici e furgoni oggi (12 mezzi nel 2012), quanti carrelli seguono, da che anno (stima intorno al 1982, non in pagina). I numeri di cami2.it (25 tecnici esterni, 3500/4000 carrelli, oltre 4000 mq) sono del gruppo e restano fuori.
+7. **Certificazioni e autorizzazioni** (regole 10 e 15): se sono ancora assistenza autorizzata BT e Cesab, cioè Toyota Material Handling, e per i caricabatterie ("assistenza autorizzata per riparazioni carica batterie" è nel loro elenco servizi ed è in pagina); se Unicar ha certificazioni sue (ISO 9001, A.S.E.C. e OHSAS trovate sono di Cami2). Con il permesso, la fascia "Le marche" (ora nel blocco scuro subito dopo le garanzie) può diventare una fascia di loghi in un solo colore con la didascalia "Assistenza autorizzata".
+8. **Gli orari** (in pagina "Lunedì-venerdì 8-12.30 e 14-18.30, sabato e domenica chiuso", con "Aperto ora / Chiuso ora" calcolato sull'ora di Roma): vengono dalla scheda di Cami2 su oraridiapertura24.it, non da una fonte di Unicar. Confermarli per officina e magazzino ricambi. Lo stato oggi considera chiusi i festivi nazionali e Pasquetta; vanno confermati il patrono di Padova (13 giugno) e le chiusure di agosto e di Natale, da aggiungere alla variabile `FESTIVI`. Se cambiano gli orari: variabile `ORARI` nello script e testi fissi (apertura, ricambi, chiusura, piede). Chiedere anche se c'è un numero per le emergenze o una reperibilità del sabato.
+9. **La zona.** In pagina "Padova e provincia" (loro testo) e un elenco di 20 comuni della provincia (Padova, Abano Terme, Albignasego, Cadoneghe, Campodarsego, Camposampiero, Cittadella, Conselve, Este, Legnaro, Limena, Monselice, Montagnana, Noventa Padovana, Piazzola sul Brenta, Piove di Sacco, Ponte San Nicolò, Rubano, Selvazzano Dentro, Vigonza) più "e gli altri comuni della provincia"; cinque di questi sono anche nel piede. L'elenco è solo la provincia detta per nome (nel codice c'è un commento sopra `ul.comuni`), chiesto dalla regola delle zone servite: va fatto confermare, insieme a "Fuori provincia? Chiamateci." e all'eventuale Venezia (il gruppo lavora su Padova e Venezia).
+10. **Il magazzino ricambi**: se si ritira al banco di via Canada 12 negli stessi orari, se spediscono o porta il tecnico, se c'è un indirizzo email dei ricambi.
+11. **Formazione carrellisti**: se fanno ancora il corso teorico e pratico (notizia del 2012) e con quale ente; se no, si toglie la scheda 08 e la voce del piede.
+12. **Tipi di carrello**: in pagina "elettrici e diesel, anche da magazzino"; se seguono anche il gas, va aggiunto.
+13. **Il testo sull'art. 71 del D.Lgs. 81/2008** (funi e catene ogni tre mesi, tagliando annuale come buona prassi, registrazioni conservate tre anni), oggi in cifre grandi nella sezione Manutenzione e controlli: da far rileggere a loro. Il promemoria dei mesi con il file .ics è stato tolto nel ritocco; se lo vogliono, si riprende da `_prova/versione-pro-prima-del-ritocco/index.html`, ma solo dopo che hanno riletto le date.
+14. **Permessi**: le due foto del vecchio sito (sede e squadra) e il logo; il logo in vettoriale (c'è solo il PNG 241 x 100) e una favicon.
+15. **Vendita e noleggio**: se nel sito nuovo restano un rimando a cami2.it (oggi voce "Vendita e noleggio" in testata, link in Chi siamo e nel piede).
 
-## Logo
+### Foto da fare dal vero (una mattina in via Canada, un solo fotografo, stessa luce)
 
-C'è solo il PNG 241 x 100 del vecchio sito (`assets/originali/logo-unicar-241x100.png`), usato ritagliato ai bordi e mostrato a 96 px in testata e nel piede (densità 2,5x). Non è ricostruito in SVG perché la versione piatta perderebbe il rilievo grigio delle lettere. Serve il vettoriale originale; manca anche la favicon.
+Oggi in pagina ci sono solo due strisce di 939 x 249 del vecchio sito, mai ingrandite. La pagina è impaginata perché le foto vere prendano il loro posto senza cambiare la struttura: stessa luce del mattino o cielo coperto chiaro, colori naturali, nessun filtro, persone che guardano il lavoro (tranne i ritratti), il marchio Unicar visibile su divise e furgoni, nessun marchio di altri concessionari.
+1. **Apertura: la squadra o un tecnico davanti al furgone dell'assistenza con il logo, nel piazzale di via Canada.** Orizzontale 3:2, almeno 4000 px di lato; in pagina andrà al posto della striscia della sede, a metà larghezza o più (oggi 939 x 249). Un taglio 4:5 per il telefono.
+2. **La sede al mattino** con l'insegna Unicar e i furgoni allineati, panoramica orizzontale di almeno 4000 px (sostituisce la striscia di oggi e va in Chi siamo o in chiusura).
+3. **Una foto per ogni servizio, tutte quadrate o 4:3, stessa luce** (regola 9; diventano la testa delle otto righe dei servizi, che oggi sono un indice di solo testo): il tecnico al lavoro sul carrello di un cliente con il furgone aperto alle spalle (Riparazione); il registro dei controlli e un tagliando in officina (Manutenzione programmata e Controlli di sicurezza); le mani sulle catene del montante (Controlli); gli scaffali del magazzino ricambi o il banco (Ricambi); una batteria aperta e un caricabatterie in prova (Batterie e caricabatterie); il quadro elettronico di un carrello (Impianti elettronici); la pressa per gli anelli gommati (Anelli gommati); un corso in piazzale con i conduttori (Formazione carrellisti). Almeno 2000 px di lato.
+4. **Ritratti della squadra**: il titolare, i capi officina, chi risponde al telefono e chi segue il magazzino ricambi, con nome, ruolo e anni di mestiere (struttura A1, sezione Squadra: oggi c'è solo la foto di gruppo, senza nomi).
+5. **Tre lavori** con il permesso del cliente (vedi sopra, punto 5): il carrello o il parco carrelli presso il cliente, orizzontale, almeno metà pagina.
+6. La squadra di gruppo rifatta ad alta risoluzione (almeno 4000 px) con i volti leggibili.
 
-## Pagine che il sito nuovo dovrà avere (i link della home oggi puntano alle sezioni)
+### Licenze e materiale
 
-- Servizi: Assistenza e riparazione, Manutenzione programmata, Batterie e caricabatterie, Controlli di sicurezza, Formazione carrellisti.
-- Ricambi.
-- Chi siamo, Dove siamo (con la mappa), Normative e controlli (la nota sull'art. 71 riscritta).
-- Privacy (`privacy.html`) e Cookie (`cookie.html`): ci sono in forma breve (dicono solo cose vere della pagina), da riscrivere per il GDPR con il titolare giusto (l'informativa di oggi cita ancora il D.Lgs. 196/2003).
+- Carattere: Archivo (Omnibus-Type), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina (`sito/fonts/`, licenza in `sito/fonts/OFL.txt`).
+- Foto in pagina: solo la sede e la squadra dal loro sito (`assets/originali/testata/007.jpg`, `008.jpg`) e il logo: materiale loro, da usare con il loro permesso. Le foto Unsplash della versione di prima (Reding, Yurtman) non sono più pubblicate: restano solo nella copia `_prova/versione-1-uso/` (licenze e note in `assets/CREDITI.md`).
+
+### Pagine che il sito nuovo dovrà avere (i link della home oggi puntano alle sezioni)
+
+- Servizi, una pagina per scheda: Riparazione, Manutenzione programmata, Controlli di sicurezza, Ricambi (con il modulo di richiesta e l'allegato), Batterie e caricabatterie, Impianti elettronici, Anelli gommati, Formazione carrellisti.
+- Chi siamo (con la squadra), Dove siamo (con mappa e orari), Normative (la nota sull'art. 71 riscritta), le pagine dei comuni principali se servono per le ricerche locali.
+- Privacy (`privacy.html`) e Cookie (`cookie.html`): ci sono in forma breve e dicono solo cose vere della pagina; da riscrivere per il GDPR con il titolare giusto e con il servizio del modulo.
 - Vendita e noleggio: link esterno a cami2.it.
 
-## Newsletter
+### Newsletter
 
-Non c'è e non serve: lavorano solo per aziende, non comunicano novità, fiere o cataloghi e non hanno clienti privati. Il gesto utile per i clienti è il promemoria dei controlli, che scarica le date nel calendario.
+Non c'è e non serve: lavorano solo per aziende, non comunicano novità, fiere o cataloghi. Se vogliono ricordare le scadenze ai clienti, va chiesto se lo fanno già loro con il contratto di manutenzione (allora si può scrivere "ve lo ricordiamo noi").
 
-## Versione 1 con l'uso
+## Versioni precedenti
 
-Il committente ha scelto questa home ("no preferisco versione 1"). Grafica, carattere Archivo, colori, corsia gialla, carrello, titolo "Consulenti, più che riparatori" e idea restano. Dalla versione 2 è stato preso solo ciò che serve ai clienti tipo della scheda (`_prova/uso/SCHEDA.md`), ridisegnato con gli elementi che la pagina aveva già. Cosa è cambiato, misura per misura: `screenshot/home/NOTA.md`, paragrafo "Versione 1 con l'uso". Per tornare indietro: `_prova/versione-1-originale/` (pagina, immagini, caratteri, screenshot e LEGGIMI di prima).
-
-Secondo ritocco, lo stesso giorno, dopo la prova dei tre clienti tipo accanto alla versione 2 (`_prova/uso/prova-v1-prima-0..2/`): i tre compiti che non riuscivano (in quanto tempo arrivano, il tipo di carrello, vendita e noleggio subito) ora riescono. Dettagli e misure in `screenshot/home/NOTA.md`, "Secondo ritocco con l'uso".
-
-- **Telefono**: sopra il titolo l'occhiello "Assistenza carrelli elevatori, Padova". Sotto il titolo, entro i 400 px, il bottone grafite "Chiamate l'officina 049 8792361 r.a." e subito sotto il bottone bordato "Scrivete all'officina: carrello fermo" (email con oggetto e traccia). Poi stato di oggi, orari, "Sabato e domenica chiuso", "Fuori orario? Scriveteci" quando è chiuso, e quattro righe con il filetto: messa in funzione entro 24 ore dalla chiamata, Padova e provincia (fuori provincia chiamateci), carrello sostitutivo, Toyota BT Cesab e le altre marche. Tutto senza scorrere; il carrello resta della stessa misura, subito sotto. Nella corsia: "Ricambi: cosa mandarci", "Le date dei controlli", "Vendita e noleggio: Cami2". La testata resta in vista quando si scorre, con il numero alto 48 px.
-- **Computer**: stessa prima schermata, con l'occhiello, "elettrici e diesel" nel testo, "r.a." nel bottone e i collegamenti "Scrivete: carrello fermo", "Ricambi: cosa mandarci", "Vendita e noleggio: Cami2". Quando si scorre la testata resta fissa e a destra compare "Vendita e noleggio: Cami2". In testata "Orari e contatti" al posto di "Dove siamo".
-- **Servizi**: Toyota, BT e Cesab anche qui; "Carrelli elettrici e diesel, anche da magazzino, di ogni marca"; carrello sostitutivo; le righe dei controlli portano ai controlli; il corso carrellisti ha una riga di spiegazione e un'email "Corso carrellisti".
-- **Ricambi**: originali Toyota, BT e Cesab e di tutte le altre marche, con gli anelli gommati tra i consumabili; cosa mandare; il bottone "Chiedete un ricambio" (email "Richiesta ricambio" con la traccia); "oppure 049 8792361" grande; l'indirizzo email in chiaro per la posta web; il magazzino in via Canada 12 con gli orari, più leggibile.
-- **Controlli**: il contratto di manutenzione programmata e "Cambiate assistenza?" in due righe, il bottone "Chiedete un preventivo" (email "Preventivo manutenzione programmata") con "oppure 049 8792361"; il promemoria resta a destra per chi è già cliente.
-- **Chi siamo**: una riga su Unicar e Cami2 al posto dei numeri del gruppo, ora a 16 px, e "Comprare o noleggiare un carrello: cami2.it". Il piede "Chi siamo" porta lì.
-- **Orari e contatti** (chiusura): "Messa in funzione entro 24 ore dalla chiamata" con il carrello sostitutivo, stato di oggi, orari della settimana, "Fuori orario? Scriveteci", email con oggetto, "Scrivete all'officina: carrello fermo", "Apri la mappa", "Indicazioni stradali", tutti alti almeno 48 px. Orari anche nel piede.
-- **Foto**: il carrello e l'officina (Unsplash) restano con "Foto indicativa"; la sede vera resta in chiusura.
-- **Riga legale**: senza P.IVA, REA e capitale finché non si sa chi è il titolare oggi.
-- Per rifare tutto: `sh _prova/script/build_finale.sh` (ora lancia anche `v1uso_misure.mjs`; gli screenshot passano da `_prova/script/v1uso_shoot.mjs`, copia del kit senza scorrimento morbido).
-
-### Da confermare per la versione 1 con l'uso (in ordine di importanza)
-
-1. **Gli orari**: in pagina "Lunedì-venerdì 8-12.30 e 14-18.30, sabato e domenica chiuso", con "Aperto ora" o "Chiuso ora" calcolato sull'ora di Roma. Vengono dalla scheda di Cami2 (stessa sede e stesso centralino) su oraridiapertura24.it, aggiornata il 9/9/2026 (01-analisi.md, dati), non da una fonte di Unicar. Vanno confermati per l'officina e per il magazzino ricambi, con i festivi e la chiusura estiva, che lo script non conosce. Se cambiano si correggono in due posti: la variabile `ORARI` nello script in fondo a `sito/index.html` e i testi fissi (apertura, ricambi, chiusura, piede).
-2. **Un numero per le emergenze o una reperibilità del sabato**: non trovati. Se c'è, va accanto al bottone di chiamata, al posto di "Chiuso ora".
-3. **"Messa in funzione entro 24 ore dalla chiamata"** (loro testo del 2012, pagina `azienda`): ora è in pagina, nella prima schermata del telefono e in "Orari e contatti", con un commento nel codice. Va confermato che valga oggi e per quale zona; se non vale, si toglie in due punti (la riga in `ul.pronto` dell'apertura e il paragrafo `.sotto` della chiusura). Lo stesso vale per "Fuori provincia? Chiamateci.", che è solo un invito: se fuori provincia non vanno, si toglie.
-4. **Chi è il titolare oggi** (P.IVA non valida nel VIES): da lì la riga legale, la privacy e il destinatario della proposta (Unicar o Cami2).
-5. **La riga su Cami2**: "Unicar è l'officina a cui la consociata Cami2 affida l'assistenza tecnica dei carrelli; Cami2, al numero 16, li vende e li noleggia" (da cami2.it/azienda/storia/). Va fatta rileggere, soprattutto se Unicar è stata assorbita.
-6. **Il magazzino ricambi**: se si ritira al banco di via Canada 12 negli stessi orari, se spediscono o porta il tecnico, se c'è un indirizzo email per i ricambi. In pagina c'è solo "Magazzino ricambi in via Canada 12, Padova" con gli orari: le parole "ritiro al banco" chieste dal cliente tipo entrano solo se lo confermano.
-6a. **Il corso carrellisti**: in pagina "Corso teorico e pratico per conduttori di carrelli elevatori. Chiedeteci le prossime date" (dalla loro notizia sul corso, con un'email "Corso carrellisti"). Va confermato che lo facciano ancora e con quale ente; se no, resta solo la voce "Formazione per carrellisti" o si toglie anche quella.
-6b. **I tipi di carrello**: in pagina "elettrici e diesel, anche da magazzino" (cami2.it, pagina Assistenza: "elettrici e diesel"; i retrattili BT del corso). Il gas non è in nessuna fonte, anche se il carrello segnaposto dell'apertura è un Toyota a gas: se seguono anche quelli, va aggiunto.
-6c. **"Fuori orario? Scriveteci con i dati del carrello"**: la versione 2 prometteva "vi richiamiamo alla riapertura"; qui non c'è, perché non l'hanno scritto loro. Se leggono la posta alla riapertura e richiamano, si può aggiungere.
-7. **Il preventivo**: se la traccia dell'email chiede le cose giuste (comune, carrelli, ore di lavoro, cosa serve, assistenza attuale).
-8. Gli altri punti di sopra restano: zona, autorizzazione BT e Cesab, formazione carrellisti, testo sull'art. 71 da rileggere, permesso per le foto e il logo.
-
-### Foto da rifare dal vero per la versione 1 con l'uso
-
-Le stesse di "Foto da rifare dal vero" più sopra, nello stesso ordine: il carrello dell'apertura e l'officina oggi sono Unsplash con "Foto indicativa", e la dicitura si toglie solo quando ci sono le loro. Per il telefono, il carrello dell'apertura va ripreso con un po' di margine sopra il montante: in pagina è largo l'88 % dello schermo, sotto il bottone di chiamata.
+La versione 1 con l'uso (2/11/2026) e il suo LEGGIMI di allora (cosa era cambiato per i clienti tipo, da confermare, foto da rifare per il carrello dell'apertura) sono descritti in `_prova/versione-1-uso/screenshot/home/NOTA.md`; la pagina com'era è in `_prova/versione-1-uso/sito/`. I punti da confermare di allora che valgono ancora sono tutti nell'elenco qui sopra.
 
 ## Versione 2 (scheda d'uso)
 

@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 2 novembre 2026.
+Aggiornato il 3 novembre 2026.
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere del Panificio Fornasiero]
 
@@ -28,6 +28,16 @@ Scaricate dal CDN `images.unsplash.com` (parametro `w=2400`) e ridotte a 2400 px
 | File | Pagina della foto | Autore | Misure | Uso | Note |
 |---|---|---|---|---|---|
 | `esterne/pexels-4198047-karola-g-panino-lino.jpg` | https://www.pexels.com/photo/4198047/ ("Fresh bread on table covered cloth") | Karola G (kaboompics.com) | 2400x3600 | apertura della versione precedente, oggi non usata | un panino chiaro con un taglio, dall'alto, su lino. Licenza letta il 2/11/2026 sulla pagina della foto: "Free", con il rimando alla Licenza Pexels (https://www.pexels.com/license/: uso gratuito, anche commerciale, attribuzione non obbligatoria; non si vende la foto senza modifiche e non la si usa per far credere a un'approvazione dell'autore). Non è in nessun altro `CREDITI.md` della campagna (controllato il 2/11/2026). Non è un loro pane |
+
+## Uso nella home finale (`sito/`, livello professionale, 3 novembre 2026)
+
+Decisione del committente sulle foto: "niente". Solo foto del panificio che reggono, da `originali/`, nel loro formato; nessuna foto di `esterne/`, nessuna illustrazione, nessuna immagine generata. Lavorate con `_prova/script/pro_img.py`.
+- Apertura (da 1100 px) e "Chi siamo" (sotto 1100 px): la vetrina con Galileo e Fidalma (`617993_02eb45f6...`), 640x319, mai ingrandita.
+- Apertura, solo sul telefono: la striscia dell'insegna "FORNASIERO Galileo", taglio 640x60 della stessa foto.
+- Natale e Pasqua: panettone sul sacco di juta (`b56ebf_5b27...`) e focaccia di Natale sul sacco del cinquantesimo (`b56ebf_fabc...`), quadrati, Nikon, dicembre 2020.
+- Piede: il logo del sito a una tinta nel bruno delle scritte del sacchetto (#33261F), PNG a 2x e 3x.
+- Non più in pagina rispetto alla versione 1 con l'uso: la focaccia scontornata dell'apertura, le tartarughe (`617993_28aa18bc...`) e il pane a fette (`617993_f35f170e...`), con la luce mista di lampada. Le copie sono in `_prova/versione-1-uso/sito/img/`.
+- Foto di repertorio in pagina: nessuna (le Unsplash e la Pexels di `esterne/` restano solo come archivio della proposta).
 
 ## Uso nella home finale (`sito/`, versione 1 con l'uso, ritocco del 2 novembre 2026)
 

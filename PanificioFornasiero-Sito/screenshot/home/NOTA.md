@@ -1,4 +1,64 @@
-# Home, Panificio Galileo Fornasiero: versione 1 con l'uso (2 novembre 2026, sera)
+# Home, Panificio Galileo Fornasiero: livello professionale (3 novembre 2026)
+
+## Livello professionale
+
+Pagina: `sito/index.html` (statica, si apre con file:///). La versione 1 con l'uso com'era prima di questo passaggio è copiata in `_prova/versione-1-uso/` (sito e screenshot). Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole). Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di Joseph Brot e Union (a pezzi) e il piede di Poilâne.
+
+Rifare tutto: `bash _prova/script/build_finale.sh --immagini` (immagini con `pro_img.py`, screenshot all'ora simulata lunedì 2 novembre alle 10, poi `pro_controlli.mjs`). Prove d'uso della scheda: `node _prova/script/pro_uso.mjs`. Misure della prima schermata: `node _prova/script/pro_misura.mjs <larghezza> <altezza> [mobile] [ora]`.
+
+Screenshot (stessi nomi di prima): `home-1440.jpg` (7090 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (11174 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Negozi e orari" al piede). Guardati a pezzi a 390 e 1440 accanto ai riferimenti, e a 320, 768, 1024, 1280 e 1920.
+
+### Che cosa è cambiato, in breve
+
+- **Struttura della famiglia B adattata**: testata con "Negozi e orari" come prima voce e il telefono in un bottone; apertura con il mestiere, il luogo, la prova (dal 1963), i due negozi con Chiama e Indicazioni e, da 1100 px, la loro vetrina vera con Galileo e Fidalma; in stagione la fascia delle Feste e subito il racconto di Natale con le due foto Nikon; manifesto di Galileo e cinque numeri su blocco scuro; chi siamo con le date, la seconda frase di Galileo e la fascia "Hanno scritto di noi"; quattro tessere del laboratorio e l'elenco dei pani; "Negozi e orari" con una scheda per negozio (stato di adesso, tabella degli orari, Chiama, Indicazioni); forniture con il modulo che chiede il tipo di richiesta; piede in quattro colonne.
+- **Foto, decisione "niente"**: nessuna foto di repertorio, nessuna illustrazione. Restano solo le foto loro che reggono e nel loro formato: la vetrina 640x319 (mai ingrandita: 411 px a 1440, 349 px a 390), la striscia dell'insegna sul telefono, il panettone e la focaccia sulla juta (stessa serie Nikon, dicembre 2020, quadrati). Tolte: la focaccia scontornata dell'apertura (oggetto scontornato su fondo chiaro, bordo ricostruito a mano), le tartarughe e il pane a fette (luce mista di lampada, un'altra serie).
+- **Colori dal marchio**: niente più fondo mollica. Fondo bianco del sacchetto, testo e blocco scuro nel bruno delle scritte del sacchetto (#33261F, come prima), bottoni, cifre e blocco delle forniture nel legno dell'insegna (#6F3624, campionato sulla foto della vetrina, vicino al bordeaux #733129 della scritta del sito di oggi), verde #2A6234 solo per "Aperto". Tolto il blu dei bottoni.
+- **Tipografia**: le stesse due famiglie (Sentient e General Sans), con ruoli fissi e due pesi (Sentient 400; General Sans 400 e 600, il 500 tolto). Il titolo resta "Siamo Fornasiero, fornai anche nel nome", ora in maiuscolo come le lettere dell'insegna, 88 px a 1440 e 40 px a 390 (fascia della famiglia B), con "Forna/forna" nel legno. Sette misure in tutta la pagina a 1440, sei a 390.
+- **Uso**: tutto quello che la versione 1 con l'uso faceva resta (stato calcolato sull'ora di Roma e sui festivi, righe di oggi, eccezioni della settimana, fascia e sezione delle Feste che salgono in stagione, Chiama in testata che passa a via Alsazia quando è aperta solo lei, dato strutturato). Il selettore a schede dei negozi è diventato due schede affiancate con la tabella degli orari.
+
+### Esito regola per regola (controlli di `_prova/script/pro_controlli.mjs`, più gli screenshot)
+
+1. **Telefono in testata fissa, sempre visibile**: OK. "Negozi e orari" è la prima voce. A 390, a metà pagina, il bottone "049 870 26 58" della testata si vede e si tocca (48 px; sotto 375 px dice "Chiama"); a 1440 è "Chiama 049 870 26 58". 15 link `tel:` in pagina.
+2. **Prima schermata con mestiere, luogo, prova, azione**: OK a 1440x900 e 390x844. Occhiello "Panificio a Camin, Padova, dal 1963" (a 390 "Panificio a Camin dal 1963"), H1 "fornai", bottoni "Chiama" con il numero per ogni negozio (a 390 il Chiama riempie la riga accanto a "Indicazioni"). La fascia delle Feste chiude la schermata a 900 px su 900 (1440) e a 819 px su 844 (390, lunedì), 844 la domenica.
+3. **Immagine vera nell'apertura**: OK, con il limite delle foto che hanno. A 1440 la vetrina con Galileo e Fidalma (411x205, la foto è 640x319); a 390 la striscia dell'insegna "FORNASIERO Galileo" nella scheda di via Vigonovese. Nessuna illustrazione, per decisione del committente.
+4. **Zero repertorio**: OK. "indicativ" 0 volte; nessuna immagine da banche (le foto Unsplash e Pexels restano solo in `assets/esterne/` come archivio).
+5. **Foto in serie**: OK. Tre formati (2:1 la vetrina, 1:1 panettone e focaccia, la striscia dell'insegna sul telefono); una sola didascalia (la vetrina, con nomi e luogo) su tre foto. Panettone e focaccia sono la stessa serie; la vetrina è luce di giorno all'aperto, trattata con la stessa correzione leggera.
+6. **Palette dal marchio**: OK. Quattro token (latte, bruno, legno, verde) più due grigi; legno dall'insegna, bruno dal sacchetto; il fondo beige è tolto.
+7. **Scala corta e leggibile**: OK. 1440: 88, 56, 30, 24, 19, 16, 14 px; 390: 40, 32, 22, 17, 16, 14 px. Testo 19 px a 1440 e 17 px a 390; niente sotto 14 px (14 solo nella riga legale). Titolo 88 px, interlinea 1,0, maiuscolo (390: 40 px, 0,96).
+8. **Due famiglie**: OK. Sentient per titoli, cifre, stato e frasi dette; General Sans per testo, etichette, bottoni e modulo.
+9. **Servizi in schede con foto**: IN PARTE. Quattro tessere in quattro colonne (due a 768, una a 390), tutte cliccabili, con nome e link; senza foto, perché non ci sono foto vere di pasta, pizze e dolci che reggano (quelle del sito di oggi sono da telefono o forse prese dal web) e il committente non vuole repertorio né disegni. Foto da fare nel LEGGIMI.
+10. **Almeno tre tipi di prove**: OK, con una sostituzione dichiarata. Cinque numeri (1963, 30+, 2, 60, 400, tutti in 01-analisi); clienti con il nome (gli operai delle Officine Meccaniche Stanga e della Snia Viscosa, Mattino 2023); fascia "Hanno scritto di noi" con i tre articoli del Mattino di Padova al posto delle certificazioni, che non hanno. Recensioni: nessuna leggibile nelle fonti (Google 429, Facebook solo titolo), non inventate: da chiedere.
+11. **Lavori con un nome**: NON SI APPLICA. Una bottega non ha lavori su commessa; nelle fonti non ce ne sono. Il posto che la regola dà ai lavori qui va al racconto di Natale e ai pani con il nome di casa.
+12. **Ritmo a blocchi**: OK. Blocchi pieni oltre al piede: la fascia delle Feste e le forniture nel legno, manifesto e numeri nel bruno, laboratorio e pane su grigio chiaro. Spazio tra le sezioni 120 px a 1440 e 64 px a 390; margini 80 px a 1440 e 21 px a 390.
+13. **Un solo sistema di bottoni**: OK. Pieno (legno; bianco sui blocchi scuri) e con il solo bordo; raggio 4 px ovunque; 52 px a 1440, 48 px sotto 600 px; testo 16 px; ogni bottone di chiamata contiene il numero.
+14. **Modulo e "dove e quando" per il mestiere**: OK. Modulo in home con il tipo di richiesta (prenotazione di Natale o Pasqua, fornitura per un locale, consegna a domicilio, altro), nome, telefono, email, messaggio: compone un'email (mailto) con oggetto "tipo, nome" e i campi, da collegare a un servizio (LEGGIMI). Per ogni negozio: stato di adesso, tabella degli orari, "Chiama" con il numero e "Indicazioni" su Google Maps. Nessun iframe di mappa.
+15. **Piede completo**: OK, senza certificazioni (non ne hanno). Ragione sociale, P.IVA 02506350285, indirizzo, telefoni e email cliccabili, orari dei due negozi, Indicazioni, Instagram con "le ricette di Galileo", Privacy e Cookie; quattro colonne a 1440, due fino a 1099 px, una sotto 600; testo minimo 14 px.
+
+### Controlli generali
+
+- Scorrimento orizzontale: nessuno da 320 a 2560 px (`pro_uso.mjs`, 19 larghezze; `trova_largo.mjs`). Trovati e corretti: la testata a 1024 e a 1280 (ora il menu si chiude sotto 1101 px e "panificio a Camin dal 1963" accanto al nome c'è solo da 1400 px), i bottoni dei negozi a 320 (vanno a capo).
+- Sovrapposizioni: nessuna negli screenshot a 320, 390, 768, 1024, 1280, 1440, 1920. Corretti durante il lavoro: il bottone "Prepara l'email" bianco su bianco, il vuoto tra titolo e testo delle forniture, la vetrina di "Chi siamo" troppo stretta sul telefono, la fascia "Hanno scritto di noi" su tre colonne a 390.
+- Prove d'uso della scheda (`pro_uso.mjs`): stato e righe di oggi giuste a 21 ore e giorni (mercoledì pomeriggio, sabato, domenica, festivi, Pasquetta, 13 giugno, Ferragosto); il 15 novembre a 390x844 nei primi 844 px ci sono la frase di stato (22 px), i due `tel:` dei negozi (48 px), il cellulare, le due Indicazioni (48 px) e la fascia delle Feste (fondo a 844); fascia a date diverse giusta (assente il 31/10, il 23/12 dalle 13, il 15/6; Pasqua 2027 dal 20/3); con JavaScript spento stato e fascia restano leggibili; dalla voce "Per bar e ristoranti" si arriva al telefono del laboratorio (e, scorrendo poco, alla mail con oggetto "Fornitura pane").
+- Collegamenti: `tel:+390498702658`, `tel:+390498705107`, `tel:+393386600664`; `mailto:info@panificiogalileofornasiero.it` (anche con oggetto "Fornitura pane" e testo); due mappe con il nome del negozio e l'indirizzo; nessuna ancora rotta, nessun link a pagine locali che non esistono.
+- Nessun carattere U+2014 nella pagina, in questa nota, nel LEGGIMI, nei crediti e negli script nuovi.
+
+### Caratteri e licenze
+
+Sentient (400) e General Sans (400, 600), Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito), file serviti dalla pagina in `sito/fonts/`. General Sans 600 scaricato il 3/11/2026 da Fontshare (copia in `assets/fonts-scaricati/`).
+
+### Non applicato, apposta
+
+- Apertura a tutto schermo con una foto (famiglia B, punto 2): non c'è una foto vera del laboratorio o della bottega che regga a quella misura; la vetrina è 640x319. L'apertura si regge sul titolo in maiuscolo come l'insegna e sui dati.
+- Facciata in ogni scheda negozio: c'è solo la vetrina di via Vigonovese (nell'apertura); via Alsazia non ha nessuna foto. Le schede sono senza foto per restare uguali.
+- Novità di stagione con foto: la Bacheca di Romina è nel link della tessera "Crostate e torte"; le sue foto da telefono non reggono.
+- Newsletter "Gli avvisi di Romina": tolta (non inviava nulla; c'è un solo modulo in pagina, quello delle richieste).
+- Recensioni e certificazioni: non ce ne sono nelle fonti; da chiedere (LEGGIMI).
+
+---
+
+## Versione 1 con l'uso (2 novembre 2026, sera), prima del livello professionale
+
+Quello che segue descrive la versione copiata in `_prova/versione-1-uso/`.
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (WebP a più larghezze con srcset), caratteri in `sito/fonts/`. Screenshot e controlli si rifanno con `bash _prova/script/build_finale.sh` (con `--immagini` rifà anche le immagini); prove d'uso con `node _prova/script/v1uso_prova.mjs`, misure della prima schermata con `node _prova/script/v1uso_misura.mjs <larghezza> <altezza> [mobile] [ora]`. La versione 1 com'era prima di questo passaggio è in `_prova/versione-1-originale/` (sito, screenshot, script, LEGGIMI).
 

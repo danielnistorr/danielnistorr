@@ -2,6 +2,39 @@
 
 Proposta non richiesta di una nuova homepage per il Panificio Galileo Fornasiero S.r.l. di Camin (Padova). Solo la home. Non è pubblicata, l'azienda non è stata contattata.
 
+## Livello professionale (3 novembre 2026)
+
+Il committente ha detto che la home era "ancora troppo poco professionale e di design". `sito/index.html` è stata rifatta regola per regola su `_metodo/professionale/REGOLE.md` (struttura della famiglia B, botteghe artigiane e alimentari). La versione 1 con l'uso com'era prima è copiata in `_prova/versione-1-uso/` (sito e screenshot). Esito di ogni regola e controlli in `screenshot/home/NOTA.md`, sezione "Livello professionale".
+
+- Restano: il titolo "Siamo Fornasiero, fornai anche nel nome" (ora in maiuscolo, come le lettere dell'insegna), i caratteri Sentient e General Sans, il bruno delle scritte del sacchetto, le loro parole, e tutto l'uso della versione 1 (stato di adesso, righe di oggi, Feste in stagione, Chiama in testata, dato strutturato).
+- Cambiano: fondo bianco al posto della mollica; il legno dell'insegna (#6F3624) per bottoni, cifre e blocco delle forniture; testata con "Negozi e orari" come prima voce e il telefono in un bottone; manifesto e cinque numeri su blocco scuro; "Hanno scritto di noi" con i tre articoli del Mattino di Padova; quattro tessere del laboratorio; una scheda per negozio con la tabella degli orari, Chiama e Indicazioni; modulo delle richieste nelle forniture; piede in quattro colonne.
+- Foto (decisione del committente: "niente"): nessun repertorio, nessuna illustrazione. Restano la vetrina con Galileo e Fidalma (alla misura nativa, nell'apertura da 1100 px e in "Chi siamo" sotto), la striscia dell'insegna sul telefono, panettone e focaccia sulla juta. Tolte la focaccia scontornata, le tartarughe e il pane a fette.
+- Script: `_prova/script/build_finale.sh` (ora usa `pro_img.py` e alla fine `pro_controlli.mjs`), `pro_uso.mjs` (le prove d'uso della scheda), `pro_misura.mjs` (prima schermata), `pro_controlli.mjs` (le 15 regole).
+
+### Il modulo da collegare
+
+Il modulo "Scriveteci" nella sezione delle forniture chiede il tipo di richiesta (prenotazione di Natale o Pasqua, fornitura per un locale, consegna a domicilio, altro), nome, telefono, email e messaggio. Oggi NON invia nulla da solo: compone un'email (mailto) a info@panificiogalileofornasiero.it con oggetto "tipo, nome" e i campi nel testo, che il visitatore manda dal suo programma di posta (sul telefono senza un'app di posta configurata non succede niente). Per il sito vero va collegato a un servizio di invio moduli (per esempio il modulo del CMS, Formspree, Brevo o simili) con risposta automatica, protezione dallo spam e informativa privacy aggiornata; il telefono resta scritto accanto, perché molti clienti chiamano.
+
+### Da chiedere all'azienda (per questa versione)
+
+- Recensioni: in pagina non ce ne sono (le fonti non ne hanno di leggibili; la pagina Facebook con "94 % di consigli su 5 recensioni" è un'anteprima di ricerca non verificata). Chiedere se hanno una scheda Google con recensioni e se possiamo citarne due o tre con nome e comune del cliente.
+- Certificazioni, associazioni di categoria, fornitori di farina da poter nominare (per una fascia con didascalia): oggi non ce ne sono.
+- I numeri in pagina: "1963" (il 1° aprile apre la bottega), "30+" tipi di pane, "2" negozi, "60" anni di Fidalma al banco (Mattino 2025), "400" persone alla festa dei cinquant'anni (2013). Confermare che vanno bene da mostrare, e se c'è un numero in più (pani al giorno, locali serviti, anni di consegne a domicilio).
+- Il consenso a usare il manifesto "La storia della mia famiglia è una storia di pane buono, di profumo, di ricerca." e "Non abbandonerei mai Camin, qui è la mia famiglia, il mio mondo, il mio lavoro." (Galileo al Mattino di Padova, 2013), la foto della vetrina con Galileo e Fidalma e i loro nomi, e i link ai tre articoli del Mattino.
+- La riga 2023 "Il 2 aprile si festeggiano i sessant'anni della bottega" e la riga 1963 "Galileo arriva a Camin e apre la bottega": confermare date e parole.
+- Pasta fresca, pizze, focacce e panini: si trovano in tutti e due i negozi? Le tessere oggi portano a "Negozi e orari" senza dire dove.
+- Le altre cose già in elenco qui sotto (sabato di via Vigonovese, domeniche, ferie, via Alsazia 3, date delle prenotazioni, zona della fornitura, REA e PEC, Facebook, Instagram).
+
+### Foto da fare dal vero (per arrivare al livello dei riferimenti)
+
+Una mattina, un solo fotografo, sola luce di finestra o luce di giorno, niente flash, file grandi (almeno 4000 px sul lato lungo), due formati soli (quadrato e 3:2):
+- l'apertura: il banco di via Vigonovese con chi lavora, o le mani sull'impasto e il forno, larga (3:2), da usare a tutta pagina sopra o accanto al titolo;
+- la vetrina e l'insegna di via Vigonovese ad alta risoluzione, di mattina, con chi sta al banco sulla porta (quella di oggi è 640x319 e non si può ingrandire); la vetrina di via Alsazia 3 con lo stesso taglio, per le due schede di "Negozi e orari";
+- una foto quadrata per ogni tessera, dall'alto, sul banco infarinato o sulla carta del loro sacchetto: il pane del giorno (anche i cinque pani con il nome di casa, uno per foto), la pasta all'uovo, una pizza o una focaccia salata, una crostata;
+- per la Bacheca di Romina il dolce nuovo con la stessa luce, al posto delle foto da telefono;
+- il pane per i locali nelle cassette o nei sacchi della consegna, per le forniture;
+- colomba e focaccia di Pasqua sulla juta del cinquantesimo, come il panettone, per la sezione delle Feste a Pasqua.
+
 ## Versione 1 con l'uso
 
 Il committente, viste le due versioni, ha scelto la versione 1 (`sito/`): grafica, caratteri, colori, impaginazione, la focaccia, il titolo "Siamo Fornasiero, fornai anche nel nome" e l'idea restano. La versione 2 (`sito-v2/`) resta solo come promemoria di cosa deve trovare il visitatore, non di come deve apparire. La versione 1 com'era prima di questi passaggi è copiata in `_prova/versione-1-originale/` (sito, screenshot, script, LEGGIMI) per poter tornare indietro.
@@ -36,7 +69,7 @@ Foto da rifare dal vero, per questa versione (oltre all'elenco "Foto da rifare d
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale, versione 1 con l'uso (statica, si apre con file:///). `sito/img/`: solo le immagini usate, WebP a più larghezze. `sito/fonts/`: Sentient e General Sans.
+- `sito/index.html`: la home finale, livello professionale del 3 novembre (statica, si apre con file:///). `sito/img/`: solo le immagini usate, WebP a più larghezze (`pro_img.py`). `sito/fonts/`: Sentient 400, General Sans 400 e 600. La versione 1 con l'uso è in `_prova/versione-1-uso/`.
 - Ultimo passaggio (2 novembre): apertura rifatta con la loro focaccia scontornata nel gradino del titolo, fondo mollica in apertura e nel piede, parte centrale ripulita. Cosa è cambiato e i controlli sono in `screenshot/home/NOTA.md`.
 - `screenshot/home/`: screenshot a 1440 e 390 (intere e prima schermata), chiusura e piede a 1440, `NOTA.md` (idea, scelte, controlli).
 - `_prova/script/build_finale.sh`: rifà immagini (`finale_img.py`, che usa `scontorna_focaccia.py` per la focaccia dell'apertura) e screenshot (`finale_shot.mjs`); `prova_gesto.mjs` prova le schede dei negozi; `controlli.mjs` controlla lo scorrimento orizzontale da 320 a 2560 e i collegamenti; `trova_largo.mjs` cerca gli elementi che escono dalla pagina; `misura_apertura.mjs` misura titolo e focaccia.
@@ -51,6 +84,8 @@ Foto da rifare dal vero, per questa versione (oltre all'elenco "Foto da rifare d
 - Il resto sono ancore della home: `#pane`, `#forno`, `#feste`, `#negozi`, `#forniture` (la riga sulle forniture e le consegne, sotto le schede dei negozi).
 
 ## Newsletter
+
+Dal livello professionale (3 novembre) "Gli avvisi di Romina" non sono più in pagina: in home resta un solo modulo, quello delle richieste (vedi sopra, "Il modulo da collegare"). Quello che segue vale se il panificio vuole rimetterla.
 
 "Gli avvisi di Romina" nel piede: una email quando si aprono le prenotazioni di Natale e Pasqua e quando arriva un dolce nuovo. Ha senso perché hanno clienti privati affezionati e notizie che tornano ogni anno. Oggi il modulo NON invia nulla: va collegato a un servizio (Brevo, Mailchimp o simili) con doppio consenso e registro dei consensi, e l'informativa privacy va aggiornata. Molti clienti sono anziani: il telefono resta il canale principale, per questo è il bottone dell'apertura.
 
@@ -92,7 +127,7 @@ Una mattina di riprese in luce naturale di finestra, senza flash, sempre con la 
 
 ## Licenze
 
-- Caratteri: Sentient e General Sans, Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito), file serviti dalla pagina.
+- Caratteri: Sentient (400) e General Sans (400, 600), Indian Type Foundry, da Fontshare, ITF Free Font License (uso commerciale gratuito), file serviti dalla pagina.
 - Foto: dal ritocco con l'uso in pagina ci sono solo foto del panificio, prese dal loro sito (per il sito nuovo serve il loro consenso). Le foto di repertorio usate prima (Unsplash T6vI65xwoNA di Karen Sewell, tagliatelle; Unsplash ytxRXkY8QE4 di Victoria Nazaruk, panini nei sacchetti; Pexels 4198047 e Unsplash W0PDHT_sYoQ) non sono più in pagina e restano in `assets/esterne/` solo come archivio. Dettagli in `assets/CREDITI.md`.
 - Le foto della libreria di Wix presenti sul sito di oggi non sono usate (licenza valida solo dentro Wix).
 
