@@ -46,18 +46,18 @@ Diritti:
 
 Per decisione del committente ("niente" foto di repertorio, niente disegni al posto delle foto) **nessuna foto di `esterne/` è più in pagina**: tolte DESIGNECOLOGIST hvgd0ygXuQQ (microfono dell'apertura), Valentin Karisch igNLOmbJBhg (teatro), Daniel Emale zBZZfr8_0ME (storia) e Nguyen Dang ft2Gpg_fNVY (chiusura), e i loro tagli in `sito/img/`. I file restano in `esterne/` solo come archivio della proposta di prima (copia completa in `_prova/versione-1-originale/`).
 
-In pagina solo immagini dell'azienda, da `originali/`, lavorate da `_prova/script/pro_img.py` (taglio 3:2, rumore smorzato, bianco portato a metà verso il neutro, saturazione 0,9, mai oltre la misura d'origine):
+In pagina solo immagini dell'azienda, da `originali/`, lavorate da `_prova/script/pro_img.py` (ritocco del 3/11: rumore smorzato, bianco portato quasi al neutro per tutte, stessa curva e stessa saturazione 0,86, mai oltre la misura d'origine; zone con testi o persone di terzi sfocate):
 
 | File d'origine | In pagina | Taglio |
 |---|---|---|
-| `2024-05-1.jpg` | apertura (`apertura-*.jpg` da 601 px in su, `regia-*.jpg` sul telefono) | intera 1600x616 riquadrata dalla colonna; sul telefono 3:2 da x 640 |
+| `2024-05-1.jpg` | apertura da 601 px in su (`apertura-*.jpg`); striscia sul telefono (`striscia-*.jpg`) | intera 1600x616 a tutta larghezza nel suo formato, monitor della regia sfocato; sul telefono 900x300 (3:1) da x 100, y 250, senza il monitor |
 | `2024-05-3.jpg` | scheda Amplificazione (`amplificazione-*.jpg`) | 3:2 da x 380 |
 | `2024-05-6.jpg` | scheda Radiomicrofoni (`radiomicrofoni-*.jpg`) | 690x460 in alto a sinistra, sopra la bottiglia d'acqua |
-| `2024-05-4.jpg` | scheda Video e videowall (`video-*.jpg`) | 3:2 da x 420 |
-| `2024-05-2.jpg` | scheda Riprese video (`riprese-*.jpg`) | 3:2 da x 560, senza i cartelli del committente |
+| `2024-05-4.jpg` | scheda Video e videowall (`video-*.jpg`) | 3:2 da x 94, a sinistra del titolo proiettato |
+| `2024-05-2.jpg` | scheda Riprese video (`riprese-*.jpg`) | 690x460 da x 700: solo lo schermo con la ripresa e il microfono, senza il tavolo dei relatori e i cartellini; il cartellino ripreso sullo schermo sfocato |
 | `2024-05-5.jpg` | Impianti (`teatro-*.jpg`) | 3:2 da x 300 |
-| `2016-02-sala_vicenza.jpg` | Azienda (`sala-consiliare-*.jpg`) | 654x436 |
-| `2016-02-Untitled-1-2.jpg` | Dove siamo (`sede-*.jpg`) | 542x361 |
-| `2024-05-Negozio-6.jpg` | Dove siamo (`emporio-*.jpg`) | 866x577 da x 60 |
+| `2016-02-sala_vicenza.jpg` | Impianti (`sala-consiliare-*.jpg`), al massimo 405 px | 654x436 |
+| `2016-02-Untitled-1-2.jpg` | Dove siamo (`sede-*.jpg`), al massimo 360 px | 542x361 |
+| `2024-05-Negozio-6.jpg` | Dove siamo (`emporio-*.jpg`), al massimo 360 px | 866x577 da x 60, servita al massimo a 720 px |
 
 Diritti delle foto del 2024 da chiarire con l'azienda (EXIF, vedi sopra).

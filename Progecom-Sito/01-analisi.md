@@ -156,3 +156,16 @@ Da tutti: un solo soggetto per schermata, poche parole, grigi metallici con un a
 - Il logo vettoriale o almeno il PNG grande, e il font della scritta "PROGECOM".
 - Se il titolare accetta una mezza giornata di still life in magazzino (pistone CuCo2Be, crogiolo ISO nuovo, rotore in grafite, bobina di rete, lingotto) e se ha un cliente fonderia disposto a una foto di colata.
 - Clienti o settori che si possono nominare (automotive, moto, casalinghi?).
+
+## 10. Dati aggiunti il 3/11/2026 (ritocco della home)
+
+Pagine del sito di oggi rilette il 3/11/2026; testo visibile salvato in `_prova/crawl/pagine/*.txt`.
+- **Forni fusori attesa** (`forni-fusori-attesa`): "FORNI A CROGIOLO FISSI E RIBALTABILI | Elettrici e a gas | FORNI A BACINO FISSO con 1 o 2 pozzetti di prelievo | SIVIERE | FORNI FUSIONE RAPIDA | SCALDASIVIERE | FORNI A DOPPIA CAMERA".
+- **Refrattari e isolanti** (`refrattari-isolanti`): "TEMPERATURA DI CLASSIFICAZIONE 1200°C / 2192°F EN 1094-1"; "Materassini isolanti in fibra ceramica"; "Densità 64, 96, 128 kg/m3"; "Guarnizioni isolanti in fibra ceramica"; "Cordoni e tessuti isolanti"; "Maniche esotermiche", "Maniche isotermiche a calotta".
+- **Bruciatori preriscaldo stampi** (`bruciatori-preriscaldo-stampi`): nessun testo, solo i render dei modelli.
+- **Automazioni lubrificazione** (`automazioni-lubrificazione`): "IMPIANTO FILTRAGGIO ACQUA GLICOLE"; "LANCIA FLUSSI CON CARRELLO (per Sali in polvere e granulari)"; "IMPIANTI DI MISCELAZIONE ACQUA-DISTACCANTE ... Ideale per impianto centralizzato in fonderia per 6-8 presse"; "IMPIANTO PNEUMATICO A 1-2 UGELLI LUBRIFICA PISTONI".
+- **Trasporto metallo liquido** (`trasporto-metallo-liquido`): "Siviera ribaltabile | Canaline refrattario | Tazze"; "TAZZE MANUALI E PER CARICATORI LINEARI E ROTATIVI".
+- **Madrileghe** (`madrileghe-di-alluminio`): testo generale sulle madrileghe di alluminio con gli esempi "AlMn, AlFe, AlCr, AlCu, AlV" (induritori), "AlTiB" e "AlTiC" (affinatori del grano), "AlSr" (modifica dell'AlSi eutettico). Non dice quali sono a magazzino.
+- **Leghe di zinco** (`leghe-di-zinco`): testo sullo stabilimento del produttore, "lingotti del peso di 6-8 Kg circa"; le norme sono tavole in immagine.
+- **Leghe di alluminio** (`leghe-di-alluminio`): "primarie Al-Si a limitato tenore di Fe ... per la realizzazione di ruote, volanti, forcelle moto ed altri particolari di sicurezza".
+- **Home**: "nuove soluzioni tecniche per incrementare e ottimizzare i processi produttivi richiesti dai clienti, di importanti aziende leader".

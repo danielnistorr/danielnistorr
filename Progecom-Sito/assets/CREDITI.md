@@ -40,15 +40,11 @@ Note d'uso:
 
 **Nessuna foto di repertorio in pagina.** Decisione del committente ("niente"): tolte dalla home Diecasting Mould (carter con "foto indicativa") e Grieveson (siviera). Restano archiviate qui sopra e in `assets/esterne/` solo come materiale della prova precedente; i file di `sito/img/` che le contenevano sono stati cancellati (la versione precedente è in `_prova/versione-1-originale/`). Tolti anche il pistone isolato su fondo chiaro, il forno a crogiolo dell'usato, l'impianto di degasaggio a 709 px e i lingotti STEMIN.
 
-Immagini in pagina, tutte loro (trattamento comune in `_prova/script/pro_img.py`: bianco portato a neutro su una zona chiara della foto, saturazione all'88 %, contrasto +6 %):
+Immagini in pagina (ritocco del 3/11/2026): **una sola foto**, il fotogramma del loro video. Le quattro foto dei gruppi di prodotto sono state tolte: non erano una serie (quattro luci diverse) e due avevano diritti incerti. I gruppi hanno ora una testata tipografica (nome e sigle vere), senza immagini né disegni. I file `gruppo-*` sono stati cancellati da `sito/img/`; i file di partenza restano in `assets/originali/`.
 
 | In pagina | File di partenza | Origine | Diritti |
 |---|---|---|---|
-| Apertura, magazzino crogioli (`magazzino-43-*`, `magazzino-169-*`) | `_prova/crawl/youtube/maxresdefault.jpg` (1280x720) | anteprima del loro video "Magazzino Crogioli PROGECOM", YouTube `BqKKjrjrDq0`, canale di Mauro Poggese (https://i.ytimg.com/vi/BqKKjrjrDq0/maxresdefault.jpg, scaricata il 3/11/2026) | loro; serve l'originale del video o una foto vera del magazzino |
-| Gruppo Fusione e forni (`gruppo-fusione-*`) | `assets/originali/4a6a7c_804c276fec54406abe77f3f84fdfb915.jpg` | sito Progecom, pagina usato | da confermare: forse del venditore del forno |
-| Gruppo Trattamento del metallo (`gruppo-trattamento-*`) | `assets/originali/617993_3b181aec7c864a23b6b424c14cc92736.jpg` | sito Progecom, pagina Filtrazione | da confermare: forse del produttore della rete |
-| Gruppo Pressofusione (`gruppo-pressofusione-*`) | `assets/originali/617993_02e7ea19ab62426cac9487da06fa965d.jpg` | sito Progecom, pagina Pistoni | loro |
-| Gruppo Leghe e controllo (`gruppo-controllo-*`) | `assets/originali/4a6a7c_da1722afe4b04452a44cc09864bc39e1.jpg` | sito Progecom, pagina Strumenti di controllo | loro |
+| Apertura, magazzino crogioli (`magazzino-43-*` a filo del bordo destro, `magazzino-169-*` al telefono e sul tablet) | `_prova/crawl/youtube/maxresdefault.jpg` (1280x720) | anteprima del loro video "Magazzino Crogioli PROGECOM", YouTube `BqKKjrjrDq0`, canale di Mauro Poggese (https://i.ytimg.com/vi/BqKKjrjrDq0/maxresdefault.jpg, scaricata il 3/11/2026) | loro; serve l'originale del video o una foto vera del magazzino |
 | Logo nella testata e nel piede (`logo-oro-*.webp`, `favicon-64.png`) | `assets/originali/logo-simbolo-fascia-oro-738.png` | sito Progecom | loro; non ricolorato |
 
-Nessuna immagine generata, nessuna illustrazione al posto delle foto, nessuna foto di marchi concorrenti.
+Trattamento (`_prova/script/pro_img.py`): bianco portato a neutro su una zona chiara della foto, saturazione all'88 %, contrasto +6 %. Nessuna immagine generata, nessuna illustrazione al posto delle foto, nessuna foto di marchi concorrenti.
