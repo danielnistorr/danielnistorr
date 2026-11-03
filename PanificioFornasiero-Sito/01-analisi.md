@@ -205,3 +205,9 @@ Nota onesta: le aperture dei forni di fascia alta sono quasi tutte scure e fotog
 - Se vogliono la newsletter, e con quale servizio.
 - Le date delle prenotazioni di Natale e Pasqua da scrivere in pagina, e se il banner di Natale va tolto fuori stagione.
 - I numeri da poter citare: "oltre 30 tipologie di pane", i 63 anni, le 400 persone della festa del 2013.
+
+## Aggiunte del 3 novembre 2026 (ritocco finale della home)
+
+- Clienti di un tempo, con il nome: "Per decenni abbiamo dato il pane a tante aziende della zona, agli operai delle Officine Meccaniche Stanga, della Snia Viscosa (dove oggi c'è la Cittadella), di Sit-La Precisa, Raccanello e tante altre aziende." (Galileo e Fidalma, Mattino di Padova 30/03/2023, copia in `_prova/crawl/stampa/camin_pane_mattino_panificio_fornasiero-.html`).
+- Titoli degli articoli del Mattino di Padova (copie in `_prova/crawl/stampa/`): 12/12/2013 "Sessant'anni di attività per il panificio Fornasiero"; 30/03/2023 "Pane appena sfornato e una copia del Mattino: ecco il buongiorno a domicilio del panificio Fornasiero"; 01/06/2025 "Padova, lo storico panificio Fornasiero a Camin: la signora Fidalma, 82 anni, racconta i suoi record".
+- Conteggi dagli elenchi del sito di oggi (sopra): 4 paste all'uovo, 4 pizze e 4 focacce, 6 dolci da forno nelle "Delizie artigianali".

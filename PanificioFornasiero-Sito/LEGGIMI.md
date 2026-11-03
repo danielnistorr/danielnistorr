@@ -6,10 +6,22 @@ Proposta non richiesta di una nuova homepage per il Panificio Galileo Fornasiero
 
 Il committente ha detto che la home era "ancora troppo poco professionale e di design". `sito/index.html` è stata rifatta regola per regola su `_metodo/professionale/REGOLE.md` (struttura della famiglia B, botteghe artigiane e alimentari). La versione 1 con l'uso com'era prima è copiata in `_prova/versione-1-uso/` (sito e screenshot). Esito di ogni regola e controlli in `screenshot/home/NOTA.md`, sezione "Livello professionale".
 
-- Restano: il titolo "Siamo Fornasiero, fornai anche nel nome" (ora in maiuscolo, come le lettere dell'insegna), i caratteri Sentient e General Sans, il bruno delle scritte del sacchetto, le loro parole, e tutto l'uso della versione 1 (stato di adesso, righe di oggi, Feste in stagione, Chiama in testata, dato strutturato).
+- Restano: il titolo "Siamo Fornasiero, fornai anche nel nome" (ora in maiuscolo, come le lettere dell'insegna, e dal ritocco finale senza "Forna/forna" colorati), i caratteri Sentient e General Sans, il bruno delle scritte del sacchetto, le loro parole, e tutto l'uso della versione 1 (stato di adesso, righe di oggi, Feste in stagione, Chiama in testata, dato strutturato).
 - Cambiano: fondo bianco al posto della mollica; il legno dell'insegna (#6F3624) per bottoni, cifre e blocco delle forniture; testata con "Negozi e orari" come prima voce e il telefono in un bottone; manifesto e cinque numeri su blocco scuro; "Hanno scritto di noi" con i tre articoli del Mattino di Padova; quattro tessere del laboratorio; una scheda per negozio con la tabella degli orari, Chiama e Indicazioni; modulo delle richieste nelle forniture; piede in quattro colonne.
-- Foto (decisione del committente: "niente"): nessun repertorio, nessuna illustrazione. Restano la vetrina con Galileo e Fidalma (alla misura nativa, nell'apertura da 1100 px e in "Chi siamo" sotto), la striscia dell'insegna sul telefono, panettone e focaccia sulla juta. Tolte la focaccia scontornata, le tartarughe e il pane a fette.
+- Foto (decisione del committente: "niente"): nessun repertorio, nessuna illustrazione. Restano la vetrina con Galileo e Fidalma (mai ingrandita: 520 px nell'apertura a 1440, accanto ai negozi; sotto 1100 px subito dopo la fascia delle Feste), la striscia dell'insegna sul telefono, panettone e focaccia sulla juta. Tolte la focaccia scontornata, le tartarughe, il pane a fette e il logo a cesto nel piede.
 - Script: `_prova/script/build_finale.sh` (ora usa `pro_img.py` e alla fine `pro_controlli.mjs`), `pro_uso.mjs` (le prove d'uso della scheda), `pro_misura.mjs` (prima schermata), `pro_controlli.mjs` (le 15 regole).
+
+### Ritocco finale (3 novembre 2026)
+
+Dopo il controllo del livello e le prove dei tre clienti tipo. Dettagli, applicati e respinti con il motivo in `screenshot/home/NOTA.md` ("Ritocco finale"). In breve: titolo tutto nel bruno; vetrina più grande e allineata ai negozi a 1440, intera sul telefono subito dopo la fascia; un solo Chiama pieno per negozio più la testata (la fascia ha il bottone a filo, sul telefono è compatta e tutta toccabile); il bottone della testata dice quale negozio chiama; eccezioni dei negozi senza ripetizioni e "Mercoledì pomeriggio aperto" per via Alsazia; "Indicazioni" apre il percorso; nomi dei prodotti sotto le foto di Natale e Chiama subito dopo l'introduzione; titoli veri degli articoli del Mattino; fascia dei clienti con il nome nelle forniture; tre tessere con un dato grande; date di "Chi siamo" in orizzontale; vetrina scaldata come le foto Nikon; FORNASIERO composto nel piede. Script: `_prova/script/ritocco_pro2.py`, `ritocco_pro2b.py`, `ritocco_misura2.mjs`.
+
+Da chiedere per questa parte:
+- La data di chiusura delle prenotazioni di Natale (e di Pasqua). La pagina non la scrive: lo script ha `FINE_PRENOTAZIONI` (15 dicembre, scelta della proposta) e `SCRIVI_SCADENZA=false`; avuta la data, si corregge `FINE_PRENOTAZIONI` e si mette `SCRIVI_SCADENZA=true`, e fascia e sezione scrivono "entro lunedì 15 dicembre". Se si possono dire pezzature e prezzi (anche "da 1 kg").
+- I clienti di un tempo in pagina ("Per decenni il pane agli operai di" Officine Meccaniche Stanga, Snia Viscosa, Sit-La Precisa, Raccanello): sono le parole di Galileo e Fidalma al Mattino del 30/03/2023; confermare che si possono nominare (Sit-La Precisa e Raccanello sono stati aggiunti alla SCHEDA il 3/11). Se oggi forniscono bar, alberghi o ristoranti che si possono nominare, sarebbero la prova migliore.
+- I numeri delle tessere ("4" paste all'uovo, "4 + 4" pizze e focacce, "6" dolci da forno) sono contati dagli elenchi del loro sito di oggi: confermare che gli elenchi sono completi e aggiornati.
+- Il consenso a citare i titoli dei tre articoli del Mattino di Padova con il link.
+- Via Alsazia 3: una foto della vetrina o un punto di riferimento da scrivere ("accanto a...", "di fronte a..."): oggi il negozio non ha niente che lo faccia riconoscere, ed è quello aperto il mercoledì pomeriggio e il sabato.
+- La zona servita per i locali (comuni o quartieri), da scrivere nelle forniture.
 
 ### Il modulo da collegare
 
@@ -22,14 +34,14 @@ Il modulo "Scriveteci" nella sezione delle forniture chiede il tipo di richiesta
 - I numeri in pagina: "1963" (il 1° aprile apre la bottega), "30+" tipi di pane, "2" negozi, "60" anni di Fidalma al banco (Mattino 2025), "400" persone alla festa dei cinquant'anni (2013). Confermare che vanno bene da mostrare, e se c'è un numero in più (pani al giorno, locali serviti, anni di consegne a domicilio).
 - Il consenso a usare il manifesto "La storia della mia famiglia è una storia di pane buono, di profumo, di ricerca." e "Non abbandonerei mai Camin, qui è la mia famiglia, il mio mondo, il mio lavoro." (Galileo al Mattino di Padova, 2013), la foto della vetrina con Galileo e Fidalma e i loro nomi, e i link ai tre articoli del Mattino.
 - La riga 2023 "Il 2 aprile si festeggiano i sessant'anni della bottega" e la riga 1963 "Galileo arriva a Camin e apre la bottega": confermare date e parole.
-- Pasta fresca, pizze, focacce e panini: si trovano in tutti e due i negozi? Le tessere oggi portano a "Negozi e orari" senza dire dove.
+- Pasta fresca, pizze, focacce e panini: si trovano in tutti e due i negozi? Le tessere dicono "Si trovano al banco" e portano a "Negozi e orari" senza dire quale.
 - Le altre cose già in elenco qui sotto (sabato di via Vigonovese, domeniche, ferie, via Alsazia 3, date delle prenotazioni, zona della fornitura, REA e PEC, Facebook, Instagram).
 
 ### Foto da fare dal vero (per arrivare al livello dei riferimenti)
 
 Una mattina, un solo fotografo, sola luce di finestra o luce di giorno, niente flash, file grandi (almeno 4000 px sul lato lungo), due formati soli (quadrato e 3:2):
-- l'apertura: il banco di via Vigonovese con chi lavora, o le mani sull'impasto e il forno, larga (3:2), da usare a tutta pagina sopra o accanto al titolo;
 - la vetrina e l'insegna di via Vigonovese ad alta risoluzione, di mattina, con chi sta al banco sulla porta (quella di oggi è 640x319 e non si può ingrandire); la vetrina di via Alsazia 3 con lo stesso taglio, per le due schede di "Negozi e orari";
+- l'apertura: il banco di via Vigonovese con chi lavora, o le mani sull'impasto e il forno, larga (3:2), da usare a tutta pagina sopra o accanto al titolo;
 - una foto quadrata per ogni tessera, dall'alto, sul banco infarinato o sulla carta del loro sacchetto: il pane del giorno (anche i cinque pani con il nome di casa, uno per foto), la pasta all'uovo, una pizza o una focaccia salata, una crostata;
 - per la Bacheca di Romina il dolce nuovo con la stessa luce, al posto delle foto da telefono;
 - il pane per i locali nelle cassette o nei sacchi della consegna, per le forniture;
@@ -63,14 +75,14 @@ Da confermare con il panificio, per quello che questa versione mette a vista:
 - Fornitura e consegne: zona per i locali (in pagina "Camin e dintorni" è scritto solo per le consegne a domicilio alle famiglie, come sul sito di oggi), giorni, quantità minime; se le consegne a domicilio alle famiglie e il pane con il Mattino agli anziani si fanno ancora.
 - Il consenso a usare in pagina la frase sugli operai della Stanga e della Snia Viscosa, detta al Mattino di Padova nel 2023, insieme a quello per le altre frasi e foto (vedi sotto).
 - Se a Pasqua vogliono una foto della colomba: oggi nella sezione delle Feste, anche nel periodo di Pasqua, ci sono il panettone e la focaccia di Natale, perché una foto della colomba non c'è.
-- Il modulo "Gli avvisi di Romina" nel piede è rimasto com'era nella versione 1 e non invia nulla: o si collega a un servizio (vedi "Newsletter") o si toglie, come nella versione 2, e al suo posto va la riga "Le prenotazioni di Natale e di Pasqua si fanno al telefono".
+- (Versione 1, non più in pagina) Il modulo "Gli avvisi di Romina" nel piede: dal livello professionale è tolto; vedi "Newsletter".
 
 Foto da rifare dal vero, per questa versione (oltre all'elenco "Foto da rifare dal vero" più sotto): la vetrina e l'insegna di via Vigonovese ad alta risoluzione (la striscia dell'insegna sul telefono è un taglio della foto 640x319, e si vede); la vetrina di via Alsazia 3, che oggi non ha nessuna foto; la pasta fresca all'uovo sul banco infarinato, se si vuole tornare a una foto nella sezione della pasta (oggi è solo testo); la chiusura con il pane del mattino nei loro sacchetti bianchi, con la sola luce di finestra (oggi è il pane a fette della galleria, con la luce mista della lampada); la colomba di Pasqua sul sacco di juta; il laboratorio o le cassette della consegna per la sezione delle forniture, che oggi è solo testo.
 
 ## Dove sono le cose
 
 - `sito/index.html`: la home finale, livello professionale del 3 novembre (statica, si apre con file:///). `sito/img/`: solo le immagini usate, WebP a più larghezze (`pro_img.py`). `sito/fonts/`: Sentient 400, General Sans 400 e 600. La versione 1 con l'uso è in `_prova/versione-1-uso/`.
-- Ultimo passaggio (2 novembre): apertura rifatta con la loro focaccia scontornata nel gradino del titolo, fondo mollica in apertura e nel piede, parte centrale ripulita. Cosa è cambiato e i controlli sono in `screenshot/home/NOTA.md`.
+- (Versione 1, non più in pagina) Passaggio del 2 novembre: apertura con la focaccia scontornata nel gradino del titolo e fondo mollica. Cosa è cambiato nella home attuale e i controlli sono in `screenshot/home/NOTA.md`.
 - `screenshot/home/`: screenshot a 1440 e 390 (intere e prima schermata), chiusura e piede a 1440, `NOTA.md` (idea, scelte, controlli).
 - `_prova/script/build_finale.sh`: rifà immagini (`finale_img.py`, che usa `scontorna_focaccia.py` per la focaccia dell'apertura) e screenshot (`finale_shot.mjs`); `prova_gesto.mjs` prova le schede dei negozi; `controlli.mjs` controlla lo scorrimento orizzontale da 320 a 2560 e i collegamenti; `trova_largo.mjs` cerca gli elementi che escono dalla pagina; `misura_apertura.mjs` misura titolo e focaccia.
 - `01-analisi.md`: fatti con le fonti. `_prova/giudizio.json`: il giudizio sui prototipi. `_prova/home/a` e `b`: i due prototipi. `assets/CREDITI.md`: origine e licenza di ogni immagine.
@@ -96,11 +108,11 @@ In pagina oggi ci sono, presi dagli articoli pubblici del Mattino di Padova: i n
 
 - Se si può usare come titolo la frase di Galileo al Mattino di Padova del 2013, "Siamo Fornasiero, fornai anche nel nome", e nella chiusura "Non abbandonerei mai Camin, qui è la mia famiglia, il mio mondo, il mio lavoro.".
 - Il permesso di usare la foto della vetrina con Galileo e Fidalma e i loro nomi in pagina, e come vogliono essere nominati gli altri (Filippo, Romina, Michele Daniele) se li vogliono in pagina. Chi guida oggi la bottega.
-- La focaccia dell'apertura: è la loro focaccia veneta delle Feste (foto del dicembre 2020); la didascalia dice "La focaccia delle Feste, con la glassa e le mandorle". Confermare il nome che usano al banco (focaccia veneta, focaccia di Natale, di Pasqua) e che le mandorle ci sono sempre.
+- La focaccia di Natale nella sezione delle Feste (foto del dicembre 2020): sotto la foto c'è scritto "Focaccia di Natale, la focaccia veneta, con la glassa e le mandorle". Confermare il nome che usano al banco (focaccia veneta, focaccia di Natale, di Pasqua) e che le mandorle ci sono sempre.
 - Il sabato di via Vigonovese (sul sito non è scritto: la pagina dice "Oggi meglio chiamare" nella scheda e, fuori orario, "Il sabato mattina via Alsazia 3 è aperta" senza dire nulla di via Vigonovese), le domeniche, le chiusure per ferie.
 - Se il negozio di via Alsazia 3 è ancora aperto e chi risponde al 338 660 06 64.
 - "Oltre 30 tipologie di pane": il sito ne elenca 20. Quali si fanno ogni giorno.
-- La forma di maggiolini, stivaletto, zoccoletto e ciopeta (nella galleria non hanno il nome; in pagina c'è solo la foto delle tartarughe, l'unica certa).
+- La forma di maggiolini, stivaletto, zoccoletto e ciopeta (nella galleria non hanno il nome). In pagina oggi i pani sono solo un elenco, senza foto.
 - Se la ricetta di Galileo vale anche per colomba e focaccia di Pasqua (il sito lo dice solo per il Natale; in pagina è scritto solo per il Natale).
 - Le date delle prenotazioni di Natale e Pasqua da scrivere in pagina.
 - Fornitura a bar, alberghi e ristoranti e consegne a domicilio: zona, giorni, se il servizio "pane e Mattino" esiste ancora.
@@ -110,18 +122,18 @@ In pagina oggi ci sono, presi dagli articoli pubblici del Mattino di Padova: i n
 
 ## Marchio e logo
 
-- Nel piede c'è il loro logo a cesto (PNG del sito, 667x579) reso a una tinta nel bruno delle scritte del sacchetto, 120 px a vista (sotto, la scritta del disegno non si legge), PNG a 2x e 3x. Non è ricostruito in SVG: il disegno originale è a colori con ombre e non si rifà fedele.
+- Dal ritocco finale nel piede c'è la parola FORNASIERO composta in Sentient, come in testata; il logo a cesto (PNG del sito, 667x579, clip-art a colori con ombre) resta solo come icona della scheda del browser (64 px), finché non arriva un vettoriale. Non è ricostruito in SVG: non si rifà fedele.
 - Da chiedere quale sia il marchio ufficiale (il logo a cesto, l'insegna di legno "FORNASIERO Galileo" o la scritta del sacchetto) e se esiste un file vettoriale. Nella testata c'è la parola "Fornasiero" composta in Sentient, non un logo.
 
 ## Foto da rifare dal vero
 
 Una mattina di riprese in luce naturale di finestra, senza flash, sempre con la stessa luce:
-- Apertura: la focaccia di oggi è una loro foto del 2020 scontornata con un programma; il bordo in basso a sinistra, dove appoggiava sull'etichetta, è ricostruito a mano e un po' squadrato. Per il sito vero: la focaccia (o la tartaruga) fotografata dall'alto, a perpendicolo, su un foglio di carta o di stoffa uniforme del giallo della mollica o bianco, con almeno metà del diametro di fondo libero tutto intorno, luce da sinistra, file grande (almeno 4000 px sul lato lungo). Così lo scontorno è pulito e l'ombra è vera.
+- (Versione 1, non più in pagina: la focaccia scontornata dell'apertura è tolta.) Per il sito vero l'apertura va fatta con la foto larga del banco o della vetrina, vedi "Foto da fare dal vero" sopra.
 - I cinque pani dai nomi di casa (maggiolini, tartaruga, ciopeta padovana, stivaletto, zoccoletto), uno per foto, dall'alto, senza cesto, pangrattato e sessola di plastica: servono per dare un volto alla lista della sezione del pane.
-- La tartaruga nel cesto di oggi ha la luce mista (lampada gialla e finestra): va rifatta con la sola luce di finestra, con il sacchetto della bottega dietro come ora.
+- (Versione 1, non più in pagina) La tartaruga nel cesto aveva la luce mista: se si rifà, con la sola luce di finestra e il sacchetto della bottega dietro.
 - La vetrina e l'insegna di legno da marciapiede, di mattina, con Galileo e Fidalma sulla porta, ad alta risoluzione (quella di oggi è 640x319 e non si può ingrandire).
 - Pasta fresca (dal ritocco con l'uso la sezione è solo testo, senza il segnaposto Unsplash): le loro tagliatelle e i bigoli all'uovo sul banco infarinato, larga, dall'alto.
-- Chiusura (dal ritocco con l'uso è il loro pane a fette nel cesto, con la luce mista della lampada): il banco di via Vigonovese alle 7 o i panini del mattino nei loro sacchetti bianchi con la scritta bruna, quasi quadrata, chiara e calda.
+- (Versione 1, non più in pagina: il pane a fette nel cesto è tolto.) Il banco di via Vigonovese alle 7 o i panini del mattino nei loro sacchetti bianchi con la scritta bruna, per la sezione del pane.
 - Natale e Pasqua: le foto di oggi reggono; per la versione vera il panettone e la colomba sul sacco di juta del cinquantesimo, dall'alto, con più aria intorno.
 - Le tagliatelle su ardesia e le crostate con il prosecco del sito di oggi: chiedere se sono foto loro (non usate in home).
 
