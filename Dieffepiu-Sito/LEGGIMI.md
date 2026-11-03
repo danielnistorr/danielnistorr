@@ -1,6 +1,8 @@
-# Dieffepiu S.r.l.: proposta di nuova homepage
+# Dieffepiu S.r.l.: proposta di nuovo sito
 
-Proposta non richiesta di una nuova home per dieffepiu.it (solo la home). Non è pubblicata, l'azienda non è stata contattata, nessun modulo è stato inviato.
+Proposta non richiesta per dieffepiu.it. Non è pubblicata, l'azienda non è stata contattata, nessun modulo è stato inviato.
+
+**Sito completo in WordPress (3 novembre 2026):** la home qui sotto più 12 pagine interne e 5 notizie, nello stesso stile. Tema, installazione, collaudo e dati da confermare delle pagine interne sono in `wordpress/LEGGIMI.md`. L'anteprima HTML di tutto il sito è in `anteprima/index.html`.
 
 ## Cosa c'è
 
