@@ -2,7 +2,7 @@
 
 La home è quella della proposta, non ridisegnata. Le sono state aggiunte le pagine interne, nello stesso stile: stessa griglia, stessi caratteri, stessi colori.
 
-Il tema contiene tutto: pagine, notizie, immagini, caratteri, moduli e installatore. Non servono plugin, né Elementor, né Contact Form 7.
+Le pagine sono costruite in **Elementor** (gratuito). Ogni sezione è un contenitore di Elementor con dentro il suo HTML, così la pagina si apre con "Modifica con Elementor" e la grafica resta identica. Il tema contiene tutto il resto: immagini, caratteri, moduli e installatore. Contact Form 7 e i plugin per testata e piede non servono. Senza Elementor il sito funziona lo stesso, con l'editor di WordPress.
 
 ## Cosa c'è
 
@@ -41,16 +41,21 @@ Ogni famiglia di sistemi ha:
 
 Tutti i numeri vengono dalle schede "Dati Tecnici" del catalogo generale 2023, con la pagina indicata accanto.
 
-## Installare (10 minuti)
+## Installare su un sottodominio (15 minuti)
 
-1. Serve un WordPress pulito (6.4 o più recente, PHP 7.4 o più) e l'accesso come amministratore.
-2. *Aspetto > Temi > Aggiungi tema > Carica tema*, scegli `dieffepiu-tema.zip`, poi *Installa ora* e *Attiva*.
+1. **Sottodominio e WordPress**, dal pannello dell'hosting:
+   - crea il sottodominio (per esempio `dieffepiu.evoxconsulting.it`);
+   - installa WordPress con l'installazione automatica dell'hosting (WordPress 6.4 o più recente, PHP 7.4 o più);
+   - attiva il certificato HTTPS.
+2. **Tema**: entra come amministratore. *Aspetto > Temi > Aggiungi tema > Carica tema*, scegli `dieffepiu-tema.zip`, poi *Installa ora* e *Attiva*.
    - Se WordPress risponde che il file è troppo grande (l'hosting accetta file più piccoli di 3,4 MB), carica via FTP o dal file manager dell'hosting la cartella `wordpress/dieffepiu/` dentro `wp-content/themes/`, poi attivala da *Aspetto > Temi*.
-3. *Aspetto > Installa Dieffepiu*.
-   - Nel campo "I moduli arrivano a" lascia il tuo indirizzo per la prova.
-   - Lascia le due spunte e premi *Installa il sito*.
-4. Fatto. In un colpo l'installatore:
-   - crea le pagine e le notizie;
+3. **Elementor**: *Aspetto > Installa Dieffepiu*, riquadro "Passo 1", bottone *Installa e attiva Elementor*.
+   - Se l'hosting chiede i dati FTP o il bottone non riesce, installa Elementor da *Plugin > Aggiungi nuovo* (cerca "Elementor", *Installa*, *Attiva*) e torna su *Aspetto > Installa Dieffepiu*.
+4. **Sito**: nella stessa pagina lascia "Costruisci le pagine con Elementor" spuntato.
+   - In "I moduli arrivano a" lascia il tuo indirizzo per la prova.
+   - Premi *Installa il sito*.
+5. Fatto. In un colpo l'installatore:
+   - crea le 13 pagine (12 in Elementor; "Fiere e novità" la disegna il tema, perché Elementor non apre la pagina degli articoli) e le 5 notizie;
    - crea il menu della testata;
    - imposta la home e la pagina delle notizie;
    - imposta gli indirizzi (/sistemi/, /news/<notizia>/ ...), l'italiano e il fuso orario;
@@ -61,8 +66,9 @@ Si può rilanciare quando vuoi: non crea doppioni. Se togli la spunta "Riscrivi 
 
 ## Collaudo fatto il 3 novembre 2026
 
-Il collaudo è su WordPress 7.1.4 appena installato, con il tema caricato dal pannello come al punto 2.
-- **Installazione**: caricamento, attivazione, avviso e installatore funzionano. Le 14 pagine rispondono 200, l'indirizzo sbagliato dà la 404 del tema.
+Il collaudo è su WordPress 7.1.4 appena installato, seguendo i passi 2-4 dal pannello come li farai tu.
+- **Installazione**: caricamento, attivazione e avviso funzionano. Il bottone ha scaricato e attivato Elementor 4.3.6. L'installatore ha costruito 12 pagine in Elementor senza errori. Le 14 pagine rispondono 200, l'indirizzo sbagliato dà la 404 del tema.
+- **Elementor**: l'editor si apre su ogni pagina con la grafica vera, una sezione per contenitore nel pannello Struttura. Pagine Elementor e pagine del tema, confrontate pixel per pixel a 1440 e 390 px, hanno le stesse misure; le sole differenze sono immagini caricate in ritardo nello screenshot (tutte le immagini si caricano).
 - **Moduli**: i due moduli inviati davvero (in locale l'email è stata intercettata, non spedita).
   - Contenuto: l'email arriva con tutti i campi e con "Rispondi a" impostato su chi scrive.
   - Invii rifiutati con messaggio: invio vuoto, senza consenso, senza email valida.
@@ -78,9 +84,10 @@ Il collaudo è su WordPress 7.1.4 appena installato, con il tema caricato dal pa
 
 ## Modificare
 
-- **Testi delle pagine**: *Pagine*, poi la pagina. Ogni sezione è un blocco "HTML personalizzato".
-  - `{{tema}}` e `{{casa}}` sono segnaposto per gli indirizzi di immagini e pagine: non vanno cancellati. Così il sito funziona anche se cambia dominio.
-  - Nell'editor le immagini non si vedono, sul sito sì.
+- **Testi delle pagine**: *Pagine*, poi *Modifica con Elementor*. Ogni sezione è un widget HTML: clic sulla sezione, il testo si cambia nel riquadro del codice a sinistra.
+  - In Elementor si possono riordinare, duplicare o togliere le sezioni e aggiungerne di nuove con i widget di Elementor.
+  - Gli indirizzi di immagini e pagine sono scritti per esteso. Quando il sito passa dal sottodominio a dieffepiu.it, usa *Elementor > Strumenti > Sostituisci URL* (dal vecchio al nuovo indirizzo).
+  - Senza Elementor, le stesse pagine sono nell'editor di WordPress come blocchi "HTML personalizzato", con i segnaposto `{{tema}}` e `{{casa}}` (non vanno cancellati).
 - **Pagine nuove**: una pagina scritta nell'editor con paragrafi normali prende da sola titolo e colonna di testo nello stile del sito. Si può usare anche Elementor: la pagina fatta con Elementor viene lasciata a tutta larghezza.
 - **Menu della testata**: *Aspetto > Menu*, "Menu della testata".
 - **Notizie**: *Articoli > Aggiungi articolo*, categoria Fiere. La lista le mostra in ordine di data.
@@ -89,16 +96,17 @@ Il collaudo è su WordPress 7.1.4 appena installato, con il tema caricato dal pa
 
 ## Prima della messa online
 
-1. **Moduli**: in *Aspetto > Installa Dieffepiu* metti info@dieffepiu.it (o l'indirizzo che sceglie l'azienda) e togli "Riscrivi il contenuto".
+1. **Indirizzo**: se il sito passa dal sottodominio a dieffepiu.it, dopo lo spostamento lancia *Elementor > Strumenti > Sostituisci URL*.
+2. **Moduli**: in *Aspetto > Installa Dieffepiu* metti info@dieffepiu.it (o l'indirizzo che sceglie l'azienda) e togli "Riscrivi il contenuto".
    - Le email partono con la funzione di posta del server. Perché non finiscano nello spam conviene un plugin SMTP (per esempio WP Mail SMTP) con la casella dell'azienda.
-2. **Motori di ricerca**: togli la spunta "Nascondi il sito ai motori di ricerca".
-3. **Catalogo PDF**: tutti i link puntano a `https://dieffepiu.it/catalogo.pdf`. Quando il dominio passa al sito nuovo, il PDF va rimesso allo stesso indirizzo: caricalo via FTP nella cartella principale del sito, accanto a `wp-config.php`. Altrimenti i link si rompono.
-4. **Vecchi indirizzi**: installa Redirection e importa `wordpress/redirect-301.csv` (/home, /aziende, /news, /login, /privati, /prodotti/...).
-5. **Privacy e cookie**:
+3. **Motori di ricerca**: togli la spunta "Nascondi il sito ai motori di ricerca".
+4. **Catalogo PDF**: tutti i link puntano a `https://dieffepiu.it/catalogo.pdf`. Quando il dominio passa al sito nuovo, il PDF va rimesso allo stesso indirizzo: caricalo via FTP nella cartella principale del sito, accanto a `wp-config.php`. Altrimenti i link si rompono.
+5. **Vecchi indirizzi**: installa Redirection e importa `wordpress/redirect-301.csv` (/home, /aziende, /news, /login, /privati, /prodotti/...).
+6. **Privacy e cookie**:
    - I link restano sull'informativa iubenda dell'azienda, che però deve citare i due moduli (contatti e accesso) e la newsletter.
-   - Il tema non usa cookie, non carica Google Fonts né mappe incorporate e non ha statistiche: così com'è non serve il banner. Se l'azienda rimette Google Analytics o Tag Manager (il sito di oggi li ha), il banner torna obbligatorio.
-6. **Newsletter del piede**: come nella home, non è collegata a nessun servizio e lo dice a chi si iscrive. Va collegata (Brevo, Mailchimp) o tolta.
-7. **Area riservata**: oggi la pagina raccoglie le richieste di accesso, ma un login non c'è. Va deciso se tenere il portale attuale (per esempio su un sottodominio) o usare un plugin per le aree riservate.
+   - Il tema non usa cookie, non carica Google Fonts né mappe incorporate e non ha statistiche: così com'è non serve il banner. Anche i Google Fonts che Elementor caricherebbe da solo (Roboto) sono spenti dal tema. Se l'azienda rimette Google Analytics o Tag Manager (il sito di oggi li ha), il banner torna obbligatorio.
+7. **Newsletter del piede**: come nella home, non è collegata a nessun servizio e lo dice a chi si iscrive. Va collegata (Brevo, Mailchimp) o tolta.
+8. **Area riservata**: oggi la pagina raccoglie le richieste di accesso, ma un login non c'è. Va deciso se tenere il portale attuale (per esempio su un sottodominio) o usare un plugin per le aree riservate.
 
 ## Dati da confermare con l'azienda
 

@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DFP_VERSIONE', '1.0.0' );
+define( 'DFP_VERSIONE', '1.1.0' );
 
 require get_template_directory() . '/inc/installa.php';
 
@@ -34,14 +34,15 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 		$t = get_template_directory_uri();
-		wp_enqueue_style( 'dieffepiu', $t . '/assets/sito.css', array(), DFP_VERSIONE );
+		$dip = wp_style_is( 'elementor-frontend', 'registered' ) ? array( 'elementor-frontend' ) : array();
+		wp_enqueue_style( 'dieffepiu', $t . '/assets/sito.css', $dip, DFP_VERSIONE );
 		wp_enqueue_script( 'dieffepiu', $t . '/assets/sito.js', array(), DFP_VERSIONE, array( 'in_footer' => true ) );
 		// il sito usa solo il suo foglio di stile: via quelli dei blocchi, che non servono
 		foreach ( array( 'wp-block-library', 'wp-block-library-theme', 'global-styles', 'classic-theme-styles' ) as $h ) {
 			wp_dequeue_style( $h );
 		}
 	},
-	20
+	99
 );
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -49,6 +50,8 @@ remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 add_filter( 'run_wptexturize', '__return_false' );
+// Elementor caricherebbe Roboto dai server di Google: il sito usa il suo carattere, ospitato nel tema
+add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
 remove_filter( 'the_content', 'convert_smilies', 20 );
 
 /**
@@ -66,7 +69,7 @@ function dfp_token( $html ) {
 		)
 	);
 }
-add_filter( 'the_content', 'dfp_token', 8 );
+add_filter( 'the_content', 'dfp_token', 12 ); // dopo Elementor (9) e dopo gli shortcode (11)
 
 /**
  * Una parte del tema (parti/<nome>.html), con i segnaposto sostituiti.
@@ -268,33 +271,35 @@ function dfp_campi( $tipo ) {
 	);
 }
 
+/**
+ * HTML di un modulo, pronto da inviare a admin-post.php. Senza nonce: e' un modulo pubblico (nessuna azione
+ * per conto di un utente collegato) e nelle pagine Elementor l'HTML resta salvato, quindi un nonce scadrebbe.
+ * Contro i programmi automatici restano il campo nascosto e il limite di un invio ogni 30 secondi.
+ *
+ * @param string $tipo    contatti | accesso.
+ * @param string $ritorno Pagina dove tornare dopo l'invio.
+ * @return string
+ */
+function dfp_modulo_html( $tipo, $ritorno ) {
+	$tipo  = 'accesso' === $tipo ? 'accesso' : 'contatti';
+	$campi = '<input type="hidden" name="action" value="dfp_modulo">'
+		. '<input type="hidden" name="tipo" value="' . esc_attr( $tipo ) . '">'
+		. '<input type="hidden" name="ritorno" value="' . esc_url( $ritorno ) . '">';
+	return strtr(
+		dfp_parte( 'modulo-' . $tipo ),
+		array(
+			'{{azione}}'   => esc_url( admin_url( 'admin-post.php' ) ),
+			'{{campi_wp}}' => $campi,
+			'{{esito}}'    => '',
+		)
+	);
+}
+
 add_shortcode(
 	'dieffepiu_modulo',
 	function ( $a ) {
-		$a    = shortcode_atts( array( 'tipo' => 'contatti' ), $a );
-		$tipo = 'accesso' === $a['tipo'] ? 'accesso' : 'contatti';
-		$html = dfp_parte( 'modulo-' . $tipo );
-		$stato = isset( $_GET['modulo'] ) ? sanitize_key( wp_unslash( $_GET['modulo'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		$esito = '';
-		if ( 'inviato' === $stato ) {
-			$esito = 'Grazie: il messaggio è partito.';
-			$html  = str_replace( 'class="esito-m"', 'class="esito-m ok"', $html );
-		} elseif ( 'errore' === $stato ) {
-			$esito = 'Il messaggio non è partito: controllate i campi con l’asterisco e il consenso, poi riprovate. Oppure chiamate il +39 049 8791175.';
-			$html  = str_replace( 'class="esito-m"', 'class="esito-m errore"', $html );
-		}
-		$campi = '<input type="hidden" name="action" value="dfp_modulo">'
-			. '<input type="hidden" name="tipo" value="' . esc_attr( $tipo ) . '">'
-			. '<input type="hidden" name="ritorno" value="' . esc_url( get_permalink() ) . '">'
-			. wp_nonce_field( 'dfp_modulo_' . $tipo, '_dfp', false, false );
-		return strtr(
-			$html,
-			array(
-				'{{azione}}'   => esc_url( admin_url( 'admin-post.php' ) ),
-				'{{campi_wp}}' => $campi,
-				'{{esito}}'    => esc_html( $esito ),
-			)
-		);
+		$a = shortcode_atts( array( 'tipo' => 'contatti' ), $a );
+		return dfp_modulo_html( $a['tipo'], get_permalink() ); // l'esito dopo l'invio lo scrive sito.js
 	}
 );
 
@@ -302,11 +307,11 @@ add_shortcode(
  * Riceve un modulo, lo controlla e lo manda per email. Poi torna alla pagina con ?modulo=inviato o =errore.
  */
 function dfp_modulo_invia() {
-	// phpcs:disable WordPress.Security.NonceVerification.Missing -- il nonce si controlla qui sotto
+	// phpcs:disable WordPress.Security.NonceVerification.Missing -- modulo pubblico, vedi dfp_modulo_html()
 	$tipo    = ( isset( $_POST['tipo'] ) && 'accesso' === $_POST['tipo'] ) ? 'accesso' : 'contatti';
 	$ritorno = isset( $_POST['ritorno'] ) ? esc_url_raw( wp_unslash( $_POST['ritorno'] ) ) : home_url( '/' );
 	$ritorno = wp_validate_redirect( $ritorno, home_url( '/' ) );
-	$ok      = isset( $_POST['_dfp'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_dfp'] ) ), 'dfp_modulo_' . $tipo );
+	$ok      = true;
 	if ( ! empty( $_POST['sito_web'] ) ) {
 		$ok = false; // trappola per i programmi automatici
 	}

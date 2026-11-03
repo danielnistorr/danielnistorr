@@ -71,6 +71,12 @@
   var form=document.querySelector(".notizie"),esito=document.getElementById("esito-notizie");
   if(form&&esito){form.addEventListener("submit",function(e){e.preventDefault();
     esito.textContent="Grazie. L’iscrizione non è ancora attiva: il modulo va collegato al servizio di invio."})}
+  // esito dell'invio (WordPress torna alla pagina con ?modulo=inviato o ?modulo=errore)
+  var stato=(location.search.match(/[?&]modulo=(inviato|errore)/)||[])[1];
+  if(stato){document.querySelectorAll("form.modulo:not([data-anteprima]) .esito-m").forEach(function(es){
+    if(stato==="inviato"){es.className="esito-m ok";es.textContent="Grazie: il messaggio è partito."}
+    else{es.className="esito-m errore";es.textContent="Il messaggio non è partito: controllate i campi con l’asterisco e il consenso, poi riprovate. Oppure chiamate il +39 049 8791175."}
+  })}
   // moduli di contatto: nell'anteprima HTML non c'e' un server, quindi lo dicono invece di fingere un invio
   document.querySelectorAll("form.modulo[data-anteprima]").forEach(function(f){
     f.addEventListener("submit",function(e){

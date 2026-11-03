@@ -42,7 +42,34 @@ def css_completo():
     s = HOME.read_text(encoding="utf-8")
     css = s[s.index("<style>") + 7:s.index("</style>")]
     # il CSS sta in assets/sito.css, i caratteri in assets/fonts/: i percorsi url(fonts/...) restano validi
-    return css.strip() + "\n" + (SORGENTE / "interne.css").read_text(encoding="utf-8")
+    tutto = css.strip() + "\n" + (SORGENTE / "interne.css").read_text(encoding="utf-8")
+    return tutto + css_elementor(tutto)
+
+
+def css_elementor(css):
+    """Nelle pagine fatte con Elementor il suo foglio di stile toglie le sottolineature (.elementor a) e i margini
+    delle figure (.elementor .elementor-widget:not(...) figure). Qui le regole del sito che li toccano vengono
+    ripetute con un prefisso piu' forte, nello stesso ordine: la pagina torna uguale a quella senza Elementor."""
+    senza_commenti = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    righe = [".elementor .dfp-sez a{text-decoration-line:underline}"]
+    media = None
+    for m in re.finditer(r"(@media[^{]+)\{|([^{}]+)\{([^{}]*)\}|\}", senza_commenti):
+        if m.group(1):
+            media = m.group(1).strip()
+            continue
+        if m.group(2) is not None:
+            if "text-decoration" in m.group(3) and not media:
+                # solo le dichiarazioni della sottolineatura: il resto della regola resta com'era (e responsive)
+                dich = [d.strip() for d in m.group(3).split(";") if d.strip().startswith(("text-decoration", "text-underline"))]
+                sel = ",".join(".elementor .dfp-sez " + x.strip() for x in m.group(2).split(","))
+                righe.append(sel + "{" + ";".join(dich) + "}")
+            continue
+        media = None
+    P = ".elementor .dfp-sez .elementor-widget:not(.elementor-widget-text-editor):not(.elementor-widget-theme-post-content)"
+    righe += [P + " figure.foto-piena{margin:64px 0 0}",
+              "@media (max-width:960px){" + P + " .pezzo figure{margin-top:52px}" + P + " .apri-pagina figure.tavola-p{margin-top:40px}}",
+              "@media (max-width:600px){" + P + " figure.foto-piena{margin-top:40px}}"]
+    return "\n/* Elementor: le regole del sito che il suo foglio di stile annullerebbe */\n" + "\n".join(righe) + "\n"
 
 
 def main_home(c):
