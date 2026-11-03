@@ -4,61 +4,58 @@ Proposta non richiesta di una nuova homepage per L'Artificio Battagin (A.B. s.r.
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale, terza versione del 2/11/2026 (HTML e CSS in un solo file, un piccolo script per il gesto, il menu e la newsletter): cornice d'apertura in proporzione 4:3 con la firma del laboratorio, quattro profili, parete degli angolari a 1000 px, la storia in un paragrafo, chiusura senza vuoto. La prima versione del 24/10/2026 è in `_prova/versione-1/index.html` (solo la pagina).
-- `sito/img/`: solo le immagini usate, in JPEG o WebP e in più larghezze (srcset).
-- `sito/fonts/`: Gambetta 400, Switzer 400 e 500 in woff2, serviti dalla pagina.
-- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (idea, caratteri, colori, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà immagini, caratteri e screenshot (`img_finale.py`, `campiona.py`, `screenshot_finale.mjs`), prova il gesto con mouse e tastiera (`prova_gesto.mjs`), il tocco, il menu, le larghezze da 320 a 2560 e i collegamenti (`controlli_finali.mjs`) e misura i segnali da IA; `shoot_finale.mjs` e `trova_fuori.mjs` servono ai controlli a varie larghezze.
-- `01-analisi.md`: i fatti con le fonti; `_prova/home/a` e `_prova/home/b`: i due prototipi giudicati.
+- `sito/index.html`: la home, livello professionale del 3/11/2026 (HTML e CSS in un solo file, un piccolo script per orari, menu del telefono e modulo). Apertura "Negozio di belle arti a Padova" con orari di oggi, Chiama, WhatsApp, Come arrivare e ricerca nello shop; tre porte (Belle arti, Cornici su misura, Corsi); numeri; reparti e marche; cornici con Matteo; i prossimi corsi; chi siamo; orari e dove siamo con il modulo; piede.
+- `sito/img/`: solo foto dell'azienda (servizio del 2023), in JPEG a più larghezze (srcset), mai ingrandite. `sito/fonts/`: Gambetta 400, Switzer 400 e 600 in woff2.
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` e `NOTA.md` (esito delle 15 regole, prove d'uso, controlli).
+- `_prova/script/build_finale.sh`: rifà caratteri, screenshot e controlli (`--immagini` rifà anche le immagini con `pro_img.py`); `pro_shoot.mjs` (screenshot), `pro_controlli.mjs` (regole della sezione C e prove della scheda), `pro_largo.mjs` (che cosa esce a destra), `pro_mosaico.py` (pagina lunga in colonne).
+- `_prova/uso/SCHEDA.md`: chi apre il sito e che cosa viene a fare. `_prova/crawl/`: calendario dei corsi e ultime news lette dal loro sito il 3/11/2026.
+- `_prova/versione-1-originale/`: la home di prima (cornice d'apertura con il titolo dentro e i quattro profili), sito e screenshot. `_prova/versione-1/`: la prima versione del 24/10. `01-analisi.md`: i fatti con le fonti.
 
 ## Pagine del sito nuovo a cui punta la home
 
-Gli indirizzi sono quelli del sito di oggi, da tenere:
-`/il-negozio/`, `/belle-arti/`, `/cornici/`, `/workshop/` (Artinpratica, calendario), `/shoponline/`, `/news/`, `/product-category/idee-regalo/gift-card/`, `/condizioni-di-vendita/`, `/resi-e-rimborsi/`, `/spedizioni-e-pagamenti/`. Da creare o collegare: `/privacy-policy/` e `/cookie-policy/` (oggi Privacy e Cookie sono su iubenda: si può puntare direttamente ai documenti iubenda).
+Gli indirizzi sono quelli del sito di oggi, scritti per intero (`https://artificiobattagin.it/...`) così funzionano anche aprendo il file: `/il-negozio/`, `/belle-arti/`, `/cornici/`, `/workshop/` e le pagine dei tre eventi, `/shoponline/`, la ricerca dello shop (`/?s=...&post_type=product`), `/news/` e tre articoli, `/product-category/idee-regalo/gift-card/`, `/condizioni-di-vendita/`, `/resi-e-rimborsi/`, `/spedizioni-e-pagamenti/`. Da creare o collegare: `/privacy-policy/` e `/cookie-policy/` (oggi Privacy e Cookie sono su iubenda: si può puntare direttamente ai documenti iubenda).
 
-## Dati da confermare con l'azienda
+## Cosa chiedere all'azienda
 
 Nulla di quanto segue è scritto in pagina finché non viene confermato.
 
-1. **Orari di apertura**: non sono sul sito. Cylex (21/11/2025) indica lunedì solo pomeriggio, martedì 9.00-12.30 e 15.30-19.00, domenica chiuso. Quando arrivano vanno nella chiusura, sotto l'indirizzo.
-2. **I quattro profili del gesto**: oggi sono rosso e oro (la cornice di Matteo), oro barocco e argento barocco (i listelli sul banco), nero intagliato con filo oro (un angolare della parete). Il quinto, un laccato blu, è stato tolto perché non c'era una foto vera da cui ritagliarlo: si può rimettere (o aggiungere un legno naturale) quando arrivano le scansioni. Servono i nomi veri o i codici a catalogo, la larghezza vera di ogni listello (in pagina sono 60, 52, 56 e 34 px a 1440, a occhio) e la conferma che siano profili che tengono.
-2a. **La firma sul passepartout**: "Taglio a 45°, laboratorio di via della Croce Rossa" è composta da due fatti del sito (il taglio del passepartout a 45° dalla pagina Cornici, il laboratorio interno in via della Croce Rossa). Se in bottega firmano o timbrano davvero i passepartout, conviene usare quella dicitura.
-2b. **Il colore del muro**: il fondo della pagina (#D9E8E4) è il turchese della parete degli angolari schiarito, campionato dalle foto. Se hanno il codice della tinta della parete (per esempio un RAL o un NCS), conviene partire da quello.
-3. **La newsletter e lo sconto**: il popup di oggi promette il 15% sul primo acquisto nello shop. Non l'ho messo in pagina: va confermato se è ancora valido. Il popup all'apertura va tolto.
-4. **L'origine**: bottega di pitture murali (pagina Il negozio) o laboratorio di cornici ("50 anni fa", post del 30/03/2023)? E l'anno esatto: "anni '70" non basta per un "dal 197x". In pagina c'è solo "anni '70".
-5. **Gli anni delle sedi**: in pagina le vie sono in un solo paragrafo, nell'ordine della pagina Il negozio. Piazza De Gasperi, Via Marin e Via Cavalletto sono senza anno; Via Sarpi "negli anni '90"; Via della Croce Rossa "dal 2007". Per Via Cavalletto il sito dice solo "In seguito": se c'è un anno o un fatto (che cosa c'era in quella sede), va aggiunto nel paragrafo.
-6. **Capitale sociale** (10.000 euro) e **PEC** (info@pec.artificiobattagin.it) vengono da aziende.it, non da una visura: non sono nella riga legale.
-7. **L'email da mostrare**: in pagina c'è negozio@artificiobattagin.it (pagina Contatti); le locandine usano info@.
-8. **WhatsApp**: il widget di oggi non dice il numero. Se è il 380 2308602 si può aggiungere un link wa.me accanto al cellulare.
-9. **Il marchio sulla cassetta-cavalletto** (`IMG_0393`): inciso davvero o aggiunto in grafica? È un prodotto venduto con il loro marchio? In pagina la didascalia dice solo "con il marchio L'Artificio Battagin".
-10. **Il ruolo di Alessia**: il sito nomina Matteo per le cornici, non dice di cosa si occupa lei.
-11. **I corsi**: le tre date (13, 21 e 28 novembre 2026), i docenti, gli orari e i prezzi vengono dal calendario del sito al 24/10/2026. Nel sito vero non vanno scritte a mano: la lista va letta dal calendario (The Events Calendar), i prossimi tre eventi. Anche "Nel 2026, ventidue appuntamenti" va calcolato o tolto a fine anno.
-12. **"Ampio parcheggio privato"**: viene dalle schede dei corsi (events.json); confermare che valga anche per i clienti del negozio.
-13. **Shop online**: quanto spingerlo in home. Oggi è il link accanto al bottone del telefono e una voce del menu.
+1. **Orari di apertura (la cosa più importante)**. Non sono sul sito. Cylex (21/11/2025) indica lunedì solo pomeriggio, martedì 9.00-12.30 e 15.30-19.00, domenica chiuso; mancano gli altri giorni. Quando arrivano si scrivono in cima allo script della pagina (`var ORARI = null;`, un elenco di fasce per giorno, 0 = domenica): la riga "Orari di oggi" diventa "Aperto ora, fino alle 19.00" o "Ora chiuso, riapre alle 15.30" e in "Orari e dove siamo" compare la tabella della settimana con il giorno di oggi in grassetto (provato con dati di prova, vedi NOTA). Chiedere anche le chiusure per ferie e i festivi.
+2. **Le recensioni**. itaglietti.it riporta 689 recensioni su Google con media 4,5 e frasi come "Entri all'Artificio e ti si apre un mondo!" e "Anche per il restauro resta un fornitore top!". Vanno verificate sul loro profilo Google: con il numero e la media giusti, e tre recensioni con il nome del cliente (e il permesso), si aggiunge una fascia di prove dopo i numeri.
+3. **WhatsApp**: in pagina c'è il 380 2308602 (è il numero del widget del sito di oggi, `"phone":"393802308602"`). Confermare che risponda il negozio e chi: la pagina dice solo "Mandaci una foto dell'opera con le misure su WhatsApp".
+4. **Le cornici**: prezzo e tempi non sono scritti ("Prezzo e tempi te li dice Matteo, guardando l'opera o la foto"). Se c'è un tempo medio di consegna o un prezzo di partenza per le misure più comuni, si aggiunge. Confermare anche se serve un appuntamento per portare l'opera.
+5. **Il parcheggio**: "Ampio parcheggio privato" viene dalle schede dei corsi; confermare che valga per tutti i clienti. "Ingresso accessibile" viene dalla scheda Google.
+6. **I corsi**: le tre date in pagina (13, 21 e 28 novembre 2026), docenti, orari, posti, materiale e prezzi vengono dal calendario del sito al 3/11/2026 (`_prova/crawl/eventi-2026-11-03.json`): olio "Minimo 6, massimo 10 persone", manga e lettering "6-13", materiale incluso per manga (set Manga Fude Pen) e lettering (kit), non incluso per l'olio ("potrà essere acquistato direttamente in negozio"). Nel sito vero la lista va letta dal calendario (The Events Calendar, i prossimi tre eventi), non scritta a mano; anche "22 corsi e workshop nel 2026" va calcolato o tolto a fine anno. Le tre news (23/09, 08/09, 08/07/2026) vanno lette dagli ultimi articoli.
+7. **L'origine**: bottega di pitture murali (pagina Il negozio) o laboratorio di cornici ("50 anni fa", post del 30/03/2023)? In pagina c'è solo "Correvano gli anni '70 [...] aprì in pieno centro a Padova la sua prima bottega" e "Dagli anni '70". L'anno esatto servirebbe per un "dal 197x".
+8. **Le cinque sedi**: in pagina sono nell'ordine della pagina Il negozio, senza anni tranne Via Sarpi ("negli anni '90") e via della Croce Rossa ("dal 2007"). Il numero "5 sedi in città in cinquant'anni" conta le cinque vie nominate; se la prima bottega in centro era un'altra via, sono sei.
+9. **Il ruolo di Alessia**: il sito nomina Matteo per le cornici; di Alessia dice solo che è "al timone" con lui. Una riga su che cosa segue lei (e il suo nome nella sezione Chi siamo) sarebbe utile.
+10. **La newsletter e lo sconto**: il popup di oggi promette il 15% sul primo acquisto nello shop. Non è in pagina: va confermato se vale ancora. La newsletter è stata tolta dal piede (non inviava nulla); se la vogliono, si rimette nel piede collegata a un servizio (Brevo, Mailchimp o MailerLite) con doppio consenso, e il popup all'apertura va comunque tolto.
+11. **L'email**: in pagina c'è negozio@artificiobattagin.it (pagina Contatti); le locandine usano info@. Il modulo scrive a negozio@.
+12. **Capitale sociale** (10.000 euro) e **PEC** (info@pec.artificiobattagin.it) vengono da aziende.it, non da una visura: non sono nella riga legale.
+13. **Il vecchio numero**: un record su misterimprese.it ("L Artificio Battagin Sas, via Sarpi 48, 049 8721644") va fatto correggere; in pagina non c'è.
+14. **Lo shop online**: in pagina c'è la ricerca nell'apertura e nella sezione Belle arti, la voce di menu e la riga delle spedizioni (10 euro, gratis oltre 79, "nel 90% dei casi in 48/72 ore"). Se lo shop conta più del negozio si può spingere di più.
+
+## Il modulo "Scrivici"
+
+È in "Orari e dove siamo": "Che cosa ti serve?" (Un prodotto, Una cornice su misura, Un corso, Altro), nome, telefono, email, messaggio. Oggi **non invia nulla**: apre il programma di posta di chi scrive con un'email già composta a negozio@artificiobattagin.it, oggetto "Dal sito: <tipo>, <nome>" e i campi nel testo. **Va collegato a un servizio** (il Contact Form 7 che hanno già, o Formspree, Brevo e simili) con l'informativa privacy e un controllo anti spam. La foto di un quadro da incorniciare si manda meglio su WhatsApp, e la pagina lo dice.
 
 ## Foto da rifare dal vero (con indicazioni di scatto)
 
-La pagina usa solo foto dell'azienda prese dal sito; nessuna foto di repertorio. Le foto del servizio del 2023 sono online solo a 1000-1080 px: **chiedere al fotografo gli originali a piena risoluzione** (angolari, Matteo, cornici, reparti, matite) e il suo nome per i crediti.
+La pagina usa solo foto dell'azienda, tutte dello stesso servizio fotografico del 2023 (otto: reparto belle arti, matite, parete degli angolari, spazio Artinpratica, pennelli, Matteo con la cornice, cavalletti in faggio, open space con le tele); nessuna foto di repertorio, nessuna illustrazione. Online sono a 1000 px (i cavalletti a 2560): **chiedere al fotografo gli originali a piena risoluzione** e il suo nome per i crediti. Con gli originali l'apertura a 1440 può diventare una foto a tutta larghezza, come nei riferimenti della famiglia B.
 
-1. **La cornice dell'apertura (la più importante)**. Oggi è una composizione: i quattro listelli sono ritagliati dalle loro foto (sorgenti da 1000-1080 px), tagliati a 45° in Python e montati con `border-image` intorno a un passepartout disegnato in proporzione 4:3, con il titolo al posto dell'opera. Da rifare così: quattro o cinque **barre campione vere** (o cinque angolari della parete) fotografate frontali e in bolla su fondo neutro grigio chiaro, luce diffusa da in alto a destra, macro o 100 mm a f/8, almeno 2.400 px sul lato lungo, una per file con il nome del profilo nel nome del file. Dalla barra dritta si rifà il listello per il `border-image` senza ritagli inclinati. In alternativa, una cornice vera in 4:3 (per esempio 80x60 cm) con il passepartout bianco, fotografata frontale su una parete del negozio, ma allora il titolo non potrebbe stare dentro come testo vero.
-2. **I cinque campioni**: gli stessi angolari, scansionati o fotografati come sopra.
-3. **Matteo al banco**: oggi c'è Matteo che regge la cornice rossa e oro (bella, da tenere). Manca il gesto del mestiere: il taglio del passepartout a 45° e l'assemblaggio. Mani e attrezzo in primo piano, luce laterale, 3.000 px.
-4. **La parete degli angolari**: l'originale del fotografo. Oggi la sorgente è di 1000 px e in pagina non supera i 1000 px CSS (a filo del bordo destro); con un originale di almeno 2.880 px si può tornare alla foto a tutta larghezza. Se si rifà: frontale, a tutta parete, luce uniforme, 4.000 px di larghezza.
-5. **La cassetta-cavalletto**: oggi è scontornata dalla foto su fondo grigio e posata sul colore del muro. Da rifare su carta bianca senza cuciture o, meglio, su un cartoncino del colore della parete, luce morbida da sinistra, ombra naturale sotto, solo la cassetta aperta, 3.000 px.
-6. **Le matite colorate** (Artinpratica): l'originale del fotografo (oggi 1000 px, tagliata in alto a destra per togliere l'etichetta del marchio). Se si rifà: stessa diagonale, senza etichette di marca nell'inquadratura, 2.400 px.
-7. **I cavalletti in faggio** (chiusura): da `IMG_7395` (2.560 px) uso solo il ritaglio in basso a sinistra, il legno della cassetta-cavalletto con i galletti e il cassetto, perché in alto ci sono neon e controsoffitto. Se si rifà: un dettaglio di legno e ottone ad altezza del cassetto, luce della vetrina da sinistra, niente soffitto in quadro, 3.000 px. In alternativa le cornici barocche sul cavalletto (`2023-04_cornici-1.jpg`) quando arriva l'originale.
+Da fare in più, con la stessa luce del servizio (vetrate, mattina, grandangolo moderato):
+1. **La facciata e l'ingresso**, con l'insegna e il parcheggio, per la scheda "Orari e dove siamo" (oggi c'è l'open space). Orizzontale 16:9, 3.000 px.
+2. **Il reparto in apertura**, originale a piena risoluzione o rifatto: dall'alto, gli scaffali pieni, una persona dello staff al banco che consiglia un cliente (il "consiglio dello staff" è ciò di cui vanno fieri). 4:3 e 16:9, 3.000 px.
+3. **Matteo al banco**: il taglio del passepartout a 45° e l'assemblaggio, mani e attrezzo in primo piano, luce laterale. 16:9, 3.000 px. Servirebbe anche per la porta Cornici.
+4. **Un corso in corso** nello spazio Artinpratica, con le persone che dipingono (con il loro consenso; niente bambini riconoscibili). 4:3, 2.400 px.
+5. **Alessia** (e lo staff) in negozio, per Chi siamo. Ritratto ambientato, 16:9.
 
 ## Licenze
 
-- **Caratteri**: Gambetta e Switzer di Indian Type Foundry, da Fontshare, con la ITF Free Font License (uso commerciale libero, anche sul web; non si possono vendere i file dei caratteri). I file woff2 stanno in `sito/fonts/`.
-- **Foto di repertorio**: nessuna nella seconda versione. Le nove foto Unsplash di riserva (Unsplash License, verificata il 24/10/2026) sono elencate in `assets/CREDITI.md`; la prima versione usava come muro quella di In The Making Studio (`gx6NxtpgHqY`).
-- **Foto dell'azienda**: dal loro sito (servizio fotografico del 2023 e foto del 2023-2024). Vanno chieste formalmente prima di un uso pubblico, insieme ai nomi dei fotografi.
+- **Caratteri**: Gambetta e Switzer di Indian Type Foundry, da Fontshare, con la ITF Free Font License (uso commerciale libero, anche sul web; non si possono vendere i file dei caratteri). I file woff2 stanno in `sito/fonts/`; Switzer 600 scaricato il 3/11/2026 (copia in `assets/fonts-scaricati/`).
+- **Foto di repertorio**: nessuna in pagina. Le nove foto Unsplash di riserva restano in `assets/esterne/` con la licenza in `assets/CREDITI.md`, non usate.
+- **Foto dell'azienda**: dal loro sito (servizio fotografico del 2023). Vanno chieste formalmente prima di un uso pubblico, insieme al nome del fotografo.
 - Nessuna immagine generata dall'IA.
 
 ## Logo
 
-Nel piede e nella testata c'è il PNG originale del sito (250x117 px con trasparenza), mostrato a 120-125 px di larghezza, quindi a 2x: sul muro e sul bianco i bordi delle lettere si vedono un poco morbidi. Nei file del sito non c'è una versione migliore (le altre sono più piccole o sono solo l'icona "L'ART" a 512 px). Non l'ho ricostruito in SVG: le lettere sono illustrate (la L è un angolo di cornice dorata, la R un pennello, la I una matita) e un ridisegno non sarebbe fedele. **Serve il vettoriale** (AI, EPS, PDF o SVG) dal grafico che l'ha disegnato.
-
-## Newsletter
-
-C'è nel piede: campo email, bottone e casella del consenso con il link all'informativa. **Non invia nulla** finché non si collega a un servizio di invio (per esempio Brevo, Mailchimp o MailerLite): oggi il modulo controlla solo che l'email sia valida e che il consenso sia spuntato. Va collegata con il doppio consenso (double opt-in) e l'informativa aggiornata.
+Nella testata e nel piede c'è il PNG originale del sito (250x117 px con trasparenza), a 76-120 px di larghezza; nel piede scuro sta su un riquadro bianco. **Serve il vettoriale** (AI, EPS, PDF o SVG) dal grafico che l'ha disegnato: le lettere sono illustrate (la L è un angolo di cornice dorata, la R un pennello, la I una matita) e un ridisegno non sarebbe fedele.

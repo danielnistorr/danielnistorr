@@ -3,75 +3,65 @@
 Proposta non richiesta di una nuova home per Servalli Padova sas (servalli.net), solo la home. Non è stata contattata l'azienda né pubblicato nulla.
 
 - Pagina: `sito/index.html`, con immagini in `sito/img/` e caratteri in `sito/fonts/`. Si apre con il browser come file locale.
-- Screenshot e nota del progetto: `screenshot/home/` (`NOTA.md` spiega idea, caratteri, colori, interazione, foto e controlli).
-- Rigenerare tutto: `bash _prova/script/build_finale.sh` (immagini, pagina, caratteri, screenshot).
-- Analisi con le fonti: `01-analisi.md`. Prototipi: `_prova/home/a` e `_prova/home/b` (scelto B).
-- Ultimo passaggio (2 novembre): prima schermata in asse, con il Tabriz al centro e il titolo diviso ai due lati, e fondo bianco biancheria #F7F6F2 al posto della carta beige. Cosa è cambiato e i controlli sono in `screenshot/home/NOTA.md`.
+- Screenshot e nota del progetto: `screenshot/home/` (`NOTA.md`, sezione "Livello professionale": struttura, esito delle 15 regole, compiti della scheda, controlli, caratteri e licenze).
+- Rifare tutto: `bash _prova/script/build_finale.sh` (immagini, pagina, caratteri, screenshot, controlli).
+- Analisi con le fonti: `01-analisi.md`. Scheda d'uso e d'identità: `_prova/uso/SCHEDA.md`.
+- Ultimo passaggio (3 novembre 2026), "livello professionale": la home è rifatta sull'uso (negozio, alberghi, rivenditori) e sulle regole dello studio; niente più foto di repertorio. La versione 1 di prima (il Tabriz al centro) è in `_prova/versione-1-originale/`.
 
-## Dati da confermare con l'azienda
+## Da chiedere o confermare con l'azienda
 
-- **Titolo**. In pagina c'è "Tessile casa dal 1895", la riga del loro logo. In alternativa si può usare "Quattro secoli di tessile", il loro slogan ("da quattro secoli", "quattrocento anni"), solo se lo confermano: il Seicento è un racconto di famiglia (il paramento di Gandino), mentre l'azienda nasce nel 1895.
-- **Firma 1895 o "fine del 1800"** (testo di `storia`). Le frasi sul Lanificio Testa e sul Seicento "tra Venezia e Bergamo" restano racconto dell'azienda, citato tra virgolette.
-- **Foto dei telai**: che sia del 1910 (l'anno viene solo dall'alt del sito). Che la Giardiniera sia davanti al negozio di Padova (il nome del file dice 1967).
-- **Serline**: che cos'è, perché non è tra i marchi registrati (Servalli, Alans, Colorcasa). Va chiarito anche quanto producono e quanto importano o distribuiscono.
-- **Ragione sociale nel piede**: in pagina c'è "Servalli Padova sas di Servalli Francesco e Alessandro" (VIES: "SERVALLI PADOVA - S.A.S. DI SERVALLI FRANCESCO E ALESSANDRO"). Chi sono oggi i soci e se sono la quarta generazione.
+**Dati in pagina da confermare**
+- **Prezzi**: FIORDO 90 1p 178,12 euro, M.B. 2P 329,40, ISLANDA 597,80, PIETRA 80x150 29,10, Tabriz ghali 6.191,50 (letti sul negozio online, riportati in pagina "al 3 novembre 2026"). Nel sito vero vanno letti dal negozio Ecwid, non scritti a mano.
+- **Spedizione gratuita sopra i 150 euro** (escluse isole, laguna di Venezia e alcune zone) e **reso entro 14 giorni**: dalle condizioni del negozio; che siano ancora così.
+- **Codice BENVE10**: non è in pagina. Se è ancora valido, si può aggiungere sotto il bottone del negozio.
+- **Consegna in tutta Italia** e **"Vasto assortimento sempre pronto"**: valgono anche per le strutture fuori regione? Tempi di consegna: non pubblici, non scritti; se vogliono, una riga ("in X giorni lavorativi dagli articoli pronti").
+- **Festivi e chiusure**: in pagina l'ufficio risulta aperto lun-ven 9:00-17:30; nei festivi nazionali la pagina scrive solo "oggi è festivo". Vanno chiesti: chiusi nei festivi? Chiusura estiva o di Natale? Il 13 giugno (Sant'Antonio)?
+- **Chi può venire in sede**: in pagina c'è solo "Ai privati vendiamo solo online". Se la sede riceve rivenditori e strutture (su appuntamento o negli orari), si scrive accanto all'indirizzo. Le condizioni Ecwid parlano di ritiro "presso un punto vendita del Gruppo Servalli": testo di modello, da verificare.
+- **Ragione sociale**: "Servalli Padova sas di Servalli Francesco e Alessandro" (VIES). Chi sono oggi i soci, e se sono la quarta generazione.
 - **REA e PEC**: non trovati, da aggiungere alla riga legale.
-- **Condizioni riservate**: la pagina dice "Rivenditori, grossisti e alberghi hanno condizioni riservate" (testo di Partners). La GDO compare solo per gli articoli personalizzati: da confermare se va citata.
-- **Consegna in tutta Italia**: se vale anche per gli ordini online dei privati (oggi lo dice la pagina `informazioni` in generale).
-- **Showroom**: se quello di Via Portogallo riceve anche i privati.
-- **BENVE10 e spedizione gratuita sopra i 150 euro**: non sono in home. Se restano validi possono andare nel negozio.
-- **Newsletter**: il servizio di invio, la base giuridica del consenso e i testi di Privacy e Cookie.
-- **Social**: se ne hanno uno vero. Oggi le icone puntano alle home generiche di Facebook, Instagram, Pinterest e Twitter, quindi nel piede non c'è una colonna Seguici.
+- **Anni e racconti**: firma "dal 1895" (titolo del sito) o "fine del 1800" (pagina storia); il motto "da quattro secoli" è un racconto di famiglia (il paramento del Seicento a Gandino), non l'età dell'azienda. Le date della pagina (1949 MADIVAL, 1967 Padova, 1982 Servalli Padova, 1994 Alans, 2022 online) e "Franco Servalli fondatore del Centro Grossisti" vengono dalla loro pagina `storia`.
+- **"Circa 20.000 articoli"** (pagina `informazioni`): che sia ancora il numero giusto.
+- **Serline**: in pagina i marchi sono solo i tre registrati (Servalli, Alans, Colorcasa). Che cos'è Serline e se va citato.
 
-## Newsletter (da collegare)
+**Cose che mancano e servirebbero (regole 9, 10 e 11 dello studio)**
+- **Recensioni** con nome e comune (Google, negozio online): non ne abbiamo trovate. Se ne hanno, una fascia di tre.
+- **Clienti con il nome**: tre o quattro alberghi, SPA o catene serviti, con il permesso di citarli.
+- **Forniture con il nome**: tre lavori per strutture, ognuno con cliente o luogo, anno, articoli e quantità (per esempio "Hotel X, Abano, 2025: 400 teli doccia e 200 accappatoi con logo ricamato"), e una foto di ciascuno.
+- **Certificazioni dell'azienda**: non ne risultano (OEKO-TEX Standard 100 e NOMITE sono dei prodotti). Se ne hanno, vanno nel piede.
+- **Social veri**: oggi le icone del sito puntano alle home generiche; nel piede non c'è una colonna social.
 
-Nel piede ci sono il campo email, il bottone "Iscriviti" e la casella del consenso (obbligatoria). **Non funziona finché non si collega a un servizio di invio** da scegliere con loro, per esempio Brevo, Mailchimp o MailerLite, con doppia conferma dell'iscrizione. Oggi il modulo controlla email e consenso e mostra solo il messaggio "la newsletter non è ancora attiva in questa proposta". Il testo dice solo "Offerte e nuovi prodotti del negozio online", senza promettere una frequenza.
+## Modulo di contatto (da collegare)
 
-## Pagine a cui puntano i link del piede
+Il modulo in fondo alla home ("Scriveteci") oggi **compone un'email** con `mailto:` a info@servalli.net: oggetto "tipo di richiesta, nome (società)" e nel testo tipo, nome, società, ruolo, partita IVA, telefono, email e messaggio. Controlla che ci siano tipo, nome, email valida e messaggio. Non invia nulla da solo: il visitatore manda l'email dal suo programma, e un'email aperta così non porta allegati (il logo e l'elenco delle quantità si allegano a mano, lo dice la riga sotto il modulo).
 
-Il sito nuovo avrà queste pagine. Nella proposta i link sono percorsi relativi, perché le pagine non esistono ancora; i link della testata portano alle sezioni della home.
+Va **collegato a un servizio** che riceva i campi e mandi l'email all'azienda, con un allegato (logo, elenco in PDF o Excel), per esempio Formspree, Getform, il modulo del costruttore del sito o un piccolo script sul server, con il controllo anti-spam e la riga sulla privacy. Il tipo di richiesta va tenuto come primo campo (serve a smistare: strutture, rivenditori, privati).
 
-- Azienda: Storia (`storia/`), Riconoscimenti (`riconoscimenti/`), Marchi (`marchi/`: Servalli, Alans, Colorcasa), Arte tessile (`arte-tessile/`, gli 8 articoli di oggi).
-- Prodotti, le 6 categorie del negozio:
-  - Lenzuola e copripiumini (`negozio/lenzuola-e-copripiumini/`);
-  - Piumini e trapunte (`negozio/piumini-e-trapunte/`);
-  - Bagno (`negozio/bagno/`);
-  - Tappeti (`negozio/tappeti/`);
-  - Articoli da bambino (`negozio/bambino/`);
-  - Mare (`negozio/mare/`).
-- Servizi: Alberghi e contract (`alberghi-e-contract/`, oggi Forniture alberghiere), Rivenditori e grossisti (`rivenditori/`, oggi Partners), Negozio online (`negozio/`), Contatti (`contatti/`).
-- Legali: Privacy (`privacy/`), Cookie (`cookie/`), Condizioni di vendita (`condizioni-di-vendita/`).
-- Da togliere dal sito di oggi: le tre pagine orfane del modello (`living-room`, `Bedroom-Camera`, `copia-di-camera-da-letto`).
+La newsletter della versione 1 è stata tolta: non inviava nulla. Se la vogliono, si rimette nel piede collegata a un servizio di invio (Brevo, Mailchimp, MailerLite) con doppia conferma.
 
-## Foto da rifare dal vero
+## Foto da fare dal vero
 
-Le tre foto esterne sono segnaposto e vanno sostituite prima di qualsiasi uso pubblico. Serve mezza giornata di still life in magazzino, su un fondo bianco (un lino o un cartone bianco, vicino al bianco della pagina #F7F6F2, così le foto di biancheria ci finiscono dentro come oggi fa `finale_img.py`), con luce di finestra o un softbox grande da un lato, senza flash diretto. Scatti in RAW ad almeno 3000 px sul lato lungo.
+Nella pagina ci sono solo foto vere del loro sito e del negozio; dove non ce n'erano che reggessero (categorie, prodotti, alberghi) la pagina si regge sulla tipografia. Per arrivare al livello dei riferimenti servono, nell'ordine:
 
-1. **Il Tabriz o un altro tappeto loro, dall'alto** (sostituisce la foto del negozio nella prima schermata, dove il tappeto è largo fino a 670 px e oggi a 2x è ingrandito):
-   - tappeto steso a terra, macchina in bolla sulla verticale (scala o braccio), obiettivo 35-50 mm, tutto il tappeto con le frange e un margine di fondo;
-   - luce radente da un lato, perché si veda il vello;
-   - più un dettaglio del retro con i nodi e uno del frangiato.
-2. **Le lenzuola loro, bianche, piegate in pila** (sostituisce Pinales): tre o quattro pezzi piegati con cura, vista frontale leggermente dall'alto, bianco tenuto senza bruciare le luci.
-3. **La spugna con un logo ricamato da loro** (sostituisce Hansen; il segnaposto di oggi è in luce di sole dura, con le ombre alzate in elaborazione): due o tre asciugamani d'albergo piegati, con il ricamo in primo piano, messo a fuoco e in luce radente.
-4. **Tre o quattro tappeti piegati in pila nello showroom** (sostituisce Moradian nella chiusura): vista di taglio, i bordi a vista, fondo pulito.
-5. **Archivio**: le scansioni ad alta risoluzione (600 dpi) delle stampe originali di telai, MADIVAL, Giardiniera 1967 (oggi solo 1024 px), Persia e Tehran 1994, più il tappeto con la scritta SERVALLI annodata, oggi troppo piccolo.
+1. **Apertura: persone e magazzino** (regola 3). Una o due persone della famiglia o del magazzino tra gli scaffali della biancheria al Centro Grossisti, o al banco mentre piegano o mostrano un piumino; luce naturale o un grande pannello morbido, nessun flash diretto; orizzontale, almeno 3000 px sul lato lungo. Le persone guardano la merce, non l'obiettivo.
+2. **Still life per le 6 categorie e i 4 prodotti** (regola 9): stesso fondo (un piano bianco o un lino naturale), stessa luce laterale di finestra, stesso taglio quadrato, macchina alla stessa altezza per tutta la serie. Piumino piegato, lenzuola in pila, accappatoio, tappeto arrotolato, telo mare, un tappeto da bambino. Così le tessere e le schede dei prodotti prendono la foto, tutte uguali per misura.
+3. **Spugna con un logo ricamato da loro** per il blocco alberghi: due o tre asciugamani d'albergo piegati, il ricamo a fuoco in luce radente; più, se c'è, un articolo ignifugo con l'etichetta.
+4. **Il Tabriz e due o tre tappeti Alans, dall'alto**: tappeto steso, macchina in bolla sulla verticale, obiettivo 35-50 mm, luce radente da un lato per il vello; più il retro con i nodi e il frangiato. Oggi il ritaglio del Tabriz è solo 749 px.
+5. **Archivio**: scansioni a 600 dpi delle stampe originali (telai, Giardiniera 1967, oggi 1024 px, Persia, MADIVAL), più il tappeto con la scritta SERVALLI annodata, oggi troppo piccolo.
 
-## Licenze
+## Licenze e permessi
 
-- **Foto esterne** (dettagli e pagine delle foto in `assets/CREDITI.md`), licenze lette il 24/10/2026:
-  - juan pinales, Pexels 31902663: licenza Pexels, uso commerciale libero, attribuzione non obbligatoria;
-  - Mads Leif Hansen, Unsplash qPNgpYUCW0c: licenza Unsplash;
-  - bahareh moradian, Unsplash NvdxYHt5CHM: licenza Unsplash.
-
-  Nessuna immagine è generata dall'IA e nessuna è usata in altre home della campagna.
-- **Tabriz** (`negozio/4126147316.jpg`): è un articolo loro (marchio Alans), ma la foto può essere del fornitore. **I diritti vanno chiariti**.
-- **Foto d'archivio e di Persia**: della famiglia, firmate "© Franco Servalli". Va chiesto il **permesso** di usarle; la firma resta.
+- **Foto in pagina**: solo materiale del loro sito e del negozio (vedi `assets/CREDITI.md`).
+  - Trapunta SINFONIA (marca Molina) e Tabriz ghali (marca Alans): foto del negozio online, che possono essere dei fornitori. **I diritti vanno chiariti.**
+  - Archivio (telai, Giardiniera 1967) e Persia ("© Franco Servalli", firma lasciata): della famiglia, **va chiesto il permesso**.
+- **Nessuna foto di repertorio** e nessuna immagine generata o disegnata in pagina. Le foto Unsplash e Pexels scaricate per le versioni precedenti restano in `assets/esterne/` ma non sono più usate.
 - **Caratteri**: Libre Caslon Display e Golos Text, da Google Fonts, SIL Open Font License 1.1, serviti dalla pagina in `sito/fonts/`.
 
 ## Loghi
 
-- Usato: `assets/originali/logo-servalli-stemma.png` (1920 x 823), dal sito. Il bianco è reso trasparente con un "colore verso alfa" che lascia intatti i colori dello stemma, poi è esportato in WebP a 2x:
-  - in testata stemma e SERVALLI, senza la sottoriga "TESSILE CASA DAL 1895", che a quella misura era illeggibile;
-  - nel piede il logo intero.
-- Non ricostruito in SVG: lo stemma è un disegno dorato a colori. Va chiesto il **logo vettoriale** e il valore esatto dell'oro.
-- `logo-servalli-house.svg` (marchio del gruppo, ricalcato male) non è usato.
+- Usato: `assets/originali/logo-servalli-stemma.png` (1920 x 823), dal sito. Il bianco è reso trasparente lasciando intatti i colori dello stemma; in testata stemma e SERVALLI senza la sottoriga, nel piede e nella fascia dei marchi il logo intero con la scritta in bianco.
+- Alans e Colorcasa: le versioni bianche del piede del sito di oggi (393 x 110 e 392 x 180). Colorcasa a quella misura è debole: va chiesto il vettoriale.
+- Va chiesto il **logo vettoriale** Servalli e il valore esatto dell'oro e dell'arancio dello stemma (in pagina #D86C30 e #E4B448, campionati sul PNG).
+
+## Pagine a cui puntano i link
+
+I link usano i percorsi del sito di oggi, che esistono: `negozio/` e le sue categorie e schede (Ecwid), `negozio/cart`, `negozio/pages/terms`, `storia`, `premi-e-riconoscimenti`, `informazioni`, `alberghi`, `partners`, `blog` e gli articoli (`100-piuma-cosa-intendi-piuma-piumino-e-piumetta`, `piumini-classi-en-12934`, `formato-tappeto-poshti-zaronim-ghali`), `informazioni-legali`. Da creare: `privacy/` e `cookie/`. Da togliere dal sito di oggi: le tre pagine orfane del modello (`living-room`, `Bedroom-Camera`, `copia-di-camera-da-letto`).

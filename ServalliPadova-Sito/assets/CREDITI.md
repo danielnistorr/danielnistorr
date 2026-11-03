@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 24 ottobre 2026; uso in pagina aggiornato il 3 novembre 2026.
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di Servalli Padova]
 
@@ -34,9 +34,12 @@ Scaricate il 24/10/2026 da `https://irp-cdn.multiscreensite.com/2821c4aa/dms3rep
 - `negozio/`: foto di prodotto; quelle con marca Molina (trapunta SINFONIA) e Disney sono di terzi; il tappeto Tabriz (`negozio/4126147316.jpg`, marca Alans) è un articolo loro ma la foto può essere del fornitore. Diritti da chiarire.
 - Loghi: `logo-servalli-stemma.png` (1920x823) è il migliore trovato; `logo-servalli-house.svg` è il marchio del gruppo Servalli House, ricalcato in modo grezzo.
 
-## Usate nella home finale (`sito/`, aggiornato il 2/11/2026)
+## Usate nella home (`sito/`, aggiornato il 3/11/2026, livello professionale)
 
-- Pinales (Pexels 31902663): "Per la casa", con il bianco portato al bianco della pagina #F7F6F2.
-- Hansen (Unsplash qPNgpYUCW0c): "Per alberghi e rivenditori", taglio stretto sulla spugna, ombre alzate, bianco portato al bianco della pagina (aggiornato il 2/11/2026; Araujo non è più usata: era sfocata e aveva l'etichetta leggibile di un marchio).
-- Moradian (Unsplash NvdxYHt5CHM): foto della chiusura, taglio quadrato.
-- Dal sito attuale: il Tabriz del negozio (diritti da chiarire), cinque foto d'archivio della pagina `storia` (permesso da chiedere), il logo con lo stemma.
+Decisione del committente sulle foto: "niente" repertorio. **Nessuna foto di `esterne/` è più in pagina**: tolte Pinales (Pexels 31902663), Hansen (Unsplash qPNgpYUCW0c) e Moradian (Unsplash NvdxYHt5CHM), usate fino al 2/11/2026. Restano scaricate qui con la loro licenza, non usate.
+
+In pagina solo immagini del sito attuale (diritti e permessi da chiarire, vedi LEGGIMI):
+- `originali/negozio/2656204814.jpg`, trapunta in seta SINFONIA (marca Molina), apertura;
+- `originali/negozio/4126147316.jpg`, Tabriz ghali (marca Alans), scontornato, sezione tappeti;
+- `originali/Servalli1895-59539f29.jpg` (telai jacquard), `originali/manifatture_tessili_Servalli_Padova_1967web.jpg` (Giardiniera, Padova 1967), `originali/IMG_2245-ba4affe8-1ee72a8b.JPG` (tessitrice in Persia, "© Franco Servalli"), archivio di famiglia, in bicromia;
+- loghi: `originali/logo-servalli-stemma.png`, `originali/logo-alans-bianco.png`, `originali/logo-colorcasa-bianco.png`.

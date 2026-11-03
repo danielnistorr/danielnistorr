@@ -25,6 +25,14 @@ Versioni scaricate con curl dal CDN `images.unsplash.com` a 2400 px sul lato lun
 | `esterne/schuster-led-scheda.jpg` | https://unsplash.com/photos/close-up-of-many-small-led-lights-on-a-circuit-board-wUcVdX2zT50 | Sebastian Schuster (@sschusterphotoart) | 2400x2400 | A | scheda LED bianca di un apparecchio illuminante: M0524-LED |
 | `esterne/shavrik-pannello-pulsanti.jpg` | https://unsplash.com/photos/a-close-up-of-a-control-panel-with-buttons-r6fBLCriUgg | Shavr IK (@shavr) | 2400x1509 | B | pannello di comando con pulsanti e selettori, scuro e consumato |
 
-## Uso nella home finale (`sito/`)
+## Uso nella home (`sito/`), livello professionale del 03/11/2026
 
-Delle foto esterne la home finale usa solo `esterne/vladdeep-cestello-lavatrice.jpg` (chiusura, `sito/img/chiusura-cestello-*.jpg`, taglio verticale e tono freddo). Le altre nove restano in archivio e non compaiono in pagina. Tutte le altre immagini della home sono dell'azienda (`originali/`).
+Nessuna foto esterna in pagina. Per decisione del committente ("niente": nessuna foto di repertorio, nessun disegno al posto delle foto) ho tolto il cestello di Vlad Deep, l'unica foto Unsplash della versione "Corretto o scarto" (`sito/img/chiusura-cestello-*.jpg`, cancellati; la versione precedente resta in `../_prova/versione-1-originale/`). Le dieci foto di `esterne/` restano solo in archivio, con le licenze qui sopra, e non vanno usate in questa home.
+
+In pagina solo immagini dell'azienda, preparate da `../_prova/script/pro_img.py` e mai ingrandite:
+- `2025_Stazione_mod1200_alta.jpg` e `2025_Stazione_mod1000.jpg` (apertura, `sito/img/mod1200.webp`, `mod1000.webp`);
+- `2025_mod_1200ST-NETD.jpg`, `2025_Stazione_mod1294-A.jpg`, `2025_Stazione_M0524-LED.jpg` (schede delle prove);
+- `PortataMicroperdite_0704N_KB.png` e `Alimentatori_Alimentatore_ManualeKB.png` (gli scontornati gia puliti nella versione 1, `m0704n.webp`, `mod0507.webp`);
+- `Saldatrici_Sistema_Collaudo_Saldatrici_KB.png` (retinatura tolta, su bianco, `saldatrici.webp`);
+- `2025_Stazione_Martorana_old.jpg` (archivio, alla sua misura di 202 x 541, `anni70.jpg`);
+- `LogoUltimo.png` (testata) e il logo bianco ritagliato della versione 1 (piede).

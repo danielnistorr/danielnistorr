@@ -1,12 +1,83 @@
-# Foralberg, home finale: "Firmato Foralberg"
+# Foralberg, home finale
+
+## Livello professionale (3 novembre 2026)
+
+Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/` (due foto d'archivio in JPEG a quattro larghezze e i due loghi SVG), caratteri in `sito/fonts/`. La versione 1 com'era prima di questo passaggio è in `_prova/versione-1-originale/` (sito e screenshot). Rifare tutto: `bash _prova/script/build_finale.sh` (immagini con `pro_img.py`, pagina da `index.sorgente.html`, screenshot con `pro_shots.mjs` all'ora simulata martedì 3 novembre 2026 alle 10.00, poi `pro_controlli.mjs`, esito in `_prova/pro_controlli.json`).
+
+Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole). Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14, le pagine intere di Union e Joseph Brot a pezzi. Dalla famiglia B ho preso la struttura che serve a un grossista con showroom e negozio: "Showroom e orari" come prima voce del menu, le due sedi con stato, tabella degli orari, Chiama e Indicazioni (come i negozi di Union), il modulo che chiede il tipo di richiesta, il piede in quattro colonne. Dalla manifattura (barth, Cly-Del) la fascia dei numeri e l'indice tipografico al posto delle foto che non ci sono.
+
+Screenshot (stessi nomi): `home-1440.jpg` (8894 px), `home-1440-prima-schermata.jpg`, `home-390.jpg` (15070 px), `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Showroom e orari" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti, e interi a 320, 768, 1024 e 1920.
+
+### Che cosa è cambiato
+
+- **Uso prima di tutto (scheda `_prova/uso/SCHEDA.md`)**. La versione 1 apriva sul furgone e su "I capitoli del catalogo", un PDF da 56 MB; non c'erano modulo, marche, orari, La Vetrinetta, PA. Ora:
+  - 1440 (compratore): testata fissa con "Showroom e orari", Prodotti, Marchi, Progetti e impianti, Cataloghi, Acquisti PA, "Privati: La Vetrinetta" a parte e il bottone 049 760955; titolo "Forniture alberghiere dal 1953" (le loro parole, home di oggi e copertina del catalogo) con "Consulenti dell'ospitalità, a Padova" come occhiello; la riga su cosa e per chi; "Chiedi un preventivo" e "Catalogo 2026/2027"; il furgone accanto al testo, non sopra; le due sedi con lo stato ("Per i professionisti, Showroom, via Cile 2, Aperto ora" e "Per i privati, La Vetrinetta, via Vigonovese 93"); in fondo alla schermata la fascia blu delle sei aree con le marche scritte (Steelite, RAK, Revol, Rona, BIT, Wüsthof, Berto's) a y=778.
+  - 390 (nuova apertura e privato): testata fissa con "049 760955" e Menu; titolo su tre righe a 44 px, riga, "Chiama 049 760955" e "Preventivo o progetto" a tutta larghezza, le due sedi con lo stato (La Vetrinetta finisce a 711 px su 844); poi il furgone, la fascia delle aree e subito il blocco Progetti e impianti (sul telefono sale prima dei prodotti: testo a 1746 px, "Mandaci la planimetria" a 1834, entro due scorrimenti).
+  - Prodotti: sei schede (Tavola, Bar e mixology, Sala e buffet, Cucina, Gastronorm e trasporto pasti, Impianti professionali) con la riga del catalogo, le marche in testo e i capitoli con la pagina vera del catalogo 2026/2027 (indice di p. 7: Porcellana 10, Posateria 182, Vetro 232, Bar e mixology 290, Sala 352, Buffet e catering 378, Melamina 400, Cucina 412, Pasticceria 448, Pizzeria 464, Gastronorm 470, Stoccaggio 494, Piccoli macchinari 498; personalizzazione p. 103), ognuno con "(PDF, 56 MB)" scritto prima del clic; il Buffet 2025 (6,9 MB); "Chiedi disponibilità o campionatura" che apre il modulo con tipo e area già scelti. Sul telefono i capitoli sono chiusi in un "Apri" (il PDF intero è un muro).
+  - Modulo in home: tipo di richiesta (Preventivo, Campionatura, Disponibilità, Progetto o impianto, Visita in showroom), Settore (le voci del modulo di oggi più Ente pubblico e Privato, che mostra La Vetrinetta), area, nome, locale, telefono, email, messaggio, allegato; con "Progetto o impianto" compaiono spazio, pasti e tipologia di cucina (i criteri del catalogo, p. 5). Obbligatori solo nome, telefono e settore. Compone un'email a servizioclienti@foralberg.it con oggetto e campi; con un file, sul telefono che lo permette apre la condivisione con il file allegato, altrimenti l'email e l'avviso di allegarlo. Va collegato a un servizio (LEGGIMI). Accanto, servizio clienti 335 142 6521, servizioclienti@foralberg.it in chiaro (selezionabile con un clic), centralino e vendite.
+  - Showroom e orari: due schede, "Per i professionisti" (via Cile 2, stato, tabella con la riga di oggi, Chiama, Indicazioni, le uscite 13 e 14 della tangenziale Est come le scrive la pagina Contatti, "Fissate una visita") e "Per i privati" (La Vetrinetta, via Vigonovese 93, "aperto anche il sabato", tabella, Chiama 049 8700975, Indicazioni, shop online, lista nozze, Facebook). Stato calcolato sull'ora di Roma e sui festivi nazionali e Pasquetta.
+  - Acquisti PA: i sei portali in elenco e "Non ci trovate sul portale della vostra regione? Contattateci e provvederemo all'abilitazione immediata" con il bottone.
+- **Identità**: le loro parole ("Forniture alberghiere dal 1953", "Consulenti dell'ospitalità", "ci piace pensare di essere più di un semplice fornitore", "Dall'ascolto al piatto, un progetto su misura", i quattro tempi in "tu", "Il tuo biglietto da visita? Un piatto su misura."), "voi" nel resto, nessuna frase sul logo o sul design. Il blu della copertina del catalogo è il colore della pagina (fascia delle aree, blocco dei numeri e dei marchi, bottoni), non un solo bottone. Le foto sono solo le loro.
+- **Foto, decisione "niente"**: tolte le sei Pexels dell'indice (Çelik, Irina P, Kovaleva, Çoban, Starostin, Filirovska); nessuna illustrazione al loro posto. Restano due foto d'archivio, stessa serie (bianco e nero, neri #1A1A1A, luci #F4F5F5), stesso formato 4:3: il furgone nell'apertura e lo stand della 38a Fiera in "Chi siamo", con la scritta stampata sulla foto ("38a Fiera di Padova, foto Giordani") al posto della didascalia. Le foto dei marchi del vecchio slider (Steelite, Eme, Rona, Berto's) non le ho messe: sono dei fornitori, larghe e basse (1400x500), con luci diverse, e avrebbero rotto la serie.
+- **Colori**: niente bianco porcellana di comodo: fondo bianco, nebbia #EFF2F4 per le schede e il modulo, blu #00699A (il #0082B9 della copertina scurito per il testo bianco, 6,0:1), inchiostro #15191C per due blocchi scuri, verde #1C7A3D solo per "Aperto ora".
+- **Tipografia**: la stessa famiglia della versione 1, Schibsted Grotesk, ora in due pesi distanti (400 per titoli e testo, 700 per etichette, bottoni, nomi). Sette misure a 1440 (88, 56, 32, 24, 19, 16, 14) e sette a 390 (44, 32, 24, 20, 17, 16, 14).
+
+### Esito regola per regola (`_prova/script/pro_controlli.mjs` e screenshot)
+
+1. **Telefono in testata fissa, sempre visibile**: PASSA. Bottone "049 760955" alto 48 px in testata `position:sticky`; a 390, a metà pagina, si vede e si tocca (`elementFromPoint`). "Showroom e orari" è la prima voce del menu. 12 link `tel:`.
+2. **Prima schermata con mestiere, luogo, prova, azione**: PASSA. 1440x900: H1 "Forniture alberghiere dal 1953" (mestiere e prova), "a Padova" nell'occhiello, "Chiedi un preventivo" e il telefono. 390x844: lo stesso, "Chiama 049 760955" largo quanto la colonna (350 px) a 401 px.
+3. **Immagine vera nell'apertura**: PASSA. Il furgone OM Lupetto 30 con la firma Foralberg, foto d'archivio dell'azienda, 628x471 a 1440 accanto al testo; a 390 a tutta larghezza dopo le due sedi. Manca una foto di oggi (showroom, persone): vedi LEGGIMI.
+4. **Zero repertorio**: PASSA. "indicativ" 0 volte, nessuna immagine da banche; in `sito/img/` solo furgone, fiera38 e i loghi.
+5. **Foto in serie**: PASSA. Due foto, stessa serie e stesso trattamento, un solo formato (4:3), nessuna didascalia in HTML.
+6. **Palette dal marchio**: PASSA. Quattro colori (blu, blu scuro per il passaggio del mouse, inchiostro, verde dello stato) più i neutri; il blu viene dalla copertina del catalogo; nessun beige.
+7. **Scala corta e leggibile**: PASSA. 7 misure a 1440 e 7 a 390; testo corrente 19/17 px; nulla sotto i 14 px; titolo 88 px (fascia B 85-90), 44 px a 390 (40-46). Il titolo non è in maiuscolo come nei riferimenti B (e come sul sito di oggi): tenuto in tondo come nella versione 1, più cordiale e leggibile su tre righe.
+8. **Al massimo due famiglie**: PASSA. Una sola, Schibsted Grotesk, 400 e 700.
+9. **Servizi in schede con la foto del lavoro**: NON PASSA (limite dichiarato). Sei schede in tre colonne, con nome, riga, marche, capitoli con le pagine e link, ma senza foto: per decisione del committente niente repertorio e niente disegni, e le foto dei fornitori non fanno serie. Le foto da fare sono nel LEGGIMI.
+10. **Almeno tre tipi di prove**: NON PASSA (2 su 4). Ci sono sei numeri (1953, 800 m², 30.000, 6.000, 11, 516) e la fascia dei marchi trattati con la didascalia, più i portali PA abilitati. Mancano recensioni con nome e clienti con il nome: non sono nelle fonti (le recensioni Google non si leggono da qui, quelle aggregate sono di La Vetrinetta), non inventati (LEGGIMI).
+11. **Lavori con un nome**: NON PASSA. Nessun lavoro con cliente, luogo, anno e dati nelle fonti; le forniture storiche (Venezia 1959, Costa Smeralda 1960) sono nella riga del tempo, senza nomi di alberghi. Da chiedere (LEGGIMI).
+12. **Ritmo a blocchi**: PASSA. Blocchi pieni oltre al piede: fascia delle aree e marchi in blu, progetti e chi siamo in inchiostro, modulo in nebbia; spazio tra le sezioni 128 px a 1440 e 72 a 390; margini 80 e 20 px.
+13. **Un solo sistema di bottoni**: PASSA. Pieno e con il bordo (bianchi sui blocchi scuri), raggio 4 px, 52 px (48 in testata), testo 16 px in 700; ogni bottone di chiamata ha il numero.
+14. **Modulo e "dove e quando"**: PASSA. Modulo con il tipo di richiesta e il settore (più l'allegato e i campi del progetto); per ognuna delle due sedi stato, tabella degli orari con la riga di oggi, "Chiama" e "Indicazioni" (`google.com/maps/dir`); nessun iframe.
+15. **Piede completo**: PASSA, senza certificazioni (non ne hanno; al loro posto "Fornitore abilitato PA: MePA Consip e portali regionali"). Quattro colonne a 1440 (due a 1024 e 768, una sul telefono con i prodotti in due colonne): ragione sociale, P.IVA, indirizzo, telefoni ed email cliccabili, orari di showroom e negozio, le due sedi, LinkedIn con il sottotitolo, La Vetrinetta su Facebook, Lavora con noi, Privacy, Cookie, Note legali; testo di 16 px (14 nella riga legale).
+
+### Prove d'uso della scheda (par. 8)
+
+- Compratore, 1440: in prima schermata cosa vendono e a chi, 049 760955 e "Chiedi un preventivo"; Ctrl+F "Steelite", "Rona", "Berto's", "Wüsthof" a y=835 (fascia delle aree), "Cambro" a 3133, "MePA" a 6867; Porcellana in due clic ("Catalogo 2026/2027", poi "Porcellana p. 10", `#page=10`) con "(PDF, 56 MB)" scritto prima; richiesta con settore, tipo, messaggio e allegato con 3 campi obbligatori; l'email del servizio clienti scritta in chiaro.
+- Nuova apertura, 390: Chiama senza scorrere; "progettiamo, installiamo e assistiamo" e "Mandaci la planimetria" entro due scorrimenti; il tocco apre il modulo con "Progetto o impianto" scelto, i campi del progetto e l'allegato (immagini, PDF, DWG, DXF); dalla riga "Showroom, via Cile 2" un tocco porta alla scheda con stato, riga di oggi in grassetto e Indicazioni.
+- Privato, 390: "Per i privati, La Vetrinetta, via Vigonovese 93" con lo stato nella prima schermata, sotto "Per i professionisti, Showroom, via Cile 2"; un tocco porta a indirizzo, orari (sabato aperto, lunedì mattina chiuso), 049 8700975, shop online e lista nozze.
+- Stato a ore diverse (provato con `?ora=`): martedì 10.00 aperti tutti e due; 13.10 "Chiuso ora, riapre alle 14.30" e "riapre alle 15.00"; sabato 10.00 showroom "riapre lunedì alle 8.30", Vetrinetta aperta; domenica "riapre domani"; lunedì 10.00 Vetrinetta "apre alle 15.00"; 25 dicembre e Pasquetta 2027 "Chiuso oggi, festivo"; venerdì 19.00 showroom chiuso, Vetrinetta aperta fino alle 19.30.
+
+### Controlli generali
+
+- Nessuno scorrimento orizzontale a 320, 360, 390, 430, 600, 768, 860, 1024, 1100, 1240, 1280, 1440, 1920, 2560; nessuna sovrapposizione negli screenshot (corretti durante il lavoro: la riga delle sedi a 768 su due colonne strette, ora una colonna; la colonna Contatti del piede sul telefono che spezzava numero ed email; l'"Apri" comparso anche su "Come lavoriamo").
+- Console senza errori con file://; nessuna ancora senza destinazione.
+- Collegamenti: `tel:+39049760955`, `tel:+393351426521`, `tel:+390498700975`; `mailto:servizioclienti@foralberg.it` (anche con oggetto per l'abilitazione PA e dal modulo con oggetto e campi), `mailto:ldesiderio@foralberg.it`, `mailto:lavetrinetta@foralberg.it`; mappe `google.com/maps/dir/?api=1&destination=` su "Foralberg via Cile 2 35127 Padova" e "La Vetrinetta via Vigonovese 93 35127 Padova".
+- Nessun carattere U+2014 nella pagina, negli script nuovi, in questa nota, nel LEGGIMI e nei crediti.
+
+### Caratteri e licenze
+
+- Schibsted Grotesk (Schibsted, Bakken & Bæck), Google Fonts, SIL Open Font License 1.1, uso commerciale libero; servito dalla pagina (`sito/fonts/schibsted-latin.woff2`, `schibsted-latin-ext.woff2`, licenza in `sito/fonts/OFL.txt`), pesi 400 e 700.
+- Foto: archivio Foralberg ("foto Giordani" sullo stand), diritti da chiedere all'azienda. Nessuna foto di repertorio, nessuna immagine generata, nessun disegno.
+
+### Non applicato, apposta
+
+- Apertura a tutto schermo con una foto (famiglia B, punto 2): l'unica foto che regge è d'archivio e la scheda la vuole accanto al testo, non al posto del messaggio.
+- Racconti foto e testo alternati (B, punto 4) e novità di stagione con foto (B, punto 6): senza foto di oggi; la stagione c'è come riga del tempo (2026, HospitalityRiva) e catalogo nuovo.
+- Newsletter: tolta (non inviava nulla; la scheda chiede di toglierla finché non è collegata).
+- Recensioni, clienti con il nome, lavori con il nome, certificazioni: non nelle fonti, da chiedere.
+- Il titolo "Consulenti dell'ospitalità" della versione 1: non è più l'H1 (da solo non dice il mestiere, scheda par. 7) ma resta come occhiello dell'apertura e come titolo di "Chi siamo" ("Dal 1953 consulenti dell'ospitalità").
+
+## Versione 1 originale (2 novembre 2026), prima del livello professionale
+
+Quello che segue descrive la versione copiata in `_prova/versione-1-originale/` (sito e screenshot). Le sezioni sono scese di un livello.
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `bash _prova/script/build_finale.sh` (immagini, pagina, screenshot). Altezza a 1440: 5396 px piede compreso.
 
-## L'idea
+### L'idea
 
 La firma corsiva del logo di oggi è già dipinta sul cassone dell'OM Lupetto 30 delle prime consegne. La home apre su quella foto d'archivio, a tutta larghezza e subito sotto il logo in testata: firma di allora sotto logo di oggi, si legge in due secondi senza didascalia. Con il nome di un concorrente la pagina non regge: il furgone, la portiera con le voci del catalogo, lo stand della 38a Fiera e la frase di chiusura sono solo loro.
 
-## Cosa è cambiato in questa rifinitura (2 novembre)
+### Cosa è cambiato in questa rifinitura (2 novembre)
 
 Dal giudizio cieco (K0 7, K6 6, 57 su 80) e dalla richiesta del committente "più alta gamma, meno uguali tra loro".
 - **Fondo dal mestiere**: via la carta beige #F3F1EC. La pagina è bianco porcellana #F5F6F5, il bianco della porcellana da tavola che è il primo capitolo del catalogo ("il bianco valorizza il cibo", catalogo p. 47). La ragione si vede: le luci di tutte le foto finiscono esattamente su quel bianco (il furgone, lo stand, il piatto, le posate, il calice con la sua ombra), così gli oggetti stanno sulla pagina come sulla tovaglia.
@@ -20,23 +91,23 @@ Dal giudizio cieco (K0 7, K6 6, 57 su 80) e dalla richiesta del committente "pi�
 - **Progetto**: i quattro tempi in righe a filetto (numero e titolo a 30 px, riga a destra), non più quattro colonne da modello.
 - **Minori**: bottone rinominato; "(PDF, 56 MB)" accanto al link del capitolo; menu Cataloghi e Chi siamo verso le pagine del sito nuovo; altezza dell'indice costante a ogni capitolo e a ogni larghezza (lo script misura il testo più lungo e fissa l'altezza della scheda); a 1024 la foto dell'indice è alta quanto la colonna di testo (nessun vuoto sotto); link del piede alti almeno 29 px a schermo largo e 35 px fino a 860, colonna Contatti in grigio con il solo telefono in inchiostro; tolto il preload del font (nessun errore in console con file://); foto di apertura e chiusura più alte (37,5vw fino a 56vh, e 64vw fino a 940 px) e ritmo tra le sezioni a 132 px.
 
-## Le prime schermate
+### Le prime schermate
 
 - **1440**: testata con logo vettoriale, menu corto e 049 760955. Foto del furgone da y=88 a 592: firma, monogramma, via Trieste 11, i marchi rappresentati, la portiera e la calandra con "Lupetto 30". Sotto, a sinistra, "Consulenti dell'ospitalità" a 106 px su due righe; a destra la didascalia del furgone, la riga su cosa vendono, il bottone e il link, tutto sopra la piega (il bottone finisce a y=895).
 - **390**: foto quadrata sul cassone (firma, monogramma, marchi, portiera), titolo a 46 px su due righe, didascalia, riga e bottone dentro la prima schermata.
 - Poi: numeri, indice del catalogo (il gesto), progetto in quattro tempi, chiusura, piede.
 
-## Caratteri e colori
+### Caratteri e colori
 
 - **Schibsted Grotesk** (Google Fonts, SIL Open Font License 1.1, testo in `sito/fonts/OFL.txt`), una famiglia sola servita dalla pagina in woff2 variabile: 400 per titoli e testo, 500 per menu, bottoni e didascalie in grassetto. Grottesco da giornale accanto ai caratteri dipinti degli stand e del furgone, senza fare a gara con la firma corsiva. Cifre tabellari solo sui numeri di pagina dell'indice e sulla P.IVA.
 - Bianco porcellana #F5F6F5, inchiostro #161616 (17,1:1), grigio #5A5A5A (6,5:1), filetti al 16 %, blu Foralberg scurito #00699A (5,8:1 sul fondo, bianco sul blu 6,0:1; il #0082B9 della copertina non regge AA col testo bianco) solo per bottoni, pagina del capitolo attivo e numeri dei passi.
 - Riferimenti (sez. 7 dell'analisi): Serax e Robbe & Berking per la misura, tanto bianco, un'immagine per schermata, poche parole; Zwiesel per il vetro raccontato in luce; Schönwald per la porcellana bianca protagonista, qui portata nel colore della pagina.
 
-## Interazione
+### Interazione
 
 Un solo gesto: l'indice del catalogo 2026/2027 con le pagine vere (Porcellana p. 10, Posateria 182, Vetro 232, Bar e mixology 290, Buffet e catering 378, Gastronorm 470). Clic, tocco, frecce, Home e Fine cambiano di colpo la foto, la riga del capitolo e il link "Apri il capitolo nel catalogo, p. N (PDF, 56 MB)", che apre il PDF del sito a #page=N. Bottoni veri con aria-pressed, area di 526x73 px a 1440 e 168x67 a 390; a 390 le voci stanno in due colonne sopra la foto. Nessuna dissolvenza, nessuna animazione allo scorrere; transizioni di 0,12 s solo sul colore di ciò che si tocca. Prova: `node _prova/script/finale_gesto.mjs <percorso>/sito/index.html`.
 
-## Foto
+### Foto
 
 | In pagina | Origine | Licenza |
 |---|---|---|
@@ -51,12 +122,12 @@ Un solo gesto: l'indice del catalogo 2026/2027 con le pagine vere (Porcellana p.
 
 Nessuna foto di repertorio è usata in un'altra home della campagna (controllo per ID su tutti i `*-Sito/assets/CREDITI.md` il 02/11/2026); nessuna immagine generata da IA; nessun marchio concorrente in primo piano. Nessuna legenda numerata sugli oggetti: solo didascalie sobrie sotto le foto d'archivio.
 
-## Chiusura e piede
+### Chiusura e piede
 
 - Chiusura "b con foto", testo sopra e foto a tutta larghezza sotto (922 px a 1440): "Ci piace pensare di essere più di un semplice fornitore" (dalla home di oggi); 049 760955 grande con tel:+39049760955; Servizio clienti 335 142 6521 (tel:+393351426521) e servizioclienti@foralberg.it; "Vendite e showroom" ldesiderio@foralberg.it; via Cile 2 con "Apri la mappa"; orari di uffici e showroom.
 - Piede: logo orizzontale vettoriale (monogramma e firma) con una riga su chi sono; newsletter "Novità e cataloghi" (email, bottone, casella del consenso; non invia nulla finché non è collegata a un servizio); quattro colonne Prodotti, Servizi (con "Acquisti PA, MePA e portali regionali"), Azienda (con La Vetrinetta e il suo Facebook, l'unico social verificato), Contatti; riga legale con Foralberg s.r.l., via Cile 2, P.IVA 00210840286, Privacy, Cookie, Note legali. Niente colonna Seguici: Foralberg non collega profili. A 390 Prodotti a sinistra, Servizi e Azienda a destra, Contatti a tutta larghezza.
 
-## Controlli (2 novembre)
+### Controlli (2 novembre)
 
 - Screenshot guardati a pezzi: 1440 (5396 px), 390 (5728), 320 (6015), 768 (6113), 1024 (4915), 1920 (5515). Nessuna sovrapposizione, nessun vuoto non voluto.
 - scrollWidth uguale a innerWidth a 320, 360, 390, 430, 560, 768, 860, 1024, 1180, 1280, 1440, 1680, 1920 e 2560 (`_prova/script/finale_controlli.mjs`); console senza errori con file://.

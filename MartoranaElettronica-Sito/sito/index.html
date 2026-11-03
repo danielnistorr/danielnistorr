@@ -81,7 +81,7 @@ a:hover .freccia{transform:translateX(3px)}
 
 /* apertura */
 .apertura{background:var(--notte);color:var(--bianco);padding:88px 0 var(--sez)}
-.ap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:stretch}
+.ap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:center}
 .ap .occhiello{color:var(--giallo);margin-bottom:28px}
 .apertura h1{font-size:72px;line-height:1.02;letter-spacing:-.01em;font-stretch:104%}
 .ap-frase{margin-top:32px;font-size:20px;color:var(--bianco);max-width:34em}
@@ -92,7 +92,7 @@ a:hover .freccia{transform:translateX(3px)}
 .ap-link a{color:var(--bianco);font-weight:700;text-underline-offset:4px}
 .ap-link a:hover{color:var(--giallo)}
 .solo-tel{display:none}
-.ap-foto{background:var(--bianco);color:var(--testo-2);border-radius:var(--r);display:flex;flex-direction:column;justify-content:flex-end;padding:40px 40px 24px;min-height:100%}
+.ap-foto{background:var(--bianco);color:var(--testo-2);border-radius:var(--r);display:flex;flex-direction:column;justify-content:flex-end;padding:40px 40px 24px}
 .fila{display:flex;align-items:flex-end;justify-content:center;gap:56px;border-bottom:2px solid var(--filo);padding-bottom:0}
 .fila img{height:auto}
 .fila .s1200{width:139px}
@@ -115,7 +115,7 @@ a:hover .freccia{transform:translateX(3px)}
 /* assistenza */
 .passi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .passo{background:var(--bianco);border-radius:var(--r);padding:32px 28px 28px;display:flex;flex-direction:column;gap:14px}
-.passo .n{font-family:var(--t);font-size:24px;font-weight:700;color:var(--blu);line-height:1}
+.passo .n{display:block;margin-bottom:14px;color:var(--blu)}
 .passo h3{font-size:24px;line-height:1.2}
 .passo p{font-size:17px;color:var(--testo-2)}
 .passo .btn{margin-top:auto;width:100%;padding:12px 10px}
@@ -237,6 +237,13 @@ a:hover .freccia{transform:translateX(3px)}
 .legale{margin-top:72px;padding-top:24px;border-top:1px solid rgba(255,255,255,.28);display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--su-scuro)}
 .legale a{color:var(--su-scuro)}
 
+/* sul computer, dove arriva l'ingegnere, le prove vengono subito dopo l'apertura; sul telefono, dove
+   arriva il manutentore, prima l'assistenza (ordine del sorgente) */
+@media (min-width:900px){
+  main{display:flex;flex-direction:column}
+  #inizio{order:1}#prove{order:2}#assistenza{order:3}#azienda{order:4}#su-misura{order:5}#en{order:6}#contatti{order:7}
+}
+
 /* 1024 */
 @media (max-width:1199px){
   :root{--m:48px}
@@ -280,6 +287,7 @@ a:hover .freccia{transform:translateX(3px)}
   .ap-prove li:not(:last-child)::after{margin:0 7px}
   .azioni{margin-top:24px;gap:12px}
   .azioni .btn{width:100%}
+  .btn{padding:12px 14px}
   .solo-pc{display:none}
   .solo-tel{display:block}
   .azioni.solo-tel{display:flex}
@@ -294,7 +302,9 @@ a:hover .freccia{transform:translateX(3px)}
   .capo p{font-size:17px}
   .passi{grid-template-columns:1fr;gap:16px}
   .passo{padding:24px 20px}
-  .passo h3,.passo .n{font-size:20px}
+  .passo h3{font-size:20px}
+  .passo .n{display:inline;margin:0 6px 0 0}
+  #assistenza .capo > p{display:none}
   .passo p{font-size:16px}
   .schede{grid-template-columns:1fr;gap:20px}
   .scheda .vetrina{aspect-ratio:auto;height:190px}
@@ -356,12 +366,17 @@ a:hover .freccia{transform:translateX(3px)}
   .fila .s1200{width:96px}
   .fila .s1000{width:101px}
 }
-@media (max-width:359px){
+@media (max-width:379px){
   .testata .cont{gap:6px}
-  .marchio img{width:84px}
-  .testata .tel-testata{font-size:14px;padding:8px}
-  .lingua,.apri-menu{min-width:44px;font-size:14px}
-  .apri-menu{padding:0 6px}
+  .marchio img{width:88px}
+  .testata .tel-testata{font-size:15px;padding:8px}
+  .lingua{min-width:40px}
+  .apri-menu{padding:0 6px;font-size:15px}
+}
+@media (max-width:339px){
+  .marchio img{width:72px}
+  .testata .tel-testata{font-size:14px;padding:6px}
+  .lingua,.apri-menu{font-size:14px;min-width:40px}
   .apertura h1{font-size:34px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -429,26 +444,22 @@ a:hover .freccia{transform:translateX(3px)}
     </div>
     <ol class="passi">
       <li class="passo">
-        <span class="n">1</span>
-        <h3>Chiamateci</h3>
+        <h3><span class="n">1</span> Chiamateci</h3>
         <p>Tenete pronto il modello, scritto sul pannello della stazione.</p>
         <a class="btn pieno" href="tel:+390499003655">Chiama <span class="num">049 9003655</span></a>
       </li>
       <li class="passo">
-        <span class="n">2</span>
-        <h3>Assistenza remota</h3>
+        <h3><span class="n">2</span> Assistenza remota</h3>
         <p>Scarica la nostra versione di TeamViewerQS per ricevere assistenza remota: avviatelo sul computer della stazione e dateci l'ID che compare.</p>
         <a class="btn bordo" href="http://www.martoranaelettronica.com/download/TeamViewerQS.exe?v=15" download>Scarica TeamViewerQS</a>
       </li>
       <li class="passo">
-        <span class="n">3</span>
-        <h3>Scriveteci</h3>
+        <h3><span class="n">3</span> Scriveteci</h3>
         <p>Modello, matricola e una foto del display o dell'errore: l'email si apre già pronta.</p>
         <a class="btn bordo" href="mailto:martorana@martoranaelettronica.com?subject=Assistenza%3A%20stazione%20di%20collaudo%20installata&amp;body=Buongiorno%2C%0Achiedo%20assistenza%20su%20una%20vostra%20stazione.%0A%0AModello%20%28scritto%20sul%20pannello%29%3A%0AMatricola%3A%0ACosa%20succede%20%28errore%2C%20scarti%2C%20taratura%2C%20ricambio%29%3A%0ALa%20linea%20%C3%A8%20ferma%3F%20%28s%C3%AC%20o%20no%29%3A%0A%0AAllego%20una%20foto%20del%20display%20o%20dell%27errore.%0A%0AAzienda%20e%20sede%20della%20linea%3A%0ANome%20e%20telefono%3A%0A">Scrivete all'assistenza</a>
       </li>
       <li class="passo">
-        <span class="n">4</span>
-        <h3>Area clienti</h3>
+        <h3><span class="n">4</span> Area clienti</h3>
         <p>Manuali e programmi riservati a chi ha una nostra stazione, e l'<a class="altro" href="http://www.martoranaelettronica.com/index.php/it/area-download">area download</a>.</p>
         <a class="btn bordo" href="http://www.martoranaelettronica.com/index.php/it/area-riservata">Accedi all'area riservata</a>
       </li>
@@ -657,7 +668,7 @@ a:hover .freccia{transform:translateX(3px)}
       <h2 id="t-en">Custom test stations, since 1973</h2>
       <p>We design and build computerised end-of-line test stations, with our own hardware and software, for customers in Italy and in Europe, South America, Africa and Asia.</p>
       <div class="azioni">
-        <a class="btn pieno" href="mailto:martorana@martoranaelettronica.com?subject=Enquiry%3A%20custom%20test%20station&amp;body=Hello%2C%0Ahere%20is%20our%20case%20for%20a%20test%20station.%0A%0AProduct%20to%20be%20tested%3A%0AStandard%20%28IEC%2C%20EN%2C%20VDE%2C%20UL...%29%3A%0ATests%20and%20values%3A%0ALine%20rate%20%28pieces%20per%20hour%29%3A%0AMains%20supply%20%28V%2C%20Hz%29%3A%0A%0AAttached%3A%20product%20data%20sheet%2C%20drawing%20or%20photo.%0A%0AName%3A%0ACompany%20and%20country%3A%0APhone%3A%0A">Email us your product specifications</a>
+        <a class="btn pieno" href="mailto:martorana@martoranaelettronica.com?subject=Enquiry%3A%20custom%20test%20station&amp;body=Hello%2C%0Ahere%20is%20our%20case%20for%20a%20test%20station.%0A%0AProduct%20to%20be%20tested%3A%0AStandard%20%28IEC%2C%20EN%2C%20VDE%2C%20UL...%29%3A%0ATests%20and%20values%3A%0ALine%20rate%20%28pieces%20per%20hour%29%3A%0AMains%20supply%20%28V%2C%20Hz%29%3A%0A%0AAttached%3A%20product%20data%20sheet%2C%20drawing%20or%20photo.%0A%0AName%3A%0ACompany%20and%20country%3A%0APhone%3A%0A">Email us your specifications</a>
         <a class="btn bordo" href="tel:+390499003655">Call <span class="num">+39 049 9003655</span></a>
       </div>
       <p class="ap-link">Remote assistance: <a href="http://www.martoranaelettronica.com/download/TeamViewerQS.exe?v=15" download>download our TeamViewerQS</a> or <a href="mailto:martorana@martoranaelettronica.com?subject=Remote%20assistance%3A%20installed%20test%20station&amp;body=Hello%2C%0Awe%20need%20assistance%20on%20one%20of%20your%20stations.%0A%0AModel%20%28printed%20on%20the%20panel%29%3A%0ASerial%20number%3A%0AWhat%20happens%20%28error%2C%20rejects%2C%20calibration%2C%20spare%20part%29%3A%0A%0AAttached%3A%20a%20photo%20of%20the%20display%20or%20of%20the%20error.%0A%0ACompany%20and%20country%3A%0AName%20and%20phone%3A%0A">email our service team</a>.</p>
@@ -773,7 +784,9 @@ a:hover .freccia{transform:translateX(3px)}
       } else if (i.value.trim()) righe.push(i.name + ': ' + i.value.trim());
     });
     av.textContent = 'Si apre il programma di posta: se avete scelto dei file, aggiungeteli come allegati prima di inviare.';
-    location.href = 'mailto:martorana@martoranaelettronica.com?subject=' + encodeURIComponent(tipo + ' (dal sito)') + '&body=' + encodeURIComponent(righe.join('\n'));
+    var url = 'mailto:martorana@martoranaelettronica.com?subject=' + encodeURIComponent(tipo + ' (dal sito)') + '&body=' + encodeURIComponent(righe.join('\n'));
+    f.setAttribute('data-email', url);
+    location.href = url;
   });
 })();
 </script>

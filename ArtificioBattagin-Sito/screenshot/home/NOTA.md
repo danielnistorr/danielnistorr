@@ -1,4 +1,71 @@
-# L'Artificio Battagin, home finale "Il miglior vestito" (terza versione, 2/11/2026)
+# L'Artificio Battagin, home
+
+## Livello professionale
+
+Pagina: `sito/index.html` (statica, si apre con file:///; 8.203 px a 1440, 11.168 px a 390). La home di prima (cornice d'apertura con il titolo dentro) è copiata com'era in `_prova/versione-1-originale/` (sito e screenshot). Per questa azienda non c'era una "versione 1 con l'uso": l'uso viene direttamente dalla scheda `_prova/uso/SCHEDA.md`, che è stata seguita punto per punto.
+
+Regole seguite: `_metodo/professionale/REGOLE.md`, sezione A per la famiglia B (botteghe artigiane e alimentari), sezione B (difetti delle nostre home), sezione C (15 regole). Riferimenti guardati: le prime schermate a 1440 e 390 di tutti e 14 (in due fogli), le pagine intere di Union e Joseph Brot a pezzi, il foglio `_invio/zona/home/livello-professionale.jpg` e le note di Unicar e Panificio Fornasiero.
+
+Rifare tutto: `bash _prova/script/build_finale.sh` (con `--immagini` rifà anche `sito/img/` con `pro_img.py`); dentro ci sono gli screenshot (`pro_shoot.mjs`, JPEG senza PNG temporanei) e i controlli (`pro_controlli.mjs`). Elementi che escono a destra: `node _prova/script/pro_largo.mjs <index.html> <larghezza>`. Pagina lunga in colonne per guardarla: `python3 -I _prova/script/pro_mosaico.py`.
+
+Screenshot (stessi nomi di prima): `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg` (da "Orari e dove siamo" al piede). Guardati a pezzi a 1440 e 390 accanto ai riferimenti, e interi a 320, 768, 1024, prima schermata a 1920.
+
+### Che cosa è cambiato, in breve
+
+- **Il negozio torna al centro.** Il titolo dice il mestiere e il luogo: "NEGOZIO DI BELLE ARTI A PADOVA", in maiuscolo come i titoli della famiglia B (Gambetta 88 px a 1440, 40 px a 390). L'occhiello è la prova: "Dagli anni '70 · 1000 mq in via della Croce Rossa". Sotto, una riga con i reparti, le cornici, i corsi e il loro claim "Per i professionisti e gli amanti dell'arte".
+- **Il titolo di prima resta, al suo posto.** "Ogni quadro ha bisogno del suo miglior vestito" (post del 30/03/2023) è il titolo della sezione Cornici. In apertura diceva solo un reparto: la scheda lo segna come il primo difetto ("il negozio sparisce").
+- **La prima schermata fa i compiti della scheda** (390x844, senza scorrere): testata con logo, "049 7811043" e Menu; la striscia della foto vera degli scaffali; titolo; "Orari di oggi" con il link agli orari della settimana; Chiama 049 7811043 a tutta larghezza; WhatsApp e Come arrivare affiancati; "Via della Croce Rossa 5/a · parcheggio privato"; il campo "Cerca marca o prodotto" che apre i risultati dello shop. A 1440 le stesse cose in due colonne con la foto del reparto a destra (608x456, sorgente 749 px).
+- **Struttura della famiglia B adattata**: testata con "Orari e dove siamo" come prima voce; apertura; tre porte con foto loro (Belle arti, Cornici su misura, Corsi Artinpratica); manifesto e sei numeri su blocco verde; Belle arti con reparti e marche, la fascia delle marche in grande, ricerca e spedizioni; Cornici su misura su fondo parete, con Matteo e tre passi; i prossimi corsi con "Iscriviti" e le ultime tre news; Chi siamo con le cinque sedi; "Orari e dove siamo" con la scheda del negozio e il modulo "Scrivici" (tipo di richiesta); piede in quattro colonne.
+- **Tolto**: la cornice disegnata con i listelli ritagliati, i quattro profili del gesto, la firma sul passepartout, la cassetta-cavalletto scontornata sul colore del muro, il fondo turchese su tutta la pagina, la newsletter nel piede (non inviava nulla; in pagina resta un solo modulo).
+
+### Esito regola per regola (controlli di `_prova/script/pro_controlli.mjs`, 62 su 62, e screenshot)
+
+1. **Telefono in testata fissa, sempre visibile**: PASSA. Testata `sticky`; a 390, a metà pagina, il bottone "049 7811043" è a 12 px dall'alto, alto 48 px, e si tocca; da 400 px dice "Chiama 049 7811043". "Orari e dove siamo" è la prima voce del menu (famiglia B). 5 link `tel:` (tutti allo 049 7811043).
+2. **Prima schermata con mestiere, luogo, prova, azione**: PASSA a 1440x900 e 390x844. Mestiere e luogo nel titolo, prova nell'occhiello (anni '70, 1000 mq), "Chiama 049 7811043" pieno; a 390 a tutta larghezza (350 su 350 px).
+3. **Immagine vera nell'apertura**: PASSA. Il reparto belle arti con gli scaffali pieni sul pavimento blu (`2023-05_negozio-bellearti-2.jpg`, servizio fotografico del 2023): a 1440 in 4:3 a 608 px (sorgente 749 px, mai ingrandita), a 390 in striscia sotto la testata.
+4. **Zero repertorio**: PASSA. "indicativ" 0; nessuna immagine da Unsplash o Pexels; nessuna illustrazione.
+5. **Foto in serie**: PASSA. Otto foto, tutte dello stesso servizio del 2023 (stessa luce di vetrata, grandangolo, il pavimento blu che torna); due formati in pagina (4:3 e 16:9, più la striscia dell'apertura sul telefono); una didascalia sola (Matteo) su otto foto.
+6. **Palette dal marchio**: PASSA. Due colori: il verde di BATTAGIN nel logo (#17633A) per bottoni, link, blocco dei numeri; il turchese della parete degli angolari (#D9E8E4) per Cornici e "Orari e dove siamo". Neutri: bianco, inchiostro #1F1B17, grigio #505A58, grigio chiarissimo del modulo. Niente beige: il fondo è bianco.
+7. **Scala corta e leggibile**: PASSA. 1440: 88, 56, 32, 24, 19, 16, 14 px (7 misure); 390: 40, 32, 24, 17, 16, 14 (6). Testo corrente 19 px a 1440 e 17 a 390; i 14 px solo nella riga legale; titolo 88 px maiuscolo, interlinea 0,98.
+8. **Due famiglie**: PASSA. Gambetta 400 (titoli, numeri, date dei corsi, prezzi, marche) e Switzer 400 e 600 (testo, etichette, bottoni, modulo). Il 500 di prima è diventato 600, per due pesi distanti.
+9. **Servizi in schede con foto**: PASSA. Tre porte in tre colonne da 760 px (sul telefono righe con la miniatura 4:3 a sinistra), foto 4:3 per tutte (matite numerate, parete degli angolari, spazio Artinpratica), nome, riga utile e link; tutta la scheda è un link alla sua sezione.
+10. **Almeno tre tipi di prove**: PASSA IN PARTE (2 su 4). Ci sono sei numeri veri (1000 mq, anni '70, 5 sedi, oltre 20 anni di Matteo, 22 corsi nel 2026, spedizione gratis oltre 79 euro) e la fascia dei fornitori con la didascalia ("Alcune delle marche che trovi in negozio", 14 marche in Gambetta 56 px, che è anche il gesto di scala della pagina). Recensioni: le 689 recensioni Google (media 4,5) e le frasi dei clienti vengono da un sito terzo (itaglietti.it) e la scheda dice di usarle solo con fonte verificata: non sono in pagina, vanno verificate sul profilo Google con nome del cliente (LEGGIMI). Clienti con il nome e certificazioni: non ne hanno, è un negozio al dettaglio.
+11. **Lavori con un nome**: NON SI APPLICA (negozio al banco, nessuna commessa nelle fonti). Il posto va ai corsi con data, docente e prezzo, e alla storia delle cinque sedi.
+12. **Ritmo a blocchi**: PASSA. Tre blocchi pieni oltre al piede (numeri sul verde, Cornici e "Orari e dove siamo" sulla parete); spazi tra le sezioni 128 px a 1440 e 64 a 390; margini 80 e 20 px.
+13. **Un solo sistema di bottoni**: PASSA. Pieno verde e con il bordo verde, raggio 4 px, alti 52 px (48 in testata e nelle scelte del modulo), testo Switzer 600 16 px; i quattro bottoni di chiamata hanno il numero. Il bottone "Cerca" non è più incollato al campo (aveva un raggio diverso).
+14. **Modulo e "dove e quando"**: PASSA, con un limite. Modulo in home con "Che cosa ti serve?" (Un prodotto, Una cornice su misura, Un corso, Altro), nome, telefono, email e messaggio: compone un'email a negozio@artificiobattagin.it con oggetto "Dal sito: <tipo>, <nome>" (da collegare a un servizio, LEGGIMI). La scheda del negozio ha "Indicazioni" (Google Maps, percorso), Chiama, WhatsApp, email, parcheggio, ingresso accessibile. Nessun iframe. **Limite**: la tabella degli orari è pronta nello script (`ORARI`, provata con dati di prova: martedì alle 10 "Aperto ora, fino alle 12.30", sette righe con oggi in grassetto) ma resta vuota perché gli orari non sono pubblicati; finché mancano la pagina dice di chiamare o scrivere su WhatsApp.
+15. **Piede completo**: PASSA. Logo, claim, A.B. s.r.l., P.IVA 04191710286, REA PD 369492; Negozio, Artinpratica (con Instagram e Facebook), Contatti (telefono, WhatsApp, email e indirizzo cliccabili, link agli orari); cinque link legali; quattro colonne a 1440, testo di almeno 14 px. Certificazioni: non ne hanno.
+
+### Uso: le prove della scheda
+
+- Visitatore 1 (390x844, senza scorrere): "belle arti" e "Padova" nel titolo; posto degli orari di oggi con link alla settimana; `tel:+390497811043` alto 48 px; `https://wa.me/393802308602`; la mappa e "parcheggio privato"; il campo di ricerca. "Liquitex" nel campo porta a `https://artificiobattagin.it/?s=Liquitex&post_type=product`. Entro due schermate: sei marche (scheda Belle arti) e "spedizione 10 €, gratis oltre 79 €" (sotto la ricerca). Tutte OK.
+- Visitatore 2: "Cornici su misura" a 1.141 px su 390 (seconda schermata); nella sezione tre passi, WhatsApp con il messaggio già scritto ("Ciao, vorrei una cornice su misura..."), nessun prezzo o tempo inventato e "Prezzo e tempi te li dice Matteo, guardando l'opera o la foto".
+- Visitatore 3: "Corsi" nel menu a 1440 (e nel Menu a 390, e la porta "Corsi Artinpratica"); i tre corsi letti dal calendario del sito il 3/11/2026 (`_prova/crawl/eventi-2026-11-03.json`) con data, titolo, docente, orari, posti, materiale e prezzo; "Iscriviti" porta alla pagina dell'evento con il ticket; "Tutto il calendario" e "Il materiale che serve per i corsi lo trovi in negozio".
+- Per tutti: il tu ovunque, nessun "Chiamate", "Provate", "troverete"; nessun popup; nessuno scorrimento orizzontale a 320, 360, 375, 390, 430, 600, 768, 1024, 1100, 1280, 1440, 1920, 2560.
+
+### Controlli generali
+
+- Sovrapposizioni: nessuna negli screenshot a 320, 390, 768, 1024, 1440, 1920. Corretti durante il lavoro: il bottone Menu che usciva di 7 px a 375 e 390 (ora "Chiama" accanto al numero compare da 400 px), la colonna Contatti del piede a 360 (ora a tutta larghezza sotto i 760 px), la griglia dell'apertura e quella dello shop a 320, il calendario a quattro colonne troppo stretto a 768 (ora da 1000 px), il suggerimento del campo di ricerca tagliato a 390 (sotto i 430 px diventa "Cerca marca o prodotto").
+- Collegamenti: `tel:+390497811043`, `https://wa.me/393802308602` (anche con il testo per le cornici), `mailto:negozio@artificiobattagin.it`, una sola mappa (`google.com/maps/dir/` su "L'Artificio Battagin, Via della Croce Rossa 5/a, 35129 Padova"); il vecchio 049 8721644 non c'è. Le pagine del sito puntano a `https://artificiobattagin.it/...` (indirizzi di oggi), così funzionano anche da file:///.
+- Nessun errore in console, nessun file mancante (tolti i preload dei caratteri, che da file:/// fallivano per il crossorigin).
+- Contrasti: grigio 7,1:1 sul bianco e 5,6:1 sulla parete; verde 7,3:1 sul bianco e 5,8:1 sulla parete; testo chiaro sul verde 6,1:1.
+- Nessun carattere U+2014 in pagina, in questa nota, nel LEGGIMI, nei crediti e negli script nuovi.
+
+### Caratteri e licenze
+
+Gambetta 400 e Switzer 400 e 600, Indian Type Foundry, da Fontshare, **ITF Free Font License** (uso commerciale libero, anche sul web; i file non si possono rivendere), serviti dalla pagina in `sito/fonts/` in woff2. Switzer 600 scaricato il 3/11/2026 da Fontshare (copia in `assets/fonts-scaricati/`).
+
+### Respinti o non applicati, apposta
+
+- Apertura a tutto schermo con la foto (famiglia B, punto 2): le foto del servizio 2023 sono online a 1000 px; a tutta pagina a 1440 sarebbero ingrandite. Restano a 608 px (sorgente 749) e in striscia sul telefono.
+- Facciata del negozio nella scheda: non c'è una foto della facciata; al suo posto l'open space con le tele.
+- Recensioni con nome: vedi regola 10.
+- Novità con foto: le foto dei post sono still life di marche altrui o locandine; restano tre titoli con la data.
+- Newsletter: tolta dal piede (un solo modulo in pagina; il popup del 15% va confermato, LEGGIMI).
+
+## Versione precedente: "Il miglior vestito" (terza versione, 2/11/2026)
+
+Quello che segue descrive la versione copiata in `_prova/versione-1-originale/` (sito e screenshot), prima del livello professionale.
 
 Pagina: `sito/index.html` (6.018 px a 1440 con il piede, 7.360 px a 390). Rigenerazione: `bash _prova/script/build_finale.sh` (immagini, caratteri, screenshot, prova del gesto con clic, tastiera e tocco, larghezze, collegamenti, segnali).
 

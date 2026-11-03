@@ -1,6 +1,6 @@
 # Crediti delle immagini
 
-Aggiornato il 24 ottobre 2026.
+Aggiornato il 3 novembre 2026 (home livello professionale, in fondo).
 
 ## Foto esterne in `esterne/` [SEGNAPOSTO, DA SOSTITUIRE con foto vere di La Termica]
 
@@ -34,6 +34,24 @@ Scaricate il 24/10/2026 dalla libreria media di WordPress di `https://www.laterm
 - PDF in `originali/pdf/`: solo le due informative privacy (versione "Data Agg. 10/2023"). I 15 cataloghi tecnici del fornitore (17 MB) li ho letti e poi tolti dal disco: restano agli URL `https://www.latermica.it/wp-content/uploads/2014/05/01-...pdf` fino a `15-...pdf`.
 - Loghi, copiati a piena risoluzione con nome leggibile: `originali/logo-completo-3000x938.jpg` (il migliore), `originali/logo-marchio-1500.jpg` (solo simbolo), `originali/logo-testata-400x125.jpg`, `originali/logo-favicon-32.ico`.
 
-## Home finale (sito/), aggiornato il 24/10/2026
+## Versione 1 della home (24/10/2026), ora in `_prova/versione-1-originale/`
 
 La home finale usa solo foto e logo di La Termica, nessuna foto di repertorio. L'apertura parte dall'originale a piena risoluzione di `CAM00223.jpg` (2592x1944), scaricato da `https://www.latermica.it/wp-content/uploads/2014/06/CAM00223.jpg` in `_prova/crawl/full/CAM00223.jpg`; le altre foto vengono da `originali/sito/`: `lavori-ultimati__2014-06-DSC00639.jpg` (palazzina), `camini-autoportanti__2014-06-DSC00479.jpg` (villa), `camini-autoportanti__2014-06-DSC03630.jpg` (traliccio), `armadi__2014-06-DSC01936.jpg` (armadio di tre quarti), `camini-autoportanti__2014-06-IMG_0099.jpg` (chiusura); il logo da `originali/logo-completo-3000x938.jpg`. Le foto in `esterne/` non compaiono nella home finale. Nella rifinitura sono uscite `CAM00226` (stesso cantiere dell'apertura), `Immagine-077` (video ispezione) e `DSC01934` (armadio di fronte).
+
+## Home finale (sito/), livello professionale, aggiornato il 3/11/2026
+
+Decisione del committente sulle foto: "niente" repertorio. La home usa solo foto e logo di La Termica, prese da `originali/sito/` (copie a 2000 px della loro libreria media) e da `originali/logo-completo-3000x938.jpg`. Nessuna foto di `esterne/` (Unsplash e Pexels) è usata, né in pagina né in `sito/img/`: restano qui solo come documentazione dei segnaposto visti il 24/10 e si possono cancellare. Nessuna immagine generata, nessun disegno.
+
+| In `sito/img/` | Da `originali/sito/` | Trattamento |
+|---|---|---|
+| `apertura-560.webp`, `apertura-1040.webp` (4:5), `apertura-tel-780.webp` (3:2) | `lavori-ultimati__2014-06-DSC04042.jpg` | targa del furgone sfocata; livelli e saturazione al 94 % |
+| `lav-condominio-420/840.webp` | `lavori-ultimati__2014-06-DSC03569.jpg` | taglio 4:5 |
+| `lav-autoportante-420/840.webp` | `camini-autoportanti__2014-06-DSC03636.jpg` | taglio 4:5 |
+| `lav-rame-420/840.webp` | `lavori-ultimati__2014-06-CAM00223.jpg` | taglio 4:5 sulle tre canne |
+| `videoispezione-600/1000.webp` | `camini-autoportanti__2014-06-Immagine-077.jpg` | taglio 4:3 centrale |
+| `magazzino-700/1200.webp` | `magazzino__2014-06-DSC04701.jpg` | 4:3 intera |
+| `armadio-700/1200.webp` | `armadi__2014-06-DSC01936.jpg` | 4:3 intera, non scontornata |
+| `sede-600/1200.webp` | `la-nostra-sede__2014-05-DSC01925.jpg` | 4:3 intera, mostrata al massimo a 600 px |
+| `logo-negativo-640.png` | `logo-640.png` (dal logo a 3000 px) | scritta nera "camini inox" portata al bianco per il piede scuro |
+
+Tutte le foto hanno lo stesso trattamento leggero (livelli, saturazione al 94 %, nitidezza), con il cielo vero: niente scontorni, niente bianco e nero, niente cieli sostituiti. Tolte da `sito/img/` le immagini della versione 1 (`rame-*`, `lav-palazzina-*`, `lav-ville-*`, `lav-traliccio-*`, `vapore-*`, `armadio-600/900/1199`), conservate in `_prova/versione-1-originale/sito/img/`. Da confermare con l'azienda chi ha scattato le foto e se si possono pubblicare con i palazzi riconoscibili; le foto da rifare sono nel LEGGIMI.

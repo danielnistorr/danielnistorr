@@ -1,59 +1,72 @@
 # San Marco Timbri: proposta di nuova home
 
-Proposta non richiesta di una nuova homepage per San Marco Timbri di Tosato Andrea (sanmarcotimbri.it, Padova). Solo la home.
+Proposta non richiesta di una nuova homepage per San Marco Timbri di Tosato Andrea (sanmarcotimbri.it, Padova). Solo la home. Versione di oggi: livello professionale (3 novembre 2026).
 
 ## Dove sono le cose
 
-- `sito/index.html`: la home finale (si apre con file:///). `sito/img/`: solo le immagini usate, JPEG e WebP in più larghezze. `sito/fonts/`: Encode Sans e la sua licenza (`OFL.txt`).
-- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, e `NOTA.md` (idea, cosa è cambiato, schermate, caratteri, colori, interazione, foto, controlli).
-- `_prova/script/build_finale.sh`: rifà tutto (scontorno del leone, immagini, pagina, caratteri, screenshot). I suoi pezzi: `fin_leone.py`, `fin_immagini.py`, `index.sorgente.html` (la pagina), `fin_shoot.mjs`. Prove a parte: `fin_gesto.mjs` (gesto, tastiera, tocco, collegamenti), `fin_larghezze.mjs` (scorrimento orizzontale da 320 a 2560), `fin_2x.mjs` (dettaglio a 2x), `fin_console.mjs` (errori in console). `fin_scontorno.py` è della versione precedente (timbro di repertorio) e non è più usato.
-- `01-analisi.md`: fatti con le fonti. `assets/CREDITI.md`: origine e licenza di ogni immagine. `_prova/home/a` e `b`: i due prototipi. `_prova/cieco.json`: il giudizio cieco sulla versione precedente.
+- `sito/index.html`: la home (si apre con file:///). In `sito/img/` ci sono solo le immagini usate, in WebP a due larghezze; in `sito/fonts/` Encode Sans e la sua licenza (`OFL.txt`).
+- `screenshot/home/`: `home-1440.jpg`, `home-1440-prima-schermata.jpg`, `home-390.jpg`, `home-390-prima-schermata.jpg`, `chiusura-1440.jpg`, e `NOTA.md` (sezione "Livello professionale": esito delle 15 regole, prove d'uso, respinti, caratteri, foto).
+- `_prova/script/build_finale.sh`: rifà tutto. I suoi pezzi:
+  - `pro_img.py`: immagini, trattamento comune;
+  - `index.sorgente.html`: la pagina;
+  - `fin_shoot.mjs`: screenshot;
+  - `pro_controlli.mjs`: le 15 regole e le prove d'uso della scheda.
+  Prova a parte: `pro_largo.mjs` (scorrimento orizzontale). `pro_provini.py` fa i provini delle foto candidate. Gli script `fin_*` e `proto_*` sono delle versioni precedenti e non sono più usati dalla build.
+- `_prova/versione-1-originale/`: la home e gli screenshot di prima ("L'impronta", fondo blu e leone LEO).
+- `_prova/uso/SCHEDA.md`: chi apre il sito, che cosa viene a fare, l'identità. `01-analisi.md`: fatti con le fonti. `assets/CREDITI.md`: origine e licenza di ogni immagine.
 
-## Dati da confermare (in pagina non c'è nulla di dubbio)
+## Da chiedere all'azienda (in pagina non c'è nulla di dubbio)
 
-- **Indirizzo**: in pagina c'è via G. A. Longhin 91, 35129 Padova (sito e registri). Molti elenchi (coobiz, 2gis, trovainitalia) danno ancora via Domenico Turazza 42, 35128 Padova con lo stesso telefono: va chiesto quale delle due è la vecchia sede e, se serve, aggiornata la scheda di Google.
-- **Orari** del laboratorio e se si riceve al banco o su appuntamento: oggi non ci sono; vanno nella chiusura, sotto l'indirizzo.
-- **Anno di inizio** dell'attività (la P.IVA risulta attiva da 11-20 anni; il sito dice solo "da molti anni"): con l'anno la pagina avrebbe il contenuto datato che oggi manca.
-- **Macchine vere** (marca e tipo della CNC, della fresa, del laser, della stampante digitale): "I file li prepariamo noi" usa solo la loro frase generica.
-- Se **plexiglass, insegne luminose e casellari** si fanno in laboratorio o si comprano e si personalizzano.
-- Che il **leone traforato**, le **lettere in ottone brunito** e la **targa in corten** siano lavori loro e il permesso di usarli (in pagina le didascalie dicono solo cosa sono, non "un nostro lavoro"); per il leone, per chi è stato fatto e se il cliente è d'accordo a vederlo in apertura; per la targa, il nome del cliente e l'anno, se si possono dire.
-- Se il **blu dell'apertura e del piede** va bene come colore della casa (oggi il loro sito usa il rosso #FF0000): il blu è quello dell'inchiostro da timbri; se preferiscono, lo stesso impianto regge con un loro colore d'inchiostro.
-- Il **WhatsApp** da mostrare (oggi 376 167 3361) e gli eventuali **social** veri: le icone del vecchio piede non portano a nulla, quindi nel piede non c'è "Seguici".
-- **PEC e REA**, se vogliono metterli nella riga legale (un'impresa individuale non ha capitale sociale).
-- Se vogliono la **newsletter**, chi la scrive e con quale servizio (sotto).
-- Se le 16 pagine "timbri-a-<comune>" vanno tenute.
+- **Orari** del laboratorio, e se si riceve al banco o su appuntamento. L'unico dato pubblico è 2gis (8.30-12.30 e 15.00-19.00), sulla scheda della vecchia sede. Quando sono confermati, si scrivono nella costante `ORARI` in cima allo script della pagina, per esempio `{1:[['08:30','12:30'],['15:00','19:00']], ...}`. La pagina mostra allora "Aperto ora" o "Ora chiuso" con le fasce di oggi nell'apertura e la tabella della settimana in "Quando passare". Finché è `null` dice "Prima di passare chiamateci".
+- **Indirizzo**: in pagina c'è via G. A. Longhin 91, 35129 Padova (sito e registri). 2gis, Yelp, coobiz e trovainitalia danno ancora via Domenico Turazza 42, con lo stesso telefono. Va aggiornata la scheda di Google Maps e degli elenchi. Il link "Indicazioni" porta all'indirizzo, non al nome dell'attività, apposta.
+- **PEC**, e se sono **ancora sul MEPA**: per gli enti servono. Alcuni elenchi riportano sanmarcotimbri@internetpec.it, visto solo in un riassunto di ricerca. In pagina c'è solo il fatto del 2018 (fornitori invitati da Agenzia delle Entrate alla gara MEPA per i timbri): va chiesto se vogliono vederlo scritto.
+- **Fattura elettronica e codice destinatario** (o SDI), se vogliono metterli tra i dati per gli uffici.
+- **Spedizione**: si spedisce o solo ritiro? Il modulo e l'email chiedono "ritiro o spedizione" (lo chiedeva la scheda), ma non promettono nulla.
+- **Tempi tipici** (in giornata, 24 ore, qualche giorno) e un **prezzo indicativo** di un autoinchiostrante: non ce ne sono di pubblici, quindi in pagina non c'è nessun tempo di consegna.
+- **Parcheggio** davanti al laboratorio, se c'è.
+- **Anno di inizio** dell'attività: il sito dice solo "da molti anni"; con l'anno l'apertura avrebbe una prova più forte.
+- **Recensioni**: non ce n'è nessuna leggibile (Maps 429, Facebook solo con login, 2gis e Yelp vuoti). Se hanno recensioni Google, o clienti che si possono nominare (studi, condomini, enti), sono la prova che manca (regola 10).
+- **Lavori con un nome**: per due o tre lavori su misura, il cliente o il luogo, l'anno e due dati (materiale, misura, pezzi), se si possono dire (regola 11).
+- **Che le foto siano loro e il permesso di usarle**, soprattutto quando mostrano il lavoro di un cliente: la targa in corten (un resort), l'insegna traforata col cavallo e la targa TOILETTES 101.
+- **Macchine vere** (marca e tipo della CNC, del laser, della fresa, della stampante): ora c'è solo la loro frase generica.
+- Se **casellari, plexiglass e insegne luminose** si fanno in laboratorio o si comprano e si personalizzano.
+- Il **logo in vettoriale** e il nome del carattere della scritta (somiglia a Comfortaa): oggi testata e piede usano i raster 641x114 e 256x200.
+- I **social** veri, se ci sono: le icone del vecchio piede non portano a nulla, quindi nel piede non ci sono.
+- Se le 16 pagine "timbri-a-<comune>" vanno tenute: i comuni sono elencati in "Dove lavoriamo".
 
-## Newsletter: va collegata
+## Modulo di richiesta: va collegato
 
-Nel piede c'è la fascia "Novità e promozioni" con campo email, bottone "Iscriviti" e casella del consenso privacy. Oggi **non invia nulla**: controlla solo email e consenso e scrive un messaggio di cortesia. Per farla funzionare va collegata a un servizio (Brevo, Mailchimp, MailerLite o il modulo del CMS) con doppia conferma, e l'informativa privacy deve citare il servizio scelto. Se la newsletter non interessa, si toglie il blocco `.news` e il piede resta in ordine.
+Il modulo "Chiedete un timbro o un preventivo" chiede il tipo di richiesta in quattro caselle (timbro in gomma, timbro in metallo o sigillo, targa o pulsantiera, altro lavoro su misura), poi nome, ragione sociale, telefono, email, testo riga per riga o descrizione, misura o modello, quantità, ritiro o spedizione.
 
-## Pagine del sito nuovo richiamate dalla home
+Oggi **non invia nulla da solo**: compone un'email (mailto a info@sanmarcotimbri.it con oggetto "tipo, ragione sociale o nome" e tutte le voci) e il visitatore la manda dal suo programma di posta, allegando lì logo e foto. Per il sito vero va collegato a un servizio di invio:
+- il modulo del CMS (per esempio Contact Form 7 su WordPress, che usano già);
+- oppure un servizio come Formspree o Brevo.
+Serve anche un **campo per allegare file** (foto del vecchio timbro, logo, disegno: JPG, PNG, PDF), una risposta di conferma e l'informativa privacy che cita il servizio scelto. Il bottone "Prepara l'email" diventa "Invia la richiesta".
 
-Dalla home e dal piede partono link a queste pagine, da creare:
-- `lavorazioni/targhe/`, `lavorazioni/incisioni/`, `lavorazioni/segnaletica/`, `lavorazioni/insegne/`, `lavorazioni/casellari-postali/`, `lavorazioni/premiazioni/`, `lavorazioni/pulsantiere/`, `lavorazioni/vetrinistica/`, `lavorazioni/plexiglass/`;
-- `idee-regalo/calligrafia/`, `idee-regalo/ceralacca/`, `idee-regalo/penne-timbro/`;
-- `chi-siamo/`, `novita/` (Promozioni e novità), `privacy/`, `cookie/`.
-Timbri, Come lavoriamo e Contatti portano alle sezioni della home (`#timbri`, `#metodo`, `#contatti`); "Prova la tua impronta" porta a `#impronta`.
+Anche i bottoni "Scrivi a info@sanmarcotimbri.it" e "Email con le voci già scritte" aprono un'email con oggetto "Richiesta timbro" e le voci da compilare; i bottoni WhatsApp aprono la chat con 376 167 3361 con un messaggio già avviato, diverso per ogni lavoro.
 
-## Foto da rifare dal vero
+## Pagine richiamate dalla home
 
-Una giornata di still life con luce laterale morbida (finestra o softbox da sinistra, pannello bianco a destra), fotocamera su cavalletto, almeno 3000 px sul lato lungo, fuoco su tutto il pezzo (diaframma chiuso o più scatti uniti):
-1. **Apertura**: il leone traforato in ottone cromato, di profilo, steso su un cartoncino neutro e fotografato dall'alto in piano (niente prospettiva), con una luce che faccia brillare le linee incise; meglio ancora su fondo da scontornare. Oggi viene da uno scatto di 1000 px su cartone con segni a matita: a 1x è nitido, su schermi 2x è morbido. Con lo scatto nuovo si può allargare fino a circa 900 px a 1440.
-2. **Le lettere in ottone brunito** in macro, stessa luce (oggi 1000 px).
-3. **Il banco di via Longhin** con la CNC o il laser al lavoro e le mani di Andrea Tosato su un pezzo appena inciso: darebbe a "I file li prepariamo noi" la sua foto (oggi è solo testo, per non usare macchine di repertorio).
-4. **La targa in corten in opera** rifatta più grande (oggi 666 px di altezza, mostrata alla sua misura vera), o un'altra targa loro montata, per la chiusura; oppure la vetrina o la porta del laboratorio.
-5. Utili per le pagine interne: un punzone in ottone con il suo segno a caldo, un timbro in metallo con la sua impronta d'inchiostro, una pulsantiera in pietra, una targa in plexiglass sabbiato.
+Tutti i link della home portano a sezioni della home stessa (`#dove`, `#timbri`, `#su-misura`, `#metodo`, `#enti`, `#scrivi`), tranne due pagine da creare: `privacy/` e `cookie/` (oggi gestite con iubenda).
+
+## Foto da fare dal vero
+
+Il materiale loro è fatto di scatti da banco a 1000 px, con luci e fondi diversi: per una serie vera serve una giornata di fotografia.
+- **Come**: un solo fotografo e una sola luce per tutto. Luce laterale morbida (finestra o softbox da sinistra, pannello bianco a destra), fotocamera su cavalletto, almeno 3000 px sul lato lungo, fuoco su tutto il pezzo, sempre lo stesso fondo (carta grigio chiaro neutro per gli oggetti).
+- **In ordine di importanza**:
+  1. **Il laboratorio e chi ci lavora**: Andrea Tosato al banco con un timbro appena montato o un pezzo appena inciso, le mani al lavoro, la CNC o il laser in funzione (la persona guarda il lavoro, non l'obiettivo). È la foto che manca per l'apertura (regola 3) e per "Come funziona".
+  2. **L'ingresso di via Longhin 91**, con l'insegna e il numero civico, di giorno: va nella scheda "Dove siamo", e chi arriva in macchina riconosce il posto.
+  3. **Il banco con i timbri pronti**: autoinchiostranti montati, con l'impronta accanto su carta bianca. Oggi non esiste nessuna foto loro di un timbro in gomma; senza marchio Trodat in primo piano.
+  4. **Il punzone in ottone con il suo segno a caldo** su legno o cuoio, rifatto a 3000 px, per l'apertura (oggi 1000 px).
+  5. **Le sei schede su misura**, rifatte con la stessa luce, in 4:3: una pulsantiera in pietra, una targa in ottone, le lettere in ottone brunito in macro, un'insegna, una segnaletica in opera, una premiazione. In più un casellario postale loro, che oggi manca (ci sono solo foto di catalogo).
+  6. **Un sigillo con la sua ceralacca** e una pressa a secco con il suo rilievo, per la sezione dei timbri.
 
 ## Licenze
 
-- Nessuna foto di repertorio nella home finale. Le foto Pexels scaricate per i prototipi (Pauline Raw, Dana Sredojevic e le altre in `assets/esterne/`) non sono più usate; licenze in `assets/CREDITI.md`.
-- Le foto loro (leone, lettere in ottone, targa in corten) e i loghi vengono dal loro sito: vanno confermati prima di pubblicare.
+- Nessuna foto di repertorio nella home. Le foto Pexels e Unsplash in `assets/esterne/` sono servite solo ai prototipi e non sono usate; licenze in `assets/CREDITI.md`.
+- Le foto in pagina e i loghi vengono dalla libreria media del sito sanmarcotimbri.it e vanno confermati prima di pubblicare.
 - Carattere: Encode Sans, SIL Open Font License 1.1 (uso commerciale libero), servito dalla pagina; testo della licenza in `sito/fonts/OFL.txt`.
-
-## Loghi
-
-Esistono solo raster: `logo-orizzontale-641x114.jpg` (in testata ne uso solo la scritta, in bianco, a 30 px di altezza, 2x) e `logo-verticale-256x200.png` (piede, in bianco sul blu, a 120 px, 2x), con il bianco reso trasparente. Il leone di San Marco con il libro "TARGHE" non si può ricostruire in SVG in modo fedele a questa risoluzione: serve l'originale vettoriale (e il nome del carattere della scritta, che somiglia a Comfortaa). Anche le icone del sito (favicon) vanno rifatte da lì.
 
 ## Collaudo da file
 
-Aperta da file://, la pagina non scrive errori in console (il preload del carattere è stato tolto). Su un server la pagina funziona uguale.
+Aperta da file://, la pagina non scrive errori in console. Il menu sotto i 1100 px si apre con il tocco e si chiude con Esc. Nessuno scorrimento orizzontale da 320 a 1920 px. Su un server la pagina funziona uguale.

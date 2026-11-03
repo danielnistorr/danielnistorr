@@ -49,3 +49,25 @@ Caratteri: `assets/fonts/encodesans-latin.woff2` e `encodesans-latin-ext.woff2` 
 
 La home non usa più nessuna foto di repertorio: il sigillo di Pauline Raw (apertura) e le presse di Dana Sredojevic (fascia) sono stati tolti. Le righe sopra restano come registro dei file scaricati.
 Foto usate, tutte dalla libreria media del sito sanmarcotimbri.it (diritti da confermare con l'azienda): `originali/traforato-in-ottone-cromato.jpg` (apertura, leone scontornato con `_prova/script/fin_leone.py`), `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` (dieci lavorazioni), `originali/targa-in-acciaio-corten.jpg` (chiusura), `originali/logo-orizzontale-641x114.jpg` (solo la scritta, in testata) e `originali/logo-verticale-256x200.png` (piede).
+
+## Home livello professionale, 3 novembre 2026
+
+Decisione del committente sulle foto: "niente" repertorio e niente illustrazioni. La home non usa nessun file di `assets/esterne/`: le righe sopra restano solo come registro dei file scaricati per i prototipi.
+
+Tolte dalla home rispetto al giro del 2 novembre: `originali/traforato-in-ottone-cromato.jpg` (il leone LEO, un lavoro per un cliente, non il loro segno), la foto grande di `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` e `originali/targa-in-acciaio-corten.jpg` nella chiusura. I file derivati (`leone-*.webp`, `ottone-*.jpg`, `corten-*.jpg`, `scritta-bianca.webp`) sono cancellati da `sito/img/`.
+
+Foto usate, tutte dalla libreria media del sito sanmarcotimbri.it (diritti di San Marco Timbri, da confermare; per i lavori fatti per clienti serve anche il loro consenso). Trattamento comune con `_prova/script/pro_img.py` (colore 90 %, contrasto 105 %, nitidezza leggera), WebP a 440 e 800 px (apertura 560 e 760, striscia 390 e 780):
+
+| File originale | Dove | Taglio |
+|---|---|---|
+| `originali/punzone-in-ottone-per-stampa-a-caldo.jpg` | apertura | verticale 760x960 (1440) e striscia 880x440 (telefono) |
+| `originali/pulsantiera-in-pietra-componenti-in-ottone-lucido.jpg` | scheda Pulsantiere | 950x712, senza i bordi |
+| `originali/targa-in-ottone-a-rilievo.jpg` | scheda Targhe | intera, 1000x750 |
+| `originali/scritta-ritagliata-a-rilievo-in-ottone-brunito.jpg` | scheda Incisioni e scritte | 1000x750 dal centro |
+| `originali/insegna-traforata-in-metallo.jpg` | scheda Insegne | 1000x750 |
+| `originali/targa-in-acciaio-corten.jpg` | scheda Segnaletica | 800x600, senza il cielo a destra |
+| `originali/trofeo-in-ottone-base-legno.jpg` | scheda Premiazioni | intera, 1000x750 |
+| `originali/logo-orizzontale-641x114.jpg` | testata | intero, WebP |
+| `originali/logo-verticale-256x200.png` | piede | in bianco (file `logo-verticale-bianco.webp` del giro precedente) |
+
+Nessuna foto generata dall'IA e nessuna di repertorio, quindi nessun conflitto con le altre home della campagna.

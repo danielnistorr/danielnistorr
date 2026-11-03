@@ -93,7 +93,7 @@ b,strong{font-weight:700}
 .apri{display:none}
 
 /* apertura */
-.apertura{padding-top:56px}
+.apertura{padding-top:52px}
 .ap{align-items:start}
 .ap-testo{grid-column:1/7;padding-top:4px}
 .ap-testo .etichetta{color:var(--blu)}
@@ -101,18 +101,18 @@ b,strong{font-weight:700}
 .ap .lead{margin-top:28px;max-width:25em;font-size:var(--t5);line-height:1.5;color:var(--grigio)}
 .ap .bottoni{margin-top:32px}
 .solo-tel{display:none!important}
-.dove{margin-top:36px;border-top:1px solid var(--filetto)}
-.dove a{display:grid;grid-template-columns:150px 1fr auto;gap:4px 16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--filetto);text-decoration:none;font-size:var(--t6)}
+.dove{grid-column:1/-1;margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
+.dove a{display:grid;grid-template-columns:auto 1fr auto;gap:4px 16px;align-items:baseline;padding:16px 0;border-top:1px solid var(--filetto);border-bottom:1px solid var(--filetto);text-decoration:none;font-size:var(--t6)}
 .dove a:hover .dv{color:var(--blu);text-decoration:underline;text-underline-offset:.2em}
 .dove .chi{color:var(--grigio)}
 .dove .dv{font-weight:700}
 .dove .stato{font-weight:400;font-size:var(--t6)}
 .dove .stato.aperto{font-weight:700}
-.ap-foto{grid-column:7/13}
+.ap-foto{grid-column:7/13;align-self:end}
 .ap-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e5e8ea}
 
 /* fila delle aree, in fondo alla prima schermata */
-.aree{margin-top:56px}
+.aree{margin-top:40px}
 .aree ul{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g)}
 .aree a{display:block;height:100%;padding:24px 0 28px;text-decoration:none;border-top:3px solid transparent}
 .aree a:hover{border-top-color:#fff}
@@ -131,7 +131,9 @@ b,strong{font-weight:700}
 .area .marche{margin-top:16px;font-size:var(--t6);line-height:1.5}
 .area .marche b{display:block}
 .area .cap{margin-top:20px;border-top:1px solid var(--filetto)}
-.area .cap-e{padding:12px 0 4px;font-size:var(--t7);color:var(--grigio)}
+.area .cap-e{padding:12px 0 4px;font-size:var(--t7);color:var(--grigio);list-style:none;cursor:pointer}
+.area .cap-e::-webkit-details-marker{display:none}
+.area details.cap[open] .cap-e{cursor:default}
 .area .cap a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;min-height:44px;padding:10px 0;border-bottom:1px solid var(--filetto);text-decoration:none;font-size:var(--t6)}
 .area .cap a:hover{color:var(--blu)}
 .area .cap a span:last-child{color:var(--grigio);white-space:nowrap}
@@ -182,7 +184,7 @@ b,strong{font-weight:700}
 .negozio .stato{margin-top:24px;font-size:var(--t5)}
 .orari{margin-top:16px;width:100%;border-collapse:collapse;font-size:var(--t6)}
 .orari th,.orari td{padding:11px 0;border-top:1px solid var(--filetto);text-align:left;vertical-align:baseline;font-weight:400}
-.orari td{text-align:right;font-variant-numeric:tabular-nums lining-nums}
+.orari td{text-align:right}
 .orari tr:last-child th,.orari tr:last-child td{border-bottom:1px solid var(--filetto)}
 .orari tr.oggi th,.orari tr.oggi td{font-weight:700}
 .orari tr.oggi th::after{content:" (oggi)";font-weight:400;color:var(--grigio)}
@@ -220,7 +222,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
 .scelte input:focus-visible+span{outline:2px solid var(--blu);outline-offset:2px}
 .progetto-in[hidden]{display:none}
 .progetto-in{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px var(--g);padding:20px;background:var(--nebbia);border-radius:4px}
-.file{font-size:var(--t6)}
+.file{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:var(--t6);color:var(--grigio)}
+.file label.b{font-weight:700}
+.file input:focus-visible+label{outline:2px solid var(--blu);outline-offset:3px}
 .campo .aiuto{font-size:var(--t7);color:var(--grigio)}
 .privato-nota[hidden]{display:none}
 .privato-nota{grid-column:1/-1;padding:14px 16px;border-left:3px solid var(--blu);background:var(--nebbia);font-size:var(--t6)}
@@ -294,6 +298,7 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .modulo{margin-top:48px}
   .recapiti{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
   .recapiti div:nth-last-child(2){border-bottom:1px solid var(--filetto)}
+  .pd-col{grid-template-columns:1fr 1fr;row-gap:44px}
 }
 /* 768 */
 @media (max-width:860px){
@@ -308,6 +313,8 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .cs-foto{margin-top:48px}
   .negozi{grid-template-columns:1fr}
   .pd-col{grid-template-columns:1fr 1fr;row-gap:44px}
+  .dove{grid-template-columns:1fr}
+  .dove a+a{border-top:0}
 }
 /* telefono */
 @media (max-width:600px){
@@ -317,6 +324,10 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .menu{gap:12px}
   .tt .b{padding:0 14px}
   .apri{min-height:48px}
+  main{display:flex;flex-direction:column}
+  main>section{order:3}
+  main>.apertura{order:1}
+  main>#progetti{order:2}
   .solo-largo{display:none!important}
   .solo-tel{display:inline-flex!important}
   .apertura{padding-top:28px}
@@ -324,18 +335,23 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .ap .lead{margin-top:16px}
   .ap .bottoni{margin-top:22px;flex-direction:column;gap:10px}
   .ap .bottoni .b{width:100%}
-  .dove{margin-top:24px}
-  .dove a{grid-template-columns:1fr auto;padding:12px 0;gap:2px 12px}
+  .dove{margin-top:24px;grid-template-columns:1fr;order:1}
+  .dove a{grid-template-columns:1fr auto;padding:12px 0;gap:2px 12px;border-bottom:0}
+  .dove a:last-child{border-bottom:1px solid var(--filetto)}
   .dove .chi{grid-column:1/-1;font-size:var(--t7)}
   .dove .stato{font-size:var(--t7)}
-  .ap-foto{margin-top:40px;margin-inline:calc(-1 * var(--pad))}
+  .ap-foto{margin-top:40px;margin-inline:calc(-1 * var(--pad));order:2}
   .aree{margin-top:0}
   .aree ul{grid-template-columns:1fr 1fr;column-gap:var(--g)}
   .aree a{padding:16px 0 18px;border-top:1px solid rgba(255,255,255,.25)}
   .aree li:nth-child(-n+2) a{border-top:0}
   .aree .n{font-size:var(--t6)}
   .aree .r{font-size:var(--t7)}
-  .aree-schede{grid-template-columns:1fr;margin-top:44px;row-gap:48px}
+  .aree-schede{grid-template-columns:1fr;margin-top:44px;row-gap:40px}
+  .area summary.cap-e{display:flex;justify-content:space-between;align-items:center;min-height:48px;padding:0;font-size:var(--t6);font-weight:700;color:var(--inchiostro);cursor:pointer}
+  .area summary.cap-e::after{content:"Apri";font-weight:400;color:var(--blu)}
+  .area details.cap[open] .cap-e::after{content:"Chiudi"}
+  .area .chiedi{padding-top:16px}
   .pr-coda{margin-top:44px}
   .cifre{grid-template-columns:1fr 1fr;margin-top:48px;row-gap:28px}
   .cifre .l{margin-top:8px;font-size:var(--t7)}
@@ -358,7 +374,14 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
   .portali .dc{text-align:left}
   .date{grid-template-columns:1fr 1fr;margin-top:64px}
   .piede{padding-top:72px}
-  .pd-col{grid-template-columns:1fr;row-gap:36px}
+  .pd-col{grid-template-columns:1fr;row-gap:36px;grid-template-areas:"chi" "ct" "ng" "prod"}
+  .pd-col>div:nth-child(2) ul{column-count:2;column-gap:var(--g)}
+  .pd-col>div:nth-child(2) li{break-inside:avoid}
+  .pd-col>div:nth-child(1){grid-area:chi}
+  .pd-col>div:nth-child(2){grid-area:prod}
+  .pd-col>div:nth-child(3){grid-area:ng}
+  .pd-col>div:nth-child(4){grid-area:ct}
+  .pd-col a{overflow-wrap:anywhere}
   .pd-col a{padding:8px 0}
   .pd-legale{margin-top:48px;display:block}
   .pd-legale ul{margin-top:10px}
@@ -404,14 +427,14 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         <a class="b b-bordo solo-largo" href="#prodotti">Catalogo 2026/2027</a>
         <a class="b b-bordo solo-tel" href="#richiesta" data-tipo="Preventivo">Preventivo o progetto</a>
       </div>
-      <div class="dove" aria-label="Dove trovarci">
-        <a href="#showroom"><span class="chi">Per i professionisti</span><span class="dv">Showroom, via Cile 2</span><span class="stato" data-sede="showroom">Lun-ven 8.30-12.30, 14.30-18.30</span></a>
-        <a href="#vetrinetta"><span class="chi">Per i privati</span><span class="dv">La Vetrinetta, via Vigonovese&nbsp;93</span><span class="stato" data-sede="vetrinetta">Aperto anche il sabato</span></a>
-      </div>
     </div>
     <figure class="ap-foto">
       <img src="img/furgone-1080.jpg" srcset="img/furgone-560.jpg 560w, img/furgone-780.jpg 780w, img/furgone-1080.jpg 1080w, img/furgone-1440.jpg 1440w" sizes="(max-width:860px) 100vw, 45vw" width="1080" height="810" fetchpriority="high" alt="Archivio Foralberg, in bianco e nero: il furgone OM Lupetto 30 delle prime consegne sotto i portici di Padova, con la firma Foralberg sul cassone, Forniture navali e alberghiere, Padova, via Trieste 11, e sulla portiera porcellane, cristallerie, posaterie, articoli vari cucina">
     </figure>
+    <div class="dove" aria-label="Dove trovarci">
+        <a href="#showroom"><span class="chi">Per i professionisti</span><span class="dv">Showroom, via Cile 2</span><span class="stato" data-sede="showroom">Lun-ven 8.30-12.30, 14.30-18.30</span></a>
+        <a href="#vetrinetta"><span class="chi">Per i privati</span><span class="dv">La Vetrinetta, via Vigonovese&nbsp;93</span><span class="stato" data-sede="vetrinetta">Aperto anche il sabato</span></a>
+    </div>
   </div>
   <nav class="aree blu fascia" aria-label="Che cosa trovate">
     <ul>
@@ -435,60 +458,60 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
       <h3>Tavola</h3>
       <p class="cosa">Porcellana, posateria, vetro e cristallo. I piatti bianchi lisci si personalizzano con il marchio del vostro locale.</p>
       <p class="marche"><b>Marchi</b>Steelite, RAK Porcelain, Revol, BIT; calici e bicchieri Rona</p>
-      <div class="cap">
-        <p class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</p>
+      <details class="cap" open>
+        <summary class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</summary>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=10" target="_blank" rel="noopener"><span>Porcellana</span><span>p. 10</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=103" target="_blank" rel="noopener"><span>Piatti personalizzati</span><span>p. 103</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=182" target="_blank" rel="noopener"><span>Posateria</span><span>p. 182</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=232" target="_blank" rel="noopener"><span>Vetro</span><span>p. 232</span></a>
-      </div>
+      </details>
       <p class="chiedi"><a class="lk" href="#richiesta" data-tipo="Disponibilità" data-area="Tavola">Chiedi disponibilità o campionatura</a></p>
     </article>
     <article class="area" id="bar">
       <h3>Bar e mixology</h3>
       <p class="cosa">Accessori per il bar tendering e la mixology, attrezzature specifiche per barman e mixologist.</p>
       <p class="marche"><b>Marchi</b>Rona, BIT</p>
-      <div class="cap">
-        <p class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</p>
+      <details class="cap" open>
+        <summary class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</summary>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=290" target="_blank" rel="noopener"><span>Bar e mixology</span><span>p. 290</span></a>
-      </div>
+      </details>
       <p class="chiedi"><a class="lk" href="#richiesta" data-tipo="Disponibilità" data-area="Bar e mixology">Chiedi disponibilità o campionatura</a></p>
     </article>
     <article class="area" id="buffet">
       <h3>Sala e buffet</h3>
       <p class="cosa">Attrezzatura professionale e vasellame per la sala, il buffet dell’albergo e il catering.</p>
       <p class="marche"><b>Marchi</b>Revol e altri</p>
-      <div class="cap">
-        <p class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</p>
+      <details class="cap" open>
+        <summary class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</summary>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=352" target="_blank" rel="noopener"><span>Sala</span><span>p. 352</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=378" target="_blank" rel="noopener"><span>Buffet e catering</span><span>p. 378</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=400" target="_blank" rel="noopener"><span>Melamina</span><span>p. 400</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/FA_Buffet_2025.pdf" target="_blank" rel="noopener"><span>Catalogo Buffet 2025</span><span>PDF, 6,9&nbsp;MB</span></a>
-      </div>
+      </details>
       <p class="chiedi"><a class="lk" href="#richiesta" data-tipo="Disponibilità" data-area="Sala e buffet">Chiedi disponibilità o campionatura</a></p>
     </article>
     <article class="area" id="cucina">
       <h3>Cucina</h3>
       <p class="cosa">Pentolame e attrezzatura professionale, pasticceria, pizzeria e piccoli macchinari.</p>
       <p class="marche"><b>Marchi</b>Wüsthof, coltelli e utensili per la cucina</p>
-      <div class="cap">
-        <p class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</p>
+      <details class="cap" open>
+        <summary class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</summary>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=412" target="_blank" rel="noopener"><span>Cucina</span><span>p. 412</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=448" target="_blank" rel="noopener"><span>Pasticceria</span><span>p. 448</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=464" target="_blank" rel="noopener"><span>Pizzeria</span><span>p. 464</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=498" target="_blank" rel="noopener"><span>Piccoli macchinari</span><span>p. 498</span></a>
-      </div>
+      </details>
       <p class="chiedi"><a class="lk" href="#richiesta" data-tipo="Disponibilità" data-area="Cucina">Chiedi disponibilità o campionatura</a></p>
     </article>
     <article class="area" id="gastronorm">
       <h3>Gastronorm e trasporto pasti</h3>
       <p class="cosa">Prodotti per lo spostamento, il mantenimento e il servizio, per banqueting, catering e ristorazione.</p>
       <p class="marche"><b>Marchi</b>Revol e altri</p>
-      <div class="cap">
-        <p class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</p>
+      <details class="cap" open>
+        <summary class="cap-e">Nel catalogo 2026/2027 (PDF, 56&nbsp;MB)</summary>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=470" target="_blank" rel="noopener"><span>Gastronorm e gestione pasti</span><span>p. 470</span></a>
         <a href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=494" target="_blank" rel="noopener"><span>Stoccaggio</span><span>p. 494</span></a>
-      </div>
+      </details>
       <p class="chiedi"><a class="lk" href="#richiesta" data-tipo="Disponibilità" data-area="Gastronorm e trasporto pasti">Chiedi disponibilità o campionatura</a></p>
     </article>
     <article class="area" id="impianti">
@@ -685,8 +708,8 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
         </div>
         <div class="campo largo">
           <label for="f-file">Allegato <span class="fac">(planimetria, foto o disegno, facoltativo)</span></label>
-          <input class="file" id="f-file" type="file" name="allegato" accept="image/*,.pdf,.dwg,.dxf">
-          <p class="aiuto" id="f-file-aiuto">Dal telefono potete scattare una foto o scegliere un PDF.</p>
+          <div class="file"><input class="sr" id="f-file" type="file" name="allegato" accept="image/*,.pdf,.dwg,.dxf"><label class="b b-bordo" for="f-file">Scegli un file</label><span id="f-file-nome">Nessun file scelto</span></div>
+          <p class="aiuto">Dal telefono potete scattare una foto o scegliere un PDF.</p>
         </div>
       </div>
       <div class="invia">
@@ -886,6 +909,9 @@ fieldset.campo{border:0;margin:0;padding:0;min-width:0}
     });
   });
   aggiorna();
+  // sul telefono i capitoli del catalogo (un PDF di 56 MB) restano chiusi finché non si toccano
+  if(matchMedia('(max-width:600px)').matches)document.querySelectorAll('details.cap').forEach(function(d){d.open=false});
+  f.allegato.addEventListener('change',function(){var x=f.allegato.files[0];document.getElementById('f-file-nome').textContent=x?x.name:'Nessun file scelto'});
 
   // Invio: compone un'email per servizioclienti@foralberg.it (il modulo va collegato a un servizio, vedi LEGGIMI).
   // Con un allegato, sul telefono che lo permette si apre la condivisione con il file; altrimenti l'email e l'avviso di allegarlo.
