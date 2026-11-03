@@ -1,4 +1,5 @@
 # uso: python3 prima-dopo.py <out.jpg> [--pro] <Cartella-Sito> [<Cartella-Sito> ...]
+# --prima <sottocartella>: confronta con quella (per esempio _prova/versione-pro/screenshot/home)
 # --pro: prima = _prova/versione-1-originale/screenshot/home, dopo = screenshot/home (livello professionale)
 # Per ogni azienda una riga: prima schermata a 1440 e a 390 della home attuale (screenshot/home/)
 # accanto a quelle della versione 2 (screenshot/home-v2/).
@@ -6,9 +7,13 @@ import os, sys
 from PIL import Image, ImageDraw, ImageFont
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-out, cartelle = sys.argv[1], [c for c in sys.argv[2:] if c != '--pro']
+argv = sys.argv[1:]
+PRIMA = None
+if '--prima' in argv:
+    i = argv.index('--prima'); PRIMA = argv[i + 1]; del argv[i:i + 2]
+out, cartelle = argv[0], [c for c in argv[1:] if c != '--pro']
 PRO = '--pro' in sys.argv
-COPPIE = [('_prova/versione-1-originale/screenshot/home', 'prima'), ('screenshot/home', 'dopo')] if PRO else [('screenshot/home', 'prima'), ('screenshot/home-v2', 'dopo')]
+COPPIE = [(PRIMA, 'prima'), ('screenshot/home', 'dopo')] if PRIMA else [('_prova/versione-1-originale/screenshot/home', 'prima'), ('screenshot/home', 'dopo')] if PRO else [('screenshot/home', 'prima'), ('screenshot/home-v2', 'dopo')]
 WD, HD = 720, 450          # 1440x900 a metà
 WM, HM = 208, 450          # 390x844 alla stessa altezza
 M, ETI = 24, 40
