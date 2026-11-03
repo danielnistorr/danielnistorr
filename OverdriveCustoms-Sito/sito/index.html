@@ -12,9 +12,9 @@
 
 /* Colori dell'officina: pareti bianche, nero, la fascia rossa, la lamiera grigia. Verde solo per "Aperto". */
 :root{
-  --nero:#151515; --bianco:#ffffff; --rosso:#B3261E; --rosso-scuro:#8F1E18; --verde:#1F6B3A; --verde-chiaro:#86DC9C;
+  --nero:#151515; --bianco:#ffffff; --rosso:#B3261E; --rosso-scuro:#8F1E18; --verde:#1F6B3A; --verde-chiaro:#86DC9C; --rosa:#FF9A8F;
   --grigio:#575B60; --grigio-chiaro:#B4B8BD; --filo:#D9DADB; --filo-scuro:#3A3E42;
-  --m:20px; --g:12px; --sez:72px; --sez-alta:96px; --testata:56px;
+  --m:20px; --g:12px; --sez:72px; --sez-alta:96px; --testata:60px;
   --t-nome:clamp(48px, 18.7vw, 200px);
   --t-h2:26px; --t-firma:22px; --t-h3:19px; --t-testo:17px; --t-dida:15px; --t-ui:14px;
 }
@@ -27,7 +27,7 @@ body{margin:0;background:var(--bianco);color:var(--nero);font-family:"Chivo",sys
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 p,h1,h2,h3,figure,blockquote,ol,ul{margin:0}
-h2{font-family:"Unbounded",system-ui,sans-serif;font-weight:500;font-size:var(--t-h2);line-height:1.18;letter-spacing:-.01em}
+h2{font-family:"Unbounded",system-ui,sans-serif;font-weight:500;font-size:var(--t-h2);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
 h3{font-size:var(--t-h3);line-height:1.3;font-weight:600}
 b,strong{font-weight:600}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -42,13 +42,16 @@ b,strong{font-weight:600}
 .cont > *{grid-column:1 / -1}
 @media (min-width:1100px){
   .c1-5{grid-column:1 / span 5}.c1-6{grid-column:1 / span 6}.c1-7{grid-column:1 / span 7}.c1-8{grid-column:1 / span 8}
-  .c6-12{grid-column:6 / -1}.c7-12{grid-column:7 / -1}.c8-12{grid-column:8 / -1}.c9-12{grid-column:9 / -1}.c2-11{grid-column:2 / span 10}
+  .c6-12{grid-column:6 / -1}.c7-12{grid-column:7 / -1}.c8-12{grid-column:8 / -1}.c9-12{grid-column:9 / -1}.c2-11{grid-column:2 / span 10}.c1-10{grid-column:1 / span 10}.c11-12{grid-column:11 / -1}
 }
 .sez{padding:var(--sez) 0}
 /* filetto tra due sezioni bianche, largo quanto la griglia */
 .sez + .sez:not(.rosso)::before{content:"";display:block;width:calc(100% - 2 * var(--m));max-width:calc(1440px - 2 * var(--m));height:1px;margin:calc(-1 * var(--sez)) auto var(--sez);background:var(--filo)}
 .rosso + .sez::before{display:none}
 .culmine{padding:var(--sez-alta) 0}
+@media (min-width:1100px){.culmine{padding-bottom:120px}}
+.sez.culmine + .sez::before{display:none}
+@media (max-width:599px){.culmine{padding-bottom:24px}}
 .rosso{background:var(--rosso);color:var(--bianco)}
 .testa{row-gap:16px;margin-bottom:40px;align-items:start}
 @media (min-width:1100px){.testa{margin-bottom:56px}}
@@ -61,7 +64,7 @@ b,strong{font-weight:600}
 @media (hover:hover){.btn:hover{background:var(--rosso-scuro)}}
 .rosso .btn{background:var(--bianco);color:var(--nero)}
 @media (hover:hover){.rosso .btn:hover{background:var(--nero);color:var(--bianco)}}
-.vai{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.vai{display:inline-flex;align-items:center;min-height:48px;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
 .vai::after{content:"\2192";display:inline-block;margin-left:.4em;text-decoration:none}
 @media (hover:hover){.vai:hover{color:var(--rosso);text-decoration-thickness:2px}}
 
@@ -73,10 +76,16 @@ b,strong{font-weight:600}
 .logo svg{display:block;width:74px;height:40px}
 .menu{display:none;list-style:none;margin:0;padding:0}
 .t-stato{display:none;font-size:var(--t-ui);color:var(--grigio-chiaro)}
+.t-stato .si,.t-stato .no{font-weight:600}
 .t-stato .si{color:var(--verde-chiaro)}
-.t-tel{margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:none;white-space:nowrap}
+.t-stato .no{color:var(--rosa)}
+/* stato di oggi: un punto verde se e' aperto, rosso chiaro se e' chiuso */
+.t-stato::before,.p-dove .pt::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px;background:var(--grigio-chiaro)}
+.t-stato.aperto::before,.p-dove .pt.aperto::before{background:var(--verde-chiaro)}
+.t-stato.chiuso::before,.p-dove .pt.chiuso::before{background:var(--rosa)}
+.t-tel{margin-left:auto;display:inline-flex;align-items:center;min-height:48px;font-weight:600;text-decoration:none;white-space:nowrap}
 .t-tel .parola{display:none}
-.apri-menu{display:inline-flex;align-items:center;min-height:44px;padding:0 0 0 8px;border:0;background:none;color:var(--bianco);font:inherit;font-weight:600;cursor:pointer}
+.apri-menu{display:inline-flex;align-items:center;min-height:48px;padding:0 0 0 8px;border:0;background:none;color:var(--bianco);font:inherit;font-weight:600;cursor:pointer}
 .apri-menu span{display:inline-block;width:18px;height:12px;margin-right:8px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;position:relative}
 .apri-menu span::after{content:"";position:absolute;left:0;right:0;top:3px;border-top:2px solid currentColor}
 /* WhatsApp: sul telefono e sul tablet diventa la barra in basso, sul computer sta in testata */
@@ -88,8 +97,9 @@ body{padding-bottom:68px}
 .pannello ul{list-style:none;margin:0;padding:4px var(--m) 20px}
 .p-dove{padding:0 var(--m) 24px;font-size:var(--t-dida);color:var(--grigio-chiaro)}
 .p-dove .si{color:var(--verde-chiaro);font-weight:600}
+.p-dove .no{color:var(--rosa);font-weight:600}
 .p-dove b{color:var(--bianco);font-weight:600}
-.pannello a{display:flex;align-items:center;min-height:54px;border-bottom:1px solid var(--filo-scuro);text-decoration:none;font-size:var(--t-h3);font-weight:600}
+.pannello ul a{display:flex;align-items:center;min-height:54px;border-bottom:1px solid var(--filo-scuro);text-decoration:none;font-size:var(--t-h3);font-weight:600}
 @media (max-width:359px){.logo svg{width:60px;height:33px}.t-riga{gap:10px}}
 @media (min-width:1100px){
   body{padding-bottom:0}
@@ -113,9 +123,10 @@ body{padding-bottom:68px}
 .ap-foto{position:relative}
 .ap-foto img{width:100%;aspect-ratio:700/810;object-fit:cover}
 .ap-foto::after{content:"";position:absolute;inset:auto 0 0 0;height:32%;background:linear-gradient(to top,rgba(14,14,14,.88) 0,rgba(14,14,14,.6) 45%,rgba(14,14,14,0) 100%);pointer-events:none}
-/* l'inchiostro di HAGANE e' largo 5,28 volte il corpo e parte a 0,077 em dal bordo del box: i calcoli lo portano sui bordi di h1 e didascalia */
-.ap-testo{--fs:calc((100cqw - 40px) / 5.28);position:relative;z-index:2}
+/* la E staccata di .035 em dalla N (prima si leggeva come tre barre); l'inchiostro di HAGANE e' largo 5,315 volte il corpo e parte a 0,077 em dal bordo del box: i calcoli lo portano sui bordi di h1 e didascalia */
+.ap-testo{--fs:calc((100cqw - 40px) / 5.315);position:relative;z-index:2}
 .nome{display:block;margin:calc(-.78 * var(--fs) - 12px) 16px 0;margin-left:calc(20px - .077 * var(--fs));font-family:"Unbounded",system-ui,sans-serif;font-weight:500;text-transform:uppercase;font-size:var(--fs);line-height:.78;letter-spacing:0;white-space:nowrap}
+.nome .e{display:inline-block;width:.035em}
 .ap-riga{display:grid;gap:6px;padding:22px var(--m) 0}
 h1{font-size:var(--t-testo);font-weight:600;line-height:1.35}
 .ap-dida{font-size:var(--t-dida);color:var(--grigio-chiaro)}
@@ -125,13 +136,22 @@ h1{font-size:var(--t-testo);font-weight:600;line-height:1.35}
 .ap-stato .no{font-weight:600}
 .ap-stato small{display:block;font-size:var(--t-dida);color:var(--grigio-chiaro);margin-top:2px}
 .ap-ritiro{padding:2px var(--m) 0}
+/* la seconda schermata, sempre sul nero: su quali moto lavoro e le due strade della pagina */
+.apertura .cont.am{padding-left:var(--m);padding-right:var(--m)}
+.am{row-gap:14px;margin-top:28px;padding-top:24px;padding-bottom:8px;font-size:var(--t-testo);line-height:1.5;color:var(--grigio-chiaro)}
+.am::before{content:"";grid-column:1 / -1;height:1px;background:var(--filo-scuro);margin:-24px 0 10px}
+.am b{color:var(--bianco);font-weight:600;margin-right:.35em}
+.am-vai{display:flex;flex-wrap:wrap;gap:0 28px;margin-top:4px}
+.am-vai .vai{color:var(--bianco);font-size:var(--t-dida)}
+@media (min-width:600px){.am-vai .vai{font-size:var(--t-testo)}}
+@media (min-width:760px){.am p:not(.am-vai){grid-column:span 4}.am b{display:block;margin:0 0 2px}}
 .ap-ritiro a{color:var(--bianco)}
 @media (min-width:600px){
-  .apertura{padding-bottom:40px}
+  .apertura{padding-bottom:48px}
   .apertura .cont{padding-left:var(--m);padding-right:var(--m)}
   .ap-foto img{aspect-ratio:4/3}
   .ap-foto::after{height:34%}
-  .ap-testo{--fs:calc((100cqw - 48px) / 5.28)}
+  .ap-testo{--fs:calc((100cqw - 48px) / 5.315)}
   .nome{margin:calc(-.78 * var(--fs) - 18px) 24px 0;margin-left:calc(24px - .077 * var(--fs))}
   .ap-riga,.ap-stato,.ap-ritiro{padding-left:0;padding-right:0}
 }
@@ -148,38 +168,52 @@ h1{font-size:var(--t-testo);font-weight:600;line-height:1.35}
   .ap-riga{padding:0;grid-template-columns:minmax(0,auto) minmax(0,auto);justify-content:space-between;align-items:baseline;column-gap:24px}
   .ap-dida{text-align:right}
   .ap-stato,.ap-ritiro{display:none}
+  h1{font-size:21px;line-height:1.25}
+  .am{margin-top:0;padding-top:40px;padding-bottom:0}
+  .am::before{display:none}
+  .apertura{padding-bottom:56px}
 }
 
 /* il culmine: Matteo in officina, l'unica foto al vivo della pagina */
 .culmine-foto img{width:100%;aspect-ratio:16/9;object-fit:cover}
 .culmine-foto figcaption{margin-top:0}
 .culmine + .sez::before{display:none}
-@media (min-width:1600px){.culmine{padding-top:0}}
+.culmine{padding-top:0}
+.culmine-foto img{display:block}
+@media (max-width:599px){.culmine-foto img{aspect-ratio:1244/1440}}
 .dida{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding-top:12px;font-size:var(--t-dida);color:var(--grigio)}
 .dida span:first-child{color:var(--nero);font-weight:600}
-.marche{display:grid;gap:18px;margin-top:0;padding-top:24px;border-top:1px solid var(--nero)}
-.marche p b{display:block;margin-bottom:2px}
-@media (min-width:760px){.marche{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g)}}
-@media (max-width:599px){.marche{gap:10px;padding-top:16px}.marche p b{display:inline;margin-right:.35em}.officina-schede{margin-top:32px}.ritiro{margin-top:32px}}
-.schede{display:grid;gap:24px var(--g);margin-top:40px}
+.da600{display:none}
+@media (min-width:600px){.da600{display:inline}.fino600{display:none}}
+.schede{display:grid;gap:40px var(--g)}
 @media (min-width:600px){.schede{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (min-width:1100px){.schede.tre{grid-template-columns:repeat(3,minmax(0,1fr))}.schede.quattro{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.scheda{display:flex;flex-direction:column;gap:10px}
-.scheda img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:6px}
+@media (min-width:1100px){.schede.quattro{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.scheda{display:flex;flex-direction:column;gap:8px}
+.scheda img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:8px}
 .scheda .fam{font-size:var(--t-ui);color:var(--grigio)}
 .scheda p{font-size:var(--t-dida);line-height:1.5}
 .scheda .vai{margin-top:auto;font-size:var(--t-dida)}
-@media (max-width:599px){
-  .scheda{display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:start}
-  .scheda img{grid-row:1 / span 3;margin:0}
-  .scheda > *:not(img){grid-column:2}
-  .scheda .vai{grid-column:1 / -1}
-  .schede{gap:28px}
+.scheda p a{text-underline-offset:3px}
+@media (max-width:599px){.schede{gap:30px}.scheda{gap:6px}.scheda img{margin-bottom:4px}}
+
+/* officina: il titolo in colonna a sinistra, i servizi come righe d'indice a destra, poi il ritiro */
+.officina{row-gap:32px;align-items:start}
+.off-testa{display:grid;gap:20px;align-content:start}
+.righe{display:grid}
+.riga{display:grid;gap:6px;padding:20px 0;border-top:1px solid var(--filo)}
+.riga:first-child{border-top:1px solid var(--nero);padding-top:16px}
+.riga p{max-width:34em}
+.riga .vai{font-size:var(--t-dida)}
+@media (min-width:760px){
+  .riga{grid-template-columns:minmax(0,1fr) auto;column-gap:var(--g)}
+  .riga h3,.riga p{grid-column:1}.riga .vai{grid-column:2;grid-row:1 / span 2;align-self:center}
 }
-.ritiro{margin-top:40px;padding:28px 24px;background:var(--nero);color:var(--bianco);display:grid;gap:16px;align-items:center}
+.ritiro{margin-top:12px;padding:28px 24px;background:var(--nero);color:var(--bianco);display:grid;gap:12px;justify-items:start}
 .ritiro h3{font-family:"Unbounded",system-ui,sans-serif;font-weight:500;font-size:var(--t-h3)}
-@media (min-width:900px){.ritiro{grid-template-columns:minmax(0,1fr) auto;padding:32px 40px}}
-.ricambi{margin-top:24px;font-size:var(--t-dida);color:var(--grigio);max-width:60em}
+.ritiro p{color:var(--grigio-chiaro)}
+.ritiro .btn{margin-top:8px}
+@media (max-width:599px){.ritiro .btn{width:100%}}
+@media (min-width:1100px){.ritiro{padding:32px}}
 
 /* come si comincia: il rosso pieno, una volta */
 .passi{list-style:none;padding:0;display:grid;gap:20px;counter-reset:p}
@@ -190,52 +224,52 @@ h1{font-size:var(--t-testo);font-weight:600;line-height:1.35}
 @media (min-width:1100px){.com-testa{margin-bottom:0}}
 @media (max-width:599px){.com-testa .btn{width:100%}}
 
-/* le special */
+/* le special: Hagane nel campo domina, la Drakkar riprende il gesto dell'apertura (il nome posato sul pavimento) */
 .firma{font-size:var(--t-firma);line-height:1.3;max-width:24em;text-wrap:balance}
 .firma cite{display:block;margin-top:10px;font-style:normal;font-size:var(--t-dida);color:var(--grigio)}
 .special{row-gap:48px;align-items:start}
-.lavoro img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.sp-sx{display:grid;gap:32px;align-content:start}
+.grande img{width:100%;aspect-ratio:1080/608;object-fit:cover}
+.grande-dida{display:grid;gap:8px;align-content:start}
+.grande-dida h3{font-size:var(--t-h3)}
+.dida-voce{color:var(--grigio)}
+@media (min-width:1100px){.grande-dida{align-self:end;padding-bottom:4px}.grande-dida h3{margin-bottom:4px}}
+@media (max-width:1099px){.special{row-gap:40px}.grande-dida{margin-top:-24px}}
+.lav-foto{position:relative;container-type:inline-size}
+.lav-foto img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.lav-foto::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(to top,rgba(14,14,14,.82) 0,rgba(14,14,14,.45) 50%,rgba(14,14,14,0) 100%);pointer-events:none}
+/* DRAKKAR: lo stesso gesto di HAGANE, una volta sola e piu' piccolo (al massimo 96 px) */
+.lav-nome{position:absolute;z-index:2;left:0;bottom:14px;margin-left:calc(16px - .077 * var(--fl));--fl:min(96px,calc((100cqw - 32px) / 6.06));font-family:"Unbounded",system-ui,sans-serif;font-weight:500;text-transform:uppercase;font-size:var(--fl);line-height:.78;color:var(--bianco);white-space:nowrap}
+.lavoro .dida{padding-top:12px}
+.lav-testo{margin-top:8px;max-width:34em}
+.sp-dx{display:grid;gap:24px;align-content:start}
 .copertine{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);max-width:calc(918px + var(--g))}
 .copertine img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.sp-dx{display:grid;gap:40px;align-content:start}
-@media (max-width:1099px){
-  /* sul telefono e sul tablet: la Drakkar, i racconti, le copertine, la frase, le riviste, l'albo */
-  .special{row-gap:40px}
-  .sp-sx,.sp-dx{display:contents}
-  .sp-sx > *,.sp-dx > *{grid-column:1 / -1}
-  .lavoro{order:1}.racconti{order:2}.copertine{order:3}.sp-sx .firma{order:4}.riviste-box{order:5}.albo{order:6}
-}
 .copertine figcaption{font-size:var(--t-dida);color:var(--grigio);padding-top:8px}
-.racconto{display:grid;gap:12px;align-content:start}
-.racconti{display:grid;gap:28px;align-content:start}
-.racconto + .racconto{padding-top:24px;border-top:1px solid var(--filo)}
+.riviste{font-size:var(--t-dida);color:var(--grigio)}
 .albo table{width:100%;border-collapse:collapse;font-size:var(--t-testo)}
-.albo caption{text-align:left;font-weight:600;padding-bottom:12px}
-.albo th,.albo td{text-align:left;padding:10px 16px 10px 0;border-top:1px solid var(--filo);vertical-align:baseline}
+.albo caption{text-align:left;font-weight:600;font-size:var(--t-testo);padding-bottom:12px}
+.albo th,.albo td{text-align:left;padding:9px 16px 9px 0;border-top:1px solid var(--filo);vertical-align:baseline}
+.albo td span{display:block;color:var(--grigio)}
+.dove-th,.albo td.dv{display:none}
+@media (min-width:768px){.dove-th,.albo td.dv{display:table-cell}.albo td span{display:none}}
 .albo thead th{font-size:var(--t-ui);font-weight:400;color:var(--grigio);border-top:0;padding-bottom:8px}
 .albo td:last-child{padding-right:0}
 .albo tbody tr:first-child td{border-top:1px solid var(--nero)}
-@media (max-width:767px){
+@media (max-width:599px){
   .albo thead{display:none}
   .albo tr{display:grid;grid-template-columns:3.4em minmax(0,1fr);border-top:1px solid var(--filo);padding:10px 0}
   .albo td{border:0 !important;padding:1px 0}
-  .albo td:first-child{grid-row:span 3;font-weight:600}
+  .albo td:first-child{grid-row:span 2;font-weight:600}
   .albo td:not(:first-child){grid-column:2}
 }
-.riv-titolo{font-weight:600;padding-bottom:12px}
-.riviste{list-style:none;padding:0;font-size:var(--t-dida)}
-.riviste li{display:flex;flex-wrap:wrap;gap:0 12px;padding:7px 0;border-top:1px solid var(--filo)}
-.riviste li:first-child{border-top:1px solid var(--nero)}
-.riviste b{min-width:8.5em}
-.riviste span{color:var(--grigio)}
 
-/* orari e dove */
-.testa-col{display:grid;gap:16px;justify-items:start}
-.dove{row-gap:40px;align-items:start}
-.sede address{font-style:normal;font-weight:600;margin-top:4px}
-.sede p{margin-top:6px}
-.sede .stato{margin-top:16px;font-size:var(--t-testo)}
+/* orari e dove: il titolo, l'indirizzo e Indicazioni insieme, cosi' chi arriva dal menu li trova subito */
+.dove{row-gap:32px;align-items:start}
+@media (min-width:1100px){.dove{row-gap:48px}}
+.sede{display:grid;gap:10px;justify-items:start;align-content:start}
+.sede address{font-style:normal;font-weight:600}
+.sede p{max-width:30em}
+.sede .stato{font-size:var(--t-testo)}
 .stato .si{color:var(--verde);font-weight:600}
 .stato .no{font-weight:600}
 .orari{width:100%;border-collapse:collapse;font-size:var(--t-testo)}
@@ -252,11 +286,11 @@ h1{font-size:var(--t-testo);font-weight:600;line-height:1.35}
 .fiere{list-style:none;padding:0;font-size:var(--t-dida)}
 .fiere li{display:flex;justify-content:space-between;gap:12px;padding:6px 0}
 .fiere li span{color:var(--grigio);text-align:right}
-@media (min-width:600px) and (max-width:1099px){.dove .sede{grid-column:1 / span 6}.dove .orari-box{grid-column:7 / -1}}
-@media (min-width:1100px){.dove .sede{grid-column:1 / span 4}.dove .orari-box{grid-column:5 / span 4}.dove .strade{grid-column:9 / -1}}
+@media (min-width:600px) and (max-width:1099px){.dove .sede{grid-column:1 / -1}.dove .orari-box{grid-column:1 / span 6}.dove .strade{grid-column:7 / -1}}
+@media (min-width:1100px){.dove .sede{grid-column:1 / span 4}.dove .orari-box{grid-column:5 / span 4;padding-top:6px}.dove .strade{grid-column:9 / -1;padding-top:6px}}
 
 /* modulo: prepara l'email, chiuso finche' non si apre */
-.modulo{margin-top:56px}
+.modulo{margin-top:40px}
 .modulo details{border-top:1px solid var(--nero)}
 .modulo summary{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;min-height:56px;padding-top:8px;cursor:pointer;list-style:none}
 .modulo summary::-webkit-details-marker{display:none}
@@ -294,6 +328,8 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 .piede .col a{display:inline-flex;align-items:center;min-height:44px}
 .piede .sotto{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding-top:20px;border-top:1px solid var(--filo-scuro);font-size:var(--t-ui);color:var(--grigio-chiaro)}
 .piede .sotto a{color:var(--bianco);display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:599px){.piede .sotto .copy{flex-basis:100%}}
+.piede .p-nota{margin-top:10px;font-size:var(--t-ui);color:var(--grigio-chiaro)}
 @media (min-width:600px){.piede .col{grid-column:span 6}}
 @media (min-width:1100px){.piede .c-logo{grid-column:1 / span 3}.piede .col{grid-column:span 3}}
 </style>
@@ -311,9 +347,9 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
       <span class="logo" role="img" aria-label="Overdrive Customs"><svg aria-hidden="true"><use href="#logo"/></svg></span>
       <nav aria-label="Sezioni"><ul class="menu">
         <li><a href="#orari">Orari e dove</a></li>
-        <li><a href="#officina">Officina</a></li>
+        <li><a href="#officina">Tagliandi e riparazioni</a></li>
         <li><a href="#trasformazioni">Trasformazioni</a></li>
-        <li><a href="#special">Le special</a></li>
+        <li><a href="#special">Special e premi</a></li>
       </ul></nav>
       <p class="t-stato" id="stato-t">Martedì-venerdì, su appuntamento</p>
       <a class="t-tel" href="tel:+393402510434"><span class="parola">Chiama&nbsp;</span>340&nbsp;251&nbsp;0434</a>
@@ -324,13 +360,13 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   <nav class="pannello" id="pannello" aria-label="Menu">
     <ul>
       <li><a href="#orari">Orari e dove</a></li>
-      <li><a href="#officina">Officina e tagliandi</a></li>
+      <li><a href="#officina">Tagliandi e riparazioni</a></li>
       <li><a href="#ritiro">Moto ferma? Ritiro</a></li>
       <li><a href="#trasformazioni">Trasformazioni</a></li>
       <li><a href="#comincia">Come si comincia</a></li>
       <li><a href="#special">Le special e i premi</a></li>
     </ul>
-    <p class="p-dove"><span id="stato-m">Martedì-venerdì 9:30-13 e 15:30-19</span>, solo su appuntamento.<br><b>Via San Francesco 8/a, Vigonovo (VE)</b></p>
+    <p class="p-dove"><span class="pt" id="pt-m"></span><span id="stato-m">Martedì-venerdì 9:30-13 e 15:30-19</span>, solo su appuntamento.<br><b>Via San Francesco 8/a, Vigonovo&nbsp;(VE)</b></p>
   </nav>
 </header>
 
@@ -346,100 +382,67 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
         </picture>
       </div>
       <div class="ap-testo">
-        <p class="nome">Hagane</p>
+        <p class="nome">Hagan<span class="e" aria-hidden="true"></span>e</p>
         <div class="ap-riga">
           <h1 id="titolo"><span class="vh">Overdrive Customs, </span>Officina Harley&#8209;Davidson e custom giapponesi a Vigonovo</h1>
-          <p class="ap-dida">Suzuki DR650 costruita a Vigonovo · <b class="nb">in mostra nel 2025</b></p>
+          <p class="ap-dida"><b>Hagane</b>, Suzuki DR650 · <span class="nb">telaio e forcella fatti qui</span></p>
         </div>
       </div>
       <p class="ap-stato" id="stato"><span class="no">Martedì-venerdì 9:30-13 e 15:30-19.</span><small>Solo su appuntamento: scrivimi prima di passare.</small></p>
       <p class="ap-ritiro"><a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20la%20moto%20ferma%3A%20puoi%20venire%20a%20prenderla%20col%20furgone%3F%20Sono%20a%20">Moto ferma? Chiedi il ritiro</a></p>
     </div>
   </div>
+  <div class="cont am">
+    <p><b>Harley-Davidson</b>Sportster, Softail e Dyna, Touring: Road King, Street Glide, Electra Glide.</p>
+    <p><b>Custom giapponesi</b>Honda Shadow, Yamaha Dragstar e XVS, Kawasaki, Suzuki.</p>
+    <p><b>Altre moto</b>Ducati, BMW e MV Agusta sono passate di qui: chiedimi.</p>
+    <p class="am-vai"><a class="vai" href="#trasformazioni">Trasformazioni: bobber, chopper, bagger</a><a class="vai" href="#officina">Tagliandi, gomme, riparazioni</a></p>
+  </div>
 </section>
 
 <section class="sez culmine" id="matteo" aria-label="Matteo in officina">
   <figure class="culmine-foto">
-    <img src="img/officina-matteo-1600.webp" srcset="img/officina-matteo-800.webp 800w, img/officina-matteo-1200.webp 1200w, img/officina-matteo-1600.webp 1600w, img/officina-matteo-2000.webp 2000w, img/officina-matteo-2560.webp 2560w" sizes="100vw" width="2560" height="1440" loading="lazy" alt="Matteo in officina a braccia conserte, accanto alla Ducati Envy e a una Sportster arancio; sul muro bianco la fascia rossa e gli scaffali">
-    <figcaption class="cont"><p class="dida"><span>Matteo in officina, via San Francesco 8/a, Vigonovo</span><span>accanto alla Ducati Envy, 1° Streetfighter al Biker Fest 2019</span></p></figcaption>
+    <picture>
+      <source media="(max-width:599px)" srcset="img/officina-matteo-tel-480.webp 480w, img/officina-matteo-tel-720.webp 720w, img/officina-matteo-tel-960.webp 960w, img/officina-matteo-tel-1244.webp 1244w" sizes="100vw" width="1244" height="1440">
+      <img src="img/officina-matteo-1600.webp" srcset="img/officina-matteo-800.webp 800w, img/officina-matteo-1200.webp 1200w, img/officina-matteo-1600.webp 1600w, img/officina-matteo-2000.webp 2000w, img/officina-matteo-2560.webp 2560w" sizes="100vw" width="2560" height="1440" loading="lazy" alt="Matteo in officina a braccia conserte, accanto alla Ducati Envy e a una Sportster arancio; sul muro bianco la fascia rossa e gli scaffali">
+    </picture>
+    <figcaption class="cont"><p class="dida"><span>Matteo in officina, via San Francesco 8/a, Vigonovo</span><span class="da600">accanto alla Ducati Envy, 1° Streetfighter al Biker Fest 2019</span><span class="fino600">con una Sportster; l’officina è aperta dal 2 maggio 2015</span></p></figcaption>
   </figure>
-</section>
-
-<section class="sez" id="officina" aria-labelledby="t-officina">
-  <div class="cont testa">
-    <h2 id="t-officina" class="c1-6">Tagliandi, riparazioni e restauri, sulla tua moto</h2>
-    <div class="lead c7-12">
-      <p>Officina specializzata in customizzazioni, riparazioni, motoristica e restauro di moto Harley-Davidson e custom giapponesi.</p>
-      <p>Ci sono io, Matteo, dal 2 maggio 2015, con una piccola crew di amici. “In molti, visti i tempi, non avrebbero scommesso un euro su questo progetto.”</p>
-    </div>
-  </div>
-  <div class="cont">
-    <div class="marche">
-      <p><b>Harley-Davidson</b>Sportster, Softail e Dyna, Touring: Road King, Street Glide, Electra Glide.</p>
-      <p><b>Custom giapponesi</b>Honda Shadow, Yamaha Dragstar e XVS, Kawasaki, Suzuki.</p>
-      <p><b>Altre moto</b>Qui sono passate anche Ducati, BMW e MV Agusta: chiedimi.</p>
-    </div>
-    <div class="schede tre">
-      <article class="scheda">
-        <img src="img/manutenzione-720.webp" srcset="img/manutenzione-480.webp 480w, img/manutenzione-720.webp 720w, img/manutenzione-960.webp 960w" sizes="(min-width:1100px) 416px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Softail Springer in manutenzione, di fianco davanti al portone dell'officina">
-        <h3>Tagliandi, gomme e manutenzione</h3>
-        <p>Su tutte le Harley e sulle custom giapponesi. Nella foto una Softail Springer, 2023.</p>
-        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20vorrei%20prenotare%20un%20tagliando.%20La%20mia%20moto%20%C3%A8%3A%20">Prenota il tagliando</a>
-      </article>
-      <article class="scheda">
-        <img src="img/ripristino-720.webp" srcset="img/ripristino-480.webp 480w, img/ripristino-720.webp 720w, img/ripristino-960.webp 960w" sizes="(min-width:1100px) 416px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Sportster nera e arancio rimessa a posto dopo una caduta, di fianco davanti alla lamiera">
-        <h3>Riparazioni motori e ripristino dopo un incidente</h3>
-        <p>Questa Sportster è tornata in strada dopo una piccola caduta, “now better than new”, 2022.</p>
-        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20un%20problema%20alla%20moto.%20Moto%20e%20problema%3A%20">Descrivimi il problema</a>
-      </article>
-      <article class="scheda">
-        <img src="img/restauro-720.webp" srcset="img/restauro-480.webp 480w, img/restauro-720.webp 720w, img/restauro-960.webp 960w" sizes="(min-width:1100px) 416px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Road King bianca e nera restaurata, di fianco davanti alla lamiera">
-        <h3>Restauro</h3>
-        <p>Dalla Road King restaurata e riconsegnata nel 2021 alla PanShovel del 1958 arrivata a fine 2023.</p>
-        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20vorrei%20parlarti%20del%20restauro%20della%20mia%20moto%3A%20">Parliamo della tua moto</a>
-      </article>
-    </div>
-    <div class="ritiro" id="ritiro">
-      <div>
-        <h3>Moto ferma? La vengo a prendere</h3>
-        <p style="margin-top:8px">Ritiro e consegna della moto col furgone dell’officina. Scrivimi dove sei e cosa è successo.</p>
-      </div>
-      <a class="btn" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20la%20moto%20ferma%3A%20puoi%20venire%20a%20prenderla%20col%20furgone%3F%20Sono%20a%20">Chiedi il ritiro su WhatsApp</a>
-    </div>
-    <p class="ricambi">In officina anche gli oli Driven Racing, Lucas Oil e Sunoco (Kustomstore, rivenditore per il Nord Italia), accessori custom e i cappellini col logo.</p>
-  </div>
 </section>
 
 <section class="sez" id="trasformazioni" aria-labelledby="t-trasf">
   <div class="cont testa">
     <h2 id="t-trasf" class="c1-6">La tua moto, trasformata</h2>
-    <p class="lead c7-12">Si parte dalla moto che hai: da un kit fino al telaio fatto qui. Qualche lavoro uscito dall’officina, famiglia per famiglia, con quello che è stato fatto.</p>
+    <div class="lead c7-12">
+      <p>Si parte dalla moto che hai: da un kit fino al telaio fatto qui, come per Hagane, la special in apertura. Qui sotto un lavoro per famiglia.</p>
+      <p><a class="vai" href="#special">Hagane e le altre special</a></p>
+    </div>
   </div>
   <div class="cont">
     <div class="schede quattro">
       <article class="scheda">
-        <img src="img/sportster-48-720.webp" srcset="img/sportster-48-480.webp 480w, img/sportster-48-720.webp 720w, img/sportster-48-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Harley-Davidson Sportster 48 Jericho, nera con il serbatoio spazzolato, di fianco davanti alla lamiera">
+        <img src="img/sportster-48-720.webp" srcset="img/sportster-48-480.webp 480w, img/sportster-48-720.webp 720w, img/sportster-48-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="Harley-Davidson Sportster 48 Jericho, nera con il serbatoio spazzolato, di fianco davanti alla lamiera">
         <span class="fam">Sportster</span>
         <h3>Sportster 48 “Jericho”</h3>
-        <p>Uscita da qui nel 2021. Sempre su Sportster, la 883 chopper “Old Style” (2023, nell’albo dei premi).</p>
+        <p>Uscita da qui nel 2021. Sempre su Sportster, la <a href="#albo">883 chopper “Old Style”</a>, 1° Old Style all’American Dream 2023.</p>
         <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20una%20Sportster%20e%20vorrei%20trasformarla.%20Ti%20mando%20una%20foto%20e%20l%27idea%3A%20">Ho una Sportster</a>
       </article>
       <article class="scheda">
-        <img src="img/heritage-bobber-720.webp" srcset="img/heritage-bobber-480.webp 480w, img/heritage-bobber-720.webp 720w, img/heritage-bobber-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Harley-Davidson Heritage trasformata in bobber, di fianco davanti alla lamiera">
+        <img src="img/heritage-bobber-720.webp" srcset="img/heritage-bobber-480.webp 480w, img/heritage-bobber-720.webp 720w, img/heritage-bobber-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="Harley-Davidson Heritage trasformata in bobber, di fianco davanti alla lamiera">
         <span class="fam">Softail e Dyna</span>
         <h3>Una Heritage diventata bobber</h3>
         <p>Bobber su base Heritage, 2020. Su altre Heritage il cambio a mano “suicide shift” (2021) e la ruota davanti da 21 pollici (2023).</p>
         <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20una%20Softail%2FDyna%20e%20vorrei%20trasformarla.%20Ti%20mando%20una%20foto%20e%20l%27idea%3A%20">Ho una Softail o una Dyna</a>
       </article>
       <article class="scheda">
-        <img src="img/electra-roadking-720.webp" srcset="img/electra-roadking-480.webp 480w, img/electra-roadking-720.webp 720w, img/electra-roadking-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="Electra Glide del 1994 trasformata in Road King bagger bianca e arancio, di fianco">
+        <img src="img/electra-roadking-720.webp" srcset="img/electra-roadking-480.webp 480w, img/electra-roadking-720.webp 720w, img/electra-roadking-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="Electra Glide del 1994 trasformata in Road King bagger bianca e arancio, di fianco">
         <span class="fam">Touring e bagger</span>
         <h3>Electra Glide ’94 diventata Road King</h3>
         <p>Sospensioni ad aria, pinze Brembo, sella fatta a mano da Cisco Leather, scarico Python, cruscotto fatto a mano. 2022.</p>
         <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20una%20Touring%20e%20vorrei%20trasformarla.%20Ti%20mando%20una%20foto%20e%20l%27idea%3A%20">Ho una Touring</a>
       </article>
       <article class="scheda">
-        <img src="img/shadow-morelia-720.webp" srcset="img/shadow-morelia-480.webp 480w, img/shadow-morelia-720.webp 720w, img/shadow-morelia-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), 120px" width="960" height="540" loading="lazy" alt="La Morelia, chopper nero e verde fluo su base Honda Shadow VT600, di fianco davanti alla lamiera">
+        <img src="img/shadow-morelia-720.webp" srcset="img/shadow-morelia-480.webp 480w, img/shadow-morelia-720.webp 720w, img/shadow-morelia-960.webp 960w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="La Morelia, chopper nero e verde fluo su base Honda Shadow VT600, di fianco davanti alla lamiera">
         <span class="fam">Custom giapponesi</span>
         <h3>Una Shadow VT600 diventata chopper</h3>
         <p>La Morelia: telaio rigido, nero e verde fluo. 2ª nella categoria Metric al Biker Fest di Lignano, 2022.</p>
@@ -452,7 +455,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 <section class="sez rosso" id="comincia" aria-labelledby="t-comincia">
   <div class="cont">
     <div class="com-testa c1-6">
-      <h2 id="t-comincia">Mandami una foto della tua moto</h2>
+      <h2 id="t-comincia">Mandami una foto della tua&nbsp;moto</h2>
       <a class="btn" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ti%20mando%20la%20foto%20della%20mia%20moto%3A%20vorrei%20trasformarla.%20L%27idea%20%C3%A8%3A%20">Manda la foto della tua moto</a>
       <p class="nota">Si apre WhatsApp con il messaggio pronto: allega la foto con la graffetta e invia.</p>
     </div>
@@ -464,56 +467,78 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   </div>
 </section>
 
+<section class="sez" id="officina" aria-labelledby="t-officina">
+  <div class="cont officina">
+    <div class="off-testa c1-5">
+      <h2 id="t-officina">Tagliandi, riparazioni e restauri, sulla tua&nbsp;moto</h2>
+      <p class="lead">Ci sono io, Matteo, dal 2 maggio 2015, con una piccola crew di amici. “In molti, visti i tempi, non avrebbero scommesso un euro su questo progetto.”</p>
+      <div class="ritiro" id="ritiro">
+        <h3>Moto ferma? La vengo a prendere</h3>
+        <p>Ritiro e consegna della moto col furgone dell’officina. Scrivimi dove sei e cosa è successo.</p>
+        <a class="btn" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20la%20moto%20ferma%3A%20puoi%20venire%20a%20prenderla%20col%20furgone%3F%20Sono%20a%20">Chiedi il ritiro su WhatsApp</a>
+      </div>
+    </div>
+    <div class="righe c7-12">
+      <div class="riga">
+        <h3>Tagliandi, gomme e manutenzione</h3>
+        <p>Su tutte le Harley e sulle custom giapponesi, dalla Softail Springer alla Shadow.</p>
+        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20vorrei%20prenotare%20un%20tagliando.%20La%20mia%20moto%20%C3%A8%3A%20">Prenota il tagliando</a>
+      </div>
+      <div class="riga">
+        <h3>Riparazioni motori e ripristino dopo un incidente</h3>
+        <p>Come la Sportster tornata in strada dopo una piccola caduta, “now better than new”, 2022.</p>
+        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ho%20un%20problema%20alla%20moto.%20Moto%20e%20problema%3A%20">Descrivimi il problema</a>
+      </div>
+      <div class="riga">
+        <h3>Restauro</h3>
+        <p>Dalla Road King restaurata e riconsegnata nel 2021 alla PanShovel del 1958 arrivata a fine 2023.</p>
+        <a class="vai" href="https://wa.me/393402510434?text=Ciao%20Matteo%2C%20vorrei%20parlarti%20del%20restauro%20della%20mia%20moto%3A%20">Parliamo della tua moto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sez" id="special" aria-labelledby="t-special">
   <div class="cont testa">
     <h2 id="t-special" class="c1-6">Le special, costruite qui</h2>
+    <blockquote class="firma c7-12"><p>“I mostri non sono nella vostra testa… Li creo io!”</p><cite>Matteo, ottobre 2023</cite></blockquote>
   </div>
   <div class="cont special">
-    <div class="sp-sx c1-6">
-      <figure class="lavoro">
-        <img src="img/drakkar-720.webp" srcset="img/drakkar-480.webp 480w, img/drakkar-720.webp 720w, img/drakkar-960.webp 960w" sizes="(min-width:1440px) 636px, (min-width:1100px) calc(50vw - 84px), (min-width:600px) calc(100vw - 64px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="Drakkar, Road King bagger grigia, di fianco davanti alla lamiera dell'officina">
-        <figcaption class="dida"><span>Drakkar, Road King bagger</span><span>1° Bagger, American Dream Padova 2021</span></figcaption>
-      </figure>
-      <blockquote class="firma"><p>“I mostri non sono nella vostra testa.... Li creo io!”</p><cite>Matteo, ottobre 2023</cite></blockquote>
-      <div class="riviste-box">
-        <p class="riv-titolo">Sulle riviste</p>
-        <ul class="riviste">
-          <li><b>Ferro</b><span>2015</span></li>
-          <li><b>Bikers Life</b><span>dal 2018; copertina a dicembre 2021</span></li>
-          <li><b>Kustom World</b><span>2018, 2019, 2023; copertina ad agosto 2024</span></li>
-          <li><b>Special Cafe</b><span>settembre 2023, con Special K</span></li>
-          <li><b>Bigtwin</b><span>Olanda; copertina ad aprile 2025</span></li>
-        </ul>
-      </div>
+    <figure class="grande c1-10">
+      <img src="img/hagane-campo-1080.webp" srcset="img/hagane-campo-640.webp 640w, img/hagane-campo-860.webp 860w, img/hagane-campo-1080.webp 1080w" sizes="(min-width:1440px) 1076px, (min-width:1100px) calc(83.4vw - 125px), (min-width:600px) calc(100vw - 64px), calc(100vw - 40px)" width="1080" height="608" loading="lazy" alt="Hagane, chopper rosso candy con motore Suzuki DR650 nero, di fianco su una strada bianca in mezzo all'erba alta">
+    </figure>
+    <div class="grande-dida c11-12">
+      <h3>Hagane, 2024</h3>
+      <p>Il “BoSuzuki”: telaio e forcella fatti da noi, motore e ruote da una Suzuki DR650, sella di Cisco Leather.</p>
+      <p class="dida-voce">1° Metric, Biker Fest di Lignano 2024</p>
     </div>
-    <div class="sp-dx c7-12">
-      <div class="racconti">
-        <div class="racconto">
-          <h3>Hagane, 2024</h3>
-          <p>Il “BoSuzuki”: telaio e forcella fatti da noi, motore e ruote da una Suzuki DR650, sella di Cisco Leather. 1° Metric al Biker Fest di Lignano 2024, poi in copertina in Italia e in Olanda.</p>
-        </div>
-        <div class="racconto">
-          <h3>Drakkar, 2021</h3>
-          <p>Road King bagger: kit di @killer.custom, verniciata “Carraragray”, in copertina su Bikers Life a dicembre 2021.</p>
-        </div>
+    <figure class="lavoro c1-6">
+      <div class="lav-foto">
+        <img src="img/drakkar-720.webp" srcset="img/drakkar-480.webp 480w, img/drakkar-720.webp 720w, img/drakkar-960.webp 960w" sizes="(min-width:1440px) 636px, (min-width:1100px) calc(50vw - 84px), (min-width:600px) calc(100vw - 64px), calc(100vw - 40px)" width="960" height="540" loading="lazy" alt="Drakkar, Road King bagger grigia, di fianco davanti alla lamiera dell'officina">
+        <p class="lav-nome" aria-hidden="true">Drakkar</p>
       </div>
+      <figcaption class="dida"><span>Drakkar, Road King bagger, 2021</span><span>1° Bagger, American Dream Padova 2021</span></figcaption>
+      <p class="lav-testo">Kit di @killer.custom, verniciata “Carraragray”, in copertina su Bikers Life a dicembre 2021.</p>
+    </figure>
+    <div class="sp-dx c7-12">
       <div class="copertine">
-        <figure><img src="img/kustomworld-2024-45-459.webp" srcset="img/kustomworld-2024-45-360.webp 360w, img/kustomworld-2024-45-459.webp 459w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(50vw - 26px)" width="459" height="574" loading="lazy" alt="Copertina di Kustom World, agosto 2024, con Hagane e Matteo"><figcaption>Kustom World, agosto 2024</figcaption></figure>
+        <figure><img src="img/kustomworld-2024-45-459.webp" srcset="img/kustomworld-2024-45-360.webp 360w, img/kustomworld-2024-45-459.webp 459w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(50vw - 26px)" width="459" height="574" loading="lazy" alt="Copertina di Kustom World, agosto 2024, con Hagane e Matteo"><figcaption>Kustom World, agosto 2024, con Hagane</figcaption></figure>
         <figure><img src="img/bigtwin-2025-45-459.webp" srcset="img/bigtwin-2025-45-360.webp 360w, img/bigtwin-2025-45-459.webp 459w" sizes="(min-width:1100px) 306px, (min-width:600px) calc(50vw - 42px), calc(50vw - 26px)" width="459" height="574" loading="lazy" alt="Copertina di Bigtwin, aprile 2025, con Hagane"><figcaption>Bigtwin, Olanda, aprile 2025</figcaption></figure>
       </div>
+      <p class="riviste">Sulle riviste anche Ferro (2015), Bikers Life (dal 2018), Kustom World (2018, 2019, 2023) e Special Cafe (settembre 2023, con Special K).</p>
     </div>
-    <div class="albo">
+    <div class="albo" id="albo">
     <table>
       <caption>I primi posti</caption>
-      <thead><tr><th scope="col">Anno</th><th scope="col">Moto</th><th scope="col">Premio</th><th scope="col">Dove</th></tr></thead>
+      <thead><tr><th scope="col">Anno</th><th scope="col">Moto</th><th scope="col">Premio</th><th scope="col" class="dove-th">Dove</th></tr></thead>
       <tbody>
-        <tr><td>2024</td><td><b>Hagane</b>, Suzuki DR650</td><td>1° Metric</td><td>Biker Fest, Lignano</td></tr>
-        <tr><td>2023</td><td><b>883 Old Style</b>, Harley-Davidson 883</td><td>1° Old Style</td><td>American Dream, Padova</td></tr>
-        <tr><td>2022</td><td><b>Special K</b>, Kawasaki Z650RS</td><td>1° Streetfighter, due volte</td><td>Kustom Kulture, Cesena; MondoMotori, Vicenza</td></tr>
-        <tr><td>2021</td><td><b>Drakkar</b>, Harley-Davidson Road King</td><td>1° Bagger</td><td>American Dream, Padova</td></tr>
-        <tr><td>2019</td><td><b>Night Train</b>, Harley-Davidson</td><td>1° HD Modified</td><td>American Dream, Padova</td></tr>
-        <tr><td>2019</td><td><b>Envy</b>, Ducati Monster 600</td><td>1° Streetfighter</td><td>Biker Fest, Lignano</td></tr>
-        <tr><td>2018</td><td><b>Bonebreaker</b>, scrambler</td><td>1° Scrambler Rock n’ Roll</td><td>Mondo Motori Show</td></tr>
+        <tr><td>2024</td><td><b>Hagane</b>, Suzuki DR650</td><td>1° Metric<span>Biker Fest, Lignano</span></td><td class="dv">Biker Fest, Lignano</td></tr>
+        <tr><td>2023</td><td><b>883 Old Style</b>, Harley-Davidson 883</td><td>1° Old Style<span>American Dream, Padova</span></td><td class="dv">American Dream, Padova</td></tr>
+        <tr><td>2022</td><td><b>Special K</b>, Kawasaki Z650RS</td><td>1° Streetfighter, due volte<span>Kustom Kulture, Cesena; MondoMotori, Vicenza</span></td><td class="dv">Kustom Kulture, Cesena; MondoMotori, Vicenza</td></tr>
+        <tr><td>2021</td><td><b>Drakkar</b>, Harley-Davidson Road King</td><td>1° Bagger<span>American Dream, Padova</span></td><td class="dv">American Dream, Padova</td></tr>
+        <tr><td>2019</td><td><b>Night Train</b>, Harley-Davidson</td><td>1° HD Modified<span>American Dream, Padova</span></td><td class="dv">American Dream, Padova</td></tr>
+        <tr><td>2019</td><td><b>Envy</b>, Ducati Monster 600</td><td>1° Streetfighter<span>Biker Fest, Lignano</span></td><td class="dv">Biker Fest, Lignano</td></tr>
+        <tr><td>2018</td><td><b>Bonebreaker</b>, scrambler</td><td>1° Scrambler Rock n’ Roll<span>Mondo Motori Show</span></td><td class="dv">Mondo Motori Show</td></tr>
       </tbody>
     </table>
     </div>
@@ -521,19 +546,13 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 </section>
 
 <section class="sez" id="orari" aria-labelledby="t-orari">
-  <div class="cont testa">
-    <div class="testa-col c1-6">
-      <h2 id="t-orari">Si riceve solo su appuntamento</h2>
-      <p class="lead">Prima di passare scrivimi su WhatsApp o chiamami: così la moto la guardiamo con calma.</p>
-    </div>
-  </div>
   <div class="cont dove">
+    <h2 id="t-orari" class="c1-6">Si riceve solo su appuntamento</h2>
     <div class="sede">
-      <h3>Overdrive Customs</h3>
-      <address>Via San Francesco 8/a, 30030 Vigonovo (VE)</address>
-      <p>Nella Riviera del Brenta, tra Padova e Venezia.</p>
+      <address>Overdrive Customs<br>Via San Francesco 8/a, 30030 Vigonovo&nbsp;(VE)</address>
       <a class="vai" href="https://www.google.com/maps/dir/?api=1&amp;destination=Overdrive%20Customs%2C%20Via%20San%20Francesco%208%2Fa%2C%2030030%20Vigonovo%20VE" target="_blank" rel="noopener">Indicazioni</a>
       <p class="stato" id="stato2"><span class="no">Martedì-venerdì 9:30-13 e 15:30-19.</span></p>
+      <p>Prima di passare scrivimi su WhatsApp o chiamami: così la moto la guardiamo con calma. Siamo nella Riviera del Brenta, tra Padova e Venezia.</p>
     </div>
     <div class="orari-box">
       <table class="orari">
@@ -611,8 +630,9 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
     <div class="c-logo"><span class="logo" role="img" aria-label="Overdrive Customs"><svg aria-hidden="true"><use href="#logo"/></svg></span></div>
     <div class="col">
       <h2>Officina</h2>
-      <p>Overdrive Customs, officina moto di Matteo</p>
-      <p>Via San Francesco 8/a, 30030 Vigonovo (VE)</p>
+      <p>Overdrive Customs, officina moto di&nbsp;Matteo</p>
+      <p>Via San Francesco 8/a, 30030 Vigonovo&nbsp;(VE)</p>
+      <p class="p-nota">In officina anche gli oli Driven Racing, Lucas Oil e Sunoco (Kustomstore, rivenditore per il Nord Italia), accessori custom e i cappellini col logo.</p>
     </div>
     <div class="col">
       <h2>Orari</h2>
@@ -621,11 +641,11 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
     <div class="col">
       <h2>Scrivere</h2>
       <p>overdrivecustoms@live.com</p>
-      <a href="#scrivi">Il modulo per l’email</a>
+      <a href="#scrivi">Apri il modulo per l’email</a>
     </div>
-    <blockquote class="firma"><p>“I mostri non sono nella vostra testa.... Li creo io!”</p><cite>Matteo, ottobre 2023</cite></blockquote>
+    <blockquote class="firma"><p>“I mostri non sono nella vostra testa… Li creo io!”</p><cite>Matteo, ottobre 2023</cite></blockquote>
     <div class="sotto">
-      <span>© Overdrive Customs, Vigonovo (VE)</span>
+      <span class="copy">© Overdrive Customs, Vigonovo&nbsp;(VE)</span>
       <a href="/privacy">Privacy</a>
       <a href="/cookie">Cookie</a>
     </div>
@@ -658,20 +678,33 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   }
   var t=ora(), oggi=new Date(Date.UTC(t.y,t.mo-1,t.d)), g=oggi.getUTCDay(), min=t.h*60+t.mi;
   var A='<span class="si">', C='<span class="no">', F='</span>';
-  var testo, corto;
-  if(festa(oggi)){testo=C+'Oggi chiuso per festa,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto='Chiuso per festa';}
-  else if(!lavora(oggi)){testo=C+'Oggi chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto='Chiuso, riapre '+prossimo(oggi);}
-  else if(min<570){testo=C+'Apre oggi alle 9:30.'+F;corto='Apre alle 9:30';}
-  else if(min<780){testo=A+'Aperto ora,'+F+' fino alle 13.';corto=A+'Aperto'+F+', su appuntamento';}
-  else if(min<930){testo=C+'In pausa,'+F+' riapre alle 15:30.';corto='In pausa fino alle 15:30';}
-  else if(min<1140){testo=A+'Aperto ora,'+F+' fino alle 19.';corto=A+'Aperto'+F+', su appuntamento';}
-  else{testo=C+'Chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto='Chiuso, riapre '+prossimo(oggi);}
+  var testo, corto, extra='', aperto=false;
+  if(festa(oggi)){testo=C+'Oggi chiuso per festa,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto=C+'Chiuso per festa'+F;}
+  else if(!lavora(oggi)){testo=C+'Oggi chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto=C+'Chiuso'+F+', riapre '+prossimo(oggi);}
+  else if(min<570){testo=C+'Apre oggi alle 9:30.'+F;corto=C+'Apre alle 9:30'+F;extra=' Oggi 9:30-13 e 15:30-19.';}
+  else if(min<780){testo=A+'Aperto ora,'+F+' fino alle 13.';corto=A+'Aperto'+F+', su appuntamento';extra=' Oggi anche 15:30-19.';aperto=true;}
+  else if(min<930){testo=C+'In pausa,'+F+' riapre alle 15:30.';corto=C+'In pausa'+F+' fino alle 15:30';}
+  else if(min<1140){testo=A+'Aperto ora,'+F+' fino alle 19.';corto=A+'Aperto'+F+', su appuntamento';aperto=true;}
+  else{testo=C+'Chiuso,'+F+' riapre '+prossimo(oggi)+' alle 9:30.';corto=C+'Chiuso'+F+', riapre '+prossimo(oggi);}
   var st=document.getElementById('stato-t'), s1=document.getElementById('stato'), s2=document.getElementById('stato2');
-  if(st) st.innerHTML=corto;
+  if(st){st.innerHTML=corto;st.className='t-stato '+(aperto?'aperto':'chiuso');}
+  var pm=document.getElementById('pt-m'); if(pm) pm.className='pt '+(aperto?'aperto':'chiuso');
   var sm=document.getElementById('stato-m'); if(sm) sm.innerHTML=testo.replace(/\.(<\/span>)?$/,'$1').replace(/,<\/span>/,'</span>,');
-  if(s1) s1.innerHTML=testo+'<small>Solo su appuntamento: scrivimi prima di passare.</small>';
+  if(s1) s1.innerHTML=testo+'<small>Solo su appuntamento: scrivimi prima di passare.'+extra+'</small>';
   if(s2) s2.innerHTML=testo;
   var r=document.querySelector('.orari tr[data-g="'+g+'"]'); if(r) r.className='oggi';
+
+  // barra in basso (telefono e tablet): mentre si guardano le trasformazioni o i tre passi manda la foto
+  // della moto con il messaggio della trasformazione; altrove resta il messaggio generico. Cambia al passaggio, senza dissolvenze.
+  var bar=document.querySelector('.t-wa .btn'), zone=[document.getElementById('trasformazioni'),document.getElementById('comincia')];
+  if(bar){
+    var gen={h:bar.getAttribute('href'),t:bar.innerHTML}, foto={h:'https://wa.me/393402510434?text=Ciao%20Matteo%2C%20ti%20mando%20la%20foto%20della%20mia%20moto%3A%20vorrei%20trasformarla.%20L%27idea%20%C3%A8%3A%20',t:'Manda la foto della tua moto'}, ora_=gen, att=false;
+    var guarda=function(){att=false; if(innerWidth>=1100){if(ora_!==gen){ora_=gen;bar.setAttribute('href',gen.h);bar.innerHTML=gen.t;}return;}
+      var m=innerHeight/2, dentro=zone.some(function(z){if(!z)return false;var r=z.getBoundingClientRect();return r.top<m&&r.bottom>m;});
+      var v=dentro?foto:gen; if(v!==ora_){ora_=v;bar.setAttribute('href',v.h);bar.innerHTML=v.t;}};
+    addEventListener('scroll',function(){if(!att){att=true;requestAnimationFrame(guarda);}},{passive:true});
+    addEventListener('resize',guarda); guarda();
+  }
 
   // menu del telefono
   var b=document.querySelector('.apri-menu'), p=document.getElementById('pannello');

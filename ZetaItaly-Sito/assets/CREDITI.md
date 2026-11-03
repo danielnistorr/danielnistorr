@@ -50,3 +50,14 @@ Tolte dalla home rispetto alla versione di prima (copiata in `_prova/versione-1-
 - reparto, servizio 2023: `2023_02_BUSTE-PVC-SU-MISURA.jpg` (600, 900, 1200 px) e `2023_02_LAVORAZIONE-PLASTICA-RICICLATA.jpg` (640, 1024 px).
 
 Nessuna foto esterna, nessuna immagine generata.
+
+## Home ibrida, secondo giro (`sito/img/`, 3/11/2026)
+
+Sostituisce l'elenco qui sopra. Tutte foto di Zeta da `assets/originali/`, passate da `_prova/alto/script/immagini.py` (ritaglio, misura, saturazione 0,88, contrasto 1,03, dominante portata verso il neutro su cartella campionario e linea):
+
+- tessere d'apertura, 1:2 a 480, 720 e 960 px (le cartelline a 480 e 699, la misura vera del ritaglio): `2019_12_custom-binder-plastic-sleeves-2.jpg` (Raccoglitori), `2019_12_cartelline-a-L-fondo-colorato-semirigido.jpg` (Cartelline), `2019_12_Prospekthullen-fur-Ringordner.jpg` (Buste), `2019_12_couvette-campionario-1.jpg` (Campionari);
+- indice articoli, 3:2 a 400 e 640 px: `2015_10_raccoglitore-anelli-personalizzato.jpg`, `2019_12_Schutzhulle-fur-Garantiebescheinigung.jpg`, `2015_10_cartellina-portadocumenti-personalizzata.jpg`, `2019_12_copertina-agenda-1.jpg` (400 e 600), `2019_12_portalibretto-auto-porta-libretto-moto.jpg`, `2019_12_cartella-campionario-10-spazi.jpg`;
+- culmine: `2019_12_busta-pvc-4-spazi.jpg`, 12:5 a 1344, 2016 e 2688 px e 3:2 a 720 e 1080 px;
+- reparto, servizio 2023: `2023_02_LAVORAZIONE-PLASTICA-RICICLATA.jpg` (640 e 1024 px).
+
+Nessuna foto esterna, nessuna immagine generata, nessun disegno.

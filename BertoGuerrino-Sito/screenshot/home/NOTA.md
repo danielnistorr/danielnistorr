@@ -28,6 +28,50 @@ Il giudice ha dato 6,5 alla home ibrida (gesto troppo piccolo, culmine sulla fot
 - **Lo sterrapiante nella prima schermata** (compito del vivaista): esiste solo in fotogrammi da 500 px, e la sezione D vuole una foto sola in apertura. Resta la prima macchina dopo "Macchine per vivai" nel menu.
 - **D8 parole e altezza** (895 e 7119 px contro 450-650 e 4.000-6.000): deroga voluta dal metodo ibrido.
 
+## Secondo giro (3/11/2026): clienti tipo e finitura sotto la piega
+
+Dopo il primo ritocco il giudice da agenzia ha dato 6,5 e i clienti tipo erano scesi (negozio da 8,5 a 7,5, vivaista da 8 a 7,5). Secondo ritocco di `sito/index.html`, prima schermata sempre secondo la sezione D. Pagina di prima in `_prova/alto/ritocco2/index-prima-del-secondo-giro.html`; prove dei compiti con tocchi veri in `_prova/alto/ritocco2/prove.mjs` (esito e schermate in `_prova/alto/ritocco2/prove/`).
+
+**Per i clienti tipo**
+- **Prima schermata a 390**: la riga della targa dice "Negozio e officina Honda, assistenza e ricambi" (prima mancavano le parole negozio e officina); "Indicazioni: via Caovilla 27/B" è a 17 px, peso 600, su tutta la larghezza della targa, alta 48 px, con un filetto sopra. Il taglio verticale della Piragna è rifatto da x=150: il cartello "20 m" e il cassone sono interi. Sotto la foto, sopra la barra, si legge già il titolo "Negozio e officina" (la seconda schermata comincia con il negozio).
+- **Barra in basso**: lo stato è su due righe, il verbo in grassetto a 17 px e colorato ("Aperto ora" in verde, "Chiuso ora" in rosso), sotto "chiude alle 12" / "riapre lunedì alle 8". Lo stato è un link agli orari della settimana: un tocco da qualsiasi punto della pagina. "Chiama 049 640282" resta a 52 px.
+- **Testata**: il logo non è più un link (portava alla pagina in cui si è): il posto liberato va alla targhetta-link della foto a 1440 e allo stato a 390. A 1440 lo stato accanto a "Orari e contatti" è in verde o rosso e in grassetto. Il bottone "Menu" del telefono è a 17 px, peso 600, 48x48.
+- **Menu a tendina** (sotto i 1180 px, non conta nella prima schermata): "Le macchine al lavoro, video" e, sotto "Orari e contatti", la riga "Lunedì-venerdì 8-12 e 14-19, sabato 8-12, domenica chiuso. Orari di Google: per festivi e chiusure d'estate telefonateci."
+- **Punti d'arrivo**: dopo un tocco del menu il titolo della sezione sta 24 px sotto la testata, senza la striscia della sezione prima (provato: Macchine h2 a 96 px, tabella dello sterrapiante intera a 479-662, "Chiedete il prezzo" a 686-738; a 390 Negozio h2 a 84, Officina a 459, "comprata altrove" a 491-593, Ricambi a 686).
+- **Vivaista**: la didascalia della foto d'apertura è un link al video della Piragna ("Trincia Piragna, video 2024"); il fotogramma del culmine è un link al video della trapiantatrice; "Video dello sterrapiante laterale" al posto di "Sterrapiante laterale"; nella richiesta compare "Torna alla scheda: Scalzapneus" (o la macchina da cui si è partiti, provato). Tolti i link a pagine che non esistono (nomi delle macchine, "Scheda tecnica", "Officina e riparazioni", "Schede delle macchine", "Chi siamo"); restano solo "Privacy e cookie" (pagina da fare prima di pubblicare, LEGGIMI).
+- **Estero**: la parte in inglese ha di nuovo il confronto delle otto macchine (macchina, lavoro, trattore, peso) in una tabella in testo, intera in una schermata dopo il tocco su "EN DE FR" (281-671 px); il tedesco e il francese hanno il numero con +39.
+- **Stihl**: per il LEGGIMI è da confermare, quindi non è più dato per certo. In prima schermata c'è solo Honda (confermato da Honda, pagina S39219); Stihl sta nella seconda schermata: "Nel nostro elenco dei marchi anche Stihl, Goldoni, Grin... Per la vostra marca telefonateci prima." La soglia di `misura-d.mjs` "Honda e Stihl a 390" è diventata "Honda e Negozio e officina a 390".
+
+**Sotto la piega**
+- **Una griglia sola**: la targa parte dalla linea degli 80 px (prima stava a 104, su nessuna linea) e sta su 8 colonne, l'`h1` a 60 px su due righe fisse; il filetto è a 4 px dal bordo, come sul cartello vero. Tutti i blocchi della pagina stanno sulle 12 colonne (0 figli fuori dalle linee).
+- **Culmine**: una foto sola, la trapiantatrice a 1280x704 (la sua misura, scala 1,0), a tutta griglia, con il titolo sopra e la didascalia a due voci sotto ("Trapiantatrice a ruota, al lavoro in un vivaio / dal nostro video pubblicato il 6 novembre 2024, su YouTube") e a destra "Tutti i 14 video, sul nostro canale". Tolti l'elenco dei video (ripeteva i link delle schede) e i due quadrati di zolla e astoni: le foto in home passano da 12 a 10.
+- **Aperture di sezione diverse**: la coppia titolo e frase affiancati (ora sulla prima riga di base, non sull'ultima) resta solo in Macchine; il culmine ha il titolo sopra la foto; Negozio e officina ha il titolo sopra Honda e un filetto; l'Azienda si apre con la frase della loro presentazione ("Siamo costruttori di macchine ed attrezzature agricole per la lavorazione dei vivai."), a 28 px come i titoli, così il punto di scala resta la targa; Orari e contatti ha il filetto, il titolo e tre colonne (orari, recapiti, due strade).
+- **Pagina più corta e niente buchi**: la richiesta scritta è chiusa in un `<details>` sotto i contatti e si apre da sola da ogni "Prezzo", "Chiedete il prezzo", "Chiedete un ricambio" e "Chiedete un'assistenza" con la voce già scelta (senza JavaScript si apre con un tocco); le sezioni bianche consecutive non sommano più due margini (tra le schede e il culmine 160 px invece di 264). Altezza da 7119 a 6894 px, parole 887.
+- **Ripetizioni tolte**: l'`h2` "La nostra ditta nasce nel 1961." (con il punto, unico) è sparito; "Di tutto di più" è dentro Ricambi e accessori; "Officina e riparazioni" è diventato "Chiedete un'assistenza".
+- **A capo e parole sole**: spazi unificatori tra cifra e unità (kg, HP, cm, giri, "4,4 su 5"), `text-wrap:pretty` su paragrafi, celle e didascalie; nel piede gli orari stanno su due righe ("Lun-ven 8-12 e 14-19" / "sabato 8-12") e non lasciano più "Google)" da solo.
+- **Gesto che torna una volta**: la stessa targa, stessa misura, nel piede.
+- **Screenshot a tutta pagina a 390**: `scatti.mjs` mette la barra fissa in fondo alla pagina prima della cattura, così non copre più la foto a metà immagine.
+
+**Respinti, con il motivo**
+- **Foto più nitida in apertura e servizio fotografico**: serve il file sorgente dei video o un servizio vero (LEGGIMI, "Foto da fare dal vero").
+- **Macchine in studio riportate alla stessa scala**: misurate, le linee di terra coincidono già (86% dell'altezza) e le altezze vanno dal 63 al 77%; per portarle tutte al 70% scalzapneus e Piragna andrebbero ingrandite oltre il file.
+- **Nome del vivaio e comune nelle didascalie, Fausto e Lorena con foto e lingue, persone per le strade del contatto**: non sono nelle fonti.
+- **D8 (450-650 parole, 4.000-6.000 px)**: deroga del metodo ibrido; con la tabella inglese e le schede si resta a 887 parole e 6894 px.
+
+**Misure finali** (`_prova/alto/misura-d.mjs`, `_prova/alto/misure/esito.txt`): 68 soglie su 68.
+
+| Soglia | 1440 | 390 |
+|---|---|---|
+| D2 foto nella prima schermata | 69,5% | 52,4% (barra esclusa) |
+| D3 cliccabili | 6 (tre voci, EN DE FR, telefono, video della Piragna) | 4 (stato, Chiama, Menu, Indicazioni) |
+| D3 bottoni | 1 | 1 |
+| D3 caratteri fuori dal menu | 152 | |
+| Pagina | 887 parole, 6 sezioni, 6894 px, 430 KB, 10 foto in 2 formati, nessuna ingrandita né scurita | |
+| Funzioni | 3 `tel:`, 2 link al percorso ("Indicazioni" una volta), 3 mailto, 4 bottoni, telefono 2 volte e 1961 2 volte nel testo italiano | |
+| Controlli a 320, 390, 768, 1024, 1440, 1920 | nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore di script | |
+
+`misura-d.mjs` ora non conta come visibile il contenuto di un `<details>` chiuso.
+
 ## Che cosa è cambiato
 
 - **Idea**: la macchina gialla che costruiscono a Saonara, al lavoro tra le file del vivaio, alla sua misura vera; il negozio Honda e Stihl sempre a un tocco, in testata.

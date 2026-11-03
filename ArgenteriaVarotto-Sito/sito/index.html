@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Argenteria Varotto Alfredo, Padova: argenteria, articoli per hotel e riparazione</title>
-<meta name="description" content="Argenteria a Padova dal 1974: argento con il punzone 364 PD, Sheffield e articoli per la tavola, il buffet e la pasticceria di hotel e ristoranti. Riparazione e argentatura.">
+<meta name="description" content="Fabbrica d’argenteria a Padova dal 1974: argento con il punzone 364 PD, Sheffield e articoli per la tavola, il buffet e la pasticceria di hotel e ristoranti. Riparazione e argentatura.">
 <style>
 @font-face{font-family:"Bodoni Moda";src:url(fonts/BodoniModa-opsz-latin.woff2) format("woff2");font-weight:400 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Bodoni Moda";src:url(fonts/BodoniModa-opsz-latin-ext.woff2) format("woff2");font-weight:400 900;font-display:swap;unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -23,10 +23,12 @@
   --bianco:#ffffff;
   --bordo-campo:#8d95a1;
   --errore:#9b1c1c;
-  /* griglia: 12 colonne, margini e passo uguali per tutta la pagina */
+  --su-blu:rgba(255,255,255,.88);
+  --filo-blu:rgba(255,255,255,.5);
+  /* griglia: 12 colonne, margini e passo uguali per tutta la pagina; i blocchi partono dalle colonne 1, 4, 7 e 10 */
   --m:80px; --g:32px; --testa:76px;
-  /* spazi tra le sezioni: due valori, il culmine ha la pausa lunga */
-  --sez:128px; --sez-lunga:200px;
+  /* spazi: due valori tra le sezioni (la pausa lunga prima del culmine), tre dentro le sezioni */
+  --sez:128px; --sez-lunga:200px; --s1:16px; --s2:32px; --s3:56px;
   /* misure di carattere */
   --t14:14px; --t16:16px; --t18:18px; --t23:23px; --t30:30px; --t40:40px; --t44:44px;
   --bodoni:"Bodoni Moda",Didot,"Times New Roman",serif;
@@ -44,7 +46,7 @@ h1,h2,h3,.firma{font-family:var(--bodoni);font-weight:400;font-optical-sizing:au
 /* titoli grandi con un'ottica più robusta: i filetti del Bodoni restano leggibili */
 h1,h2,.firma{font-variation-settings:"opsz" 28}
 p{text-wrap:pretty}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,label:focus-within{outline:2px solid currentColor;outline-offset:3px}
 .contenitore{max-width:1440px;margin:0 auto;padding:0 var(--m)}
 .griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
 .contenitore.griglia > .griglia{grid-column:1 / -1}
@@ -52,248 +54,336 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .num{font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
 .freccia{font-weight:600;color:var(--blu);text-decoration:none;white-space:nowrap}
 .freccia:hover{text-decoration:underline}
-.freccia::after{content:" \2192"}
-section[id]{scroll-margin-top:0}
+.freccia::after{content:"\00a0\2192"}
+.blu .freccia{color:var(--bianco)}
+/* dopo un clic nel menu il titolo della sezione arriva 56 px sotto la testata, non dopo tutto lo spazio della sezione */
+.sez{scroll-margin-top:calc(var(--s3) - var(--sez))}
+.culmine{scroll-margin-top:calc(var(--s3) - var(--sez-lunga))}
+.solo-tel,.solo-tel-i{display:none}
 
-/* bottoni: un modello, pieno */
-.bt{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1.5px solid var(--blu);border-radius:2px;background:var(--blu);color:var(--bianco);font:600 var(--t16)/1.2 var(--sans);text-decoration:none;white-space:nowrap;cursor:pointer}
+/* bottoni: un modello, pieno o bordato; al passaggio cambia il fondo, mai la trasparenza */
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1.5px solid var(--blu);border-radius:2px;background:var(--blu);color:var(--bianco);font:600 var(--t16)/1.2 var(--sans);text-decoration:none;white-space:nowrap;cursor:pointer;font-variant-numeric:tabular-nums}
 .bt:hover{background:var(--blu-notte);border-color:var(--blu-notte)}
 .blu .bt{background:var(--bianco);border-color:var(--bianco);color:var(--blu)}
 .blu .bt:hover{background:var(--argento);border-color:var(--argento)}
+.blu .bt.bordo{background:transparent;color:var(--bianco)}
+.blu .bt.bordo:hover{background:var(--bianco);color:var(--blu)}
 
-/* testata fissa */
+/* testata fissa: al caricamento 6 cliccabili; quando l'apertura è uscita dallo schermo compaiono Area clienti ed English e il nome riporta in cima */
 .testata{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
 .testata .contenitore{display:flex;align-items:center;height:var(--testa);gap:40px}
-.marchio{display:flex;align-items:center;gap:12px;flex:none;color:var(--blu)}
+.marchio{display:flex;align-items:center;gap:12px;flex:none;color:var(--blu);text-decoration:none}
 .segno{display:block;height:34px;width:auto;flex:none}
 .marchio span{font-family:var(--bodoni);font-size:var(--t23);line-height:1;white-space:nowrap;color:var(--inchiostro)}
 .menu{display:flex;gap:32px;font-size:var(--t16);margin-left:auto}
-.menu a{text-decoration:none;padding:6px 0}
+.menu a{text-decoration:none;padding:6px 0;white-space:nowrap}
 .menu a:hover{text-decoration:underline}
-.menu .solo-tel{display:none}
+.menu .solo-menu{display:none}
+.extra{display:none;gap:20px;font-size:var(--t16);white-space:nowrap}
+.extra a{text-decoration:none;color:var(--blu);font-weight:600;padding:6px 0}
+.extra a:hover{text-decoration:underline}
+.testata.sotto .extra{display:flex}
+.en-c{display:none}
+/* nello stato "sotto" le due voci in più entrano togliendo il numero dal bottone e stringendo gli spazi */
+@media (max-width:1400px){
+  .testata.sotto .solo-largo{display:none}
+  .testata.sotto .contenitore,.testata.sotto .menu{gap:24px}
+}
+@media (max-width:1300px){
+  .testata .contenitore,.menu{gap:24px}
+  .testata.sotto .contenitore{gap:18px}
+  .testata.sotto .menu{gap:18px;font-size:15px}
+  .testata.sotto .extra{gap:14px;font-size:15px}
+}
+@media (max-width:1180px){
+  .testata.sotto .contenitore{gap:14px}
+  .testata.sotto .menu{gap:14px}
+  .en-l{display:none}.en-c{display:inline}
+}
 .testata .bt{min-height:46px;padding:0 18px}
 .bt-menu{display:none;align-items:center;justify-content:center;width:48px;height:48px;border:0;background:none;color:var(--inchiostro);cursor:pointer;padding:0;margin-right:-12px}
 .bt-menu span,.bt-menu span::before,.bt-menu span::after{display:block;width:22px;height:2px;background:currentColor;position:relative}
 .bt-menu span::before,.bt-menu span::after{content:"";position:absolute;left:0}
 .bt-menu span::before{top:-7px}.bt-menu span::after{top:7px}
 
-/* apertura: il campo d'argento con i tre punzoni incisi, l'unico gesto della pagina */
-.apertura{background-color:var(--argento);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.16) 0 1px,rgba(255,255,255,0) 1px 3px);min-height:calc(100vh - var(--testa));display:flex}
-.apertura .contenitore{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);grid-template-rows:3fr auto auto auto 2fr;padding-top:56px;padding-bottom:56px}
-/* il segno tocca i margini della griglia (80 e 1360 a 1440): il viewBox parte dal bordo del contorno */
-.punzoni{grid-column:1 / -1;grid-row:2;width:100%;height:auto;margin:0 0 72px;overflow:visible}
-.punzoni.stretto{display:none}
-.punzoni{font-family:var(--bodoni);font-weight:400;font-variation-settings:"opsz" 18}
+/* apertura: il punzone del produttore a tutta griglia, i due del titolo sotto, piccoli; l'unico gesto della pagina */
+.apertura{background-color:var(--argento);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.22) 0 1px,rgba(255,255,255,0) 1px 2px);min-height:calc(100vh - var(--testa));display:flex}
+.apertura .contenitore{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);grid-template-rows:3fr auto auto auto 2fr;padding-top:40px;padding-bottom:40px}
+.punzoni{font-family:var(--bodoni);font-weight:400;font-variation-settings:"opsz" 18;overflow:visible}
 .punzoni .segno-p{fill:var(--argento-segno);stroke:var(--argento-segno)}
-/* sotto la losanga la didascalia del segno; il titolo sotto i due ovali, sulle colonne 7-12 */
-.apertura .fatto{grid-column:1 / span 4;grid-row:3;font-size:var(--t18);line-height:1.5;color:var(--inchiostro);padding-top:14px;border-top:1px solid var(--argento-segno);align-self:start}
-/* il titolo sta su due righe nelle sei colonne di destra: sotto i 1440 px il corpo scende con la colonna */
-.apertura h1{grid-column:7 / -1;grid-row:3;font-size:min(var(--t44),calc((100vw - 2 * var(--m) - var(--g)) / 26.4));line-height:1.16;letter-spacing:-.012em}
+/* il contorno della losanga tocca i margini della griglia (80 e 1360 a 1440) */
+.losanga{grid-column:1 / -1;grid-row:2;width:100%;height:auto;margin-bottom:40px}
+/* 925 e 800 sotto il punzone del produttore, a sinistra: alti 96 px, partono dal margine come la losanga */
+.ovali{grid-column:1 / span 6;grid-row:3 / span 2;height:96px;width:auto;align-self:start;margin-top:6px}
+.apertura h1{grid-column:7 / -1;grid-row:3;font-size:min(var(--t44),calc((100vw - 2 * var(--m) - var(--g)) / 26.4));line-height:1.18;letter-spacing:-.012em}
 .apertura h1{white-space:nowrap}
-.apertura .riga{grid-column:7 / -1;grid-row:4;margin-top:18px;font-size:var(--t18);color:var(--grigio)}
-.apertura .solo-tel{display:none}
+.apertura .riga{grid-column:7 / -1;grid-row:4;margin-top:16px;font-size:var(--t18);color:var(--grigio);max-width:34em;text-wrap:balance}
+
+/* indice sotto il bordo della prima schermata, solo al telefono */
+.indice{display:none}
 
 /* titoli di sezione */
 .capo{align-items:end}
-.capo h2{grid-column:1 / span 6;font-size:var(--t40);line-height:1.15}
+.capo h2{font-size:var(--t40);line-height:1.15}
+.capo .testa-sx{grid-column:1 / span 6}
+.capo .testa-sx p{margin-top:20px;color:var(--grigio);max-width:30em}
 .capo .accanto{grid-column:7 / -1;color:var(--grigio)}
-.capo .accanto p + p{margin-top:12px}
-.strade{font-size:var(--t16);color:var(--inchiostro)}
-.strade a{font-weight:600;color:var(--blu)}
+.vie{border-top:1px solid var(--inchiostro);font-size:var(--t16);color:var(--inchiostro)}
+.vie li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--s1);padding:12px 0;border-bottom:1px solid var(--linea);align-items:baseline}
+.vie li > span{color:var(--grigio)}
+.vie a{font-weight:600;color:var(--blu)}
+.vie .freccia{text-decoration:none}
 
 .sez{padding:var(--sez) 0}
 
-/* pezzi in serie: stessa tela 3:2 su bianco, stesso ingombro */
-.serie{margin-top:56px;row-gap:56px}
+/* pezzi in serie: stessa tela 3:2 su bianco, stesso ingombro, base alla stessa altezza */
+.serie{margin-top:var(--s3);row-gap:var(--s3)}
 .pezzo{grid-column:span 3;display:flex;flex-direction:column;text-decoration:none;color:var(--inchiostro)}
 .pezzo .foto{aspect-ratio:3/2;background:var(--bianco);border-bottom:1px solid var(--linea)}
 .pezzo .foto img{width:100%;height:100%;object-fit:contain}
-.pezzo .cat{margin-top:16px;font-size:var(--t14);line-height:1.4;color:var(--grigio)}
+.pezzo .cat{margin-top:var(--s1);font-size:var(--t14);line-height:1.4;color:var(--grigio)}
 .pezzo h3{margin-top:4px;font-size:var(--t23);line-height:1.22}
 .pezzo:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
 .pezzo .dati{margin-top:6px;font-size:var(--t16);line-height:1.5;color:var(--grigio)}
 .pezzo .prezzo{margin-top:auto;padding-top:10px;font-size:var(--t16);font-weight:600;font-variant-numeric:tabular-nums}
 .pezzo .prezzo span{font-weight:400;color:var(--blu);margin-left:10px}
-/* sotto i quattro pezzi, dopo un filetto: la riargentatura sulle colonne 1-6, il preventivo sulle 7-12 */
-.servizi{grid-column:1 / -1;margin-top:8px;padding-top:28px;border-top:1px solid var(--inchiostro);row-gap:40px}
+/* sotto i quattro pezzi, dopo un filetto: la riargentatura sulle colonne 1-6, il preventivo per email sulle 7-12 */
+.servizi{grid-column:1 / -1;padding-top:var(--s2);border-top:1px solid var(--inchiostro);row-gap:40px}
 .blocco{grid-column:span 6}
 .blocco h3{font-size:var(--t23);line-height:1.22}
-.blocco p{margin-top:10px;color:var(--grigio)}
-.blocco ul{margin-top:16px;font-size:var(--t16)}
-.blocco li{padding:10px 0;border-bottom:1px solid var(--linea)}
-.blocco li:first-child{border-top:1px solid var(--linea)}
-.altre{grid-column:1 / -1;margin-top:0;padding-top:20px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;font-size:var(--t16)}
-.altre a{color:var(--blu);font-weight:600}
-.altre .nota{margin-left:auto;color:var(--grigio)}
+.blocco p{margin-top:10px;color:var(--grigio);max-width:34em}
+.blocco .vai{margin-top:var(--s1);display:flex;flex-wrap:wrap;gap:8px 28px}
 
-/* culmine: il vassoio Regina Anna alla sua misura vera */
+/* culmine: il vassoio Regina Anna su nove colonne, la didascalia sulle ultime tre */
 .culmine{padding:var(--sez-lunga) 0 var(--sez)}
-.dominante{grid-column:1 / -1;margin-top:56px}
-.dominante a{text-decoration:none;color:inherit;display:block}
-.dominante img{width:100%;max-width:1280px;aspect-ratio:1280 / 557}
-.dominante figcaption{margin-top:20px;padding-top:16px;border-top:1px solid var(--linea);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:baseline}
-.dominante figcaption strong{grid-column:1 / span 6;font-family:var(--bodoni);font-weight:400;font-size:var(--t30);line-height:1.2}
-.dominante figcaption span{grid-column:7 / -1;font-size:var(--t16);color:var(--grigio)}
-.dominante figcaption b{color:var(--inchiostro);font-weight:600;font-variant-numeric:tabular-nums}
-.dominante a:hover strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
-.shop-piede{grid-column:1 / -1;margin-top:56px;padding-top:24px;border-top:1px solid var(--linea);align-items:center;row-gap:20px;font-size:var(--t16)}
-.shop-piede .sx{grid-column:1 / span 6;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px}
-.shop-piede ul{display:flex;flex-wrap:wrap;gap:8px 24px}
-.shop-piede ul a{color:var(--blu);font-weight:600}
-.shop-piede .dx{grid-column:7 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
-.shop-piede .dx .bt{margin-left:auto}
+.culmine h2{grid-column:1 / span 9;font-size:var(--t40);line-height:1.15}
+.dominante{grid-column:1 / -1;margin-top:var(--s3);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.dominante > a{grid-column:1 / span 9;display:block}
+.dominante img{width:100%;aspect-ratio:1280 / 557}
+.dominante figcaption{grid-column:10 / -1;align-self:end;padding-top:var(--s1);border-top:1px solid var(--inchiostro);font-size:var(--t16);color:var(--grigio)}
+.dominante figcaption strong{display:block;font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.25;color:var(--inchiostro);margin-bottom:8px;text-wrap:balance}
+.dominante figcaption p + p{margin-top:6px}
+.dominante figcaption b{font-weight:600;color:var(--inchiostro);font-variant-numeric:tabular-nums}
+.dominante figcaption .freccia{display:inline-block;margin-top:var(--s1)}
+/* listino dello shop: righe con la miniatura, non un'altra fila di tessere */
+.listino{grid-column:1 / -1;margin-top:96px}
+.listino > h3{grid-column:1 / span 6;font-size:var(--t30);line-height:1.2}
+.listino > p{grid-column:7 / -1;align-self:end;color:var(--grigio)}
+.listino > p a{color:var(--blu);font-weight:600}
+.righe{grid-column:1 / -1;margin-top:var(--s2);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.voce{grid-column:span 6;display:grid;grid-template-columns:132px minmax(0,1fr) auto;column-gap:24px;align-items:center;padding:var(--s1) 0;border-top:1px solid var(--linea);text-decoration:none;color:var(--inchiostro)}
+.voce:nth-last-child(-n+2){border-bottom:1px solid var(--linea)}
+.voce img{width:132px;height:88px;object-fit:contain}
+.voce h4{margin:0;font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.22}
+.voce:hover h4{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+.voce .dati{display:block;margin-top:4px;font-size:var(--t16);line-height:1.45;color:var(--grigio)}
+.voce .prezzo{font-size:var(--t16);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.shop-piede{grid-column:1 / -1;margin-top:var(--s3);align-items:center;row-gap:20px;font-size:var(--t16)}
+.shop-piede .sx{grid-column:1 / span 9;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px}
+.shop-piede .sx a{color:var(--blu);font-weight:600}
+.shop-piede .dx{grid-column:10 / -1;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:16px 24px}
 
-/* chi siamo: su argento, i punzoni spiegati e i marchi */
+/* chi siamo: su argento; il gesto d'apertura torna una volta, piccolo, accanto alla frase dell'azienda */
 .argento{background:var(--argento)}
 .chi .sinistra{grid-column:1 / span 6}
-.firma{font-size:var(--t44);line-height:1.16;letter-spacing:-.012em}
-.chi .sinistra p{margin-top:24px;max-width:36em}
-.chi .punz{grid-column:7 / -1;align-self:end}
+.chi h2{font-size:var(--t40);line-height:1.15}
+.chi .sinistra p{margin-top:24px;max-width:34em}
+.chi .punz{grid-column:7 / -1}
+.chi dt .mini{height:40px;width:auto}
+.citazione{font-family:var(--bodoni);font-size:var(--t23);line-height:1.4;max-width:30em}
 .chi .punz h3,.marchi h3,.rip h3.capetto,.contatti h3{font-family:var(--sans);font-weight:600;font-size:var(--t16);line-height:1.4}
-.chi dl{margin-top:12px;border-top:1px solid var(--inchiostro)}
-.chi dl div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--t16)}
+.chi dl{margin-top:var(--s2);border-top:1px solid var(--inchiostro)}
+.chi dl div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--s1);padding:14px 0;border-bottom:1px solid var(--linea);font-size:var(--t16);align-items:center;min-height:69px}
 .chi dt{font-family:var(--bodoni);font-size:var(--t23);line-height:1.2}
 .chi dd{color:var(--grigio)}
 .marchi{grid-column:1 / -1;margin-top:80px}
 .marchi ul{margin-top:12px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
-.marchi li{grid-column:span 6;padding:14px 0;border-top:1px solid var(--linea);font-size:var(--t16);color:var(--grigio)}
-.marchi li strong{display:block;font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.2;color:var(--inchiostro);margin-bottom:2px}
+.marchi li{grid-column:span 6;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--s1);align-items:baseline;padding:12px 0;border-top:1px solid var(--linea);font-size:var(--t16);color:var(--grigio)}
+.marchi li strong{font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.2;color:var(--inchiostro)}
 
 /* riparazione: l'unico blocco blu */
 .blu{background:var(--blu);color:var(--bianco)}
 .blu a{color:var(--bianco)}
-.rip .sinistra{grid-column:1 / span 5}
+.rip .sinistra{grid-column:1 / span 6}
 .rip h2{font-size:var(--t40);line-height:1.15}
-.rip .sinistra p{margin-top:24px;color:rgba(255,255,255,.9)}
+.rip .sinistra p{margin-top:24px;color:var(--su-blu);max-width:30em}
 .rip .sinistra .loro{font-family:var(--bodoni);font-size:var(--t23);line-height:1.4;color:var(--bianco)}
-.rip .azione{margin-top:36px}
-.rip .azione small{display:block;margin-top:10px;font-size:var(--t14);color:rgba(255,255,255,.8);max-width:36em}
+.rip .azione{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px}
+.rip .sinistra .nota-az{margin-top:10px;max-width:none;font-size:var(--t14);color:rgba(255,255,255,.8)}
 .rip .destra{grid-column:7 / -1}
 .elenchi{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g)}
-.elenchi > div{grid-column:span 3;border-top:1px solid rgba(255,255,255,.5);padding-top:14px}
+.elenchi > div{grid-column:span 3;border-top:1px solid var(--filo-blu);padding-top:14px}
 .rip h3.capetto{color:rgba(255,255,255,.85)}
 .elenchi ul{margin-top:8px;font-family:var(--bodoni);font-size:var(--t23);line-height:1.5}
-.passi{margin-top:48px;border-top:1px solid rgba(255,255,255,.5);padding-top:14px}
+.passi{margin-top:48px;border-top:1px solid var(--filo-blu);padding-top:14px}
 .passi ol{margin-top:4px;counter-reset:p}
-.passi li{display:grid;grid-template-columns:48px 1fr;gap:2px 0;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.24)}
+.passi li{display:grid;grid-template-columns:48px 1fr;gap:2px 0;padding:var(--s1) 0;border-bottom:1px solid rgba(255,255,255,.24)}
 .passi li::before{counter-increment:p;content:counter(p,decimal-leading-zero);font-size:var(--t16);font-weight:600;grid-row:span 2;padding-top:3px;font-variant-numeric:tabular-nums}
 .passi strong{font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.25}
-.passi span{font-size:var(--t16);line-height:1.5;color:rgba(255,255,255,.88)}
-.dove{margin-top:48px;padding-top:14px;border-top:1px solid rgba(255,255,255,.5);font-size:var(--t16);color:rgba(255,255,255,.9)}
-.dove a{font-weight:600;padding:12px 0}
-.dove .mappa{display:inline-block;margin-top:6px}
+.passi span{font-size:var(--t16);line-height:1.5;color:var(--su-blu)}
+.rip .sinistra .dove{max-width:none}
+.dove{margin-top:48px;padding-top:14px;border-top:1px solid var(--filo-blu);font-size:var(--t16);color:var(--su-blu)}
 .dove strong{font-weight:600;color:var(--bianco)}
+.dove .freccia{display:inline-flex;align-items:center;min-height:48px;margin-top:4px}
 
-/* contatti: divisi per bisogno, con il modulo */
+/* contatti: le quattro strade in fila sulle colonne 1, 4, 7 e 10; sotto, il modulo sulla stessa griglia */
 .contatti h2{grid-column:1 / -1;font-size:var(--t40);line-height:1.15}
-.contatti .strade-c{grid-column:1 / span 5;margin-top:40px}
-.contatti .strada{border-top:1px solid var(--inchiostro);padding:16px 0 22px;font-size:var(--t16)}
-.contatti .strada p{margin-top:4px;color:var(--grigio)}
-.contatti .strada a{color:var(--inchiostro)}
-.contatti .tel{font-family:var(--sans);font-size:var(--t23);font-weight:600;text-decoration:none}
+.strade-c{grid-column:1 / -1;margin-top:40px;row-gap:var(--s2)}
+.strada{grid-column:span 3;border-top:1px solid var(--inchiostro);padding-top:var(--s1);font-size:var(--t16)}
+.strada p{margin-top:4px;color:var(--grigio)}
+.strada a{color:var(--inchiostro)}
+.contatti .tel{font-family:var(--sans);font-size:var(--t23);font-weight:600;text-decoration:none;color:var(--inchiostro)}
 .contatti .tel:hover{text-decoration:underline}
-.modulo{grid-column:7 / -1;margin-top:40px;background:var(--argento);padding:40px}
-.modulo > h3{font-family:var(--bodoni);font-weight:400;font-size:var(--t30);line-height:1.2}
-.campi{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+.modulo{grid-column:1 / -1;margin-top:96px;padding-top:var(--s2);border-top:1px solid var(--inchiostro);align-items:start}
+.modulo-t{grid-column:1 / span 3}
+.modulo-t h3{font-family:var(--bodoni);font-weight:400;font-size:var(--t30);line-height:1.2}
+.modulo-t p{margin-top:12px;font-size:var(--t16);color:var(--grigio)}
+.campi{grid-column:4 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px var(--g)}
 .campi .tutta{grid-column:1 / -1}
-.campi label{display:block;font-size:var(--t14);font-weight:600;margin-bottom:6px}
-.campi label i{font-style:normal;font-weight:400;color:var(--grigio)}
+.campi .due{grid-column:span 2}
+.campi.rip #r-articoli{grid-column:span 2}
+.campi label,.campo-t{display:block;font-size:var(--t14);font-weight:600;line-height:1.4;margin-bottom:6px}
+.campi label i,.campo-t i{font-style:normal;font-weight:400;color:var(--grigio)}
 .campi input,.campi select,.campi textarea{width:100%;min-height:50px;border:1px solid var(--bordo-campo);border-radius:2px;background:var(--bianco);color:var(--inchiostro);font:400 var(--t16)/1.4 var(--sans);padding:12px 14px}
-.campi input[type=file]{cursor:pointer}
-.campi input[type=file]::file-selector-button{font:600 var(--t14)/1.2 var(--sans);color:var(--blu);background:var(--bianco);border:1.5px solid var(--blu);border-radius:2px;padding:6px 12px;margin-right:12px;cursor:pointer}
-.campi textarea{min-height:110px;resize:vertical}
+.campi textarea{min-height:128px;resize:vertical}
 .campi [hidden]{display:none}
+/* allegati: il campo del browser resta nascosto, il comando è in italiano */
+.file{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;min-height:50px;border:1px solid var(--bordo-campo);border-radius:2px;background:var(--bianco);padding:6px}
+.file input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.file label{margin:0;display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1.5px solid var(--blu);border-radius:2px;color:var(--blu);font-weight:600;font-size:var(--t14);cursor:pointer}
+.file label:hover{background:var(--blu);color:var(--bianco)}
+.file span{font-size:var(--t14);color:var(--grigio)}
 .aiuto{margin-top:6px;font-size:var(--t14);line-height:1.45;color:var(--grigio)}
-.invio{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.invio{margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .invio .aiuto{margin-top:0;flex:1 1 16em}
 .esito{flex-basis:100%;font-size:var(--t16)}
 .esito:empty{display:none}
 .esito.errore{color:var(--errore)}
 
-/* piede */
-.piede{background:var(--blu-notte);color:var(--bianco);padding:56px 0 40px;font-size:var(--t14);line-height:1.6}
+/* piede: il biglietto da visita */
+.piede{background:var(--blu-notte);color:var(--bianco);padding:var(--s3) 0 40px;font-size:var(--t16);line-height:1.6}
 .piede .griglia{align-items:start}
-.piede .firma-p{grid-column:1 / span 3;display:flex;align-items:center;gap:12px}
-.piede .firma-p span{font-family:var(--bodoni);font-size:var(--t23);line-height:1.1}
-.piede .sede{grid-column:4 / span 3}
-.piede .legale{grid-column:7 / span 3;color:rgba(255,255,255,.82)}
-.piede .link-p{grid-column:10 / -1}
-.piede .link-p li + li{margin-top:4px}
+.piede .firma-p{grid-column:1 / span 6;display:flex;align-items:center;gap:12px;color:var(--bianco);text-decoration:none}
+.piede .firma-p span{font-family:var(--bodoni);font-size:var(--t30);line-height:1.1;white-space:nowrap}
+.piede .sede{grid-column:7 / span 3;font-size:var(--t18)}
+.piede .recapiti{grid-column:10 / -1;font-size:var(--t18)}
+.piede .recapiti .num{font-weight:600}
+.piede .legale{grid-column:1 / -1;margin-top:40px;padding-top:var(--s1);border-top:1px solid rgba(255,255,255,.28);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:var(--t14);color:rgba(255,255,255,.82)}
+.piede .legale ul{display:flex;flex-wrap:wrap;gap:8px 20px}
 .piede a{text-decoration:none}
 .piede a:hover{text-decoration:underline}
 
-/* fino a 1180: menu a bottone */
+/* da 1024 a 1180: il menu resta in linea, più stretto; il bottone dice solo Chiama */
 @media (max-width:1180px){
   :root{--m:48px;--g:24px}
+  .testata .contenitore{gap:24px}
+  .menu{gap:20px;font-size:15px}
+  .extra{gap:14px;font-size:15px}
+  .testata .solo-largo{display:none}
+}
+/* tablet: menu a bottone */
+@media (max-width:1023px){
+  :root{--m:40px;--sez:104px;--sez-lunga:150px;--testa:72px;--t40:34px;--t44:38px}
   .menu{display:none}
+  .testata.sotto .extra{display:none}
+  .marchi li{grid-template-columns:1fr;gap:2px}
   .bt-menu{display:inline-flex}
   .testata .bt{margin-left:auto}
   .testata .contenitore{gap:16px}
   .menu.aperto{display:flex;position:fixed;top:var(--testa);left:0;right:0;flex-direction:column;gap:0;margin:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea);font-size:var(--t23);font-family:var(--bodoni);max-height:calc(100vh - var(--testa));overflow:auto}
   .menu.aperto a{padding:14px 0;border-bottom:1px solid var(--linea)}
-  .menu.aperto .solo-tel{display:block}
-}
-/* tablet */
-@media (max-width:1023px){
-  :root{--m:40px;--sez:104px;--sez-lunga:150px;--testa:72px;--t40:34px;--t44:38px}
-  .punzoni.largo{display:none}
-  .punzoni.stretto{display:block;max-width:600px;margin-bottom:0}
-  .apertura .contenitore{grid-template-rows:3fr auto auto auto auto auto 2fr}
-  .apertura .fatto{grid-column:1 / span 8;grid-row:3;margin:20px 0 48px;max-width:600px}
+  .menu.aperto .solo-menu{display:block}
+  .apertura .contenitore{grid-template-rows:3fr auto auto auto auto 2fr}
+  .losanga{max-width:640px;margin-bottom:var(--s2)}
+  .ovali{grid-column:1 / -1;grid-row:3;margin:0 0 48px}
   .apertura h1{grid-column:1 / span 10;grid-row:4;font-size:var(--t44)}
   .apertura .riga{grid-column:1 / span 9;grid-row:5}
-  .capo h2,.capo .accanto{grid-column:1 / -1}
-  .capo .accanto{margin-top:20px;max-width:40em}
+  .capo .testa-sx,.capo .accanto{grid-column:1 / -1}
+  .capo .accanto{margin-top:var(--s2);max-width:40em}
   .pezzo{grid-column:span 6}
   .blocco{grid-column:1 / -1}
-  .dominante figcaption strong,.dominante figcaption span{grid-column:1 / -1;justify-self:start;text-align:left}
-  .dominante figcaption span{margin-top:6px}
+  .culmine h2{grid-column:1 / -1}
+  .dominante > a,.dominante figcaption{grid-column:1 / -1}
+  .dominante figcaption{margin-top:24px}
+  .listino{margin-top:72px}
+  .listino > h3,.listino > p{grid-column:1 / -1}
+  .listino > p{margin-top:12px}
+  .voce{grid-column:1 / -1}
+  .voce:nth-last-child(2){border-bottom:0}
+  .shop-piede .sx,.shop-piede .dx{grid-column:1 / -1;justify-content:flex-start}
   .chi .sinistra,.chi .punz{grid-column:1 / -1}
   .chi .punz{margin-top:48px}
-  .marchi li{grid-column:span 6}
   .rip .sinistra,.rip .destra{grid-column:1 / -1}
-  .rip .destra{margin-top:56px}
-  .contatti .strade-c,.modulo{grid-column:1 / -1}
-  .piede .firma-p,.piede .sede,.piede .legale,.piede .link-p{grid-column:1 / -1}
-  .piede .sede,.piede .legale,.piede .link-p{margin-top:20px}
-  .altre .nota{margin-left:0;flex-basis:100%}
+  .rip .destra{margin-top:var(--s3)}
+  .strada{grid-column:span 6}
+  .modulo-t,.campi{grid-column:1 / -1}
+  .campi{margin-top:24px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .campi .due,.campi.rip #r-articoli{grid-column:1 / -1}
+  .piede .firma-p,.piede .sede,.piede .recapiti{grid-column:1 / -1}
+  .piede .sede,.piede .recapiti{margin-top:20px}
 }
 /* telefono */
 @media (max-width:700px){
-  :root{--m:20px;--g:16px;--sez:72px;--sez-lunga:104px;--testa:64px;--t18:17px;--t23:20px;--t30:24px;--t40:30px;--t44:32px}
+  :root{--m:20px;--g:16px;--sez:72px;--sez-lunga:104px;--testa:64px;--t18:17px;--t23:20px;--t30:24px;--t40:30px;--t44:32px;--s3:40px}
   body{line-height:1.53}
-  .testata .contenitore{gap:10px}
+  .solo-tel{display:block}
+  .solo-tel-i{display:inline}
+  .solo-largo-b{display:none}
+  .testata .contenitore{gap:8px}
   .marchio{gap:8px}
   .segno{height:28px}
-  .marchio span{font-size:19px}
-  .testata .bt{min-height:48px;padding:0 16px}
-  .solo-largo{display:none}
-  .apertura .contenitore{padding-top:32px;padding-bottom:28px}
-  .apertura .fatto{grid-column:1 / -1;margin:16px 0 36px}
+  .marchio span{font-size:18px}
+  .testata .bt{min-height:48px;padding:0 12px}
+  .apertura .contenitore{padding-top:32px;padding-bottom:24px;grid-template-rows:1fr auto auto auto auto auto 1fr}
+  .losanga{margin-bottom:20px}
+  .ovali{width:100%;height:auto;margin-bottom:32px}
   .apertura h1,.apertura .riga{grid-column:1 / -1}
   .apertura h1{white-space:normal}
   .apertura h1 br{display:none}
-  .apertura .riga{margin-top:14px}
-  .apertura .solo-tel{display:inline-block;grid-column:1 / -1;grid-row:6;justify-self:start;margin-top:18px;padding:12px 0;font-size:var(--t18)}
-  .serie{margin-top:36px;row-gap:40px}
-  .pezzo .cat{margin-top:12px}
-  .pezzo .dati{font-size:15px}
+  .apertura .riga{margin-top:12px}
+  .apertura .freccia.solo-tel{display:inline-flex;align-items:center;min-height:48px;grid-column:1 / -1;grid-row:6;justify-self:start;margin-top:12px;font-size:var(--t18)}
+  .indice{display:block;padding:28px 0 8px}
+  .indice .bt{width:100%}
+  .indice ul{margin-top:20px;border-top:1px solid var(--inchiostro)}
+  .indice li a{display:block;padding:14px 0;border-bottom:1px solid var(--linea);text-decoration:none}
+  .indice strong{display:block;font-family:var(--bodoni);font-weight:400;font-size:var(--t23);line-height:1.25}
+  .indice strong::after{content:" \2192";font-family:var(--sans);font-size:var(--t18);color:var(--blu)}
+  .indice li span{display:block;margin-top:2px;font-size:15px;line-height:1.45;color:var(--grigio)}
+  .vie li{grid-template-columns:1fr;gap:2px}
+  .serie{margin-top:32px;row-gap:0;border-top:1px solid var(--linea)}
+  /* al telefono le schede vanno a riga: miniatura a sinistra, nome, misura e prezzo a destra */
+  .pezzo{grid-column:1 / -1;display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:var(--s1);align-items:start;padding:var(--s1) 0;border-bottom:1px solid var(--linea)}
+  .pezzo .foto{grid-row:1 / span 4;border-bottom:0}
+  .pezzo .cat{margin-top:0;grid-column:2}
+  .pezzo h3,.pezzo .dati,.pezzo .prezzo{grid-column:2}
+  .pezzo h3{font-size:18px}
+  .pezzo .dati{font-size:15px;margin-top:2px}
+  .pezzo .prezzo{padding-top:6px}
   .pezzo .prezzo span{display:block;margin:2px 0 0}
-  .altre{margin-top:0}
-  .dominante{margin-top:36px}
-  .shop-piede .sx,.shop-piede .dx{grid-column:1 / -1}
+  .servizi{margin-top:var(--s2)}
+  .voce{grid-template-columns:96px minmax(0,1fr);column-gap:var(--s1);align-items:start}
+  .voce img{width:96px;height:64px}
+  .voce h4{font-size:18px}
+  .voce .dati{font-size:15px}
+  .voce .prezzo{grid-column:2;margin-top:4px}
+  .dominante{margin-top:var(--s2)}
+  .shop-piede .dx{flex-direction:column;align-items:stretch}
   .shop-piede .bt{width:100%}
   .chi .sinistra p{margin-top:18px}
-  .chi dl div{grid-template-columns:1fr;gap:2px}
-  .marchi{margin-top:56px}
+  .marchi li{grid-template-columns:1fr;gap:2px}
+  .chi dl div{grid-template-columns:132px minmax(0,1fr)}
+  .chi dt .mini{height:34px}
+  .marchi{margin-top:var(--s3)}
   .marchi li{grid-column:1 / -1}
   .elenchi > div{grid-column:span 6}
   .elenchi > div + div{margin-top:28px}
-  .elenchi ul{font-size:var(--t23)}
   .rip .azione .bt{width:100%}
-  .modulo{padding:28px 20px}
+  .strada{grid-column:1 / -1}
+  .modulo{margin-top:var(--s3)}
   .campi{grid-template-columns:1fr}
   .invio .bt{width:100%}
+  .piede .firma-p span{font-size:var(--t23);white-space:normal}
+  .piede .legale{flex-direction:column}
 }
 @media (max-width:360px){
   .marchio span{display:none}
@@ -328,17 +418,19 @@ section[id]{scroll-margin-top:0}
 
 <header class="testata">
   <div class="contenitore">
-    <div class="marchio"><svg class="segno" viewBox="0 0 24 33" aria-hidden="true"><use href="#segno"/></svg><span>Varotto Alfredo</span></div>
+    <!-- il nome diventa il collegamento all'inizio della pagina quando l'apertura è uscita dallo schermo (script in fondo) -->
+    <a class="marchio" aria-label="Argenteria Varotto Alfredo"><svg class="segno" viewBox="0 0 24 33" aria-hidden="true"><use href="#segno"/></svg><span>Varotto Alfredo</span></a>
     <nav class="menu" id="menu" aria-label="Menu principale">
       <a href="#hotel">Hotel e ristoranti</a>
-      <a href="#shop">Shop online</a>
       <a href="#riparazione">Riparazione</a>
+      <a href="#shop">Shop online</a>
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#contatti">Contatti</a>
-      <a class="solo-tel" href="area-clienti/">Area clienti</a>
-      <a class="solo-tel" href="en/" lang="en">English</a>
+      <a class="solo-menu" href="area-clienti/">Area clienti</a>
+      <a class="solo-menu" href="en/" lang="en">English</a>
     </nav>
-    <a class="bt" href="tel:+390498700709" aria-label="Chiama lo 049 870 07 09">Chiama<span class="num solo-largo">&nbsp;049&nbsp;870&nbsp;07&nbsp;09</span></a>
+    <div class="extra"><a href="area-clienti/">Area clienti</a><a href="en/" lang="en" aria-label="English"><span class="en-l">English</span><span class="en-c" aria-hidden="true">EN</span></a></div>
+    <a class="bt" href="tel:+390498700709" aria-label="Chiama lo 049 870 07 09"><span class="solo-largo-b">Chiama</span><span class="num solo-largo">049&nbsp;870&nbsp;07&nbsp;09</span><span class="num solo-tel-i">049&nbsp;870&nbsp;07&nbsp;09</span></a>
     <button class="bt-menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><span></span></button>
   </div>
 </header>
@@ -346,170 +438,88 @@ section[id]{scroll-margin-top:0}
 <main>
   <section class="apertura" aria-labelledby="h-apertura">
     <div class="contenitore">
-      <svg class="punzoni largo" viewBox="2.5 4.5 1296 191" role="img" aria-labelledby="pz-t1">
-        <title id="pz-t1">I tre punzoni Varotto Alfredo: la stella con 364 PD, identità del produttore; 925 e 800, titolo dell’argento</title>
-        <g class="segno-p" filter="url(#incisione)"><use href="#pz-losanga" width="640" height="200"/><use href="#pz-925" x="680" width="290" height="200"/><use href="#pz-800" x="1010" width="290" height="200"/></g>
+      <svg class="punzoni losanga" viewBox="2.5 4.5 635 191" role="img" aria-labelledby="pz-t1">
+        <title id="pz-t1">Punzone del produttore Varotto Alfredo: stella e 364 PD</title>
+        <g class="segno-p" filter="url(#incisione)"><use href="#pz-losanga" width="640" height="200"/></g>
       </svg>
-      <svg class="punzoni stretto" viewBox="2.5 4.5 635 414" role="img" aria-labelledby="pz-t2">
-        <title id="pz-t2">I tre punzoni Varotto Alfredo: la stella con 364 PD, identità del produttore; 925 e 800, titolo dell’argento</title>
-        <g class="segno-p" filter="url(#incisione)"><use href="#pz-losanga" width="640" height="200"/><use href="#pz-925" x="1" y="222" width="290" height="200"/><use href="#pz-800" x="349" y="222" width="290" height="200"/></g>
+      <svg class="punzoni ovali" viewBox="1.5 3.5 617 193" role="img" aria-labelledby="pz-t2">
+        <title id="pz-t2">Punzoni del titolo dell’argento: 925 e 800</title>
+        <g class="segno-p" filter="url(#incisione)"><use href="#pz-925" width="290" height="200"/><use href="#pz-800" x="330" width="290" height="200"/></g>
       </svg>
-      <p class="fatto">Punzone del produttore 364 PD, titolo 925 e 800</p>
       <h1 class="firma" id="h-apertura">Riconoscibili ad occhio nudo,<br> impressi sull’oggetto</h1>
-      <p class="riga">Argenteria a Padova dal 1974, per casa, hotel e ristoranti.</p>
+      <p class="riga">Fabbrica d’argenteria a Padova dal 1974: tavola, buffet e pasticceria per casa, hotel e ristoranti.<span class="solo-tel-i"> Riparazione e argentatura.</span></p>
       <a class="freccia solo-tel" href="#riparazione">Riparare un argento</a>
     </div>
   </section>
 
+  <!-- subito sotto il bordo della prima schermata, solo al telefono: la chiamata a tutta colonna e le altre due strade -->
+  <nav class="indice" aria-label="Che cosa cercate">
+    <div class="contenitore">
+      <a class="bt" href="tel:+390498700709">Chiama 049&nbsp;870&nbsp;07&nbsp;09</a>
+      <ul>
+        <li><a href="#hotel"><strong>Hotel e ristoranti</strong><span>Buffet, bar e pasticceria, vassoi e secchielli, riargentatura, preventivi per quantità</span></a></li>
+        <li><a href="#shop"><strong>Shop online</strong><span>Prezzi e misure, regali, liste nozze e bomboniere</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
   <section class="sez" id="hotel" aria-labelledby="h-hotel">
     <div class="contenitore griglia">
       <div class="griglia capo">
-        <h2 id="h-hotel">Per hotel, ristoranti, bar e pasticcerie</h2>
+        <div class="testa-sx">
+          <h2 id="h-hotel">Per hotel, ristoranti, bar e pasticcerie</h2>
+          <p>Tavola, buffet, bar e pasticceria con i marchi Royal&nbsp;Queen, Sweet&nbsp;Home e VarottoHotellerie.</p>
+        </div>
         <div class="accanto">
-          <p>Tavola, buffet, bar e pasticceria con i marchi Royal Queen, Sweet Home e VarottoHotellerie. Per forniture e quantità vi facciamo un preventivo.</p>
-          <p class="strade">Rivenditori: <a href="area-clienti/">Area clienti</a>. Dall’estero: <a href="mailto:export@varottoalfredo.com?subject=Request%20from%20the%20website">export@varottoalfredo.com</a>, <a href="en/" lang="en">English</a>.</p>
+          <ul class="vie">
+            <li><span>Preventivo per quantità</span><a class="freccia" href="#richiesta" data-richiesta="Preventivo per quantità">Scrivete la richiesta</a></li>
+            <li><span>Rivenditori</span><span><a href="area-clienti/">Area clienti</a>, per le proposte d’ordine</span></li>
+            <li><span>Dall’estero</span><span><a href="mailto:export@varottoalfredo.com?subject=Request%20from%20the%20website">export@varottoalfredo.com</a> · <a href="en/" lang="en">English</a></span></li>
+          </ul>
         </div>
       </div>
       <!-- prezzi al pubblico IVA inclusa letti su varottoshop.com il 3/11/2026 (scontati di circa il 18 % sul prezzo pieno): da rileggere prima di pubblicare -->
       <div class="griglia serie">
         <a class="pezzo" href="https://www.varottoshop.com/buffet.html">
-          <div class="foto"><img src="img/f-buffet-900.webp" srcset="img/f-buffet-450.webp 450w, img/f-buffet-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Alzata con stelo in vetro, piatto argentato e campana in cristallo"></div>
+          <div class="foto"><img src="img/f-buffet-900.webp" srcset="img/f-buffet-450.webp 450w, img/f-buffet-900.webp 900w" sizes="(max-width:700px) 120px, (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Alzata con stelo in vetro, piatto argentato e campana in cristallo"></div>
           <p class="cat">Buffet e alzate</p>
           <h3>Alzata Filo Platino con campana</h3>
           <p class="dati">Sweet Home, cristallo, Ø&nbsp;11,5&nbsp;cm</p>
           <p class="prezzo">€&nbsp;67,48<span>Buffet sullo shop</span></p>
         </a>
         <a class="pezzo" href="https://www.varottoshop.com/bar-pasticceria.html">
-          <div class="foto"><img src="img/f-bar-900.webp" srcset="img/f-bar-450.webp 450w, img/f-bar-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Piatto tondo in vetro per torta con campana trasparente"></div>
+          <div class="foto"><img src="img/f-bar-900.webp" srcset="img/f-bar-450.webp 450w, img/f-bar-900.webp 900w" sizes="(max-width:700px) 120px, (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Piatto tondo in vetro per torta con campana trasparente"></div>
           <p class="cat">Bar e pasticceria</p>
           <h3>Piatto per torta con campana</h3>
           <p class="dati">Sweet Home, vetro, Ø&nbsp;32&nbsp;cm</p>
           <p class="prezzo">€&nbsp;22,12<span>Bar e pasticceria</span></p>
         </a>
         <a class="pezzo" href="https://www.varottoshop.com/buffet/vassoi-rettangolari.html">
-          <div class="foto"><img src="img/f-vassoi-900.webp" srcset="img/f-vassoi-450.webp 450w, img/f-vassoi-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Vassoio rettangolare argentato con maniglie e bordo perlinato"></div>
+          <div class="foto"><img src="img/f-vassoi-900.webp" srcset="img/f-vassoi-450.webp 450w, img/f-vassoi-900.webp 900w" sizes="(max-width:700px) 120px, (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Vassoio rettangolare argentato con maniglie e bordo perlinato"></div>
           <p class="cat">Vassoi in Sheffield</p>
           <h3>Vassoio classico Inglese</h3>
-          <p class="dati">Royal Queen, bordo perlinato, 42&nbsp;x&nbsp;29&nbsp;cm</p>
+          <p class="dati">Royal Queen, perlinato, 42&nbsp;x&nbsp;29&nbsp;cm</p>
           <p class="prezzo">€&nbsp;193,97<span>Vassoi sullo shop</span></p>
         </a>
         <a class="pezzo" href="https://www.varottoshop.com/buffet/secchielli-champagne-ghiaccio.html">
-          <div class="foto"><img src="img/f-secchielli-900.webp" srcset="img/f-secchielli-450.webp 450w, img/f-secchielli-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Secchiello champagne argentato con manici a testa di leone"></div>
+          <div class="foto"><img src="img/f-secchielli-900.webp" srcset="img/f-secchielli-450.webp 450w, img/f-secchielli-900.webp 900w" sizes="(max-width:700px) 120px, (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Secchiello champagne argentato con manici a testa di leone"></div>
           <p class="cat">Secchielli e spumantiere</p>
           <h3>Secchiello a testa di leone</h3>
           <p class="dati">Royal Queen, Sheffield, Ø&nbsp;22&nbsp;cm</p>
           <p class="prezzo">€&nbsp;351,56<span>Secchielli sullo shop</span></p>
         </a>
         <div class="griglia servizi">
-        <div class="blocco">
-          <h3>Riargentatura del materiale di sala</h3>
-          <p>Vassoi, posate, secchielli e alzate di hotel, ristoranti e catering in Sheffield, alpacca o acciaio argentato: li rimettiamo a nuovo.</p>
-          <p><a class="freccia" href="#riparazione">Come funziona</a></p>
+          <div class="blocco">
+            <h3>Riargentatura del materiale di sala</h3>
+            <p>Vassoi, posate, secchielli e alzate di hotel, ristoranti e catering in Sheffield, alpacca o acciaio argentato: li rimettiamo a nuovo, anche con l’argentatura a spessore.</p>
+            <p class="vai"><a class="freccia" href="#richiesta" data-richiesta="Riparazione o argentatura">Mandate l’elenco del materiale</a><a class="freccia" href="#riparazione">Come funziona</a></p>
+          </div>
+          <div class="blocco" id="preventivo">
+            <h3>Preventivo per email, con la traccia</h3>
+            <p>Diteci articoli e quantità, con il nome o il codice dello shop, ed entro quando vi servono: vi facciamo un preventivo.</p>
+            <p class="vai"><a class="freccia" href="mailto:info@varottoalfredo.com?subject=Preventivo%20per%20quantit%C3%A0&amp;body=Tipologia%20(hotel%2C%20ristorante%2C%20bar%2C%20pasticceria%2C%20catering%2C%20negozio)%3A%20%0D%0AArticoli%20(nome%20o%20codice%20dello%20shop)%20e%20quantit%C3%A0%3A%20%0D%0AEntro%20quando%3A%20%0D%0ANome%2C%20azienda%20e%20telefono%3A%20%0D%0A">info@varottoalfredo.com</a></p>
+          </div>
         </div>
-        <div class="blocco" id="preventivo">
-          <h3>Preventivo per quantità o proposta d’ordine</h3>
-          <p>Diteci articoli e quantità: la nostra flessibilità ci consente di soddisfare ogni tipo di richiesta particolare del cliente.</p>
-          <ul>
-            <li><a class="freccia" href="#richiesta">Scrivete la richiesta</a>, anche con l’elenco allegato</li>
-            <li>Per email, con la traccia: <a href="mailto:info@varottoalfredo.com?subject=Preventivo%20per%20quantit%C3%A0&amp;body=Tipologia%20(hotel%2C%20ristorante%2C%20bar%2C%20pasticceria%2C%20catering%2C%20negozio)%3A%20%0D%0AArticoli%20(nome%20o%20codice%20dello%20shop)%20e%20quantit%C3%A0%3A%20%0D%0AEntro%20quando%3A%20%0D%0ANome%2C%20azienda%20e%20telefono%3A%20%0D%0A">info@varottoalfredo.com</a></li>
-          </ul>
-        </div>
-        </div>
-        <div class="altre">
-          <span>Anche per la sala:</span>
-          <a href="https://www.varottoshop.com/buffet/vassoi-ovali.html">Vassoi ovali</a>
-          <a href="https://www.varottoshop.com/buffet/alzate-e-piatti-dolce-con-campane-in-vetro.html">Alzate e campane</a>
-          <a href="https://www.varottoshop.com/buffet/chafing-dish.html">Chafing dish</a>
-          <a href="https://www.varottoshop.com/tavola-e-cucina/sottopiatti-in-vetro.html">Sottopiatti</a>
-          <a href="https://www.varottoshop.com/posateria/posate-inglese-alpacca.html">Posate Inglese in alpacca, da € 38,84</a>
-          <a href="https://www.varottoshop.com/posateria.html">Posateria</a>
-          <span class="nota">Prezzi dello shop, IVA inclusa.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="culmine" id="shop" aria-labelledby="h-shop">
-    <div class="contenitore griglia">
-      <div class="griglia capo">
-        <h2 id="h-shop">Dallo shop online</h2>
-        <div class="accanto"><p>Vassoi, alzate, posate, idee regalo e bomboniere, con prezzo, misure e carrello. Ogni ordine è preparato e spedito con particolare attenzione.</p></div>
-      </div>
-      <figure class="dominante">
-        <a href="https://www.varottoshop.com/product/17402565/vassoio-ovale-con-manici-e-incisione-stile-regina-anna-argentato-argento-sheffield">
-          <img src="img/c-regina-1280.webp" srcset="img/c-regina-640.webp 640w, img/c-regina-1280.webp 1280w" sizes="(max-width:700px) calc(100vw - 40px), (max-width:1023px) calc(100vw - 80px), (max-width:1180px) calc(100vw - 96px), (max-width:1440px) calc(100vw - 160px), 1280px" width="1280" height="557" loading="lazy" alt="Vassoio ovale argentato con due manici cesellati, bordo a godroni e incisione floreale al centro">
-          <figcaption><strong>Vassoio ovale con incisione stile Regina Anna</strong><span>Royal Queen, Sheffield, 47&nbsp;x&nbsp;36&nbsp;cm, <b>€&nbsp;360,26</b></span></figcaption>
-        </a>
-      </figure>
-      <div class="griglia serie">
-        <a class="pezzo" href="https://www.varottoshop.com/product/17402885/vassoio-sottotorta-portadolce-argentato-argento-tondo-con-piedi-stile-perles">
-          <div class="foto"><img src="img/s-sottotorta-900.webp" srcset="img/s-sottotorta-450.webp 450w, img/s-sottotorta-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Sottotorta tondo argentato con piedi"></div>
-          <h3>Sottotorta stile Perles</h3>
-          <p class="dati">Sweet Home, argentato, con piedi, Ø&nbsp;27,5&nbsp;cm</p>
-          <p class="prezzo">€&nbsp;360,14</p>
-        </a>
-        <a class="pezzo" href="https://www.varottoshop.com/product/19377187/vassoio-tondo-da-portata-in-sheffield-placcato-argento">
-          <div class="foto"><img src="img/s-tondo-900.webp" srcset="img/s-tondo-450.webp 450w, img/s-tondo-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Vassoio tondo argentato con bordo barocco"></div>
-          <h3>Vassoio tondo da portata</h3>
-          <p class="dati">Royal Queen, Sheffield, Ø&nbsp;38&nbsp;cm</p>
-          <p class="prezzo">€&nbsp;236,00</p>
-        </a>
-        <a class="pezzo" href="https://www.varottoshop.com/product/25173119/vassoio-ovale-stile-inglese-in-metallo-placcato-argento">
-          <div class="foto"><img src="img/s-ovale-900.webp" srcset="img/s-ovale-450.webp 450w, img/s-ovale-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Vassoio ovale argentato liscio con manici"></div>
-          <h3>Vassoio ovale stile inglese</h3>
-          <p class="dati">Sweet Home, placcato argento, 38,5&nbsp;x&nbsp;27,5&nbsp;cm</p>
-          <p class="prezzo">€&nbsp;488,24</p>
-        </a>
-        <a class="pezzo" href="https://www.varottoshop.com/product/17042391/scatola-porta-confetti-e-caramelle-in-vetro-trasparente-55-cl-con-cupola-e-piattino-contenitore-per-confetti-dolci-caramelle-e-decorazioni">
-          <div class="foto"><img src="img/s-confetti-900.webp" srcset="img/s-confetti-450.webp 450w, img/s-confetti-900.webp 900w" sizes="(max-width:700px) calc(50vw - 28px), (max-width:1023px) calc(50vw - 52px), (max-width:1180px) calc(25vw - 42px), 296px" width="900" height="600" loading="lazy" alt="Scatola porta confetti in vetro trasparente con cupola"></div>
-          <h3>Porta confetti con cupola</h3>
-          <p class="dati">VarottoHotellerie, vetro, 55&nbsp;cl, Ø&nbsp;12&nbsp;cm</p>
-          <p class="prezzo">€&nbsp;10,44</p>
-        </a>
-      </div>
-      <div class="griglia shop-piede">
-        <div class="sx">
-        <span>Per chi regala:</span>
-        <ul>
-          <li><a href="https://www.varottoshop.com/complementi-arredo/bomboniere.html">Bomboniere</a></li>
-          <li><a href="https://www.varottoshop.com/oggettistica/prima-infanzia.html">Prima infanzia</a></li>
-          <li><a href="https://www.varottoshop.com/complementi-arredo/centrotavola.html">Centrotavola</a></li>
-          <li><a href="https://www.varottoshop.com/-offerte.html">Offerte</a></li>
-        </ul>
-        </div>
-        <div class="dx">
-          <a href="https://wa.me/393925024576?text=Buongiorno%2C%20ho%20una%20domanda%20su%20un%20articolo%20dello%20shop%3A%20">Una domanda? WhatsApp</a>
-          <a class="bt" href="https://www.varottoshop.com/">Apri lo shop</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sez argento chi" id="chi-siamo" aria-labelledby="h-chi">
-    <div class="contenitore griglia">
-      <div class="sinistra">
-        <h2 class="firma" id="h-chi">Tutti perfettamente riconoscibili ad occhio nudo ed impressi sull’oggetto</h2>
-        <p>Agli inizi degli anni ’70 una piccola azienda artigiana condotta dal sig. Alfredo Varotto inizia la produzione d’oggettistica da regalo, distinguendosi per l’accuratezza delle finiture e la lavorazione eseguita a mano.</p>
-        <p>Tutta la produzione dell’argenteria è eseguita all’interno del nostro stabilimento di Padova. Accanto all’argento: Sheffield, placcato e articoli per la tavola, il buffet e la pasticceria.</p>
-      </div>
-      <div class="punz">
-        <h3>I tre punzoni, su ogni pezzo in argento</h3>
-        <dl>
-          <div><dt>Stella e 364 PD</dt><dd>identità del produttore</dd></div>
-          <div><dt>925 o 800</dt><dd>titolo legale dell’argento</dd></div>
-          <div><dt>Varotto Alfredo</dt><dd>il nostro marchio originale</dd></div>
-        </dl>
-      </div>
-      <div class="marchi">
-        <h3>I marchi</h3>
-        <ul>
-          <li><strong>Varotto Alfredo</strong>Argenteria con i tre punzoni</li>
-          <li><strong>Royal Queen</strong>Sheffield: vassoi, secchielli, posate</li>
-          <li><strong>Royal England</strong>Sheffield, metallo argentato</li>
-          <li><strong>Sweet Home</strong>Placcato argento, vetro e casalinghi per la tavola</li>
-          <li><strong>VarottoHotellerie</strong>Articoli per hotel, bar e pasticceria</li>
-          <li><strong>TEN</strong>Oggettistica, idee regalo e bomboniere</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -519,12 +529,14 @@ section[id]{scroll-margin-top:0}
       <div class="sinistra">
         <h2 id="h-rip">La vostra argenteria tornerà al suo originario splendore</h2>
         <p class="loro">Quando un oggetto d’argento si rovina, specialmente se ha un particolare valore affettivo, non è facile trovare professionisti in grado di ripararlo.</p>
-        <p>Ripariamo, argentiamo, doriamo e lucidiamo i pezzi di famiglia e il materiale di sala di hotel, ristoranti e catering, anche con l’argentatura a spessore.</p>
+        <p>Ripariamo, argentiamo, doriamo e lucidiamo i pezzi di famiglia e il materiale di sala di hotel, ristoranti e catering.</p>
         <div class="azione">
           <a class="bt" href="mailto:info@varottoalfredo.com?subject=Riparazione%20argento%3A%20foto%20del%20pezzo&amp;body=Buongiorno%2C%0D%0Avi%20mando%20le%20foto%20del%20pezzo%20(allegate).%0D%0A%0D%0AChe%20cosa%20%C3%A8%3A%20%0D%0AMateriale%20(argento%2C%20silver%20plated%2C%20alpacca%2C%20Sheffield%2C%20acciaio%20argentato%2C%20non%20so)%3A%20%0D%0AChe%20cosa%20%C3%A8%20successo%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0AComune%3A%20%0D%0A">Mandate le foto del pezzo</a>
-          <small>Si apre un’email con la traccia già scritta: allegate una o due foto.</small>
+          <!-- al telefono la chiamata è nella testata, con il numero, e a tutta colonna sotto l'apertura -->
+          <a class="bt bordo solo-largo-b" href="tel:+390498700709">Chiama 049&nbsp;870&nbsp;07&nbsp;09</a>
         </div>
-        <p class="dove"><strong>Dove portarlo:</strong> Corso Stati Uniti 23/A, zona industriale di Padova. Prima di passare, <a href="tel:+390498700709">chiamate lo 049&nbsp;870&nbsp;07&nbsp;09</a>.<br><a class="mappa" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Stati+Uniti+23%2FA+35127+Padova">Apri la mappa</a></p>
+        <p class="aiuto nota-az">Si apre un’email con la traccia già scritta: allegate una o due foto.</p>
+        <p class="dove"><strong>Dove portarlo:</strong> Corso Stati Uniti 23/A, zona industriale di Padova.<br>Prima di passare, chiamate.<br><a class="freccia" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Stati+Uniti+23%2FA+35127+Padova">Apri la mappa</a></p>
       </div>
       <div class="destra">
         <div class="elenchi">
@@ -549,14 +561,103 @@ section[id]{scroll-margin-top:0}
     </div>
   </section>
 
+  <section class="culmine" id="shop" aria-labelledby="h-shop">
+    <div class="contenitore griglia">
+      <!-- frase loro (pagina Azienda): "Nostro punto di forza, oltre ad un ottimo grado di finitura presente in ogni articolo, è la flessibilità..." -->
+      <h2 id="h-shop">Un ottimo grado di finitura presente in ogni articolo</h2>
+      <figure class="dominante">
+        <a href="https://www.varottoshop.com/product/17402565/vassoio-ovale-con-manici-e-incisione-stile-regina-anna-argentato-argento-sheffield">
+          <img src="img/c-regina-1280.webp" srcset="img/c-regina-640.webp 640w, img/c-regina-1280.webp 1280w" sizes="(max-width:700px) calc(100vw - 40px), (max-width:1023px) calc(100vw - 80px), (max-width:1180px) calc(75vw - 60px), 952px" width="1280" height="557" loading="lazy" alt="Vassoio ovale argentato con due manici decorati, bordo a godroni e incisione floreale al centro">
+        </a>
+        <figcaption>
+          <strong>Vassoio ovale con incisione stile Regina Anna</strong>
+          <p>Royal Queen, Sheffield<br>metallo argentato, 47&nbsp;x&nbsp;36&nbsp;cm</p>
+          <p>Sullo shop <b>€&nbsp;360,26</b></p>
+          <a class="freccia" href="https://www.varottoshop.com/product/17402565/vassoio-ovale-con-manici-e-incisione-stile-regina-anna-argentato-argento-sheffield">Vedi il vassoio</a>
+        </figcaption>
+      </figure>
+
+      <div class="griglia listino">
+        <h3>Dallo shop online</h3>
+        <p>Vassoi, alzate, posate, idee regalo e bomboniere, con misure e carrello. Prezzi dello shop, IVA inclusa. Una domanda prima di comprare? <a href="https://wa.me/393925024576?text=Buongiorno%2C%20ho%20una%20domanda%20su%20un%20articolo%20dello%20shop%3A%20">WhatsApp dello shop</a>.</p>
+        <div class="righe">
+          <a class="voce" href="https://www.varottoshop.com/product/17402885/vassoio-sottotorta-portadolce-argentato-argento-tondo-con-piedi-stile-perles">
+            <img src="img/s-sottotorta-450.webp" width="450" height="300" loading="lazy" alt="Sottotorta tondo argentato con piedi">
+            <div><h4>Sottotorta stile Perles</h4><span class="dati">Sweet Home, argentato, con piedi, Ø&nbsp;27,5&nbsp;cm</span></div>
+            <span class="prezzo">€&nbsp;360,14</span>
+          </a>
+          <a class="voce" href="https://www.varottoshop.com/product/19377187/vassoio-tondo-da-portata-in-sheffield-placcato-argento">
+            <img src="img/s-tondo-450.webp" width="450" height="300" loading="lazy" alt="Vassoio tondo argentato con bordo barocco">
+            <div><h4>Vassoio tondo da portata</h4><span class="dati">Royal Queen, Sheffield, Ø&nbsp;38&nbsp;cm</span></div>
+            <span class="prezzo">€&nbsp;236,00</span>
+          </a>
+          <a class="voce" href="https://www.varottoshop.com/product/25173119/vassoio-ovale-stile-inglese-in-metallo-placcato-argento">
+            <img src="img/s-ovale-450.webp" width="450" height="300" loading="lazy" alt="Vassoio ovale argentato liscio con manici">
+            <div><h4>Vassoio ovale stile inglese</h4><span class="dati">Sweet Home, placcato argento, 38,5&nbsp;x&nbsp;27,5&nbsp;cm</span></div>
+            <span class="prezzo">€&nbsp;488,24</span>
+          </a>
+          <a class="voce" href="https://www.varottoshop.com/product/17042391/scatola-porta-confetti-e-caramelle-in-vetro-trasparente-55-cl-con-cupola-e-piattino-contenitore-per-confetti-dolci-caramelle-e-decorazioni">
+            <img src="img/s-confetti-450.webp" width="450" height="300" loading="lazy" alt="Scatola porta confetti in vetro trasparente con cupola">
+            <div><h4>Porta confetti con cupola</h4><span class="dati">VarottoHotellerie, vetro, 55&nbsp;cl, Ø&nbsp;12&nbsp;cm</span></div>
+            <span class="prezzo">€&nbsp;10,44</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="griglia shop-piede">
+        <p class="sx"><span>Sullo shop anche:</span>
+          <a href="https://www.varottoshop.com/buffet/vassoi-ovali.html">Vassoi ovali</a>
+          <a href="https://www.varottoshop.com/buffet/chafing-dish.html">Chafing dish</a>
+          <a href="https://www.varottoshop.com/posateria/posate-inglese-alpacca.html">Posate Inglese in alpacca, da €&nbsp;38,84</a>
+          <a href="https://www.varottoshop.com/complementi-arredo/bomboniere.html">Bomboniere</a>
+          <a href="https://www.varottoshop.com/oggettistica/prima-infanzia.html">Prima infanzia</a>
+        </p>
+        <div class="dx">
+          <a class="bt" href="https://www.varottoshop.com/">Apri lo shop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sez argento chi" id="chi-siamo" aria-labelledby="h-chi">
+    <div class="contenitore griglia">
+      <div class="sinistra">
+        <h2 id="h-chi">Una piccola azienda artigiana, a Padova</h2>
+        <p>Agli inizi degli anni ’70 una piccola azienda artigiana condotta dal sig. Alfredo Varotto inizia la produzione d’oggettistica da regalo, distinguendosi per l’accuratezza delle finiture e la lavorazione eseguita a mano.</p>
+        <p>Tutta la produzione dell’argenteria è eseguita all’interno del nostro stabilimento di Padova. Accanto all’argento: Sheffield, placcato e articoli per la tavola, il buffet e la pasticceria.</p>
+      </div>
+      <div class="punz">
+        <blockquote class="citazione">
+          <p>Tutti gli articoli Varotto Alfredo sono identificabili dai tre punzoni. Tutti perfettamente riconoscibili ad occhio nudo ed impressi sull’oggetto.</p>
+        </blockquote>
+        <dl>
+          <div><dt><svg class="punzoni mini" viewBox="2.5 4.5 635 191" role="img" aria-labelledby="pz-t3"><title id="pz-t3">Stella e 364 PD</title><g class="segno-p" filter="url(#incisione)"><use href="#pz-losanga" width="640" height="200"/></g></svg></dt><dd>Garanzia di identità del produttore</dd></div>
+          <div><dt><svg class="punzoni mini" viewBox="1.5 3.5 617 193" role="img" aria-labelledby="pz-t4"><title id="pz-t4">925 e 800</title><g class="segno-p" filter="url(#incisione)"><use href="#pz-925" width="290" height="200"/><use href="#pz-800" x="330" width="290" height="200"/></g></svg></dt><dd>Garanzia del titolo legale dell’argento</dd></div>
+          <div><dt>Varotto Alfredo</dt><dd>Garanzia di marchio originale</dd></div>
+        </dl>
+      </div>
+      <div class="marchi">
+        <h3>I marchi</h3>
+        <ul>
+          <li><strong>Varotto Alfredo</strong><span>Argenteria con i tre punzoni</span></li>
+          <li><strong>Royal Queen</strong><span>Sheffield: vassoi, secchielli, posate</span></li>
+          <li><strong>Royal England</strong><span>Sheffield, metallo argentato</span></li>
+          <li><strong>Sweet Home</strong><span>Placcato argento, vetro e casalinghi per la tavola</span></li>
+          <li><strong>VarottoHotellerie</strong><span>Articoli per hotel, bar e pasticceria</span></li>
+          <li><strong>TEN</strong><span>Oggettistica, idee regalo e bomboniere</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="sez contatti" id="contatti" aria-labelledby="h-contatti">
     <div class="contenitore griglia">
       <h2 id="h-contatti">Contatti</h2>
-      <div class="strade-c">
+      <div class="griglia strade-c">
         <div class="strada">
           <h3>Telefono e sede</h3>
           <p><a class="tel" href="tel:+390498700709">049&nbsp;870&nbsp;07&nbsp;09</a>, fax 049 870 25 68</p>
-          <p>Corso Stati Uniti 23/A, 35127 Padova, zona industriale. <a class="freccia" href="https://www.google.com/maps/dir/?api=1&amp;destination=Corso+Stati+Uniti+23%2FA+35127+Padova">Indicazioni</a></p>
+          <p>Corso Stati Uniti 23/A, 35127 Padova, zona industriale. Prima di passare, chiamate. <a class="freccia" href="https://www.google.com/maps/dir/?api=1&amp;destination=Corso+Stati+Uniti+23%2FA+35127+Padova">Indicazioni</a></p>
         </div>
         <div class="strada">
           <h3>Hotel, ristoranti, negozi ed estero</h3>
@@ -572,9 +673,12 @@ section[id]{scroll-margin-top:0}
         </div>
       </div>
 
-      <form class="modulo" id="richiesta" novalidate>
-        <h3>Scrivete la richiesta</h3>
-        <div class="campi">
+      <form class="griglia modulo" id="richiesta" novalidate>
+        <div class="modulo-t">
+          <h3>Scrivete la richiesta</h3>
+          <p>Preventivi per quantità, proposte d’ordine, riparazione e argentatura, domande sugli articoli dello shop.</p>
+        </div>
+        <div class="campi" id="campi">
           <div><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
           <div><label for="f-azienda">Azienda <i>(se c’è)</i></label><input id="f-azienda" name="azienda" autocomplete="organization"></div>
           <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
@@ -598,19 +702,20 @@ section[id]{scroll-margin-top:0}
               <option>Domanda su un articolo dello shop</option>
               <option>Altro</option>
             </select></div>
-          <div class="tutta" id="r-articoli"><label for="f-articoli">Articoli e quantità <i>(nome o codice dello shop)</i></label><input id="f-articoli" name="articoli"></div>
-          <div class="tutta" id="r-materiale" hidden><label for="f-materiale">Materiale del pezzo</label>
+          <div class="tutta" id="r-articoli"><label for="f-articoli"><span id="l-articoli">Articoli e quantità</span> <i>(nome o codice dello shop)</i></label><input id="f-articoli" name="articoli"></div>
+          <div id="r-materiale" hidden><label for="f-materiale">Materiale del pezzo</label>
             <select id="f-materiale" name="materiale">
               <option value="">Scegliete il materiale</option><option>Argento</option><option>Silver plated</option><option>Alpacca</option><option>Sheffield</option><option>Acciaio argentato</option><option>Non so</option>
             </select></div>
-          <div class="tutta"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio"></textarea></div>
-          <div class="tutta"><label for="f-file">Foto del pezzo, disegni o elenchi <i>(JPG, PNG, PDF)</i></label><input id="f-file" name="allegati" type="file" multiple accept="image/*,.pdf" aria-describedby="f-file-nota">
+          <div class="due"><label for="f-msg">Messaggio</label><textarea id="f-msg" name="messaggio"></textarea></div>
+          <div><p class="campo-t" id="f-file-t">Foto, disegni o elenchi <i>(JPG, PNG, PDF)</i></p>
+            <div class="file"><input id="f-file" name="allegati" type="file" multiple accept="image/*,.pdf" aria-labelledby="f-file-t" aria-describedby="f-file-nota"><label for="f-file">Scegliete i file</label><span id="f-file-nomi">Nessun file scelto</span></div>
             <p class="aiuto" id="f-file-nota">L’email che si apre riporta i nomi dei file: allegateli prima di inviare.</p></div>
-        </div>
-        <div class="invio">
-          <button class="bt" type="submit">Prepara l’email</button>
-          <p class="aiuto">Si apre la vostra email con tutto già scritto.</p>
-          <p class="esito" id="esito" role="status" aria-live="polite"></p>
+          <div class="tutta invio">
+            <button class="bt" type="submit">Prepara l’email</button>
+            <p class="aiuto">Si apre la vostra email con tutto già scritto.</p>
+            <p class="esito" id="esito" role="status" aria-live="polite"></p>
+          </div>
         </div>
       </form>
     </div>
@@ -619,19 +724,23 @@ section[id]{scroll-margin-top:0}
 
 <footer class="piede">
   <div class="contenitore griglia">
-    <div class="firma-p"><svg class="segno" viewBox="0 0 24 33" aria-hidden="true"><use href="#segno"/></svg><span>Argenteria Varotto Alfredo</span></div>
-    <p class="sede">Corso Stati Uniti 23/A<br>35127 Padova, zona industriale<br>Telefono <span class="num">049&nbsp;870&nbsp;07&nbsp;09</span></p>
-    <p class="legale">Varotto &amp; Co. di Varotto Luca<br>P.IVA 04724430287<br>Orari: prima di passare, chiamate.</p>
-    <ul class="link-p">
-      <li>Lo shop su <a href="https://www.facebook.com/varottostore/">Facebook</a> · <a href="https://www.pinterest.it/lucavarotto/">Pinterest</a></li>
-      <li><a href="privacy/">Privacy</a> · <a href="cookie/">Cookie</a></li>
-    </ul>
+    <a class="firma-p" href="#" aria-label="Argenteria Varotto Alfredo, inizio pagina"><svg class="segno" viewBox="0 0 24 33" aria-hidden="true"><use href="#segno"/></svg><span>Argenteria Varotto Alfredo</span></a>
+    <p class="sede">Corso Stati Uniti 23/A<br>35127 Padova, zona industriale<br>Prima di passare, chiamate.</p>
+    <p class="recapiti">Telefono <span class="num">049&nbsp;870&nbsp;07&nbsp;09</span><br><a href="mailto:info@varottoalfredo.com">info@varottoalfredo.com</a><br><a href="https://www.varottoshop.com/">varottoshop.com</a></p>
+    <div class="legale">
+      <p>Varotto &amp; Co. di Varotto Luca · P.IVA 04724430287</p>
+      <ul>
+        <li>Lo shop su <a href="https://www.facebook.com/varottostore/">Facebook</a> e <a href="https://www.pinterest.it/lucavarotto/">Pinterest</a></li>
+        <li><a href="privacy/">Privacy</a></li>
+        <li><a href="cookie/">Cookie</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  // menu a bottone (fino a 1180 px)
+  // menu a bottone (sotto i 1024 px)
   var b=document.querySelector('.bt-menu'), m=document.getElementById('menu');
   function chiudi(){m.classList.remove('aperto');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Apri il menu');}
   b.addEventListener('click',function(){
@@ -642,13 +751,40 @@ section[id]{scroll-margin-top:0}
   m.addEventListener('click',function(e){ if(e.target.tagName==='A'){chiudi();} });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&m.classList.contains('aperto')){chiudi();b.focus();} });
 
+  // testata a due stati, senza dissolvenza: fuori dall'apertura compaiono Area clienti ed English e il nome porta in cima
+  var t=document.querySelector('.testata'), mc=t.querySelector('.marchio'), ap=document.querySelector('.apertura');
+  function stato(sotto){
+    t.classList.toggle('sotto',sotto);
+    if(sotto){mc.setAttribute('href','#');mc.setAttribute('aria-label','Argenteria Varotto Alfredo, inizio pagina');}
+    else{mc.removeAttribute('href');mc.setAttribute('aria-label','Argenteria Varotto Alfredo');}
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(v){ stato(!v[0].isIntersecting); },{rootMargin:'-'+t.offsetHeight+'px 0px 0px 0px'}).observe(ap);
+  } else { stato(true); }
+
   // modulo: compone un'email (va collegato a un servizio, vedi LEGGIMI)
-  var f=document.getElementById('richiesta'), r=document.getElementById('f-richiesta'),
-      art=document.getElementById('r-articoli'), mat=document.getElementById('r-materiale'), es=document.getElementById('esito'),
-      fi=document.getElementById('f-file');
-  function campi(){ var rip=r.value==='Riparazione o argentatura'; mat.hidden=!rip; art.hidden=rip; }
-  r.addEventListener('change',campi); campi();
+  var f=document.getElementById('richiesta'), r=document.getElementById('f-richiesta'), tp=document.getElementById('f-tipo'),
+      art=document.getElementById('r-articoli'), la=document.getElementById('l-articoli'), mat=document.getElementById('r-materiale'),
+      es=document.getElementById('esito'), fi=document.getElementById('f-file'), fn=document.getElementById('f-file-nomi');
+  function campi(){
+    var rip=r.value==='Riparazione o argentatura';
+    mat.hidden=!rip;
+    document.getElementById('campi').classList.toggle('rip',rip&&!(rip&&tp.value==='Privato'));
+    // un hotel che fa riargentare 40 vassoi deve poter scrivere pezzi e quantità; il privato con un pezzo solo no
+    art.hidden=rip&&tp.value==='Privato';
+    la.textContent=rip?'Pezzi e quantità':'Articoli e quantità';
+  }
+  r.addEventListener('change',campi); tp.addEventListener('change',campi); campi();
+  // i collegamenti "Scrivete la richiesta" e "Mandate l'elenco" preparano il modulo
+  document.querySelectorAll('a[data-richiesta]').forEach(function(a){
+    a.addEventListener('click',function(){
+      r.value=a.getAttribute('data-richiesta');
+      if(tp.value==='Privato'){tp.value='Hotel, ristorante o catering';}
+      campi();
+    });
+  });
   function nomiFile(){ return Array.prototype.map.call(fi.files||[],function(x){return x.name;}); }
+  fi.addEventListener('change',function(){ var n=nomiFile(); fn.textContent=n.length?n.join(', '):'Nessun file scelto'; });
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var nome=f.nome.value.trim(), email=f.email.value.trim();
@@ -657,10 +793,11 @@ section[id]{scroll-margin-top:0}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){es.textContent='Scrivete un indirizzo email valido.';es.className='esito errore';f.email.focus();return;}
     var rip=r.value==='Riparazione o argentatura', nf=nomiFile();
     var righe=['Richiesta: '+r.value,'Nome: '+nome,'Azienda: '+(f.azienda.value.trim()||'-'),'Tipologia: '+f.tipologia.value,'Email: '+email,'Telefono: '+(f.telefono.value.trim()||'-')];
-    if(rip){righe.push('Materiale: '+(f.materiale.value||'non indicato'));} else {righe.push('Articoli e quantità: '+(f.articoli.value.trim()||'-'));}
+    if(rip){righe.push('Materiale: '+(f.materiale.value||'non indicato'));}
+    if(!art.hidden){righe.push((rip?'Pezzi e quantità: ':'Articoli e quantità: ')+(f.articoli.value.trim()||'-'));}
     righe.push('','Messaggio:',f.messaggio.value.trim()||'-','');
     if(nf.length){righe.push('File da allegare: '+nf.join(', '));}
-    else {righe.push(rip?'(Allego le foto del pezzo.)':'(Se serve, allego elenchi o disegni.)');}
+    else {righe.push(rip?'(Allego le foto del pezzo o l’elenco.)':'(Se serve, allego elenchi o disegni.)');}
     var ogg=r.value+': '+nome+(f.azienda.value.trim()?', '+f.azienda.value.trim():'');
     var url='mailto:info@varottoalfredo.com?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\r\n'));
     f.setAttribute('data-mailto',url);

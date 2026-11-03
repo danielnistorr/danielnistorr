@@ -4,7 +4,56 @@
 
 3 novembre 2026. La prima schermata segue la sezione D di `_metodo/professionale/ALTO-LIVELLO.md` (riga di Zeta nel capitolo 5: M1, modello L); sotto la piega tornano i contenuti e le funzioni della versione professionale, rimessi su una griglia sola a 12 colonne. La versione professionale è copiata com'era in `_prova/versione-pro/` (sito e screenshot). La direzione è in `_prova/alto/DIREZIONE.md`, i provini in `_prova/alto/provini.jpg`.
 
-**Idea**: Zeta vende una materia saldata. La home apre con quattro campioni veri visti da vicino, ognuno con la saldatura in vista e il nome della sua scheda sotto (Busta a quattro spazi, Cartella blu per campionari, Busta con fori, dodici spazi, Cartella per campionari colore), sotto la frase che loro scrivono in fondo a ogni scheda: "Diamo forma alle vostre idee." (fonte: la chiusa "Diamo forma alle vostre idee" delle schede prodotto del sito di oggi; torna nel piede).
+**Idea**: Zeta vende una materia saldata. La home apre con quattro campioni veri visti da vicino, uno per famiglia, ognuno con il suo nome su un cartellino (dopo il secondo giro: Raccoglitori, Cartelline, Buste, Campionari), sotto la frase che loro scrivono in fondo a ogni scheda: "Diamo forma alle vostre idee." (fonte: la chiusa "Diamo forma alle vostre idee" delle schede prodotto del sito di oggi; torna nel piede con lo stesso trattamento). Il cartellino torna una volta, sulla saldatura del culmine ("PVC elettrosaldato").
+
+### Secondo giro (3/11/2026): clienti tipo e finitura sotto la piega
+
+Dopo il primo ritocco il giudice da agenzia dava 6,5 e i due clienti tipo erano scesi rispetto alla versione professionale (tipografia-legatoria a 1440 da 8 a 7,5; cliente abituale a 390 da 8,5 a 7,5). Questo giro tiene la prima schermata nei tetti D3 e rimette i compiti persi; sotto la piega segue i difetti del giudice (`zeta:voto-finale`). Copia della pagina, delle immagini, dello script delle misure, del LEGGIMI e di questa nota prima del giro: `_prova/alto/rit2/`.
+
+**Per i clienti tipo**
+- **Famiglie con foto e nome senza scorrere (V1.1)**: le quattro tessere sono ora quattro famiglie diverse (raccoglitore nero con le buste a spazi, cartelline a L colorate, busta bianca a dodici spazi, cartella blu per campionari) e il nome sta su un cartellino dentro la tessera, nella prima schermata a tutte le larghezze (a 1440 il fondo dei cartellini è a 888 px). Escono la busta grigia "trasparente" (la macchia grigia) e i filati, che facevano pensare a una merceria ed erano da confermare. Per stare nei 160 caratteri la riga del mestiere è più corta: "PVC e polipropilene saldati su misura. Padova, dal 1969." (144 caratteri fuori dalla testata).
+- **Che cosa mandare (V1.2)**: la riga "Di qualsiasi formato, con la vostra stampa. Per il preventivo bastano misure e quantità, con una foto, un disegno o il campione da rifare." apre la seconda schermata (y 999 a 1440), accanto a "I nostri articoli". Torna anche "con la vostra stampa", che a una tipografia interessa per prima.
+- **Le prove entro due schermate (V1.4)**: la sezione Azienda viene subito dopo gli articoli e prima del culmine. A 1440 il 1969 e la terza generazione stanno a y 1873, i primati 1986 e 1994 a 1973, OK Compost a 2249: tutto entro i 2700 px.
+- **Testata**: dopo l'apertura compaiono in testata anche "Su misura" e "Preventivo" (un IntersectionObserver cambia la classe, nessuna transizione): nella prima schermata i cliccabili restano 6. Lo stato aperto/chiuso a 1440 è finalmente colorato (verde "Aperti ora", ambra "Chiusi ora") e ha una larghezza fissa, così la nav non salta quando cambia il testo. "Chiama 049 774299" è sottolineato come "Menu", per leggersi come un comando. La lingua è "IT / EN DE FR ES" con lo spazio giusto e il triangolino della tendina (CSS, nessuna icona).
+- **Telefono (V2.1, V2.2)**: sotto i 1280 px lo stato sta dentro lo stesso link del telefono, su una seconda riga a 14 px ("Chiama 049 774299 / Aperti ora, fino alle 12.30"; chiusi: "Chiusi ora, riapriamo alle 14.00" o "riapriamo domani"): si legge senza toccare e senza un cliccabile in più (4 a 390). Sotto i 360 px resta il numero ("049 774299") con "Aperti ora". Provato a 10.15, 13.10, 18.40, venerdì 19.00 e lunedì 7 dicembre alle 19 (riapre mercoledì): nessuno sconfinamento a 320 e 390.
+- **Menu a 390 (V2.2, V2.3, V3)**: in cima lo stato su una riga sua (18 px, pallino davanti), gli orari senza il "·" appeso, "Ordini e file: info@zetaitaly.com" con la stessa email di "Scriveteci" (oggetto e righe) e "Copia l'indirizzo" da 48 px; poi la ricerca, le quattro voci, la sede con la ragione sociale, "Apri nelle mappe" e la copia dell'indirizzo, le lingue. Il pannello arriva in fondo allo schermo (nessuna pagina tagliata sotto).
+- **Bersagli**: al telefono tutti i "Copia" e i link della riga "Anche" sono alti 44-48 px; nel riquadro "La richiesta è pronta" "Copia il testo" e "Copia l'indirizzo" sono bottoni bordati da 48 px e il riquadro scorre in vista dopo l'invio.
+- **Ricerca**: le cifre sole non bloccano più ("4 anelli" trova i cinque raccoglitori); se non trova niente scrive "Nessun articolo con questo nome: lo facciamo su misura." con i link "Chiedete un preventivo" (chiude il menu) e "Tutto il catalogo".
+- **La barra in basso al telefono** non c'è: Zeta non vive di chiamate d'urgenza (M1) e avrebbe portato i cliccabili oltre 4; il telefono resta nella testata fissa.
+
+**Sotto la piega**
+- **Una griglia sola**: tutti i testi partono a x 48 o a x 732 (colonna 7) a 1440, anche le voci del culmine e la lead degli articoli; i passi del preventivo hanno il numero in una colonna di griglia e il testo dalla colonna 2 (x 162), le strade partono da x 48 sotto il titoletto visibile "Ordini e campioni". Nella sezione Azienda le due colonne finiscono a 38 px l'una dall'altra (materiali sotto la foto, sostenibilità sotto il testo); nel preventivo la colonna sinistra finisce 40 px sopra il modulo.
+- **Articoli come indice**: al posto della seconda griglia di sei foto, un indice a due colonne di righe con la miniatura 3:2 da 204 px, il nome, la riga e la freccia; la sezione scende a 757 px. Nessuna miniatura ripete una tessera. "Tutto il catalogo" chiude la riga "Anche".
+- **Culmine sulla saldatura**: la foto più grande della pagina mostra le due saldature dentellate di una busta a quattro spazi che si incrociano, con il dorso bianco, a tutta griglia (12:5, file da 2688 per il 2x; 3:2 al telefono), con il cartellino "PVC elettrosaldato" (il gesto dell'apertura che torna una volta) e la didascalia a due voci "Le saldature di una busta a quattro spazi / Buste in PVC". Sotto, il titolo con la lead e le quattro voci in quattro colonne (due a 768, una al telefono). Sezione alta 1196 px.
+- **Moduli diversi**: articoli (titolo e lead su una riga, indice), azienda (foto e testo), culmine (foto dominante, titolo, quattro colonne), preventivo (testo e modulo). Nessun modulo torna uguale.
+- **Tipografia (D5)**: un solo elemento di scala, la frase-firma a 52/56 (h1 e piede, stesso trattamento, D7), titoli di sezione a 32/40, testo 18/28, interfaccia 15/22; il titolo del modulo scende a 18/28 500. Sopra i 40 px c'è solo la frase-firma.
+- **Testi e ripetizioni**: tre anni soli (1969, 1986, 1994) e quattro settori; OK Compost senza "dal 2019" e ISCC PLUS senza il numero del certificato (da confermare, LEGGIMI punto 5); la riga d'istruzione della strada "Ordine o file di stampa" è a 14 px accanto al link ("Scriveteci a info@zetaitaly.com", "L'oggetto è già scritto."); lo stato ha una forma sola, senza punto finale, in testata, menu, strade e piede; le fasce orarie non vanno più a capo al trattino; il passo 02 non ripete più la frase del campione; le righe dei paragrafi hanno `text-wrap:pretty` contro le parole sole. 625 parole.
+- **Foto (D10)**: la linea del 2023 e le cartelle per campionari passano verso il neutro (dominante gialla e blu tolta in parte), la copertina è ritagliata senza la striscia arancio, saturazione 0,88 per tutte.
+
+**Misure finali** (`_prova/alto/misura-d.mjs`, 51 controlli su 51; aggiunti: nomi delle tessere nella prima schermata, prove entro due schermate, famiglie entro due schermate a 390, stato in testata a 390, solo la firma sopra i 40 px)
+
+| | 1440x900 | 390x844 |
+|---|---|---|
+| Cliccabili, bottoni in prima schermata | 6, 1 | 4, 1 |
+| Caratteri fuori dalla testata | 144 | 154 |
+| Foto nella prima schermata | 63% | 54% |
+| Cartellini delle tessere (fondo) | 888 px | 570 e 838 px |
+| Misure di carattere | 52, 32, 18, 15 (+14) | 34, 28, 18, 15 (+14) |
+| Parole, sezioni dopo l'apertura | 625, 4 | 611 |
+| Altezza | 5.371 px | 8.080 px |
+| Culmine | 1196 px, foto a 2x con rapporto 2 | 1204 px |
+| Foto, formati | 12, tre (1:2, 3:2, 12:5), nessuna ingrandita | |
+| Prove (1969 / 1986 e 1994 / OK Compost) | y 1873 / 1973 / 2249 | |
+| Ultima famiglia dell'indice | | y 1684 (entro 1688) |
+| Peso | 218 KB | 205 KB |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessuna sovrapposizione, nessun errore, nessun bersaglio sotto i 44 px; altezze 8285, 8080, 7452, 6572, 5371 e 5794 px. Ricerca ("vinile", "portadocumenti auto", "raccoglitore", "4 anelli", "busta saldata a misura"), testata dopo l'apertura (Articoli, Azienda, Su misura, Preventivo), menu a 390 (stato a 80 px, mappe a 664, Copia da 48 px, pannello fino a 844) e modulo provati. Screenshot rifatti con gli stessi nomi e guardati a pezzi.
+
+**Ancora aperti**
+- La foto del culmine è il PVC grigio su fondo scuro del 2019: la saldatura si legge, ma la macro a luce radente chiesta in "Foto da fare dal vero" la farebbe culminare davvero.
+- Le didascalie delle tessere hanno una voce sola (il nome della famiglia): due voci porterebbero la prima schermata oltre i 160 caratteri di D3. La seconda voce sta nell'alt e nell'indice subito sotto.
+- La frase-firma a 52 px torna nel piede alla stessa misura (D7 vuole lo stesso trattamento), quindi gli elementi sopra i 40 px sono due, ma sono la stessa frase.
+- Il giudice e i clienti tipo non li ho rifatti: il voto di questo giro non è misurato.
 
 ### Alto livello: ritocco dopo il giudice da agenzia (3/11/2026)
 

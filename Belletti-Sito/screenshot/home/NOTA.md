@@ -117,6 +117,104 @@ Il giudice da agenzia aveva dato 6,5 (prima 5,5): apertura riconoscibile, ma il 
 Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessun testo fuori dallo schermo, nessuna foto ingrandita, nessun errore di script; menu, ancore e modulo come prima. Resta segnalata solo la sovrapposizione del campo "Note" chiuso nel `details`, che non si vede. Posizioni dei difetti del giudice con `_prova/alto/ritocco/posizioni.mjs`. Screenshot rifatti con gli stessi nomi (`home-1440.jpg` ora 7.149 px, `home-390.jpg` 10.828 px) e guardati a pezzi.
 
 
+### Secondo giro (3/11/2026)
+
+Dopo il primo ritocco il giudice da agenzia era a 6,5 e i clienti tipo erano scesi sotto la versione professionale (cliente 1 da 8 a 7,5, cliente 2 da 8 a 6,5). Questo giro ha due obiettivi insieme: rimettere ai clienti tipo quello che avevano perso senza rompere i tetti D3, e dare sotto la piega l'esecuzione che il giudice chiedeva. La pagina di prima è in `_prova/alto/ritocco2/index-prima-del-secondo-giro.html`, le immagini tolte in `_prova/alto/ritocco2/vecchie/`. Le nuove foto vengono da `_prova/alto/script/immagini-secondo-giro.py`; i controlli nuovi sono in `_prova/alto/ritocco2/posizioni2.mjs` e `schermate.mjs`.
+
+**Per i clienti tipo**
+
+- **Testata (difetto bloccante del giudice)**: ora è una fila sola, logo, menu e numeri, che non si accavalla a nessuna larghezza. Sopra i 1360 px dopo lo scorrimento c'è "Uffici 049 508 2430" (area di 48 px), con almeno 42 px di distanza dal menu: a 1366 sono 42, a 1440 sono 110. Tra 1151 e 1359 px il numero degli uffici resta nei contatti. Fino a 1150 px il menu va nel pannello. Nella prima schermata a 1440 resta un solo numero, quello dei guasti, e i cliccabili scendono a 7.
+- **Stato della linea**: nel bottone dei guasti e nella barra del telefono c'è un punto verde chiaro, con l'etichetta "linea attiva 24 ore su 24" per i lettori di schermo. È sempre acceso perché la linea risponde 24 ore su 24 (`assistenza.aspx`). Per gli uffici non c'è nessuno stato: gli orari non sono pubblicati (LEGGIMI, punto 2).
+- **Menu con le parole del cliente**: a 1440 le voci sono Manutenzione, Ammodernamento, Piattaforme e servoscala, Lavori e Contatti, e ognuna porta in un punto diverso:
+  - Manutenzione arriva con "Dove interveniamo" in vista;
+  - Ammodernamento arriva sulla riga 01, "Condominio: manutenzione e ammodernamento";
+  - Piattaforme e servoscala arriva sulla riga 02, "Casa: piattaforme e servoscala";
+  - Lavori arriva con nome, luogo, data, committente e i cinque dati di Galleria Cavour, da 347 a 724 px su 900;
+  - Contatti arriva con il modulo intero, bottone compreso.
+- **Pannello del menu (telefono e fino a 1150 px)**: la prima voce è "Guasti: cosa succede dopo la chiamata", poi Chi siamo. In fondo ci sono due righe di 54 px con l'etichetta: "Guasti 24 ore 049 900 5131" e "Uffici 049 508 2430".
+- **Tre casi a 390**: il link della prima schermata e la prima voce del menu portano all'elenco (`#casi`). Dopo il tocco i tre casi stanno da 152 a 599 px, sopra la barra che parte a 775. "Qualsiasi marca" è nella riga sotto il titolo.
+- **Seconda schermata a 1440 (cliente 2)**: "Dal 1908 Belletti si occupa di ascensori; dal 1997 la linea diretta..." sta a 1063 px. È la frase del depliant, e sostituisce "A Mestrino dal 1908", che il giudice dava per sbagliata. "Dove interveniamo", con le sette province e "in parte del Friuli", sta a 1445 px. ISO 9001 con la prima emissione del 4 novembre 1997 sta a 1760 px. Mestrino è nella riga dell'apertura. "Certificati e norme" non è più ripetuto: c'è una volta sola, nella fascia sotto l'assistenza, e il piede ci porta con un clic.
+- **Contenuti della versione professionale riportati**: la citazione dell'ing. Viel sugli anni '60 e '70 ("Non basta conoscere le norme attuali...") torna nella riga del condominio, accanto al link del sopralluogo. Torna anche la voce del menu che apre una riga con la parola "ammodernamento" nel titolo.
+- **Finiture d'uso**:
+  - i link di uffici, email e indicazioni nei contatti hanno un'area di 48 px;
+  - il facoltativo del modulo ha un segno "+" che diventa "−" quando si apre;
+  - la riga della foto della targa non ha più il bordo tratteggiato, che sembrava una zona dove trascinare un file;
+  - i pulsanti di scelta sono bianchi e a 390 vanno in colonna;
+  - "Quando" occupa tutta la riga.
+
+**Sotto la piega**
+
+- **Una griglia sola, tre linee di partenza**: ogni blocco parte dalla colonna 1, 5 o 9 (64, 509 e 955 px a 1440). Le linee 843 e 1066 non si usano più. Le due foto grandi stanno sulle colonne 1-8, i testi a lato sulle 9-12.
+- **Il gesto che torna una volta**: l'apertura è la sede di sera sulle colonne 1-8, con il fondo notte a destra e la didascalia a due voci "La sede, di sera / depliant 2008". Il culmine ripete lo stesso gesto: Galleria Cavour di sera, stessa misura (867x900, stesso formato), stesso posto e stesso fondo.
+- **Titolo senza cuciture**: "Ascensori," a 144 px e "in qualsiasi ora del giorno." a 66 px stanno tutti dentro la foto, da 169 a 898 px, con la foto che finisce a 931. Nessuna lettera è tagliata dal bordo e il furgone resta libero. A 390 il titolo va su due righe: "Ascensori," a 64 px e il resto a 29 px su una riga.
+- **Una riga sola per tutte le larghezze**: "Impianti di qualsiasi marca, da Mestrino (Padova)." Contiene il mestiere e il luogo, e non c'è più la doppia versione `largo`/`stretto`. Il 1908 è passato alla prima frase della seconda schermata. I caratteri nella prima schermata sono 148 su 160, non più 159.
+- **Un culmine che culmina**: una foto dominante. A destra, in alto, il manifesto "Pensiamo che per presentarci bastino i lavori che abbiamo eseguito". Sotto, la didascalia vera a due voci "Galleria Cavour, piazza Cavour, Padova / ottobre 2007", che apre la scheda: committente, descrizione, i cinque dati e i progettisti.
+- **Moduli diversi, non cinque uguali**:
+  - assistenza: testo a 7 colonne e un lato a 4, poi la fascia dei certificati;
+  - "Per quale edificio?": a sinistra titolo e due foto, a destra un indice numerato da 01 a 04 con nome, testo e link diversi per ogni riga. Prima c'erano quattro schede uguali con due link uguali;
+  - culmine: foto grande e colonna;
+  - altri lavori: Ca' della Nave sulle colonne 1-7 e Ca' Michiel sulle 9-12, foto alte uguali (566 px) e didascalie allineate, poi la fascia dei progettisti;
+  - chi siamo: la storia come una frase lunga a 29 px, senza citazione debole;
+  - contatti: verde, con il modulo su due colonne.
+- **Foto (D10)**: le foto sono 7 invece di 9. Sono uscite "Casa", che non si sa se sia una piattaforma, e "Edifici nuovi", che sembrava un rendering. Restano tre formati:
+  - notte 0,963 per apertura e Cavour;
+  - verticale 0,744 per Ca' Michiel e il tecnico;
+  - 4:3 per Ca' della Nave, la scala d'epoca e il montauto.
+
+  Il trattamento è uno solo per tutte: bianco verso il neutro, saturazione 0,88, la stessa curva e la stessa temperatura, con R-B medio tra 4 e 8 in tutte e sette (provini in `_prova/alto/ritocco2/provini-s2.jpg`). Nessuna foto è scurita in blocco e nessuna è ingrandita.
+- **Ripetizioni tolte**:
+  - il riquadro "A Mestrino dal 1908", con ISO e Cavour che erano detti due volte;
+  - la zona nel piede, ora detta due volte: nella seconda schermata e nel menu;
+  - la citazione "affiancamento dei giovani";
+  - il secondo "Sopralluogo e preventivo".
+
+  Ogni numero di telefono si vede al massimo due volte.
+- **Finiture del giudice**:
+  - "Montacarichi e montaoggetti", senza la virgola;
+  - Ca' Michiel con una sola coppia di due punti;
+  - "pubblicato nel 2008" al posto di "redazionale del 2008";
+  - le tabelle dei dati con lo stesso ritmo nei tre lavori, senza spazi distribuiti, e su una riga anche a 390;
+  - `text-wrap:balance` sui titoli, per evitare parole sole ("tecnici", "in");
+  - spazi indivisibili in "12 kg", "3 m/s", "EN 81-28", "365 giorni" e "ing. A. Viel";
+  - riga legale allineata sulla linea di base;
+  - rientro ottico della "A" del titolo;
+  - il tecnico a tutta larghezza a 390;
+  - il furgone intero a 390 (`object-position` all'82%);
+  - nessun doppio filetto sotto l'indice.
+
+**Misure finali** (`node _prova/alto/misura-d.mjs`, 31 controlli su 31)
+
+| Misura | 1440x900 | 390x844 |
+|---|---|---|
+| Foto nella prima schermata | 60,2% (867x900, scala 0,998) | 100% |
+| Cliccabili, bottoni | 7, 1 | 4, 1 |
+| Caratteri fuori dal menu | 148 | |
+| `h1` | 144 px ("Ascensori,"), 6 parole, 1 virgola | 64 px |
+| Parole | 870 | 873 |
+| Altezza | 7.240 px | 10.316 px |
+| Foto, formati, ingrandite | 7, 3, 0 | |
+| Famiglie, elementi oltre i 100 px | 1 (Outfit), 1 | |
+| Fondi, sezioni verdi, spazi | 3, 1, 96 e 144 px | 56 e 84 px |
+| Tre casi in uno schermo | 376 su 820 px | 447 su 711 px; dal link da 152 a 599 px, barra a 775 |
+| Prove entro due schermate (1440) | 1908 a 1063 px, zona a 1445 px, ISO 9001 a 1760 px; Cavour a un clic | |
+| Peso | 448 KB | 357 KB |
+| U+2014, lista nera, "indicativ" | 0, 0, 0 | |
+
+Controlli a 320, 390, 768, 1024, 1440 e 1920 (`_prova/alto/script/controlli.mjs`): nessuno scorrimento orizzontale, nessun testo fuori dallo schermo, nessuna foto ingrandita, nessun errore di script. Menu, ancore e modulo funzionano: il link del condominio sceglie "Sopralluogo per ammodernamento", l'invio vuoto si ferma con l'avviso, l'email composta è giusta. Le due sovrapposizioni segnalate non si vedono:
+- "Ascensori," con la seconda riga del titolo: si toccano le scatole di riga, non le lettere;
+- "Note" nel `details` chiuso.
+
+Testata a 1101, 1151, 1200, 1280, 1300, 1339, 1340, 1366, 1440 e 1920, in alto e dopo lo scorrimento: nessuna sovrapposizione. Lo spazio minimo tra il menu e il numero o il bottone è di 40 px. Screenshot rifatti con gli stessi nomi (`home-1440.jpg` di 7.240 px, `home-390.jpg` di 10.316 px) e guardati a pezzi, insieme alle prime schermate a 320, 1024 e 1920.
+
+**Resta aperto**
+
+- Le parole sono 870: passano la soglia ibrida di 900, non le 750 della D8. Lo stesso vale per l'altezza, 7.240 px contro i 6.000 della D8. Per scendere ancora andrebbero tolti contenuti che servono ai clienti tipo (manutenzione, certificati, progettisti).
+- A 1440 e soprattutto a 1920 la colonna a destra della foto d'apertura è fondo notte quasi vuoto, con il bottone in alto e la didascalia in basso. È voluto, perché il culmine fa lo stesso, ma si allarga solo con una foto più grande: il servizio fotografico del LEGGIMI.
+- A 320x640 la parte bassa del titolo tocca le ruote del furgone, anche con il titolo ridotto a 48 px sui telefoni bassi. A 360 e 390 il furgone è libero.
+- "Dal 1908 Belletti si occupa di ascensori" è la frase del depliant e del sito: in pagina è riportata così, e il punto 9 del LEGGIMI resta da chiedere.
+- Nessun logotipo o insegna è stato ridisegnato in questo giro: il logo è quello vettoriale estratto dal depliant.
+
+
 ---
 
 Pagina: `sito/index.html` (statica, si apre con file:///), immagini in `sito/img/`, caratteri in `sito/fonts/`. Si rifà tutto con `sh _prova/script/build_finale.sh`: immagini con `pro_img.py`, controllo dei testi e delle immagini citate, screenshot con `shot_finale.mjs`, poi `pro_controlli.mjs` (le 15 regole, esito anche in `_prova/pro_controlli.json`) e `pro_prova.mjs` (menu, ancore, modulo). Le modifiche del ritocco finale alla pagina sono in `_prova/script/ritocco_css.py` e `ritocco_html.py` (sostituzioni esatte, già applicate).
