@@ -65,6 +65,7 @@ a{color:inherit}
 .piccolo{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase}
 .n{font-variant-numeric:tabular-nums;color:var(--ottone-scuro);margin-right:.5em}
 img{background:var(--rovere)}
+.he-grana::after{opacity:.22}
 .link{color:var(--ottone-scuro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.24em;font-weight:500}
 .link:hover{color:var(--inchiostro)}
 .bottone{display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:0 24px;background:var(--inchiostro);color:var(--carta);text-decoration:none;font:500 17px/1 var(--sans);border:1px solid var(--inchiostro)}
@@ -94,11 +95,11 @@ img{background:var(--rovere)}
 .ap-intro .ap-dove{color:var(--ferro);font-weight:400}
 .ap-didascalia{font:400 var(--t-m)/1.22 var(--serif);letter-spacing:-.01em}
 @media (min-width:900px){
-  .apertura .he-scala-media{clip-path:inset(41% 36.8% 28% 17.4%)}
+  .apertura .he-scala-media{clip-path:inset(44% 38% 33.5% 23%)}
   .ap-titolo{position:absolute;left:var(--he-m);right:var(--he-m);top:12vh;bottom:3vh;display:flex;flex-direction:column;justify-content:space-between;font-size:var(--t-mega)}
   .ap-titolo .r2{text-align:right}
   .ap-intro{position:absolute;right:var(--he-m);top:15vh;width:min(31vw,450px)}
-  .ap-nota{position:absolute;left:17.4%;top:calc(72% + 12px);color:var(--ferro)}
+  .ap-nota{position:absolute;left:23%;top:calc(66.5% + 12px);color:var(--ferro)}
   .ap-didascalia{position:absolute;left:var(--he-m);bottom:8vh;max-width:22em;color:var(--carta)}
   html:not(.he-moto) .ap-didascalia{display:none}
 }
@@ -108,11 +109,12 @@ img{background:var(--rovere)}
 .manifesto{font:400 clamp(26px,3.4vw,62px)/1.14 var(--sans);letter-spacing:-.028em;max-width:21em}
 .manifesto b{font-weight:500}
 .bottega-sotto{margin-top:clamp(56px,8vw,140px);align-items:end}
-.fatti{grid-column:1 / span 4;display:grid;gap:28px}
-.fatti div{border-top:1px solid var(--filo);padding-top:14px}
-.fatti dt{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ottone-scuro)}
-.fatti dd{margin-top:6px;max-width:22em}
-.lab{grid-column:8 / -1}
+.fatti{grid-column:1 / span 4;display:grid;gap:0}
+.fatti li{border-top:1px solid var(--filo);padding:16px 0 18px;max-width:24em}
+.fatti li:last-child{border-bottom:1px solid var(--filo)}
+.fatti b{font-weight:500}
+/* il laboratorio: un taglio di 480 px, mai oltre 1,25 volte */
+.lab{grid-column:8 / -1;width:100%;max-width:600px;justify-self:end}
 .lab .he-media{aspect-ratio:4/3}
 figcaption{margin-top:12px;font:500 var(--t-xs)/1.45 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ferro)}
 figcaption b{font-weight:700;color:var(--inchiostro)}
@@ -122,9 +124,10 @@ figcaption b{font-weight:700;color:var(--inchiostro)}
 .mestieri-indice{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:start}
 .righe{grid-column:1 / span 8;border-bottom:1px solid var(--filo)}
 .riga{display:grid;grid-template-columns:3.2em 1fr;column-gap:12px;padding:26px 0 30px;border-top:1px solid var(--filo);text-decoration:none;color:inherit}
-.riga-n{grid-row:1 / span 2;padding-top:.9em;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.12em;color:var(--ottone-scuro)}
-.riga-nome{font:400 var(--t-xl)/.95 var(--serif);letter-spacing:-.03em;transition:color .5s var(--he-curva)}
-.riga-cose{margin-top:14px;max-width:38em;color:var(--ferro);font-size:17px}
+/* il numero sta sulla linea di base del nome, accanto: non sopra */
+.riga-n{grid-column:1;grid-row:1;align-self:baseline;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.12em;color:var(--ottone-scuro)}
+.riga-nome{grid-column:2;grid-row:1;align-self:baseline;font:400 var(--t-xl)/.95 var(--serif);letter-spacing:-.03em;transition:color .5s var(--he-curva)}
+.riga-cose{grid-column:2;grid-row:2;margin-top:14px;max-width:38em;color:var(--ferro);font-size:17px}
 .riga:focus-visible .riga-nome{color:var(--ottone-scuro)}
 @media (hover:hover){.riga:hover .riga-nome{color:var(--ottone-scuro)}}
 .riga-foto{display:none}
@@ -133,22 +136,21 @@ figcaption b{font-weight:700;color:var(--inchiostro)}
 
 /* ---------- 4. restauro: prima e dopo ---------- */
 .restauro{padding-bottom:var(--he-sez)}
-.trittico{display:grid;grid-template-columns:1fr auto 1fr;column-gap:clamp(24px,4vw,72px);align-items:stretch}
-.lato{display:flex;flex-direction:column}
-.lato-prima{justify-content:flex-start;text-align:right;align-items:flex-end}
-.lato-dopo{justify-content:flex-end}
-.parola{font:400 calc(var(--t-xl) * 1.45)/.86 var(--serif);letter-spacing:-.04em}
-.lato p:not(.parola){margin-top:22px;max-width:17em}
-.lato-dopo .parola{order:2;margin-top:22px}
-.lato-dopo p:not(.parola){order:1;margin-top:0}
-.portone{height:min(84vh,1080px);aspect-ratio:464/1498;background:var(--rovere)}
+/* trittico: "Prima" e "dopo" sulla riga di mezzo della foto, alla stessa altezza della maniglia del cursore */
+.trittico{display:grid;grid-template-columns:1fr auto 1fr;column-gap:clamp(32px,4.4vw,80px);align-items:stretch}
+.lato{display:grid;grid-template-rows:1fr auto 1fr}
+.lato-prima{text-align:right;justify-items:end}
+.lato-dopo{text-align:left;justify-items:start}
+.parola{grid-row:2;font:400 calc(var(--t-xl) * 1.45)/.86 var(--serif);letter-spacing:-.04em;transform:translateY(-.06em)}
+.lato p:not(.parola){grid-row:3;align-self:start;margin-top:26px;max-width:17em}
+/* i due pannelli con i fori della maniglia, alla misura vera: 464 x 580 */
+.portone{width:464px;max-width:100%;aspect-ratio:464/580;background:var(--rovere)}
 .portone img{position:absolute;inset:0;background:none}
-.portone-nota{grid-column:2;grid-row:2;margin-top:16px;text-align:center;color:var(--ferro)}
 .lato-prima{grid-column:1;grid-row:1}.portone{grid-column:2;grid-row:1}.lato-dopo{grid-column:3;grid-row:1}
 .portone .maniglia{background:var(--carta)}
-.portone .maniglia::after{border-color:var(--carta);background:rgba(22,18,14,.35)}
-.restauro-sotto{max-width:40em;margin:clamp(56px,7vw,110px) auto 0;text-align:center}
-.restauro-sotto h2{font:400 var(--t-l)/1.04 var(--serif);letter-spacing:-.022em}
+.portone .maniglia::after{left:-28px;width:56px;height:56px;margin-top:-28px;border-color:var(--carta);background:rgba(22,18,14,.35)}
+.restauro-sotto{max-width:36em;margin:clamp(64px,8vw,128px) 0 0}
+.restauro-sotto h2{font:500 clamp(28px,2.5vw,36px)/1.14 var(--sans);letter-spacing:-.018em}
 .restauro-sotto p{margin-top:20px}
 .restauro-sotto .bottone{margin-top:28px}
 .restauro-sotto .riga-piccola{margin-top:14px;font-size:15px;color:var(--ferro)}
@@ -157,38 +159,33 @@ figcaption b{font-weight:700;color:var(--inchiostro)}
 .bo{background:var(--noce);color:var(--carta);padding-top:var(--he-sez);padding-bottom:calc(var(--he-sez) * .6)}
 .bo-titolo{font:400 15vw/.84 var(--serif);letter-spacing:-.045em}
 .bo-luogo{margin-top:28px;color:var(--rovere)}
-.bo-storia{margin-top:clamp(40px,7vw,120px)}
-.bo-media{grid-column:1 / span 6;height:auto;aspect-ratio:7/5;top:calc(50vh - 15vw)}
-.bo-media img{background:none}
-.bo-passi{grid-column:8 / span 5}
-.he-passo{min-height:76vh}
-.passo-n{display:inline-block;min-width:2.6em;vertical-align:.5em;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.12em;color:var(--ottone)}
-.he-passo h3{font:400 var(--t-m)/1.12 var(--serif);letter-spacing:-.012em}
-.he-passo p:not(.passo-n){margin-top:14px;color:rgba(241,236,227,.82);max-width:26em}
-.he-passo .link{color:var(--ottone);display:inline-block;margin-top:22px}
-.he-passo .link:hover{color:var(--carta)}
-.passo-foto{display:none}
-/* senza movimento: il Bo mostra la foto di ogni passo, in due colonne */
-@media (min-width:900px){
-  html:not(.he-moto) .bo-media{display:none}
-  html:not(.he-moto) .bo-passi{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--he-col);row-gap:72px}
-  html:not(.he-moto) .bo-passi .he-passo{min-height:0;justify-content:flex-start}
-  html:not(.he-moto) .passo-foto{display:block;order:-1;width:100%;max-width:700px;height:auto;aspect-ratio:7/5;object-fit:cover;margin-bottom:26px}
-}
-.he-moto .bo-passi .he-passo h3{transition:color .6s var(--he-curva)}
-.he-moto .bo-passi .he-passo:not(.attivo) h3{color:var(--rovere)}
-.he-moto .bo-passi .he-passo.attivo h3{color:var(--carta)}
+/* le quattro foto in fila, piccole come sono (700 x 500, mostrate a circa 300 px), ognuna con il suo passo */
+.bo-fila{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--he-col);margin-top:clamp(56px,6vw,104px)}
+.bo-fila img{width:100%;height:auto;aspect-ratio:7/5;object-fit:cover;background:none}
+.bo-fila figcaption{margin-top:18px;font:inherit;letter-spacing:0;text-transform:none;color:inherit}
+.bo-fila h3{font:500 26px/1.15 var(--sans);letter-spacing:-.012em}
+.bo .n{color:var(--ottone)}
+.bo-fila p{margin-top:10px;font-size:16px;color:rgba(241,236,227,.82);max-width:24em}
+.bo-scheda{margin-top:clamp(40px,4vw,64px)}
+.bo .link{color:var(--ottone)}
+.bo .link:hover{color:var(--carta)}
+
+/* ---------- stacco: un solo dettaglio di legno, alla misura vera, in una pagina vuota ---------- */
+.stacco{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:56px;box-sizing:border-box}
+.stacco figure{width:576px;max-width:100%}
+.stacco .he-media{aspect-ratio:576/720}
 
 /* ---------- 6. lavori: galleria orizzontale ---------- */
 .lavori{padding-block:clamp(56px,8vh,110px) clamp(64px,9vh,120px)}
 .lav-testa{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 56px;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,64px);box-sizing:border-box;width:100%}
-.lav-titolo{font:400 calc(var(--t-xl) * .82)/.95 var(--serif);letter-spacing:-.03em}
+.lav-titolo{font:500 clamp(28px,2.5vw,36px)/1.14 var(--sans);letter-spacing:-.018em}
 .lav-testa p{max-width:24em;padding-bottom:.4em}
 .lavori .he-oriz-binario{align-items:flex-start;gap:clamp(28px,4.4vw,84px)}
 .lav .he-media{background:var(--rovere)}
 .lav.alta .he-media{height:54vh;aspect-ratio:2/3}
 .lav.tre .he-media{height:50vh;aspect-ratio:3/4}
-.lav.quadra .he-media{height:44vh;aspect-ratio:1/1}
+.lav.quadra .he-media{height:min(44vh,430px);aspect-ratio:1/1}
+.lav.bagno .he-media{height:min(50vh,500px)}
 .lav.larga .he-media{height:38vh;aspect-ratio:2/1}
 .lav.giu{margin-top:8vh}
 .lav.su{margin-top:0}
@@ -207,7 +204,7 @@ figcaption b{font-weight:700;color:var(--inchiostro)}
 .tel-sotto{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline}
 .chiusura-griglia{margin-top:clamp(64px,8vw,140px);row-gap:64px;align-items:start}
 .dove{grid-column:1 / span 5}
-.indirizzo{font:400 var(--t-l)/1.04 var(--serif);letter-spacing:-.022em}
+.indirizzo{font:500 clamp(28px,2.5vw,36px)/1.14 var(--sans);letter-spacing:-.018em}
 .dove .indicazioni{margin-top:18px}
 .capannone{margin-top:40px;max-width:520px}
 .capannone .he-media{aspect-ratio:3/2}
@@ -218,7 +215,7 @@ figcaption b{font-weight:700;color:var(--inchiostro)}
 .recapiti a{font-weight:500;text-decoration:none;display:inline-flex;align-items:center;min-height:48px}
 .recapiti a:hover{text-decoration:underline}
 .preventivo{grid-column:7 / -1}
-.preventivo h2{font:400 var(--t-l)/1.04 var(--serif);letter-spacing:-.022em}
+.preventivo h2{font:500 clamp(28px,2.5vw,36px)/1.14 var(--sans);letter-spacing:-.018em}
 .preventivo > p{margin-top:18px;max-width:32em}
 form{margin-top:34px;display:grid;gap:20px}
 label,legend{display:block;font:500 15px/1.3 var(--sans);margin-bottom:8px}
@@ -246,6 +243,10 @@ form .bottone{justify-self:start;cursor:pointer}
 
 /* ---------- da 900 a 1180 ---------- */
 @media (max-width:1180px) and (min-width:900px){
+  .parola{font-size:8.4vw}
+  .portone{width:34vw}
+  /* tra 900 e 1180 le quattro colonne sarebbero troppo strette per i titoli dei passi: due per riga */
+  .bo-fila{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}
   .voci{gap:20px}
   .voci .facolt{display:none}
   .marchio{width:136px}
@@ -265,44 +266,43 @@ form .bottone{justify-self:start;cursor:pointer}
   .apertura .he-scala-media{order:3;position:relative;inset:auto;aspect-ratio:4/5;margin-top:28px;overflow:hidden}
   .apertura .he-scala-media::before{display:none}
   .ap-nota{display:none}
-  .ap-didascalia{order:4;padding:12px var(--he-m) 0;font:500 var(--t-xs)/1.45 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ferro)}
+  .ap-didascalia{order:4;padding:12px var(--he-m) 0;font:400 15px/1.5 var(--sans);letter-spacing:0;color:var(--ferro)}
   .ap-intro{order:2;padding:20px var(--he-m) 0}
   .ap-intro .bottone{width:100%;justify-content:center}
   .bottega{padding-top:88px}
   .manifesto{font-size:clamp(26px,7.2vw,46px);line-height:1.1}
   .bottega-sotto{display:flex;flex-direction:column-reverse;gap:44px;align-items:stretch}
-  .lab{margin:0 calc(-1 * var(--he-m))}
+  .lab{margin:0 calc(-1 * var(--he-m));width:auto;max-width:none}
   .lab figcaption{padding:0 var(--he-m)}
   .mestieri-indice{display:block}
   .he-indice-anteprima{display:none}
-  .riga{grid-template-columns:1fr 104px;column-gap:16px;padding:20px 0 22px}
-  .riga-n{grid-row:auto;grid-column:1;padding-top:0}
-  .riga-nome{grid-column:1;margin-top:8px;font-size:clamp(34px,9.4vw,64px)}
-  .riga-cose{grid-column:1 / -1;margin-top:10px;font-size:16px}
-  .riga-foto{display:block;grid-column:2;grid-row:1 / span 2;width:104px;height:130px;object-fit:cover;align-self:start}
+  .riga{grid-template-columns:auto 1fr 104px;column-gap:10px;padding:20px 0 22px}
+  .riga-nome{grid-column:2;font-size:clamp(34px,9.4vw,64px)}
+  .riga-cose{grid-column:1 / 3;margin-top:12px;font-size:16px}
+  .riga-foto{display:block;grid-column:3;grid-row:1 / span 2;width:104px;height:130px;margin-left:6px;object-fit:cover;align-self:start}
   .mestieri-dopo{margin-top:18px}
-  .trittico{grid-template-columns:1fr 1fr;row-gap:28px;column-gap:16px}
-  .lato-prima,.lato-dopo{text-align:left;align-items:flex-start;justify-content:flex-start}
-  .lato-dopo .parola{order:0;margin-top:0}
-  .lato-dopo p:not(.parola){order:1;margin-top:14px}
-  .parola{font-size:clamp(48px,14vw,110px)}
+  .trittico{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:28px;column-gap:16px}
+  .lato{display:block}
+  .lato-prima,.lato-dopo{text-align:left}
+  .parola{font-size:clamp(48px,14vw,110px);transform:none}
   .lato p:not(.parola){font-size:16px;margin-top:12px}
-  .portone{grid-column:1 / -1;grid-row:2;justify-self:center;height:min(72vh,660px);width:auto}
-  .portone-nota{grid-column:1 / -1;grid-row:3}
+  .portone{grid-column:1 / -1;grid-row:2;justify-self:center;width:100%;max-width:464px}
   .lato-dopo{grid-column:2;grid-row:1}
+  .restauro-sotto{margin-top:56px}
   .bo-titolo{font-size:clamp(56px,17vw,150px)}
-  .bo-media{display:none}
-  .passo-foto{display:block;width:100%;height:auto;aspect-ratio:7/5;margin-top:22px;object-fit:cover}
-  .he-passo{min-height:0;padding:40px 0 8px;border-top:1px solid rgba(241,236,227,.18)}
-  .bo-storia{margin-top:48px}
-  .he-moto .bo-passi .he-passo:not(.attivo) h3{color:var(--carta)}
+  /* sul telefono le quattro foto si sfogliano con il dito */
+  .bo-fila{display:flex;gap:16px;margin-top:40px;padding-inline:var(--he-m);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-padding-inline:var(--he-m);scrollbar-width:none}
+  .bo-fila::-webkit-scrollbar{display:none}
+  .bo-fila li{flex:none;width:78vw;max-width:340px;scroll-snap-align:start}
+  .bo-fila h3{font-size:22px}
+  .stacco{min-height:0;padding-block:96px}
   .lavori{padding-block:72px 64px;overflow:visible}
   .lavori .he-oriz-binario{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-padding-inline:var(--he-m)}
   .lavori .he-oriz-binario::-webkit-scrollbar{display:none}
-  .lav-titolo{font-size:clamp(36px,10vw,72px)}
   .lav.alta .he-media{height:auto;width:62vw}
   .lav.tre .he-media{height:auto;width:64vw}
   .lav.quadra .he-media{height:auto;width:72vw}
+  .lav.bagno .he-media{height:auto}
   .lav.larga .he-media{height:auto;width:84vw}
   .lav.giu,.lav.su{margin-top:0}
   .lav figcaption{max-width:62vw}
@@ -349,7 +349,7 @@ form .bottone{justify-self:start;cursor:pointer}
 <main id="contenuto">
 
 <!-- 1. apertura -->
-<section class="he-scala apertura" id="inizio" data-he-scale="inset(41% 36.8% 28% 17.4% round 0px)" aria-labelledby="titolo">
+<section class="he-scala apertura" id="inizio" data-he-scale="inset(44% 38% 33.5% 23% round 0px)" data-he-scale-zoom="1" aria-labelledby="titolo">
   <div class="he-scala-media he-grana">
     <picture>
       <source media="(max-width: 599px)" srcset="img/sottoscala-tel-480.webp 480w, img/sottoscala-tel-720.webp 720w" sizes="100vw" width="720" height="900">
@@ -371,14 +371,14 @@ form .bottone{justify-self:start;cursor:pointer}
 <section class="he-wrap bottega" id="bottega" aria-label="La bottega">
   <p class="manifesto" data-he-split><b>Mauro Nosarini e Giuliano Saibene</b> hanno cominciato da ragazzini in una falegnameria artigiana di Padova. Oggi, nella loro bottega di Mestrino, interpretano disegni di architetti o semplici schizzi, oppure progettano da zero.</p>
   <div class="he-grid bottega-sotto">
-    <dl class="fatti">
-      <div><dt>In laboratorio</dt><dd>Macchinari a controllo numerico e verniciatura a ciclo d’acqua, fatta da noi.</dd></div>
-      <div><dt>La posa</dt><dd>La curiamo personalmente, senza personale esterno od occasionale.</dd></div>
-      <div><dt>Le finiture</dt><dd>Verniciatura, laccatura, colore al campione; per i restauri la gommalacca di un tempo.</dd></div>
-    </dl>
+    <ul class="fatti">
+      <li><b>In laboratorio</b> lavoriamo con macchinari a controllo numerico e verniciamo da noi, a ciclo d’acqua.</li>
+      <li><b>La posa</b> la curiamo personalmente, senza personale esterno od occasionale.</li>
+      <li><b>Per le finiture</b> verniciatura, laccatura e colore al campione; per i restauri la gommalacca di un tempo.</li>
+    </ul>
     <figure class="lab">
-      <div class="he-media he-grana"><img src="img/laboratorio-640.webp" srcset="img/laboratorio-640.webp 640w, img/laboratorio-880.webp 880w" sizes="(max-width:899px) 100vw, 38vw" width="880" height="660" loading="lazy" alt="In laboratorio: i telai delle finestre in lavorazione, impilati sul carrello"></div>
-      <figcaption><span class="n">(02)</span><b>Il laboratorio</b>, Via Levico 18: finestre in lavorazione</figcaption>
+      <div class="he-media he-grana"><img src="img/laboratorio-480.webp" width="480" height="360" loading="lazy" alt="In laboratorio: le teste dei telai delle finestre in lavorazione, impilati sul carrello"></div>
+      <figcaption><span class="n">(02)</span><b>Il laboratorio</b>, Via Levico 18: telai delle finestre in lavorazione</figcaption>
     </figure>
   </div>
 </section>
@@ -422,12 +422,11 @@ form .bottone{justify-self:start;cursor:pointer}
       <p>Il portone d’ingresso in laboratorio, con la ferramenta consumata dagli agenti atmosferici e dal tempo.</p>
     </div>
     <div class="he-confronto portone" data-he-compare>
-      <img class="prima" src="img/portone-prima-464.webp" srcset="img/portone-prima-310.webp 310w, img/portone-prima-464.webp 464w" sizes="(max-width:899px) 62vw, 26vh" width="464" height="1498" loading="lazy" alt="Il portone prima del restauro, sdraiato in laboratorio: vernice scura e consumata, i fori della vecchia maniglia">
-      <img class="dopo" src="img/portone-dopo-464.webp" srcset="img/portone-dopo-310.webp 310w, img/portone-dopo-464.webp 464w" sizes="(max-width:899px) 62vw, 26vh" width="464" height="1498" loading="lazy" alt="Lo stesso portone dopo il restauro: legno massiccio con la venatura a vista e il maniglione in ottone nuovo">
+      <img class="prima" src="img/portone-prima-464.webp" width="464" height="580" loading="lazy" alt="Prima del restauro: due pannelli di un portone in legno, con la vernice scura e consumata, i fori della vecchia maniglia e la serratura">
+      <img class="dopo" src="img/portone-dopo-464.webp" width="464" height="580" loading="lazy" alt="Dopo il restauro: due pannelli di un portone in legno massiccio, con la venatura a vista, il maniglione in ottone nuovo e la serratura">
       <input type="range" min="0" max="100" value="50" aria-label="Prima e dopo il restauro del portone: sposta per confrontare">
       <span class="maniglia"></span>
     </div>
-    <p class="portone-nota piccolo">Lo stesso portone, dalle due foto raddrizzate: sposta il cursore</p>
     <div class="lato lato-dopo">
       <p class="parola" aria-hidden="true">dopo</p>
       <p>Portato a legno grezzo per ridargli vita e colore, tre mani di vernice all’acqua, ferramenta nuova.</p>
@@ -447,37 +446,33 @@ form .bottone{justify-self:start;cursor:pointer}
     <h2 class="bo-titolo" id="t-bo" data-he-split>Le porte di Gio&nbsp;Ponti</h2>
     <p class="bo-luogo piccolo">Palazzo del Bo, Università di Padova</p>
   </div>
-  <div class="he-wrap he-storia bo-storia" data-he-story>
-    <div class="he-storia-media bo-media">
+  <ol class="he-wrap bo-fila">
+    <li><figure>
       <img src="img/bo-bussola-700.webp" width="700" height="500" loading="lazy" alt="La bussola d’ingresso in legno e vetri dopo il restauro">
+      <figcaption><h3><span class="n">(01)</span>Nella sede del Bo</h3><p>A Padova abbiamo restaurato mobili, oggetti, porte scorrevoli e pareti divisorie che portano la firma del grande architetto Gio Ponti.</p></figcaption>
+    </figure></li>
+    <li><figure>
       <img src="img/bo-boiserie-700.webp" width="700" height="500" loading="lazy" alt="La parete in legno a riquadri con la porta scorrevole aperta, durante il restauro con il ponteggio">
+      <figcaption><h3><span class="n">(02)</span>Porte scorrevoli e pareti divisorie</h3><p>Le pareti in legno a riquadri e le loro porte, restaurate sul posto, con il ponteggio montato.</p></figcaption>
+    </figure></li>
+    <li><figure>
       <img src="img/bo-librerie-700.webp" width="700" height="500" loading="lazy" alt="Le librerie a vetri in legno chiaro, su tutta la parete">
+      <figcaption><h3><span class="n">(03)</span>Mobili e oggetti</h3><p>Le librerie a vetri e gli arredi in legno della sede dell’Università.</p></figcaption>
+    </figure></li>
+    <li><figure>
       <img src="img/bo-ponteggi-700.webp" width="700" height="500" loading="lazy" alt="Il restauro della bussola sui ponteggi, con la scala e il nastro di cantiere">
-    </div>
-    <div class="bo-passi">
-      <div class="he-passo">
-        <h3><span class="passo-n">01</span>Nella sede del Bo</h3>
-        <p>A Padova abbiamo restaurato mobili, oggetti, porte scorrevoli e pareti divisorie che portano la firma del grande architetto Gio Ponti.</p>
-        <img class="passo-foto" src="img/bo-bussola-700.webp" width="700" height="500" loading="lazy" alt="La bussola d’ingresso in legno e vetri dopo il restauro">
-      </div>
-      <div class="he-passo">
-        <h3><span class="passo-n">02</span>Porte scorrevoli e pareti divisorie</h3>
-        <p>Le pareti in legno a riquadri e le loro porte, restaurate sul posto, con il ponteggio montato.</p>
-        <img class="passo-foto" src="img/bo-boiserie-700.webp" width="700" height="500" loading="lazy" alt="La parete in legno a riquadri con la porta scorrevole aperta, durante il restauro">
-      </div>
-      <div class="he-passo">
-        <h3><span class="passo-n">03</span>Mobili e oggetti</h3>
-        <p>Le librerie a vetri e gli arredi in legno della sede dell’Università.</p>
-        <img class="passo-foto" src="img/bo-librerie-700.webp" width="700" height="500" loading="lazy" alt="Le librerie a vetri in legno chiaro, su tutta la parete">
-      </div>
-      <div class="he-passo">
-        <h3><span class="passo-n">04</span>Con i complimenti dell’Università</h3>
-        <p>Il lavoro si è chiuso con i complimenti espressi dai responsabili dell’Università stessa.</p>
-        <img class="passo-foto" src="img/bo-ponteggi-700.webp" width="700" height="500" loading="lazy" alt="Il restauro della bussola sui ponteggi">
-        <a class="link" href="https://www.bottegadellartesnc.it/progetti/universita-di-padova/">La scheda del lavoro, con tutte le foto</a>
-      </div>
-    </div>
-  </div>
+      <figcaption><h3><span class="n">(04)</span>Con i complimenti dell’Università</h3><p>Il lavoro si è chiuso con i complimenti espressi dai responsabili dell’Università stessa.</p></figcaption>
+    </figure></li>
+  </ol>
+  <p class="he-wrap bo-scheda"><a class="link" href="https://www.bottegadellartesnc.it/progetti/universita-di-padova/">La scheda del lavoro, con tutte le foto</a></p>
+</section>
+
+<!-- stacco: un solo dettaglio di legno, alla misura vera della foto -->
+<section class="he-wrap stacco" aria-label="Un dettaglio">
+  <figure>
+    <div class="he-media he-grana"><img src="img/stacco-anta-576.webp" width="576" height="720" loading="lazy" alt="La venatura di un’anta in legno chiaro con la maniglia a incasso, accanto allo stipite"></div>
+    <figcaption><b>Porta interna</b> · la venatura dell’anta e la maniglia a incasso</figcaption>
+  </figure>
 </section>
 
 <!-- 6. lavori: galleria orizzontale -->
@@ -496,7 +491,7 @@ form .bottone{justify-self:start;cursor:pointer}
       <figcaption><span class="n">(04)</span><b>Porta laccata</b> · moderne design</figcaption>
     </figure>
     <figure class="he-oriz-elemento lav larga su">
-      <div class="he-media he-grana"><img src="img/lav-credenza-900.webp" srcset="img/lav-credenza-900.webp 900w, img/lav-credenza-1200.webp 1200w" sizes="(max-width:899px) 84vw, 88vh" width="1200" height="600" loading="lazy" alt="Una credenza antica laccata grigio chiaro con le cornici in rilievo, dopo il restauro"></div>
+      <div class="he-media he-grana"><img src="img/lav-credenza-660.webp" srcset="img/lav-credenza-440.webp 440w, img/lav-credenza-660.webp 660w" sizes="(max-width:899px) 84vw, 76vh" width="660" height="330" loading="lazy" alt="Il fronte di una credenza antica laccata grigio chiaro dopo il restauro: le mensole intagliate, i cassetti e le specchiature con le cornici in rilievo"></div>
       <figcaption><span class="n">(05)</span><b>Credenza restaurata</b> · mobili antichi</figcaption>
     </figure>
     <figure class="he-oriz-elemento lav tre giu">
@@ -504,11 +499,11 @@ form .bottone{justify-self:start;cursor:pointer}
       <figcaption><span class="n">(06)</span><b>Controsoffitto in legno</b> · fori per led e ventilazione</figcaption>
     </figure>
     <figure class="he-oriz-elemento lav quadra su">
-      <div class="he-media he-grana"><img src="img/lav-pasticceria-700.webp" srcset="img/lav-pasticceria-700.webp 700w, img/lav-pasticceria-1000.webp 1000w" sizes="(max-width:899px) 72vw, 52vh" width="1000" height="991" loading="lazy" alt="Sgabelli in frassino chiaro e ferro nero lungo il bancone di una pasticceria"></div>
+      <div class="he-media he-grana"><img src="img/lav-pasticceria-344.webp" width="344" height="344" loading="lazy" alt="Due sgabelli di una pasticceria: il sedile in frassino chiaro appoggiato sulle gambe in ferro nero"></div>
       <figcaption><span class="n">(07)</span><b>Pasticceria vicino a Bolzano</b> · frassino massiccio e ferro nero</figcaption>
     </figure>
-    <figure class="he-oriz-elemento lav tre giu">
-      <div class="he-media he-grana"><img src="img/lav-bagno-600.webp" srcset="img/lav-bagno-600.webp 600w, img/lav-bagno-900.webp 900w" sizes="(max-width:899px) 64vw, 44vh" width="900" height="1200" loading="lazy" alt="Un bagno in marmo nero venato con il mobile del lavabo sospeso e lo specchio illuminato"></div>
+    <figure class="he-oriz-elemento lav tre bagno giu">
+      <div class="he-media he-grana"><img src="img/lav-bagno-300.webp" width="300" height="400" loading="lazy" alt="Il bordo del lavabo sospeso in marmo nero, con la venatura bianca che gira sullo spigolo"></div>
       <figcaption><span class="n">(08)</span><b>Mobile del bagno</b> · su misura</figcaption>
     </figure>
     <figure class="he-oriz-elemento lav alta su">
