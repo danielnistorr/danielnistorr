@@ -6,14 +6,15 @@
 
    Attributi:
    data-he-split          titolo che sale riga per riga (al massimo 3 per pagina); data-he-subito = all'apertura
-   data-he-scale          sezione .he-scala: la foto parte incorniciata e si allarga a tutta pagina scorrendo
+   data-he-scale          sezione .he-scala: la foto parte incorniciata e si allarga a tutta pagina scorrendo;
+                          data-he-scale-zoom="1" toglie l'ingrandimento iniziale (da usare con foto piccole o morbide)
    data-he-parallax="0.12" contenitore .he-parallax: la foto scorre piu' lenta della pagina
    data-he-wipe="su|sinistra|destra"  la foto si scopre con un taglio netto quando entra
    data-he-horizontal     sezione .he-oriz con .he-oriz-binario: galleria orizzontale fissata
    data-he-story          sezione .he-storia con .he-storia-media e .he-passo: la foto cambia passo per passo
    data-he-compare        .he-confronto con img.prima, img.dopo e un input range
    data-he-index          .he-indice: righe [data-img] che cambiano la foto di .he-indice-anteprima
-   data-he-header         la testata si nasconde scendendo; data-he-chiara-dopo="#id" cambia tema dopo una sezione
+   data-he-header         la testata si nasconde scendendo (solo da 900 px in su: sul telefono resta, col numero); data-he-chiara-dopo="#id" cambia tema dopo una sezione
    data-he-intro          .he-intro: sipario d'ingresso, una volta per visita
    data-he-conta          numero che sale fino al suo valore quando entra (solo per dati veri, al massimo uno)
 */
@@ -129,14 +130,16 @@
     mm.add("(min-width: 900px)", function () {
       var tl = gsap.timeline({ scrollTrigger: { trigger: sec, start: "top top", end: "+=110%", scrub: 0.6, pin: true, anticipatePin: 1 } });
       tl.fromTo(media, { clipPath: cornice }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" }, 0);
-      if (img) tl.fromTo(img, { scale: 1.28 }, { scale: 1, ease: "none" }, 0);
+      var zoom = parseFloat(sec.getAttribute("data-he-scale-zoom") || "1.28");
+      if (img && zoom !== 1) tl.fromTo(img, { scale: zoom }, { scale: 1, ease: "none" }, 0);
       var via = sec.querySelectorAll("[data-he-scale-via]");
       if (via.length) tl.to(via, { yPercent: -40, opacity: 0, ease: "none" }, 0);
       var entra = sec.querySelectorAll("[data-he-scale-entra]");
       if (entra.length) tl.fromTo(entra, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "none" }, 0.45);
     });
     mm.add("(max-width: 899px)", function () {
-      if (img) gsap.fromTo(img, { scale: 1.18 }, { scale: 1, ease: "none", scrollTrigger: { trigger: sec, start: "top top", end: "bottom top", scrub: true } });
+      var zoomT = Math.min(1.18, parseFloat(sec.getAttribute("data-he-scale-zoom") || "1.18"));
+      if (img && zoomT !== 1) gsap.fromTo(img, { scale: zoomT }, { scale: 1, ease: "none", scrollTrigger: { trigger: sec, start: "top top", end: "bottom top", scrub: true } });
     });
   });
 
@@ -201,7 +204,8 @@
   if (testa) {
     ScrollTrigger.create({ start: 0, end: "max", onUpdate: function (self) {
       var y = self.scroll();
-      testa.classList.toggle("nascosta", self.direction === 1 && y > 240);
+      // sul telefono la testata resta sempre visibile: e' quella che porta il numero
+      testa.classList.toggle("nascosta", self.direction === 1 && y > 240 && window.innerWidth >= 900);
       testa.classList.toggle("scorsa", y > 40);
     } });
     var dopo = testa.getAttribute("data-he-chiara-dopo");
