@@ -10,14 +10,12 @@
 <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" imagesrcset="img/furgone-720.webp 720w, img/furgone-1080.webp 1080w, img/furgone-1440.webp 1440w, img/furgone-1920.webp 1920w, img/furgone-2560.webp 2560w" imagesizes="100vw" fetchpriority="high">
 <script>
-/* prima di disegnare: sipario pronto (una volta per visita) e cornice dell'apertura gia' ingrandita, cosi' non c'e' nessun salto */
+/* prima di disegnare: la cornice dell'apertura gia' ingrandita, cosi' non c'e' nessun salto quando parte il kit */
 (function (d) {
-  var h = d.documentElement, ferma = matchMedia("(prefers-reduced-motion: reduce)").matches, vista = false;
-  try { vista = sessionStorage.getItem("he-intro") === "1"; } catch (e) {}
-  if (ferma) return;
-  if (!vista) h.classList.add("he-intro-attesa");
+  var h = d.documentElement;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (matchMedia("(min-width: 900px)").matches) h.classList.add("pre-moto");
-  setTimeout(function () { if (!h.classList.contains("he-moto")) h.classList.remove("he-intro-attesa", "pre-moto"); }, 4000);
+  setTimeout(function () { if (!h.classList.contains("he-moto")) h.classList.remove("pre-moto"); }, 4000);
 })(document);
 </script>
 <link rel="stylesheet" href="kit/he.css">
@@ -41,8 +39,8 @@
   --testo:"Source Serif 4",Georgia,"Times New Roman",serif;
   /* misure: una per volta, con salti forti */
   --t-mega:clamp(52px,min(10.2vw,19.5vh),200px);  /* 147 a 1440 */
-  --t-xl:clamp(46px,7.2vw,136px);                 /* 104 */
-  --t-q:clamp(38px,5vw,96px);                     /* 72, la frase del culmine */
+  --t-xl:clamp(46px,7.2vw,136px);                 /* 104: anni, indirizzi, la planimetria */
+  --t-q:clamp(40px,6.67vw,128px);                 /* 96, la frase del culmine */
   --t-l:clamp(34px,4.4vw,84px);                   /* 63 */
   --t-m:clamp(22px,2.5vw,44px);                   /* 36 */
   --t-n:clamp(19px,1.67vw,28px);                  /* 24 */
@@ -64,7 +62,11 @@ h1,h2,h3{font-weight:500;text-wrap:balance}
 p{text-wrap:pretty}
 b,strong{font-weight:600}
 .nw{white-space:nowrap}
+/* titoli riga per riga: la maschera di ogni riga lascia spazio alle discendenti (la g di alberghiere, la p di Lupetto) */
+[data-he-split] .he-riga{padding-bottom:.18em;margin-bottom:-.18em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* titoli che sopra i 1100 px stanno nella loro colonna e sotto farebbero da etichetta sopra il titolo: restano ai lettori di schermo */
+@media (max-width:1100px){.sr-stretto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 .salta{position:fixed;left:12px;top:-60px;z-index:2000;background:var(--inchiostro);color:#fff;padding:12px 16px;font:500 16px/1 var(--display)}
 .salta:focus{top:12px}
 :focus-visible{outline:2px solid var(--blu-testo);outline-offset:3px}
@@ -73,31 +75,25 @@ b,strong{font-weight:600}
 .lk{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .lk:hover{text-decoration-thickness:2px}
 
-/* bottoni: uno solo sistema, rettangolo pieno o con il bordo, al passaggio si inverte (non sbiadisce) */
-.b{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1px solid var(--inchiostro);background:var(--inchiostro);color:var(--carta);font:500 16px/1.2 var(--display);letter-spacing:.01em;text-decoration:none;cursor:pointer;text-align:center;transition:background-color .3s var(--he-curva),color .3s var(--he-curva),border-color .3s var(--he-curva)}
-.b:hover{background:transparent;color:var(--inchiostro)}
+/* bottoni: un solo sistema, rettangolo pieno o con il bordo; al passaggio si inverte di colpo, senza transizione (niente sbiadire) */
+.b{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1px solid var(--inchiostro);background:var(--inchiostro);color:var(--carta);font:500 16px/1.2 var(--display);letter-spacing:.01em;text-decoration:none;cursor:pointer;text-align:center;transition:none;-webkit-tap-highlight-color:transparent}
 .b-bordo{background:transparent;color:var(--inchiostro)}
-.b-bordo:hover{background:var(--inchiostro);color:var(--carta)}
 .b-chiaro{background:#fff;border-color:#fff;color:var(--inchiostro)}
-.b-chiaro:hover{background:transparent;color:#fff}
 .b-bordo-chiaro{background:transparent;border-color:#fff;color:#fff}
-.b-bordo-chiaro:hover{background:#fff;color:var(--inchiostro)}
+/* il cambio al passaggio solo dove c'e' un puntatore: sul telefono il tocco non lascia il bottone invertito */
+@media (hover:hover){
+  .b:hover{background:transparent;color:var(--inchiostro)}
+  .b-bordo:hover{background:var(--inchiostro);color:var(--carta)}
+  .b-chiaro:hover{background:transparent;color:#fff}
+  .b-bordo-chiaro:hover{background:#fff;color:var(--inchiostro)}
+}
+.b:active{background:var(--acciaio);border-color:var(--acciaio);color:#fff}
 .bottoni{display:flex;flex-wrap:wrap;gap:12px}
 
 .stato{display:inline-flex;align-items:baseline;gap:8px}
 .stato::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--acciaio);transform:translateY(-1px)}
 .stato.aperto{color:var(--verde)}
 .stato.aperto::before{background:var(--verde)}
-
-/* ---------- sipario: la firma che si scrive ---------- */
-.he-intro{background:var(--inchiostro);color:#fff}
-.he-intro-attesa .he-intro{display:block}
-.intro-firma{position:absolute;left:50%;top:47%;width:min(64vw,820px);transform:translate(-50%,-50%)}
-.intro-firma svg{display:block;width:100%;height:auto;clip-path:inset(-4% 100% -4% 0)}
-.he-intro.vai .intro-firma svg{animation:scrivi .78s cubic-bezier(.55,.08,.3,1) .04s both}
-@keyframes scrivi{to{clip-path:inset(-4% 0% -4% 0)}}
-.he-intro-marchio{position:absolute;width:1px;height:1px}
-.he-fermo .he-intro{display:none!important}
 
 /* ---------- testata ---------- */
 .testata{position:fixed;inset:0 0 auto;z-index:50;height:var(--testata);display:flex;align-items:center;gap:32px;padding:0 var(--m);background:var(--carta);border-bottom:1px solid transparent}
@@ -113,6 +109,7 @@ b,strong{font-weight:600}
 .menu .v-privati b{font-weight:500}
 .testata .b{min-height:46px;padding:0 18px}
 .apri{display:none}
+.apri[aria-expanded=true]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.35em}
 
 /* ---------- 1. apertura: la cornice che si allarga ---------- */
 .apertura{background:var(--carta)}
@@ -145,9 +142,9 @@ b,strong{font-weight:600}
 .chi-frase{grid-column:1/span 7;font:400 var(--t-l)/1.05 var(--display);letter-spacing:-.025em}
 .chi-testo{grid-column:2/span 5;margin-top:56px;display:grid;gap:18px}
 .chi-foto{grid-column:9/span 4;grid-row:1/span 2;margin-top:clamp(40px,12vw,220px)}
-.chi-foto .he-media{aspect-ratio:1660/2345}
+.chi-foto .he-media{aspect-ratio:4/5}
 .chi-foto figcaption{margin-top:12px}
-.cifre{margin-top:clamp(64px,9vw,150px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g)}
+.cifre{margin-top:clamp(64px,9vw,150px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g)}
 .cifre li{border-top:1px solid var(--inchiostro);padding-top:20px}
 .cifre .o{display:block;font:400 var(--t-xs)/1.4 var(--testo);color:var(--acciaio);min-height:1.4em}
 .cifre .v{display:block;margin-top:2px;font:400 var(--t-l)/1 var(--display);letter-spacing:-.03em}
@@ -160,13 +157,16 @@ b,strong{font-weight:600}
 .ind-intro{grid-column:9/span 4;display:grid;gap:16px}
 .ind-intro .pdf{display:grid;gap:4px;font:400 16px/1.4 var(--display)}
 .ind-corpo{margin-top:clamp(48px,6vw,96px);align-items:start}
-.ind-righe{grid-column:1/span 6;border-bottom:1px solid var(--filo)}
+.ind-lista{grid-column:1/span 6}
+.ind-righe{border-bottom:1px solid var(--filo)}
+.ind-testa-righe{display:flex;justify-content:space-between;gap:16px;padding-bottom:10px;font:400 var(--t-xs)/1.4 var(--testo);color:var(--acciaio)}
 .riga{display:grid;grid-template-columns:minmax(0,1fr) auto 64px;align-items:baseline;column-gap:20px;padding:13px 0 14px;border-top:1px solid var(--filo);text-decoration:none}
 .riga .mini{display:none}
 .riga .nome{font:400 var(--t-m)/1.12 var(--display);letter-spacing:-.015em;transition:color .3s var(--he-curva)}
 .riga .marchi{font:400 14px/1.3 var(--testo);color:var(--acciaio);text-align:right}
 .riga .pag{font:400 16px/1 var(--display);text-align:right;font-variant-numeric:tabular-nums}
-.riga:hover .nome,.riga:focus-visible .nome{color:var(--blu-testo)}
+.riga:focus-visible .nome{color:var(--blu-testo)}
+@media (hover:hover){.riga:hover .nome{color:var(--blu-testo)}}
 .ind-lato{grid-column:8/span 5;position:sticky;top:calc(var(--testata) + 28px)}
 .he-indice-anteprima{aspect-ratio:4/5;width:min(100%,calc((100vh - var(--testata) - 110px) * .8));background:var(--carta-2)}
 .ind-lato .didascalia{margin-top:12px}
@@ -176,56 +176,57 @@ b,strong{font-weight:600}
 .ind-azioni{grid-column:9/span 4}
 .ind-azioni p{margin-top:14px;font-size:16px;color:var(--acciaio)}
 
-/* ---------- 4. progetti e impianti, i quattro tempi a gradini ---------- */
+/* ---------- 4. progetti e impianti: la planimetria protagonista ---------- */
 .progetto{background:var(--inchiostro);color:#fff;padding-block:var(--sez)}
-.pg-testa{align-items:end}
-.pg-testa h2{grid-column:1/span 7;font:500 var(--t-l)/1 var(--display);letter-spacing:-.03em}
-.pg-lead{grid-column:9/span 4;color:#D3D6D9}
-.gradini{margin-top:clamp(56px,7vw,120px);border-bottom:1px solid var(--filo-scuro)}
-.gradini li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:baseline;padding:26px 0 30px;border-top:1px solid var(--filo-scuro)}
-.gradini .n{font:400 16px/1 var(--display);color:var(--acciaio-chiaro);font-variant-numeric:tabular-nums}
-.gradini h3{font:400 var(--t-m)/1.1 var(--display);letter-spacing:-.015em;grid-column-end:-1}
-.gradini p{grid-row:2;grid-column-end:-1;margin-top:8px;font-size:16px;color:var(--acciaio-chiaro)}
-.gradini .g1 .n{grid-column:1}.gradini .g1 h3,.gradini .g1 p{grid-column-start:2}
-.gradini .g2 .n{grid-column:3}.gradini .g2 h3,.gradini .g2 p{grid-column-start:4}
-.gradini .g3 .n{grid-column:5}.gradini .g3 h3,.gradini .g3 p{grid-column-start:6}
-.gradini .g4 .n{grid-column:7}.gradini .g4 h3,.gradini .g4 p{grid-column-start:8}
-.pg-coda{margin-top:clamp(48px,6vw,96px);align-items:start}
-.guardiamo{grid-column:1/span 6}
-.guardiamo h3{font:500 16px/1.3 var(--display)}
-.guardiamo ul{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
-.guardiamo li{padding:11px 0;border-top:1px solid var(--filo-scuro);font-size:16px;color:#D3D6D9}
-.pg-azioni{grid-column:8/span 5}
-.pg-azioni p{margin-top:14px;font-size:16px;color:var(--acciaio-chiaro)}
+.pg-g{align-items:start}
+.pg-titolo{grid-column:1/-1;font:500 var(--t-xl)/.92 var(--display);letter-spacing:-.045em;margin-left:-.04em}
+.pg-fasi{grid-column:1/span 8;margin-top:clamp(28px,3vw,48px);font:400 var(--t-n)/1.3 var(--display);letter-spacing:-.01em;color:#fff;max-width:34em}
+.guardiamo{grid-column:1/span 8;margin-top:clamp(40px,4.5vw,72px)}
+.guardiamo h3{font:500 16px/1.3 var(--display);color:var(--acciaio-chiaro)}
+.guardiamo ul{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);border-bottom:1px solid var(--filo-scuro)}
+.guardiamo li{padding:14px 0;border-top:1px solid var(--filo-scuro);font:400 var(--t-s)/1.35 var(--display);color:#fff}
+.pg-azioni{grid-column:10/span 3;grid-row:2/span 2;margin-top:clamp(28px,3vw,48px)}
+.pg-azioni .t{color:#D3D6D9}
+.pg-azioni .bottoni{margin-top:28px;flex-direction:column;align-items:stretch}
+.pg-azioni .piccolo{margin-top:16px;font-size:16px;color:var(--acciaio-chiaro)}
 
 /* ---------- 5. storia, la foto ferma ---------- */
 .storia{padding-block:var(--sez)}
 .st-testa{align-items:end}
-.st-testa h2{grid-column:1/span 7;font:500 var(--t-l)/1 var(--display);letter-spacing:-.03em}
-.st-testa p{grid-column:9/span 4}
-.storia .he-storia{margin-top:clamp(40px,5vw,80px)}
-.he-storia-media{grid-column:1/span 7;top:calc(var(--testata) + 3vh);height:76vh}
-.he-storia-media > figure{margin:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px}
-.he-storia-media img{flex:0 1 auto;min-height:0;width:auto;max-width:100%;height:auto;max-height:calc(100% - 3.2em);align-self:flex-start}
-.st-passi{grid-column:9/span 4}
-.he-passo{min-height:66vh}
-.anno{font:400 var(--t-xl)/.9 var(--display);letter-spacing:-.045em;transition:color .6s var(--he-curva)}
+.st-testa h2{grid-column:1/span 8;font:500 var(--t-l)/1 var(--display);letter-spacing:-.03em}
+.st-testa p{grid-column:10/span 3}
+.storia .he-storia{margin-top:48px}
+/* la stampa intera su otto colonne, alta quanto lo schermo meno la testata, centrata in verticale */
+.storia .he-storia-media{grid-column:1/span 8;top:calc(var(--testata) + 3vh);height:calc(100vh - var(--testata) - 6vh)}
+/* solo qui, sopra il kit: la foto cambia con un taglio netto, senza dissolvenza e senza ingrandimento */
+.storia .he-storia-media > figure{margin:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;transform:none;transition:none}
+.st-foto{position:relative;display:block;line-height:0;width:min(100%,calc((100vh - var(--testata) - 6vh - 64px) * var(--r,1.4)))}
+.st-foto img{width:100%;height:auto;object-fit:contain}
+.st-passi{grid-column:10/span 3}
+.he-passo{min-height:62vh;justify-content:flex-start}
+.he-passo:last-child{min-height:78vh}
+.anno{font:400 var(--t-xl)/.9 var(--display);letter-spacing:-.045em}
 .he-moto .he-passo:not(.attivo) .anno{color:#C4C3BD}
 .he-passo .t{margin-top:22px;max-width:24em}
 .passo-foto{display:none}
 
 /* ---------- 6. sezione firma, il culmine: un colore pieno ---------- */
 .firma-sez{background:var(--blu-pieno);color:#fff;padding-block:var(--sez)}
-.firma-grande{display:block;width:100%;height:auto;margin-left:-.6%}
-.fi-ponte{margin-top:clamp(24px,3vw,48px);font:400 var(--t-n)/1.3 var(--display);max-width:30em;color:#E3F0F6}
-.fi-g{margin-top:clamp(56px,7vw,120px);align-items:end}
-.fi-foto{grid-column:1/span 5}
-.fi-foto .he-media{aspect-ratio:1}
-.fi-foto figcaption{margin-top:12px;color:#D6E9F2}
-.fi-testo{grid-column:7/span 6}
-.fi-testo h2{font:500 var(--t-q)/1 var(--display);letter-spacing:-.035em}
-.fi-testo .t{margin-top:32px;max-width:30em;color:#EEF6FA}
-.fi-testo .bottoni{margin-top:32px;align-items:center;gap:16px 28px}
+.fi-titolo{font:500 var(--t-q)/.98 var(--display);letter-spacing:-.04em;max-width:13.6em;margin-left:-.04em}
+/* il dittico: la nostra firma e il piatto bianco liscio dove va la vostra, 4:5 su 5+5 colonne */
+.fi-dittico{margin-top:clamp(48px,6vw,104px);align-items:start}
+.fi-dittico figure{margin:0}
+.fi-a{grid-column:2/span 5}
+.fi-b{grid-column:7/span 5}
+.fi-dittico .he-media{aspect-ratio:4/5;background:#0d5f84}
+.fi-dittico figcaption{margin-top:16px}
+.fi-dittico .nome{display:block;font:500 var(--t-n)/1.2 var(--display);letter-spacing:-.01em}
+.fi-dittico .fonte{display:block;margin-top:4px;font:400 var(--t-xs)/1.45 var(--testo);color:#E6F1F7}
+.fi-coda{margin-top:clamp(40px,4.5vw,72px)}
+.fi-testo{grid-column:7/span 5}
+.fi-frase{font:400 var(--t-n)/1.3 var(--display);letter-spacing:-.01em}
+.fi-testo .t{margin-top:14px;max-width:30em;color:#EEF6FA}
+.fi-testo .bottoni{margin-top:28px;align-items:center;gap:16px 28px}
 .fi-testo .bottoni a.he-link{font:400 16px/1.4 var(--display);color:#fff;padding:6px 0}
 
 /* ---------- 7. dove siamo, due indirizzi grandi ---------- */
@@ -275,7 +276,7 @@ fieldset.campo{border:0;margin:0;padding:0}
 .scelte{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .scelte label{position:relative;font:400 16px/1 var(--display)}
 .scelte input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.scelte span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid #8B8F93;cursor:pointer;transition:background-color .2s,color .2s}
+.scelte span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid #8B8F93;cursor:pointer}
 .scelte input:checked+span{background:var(--inchiostro);border-color:var(--inchiostro);color:#fff}
 .scelte input:focus-visible+span{outline:2px solid var(--blu-testo);outline-offset:2px}
 .progetto-in[hidden],.privato-nota[hidden],.pronta[hidden]{display:none}
@@ -327,11 +328,12 @@ fieldset.campo{border:0;margin:0;padding:0}
 
 /* ---------- riduci movimento o senza librerie: storia come serie di stampe ---------- */
 .he-fermo .he-storia{display:block}
-.he-fermo .he-storia-media{position:relative;top:auto;height:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px var(--g)}
-.he-fermo .he-storia-media > figure{position:relative;inset:auto;opacity:1;transform:none;height:auto}
-.he-fermo .he-storia-media img{width:100%;max-height:none;aspect-ratio:4/3;object-fit:contain;object-position:0 100%}
-.he-fermo .st-passi{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px var(--g)}
-.he-fermo .he-passo{min-height:0;justify-content:flex-start}
+.he-fermo .he-storia-media{display:none}
+.he-fermo .st-passi{display:block}
+.he-fermo .he-passo{min-height:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center}
+.he-fermo .he-passo+.he-passo{margin-top:clamp(56px,6vw,104px)}
+.he-fermo .passo-foto{display:flex;flex-direction:column;align-items:flex-start;gap:12px;grid-column:1/span 8;margin:0}
+.he-fermo .he-passo .dentro{grid-column:10/span 3}
 
 /* ---------- 1024 ---------- */
 @media (min-width:900px) and (max-height:820px){
@@ -349,7 +351,8 @@ fieldset.campo{border:0;margin:0;padding:0}
 @media (max-width:1240px){
   .menu ul{gap:18px}.menu{gap:20px}.testata{gap:20px}
   .menu .v-privati{padding-left:18px}
-  .ind-righe{grid-column:1/span 8}.ind-lato{grid-column:9/span 4}
+  .ind-lista{grid-column:1/span 8}.ind-lato{grid-column:9/span 4}
+  .guardiamo,.pg-fasi{grid-column:1/span 7}.pg-azioni{grid-column:9/span 4}
   .rc-testo{grid-column:1/span 5}.modulo{grid-column:6/span 7}
   .pd-col{grid-template-columns:1fr 1fr}
 }
@@ -363,8 +366,9 @@ fieldset.campo{border:0;margin:0;padding:0}
   .rc-testo,.modulo{grid-column:1/-1}
   .modulo{margin-top:48px}
   .recapiti{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g)}
-  .pa-g h2,.pa-testo{grid-column:1/-1}.pa-testo{margin-top:24px}
-  .dove-titolo{grid-column:1/-1;position:static}.sedi{grid-column:1/-1;margin-top:40px}
+  .pa-g h2,.pa-testo{grid-column:1/-1}
+  .pa-testo{display:flex;flex-direction:column}.pa-testo .t{order:-1;margin:0 0 24px}
+  .dove-titolo{grid-column:1/-1;position:static}.sedi{grid-column:1/-1}
 }
 /* ---------- sotto i 900: niente fissaggi, il telefono progettato ---------- */
 @media (max-width:899px){
@@ -376,32 +380,27 @@ fieldset.campo{border:0;margin:0;padding:0}
   .ap-media{order:2;position:relative;inset:auto;margin-top:24px;aspect-ratio:3/2;overflow:hidden;clip-path:none}
   .ap-entra{order:3;position:static;padding:10px var(--m) 0}
   .ap-sinistra{order:4;max-width:none;padding:24px var(--m) 0}
-  .chi-frase,.chi-testo,.chi-foto,.ind-titolo,.ind-intro,.ind-righe,.ind-marchi,.ind-azioni,.pg-testa h2,.pg-lead,.guardiamo,.pg-azioni,.st-testa h2,.st-testa p,.fi-foto,.fi-testo{grid-column:1/-1}
+  .chi-frase,.chi-testo,.chi-foto,.ind-titolo,.ind-intro,.ind-lista,.ind-marchi,.ind-azioni,.pg-fasi,.guardiamo,.pg-azioni,.st-testa h2,.st-testa p,.fi-testo{grid-column:1/-1}
   .chi-testo{margin-top:32px}
   .chi-foto{grid-row:auto;margin-top:48px;width:72%;justify-self:end}
-  .cifre{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
-  .ind-intro,.pg-lead,.st-testa p{margin-top:24px}
+  .ind-intro,.st-testa p{margin-top:24px}
   .ind-lato{display:none}
   .riga{grid-template-columns:56px minmax(0,1fr) auto;column-gap:16px;align-items:center;padding:10px 0}
   .riga .mini{display:block;width:56px;height:70px;object-fit:cover;background:var(--carta-2)}
   .ind-azioni{margin-top:28px}
-  .gradini li{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px}
-  .gradini li .n{grid-column:1!important}
-  .gradini li h3,.gradini li p{grid-column:2!important}
-  .gradini .g2{padding-left:6%}.gradini .g3{padding-left:12%}.gradini .g4{padding-left:18%}
-  .guardiamo ul{grid-template-columns:1fr}
-  .pg-azioni{margin-top:40px}
+  .pg-azioni{grid-row:auto;margin-top:40px}
+  .pg-azioni .bottoni{flex-direction:row;flex-wrap:wrap}
   .he-storia-media,.he-fermo .he-storia-media{display:none}
   .he-passo,.he-fermo .he-passo{min-height:0;display:block;padding:0}
   .he-passo+.he-passo{margin-top:64px}
   .he-fermo .st-passi{display:block;margin-top:0}
-  .passo-foto{display:block;margin:0 0 20px}
-  .passo-foto img{width:100%;height:auto}
-  .passo-foto.copertina img{width:56%}
+  .passo-foto,.he-fermo .passo-foto{display:block;margin:0 0 20px}
+  .passo-foto .st-foto{width:100%}
+  .passo-foto.copertina .st-foto{width:56%}
   .passo-foto figcaption{margin-top:10px}
   .he-moto .he-passo:not(.attivo) .anno{color:inherit}
-  .fi-g{margin-top:48px}
-  .fi-testo{margin-top:40px}
+  .fi-a{grid-column:1/span 6}.fi-b{grid-column:7/span 6}
+  .fi-dittico .nome{font-size:19px}
   .sede-dett{grid-template-columns:1fr}
   .sede .bottoni{flex-direction:row}
   .sede .bottoni .b{flex:1 1 0}
@@ -416,8 +415,9 @@ fieldset.campo{border:0;margin:0;padding:0}
   .ap-sinistra .bottoni{flex-direction:column}
   .ap-sinistra .bottoni .b{width:100%}
   .chi-foto{width:84%}
-  .cifre{grid-template-columns:1fr 1fr}
-  .cifre .v{font-size:var(--t-l)}
+  .cifre .v{font-size:clamp(26px,7.4vw,32px)}
+  .cifre .l{font-size:15px}
+  .guardiamo ul{grid-template-columns:1fr}
   .riga .nome{font-size:22px}
   .campi{grid-template-columns:1fr}
   .progetto-in{grid-template-columns:1fr}
@@ -436,12 +436,7 @@ fieldset.campo{border:0;margin:0;padding:0}
 </style>
 </head>
 <body>
-<a class="salta" href="#chi">Salta al contenuto</a>
-
-<div class="he-intro" data-he-intro aria-hidden="true">
-  <span class="he-intro-marchio"></span>
-  <div class="intro-firma"><svg viewBox="422 372.5 368 102.5" width="1472" height="410" fill="#fff" role="presentation" focusable="false"><g transform="translate(103.584 -748.313) scale(1.6839)"><path fill-rule="nonzero" d="M 400.386719 700.96875 C 397.238281 700.914062 394.140625 701.238281 394.140625 701.238281 C 394.140625 701.238281 395.261719 699.148438 395.53125 696.632812 C 395.683594 695.175781 395.957031 690.683594 391.3125 690.523438 C 386.671875 690.363281 382.402344 694.113281 382.402344 694.113281 C 382.402344 694.113281 380.800781 695.238281 377.332031 696.898438 C 373.863281 698.558594 370.878906 699.417969 369.542969 699.683594 C 368.207031 699.953125 366.605469 700.273438 365.753906 699.308594 C 364.898438 698.34375 366.234375 697.167969 366.660156 696.574219 C 367.085938 695.988281 368.261719 694.542969 367.941406 693.632812 C 367.46875 692.289062 366.445312 691.648438 365.269531 691.007812 C 364.097656 690.363281 365.058594 689.289062 365.058594 689.289062 C 365.058594 689.289062 367.140625 687.253906 367.941406 686.183594 C 368.742188 685.113281 368.742188 684.203125 367.835938 683.933594 C 366.925781 683.667969 365.113281 684.628906 364.152344 685.488281 C 363.191406 686.34375 362.925781 688.003906 362.925781 688.003906 C 362.875 688.863281 363.351562 690.738281 363.351562 690.738281 C 363.351562 690.738281 363.191406 691.167969 360.257812 693.792969 C 357.320312 696.417969 355.132812 697.59375 352.679688 698.613281 C 350.222656 699.628906 346.863281 699.953125 344.355469 698.988281 C 341.847656 698.023438 341.953125 695.34375 341.953125 695.34375 C 341.953125 695.34375 343.019531 695.933594 346.757812 695.078125 C 350.488281 694.21875 350.382812 692.664062 350.332031 692.34375 C 350.277344 692.023438 349.421875 690.253906 345.792969 690.253906 C 341.257812 690.253906 337.949219 694.542969 337.949219 694.542969 C 337.949219 694.542969 335.976562 694.378906 334.480469 693.898438 C 332.988281 693.414062 332.242188 692.71875 332.1875 692.34375 C 332.132812 691.96875 333.09375 691.058594 333.628906 690.414062 C 334.164062 689.769531 334.800781 689.078125 334.589844 688.753906 C 334.375 688.433594 333.414062 688.382812 332.453125 688.433594 C 331.496094 688.488281 329.625 689.078125 329.253906 689.71875 C 328.878906 690.363281 329.734375 691.488281 330.210938 692.183594 C 330.691406 692.878906 330.535156 693.097656 330.160156 693.578125 C 329.785156 694.058594 326.636719 696.738281 323.8125 698.023438 C 320.980469 699.308594 318.792969 698.988281 317.992188 698.34375 C 317.191406 697.703125 317.246094 696.46875 317.40625 695.882812 C 317.566406 695.292969 318.527344 693.738281 318.527344 693.738281 C 318.527344 693.738281 323.222656 691.917969 331.332031 684.84375 C 337.609375 679.375 339.863281 676.226562 338.75 675.628906 C 337.148438 674.773438 335.070312 675.792969 331.171875 677.722656 C 327.277344 679.648438 322.367188 683.667969 318.6875 687.738281 C 315.003906 691.808594 313.507812 696.417969 313.507812 696.417969 C 313.507812 696.417969 310.628906 697.648438 308.386719 698.238281 C 306.144531 698.828125 301.984375 699.898438 300.167969 697.917969 C 298.355469 695.933594 300.96875 692.292969 300.96875 692.292969 C 300.96875 692.292969 306.414062 690.148438 313.402344 683.773438 C 317.476562 680.058594 322.421875 675.46875 320.609375 674.238281 C 318.792969 673.003906 311.214844 677.664062 306.628906 681.148438 C 302.035156 684.628906 299.15625 688.433594 298.089844 689.667969 C 297.019531 690.898438 294.78125 695.292969 294.78125 695.292969 C 294.78125 695.292969 293.660156 695.988281 291.683594 696.683594 C 289.140625 697.582031 286.667969 698.453125 284.269531 697.273438 C 281.867188 696.09375 280.957031 690.953125 280.90625 690.738281 C 280.851562 690.523438 280.53125 689.34375 280.265625 689.398438 C 280 689.453125 279.835938 691.917969 279.890625 692.398438 C 279.945312 692.878906 279.625 692.878906 279.625 692.878906 C 279.625 692.878906 276.105469 690.683594 271.40625 691.167969 C 265.269531 691.796875 263.1875 694.703125 263.1875 694.703125 C 263.1875 694.703125 262.28125 695.183594 259.558594 696.46875 C 256.839844 697.753906 254.4375 698.292969 253.691406 698.398438 C 252.941406 698.507812 251.074219 698.988281 250.273438 697.863281 C 249.472656 696.738281 250.863281 695.503906 251.289062 694.96875 C 251.714844 694.433594 252.410156 693.898438 252.515625 692.613281 C 252.621094 691.328125 251.183594 690.628906 249.792969 689.769531 C 248.40625 688.917969 249.261719 687.738281 249.792969 687.09375 C 250.328125 686.453125 250.753906 686.128906 251.449219 685.164062 C 252.144531 684.203125 252.300781 683.132812 251.820312 682.753906 C 251.339844 682.378906 249.902344 682.808594 248.40625 683.773438 C 246.910156 684.738281 247.074219 686.773438 247.019531 687.578125 C 246.964844 688.382812 246.644531 688.753906 246.644531 688.753906 C 246.644531 688.753906 245.738281 689.503906 243.390625 690.953125 C 241.042969 692.398438 238.640625 692.828125 238.640625 692.828125 C 238.640625 692.828125 238.214844 691.863281 236.71875 691.703125 C 235.691406 691.589844 233.414062 691.917969 233.414062 691.917969 C 232.023438 692.023438 230.050781 692.238281 225.566406 692.183594 C 221.085938 692.128906 219.539062 691.59375 218.628906 691.21875 C 217.722656 690.847656 217.03125 689.933594 217.03125 689.933594 C 217.03125 689.933594 217.511719 689.503906 218.097656 688.863281 C 218.683594 688.21875 221.085938 684.953125 223.589844 680.933594 C 226.101562 676.914062 226.527344 673.648438 226.476562 672.203125 C 226.421875 670.757812 226.207031 670.003906 225.726562 669.257812 C 225.246094 668.507812 223.859375 667.433594 223.859375 667.433594 C 221.726562 665.773438 215.214844 664.058594 206.460938 666.632812 C 195.894531 669.738281 194.066406 674.042969 194.066406 674.042969 C 194.066406 674.042969 199.632812 671.613281 204.558594 670.003906 C 209.460938 668.410156 216.371094 667.933594 217.222656 667.933594 C 218.078125 667.933594 222.917969 667.503906 224.554688 670.71875 C 226.191406 673.933594 223.769531 677.863281 220.390625 682.148438 C 217.011719 686.433594 214.34375 687.507812 214.34375 687.507812 C 214.34375 685.757812 213.347656 682.863281 212.742188 681.71875 C 212.136719 680.578125 210.890625 679.648438 209.683594 680.21875 C 208.472656 680.792969 208.617188 682.363281 208.617188 682.363281 C 208.617188 683.003906 208.617188 684.21875 210.109375 686.363281 C 211.605469 688.507812 212.566406 689.21875 212.566406 689.21875 C 212.796875 690.007812 201.875 697.808594 196.109375 704.71875 C 191.421875 710.34375 188.53125 716.128906 188.855469 720.46875 C 189.15625 724.585938 192.695312 724.273438 192.695312 724.273438 C 198.511719 723.730469 204.273438 714.523438 208.4375 707.828125 C 212.601562 701.132812 213.828125 693.683594 213.828125 693.683594 L 215.75 691.703125 C 215.75 691.703125 217.296875 692.398438 219.589844 692.71875 C 221.886719 693.042969 224.980469 692.773438 226.261719 692.664062 C 227.542969 692.558594 228.554688 692.773438 229.089844 693.523438 C 229.625 694.273438 228.234375 695.292969 227.222656 696.363281 C 226.207031 697.433594 227.0625 698.882812 227.0625 698.882812 C 228.527344 701.308594 233.359375 699.792969 236.347656 698.292969 C 239.335938 696.792969 239.441406 693.472656 239.441406 693.472656 C 239.441406 693.472656 241.949219 692.507812 243.765625 691.433594 C 245.578125 690.363281 247.125 689.023438 247.125 689.023438 C 247.125 689.023438 248.941406 690.203125 249.636719 690.953125 C 250.417969 691.800781 248.671875 693.738281 247.769531 694.542969 C 246.859375 695.34375 246.324219 696.792969 246.324219 697.488281 C 246.324219 698.183594 247.179688 700.167969 250.167969 700.328125 C 255.238281 700.601562 262.867188 695.503906 262.867188 695.503906 C 262.867188 695.503906 261.847656 699.410156 269.273438 699.683594 C 275.089844 699.898438 280.265625 695.722656 280.265625 695.722656 C 280.265625 695.722656 281.386719 699.570312 285.441406 699.683594 C 289.28125 699.792969 294.726562 695.882812 294.726562 695.882812 C 294.726562 695.882812 293.875 701.078125 300.753906 700.808594 C 307.582031 700.542969 313.402344 697.003906 313.402344 697.003906 C 313.402344 697.003906 313.402344 700.648438 318.367188 700.699219 C 324.71875 700.769531 330.957031 693.578125 330.957031 693.578125 C 330.957031 693.578125 332.082031 694.21875 334.164062 694.753906 C 336.242188 695.292969 337.628906 695.078125 337.628906 695.078125 C 337.628906 695.078125 337.417969 698.292969 340.246094 699.628906 C 341.769531 700.351562 344.566406 702.148438 351.71875 699.683594 C 358.867188 697.21875 363.671875 691.007812 363.671875 691.007812 C 363.671875 691.007812 365.539062 691.808594 365.753906 692.773438 C 365.964844 693.738281 364.3125 694.863281 362.445312 696.683594 C 360.574219 698.507812 362.335938 700.378906 362.335938 700.378906 C 365.21875 702.46875 369.863281 701.398438 373.4375 699.683594 C 378.730469 697.144531 381.761719 695.023438 381.761719 695.023438 C 381.761719 695.023438 380.855469 698.933594 385.070312 698.988281 C 388.378906 699.027344 390.992188 696.953125 390.992188 696.953125 C 390.992188 696.953125 391.367188 697.542969 391.3125 698.664062 C 391.261719 699.792969 390.03125 701.023438 390.03125 701.023438 C 390.03125 701.023438 383.523438 701.933594 372.796875 707.289062 C 367.304688 710.035156 362.335938 715.488281 365.003906 717.898438 C 367.671875 720.308594 376.585938 716.878906 382.828125 712.703125 C 389.074219 708.523438 392.703125 703.539062 392.703125 703.539062 C 392.703125 703.539062 395.902344 703.328125 399.15625 704.074219 C 400.738281 704.441406 402.253906 705.308594 402.253906 705.308594 L 405.722656 701.71875 C 405.722656 701.71875 403.535156 701.023438 400.386719 700.96875 M 345.046875 692.078125 C 347.023438 691.433594 348.945312 691.703125 349.476562 692.453125 C 350.011719 693.203125 349.058594 694.386719 346.117188 694.808594 C 342.007812 695.398438 342.007812 694.703125 342.007812 694.703125 C 342.007812 694.703125 343.074219 692.71875 345.046875 692.078125 M 325.625 682.96875 C 330.535156 678.46875 335.761719 675.683594 337.042969 675.898438 C 338.324219 676.113281 337.3125 678.257812 336.082031 679.703125 C 335.246094 680.6875 328.292969 687.414062 324.609375 689.453125 C 320.929688 691.488281 318.847656 692.507812 318.847656 692.507812 C 318.847656 692.507812 320.714844 687.46875 325.625 682.96875 M 308.761719 681.632812 C 313.671875 677.128906 317.886719 674.5625 319.167969 674.773438 C 320.445312 674.988281 319.433594 677.128906 318.632812 678.148438 C 317.832031 679.167969 311.269531 685.914062 307.585938 687.953125 C 303.90625 689.988281 301.769531 690.738281 301.769531 690.738281 C 301.769531 690.738281 303.851562 686.128906 308.761719 681.632812 M 208.277344 706.917969 C 204.183594 713.371094 197.765625 721.21875 194.457031 721.21875 C 191.148438 721.21875 193.550781 714.738281 195.3125 712.21875 C 197.070312 709.703125 202.300781 703.003906 205.769531 700.003906 C 209.238281 697.003906 212.332031 694.753906 212.332031 694.753906 C 212.332031 694.753906 212.386719 700.433594 208.277344 706.917969 M 212.574219 688.007812 C 212.574219 688.007812 211.480469 687.40625 210.847656 686.035156 C 209.566406 683.261719 210.585938 682.675781 210.585938 682.675781 C 210.585938 682.675781 211.417969 682.117188 212.273438 684.550781 C 213.132812 686.988281 212.574219 688.007812 212.574219 688.007812 M 232.53125 698.058594 C 230.632812 699.171875 229.164062 699.636719 228.125 698.777344 C 227.085938 697.914062 228.410156 696.042969 230.058594 695.324219 C 231.707031 694.605469 233.355469 694.027344 234.109375 694.425781 C 234.738281 694.757812 234.433594 696.945312 232.53125 698.058594 M 273.0625 698.34375 C 270.339844 699.09375 265.964844 698.613281 266.015625 697.273438 C 266.089844 695.363281 272.261719 694.113281 274.769531 694.113281 C 278.183594 694.113281 280.050781 695.183594 280.050781 695.183594 C 276.851562 697.59375 273.0625 698.34375 273.0625 698.34375 M 379.308594 713.078125 C 371.515625 717.738281 366.285156 718.648438 365.269531 717.039062 C 364.257812 715.433594 368.585938 710.519531 372.796875 708.203125 C 380.003906 704.238281 388.914062 703.164062 388.914062 703.164062 C 388.914062 703.164062 387.097656 708.414062 379.308594 713.078125 M 389.074219 696.363281 C 386.296875 697.917969 384.484375 698.023438 383.09375 696.953125 C 381.707031 695.882812 383.523438 693.84375 385.175781 693.097656 C 386.832031 692.34375 389.5 691.113281 391.152344 692.128906 C 392.3125 692.84375 391.847656 694.808594 389.074219 696.363281 "/><path fill-rule="nonzero" d="M 402.121094 681.941406 C 401.496094 681.941406 400.910156 681.789062 400.359375 681.480469 C 399.8125 681.171875 399.375 680.734375 399.042969 680.171875 C 398.710938 679.613281 398.546875 679.003906 398.546875 678.355469 C 398.546875 677.714844 398.707031 677.113281 399.023438 676.554688 C 399.339844 675.996094 399.78125 675.558594 400.339844 675.242188 C 400.898438 674.917969 401.492188 674.761719 402.121094 674.761719 C 402.753906 674.761719 403.347656 674.917969 403.90625 675.242188 C 404.464844 675.558594 404.902344 675.996094 405.222656 676.554688 C 405.539062 677.113281 405.699219 677.714844 405.699219 678.355469 C 405.699219 679.003906 405.535156 679.613281 405.207031 680.171875 C 404.875 680.734375 404.433594 681.171875 403.886719 681.480469 C 403.335938 681.789062 402.746094 681.941406 402.121094 681.941406 M 402.125 681.394531 C 402.65625 681.394531 403.15625 681.265625 403.621094 681.003906 C 404.085938 680.746094 404.457031 680.375 404.738281 679.902344 C 405.019531 679.425781 405.15625 678.910156 405.15625 678.355469 C 405.15625 677.8125 405.019531 677.304688 404.75 676.828125 C 404.480469 676.355469 404.109375 675.984375 403.636719 675.710938 C 403.164062 675.445312 402.660156 675.308594 402.125 675.308594 C 401.585938 675.308594 401.085938 675.445312 400.609375 675.710938 C 400.136719 675.984375 399.765625 676.355469 399.496094 676.828125 C 399.226562 677.304688 399.09375 677.8125 399.09375 678.355469 C 399.09375 678.910156 399.230469 679.425781 399.511719 679.902344 C 399.789062 680.375 400.164062 680.746094 400.628906 681.003906 C 401.09375 681.265625 401.589844 681.394531 402.125 681.394531 M 401.449219 680.578125 L 400.75 680.578125 L 400.75 676.144531 L 402.144531 676.144531 C 402.480469 676.144531 402.738281 676.195312 402.914062 676.296875 C 403.085938 676.394531 403.222656 676.539062 403.324219 676.726562 C 403.425781 676.914062 403.476562 677.113281 403.476562 677.332031 C 403.476562 677.585938 403.40625 677.824219 403.265625 678.054688 C 403.125 678.285156 402.917969 678.460938 402.628906 678.585938 C 402.785156 678.683594 402.945312 678.890625 403.117188 679.214844 L 403.84375 680.578125 L 403.058594 680.578125 L 402.457031 679.421875 L 402.3125 679.144531 C 402.152344 678.859375 402.039062 678.714844 401.964844 678.714844 L 401.449219 678.714844 Z M 401.449219 678.179688 L 401.921875 678.179688 C 402.230469 678.179688 402.449219 678.09375 402.570312 677.925781 C 402.691406 677.757812 402.753906 677.574219 402.753906 677.367188 C 402.753906 677.246094 402.726562 677.132812 402.679688 677.03125 C 402.628906 676.929688 402.554688 676.847656 402.460938 676.78125 C 402.367188 676.714844 402.199219 676.679688 401.964844 676.679688 L 401.449219 676.679688 Z M 401.449219 678.179688 "/></g></svg></div>
-</div>
+<a class="salta" href="#chi">Al contenuto principale</a>
 
 <header class="testata" data-he-header>
   <a class="marchio" href="#inizio" aria-label="Foralberg, torna all’inizio"><img class="esteso" src="img/logo-foralberg.svg" alt="Foralberg" width="189" height="40"></a>
@@ -454,7 +449,7 @@ fieldset.campo{border:0;margin:0;padding:0}
       <li><a href="#pa">Acquisti PA</a></li>
       <li class="v-privati"><a href="#vetrinetta"><b>Privati:</b> La Vetrinetta</a></li>
     </ul>
-    <a class="b" href="tel:+39049760955" aria-label="Chiama Foralberg, 049 760955">049&nbsp;760955</a>
+    <a class="b" href="tel:+39049760955" aria-label="Chiamate Foralberg, 049 760955">049&nbsp;760955</a>
     <button class="apri" type="button" aria-expanded="false" aria-controls="voci">Menu</button>
   </nav>
 </header>
@@ -467,15 +462,15 @@ fieldset.campo{border:0;margin:0;padding:0}
   <div class="he-scala-testo ap-testo">
     <h1 class="ap-h1 ap-via" id="t-ap" data-he-split data-he-subito>Forniture alberghiere<br>dal&nbsp;1953</h1>
     <div class="ap-sinistra ap-via">
-      <p class="ap-lead">Tavola, bar, buffet, cucine e impianti professionali per alberghi, ristoranti e collettività. Uno showroom di oltre 800&nbsp;m² in via Cile&nbsp;2, a Padova.</p>
+      <p class="ap-lead">Tavola, bar, buffet, cucine e impianti professionali per alberghi, ristoranti e collettività. Uno showroom di oltre 800&nbsp;m² in <a class="lk nw" href="https://www.google.com/maps/dir/?api=1&amp;destination=Foralberg+via+Cile+2+35127+Padova" target="_blank" rel="noopener">via Cile&nbsp;2, a Padova<span class="sr"> (apre la mappa)</span></a>.</p>
       <p class="bottoni">
-        <a class="b solo-tel" href="tel:+39049760955">Chiama 049&nbsp;760955</a>
+        <a class="b solo-tel" href="tel:+39049760955">Chiamate 049&nbsp;760955</a>
         <a class="b" href="#richiesta" data-tipo="Preventivo">Chiedete un preventivo</a>
         <a class="b b-bordo solo-largo" href="#prodotti">Il catalogo 2026/2027</a>
       </p>
       <ul class="ap-dove" aria-label="Dove trovarci">
-        <li><a href="#showroom"><span class="chi">Per i professionisti</span><span class="dv">Showroom, via Cile 2</span><span class="stato" data-sede="showroom">Lun-ven 8.30-12.30, 14.30-18.30</span></a></li>
-        <li><a href="#vetrinetta"><span class="chi">Per i privati</span><span class="dv">La Vetrinetta, via Vigonovese&nbsp;93</span><span class="stato" data-sede="vetrinetta">Aperto anche il sabato</span></a></li>
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Foralberg+via+Cile+2+35127+Padova" target="_blank" rel="noopener"><span class="chi">Per i professionisti</span><span class="dv">Showroom, via Cile 2<span class="sr"> (apre la mappa)</span></span><span class="stato" data-sede="showroom">Lun-ven 8.30-12.30, 14.30-18.30</span></a></li>
+        <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Vetrinetta+via+Vigonovese+93+35127+Padova" target="_blank" rel="noopener"><span class="chi">Per i privati</span><span class="dv">La Vetrinetta, via Vigonovese&nbsp;93<span class="sr"> (apre la mappa)</span></span><span class="stato" data-sede="vetrinetta">Aperto anche il sabato</span></a></li>
       </ul>
     </div>
   </div>
@@ -484,13 +479,13 @@ fieldset.campo{border:0;margin:0;padding:0}
 
 <section class="chisiamo he-wrap" id="chi" aria-labelledby="t-chi">
   <div class="chi-g he-grid">
-    <h2 class="chi-frase" id="t-chi" data-he-split>Dal 1953 consulenti dell’ospitalità. Ci piace pensare di essere più di un semplice fornitore.</h2>
+    <h2 class="chi-frase" id="t-chi" data-he-split>Dal 1953 consulenti dell’ospitalità.</h2>
     <div class="chi-testo">
       <p>Siamo un’impresa della famiglia Desiderio, nata come società di rappresentanza di articoli per la ristorazione: macchinari per le lavanderie alberghiere, piatti, posate e pentolame.</p>
       <p>Oggi affianchiamo alberghi, ristoranti, bar, collettività ed enti pubblici nella ricerca, nella progettazione e nell’acquisto, per il rinnovo dei locali e per le nuove aperture, con la distribuzione in tutta Italia.</p>
     </div>
     <figure class="chi-foto">
-      <div class="he-media he-grana"><img src="img/tavola-ovale-900.webp" srcset="img/tavola-ovale-600.webp 600w, img/tavola-ovale-900.webp 900w, img/tavola-ovale-1200.webp 1200w" sizes="(max-width:899px) 84vw, 29vw" width="900" height="1271" loading="lazy" decoding="async" alt="Un piatto ovale verde salvia con il pesce e l’insalata, dall’alto, su un piano di pietra con l’ombra delle foglie"></div>
+      <div class="he-media he-grana"><img src="img/tavola-ovale-900.webp" srcset="img/tavola-ovale-600.webp 600w, img/tavola-ovale-900.webp 900w, img/tavola-ovale-1262.webp 1262w" sizes="(max-width:899px) 84vw, 29vw" width="900" height="1125" loading="lazy" decoding="async" alt="Un piatto ovale in porcellana con il pesce e l’insalata, dall’alto, su un piano di pietra con l’ombra delle foglie, in bianco e nero"></div>
       <figcaption class="didascalia">Dal Catalogo 2026/2027, p. 4</figcaption>
     </figure>
   </div>
@@ -498,7 +493,6 @@ fieldset.campo{border:0;margin:0;padding:0}
     <li><span class="o">oltre</span><span class="v">800&nbsp;m²</span><span class="l">di showroom in via Cile, dal 2008</span></li>
     <li><span class="o">oltre</span><span class="v">30.000</span><span class="l">articoli</span></li>
     <li><span class="o">più di</span><span class="v">6.000</span><span class="l">in pronta consegna</span></li>
-    <li><span class="o" aria-hidden="true"></span><span class="v">11</span><span class="l">agenti e commerciali</span></li>
   </ul>
 </section>
 
@@ -506,12 +500,14 @@ fieldset.campo{border:0;margin:0;padding:0}
   <div class="ind-testa he-grid">
     <h2 class="ind-titolo" id="t-ind">porcellane<br>cristallerie<br>posaterie<br>art. vari cucina</h2>
     <div class="ind-intro">
-      <p>Le quattro voci dipinte sulla portiera del Lupetto oggi sono i capitoli del Catalogo 2026/2027, con i marchi che trattiamo. Ogni riga apre il capitolo alla sua pagina.</p>
+      <p>Le quattro voci dipinte sulla portiera del Lupetto oggi sono i capitoli del Catalogo 2026/2027, con i marchi che trattiamo. Ogni riga apre il capitolo alla sua pagina, nel PDF del catalogo intero (56&nbsp;MB).</p>
       <p class="pdf"><a class="he-link" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf" target="_blank" rel="noopener">Catalogo 2026/2027 intero <span class="nw">(PDF, 56&nbsp;MB)</span></a><a class="he-link" href="https://www.foralberg.it/images/cataloghi/FA_Buffet_2025.pdf" target="_blank" rel="noopener">Catalogo Buffet 2025 <span class="nw">(PDF, 6,9&nbsp;MB)</span></a></p>
     </div>
   </div>
   <div class="ind-corpo he-indice he-grid" data-he-index>
-    <ol class="ind-righe" aria-label="Capitoli del Catalogo 2026/2027, si aprono nel PDF di 56 MB">
+    <div class="ind-lista">
+    <p class="ind-testa-righe" aria-hidden="true"><span>Capitolo</span><span>Pagina, nel PDF intero (56&nbsp;MB)</span></p>
+    <ol class="ind-righe" aria-label="Capitoli del Catalogo 2026/2027, si aprono nel PDF intero di 56 MB">
       <li><a class="riga" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=10" target="_blank" rel="noopener" data-img="img/ind-porcellana-760.webp"><img class="mini" src="img/ind-porcellana-240.webp" alt="" width="240" height="300" loading="lazy"><span class="nome">Porcellana</span><span class="marchi">Steelite, RAK Porcelain, Revol</span><span class="pag">p.&nbsp;10</span></a></li>
       <li><a class="riga" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=103" target="_blank" rel="noopener" data-img="img/ind-personalizzati-760.webp"><img class="mini" src="img/ind-personalizzati-240.webp" alt="" width="240" height="300" loading="lazy"><span class="nome">Piatti personalizzati</span><span class="marchi">con il marchio del locale</span><span class="pag">p.&nbsp;103</span></a></li>
       <li><a class="riga" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=182" target="_blank" rel="noopener" data-img="img/ind-posateria-760.webp"><img class="mini" src="img/ind-posateria-240.webp" alt="" width="240" height="300" loading="lazy"><span class="nome">Posateria</span><span class="marchi">BIT best in table</span><span class="pag">p.&nbsp;182</span></a></li>
@@ -527,9 +523,10 @@ fieldset.campo{border:0;margin:0;padding:0}
       <li><a class="riga" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=494" target="_blank" rel="noopener" data-img="img/ind-stoccaggio-760.webp"><img class="mini" src="img/ind-stoccaggio-240.webp" alt="" width="240" height="300" loading="lazy"><span class="nome">Stoccaggio</span><span class="marchi"></span><span class="pag">p.&nbsp;494</span></a></li>
       <li><a class="riga" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=498" target="_blank" rel="noopener" data-img="img/ind-macchinari-760.webp"><img class="mini" src="img/ind-macchinari-240.webp" alt="" width="240" height="300" loading="lazy"><span class="nome">Piccoli macchinari</span><span class="marchi"></span><span class="pag">p.&nbsp;498</span></a></li>
     </ol>
+    </div>
     <div class="ind-lato" aria-hidden="true">
       <figure class="he-indice-anteprima he-grana"></figure>
-      <p class="didascalia">Le foto del Catalogo 2026/2027, una per capitolo</p>
+      <p class="didascalia">Le foto del Catalogo 2026/2027, una per capitolo, in bianco e nero</p>
     </div>
   </div>
   <div class="ind-coda he-grid">
@@ -543,17 +540,9 @@ fieldset.campo{border:0;margin:0;padding:0}
 
 <section class="progetto" id="progetti" aria-labelledby="t-pg">
   <div class="he-wrap">
-    <div class="pg-testa he-grid">
-      <h2 id="t-pg">Dall’ascolto al piatto, un progetto su misura</h2>
-      <p class="pg-lead">Per il rinnovo dei locali e le nuove aperture progettiamo, installiamo e assistiamo cucine professionali e aree buffet. Accompagniamo lo chef, il ristoratore e l’albergatore in tutte le fasi; tra i marchi degli impianti, Berto’s.</p>
-    </div>
-    <ol class="gradini">
-      <li class="g1"><span class="n" aria-hidden="true">01</span><h3>Conosciamoci</h3><p>Ascoltiamo la tua idea e iniziamo lo studio.</p></li>
-      <li class="g2"><span class="n" aria-hidden="true">02</span><h3>Il tuo progetto prende forma</h3><p>Progettazione, rendering, disegno tecnico.</p></li>
-      <li class="g3"><span class="n" aria-hidden="true">03</span><h3>Fatti sorprendere</h3><p>Installazione e collaudo.</p></li>
-      <li class="g4"><span class="n" aria-hidden="true">04</span><h3>Sempre tutto sotto controllo</h3><p>Assistenza tecnica post vendita.</p></li>
-    </ol>
-    <div class="pg-coda he-grid">
+    <div class="pg-g he-grid">
+      <h2 class="pg-titolo" id="t-pg">Mandateci<br>la planimetria</h2>
+      <p class="pg-fasi">Dall’ascolto al piatto, un progetto su misura per cucine professionali e aree buffet: ascolto e studio, progetto e rendering, installazione e collaudo, assistenza post vendita.</p>
       <div class="guardiamo">
         <h3>Che cosa guardiamo, per una cucina o un buffet</h3>
         <ul>
@@ -565,8 +554,9 @@ fieldset.campo{border:0;margin:0;padding:0}
         </ul>
       </div>
       <div class="pg-azioni">
-        <p class="bottoni" style="margin-top:0"><a class="b b-chiaro" href="#modulo" data-tipo="Progetto o impianto" data-area="Impianti professionali">Mandaci la planimetria</a><a class="b b-bordo-chiaro" href="tel:+39049760955">Chiama 049&nbsp;760955</a></p>
-        <p>Planimetria, foto del locale o disegno: in PDF, DWG o dal telefono. Si può fissare anche un incontro con i nostri specialisti.</p>
+        <p class="t">Per il rinnovo dei locali e le nuove aperture progettiamo, installiamo e assistiamo; accompagniamo lo chef, il ristoratore e l’albergatore in tutte le fasi. Tra i marchi degli impianti, Berto’s.</p>
+        <p class="bottoni"><a class="b b-chiaro" href="#modulo" data-tipo="Progetto o impianto" data-area="Impianti professionali">Allegatela alla richiesta</a><a class="b b-bordo-chiaro" href="tel:+39049760955">Chiamate 049&nbsp;760955</a></p>
+        <p class="piccolo">In PDF, DWG o una foto dal telefono. Si può fissare anche un incontro con i nostri specialisti.</p>
       </div>
     </div>
   </div>
@@ -575,39 +565,40 @@ fieldset.campo{border:0;margin:0;padding:0}
 <section class="storia he-wrap" id="storia" aria-labelledby="t-st">
   <div class="st-testa he-grid">
     <h2 id="t-st">Dalla Fiera di Padova a via Cile</h2>
-    <p>Le stampe dell’archivio Foralberg, foto Giordani, e le date della nostra riga del tempo.</p>
+    <p>Nel 1953 nasce come società di rappresentanza di articoli e macchinari per gli alberghi. Le stampe dell’archivio Foralberg, foto Giordani, e le date della nostra riga del tempo.</p>
   </div>
   <div class="he-storia" data-he-story>
     <div class="he-storia-media">
-      <figure><img src="img/fiera36-1200.webp" srcset="img/fiera36-800.webp 800w, img/fiera36-1200.webp 1200w, img/fiera36-1600.webp 1600w" sizes="(max-width:899px) 100vw, 52vw" width="1200" height="658" loading="lazy" decoding="async" alt="Lo stand Foralberg alla XXXVI Fiera di Padova: in alto le scritte pirofile, porcellane, cristallerie, posaterie e pentolame, impianti lavanderia, macchine elettriche; sotto, scaffali pieni di porcellane bianche"><figcaption class="didascalia">Lo stand alla XXXVI Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure>
-      <figure><img src="img/fiera38-1200.webp" srcset="img/fiera38-800.webp 800w, img/fiera38-1200.webp 1200w, img/fiera38-1600.webp 1600w" sizes="(max-width:899px) 100vw, 52vw" width="1200" height="890" loading="lazy" decoding="async" alt="Lo stand alla 38a Fiera di Padova con la grande scritta Foralberg, forniture per albergo, Padova, via S. Fermo 16, scaffali di porcellane, posate e pentole e tavoli apparecchiati"><figcaption class="didascalia">Lo stand alla 38a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure>
-      <figure><img src="img/sanfermo-1000.webp" srcset="img/sanfermo-640.webp 640w, img/sanfermo-1000.webp 1000w" sizes="(max-width:899px) 100vw, 52vw" width="1000" height="705" loading="lazy" decoding="async" alt="Cartolina in bianco e nero di via San Fermo a Padova con il Palazzo Europa"><figcaption class="didascalia">Padova, via S. Fermo, Palazzo Europa. Cartolina dell’archivio Foralberg.</figcaption></figure>
-      <figure><img src="img/furgone-firma-1400.webp" srcset="img/furgone-firma-640.webp 640w, img/furgone-firma-960.webp 960w, img/furgone-firma-1400.webp 1400w" sizes="(max-width:899px) 100vw, 52vw" width="1400" height="788" loading="lazy" decoding="async" alt="Il cassone del Lupetto 30 da vicino: la firma Foralberg dipinta a mano, Forniture navali e alberghiere, Padova, via Trieste 11"><figcaption class="didascalia">La firma dipinta sul cassone dell’OM Lupetto 30. Archivio Foralberg.</figcaption></figure>
-      <figure><img src="img/fiera42-1200.webp" srcset="img/fiera42-800.webp 800w, img/fiera42-1200.webp 1200w, img/fiera42-1600.webp 1600w" sizes="(max-width:899px) 100vw, 52vw" width="1200" height="864" loading="lazy" decoding="async" alt="Lo stand Foralberg alla 42a Fiera di Padova con le macchine per le lavanderie degli alberghi"><figcaption class="didascalia">Lo stand alla 42a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure>
-      <figure><img src="img/copertina-2026-900.webp" srcset="img/copertina-2026-600.webp 600w, img/copertina-2026-900.webp 900w, img/copertina-2026-1200.webp 1200w" sizes="(max-width:899px) 60vw, 30vw" width="900" height="1273" loading="lazy" decoding="async" alt="La copertina blu del Catalogo 2026/2027 con il monogramma e la firma Foralberg"><figcaption class="didascalia">La copertina del Catalogo 2026/2027.</figcaption></figure>
+      <figure><span class="st-foto he-grana" style="--r:1.348"><img src="img/fiera38-1200.webp" srcset="img/fiera38-800.webp 800w, img/fiera38-1200.webp 1200w, img/fiera38-1600.webp 1600w" sizes="(max-width:899px) 100vw, 60vw" width="1200" height="890" loading="lazy" decoding="async" alt="Lo stand alla 38a Fiera di Padova con la grande scritta Foralberg, forniture per albergo, Padova, via S. Fermo 16, scaffali di porcellane, posate e pentole e tavoli apparecchiati"></span><figcaption class="didascalia">Lo stand alla 38a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure>
+      <figure><span class="st-foto he-grana" style="--r:1.418"><img src="img/sanfermo-1000.webp" srcset="img/sanfermo-640.webp 640w, img/sanfermo-1000.webp 1000w" sizes="(max-width:899px) 100vw, 60vw" width="1000" height="705" loading="lazy" decoding="async" alt="Cartolina in bianco e nero di via San Fermo a Padova con il Palazzo Europa"></span><figcaption class="didascalia">Padova, via S. Fermo, Palazzo Europa. Cartolina dell’archivio Foralberg.</figcaption></figure>
+      <figure><span class="st-foto he-grana" style="--r:1.389"><img src="img/fiera42-1200.webp" srcset="img/fiera42-800.webp 800w, img/fiera42-1200.webp 1200w, img/fiera42-1600.webp 1600w" sizes="(max-width:899px) 100vw, 60vw" width="1200" height="864" loading="lazy" decoding="async" alt="Lo stand Foralberg alla 42a Fiera di Padova con le macchine per le lavanderie degli alberghi"></span><figcaption class="didascalia">Lo stand alla 42a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure>
+      <figure><span class="st-foto he-grana" style="--r:0.707"><img src="img/copertina-2026-900.webp" srcset="img/copertina-2026-600.webp 600w, img/copertina-2026-900.webp 900w, img/copertina-2026-1200.webp 1200w" sizes="(max-width:899px) 56vw, 34vw" width="900" height="1273" loading="lazy" decoding="async" alt="La copertina del Catalogo 2026/2027 con il monogramma e la firma Foralberg, in bianco e nero"></span><figcaption class="didascalia">La copertina del Catalogo 2026/2027.</figcaption></figure>
     </div>
     <div class="st-passi">
-      <div class="he-passo"><figure class="passo-foto"><img src="img/fiera36-1200.webp" srcset="img/fiera36-800.webp 800w, img/fiera36-1200.webp 1200w, img/fiera36-1600.webp 1600w" sizes="100vw" width="1200" height="658" loading="lazy" decoding="async" alt="Lo stand Foralberg alla XXXVI Fiera di Padova: in alto le scritte pirofile, porcellane, cristallerie, posaterie e pentolame, impianti lavanderia, macchine elettriche; sotto, scaffali pieni di porcellane bianche"><figcaption class="didascalia">Lo stand alla XXXVI Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure><div class="dentro"><p class="anno">1953</p><p class="t">Nasce come società di rappresentanza di articoli e macchinari per gli alberghi: lavanderie alberghiere, piatti, posate e pentolame.</p></div></div>
-      <div class="he-passo"><figure class="passo-foto"><img src="img/fiera38-1200.webp" srcset="img/fiera38-800.webp 800w, img/fiera38-1200.webp 1200w, img/fiera38-1600.webp 1600w" sizes="100vw" width="1200" height="890" loading="lazy" decoding="async" alt="Lo stand alla 38a Fiera di Padova con la grande scritta Foralberg, forniture per albergo, Padova, via S. Fermo 16, scaffali di porcellane, posate e pentole e tavoli apparecchiati"><figcaption class="didascalia">Lo stand alla 38a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure><div class="dentro"><p class="anno">1960</p><p class="t">Dopo la prima struttura ricettiva di lusso a Venezia, nel 1959, le forniture per la nascita della Costa Smeralda. E la 38a Fiera di Padova.</p></div></div>
-      <div class="he-passo"><figure class="passo-foto"><img src="img/sanfermo-1000.webp" srcset="img/sanfermo-640.webp 640w, img/sanfermo-1000.webp 1000w" sizes="100vw" width="1000" height="705" loading="lazy" decoding="async" alt="Cartolina in bianco e nero di via San Fermo a Padova con il Palazzo Europa"><figcaption class="didascalia">Padova, via S. Fermo, Palazzo Europa. Cartolina dell’archivio Foralberg.</figcaption></figure><div class="dentro"><p class="anno">1962</p><p class="t">La sede di via San Fermo: rappresentanza di prodotti e macchinari per le lavanderie alberghiere e prima distribuzione dei macchinari Euromec.</p></div></div>
-      <div class="he-passo"><figure class="passo-foto"><img src="img/furgone-firma-1400.webp" srcset="img/furgone-firma-640.webp 640w, img/furgone-firma-960.webp 960w, img/furgone-firma-1400.webp 1400w" sizes="100vw" width="1400" height="788" loading="lazy" decoding="async" alt="Il cassone del Lupetto 30 da vicino: la firma Foralberg dipinta a mano, Forniture navali e alberghiere, Padova, via Trieste 11"><figcaption class="didascalia">La firma dipinta sul cassone dell’OM Lupetto 30. Archivio Foralberg.</figcaption></figure><div class="dentro"><p class="anno">1963</p><p class="t">Le prime consegne con l’OM Lupetto 30 firmato Foralberg.</p></div></div>
-      <div class="he-passo"><figure class="passo-foto"><img src="img/fiera42-1200.webp" srcset="img/fiera42-800.webp 800w, img/fiera42-1200.webp 1200w, img/fiera42-1600.webp 1600w" sizes="100vw" width="1200" height="864" loading="lazy" decoding="async" alt="Lo stand Foralberg alla 42a Fiera di Padova con le macchine per le lavanderie degli alberghi"><figcaption class="didascalia">Lo stand alla 42a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure><div class="dentro"><p class="anno">1964</p><p class="t">La 42a Fiera di Padova.</p></div></div>
-      <div class="he-passo"><figure class="passo-foto copertina"><img src="img/copertina-2026-900.webp" srcset="img/copertina-2026-600.webp 600w, img/copertina-2026-900.webp 900w, img/copertina-2026-1200.webp 1200w" sizes="100vw" width="900" height="1273" loading="lazy" decoding="async" alt="La copertina blu del Catalogo 2026/2027 con il monogramma e la firma Foralberg"><figcaption class="didascalia">La copertina del Catalogo 2026/2027.</figcaption></figure><div class="dentro"><p class="anno">Oggi</p><p class="t">Dal 1980 la sede di via Cile, dal 2008 lo showroom di oltre 800&nbsp;m². Consulenti dell’ospitalità per l’Horeca, con il Catalogo 2026/2027.</p></div></div>
+      <div class="he-passo"><figure class="passo-foto"><span class="st-foto he-grana" style="--r:1.348"><img src="img/fiera38-1200.webp" srcset="img/fiera38-800.webp 800w, img/fiera38-1200.webp 1200w, img/fiera38-1600.webp 1600w" sizes="(max-width:899px) 100vw, 60vw" width="1200" height="890" loading="lazy" decoding="async" alt="Lo stand alla 38a Fiera di Padova con la grande scritta Foralberg, forniture per albergo, Padova, via S. Fermo 16, scaffali di porcellane, posate e pentole e tavoli apparecchiati"></span><figcaption class="didascalia">Lo stand alla 38a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure><div class="dentro"><p class="anno">1960</p><p class="t">Dopo la prima struttura ricettiva di lusso a Venezia, nel 1959, le forniture per la nascita della Costa Smeralda. E la 38a Fiera di Padova.</p></div></div>
+      <div class="he-passo"><figure class="passo-foto"><span class="st-foto he-grana" style="--r:1.418"><img src="img/sanfermo-1000.webp" srcset="img/sanfermo-640.webp 640w, img/sanfermo-1000.webp 1000w" sizes="(max-width:899px) 100vw, 60vw" width="1000" height="705" loading="lazy" decoding="async" alt="Cartolina in bianco e nero di via San Fermo a Padova con il Palazzo Europa"></span><figcaption class="didascalia">Padova, via S. Fermo, Palazzo Europa. Cartolina dell’archivio Foralberg.</figcaption></figure><div class="dentro"><p class="anno">1962</p><p class="t">Dalla sede di via San Fermo, la rappresentanza di prodotti e macchinari per le lavanderie alberghiere e la prima distribuzione dei macchinari Euromec.</p></div></div>
+      <div class="he-passo"><figure class="passo-foto"><span class="st-foto he-grana" style="--r:1.389"><img src="img/fiera42-1200.webp" srcset="img/fiera42-800.webp 800w, img/fiera42-1200.webp 1200w, img/fiera42-1600.webp 1600w" sizes="(max-width:899px) 100vw, 60vw" width="1200" height="864" loading="lazy" decoding="async" alt="Lo stand Foralberg alla 42a Fiera di Padova con le macchine per le lavanderie degli alberghi"></span><figcaption class="didascalia">Lo stand alla 42a Fiera di Padova. Archivio Foralberg, foto Giordani.</figcaption></figure><div class="dentro"><p class="anno">1964</p><p class="t">La 42a Fiera di Padova, con le macchine per le lavanderie degli alberghi.</p></div></div>
+      <div class="he-passo"><figure class="passo-foto copertina"><span class="st-foto he-grana" style="--r:0.707"><img src="img/copertina-2026-900.webp" srcset="img/copertina-2026-600.webp 600w, img/copertina-2026-900.webp 900w, img/copertina-2026-1200.webp 1200w" sizes="(max-width:899px) 56vw, 34vw" width="900" height="1273" loading="lazy" decoding="async" alt="La copertina del Catalogo 2026/2027 con il monogramma e la firma Foralberg, in bianco e nero"></span><figcaption class="didascalia">La copertina del Catalogo 2026/2027.</figcaption></figure><div class="dentro"><p class="anno">Oggi</p><p class="t">Dal 1980 la sede di via Cile, dal 2008 lo showroom di oltre 800&nbsp;m². Consulenti dell’ospitalità per l’Horeca, con il Catalogo 2026/2027.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="firma-sez" id="su-misura" aria-labelledby="t-fi">
   <div class="he-wrap">
-    <img class="firma-grande" src="img/firma-bianca.svg" alt="Foralberg, la firma del logo" width="1472" height="410" loading="lazy">
-    <p class="fi-ponte">Nel 1963 la nostra firma viaggiava sul cassone del Lupetto. Sui vostri piatti può stare la vostra.</p>
-    <div class="fi-g he-grid">
-      <figure class="fi-foto">
-        <div class="he-media he-grana"><img src="img/piatto-marmo-960.webp" srcset="img/piatto-marmo-640.webp 640w, img/piatto-marmo-960.webp 960w, img/piatto-marmo-1320.webp 1320w" sizes="(max-width:899px) 100vw, 38vw" width="960" height="960" loading="lazy" decoding="async" alt="Un piatto bianco in porcellana con la superficie a rilievo, dall’alto, su marmo verde scuro, con capesante e verdure"></div>
-        <figcaption class="didascalia">Porcellana, dal Catalogo 2026/2027, p. 8</figcaption>
+    <h2 class="fi-titolo" id="t-fi" data-he-split>La nostra firma viaggiava sul cassone del Lupetto.<br>Sui vostri piatti può <span class="nw">stare la vostra.</span></h2>
+    <div class="fi-dittico he-grid">
+      <figure class="fi-a">
+        <div class="he-media he-grana"><img src="img/firma-cassone-720.webp" srcset="img/firma-cassone-480.webp 480w, img/firma-cassone-720.webp 720w, img/firma-cassone-1060.webp 1060w, img/firma-cassone-1590.webp 1590w" sizes="(max-width:899px) 45vw, 37vw" width="720" height="900" loading="lazy" decoding="async" alt="Il cassone dell’OM Lupetto 30 da vicino, in bianco e nero: la firma Foralberg dipinta a mano, Forniture navali e alberghiere, e i marchi rappresentati"></div>
+        <figcaption><span class="nome">La nostra firma</span><span class="fonte">Il cassone dell’OM Lupetto 30. Archivio Foralberg.</span></figcaption>
       </figure>
+      <figure class="fi-b">
+        <div class="he-media he-grana"><img src="img/piatto-liscio-720.webp" srcset="img/piatto-liscio-480.webp 480w, img/piatto-liscio-720.webp 720w, img/piatto-liscio-1049.webp 1049w" sizes="(max-width:899px) 45vw, 37vw" width="720" height="900" loading="lazy" decoding="async" alt="Un piatto piano ovale in porcellana bianca liscia, dall’alto, con una torre di pere e formaggio al centro, in bianco e nero"></div>
+        <figcaption><span class="nome">Qui va la vostra</span><span class="fonte">Steelite, piatto piano ovale. Dal Catalogo 2026/2027, p. 103.</span></figcaption>
+      </figure>
+    </div>
+    <div class="fi-coda he-grid">
       <div class="fi-testo">
-        <h2 id="t-fi" data-he-split>Il tuo biglietto da visita?<br>Un piatto su misura.</h2>
+        <p class="fi-frase">Il vostro biglietto da visita? Un piatto su misura.</p>
         <p class="t">I piatti bianchi lisci si personalizzano con il marchio del vostro locale, in decalcomania, sottosmalto o soprasmalto. Il marchio grafico, se serve, lo creiamo o lo ottimizziamo noi.</p>
         <p class="bottoni"><a class="b b-chiaro" href="#modulo" data-tipo="Preventivo" data-area="Tavola">Chiedete un preventivo</a><a class="he-link" href="https://www.foralberg.it/images/cataloghi/00__FB_CP25__COMPLETO__LowRes.pdf#page=103" target="_blank" rel="noopener">Piatti personalizzati, catalogo p.&nbsp;103 <span class="nw">(PDF, 56&nbsp;MB)</span></a></p>
       </div>
@@ -617,7 +608,7 @@ fieldset.campo{border:0;margin:0;padding:0}
 
 <section class="dove he-wrap" id="dove" aria-labelledby="t-dove">
   <div class="dove-g he-grid">
-    <h2 class="dove-titolo" id="t-dove">Showroom e orari</h2>
+    <h2 class="dove-titolo sr-stretto" id="t-dove">Showroom e orari</h2>
     <div class="sedi">
       <article class="sede" id="showroom" aria-labelledby="t-cile">
         <h3 class="sede-via" id="t-cile"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Foralberg+via+Cile+2+35127+Padova" target="_blank" rel="noopener">via Cile 2<span class="sr"> (apre le indicazioni sulla mappa)</span></a></h3>
@@ -632,7 +623,7 @@ fieldset.campo{border:0;margin:0;padding:0}
             <tr data-giorni="6-0"><th scope="row">Sabato e domenica</th><td>chiuso</td></tr>
           </table>
           <div>
-            <p class="bottoni"><a class="b" href="tel:+39049760955">Chiama 049&nbsp;760955</a><a class="b b-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Foralberg+via+Cile+2+35127+Padova" target="_blank" rel="noopener">Indicazioni</a></p>
+            <p class="bottoni"><a class="b" href="tel:+39049760955">Chiamate 049&nbsp;760955</a><a class="b b-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Foralberg+via+Cile+2+35127+Padova" target="_blank" rel="noopener">Indicazioni</a></p>
             <p class="piccolo"><b>Dalla tangenziale Est.</b> Verso sud: uscita 14, a destra e subito a destra. Verso nord: uscita 13, a sinistra e subito a destra per via Uruguay; dritto, dopo la seconda rotonda siete arrivati.</p>
             <p class="altri"><a class="he-link" href="#modulo" data-tipo="Visita in showroom">Fissate una visita</a><a class="he-link" href="mailto:ldesiderio@foralberg.it?subject=Visita%20in%20showroom">ldesiderio@foralberg.it</a></p>
           </div>
@@ -652,7 +643,7 @@ fieldset.campo{border:0;margin:0;padding:0}
             <tr data-giorni="0"><th scope="row">Domenica</th><td>chiuso</td></tr>
           </table>
           <div>
-            <p class="bottoni"><a class="b" href="tel:+390498700975">Chiama 049&nbsp;8700975</a><a class="b b-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Vetrinetta+via+Vigonovese+93+35127+Padova" target="_blank" rel="noopener">Indicazioni</a></p>
+            <p class="bottoni"><a class="b" href="tel:+390498700975">Chiamate 049&nbsp;8700975</a><a class="b b-bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Vetrinetta+via+Vigonovese+93+35127+Padova" target="_blank" rel="noopener">Indicazioni</a></p>
             <p class="altri"><a class="he-link" href="https://lavetrinetta.foralberg.it/" target="_blank" rel="noopener">Shop online</a><a class="he-link" href="mailto:lavetrinetta@foralberg.it?subject=Lista%20nozze">Lista nozze: lavetrinetta@foralberg.it</a><a class="he-link" href="https://www.facebook.com/LaVetrinetta2015/" target="_blank" rel="noopener">Facebook</a></p>
           </div>
         </div>
@@ -668,7 +659,7 @@ fieldset.campo{border:0;margin:0;padding:0}
       <p class="intro">Preventivo, campionatura, disponibilità di un articolo, un progetto o una visita in showroom: scriveteci che cosa vi serve, vi risponde il servizio clienti.</p>
       <address class="recapiti">
         <div><span class="et">Servizio clienti</span><a class="nw" href="tel:+393351426521">335&nbsp;142&nbsp;6521</a></div>
-        <div><span class="et">Email del servizio clienti</span><a class="mail" href="mailto:servizioclienti@foralberg.it">servizioclienti@foralberg.it</a> <button class="copia" type="button" data-copia="servizioclienti@foralberg.it">Copia</button></div>
+        <div><span class="et">Email del servizio clienti</span><a class="mail" href="mailto:servizioclienti@foralberg.it">servizioclienti@foralberg.it</a> <button class="copia" type="button" data-copia="servizioclienti@foralberg.it">Copiate</button></div>
         <div><span class="et">Centralino, uffici e showroom</span><a class="nw" href="tel:+39049760955">049&nbsp;760955</a></div>
         <div><span class="et">Vendite e showroom</span><a class="mail" href="mailto:ldesiderio@foralberg.it">ldesiderio@foralberg.it</a></div>
       </address>
@@ -738,19 +729,19 @@ fieldset.campo{border:0;margin:0;padding:0}
         </div>
         <div class="campo largo c-file">
           <label for="f-file">Allegato <span class="fac">(planimetria, foto o disegno, facoltativo)</span></label>
-          <div class="file"><input class="sr" id="f-file" type="file" name="allegato" accept="image/*,.pdf,.dwg,.dxf"><label class="b b-bordo" for="f-file" id="f-file-b">Scegli un file</label><span id="f-file-nome">Nessun file scelto</span></div>
+          <div class="file"><input class="sr" id="f-file" type="file" name="allegato" accept="image/*,.pdf,.dwg,.dxf"><label class="b b-bordo" for="f-file" id="f-file-b">Scegliete un file</label><span id="f-file-nome">Nessun file scelto</span></div>
           <p class="aiuto">Dal telefono potete scattare una foto o scegliere un PDF.</p>
         </div>
       </div>
       <div class="invia">
-        <button class="b" type="submit">Prepara la richiesta</button>
+        <button class="b" type="submit">Preparate la richiesta</button>
         <p>Si apre il vostro programma di posta con la richiesta già scritta per servizioclienti@foralberg.it: l’allegato, se c’è, va aggiunto lì.</p>
       </div>
       <p class="esito" id="esito" role="status"></p>
       <div class="pronta" id="pronta" hidden>
         <label for="f-testo">Il testo della richiesta, da copiare se la posta non si è aperta</label>
         <textarea id="f-testo" readonly rows="8"></textarea>
-        <p><button class="copia" type="button" data-copia-da="f-testo">Copia il testo</button><button class="copia" type="button" data-copia="servizioclienti@foralberg.it">Copia l’indirizzo email</button></p>
+        <p><button class="copia" type="button" data-copia-da="f-testo">Copiate il testo</button><button class="copia" type="button" data-copia="servizioclienti@foralberg.it">Copiate l’indirizzo email</button></p>
       </div>
     </form>
   </div>
@@ -758,7 +749,7 @@ fieldset.campo{border:0;margin:0;padding:0}
 
 <section class="pa he-wrap" id="pa" aria-labelledby="t-pa">
   <div class="pa-g he-grid">
-    <h2 id="t-pa">Fornitore abilitato PA</h2>
+    <h2 class="sr-stretto" id="t-pa">Fornitore abilitato PA</h2>
     <div class="pa-testo">
       <ul class="portali" aria-label="Portali su cui siamo abilitati">
         <li>MePA <small>Consip</small></li>
@@ -916,18 +907,18 @@ if (window.gsap && document.documentElement.classList.contains("he-moto")) {
 
   // Menu sotto i 1100 px.
   var apri = document.querySelector(".apri"), menu = document.querySelector(".menu");
-  function chiudi() { menu.classList.remove("aperto"); apri.setAttribute("aria-expanded", "false"); apri.textContent = "Menu"; }
-  apri.addEventListener("click", function () { var a = menu.classList.toggle("aperto"); apri.setAttribute("aria-expanded", a ? "true" : "false"); apri.textContent = a ? "Chiudi" : "Menu"; });
+  function chiudi() { menu.classList.remove("aperto"); apri.setAttribute("aria-expanded", "false"); }
+  apri.addEventListener("click", function () { var a = menu.classList.toggle("aperto"); apri.setAttribute("aria-expanded", a ? "true" : "false"); });
   menu.querySelectorAll("ul a").forEach(function (l) { l.addEventListener("click", chiudi); });
 
-  // Modulo: i link "Disponibilità", "Mandaci la planimetria", "Fissate una visita" scelgono gia' il tipo e l'area.
+  // Modulo: i link "Disponibilità", "Allegatela alla richiesta", "Fissate una visita" scelgono gia' il tipo e l'area.
   var f = document.getElementById("modulo"), esito = document.getElementById("esito");
   var prog = document.getElementById("progetto-in"), notaPriv = document.getElementById("privato-nota");
   var fileB = document.getElementById("f-file-b"), pronta = document.getElementById("pronta"), testo = document.getElementById("f-testo");
   function aggiorna() {
     var p = f.tipo.value === "Progetto o impianto";
     prog.hidden = !p; f.classList.toggle("progetto", p);
-    fileB.textContent = p ? "Scatta o scegli la planimetria" : "Scegli un file";
+    fileB.textContent = p ? "Scattate o scegliete la planimetria" : "Scegliete un file";
     notaPriv.hidden = f.settore.value !== "Privato";
   }
   function vecchio(v) { var x = document.createElement("textarea"); x.value = v; x.setAttribute("readonly", ""); x.style.position = "absolute"; x.style.left = "-9999px"; document.body.appendChild(x); x.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(x); }
