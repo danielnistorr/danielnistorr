@@ -1,0 +1,124 @@
+/* Kit HE: basi per le home di fascia alta.
+   Solo struttura e comportamento: colori, caratteri e misure finali li decide la direzione di ogni sito,
+   sovrascrivendo le variabili qui sotto. Nessuna regola nasconde contenuti prima che parta il JavaScript:
+   senza JS o con "riduci movimento" la pagina e' completa e ferma. */
+
+:root{
+  --he-carta:#F4F1EC; --he-inchiostro:#141312; --he-grigio:#6B6863; --he-filo:rgba(20,19,18,.14);
+  --he-accento:#8A5A3B;
+  --he-m:clamp(20px,4.2vw,72px);      /* margine laterale */
+  --he-col:clamp(12px,1.6vw,28px);    /* canalino */
+  --he-max:1760px;
+  --he-sez:clamp(96px,14vw,240px);    /* respiro tra le sezioni */
+  --he-offset:0px;                    /* altezza della testata fissa, per i salti alle ancore */
+  --he-curva:cubic-bezier(.16,1,.3,1);
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+*,*::before,*::after{box-sizing:border-box}
+img,video{display:block;max-width:100%}
+
+/* impaginazione */
+.he-wrap{padding-inline:var(--he-m);max-width:var(--he-max);margin-inline:auto}
+.he-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col)}
+.he-piena{width:100%}
+.he-sez{padding-block:var(--he-sez)}
+
+/* scala tipografica fluida: si usa una misura per volta, con forti salti tra le misure */
+.he-t-mega{font-size:clamp(64px,15vw,280px);line-height:.84;letter-spacing:-.05em}
+.he-t-xl{font-size:clamp(46px,7.6vw,140px);line-height:.9;letter-spacing:-.038em}
+.he-t-l{font-size:clamp(32px,4.4vw,76px);line-height:.98;letter-spacing:-.028em}
+.he-t-m{font-size:clamp(22px,2.3vw,38px);line-height:1.14;letter-spacing:-.014em}
+.he-t-s{font-size:clamp(16px,1.12vw,19px);line-height:1.58}
+.he-t-xs{font-size:12px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase}
+.he-num{font-variant-numeric:tabular-nums lining-nums}
+[data-he-split] .he-riga{padding-bottom:.06em;margin-bottom:-.06em}
+
+/* media */
+.he-media{position:relative;overflow:hidden}
+.he-media img,.he-media video{width:100%;height:100%;object-fit:cover}
+.he-parallax{overflow:hidden}
+.he-parallax > img,.he-parallax > video{height:124%;margin-top:-12%;width:100%;object-fit:cover}
+.he-grana{position:relative}
+.he-grana::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* apertura che si allarga scorrendo: la foto parte incorniciata e diventa a tutta pagina */
+.he-scala{position:relative;height:100vh;height:100svh;overflow:hidden}
+.he-scala-media{position:absolute;inset:0}
+.he-scala-media img,.he-scala-media video{width:100%;height:100%;object-fit:cover}
+.he-scala-testo{position:relative;z-index:2;height:100%}
+
+/* galleria orizzontale (fissata e trascinata dallo scorrimento sopra i 900 px, nativa sotto) */
+.he-oriz{position:relative;overflow:hidden}
+.he-oriz-binario{display:flex;gap:var(--he-col);padding-inline:var(--he-m);width:max-content;will-change:transform}
+.he-oriz-elemento{flex:none}
+.he-oriz-progresso{position:absolute;left:var(--he-m);right:var(--he-m);bottom:28px;height:1px;background:var(--he-filo)}
+.he-oriz-progresso i{position:absolute;inset:0;background:currentColor;transform-origin:0 50%;transform:scaleX(0)}
+@media (max-width:899px){
+  .he-oriz{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .he-oriz::-webkit-scrollbar{display:none}
+  .he-oriz-elemento{scroll-snap-align:start}
+  .he-oriz-progresso{display:none}
+}
+
+/* racconto con immagine ferma: la foto cambia mentre il testo scorre */
+.he-storia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:start}
+.he-storia-media{position:sticky;top:calc(var(--he-offset) + 6vh);height:82vh;overflow:hidden}
+.he-storia-media > *{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
+  transition:opacity .9s var(--he-curva),transform 1.6s var(--he-curva)}
+.he-storia-media > .attivo,.he-storia-media > :first-child:not(.spento){opacity:1;transform:none}
+.he-storia-media > .spento{opacity:0}
+.he-passo{min-height:72vh;display:flex;flex-direction:column;justify-content:center}
+@media (max-width:899px){
+  .he-storia{display:block}
+  .he-storia-media{top:calc(var(--he-offset) + 8px);height:48vh;z-index:1}
+  .he-passo{min-height:60vh;position:relative;z-index:2}
+}
+
+/* prima e dopo, con il cursore a scorrimento (funziona anche senza movimento) */
+.he-confronto{position:relative;--pos:50%;overflow:hidden;touch-action:pan-y;user-select:none}
+.he-confronto img{width:100%;height:100%;object-fit:cover}
+.he-confronto .dopo{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos))}
+.he-confronto .maniglia{position:absolute;top:0;bottom:0;left:var(--pos);width:1px;background:#fff;pointer-events:none}
+.he-confronto .maniglia::after{content:"";position:absolute;top:50%;left:-22px;width:44px;height:44px;margin-top:-22px;border-radius:50%;
+  border:1px solid #fff;background:rgba(20,19,18,.28)}
+.he-confronto input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.he-confronto input:focus-visible ~ .maniglia::after{outline:2px solid #fff;outline-offset:3px}
+.he-confronto .etichetta{position:absolute;top:16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;pointer-events:none}
+
+/* nastro che scorre (materiali, nomi): lento, mai sotto i 30 secondi a giro */
+.he-nastro{overflow:hidden;white-space:nowrap}
+.he-nastro-binario{display:inline-flex;width:max-content;animation:he-nastro var(--he-velocita,48s) linear infinite}
+@keyframes he-nastro{to{transform:translateX(-50%)}}
+
+/* indice con anteprima ferma (non segue il cursore): la riga attiva cambia la foto del riquadro */
+.he-indice{position:relative}
+.he-indice ol,.he-indice ul{list-style:none;margin:0;padding:0}
+.he-indice-anteprima{position:relative;overflow:hidden;margin:0}
+.he-indice-anteprima img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--he-curva)}
+.he-indice-anteprima img.attiva{opacity:1}
+
+/* link con il filetto che si disegna */
+.he-link{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--he-curva)}
+.he-link:hover,.he-link:focus-visible{background-size:100% 1px}
+
+/* testata che si nasconde scendendo e torna salendo */
+[data-he-header]{transition:transform .5s var(--he-curva),background-color .4s,color .4s}
+[data-he-header].nascosta{transform:translateY(-110%)}
+
+/* sipario d'ingresso, una volta per visita */
+.he-intro{position:fixed;inset:0;z-index:1000;display:none;pointer-events:none}
+.he-moto .he-intro.vai{display:block}
+
+@view-transition{navigation:auto}
+
+@media (prefers-reduced-motion:reduce){
+  .he-nastro-binario{animation:none}
+  .he-storia-media > *{transition:none}
+  [data-he-header]{transition:none}
+}
