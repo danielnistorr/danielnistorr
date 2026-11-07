@@ -66,7 +66,8 @@ img{height:auto}
 /* bottone: si inverte di colpo, non sbiadisce */
 .bt{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;background:var(--inchiostro);color:var(--carta);
   text-decoration:none;font-weight:500;font-size:17px;border:1px solid var(--inchiostro)}
-.bt:hover,.bt:focus-visible{background:transparent;color:var(--inchiostro)}
+.bt:focus-visible{background:transparent;color:var(--inchiostro)}
+@media (hover:hover){.bt:hover{background:transparent;color:var(--inchiostro)}}
 .lk{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .lk:hover{text-decoration-thickness:2px}
 
@@ -86,10 +87,10 @@ img{height:auto}
 /* ---------- 1. apertura ---------- */
 .apertura.he-scala{height:100vh;height:100svh;min-height:620px;overflow:hidden}
 .apertura .he-scala-testo{height:auto;padding:calc(var(--testata) + 3vh) var(--he-m) 0;max-width:var(--he-max);margin-inline:auto}
-.ap-titolo{position:relative}
-.apertura h1{font-size:min(17vw, calc((100svh - var(--banda) - 160px) / 1.76), 300px)}
+.ap-titolo{position:relative;--fs:min(17vw, calc((100svh - var(--banda) - 160px) / 1.76), 300px)}
+.apertura h1{font-size:var(--fs)}
 .apertura h1 .riga{display:block}
-.ap-lato{position:absolute;right:0;bottom:.4vh;width:calc((100% - 11 * var(--he-col)) / 12 * 5 + 4 * var(--he-col))}
+.ap-lato{position:absolute;right:0;top:calc(var(--fs) * 1.02);width:calc((100% - 11 * var(--he-col)) / 12 * 5 + 4 * var(--he-col))}
 .ap-lato p{font-size:clamp(18px,1.4vw,21px);line-height:1.45;max-width:30em;text-wrap:pretty}
 .ap-lato .dove{margin-top:10px;font-size:16px;color:var(--grigio)}
 .ap-lato .dove a{color:var(--inchiostro)}
@@ -97,27 +98,28 @@ img{height:auto}
 .ap-azioni .tel-g{font-weight:500;font-size:18px;text-decoration:none;white-space:nowrap}
 .ap-azioni .tel-g:hover{text-decoration:underline;text-underline-offset:.3em}
 .apertura .he-scala-media{top:auto;bottom:0;left:0;right:0;margin-inline:auto;width:min(100%,1680px);height:var(--banda);margin-bottom:0}
-.apertura .he-scala-media img{width:100%;height:100%;object-fit:cover}
+.apertura .he-scala-media img{width:100%;height:100%;object-fit:cover;transform-origin:42% 100%}
 .pre-moto .apertura .he-scala-media{clip-path:inset(0% 43% 0% 27.5%)}
-.ap-didascalia{position:absolute;right:var(--he-m);bottom:calc(var(--banda) + 10px);font-size:14px;color:var(--grigio);z-index:3}
+.pre-moto .apertura .he-scala-media img{transform:scale(1.16)}
+.ap-didascalia{position:absolute;left:var(--he-m);bottom:calc(var(--banda) + 10px);font-size:14px;color:var(--grigio);z-index:3}
 
 /* ---------- 2. magazzino ---------- */
-.magazzino{padding:var(--he-sez) var(--he-m) calc(var(--he-sez) * .8);max-width:var(--he-max);margin-inline:auto}
+.magazzino{padding:calc(var(--he-sez) * .7) var(--he-m) calc(var(--he-sez) * .4);max-width:var(--he-max);margin-inline:auto}
 .mg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:start}
 .mg-testo{grid-column:1/7}
 .mg-testo p{margin-top:22px;max-width:30em}
-.mg-griglia{grid-column:1/7;display:grid;grid-template-columns:1fr 1fr;gap:34px var(--he-col);margin-top:56px}
+.mg-griglia{grid-column:1/8;display:grid;grid-template-columns:repeat(2,minmax(0,350px));gap:34px var(--he-col);margin-top:56px}
 .mg-griglia img{width:100%;max-width:350px;aspect-ratio:350/263;object-fit:cover}
 .mg-griglia figcaption,.mg-pelli figcaption{margin-top:10px;font-size:15px;line-height:1.4;color:var(--grigio)}
-.mg-pelli{grid-column:8/13;grid-row:1/3;margin-top:clamp(40px,9vw,150px)}
+.mg-pelli{grid-column:8/13;grid-row:1/3;margin-top:clamp(24px,5.4vw,96px)}
 .mg-pelli img{width:100%;max-width:652px}
 
 /* ---------- 3. disegno e spessore (la firma) ---------- */
 .disegno{padding:0 var(--he-m) calc(var(--he-sez) * .7);max-width:var(--he-max);margin-inline:auto}
-.ds-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);padding-top:var(--he-sez);border-top:1px solid var(--filo)}
+.ds-testa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);padding-top:calc(var(--he-sez) * .55);border-top:1px solid var(--filo)}
 .ds-testa .h2{grid-column:1/6}
 .ds-testa p{grid-column:7/12;max-width:30em}
-.disegno .he-storia{margin-top:clamp(40px,6vw,96px)}
+.disegno .he-storia{margin-top:clamp(28px,3.5vw,56px)}
 .disegno .he-storia-media{grid-column:1/6;grid-row:1;width:100%;max-width:560px;height:min(660px,80vh);top:calc(var(--he-offset) + max(4vh, (100vh - var(--he-offset) - min(660px,80vh)) / 2))}
 .disegno .he-storia-media img{object-position:50% 50%}
 .ds-passi{grid-column:7/13;grid-row:1}
@@ -126,13 +128,15 @@ img{height:auto}
 .ds-misura{margin-top:18px;font-weight:300;font-size:clamp(28px,2.6vw,40px);line-height:1.1;letter-spacing:-.01em}
 .ds-scheda{margin-top:14px;max-width:26em;font-size:18px;line-height:1.5}
 .ds-scheda b{font-weight:500}
+.ds-riga{display:block;margin-top:26px;height:22px;width:calc(var(--k) * 22px);max-width:100%}
 .ds-inline{display:none}
 @media (min-width:900px){
 .he-fermo .disegno .he-storia-media{display:none}
 .he-fermo .ds-passi{grid-column:1/13}
 .he-fermo .disegno .he-passo{min-height:0;padding-block:44px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-content:center}
 .he-fermo .disegno .he-passo > *{grid-column:7/13}
-.he-fermo .ds-inline{display:block;grid-column:1/6;grid-row:1/5;width:100%;max-width:560px;aspect-ratio:560/660;object-fit:cover}
+.he-fermo .disegno .he-passo > .ds-riga{justify-self:start}
+.he-fermo .disegno .he-passo > .ds-inline{display:block;grid-column:1/6;grid-row:1/6;width:100%;max-width:560px;aspect-ratio:560/660;object-fit:cover}
 }
 
 /* ---------- 4. catalogo ---------- */
@@ -173,7 +177,8 @@ img{height:auto}
 .cp-recapiti a:hover{border-bottom-color:currentColor}
 .cp-recapiti .tenue{color:rgba(247,243,236,.78)}
 .campionario .bt{background:var(--carta-chiara);color:var(--cuoio);border-color:var(--carta-chiara)}
-.campionario .bt:hover,.campionario .bt:focus-visible{background:transparent;color:var(--carta-chiara)}
+.campionario .bt:focus-visible{background:transparent;color:var(--carta-chiara)}
+@media (hover:hover){.campionario .bt:hover{background:transparent;color:var(--carta-chiara)}}
 .campionario .tel-g{font-weight:500;font-size:19px;text-decoration:none}
 .campionario .tel-g:hover{text-decoration:underline;text-underline-offset:.3em}
 .campionario :focus-visible{outline-color:var(--carta-chiara)}
@@ -197,17 +202,17 @@ img{height:auto}
   .testata .tel .solo-t{display:inline}
   .testata .tel:hover{text-decoration:none}
   .apertura.he-scala{height:auto;min-height:0;overflow:visible}
-  .apertura .he-scala-testo{padding:calc(var(--testata) + 28px) var(--he-m) 0}
-  .apertura h1{font-size:min(17.6vw,92px);line-height:.88}
+  .apertura .he-scala-testo{width:100%;padding:calc(var(--testata) + 28px) var(--he-m) 0}
+  .apertura h1{font-size:min(19vw,92px);line-height:.88}
   .ap-lato{position:static;width:auto;margin-top:22px}
   .ap-lato p{font-size:18px}
-  .apertura .he-scala-media{position:relative;width:auto;height:auto;margin:30px var(--he-m) 0;aspect-ratio:540/400;max-width:540px}
+  .apertura .he-scala-media{position:relative;width:auto;height:auto;margin:30px var(--he-m) 0;aspect-ratio:540/400;max-width:540px;overflow:hidden}
   .apertura.he-scala{display:flex;flex-direction:column}
   .ap-didascalia{position:static;display:block;order:3;padding:10px var(--he-m) 0;font-size:14px}
   .magazzino{padding-top:88px}
   .mg-testo,.mg-griglia,.mg-pelli{grid-column:1/-1}
   .mg-pelli{grid-row:auto;margin-top:44px}
-  .mg-griglia{gap:26px 14px;margin-top:40px}
+  .mg-griglia{grid-template-columns:1fr 1fr;gap:26px 14px;margin-top:40px}
   .ds-testa .h2,.ds-testa p{grid-column:1/-1}
   .ds-testa p{margin-top:16px}
   .disegno .he-storia{display:block}
@@ -216,6 +221,7 @@ img{height:auto}
   .disegno .he-passo{min-height:0;padding-block:40px;border-bottom:1px solid var(--filo)}
   .disegno .he-passo:last-child{border-bottom:0}
   .ds-parola{font-size:min(19vw,104px)}
+  .ds-riga{height:auto;width:calc(var(--k) / 30 * 100%);aspect-ratio:var(--k) / 1;margin-top:18px}
   .ct-testa .h2,.ct-testa p{grid-column:1/-1}
   .ct-testa p{margin-top:16px}
   .ct-famiglia{margin-top:44px}
@@ -252,7 +258,7 @@ img{height:auto}
 
 <main>
   <!-- 1. apertura: il titolo e la corsia del magazzino, che parte socchiusa sul bordo vivo delle pelli e si apre scorrendo -->
-  <section id="apertura" class="apertura he-scala" data-he-scale="inset(0% 43% 0% 27.5%)" data-he-scale-zoom="1" data-he-scale-fine="inset(0% 0% 0% 0%)">
+  <section id="apertura" class="apertura he-scala" data-he-scale="inset(0% 43% 0% 27.5%)" data-he-scale-zoom="1.16" data-he-scale-fine="inset(0% 0% 0% 0%)">
     <div class="he-scala-testo">
       <div class="ap-titolo">
         <h1 class="display" data-he-split data-he-subito><span class="riga">Pelle, ecopelle,</span> <span class="riga">tessuti</span></h1>
@@ -299,7 +305,7 @@ img{height:auto}
   <section id="disegno" class="disegno" aria-labelledby="t-disegno">
     <div class="ds-testa">
       <h2 id="t-disegno" class="h2">Disegno e spessore</h2>
-      <p>Le pelli hanno nomi di pittori e di dogi, le ecopelle di isole greche.</p>
+      <p>Botticelli, Leonardo, Modigliani, Doge: tra le pelli, nomi di pittori e di un doge; tra le ecopelle, isole greche come Mykonos, Corfu, Creta e Rodi.</p>
     </div>
     <div class="he-storia" data-he-story>
       <div class="he-storia-media" aria-hidden="true">
@@ -314,30 +320,35 @@ img{height:auto}
           <h3 class="display ds-parola">Dollaro</h3>
           <p class="ds-misura num">1,3/1,5&nbsp;mm</p>
           <p class="ds-scheda"><b>Botticelli</b>, pelle bovina europea. Lo stesso disegno per Piston e Spessorato.</p>
+          <img class="ds-riga" src="img/righe/botticelli.webp" width="528" height="22" style="--k:24" loading="lazy" alt="I colori a campione di Botticelli">
           <img class="ds-inline" src="img/grana-botticelli-400.webp" srcset="img/grana-botticelli-400.webp 400w, img/grana-botticelli-560.webp 560w" sizes="(max-width: 899px) calc(100vw - 32px), 420px" width="400" height="471" loading="lazy" alt="La grana di Botticelli, disegno dollaro, grigio">
         </article>
         <article class="he-passo">
           <h3 class="display ds-parola">Uruguay</h3>
           <p class="ds-misura num">1,0/1,1&nbsp;mm</p>
-          <p class="ds-scheda"><b>Leonardo</b>, pelle bovina.</p>
+          <p class="ds-scheda"><b>Leonardo</b>, l'unico articolo con questo disegno.</p>
+          <img class="ds-riga" src="img/righe/leonardo.webp" width="528" height="22" style="--k:24" loading="lazy" alt="I colori a campione di Leonardo">
           <img class="ds-inline" src="img/grana-leonardo-400.webp" srcset="img/grana-leonardo-400.webp 400w, img/grana-leonardo-560.webp 560w" sizes="(max-width: 899px) calc(100vw - 32px), 420px" width="400" height="471" loading="lazy" alt="La grana di Leonardo, disegno Uruguay, beige">
         </article>
         <article class="he-passo">
           <h3 class="display ds-parola">Madras</h3>
           <p class="ds-misura num">1/1,1&nbsp;mm</p>
-          <p class="ds-scheda"><b>Sera</b>, pelle bovina, e l'articolo che porta il nome del disegno, Madras.</p>
+          <p class="ds-scheda"><b>Sera</b>, e l'articolo che porta il nome del disegno, Madras.</p>
+          <img class="ds-riga" src="img/righe/sera.webp" width="660" height="22" style="--k:30" loading="lazy" alt="I colori a campione di Sera">
           <img class="ds-inline" src="img/grana-sera-400.webp" srcset="img/grana-sera-400.webp 400w, img/grana-sera-560.webp 560w" sizes="(max-width: 899px) calc(100vw - 32px), 420px" width="400" height="471" loading="lazy" alt="La grana di Sera, disegno madras, azzurro">
         </article>
         <article class="he-passo">
           <h3 class="display ds-parola">Naturale</h3>
           <p class="ds-misura num">1,0&nbsp;mm</p>
-          <p class="ds-scheda"><b>Doge</b>, pelle bovina invecchiata. Lo stesso disegno per Modigliani, Nabuk, Ocean e Wild West; naturale invecchiato per Paros e Santorini.</p>
+          <p class="ds-scheda"><b>Doge</b>, invecchiata. Lo stesso disegno per Modigliani, Nabuk, Ocean e Wild West; naturale invecchiato per Paros e Santorini.</p>
+          <img class="ds-riga" src="img/righe/doge.webp" width="198" height="22" style="--k:9" loading="lazy" alt="I colori a campione di Doge">
           <img class="ds-inline" src="img/grana-doge-400.webp" srcset="img/grana-doge-400.webp 400w, img/grana-doge-560.webp 560w" sizes="(max-width: 899px) calc(100vw - 32px), 420px" width="400" height="471" loading="lazy" alt="La grana di Doge, pelle invecchiata, marrone">
         </article>
         <article class="he-passo">
           <h3 class="display ds-parola">Martellata</h3>
           <p class="ds-misura num">1/1,1&nbsp;mm</p>
-          <p class="ds-scheda"><b>Monza</b>, pelle bovina per i rivestimenti auto, accanto alla liscia Imola.</p>
+          <p class="ds-scheda"><b>Monza</b>, per i rivestimenti auto, accanto alla liscia Imola.</p>
+          <img class="ds-riga" src="img/righe/monza.webp" width="242" height="22" style="--k:11" loading="lazy" alt="I colori a campione di Monza">
           <img class="ds-inline" src="img/grana-monza-400.webp" srcset="img/grana-monza-400.webp 400w, img/grana-monza-560.webp 560w" sizes="(max-width: 899px) calc(100vw - 32px), 420px" width="400" height="471" loading="lazy" alt="La grana di Monza, pelle martellata, color cuoio">
         </article>
       </div>

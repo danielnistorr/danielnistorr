@@ -52,7 +52,7 @@ Aperti con Playwright il 7/11/2026: prima schermata a 1440x900 e a 390x844, tre 
 
 8. **PrimeAsia** (primeasialeather.com), concerie, Site of the Day 21/5/2025.
    - Mossa 1: ogni pelle come oggetto, con il nome in basso a sinistra e tre righe di scheda (grana, nappa, pigmentata). Da noi: il passo del disegno: la parola, lo spessore, una riga con l'articolo e la materia.
-   - Mossa 2: il titolo enorme e leggero sopra l'apertura (137 px, peso 300). Da noi: "Pelle, ecopelle, tessuti" in Boska 200 a circa 240 px.
+   - Mossa 2: il titolo enorme e leggero sopra l'apertura (137 px, peso 300). Da noi: "Pelle, ecopelle, tessuti" in Boska 200 a 226 px.
    - Da non prendere: lo sfondo WebGL, 27 MB.
 9. **House of Corto** (houseofcorto.com), sedie e tavoli, Parigi, Site of the Day 3/12/2025.
    - Mossa 1: foto piccole tenute alla loro misura dentro grandi campi (verde scuro, carta). Da noi: le foto del servizio "Azienda" (350 px online) mai ingrandite, e il box-campionario (265 px) su una scheda chiara dentro il campo cuoio.
@@ -61,7 +61,7 @@ Aperti con Playwright il 7/11/2026: prima schermata a 1440x900 e a 390x844, tre 
 
 ## 3. Carattere
 
-- **Display: Boska** (Barbara Bigosinska, Indian Type Foundry, Fontshare, ITF Free Font License 2.0), peso 200 (e 300 per i nomi del catalogo). Un serif ad alto contrasto, stretto, con le grazie sottili: a 240 px ha la tensione di un titolo di moda, e i nomi delle collezioni (Botticelli, Doge, Modigliani) ci stanno come su una copertina. Solo nei momenti forti: "Pelle, ecopelle, tessuti" in apertura (circa 242 px a 1440, 69 a 390), i cinque disegni nella firma (circa 181 px a 1440, 74 a 390), "Richiedi il box-campionario" nella chiusura (circa 147 px a 1440, 55 a 390). I nomi degli articoli del catalogo in Boska 300 a 30 px.
+- **Display: Boska** (Barbara Bigosinska, Indian Type Foundry, Fontshare, ITF Free Font License 2.0), peso 200 (e 300 per i nomi del catalogo). Un serif ad alto contrasto, stretto, con le grazie sottili: a 226 px ha la tensione di un titolo di moda, e i nomi delle collezioni (Botticelli, Doge, Modigliani) ci stanno come su una copertina. Solo nei momenti forti: "Pelle, ecopelle, tessuti" in apertura (226 px a 1440, 295 a 1920, 74 a 390), i cinque disegni nella firma (181 px a 1440, 74 a 390), "Richiedi il box-campionario" nella chiusura (147 px a 1440, 55 a 390). I nomi degli articoli del catalogo in Boska 300 a 30 px.
 - **Testo: Author** (Satya Rajpurohit, Indian Type Foundry, Fontshare, ITF Free Font License 2.0), 300, 400 e 500: un grottesco asciutto con un po' di calore, per testo, `h2` di servizio, testata, didascalie, misure e recapiti. Le misure grandi ("1,3/1,5 mm", il telefono) in Author 300.
 - File woff2 ufficiali di Fontshare, ospitati dalla pagina senza modifiche, licenza in `sito-he/fonts/FFL-ITF.txt`. `font-display: block` con precaricamento: con `swap` il cambio di carattere spostava il blocco di testo dell'apertura (CLS 0,032 a 1024).
 - Mai corsivo, nessuna etichetta sopra i titoli, nessun numero davanti alle sezioni; maiuscolo spaziato solo per il nome in testata e nel piede.
@@ -81,18 +81,18 @@ Gli unici altri colori sono quelli veri delle scansioni del campionario, nelle r
 
 ## 5. Movimento
 
-- **Gesto d'apertura, "aprire la corsia"** (`data-he-scale` con `data-he-scale-zoom="1"`): la banda della corsia (1680x400, misura nativa a 1920, ridotta a 0,86 a 1440) parte socchiusa sulle colonne 4-7, stretta sul bordo vivo della pila di pelli bianche; scorrendo si apre a tutta larghezza e mostra quello che prima non si vedeva: i rotoli a sinistra, la pila intera, le pelli colorate a destra. La foto non si ingrandisce mai. La fessura è applicata prima del primo disegno (classe `pre-moto`), così non lampeggia la foto intera.
+- **Gesto d'apertura, "aprire la corsia"** (`data-he-scale` con `data-he-scale-zoom="1"`): la banda della corsia (1680x400, misura nativa a 1920, 1440x343 a 1440) parte socchiusa sulle colonne 4-7, stretta sul bordo vivo della pila di pelli bianche e portata alla misura nativa (scala 1,16 ancorata in basso, così il bordo resta in vista); scorrendo si apre a tutta larghezza e torna a 1, e mostra quello che prima non si vedeva: i rotoli a sinistra, la pila intera, le pelli colorate a destra. A 1920 la scala iniziale è 1,16 della misura nativa, sotto il tetto di 1,25. La fessura è applicata prima del primo disegno (classe `pre-moto`), così non lampeggia la foto intera.
 - **Sostegno 1, la firma** (`data-he-story`): la grana ferma a sinistra cambia passo per passo mentre a destra scorrono i cinque disegni. Sul telefono e con "riduci movimento" ogni passo ha la sua grana sotto il testo, niente di fermo.
 - **Sostegno 2, due titoli che salgono** (`data-he-split`): l'apertura (subito) e la chiusura.
 - Testata che si nasconde scendendo da 900 px in su; sul telefono resta, con "Chiama".
-- Niente parallasse, tagli, galleria orizzontale, indice, prima e dopo, nastro, sipario. Gli altri cambi di ritmo li fanno la scala (240 px, 181 px, 30 px) e l'impaginazione.
+- Niente parallasse, tagli, galleria orizzontale, indice, prima e dopo, nastro, sipario. Gli altri cambi di ritmo li fanno la scala (226 px, 181 px, 147 px, 30 px) e l'impaginazione.
 - `ScrollTrigger.defaults({ pinType: "transform" })` prima di `he.js`, come Tacchificio e Varotto: l'apertura fissata non sposta il layout.
 
 ## 6. Ritmo (ogni sezione ha uno scheletro diverso)
 
 1. **Apertura, "Pelle, ecopelle, tessuti"** (carta, a tutta altezza): il titolo su due righe a sinistra; a destra della seconda riga che cosa fanno e per chi, la via con la mappa, "Richiedi il box-campionario" e il telefono; in basso la banda della corsia che si apre.
-2. **Il magazzino** (carta): a sinistra la loro frase ("Servizio, qualità, prezzo sono imperativi categorici") e quattro foto del servizio "Azienda" alla loro misura con una riga sotto (le mani sulla pelle invecchiata, la taglierina sul rotolo, i rotoli dal container, l'imballo); a destra, più in basso, le pelli intere sui carrelli con il bordo vivo (652x704, nativa).
-3. **Firma, "Disegno e spessore"** (carta, filetto sopra): la grana ferma a sinistra, a destra i cinque disegni in Boska a 181 px, lo spessore in Author 300, una riga con l'articolo. Dollaro (Botticelli), Uruguay (Leonardo), Madras (Sera), Naturale (Doge), Martellata (Monza).
+2. **Il magazzino** (carta): a sinistra la loro frase ("Servizio, qualità, prezzo sono imperativi categorici") e quattro foto del servizio "Azienda" alla loro misura con una riga sotto (le mani sulla pelle invecchiata, la taglierina sul rotolo, i rotoli dal container, l'imballo); a destra, più in basso, le pelli intere sui carrelli con il bordo vivo (file 652x704, 536x579 a 1440).
+3. **Firma, "Disegno e spessore"** (carta, filetto sopra): la grana ferma a sinistra, a destra i cinque disegni in Boska a 181 px, lo spessore in Author 300, una riga con l'articolo e la riga dei suoi colori a campione. Dollaro (Botticelli), Uruguay (Leonardo), Madras (Sera), Naturale (Doge), Martellata (Monza).
 4. **Catalogo** (carta): quattro famiglie, per ogni articolo il nome in Boska 300, spessore e disegno in grigio, e la riga dei suoi colori a campione (le scansioni del sito, un tassello per colore, nell'ordine delle schede).
 5. **Chiusura, "Richiedi il box-campionario"** (cuoio, l'unico campo pieno): il titolo in Boska, la scatola sulla sua scheda chiara alla misura del file, il bottone email già intestato; sotto un filetto, i recapiti in poche righe (telefono grande, le quattro email, la via con la mappa, il fax).
 6. **Piede** (carta): una riga con nome, P.IVA, via, Privacy, Cookie, Facebook, English; sotto le due note su privacy e cookie della pagina.
