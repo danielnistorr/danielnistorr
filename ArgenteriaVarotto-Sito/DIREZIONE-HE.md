@@ -58,26 +58,26 @@ Aperti con Playwright il 7/11/2026: prima schermata a 1440x900 e a 390x844 e tre
 
 ## 3. Carattere
 
-- **Display: Rowan** (Indian Type Foundry, Fontshare, ITF Free Font License 2.0), peso 300. Un serif di testo e titolo con grazie taglienti e cifre antiche: il 9 e il 5 scendono sotto la riga, come nei numeri incisi. Sottile come un filo d'argento lucidato, ma con le aste nette. Solo tre momenti: il titolo d'apertura (150 px a 1440), "Argento massiccio" nella vetrina (196 px), "999" nelle impugnature (380 px).
-- **Testo: Supreme** (ITF, Fontshare, ITF Free Font License 2.0), 400 e 500: un grottesco asciutto e geometrico, per il testo, gli `h2` di servizio, la testata, le etichette dei pezzi, il telefono, il modulo.
+- **Display: Rowan** (Indian Type Foundry, Fontshare, ITF Free Font License 2.0), peso 300. Un serif di testo e titolo con grazie taglienti e cifre antiche: il 9 e il 5 scendono sotto la riga, come nei numeri incisi. Sottile come un filo d'argento lucidato, ma con le aste nette. Solo tre momenti: il titolo d'apertura (150 px a 1440), "Argento massiccio" nella vetrina (196 px), "999" nelle impugnature (374 px); più i due ovali 925 e 800 nella fascia della storia, piccoli.
+- **Testo: Plein** (Indian Type Foundry, Fontshare, ITF Free Font License 2.0), 400 e 500: un grottesco umanista caldo, un poco stretto, per il testo, gli `h2` di servizio, la testata, le etichette dei pezzi, il telefono, il modulo. Cifre allineate nel testo (codici e numeri di telefono), cifre antiche solo nel "999" in Rowan. Prima scelta era Supreme, scartata perché `_metodo/CARATTERI-E-SEGNALI-IA.md` (paragrafo d) lo nomina come carattere di Formlabs e lo ha tolto dalla guida.
 - File woff2 ufficiali di Fontshare, ospitati dalla pagina senza modifiche, licenza in `sito-he/fonts/FFL-ITF.txt`.
 - Mai corsivo, nessuna etichetta sopra i titoli, nessun numero davanti ai passi; il maiuscolo spaziato solo nel marchio in testata.
-- Registro: riga in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`. Rowan e Supreme non sono in nessuna home della campagna né nelle liste di `_metodo/CARATTERI-E-SEGNALI-IA.md`. Escono Bodoni Moda e Rethink Sans della versione di oggi.
+- Registro: riga in `_metodo/professionale/alto/REGISTRO-CARATTERI.md`. Rowan e Plein non sono in nessuna home della campagna né nelle liste di `_metodo/CARATTERI-E-SEGNALI-IA.md`. Escono Bodoni Moda e Rethink Sans della versione di oggi.
 
 ## 4. Colore (dai loro materiali)
 
 | Nome | Valore | Da dove | Dove |
 |---|---|---|---|
 | Carta | #F3F2EE | il campo chiaro delle foto di catalogo | fondo della pagina; il bianco delle foto diventa questo |
-| Inchiostro | #121416 | | testo, bottoni, piede |
+| Inchiostro | #121416 | | testo, bottoni; campo della riparazione e del piede |
 | Blu astuccio | #0E2140 | il blu del loro marchio (#00265a) e dell'"Astuccio 77 pezzi blue" del catalogo | **l'unico campo pieno: l'apertura** |
 | Crema | #F1DEBF | il raso dentro l'astuccio; è il negativo esatto del blu | il titolo sul blu (lo fa la fusione "differenza": sul campo chiaro lo stesso testo diventa nero) |
-| Argento | #A4A8AE | il metallo lucidato, nei mezzi toni | filetti dei ripiani sul blu, segni secondari |
+| Argento | #C9CCD1 | il metallo lucidato | i materiali e i testi sull'inchiostro della riparazione |
 | Grigio | #5C6066 (6,0:1 sulla carta) | | testi secondari, codici, inglese |
 
 ## 5. Movimento
 
-- **Gesto d'apertura, "l'astuccio si apre"** (`data-he-scale` con `data-he-scale-zoom="1"`, finestra di partenza e arrivo scritte nella pagina): la prima schermata è blu pieno, come l'interno di un astuccio, con una finestra chiara a destra dove stanno le posate Inglese in argento massiccio (forchetta, coltello, cucchiaio, cucchiaino) e a sinistra il titolo in crema. Scorrendo la finestra si apre fino alla pagina: il blu se ne va, la luce entra, le posate restano ferme alla loro misura e il titolo, senza muoversi, passa dal crema al nero (fusione "differenza" sul campo). Il titolo sale riga per riga all'apertura (`data-he-split data-he-subito`). Ragione di mestiere: l'argento si conserva nell'astuccio e si tira fuori per la tavola; il catalogo ha l'astuccio blu per il servizio da 77 pezzi.
+- **Gesto d'apertura, "l'astuccio si apre"** (`data-he-scale` con `data-he-scale-zoom="1"`, finestra di partenza e arrivo scritte nella pagina): la prima schermata è blu pieno, come l'interno di un astuccio, con una finestra chiara a destra dove stanno le posate Inglese in argento massiccio (forchetta, coltello, cucchiaio, cucchiaino) e a sinistra il titolo in crema. Scorrendo la finestra si apre fino alla pagina: il blu se ne va, la luce entra, le posate restano ferme alla loro misura e il titolo, senza muoversi, passa dal crema al nero (fusione "differenza" sul campo). Il titolo sale riga per riga all'apertura (`data-he-split data-he-subito`). Ragione di mestiere: l'argento si conserva nell'astuccio e si tira fuori per la tavola; nel catalogo c'è l'"Astuccio 77 pezzi blue" (RQ77) per il servizio di posate da 77 pezzi.
 - **Sostegno 1, la vetrina**: il titolo "Argento massiccio" sale riga per riga (`data-he-split`), secondo e ultimo split.
 - **Sostegno 2, il leone**: la testa di leone in argento 999 si scopre dal basso con un taglio netto (`data-he-wipe="su"`), una volta.
 - Testata che si nasconde scendendo da 900 px in su; sul telefono resta, con "Chiama".
@@ -89,10 +89,10 @@ Aperti con Playwright il 7/11/2026: prima schermata a 1440x900 e a 390x844 e tre
 
 1. **Apertura, "Tutta la tavola, in argento."** (blu, fissata sopra i 900 px): titolo su tre righe a sinistra, finestra alta a destra con le posate e la loro etichetta, sotto il titolo la riga del mestiere e due collegamenti (riparazione, hotel e ristoranti). Sul telefono: blu con titolo e riga, poi la finestra chiara con le posate sotto, ferma.
 2. **Firma, la vetrina "Argento massiccio"** (carta): tre ripiani di filetto. Sul primo il titolo in Rowan, in piedi sul ripiano come un pezzo, con il candelabro a cinque fiamme accanto; sul secondo quattro pezzi di altezze diverse (brocca martellata, coppa champagne, bicchiere, candeliere); sul terzo il servizio Impero, il secchiello e lo shop. Sotto ogni pezzo nome, materiale e codice.
-3. **999, le impugnature** (carta): il numero a 380 px a sinistra, la testa di leone alla misura nativa a destra; sotto, la fila delle sei teste nella stessa finestra (cavallo, civetta, cobra, anatra, labrador, teschio) con il nome.
-4. **Riparazione** (carta, filetto nero spesso sopra): a sinistra la loro frase grande in Supreme ("La vostra argenteria tornerà al suo originario splendore."), a destra i cinque materiali in righe; sotto, come si fa in tre frasi, "Mandate le foto del pezzo" e il telefono. Nessuna foto: il lavoro non è fotografato.
+3. **999, le impugnature** (carta): il numero a 374 px a sinistra, la testa di leone a destra, a 0,85 della misura nativa (0,95 a 1920); sotto, la fila delle sei teste nella stessa finestra (cavallo, civetta, cobra, anatra, labrador, teschio) con il nome.
+4. **Riparazione** (inchiostro pieno, come l'argento sul panno scuro del banco: il nero non è uno dei colori, la regola del colore pieno resta al blu): a sinistra la loro frase grande in Plein ("La vostra argenteria tornerà al suo originario splendore."), a destra i cinque materiali in righe; sotto, come si fa in tre frasi, "Mandate le foto del pezzo" e il telefono. Nessuna foto: il lavoro non è fotografato.
 5. **Hotel e ristoranti**: due pezzi tondi visti dall'alto (sottopiatto e vassoio Inglese) sovrapposti a sinistra, il testo a destra con la rimessa a nuovo, l'argentatura dell'acciaio, Area clienti ed export.
-6. **Alfredo Varotto** (fascia stretta): la citazione della pagina Azienda in Supreme a 30 px su otto colonne, la fonte sotto.
+6. **Alfredo Varotto** (fascia stretta): due ovali con i titoli 925 e 800, come impressi sull'oggetto (Rowan in un filo), e accanto la citazione della pagina Azienda in Plein a 30 px, la fonte sotto.
 7. **Contatti**: il telefono grande da toccare, email, indirizzo con la mappa, fax, "prima di passare, chiamate"; il modulo "Scrivete la richiesta" (prepara l'email, come la versione di oggi); accanto "Writing from abroad" in inglese con export@; lo shop e il suo WhatsApp per le domande sugli articoli.
 8. **Piede** (inchiostro): marchio, ragione sociale, indirizzo, P.IVA, note su privacy e cookie, Area clienti, shop, sito inglese di oggi.
 
@@ -102,4 +102,4 @@ La sezione firma è la 2: un'idea (la tavola intera in argento massiccio, pezzo 
 
 Riscaricate il 7/11/2026 dal sito di oggi in `assets/originali/` (fuori da git). La scoperta: ogni miniatura delle pagine di categoria apre `immagine.asp?PathImm=<nome>`, che mostra il file della cartella **`immaginiAltaRisoluzione/`**, fino a 1280 px (una brocca Royal Queen a 1869x2121). Le miniature che si vedevano erano di 100-500 px. Scaricati 1.165 file (93 MB, `assets/originali/alta/`): tutti i pezzi dei marchi Varotto Alfredo (647), Royal Queen (446) e Royal England (72), dalle 312 pagine di categoria in italiano; più le 70 immagini delle pagine principali e della versione inglese (`assets/originali/sito/`, tra cui `assistenza-clienti.jpg` a 932x1097, posate così sbiadite da essere solo uno sfondo). La versione inglese usa gli stessi file.
 
-Trattamento unico (`_prova/he/script/immagini.py`): campo piatto (il fondo dello studio, bianco o grigio sfumato, stimato con un polinomio e portato a bianco), saturazione al 30 % (l'argento resta neutro, l'oro degli interni appena accennato), una curva leggera uguale per tutti, ritaglio sul pezzo; in pagina ogni foto sta in "moltiplica" sulla carta. Nessuna foto oltre la misura nativa: in pagina a 1440 tra 0,4 e 0,6 della misura del file, cioè nitide anche a doppia densità; la testa di leone a 1,0.
+Trattamento unico (`_prova/he/script/immagini.py`): campo piatto (il fondo dello studio, bianco o grigio sfumato, stimato con un polinomio e portato a bianco), saturazione al 30 % (l'argento resta neutro, l'oro degli interni appena accennato), una curva leggera uguale per tutti, ritaglio sul pezzo; in pagina ogni foto sta in "moltiplica" sulla carta. Nessuna foto oltre la misura nativa: in pagina a 1440 tra 0,4 e 0,6 della misura del file, cioè nitide anche a doppia densità; la testa di leone a 0,85. Per i due pezzi tondi visti dall'alto (sottopiatto e vassoio), che riempiono la foto, il fondo fuori dal profilo del pezzo (involucro convesso dei filetti) è portato a bianco: il campo piatto non aveva abbastanza fondo da misurare.
