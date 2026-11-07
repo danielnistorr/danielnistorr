@@ -90,5 +90,7 @@ Controllo d'uso finale (non un voto): un cliente tipo dal telefono deve trovare 
 - **Il gesto deve scoprire qualcosa.** Un gesto di scala su una foto già intera all'inizio è solo un cambio di sfondo: la fine del gesto mostra qualcosa che prima non si vedeva (la cornice parte stretta su un dettaglio).
 - **La sezione firma non è un negozio.** Niente bottoni "acquista" o "shop" dentro il culmine; le didascalie non ripetono la stessa parola su ogni pezzo.
 - **Il catalogo completo non va in home.** 27 righe di campioni fanno listino con qualunque tipografia: in home una riga per famiglia, il resto chiuso (`<details>`) o in una pagina a parte. Lo stesso vale per una riga ripetuta (nome, misura, tasselli) più di 5 volte.
+- **La cornice iniziale del gesto è anche la prima schermata ferma**: va allineata alla griglia del titolo e giudicata come una composizione finita, non come un riquadro che galleggia.
+- **Gli h2 di servizio non vanno oltre i 44 px**, con l'interlinea stretta e il tracking appena negativo: titoli secondari da 72 px in un grottesco pesante fanno sito di startup.
 - **Il voto che il costruttore si dà è in media 0,7 sopra quello del giudice** (8,1 contro 7,4). Non fidarti dell'autovoto: guarda i fotogrammi a piena misura come li guarderebbe un estraneo.
 - **Le foto pesano per il 40-60% della distanza da un 9.** Nella nota va sempre la lista delle foto da rifare: è materiale per vendere un servizio fotografico.
