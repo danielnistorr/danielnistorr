@@ -99,7 +99,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 }
 
 /* ---------- 2. laboratorio ---------- */
-.laboratorio{padding-block:calc(var(--he-sez) * .62) calc(var(--he-sez) * .8)}
+.laboratorio{padding-block:calc(var(--he-sez) * .62) calc(var(--he-sez) * .45)}
 .laboratorio .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr;column-gap:var(--he-col)}
 /* h2 di servizio: nel carattere del testo, mai oltre i 44 px */
 .laboratorio h2,.pasticceria h2,.noi h2{font:400 clamp(30px,3vw,44px)/1.1 var(--testo);letter-spacing:-.01em;text-wrap:balance}
@@ -172,7 +172,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .noi blockquote p{font-size:28px;line-height:1.36;letter-spacing:-.01em;text-wrap:pretty}
 .noi blockquote footer{margin-top:16px;font-size:15px;color:var(--grigio)}
 .noi .oggi{grid-column:8/13}
-.noi h2{text-wrap:pretty}
+.noi h2{text-wrap:balance}
 .noi .storia{margin-top:24px;max-width:36em}
 .noi .storia p + p{margin-top:14px}
 
@@ -335,6 +335,9 @@ ul,ol{list-style:none;margin:0;padding:0}
   var yR = Math.max(T + 0.30 * Fh, B + 4 - (fS - fR) * h * z);
   if (yR > T + 0.34 * Fh) {                            // la cornice si accorcia dal basso
     Fh = ((fS - fR) * h * z - 4) / (1 - 0.32); B = T + Fh; yR = T + 0.32 * Fh;
+    var bt = big.getBoundingClientRect().top - q.top;  // meglio ancora: fino alla prima riga del biglietto
+    var yR2 = bt + 4 - (fS - fR) * h * z;
+    if (bt < B && yR2 - 0.023 * h * z > T + 10) { B = bt; yR = yR2; }
   }
   var Fw = Math.min(larE * w * z, dx - sx), cR = dx - Fw / 2;
   var bx = cR - (cenR - 0.5) * w * z;                  // centro della bottiglia ingrandita: RIZZI al centro della cornice
