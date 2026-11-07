@@ -22,3 +22,5 @@ Licenze verificate il 19/10/2026 sulla pagina di ogni foto:
 File immagine scaricati da images.unsplash.com e images.pexels.com (versione grande, non l'originale a piena risoluzione).
 
 Home finale (sito/index.html, versione del 20/10/2026, chiusura con la foto della squadra): nessuna di queste foto è più in pagina. La foto di Kelly Sikkema (campioni metallizzati, non del catalogo) è stata tolta; tutte le immagini della home sono di Paraga Pelli (drappo, scansioni, box, corsia del magazzino, squadra in magazzino).
+
+Home HE (sito-he/index.html, 7/11/2026): nessuna foto di repertorio e nessuna di queste foto esterne. Tutte le immagini vengono da paragapelli.com: la corsia del magazzino, le pelli sui carrelli (ritaglio senza persone dello sfondo di Chi siamo), quattro foto del servizio "Azienda" a 350 px, le grane dalle copertine dei cataloghi, il box-campionario, le scansioni dei colori. Dettagli in screenshot/he/NOTA-HE.md.
