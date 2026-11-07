@@ -44,3 +44,15 @@ Solo foto e grafiche dell'azienda, dalla libreria media del loro sito (diritti d
 - Loghi: `logo-distilleria-rizzi-scritta-1286x168.png` e `logo-distilleria-rizzi-nero-1500x300.png`, ricolorati in inchiostro.
 - Le foto Pexels di Kunuk (spezie) e Reding (bottiglia e bicchierini) erano nella versione precedente e sono state tolte nella rifinitura del 24/10/2026: nella home finale non c'è nessuna foto di repertorio.
 - Caratteri (non immagini, per completezza): Zodiak e Switzer, Fontshare, ITF Free Font License, scaricati il 24/10/2026 da api.fontshare.com in `_prova/crawl/fontshare/`.
+
+## Usate nella home HE (7/11/2026, sito-he/img/)
+
+Riscaricate il 7/11/2026 dalla libreria media di WordPress del loro sito (`wp-json/wp/v2/media`, 123 voci, 159 file con le varianti senza `-scaled` e senza il suffisso `-e<numero>`), in `assets/originali/`. Solo foto e grafiche dell'azienda, diritti da confermare con loro; nessuna foto di repertorio, nessuna immagine generata. Trattamento unico in `_prova/he/script/immagini.py`.
+- `bitter-*.webp` e `bitter-s-*.webp`: `2023-01-bott-bitterclassico.png` (498x2010; sul sito c'è solo la versione ritagliata da 124x500).
+- Scala dei gradi: `2023-01-bott-aperizzi.png` (490x1884), `2024-02-CARCIOFO.png` (765x2802), `2024-02-LEONE.png` (944x3767), `2024-02-PUNCHARANCIO.png`, `2024-02-PRUGNA.png`, `2024-02-PINALPE.png`, `2023-02-tani-vodka.png` (1286x1932).
+- `aromi-*.webp`: `2024-01-aromi.png` (2084x2084).
+- `alcolato-ore-*.webp` e `alcolato-settimane-*.webp`: `2023-06-20230530_180130-01.jpeg` e `2023-06-20230530_175656-01.jpeg` (2084x4624, gli originali dei file `-scaled`), l'infusione di fiori di sambuco del giugno 2023.
+- `titolari-*.webp`: `2024-10-1000070154-02.jpeg` (1200x1600), Maddalena e Alessandro all'inaugurazione dello spaccio.
+- `spaccio-*.webp`: `2025-08-5.jpg` (1600x1600), tagliata sugli scaffali.
+- `logo-inchiostro.png`, `logo-carta.png`: `2022-11-logo0-e1669716062417.png` (1286x168) ricolorato; `calice.png`: `2022-11-icona.png`.
+- Caratteri (per completezza): Besley (SIL OFL 1.1, Google Fonts) ed Excon (ITF Free Font License 2.0, Fontshare), in `sito-he/fonts/` con le licenze.
