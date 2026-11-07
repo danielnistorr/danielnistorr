@@ -70,3 +70,19 @@ Guarda il foglio dei fotogrammi a 1440 e a 390, le prime schermate ferme e, per 
 Soglia: media pesata almeno 8. Sotto, il giudice scrive i 5 interventi che valgono di più, in ordine, e si fa un giro di ritocco. Il giudice dice anche quanto della distanza dipende dalle foto.
 
 Controllo d'uso finale (non un voto): un cliente tipo dal telefono deve trovare in meno di 10 secondi il numero, l'indirizzo e che cosa fanno.
+
+## 8. Lezioni dei piloti (Bottega dell'Arte 6,7, Foralberg 7,4, Ruffatti 7,5 al primo giudizio)
+
+- **Nitidezza, non solo pixel.** Il tetto di 1,25 misura i pixel, non la nitidezza. Prima di dare a una foto la pagina intera o la fine del gesto d'apertura, guardala al 100% a 1440: se è morbida va in una cornice media (`data-he-scale-zoom="1"`, `data-he-scale-fine="inset(...)"`). Riscarica sempre gli originali più grandi dalla libreria media del sito.
+- **L'idea va nel display, mai in didascalia.** La frase che regge la pagina sta in grande, nel carattere display.
+- **Il kit non è una lista.** Indice, prima e dopo, racconto con foto ferma e galleria orizzontale in fila fanno la demo del kit. Bastano un gesto e al massimo due sostegni; gli altri cambi di ritmo si fanno con scala e impaginazione.
+- **Due sezioni di fila non hanno lo stesso schema.** Per esempio foto a sinistra e testo a destra due volte. Niente vuoti di mezza pagina intorno a foto piccole: o la foto cresce fino alla misura nativa, o la sezione si stringe.
+- **La sezione firma è un'idea con una prova fotografica**, non il logo ingrandito.
+- **Nessuna etichetta sopra i titoli**, nemmeno numeri "01" o categorie in maiuscoletto, nemmeno solo sul telefono.
+- **Bottoni:** si invertono di colpo, non sbiadiscono.
+- **Un solo trattamento delle foto** per tutta la pagina.
+- **Carattere display solo nei momenti forti.** Gli h2 di servizio vanno nel carattere del testo.
+- **Testi grandi:** un testo di 30 parole e più non va oltre i 30 px, altrimenti sembra una pagina pubblicitaria.
+- **Niente sipario d'ingresso** che ritardi la pagina oltre 1 s.
+- **Fatti "da confermare" fuori anche dalla prima schermata**, compresi indirizzi e date.
+- **Le foto pesano per il 40-60% della distanza da un 9.** Nella nota va sempre la lista delle foto da rifare: è materiale per vendere un servizio fotografico.

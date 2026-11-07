@@ -8,6 +8,8 @@
    data-he-split          titolo che sale riga per riga (al massimo 3 per pagina); data-he-subito = all'apertura
    data-he-scale          sezione .he-scala: la foto parte incorniciata e si allarga a tutta pagina scorrendo;
                           data-he-scale-zoom="1" toglie l'ingrandimento iniziale (da usare con foto piccole o morbide)
+                          data-he-scale-fine="inset(0% 9% 17% 9%)" ferma il gesto prima della pagina intera
+                          (per foto che a tutta pagina si vedrebbero morbide)
    data-he-parallax="0.12" contenitore .he-parallax: la foto scorre piu' lenta della pagina
    data-he-wipe="su|sinistra|destra"  la foto si scopre con un taglio netto quando entra
    data-he-horizontal     sezione .he-oriz con .he-oriz-binario: galleria orizzontale fissata
@@ -129,7 +131,8 @@
     var cornice = sec.getAttribute("data-he-scale") || "inset(14% 20% 14% 20% round 2px)";
     mm.add("(min-width: 900px)", function () {
       var tl = gsap.timeline({ scrollTrigger: { trigger: sec, start: "top top", end: "+=110%", scrub: 0.6, pin: true, anticipatePin: 1 } });
-      tl.fromTo(media, { clipPath: cornice }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" }, 0);
+      var fine = sec.getAttribute("data-he-scale-fine") || "inset(0% 0% 0% 0% round 0px)";
+      tl.fromTo(media, { clipPath: cornice }, { clipPath: fine, ease: "none" }, 0);
       var zoom = parseFloat(sec.getAttribute("data-he-scale-zoom") || "1.28");
       if (img && zoom !== 1) tl.fromTo(img, { scale: zoom }, { scale: 1, ease: "none" }, 0);
       var via = sec.querySelectorAll("[data-he-scale-via]");
