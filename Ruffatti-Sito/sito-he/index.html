@@ -96,17 +96,31 @@ img{height:auto}
 .ap-sotto .azioni{margin-top:14px;display:flex;flex-direction:column;align-items:flex-start}
 .ap-sotto .azioni a{display:inline-flex;align-items:center;min-height:44px;font-size:17px}
 .ap-didas{font-size:16px;line-height:1.45}
-.ap-didas b{display:block;font-weight:500;font-size:clamp(18px,1.4vw,21px);line-height:1.3;margin-bottom:8px;letter-spacing:-.01em;text-wrap:balance}
+/* l'idea della pagina, nel carattere display */
+.ap-didas b{display:block;font-family:var(--display);font-weight:300;font-variation-settings:"opsz" 100;letter-spacing:-.012em;
+  font-size:clamp(32px,2.9vw,46px);line-height:.95;margin-bottom:14px;text-wrap:balance}
 .ap-didas .en{display:block;margin-top:8px;font-size:15px}
 @media (min-width:900px){
-  .apertura .he-scala-media{clip-path:inset(11% 36.7% 37.8% 34.2%)}
+  /* la foto non va mai oltre la sua misura nativa: oltre i 1597 px la scena resta al centro */
+  .apertura{--ap-w:min(100%,1597px)}
+  .apertura .he-scala-media{max-width:1597px;margin-inline:auto;clip-path:inset(11% 36.7% 37.8% 34.2%)}
   .apertura .he-scala-testo{position:absolute;inset:0;z-index:2;pointer-events:none}
   .apertura .he-scala-testo a{pointer-events:auto}
   .ap-lato{position:absolute;left:var(--he-m);top:calc(11% + 2px);width:24%}
   .ap-titolo{position:absolute;left:0;width:97.5%;bottom:4.2%;text-align:center}
   .ap-sotto{position:absolute;right:var(--he-m);top:calc(11% + 2px);width:min(390px,27%)}
   .ap-didas{position:absolute;left:var(--he-m);top:calc(11% + 150px);width:min(330px,26%)}
-  .he-moto .ap-didas{left:auto;right:var(--he-m);top:47%;background:var(--pietra);padding:22px 24px 24px;margin-right:-24px;width:min(438px,30%)}
+  /* fine del gesto: la foto si ferma in una cornice media (data-he-scale-fine) e l'idea sta nella fascia di pietra sotto */
+  .he-moto .ap-didas{left:calc((100% - var(--ap-w)) / 2 + var(--ap-w) * .09);right:calc((100% - var(--ap-w)) / 2 + var(--ap-w) * .09);
+    top:auto;bottom:0;height:17%;width:auto;display:flex;align-items:center;justify-content:space-between;gap:var(--he-col)}
+  .he-moto .ap-didas b{font-size:min(clamp(56px,6vw,96px),calc((82vw - 280px) / 10.7));line-height:.9;margin:0;white-space:nowrap;padding-bottom:.06em}
+  .he-moto .ap-nota{flex:0 1 300px;min-width:240px;font-size:15px;line-height:1.45;color:var(--stagno)}
+  .he-moto .ap-resto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+@media (min-width:900px) and (max-width:1199px){
+  /* qui la fascia tiene solo l'idea; la didascalia resta per i lettori di schermo, ed e' intera con "riduci movimento" */
+  .he-moto .ap-didas b{font-size:clamp(56px,6vw,96px)}
+  .he-moto .ap-nota{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;min-width:0}
 }
 @media (max-width:899px){
   .apertura.he-scala{height:auto;overflow:visible;padding-top:calc(var(--he-offset) + 26px)}
@@ -117,41 +131,42 @@ img{height:auto}
   .ap-titolo h1 .riga{display:block}
   .ap-sotto{order:3;padding-inline:var(--he-m);margin-top:20px}
   .apertura .he-scala-media{order:4;position:relative;inset:auto;aspect-ratio:4/5;margin-top:30px}
-  .ap-didas{order:5;padding:16px var(--he-m) 0}
+  .ap-didas{order:5;padding:22px var(--he-m) 0}
+  .ap-didas b{font-size:clamp(40px,11vw,56px);margin-bottom:14px}
   .apertura{display:flex;flex-direction:column}
 }
 
 /* ---------- 2. manifesto ---------- */
-.manifesto{padding-block:clamp(110px,13vw,220px) clamp(100px,12vw,210px)}
-.manifesto p.grande{grid-column:1 / span 10;font-weight:500;font-size:clamp(25px,3.15vw,50px);line-height:1.14;letter-spacing:-.022em;text-wrap:pretty}
+.manifesto{padding-block:clamp(55px,6.5vw,110px) clamp(50px,6vw,105px)}
+.manifesto p.grande{grid-column:4 / 11;font-weight:500;font-size:clamp(22px,2vw,30px);line-height:1.3;letter-spacing:-.012em;text-wrap:pretty}
 .manifesto p.grande .en{display:block;margin-top:.9em;max-width:38em;font-weight:400;font-size:clamp(16px,1.2vw,18px);line-height:1.5;letter-spacing:0}
 @media (max-width:899px){.manifesto p.grande{grid-column:1 / -1}}
 
 /* ---------- 3. la materia ---------- */
-.materia{padding-bottom:var(--he-sez)}
-.materia .he-grid{row-gap:0;align-items:start}
-.m-testa{grid-column:1 / span 5;grid-row:1}
+.materia{padding-bottom:clamp(24px,3vw,48px)}
+.materia .he-grid{align-items:start}
+/* il titolo resta fermo mentre scorrono le quattro foto */
+.m-testa{grid-column:1 / span 4;position:sticky;top:120px}
 .m-testa .corpo{margin-top:22px}
 .m-testa .lnk{display:inline-block;margin-top:18px;font-size:16px}
-.mf img{display:block;width:100%}
-.mf .he-media{background:var(--pietra-2)}
-.mf-sipo{grid-column:7 / span 6;grid-row:1}
-.mf-lastra{grid-column:1 / span 6;grid-row:2;margin-top:clamp(60px,8vw,140px)}
-.mf-canne{grid-column:8 / span 5;grid-row:2;margin-top:clamp(160px,20vw,340px)}
-.mf-noci{grid-column:3 / span 5;grid-row:3;margin-top:clamp(60px,6vw,110px)}
+/* quattro ritagli 4:5 in una griglia 2x2 (colonne 5-8 e 9-12), la colonna destra piu' in basso */
+.m-foto{grid-column:5 / -1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--he-col);row-gap:72px;padding-bottom:160px}
+.m-foto .mf:nth-child(even){position:relative;top:160px}
+.mf{max-width:512px}
+.mf .he-media{aspect-ratio:4/5;background:var(--pietra-2)}
+.mf img{display:block;width:100%;height:100%;object-fit:cover}
 .mf .h3{margin-top:16px}
 .mf .didas{margin-top:6px}
 @media (max-width:899px){
   .materia .he-grid{display:block}
-  .mf{margin-top:56px}
-  .mf-sipo{margin-top:40px}
-  .mf-lastra{width:78%}
-  .mf-canne{width:82%;margin-left:auto}
-  .mf-noci{width:90%}
+  .m-testa{position:static}
+  .m-foto{display:block;padding-bottom:0}
+  .m-foto .mf:nth-child(even){top:0;margin-left:auto}
+  .mf{margin-top:48px}
 }
 
 /* ---------- 4. stacco alla misura vera ---------- */
-.stacco{min-height:92vh;min-height:92svh;display:grid;place-items:center;padding-block:clamp(60px,8vw,120px)}
+.stacco{min-height:auto;display:grid;place-items:center;padding-block:80px}
 .st-in{display:grid;grid-template-columns:minmax(0,800px) minmax(180px,250px);gap:clamp(20px,3vw,44px);align-items:end;max-width:calc(100% - 2 * var(--he-m))}
 .st-in img{display:block;width:100%;max-width:800px}
 .st-nota{font-size:15px;line-height:1.5;color:var(--stagno);padding-bottom:6px}
@@ -160,28 +175,29 @@ img{height:auto}
 @media (max-width:1100px){.st-in{grid-template-columns:1fr}.st-nota{max-width:30em}}
 
 /* ---------- 5. firma: Trompette en chamade ---------- */
-.firma{background:var(--mogano);color:var(--pietra);padding-block:clamp(90px,10vw,170px)}
+.firma{background:var(--mogano);color:var(--pietra);padding-block:clamp(56px,6vw,96px);
+  --sborda:calc(var(--he-m) + max(0px, (100vw - var(--he-max)) / 2))}
 .firma ::selection{background:var(--ottone);color:var(--mogano)}
 .firma .titolo{font-family:var(--display);font-weight:420;font-variation-settings:"opsz" 100;color:var(--ottone);
-  font-size:clamp(58px,14.9vw,286px);line-height:.86;letter-spacing:-.018em;margin:0 0 0 -.035em;white-space:nowrap}
-.firma .he-grid{margin-top:clamp(40px,5vw,80px);align-items:start}
-.f-foto{grid-column:1 / span 7}
+  font-size:clamp(58px,14.9vw,266px);line-height:.86;letter-spacing:-.018em;margin:0 0 0 -.035em;white-space:nowrap}
+.firma .he-grid{margin-top:clamp(28px,3vw,48px);align-items:start}
+/* le trombe escono dal bordo della pagina come escono dalla cassa; mai oltre 1,25 della misura nativa (800 px) */
+.f-foto{grid-column:6 / -1;justify-self:end;width:calc(100% + var(--sborda));max-width:1000px;margin-right:calc(-1 * var(--sborda))}
 .f-foto img{display:block;width:100%}
-.f-testo{grid-column:9 / span 4}
+.f-foto .didas{padding-right:var(--he-m)}
+.f-testo{grid-column:1 / span 4;grid-row:1;align-self:end;padding-bottom:60px}
 .f-testo p{font-size:clamp(17px,1.25vw,18px);line-height:1.62}
 .f-testo p + p{margin-top:16px}
 .f-testo .en{color:var(--ottone);font-size:clamp(19px,1.5vw,22px);line-height:1.35;font-weight:500;letter-spacing:-.01em}
 .f-testo .dato{border-top:1px solid rgba(217,181,110,.45);padding-top:16px;margin-top:26px;font-size:16px;line-height:1.5}
 .f-testo .dato a{color:var(--ottone)}
-.f-sald{width:100%;max-width:576px;margin-top:40px}
-.f-sald img{display:block;width:100%}
 .firma .didas{color:rgba(242,238,230,.72)}
 .firma .didas b{color:var(--pietra)}
 @media (max-width:899px){
   .firma .titolo{white-space:normal;font-size:clamp(58px,21vw,150px);line-height:.88}
   .firma .he-grid{display:block}
+  .f-foto{width:auto;max-width:none;margin-right:calc(-1 * var(--he-m))}
   .f-testo{margin-top:30px}
-  .f-sald{width:72%;margin-top:30px}
 }
 
 /* ---------- 5b. un luogo ---------- */
@@ -210,8 +226,11 @@ img{height:auto}
 .citazione figcaption{margin-top:12px;font-size:15px;line-height:1.45;color:var(--stagno)}
 .l-link{grid-column:7 / span 6;grid-row:4;margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:16px}
 @media (max-width:899px){
-  .luoghi .he-grid{display:block}
-  .l-foto{margin-top:36px}
+  /* sul telefono il titolo viene prima della foto di Uppsala */
+  .luoghi .he-grid{display:flex;flex-direction:column}
+  .l-testa{order:-1}
+  .l-foto{margin-top:32px}
+  .disposizione{margin-top:40px}
   .disposizione li{flex-wrap:wrap;gap:2px 10px}
   .disposizione .guida{display:none}
   .disposizione .dati{text-align:left;white-space:normal;width:100%}
@@ -335,7 +354,7 @@ img{height:auto}
 <main id="contenuto">
 
 <!-- 1. apertura -->
-<section class="he-scala apertura" id="apertura" data-he-scale="inset(11% 36.7% 37.8% 34.2% round 0px)" data-he-scale-zoom="1" aria-labelledby="titolo">
+<section class="he-scala apertura" id="apertura" data-he-scale="inset(11% 36.7% 37.8% 34.2% round 0px)" data-he-scale-fine="inset(0% 9% 17% 9% round 0px)" data-he-scale-zoom="1" aria-labelledby="titolo">
   <div class="he-scala-media he-grana">
     <picture>
       <source media="(max-width: 899px)" srcset="img/apertura-tel-600.webp 600w, img/apertura-tel-900.webp 900w" sizes="100vw" width="900" height="1125">
@@ -353,7 +372,7 @@ img{height:auto}
       <p class="en" lang="en">Builders and restorers of pipe organs, Padua, Italy.</p>
       <p class="azioni"><a class="lnk" href="#restauro">Restauro di organi antichi</a><a class="lnk" href="#english" lang="en">Write to us in English</a></p>
     </div>
-    <p class="ap-didas" data-he-scale-entra><b>Prima di partire, ogni organo si monta qui.</b>L'organo della Cattedrale di Aguascalientes, Messico (due tastiere, 2005), montato nella nostra falegnameria di Padova. Ogni strumento Ruffatti, anche di grande dimensione, viene premontato in fabbrica.<span class="en" lang="en">Every Ruffatti organ, regardless of size, is assembled in our factory prior to packing and shipping.</span></p>
+    <p class="ap-didas" data-he-scale-entra><b>Prima di partire, ogni organo si monta qui.</b><span class="ap-nota">L'organo della Cattedrale di Aguascalientes, Messico (due tastiere, 2005), montato nella nostra falegnameria di Padova.</span><span class="ap-resto"> Ogni strumento Ruffatti, anche di grande dimensione, viene premontato in fabbrica.<span class="en" lang="en">Every Ruffatti organ, regardless of size, is assembled in our factory prior to packing and shipping.</span></span></p>
   </div>
 </section>
 
@@ -372,29 +391,31 @@ img{height:auto}
       <p class="corpo">Ben pochi organari al giorno d'oggi costruiscono le loro canne, preferendo comperarle da fornitori di parti d'organo. Noi partiamo dal tronco e dal lingotto.</p>
       <a class="lnk" href="https://ruffatti.com/come-costruiamo-i-nostri-organi/">Come costruiamo i nostri organi</a>
     </div>
-    <figure class="mf mf-sipo">
-      <div class="he-media he-grana"><img src="img/sipo-800.webp" srcset="img/sipo-480.webp 480w, img/sipo-800.webp 800w" sizes="(min-width: 900px) 46vw, 100vw" width="800" height="544" loading="lazy" decoding="async" alt="Un tronco di mogano sipo appena arrivato, sollevato da un carrello, con un uomo accanto"></div>
-      <figcaption><h3 class="h3">Il legname</h3><p class="didas">La scelta di un tronco di mogano subito dopo l'arrivo via nave dall'Africa. Usiamo mogano sipo certificato FSC, stagionato naturalmente nel nostro laboratorio per cinque anni.</p></figcaption>
-    </figure>
-    <figure class="mf mf-lastra">
-      <div class="he-media he-grana"><img src="img/lastra-800.webp" srcset="img/lastra-480.webp 480w, img/lastra-800.webp 800w" sizes="(min-width: 900px) 46vw, 80vw" width="800" height="798" loading="lazy" decoding="async" alt="Due artigiani in tuta bianca fanno scorrere la cassetta del metallo fuso sul banco di fusione"></div>
-      <figcaption><h3 class="h3">La lastra</h3><p class="didas">Stagno e piombo fusi in un crogiolo e colati sul banco di fusione, che ha il ripiano di marmo molto spesso, ricoperto da un tessuto speciale.</p></figcaption>
-    </figure>
-    <figure class="mf mf-canne">
-      <div class="he-media he-grana"><img src="img/canne-800.webp" srcset="img/canne-480.webp 480w, img/canne-800.webp 800w" sizes="(min-width: 900px) 38vw, 82vw" width="800" height="905" loading="lazy" decoding="async" alt="Le bocche di tre grandi canne di metallo lucidate a mano"></div>
-      <figcaption><h3 class="h3">Le canne ad anima</h3><p class="didas">Anche le canne di 8 piedi collocate all'interno dell'organo, mai visibili, sono di lega al 95% di stagno, e tutte, grandi e piccole, sono lucidate a mano.</p></figcaption>
-    </figure>
-    <figure class="mf mf-noci">
-      <div class="he-media he-grana"><img src="img/noci-640.webp" srcset="img/noci-400.webp 400w, img/noci-640.webp 640w" sizes="(min-width: 900px) 37vw, 90vw" width="640" height="512" loading="lazy" decoding="async" alt="Una cassetta di noci di metallo tornite, allineate in file"></div>
-      <figcaption><h3 class="h3">Le canne ad ancia</h3><p class="didas">Il metallo per le noci viene fuso a mano con metodi antichi; poi ogni noce viene tornita da sola e adattata al proprio piede. Costruire canne ad ancia è diventata attività rara per gli organari.</p></figcaption>
-    </figure>
+    <div class="m-foto">
+      <figure class="mf mf-sipo">
+        <div class="he-media he-grana"><img src="img/sipo-435.webp" width="435" height="544" loading="lazy" decoding="async" alt="La testa di un tronco di mogano sipo appena arrivato, sollevato da un carrello, con un uomo che la misura"></div>
+        <figcaption><h3 class="h3">Il legname</h3><p class="didas">La scelta di un tronco di mogano subito dopo l'arrivo via nave dall'Africa. Usiamo mogano sipo certificato FSC, stagionato naturalmente nel nostro laboratorio per cinque anni.</p></figcaption>
+      </figure>
+      <figure class="mf mf-lastra">
+        <div class="he-media he-grana"><img src="img/lastra-420.webp" width="420" height="525" loading="lazy" decoding="async" alt="Mani con i guanti da lavoro fanno scorrere la cassetta del metallo fuso sul banco di fusione"></div>
+        <figcaption><h3 class="h3">La lastra</h3><p class="didas">Stagno e piombo fusi in un crogiolo e colati sul banco di fusione, che ha il ripiano di marmo molto spesso, ricoperto da un tessuto speciale.</p></figcaption>
+      </figure>
+      <figure class="mf mf-canne">
+        <div class="he-media he-grana"><img src="img/canne-512.webp" width="512" height="640" loading="lazy" decoding="async" alt="Le bocche di due grandi canne di metallo lucidate a mano"></div>
+        <figcaption><h3 class="h3">Le canne ad anima</h3><p class="didas">Anche le canne di 8 piedi collocate all'interno dell'organo, mai visibili, sono di lega al 95% di stagno, e tutte, grandi e piccole, sono lucidate a mano.</p></figcaption>
+      </figure>
+      <figure class="mf mf-noci">
+        <div class="he-media he-grana"><img src="img/noci-410.webp" width="410" height="512" loading="lazy" decoding="async" alt="Una cassetta di noci di metallo tornite, allineate in file"></div>
+        <figcaption><h3 class="h3">Le canne ad ancia</h3><p class="didas">Il metallo per le noci viene fuso a mano con metodi antichi; poi ogni noce viene tornita da sola e adattata al proprio piede. Costruire canne ad ancia è diventata attività rara per gli organari.</p></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
 <!-- 4. stacco: una canna ad ancia alla sua misura -->
 <section class="stacco" aria-label="Una canna ad ancia">
   <figure class="st-in">
-    <img src="img/ancia-800.webp" width="800" height="603" loading="lazy" decoding="async" alt="Le parti di una canna ad ancia smontata, su fondo chiaro">
+    <img src="img/ancia-800.webp" width="800" height="360" loading="lazy" decoding="async" alt="Le parti di una canna ad ancia smontata, su fondo chiaro">
     <figcaption class="st-nota"><b>Una canna ad ancia, smontata.</b>«La perfezione nei dettagli è garanzia di stabilità sonora.» Molti nostri strumenti comprendono ance di grandi dimensioni: nel video, la costruzione di una Bombarda di 32 piedi.<a class="lnk" href="https://www.youtube.com/watch?v=8TxRrDsmd4M"><span lang="en">Making 32′ Reeds</span>, il video</a></figcaption>
   </figure>
 </section>
@@ -405,17 +426,13 @@ img{height:auto}
     <h2 class="titolo" id="t-chamade" lang="fr" data-he-split>Trompette en chamade</h2>
     <div class="he-grid">
       <figure class="f-foto">
-        <div class="he-media he-grana"><img src="img/chamade-800.webp" srcset="img/chamade-480.webp 480w, img/chamade-800.webp 800w" sizes="(min-width: 900px) 53vw, 100vw" width="800" height="532" loading="lazy" decoding="async" alt="Le trombe orizzontali d'ottone dell'organo della Cattedrale di Uppsala viste dal basso, contro la volta dipinta"></div>
+        <div class="he-media he-grana"><img src="img/chamade-800.webp" srcset="img/chamade-480.webp 480w, img/chamade-800.webp 800w" sizes="(min-width: 900px) 57vw, 100vw" width="800" height="532" loading="lazy" decoding="async" alt="Le trombe orizzontali d'ottone dell'organo della Cattedrale di Uppsala viste dal basso, contro la volta dipinta"></div>
         <figcaption class="didas"><b>Cattedrale di Uppsala, Svezia.</b> Le trombe orizzontali in ottone, viste dal basso.</figcaption>
       </figure>
       <div class="f-testo">
         <p class="en" lang="en">«The signature stop of Fratelli Ruffatti is the beautiful Trompette en Chamade.»</p>
         <p>Le trombe orizzontali, o «en chamade», le facciamo con i risuonatori in lastra di ottone, di foggia e lavorazione molto simile alle trombe dell'orchestra. Il padiglione viene formato al tornio e poi saldato con argento, per una saldatura solida e invisibile.</p>
         <p class="dato">A Uppsala, nel 2009: Trompette en Chamade 8′, 61 canne, sulla quarta tastiera. <a class="lnk" href="https://ruffatti.com/wp-content/uploads/2018/11/Uppsala.pdf">La disposizione fonica (PDF)</a></p>
-        <figure class="f-sald">
-          <div class="he-media he-grana"><img src="img/saldatura-576.webp" srcset="img/saldatura-400.webp 400w, img/saldatura-576.webp 576w" sizes="(min-width: 900px) 22vw, 72vw" width="576" height="485" loading="lazy" decoding="async" alt="La saldatura con l'argento del padiglione di una tromba d'ottone, nel laboratorio"></div>
-          <figcaption class="didas">Il padiglione saldato con argento, in laboratorio.</figcaption>
-        </figure>
       </div>
     </div>
   </div>
@@ -476,7 +493,7 @@ img{height:auto}
       </figure>
       <figure role="listitem">
         <div class="he-grana he-media"><img src="img/r-callido-520.webp" srcset="img/r-callido-300.webp 300w, img/r-callido-520.webp 520w" sizes="(min-width: 900px) 18vw, 68vw" width="520" height="694" loading="lazy" decoding="async" alt="L'organo di Gaetano Callido nel Santuario di Santa Maria Goretti a Corinaldo, cassa bianca e oro"></div>
-        <figcaption class="didas"><b>Settecento</b> Gaetano Callido. <span>Santuario di S. Maria Goretti, Corinaldo (Ancona).</span></figcaption>
+        <figcaption class="didas"><b class="num">1766</b> Gaetano Callido. <span>Santuario di S. Maria Goretti, Corinaldo (Ancona).</span></figcaption>
       </figure>
       <figure role="listitem">
         <div class="he-grana he-media"><img src="img/r-1802-520.webp" srcset="img/r-1802-300.webp 300w, img/r-1802-520.webp 520w" sizes="(min-width: 900px) 18vw, 68vw" width="520" height="693" loading="lazy" decoding="async" alt="L'organo di Girolamo Zavarise nella chiesa parrocchiale di Isera, dentro un arco di pietra"></div>
