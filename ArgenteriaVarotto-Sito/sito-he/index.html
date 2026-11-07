@@ -9,6 +9,22 @@
 <link rel="preload" href="fonts/rowan-300.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plein-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/posate-460.webp" as="image" type="image/webp" imagesrcset="img/posate-460.webp 460w, img/posate-802.webp 802w" imagesizes="(max-width: 899px) 46vw, 377px">
+<script>
+/* prima di disegnare, con il movimento e da 900 px in su: l'astuccio parte socchiuso, una fessura sul coltello e sul cucchiaio.
+   La fessura si misura sulla foto come la impagina il CSS (altezza min(64vh, 600px), centro al 75 %): a ogni misura di finestra
+   lascia fuori la forchetta e il cucchiaino, che arrivano solo quando l'astuccio si apre. */
+(function (d) {
+  var h = d.documentElement;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !matchMedia("(min-width: 900px)").matches) return;
+  var W = h.clientWidth, a = Math.min(.64 * innerHeight, 600), l = a * 802 / 1275, x = .75 * W - a * .315;
+  /* nel file (802 px di larghezza): la forchetta finisce a 0,243, il coltello comincia a 0,317,
+     il cucchiaio finisce a 0,762, il cucchiaino comincia a 0,797; la fessura taglia a meta' degli spazi */
+  var sx = (x + l * .28) / W * 100, dx = 100 - (x + l * .7795) / W * 100;
+  h.style.setProperty("--fessura", "inset(9% " + dx.toFixed(2) + "% 9% " + sx.toFixed(2) + "% round 0px)");
+  h.classList.add("pre-moto");
+  setTimeout(function () { if (!h.classList.contains("he-moto")) h.classList.remove("pre-moto"); }, 4000);
+})(document);
+</script>
 <link rel="stylesheet" href="kit/vendor/lenis.css">
 <link rel="stylesheet" href="kit/he.css">
 <style>
@@ -56,10 +72,10 @@ ul,ol{list-style:none;margin:0;padding:0}
 }
 .bottone:active{background:var(--blu);border-color:var(--blu);color:#fff}
 
-/* didascalie dei pezzi: nome, materiale e stile, codice del catalogo */
+/* didascalie dei pezzi: nome e stile del catalogo su una riga, il codice sotto, piccolo */
 .didascalia{font-size:14px;line-height:1.42;color:var(--grigio)}
-.didascalia b{display:block;font-weight:500;color:var(--inchiostro)}
-.didascalia .cod{font-variant-numeric:lining-nums;letter-spacing:.02em;white-space:nowrap}
+.didascalia b{font-weight:500;color:var(--inchiostro)}
+.didascalia .cod{display:block;margin-top:3px;font-size:12px;line-height:1.3;font-variant-numeric:lining-nums;letter-spacing:.05em;white-space:nowrap}
 .pezzo{margin:0}
 .pezzo img{display:block;mix-blend-mode:multiply}
 
@@ -88,13 +104,17 @@ ul,ol{list-style:none;margin:0;padding:0}
 .apertura .vai{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:26px;font-size:17px}
 .apertura .vai a{min-height:44px;display:inline-flex;align-items:center}
 .etichetta{font-size:14px;line-height:1.42;color:var(--grigio)}
-.etichetta b{display:block;font-weight:500;color:var(--inchiostro)}
+.etichetta b{font-weight:500;color:var(--inchiostro)}
+.etichetta .cod{display:block;margin-top:3px;font-size:12px;letter-spacing:.05em}
 
 @media (min-width:900px){
+  /* fermo ("riduci movimento", senza JavaScript): la finestra intera, con tutte le posate */
   .apertura .campo{clip-path:inset(9% 7% 9% 57%)}
+  /* con il movimento: la fessura sul coltello e sul cucchiaio (la stessa di data-he-scale, misurata nella testa della pagina) */
+  .pre-moto .apertura .campo,.he-moto .apertura .campo{clip-path:var(--fessura,inset(9% 18% 9% 69.4% round 0px))}
   .apertura .he-scala-media img.posate{position:absolute;width:auto;height:min(64vh,600px);object-fit:contain;
     left:calc(75% - min(64vh,600px) * .315);top:calc(48% - min(64vh,600px) * .5)}
-  .etichetta{position:absolute;left:calc(57% + 36px);bottom:calc(9% + 30px);width:calc(36% - 72px)}
+  .etichetta{display:none}
   .apertura .he-scala-testo{position:absolute;inset:0;z-index:2;color:#fff;mix-blend-mode:difference;pointer-events:none}
   .apertura .he-scala-testo a{pointer-events:auto}
   .apertura .sx{position:absolute;left:var(--he-m);top:0;bottom:0;width:50%;display:flex;flex-direction:column;justify-content:center;padding-top:calc(var(--testata) * .6)}
@@ -111,7 +131,8 @@ ul,ol{list-style:none;margin:0;padding:0}
 .ripiano .pezzo img{height:var(--h);width:auto;max-width:100%;object-fit:contain;object-position:50% 100%}
 .ripiano .didascalia{grid-row:3;margin-top:14px;padding-right:12px}
 .r1 .testa{grid-row:1;grid-column:5/13;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;align-self:stretch;text-align:right}
-.r1 .testa p{max-width:27em;font-size:clamp(17px,1.25vw,20px);line-height:1.5;text-align:left}
+.r1 .testa p{max-width:30em;font-size:clamp(17px,1.25vw,20px);line-height:1.5;text-align:left;text-wrap:pretty}
+.r1 .testa .fonte{display:block;margin-top:12px;font-size:14px;line-height:1.4;color:var(--grigio)}
 .firma{font:300 clamp(64px,13.6vw,236px)/.84 var(--display);letter-spacing:-.03em;margin:48px -.02em -.04em 0}
 .firma span{display:block}
 .r1 .candelabro{grid-column:1/5;justify-self:start;--h:clamp(300px,38.9vw,640px)}
@@ -126,25 +147,25 @@ ul,ol{list-style:none;margin:0;padding:0}
 .r2 .d-candeliere{grid-column:10/13}
 .r3 .servizio{grid-column:1/7;--h:clamp(170px,26.6vw,430px)}
 .r3 .d-servizio{grid-column:1/7}
-.r3 .secchiello{grid-column:7/10;justify-self:center;--h:clamp(190px,24.3vw,390px)}
-.r3 .d-secchiello{grid-column:7/10}
-.r3 .shop{grid-row:1;grid-column:10/13;align-self:end;padding-bottom:28px}
-.r3 .shop p{font-size:16px;line-height:1.5;margin-bottom:20px}
+.r3 .secchiello{grid-column:7/11;justify-self:center;--h:clamp(190px,24.3vw,390px)}
+.r3 .d-secchiello{grid-column:7/11}
 
 /* ---------- 3. 999 ---------- */
 .puro{padding-block:calc(var(--he-sez) * .5) var(--he-sez)}
 .puro .alto{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:end}
-.cifra{grid-column:1/8;font:300 clamp(150px,26vw,460px)/.74 var(--display);font-variant-numeric:oldstyle-nums;letter-spacing:-.04em;margin-left:-.05em;padding-bottom:.18em}
-.puro .leone{grid-column:8/13;grid-row:1 / span 2;justify-self:center;align-self:end}
-.puro .leone .cornice{width:clamp(220px,34.7vw,560px);aspect-ratio:588/700;overflow:hidden;mix-blend-mode:multiply}
+.cifra{grid-column:1/8;font:300 clamp(150px,26vw,460px)/.74 var(--display);font-variant-numeric:oldstyle-nums;letter-spacing:-.04em;margin-left:-.05em;padding-bottom:.161em}
+/* il leone accanto al 999, la base del collare sulla base delle cifre; piccolo: il file del catalogo ha blocchi JPEG,
+   a meno della meta' della sua misura resta nitido anche sugli schermi retina */
+.puro .leone{grid-column:8/11;grid-row:1;justify-self:start;align-self:end;position:relative}
+.puro .leone .cornice{width:clamp(200px,18vw,260px);aspect-ratio:588/700;overflow:hidden;mix-blend-mode:multiply}
 /* la moltiplica sta sul contenitore del taglio: dentro il taglio (clip-path) la foto non vedrebbe la carta */
 .puro .leone img{width:100%;height:100%;mix-blend-mode:normal}
 .puro .testo{grid-column:1/7;margin-top:40px}
 .puro h2{font:500 clamp(28px,2.7vw,42px)/1.08 var(--testo);letter-spacing:-.02em;max-width:14em}
 .puro .testo p{margin-top:18px;max-width:30em}
-.puro .d-leone{margin-top:14px}
-.fila{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--he-col);margin-top:clamp(80px,9vw,150px);border-top:1px solid var(--inchiostro);padding-top:28px}
-.fila .pezzo img{width:100%;max-width:220px;aspect-ratio:1}
+.puro .d-leone{position:absolute;left:0;top:100%;margin-top:14px;width:max-content;max-width:24em}
+.fila{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--he-col);margin-top:clamp(80px,9vw,150px);border-top:1px solid var(--inchiostro);padding-top:28px}
+.fila .pezzo img{width:100%;max-width:260px;aspect-ratio:1}
 .fila .didascalia{margin-top:10px}
 
 /* ---------- 4. riparazione: sull'inchiostro, come l'argento sul panno scuro del banco ---------- */
@@ -172,9 +193,9 @@ ul,ol{list-style:none;margin:0;padding:0}
 }
 
 /* ---------- 5. hotel e ristoranti ---------- */
-.hotel{padding-block:calc(var(--he-sez) * .8) var(--he-sez)}
+.hotel{padding-block:calc(var(--he-sez) * .8) calc(var(--he-sez) * .6)}
 .hotel .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:start}
-.dischi{grid-column:1/8;position:relative;margin:0;aspect-ratio:760/700}
+.dischi{grid-column:6/13;grid-row:1;position:relative;margin:0;aspect-ratio:760/700}
 .dischi .pezzo{position:absolute}
 .dischi .p1{left:0;top:0;width:58%}
 .dischi .p2{right:0;bottom:12%;width:57%}
@@ -182,7 +203,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .dischi .didascalia{margin-top:8px}
 .dischi .p1 .didascalia{max-width:19em}
 .dischi .p2 .didascalia{max-width:19em}
-.hotel .testo{grid-column:9/13;padding-top:clamp(20px,4vw,72px)}
+.hotel .testo{grid-column:1/6;grid-row:1;padding-top:clamp(20px,4vw,72px);padding-right:clamp(0px,2vw,36px)}
 .hotel h2{font:500 clamp(30px,3.2vw,50px)/1.05 var(--testo);letter-spacing:-.025em}
 .hotel .testo > p{margin-top:22px}
 .strade{margin-top:30px}
@@ -194,13 +215,9 @@ ul,ol{list-style:none;margin:0;padding:0}
 /* ---------- 6. Alfredo Varotto ---------- */
 .storia{padding-block:calc(var(--he-sez) * .55);border-top:1px solid var(--filo)}
 .storia .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:start}
-.titoli{grid-column:1/4;display:flex;flex-direction:column;gap:18px;padding-top:6px}
-.titoli svg{width:clamp(110px,10.4vw,150px);height:auto;overflow:visible}
-.titoli ellipse{fill:none;stroke:var(--inchiostro);stroke-width:1.4}
-.titoli text{font:300 44px var(--display);font-variant-numeric:lining-nums;text-anchor:middle;fill:var(--inchiostro);letter-spacing:-.01em}
-.parole{grid-column:4/12}
+.parole{grid-column:3/11}
 .storia p{font:400 clamp(21px,2vw,30px)/1.36 var(--testo);letter-spacing:-.012em;text-wrap:pretty}
-.storia p + p{margin-top:22px}
+.storia p + p{margin-top:26px;max-width:34em;font-size:clamp(17px,1.3vw,20px);line-height:1.5;letter-spacing:0;color:#33363a}
 .storia .fonte{font-size:14px;line-height:1.4;color:var(--grigio);letter-spacing:0;margin-top:22px}
 
 /* ---------- 7. contatti ---------- */
@@ -295,27 +312,25 @@ ul,ol{list-style:none;margin:0;padding:0}
   .r2 .linea.due,.r3 .linea.due{display:block;grid-row:5}
   .r3 .servizio{grid-column:1/-1;grid-row:1;--h:clamp(160px,52vw,360px)}
   .r3 .d-servizio{grid-column:1/-1;grid-row:3}
-  .r3 .secchiello{grid-column:1/4;grid-row:4;margin-top:56px;--h:clamp(150px,40vw,300px)}
-  .r3 .d-secchiello{grid-column:1/4;grid-row:6}
-  .r3 .shop{grid-column:4/7;grid-row:4;align-self:end;padding:0 0 12px 8px}
+  .r3 .secchiello{grid-column:1/5;grid-row:4;margin-top:56px;justify-self:start;--h:clamp(170px,48vw,320px)}
+  .r3 .d-secchiello{grid-column:1/-1;grid-row:6}
 
   .puro .alto{grid-template-columns:1fr}
   .cifra{grid-column:1;font-size:clamp(150px,44vw,300px)}
   .puro .leone{grid-column:1;grid-row:auto;justify-self:start;margin-top:12px}
-  .puro .leone .cornice{width:min(78vw,420px)}
+  .puro .leone .cornice{width:min(50vw,240px)}
+  .puro .d-leone{position:static;width:auto}
   .puro .testo{grid-column:1}
-  .fila{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:30px}
+  .fila{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px}
 
   .riparazione h2,.riparazione .sotto,.materiali,.come{grid-column:1/-1}
   .come{margin-top:48px}
 
-  .dischi{grid-column:1/-1;aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .dischi{grid-column:1/-1;grid-row:2;aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
   .dischi .pezzo{position:static;width:auto}
   .dischi .p2{margin-top:56px}
-  .hotel .testo{grid-column:1/-1;padding-top:40px}
+  .hotel .testo{grid-column:1/-1;grid-row:1;padding-top:0;padding-right:0}
 
-  .titoli{grid-column:1/-1;flex-direction:row;margin-bottom:28px}
-  .titoli svg{width:104px}
   .parole{grid-column:1/-1}
 
   .dati,.modulo{grid-column:1/-1}
@@ -357,10 +372,10 @@ ul,ol{list-style:none;margin:0;padding:0}
 <main id="contenuto">
 
 <!-- 1. apertura: l'astuccio blu si apre e la tavola d'argento viene alla luce -->
-<section class="he-scala apertura" id="apertura" data-he-scale="inset(9% 7% 9% 57% round 0px)" data-he-scale-fine="inset(0% 0% 0% 0% round 0px)" data-he-scale-zoom="1" aria-labelledby="titolo">
+<section class="he-scala apertura" id="apertura" data-he-scale="inset(9% 18% 9% 69.4% round 0px)" data-he-scale-fine="inset(0% 0% 0% 0% round 0px)" data-he-scale-zoom="1" aria-labelledby="titolo">
   <div class="he-scala-media campo">
     <img class="posate" src="img/posate-460.webp" srcset="img/posate-460.webp 460w, img/posate-802.webp 802w" sizes="(max-width: 899px) 46vw, 377px" width="802" height="1275" alt="Forchetta, coltello, cucchiaio e cucchiaino in argento massiccio, stile Inglese" fetchpriority="high">
-    <p class="etichetta"><b>Posate in argento massiccio, stile Inglese</b>Dal posto tavola di 6 pezzi (BL83006) al servizio di 77 (BL83001)</p>
+    <p class="etichetta"><b>Posto tavola 6 pezzi</b>, stile Inglese<span class="cod">BL83006</span></p>
   </div>
   <div class="he-scala-testo">
     <div class="sx">
@@ -376,37 +391,33 @@ ul,ol{list-style:none;margin:0;padding:0}
   <div class="he-wrap">
     <div class="ripiano r1">
       <div class="testa">
-        <p>Vassoi, sottopiatti, alzate, servizi da caffè, secchielli, candelabri, posate: nel catalogo Varotto Alfredo ogni pezzo ha il suo nome e il suo codice. Questi sono in argento massiccio.</p>
+        <p>“La produzione consiste in […] vassoi, piatti, sottopiatti, […] servizi da caffè, zuccheriere, alzate, centri tavola, […] secchielli champagne e ghiaccio, vasi, brocche, caraffe, […] candelabri, bugie, bicchierini, calici, coppe champagne e gelato, […] posate.”<span class="fonte">Dalla pagina Azienda di varottoalfredo.com</span></p>
         <h2 class="firma" id="h-argento" data-he-split><span>Argento</span> <span>massiccio</span></h2>
       </div>
       <figure class="pezzo candelabro"><img src="img/candelabro-500.webp" srcset="img/candelabro-500.webp 500w, img/candelabro-961.webp 961w" sizes="(max-width: 899px) 70vw, 430px" width="961" height="1256" alt="Candelabro a cinque fiamme in argento massiccio" loading="lazy" decoding="async"></figure>
       <i class="linea" aria-hidden="true"></i>
-      <p class="didascalia d-candelabro"><b>Candelabro 5 fiamme</b>Argento massiccio, stile Inglese <span class="cod">VAG-Z1595.30</span></p>
+      <p class="didascalia d-candelabro"><b>Candelabro 5 fiamme</b>, stile Inglese<span class="cod">VAG-Z1595.30</span></p>
     </div>
 
     <div class="ripiano r2">
       <figure class="pezzo brocca"><img src="img/brocca-320.webp" srcset="img/brocca-320.webp 320w, img/brocca-575.webp 575w" sizes="(max-width: 899px) 40vw, 300px" width="575" height="763" alt="Brocca martellata in argento massiccio" loading="lazy" decoding="async"></figure>
-      <figure class="pezzo coppa"><img src="img/coppa-360.webp" srcset="img/coppa-360.webp 360w, img/coppa-818.webp 818w" sizes="(max-width: 899px) 40vw, 350px" width="818" height="1048" alt="Coppa champagne e gelato in argento massiccio con interno dorato" loading="lazy" decoding="async"></figure>
+      <figure class="pezzo coppa"><img src="img/coppa-360.webp" srcset="img/coppa-360.webp 360w, img/coppa-818.webp 818w" sizes="(max-width: 899px) 40vw, 350px" width="818" height="1048" alt="Coppa champagne e gelato in argento massiccio" loading="lazy" decoding="async"></figure>
       <figure class="pezzo bicchiere"><img src="img/bicchiere-240.webp" srcset="img/bicchiere-240.webp 240w, img/bicchiere-502.webp 502w" sizes="(max-width: 899px) 30vw, 220px" width="502" height="573" alt="Bicchiere da bambino in argento massiccio" loading="lazy" decoding="async"></figure>
       <figure class="pezzo candeliere"><img src="img/candeliere-260.webp" srcset="img/candeliere-260.webp 260w, img/candeliere-509.webp 509w" sizes="(max-width: 899px) 30vw, 240px" width="509" height="1106" alt="Candeliere a una fiamma in argento massiccio" loading="lazy" decoding="async"></figure>
       <i class="linea" aria-hidden="true"></i>
-      <p class="didascalia d-brocca"><b>Brocca martellata</b>Argento massiccio, stile Inglese <span class="cod">BB01200AG</span></p>
-      <p class="didascalia d-coppa"><b>Coppa champagne e gelato</b>Argento massiccio, interno dorato <span class="cod">VAG-01149</span></p>
-      <p class="didascalia d-bicchiere"><b>Bicchiere bimbo</b>Argento massiccio, stile Inglese <span class="cod">VAG-Z1637.06</span></p>
-      <p class="didascalia d-candeliere"><b>Candelabro 1 fiamma</b>Argento massiccio, stile Inglese <span class="cod">VAG-Z1593-28</span></p>
+      <p class="didascalia d-brocca"><b>Brocca martellata</b>, stile Inglese<span class="cod">BB01200AG</span></p>
+      <p class="didascalia d-coppa"><b>Coppa champagne e gelato</b><span class="cod">VAG-01149</span></p>
+      <p class="didascalia d-bicchiere"><b>Bicchiere bimbo</b>, stile Inglese<span class="cod">VAG-Z1637.06</span></p>
+      <p class="didascalia d-candeliere"><b>Candelabro 1 fiamma</b>, stile Inglese<span class="cod">VAG-Z1593-28</span></p>
       <i class="linea due" aria-hidden="true"></i>
     </div>
 
     <div class="ripiano r3">
       <figure class="pezzo servizio"><img src="img/servizio-700.webp" srcset="img/servizio-700.webp 700w, img/servizio-1263.webp 1263w" sizes="(max-width: 899px) 90vw, 640px" width="1263" height="780" alt="Servizio da tè e caffè di quattro pezzi con vassoio, in argento massiccio" loading="lazy" decoding="async"></figure>
       <figure class="pezzo secchiello"><img src="img/secchiello-420.webp" srcset="img/secchiello-420.webp 420w, img/secchiello-1017.webp 1017w" sizes="(max-width: 899px) 40vw, 340px" width="1017" height="1146" alt="Secchiello per il ghiaccio in argento massiccio" loading="lazy" decoding="async"></figure>
-      <div class="shop">
-        <p>Sullo shop di Varotto: vassoi, alzate, posate, idee regalo e bomboniere, con le misure e il carrello.</p>
-        <a class="bottone" href="https://www.varottoshop.com/">Apri lo shop</a>
-      </div>
       <i class="linea" aria-hidden="true"></i>
-      <p class="didascalia d-servizio"><b>Servizio 4 pezzi</b>Argento massiccio, stile Impero <span class="cod">VAG-Z2501</span></p>
-      <p class="didascalia d-secchiello"><b>Secchiello ghiaccio</b>Argento massiccio, stile Inglese <span class="cod">VAG-Z1617</span></p>
+      <p class="didascalia d-servizio"><b>Servizio 4 pezzi</b>, stile Impero<span class="cod">VAG-Z2501</span></p>
+      <p class="didascalia d-secchiello"><b>Secchiello ghiaccio</b>, stile Inglese<span class="cod">VAG-Z1617</span></p>
       <i class="linea due" aria-hidden="true"></i>
     </div>
   </div>
@@ -417,19 +428,17 @@ ul,ol{list-style:none;margin:0;padding:0}
   <div class="he-wrap">
     <div class="alto">
       <p class="cifra" aria-hidden="true">999</p>
-      <figure class="pezzo leone"><div class="cornice" data-he-wipe="su"><img src="img/leone-588.webp" srcset="img/leone-300.webp 300w, img/leone-588.webp 588w" sizes="(max-width: 899px) 78vw, 500px" width="588" height="700" alt="Testa di leone in argento puro 999, impugnatura per bastone da passeggio" loading="lazy" decoding="async"></div><figcaption class="didascalia d-leone"><b>Leone</b>Impugnatura per bastone da passeggio <span class="cod">BT00030AX</span></figcaption></figure>
+      <figure class="pezzo leone"><div class="cornice" data-he-wipe="su"><img src="img/leone-300.webp" srcset="img/leone-300.webp 300w, img/leone-588.webp 588w" sizes="(max-width: 899px) min(50vw, 240px), clamp(200px, 18vw, 260px)" width="588" height="700" alt="Testa di leone in argento puro 999, impugnatura per bastone da passeggio" loading="lazy" decoding="async"></div><figcaption class="didascalia d-leone"><b>Leone</b>, impugnatura per bastone da passeggio<span class="cod">BT00030AX</span></figcaption></figure>
       <div class="testo">
         <h2 id="h-puro">Impugnature rivestite in argento puro 999</h2>
-        <p>Per bastoni da passeggio e calzascarpe: il leone, il cavallo, la civetta, il cobra, l’anatra, il cane, il teschio, e le impugnature lisce, a torciglione, floreali e liberty.</p>
+        <p>Per bastoni da passeggio e calzascarpe, tra le novità del catalogo: animali, teschio, liberty.</p>
       </div>
     </div>
     <ul class="fila" aria-label="Altre impugnature in argento puro 999">
-      <li class="pezzo"><img src="img/fila-cavallo-200.webp" srcset="img/fila-cavallo-200.webp 200w, img/fila-cavallo-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Testa di cavallo con le briglie" loading="lazy" decoding="async"><p class="didascalia"><b>Cavallo</b><span class="cod">BT00040AX</span></p></li>
-      <li class="pezzo"><img src="img/fila-civetta-200.webp" srcset="img/fila-civetta-200.webp 200w, img/fila-civetta-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Civetta sul ramo" loading="lazy" decoding="async"><p class="didascalia"><b>Civetta</b><span class="cod">BT00050AX</span></p></li>
-      <li class="pezzo"><img src="img/fila-cobra-200.webp" srcset="img/fila-cobra-200.webp 200w, img/fila-cobra-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Cobra" loading="lazy" decoding="async"><p class="didascalia"><b>Cobra</b><span class="cod">BT00101AX</span></p></li>
-      <li class="pezzo"><img src="img/fila-anatra-200.webp" srcset="img/fila-anatra-200.webp 200w, img/fila-anatra-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Testa d'anatra" loading="lazy" decoding="async"><p class="didascalia"><b>Anatra</b><span class="cod">BT00090AX</span></p></li>
-      <li class="pezzo"><img src="img/fila-labrador-200.webp" srcset="img/fila-labrador-200.webp 200w, img/fila-labrador-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Testa di labrador" loading="lazy" decoding="async"><p class="didascalia"><b>Labrador</b><span class="cod">BT00021AX</span></p></li>
-      <li class="pezzo"><img src="img/fila-teschio-200.webp" srcset="img/fila-teschio-200.webp 200w, img/fila-teschio-400.webp 400w" sizes="(max-width: 899px) 30vw, 220px" width="400" height="400" alt="Teschio" loading="lazy" decoding="async"><p class="didascalia"><b>Teschio</b><span class="cod">BT00120AX</span></p></li>
+      <li class="pezzo"><img src="img/fila-cavallo-260.webp" srcset="img/fila-cavallo-260.webp 260w, img/fila-cavallo-520.webp 520w" sizes="(max-width: 899px) 42vw, 260px" width="520" height="520" alt="Testa di cavallo con le briglie" loading="lazy" decoding="async"><p class="didascalia"><b>Cavallo</b></p></li>
+      <li class="pezzo"><img src="img/fila-civetta-260.webp" srcset="img/fila-civetta-260.webp 260w, img/fila-civetta-520.webp 520w" sizes="(max-width: 899px) 42vw, 260px" width="520" height="520" alt="Civetta sul ramo" loading="lazy" decoding="async"><p class="didascalia"><b>Civetta</b></p></li>
+      <li class="pezzo"><img src="img/fila-cobra-260.webp" srcset="img/fila-cobra-260.webp 260w, img/fila-cobra-520.webp 520w" sizes="(max-width: 899px) 42vw, 260px" width="520" height="520" alt="Cobra" loading="lazy" decoding="async"><p class="didascalia"><b>Cobra</b></p></li>
+      <li class="pezzo"><img src="img/fila-labrador-260.webp" srcset="img/fila-labrador-260.webp 260w, img/fila-labrador-520.webp 520w" sizes="(max-width: 899px) 42vw, 260px" width="520" height="520" alt="Testa di labrador" loading="lazy" decoding="async"><p class="didascalia"><b>Labrador</b></p></li>
     </ul>
   </div>
 </section>
@@ -438,7 +447,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 <section class="riparazione" id="riparazione" aria-labelledby="h-rip">
   <div class="he-wrap g">
     <h2 id="h-rip">La vostra argenteria tornerà al suo originario splendore.</h2>
-    <p class="sotto">Riparazione, argentatura, doratura e lucidatura, anche per hotel, ristoranti e catering. Lasciare un pezzo danneggiato in un cassetto sarebbe un peccato, specialmente se ha un particolare valore affettivo.</p>
+    <p class="sotto">Un servizio di riparazione completo, che include argentatura, doratura e lucidatura. Lasciare un oggetto danneggiato riposto in un cassetto sarebbe un peccato, specialmente se ha un particolare valore affettivo.</p>
     <ul class="materiali" aria-label="Materiali che ripariamo">
       <li>Argento</li>
       <li>Silver plated</li>
@@ -448,7 +457,7 @@ ul,ol{list-style:none;margin:0;padding:0}
     </ul>
     <div class="come">
     <ol class="passi">
-      <li><h3>Chiamate o scrivete</h3><p>Al <a class="sottolinea num" href="tel:+390498700709">049 870 07 09</a> o a <a class="sottolinea" href="mailto:info@varottoalfredo.com">info@varottoalfredo.com</a>, anche con le foto del pezzo.</p></li>
+      <li><h3>Chiamate o scrivete</h3><p>È sufficiente contattare il <a class="sottolinea num" href="tel:+390498700709">049 870 07 09</a> o mandare una mail a <a class="sottolinea" href="mailto:info@varottoalfredo.com">info@varottoalfredo.com</a>.</p></li>
       <li><h3>L’incaricato vi risponde</h3><p>Sulla fattibilità tecnica di quanto richiesto, sulle modalità per il ritiro e sul tempo di consegna.</p></li>
       <li><h3>Per la sala</h3><p>Rimessa a nuovo degli oggetti di hotel, ristoranti e catering: argentatura a spessore e argentatura di oggetti in acciaio adatti alla ristorazione.</p></li>
     </ol>
@@ -456,7 +465,7 @@ ul,ol{list-style:none;margin:0;padding:0}
       <a class="bottone" href="mailto:info@varottoalfredo.com?subject=Riparazione%20argento%3A%20foto%20del%20pezzo&amp;body=Buongiorno%2C%0D%0Avi%20mando%20le%20foto%20del%20pezzo%20(allegate).%0D%0A%0D%0AChe%20cosa%20%C3%A8%3A%20%0D%0AMateriale%20(argento%2C%20silver%20plated%2C%20alpacca%2C%20Sheffield%2C%20acciaio%20argentato%2C%20non%20so)%3A%20%0D%0AChe%20cosa%20%C3%A8%20successo%3A%20%0D%0ANome%20e%20telefono%3A%20%0D%0AComune%3A%20%0D%0A">Mandate le foto del pezzo</a>
       <a class="bottone vuoto" href="tel:+390498700709">Chiamate</a>
     </div>
-    <p class="en" lang="en">Repair and polishing service for silver, silver plated, alpacca, Sheffield and silvered steel. Our experience will restore your silverware to its former beauty.</p>
+    <p class="en" lang="en">Repair service and polishing service: silver, silver plated, alpacca, Sheffield and silvered steel. Our experience will restore your silverware to its former beauty.</p>
     </div>
   </div>
 </section>
@@ -464,13 +473,9 @@ ul,ol{list-style:none;margin:0;padding:0}
 <!-- 5. hotel e ristoranti -->
 <section class="hotel" id="hotel" aria-labelledby="h-hotel">
   <div class="he-wrap g">
-    <div class="dischi">
-      <figure class="pezzo p1"><img src="img/sottopiatto-520.webp" srcset="img/sottopiatto-520.webp 520w, img/sottopiatto-1340.webp 1340w" sizes="(max-width: 899px) 45vw, 30vw" width="1340" height="1225" alt="Sottopiatto tondo in argento massiccio visto dall'alto" loading="lazy" decoding="async"><figcaption class="didascalia"><b>Sottopiatto</b>Argento massiccio, stile Inglese <span class="cod">SS01510AG</span></figcaption></figure>
-      <figure class="pezzo p2"><img src="img/vassoio-560.webp" srcset="img/vassoio-560.webp 560w, img/vassoio-1300.webp 1300w" sizes="(max-width: 899px) 45vw, 30vw" width="1300" height="1068" alt="Vassoio piatto tondo in argento massiccio" loading="lazy" decoding="async"><figcaption class="didascalia"><b>Vassoio piatto tondo</b>Argento massiccio, stile Inglese <span class="cod">VAG-P1165.40</span></figcaption></figure>
-    </div>
     <div class="testo">
       <h2 id="h-hotel">Per hotel, ristoranti e catering</h2>
-      <p>Forniture alberghiere e catering: vassoi, sottopiatti, alzate, secchielli champagne e ghiaccio, posate. E la rimessa a nuovo di oggetti provenienti da hotel, ristoranti, catering.</p>
+      <p>Articoli per forniture alberghiere e catering: vassoi, sottopiatti, alzate, secchielli champagne e ghiaccio, posate. E la rimessa a nuovo di oggetti provenienti da hotel, ristoranti, catering.</p>
       <ul class="strade">
         <li><b>Preventivo per quantità</b><a class="sottolinea" href="mailto:info@varottoalfredo.com?subject=Preventivo%20per%20quantit%C3%A0&amp;body=Tipologia%20(hotel%2C%20ristorante%2C%20bar%2C%20pasticceria%2C%20catering%2C%20negozio)%3A%20%0D%0AArticoli%20e%20quantit%C3%A0%3A%20%0D%0AEntro%20quando%3A%20%0D%0ANome%2C%20azienda%20e%20telefono%3A%20%0D%0A">info@varottoalfredo.com</a></li>
         <li><b>Rivenditori</b><a class="sottolinea" href="https://www.varottoalfredo.com/area-clienti.asp?m=ac">Area clienti</a>, per inviare proposte d’ordine</li>
@@ -479,19 +484,19 @@ ul,ol{list-style:none;margin:0;padding:0}
       </ul>
       <a class="bottone" href="#richiesta">Scrivete la richiesta</a>
     </div>
+    <div class="dischi">
+      <figure class="pezzo p1"><img src="img/sottopiatto-520.webp" srcset="img/sottopiatto-520.webp 520w, img/sottopiatto-1340.webp 1340w" sizes="(max-width: 899px) 45vw, 30vw" width="1340" height="1225" alt="Sottopiatto tondo in argento massiccio visto dall'alto" loading="lazy" decoding="async"><figcaption class="didascalia"><b>Sottopiatto</b>, stile Inglese<span class="cod">SS01510AG</span></figcaption></figure>
+      <figure class="pezzo p2"><img src="img/vassoio-560.webp" srcset="img/vassoio-560.webp 560w, img/vassoio-1300.webp 1300w" sizes="(max-width: 899px) 45vw, 30vw" width="1300" height="1068" alt="Vassoio piatto tondo in argento massiccio" loading="lazy" decoding="async"><figcaption class="didascalia"><b>Vassoio piatto tondo</b>, stile Inglese<span class="cod">VAG-P1165.40</span></figcaption></figure>
+    </div>
   </div>
 </section>
 
-<!-- 6. Alfredo Varotto, dalla pagina Azienda; i titoli dell'argento come sono impressi -->
+<!-- 6. Alfredo Varotto, dalla pagina Azienda -->
 <section class="storia" aria-label="La storia">
   <div class="he-wrap g">
-    <div class="titoli" aria-hidden="true">
-      <svg viewBox="0 0 150 82" width="150" height="82"><ellipse cx="75" cy="41" rx="72" ry="38"/><text x="75" y="56">925</text></svg>
-      <svg viewBox="0 0 150 82" width="150" height="82"><ellipse cx="75" cy="41" rx="72" ry="38"/><text x="75" y="56">800</text></svg>
-    </div>
     <div class="parole">
-      <p>Una piccola azienda artigiana condotta dal sig. Alfredo Varotto comincia con l’oggettistica da regalo e si fa conoscere per l’accuratezza delle finiture e la lavorazione eseguita a mano.</p>
-      <p>Sugli articoli Varotto Alfredo il titolo dell’argento, 925 o 800, e il marchio sono impressi sull’oggetto, perfettamente riconoscibili ad occhio nudo.</p>
+      <p>Una piccola azienda artigiana condotta dal sig. Alfredo Varotto inizia la produzione d’oggettistica da regalo, distinguendosi per l’accuratezza delle finiture e la lavorazione eseguita a mano.</p>
+      <p>Tutti gli articoli Varotto Alfredo portano impressi il titolo legale dell’argento, 925 o 800, e il marchio originale, perfettamente riconoscibili ad occhio nudo.</p>
       <p class="fonte">Dalla pagina Azienda di varottoalfredo.com</p>
     </div>
   </div>
@@ -508,7 +513,7 @@ ul,ol{list-style:none;margin:0;padding:0}
           <h3>Dove siamo</h3>
           <p>Corso Stati Uniti 23/A<br>35127 Padova, zona industriale</p>
           <p><a class="sottolinea" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Stati+Uniti+23%2FA+35127+Padova">Apri la mappa</a></p>
-          <p class="g">Orari: non sono pubblicati. Prima di passare, chiamate.</p>
+          <p class="g">Prima di passare, chiamate.</p>
         </div>
         <div>
           <h3>Scrivere</h3>
@@ -526,7 +531,7 @@ ul,ol{list-style:none;margin:0;padding:0}
           <h3>Writing from abroad</h3>
           <p>Varotto Alfredo Silverware<br>Corso Stati Uniti 23/A, 35127 Padova, Italy</p>
           <p>Tel. <a class="sottolinea num" href="tel:+390498700709">+39 049 870 07 09</a><br>Export department: <a class="sottolinea email" href="mailto:export@varottoalfredo.com">export@varottoalfredo.com</a></p>
-          <p>Silverware for the table, items for hotels, restaurants and catering, repair, silvering and polishing.</p>
+          <p>We can refurbish products coming from hotels, restaurants and catering.</p>
           <a class="bottone vuoto" href="mailto:export@varottoalfredo.com?subject=Request%20from%20the%20website">Write to us</a>
         </div>
       </div>
@@ -613,7 +618,15 @@ ul,ol{list-style:none;margin:0;padding:0}
 <script src="kit/vendor/ScrollTrigger.min.js"></script>
 <script src="kit/vendor/SplitText.min.js"></script>
 <script src="kit/vendor/lenis.min.js"></script>
-<script>/* l'apertura fissata si muove con una trasformazione, non con position:fixed: nessuno spostamento del layout */ if (window.ScrollTrigger) ScrollTrigger.defaults({ pinType: "transform" });</script>
+<script>
+/* l'apertura fissata si muove con una trasformazione, non con position:fixed: nessuno spostamento del layout */
+if (window.ScrollTrigger) ScrollTrigger.defaults({ pinType: "transform" });
+/* il gesto parte dalla fessura misurata nella testa della pagina per questa finestra */
+(function () {
+  var f = getComputedStyle(document.documentElement).getPropertyValue("--fessura").trim(), s = document.getElementById("apertura");
+  if (f && s) s.setAttribute("data-he-scale", f);
+})();
+</script>
 <script src="kit/he.js"></script>
 </body>
 </html>
