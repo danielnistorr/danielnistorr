@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D.Z. Stampi, stampi per materie plastiche a Grisignano di Zocco</title>
+<meta name="description" content="D.Z. Stampi progetta e costruisce stampi a iniezione per materie plastiche per il medicale, l'automotive e l'alimentare, dal disegno 2D e 3D al collaudo. Grisignano di Zocco (VI), dal 1985.">
+<link rel="preload" href="fonts/baijamjuree-300.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Bai Jamjuree";src:url(fonts/baijamjuree-300.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Bai Jamjuree";src:url(fonts/baijamjuree-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Bai Jamjuree";src:url(fonts/baijamjuree-500.woff2) format("woff2");font-weight:500;font-display:swap}
+:root{
+  --carta:#ECEBE7;
+  --campo:#DEDCD7;
+  --piede:#E4E2DD;
+  --inchiostro:#1B1A18;
+  --grigio:#57534D;
+  --spento:#605C56;
+  --filetto:rgba(27,26,24,.16);
+  --corallo:#E2604E;
+  --corallo-scuro:#A8382A;
+  --m:72px;
+  --g:24px;
+  --titolo:-.03em;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Bai Jamjuree",system-ui,sans-serif;font-weight:400;font-size:18px;line-height:1.55;font-synthesis:none;-webkit-font-smoothing:antialiased;font-kerning:normal}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.wrap{padding-left:max(var(--m),calc((100% - 1776px) / 2));padding-right:max(var(--m),calc((100% - 1776px) / 2))}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a:focus-visible,button:focus-visible{outline:2px solid var(--corallo-scuro);outline-offset:4px}
+.t-sezione{font-weight:300;font-size:clamp(36px,4.4vw,64px);line-height:1.04;letter-spacing:var(--titolo);text-wrap:balance}
+
+/* testata */
+.testata{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:48px;padding-top:26px}
+.testata .logo img{width:112px;height:auto}
+.testata nav{flex:1}
+.testata nav ul{display:flex;gap:32px}
+.testata nav a,.testata .tel{text-decoration:none;font-size:16px}
+.testata nav a:hover,.testata .tel:hover{color:var(--corallo-scuro)}
+.testata .tel{font-weight:500;letter-spacing:.01em}
+.menu-btn{display:none}
+
+/* apertura: il campo caldo e lo stampo che entra dal bordo destro e da quello in basso, con tre legende sulle sue parti */
+.apertura{position:relative;height:min(62.5vw,1200px);overflow:hidden;
+  background:radial-gradient(120% 90% at 18% 12%,#E9E7E3 0%,#E3E1DC 45%,var(--campo) 75%)}
+.ap-in{position:relative;height:100%;max-width:1920px;margin:0 auto;container-type:inline-size}
+.apertura .testo{position:relative;z-index:2;padding-top:max(10cqw,132px)}
+.apertura h1{font-weight:300;font-size:8.6cqw;line-height:.96;letter-spacing:var(--titolo)}
+.apertura h1 span{display:block}
+.apertura .lead{margin-top:2.4cqw;max-width:max(27cqw,290px);font-size:clamp(17px,1.32cqw,24px);line-height:1.5;text-wrap:pretty}
+.bottone{display:inline-block;margin-top:2.5cqw;background:var(--inchiostro);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:15px 24px;letter-spacing:.01em}
+.bottone:hover{background:var(--corallo-scuro)}
+.pezzo{position:absolute;top:0;bottom:0;left:0;right:calc((100cqw - 100vw) / 2);z-index:1}
+.stampo{position:absolute;right:0;top:11cqw;width:66cqw}
+.tela{position:relative;aspect-ratio:1545/1800}
+.tela img{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.punto{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 2px #EDEBE7}
+.filo{position:absolute;background:var(--inchiostro)}
+.filo.o{height:1px}
+.filo.v{width:1px}
+.legenda{font-size:clamp(14px,.95cqw,18px);line-height:1.35}
+.legenda li{position:absolute;white-space:nowrap;text-align:right;transform:translateY(-50%)}
+.legenda li b{font-weight:500;margin-right:6px;font-variant-numeric:tabular-nums}
+.legenda .l1{right:calc(22.2cqw + 10px);top:18.3cqw}
+.legenda .l2{right:calc(51.35cqw + 10px);top:45.6cqw}
+.legenda .l3{right:calc(50.8cqw + 10px);top:55.05cqw;transform:translateY(-.68em)}
+.legenda .ind{position:absolute;right:calc(50.8cqw + 10px);top:calc(55.05cqw + 3.1em);color:var(--grigio)}
+.apertura .piede-ap{position:absolute;z-index:2;left:var(--m);bottom:30px;font-size:14px;color:var(--grigio)}
+.apertura .piede-ap b{font-weight:500;color:var(--inchiostro)}
+
+/* settori: l'unico gesto, tre schede in riga sopra la foto a tutta larghezza */
+.settori{background:var(--campo);padding-top:120px}
+.settori .capo{align-items:end;row-gap:18px}
+.settori .occhio{grid-column:1/-1;font-size:16px;font-weight:400;color:var(--grigio)}
+.schede{grid-column:1/9;display:flex;flex-wrap:wrap;gap:0 40px}
+.schede button{font:inherit;font-weight:300;font-size:clamp(32px,3.5vw,50px);line-height:1.08;white-space:nowrap;letter-spacing:var(--titolo);color:var(--spento);background:none;border:0;padding:4px 0 10px;cursor:pointer;text-align:left;border-bottom:2px solid transparent;transition:color .12s}
+.schede button:hover{color:var(--inchiostro)}
+.schede button[aria-selected=true]{color:var(--inchiostro);border-bottom-color:var(--corallo)}
+.settori .pannelli{grid-column:9/13;padding-bottom:14px}
+.settori .pannelli p{font-size:18px;line-height:1.55;max-width:24em;text-wrap:pretty}
+.settori .pannelli .nota{margin-top:8px;font-size:14px;color:var(--grigio)}
+.settori .foto{margin-top:40px}
+.settori .foto img{width:100%;height:auto;aspect-ratio:2880/1320;object-fit:cover}
+.settori .foto picture[hidden]{display:none}
+
+/* lavorazioni */
+.lavorazioni{padding-top:136px}
+.lavorazioni h2{grid-column:1/9}
+.lavorazioni .intro{grid-column:1/7;margin-top:28px;font-size:20px;text-wrap:pretty}
+.lavorazioni .officina{margin-top:64px}
+.lavorazioni .officina img{width:100%;aspect-ratio:3/1;object-fit:cover;object-position:50% 40%}
+.tappe{margin-top:56px;row-gap:40px}
+.tappe li{grid-column:span 3;border-top:1px solid var(--filetto);padding-top:20px}
+.tappe .n{display:block;font-size:15px;color:var(--grigio);font-weight:500}
+.tappe h3{margin-top:24px;font-weight:400;font-size:24px;line-height:1.2;letter-spacing:-.01em}
+.tappe p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--grigio);max-width:19em}
+.dopo{margin-top:48px;font-size:16px;color:var(--grigio)}
+.dopo b{font-weight:500;color:var(--inchiostro)}
+
+/* macchine: cinque righe per tipo */
+.macchine{padding-top:152px;padding-bottom:136px}
+.macchine .capo{align-items:end}
+.macchine .capo h2{grid-column:1/8}
+.macchine .capo p{grid-column:9/13;font-size:18px;max-width:24em;text-wrap:pretty}
+.parco{margin-top:64px;border-top:1px solid var(--inchiostro)}
+.parco .cap{display:flex;justify-content:space-between;font-size:14px;color:var(--grigio);padding:10px 0 0}
+.parco li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:22px 0 20px;border-bottom:1px solid var(--filetto)}
+.parco h3{grid-column:1/5;font-weight:300;font-size:26px;line-height:1.2;letter-spacing:-.015em}
+.parco h3 small{display:block;margin-top:4px;font-size:15px;font-weight:400;letter-spacing:0;color:var(--grigio)}
+.parco .mod{grid-column:5/13;display:flex;flex-wrap:wrap;gap:8px 40px;font-size:16px;line-height:1.4;padding-top:5px}
+.parco .mod span{white-space:nowrap}
+.parco .mod b{font-weight:500}
+.parco .mod i{font-style:normal;color:var(--grigio)}
+.parco .mod .q::before{content:"";display:inline-block;width:7px;height:7px;background:var(--corallo);margin:0 9px 2px 0}
+
+/* chiusura */
+.chiusura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-left:max(var(--m),calc((100% - 1776px) / 2));border-top:1px solid var(--filetto)}
+.chiusura .testo{grid-column:1/6;padding:112px 0 104px}
+.chiusura h2{font-weight:300;font-size:clamp(40px,4.6vw,68px);line-height:1.02;letter-spacing:var(--titolo);text-wrap:balance}
+.chiusura .numero{display:inline-block;margin-top:44px;font-size:clamp(32px,3vw,44px);font-weight:400;letter-spacing:-.01em;text-decoration:none;color:var(--corallo-scuro)}
+.chiusura .numero:hover{color:var(--inchiostro)}
+.chiusura .offerte{margin-top:6px;font-size:18px}
+.recapiti{margin-top:40px;font-style:normal;font-size:18px;line-height:1.6}
+.recapiti p+p{margin-top:12px}
+.recapiti a{text-underline-offset:3px;text-decoration-thickness:1px}
+.recapiti a:hover{color:var(--corallo-scuro)}
+.recapiti .fax{color:var(--grigio);font-size:16px}
+.chiusura .foto{grid-column:7/13;position:relative;min-height:560px;background:var(--campo)}
+.chiusura .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 52%}
+
+/* piede */
+.piede{background:var(--piede);padding-top:88px;font-size:16px}
+.piede .alto{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,1.6fr) minmax(0,2.1fr) minmax(0,1.6fr) minmax(0,2.2fr);column-gap:var(--g);row-gap:44px}
+.piede .marchio img{width:176px;height:auto}
+.piede .marchio p{margin-top:22px;max-width:23em;color:var(--grigio);line-height:1.55;text-wrap:pretty}
+.piede h2{font-size:16px;font-weight:500;margin-bottom:14px}
+.piede li{margin:0 0 8px}
+.piede li a{text-decoration:none;color:var(--grigio)}
+.piede li a:hover{color:var(--inchiostro);text-decoration:underline;text-underline-offset:3px}
+.piede .contatti li,.piede .contatti li a{color:var(--grigio)}
+.piede .basso{margin-top:72px;border-top:1px solid var(--filetto);padding-top:22px;padding-bottom:28px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--grigio)}
+.piede .basso a{color:var(--grigio);text-underline-offset:3px}
+.piede .basso a:hover{color:var(--inchiostro)}
+.piede .basso .dx{margin-left:auto;display:flex;gap:24px}
+
+/* tablet */
+@media (max-width:1180px){
+  :root{--m:48px}
+  .testata{gap:32px}
+  .testata nav ul{gap:22px}
+  .apertura .piede-ap{display:none}
+  .apertura .lead{max-width:270px;font-size:17px}
+  .macchine .capo h2{grid-column:1/13}
+  .schede{grid-column:1/13}
+  .settori .pannelli{grid-column:1/10;padding-bottom:0}
+  .macchine .capo p{grid-column:1/10;margin-top:24px}
+  .tappe li{grid-column:span 6}
+  .piede .alto{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .piede .marchio{grid-column:1/-1}
+}
+/* sotto i 960 px: testo sopra, legenda in riga, stampo sotto a filo del bordo destro */
+@media (max-width:959px){
+  .apertura{height:auto}
+  .ap-in{display:flex;flex-direction:column}
+  .apertura .testo{padding-top:150px}
+  .apertura h1{font-size:clamp(50px,10.4vw,104px)}
+  .apertura .lead{max-width:470px;margin-top:28px;font-size:19px}
+  .bottone{margin-top:28px}
+  .pezzo{position:relative;inset:auto;display:flex;flex-direction:column;margin-top:36px}
+  .legenda{order:-1;padding:0 var(--m);font-size:14px}
+  .legenda ol{display:flex;flex-wrap:wrap;gap:4px 22px}
+  .legenda li,.legenda .l3{position:static;transform:none;text-align:left}
+  .legenda .ind{position:static;display:block;margin-top:4px}
+  .legenda .l3 br{display:none}
+  .stampo{position:relative;top:auto;width:80%;margin:20px 0 0 auto;height:62vw;overflow:hidden}
+  .filo{display:none}
+  .punto{width:24px;height:24px;margin:-12px 0 0 -12px;background:#EDEBE7;border:1px solid var(--inchiostro);box-shadow:none;display:grid;place-items:center;font-size:12px;font-weight:500;line-height:1}
+  .punto::after{content:attr(data-n)}
+  .apertura .piede-ap{display:none}
+}
+@media (max-width:900px){
+  .testata nav{display:none}
+  .testata{justify-content:space-between}
+  .menu-btn{display:inline-block;font:inherit;font-size:16px;background:none;border:1px solid var(--inchiostro);color:var(--inchiostro);padding:9px 14px;min-height:44px;cursor:pointer}
+  .menu-btn:hover{background:var(--inchiostro);color:var(--carta)}
+  .testata.aperta nav{display:block;position:absolute;top:84px;left:var(--m);right:var(--m);background:var(--carta);padding:16px 24px;border:1px solid var(--filetto)}
+  .testata.aperta nav ul{flex-direction:column;gap:0}
+  .testata.aperta nav a{display:block;padding:10px 0}
+  .testata .tel{margin-left:auto}
+  .settori{padding-top:88px}
+  .schede{gap:0 26px}
+  .schede button{font-size:clamp(26px,5vw,34px)}
+  .settori .foto{margin-top:32px}
+  .lavorazioni h2,.lavorazioni .intro{grid-column:1/13}
+  .parco h3{grid-column:1/13}
+  .parco .mod{grid-column:1/13;margin-top:10px;gap:6px 32px}
+  .chiusura{padding-left:0}
+  .chiusura .testo{grid-column:1/13;padding:96px var(--m) 64px}
+  .chiusura .foto{grid-column:1/13;min-height:0;aspect-ratio:780/484}
+}
+/* telefono */
+@media (max-width:640px){
+  :root{--m:20px;--g:16px}
+  body{font-size:17px}
+  .testata{padding-top:14px;gap:14px}
+  .testata .logo img{width:76px}
+  .testata .tel{font-size:16px}
+  .testata.aperta nav{top:66px}
+  .apertura .testo{padding-top:104px}
+  .apertura h1{font-size:clamp(42px,12.8vw,56px);line-height:.98}
+  .apertura .lead{margin-top:20px;font-size:17px;max-width:none}
+  .bottone{margin-top:24px;padding:14px 20px;font-size:16px}
+  .pezzo{margin-top:32px}
+  .legenda ol{gap:2px 18px}
+  .stampo{width:94%;height:100vw;margin-top:8px}
+  .settori{padding-top:72px}
+  .schede{flex-direction:column;flex-wrap:nowrap;gap:0;align-items:stretch}
+  .schede button{font-size:28px;font-weight:400;min-height:52px;padding:6px 0 8px;border-bottom:1px solid var(--filetto)}
+  .schede button[aria-selected=true]{border-bottom:2px solid var(--corallo)}
+  .settori .foto img{aspect-ratio:780/620}
+  .settori .pannelli p{font-size:17px}
+  .lavorazioni{padding-top:96px}
+  .lavorazioni .intro{font-size:18px}
+  .lavorazioni .officina{margin-top:44px}
+  .lavorazioni .officina img{aspect-ratio:780/539}
+  .tappe{margin-top:40px;row-gap:28px}
+  .tappe li{grid-column:1/13}
+  .tappe h3{margin-top:12px;font-size:22px}
+  .macchine{padding-top:104px;padding-bottom:104px}
+  .macchine .capo p{grid-column:1/13;font-size:17px}
+  .parco{margin-top:44px}
+  .parco h3{font-size:23px}
+  .parco .mod{flex-direction:column;gap:6px}
+  .parco .mod span{white-space:normal}
+  .chiusura .testo{padding-top:80px}
+  .chiusura h2{font-size:40px}
+  .recapiti{font-size:17px}
+  .piede{padding-top:64px}
+  .piede .alto{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
+  .piede .basso{margin-top:48px}
+  .piede .basso .dx{margin-left:0}
+}
+@media (max-width:359px){
+  .piede .alto{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="testata wrap" id="testata">
+  <a class="logo" href="#"><img src="img/logo-dz.png" width="352" height="172" alt="D.Z. Stampi"></a>
+  <nav id="menu" aria-label="Menu principale">
+    <ul>
+      <li><a href="#settori">Settori</a></li>
+      <li><a href="#lavorazioni">Lavorazioni</a></li>
+      <li><a href="#macchine">Macchine</a></li>
+      <li><a href="#contatti">Dove siamo</a></li>
+    </ul>
+  </nav>
+  <a class="tel" href="tel:+390444415163">0444&nbsp;415163</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main>
+  <section class="apertura" aria-labelledby="titolo">
+   <div class="ap-in">
+    <div class="testo wrap">
+      <h1 id="titolo"><span>Dal disegno</span> <span>al collaudo</span></h1>
+      <p class="lead">Progettiamo e costruiamo stampi a iniezione per materie plastiche, per il medicale, l'automotive e l'alimentare. Progetto e lavorazioni restano nella nostra officina.</p>
+      <a class="bottone" href="tel:+390444415163">Chiama 0444&nbsp;415163</a>
+    </div>
+    <figure class="pezzo">
+      <div class="stampo">
+        <div class="tela">
+          <img src="img/stampo-1200.webp" srcset="img/stampo-800.webp 800w, img/stampo-1200.webp 1200w, img/stampo-1800.webp 1800w, img/stampo-2400.webp 2400w" sizes="(max-width:640px) 94vw, (max-width:959px) 80vw, 66vw" width="1545" height="1800" alt="Metà di uno stampo a iniezione in acciaio con quattro impronte, la colonna di guida e il golfare di sollevamento">
+          <div aria-hidden="true">
+            <span class="filo o" style="left:67%;width:10.6%;top:9.5%"></span><span class="punto" data-n="1" style="left:77.6%;top:9.5%"></span>
+            <span class="filo v" style="left:22.2%;top:31.5%;height:13.5%"></span><span class="filo o" style="left:21.4%;width:.8%;top:45%"></span><span class="punto" data-n="2" style="left:22.2%;top:31.5%"></span>
+            <span class="filo o" style="left:23%;width:23.7%;top:57.3%"></span><span class="punto" data-n="3" style="left:46.7%;top:57.3%"></span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="legenda">
+        <ol>
+          <li class="l1"><b>1</b>Golfare</li>
+          <li class="l2"><b>2</b>Colonna di guida</li>
+          <li class="l3"><b>3</b>Quattro impronte<br> in un unico assieme</li>
+        </ol>
+        <span class="ind">Foto indicativa</span>
+      </figcaption>
+    </figure>
+    <p class="piede-ap"><b>Dal 1985</b> a Grisignano di Zocco, a 50&nbsp;metri dal casello A4</p>
+   </div>
+  </section>
+
+  <section class="settori" id="settori" aria-labelledby="t-settori">
+    <div class="capo wrap griglia">
+      <h2 class="occhio" id="t-settori">Stampi per i settori</h2>
+      <div class="schede" role="tablist" aria-labelledby="t-settori">
+        <button role="tab" id="s-med" aria-controls="p-med" aria-selected="true">Medicale</button>
+        <button role="tab" id="s-aut" aria-controls="p-aut" aria-selected="false" tabindex="-1">Automotive</button>
+        <button role="tab" id="s-ali" aria-controls="p-ali" aria-selected="false" tabindex="-1">Alimentare</button>
+      </div>
+      <div class="pannelli">
+        <div role="tabpanel" id="p-med" aria-labelledby="s-med">
+          <p>Pezzi per il medicale: progetto e lavorazioni restano in officina, il prodotto che ci affidate resta riservato.</p>
+        </div>
+        <div role="tabpanel" id="p-aut" aria-labelledby="s-aut" hidden>
+          <p>Stampi per componenti dell'automobile.</p>
+        </div>
+        <div role="tabpanel" id="p-ali" aria-labelledby="s-ali" hidden>
+          <p>Vaschette, contenitori e secchielli a spessore sottile, anche con il sistema IML.</p>
+        </div>
+        <p class="nota">Foto indicative</p>
+      </div>
+    </div>
+    <div class="foto">
+      <picture data-s="s-med">
+        <source media="(max-width:640px)" srcset="img/settore-medicale-m-780.jpg">
+        <img src="img/settore-medicale-1440.jpg" srcset="img/settore-medicale-1440.jpg 1440w, img/settore-medicale-1920.jpg 1920w, img/settore-medicale-2880.jpg 2880w" sizes="100vw" width="2880" height="1320" alt="Siringhe monouso in plastica trasparente" loading="lazy">
+      </picture>
+      <picture data-s="s-aut" hidden>
+        <source media="(max-width:640px)" srcset="img/settore-automotive-m-780.jpg">
+        <img src="img/settore-automotive-1440.jpg" srcset="img/settore-automotive-1440.jpg 1440w, img/settore-automotive-1920.jpg 1920w, img/settore-automotive-2880.jpg 2880w" sizes="100vw" width="2880" height="1320" alt="Scocca in plastica nera per automobile, con nervature e attacchi" loading="lazy">
+      </picture>
+      <picture data-s="s-ali" hidden>
+        <source media="(max-width:640px)" srcset="img/settore-alimentare-m-780.jpg">
+        <img src="img/settore-alimentare-1440.jpg" srcset="img/settore-alimentare-1440.jpg 1440w, img/settore-alimentare-1920.jpg 1920w, img/settore-alimentare-2880.jpg 2880w" sizes="100vw" width="2880" height="1320" alt="Contenitore in plastica a parete sottile con il coperchio aperto" loading="lazy">
+      </picture>
+    </div>
+  </section>
+
+  <section class="lavorazioni" id="lavorazioni" aria-labelledby="t-lav">
+    <div class="wrap griglia">
+      <h2 class="t-sezione" id="t-lav">Quattro tappe, dal prototipo alla serie</h2>
+      <p class="intro">Progettazione 2D e 3D, costruzione e collaudo: ogni fase dello stampo si fa all'interno dell'azienda.</p>
+    </div>
+    <figure class="officina">
+      <picture>
+        <source media="(max-width:640px)" srcset="img/officina-m-780.jpg">
+        <img src="img/officina-1440.jpg" srcset="img/officina-1440.jpg 1440w, img/officina-1920.jpg 1920w, img/officina-2400.jpg 2400w" sizes="100vw" width="2400" height="960" alt="Centro di lavoro che fresa un blocco in alluminio sotto il getto del refrigerante" loading="lazy">
+      </picture>
+    </figure>
+    <div class="wrap">
+      <ol class="tappe griglia">
+        <li><span class="n">1</span><h3>Prototipo in sinterizzazione laser</h3><p>Prototipazione rapida SLS: i miglioramenti di progetto si vedono prima, con tempi e costi ridotti.</p></li>
+        <li><span class="n">2</span><h3>Stampo pilota</h3><p>Uno stampo singolo, di test o per produzioni limitate.</p></li>
+        <li><span class="n">3</span><h3>Stampo definitivo multimpronte</h3><p>Una matrice multipla in un unico assieme, per la serie.</p></li>
+        <li><span class="n">4</span><h3>Collaudo</h3><p>Installazione sulla linea di produzione, test di collaudo e verifica della qualità nel tempo.</p></li>
+      </ol>
+      <p class="dopo"><b>Dopo il collaudo</b> seguiamo revisione e manutenzione degli stampi.</p>
+    </div>
+  </section>
+
+  <section class="macchine wrap" id="macchine" aria-labelledby="t-mac">
+    <div class="capo griglia">
+      <h2 class="t-sezione" id="t-mac">Tre centri di lavoro a 5&nbsp;assi, fino a 3000&nbsp;×&nbsp;1600&nbsp;mm</h2>
+      <p>Undici macchine in via del Lavoro: fresatura a 3 e 5&nbsp;assi, tornitura, elettroerosione a tuffo, rettifica piana e per interni ed esterni.</p>
+    </div>
+    <div class="parco">
+      <p class="cap"><span>Le macchine in officina, per tipo</span><span>corsa in mm</span></p>
+      <ul>
+        <li><h3>Centri di lavoro a 5&nbsp;assi<small>27.000 giri al minuto</small></h3>
+          <p class="mod"><span class="q"><b>Parpas Active Five 3000</b> 3000&nbsp;×&nbsp;1600</span><span class="q"><b>Parpas Active Five 2000</b> 2000&nbsp;×&nbsp;1600</span><span class="q"><b>Parpas PHS 916TT90</b> 1600&nbsp;×&nbsp;900</span></p></li>
+        <li><h3>Fresatura<small>a 3 assi e centro di lavoro</small></h3>
+          <p class="mod"><span><b>Parpas SL60</b> 2000&nbsp;×&nbsp;750</span><span><b>Huron VX18</b> <i>centro di lavoro</i> 2000&nbsp;×&nbsp;810</span><span><b>OMV HSC 1400</b> <i>alta velocità</i> 1400&nbsp;×&nbsp;600</span><span><b>OMV BFC 1300</b> <i>universale CNC</i> 1300&nbsp;×&nbsp;600</span></p></li>
+        <li><h3>Elettroerosione a tuffo</h3>
+          <p class="mod"><span><b>ONA QX6</b> 1000&nbsp;×&nbsp;600&nbsp;×&nbsp;500</span></p></li>
+        <li><h3>Rettifica</h3>
+          <p class="mod"><span><b>Delta Maxi 1500</b> <i>piana a montante mobile</i> 1500&nbsp;×&nbsp;750</span><span><b>500U</b> <i>per interni ed esterni</i></span></p></li>
+        <li><h3>Tornitura CNC</h3>
+          <p class="mod"><span><b>Mazak 200</b> Ø&nbsp;200&nbsp;×&nbsp;1000</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chiusura" id="contatti" aria-labelledby="t-con">
+    <div class="testo">
+      <h2 id="t-con">Cinquanta metri dal casello, e siete arrivati</h2>
+      <a class="numero" href="tel:+390444415163">0444&nbsp;415163</a>
+      <p class="offerte">Formuliamo offerte senza alcun impegno.</p>
+      <address class="recapiti">
+        <p><a href="mailto:info@dzstampi.com">info@dzstampi.com</a></p>
+        <p>Via del Lavoro 24/26, 36040 Grisignano di Zocco (VI)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=45.482702,11.708293">Apri la mappa</a></p>
+        <p class="fax">Fax 0444&nbsp;414972</p>
+      </address>
+    </div>
+    <div class="foto">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/chiusura-780.jpg 780w, img/chiusura-1400.jpg 1400w" sizes="100vw">
+        <img src="img/chiusura-v-900.jpg" srcset="img/chiusura-v-900.jpg 900w, img/chiusura-v-1344.jpg 1344w" sizes="50vw" width="1344" height="1440" alt="Due pezzi tecnici in plastica bianca su fondo grigio" loading="lazy">
+      </picture>
+    </div>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="alto">
+      <div class="marchio">
+        <img src="img/logo-dz.png" width="352" height="172" alt="D.Z. Stampi S.r.l." loading="lazy">
+        <p>Stampi a iniezione per materie plastiche, dal disegno al collaudo. Grisignano di Zocco (VI), dal 1985.</p>
+      </div>
+      <nav class="col" aria-labelledby="f-az">
+        <h2 id="f-az">Azienda</h2>
+        <ul>
+          <li><a href="azienda.html">Chi siamo</a></li>
+          <li><a href="azienda.html#macchine">Le macchine</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+      <nav class="col" aria-labelledby="f-lav">
+        <h2 id="f-lav">Lavorazioni</h2>
+        <ul>
+          <li><a href="lavorazioni.html#progettazione">Progettazione 2D e 3D</a></li>
+          <li><a href="lavorazioni.html#sls">Prototipi SLS</a></li>
+          <li><a href="lavorazioni.html#pilota">Stampo pilota</a></li>
+          <li><a href="lavorazioni.html#multimpronte">Stampo multimpronte</a></li>
+          <li><a href="lavorazioni.html#collaudo">Collaudo</a></li>
+          <li><a href="lavorazioni.html#manutenzione">Revisione e manutenzione</a></li>
+        </ul>
+      </nav>
+      <nav class="col" aria-labelledby="f-set">
+        <h2 id="f-set">Settori</h2>
+        <ul>
+          <li><a href="settori.html#medicale">Medicale</a></li>
+          <li><a href="settori.html#automotive">Automotive</a></li>
+          <li><a href="settori.html#alimentare">Alimentare</a></li>
+        </ul>
+      </nav>
+      <div class="col contatti">
+        <h2>Contatti</h2>
+        <ul>
+          <li><a href="tel:+390444415163">Tel. 0444&nbsp;415163</a></li>
+          <li><a href="mailto:info@dzstampi.com">info@dzstampi.com</a></li>
+          <li><a href="contatti.html#dove-siamo">Dove siamo</a></li>
+          <li><a href="area-riservata.html">Area riservata</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="basso">
+      <span>D.Z. Stampi S.r.l. società unipersonale</span>
+      <span>P.IVA e C.F. 01742510249</span>
+      <span>Capitale sociale 140.000,00&nbsp;€ i.v.</span>
+      <span class="dx"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.schede [role=tab]'));
+  var foto=[].slice.call(document.querySelectorAll('.settori .foto picture'));
+  function scegli(t,focus){
+    tabs.forEach(function(b){
+      var on=b===t;
+      b.setAttribute('aria-selected',on?'true':'false');
+      b.tabIndex=on?0:-1;
+      document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
+    });
+    foto.forEach(function(p){p.hidden=p.getAttribute('data-s')!==t.id;});
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){scegli(b);});
+    b.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+tabs.length)%tabs.length;
+      if(e.key==='Home')j=0;
+      if(e.key==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();scegli(tabs[j],true);}
+    });
+  });
+  var btn=document.querySelector('.menu-btn'),testata=document.getElementById('testata');
+  btn.addEventListener('click',function(){
+    var aperto=testata.classList.toggle('aperta');
+    btn.setAttribute('aria-expanded',aperto?'true':'false');
+  });
+  document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){testata.classList.remove('aperta');btn.setAttribute('aria-expanded','false');});});
+})();
+</script>
+</body>
+</html>

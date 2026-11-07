@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tecnoplastic, galleggianti e filtri da Saonara</title>
+<meta name="description" content="Interruttori a galleggiante e filtri per l'acqua, progettati e stampati a Saonara (PD) dal 1994. Taurus, Supertec, Fox, Olympic, Dolphin, Whale.">
+<link rel="icon" href="img/logo-marchio.svg" type="image/svg+xml">
+<style>
+/* Red Hat Display e Red Hat Text, SIL Open Font License 1.1 (fonts/OFL-*.txt) */
+@font-face{font-family:'Red Hat Display';src:url(fonts/redhatdisplay-latin.woff2) format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Red Hat Text';src:url(fonts/redhattext-latin.woff2) format('woff2');font-weight:300 700;font-style:normal;font-display:swap}
+:root{
+  --carta:#F6F5F1; --carta-2:#ECEAE4; --inchiostro:#17191B; --pietra:#5B605F; --filetto:#D6D3CB;
+  --rosso:#D22631; --rosso-scuro:#A81B25;
+  --pelo:rgba(18,48,58,.42); --acqua-fondo:#EFF2F0; --velo:rgba(138,203,232,.06); /* insieme: acqua piatta #E9F0F0 */
+  --m:64px; --g:24px; --stacco:160px;
+  --display:'Red Hat Display','Helvetica Neue',Arial,sans-serif;
+  --testo:'Red Hat Text','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font:400 18px/1.55 var(--testo);font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--rosso-scuro)}
+:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nw{white-space:nowrap}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;background:var(--inchiostro);color:var(--carta);text-decoration:none;font:500 16px/1 var(--testo);transition:background-color .15s}
+.btn:hover{background:var(--rosso-scuro);color:#fff}
+.stacco{padding-top:var(--stacco)}
+
+/* testata */
+.testata{position:relative;z-index:5}
+.testata .wrap{display:flex;align-items:center;gap:40px;height:96px}
+.logo{display:block;width:190px;flex:none}
+.logo img{width:100%}
+.menu{display:flex;gap:30px;margin-left:56px}
+.menu a{text-decoration:none;font-size:16px}
+.menu a:hover{text-decoration:underline}
+.lingue{margin-left:auto;display:flex;gap:12px;font-size:14px;color:var(--pietra)}
+.lingue a{text-decoration:none}
+.lingue [aria-current]{color:var(--inchiostro);font-weight:500}
+.tel-testata{font:500 16px/1 var(--testo);text-decoration:none}
+.apri-menu{display:none}
+.solo-menu{display:none}
+
+/* apertura: sopra il pelo dell'acqua il titolo e i recapiti, sotto solo il Taurus */
+.apertura{position:relative;overflow:hidden;--h:clamp(700px,calc(100vh - 96px),860px);height:var(--h);--linea:272px}
+.apertura .wrap{position:relative;height:100%}
+.apertura h1{position:relative;z-index:3;padding-top:36px;font:400 112px/.95 var(--display);letter-spacing:-.04em;white-space:nowrap}
+.pelo{position:absolute;z-index:3;left:0;right:0;top:var(--linea);height:1px;background:var(--pelo)}
+.vasca{position:absolute;z-index:0;top:var(--linea);bottom:0;left:0;right:0;background:var(--acqua-fondo)}
+.velo{position:absolute;z-index:2;top:calc(var(--linea) + 1px);bottom:0;left:0;right:0;background:var(--velo);pointer-events:none}
+.sotto{position:relative;z-index:3;display:flex;align-items:center;gap:56px;margin-top:30px}
+.apertura .lead{max-width:27em;font-size:20px;line-height:1.45}
+.azioni{display:flex;flex:none;align-items:center;gap:28px}
+.azioni a.mail{font-size:16px}
+/* il Taurus: punta 26 px sotto la linea, corpo che riempie l'acqua fino a 18 px dal fondo; mai oltre la misura nativa (510 px) */
+.taurus{position:absolute;margin:0;--w:min(420px,calc((var(--h) - var(--linea) - 44px) / 1.259));width:var(--w);right:calc(var(--m) + 8px);top:calc(var(--linea) + 26px - var(--w) * .5529)}
+.taurus img{position:relative;z-index:1;width:100%;filter:drop-shadow(22px 34px 40px rgba(40,70,90,.15))}
+.pin{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;margin:0;font-size:14px;line-height:1.3;white-space:nowrap;left:calc(23.73% + 10px);top:51.24%;transform:translate(-100%,-50%)}
+.pin::after{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px #E9F0F0;transform:translateX(3.5px)}
+.pin i{display:block;flex:none;width:var(--l,52px);height:1px;background:var(--inchiostro)}
+
+/* sezioni */
+section{position:relative}
+h2{font:400 60px/1.02 var(--display);letter-spacing:-.028em}
+
+/* sezionato */
+.dentro .wrap{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:start}
+.dentro h2{grid-column:1 / span 6;grid-row:1}
+.dentro .intro{grid-column:8 / span 5;grid-row:1;align-self:end}
+.dentro figure{grid-column:1 / span 6;grid-row:2;margin:72px 0 0;position:relative;justify-self:center;width:min(100%,288px)}
+.dentro figure img{width:100%;filter:drop-shadow(26px 34px 38px rgba(92,64,20,.14))}
+.n{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;padding:0;border:1px solid var(--inchiostro);border-radius:50%;background:var(--carta);color:var(--inchiostro);font:500 14px/28px var(--testo);font-variant-numeric:tabular-nums;text-align:center;cursor:pointer;transition:background-color .12s,color .12s,border-color .12s}
+.n::after{content:"";position:absolute;inset:-8px;border-radius:50%}
+.n[aria-pressed=true]{background:var(--rosso);border-color:var(--rosso);color:#fff}
+.dentro .testo{grid-column:8 / span 5;grid-row:2;align-self:center;margin-top:72px}
+.dentro .intro{max-width:30em}
+.parti{list-style:none;margin:0;padding:0;border-top:1px solid var(--filetto)}
+.parti li{border-bottom:1px solid var(--filetto)}
+.parti button{display:grid;grid-template-columns:40px 1fr;width:100%;min-height:44px;padding:8px 0;border:0;background:none;color:var(--pietra);font:400 17px/1.4 var(--testo);text-align:left;cursor:pointer;transition:color .12s}
+.parti button b{font-weight:500;font-variant-numeric:tabular-nums}
+.parti button small{display:none;grid-column:2;margin:2px 0 4px;font-size:15px;line-height:1.45;color:var(--pietra)}
+.parti button:hover,.parti button[aria-pressed=true]{color:var(--inchiostro)}
+.parti button[aria-pressed=true] b{color:var(--rosso)}
+.parti button[aria-pressed=true] small{display:block}
+.tutte{display:none}
+.dati{margin-top:32px;font-size:15px;line-height:1.55;color:var(--pietra);max-width:34em}
+
+/* versioni */
+.versioni{background:var(--carta-2);padding-bottom:var(--stacco);margin-top:var(--stacco)}
+.versioni .capo{display:flex;align-items:end;justify-content:space-between;gap:var(--g)}
+.versioni .capo p{max-width:24em;color:var(--pietra)}
+.fila{list-style:none;margin:72px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);column-gap:var(--g)}
+.fila img{width:100%;max-width:230px;margin:0 auto;filter:drop-shadow(14px 20px 22px rgba(60,50,30,.14))}
+.fila h3{margin-top:18px;font:500 18px/1.3 var(--testo)}
+.fila p{font-size:15px;color:var(--pietra)}
+.altri{margin-top:64px;padding-top:28px;border-top:1px solid var(--filetto);display:flex;gap:var(--g);justify-content:space-between;align-items:baseline}
+.altri p{max-width:52em}
+.altri a{white-space:nowrap}
+
+/* filtri */
+.filtri .wrap{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.filtri .testo{grid-column:1 / span 4;align-self:start}
+.filtri .testo p{margin-top:28px}
+.filtri .testo p + p{margin-top:16px}
+.filtri figure{grid-column:6 / span 7;margin:40px 0 0;position:relative;justify-self:end;width:min(100%,600px)}
+.filtri figure img{width:100%;filter:drop-shadow(24px 32px 36px rgba(20,60,90,.12))}
+.leg{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.3;white-space:nowrap}
+.leg::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--inchiostro);box-shadow:0 0 0 3px var(--carta)}
+.leg i{order:1;display:block;flex:none;width:var(--l,56px);height:1px;background:var(--inchiostro)}
+.leg span{order:2}
+.filtri .leg-f1{left:29.5%;top:9%;--l:48px;flex-direction:column-reverse;align-items:center;transform:translate(-50%,-100%)}
+.filtri .leg-f1 i{width:1px;height:var(--l)}
+.filtri .leg-f2{left:9%;top:60%;--l:40px;flex-direction:row-reverse;transform:translate(calc(-100% + 3.5px),-50%)}
+.cartucce{margin-top:36px;padding-top:22px;border-top:1px solid var(--filetto);font-size:15px;line-height:1.55;color:var(--pietra)}
+
+/* azienda */
+.azienda .wrap{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.azienda h2{grid-column:1 / span 8}
+.fasi{grid-column:1 / span 12;list-style:none;margin:64px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);column-gap:var(--g)}
+.fasi li{font:400 30px/1.15 var(--display);letter-spacing:-.015em}
+.fasi span{display:block;margin-bottom:10px;font:500 14px/1 var(--testo);letter-spacing:0;color:var(--pietra);font-variant-numeric:tabular-nums}
+.azienda .a{grid-column:1 / span 5;margin-top:72px}
+.azienda .b{grid-column:7 / span 6;margin-top:72px}
+.azienda h3{font:500 18px/1.3 var(--testo)}
+.prove{list-style:none;margin:16px 0 0;padding:0}
+.prove li{padding:11px 0;border-top:1px solid var(--filetto);font-size:17px;line-height:1.45}
+.cert{margin-top:28px;font-size:15px;line-height:1.6;color:var(--pietra)}
+
+/* chiusura */
+.chiusura h2{font-size:68px;line-height:1.02;letter-spacing:-.032em;max-width:17em}
+.riga-chiusura{display:grid;grid-template-columns:max(var(--m),calc((100% - 1440px) / 2 + var(--m))) minmax(0,420px) 64px minmax(0,1fr);margin-top:80px}
+.recapiti{grid-column:2;display:grid;row-gap:30px;align-content:start;font-size:17px;line-height:1.55}
+.recapiti .tel{font:400 40px/1.1 var(--display);letter-spacing:-.015em;text-decoration:none}
+.recapiti .tel:hover{color:var(--rosso-scuro)}
+.recapiti .tit{display:block;margin-bottom:6px;font-size:15px;color:var(--pietra)}
+.foto-chiusura{grid-column:4;margin:0;height:373px}
+.foto-chiusura img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
+
+/* piede */
+.piede{background:var(--carta-2);padding:88px 0 36px;font-size:15px;line-height:1.5}
+.piede .alto{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);row-gap:48px}
+.piede .chi{grid-column:1 / span 4}
+.piede .chi img{width:210px}
+.piede .chi p{margin-top:22px;max-width:22em;color:var(--pietra)}
+.piede .chi .brochure{display:inline-block;margin-top:18px;font-weight:500}
+.seguici{margin-top:36px}
+.seguici h2,.col h2{font:500 15px/1.3 var(--testo);letter-spacing:0;margin-bottom:14px}
+.seguici a{color:var(--pietra);text-decoration:none}
+.seguici a:hover{color:var(--inchiostro);text-decoration:underline}
+.col{grid-column:span 2}
+.col ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.col a{text-decoration:none;color:var(--pietra)}
+.col a:hover{color:var(--inchiostro);text-decoration:underline}
+.col .contatto a{color:var(--inchiostro)}
+.col .contatto li.orari{color:var(--pietra)}
+.piede .basso{margin-top:80px;padding-top:22px;border-top:1px solid var(--filetto);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;font-size:14px;color:var(--pietra)}
+.piede .basso ul{list-style:none;margin:0;padding:0;display:flex;gap:24px}
+.piede .basso a{text-decoration:none}
+.piede .basso a:hover{text-decoration:underline;color:var(--inchiostro)}
+.col .apri{all:unset;font:500 15px/1.3 var(--testo);color:var(--inchiostro)}
+
+/* 1024 */
+@media (max-width:1200px){
+  :root{--m:48px;--stacco:128px}
+  .testata .wrap{gap:24px}
+  .logo{width:170px}
+  .menu{margin-left:8px;gap:22px}
+  .apertura{--linea:326px}
+  .apertura h1{font-size:84px;padding-top:32px}
+  .sotto{display:block;margin-top:24px}
+  .apertura .lead{max-width:24em;font-size:18px}
+  .azioni{margin-top:20px}
+  .taurus{right:var(--m);--w:min(420px,calc((var(--h) - var(--linea) - 40px) / 1.259));top:calc(var(--linea) + 22px - var(--w) * .5529)}
+  h2{font-size:48px}
+  .dentro .intro,.dentro .testo{grid-column:7 / span 6}
+  .fila{grid-template-columns:repeat(3,1fr);row-gap:48px}
+  .fila img{max-width:200px}
+  .filtri .testo{grid-column:1 / span 5}
+  .filtri .leg-f2{display:none}
+  .fasi li{font-size:24px}
+  .chiusura h2{font-size:52px}
+  .recapiti .tel{font-size:34px}
+  .riga-chiusura{grid-template-columns:var(--m) minmax(0,340px) 48px minmax(0,1fr)}
+  .foto-chiusura img{object-position:75% 50%}
+  .piede .chi{grid-column:1 / span 12;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--g);align-items:start}
+  .piede .chi img{grid-column:1 / span 2;grid-row:1}
+  .piede .chi p{grid-column:1 / span 2;grid-row:2}
+  .piede .chi .brochure{grid-column:3;grid-row:1;justify-self:start;margin-top:4px}
+  .piede .chi .seguici{grid-column:4;grid-row:1 / span 2;margin-top:0}
+  .col{grid-column:span 3}
+}
+@media (min-width:1201px) and (max-width:1400px){
+  .apertura{--linea:300px}
+  .azioni{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media (max-width:1000px){ .menu{gap:18px} }
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px;--g:18px;--stacco:112px}
+  .menu,.lingue,.tel-testata{display:none}
+  .testata .wrap{height:76px}
+  .logo{width:170px}
+  .apri-menu{display:inline-flex;align-items:center;gap:10px;margin-left:auto;min-height:44px;padding:0 4px;border:0;background:none;color:var(--inchiostro);font:500 16px/1 var(--testo);cursor:pointer}
+  .apri-menu svg{width:22px;height:14px}
+  .testata.aperta .menu{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;margin:0;padding:8px var(--m) 24px;background:var(--carta);border-bottom:1px solid var(--filetto)}
+  .testata.aperta .menu a{padding:14px 0;font-size:20px;border-top:1px solid var(--filetto)}
+  .testata.aperta .menu .solo-menu{display:block;font-size:16px;color:var(--pietra)}
+  .apertura{height:auto}
+  .apertura .wrap{height:auto;display:flex;flex-direction:column}
+  .apertura h1{padding-top:36px;font-size:76px;line-height:.98;white-space:normal}
+  .sotto{display:block;margin-top:28px}
+  .apertura .lead{max-width:24em}
+  .azioni{margin-top:28px}
+  .pelo,.vasca,.velo{display:none}
+  .serbatoio{display:block;position:relative;height:380px;margin:120px calc(-1 * var(--m)) 0;border-top:1px solid var(--pelo);background:var(--acqua-fondo)}
+  .serbatoio{clip-path:inset(-400px 0 0 0)}
+  .serbatoio::after{content:"";position:absolute;z-index:2;inset:0;background:var(--velo);pointer-events:none}
+  .serbatoio .taurus{--w:260px;right:calc(var(--m) + 40px);top:calc(22px - var(--w) * .5529)}
+  .serbatoio .pin{white-space:normal}
+  .serbatoio .pin span{width:12em;text-align:right}
+  .dentro h2,.dentro .intro,.dentro figure,.dentro .testo{grid-column:1 / span 12;grid-row:auto}
+  .dentro .intro{margin-top:28px;align-self:start}
+  .dentro figure{width:min(100%,330px);margin-top:56px}
+  .dentro .testo{margin-top:56px}
+  .versioni .capo{display:block}
+  .versioni .capo p{margin-top:20px}
+  .altri{display:block}
+  .altri a{display:inline-block;margin-top:16px}
+  .filtri .testo{grid-column:1 / span 12}
+  .filtri figure{grid-column:1 / span 12;margin-top:40px;justify-self:center;width:min(100%,480px)}
+  .filtri .leg{display:none}
+  .azienda h2{grid-column:1 / span 12}
+  .fasi li{font-size:20px}
+  .azienda .a,.azienda .b{grid-column:1 / span 12}
+  .azienda .b{margin-top:48px}
+  .chiusura h2{font-size:44px;line-height:1.06}
+  .riga-chiusura{display:block;margin-top:48px}
+  .recapiti{grid-template-columns:1fr 1fr;column-gap:var(--g);row-gap:28px;padding:0 var(--m)}
+  .foto-chiusura{height:auto;margin-top:64px}
+  .foto-chiusura img{height:auto}
+  .col{grid-column:span 6}
+}
+.serbatoio{display:none}
+@media (max-width:900px){ .serbatoio{display:block} }
+/* 390 */
+@media (max-width:560px){
+  :root{--m:20px;--g:14px;--stacco:96px}
+  body{font-size:17px}
+  .testata .wrap{height:68px;gap:16px}
+  .testata.aperta .menu{top:68px}
+  .logo{width:150px}
+  .apertura h1{padding-top:26px;font-size:58px;line-height:.98;letter-spacing:-.038em}
+  .sotto{margin-top:20px}
+  .apertura .lead{font-size:18px;line-height:1.45}
+  .azioni{flex-direction:column;align-items:flex-start;gap:12px;margin-top:24px}
+  .serbatoio{height:326px;margin-top:96px}
+  .serbatoio .taurus{--w:224px;right:calc(var(--m) + 14px)}
+  .serbatoio .pin{font-size:13px;--l:22px;left:calc(23.73% + 8px)}
+  .serbatoio .pin span{width:8.6em}
+  h2{font-size:36px;line-height:1.06}
+  .dentro figure{width:68%}
+  .n{width:28px;height:28px;font-size:13px;line-height:26px}
+  .dentro .testo{margin-top:48px}
+  .parti.chiuse li:nth-child(n+4){display:none}
+  .tutte{display:inline-flex;align-items:center;min-height:44px;margin-top:8px;padding:0;border:0;background:none;color:var(--inchiostro);font:500 16px/1.3 var(--testo);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;cursor:pointer}
+  .fila{grid-template-columns:repeat(3,1fr);row-gap:32px;margin-top:44px}
+  .fila img{max-width:100px}
+  .fila h3{font-size:15px;margin-top:12px}
+  .fila p{font-size:14px;line-height:1.35}
+  .fasi{display:block;margin-top:40px}
+  .fasi li{display:flex;align-items:baseline;gap:14px;padding:6px 0;font-size:24px}
+  .fasi span{display:inline;margin:0;width:14px;flex:none}
+  .azienda .a{margin-top:44px}
+  .chiusura h2{font-size:34px;line-height:1.1}
+  .recapiti .tel{font-size:32px}
+  .recapiti{grid-template-columns:1fr}
+  .foto-chiusura{margin-top:56px}
+  .piede{padding-top:64px}
+  .piede .alto{row-gap:0}
+  .piede .chi{display:block;margin-bottom:36px}
+  .piede .chi .brochure{margin-top:18px}
+  .piede .chi .seguici{margin-top:36px}
+  .col{grid-column:1 / span 12;border-top:1px solid var(--filetto)}
+  .col h2{margin:0}
+  .col .apri{all:revert;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;padding:0;border:0;background:none;color:var(--inchiostro);font:500 16px/1.3 var(--testo);text-align:left;cursor:pointer}
+  .col .apri::after{content:"+";font-size:20px;line-height:1}
+  .col .apri[aria-expanded=true]::after{content:"\2212"}
+  .col ul{padding:0 0 20px}
+  .col ul[hidden]{display:none}
+  .piede .basso{margin-top:36px;display:block}
+  .piede .basso ul{margin-top:12px;flex-wrap:wrap}
+}
+@media (max-width:360px){
+  .apertura h1{font-size:50px}
+  .serbatoio .pin{display:none}
+  .fila h3{font-size:13.5px}
+  .serbatoio .taurus{right:50%;transform:translateX(50%)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="testata" id="testata">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Tecnoplastic, torna all'inizio"><img src="img/logo-tecnoplastic.svg" alt="Tecnoplastic" width="190" height="40"></a>
+    <nav class="menu" id="menu" aria-label="Principale">
+      <a href="#galleggianti">Galleggianti</a>
+      <a href="#filtri">Filtri</a>
+      <a href="#azienda">Azienda</a>
+      <a href="/download/">Download</a>
+      <a href="#contatti">Contatti</a>
+      <a class="solo-menu" href="/en/" lang="en">English</a>
+    </nav>
+    <div class="lingue"><a href="#" aria-current="true" lang="it">IT</a><a href="/en/" lang="en">EN</a></div>
+    <a class="tel-testata num" href="tel:+390498790775">049 879 0775</a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu <svg viewBox="0 0 22 14" aria-hidden="true"><path d="M0 1h22M0 7h22M0 13h22" stroke="currentColor" stroke-width="1.6"/></svg></button>
+  </div>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="vasca" aria-hidden="true"></div>
+  <div class="pelo" aria-hidden="true"></div>
+  <div class="velo" aria-hidden="true"></div>
+  <div class="wrap">
+    <h1 id="titolo">Il cuore della pompa</h1>
+    <div class="sotto">
+      <p class="lead">Interruttori a galleggiante e filtri per l'acqua, progettati e stampati a Saonara dal&nbsp;1994.</p>
+      <div class="azioni">
+        <a class="btn num" href="tel:+390498790775">Chiama 049&nbsp;879&nbsp;0775</a>
+        <a class="mail" href="mailto:sales@tecnoplastic.com">sales@tecnoplastic.com</a>
+      </div>
+    </div>
+    <figure class="taurus" data-taurus>
+      <img src="img/taurus-appeso-510.webp" srcset="img/taurus-appeso-300.webp 300w, img/taurus-appeso-400.webp 400w, img/taurus-appeso-510.webp 510w" sizes="(max-width:560px) 224px, (max-width:900px) 260px, 400px" width="510" height="927" alt="Il Taurus giallo appeso al suo cavo, sotto il pelo dell'acqua" fetchpriority="high">
+      <p class="pin"><span>Contrappeso integrato: resta sott'acqua</span><i></i></p>
+    </figure>
+    <div class="serbatoio" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="dentro stacco" id="galleggianti" aria-labelledby="t-dentro">
+  <div class="wrap">
+    <h2 id="t-dentro">Un galleggiante dentro un altro galleggiante</h2>
+    <p class="intro">I galleggianti tradizionali stanno sulla superficie dell'acqua. Il Taurus, con il contrappeso integrato, rimane sotto. Usato in coppia regola il livello minimo e il massimo: il livello alto avvia la pompa, il livello basso la ferma.</p>
+    <figure>
+      <img src="img/taurus-sezionato-449.webp" srcset="img/taurus-sezionato-320.webp 320w, img/taurus-sezionato-449.webp 449w" sizes="(max-width:560px) 68vw, (max-width:900px) 330px, 288px" width="449" height="934" alt="Il Taurus tagliato a metà: le tre camere, la calotta bianca in polistirene, la graniglia metallica e il pressacavo" loading="lazy">
+      <button class="n" type="button" data-i="1" style="left:68%;top:39.5%" aria-label="1, prima camera a tenuta stagna">1</button>
+      <button class="n" type="button" data-i="2" style="left:35.2%;top:35.3%" aria-label="2, seconda camera a tenuta stagna">2</button>
+      <button class="n" type="button" data-i="3" style="left:67.5%;top:10.8%" aria-label="3, terza camera a tenuta stagna">3</button>
+      <button class="n" type="button" data-i="4" style="left:79.9%;top:20.3%" aria-label="4, guarnizione sferica in plastica">4</button>
+      <button class="n" type="button" data-i="5" style="left:94.6%;top:22.3%" aria-label="5, sigillatura termoplastica finale">5</button>
+      <button class="n" type="button" data-i="6" style="left:69.5%;top:25.9%" aria-label="6, calotta in polistirene espanso">6</button>
+      <button class="n" type="button" data-i="7" style="left:72.8%;top:53.5%" aria-label="7, graniglia metallica">7</button>
+      <button class="n" type="button" data-i="8" style="left:59%;top:59.8%" aria-label="8, pressacavo">8</button>
+      <button class="n" type="button" data-i="9" style="left:56.6%;top:71.9%" aria-label="9, passacavo">9</button>
+    </figure>
+    <div class="testo">
+      <ol class="parti" id="parti" aria-label="Le parti del Taurus">
+        <li><button type="button" data-i="1" aria-pressed="true"><b>1</b><span>Prima camera a tenuta stagna</span></button></li>
+        <li><button type="button" data-i="2" aria-pressed="false"><b>2</b><span>Seconda camera a tenuta stagna</span></button></li>
+        <li><button type="button" data-i="3" aria-pressed="false"><b>3</b><span>Terza camera a tenuta stagna</span></button></li>
+        <li><button type="button" data-i="4" aria-pressed="false"><b>4</b><span>Guarnizione sferica in plastica</span><small>Aumenta la resistenza strutturale del galleggiante.</small></button></li>
+        <li><button type="button" data-i="5" aria-pressed="false"><b>5</b><span>Sigillatura termoplastica finale</span><small>Fonde le varie parti in plastica in un unico pezzo.</small></button></li>
+        <li><button type="button" data-i="6" aria-pressed="false"><b>6</b><span>Calotta in polistirene espanso</span><small>Comprime la graniglia metallica.</small></button></li>
+        <li><button type="button" data-i="7" aria-pressed="false"><b>7</b><span>Graniglia metallica</span></button></li>
+        <li><button type="button" data-i="8" aria-pressed="false"><b>8</b><span>Pressacavo</span></button></li>
+        <li><button type="button" data-i="9" aria-pressed="false"><b>9</b><span>Passacavo</span><small>Testato a 5 bar.</small></button></li>
+      </ol>
+      <button class="tutte" type="button" aria-expanded="false" aria-controls="parti">Tutte le 9 parti</button>
+      <p class="dati num">Corpo in polipropilene, IP68. Fino a 20&nbsp;m di profondità, angolo di attivazione 20°&nbsp;±5°, 10(8)&nbsp;A 250&nbsp;Vac, per pompe fino a 1,5&nbsp;HP. Versioni certificate UL per il Nord America.</p>
+    </div>
+  </div>
+</section>
+
+<section class="versioni stacco" aria-labelledby="t-versioni">
+  <div class="wrap">
+    <div class="capo">
+      <h2 id="t-versioni">Sei Taurus</h2>
+      <p>La stessa costruzione a tre camere, in sei versioni per sei impieghi diversi.</p>
+    </div>
+    <ul class="fila">
+      <li><img src="img/versione-base-270.webp" srcset="img/versione-base-270.webp 270w, img/versione-base-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus giallo" loading="lazy"><h3>Taurus</h3><p>Acque reflue</p></li>
+      <li><img src="img/versione-drink-270.webp" srcset="img/versione-drink-270.webp 270w, img/versione-drink-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus-Drink blu" loading="lazy"><h3>Taurus-Drink</h3><p>Acqua potabile</p></li>
+      <li><img src="img/versione-ex-270.webp" srcset="img/versione-ex-270.webp 270w, img/versione-ex-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus-EX nero" loading="lazy"><h3>Taurus-EX</h3><p>Ambienti esplosivi</p></li>
+      <li><img src="img/versione-fep-270.webp" srcset="img/versione-fep-270.webp 270w, img/versione-fep-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus-Fep bianco" loading="lazy"><h3>Taurus-Fep</h3><p>Ambienti chimici</p></li>
+      <li><img src="img/versione-sihf-270.webp" srcset="img/versione-sihf-270.webp 270w, img/versione-sihf-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus-SiHF rosso" loading="lazy"><h3>Taurus-SiHF</h3><p>Alte temperature</p></li>
+      <li><img src="img/versione-pur-270.webp" srcset="img/versione-pur-270.webp 270w, img/versione-pur-540.webp 540w" sizes="(max-width:560px) 100px, 200px" width="540" height="764" alt="Taurus-PUR giallo con cavo giallo" loading="lazy"><h3>Taurus-PUR</h3><p>Liquidi abrasivi, cavo PUR</p></li>
+    </ul>
+    <div class="altri">
+      <p>In tutto ventitré galleggianti e regolatori di livello: oltre al Taurus, Olympic, Fox, Supertec, Flotec, il Mouse per gli spazi stretti e gli elettronici Spider, Snake e Crab. Più sette accessori per fissarli e collegarli.</p>
+      <a href="/galleggianti/">Tutti i galleggianti</a>
+    </div>
+  </div>
+</section>
+
+<section class="filtri stacco" id="filtri" aria-labelledby="t-filtri">
+  <div class="wrap">
+    <div class="testo">
+      <h2 id="t-filtri">Filtri Dolphin e Whale</h2>
+      <p>Contenitori per filtri in plastica atossica secondo la normativa ACS, per l'uso permanente in acqua potabile: in casa, nell'industria, per le caldaie e i giardini.</p>
+      <p>Il giunto intermedio brevettato li unisce in fila; il Whale ha l'anti colpo d'ariete incorporato. Arrivano già montati, con la chiave.</p>
+      <p class="cartucce">Cartucce in filo avvolto, polipropilene estruso, carboni attivi, polifosfati contro il calcare, acciaio inox lavabile, filo avvolto e carboni insieme. <a href="/filtri/">Tutti i filtri</a></p>
+    </div>
+    <figure>
+      <img src="img/dolphin-tre-1000.webp" srcset="img/dolphin-tre-700.webp 700w, img/dolphin-tre-1000.webp 1000w, img/dolphin-tre-1400.webp 1400w" sizes="(max-width:900px) 92vw, 600px" width="1400" height="1511" alt="Tre filtri Dolphin trasparenti con la testa azzurra, uniti in batteria" loading="lazy">
+      <span class="leg leg-f1"><i></i><span>Giunto intermedio brevettato</span></span>
+      <span class="leg leg-f2"><i></i><span class="num">Fino a 11 bar</span></span>
+    </figure>
+  </div>
+</section>
+
+<section class="azienda stacco" id="azienda" aria-labelledby="t-azienda">
+  <div class="wrap">
+    <h2 id="t-azienda">Dallo stampo al collaudo, nello stesso stabilimento</h2>
+    <ol class="fasi" aria-label="Le fasi del lavoro, tutte a Saonara">
+      <li><span>1</span>Progettazione</li>
+      <li><span>2</span>Stampi</li>
+      <li><span>3</span>Stampaggio</li>
+      <li><span>4</span>Assemblaggio</li>
+      <li><span>5</span>Collaudo</li>
+    </ol>
+    <div class="a">
+      <p>L'intero processo produttivo avviene nel nostro stabilimento di Saonara. Lavoriamo per produttori di pompe, costruttori di stazioni di trattamento acque, produttori di quadri elettrici e per distributori di parti elettriche e idrauliche in tutto il mondo, con distributori ufficiali in Italia, Cipro, Regno Unito e Stati Uniti.</p>
+    </div>
+    <div class="b">
+      <h3>Le prove sui galleggianti</h3>
+      <ul class="prove">
+        <li>Ogni pezzo viene testato elettricamente prima dell'inscatolamento.</li>
+        <li>Durante la produzione, test in acqua sotto depressione per cercare eventuali infiltrazioni.</li>
+        <li>Ogni settimana, test di resistenza a forti pressioni.</li>
+        <li class="num">Microinterruttori garantiti per 50.000 cicli, nessun mercurio, cavi senza PVC.</li>
+      </ul>
+      <p class="cert num">Azienda certificata ISO 9001:2015 da ICIM, dal 2004. Prodotti certificati TÜV, UL, EX, ATEX, EAC, ACS. Tra i Campioni dell'Export 2023 del Sole 24 Ore e di Statista.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura stacco" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap">
+    <h2 id="t-contatti">Sembriamo un laboratorio artigianale, ma abbiamo la capacità produttiva di una grande azienda</h2>
+  </div>
+  <div class="riga-chiusura">
+    <div class="recapiti">
+      <div>
+        <span class="tit">Telefono</span>
+        <a class="tel num" href="tel:+390498790775">+39 049&nbsp;879&nbsp;0775</a>
+      </div>
+      <div>
+        <span class="tit">Email e sede</span>
+        <a href="mailto:sales@tecnoplastic.com">sales@tecnoplastic.com</a><br>
+        Via Calabria 3/5, 35020 Saonara (PD)<br>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Tecnoplastic+Via+Calabria+3%2F5+35020+Saonara+PD" rel="noopener">Apri la mappa</a>
+      </div>
+      <div class="num">
+        <span class="tit">Orari di ufficio e magazzino</span>
+        Lunedì-giovedì 8-13, 14-17<br>
+        Venerdì 8-13, 14-16
+      </div>
+    </div>
+    <figure class="foto-chiusura">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/facciata-stretta-780.jpg" width="780" height="373">
+        <img src="img/facciata-1600.jpg" width="1600" height="373" alt="La sede bianca di Tecnoplastic in via Calabria, con la fontana, l'insegna e gli ulivi" loading="lazy">
+      </picture>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="piede" aria-label="Piede">
+  <div class="wrap">
+    <div class="alto">
+      <div class="chi">
+        <img src="img/logo-tecnoplastic.svg" alt="Tecnoplastic" width="210" height="44">
+        <p>Interruttori a galleggiante e filtri, progettati e prodotti a Saonara dal 1994.</p>
+        <a class="brochure" href="https://www.tecnoplastic.com/_iserv/dlfiles/dl.php?ddl=tpbrochure2024-italiano.pdf">Brochure 2024 (PDF)</a>
+        <div class="seguici">
+          <h2>Seguici</h2>
+          <a href="https://www.youtube.com/@tecnoplasticsrl" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <div class="col">
+        <h2><button class="apri" type="button" aria-expanded="false" aria-controls="c1">Galleggianti</button></h2>
+        <ul id="c1">
+          <li><a href="/galleggianti/taurus/">Taurus</a></li>
+          <li><a href="/galleggianti/supertec/">Supertec</a></li>
+          <li><a href="/galleggianti/fox/">Fox</a></li>
+          <li><a href="/galleggianti/olympic/">Olympic</a></li>
+          <li><a href="/galleggianti/mouse/">Mouse</a></li>
+          <li><a href="/galleggianti/elettronici/">Spider, Snake, Crab</a></li>
+          <li><a href="/galleggianti/accessori/">Accessori</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><button class="apri" type="button" aria-expanded="false" aria-controls="c2">Filtri</button></h2>
+        <ul id="c2">
+          <li><a href="/filtri/dolphin/">Dolphin</a></li>
+          <li><a href="/filtri/whale/">Whale</a></li>
+          <li><a href="/filtri/cartucce/">Cartucce</a></li>
+          <li><a href="/filtri/accessori/">Accessori</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><button class="apri" type="button" aria-expanded="false" aria-controls="c3">Azienda</button></h2>
+        <ul id="c3">
+          <li><a href="/chi-siamo/">Chi siamo</a></li>
+          <li><a href="/certificazioni/">Certificazioni</a></li>
+          <li><a href="/download/">Download</a></li>
+          <li><a href="/distributori/">Distributori: Italia, Cipro, Regno Unito, Stati Uniti</a></li>
+          <li><a href="https://www.waterfitters.com/en/brand/tecnoplastic" rel="noopener">Negozio online (Water&nbsp;Fitters)</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2><button class="apri" type="button" aria-expanded="false" aria-controls="c4">Contatti</button></h2>
+        <ul id="c4" class="contatto">
+          <li><a class="num" href="tel:+390498790775">+39 049 879 0775</a></li>
+          <li><a href="mailto:sales@tecnoplastic.com">sales@tecnoplastic.com</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Tecnoplastic+Via+Calabria+3%2F5+35020+Saonara+PD" rel="noopener">Via Calabria 3/5<br>35020 Saonara (PD)</a></li>
+          <li class="orari num">Lun-gio 8-13, 14-17<br>Ven 8-13, 14-16</li>
+        </ul>
+      </div>
+    </div>
+    <div class="basso">
+      <p class="num">Tecnoplastic S.r.l., via Calabria 3/5, 35020 Saonara (PD), P.IVA 00046450284</p>
+      <ul>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/cookie/">Cookie</a></li>
+        <li><a href="/en/" lang="en">English</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // menu sul telefono
+  var t=document.getElementById('testata'), b=t.querySelector('.apri-menu');
+  b.addEventListener('click',function(){var o=t.classList.toggle('aperta');b.setAttribute('aria-expanded',o)});
+  // apertura: sotto i 900 px il Taurus con la sua legenda scende nel serbatoio, sotto il titolo e il bottone
+  var mqT=window.matchMedia('(max-width:900px)'), ser=document.querySelector('.serbatoio'), ap=document.querySelector('.apertura .wrap');
+  var fig=document.querySelector('[data-taurus]');
+  function sposta(){ var dove=mqT.matches?ser:ap; if(fig.parentNode!==dove) dove.appendChild(fig); }
+  (mqT.addEventListener?mqT.addEventListener('change',sposta):mqT.addListener(sposta)); sposta();
+  // le parti del Taurus: numero sulla foto e voce dell'elenco si accendono insieme
+  var parti=document.getElementById('parti'), tutte=document.querySelector('.tutte'), mq=window.matchMedia('(max-width:560px)');
+  function apriElenco(si){ parti.classList.toggle('chiuse',!si); tutte.setAttribute('aria-expanded',si?'true':'false'); tutte.textContent=si?'Solo le prime 3':'Tutte le 9 parti'; }
+  apriElenco(false);
+  tutte.addEventListener('click',function(){ apriElenco(tutte.getAttribute('aria-expanded')!=='true') });
+  var all=[].slice.call(document.querySelectorAll('.dentro [data-i]'));
+  function accendi(i){ if(+i>3 && mq.matches && parti.classList.contains('chiuse')) apriElenco(true);
+    all.forEach(function(e){e.setAttribute('aria-pressed',e.dataset.i===i?'true':'false')}) }
+  all.forEach(function(e){
+    e.addEventListener('click',function(){accendi(e.dataset.i)});
+    e.addEventListener('focus',function(){accendi(e.dataset.i)});
+    e.addEventListener('pointerenter',function(ev){if(ev.pointerType==='mouse')accendi(e.dataset.i)});
+  });
+  accendi('1');
+  var voci=[].slice.call(document.querySelectorAll('.parti button'));
+  voci.forEach(function(e,k){e.addEventListener('keydown',function(ev){
+    var d=ev.key==='ArrowDown'?1:ev.key==='ArrowUp'?-1:0; if(!d)return; ev.preventDefault();
+    var j=(k+d+voci.length)%voci.length; voci[j].focus();
+  })});
+  // colonne del piede a fisarmonica sul telefono
+  var apri=[].slice.call(document.querySelectorAll('.col .apri'));
+  function stato(){apri.forEach(function(x){var u=document.getElementById(x.getAttribute('aria-controls'));
+    if(mq.matches){u.hidden=x.getAttribute('aria-expanded')!=='true'}else{u.hidden=false}})}
+  apri.forEach(function(x){x.addEventListener('click',function(){if(!mq.matches)return;
+    x.setAttribute('aria-expanded',x.getAttribute('aria-expanded')==='true'?'false':'true');stato()})});
+  (mq.addEventListener?mq.addEventListener('change',stato):mq.addListener(stato)); stato();
+})();
+</script>
+</body>
+</html>

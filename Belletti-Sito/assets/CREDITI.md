@@ -1,0 +1,57 @@
+# Crediti delle immagini: Belletti
+
+## assets/esterne/ (segnaposto per la proposta)
+
+Foto di repertorio scaricate il 24/10/2026. Su ogni pagina ho controllato la licenza: le Pexels sono indicate come "Free" (Licenza Pexels, uso commerciale gratuito, attribuzione non obbligatoria); le Unsplash come "Free to use under the Unsplash License" e non sono Unsplash+. Nessuna è generata dall'IA. Nessuna compare nei CREDITI.md delle altre home della campagna (controllato per identificativo, elenco in `_prova/usate-campagna.txt`). Nessuna mostra un marchio di costruttori di ascensori concorrenti. Sono segnaposto: per il sito vero servono foto degli impianti Belletti (vedi 01-analisi.md, sez. 4 e 9).
+
+| File | Pagina della foto | Autore | Licenza | Misura | Uso pensato | Nota |
+|---|---|---|---|---|---|---|
+| `esterne/pexels-35288711-gokalp-ascensore-vetro-cemento.jpg` | https://www.pexels.com/photo/modern-architectural-interior-with-glass-elevator-35288711/ | Göksun Barış Gökalp (@goksun-baris-gokalp-2158208031) | Pexels, Free | 1800x2400 | A, apertura | castelletto in vetro in un atrio di calcestruzzo chiaro, luce naturale: un solo oggetto, molto spazio |
+| `esterne/unsplash-8dILBbtPDe8-borie-facciata-vano-vetro.jpg` | https://unsplash.com/photos/modern-building-with-glass-elevator-shaft-and-windows-8dILBbtPDe8 | Bertrand Borie (@bertrand1212) | Unsplash License | 1600x2400 | A, strutture metalliche | facciata bianca con vano in vetro a tutta altezza, cielo azzurro, Villeurbanne |
+| `esterne/pexels-11572257-jeromin-vano-vetro-tramonto.jpg` | https://www.pexels.com/photo/elevator-on-the-side-of-a-building-11572257/ | Niklas Jeromin (@njeromin) | Pexels, Free | 1600x2400 | A e B, chiusura | vano panoramico esterno in acciaio e vetro contro il cielo al tramonto, Amburgo |
+| `esterne/pexels-5499602-didsss-cilindro-vetro-facciata.jpg` | https://www.pexels.com/photo/glass-elevator-of-outside-part-of-building-5499602/ | Diana (@didsss) | Pexels, Free | 1800x2400 | A, panoramici | ascensore cilindrico in vetro esterno, quasi monocromo. In basso si legge l'insegna di un negozio di moda: da tagliare |
+| `esterne/unsplash-8cF7x8gBVPI-ota-scala-elicoidale-cilindro.jpg` | https://unsplash.com/photos/8cF7x8gBVPI | Kazuo ota (@kazuo513) | Unsplash License | 2400x1590 | B, apertura | cilindro in vetro dentro una scala elicoidale bianca, bianco e nero, aeroporto di Haneda. Richiama gli ascensori "tondi" in vano scala di Belletti |
+| `esterne/pexels-16261027-charkoftaki-cabina-ferro-scala.jpg` | https://www.pexels.com/photo/doors-by-a-spiral-staircase-16261027/ | Erofili Charkoftaki (@erofilichark) | Pexels, Free | 1800x2400 | B, storia (dal 1908) | vecchio vano in ferro battuto con porta a rete dentro una scala in marmo |
+| `esterne/pexels-32684366-erdogan-ascensore-storico-marmo.jpg` | https://www.pexels.com/photo/vintage-elevator-in-historic-building-interior-32684366/ | Zafer Erdoğan (@zafer-erdogan-49915050) | Pexels, Free | 1600x2400 | B, storia | ascensore d'epoca in un androne con marmi e porte bianche |
+| `esterne/pexels-12780906-ppppr-porte-luce-ombra.jpg` | https://www.pexels.com/photo/shadows-and-sunlight-on-wall-with-elevators-12780906/ | yx b (@ppppr) | Pexels, Free | 2400x1795 | A, assistenza o chiusura | due porte di piano con cornice ramata su una parete grigia, sole radente |
+| `esterne/unsplash-RfysBPKLWzw-brunobd-cabina-vetro-buio.jpg` | https://unsplash.com/photos/RfysBPKLWzw | Bruno BD (@brunobd) | Unsplash License | 2400x1600 | B, cabine | cabina in vetro e acciaio accesa in un ambiente scuro |
+
+Scaricate da images.pexels.com e images.unsplash.com con curl, al massimo 2400 px di lato.
+
+## assets/originali/ (dal sito e dal depliant di oggi)
+
+Scaricate da bellettiascensori.it il 24/10/2026: elenco, misure e voti in `_prova/inventario-immagini.json`.
+- `gallerie/`: 169 foto delle gallerie prodotto (`/download/immagini/fnNNNNNN.jpg`), quasi tutte di 500 px; `miniature/`: le 139 miniature da 130 px corrispondenti.
+- `depliant/`: 35 foto estratte dal depliant `pdf/Belletti_Depliant.pdf` (InDesign, 2008), fino a 948x1263, compresse in JPEG 2000. Sono foto professionali degli impianti Belletti; i diritti del fotografo vanno chiesti.
+- `sito/`: grafica, testate da 960x200, slider da 960x350, icone.
+- `pdf/`: depliant, due pagine pubblicitarie "TOP" (2010), redazionali della rivista DiBaio, certificati, DURC, informativa privacy.
+- Alcune foto non sono di Belletti: copertine e locandine (Premiazione del lavoro, Confindustria Giovani), render dello studio VS Associati, kart e rugby (sponsorizzazioni). Da non usare.
+
+## _prova/crawl/pdfimg/ (foto estratte dai redazionali)
+
+Estratte il 24/10/2026 con `pdfimages` dai PDF dei redazionali DiBaio pubblicati sul sito Belletti (`assets/originali/pdf/01_DiBaio_Martellago.pdf`, `02_DiBaio_Cavour.pdf`, `04_DiBaio_XXI_Investimenti.pdf`): foto di impianti Belletti (Cà della Nave a Martellago, Galleria Cavour a Padova, Villa Pavan a Treviso), da 590 a 1190 px. Le immagini `xxi-*` sono JPEG CMYK con i canali invertiti. Il fotografo non è indicato: i diritti vanno chiesti a Belletti (e all'editore per i redazionali). Usate nel prototipo A della home (`_prova/home/a/`).
+
+## Uso nel prototipo B della home (`_prova/home/b/`)
+
+- Dal depliant 2008 (`assets/originali/depliant/`): `d-037` Galleria Cavour di notte (apertura), `d-051` facciata della sede (generazioni, "oggi"), `d-002` torre in vetro (tessera Strutture), `d-030` montauto con l'auto d'epoca (tessera Montauto), `d-027` sede con il furgone (chiusura). Diritti del fotografo da chiedere a Belletti.
+- Dalle gallerie del sito: `fn000008` cabina tonda nella scala elicoidale (tessera Ascensori), `fn000053` montacarichi con il carrello elevatore (tessera Montacarichi).
+- Segnaposto di repertorio già elencati sopra: Charkoftaki (`pexels-16261027`, Rodolfo), Erdoğan (`pexels-32684366`, Paolo ed Elvira), Jeromin (`pexels-11572257`, Assistenza). In pagina hanno la didascalia "Foto indicativa". Nessuna nuova foto scaricata.
+
+## Uso nella home finale (`sito/`, livello professionale, 3/11/2026)
+
+Solo foto di Belletti, nessuna foto di repertorio: le nove foto di `assets/esterne/` (Pexels e Unsplash) non sono in pagina e nessuna è stata scaricata di nuovo. Script: `_prova/script/pro_img.py` (stesso trattamento per tutte, mai oltre la misura d'origine).
+- Apertura: la sede di Mestrino di sera con il furgone dell'assistenza (`depliant/d-027.jpg`, targa sfocata), 4:5 e striscia per il telefono.
+- Assistenza: il tecnico al quadro (`depliant/d-033.jpg`). Ammodernamento: la scala del palazzo con la cabina d'epoca (`depliant/d-036.jpg`).
+- Lavori: Galleria Cavour di sera (`depliant/d-037.jpg`), Ca' Michiel (`depliant/d-020.jpg`), Ca' della Nave dalla corte (estratta al momento da `pdf/01_DiBaio_Martellago.pdf`, 942x694, senza le panchine).
+- Impianti nuovi: `gallerie/fn000008.jpg` (cabina tonda nella scala elicoidale), `depliant/d-002.jpg` (torre in vetro), `gallerie/fn000053.jpg` (montacarichi), `depliant/d-030.jpg` (montauto), `gallerie/fn000257.jpg` (piattaforma), `gallerie/fn000165.jpg` (tappeti mobili).
+- Logo: `originali/logo-belletti-depliant.svg`.
+Diritti del fotografo del depliant e dell'editore DiBaio da chiedere a Belletti. Le foto della home di prima (Ca' della Nave in apertura, Galleria Cavour di giorno da `cav-003.jpg`, la scala a chiocciola da `mart-021.jpg`) sono nella copia `_prova/versione-1-originale/sito/img/`.
+
+## Uso nella home ibrida (`sito/`, 3/11/2026)
+
+`assets/originali/` era vuota dopo un riavvio. Il 3/11/2026 ho riscaricato da bellettiascensori.it il depliant del 2008 (`originali/pdf/belletti_depliant.pdf`, da `/pdf/pubblicita/belletti_depliant.pdf`) ed estratto di nuovo le sue immagini con `pdfimages -png` in `originali/depliant/` (stessa numerazione `d-NNN`). Il redazionale `01_DiBaio_Martellago.pdf` non è più online: Ca' della Nave viene dalla WebP della versione professionale (`originali/dibaio/cadellanave-dalla-pro-789.webp`, da `_prova/versione-pro/sito/img/`). Nessuna foto di repertorio, nessuna da `esterne/`. Script: `_prova/alto/script/immagini.py` (un solo trattamento, mai oltre la misura d'origine).
+- Apertura: `d-027`, la sede di sera con il furgone, targa sfocata, 4:5.
+- Culmine: `d-037`, Galleria Cavour di sera, 4:5. Lavori: `d-020` Ca' Michiel (4:5), Ca' della Nave (4:3).
+- Assistenza: `d-033`, il tecnico al quadro. Chi siamo: `d-043`, l'ufficio tecnico.
+- "Per quale edificio?": `d-036` (condominio), `d-029` (casa), `d-030` (negozi e centri storici), `d-026` (edifici nuovi), tutte 4:3.
+Diritti del fotografo del depliant e dell'editore DiBaio da chiedere a Belletti, come prima.
