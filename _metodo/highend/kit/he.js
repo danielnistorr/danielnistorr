@@ -145,7 +145,7 @@
 
   /* ---------- parallasse leggera ---------- */
   tutti("[data-he-parallax]").forEach(function (box) {
-    var v = parseFloat(box.getAttribute("data-he-parallax")) || 0.1;
+    var v = Math.min(parseFloat(box.getAttribute("data-he-parallax")) || 0.08, 0.09); // oltre 0.09 si vedrebbe il bordo della foto
     var el = box.querySelector("img,video") || box;
     gsap.fromTo(el, { yPercent: -v * 100 }, { yPercent: v * 100, ease: "none",
       scrollTrigger: { trigger: box, start: "top bottom", end: "bottom top", scrub: true } });

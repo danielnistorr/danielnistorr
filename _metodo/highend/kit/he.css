@@ -41,8 +41,10 @@ img,video{display:block;max-width:100%}
 /* media */
 .he-media{position:relative;overflow:hidden}
 .he-media img,.he-media video{width:100%;height:100%;object-fit:cover}
-.he-parallax{overflow:hidden}
-.he-parallax > img,.he-parallax > video{height:124%;margin-top:-12%;width:100%;object-fit:cover}
+/* il contenitore deve avere un'altezza definita (height o aspect-ratio): top in % si calcola su quella;
+   margin-top in % si calcolerebbe sulla larghezza e taglierebbe la cima delle foto larghe */
+.he-parallax{position:relative;overflow:hidden}
+.he-parallax > img,.he-parallax > video{position:relative;top:-12%;height:124%;width:100%;object-fit:cover}
 .he-grana{position:relative}
 .he-grana::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
