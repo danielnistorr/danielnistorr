@@ -24,11 +24,11 @@ Aperti con Playwright il 7/11/2026 (`_prova/he/script/riferimenti.mjs`, con il c
    - Da non prendere: il paragrafo lungo centrato sulla foto, il menu ad hamburger anche sul computer, il modulo della newsletter con il captcha.
 3. **Marolo** (marolo.com).
    - Mossa 1: l'etichetta fotografata da vicino come apertura, con il nome grande sopra. Da noi: la cornice che parte stretta sull'etichetta del Bitter (fascia RIZZI e corsivo) prima di mostrare la bottiglia.
-   - Mossa 2: il mosaico di foto di misura diversa con una citazione del fondatore in mezzo. Da noi: il dittico dell'alcolato di due misure diverse, sfalsate, con la frase loro accanto.
+   - Mossa 2: il mosaico di foto di misura diversa con una citazione del fondatore in mezzo. Da noi: il dittico dell'alcolato, due foto della stessa misura sulla stessa base, con la frase loro accanto (secondo giro).
    - Da non prendere: lo slider con le frecce, il logo minuscolo al centro della testata grigia.
 4. **Braulio** (braulio.it).
    - Mossa 1: il numero come grafica ("150" in rosso sulla bottiglia). Da noi: i gradi in Besley sotto ogni bottiglia, "11%", "40%", "70°".
-   - Mossa 2: il tempo come ingrediente ("il tempo è l'ingrediente più prezioso", la produzione). Da noi: l'alcolato di fiori di sambuco dopo poche ore e dopo due settimane, con le loro parole.
+   - Mossa 2: il tempo come ingrediente ("il tempo è l'ingrediente più prezioso", la produzione). Da noi: l'alcolato di fiori di sambuco in due becher. Nel secondo giro tolte le didascalie "poche ore" e "due settimane": le due foto sono scattate a 5 minuti di distanza (nomi dei file), quindi si descrive solo cio' che si vede.
    - Da non prendere: le parole in maiuscolo spaziato sopra le foto, il banner dei cookie che copre metà pagina.
 5. **Strega** (strega.it).
    - Mossa 1: il prodotto scontornato su bianco, piccolo e centrato, tra due colonne di testo. Da noi: le bottiglie scontornate direttamente sulla carta, senza tessere né ombre finte.
@@ -74,9 +74,9 @@ Aperti con Playwright il 7/11/2026 (`_prova/he/script/riferimenti.mjs`, con il c
 
 ## 5. Movimento
 
-- **Gesto d'apertura, "dall'etichetta alla bottiglia"** (`data-he-scale`): la cornice parte stretta sull'etichetta del Bitter (la fascia RIZZI e il corsivo, ingrandimento 1,45 attorno alla base della bottiglia) accanto al motto, e scorrendo si allarga fino alla bottiglia intera: si scopre il liquore rosso rubino, il collo, il tappo, e arriva la didascalia "Bitter, 25% vol. «Liquore da aperitivo tradizionale padovano»". La cornice si misura sulla bottiglia come la impagina il CSS, nella pagina, prima che parta il kit (nessun lampo). Sul telefono nessun fissaggio: motto, bottiglia e mestiere in una composizione ferma.
+- **Gesto d'apertura, "dall'etichetta alla bottiglia"** (`data-he-scale`): la cornice parte sull'etichetta del Bitter accanto al motto (secondo giro: bordo alto sulla cima della "O" di "Oggi", bordo basso con il fondo del biglietto, bordo destro sul margine; ingrandimento circa 2,6 a 1440x900, la fascia RIZZI nel terzo alto e il tondo "casa fondata nel 1850" sotto il bordo), e scorrendo si allarga fino alla bottiglia intera: si scopre il liquore rosso rubino, il collo, il tappo, e arriva la didascalia "Bitter, 25% vol. «Liquore da aperitivo tradizionale padovano»". La cornice si misura sulla bottiglia come la impagina il CSS, nella pagina, prima che parta il kit (nessun lampo). Sul telefono nessun fissaggio: motto, bottiglia e mestiere in una composizione ferma.
 - **Sostegno 1, i titoli**: il motto sale riga per riga all'apertura (`data-he-split data-he-subito`) e "Da 11 a 70 gradi" quando entra (due split su tre).
-- **Sostegno 2, i tagli**: l'alcolato maturo si scopre dal basso (`data-he-wipe="su"`), come il colore che sale col tempo; la foto di Maddalena e Alessandro da sinistra.
+- **Sostegno 2, i tagli**: l'alcolato ambrato si scopre dal basso (`data-he-wipe="su"`). La foto di Maddalena e Alessandro e' tolta nel secondo giro.
 - Testata che si nasconde scendendo da 900 px in su; sul telefono resta, con "Chiama 049 900 0053".
 - Niente galleria orizzontale fissata, racconto, indice, prima e dopo, parallasse, nastro, sipario. La scala dei gradi è ferma: sul telefono si sfoglia di lato con il dito.
 - L'apertura fissata usa `pinType: "transform"` (impostato prima di `he.js`), come Argenteria e Tacchificio: CLS 0.
@@ -84,10 +84,10 @@ Aperti con Playwright il 7/11/2026 (`_prova/he/script/riferimenti.mjs`, con il c
 ## 6. Ritmo (ogni sezione ha uno scheletro diverso)
 
 1. **Apertura, "Oggi come una volta"** (carta, a tutta altezza): manifesto. Il motto su due righe a sinistra, la bottiglia del Bitter alta 86% della finestra al 72% della larghezza, il mestiere e il telefono in basso a sinistra, la didascalia a destra della bottiglia.
-2. **Laboratorio, "Facciamo tutto noi, dall'inizio alla fine."** (carta): il titolo loro a tutta larghezza; sotto, a sinistra il dittico sfalsato dell'alcolato (poche ore, due settimane), a destra la frase delle ricette dei fondatori e l'estrattore e l'essiccatore.
+2. **Laboratorio, "Facciamo tutto noi, dall'inizio alla fine."** (carta): a sinistra il dittico dell'alcolato (due foto uguali sulla stessa base), a destra il titolo loro (h2 di servizio, Excon 400, al massimo 44 px), la frase delle ricette dei fondatori e l'estrattore e l'essiccatore.
 3. **Firma, "Da 11 a 70 gradi"** (carta): grafico a tutta larghezza. Otto bottiglie vere sul righello dei gradi, ciascuna sul suo grado (dominio da 8 a 42 sull'80% della larghezza, interruzione, 70 al 92%), con il grado in Besley e il nome sotto. Nessun prezzo, nessun bottone d'acquisto; il link al catalogo sta fuori dal grafico.
 4. **Pasticceria** (blu etichetta, l'unico campo pieno): testo a sinistra (titolo, frase loro, tre famiglie in una riga ciascuna con i gusti chiusi, telefono e email), i quattro bottiglioni da laboratorio a destra, appoggiati sul bordo basso del campo.
-5. **Chi siamo** (carta, centrata come una lettera): prima la frase sui ricettari del fondatore (una volta), poi la foto di Maddalena e Alessandro e "Dal 14 dicembre 2022 Distilleria Rizzi prosegue con Maddalena e Alessandro" (oggi), lo spaccio del 29 settembre 2024 e i mobili della sartoria Vogue 80.
+5. **Chi siamo** (carta, due colonne, secondo giro): a sinistra la frase sui ricettari del fondatore a 28 px (una volta), a destra "Dal 14 dicembre 2022 Distilleria Rizzi prosegue con Maddalena e Alessandro" (oggi), lo spaccio del 29 settembre 2024 e i mobili della sartoria Vogue 80. Nessuna foto.
 6. **Spaccio e contatti** (carta): il telefono in Besley a tutta misura, sotto tre colonne (indirizzo con la mappa, orari in tabella, email, cellulari e PEC) e la foto degli scaffali dello spaccio.
 7. **Piede** (inchiostro): scritta a pennello chiara, link, social, dati legali, avvertenza sugli alcolici, Privacy, Cookie.
 
@@ -97,4 +97,4 @@ La sezione firma è la 3: un'idea (la gamma è una scala, dalle loro schede) con
 
 Riscaricate il 7/11/2026 dalla libreria media di WordPress (`wp-json/wp/v2/media`, 123 voci) in `assets/originali/` (fuori da git), provando per ogni voce il nome senza `-scaled` e senza il suffisso `-e<numero>` delle immagini ritagliate in WordPress. **Gli scontornati "piccoli" di `01-analisi.md` (alti 500 px) hanno l'originale grande**: Aperizzi 490x1884, Bitter classico 498x2010, Carciofo 765x2802, Leone 944x3767, Bayern 1024x3471, Old Manhattan 1083x4178, Harrington 1137x4322, Amaretto 1075x4283, Vodka in tanica 1286x1932; e le foto "-scaled" hanno l'originale da 4624x2084 e 2084x4624 (l'alcolato di sambuco). Il vecchio marchio col leone esiste solo a 392x153 e porta "casa fondata nel 1850": non è in pagina.
 
-Trattamento unico (`_prova/he/script/immagini.py`): toni portati tra inchiostro e carta, nitidezza del telefono calmata (0,5 px prima della riduzione), grana fine cotta nei pixel; scontornati con il bordo stretto di 1 px, nessuna ombra aggiunta. Nessuna foto ingrandita oltre la misura nativa: rapporto massimo 0,57 a 1440 e 0,68 a 1920; l'etichetta all'inizio del gesto è a 0,56 sullo schermo normale e a 1,13 sul retina simulato.
+Trattamento unico (`_prova/he/script/immagini.py`): toni portati tra inchiostro e carta, nitidezza del telefono calmata (0,5 px prima della riduzione), grana fine cotta nei pixel; scontornati con il bordo stretto di 1 px, nessuna ombra aggiunta. Secondo giro: le bottiglie della scala hanno anche lo stesso tono (bianco neutro e livelli comuni) e lo stesso taglio piano dei tappi. Nessuna foto oltre 1,25 volte il file sugli schermi normali: l'etichetta all'inizio del gesto è a 1,02 a 1440x900 e a 1,20 a 1920x1080 (sul retina circa il doppio, quindi morbida); a fine gesto la bottiglia intera è sotto 0,5.
