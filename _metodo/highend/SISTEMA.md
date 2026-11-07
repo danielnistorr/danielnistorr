@@ -85,4 +85,7 @@ Controllo d'uso finale (non un voto): un cliente tipo dal telefono deve trovare 
 - **Testi grandi:** un testo di 30 parole e più non va oltre i 30 px, altrimenti sembra una pagina pubblicitaria.
 - **Niente sipario d'ingresso** che ritardi la pagina oltre 1 s.
 - **Fatti "da confermare" fuori anche dalla prima schermata**, compresi indirizzi e date.
+- **Un fornitore non si veste da maison.** "Più fashion" per un fornitore vuol dire mostrare il mestiere con la cura di una maison (disegno, prototipo, serie, misure), non pezzi con didascalie di colore da catalogo. Sotto la piega la pagina deve restare all'altezza della prima schermata.
+- **Niente frasi che non vengono dalle fonti**, nemmeno di raccordo ("sulla scarpa va il nome della griffe"). Niente toni da brochure ("i sogni del cliente", "grande realtà artigiana").
+- **Il voto che il costruttore si dà è in media 0,7 sopra quello del giudice** (8,1 contro 7,4). Non fidarti dell'autovoto: guarda i fotogrammi a piena misura come li guarderebbe un estraneo.
 - **Le foto pesano per il 40-60% della distanza da un 9.** Nella nota va sempre la lista delle foto da rifare: è materiale per vendere un servizio fotografico.
