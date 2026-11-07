@@ -69,3 +69,16 @@ Solo materiale dell'azienda, lavorato con `_prova/script/pro_img.py` (ritocco de
 Non più usate: la foto della sede (`originali/sito/immagini_varotto-alfredo-azienda.jpg`, 500 x 301, voto 3: non regge per qualità), il cucchiaio legumi Royal Queen (`5bc4d4c4...`, sostituito dalla forchetta in alpacca), il sottopiatto in vetro (`5e8301db...`, la categoria resta come link).
 
 Le foto nuove sono state scaricate dallo stesso indirizzo dello shop (`egress.storeden.net/gallery/<id>`). I diritti delle foto dello shop vanno confermati con l'azienda (LEGGIMI).
+
+## Usate nella home HE (`sito-he/`, 7/11/2026)
+
+Solo materiale dell'azienda, nessuna foto di repertorio, nessuna immagine generata. Gli originali vengono dalla cartella `immaginiAltaRisoluzione/` del sito varottoalfredo.com (ogni miniatura delle pagine di categoria apre `immagine.asp?PathImm=<nome>`), scaricati il 7/11/2026 in `assets/originali/alta/` (fuori da git, 1.165 file dei marchi Varotto Alfredo, Royal Queen e Royal England); le immagini delle pagine principali e della versione inglese in `assets/originali/sito/`. Versioni web fatte da `_prova/he/script/immagini.py` (campo piatto, saturazione al 30 %, una curva uguale per tutte, mai ingrandite); elenco con misure e rapporti in `screenshot/he/NOTA-HE.md`.
+
+| In pagina | Articolo del catalogo (nome del file) |
+|---|---|
+| Apertura | Posto tavola in argento massiccio 6 pezzi stile Inglese classico BL83006 (la stessa foto è usata per i servizi da 36, 72 e 77 pezzi) |
+| Vetrina | Candelabro 5 fiamme VAG-Z1595.30, Brocca martellata BB01200AG, Coppa champagne e gelato VAG-01149, Bicchiere Bimbo VAG-Z1637.06, Candelabro 1 fiamma VAG-Z1593-28, Servizio 4 pz stile Impero VAG-Z2501, Secchiello ghiaccio VAG-Z1617, tutti "in argento massiccio" |
+| 999 | Bastoni da passeggio con impugnatura rivestita in argento puro 999: Leone BT00030AX, Cavallo BT00040AX, Civetta BT00050AX, Cobra BT00101AX, Anatra BT00090AX, Labrador BT00021AX, Teschio BT00120AX |
+| Hotel e ristoranti | Sottopiatto in argento massiccio stile Inglese SS01510AG, Vassoio piatto tondo in argento massiccio stile Inglese VAG-P1165.40 |
+
+I diritti delle foto del catalogo vanno confermati con l'azienda: alcune potrebbero essere dei fornitori.
