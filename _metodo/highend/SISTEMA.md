@@ -87,5 +87,7 @@ Controllo d'uso finale (non un voto): un cliente tipo dal telefono deve trovare 
 - **Fatti "da confermare" fuori anche dalla prima schermata**, compresi indirizzi e date.
 - **Un fornitore non si veste da maison.** "Più fashion" per un fornitore vuol dire mostrare il mestiere con la cura di una maison (disegno, prototipo, serie, misure), non pezzi con didascalie di colore da catalogo. Sotto la piega la pagina deve restare all'altezza della prima schermata.
 - **Niente frasi che non vengono dalle fonti**, nemmeno di raccordo ("sulla scarpa va il nome della griffe"). Niente toni da brochure ("i sogni del cliente", "grande realtà artigiana").
+- **Il gesto deve scoprire qualcosa.** Un gesto di scala su una foto già intera all'inizio è solo un cambio di sfondo: la fine del gesto mostra qualcosa che prima non si vedeva (la cornice parte stretta su un dettaglio).
+- **La sezione firma non è un negozio.** Niente bottoni "acquista" o "shop" dentro il culmine; le didascalie non ripetono la stessa parola su ogni pezzo.
 - **Il voto che il costruttore si dà è in media 0,7 sopra quello del giudice** (8,1 contro 7,4). Non fidarti dell'autovoto: guarda i fotogrammi a piena misura come li guarderebbe un estraneo.
 - **Le foto pesano per il 40-60% della distanza da un 9.** Nella nota va sempre la lista delle foto da rifare: è materiale per vendere un servizio fotografico.
