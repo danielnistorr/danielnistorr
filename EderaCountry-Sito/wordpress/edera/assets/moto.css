@@ -1,0 +1,27 @@
+/* Edera Country House: quello che serve ai tre movimenti (inc/movimento.php). Tutto e' sotto html.he-moto,
+   la classe che il kit aggiunge solo quando il movimento e' permesso: senza JavaScript o con "riduci movimento"
+   non cambia niente rispetto all'originale. */
+
+/* nessuna transizione fra le pagine (il kit la accenderebbe) */
+@view-transition{navigation:none}
+
+/* la cornice che si apre intorno alla foto: la foto resta della sua misura, la didascalia ferma */
+.he-taglio{display:block;overflow:hidden}
+/* parole unite da uno spazio unificatore nel titolo che sale riga per riga */
+.he-unito{white-space:nowrap}
+/* il titolo d'apertura: sopra i 760 px ogni riga resta intera, come le sue righe nella pagina ferma */
+@media (min-width:761px){.edera .apertura h1.he-righe{white-space:nowrap}}
+
+/* testata: da 900 px resta in cima, si nasconde scendendo e torna salendo; dopo l'apertura ha il fondo chiaro.
+   Il cambio di fondo e' netto (succede mentre la testata e' nascosta), solo lo scorrimento e' animato. */
+@media (min-width:900px){
+  html.he-moto .testa[data-he-header]{position:fixed;transition:transform .5s var(--he-curva)}
+  html.he-moto body.admin-bar .testa[data-he-header]{top:32px}
+  html.he-moto .testa.chiara{background:var(--paper);color:var(--ink)}
+  html.he-moto .testa.chiara .wrap{border-bottom-color:var(--line)}
+  html.he-moto .testa.chiara .btn-chiaro{background:var(--green);color:var(--white)}
+  html.he-moto .testa.chiara .btn-chiaro:hover{background:var(--green-deep)}
+}
+@media (prefers-reduced-motion:reduce){
+  html.he-moto .testa[data-he-header]{transition:none}
+}

@@ -1,0 +1,342 @@
+"""Le pagine del sito come dati di Elementor: contenitori e widget normali (Titolo, Editor di testo, Immagine,
+Pulsante, Elenco icone, Shortcode), con le classi CSS che il tema aggancia in assets/sito.css e legale.css.
+
+I testi della Home sono quelli di originale/index.html, scritti qui a mano nella struttura di Elementor
+(build.py controlla che ogni testo ci sia davvero nell'originale). Le pagine legali si leggono direttamente
+da originale/privacy.html e originale/cookie.html.
+
+Segnaposto che l'installatore del tema sostituisce:
+  {"edera_img": "casa"}   la foto "casa" della libreria media (ID e indirizzo)
+  {{pagina:privacy}}      l'indirizzo della pagina Informativa privacy
+  {{media:servizi-aggiuntivi}}  l'ID del PDF nella libreria media
+"""
+import hashlib
+import html
+import re
+from html.parser import HTMLParser
+
+NBSP = " "
+
+
+class Ids:
+    """ID di Elementor (7 caratteri esadecimali) stabili: dipendono dalla pagina e dalla posizione."""
+
+    def __init__(self, pagina):
+        self.pagina = pagina
+        self.n = 0
+
+    def __call__(self):
+        self.n += 1
+        return hashlib.md5(f"edera/{self.pagina}/{self.n}".encode()).hexdigest()[:7]
+
+
+ZERO = {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": True}
+GAP0 = {"unit": "px", "size": 0, "column": "0", "row": "0", "isLinked": True}
+
+
+class Costruttore:
+    def __init__(self, pagina):
+        self.id = Ids(pagina)
+
+    def C(self, classi, *figli, tag=None, ancora=None, nome=None, interno=True):
+        """Contenitore a tutta larghezza: l'impaginazione la danno le classi del tema."""
+        s = {"content_width": "full", "flex_direction": "column", "css_classes": classi,
+             "padding": dict(ZERO), "flex_gap": dict(GAP0)}
+        if tag:
+            s["html_tag"] = tag
+        if ancora:
+            s["_element_id"] = ancora
+        if nome:
+            s["_title"] = nome
+        return {"id": self.id(), "elType": "container", "isInner": interno, "settings": s,
+                "elements": [f for f in figli if f]}
+
+    def _w(self, tipo, s, classi, nome):
+        if classi:
+            s["_css_classes"] = classi
+        if nome:
+            s["_title"] = nome
+        return {"id": self.id(), "elType": "widget", "widgetType": tipo, "isInner": False, "settings": s, "elements": []}
+
+    def H(self, testo, tag="h2", classi="", nome=None):
+        """Widget Titolo. tag: h1, h2, h3, div, span, p."""
+        return self._w("heading", {"title": testo, "header_size": tag}, classi, nome)
+
+    def T(self, html_, classi="", nome=None):
+        """Widget Editor di testo."""
+        return self._w("text-editor", {"editor": html_}, classi, nome)
+
+    def IMG(self, chiave, classi="", didascalia=None, nome=None):
+        """Widget Immagine dalla libreria media (dimensione piena: srcset e sizes li scrive WordPress)."""
+        s = {"image": {"edera_img": chiave}, "image_size": "full",
+             "caption_source": "custom" if didascalia else "none"}
+        if didascalia:
+            s["caption"] = didascalia
+        return self._w("image", s, classi, nome)
+
+    def BTN(self, testo, url, classi="", esterno=False, nome=None):
+        """Widget Pulsante. La freccia finale (↗ ↓) la impagina il tema."""
+        link = {"url": url, "is_external": "on" if esterno else "", "nofollow": "",
+                "custom_attributes": "rel|noopener" if esterno else ""}
+        return self._w("button", {"text": testo, "link": link}, classi, nome)
+
+    def LISTA(self, voci, classi="", nome=None):
+        """Widget Elenco icone, senza icone: un <ul> con una voce per riga."""
+        el = [{"text": v, "selected_icon": {"value": "", "library": ""}, "_id": self.id()} for v in voci]
+        return self._w("icon-list", {"icon_list": el}, classi, nome)
+
+    def SC(self, codice, classi="", nome=None):
+        return self._w("shortcode", {"shortcode": codice}, classi, nome)
+
+
+MAPPA = "https://www.google.com/maps/search/?api=1&query=Via%20Pal%C3%B9%20Massara%2010%2C%20Albettone%20VI"
+STRADA = "https://www.google.com/maps/dir/?api=1&destination=Via%20Pal%C3%B9%20Massara%2010%2C%20Albettone%20VI"
+
+
+def home():
+    b = Costruttore("home")
+    C, H, T, IMG, BTN = b.C, b.H, b.T, b.IMG, b.BTN
+
+    def testa_sezione(n, titolo, testo):
+        return C("testa-sezione",
+                 H(n, "span", "n-sez", nome="Numero della sezione"),
+                 H(titolo, "h2"),
+                 T(f"<p>{testo}</p>"))
+
+    apertura = C(
+        "apertura moto-testata",
+        IMG("apertura", "apertura-foto", nome="Foto d'apertura"),
+        C("wrap",
+          C("apertura-testo",
+            H(f"<span>Gli eventi</span> <span>che lasciano il{NBSP}segno.</span>", "h1", "moto-righe"),
+            T("<p>Un contesto distintivo ad Albettone, nel Vicentino, per incontri aziendali, convention, team building e serate da ricordare.</p>", "lead"),
+            C("azioni",
+              BTN("Calcola il tuo preventivo", "#preventivo", "pulsante pulsante-chiaro"),
+              BTN("Scopri la location", "#location", "collega"))),
+          b.LISTA(["Albettone · Vicenza", "Rustico, serra, piscina, spazio esterno"], "fatti-apertura", nome="Luogo e spazi")),
+        tag="section", nome="Apertura", interno=False)
+
+    def spazio(n, nome, persone):
+        return C("spazio-voce",
+                 H(n, "span", "i"),
+                 H(nome, "div", "nome"),
+                 H(persone, "span", "capienza"))
+
+    location = C(
+        "sezione bianca",
+        C("wrap casa",
+          C("casa-testo",
+            H("01", "span", "n-sez", nome="Numero della sezione"),
+            H("Il luogo giusto per dare spazio alle idee.", "h2"),
+            T("<p>Spazi interni ed esterni, piscina e scenari suggestivi per costruire un evento aziendale su misura.</p>", "lead scura"),
+            T("<p>Dalla riunione riservata alla grande occasione con il team, ogni dettaglio può contribuire a creare un'esperienza riconoscibile.</p>"
+              "<p>Una cornice verde e contemporanea, capace di cambiare atmosfera durante la giornata e trasformarsi in una location d'impatto la sera.</p>"),
+            C("spazi-elenco",
+              spazio("01", "Rustico", "fino a 50 persone"),
+              spazio("02", "Serra", "fino a 70 persone"),
+              spazio("03", "Piscina", "fino a 30 persone, anche mezza giornata"),
+              spazio("04", "Spazio esterno", "fino a 120 persone"),
+              nome="Gli spazi")),
+          IMG("casa", "casa-foto", "Il giardino la sera, tra gli ulivi e la piscina.")),
+        tag="section", ancora="location", nome="La location", interno=False)
+
+    def formato(chiave, n, titolo, testo):
+        return C("formato",
+                 IMG(chiave),
+                 H(n, "span", "num"),
+                 H(titolo, "h3"),
+                 T(f"<p>{testo}</p>"))
+
+    eventi = C(
+        "sezione",
+        C("wrap",
+          testa_sezione("02", "Un format per ogni occasione.", "Una location versatile per riunire persone, idee e obiettivi."),
+          C("formati",
+            formato("meeting", "01", "Meeting &amp; convention", "Incontri aziendali, presentazioni, momenti di confronto e appuntamenti professionali."),
+            formato("celebrazioni", "02", "Celebrazioni", "Serate aziendali, anniversari, ricorrenze e occasioni per valorizzare il gruppo."),
+            formato("teambuilding", "03", "Team building", "Esperienze condivise in un contesto informale, all'aperto e da vivere insieme."),
+            nome="I formati")),
+        tag="section", ancora="eventi", nome="Eventi", interno=False)
+
+    galleria = C(
+        "sezione bianca",
+        C("wrap",
+          testa_sezione("03", "Ogni spazio ha la sua atmosfera.", "Una selezione di fotografie reali fornite dalla struttura."),
+          C("galleria",
+            IMG("piscina-sera", "g-a moto-taglio", "La piscina, durante un ricevimento serale."),
+            IMG("sala", "g-b", "La sala con le travi a vista."),
+            IMG("giardino", "g-c", "Il giardino apparecchiato."),
+            nome="Le foto")),
+        tag="section", ancora="gallery", nome="Gallery", interno=False)
+
+    riga = f"Meeting ·{NBSP}Convention ·{NBSP}Team{NBSP}building ·{NBSP}Celebrazioni"
+    fascia = C(
+        "fascia",
+        C("wrap",
+          C("fascia-testo",
+            H("La tua idea parte da qui.", "h2"),
+            T("<p>Indicaci le caratteristiche principali dell'evento: riceverai una prima stima indicativa, da confermare con un'offerta personalizzata.</p>"),
+            H(riga, "p", "formati-riga")),
+          BTN("Vai al preventivo flash ↓", "#preventivo", "pulsante pulsante-chiaro")),
+        tag="section", nome="Fascia verde", interno=False)
+
+    preventivo = C(
+        "sezione",
+        C("wrap",
+          testa_sezione("04", "Una prima stima, in pochi passaggi.", "Scegli gli spazi, il numero di partecipanti e la durata: la stima si aggiorna mentre compili."),
+          b.SC('[edera_preventivo pdf="{{media:servizi-aggiuntivi}}"]', "calcolatore", nome="Calcolatore (prezzi in config/preventivo.php)")),
+        tag="section", ancora="preventivo", nome="Preventivo flash", interno=False)
+
+    def domanda(n, q, a):
+        return C("faq-voce",
+                 H(n, "span", "i nascosto-lettori"),
+                 C("faq-risposta", H(q, "h3"), T(f"<p>{a}</p>")))
+
+    faq = C(
+        "sezione bianca",
+        C("wrap faq",
+          C("faq-testa",
+            H("05", "span", "n-sez", nome="Numero della sezione"),
+            H("Domande frequenti.", "h2")),
+          C("faq-elenco",
+            domanda("01", "Possiamo portare un catering di nostra scelta?",
+                    "Certamente! Puoi affidarti a un catering di tua fiducia e organizzare liberamente il servizio. In alternativa, possiamo consigliarti alcuni professionisti del settore."),
+            domanda("02", "È possibile utilizzare la piscina?",
+                    "Sì, la piscina è a disposizione per un massimo di 30 persone. Per garantire la sicurezza di tutti, è obbligatoria la presenza di un bagnino in possesso di brevetto. Se non hai già una persona di fiducia con questa qualifica, possiamo fornirti noi dei contatti."),
+            domanda("03", "È disponibile un parcheggio?",
+                    "Sì, la struttura dispone di un parcheggio privato a disposizione, così da permettere a tutti di raggiungere la location comodamente."),
+            nome="Le domande")),
+        tag="section", ancora="faq", nome="Domande frequenti", interno=False)
+
+    contatti = C(
+        "sezione",
+        C("wrap contatti",
+          C("contatti-testo",
+            H("06", "span", "n-sez", nome="Numero della sezione"),
+            H("Il prossimo evento può iniziare qui.", "h2"),
+            T("<p>Condividi l'idea, il numero di ospiti e le esigenze della tua azienda. Definiremo insieme la soluzione più adatta.</p>")),
+          C("scheda",
+            H("Edera Country House", "h3"),
+            C("scheda-dati",
+              H("Indirizzo", "div", "dt"),
+              C("dd",
+                T(f'<a href="{html.escape(MAPPA)}" target="_blank" rel="noopener" title="Apri in Google Maps">Via Palù Massara, 10<br>Albettone (VI)</a>'),
+                BTN("Indicazioni stradali ↗", STRADA, "strada", esterno=True)),
+              H("Email", "div", "dt"),
+              T('<a href="mailto:edera@ederacountry.it">edera@ederacountry.it</a>', "dd"),
+              H("Telefono", "div", "dt"),
+              T('<a href="tel:+393494731515">349 473 1515</a>', "dd"),
+              nome="Recapiti"),
+            BTN("Richiedi una stima", "#preventivo", "pulsante pulsante-verde"))),
+        tag="section", ancora="contatti", nome="Contatti", interno=False)
+
+    return [apertura, location, eventi, galleria, fascia, preventivo, faq, contatti]
+
+
+# ------------------------------------------------------------------ pagine legali
+
+class _Main(HTMLParser):
+    """Divide il <main> di privacy.html e cookie.html nei suoi blocchi di primo livello."""
+
+    VUOTI = {"br", "img", "hr", "input", "meta", "link"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.dentro = False
+        self.livello = 0
+        self.blocchi = []
+        self.corrente = None
+
+    def handle_starttag(self, tag, attrs):
+        testo = self.get_starttag_text()
+        if tag == "main":
+            self.dentro = True
+            return
+        if not self.dentro:
+            return
+        if self.livello == 0:
+            self.corrente = {"tag": tag, "classe": dict(attrs).get("class", ""), "inizio": testo, "html": ""}
+        else:
+            self.corrente["html"] += testo
+        if tag not in self.VUOTI:
+            self.livello += 1
+
+    def handle_startendtag(self, tag, attrs):
+        if self.dentro and self.corrente is not None and self.livello > 0:
+            self.corrente["html"] += self.get_starttag_text()
+
+    def handle_endtag(self, tag):
+        if tag == "main":
+            self.dentro = False
+            return
+        if not self.dentro or tag in self.VUOTI:
+            return
+        self.livello -= 1
+        if self.livello == 0:
+            self.blocchi.append(self.corrente)
+            self.corrente = None
+        else:
+            self.corrente["html"] += f"</{tag}>"
+
+    def handle_data(self, data):
+        if self.dentro and self.corrente is not None:
+            self.corrente["html"] += data
+
+    def handle_entityref(self, name):
+        self.handle_data(f"&{name};")
+
+    def handle_charref(self, name):
+        self.handle_data(f"&#{name};")
+
+
+def legale(chiave, sorgente):
+    """Una pagina legale: etichetta, titolo, riquadro iniziale, poi un Titolo h2 e un Editor di testo per sezione."""
+    p = _Main()
+    p.feed(sorgente)
+    b = Costruttore(chiave)
+    widget = []
+    testo = []
+
+    def chiudi_testo():
+        if testo:
+            widget.append(b.T("\n".join(testo)))
+            testo.clear()
+
+    for bl in p.blocchi:
+        corpo = bl["html"].strip()
+        # i link alle altre pagine del sito diventano quelli di WordPress
+        corpo = corpo.replace('href="privacy.html"', 'href="{{pagina:privacy}}"').replace('href="cookie.html"', 'href="{{pagina:cookie}}"')
+        corpo = corpo.replace('href="index.html"', 'href="{{casa}}"')
+        if bl["tag"] == "span" and "eti" in bl["classe"]:
+            chiudi_testo()
+            widget.append(b.H(corpo, "span", "eti"))
+        elif bl["tag"] in ("h1", "h2"):
+            chiudi_testo()
+            widget.append(b.H(corpo, bl["tag"]))
+        elif bl["tag"] == "p" and bl["classe"] in ("avviso", "aggiornato"):
+            chiudi_testo()
+            widget.append(b.T(f"<p>{corpo}</p>", bl["classe"]))
+        else:
+            testo.append(f"{bl['inizio']}{corpo}</{bl['tag']}>")
+    chiudi_testo()
+    return [b.C("legale", *widget, nome="Testo", interno=False)]
+
+
+def testo_visibile(nodo):
+    """Tutti i testi di un albero di Elementor (per il controllo con l'originale)."""
+    out = []
+    s = nodo.get("settings", {})
+    for k in ("title", "editor", "text", "caption"):
+        if k in s:
+            out.append(s[k])
+    for v in s.get("icon_list", []):
+        out.append(v["text"])
+    for f in nodo.get("elements", []):
+        out += testo_visibile(f)
+    return out
+
+
+def senza_tag(t):
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = html.unescape(t).replace(NBSP, " ")
+    return re.sub(r"\s+", " ", t).strip()

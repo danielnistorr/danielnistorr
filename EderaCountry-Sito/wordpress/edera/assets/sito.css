@@ -1,0 +1,337 @@
+/* Edera Country House: lo stile del sito di ederacountry.it, portato in WordPress con Elementor.
+
+   Le regole vengono dal foglio di stile della pagina originale (index.html), nello stesso ordine.
+   Testata, menu del telefono, barra fissa e piede sono HTML del tema, identico all'originale: le loro regole
+   sono rimaste come erano. Le sezioni della pagina invece sono contenitori e widget di Elementor: le regole
+   agganciano le classi scritte nel campo "Classi CSS" di ogni elemento (scheda Avanzate in Elementor).
+
+   Davanti a ogni regola delle sezioni c'e' .edera (la classe che il tema mette sul body): basta a vincere
+   sulle regole di base di Elementor (.elementor-heading-title, .elementor-button, .e-con ...) senza
+   impedire le modifiche fatte dal pannello Stile di Elementor, che sono piu' specifiche.
+
+   Classi delle sezioni: apertura, sezione, bianca, wrap, testa-sezione, n-sez, casa, spazi-elenco, formati,
+   formato, galleria, g-a, g-b, g-c, fascia, faq, faq-elenco, contatti, scheda.
+   Classi dei bottoni: pulsante + pulsante-chiaro | pulsante-verde | pulsante-oro; collega; strada. */
+
+@font-face{font-family:"Newsreader";src:url("fonts/newsreader-latin.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Newsreader";src:url("fonts/newsreader-latin-ext.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";src:url("fonts/jost.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#17251f;
+  --ink-soft:#4f5b54;
+  --green:#294b3b;
+  --green-deep:#1d3529;
+  --night:#12201a;
+  --moss:#75866a;
+  --cream:#f5f2eb;
+  --paper:#faf8f3;
+  --sand:#e5dfd2;
+  --line:#d9d2c3;
+  --white:#fff;
+  --gold:#c3a66b;
+  --gold-light:#d6bf8c;
+  --gold-deep:#7f6534;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1200px;
+  --gutter:clamp(20px,4vw,56px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);background:var(--cream);font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap,.edera .e-con.wrap{width:min(var(--wrap),100% - 2*var(--gutter));margin-inline:auto}
+.salta{position:absolute;left:-9999px;top:0;background:var(--white);color:var(--ink);padding:10px 14px;z-index:20}
+.salta:focus{left:12px;top:12px}
+
+/* ------------------------------------------------------------------ Elementor: base
+   I contenitori del sito (quelli con una delle classi qui sotto) non aggiungono margini, spazi o larghezze
+   di Elementor: l'impaginazione la danno le regole di questo foglio, come nella pagina originale.
+   Un contenitore nuovo, senza queste classi, si comporta come sempre in Elementor. */
+.edera .e-con:where(.apertura,.wrap,.apertura-testo,.azioni,.sezione,.bianca,.casa,.casa-testo,.spazi-elenco,.spazio-voce,.testa-sezione,.formati,.formato,.galleria,.fascia,.fascia-testo,.faq,.faq-testa,.faq-elenco,.faq-voce,.faq-risposta,.contatti,.contatti-testo,.scheda,.scheda-dati,.dd){--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--margin-top:0px;--margin-right:0px;--margin-bottom:0px;--margin-left:0px;--gap:0px;--row-gap:0px;--column-gap:0px;--container-max-width:100%;--content-width:100%;display:block;text-align:inherit}
+.edera .elementor-widget-image{text-align:left}
+.edera .elementor-widget-image img{display:block;vertical-align:baseline}
+/* i titoli brevi (non h1, h2, h3) prendono interlinea e carattere dal loro widget, come il testo intorno */
+.edera span.elementor-heading-title,.edera div.elementor-heading-title,.edera p.elementor-heading-title{line-height:inherit}
+/* i bottoni del sito (classi pulsante, collega, strada): il testo e la freccia sono figli diretti del link */
+.edera :where(.pulsante,.collega,.strada) .elementor-button-content-wrapper,.edera :where(.pulsante,.collega,.strada) .elementor-button-text{display:contents}
+.edera :where(.pulsante,.collega,.strada) .elementor-button{background:none;border-radius:0;color:inherit;fill:currentColor;font:inherit;padding:0;text-align:inherit;transition:none;text-decoration:none}
+
+/* tipografia */
+.edera h1,.edera h2,.edera h3{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;margin:0;font-optical-sizing:auto}
+.edera h1{line-height:inherit}
+.edera h2{font-size:clamp(34px,3.7vw,52px);line-height:1.05;font-weight:300;letter-spacing:-.016em}
+.edera h3{font-size:clamp(23px,2vw,26px);line-height:1.18}
+.sopra{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);margin:0 0 26px}
+.edera .lead{font-size:19px;line-height:1.6}
+.edera .lead p{font-size:19px;line-height:1.6;color:var(--ink-soft);max-width:34em}
+.nota{font-size:14px;color:var(--ink-soft)}
+
+/* bottoni: pieni o a filo, nessuna dissolvenza al passaggio */
+.btn,.edera .pulsante .elementor-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border:1px solid transparent;border-radius:1px;font:500 14px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.btn-chiaro,.edera .pulsante-chiaro .elementor-button{background:var(--cream);color:var(--green-deep)}
+.btn-chiaro:hover,.edera .pulsante-chiaro .elementor-button:hover{background:var(--white);color:var(--green-deep)}
+.btn-filo{border-color:rgba(255,255,255,.6);color:var(--white);background:transparent}
+.btn-filo:hover{background:var(--white);color:var(--green-deep);border-color:var(--white)}
+.btn-verde,.edera .pulsante-verde .elementor-button{background:var(--green);color:var(--white)}
+.btn-verde:hover,.edera .pulsante-verde .elementor-button:hover{background:var(--green-deep);color:var(--white)}
+.btn-oro,.edera .pulsante-oro .elementor-button{background:var(--gold);color:var(--night)}
+.btn-oro:hover,.edera .pulsante-oro .elementor-button:hover{background:var(--gold-light);color:var(--night)}
+.freccia{font-family:var(--sans);font-size:15px;letter-spacing:0}
+
+/* testata */
+.testa{position:absolute;inset:0 0 auto;z-index:10;color:var(--white)}
+.testa .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:96px;border-bottom:1px solid rgba(255,255,255,.28)}
+.marchio{display:inline-block;text-decoration:none;line-height:1}
+.marchio b{display:block;font:400 24px/1 var(--serif);letter-spacing:.34em;margin-right:-.34em}
+.marchio small{display:block;margin-top:7px;font:500 10px/1 var(--sans);letter-spacing:.42em}
+.voci{display:flex;align-items:center;gap:34px}
+.voci a{text-decoration:none;font-size:14px;letter-spacing:.06em}
+.voci a:not(.btn){padding:8px 0;border-bottom:1px solid transparent}
+.voci a:not(.btn):hover{border-bottom-color:var(--gold-light)}
+.voci .btn{min-height:44px;padding:0 20px}
+.apri-menu{display:none;background:none;border:1px solid rgba(255,255,255,.6);color:var(--white);min-height:44px;padding:0 16px;font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+
+/* apertura */
+.edera .apertura{position:relative;min-height:clamp(660px,100svh,920px);display:flex;flex-direction:column;justify-content:flex-end;color:var(--white);background:var(--night);overflow:hidden}
+.edera .apertura .apertura-foto,.edera .apertura .apertura-foto picture,.edera .apertura .apertura-foto img{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.edera .apertura .apertura-foto img{object-fit:cover;object-position:center 55%}
+.edera .apertura:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,20,.5) 0%,rgba(14,26,20,0) 20%),linear-gradient(90deg,rgba(14,26,20,.78) 0%,rgba(14,26,20,.42) 46%,rgba(14,26,20,.08) 78%),linear-gradient(0deg,rgba(14,26,20,.72) 0%,rgba(14,26,20,0) 52%)}
+.edera .apertura .wrap{position:relative;z-index:2}
+.edera .apertura-testo{padding:190px 0 72px;max-width:1000px}
+.edera .apertura h1{font-size:clamp(48px,5.9vw,86px);line-height:.98;font-weight:300;letter-spacing:-.022em}
+.edera .apertura h1 span{display:block}
+@media (min-width:761px){.edera .apertura h1 span{white-space:nowrap}}
+.edera .apertura-testo .lead p{color:#efece4;margin:30px 0 0;max-width:30em}
+.edera .azioni{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:18px 34px;margin-top:40px}
+.edera .azioni .elementor-button{display:flex}
+.edera .collega .elementor-button{display:inline-block;color:inherit;font:500 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.6)}
+.edera .azioni .collega .elementor-button{display:block}
+.edera .collega .elementor-button:hover{border-bottom-color:var(--white)}
+.edera .elementor .fatti-apertura ul.elementor-icon-list-items{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0;border-top:1px solid rgba(255,255,255,.28);padding:22px 0 30px;margin:0;list-style:none}
+.edera .fatti-apertura li{display:list-item;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#e9e6dc;padding:0 34px 0 0;margin:0 34px 0 0;border-right:1px solid rgba(255,255,255,.28)}
+.edera .fatti-apertura .elementor-icon-list-text{color:inherit}
+.edera .fatti-apertura li:last-child{border-right:0;margin-right:0;padding-right:0}
+
+/* sezioni */
+.edera .sezione{padding:clamp(80px,10vw,136px) 0}
+.edera .bianca{background:var(--paper)}
+.edera .testa-sezione{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 48px;align-items:end;margin:0 0 clamp(48px,5.5vw,76px)}
+.edera .testa-sezione h2{max-width:13em}
+.edera .testa-sezione p{margin:0;color:var(--ink-soft);font-size:17px;max-width:30em}
+.edera .n-sez{display:none}
+@media (min-width:1400px){.edera .n-sez{display:block;position:absolute;left:-84px;top:.85em;font:500 12px/1 var(--sans);letter-spacing:.22em;color:var(--gold-deep)}}
+.edera .casa > .e-con,.edera .contatti > .e-con:first-child,.edera .faq > .e-con:first-child{position:relative}
+
+/* la location */
+.edera .casa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,104px);align-items:start}
+.edera .casa figure{margin-top:clamp(0px,9vw,150px)!important}
+.edera .casa h2{margin-bottom:30px}
+.edera .casa p{color:var(--ink-soft);margin:0 0 18px;max-width:31em}
+.edera .casa .lead.scura p{color:var(--ink)}
+.edera .spazi-elenco{list-style:none;margin:44px 0 0;padding:0;max-width:540px;border-top:1px solid var(--ink)}
+.edera .spazi-elenco .spazio-voce{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.edera .spazi-elenco .i{font-size:12px;letter-spacing:.2em;color:var(--gold-deep)}
+.edera .spazi-elenco .nome{font:400 23px/1.2 var(--serif)}
+.edera .spazi-elenco .capienza{font-size:15px;color:var(--ink-soft);text-align:right}
+.edera .spazi-nota{margin:16px 0 0;font-size:14px;color:var(--ink-soft)}
+.edera .casa figure{margin:0}
+.edera .casa figure img{width:100%;aspect-ratio:5/4;object-fit:cover}
+.edera figcaption{margin-top:14px;font-size:13px;letter-spacing:.02em;color:var(--ink-soft);display:flex;gap:14px;align-items:baseline}
+.edera figcaption:before{content:"";flex:none;width:28px;height:1px;background:var(--gold-deep);transform:translateY(-4px)}
+
+/* i formati */
+.edera .formati{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,2.6vw,36px);margin:0;padding:0;list-style:none}
+.edera .formato img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--sand)}
+.edera .formato .num .elementor-heading-title{display:block;margin:26px 0 12px;font-size:13px;letter-spacing:.2em;color:var(--gold-deep)}
+.edera .formato h3{margin-bottom:12px}
+.edera .formato p{margin:0;color:var(--ink-soft);font-size:16px;max-width:24em}
+
+/* galleria: tre foto di misure diverse, sfalsate */
+.edera .galleria{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:64px;margin:0;align-items:start}
+.edera .galleria figure{margin:0}
+.edera .galleria img{width:100%;object-fit:cover}
+.edera .g-a{grid-column:1 / 7;grid-row:1 / 3}
+.edera .g-a img{aspect-ratio:4/5}
+.edera .g-b{grid-column:8 / 13;grid-row:1}
+.edera .g-b img{aspect-ratio:3/2}
+.edera .g-c{grid-column:8 / 11;grid-row:2}
+.edera .g-c img{aspect-ratio:4/5}
+
+/* fascia */
+.edera .fascia{background:var(--green);color:var(--white);padding:clamp(72px,8vw,104px) 0}
+.edera .fascia .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:end}
+.edera .fascia .elementor-button{display:flex}
+.edera .fascia h2{margin-bottom:20px}
+.edera .fascia p{color:#dfe6df;max-width:36em;margin:0}
+.edera .fascia .formati-riga span{white-space:nowrap}
+.edera .fascia .formati-riga p,.edera .fascia p.formati-riga{max-width:none;margin-top:28px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light)}
+
+/* preventivo flash (HTML dello shortcode [edera_preventivo], uguale all'originale) */
+.edera .calcolo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:clamp(24px,3vw,40px);align-items:start}
+.edera .modulo{background:var(--white);border:1px solid var(--line);padding:clamp(26px,3.4vw,48px)}
+.edera .passo{border:0;margin:0;padding:0 0 34px;margin-bottom:34px;border-bottom:1px solid var(--line);min-width:0}
+.edera .passo:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.edera .passo legend{display:flex;align-items:baseline;gap:14px;padding:0;margin:0 0 22px;font:400 25px/1.2 var(--serif)}
+.edera .passo legend span{font:500 13px/1 var(--sans);letter-spacing:.18em;color:var(--gold-deep)}
+.edera .spazi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.edera .spazio{position:relative}
+.edera .spazio input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.edera .spazio label{display:block;height:100%;padding:16px 16px 15px;border:1px solid var(--line);background:#fcfbf8;cursor:pointer;transition:border-color .2s,background-color .2s}
+.edera .spazio b{display:block;font:400 20px/1.2 var(--serif)}
+.edera .spazio small{display:block;margin-top:6px;font-size:13px;color:var(--ink-soft)}
+.edera .spazio input:checked + label{border-color:var(--green);background:var(--green);color:var(--white)}
+.edera .spazio input:checked + label small{color:#d7e0d8}
+.edera .spazio input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.edera .servizi{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:15px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px}
+.edera .servizi:hover{border-bottom-color:var(--green)}
+.edera .campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px}
+.edera .campo{display:flex;flex-direction:column;gap:9px;font-size:14px;font-weight:500;letter-spacing:.02em;min-width:0}
+.edera .campo.tutta{grid-column:1 / -1}
+.edera .campo input,.edera .campo select{width:100%;min-height:52px;border:1px solid #cfc8b9;border-radius:0;background:#fcfbf8;padding:0 15px;font:400 16px var(--sans);color:var(--ink);appearance:none}
+.edera .campo input:focus,.edera .campo select:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px rgba(41,75,59,.14)}
+.edera .campo input::placeholder{color:#7d857f}
+.edera .durata{display:flex;border:1px solid #cfc8b9;min-height:52px}
+.edera .durata label{flex:1;position:relative;display:flex}
+.edera .durata input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.edera .durata span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:400;font-size:15px;background:#fcfbf8;cursor:pointer}
+.edera .durata label + label span{border-left:1px solid #cfc8b9}
+.edera .durata input:checked + span{background:var(--green);color:var(--white)}
+.edera .durata input:disabled + span{color:#9aa29c;cursor:not-allowed;background:#f3f1ec}
+.edera .durata input:focus-visible + span{outline:2px solid var(--gold);outline-offset:-2px}
+.edera .campo .nota{font-weight:400;letter-spacing:0}
+.edera .campo.consenso{flex-direction:row;display:flex;gap:12px;align-items:flex-start;font-size:14px;font-weight:400;letter-spacing:0;line-height:1.55;color:var(--ink-soft);margin-top:4px}
+.edera .campo.consenso input{width:18px;height:18px;min-height:0;padding:0;margin:2px 0 0;flex:none;appearance:auto;-webkit-appearance:checkbox;accent-color:var(--green)}
+.edera .campo.consenso a{text-decoration:underline}
+
+.edera .stima{position:sticky;top:24px;background:var(--green);color:var(--white);padding:clamp(28px,3vw,42px)}
+.edera .stima .sopra{margin-bottom:14px}
+.edera .stima h3{font-size:27px}
+.edera .prezzo{font:300 clamp(48px,5vw,68px)/1 var(--serif);letter-spacing:-.02em;margin:26px 0 10px;font-variant-numeric:lining-nums}
+.edera .stima .nota{color:#d7e0d8}
+.edera .voci-stima{margin:26px 0 0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.22)}
+.edera .voci-stima li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px}
+.edera .voci-stima li b{font-weight:500;font-variant-numeric:tabular-nums}
+.edera .stima .btn{width:100%;margin-top:28px}
+.edera .avvertenza{margin:18px 0 0;font-size:13px;line-height:1.6;color:#cbd6cd}
+.edera .riepilogo{display:none;margin-top:22px;background:var(--cream);color:var(--ink);padding:20px}
+.edera .riepilogo.visibile{display:block}
+.edera .riepilogo pre{margin:0 0 16px;white-space:pre-wrap;font:400 14px/1.6 var(--sans)}
+.edera .riepilogo .righe{display:flex;flex-wrap:wrap;gap:10px}
+.edera .riepilogo .btn{width:auto;margin:0;min-height:44px;padding:0 18px;font-size:13px}
+.edera .riepilogo .esito{margin:12px 0 0;font-size:13px;color:var(--ink-soft)}
+
+/* contatti */
+.edera .contatti{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:start}
+.edera .contatti h2{margin-bottom:24px}
+.edera .contatti p{color:var(--ink-soft);max-width:30em;margin:0}
+.edera .scheda{border-top:1px solid var(--ink);padding-top:30px}
+.edera .scheda h3{font-size:24px;letter-spacing:.18em;text-transform:uppercase;font-size:20px}
+.edera .scheda .scheda-dati{margin:26px 0 34px;display:grid;grid-template-columns:auto 1fr;gap:16px 36px}
+.edera .scheda .dt{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);padding-top:3px}
+.edera .scheda .dd{margin:0;font-size:18px}
+.edera .scheda .dd p{margin:0}
+.edera .scheda .dd a{text-decoration:none;border-bottom:1px solid var(--line)}
+.edera .scheda .dd a:hover{border-bottom-color:var(--green)}
+.edera .scheda .strada{display:block;margin-top:10px;font-size:14px;letter-spacing:.04em}
+.edera .scheda .strada .elementor-button{display:inline;color:var(--green);font-weight:500;border-bottom:1px solid var(--line)}
+.edera .scheda .strada .elementor-button:hover{border-bottom-color:var(--green)}
+
+/* domande frequenti */
+.edera .faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.edera .faq-elenco{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.edera .faq-elenco .faq-voce{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:26px 0;border-bottom:1px solid var(--line)}
+.edera .faq-elenco .i{font-size:12px;letter-spacing:.2em;color:var(--gold-deep);padding-top:7px}
+.edera .faq-elenco h3{margin-bottom:10px}
+.edera .faq-elenco p{margin:0;color:var(--ink-soft);max-width:34em}
+
+/* piede */
+.piede{background:var(--night);color:#d4dbd3;padding:72px 0 34px;font-size:14px}
+.piede .alto{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.14)}
+.piede .marchio b{font-size:28px}
+.piede h4{margin:0 0 16px;font:500 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light)}
+.piede ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.piede a{text-decoration:none}
+.piede a:hover{color:var(--white);text-decoration:underline;text-underline-offset:4px}
+.piede p{margin:18px 0 0;max-width:22em;color:#aeb9b0}
+.piede .indirizzo{color:#d4dbd3}
+.piede .basso{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:26px;color:#a3afa6;font-size:13px}
+
+/* menu sul telefono */
+.pannello{position:fixed;inset:0;z-index:30;background:var(--green-deep);color:var(--white);display:none;flex-direction:column;padding:24px var(--gutter) 40px}
+.pannello.aperto{display:flex}
+.pannello .riga{display:flex;justify-content:space-between;align-items:center;min-height:72px;border-bottom:1px solid rgba(255,255,255,.2)}
+.pannello nav{display:grid;gap:4px;margin-top:28px}
+.pannello nav a{font:400 34px/1.3 var(--serif);text-decoration:none;padding:6px 0}
+.pannello .fine{margin-top:auto;font-size:14px;color:#cbd6cd}
+
+@media (max-width:1080px){
+  .edera .spazi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .edera .calcolo{grid-template-columns:1fr}
+  .edera .stima{position:static}
+}
+@media (max-width:900px){
+  .edera .casa,.edera .contatti,.edera .faq{grid-template-columns:1fr}
+  .edera .casa figure{max-width:560px;margin-top:0!important}
+  .edera .formati{grid-template-columns:1fr;gap:48px;max-width:573px}
+  .edera .formato img{aspect-ratio:3/2}
+  .edera .testa-sezione{grid-template-columns:1fr}
+  .edera .galleria{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:40px}
+  .edera .g-a{grid-column:1 / -1;grid-row:auto}
+  .edera .g-b{grid-column:1 / -1;grid-row:auto}
+  .edera .g-c{grid-column:3 / -1;grid-row:auto}
+  .edera .fascia .wrap{grid-template-columns:1fr;align-items:start}
+  .piede .alto{grid-template-columns:1fr 1fr}
+  .piede .alto > div:first-child{grid-column:1 / -1}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .voci a:not(.btn){display:none}
+  .voci .btn{display:none}
+  .apri-menu{display:inline-flex;align-items:center}
+  .testa .wrap{min-height:76px}
+  .marchio b{font-size:20px}
+  .edera .apertura{min-height:clamp(620px,100svh,860px)}
+  .edera .apertura .apertura-foto img{object-position:center}
+  .edera .apertura:after{background:linear-gradient(180deg,rgba(14,26,20,.6) 0%,rgba(14,26,20,0) 18%),linear-gradient(0deg,rgba(14,26,20,.9) 0%,rgba(14,26,20,.7) 50%,rgba(14,26,20,.38) 100%)}
+  .edera .apertura-testo{padding:150px 0 34px}
+  .edera .apertura h1{font-size:clamp(46px,12.4vw,60px)}
+  .edera .apertura-testo .lead p{font-size:17px;margin-top:22px}
+  .edera .azioni{margin-top:28px}
+  .edera .azioni .pulsante{flex:1 1 100%}
+  .edera .azioni{flex-direction:column;align-items:stretch}
+  .edera .azioni .collega .elementor-button{text-align:center}
+  .edera .azioni .collega{align-self:center}
+  .edera .elementor .fatti-apertura ul.elementor-icon-list-items{grid-template-columns:1fr;gap:8px;padding:18px 0 22px}
+  .edera .fatti-apertura li{border:0;padding:0;margin:0;font-size:12px}
+  .edera .spazi-elenco .spazio-voce{grid-template-columns:36px minmax(0,1fr);row-gap:2px}
+  .edera .spazi-elenco .capienza{grid-column:2;text-align:left;font-size:14px}
+  .edera .faq-elenco .faq-voce{grid-template-columns:36px minmax(0,1fr)}
+  .edera .collega{align-self:center}
+  .edera .spazi{grid-template-columns:1fr 1fr}
+  .edera .campi{grid-template-columns:1fr}
+  .edera .scheda .scheda-dati{grid-template-columns:1fr;gap:4px}
+  .edera .scheda .dd.elementor-element{margin-bottom:14px}
+  .piede .alto{grid-template-columns:1fr}
+  .piede .alto > div:first-child{grid-column:auto}
+}
+@media (max-width:360px){.edera .spazi{grid-template-columns:1fr}}
+.barra{display:none}
+@media (max-width:760px){
+  .barra{position:fixed;left:0;right:0;bottom:0;z-index:15;display:grid;grid-template-columns:1.3fr 1fr;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--green-deep);visibility:hidden}
+  .barra.su{visibility:visible}
+  .barra .btn{min-height:48px;padding:0 12px;font-size:13px}
+  .piede{padding-bottom:110px}
+}
+
+/* pagine senza apertura (pagina non trovata, pagine nuove scritte nell'editor di WordPress):
+   la testata ha il suo fondo, il testo sta in una colonna */
+.edera:not(.home) .testa{position:relative;background:var(--green-deep)}
+.edera .testo-semplice .wrap{max-width:760px}
+.edera .testo-semplice h1{font-size:clamp(40px,5vw,64px);line-height:1;font-weight:300;letter-spacing:-.02em;margin:0 0 32px}
+.edera .testo-semplice p,.edera .testo-semplice li{color:var(--ink-soft)}
+.edera .testo-semplice a{color:var(--green)}
