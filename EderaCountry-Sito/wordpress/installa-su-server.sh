@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Installa il sito Edera Country House in WordPress, con WP-CLI:
 # tema, Elementor, foto e PDF nella libreria media, pagine Home, Informativa privacy e Cookie in Elementor,
-# Home come pagina iniziale e indirizzi belli (/privacy/, /cookie/).
+# Home come pagina iniziale e indirizzi belli (/privacy/, /cookie/). Dal tema 1.1 anche la planimetria:
+# su un sito gia' installato la aggiunge alla Home senza toccare il resto.
 #
 # Uso, via SSH con l'utente del sito (non root se si puo'):
 #
@@ -86,7 +87,9 @@ ADMIN=$("${WP[@]}" user list --role=administrator --field=user_login | head -n 1
 EDERA_NASCONDI="$NASCONDI" EDERA_RISCRIVI="${EDERA_RISCRIVI:-}" "${WP[@]}" eval --user="$ADMIN" '
   $log = edera_installa( array( "riscrivi" => "1" === getenv( "EDERA_RISCRIVI" ), "nascondi" => "1" === getenv( "EDERA_NASCONDI" ) ) );
   foreach ( $log as $r ) { echo $r, PHP_EOL; }
-  foreach ( $log as $r ) { if ( 0 === strpos( $r, "ERRORE" ) ) { exit( 1 ); } }'
+  foreach ( $log as $r ) { if ( 0 === strpos( $r, "ERRORE" ) ) { exit( 1 ); } }
+  // tema 1.1: la planimetria nella Home (se la Home è già stata modificata, la aggiunge senza toccare il resto)
+  foreach ( edera_aggiungi_planimetria() as $r ) { echo $r, PHP_EOL; }'
 "${WP[@]}" rewrite structure '/%postname%/' --hard >/dev/null
 "${WP[@]}" rewrite flush --hard || true
 

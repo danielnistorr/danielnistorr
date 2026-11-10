@@ -10,9 +10,12 @@ Segnaposto che l'installatore del tema sostituisce:
   {{pagina:privacy}}      l'indirizzo della pagina Informativa privacy
   {{media:servizi-aggiuntivi}}  l'ID del PDF nella libreria media
 """
+import base64
 import hashlib
 import html
+import json
 import re
+import urllib.parse
 from html.parser import HTMLParser
 
 NBSP = " "
@@ -85,8 +88,91 @@ class Costruttore:
         el = [{"text": v, "selected_icon": {"value": "", "library": ""}, "_id": self.id()} for v in voci]
         return self._w("icon-list", {"icon_list": el}, classi, nome)
 
+    def PIN(self, testo, x, y, classi, link="", nome=None):
+        """Pallino della planimetria: un Pulsante in posizione assoluta, con offset in % sulla foto
+        (Avanzate > Posizionamento). Si sposta anche trascinandolo nell'editor."""
+        s = {"text": testo,
+             "link": {"url": link, "is_external": "", "nofollow": "", "custom_attributes": ""},
+             "_position": "absolute",
+             "_offset_orientation_h": "start", "_offset_x": {"unit": "%", "size": x, "sizes": []},
+             "_offset_orientation_v": "start", "_offset_y": {"unit": "%", "size": y, "sizes": []}}
+        return self._w("button", s, classi, nome or f"Pallino {testo}")
+
+    def GAL(self, chiavi, classi="", colonne=3, nome=None):
+        """Widget Galleria di base: foto dalla libreria media, link al file, lightbox di Elementor."""
+        s = {"wp_gallery": [{"edera_img": k} for k in chiavi], "thumbnail_size": "full",
+             "gallery_columns": str(colonne), "gallery_link": "file", "open_lightbox": "yes",
+             "gallery_display_caption": "none"}
+        return self._w("image-gallery", s, classi, nome)
+
     def SC(self, codice, classi="", nome=None):
         return self._w("shortcode", {"shortcode": codice}, classi, nome)
+
+
+def testa(b, n, titolo, testo):
+    """Testa di sezione: numero (visibile da 1400 px), titolo h2 a sinistra, testo a destra."""
+    return b.C("testa-sezione",
+               b.H(n, "span", "n-sez", nome="Numero della sezione"),
+               b.H(titolo, "h2"),
+               b.T(f"<p>{testo}</p>"))
+
+
+# Planimetria (tema 1.1): posizioni dei pallini in % sulla foto, prese dal prototipo del committente
+# (x e y in % della larghezza e dell'altezza della foto). In Elementor anche l'offset verticale in % si conta
+# sulla larghezza (e' cosi' che l'editor lo calcola quando si trascina un pallino): per questo i pallini stanno
+# in un contenitore quadrato largo quanto la foto e la y si converte con il rapporto della foto (1604 / 981).
+RAPPORTO_FOTO = 1604 / 981
+PALLINI = [
+    # nome, x, y, etichetta a sinistra
+    ("Rustico", 29.5, 47.5, True),
+    ("Serra", 33, 32.5, False),
+    ("Piscina", 49.5, 47.5, False),
+    ("Casetta bar", 36, 66.5, True),
+    ("Grill", 16, 32.5, True),
+    ("Spazio verde", 24, 61.5, False),
+]
+LEGENDA = ["Rustico, fino a 50 persone", "Serra, fino a 70 persone", "Piscina, fino a 30 persone",
+           "Casetta bar", "Grill", "Spazio verde"]
+FOTO_RUSTICO = ["rustico-1", "rustico-2", "rustico-3", "rustico-4", "rustico-5"]
+# testi della planimetria che non sono uguali in originale/index.html, con la loro fonte
+ADATTATI = {
+    "Planimetria interattiva.": "titolo del prototipo (Planimetria interattiva), con il punto come gli altri titoli",
+    "Seleziona il pallino sul Rustico per aprire le fotografie.": "prototipo, senza 'rosso': il pallino non e' piu' rosso",
+    "Scegli nel preventivo": "richiesta del committente",
+    "Casetta bar": "prototipo", "Grill": "prototipo", "Spazio verde": "prototipo",
+}
+
+
+def planimetria(numero="02"):
+    """La sezione della planimetria, tutta in widget di Elementor. Ha un suo costruttore di ID, cosi' e'
+    identica nella Home nuova e quando il bottone del tema 1.1 la aggiunge a una Home gia' installata."""
+    b = Costruttore("planimetria")
+    galleria = b.GAL(FOTO_RUSTICO, "planimetria-galleria", nome="Foto del Rustico (lightbox)")
+    # il pallino del Rustico apre il lightbox di Elementor sulle foto della galleria qui sotto
+    azione = "#elementor-action:action=lightbox&settings=" + base64.b64encode(
+        json.dumps({"slideshow": galleria["id"]}, separators=(",", ":")).encode()).decode()
+    pallini = []
+    for i, (nome, x, y, sinistra) in enumerate(PALLINI):
+        classi = "pallino" + (" pallino-attivo" if i == 0 else "") + (" pallino-sinistra" if sinistra else "")
+        # il "#" resta in chiaro (WordPress lo tratta come un'ancora), il resto codificato come fa Elementor
+        link = "#" + urllib.parse.quote(azione[1:], safe="") if i == 0 else ""
+        pallini.append(b.PIN(nome, x, round(y * RAPPORTO_FOTO, 2), classi, link))
+    return b.C(
+        "sezione bianca planimetria-sezione",
+        b.C("wrap",
+            testa(b, numero, "Planimetria interattiva.", "Seleziona il pallino sul Rustico per aprire le fotografie."),
+            b.C("planimetria",
+                b.C("planimetria-mappa etichette-mappa-larga",
+                    b.IMG("planimetria", "planimetria-foto", nome="Foto dall'alto"),
+                    b.C("planimetria-punti", *pallini, nome="Pallini (si spostano trascinandoli)"),
+                    nome="Mappa e pallini"),
+                b.C("planimetria-lato",
+                    b.LISTA(LEGENDA, "planimetria-legenda", nome="Legenda (stesso ordine dei pallini)"),
+                    b.H("Rustico", "h3"),
+                    galleria,
+                    b.BTN("Scegli nel preventivo ↓", "#preventivo", "pulsante pulsante-verde"),
+                    nome="Legenda e foto"))),
+        tag="section", ancora="planimetria", nome="Planimetria", interno=False)
 
 
 MAPPA = "https://www.google.com/maps/search/?api=1&query=Via%20Pal%C3%B9%20Massara%2010%2C%20Albettone%20VI"
@@ -98,10 +184,7 @@ def home():
     C, H, T, IMG, BTN = b.C, b.H, b.T, b.IMG, b.BTN
 
     def testa_sezione(n, titolo, testo):
-        return C("testa-sezione",
-                 H(n, "span", "n-sez", nome="Numero della sezione"),
-                 H(titolo, "h2"),
-                 T(f"<p>{testo}</p>"))
+        return testa(b, n, titolo, testo)
 
     apertura = C(
         "apertura moto-testata",
@@ -150,7 +233,7 @@ def home():
     eventi = C(
         "sezione",
         C("wrap",
-          testa_sezione("02", "Un format per ogni occasione.", "Una location versatile per riunire persone, idee e obiettivi."),
+          testa_sezione("03", "Un format per ogni occasione.", "Una location versatile per riunire persone, idee e obiettivi."),
           C("formati",
             formato("meeting", "01", "Meeting &amp; convention", "Incontri aziendali, presentazioni, momenti di confronto e appuntamenti professionali."),
             formato("celebrazioni", "02", "Celebrazioni", "Serate aziendali, anniversari, ricorrenze e occasioni per valorizzare il gruppo."),
@@ -161,7 +244,7 @@ def home():
     galleria = C(
         "sezione bianca",
         C("wrap",
-          testa_sezione("03", "Ogni spazio ha la sua atmosfera.", "Una selezione di fotografie reali fornite dalla struttura."),
+          testa_sezione("04", "Ogni spazio ha la sua atmosfera.", "Una selezione di fotografie reali fornite dalla struttura."),
           C("galleria",
             IMG("piscina-sera", "g-a moto-taglio", "La piscina, durante un ricevimento serale."),
             IMG("sala", "g-b", "La sala con le travi a vista."),
@@ -183,7 +266,7 @@ def home():
     preventivo = C(
         "sezione",
         C("wrap",
-          testa_sezione("04", "Una prima stima, in pochi passaggi.", "Scegli gli spazi, il numero di partecipanti e la durata: la stima si aggiorna mentre compili."),
+          testa_sezione("05", "Una prima stima, in pochi passaggi.", "Scegli gli spazi, il numero di partecipanti e la durata: la stima si aggiorna mentre compili."),
           b.SC('[edera_preventivo pdf="{{media:servizi-aggiuntivi}}"]', "calcolatore", nome="Calcolatore (prezzi in config/preventivo.php)")),
         tag="section", ancora="preventivo", nome="Preventivo flash", interno=False)
 
@@ -196,7 +279,7 @@ def home():
         "sezione bianca",
         C("wrap faq",
           C("faq-testa",
-            H("05", "span", "n-sez", nome="Numero della sezione"),
+            H("06", "span", "n-sez", nome="Numero della sezione"),
             H("Domande frequenti.", "h2")),
           C("faq-elenco",
             domanda("01", "Possiamo portare un catering di nostra scelta?",
@@ -212,7 +295,7 @@ def home():
         "sezione",
         C("wrap contatti",
           C("contatti-testo",
-            H("06", "span", "n-sez", nome="Numero della sezione"),
+            H("07", "span", "n-sez", nome="Numero della sezione"),
             H("Il prossimo evento può iniziare qui.", "h2"),
             T("<p>Condividi l'idea, il numero di ospiti e le esigenze della tua azienda. Definiremo insieme la soluzione più adatta.</p>")),
           C("scheda",
@@ -230,7 +313,7 @@ def home():
             BTN("Richiedi una stima", "#preventivo", "pulsante pulsante-verde"))),
         tag="section", ancora="contatti", nome="Contatti", interno=False)
 
-    return [apertura, location, eventi, galleria, fascia, preventivo, faq, contatti]
+    return [apertura, location, planimetria("02"), eventi, galleria, fascia, preventivo, faq, contatti]
 
 
 # ------------------------------------------------------------------ pagine legali

@@ -7,6 +7,7 @@
  * - Immagini della libreria: "sizes" come nell'originale (campo _edera_sizes), cosi' il browser sceglie
  *   la stessa misura.
  * - Bottoni: la freccia finale (↗ ↓ →) diventa <span class="freccia">, come nell'originale.
+ * - Pallini della planimetria (Pulsante con classe pallino) senza link: un segno (<span>), non un bottone.
  * - Elenchi fatti di contenitori (spazi, formati, domande): ruolo "list" per i lettori di schermo;
  *   numeri decorativi (classe n-sez e numeri delle domande) nascosti ai lettori di schermo.
  * - Niente Google Fonts di Elementor: i caratteri sono nel tema.
@@ -55,6 +56,11 @@ add_filter(
 		}
 		if ( 'button' === $tipo ) {
 			$html = preg_replace( '/\s*([↗↓→↘])\s*(<\/span>)/u', ' <span class="freccia" aria-hidden="true">$1</span>$2', $html, 1 );
+			// un pallino della planimetria senza link e' solo un segno con il nome, non un bottone
+			if ( in_array( 'pallino', $classi, true ) && false === strpos( $html, 'href=' ) ) {
+				$html = preg_replace( '/<a ([^>]*?)\s*role="button"([^>]*)>/', '<span $1$2>', $html, 1 );
+				$html = preg_replace( '/<\/a>(\s*)$/', '</span>$1', $html, 1 );
+			}
 		}
 		return $html;
 	},

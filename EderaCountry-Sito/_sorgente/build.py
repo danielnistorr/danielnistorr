@@ -12,6 +12,7 @@ Fonti:
   _sorgente/pagine.py         le pagine come contenitori e widget di Elementor
   originale/                  il sito pubblicato, scaricato: foto, caratteri, PDF, testi delle pagine legali
   _metodo/highend/kit/        il kit dei movimenti (he.js, he.css, GSAP, ScrollTrigger, SplitText)
+  assets/web/planimetria/     foto della planimetria gia' compresse (immagini.py le rifa' dagli originali)
 
 Controlli: nessun carattere U+2014, ogni testo della Home presente nell'originale, nessuna credenziale.
 """
@@ -32,6 +33,7 @@ TEMA = WPDIR / "edera"
 ZIP = WPDIR / "edera-tema.zip"
 
 sys.path.insert(0, str(SORGENTE))
+import immagini  # noqa: E402
 import pagine  # noqa: E402
 
 VIETATO = chr(0x2014)  # la lineetta lunga, vietata in tutti i file
@@ -58,6 +60,20 @@ IMMAGINI = [
     {"chiave": "giardino", "titolo": "Il giardino apparecchiato", "file": "giardino-800.webp", "varianti": ["giardino-560.webp"],
      "alt": "Tavoli apparecchiati nel giardino per un ricevimento all'aperto", "sizes": "(max-width: 900px) 70vw, 290px"},
 ]
+# Planimetria (tema 1.1): foto dall'alto e foto del Rustico, gia' compresse in assets/web/planimetria/
+# (da _sorgente/immagini.py). Il gruppo serve al bottone "Aggiungi la planimetria alla Home".
+DIDASCALIE_RUSTICO = ["Esterno della struttura", "Sala interna", "Sala interna – seconda vista",
+                      "Vista dal soppalco", "Panoramica piscina e struttura"]
+IMMAGINI += [
+    {"chiave": "planimetria", "gruppo": "planimetria", "titolo": "Planimetria vista dall'alto",
+     "file": "planimetria-981.webp", "varianti": ["planimetria-760.webp", "planimetria-560.webp", "planimetria-400.webp"],
+     "alt": "Planimetria di Edera Country House vista dall'alto", "sizes": "(max-width: 600px) 92vw, 560px"},
+] + [
+    {"chiave": f"rustico-{n}", "gruppo": "planimetria", "titolo": t, "didascalia": t,
+     "file": f"rustico-{n}-1600.webp", "varianti": [f"rustico-{n}-960.webp", f"rustico-{n}-200.webp"],
+     "alt": t, "sizes": "(max-width: 900px) 30vw, 180px"}
+    for n, t in enumerate(DIDASCALIE_RUSTICO, 1)
+]
 DOCUMENTI = [{"chiave": "servizi-aggiuntivi", "titolo": "Servizi aggiuntivi", "file": "servizi-aggiuntivi.pdf"}]
 
 PAGINE = [
@@ -77,21 +93,33 @@ def controlla_vietato(testo, dove):
 
 
 def controlla_testi_home(el):
-    """Ogni testo della Home deve esserci, uguale, nella pagina originale."""
+    """Ogni testo della Home deve esserci, uguale, nella pagina originale. Fanno eccezione i testi della
+    planimetria elencati in pagine.ADATTATI (presi dal prototipo del committente, con la loro fonte);
+    le sue capienze devono comunque essere quelle scritte nell'originale."""
     s = (ORIG / "index.html").read_text(encoding="utf-8")
     corpo = pagine.senza_tag(s[s.index("<main"):s.index("</main>")])
     mancanti = []
     for nodo in el:
         for t in pagine.testo_visibile(nodo):
             pulito = pagine.senza_tag(t).replace(" ↓", "").replace(" ↗", "")
-            if pulito and pulito not in corpo:
-                mancanti.append(pulito)
+            if not pulito or pulito in corpo or pulito in pagine.ADATTATI:
+                continue
+            if pulito in pagine.LEGENDA and all(x.strip() in corpo for x in pulito.split(",", 1)):
+                continue
+            if pulito in DIDASCALIE_RUSTICO or re.fullmatch(r"\d{2}", pulito):  # numeri delle sezioni
+                continue
+            mancanti.append(pulito)
     if mancanti:
         raise SystemExit("testi della Home non presenti nell'originale:\n  " + "\n  ".join(mancanti))
 
 
 def copia_risorse():
     a = TEMA / "assets"
+    if immagini.mancano():
+        immagini.prepara()  # serve Pillow e gli originali in assets/originali/planimetria/
+    (a / "img").mkdir(parents=True, exist_ok=True)
+    for f in sorted(immagini.WEB.glob("*.webp")):
+        shutil.copy2(f, a / "img" / f.name)
     for sotto, dove, schema in (("img", ORIG / "img", "*.webp"), ("fonts", ORIG / "fonts", "*.woff2")):
         (a / sotto).mkdir(parents=True, exist_ok=True)
         for f in sorted(dove.glob(schema)):
@@ -123,6 +151,7 @@ def contenuti():
         "home.json": home,
         "privacy.json": pagine.legale("privacy", (ORIG / "privacy.html").read_text(encoding="utf-8")),
         "cookie.json": pagine.legale("cookie", (ORIG / "cookie.html").read_text(encoding="utf-8")),
+        "planimetria.json": pagine.planimetria("02"),
         "pagine.json": PAGINE,
         "media.json": {"immagini": IMMAGINI, "documenti": DOCUMENTI},
     }

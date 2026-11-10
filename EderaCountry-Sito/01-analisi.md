@@ -117,3 +117,13 @@ Non c'è, e la pagina cookie lo dice: "Questo sito non utilizza cookie. Per ques
 
 - Nel CSS c'è una regola non usata dall'HTML (`.spazi-nota`): portata così com'è.
 - Il campo data mostra il formato della lingua del browser (`mm/dd/yyyy` nel browser di prova): è il comportamento normale dei campi data.
+
+## Planimetria (prototipo del committente, 10 novembre 2026)
+
+File `planimetria_interattiva1_1.html` (7 MB): sei immagini in base64, estratte in `assets/originali/planimetria/` (fuori da git, `.gitignore` della cartella).
+- **Foto aerea**: PNG 981 x 1604, 4,3 MB, canale alfa tutto opaco. Il prototipo chiede di tenerla originale: è solo compressa in WebP (981, 760, 560, 400 px di larghezza, da 350 a 70 KB), senza ritocchi.
+- **Galleria del Rustico**: 5 JPEG da 1600 px (1600 x 1200, l'ultima 1600 x 687), didascalie "Esterno della struttura", "Sala interna", "Sala interna – seconda vista", "Vista dal soppalco", "Panoramica piscina e struttura". In WebP: grande 1600, media 960, miniatura 200.
+- **Pallini** (posizione in % su larghezza e altezza della foto): Rustico 29,5 / 47,5 (l'unico cliccabile), Serra 33 / 32,5, Piscina 49,5 / 47,5, Casetta bar 36 / 66,5, Grill 16 / 32,5, Spazio verde 24 / 61,5.
+- **Testi**: titolo "Planimetria interattiva", "Seleziona il pallino rosso sul Rustico per aprire le fotografie.", nota "La fotografia dall'alto è mantenuta originale. Per ora è attivo il punto della casetta rossa.", finestra "Casetta rossa – Galleria fotografica".
+- **Aspetto del prototipo**: Arial, rosso e verde generici, ombre, pulsazione infinita del pallino. Nella versione del sito tutto questo è sostituito dai caratteri, dai colori, dai filetti e dai bottoni del sito, senza pulsazione.
+- **Da confermare**: "Spazio verde" non è detto che sia lo "Spazio esterno" del sito (fino a 120 persone); "Casetta rossa" è diventato "Rustico", come il pallino e il sito.

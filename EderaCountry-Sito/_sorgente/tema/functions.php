@@ -7,6 +7,8 @@
  *   Il tema da' l'aspetto: assets/sito.css aggancia quelle classi; testata, menu del telefono e piede
  *   sono in parti/ (HTML uguale a quello del sito originale).
  * - Il calcolatore "Preventivo flash" e' lo shortcode [edera_preventivo]: prezzi e regole in config/preventivo.php.
+ * - La planimetria (tema 1.1) e' tutta in Elementor: foto dall'alto, pallini (Pulsanti in posizione assoluta),
+ *   legenda, galleria del Rustico con il lightbox di Elementor. Il tema ne da' solo l'aspetto (sito.css).
  * - Caratteri e immagini sono nel tema e nella libreria media: il sito non chiama servizi esterni
  *   e non usa cookie (per questo non c'e' il banner, come nell'originale).
  * - Movimenti (titolo d'apertura, foto della galleria, testata): si spengono da
@@ -20,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EDERA_VERSIONE', '1.0.0' );
+define( 'EDERA_VERSIONE', '1.1.0' );
 
 require get_template_directory() . '/inc/installa.php';
 require get_template_directory() . '/inc/elementor.php';

@@ -52,7 +52,7 @@ a{color:inherit}
    I contenitori del sito (quelli con una delle classi qui sotto) non aggiungono margini, spazi o larghezze
    di Elementor: l'impaginazione la danno le regole di questo foglio, come nella pagina originale.
    Un contenitore nuovo, senza queste classi, si comporta come sempre in Elementor. */
-.edera .e-con:where(.apertura,.wrap,.apertura-testo,.azioni,.sezione,.bianca,.casa,.casa-testo,.spazi-elenco,.spazio-voce,.testa-sezione,.formati,.formato,.galleria,.fascia,.fascia-testo,.faq,.faq-testa,.faq-elenco,.faq-voce,.faq-risposta,.contatti,.contatti-testo,.scheda,.scheda-dati,.dd){--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--margin-top:0px;--margin-right:0px;--margin-bottom:0px;--margin-left:0px;--gap:0px;--row-gap:0px;--column-gap:0px;--container-max-width:100%;--content-width:100%;display:block;text-align:inherit}
+.edera .e-con:where(.apertura,.wrap,.apertura-testo,.azioni,.sezione,.bianca,.casa,.casa-testo,.spazi-elenco,.spazio-voce,.testa-sezione,.formati,.formato,.galleria,.planimetria,.planimetria-mappa,.planimetria-punti,.planimetria-lato,.fascia,.fascia-testo,.faq,.faq-testa,.faq-elenco,.faq-voce,.faq-risposta,.contatti,.contatti-testo,.scheda,.scheda-dati,.dd){--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--margin-top:0px;--margin-right:0px;--margin-bottom:0px;--margin-left:0px;--gap:0px;--row-gap:0px;--column-gap:0px;--container-max-width:100%;--content-width:100%;display:block;text-align:inherit}
 .edera .elementor-widget-image{text-align:left}
 .edera .elementor-widget-image img{display:block;vertical-align:baseline}
 /* i titoli brevi (non h1, h2, h3) prendono interlinea e carattere dal loro widget, come il testo intorno */
@@ -336,81 +336,66 @@ a{color:inherit}
 .edera .testo-semplice p,.edera .testo-semplice li{color:var(--ink-soft)}
 .edera .testo-semplice a{color:var(--green)}
 
-/* ------------------------------------------------------------------ planimetria
-   Shortcode [edera_planimetria] (inc/planimetria.php): la foto dall'alto con i pallini numerati, l'elenco
-   accanto e la galleria del Rustico. Stesse regole del sito: Newsreader e Jost, verde, crema e oro,
-   filetti di 1 px, raggio di 1 px, nessuna ombra. I pallini e i bottoni si invertono di colpo, senza
-   transizioni; nessuna pulsazione. La sezione e' bianca come la location sopra, di cui mostra gli spazi. */
+
+/* ------------------------------------------------------------------ planimetria (tema 1.1)
+   Tutta in Elementor: un contenitore "planimetria-mappa" con la foto dall'alto (widget Immagine) e i pallini
+   (widget Pulsante con Avanzate > Posizionamento > Posizione assoluta, offset in %: si spostano anche
+   trascinandoli nell'editor). Accanto, "planimetria-lato": legenda (Elenco icone), le foto del Rustico
+   (Galleria di base, con il lightbox di Elementor) e il bottone verso il preventivo.
+   I numeri dei pallini e della legenda li conta il CSS, nell'ordine in cui stanno in Elementor.
+   I pallini stanno nel contenitore "planimetria-punti" (dentro la mappa). Classi dei pallini: pallino (segno), pallino-attivo (il Rustico, che apre le foto), pallino-sinistra
+   (etichetta a sinistra). Classe del contenitore: etichette-mappa-larga (i nomi sulla foto solo quando la mappa
+   e' larga abbastanza da non farli accavallare: sul telefono e fra 901 e 1299 px restano i numeri e la legenda).
+   Nessuna pulsazione, nessuna transizione: al passaggio e al focus il pallino attivo si inverte di colpo. */
 .edera .sezione.planimetria-sezione{padding-top:clamp(40px,5vw,68px)}
 .edera .planimetria{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,104px);align-items:start}
-.edera .pl-mappa{position:relative;max-width:560px}
-.edera .pl-mappa .pl-foto-aerea{display:block;width:100%;height:auto;max-width:none}
-.edera .pl-pallini{position:absolute;inset:0;margin:0;padding:0;list-style:none}
-.edera .pl-punto{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:1;display:grid;place-items:center;width:30px;height:30px;padding:0;border:2px solid var(--cream);border-radius:50%;background:var(--green-deep);color:var(--cream);font:500 13px/1 var(--sans);cursor:pointer}
-.edera .pl-punto:before{content:"";position:absolute;inset:-9px}
-.edera .pl-nome{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:7px 10px 6px;border:1px solid var(--line);border-radius:1px;background:var(--paper);color:var(--ink);font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
-.edera .sinistra .pl-nome{left:auto;right:calc(100% + 8px)}
-.edera .pl-punto:hover,.edera .pl-punto:focus-visible{background:var(--cream);color:var(--green-deep);border-color:var(--green-deep)}
-.edera .pl-punto:hover .pl-nome,.edera .pl-punto:focus-visible .pl-nome{background:var(--green-deep);color:var(--cream);border-color:var(--green-deep)}
-.edera .pl-punto[aria-expanded="true"]{z-index:2;background:var(--gold);color:var(--night);border-color:var(--night)}
-.edera .pl-punto[aria-expanded="true"] .pl-nome{background:var(--gold);color:var(--night);border-color:var(--gold)}
-.edera .pl-scheda{position:absolute;z-index:3;left:calc(var(--x) + 26px);top:calc(var(--y) - 22px);width:250px;padding:18px 20px 20px;border:1px solid var(--line);border-radius:1px;background:var(--white);color:var(--ink)}
-.edera .sinistra .pl-scheda{left:auto;right:calc(100% - var(--x) + 26px)}
-.edera .pl-scheda[hidden]{display:none}
-.edera .pl-scheda-nome{margin:0;font:400 23px/1.2 var(--serif)}
-.edera .pl-scheda-capienza{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--ink-soft)}
-.edera .pl-azioni{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px}
-.edera .pl-azioni .btn{min-height:44px;padding:0 18px;font-size:13px}
-.edera .pl-scegli,.edera .pl-link{display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--green);font:500 15px/1.4 var(--sans);text-decoration:none;cursor:pointer}
-.edera .pl-scegli:hover,.edera .pl-link:hover{border-bottom-color:var(--green)}
-.edera .pl-scegli[hidden],.edera .pl-link[hidden]{display:none}
-.edera .pl-elenco{position:sticky;top:24px;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
-.edera .pl-elenco li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:baseline;gap:4px 16px;padding:16px 0;border-bottom:1px solid var(--line)}
-.edera .pl-elenco .pl-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--green-deep);color:var(--cream);font:500 12px/1 var(--sans)}
-.edera .pl-elenco b{font:400 23px/1.2 var(--serif)}
-.edera .pl-elenco .pl-cap{font-size:15px;color:var(--ink-soft);text-align:right}
-.edera .pl-elenco .pl-link{grid-column:2 / -1;justify-self:start;margin-top:6px}
+.edera .planimetria-mappa{position:relative;max-width:560px}
+.edera .planimetria-mappa .planimetria-foto img{display:block;width:100%;height:auto}
+/* i pallini stanno in un quadrato largo quanto la foto: cosi' l'offset verticale in % si conta sulla larghezza,
+   come lo calcola Elementor quando si trascina un pallino (i pallini piu' in basso escono dal quadrato) */
+.edera .planimetria-punti{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1/1;pointer-events:none;counter-reset:pallino}
+.edera .planimetria-punti > .pallino{position:absolute;z-index:1;transform:translate(-50%,-50%);pointer-events:auto}
+.edera .pallino .elementor-button{position:relative;display:grid;place-items:center;width:24px;height:24px;padding:0;border:1px solid var(--green-deep);border-radius:50%;background:var(--cream);color:var(--green-deep);font:500 12px/1 var(--sans);letter-spacing:0;text-decoration:none;transition:none;cursor:default}
+.edera .pallino .elementor-button:before{counter-increment:pallino;content:counter(pallino)}
+.edera .pallino .elementor-button-content-wrapper{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);display:block;white-space:nowrap;padding:7px 10px 6px;border:1px solid var(--line);border-radius:1px;background:var(--paper);color:var(--ink);font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.edera .pallino-sinistra .elementor-button-content-wrapper{left:auto;right:calc(100% + 8px)}
+.edera .pallino .elementor-button-text{display:inline}
+.edera .pallino-attivo{z-index:2}
+.edera .pallino-attivo .elementor-button{width:34px;height:34px;border:2px solid var(--cream);background:var(--green-deep);color:var(--cream);font-size:14px;cursor:pointer}
+.edera .pallino-attivo .elementor-button-content-wrapper{border-color:var(--green-deep);background:var(--green-deep);color:var(--cream)}
+.edera .pallino-attivo .elementor-button:hover,.edera .pallino-attivo .elementor-button:focus-visible{background:var(--cream);color:var(--green-deep);border-color:var(--green-deep)}
+.edera .pallino-attivo .elementor-button:hover .elementor-button-content-wrapper,.edera .pallino-attivo .elementor-button:focus-visible .elementor-button-content-wrapper{background:var(--cream);color:var(--green-deep);border-color:var(--green-deep)}
+.edera .planimetria-lato{position:sticky;top:24px}
+.edera .elementor .planimetria-legenda ul.elementor-icon-list-items{margin:0;padding:0;border-top:1px solid var(--ink);counter-reset:voce}
+.edera .planimetria-legenda li.elementor-icon-list-item{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.4}
+.edera .planimetria-legenda li.elementor-icon-list-item:before{counter-increment:voce;content:counter(voce);flex:none;display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--green-deep);border-radius:50%;background:var(--cream);color:var(--green-deep);font:500 12px/1 var(--sans)}
+.edera .planimetria-legenda .elementor-icon-list-text{color:var(--ink)}
+.edera .planimetria-lato h3{margin:40px 0 16px}
+.edera .planimetria-galleria .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
+.edera .planimetria-galleria .gallery br{display:none}
+.edera .planimetria-galleria .gallery .gallery-item{width:auto;max-width:none;margin:0;padding:0}
+.edera .planimetria-galleria .gallery-icon,.edera .planimetria-galleria .gallery-icon a{display:block}
+.edera .planimetria-galleria .gallery .gallery-item img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border:0}
+.edera .planimetria-galleria .gallery-icon a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.edera .planimetria-lato .pulsante{margin-top:28px}
 
-/* galleria del Rustico */
-.pl-bloccato,.pl-bloccato body{overflow:hidden}
-.edera .pl-galleria{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;padding:12px var(--gutter) 20px;background:rgba(18,32,26,.97);color:var(--white)}
-.edera .pl-galleria[hidden]{display:none}
-.edera .pl-g-barra{display:flex;align-items:center;gap:20px;min-height:64px;border-bottom:1px solid rgba(255,255,255,.2)}
-.edera .pl-g-barra h3{margin:0;font-size:25px}
-.edera .pl-g-conta{margin-left:auto;font-size:13px;letter-spacing:.16em;color:#cbd6cd;font-variant-numeric:tabular-nums}
-.edera .pl-chiudi{min-width:44px;min-height:44px;padding:0 16px;border:1px solid rgba(255,255,255,.6);border-radius:1px;background:none;color:var(--white);font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
-.edera .pl-chiudi:hover,.edera .pl-prec:hover,.edera .pl-succ:hover{background:var(--white);color:var(--green-deep);border-color:var(--white)}
-.edera .pl-g-palco{position:relative;flex:1;min-height:0;display:grid;place-items:center;margin-top:18px}
-.edera .pl-g-foto{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
-.edera .pl-prec,.edera .pl-succ{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;border:1px solid rgba(255,255,255,.6);border-radius:1px;background:rgba(18,32,26,.55);color:var(--white);font:400 20px/1 var(--sans);cursor:pointer}
-.edera .pl-prec{left:0}
-.edera .pl-succ{right:0}
-.edera .pl-g-didascalia{display:flex;justify-content:center;align-items:baseline;gap:14px;margin:14px 0 0;font-size:14px;letter-spacing:.02em;color:#d4dbd3}
-.edera .pl-g-didascalia:before{content:"";flex:none;width:28px;height:1px;background:var(--gold-light);transform:translateY(-4px)}
-.edera .pl-g-miniature{display:flex;justify-content:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);overflow-x:auto}
-.edera .pl-mini{flex:0 0 92px;height:62px;padding:0;border:1px solid transparent;border-radius:1px;background:none;cursor:pointer}
-.edera .pl-mini img{display:block;width:100%;height:100%;object-fit:cover}
-.edera .pl-mini[aria-current="true"]{border-color:var(--gold-light);outline:1px solid var(--gold-light)}
+/* il lightbox di Elementor (foto del Rustico) con i colori del sito; il bottone di chiusura e le frecce
+   sono grandi almeno 44 px */
+.elementor-lightbox.dialog-lightbox-widget{background:rgba(18,32,26,.97)}
+/* mentre il lightbox e' aperto la pagina sotto resta ferma */
+html:has(.elementor-lightbox.dialog-lightbox-widget:not([style*="none"])),html:has(.elementor-lightbox.dialog-lightbox-widget:not([style*="none"])) body{overflow:hidden}
+.elementor-lightbox .dialog-lightbox-close-button,.elementor-lightbox .elementor-swiper-button{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.elementor-lightbox .elementor-slideshow__title{font-family:var(--sans);font-weight:400;letter-spacing:.02em}
 
 @media (max-width:900px){
   .edera .planimetria{grid-template-columns:1fr}
-  .edera .pl-elenco{position:static;max-width:560px}
+  .edera .planimetria-lato{position:static;max-width:560px}
 }
-@media (max-width:760px){
-  .edera .pl-elenco li{grid-template-columns:36px minmax(0,1fr);row-gap:2px}
-  .edera .pl-elenco .pl-cap{grid-column:2;text-align:left;font-size:14px}
-  .edera .pl-g-barra{min-height:56px;gap:14px}
-  .edera .pl-g-barra h3{font-size:22px}
-  .edera .pl-prec,.edera .pl-succ{top:auto;bottom:8px;transform:none}
-  .edera .pl-prec{left:8px}
-  .edera .pl-succ{right:8px}
+/* mappa stretta (telefono, e schermi fra 901 e 1299 px dove la mappa sta in mezza colonna): solo i numeri sulla
+   foto (il nome resta per i lettori di schermo), i nomi nella legenda accanto o sotto */
+@media (max-width:600px),(min-width:901px) and (max-width:1299px){
+  .edera .etichette-mappa-larga .pallino .elementor-button-content-wrapper{clip-path:inset(50%);width:1px;height:1px;overflow:hidden;padding:0;border:0;margin:0}
 }
-/* sul telefono i nomi stanno nell'elenco sotto la mappa: sulla foto restano i numeri, la scheda si apre
-   larga quanto la mappa, sotto il pallino (sopra, per i pallini nella parte bassa) */
 @media (max-width:600px){
-  .edera .pl-nome{display:none}
-  .edera .pl-punto{width:32px;height:32px;font-size:14px}
-  .edera .pl-scheda,.edera .sinistra .pl-scheda{left:8px;right:8px;width:auto;top:calc(var(--y) + 26px);bottom:auto}
-  .edera .in-basso .pl-scheda{top:auto;bottom:calc(100% - var(--y) + 26px)}
-  .edera .pl-mini{flex-basis:60px;height:44px}
+  .edera .etichette-mappa-larga .pallino-attivo .elementor-button{width:36px;height:36px}
 }

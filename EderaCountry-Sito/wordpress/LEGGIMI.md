@@ -5,6 +5,7 @@ Il sito è **lo stesso di ederacountry.it**, pagina per pagina: stessi testi, fo
 - Le pagine sono tre: **Home**, **Informativa privacy** (`/privacy/`) e **Cookie** (`/cookie/`).
 - Ogni testo, titolo, foto e bottone è un widget normale di Elementor (Titolo, Editor di testo, Immagine, Pulsante, Elenco icone). Si cambia dall'editor visuale, senza toccare codice.
 - Il calcolatore "Preventivo flash" è un blocco unico, con i prezzi in un file a parte (sotto).
+- Dal tema 1.1 c'è la **planimetria**: la foto dall'alto con i pallini degli spazi, subito dopo la sezione 01. È tutta in Elementor, pallini compresi (sotto, "La planimetria").
 - Il tema dà l'aspetto: testata, menu del telefono, barra in basso sul telefono, piede, caratteri e colori.
 - In più ci sono tre movimenti discreti, che si spengono con un clic.
 
@@ -12,7 +13,7 @@ Il sito è **lo stesso di ederacountry.it**, pagina per pagina: stessi testi, fo
 
 | File | A cosa serve |
 |---|---|
-| `edera-tema.zip` | Il tema da caricare in WordPress (2,5 MB). Dentro ci sono anche foto, caratteri e PDF. |
+| `edera-tema.zip` | Il tema da caricare in WordPress (4,6 MB, versione 1.1). Dentro ci sono anche foto, caratteri e PDF. |
 | `edera/` | Lo stesso tema scompattato, da caricare via FTP se il pannello rifiuta lo zip. |
 | `installa-su-server.sh` | Fa tutto da solo con WP-CLI, se sul server c'è l'accesso SSH. |
 
@@ -29,8 +30,8 @@ Il sito di oggi resta online finché il nuovo non è approvato.
 4. **Elementor**: *Aspetto > Installa Edera*, bottone *Installa e attiva Elementor*.
    - Se non riesce, installalo da *Plugin > Aggiungi nuovo* (cerca "Elementor", *Installa*, *Attiva*) e torna su *Aspetto > Installa Edera*.
 5. **Sito**: nella stessa pagina lascia spuntato "Nascondi il sito ai motori di ricerca" e premi *Installa il sito*. In un colpo:
-   - carica le 9 foto e il PDF dei servizi aggiuntivi nella libreria media;
-   - crea le tre pagine in Elementor;
+   - carica le 15 foto (9 del sito, la foto dall'alto e 5 del Rustico) e il PDF dei servizi aggiuntivi nella libreria media;
+   - crea le tre pagine in Elementor, con la planimetria nella Home;
    - imposta la Home come pagina iniziale e gli indirizzi belli (`/privacy/`, `/cookie/`);
    - spegne colori, caratteri e Google Fonts di Elementor, che cambierebbero l'aspetto;
    - mette nel cestino la pagina e l'articolo di esempio di WordPress.
@@ -49,6 +50,24 @@ bash installa-su-server.sh /percorso/della/cartella https://prova.ederacountry.i
 - Lo zip del tema si scarica da GitHub. Per usarne uno già sul server, aggiungilo come quarto argomento: `bash installa-su-server.sh ... ... ... /percorso/edera-tema.zip`.
 - Sul sottodominio il sito resta nascosto ai motori di ricerca; su `https://ederacountry.it` è visibile.
 - Si può rilanciare: non crea doppioni. Per riscrivere anche le pagine modificate: `EDERA_RISCRIVI=1 bash installa-su-server.sh ...`.
+
+## Avete già il tema 1.0? Aggiornamento alla 1.1 (la planimetria)
+
+Per chi ha già WordPress con il tema Edera 1.0 e le pagine installate. Le modifiche fatte alla Home restano.
+
+1. *Aspetto > Temi > Aggiungi tema > Carica tema*, scegli il nuovo `edera-tema.zip`, *Installa ora*.
+2. WordPress risponde che il tema c'è già: premi **"Sostituisci quello attuale con quello caricato"**.
+   - Se lo zip è troppo grande per l'hosting, carica via FTP la cartella `edera/` in `wp-content/themes/` sopra quella che c'è.
+3. *Aspetto > Installa Edera*, riquadro "Novità del tema 1.1": premi **"Aggiungi la planimetria alla Home"**. Il bottone:
+   - carica la foto dall'alto e le 5 foto del Rustico nella libreria media;
+   - aggiunge la sezione della planimetria subito dopo la sezione 01 ("Il luogo giusto per dare spazio alle idee.");
+   - porta i numeri delle sezioni successive da 02-06 a 03-07 (si vedono solo sugli schermi da 1400 px), solo se erano ancora quelli;
+   - dà al lightbox di Elementor i colori del sito, senza condivisione e senza zoom, se non li avevate già cambiati.
+
+   Non tocca il resto della Home. Si può premere di nuovo: se la planimetria c'è già, non fa niente.
+4. Non serve rilanciare "Installa il sito".
+
+Con SSH basta rilanciare `installa-su-server.sh` come sopra: fa anche questo passo.
 
 ## Seconda strada: direttamente sul dominio
 
@@ -83,6 +102,21 @@ Solo quando il sito di prova è approvato, oppure se preferisci saltare la prova
 - **PDF dei servizi aggiuntivi**: carica il nuovo PDF in *Media > Aggiungi file multimediale* e premi *Copia l'URL negli appunti*. Poi in Elementor clic sul calcolatore: nel blocco Shortcode, in `[edera_preventivo pdf="..."]` metti l'indirizzo copiato al posto di quello che c'è (oggi c'è il numero del PDF nella libreria media: vanno bene tutti e due).
 
 Si salva con il bottone *Pubblica* (o *Aggiorna*) in alto a destra.
+
+## La planimetria
+
+*Pagine > Home > Modifica con Elementor*, sezione "Planimetria". Nel pannello *Struttura* (icona in alto) gli elementi hanno un nome: "Mappa e pallini", "Pallini (si spostano trascinandoli)", "Legenda e foto".
+
+- **Spostare un pallino**: trascinalo sulla foto. Oppure: clic sul pallino, *Avanzato > Posizionamento*, e cambia l'offset orizzontale e verticale (in %).
+  - L'offset verticale si conta sulla larghezza della foto, non sull'altezza: è il modo in cui Elementor lo calcola quando si trascina. Per questo valori oltre 100% sono normali (i pallini nella parte bassa).
+- **Nome di un pallino**: è il testo del Pulsante. L'etichetta a destra o a sinistra si sceglie con le classi CSS (*Avanzato > Classi CSS*): `pallino`, più `pallino-sinistra` per metterla a sinistra.
+- **Numeri**: li conta il tema, nell'ordine dei pallini nel pannello Struttura; la legenda accanto si numera allo stesso modo. Se aggiungi, togli o sposti un pallino nell'elenco, fai lo stesso con la riga della legenda (widget Elenco icone).
+- **Il pallino del Rustico** (classe `pallino pallino-attivo`) apre le foto della galleria qui accanto con il lightbox di Elementor. Il suo link (`#elementor-action...`) si riferisce a quella galleria: se la galleria viene cancellata e rifatta, il pallino non apre più le foto e va rifatto il link. Gli altri pallini non hanno link: sono segni con il nome.
+- **Le foto del Rustico**: nel widget Galleria di base si aggiungono, tolgono o riordinano dalla libreria media. La didascalia nel lightbox è il titolo della foto nella libreria media.
+- **Capienze**: nella legenda (Elenco icone), come sono scritte sul sito.
+- **La foto dall'alto**: si cambia nel widget Immagine. È tenuta com'è, solo compressa. Se la nuova foto ha altre proporzioni, i pallini vanno risistemati.
+- Sul telefono, e sugli schermi fra 901 e 1299 px dove la mappa sta in mezza colonna, sulla foto restano i numeri e i nomi stanno nella legenda (classe `etichette-mappa-larga` del contenitore "Mappa e pallini": togliendola i nomi restano sempre, ma possono accavallarsi).
+- "Scegli nel preventivo" è un Pulsante che porta al calcolatore (`#preventivo`).
 
 ## Cambiare i prezzi del calcolatore
 
@@ -122,3 +156,7 @@ Tre movimenti discreti, tutti fermi a pagina ferma:
 - Il collaudo completo (misure, prove del calcolatore, editor) è in `EderaCountry-Sito/02-collaudo.md`.
 - Elementor porta con sé i suoi script (anche jQuery): la home pesa circa 1,0 MB al telefono e 1,4 MB al computer al primo caricamento, contro 0,4 e 0,8 MB del sito statico. Con la compressione del server (attiva di solito su Plesk) il peso degli script si riduce di circa due terzi.
 - Le pagine legali hanno lo stile del sito di oggi, diverso dalla home (carattere Bodoni Moda, toni sabbia): è stato replicato così com'è.
+- La planimetria aggiunge al primo caricamento circa 180 KB al telefono e 255 KB al computer con la compressione del server (450 e 520 KB senza). Più della metà sono gli script del lightbox di Elementor, che Elementor carica appena nella pagina c'è una galleria con il lightbox.
+- Da confermare con la struttura:
+  - **"Spazio verde"** (il nome del prototipo) è lo "Spazio esterno" del sito, fino a 120 persone? Finché non è confermato, nella legenda non ha capienza.
+  - La finestra delle foto nel prototipo si chiamava "Casetta rossa": sul sito è diventata "Rustico", come il pallino.

@@ -9,6 +9,8 @@
  * - imposta la Home come pagina iniziale, gli indirizzi belli (/%postname%/) e le opzioni di Elementor
  *   che cambierebbero l'aspetto (colori e caratteri globali, Google Fonts).
  *
+ * Tema 1.1: edera_aggiungi_planimetria() aggiunge la planimetria a una Home gia' installata.
+ *
  * Si puo' rilanciare quando si vuole: trova pagine e immagini gia' create e non fa doppioni.
  * Una pagina modificata nell'editor resta com'e', a meno di chiedere "riscrivi".
  *
@@ -106,7 +108,7 @@ function edera_copia( $da, $dir ) {
  * @param array $log Resoconto.
  * @return array chiave => ID allegato.
  */
-function edera_media( &$log ) {
+function edera_media( &$log, $gruppo = null ) {
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 	$m   = edera_leggi( 'media.json' );
 	$up  = wp_upload_dir();
@@ -118,7 +120,18 @@ function edera_media( &$log ) {
 	}
 	$sorg  = get_template_directory() . '/assets/';
 	$nuove = 0;
-	foreach ( (array) ( isset( $m['immagini'] ) ? $m['immagini'] : array() ) as $im ) {
+	$tutte = (array) ( isset( $m['immagini'] ) ? $m['immagini'] : array() );
+	if ( $gruppo ) {
+		$tutte = array_values(
+			array_filter(
+				$tutte,
+				function ( $im ) use ( $gruppo ) {
+					return isset( $im['gruppo'] ) && $im['gruppo'] === $gruppo;
+				}
+			)
+		);
+	}
+	foreach ( $tutte as $im ) {
 		$file = array_merge( array( $im['file'] ), $im['varianti'] );
 		foreach ( $file as $f ) {
 			if ( ! edera_copia( $sorg . 'img/' . $f, $dir ) ) {
@@ -133,6 +146,7 @@ function edera_media( &$log ) {
 				array(
 					'post_mime_type' => 'image/webp',
 					'post_title'     => $im['titolo'],
+					'post_excerpt'   => isset( $im['didascalia'] ) ? $im['didascalia'] : '',
 					'post_status'    => 'inherit',
 					'guid'           => trailingslashit( $up['baseurl'] ) . 'edera/' . $im['file'],
 				),
@@ -181,14 +195,14 @@ function edera_media( &$log ) {
 		}
 		$ids[ $im['chiave'] ] = $id;
 	}
-	foreach ( (array) ( isset( $m['immagini'] ) ? $m['immagini'] : array() ) as $im ) {
+	foreach ( $tutte as $im ) {
 		if ( ! empty( $im['tel'] ) && isset( $ids[ $im['chiave'] ], $ids[ $im['tel'] ] ) ) {
 			update_post_meta( $ids[ $im['chiave'] ], '_edera_tel', $ids[ $im['tel'] ] );
 		}
 	}
 	$log[] = 'Foto nella libreria media: ' . count( $ids ) . ( $nuove ? ' (' . $nuove . ' nuove)' : ' (già presenti)' ) . '.';
 
-	foreach ( (array) ( isset( $m['documenti'] ) ? $m['documenti'] : array() ) as $doc ) {
+	foreach ( (array) ( isset( $m['documenti'] ) && ! $gruppo ? $m['documenti'] : array() ) as $doc ) {
 		if ( ! edera_copia( $sorg . 'doc/' . $doc['file'], $dir ) ) {
 			$log[] = 'ERRORE: non riesco a copiare ' . $doc['file'] . '.';
 			continue;
@@ -394,6 +408,7 @@ function edera_installa( $opz = array() ) {
 	update_option( 'elementor_disable_typography_schemes', 'yes' );
 	update_option( 'elementor_google_font', '0' );
 	update_option( 'elementor_onboarded', true );
+	edera_kit_lightbox( $log );
 	delete_transient( 'elementor_activation_redirect' );
 	\Elementor\Plugin::$instance->files_manager->clear_cache();
 	$log[] = 'Elementor: colori e caratteri globali e Google Fonts spenti (caratteri e colori li dà il tema).';
@@ -448,6 +463,164 @@ function edera_installa( $opz = array() ) {
 }
 
 /**
+ * Lightbox di Elementor (foto del Rustico) con i colori del sito, senza condivisione e senza zoom.
+ * Scrive solo le impostazioni che nel kit di Elementor non sono state ancora scelte.
+ *
+ * @param array $log Resoconto.
+ */
+function edera_kit_lightbox( &$log ) {
+	$kit = (int) \Elementor\Plugin::$instance->kits_manager->get_active_id();
+	if ( ! $kit ) {
+		return;
+	}
+	$s    = get_post_meta( $kit, '_elementor_page_settings', true );
+	$s    = is_array( $s ) ? $s : array();
+	$nuove = array(
+		'lightbox_enable_share' => '',
+		'lightbox_enable_zoom'  => '',
+		'lightbox_color'        => 'rgba(18,32,26,0.97)',
+		'lightbox_ui_color'     => '#F5F2EB',
+		'lightbox_ui_color_hover' => '#FFFFFF',
+		'lightbox_text_color'   => '#D4DBD3',
+	);
+	$fatte = 0;
+	foreach ( $nuove as $k => $v ) {
+		if ( ! array_key_exists( $k, $s ) ) {
+			$s[ $k ] = $v;
+			++$fatte;
+		}
+	}
+	if ( $fatte ) {
+		update_post_meta( $kit, '_elementor_page_settings', $s );
+		$log[] = 'Lightbox di Elementor: colori del sito, senza condivisione e senza zoom.';
+	}
+}
+
+/**
+ * Cerca nei dati di Elementor un elemento per ID dell'ancora (_element_id) o per classe.
+ *
+ * @param array  $els    Elementi.
+ * @param string $ancora ID dell'ancora.
+ * @return bool
+ */
+function edera_ha_ancora( $els, $ancora ) {
+	foreach ( (array) $els as $e ) {
+		if ( isset( $e['settings']['_element_id'] ) && $ancora === $e['settings']['_element_id'] ) {
+			return true;
+		}
+		if ( ! empty( $e['elements'] ) && edera_ha_ancora( $e['elements'], $ancora ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * I titoli "numero della sezione" (classe n-sez) di un elemento, per riferimento.
+ *
+ * @param array $e   Elemento.
+ * @param array $out Riferimenti trovati.
+ */
+function edera_numeri_sezione( &$e, &$out ) {
+	if ( isset( $e['widgetType'] ) && 'heading' === $e['widgetType'] && isset( $e['settings']['_css_classes'] ) && preg_match( '/(^|\s)n-sez(\s|$)/', $e['settings']['_css_classes'] ) ) {
+		$out[] = &$e;
+	}
+	if ( ! empty( $e['elements'] ) ) {
+		foreach ( $e['elements'] as &$f ) {
+			edera_numeri_sezione( $f, $out );
+		}
+	}
+}
+
+/**
+ * Tema 1.1: aggiunge la planimetria alla Home gia' installata (bottone in Aspetto > Installa Edera,
+ * e installa-su-server.sh). Carica le foto nella libreria media e inserisce la sezione dopo la 01
+ * (quella con l'ancora "location"); se la Home ha i numeri 02-06 nelle sezioni dopo, li porta a 03-07.
+ * Non tocca nient'altro della Home. Se la planimetria c'e' gia', non fa niente.
+ *
+ * @return array Righe di resoconto.
+ */
+function edera_aggiungi_planimetria() {
+	$log = array();
+	if ( ! edera_elementor() ) {
+		return array( 'ERRORE: Elementor non è attivo.' );
+	}
+	$media = edera_media( $log, 'planimetria' );
+	edera_kit_lightbox( $log );
+	$home = (int) get_option( 'page_on_front' );
+	if ( ! $home || 'builder' !== get_post_meta( $home, '_elementor_edit_mode', true ) ) {
+		$log[] = 'ERRORE: non trovo la Home fatta con Elementor (Impostazioni > Lettura > pagina iniziale).';
+		return $log;
+	}
+	$grezzo = get_post_meta( $home, '_elementor_data', true );
+	$dati   = is_array( $grezzo ) ? $grezzo : json_decode( (string) $grezzo, true );
+	if ( ! is_array( $dati ) ) {
+		$log[] = 'ERRORE: i dati di Elementor della Home non si leggono.';
+		return $log;
+	}
+	if ( edera_ha_ancora( $dati, 'planimetria' ) ) {
+		$log[] = 'La planimetria è già nella Home: niente da aggiungere.';
+		return $log;
+	}
+	$intatta = get_post_meta( $home, '_edera_impronta', true ) === edera_impronta( $home );
+
+	// dove: dopo la sezione con l'ancora "location"; se non c'e', dopo la prima sezione
+	$dopo = 0;
+	foreach ( $dati as $i => $e ) {
+		if ( isset( $e['settings']['_element_id'] ) && 'location' === $e['settings']['_element_id'] ) {
+			$dopo = $i + 1;
+			break;
+		}
+	}
+	if ( ! $dopo ) {
+		$dopo  = min( 1, count( $dati ) );
+		$log[] = 'Attenzione: non trovo la sezione "La location" (ancora location): la planimetria va dopo la prima sezione.';
+	}
+
+	// numeri delle sezioni successive: solo se sono proprio 02, 03, 04 ...
+	$numeri = array();
+	for ( $i = $dopo; $i < count( $dati ); $i++ ) {
+		edera_numeri_sezione( $dati[ $i ], $numeri );
+	}
+	$attesi = true;
+	foreach ( $numeri as $j => $h ) {
+		if ( sprintf( '%02d', $j + 2 ) !== trim( (string) $h['settings']['title'] ) ) {
+			$attesi = false;
+		}
+	}
+	if ( $numeri && $attesi ) {
+		foreach ( $numeri as $j => &$h ) {
+			$h['settings']['title'] = sprintf( '%02d', $j + 3 );
+		}
+		unset( $h );
+		$log[] = 'Numeri delle sezioni successive portati da 02-' . sprintf( '%02d', count( $numeri ) + 1 ) . ' a 03-' . sprintf( '%02d', count( $numeri ) + 2 ) . '.';
+	} elseif ( $numeri ) {
+		$log[] = 'Numeri delle sezioni lasciati come sono (non erano 02, 03, 04 ...).';
+	}
+	unset( $numeri );
+
+	$pag     = array( 'home' => $home );
+	$sezione = edera_segnaposti( edera_leggi( 'planimetria.json' ), $media, $pag );
+	array_splice( $dati, $dopo, 0, array( $sezione ) );
+
+	kses_remove_filters();
+	$doc = \Elementor\Plugin::$instance->documents->get( $home, false );
+	$ok  = $doc && $doc->save( array( 'elements' => $dati ) );
+	kses_init_filters();
+	if ( ! $ok ) {
+		$log[] = 'ERRORE: Elementor non ha salvato la Home.';
+		return $log;
+	}
+	if ( $intatta ) {
+		update_post_meta( $home, '_edera_impronta', edera_impronta( $home ) );
+	}
+	\Elementor\Plugin::$instance->files_manager->clear_cache();
+	update_option( 'edera_planimetria', EDERA_VERSIONE . ' ' . wp_date( 'Y-m-d H:i' ) );
+	$log[] = 'Planimetria aggiunta alla Home, dopo la sezione 01. Il resto della Home è rimasto com’era.';
+	return $log;
+}
+
+/**
  * Scarica, installa e attiva Elementor dal catalogo di WordPress.org.
  *
  * @return array
@@ -493,6 +666,9 @@ add_action(
 		$passo = sanitize_key( wp_unslash( $_POST['edera_passo'] ) );
 		if ( 'elementor' === $passo ) {
 			$log = edera_installa_elementor();
+		} elseif ( 'planimetria' === $passo ) {
+			$log   = edera_aggiungi_planimetria();
+			$log[] = '__fatto__';
 		} else {
 			$log   = edera_installa(
 				array(
@@ -560,6 +736,18 @@ function edera_pagina_installa() {
 			</table>
 			<?php submit_button( $fatto ? 'Aggiorna il sito' : 'Installa il sito', 'primary', 'edera_vai', true, $el ? array() : array( 'disabled' => 'disabled' ) ); ?>
 		</form>
+		<?php if ( $fatto ) : ?>
+		<form method="post" style="margin-top:8px;padding:12px 16px;background:#fff;border:1px solid #c3c4c7">
+			<?php wp_nonce_field( 'edera_installa' ); ?>
+			<input type="hidden" name="edera_passo" value="planimetria">
+			<h2 style="margin-top:4px">Novità del tema 1.1: la planimetria</h2>
+			<p>Carica la foto dall’alto e le cinque foto del Rustico nella libreria media e aggiunge alla Home, subito dopo la sezione 01, la planimetria con i pallini (tutta in widget di Elementor). Non tocca il resto della Home: le tue modifiche restano. Se la planimetria c’è già, non fa niente.</p>
+			<?php if ( get_option( 'edera_planimetria' ) ) : ?>
+				<p><strong>Planimetria aggiunta:</strong> <?php echo esc_html( get_option( 'edera_planimetria' ) ); ?>.</p>
+			<?php endif; ?>
+			<?php submit_button( 'Aggiungi la planimetria alla Home', 'secondary', 'edera_pl', false, $el ? array() : array( 'disabled' => 'disabled' ) ); ?>
+		</form>
+		<?php endif; ?>
 	</div>
 	<?php
 }

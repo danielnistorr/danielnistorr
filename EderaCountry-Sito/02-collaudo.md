@@ -17,7 +17,7 @@ Collaudo del 9 novembre 2026, in locale. Niente è stato pubblicato e il server 
 - **Secondo giro**: nessun doppione (10 allegati e 3 pagine, come prima); le pagine non toccate vengono riscritte uguali.
 - **Pagina modificata**: con un titolo cambiato, il giro successivo la lascia com'è ("Pagina modificata nell'editor, lasciata com'era"). Con `EDERA_RISCRIVI=1` torna quella del tema.
 - **Indirizzi**: `/`, `/privacy/` e `/cookie/` rispondono 200; un indirizzo sbagliato dà la 404 del tema.
-- **Zip del tema**: 62 file, 2,5 MB. Dentro non ci sono credenziali, indirizzi locali né dati di prova; nessun file contiene U+2014.
+- **Zip del tema**: 62 file, 2,5 MB nella versione 1.0; 82 file, 4,6 MB nella 1.1 con le foto della planimetria. Dentro non ci sono credenziali, indirizzi locali né dati di prova; nessun file contiene U+2014.
 
 ## Le pagine in Elementor
 
@@ -113,3 +113,66 @@ Gli script in più sono di Elementor (con jQuery) e del kit dei movimenti.
 
 - **Elementor Pro**: è a pagamento. Il tema usa solo widget della versione gratuita e nessuna funzione che Pro cambi; i fogli di stile di Pro non toccano i widget usati.
 - **Server vero**: MySQL, Apache con `.htaccess` (riscrittura degli indirizzi e rinvii dei vecchi indirizzi), installazione di WordPress da cartella vuota (il ramo dello script che chiede i dati del database).
+
+## Tema 1.1: la planimetria (10 novembre 2026)
+
+La sezione è tutta in widget di Elementor gratuito (4.4.0): contenitore della mappa con la foto dall'alto (Immagine), 6 pallini (Pulsante in posizione assoluta, offset in %), legenda (Elenco icone), titolo "Rustico", 5 foto (Galleria di base con il lightbox di Elementor), Pulsante "Scegli nel preventivo". Niente shortcode e niente widget HTML. Il pallino del Rustico apre il lightbox della galleria con un link d'azione di Elementor (`#elementor-action:action=lightbox`, che legge le foto dalla galleria della pagina).
+
+**Installazione da zero** con `installa-su-server.sh` e il tema 1.1:
+- 16 allegati (15 foto e il PDF) e 3 pagine, planimetria nella Home dopo la sezione 01, numeri 01-07;
+- rilanciato: nessun doppione, "La planimetria è già nella Home".
+
+**Aggiornamento da 1.0 a 1.1**, come lo farà il committente, nel browser:
+- partenza: WordPress con il tema 1.0 installato e un titolo della Home cambiato a mano ("Domande frequenti, e risposte.");
+- *Carica tema*, poi "Sostituisci quello attuale con quello caricato": tema aggiornato;
+- *Aggiungi la planimetria alla Home*: 6 foto caricate, numeri portati da 02-06 a 03-07, sezione inserita dopo la 01, il titolo cambiato a mano è rimasto;
+- secondo clic: "già nella Home", niente cambia.
+
+**Editor di Elementor** (login di prova, niente salvato):
+- la sezione si apre con 6 pallini e 5 foto;
+- un pallino trascinato di 48 x 28 px cambia offset da 33 / 53,14% a 41,69 / 58,21%, e sulla pagina si sposta di quanto è stato trascinato;
+- il testo di un pallino si cambia dal pannello e l'anteprima segue;
+- nessun errore.
+
+L'offset verticale in % Elementor lo calcola sulla larghezza del contenitore. Per questo i pallini stanno in un contenitore quadrato largo quanto la foto, con la y convertita (y x 1604 / 981). Senza questo accorgimento un pallino trascinato saltava di 230 px.
+
+**Pagina**, a 390, 600, 601, 768, 900, 901, 1024, 1280, 1299, 1300, 1366, 1440 e 1920 px:
+- pallini ed etichette sempre dentro la foto e mai accavallati;
+- sul telefono e fra 901 e 1299 px restano i numeri, con i nomi nella legenda;
+- nessun errore di console, nessuno scorrimento orizzontale.
+
+**Lightbox** dal pallino del Rustico, a tutte le larghezze:
+- si apre su "1 / 5" con la foto da 1600 px; la freccia porta a "2 / 5"; Esc chiude;
+- mentre è aperto la pagina sotto resta ferma (regola del tema); alla chiusura il focus torna al pallino.
+
+Lo scorrimento col dito è quello di Elementor (Swiper): con i tocchi simulati del browser di prova la foto non è cambiata, quindi non è verificato qui. Va provato su un telefono vero.
+
+**Fuori dalla sezione nuova la pagina non cambia.** Schermate a pagina intera dell'originale e di WordPress, togliendo la sezione nuova. La sezione è fissata a un'altezza intera, perché quello che segue stia alla stessa frazione di pixel. Restano solo i tre "·" della fascia e, da 1400 px, i numeri delle sezioni rinumerate:
+
+| Larghezza | Altezza orig. / WP senza la sezione | Pixel diversi | Sezione nuova |
+|---|---|---|---|
+| 390 | 11095 / 11095 | 102 | 1541 px |
+| 768 | 11208 / 11208 | 116 | 1976 px |
+| 1024 | 7592 / 7592 | 96 | 978 px |
+| 1440 | 7641 / 7641 | 391 (numeri 03-07) | 1233 px |
+| 1920 | 7641 / 7641 | 391 (numeri 03-07) | 1230 px |
+
+Senza fissare l'altezza, tutto quello che viene dopo si sposta di meno di mezzo pixel e il confronto pixel per pixel conta differenze di sfumatura, invisibili.
+
+**Peso aggiunto al primo caricamento** (tema 1.1 contro 1.0, stessa Home):
+
+| | Senza compressione | Con gzip (come su Plesk) |
+|---|---|---|
+| 390 | 449 KB | 183 KB |
+| 1440 | 520 KB | 255 KB |
+
+- Foto: la mappa (70 KB a 390, 141 KB a 1440) e 5 miniature da 3-5 KB.
+- Le foto grandi si caricano solo nel lightbox.
+- Il resto sono gli script e gli stili del lightbox di Elementor (Swiper 140 KB, lightbox 76 KB, finestra e stili 60 KB). Elementor li carica appena nella pagina c'è un link a una foto con il lightbox.
+
+**Schermate**: `screenshot/planimetria/`
+- Home a pagina intera a 390, 768, 1440 e 1920; la barra fissa del telefono è nascosta, perché a pagina intera finirebbe a metà;
+- la sezione da sola;
+- il lightbox aperto a 1440 e a 390.
+
+**Film**: `screenshot/wp/foglio-1440.jpg` e `foglio-390.jpg`, rifatti con la planimetria, nessun errore di script.
