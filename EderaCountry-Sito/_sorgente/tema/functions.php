@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EDERA_VERSIONE', '1.1.0' );
+define( 'EDERA_VERSIONE', '1.1.1' );
 
 require get_template_directory() . '/inc/installa.php';
 require get_template_directory() . '/inc/elementor.php';

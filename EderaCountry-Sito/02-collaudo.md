@@ -176,3 +176,19 @@ Senza fissare l'altezza, tutto quello che viene dopo si sposta di meno di mezzo 
 - il lightbox aperto a 1440 e a 390.
 
 **Film**: `screenshot/wp/foglio-1440.jpg` e `foglio-390.jpg`, rifatti con la planimetria, nessun errore di script.
+
+## Tema 1.1.1: foto su qualunque pallino (10 novembre 2026)
+
+La regola sta in poche righe di `assets/sito.js`: un clic su un link `#foto-<nome>` apre il lightbox di Elementor sulla galleria con ID CSS `foto-<nome>`. Il tema simula un clic sul primo link della galleria, così si apre lo slideshow nativo con tutte le sue foto.
+
+Prove con Elementor gratuito 4.4.0:
+- **Partenza**: Home aggiornata da 1.0 a 1.1 con il bottone, con il titolo delle domande cambiato a mano.
+- **Il vecchio link resta valido**: dopo il passaggio a 1.1.1 il Rustico (`#elementor-action...`) apre ancora "1 / 5"; la freccia porta a "2 / 5", Esc chiude.
+- "Aggiungi la planimetria alla Home": "già nella Home", nessun cambiamento.
+- **"Semplifica il link del Rustico"**: il link diventa `#foto-rustico` e la galleria prende l'ID CSS `foto-rustico`. Il secondo clic non fa niente ("già semplificato"). Il titolo cambiato a mano è rimasto. Il Rustico apre "1 / 5" a 1440 e a 390.
+- **Serra** (con uno script che fa le stesse modifiche dell'editor): titolo e Galleria di base con 3 foto e ID CSS `foto-serra`, pallino con link `#foto-serra` e classi `pallino pallino-attivo`.
+  - Galleria visibile: il pallino apre "1 / 3" con le sue foto, a 1440 e a 390; la freccia porta a "2 / 3", Esc chiude, la pagina non salta alla galleria.
+  - Galleria nascosta su desktop, tablet e mobile: stesso risultato a 1440, 768 e 390.
+- **Galleria che non c'è**: un pallino con `#foto-grill` non fa niente, senza errori.
+- **Errori**: nessun errore di console in tutte le prove.
+- **Editor**: i pallini con link si scelgono, si trascinano (circa 45 x 20 px, come il mouse) e cambiano testo dal pannello. Un clic su un pallino con link può far scorrere l'anteprima fino alla galleria: lo fa Elementor con i link interni (scritto nel LEGGIMI).

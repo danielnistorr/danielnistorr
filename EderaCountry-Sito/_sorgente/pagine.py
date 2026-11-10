@@ -98,11 +98,14 @@ class Costruttore:
              "_offset_orientation_v": "start", "_offset_y": {"unit": "%", "size": y, "sizes": []}}
         return self._w("button", s, classi, nome or f"Pallino {testo}")
 
-    def GAL(self, chiavi, classi="", colonne=3, nome=None):
-        """Widget Galleria di base: foto dalla libreria media, link al file, lightbox di Elementor."""
+    def GAL(self, chiavi, classi="", colonne=3, ancora=None, nome=None):
+        """Widget Galleria di base: foto dalla libreria media, link al file, lightbox di Elementor.
+        ancora: l'ID CSS (Avanzato > ID CSS), per esempio "foto-rustico"."""
         s = {"wp_gallery": [{"edera_img": k} for k in chiavi], "thumbnail_size": "full",
              "gallery_columns": str(colonne), "gallery_link": "file", "open_lightbox": "yes",
              "gallery_display_caption": "none"}
+        if ancora:
+            s["_element_id"] = ancora
         return self._w("image-gallery", s, classi, nome)
 
     def SC(self, codice, classi="", nome=None):
@@ -147,16 +150,13 @@ def planimetria(numero="02"):
     """La sezione della planimetria, tutta in widget di Elementor. Ha un suo costruttore di ID, cosi' e'
     identica nella Home nuova e quando il bottone del tema 1.1 la aggiunge a una Home gia' installata."""
     b = Costruttore("planimetria")
-    galleria = b.GAL(FOTO_RUSTICO, "planimetria-galleria", nome="Foto del Rustico (lightbox)")
-    # il pallino del Rustico apre il lightbox di Elementor sulle foto della galleria qui sotto
-    azione = "#elementor-action:action=lightbox&settings=" + base64.b64encode(
-        json.dumps({"slideshow": galleria["id"]}, separators=(",", ":")).encode()).decode()
+    # tema 1.1.1: il pallino del Rustico ha il link "#foto-rustico" e apre il lightbox di Elementor sulla galleria
+    # con ID CSS "foto-rustico" (la regola sta in assets/sito.js). Lo stesso vale per qualunque pallino.
+    galleria = b.GAL(FOTO_RUSTICO, "planimetria-galleria", ancora="foto-rustico", nome="Foto del Rustico (lightbox)")
     pallini = []
     for i, (nome, x, y, sinistra) in enumerate(PALLINI):
         classi = "pallino" + (" pallino-attivo" if i == 0 else "") + (" pallino-sinistra" if sinistra else "")
-        # il "#" resta in chiaro (WordPress lo tratta come un'ancora), il resto codificato come fa Elementor
-        link = "#" + urllib.parse.quote(azione[1:], safe="") if i == 0 else ""
-        pallini.append(b.PIN(nome, x, round(y * RAPPORTO_FOTO, 2), classi, link))
+        pallini.append(b.PIN(nome, x, round(y * RAPPORTO_FOTO, 2), classi, "#foto-rustico" if i == 0 else ""))
     return b.C(
         "sezione bianca planimetria-sezione",
         b.C("wrap",
@@ -173,6 +173,16 @@ def planimetria(numero="02"):
                     b.BTN("Scegli nel preventivo ↓", "#preventivo", "pulsante pulsante-verde"),
                     nome="Legenda e foto"))),
         tag="section", ancora="planimetria", nome="Planimetria", interno=False)
+
+
+def link_rustico_1_1():
+    """Il link del pallino del Rustico com'era nel tema 1.1 (azione di Elementor con l'ID della galleria in base64):
+    il bottone "Semplifica il link del Rustico" lo cambia in "#foto-rustico" solo se e' ancora questo."""
+    nuovo_id = Ids("planimetria")
+    ids = [nuovo_id(), nuovo_id()]  # stesso ordine di planimetria(): prima la galleria, poi il pallino del Rustico
+    azione = "#elementor-action:action=lightbox&settings=" + base64.b64encode(
+        json.dumps({"slideshow": ids[0]}, separators=(",", ":")).encode()).decode()
+    return {"link": "#" + urllib.parse.quote(azione[1:], safe=""), "galleria": ids[0], "pallino": ids[1]}
 
 
 MAPPA = "https://www.google.com/maps/search/?api=1&query=Via%20Pal%C3%B9%20Massara%2010%2C%20Albettone%20VI"

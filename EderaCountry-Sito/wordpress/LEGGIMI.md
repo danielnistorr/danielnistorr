@@ -13,7 +13,7 @@ Il sito è **lo stesso di ederacountry.it**, pagina per pagina: stessi testi, fo
 
 | File | A cosa serve |
 |---|---|
-| `edera-tema.zip` | Il tema da caricare in WordPress (4,6 MB, versione 1.1). Dentro ci sono anche foto, caratteri e PDF. |
+| `edera-tema.zip` | Il tema da caricare in WordPress (4,6 MB, versione 1.1.1). Dentro ci sono anche foto, caratteri e PDF. |
 | `edera/` | Lo stesso tema scompattato, da caricare via FTP se il pannello rifiuta lo zip. |
 | `installa-su-server.sh` | Fa tutto da solo con WP-CLI, se sul server c'è l'accesso SSH. |
 
@@ -69,6 +69,13 @@ Per chi ha già WordPress con il tema Edera 1.0 e le pagine installate. Le modif
 
 Con SSH basta rilanciare `installa-su-server.sh` come sopra: fa anche questo passo.
 
+### Avete già il tema 1.1? Aggiornamento alla 1.1.1
+
+1. *Aspetto > Temi > Aggiungi tema > Carica tema*, il nuovo `edera-tema.zip`, *Installa ora*, poi **"Sostituisci quello attuale con quello caricato"**.
+2. Facoltativo: *Aspetto > Installa Edera* > **"Semplifica il link del Rustico"**. Cambia il link del pallino del Rustico da `#elementor-action...` a `#foto-rustico` e dà alla sua galleria l'ID CSS `foto-rustico`: così il Rustico segue la stessa regola degli altri pallini (sotto). Cambia solo quel link, e solo se è ancora quello scritto dal tema. Si può premere di nuovo senza effetti. Anche senza questo passo il vecchio link continua a funzionare.
+
+Non premete "Aggiungi la planimetria alla Home": la planimetria c'è già, e comunque il bottone non la toccherebbe.
+
 ## Seconda strada: direttamente sul dominio
 
 Solo quando il sito di prova è approvato, oppure se preferisci saltare la prova.
@@ -111,12 +118,26 @@ Si salva con il bottone *Pubblica* (o *Aggiorna*) in alto a destra.
   - L'offset verticale si conta sulla larghezza della foto, non sull'altezza: è il modo in cui Elementor lo calcola quando si trascina. Per questo valori oltre 100% sono normali (i pallini nella parte bassa).
 - **Nome di un pallino**: è il testo del Pulsante. L'etichetta a destra o a sinistra si sceglie con le classi CSS (*Avanzato > Classi CSS*): `pallino`, più `pallino-sinistra` per metterla a sinistra.
 - **Numeri**: li conta il tema, nell'ordine dei pallini nel pannello Struttura; la legenda accanto si numera allo stesso modo. Se aggiungi, togli o sposti un pallino nell'elenco, fai lo stesso con la riga della legenda (widget Elenco icone).
-- **Il pallino del Rustico** (classe `pallino pallino-attivo`) apre le foto della galleria qui accanto con il lightbox di Elementor. Il suo link (`#elementor-action...`) si riferisce a quella galleria: se la galleria viene cancellata e rifatta, il pallino non apre più le foto e va rifatto il link. Gli altri pallini non hanno link: sono segni con il nome.
+- **Il pallino del Rustico** (classe `pallino pallino-attivo`) ha il link `#foto-rustico`: apre con il lightbox di Elementor le foto della galleria che ha ID CSS `foto-rustico`. Nei siti aggiornati dalla 1.1 il link può essere ancora `#elementor-action...`: funziona lo stesso (vedi sopra, "Semplifica il link del Rustico"). Gli altri pallini non hanno link: sono segni con il nome.
 - **Le foto del Rustico**: nel widget Galleria di base si aggiungono, tolgono o riordinano dalla libreria media. La didascalia nel lightbox è il titolo della foto nella libreria media.
 - **Capienze**: nella legenda (Elenco icone), come sono scritte sul sito.
 - **La foto dall'alto**: si cambia nel widget Immagine. È tenuta com'è, solo compressa. Se la nuova foto ha altre proporzioni, i pallini vanno risistemati.
 - Sul telefono, e sugli schermi fra 901 e 1299 px dove la mappa sta in mezza colonna, sulla foto restano i numeri e i nomi stanno nella legenda (classe `etichette-mappa-larga` del contenitore "Mappa e pallini": togliendola i nomi restano sempre, ma possono accavallarsi).
 - "Scegli nel preventivo" è un Pulsante che porta al calcolatore (`#preventivo`).
+
+### Aggiungere le foto a un pallino (per esempio la Serra)
+
+La regola: un pallino con il link `#foto-serra` apre il lightbox sulle foto della galleria che ha ID CSS `foto-serra`. Vale per qualunque nome: `#foto-piscina` e `foto-piscina`, e così via. Va bene una Galleria di base o un Carosello di immagini.
+
+1. **Galleria**: nella colonna accanto alla mappa ("Legenda e foto") aggiungi un Titolo (per esempio "Serra") e un widget Galleria di base. Più semplice: duplica il titolo e la galleria del Rustico (tasto destro > Duplica), ma poi cambia l'ID CSS come al passo 3.
+2. **Foto**: nella galleria, *Aggiungi immagini*, scegli o carica le foto della Serra nella libreria media.
+3. **ID**: sulla galleria, *Avanzato > ID CSS*: `foto-serra` (senza cancelletto, minuscole, senza spazi).
+4. **Pallino**: clic sul pallino della Serra, *Link*: `#foto-serra` (con il cancelletto). Se deve sembrare cliccabile come il Rustico, in *Avanzato > Classi CSS* scrivi `pallino pallino-attivo` (con `pallino-sinistra` in più se l'etichetta sta a sinistra).
+5. **Foto solo nel lightbox** (facoltativo): sulla galleria, *Avanzato > Responsive*, nascondi su desktop, tablet e mobile. La galleria non si vede nella pagina, ma il pallino apre lo stesso tutte le sue foto.
+
+Poi *Aggiorna*. Il testo sotto il titolo della sezione ("Seleziona il pallino sul Rustico per aprire le fotografie.") non cambia da solo: aggiornalo a mano, per esempio nominando anche la Serra. Se la galleria con quell'ID non c'è, il pallino non fa niente.
+
+Nell'editor un clic su un pallino con link può far scorrere l'anteprima fino alla galleria (Elementor lo fa con i link interni alla pagina). Per spostare un pallino basta trascinarlo; per sceglierlo senza scorrere usa il pannello Struttura.
 
 ## Cambiare i prezzi del calcolatore
 

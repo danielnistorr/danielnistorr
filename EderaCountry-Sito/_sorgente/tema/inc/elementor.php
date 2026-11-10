@@ -57,6 +57,7 @@ add_filter(
 		if ( 'button' === $tipo ) {
 			$html = preg_replace( '/\s*([↗↓→↘])\s*(<\/span>)/u', ' <span class="freccia" aria-hidden="true">$1</span>$2', $html, 1 );
 			// un pallino della planimetria senza link e' solo un segno con il nome, non un bottone
+			// (i pallini con un link, per esempio "#foto-serra", restano link)
 			if ( in_array( 'pallino', $classi, true ) && false === strpos( $html, 'href=' ) ) {
 				$html = preg_replace( '/<a ([^>]*?)\s*role="button"([^>]*)>/', '<span $1$2>', $html, 1 );
 				$html = preg_replace( '/<\/a>(\s*)$/', '</span>$1', $html, 1 );

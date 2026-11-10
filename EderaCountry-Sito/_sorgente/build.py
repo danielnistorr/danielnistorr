@@ -152,6 +152,7 @@ def contenuti():
         "privacy.json": pagine.legale("privacy", (ORIG / "privacy.html").read_text(encoding="utf-8")),
         "cookie.json": pagine.legale("cookie", (ORIG / "cookie.html").read_text(encoding="utf-8")),
         "planimetria.json": pagine.planimetria("02"),
+        "planimetria-1.1.json": pagine.link_rustico_1_1(),
         "pagine.json": PAGINE,
         "media.json": {"immagini": IMMAGINI, "documenti": DOCUMENTI},
     }

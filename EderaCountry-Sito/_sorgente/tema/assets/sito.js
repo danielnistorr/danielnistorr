@@ -1,4 +1,4 @@
-/* Edera Country House: menu del telefono, barra fissa del telefono e anno nel piede.
+/* Edera Country House: menu del telefono, barra fissa del telefono, anno nel piede e link alle foto dei pallini.
    Lo stesso codice del sito originale (la parte del calcolatore e' in preventivo.js). */
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -29,4 +29,19 @@
     guarda.forEach(function(el){ oss.observe(el); });
   }
   if ($('anno')) $('anno').textContent = new Date().getFullYear();
+
+  // planimetria: un link "#foto-<nome>" (per esempio sul pallino della Serra) apre il lightbox di Elementor
+  // sulla galleria che in Avanzato > ID CSS ha "foto-<nome>", anche se la galleria e' nascosta su tutti i
+  // dispositivi. Se la galleria non c'e', il link non fa niente. Nell'editor di Elementor il clic serve solo a
+  // scegliere il pallino da modificare: la pagina non salta alla galleria.
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#foto-"]') : null;
+    if (!a) return;
+    e.preventDefault();
+    if (document.body.classList.contains('elementor-editor-active')) return;
+    e.stopPropagation();
+    var box = document.getElementById(a.getAttribute('href').slice(1));
+    var prima = box && box.querySelector('a[data-elementor-open-lightbox]');
+    if (prima) prima.click();
+  }, true);
 })();

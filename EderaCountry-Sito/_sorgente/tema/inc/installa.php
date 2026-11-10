@@ -621,6 +621,84 @@ function edera_aggiungi_planimetria() {
 }
 
 /**
+ * Tema 1.1.1: il link del pallino del Rustico da "#elementor-action..." (tema 1.1) a "#foto-rustico", e l'ID CSS
+ * "foto-rustico" alla sua galleria. Cambia solo quel link e solo se e' ancora quello scritto dal tema 1.1,
+ * e solo se la galleria c'e' ancora e non ha gia' un altro ID. Se e' gia' fatto, non fa niente.
+ * (Il vecchio link funziona comunque: questo passo serve solo a renderlo leggibile e uguale agli altri.)
+ *
+ * @return array Righe di resoconto.
+ */
+function edera_semplifica_rustico() {
+	if ( ! edera_elementor() ) {
+		return array( 'ERRORE: Elementor non è attivo.' );
+	}
+	$v    = edera_leggi( 'planimetria-1.1.json' );
+	$home = (int) get_option( 'page_on_front' );
+	$doc  = $home ? \Elementor\Plugin::$instance->documents->get( $home, false ) : null;
+	if ( ! $doc || empty( $v['link'] ) ) {
+		return array( 'ERRORE: non trovo la Home fatta con Elementor.' );
+	}
+	$dati = $doc->get_elements_data();
+	// prima si guarda soltanto: c'e' il vecchio link? la galleria c'e' ed e' libera? "foto-rustico" e' gia' usato?
+	$stato = array(
+		'pallino'  => false,
+		'galleria' => null,
+		'usato'    => false,
+	);
+	$guarda = function ( $els ) use ( &$guarda, &$stato, $v ) {
+		foreach ( $els as $e ) {
+			$st = isset( $e['settings'] ) ? $e['settings'] : array();
+			if ( isset( $e['widgetType'] ) && 'button' === $e['widgetType'] && isset( $st['link']['url'] ) && $v['link'] === $st['link']['url'] ) {
+				$stato['pallino'] = true;
+			}
+			if ( isset( $e['id'] ) && $v['galleria'] === $e['id'] ) {
+				$stato['galleria'] = isset( $st['_element_id'] ) ? (string) $st['_element_id'] : '';
+			} elseif ( isset( $st['_element_id'] ) && 'foto-rustico' === $st['_element_id'] ) {
+				$stato['usato'] = true;
+			}
+			if ( ! empty( $e['elements'] ) ) {
+				$guarda( $e['elements'] );
+			}
+		}
+	};
+	$guarda( $dati );
+	if ( ! $stato['pallino'] ) {
+		return array( 'Il link del Rustico è già semplificato (o è stato cambiato a mano): niente da fare.' );
+	}
+	if ( null === $stato['galleria'] || $stato['usato'] || ! in_array( $stato['galleria'], array( '', 'foto-rustico' ), true ) ) {
+		return array( 'Il link del Rustico resta com’è: la sua galleria non c’è più o ha già un altro ID CSS. Il link funziona lo stesso.' );
+	}
+	// poi si cambia: solo quel link e l'ID CSS di quella galleria
+	$cambia = function ( $els ) use ( &$cambia, $v ) {
+		foreach ( $els as $k => $e ) {
+			if ( isset( $e['widgetType'] ) && 'button' === $e['widgetType'] && isset( $e['settings']['link']['url'] ) && $v['link'] === $e['settings']['link']['url'] ) {
+				$els[ $k ]['settings']['link']['url'] = '#foto-rustico';
+			}
+			if ( isset( $e['id'] ) && $v['galleria'] === $e['id'] ) {
+				$els[ $k ]['settings']['_element_id'] = 'foto-rustico';
+			}
+			if ( ! empty( $e['elements'] ) ) {
+				$els[ $k ]['elements'] = $cambia( $e['elements'] );
+			}
+		}
+		return $els;
+	};
+	$dati = $cambia( $dati );
+	$intatta = get_post_meta( $home, '_edera_impronta', true ) === edera_impronta( $home );
+	kses_remove_filters();
+	$ok = $doc->save( array( 'elements' => $dati ) );
+	kses_init_filters();
+	if ( ! $ok ) {
+		return array( 'ERRORE: Elementor non ha salvato la Home.' );
+	}
+	if ( $intatta ) {
+		update_post_meta( $home, '_edera_impronta', edera_impronta( $home ) );
+	}
+	\Elementor\Plugin::$instance->files_manager->clear_cache();
+	return array( 'Link del Rustico semplificato: ora è #foto-rustico e la sua galleria ha l’ID CSS foto-rustico. Il resto della Home è rimasto com’era.' );
+}
+
+/**
  * Scarica, installa e attiva Elementor dal catalogo di WordPress.org.
  *
  * @return array
@@ -666,6 +744,9 @@ add_action(
 		$passo = sanitize_key( wp_unslash( $_POST['edera_passo'] ) );
 		if ( 'elementor' === $passo ) {
 			$log = edera_installa_elementor();
+		} elseif ( 'rustico' === $passo ) {
+			$log   = edera_semplifica_rustico();
+			$log[] = '__fatto__';
 		} elseif ( 'planimetria' === $passo ) {
 			$log   = edera_aggiungi_planimetria();
 			$log[] = '__fatto__';
@@ -746,6 +827,13 @@ function edera_pagina_installa() {
 				<p><strong>Planimetria aggiunta:</strong> <?php echo esc_html( get_option( 'edera_planimetria' ) ); ?>.</p>
 			<?php endif; ?>
 			<?php submit_button( 'Aggiungi la planimetria alla Home', 'secondary', 'edera_pl', false, $el ? array() : array( 'disabled' => 'disabled' ) ); ?>
+		</form>
+		<form method="post" style="margin-top:8px;padding:12px 16px;background:#fff;border:1px solid #c3c4c7">
+			<?php wp_nonce_field( 'edera_installa' ); ?>
+			<input type="hidden" name="edera_passo" value="rustico">
+			<h2 style="margin-top:4px">Novità del tema 1.1.1: foto su qualunque pallino</h2>
+			<p>Un pallino con il link <code>#foto-serra</code> apre il lightbox sulla galleria che ha ID CSS <code>foto-serra</code> (vedi il LEGGIMI). Se la planimetria è stata aggiunta con il tema 1.1, questo bottone porta anche il pallino del Rustico alla stessa regola (<code>#foto-rustico</code>): cambia solo quel link, e solo se è ancora quello scritto dal tema. Il vecchio link funziona comunque.</p>
+			<?php submit_button( 'Semplifica il link del Rustico', 'secondary', 'edera_ru', false, $el ? array() : array( 'disabled' => 'disabled' ) ); ?>
 		</form>
 		<?php endif; ?>
 	</div>
