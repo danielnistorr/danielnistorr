@@ -11,9 +11,12 @@ Pagina nuova per evap.it: il servizio di assistenza MVR CARE con le formule PURE
 | `03-proposta.md` | La pagina: indirizzo, menu, titolo SEO, sezioni e testi, foto |
 | `ILLUSTRAZIONI-BROCHURE.md` | Le immagini della brochure (sembrano generate al computer) e quando si potrebbero usare |
 | `anteprima/index.html` | La pagina come sarà sul sito, con testata e piede veri. Si apre nel browser (meglio da un piccolo server: `python3 -m http.server` dalla cartella `anteprima`). Con `?carattere=sito` in fondo all'indirizzo si vede come apparirebbe oggi, col carattere che non si carica |
-| `screenshot/` | Schermate dell'anteprima a 1440 e a 390 px; in `prova-wordpress/` quelle della prova del modello |
+| `anteprima/variante-schema.html` | La stessa pagina con in più lo schema facoltativo "Come funziona un evaporatore MVR" (da far controllare a EVAP, vedi punto 5) |
+| `screenshot/` | Schermate dell'anteprima e della variante a 1440 e a 390 px; in `prova-wordpress/` quelle della prova del modello |
 | `elementor/mvr-care-template.json` | **Il modello da importare in Elementor** |
 | `elementor/genera_template.py` | Il programma che scrive il modello (se cambiano i testi: si modificano lì e si lancia `python3 genera_template.py`) |
+| `elementor/grafici.py` | I dati e il disegno dei grafici (anno di assistenza, ciclo del servizio, schema MVR) |
+| `elementor/grafici/*.html` | Il codice dei tre disegni, pronto da incollare in un widget HTML di Elementor (lo scrive `genera_template.py`) |
 | `riferimenti/` | Schermate delle pagine attuali del sito |
 | `originali/` | La brochure e le sue immagini: solo sul computer, **non vanno in git** (lo impedisce `Evap-Sito/.gitignore`) |
 
@@ -64,6 +67,17 @@ Il sito non ha un plugin SEO, quindi oggi WordPress scrive come titolo "MVR CARE
 - **Modulo dentro la pagina**: il sito ha già il modulo MetForm "Contattaci" (id 135). Nel riquadro "Scopri il canone a te riservato" si può togliere il bottone e trascinare al suo posto il widget **MetForm**, scegliendo quel modulo. In MetForm conviene aggiungere "MVR CARE" tra gli argomenti, così le richieste si riconoscono. Il modello di base porta invece alla pagina Contattaci, senza toccare MetForm.
 - **Briciole di pane** come nelle altre pagine (Home → Servizi → MVR CARE): un widget Elenco icone in linea sotto la frase d'apertura, testo `#DBDBDB`, freccia bianca.
 
+- **Schema "Come funziona un evaporatore MVR"** (`anteprima/variante-schema.html`). **Prima di pubblicarlo va fatto controllare a un tecnico EVAP**: è uno schema di principio generico della ricompressione meccanica del vapore, scritto senza dati EVAP, e gli impianti EVAP possono essere fatti in modo diverso. Se va bene: in Elementor, dopo la sezione "Perché conta", aggiungere un contenitore largo come gli altri (1290 px, margine sotto 100 px), dentro un Titolo H2 "Come funziona un evaporatore MVR", un Editor di testo con la frase introduttiva della variante e un widget **HTML** con tutto il contenuto di `elementor/grafici/schema-mvr-facoltativo.html`.
+
+## Grafici: cosa sono e come si cambiano
+
+Nella pagina ci sono due disegni, ognuno in un widget **HTML** di Elementor (gratuito): "L'anno di assistenza" nella sezione delle formule e "Il ciclo del servizio" nella fascia blu. Mostrano solo dati della brochure (vedi `03-proposta.md`, "Grafici"). Ognuno contiene due versioni: quella larga per gli schermi oltre 1024 px e quella verticale per tablet e telefono; Elementor non deve fare niente, cambia da sola.
+
+- **Cambiare numeri o testi nel modo giusto**: modificare i dati in `elementor/grafici.py` (sezioni `ANNO` e `CICLO`: quante visite e in quali mesi, etichette, legenda, nota), lanciare `python3 genera_template.py` e incollare il nuovo codice da `elementor/grafici/` nel widget HTML (in Elementor: clic sul disegno > "Codice HTML"), oppure reimportare il modello.
+- **Ritocchi a mano**: in cima al codice di ogni widget c'è un commento che dice quali elementi sono le visite, i rapporti, le tacche e le scritte. Ogni modifica va fatta in tutte e due le versioni (larga e compatta).
+- I colori seguono i colori globali del kit; il carattere è quello della pagina.
+- **Niente grafici di consumi, risparmi o percentuali** finché EVAP non dà dati veri: la brochure non ne ha (il "28 kWh/m³" del laptop è un'illustrazione). Cosa chiedere a EVAP per farli: punto 7, domanda 10.
+
 ## 6. Un problema del sito da sistemare (non della pagina)
 
 Oggi il carattere del sito, Plus Jakarta Sans, **non si carica**: il sito si vede in Arial/Helvetica. Il foglio del carattere che LiteSpeed serve è vuoto e quello di Elementor punta ancora al vecchio dominio di prova (dettagli in `02-design-sito.md`). Rimedio: Elementor > Strumenti > **Rigenera file e dati**, poi LiteSpeed Cache > **Svuota tutto**; se non basta, Elementor > Impostazioni > Avanzate: disattivare e riattivare "Carica Google Fonts in locale" e svuotare di nuovo la cache. La pagina MVR CARE usa i caratteri globali del kit, quindi si sistema insieme al resto.
@@ -79,6 +93,9 @@ Oggi il carattere del sito, Plus Jakarta Sans, **non si carica**: il sito si ved
 7. **Contatti.** Per le richieste MVR CARE vanno bene +39 0444 1276355 e tecnico2@evap.it, o c'è un riferimento diverso?
 8. **Menu e indirizzo.** Va bene "MVR CARE" sotto "Servizi", all'indirizzo `/servizi/mvr-care/`? Volete il modulo dentro la pagina o il bottone verso Contattaci?
 9. **Carattere del sito.** Possiamo sistemare il caricamento di Plus Jakarta Sans (punto 6)? Cambia l'aspetto di tutto il sito, in meglio.
+10. **Grafici con dati veri.** Se volete grafici di consumi, risparmi o fermi evitati, ci servono: un report vero di MVR CARE (anche anonimizzato), i consumi specifici medi reali degli impianti seguiti (per esempio kWh per m³ evaporato, prima e dopo gli interventi), i fermi impianto evitati o ridotti e il permesso di pubblicarli. Senza, non li mettiamo.
+11. **Visite.** Le date delle visite si concordano con il cliente, come scritto sotto il disegno? Con PURE sono più o meno una a trimestre? E il rapporto sintetico di verifica di PURE quando arriva (dopo ogni visita)? Se ce lo dite, il disegno lo mostra.
+12. **Schema MVR facoltativo.** Un vostro tecnico può controllare `anteprima/variante-schema.html`? Lo pubblichiamo solo con il suo via libera.
 
 ## Come è stato provato il modello
 
@@ -86,5 +103,5 @@ In locale, fuori dal repository, con WordPress 7.1.4, il tema Hello Elementor 3.
 - ricreati nel kit locale i 12 colori e i 14 caratteri globali del kit 11 di evap.it, con gli stessi id, e disattivati colori e caratteri predefiniti come sul sito;
 - importato `mvr-care-template.json` **dal pannello Modelli salvati > Importa modelli**, con i due avvisi come sopra: importato senza errori, le due foto scaricate da evap.it e copiate nella libreria (`screenshot/prova-wordpress/importazione-modelli-salvati.jpg`);
 - creata una pagina vuota con "Elementor a tutta larghezza", aperta in Elementor, inserito il modello da **Aggiungi modello > Modelli > Modelli del sito**, risposto "Applica" alla domanda sulle impostazioni e pubblicato: la pagina ha le sei sezioni, il titolo nascosto ed è identica, pixel per pixel, a quella creata copiando il contenuto del modello (`editor-libreria-modelli.jpg`, `editor-modello-inserito.jpg`). Nota: in locale la libreria di Elementor non raggiungeva i server di elementor.com (bloccati dall'ambiente di prova) ed Elementor 3.31.5 in quel caso va in errore aprendo la libreria; per la prova si sono messi dati vuoti al posto di quelli remoti. Sul sito vero, collegato a internet, non dovrebbe succedere;
-- aperta la pagina nell'editor di Elementor: 56 contenitori, 34 Titoli, 13 Editor di testo, 3 Pulsanti, 1 Immagine, 1 Elenco icone, nessun errore di script; carattere e colore dei widget risultano collegati ai globali (`editor-apertura.jpg`, `editor-tabella-globali.jpg`);
-- la pagina pubblicata corrisponde all'anteprima a 1440 e a 390 px (`pagina-1440.jpg`, `pagina-390.jpg`; nella prova la testata è quella di base di Hello, sul sito sarà quella di Sina), e non scorre di lato a 390, 768, 1024, 1440 e 1920 px.
+- aperta la pagina nell'editor di Elementor: 42 contenitori, 26 Titoli, 9 Editor di testo, 3 Pulsanti, 1 Immagine, 1 Elenco icone, 2 HTML (i disegni, con `<style>` e SVG intatti dopo l'importazione), nessun errore di script; carattere e colore dei widget collegati ai globali; il codice dei disegni si apre nel pannello con il commento in cima (`editor-apertura.jpg`, `editor-widget-html-anno.jpg`);
+- la pagina pubblicata corrisponde all'anteprima a 1440 e a 390 px (`pagina-1440.jpg`, `pagina-390.jpg`; nella prova la testata è quella di base di Hello, sul sito sarà quella di Sina), e non scorre di lato a 390, 768, 1024, 1440 e 1920 px. Nei disegni nessun testo esce dal riquadro e il testo più piccolo misura 11,7 px (a 1025 px, appena prima del passaggio alla versione compatta) e 12,4 px sul telefono.

@@ -13,6 +13,9 @@ import json
 import os
 
 QUI = os.path.dirname(os.path.abspath(__file__))
+import sys  # noqa: E402
+sys.path.insert(0, QUI)
+import grafici  # noqa: E402  disegni SVG (anno di assistenza, ciclo del servizio, schema MVR facoltativo)
 UPL = 'https://evap.it/wp-content/uploads/'
 
 # ---------------------------------------------------------------- utilità
@@ -60,6 +63,14 @@ def con(settings, children, inner=True):
 def wid(kind, settings):
     return {'id': uid(), 'elType': 'widget', 'widgetType': kind, 'isInner': False,
             'settings': settings, 'elements': []}
+
+
+def html(code, extra=None):
+    """Widget HTML nativo (gratuito) con un disegno SVG in linea."""
+    s = {'html': code}
+    if extra:
+        s.update(extra)
+    return wid('html', s)
 
 
 def merge_globals(s, g):
@@ -234,12 +245,7 @@ why = boxed({**ROW, 'html_tag': 'section', 'flex_gap': gap(60), 'flex_gap_tablet
 ])
 
 # ---------------------------------------------------------------- 3. cosa facciamo
-ATT = [
-    ('Monitoraggio e verifiche periodiche', 'dei principali parametri operativi.'),
-    ('Diagnosi preventiva', 'e individuazione tempestiva di eventuali criticità.'),
-    ('Interventi mirati', 'per mantenere la massima efficienza, sicurezza e affidabilità.'),
-    ('Report e raccomandazioni', "per l'ottimizzazione dell'esercizio."),
-]
+# le quattro attività sono disegnate come un ciclo (testi in grafici.CICLO, dalla brochure)
 do = con({
     'content_width': 'boxed', 'boxed_width': px(1290), 'html_tag': 'section', **ROW,
     'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(40),
@@ -251,20 +257,10 @@ do = con({
     con({'width': px(40, '%'), 'width_mobile': px(100, '%')}, [
         h2('Controllo, prevenzione, performance: sempre sotto controllo', 'accent'),
     ]),
-    con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'container_type': 'grid',
-         'grid_columns_grid': px(2, 'fr'), 'grid_columns_grid_mobile': px(1, 'fr'),
-         'grid_rows_grid': px(2, 'fr'), 'grid_rows_grid_mobile': px(4, 'fr'),
-         'grid_gaps': gap(40, 50), 'grid_gaps_mobile': gap(32, 32), 'grid_align_items': 'start'}, [
-        con({'border_border': 'solid', 'border_width': box(1, 0, 0, 0), 'padding': box(24, 0, 0, 0),
-             '__globals__': {'border_color': col('50cd0e7')}}, [
-            text(f'<p><strong>{a}</strong> {b}</p>', '58b3754', '386aba7'),
-        ]) for a, b in ATT
+    con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'flex_justify_content': 'center'}, [
+        html(grafici.ciclo()),
     ]),
 ], inner=False)
-# il grassetto in bianco: Editor di testo non ha un colore per <strong>, si scrive nel testo
-for c in do['elements'][1]['elements']:
-    w = c['elements'][0]
-    w['settings']['editor'] = w['settings']['editor'].replace('<strong>', '<strong style="color:#FFFFFF;font-weight:700">')
 
 # ---------------------------------------------------------------- 4. le due formule
 def cell(kind, children, head=False):
@@ -300,25 +296,16 @@ def value(t, strong=False):
     return heading(t, 'p', 'text', 'text')
 
 
-def visits(n):
-    return con({'flex_direction': 'row', 'flex_direction_mobile': 'row', 'flex_align_items': 'baseline',
-                'flex_gap': gap(10), 'flex_wrap': 'nowrap'}, [
-        heading(n, 'p', 'secondary', 'primary', extra={'_element_width': 'auto'}),
-        heading("all'anno", 'p', 'text', 'text', extra={'_element_width': 'auto'}),
-    ])
-
-
 plans = boxed({'html_tag': 'section', '_element_id': 'formule', 'flex_gap': gap(0),
                'margin': box(100, 0, 100, 0), 'margin_mobile': box(60, 0, 60, 0)}, [
     con({'width': px(900, 'px'), 'width_tablet': px(100, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(16)}, [
         h2('Scegli il livello di servizio più adatto alle tue esigenze'),
         text("<p>Due formule flessibili, con la qualità e l'esperienza EVAP.</p>", '58b3754', 'text'),
     ]),
-    con({'margin': box(50, 0, 0, 0), 'margin_mobile': box(36, 0, 0, 0), 'flex_gap': gap(0)}, [
+    html(grafici.anno(), extra={'_margin': box(50, 0, 0, 0), '_margin_mobile': box(36, 0, 0, 0)}),
+    con({'margin': box(70, 0, 0, 0), 'margin_mobile': box(48, 0, 0, 0), 'flex_gap': gap(0)}, [
         row('', [heading('MVR CARE PURE', 'h3', 'ffbed2e', 'primary')],
             [heading('MVR CARE PLUS', 'h3', 'ffbed2e', 'primary')], head=True),
-        row('Visite tecniche programmate', [visits('4')], [visits('12')]),
-        row('Controllo remoto', [value('1 ogni settimana', True)], [value('1 ogni settimana', True)]),
         row('Verifica dello stato di esercizio e della manutenzione', [value('Compresa')], [value('Compresa')]),
         row('Anomalie', [value('Segnalazione delle anomalie e azioni raccomandate')],
             [value('Analisi delle anomalie e delle perdite di produttività')]),
@@ -390,4 +377,11 @@ out = json.dumps(doc, ensure_ascii=False, indent=1)
 assert '\u2014' not in out, 'lineetta lunga U+2014 nel modello'
 with open(os.path.join(QUI, 'mvr-care-template.json'), 'w', encoding='utf-8') as f:
     f.write(out + '\n')
+# gli stessi disegni come file a parte: li usa l'anteprima e si possono incollare in un widget HTML
+os.makedirs(os.path.join(QUI, 'grafici'), exist_ok=True)
+for nome, codice in (('anno-assistenza.html', grafici.anno()), ('ciclo-servizio.html', grafici.ciclo()),
+                     ('schema-mvr-facoltativo.html', grafici.schema())):
+    assert '\u2014' not in codice
+    with open(os.path.join(QUI, 'grafici', nome), 'w', encoding='utf-8') as f:
+        f.write(codice + '\n')
 print('scritto mvr-care-template.json,', _n[0], 'elementi')

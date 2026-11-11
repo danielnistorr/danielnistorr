@@ -3,6 +3,7 @@
 Pagina nuova per il servizio di assistenza MVR CARE, con le formule PURE e PLUS. Contenuti solo dalla brochure del cliente (`01-contenuti.md`) e dal sito (telefono ed email dei contatti). Design ricavato dal sito (`02-design-sito.md`).
 
 - Anteprima: `anteprima/index.html` (testata e piede veri del sito, caratteri e colori del kit). Schermate: `screenshot/anteprima-1440.jpg`, `screenshot/anteprima-390.jpg`.
+- Variante con lo schema facoltativo "Come funziona un evaporatore MVR": `anteprima/variante-schema.html` (`screenshot/variante-schema-1440.jpg`, `screenshot/variante-schema-390.jpg`).
 - Modello di Elementor: `elementor/mvr-care-template.json` (provato in WordPress 7.1.4 + Hello Elementor + Elementor 3.31.5: `screenshot/prova-wordpress/`).
 
 ## Indirizzo, menu, titolo
@@ -41,9 +42,9 @@ Foto a sinistra (evaporatore EVAP con il quadro di controllo), testo a destra: c
   - Mantiene le performance progettuali
   - Riduce i costi operativi nel tempo
 
-### 3. Cosa facciamo
+### 3. Cosa facciamo: il ciclo del servizio
 
-Fascia blu `primary` nella cornice bianca, come "Qualità ed Affidabilità" in home. Titolo a sinistra, le quattro attività a destra in due colonne, ognuna sotto un filetto, con la parte in grassetto della brochure.
+Fascia blu `primary` nella cornice bianca, come "Qualità ed Affidabilità" in home. Titolo a sinistra; a destra **il ciclo del servizio** (disegno, vedi "Grafici" più sotto): le quattro attività su un anello con le frecce in senso orario e "MVR CARE" al centro, così si vede che il lavoro si ripete. Il ciclo **sostituisce** la griglia di prima: i testi compaiono una volta sola, dentro il disegno.
 
 - **H2**: Controllo, prevenzione, performance: sempre sotto controllo
 - **Monitoraggio e verifiche periodiche** dei principali parametri operativi.
@@ -55,17 +56,16 @@ Fascia blu `primary` nella cornice bianca, come "Qualità ed Affidabilità" in h
 
 - **H2**: Scegli il livello di servizio più adatto alle tue esigenze
 - **Testo**: Due formule flessibili, con la qualità e l'esperienza EVAP.
-- **Tabella** fatta di righe (contenitori di Elementor, non un'immagine): a 1440 tre colonne (voce 34%, PURE 33%, PLUS 33%, la colonna PLUS su fondo `#F5F6F8`, filetto azzurro di 3 px sotto l'intestazione); **sul telefono la voce va su una riga sua e PURE e PLUS restano affiancate al 50%**, così il confronto si legge senza scorrere di lato (`screenshot/anteprima-390.jpg`).
+- **L'anno di assistenza** (disegno, vedi "Grafici"): due righe, PURE e PLUS, su 12 mesi. In tutte e due le 52 tacche del controllo remoto settimanale; sopra, i quadrati blu delle visite: 4 per PURE, 12 per PLUS; sotto la riga PLUS i 12 quadratini vuoti del rapporto tecnico mensile. A sinistra di ogni riga il numero grande delle visite ("4", "12"), come i numeri della home. Prende il posto delle due righe "Visite tecniche programmate" e "Controllo remoto" della tabella, che quindi non si ripetono.
+- **Tabella** con le voci che restano, fatta di righe (contenitori di Elementor, non un'immagine): a 1440 tre colonne (voce 34%, PURE 33%, PLUS 33%, la colonna PLUS su fondo `#F5F6F8`, filetto azzurro di 3 px sotto l'intestazione); **sul telefono la voce va su una riga sua e PURE e PLUS restano affiancate al 50%**, così il confronto si legge senza scorrere di lato (`screenshot/anteprima-390.jpg`).
 
 | Voce | MVR CARE PURE | MVR CARE PLUS |
 |---|---|---|
-| Visite tecniche programmate | **4** all'anno | **12** all'anno |
-| Controllo remoto | 1 ogni settimana | 1 ogni settimana |
 | Verifica dello stato di esercizio e della manutenzione | Compresa | Compresa |
 | Anomalie | Segnalazione delle anomalie e azioni raccomandate | Analisi delle anomalie e delle perdite di produttività |
 | Rapporto | Rapporto sintetico di verifica | Rapporto tecnico mensile |
 
-I numeri delle visite sono nel carattere `secondary` (47 px), come i numeri della home: sono l'unica differenza "a colpo d'occhio".
+Visite e controllo remoto stanno nel disegno sopra la tabella; il numero delle visite è in grande, come i numeri della home.
 
 ### 5. Richiesta del canone (ancora `#canone`)
 
@@ -89,11 +89,27 @@ Solo quattro, tutte con risposte già nella brochure; testo sempre visibile (nie
 
 Se il cliente risponde alle domande di `LEGGIMI.md` (durata, interventi compresi, chi può aderire), le risposte vere possono diventare altre domande frequenti. Senza conferma, no.
 
+## Grafici
+
+Il committente ha chiesto "qualcosa come dei grafici". Ci sono due disegni nella pagina e un terzo facoltativo, tutti con **solo dati della brochure**.
+
+1. **L'anno di assistenza** (sezione delle formule): linea di 12 mesi per PURE e per PLUS. Dati: 1 controllo remoto ogni settimana in entrambe (52 tacche), 4 o 12 visite tecniche programmate l'anno, rapporto tecnico mensile per PLUS. La brochure non dice **quando** si fanno le visite: sono disegnate a intervalli regolari e sotto c'è scritto "Le date delle visite sono indicative: si concordano con il cliente." (da confermare con EVAP). Il rapporto sintetico di verifica di PURE non ha una frequenza nella brochure: non ha tacche, solo la scritta "più il rapporto sintetico di verifica". Sul telefono e sul tablet il disegno diventa verticale: un mese per riga, PURE e PLUS affiancate, testi da 12 px in su.
+2. **Il ciclo del servizio** (fascia blu): le quattro attività della slide 3 su un anello; sul telefono e sul tablet le fasi vanno in colonna e una freccia riporta dalla quarta alla prima.
+3. **Facoltativo, "Come funziona un evaporatore MVR"** (solo in `anteprima/variante-schema.html`, dopo "Perché conta"): schema di principio della ricompressione meccanica del vapore, con scambiatore di calore, separatore, compressore, vapore, vapore compresso più caldo, distillato e concentrato, e quattro passi numerati. È generico, senza dati di EVAP, ma **va controllato da un tecnico EVAP** prima di pubblicarlo (gli impianti EVAP possono avere uno schema diverso: circolazione forzata, film cadente, pompe, preriscaldo). Non è nel modello di Elementor: il codice è pronto in `elementor/grafici/schema-mvr-facoltativo.html`.
+
+Come sono fatti: SVG scritto nella pagina (niente immagini), colori del kit tramite le variabili `--e-global-color-*` (con il valore del sito come ripiego), carattere della pagina (Plus Jakarta Sans, ripiego Sans-serif come il sito), nessuna animazione, ombra o gradiente, `<title>` e `<desc>` con tutto il contenuto per chi usa un lettore di schermo. In Elementor ogni disegno è un widget **HTML** nativo; titoli e testi intorno restano widget nativi. In cima al codice un commento spiega dove si cambiano numeri ed etichette. Non sono "riquadri": nessun bordo, nessuno sfondo in più, e ogni sezione mantiene uno schema diverso da quella prima.
+
+**Perché non ci sono grafici di consumi, risparmi o percentuali.** La brochure non dà nessun numero di questo tipo; l'unico che compare, "28 kWh/m³" sullo schermo del laptop, è un'illustrazione inventata. Un grafico con valori di esempio sembrerebbe un dato EVAP e sarebbe una promessa che EVAP non ha fatto. Per farli con dati veri servono da EVAP:
+- un **report vero** di MVR CARE (o di un'assistenza simile), anche anonimizzato, per mostrare cosa contiene e come si presenta;
+- **consumi specifici medi** reali (per esempio kWh per m³ di acqua evaporata) di impianti seguiti, prima e dopo gli interventi, con la fonte;
+- **fermi impianto evitati** o ridotti, ore di produzione recuperate, interventi fatti in un anno, su impianti veri;
+- il permesso di pubblicarli e il nome (o il settore) del cliente, se si può dire.
+
 ## Scelte di design
 
 - **Stesso sito**: solo colori e caratteri del kit 11 (nel modello sono collegati con `__globals__`, quindi se EVAP cambia un colore globale la pagina lo segue), bottoni del kit (azzurro, testo bianco, 15/30 px, spigoli vivi, maiuscole iniziali come tutti i bottoni del sito), contenuto a 1290 px, 100 px tra le sezioni, cornice bianca di 20 px, filetti `#1D365C40`, schede `#F5F6F8` con filetto azzurro di 3 px, quadratini azzurri.
-- **Un gradino più curata**: apertura con il nome del servizio grande a sinistra invece del titolo centrato; tre punti della copertina come filetti in fondo alla foto invece di icone; attività come frasi in grassetto sotto filetti invece di riquadri con icona; una tabella vera per il confronto; ogni sezione ha uno schema diverso da quella prima (foto piena, foto e testo, fascia blu a due colonne, tabella, riquadro chiaro, domande).
-- **Vincoli del committente** (`_metodo/highend/SISTEMA.md` §2): niente tre riquadri con icona in fila, niente etichette sopra i titoli (il sito le usa, qui no), niente dissolvenze o animazioni d'ingresso, niente effetti col cursore, i bottoni si invertono di colpo (durata della transizione 0 nel modello), nessun carattere U+2014 nei testi e nei file, nessun gradiente, nessuna ombra.
+- **Un gradino più curata**: apertura con il nome del servizio grande a sinistra invece del titolo centrato; tre punti della copertina come filetti in fondo alla foto invece di icone; attività disegnate come un ciclo invece di riquadri con icona; l'anno di assistenza disegnato e una tabella vera per il confronto; ogni sezione ha uno schema diverso da quella prima (foto piena, foto e testo, fascia blu con titolo e ciclo, anno disegnato e tabella, riquadro chiaro, domande).
+- **Vincoli del committente** (`_metodo/highend/SISTEMA.md` §2): niente tre riquadri con icona in fila, grafici fermi (niente numeri che salgono), niente etichette sopra i titoli (il sito le usa, qui no), niente dissolvenze o animazioni d'ingresso, niente effetti col cursore, i bottoni si invertono di colpo (durata della transizione 0 nel modello), nessun carattere U+2014 nei testi e nei file, nessun gradiente, nessuna ombra.
 - **Titoli H2 senza maiuscole iniziali**: stesse misure dell'H2 del kit (38/35/30 px, 600) ma `text-transform: none`, come i titoli della home. È l'unico punto in cui il modello non usa un carattere globale "così com'è".
 
 ## Foto
