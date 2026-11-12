@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSC Factory, Ciesseci: abbigliamento da lavoro, scarpe antinfortunistiche, stampa e ricamo a Mestrino</title>
+<meta name="description" content="Abbigliamento da lavoro, scarpe antinfortunistiche e DPI, con il tuo logo e il tuo nome. Stampa e ricamo su capi, furgoni, vetrine, targhe e gadget. Via Zanella 1, Mestrino (PD), dal 1982.">
+<link rel="icon" href="img/logo-csc-96.png" type="image/png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"CSC Factory, Ciesseci Srl","telephone":"+39049634423","email":"info@ciessecisrl.it",
+"address":{"@type":"PostalAddress","streetAddress":"Via Zanella 1","postalCode":"35035","addressLocality":"Mestrino","addressRegion":"PD","addressCountry":"IT"},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"12:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:00","closes":"18:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"11:00"}],
+"vatID":"IT03866700283"}
+</script>
+<style>
+/* Archivo (Omnibus-Type), Google Fonts, SIL Open Font License 1.1 (fonts/OFL-Archivo.txt). Una sola famiglia:
+   titoli larghi (wdth 112) in 700 come le lettere della coccarda, testo e interfaccia a wdth 100 in 400 e 700. */
+@font-face{font-family:'Archivo';src:url(fonts/archivo-latin-var.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+:root{
+  /* colori del marchio: il verde scuro e il verde chiaro della coccarda, l'antracite del furgone e della facciata */
+  --verde:#00622B;        /* bianco sopra: 7,6:1 */
+  --verde-chiaro:#72BA6A; /* solo su antracite o sul verde: segni e cifre */
+  --antracite:#24292C;
+  --fluo:#39E26B;         /* il verde fluo della felpa 82: solo pallino "Aperto ora", numeri dei passi, segni sull'antracite */
+  /* neutri */
+  --bianco:#FFFFFF;
+  --grigio:#F1F3F3;
+  --linea:#D5DADB;
+  --testo:#16191A;
+  --testo-2:#4B5356;      /* 7,9:1 sul bianco, 7,1:1 sul grigio */
+  --chiaro-2:#BCC4C6;     /* testo secondario su antracite e verde */
+  --m:80px; --g:24px; --sez:120px; --testata:80px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+body{background:var(--bianco);color:var(--testo);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.5;font-weight:400;font-variation-settings:'wdth' 100;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+ul,ol{list-style:none}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--verde-chiaro);outline-offset:3px}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* ruoli tipografici: 8 misure a 1440 (14, 17, 20, 24, 32, 44, 64, 96) */
+.etichetta{font-size:14px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--verde)}
+h1 .titolo,h2,.cifra,.marche b{font-variation-settings:'wdth' 112;font-weight:700;letter-spacing:-.02em}
+h2{font-size:44px;line-height:1.08}
+h3{font-size:24px;line-height:1.2;font-weight:700}
+.lead{font-size:20px;line-height:1.5}
+
+/* bottoni: un solo modello, pieno e con il bordo; 52 px, raggio 6 px */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:6px;border:2px solid var(--verde);background:var(--verde);color:var(--bianco);font:inherit;font-size:17px;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn:hover{filter:brightness(.82)}
+.btn.bordo{background:transparent;color:var(--verde)}
+.btn.bordo:hover{background:var(--verde);color:var(--bianco);filter:none}
+.su-scuro .btn{background:var(--bianco);border-color:var(--bianco);color:var(--verde)}
+.su-scuro .btn:hover{filter:none;background:var(--grigio);border-color:var(--grigio)}
+.su-scuro .btn.bordo{background:transparent;color:var(--bianco)}
+.su-scuro .btn.bordo:hover{background:var(--bianco);color:var(--verde)}
+.link-testo{color:var(--verde);font-weight:700;text-underline-offset:3px;padding:12px 0;display:inline-block}
+.btn .n{font-variant-numeric:tabular-nums lining-nums;font-weight:400}
+.btn svg{width:20px;height:20px;flex:none}
+.freccia{display:inline-block;transition:transform .15s}
+a:hover .freccia{transform:translateX(3px)}
+
+/* ---------- testata fissa ---------- */
+.testata{position:sticky;top:0;z-index:20;background:var(--bianco);border-bottom:1px solid var(--linea)}
+.testata .wrap{display:flex;align-items:center;height:var(--testata);gap:32px}
+.marchio{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.marchio img{width:48px;height:48px}
+.marchio b{display:block;font-size:17px;line-height:1.1}
+.marchio span{display:block;font-size:14px;line-height:1.3;color:var(--testo-2)}
+.testata nav{margin-left:auto}
+.menu{display:flex;gap:28px;font-size:17px}
+.menu a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.menu a:hover{border-bottom-color:var(--verde)}
+.tel-testata{flex-shrink:0}
+.apri-menu{display:none}
+.tel-testata .corto{display:none}
+
+/* ---------- apertura ---------- */
+.apertura{padding:48px 0 120px}
+.ap{align-items:start}
+.ap-testo{grid-column:1 / span 6}
+.ap-dx{grid-column:7 / span 6;padding-top:6px}
+.ap-foto{margin:0}
+.ap-foto img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 100%}
+h1{margin-top:18px}
+h1 .titolo{display:block;font-size:64px;line-height:1.02}
+h1 .mestiere{display:block;margin-top:20px;font-size:24px;line-height:1.35;font-weight:400;max-width:30em}
+h1 .mestiere b{font-weight:700}
+.stato{margin-top:28px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stato .pallino{width:12px;height:12px;border-radius:50%;background:var(--testo-2);flex:none;align-self:center}
+.stato.aperto .pallino{background:var(--fluo);box-shadow:0 0 0 4px rgba(57,226,107,.25)}
+.stato b{font-size:20px}
+.stato span{color:var(--testo-2)}
+.avviso{margin-top:8px;font-weight:700;color:var(--verde)}
+.avviso:empty{display:none}
+.azioni{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px}
+.logo-riga{margin-top:28px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px}
+.logo-riga p{color:var(--testo-2)}
+.logo-riga p b{color:var(--testo)}
+.logo-riga .due{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap}
+.logo-riga .grafica-ap{flex-basis:100%;color:var(--testo-2)}
+.logo-riga .grafica-ap a{color:var(--verde);font-weight:700;text-underline-offset:3px}
+/* sopra i 900 px l'azione principale è mandare il logo; sul telefono è chiamare */
+@media (min-width:901px){
+  .apertura #chiama-apertura{background:transparent;color:var(--verde)}
+  .apertura #chiama-apertura:hover{background:var(--verde);color:var(--bianco);filter:none}
+  .apertura .manda{background:var(--verde);color:var(--bianco)}
+}
+@media (max-width:900px){
+  .apertura .manda{background:transparent;color:var(--verde)}
+  .apertura .manda:hover{background:var(--verde);color:var(--bianco);filter:none}
+}
+
+/* fascia dei fatti, subito sotto l'apertura: orari e dove, negozio, logo, shop */
+.fascia{padding:96px 0}
+.fatti{grid-template-columns:repeat(4,minmax(0,1fr))}
+.fatti > div{grid-column:auto;padding-top:20px;border-top:2px solid var(--testo)}
+.fatti p + p{margin-top:2px}
+.fatti .dove{margin-top:12px}
+.fatti .etichetta{color:var(--testo-2);margin-bottom:8px}
+.fatti a.link{display:table;margin-top:8px;color:var(--verde);font-weight:700;text-decoration:none;padding:4px 0}
+.fatti a.link:hover{text-decoration:underline;text-underline-offset:3px}
+.oggi{font-weight:700}
+.voci-logo a{color:var(--verde);font-weight:700;text-underline-offset:3px}
+
+/* ---------- sezioni ---------- */
+.sez{padding:var(--sez) 0}
+.grigio{background:var(--grigio)}
+.scuro{background:var(--antracite);color:var(--bianco)}
+.verde{background:var(--verde);color:var(--bianco)}
+.scuro .etichetta,.verde .etichetta{color:var(--verde-chiaro)}
+.verde .etichetta{color:var(--bianco);opacity:.85}
+.testa{align-items:end;margin-bottom:56px}
+.testa .t{grid-column:1 / span 7}
+.testa .t h2{margin-top:14px}
+.testa .d{grid-column:8 / span 5}
+.scuro .testa .d,.verde .d{color:var(--chiaro-2)}
+
+/* negozio */
+.neg-sx{grid-column:1 / span 5}
+.neg-sx h2{margin-top:14px}
+.neg-sx .lead{margin-top:24px}
+.neg-sx p + p{margin-top:16px}
+.neg-sx figure{margin:40px 0 0}
+.neg-sx figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.categorie{grid-column:7 / span 6;border-top:1px solid var(--testo)}
+/* l'insegna: il gesto di scala della pagina, le parole della loro insegna di Via Zanella */
+.insegna .etichetta{color:var(--chiaro-2)}
+.ins{margin-top:40px;border-top:1px solid #4A5256}
+.ins a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end;padding:36px 0 40px;border-bottom:1px solid #4A5256;text-decoration:none;color:var(--bianco)}
+.ins .parole{grid-column:1 / span 12;display:block;font-size:96px;line-height:1;font-weight:700;font-variation-settings:'wdth' 112;letter-spacing:-.03em}
+.ins .parole span{display:block}
+.ins .parole i{font-style:normal;color:var(--fluo)}
+.ins .cosa{grid-column:1 / span 12;margin-top:20px;font-size:20px;color:var(--chiaro-2)}
+.ins .cosa b{color:var(--bianco)}
+.ins .freccia{color:var(--fluo)}
+.ins a:hover .parole span:first-child{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:10px}
+.categorie a{display:grid;grid-template-columns:1fr auto;column-gap:24px;padding:24px 0;border-bottom:1px solid var(--linea);text-decoration:none}
+.categorie a p{grid-column:1;margin-top:6px;color:var(--testo-2)}
+.categorie a .freccia{grid-column:2;grid-row:1 / span 2;align-self:center;font-size:24px;color:var(--verde)}
+.categorie a:hover h3{color:var(--verde)}
+.marche{margin-top:72px;padding-top:32px;border-top:1px solid var(--linea)}
+.marche .etichetta{color:var(--testo-2)}
+.marche dl{margin-top:20px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:20px}
+.marche dt{grid-column:1 / span 2;font-weight:700;padding-top:6px}
+.marche dd{grid-column:3 / span 10;display:flex;flex-wrap:wrap;gap:2px 32px;font-size:24px;line-height:1.45}
+.marche b{font-size:24px;letter-spacing:-.01em;font-weight:700;white-space:nowrap}
+.marche .sotto{margin-top:24px;color:var(--testo-2)}
+.marche .sotto a{color:var(--verde);font-weight:700}
+
+/* il tuo logo: schede con le loro foto */
+.schede{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.scheda{display:flex;flex-direction:column;text-decoration:none;color:var(--bianco)}
+.scheda img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.scheda h3{margin-top:20px}
+.scheda p{margin-top:8px;color:var(--chiaro-2)}
+.scheda .vai{margin-top:14px;font-weight:700;color:var(--verde-chiaro)}
+.scheda:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.altro{margin-top:72px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.altro .etichetta{grid-column:1 / span 3;padding-top:22px}
+.altro ul{grid-column:4 / span 9;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--g);border-top:1px solid #4A5256}
+.altro li a{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #4A5256;text-decoration:none;font-size:20px}
+.altro li a:hover{color:var(--verde-chiaro)}
+.altro li a .freccia{color:var(--verde-chiaro)}
+.grafica{margin-top:48px;font-size:20px;color:var(--chiaro-2)}
+.grafica b{color:var(--bianco)}
+.grafica a{color:var(--verde-chiaro);font-weight:700}
+
+/* preventivo */
+.prev-sx{grid-column:1 / span 5;align-self:start;position:sticky;top:calc(var(--testata) + 40px)}
+.prev-sx h2{margin-top:14px}
+.prev-sx .lead{margin-top:20px}
+.passi{margin-top:36px;counter-reset:p;border-top:1px solid rgba(255,255,255,.35)}
+.passi li{counter-increment:p;display:grid;grid-template-columns:48px 1fr;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.35)}
+.passi li::before{content:counter(p);font-variation-settings:'wdth' 112;font-weight:700;font-size:24px;line-height:1.2;color:var(--fluo)}
+.passi li{color:#E6F0E7}
+.passi b{color:var(--bianco)}
+.prev-sx .azioni{margin-top:32px}
+.modulo{grid-column:7 / span 6;background:var(--bianco);color:var(--testo);padding:40px}
+.modulo h3{margin-bottom:8px}
+.modulo .intro{color:var(--testo-2);margin-bottom:24px}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.campi .tutta{grid-column:1 / -1}
+.campi label,.campi legend{display:block;font-weight:700;margin-bottom:6px}
+.campi label i,.campi legend i{font-style:normal;font-weight:400;color:var(--testo-2)}
+.campi input,.campi select,.campi textarea{width:100%;min-height:52px;border:1px solid var(--testo-2);border-radius:6px;background:var(--bianco);font:inherit;font-size:17px;padding:12px 14px;color:var(--testo)}
+.campi textarea{min-height:120px;resize:vertical}
+.campi fieldset{border:0}
+.scelte{display:flex;flex-direction:column;gap:6px}
+.scelte label{display:flex;gap:10px;align-items:center;font-weight:400;margin:0;min-height:36px}
+.scelte input{width:20px;height:20px;min-height:0;accent-color:var(--verde);flex:none}
+.su-scuro .modulo .btn{background:var(--verde);border-color:var(--verde);color:var(--bianco)}
+.su-scuro .modulo .btn:hover{filter:brightness(.82);background:var(--verde);border-color:var(--verde)}
+.su-scuro .modulo .btn.bordo{background:transparent;color:var(--verde)}
+.su-scuro .modulo .btn.bordo:hover{filter:none;background:var(--verde);color:var(--bianco)}
+.modulo .invio{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.modulo .nota{margin-top:16px;color:var(--testo-2)}
+.esito{margin-top:12px;font-weight:700;color:var(--verde)}
+.esito:empty{display:none}
+.copia{margin-top:16px;padding-top:16px;border-top:1px solid var(--linea)}
+.copia[hidden]{display:none}
+.copia p{color:var(--testo-2)}
+.copia textarea{margin-top:12px;width:100%;min-height:150px;border:1px solid var(--testo-2);border-radius:6px;font:inherit;font-size:17px;padding:12px 14px;color:var(--testo);background:var(--grigio);resize:vertical}
+.copia .btn{margin-top:12px}
+
+/* regali: blocco tipografico, senza foto */
+.reg-t{grid-column:1 / span 6}
+.reg-t h2{margin-top:14px}
+.reg-t .cat{margin-top:20px;font-size:20px;line-height:1.5;color:var(--testo-2);max-width:26em}
+.reg-testo{grid-column:7 / span 6;padding-top:34px}
+.reg-testo .lead{margin-top:0}
+.reg-testo .azioni{margin-top:28px}
+.reg-testo .poi{margin-top:28px;padding-top:20px;border-top:1px solid var(--linea);color:var(--testo-2)}
+.reg-testo .poi a{color:var(--verde);font-weight:700}
+
+/* chi siamo */
+.chi-sx{grid-column:1 / span 6}
+.chi-sx + .cifre{grid-column:8 / span 5}
+.chi-sx h2{margin-top:14px}
+.chi-sx .lead{margin-top:24px;max-width:30em}
+.chi-sx p + p{margin-top:16px;max-width:34em}
+.cifre{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);row-gap:40px;align-self:start;padding-top:6px}
+.cifre li{padding-top:20px;border-top:2px solid var(--testo)}
+.cifra{display:block;font-size:64px;line-height:1;color:var(--verde);font-variant-numeric:tabular-nums lining-nums}
+.cifra small{font-size:32px;letter-spacing:0}
+.cifre p{margin-top:12px;color:var(--testo-2);max-width:15em}
+
+/* orari e dove */
+.dove-sx{grid-column:1 / span 6}
+.dove-sx h2{margin-top:14px}
+.indirizzo{margin-top:24px;font-size:24px;line-height:1.35}
+.indirizzo span{display:block;font-size:17px;color:var(--testo-2);margin-top:4px}
+.dove-sx .azioni{margin-top:24px}
+.orari{margin-top:40px;width:100%;max-width:560px;border-collapse:collapse}
+.orari caption{text-align:left;padding-bottom:12px}
+.orari th,.orari td{text-align:left;padding:14px 0;border-bottom:1px solid var(--linea);font-weight:400;vertical-align:top}
+.orari th{width:44%}
+.orari tr.oggi th,.orari tr.oggi td{font-weight:700}
+.orari tr.oggi th::after{content:"  oggi";font-weight:400;color:var(--verde);font-size:14px;text-transform:uppercase;letter-spacing:.09em}
+.dove-sx .stato{margin-top:20px}
+.recapiti{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px var(--g);max-width:560px}
+.recapiti .etichetta{color:var(--testo-2);margin-bottom:4px}
+.recapiti a{font-size:20px;text-decoration:none;font-weight:700;color:var(--testo);display:inline-block;padding:4px 0}
+.recapiti a:hover{color:var(--verde);text-decoration:underline;text-underline-offset:3px}
+.recapiti .tutta{grid-column:1 / -1}
+.dove-foto{grid-column:7 / span 6;margin:0}
+.dove-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.dove-foto figcaption{margin-top:12px;color:var(--testo-2)}
+
+/* ---------- piede ---------- */
+.piede{background:var(--antracite);color:var(--bianco);padding:88px 0 40px;font-size:17px}
+.piede .alto{row-gap:48px}
+.piede .c1{grid-column:1 / span 3}.piede .c2{grid-column:4 / span 3}.piede .c3{grid-column:7 / span 3}.piede .c4{grid-column:10 / span 3}
+.piede img{width:96px;height:96px}
+.piede .c1 p{margin-top:20px;color:var(--chiaro-2)}
+.piede h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--verde-chiaro);margin-bottom:16px}
+.piede li + li{margin-top:10px}
+.piede a{text-decoration:none}
+.piede a:hover{text-decoration:underline;text-underline-offset:3px}
+.piede .c2 p{color:var(--chiaro-2)}
+.piede .c2 p + p{margin-top:12px}
+.piede .c2 a{color:var(--bianco)}
+.piede .social small{display:block;font-size:14px;color:var(--chiaro-2)}
+.legale{margin-top:72px;padding-top:24px;border-top:1px solid #4A5256;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:14px;color:var(--chiaro-2)}
+.legale p{display:flex;flex-wrap:wrap;gap:4px 24px}
+.legale span{white-space:nowrap}
+.legale nav{display:flex;gap:20px}
+
+/* ---------- 1280 ---------- */
+@media (max-width:1300px){
+  :root{--m:56px}
+  .menu{gap:20px}
+  .testata .wrap{gap:24px}
+  h1 .titolo{font-size:58px}
+}
+/* ---------- 1024 ---------- */
+@media (max-width:1180px){
+  .menu{display:none}
+  .apri-menu{display:inline-flex;margin-left:auto}
+  .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;top:var(--testata);left:0;right:0;background:var(--bianco);padding:8px var(--m) 24px;border-bottom:1px solid var(--linea);margin:0}
+  .menu.aperto a{display:block;padding:14px 0;font-size:20px;border-bottom:1px solid var(--linea)}
+  .ap-testo{grid-column:1 / span 7}
+  .ap-dx{grid-column:8 / span 5}
+  h1 .titolo{font-size:52px}
+  h1 .mestiere{font-size:20px}
+  .fatti{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .ins .parole{font-size:64px}
+  .schede{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .altro .etichetta{grid-column:1 / -1;padding:0 0 16px}
+  .altro ul{grid-column:1 / -1}
+  .prev-sx{grid-column:1 / span 12;position:static}
+  .prev-sx .passi{max-width:40em}
+  .modulo{grid-column:1 / span 12;margin-top:56px}
+  .chi-sx{grid-column:1 / span 7}
+  .piede .c1,.piede .c2,.piede .c3,.piede .c4{grid-column:span 6}
+}
+/* ---------- 768 ---------- */
+@media (max-width:900px){
+  :root{--m:32px;--sez:96px}
+  .ap-testo,.ap-dx{grid-column:1 / span 12}
+  .ap-dx{padding-top:0}
+  .ap-foto{margin-top:28px;max-width:640px}
+  .ap-foto img{aspect-ratio:3/2}
+  .logo-riga{max-width:640px;padding-top:24px;border-top:1px solid var(--linea)}
+  .testa .t,.testa .d{grid-column:1 / span 12}
+  .testa .d{margin-top:16px}
+  .neg-sx,.categorie{grid-column:1 / span 12}
+  .neg-sx figure{max-width:640px}
+  .categorie{margin-top:48px}
+  .marche dt{grid-column:1 / span 12}
+  .marche dd{grid-column:1 / span 12}
+  .altro ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reg-t,.reg-testo{grid-column:1 / span 12}
+  .reg-testo{padding-top:0;margin-top:20px}
+  .chi-sx,.chi-sx + .cifre{grid-column:1 / span 12}
+  .chi-sx + .cifre{margin-top:48px}
+  .ins .parole{font-size:44px}
+  .dove-sx,.dove-foto{grid-column:1 / span 12}
+  .dove-foto{margin-top:48px;max-width:640px}
+}
+/* ---------- 390: 7 misure (14, 16, 18, 20, 24, 28, 34) ---------- */
+@media (max-width:600px){
+  :root{--m:20px;--g:16px;--sez:72px;--testata:72px}
+  body{font-size:16px}
+  .indirizzo span{font-size:16px}
+  .lead,.grafica,.altro li a,.reg-t .cat{font-size:18px}
+  h2{font-size:28px;line-height:1.12}
+  h3,.marche b,.marche dd,.indirizzo{font-size:20px}
+  .btn{font-size:16px;padding:0 16px}
+  .marchio img{width:40px;height:40px}
+  .marchio .scritta{display:none}
+  .testata .wrap{gap:8px}
+  .apri-menu{margin-left:0}
+  .tel-testata{margin-left:auto}
+  .apertura{padding:24px 0 72px}
+  h1{margin-top:12px}
+  h1 .titolo{font-size:34px;line-height:1.06}
+  h1 .mestiere{font-size:18px;margin-top:12px}
+  .stato{margin-top:16px;gap:6px 10px}
+  .stato b{font-size:18px}
+  .azioni{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .azioni .btn{width:100%}
+  .azioni .btn.primo{grid-column:1 / -1}
+  .ap-foto{margin-top:20px}
+  .logo-riga{margin-top:28px}
+  .logo-riga{display:block}
+  .logo-riga .due{margin-top:12px;display:grid;grid-template-columns:1fr;gap:4px}
+  .logo-riga .btn{width:100%}
+  .fascia{padding:64px 0}
+  .fatti{grid-template-columns:1fr;row-gap:28px}
+  .ins{margin-top:28px}
+  .ins a{padding:24px 0 28px}
+  .ins .parole{font-size:40px;line-height:1.02}
+  .ins .cosa{font-size:18px;margin-top:14px}
+  .logo-riga .due .btn{grid-column:1 / -1}
+  .logo-riga .due .link-testo{padding:8px 0}
+  .testa{margin-bottom:36px}
+  .categorie a{padding:20px 0}
+  .marche{margin-top:56px}
+  .marche dd{gap:0 20px}
+  .schede{grid-template-columns:1fr;row-gap:40px}
+  .altro{margin-top:56px}
+  .altro ul{grid-template-columns:1fr}
+  .grafica{margin-top:36px}
+  .modulo{padding:24px 20px;margin-top:48px}
+  .campi{grid-template-columns:1fr}
+  .modulo .invio .btn{width:100%}
+  .prev-sx .azioni,.reg-testo .azioni,.dove-sx .azioni{display:grid;grid-template-columns:1fr}
+  .chi-sx + .cifre{margin-top:40px;row-gap:28px}
+  .cifra{font-size:34px}
+  .cifra small{font-size:20px}
+  .recapiti{grid-template-columns:1fr}
+  .piede{padding-top:64px;font-size:16px}
+  .piede .c1,.piede .c2,.piede .c3,.piede .c4{grid-column:1 / span 12}
+  .legale{flex-direction:column}
+  .legale p{flex-direction:column}
+  .legale span{white-space:normal}
+}
+@media (max-width:359px){
+  .tel-testata .lungo{display:none}
+  .tel-testata .corto{display:inline}
+  .tel-testata{padding:0 12px}
+  .apri-menu{padding:0 12px}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="#" aria-label="CSC Factory, Ciesseci Srl: inizio pagina">
+      <img src="img/logo-csc-96.png" width="96" height="93" alt="">
+      <span class="scritta"><b>CSC Factory</b><span>Ciesseci, Mestrino</span></span>
+    </a>
+    <nav aria-label="Principale">
+      <ul class="menu" id="menu">
+        <li><a href="#negozio">Negozio</a></li>
+        <li><a href="#logo">Il tuo logo</a></li>
+        <li><a href="#preventivo">Preventivo</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#contatti">Orari e dove</a></li>
+      </ul>
+    </nav>
+    <a class="btn tel-testata" href="tel:+39049634423"><span class="lungo">Chiama <span class="n">049 634423</span></span><span class="corto n">049 634423</span></a>
+    <button class="btn bordo apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<main>
+<section class="apertura" id="inizio" aria-labelledby="titolo">
+  <div class="wrap">
+    <div class="griglia ap">
+      <div class="ap-testo">
+        <p class="etichetta">Mestrino (PD), dal <span class="num">1982</span></p>
+        <h1 id="titolo"><span class="titolo">Stampa e ricamo: diffondiamo il tuo brand.</span><span class="mestiere"><b>Abbigliamento da lavoro, scarpe antinfortunistiche e DPI</b>, con il tuo logo e il tuo nome.</span></h1>
+        <div class="stato" data-stato>
+          <span class="pallino" aria-hidden="true"></span>
+          <b class="stato-ora">Orari</b>
+          <span class="stato-dettaglio num">lunedì-venerdì 8:00-12:30 e 14:00-18:30, sabato 8:00-11:00</span>
+        </div>
+        <p class="avviso" data-avviso></p>
+        <div class="azioni">
+          <a class="btn primo" id="chiama-apertura" href="tel:+39049634423">Chiama <span class="n">049 634423</span></a>
+          <a class="btn bordo" href="https://wa.me/393278831747" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn bordo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Zanella+1,+35035+Mestrino+PD" target="_blank" rel="noopener">Come arrivare</a>
+        </div>
+      </div>
+      <div class="ap-dx">
+        <figure class="ap-foto">
+          <img src="img/showroom-1020.jpg" srcset="img/showroom-640.jpg 640w, img/showroom-1020.jpg 1020w" sizes="(max-width:900px) calc(100vw - 40px), 630px" width="1020" height="680" alt="Lo showroom di Via Zanella: la parete delle scarpe antinfortunistiche, una giacca verde in primo piano, abbigliamento da lavoro e magliette stampate appese" fetchpriority="high">
+        </figure>
+        <div class="logo-riga">
+          <p><b>Hai un logo da mettere su capi, furgoni o vetrine?</b> Il preventivo è gratuito, anche per pochi pezzi.</p>
+          <div class="due"><a class="btn manda" href="https://wa.me/393278831747?text=Ciao%2C%20vi%20mando%20il%20logo%20per%20un%20preventivo.%20Mi%20serve%20su%3A%20" target="_blank" rel="noopener">Manda il logo su WhatsApp</a>
+            <a class="link-testo" href="mailto:info@ciessecisrl.it?subject=Preventivo%3A%20vi%20mando%20il%20logo&amp;body=Ciao%2C%20vi%20mando%20in%20allegato%20il%20logo.%0A%0ASu%20cosa%20(capi%2C%20furgone%2C%20vetrina%2C%20striscione%2C%20gadget...)%3A%20%0AQuanti%20pezzi%3A%20%0APer%20quando%3A%20%0ANome%20e%20telefono%3A%20%0A">oppure mandalo per email</a>
+            <p class="grafica-ap">Il logo non ce l'hai? <a href="pubblicita/grafica/">Abbiamo uno studio di grafica</a>.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="fascia grigio" id="in-breve" aria-label="In breve: orari, negozio, il tuo logo, shop">
+  <div class="wrap">
+    <div class="griglia fatti">
+      <div class="f1">
+        <p class="etichetta">Orari e dove</p>
+        <p class="num" data-riga="feriale">Lunedì-venerdì 8:00-12:30 e 14:00-18:30</p>
+        <p class="num" data-riga="sabato">Sabato 8:00-11:00</p>
+        <p data-riga="domenica">Domenica chiuso</p>
+        <p class="dove">Via Zanella 1, Mestrino (PD), all'angolo con Via Marco Polo</p>
+      </div>
+      <div class="f2">
+        <p class="etichetta">In negozio</p>
+        <p>Scarpe Diadora Utility, Dike, Giasco, Sparco, Reebok; capi Snickers, Rossini, P&amp;P Workwear e altre marche.</p>
+        <a class="link" href="#negozio">Cosa trovi <span class="freccia" aria-hidden="true">&rarr;</span></a>
+        <a class="link" href="cataloghi/">I cataloghi dei capi <span class="freccia" aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="f3">
+        <p class="etichetta">Il tuo logo</p>
+        <p class="voci-logo">Su <a href="pubblicita/serigrafia/">capi</a>, <a href="pubblicita/decorazione-automezzi/">furgoni e vetrine</a>, <a href="pubblicita/stampa-digitale/">striscioni</a>, <a href="pubblicita/stampa-uv/">targhe e plex</a>, <a href="pubblicita/incisioni-laser/">gadget</a>, <a href="pubblicita/timbri/">timbri</a> e <a href="zerbini-e-tappeti-personalizzati/">zerbini</a>, anche pochi pezzi.</p>
+      </div>
+      <div class="f4">
+        <p class="etichetta">Shop online</p>
+        <p>Magliette, tazze e quadri con la tua foto: la carichi tu. Spediamo in tutta Italia.</p>
+        <a class="link" href="shop/">Entra nello shop <span class="freccia" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sez scuro insegna" id="mestieri" aria-labelledby="t-ins">
+  <div class="wrap">
+    <h2 class="sr" id="t-ins">I nostri due mestieri</h2>
+    <p class="etichetta">Come sulla nostra insegna di Via Zanella</p>
+    <div class="ins">
+      <a href="#logo"><span class="parole"><span>Servizio grafico<i aria-hidden="true">&nbsp;&middot;</i></span><span>Servizio stampa</span></span><span class="cosa"><b>Il tuo logo</b> su capi, furgoni, vetrine, striscioni, targhe, gadget, timbri e zerbini <span class="freccia" aria-hidden="true">&rarr;</span></span></a>
+      <a href="#negozio"><span class="parole"><span>Abbigliamento lavoro<i aria-hidden="true">&nbsp;&middot;</i></span><span>Tempo libero</span></span><span class="cosa"><b>In negozio</b> scarpe antinfortunistiche, divise e DPI, al dettaglio e all'ingrosso <span class="freccia" aria-hidden="true">&rarr;</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sez" id="negozio" aria-labelledby="t-neg">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="neg-sx">
+        <p class="etichetta">In negozio</p>
+        <h2 id="t-neg">Abbigliamento da lavoro, scarpe e DPI</h2>
+        <p class="lead">Ti aspettiamo a Mestrino per scegliere tra centinaia di capi da lavoro, calzature antinfortunistiche e abbigliamento per il tempo libero, sia al dettaglio che all'ingrosso.</p>
+        <p>Su richiesta mettiamo anche il tuo nome e quello dei tuoi dipendenti.</p>
+        <figure>
+          <img src="img/scarpe-dpi-1020.jpg" srcset="img/scarpe-dpi-640.jpg 640w, img/scarpe-dpi-1020.jpg 1020w" sizes="(max-width:900px) calc(100vw - 40px), 520px" width="1020" height="680" alt="Nello showroom: giacche da lavoro nere e ad alta visibilità, guanti e scaffali di scarpe antinfortunistiche con i numeri" loading="lazy">
+        </figure>
+      </div>
+      <ul class="categorie">
+        <li><a href="abbigliamento/abbigliamento-da-lavoro/"><h3>Abbigliamento da lavoro</h3><p>Salopette, giacche da lavoro, camicie, polo, felpe, giubbini, grembiuli.</p><span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="abbigliamento/calzature-antinfortunistiche/"><h3>Scarpe antinfortunistiche</h3><p>Dal settore alimentare alle aziende metalmeccaniche e alle autofficine, per i cantieri e per il settore agricolo.</p><span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="abbigliamento/abbigliamento-da-lavoro/"><h3>DPI e alta visibilità</h3><p>Capi ad alta visibilità, caschi, guanti, occhiali, imbracature.</p><span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="abbigliamento/abbigliamento-tempo-libero/"><h3>Tempo libero</h3><p>Magliette, felpe e capi per il tempo libero, anche da personalizzare.</p><span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="cataloghi/"><h3>Cataloghi dei fornitori</h3><p>Sfoglia i capi su cui stampare e ricamare.</p><span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </div>
+    <div class="marche">
+      <p class="etichetta">Le marche che trattiamo</p>
+      <dl>
+        <dt>Scarpe</dt>
+        <dd><b>Diadora Utility</b><b>Dike</b><b>Giasco</b><b>Sparco</b><b>Reebok</b></dd>
+        <dt>Abbigliamento</dt>
+        <dd><b>Snickers</b><b>Rossini</b><b>P&amp;P Workwear</b><b>Siggi</b><b>Payper</b><b>Issa</b><b>Industrial Starter</b><b>Isacco</b><b>Neri</b><b>Giblor's</b><b>Angiolina</b><b>Velilla</b><b>Vesti</b></dd>
+        <dt>Capi da stampare</dt>
+        <dd><b>B&amp;C</b><b>Gildan</b><b>Fruit of the Loom</b><b>Stedman</b><b>Russell</b><b>James Ross</b><b>Clique</b></dd>
+      </dl>
+      <p class="sotto">Cerchi un modello o una misura? <a href="tel:+39049634423">Chiamaci</a> o scrivici su <a href="https://wa.me/393278831747" target="_blank" rel="noopener">WhatsApp</a> prima di passare.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sez scuro su-scuro" id="logo" aria-labelledby="t-logo">
+  <div class="wrap">
+    <div class="griglia testa">
+      <div class="t">
+        <p class="etichetta">Stampa e ricamo</p>
+        <h2 id="t-logo">Su cosa mettiamo il tuo logo</h2>
+      </div>
+      <p class="d lead">Per la tua azienda, la tua associazione sportiva o la tua band: sia piccole produzioni che produzioni in serie.</p>
+    </div>
+    <div class="schede">
+      <a class="scheda" href="pubblicita/serigrafia/">
+        <img src="img/capi-logo-640.jpg" srcset="img/capi-logo-640.jpg 640w, img/capi-logo-1020.jpg 1020w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1180px) 45vw, 300px" width="640" height="427" alt="La shopper rosa fluo CSC, una polo blu con il logo e la felpa grigia con l'82 verde fluo" loading="lazy">
+        <h3>Capi e divise</h3>
+        <p>Polo, felpe, magliette e giacche da lavoro, in serigrafia o sublimazione.</p>
+        <span class="vai">La serigrafia <span class="freccia" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="scheda" href="pubblicita/ricamo/">
+        <img src="img/ricamo-640.jpg" srcset="img/ricamo-640.jpg 640w, img/ricamo-1020.jpg 1020w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1180px) 45vw, 300px" width="640" height="427" alt="La ricamatrice multiago al lavoro su un tessuto nero" loading="lazy">
+        <h3>Ricamo</h3>
+        <p>Per farti riconoscere e creare appartenenza tra i tuoi dipendenti o gli associati.</p>
+        <span class="vai">Il ricamo <span class="freccia" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="scheda" href="pubblicita/decorazione-automezzi/">
+        <img src="img/furgone-640.jpg" srcset="img/furgone-640.jpg 640w, img/furgone-1020.jpg 1020w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1180px) 45vw, 300px" width="640" height="427" alt="Il furgone CSC Factory decorato con l'elenco delle lavorazioni, davanti alla sede di Via Zanella" loading="lazy">
+        <h3>Furgoni e vetrine</h3>
+        <p>Decorazione di automezzi, anche teli dei camion e rimorchi; vetrofanie e cartellonistica.</p>
+        <span class="vai">Gli automezzi <span class="freccia" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="scheda" href="pubblicita/stampa-uv/">
+        <img src="img/plex-640.jpg" srcset="img/plex-640.jpg 640w, img/plex-1020.jpg 1020w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1180px) 45vw, 300px" width="640" height="427" alt="Sagome in plexiglass stampate in UV: un gatto e un occhio" loading="lazy">
+        <h3>Targhe, plex e gadget</h3>
+        <p>Stampa UV fino a <span class="num">50 mm</span> di spessore, anche su singolo pezzo.</p>
+        <span class="vai">La stampa UV <span class="freccia" aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+    <div class="altro">
+      <p class="etichetta">E poi</p>
+      <ul>
+        <li><a href="pubblicita/stampa-digitale/">Striscioni e stampa digitale <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="zerbini-e-tappeti-personalizzati/">Zerbini e tappeti <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="pubblicita/timbri/">Timbri <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="pubblicita/incisioni-laser/">Incisioni laser <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="pubblicita/tampografia/">Tampografia <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="pubblicita/grafica/">Studio grafico <span class="freccia" aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </div>
+    <p class="grafica"><b>Il logo non ce l'hai?</b> Abbiamo uno studio di grafica: raccontaci la tua idea, ti aiuteremo a realizzarla. <a href="#preventivo">Chiedi un preventivo</a></p>
+  </div>
+</section>
+
+<section class="sez verde su-scuro" id="preventivo" aria-labelledby="t-prev">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="prev-sx">
+        <p class="etichetta">Preventivo gratuito</p>
+        <h2 id="t-prev">Mandaci il logo</h2>
+        <p class="lead">Farti un preventivo per noi è rapido e non ti costerà nulla.</p>
+        <ol class="passi">
+          <li><span><b>Mandaci il file del logo</b> su WhatsApp o per email, con quello su cui va messo e quanti pezzi ti servono.</span></li>
+          <li><span><b>Ti rispondiamo con il preventivo.</b></span></li>
+          <li><span><b>Passa in showroom</b> a scegliere i capi, o ci sentiamo per i dettagli.</span></li>
+        </ol>
+        <div class="azioni">
+          <a class="btn" href="https://wa.me/393278831747?text=Ciao%2C%20vi%20mando%20il%20logo%20per%20un%20preventivo.%20Mi%20serve%20su%3A%20" target="_blank" rel="noopener">WhatsApp <span class="n">327 8831747</span></a>
+          <a class="btn bordo" href="mailto:info@ciessecisrl.it?subject=Preventivo%3A%20vi%20mando%20il%20logo">info@ciessecisrl.it</a>
+        </div>
+      </div>
+      <form class="modulo" id="modulo" action="mailto:info@ciessecisrl.it" method="post" enctype="text/plain" novalidate>
+        <h3>Oppure scrivi qui la richiesta</h3>
+        <p class="intro">Prepariamo noi il messaggio con la richiesta: per email (allega il file del logo e invia) o su WhatsApp, come scegli qui sotto.</p>
+        <div class="campi">
+          <div><label for="f-nome">Nome e cognome</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
+          <div><label for="f-azienda">Azienda o associazione <i>(se c'è)</i></label><input id="f-azienda" name="Azienda" autocomplete="organization"></div>
+          <div><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel" required></div>
+          <div><label for="f-email">Email <i>(se vuoi)</i></label><input id="f-email" name="Email" type="email" autocomplete="email"></div>
+          <div><label for="f-cosa">Su cosa va il logo</label>
+            <select id="f-cosa" name="Su cosa" required>
+              <option value="">Scegli</option>
+              <option>Abbigliamento da lavoro e divise</option>
+              <option>Magliette, polo e felpe</option>
+              <option>Ricamo con logo o nome</option>
+              <option>Scarpe antinfortunistiche e DPI</option>
+              <option>Furgone o automezzo</option>
+              <option>Vetrina, vetrofanie, cartellonistica</option>
+              <option>Striscioni e stampa digitale</option>
+              <option>Targhe, plex e gadget</option>
+              <option>Timbri</option>
+              <option>Zerbini e tappeti</option>
+              <option>Altro</option>
+            </select></div>
+          <div><label for="f-pezzi">Quanti pezzi</label><input id="f-pezzi" name="Quanti pezzi" inputmode="numeric" placeholder="anche uno solo"></div>
+          <div class="tutta"><label for="f-quando">Per quando <i>(stagione, fiera, inaugurazione...)</i></label><input id="f-quando" name="Per quando"></div>
+          <fieldset class="tutta"><legend>Il logo</legend>
+            <div class="scelte">
+              <label><input type="radio" name="Il logo" value="Lo allego alla mail" checked> Ce l'ho, lo allego alla mail</label>
+              <label><input type="radio" name="Il logo" value="Lo mando su WhatsApp"> Ce l'ho, lo mando su WhatsApp</label>
+              <label><input type="radio" name="Il logo" value="Non ce l'ho: mi serve lo studio grafico"> Non ce l'ho: mi serve lo studio grafico</label>
+            </div>
+          </fieldset>
+          <div class="tutta"><label for="f-msg">Raccontaci la tua idea</label><textarea id="f-msg" name="Messaggio" placeholder="Colori, misure, dove va il logo, nomi da ricamare..."></textarea></div>
+        </div>
+        <div class="invio">
+          <button class="btn" type="submit" id="f-invio">Prepara l'email</button>
+        </div>
+        <p class="esito" role="status" aria-live="polite"></p>
+        <div class="copia" hidden>
+          <p>Se non si è aperto nulla, copia il testo e mandalo a <b>info@ciessecisrl.it</b> o su WhatsApp al <b class="num">327 8831747</b>, con il file del logo.</p>
+          <label class="sr" for="f-testo">Testo della richiesta</label>
+          <textarea id="f-testo" readonly></textarea>
+          <button class="btn bordo" type="button" id="f-copia">Copia il testo</button>
+        </div>
+        <p class="nota">I dati servono solo per il preventivo: <a href="termini-duso-e-informative/informativa-privacy/">informativa privacy</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sez" id="shop" aria-labelledby="t-shop">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="reg-t">
+        <p class="etichetta">Shop online</p>
+        <h2 id="t-shop">È per un regalo?</h2>
+        <p class="cat">T-shirt per uomo, donna e bambino, quadri, tazze, gadget anche in legno, borse, grembiuli e lampade a led.</p>
+      </div>
+      <div class="reg-testo">
+        <p class="lead">Magliette, tazze, quadri e gadget con la tua foto: la carichi nella scheda del prodotto. Spediamo in tutta Italia.</p>
+        <div class="azioni">
+          <a class="btn" href="shop/">Entra nello shop</a>
+          <a class="btn bordo" href="shop/ricamarty/">RicaMarty, il nostro ricamo</a>
+        </div>
+        <p class="poi">Zerbini con i nomi o un ricamo su misura? Vieni a trovarci o chiamaci. RicaMarty è anche su <a href="https://www.instagram.com/ricamarty_/" target="_blank" rel="noopener">Instagram</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sez grigio" id="chi-siamo" aria-labelledby="t-chi">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="chi-sx">
+        <p class="etichetta">Chi siamo</p>
+        <h2 id="t-chi">Tre amici e un piccolo laboratorio a Rubano</h2>
+        <p class="lead">Ciesseci nasce dalla passione di tre amici, in un piccolo laboratorio casalingo a Rubano.</p>
+        <p>Dal <span class="num">2019</span> siamo in Via Zanella 1 a Mestrino: negozio, showroom e laboratorio, con lo studio grafico in casa. Servizio grafico e servizio stampa da una parte, abbigliamento da lavoro e tempo libero dall'altra, come dice la nostra insegna.</p>
+      </div>
+      <ul class="cifre">
+        <li><span class="cifra">1982</span><p>l'anno dei tre amici e del primo laboratorio a Rubano</p></li>
+        <li><span class="cifra">50<small> mm</small></span><p>lo spessore su cui stampiamo in UV, anche su singolo pezzo</p></li>
+        <li><span class="cifra">13</span><p>lavorazioni scritte sul nostro furgone, dal ricamo alla stampa UV</p></li>
+        <li><span class="cifra">25</span><p>marche in negozio, tra scarpe, abbigliamento e capi da stampare</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sez" id="contatti" aria-labelledby="t-con">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="dove-sx">
+        <p class="etichetta">Orari e dove</p>
+        <h2 id="t-con">Ti aspettiamo a Mestrino</h2>
+        <p class="indirizzo">Via Zanella 1, 35035 Mestrino (PD)<span>All'angolo con Via Marco Polo</span></p>
+        <div class="azioni">
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Zanella+1,+35035+Mestrino+PD" target="_blank" rel="noopener">Come arrivare</a>
+          <a class="btn bordo" href="tel:+39049634423">Chiama <span class="n">049 634423</span></a>
+        </div>
+        <p class="avviso" data-avviso></p>
+        <table class="orari num">
+          <caption class="etichetta">Orari del negozio</caption>
+          <tbody>
+            <tr data-giorni="1,2,3,4,5"><th scope="row">Lunedì-venerdì</th><td>8:00-12:30 e 14:00-18:30</td></tr>
+            <tr data-giorni="6"><th scope="row">Sabato</th><td>8:00-11:00</td></tr>
+            <tr data-giorni="0"><th scope="row">Domenica</th><td>chiuso</td></tr>
+          </tbody>
+        </table>
+        <div class="recapiti">
+          <div><p class="etichetta">Telefono</p><a class="num" href="tel:+39049634423">049 634423</a></div>
+          <div><p class="etichetta">Cellulare e WhatsApp</p><a class="num" href="https://wa.me/393278831747" target="_blank" rel="noopener">327 8831747</a></div>
+          <div class="tutta"><p class="etichetta">Email</p><a href="mailto:info@ciessecisrl.it?subject=Richiesta%20dal%20sito">info@ciessecisrl.it</a></div>
+        </div>
+      </div>
+      <figure class="dove-foto">
+        <img src="img/facciata-1020.jpg" srcset="img/facciata-640.jpg 640w, img/facciata-1020.jpg 1020w" sizes="(max-width:900px) calc(100vw - 40px), 630px" width="1020" height="680" alt="La sede di Via Zanella con l'insegna Servizio grafico, Servizio stampa, Abbigliamento lavoro e tempo libero" loading="lazy">
+        <figcaption>Dalla strada: l'insegna verde sopra le due vetrine.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="griglia alto">
+      <div class="c1">
+        <img src="img/logo-csc-192.png" width="192" height="187" alt="CSC Factory, since 1982">
+        <p>Ciesseci Srl, marchio CSC Factory. Abbigliamento da lavoro, scarpe antinfortunistiche e DPI; stampa, ricamo e grafica dal <span class="num">1982</span>.</p>
+      </div>
+      <div class="c2">
+        <h3>Contatti e orari</h3>
+        <p><a class="num" href="tel:+39049634423">049 634423</a><br>Cellulare e WhatsApp <a class="num" href="https://wa.me/393278831747" target="_blank" rel="noopener">327 8831747</a><br><a href="mailto:info@ciessecisrl.it">info@ciessecisrl.it</a></p>
+        <p>Via Zanella 1, 35035 Mestrino (PD)<br><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Zanella+1,+35035+Mestrino+PD" target="_blank" rel="noopener">Come arrivare</a></p>
+        <p class="num">Lunedì-venerdì 8:00-12:30 e 14:00-18:30<br>Sabato 8:00-11:00</p>
+      </div>
+      <div class="c3">
+        <h3>Negozio e lavorazioni</h3>
+        <ul>
+          <li><a href="abbigliamento/abbigliamento-da-lavoro/">Abbigliamento da lavoro</a></li>
+          <li><a href="abbigliamento/calzature-antinfortunistiche/">Scarpe antinfortunistiche</a></li>
+          <li><a href="cataloghi/">Cataloghi</a></li>
+          <li><a href="pubblicita/">Stampa e ricamo</a></li>
+          <li><a href="pubblicita/decorazione-automezzi/">Decorazione automezzi</a></li>
+          <li><a href="#preventivo">Preventivo gratuito</a></li>
+          <li><a href="promozioni/">Promozioni</a></li>
+        </ul>
+      </div>
+      <div class="c4 social">
+        <h3>Seguici</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/ciesseci">Facebook<small>Ciesseci</small></a></li>
+          <li><a href="https://www.instagram.com/ciessecisrl/">Instagram<small>ciessecisrl</small></a></li>
+          <li><a href="https://www.instagram.com/ricamarty_/">RicaMarty su Instagram<small>ricamarty_</small></a></li>
+          <li><a href="shop/">Shop online<small>spediamo in tutta Italia</small></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legale">
+      <p><span>CIESSECI SRL</span> <span>Sede legale Via Cavour 8, 35030 Rubano (PD)</span> <span class="num">P.IVA e C.F. 03866700283</span> <span class="num">REA PD-343821</span> <span class="num">Capitale sociale 10.200,00 €</span></p>
+      <nav aria-label="Note legali"><a href="termini-duso-e-informative/informativa-privacy/">Privacy</a><a href="termini-duso-e-informative/cookie-policy/">Cookie</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- Orari: stato del negozio sull'ora di Roma ----------
+  // Prova: index.html?ora=2026-11-03T10:00 (ora di Roma). Chiusure per ferie: aggiungerle qui ogni anno
+  // (oggi le annunciano con un popup); compaiono come riga di avviso da 30 giorni prima.
+  // Ripiego: se in elenco non c'è una chiusura per l'anno in corso, ad agosto e dal 20 dicembre al 7 gennaio
+  // sotto lo stato compare l'invito a chiamare prima di venire (vedi LEGGIMI, punto 4).
+  var CHIUSURE = [
+    { dal: '2025-08-07', al: '2025-08-24', nome: 'Chiusura estiva' }
+  ];
+  var ORARI = { 1: [[480, 750], [840, 1110]], 2: [[480, 750], [840, 1110]], 3: [[480, 750], [840, 1110]], 4: [[480, 750], [840, 1110]], 5: [[480, 750], [840, 1110]], 6: [[480, 660]], 0: [] };
+  var GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  function adesso(){
+    var q = (location.search.match(/[?&]ora=([0-9T:\-]+)/) || [])[1];
+    if (q) { var p = q.split(/[-T:]/).map(Number); return { y: p[0], m: p[1], d: p[2], min: (p[3] || 0) * 60 + (p[4] || 0) }; }
+    var f = new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    var o = {}; f.forEach(function(x){ o[x.type] = +x.value; });
+    return { y: o.year, m: o.month, d: o.day, min: o.hour * 60 + o.minute };
+  }
+  function pasqua(y){ var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1; return new Date(Date.UTC(y,mo-1,da)); }
+  function chiave(dt){ return dt.toISOString().slice(0, 10); }
+  function festivo(dt){
+    var y = dt.getUTCFullYear(), md = chiave(dt).slice(5);
+    if (['01-01','01-06','04-25','05-01','06-02','08-15','11-01','12-08','12-25','12-26'].indexOf(md) >= 0) return true;
+    var p = pasqua(y), lp = new Date(p.getTime() + 864e5);
+    return chiave(dt) === chiave(p) || chiave(dt) === chiave(lp);
+  }
+  function inChiusura(dt){ var k = chiave(dt); for (var i = 0; i < CHIUSURE.length; i++) if (k >= CHIUSURE[i].dal && k <= CHIUSURE[i].al) return CHIUSURE[i]; return null; }
+  function aperturaDel(dt){ if (festivo(dt) || inChiusura(dt)) return []; return ORARI[dt.getUTCDay()]; }
+  function hm(m){ return Math.floor(m / 60) + ':' + ('0' + m % 60).slice(-2); }
+  function data(dt){ return dt.getUTCDate() + ' ' + MESI[dt.getUTCMonth()]; }
+  function dataAnno(dt){ return data(dt) + ' ' + dt.getUTCFullYear(); }
+  var n = adesso(), oggi = new Date(Date.UTC(n.y, n.m - 1, n.d)), fasce = aperturaDel(oggi), stato = null;
+  for (var i = 0; i < fasce.length; i++) if (n.min >= fasce[i][0] && n.min < fasce[i][1]) stato = { aperto: true, chiude: fasce[i][1], pausa: fasce[i + 1] };
+  var testo, det;
+  if (stato) {
+    testo = 'Aperto ora'; det = 'chiude alle ' + hm(stato.chiude) + (stato.pausa ? ', riapre alle ' + hm(stato.pausa[0]) : '');
+  } else {
+    var dopo = null;
+    for (var j = 0; j < fasce.length; j++) if (fasce[j][0] > n.min) { dopo = { g: 0, m: fasce[j][0] }; break; }
+    for (var g = 1; !dopo && g < 40; g++) { var dt = new Date(oggi.getTime() + g * 864e5), fz = aperturaDel(dt); if (fz.length) dopo = { g: g, m: fz[0][0], dt: dt }; }
+    var c = inChiusura(oggi);
+    testo = c ? 'Chiuso per ferie' : (fasce.length === 0 && festivo(oggi) ? 'Chiuso oggi, festivo' : 'Chiuso ora');
+    det = !dopo ? '' : 'riapre ' + (dopo.g === 0 ? 'alle ' : dopo.g === 1 ? 'domani alle ' : (dopo.g < 7 ? GIORNI[dopo.dt.getUTCDay()] : GIORNI[dopo.dt.getUTCDay()] + ' ' + data(dopo.dt)) + ' alle ') + hm(dopo.m);
+  }
+  // avviso ferie: da 30 giorni prima fino all'ultimo giorno
+  var avviso = '';
+  CHIUSURE.forEach(function(ch){
+    var a = new Date(ch.dal + 'T00:00:00Z'), b = new Date(ch.al + 'T00:00:00Z');
+    if (oggi >= new Date(a.getTime() - 30 * 864e5) && oggi <= b) avviso = ch.nome + ': chiuso dal ' + (a.getUTCFullYear() === b.getUTCFullYear() ? data(a) : dataAnno(a)) + ' al ' + dataAnno(b) + '.';
+  });
+  var periodo = n.m === 8 || (n.m === 12 && n.d >= 20) || (n.m === 1 && n.d <= 7);
+  var yy = n.m === 1 ? n.y - 1 : n.y, ini = n.m === 8 ? n.y + '-08-01' : yy + '-12-20', fin = n.m === 8 ? n.y + '-08-31' : (yy + 1) + '-01-07';
+  var annoNoto = CHIUSURE.some(function(ch){ return ch.dal <= fin && ch.al >= ini; });
+  if (!avviso && periodo && !annoNoto) avviso = "Ad agosto e nelle feste di fine anno chiudiamo per qualche giorno: prima di venire, chiamaci.";
+  [].forEach.call(document.querySelectorAll('[data-stato]'), function(el){
+    el.classList.toggle('aperto', !!stato);
+    el.querySelector('.stato-ora').textContent = testo;
+    el.querySelector('.stato-dettaglio').textContent = det;
+  });
+  [].forEach.call(document.querySelectorAll('[data-avviso]'), function(el){ el.textContent = avviso; });
+  var dow = oggi.getUTCDay();
+  [].forEach.call(document.querySelectorAll('.orari tr'), function(tr){ if (tr.getAttribute('data-giorni').split(',').indexOf(String(dow)) >= 0) tr.classList.add('oggi'); });
+  var riga = dow === 0 ? 'domenica' : dow === 6 ? 'sabato' : 'feriale';
+  var r = document.querySelector('.fatti [data-riga="' + riga + '"]'); if (r) r.classList.add('oggi');
+
+  // ---------- Testata: il Chiama è pieno solo quando quello dell'apertura non si vede ----------
+  var tt = document.querySelector('.tel-testata'), ta = document.getElementById('chiama-apertura');
+  if ('IntersectionObserver' in window && tt && ta) {
+    new IntersectionObserver(function(e){ tt.classList.toggle('bordo', e[0].isIntersecting); }).observe(ta);
+  }
+
+  // ---------- Menu sotto i 1180 px ----------
+  var b = document.querySelector('.apri-menu'), m = document.getElementById('menu');
+  b.addEventListener('click', function(){ var a = m.classList.toggle('aperto'); b.setAttribute('aria-expanded', a ? 'true' : 'false'); b.textContent = a ? 'Chiudi' : 'Menu'; });
+  [].forEach.call(m.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ m.classList.remove('aperto'); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Menu'; }); });
+
+  // ---------- Modulo: compone un'email (va collegato a un servizio, vedi LEGGIMI) ----------
+  var f = document.getElementById('modulo'), es = f.querySelector('.esito'), invio = document.getElementById('f-invio');
+  var copia = f.querySelector('.copia'), testoCopia = document.getElementById('f-testo');
+  function suWhatsApp(){ var x = f.querySelector('input[name="Il logo"]:checked'); return !!x && x.value.indexOf('WhatsApp') >= 0; }
+  [].forEach.call(f.querySelectorAll('input[name="Il logo"]'), function(r){ r.addEventListener('change', function(){ invio.textContent = suWhatsApp() ? 'Prepara il messaggio WhatsApp' : "Prepara l'email"; }); });
+  document.getElementById('f-copia').addEventListener('click', function(){
+    var fatto = function(){ es.textContent = 'Testo copiato: incollalo in una mail a info@ciessecisrl.it o su WhatsApp.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(testoCopia.value).then(fatto, function(){ testoCopia.select(); document.execCommand('copy'); fatto(); });
+    else { testoCopia.select(); document.execCommand('copy'); fatto(); }
+  });
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var mancano = ['f-nome', 'f-tel', 'f-cosa'].map(function(id){ return document.getElementById(id); }).filter(function(x){ return !x.value.trim(); });
+    if (mancano.length) { es.textContent = 'Mancano: ' + mancano.map(function(x){ return f.querySelector('label[for="' + x.id + '"]').firstChild.textContent.trim().toLowerCase(); }).join(', ') + '.'; mancano[0].focus(); return; }
+    var v = function(id){ return document.getElementById(id).value.trim(); };
+    var logo = f.querySelector('input[name="Il logo"]:checked').value;
+    var corpo = ['Nome: ' + v('f-nome'), 'Azienda o associazione: ' + v('f-azienda'), 'Telefono: ' + v('f-tel'), 'Email: ' + v('f-email'), 'Su cosa: ' + v('f-cosa'), 'Quanti pezzi: ' + v('f-pezzi'), 'Per quando: ' + v('f-quando'), 'Il logo: ' + logo, '', v('f-msg')].join('\n');
+    var ogg = 'Preventivo: ' + v('f-cosa') + ', ' + v('f-nome');
+    var wa = suWhatsApp(), url;
+    if (wa) {
+      url = 'https://wa.me/393278831747?text=' + encodeURIComponent('Ciao, vi scrivo per un preventivo. Vi mando qui il logo.\n\n' + corpo);
+      es.textContent = 'Si apre WhatsApp con la richiesta già scritta: aggiungi il file del logo e invia.';
+    } else {
+      url = 'mailto:info@ciessecisrl.it?subject=' + encodeURIComponent(ogg) + '&body=' + encodeURIComponent(corpo);
+      es.textContent = logo.indexOf('allego') >= 0 ? 'Abbiamo preparato la tua email: allega il file del logo e invia.' : 'Abbiamo preparato la tua email con la richiesta.';
+    }
+    testoCopia.value = (wa ? '' : 'Oggetto: ' + ogg + '\n\n') + corpo; copia.hidden = false;
+    if (typeof window.__prova === 'function') window.__prova(url); // __prova: solo per il collaudo
+    else if (wa) window.open(url, '_blank', 'noopener'); else location.href = url;
+  });
+})();
+</script>
+</body>
+</html>

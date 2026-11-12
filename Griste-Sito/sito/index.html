@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Griste, la maison del gioiello per calzature dal 1975</title>
+<meta name="description" content="Griste S.r.l., Villatora di Saonara (Padova), nata nel 1975, progetta e produce applicazioni, bottoni, placche, fibbie, puntali e talloni in metallo con smalto, strass, pietre e perle per la calzatura.">
+<link rel="preload" href="fonts/noto-serif-display-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/red-hat-text-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/natura-fiore-450.webp" as="image" type="image/webp" imagesrcset="img/natura-fiore-342.webp 342w, img/natura-fiore-450.webp 450w" imagesizes="(max-width:700px) 342px, 450px">
+<style>
+/* Caratteri: Noto Serif Display (titoli) e Red Hat Text (testo), Google Fonts, SIL Open Font License 1.1, serviti dalla pagina */
+@font-face{font-family:"Noto Serif Display";font-style:normal;font-weight:200 400;font-display:swap;src:url(fonts/noto-serif-display-latin-var.woff2) format("woff2")}
+@font-face{font-family:"Red Hat Text";font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/red-hat-text-latin-var.woff2) format("woff2")}
+
+:root{
+  --fondo:#F4F2EE;        /* avorio neutro, appena caldo come l'oro dei pezzi */
+  --fondo-2:#EAE6DF;      /* piede */
+  --inchiostro:#15181D;   /* 15,9:1 sul fondo, 14,3:1 sul piede */
+  --grigio:#5B616C;       /* 5,6:1 sul fondo, 5,0:1 sul piede */
+  --blu:#014778;          /* blu del logo Griste, 8,6:1 sul fondo, 7,8:1 sul piede: logo, link, bottone */
+  --blu-scuro:#00365C;
+  --filetto:rgba(21,24,29,.16);
+  --serif:"Noto Serif Display",Georgia,serif;
+  --sans:"Red Hat Text",system-ui,sans-serif;
+  --m:72px;               /* margine laterale */
+  --g:24px;               /* intercolonna */
+  --fw:450px;             /* larghezza del pezzo scelto: la misura vera dello scatto, mai oltre */
+  --pw:190px;             /* larghezza degli altri tre pezzi nel cassetto */
+  --sw:calc(var(--fw) + 110px); /* scomparto del pezzo scelto */
+  --ih:calc(var(--fw) * 486 / 450); /* altezza dello scomparto, ombra compresa */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;font-synthesis:none;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--fondo);color:var(--inchiostro);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em;transition:color .12s}
+a:hover{color:var(--blu)}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+h1,h2,h3,p,ol,ul,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:calc(1296px + 2*var(--m));margin:0 auto;padding:0 var(--m)}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.griglia{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+p{text-wrap:pretty}
+
+/* Testata */
+.testata{height:84px;display:flex;align-items:center;gap:48px}
+.testata .logo{flex:none;display:block}
+.testata .logo img{height:30px;width:auto}
+.menu{display:flex;gap:30px;margin-left:auto;font-size:15px}
+.menu a{text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.testata .tel{font-size:15px;font-weight:500;text-decoration:none;margin-left:12px}
+.testata .lingua{font-size:14px;color:var(--grigio);text-decoration:none}
+.apri-menu{display:none}
+
+/* Apertura: in alto il titolo su due righe e, a destra, il testo con il bottone;
+   sotto il cassetto del campionario: i quattro pezzi delle collezioni sullo stesso ripiano,
+   quello scelto alla sua misura vera, gli altri piccoli; sotto il pezzo scelto la sua riga d'archivio */
+.apertura{padding-top:20px}
+.testa{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);align-items:end}
+.apertura h1{grid-column:1/9;font:300 min(76px,calc((100vw - 2 * var(--m)) * .0585))/1 var(--serif);letter-spacing:-.022em}
+.apertura h1 .r{display:block;white-space:nowrap}
+.intro{grid-column:9/13;padding-bottom:4px}
+.intro p{font-size:17px;line-height:1.55}
+.azioni{display:flex;align-items:center;gap:28px;margin-top:20px}
+.bottone{display:inline-block;background:var(--blu);color:#fff;text-decoration:none;font:500 16px/1 var(--sans);padding:16px 22px;transition:background-color .12s}
+.bottone:hover{background:var(--blu-scuro);color:#fff}
+.azioni .tel-m{display:none;font-weight:500;text-decoration:none}
+
+.cassetto{position:relative;display:grid;column-gap:var(--g);margin-top:28px;grid-template-columns:var(--sw) 1fr 1fr 1fr}
+.cassetto.toccato{transition:grid-template-columns .2s ease}
+.cassetto[data-sel="1"]{grid-template-columns:1fr var(--sw) 1fr 1fr}
+.cassetto[data-sel="2"]{grid-template-columns:1fr 1fr var(--sw) 1fr}
+.cassetto[data-sel="3"]{grid-template-columns:1fr 1fr 1fr var(--sw)}
+.cassetto::before{content:"";position:absolute;left:0;right:0;top:var(--ih);height:1px;background:var(--filetto)}
+.collezioni{display:contents}
+.collezioni button{all:unset;cursor:pointer;grid-row:1;display:flex;flex-direction:column;min-width:0}
+.sede{height:var(--ih);display:flex;align-items:flex-end}
+.sede img{width:var(--pw);height:auto}
+.toccato .sede img{transition:width .2s ease}
+.collezioni button[aria-selected="true"] .sede img{width:var(--fw)}
+.targa{position:relative;display:block;padding-top:12px}
+.targa::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent}
+.collezioni button[aria-selected="true"] .targa::before{background:var(--blu)}
+.collezioni .n{font:500 17px/1.3 var(--sans);color:var(--grigio);transition:color .12s}
+.collezioni .c{font-size:13px;color:var(--grigio);margin-left:7px;white-space:nowrap}
+.collezioni button[aria-selected="true"] .n,.collezioni button:hover .n{color:var(--inchiostro)}
+.collezioni button:focus-visible{outline:2px solid var(--blu);outline-offset:4px}
+.scheda{grid-row:2;grid-column:1;padding-top:6px;font-size:15px;line-height:1.5}
+.cassetto[data-sel="1"] .scheda{grid-column:2}
+.cassetto[data-sel="2"] .scheda{grid-column:3}
+.cassetto[data-sel="3"] .scheda{grid-column:4}
+.riga{display:flex;flex-wrap:wrap;gap:0 14px}
+.riga b{font-weight:500}
+.riga .lav{color:var(--grigio)}
+.chiedi{margin-top:4px;display:flex;flex-wrap:wrap;gap:4px 24px}
+.chiedi a{color:var(--blu)}
+.chiedi a+a{color:var(--inchiostro)}
+@media (prefers-reduced-motion:reduce){.cassetto.toccato,.toccato .sede img{transition:none}}
+
+/* Sezioni */
+section{scroll-margin-top:24px}
+.sez{padding-top:168px}
+h2{font:300 60px/1.05 var(--serif);letter-spacing:-.018em;text-wrap:balance}
+.apre{font-size:18px}
+
+/* Azienda */
+.azienda .etichetta{grid-column:1/4;padding-top:12px;font:400 15px/1.4 var(--sans);letter-spacing:0;color:var(--grigio)}
+.azienda .grande{grid-column:4/13;font:300 42px/1.22 var(--serif);letter-spacing:-.012em}
+.azienda .testo{grid-column:4/10;margin-top:36px}
+.anni{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--g);margin-top:104px}
+.anni li{border-top:1px solid var(--filetto);padding:22px 32px 0 0}
+.anni .a{display:block;white-space:nowrap;font:300 clamp(32px,2.6vw,36px)/1 var(--serif);letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums}
+.anni .d{display:block;margin-top:14px;font-size:15px;line-height:1.5;color:var(--grigio);max-width:260px}
+
+/* Lavorazioni */
+/* Lavorazioni e campionario: il titolo, le immagini, poi due colonne di testo allineate in alto */
+.lavorazioni h2,.campionario h2{grid-column:1/13}
+.striscia{grid-column:1/13;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);margin-top:72px}
+.striscia figure{max-width:640px}
+.striscia img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.striscia figcaption{padding:12px 0 0;font-size:14px;color:var(--grigio)}
+.lavorazioni .apre,.campionario .apre{grid-column:1/7;margin-top:56px;font-size:19px;line-height:1.6;max-width:600px}
+.destra{grid-column:7/13;margin-top:56px}
+.lavorazioni .elenco,.bestiario{font:400 19px/1.6 var(--sans)}
+.lavorazioni .materie,.conti{margin-top:16px;font-size:16px;line-height:1.6;color:var(--grigio)}
+
+/* Campionario */
+.vassoio{grid-column:1/13;display:grid;grid-template-columns:repeat(6,1fr);column-gap:var(--g);margin-top:72px;align-items:end}
+.vassoio a{display:flex;flex-direction:column;text-decoration:none}
+.vassoio img{width:100%;max-width:200px}
+.vassoio .n{margin-top:12px;font:500 17px/1.3 var(--sans);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.22em;transition:text-decoration-color .12s,color .12s}
+.vassoio a:hover .n{text-decoration-color:currentColor}
+.vassoio .c{font-size:14px;color:var(--grigio);font-variant-numeric:tabular-nums}
+
+
+/* Chiusura: foto a sinistra a filo del bordo, frase e recapiti a destra, centrati sulla foto */
+.chiusura{padding-top:184px}
+.chiusura .griglia{align-items:center}
+.chiusura .foto{grid-column:1/8;margin-left:calc(-1 * var(--m) - max(0px, (100vw - var(--sb, 0px) - 1296px - 2 * var(--m)) / 2))}
+.chiusura .foto img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 60%}
+.chiusura .foto figcaption{padding:10px 0 0 calc(var(--m) + max(0px, (100vw - var(--sb, 0px) - 1296px - 2 * var(--m)) / 2));font-size:13px;color:var(--grigio)}
+.chiusura .testo{grid-column:9/13}
+.chiusura h2{font-size:44px;line-height:1.1}
+.recapiti{margin-top:44px;font-size:17px;line-height:1.6}
+.recapiti .tel{display:inline-block;font:300 40px/1.1 var(--serif);letter-spacing:-.01em;text-decoration:none;margin-bottom:12px;font-variant-numeric:tabular-nums lining-nums}
+.recapiti li+li{margin-top:2px}
+.recapiti .ind{margin-top:18px}
+.recapiti .g{color:var(--grigio)}
+
+/* Piede */
+.piede{margin-top:96px;background:var(--fondo-2);border-top:1px solid var(--filetto);padding:80px 0 32px;font-size:15px;line-height:1.6}
+.piede .griglia{row-gap:56px}
+.piede .marchio{grid-column:1/4}
+.piede .marchio img{height:30px;width:auto}
+.piede .marchio p{margin-top:20px;color:var(--grigio);max-width:290px}
+.piede .marchio p a{color:var(--inchiostro)}
+.piede nav{grid-column:span 2}
+.piede nav:first-of-type{grid-column:4/6}
+.piede h3{font:500 14px/1.4 var(--sans);margin-bottom:14px}
+.piede nav li+li{margin-top:6px}
+.piede nav a{text-decoration:none}
+.piede nav a:hover{text-decoration:underline}
+.notizie{grid-column:10/13}
+.notizie p{color:var(--grigio)}
+.notizie form{margin-top:16px}
+.notizie .campo{display:flex;border-bottom:1px solid var(--inchiostro)}
+.notizie input[type=email]{flex:1;min-width:0;border:0;background:transparent;font:400 16px/1 var(--sans);color:var(--inchiostro);padding:12px 0;border-radius:0}
+.notizie input[type=email]::placeholder{color:var(--grigio);opacity:1}
+.notizie button{border:0;background:transparent;color:var(--blu);font:500 15px/1 var(--sans);padding:12px 0 12px 16px;cursor:pointer;transition:color .12s}
+.notizie button:hover{color:var(--blu-scuro);text-decoration:underline}
+.consenso{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;line-height:1.5;color:var(--grigio)}
+.consenso input{margin:2px 0 0;width:16px;height:16px;accent-color:var(--blu);flex:none}
+.esito{margin-top:8px;font-size:13px;min-height:20px}
+.legale{grid-column:1/13;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 40px;border-top:1px solid var(--filetto);padding-top:22px;font-size:13px;color:var(--grigio)}
+.legale ul{display:flex;flex-wrap:wrap;gap:4px 22px}
+.legale a{text-decoration:none}
+.legale a:hover{text-decoration:underline}
+
+/* da 1181 a 1439: il pezzo scelto a 420 px */
+@media (max-width:1439px){
+  :root{--fw:420px;--pw:160px;--sw:calc(var(--fw) + 90px)}
+}
+@media (max-width:1180px){
+  :root{--m:48px;--fw:380px;--pw:116px;--sw:calc(var(--fw) + 60px)}
+  .menu{gap:22px}
+  .apertura h1{grid-column:1/13;font-size:calc((100vw - 2 * var(--m)) / 15.6)}
+  .apertura h1 .r{display:inline}
+  .intro{grid-column:1/13;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:22px;padding:0}
+  .intro p{max-width:600px}
+  .azioni{margin-top:0;flex:none}
+  .azienda .grande{font-size:36px}
+  h2{font-size:52px}
+  .chiusura h2{font-size:38px}
+  .chiusura .foto{grid-column:1/8}
+  .chiusura .testo{grid-column:8/13}
+  .recapiti .tel{font-size:34px}
+  .legale{flex-direction:column}
+  .piede nav{grid-column:span 3}
+  .piede nav:first-of-type{grid-column:4/7}
+  .notizie{grid-column:4/13;max-width:520px}
+}
+/* sotto 961: il pezzo scelto in alto a tutta colonna, la sua riga d'archivio, poi gli altri tre in fila */
+@media (max-width:960px){
+  :root{--m:40px;--fw:400px;--pw:120px}
+  .menu{display:none}
+  .apri-menu{display:inline-block;margin-left:auto;background:none;border:0;font:500 15px/1 var(--sans);color:var(--inchiostro);padding:10px 0;cursor:pointer}
+  .testata .tel{margin-left:0}
+  .testata{gap:24px;position:relative}
+  .testata.aperta .menu{display:flex;flex-direction:column;gap:14px;position:absolute;top:76px;left:0;right:0;background:var(--fondo);padding:20px var(--m) 28px;margin:0 calc(-1 * var(--m));z-index:5;border-bottom:1px solid var(--filetto);font-size:18px}
+  .apertura{display:flex;flex-direction:column;padding-top:20px}
+  .testa{display:contents}
+  .apertura h1{order:1;font-size:64px;line-height:1.02;text-wrap:balance}
+  .apertura h1 .r{white-space:normal}
+  .cassetto,.cassetto[data-sel]{order:2;grid-template-columns:repeat(3,1fr);margin-top:28px}
+  .cassetto.toccato,.toccato .sede img{transition:none}
+  .cassetto::before{display:none}
+  .collezioni button{grid-row:3}
+  .collezioni button[aria-selected="true"]{grid-row:1;grid-column:1/-1}
+  .sede{height:calc(var(--pw) * 486 / 450)}
+  .collezioni button[aria-selected="true"] .sede{height:var(--ih)}
+  .targa{border-top:1px solid var(--filetto);padding-top:10px}
+  .cassetto .scheda,.cassetto[data-sel] .scheda{grid-row:2;grid-column:1/-1;padding:10px 0 32px}
+  .intro{order:3;display:block;margin-top:40px}
+  .azioni{margin-top:22px}
+  .azienda .etichetta{grid-column:1/13;padding:0 0 18px}
+  .azienda .grande,.azienda .testo{grid-column:1/13}
+  .anni{grid-template-columns:repeat(2,1fr);row-gap:40px;margin-top:72px}
+  .lavorazioni .apre,.campionario .apre,.destra{grid-column:1/13}
+  .lavorazioni .apre,.campionario .apre{margin-top:48px}
+  .destra{margin-top:24px}
+  .vassoio{grid-template-columns:repeat(3,1fr);row-gap:40px}
+  .chiusura .foto{grid-column:1/13;margin:0 calc(-1 * var(--m))}
+  .chiusura .foto figcaption{padding-left:var(--m)}
+  .chiusura .testo{grid-column:1/13;padding-top:48px}
+  .piede .marchio{grid-column:1/13}
+  .piede nav,.piede nav:first-of-type{grid-column:span 4}
+  .notizie{grid-column:1/13;max-width:520px}
+}
+/* telefono: titolo, pezzo scelto, riga d'archivio, gli altri tre pezzi, poi testo, bottone e telefono */
+@media (max-width:700px){
+  :root{--m:20px;--g:16px;--fw:min(342px,calc(100vw - 40px));--pw:min(96px,calc((100vw - 72px) / 3))}
+  body{font-size:17px}
+  .testata{height:64px}
+  .testata .logo img{height:24px}
+  .testata .lingua,.testata .tel{display:none}
+  .testata.aperta .menu{top:60px}
+  .apertura{padding-top:12px}
+  .apertura h1{font-size:44px;line-height:1.04;letter-spacing:-.02em}
+  .cassetto,.cassetto[data-sel]{margin-top:12px}
+  .collezioni button[aria-selected="true"] .targa{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+  .targa{padding-top:8px}
+  .collezioni .c{display:block;margin-left:0}
+  .collezioni .n{font-size:15px;line-height:1.3}
+  .collezioni .c{font-size:13px}
+  .cassetto .scheda,.cassetto[data-sel] .scheda{padding:6px 0 18px;font-size:14px}
+  .riga{gap:0 10px}
+  .intro{margin-top:36px}
+  .azioni{flex-wrap:wrap;gap:14px 22px}
+  .azioni .tel-m{display:inline}
+  .bottone{padding:16px 18px;font-size:15px;white-space:nowrap}
+  .sez{padding-top:104px}
+  h2{font-size:38px;line-height:1.08}
+  .azienda .grande{font-size:32px;line-height:1.22}
+  .azienda .testo{margin-top:24px}
+  .anni{grid-template-columns:1fr 1fr;margin-top:52px;column-gap:16px;row-gap:32px}
+  .anni li{padding-right:8px}
+  .anni .a{font-size:32px;line-height:1.05}
+  .anni .d{font-size:14px}
+  .striscia{grid-template-columns:1fr;row-gap:24px;margin-top:40px}
+  .lavorazioni .apre,.campionario .apre{margin-top:36px;font-size:17px}
+  .lavorazioni .elenco,.bestiario{font-size:18px}
+  .vassoio{grid-template-columns:repeat(3,1fr);margin-top:44px;row-gap:28px}
+  .vassoio .n{font-size:15px}
+  .vassoio .c{font-size:13px}
+  .vassoio img{max-width:100%}
+  .chiusura{padding-top:112px}
+  .chiusura .foto img{aspect-ratio:1/1}
+  .chiusura .testo{padding-top:36px}
+  .chiusura h2{font-size:32px}
+  .recapiti{margin-top:32px}
+  .recapiti .tel{font-size:34px}
+  .piede{margin-top:72px;padding-top:56px}
+  .piede nav,.piede nav:first-of-type{grid-column:span 6}
+  .piede nav:nth-of-type(3){grid-column:1/13}
+  .piede .griglia{row-gap:40px}
+}
+@media (max-width:340px){
+  .apertura h1{font-size:38px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="testata" id="testata">
+    <a class="logo" href="#" aria-label="Griste, home"><img src="img/logo-griste-blu.svg" width="107" height="30" alt="Griste"></a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav class="menu" id="menu" aria-label="Principale">
+      <a href="#collezioni">Collezioni</a>
+      <a href="#azienda">Azienda</a>
+      <a href="#lavorazioni">Lavorazioni</a>
+      <a href="#campionario">Campionario</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a class="tel num" href="tel:+390498790716">049&nbsp;8790716</a>
+    <a class="lingua" href="en/" hreflang="en" lang="en">EN</a>
+  </header>
+</div>
+
+<main>
+<div class="wrap">
+  <section class="apertura" id="collezioni" aria-labelledby="titolo">
+    <div class="testa">
+      <h1 id="titolo"><span class="r">La maison del gioiello</span> <span class="r">per calzature</span></h1>
+      <div class="intro">
+        <p>Applicazioni, bottoni, placche, fibbie, puntali e talloni in metallo, con smalto, strass, pietre e perle: li progettiamo e li produciamo per gli stilisti della calzatura.</p>
+        <div class="azioni">
+          <a class="bottone" href="mailto:info@griste.com">Scrivete a info@griste.com</a>
+          <a class="tel-m num" href="tel:+390498790716">049&nbsp;8790716</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cassetto" id="cassetto" data-sel="0">
+      <div class="collezioni" role="tablist" aria-label="Le quattro collezioni, un pezzo per collezione">
+        <button role="tab" id="tab-natura" aria-selected="true" aria-controls="pannello" tabindex="0" aria-label="Natura, 31 pezzi"><span class="sede"><img src="img/natura-fiore-450.webp" srcset="img/natura-fiore-342.webp 342w, img/natura-fiore-450.webp 450w" sizes="(max-width:700px) 342px, 450px" width="450" height="486" alt="" fetchpriority="high"></span><span class="targa"><span class="n">Natura</span><span class="c num">31</span></span></button>
+        <button role="tab" id="tab-moda" aria-selected="false" aria-controls="pannello" tabindex="-1" aria-label="Moda, 21 pezzi"><span class="sede"><img src="img/moda-fibbia-450.webp" srcset="img/moda-fibbia-342.webp 342w, img/moda-fibbia-450.webp 450w" sizes="(max-width:700px) 342px, 450px" width="450" height="486" alt=""></span><span class="targa"><span class="n">Moda</span><span class="c num">21</span></span></button>
+        <button role="tab" id="tab-macchina" aria-selected="false" aria-controls="pannello" tabindex="-1" aria-label="Macchina creativa, 26 pezzi"><span class="sede"><img src="img/macchina-applicazione-450.webp" srcset="img/macchina-applicazione-342.webp 342w, img/macchina-applicazione-450.webp 450w" sizes="(max-width:700px) 342px, 450px" width="450" height="486" alt=""></span><span class="targa"><span class="n">Macchina creativa</span><span class="c num">26</span></span></button>
+        <button role="tab" id="tab-umana" aria-selected="false" aria-controls="pannello" tabindex="-1" aria-label="Natura umana, 21 pezzi"><span class="sede"><img src="img/umana-bottone-450.webp" srcset="img/umana-bottone-342.webp 342w, img/umana-bottone-450.webp 450w" sizes="(max-width:700px) 342px, 450px" width="450" height="486" alt=""></span><span class="targa"><span class="n">Natura umana</span><span class="c num">21</span></span></button>
+      </div>
+      <div class="scheda" id="pannello" role="tabpanel" aria-labelledby="tab-natura">
+        <p class="riga num" aria-live="polite"><b id="cap-nome">Fiore</b> <span id="cap-pos">Natura, 1 di 31</span> <span class="lav" id="cap-lav">Lavorazione su metallo con smalto</span></p>
+        <p class="visually-hidden" id="cap-alt">Fiore in smalto bianco e verde con stami in metallo dorato.</p>
+        <p class="chiedi"><a id="cap-mail" href="mailto:info@griste.com?subject=Fiore%2C%20collezione%20Natura">Chiedete questo pezzo</a> <a id="cap-link" href="collezioni/natura.html">I 31 pezzi della collezione</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sez azienda" id="azienda" aria-labelledby="t-azienda">
+    <div class="griglia">
+      <h2 class="etichetta" id="t-azienda">Azienda</h2>
+      <p class="grande">Griste nasce nel 1975 nelle microlavorazioni metalliche e nei trattamenti galvanici. Negli anni Ottanta passa alla calzatura e, con gli stilisti del territorio, diventa un punto di riferimento del settore.</p>
+      <p class="testo">Oggi la guidano Alberto e Letizia Burattin e fa parte del Gruppo Altofare, che riunisce aziende italiane di accessori per il lusso. Chi lavora con Griste può attingere alle idee custodite nei suoi archivi, oppure portare le proprie indicazioni per un pezzo su misura.</p>
+      <ol class="anni">
+        <li><span class="a">1975</span><span class="d">Nasce la ditta Griste</span></li>
+        <li><span class="a">Anni ’80</span><span class="d">Negli anni Ottanta, i primi accessori per scarpe e pelletterie</span></li>
+        <li><span class="a">2008</span><span class="d">Fotovoltaico da 49&nbsp;kW sulle coperture dei capannoni</span></li>
+        <li><span class="a">2022</span><span class="d">Certificazione ambientale UNI EN ISO 14001:2015, Certiquality</span></li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<section class="sez lavorazioni" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="wrap">
+    <div class="griglia">
+      <h2 id="t-lav">Dal disegno al prototipo</h2>
+      <div class="striscia">
+        <figure>
+          <img src="img/lab-cesello-640.jpg" srcset="img/lab-cesello-480.jpg 480w, img/lab-cesello-640.jpg 640w" sizes="(max-width:700px) 100vw, 640px" width="640" height="427" alt="Mani che cesellano un fiore in metallo appoggiato su un blocco" loading="lazy">
+          <figcaption>Il cesello di un fiore</figcaption>
+        </figure>
+        <figure>
+          <img src="img/lab-galvanica-640.jpg" srcset="img/lab-galvanica-480.jpg 480w, img/lab-galvanica-640.jpg 640w" sizes="(max-width:700px) 100vw, 640px" width="640" height="427" alt="Telaio con i pezzi appesi sopra le vasche dei bagni galvanici" loading="lazy">
+          <figcaption>I bagni galvanici</figcaption>
+        </figure>
+      </div>
+      <p class="apre">Ogni accessorio Griste prende forma dalle suggestioni più diverse, un gioiello famoso, una sfilata di moda, un romanzo, un libro di architettura. Poi passa sulla carta, al computer in CAD e CAM, e diventa un prototipo che arricchisce il campionario.</p>
+      <div class="destra">
+        <p class="elenco">Fusione zama, fusione ottone, stampaggio a freddo, lavorazioni a pantografo, saldatura, marcatura, smaltatura, pulimentatura e bagni galvanici anallergici.</p>
+        <p class="materie">Le materie prime: pietre dure, cristalli, smalti, ottone. La produzione si avvale anche di un gruppo di aziende selezionate che lavorano in esclusiva per Griste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="sez campionario" id="campionario" aria-labelledby="t-camp">
+    <div class="griglia">
+      <h2 id="t-camp">Il campionario, ovvero il tesoro di Griste</h2>
+      <ul class="vassoio">
+        <li><a href="campionario.html?tipo=applicazioni"><img src="img/tipo-applicazione-200.webp" srcset="img/tipo-applicazione-200.webp 200w, img/tipo-applicazione-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Applicazione con cristallo viola triangolare e navette di strass" loading="lazy"><span class="n">Applicazioni</span><span class="c">33 pezzi</span></a></li>
+        <li><a href="campionario.html?tipo=bottoni"><img src="img/tipo-bottone-200.webp" srcset="img/tipo-bottone-200.webp 200w, img/tipo-bottone-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Bottone con pietra blu e corona di strass" loading="lazy"><span class="n">Bottoni</span><span class="c">20 pezzi</span></a></li>
+        <li><a href="campionario.html?tipo=placche"><img src="img/tipo-placca-200.webp" srcset="img/tipo-placca-200.webp 200w, img/tipo-placca-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Placca in smalto rosa e blu notte" loading="lazy"><span class="n">Placche</span><span class="c">12 pezzi</span></a></li>
+        <li><a href="campionario.html?tipo=fibbie"><img src="img/tipo-fibbia-200.webp" srcset="img/tipo-fibbia-200.webp 200w, img/tipo-fibbia-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Fibbia rotonda con strass verdi" loading="lazy"><span class="n">Fibbie</span><span class="c">11 pezzi</span></a></li>
+        <li><a href="campionario.html?tipo=puntali"><img src="img/tipo-puntale-200.webp" srcset="img/tipo-puntale-200.webp 200w, img/tipo-puntale-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Puntale in metallo dorato e argentato" loading="lazy"><span class="n">Puntali</span><span class="c">3 pezzi</span></a></li>
+        <li><a href="campionario.html?tipo=talloni"><img src="img/tipo-tallone-200.webp" srcset="img/tipo-tallone-200.webp 200w, img/tipo-tallone-400.webp 400w" sizes="(max-width:700px) 30vw, 200px" width="200" height="216" alt="Tallone in smalto turchese e bianco" loading="lazy"><span class="n">Talloni</span><span class="c">2 pezzi</span></a></li>
+      </ul>
+      <p class="apre">Negli astucci di velluto Griste conserva la storia dell'azienda e quella dell'intero mondo dell'accessorio per calzature. Gli stilisti chiedono di consultarlo come un'opera conservata in un museo.</p>
+      <div class="destra">
+        <p class="bestiario">E poi fiori, farfalle, libellule, un bruco, una rana, un'ape, un&nbsp;gufo, una fragola e un pappagallo.</p>
+        <p class="conti num">Nelle quattro collezioni, 99 pezzi. Molti uniscono più lavorazioni: 58 hanno strass, 30 smalto, 18 pietre, 3 perle.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-contatti">
+  <div class="wrap">
+    <div class="griglia">
+      <figure class="foto">
+        <picture>
+          <source media="(max-width:700px)" srcset="img/chiusura-banco-q600.jpg 600w, img/chiusura-banco-q1200.jpg 1200w" sizes="100vw" width="1200" height="1200">
+          <img src="img/chiusura-banco-900.jpg" srcset="img/chiusura-banco-900.jpg 900w, img/chiusura-banco-1350.jpg 1350w, img/chiusura-banco-1600.jpg 1600w" sizes="(max-width:960px) 100vw, 57vw" width="1600" height="1200" alt="Mani al banco orafo: un bulino su un anello, attorno pezzi e catene in argento" loading="lazy">
+        </picture>
+        <figcaption>Foto indicativa</figcaption>
+      </figure>
+      <div class="testo">
+        <h2 id="t-contatti">Griste realizza sogni, quelli che i&nbsp;clienti conoscono e quelli che ancora non sanno di avere</h2>
+        <ul class="recapiti">
+          <li><a class="tel" href="tel:+390498790716">049&nbsp;8790716</a></li>
+          <li><a href="mailto:info@griste.com">info@griste.com</a></li>
+          <li class="ind">Via Irpinia 55, zona artigianale<br>35020 Villatora di Saonara, Padova</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=45.38008%2C11.96602" rel="noopener">Apri la mappa</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div class="griglia">
+      <div class="marchio">
+        <img src="img/logo-griste-blu.svg" width="107" height="30" alt="Griste">
+        <p>Gioielli e accessori per calzature. Parte del <a href="https://altofare.com/accessori-calzature/" rel="noopener">Gruppo Altofare</a>.</p>
+      </div>
+      <nav aria-labelledby="p-azienda">
+        <h3 id="p-azienda">Azienda</h3>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="campionario.html">Il campionario</a></li>
+          <li><a href="lavorazioni.html">Lavorazioni</a></li>
+          <li><a href="sostenibilita.html">Sostenibilità e certificazioni</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p-collezioni">
+        <h3 id="p-collezioni">Collezioni</h3>
+        <ul>
+          <li><a href="collezioni/natura.html">Natura</a></li>
+          <li><a href="collezioni/moda.html">Moda</a></li>
+          <li><a href="collezioni/macchina-creativa.html">Macchina creativa</a></li>
+          <li><a href="collezioni/natura-umana.html">Natura umana</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="p-contatti">
+        <h3 id="p-contatti">Contatti</h3>
+        <ul>
+          <li><a href="mailto:amministrazione@griste.com">amministrazione@griste.com</a></li>
+          <li><a href="mailto:gristesrl@legalmail.it">PEC gristesrl@legalmail.it</a></li>
+          <li><a href="contatti.html">Come raggiungerci</a></li>
+        </ul>
+      </nav>
+      <div class="notizie">
+        <h3 id="p-notizie">Collezioni e fiere</h3>
+        <p>Le nuove collezioni e le fiere in cui ci trovate, per uffici stile e uffici prodotto.</p>
+        <form id="newsletter" action="#" method="post" novalidate aria-labelledby="p-notizie">
+          <div class="campo">
+            <label class="visually-hidden" for="nl-email">Email</label>
+            <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="La vostra email" required>
+            <button type="submit">Iscriviti</button>
+          </div>
+          <label class="consenso"><input type="checkbox" name="consenso" required> <span>Ho letto l'<a href="privacy.html">informativa sulla privacy</a> e accetto di ricevere le comunicazioni di Griste.</span></label>
+          <p class="esito" id="nl-esito" role="status"></p>
+        </form>
+      </div>
+      <div class="legale">
+        <ul>
+          <li>Griste S.r.l.</li>
+          <li>Via Irpinia 55, 35020 Villatora di Saonara (PD)</li>
+          <li class="num">P.IVA e C.F. 00465750289</li>
+          <li class="num">REA PD 126289</li>
+          <li class="num">Cap. soc. €&nbsp;20.800,00</li>
+        </ul>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="cookie.html">Cookie</a></li>
+          <li><a href="documenti.html">Codice etico e Modello 231</a></li>
+          <li><a href="en/" hreflang="en" lang="en">English</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Un pezzo vero per collezione; pos = posto del pezzo nella collezione come la pubblica griste.com
+  var PEZZI=[
+    {nome:'Fiore',coll:'Natura',pos:1,n:31,lav:'Lavorazione su metallo con smalto',link:'collezioni/natura.html',
+     alt:'Fiore in smalto bianco e verde con stami in metallo dorato.'},
+    {nome:'Fibbia',coll:'Moda',pos:3,n:21,lav:'Lavorazione su metallo con smalto',link:'collezioni/moda.html',
+     alt:'Fibbia rettangolare in smalto nero con telaio e ardiglione in metallo dorato.'},
+    {nome:'Applicazione',coll:'Macchina creativa',pos:25,n:26,lav:'Lavorazione con smalto e catena metallica',link:'collezioni/macchina-creativa.html',
+     alt:'Applicazione tonda in smalto blu, rosa e verde con quattro catene in metallo.'},
+    {nome:'Bottone',coll:'Natura umana',pos:6,n:21,lav:'Lavorazione con strass',link:'collezioni/natura-umana.html',
+     alt:'Bottone con strass fucsia al centro e corona di strass in castoni dorati.'}
+  ];
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  var cas=document.getElementById('cassetto'), pann=document.getElementById('pannello');
+  function testo(id,t){document.getElementById(id).textContent=t;}
+  function mostra(k,fuoco){
+    var p=PEZZI[k];
+    cas.setAttribute('data-sel',k);
+    testo('cap-nome',p.nome);
+    testo('cap-pos',p.coll+', '+p.pos+' di '+p.n);
+    testo('cap-lav',p.lav);
+    testo('cap-alt',p.alt);
+    document.getElementById('cap-mail').href='mailto:info@griste.com?subject='+encodeURIComponent(p.nome+', collezione '+p.coll);
+    var a=document.getElementById('cap-link'); a.href=p.link; a.textContent='I '+p.n+' pezzi della collezione';
+    tabs.forEach(function(t,j){var s=j===k;t.setAttribute('aria-selected',s);t.tabIndex=s?0:-1;});
+    pann.setAttribute('aria-labelledby',tabs[k].id);
+    if(fuoco) tabs[k].focus();
+  }
+  tabs.forEach(function(t,j){
+    t.addEventListener('click',function(){cas.classList.add('toccato');mostra(j,false);});
+    t.addEventListener('keydown',function(ev){
+      var k=tabs.indexOf(document.activeElement), m=tabs.length, d=null;
+      if(ev.key==='ArrowRight'||ev.key==='ArrowDown') d=(k+1)%m;
+      else if(ev.key==='ArrowLeft'||ev.key==='ArrowUp') d=(k-1+m)%m;
+      else if(ev.key==='Home') d=0; else if(ev.key==='End') d=m-1;
+      if(d!==null){ev.preventDefault();cas.classList.add('toccato');mostra(d,true);}
+    });
+  });
+
+  // menu su tablet e telefono
+  var b=document.querySelector('.apri-menu'), tes=document.getElementById('testata');
+  b.addEventListener('click',function(){var o=tes.classList.toggle('aperta');b.setAttribute('aria-expanded',o);b.textContent=o?'Chiudi':'Menu';});
+  document.getElementById('menu').addEventListener('click',function(ev){if(ev.target.tagName==='A'&&tes.classList.contains('aperta')){tes.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';}});
+
+  // newsletter: non invia nulla finché non è collegata a un servizio (vedi LEGGIMI)
+  document.getElementById('newsletter').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var f=ev.target, out=document.getElementById('nl-esito');
+    if(!f.email.value||!f.email.checkValidity()){out.textContent='Scrivete un indirizzo email valido.';f.email.focus();return;}
+    if(!f.consenso.checked){out.textContent='Serve il consenso per l\'iscrizione.';return;}
+    out.textContent='Grazie. L\'iscrizione non è ancora collegata a un servizio di invio.';
+  });
+})();
+</script>
+</body>
+</html>

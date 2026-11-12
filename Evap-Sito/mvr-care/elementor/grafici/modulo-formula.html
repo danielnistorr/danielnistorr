@@ -1,0 +1,21 @@
+<!-- MVR CARE: sceglie la formula nel modulo quando si arriva da un bottone di una scheda
+  (indirizzo con ?formula=pure o ?formula=plus, anche dalle campagne). Il campo del modulo deve avere
+  ID "formula" e le opzioni "PURE", "PLUS", "Non so, consigliatemi". Nessun effetto visivo. -->
+<script>
+(function () {
+  var VALORI = { pure: 'PURE', plus: 'PLUS' };
+  function imposta(v) {
+    var s = document.querySelector('select[name="form_fields[formula]"]');
+    var scelta = v && VALORI[String(v).toLowerCase()];
+    if (!s || !scelta) return;
+    for (var i = 0; i < s.options.length; i++) { if (s.options[i].value === scelta) { s.selectedIndex = i; } }
+  }
+  function daIndirizzo() { try { imposta(new URLSearchParams(location.search).get('formula')); } catch (e) {} }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', daIndirizzo); } else { daIndirizzo(); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="formula="]');
+    if (!a) return;
+    try { imposta(new URL(a.href, location.href).searchParams.get('formula')); } catch (err) {}
+  }, true);
+})();
+</script>

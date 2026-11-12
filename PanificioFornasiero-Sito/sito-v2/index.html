@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panificio Fornasiero, Camin (Padova): orari dei due negozi e prenotazioni</title>
+<meta name="description" content="Panificio Galileo Fornasiero, a Camin dal 1963: pane fatto da noi ogni giorno, pasta fresca, focacce e dolci. Orari e telefoni dei negozi di via Vigonovese 116 e via Alsazia 3. Panettone e focaccia di Natale su prenotazione.">
+<link rel="icon" href="img/logo-bruno-64.png">
+<link rel="preload" href="fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/erode-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/josefin-sans-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Caratteri serviti dalla pagina, tre voci con un compito fisso ciascuna.
+   Josefin Sans (Santiago Orozco, Google Fonts, SIL Open Font License 1.1): la voce dell'insegna di legno.
+     Il nome in testata in corsivo spaziato come sopra la vetrina, le etichette, le date grandi.
+   Erode (Indian Type Foundry, Fontshare, ITF Free Font License): titoli, nomi dei negozi e dei pani, citazioni.
+   Fira Sans (Carrois Apostrophe per Mozilla, Google Fonts, SIL Open Font License 1.1): testo, stato, orari, telefoni, bottoni. */
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-400-latin.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-500-latin.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("fonts/fira-sans-600-latin.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Erode"; src: url("fonts/erode-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Erode"; src: url("fonts/erode-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Josefin Sans"; src: url("fonts/josefin-sans-latin.woff2") format("woff2"); font-weight: 100 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Josefin Sans"; src: url("fonts/josefin-sans-italic-latin.woff2") format("woff2"); font-weight: 100 700; font-style: italic; font-display: swap; }
+
+:root {
+  --carta: #FBFAF7;     /* il bianco del sacchetto di carta della bottega */
+  --carta2: #F3EFE8;    /* lo stesso sacchetto in ombra: il passe-partout della vetrina e "Chi siamo" */
+  --inchiostro: #2A1E17;/* le scritte brune del sacchetto */
+  --testo2: #5C4A3E;
+  --legno: #4A2E1F;     /* il legno dell'insegna di via Vigonovese */
+  --bordeaux: #733129;  /* la scritta "Fornasiero dal 1963" del sito */
+  --crema: #F6EFE4;
+  --aperto: #2C6A3C;
+  --m: 16px;            /* margine di pagina */
+  --hdr: 56px;
+  --sans: "Fira Sans", system-ui, sans-serif;
+  --serif: "Erode", Georgia, serif;
+  --insegna: "Josefin Sans", "Fira Sans", sans-serif;
+}
+@media (min-width: 760px) { :root { --m: 40px; --hdr: 64px; } }
+@media (min-width: 1100px) { :root { --m: 72px; --hdr: 72px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--hdr) + 8px); }
+body { margin: 0; background: var(--carta); color: var(--inchiostro); font: 400 18px/1.5 var(--sans); font-variant-numeric: tabular-nums; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--bordeaux); outline-offset: 3px; }
+h1, h2, h3, p, ul, ol, figure, blockquote, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+[hidden] { display: none !important; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nw { white-space: nowrap; }
+.etichetta { font: 600 15px/1.2 var(--insegna); letter-spacing: .14em; text-transform: uppercase; color: var(--testo2); }
+
+/* Bottoni: pieni sul legno, a filo sul bianco. Solo il colore cambia al passaggio. */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .4em; min-height: 52px; padding: 0 20px; border-radius: 2px; font: 600 18px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background-color .15s, color .15s, border-color .15s; }
+.btn-pieno { background: var(--legno); color: #fff; border: 2px solid var(--legno); }
+.btn-pieno:hover { background: var(--inchiostro); border-color: var(--inchiostro); }
+.btn-filo { background: transparent; color: var(--inchiostro); border: 2px solid #CFC3B4; }
+.btn-filo:hover { border-color: var(--inchiostro); }
+.btn-bianco { background: #fff; color: var(--bordeaux); border: 2px solid #fff; }
+.btn-bianco:hover { background: var(--crema); border-color: var(--crema); }
+
+/* TESTATA: l'insegna di legno, "FORNASIERO" in corsivo spaziato come sopra la vetrina. */
+.testata { position: sticky; top: 0; z-index: 20; background: var(--legno); color: #fff; height: var(--hdr); }
+.testata .riga { height: 100%; display: flex; align-items: center; padding: 0 var(--m); gap: 10px; }
+.marchio { margin-right: auto; text-decoration: none; color: #fff; font: italic 600 21px/1 var(--insegna); letter-spacing: .3em; padding: 10px 0; }
+.nav-lista { display: flex; gap: 30px; }
+.nav-lista a { color: #fff; text-decoration: none; font-size: 16px; padding: 10px 0; border-bottom: 1px solid transparent; transition: border-color .15s; }
+.nav-lista a:hover { border-bottom-color: #E4D6C6; }
+.t-chiama, .menu-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; font: 600 16px/1 var(--sans); text-decoration: none; cursor: pointer; transition: background-color .15s; }
+.t-chiama:hover, .menu-btn:hover { background: rgba(255,255,255,.12); }
+.t-tel { display: none; }
+@media (max-width: 1099px) {
+  .nav { display: none; position: absolute; left: 0; right: 0; top: var(--hdr); background: var(--legno); padding: 4px var(--m) 20px; border-top: 1px solid rgba(255,255,255,.18); }
+  .nav.aperto { display: block; }
+  .nav-lista { flex-direction: column; gap: 0; }
+  .nav-lista a { display: block; padding: 14px 0; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,.14); }
+}
+@media (max-width: 1099px) { .marchio { font-size: 18px; letter-spacing: .24em; } }
+@media (max-width: 380px) { .marchio { font-size: 15px; letter-spacing: .2em; } .t-chiama, .menu-btn { padding: 0 10px; } }
+@media (min-width: 1100px) {
+  .menu-btn, .t-chiama { display: none; }
+  .nav { margin-right: 36px; }
+  .t-tel { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; color: #fff; text-decoration: none; font: 600 17px/1 var(--sans); }
+  .t-tel:hover { background: rgba(255,255,255,.12); }
+}
+
+/* PRIMA SCHERMATA. Telefono: la striscia della vetrina, il nome, lo stato, i due negozi.
+   Da 1000 px: la vetrina a misura nativa sul passe-partout, tutto centrato sotto di lei. */
+.apertura { padding: 0; }
+.ap-passe { display: flex; flex-direction: column; }
+.ap-foto { order: -1; }
+.ap-foto img { width: 100%; height: 136px; object-fit: cover; object-position: 50% 40%; }
+.ap-foto figcaption { padding: 6px var(--m) 0; font-size: 14px; line-height: 1.35; color: var(--testo2); }
+.cap-l { display: none; }
+.cap-s { display: inline; }
+.ap-passe h1 { padding: 12px var(--m) 0; font: 500 27px/1.12 var(--serif); letter-spacing: -.012em; text-wrap: balance; }
+.ap-sotto { display: none; }
+.ap-dati { padding: 0 var(--m); }
+.stato { margin-top: 12px; font: 600 21px/1.28 var(--sans); letter-spacing: -.005em; max-width: 30ch; }
+.stato .ora { color: var(--aperto); }
+.stato .chiuso { color: var(--bordeaux); }
+.avviso { margin-top: 4px; font-size: 16px; line-height: 1.35; color: var(--bordeaux); }
+.negozi-ap { margin-top: 12px; display: grid; gap: 14px; }
+.neg-nome { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 12px; }
+.neg-nome h2 { font: 500 20px/1.15 var(--serif); }
+.neg-nome small { font-size: 14px; color: var(--testo2); white-space: nowrap; }
+.neg-oggi { margin-top: 3px; font-size: 16px; line-height: 1.3; }
+.neg-oggi b { font-weight: 600; }
+.neg-ecc { font-size: 16px; line-height: 1.3; color: var(--inchiostro); }
+.neg-ecc .cell { display: inline-flex; align-items: center; min-height: 48px; margin: -6px 0; font-weight: 600; }
+.pallino { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #B9ADA0; margin-right: 7px; transform: translateY(-1px); }
+.pallino.si { background: var(--aperto); }
+.neg-az { margin-top: 6px; display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.neg-az .btn-filo { min-width: 96px; }
+@media (max-width: 370px) { .neg-az .btn { font-size: 16px; padding: 0 12px; } .neg-az .btn-filo { min-width: 76px; } }
+
+.fascia { margin-top: 14px; background: var(--bordeaux); color: #fff; padding: 12px var(--m) 14px; }
+.fascia p { font: 500 19px/1.22 var(--serif); }
+.fascia p span { font-weight: 400; }
+.fascia-az { margin-top: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; }
+.fascia-az .btn { min-height: 48px; font-size: 17px; padding: 0 16px; }
+.fascia-az a:not(.btn) { color: #fff; font-size: 16px; padding: 12px 0; }
+
+@media (min-width: 600px) and (max-width: 679px) {
+  .ap-foto img { height: 240px; object-position: 50% 30%; }
+  .cap-l { display: inline; }
+  .cap-s { display: none; }
+  .ap-passe h1 { font-size: 36px; padding-top: 16px; }
+  .ap-sotto { display: block; padding: 6px var(--m) 0; font-size: 17px; color: var(--testo2); }
+  .stato { font-size: 25px; margin-top: 16px; }
+}
+
+/* Da 680 px la vetrina sta intera a misura nativa (640x319) sul passe-partout: mai ingrandita. */
+@media (min-width: 680px) {
+  .apertura { text-align: center; }
+  .ap-passe { background: var(--carta2); padding: 22px var(--m) 16px; align-items: center; }
+  .ap-foto { order: 0; margin-top: 16px; }
+  .ap-foto img { width: 640px; height: 319px; object-fit: fill; }
+  .ap-foto figcaption { padding: 10px 0 0; font-size: 15px; }
+  .cap-l { display: inline; }
+  .cap-s { display: none; }
+  .ap-passe h1 { padding: 0; font-size: 40px; line-height: 1.05; letter-spacing: -.02em; }
+  .ap-sotto { display: block; margin-top: 8px; font-size: 18px; color: var(--testo2); }
+  .stato { margin: 20px auto 0; font-size: 28px; line-height: 1.16; letter-spacing: -.012em; max-width: 40ch; }
+  .avviso { font-size: 18px; margin-top: 6px; }
+  .negozi-ap { margin: 22px auto 0; max-width: 900px; gap: 28px; text-align: left; }
+  .neg-nome { justify-content: flex-start; }
+  .neg-nome h2 { font-size: 24px; }
+  .neg-nome small { font-size: 15px; }
+  .neg-oggi { margin-top: 6px; font-size: 17px; }
+  .neg-ecc { font-size: 17px; margin-top: 2px; }
+  .neg-ecc .cell { min-height: 0; margin: 0; padding: 2px 0; }
+  .neg-az { margin-top: 12px; display: flex; gap: 14px; }
+  .neg-az .btn-filo { min-width: 0; }
+}
+@media (min-width: 720px) { .negozi-ap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (min-width: 1000px) {
+  .ap-passe h1 { font-size: 46px; }
+  .stato { font-size: 34px; }
+  .negozi-ap { gap: 64px; }
+  .neg-nome h2 { font-size: 26px; }
+  .fascia { margin-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 84px; padding: 12px var(--m); }
+  .fascia p { font-size: 27px; line-height: 1.1; letter-spacing: -.01em; }
+  .fascia p span { font: 400 18px/1.3 var(--sans); color: #F3DED8; }
+  .fascia-az { margin: 0; flex: none; gap: 28px; }
+  .fascia-az .btn { min-height: 52px; font-size: 18px; padding: 0 20px; }
+  .fascia-az a:not(.btn) { font-size: 17px; }
+}
+
+/* SEZIONI */
+section { padding: 34px 0; }
+.s-titolo { font: 500 32px/1.1 var(--serif); letter-spacing: -.015em; text-wrap: balance; }
+.didascalia { margin-top: 8px; font-size: 14px; line-height: 1.4; color: var(--testo2); }
+.citazione { font: 400 22px/1.32 var(--serif); letter-spacing: -.005em; }
+.firma-c { display: block; margin-top: 10px; font: 600 14px/1.3 var(--insegna); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--testo2); }
+@media (min-width: 1100px) {
+  section { padding: 80px 0; }
+  .s-titolo { font-size: 60px; line-height: 1.02; letter-spacing: -.022em; }
+}
+
+/* LE FESTE: la foto del panettone a filo del bordo, il testo accanto. */
+.feste { padding-top: 0; display: flex; flex-direction: column; }
+.feste-foto1 { order: -1; }
+.feste-foto1 img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.feste-tit { padding: 24px var(--m) 0; }
+.feste-testo { padding: 0 var(--m); }
+.feste-testo p { margin-top: 12px; max-width: 36ch; }
+.feste-testo .piccolo { font-size: 16px; color: var(--testo2); }
+.feste-azioni { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; }
+.feste-azioni .btn { white-space: normal; text-align: center; line-height: 1.2; padding-top: 10px; padding-bottom: 10px; }
+.feste-azioni .alt { display: inline-flex; align-items: center; min-height: 48px; font-size: 16px; }
+.feste .citazione { margin: 28px var(--m) 0; max-width: 30ch; }
+.feste-foto2 { margin-top: 28px; padding: 0 var(--m); max-width: calc(220px + 2 * var(--m)); }
+.feste-foto2 img { width: 100%; }
+@media (min-width: 760px) and (max-width: 1099px) {
+  .feste-foto1 img { aspect-ratio: 16 / 9; }
+  .feste-testo, .feste .citazione { max-width: 640px; }
+  .feste-foto2 { max-width: 520px; }
+}
+@media (min-width: 1100px) {
+  .feste { padding-top: 80px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; row-gap: 44px; }
+  .feste-tit { grid-column: 1 / -1; grid-row: 1; padding: 0 var(--m); }
+  .feste-foto1 { grid-column: 1; grid-row: 2; }
+  .feste-foto1 img { aspect-ratio: 1560 / 1500; }
+  .feste-destra { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; padding-right: var(--m); }
+  .feste-testo { padding: 0; }
+  .feste-testo p { font-size: 19px; }
+  .feste-testo p:first-child { margin-top: 0; }
+  .feste .citazione { margin: 34px 0 0; font-size: 25px; }
+  .feste-foto2 { margin-top: auto; padding: 32px 0 0; max-width: 300px; }
+}
+
+/* IL PANE. Telefono: titolo, foto a tutta larghezza, i cinque pani padovani uno sotto l'altro, grandi, come sulla lavagna
+   del banco. Da 1100 px: titolo piccolo e frase, i cinque nomi su tutta la larghezza a 80 px,
+   sotto l'elenco e il forno a sinistra e la foto delle tartarughe a destra, a filo del bordo. */
+.pane-intro { padding: 0 var(--m); }
+.pane-intro p { margin-top: 12px; max-width: 40ch; }
+.pane-foto { margin-top: 26px; }
+.pane-foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 62%; }
+.pane-foto .didascalia { padding: 0 var(--m); }
+.pani { padding: 0 var(--m); margin-top: 30px; }
+.pani-casa { margin-top: 12px; }
+.pani-casa li { font: 400 36px/1.06 var(--serif); letter-spacing: -.018em; }
+.pani-altri { margin-top: 30px; }
+.pani-altri ul { margin-top: 10px; columns: 2; column-gap: 24px; font-size: 17px; line-height: 1.45; }
+.pani-altri li { break-inside: avoid; padding: 2px 0; }
+.pani-nota { margin-top: 14px; font-size: 16px; color: var(--testo2); max-width: 44ch; }
+.forno { padding: 0 var(--m); margin-top: 34px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.forno .f-lungo { grid-column: 1 / -1; }
+.forno .f-pizze { order: 2; } .forno .f-dolci { order: 3; }
+@media (min-width: 760px) { .forno .f-lungo { grid-column: auto; } .forno .f-pizze, .forno .f-dolci { order: 0; } }
+.forno p { margin-top: 6px; font-size: 17px; line-height: 1.5; }
+@media (min-width: 760px) and (max-width: 1099px) {
+  /* tavoletta: i cinque nomi a sinistra, la foto a destra a filo del bordo, il resto sotto a tutta larghezza */
+  .pane { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; column-gap: 40px; }
+  .pane-intro { grid-column: 1 / -1; grid-row: 1; }
+  .pani { display: contents; }
+  .pani > .etichetta { grid-column: 1; grid-row: 2; padding-left: var(--m); margin-top: 34px; }
+  .pani-casa { grid-column: 1; grid-row: 3; padding-left: var(--m); }
+  .pani-casa li { font-size: 5vw; line-height: 1.08; }
+  .pane-foto { grid-column: 2; grid-row: 2 / span 3; margin-top: 34px; }
+  .pane-foto img { aspect-ratio: 1060 / 1178; object-position: 50% 50%; }
+  .pane-foto .didascalia { padding: 0; }
+  .pani-altri { grid-column: 1 / -1; grid-row: 5; padding: 0 var(--m); }
+  .pani-altri ul { columns: 3; }
+  .pani-nota { grid-column: 1 / -1; grid-row: 6; padding: 0 var(--m); }
+  .forno { grid-column: 1 / -1; grid-row: 7; grid-template-columns: 1fr 1fr; gap: 32px 40px; }
+}
+@media (min-width: 1100px) {
+  .pane { padding-top: 72px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(5, auto) 1fr; column-gap: 80px; align-items: start; }
+  .pane-intro { grid-column: 1 / -1; grid-row: 1; }
+  .pane-intro .s-titolo { font-size: 44px; line-height: 1.06; letter-spacing: -.018em; }
+  .pane-intro p { margin-top: 14px; font-size: 19px; max-width: 54ch; }
+  .pani { display: contents; }
+  .pani > .etichetta { grid-column: 1 / -1; grid-row: 2; padding: 0 var(--m); margin-top: 52px; }
+  .pani-casa { grid-column: 1 / -1; grid-row: 3; padding: 0 var(--m); margin-top: 14px; display: flex; flex-wrap: wrap; gap: 0 26px; }
+  .pani-casa li { font-size: 80px; line-height: 1.04; letter-spacing: -.028em; }
+  .pani-casa li:not(:last-child)::after { content: ","; }
+  .pani-altri { grid-column: 1; grid-row: 4; padding-left: var(--m); margin-top: 52px; }
+  .pani-altri ul { columns: 3; column-gap: 28px; }
+  .pani-nota { grid-column: 1; grid-row: 5; padding-left: var(--m); }
+  .forno { grid-column: 1; grid-row: 6; margin-top: 52px; padding: 0 0 0 var(--m); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px 48px; }
+  .forno p { font-size: 16px; }
+  .pane-foto { grid-column: 2; grid-row: 4 / span 3; margin: 52px 0 0; }
+  .pane-foto img { aspect-ratio: 1060 / 1178; object-position: 50% 50%; }
+  .pane-foto .didascalia { padding: 0; }
+}
+
+/* CHI SIAMO: solo parole. Da 1100 px tutto centrato sul grigio caldo: titolo piccolo, la frase di Galileo grande da sola,
+   le quattro date nella voce dell'insegna, enormi. */
+.storia { background: var(--carta2); }
+.storia-in { padding: 0 var(--m); }
+.storia-p { margin-top: 14px; max-width: 42ch; }
+.storia .citazione { margin-top: 28px; font-size: 26px; line-height: 1.26; letter-spacing: -.01em; max-width: 24ch; }
+.date { margin-top: 34px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 20px; }
+.date li { display: grid; gap: 6px; font-size: 16px; line-height: 1.4; }
+.date b { font: 600 48px/1 var(--insegna); color: var(--bordeaux); letter-spacing: .01em; }
+@media (min-width: 760px) and (max-width: 1099px) {
+  .storia .citazione { font-size: 36px; line-height: 1.2; }
+  .date { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .date b { font-size: 56px; }
+}
+@media (min-width: 1100px) {
+  .storia { padding: 96px 0; }
+  .storia-in { text-align: center; }
+  .storia-in .s-titolo { font-size: 34px; line-height: 1.1; letter-spacing: -.01em; }
+  .storia-p { font-size: 19px; margin: 12px auto 0; }
+  .storia .citazione { margin: 56px auto 0; font-size: 58px; line-height: 1.12; letter-spacing: -.024em; max-width: 25ch; text-wrap: balance; }
+  .storia .firma-c { margin-top: 20px; }
+  .date { margin-top: 88px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+  .date li { gap: 14px; justify-items: center; }
+  .date li span { max-width: 26ch; }
+  .date b { font-size: 96px; letter-spacing: -.01em; }
+}
+
+/* FORNITURE: solo testo. Da 1100 px il titolo su una riga intera, sotto due colonne disuguali. */
+.forniture-in { padding: 0 var(--m); }
+.forniture-testo p { margin-top: 14px; max-width: 42ch; }
+.forniture-testo .domanda { font-weight: 500; }
+.recapito-lab { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; }
+.recapito-lab .btn { white-space: normal; text-align: center; line-height: 1.2; padding-top: 10px; padding-bottom: 10px; }
+.recapito-lab a:not(.btn) { display: inline-flex; align-items: center; min-height: 48px; font-size: 17px; }
+.forniture .mail-lab { margin-top: 10px; max-width: none; font-size: 17px; overflow-wrap: anywhere; }
+.forniture .mail-lab a { display: inline-block; padding: 4px 0; font-weight: 500; }
+.famiglie { margin-top: 26px; padding-top: 20px; border-top: 1px solid #DED4C7; }
+.famiglie p { font-size: 17px; }
+.famiglie p { margin-top: 8px; max-width: 42ch; }
+@media (min-width: 1100px) {
+  .forniture-in { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 80px; align-items: start; }
+  .forniture-in .s-titolo { grid-column: 1 / -1; font-size: 52px; }
+  .forniture-testo { grid-column: 1; max-width: 680px; margin-top: 18px; }
+  .forniture-testo > p:first-child { font-size: 21px; line-height: 1.45; }
+  .famiglie { grid-column: 2; margin-top: 32px; }
+}
+
+/* BACHECA: una nota piccola, una foto da anteprima. */
+.bacheca { padding-top: 0; }
+.bacheca-in { margin: 0 var(--m); padding-top: 34px; border-top: 1px solid #DED4C7; display: grid; grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: auto 1fr; gap: 0 18px; align-items: start; }
+.bacheca-foto { grid-row: 1 / span 2; }
+.bacheca-foto img { width: 112px; }
+.bacheca .post { display: contents; }
+.bacheca .post > .etichetta, .bacheca .post > h3 { grid-column: 2; }
+.bacheca .post > :not(.etichetta):not(h3) { grid-column: 1 / -1; }
+.bacheca h3 { font: 500 26px/1.15 var(--serif); margin-top: 10px; }
+.bacheca .post p { margin-top: 10px; max-width: 46ch; }
+.firma { font: 500 22px/1.2 var(--serif); margin-top: 12px; }
+.link-bach { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 0 26px; }
+.link-bach a { display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; }
+@media (min-width: 760px) { .bacheca-in { grid-template-columns: 240px minmax(0, 1fr); column-gap: 48px; align-items: start; } .bacheca-foto { grid-row: auto; } .bacheca-foto img { width: 240px; } .bacheca .post { display: block; } }
+@media (min-width: 1100px) { .bacheca-in { margin: 0 auto; max-width: 1000px; padding-top: 64px; grid-template-columns: 240px minmax(0, 1fr); column-gap: 64px; } }
+
+/* CHIUSURA: "Vieni a trovarci", le parole del loro sito; i due negozi con l'orario della settimana. */
+.chiusura { padding: 40px var(--m) 44px; background: var(--carta); }
+.chiusura .grande { font: 500 40px/1 var(--serif); letter-spacing: -.02em; }
+.recapiti { margin-top: 26px; display: grid; gap: 30px; }
+.recapiti h3 { font: 500 23px/1.15 var(--serif); }
+.recapiti .tipo { margin-top: 2px; font-size: 15px; color: var(--testo2); }
+.recapiti .ind { margin-top: 4px; font-size: 17px; line-height: 1.5; }
+.recapiti .ind a { display: inline-flex; align-items: center; min-height: 44px; }
+.recapiti .tel { display: flex; align-items: center; min-height: 48px; font: 600 25px/1.2 var(--sans); text-decoration: none; }
+.recapiti .tel small { font: 400 15px/1.2 var(--sans); color: var(--testo2); margin-left: 10px; }
+.recapiti .tel:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.recapiti .orari { margin-top: 6px; font-size: 17px; line-height: 1.55; }
+.recapiti .orari .poi { color: var(--testo2); }
+.mail { margin-top: 22px; font-size: 17px; overflow-wrap: anywhere; }
+.mail a { display: inline-block; padding: 6px 0; }
+@media (min-width: 760px) and (max-width: 1099px) { .recapiti { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) {
+  .chiusura { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 80px; padding: 80px var(--m); align-items: start; }
+  .chiusura .grande { font-size: 96px; line-height: .98; letter-spacing: -.03em; max-width: 6ch; }
+  .chiusura-dx { grid-column: 2; }
+  .recapiti { margin-top: 6px; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .recapiti h3 { font-size: 27px; }
+  .recapiti .tel { font-size: 28px; }
+  .mail { margin-top: 36px; }
+}
+
+/* PIEDE: lo stesso legno dell'insegna. */
+.piede { background: var(--legno); color: var(--crema); padding: 40px var(--m) 24px; }
+.piede a { color: #fff; }
+.piede-alto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.piede-chi { display: flex; gap: 20px; align-items: center; }
+.piede-chi img { width: 80px; flex: none; }
+.piede-chi p { font-size: 16px; line-height: 1.5; color: #E7DACB; max-width: 34ch; }
+.piede-feste { font-size: 16px; line-height: 1.5; color: #E7DACB; max-width: 46ch; }
+.piede-feste a { white-space: nowrap; font-weight: 600; }
+.colonne { margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.2); display: grid; gap: 26px; }
+.colonne h2 { font: 600 14px/1.2 var(--insegna); letter-spacing: .14em; text-transform: uppercase; color: #D8C6B3; }
+.colonne ul { margin-top: 8px; }
+.colonne li a { display: inline-flex; align-items: center; min-height: 40px; font-size: 16px; text-decoration: none; overflow-wrap: anywhere; }
+.colonne li a:hover { text-decoration: underline; }
+.legale { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); font-size: 14px; line-height: 1.6; color: #D8C6B3; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; }
+.legale a { color: #fff; padding: 6px 0; }
+.colonne { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 20px; }
+.colonne .c-neg { grid-column: 1 / -1; }
+@media (min-width: 600px) { .colonne .c-neg { grid-column: auto; } }
+@media (min-width: 1100px) {
+  .piede { padding: 56px var(--m) 24px; }
+  .piede-alto { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 72px; align-items: center; }
+  .piede-chi img { width: 112px; }
+  .colonne { margin-top: 44px; padding-top: 30px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+  .colonne li a { min-height: 34px; }
+  .legale { margin-top: 40px; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Bakery",
+      "@id": "#via-vigonovese",
+      "name": "Panificio Galileo Fornasiero, laboratorio e negozio",
+      "telephone": "+39 049 870 26 58",
+      "email": "info@panificiogalileofornasiero.it",
+      "foundingDate": "1963",
+      "address": { "@type": "PostalAddress", "streetAddress": "Via Vigonovese 116", "postalCode": "35127", "addressLocality": "Camin, Padova", "addressRegion": "PD", "addressCountry": "IT" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "13:45" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"], "opens": "16:30", "closes": "20:00" }
+      ]
+    },
+    {
+      "@type": "Bakery",
+      "@id": "#via-alsazia",
+      "name": "Panificio Galileo Fornasiero, punto vendita",
+      "telephone": "+39 049 870 51 07",
+      "email": "info@panificiogalileofornasiero.it",
+      "address": { "@type": "PostalAddress", "streetAddress": "Via Alsazia 3", "postalCode": "35127", "addressLocality": "Camin, Padova", "addressRegion": "PD", "addressCountry": "IT" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "13:45" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "16:30", "closes": "19:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:30", "closes": "13:30" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="testata">
+  <div class="riga">
+    <a class="marchio" href="#inizio" aria-label="Panificio Fornasiero, torna all'inizio">FORNASIERO</a>
+    <nav class="nav" id="nav" aria-label="Sezioni">
+      <ul class="nav-lista">
+        <li><a href="#negozi">Negozi e orari</a></li>
+        <li><a href="#feste">Natale e Pasqua</a></li>
+        <li><a href="#pane">Il pane</a></li>
+        <li><a href="#storia">Chi siamo</a></li>
+        <li><a href="#forniture">Forniture e consegne</a></li>
+      </ul>
+    </nav>
+    <a class="t-tel" href="tel:+390498702658">049 870 26 58</a>
+    <a class="t-chiama" href="#chiama">Chiama</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  </div>
+</header>
+
+<main id="inizio">
+
+<section class="apertura" id="apertura" aria-labelledby="ap-tit">
+  <div class="ap-passe">
+    <h1 id="ap-tit">Panificio Fornasiero, <span class="nw">a Camin</span> dal 1963</h1>
+    <p class="ap-sotto">Pane fatto da noi ogni giorno, pasta fresca all'uovo, focacce e dolci.</p>
+    <figure class="ap-foto">
+      <picture>
+        <source media="(min-width: 680px)" srcset="img/vetrina-640.webp" width="640" height="319">
+        <img src="img/vetrina-striscia-640.webp" width="640" height="262" alt="La vetrina di via Vigonovese 116 con l'insegna di legno FORNASIERO Galileo; Galileo e Fidalma sulla porta." fetchpriority="high">
+      </picture>
+      <figcaption><span class="cap-l">La nostra vetrina in via</span><span class="cap-s">Via</span> Vigonovese 116, vicino al semaforo<span class="cap-l">. Galileo e Fidalma sulla porta.</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="ap-dati">
+    <p class="stato" id="stato" aria-live="polite">Aperti dal lunedì al venerdì, mattina e pomeriggio (via Vigonovese chiusa il mercoledì pomeriggio). Il sabato mattina in via Alsazia 3.</p>
+    <p class="avviso" id="avviso" hidden></p>
+
+    <div class="negozi-ap" id="chiama">
+      <div class="neg" data-negozio="vig">
+        <div class="neg-nome"><h2>Via Vigonovese 116</h2><small>laboratorio e negozio</small></div>
+        <p class="neg-oggi" data-oggi>Lun-ven <span class="nw">8.30-13.45</span> e <span class="nw">16.30-20.00</span></p>
+        <p class="neg-ecc">Mercoledì pomeriggio chiuso. Sabato: chiamate.</p>
+        <div class="neg-az">
+          <a class="btn btn-pieno" href="tel:+390498702658">Chiama 049 870 26 58</a>
+          <a class="btn btn-filo" href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Vigonovese%20116%2035127%20Padova" target="_blank" rel="noopener">Mappa<span class="vh"> di via Vigonovese 116</span></a>
+        </div>
+      </div>
+      <div class="neg" data-negozio="als">
+        <div class="neg-nome"><h2>Via Alsazia 3</h2><small>negozio</small></div>
+        <p class="neg-oggi" data-oggi>Lun-ven <span class="nw">8.30-13.45</span> e <span class="nw">16.30-19.30</span></p>
+        <p class="neg-ecc">Sabato <span class="nw">8.30-13.30</span>. Cellulare <a class="cell" href="tel:+393386600664">338 660 06 64</a></p>
+        <div class="neg-az">
+          <a class="btn btn-pieno" href="tel:+390498705107">Chiama 049 870 51 07</a>
+          <a class="btn btn-filo" href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Alsazia%203%20Camin%2035127%20Padova" target="_blank" rel="noopener">Mappa<span class="vh"> di via Alsazia 3</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fascia" id="fascia">
+  <p><b data-fascia-tit>Natale e Pasqua</b><span data-fascia-txt>: panettone, colomba e focacce si prenotano in negozio o al telefono.</span></p>
+  <div class="fascia-az"><a class="btn btn-bianco" href="tel:+390498702658">Chiama 049 870 26 58</a><a href="#feste">Come si prenota</a></div>
+</div>
+
+<div class="ordine" id="ordine">
+
+<section class="feste" id="feste" aria-labelledby="feste-tit">
+  <figure class="feste-foto1">
+    <img src="img/panettone-840.webp" srcset="img/panettone-560.webp 560w, img/panettone-840.webp 840w, img/panettone-1200.webp 1200w, img/panettone-1560.webp 1560w" sizes="(min-width: 1100px) 56vw, 100vw" width="1560" height="1500" loading="lazy" alt="Un panettone del panificio tagliato, con la fetta gialla e l'uvetta, sul sacco di juta con l'etichetta del panificio.">
+  </figure>
+  <h2 class="s-titolo feste-tit" id="feste-tit" data-feste-tit>Non è Natale senza i panettoni e le focacce</h2>
+  <div class="feste-destra">
+  <div class="feste-testo">
+    <p data-feste-testo>Panettone e focaccia di Natale, preparati con l'antica ricetta di Galileo Fornasiero. Si prenotano in negozio o al telefono. A Pasqua: colomba e focaccia.</p>
+    <p class="piccolo">Pezzature, prezzi e ultimo giorno utile: chiedete al banco o al telefono. Al telefono vi diciamo anche dove ritirare.</p>
+    <div class="feste-azioni">
+      <a class="btn btn-pieno" href="tel:+390498702658">Chiamaci e ordina:<span class="nw">049 870 26 58</span></a>
+      <a class="alt" href="tel:+390498705107">Via Alsazia: 049 870 51 07</a>
+    </div>
+  </div>
+  <blockquote class="citazione">«Sono tanti […] quelli che vengono a prenotare le nostre focacce, preparate come 50 anni fa.»<cite class="firma-c">Fidalma</cite></blockquote>
+  <figure class="feste-foto2">
+    <img src="img/focaccia-760.webp" srcset="img/focaccia-520.webp 520w, img/focaccia-760.webp 760w, img/focaccia-1080.webp 1080w" sizes="(min-width: 1100px) 300px, (min-width: 760px) 520px, 100vw" width="1520" height="1400" loading="lazy" alt="La focaccia veneta con la glassa di zucchero e le mandorle, sul sacco di juta con l'etichetta 50 anniversario 1963 2013.">
+    <figcaption class="didascalia">La focaccia, sul sacco dei cinquant'anni: <span class="nw">1963-2013</span>.</figcaption>
+  </figure>
+  </div>
+</section>
+
+<section class="pane" id="pane" aria-labelledby="pane-tit">
+  <div class="pane-intro">
+    <h2 class="s-titolo" id="pane-tit">Il pane di ogni giorno</h2>
+    <p>Ogni giorno nei nostri due negozi trovate più di 30 tipi di pane, fatti nel nostro laboratorio di via Vigonovese 116. Tra questi:</p>
+  </div>
+  <figure class="pane-foto">
+    <img src="img/tartarughe-760.webp" srcset="img/tartarughe-520.webp 520w, img/tartarughe-760.webp 760w, img/tartarughe-1060.webp 1060w" sizes="(min-width: 1100px) 46vw, (min-width: 760px) 50vw, 100vw" width="1060" height="1178" loading="lazy" alt="Tre tartarughe nel cesto, davanti al sacchetto di carta con la scritta Fornasiero srl Camin-Padova.">
+    <figcaption class="didascalia">Tartarughe</figcaption>
+  </figure>
+  <div class="pani">
+    <h3 class="etichetta">I nostri pani padovani</h3>
+    <ul class="pani-casa">
+      <li>Maggiolini</li>
+      <li>Tartaruga</li>
+      <li>Ciopeta padovana</li>
+      <li>Stivaletto</li>
+      <li>Zoccoletto</li>
+    </ul>
+    <div class="pani-altri">
+      <h3 class="etichetta">E poi</h3>
+      <ul>
+        <li>Pane di farina 00</li>
+        <li>Filoncini di soia</li>
+        <li>Multicereali</li>
+        <li>Spiga al kamut</li>
+        <li>Filoncino integrale</li>
+        <li>Pane all'olio</li>
+        <li>Pane alla zucca</li>
+        <li>Pane al riso</li>
+        <li>Pane scuro</li>
+        <li>Pane alle noci</li>
+        <li>Pane ai fichi</li>
+        <li>Panino all'uvetta</li>
+        <li>Pane in cassetta</li>
+        <li>Pane al latte</li>
+        <li>Pane biscotto</li>
+      </ul>
+    </div>
+    <p class="pani-nota">E altri pani secondo la giornata: chiedete in negozio o al laboratorio.</p>
+  </div>
+  <div class="forno" id="forno">
+    <div>
+      <h3 class="etichetta">Pasta fresca all'uovo</h3>
+      <p>Gnocchi, tagliatelle, tagliolini e bigoli.</p>
+    </div>
+    <div class="f-lungo f-pizze">
+      <h3 class="etichetta">Pizze e focacce</h3>
+      <p>Margherita, prosciutto e funghi, 4 stagioni, porcini e grana, o con i vostri gusti. Focacce alle olive, alle cipolle, con patate, rosmarino e mozzarella.</p>
+    </div>
+    <div>
+      <h3 class="etichetta">Panini imbottiti</h3>
+      <p>Con vasta scelta di affettati misti.</p>
+    </div>
+    <div class="f-lungo f-dolci">
+      <h3 class="etichetta">Dolci da forno</h3>
+      <p>Crostate di ciliegie, albicocca, frutti di bosco, crema al limone, ricotta e cioccolato, crema di mandorle. Torta alle carote, plumcake, pan di Spagna con le mele.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<section class="storia" id="storia" aria-labelledby="storia-tit">
+  <div class="storia-in">
+    <div class="storia-sx">
+      <h2 class="s-titolo" id="storia-tit">Siamo aperti dal 1963</h2>
+      <p class="storia-p">Galileo Fornasiero è arrivato a Camin il primo aprile del 1963. Fidalma è al banco da sessant'anni.</p>
+    </div>
+    <blockquote class="citazione">«Siamo Fornasiero, fornai anche nel nome. La storia della mia famiglia è una storia di pane buono, di profumo, di ricerca.»<cite class="firma-c">Galileo Fornasiero</cite></blockquote>
+    <ol class="date">
+      <li><b>1928</b><span>Gli zii Domenico e Pasquale rilevano un forno chiuso a Villatora di Saonara.</span></li>
+      <li><b>1963</b><span>La bottega di via Vigonovese, a Camin. Tutto rigorosamente a mano.</span></li>
+      <li><b>2013</b><span>I cinquant'anni, con quattrocento persone in festa a Camin.</span></li>
+      <li><b>2023</b><span>Sessant'anni nello stesso posto.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="forniture" id="forniture" aria-labelledby="forn-tit">
+  <div class="forniture-in">
+    <h2 class="s-titolo" id="forn-tit">Per bar, alberghi, ristoranti e rivendite</h2>
+    <div class="forniture-testo">
+      <p>Siamo specializzati nella fornitura di pane per alberghi, bar, ristoranti e rivendite. Per decenni abbiamo dato il pane a tante aziende della zona, agli operai delle Officine Meccaniche Stanga e della Snia Viscosa.</p>
+      <p class="domanda">Chiamate per sapere se arriviamo fino a voi, in che giorni e a che ora.</p>
+      <div class="recapito-lab">
+        <a class="btn btn-pieno" href="tel:+390498702658">Chiama il laboratorio:<span class="nw">049 870 26 58</span></a>
+        <a href="#pane">Vedi i pani che facciamo</a>
+      </div>
+      <p class="mail-lab">Oppure scrivete a <a href="mailto:info@panificiogalileofornasiero.it?subject=Fornitura%20pane&amp;body=Buongiorno%2C%20scrivo%20per%20una%20fornitura%20di%20pane.%0A%0ALocale%3A%0AIndirizzo%3A%0APani%20e%20quantit%C3%A0%3A%0AGiorni%3A%0ATelefono%3A">info@panificiogalileofornasiero.it</a>, oggetto: Fornitura pane.</p>
+    </div>
+    <div class="famiglie">
+      <h3 class="etichetta">Anche per le famiglie</h3>
+      <p>Offriamo consegne a domicilio in zona Camin e dintorni: il pane ve lo portiamo a casa. Chiedete al laboratorio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bacheca" id="bacheca" aria-labelledby="bach-tit">
+  <div class="bacheca-in">
+    <figure class="bacheca-foto">
+      <img src="img/pandispagna-480.webp" width="480" height="481" loading="lazy" alt="Pan di Spagna pasticciato con la marmellata di albicocche, sul centrino.">
+    </figure>
+    <div class="post">
+      <h2 class="etichetta" id="bach-tit">La Bacheca di Romina</h2>
+      <h3>Nuovi dolci!</h3>
+      <p>Ti prendo per la gola con le mie nuove ricette dei nuovi dolci da forno: plumcake yogurt e cioccolato, tortino di mele e gocce di cioccolato, pan di Spagna pasticciato con marmellata di albicocche.</p>
+      <p>Ti aspetto, ti preparo una fetta e ti do la ricetta.</p>
+      <p class="firma">Romina</p>
+      <div class="link-bach">
+        <a href="https://www.panificiogalileofornasiero.it/bacheca-di-romina">Leggi la Bacheca</a>
+        <a href="https://www.instagram.com/panificiogalileofornasiero/" target="_blank" rel="noopener">Le ricette su Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura" id="negozi" aria-labelledby="neg-tit">
+  <h2 class="grande" id="neg-tit">Vieni a trovarci</h2>
+  <div class="chiusura-dx">
+    <div class="recapiti">
+      <div>
+        <h3>Via Vigonovese 116</h3>
+        <p class="tipo">Laboratorio e negozio, con l'insegna di legno, vicino al semaforo</p>
+        <p class="ind">35127 Camin (Padova)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Vigonovese%20116%2035127%20Padova" target="_blank" rel="noopener">Apri la mappa<span class="vh"> di via Vigonovese 116</span></a></p>
+        <a class="tel" href="tel:+390498702658">049 870 26 58</a>
+        <p class="orari">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-20.00</span><br>Mercoledì pomeriggio chiuso<br><span class="poi">Sabato, domenica e festivi: chiedete al telefono</span></p>
+      </div>
+      <div>
+        <h3>Via Alsazia 3</h3>
+        <p class="tipo">Negozio</p>
+        <p class="ind">35127 Camin (Padova)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Panificio%20Fornasiero%20Via%20Alsazia%203%20Camin%2035127%20Padova" target="_blank" rel="noopener">Apri la mappa<span class="vh"> di via Alsazia 3</span></a></p>
+        <a class="tel" href="tel:+390498705107">049 870 51 07</a>
+        <a class="tel" href="tel:+393386600664">338 660 06 64 <small>cellulare</small></a>
+        <p class="orari">Lunedì-venerdì <span class="nw">8.30-13.45</span> e <span class="nw">16.30-19.30</span><br>Sabato <span class="nw">8.30-13.30</span><br><span class="poi">Domenica e festivi: chiedete al telefono</span></p>
+      </div>
+    </div>
+    <p class="mail">Per tutti e due i negozi: <a href="mailto:info@panificiogalileofornasiero.it">info@panificiogalileofornasiero.it</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="piede">
+  <div class="piede-alto">
+    <div class="piede-chi">
+      <img src="img/logo-crema-224.png" srcset="img/logo-crema-224.png 2x, img/logo-crema-336.png 3x" width="112" height="96" alt="Panificio Galileo Fornasiero S.r.l.">
+      <p>Pane, pasta fresca, focacce e dolci dal nostro laboratorio di via Vigonovese 116, a Camin dal 1963.</p>
+    </div>
+    <p class="piede-feste">Le prenotazioni di Natale e di Pasqua si fanno al telefono: <a href="tel:+390498702658">049 870 26 58</a>. Per sapere quando si aprono, seguiteci su <a href="https://www.instagram.com/panificiogalileofornasiero/" target="_blank" rel="noopener">Instagram</a>.</p>
+  </div>
+  <div class="colonne">
+    <div>
+      <h2>Il panificio</h2>
+      <ul>
+        <li><a href="#storia">Chi siamo, dal 1963</a></li>
+        <li><a href="#forniture">Forniture e consegne</a></li>
+        <li><a href="https://www.panificiogalileofornasiero.it/bacheca-di-romina">La Bacheca di Romina</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Prodotti</h2>
+      <ul>
+        <li><a href="#pane">Il pane</a></li>
+        <li><a href="#forno">Pasta fresca, pizze e focacce</a></li>
+        <li><a href="#forno">Dolci da forno</a></li>
+        <li><a href="#feste">Natale e Pasqua</a></li>
+      </ul>
+    </div>
+    <div class="c-neg">
+      <h2>I negozi</h2>
+      <ul>
+        <li><a href="tel:+390498702658">Via Vigonovese 116: 049 870 26 58</a></li>
+        <li><a href="tel:+390498705107">Via Alsazia 3: 049 870 51 07</a></li>
+        <li><a href="#negozi">Orari dei due negozi</a></li>
+        <li><a href="mailto:info@panificiogalileofornasiero.it">info@panificiogalileofornasiero.it</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Seguici</h2>
+      <ul>
+        <li><a href="https://www.instagram.com/panificiogalileofornasiero/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legale">
+    <span>Panificio Galileo Fornasiero S.r.l.</span>
+    <span>Via Vigonovese 116, 35127 Camin (Padova)</span>
+    <span>P.IVA 02506350285</span>
+    <a href="https://www.panificiogalileofornasiero.it/privacy-policy">Privacy</a>
+    <a href="https://www.panificiogalileofornasiero.it/cookie-policy">Cookie</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Menu del telefono
+  var btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
+  btn.addEventListener('click', function () {
+    var a = nav.classList.toggle('aperto');
+    btn.setAttribute('aria-expanded', a ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) { nav.classList.remove('aperto'); btn.setAttribute('aria-expanded', 'false'); } });
+
+  // ===== Da aggiornare con il panificio =====
+  // Ferie: intervalli di giorni chiusi, per esempio [['2027-08-09', '2027-08-22']].
+  var FERIE = [];
+  // Festivi in cui la pagina non dice mai "aperto" (giorno-mese). Pasqua e Pasquetta si calcolano.
+  var FESTIVI = ['1-1', '6-1', '25-4', '1-5', '2-6', '13-6', '15-8', '1-11', '8-12', '25-12', '26-12'];
+  // Prenotazioni di Natale: la fascia c'è dal 1 novembre; dal 15 dicembre dice "chiamate per sapere se c'è
+  // ancora posto"; si spegne il 23 dicembre alle 13. Date scelte nella proposta, da far confermare ogni anno.
+  var NATALE_DA = [11, 1], FINE_PRENOTAZIONI = [12, 15], SPEGNI = [12, 23, 13 * 60];
+  // ==========================================
+
+  // Ora di Roma. Per le prove: ?ora=2026-11-15T10:00 (ora di Roma).
+  function adesso() {
+    var q = /[?&]ora=(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(location.search), p = {};
+    if (q) p = { year: q[1], month: q[2], day: q[3], hour: q[4], minute: q[5] };
+    else new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' })
+      .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    var ms = Date.UTC(+p.year, +p.month - 1, +p.day);
+    return { a: +p.year, m: +p.month, g: +p.day, ms: ms, dow: new Date(ms).getUTCDay(), min: +p.hour * 60 + +p.minute };
+  }
+  var T = adesso(), GIORNO = 864e5;
+  function pasqua(y) { var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451), mese = Math.floor((h + l - 7 * m + 114) / 31), giorno = ((h + l - 7 * m + 114) % 31) + 1; return Date.UTC(y, mese - 1, giorno); }
+  function giornoMs(s) { var x = s.split('-'); return Date.UTC(+x[0], +x[1] - 1, +x[2]); }
+  function festa(ms) {
+    var d = new Date(ms), P = pasqua(d.getUTCFullYear());
+    if (FESTIVI.indexOf(d.getUTCDate() + '-' + (d.getUTCMonth() + 1)) >= 0 || ms === P || ms === P + GIORNO) return true;
+    for (var i = 0; i < FERIE.length; i++) if (ms >= giornoMs(FERIE[i][0]) && ms <= giornoMs(FERIE[i][1])) return true;
+    return false;
+  }
+
+  // Orari scritti sul sito del panificio. null = non scritto (sabato di via Vigonovese, domenica): si chiede al telefono.
+  var M = [[510, 825], [990, 1200]], A = [[510, 825], [990, 1170]];
+  var N = {
+    vig: { nome: 'via Vigonovese 116', o: [null, M, M, [[510, 825]], M, M, null] },
+    als: { nome: 'via Alsazia 3', o: [null, A, A, A, A, A, [[510, 810]]] }
+  };
+  function orari(k, ms) { return festa(ms) ? 'festa' : N[k].o[new Date(ms).getUTCDay()]; }
+  var GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  function hh(m) { return Math.floor(m / 60) + '.' + ('0' + m % 60).slice(-2); }
+  function maiusc(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function fasce(o) { return o.map(function (f) { return '<span class="nw">' + hh(f[0]) + '-' + hh(f[1]) + '</span>'; }).join(' e '); }
+  function apertoIn(o) { if (!o || o === 'festa') return null; for (var i = 0; i < o.length; i++) if (T.min >= o[i][0] && T.min < o[i][1]) return o[i]; return null; }
+  function piuTardi(o) { if (!o || o === 'festa') return null; for (var i = 0; i < o.length; i++) if (T.min < o[i][0]) return o[i][0]; return null; }
+  function tra(f) { var r = f[1] - T.min; return r <= 30 ? ', tra ' + r + (r === 1 ? ' minuto' : ' minuti') : ''; }
+
+  var oV = orari('vig', T.ms), oA = orari('als', T.ms), fv = apertoIn(oV), fa = apertoIn(oA);
+
+  // Righe "oggi" dei due negozi
+  [['vig', oV, fv], ['als', oA, fa]].forEach(function (x) {
+    var el = document.querySelector('[data-negozio="' + x[0] + '"] [data-oggi]'), o = x[1], f = x[2];
+    var pall = '<span class="pallino' + (f ? ' si' : '') + '" aria-hidden="true"></span>';
+    if (o === 'festa') el.innerHTML = pall + 'Oggi è festa: chiedete l\'orario al telefono';
+    else if (!o) el.innerHTML = pall + 'Oggi è ' + GIORNI[T.dow] + ': chiedete l\'orario al telefono';
+    else el.innerHTML = pall + (f ? '<b>Aperto</b>, oggi ' : '<b>Chiuso</b>, oggi ') + fasce(o) + (x[0] === 'vig' && T.dow === 3 ? ', <b>pomeriggio chiuso</b>' : '');
+  });
+
+  // Il prossimo giorno con un orario scritto, saltando domeniche, festivi e ferie.
+  function prossimo() {
+    var n, ms, v, a, saltato = false;
+    for (n = 1; n <= 40; n++) {
+      ms = T.ms + n * GIORNO; v = orari('vig', ms); a = orari('als', ms);
+      if (Array.isArray(v) || Array.isArray(a)) break;
+      if (v === null && a === null) saltato = true;
+    }
+    if (n > 40) return 'Chiamate prima di passare.';
+    var d = new Date(ms), vv = Array.isArray(v) ? v : null, aa = Array.isArray(a) ? a : null;
+    var primo = Math.min(vv ? vv[0][0] : 9999, aa ? aa[0][0] : 9999);
+    var quando = n === 1 ? 'Domani' : maiusc(GIORNI[d.getUTCDay()]) + (n >= 7 ? ' ' + d.getUTCDate() + ' ' + MESI[d.getUTCMonth()] : '');
+    var dove = (vv && aa) ? '' : ' in ' + (vv ? N.vig.nome : N.als.nome);
+    return quando + ' apriamo alle ' + hh(primo) + dove + '.' + (saltato && T.dow !== 0 ? ' La domenica, chiamate.' : '');
+  }
+
+  // La frase di stato
+  var frase;
+  if (oV === 'festa') {
+    frase = '<span class="chiuso">Oggi è festa: chiamate prima di passare.</span> ' + prossimo();
+  } else if (fv && fa) {
+    frase = fv[1] === fa[1]
+      ? '<span class="ora">Aperti ora tutti e due i negozi</span>' + (fv[1] - T.min <= 30 ? ': chiudiamo' + tra(fv).slice(1) + ', alle ' : ', fino alle ') + hh(fv[1]) + '.'
+      : '<span class="ora">Aperti ora tutti e due i negozi.</span> Via Vigonovese chiude alle ' + hh(fv[1]) + tra(fv) + ', via Alsazia alle ' + hh(fa[1]) + tra(fa) + '.';
+  } else if (fv || fa) {
+    var k = fv ? 'vig' : 'als', f = fv || fa;
+    frase = '<span class="ora">Aperto ora in ' + N[k].nome + '</span>, chiude alle ' + hh(f[1]) + tra(f) + '.';
+  } else {
+    var pv = piuTardi(oV), pa = piuTardi(oA);
+    if (pv != null || pa != null) {
+      if (pv != null && pa != null && pv === pa) frase = '<span class="chiuso">Ora chiusi.</span> Riapriamo alle ' + hh(pv) + ' in tutti e due i negozi.';
+      else {
+        var kk = (pa == null || (pv != null && pv < pa)) ? 'vig' : 'als', p = kk === 'vig' ? pv : pa;
+        frase = '<span class="chiuso">Ora chiusi.</span> Alle ' + hh(p) + ' apre ' + N[kk].nome + '.';
+        if (T.dow === 3 && kk === 'als') frase += ' Via Vigonovese il mercoledì pomeriggio è chiusa.';
+      }
+    } else if (!oV && !oA) {
+      frase = '<span class="chiuso">Oggi è ' + GIORNI[T.dow] + ': chiamate prima di passare.</span> ' + prossimo();
+    } else {
+      frase = '<span class="chiuso">Ora chiusi.</span> ' + prossimo();
+    }
+  }
+  document.getElementById('stato').innerHTML = frase;
+
+  // Sotto Natale gli orari possono cambiare.
+  if (T.m === 12 && T.g >= 20) { var av = document.getElementById('avviso'); av.textContent = 'Sotto Natale gli orari possono cambiare: chiedete al telefono.'; av.hidden = false; }
+
+  // Le Feste. Fuori stagione la fascia sparisce e la sezione scende dopo il pane.
+  var P = pasqua(T.a), stag = '', tardi = false, dopo = function (mg) { return T.m > mg[0] || (T.m === mg[0] && T.g >= mg[1]); };
+  var spento = T.m === SPEGNI[0] && (T.g > SPEGNI[1] || (T.g === SPEGNI[1] && T.min >= SPEGNI[2]));
+  if (dopo(NATALE_DA) && T.m <= 12 && !(T.m === 12 && T.g > 24) && !spento) { stag = 'natale'; tardi = dopo(FINE_PRENOTAZIONI); }
+  else if (T.ms >= P - 40 * GIORNO && (T.ms < P - GIORNO || (T.ms === P - GIORNO && T.min < 13 * 60))) { stag = 'pasqua'; tardi = T.ms >= P - 7 * GIORNO; }
+  document.documentElement.setAttribute('data-stagione', stag || 'fuori');
+  var fascia = document.getElementById('fascia'), tit = document.querySelector('[data-feste-tit]'), txt = document.querySelector('[data-feste-testo]');
+  var nomeF = stag === 'pasqua' ? 'Colomba e focaccia di Pasqua' : 'Panettone e focaccia di Natale';
+  if (stag) {
+    document.querySelector('[data-fascia-tit]').textContent = nomeF;
+    document.querySelector('[data-fascia-txt]').textContent = tardi ? ': chiamate per sapere se c\'è ancora posto.' : ': si prenotano in negozio o al telefono.';
+    if (stag === 'pasqua') {
+      tit.textContent = 'Colomba e focaccia di Pasqua';
+      txt.textContent = 'Colomba e focaccia di Pasqua si prenotano in negozio o al telefono.';
+    }
+    if (tardi) txt.textContent = nomeF + ': chiamate per sapere se c\'è ancora posto.';
+  } else {
+    fascia.hidden = true;
+    tit.textContent = 'Natale e Pasqua';
+    txt.textContent = 'A Natale panettone e focaccia, preparati con l\'antica ricetta di Galileo Fornasiero; a Pasqua colomba e focaccia. Si prenotano in negozio o al telefono.';
+    document.getElementById('ordine').appendChild(document.getElementById('feste'));
+  }
+})();
+</script>
+</body>
+</html>

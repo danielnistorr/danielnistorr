@@ -1,0 +1,37 @@
+/* Edera Preventivo: solo le parti nuove del calcolatore (calendario, servizi aggiuntivi, note). Il resto lo
+   disegna il foglio di stile del tema, con le stesse classi del calcolatore di oggi. Colori, caratteri, filetti
+   e raggi sono quelli del tema (variabili --green, --line ...; tra parentesi il valore se il tema non c'e').
+   Nessuna animazione: il calendario si apre e si chiude di colpo. */
+
+.calcolo .edp-nota-spazio{display:block;margin-top:4px;font-size:12px;color:var(--ink-soft,#4f5b54)}
+.calcolo .spazio input:checked + label .edp-nota-spazio{color:#d7e0d8}
+.calcolo .edp-servizi .spazi{margin-top:0}
+.calcolo .edp-campo-data .nota[hidden]{display:none}
+.calcolo .edp-campo-data .nota{color:#8a2f1f}
+.calcolo .edp-campo-data input.edp-data{cursor:pointer}
+
+/* le note della stima (oltre la capienza, prezzo fisso, fuori dalle fasce) e "Da valutare con la struttura" al posto del totale */
+.calcolo .stima .edp-note-stima{margin:18px 0 0;padding:2px 0 2px 14px;border-left:2px solid var(--gold,#c3a66b);font-size:14px;line-height:1.55;color:var(--white,#fff)}
+.calcolo .stima .edp-note-stima[hidden]{display:none}
+.calcolo .stima .edp-note-stima p{margin:0}
+.calcolo .stima .edp-note-stima p + p{margin-top:6px;color:#d7e0d8}
+.calcolo .stima .prezzo.edp-da-valutare{font-size:clamp(30px,3vw,40px);line-height:1.15;letter-spacing:-.01em}
+
+/* calendario (flatpickr) con l'aspetto del sito */
+.flatpickr-calendar{font-family:var(--sans,"Jost",system-ui,sans-serif);color:var(--ink,#17251f);background:var(--white,#fff);border:1px solid var(--line,#d9d2c3);border-radius:1px;box-shadow:none;width:315px;padding:8px 0 10px}
+.flatpickr-calendar.open,.flatpickr-calendar.animate.open{animation:none}
+.flatpickr-calendar:before,.flatpickr-calendar:after{display:none}
+.flatpickr-months{padding:2px 8px 6px}
+.flatpickr-months .flatpickr-month{height:40px;color:var(--ink,#17251f);fill:var(--ink,#17251f)}
+.flatpickr-current-month{font-family:var(--serif,"Newsreader",Georgia,serif);font-size:19px;font-weight:400;padding-top:8px}
+.flatpickr-current-month .flatpickr-monthDropdown-months,.flatpickr-current-month input.cur-year{font-family:inherit;font-weight:400}
+.flatpickr-months .flatpickr-prev-month,.flatpickr-months .flatpickr-next-month{width:44px;height:44px;padding:13px;color:var(--green,#294b3b);fill:var(--green,#294b3b)}
+.flatpickr-months .flatpickr-prev-month:hover svg,.flatpickr-months .flatpickr-next-month:hover svg{fill:var(--green-deep,#1d3529)}
+span.flatpickr-weekday{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep,#7f6534)}
+.flatpickr-day{border-radius:1px;color:var(--ink,#17251f);font-size:14px;max-width:40px;height:40px;line-height:38px}
+.flatpickr-day:hover,.flatpickr-day:focus{background:var(--cream,#f5f2eb);border-color:var(--line,#d9d2c3)}
+.flatpickr-day.today{border-color:var(--gold,#c3a66b)}
+.flatpickr-day.today:hover,.flatpickr-day.today:focus{background:var(--cream,#f5f2eb);color:var(--ink,#17251f);border-color:var(--gold,#c3a66b)}
+.flatpickr-day.selected,.flatpickr-day.selected:hover,.flatpickr-day.selected:focus{background:var(--green,#294b3b);border-color:var(--green,#294b3b);color:var(--white,#fff)}
+.flatpickr-day.flatpickr-disabled,.flatpickr-day.flatpickr-disabled:hover,.flatpickr-day.prevMonthDay,.flatpickr-day.nextMonthDay{color:#a9afaa;background:transparent;border-color:transparent}
+.flatpickr-day.flatpickr-disabled{text-decoration:line-through;text-decoration-color:rgba(23,37,31,.35)}

@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mario Agnoletto, incisore meccanico a Tombelle di Vigonovo</title>
+<meta name="description" content="Fibbie, puntali, tacchi gioiello, punzoni e fustelle su disegno per calzatura e pelletteria. Zama, ottone, alluminio e acciaio, dal progetto alla serie.">
+<style>
+/* Host Grotesk, Element Type, SIL Open Font License 1.1 (Google Fonts), servito dalla pagina */
+@font-face{font-family:"Host Grotesk";src:url("fonts/host-grotesk-latin.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
+
+:root{
+  --cartone:#E7E4DD;      /* il cartone grigio dei piani dall'alto */
+  --cartone-2:#DCD8CF;
+  --grafite:#2A2A28;
+  --grafite-2:#5B5852;
+  --filo:rgba(42,42,40,.24);
+  --rosso:#C8102E;        /* il rosso del logo: timbro, stato acceso, passaggio sui link */
+  --m:clamp(16px,4.45vw,64px);   /* margine */
+  --g:clamp(12px,1.67vw,24px);   /* passo della griglia */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cartone);color:var(--grafite);font-family:"Host Grotesk",system-ui,sans-serif;font-weight:400;font-size:17px;line-height:1.5;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--rosso)}
+:focus-visible{outline:2px solid var(--grafite);outline-offset:3px}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-inline:var(--m)}
+.etichetta{font-size:11.5px;line-height:1.3;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.piccolo{font-size:13px;line-height:1.45}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* testata */
+.testata{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;gap:24px;height:84px;padding-inline:var(--m)}
+.testata .logo img{width:206px;height:auto}
+.testata nav{display:flex;gap:30px;font-size:15px;margin-left:clamp(32px,4vw,64px)}
+.testata nav a{text-decoration:none}
+.testata nav a:hover{text-decoration:underline}
+.testata .tel{margin-left:auto;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap}
+.menu{display:none;margin-left:auto;position:relative}
+
+/* 1. apertura: il pezzo posato sulla tavola, che esce dal bordo alto e dal bordo destro della pagina */
+.apertura{position:relative;height:100svh;min-height:760px;max-height:1040px;overflow:hidden}
+.tavola{position:absolute;top:0;right:0;height:100%;aspect-ratio:744/1084;margin:0}
+.tavola picture,.tavola .pezzo{display:block;width:100%;height:100%}
+.apertura .testo{position:absolute;left:var(--m);top:clamp(150px,20vh,196px);width:min(46vw,720px);z-index:2}
+h1{margin:0;font-weight:300;font-size:clamp(60px,9.3vw,152px);line-height:.9;letter-spacing:-.045em}
+.attacco{margin:36px 0 0;max-width:27em;font-size:19px;line-height:1.48}
+.apertura .contatto{margin-top:30px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px}
+.bottone{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--grafite);color:var(--cartone);text-decoration:none;font-weight:500;font-size:16px;transition:background-color .18s ease}
+.bottone:hover{background:var(--rosso);color:#fff}
+.apertura .dove{color:var(--grafite-2);font-size:15px}
+
+/* richiami numerati sul pezzo */
+.richiamo{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;line-height:1;white-space:nowrap;transform:translate(-6px,-50%)}
+.richiamo::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--grafite);box-shadow:0 0 0 3px rgba(231,228,221,.9)}
+.richiamo b{font-weight:500;font-variant-numeric:tabular-nums}
+.richiamo.sx{flex-direction:row-reverse;transform:translate(calc(-100% + 6px),-50%)}
+.richiamo i{display:block;width:40px;height:1px;background:var(--grafite)}
+.richiamo.lungo i{width:72px}
+.richiamo.lunghissimo i{width:116px}
+.richiamo.p{display:none}
+.legenda{position:absolute;left:var(--m);bottom:30px;z-index:2;display:flex;gap:18px;align-items:baseline;color:var(--grafite-2);margin:0}
+/* il timbro MA battuto sulla punta dell'anello, come un marchio sul pezzo */
+.timbro{position:absolute;width:112px;height:112px;transform:translate(-50%,-50%) rotate(-11deg);mix-blend-mode:multiply;z-index:1;pointer-events:none}
+.timbro.p{display:none}
+.legenda .num{font-weight:500;color:var(--grafite)}
+
+/* titoli di sezione */
+.sezione{padding-top:clamp(88px,10vw,148px)}
+h2{margin:0;font-weight:300;font-size:clamp(38px,4.6vw,66px);line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+h2.medio{font-size:clamp(32px,3.4vw,48px);letter-spacing:-.03em;line-height:1.02}
+p{margin:0;text-wrap:pretty}
+.intro{grid-column:1 / span 7}
+.intro p{margin-top:22px;max-width:34em;font-size:18px;color:var(--grafite)}
+.tav span,.legenda span:first-child{white-space:nowrap}
+.tav{grid-column:1 / -1;display:flex;gap:18px;align-items:baseline;color:var(--grafite-2);margin-bottom:22px}
+
+/* 2. la tavola dei campioni con il filtro per metallo */
+.filtro{grid-column:1 / -1;margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.filtro button{appearance:none;font:inherit;font-size:15px;color:var(--grafite);background:transparent;border:1px solid var(--filo);min-height:46px;padding:0 18px 0 14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+.filtro button:hover{border-color:var(--grafite)}
+.filtro button[aria-pressed="true"]{background:var(--grafite);color:var(--cartone);border-color:var(--grafite)}
+.filtro .campo{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.campo.tutti{background:conic-gradient(#8E959B 0 25%,#C5A465 0 50%,#D9DBDC 0 75%,#6E7377 0)}
+.campo.zama{background:linear-gradient(135deg,#B9BEC2,#7F868C)}
+.campo.ottone{background:linear-gradient(135deg,#E6CC8E,#A8844C)}
+.campo.alluminio{background:linear-gradient(135deg,#F3F4F4,#B9BCBF)}
+.campo.acciaio{background:linear-gradient(135deg,#A9AEB2,#4F5458)}
+.conteggio{margin-left:auto;color:var(--grafite-2);font-size:15px}
+.conteggio b{font-weight:500;color:var(--grafite)}
+
+.campioni{grid-column:1 / -1;margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px var(--g);container-type:inline-size}
+.campione{margin:0;position:relative}
+.campione .foto{position:relative;aspect-ratio:1;background:var(--cartone-2);overflow:hidden}
+.campione.largo{grid-column:span 2}
+.campione.largo .foto{aspect-ratio:auto;height:calc((100cqw - 3 * var(--g)) / 4)}
+.campione.grande{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column}
+.campione.grande .foto{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+.campione.grande .foto img{position:absolute;inset:0}
+.campione .foto img{width:100%;height:100%;object-fit:cover}
+.campione .foto.pelle{background:#3a2c22}
+.campione figcaption{display:grid;grid-template-columns:2.2em 1fr;column-gap:6px;margin-top:14px;font-size:14px;line-height:1.4}
+.campione .n{font-variant-numeric:tabular-nums;color:var(--grafite-2)}
+.campione .nome{font-size:17px;font-weight:500;line-height:1.25}
+.campione .met{grid-column:2;color:var(--grafite-2)}
+.campione .desc{grid-column:2;margin-top:6px;max-width:30em}
+.campione.acceso .foto::after{content:"";position:absolute;top:12px;right:12px;width:12px;height:12px;border-radius:50%;background:var(--rosso);box-shadow:0 0 0 3px var(--cartone-2)}
+/* con un metallo scelto: in tavola restano solo i campioni accesi, tutti della stessa misura; gli altri scendono
+   in una riga di caselle vuote col loro numero */
+.campioni.filtrato .campione{grid-column:auto;grid-row:auto;display:block}
+.campioni.filtrato .campione .foto{aspect-ratio:1;height:auto}
+.campioni.filtrato .campione.spento{display:none}
+.altri{grid-column:1 / -1;margin:36px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--grafite-2)}
+.altri[hidden]{display:none}
+.altri .tit{margin-right:8px}
+.altri li.c{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;box-shadow:inset 0 0 0 1px var(--filo)}
+.altri li.c b{font-weight:400;font-variant-numeric:tabular-nums}
+
+/* 3. dal disegno alla serie */
+.dittico{display:grid;grid-template-columns:7fr 5fr;gap:6px;margin-top:56px}
+.dittico figure{margin:0}
+.dittico .foto{height:clamp(300px,44vw,640px);overflow:hidden}
+.dittico img{width:100%;height:100%;object-fit:cover}
+.dittico figcaption{padding:16px var(--m) 0;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:15px}
+.dittico figure:first-child figcaption{padding-right:0}
+.dittico figure:last-child figcaption{padding-left:0}
+.dittico figcaption b{font-weight:500;font-size:17px}
+
+/* 4. punzoni: il cartellino sopra la foto */
+.punzoni{position:relative;margin-top:clamp(72px,7vw,104px)}
+.punzoni .foto{height:clamp(420px,58vw,820px);overflow:hidden}
+.punzoni .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.punzoni .didascalia{margin:14px var(--m) 0 auto;max-width:34em;text-align:right;font-size:13px;color:var(--grafite-2)}
+/* dritto e rovescio: il segno sul punzone e la sua impronta */
+.specchio{margin:26px 0 0;display:flex;gap:26px;align-items:flex-start;padding-top:20px;border-top:1px solid var(--filo)}
+.specchio div{display:flex;align-items:center;gap:12px;font-size:13px;line-height:1.35;color:var(--grafite-2)}
+.specchio img{width:52px;height:52px;flex:none}
+.specchio .rovescio img{transform:scaleX(-1)}
+.cartellino{position:absolute;left:var(--m);bottom:calc(var(--m) * 0.9);width:min(440px,calc(100% - 2 * var(--m)));background:var(--cartone);padding:30px 32px 32px}
+.cartellino .tav{margin:0 0 18px}
+.cartellino p{margin-top:14px;font-size:16px}
+.cartellino .bottone{margin-top:24px}
+
+/* 5. dove siamo: la sede dell'officina a sinistra, a filo del bordo della pagina; a destra una frase loro e i recapiti */
+.contatti{padding:clamp(88px,10vw,148px) 0 clamp(56px,6vw,88px)}
+.contatti .foto{grid-column:1 / 7;grid-row:1;margin:0 0 0 calc(-1 * var(--m))}
+.contatti .foto img{width:100%;height:clamp(560px,53vw,960px);object-fit:cover;object-position:50% 30%}
+.contatti .testo{grid-column:8 / 13;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.contatti .tav{margin-bottom:26px}
+.contatti h2{max-width:10.5em;font-size:clamp(36px,4.2vw,60px);line-height:1.02;letter-spacing:-.035em}
+.rec{font-size:17px;line-height:1.55}
+.rec p+p{margin-top:10px}
+.rec .numero{display:inline-flex;align-items:center;min-height:48px;font-size:clamp(28px,2.6vw,38px);letter-spacing:-.02em;line-height:1.1;text-underline-offset:.16em;white-space:nowrap}
+.rec a:not(.numero){display:inline-block;padding:2px 0}
+.rec .grigio{color:var(--grafite-2)}
+.nb{white-space:nowrap}
+
+.piede{margin:0 var(--m);padding:18px 0 26px;border-top:1px solid var(--filo)}
+.piede p{display:flex;flex-wrap:wrap;gap:2px 24px;font-size:13px;line-height:1.6;color:var(--grafite-2)}
+
+
+/* fino a 1240: menu a tendina, cosi' la testata non tocca lo stelo che entra dal bordo alto */
+@media (max-width:1240px){
+  .testata nav{display:none}
+  .menu{display:block;margin-left:auto}
+  .testata .tel{margin-left:0}
+}
+@media (max-width:1100px){
+  .apertura .testo{width:min(50vw,520px);top:150px}
+  .attacco{font-size:17px;max-width:24em}
+  .campione .desc{font-size:13px}
+  .intro{grid-column:1 / span 10}
+  .timbro{width:96px;height:96px}
+}
+/* tablet: il pezzo resta sopra, ma piu' basso, cosi' titolo e bottone stanno nella prima schermata */
+@media (min-width:601px) and (max-width:900px){
+  .apertura .tavola{width:min(58vw,430px);align-self:flex-start}
+  .richiamo i{width:18px}
+  .richiamo.lungo i{width:44px}
+  .apertura > .testo{margin-top:10px}
+}
+/* telefono e tablet stretto: il pezzo ruotato entra dal bordo alto e dal bordo sinistro, il testo sta sotto */
+@media (max-width:900px){
+  .apertura{height:auto;min-height:0;max-height:none;overflow:visible;display:flex;flex-direction:column}
+  .tavola{position:relative;top:auto;right:auto;height:auto;width:min(84vw,560px);order:-1}
+  .richiamo.l{display:none}
+  .richiamo.p{display:flex}
+  .timbro.l{display:none}
+  .timbro.p{display:block;width:84px;height:84px}
+  .apertura .testo{position:relative;left:auto;top:auto;width:auto;padding:4px var(--m) 0;margin-top:-6px}
+  .legenda{position:relative;left:auto;bottom:auto;padding:22px var(--m) 0}
+  .campioni{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px var(--g)}
+  .campione.grande{grid-row:auto}
+  .campione.largo .foto{height:auto;aspect-ratio:2/1}
+  .campione.largo{grid-column:1 / -1}
+  .campione.grande .foto{aspect-ratio:4/5}
+  .contatti{padding-bottom:0}
+  .contatti .testo{grid-column:1 / -1;gap:40px}
+  .contatti .foto{grid-column:1 / -1;grid-row:2;margin:56px calc(-1 * var(--m)) 0}
+  .contatti .foto img{height:auto;aspect-ratio:1;max-height:640px;object-position:50% 20%}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .testata{height:68px}
+  .testata .logo img{width:158px}
+  .tavola{width:86vw}
+  h1{font-size:clamp(50px,15.4vw,72px);line-height:.92}
+  .attacco{margin-top:20px;font-size:16.5px}
+  .apertura .contatto{margin-top:22px}
+  .richiamo{font-size:11px;gap:6px}
+  .richiamo i{width:18px}
+  .richiamo.lungo i{width:44px}
+  .timbro.p{width:68px;height:68px}
+  .testata .tel{display:none}
+  .menu{margin-left:auto}
+  .filtro{gap:8px}
+  .filtro button{min-height:44px;padding:0 13px 0 11px;font-size:14px}
+  .conteggio{margin:6px 0 0;flex-basis:100%}
+  .campioni{gap:30px 12px}
+  .campione.largo,.campione.grande{grid-column:1 / -1}
+  .campione figcaption{grid-template-columns:1.9em 1fr;font-size:13px}
+  .campione .nome{font-size:15px}
+  .campione .desc{font-size:13px}
+  .dittico{grid-template-columns:1fr;gap:28px}
+  .dittico .foto{height:auto;aspect-ratio:4/3}
+  .dittico figcaption,.dittico figure:first-child figcaption,.dittico figure:last-child figcaption{padding:12px var(--m) 0}
+  .punzoni .foto{height:auto;aspect-ratio:4/3}
+  .cartellino{position:relative;left:auto;bottom:auto;width:auto;margin:-48px var(--m) 0;padding:24px 22px 26px}
+  .punzoni .didascalia{text-align:left;margin:14px var(--m) 0}
+  .specchio{gap:18px}
+  .contatti h2{font-size:clamp(30px,8.8vw,40px);line-height:1.04}
+  .contatti .testo{gap:32px}
+  .contatti .foto{margin-top:44px}
+  .rec{font-size:16px}
+}
+@media (max-width:360px){
+  .richiamo.p.sx:not(.lungo) i{display:none}
+  .richiamo.p{gap:4px}
+  .timbro.p{width:58px;height:58px}
+  .testata .logo img{width:140px}
+}
+.menu summary{list-style:none;cursor:pointer;font-size:15px;font-weight:500;min-height:44px;display:flex;align-items:center}
+.menu summary::-webkit-details-marker{display:none}
+.menu ul{position:absolute;right:0;top:100%;margin-top:6px;min-width:220px;margin:0;padding:18px 22px;list-style:none;background:var(--cartone);box-shadow:0 0 0 1px var(--filo);display:grid;gap:12px;font-size:16px}
+.menu[open] ul a{display:block;min-height:32px}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <a class="logo" href="#" aria-label="Mario Agnoletto, incisore meccanico: torna all'inizio"><img src="img/logo.svg" alt="Mario Agnoletto" width="206" height="42"></a>
+  <nav aria-label="Sezioni">
+    <a href="#lavorazioni">Lavorazioni</a>
+    <a href="#serie">Dal disegno alla serie</a>
+    <a href="#punzoni">Punzoni</a>
+    <a href="#contatti">Dove siamo</a>
+  </nav>
+  <details class="menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="#lavorazioni">Lavorazioni</a></li>
+      <li><a href="#serie">Dal disegno alla serie</a></li>
+      <li><a href="#punzoni">Punzoni</a></li>
+      <li><a href="#contatti">Dove siamo</a></li>
+    </ul>
+  </details>
+  <a class="tel num" href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="testo">
+    <h1 id="titolo">Incisore<br>meccanico</h1>
+    <p class="attacco">Fibbie, puntali, tacchi gioiello, punzoni e fustelle su disegno, per la calzatura e la pelletteria. Seguiamo il pezzo dal progetto alla serie, in zama, ottone, alluminio e acciaio.</p>
+    <div class="contatto">
+      <a class="bottone num" href="tel:+390499800985">Chiama 049&nbsp;98&nbsp;00&nbsp;985</a>
+      <span class="dove">Tombelle di Vigonovo (VE), dal 1979</span>
+    </div>
+  </div>
+  <figure class="tavola">
+    <picture>
+      <source media="(max-width: 900px)" srcset="img/tacco-p-400.webp 400w, img/tacco-p-744.webp 744w" sizes="86vw">
+      <img class="pezzo" src="img/tacco-l-744.webp" srcset="img/tacco-l-480.webp 480w, img/tacco-l-744.webp 744w" sizes="69vh" width="744" height="1084" fetchpriority="high"
+        alt="Un tacco gioiello a lamelle in ottone visto dall'alto: l'anello d'appoggio, quattro lamelle e lo stelo in cui si innestano">
+    </picture>
+    <span class="richiamo l sx lunghissimo" style="left:64.25%;top:79.34%"><i></i><b>1</b> Anello</span>
+    <span class="richiamo l" style="left:72.18%;top:42.62%"><i></i><b>2</b> Lamelle</span>
+    <span class="richiamo l lungo" style="left:43.41%;top:27.03%"><i></i><b>3</b> Asola</span>
+    <span class="richiamo l lungo" style="left:36.69%;top:18.36%"><i></i><b>4</b> Stelo</span>
+    <span class="richiamo p" style="left:35.62%;top:79.34%"><i></i><b>1</b> Anello</span>
+    <span class="richiamo p sx" style="left:27.69%;top:42.62%"><i></i><b>2</b> Lamelle</span>
+    <span class="richiamo p sx lungo" style="left:56.45%;top:27.03%"><i></i><b>3</b> Asola</span>
+    <span class="richiamo p sx lungo" style="left:63.17%;top:18.36%"><i></i><b>4</b> Stelo</span>
+    <img class="timbro l" src="img/timbro.svg" alt="" width="112" height="112" style="left:74.87%;top:89.76%">
+    <img class="timbro p" src="img/timbro.svg" alt="" width="84" height="84" style="left:25.0%;top:89.76%">
+  </figure>
+  <p class="legenda piccolo"><span class="num">01</span><span>Tacco gioiello a lamelle in ottone, visto dall'alto</span></p>
+</section>
+
+<section class="sezione" id="lavorazioni" aria-labelledby="t-lav">
+  <div class="griglia">
+    <p class="tav piccolo"><span>A</span><span>Campionario</span></p>
+    <div class="intro">
+      <h2 id="t-lav">Otto lavorazioni, quattro metalli</h2>
+      <p>Due famiglie di pezzi: gli attrezzi per chi lavora la pelle e i pezzi che finiscono sulla scarpa, sulla borsa, in vetrina. In tavola ce ne sono sette; l'ottava sono le targhe da esposizione, in alluminio, ottone e plexiglas.</p>
+    </div>
+
+    <div class="filtro" id="metalli" role="group" aria-label="Filtra per metallo">
+      <button type="button" data-m="tutti" aria-pressed="true"><span class="campo tutti" aria-hidden="true"></span>Tutti</button>
+      <button type="button" data-m="zama" aria-pressed="false"><span class="campo zama" aria-hidden="true"></span>Zama</button>
+      <button type="button" data-m="ottone" aria-pressed="false"><span class="campo ottone" aria-hidden="true"></span>Ottone</button>
+      <button type="button" data-m="alluminio" aria-pressed="false"><span class="campo alluminio" aria-hidden="true"></span>Alluminio</button>
+      <button type="button" data-m="acciaio" aria-pressed="false"><span class="campo acciaio" aria-hidden="true"></span>Acciaio</button>
+      <p class="conteggio" aria-live="polite"><b class="num">7</b> lavorazioni in tavola</p>
+    </div>
+
+    <div class="campioni">
+      <figure class="campione grande" data-m="ottone acciaio alluminio">
+        <div class="foto"><img src="img/t-tacchi-660.webp" srcset="img/t-tacchi-480.webp 480w, img/t-tacchi-660.webp 660w" sizes="(max-width:900px) 92vw, 46vw" width="660" height="1000" loading="lazy" alt="Un tacco gioiello a gabbia in acciaio lucido, visto dall'alto"></div>
+        <figcaption><span class="n">01</span><span class="nome">Tacchi gioiello</span><span class="met">ottone, acciaio, alluminio</span><span class="desc">A gabbia, a lamelle o a stelo, su disegno.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="acciaio ottone">
+        <div class="foto"><img src="img/t-punzoni-560.webp" srcset="img/t-punzoni-400.webp 400w, img/t-punzoni-560.webp 560w, img/t-punzoni-700.webp 700w" sizes="(max-width:900px) 45vw, 22vw" width="700" height="700" loading="lazy" alt="Cliché in ottone inciso con un cavallo e il suo guidatore, visto dall'alto"></div>
+        <figcaption><span class="n">02</span><span class="nome">Punzoni e alfabeti</span><span class="met">acciaio, ottone</span><span class="desc">Per stampare pelle e cuoio, anche in set di alfabeti.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="ottone alluminio acciaio">
+        <div class="foto"><img src="img/t-fustelle-560.webp" srcset="img/t-fustelle-400.webp 400w, img/t-fustelle-560.webp 560w, img/t-fustelle-720.webp 720w" sizes="(max-width:900px) 45vw, 22vw" width="720" height="720" loading="lazy" alt="Stampo in acciaio a due fiori, con i segni della fresa"></div>
+        <figcaption><span class="n">03</span><span class="nome">Fustelle</span><span class="met">ottone, alluminio, acciaio</span><span class="desc">Per tagliare e stampare pelle, cuoio e tessuto.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="acciaio">
+        <div class="foto"><img src="img/t-ruote-640.webp" srcset="img/t-ruote-400.webp 400w, img/t-ruote-640.webp 640w, img/t-ruote-820.webp 820w" sizes="(max-width:900px) 45vw, 22vw" width="820" height="820" loading="lazy" alt="Ruota forata in acciaio vista dall'alto"></div>
+        <figcaption><span class="n">04</span><span class="nome">Ruote e rulli</span><span class="met">acciaio</span><span class="desc">Ruote in acciaio e rulli.</span></figcaption>
+      </figure>
+      <figure class="campione" data-m="">
+        <div class="foto"><img src="img/t-bigiotteria-640.webp" srcset="img/t-bigiotteria-400.webp 400w, img/t-bigiotteria-640.webp 640w, img/t-bigiotteria-1080.webp 1080w" sizes="(max-width:900px) 45vw, 22vw" width="1080" height="1080" loading="lazy" alt="Farfalle in metallo lucido traforate a ovali"></div>
+        <figcaption><span class="n">05</span><span class="nome">Bigiotteria</span><span class="met">finiture preziose</span><span class="desc">Anelli, bracciali, spille e pendagli, con cristalli e pietre.</span></figcaption>
+      </figure>
+      <figure class="campione largo" data-m="zama ottone alluminio acciaio">
+        <div class="foto"><img src="img/t-accessori-1180.webp" srcset="img/t-accessori-640.webp 640w, img/t-accessori-900.webp 900w, img/t-accessori-1180.webp 1180w" sizes="(max-width:900px) 92vw, 46vw" width="1180" height="590" loading="lazy" alt="Due fibbie in ottone lucido, una con le borchie a punta"></div>
+        <figcaption><span class="n">06</span><span class="nome">Accessori</span><span class="met">zama, ottone, alluminio, acciaio</span><span class="desc">Fibbie, morsetti, talloni, puntali e copritacchi, con qualsiasi finitura o verniciatura.</span></figcaption>
+      </figure>
+      <figure class="campione largo" data-m="">
+        <div class="foto pelle"><img src="img/t-stampa-960.webp" srcset="img/t-stampa-640.webp 640w, img/t-stampa-960.webp 960w" sizes="(max-width:900px) 92vw, 46vw" width="960" height="480" loading="lazy" alt="Pelle argento goffrata e cuoio marrone stampato a rilievo con un motivo a grappolo"></div>
+        <figcaption><span class="n">07</span><span class="nome">Stampa e foratura su pelle</span><span class="met">servizio, su pelle</span><span class="desc">Con un catalogo di lavorazioni pronte.</span></figcaption>
+      </figure>
+      <ul class="altri" hidden></ul>
+    </div>
+  </div>
+</section>
+
+<section class="sezione" id="serie" aria-labelledby="t-serie">
+  <div class="griglia">
+    <p class="tav piccolo"><span>B</span><span>Un pezzo, tre passaggi</span></p>
+    <div class="intro">
+      <h2 id="t-serie">Dal disegno alla serie</h2>
+      <p>Si parte da un'idea del cliente: ne seguiamo la progettazione, lo sviluppo del prototipo e la produzione in serie.</p>
+    </div>
+  </div>
+  <div class="dittico">
+    <figure>
+      <div class="foto"><img src="img/fresa-1600.webp" srcset="img/fresa-700.webp 700w, img/fresa-1100.webp 1100w, img/fresa-1600.webp 1600w, img/fresa-2100.webp 2100w" sizes="(max-width:600px) 100vw, 58vw" width="2100" height="1600" loading="lazy" alt="Una fresa al lavoro su un pezzo in rame"></div>
+      <figcaption><b>Prototipo</b><span>Il primo pezzo, prima della serie. Foto di repertorio.</span></figcaption>
+    </figure>
+    <figure>
+      <div class="foto"><img src="img/finiture-670.webp" srcset="img/finiture-480.webp 480w, img/finiture-670.webp 670w" sizes="(max-width:600px) 100vw, 42vw" width="670" height="820" loading="lazy" alt="Una fibbia a catena cromata e una placca in ottone con l'inserto martellato, su pelle stampata"></div>
+      <figcaption><b>Serie</b><span>Pezzi finiti, con qualsiasi finitura o verniciatura.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="punzoni" id="punzoni" aria-labelledby="t-pun">
+  <div class="foto"><img src="img/ottone-1500.webp" srcset="img/ottone-700.webp 700w, img/ottone-1100.webp 1100w, img/ottone-1500.webp 1500w, img/ottone-1920.webp 1920w" sizes="100vw" width="1920" height="1080" loading="lazy" alt="Ottone inciso dall'alto: un cliché a foglie, due bordi a spina e un blocchetto forato, sopra una lastra traforata"></div>
+  <div class="cartellino">
+    <p class="tav piccolo"><span>C</span><span>Punzoni e alfabeti</span></p>
+    <h2 class="medio" id="t-pun">Punzoni anche in 24 ore</h2>
+    <p>In acciaio e ottone, per stampare pelle e cuoio, anche in set di alfabeti per la personalizzazione. La grafica la sviluppiamo noi.</p>
+    <a class="bottone num" href="tel:+390499800985">Chiama 049&nbsp;98&nbsp;00&nbsp;985</a>
+    <div class="specchio">
+      <div class="rovescio"><img src="img/timbro-grafite.svg" alt="" width="52" height="52"><span>Sul punzone,<br>a rovescio</span></div>
+      <div><img src="img/timbro.svg" alt="" width="52" height="52"><span>Sulla pelle,<br>dritto</span></div>
+    </div>
+  </div>
+  <p class="didascalia">Ottone inciso dell'officina: un cliché a foglie, due bordi a spina, un blocchetto forato, sopra una lastra traforata.</p>
+</section>
+
+<section class="contatti" id="contatti" aria-labelledby="t-dove">
+  <div class="griglia">
+    <div class="testo">
+      <div>
+        <p class="tav piccolo"><span>D</span><span>Dove siamo</span></p>
+        <h2 id="t-dove">Seguiamo il&nbsp;pezzo dal&nbsp;progetto alla&nbsp;serie</h2>
+      </div>
+      <div class="rec">
+        <p><a class="numero num" href="tel:+390499800985">049&nbsp;98&nbsp;00&nbsp;985</a></p>
+        <p><a href="mailto:info@marioagnoletto.it">info@marioagnoletto.it</a></p>
+        <p>Via dell'Artigianato 18, <span class="nb"><span class="num">30030</span> Tombelle di Vigonovo (VE)</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+dell%27Artigianato+18+Tombelle+di+Vigonovo">Apri in Google Maps</a></p>
+        <p class="grigio">Fax <span class="num">049&nbsp;50&nbsp;31&nbsp;72</span></p>
+      </div>
+    </div>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/sede-q-480.webp 480w, img/sede-q-780.webp 780w, img/sede-q-1080.webp 1080w" sizes="100vw">
+        <img src="img/sede-1020.webp" srcset="img/sede-720.webp 720w, img/sede-1020.webp 1020w" sizes="50vw" width="1020" height="1080" loading="lazy" alt="L'ingresso dell'officina a Tombelle di Vigonovo: l'insegna Incisore meccanico Mario Agnoletto, la pensilina e le vetrate">
+      </picture>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <p class="num"><span>Agnoletto Mario, impresa individuale</span><span>P.IVA 00802440271</span><span>PEC <a href="mailto:marioagnoletto@pec.it">marioagnoletto@pec.it</a></span><span>La foto della fresa (B) è di repertorio, Unsplash</span></p>
+</footer>
+
+<script>
+(function(){
+  var bottoni = document.querySelectorAll('.filtro button');
+  var tavola = document.querySelector('.campioni');
+  var campioni = tavola.querySelectorAll('.campione');
+  var altri = tavola.querySelector('.altri');
+  var conteggio = document.querySelector('.conteggio');
+  var nomi = {tutti:'', zama:'Zama', ottone:'Ottone', alluminio:'Alluminio', acciaio:'Acciaio'};
+  function scegli(m, daUtente){
+    if (nomi[m] === undefined) m = 'tutti';
+    var n = 0, fuori = [];
+    campioni.forEach(function(c){
+      var ok = m === 'tutti' || (' ' + c.dataset.m + ' ').indexOf(' ' + m + ' ') > -1;
+      c.classList.toggle('spento', !ok);
+      c.classList.toggle('acceso', ok && m !== 'tutti');
+      if (ok) n++; else fuori.push('<li class="c"><b>' + c.querySelector('.n').textContent + '</b>' + c.querySelector('.nome').textContent + '</li>');
+    });
+    tavola.classList.toggle('filtrato', m !== 'tutti');
+    altri.hidden = m === 'tutti';
+    altri.innerHTML = m === 'tutti' ? '' : '<li class="tit">Non in ' + nomi[m].toLowerCase() + ':</li>' + fuori.join('');
+    bottoni.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.m === m ? 'true' : 'false'); });
+    conteggio.innerHTML = m === 'tutti' ? '<b class="num">7</b> lavorazioni in tavola' : nomi[m] + ': <b class="num">' + n + '</b> ' + (n === 1 ? 'lavorazione' : 'lavorazioni') + ' su 7';
+    if (daUtente && history.replaceState) history.replaceState(null, '', m === 'tutti' ? location.pathname + location.search : '#metallo=' + m);
+  }
+  bottoni.forEach(function(b){ b.addEventListener('click', function(){ scegli(b.dataset.m, true); }); });
+  function daIndirizzo(){ var q = (location.hash.match(/metallo=(\w+)/) || [])[1]; if (q) scegli(q, false); }
+  window.addEventListener('hashchange', daIndirizzo);
+  daIndirizzo();
+  // menu a tendina: si chiude scegliendo una voce, con Esc e toccando fuori
+  var menu = document.querySelector('.menu');
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.open = false; }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.open){ menu.open = false; menu.querySelector('summary').focus(); } });
+  document.addEventListener('click', function(e){ if (menu.open && !menu.contains(e.target)) menu.open = false; });
+})();
+</script>
+</body>
+</html>
