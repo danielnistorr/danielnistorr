@@ -470,7 +470,8 @@ function edera_preventivo_controlla( $in ) {
 	foreach ( array( 'oggetto', 'avvertenza', 'nota_prezzo', 'msg_data', 'msg_capienza' ) as $k ) {
 		$r['testi'][ $k ] = $testo( isset( $t[ $k ] ) ? $t[ $k ] : '' );
 	}
-	$r['testi']['corpo'] = $testo( isset( $t['corpo'] ) ? $t['corpo'] : '', true );
+	// a capo come nella mail di oggi ("\n"): il modulo del pannello manda "\r\n"
+	$r['testi']['corpo'] = str_replace( array( "\r\n", "\r" ), "\n", $testo( isset( $t['corpo'] ) ? $t['corpo'] : '', true ) );
 	$r['testi']['iva']   = isset( $t['iva'] ) && in_array( $t['iva'], array( 'personalizzata', 'inclusa', 'esclusa', 'nessuna' ), true ) ? $t['iva'] : 'personalizzata';
 	$email               = sanitize_email( isset( $t['email'] ) ? $t['email'] : '' );
 	if ( ! is_email( $email ) ) {

@@ -59,9 +59,15 @@
   // calendario: flatpickr, con i giorni non disponibili spenti
   if (E.calendarioAttivo(R) && window.flatpickr) {
     var l = E.limiti(R);
+    // italiano con i mesi in minuscolo, come si scrivono ("8 dicembre 2026")
+    var it = window.flatpickr.l10ns && window.flatpickr.l10ns.it ? Object.assign({}, window.flatpickr.l10ns.it) : null;
+    if (it) {
+      var minuscolo = function(x){ return x.toLowerCase(); };
+      it.months = { shorthand: it.months.shorthand.map(minuscolo), longhand: it.months.longhand.map(minuscolo) };
+    }
     calendario = window.flatpickr(campoData, {
-      locale: window.flatpickr.l10ns && window.flatpickr.l10ns.it ? 'it' : 'default',
-      dateFormat: 'Y-m-d', altInput: true, altFormat: 'j F Y', altInputClass: 'edp-data',
+      locale: it || 'default',
+      dateFormat: 'Y-m-d', altInput: true, altFormat: 'j F Y', ariaDateFormat: 'j F Y', altInputClass: 'edp-data',
       disableMobile: true, animate: false, minDate: l.min, maxDate: l.max,
       disable: [function(d){ return !E.disponibile(R, E.ymd(d)).ok; }],
       onChange: function(){ controllaData(); calcola(); }

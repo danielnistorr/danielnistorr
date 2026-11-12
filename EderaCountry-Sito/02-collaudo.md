@@ -192,3 +192,83 @@ Prove con Elementor gratuito 4.4.0:
 - **Galleria che non c'è**: un pallino con `#foto-grill` non fa niente, senza errori.
 - **Errori**: nessun errore di console in tutte le prove.
 - **Editor**: i pallini con link si scelgono, si trascinano (circa 45 x 20 px, come il mouse) e cambiano testo dal pannello. Un clic su un pallino con link può far scorrere l'anteprima fino alla galleria: lo fa Elementor con i link interni (scritto nel LEGGIMI).
+
+
+## Plugin "Edera Preventivo" 1.0 e tema 1.2 (12 novembre 2026)
+
+Prove in locale con WordPress 7.1.4, Elementor 4.4.0 gratuito, PHP 8.3 e SQLite. Il sito di partenza è come quello vero: tema 1.1.1 installato con lo script, planimetria nella Home, e la Home modificata a mano (due testi cambiati) prima di tutto il resto.
+
+**Le pagine non si toccano.** Prima dell'installazione ho preso le impronte (sha256) di `_elementor_data` e del contenuto di tutte le pagine, più una copia di `_elementor_data` della Home (37.549 byte). Le ho confrontate:
+- dopo il caricamento e l'attivazione del plugin dal pannello (*Plugin > Carica plugin*);
+- dopo l'aggiornamento del tema a 1.2 con "Sostituisci quello attuale";
+- dopo plugin spento e riacceso;
+- alla fine di tutte le prove (salvataggi, importazioni, ripristino, recapiti in Personalizza).
+
+Ogni volta **identico byte per byte** (`cmp` e stesse impronte). Il plugin scrive solo la sua opzione, `edera_preventivo_regole`.
+
+**Le 15 prove di sempre.** Originale contro WordPress, con lo stesso script del collaudo del calcolatore, 15 su 15 identiche (totale, voci, partecipanti, durata e testo della mail) in cinque situazioni:
+- plugin attivo con il tema 1.1.1;
+- plugin attivo con il tema 1.2;
+- plugin spento (calcolatore del tema 1.2);
+- dopo "Ripristina i valori iniziali";
+- dopo "Salva le regole" senza cambiare niente.
+
+All'attivazione il plugin ha preso i prezzi da `config/preventivo.php` del tema. Con il plugin attivo parte solo il suo script (`calcolo.js` e `preventivo.js` del plugin), anche con il tema 1.1.1. Con il plugin spento torna lo script del tema.
+
+| # | Prova (valori iniziali del plugin) | Totale e voci, originale e plugin | Uguale |
+|---|---|---|---|
+| 1 | Apertura della pagina: Rustico, partecipanti vuoti (esempio 20) | **400 €**: Rustico 400 €, Partecipanti (esempio) 20, Durata Giornata intera | sì |
+| 2 | Rustico, 50 persone (capienza piena) | **850 €**: Rustico 850 €, Partecipanti 50, Durata Giornata intera | sì |
+| 3 | Rustico, 60 persone (oltre la capienza: torna a 50) | **850 €**: Rustico 850 €, Partecipanti 50, Durata Giornata intera | sì |
+| 4 | Rustico, 0 persone (vale come esempio 20) | **400 €**: Rustico 400 €, Partecipanti 20, Durata Giornata intera | sì |
+| 5 | Rustico, 25,5 persone (decimali) | **482,5 €**: Rustico 482,5 €, Partecipanti 25.5, Durata Giornata intera | sì |
+| 6 | Rustico + Serra, 70 persone | **1350 €**: Rustico 850 €, Serra 500 €, Partecipanti 70, Durata Giornata intera | sì |
+| 7 | Solo Piscina, 30 persone, mezza giornata | **300 €**: Piscina 300 €, Partecipanti 30, Durata Mezza giornata | sì |
+| 8 | Solo Piscina, 1 persona, giornata intera | **400 €**: Piscina 400 €, Partecipanti 1, Durata Giornata intera | sì |
+| 9 | Piscina + Spazio esterno, 150 persone (capienza piena) | **1000 €**: Piscina 400 €, Spazio esterno 600 €, Partecipanti 150, Durata Giornata intera | sì |
+| 10 | Rustico + Spazio esterno, 35 persone, 15/11/2027 (stagione) | **1137,5 €**: Rustico 750 €, Spazio esterno 387,5 €, Partecipanti 35, Durata Giornata intera | sì |
+| 11 | Rustico + Spazio esterno, 35 persone, 15/04/2027 (fuori stagione) | **1012,5 €**: Rustico 625 €, Spazio esterno 387,5 €, Partecipanti 35, Durata Giornata intera | sì |
+| 12 | Serra, 21 persone, 31/03/2027 (ultimo giorno di stagione) | **380 €**: Serra 380 €, Partecipanti 21, Durata Giornata intera | sì |
+| 13 | Tutti e quattro, 300 persone (oltre 270), mezza, 10/01/2027 | **2375 €**: Rustico 975 €, Serra 500 €, Piscina 300 €, Spazio esterno 600 €, Partecipanti 270, Durata Mezza giornata | sì |
+| 14 | Piscina + mezza, poi tolgo la piscina (la mezza si spegne) | **350 €**: Serra 350 €, Partecipanti 40, Durata Giornata intera | sì |
+| 15 | Tolgo tutti gli spazi (l'ultimo resta scelto) | **400 €**: Rustico 400 €, Partecipanti 10, Durata Giornata intera | sì |
+
+**Regole nuove.** Dal modulo del pannello:
+- una data esclusa (8 dicembre) e un supplemento del weekend del 10% sul totale, salvati;
+- una percentuale di 150 rifiutata con il messaggio "Le percentuali vanno da 0 a 100", con il modulo che conserva quanto scritto.
+
+Importati da file:
+- chiusura dal 24 dicembre al 6 gennaio, lunedì chiuso, preavviso di 7 giorni, finestra di 12 mesi;
+- sconto del 10% da due spazi, minimo di 30 partecipanti, arrotondamento per eccesso a 50 euro;
+- servizi "Aperitivo di benvenuto" (8 € a persona) e "Grill" (80 €).
+
+Esportato e reimportato: le regole restano uguali. Poi, sul sito ricaricato:
+
+| Prova (regole nuove, importate dal pannello) | Atteso | Sul sito |
+|---|---|---|
+| Weekend +10% sul totale, stagionale, arrotondamento a 50: Rustico, 30 persone, sabato 28/11/2026: Rustico 675 €, Weekend 67,5 €, Arrotondamento 7,5 €; Partecipanti 30, Durata Giornata intera | 750 € | 750 € |
+| Sconto 10% su due spazi, weekend, arrotondamento: Rustico + Serra, 70 persone, sabato 17/04/2027: Rustico 850 €, Serra 500 €, Weekend 135 €, Sconto per più spazi -148,5 €, Arrotondamento 13,5 €; Partecipanti 70, Durata Giornata intera | 1350 € | 1350 € |
+| Minimo 30 partecipanti: Serra, 10 persone (diventano 30): Serra 300 €; Partecipanti 30, Durata Giornata intera | 300 € | 300 € |
+| Servizio a persona (aperitivo 8 €) e arrotondamento: Rustico, 40 persone, mercoledì 05/05/2027: Rustico 700 €, Aperitivo di benvenuto 320 €, Arrotondamento 30 €; Partecipanti 40, Durata Giornata intera | 1050 € | 1050 € |
+| Servizio fisso (grill 80 €) e minimo 30: Rustico, 20 persone (diventano 30), nessuna data: Rustico 550 €, Grill 80 €, Arrotondamento 20 €; Partecipanti 30, Durata Giornata intera | 650 € | 650 € |
+
+Calendario (oggi è il 12 novembre 2026):
+
+| Data nel calendario | Si può scegliere? |
+|---|---|
+| oggi 12/11 (prima del preavviso di 7 giorni) | no |
+| domenica 15/11 (preavviso) | no |
+| giovedì 19/11 (primo giorno utile) | sì |
+| lunedì 23/11 (giorno chiuso) | no |
+| martedì 08/12 (data esclusa) | no |
+| domenica 27/12 (chiusura natalizia) | no |
+| giovedì 07/01/2027 (dopo la chiusura) | sì |
+| mercoledì 01/12/2027 (oltre 12 mesi) | no |
+
+- Un clic sull'8 dicembre (barrato) non sceglie niente.
+- Il 10 dicembre si sceglie e nella mail finisce come "10 dicembre 2026", con la riga "Servizi aggiuntivi: Aperitivo di benvenuto".
+- Il campo si chiama "Data dell'evento"; senza regole sul calendario resta "Data indicativa", come oggi.
+- **Prova** del pannello: per Rustico, 30 persone, sabato 28 novembre dà 742,5 €, gli stessi conti del sito prima dell'arrotondamento.
+- **Recapiti** (tema 1.2): un telefono scritto in *Personalizza > Recapiti* compare nel piede; svuotato il campo, torna quello del file. La sezione si apre senza errori.
+- **Errori e scorrimento**: nessun errore di console e nessuno scorrimento orizzontale a 1440 e a 390, sul sito (anche con il calendario aperto, che a 390 sta fra 47 e 362 px) e nel pannello.
+- **Schermate**: `screenshot/preventivo/`, pannello a 1440 e a 390, prova, calcolatore e calendario a 1440 e a 390.

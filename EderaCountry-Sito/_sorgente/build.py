@@ -6,6 +6,7 @@ Uso:  python3 EderaCountry-Sito/_sorgente/build.py
 Uscite:
   wordpress/edera/            il tema scompattato (da caricare via FTP in wp-content/themes/)
   wordpress/edera-tema.zip    lo stesso tema, da caricare in Aspetto > Temi > Aggiungi > Carica tema
+  wordpress/edera-preventivo.zip  il plugin "Edera Preventivo" (sorgente in plugin/edera-preventivo/)
 
 Fonti:
   _sorgente/tema/             PHP, fogli di stile e script del tema (scritti a mano)
@@ -184,6 +185,24 @@ def zippa():
     return ZIP.stat().st_size
 
 
+PLUGIN = RADICE / "plugin" / "edera-preventivo"
+ZIP_PLUGIN = WPDIR / "edera-preventivo.zip"
+
+
+def zippa_plugin():
+    """Il plugin "Edera Preventivo" (sorgente in plugin/edera-preventivo/, scritto a mano) nel suo zip."""
+    for f in PLUGIN.rglob("*"):
+        if f.is_file() and f.suffix in (".php", ".js", ".css", ".md", ".txt", ".json"):
+            controlla_vietato(f.read_text(encoding="utf-8"), str(f.relative_to(RADICE)))
+    if ZIP_PLUGIN.exists():
+        ZIP_PLUGIN.unlink()
+    with zipfile.ZipFile(ZIP_PLUGIN, "w", zipfile.ZIP_DEFLATED) as z:
+        for f in sorted(PLUGIN.rglob("*")):
+            if f.is_file():
+                z.write(f, "edera-preventivo/" + str(f.relative_to(PLUGIN)))
+    return ZIP_PLUGIN.stat().st_size
+
+
 def main():
     if TEMA.exists():
         shutil.rmtree(TEMA)
@@ -196,6 +215,8 @@ def main():
     controlli_finali()
     peso = zippa()
     print(f"tema: {TEMA.relative_to(REPO)}  zip: {ZIP.relative_to(REPO)} ({peso // 1024} KB)")
+    if PLUGIN.exists():
+        print(f"plugin: {ZIP_PLUGIN.relative_to(REPO)} ({zippa_plugin() // 1024} KB)")
 
 
 if __name__ == "__main__":

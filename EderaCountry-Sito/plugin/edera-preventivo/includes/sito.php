@@ -43,7 +43,7 @@ function edera_preventivo_euro( $v ) {
  * @param string $pdf Valore dello shortcode.
  * @return string
  */
-function edera_preventivo_pdf( $pdf ) {
+function edera_preventivo_link_pdf( $pdf ) {
 	$pdf = trim( (string) $pdf );
 	if ( '' === $pdf ) {
 		$pdf = (string) get_option( 'edera_pdf_servizi', '' );
@@ -140,7 +140,7 @@ function edera_preventivo_testi_js() {
 function edera_preventivo_shortcode( $a ) {
 	$a      = shortcode_atts( array( 'pdf' => '' ), $a, 'edera_preventivo' );
 	$r      = edera_preventivo_regole();
-	$pdf    = edera_preventivo_pdf( $a['pdf'] );
+	$pdf    = edera_preventivo_link_pdf( $a['pdf'] );
 	$email  = $r['testi']['email'];
 	$spazi  = array_values(
 		array_filter(

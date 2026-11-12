@@ -13,7 +13,8 @@ Il sito è **lo stesso di ederacountry.it**, pagina per pagina: stessi testi, fo
 
 | File | A cosa serve |
 |---|---|
-| `edera-tema.zip` | Il tema da caricare in WordPress (4,6 MB, versione 1.1.1). Dentro ci sono anche foto, caratteri e PDF. |
+| `edera-tema.zip` | Il tema da caricare in WordPress (4,6 MB, versione 1.2). Dentro ci sono anche foto, caratteri e PDF. |
+| `edera-preventivo.zip` | Il plugin "Edera Preventivo": prezzi e regole del calcolatore dal pannello (menu Preventivo). Istruzioni in `EderaCountry-Sito/plugin/edera-preventivo/LEGGIMI.md`. |
 | `edera/` | Lo stesso tema scompattato, da caricare via FTP se il pannello rifiuta lo zip. |
 | `installa-su-server.sh` | Fa tutto da solo con WP-CLI, se sul server c'è l'accesso SSH. |
 
@@ -76,6 +77,17 @@ Con SSH basta rilanciare `installa-su-server.sh` come sopra: fa anche questo pas
 
 Non premete "Aggiungi la planimetria alla Home": la planimetria c'è già, e comunque il bottone non la toccherebbe.
 
+### Avete già il tema 1.1.1? Il plugin del preventivo e il tema 1.2
+
+L'ordine conta: **prima il plugin, poi il tema**.
+1. *Plugin > Aggiungi nuovo > Carica plugin*, `edera-preventivo.zip`, *Installa ora*, *Attiva plugin*.
+   - All'attivazione il plugin copia i prezzi da `config/preventivo.php` del tema, anche se li avevate cambiati a mano.
+   - Il calcolatore da quel momento è del plugin, con gli stessi prezzi: sul sito non cambia niente.
+2. *Aspetto > Temi > Aggiungi tema > Carica tema*, `edera-tema.zip` (1.2), *Installa ora*, **"Sostituisci quello attuale con quello caricato"**.
+3. Il tema nuovo sovrascrive i suoi file, anche `config/contatti.php`. Se in quel file avevate cambiato a mano email, telefono, indirizzo o partita IVA, scriveteli in *Aspetto > Personalizza > Recapiti*: un campo pieno vale più del file, un campo vuoto usa il file.
+
+Né il plugin né il tema 1.2 toccano le pagine, i testi o i dati di Elementor: le modifiche fatte alla Home restano.
+
 ## Seconda strada: direttamente sul dominio
 
 Solo quando il sito di prova è approvato, oppure se preferisci saltare la prova.
@@ -105,7 +117,7 @@ Solo quando il sito di prova è approvato, oppure se preferisci saltare la prova
 - **Bottoni**: testo e indirizzo nel pannello. Una freccia alla fine del testo (↗ o ↓) prende da sola lo stile dell'originale.
 - **Aspetto**: lo danno le classi nel campo *Avanzate > Classi CSS* di ogni elemento (per esempio `pulsante pulsante-verde`, `g-a`, `n-sez`). Non vanno cancellate. Un bottone nuovo uguale a quelli del sito: classi `pulsante pulsante-verde` (o `pulsante-chiaro`).
 - **Pagine legali**: *Pagine > Informativa privacy* (o *Cookie*) *> Modifica con Elementor*. Ogni sezione è un Titolo e un Editor di testo.
-- **Testata, menu del telefono, barra in basso e piede**: sono nel tema. Email, telefono, indirizzo e partita IVA si cambiano in `config/contatti.php` (*Aspetto > Editor dei file del tema*, oppure via FTP). I recapiti della sezione "Contatti" della home si cambiano invece in Elementor.
+- **Testata, menu del telefono, barra in basso e piede**: sono nel tema. Email, telefono, indirizzo e partita IVA si cambiano in *Aspetto > Personalizza > Recapiti* (dal tema 1.2). Un campo vuoto usa il valore del file `config/contatti.php`. I recapiti della sezione "Contatti" della home si cambiano invece in Elementor.
 - **PDF dei servizi aggiuntivi**: carica il nuovo PDF in *Media > Aggiungi file multimediale* e premi *Copia l'URL negli appunti*. Poi in Elementor clic sul calcolatore: nel blocco Shortcode, in `[edera_preventivo pdf="..."]` metti l'indirizzo copiato al posto di quello che c'è (oggi c'è il numero del PDF nella libreria media: vanno bene tutti e due).
 
 Si salva con il bottone *Pubblica* (o *Aggiorna*) in alto a destra.
@@ -140,6 +152,11 @@ Poi *Aggiorna*. Il testo sotto il titolo della sezione ("Seleziona il pallino su
 Nell'editor un clic su un pallino con link può far scorrere l'anteprima fino alla galleria (Elementor lo fa con i link interni alla pagina). Per spostare un pallino basta trascinarlo; per sceglierlo senza scorrere usa il pannello Struttura.
 
 ## Cambiare i prezzi del calcolatore
+
+**Con il plugin "Edera Preventivo" attivo** (consigliato) i prezzi e tutte le regole si cambiano dal pannello, menu **Preventivo**. Lì ci sono anche i giorni esclusi con il calendario, i supplementi (per esempio il weekend), gli sconti, i minimi, i servizi aggiuntivi e i testi della mail. Le istruzioni sono nel LEGGIMI del plugin.
+
+**Senza il plugin** vale quello che segue.
+
 
 I prezzi sono in un file solo: `wp-content/themes/edera/config/preventivo.php`. Si apre da *Aspetto > Editor dei file del tema > config/preventivo.php* oppure via FTP. Ogni riga è spiegata nel file.
 

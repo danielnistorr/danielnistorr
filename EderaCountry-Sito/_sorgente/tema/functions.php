@@ -7,6 +7,8 @@
  *   Il tema da' l'aspetto: assets/sito.css aggancia quelle classi; testata, menu del telefono e piede
  *   sono in parti/ (HTML uguale a quello del sito originale).
  * - Il calcolatore "Preventivo flash" e' lo shortcode [edera_preventivo]: prezzi e regole in config/preventivo.php.
+ *   Dal tema 1.2, con il plugin "Edera Preventivo" attivo, lo shortcode e prezzi e regole sono del plugin.
+ * - Recapiti (email, telefono, indirizzo, P.IVA): Aspetto > Personalizza > Recapiti, o config/contatti.php.
  * - La planimetria (tema 1.1) e' tutta in Elementor: foto dall'alto, pallini (Pulsanti in posizione assoluta),
  *   legenda, galleria del Rustico con il lightbox di Elementor. Il tema ne da' solo l'aspetto (sito.css).
  * - Caratteri e immagini sono nel tema e nella libreria media: il sito non chiama servizi esterni
@@ -22,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EDERA_VERSIONE', '1.1.1' );
+define( 'EDERA_VERSIONE', '1.2.0' );
 
 require get_template_directory() . '/inc/installa.php';
 require get_template_directory() . '/inc/elementor.php';
@@ -51,9 +53,59 @@ function edera_config( $nome ) {
  * @return string
  */
 function edera_dato( $k ) {
+	// tema 1.2: un recapito scritto in Aspetto > Personalizza > Recapiti vale piu' di quello del file
+	$m = get_theme_mod( 'edera_recapito_' . $k, '' );
+	if ( is_string( $m ) && '' !== trim( $m ) ) {
+		return trim( $m );
+	}
 	$c = edera_config( 'contatti' );
 	return isset( $c[ $k ] ) ? (string) $c[ $k ] : '';
 }
+
+// Aspetto > Personalizza > Recapiti: email, telefono, indirizzo e partita IVA di testata, menu, barra e piede.
+// Un campo vuoto lascia il valore di config/contatti.php.
+add_action(
+	'customize_register',
+	function ( $wpc ) {
+		$wpc->add_section(
+			'edera_recapiti',
+			array(
+				'title'       => 'Recapiti',
+				'priority'    => 155,
+				'description' => 'Recapiti di testata, menu del telefono, barra in basso e piede. Un campo vuoto usa il valore del file config/contatti.php del tema. (Quelli della sezione Contatti della Home si cambiano in Elementor.)',
+			)
+		);
+		$campi = array(
+			'email'         => array( 'Email', 'sanitize_email' ),
+			'telefono'      => array( 'Telefono, come si legge (349 473 1515)', 'sanitize_text_field' ),
+			'telefono_link' => array( 'Telefono, per la chiamata (+393494731515)', 'sanitize_text_field' ),
+			'via'           => array( 'Via e numero', 'sanitize_text_field' ),
+			'comune'        => array( 'Comune e provincia', 'sanitize_text_field' ),
+			'mappa'         => array( 'Link a Google Maps', 'esc_url_raw' ),
+			'piva'          => array( 'C.F. e P.IVA', 'sanitize_text_field' ),
+		);
+		$file  = edera_config( 'contatti' );
+		foreach ( $campi as $k => $c ) {
+			$wpc->add_setting(
+				'edera_recapito_' . $k,
+				array(
+					'type'              => 'theme_mod',
+					'default'           => '',
+					'sanitize_callback' => $c[1],
+				)
+			);
+			$wpc->add_control(
+				'edera_recapito_' . $k,
+				array(
+					'section'     => 'edera_recapiti',
+					'label'       => $c[0],
+					'type'        => 'mappa' === $k ? 'url' : 'text',
+					'input_attrs' => array( 'placeholder' => isset( $file[ $k ] ) ? $file[ $k ] : '' ),
+				)
+			);
+		}
+	}
+);
 
 /**
  * La pagina corrente usa il modello "Pagina legale"?

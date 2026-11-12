@@ -1,6 +1,7 @@
 <?php
 /**
  * Calcolatore "Preventivo flash": shortcode [edera_preventivo pdf="ID o indirizzo del PDF"].
+ * Dal tema 1.2, se il plugin "Edera Preventivo" e' attivo, lo shortcode e' del plugin e questo file non lo registra.
  *
  * L'HTML e il JavaScript (assets/preventivo.js) sono quelli del sito originale; prezzi, capienze e regole
  * stanno in config/preventivo.php. La stima si calcola nel browser e la richiesta parte con un'email
@@ -62,6 +63,9 @@ function edera_preventivo_pdf( $pdf ) {
 	return $pdf;
 }
 
+// Tema 1.2: con il plugin "Edera Preventivo" attivo lo shortcode lo disegna il plugin (prezzi e regole dal
+// pannello): il tema non registra il suo e non carica il suo script. Senza il plugin vale questo, come prima.
+if ( ! defined( 'EDERA_PREVENTIVO_VERSIONE' ) ) :
 add_shortcode(
 	'edera_preventivo',
 	function ( $a ) {
@@ -183,3 +187,4 @@ add_shortcode(
 		return ob_get_clean();
 	}
 );
+endif;
