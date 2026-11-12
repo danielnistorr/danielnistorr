@@ -1,22 +1,31 @@
 #!/usr/bin/env python3
-"""Genera mvr-care-template.json: modello di Elementor (formato di esportazione, versione 0.4)
-per la pagina MVR CARE, compatibile con Elementor 3.31.5 gratuito.
+"""Genera i modelli di Elementor (formato di esportazione 0.4) della landing page MVR CARE, versione 2:
+- mvr-care-template.json: la pagina;
+- mvr-care-grazie-template.json: la pagina di ringraziamento facoltativa (per misurare le conversioni).
 
-Solo contenitori e widget nativi del gratuito: Titolo (heading), Editor di testo (text-editor),
-Immagine (image), Pulsante (button), Elenco icone (icon-list). Colori e caratteri sono legati al kit
-del sito con __globals__ (id letti da /wp-content/uploads/elementor/css/post-11.css di evap.it).
+Elementor 3.31.5. Widget nativi del gratuito (contenitori, Titolo, Editor di testo, Immagine, Pulsante,
+Icona, Elenco icone, HTML) più UN widget di Elementor Pro 3.28: Modulo (form), nella sezione
+#richiedi-proposta. Senza Pro attivo, Elementor scarta il modulo durante l'importazione e importa il resto.
 
-Uso: python3 genera_template.py  (scrive mvr-care-template.json nella stessa cartella)
+Colori: quelli della brochure (grafici.COLORI, presi con il contagocce) per titoli, bottoni, schede e
+fasce; il testo usa il colore globale del kit del sito. Carattere: Plus Jakarta Sans (quello del sito),
+titoli a peso 800 nel navy della brochure.
+
+Uso: python3 genera_template.py  (scrive i due JSON e i disegni in grafici/)
 """
 import hashlib
 import json
 import os
+import sys
 
 QUI = os.path.dirname(os.path.abspath(__file__))
-import sys  # noqa: E402
 sys.path.insert(0, QUI)
-import grafici  # noqa: E402  disegni SVG (anno di assistenza, ciclo del servizio, schema MVR facoltativo)
+import grafici  # noqa: E402
+
+C = grafici.COLORI
 UPL = 'https://evap.it/wp-content/uploads/'
+CTA = 'Richiedi la tua proposta MVR CARE'
+ANCORA = '#richiedi-proposta'
 
 # ---------------------------------------------------------------- utilità
 _n = [0]
@@ -24,7 +33,7 @@ _n = [0]
 
 def uid():
     _n[0] += 1
-    return hashlib.sha1(f'mvr-care-{_n[0]}'.encode()).hexdigest()[:7]
+    return hashlib.sha1(f'mvr-care-v2-{_n[0]}'.encode()).hexdigest()[:7]
 
 
 def col(i):
@@ -55,7 +64,7 @@ def gap(c, r=None):
 def con(settings, children, inner=True):
     s = {'padding': box(0)}  # Elementor mette 10 px di margine interno a ogni contenitore: qui si parte da zero
     if inner:
-        s['content_width'] = 'full'  # contenitori interni a tutta larghezza: solo cosi la "Larghezza" in % vale
+        s['content_width'] = 'full'
     s.update(settings)
     return {'id': uid(), 'elType': 'container', 'isInner': inner, 'settings': s, 'elements': children}
 
@@ -65,104 +74,92 @@ def wid(kind, settings):
             'settings': settings, 'elements': []}
 
 
+def font(d, t, m, peso='800', lh=1.15, ls=None, transform='none'):
+    s = {'typography_typography': 'custom', 'typography_font_family': 'Plus Jakarta Sans',
+         'typography_font_size': px(d), 'typography_font_size_tablet': px(t), 'typography_font_size_mobile': px(m),
+         'typography_font_weight': peso, 'typography_text_transform': transform, 'typography_text_decoration': 'none',
+         'typography_line_height': px(lh, 'em')}
+    if ls is not None:
+        s['typography_letter_spacing'] = px(ls)
+    return s
+
+
+def heading(text, tag='h2', colore=C['navy'], fnt=None, glob_typo=None, link=None, extra=None):
+    s = {'title': text, 'header_size': tag, 'title_color': colore}
+    if fnt:
+        s.update(fnt)
+    if glob_typo:
+        s['__globals__'] = {'typography_typography': typ(glob_typo)}
+    if link:
+        s['link'] = {'url': link, 'is_external': '', 'nofollow': '', 'custom_attributes': ''}
+    if extra:
+        s.update(extra)
+    return wid('heading', s)
+
+
+def titolo(text, tag='h2', colore=C['navy'], extra=None):
+    """Titolo di sezione: Plus Jakarta Sans 800 nel navy della brochure."""
+    return heading(text, tag, colore, font(44, 38, 31, '800', 1.15, -0.5), extra=extra)
+
+
+def text(html_, glob_typo='text', colore=None, extra=None, fnt=None):
+    s = {'editor': html_, 'paragraph_spacing': px(0)}
+    g = {}
+    if fnt:
+        s.update(fnt)
+    else:
+        g['typography_typography'] = typ(glob_typo)
+    if colore:
+        s['text_color'] = colore
+    else:
+        g['text_color'] = col('text')
+    if g:
+        s['__globals__'] = g
+    if extra:
+        s.update(extra)
+    return wid('text-editor', s)
+
+
 def html(code, extra=None):
-    """Widget HTML nativo (gratuito) con un disegno SVG in linea."""
     s = {'html': code}
     if extra:
         s.update(extra)
     return wid('html', s)
 
 
-def merge_globals(s, g):
-    """Aggiunge riferimenti globali alle impostazioni (accetta impostazioni o un elemento intero)."""
-    target = s['settings'] if 'elType' in s else s
-    target.setdefault('__globals__', {}).update(g)
-    return s
-
-
-def heading(text, tag='h2', typo=None, color='primary', custom=None, link=None, extra=None):
-    s = {'title': text, 'header_size': tag}
-    if custom:
-        s.update(custom)
-    g = {}
-    if typo:
-        g['typography_typography'] = typ(typo)
-    if color:
-        g['title_color'] = col(color)
-    if link:
-        s['link'] = {'url': link, 'is_external': '', 'nofollow': '', 'custom_attributes': ''}
+def icona(nome, colore, misura=34, extra=None):
+    s = {'selected_icon': {'value': f'fas fa-{nome}', 'library': 'fa-solid'}, 'view': 'default',
+         'primary_color': colore, 'size': px(misura), '_element_width': 'auto'}
     if extra:
         s.update(extra)
-    return wid('heading', merge_globals(s, g))
+    return wid('icon', s)
 
 
-def h2(text, color='primary'):
-    """Titolo di sezione: stesse misure del titolo H2 del kit (38/35/30 px, 600) ma senza
-    maiuscole iniziali su ogni parola, come i titoli della home."""
-    custom = {
-        'typography_typography': 'custom', 'typography_font_family': 'Plus Jakarta Sans',
-        'typography_font_size': px(38), 'typography_font_size_tablet': px(35), 'typography_font_size_mobile': px(30),
-        'typography_font_weight': '600', 'typography_text_transform': 'none', 'typography_text_decoration': 'none',
-        'typography_line_height': px(1.2, 'em'), 'typography_letter_spacing': px(0),
-    }
-    return heading(text, 'h2', None, color, custom)
-
-
-def text(html, typo='text', color='text', extra=None):
-    s = {'editor': html, 'paragraph_spacing': px(0)}  # niente margine sotto i paragrafi: gli spazi li danno i contenitori
-    if extra:
-        s.update(extra)
-    g = {'typography_typography': typ(typo)}
-    if color:
-        g['text_color'] = col(color)
-    return wid('text-editor', merge_globals(s, g))
-
-
-def button(label, url, on_dark=False, align=None):
-    """Bottone del sito: azzurro, testo bianco, 15/30 px, spigoli vivi.
-    Al passaggio si inverte subito (durata della transizione 0): blu su fondo chiaro, bianco sulla foto."""
+def bottone(url=ANCORA, label=CTA, align=None, larghezza_piena=False, extra=None):
+    """Il bottone della landing: verde della brochure a pillola, testo bianco. Al passaggio diventa
+    navy di colpo (durata della transizione 0)."""
     s = {
         'text': label,
         'link': {'url': url, 'is_external': '', 'nofollow': '', 'custom_attributes': ''},
-        'background_background': 'classic',
-        'button_background_hover_background': 'classic',
-        'border_radius': box(0),
-        'text_padding': box(15, 30, 15, 30),
+        'background_background': 'classic', 'background_color': C['verde_bottone'],
+        'button_text_color': '#FFFFFF',
+        'button_background_hover_background': 'classic', 'button_background_hover_color': C['navy'],
+        'hover_color': '#FFFFFF',
+        'border_radius': box(40), 'text_padding': box(18, 34, 18, 34), 'text_padding_mobile': box(16, 20, 16, 20),
         'button_hover_transition_duration': {'unit': 's', 'size': 0, 'sizes': []},
     }
+    s.update(font(18, 18, 16, '700', 1.25))
     if align:
         s['align'] = align
-    g = {
-        'typography_typography': typ('264998f'),
-        'background_color': col('secondary'),
-        'button_text_color': col('accent'),
-        'button_background_hover_color': col('accent' if on_dark else 'primary'),
-        'hover_color': col('primary' if on_dark else 'accent'),
-    }
-    return wid('button', merge_globals(s, g))
-
-
-def link_button(label, url):
-    """Collegamento secondario sulla foto: testo bianco sottolineato da un filetto."""
-    s = {
-        'text': label,
-        'link': {'url': url, 'is_external': '', 'nofollow': '', 'custom_attributes': ''},
-        'background_background': 'classic', 'background_color': 'rgba(0,0,0,0)',
-        'button_background_hover_background': 'classic', 'button_background_hover_color': 'rgba(0,0,0,0)',
-        'border_border': 'solid', 'border_width': box(0, 0, 1, 0), 'border_radius': box(0),
-        'text_padding': box(15, 0, 4, 0),
-        'button_hover_transition_duration': {'unit': 's', 'size': 0, 'sizes': []},
-    }
-    g = {
-        'typography_typography': typ('264998f'),
-        'button_text_color': col('accent'), 'border_color': col('accent'),
-        'hover_color': col('secondary'), 'button_hover_border_color': col('secondary'),
-    }
-    return wid('button', merge_globals(s, g))
+    if larghezza_piena:
+        s['align'] = 'justify'
+    if extra:
+        s.update(extra)
+    return wid('button', s)
 
 
 def boxed(settings, children):
-    """Contenitore esterno largo come le pagine di servizio: 1290 px di contenuto."""
+    """Contenitore esterno: contenuto largo 1290 px come le altre pagine del sito."""
     s = {'content_width': 'boxed', 'boxed_width': px(1290),
          'padding': box(0, 10), 'padding_tablet': box(0, 20), 'padding_mobile': box(0, 20)}
     s.update(settings)
@@ -170,218 +167,369 @@ def boxed(settings, children):
 
 
 ROW = {'flex_direction': 'row', 'flex_direction_mobile': 'column'}
+ONDA = {'shape_divider_bottom': 'waves', 'shape_divider_bottom_color': C['verde_onda'],
+        'shape_divider_bottom_width': px(100, '%'), 'shape_divider_bottom_height': px(70),
+        'shape_divider_bottom_height_mobile': px(36), 'shape_divider_bottom_flip': 'yes'}
 
-# ---------------------------------------------------------------- 1. apertura
-hero = con({
-    'content_width': 'boxed', 'boxed_width': px(1290), 'html_tag': 'section',
-    'flex_direction': 'column', 'flex_gap': gap(0),
-    'padding': box(210, 10, 60, 10), 'padding_tablet': box(190, 20, 50, 20), 'padding_mobile': box(140, 10, 40, 10),
-    'background_background': 'classic',
-    'background_image': {'url': UPL + '2025/10/IMG_9042-1536x1152.jpg', 'id': '', 'size': '', 'alt': '', 'source': 'library'},
-    'background_image_mobile': {'url': UPL + '2025/10/IMG_9042-1024x768.jpg', 'id': '', 'size': '', 'alt': '', 'source': 'library'},
-    'background_position': 'center center', 'background_position_mobile': 'center center',
-    'background_repeat': 'no-repeat', 'background_size': 'cover',
-    'background_overlay_background': 'classic', 'background_overlay_opacity': px(0.6),
-    'border_border': 'solid', 'border_width': box(20), 'border_width_mobile': box(10),
-    '__globals__': {'background_color': col('primary'), 'background_overlay_color': col('primary'),
-                    'border_color': col('accent')},
-}, [
-    heading('MVR CARE', 'h1', 'primary', 'accent',
-            extra={'_margin': box(0, 0, 28, 0), '_margin_mobile': box(0, 0, 20, 0)}),
-    text('<p>Il servizio di assistenza EVAP per la massima affidabilità del tuo evaporatore MVR.</p>',
-         'eac7479', 'accent', extra={'_element_width': 'initial', '_element_custom_width': px(780),
-                                      '_element_custom_width_tablet': px(100, '%'), '_element_width_mobile': 'inherit'}),
-    con({'flex_direction': 'row', 'flex_wrap': 'wrap', 'flex_align_items': 'center',
-         'flex_gap': gap(40, 20), 'flex_gap_mobile': gap(28, 16),
-         'margin': box(40, 0, 0, 0), 'margin_mobile': box(32, 0, 0, 0)}, [
-        button('Richiedi il canone', 'https://evap.it/contattaci/', on_dark=True),
-        link_button('Le due formule', '#formule'),
+# ---------------------------------------------------------------- 1. apertura chiara, come la copertina
+apertura = boxed({**ROW, 'html_tag': 'section', 'flex_align_items': 'center', 'flex_gap': gap(60),
+                  'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(36),
+                  'padding': box(190, 10, 120, 10), 'padding_tablet': box(170, 20, 100, 20), 'padding_mobile': box(130, 20, 70, 20),
+                  'background_background': 'classic', 'background_color': C['cielo'], **ONDA}, [
+    con({'width': px(56, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(0)}, [
+        heading('MVR CARE', 'h1', C['navy'], font(104, 80, 56, '800', 1.0, -1.5), extra={'_margin': box(0, 0, 24, 0)}),
+        heading('Il servizio di assistenza EVAP per la massima affidabilità del tuo evaporatore MVR.', 'p', C['navy'],
+                font(27, 24, 21, '700', 1.35), extra={'_margin': box(0, 0, 36, 0), '_margin_mobile': box(0, 0, 28, 0)}),
+        bottone(),
+        text('<p>Fissa una call gratuita con i nostri tecnici per una consulenza di diagnosi gratuita e senza impegno.</p>',
+             extra={'_margin': box(18, 0, 0, 0), '_element_width': 'initial', '_element_custom_width': px(520),
+                    '_element_custom_width_tablet': px(100, '%'), '_element_width_mobile': 'inherit'}),
     ]),
-    con({'flex_direction': 'row', 'flex_direction_mobile': 'column', 'flex_gap': gap(40), 'flex_gap_mobile': gap(0),
-         'margin': box(120, 0, 0, 0), 'margin_mobile': box(60, 0, 0, 0)}, [
-        con({'width': px(33.333, '%'), 'width_mobile': px(100, '%'),
-             'border_border': 'solid', 'border_width': box(1, 0, 0, 0),
-             'padding': box(22, 0, 0, 0), 'padding_mobile': box(16, 0, 16, 0),
-             '__globals__': {'border_color': col('50cd0e7')}}, [
-            heading(t, 'p', 'c959aeb', 'accent')])
-        for t in ('Continuità di produzione', 'Prestazioni costanti', 'Efficienza e sostenibilità')
-    ]),
-], inner=False)
-
-# ---------------------------------------------------------------- 2. perché conta
-why = boxed({**ROW, 'html_tag': 'section', 'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(40),
-             'flex_align_items': 'flex-start',
-             'margin': box(100, 0, 100, 0), 'margin_mobile': box(60, 0, 60, 0)}, [
-    con({'width': px(40, '%'), 'width_mobile': px(100, '%')}, [
+    con({'width': px(44, '%'), 'width_mobile': px(100, '%'), 'flex_align_items': 'center'}, [
         wid('image', {
-            'image': {'url': UPL + '2025/10/IMG_7517-768x1024.jpg', 'id': '', 'size': '',
-                      'alt': 'Evaporatore EVAP con il quadro di controllo, in officina', 'source': 'library'},
-            'image_size': 'full', 'width': px(100, '%'),
-            'height': px(580), 'height_tablet': px(520), 'height_mobile': px(380),
+            # ritaglio dell'impianto dalla copertina della brochure (autorizzato dal cliente): da caricare nella
+            # libreria media (anteprima/img/brochure-copertina-impianto.jpg) e scegliere qui; ora è un segnaposto
+            # indirizzo relativo: Elementor non lo scarica e mette il suo segnaposto
+            'image': {'url': '/wp-content/plugins/elementor/assets/images/placeholder.png', 'id': '', 'size': '',
+                      'alt': "Impianto di evaporazione, illustrazione della brochure MVR CARE", 'source': 'library'},
+            'image_size': 'full', 'width': px(100, '%'), 'space': px(100, '%'),
+            'image_border_radius': box(24), 'height': px(510), 'height_tablet': px(420), 'height_mobile': px(340),
             'object-fit': 'cover', 'object-position': 'center center',
+            '_element_width': 'initial', '_element_custom_width': px(428), '_element_custom_width_tablet': px(100, '%'),
+            '_element_custom_width_mobile': px(100, '%'),
         }),
     ]),
-    con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(16),
-         'padding': box(10, 0, 0, 0), 'padding_mobile': box(0)}, [
-        merge_globals(h2('Un evaporatore efficiente è il cuore della tua produttività'), {}),
-        text('<p>L\'evaporatore MVR è un impianto strategico per il trattamento e la valorizzazione '
-             'degli effluenti industriali.</p>', '58b3754', 'primary', extra={'_margin': box(14, 0, 0, 0)}),
-        text('<p>Per garantirne nel tempo la massima efficienza e la continuità operativa, EVAP ha sviluppato '
-             'MVR CARE: il servizio di assistenza tecnica dedicato ai suoi clienti.</p>'),
-        merge_globals(wid('icon-list', {
-            'icon_list': [{'_id': uid(), 'text': t, 'selected_icon': {'value': 'fas fa-square', 'library': 'fa-solid'}}
-                          for t in ('Evita i fermi impianto imprevisti', 'Mantiene le performance progettuali',
-                                    'Riduce i costi operativi nel tempo')],
-            'space_between': px(44), 'space_between_mobile': px(36),
-            'divider': 'yes', 'divider_style': 'solid', 'divider_weight': px(1),
-            'icon_size': px(10), 'text_indent': px(18), 'icon_self_vertical_align': 'center',
-            '_border_border': 'solid', '_border_width': box(1, 0, 1, 0),
-            '_padding': box(22, 0, 22, 0), '_padding_mobile': box(18, 0, 18, 0),
-            '_margin': box(24, 0, 0, 0),
-        }), {'icon_color': col('secondary'), 'text_color': col('primary'),
-             'icon_typography_typography': typ('c959aeb'),
-             'divider_color': col('0012040'), '_border_color': col('0012040')}),
+])
+
+# ---------------------------------------------------------------- fascia blu con i tre punti della copertina
+PUNTI = [('cog', 'Continuità di produzione'), ('chart-line', 'Prestazioni costanti'), ('leaf', 'Efficienza e sostenibilità')]
+fascia = boxed({**ROW, 'html_tag': 'section', 'flex_gap': gap(0), 'flex_align_items': 'stretch',
+                'padding': box(34, 10, 34, 10), 'padding_mobile': box(14, 20, 14, 20),
+                'background_background': 'classic', 'background_color': C['blu']}, [
+    con({'width': px(33.333, '%'), 'width_mobile': px(100, '%'), 'flex_direction': 'row', 'flex_direction_mobile': 'row',
+         'flex_align_items': 'center', 'flex_justify_content': 'center', 'flex_justify_content_mobile': 'flex-start',
+         'flex_gap': gap(18), 'padding': box(8, 20), 'padding_mobile': box(16, 0),
+         'border_border': 'solid', 'border_width': box(0, 0, 0, 0 if i == 0 else 1),
+         'border_width_mobile': box(0 if i == 0 else 1, 0, 0, 0), 'border_color': 'rgba(255,255,255,0.45)'}, [
+        icona(ic, '#FFFFFF', 36),
+        heading(t, 'p', '#FFFFFF', font(22, 20, 19, '700', 1.2), extra={'_element_width': 'auto'}),
+    ]) for i, (ic, t) in enumerate(PUNTI)
+])
+
+# ---------------------------------------------------------------- 2. perché conta
+BENEFICI = [('industry', 'Evita fermi impianto imprevisti'), ('bullseye', 'Mantiene le performance progettuali'),
+            ('coins', 'Riduce i costi operativi nel tempo')]
+perche = boxed({'html_tag': 'section', 'flex_gap': gap(50), 'flex_gap_mobile': gap(36),
+                'margin': box(110, 0, 110, 0), 'margin_mobile': box(64, 0, 64, 0)}, [
+    con({**ROW, 'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(32), 'flex_align_items': 'center'}, [
+        con({'width': px(58, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(18)}, [
+            titolo('Un evaporatore efficiente è il cuore della tua produttività'),
+            wid('divider', {'style': 'solid', 'weight': px(5), 'width': px(64), 'color': C['verde_onda'],
+                            'gap': px(4)}),
+            text("<p>L'evaporatore MVR è un impianto strategico per il trattamento e la valorizzazione degli effluenti industriali.</p>",
+                 '58b3754', C['navy']),
+            text('<p>Per garantirne nel tempo la massima efficienza e continuità operativa, EVAP ha sviluppato '
+                 '<strong>MVR CARE</strong>: il servizio di assistenza tecnica dedicato ai suoi clienti.</p>'),
+            con({'padding': box(22, 26), 'margin': box(10, 0, 0, 0), 'background_background': 'classic',
+                 'background_color': C['verde_chiaro'], 'border_radius': box(16)}, [
+                heading('MVR CARE non è un costo aggiuntivo di assistenza: è un investimento programmato per ridurre '
+                        'il rischio di inefficienze e interruzioni produttive.', 'p', C['plus'], font(20, 19, 18, '700', 1.45)),
+            ]),
+        ]),
+        con({'width': px(42, '%'), 'width_mobile': px(100, '%')}, [
+            wid('image', {
+                'image': {'url': UPL + '2025/10/IMG_7517-768x1024.jpg', 'id': '', 'size': '',
+                          'alt': 'Evaporatore EVAP con il quadro di controllo', 'source': 'library'},
+                'image_size': 'full', 'width': px(100, '%'), 'height': px(520), 'height_tablet': px(460), 'height_mobile': px(340),
+                'object-fit': 'cover', 'object-position': 'center center', 'image_border_radius': box(24),
+            }),
+        ]),
+    ]),
+    con({**ROW, 'flex_gap': gap(0), 'padding': box(34, 20), 'padding_mobile': box(10, 24),
+         'background_background': 'classic', 'background_color': C['pannello'], 'border_radius': box(24)}, [
+        con({'width': px(33.333, '%'), 'width_mobile': px(100, '%'), 'flex_direction': 'row', 'flex_direction_mobile': 'row',
+             'flex_align_items': 'center', 'flex_gap': gap(20), 'padding': box(10, 30), 'padding_mobile': box(20, 0),
+             'border_border': 'solid', 'border_width': box(0, 0, 0, 0 if i == 0 else 3),
+             'border_width_mobile': box(0 if i == 0 else 2, 0, 0, 0), 'border_color': C['verde_onda']}, [
+            icona(ic, C['navy'], 40),
+            heading(t, 'p', C['navy'], font(21, 20, 19, '700', 1.3), extra={'_element_width': 'auto'}),
+        ]) for i, (ic, t) in enumerate(BENEFICI)
     ]),
 ])
 
-# ---------------------------------------------------------------- 3. cosa facciamo
-# le quattro attività sono disegnate come un ciclo (testi in grafici.CICLO, dalla brochure)
-do = con({
-    'content_width': 'boxed', 'boxed_width': px(1290), 'html_tag': 'section', **ROW,
-    'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(40),
-    'padding': box(100, 10), 'padding_tablet': box(100, 20), 'padding_mobile': box(60, 10),
-    'background_background': 'classic',
-    'border_border': 'solid', 'border_width': box(20), 'border_width_mobile': box(10),
-    '__globals__': {'background_color': col('primary'), 'border_color': col('accent')},
-}, [
-    con({'width': px(40, '%'), 'width_mobile': px(100, '%')}, [
-        h2('Controllo, prevenzione, performance: sempre sotto controllo', 'accent'),
+# ---------------------------------------------------------------- 3. monitoraggio (slide 3)
+ATT = [('desktop', 'Monitoraggio e verifiche', 'periodiche dei principali parametri operativi.'),
+       ('search', 'Diagnosi preventiva', 'e individuazione tempestiva di eventuali criticità.'),
+       ('cog', 'Interventi mirati', 'per mantenere massima efficienza, sicurezza e affidabilità.'),
+       ('chart-bar', 'Report e raccomandazioni', "per l'ottimizzazione dell'esercizio.")]
+monitor = con({'content_width': 'boxed', 'boxed_width': px(1290), 'html_tag': 'section', **ROW,
+               'flex_gap': gap(70), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(40), 'flex_align_items': 'center',
+               'padding': box(100, 10), 'padding_tablet': box(90, 20), 'padding_mobile': box(64, 20),
+               'background_background': 'classic', 'background_color': C['cielo']}, [
+    con({'width': px(44, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(18)}, [
+        titolo('Controllo, prevenzione, performance: sempre sotto controllo'),
+        wid('divider', {'style': 'solid', 'weight': px(5), 'width': px(64), 'color': C['verde_onda'], 'gap': px(4)}),
+        con({'flex_gap': gap(0), 'margin': box(6, 0, 0, 0)}, [
+            con({'flex_direction': 'row', 'flex_direction_mobile': 'row', 'flex_gap': gap(20), 'flex_align_items': 'center',
+                 'padding': box(18, 0), 'border_border': 'solid', 'border_width': box(0, 0, 1, 0), 'border_color': '#1D365C26'}, [
+                icona(ic, C['verde_icone'], 36),
+                text(f'<p><strong>{a}</strong> {b}</p>', fnt=font(18, 18, 17, '500', 1.45), colore=C['navy'],
+                     extra={'_element_width': 'initial', '_element_custom_width': px(86, '%')}),
+            ]) for ic, a, b in ATT
+        ]),
+        bottone(extra={'_margin': box(18, 0, 0, 0)}),
     ]),
-    con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'flex_justify_content': 'center'}, [
-        html(grafici.ciclo()),
+    con({'width': px(56, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(22)}, [
+        html(grafici.monitoraggio()),
+        con({'flex_gap': gap(14)}, [
+            con({'flex_gap': gap(0)}, [
+                heading('28 kWh/m³', 'p', C['verde_dato'], font(60, 54, 48, '800', 1.0, -1)),
+                heading('consumo specifico', 'p', C['navy'], font(17, 17, 16, '700', 1.3), extra={'_margin': box(6, 0, 0, 0)}),
+            ]),
+            text('<p>Controllo remoto settimanale dei principali parametri operativi.</p>'),
+        ]),
     ]),
 ], inner=False)
 
-# ---------------------------------------------------------------- 4. le due formule
-def cell(kind, children, head=False):
-    s = {'flex_direction': 'column', 'flex_justify_content': 'center', 'flex_gap': gap(0)}
-    if kind == 'label':
-        s.update({'width': px(34, '%'), 'width_mobile': px(100, '%'),
-                  'padding': box(24, 30, 24, 0), 'padding_tablet': box(20, 20, 20, 0), 'padding_mobile': box(18, 0, 8, 0)})
-        if head:
-            s['hide_mobile'] = 'hidden-mobile'
-    else:
-        s.update({'width': px(33, '%'), 'width_mobile': px(50, '%'),
-                  'padding': box(30 if head else 24, 30, 26 if head else 24, 30),
-                  'padding_tablet': box(20), 'padding_mobile': box(18 if head else 12, 14, 16, 14),
-                  'flex_justify_content_mobile': 'flex-start'})
-        if kind == 'plus':
-            s['background_background'] = 'classic'
-            s['__globals__'] = {'background_color': col('9f5d5c9')}
-    return con(s, children)
+# ---------------------------------------------------------------- 4. le due formule: due proposte
+VOCI = {
+    'pure': ['<strong>4 visite tecniche programmate all\'anno</strong>', '<strong>1 controllo remoto ogni settimana</strong>',
+             'Verifica dello stato di esercizio e manutenzione', 'Segnalazione anomalie e azioni raccomandate',
+             'Rapporto sintetico di verifica'],
+    'plus': ['<strong>12 visite tecniche programmate all\'anno</strong>', '<strong>1 controllo remoto ogni settimana</strong>',
+             'Verifica dello stato di esercizio e manutenzione', 'Analisi anomalie e perdite di produttività',
+             'Rapporto tecnico mensile'],
+}
 
 
-def row(label, pure, plus, head=False):
-    s = {'flex_direction': 'row', 'flex_wrap': 'wrap', 'flex_gap': gap(0),
-         'border_border': 'solid', 'border_width': box(0, 0, 3 if head else 1, 0),
-         '__globals__': {'border_color': col('secondary' if head else '0012040')}}
-    lab = [heading(label, 'p', 'd438253', 'primary')] if label else []
-    return con(s, [cell('label', lab, head), cell('pure', pure, head), cell('plus', plus, head)])
+def scheda(f):
+    fondo = C['azzurro_chiaro'] if f == 'pure' else C['verde_chiaro']
+    nome = C['pure'] if f == 'pure' else C['plus']
+    return con({'width': px(50, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(22),
+                'padding': box(38, 36), 'padding_tablet': box(30, 24), 'padding_mobile': box(28, 20),
+                'background_background': 'classic', 'background_color': fondo, 'border_radius': box(24)}, [
+        heading(f'MVR CARE {f.upper()}', 'h3', nome, font(40, 34, 30, '800', 1.1, -0.5)),
+        html(grafici.anno(f)),
+        con({'padding': box(22, 24), 'padding_mobile': box(18, 16), 'background_background': 'classic',
+             'background_color': '#FFFFFF', 'border_radius': box(16)}, [
+            wid('icon-list', {
+                'icon_list': [{'_id': uid(), 'text': t, 'selected_icon': {'value': 'fas fa-check', 'library': 'fa-solid'}} for t in VOCI[f]],
+                'space_between': px(14), 'icon_size': px(16), 'text_indent': px(14), 'icon_self_vertical_align': 'center',
+                'icon_color': C['verde_icone'], 'text_color': C['testo_voci'],
+                'icon_typography_typography': 'custom', 'icon_typography_font_family': 'Plus Jakarta Sans',
+                'icon_typography_font_size': px(17), 'icon_typography_font_size_mobile': px(16),
+                'icon_typography_font_weight': '500', 'icon_typography_line_height': px(1.4, 'em'),
+            }),
+        ]),
+        bottone(f'?formula={f}{ANCORA}', larghezza_piena=True, extra={'_margin': box(6, 0, 0, 0)}),
+    ])
 
 
-def value(t, strong=False):
-    # Titolo con tag <p>: niente margine sotto il paragrafo, cosi il valore resta centrato nella cella
-    if strong:
-        return heading(t, 'p', 'd438253', 'primary')
-    return heading(t, 'p', 'text', 'text')
-
-
-plans = boxed({'html_tag': 'section', '_element_id': 'formule', 'flex_gap': gap(0),
-               'margin': box(100, 0, 100, 0), 'margin_mobile': box(60, 0, 60, 0)}, [
-    con({'width': px(900, 'px'), 'width_tablet': px(100, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(16)}, [
-        h2('Scegli il livello di servizio più adatto alle tue esigenze'),
-        text("<p>Due formule flessibili, con la qualità e l'esperienza EVAP.</p>", '58b3754', 'text'),
+formule = boxed({'html_tag': 'section', '_element_id': 'formule', 'flex_gap': gap(0),
+                 'margin': box(110, 0, 110, 0), 'margin_mobile': box(64, 0, 64, 0)}, [
+    con({'width': px(900), 'width_tablet': px(100, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(16)}, [
+        titolo('Scegli il livello di servizio più adatto alle tue esigenze'),
+        text("<p>Due formule flessibili, con la qualità e l'esperienza EVAP.</p>", '58b3754', C['navy']),
     ]),
-    html(grafici.anno(), extra={'_margin': box(50, 0, 0, 0), '_margin_mobile': box(36, 0, 0, 0)}),
-    con({'margin': box(70, 0, 0, 0), 'margin_mobile': box(48, 0, 0, 0), 'flex_gap': gap(0)}, [
-        row('', [heading('MVR CARE PURE', 'h3', 'ffbed2e', 'primary')],
-            [heading('MVR CARE PLUS', 'h3', 'ffbed2e', 'primary')], head=True),
-        row('Verifica dello stato di esercizio e della manutenzione', [value('Compresa')], [value('Compresa')]),
-        row('Anomalie', [value('Segnalazione delle anomalie e azioni raccomandate')],
-            [value('Analisi delle anomalie e delle perdite di produttività')]),
-        row('Rapporto', [value('Rapporto sintetico di verifica')], [value('Rapporto tecnico mensile')]),
-    ]),
+    con({**ROW, 'flex_gap': gap(30), 'flex_gap_mobile': gap(24), 'flex_align_items': 'stretch',
+         'margin': box(44, 0, 0, 0), 'margin_mobile': box(32, 0, 0, 0)}, [scheda('pure'), scheda('plus')]),
+    html(grafici.legenda(), extra={'_margin': box(24, 0, 0, 0)}),
 ])
 
-# ---------------------------------------------------------------- 5. richiesta del canone
-fee = boxed({'html_tag': 'section', '_element_id': 'canone', 'flex_gap': gap(0),
-             'margin': box(0, 0, 100, 0), 'margin_mobile': box(0, 0, 60, 0)}, [
-    con({**ROW, 'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(28),
-         'flex_align_items': 'center', 'flex_align_items_mobile': 'stretch',
-         'padding': box(60), 'padding_tablet': box(40), 'padding_mobile': box(36, 24),
-         'background_background': 'classic', 'border_border': 'solid', 'border_width': box(0, 0, 3, 0),
-         '__globals__': {'background_color': col('9f5d5c9'), 'border_color': col('secondary')}}, [
-        con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(20)}, [
-            h2('Scopri il canone a te riservato'),
-            text('<p>Il canone di MVR CARE è particolarmente vantaggioso. Chiedi a EVAP quello riservato a te, '
-                 'per la formula PURE o per la PLUS.</p>', '58b3754', 'text'),
+# ---------------------------------------------------------------- 5. canone e modulo (#richiedi-proposta)
+CAMPI = [
+    ('nome', 'text', 'Nome e cognome', True, '', '50'),
+    ('azienda', 'text', 'Azienda', True, '', '50'),
+    ('ruolo', 'text', 'Ruolo', False, '', '50'),
+    ('email', 'email', 'Email', True, '', '50'),
+    ('telefono', 'tel', 'Telefono', True, '', '50'),
+    ('evaporatore', 'select', 'Hai già un evaporatore MVR?', False, 'Sì, EVAP\nSì, di un altro costruttore\nNo, sto valutando', '50'),
+    ('settore', 'text', 'Settore o tipo di effluente', False, '', '100'),
+    ('capacita', 'number', 'Capacità dell\'impianto (m³/giorno), facoltativo', False, '', '50'),
+    ('anno', 'number', 'Anno di installazione, facoltativo', False, '', '50'),
+    ('formula', 'select', 'Formula di interesse', False, 'PURE\nPLUS\nNon so, consigliatemi', '50'),
+    ('esigenza', 'select', 'Esigenza principale', False, 'Evitare fermi impianto\nMantenere le prestazioni\nRidurre i costi operativi\nAltro', '50'),
+    ('fascia', 'select', 'Fascia oraria preferita per la call', False, 'Mattina\nPomeriggio\nIndifferente', '100'),
+    ('messaggio', 'textarea', 'Messaggio', False, '', '100'),
+]
+PRIVACY = ('Ho letto l\'<a href="https://evap.it/privacy-policy/" target="_blank">informativa privacy</a> '
+           'e acconsento al trattamento dei miei dati per essere ricontattato.')
+CONFERMA = ('Grazie, abbiamo ricevuto la tua richiesta. I tecnici EVAP ti contatteranno per fissare '
+            'la call di diagnosi gratuita e senza impegno.')
+
+
+def modulo():
+    campi = []
+    for cid, tipo, label, req, opzioni, w in CAMPI:
+        f = {'_id': uid(), 'custom_id': cid, 'field_type': tipo, 'field_label': label, 'placeholder': '',
+             'required': 'true' if req else '', 'width': w, 'width_mobile': '100'}
+        if opzioni:
+            f['field_options'] = opzioni
+        if tipo == 'textarea':
+            f['rows'] = 4
+        if tipo == 'number' and cid == 'anno':
+            f['field_min'] = 1950
+            f['field_max'] = 2100
+        campi.append(f)
+    campi.append({'_id': uid(), 'custom_id': 'privacy', 'field_type': 'acceptance', 'field_label': 'Privacy',
+                  'acceptance_text': PRIVACY, 'required': 'true', 'width': '100', 'width_mobile': '100'})
+    return wid('form', {
+        'form_name': 'Richiesta proposta MVR CARE',
+        'form_fields': campi,
+        'input_size': 'md', 'show_labels': 'yes', 'mark_required': 'yes', 'label_position': 'above',
+        'button_text': 'Fissa la call di diagnosi gratuita', 'button_size': 'md', 'button_width': '100', 'button_align': 'stretch',
+        # azioni: email a EVAP e raccolta nelle "Submissions" di Elementor. Per misurare le conversioni con la
+        # pagina di ringraziamento: aggiungere l'azione "Reindirizzamento" (redirect); l'indirizzo è già scritto.
+        'submit_actions': ['email', 'collect_submissions'],
+        'email_to': 'tecnico2@evap.it',
+        'email_subject': 'Richiesta proposta MVR CARE dal sito evap.it',
+        'email_content': '[all-fields]',
+        'email_from_name': 'Sito EVAP, MVR CARE',
+        'email_reply_to': '[field id="email"]',
+        'redirect_to': 'https://evap.it/servizi/mvr-care/grazie/',
+        'custom_messages': 'yes',
+        'success_message': CONFERMA,
+        'error_message': 'Si è verificato un errore: riprova o scrivi a tecnico2@evap.it.',
+        'required_field_message': 'Questo campo è obbligatorio.',
+        'invalid_message': 'Controlla il dato inserito.',
+        # aspetto, come l'anteprima
+        'column_gap': px(20), 'row_gap': px(18),
+        'label_color': C['navy'], 'mark_required_color': C['verde_bottone'],
+        'label_typography_typography': 'custom', 'label_typography_font_family': 'Plus Jakarta Sans',
+        'label_typography_font_size': px(15), 'label_typography_font_weight': '600',
+        'field_text_color': C['testo_voci'], 'field_background_color': '#F5F8FB',
+        'field_border_color': '#1D365C40', 'field_border_width': box(1), 'field_border_radius': box(10),
+        'field_typography_typography': 'custom', 'field_typography_font_family': 'Plus Jakarta Sans',
+        'field_typography_font_size': px(16),
+        'button_background_color': C['verde_bottone'], 'button_text_color': '#FFFFFF',
+        'button_background_hover_color': C['navy'], 'button_hover_color': '#FFFFFF',
+        'button_border_radius': box(40), 'button_text_padding': box(18, 30),
+        'button_typography_typography': 'custom', 'button_typography_font_family': 'Plus Jakarta Sans',
+        'button_typography_font_size': px(18), 'button_typography_font_weight': '700',
+        'button_typography_text_transform': 'none',
+        'button_hover_animation': '',
+    })
+
+
+richiesta = con({'html_tag': 'section', '_element_id': 'richiedi-proposta', 'content_width': 'full', 'flex_gap': gap(0)}, [
+    # fascia blu con l'onda verde, come la chiusura della slide 4
+    boxed({'flex_gap': gap(0), 'flex_align_items': 'center', 'padding': box(80, 10, 150, 10),
+           'padding_tablet': box(70, 20, 140, 20), 'padding_mobile': box(56, 20, 110, 20),
+           'background_background': 'classic', 'background_color': C['blu_scuro'],
+           'shape_divider_top': 'waves', 'shape_divider_top_color': C['verde_onda'],
+           'shape_divider_top_width': px(100, '%'), 'shape_divider_top_height': px(60),
+           'shape_divider_top_height_mobile': px(30)}, [
+        con({'width': px(900), 'width_tablet': px(100, '%'), 'flex_gap': gap(22), 'flex_align_items': 'center'}, [
+            icona('leaf', '#FFFFFF', 46),
+            heading('Scopri il canone a te riservato, <span style="background:#2B880A;border-radius:40px;padding:0 .35em;'
+                    '-webkit-box-decoration-break:clone;box-decoration-break:clone">particolarmente vantaggioso.</span>',
+                    'h2', '#FFFFFF', font(44, 38, 30, '800', 1.3, -0.5), extra={'align': 'center'}),
+            text('<p>Ogni evaporatore ha caratteristiche ed esigenze operative specifiche. Scopri la formula MVR CARE più '
+                 'adatta al tuo impianto e richiedi una proposta economica personalizzata, senza impegno.</p>',
+                 fnt=font(19, 18, 17, '500', 1.55), colore='#FFFFFF', extra={'align': 'center'}),
+            bottone('#modulo-proposta', align='center', extra={'_margin': box(10, 0, 0, 0)}),
         ]),
-        con({'width': px(40, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(8)}, [
-            heading('+39 0444 1276355', 'p', 'accent', 'primary', link='tel:+3904441276355'),
-            heading('tecnico2@evap.it', 'p', 'text', 'primary', link='mailto:tecnico2@evap.it'),
-            merge_globals(button('Richiedi il canone', 'https://evap.it/contattaci/'), {}),
+    ]),
+    # il modulo, su un riquadro bianco che sale sulla fascia
+    boxed({'flex_gap': gap(0), 'margin': box(-90, 0, 110, 0), 'margin_mobile': box(-70, 0, 64, 0)}, [
+        con({**ROW, '_element_id': 'modulo-proposta', 'flex_gap': gap(50), 'flex_gap_tablet': gap(30), 'flex_gap_mobile': gap(28),
+             'padding': box(48), 'padding_tablet': box(32), 'padding_mobile': box(28, 20),
+             'background_background': 'classic', 'background_color': '#FFFFFF', 'border_radius': box(24),
+             'border_border': 'solid', 'border_width': box(1), 'border_color': '#1D365C26'}, [
+            con({'width': px(36, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(16)}, [
+                heading('Fissa una call gratuita con i nostri tecnici', 'h3', C['navy'], font(30, 27, 25, '800', 1.2, -0.3)),
+                text('<p>Una consulenza di diagnosi gratuita e senza impegno, finalizzata alla quotazione del servizio MVR CARE '
+                     'per il tuo impianto.</p>', '58b3754', C['navy']),
+                text('<p>Preferisci telefonare? <a href="tel:+3904441276355">+39 0444 1276355</a><br>'
+                     'Oppure scrivi a <a href="mailto:tecnico2@evap.it">tecnico2@evap.it</a></p>',
+                     extra={'link_color': C['navy']}),
+            ]),
+            con({'width': px(64, '%'), 'width_mobile': px(100, '%')}, [
+                modulo(),
+                html(grafici.modulo_js()),
+            ]),
         ]),
     ]),
 ])
-fee['elements'][0]['elements'][1]['elements'][2]['settings']['_margin'] = box(22, 0, 0, 0)
 
 # ---------------------------------------------------------------- 6. domande frequenti
 FAQ = [
     ("Che differenza c'è tra PURE e PLUS?",
-     "Entrambe comprendono un controllo remoto ogni settimana e la verifica dello stato di esercizio e della "
-     "manutenzione. PURE prevede 4 visite tecniche programmate all'anno, la segnalazione delle anomalie con le "
-     "azioni raccomandate e un rapporto sintetico di verifica. PLUS prevede 12 visite all'anno, l'analisi delle "
-     "anomalie e delle perdite di produttività e un rapporto tecnico mensile."),
-    ("A chi è rivolto MVR CARE?",
-     "È il servizio di assistenza tecnica che EVAP dedica ai suoi clienti, per mantenere nel tempo l'efficienza "
-     "e la continuità operativa dell'evaporatore MVR."),
-    ("Che cosa ricevo dopo i controlli?",
-     "Report e raccomandazioni per l'ottimizzazione dell'esercizio: con PURE un rapporto sintetico di verifica, "
-     "con PLUS un rapporto tecnico mensile."),
-    ("Quanto costa?",
-     'Il canone è riservato e particolarmente vantaggioso: per conoscerlo <a href="https://evap.it/contattaci/">'
-     'scrivi a EVAP</a> o chiama il +39 0444 1276355.'),
+     "Entrambe comprendono un controllo remoto ogni settimana e la verifica dello stato di esercizio e manutenzione. "
+     "PURE prevede 4 visite tecniche programmate all'anno, la segnalazione delle anomalie con le azioni raccomandate e "
+     "un rapporto sintetico di verifica. PLUS prevede 12 visite tecniche programmate all'anno, l'analisi delle anomalie "
+     "e delle perdite di produttività e un rapporto tecnico mensile."),
+    ("Il controllo remoto è continuo?",
+     "No: in entrambe le formule è previsto un controllo remoto ogni settimana dei principali parametri operativi, "
+     "insieme alle visite tecniche programmate (4 all'anno con PURE, 12 con PLUS)."),
+    ("Cosa succede dopo la richiesta?",
+     "Fissiamo una call gratuita con i nostri tecnici: una consulenza di diagnosi gratuita e senza impegno, per individuare "
+     "la formula MVR CARE più adatta al tuo impianto e prepararti una proposta economica personalizzata."),
+    ("Quanto costa MVR CARE?",
+     'Il canone è riservato e particolarmente vantaggioso, e dipende dalle caratteristiche e dalle esigenze operative del '
+     f'tuo evaporatore. <a href="{ANCORA}">Richiedi la tua proposta personalizzata</a>, senza impegno.'),
 ]
 faq = boxed({**ROW, 'html_tag': 'section', 'flex_gap': gap(60), 'flex_gap_tablet': gap(40), 'flex_gap_mobile': gap(28),
-             'margin': box(0, 0, 100, 0), 'margin_mobile': box(0, 0, 60, 0)}, [
-    con({'width': px(40, '%'), 'width_mobile': px(100, '%')}, [h2('Domande frequenti')]),
+             'margin': box(0, 0, 110, 0), 'margin_mobile': box(0, 0, 64, 0)}, [
+    con({'width': px(40, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(18)}, [
+        titolo('Domande frequenti'),
+        wid('divider', {'style': 'solid', 'weight': px(5), 'width': px(64), 'color': C['verde_onda'], 'gap': px(4)}),
+    ]),
     con({'width': px(60, '%'), 'width_mobile': px(100, '%'), 'flex_gap': gap(0),
-         'border_border': 'solid', 'border_width': box(1, 0, 0, 0), '__globals__': {'border_color': col('0012040')}}, [
+         'border_border': 'solid', 'border_width': box(1, 0, 0, 0), 'border_color': '#1D365C26'}, [
         con({'flex_gap': gap(10), 'padding': box(26, 0, 26, 0),
-             'border_border': 'solid', 'border_width': box(0, 0, 1, 0), '__globals__': {'border_color': col('0012040')}}, [
-            heading(q, 'h3', 'c959aeb', 'primary'),
-            merge_globals(text(f'<p>{a}</p>'), {'link_color': col('primary')}),
+             'border_border': 'solid', 'border_width': box(0, 0, 1, 0), 'border_color': '#1D365C26'}, [
+            heading(q, 'h3', C['navy'], font(21, 20, 19, '700', 1.3)),
+            text(f'<p>{a}</p>', extra={'link_color': C['verde_bottone']}),
         ]) for q, a in FAQ
     ]),
 ])
 
-# ---------------------------------------------------------------- documento
-doc = {
-    'content': [hero, why, do, plans, fee, faq],
-    'page_settings': {'hide_title': 'yes', 'template': 'elementor_header_footer'},
-    'version': '0.4',
-    'title': 'MVR CARE',
-    'type': 'page',
-}
-out = json.dumps(doc, ensure_ascii=False, indent=1)
-assert '\u2014' not in out, 'lineetta lunga U+2014 nel modello'
-with open(os.path.join(QUI, 'mvr-care-template.json'), 'w', encoding='utf-8') as f:
-    f.write(out + '\n')
+# ---------------------------------------------------------------- pagina di ringraziamento (facoltativa)
+grazie = boxed({'html_tag': 'section', 'flex_gap': gap(22), 'flex_align_items': 'flex-start',
+                'padding': box(190, 10, 120, 10), 'padding_mobile': box(130, 20, 80, 20),
+                'background_background': 'classic', 'background_color': C['cielo'], **ONDA}, [
+    heading('Grazie, abbiamo ricevuto la tua richiesta', 'h1', C['navy'], font(56, 46, 36, '800', 1.1, -1)),
+    text('<p>I tecnici EVAP ti contatteranno per fissare la call di diagnosi gratuita e senza impegno sul tuo evaporatore MVR.</p>',
+         fnt=font(21, 20, 18, '500', 1.5), colore=C['navy'],
+         extra={'_element_width': 'initial', '_element_custom_width': px(720), '_element_width_mobile': 'inherit'}),
+    text('<p>Per qualsiasi necessità: <a href="tel:+3904441276355">+39 0444 1276355</a>, '
+         '<a href="mailto:tecnico2@evap.it">tecnico2@evap.it</a>.</p>', extra={'link_color': C['navy']}),
+    bottone('/servizi/mvr-care/', 'Torna a MVR CARE'),
+])
+
+# ---------------------------------------------------------------- documenti
+def normalizza(elementi, livello=0):
+    """isInner: falso per i contenitori di primo livello, vero per tutti quelli dentro."""
+    for e in elementi:
+        if e['elType'] == 'container':
+            e['isInner'] = livello > 0
+            if livello > 0:
+                e['settings'].setdefault('content_width', 'full')
+        normalizza(e['elements'], livello + 1)
+    return elementi
+
+
+def scrivi(nome, contenuto, titolo_doc):
+    normalizza(contenuto)
+    doc = {'content': contenuto, 'page_settings': {'hide_title': 'yes', 'template': 'elementor_header_footer'},
+           'version': '0.4', 'title': titolo_doc, 'type': 'page'}
+    out = json.dumps(doc, ensure_ascii=False, indent=1)
+    assert '\u2014' not in out, 'lineetta lunga U+2014 nel modello'
+    with open(os.path.join(QUI, nome), 'w', encoding='utf-8') as f:
+        f.write(out + '\n')
+
+
+scrivi('mvr-care-template.json', [apertura, fascia, perche, monitor, formule, richiesta, faq], 'MVR CARE')
+scrivi('mvr-care-grazie-template.json', [grazie], 'MVR CARE, grazie')
+
 # gli stessi disegni come file a parte: li usa l'anteprima e si possono incollare in un widget HTML
 os.makedirs(os.path.join(QUI, 'grafici'), exist_ok=True)
-for nome, codice in (('anno-assistenza.html', grafici.anno()), ('ciclo-servizio.html', grafici.ciclo()),
+for nome, codice in (('anno-pure.html', grafici.anno('pure')), ('anno-plus.html', grafici.anno('plus')),
+                     ('anno-legenda.html', grafici.legenda()), ('monitoraggio.html', grafici.monitoraggio()),
+                     ('modulo-formula.html', grafici.modulo_js()),
                      ('schema-mvr-facoltativo.html', grafici.schema())):
     assert '\u2014' not in codice
     with open(os.path.join(QUI, 'grafici', nome), 'w', encoding='utf-8') as f:
         f.write(codice + '\n')
-print('scritto mvr-care-template.json,', _n[0], 'elementi')
+print('scritti mvr-care-template.json e mvr-care-grazie-template.json,', _n[0], 'elementi')

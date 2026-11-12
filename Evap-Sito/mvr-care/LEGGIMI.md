@@ -1,107 +1,113 @@
-# MVR CARE: istruzioni
+# MVR CARE: istruzioni (versione 2, landing page)
 
-Pagina nuova per evap.it: il servizio di assistenza MVR CARE con le formule PURE e PLUS. Qui sotto: cosa c'è nella cartella, come mettere la pagina sul sito, cosa chiedere al cliente prima di pubblicare.
+Landing page commerciale per il servizio di assistenza MVR CARE di EVAP, con le formule PURE e PLUS e il modulo per richiedere la proposta. Rifatta sulla base della risposta del cliente alla prima bozza: identità grafica della brochure, un solo invito ("Richiedi la tua proposta MVR CARE"), due schede d'offerta, modulo nella pagina. Qui: cosa c'è nella cartella, come metterla sul sito, cosa confermare prima di pubblicare.
 
 ## Cosa c'è nella cartella
 
 | File | Cosa è |
 |---|---|
-| `01-contenuti.md` | I testi della brochure, trascritti parola per parola, e cosa la brochure non dice |
-| `02-design-sito.md` | Com'è fatto il sito oggi: colori, caratteri, misure, testata, piede, pagine |
-| `03-proposta.md` | La pagina: indirizzo, menu, titolo SEO, sezioni e testi, foto |
-| `ILLUSTRAZIONI-BROCHURE.md` | Le immagini della brochure (sembrano generate al computer) e quando si potrebbero usare |
-| `anteprima/index.html` | La pagina come sarà sul sito, con testata e piede veri. Si apre nel browser (meglio da un piccolo server: `python3 -m http.server` dalla cartella `anteprima`). Con `?carattere=sito` in fondo all'indirizzo si vede come apparirebbe oggi, col carattere che non si carica |
-| `anteprima/variante-schema.html` | La stessa pagina con in più lo schema facoltativo "Come funziona un evaporatore MVR" (da far controllare a EVAP, vedi punto 5) |
-| `screenshot/` | Schermate dell'anteprima e della variante a 1440 e a 390 px; in `prova-wordpress/` quelle della prova del modello |
-| `elementor/mvr-care-template.json` | **Il modello da importare in Elementor** |
-| `elementor/genera_template.py` | Il programma che scrive il modello (se cambiano i testi: si modificano lì e si lancia `python3 genera_template.py`) |
-| `elementor/grafici.py` | I dati e il disegno dei grafici (anno di assistenza, ciclo del servizio, schema MVR) |
-| `elementor/grafici/*.html` | Il codice dei tre disegni, pronto da incollare in un widget HTML di Elementor (lo scrive `genera_template.py`) |
+| `01-contenuti.md` | I testi della brochure parola per parola, e i testi del messaggio del cliente usati nella pagina |
+| `02-design-sito.md` | Com'è fatto il sito oggi (kit, testata, piede, pagine) e il problema del carattere che non si carica |
+| `03-proposta.md` | **La landing**: struttura, testi completi, modulo, colori della brochure, immagini |
+| `ILLUSTRAZIONI-BROCHURE.md` | Le illustrazioni della brochure: cosa si usa, a quali condizioni |
+| `PROMPT-IMMAGINI.md` | Tre prompt (inglese e italiano) per far generare al cliente le immagini nello stile della copertina |
+| `anteprima/index.html` | La landing come sarà sul sito, con testata e piede veri e il modulo statico. Meglio aprirla da un piccolo server: `python3 -m http.server` dalla cartella `anteprima`. Con `?carattere=sito` si vede col carattere che oggi non si carica |
+| `anteprima/variante-schema.html` | La stessa landing con lo schema facoltativo "Come funziona un evaporatore MVR" |
+| `anteprima/img/brochure-copertina-impianto.jpg` | Il ritaglio dell'impianto dalla copertina, per l'apertura (da caricare nella libreria media) |
+| `screenshot/` | Schermate dell'anteprima e della variante a 1440 e a 390 px; in `prova-wordpress/` quelle della prova in WordPress |
+| `elementor/mvr-care-template.json` | **Il modello della landing da importare** |
+| `elementor/mvr-care-grazie-template.json` | Il modello della pagina di ringraziamento (facoltativa, per misurare le conversioni) |
+| `elementor/genera_template.py`, `elementor/grafici.py` | I programmi che scrivono i modelli e i disegni (se cambiano testi o dati: si modificano lì e si lancia `python3 genera_template.py`) |
+| `elementor/grafici/*.html` | Il codice dei widget HTML (linea dell'anno PURE e PLUS, legenda, schermata "MVR Monitoring", formula già scelta, schema facoltativo), pronto da incollare |
 | `riferimenti/` | Schermate delle pagine attuali del sito |
-| `originali/` | La brochure e le sue immagini: solo sul computer, **non vanno in git** (lo impedisce `Evap-Sito/.gitignore`) |
+| `originali/` | Brochure e immagini delle slide: solo sul computer, non vanno in git |
 
-## 1. Importare il modello
+## Prima di cominciare
 
-Serve un utente amministratore. Il modello usa solo Elementor gratuito (contenitori, Titolo, Editor di testo, Immagine, Pulsante, Elenco icone): va bene con Elementor 3.31.5, con o senza Pro.
+- Serve un utente amministratore e **Elementor Pro attivo** (sul sito c'è la 3.28): il modulo della landing è il widget **Modulo** di Elementor Pro. Tutto il resto è Elementor gratuito (contenitori, Titolo, Editor di testo, Immagine, Pulsante, Icona, Elenco icone, Divisore, HTML).
+- I colori della brochure sono scritti nel modello come valori (per esempio `#2B880A` per i bottoni), perché nel kit del sito non ci sono. Se EVAP vuole poterli cambiare in un colpo solo: Elementor > Impostazioni del sito > Colori globali, aggiungere i colori della tabella in `03-proposta.md` e collegarli ai widget.
 
-1. Nella bacheca di WordPress: **Modelli > Modelli salvati** (in inglese "Templates > Saved Templates").
-2. In alto: **Importa modelli** ("Import Templates").
-3. **Scegli file**: `mvr-care-template.json`, poi **Importa ora** ("Import Now").
-4. Elementor mostra due avvisi:
-   - "I file JSON potrebbero non essere sicuri" ("JSON files may be unsafe"): **Continua**. Il file è nostro.
-   - "Abilita il caricamento di file non filtrati" ("Enable Unfiltered File Uploads"): **Importa senza abilitare** ("Import Without Enabling"). Il modello non contiene SVG né file JSON di animazioni, non serve abilitare niente.
-5. Nell'elenco compare "MVR CARE" di tipo Pagina.
+## 1. Caricare l'immagine dell'apertura
 
-Durante l'importazione Elementor **copia le due foto** nella libreria media (diventano `IMG_9042-1536x1152-1.jpg` e `IMG_7517-768x1024-1.jpg`). Va bene così; chi vuole tenere la libreria pulita può, dopo, aprire la pagina in Elementor, scegliere per l'apertura e per la foto di "Perché conta" le immagini originali già presenti (`IMG_9042`, `IMG_7517`) e cancellare le due copie dalla libreria.
+**Media > Aggiungi nuovo** e caricare `anteprima/img/brochure-copertina-impianto.jpg` (il ritaglio dell'impianto dalla copertina, autorizzato dal cliente). Testo alternativo: "Impianto di evaporazione, illustrazione della brochure MVR CARE".
 
-## 2. Creare la pagina
+## 2. Importare i modelli
 
-1. **Pagine > Aggiungi nuova**. Titolo: `MVR CARE`.
-2. Nel riquadro a destra, **Attributi pagina** (o "Pagina > Modello"):
-   - **Genitore**: `Servizi` (così l'indirizzo diventa `/servizi/mvr-care/`);
-   - **Modello**: **Elementor a tutta larghezza** ("Elementor Full Width"), lo stesso di tutte le altre pagine del sito: mostra la testata e il piede del sito (Sina) e lascia a Elementor il resto.
-3. **Indirizzo (slug)**: `mvr-care`. Salva come bozza.
-4. **Modifica con Elementor**.
-5. Nell'area vuota, l'icona della cartella (**Aggiungi modello**) > scheda **Modelli** > **Modelli del sito** ("Templates > Site templates"; nelle versioni più vecchie "I miei modelli") > riga "MVR CARE" > **Inserisci**. Elementor chiede "Applicare anche le impostazioni di questa pagina?" ("Apply the settings of this Page too?"): rispondere **Applica** (nasconde il titolo della pagina, che nelle altre pagine non c'è).
-6. Controllare con le icone del telefono e del tablet in alto, poi **Pubblica**.
+1. **Modelli > Modelli salvati > Importa modelli**, scegliere `mvr-care-template.json`, **Importa ora**.
+2. Elementor mostra due avvisi: "I file JSON potrebbero non essere sicuri" > **Continua**; "Abilita il caricamento di file non filtrati" > **Importa senza abilitare**.
+3. Ripetere con `mvr-care-grazie-template.json` se si vuole la pagina di ringraziamento.
 
-Se il titolo "MVR CARE" di WordPress comparisse sopra la foto: nelle impostazioni della pagina in Elementor (ingranaggio in alto) attivare **Nascondi titolo**.
+Durante l'importazione Elementor copia nella libreria la foto della sezione "Perché conta" (`IMG_7517-768x1024-1.jpg`): va bene, oppure si sceglie l'originale e si cancella la copia. Il logo e la foto dentro la schermata "MVR Monitoring" sono indirizzi della libreria già presenti, non vengono copiati.
 
-## 3. Mettere la pagina nel menu
+## 3. Creare la pagina
 
-1. **Aspetto > Menu**, scegliere il menu del sito ("Menu principale").
-2. Nel riquadro **Pagine** spuntare "MVR CARE" e **Aggiungi al menu**.
-3. Trascinare "MVR CARE" **sotto "Servizi" e un po' a destra**, così diventa una sottovoce (come "Life Struvite" sotto "Progetti"). Il menu della testata mostrerà da solo la freccia accanto a "Servizi".
-4. **Salva menu**. Controllare anche il menu sul telefono (il bottone azzurro con le tre righe).
+1. **Pagine > Aggiungi nuova**, titolo `MVR CARE`, **Genitore** `Servizi`, **Modello** "Elementor a tutta larghezza" (come le altre pagine), indirizzo `mvr-care`. Salva come bozza, **Modifica con Elementor**.
+2. Icona della cartella (**Aggiungi modello**) > **Modelli** > **Modelli del sito** > "MVR CARE" > **Inserisci**; alla domanda "Applicare anche le impostazioni di questa pagina?" rispondere **Applica**.
+3. Nell'apertura, clic sull'immagine di destra (ora è il segnaposto grigio) > **Scegli immagine** > il ritaglio caricato al punto 1.
+4. Controllare il modulo (punto 4), poi le viste tablet e telefono, poi **Pubblica**.
 
-Facoltativo, ma utile: un collegamento a `/servizi/mvr-care/` dalla scheda "Assistenza Post-Vendita" della home e un bottone "MVR CARE" nel riquadro "Altri servizi" della pagina Servizi.
+## 4. Il modulo (Elementor Pro)
 
-## 4. Titolo e descrizione per Google
+Il modulo è nella sezione `#richiedi-proposta`, nel riquadro bianco sotto la fascia blu. Dopo l'importazione controllare in Elementor (clic sul modulo):
+- **Campi**: 14 campi con gli ID della tabella in `03-proposta.md` (`nome`, `azienda`, `ruolo`, `email`, `telefono`, `evaporatore`, `settore`, `capacita`, `anno`, `formula`, `esigenza`, `fascia`, `messaggio`, `privacy`). L'ID del campo **`formula`** deve restare così: lo usa il piccolo script che sceglie la formula quando si arriva dal bottone di una scheda.
+- **Pulsante**: "Fissa la call di diagnosi gratuita".
+- **Azioni dopo l'invio**: Email (a **tecnico2@evap.it**, da confermare; oggetto "Richiesta proposta MVR CARE dal sito evap.it"; contenuto `[all-fields]`; "Rispondi a" il campo email) e Raccolta invii.
+- **Messaggi**: conferma "Grazie, abbiamo ricevuto la tua richiesta. I tecnici EVAP ti contatteranno per fissare la call di diagnosi gratuita e senza impegno."
+- **Invio di prova**: compilare il modulo dalla pagina pubblicata e controllare che l'email arrivi (e che non finisca nello spam: se succede, serve un plugin SMTP per WordPress).
 
-Il sito non ha un plugin SEO, quindi oggi WordPress scrive come titolo "MVR CARE – EVAP" e nessuna descrizione. Va bene anche così. Se si installa un plugin SEO (per esempio Yoast SEO o Rank Math), usare:
-- titolo: `MVR CARE: assistenza per evaporatori MVR | EVAP`
-- descrizione: `MVR CARE è l'assistenza EVAP per il tuo evaporatore MVR: visite tecniche programmate, controllo remoto ogni settimana e rapporti. Formule PURE e PLUS.`
+**Se l'importazione non riconosce il modulo** (per esempio Pro non attivo, o una versione di Pro che legge le impostazioni in modo diverso: nella prova locale, senza Pro, Elementor lo scarta e importa il resto della pagina), si ricrea a mano in pochi minuti:
+1. Nel riquadro bianco della sezione `#richiedi-proposta`, colonna di destra, trascinare il widget **Modulo** sopra il widget HTML che c'è già (lo script della formula: va lasciato).
+2. Nome del modulo: "Richiesta proposta MVR CARE". Creare i campi della tabella di `03-proposta.md`, con lo stesso tipo, etichetta, ID (scheda Avanzate del campo), obbligatorietà, opzioni (una per riga) e larghezza (50% per nome, azienda, ruolo, email, telefono, evaporatore, capacità, anno, formula, esigenza; 100% per gli altri). Per la privacy: tipo "Accettazione", testo con il collegamento a https://evap.it/privacy-policy/.
+3. Pulsante, azioni e messaggi come sopra.
+4. Stile, come l'anteprima: etichette navy `#070D57` 15 px peso 600; campi fondo `#F5F8FB`, bordo 1 px `#1D365C40`, angoli 10 px; pulsante verde `#2B880A`, testo bianco 18 px peso 700, angoli 40 px, al passaggio `#070D57`; spazio tra i campi 20 px in orizzontale e 18 in verticale.
 
-## 5. Cose facoltative
+## 5. Pagina di ringraziamento e misura delle conversioni (facoltativo)
 
-- **Modulo dentro la pagina**: il sito ha già il modulo MetForm "Contattaci" (id 135). Nel riquadro "Scopri il canone a te riservato" si può togliere il bottone e trascinare al suo posto il widget **MetForm**, scegliendo quel modulo. In MetForm conviene aggiungere "MVR CARE" tra gli argomenti, così le richieste si riconoscono. Il modello di base porta invece alla pagina Contattaci, senza toccare MetForm.
-- **Briciole di pane** come nelle altre pagine (Home → Servizi → MVR CARE): un widget Elenco icone in linea sotto la frase d'apertura, testo `#DBDBDB`, freccia bianca.
+Serve se la landing viene sponsorizzata: la visita alla pagina di ringraziamento è la "conversione" da contare (Google Ads, Meta, Google Analytics).
+1. Creare la pagina **Grazie**, genitore **MVR CARE**, indirizzo `grazie` (quindi `/servizi/mvr-care/grazie/`), modello "Elementor a tutta larghezza", e inserirvi il modello "MVR CARE, grazie" come al punto 3.
+2. Nel modulo della landing: **Azioni dopo l'invio** > aggiungere **Reindirizzamento**. L'indirizzo `https://evap.it/servizi/mvr-care/grazie/` è già scritto nel modello (sezione "Reindirizzamento"); se non c'è, scriverlo. Con il reindirizzamento il messaggio di conferma non si vede più: lo sostituisce la pagina.
+3. Non mettere la pagina Grazie nel menu; se c'è un plugin SEO, impostarla su "noindex".
+4. Nello strumento delle campagne, creare la conversione "visita a /servizi/mvr-care/grazie/". Se la pagina dei cookie (Pressidium) blocca gli strumenti di misura finché il visitatore non accetta, le conversioni contate saranno meno di quelle vere: è normale.
+5. Per sapere da quale campagna arriva una richiesta: si possono aggiungere al modulo campi nascosti con il valore preso dall'indirizzo (in Elementor Pro: campo "Nascosto" > Valore predefinito > tag dinamico "Parametro della richiesta", parametri `utm_source` e `utm_campaign`).
 
-- **Schema "Come funziona un evaporatore MVR"** (`anteprima/variante-schema.html`). **Prima di pubblicarlo va fatto controllare a un tecnico EVAP**: è uno schema di principio generico della ricompressione meccanica del vapore, scritto senza dati EVAP, e gli impianti EVAP possono essere fatti in modo diverso. Se va bene: in Elementor, dopo la sezione "Perché conta", aggiungere un contenitore largo come gli altri (1290 px, margine sotto 100 px), dentro un Titolo H2 "Come funziona un evaporatore MVR", un Editor di testo con la frase introduttiva della variante e un widget **HTML** con tutto il contenuto di `elementor/grafici/schema-mvr-facoltativo.html`.
+**Formula già scelta**: i bottoni delle schede PURE e PLUS portano a `?formula=pure#richiedi-proposta` e `?formula=plus#richiedi-proposta`; lo script nel widget HTML accanto al modulo sceglie la formula. Anche un annuncio può usare questi indirizzi.
 
-## Grafici: cosa sono e come si cambiano
+## 6. Menu e titolo
 
-Nella pagina ci sono due disegni, ognuno in un widget **HTML** di Elementor (gratuito): "L'anno di assistenza" nella sezione delle formule e "Il ciclo del servizio" nella fascia blu. Mostrano solo dati della brochure (vedi `03-proposta.md`, "Grafici"). Ognuno contiene due versioni: quella larga per gli schermi oltre 1024 px e quella verticale per tablet e telefono; Elementor non deve fare niente, cambia da sola.
+- **Aspetto > Menu**: aggiungere "MVR CARE" e trascinarlo sotto "Servizi" come sottovoce. **Salva menu**.
+- Il sito non ha un plugin SEO: WordPress userà "MVR CARE – EVAP" come titolo. Per una pagina sponsorizzata conviene installarne uno (Yoast SEO o Rank Math) e usare titolo e descrizione di `03-proposta.md`.
 
-- **Cambiare numeri o testi nel modo giusto**: modificare i dati in `elementor/grafici.py` (sezioni `ANNO` e `CICLO`: quante visite e in quali mesi, etichette, legenda, nota), lanciare `python3 genera_template.py` e incollare il nuovo codice da `elementor/grafici/` nel widget HTML (in Elementor: clic sul disegno > "Codice HTML"), oppure reimportare il modello.
-- **Ritocchi a mano**: in cima al codice di ogni widget c'è un commento che dice quali elementi sono le visite, i rapporti, le tacche e le scritte. Ogni modifica va fatta in tutte e due le versioni (larga e compatta).
-- I colori seguono i colori globali del kit; il carattere è quello della pagina.
-- **Niente grafici di consumi, risparmi o percentuali** finché EVAP non dà dati veri: la brochure non ne ha (il "28 kWh/m³" del laptop è un'illustrazione). Cosa chiedere a EVAP per farli: punto 7, domanda 10.
+## 7. I disegni (widget HTML)
 
-## 6. Un problema del sito da sistemare (non della pagina)
+Nella landing ci sono cinque widget HTML: la schermata "MVR Monitoring", la linea dell'anno nella scheda PURE e in quella PLUS, la legenda sotto le schede, lo script della formula. In cima al codice di ognuno un commento spiega dove si cambiano numeri ed etichette. Il modo giusto per cambiarli è modificare i dati in `elementor/grafici.py` (sezioni `ANNO` e `MONITOR`), lanciare `python3 genera_template.py` e incollare il codice nuovo da `elementor/grafici/` nel widget (clic sul disegno > "Codice HTML"). I disegni hanno una versione larga (oltre 1024 px) e una compatta per tablet e telefono, con testi mai sotto gli 11 px. Nessuna animazione.
 
-Oggi il carattere del sito, Plus Jakarta Sans, **non si carica**: il sito si vede in Arial/Helvetica. Il foglio del carattere che LiteSpeed serve è vuoto e quello di Elementor punta ancora al vecchio dominio di prova (dettagli in `02-design-sito.md`). Rimedio: Elementor > Strumenti > **Rigenera file e dati**, poi LiteSpeed Cache > **Svuota tutto**; se non basta, Elementor > Impostazioni > Avanzate: disattivare e riattivare "Carica Google Fonts in locale" e svuotare di nuovo la cache. La pagina MVR CARE usa i caratteri globali del kit, quindi si sistema insieme al resto.
+**Schema facoltativo "Come funziona un evaporatore MVR"** (`anteprima/variante-schema.html`): è uno schema di principio generico; **prima di pubblicarlo va fatto controllare a un tecnico EVAP**. Se va bene: dopo la sezione "Controllo, prevenzione, performance" aggiungere un contenitore largo 1290 px con un Titolo H2 "Come funziona un evaporatore MVR", un Editor di testo con la frase della variante e un widget HTML con il contenuto di `elementor/grafici/schema-mvr-facoltativo.html`.
 
-## 7. Prima di pubblicare: cosa chiedere al cliente
+## 8. Il carattere del sito (da sistemare, non della pagina)
 
-1. **Foto vere.** Le due foto usate sono della vostra libreria (evaporatori in officina). Confermate che vanno bene per MVR CARE? Avete foto di un **tecnico EVAP al lavoro su un impianto in esercizio**, di un **evaporatore MVR installato** presso un cliente, o una **schermata vera del controllo remoto**? Sarebbero le foto giuste per questa pagina.
-2. **Illustrazioni della brochure.** Le immagini delle slide sembrano generate al computer (il manometro ha la scala sbagliata, il laptop mostra "28 kWh/m³", un valore inventato). Sono vostre e ne avete i diritti per il sito? Per ora non le usiamo (vedi `ILLUSTRAZIONI-BROCHURE.md`).
-3. **Testi.** Confermate i testi di `03-proposta.md`, comprese le piccole correzioni (per esempio "performance: sempre sotto controllo") e le quattro domande frequenti.
-4. **A chi è rivolto.** La brochure dice "dedicato ai propri clienti": MVR CARE vale solo per gli impianti costruiti da EVAP o anche per evaporatori MVR di altri costruttori?
-5. **Canone.** Resta "su richiesta" ("Scopri il canone a te riservato"), senza prezzi in pagina? Oppure volete una cifra o un "a partire da"?
-6. **Dettagli che la brochure non dà**, da aggiungere solo se li confermate: durata del contratto e rinnovo; se gli interventi mirati e i ricambi sono compresi nel canone; tempi di intervento; come funziona il controllo remoto.
-7. **Contatti.** Per le richieste MVR CARE vanno bene +39 0444 1276355 e tecnico2@evap.it, o c'è un riferimento diverso?
-8. **Menu e indirizzo.** Va bene "MVR CARE" sotto "Servizi", all'indirizzo `/servizi/mvr-care/`? Volete il modulo dentro la pagina o il bottone verso Contattaci?
-9. **Carattere del sito.** Possiamo sistemare il caricamento di Plus Jakarta Sans (punto 6)? Cambia l'aspetto di tutto il sito, in meglio.
-10. **Grafici con dati veri.** Se volete grafici di consumi, risparmi o fermi evitati, ci servono: un report vero di MVR CARE (anche anonimizzato), i consumi specifici medi reali degli impianti seguiti (per esempio kWh per m³ evaporato, prima e dopo gli interventi), i fermi impianto evitati o ridotti e il permesso di pubblicarli. Senza, non li mettiamo.
-11. **Visite.** Le date delle visite si concordano con il cliente, come scritto sotto il disegno? Con PURE sono più o meno una a trimestre? E il rapporto sintetico di verifica di PURE quando arriva (dopo ogni visita)? Se ce lo dite, il disegno lo mostra.
-12. **Schema MVR facoltativo.** Un vostro tecnico può controllare `anteprima/variante-schema.html`? Lo pubblichiamo solo con il suo via libera.
+Plus Jakarta Sans oggi **non si carica** su evap.it: il sito si vede in Arial/Helvetica e così si vedrebbe anche la landing (schermata `screenshot/anteprima-1440-come-oggi-senza-carattere.jpg`). Il foglio del carattere servito da LiteSpeed è vuoto e quello di Elementor punta al vecchio dominio di prova. Rimedio: Elementor > Strumenti > **Rigenera file e dati**, poi LiteSpeed Cache > **Svuota tutto**; se non basta, Elementor > Impostazioni > Avanzate: disattivare e riattivare "Carica Google Fonts in locale" e svuotare di nuovo la cache. Per una landing sponsorizzata vale la pena farlo prima della pubblicazione.
 
-## Come è stato provato il modello
+## 9. Da confermare prima di pubblicare
 
-In locale, fuori dal repository, con WordPress 7.1.4, il tema Hello Elementor 3.5.2 ed Elementor 3.31.5 gratuito su SQLite:
-- ricreati nel kit locale i 12 colori e i 14 caratteri globali del kit 11 di evap.it, con gli stessi id, e disattivati colori e caratteri predefiniti come sul sito;
-- importato `mvr-care-template.json` **dal pannello Modelli salvati > Importa modelli**, con i due avvisi come sopra: importato senza errori, le due foto scaricate da evap.it e copiate nella libreria (`screenshot/prova-wordpress/importazione-modelli-salvati.jpg`);
-- creata una pagina vuota con "Elementor a tutta larghezza", aperta in Elementor, inserito il modello da **Aggiungi modello > Modelli > Modelli del sito**, risposto "Applica" alla domanda sulle impostazioni e pubblicato: la pagina ha le sei sezioni, il titolo nascosto ed è identica, pixel per pixel, a quella creata copiando il contenuto del modello (`editor-libreria-modelli.jpg`, `editor-modello-inserito.jpg`). Nota: in locale la libreria di Elementor non raggiungeva i server di elementor.com (bloccati dall'ambiente di prova) ed Elementor 3.31.5 in quel caso va in errore aprendo la libreria; per la prova si sono messi dati vuoti al posto di quelli remoti. Sul sito vero, collegato a internet, non dovrebbe succedere;
-- aperta la pagina nell'editor di Elementor: 42 contenitori, 26 Titoli, 9 Editor di testo, 3 Pulsanti, 1 Immagine, 1 Elenco icone, 2 HTML (i disegni, con `<style>` e SVG intatti dopo l'importazione), nessun errore di script; carattere e colore dei widget collegati ai globali; il codice dei disegni si apre nel pannello con il commento in cima (`editor-apertura.jpg`, `editor-widget-html-anno.jpg`);
-- la pagina pubblicata corrisponde all'anteprima a 1440 e a 390 px (`pagina-1440.jpg`, `pagina-390.jpg`; nella prova la testata è quella di base di Hello, sul sito sarà quella di Sina), e non scorre di lato a 390, 768, 1024, 1440 e 1920 px. Nei disegni nessun testo esce dal riquadro e il testo più piccolo misura 11,7 px (a 1025 px, appena prima del passaggio alla versione compatta) e 12,4 px sul telefono.
+1. **Il dato "28 kWh/m³" e la sua formulazione esatta.** È misurato o "fino a"? Su un impianto preciso, su un impianto tipo o in media? In quali condizioni? In una pagina sponsorizzata dev'essere esatto ed eventualmente accompagnato da una nota. Si cambia in `grafici.py` (MONITOR) e nel titolo grande sotto la schermata.
+2. **Il nome "MVR Monitoring"**: è uno strumento vero di EVAP o solo il titolo della brochure?
+3. **L'email del modulo**: tecnico2@evap.it o un altro indirizzo (anche più di uno)? E un invio di prova riuscito.
+4. **La pagina di ringraziamento**: la vogliono? Chi imposta la conversione nelle campagne?
+5. **Le immagini AI**: il cliente le genera con `PROMPT-IMMAGINI.md`? Fino ad allora resta il ritaglio della copertina.
+6. **I diritti delle illustrazioni usate**: il ritaglio della copertina è autorizzato; serve per iscritto chi l'ha prodotto, con quale programma e che la licenza permetta l'uso sul sito e negli annunci.
+7. **A chi è rivolto**: la brochure dice "dedicato ai propri clienti", il modulo accetta anche impianti di altri costruttori. MVR CARE vale anche per loro?
+8. **Le visite**: è giusto scrivere "Le date delle visite sono indicative: si concordano con il cliente"? Il rapporto sintetico di verifica di PURE quando arriva?
+9. **Il canone**: resta su richiesta, senza prezzi in pagina?
+10. **Le fasce orarie** del modulo (Mattina, Pomeriggio, Indifferente) vanno bene o preferiscono orari precisi?
+11. **Il testo del consenso privacy** e il collegamento: va bene la pagina Privacy Policy o l'informativa clienti in PDF della pagina Contattaci?
+12. **Grafici con dati veri** (facoltativo): per mostrare consumi, risparmi o fermi evitati servono un report vero anonimizzato, i consumi specifici medi reali e i fermi evitati, con il permesso di pubblicarli.
+
+## Come è stato provato
+
+In locale, fuori dal repository: WordPress 7.1.4, Hello Elementor 3.5.2, **Elementor 3.31.5 gratuito** su SQLite, con i colori e i caratteri globali del kit 11 ricreati e i colori e caratteri predefiniti disattivati come sul sito.
+- Importati `mvr-care-template.json` e `mvr-care-grazie-template.json` dal pannello **Modelli salvati > Importa modelli**, con i due avvisi: nessun errore (`prova-wordpress/importazione-modelli-salvati.jpg`). Come previsto, senza Pro il widget Modulo viene scartato durante l'importazione; il resto della pagina c'è tutto, compresi i cinque widget HTML con stile, SVG e script.
+- Creata la pagina `/servizi/mvr-care/` e scelta l'immagine dell'apertura; creata `/servizi/mvr-care/grazie/` dal secondo modello (`grazie-1440.jpg`).
+- Inserito il modello anche dall'editor (Aggiungi modello > Modelli > Modelli del sito > Inserisci > Applica) e pubblicato: nessun errore (`editor-libreria-modelli.jpg`, `editor-modello-inserito.jpg`).
+- Aperta nell'editor: 47 contenitori, 23 Titoli, 16 Editor di testo, 5 Pulsanti, 2 Immagini, 11 Icone, 3 Divisori, 2 Elenchi icone, 5 HTML, nessun errore di script (`editor-apertura.jpg`, `editor-widget-html-anno.jpg`).
+- La pagina corrisponde all'anteprima a 1440 e a 390 px, tranne il modulo che senza Pro non c'è (`pagina-1440.jpg`, `pagina-390.jpg`); nessuno scorrimento laterale a 390, 768, 1024, 1440 e 1920 px; nei disegni il testo più piccolo misura 11 px.
+- **Il widget Modulo di Elementor Pro non è stato provato** (Pro non era disponibile in locale): le sue impostazioni nel modello seguono il formato di Elementor Pro 3.x, ma vanno controllate sul sito come al punto 4.

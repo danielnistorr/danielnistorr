@@ -156,4 +156,19 @@ Fascia in basso (onda verde e blu), con icona foglia e filetto verticale:
 - Se MVR CARE vale anche per evaporatori non costruiti da EVAP (la brochure dice "dedicato ai propri clienti").
 - Come avviene il controllo remoto (software, connessione, chi lo fa), tempi di intervento, reperibilità, ricambi compresi o no.
 - Se gli interventi mirati sono compresi nel canone o si pagano a parte.
-- Numeri di consumo, risparmio o resa (il "28 kWh/m³" del laptop è finto).
+- Numeri di consumo, risparmio o resa. Nella prima versione il "28 kWh/m³" del laptop era trattato come illustrazione; il cliente (vedi sotto) dice che il consumo specifico è una loro caratteristica e chiede di mostrarlo: la **formulazione esatta del dato va confermata** prima di pubblicare.
+
+## Testi dal messaggio del cliente (versione 2, landing page)
+
+Roberto (EVAP) ha risposto sulla prima bozza. Testi usati alla lettera nella pagina:
+
+- Bottone, ovunque: **"Richiedi la tua proposta MVR CARE"**.
+- Proposta della call: **"Fissa una call gratuita con i nostri tecnici per una consulenza di diagnosi gratuita e senza impegno"**, finalizzata alla quotazione del servizio.
+- Titolo della chiusura: **"Scopri il canone a te riservato, particolarmente vantaggioso."** (è anche la frase finale della slide 4).
+- Testo della chiusura: **"Ogni evaporatore ha caratteristiche ed esigenze operative specifiche. Scopri la formula MVR CARE più adatta al tuo impianto e richiedi una proposta economica personalizzata, senza impegno."**
+- Principio commerciale: **"MVR CARE non è un costo aggiuntivo di assistenza: è un investimento programmato per ridurre il rischio di inefficienze e interruzioni produttive."**
+- Pulsante del modulo: **"Fissa la call di diagnosi gratuita"**.
+- Campi del modulo: nome e cognome, azienda, ruolo, email, telefono; "Hai già un evaporatore MVR?" (Sì, EVAP / Sì, di un altro costruttore / No, sto valutando); settore o tipo di effluente; capacità dell'impianto in m³/giorno; anno di installazione; formula di interesse (PURE / PLUS / Non so, consigliatemi); esigenza principale (evitare fermi impianto / mantenere le prestazioni / ridurre i costi operativi / altro); fascia oraria preferita per la call; messaggio; consenso privacy.
+- Vincoli tecnici del cliente: 4 e 12 visite all'anno, controllo remoto settimanale; nessuna promessa di monitoraggio continuo, nessuna riparazione inclusa, nessun tempo d'intervento garantito.
+
+Il cliente ha autorizzato l'uso del ritaglio dell'impianto dalla copertina della brochure.

@@ -124,3 +124,7 @@ Titoli del kit: H1 = `secondary`, H2 = `6cd74bd`, H3 = `ffbed2e`, H4 = `accent`,
 - Cornice bianca di 20 px (10 sul telefono) intorno alle due fasce piene: l'apertura con la foto velata di blu (come i banner) e la fascia blu delle attività (come quella della home).
 - Foto a sinistra e testo a destra come "Scopri perché EVAP"; quadratini azzurri come gli "step" della home; schede alternate bianco / `#F5F6F8` con il filetto azzurro di 3 px come le schede della home e di Chi siamo; telefono, email e bottone come il riquadro blu della colonna di Servizi.
 - Il gradino in più: titolo d'apertura allineato a sinistra e più grande (80 px, `primary`) invece del titolo centrato a 54 px, una tabella di confronto vera al posto di due schede, testi corti tenuti dal ritmo dei filetti invece che da icone.
+
+## 9. Versione 2 (landing page)
+
+Su richiesta del cliente la versione 2 segue l'identità della brochure (colori presi con il contagocce, onda blu e verde, icone, schede arrotondate): vedi `03-proposta.md`, "Identità grafica". Dal sito restano la testata, il piede, il carattere Plus Jakarta Sans, il colore del testo del kit e il contenuto largo 1290 px.
