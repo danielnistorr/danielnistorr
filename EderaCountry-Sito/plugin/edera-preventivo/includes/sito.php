@@ -103,7 +103,7 @@ function edera_preventivo_risorse( $r ) {
 		wp_enqueue_script( 'edera-flatpickr-it', $u . 'vendor/flatpickr/it.js', array( 'edera-flatpickr' ), '4.6.13', array( 'in_footer' => true ) );
 		$dip[] = 'edera-flatpickr-it';
 	}
-	if ( $cal || array_filter( wp_list_pluck( $r['servizi'], 'attivo' ) ) || (int) $r['sconti']['minimo_persone'] > 1 ) {
+	if ( $cal || array_filter( wp_list_pluck( $r['servizi'], 'attivo' ) ) || (int) $r['sconti']['minimo_persone'] > 1 || edera_preventivo_con_note( $r ) ) {
 		wp_enqueue_style( 'edera-preventivo', $u . 'preventivo.css', $cal ? array( 'edera-flatpickr' ) : array(), $v );
 	}
 	wp_enqueue_script( 'edera-preventivo', $u . 'preventivo.js', $dip, $v, array( 'in_footer' => true ) );
@@ -115,6 +115,58 @@ function edera_preventivo_risorse( $r ) {
 			'testi'  => edera_preventivo_testi_js(),
 		)
 	);
+}
+
+/**
+ * La stima puo' avere delle note (capienza superabile, o almeno uno spazio attivo con le fasce)?
+ *
+ * @param array $r Regole.
+ * @return bool
+ */
+function edera_preventivo_con_note( $r ) {
+	if ( 'rigido' !== $r['generali']['oltre_capienza'] ) {
+		return true;
+	}
+	foreach ( $r['spazi'] as $s ) {
+		if ( $s['attivo'] && ! empty( $s['fasce'] ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Prezzo di uno spazio per lo stato iniziale del calcolatore (giornata intera), come prezzoSpazio() di calcolo.js.
+ *
+ * @param array $s     Spazio.
+ * @param int   $n     Partecipanti.
+ * @param int   $extra Persone oltre la capienza contate in piu' (con la stima).
+ * @return float|null  Null = da valutare (oltre la capienza, nessuna fascia).
+ */
+function edera_preventivo_prezzo_iniziale( $s, $n, $extra ) {
+	$p = min( $n, (int) $s['persone'] + $extra );
+	if ( ! empty( $s['fasce'] ) ) {
+		$f      = null;
+		$aperta = null;
+		foreach ( $s['fasce'] as $x ) {
+			if ( ! $f && $p >= (int) $x['da'] && ( ! (int) $x['a'] || $p <= (int) $x['a'] ) ) {
+				$f = $x;
+			}
+			if ( ! (int) $x['a'] ) {
+				$aperta = $x;
+			}
+		}
+		if ( ! $f && $p > (int) $s['persone'] ) {
+			if ( ! $aperta ) {
+				return null;
+			}
+			$f = $aperta;
+		}
+		if ( $f ) {
+			return 'persona' === $f['modo'] ? (float) $f['importo'] * $p : (float) $f['importo'];
+		}
+	}
+	return 'fisso' === $s['modo'] ? (float) $s['prezzo_intera'] : (float) $s['base'] + max( 0, $p - (int) $s['incluse'] ) * (float) $s['a_persona'];
 }
 
 /**
@@ -159,22 +211,35 @@ function edera_preventivo_shortcode( $a ) {
 	if ( ! $scelti && $spazi ) {
 		$scelti[] = $spazi[0]['chiave'];
 	}
-	// stato iniziale, come lo scrive lo script appena parte (serve solo senza JavaScript)
-	$massimo = 0;
-	$con     = 0;
+	// stato iniziale, come lo scrive lo script appena parte (serve solo senza JavaScript); stessi conti di calcolo.js
+	$capienza = 0;
+	$con      = 0;
 	foreach ( $spazi as $s ) {
 		if ( in_array( $s['chiave'], $scelti, true ) ) {
-			$massimo += (int) $s['persone'];
-			$con     += $s['mezza'] ? 1 : 0;
+			$capienza += (int) $s['persone'];
+			$con      += $s['mezza'] ? 1 : 0;
 		}
 	}
-	$mezza  = $r['durate']['mezza_attiva'] && ( 'tutti' === $r['durate']['regola_mezza'] ? count( $scelti ) === $con : $con > 0 );
-	$minimo = max( 1, (int) $r['sconti']['minimo_persone'] );
-	$n      = max( min( $minimo, $massimo ), min( (int) $r['generali']['partecipanti_esempio'], $massimo ) );
+	$mezza    = $r['durate']['mezza_attiva'] && ( 'tutti' === $r['durate']['regola_mezza'] ? count( $scelti ) === $con : $con > 0 );
+	$minimo   = max( 1, (int) $r['sconti']['minimo_persone'] );
+	$modo     = $r['generali']['oltre_capienza'];
+	$assoluto = max( 0, (int) $r['generali']['massimo_assoluto'] );
+	$limite   = 'rigido' === $modo ? ( $assoluto > 0 ? min( $capienza, $assoluto ) : $capienza ) : $assoluto; // 0 = nessun limite
+	$n        = max( 1, (int) $r['generali']['partecipanti_esempio'] );
+	if ( $limite > 0 && $n > $limite ) {
+		$n = $limite;
+	}
+	if ( $minimo > 1 && $n < $minimo ) {
+		$n = $limite > 0 ? min( $minimo, $limite ) : $minimo;
+	}
+	$extra  = ( 'stima' === $modo && $n > $capienza ) ? $n - $capienza : 0;
+	$senza  = 'senza' === $modo && $n > $capienza;
 	$totale = 0;
 	foreach ( $spazi as $s ) {
 		if ( in_array( $s['chiave'], $scelti, true ) ) {
-			$totale += 'fisso' === $s['modo'] ? (float) $s['prezzo_intera'] : (float) $s['base'] + max( 0, min( $n, (int) $s['persone'] ) - (int) $s['incluse'] ) * (float) $s['a_persona'];
+			$prezzo = edera_preventivo_prezzo_iniziale( $s, $n, $extra );
+			$senza  = $senza || null === $prezzo;
+			$totale += (float) $prezzo;
 		}
 	}
 	$servizi = array_filter(
@@ -189,8 +254,11 @@ function edera_preventivo_shortcode( $a ) {
 	$privacy = $privacy ? $privacy : home_url( '/privacy/' );
 	$nota_os = $minimo > 1
 		/* translators: 1: minimum, 2: maximum participants */
-		? sprintf( __( 'Con gli spazi scelti, da %1$d a %2$d persone.', 'edera-preventivo' ), $minimo, $massimo )
-		: 'Con gli spazi scelti, fino a ' . (int) $massimo . ' persone.';
+		? sprintf( __( 'Con gli spazi scelti, da %1$d a %2$d persone.', 'edera-preventivo' ), $minimo, $limite )
+		: 'Con gli spazi scelti, fino a ' . (int) $limite . ' persone.';
+	if ( 'rigido' !== $modo ) {
+		$nota_os = str_replace( '{capienza}', (string) $capienza, $r['testi']['nota_capienza'] );
+	}
 
 	edera_preventivo_risorse( $r );
 	ob_start();
@@ -213,7 +281,7 @@ function edera_preventivo_shortcode( $a ) {
             <legend><span>02</span>Partecipanti e durata</legend>
             <div class="campi">
               <label class="campo">Numero partecipanti
-                <input id="ospiti" type="number" inputmode="numeric" min="<?php echo (int) $minimo; ?>" max="<?php echo (int) $massimo; ?>" step="1" placeholder="Indica il numero di persone" required>
+                <input id="ospiti" type="number" inputmode="numeric" min="<?php echo (int) $minimo; ?>"<?php echo $limite > 0 ? ' max="' . (int) $limite . '"' : ''; ?> step="1" placeholder="Indica il numero di persone" required>
                 <span class="nota" id="ospiti-nota"><?php echo esc_html( $nota_os ); ?></span>
               </label>
               <div class="campo">
@@ -263,9 +331,16 @@ function edera_preventivo_shortcode( $a ) {
         <aside class="stima" aria-labelledby="stima-titolo">
           <p class="sopra">La tua stima</p>
           <h3 id="stima-titolo">Budget orientativo</h3>
+	<?php if ( $senza ) : ?>
+          <p class="prezzo edp-da-valutare" id="totale" aria-live="polite"><?php echo esc_html( $r['testi']['da_valutare'] ); ?></p>
+	<?php else : ?>
           <p class="prezzo" id="totale" aria-live="polite"><?php echo esc_html( edera_preventivo_euro( $totale ) ); ?></p>
+	<?php endif; ?>
 	<?php if ( '' !== $iva ) : ?>
           <p class="nota"><?php echo esc_html( $iva ); ?></p>
+	<?php endif; ?>
+	<?php if ( edera_preventivo_con_note( $r ) ) : ?>
+          <div class="edp-note-stima" id="stima-note" aria-live="polite" hidden></div>
 	<?php endif; ?>
           <ul class="voci-stima" id="voci-stima"></ul>
           <button class="btn btn-oro" type="button" id="prepara">Prepara la richiesta</button>

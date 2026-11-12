@@ -36,10 +36,10 @@ function edera_preventivo_iniziali() {
 	return array(
 		'versione'   => 1,
 		'spazi'      => array(
-			array( 'chiave' => 'rustico', 'nome' => 'Rustico', 'persone' => 50, 'modo' => 'persone', 'base' => 400, 'incluse' => 20, 'a_persona' => 15, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => true, 'nota' => '' ),
-			array( 'chiave' => 'serra', 'nome' => 'Serra', 'persone' => 70, 'modo' => 'persone', 'base' => 250, 'incluse' => 20, 'a_persona' => 5, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '' ),
-			array( 'chiave' => 'piscina', 'nome' => 'Piscina', 'persone' => 30, 'modo' => 'fisso', 'base' => 0, 'incluse' => 0, 'a_persona' => 0, 'prezzo_intera' => 400, 'prezzo_mezza' => 300, 'mezza' => true, 'attivo' => true, 'scelto' => false, 'nota' => '' ),
-			array( 'chiave' => 'esterno', 'nome' => 'Spazio esterno', 'persone' => 120, 'modo' => 'persone', 'base' => 350, 'incluse' => 20, 'a_persona' => 2.5, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '' ),
+			array( 'chiave' => 'rustico', 'nome' => 'Rustico', 'persone' => 50, 'modo' => 'persone', 'base' => 400, 'incluse' => 20, 'a_persona' => 15, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => true, 'nota' => '', 'fasce' => array() ),
+			array( 'chiave' => 'serra', 'nome' => 'Serra', 'persone' => 70, 'modo' => 'persone', 'base' => 250, 'incluse' => 20, 'a_persona' => 5, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '', 'fasce' => array() ),
+			array( 'chiave' => 'piscina', 'nome' => 'Piscina', 'persone' => 30, 'modo' => 'fisso', 'base' => 0, 'incluse' => 0, 'a_persona' => 0, 'prezzo_intera' => 400, 'prezzo_mezza' => 300, 'mezza' => true, 'attivo' => true, 'scelto' => false, 'nota' => '', 'fasce' => array() ),
+			array( 'chiave' => 'esterno', 'nome' => 'Spazio esterno', 'persone' => 120, 'modo' => 'persone', 'base' => 350, 'incluse' => 20, 'a_persona' => 2.5, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '', 'fasce' => array() ),
 		),
 		'durate'     => array(
 			'intera'        => 'Giornata intera',
@@ -68,17 +68,32 @@ function edera_preventivo_iniziali() {
 		),
 		'servizi'    => array(),
 		'testi'      => array(
-			'email'        => 'edera@ederacountry.it',
-			'oggetto'      => 'Richiesta di preventivo, {azienda}',
-			'corpo'        => edera_preventivo_corpo_iniziale(),
-			'avvertenza'   => 'Il prezzo indicato è orientativo e non definitivo: il preventivo finale può variare in base alla tipologia di evento, ai servizi richiesti e alle esigenze organizzative. Valori da confermare con la struttura.',
-			'iva'          => 'personalizzata',
-			'nota_prezzo'  => 'IVA e servizi extra da verificare',
-			'msg_data'     => 'Questa data non è disponibile: scegline un’altra.',
-			'msg_capienza' => 'Con gli spazi scelti si arriva al massimo a {max} persone: la stima è calcolata su {max}.',
+			'email'            => 'edera@ederacountry.it',
+			'oggetto'          => 'Richiesta di preventivo, {azienda}',
+			'corpo'            => edera_preventivo_corpo_iniziale(),
+			'avvertenza'       => 'Il prezzo indicato è orientativo e non definitivo: il preventivo finale può variare in base alla tipologia di evento, ai servizi richiesti e alle esigenze organizzative. Valori da confermare con la struttura.',
+			'iva'              => 'personalizzata',
+			'nota_prezzo'      => 'IVA e servizi extra da verificare',
+			'msg_data'         => 'Questa data non è disponibile: scegline un’altra.',
+			'msg_capienza'     => 'Con gli spazi scelti si arriva al massimo a {max} persone: la stima è calcolata su {max}.',
+			// oltre la capienza, quando si puo' superare (dalla 1.0.1)
+			'nota_capienza'    => 'Capienza indicativa con gli spazi scelti: {capienza} persone. Per gruppi più numerosi la richiesta viene valutata.',
+			'msg_oltre'        => '{persone} persone, oltre la capienza indicata di {capienza}: da valutare con la struttura.',
+			'nota_fisso'       => '{spazi} a prezzo fisso: l’importo indicato non tiene conto delle persone in più.',
+			'da_valutare'      => 'Da valutare con la struttura',
+			// fasce per numero di persone (dalla 1.0.1): "Rustico (31-50 persone, 15 € a persona)"
+			'fascia_etichetta' => '{spazio} ({fascia}, {prezzo})',
+			'fascia_limiti'    => '{da}-{a} persone',
+			'fascia_aperta'    => 'da {da} persone',
+			'fascia_fissa'     => 'prezzo fisso',
+			'fascia_persona'   => '{importo} a persona',
+			'msg_fuori_fascia' => '{spazio}: per {persone} persone non c’è una fascia di prezzo, la stima usa il prezzo standard dello spazio.',
 		),
 		'generali'   => array(
 			'partecipanti_esempio' => 20,
+			// rigido = il numero torna alla capienza (com'e' oggi); stima = si supera, con l'importo; senza = si supera, senza importo
+			'oltre_capienza'       => 'rigido',
+			'massimo_assoluto'     => 0,
 		),
 	);
 }
@@ -116,6 +131,7 @@ function edera_preventivo_dal_tema() {
 			'attivo'        => true,
 			'scelto'        => ! empty( $s['scelto'] ),
 			'nota'          => '',
+			'fasce'         => array(),
 		);
 	}
 	$r['spazi'] = $spazi;
@@ -151,8 +167,14 @@ function edera_preventivo_regole() {
 	if ( ! is_array( $r ) || empty( $r['spazi'] ) ) {
 		return edera_preventivo_iniziali();
 	}
-	// una sezione che manca (aggiunta in una versione successiva del plugin) prende i valori iniziali
-	return array_replace( edera_preventivo_iniziali(), array_intersect_key( $r, edera_preventivo_iniziali() ) );
+	// una sezione o una voce che manca (aggiunta in una versione successiva del plugin) prende i valori iniziali:
+	// le regole salvate con la 1.0.0 non hanno "oltre_capienza", quindi restano a "rigido" come prima
+	$ini = edera_preventivo_iniziali();
+	$r   = array_replace( $ini, array_intersect_key( $r, $ini ) );
+	foreach ( array( 'durate', 'calendario', 'sconti', 'testi', 'generali' ) as $k ) {
+		$r[ $k ] = is_array( $r[ $k ] ) ? array_replace( $ini[ $k ], $r[ $k ] ) : $ini[ $k ];
+	}
+	return $r;
 }
 
 /**
@@ -177,6 +199,77 @@ function edera_preventivo_data_valida( $d ) {
 		return false;
 	}
 	return checkdate( (int) $m[2], (int) $m[3], (int) $m[1] );
+}
+
+/**
+ * Pulisce e controlla le fasce per numero di persone di uno spazio. Una riga del tutto vuota si salta.
+ * Ogni fascia: da (almeno 1), a (vuoto = senza limite superiore, altrimenti non minore di "da"), tipo di prezzo
+ * (fisso per la fascia o a persona), importo e, facoltativo, l'importo per la mezza giornata. Le fasce si salvano
+ * in ordine di "da" e non devono sovrapporsi.
+ *
+ * @param mixed    $in     Fasce grezze.
+ * @param string   $nome   Nome dello spazio (per i messaggi).
+ * @param callable $prezzo Controllo di un importo.
+ * @param callable $intero Lettura di un numero intero.
+ * @param array    $e      Errori (per riferimento).
+ * @return array
+ */
+function edera_preventivo_controlla_fasce( $in, $nome, $prezzo, $intero, &$e ) {
+	$out = array();
+	foreach ( array_values( (array) $in ) as $f ) {
+		$f   = (array) $f;
+		$val = function ( $k ) use ( $f ) {
+			return isset( $f[ $k ] ) && is_scalar( $f[ $k ] ) ? trim( (string) $f[ $k ] ) : '';
+		};
+		if ( '' === $val( 'da' ) && '' === $val( 'a' ) && '' === $val( 'importo' ) && '' === $val( 'importo_mezza' ) ) {
+			continue;
+		}
+		/* translators: 1: tier (e.g. 31-50), 2: space name */
+		$dove = sprintf( __( 'fascia %1$s dello spazio "%2$s"', 'edera-preventivo' ), ( '' === $val( 'da' ) ? '?' : $val( 'da' ) ) . ( '' === $val( 'a' ) ? '+' : '-' . $val( 'a' ) ), $nome );
+		$da   = $intero( $val( 'da' ) );
+		$a    = '' === $val( 'a' ) ? 0 : $intero( $val( 'a' ) );
+		if ( null === $da || $da < 1 ) {
+			/* translators: %s: where */
+			$e[] = sprintf( __( '"Da" deve essere un numero di persone, almeno 1: %s.', 'edera-preventivo' ), $dove );
+			$da  = 1;
+		}
+		if ( null === $a || $a < 0 ) {
+			/* translators: %s: where */
+			$e[] = sprintf( __( '"A" deve essere un numero di persone, oppure vuoto per "senza limite": %s.', 'edera-preventivo' ), $dove );
+			$a   = 0;
+		} elseif ( $a > 0 && $da > $a ) {
+			/* translators: %s: where */
+			$e[] = sprintf( __( '"Da" non può essere maggiore di "a": %s.', 'edera-preventivo' ), $dove );
+		}
+		if ( '' === $val( 'importo' ) ) {
+			/* translators: %s: where */
+			$e[] = sprintf( __( 'Manca l’importo: %s.', 'edera-preventivo' ), $dove );
+		}
+		$out[] = array(
+			'da'            => $da,
+			'a'             => $a,
+			'modo'          => isset( $f['modo'] ) && 'persona' === $f['modo'] ? 'persona' : 'fisso',
+			'importo'       => $prezzo( $val( 'importo' ), $dove ),
+			'importo_mezza' => '' === $val( 'importo_mezza' ) ? null : $prezzo( $val( 'importo_mezza' ), $dove ),
+		);
+	}
+	usort(
+		$out,
+		function ( $x, $y ) {
+			return $x['da'] - $y['da'];
+		}
+	);
+	$testo = function ( $x ) {
+		return $x['da'] . ( $x['a'] ? '-' . $x['a'] : '+' );
+	};
+	for ( $i = 1; $i < count( $out ); $i++ ) {
+		$prima = $out[ $i - 1 ];
+		if ( 0 === $prima['a'] || $prima['a'] >= $out[ $i ]['da'] ) {
+			/* translators: 1: space name, 2: first tier, 3: second tier */
+			$e[] = sprintf( __( 'Le fasce dello spazio "%1$s" si sovrappongono: %2$s e %3$s persone. Ogni numero di persone deve stare in una fascia sola.', 'edera-preventivo' ), $nome, $testo( $prima ), $testo( $out[ $i ] ) );
+		}
+	}
+	return $out;
 }
 
 /**
@@ -273,6 +366,7 @@ function edera_preventivo_controlla( $in ) {
 			$incluse = 0;
 		}
 		$modo         = isset( $s['modo'] ) && 'fisso' === $s['modo'] ? 'fisso' : 'persone';
+		$fasce        = edera_preventivo_controlla_fasce( isset( $s['fasce'] ) ? $s['fasce'] : array(), $nome, $prezzo, $intero, $e );
 		$r['spazi'][] = array(
 			'chiave'        => $chiave,
 			'nome'          => $nome,
@@ -287,6 +381,7 @@ function edera_preventivo_controlla( $in ) {
 			'attivo'        => $si( isset( $s['attivo'] ) ? $s['attivo'] : false ),
 			'scelto'        => $si( isset( $s['scelto'] ) ? $s['scelto'] : false ),
 			'nota'          => $testo( isset( $s['nota'] ) ? $s['nota'] : '' ),
+			'fasce'         => $fasce,
 		);
 	}
 	$attivi = array_filter(
@@ -467,7 +562,8 @@ function edera_preventivo_controlla( $in ) {
 	// testi e invio
 	$t          = isset( $in['testi'] ) ? (array) $in['testi'] : array();
 	$r['testi'] = array();
-	foreach ( array( 'oggetto', 'avvertenza', 'nota_prezzo', 'msg_data', 'msg_capienza' ) as $k ) {
+	$nuovi = array( 'nota_capienza', 'msg_oltre', 'nota_fisso', 'da_valutare', 'fascia_etichetta', 'fascia_limiti', 'fascia_aperta', 'fascia_fissa', 'fascia_persona', 'msg_fuori_fascia' );
+	foreach ( array_merge( array( 'oggetto', 'avvertenza', 'nota_prezzo', 'msg_data', 'msg_capienza' ), $nuovi ) as $k ) {
 		$r['testi'][ $k ] = $testo( isset( $t[ $k ] ) ? $t[ $k ] : '' );
 	}
 	// a capo come nella mail di oggi ("\n"): il modulo del pannello manda "\r\n"
@@ -479,7 +575,9 @@ function edera_preventivo_controlla( $in ) {
 		$email = $ini['testi']['email'];
 	}
 	$r['testi']['email'] = $email;
-	foreach ( array( 'oggetto', 'corpo' ) as $k ) {
+	// la riga "oltre la capienza" e le etichette delle fasce devono esserci sempre: un testo vuoto (o un file
+	// esportato con la 1.0.0) prende quello iniziale
+	foreach ( array_merge( array( 'oggetto', 'corpo' ), $nuovi ) as $k ) {
 		if ( '' === trim( $r['testi'][ $k ] ) ) {
 			$r['testi'][ $k ] = $ini['testi'][ $k ];
 		}
@@ -492,7 +590,20 @@ function edera_preventivo_controlla( $in ) {
 		$e[]   = __( 'I partecipanti d’esempio devono essere almeno 1.', 'edera-preventivo' );
 		$esemp = 20;
 	}
-	$r['generali'] = array( 'partecipanti_esempio' => $esemp );
+	$oltre = isset( $g['oltre_capienza'] ) && in_array( $g['oltre_capienza'], array( 'rigido', 'stima', 'senza' ), true ) ? $g['oltre_capienza'] : 'rigido';
+	$assol = $intero( isset( $g['massimo_assoluto'] ) && '' !== $g['massimo_assoluto'] ? $g['massimo_assoluto'] : 0 );
+	if ( null === $assol || $assol < 0 ) {
+		$e[]   = __( 'Il massimo assoluto di partecipanti non può essere negativo (0 = nessun massimo).', 'edera-preventivo' );
+		$assol = 0;
+	}
+	if ( $assol > 0 && $r['sconti']['minimo_persone'] > $assol ) {
+		$e[] = __( 'Il minimo di partecipanti non può superare il massimo assoluto.', 'edera-preventivo' );
+	}
+	$r['generali'] = array(
+		'partecipanti_esempio' => $esemp,
+		'oltre_capienza'       => $oltre,
+		'massimo_assoluto'     => $assol,
+	);
 
 	return array(
 		'regole' => $r,

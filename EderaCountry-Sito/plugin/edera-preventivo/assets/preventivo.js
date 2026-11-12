@@ -14,7 +14,7 @@
   var servizi = function(){ return tutti('input[name="servizi"]:checked').map(function(e){ return Number(e.value); }); };
   var durataIntera = document.querySelector('input[name="durata"][value="1.5"]');
   var durataMezza = document.querySelector('input[name="durata"][value="1"]');
-  var campoData = $('data'), calendario = null, notaData = $('data-nota');
+  var campoData = $('data'), calendario = null, notaData = $('data-nota'), noteStima = $('stima-note');
 
   function aggiornaDurata(){
     var mezza = E.mezzaPossibile(R, scelti());
@@ -25,19 +25,29 @@
   function durata(){ return (document.querySelector('input[name="durata"]:checked') || durataIntera).value === '1' ? 'mezza' : 'intera'; }
   function calcola(){
     var r = E.calcola(R, { spazi: scelti(), ospiti: ospiti.value, durata: durata(), data: campoData.value, servizi: servizi() });
-    ospiti.max = r.massimo;
+    // con "rigido" il massimo e' la capienza; se si puo' superare, solo l'eventuale massimo assoluto
+    if (r.limite > 0) ospiti.max = r.limite; else ospiti.removeAttribute('max');
     if (r.minimo > 1) ospiti.min = r.minimo;
-    var nota = r.minimo > 1 ? T.daA.replace('{min}', r.minimo).replace('{max}', r.massimo) : 'Con gli spazi scelti, fino a ' + r.massimo + ' persone.';
-    if (ospiti.value !== '' && r.oltre && R.testi.msg_capienza) nota = R.testi.msg_capienza.replace(/\{max\}/g, r.massimo);
+    var nota = r.modo !== 'rigido' ? E.riempi(R.testi.nota_capienza, { capienza: r.capienza })
+      : (r.minimo > 1 ? T.daA.replace('{min}', r.minimo).replace('{max}', r.limite) : 'Con gli spazi scelti, fino a ' + r.limite + ' persone.');
+    if (ospiti.value !== '' && r.oltre && R.testi.msg_capienza) nota = R.testi.msg_capienza.replace(/\{max\}/g, r.limite);
     $('ospiti-nota').textContent = nota;
     if (ospiti.value !== '' && (r.oltre || r.sotto)) ospiti.value = r.n;
     var esc = function(t){ return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
     var riga = function(v){ return '<li><span>' + esc(v.nome) + '</span><b>' + euro(v.valore) + '</b></li>'; };
-    var html = r.voci.map(riga).join('') + r.righe.map(riga).join('');
+    // senza importo (oltre la capienza): niente prezzi, solo partecipanti e durata
+    var html = r.senzaImporto ? '' : r.voci.map(riga).join('') + r.righe.map(riga).join('');
     html += '<li><span>Partecipanti' + (ospiti.value === '' ? ' (esempio)' : '') + '</span><b>' + r.n + '</b></li>';
     html += '<li><span>Durata</span><b>' + esc(r.durata === 'mezza' ? R.durate.mezza : R.durate.intera) + '</b></li>';
-    $('totale').textContent = euro(r.totale);
+    $('totale').textContent = r.senzaImporto ? R.testi.da_valutare : euro(r.totale);
+    $('totale').classList.toggle('edp-da-valutare', r.senzaImporto);
     $('voci-stima').innerHTML = html;
+    // le note della stima: oltre la capienza, spazi a prezzo fisso, numeri fuori dalle fasce
+    if (noteStima) {
+      var note = E.note(R, r);
+      noteStima.innerHTML = note.map(function(x){ return '<p>' + esc(x) + '</p>'; }).join('');
+      noteStima.hidden = !note.length;
+    }
     return r;
   }
   function controllaData(){

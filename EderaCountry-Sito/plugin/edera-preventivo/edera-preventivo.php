@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Edera Preventivo
  * Description:       Il calcolatore "Preventivo flash" di Edera Country House con prezzi e regole che si cambiano dal pannello (menu Preventivo): spazi, durate, giorni esclusi, tariffe e supplementi, sconti e minimi, servizi aggiuntivi, testi della mail. Disegna lo shortcode [edera_preventivo] al posto del tema.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Edera Country House
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EDERA_PREVENTIVO_VERSIONE', '1.0.0' );
+define( 'EDERA_PREVENTIVO_VERSIONE', '1.0.1' );
 define( 'EDERA_PREVENTIVO_FILE', __FILE__ );
 
 require __DIR__ . '/includes/regole.php';

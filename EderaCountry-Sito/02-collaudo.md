@@ -272,3 +272,95 @@ Calendario (oggi è il 12 novembre 2026):
 - **Recapiti** (tema 1.2): un telefono scritto in *Personalizza > Recapiti* compare nel piede; svuotato il campo, torna quello del file. La sezione si apre senza errori.
 - **Errori e scorrimento**: nessun errore di console e nessuno scorrimento orizzontale a 1440 e a 390, sul sito (anche con il calendario aperto, che a 390 sta fra 47 e 362 px) e nel pannello.
 - **Schermate**: `screenshot/preventivo/`, pannello a 1440 e a 390, prova, calcolatore e calendario a 1440 e a 390.
+
+## Plugin "Edera Preventivo" 1.0.1: capienza superabile e fasce per numero di persone (12 novembre 2026)
+
+In locale, con WordPress 7.1.4, Elementor 4.4.0 e il tema 1.2. Il punto di partenza è come il sito vero: plugin 1.0.0 attivo, regole già cambiate dal pannello (giorni esclusi, weekend, sconti, servizi), Home modificata a mano prima dell'installazione.
+
+### Aggiornamento dalla 1.0.0
+
+*Plugin > Aggiungi nuovo > Carica plugin*, `edera-preventivo.zip`, *Installa ora*. WordPress mostra il confronto (attuale 1.0.0, caricato 1.0.1) e il bottone *"Sostituisci quello attuale con quello caricato"*. Dopo l'aggiornamento il plugin resta attivo.
+
+- **Regole salvate**: identiche. L'impronta sha256 dell'opzione `edera_preventivo_regole` è la stessa prima e dopo (72b31176...), anche dopo aver aperto il sito.
+- Con quelle regole il sito dà gli stessi risultati della 1.0.0: 750, 1350, 300, 1050 e 650 €, e le stesse 8 risposte del calendario.
+- **Home**: il contenuto di `_elementor_data` è identico byte per byte prima e dopo l'aggiornamento (37.549 byte, sha256 7f0436e867b6...). È anche identico alla Home modificata a mano all'inizio delle prove.
+- **Altre pagine**: impronte di dati Elementor e contenuto di tutte le pagine uguali prima, dopo e a fine prove.
+
+### Le 15 prove di sempre
+
+Con i valori iniziali ("Limite rigido", nessuna fascia): **15 su 15** uguali all'originale (totale, voci, partecipanti, durata, testo della mail). La tabella è identica a quella della 1.0.0.
+
+Lo stesso risultato, 15 su 15, anche dopo *Salva le regole* senza cambiare niente.
+
+### Oltre la capienza
+
+| Impostazione | Prova | Stima | Note nella stima e nella mail |
+|---|---|---|---|
+| con la stima | Rustico, 52 persone (capienza 50) | 880 € (400 + 32 × 15) | "52 persone, oltre la capienza indicata di 50: da valutare con la struttura." |
+| con la stima | Piscina, 40 persone (capienza 30, prezzo fisso) | 400 € | la riga oltre capienza e "Piscina a prezzo fisso: l'importo indicato non tiene conto delle persone in più." |
+| con la stima | Rustico + Serra, 130 persone (capienza 120) | 1550 € (Rustico 1000, Serra 550) | "130 persone, oltre la capienza indicata di 120..." |
+| con la stima | Rustico, 50 persone (non supera) | 850 € | nessuna |
+| senza importo | Rustico 52, Piscina 40, Rustico + Serra 130 | "Da valutare con la struttura" | la riga oltre capienza; nella mail "Stima location: Da valutare con la struttura" |
+| senza importo | Rustico + Serra, 120 persone (non supera) | 1350 € | nessuna |
+| con la stima, massimo assoluto 150 | Rustico, 151 persone | il campo torna a 150; 2350 € | sotto il campo il messaggio "oltre capienza" con 150 |
+
+- Quando si può superare, sotto il campo compare "Capienza indicativa con gli spazi scelti: 50 persone. Per gruppi più numerosi la richiesta viene valutata." e la richiesta parte con il numero scritto.
+- Nella mail la riga oltre capienza va sotto "Partecipanti", in tutte e due le modalità.
+
+### Fasce per numero di persone
+
+Fasce di prova:
+- **Rustico**: 1-30 fisso 400 €, 31-50 a persona 15 €.
+- **Serra**: 20-40 fisso 350 €, 41-70 a persona 6 €.
+- **Piscina**: 1-15 fisso 300 € (mezza 200 €), 16-30 a persona 20 € (mezza 14 €).
+- **Spazio esterno**: 1-60 fisso 500 €, da 61 senza limite a persona 4 €.
+- In più un supplemento weekend del 10% sul totale e lo sconto del 10% su due spazi.
+
+| Prova | Atteso | Sul sito | Riga dello spazio |
+|---|---|---|---|
+| Rustico, 30 persone (bordo) | 400 € | 400 € | Rustico (1-30 persone, prezzo fisso) |
+| Rustico, 31 persone (bordo) | 465 € | 465 € | Rustico (31-50 persone, 15 € a persona) |
+| Serra, 10 persone (fuori dalle fasce) | 250 € (prezzo standard) | 250 € | Serra; nota "Serra: per 10 persone non c'è una fascia di prezzo, la stima usa il prezzo standard dello spazio." |
+| Rustico + Serra, 45 persone, sabato 17/04/2027 | 945 + weekend 94,5 - sconto 103,95 = 935,55 € | 935,55 € | Rustico (31-50 persone, 15 € a persona) 675 €; Serra (41-70 persone, 6 € a persona) 270 € |
+| Rustico, 31 persone, sabato 13/11/2027 (stagionale + weekend) | 465 + 125 + 59 = 649 € | 649 € | Rustico (31-50 persone, 15 € a persona) |
+| Piscina, 20 persone, mezza giornata | 280 € | 280 € | Piscina (16-30 persone, 14 € a persona) |
+| Piscina, 10 persone, mezza giornata | 200 € | 200 € | Piscina (1-15 persone, prezzo fisso) |
+| Piscina, 20 persone, giornata intera | 400 € | 400 € | Piscina (16-30 persone, 20 € a persona) |
+| Con la stima: Rustico, 52 persone (nessuna fascia oltre 50) | da valutare | "Da valutare con la struttura" | nota oltre capienza |
+| Con la stima: Spazio esterno, 130 persone (fascia "da 61") | 520 € | 520 € | Spazio esterno (da 61 persone, 4 € a persona) |
+| Con la stima: Rustico + Spazio esterno, 180 persone | da valutare | "Da valutare con la struttura" | nota oltre capienza |
+| Con la stima: Rustico, 45 persone (non supera) | 675 € | 675 € | Rustico (31-50 persone, 15 € a persona) |
+
+- Nella mail la riga "Spazi:" scrive la fascia applicata, per esempio "Spazi: Rustico (31-50 persone, 15 € a persona), Serra (41-70 persone, 6 € a persona)". La nota fuori fascia va sotto "Partecipanti".
+
+### Pannello
+
+- Dal modulo:
+  - "Si può superare, con la stima" e massimo assoluto 150;
+  - due fasce per il Rustico, scritte in disordine, che al salvataggio si mettono in ordine;
+  - due fasce per la Piscina, con l'importo della mezza giornata.
+  Tutto salvato com'era scritto.
+- **Errore**: una fascia 25-60 sopra le fasce 1-30 e 31-50.
+  - In cima compare: *Le fasce dello spazio "Rustico" si sovrappongono: 1-30 e 25-60 persone. Ogni numero di persone deve stare in una fascia sola.*
+  - Le regole salvate restano identiche (stessa impronta) e la bozza tiene le 3 fasce.
+  - Tolta la fascia sbagliata, il salvataggio riesce.
+- **Altri errori** controllati sulla funzione di controllo, tutti senza salvataggio:
+  - "da" maggiore di "a";
+  - importo o importo della mezza giornata negativo;
+  - importo o "da" mancante;
+  - fascia senza limite seguita da un'altra;
+  - massimo assoluto negativo;
+  - minimo di partecipanti sopra il massimo assoluto.
+  Un file JSON esportato con la 1.0.0 si importa senza errori e resta in "Limite rigido".
+- **Prova del pannello**:
+  - Rustico 30: 400 €. Rustico 31: 465 €, con le etichette delle fasce.
+  - Rustico 52: "Da valutare con la struttura", con la nota.
+  - Piscina 40: 800 € (fascia "da 16"), con la nota.
+  - Piscina 10, mezza giornata: 200 €.
+  - Rustico 151: contate 150 persone.
+- **Errori e scorrimento**: 22 casi sul sito, a 1440 e a 390, senza errori di console né scorrimento orizzontale. Lo stesso nel pannello, a 1440 e a 390.
+- **Schermate** in `screenshot/preventivo/`:
+  - `oltre-stima-1440.jpg`, `oltre-stima-390.jpg`, `oltre-senza-390.jpg`;
+  - `fasce-1440.jpg`, `fasce-390.jpg`;
+  - `pannello-fasce-1440.jpg`, `pannello-fasce-390.jpg`, `pannello-oltre-390.jpg`;
+  - `pannello-errore-fasce-1440.jpg`, `pannello-prova-fasce.jpg`.

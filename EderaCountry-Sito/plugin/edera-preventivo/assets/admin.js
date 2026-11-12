@@ -12,10 +12,12 @@
     if (!b) return;
     var riga = b.closest('.edp-riga');
     if (b.classList.contains('edp-aggiungi')) {
-      var tipo = b.getAttribute('data-tipo');
-      var modello = d.querySelector('template.edp-modello[data-tipo="' + tipo + '"]');
-      var elenco = d.querySelector('.edp-righe[data-tipo="' + tipo + '"]');
-      var html = modello.innerHTML.replace(/__i__/g, String(contatore++));
+      // il gruppo del bottone (le fasce sono un gruppo dentro la riga di uno spazio): il suo modello e il suo elenco
+      var gruppo = b.closest('.edp-gruppo');
+      var modello = gruppo.querySelector(':scope > template.edp-modello');
+      var elenco = gruppo.querySelector(':scope > .edp-righe');
+      var segno = new RegExp(b.getAttribute('data-segno') || '__i__', 'g');
+      var html = modello.innerHTML.replace(segno, String(contatore++));
       var t = d.createElement('div'); t.innerHTML = html;
       var nuova = t.firstElementChild;
       elenco.appendChild(nuova);
@@ -56,12 +58,13 @@
     var data = d.getElementById('p-data').value;
     var r = E.calcola(R, { spazi: spazi, ospiti: d.getElementById('p-ospiti').value, durata: d.getElementById('p-durata').value, data: data,
       servizi: tutti('input[name="p-servizi"]:checked', box).map(function (x) { return Number(x.value); }) });
-    d.getElementById('p-totale').textContent = E.euro(r.totale);
-    d.getElementById('p-voci').innerHTML = r.voci.concat(r.righe).map(function (v) { return '<li><span>' + esc(v.nome) + '</span><b>' + E.euro(v.valore) + '</b></li>'; }).join('')
+    // come sul sito: senza importo (oltre la capienza) niente prezzi, solo il testo al posto del totale
+    d.getElementById('p-totale').textContent = r.senzaImporto ? R.testi.da_valutare : E.euro(r.totale);
+    d.getElementById('p-voci').innerHTML = (r.senzaImporto ? [] : r.voci.concat(r.righe)).map(function (v) { return '<li><span>' + esc(v.nome) + '</span><b>' + E.euro(v.valore) + '</b></li>'; }).join('')
       + '<li><span>Partecipanti</span><b>' + r.n + '</b></li><li><span>Durata</span><b>' + esc(r.durata === 'mezza' ? R.durate.mezza : R.durate.intera) + '</b></li>';
-    var avvisi = [];
+    var avvisi = E.note(R, r);
     if (!r.mezzaPossibile && d.getElementById('p-durata').value === 'mezza') avvisi.push('La mezza giornata non vale per questi spazi: conta la giornata intera.');
-    if (r.oltre) avvisi.push('Oltre la capienza: contate ' + r.massimo + ' persone.');
+    if (r.oltre) avvisi.push((r.modo === 'rigido' && r.limite === r.capienza ? 'Oltre la capienza' : 'Oltre il massimo assoluto') + ': contate ' + r.limite + ' persone.');
     if (r.sotto) avvisi.push('Sotto il minimo: contate ' + r.n + ' persone.');
     if (data && E.calendarioAttivo(R)) { var dd = E.disponibile(R, data); if (!dd.ok) avvisi.push('Data non disponibile sul sito (' + dd.motivo + (dd.nota ? ': ' + dd.nota : '') + ').'); }
     d.getElementById('p-avvisi').textContent = avvisi.join(' ');

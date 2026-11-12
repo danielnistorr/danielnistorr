@@ -207,11 +207,16 @@ function edera_preventivo_multi( $etichetta, $nome, $valori, $scelte ) {
 
 /**
  * Comandi di una riga ripetibile.
+ *
+ * @param bool $sposta Anche i bottoni per spostarla (le fasce si mettono da sole in ordine).
  */
-function edera_preventivo_comandi() {
-	echo '<div class="edp-comandi"><button type="button" class="button edp-su" aria-label="' . esc_attr__( 'Sposta su', 'edera-preventivo' ) . '">↑</button>'
-		. '<button type="button" class="button edp-giu" aria-label="' . esc_attr__( 'Sposta giù', 'edera-preventivo' ) . '">↓</button>'
-		. '<button type="button" class="button edp-togli">' . esc_html__( 'Togli', 'edera-preventivo' ) . '</button></div>';
+function edera_preventivo_comandi( $sposta = true ) {
+	echo '<div class="edp-comandi">';
+	if ( $sposta ) {
+		echo '<button type="button" class="button edp-su" aria-label="' . esc_attr__( 'Sposta su', 'edera-preventivo' ) . '">↑</button>'
+			. '<button type="button" class="button edp-giu" aria-label="' . esc_attr__( 'Sposta giù', 'edera-preventivo' ) . '">↓</button>';
+	}
+	echo '<button type="button" class="button edp-togli">' . esc_html__( 'Togli', 'edera-preventivo' ) . '</button></div>';
 }
 
 /**
@@ -268,6 +273,32 @@ function edera_preventivo_riga( $tipo, $i, $v ) {
 		edera_preventivo_si( __( 'Già scelto quando si apre la pagina', 'edera-preventivo' ), $n( 'scelto' ), $v['scelto'] );
 		edera_preventivo_si( __( 'Ammette la mezza giornata', 'edera-preventivo' ), $n( 'mezza' ), $v['mezza'] );
 		echo '<input type="hidden" name="' . esc_attr( $n( 'chiave' ) ) . '" value="' . esc_attr( $v['chiave'] ) . '">';
+		echo '</div>';
+		$fasce = isset( $v['fasce'] ) ? (array) $v['fasce'] : array();
+		echo '<details class="edp-fasce"' . ( $fasce ? ' open' : '' ) . '><summary>';
+		/* translators: %d: number of tiers */
+		echo esc_html( $fasce ? sprintf( __( 'Fasce per numero di persone (%d)', 'edera-preventivo' ), count( $fasce ) ) : __( 'Fasce per numero di persone (facoltative)', 'edera-preventivo' ) );
+		echo '</summary><p class="description">' . esc_html__( 'Con almeno una fascia, il prezzo di questo spazio si calcola solo con le fasce: vale la fascia in cui cade il numero di partecipanti (contato fino alla capienza dello spazio). Per un numero fuori da tutte le fasce vale il prezzo qui sopra, e la stima lo segnala. "A" vuoto = senza limite superiore. L’importo per la mezza giornata è facoltativo e vale se lo spazio ammette la mezza giornata.', 'edera-preventivo' ) . '</p>';
+		edera_preventivo_righe( 'fascia', $fasce, array( 'da' => '', 'a' => '', 'modo' => 'fisso', 'importo' => '', 'importo_mezza' => '' ), __( 'Aggiungi una fascia', 'edera-preventivo' ), array( 'spazio' => $i ) );
+		echo '</details>';
+	} elseif ( 'fascia' === $tipo ) {
+		$n = function ( $k ) use ( $i, $v ) {
+			return edera_preventivo_nome( 'spazi', $v['_spazio'], 'fasce', $i, $k );
+		};
+		echo '<div class="edp-griglia edp-griglia-fascia">';
+		edera_preventivo_campo( __( 'Da (persone)', 'edera-preventivo' ), $n( 'da' ), $v['da'], 'number', ' min="1" step="1"' );
+		edera_preventivo_campo( __( 'A (persone, vuoto = senza limite)', 'edera-preventivo' ), $n( 'a' ), $v['a'] ? $v['a'] : '', 'number', ' min="1" step="1"' );
+		edera_preventivo_scelta(
+			__( 'Tipo di prezzo', 'edera-preventivo' ),
+			$n( 'modo' ),
+			$v['modo'],
+			array(
+				'fisso'   => __( 'fisso per la fascia', 'edera-preventivo' ),
+				'persona' => __( 'a persona', 'edera-preventivo' ),
+			)
+		);
+		edera_preventivo_campo( __( 'Importo (€)', 'edera-preventivo' ), $n( 'importo' ), $v['importo'], 'number', ' min="0" step="0.01"' );
+		edera_preventivo_campo( __( 'Mezza giornata (€, facoltativo)', 'edera-preventivo' ), $n( 'importo_mezza' ), null === $v['importo_mezza'] ? '' : $v['importo_mezza'], 'number', ' min="0" step="0.01"' );
 		echo '</div>';
 	} elseif ( 'data' === $tipo ) {
 		echo '<div class="edp-griglia">';
@@ -345,26 +376,32 @@ function edera_preventivo_riga( $tipo, $i, $v ) {
 		edera_preventivo_si( __( 'Attivo (compare nel preventivo)', 'edera-preventivo' ), $n( 'attivo' ), $v['attivo'] );
 		echo '</div>';
 	}
-	edera_preventivo_comandi();
+	edera_preventivo_comandi( 'fascia' !== $tipo );
 	echo '</div>';
 }
 
 /**
- * Un elenco di righe ripetibili con il suo modello e il bottone "Aggiungi".
+ * Un elenco di righe ripetibili con il suo modello e il bottone "Aggiungi", in un gruppo (le fasce sono un
+ * gruppo dentro la riga di ogni spazio). Nel modello l'indice della riga nuova e' __i__ (__f__ per le fasce).
  *
  * @param string $tipo   Tipo di riga.
  * @param array  $righe  Righe salvate.
  * @param array  $vuota  Valori di una riga nuova.
  * @param string $testo  Testo del bottone.
+ * @param array  $dentro Per le fasce: array( 'spazio' => indice dello spazio ).
  */
-function edera_preventivo_righe( $tipo, $righe, $vuota, $testo ) {
-	echo '<div class="edp-righe" data-tipo="' . esc_attr( $tipo ) . '">';
+function edera_preventivo_righe( $tipo, $righe, $vuota, $testo, $dentro = array() ) {
+	$segno = 'fascia' === $tipo ? '__f__' : '__i__';
+	if ( isset( $dentro['spazio'] ) ) {
+		$vuota['_spazio'] = $dentro['spazio'];
+	}
+	echo '<div class="edp-gruppo" data-tipo="' . esc_attr( $tipo ) . '"><div class="edp-righe">';
 	foreach ( array_values( $righe ) as $i => $v ) {
 		edera_preventivo_riga( $tipo, $i, array_merge( $vuota, $v ) );
 	}
-	echo '</div><template class="edp-modello" data-tipo="' . esc_attr( $tipo ) . '">';
-	edera_preventivo_riga( $tipo, '__i__', $vuota );
-	echo '</template><p><button type="button" class="button edp-aggiungi" data-tipo="' . esc_attr( $tipo ) . '">' . esc_html( $testo ) . '</button></p>';
+	echo '</div><template class="edp-modello">';
+	edera_preventivo_riga( $tipo, $segno, $vuota );
+	echo '</template><p><button type="button" class="button edp-aggiungi" data-segno="' . esc_attr( $segno ) . '">' . esc_html( $testo ) . '</button></p></div>';
 }
 
 /**
@@ -397,6 +434,7 @@ function edera_preventivo_pagina() {
 		<?php endif; ?>
 		<nav class="edp-indice" aria-label="<?php esc_attr_e( 'Sezioni', 'edera-preventivo' ); ?>">
 			<a href="#edp-spazi"><?php esc_html_e( 'Spazi', 'edera-preventivo' ); ?></a>
+			<a href="#edp-oltre"><?php esc_html_e( 'Oltre la capienza', 'edera-preventivo' ); ?></a>
 			<a href="#edp-durate"><?php esc_html_e( 'Durate', 'edera-preventivo' ); ?></a>
 			<a href="#edp-calendario"><?php esc_html_e( 'Calendario', 'edera-preventivo' ); ?></a>
 			<a href="#edp-tariffe"><?php esc_html_e( 'Tariffe e supplementi', 'edera-preventivo' ); ?></a>
@@ -418,11 +456,35 @@ function edera_preventivo_pagina() {
 				edera_preventivo_righe(
 					'spazio',
 					$r['spazi'],
-					array( 'chiave' => '', 'nome' => '', 'persone' => 10, 'modo' => 'persone', 'base' => 0, 'incluse' => 0, 'a_persona' => 0, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '' ),
+					array( 'chiave' => '', 'nome' => '', 'persone' => 10, 'modo' => 'persone', 'base' => 0, 'incluse' => 0, 'a_persona' => 0, 'prezzo_intera' => 0, 'prezzo_mezza' => 0, 'mezza' => false, 'attivo' => true, 'scelto' => false, 'nota' => '', 'fasce' => array() ),
 					__( 'Aggiungi uno spazio', 'edera-preventivo' )
 				);
 				?>
 				<?php edera_preventivo_campo( __( 'Partecipanti usati per la stima finché il campo è vuoto', 'edera-preventivo' ), edera_preventivo_nome( 'generali', 'partecipanti_esempio' ), $r['generali']['partecipanti_esempio'], 'number', ' min="1" step="1"' ); ?>
+				<h3 id="edp-oltre"><?php esc_html_e( 'Oltre la capienza', 'edera-preventivo' ); ?></h3>
+				<div class="edp-griglia edp-griglia-larga">
+					<?php
+					edera_preventivo_scelta(
+						__( 'Se chi compila scrive più persone della capienza degli spazi scelti', 'edera-preventivo' ),
+						edera_preventivo_nome( 'generali', 'oltre_capienza' ),
+						$r['generali']['oltre_capienza'],
+						array(
+							'rigido' => __( 'Limite rigido: il numero torna alla capienza', 'edera-preventivo' ),
+							'stima'  => __( 'Si può superare, con la stima', 'edera-preventivo' ),
+							'senza'  => __( 'Si può superare, senza importo', 'edera-preventivo' ),
+						)
+					);
+					edera_preventivo_campo( __( 'Massimo assoluto di partecipanti (0 = nessuno)', 'edera-preventivo' ), edera_preventivo_nome( 'generali', 'massimo_assoluto' ), $r['generali']['massimo_assoluto'], 'number', ' min="0" step="1"' );
+					?>
+				</div>
+				<ul class="edp-spiega">
+					<li><?php esc_html_e( 'Limite rigido (come oggi): oltre la capienza il numero viene corretto e sotto il campo compare il messaggio "oltre capienza".', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Si può superare, con la stima: la richiesta parte con il numero scritto. Negli spazi con prezzo "base + persone in più" ogni persona oltre la capienza si conta al prezzo per persona dello spazio; gli spazi a prezzo fisso, come la piscina, restano al loro prezzo e una nota dice che l’importo non tiene conto delle persone in più.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Si può superare, senza importo: al posto del totale compare "Da valutare con la struttura".', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Con le fasce per numero di persone e "con la stima", le persone oltre la capienza usano la fascia che le contiene, oppure l’ultima fascia senza limite superiore; se non ce n’è una, al posto del totale compare "Da valutare con la struttura".', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Quando si può superare, sotto il campo compare la capienza indicativa e, oltre la capienza, la stima e la mail hanno la riga "... persone, oltre la capienza indicata di ...". I testi si cambiano in Testi e invio.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Il massimo assoluto vale sempre, per evitare numeri assurdi: oltre quel numero il campo viene corretto e compare il messaggio "oltre capienza".', 'edera-preventivo' ); ?></li>
+				</ul>
 			</section>
 
 			<section class="edp-sezione" id="edp-durate">
@@ -548,8 +610,29 @@ function edera_preventivo_pagina() {
 					edera_preventivo_campo( __( 'Messaggio oltre la capienza ({max} = massimo)', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'msg_capienza' ), $t['msg_capienza'] );
 					?>
 				</div>
+				<h3><?php esc_html_e( 'Quando si può superare la capienza', 'edera-preventivo' ); ?></h3>
+				<div class="edp-griglia edp-griglia-larga">
+					<?php
+					edera_preventivo_campo( __( 'Nota sotto il campo partecipanti ({capienza})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'nota_capienza' ), $t['nota_capienza'] );
+					edera_preventivo_campo( __( 'Riga oltre la capienza, nella stima e nella mail ({persone}, {capienza})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'msg_oltre' ), $t['msg_oltre'] );
+					edera_preventivo_campo( __( 'Nota per gli spazi a prezzo fisso, con la stima ({spazi})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'nota_fisso' ), $t['nota_fisso'] );
+					edera_preventivo_campo( __( 'Al posto del totale, senza importo', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'da_valutare' ), $t['da_valutare'] );
+					?>
+				</div>
+				<h3><?php esc_html_e( 'Fasce per numero di persone', 'edera-preventivo' ); ?></h3>
+				<div class="edp-griglia edp-griglia-larga">
+					<?php
+					edera_preventivo_campo( __( 'Riga dello spazio con la fascia ({spazio}, {fascia}, {prezzo})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'fascia_etichetta' ), $t['fascia_etichetta'] );
+					edera_preventivo_campo( __( '{fascia} con un limite ({da}, {a})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'fascia_limiti' ), $t['fascia_limiti'] );
+					edera_preventivo_campo( __( '{fascia} senza limite superiore ({da})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'fascia_aperta' ), $t['fascia_aperta'] );
+					edera_preventivo_campo( __( '{prezzo} fisso per la fascia ({importo})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'fascia_fissa' ), $t['fascia_fissa'] );
+					edera_preventivo_campo( __( '{prezzo} a persona ({importo})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'fascia_persona' ), $t['fascia_persona'] );
+					edera_preventivo_campo( __( 'Nota per un numero fuori dalle fasce ({spazio}, {persone})', 'edera-preventivo' ), edera_preventivo_nome( 'testi', 'msg_fuori_fascia' ), $t['msg_fuori_fascia'] );
+					?>
+				</div>
+				<p class="description"><?php esc_html_e( 'Con i testi iniziali la riga è, per esempio, "Rustico (31-50 persone, 15 € a persona)". Un campo lasciato vuoto torna al testo iniziale: la riga oltre la capienza e le etichette delle fasce ci sono sempre.', 'edera-preventivo' ); ?></p>
 				<label class="edp-campo edp-largo"><span><?php esc_html_e( 'Testo della mail', 'edera-preventivo' ); ?></span><textarea name="<?php echo esc_attr( edera_preventivo_nome( 'testi', 'corpo' ) ); ?>" rows="13"><?php echo esc_textarea( $t['corpo'] ); ?></textarea></label>
-				<p class="description"><?php esc_html_e( 'Segnaposti: {azienda} {email} {telefono} {tipo} {spazi} {data} {persone} {durata} {totale} {servizi} {servizi_riga} (la riga "Servizi aggiuntivi: ..." solo se ce ne sono) {dettaglio} (tutte le voci della stima).', 'edera-preventivo' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Segnaposti: {azienda} {email} {telefono} {tipo} {spazi} {data} {persone} {capienza} {durata} {totale} {servizi} {servizi_riga} (la riga "Servizi aggiuntivi: ..." solo se ce ne sono) {dettaglio} (tutte le voci della stima) {note_riga} (le note della stima, per esempio oltre la capienza o fuori dalle fasce: se il testo non ce l’ha, vanno da sole dopo la riga con {persone}). Con le fasce, {spazi} scrive anche la fascia applicata.', 'edera-preventivo' ); ?></p>
 				<label class="edp-campo edp-largo"><span><?php esc_html_e( 'Avvertenza sotto la stima', 'edera-preventivo' ); ?></span><textarea name="<?php echo esc_attr( edera_preventivo_nome( 'testi', 'avvertenza' ) ); ?>" rows="3"><?php echo esc_textarea( $t['avvertenza'] ); ?></textarea></label>
 			</section>
 

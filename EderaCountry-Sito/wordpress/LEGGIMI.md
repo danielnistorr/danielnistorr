@@ -88,6 +88,10 @@ L'ordine conta: **prima il plugin, poi il tema**.
 
 Né il plugin né il tema 1.2 toccano le pagine, i testi o i dati di Elementor: le modifiche fatte alla Home restano.
 
+### Avete già il plugin 1.0.0? L'aggiornamento alla 1.0.1
+
+*Plugin > Aggiungi nuovo > Carica plugin*, il nuovo `edera-preventivo.zip`, *Installa ora*, poi **"Sostituisci quello attuale con quello caricato"**. Le regole salvate restano e sul sito non cambia niente finché non usate le novità (capienza superabile, fasce di prezzo per numero di persone). Il tema non va aggiornato.
+
 ## Seconda strada: direttamente sul dominio
 
 Solo quando il sito di prova è approvato, oppure se preferisci saltare la prova.
@@ -153,7 +157,7 @@ Nell'editor un clic su un pallino con link può far scorrere l'anteprima fino al
 
 ## Cambiare i prezzi del calcolatore
 
-**Con il plugin "Edera Preventivo" attivo** (consigliato) i prezzi e tutte le regole si cambiano dal pannello, menu **Preventivo**. Lì ci sono anche i giorni esclusi con il calendario, i supplementi (per esempio il weekend), gli sconti, i minimi, i servizi aggiuntivi e i testi della mail. Le istruzioni sono nel LEGGIMI del plugin.
+**Con il plugin "Edera Preventivo" attivo** (consigliato) i prezzi e tutte le regole si cambiano dal pannello, menu **Preventivo**. Lì ci sono anche i giorni esclusi con il calendario, i supplementi (per esempio il weekend), gli sconti, i minimi, i servizi aggiuntivi, le fasce di prezzo per numero di persone, la capienza superabile e i testi della mail. Le istruzioni sono nel LEGGIMI del plugin.
 
 **Senza il plugin** vale quello che segue.
 
