@@ -9,14 +9,14 @@ Le immagini delle quattro slide sembrano **generate da un programma di immagini*
 
 Sono tutte piccole: 768 x 512 px le prime tre, 1536 x 1024 la quarta.
 
-## Versione 2 (landing page): cosa si usa adesso
+## Landing page (versione 3 in stile sito e versione 2 "brochure"): cosa si usa adesso
 
 | Illustrazione | Uso nella pagina | Condizioni |
 |---|---|---|
 | Slide 1, impianto della copertina | **Usata**: ritaglio 342 x 408 px nell'apertura, in una cornice, mostrato al massimo a 428 x 510 px (1,25 volte) | **Autorizzata dal cliente**. Testo alternativo "Impianto di evaporazione, illustrazione della brochure MVR CARE" (non "foto", non "impianto EVAP"). Da confermare per iscritto chi l'ha prodotta e che la licenza permetta l'uso sul sito e negli annunci sponsorizzati. Da sostituire quando il cliente avrà l'immagine dai prompt di `PROMPT-IMMAGINI.md`. |
 | Slide 3, schermata "MVR Monitoring" | **Ricostruita**, non copiata: disegno SVG nitido con la stessa impostazione e gli stessi colori, con il logo EVAP e una foto vera di un loro impianto dalla libreria media | Il cliente dice che il consumo specifico è una loro caratteristica: il dato "28 kWh/m³" e la sua formulazione vanno **confermati** (vedi `LEGGIMI.md`). Il nome "MVR Monitoring" va confermato. La didascalia dice "Controllo remoto settimanale", per non far pensare a un monitoraggio continuo. |
-| Slide 1, 2, 4: icone (ingranaggio, grafico, foglia, fabbrica, bersaglio, monete) | **Riprese** come icone Font Awesome di Elementor (stesso significato, disegno nitido) | Nessun problema di diritti: le icone sono quelle di Elementor. |
-| Slide 1 e 4: onda blu e verde | **Ripresa** con il divisore "Waves" di Elementor, in colori pieni | Nessun problema di diritti. |
+| Slide 1, 2, 4: icone (ingranaggio, grafico, foglia, fabbrica, bersaglio, monete) | **v2**: riprese come icone Font Awesome piene di Elementor; **v3**: piccole icone lineari Font Awesome "regular" con un significato vicino | Nessun problema di diritti: le icone sono quelle di Elementor. |
+| Slide 1 e 4: onda blu e verde | **Solo nella v2**, con il divisore "Waves" di Elementor in colori pieni; la v3 non ha onde | Nessun problema di diritti. |
 | Slide 2, manometro | Non usato | La scala del quadrante è incoerente: chi conosce gli strumenti lo nota subito. |
 | Slide 3, laptop originale (immagine) | Non usato | Troppo piccolo e con la tastiera finta; sostituito dalla ricostruzione. |
 

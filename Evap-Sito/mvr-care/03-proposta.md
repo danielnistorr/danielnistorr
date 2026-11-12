@@ -1,11 +1,27 @@
-# Proposta, versione 2: landing page "MVR CARE"
+# Proposta, versione 3: landing page "MVR CARE" in stile sito
 
-La prima versione (pagina di servizio nello stile del sito) è stata approvata nella struttura. Il cliente, Roberto di EVAP, ha chiesto di trasformarla in una **landing page commerciale** che si possa anche sponsorizzare, con l'identità grafica della brochure. Questa è la versione 2. Le sue richieste esplicite prevalgono sui vincoli di design generali: per questo ora ci sono l'onda blu e verde della brochure, le icone dei tre punti della copertina e dei benefici, gli spigoli arrotondati delle schede.
+Storia: la versione 1 era una pagina di servizio nello stile del sito; il cliente, Roberto di EVAP, ha chiesto una **landing page commerciale** da poter anche sponsorizzare (versione 2, con l'identità grafica della brochure); vista la v2 ha chiesto di farla "così ma più in stile sito web". La **versione 3** tiene tutto della v2 (contenuti, ordine delle sezioni, inviti all'azione, modulo, coerenza tecnica) e cambia la veste: quella del sito evap.it, con due soli accenti della brochure. La v2 resta come alternativa.
+
+## Le due versioni
+
+| | **Versione 3, in stile sito** (principale) | Versione 2, "brochure" (alternativa) |
+|---|---|---|
+| Anteprima | `anteprima/index.html` | `anteprima/variante-brochure.html` |
+| Schermate | `screenshot/anteprima-1440.jpg`, `-390.jpg` | `screenshot/variante-brochure-1440.jpg`, `-390.jpg` |
+| Modello Elementor | `elementor/mvr-care-template.json` (lo scrive `genera_template.py`) | `elementor/mvr-care-template-brochure.json` (lo scrive `genera_template_brochure.py`) |
+| Base visiva | kit del sito: titoli a peso 600, bottoni del sito (azzurro, spigoli vivi, 15/30 px), 1290 px, 100 px tra le sezioni, filetti sottili, riquadri a spigoli vivi | colori e forme della brochure: titoli a peso 800, bottoni verdi a pillola, angoli arrotondati |
+| Apertura | fondo grigio chiarissimo del sito, immagine in cornice sottile, tre punti in una riga con filetti e icone lineari verdi | fondo azzurro, onda verde, fascia blu piena con i tre punti e le icone piene |
+| Perché conta | frase del cliente sotto un filetto verde, benefici in una riga con filetti | frase in un riquadro verde chiaro, benefici in un riquadro azzurro |
+| Monitoraggio | schermata del portatile, "28 kWh/m³" in verde peso 600 sopra un filetto | stessa schermata, numero a peso 800 |
+| PURE e PLUS | schede bianche con bordo sottile e barra in alto (azzurro del sito PURE, verde PLUS), stesso peso | schede piene azzurro chiaro e verde chiaro |
+| Canone e modulo | fascia blu del sito con la cornice bianca di 20 px (come "Qualità ed Affidabilità" in home), testo a sinistra, modulo su riquadro bianco a destra, campi del kit | fascia blu scura con onda verde, foglia e pillola verde, modulo su riquadro arrotondato |
+| Accenti della brochure | navy dei titoli (`#070D57`), verde per spunte, icone, filetto della frase e scheda PLUS | tutta la palette |
+
+Variante con lo schema facoltativo "Come funziona un evaporatore MVR": `anteprima/variante-schema.html` (versione 3).
 
 - Testi: solo dalla brochure (`01-contenuti.md`) e dal messaggio del cliente (stesso file, ultima sezione). Telefono ed email dal sito.
-- Anteprima: `anteprima/index.html`; schermate `screenshot/anteprima-1440.jpg` e `screenshot/anteprima-390.jpg`. Variante con lo schema facoltativo: `anteprima/variante-schema.html`.
-- Modelli di Elementor: `elementor/mvr-care-template.json` (la pagina) e `elementor/mvr-care-grazie-template.json` (pagina di ringraziamento facoltativa).
-- Principio dei testi, dalle parole del cliente: MVR CARE non è un costo aggiuntivo di assistenza, è un investimento programmato per ridurre il rischio di inefficienze e interruzioni produttive. La brochure resta il riferimento visivo e tecnico; la pagina ne sviluppa il messaggio e porta al contatto.
+- Modelli di Elementor: `elementor/mvr-care-template.json` (la pagina, v3), `elementor/mvr-care-grazie-template.json` (pagina di ringraziamento facoltativa, v3), `elementor/mvr-care-template-brochure.json` (la v2).
+- Principio dei testi, dalle parole del cliente: MVR CARE non è un costo aggiuntivo di assistenza, è un investimento programmato per ridurre il rischio di inefficienze e interruzioni produttive.
 
 ## Indirizzo, menu, titolo
 
@@ -16,32 +32,32 @@ La prima versione (pagina di servizio nello stile del sito) è stata approvata n
 
 ## Struttura e testi completi
 
-Il bottone è sempre lo stesso, in tutta la pagina: **"Richiedi la tua proposta MVR CARE"**, verde a pillola, e porta alla sezione `#richiedi-proposta` con il modulo.
+Il bottone è sempre lo stesso, in tutta la pagina: **"Richiedi la tua proposta MVR CARE"** (nella v3 il bottone del sito, nella v2 verde a pillola), e porta alla sezione `#richiedi-proposta` con il modulo.
 
-### 1. Apertura chiara, come la copertina
+### 1. Apertura
 
-Fondo azzurro chiarissimo (il cielo della copertina, senza sfumatura). A sinistra il testo, a destra il ritaglio dell'impianto dalla copertina della brochure (autorizzato dal cliente) in una cornice con gli angoli arrotondati, a misura vera o poco più (342 x 408 px mostrati a 428 x 510). In fondo l'onda verde, poi la fascia blu.
+Fondo grigio chiarissimo del sito (`#F5F6F8`). A sinistra il testo, a destra il ritaglio dell'impianto dalla copertina della brochure (autorizzato dal cliente) in una cornice con un filetto sottile, a misura vera o poco più (342 x 408 px mostrati a 428 x 510). Sotto, i tre punti della copertina in una riga con un filetto sopra, filetti verticali tra le voci e piccole icone lineari verdi (orologio, grafico, lampadina: Font Awesome "regular", le sole lineari di Elementor gratuito). Nella v2: fondo azzurro, onda verde e fascia blu piena.
 
 - **H1**: MVR CARE
 - **Pay off**: Il servizio di assistenza EVAP per la massima affidabilità del tuo evaporatore MVR.
 - **Bottone**: Richiedi la tua proposta MVR CARE
 - **Sotto il bottone**: Fissa una call gratuita con i nostri tecnici per una consulenza di diagnosi gratuita e senza impegno.
 
-**Fascia blu con i tre punti della copertina**, con le icone della brochure (ingranaggio, grafico che sale, foglia) e i filetti verticali: Continuità di produzione / Prestazioni costanti / Efficienza e sostenibilità.
+**I tre punti della copertina**: Continuità di produzione / Prestazioni costanti / Efficienza e sostenibilità.
 
 ### 2. Perché conta (slide 2)
 
-Testo a sinistra, foto vera di un evaporatore EVAP a destra; sotto, il riquadro azzurro dei benefici con le icone e i filetti verdi, come nella brochure.
+Testo a sinistra, foto vera di un evaporatore EVAP a destra; sotto, i benefici in una riga con filetti e icone lineari verdi (calendario, bersaglio, banconota). Nella v2: riquadro azzurro con icone piene.
 
 - **H2**: Un evaporatore efficiente è il cuore della tua produttività
 - **Testo introduttivo**: L'evaporatore MVR è un impianto strategico per il trattamento e la valorizzazione degli effluenti industriali.
 - **Testo**: Per garantirne nel tempo la massima efficienza e continuità operativa, EVAP ha sviluppato **MVR CARE**: il servizio di assistenza tecnica dedicato ai suoi clienti.
-- **Riquadro verde chiaro** (parole del cliente): MVR CARE non è un costo aggiuntivo di assistenza: è un investimento programmato per ridurre il rischio di inefficienze e interruzioni produttive.
-- **Benefici** (icone fabbrica, bersaglio, monete): Evita fermi impianto imprevisti / Mantiene le performance progettuali / Riduce i costi operativi nel tempo.
+- **Frase del cliente** (sotto un filetto verde di 3 px, 21 px peso 600; nella v2 in un riquadro verde chiaro): MVR CARE non è un costo aggiuntivo di assistenza: è un investimento programmato per ridurre il rischio di inefficienze e interruzioni produttive.
+- **Benefici**: Evita fermi impianto imprevisti / Mantiene le performance progettuali / Riduce i costi operativi nel tempo.
 
 ### 3. Controllo, prevenzione, performance (slide 3, la sezione del monitoraggio)
 
-Fondo azzurro chiarissimo. A sinistra le quattro attività con le icone verdi della brochure (monitor, lente, ingranaggio, grafico) e i filetti; a destra la **schermata "MVR Monitoring" ricostruita** in un portatile disegnato, e sotto il dato grande.
+Fondo grigio chiarissimo del sito. A sinistra le quattro attività con icone lineari verdi (occhio, appunti, salvagente, documento) tra filetti sottili; a destra la **schermata "MVR Monitoring" ricostruita** in un portatile disegnato (è già un elemento da web e resta uguale nelle due versioni), e sotto, oltre un filetto, il dato grande.
 
 - **H2**: Controllo, prevenzione, performance: sempre sotto controllo
 - **Monitoraggio e verifiche** periodiche dei principali parametri operativi.
@@ -50,14 +66,14 @@ Fondo azzurro chiarissimo. A sinistra le quattro attività con le icone verdi de
 - **Report e raccomandazioni** per l'ottimizzazione dell'esercizio.
 - **Bottone**: Richiedi la tua proposta MVR CARE
 - **Schermata** (disegno SVG, nitido a ogni misura, stessi elementi e colori della brochure): logo EVAP della loro libreria media, "MVR Monitoring", foto vera di un impianto EVAP, "Consumo specifico **28 kWh/m³**" grande in verde, "Impianto in esercizio" con la spunta, grafico a barre verdi senza numeri sugli assi. Sul telefono e sul tablet la stessa schermata senza il portatile, in colonna.
-- **Dato grande**: **28 kWh/m³**, didascalia "consumo specifico".
+- **Dato grande**: **28 kWh/m³** (in verde, peso 600, con l'unità più piccola), didascalia "consumo specifico".
 - **Didascalia**: Controllo remoto settimanale dei principali parametri operativi. (Così la schermata non fa pensare a un monitoraggio continuo.)
 
 **Il dato "28 kWh/m³" va confermato da EVAP, parola per parola**, prima di pubblicare: in una pagina sponsorizzata dev'essere esatto. Da chiedere: è un valore misurato o "fino a"? È riferito a un impianto tipo, a un impianto preciso o a una media? In quali condizioni (tipo di effluente, portata)? Si può scrivere accanto una nota con il riferimento? Finché non c'è risposta, il dato resta in pagina come lo vuole il cliente, ma è il primo punto della lista di conferme in `LEGGIMI.md`. Anche il nome "MVR Monitoring" va confermato (è il nome di un loro strumento o solo un titolo della brochure?).
 
 ### 4. Le due formule, come due proposte
 
-Due schede d'offerta affiancate, come nella brochure: **PURE in azzurro chiaro**, **PLUS in verde chiaro**, con il nome grande, la loro linea dell'anno, le voci della brochure con le spunte verdi su un riquadro bianco e il loro bottone. "A chi si rivolge" non c'è: la brochure non lo dice.
+Due schede d'offerta affiancate, **con lo stesso peso visivo** (nessuna "consigliata": la brochure non lo dice): fondo bianco, bordo sottile, **barra in alto azzurra (colore del sito) per PURE e verde per PLUS**, nome grande, la loro linea dell'anno compatta, le voci della brochure con le spunte verdi tra filetti e il bottone del sito. "A chi si rivolge" non c'è: la brochure non lo dice. Nella v2: schede piene azzurro chiaro e verde chiaro con il riquadro bianco interno.
 
 - **H2**: Scegli il livello di servizio più adatto alle tue esigenze
 - **Testo**: Due formule flessibili, con la qualità e l'esperienza EVAP.
@@ -71,12 +87,12 @@ La linea dell'anno è rimasta, ma **dentro ogni scheda** invece che in un grafic
 
 ### 5. Richiesta del canone e modulo (ancora `#richiedi-proposta`)
 
-La chiusura commerciale più importante. Fascia blu scura con l'onda verde in alto e la foglia, come la fine della slide 4; sotto, il modulo su un riquadro bianco che sale sulla fascia.
+La chiusura commerciale più importante. **Fascia blu del sito** (`#1D365C`, colore globale "primary") con la cornice bianca di 20 px, come la fascia "Qualità ed Affidabilità" della home: a sinistra titolo, testo di Roberto, bottone (azzurro, al passaggio bianco) e la proposta della call; a destra il modulo su un riquadro bianco, con i campi del kit del sito (bordo 1 px, spigoli vivi) e il bottone del sito. Nessuna decorazione da stampa. Nella v2: fascia blu scura con onda, foglia e pillola verde.
 
-- **H2**: Scopri il canone a te riservato, **particolarmente vantaggioso.** (le ultime due parole nella pillola verde, come nella brochure)
+- **H2**: Scopri il canone a te riservato, particolarmente vantaggioso. (nella v2 le ultime due parole erano nella pillola verde)
 - **Testo**: Ogni evaporatore ha caratteristiche ed esigenze operative specifiche. Scopri la formula MVR CARE più adatta al tuo impianto e richiedi una proposta economica personalizzata, senza impegno.
 - **Bottone**: Richiedi la tua proposta MVR CARE (porta al modulo)
-- **Accanto al modulo**: **Fissa una call gratuita con i nostri tecnici** / Una consulenza di diagnosi gratuita e senza impegno, finalizzata alla quotazione del servizio MVR CARE per il tuo impianto. / Preferisci telefonare? +39 0444 1276355. Oppure scrivi a tecnico2@evap.it
+- **Sotto il bottone, oltre un filetto**: **Fissa una call gratuita con i nostri tecnici** / Una consulenza di diagnosi gratuita e senza impegno, finalizzata alla quotazione del servizio MVR CARE per il tuo impianto. / Preferisci telefonare? +39 0444 1276355. Oppure scrivi a tecnico2@evap.it
 - **Modulo** (widget Modulo di Elementor Pro, nome "Richiesta proposta MVR CARE"). Campi, con l'ID da usare:
 
 | ID | Etichetta | Tipo | Obbligatorio | Opzioni |
@@ -122,7 +138,16 @@ Ogni frase è stata riletta con questo filtro:
 - **nessun tempo d'intervento**: nessuna frase con tempi, reperibilità o "subito"; "ti contatteranno" non ha tempi;
 - nessun numero oltre a quelli della brochure (4, 12, 1 a settimana, 52 tacche come conseguenza di "ogni settimana") e al dato di consumo specifico chiesto dal cliente e da confermare.
 
-## Identità grafica
+## Veste grafica della versione 3
+
+- **Base del sito** (kit 11, vedi `02-design-sito.md`): Plus Jakarta Sans; H1 80/60/44 px e H2 38/35/30 px a **peso 600** come le altre pagine, senza maiuscole iniziali su ogni parola; testo con i caratteri e il colore globali; bottoni del sito (azzurro `#3798E2`, testo bianco 16 px peso 500, 15/30 px, spigoli vivi; al passaggio blu del sito `#1D365C`, sul fondo blu bianco con testo blu, di colpo); contenuto largo 1290 px; 100 px tra le sezioni (60 sul telefono); fondo grigio chiarissimo `#F5F6F8` alternato al bianco; filetti 1 px `#1D365C26`; riquadri a spigoli vivi, nessuna ombra; fascia blu con la cornice bianca di 20 px per la chiusura.
+- **Accenti della brochure**: navy dei titoli `#070D57`; verde per le spunte e le icone `#138D2D`, per la barra della scheda PLUS e il filetto della frase del cliente `#2B880A`, per il dato "28 kWh/m³" `#057905`.
+- **Bottone senza maiuscole iniziali**: il kit del sito mette le maiuscole a ogni parola dei bottoni; qui no, perché "Richiedi la tua proposta MVR CARE" è la frase del cliente (in Elementor: Tipografia > Trasforma "Nessuna").
+- **Icone lineari**: Font Awesome "regular" della libreria di Elementor gratuito (contorno), piccole (26 px), verdi.
+- **Esclusi**: onde, fasce sagomate, foglia, evidenziatore a pillola, gradienti, ombre, animazioni, dissolvenze, effetti col cursore, etichette sopra i titoli, carattere U+2014.
+- **Testata e piede** del sito.
+
+## Veste della versione 2 "brochure" (alternativa)
 
 Colori della brochure, presi con un contagocce dalle immagini delle slide (mediana dei pixel pieni):
 
