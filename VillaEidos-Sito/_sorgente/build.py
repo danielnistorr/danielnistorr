@@ -11,8 +11,7 @@ Uscite:
 Fonti:
   _sorgente/tema/        PHP, fogli di stile, script, caratteri e parti in HTML del tema (scritti a mano)
   _sorgente/pagine.py    le pagine come contenitori e widget di Elementor, con i testi del cliente
-  assets/web/            foto, fregio e logo gia' pronti (immagini.py e logo/ li rifanno dagli originali)
-  _metodo/highend/kit/   il kit dei movimenti (he.js, he.css, GSAP, ScrollTrigger, SplitText)
+  assets/web/            foto e logo gia' pronti (immagini.py e logo/ li rifanno dagli originali)
 
 L'anteprima usa gli stessi dati di Elementor e lo stesso foglio di stile del tema: i contenitori e i widget sono
 scritti con l'HTML che Elementor 4 produce, le parti (testata, piede, modulo) sono gli stessi file del tema.
@@ -33,7 +32,6 @@ SORGENTE = pathlib.Path(__file__).resolve().parent
 RADICE = SORGENTE.parent
 REPO = RADICE.parent
 TEMA_SORG = SORGENTE / "tema"
-KIT = REPO / "_metodo" / "highend" / "kit"
 WEB = RADICE / "assets" / "web"
 WPDIR = RADICE / "wordpress"
 TEMA = WPDIR / "villaeidos"
@@ -45,28 +43,22 @@ import pagine  # noqa: E402
 
 VIETATO = chr(0x2014)  # la lineetta lunga, vietata in tutti i file
 
-ALT_APERTURA = "Villa Eidos ad Albignasego: villa, barchessa e giardino"
 IMMAGINI = [
-    {"chiave": "apertura-fregio", "titolo": "Apertura: il fregio (da sostituire con la foto della villa)",
-     "file": "apertura-fregio-3200.webp", "varianti": ["apertura-fregio-2400.webp", "apertura-fregio-1600.webp"],
-     "alt": ALT_APERTURA, "sizes": "(min-width: 1758px) 1600px, 91vw", "tel": "apertura-fregio-tel"},
-    {"chiave": "apertura-fregio-tel", "titolo": "Apertura: il fregio, versione per il telefono",
-     "file": "apertura-fregio-tel-1080.webp", "varianti": ["apertura-fregio-tel-720.webp"],
-     "alt": ALT_APERTURA, "sizes": "91vw"},
+    {"chiave": "apertura-conferenze", "titolo": "Apertura: la sala conferenze (da sostituire con la foto della villa)",
+     "file": "apertura-conferenze-384.webp", "varianti": [],
+     "alt": "La sala conferenze nella barchessa: la colonna, il lampadario e le finestre ad arco",
+     "sizes": "(min-width: 900px) 480px, min(91vw, 480px)"},
+    {"chiave": "sala-conferenze", "titolo": "Sala conferenze", "file": "sala-conferenze-440.webp", "varianti": [],
+     "alt": "La sala conferenze: le colonne, il lampadario e le file di sedie",
+     "sizes": "(min-width: 900px) 550px, min(91vw, 550px)"},
     {"chiave": "sale-riunioni", "titolo": "Sale riunioni", "file": "sale-riunioni-1080.webp",
      "varianti": ["sale-riunioni-760.webp", "sale-riunioni-540.webp"],
      "alt": "Una sala riunioni: il tavolo di vetro, le sedie e lo schermo, oltre la parete di vetro",
-     "sizes": "(min-width: 1758px) 920px, (min-width: 900px) 52vw, 91vw"},
-    {"chiave": "sala-conferenze", "titolo": "Sala conferenze", "file": "sala-conferenze-640.webp",
-     "varianti": ["sala-conferenze-480.webp"],
-     "alt": "La sala conferenze: le file di sedie, le colonne e le grandi finestre ad arco",
-     "sizes": "(min-width: 900px) 52vw, 91vw"},
+     "sizes": "(min-width: 900px) 30vw, (min-width: 600px) 45vw, 91vw"},
     {"chiave": "uffici", "titolo": "Uffici", "file": "uffici-480.webp", "varianti": ["uffici-360.webp"],
-     "alt": "Un ufficio: la scrivania, gli schermi e la finestra", "sizes": "(min-width: 900px) 29vw, 91vw"},
+     "alt": "Un ufficio: la scrivania, gli schermi e la finestra", "sizes": "(min-width: 900px) 30vw, (min-width: 600px) 45vw, 91vw"},
     {"chiave": "reception", "titolo": "Reception", "file": "reception-640.webp", "varianti": ["reception-480.webp"],
-     "alt": "La reception, con il bancone di legno chiaro", "sizes": "(min-width: 900px) 29vw, 91vw"},
-    {"chiave": "sale-attesa", "titolo": "Sale d'attesa", "file": "sale-attesa-480.webp", "varianti": ["sale-attesa-360.webp"],
-     "alt": "Una sala d'attesa: il divano azzurro sul parquet", "sizes": "(min-width: 900px) 22vw, 91vw"},
+     "alt": "La reception, con il bancone di legno chiaro", "sizes": "(min-width: 900px) 30vw, (min-width: 600px) 45vw, 91vw"},
 ]
 
 DESCRIZIONE = ("Una villa storica e un'ampia barchessa ad Albignasego, alle porte di Padova: uffici e sedi di "
@@ -79,7 +71,6 @@ PAGINE = [
     {"chiave": "cookie", "slug": "cookie", "titolo": "Cookie", "ordine": 2, "noindex": True, "file": "cookie.json",
      "statica": "cookie.html", "titolo_seo": "Cookie | Villa Eidos", "descrizione": ""},
 ]
-VENDOR = ("gsap.min.js", "ScrollTrigger.min.js", "SplitText.min.js", "LICENZE.txt")
 
 
 # ------------------------------------------------------------------ controlli
@@ -119,24 +110,18 @@ def controlla_file(cartella):
 # ------------------------------------------------------------------ tema
 
 def copia_risorse(dest):
-    """Foto, fregio, logo e kit dei movimenti nella cartella assets/ di dest (tema o anteprima)."""
+    """Foto e logo nella cartella assets/ di dest."""
     a = dest / "assets"
     (a / "img").mkdir(parents=True, exist_ok=True)
     for im in IMMAGINI:
         for f in [im["file"]] + im["varianti"]:
-            src = WEB / ("fregio" if f.startswith("apertura-") else "foto") / f
+            src = WEB / "foto" / f
             if not src.exists():
                 raise SystemExit(f"foto mancante: {src.relative_to(RADICE)} (lancia immagini.py)")
             shutil.copy2(src, a / "img" / f)
     (a / "logo").mkdir(exist_ok=True)
     for f in sorted((WEB / "logo").glob("*.svg")):
         shutil.copy2(f, a / "logo" / f.name)
-    he = a / "he"
-    (he / "vendor").mkdir(parents=True, exist_ok=True)
-    for f in ("he.js", "he.css"):
-        shutil.copy2(KIT / f, he / f)
-    for f in VENDOR:
-        shutil.copy2(KIT / "vendor" / f, he / "vendor" / f)
 
 
 def contenuti():
@@ -250,7 +235,12 @@ def rendi(el, home):
         corpo = tag_img(s["image"]["ve_img"], "apertura-foto" in s.get("_css_classes", ""))
     elif tipo == "button":
         l = s["link"]
-        est = ' target="_blank" rel="noopener"' if l.get("is_external") else ""
+        est = ' target="_blank"' if l.get("is_external") else ""
+        for riga in (l.get("custom_attributes") or "").split("\n"):
+            if "|" in riga:
+                k, v = riga.split("|", 1)
+                est += f' {k.strip()}="{html.escape(v.strip())}"'
+
         corpo = (f'<a class="elementor-button elementor-button-link elementor-size-sm" href="{html.escape(l["url"])}"{est}>\n'
                  f'<span class="elementor-button-content-wrapper">\n<span class="elementor-button-text">{s["text"]}</span>\n</span>\n</a>')
     elif tipo == "shortcode":
@@ -276,21 +266,15 @@ def pagina_statica(p, elementi, n):
         testa.append(f'<meta name="description" content="{html.escape(p["descrizione"])}">')
     if legale:
         testa.append('<meta name="robots" content="noindex">')
-    testa += ['<link rel="preload" href="assets/fonts/brygada-1918-latin.woff2" as="font" type="font/woff2" crossorigin>',
-              '<link rel="preload" href="assets/fonts/pontano-sans-latin.woff2" as="font" type="font/woff2" crossorigin>',
+    testa += ['<link rel="preload" href="assets/fonts/fustat-latin.woff2" as="font" type="font/woff2" crossorigin>',
               '<link rel="icon" href="assets/logo/villaeidos-marchio.svg" type="image/svg+xml">',
               '<link rel="stylesheet" href="assets/sito.css">']
-    if moto:
-        testa += ['<link rel="stylesheet" href="assets/he/he.css">', '<link rel="stylesheet" href="assets/moto.css">']
     corpo = "\n".join(rendi(e, home) for e in elementi)
     script = ['<script src="assets/sito.js"></script>']
     if "villaeidos_richiesta" in json.dumps(elementi):
         script += ['<script>var VILLAEIDOS_RICHIESTA = {"oggetto":"Richiesta di disponibilità"};</script>',
                    '<script src="assets/richiesta.js"></script>']
-    if moto:
-        script += [f'<script src="assets/he/vendor/{f}"></script>' for f in VENDOR[:3]]
-        script += ['<script src="assets/moto.js"></script>', '<script src="assets/he/he.js"></script>']
-    classe = "ve ve-legale" if legale else "ve"
+    classe = "ve ve-legale" if legale else ("ve ve-moto" if moto else "ve")
     return ("<!doctype html>\n<html lang=\"it\">\n<head>\n" + "\n".join(testa) + "\n</head>\n"
             f'<body class="{classe}">\n' + parte("testata", home) + '\n<main id="contenuto">\n'
             f'<div data-elementor-type="wp-page" data-elementor-id="{n}" class="elementor elementor-{n}">\n{corpo}\n</div>\n'
@@ -302,10 +286,10 @@ def anteprima(dati):
         shutil.rmtree(ANTE)
     a = ANTE / "assets"
     a.mkdir(parents=True)
-    for f in ("sito.css", "sito.js", "richiesta.js", "moto.js", "moto.css"):
+    for f in ("sito.css", "sito.js", "richiesta.js"):
         shutil.copy2(TEMA_SORG / "assets" / f, a / f)
     shutil.copytree(TEMA_SORG / "assets" / "fonts", a / "fonts")
-    for sotto in ("img", "logo", "he"):
+    for sotto in ("img", "logo"):
         shutil.copytree(TEMA / "assets" / sotto, a / sotto)
     for n, p in enumerate(PAGINE, 1):
         (ANTE / p["statica"]).write_text(pagina_statica(p, dati[p["chiave"]], n), encoding="utf-8")

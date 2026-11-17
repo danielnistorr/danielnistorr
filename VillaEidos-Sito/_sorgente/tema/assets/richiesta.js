@@ -41,6 +41,15 @@
     $('riepilogo').scrollIntoView({block: 'nearest'});
   });
 
+  // i link "Richiedi" delle schede degli spazi (attributo data-tipo, Elementor > Link > Attributi personalizzati)
+  // scelgono il tipo di spazio nel modulo; il link porta gia' al modulo da solo (#disponibilita)
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('[data-tipo]') : null;
+    if (!a) return;
+    var v = a.getAttribute('data-tipo');
+    Array.prototype.forEach.call(f.querySelectorAll('input[name="tipo"]'), function(r){ if (r.value === v) r.checked = true; });
+  });
+
   $('r-copia').addEventListener('click', function(){
     var t = $('riepilogo-testo').textContent;
     var ok = function(){ $('r-esito').textContent = 'Testo copiato: incollarlo in una mail a ' + EMAIL + '.'; };

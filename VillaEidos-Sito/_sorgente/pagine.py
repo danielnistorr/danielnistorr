@@ -47,22 +47,35 @@ ALBIGNASEGO (PD) Via Battaglia, 67 - via Colombo, 2 - via Colombo, 6A"""
 ADATTATI = {
     "Riunioni, convegni, sedi di rappresentanza in una villa storica alle porte di Padova": "titolo del testo, in minuscolo",
     "Ad Albignasego, a pochi minuti dalla Tangenziale di Padova e dal casello Padova Sud dell'A13.": "Il complesso si trova ad Albignasego... a pochi minuti dalla Tangenziale... casello Padova Sud dell'autostrada A13",
-    "Chiama " + TEL: "Per info: 049.0990550",
     "Richiedi disponibilità": "invito del sito (richiesta del committente)",
-    "Una villa storica e un'ampia barchessa, immerse in un giardino centenario con ampi parcheggi": "La proprietà comprende una villa storica e un'ampia barchessa, immerse in un giardino centenario dotato di ampi parcheggi.",
+    "Chiama " + TEL: "Per info: 049.0990550",
+    "A13, casello Padova Sud": "casello Padova Sud dell'autostrada A13 Bologna-Padova",
+    "a pochi minuti": "È a pochi minuti dalla Tangenziale di Padova e dal casello Padova Sud",
+    "servito direttamente": "ed è servito direttamente dalla SS16 Adriatica",
+    "Ampi parcheggi": "dotato di ampi parcheggi",
+    "nel giardino centenario": "immerse in un giardino centenario dotato di ampi parcheggi",
+    "Tre ingressi": "Via Battaglia, 67 - via Colombo, 2 - via Colombo, 6A (tre indirizzi, tre ingressi: committente)",
+    "Via Battaglia 67, via Colombo 2 e 6A": "Via Battaglia, 67 - via Colombo, 2 - via Colombo, 6A",
+    "Uffici, sale riunioni e una grande sala conferenze": "uffici... sale riunioni... una grande sala conferenze",
+    "Nella villa gli uffici e le sedi di rappresentanza; nella barchessa le sale riunioni e la sala conferenze.": "La villa ospita uffici e sedi di rappresentanza... La barchessa... accoglie sale riunioni... e una grande sala conferenze",
+    "Sala conferenze": "una grande sala conferenze",
+    "Una grande sala nella barchessa, adatta a convegni, presentazioni aziendali, eventi formativi e incontri con un pubblico numeroso.": "La barchessa... accoglie... una grande sala conferenze. Quest'ultima è adatta a convegni, presentazioni aziendali, eventi formativi e incontri con un pubblico numeroso.",
+    "Richiedi la sala conferenze": "invito del sito",
+    "Sale riunioni": "sale riunioni di diverse dimensioni",
+    "Di diverse dimensioni, nei volumi ampi e flessibili della barchessa.": "La barchessa, grazie ai suoi volumi ampi e flessibili, accoglie sale riunioni di diverse dimensioni",
+    "Richiedi una sala riunioni": "invito del sito",
+    "Uffici e sedi di rappresentanza": "La villa ospita uffici e sedi di rappresentanza",
+    "Nella villa, riqualificata e adattata a funzioni direzionali.": "Entrambi gli edifici sono stati riqualificati e adattati a funzioni direzionali",
+    "Richiedi un ufficio o una sede": "invito del sito",
+    "Reception e sale d'attesa": "nomi delle foto del cliente (reception.jpeg, sale d'attesa.jpeg)",
+    "Ambienti eleganti, adatti all'accoglienza.": "con ambienti eleganti adatti all'accoglienza di clienti, partner e delegazioni istituzionali",
+    "Richiedi informazioni": "invito del sito",
+    "Una villa storica e un'ampia barchessa, immerse in un giardino centenario": "La proprietà comprende una villa storica e un'ampia barchessa, immerse in un giardino centenario",
     "Villa": "villa storica", "Barchessa": "un'ampia barchessa", "Giardino": "giardino centenario", "Parcheggi": "ampi parcheggi",
     "Uffici e sedi di rappresentanza.": "La villa ospita uffici e sedi di rappresentanza",
     "Sale riunioni di diverse dimensioni e una grande sala conferenze.": "accoglie sale riunioni di diverse dimensioni e una grande sala conferenze",
     "Centenario: la villa e la barchessa vi sono immerse.": "immerse in un giardino centenario",
     "Ampi, nel giardino della proprietà.": "un giardino centenario dotato di ampi parcheggi",
-    "Uffici, sale riunioni e una grande sala conferenze": "uffici... sale riunioni... una grande sala conferenze",
-    "Uffici e sedi di rappresentanza": "La villa ospita uffici e sedi di rappresentanza",
-    "Nella villa, in ambienti eleganti adatti all'accoglienza.": "La villa ospita uffici e sedi di rappresentanza, con ambienti eleganti adatti all'accoglienza",
-    "Sale riunioni": "sale riunioni di diverse dimensioni",
-    "Di diverse dimensioni, nei volumi ampi e flessibili della barchessa.": "La barchessa, grazie ai suoi volumi ampi e flessibili, accoglie sale riunioni di diverse dimensioni",
-    "Sala conferenze": "una grande sala conferenze",
-    "Una grande sala nella barchessa, per convegni, presentazioni aziendali ed eventi formativi.": "La barchessa... accoglie... una grande sala conferenze. Quest'ultima è adatta a convegni, presentazioni aziendali, eventi formativi",
-    "Reception e sale d'attesa": "nomi delle foto del cliente (reception.jpeg, sale d'attesa.jpeg)",
     "Il prestigio di una dimora storica e la funzionalità di un moderno polo direzionale e congressuale": "L'insieme unisce il prestigio di una dimora storica alla funzionalità di un moderno polo direzionale e congressuale.",
     "Rappresentanza": "attività di rappresentanza",
     "Clienti, partner e delegazioni istituzionali, accolti negli ambienti della villa.": "ambienti eleganti adatti all'accoglienza di clienti, partner e delegazioni istituzionali",
@@ -74,7 +87,7 @@ ADATTATI = {
     "Una sede nel cuore produttivo del Veneto.": "È quindi una sede ideale per... nel cuore produttivo del Veneto",
     "Come arrivare": "titolo di servizio (richiesta del committente)",
     "Ad Albignasego, in una posizione strategica dal punto di vista logistico.": "Il complesso si trova ad Albignasego, in una posizione strategica dal punto di vista logistico.",
-    "Apri la mappa": "link a Google Maps (richiesta del committente)",
+    "Apri in Google Maps": "link a Google Maps (richiesta del committente)",
     "A pochi minuti": "È a pochi minuti dalla Tangenziale di Padova e dal casello Padova Sud",
     "Tangenziale di Padova": "Tangenziale di Padova",
     "Casello Padova Sud, A13 Bologna-Padova": "casello Padova Sud dell'autostrada A13 Bologna-Padova",
@@ -84,9 +97,8 @@ ADATTATI = {
     "A4 Milano-Venezia": "l'A4 Milano-Venezia",
     "Centro e stazione ferroviaria di Padova": "con il centro città e la stazione ferroviaria di Padova",
     "Aeroporto di Venezia": "l'aeroporto di Venezia",
-    "Tre ingressi": "Via Battaglia, 67 - via Colombo, 2 - via Colombo, 6A (tre indirizzi, tre ingressi: committente)",
     "Richiesta di disponibilità": "titolo di servizio (richiesta del committente)",
-    "Il modulo prepara una mail per " + EMAIL + ", da inviare dal proprio programma di posta. Per una risposta a voce, il telefono.":
+    "Il modulo prepara una mail, da inviare dal proprio programma di posta. Per una risposta a voce:":
         "Email: eidos@eco-management.it; Per info: 049.0990550",
 }
 
@@ -107,9 +119,12 @@ ZERO = {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isL
 GAP0 = {"unit": "px", "size": 0, "column": "0", "row": "0", "isLinked": True}
 
 
-def link(url, esterno=False):
-    return {"url": url, "is_external": "on" if esterno else "", "nofollow": "",
-            "custom_attributes": "rel|noopener" if esterno else ""}
+def link(url, esterno=False, attributi=""):
+    """Link di Elementor. attributi: "chiave|valore" (campo Attributi personalizzati del link)."""
+    altri = ["rel|noopener"] if esterno else []
+    if attributi:
+        altri.append(attributi)
+    return {"url": url, "is_external": "on" if esterno else "", "nofollow": "", "custom_attributes": "\n".join(altri)}
 
 
 class Costruttore:
@@ -151,9 +166,9 @@ class Costruttore:
         """Widget Immagine dalla libreria media, misura piena (srcset e sizes li scrive WordPress)."""
         return self._w("image", {"image": {"ve_img": chiave}, "image_size": "full", "caption_source": "none"}, classi, nome)
 
-    def BTN(self, testo, url, classi="", esterno=False, nome=None):
+    def BTN(self, testo, url, classi="", esterno=False, nome=None, attributi=""):
         """Widget Pulsante."""
-        return self._w("button", {"text": testo, "link": link(url, esterno)}, classi, nome)
+        return self._w("button", {"text": testo, "link": link(url, esterno, attributi)}, classi, nome)
 
     def SC(self, codice, classi="", nome=None):
         return self._w("shortcode", {"shortcode": codice}, classi, nome)
@@ -163,66 +178,79 @@ def home():
     b = Costruttore("home")
     C, H, T, IMG, BTN = b.C, b.H, b.T, b.IMG, b.BTN
 
-    righe = ["Riunioni, convegni,", "sedi di rappresentanza", "in una villa storica", f"alle porte di{NBSP}Padova"]
+    def fatto(nome_, testo):
+        return C("fatto", H(nome_, "p", "fatto-nome"), T(f"<p>{testo}</p>", "fatto-testo"), nome=nome_)
+
     apertura = C(
         "apertura",
-        C("wrap",
-          H(" ".join(f"<span>{r}</span>" for r in righe), "h1", "moto-righe", nome="Titolo d'apertura (una riga per <span>)"),
-          C("apertura-sotto",
+        C("wrap apertura-griglia",
+          C("apertura-testo",
+            H("Riunioni, convegni, sedi di rappresentanza in una villa storica alle porte di Padova", "h1", nome="Titolo d'apertura"),
             T("<p>Ad Albignasego, a pochi minuti dalla Tangenziale di Padova e dal casello Padova Sud dell'A13.</p>", "lead"),
             C("azioni",
-              BTN(f"Chiama {TEL}", f"tel:{TEL_LINK}", "pulsante pulsante-filo", nome="Chiama"),
               BTN("Richiedi disponibilità", "#disponibilita", "pulsante pulsante-verde", nome="Richiedi disponibilità"),
+              BTN(f"Chiama {TEL}", f"tel:{TEL_LINK}", "pulsante pulsante-filo", nome="Chiama"),
               nome="Azioni"),
-            nome="Frase e azioni"),
-          IMG("apertura-fregio", "apertura-foto", nome="Foto d'apertura (oggi il fregio: si cambia con la foto della villa)")),
+            nome="Titolo, frase e azioni"),
+          IMG("apertura-conferenze", "apertura-foto", nome="Foto d'apertura (oggi la sala conferenze: si cambia con la foto della villa)"),
+          nome="Titolo e foto"),
+        C("wrap fatti",
+          fatto("A13, casello Padova Sud", "a pochi minuti"),
+          fatto("Tangenziale di Padova", "a pochi minuti"),
+          fatto("SS16 Adriatica", "servito direttamente"),
+          fatto("Ampi parcheggi", "nel giardino centenario"),
+          fatto("Tre ingressi", "Via Battaglia 67, via Colombo 2 e 6A"),
+          nome="Fatti"),
         tag="section", ancora="inizio", nome="Apertura", interno=False)
 
-    def voce(parola, fatto):
-        return C("luogo-voce", H(parola, "h3", "luogo-parola"), T(f"<p>{fatto}</p>", "luogo-fatto"), nome=parola)
-
-    luogo = C(
-        "sezione luogo",
-        C("wrap",
-          H("Una villa storica e un'ampia barchessa, immerse in un giardino centenario con ampi parcheggi", "h2", "luogo-titolo"),
-          C("luogo-elenco",
-            voce("Villa", "Uffici e sedi di rappresentanza."),
-            voce("Barchessa", "Sale riunioni di diverse dimensioni e una grande sala conferenze."),
-            voce("Giardino", "Centenario: la villa e la barchessa vi sono immerse."),
-            voce("Parcheggi", "Ampi, nel giardino della proprietà."),
-            nome="Le quattro parole"),
-          T("<p>Entrambi gli edifici sono stati riqualificati e adattati a funzioni direzionali, conservando i caratteri architettonici originali.</p>", "luogo-chiusa")),
-        tag="section", ancora="luogo", nome="Il luogo", interno=False)
-
-    def spazio(classe, foto, titolo, testo, taglio=False):
-        immagini = [IMG(f, "spazio-foto" + (" moto-taglio" if taglio and i == 0 else "")) for i, f in enumerate(foto)]
-        figli = [C("spazio-foto-gruppo", *immagini, nome="Foto")] if len(immagini) > 1 else immagini
-        figli.append(H(titolo, "h3", "spazio-nome"))
-        if testo:
-            figli.append(T(f"<p>{testo}</p>", "spazio-testo"))
-        return C(f"spazio {classe}", *figli, nome=titolo)
+    def scheda(classe, foto, nome_, testo, invito, tipo):
+        return C(f"scheda {classe}".strip(),
+                 IMG(foto, "scheda-foto"),
+                 C("scheda-corpo",
+                   H(nome_, "h3", "scheda-nome"),
+                   T(f"<p>{testo}</p>", "scheda-testo"),
+                   BTN(invito, "#disponibilita", "collegamento", attributi=f"data-tipo|{tipo}" if tipo else "",
+                       nome="Richiedi (Link > Attributi personalizzati: data-tipo sceglie lo spazio nel modulo)"),
+                   nome="Testo"),
+                 nome=nome_)
 
     spazi = C(
         "sezione spazi",
         C("wrap",
-          H("Uffici, sale riunioni e una grande sala conferenze", "h2", "spazi-titolo"),
-          C("spazi-griglia",
-            C("spazi-col spazi-col-larga",
-              spazio("spazio-riunioni", ["sale-riunioni"], "Sale riunioni",
-                     "Di diverse dimensioni, nei volumi ampi e flessibili della barchessa.", taglio=True),
-              spazio("spazio-conferenze", ["sala-conferenze"], "Sala conferenze",
-                     "Una grande sala nella barchessa, per convegni, presentazioni aziendali ed eventi formativi.", taglio=True),
-              nome="Colonna larga"),
-            C("spazi-col spazi-col-stretta",
-              spazio("spazio-uffici", ["uffici"], "Uffici e sedi di rappresentanza",
-                     "Nella villa, in ambienti eleganti adatti all'accoglienza."),
-              spazio("spazio-accoglienza", ["reception", "sale-attesa"], "Reception e sale d'attesa", ""),
-              nome="Colonna stretta"),
-            nome="Gli spazi")),
+          C("sezione-testa",
+            H("Uffici, sale riunioni e una grande sala conferenze", "h2"),
+            T("<p>Nella villa gli uffici e le sedi di rappresentanza; nella barchessa le sale riunioni e la sala conferenze.</p>", "sezione-intro")),
+          scheda("scheda-grande", "sala-conferenze", "Sala conferenze",
+                 "Una grande sala nella barchessa, adatta a convegni, presentazioni aziendali, eventi formativi e incontri con un pubblico numeroso.",
+                 "Richiedi la sala conferenze", "Sala conferenze"),
+          C("schede",
+            scheda("", "sale-riunioni", "Sale riunioni", "Di diverse dimensioni, nei volumi ampi e flessibili della barchessa.",
+                   "Richiedi una sala riunioni", "Sala riunioni"),
+            scheda("", "uffici", "Uffici e sedi di rappresentanza", "Nella villa, riqualificata e adattata a funzioni direzionali.",
+                   "Richiedi un ufficio o una sede", "Ufficio o sede"),
+            scheda("", "reception", "Reception e sale d'attesa", "Ambienti eleganti, adatti all'accoglienza.",
+                   "Richiedi informazioni", ""),
+            nome="Le altre schede")),
         tag="section", ancora="spazi", nome="Gli spazi", interno=False)
 
+    def voce(parola, testo):
+        return C("complesso-voce", H(parola, "h3"), T(f"<p>{testo}</p>"), nome=parola)
+
+    complesso = C(
+        "sezione complesso",
+        C("wrap",
+          H("Una villa storica e un'ampia barchessa, immerse in un giardino centenario", "h2", "complesso-titolo"),
+          C("complesso-griglia",
+            voce("Villa", "Uffici e sedi di rappresentanza."),
+            voce("Barchessa", "Sale riunioni di diverse dimensioni e una grande sala conferenze."),
+            voce("Giardino", "Centenario: la villa e la barchessa vi sono immerse."),
+            voce("Parcheggi", "Ampi, nel giardino della proprietà."),
+            nome="Villa, barchessa, giardino, parcheggi"),
+          T("<p>Entrambi gli edifici sono stati riqualificati e adattati a funzioni direzionali, conservando i caratteri architettonici originali.</p>", "complesso-nota")),
+        tag="section", ancora="complesso", nome="Il complesso", interno=False)
+
     def uso(nome_, testo):
-        return C("uso", H(nome_, "h3", "uso-nome"), T(f"<p>{testo}</p>", "uso-testo"), nome=nome_)
+        return C("uso", H(nome_, "h3"), T(f"<p>{testo}</p>"), nome=nome_)
 
     attivita = C(
         "sezione attivita",
@@ -234,7 +262,7 @@ def home():
             uso("Convegni, presentazioni e formazione", "Nella grande sala conferenze, anche con un pubblico numeroso."),
             uso("Networking ed eventi business", "Una sede nel cuore produttivo del Veneto."),
             nome="Cosa ci si fa")),
-        tag="section", ancora="attivita", nome="Per chi è", interno=False)
+        tag="section", ancora="attivita", nome="Per chi", interno=False)
 
     def gruppo(titolo, voci):
         return C("collegamento", H(titolo, "h3", "collegamento-titolo"),
@@ -246,9 +274,9 @@ def home():
         "sezione arrivare",
         C("wrap",
           C("arrivare-testa",
-            H("Come arrivare", "h2", "arrivare-titolo"),
+            H("Come arrivare", "h2"),
             T("<p>Ad Albignasego, in una posizione strategica dal punto di vista logistico.</p>", "arrivare-testo"),
-            BTN("Apri la mappa", MAPPA, "pulsante pulsante-filo", esterno=True, nome="Link a Google Maps"),
+            BTN("Apri in Google Maps", MAPPA, "pulsante pulsante-filo", esterno=True, nome="Link a Google Maps"),
             nome="Titolo e mappa"),
           C("collegamenti",
             gruppo("A pochi minuti", ["Tangenziale di Padova", "Casello Padova Sud, A13 Bologna-Padova"]),
@@ -263,18 +291,17 @@ def home():
 
     richiesta = C(
         "sezione richiesta",
-        C("wrap",
-          H(TEL, "p", "richiesta-telefono", url=f"tel:{TEL_LINK}", nome="Telefono grande"),
-          C("richiesta-corpo",
-            C("richiesta-testo",
-              H("Richiesta di disponibilità", "h2", "richiesta-titolo"),
-              T(f"<p>Il modulo prepara una mail per {EMAIL}, da inviare dal proprio programma di posta. Per una risposta a voce, il telefono.</p>"
-                f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>', "richiesta-nota"),
-              nome="Testo"),
-            b.SC("[villaeidos_richiesta]", "richiesta-modulo", nome="Modulo (testi in parti/richiesta.html, email in config/richiesta.php)"))),
+        C("wrap richiesta-griglia",
+          C("richiesta-testo",
+            H("Richiesta di disponibilità", "h2"),
+            T("<p>Il modulo prepara una mail, da inviare dal proprio programma di posta. Per una risposta a voce:</p>", "richiesta-nota"),
+            H(TEL, "p", "richiesta-telefono", url=f"tel:{TEL_LINK}", nome="Telefono"),
+            T(f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>', "richiesta-email"),
+            nome="Testo e recapiti"),
+          b.SC("[villaeidos_richiesta]", "richiesta-modulo", nome="Modulo (testi in parti/richiesta.html, email in config/richiesta.php)")),
         tag="section", ancora="disponibilita", nome="Richiesta di disponibilità", interno=False)
 
-    return [apertura, luogo, spazi, attivita, arrivare, richiesta]
+    return [apertura, spazi, complesso, attivita, arrivare, richiesta]
 
 
 # ------------------------------------------------------------------ pagine legali

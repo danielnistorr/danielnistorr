@@ -2,8 +2,7 @@
 """Villa Eidos: dalle foto originali del cliente (assets/originali/, fuori da git) alle versioni web (assets/web/foto/).
 
 Uso:  python3 -I VillaEidos-Sito/_sorgente/immagini.py
-Serve Pillow. Il fregio d'apertura si rende prima con node _sorgente/fregio/fregio.mjs <cartella>: se in
-assets/web/fregio/ ci sono fregio-largo.png e fregio-alto.png, li converte anche loro.
+Serve Pillow.
 
 Le foto sono piccole (640 x 480 dal telefono, una 1600 x 1200): si tengono alla loro misura vera, nessun
 ingrandimento, e il sito le mostra al massimo a 1,25 volte (in CSS). Un trattamento solo per tutte:
@@ -15,7 +14,10 @@ Ritagli:
 - sale riunioni: via la scritta della fotocamera "HONOR 400" in basso a sinistra e la parte del murale
   con il casco (il simbolo disegnato sul casco non serve a una pagina d'affari): 1080 x 810 dal punto 500, 170;
 - uffici: via il cestino giallo e lo scatolone a destra: 480 x 360 dal punto 10, 60;
-- sale d'attesa: raddrizzata secondo l'EXIF (orientamento 6), intera.
+- sale d'attesa: raddrizzata secondo l'EXIF (orientamento 6), intera;
+- sala conferenze, due inquadrature diverse della stessa foto, perche' non si ripeta uguale:
+  apertura, in verticale con le finestre ad arco della barchessa (384 x 480 dal punto 256, 0), finche' il cliente non
+  la cambia con la foto della villa; scheda degli spazi, le colonne e il fondo della sala (440 x 330 dal punto 0, 80).
 """
 import pathlib
 import random
@@ -25,17 +27,16 @@ from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 RADICE = pathlib.Path(__file__).resolve().parent.parent
 ORIG = RADICE / "assets" / "originali"
 WEB = RADICE / "assets" / "web" / "foto"
-FREGIO = RADICE / "assets" / "web" / "fregio"
 
 FOTO = [
     # chiave, file originale, ritaglio (x, y, larghezza, altezza) o None, larghezze da scrivere (la prima e' la misura vera)
     ("sale-riunioni", "sale riunioni.jpg", (500, 170, 1080, 810), [1080, 760, 540]),
-    ("sala-conferenze", "sala conferenze.jpeg", None, [640, 480]),
+    ("sala-conferenze", "sala conferenze.jpeg", (0, 80, 440, 330), [440]),
     ("reception", "reception.jpeg", None, [640, 480]),
     ("sale-attesa", "sale d'attesa.jpeg", None, [480, 360]),
     ("uffici", "uffici.jpeg", (10, 60, 480, 360), [480, 360]),
+    ("apertura-conferenze", "sala conferenze.jpeg", (256, 0, 384, 480), [384]),
 ]
-FREGI = [("apertura-fregio", "fregio-largo.png", [3200, 2400, 1600]), ("apertura-fregio-tel", "fregio-alto.png", [1080, 720])]
 
 
 def tratta(im, seme):
@@ -84,14 +85,6 @@ def prepara():
             im = im.crop((x, y, x + w, y + h))
         assert im.width == larghezze[0], (chiave, im.size)
         for n, dim, peso in salva(tratta(im, chiave), chiave, larghezze, WEB):
-            print(f"{n:28} {dim[0]}x{dim[1]} {peso // 1024} KB")
-    for chiave, nome, larghezze in FREGI:
-        f = FREGIO / nome
-        if not f.exists():
-            print("manca", f, "(rendilo con _sorgente/fregio/fregio.mjs)")
-            continue
-        im = Image.open(f).convert("RGB")
-        for n, dim, peso in salva(im, chiave, larghezze, FREGIO, qualita=86):
             print(f"{n:28} {dim[0]}x{dim[1]} {peso // 1024} KB")
 
 

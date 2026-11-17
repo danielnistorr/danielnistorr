@@ -1,16 +1,14 @@
 <?php
 /**
- * Movimenti: due tocchi del kit HE (GSAP, ScrollTrigger, SplitText) in assets/he/.
+ * Movimento: quasi niente, come chiede la direzione.
+ * - La foto d'apertura si scopre dal basso con un taglio netto quando la pagina si apre (CSS, assets/sito.css).
+ * - La testata si compatta scorrendo (assets/sito.js): con il movimento acceso il cambio d'altezza e' una transizione
+ *   breve, spento e' un cambio secco.
+ * I bottoni si invertono di colpo al passaggio, sempre. Nessuna dissolvenza, nessun titolo che sale.
  *
- * Si accendono con classi CSS scritte in Elementor (scheda Avanzate > Classi CSS):
- *   moto-righe    su un Titolo: il titolo sale riga per riga (subito, se e' nella prima schermata)
- *   moto-taglio   su un'Immagine: la foto si scopre con un taglio netto dal basso quando entra
- * assets/moto.js traduce le classi negli attributi data-he-* del kit prima che il kit parta.
- * Nessuna dissolvenza, nessuna testata che si nasconde.
- *
- * Si spengono con un clic: Aspetto > Personalizza > Movimenti, oppure con
- * define( 'VILLAEIDOS_SENZA_MOVIMENTI', true ); in wp-config.php. Spenti, la pagina e' la stessa, ferma.
- * Con "riduci movimento" del sistema e senza JavaScript la pagina resta completa e ferma.
+ * Il movimento si accende con la classe ve-moto sul body, solo sulla Home e mai nell'editor di Elementor.
+ * Si spegne con un clic: Aspetto > Personalizza > Movimenti, oppure con
+ * define( 'VILLAEIDOS_SENZA_MOVIMENTI', true ); in wp-config.php. Con "riduci movimento" del sistema non c'e' comunque.
  *
  * @package villaeidos
  */
@@ -27,7 +25,7 @@ add_action(
 			array(
 				'title'       => 'Movimenti',
 				'priority'    => 160,
-				'description' => 'Due movimenti discreti: il titolo d’apertura che sale riga per riga, le foto delle sale riunioni e della sala conferenze che si scoprono con un taglio netto. Senza la spunta la pagina è ferma.',
+				'description' => 'La foto d’apertura che si scopre quando la pagina si apre e la testata che si compatta con una transizione breve. Senza la spunta la pagina è ferma (la testata si compatta lo stesso, senza transizione).',
 			)
 		);
 		$wpc->add_setting(
@@ -52,7 +50,7 @@ add_action(
 );
 
 /**
- * I movimenti sono attivi su questa pagina?
+ * Il movimento e' attivo su questa pagina?
  *
  * @return bool
  */
@@ -73,21 +71,12 @@ function villaeidos_movimenti_attivi() {
 	return true;
 }
 
-add_action(
-	'wp_enqueue_scripts',
-	function () {
-		if ( ! villaeidos_movimenti_attivi() ) {
-			return;
+add_filter(
+	'body_class',
+	function ( $c ) {
+		if ( villaeidos_movimenti_attivi() ) {
+			$c[] = 've-moto';
 		}
-		$t = get_template_directory_uri() . '/assets/';
-		$v = VILLAEIDOS_VERSIONE;
-		wp_enqueue_style( 'villaeidos-he', $t . 'he/he.css', array( 'villaeidos' ), $v );
-		wp_enqueue_style( 'villaeidos-moto', $t . 'moto.css', array( 'villaeidos-he' ), $v );
-		wp_register_script( 'gsap', $t . 'he/vendor/gsap.min.js', array(), '3', array( 'in_footer' => true ) );
-		wp_register_script( 'gsap-scrolltrigger', $t . 'he/vendor/ScrollTrigger.min.js', array( 'gsap' ), '3', array( 'in_footer' => true ) );
-		wp_register_script( 'gsap-splittext', $t . 'he/vendor/SplitText.min.js', array( 'gsap' ), '3', array( 'in_footer' => true ) );
-		wp_register_script( 'villaeidos-moto', $t . 'moto.js', array( 'gsap-scrolltrigger', 'gsap-splittext' ), $v, array( 'in_footer' => true ) );
-		wp_enqueue_script( 'villaeidos-he', $t . 'he/he.js', array( 'villaeidos-moto' ), $v, array( 'in_footer' => true ) );
-	},
-	30
+		return $c;
+	}
 );

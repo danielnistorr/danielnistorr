@@ -1,6 +1,13 @@
-/* Villa Eidos: menu del telefono e anno nel piede. Nessun movimento qui (i due movimenti sono in moto.js). */
+/* Villa Eidos: testata che si compatta scorrendo, menu del telefono e anno nel piede. */
 (function(){
   "use strict";
+  // testata: sotto i primi 24 px di scorrimento si compatta (classe "compatta"; la transizione c'e' solo con ve-moto)
+  var testa = document.getElementById('testa');
+  if (testa) {
+    var compatta = function(){ testa.classList.toggle('compatta', (window.scrollY || window.pageYOffset) > 24); };
+    window.addEventListener('scroll', compatta, {passive: true});
+    compatta();
+  }
   var menu = document.getElementById('menu'), apri = document.querySelector('.testa .apri-menu');
   if (menu && apri) {
     var chiudi = menu.querySelector('.chiudi-menu');

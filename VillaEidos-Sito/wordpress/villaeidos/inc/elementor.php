@@ -3,9 +3,8 @@
  * Elementor: i piccoli aggiustamenti che rendono i widget normali uguali all'anteprima.
  *
  * - Foto d'apertura (classe apertura-foto): si carica subito e con priorita' alta; se la foto ha la versione per il
- *   telefono (campo _villaeidos_tel, scritto dall'installatore: oggi il fregio quasi quadrato) diventa un <picture>.
- *   Quando in Elementor si sceglie un'altra foto (quella della villa), la versione per il telefono non c'e' piu' e il
- *   telefono mostra la foto nuova, ritagliata al centro.
+ *   telefono (campo _villaeidos_tel dell'allegato) diventa un <picture>. Oggi nessuna foto ce l'ha: la cornice e' 4:5
+ *   ovunque e una foto nuova (quella della villa) si ritaglia al centro.
  * - Immagini della libreria: "sizes" scritto dall'installatore (campo _villaeidos_sizes), cosi' il browser sceglie la
  *   misura giusta; tutte pigre tranne l'apertura.
  * - Niente Google Fonts di Elementor: i caratteri sono nel tema.

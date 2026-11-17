@@ -4,15 +4,16 @@ Il sito di Villa Eidos (uffici, sedi di rappresentanza, sale riunioni e sala con
 
 - Le pagine sono tre: **Home**, **Informativa privacy** (`/privacy/`) e **Cookie** (`/cookie/`).
 - Ogni testo, titolo, foto e bottone è un widget normale di Elementor (Titolo, Editor di testo, Immagine, Pulsante). Si cambia dall'editor visuale, senza toccare codice.
-- La **foto d'apertura** oggi è un fregio di pietra con le parole "Villa · Barchessa · Giardino": tiene il posto della foto della villa, che manca. Quando arriva si cambia con un clic (sotto, "La foto della villa").
+- La **foto d'apertura** oggi è la sala conferenze (le finestre ad arco della barchessa): tiene il posto della foto della villa, che manca. Quando arriva si cambia con un clic (sotto, "La foto della villa").
+- Gli **spazi** sono schede con la foto: ogni link "Richiedi" porta al modulo e sceglie già il tipo di spazio.
 - Il modulo **Richiesta di disponibilità** prepara una mail per eidos@eco-management.it nel programma di posta di chi lo compila: il sito non riceve e non salva dati.
-- Il tema dà l'aspetto: testata, menu del telefono, piede, caratteri e colori. Due movimenti discreti si spengono con un clic.
+- Il tema dà l'aspetto: testata, menu del telefono, piede, carattere (Fustat) e colori. Il movimento è quasi nullo e si spegne con un clic.
 
 ## Cosa c'è in questa cartella
 
 | File | A cosa serve |
 |---|---|
-| `villaeidos-tema.zip` | Il tema da caricare in WordPress (circa 0,65 MB, versione 1.0.0). Dentro ci sono foto, fregio, logo e caratteri. |
+| `villaeidos-tema.zip` | Il tema da caricare in WordPress (circa 0,45 MB, versione 1.0.0). Dentro ci sono foto, logo e carattere. |
 | `villaeidos/` | Lo stesso tema scompattato, da caricare via FTP se il pannello rifiuta lo zip. |
 | `installa-su-server.sh` | Fa tutto da solo con WP-CLI, se il server ha l'accesso SSH. |
 
@@ -52,7 +53,7 @@ Prima di andare avanti:
    - Se WordPress rifiuta lo zip, carica via FTP la cartella `villaeidos/` dentro `wp-content/themes/` e attivala da *Aspetto > Temi*.
 2. *Aspetto > Installa Villa Eidos*, bottone **Installa e attiva Elementor**. Se non riesce: *Plugin > Aggiungi nuovo*, cerca "Elementor", *Installa*, *Attiva*, e torna su *Aspetto > Installa Villa Eidos*.
 3. Nella stessa pagina lascia spuntato "Nascondi il sito ai motori di ricerca" finché il sito è in prova, e premi **Installa il sito**. In un colpo:
-   - carica nella libreria media il fregio d'apertura e le cinque foto degli interni, con le misure già pronte;
+   - carica nella libreria media la foto d'apertura e le quattro foto degli spazi, con le misure già pronte;
    - crea le tre pagine in Elementor;
    - imposta la Home come pagina iniziale e gli indirizzi belli (`/privacy/`, `/cookie/`);
    - spegne colori, caratteri e Google Fonts di Elementor, che cambierebbero l'aspetto;
@@ -83,27 +84,29 @@ bash installa-su-server.sh /percorso/della/cartella https://prova.villaeidos.it 
 ## La foto della villa (un clic)
 
 1. *Pagine > Home > Modifica con Elementor*.
-2. Clic sul fregio grigio-pietra sotto il titolo ("Villa · Barchessa · Giardino"): a sinistra si apre il pannello **Immagine**.
-3. Clic sull'anteprima del fregio (**Scegli l'immagine**), poi *Carica file* e la foto della villa; *Inserisci file multimediale*.
+2. Clic sulla foto a destra del titolo (la sala conferenze): a sinistra si apre il pannello **Immagine**.
+3. Clic sull'anteprima della foto (**Scegli l'immagine**), poi *Carica file* e la foto della villa; *Inserisci file multimediale*.
 4. *Aggiorna* in alto a destra.
 
 Com'è meglio la foto:
-- **orizzontale e larga**: la fascia è 12:5 (per esempio 2400 x 1000 px o più). Vanno bene la facciata con la barchessa oppure la foto dal drone. Sul telefono la fascia è 5:4 e la foto si taglia al centro: il soggetto deve stare nel mezzo;
-- almeno **2400 px di larghezza** (meglio 3200): è la foto più grande del sito;
+- la cornice è **verticale, 4:5**, larga al massimo 480 px: va bene una foto verticale della facciata, oppure una orizzontale con il soggetto al centro (si ritaglia ai lati);
+- almeno **1200 px di lato corto** (meglio di più): sullo schermo doppio dei telefoni e dei computer recenti resta nitida;
 - nella libreria media scrivi il **testo alternativo** (cosa si vede: "La facciata della villa e la barchessa").
 
-Il fregio resta nella libreria media ("Apertura: il fregio"): si rimette con lo stesso clic.
+La foto della sala conferenze resta nella libreria media ("Apertura: la sala conferenze"): si rimette con lo stesso clic. Con la foto della villa in apertura, la sala conferenze resta solo nella sua scheda e non si ripete più.
 
 ## Cambiare testi e foto
 
-*Pagine > Home > Modifica con Elementor*. Un clic su un elemento apre il suo pannello a sinistra; nel pannello *Struttura* (icona in alto) le sezioni hanno un nome: Apertura, Il luogo, Gli spazi, Per chi è, Come arrivare, Richiesta di disponibilità.
+*Pagine > Home > Modifica con Elementor*. Un clic su un elemento apre il suo pannello a sinistra; nel pannello *Struttura* (icona in alto) le sezioni hanno un nome: Apertura, Gli spazi, Il complesso, Per chi, Come arrivare, Richiesta di disponibilità.
 
-- **Titoli e testi**: si scrivono nel pannello o sulla pagina. Il titolo d'apertura ha quattro parti tra `<span>`: ogni parte è una riga sul computer; sul telefono le righe vanno a capo da sole.
-- **Foto degli spazi**: clic sulla foto, poi sull'anteprima nel pannello, e scegli o carica un'altra foto. Le foto si vedono al massimo a 1,25 volte la loro misura: una foto nuova conviene larga almeno 1200 px (sale riunioni, sala conferenze) o 800 px (le altre).
-- **Le quattro parole del luogo** (Villa, Barchessa, Giardino, Parcheggi) sono Titoli; la riga accanto è un Editor di testo.
-- **Il telefono grande** della richiesta è un Titolo con il link `tel:+390490990550`: se cambia il numero, vanno cambiati il testo e il link.
+- **Titoli e testi**: si scrivono nel pannello o sulla pagina.
+- **Fatti sotto l'apertura** (A13, tangenziale, SS16, parcheggi, ingressi): ognuno è un Titolo e un Editor di testo nel contenitore "Fatti".
+- **Foto degli spazi**: clic sulla foto, poi sull'anteprima nel pannello, e scegli o carica un'altra foto. Le schede sono 4:3 e la foto si ritaglia al centro; si vede al massimo a 1,25 volte la sua misura, quindi una foto nuova conviene larga almeno 1200 px.
+- **Link "Richiedi" delle schede**: sono Pulsanti con il link `#disponibilita`. In *Link > Opzioni del link > Attributi personalizzati* c'è per esempio `data-tipo|Sala riunioni`: il valore dopo la barra deve essere uguale a uno dei tipi del modulo (`Ufficio o sede`, `Sala riunioni`, `Sala conferenze`) e lo sceglie da solo. Senza l'attributo il link porta al modulo senza scegliere.
+- **Villa, Barchessa, Giardino, Parcheggi** ("Il complesso") sono Titoli con un Editor di testo sotto.
+- **Il telefono** della richiesta è un Titolo con il link `tel:+390490990550`: se cambia il numero, vanno cambiati il testo e il link (e anche il bottone "Chiama" dell'apertura).
 - **I tre ingressi** sono un elenco in un Editor di testo: ogni via apre Google Maps.
-- **Aspetto**: lo danno le classi nel campo *Avanzate > Classi CSS* di ogni elemento (per esempio `luogo-parola`, `spazio-foto`, `pulsante pulsante-verde`). Non vanno cancellate. Un bottone nuovo uguale a quelli del sito: classi `pulsante pulsante-verde` (pieno) o `pulsante pulsante-filo` (a filo).
+- **Aspetto**: lo danno le classi nel campo *Avanzate > Classi CSS* di ogni elemento (per esempio `scheda`, `scheda-foto`, `pulsante pulsante-verde`, `collegamento`). Non vanno cancellate. Un bottone nuovo uguale a quelli del sito: classi `pulsante pulsante-verde` (pieno) o `pulsante pulsante-filo` (a filo).
 - **Testata, menu del telefono e piede**: sono nel tema. Telefono, email, indirizzi, ragione sociale e partita IVA si cambiano in *Aspetto > Personalizza > Recapiti*.
 
 Si salva con *Pubblica* (o *Aggiorna*) in alto a destra.
@@ -119,11 +122,12 @@ Si salva con *Pubblica* (o *Aggiorna*) in alto a destra.
 
 ## Movimenti
 
-Due movimenti, fermi a pagina ferma:
-- **il titolo d'apertura sale riga per riga** quando la pagina si apre;
-- **le foto delle sale riunioni e della sala conferenze si scoprono con un taglio netto** la prima volta che arrivano sullo schermo.
+Quasi niente, di proposito:
+- la **testata si compatta** scorrendo (più bassa, logo più piccolo);
+- la **foto d'apertura si scopre dal basso** con un taglio netto quando la pagina si apre, una volta;
+- i bottoni si invertono di colpo al passaggio.
 
-Niente dissolvenze. Si spengono in *Aspetto > Personalizza > Movimenti* (togli la spunta, *Pubblica*), oppure con `define( 'VILLAEIDOS_SENZA_MOVIMENTI', true );` in `wp-config.php`. Chi ha chiesto al sistema di "ridurre il movimento", e chi naviga senza JavaScript, vede sempre la pagina ferma e completa. Ogni movimento si accende con una classe in Elementor: `moto-righe` su un Titolo, `moto-taglio` su un'Immagine. Nell'editor la pagina resta ferma.
+Niente dissolvenze e niente titoli che salgono. Si spengono in *Aspetto > Personalizza > Movimenti* (togli la spunta, *Pubblica*): la foto compare subito e la testata si compatta senza transizione. Oppure `define( 'VILLAEIDOS_SENZA_MOVIMENTI', true );` in `wp-config.php`. Chi ha chiesto al sistema di "ridurre il movimento", e chi naviga senza JavaScript, vede sempre la pagina ferma e completa. Nell'editor la pagina resta ferma.
 
 ## Cookie
 
@@ -132,5 +136,5 @@ Il sito pubblico non usa cookie: caratteri e immagini sono nel tema, la mappa è
 ## Cosa sapere
 
 - Prove, pesi e voto: `VillaEidos-Sito/NOTA.md`. Direzione artistica: `VillaEidos-Sito/DIREZIONE-HE.md`.
-- Elementor porta con sé i suoi script (anche jQuery): al primo caricamento la Home pesa circa 0,8 MB al computer e 0,8-0,9 MB al telefono senza compressione. Con la compressione del server il peso degli script scende di circa due terzi.
+- Elementor porta con sé i suoi script (anche jQuery): al primo caricamento la Home pesa circa 0,6-0,7 MB al computer e al telefono, senza compressione. Con la compressione del server il peso degli script scende di circa due terzi.
 - Se installate Elementor Pro, non usate il suo Theme Builder per testata e piede: li fa già il tema.

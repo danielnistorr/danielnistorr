@@ -3,7 +3,7 @@
  * Installatore: Aspetto > Installa Villa Eidos (oppure, con WP-CLI: wp eval 'villaeidos_installa();').
  *
  * In un colpo:
- * - carica nella libreria media il fregio d'apertura e le foto degli spazi, con le loro misure gia' pronte;
+ * - carica nella libreria media la foto d'apertura e le foto degli spazi, con le loro misure gia' pronte;
  * - crea le pagine Home, Informativa privacy (/privacy/) e Cookie (/cookie/) come pagine di Elementor,
  *   fatte di contenitori e widget normali (contenuti/*.json, generati da _sorgente/build.py);
  * - imposta la Home come pagina iniziale, gli indirizzi belli (/%postname%/) e le opzioni di Elementor
@@ -497,7 +497,7 @@ function villaeidos_pagina_installa() {
 	?>
 	<div class="wrap">
 		<h1>Installa Villa Eidos</h1>
-		<p>Carica il fregio d’apertura e le foto degli spazi nella libreria media, crea le pagine Home, Informativa privacy e Cookie in Elementor e imposta la Home come pagina iniziale.</p>
+		<p>Carica la foto d’apertura e le foto degli spazi nella libreria media, crea le pagine Home, Informativa privacy e Cookie in Elementor e imposta la Home come pagina iniziale.</p>
 		<?php if ( $fatto ) : ?>
 			<p><strong>Ultima installazione:</strong> <?php echo esc_html( $fatto ); ?>.</p>
 		<?php endif; ?>

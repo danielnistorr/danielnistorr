@@ -6,14 +6,14 @@
  *   (Titolo, Editor di testo, Immagine, Pulsante, Shortcode) dentro contenitori con classi CSS: testi e foto si
  *   cambiano dal pannello di Elementor. Il tema da' l'aspetto: assets/sito.css aggancia quelle classi.
  * - Testata, menu del telefono, piede e modulo sono in parti/*.html, lo stesso HTML dell'anteprima statica.
- * - La foto d'apertura (classe apertura-foto) oggi e' il fregio con "Villa, Barchessa, Giardino": quando arriva
- *   la foto della villa si cambia con un clic in Elementor (vedi il LEGGIMI).
+ * - La foto d'apertura (classe apertura-foto) oggi e' la sala conferenze, in verticale: quando arriva la foto della
+ *   villa si cambia con un clic in Elementor (vedi il LEGGIMI).
  * - Il modulo "Richiesta di disponibilita'" e' lo shortcode [villaeidos_richiesta] (inc/richiesta.php): prepara una
  *   mail nel programma di posta di chi scrive, il sito non riceve e non salva dati.
  * - Recapiti: Aspetto > Personalizza > Recapiti, oppure config/contatti.php. Ragione sociale e partita IVA sono
  *   ancora da chiedere al cliente: finche' mancano il piede lo dice e il pannello lo ricorda.
  * - Caratteri e immagini sono nel tema e nella libreria media: il sito non chiama servizi esterni e non usa cookie.
- * - Due movimenti (titolo d'apertura, due foto degli spazi), spenti da Aspetto > Personalizza > Movimenti.
+ * - Movimento quasi nullo (foto d'apertura che si scopre, testata che si compatta): Aspetto > Personalizza > Movimenti.
  * - Installazione: Aspetto > Installa Villa Eidos, oppure installa-su-server.sh con WP-CLI (inc/installa.php).
  *
  * @package villaeidos
@@ -251,9 +251,8 @@ add_action(
 	'wp_head',
 	function () {
 		$t = get_template_directory_uri() . '/assets/';
-		// i due caratteri del sito, precaricati (sono nel tema)
-		echo '<link rel="preload" href="' . esc_url( $t . 'fonts/brygada-1918-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
-		echo '<link rel="preload" href="' . esc_url( $t . 'fonts/pontano-sans-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+		// il carattere del sito, precaricato (e' nel tema)
+		echo '<link rel="preload" href="' . esc_url( $t . 'fonts/fustat-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 		if ( ! has_site_icon() ) {
 			echo '<link rel="icon" href="' . esc_url( $t . 'logo/villaeidos-marchio.svg' ) . '" type="image/svg+xml">' . "\n";
 		}
