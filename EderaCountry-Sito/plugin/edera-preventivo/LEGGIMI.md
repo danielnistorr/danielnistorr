@@ -8,6 +8,7 @@ Il plugin che fa cambiare dal pannello di WordPress, senza toccare file, i prezz
 - Il plugin non tocca pagine, testi o dati di Elementor: disegna soltanto lo shortcode `[edera_preventivo]`, che è già nella Home.
 - È separato dal tema: resta anche se un giorno si cambia tema.
 - Versione 1.0.1: capienza superabile ("Oltre la capienza") e fasce di prezzo per numero di persone.
+- Versione 1.1.0: il riscaldamento (e ogni tariffa o supplemento) si applica solo agli spazi scelti; sedie, tavoli, panche, area piscina, audio e video, gazebo e servizi extra si aggiungono al prezzo, a persona, a pezzo o per fasce, con la disponibilità massima.
 
 ## Installare (prima il plugin, poi il tema)
 
@@ -19,12 +20,17 @@ L'ordine conta. All'attivazione il plugin copia i prezzi da `config/preventivo.p
    - Con il plugin attivo, il tema 1.2 non carica più il suo calcolatore. Con il tema 1.1 il plugin funziona lo stesso: prende comunque il posto del calcolatore del tema.
    - Il tema nuovo sovrascrive i file del tema, anche `config/contatti.php`. Se avevate cambiato a mano email, telefono o indirizzo in quel file, ricopiateli dopo l'aggiornamento. Dal tema 1.2 si scrivono in *Aspetto > Personalizza > Recapiti*, senza toccare file.
 
-## Aggiornare il plugin (dalla 1.0.0 alla 1.0.1)
+## Aggiornare il plugin (dalla 1.0.x alla 1.1.0)
 
 1. *Plugin > Aggiungi nuovo > Carica plugin*, scegli il nuovo `edera-preventivo.zip`, *Installa ora*.
 2. WordPress dice che il plugin c'è già: premete **"Sostituisci quello attuale con quello caricato"**.
 
-Le regole già salvate restano come sono. Le impostazioni nuove partono spente: limite rigido sulla capienza e nessuna fascia, quindi sul sito non cambia niente finché non le cambiate voi dal pannello. Pagine e dati di Elementor non vengono toccati.
+Le regole già salvate restano come sono, e il plugin resta attivo. Le impostazioni nuove partono spente, quindi sul sito non cambia niente finché non le cambiate voi dal pannello:
+- ogni tariffa vale su tutti gli spazi e si somma al prezzo dello spazio, come prima;
+- i servizi già inseriti restano "Servizi extra", a prezzo fisso o a persona, con le stesse righe nella stima e la stessa mail;
+- le voci del listino (sedie, tavoli, panche...) non ci sono finché non premete "Aggiungi le voci del listino" e non le attivate.
+
+Pagine e dati di Elementor non vengono toccati. Lo stesso aggiornamento vale anche dalla 1.0.0.
 
 ## Dove si cambiano i prezzi
 
@@ -41,13 +47,17 @@ Menu **Preventivo**. Dopo ogni modifica premete **Salva le regole** (il bottone 
 - **Tariffe e supplementi**: in certi mesi (oggi la tariffa stagionale, 125 € da ottobre a marzo), in certi giorni della settimana (per esempio il weekend) o in un periodo.
   - Valore fisso in euro o in percentuale.
   - Si applica sul primo spazio, su ogni spazio o sul totale.
+  - **Si applica a**: gli spazi su cui vale (nessuno spuntato = tutti gli spazi). Vedi l'esempio del riscaldamento qui sotto.
+  - **Voce separata nella stima**: il supplemento ha una riga sua ("Riscaldamento (Rustico, Serra): 250 €") invece di sommarsi al prezzo dello spazio. Il totale non cambia.
   - Vale per la data scelta nel calcolatore: senza data, nessun supplemento.
 - **Sconti e minimi**: sconto per più spazi insieme, sconto oltre un numero di persone, minimo di partecipanti, spesa minima, arrotondamento del totale.
-- **Servizi aggiuntivi**: nome, prezzo fisso o a persona. I servizi attivi diventano caselle nel calcolatore. Oggi l'elenco è vuoto: i servizi sono nel PDF.
+- **Servizi e dotazioni**: arredi, attrezzature e servizi extra che si aggiungono al prezzo. Vedi la sezione qui sotto.
 - **Testi e invio**: email che riceve la richiesta, oggetto e testo della mail, nota sotto il prezzo (IVA), avvertenza, messaggi per data non disponibile e oltre capienza, testi per la capienza superabile e per le fasce.
   - Nel testo della mail i segnaposti si riempiono da soli: `{azienda}` `{email}` `{telefono}` `{tipo}` `{spazi}` `{data}` `{persone}` `{capienza}` `{durata}` `{totale}` `{servizi}` `{dettaglio}`.
-  - `{servizi_riga}` scrive la riga "Servizi aggiuntivi: ..." solo se ce ne sono.
-  - `{note_riga}` scrive le note della stima (oltre la capienza, fuori dalle fasce). Se il testo non ce l'ha, le note vanno da sole sotto la riga con `{persone}`: la riga "oltre la capienza" c'è sempre.
+  - `{servizi}` scrive le voci scelte con le quantità ("Sedie (65), Grill").
+  - `{servizi_riga}` scrive le righe "Dotazioni: ...", "Servizi aggiuntivi: ..." e "Compresi nell'affitto: ...", solo quelle che ci sono.
+  - `{note_riga}` scrive le note della stima (oltre la capienza, fuori dalle fasce, pezzi che non bastano). Se il testo non ce l'ha, le note vanno da sole sotto la riga con `{persone}`: la riga "oltre la capienza" c'è sempre.
+  - `{supplementi_riga}` scrive i supplementi con "Voce separata nella stima". Se il testo non ce l'ha (e non ha `{dettaglio}`), vanno da soli sotto la riga con `{spazi}`.
   - Con le fasce, `{spazi}` scrive anche la fascia applicata, per esempio "Rustico (31-50 persone, 15 € a persona)".
   - Un testo nuovo lasciato vuoto torna a quello iniziale.
 - **Prova**: un piccolo calcolatore con le regole salvate, per controllare un prezzo prima che lo veda un cliente. Mostra anche il testo della mail.
@@ -81,6 +91,72 @@ Come funzionano:
 - Tariffe e supplementi, sconti, servizi, minimi e arrotondamento si applicano dopo, come sempre.
 - Le fasce si mettono in ordine da sole. Se due fasce dello stesso spazio si sovrappongono (per esempio 1-30 e 25-50), se "da" è più grande di "a" o se un importo è negativo, le regole non si salvano e in cima compare cosa correggere.
 - Il testo della riga ("Rustico (31-50 persone, 15 € a persona)") si cambia in *Testi e invio > Fasce per numero di persone*.
+
+## Riscaldamento solo su certi spazi
+
+Ogni tariffa o supplemento ha le caselle **"Si applica a"**: si spuntano gli spazi su cui vale. Nessuna casella spuntata vuol dire tutti gli spazi, come prima.
+- "Sul primo spazio scelto": il primo, nell'ordine della pagina, fra gli spazi spuntati che il cliente ha scelto.
+- "Su ogni spazio scelto": ognuno degli spazi spuntati che il cliente ha scelto.
+- "Sul totale": una volta sola, se il cliente ha scelto almeno uno degli spazi spuntati; in percentuale si calcola solo sul prezzo di quegli spazi.
+- Se il cliente non ha scelto nessuno degli spazi spuntati, il supplemento non si applica.
+
+**Esempio pratico.** Riscaldamento solo sul Rustico e sulla Serra, 125 € per spazio, da ottobre a marzo.
+1. Menu **Preventivo**, sezione **Tariffe e supplementi**, riga "Tariffa stagionale".
+2. *Nome*: Riscaldamento.
+3. *Su che cosa*: "su ogni spazio scelto".
+4. *Si applica a*: spuntate **Rustico** e **Serra**.
+5. Se volete il riscaldamento su una riga a parte, spuntate anche **Voce separata nella stima**.
+6. **Salva le regole**.
+
+Risultato sul sito, 40 persone, una data di gennaio:
+
+| Spazi scelti | Stima | Righe nella stima |
+|---|---|---|
+| Rustico + Serra | 1300 € | Rustico 825 €, Serra 475 € (con la voce separata: Rustico 700 €, Serra 350 €, Riscaldamento (Rustico, Serra) 250 €) |
+| Serra + Piscina | 875 € | Serra 475 €, Piscina 400 € (con la voce separata: Serra 350 €, Piscina 400 €, Riscaldamento (Serra) 125 €) |
+| Piscina + Spazio esterno | 800 € | Piscina 400 €, Spazio esterno 400 €: niente riscaldamento |
+
+Con "sul primo spazio scelto" invece di "su ogni spazio", Rustico + Serra fanno 1175 €: il riscaldamento va solo sul Rustico. Da aprile a settembre il riscaldamento non c'è (Rustico + Serra, 40 persone: 1050 €). Con la voce separata, la riga va anche nella mail, sotto gli spazi.
+
+## Servizi e dotazioni
+
+Sezione **Servizi e dotazioni** (prima "Servizi aggiuntivi"). Ogni voce si apre premendo sul suo riassunto, per esempio "Sedie · 1 € a pezzo · max 65 · attivo", e mostra solo i campi che servono per il suo prezzo.
+- **Gruppo**: "Dotazioni" o "Servizi extra". Nel calcolatore compaiono in quest'ordine, ognuno con il suo titolo.
+- **Prezzo**:
+  - *prezzo fisso*: una volta;
+  - *a persona*: per il numero di partecipanti;
+  - *a pezzo*: per la quantità. La quantità la scrive chi compila (da 1 al massimo disponibile) oppure è *automatica*, un pezzo ogni tante persone, arrotondato per eccesso (sedie 1, tavoli 8, panche 4);
+  - *compreso nell'affitto*: 0 €, non si sceglie. Compare nel calcolatore sotto "Compresi nell'affitto" e nella mail.
+- **Massimo disponibile** (0 = nessun limite): chi compila non può scrivere di più. Con la quantità automatica, se ne servono di più si contano quelli disponibili e la stima e la mail lo dicono ("Sedie: ne servono 80, disponibili 65: il resto da concordare con la struttura.").
+- **Pezzi compresi nell'affitto**: quelli che non si pagano, poi il prezzo (50 sedie comprese, poi 1 € l'una).
+- **Fasce per numero di persone** (facoltative), come quelle degli spazi: fisso per la fascia, a persona o a pezzo. Fuori da tutte le fasce vale il prezzo della voce, con una nota.
+- **Disponibile solo con**: la voce compare solo se è scelto uno di questi spazi (l'area piscina con la Piscina). Se il cliente toglie lo spazio, la voce sparisce e perde la spunta.
+- **Nota**: una riga sotto il nome ("Tavoli da 6-8 persone").
+- Gli sconti valgono solo sugli spazi; le voci si aggiungono dopo, poi la spesa minima e l'arrotondamento, come prima.
+- Nella stima: "Sedie (65 × 1 €): 65 €", "Audio e video (31-70 persone): 150 €". Quando al posto del totale c'è "Da valutare con la struttura", la mail ha solo i nomi e le quantità, senza euro.
+
+**Aggiungi le voci del listino**: mette nel modulo, senza salvare, le voci del PDF che mancano (tavoli, panche, sedie, area piscina, audio e video, gazebo, grill, casetta bar, pulizia finale). Sono tutte spente: sul sito non cambia niente finché non mettete i prezzi, spuntate "Attivo" e salvate. Grill (80 €) e casetta bar (50 €) hanno già il prezzo del PDF; audio e video, gazebo e pulizia finale hanno 0 € da completare. Per la pulizia finale le fasce non ci sono: il PDF dice "da 80 a 300 €", decidete voi come dividerle.
+
+**Esempio pratico.** Sedie a 1 € l'una, una per persona, al massimo 65; audio e video con prezzi per fasce.
+1. Sezione **Servizi e dotazioni**: premete **Aggiungi le voci del listino** (se le voci non ci sono già).
+2. Aprite **Sedie**: *Prezzo* "a pezzo", *Prezzo (€)* 1, *Quantità* "automatica, per persone", *Un pezzo ogni quante persone* 1, *Massimo disponibile* 65 (i nomi "sedia" e "sedie" ci sono già). Spuntate **Attivo**.
+3. Aprite **Audio e video**: *Prezzo* "prezzo fisso", *Prezzo (€)* 150 (vale per un numero fuori dalle fasce). In *Fasce per numero di persone* premete tre volte *Aggiungi una fascia*:
+   - *Da* 1, *A* 30, "fisso per la fascia", *Importo* 80;
+   - *Da* 31, *A* 70, "fisso per la fascia", *Importo* 150;
+   - *Da* 71, *A* vuoto, "a persona", *Importo* 2.
+
+   Spuntate **Attivo**.
+4. **Salva le regole**.
+
+Risultato sul sito, Rustico + Serra, sedie e audio e video spuntati, nessuna data:
+
+| Partecipanti | Stima | Righe delle voci |
+|---|---|---|
+| 25 | 855 € | Sedie (25 × 1 €) 25 €, Audio e video (1-30 persone) 80 € |
+| 45 | 1345 € | Sedie (45 × 1 €) 45 €, Audio e video (31-70 persone) 150 € |
+| 80 | 1575 € | Sedie (65 × 1 €) 65 €, Audio e video (da 71 persone, 2 € a persona) 160 €, e la nota "Sedie: ne servono 80, disponibili 65: il resto da concordare con la struttura." |
+
+Sotto il nome delle sedie il calcolatore scrive quante ne conta ("65 sedie per 80 persone, il massimo disponibile"); nella mail c'è la riga "Dotazioni: Sedie (65), Audio e video".
 
 ## Oltre la capienza
 
@@ -130,4 +206,11 @@ Sezione **Copia delle regole**:
 - `includes/sito.php`: lo shortcode, registrato su `init` con priorità 20, quindi dopo il tema.
 - `assets/calcolo.js` è il motore dei conti, usato dal sito e dalla prova. `assets/preventivo.js` collega il calcolatore della pagina.
 - Dalla 1.0.1: `generali.oltre_capienza` (`rigido`, `stima`, `senza`), `generali.massimo_assoluto` e `spazi[].fasce` (`da`, `a` con 0 = senza limite, `modo` `fisso` o `persona`, `importo`, `importo_mezza` o null). Le regole salvate con la 1.0.0 non hanno queste voci: si leggono con i valori iniziali, cioè come prima.
+- Dalla 1.1.0:
+  - `tariffe[].spazi` (chiavi degli spazi, vuoto = tutti) e `tariffe[].riga` (riga a parte);
+  - `servizi[].modo` anche `pezzo` e `incluso`;
+  - `servizi[].gruppo` (`dotazione`, `servizio`), `quantita` (`cliente`, `automatica`), `persone_per_pezzo`, `massimo` (0 = nessun limite), `comprese`, `unita`, `unita_plurale`;
+  - `servizi[].fasce` (`da`, `a`, `modo` `fisso`, `persona` o `pezzo`, `importo`) e `servizi[].spazi`.
+  - Le regole della 1.0.x non hanno queste voci: `edera_preventivo_regole()` le completa con i valori che danno gli stessi conti, e così anche l'esportazione e un file importato della 1.0.x.
+- I testi nuovi del calcolatore (righe della stima, prezzi, note delle voci) sono in `edera_preventivo_testi_js()`, traducibili; PHP e `calcolo.js` usano gli stessi.
 - I testi sono traducibili, con il dominio `edera-preventivo`.

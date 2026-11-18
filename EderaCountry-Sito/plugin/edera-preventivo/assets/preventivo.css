@@ -1,4 +1,4 @@
-/* Edera Preventivo: solo le parti nuove del calcolatore (calendario, servizi aggiuntivi, note). Il resto lo
+/* Edera Preventivo: solo le parti nuove del calcolatore (calendario, servizi e dotazioni, note). Il resto lo
    disegna il foglio di stile del tema, con le stesse classi del calcolatore di oggi. Colori, caratteri, filetti
    e raggi sono quelli del tema (variabili --green, --line ...; tra parentesi il valore se il tema non c'e').
    Nessuna animazione: il calendario si apre e si chiude di colpo. */
@@ -9,6 +9,26 @@
 .calcolo .edp-campo-data .nota[hidden]{display:none}
 .calcolo .edp-campo-data .nota{color:#8a2f1f}
 .calcolo .edp-campo-data input.edp-data{cursor:pointer}
+
+/* servizi e dotazioni (dalla 1.1.0): due gruppi, le voci comprese nell'affitto, la quantita' dentro la scheda.
+   Il campo della quantita' sta sopra la casella invisibile che copre la scheda, cosi' si scrive senza togliere la spunta */
+.calcolo .edp-servizi[hidden],.calcolo .edp-servizi .spazio[hidden],.calcolo .edp-compresi[hidden],.calcolo .edp-compresi li[hidden]{display:none}
+.calcolo .edp-compresi{margin:0 0 2px;font-weight:400;letter-spacing:0}
+.calcolo .edp-compresi-titolo{display:block;margin-bottom:8px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep,#7f6534)}
+.calcolo .edp-compresi ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px;margin:0;padding:0;list-style:none;border-top:1px solid var(--line,#d9d2c3)}
+.calcolo .edp-compresi li{padding:10px 0;border-bottom:1px solid var(--line,#d9d2c3);font-size:14px;line-height:1.45;color:var(--ink-soft,#4f5b54)}
+.calcolo .edp-compresi li b{display:block;font:400 18px/1.25 var(--serif,"Newsreader",Georgia,serif);color:var(--ink,#17251f)}
+.calcolo .edp-compresi li small{display:block;margin-top:2px;font-size:13px}
+.calcolo .edp-compresi + .edp-voci{margin-top:12px}
+.calcolo .spazio .edp-auto{display:none;margin-top:8px;font-weight:500}
+.calcolo .spazio input:checked + label .edp-auto{display:block;color:var(--white,#fff)}
+.calcolo .spazio .edp-quantita{display:none;position:absolute;z-index:2;left:16px;right:16px;bottom:14px;font-size:12px;font-weight:400;letter-spacing:0;color:#d7e0d8}
+.calcolo .spazio input:checked ~ .edp-quantita{display:block}
+.calcolo .spazio.edp-pezzi input:checked + label{padding-bottom:100px}
+.calcolo .spazio .edp-quantita label{display:block;height:auto;margin:0 0 5px;padding:0;border:0;background:none;color:inherit;font-size:12px;line-height:1.3;cursor:default}
+.calcolo .spazio .edp-quantita input.edp-q{position:static;opacity:1;width:100%;height:auto;min-height:42px;margin:0;padding:0 10px;border:1px solid var(--white,#fff);background:var(--white,#fff);color:var(--ink,#17251f);font:400 16px var(--sans,"Jost",system-ui,sans-serif);cursor:text;appearance:textfield;-moz-appearance:textfield}
+.calcolo .spazio .edp-quantita input.edp-q:focus{outline:2px solid var(--gold,#c3a66b);outline-offset:1px;box-shadow:none}
+@media (max-width:760px){.calcolo .edp-compresi ul{grid-template-columns:1fr}}
 
 /* le note della stima (oltre la capienza, prezzo fisso, fuori dalle fasce) e "Da valutare con la struttura" al posto del totale */
 .calcolo .stima .edp-note-stima{margin:18px 0 0;padding:2px 0 2px 14px;border-left:2px solid var(--gold,#c3a66b);font-size:14px;line-height:1.55;color:var(--white,#fff)}

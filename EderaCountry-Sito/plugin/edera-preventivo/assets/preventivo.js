@@ -2,7 +2,10 @@
    Lo stesso comportamento del calcolatore originale; i conti li fa assets/calcolo.js con le regole del pannello
    (window.EDERA_PREVENTIVO). La richiesta resta una mail precompilata: il sito non riceve e non salva dati.
    Se il calendario ha regole, il campo "Data dell'evento" usa flatpickr (in locale, licenza MIT) e non lascia
-   scegliere i giorni esclusi, chiusi, troppo vicini o troppo lontani. */
+   scegliere i giorni esclusi, chiusi, troppo vicini o troppo lontani.
+   Servizi e dotazioni (dalla 1.1.0): una voce legata a certi spazi compare solo con uno di quegli spazi (tolto lo
+   spazio, si nasconde e si toglie la spunta); la quantita' scritta da chi compila non supera il massimo; quella
+   automatica si legge sotto il nome ("65 sedie per 65 persone"). */
 (function(){
   var C = window.EDERA_PREVENTIVO, E = window.EderaCalcolo;
   if (!C || !E || !document.getElementById('calcolo')) return;
@@ -11,7 +14,8 @@
   var ospiti = $('ospiti');
   var tutti = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var scelti = function(){ return tutti('input[name="spazi"]:checked').map(function(e){ return e.value; }); };
-  var servizi = function(){ return tutti('input[name="servizi"]:checked').map(function(e){ return Number(e.value); }); };
+  var servizi = function(){ return tutti('input[name="servizi"]:checked').filter(function(e){ var c = e.closest('[data-voce]'); return !c || !c.hidden; }).map(function(e){ return Number(e.value); }); };
+  var quantita = function(){ var q = {}; tutti('input.edp-q').forEach(function(e){ q[e.getAttribute('data-voce')] = e.value; }); return q; };
   var durataIntera = document.querySelector('input[name="durata"][value="1.5"]');
   var durataMezza = document.querySelector('input[name="durata"][value="1"]');
   var campoData = $('data'), calendario = null, notaData = $('data-nota'), noteStima = $('stima-note');
@@ -23,8 +27,26 @@
     $('durata-nota').textContent = mezza ? R.durate.nota_mezza_si : R.durate.nota_mezza_no;
   }
   function durata(){ return (document.querySelector('input[name="durata"]:checked') || durataIntera).value === '1' ? 'mezza' : 'intera'; }
+  // le voci dei servizi e dotazioni che ci sono con gli spazi scelti; un gruppo senza voci si nasconde
+  function aggiornaVoci(){
+    var chiavi = scelti();
+    tutti('.edp-servizi [data-voce]:not(.edp-auto):not(.edp-q)').forEach(function(el){
+      var x = R.servizi[Number(el.getAttribute('data-voce'))], si = !!x && E.voceDisponibile(x, chiavi);
+      el.hidden = !si;
+      var c = el.querySelector('input[name="servizi"]');
+      if (!si && c) c.checked = false;
+    });
+    tutti('.edp-compresi').forEach(function(el){ el.hidden = !el.querySelector('li:not([hidden])'); });
+    tutti('.edp-servizi').forEach(function(el){ el.hidden = !el.querySelector('.spazio[data-voce]:not([hidden]), li[data-voce]:not([hidden])'); });
+  }
   function calcola(){
-    var r = E.calcola(R, { spazi: scelti(), ospiti: ospiti.value, durata: durata(), data: campoData.value, servizi: servizi() });
+    aggiornaVoci();
+    var r = E.calcola(R, { spazi: scelti(), ospiti: ospiti.value, durata: durata(), data: campoData.value, servizi: servizi(), quantita: quantita() });
+    // quantita' automatica: "65 sedie per 65 persone"
+    tutti('.edp-auto[data-voce]').forEach(function(el){
+      var i = Number(el.getAttribute('data-voce')), v = r.info[i];
+      el.textContent = v && v.auto ? E.testoAuto(R.servizi[i], v, r.n) : '';
+    });
     // con "rigido" il massimo e' la capienza; se si puo' superare, solo l'eventuale massimo assoluto
     if (r.limite > 0) ospiti.max = r.limite; else ospiti.removeAttribute('max');
     if (r.minimo > 1) ospiti.min = r.minimo;
@@ -63,6 +85,11 @@
   });
   tutti('input[name="durata"]').forEach(function(el){ el.addEventListener('change', calcola); });
   tutti('input[name="servizi"]').forEach(function(el){ el.addEventListener('change', calcola); });
+  // la quantita' scritta: fino al massimo disponibile (si corregge subito), almeno 1 (quando si lascia il campo)
+  tutti('input.edp-q').forEach(function(el){
+    el.addEventListener('input', function(){ if (el.max !== '' && Number(el.value) > Number(el.max)) el.value = el.max; calcola(); });
+    el.addEventListener('change', function(){ if (!(Math.floor(Number(el.value)) >= 1)) el.value = 1; else el.value = Math.floor(Number(el.value)); calcola(); });
+  });
   ospiti.addEventListener('input', calcola);
   campoData.addEventListener('change', function(){ controllaData(); calcola(); });
 

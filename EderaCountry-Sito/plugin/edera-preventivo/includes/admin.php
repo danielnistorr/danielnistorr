@@ -28,7 +28,31 @@ add_action(
 		wp_enqueue_script( 'edera-preventivo-calcolo', $u . 'calcolo.js', array(), EDERA_PREVENTIVO_VERSIONE, true );
 		wp_localize_script( 'edera-preventivo-calcolo', 'EDERA_PREVENTIVO_TESTI', edera_preventivo_testi_js() );
 		wp_enqueue_script( 'edera-preventivo-admin', $u . 'admin.js', array( 'edera-preventivo-calcolo' ), EDERA_PREVENTIVO_VERSIONE, true );
-		wp_localize_script( 'edera-preventivo-admin', 'EDERA_PREVENTIVO', array( 'regole' => edera_preventivo_regole() ) );
+		wp_localize_script(
+			'edera-preventivo-admin',
+			'EDERA_PREVENTIVO',
+			array(
+				'regole'  => edera_preventivo_regole(),
+				'listino' => edera_preventivo_listino(),
+				'testi'   => array(
+					'aggiunte'    => __( 'Aggiunte {n} voci del listino, tutte spente: mettete i prezzi, spuntate "Attivo" e salvate le regole.', 'edera-preventivo' ),
+					'aggiunta'    => __( 'Aggiunta 1 voce del listino, spenta: mettete il prezzo, spuntate "Attivo" e salvate le regole.', 'edera-preventivo' ),
+					'nessuna'     => __( 'Le voci del listino ci sono già tutte.', 'edera-preventivo' ),
+					'senzaNome'   => __( 'Voce senza nome', 'edera-preventivo' ),
+					'compreso'    => __( 'compreso nell’affitto', 'edera-preventivo' ),
+					'aPezzo'      => __( '{prezzo} a pezzo', 'edera-preventivo' ),
+					'fascia1'     => __( '1 fascia', 'edera-preventivo' ),
+					'fasce'       => __( '{n} fasce', 'edera-preventivo' ),
+					'max'         => __( 'max {n}', 'edera-preventivo' ),
+					'soloCon'     => __( 'solo con {spazi}', 'edera-preventivo' ),
+					'attivo'      => __( 'attivo', 'edera-preventivo' ),
+					'spento'      => __( 'spento', 'edera-preventivo' ),
+					'dotazioni'   => __( 'Dotazioni', 'edera-preventivo' ),
+					'servizi'     => __( 'Servizi extra', 'edera-preventivo' ),
+					'mezzaNo'     => __( 'La mezza giornata non vale per questi spazi: conta la giornata intera.', 'edera-preventivo' ),
+				),
+			)
+		);
 	}
 );
 
@@ -174,9 +198,10 @@ function edera_preventivo_si( $etichetta, $nome, $valore ) {
  * @param string $nome      Nome.
  * @param string $valore    Valore scelto.
  * @param array  $scelte    valore => testo.
+ * @param string $extra     Attributi in piu'.
  */
-function edera_preventivo_scelta( $etichetta, $nome, $valore, $scelte ) {
-	echo '<label class="edp-campo"><span>' . esc_html( $etichetta ) . '</span><select name="' . esc_attr( $nome ) . '">';
+function edera_preventivo_scelta( $etichetta, $nome, $valore, $scelte, $extra = '' ) {
+	echo '<label class="edp-campo"><span>' . esc_html( $etichetta ) . '</span><select name="' . esc_attr( $nome ) . '"' . $extra . '>'; // phpcs:ignore WordPress.Security.EscapeOutput -- attributi fissi scritti qui sotto
 	foreach ( $scelte as $k => $t ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) $valore, (string) $k, false ) . '>' . esc_html( $t ) . '</option>';
 	}
@@ -184,25 +209,103 @@ function edera_preventivo_scelta( $etichetta, $nome, $valore, $scelte ) {
 }
 
 /**
- * Caselle multiple (giorni della settimana, mesi).
+ * Caselle multiple (giorni della settimana, mesi; spazi, con chiavi di testo).
  *
  * @param string $etichetta Etichetta.
  * @param string $nome      Nome (senza []).
  * @param array  $valori    Valori scelti.
  * @param array  $scelte    valore => testo.
+ * @param bool   $testo     Valori di testo (le chiavi degli spazi) invece che numeri.
+ * @param string $classe    Classe in piu' del gruppo.
  */
-function edera_preventivo_multi( $etichetta, $nome, $valori, $scelte ) {
-	echo '<fieldset class="edp-multi"><legend>' . esc_html( $etichetta ) . '</legend>';
+function edera_preventivo_multi( $etichetta, $nome, $valori, $scelte, $testo = false, $classe = '' ) {
+	echo '<fieldset class="edp-multi' . ( $classe ? ' ' . esc_attr( $classe ) : '' ) . '"><legend>' . esc_html( $etichetta ) . '</legend>';
 	foreach ( $scelte as $k => $t ) {
+		$si = $testo ? in_array( (string) $k, array_map( 'strval', (array) $valori ), true ) : in_array( (int) $k, array_map( 'intval', (array) $valori ), true );
 		printf(
 			'<label><input type="checkbox" name="%1$s[]" value="%2$s"%3$s> %4$s</label>',
 			esc_attr( $nome ),
 			esc_attr( $k ),
-			checked( in_array( (int) $k, array_map( 'intval', (array) $valori ), true ), true, false ),
+			checked( $si, true, false ),
 			esc_html( $t )
 		);
 	}
 	echo '</fieldset>';
+}
+
+/**
+ * Gli spazi delle regole mostrate nella pagina, per le caselle "Si applica a" delle tariffe e "Disponibile solo
+ * con" delle voci: chiave => nome. Si impostano una volta, prima di disegnare le righe.
+ *
+ * @param array|null $spazi Spazi (null = leggi).
+ * @return array
+ */
+function edera_preventivo_elenco_spazi( $spazi = null ) {
+	static $elenco = array();
+	if ( null !== $spazi ) {
+		$elenco = array();
+		foreach ( (array) $spazi as $x ) {
+			if ( ! empty( $x['chiave'] ) ) {
+				/* translators: %s: space name */
+				$elenco[ $x['chiave'] ] = empty( $x['attivo'] ) ? sprintf( __( '%s (non attivo)', 'edera-preventivo' ), $x['nome'] ) : $x['nome'];
+			}
+		}
+	}
+	return $elenco;
+}
+
+/**
+ * Il riassunto di una voce dei servizi e dotazioni, nella riga chiusa: "Sedie · 1 € a pezzo · max 65 · attivo".
+ * Lo stesso testo lo scrive admin.js mentre si cambiano i campi.
+ *
+ * @param array $v Voce.
+ * @return string
+ */
+function edera_preventivo_sommario( $v ) {
+	$parti = array( '' !== trim( (string) $v['nome'] ) ? (string) $v['nome'] : __( 'Voce senza nome', 'edera-preventivo' ) );
+	$p     = edera_preventivo_euro( (float) $v['prezzo'] );
+	if ( 'incluso' === $v['modo'] ) {
+		$parti[] = __( 'compreso nell’affitto', 'edera-preventivo' );
+	} elseif ( 'persona' === $v['modo'] ) {
+		$parti[] = edera_preventivo_riempi( __( '{prezzo} a persona', 'edera-preventivo' ), array( 'prezzo' => $p ) );
+	} elseif ( 'pezzo' === $v['modo'] ) {
+		$parti[] = edera_preventivo_riempi( __( '{prezzo} a pezzo', 'edera-preventivo' ), array( 'prezzo' => $p ) );
+	} else {
+		$parti[] = $p;
+	}
+	$fasce = count( (array) $v['fasce'] );
+	if ( 'incluso' !== $v['modo'] && $fasce ) {
+		$parti[] = 1 === $fasce ? __( '1 fascia', 'edera-preventivo' ) : edera_preventivo_riempi( __( '{n} fasce', 'edera-preventivo' ), array( 'n' => $fasce ) );
+	}
+	if ( in_array( $v['modo'], array( 'pezzo', 'incluso' ), true ) && (int) $v['massimo'] > 0 ) {
+		$parti[] = edera_preventivo_riempi( __( 'max {n}', 'edera-preventivo' ), array( 'n' => (int) $v['massimo'] ) );
+	}
+	$elenco = edera_preventivo_elenco_spazi();
+	$nomi   = array();
+	foreach ( (array) $v['spazi'] as $k ) {
+		if ( isset( $elenco[ $k ] ) ) {
+			$nomi[] = $elenco[ $k ];
+		}
+	}
+	if ( $nomi ) {
+		$parti[] = edera_preventivo_riempi( __( 'solo con {spazi}', 'edera-preventivo' ), array( 'spazi' => implode( ', ', $nomi ) ) );
+	}
+	$parti[] = $v['attivo'] ? __( 'attivo', 'edera-preventivo' ) : __( 'spento', 'edera-preventivo' );
+	return implode( ' · ', $parti );
+}
+
+/**
+ * Apre un contenitore che si vede solo con certi modi di prezzo di una voce (e, se c'e', una certa quantita').
+ * Senza JavaScript si vede secondo i valori salvati; admin.js lo aggiorna quando si cambia il modo.
+ *
+ * @param array  $v        Voce.
+ * @param string $modi     Modi, separati da spazi.
+ * @param string $quantita Quantita' richiesta (facoltativa).
+ * @param string $classe   Classe del contenitore.
+ */
+function edera_preventivo_se( $v, $modi, $quantita = '', $classe = 'edp-se' ) {
+	$si = in_array( $v['modo'], explode( ' ', $modi ), true ) && ( '' === $quantita || $quantita === $v['quantita'] );
+	echo '<div class="' . esc_attr( $classe ) . '" data-modi="' . esc_attr( $modi ) . '"' . ( $quantita ? ' data-quantita="' . esc_attr( $quantita ) . '"' : '' ) . ( $si ? '' : ' hidden' ) . '>';
 }
 
 /**
@@ -240,12 +343,12 @@ function edera_preventivo_mesi() {
 /**
  * Le righe ripetibili: una funzione per tipo, usata per le righe salvate e per il modello delle righe nuove.
  *
- * @param string $tipo spazio | data | periodo | tariffa | servizio.
+ * @param string $tipo spazio | fascia | data | periodo | tariffa | servizio | fascia_voce.
  * @param mixed  $i    Indice (o __i__ nel modello).
  * @param array  $v    Valori.
  */
 function edera_preventivo_riga( $tipo, $i, $v ) {
-	echo '<div class="edp-riga">';
+	echo '<div class="edp-riga' . ( 'servizio' === $tipo ? ' edp-riga-voce' : '' ) . '">';
 	if ( 'spazio' === $tipo ) {
 		$n = function ( $k ) use ( $i ) {
 			return edera_preventivo_nome( 'spazi', $i, $k );
@@ -352,48 +455,129 @@ function edera_preventivo_riga( $tipo, $i, $v ) {
 		echo '</div>';
 		edera_preventivo_multi( __( 'Mesi (per "in certi mesi")', 'edera-preventivo' ), $n( 'mesi' ), $v['mesi'], edera_preventivo_mesi() );
 		edera_preventivo_multi( __( 'Giorni (per "giorni della settimana")', 'edera-preventivo' ), $n( 'giorni' ), $v['giorni'], edera_preventivo_giorni() );
+		edera_preventivo_multi( __( 'Si applica a (nessuno spuntato = tutti gli spazi)', 'edera-preventivo' ), $n( 'spazi' ), $v['spazi'], edera_preventivo_elenco_spazi(), true, 'edp-spazi-scelti' );
 		echo '<div class="edp-caselle">';
 		edera_preventivo_si( __( 'Attiva', 'edera-preventivo' ), $n( 'attiva' ), $v['attiva'] );
+		edera_preventivo_si( __( 'Voce separata nella stima', 'edera-preventivo' ), $n( 'riga' ), $v['riga'] );
 		echo '</div>';
 	} elseif ( 'servizio' === $tipo ) {
-		$n = function ( $k ) use ( $i ) {
+		$n     = function ( $k ) use ( $i ) {
 			return edera_preventivo_nome( 'servizi', $i, $k );
 		};
+		$fasce = isset( $v['fasce'] ) ? (array) $v['fasce'] : array();
+		// una riga nuova (dal modello) si apre gia' aperta; quelle salvate restano chiuse sul riassunto
+		echo '<details class="edp-voce"' . ( '__i__' === $i ? ' open' : '' ) . '><summary><span class="edp-sommario">' . esc_html( edera_preventivo_sommario( $v ) ) . '</span></summary>';
 		echo '<div class="edp-griglia">';
 		edera_preventivo_campo( __( 'Nome', 'edera-preventivo' ), $n( 'nome' ), $v['nome'] );
-		edera_preventivo_campo( __( 'Prezzo (€)', 'edera-preventivo' ), $n( 'prezzo' ), $v['prezzo'], 'number', ' min="0" step="0.01"' );
 		edera_preventivo_scelta(
-			__( 'Come', 'edera-preventivo' ),
+			__( 'Gruppo nel calcolatore', 'edera-preventivo' ),
+			$n( 'gruppo' ),
+			$v['gruppo'],
+			array(
+				'dotazione' => __( 'Dotazioni', 'edera-preventivo' ),
+				'servizio'  => __( 'Servizi extra', 'edera-preventivo' ),
+			)
+		);
+		edera_preventivo_scelta(
+			__( 'Prezzo', 'edera-preventivo' ),
 			$n( 'modo' ),
 			$v['modo'],
 			array(
 				'fisso'   => __( 'prezzo fisso', 'edera-preventivo' ),
 				'persona' => __( 'a persona', 'edera-preventivo' ),
-			)
+				'pezzo'   => __( 'a pezzo (prezzo × quantità)', 'edera-preventivo' ),
+				'incluso' => __( 'compreso nell’affitto (0 €)', 'edera-preventivo' ),
+			),
+			' data-ruolo="modo"'
 		);
-		edera_preventivo_campo( __( 'Nota (facoltativa)', 'edera-preventivo' ), $n( 'nota' ), $v['nota'] );
-		echo '</div><div class="edp-caselle">';
+		edera_preventivo_se( $v, 'fisso persona pezzo' );
+		edera_preventivo_campo( __( 'Prezzo (€)', 'edera-preventivo' ), $n( 'prezzo' ), $v['prezzo'], 'number', ' min="0" step="0.01"' );
+		echo '</div>';
+		edera_preventivo_campo( __( 'Nota (facoltativa, sotto il nome)', 'edera-preventivo' ), $n( 'nota' ), $v['nota'] );
+		echo '</div>';
+		edera_preventivo_se( $v, 'pezzo incluso', '', 'edp-se edp-griglia' );
+		edera_preventivo_se( $v, 'pezzo' );
+		edera_preventivo_scelta(
+			__( 'Quantità', 'edera-preventivo' ),
+			$n( 'quantita' ),
+			$v['quantita'],
+			array(
+				'cliente'    => __( 'scritta da chi compila', 'edera-preventivo' ),
+				'automatica' => __( 'automatica, per persone', 'edera-preventivo' ),
+			),
+			' data-ruolo="quantita"'
+		);
+		echo '</div>';
+		edera_preventivo_se( $v, 'pezzo', 'automatica' );
+		edera_preventivo_campo( __( 'Un pezzo ogni quante persone', 'edera-preventivo' ), $n( 'persone_per_pezzo' ), $v['persone_per_pezzo'], 'number', ' min="1" step="1"' );
+		echo '</div>';
+		echo '<div class="edp-se" data-modi="pezzo incluso">';
+		edera_preventivo_campo( __( 'Massimo disponibile (0 = nessun limite)', 'edera-preventivo' ), $n( 'massimo' ), $v['massimo'], 'number', ' min="0" step="1"' );
+		echo '</div>';
+		edera_preventivo_se( $v, 'pezzo' );
+		edera_preventivo_campo( __( 'Pezzi compresi nell’affitto (poi il prezzo)', 'edera-preventivo' ), $n( 'comprese' ), $v['comprese'], 'number', ' min="0" step="1"' );
+		echo '</div>';
+		edera_preventivo_se( $v, 'pezzo' );
+		edera_preventivo_campo( __( 'Un pezzo si chiama (es. sedia)', 'edera-preventivo' ), $n( 'unita' ), $v['unita'], 'text', ' placeholder="' . esc_attr__( 'pezzo', 'edera-preventivo' ) . '"' );
+		echo '</div>';
+		edera_preventivo_se( $v, 'pezzo' );
+		edera_preventivo_campo( __( 'Più pezzi si chiamano (es. sedie)', 'edera-preventivo' ), $n( 'unita_plurale' ), $v['unita_plurale'], 'text', ' placeholder="' . esc_attr__( 'pezzi', 'edera-preventivo' ) . '"' );
+		echo '</div>';
+		echo '</div>';
+		edera_preventivo_multi( __( 'Disponibile solo con (nessuno spuntato = sempre)', 'edera-preventivo' ), $n( 'spazi' ), $v['spazi'], edera_preventivo_elenco_spazi(), true, 'edp-spazi-scelti' );
+		echo '<div class="edp-caselle">';
 		edera_preventivo_si( __( 'Attivo (compare nel preventivo)', 'edera-preventivo' ), $n( 'attivo' ), $v['attivo'] );
 		echo '</div>';
+		edera_preventivo_se( $v, 'fisso persona pezzo' );
+		echo '<details class="edp-fasce"' . ( $fasce ? ' open' : '' ) . '><summary>';
+		/* translators: %d: number of tiers */
+		echo esc_html( $fasce ? sprintf( __( 'Fasce per numero di persone (%d)', 'edera-preventivo' ), count( $fasce ) ) : __( 'Fasce per numero di persone (facoltative)', 'edera-preventivo' ) );
+		echo '</summary><p class="description">' . esc_html__( 'Con almeno una fascia, il prezzo della voce viene dalla fascia in cui cade il numero di partecipanti: fisso per la fascia, a persona o a pezzo (l’importo per ogni pezzo, con la quantità qui sopra). Per un numero fuori da tutte le fasce vale il prezzo qui sopra, e la stima lo segnala. "A" vuoto = senza limite superiore. Esempio, Audio e video: 1-30 persone 80 € fissi, 31-70 150 € fissi, da 71 2 € a persona.', 'edera-preventivo' ) . '</p>';
+		edera_preventivo_righe( 'fascia_voce', $fasce, array( 'da' => '', 'a' => '', 'modo' => 'fisso', 'importo' => '' ), __( 'Aggiungi una fascia', 'edera-preventivo' ), array( 'voce' => $i ) );
+		echo '</details></div>';
+		echo '</details>';
+	} elseif ( 'fascia_voce' === $tipo ) {
+		$n = function ( $k ) use ( $i, $v ) {
+			return edera_preventivo_nome( 'servizi', $v['_voce'], 'fasce', $i, $k );
+		};
+		echo '<div class="edp-griglia edp-griglia-fascia">';
+		edera_preventivo_campo( __( 'Da (persone)', 'edera-preventivo' ), $n( 'da' ), $v['da'], 'number', ' min="1" step="1"' );
+		edera_preventivo_campo( __( 'A (persone, vuoto = senza limite)', 'edera-preventivo' ), $n( 'a' ), $v['a'] ? $v['a'] : '', 'number', ' min="1" step="1"' );
+		edera_preventivo_scelta(
+			__( 'Tipo di prezzo', 'edera-preventivo' ),
+			$n( 'modo' ),
+			$v['modo'],
+			array(
+				'fisso'   => __( 'fisso per la fascia', 'edera-preventivo' ),
+				'persona' => __( 'a persona', 'edera-preventivo' ),
+				'pezzo'   => __( 'a pezzo (con il prezzo "a pezzo")', 'edera-preventivo' ),
+			)
+		);
+		edera_preventivo_campo( __( 'Importo (€)', 'edera-preventivo' ), $n( 'importo' ), $v['importo'], 'number', ' min="0" step="0.01"' );
+		echo '</div>';
 	}
-	edera_preventivo_comandi( 'fascia' !== $tipo );
+	edera_preventivo_comandi( ! in_array( $tipo, array( 'fascia', 'fascia_voce' ), true ) );
 	echo '</div>';
 }
 
 /**
  * Un elenco di righe ripetibili con il suo modello e il bottone "Aggiungi", in un gruppo (le fasce sono un
- * gruppo dentro la riga di ogni spazio). Nel modello l'indice della riga nuova e' __i__ (__f__ per le fasce).
+ * gruppo dentro la riga di ogni spazio e di ogni voce). Nel modello l'indice della riga nuova e' __i__ (__f__ per
+ * le fasce).
  *
  * @param string $tipo   Tipo di riga.
  * @param array  $righe  Righe salvate.
  * @param array  $vuota  Valori di una riga nuova.
  * @param string $testo  Testo del bottone.
- * @param array  $dentro Per le fasce: array( 'spazio' => indice dello spazio ).
+ * @param array  $dentro Per le fasce: array( 'spazio' => indice dello spazio ) o array( 'voce' => indice della voce ).
  */
 function edera_preventivo_righe( $tipo, $righe, $vuota, $testo, $dentro = array() ) {
-	$segno = 'fascia' === $tipo ? '__f__' : '__i__';
+	$segno = in_array( $tipo, array( 'fascia', 'fascia_voce' ), true ) ? '__f__' : '__i__';
 	if ( isset( $dentro['spazio'] ) ) {
 		$vuota['_spazio'] = $dentro['spazio'];
+	}
+	if ( isset( $dentro['voce'] ) ) {
+		$vuota['_voce'] = $dentro['voce'];
 	}
 	echo '<div class="edp-gruppo" data-tipo="' . esc_attr( $tipo ) . '"><div class="edp-righe">';
 	foreach ( array_values( $righe ) as $i => $v ) {
@@ -414,6 +598,7 @@ function edera_preventivo_pagina() {
 	$esito = get_transient( 'edera_preventivo_esito_' . get_current_user_id() );
 	delete_transient( 'edera_preventivo_esito_' . get_current_user_id() );
 	$r = ( is_array( $esito ) && ! empty( $esito['bozza'] ) ) ? $esito['bozza'] : edera_preventivo_regole();
+	edera_preventivo_elenco_spazi( $r['spazi'] );
 	$c = $r['calendario'];
 	$s = $r['sconti'];
 	$t = $r['testi'];
@@ -439,7 +624,7 @@ function edera_preventivo_pagina() {
 			<a href="#edp-calendario"><?php esc_html_e( 'Calendario', 'edera-preventivo' ); ?></a>
 			<a href="#edp-tariffe"><?php esc_html_e( 'Tariffe e supplementi', 'edera-preventivo' ); ?></a>
 			<a href="#edp-sconti"><?php esc_html_e( 'Sconti e minimi', 'edera-preventivo' ); ?></a>
-			<a href="#edp-servizi"><?php esc_html_e( 'Servizi aggiuntivi', 'edera-preventivo' ); ?></a>
+			<a href="#edp-servizi"><?php esc_html_e( 'Servizi e dotazioni', 'edera-preventivo' ); ?></a>
 			<a href="#edp-testi"><?php esc_html_e( 'Testi e invio', 'edera-preventivo' ); ?></a>
 			<a href="#edp-prova"><?php esc_html_e( 'Prova', 'edera-preventivo' ); ?></a>
 			<a href="#edp-copia"><?php esc_html_e( 'Copia delle regole', 'edera-preventivo' ); ?></a>
@@ -529,11 +714,17 @@ function edera_preventivo_pagina() {
 			<section class="edp-sezione" id="edp-tariffe">
 				<h2><?php esc_html_e( 'Tariffe e supplementi', 'edera-preventivo' ); ?></h2>
 				<p class="description"><?php esc_html_e( 'Valgono per la data scelta nel calcolatore (senza data, nessun supplemento). Oggi c’è la tariffa stagionale: 125 € in più sul primo spazio scelto, da ottobre a marzo.', 'edera-preventivo' ); ?></p>
+				<ul class="edp-spiega">
+					<li><?php esc_html_e( 'Si applica a: gli spazi su cui vale il supplemento; nessuno spuntato = tutti gli spazi, come prima. Se fra gli spazi scelti non ce n’è nessuno di questi, il supplemento non si applica. "Sul primo spazio" è il primo, nell’ordine della pagina, fra quelli spuntati; "sul totale" in percentuale si calcola solo sul prezzo di quegli spazi.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Esempio, Riscaldamento: spunta Rustico e Serra, "su ogni spazio scelto", 125 €. Con Rustico e Serra sono 250 €, con Piscina e Spazio esterno niente.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Voce separata nella stima: il supplemento ha una riga sua, nella stima e nella mail, per esempio "Riscaldamento (Rustico, Serra): 250 €", invece di sommarsi al prezzo dello spazio. Il totale è lo stesso.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Gli spazi nuovi compaiono qui dopo averli salvati.', 'edera-preventivo' ); ?></li>
+				</ul>
 				<?php
 				edera_preventivo_righe(
 					'tariffa',
 					$r['tariffe'],
-					array( 'nome' => '', 'attiva' => true, 'tipo' => 'giorni', 'mesi' => array(), 'giorni' => array(), 'dal' => '', 'al' => '', 'modo' => 'percentuale', 'valore' => 0, 'applica' => 'totale' ),
+					array( 'nome' => '', 'attiva' => true, 'tipo' => 'giorni', 'mesi' => array(), 'giorni' => array(), 'dal' => '', 'al' => '', 'modo' => 'percentuale', 'valore' => 0, 'applica' => 'totale', 'spazi' => array(), 'riga' => false ),
 					__( 'Aggiungi una tariffa o un supplemento', 'edera-preventivo' )
 				);
 				?>
@@ -583,9 +774,16 @@ function edera_preventivo_pagina() {
 			</section>
 
 			<section class="edp-sezione" id="edp-servizi">
-				<h2><?php esc_html_e( 'Servizi aggiuntivi', 'edera-preventivo' ); ?></h2>
-				<p class="description"><?php esc_html_e( 'I servizi attivi diventano caselle da spuntare nel calcolatore, con il prezzo nella stima. Oggi l’elenco è vuoto: i servizi sono nel PDF.', 'edera-preventivo' ); ?></p>
-				<?php edera_preventivo_righe( 'servizio', $r['servizi'], array( 'nome' => '', 'prezzo' => 0, 'modo' => 'fisso', 'attivo' => true, 'nota' => '' ), __( 'Aggiungi un servizio', 'edera-preventivo' ) ); ?>
+				<h2><?php esc_html_e( 'Servizi e dotazioni', 'edera-preventivo' ); ?></h2>
+				<p class="description"><?php esc_html_e( 'Le voci attive compaiono nel calcolatore in due gruppi, prima "Dotazioni" e poi "Servizi extra": ognuna è una casella da spuntare, con il prezzo nella stima. Gli sconti valgono solo sugli spazi: le voci si aggiungono dopo, poi la spesa minima e l’arrotondamento. Premete su una voce per aprirla.', 'edera-preventivo' ); ?></p>
+				<ul class="edp-spiega">
+					<li><?php esc_html_e( 'Prezzo fisso: una volta. A persona: per il numero di partecipanti. A pezzo: per la quantità, che scrive chi compila (fino al massimo disponibile) oppure automatica, un pezzo ogni tante persone (sedie 1, tavoli 8, panche 4), arrotondato per eccesso. Compreso nell’affitto: 0 €, non si sceglie, compare nell’elenco "Compresi nell’affitto" del calcolatore e nella mail.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Massimo disponibile: con la quantità automatica, se ne servono di più si contano quelli disponibili e la stima lo dice ("Sedie: ne servono 80, disponibili 65: il resto da concordare con la struttura."). Pezzi compresi: quelli che non si pagano, poi il prezzo (50 sedie comprese, poi 1 € l’una).', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( 'Disponibile solo con: la voce compare solo se è scelto uno di questi spazi, per esempio l’area piscina con la Piscina.', 'edera-preventivo' ); ?></li>
+					<li><?php esc_html_e( '"Aggiungi le voci del listino" mette qui sotto le voci del PDF che mancano (tavoli, panche, sedie, area piscina, audio e video, gazebo, grill, casetta bar, pulizia finale), tutte spente e senza salvare: mettete i prezzi, spuntate "Attivo" e salvate. Sul sito non cambia niente finché non salvate.', 'edera-preventivo' ); ?></li>
+				</ul>
+				<?php edera_preventivo_righe( 'servizio', $r['servizi'], array_merge( array( 'nome' => '', 'prezzo' => 0, 'modo' => 'fisso', 'attivo' => true, 'nota' => '' ), edera_preventivo_servizio_nuove() ), __( 'Aggiungi una voce', 'edera-preventivo' ) ); ?>
+				<p class="edp-listino"><button type="button" class="button" id="edp-listino"><?php esc_html_e( 'Aggiungi le voci del listino', 'edera-preventivo' ); ?></button> <span id="edp-listino-esito" role="status"></span></p>
 			</section>
 
 			<section class="edp-sezione" id="edp-testi">
@@ -632,7 +830,7 @@ function edera_preventivo_pagina() {
 				</div>
 				<p class="description"><?php esc_html_e( 'Con i testi iniziali la riga è, per esempio, "Rustico (31-50 persone, 15 € a persona)". Un campo lasciato vuoto torna al testo iniziale: la riga oltre la capienza e le etichette delle fasce ci sono sempre.', 'edera-preventivo' ); ?></p>
 				<label class="edp-campo edp-largo"><span><?php esc_html_e( 'Testo della mail', 'edera-preventivo' ); ?></span><textarea name="<?php echo esc_attr( edera_preventivo_nome( 'testi', 'corpo' ) ); ?>" rows="13"><?php echo esc_textarea( $t['corpo'] ); ?></textarea></label>
-				<p class="description"><?php esc_html_e( 'Segnaposti: {azienda} {email} {telefono} {tipo} {spazi} {data} {persone} {capienza} {durata} {totale} {servizi} {servizi_riga} (la riga "Servizi aggiuntivi: ..." solo se ce ne sono) {dettaglio} (tutte le voci della stima) {note_riga} (le note della stima, per esempio oltre la capienza o fuori dalle fasce: se il testo non ce l’ha, vanno da sole dopo la riga con {persone}). Con le fasce, {spazi} scrive anche la fascia applicata.', 'edera-preventivo' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Segnaposti: {azienda} {email} {telefono} {tipo} {spazi} {data} {persone} {capienza} {durata} {totale} {servizi} (le voci scelte, con le quantità: "Sedie (65), Grill") {servizi_riga} (le righe "Dotazioni: ...", "Servizi aggiuntivi: ..." e "Compresi nell’affitto: ...", solo quelle che ci sono) {dettaglio} (tutte le voci della stima) {note_riga} (le note della stima, per esempio oltre la capienza, fuori dalle fasce o pezzi che non bastano: se il testo non ce l’ha, vanno da sole dopo la riga con {persone}) {supplementi_riga} (i supplementi con "Voce separata nella stima", per esempio "Riscaldamento (Rustico, Serra): 250 €": se il testo non ce l’ha, né ha {dettaglio}, vanno da soli dopo la riga con {spazi}). Con le fasce, {spazi} scrive anche la fascia applicata.', 'edera-preventivo' ); ?></p>
 				<label class="edp-campo edp-largo"><span><?php esc_html_e( 'Avvertenza sotto la stima', 'edera-preventivo' ); ?></span><textarea name="<?php echo esc_attr( edera_preventivo_nome( 'testi', 'avvertenza' ) ); ?>" rows="3"><?php echo esc_textarea( $t['avvertenza'] ); ?></textarea></label>
 			</section>
 

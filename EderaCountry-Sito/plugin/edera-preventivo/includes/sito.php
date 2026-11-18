@@ -74,15 +74,82 @@ function edera_preventivo_nota_iva( $r ) {
 }
 
 /**
- * Prezzo e testo di un servizio aggiuntivo.
+ * Riempie i segnaposti {nome} di un testo, come riempi() di calcolo.js.
  *
- * @param array $x Servizio.
+ * @param string $t Testo.
+ * @param array  $m Segnaposto => valore.
+ * @return string
+ */
+function edera_preventivo_riempi( $t, $m ) {
+	return preg_replace_callback(
+		'/\{([a-z_]+)\}/',
+		function ( $x ) use ( $m ) {
+			return array_key_exists( $x[1], $m ) ? (string) $m[ $x[1] ] : $x[0];
+		},
+		(string) $t
+	);
+}
+
+/**
+ * Prezzo di una voce in un modo (fisso, a persona, a pezzo), come prezzoBase() di calcolo.js.
+ *
+ * @param string $modo     Modo.
+ * @param float  $importo  Importo.
+ * @param array  $x        Voce.
+ * @param bool   $comprese Scrivere i pezzi compresi nell'affitto.
+ * @return string
+ */
+function edera_preventivo_prezzo_base( $modo, $importo, $x, $comprese ) {
+	$t = edera_preventivo_testi_js();
+	$p = edera_preventivo_euro( (float) $importo );
+	$u = '' !== (string) $x['unita'] ? $x['unita'] : $t['pezzo'];
+	if ( 'persona' === $modo ) {
+		return edera_preventivo_riempi( $t['aPersona'], array( 'prezzo' => $p ) );
+	}
+	if ( 'pezzo' === $modo ) {
+		return $comprese && (int) $x['comprese'] > 0
+			? edera_preventivo_riempi( $t['pezzoComprese'], array( 'comprese' => (int) $x['comprese'], 'prezzo' => $p, 'unita' => $u ) )
+			: edera_preventivo_riempi( $t['aPezzo'], array( 'prezzo' => $p, 'unita' => $u ) );
+	}
+	return $p;
+}
+
+/**
+ * Prezzo e testo di una voce dei servizi e dotazioni: "80 €", "2 € a persona", "1 € a sedia", "da 80 €" (con le
+ * fasce: il prezzo della prima). Come prezzoTesto() di calcolo.js.
+ *
+ * @param array $x Voce.
  * @return string
  */
 function edera_preventivo_prezzo_servizio( $x ) {
-	$p = edera_preventivo_euro( (float) $x['prezzo'] );
-	/* translators: %s: price */
-	return 'persona' === $x['modo'] ? sprintf( __( '%s a persona', 'edera-preventivo' ), $p ) : $p;
+	$x = $x + edera_preventivo_servizio_nuove();
+	if ( 'incluso' !== $x['modo'] && ! empty( $x['fasce'] ) ) {
+		$f = reset( $x['fasce'] );
+		return edera_preventivo_riempi( edera_preventivo_testi_js()['da'], array( 'prezzo' => edera_preventivo_prezzo_base( $f['modo'], $f['importo'], $x, false ) ) );
+	}
+	return edera_preventivo_prezzo_base( $x['modo'], $x['prezzo'], $x, true );
+}
+
+/**
+ * Una voce c'e' con gli spazi scelti (attiva e senza spazi, o con almeno uno dei suoi spazi)? Come
+ * voceDisponibile() di calcolo.js.
+ *
+ * @param array $x      Voce.
+ * @param array $chiavi Chiavi degli spazi scelti.
+ * @return bool
+ */
+function edera_preventivo_voce_disponibile( $x, $chiavi ) {
+	return ! empty( $x['attivo'] ) && ( empty( $x['spazi'] ) || array_intersect( (array) $x['spazi'], $chiavi ) );
+}
+
+/**
+ * La voce ha una quantita' (prezzo a pezzo, o una fascia a pezzo)?
+ *
+ * @param array $x Voce.
+ * @return bool
+ */
+function edera_preventivo_con_quantita( $x ) {
+	return 'pezzo' === $x['modo'] || in_array( 'pezzo', wp_list_pluck( (array) $x['fasce'], 'modo' ), true );
 }
 
 /**
@@ -118,7 +185,8 @@ function edera_preventivo_risorse( $r ) {
 }
 
 /**
- * La stima puo' avere delle note (capienza superabile, o almeno uno spazio attivo con le fasce)?
+ * La stima puo' avere delle note (capienza superabile, almeno uno spazio attivo con le fasce, o una voce dei
+ * servizi e dotazioni con le fasce o con pezzi che possono non bastare)?
  *
  * @param array $r Regole.
  * @return bool
@@ -129,6 +197,12 @@ function edera_preventivo_con_note( $r ) {
 	}
 	foreach ( $r['spazi'] as $s ) {
 		if ( $s['attivo'] && ! empty( $s['fasce'] ) ) {
+			return true;
+		}
+	}
+	// servizi e dotazioni: fasce (numero fuori dalle fasce) o quantita' automatica con un massimo (pezzi che non bastano)
+	foreach ( $r['servizi'] as $x ) {
+		if ( $x['attivo'] && 'incluso' !== $x['modo'] && ( ! empty( $x['fasce'] ) || ( 'automatica' === $x['quantita'] && (int) $x['massimo'] > 0 && edera_preventivo_con_quantita( $x ) ) ) ) {
 			return true;
 		}
 	}
@@ -176,10 +250,39 @@ function edera_preventivo_prezzo_iniziale( $s, $n, $extra ) {
  */
 function edera_preventivo_testi_js() {
 	return array(
-		'daA'            => __( 'Con gli spazi scelti, da {min} a {max} persone.', 'edera-preventivo' ),
-		'scegliData'     => __( 'Scegli la data', 'edera-preventivo' ),
-		'spesaMinima'    => __( 'Spesa minima', 'edera-preventivo' ),
-		'arrotondamento' => __( 'Arrotondamento', 'edera-preventivo' ),
+		'daA'             => __( 'Con gli spazi scelti, da {min} a {max} persone.', 'edera-preventivo' ),
+		'scegliData'      => __( 'Scegli la data', 'edera-preventivo' ),
+		'spesaMinima'     => __( 'Spesa minima', 'edera-preventivo' ),
+		'arrotondamento'  => __( 'Arrotondamento', 'edera-preventivo' ),
+		// tariffe solo su certi spazi, con la riga a parte (dalla 1.1.0): "Riscaldamento (Rustico, Serra)"
+		'tariffaRiga'     => __( '{nome} ({spazi})', 'edera-preventivo' ),
+		// servizi e dotazioni (dalla 1.1.0): righe della stima, prezzi, quantita', note
+		'voceDettaglio'   => __( '{voce} ({dettaglio})', 'edera-preventivo' ),
+		'voceQuantita'    => __( '{voce} ({quantita})', 'edera-preventivo' ),
+		'pezzi'           => __( '{quantita} × {prezzo}', 'edera-preventivo' ),
+		'pezziComprese'   => __( '{quantita}, di cui {comprese} nell’affitto: {pagati} × {prezzo}', 'edera-preventivo' ),
+		'pezziCompresi'   => __( '{quantita} nell’affitto', 'edera-preventivo' ),
+		'aPersona'        => __( '{prezzo} a persona', 'edera-preventivo' ),
+		'aPezzo'          => __( '{prezzo} a {unita}', 'edera-preventivo' ),
+		'pezzoComprese'   => __( '{comprese} nell’affitto, poi {prezzo} a {unita}', 'edera-preventivo' ),
+		'da'              => __( 'da {prezzo}', 'edera-preventivo' ),
+		'pezzo'           => __( 'pezzo', 'edera-preventivo' ),
+		'pezziNome'       => __( 'pezzi', 'edera-preventivo' ),
+		'finoA'           => __( 'fino a {massimo}', 'edera-preventivo' ),
+		'auto'            => __( '{quantita} {pezzi} per {persone}', 'edera-preventivo' ),
+		'autoMassimo'     => __( '{quantita} {pezzi} per {persone}, il massimo disponibile', 'edera-preventivo' ),
+		'persona1'        => __( '1 persona', 'edera-preventivo' ),
+		'persone'         => __( '{n} persone', 'edera-preventivo' ),
+		'disponibili'     => __( '{voce}: ne servono {servono}, disponibili {massimo}: il resto da concordare con la struttura.', 'edera-preventivo' ),
+		'fuoriFasciaVoce' => __( '{voce}: per {persone} persone non c’è una fascia di prezzo, la stima usa il prezzo standard.', 'edera-preventivo' ),
+		'compresiRiga'    => __( 'Compresi nell’affitto: {elenco}', 'edera-preventivo' ),
+		'dotazioniRiga'   => __( 'Dotazioni: {elenco}', 'edera-preventivo' ),
+		'compresoMax'     => __( '{voce} (fino a {massimo})', 'edera-preventivo' ),
+		'compresi'        => __( 'Compresi nell’affitto', 'edera-preventivo' ),
+		'quantita'        => __( 'Quantità', 'edera-preventivo' ),
+		'quantitaMax'     => __( 'Quantità (fino a {massimo})', 'edera-preventivo' ),
+		'dotazioni'       => __( 'Dotazioni', 'edera-preventivo' ),
+		'serviziExtra'    => __( 'Servizi extra', 'edera-preventivo' ),
 	);
 }
 
@@ -242,10 +345,27 @@ function edera_preventivo_shortcode( $a ) {
 			$totale += (float) $prezzo;
 		}
 	}
+	// servizi e dotazioni attivi (le chiavi sono gli indici nelle regole), in due gruppi: dotazioni, poi servizi extra;
+	// in ogni gruppo le voci da scegliere e quelle comprese nell'affitto. Una voce legata a spazi non scelti resta
+	// nascosta (lo script la mostra quando si sceglie lo spazio)
+	$testi  = edera_preventivo_testi_js();
+	$gruppi = array(
+		'dotazione' => array( 'titolo' => $testi['dotazioni'], 'id' => 'dotazioni-titolo', 'scelte' => array(), 'compresi' => array(), 'visibili' => 0 ),
+		'servizio'  => array( 'titolo' => $testi['serviziExtra'], 'id' => 'servizi-titolo', 'scelte' => array(), 'compresi' => array(), 'visibili' => 0 ),
+	);
+	foreach ( $r['servizi'] as $i => $x ) {
+		if ( ! $x['attivo'] ) {
+			continue;
+		}
+		$g = 'dotazione' === $x['gruppo'] ? 'dotazione' : 'servizio';
+		$x['_visibile'] = edera_preventivo_voce_disponibile( $x, $scelti );
+		$gruppi[ $g ][ 'incluso' === $x['modo'] ? 'compresi' : 'scelte' ][ $i ] = $x;
+		$gruppi[ $g ]['visibili'] += $x['_visibile'] ? 1 : 0;
+	}
 	$servizi = array_filter(
-		$r['servizi'],
-		function ( $x ) {
-			return $x['attivo'];
+		$gruppi,
+		function ( $gr ) {
+			return $gr['scelte'] || $gr['compresi'];
 		}
 	);
 	$cal     = edera_preventivo_calendario_attivo( $r );
@@ -304,16 +424,32 @@ function edera_preventivo_shortcode( $a ) {
 	<?php else : ?>
               <label class="campo">Data indicativa<input id="data" type="date"></label>
 	<?php endif; ?>
-	<?php if ( $servizi ) : ?>
-              <div class="campo tutta edp-servizi">
-                <span id="servizi-titolo"><?php esc_html_e( 'Servizi aggiuntivi', 'edera-preventivo' ); ?></span>
-                <div class="spazi" role="group" aria-labelledby="servizi-titolo">
-		<?php foreach ( $servizi as $i => $x ) : ?>
-                  <div class="spazio"><input type="checkbox" id="servizio-<?php echo (int) $i; ?>" name="servizi" value="<?php echo (int) $i; ?>"><label for="servizio-<?php echo (int) $i; ?>"><b><?php echo esc_html( $x['nome'] ); ?></b><small><?php echo esc_html( edera_preventivo_prezzo_servizio( $x ) ); ?></small><?php echo '' !== $x['nota'] ? '<small class="edp-nota-spazio">' . esc_html( $x['nota'] ) . '</small>' : ''; ?></label></div>
-		<?php endforeach; ?>
+	<?php foreach ( $servizi as $g => $gr ) : ?>
+              <div class="campo tutta edp-servizi edp-gruppo-<?php echo esc_attr( $g ); ?>"<?php echo $gr['visibili'] ? '' : ' hidden'; ?>>
+                <span id="<?php echo esc_attr( $gr['id'] ); ?>"><?php echo esc_html( $gr['titolo'] ); ?></span>
+		<?php if ( $gr['compresi'] ) : ?>
+                <div class="edp-compresi"<?php echo array_filter( wp_list_pluck( $gr['compresi'], '_visibile' ) ) ? '' : ' hidden'; ?>>
+                  <span class="edp-compresi-titolo"><?php echo esc_html( $testi['compresi'] ); ?></span>
+                  <ul>
+			<?php foreach ( $gr['compresi'] as $i => $x ) : ?>
+                    <li data-voce="<?php echo (int) $i; ?>"<?php echo $x['_visibile'] ? '' : ' hidden'; ?>><b><?php echo esc_html( $x['nome'] ); ?></b><?php echo (int) $x['massimo'] > 0 ? '<small>' . esc_html( edera_preventivo_riempi( $testi['finoA'], array( 'massimo' => (int) $x['massimo'] ) ) ) . '</small>' : ''; ?><?php echo '' !== $x['nota'] ? '<small>' . esc_html( $x['nota'] ) . '</small>' : ''; ?></li>
+			<?php endforeach; ?>
+                  </ul>
                 </div>
+		<?php endif; ?>
+		<?php if ( $gr['scelte'] ) : ?>
+                <div class="spazi edp-voci" role="group" aria-labelledby="<?php echo esc_attr( $gr['id'] ); ?>">
+			<?php
+			foreach ( $gr['scelte'] as $i => $x ) :
+				$quanti = edera_preventivo_con_quantita( $x );
+				$chiede = $quanti && 'cliente' === $x['quantita'];
+				?>
+                  <div class="spazio<?php echo $chiede ? ' edp-pezzi' : ''; ?>" data-voce="<?php echo (int) $i; ?>"<?php echo $x['_visibile'] ? '' : ' hidden'; ?>><input type="checkbox" id="servizio-<?php echo (int) $i; ?>" name="servizi" value="<?php echo (int) $i; ?>"><label for="servizio-<?php echo (int) $i; ?>"><b><?php echo esc_html( $x['nome'] ); ?></b><small><?php echo esc_html( edera_preventivo_prezzo_servizio( $x ) ); ?></small><?php echo '' !== $x['nota'] ? '<small class="edp-nota-spazio">' . esc_html( $x['nota'] ) . '</small>' : ''; ?><?php echo $quanti && ! $chiede ? '<small class="edp-auto" data-voce="' . (int) $i . '"></small>' : ''; ?></label><?php if ( $chiede ) : ?><span class="edp-quantita"><label for="quantita-<?php echo (int) $i; ?>"><?php echo esc_html( (int) $x['massimo'] > 0 ? edera_preventivo_riempi( $testi['quantitaMax'], array( 'massimo' => (int) $x['massimo'] ) ) : $testi['quantita'] ); ?></label><input id="quantita-<?php echo (int) $i; ?>" class="edp-q" type="number" inputmode="numeric" min="1"<?php echo (int) $x['massimo'] > 0 ? ' max="' . (int) $x['massimo'] . '"' : ''; ?> step="1" value="1" data-voce="<?php echo (int) $i; ?>"></span><?php endif; ?></div>
+			<?php endforeach; ?>
+                </div>
+		<?php endif; ?>
               </div>
-	<?php endif; ?>
+	<?php endforeach; ?>
             </div>
           </fieldset>
 
