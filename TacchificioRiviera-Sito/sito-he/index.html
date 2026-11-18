@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacchificio Riviera · Tacchi per le calzature di lusso</title>
+<meta name="description" content="Progettiamo e produciamo tacchi per le calzature di lusso delle grandi griffe, dal disegno del cliente. Vigonovo e Stra, nella Riviera del Brenta.">
+<meta name="theme-color" content="#F2EFEA">
+<link rel="preload" href="fonts/melodrama-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/synonym-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" imagesrcset="img/stiletto-260.webp 260w, img/stiletto-320.webp 320w, img/stiletto-400.webp 400w" imagesizes="(max-width: 699px) 260px, 320px">
+<link rel="stylesheet" href="kit/vendor/lenis.css">
+<link rel="stylesheet" href="kit/he.css">
+<style>
+/* Caratteri: Melodrama (display, solo tre momenti) e Synonym (testo), Indian Type Foundry, Fontshare,
+   ITF Free Font License 2.0 (fonts/FFL-ITF.txt): file ufficiali, ospitati dalla pagina, non modificati. */
+@font-face{font-family:"Melodrama";src:url(fonts/melodrama-300.woff2) format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Synonym";src:url(fonts/synonym-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Synonym";src:url(fonts/synonym-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  --carta:#F2EFEA; --inchiostro:#161413; --grigio:#625C56; --filo:rgba(22,20,19,.16);
+  --matita:#A3322A;            /* il rosso della matita sul tacco in legno */
+  --pieno:#5C1F18;             /* lo stesso rosso, spento: l'unico campo pieno, la sezione firma */
+  --scheda:#FAF8F5;            /* le schede dei pezzi: quasi bianche, cosi' anche il pezzo avorio si legge */
+  --sul-pieno:#F4E9E2;
+  --display:"Melodrama", "Didot", "Bodoni 72", serif;
+  --testo:"Synonym", "Helvetica Neue", Arial, sans-serif;
+  --he-carta:var(--carta); --he-inchiostro:var(--inchiostro); --he-grigio:var(--grigio); --he-filo:var(--filo);
+  --he-m:clamp(20px,4.2vw,72px);
+  --he-sez:clamp(96px,12vw,200px);
+  --he-offset:72px;
+  --testata:72px;
+}
+html{background:var(--carta);color:var(--inchiostro)}
+body{margin:0;font:400 18px/1.55 var(--testo);font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400}
+img{height:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--matita);outline-offset:3px}
+.salta{position:absolute;left:12px;top:-60px;z-index:200;background:var(--inchiostro);color:var(--carta);padding:10px 14px;text-decoration:none}
+.salta:focus{top:12px}
+.en{color:var(--grigio)}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio)}
+
+/* link e bottoni: si invertono di colpo, nessuna dissolvenza */
+.bottone{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:1px solid var(--inchiostro);background:var(--inchiostro);color:var(--carta);
+  text-decoration:none;font:500 16px/1 var(--testo);letter-spacing:.01em}
+@media (hover:hover){
+  .bottone:hover{background:var(--carta);color:var(--inchiostro)}
+  .sottolinea:hover{text-decoration-color:var(--matita)}
+}
+.bottone:active{background:var(--matita);border-color:var(--matita);color:#fff}
+.sottolinea{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:var(--filo)}
+
+/* ---------- testata ---------- */
+.testata{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--testata);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding-inline:var(--he-m);background:transparent;font-size:15px}
+.testata.scorsa{background:var(--carta);box-shadow:0 1px 0 var(--filo)}
+.testata nav{display:flex;gap:26px}
+.testata nav a,.testata .destra a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+@media (hover:hover){.testata nav a:hover,.testata .destra a:hover{text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px}}
+.marchio{font:500 15px/1 var(--testo);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.testata .destra{display:flex;justify-content:flex-end;align-items:center;gap:24px;white-space:nowrap}
+.testata .tel{font-weight:500}
+.testata .tel-breve,.testata .destra a.solo-tel{display:none}
+
+/* ---------- 1. apertura: la parola e il pezzo ---------- */
+.apertura{position:relative;height:100vh;height:100svh;min-height:660px;overflow:hidden;--F:min(32vw,62vh)}
+.apertura h1{position:absolute;inset:0;pointer-events:none}
+.parola{position:absolute;left:0;right:0;bottom:var(--sotto);font:300 var(--F)/.8 var(--display);letter-spacing:-.025em;text-align:center;white-space:nowrap}
+.apertura{--sotto:calc(17vh - .05 * var(--F))}
+/* lo stiletto a 0,8 della foto (320 su 400): sullo schermo normale e' ridotto e nitido, sul retina l'ingrandimento
+   scende da 2 a 1,6; la punta tocca la linea di base della parola */
+.pezzo{position:absolute;left:calc(50% + .091 * var(--F) - 160px);bottom:calc(17vh - 24px);width:320px;height:480px;margin:0}
+.pezzo .taglio{width:320px;height:480px;mix-blend-mode:multiply}
+.pezzo img{width:320px;height:480px}
+.pezzo figcaption{position:absolute;left:256px;top:52px;width:190px}
+.apertura .righe{position:absolute;left:var(--he-m);right:var(--he-m);bottom:clamp(20px,3.4vh,36px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--he-col);align-items:end}
+.apertura .it{grid-column:1/5;font-size:17px;line-height:1.45;max-width:30em;text-wrap:pretty}
+.apertura .cta{grid-column:5/9;justify-self:center}
+.apertura .righe .en{grid-column:9/13;font-size:15px;line-height:1.45;justify-self:end;text-align:right;max-width:26em;text-wrap:pretty}
+
+/* ---------- 2. il mestiere: la frase, i legni al centro, le cinque fasi in fila ---------- */
+.mestiere{padding-top:var(--he-sez);padding-bottom:var(--he-sez)}
+.mestiere h2{grid-column:2/12;justify-self:center;max-width:19em;text-align:center;font:500 clamp(30px,3.6vw,56px)/1.08 var(--testo);letter-spacing:-.022em;text-wrap:balance}
+.mestiere .en-frase{grid-column:2/12;justify-self:center;text-align:center;margin-top:20px;font-size:clamp(17px,1.4vw,21px);line-height:1.4}
+.mestiere .legno{grid-column:3/11;justify-self:center;width:100%;max-width:720px;margin:clamp(40px,4.4vw,72px) 0 0}
+.mestiere .legno img{width:100%;mix-blend-mode:multiply}
+.mestiere .legno figcaption{margin-top:2px;text-align:center}
+.mestiere .fasi{grid-column:1/13;margin:clamp(56px,5.6vw,96px) 0 0;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--he-col)}
+.fasi li{display:flex;align-items:baseline;gap:.42em;font:500 clamp(19px,1.65vw,26px)/1.18 var(--testo);letter-spacing:-.012em;text-wrap:balance}
+.fasi .n{flex:none;font-weight:400;color:var(--grigio);font-variant-numeric:tabular-nums lining-nums}
+.mestiere .chiusa{grid-column:3/11;justify-self:center;text-align:center;max-width:46em;text-wrap:balance;margin-top:clamp(48px,4.4vw,72px);font-size:16px;line-height:1.55;color:var(--grigio)}
+.mestiere .chiusa q{color:var(--inchiostro);quotes:"\00AB" "\00BB"}
+.mestiere .chiusa .cert{display:block;margin-top:10px;color:var(--inchiostro)}
+
+/* ---------- 3. firma: ogni forma e' unica ---------- */
+.forme{background:var(--pieno);color:var(--sul-pieno)}
+.forme .he-oriz-binario{align-items:center;height:100vh;height:100svh;padding-top:calc(var(--testata) * .6);box-sizing:border-box}
+.forme .titolo{flex:none;width:calc(4.75 * clamp(64px,13.4vw,236px) + clamp(24px,5vw,96px));padding-right:clamp(24px,5vw,96px);align-self:center}
+.forme h2{font:300 clamp(64px,13.4vw,236px)/.84 var(--display);letter-spacing:-.03em}
+.forme h2 span{display:block}
+.forme .titolo p{margin-top:34px;max-width:24em;font-size:17px;line-height:1.5}
+.forme .titolo .en{color:rgba(244,233,226,.72);margin-top:10px}
+/* una regola per tutti i pezzi: lato lungo a 400 px nella scheda di 560, appoggio a 470 px, nessun bordo toccato */
+.scheda{flex:none;width:clamp(260px,38.9vw,560px);margin:0}
+.scheda .foglio{background:var(--scheda);aspect-ratio:1;overflow:hidden}
+.scheda img{width:100%;height:100%;mix-blend-mode:multiply}
+.scheda figcaption{margin-top:14px;font-size:15px;line-height:1.38;max-width:30em}
+.scheda figcaption span{display:block}
+.scheda figcaption span+span{margin-top:2px;color:rgba(244,233,226,.66)}
+.forme .he-oriz-progresso{background:rgba(244,233,226,.2);color:var(--sul-pieno)}
+
+/* ---------- 4. la mano: titolo e testo insieme, accanto a una cornice media sul fiore ---------- */
+.mano{padding-block:var(--he-sez)}
+.mano .testo{grid-column:2/6;align-self:center}
+.mano h2{font:500 clamp(28px,2.6vw,40px)/1.1 var(--testo);letter-spacing:-.018em;margin-bottom:22px}
+.mano .testo .en{margin-top:16px;font-size:16px}
+.mano figure{grid-column:7/12;margin:0;width:100%;max-width:520px}
+.mano .cornice{aspect-ratio:4/5;overflow:hidden;background:#cfcac3}
+.mano .cornice img{width:100%;height:100%;object-fit:cover}
+.mano figcaption{margin-top:8px}
+
+/* ---------- 5. storia ---------- */
+.storia{padding-top:calc(var(--he-sez) * .6);padding-bottom:calc(var(--he-sez) * .55)}
+.anno{grid-column:1/9;font:300 clamp(120px,30vw,540px)/.78 var(--display);letter-spacing:-.04em;margin-left:-.04em}
+.storia .primo,.storia .dopo{grid-column:9/13}
+.storia .primo{align-self:end;padding-bottom:1.2vw}
+.storia .primo p{font-size:clamp(18px,1.45vw,22px);line-height:1.45}
+.storia .primo .en,.storia .origine .en{margin-top:14px;font-size:16px;line-height:1.5}
+/* la foto sotto l'anno, col bordo destro sul bordo destro del numero */
+.storia .f1{grid-column:4/8;grid-row:2;justify-self:end;width:100%;margin:clamp(64px,7vw,120px) 0 0;max-width:410px}
+.storia .f1 img{width:100%}
+.storia figcaption{margin-top:8px}
+.storia .dopo{grid-row:2;margin-top:clamp(64px,7vw,120px)}
+.storia .origine h3{font:500 clamp(24px,2.1vw,32px)/1.12 var(--testo);letter-spacing:-.016em;margin-bottom:14px}
+.storia .griffe{margin-top:clamp(40px,4vw,64px);font:400 clamp(22px,2vw,30px)/1.25 var(--testo);letter-spacing:-.012em;text-wrap:balance}
+
+/* ---------- 6. contatti ---------- */
+.contatti{padding-block:calc(var(--he-sez) * .8) calc(var(--he-sez) * .7)}
+.contatti h2{grid-column:1/13;font:500 clamp(40px,6.4vw,104px)/.98 var(--testo);letter-spacing:-.035em;margin-bottom:clamp(40px,5vw,88px)}
+.contatti .it{grid-column:1/7}
+.contatti .estero{grid-column:8/13}
+.numero{display:inline-block;font:400 clamp(34px,3.9vw,58px)/1.05 var(--testo);letter-spacing:-.02em;text-decoration:none;padding:4px 0;white-space:nowrap}
+@media (hover:hover){.numero:hover{color:var(--matita)}}
+.recapiti{list-style:none;margin:28px 0 0;padding:0;font-size:18px;line-height:1.5}
+.recapiti li+li{margin-top:18px}
+.recapiti .g{color:var(--grigio);font-size:15px;display:block}
+.contatti .azioni{margin-top:32px}
+.estero h3{font:500 22px/1.2 var(--testo);margin-bottom:12px}
+.estero .recapiti{margin-top:22px}
+.email{overflow-wrap:anywhere}
+
+/* ---------- piede ---------- */
+.piede{background:var(--inchiostro);color:#D9D3CC;padding:56px var(--he-m) 40px;font-size:15px;line-height:1.55}
+.piede .riga{display:grid;grid-template-columns:120px 1fr auto;gap:40px;align-items:start;max-width:var(--he-max);margin:0 auto}
+.piede img{width:104px;height:104px}
+.piede .legali p+p{margin-top:6px}
+.piede ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;text-align:right}
+.piede a{color:#F2EFEA}
+.piede #cookie{margin-top:14px;color:#A9A29A;max-width:52em}
+
+/* ---------- tablet ---------- */
+@media (max-width:1099px){
+  .testata nav{gap:18px}
+  .storia .primo,.storia .dopo{grid-column:8/13}
+  .storia .f1{grid-column:2/7}
+  .mano .testo{grid-column:1/6}
+  .mano figure{grid-column:7/13}
+  .fasi li{font-size:18px}
+}
+@media (max-width:899px){
+  :root{--testata:60px;--he-offset:60px}
+  .testata{grid-template-columns:1fr auto;font-size:15px}
+  .testata nav{display:none}
+  .testata .marchio{font-size:13px;letter-spacing:.18em}
+  .testata .destra{gap:16px}
+  .apertura{--F:35vw}
+  .apertura .it{grid-column:1/8}
+  .apertura .cta{grid-column:9/13;justify-self:end}
+  .apertura .righe .en{grid-column:1/13;grid-row:2;justify-self:start;text-align:left;margin-top:12px;max-width:none}
+  /* sul telefono il titolo resta fermo sopra (sticky) e sotto i pezzi si sfogliano: il primo si vede subito, il secondo affiora */
+  .forme .he-oriz-binario{display:grid;grid-template-columns:repeat(6,min(64vw,340px));grid-template-rows:auto auto;column-gap:var(--he-col);row-gap:32px;
+    height:auto;padding-block:64px 56px;align-items:start}
+  .forme .titolo{grid-row:1;grid-column:1/-1;justify-self:start;position:sticky;left:var(--he-m);width:calc(100vw - 2 * var(--he-m));padding-right:0}
+  .forme .titolo p{margin-top:22px}
+  .scheda{grid-row:2;width:auto;scroll-snap-align:start}
+  .forme.he-oriz{scroll-padding-inline:var(--he-m)}
+  .mestiere h2,.mestiere .en-frase{grid-column:1/13;justify-self:start;text-align:left}
+  .mestiere .legno{grid-column:1/13}
+  .mestiere .fasi{grid-template-columns:1fr 1fr;row-gap:18px}
+  .mestiere .chiusa{grid-column:1/13;justify-self:start;text-align:left}
+  .mano .testo{grid-column:1/13;order:2;margin-top:28px}
+  .mano figure{grid-column:1/13;order:1;max-width:520px}
+  .anno{grid-column:1/13}
+  .storia .primo{grid-column:1/13;grid-row:auto;margin-top:20px}
+  .storia .f1{grid-column:1/10;grid-row:auto;margin-top:48px}
+  .storia .dopo{grid-column:1/13;grid-row:auto;margin-top:40px}
+  .storia .griffe{margin-top:36px}
+  .contatti .it,.contatti .estero{grid-column:1/13}
+  .contatti .estero{margin-top:64px}
+  .piede .riga{grid-template-columns:1fr;gap:24px}
+  .piede ul{text-align:left}
+}
+@media (max-width:699px){
+  body{font-size:17px}
+  .apertura{min-height:600px;--F:34vw}
+  .apertura{--sotto:calc(39svh - .05 * var(--F))}
+  .pezzo{width:260px;height:390px;left:calc(50% + .091 * var(--F) - 130px);bottom:calc(39svh - 19.5px)}
+  .pezzo .taglio,.pezzo img{width:260px;height:390px}
+  .pezzo figcaption{left:206px;top:40px;width:120px;font-size:13px}
+  .apertura .righe{display:block;bottom:20px}
+  .apertura .it{font-size:17px}
+  .apertura .cta{margin-top:16px}
+  .apertura .righe .en{display:block;text-align:left;margin-top:12px;font-size:14px}
+  .testata .tel-lungo{display:none}
+  .testata .tel-breve{display:inline}
+  .testata .destra a.solo-tel{display:inline-flex}
+  .testata{font-size:14px}
+  .testata .destra{gap:13px}
+  .testata .marchio{font-size:12px;letter-spacing:.16em}
+  .mestiere .fasi{grid-template-columns:1fr}
+  .fasi li{font-size:20px}
+  .forme h2{font-size:clamp(64px,19vw,110px)}
+  .storia .f1{grid-column:1/11}
+}
+@media (max-width:379px){.testata .solo-tel{display:none !important}}
+/* con "riduci movimento" (o senza le librerie) la galleria non e' fissata: sullo schermo grande i pezzi vanno a capo,
+   sul telefono si sfogliano col dito come sempre */
+.he-fermo .forme .he-oriz-progresso{display:none}
+@media (min-width:900px){
+  .he-fermo .forme .he-oriz-binario{flex-wrap:wrap;width:auto;height:auto;align-items:flex-start;row-gap:56px;padding-block:var(--he-sez)}
+  .he-fermo .forme .titolo{width:100%;padding-right:0;margin-bottom:24px}
+  .he-fermo .forme .scheda{width:calc((100% - 2 * var(--he-col)) / 3);max-width:560px}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata" data-he-header>
+  <nav aria-label="Sezioni">
+    <a href="#forme">Forme</a>
+    <a href="#mestiere">Mestiere</a>
+    <a href="#storia">Storia</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="marchio" href="#apertura" aria-label="Tacchificio Riviera, inizio pagina">Tacchificio Riviera</a>
+  <div class="destra">
+    <a class="solo-tel" href="#contatti">Contatti</a>
+    <a href="#estero" lang="en" hreflang="en">EN</a>
+    <a class="tel" href="tel:+39049502844" aria-label="Chiama il +39 049 502844"><span class="tel-lungo">+39&nbsp;049&nbsp;502844</span><span class="tel-breve" aria-hidden="true">Chiama</span></a>
+  </div>
+</header>
+
+<main id="contenuto">
+
+<!-- 1. apertura -->
+<section class="apertura" id="apertura" aria-labelledby="h-apertura">
+  <h1 id="h-apertura"><span class="parola" data-he-split data-he-subito>Tacchi</span><span class="sr"> per le calzature di lusso delle grandi griffe. Tacchificio Riviera, Vigonovo.</span></h1>
+  <figure class="pezzo">
+    <div class="taglio" data-he-wipe="su">
+      <img src="img/stiletto-320.webp" srcset="img/stiletto-260.webp 260w, img/stiletto-320.webp 320w, img/stiletto-400.webp 400w" sizes="(max-width: 699px) 260px, 320px" width="320" height="480" alt="Uno stiletto nero con il piano a calice, in piedi." fetchpriority="high">
+    </div>
+    <figcaption class="didascalia">Stiletto a calice, nero</figcaption>
+  </figure>
+  <div class="righe">
+    <p class="it">Progettiamo e produciamo tacchi per le calzature di lusso delle grandi griffe. A&nbsp;Vigonovo, nella Riviera del Brenta.</p>
+    <a class="bottone cta" href="mailto:tacchificioriviera@tacchificioriviera.it?subject=Un%20disegno%20da%20realizzare">Inviateci il disegno</a>
+    <p class="en" lang="en">Heels for the luxury footwear of the great fashion brands, designed and made in Vigonovo, in the Riviera del Brenta, Italy.</p>
+  </div>
+</section>
+
+<!-- 2. il mestiere -->
+<section class="mestiere he-wrap he-grid" id="mestiere" aria-labelledby="h-mestiere">
+  <h2 id="h-mestiere">Il cliente presenta un disegno con la sua idea: noi la interpretiamo e la realizziamo.</h2>
+  <p class="en en-frase" lang="en">The client gives us a drawing with their idea: we interpret it and make it real.</p>
+  <figure class="legno">
+    <picture>
+      <source media="(max-width: 699px)" srcset="img/legno-360.webp" width="360" height="180">
+      <img src="img/legno-720.webp" width="720" height="360" loading="lazy" decoding="async" alt="Due tacchi in legno grezzo; su quello di sinistra un disegno a matita rossa.">
+    </picture>
+    <figcaption class="didascalia">Due tacchi in legno; su uno, i segni a matita rossa.</figcaption>
+  </figure>
+  <h3 class="sr">Le fasi</h3>
+  <ol class="fasi">
+    <li><span class="n">1</span><span>Il disegno del cliente</span></li>
+    <li><span class="n">2</span><span>La progettazione</span></li>
+    <li><span class="n">3</span><span>Lo stampaggio a iniezione</span></li>
+    <li><span class="n">4</span><span>Il finissaggio</span></li>
+    <li><span class="n">5</span><span>L'imballaggio</span></li>
+  </ol>
+  <p class="chiusa"><q>Progettazione e fabbricazione (attraverso le fasi di stampaggio ad iniezione, finissaggio ed imballaggio) di tacchi in plastica per calzature di lusso</q>: è lo scopo dei nostri sistemi certificati da SGS.
+    <span class="cert"><a class="sottolinea" href="https://www.tacchificioriviera.it/app/assets/certificazioni/certificazione-ISO-14001.pdf">ISO&nbsp;14001</a> &nbsp; <a class="sottolinea" href="https://www.tacchificioriviera.it/app/assets/certificazioni/certificazione-ISO-45001.pdf">ISO&nbsp;45001</a> <span class="didascalia">(PDF)</span></span></p>
+</section>
+
+<!-- 3. la sezione firma: ogni forma e' unica -->
+<section class="forme he-oriz" id="forme" data-he-horizontal aria-labelledby="h-forme" tabindex="0">
+  <div class="he-oriz-binario">
+    <div class="titolo">
+      <h2 id="h-forme" data-he-split><span>Ogni forma</span><span>è unica</span></h2>
+      <p>Come le persone che la indosseranno. Sei pezzi dalla nostra galleria: plastica, plexiglas, metallo, ottone.</p>
+      <p class="en" lang="en">Every shape is unique, as the person who will wear it.</p>
+    </div>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-nero-560.webp" srcset="img/forma-nero-320.webp 320w, img/forma-nero-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Tacco in plastica nera opaca dalla forma a onda."></div><figcaption><span>Plastica nera opaca, a onda</span><span lang="en">Matte black plastic, wave</span></figcaption></figure>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-viola-560.webp" srcset="img/forma-viola-320.webp 320w, img/forma-viola-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Tacco a calla in plastica sfumata dal viola al trasparente."></div><figcaption><span>Plastica sfumata dal viola al trasparente, a calla</span><span lang="en">Plastic, purple to clear, calla</span></figcaption></figure>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-plexiglas-560.webp" srcset="img/forma-plexiglas-320.webp 320w, img/forma-plexiglas-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Tacco in plexiglas trasparente."></div><figcaption><span>Plexiglas trasparente</span><span lang="en">Clear plexiglass</span></figcaption></figure>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-avorio-560.webp" srcset="img/forma-avorio-320.webp 320w, img/forma-avorio-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Tacco a calla color avorio."></div><figcaption><span>Color avorio, a calla</span><span lang="en">Ivory, calla</span></figcaption></figure>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-anima-560.webp" srcset="img/forma-anima-320.webp 320w, img/forma-anima-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Anima metallica di un tacco, con le viti sul piano."></div><figcaption><span>Anima metallica, con le viti sul piano</span><span lang="en">Metal core, screws on the top plate</span></figcaption></figure>
+    <figure class="scheda he-oriz-elemento"><div class="foglio"><img src="img/forma-ottone-560.webp" srcset="img/forma-ottone-320.webp 320w, img/forma-ottone-560.webp 560w" sizes="(max-width: 899px) 64vw, 560px" width="560" height="560" loading="lazy" decoding="async" alt="Tacco in ottone lavorato a losanghe, con RIVIERA e 37 incisi sul piano."></div><figcaption><span>Ottone lavorato a losanghe, RIVIERA e 37 incisi sul piano</span><span lang="en">Brass, diamond pattern, RIVIERA and 37 engraved on the top</span></figcaption></figure>
+  </div>
+  <div class="he-oriz-progresso" aria-hidden="true"><i></i></div>
+</section>
+
+<!-- 4. la mano -->
+<section class="mano he-wrap he-grid" id="mano" aria-labelledby="h-mano">
+  <div class="testo">
+    <h2 id="h-mano">Seguire le linee</h2>
+    <p>Controlliamo ogni prodotto: osserviamo i dettagli, le caratteristiche della sua composizione.</p>
+    <p class="en" lang="en">We control every product: we observe the details of its composition.</p>
+  </div>
+  <figure>
+    <div class="cornice" data-he-wipe="sinistra">
+      <picture>
+        <source media="(max-width: 699px)" srcset="img/incisione-360.webp 360w, img/incisione-520.webp 520w" sizes="calc(100vw - 40px)" width="360" height="450">
+        <img src="img/incisione-520.webp" width="520" height="650" loading="lazy" decoding="async" alt="Due mani incidono con una punta un fiore sul fianco di un tacco in metallo.">
+      </picture>
+    </div>
+    <figcaption class="didascalia">Un fiore inciso a mano su un tacco in metallo.</figcaption>
+  </figure>
+</section>
+
+<!-- 5. storia -->
+<section class="storia he-wrap he-grid" id="storia" aria-labelledby="h-storia">
+  <h2 class="anno" id="h-storia"><span class="sr">Nel 1970</span><span aria-hidden="true">197O</span></h2>
+  <div class="primo">
+    <p>Valentino Boldrin introduce la lavorazione delle materie plastiche, ampliando la produzione in azienda.</p>
+    <p class="en" lang="en">Valentino Boldrin brings the working of plastics into the company and widens its production.</p>
+  </div>
+  <figure class="f1">
+    <picture>
+      <source media="(max-width: 699px)" srcset="img/archivio-scaffali-300.webp 300w, img/archivio-scaffali-410.webp 410w" sizes="80vw" width="300" height="375">
+      <img src="img/archivio-scaffali-410.webp" width="410" height="512" loading="lazy" decoding="async" alt="Foto d'archivio: due mani reggono un tacco davanti agli scaffali pieni di tacchi.">
+    </picture>
+    <figcaption class="didascalia">Dall'archivio dell'azienda.</figcaption>
+  </figure>
+  <div class="dopo">
+  <div class="origine">
+    <h3>Il primo tacco in legno</h3>
+    <p>Un padre, affiancato dal figlio, realizza il primo tacco in legno. Lui si chiama Giovanni Boldrin: con il figlio Valentino crea il Tacchificio Riviera.</p>
+    <p class="en" lang="en">A father, alongside his son, makes his first wooden heel. His name is Giovanni Boldrin; with his son Valentino he founds Tacchificio Riviera.</p>
+  </div>
+  <p class="griffe">Le più grandi griffe di moda del mondo calzaturiero si affidano al Tacchificio Riviera.</p>
+  </div>
+</section>
+
+<!-- 6. contatti -->
+<section class="contatti he-wrap he-grid" id="contatti" aria-labelledby="h-contatti">
+  <h2 id="h-contatti">Inviateci il disegno</h2>
+  <div class="it">
+    <a class="numero" href="tel:+39049502844" aria-label="Chiama il +39 049 502844">+39&nbsp;049&nbsp;502844</a>
+    <ul class="recapiti">
+      <li><span class="g">Email</span><a class="sottolinea email" href="mailto:tacchificioriviera@tacchificioriviera.it">tacchificioriviera@<wbr>tacchificioriviera.it</a></li>
+      <li><span class="g">Sede operativa e amministrativa</span>Serenissima 30, 30030 Vigonovo (VE) · <a class="sottolinea" href="https://www.google.com/maps/search/?api=1&amp;query=Serenissima+30+30030+Vigonovo+VE">Apri la mappa</a></li>
+      <li><span class="g">Fax e PEC</span>+39&nbsp;049&nbsp;504969 · <a class="sottolinea email" href="mailto:tacchificioriviera@pec.tacchificioriviera.it">tacchificioriviera@<wbr>pec.tacchificioriviera.it</a></li>
+    </ul>
+    <div class="azioni">
+      <a class="bottone" href="mailto:tacchificioriviera@tacchificioriviera.it?subject=Un%20disegno%20da%20realizzare">Scriveteci con il disegno</a>
+    </div>
+  </div>
+  <div class="estero" id="estero" lang="en">
+    <h3>Writing from abroad</h3>
+    <p>Send us your drawing: we design and make the heel.</p>
+    <ul class="recapiti">
+      <li><span class="g">Email</span><a class="sottolinea email" href="mailto:tacchificioriviera@tacchificioriviera.it?subject=A%20drawing%20for%20a%20heel">tacchificioriviera@<wbr>tacchificioriviera.it</a></li>
+      <li><span class="g">Phone</span><a class="sottolinea" href="tel:+39049502844">+39&nbsp;049&nbsp;502844</a></li>
+      <li><span class="g">Website in English</span><a class="sottolinea" href="https://www.tacchificioriviera.it/en">tacchificioriviera.it/en</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="riga">
+    <img src="img/timbro-chiaro.svg" width="104" height="104" alt="Il timbro del Tacchificio Riviera con la firma Valentino Boldrin." loading="lazy">
+    <div class="legali">
+      <p><b>Tacchificio Riviera S.r.l.</b> · Sede legale Via Pola 22, 30039 Stra (VE) · Sede operativa Serenissima 30, 30030 Vigonovo (VE)</p>
+      <p>P.IVA e C.F. 02005670274 · REA VE-190999 · Capitale sociale 99.000 euro</p>
+      <p id="cookie">Cookie: questa pagina non usa cookie né strumenti di statistica; caratteri e immagini sono serviti dal sito stesso. Mappa ed email si aprono solo quando li toccate.</p>
+    </div>
+    <ul>
+      <li><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-policy.docx">Privacy</a></li>
+      <li><a href="#cookie">Cookie</a></li>
+      <li><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/procedura-di-gestione-delle-segnalazioni-whistleblowing-tacchificio-riviera.docx">Whistleblowing: procedura</a></li>
+      <li><a href="https://www.tacchificioriviera.it/app/assets/certificazioni/privacy-gestore-segnalazioni-whistleblowing.docx">Whistleblowing: privacy</a></li>
+      <li><a href="https://www.tacchificioriviera.it/en" lang="en" hreflang="en">English</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="kit/vendor/gsap.min.js"></script>
+<script src="kit/vendor/ScrollTrigger.min.js"></script>
+<script src="kit/vendor/SplitText.min.js"></script>
+<script src="kit/vendor/lenis.min.js"></script>
+<script>/* la galleria fissata si muove con una trasformazione, non con position:fixed: nessuno spostamento del layout */ if (window.ScrollTrigger) ScrollTrigger.defaults({ pinType: "transform" });</script>
+<script src="kit/he.js"></script>
+</body>
+</html>

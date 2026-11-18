@@ -1,0 +1,31 @@
+<!-- Modulo "Richiesta di disponibilita'" (shortcode [villaeidos_richiesta] del tema, e anteprima statica).
+     Non manda dati al sito: assets/richiesta.js prepara una mail per {{email}} nel programma di posta di chi scrive.
+     I testi delle etichette si cambiano qui; l'indirizzo e i tipi di spazio in config/richiesta.php. -->
+<form class="modulo" id="richiesta" novalidate data-email="{{email}}">
+  <div class="campi">
+    <label class="campo">Azienda<input id="r-azienda" name="azienda" type="text" autocomplete="organization"></label>
+    <label class="campo">Nome e cognome<input id="r-nome" name="nome" type="text" autocomplete="name" required></label>
+    <label class="campo">Email<input id="r-email" name="email" type="email" autocomplete="email" required></label>
+    <label class="campo">Telefono<input id="r-telefono" name="telefono" type="tel" autocomplete="tel"></label>
+    <fieldset class="campo tutta scelta">
+      <legend>Tipo di spazio</legend>
+      <div class="scelte">{{tipi}}</div>
+    </fieldset>
+    <label class="campo">Data indicativa<input id="r-data" name="data" type="date"></label>
+    <label class="campo">Numero di persone<input id="r-persone" name="persone" type="number" inputmode="numeric" min="1" step="1"></label>
+    <label class="campo tutta">Messaggio<textarea id="r-messaggio" name="messaggio" rows="4"></textarea></label>
+    <label class="consenso tutta"><input id="r-privacy" type="checkbox" required><span>Ho letto l'<a href="{{privacy}}" target="_blank" rel="noopener">informativa privacy</a>.</span></label>
+  </div>
+  <div class="modulo-fine">
+    <button class="btn btn-verde" type="submit">Prepara la mail</button>
+    <p class="modulo-nota">La mail parte dal proprio programma di posta, verso {{email}}.</p>
+  </div>
+  <div class="riepilogo" id="riepilogo" hidden>
+    <pre id="riepilogo-testo"></pre>
+    <div class="riepilogo-azioni">
+      <a class="btn btn-verde" id="r-invia" href="mailto:{{email}}">Apri la mail</a>
+      <button class="btn btn-filo" type="button" id="r-copia">Copia il testo</button>
+    </div>
+    <p class="esito" id="r-esito" aria-live="polite"></p>
+  </div>
+</form>

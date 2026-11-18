@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marin Assemblaggi, assemblaggi meccanici per conto terzi a Saonara (PD)</title>
+<meta name="description" content="Marin Assemblaggi srl a Saonara (PD): assemblaggi meccanici di precisione per conto terzi. Montaggio, avvitatura a coppia controllata, cianfrinatura, marcatura e confezionamento.">
+<link rel="preload" href="fonts/FwZc7-Asy1Em_lq_aK3hpr-7omO7.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Zalando Sans, SIL Open Font License 1.1 (fonts/OFL.txt), file di Google Fonts non modificati */
+@font-face{font-family:"Zalando Sans";font-style:normal;font-weight:400 500;font-stretch:100% 125%;font-display:swap;
+  src:url(fonts/FwZc7-Asy1Em_lq_aK3hpr-7rGO7zK4.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Zalando Sans";font-style:normal;font-weight:400 500;font-stretch:100% 125%;font-display:swap;
+  src:url(fonts/FwZc7-Asy1Em_lq_aK3hpr-7omO7.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --carta:#F2F1ED;      /* il fondo delle foto da studio di Marin, portato sulla pagina */
+  --inchiostro:#1B1D1F;
+  --acciaio:#5E646B;    /* testo secondario: 5,3:1 sulla carta */
+  --ottone:#7D5F27;     /* solo i numeri: 5,2:1 sulla carta */
+  --filo:#CFCCC4;       /* il filetto sopra il piede */
+  --tenue:#E4E1D9;      /* fondo dei bottoni al passaggio */
+  --m:64px;             /* margine laterale */
+  --g:24px;             /* passo della griglia a 12 colonne */
+  --sez:200px;          /* l'unica distanza tra le sezioni */
+  --t:clamp(40px,6.67vw,104px);   /* titolo d'apertura: 96 px a 1440 */
+}
+@media (min-width:1729px){:root{--m:calc((100vw - 1600px)/2)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:"Zalando Sans",system-ui,sans-serif;font-size:18px;line-height:1.55;font-kerning:normal;font-synthesis:none;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--ottone)}
+:focus-visible{outline:2px solid var(--ottone);outline-offset:3px}
+h1,h2,h3{font-weight:400;margin:0}
+.wrap{padding-left:var(--m);padding-right:var(--m)}
+.largo{font-stretch:125%}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:var(--m);top:8px;background:var(--inchiostro);color:var(--carta);padding:8px 12px;z-index:10}
+/* il nome composto su due righe, finché Marin non manda un logo: MARIN in 500, ASSEMBLAGGI in 400 spaziato
+   alla stessa larghezza (la spaziatura di .n2 è misurata nel browser: misura_nome.mjs) */
+.nome{display:inline-flex;flex-direction:column;align-items:flex-start;font-stretch:125%;text-transform:uppercase;text-decoration:none;white-space:nowrap;line-height:1}
+.nome .n1{font-weight:500;letter-spacing:.045em}
+.nome .n2{font-weight:400;font-size:.36em;letter-spacing:.275em;margin-top:.42em;margin-right:-.275em}
+
+/* testata */
+.testa{display:flex;align-items:center;justify-content:space-between;height:88px;position:relative;z-index:3}
+.testa .nome{font-size:24px}
+.testa .nome:hover{color:var(--inchiostro)}
+.menu{display:flex;gap:36px;list-style:none;margin:0 0 0 auto;padding:0 56px 0 0;font-size:16px}
+.menu a{text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.testa .tel{font-size:16px;font-weight:500;text-decoration:none;font-stretch:125%}
+.apri{display:none}
+
+/* apertura: titolo, oggetto, interruttore */
+.apertura{container-type:inline-size;padding-bottom:64px}
+.titolo{position:relative;z-index:2;margin-top:28px;font-stretch:125%;font-size:var(--t);line-height:1;letter-spacing:-.035em}
+.titolo span{display:block}
+.scena{--fw:min(880px,75.8cqw);display:grid;grid-template-columns:minmax(0,1fr) var(--fw);align-items:end}
+/* la foto sale fino alla linea di base della seconda riga: il pezzo più alto la tocca */
+.tavola{grid-column:2;grid-row:1;position:relative;z-index:1;width:var(--fw);margin:calc(-0.143*var(--t) - 0.0216*var(--fw)) 0 0}
+.tavola img{width:100%;height:auto;aspect-ratio:880/410}
+.larga-foto[data-g="m"],.tel-foto{display:none}
+[data-stato="montato"] .larga-foto[data-g="s"]{display:none}
+[data-stato="montato"] .larga-foto[data-g="m"]{display:block}
+/* didascalie sotto i due gruppi: allineate al bordo sinistro di ciascun gruppo (x 22 e 470 su 880) */
+.didas{position:relative;height:22px;margin:0;font-size:15px;line-height:22px;color:var(--acciaio)}
+.didas span{position:absolute;top:0;max-width:46%}
+.didas .d-s{left:2.5%}
+.didas .d-m{left:53.4%}
+[data-stato="sciolto"] .d-s,[data-stato="montato"] .d-m{color:var(--inchiostro)}
+.comandi{grid-column:1;grid-row:1;align-self:end}
+.interruttore{display:inline-flex;border:1px solid var(--inchiostro);flex:none}
+.interruttore button{font:inherit;font-size:16px;font-weight:500;color:var(--inchiostro);background:transparent;border:0;padding:11px 22px;min-height:44px;cursor:pointer;transition:background-color .12s,color .12s}
+.interruttore button[aria-pressed="true"]{background:var(--inchiostro);color:var(--carta)}
+.interruttore button:hover{background:var(--tenue)}
+.interruttore button[aria-pressed="true"]:hover{background:var(--inchiostro)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.sotto{margin:40px 0 0;font-size:17px;line-height:1.45;color:var(--inchiostro);text-wrap:pretty}
+.sotto a{white-space:nowrap}
+
+/* sezioni */
+.sez{padding-top:var(--sez)}
+.h-grande{font-stretch:125%;font-size:64px;line-height:1.06;letter-spacing:-.03em;text-wrap:balance}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+
+/* arriva sciolto, esce montato */
+.chi .griglia{margin-top:40px;align-items:start}
+.frase{grid-column:1 / span 8;margin:0;font-size:22px;line-height:1.45;text-wrap:pretty}
+.lato{grid-column:10 / span 3;margin:0;font-size:17px;line-height:1.5;color:var(--acciaio);padding-top:4px;text-wrap:pretty}
+.tappi{margin:88px auto 0;width:min(833px,100%)}
+.tappi img{width:100%}
+.tappi figcaption{margin-top:8px;font-size:15px;line-height:1.4;color:var(--acciaio);text-align:center}
+
+/* lavorazioni: come in apertura, il titolo in alto e l'oggetto sotto a destra, a 1x */
+.lav-banco{display:grid;grid-template-columns:minmax(0,1fr) min(665px,58%);column-gap:var(--g);margin-top:40px;align-items:end}
+.storia{grid-row:1;margin:0;font-size:17px;line-height:1.4;color:var(--acciaio);max-width:24em;text-wrap:pretty}
+.banco{margin:0;grid-column:2;grid-row:1}
+.banco img{width:100%;height:auto}
+.banco figcaption{margin-top:10px;font-size:15px;line-height:1.4;color:var(--acciaio)}
+.passi{list-style:none;margin:104px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g)}
+.passi li{border-top:1px solid var(--inchiostro);padding-top:20px}
+.passi h3{font-size:22px;line-height:1.2;letter-spacing:-.01em;font-stretch:125%;font-weight:500}
+.passi p{margin:12px 0 0;font-size:16px;line-height:1.5;padding-right:16px;text-wrap:pretty}
+.passi .dato{margin-top:14px;font-size:15px;color:var(--acciaio)}
+.passi .dato strong{display:block;font-size:22px;line-height:1.2;font-weight:400;color:var(--ottone);font-stretch:125%;margin-bottom:2px}
+
+/* chiusura */
+.chiude .h-grande{max-width:21em}
+.recapiti{margin-top:72px;align-items:start;font-size:18px;line-height:1.5}
+.recapiti p{margin:0}
+.r-uno{grid-column:1 / span 6}
+.r-due{grid-column:7 / span 6;padding-top:8px}
+.r-due p+p{margin-top:8px}
+.r-due a{white-space:nowrap}
+.recapiti .tel-grande{display:inline-block;font-size:56px;line-height:1;font-stretch:125%;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+.recapiti .tel-grande:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.12em}
+.recapiti .mail{margin-top:16px;font-size:20px}
+.recapiti .piano{color:var(--acciaio)}
+.bussole{margin:96px 0 0}
+.bussole img{width:100%;aspect-ratio:12/5;max-height:600px;object-fit:cover}  /* a 1440: 1440x600 dal 1600x600, cioè 1x */
+
+/* piede */
+.piede{margin-top:144px;padding-bottom:40px}
+.piede-in{border-top:1px solid var(--filo);padding-top:64px}
+.piede-alto{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.piede-chi{grid-column:1 / span 4}
+.p-lav{grid-column:5 / span 3}
+.p-az{grid-column:8 / span 2}
+.p-con{grid-column:10 / span 3}
+.piede .nome{font-size:34px;color:var(--inchiostro)}
+.piede .nome:hover{color:var(--ottone)}
+.piede-chi p{margin:20px 0 0;max-width:22em;color:var(--acciaio);font-size:16px;line-height:1.5}
+.piede h2{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin:6px 0 18px}
+.piede ul{list-style:none;margin:0;padding:0;font-size:16px;line-height:1.45}
+.piede li+li{margin-top:9px}
+.piede ul a{text-decoration:none}
+.piede ul a:hover{text-decoration:underline}
+.piede address{font-style:normal;font-size:16px;line-height:1.45}
+.piede address p{margin:0}
+.piede address p+p{margin-top:9px}
+.piede address a{text-decoration:none}
+.piede address a:hover{text-decoration:underline}
+.legale{margin-top:96px;padding-top:22px;border-top:1px solid var(--filo);display:flex;flex-wrap:wrap;gap:8px 32px;font-size:14px;color:var(--acciaio)}
+.legale p{margin:0}
+.legale nav{margin-left:auto;display:flex;gap:24px}
+.legale a{color:var(--acciaio)}
+.legale a:hover{color:var(--inchiostro)}
+
+/* sotto i 1100 px l'interruttore va sotto la foto */
+@media (max-width:1100px){
+  .scena{display:block}
+  .tavola{margin-left:auto}
+  .comandi{margin-top:20px}
+}
+/* schermi medi */
+@media (max-width:1180px){
+  :root{--m:48px;--sez:168px}
+  .h-grande{font-size:52px}
+  .passi{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .recapiti .tel-grande{font-size:48px}
+  .piede-alto{row-gap:56px}
+  .piede-chi{grid-column:1 / span 12}
+  .p-lav{grid-column:1 / span 5}
+  .p-az{grid-column:6 / span 3}
+  .p-con{grid-column:9 / span 4}
+}
+@media (max-width:900px){
+  :root{--m:40px;--sez:144px}
+  .testa .tel{display:none}
+  .apri{display:inline-block;font:inherit;font-size:15px;font-weight:500;background:transparent;color:var(--inchiostro);border:1px solid var(--inchiostro);padding:8px 14px;min-height:44px;cursor:pointer}
+  .apri:hover{background:var(--tenue)}
+  .menu{display:none;position:absolute;top:100%;left:calc(-1*var(--m));right:calc(-1*var(--m));flex-direction:column;gap:0;margin:0;background:var(--carta);border-top:1px solid var(--filo);border-bottom:1px solid var(--inchiostro);padding:8px var(--m) 16px}
+  .menu.aperto{display:flex}
+  .menu li a{display:block;padding:12px 0;font-size:18px}
+  .scena{--fw:100cqw}
+  .tavola{margin-top:calc(-0.143*var(--t) + 8px)}
+  .frase{grid-column:1 / span 12}
+  .lato{grid-column:1 / span 8;margin-top:24px}
+  .h-grande{font-size:44px}
+  .lav-banco{grid-template-columns:1fr}
+  .storia{grid-row:auto}
+  .banco{grid-column:1;margin-top:32px;justify-self:end;width:min(665px,100%)}
+  .r-uno,.r-due{grid-column:1 / span 12}
+  .r-due{padding-top:32px}
+  .bussole{margin-top:56px}
+}
+/* telefono */
+@media (max-width:640px){
+  :root{--m:16px;--sez:96px;--t:43px}
+  body{font-size:17px}
+  .testa{height:64px}
+  .testa .nome{font-size:20px}
+  .apertura{padding-bottom:0}
+  .titolo{margin-top:16px;line-height:1.02;letter-spacing:-.04em}
+  .tavola{width:auto;margin:4px calc(-1*var(--m)) 0}
+  .didas{height:auto;padding:0 var(--m);margin-top:2px}
+  .didas span{position:static;max-width:none}
+  [data-stato="sciolto"] .d-m,[data-stato="montato"] .d-s{display:none}
+  .comandi{margin-top:14px}
+  .interruttore{display:flex}
+  .interruttore button{flex:1;padding:12px 10px}
+  .sotto{margin-top:16px;font-size:16px}
+  .h-grande{font-size:34px;line-height:1.1;letter-spacing:-.025em}
+  .chi .griglia{margin-top:24px}
+  .frase{font-size:19px}
+  .lato{grid-column:1 / span 12;margin-top:20px;font-size:16px}
+  .tappi{margin-top:40px;width:auto;margin-left:calc(-1*var(--m));margin-right:calc(-1*var(--m))}
+  .tappi figcaption{text-align:left;padding:0 var(--m)}
+  .lav-banco{margin-top:16px}
+  .banco{margin:24px 0 0;width:auto}
+  .passi{margin-top:48px;grid-template-columns:1fr;row-gap:36px}
+  .passi li{padding-top:16px}
+  .passi p{padding-right:0}
+  .storia{font-size:16px}
+  .recapiti{margin-top:36px}
+  .r-due{padding-top:28px}
+  .recapiti .tel-grande{font-size:36px}
+  .recapiti .mail{font-size:18px;margin-top:12px}
+  .bussole{margin-top:48px}
+  .bussole img{aspect-ratio:1/1}
+  .piede{margin-top:72px}
+  .piede-in{padding-top:48px}
+  .piede .nome{font-size:28px}
+  .piede-alto{row-gap:40px}
+  .piede-chi,.p-lav,.p-az,.p-con{grid-column:1 / span 12}
+  .legale{margin-top:56px;flex-direction:column}
+  .legale nav{margin-left:0}
+}
+/* fino a 480 px la foto cambia taglio con l'interruttore (440 px veri, mai ingranditi) */
+@media (max-width:480px){
+  .tavola .larga-foto,[data-stato="montato"] .larga-foto[data-g="m"]{display:none}
+  .tavola img.tel-foto{display:block;aspect-ratio:440/400}
+  .tavola img.tel-foto[data-g="m"]{display:none}
+  [data-stato="montato"] .tavola img.tel-foto[data-g="s"]{display:none}
+  [data-stato="montato"] .tavola img.tel-foto[data-g="m"]{display:block}
+}
+@media (max-width:360px){
+  :root{--t:38px}
+  .recapiti .tel-grande{font-size:31px}
+  .piede .nome{font-size:26px}
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<section class="apertura wrap" id="contenuto" aria-label="Apertura">
+  <header class="testa">
+    <a class="nome" href="#contenuto"><span class="n1">Marin</span> <span class="n2">Assemblaggi</span></a>
+    <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul class="menu" id="menu">
+      <li><a href="#lavorazioni">Lavorazioni</a></li>
+      <li><a href="#azienda">Chi siamo</a></li>
+      <li><a href="#contatti">Dove siamo</a></li>
+    </ul>
+    <a class="tel" href="tel:+390498070512">049&nbsp;807&nbsp;0512</a>
+  </header>
+
+  <h1 class="titolo"><span>Assemblaggi meccanici</span> <span>di precisione</span></h1>
+
+  <div class="scena" data-stato="sciolto">
+    <figure class="tavola">
+      <img class="larga-foto" data-g="s" src="img/apertura-sciolto-880.webp" srcset="img/apertura-sciolto-704.webp 704w, img/apertura-sciolto-880.webp 880w" sizes="(max-width:900px) 100vw, 880px" width="880" height="410" alt="Corpo esagonale e bussola in ottone con una sfera d'acciaio, sciolti; accanto, schiariti, gli stessi pezzi già montati." fetchpriority="high">
+      <img class="larga-foto" data-g="m" src="img/apertura-montato-880.webp" srcset="img/apertura-montato-704.webp 704w, img/apertura-montato-880.webp 880w" sizes="(max-width:900px) 100vw, 880px" width="880" height="410" alt="Bussola e raccordo in ottone con la sfera d'acciaio in sede; accanto, schiariti, i pezzi ancora sciolti.">
+      <img class="tel-foto" data-g="s" src="img/sciolto-440.webp" width="440" height="400" alt="Corpo esagonale e bussola in ottone, con una sfera d'acciaio sciolta.">
+      <img class="tel-foto" data-g="m" src="img/montato-440.webp" width="440" height="400" alt="Bussola e raccordo in ottone con la sfera d'acciaio montata nella sede.">
+      <figcaption class="didas"><span class="d-s">Sciolto: corpo, bussola e sfera</span> <span class="d-m">Montato: la sfera è in sede</span></figcaption>
+    </figure>
+
+    <div class="comandi">
+      <div class="interruttore" role="group" aria-label="Mostra i pezzi">
+        <button type="button" aria-pressed="true" data-v="sciolto">Sciolto</button>
+        <button type="button" aria-pressed="false" data-v="montato">Montato</button>
+      </div>
+      <p class="vh" aria-live="polite" id="stato-t"></p>
+    </div>
+  </div>
+
+  <p class="sotto">Per conto terzi, a Saonara (PD): componenti metallici e&nbsp;in&nbsp;plastica montati, avvitati, marcati e contati. <a href="tel:+390498070512">Chiamate lo 049&nbsp;807&nbsp;0512</a></p>
+</section>
+
+<main>
+<section class="sez chi wrap" id="azienda" aria-labelledby="chi-t">
+  <h2 class="h-grande" id="chi-t">Arriva sciolto, esce montato</h2>
+  <div class="griglia">
+    <p class="frase">Il committente ci manda i particolari. Noi li pressiamo, li avvitiamo alla coppia giusta, li marchiamo, poi li contiamo, li termosaldiamo e li etichettiamo.</p>
+    <p class="lato">Su richiesta costruiamo anche le attrezzature per montare i vostri particolari.</p>
+  </div>
+  <figure class="tappi">
+    <picture>
+      <source media="(max-width:640px)" srcset="img/tappi-tel-670.webp">
+      <img src="img/tappi-833.webp" srcset="img/tappi-680.webp 680w, img/tappi-833.webp 833w" sizes="(max-width:929px) 100vw, 833px" width="833" height="460" alt="Tappi filettati con o-ring marroni e perni: alcuni con i pezzi ancora separati, altri già montati." loading="lazy">
+    </picture>
+    <figcaption>Tappi filettati con o-ring e perni, prima e dopo il montaggio</figcaption>
+  </figure>
+</section>
+
+<section class="sez lav wrap" id="lavorazioni" aria-labelledby="lav-t">
+  <h2 class="h-grande" id="lav-t">Dal montaggio al lotto etichettato</h2>
+  <div class="lav-banco">
+    <p class="storia">Un reparto solo, a Saonara. Dal 2016 la ditta è Marin Assemblaggi srl.</p>
+    <figure class="banco">
+      <img src="img/banco-665.webp" srcset="img/banco-532.webp 532w, img/banco-665.webp 665w" sizes="(max-width:640px) 100vw, 665px" width="665" height="300" alt="Due bussole con la vite, una bussola, due sfere d'acciaio e tre raccordi in ottone con gli o-ring neri." loading="lazy">
+      <figcaption>Bussole, sfere e raccordi in ottone, come quelli dell'apertura</figcaption>
+    </figure>
+  </div>
+  <ol class="passi">
+    <li>
+      <h3>Montaggio</h3>
+      <p>Assembliamo componenti metallici e in plastica, sulle attrezzature giuste per ogni particolare. Se non esistono, le costruiamo.</p>
+    </li>
+    <li>
+      <h3>Pressa e avvitatura</h3>
+      <p>Presse idrauliche montate su tavola rotante per cianfrinature e coniature; avvitatori oliopneumatici ed elettrici con controllo di coppia.</p>
+      <p class="dato"><strong>6&nbsp;t</strong>la potenza delle presse</p>
+    </li>
+    <li>
+      <h3>Marcatura</h3>
+      <p>Marcatrici a multipunto, anche con il vostro logo, e marcatura laser.</p>
+      <p class="dato"><strong>70&#8288;×&#8288;90&nbsp;mm</strong>il campo di lavoro della marcatrice a punti</p>
+    </li>
+    <li>
+      <h3>Confezionamento</h3>
+      <p>Bilance contapezzi, termosaldatrici e una stampante per etichette personalizzabili: il lotto esce contato, chiuso ed etichettato.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="sez chiude" id="contatti" aria-labelledby="chiude-t">
+  <div class="wrap">
+    <h2 class="h-grande" id="chiude-t">Precisione e puntualità: i nostri committenti ve lo confermeranno</h2>
+    <div class="griglia recapiti">
+      <div class="r-uno">
+        <a class="tel-grande" href="tel:+390498070512">049&nbsp;807&nbsp;0512</a>
+        <p class="mail"><a href="mailto:info@marinassemblaggi.it">info@marinassemblaggi.it</a></p>
+      </div>
+      <div class="r-due">
+        <p>Via Emilia Romagna 26, 35020 Saonara (PD). <a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Emilia+Romagna+26+35020+Saonara+PD" rel="noopener">Apri la mappa</a></p>
+        <p class="piano">A poche centinaia di metri dall'uscita di Padova Est</p>
+        <p>Lunedì-venerdì 8.30-12.30 e 13.30-17.30, sabato chiuso</p>
+      </div>
+    </div>
+  </div>
+  <figure class="bussole">
+    <picture>
+      <source media="(max-width:640px)" srcset="img/bussole-tel-600.webp">
+      <img src="img/bussole-1600.webp" srcset="img/bussole-960.webp 960w, img/bussole-1440.webp 1440w, img/bussole-1600.webp 1600w" sizes="100vw" width="1600" height="600" alt="Un mucchio di bussole in ottone lucido con l'o-ring nero già montato." loading="lazy">
+    </picture>
+  </figure>
+</section>
+</main>
+
+<footer class="piede wrap">
+  <div class="piede-in">
+    <div class="piede-alto">
+      <div class="piede-chi">
+        <a class="nome" href="#contenuto"><span class="n1">Marin</span> <span class="n2">Assemblaggi</span></a>
+        <p>Assemblaggi meccanici di precisione per conto terzi, a Saonara, in provincia di Padova.</p>
+      </div>
+      <nav class="p-lav" aria-labelledby="p-lav">
+        <h2 id="p-lav">Lavorazioni</h2>
+        <ul>
+          <li><a href="lavorazioni/assemblaggio.html">Assemblaggio</a></li>
+          <li><a href="lavorazioni/avvitatura.html">Avvitatura a coppia controllata</a></li>
+          <li><a href="lavorazioni/cianfrinatura.html">Cianfrinatura e coniatura</a></li>
+          <li><a href="lavorazioni/marcatura.html">Marcatura laser e a punti</a></li>
+          <li><a href="lavorazioni/confezionamento.html">Confezionamento ed etichette</a></li>
+          <li><a href="lavorazioni/attrezzature.html">Attrezzature di montaggio</a></li>
+        </ul>
+      </nav>
+      <nav class="p-az" aria-labelledby="p-az">
+        <h2 id="p-az">Azienda</h2>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="reparto.html">Il reparto</a></li>
+          <li><a href="#contatti">Dove siamo</a></li>
+        </ul>
+      </nav>
+      <div class="p-con">
+        <h2 id="p-con">Contatti</h2>
+        <address aria-labelledby="p-con">
+          <p><a href="tel:+390498070512">049&nbsp;807&nbsp;0512</a></p>
+          <p><a href="mailto:info@marinassemblaggi.it">info@marinassemblaggi.it</a></p>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+Emilia+Romagna+26+35020+Saonara+PD" rel="noopener">Via Emilia Romagna 26<br>35020 Saonara (PD)</a></p>
+          <p>Lun-ven 8.30-12.30 e 13.30-17.30</p>
+        </address>
+      </div>
+    </div>
+    <div class="legale">
+      <p>Marin Assemblaggi S.r.l.</p>
+      <p>P.IVA e C.F. 05025290288</p>
+      <p>Via Emilia Romagna 26, 35020 Saonara (PD)</p>
+      <nav aria-label="Note legali"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var scena=document.querySelector('.scena');
+  var bott=[].slice.call(document.querySelectorAll('.interruttore button'));
+  var detto=document.getElementById('stato-t');
+  function metti(v){
+    scena.setAttribute('data-stato',v);
+    detto.textContent=scena.querySelector(v==='montato'?'.d-m':'.d-s').textContent;
+    bott.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.v===v?'true':'false')});
+  }
+  bott.forEach(function(b,i){
+    b.addEventListener('click',function(){metti(b.dataset.v)});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        var o=bott[(i+1)%2]; o.focus(); metti(o.dataset.v); e.preventDefault();
+      }
+    });
+  });
+  var apri=document.querySelector('.apri'), menu=document.getElementById('menu');
+  function chiudi(){menu.classList.remove('aperto');apri.setAttribute('aria-expanded','false');apri.textContent='Menu';}
+  apri.addEventListener('click',function(){
+    var a=menu.classList.toggle('aperto'); apri.setAttribute('aria-expanded',a?'true':'false');
+    apri.textContent=a?'Chiudi':'Menu';
+  });
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'&&menu.classList.contains('aperto'))chiudi();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('aperto')){chiudi();apri.focus();}});
+})();
+</script>
+</body>
+</html>

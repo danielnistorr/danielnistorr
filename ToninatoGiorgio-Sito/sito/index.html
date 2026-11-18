@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toninato Giorgio, controllo dei consumi energetici</title>
+<meta name="description" content="Analizzatori di rete, contatori, gruppi di misura fiscali UTF, trasformatori amperometrici e telecontrollo all'ingrosso, dal 1991 a Villatora di Saonara (PD). Analisi dei consumi con i nostri Energy Manager.">
+<style>
+@font-face{
+  font-family:"Pathway Extreme";
+  src:url("fonts/pathway-extreme-latin.woff2") format("woff2");
+  font-weight:100 900;font-stretch:75% 100%;font-style:normal;font-display:swap;
+}
+:root{
+  --carta:#F3F2EE;
+  --campo:#E6E4DE;
+  --inchiostro:#1F2321;
+  --grigio:#565B58;
+  --verde:#00A650;
+  --verde-scuro:#00783A;
+  --filo:rgba(31,35,33,.16);
+  --m:64px;
+  --g:24px;
+  --f:"Pathway Extreme",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--f);font-size:18px;line-height:1.55;font-stretch:100%;font-weight:400;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--verde-scuro);outline-offset:3px}
+.riga{max-width:1440px;margin:0 auto;padding:0 var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.nw{white-space:nowrap}
+
+/* testata */
+.testata{position:relative;z-index:3}
+.testata .riga{display:flex;align-items:center;height:88px;gap:40px}
+.testata .logo{flex:none;display:block}
+.testata .logo img{width:220px}
+.menu{display:flex;gap:30px;margin:0 0 0 auto;list-style:none;padding:0}
+.menu a{white-space:nowrap;text-decoration:none;font-size:16px;font-weight:450;padding:8px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .15s}
+.menu a:hover{background-size:100% 1px}
+.tel-testa{font-size:16px;font-weight:550;text-decoration:none;white-space:nowrap}
+.apri-menu{display:none}
+
+/* apertura: un solo strumento di misura vero, scontornato sulla carta, con le legende sulle sue parti */
+.apertura{position:relative;max-width:1440px;margin:0 auto;height:790px}
+.apertura .testo{position:absolute;z-index:2;top:84px;right:var(--m);width:580px}
+.apertura h1{font-size:95px;line-height:.93;letter-spacing:-.024em;font-stretch:76%;font-weight:400}
+.apertura .lead{margin-top:36px;max-width:440px;font-size:20px;line-height:1.5}
+.azioni{display:flex;align-items:center;gap:28px;margin-top:36px;flex-wrap:wrap}
+.bottone{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;background:var(--inchiostro);color:var(--carta);text-decoration:none;font-size:17px;font-weight:500;border-radius:2px;transition:background-color .15s}
+.bottone:hover{background:#000}
+.link{font-size:17px;font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;text-decoration-color:var(--verde)}
+.link:hover{text-decoration-thickness:2px}
+.didascalia{font-size:13px;line-height:1.4;color:var(--grigio)}
+.oggetto{position:absolute;z-index:1;top:36px;left:var(--m);width:690px;margin:0}
+.oggetto .foto{position:relative;width:100%;background:var(--carta)}
+.oggetto img{width:100%;mix-blend-mode:multiply}
+.oggetto .punti{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+/* fili e punti in bianco con fusione "differenza": scuri sulla carta e sul quadrante, chiari sul nero della ghiera */
+.punti{mix-blend-mode:difference}
+.punti line{stroke:#fff;stroke-width:1;vector-effect:non-scaling-stroke}
+.punti circle{fill:#fff}
+.legende{position:absolute;left:0;right:0;top:calc(100% + 14px);margin:0;padding:0;list-style:none;height:40px}
+.legende li{position:absolute;top:0;white-space:nowrap;font-size:14px;line-height:1.35;color:var(--inchiostro)}
+.legende .n{font-variant-numeric:tabular-nums;color:var(--verde-scuro);font-weight:600;margin-right:8px}
+.legende b{font-weight:600}
+.legende small{display:block;font-size:14px;color:var(--grigio);padding-left:17px}
+.oggetto .foto-ind{position:absolute;right:0;bottom:2px}
+
+/* chi siamo */
+.chi{padding:64px 0 136px}
+.chi h2{grid-column:1/10;font-size:56px;line-height:1.02;letter-spacing:-.02em;font-stretch:82%}
+.chi .testo{grid-column:1/13;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);font-size:19px;margin-top:40px}
+.chi .testo p:first-child{grid-column:1/6}
+.chi .testo p+p{grid-column:7/12}
+.chi .frase{grid-column:1/13;margin-top:88px;padding-top:36px;border-top:1px solid var(--filo);font-size:44px;line-height:1.14;letter-spacing:-.015em;font-stretch:80%;font-weight:400}
+.chi .frase .n{color:var(--verde-scuro);font-variant-numeric:tabular-nums}
+
+/* catalogo */
+.catalogo{padding:0 0 144px}
+.catalogo .testa{grid-column:1/13;display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding-bottom:28px;border-bottom:1px solid var(--filo)}
+.catalogo h2{font-size:56px;line-height:1;letter-spacing:-.02em;font-stretch:82%}
+.catalogo .testa p{font-size:16px;color:var(--grigio);max-width:24em;text-align:right}
+.indice{grid-column:1/5;list-style:none;margin:0;padding:24px 0 0}
+.indice button{all:unset;box-sizing:border-box;display:flex;gap:16px;align-items:baseline;width:100%;padding:9px 0;cursor:pointer;font-size:19px;line-height:1.3;color:var(--grigio);transition:color .12s}
+.indice button .n{font-size:13px;font-variant-numeric:tabular-nums;width:22px;flex:none;color:var(--grigio)}
+.indice button:hover{color:var(--inchiostro)}
+.indice button[aria-selected=true]{color:var(--inchiostro);font-weight:550}
+.indice button[aria-selected=true] .n{color:var(--verde-scuro)}
+.indice button[aria-selected=true] .t{text-decoration:underline;text-decoration-color:var(--verde);text-decoration-thickness:2px;text-underline-offset:6px}
+.indice button:focus-visible{outline:2px solid var(--verde-scuro);outline-offset:2px}
+.scheda{grid-column:6/13;padding-top:32px}
+.scheda .area{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.scheda h3{font-size:48px;line-height:1.02;letter-spacing:-.018em;font-stretch:82%;max-width:9.5em}
+.scheda .conta{text-align:right;flex:none}
+.scheda .conta b{display:block;font-size:96px;line-height:.85;font-weight:300;font-stretch:75%;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--verde-scuro)}
+.scheda .conta span{font-size:15px;color:var(--grigio)}
+.scheda .cat{margin:40px 0 0;padding:24px 0 0;list-style:none;columns:2;column-gap:var(--g);border-top:1px solid var(--filo)}
+.scheda .cat li{break-inside:avoid;padding:5px 0;font-size:17px;line-height:1.35}
+.scheda .esempio{margin-top:36px;display:grid;grid-template-columns:150px 1fr;gap:var(--g);font-size:17px}
+.scheda .esempio span{font-size:13px;color:var(--grigio);padding-top:3px}
+.scheda .esempio p{font-variant-numeric:tabular-nums;max-width:30em}
+.scheda .vai{margin-top:36px;display:inline-block}
+
+/* analisi: la frase loro a sinistra, il contatore a destra fino al bordo della pagina */
+.analisi{background:var(--campo);padding:112px 0;overflow:hidden}
+.analisi .griglia{grid-template-rows:auto auto 1fr}
+.analisi h2{grid-column:1/7;grid-row:1;font-size:66px;line-height:.97;letter-spacing:-.025em;font-stretch:78%}
+.analisi .testo{grid-column:1/6;grid-row:2;margin-top:44px;font-size:19px}
+.analisi .azioni{grid-column:1/7;grid-row:3;margin-top:32px;align-self:start}
+.analisi figure{grid-column:7/13;grid-row:1/4;margin:0 calc(-1 * (var(--m) + max(0px, (100vw - 1440px) / 2))) 0 0;position:relative}
+.analisi figure img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 40%}
+.analisi figure .didascalia{margin-top:12px}
+
+/* per chi */
+.perchi{padding:136px 0 128px}
+.perchi h2{grid-column:1/11;font-size:56px;line-height:1.04;letter-spacing:-.02em;font-stretch:82%}
+.perchi h2 .gr{color:var(--grigio)}
+.voci{grid-column:1/13;margin:80px 0 0;padding:0}
+.voci>div{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:26px 0;border-top:1px solid var(--filo)}
+.voci>div:last-child{border-bottom:1px solid var(--filo)}
+.voci dt{grid-column:1/4;font-size:19px;font-weight:550}
+.voci dd{grid-column:4/11;margin:0;font-size:18px}
+.voci dd ul{list-style:none;margin:10px 0 0;padding:0}
+.voci dd li{padding:3px 0}
+.voci dd a{text-decoration-color:var(--verde);text-underline-offset:4px}
+
+/* chiusura: foto a sinistra a filo del bordo, testo a destra */
+.chiusura{background:var(--campo);overflow:hidden}
+.chiusura .dentro{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-right:var(--m)}
+.chiusura figure{grid-column:1/8;margin:0 0 0 calc(-1 * max(0px, (100vw - 1440px) / 2));position:relative;min-height:940px;background:var(--campo)}
+.chiusura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.chiusura figure .didascalia{position:absolute;left:calc(100% + var(--g));bottom:28px;white-space:nowrap}
+.chiusura .testo{grid-column:9/13;padding:128px 0 120px;align-self:center}
+.chiusura h2{font-size:66px;line-height:.98;letter-spacing:-.025em;font-stretch:78%;max-width:8.5em}
+.recapiti{margin-top:56px;font-size:18px;line-height:1.5}
+.recapiti .tel{display:inline-block;font-size:48px;line-height:1;letter-spacing:-.015em;font-stretch:84%;font-weight:450;text-decoration:none;font-variant-numeric:tabular-nums;padding:4px 0;background:linear-gradient(var(--verde),var(--verde)) 0 100%/100% 2px no-repeat}
+.recapiti .tel:hover{background-size:100% 4px}
+.recapiti dl{margin:36px 0 0;display:grid;grid-template-columns:96px 1fr;row-gap:12px;column-gap:var(--g)}
+.recapiti dt{font-size:14px;color:var(--grigio);padding-top:3px}
+.recapiti dd{margin:0}
+.recapiti dd a{text-underline-offset:4px;text-decoration-color:var(--verde)}
+
+/* piede */
+.piede{padding:96px 0 40px}
+.piede .alto{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-bottom:72px;align-items:start}
+.piede .marchio{grid-column:1/6}
+.piede .marchio img{width:300px}
+.piede .marchio p{margin-top:22px;font-size:16px;max-width:24em;color:var(--grigio)}
+.iscrizione{grid-column:7/13}
+.iscrizione h2{font-size:22px;line-height:1.2;font-weight:500;letter-spacing:-.005em}
+.iscrizione p{margin-top:6px;font-size:16px;color:var(--grigio);max-width:32em}
+.iscrizione form{margin-top:20px;max-width:520px}
+.campo-mail{display:flex;align-items:center;border-bottom:1.5px solid var(--inchiostro)}
+.campo-mail:focus-within{border-bottom-color:var(--verde-scuro);box-shadow:0 1.5px 0 var(--verde-scuro)}
+.campo-mail input{flex:1;min-width:0;height:50px;padding:0;border:0;background:transparent;font:inherit;font-size:17px;color:var(--inchiostro)}
+.campo-mail input::placeholder{color:#5E6461}
+.campo-mail input:focus{outline:none}
+.campo-mail button{all:unset;cursor:pointer;font-size:16px;font-weight:550;padding:14px 0 14px 16px;min-height:22px}
+.campo-mail button:hover{color:var(--verde-scuro);text-decoration:underline;text-underline-offset:.25em}
+.campo-mail button:focus-visible{outline:2px solid var(--verde-scuro);outline-offset:2px}
+.consenso{display:flex;gap:12px;align-items:flex-start;margin-top:16px;font-size:14px;line-height:1.45;color:var(--grigio)}
+.consenso input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--verde-scuro)}
+.esito{margin-top:10px;font-size:14px;min-height:1.4em;color:var(--inchiostro)}
+.colonne{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:48px 0 72px;border-top:1px solid var(--filo)}
+.colonne section{grid-column:span 3}
+.colonne h3{font-size:14px;font-weight:600;letter-spacing:.01em;margin-bottom:16px}
+.colonne ul{list-style:none;margin:0;padding:0}
+.colonne li{padding:4px 0;font-size:16px;line-height:1.4;color:var(--grigio);overflow-wrap:break-word}
+.colonne a{text-decoration:none;color:var(--grigio)}
+.colonne a:hover{color:var(--inchiostro);text-decoration:underline;text-underline-offset:4px}
+.colonne .fold{all:unset;display:none}
+.legale{display:flex;flex-wrap:wrap;gap:6px 24px;padding-top:24px;border-top:1px solid var(--filo);font-size:13px;color:var(--grigio)}
+.legale a{color:var(--grigio);text-underline-offset:3px}
+.legale .dx{margin-left:auto;display:flex;gap:24px}
+
+/* 1024 */
+@media (max-width:1180px){
+  :root{--m:48px}
+  .menu{gap:20px}
+  .menu a{font-size:15px}
+  .testata .logo img{width:190px}
+  .apertura .testo{width:430px;top:48px}
+  .apertura h1{font-size:72px}
+  .apertura .lead{font-size:18px;margin-top:28px}
+  .apertura{height:586px}
+  .oggetto{top:32px;width:480px}
+  .legende li{font-size:13px}
+  .legende small{display:none}
+  .chi h2,.catalogo h2,.perchi h2{font-size:46px}
+  .chi h2{grid-column:1/10}
+  .chi .testo p:first-child{grid-column:1/7}
+  .chi .testo p+p{grid-column:7/13}
+  .chi .frase{font-size:38px;grid-column:1/13}
+  .indice{grid-column:1/6}
+  .scheda{grid-column:6/13}
+  .scheda h3{font-size:40px}
+  .scheda .conta b{font-size:80px}
+  .analisi h2{font-size:52px}
+  .analisi .testo{grid-column:1/7}
+  .chiusura h2{font-size:56px}
+  .chiusura figure{min-height:760px;grid-column:1/7}
+  .chiusura .testo{grid-column:8/13}
+}
+/* 768 */
+@media (max-width:900px){
+  :root{--m:32px;--g:20px}
+  .menu{display:none}
+  .testata .riga{gap:20px;height:80px}
+  .tel-testa{margin-left:auto}
+  .apri-menu{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid rgba(31,35,33,.4);background:none;font:inherit;font-size:15px;font-weight:500;color:var(--inchiostro);cursor:pointer;border-radius:2px}
+  .menu.aperto{display:flex;flex-direction:column;gap:0;position:absolute;top:80px;left:0;right:0;background:var(--carta);padding:8px var(--m) 24px;border-bottom:1px solid var(--filo)}
+  .menu.aperto a{display:block;padding:12px 0;font-size:19px}
+  .apertura{height:auto;display:flex;flex-direction:column;padding-bottom:8px}
+  .apertura .testo{display:contents}
+  .apertura h1{order:1;font-size:64px;padding:40px var(--m) 0;max-width:10em}
+  .oggetto{order:2;position:relative;top:auto;left:auto;width:auto;margin:24px var(--m) 72px}
+  .oggetto .foto{width:100%;max-width:560px}
+  .apertura .lead{order:3;padding:0 var(--m);margin-top:8px;max-width:560px}
+  .apertura .azioni{order:4;padding:0 var(--m)}
+  .chi{padding:88px 0 96px}
+  .chi h2,.chi .testo{grid-column:1/13}
+  .chi .testo{margin-top:28px;max-width:600px;display:block}
+  .chi .testo p+p{margin-top:18px}
+  .chi .frase{margin-top:56px;font-size:34px}
+  .catalogo .testa{flex-direction:column;align-items:flex-start}
+  .catalogo .testa p{text-align:left}
+  .indice,.scheda{grid-column:1/13}
+  .indice{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--m);padding:20px var(--m) 12px;margin:0 calc(-1 * var(--m));scrollbar-width:none}
+  .indice::-webkit-scrollbar{display:none}
+  .indice li{flex:none;scroll-snap-align:start}
+  .indice button{width:auto;padding:10px 14px;border:1px solid var(--filo);border-radius:2px;font-size:16px;gap:8px;white-space:nowrap;min-height:44px;align-items:center}
+  .indice button .n{width:auto}
+  .indice button[aria-selected=true]{border-color:var(--inchiostro)}
+  .indice button[aria-selected=true] .t{text-decoration:none}
+  .scheda{padding-top:28px}
+  .analisi{padding:96px 0 104px}
+  .analisi h2{font-size:52px;grid-column:1/13}
+  .analisi .griglia{grid-template-rows:none}
+  .analisi h2,.analisi .testo,.analisi .azioni,.analisi figure{grid-row:auto}
+  .analisi .testo{grid-column:1/13;max-width:560px}
+  .analisi .azioni{grid-column:1/13}
+  .analisi figure{grid-column:1/13;margin:56px calc(-1 * var(--m)) 0 auto;width:min(560px, 100% + var(--m))}
+  .perchi{padding:96px 0 88px}
+  .perchi h2{grid-column:1/13}
+  .voci dt{grid-column:1/13}
+  .voci dd{grid-column:1/13;margin-top:8px}
+  .chiusura .dentro{display:flex;flex-direction:column;padding:0}
+  .chiusura figure{order:2;margin:0;min-height:0}
+  .chiusura figure img{position:static;height:auto;aspect-ratio:4/3}
+  .chiusura figure .didascalia{position:static;padding:12px var(--m) 20px}
+  .chiusura .testo{order:1;padding:88px var(--m) 48px}
+  .chiusura h2{font-size:52px}
+  .piede .marchio,.iscrizione{grid-column:1/13}
+  .iscrizione{margin-top:48px}
+  .colonne section{grid-column:span 6;margin-bottom:36px}
+}
+/* telefono */
+@media (max-width:560px){
+  :root{--m:20px;--g:16px}
+  body{font-size:17px}
+  .testata .riga{height:68px;gap:12px}
+  .testata .logo img{width:150px}
+  .tel-testa{font-size:15px}
+  .menu.aperto{top:68px}
+  .apertura h1{font-size:47px;line-height:.95;padding-top:30px;letter-spacing:-.022em}
+  .oggetto{margin:18px var(--m) 0}
+  .oggetto .punti,.legende{display:none}
+  .oggetto .foto-ind{position:static;text-align:right;margin-top:4px}
+  .apertura .lead{font-size:17px;margin-top:6px}
+  .azioni{margin-top:24px;gap:20px}
+  .bottone{min-height:50px;padding:0 20px;font-size:16px}
+  .link{font-size:16px}
+  .chi{padding:80px 0 80px}
+  .chi h2,.catalogo h2,.perchi h2{font-size:34px;line-height:1.06}
+  .chi .testo{font-size:17px}
+  .chi .frase{font-size:27px;line-height:1.18;margin-top:48px;padding-top:28px}
+  .catalogo{padding-bottom:88px}
+  .scheda .area{flex-direction:column;align-items:flex-start;gap:16px}
+  .scheda .conta{text-align:left;display:flex;align-items:baseline;gap:10px}
+  .scheda .conta b{font-size:56px}
+  .scheda h3{font-size:32px}
+  .scheda .cat{columns:1;margin-top:28px}
+  .scheda .cat li{font-size:16px}
+  .scheda .esempio{grid-template-columns:1fr;gap:4px;font-size:16px}
+  .analisi{padding:80px 0 88px}
+  .analisi h2{font-size:40px;line-height:1.02}
+  .analisi .testo{font-size:17px;margin-top:32px}
+  .perchi{padding:80px 0 64px}
+  .voci{margin-top:48px}
+  .chiusura .testo{padding:72px var(--m) 40px}
+  .chiusura h2{font-size:40px;line-height:1.02}
+  .recapiti{margin-top:36px}
+  .recapiti .tel{font-size:38px}
+  .recapiti dl{grid-template-columns:1fr;row-gap:2px}
+  .recapiti dd{margin-bottom:12px}
+  .piede{padding:64px 0 32px}
+  .piede .alto{padding-bottom:36px}
+  .piede .marchio img{width:220px}
+  .colonne{display:block;padding:8px 0 32px}
+  .colonne section{border-bottom:1px solid var(--filo);margin:0}
+  .colonne h3{margin:0}
+  .colonne .fold{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;font-size:16px;font-weight:600;cursor:pointer}
+  .colonne .fold::after{content:"+";font-size:22px;font-weight:300}
+  .colonne .fold[aria-expanded=true]::after{content:"\2212"}
+  .colonne .fold:focus-visible{outline:2px solid var(--verde-scuro)}
+  .colonne h3 .tit{display:none}
+  .colonne ul{padding-bottom:16px}
+  .colonne ul[hidden]{display:none}
+  .legale .dx{margin-left:0}
+}
+@media (max-width:360px){
+  .tel-testa{display:none}
+  .apri-menu{margin-left:auto}
+  .apertura h1{font-size:41px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="riga">
+    <a class="logo" href="#" aria-label="Toninato Giorgio, pagina iniziale"><img src="img/logo-testata-440.webp" srcset="img/logo-testata-440.webp 440w, img/logo-testata-660.webp 660w" sizes="220px" width="440" height="61" alt="Toninato Giorgio"></a>
+    <ul class="menu" id="menu">
+      <li><a href="#catalogo">Prodotti</a></li>
+      <li><a href="#analisi">Analisi dei consumi</a></li>
+      <li><a href="#assistenza">Assistenza</a></li>
+      <li><a href="#chi">Azienda</a></li>
+      <li><a href="#contatti">Dove siamo</a></li>
+    </ul>
+    <a class="tel-testa num" href="tel:+390498791358">049 8791358</a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="testo">
+    <h1 id="titolo">Gli specialisti del controllo dei consumi energetici</h1>
+    <p class="lead">Analizzatori di rete, contatori, gruppi di misura fiscali UTF, trasformatori amperometrici e telecontrollo, all'ingrosso dal 1991 a Saonara.</p>
+    <div class="azioni">
+      <a class="bottone" href="tel:+390498791358">Chiamate lo&nbsp;<span class="num">049 8791358</span></a>
+      <a class="link" href="#catalogo">Il catalogo in 11 aree</a>
+    </div>
+  </div>
+  <figure class="oggetto">
+    <div class="foto">
+      <img src="img/ampere-1380.jpg" srcset="img/ampere-700.jpg 700w, img/ampere-1000.jpg 1000w, img/ampere-1380.jpg 1380w, img/ampere-2000.jpg 2000w" sizes="(max-width:560px) calc(100vw - 40px), (max-width:900px) 560px, (max-width:1180px) 480px, 690px" width="2000" height="2000" alt="Un amperometro analogico da pannello: quadrante bianco con la scala in mA e in A, ago fermo sullo zero, ghiera nera con due viti">
+      <svg class="punti" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="31.7" y1="45.4" x2="31.7" y2="102.5"/><circle cx="31.7" cy="45.4" r=".55"/>
+        <line x1="48.2" y1="73.9" x2="48.2" y2="102.5"/><circle cx="48.2" cy="73.9" r=".55"/>
+        <line x1="75.5" y1="46.4" x2="75.5" y2="102.5"/><circle cx="75.5" cy="46.4" r=".55"/>
+      </svg>
+      <ol class="legende" aria-label="Legenda della foto">
+        <li style="left:31.7%"><span class="n">1</span><b>L'ago</b><small>a riposo</small></li>
+        <li style="left:48.2%"><span class="n">2</span><b>Lo zero</b><small>vite di azzeramento</small></li>
+        <li style="left:75.5%"><span class="n">3</span><b>Classe 1,5</b><small>la precisione</small></li>
+      </ol>
+      <p class="didascalia foto-ind">Foto indicativa</p>
+    </div>
+  </figure>
+</section>
+
+<section class="chi" id="chi" aria-labelledby="t-chi">
+  <div class="riga griglia">
+    <h2 id="t-chi">Misurare i consumi per centri di costo, e poi ridurli</h2>
+    <div class="testo">
+      <p>Dal 1991 distribuiamo all'ingrosso strumenti per misurare e controllare l'energia elettrica; dal 1994 lavoriamo con Electrex.</p>
+      <p>Progettiamo reti di monitoraggio con software di supervisione locale e remota, che contabilizzano i consumi rilevati per centri di costo. Le abbiamo portate nelle realtà industriali del Triveneto e d'Italia.</p>
+    </div>
+    <p class="frase">Dal 1991 a Saonara: <span class="n">11</span> aree, <span class="n">148</span> prodotti a catalogo, oltre <span class="n">90</span> impianti in referenza.</p>
+  </div>
+</section>
+
+<section class="catalogo" id="catalogo" aria-labelledby="t-cat">
+  <div class="riga griglia">
+    <div class="testa">
+      <h2 id="t-cat">Il catalogo</h2>
+      <p>Undici aree, 148 prodotti di Electrex, Astrel Group, 4-noks, Nethix, Yuasa e altri produttori.</p>
+    </div>
+    <ul class="indice" role="tablist" aria-label="Aree del catalogo" aria-orientation="vertical"></ul>
+    <div class="scheda" id="scheda" role="tabpanel" tabindex="0"></div>
+  </div>
+</section>
+
+<section class="analisi" id="analisi" aria-labelledby="t-an">
+  <div class="riga griglia">
+    <h2 id="t-an">Gli sprechi possono pesare dal 10 al 30% sulla bolletta</h2>
+    <p class="testo">I nostri Energy Manager vengono in azienda con la strumentazione portatile, analizzano i consumi e consegnano una relazione tecnica. Da lì si progetta la rete di monitoraggio.</p>
+    <div class="azioni">
+      <a class="bottone" href="mailto:info@toninatogiorgio.it?subject=Analisi%20dei%20consumi">Chiedete un'analisi dei consumi</a>
+    </div>
+    <figure>
+      <img src="img/contatore-900.jpg" srcset="img/contatore-600.jpg 600w, img/contatore-900.jpg 900w, img/contatore-1260.jpg 1260w" sizes="(max-width:900px) 560px, 50vw" width="1260" height="1480" alt="Un contatore di energia elettrica su un muro a calce, con i cavi che entrano dall'alto" loading="lazy">
+      <p class="didascalia">Foto indicativa</p>
+    </figure>
+  </div>
+</section>
+
+<section class="perchi" id="assistenza" aria-labelledby="t-pc">
+  <div class="riga griglia">
+    <h2 id="t-pc">Lavoriamo con installatori, manutentori, studi tecnici, consulenti, ESCO <span class="gr">e con le aziende che consumano</span></h2>
+    <dl class="voci">
+      <div>
+        <dt>Assistenza tecnica</dt>
+        <dd>Richiesta online e 14 note tecniche da scaricare, per esempio:
+          <ul>
+            <li><a href="#">Protocollo Modbus</a></li>
+            <li><a href="#">Nota tecnica applicativa per l'installazione di reti RS485</a></li>
+            <li><a href="#">Selezione del T.A. e determinazione della sezione del cavo di collegamento</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Cataloghi e preventivi</dt>
+        <dd>Nove cataloghi dei produttori in PDF. Il preventivo si chiede dal sito, per telefono o per email.</dd>
+      </div>
+      <div>
+        <dt>Lavora con noi</dt>
+        <dd>Cerchiamo rivenditori, installatori e Global Service che vogliano diventare nostri partner, e un agente per la zona libera.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="t-ch">
+  <div class="dentro">
+    <figure>
+      <img src="img/moduli-900.jpg" srcset="img/moduli-600.jpg 600w, img/moduli-900.jpg 900w, img/moduli-1170.jpg 1170w" sizes="(max-width:900px) 100vw, 50vw" width="1170" height="1320" alt="Moduli su guida DIN in un quadro elettrico, con i morsetti verdi e i cavi del bus" loading="lazy">
+      <p class="didascalia">Foto indicativa</p>
+    </figure>
+    <div class="testo">
+      <h2 id="t-ch">Il modo migliore per risparmiare è decidere di farlo</h2>
+      <div class="recapiti">
+        <a class="tel" href="tel:+390498791358">049 8791358</a>
+        <dl>
+          <dt>Email</dt><dd><a href="mailto:info@toninatogiorgio.it">info@toninatogiorgio.it</a></dd>
+          <dt>Sede</dt><dd>Via Villanova 77/b, 35020 Villatora di Saonara (PD), a meno di <span class="nw">3 km</span> dall'uscita A13 &middot; <a class="nw" href="https://www.google.com/maps/search/?api=1&amp;query=45.38446%2C11.986261">Apri la mappa</a></dd>
+          <dt>Agenti</dt><dd>Triveneto e altre zone d'Italia</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="riga">
+    <div class="alto">
+      <div class="marchio">
+        <img src="img/logo-piede-600.webp" srcset="img/logo-piede-600.webp 600w, img/logo-piede-900.webp 900w" sizes="300px" width="600" height="83" alt="Toninato Giorgio" loading="lazy">
+        <p>Gli specialisti del controllo e la gestione dei consumi energetici. Dal 1991 a Saonara.</p>
+      </div>
+      <div class="iscrizione">
+        <h2>Novità dal catalogo</h2>
+        <p>Nuovi prodotti, promozioni e inviti ai seminari, quando ci sono.</p>
+        <form id="newsletter" novalidate>
+          <div class="campo-mail">
+            <label class="sr" for="nl-mail">Indirizzo email</label>
+            <input id="nl-mail" name="email" type="email" autocomplete="email" placeholder="La vostra email" required>
+            <button type="submit">Iscrivetevi</button>
+          </div>
+          <label class="consenso"><input type="checkbox" name="consenso" required> <span>Acconsento a ricevere le comunicazioni via email secondo l'<a href="#">informativa privacy</a>. Il consenso si revoca in ogni momento scrivendo a privacy@toninatogiorgio.it.</span></label>
+          <p class="esito" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+    <nav class="colonne" aria-label="Pagine del sito">
+      <section>
+        <h3><button class="fold" type="button" aria-expanded="false" aria-controls="c1">Azienda</button><span class="tit">Azienda</span></h3>
+        <ul id="c1"><li><a href="#chi">Chi siamo</a></li><li><a href="#">Agenti e zone</a></li><li><a href="#">Referenze</a></li><li><a href="#">Lavora con noi</a></li><li><a href="#contatti">Dove siamo</a></li></ul>
+      </section>
+      <section>
+        <h3><button class="fold" type="button" aria-expanded="false" aria-controls="c2">Prodotti</button><span class="tit">Prodotti</span></h3>
+        <ul id="c2"><li><a href="#catalogo">Monitoraggio consumi</a></li><li><a href="#catalogo">Gruppi di misura UTF</a></li><li><a href="#catalogo">Trasformatori amperometrici</a></li><li><a href="#catalogo">Telecontrollo e IoT</a></li><li><a href="#catalogo">Accumulatori</a></li><li><a href="#catalogo">Tutte le 11 aree</a></li></ul>
+      </section>
+      <section>
+        <h3><button class="fold" type="button" aria-expanded="false" aria-controls="c3">Assistenza</button><span class="tit">Assistenza</span></h3>
+        <ul id="c3"><li><a href="#assistenza">Assistenza tecnica</a></li><li><a href="#assistenza">Note tecniche</a></li><li><a href="#">Domande frequenti</a></li><li><a href="#">Cataloghi</a></li><li><a href="#">Richiesta di preventivo</a></li><li><a href="#analisi">Analisi dei consumi</a></li></ul>
+      </section>
+      <section>
+        <h3><button class="fold" type="button" aria-expanded="false" aria-controls="c4">Contatti</button><span class="tit">Contatti</span></h3>
+        <ul id="c4" class="num"><li><a href="tel:+390498791358">Tel. 049 8791358</a></li><li>Fax 049 640725</li><li><a href="mailto:info@toninatogiorgio.it">info@toninatogiorgio.it</a></li><li>PEC<br><a href="mailto:amministrazione@pec.toninatogiorgio.it">amministrazione@<wbr>pec.toninatogiorgio.it</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=45.38446%2C11.986261">Via Villanova 77/b<br>35020 Villatora di Saonara (PD)</a></li></ul>
+      </section>
+    </nav>
+    <div class="legale num">
+      <span>TONINATO GIORGIO di Rigato Claudia &amp; C. s.n.c.</span>
+      <span>P.IVA e C.F. 04435930286</span>
+      <span>REA PD 389740</span>
+      <span class="dx"><a href="#">Privacy</a><a href="#">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var aree=[
+    {b:"Monitoraggio consumi",t:"Monitoraggio dei consumi energetici",p:38,c:["Kit energia","Power quality energy data manager","Energy data manager","Analizzatori","Trasduttori","Contatori","Datalogger","Multifunzione","Trasformatori amperometrici","Accessori per reti","Software"],e:"Kilo 96: analizzatore di energia e power quality con data manager, formato 96x96 DIN."},
+    {b:"Gruppi di misura UTF",t:"Gruppi di misura certificati UTF",p:38,c:["Contatori trifase 4 quadranti","Contatori trifase","Contatori monofase","Trasformatori amperometrici","Accessori"],e:"AFMV3S01: morsettiera di verifica a 3 sistemi su barra DIN."},
+    {b:"T.A. apribili",t:"Trasformatori amperometrici apribili",p:7,c:["SCT","TP32","TP68","DBP812","DBP816","TPL80","Varie"],e:"SCT: foro da 10, 16, 24 o 36 mm; secondario da 333 mV, 1 A o 5 A."},
+    {b:"T.A. a foro passante",t:"Trasformatori amperometrici a foro passante",p:5,c:["Foro passante cavo","Foro passante barra"],e:"TA 30: spazio cavo 28 mm, spazio barra 30x10. TA 60: spazio cavo 50 mm."},
+    {b:"IoT e M2M",t:"Prodotti e soluzioni IoT, M2M",p:15,c:["Modbus e IoT","Automazione","Accessori"],e:"EasyLog XL: data logger Modbus RTU/TCP con gestione allarmi, invio mail e MQTT."},
+    {b:"Telecontrollo",t:"Telecontrollo GSM, GPRS, UMTS",p:7,c:["Mini moduli con I/O programmabili","Moduli con I/O espandibili e programmabili","Modem GSM/GPRS web server con I/O","Espansioni I/O","Antenne e alimentatori"],e:"WE300: datalogger, web server e modem GSM/GPRS con I/O, Linux embedded."},
+    {b:"Fotovoltaico",t:"Monitoraggio impianti fotovoltaici (Elios4you)",p:7,c:["Monitoraggio Wi-Fi monofase","Monitoraggio Wi-Fi trifase","Power reducer","Portale e servizi"],e:"Elios4you: monitoraggio e autoconsumo per impianti monofase fino a 12 kW, con 2 T.A. apribili da 15 mm."},
+    {b:"Protezione CEI 0-21",t:"Protezione di interfaccia CEI 0-21",p:2,c:["Tele Haase, protezione di interfaccia CEI 0-21"],e:"NA003-M64: omologata CEI 0-21, alimentazione 24-240 V AC/DC, 6 moduli DIN."},
+    {b:"Accumulatori",t:"Accumulatori (Yuasa, Elsy Power, Haze)",p:5,c:["Yuasa serie NP","Yuasa serie SWL","Elsy Power serie FP","Elsy Power serie LFP"],e:"Serie NP: batterie al piombo ricaricabili da 6 e 12 V cc."},
+    {b:"Smart home Rialto",t:"Rialto Smart Home",p:16,c:["Kit thermo","Energy meter","Accessori","Prese intelligenti"],e:"Whitebox: centralina del sistema Rialto, fino a 32 dispositivi collegabili."},
+    {b:"Monitoraggio sismico",t:"Monitoraggio sismico",p:8,c:["Sensore sismico Sismalock","Sensore sismico Sismalock Evo","Kit Sisma Building","Kit Sisma Factory","Centrale Frequency Filter FF2","Sensore strutturale SHM","Kit rilevatore di gas e sismico","Rilevatore sismico Sisma Gas","Varie"],e:"Sisma Gas: rilevatore sismico; in kit con l'elettrovalvola per il gas."}
+  ];
+  var lista=document.querySelector('.indice'),scheda=document.getElementById('scheda');
+  function due(n){return (n<10?'0':'')+n}
+  aree.forEach(function(a,i){
+    var li=document.createElement('li');li.setAttribute('role','presentation');
+    var b=document.createElement('button');b.type='button';b.id='tab'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls','scheda');
+    b.innerHTML='<span class="n">'+due(i+1)+'</span><span class="t">'+a.b+'</span>';
+    b.addEventListener('click',function(){scegli(i,false)});
+    li.appendChild(b);lista.appendChild(li);
+  });
+  var tabs=lista.querySelectorAll('[role=tab]');
+  function scegli(i,fuoco){
+    tabs.forEach(function(t,k){var s=k===i;t.setAttribute('aria-selected',s);t.tabIndex=s?0:-1});
+    var a=aree[i];
+    scheda.setAttribute('aria-labelledby','tab'+i);
+    scheda.innerHTML='<div class="area"><h3>'+a.t+'</h3><p class="conta"><b>'+a.p+'</b><span>'+(a.p===1?'prodotto':'prodotti')+' a catalogo</span></p></div>'+
+      '<ul class="cat">'+a.c.map(function(c){return '<li>'+c+'</li>'}).join('')+'</ul>'+
+      '<div class="esempio"><span>Per esempio</span><p>'+a.e+'</p></div>'+
+      '<a class="link vai" href="#">Apri l\'area '+a.b+'</a>';
+    if(fuoco){tabs[i].focus();if(tabs[i].scrollIntoView&&window.innerWidth<=900){tabs[i].scrollIntoView({block:'nearest',inline:'nearest'})}}
+  }
+  lista.addEventListener('keydown',function(ev){
+    var i=[].indexOf.call(tabs,document.activeElement);if(i<0)return;
+    var n=null;
+    if(ev.key==='ArrowDown'||ev.key==='ArrowRight')n=(i+1)%tabs.length;
+    else if(ev.key==='ArrowUp'||ev.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+    else if(ev.key==='Home')n=0;else if(ev.key==='End')n=tabs.length-1;
+    if(n!==null){ev.preventDefault();scegli(n,true)}
+  });
+  // il pannello prende l'altezza della scheda piu lunga: cambiando area la pagina sotto non salta
+  function fissa(){
+    var cur=[].findIndex.call(tabs,function(t){return t.getAttribute('aria-selected')==='true'});
+    scheda.style.minHeight='';var max=0;
+    for(var k=0;k<aree.length;k++){scegli(k,false);max=Math.max(max,scheda.offsetHeight)}
+    scegli(cur<0?0:cur,false);scheda.style.minHeight=max+'px';
+  }
+  scegli(0,false);fissa();
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fissa,150)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fissa);
+
+  var bm=document.querySelector('.apri-menu'),menu=document.getElementById('menu');
+  bm.addEventListener('click',function(){var o=menu.classList.toggle('aperto');bm.setAttribute('aria-expanded',o)});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('aperto');bm.setAttribute('aria-expanded','false')}});
+
+  var mq=window.matchMedia('(max-width:560px)');
+  function pieghe(){
+    document.querySelectorAll('.colonne .fold').forEach(function(f){
+      var ul=document.getElementById(f.getAttribute('aria-controls'));
+      if(mq.matches){ul.hidden=f.getAttribute('aria-expanded')!=='true'}else{ul.hidden=false}
+    });
+  }
+  document.querySelectorAll('.colonne .fold').forEach(function(f){
+    f.addEventListener('click',function(){var o=f.getAttribute('aria-expanded')!=='true';f.setAttribute('aria-expanded',o);pieghe()});
+  });
+  (mq.addEventListener?mq.addEventListener('change',pieghe):mq.addListener(pieghe));pieghe();
+
+  var form=document.getElementById('newsletter'),esito=form.querySelector('.esito');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var m=form.email,c=form.consenso;
+    if(!m.value||!m.checkValidity()){esito.textContent='Scrivete un indirizzo email valido.';m.focus();return}
+    if(!c.checked){esito.textContent='Serve il consenso per inviarvi le novità.';c.focus();return}
+    esito.textContent='Grazie: l\'iscrizione sarà attiva quando il modulo verrà collegato al servizio di invio.';
+  });
+})();
+</script>
+</body>
+</html>

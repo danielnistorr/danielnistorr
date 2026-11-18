@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>247LAB, lampade in ottone e luce per l'architettura</title>
+<meta name="description" content="247LAB, Saonara (Padova): lampade in ottone della collezione RB, apparecchi tecnici Twentyfour7 e il sistema a binario G-label. Su misura per architetti e progettisti.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/base.css">
+<style>
+/* home: solo le sezioni della pagina; token, testata, piede, bottoni e moduli sono in css/base.css */
+/* 1. apertura: la lampada accesa pende sopra "dark", il fascio sfiora le ascendenti */
+.apertura{position:relative;height:100vh;height:100svh;min-height:760px;max-height:920px;overflow:hidden}
+.apertura-testo{position:absolute;left:var(--m);right:var(--m);bottom:56px}
+.apertura h1{font-size:clamp(64px,9.4vw,136px);line-height:.9;letter-spacing:-.035em;margin-left:-.05em;white-space:nowrap;isolation:isolate}
+.apertura h1 .buio{position:relative;display:inline-block}
+.lampada{position:absolute;z-index:-1;left:50%;bottom:calc(100% - 1.15em);width:5.04em;max-width:none;transform:translateX(-50%);pointer-events:none}
+.apertura-sotto{margin-top:36px;align-items:end}
+.apertura .sotto{grid-column:1 / span 6;font-family:var(--jost);font-size:24px;line-height:1.3;font-weight:300}
+.apertura .chi{grid-column:1 / span 6;margin-top:12px;color:var(--cenere);max-width:34em}
+.azioni{grid-column:1 / span 6;margin-top:28px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.azioni .vai{color:var(--luce)}
+.apertura .didascalia{grid-column:10 / span 3;grid-row:1 / span 3;align-self:end;text-align:right}
+
+/* 2. tre collezioni: una foto grande a filo del bordo sinistro, accanto l'indice delle tre */
+.collezioni{padding-top:var(--s6);padding-bottom:var(--s6);align-items:start}
+.collezioni figure{grid-column:1 / span 6;margin-left:calc(-1 * var(--m))}
+.collezioni figure img{width:100%;aspect-ratio:4/5;max-height:960px;object-fit:cover}
+.collezioni figcaption{margin-top:12px;padding-left:var(--m);max-width:36em}
+.collezioni-testo{grid-column:8 / span 5;padding-top:var(--s1)}
+.collezioni h2{font-size:64px;line-height:1;letter-spacing:-.03em}
+.collezioni .intro{margin-top:var(--s3);color:var(--seppia);max-width:34em}
+.indice{list-style:none;margin-top:var(--s5);border-top:1px solid var(--filo-c)}
+.indice li{padding:var(--s3) 0 28px;border-bottom:1px solid var(--filo-c)}
+.indice h3{font-size:36px;line-height:1.1;letter-spacing:-.02em}
+.indice h3 small{font-family:var(--hanken);font-size:15px;letter-spacing:0;color:var(--seppia);font-weight:400;margin-left:12px}
+.indice p{margin-top:var(--s1);max-width:34em}
+.indice .link{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 28px}
+.indice .link .pdf{font-family:var(--hanken);font-size:15px;color:var(--seppia)}
+
+/* 3. MINA, il gesto: la finitura cambia foto, prezzo e codice */
+.mina{padding-top:var(--s5);padding-bottom:var(--s6);align-items:center}
+.mina-testo{grid-column:1 / span 6}
+.mina-testo h2{font-size:88px;line-height:.9;letter-spacing:-.03em}
+.mina-testo>p{margin-top:var(--s3);color:var(--seppia);max-width:30em}
+.mina-testo>p strong{color:var(--inchiostro);font-weight:500}
+.mina-scelta{margin-top:var(--s4);max-width:440px}
+.mina-scelta fieldset{border:0}
+.mina-scelta legend{font-family:var(--jost);font-size:17px;margin-bottom:var(--s2)}
+.finitura{display:block;cursor:pointer}
+.finitura input{position:absolute;opacity:0;width:1px;height:1px}
+.finitura span{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--filo-c);font-size:17px;color:var(--seppia);transition:color .15s}
+.finitura:last-of-type span{border-bottom:1px solid var(--filo-c)}
+.finitura i{display:block;width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px rgba(23,22,20,.22) inset}
+.finitura:hover span,.finitura input:checked + span{color:var(--inchiostro)}
+.finitura input:checked + span i{box-shadow:0 0 0 2px var(--carta),0 0 0 3px var(--inchiostro)}
+.finitura input:focus-visible + span{outline:2px solid var(--ottone-scuro);outline-offset:2px}
+.prezzo{margin-top:var(--s4);display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
+.prezzo output{font-family:var(--jost);font-weight:300;font-size:64px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.prezzo .sku{font-size:14px;color:var(--seppia);font-variant-numeric:tabular-nums}
+.mina-scelta .note{margin-top:var(--s2);font-size:15px;color:var(--seppia)}
+.mina-scelta .bottone{margin-top:var(--s4)}
+.mina-foto{grid-column:8 / span 5;margin-right:calc(-1 * var(--m))}
+.mina-foto img{width:100%;aspect-ratio:4/5;max-height:880px;object-fit:cover;background:#2A2723}
+
+/* 4. progetti: la foto a filo del bordo sinistro, l'indice dei committenti accanto */
+.progetti{padding-top:var(--s5);padding-bottom:var(--s6)}
+.progetti h2{font-size:64px;line-height:1;letter-spacing:-.03em}
+.progetti .studi{margin-top:var(--s3);max-width:60ch;color:var(--seppia)}
+.progetto{margin-top:var(--s5);align-items:start}
+.progetto figure{grid-column:1 / span 7;margin-left:calc(-1 * var(--m))}
+.progetto img{width:100%;aspect-ratio:5/4;object-fit:cover}
+.progetto figcaption{margin-top:12px;padding-left:var(--m)}
+.progetto figcaption .vai{margin-left:20px;font-size:15px;color:var(--inchiostro)}
+.nomi{grid-column:8 / span 5;list-style:none;border-top:1px solid var(--filo-c)}
+.nomi li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0 10px;border-bottom:1px solid var(--filo-c)}
+.nomi span{font-family:var(--jost);font-weight:300;font-size:24px;line-height:1.25;letter-spacing:-.01em}
+.nomi small{font-size:14px;color:var(--seppia);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+
+/* 5. su misura, sul muro nero del banco: e' la foto a chiedere il nero, non la pagina */
+.persone{position:relative;background:var(--nero);color:var(--luce)}
+.persone img{width:100%;aspect-ratio:2/1;object-fit:cover}
+.persone-testo{position:absolute;top:var(--s5);left:var(--m);width:min(560px,42%)}
+.persone-testo h2{font-size:56px;line-height:1.02;letter-spacing:-.025em}
+.persone-testo p{margin-top:var(--s3);color:var(--cenere);max-width:30em}
+.persone-testo p.chi-sono{color:var(--luce)}
+.persone-testo .vai{display:inline-block;margin-top:var(--s3)}
+.persone a:hover{color:var(--ottone)}
+.persone :focus-visible{outline-color:var(--ottone)}
+
+/* 6. chiusura: testo a sinistra, la foto a destra fino al bordo */
+.chiusura{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-left:var(--m);align-items:stretch}
+.chiusura figure{grid-column:7 / span 6;grid-row:1}
+.chiusura figure img{width:100%;height:100%;min-height:700px;max-height:700px;object-fit:cover}
+.chiusura-testo{grid-column:1 / span 5;grid-row:1;padding:var(--s6) 0 var(--s5);display:flex;flex-direction:column}
+.chiusura-testo h2{font-size:72px;line-height:.98;letter-spacing:-.03em}
+.recapiti{margin-top:var(--s5);font-style:normal}
+.recapiti .tel{display:inline-block;font-family:var(--jost);font-weight:300;font-size:48px;line-height:1.1;letter-spacing:-.01em;text-decoration:none;font-variant-numeric:tabular-nums;border-bottom:1px solid currentColor}
+.recapiti p{margin-top:var(--s3)}
+.recapiti .sec{color:var(--seppia)}
+.recapiti a{color:var(--inchiostro)}
+.recapiti a:hover{color:var(--ottone-scuro)}
+.chiusura .didascalia{margin-top:auto;padding-top:var(--s5)}
+
+/* 1024 */
+@media (max-width:1180px){
+  .collezioni h2,.progetti h2{font-size:52px}
+  .indice h3{font-size:30px}
+  .mina-testo h2{font-size:72px}
+  .nomi span{font-size:21px}
+  .persone-testo{width:min(520px,52%);top:var(--s4)}
+  .persone-testo h2{font-size:40px}
+  .persone-testo p{margin-top:var(--s2);font-size:16px}
+  .persone-testo .vai{margin-top:var(--s2)}
+  .chiusura-testo h2{font-size:56px}
+  .recapiti .tel{font-size:40px}
+  .chiusura figure img{min-height:640px;max-height:640px}
+}
+/* 768: da qui il menu e' un bottone */
+@media (max-width:900px){
+  .apertura{height:auto;min-height:0;max-height:none;padding-top:calc(9.4vw * 4.4)}
+  .apertura-testo{position:relative;left:auto;right:auto;bottom:auto;padding:0 var(--m) 56px}
+  .apertura .sotto,.apertura .chi,.azioni{grid-column:1 / span 8}
+  .apertura .didascalia{display:none}
+  .collezioni figure{grid-column:1 / span 6}
+  .collezioni-testo{grid-column:7 / span 6;padding-top:0}
+  .collezioni h2,.progetti h2{font-size:44px}
+  .indice{margin-top:var(--s4)}
+  .indice h3 small{display:block;margin:4px 0 0}
+  .mina-testo{grid-column:1 / span 6}
+  .mina-foto{grid-column:7 / span 6}
+  .mina-testo h2{font-size:64px}
+  .prezzo output{font-size:52px}
+  .progetto figure{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
+  .progetto figcaption{padding-right:var(--m)}
+  .progetto figcaption .vai{display:inline-block;margin:6px 0 0}
+  .nomi{grid-column:1 / -1;margin-top:var(--s4);columns:2;column-gap:var(--g);border-top:0}
+  .nomi li{break-inside:avoid;border-top:1px solid var(--filo-c);border-bottom:0}
+  .persone{background:var(--carta);color:var(--inchiostro)}
+  .persone-testo{position:static;width:auto;max-width:640px;padding:var(--s5) var(--m) var(--s4)}
+  .persone-testo h2{font-size:44px}
+  .persone-testo p{color:var(--seppia);font-size:17px}
+  .persone-testo p.chi-sono{color:var(--inchiostro)}
+  .persone a:hover{color:var(--ottone-scuro)}
+  .persone :focus-visible{outline-color:var(--ottone-scuro)}
+  .persone img{aspect-ratio:3/2}
+  .chiusura{padding-left:0}
+  .chiusura figure{grid-column:1 / -1;grid-row:2}
+  .chiusura figure img{min-height:0;max-height:none;height:auto;aspect-ratio:5/4}
+  .chiusura-testo{grid-column:1 / -1;grid-row:1;padding:var(--s6) var(--m) var(--s5)}
+  .chiusura .didascalia{padding-top:var(--s4)}
+}
+/* 390 */
+@media (max-width:600px){
+  .apertura{padding-top:calc(88vw * 1.178 * .80 + 26px)}
+  .apertura h1,.apertura h1 .buio,.apertura-testo{position:static}
+  .apertura-testo{padding:0 var(--m) 48px}
+  .apertura h1{font-size:clamp(44px,14vw,60px);line-height:.92;white-space:normal}
+  .apertura h1 .riga{display:block}
+  .lampada{top:0;bottom:auto;width:88vw}
+  .apertura-sotto{margin-top:24px}
+  .apertura .sotto{grid-column:1 / -1;font-size:20px}
+  .apertura .chi{grid-column:1 / -1;font-size:16px}
+  .azioni{grid-column:1 / -1;margin-top:24px;gap:24px}
+  .collezioni{padding-top:0;padding-bottom:var(--s5)}
+  .collezioni figure{grid-column:1 / -1;margin-right:calc(-1 * var(--m))}
+  .collezioni figcaption{padding-right:var(--m)}
+  .collezioni-testo{grid-column:1 / -1;padding:var(--s5) 0 0}
+  .collezioni h2,.progetti h2{font-size:40px}
+  .indice h3{font-size:28px}
+  .mina{padding-top:0;padding-bottom:var(--s5)}
+  .mina-testo{grid-column:1 / -1}
+  .mina-testo h2{font-size:64px}
+  .mina-foto{grid-column:1 / -1;grid-row:1;margin:0 calc(-1 * var(--m)) var(--s4)}
+  .mina-scelta{margin-top:var(--s3);max-width:none}
+  .progetti{padding-top:var(--s5);padding-bottom:var(--s5)}
+  .progetto img{aspect-ratio:4/5}
+  .nomi{columns:1}
+  .nomi span{font-size:20px}
+  .persone-testo{padding-top:var(--s5)}
+  .persone-testo h2{font-size:36px}
+  .persone img{aspect-ratio:4/5}
+  .chiusura-testo{padding-top:var(--s5)}
+  .chiusura-testo h2{font-size:44px}
+  .recapiti .tel{font-size:38px}
+  .chiusura figure img{aspect-ratio:4/5}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo-247" viewBox="0 0 2246 455"><path fill="currentColor" fill-rule="evenodd" d="M1021.0 8.0 L759.5 8.0 L756.5 9.5 L755.0 11.5 L755.0 39.5 L756.5 41.5 L759.5 43.0 L975.5 43.5 L810.0 444.0 L811.0 448.0 L814.5 450.5 L844.0 450.5 L848.5 445.5 L1025.5 16.5 L1025.0 11.0 Z M622.0 7.0 L617.5 7.0 L615.0 8.5 L367.5 355.5 L368.0 360.0 L372.0 363.0 L589.5 363.0 L590.0 445.5 L591.0 448.0 L594.0 450.5 L622.0 450.5 L625.5 447.5 L625.5 363.5 L670.0 363.0 L672.0 362.5 L674.5 360.0 L675.0 358.0 L675.0 334.0 L672.0 330.0 L625.5 329.0 L625.5 10.5 Z M589.5 106.0 L590.0 329.0 L431.0 329.5 L430.5 328.0 Z M93.5 20.0 L78.0 28.5 L65.0 38.0 L51.0 52.0 L38.0 70.0 L30.0 86.5 L23.0 108.0 L19.0 135.0 L19.0 139.0 L21.0 142.5 L22.5 143.5 L51.5 143.5 L54.5 141.0 L55.5 128.0 L58.5 114.5 L68.5 89.5 L80.5 72.5 L89.5 63.5 L97.5 57.5 L115.5 48.5 L134.5 43.5 L148.5 41.5 L178.0 41.5 L195.0 44.5 L210.5 50.5 L220.5 56.5 L227.5 62.0 L244.0 79.0 L251.0 91.0 L255.0 101.5 L258.0 113.5 L260.5 135.0 L259.0 147.5 L252.0 169.0 L244.0 185.5 L237.0 197.5 L215.0 229.0 L194.0 254.5 L145.0 307.0 L99.0 353.0 L54.0 395.0 L4.5 438.0 L1.0 442.0 L1.0 447.5 L4.5 450.5 L301.5 450.5 L305.5 447.0 L305.5 420.0 L301.0 416.0 L84.0 415.5 L140.0 362.5 L177.5 325.0 L219.5 279.0 L252.5 239.0 L269.5 214.5 L283.5 188.0 L292.5 161.5 L296.0 139.5 L295.5 118.0 L293.5 105.0 L288.5 86.5 L282.5 73.0 L273.5 59.0 L264.5 48.0 L252.0 36.0 L236.5 25.0 L227.5 20.0 L210.5 13.0 L195.0 9.0 L180.0 7.0 L147.0 7.0 L143.5 8.0 L137.5 8.0 L116.5 12.0 Z M1663.5 1.5 L1662.0 2.0 L1637.0 61.0 L1627.0 82.5 L1592.0 165.0 L1468.0 450.0 L1467.0 454.5 L1492.5 454.0 L1556.5 306.5 L1760.5 306.5 L1767.0 320.5 L1773.0 337.0 L1821.0 454.5 L1846.5 454.5 L1839.5 435.5 L1742.5 198.0 L1678.5 38.5 L1669.5 18.0 Z M1662.5 63.0 L1751.0 282.0 L1750.0 283.0 L1568.0 283.0 L1567.0 282.0 L1575.5 261.5 L1588.5 233.0 L1660.5 65.0 Z M1940.0 1.0 L1939.5 454.0 L2129.0 454.5 L2145.0 452.5 L2165.0 447.5 L2179.0 442.5 L2194.5 434.5 L2209.5 423.5 L2222.5 410.5 L2232.5 396.5 L2238.5 383.5 L2241.5 373.5 L2245.5 349.0 L2245.5 333.0 L2241.5 306.5 L2236.5 290.0 L2228.5 273.5 L2216.5 257.5 L2205.0 247.0 L2191.0 238.0 L2174.0 230.0 L2166.5 227.5 L2168.0 225.5 L2177.5 220.5 L2189.0 212.0 L2196.5 205.0 L2204.5 195.5 L2213.5 180.5 L2217.5 171.0 L2221.5 157.5 L2224.5 139.5 L2225.0 128.5 L2223.5 105.0 L2218.5 82.0 L2213.5 68.5 L2208.5 58.5 L2200.5 46.5 L2194.5 39.5 L2186.0 31.5 L2175.0 23.5 L2152.0 12.0 L2137.5 7.0 L2121.5 3.0 L2104.0 1.0 Z M1963.5 243.0 L2130.5 242.5 L2156.5 247.5 L2178.5 256.5 L2191.5 265.5 L2201.0 275.0 L2205.5 281.0 L2213.0 294.5 L2219.0 313.5 L2222.0 338.0 L2221.0 354.5 L2216.0 375.5 L2209.0 390.0 L2198.5 403.0 L2187.5 412.0 L2179.0 417.0 L2159.5 425.0 L2138.0 430.0 L2128.5 431.0 L1964.5 431.0 L1963.5 430.0 Z M1963.5 25.5 L1964.5 24.5 L2105.5 24.5 L2119.5 26.5 L2137.0 31.5 L2147.0 35.5 L2165.0 45.5 L2180.0 59.5 L2188.0 71.0 L2196.0 89.5 L2200.0 108.0 L2201.0 116.5 L2201.0 135.5 L2199.0 149.0 L2193.0 168.5 L2186.0 180.5 L2172.0 195.5 L2157.5 206.0 L2144.5 212.0 L2122.5 218.0 L2115.5 219.0 L1964.0 219.0 Z M1105.5 1.0 L1105.0 454.5 L1388.5 454.5 L1389.0 431.0 L1129.5 431.0 L1128.5 430.0 L1128.5 1.5 Z"/></symbol></svg>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata wrap" id="testata">
+  <a class="logo" href="#" aria-label="247LAB, home"><svg viewBox="0 0 2246 455" role="img" aria-label="247LAB"><use href="#logo-247"/></svg></a>
+  <nav aria-label="Menu principale">
+    <ul class="menu" id="menu">
+      <li><a href="prodotti.html">Collezioni</a></li>
+      <li><a href="progetti.html">Progetti</a></li>
+      <li><a href="su-misura.html">Su misura</a></li>
+      <li><a href="cataloghi.html">Cataloghi</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li class="solo-tel"><a class="num" href="tel:+39049644600">049&nbsp;644600</a></li>
+    </ul>
+  </nav>
+  <div class="testata-dx">
+    <a class="tel" href="tel:+39049644600">049&nbsp;644600</a>
+    <a class="lingua" href="https://www.247lab.it/" lang="en">EN</a>
+    <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i><span>Menu</span></button>
+  </div>
+</header>
+
+<main id="contenuto">
+
+<section class="apertura scuro" aria-labelledby="titolo">
+  <div class="apertura-testo">
+    <h1 id="titolo" lang="en"><span class="parole"><span class="riga">We don't fear</span> <span class="riga">the <span class="buio">dark<img class="lampada" src="img/apertura-boaty-960.webp" srcset="img/apertura-boaty-640.webp 640w, img/apertura-boaty-960.webp 960w, img/apertura-boaty-1280.webp 1280w, img/apertura-boaty-1520.webp 1520w, img/apertura-boaty-1780.webp 1780w" sizes="(max-width:600px) 88vw, 46vw" alt="" aria-hidden="true" fetchpriority="high"></span></span></span></h1>
+    <div class="griglia apertura-sotto">
+      <p class="sotto">La bellezza della luce nella sua forma più pura</p>
+      <p class="chi">Lampade in ottone fatte a mano in Italia e apparecchi tecnici per l'architettura, da Saonara, Padova.</p>
+      <div class="azioni">
+        <a class="bottone" href="#collezioni">Le tre collezioni</a>
+        <a class="vai" href="cataloghi.html">Cataloghi <span class="num">2026</span></a>
+      </div>
+      <p class="didascalia"><b>BOATY S</b>, collezione RB<br>sospensione in ottone, 1xGU10 LED <span class="num">8&nbsp;W</span>, IP20</p>
+    </div>
+  </div>
+</section>
+
+<section class="collezioni griglia wrap" id="collezioni" aria-labelledby="t-collezioni">
+  <figure>
+    <img src="img/collezioni-f346-900.webp" srcset="img/collezioni-f346-600.webp 600w, img/collezioni-f346-900.webp 900w, img/collezioni-f346-1200.webp 1200w, img/collezioni-f346-1440.webp 1440w" sizes="(max-width:600px) 100vw, 50vw" alt="Due fari cilindrici in ottone su un'asta, contro una parete bianca nella luce del giorno" loading="lazy">
+    <figcaption class="didascalia"><b>Ottone nella luce del giorno.</b> Casa P, Verona <span class="num">2022</span>, progetto Parisotto + Formenton Architetti, foto Alessandro Cusano.</figcaption>
+  </figure>
+  <div class="collezioni-testo">
+    <h2 id="t-collezioni">Tre collezioni</h2>
+    <p class="intro">247LAB nasce nel <span class="num">2021</span> dall'esperienza di TWENTYFOUR7, la nostra azienda storica. Ogni apparecchio nasce da uno scambio continuo tra progettista e cliente.</p>
+    <ol class="indice">
+      <li>
+        <div>
+          <h3>RB <small>collezione decorativa</small></h3>
+          <p>Il corpo lampada inteso come scultura luminosa. Ottone naturale, brunito o antracite, fatto a mano in Italia: <span class="num">49</span> modelli in otto famiglie.</p>
+          <p class="link"><a class="vai" href="collezione-rb.html">Collezione RB</a><a class="pdf" href="cataloghi/RB_Catalogo_2026_ITA.pdf" type="application/pdf">Catalogo <span class="num">2026</span>, PDF <span class="num">6,6</span> MB</a></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Twentyfour7 <small>collezione tecnica</small></h3>
+          <p>Incassi, binari e profili LED nati per adattarsi all'architettura, senza diventare protagonisti. <span class="num">24</span> modelli.</p>
+          <p class="link"><a class="vai" href="collezione-tecnica.html">Collezione Twentyfour7</a><a class="pdf" href="cataloghi/Twentyfour7_Catalogo_2026_ITA.pdf" type="application/pdf">Catalogo <span class="num">2026</span>, PDF <span class="num">4,0</span> MB</a></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>G-label <small>il nuovo sistema a binario</small></h3>
+          <p>Un nuovo modo di vivere l'illuminazione: flessibile, sofisticata e senza compromessi. In alluminio anodizzato finitura ottone, come la RB.</p>
+          <p class="link"><a class="vai" href="g-label.html">Il sistema G-label</a><a class="pdf" href="cataloghi/G-label_Catalogo_2026_ITA.pdf" type="application/pdf">Catalogo <span class="num">2026</span>, PDF <span class="num">2,9</span> MB</a></p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="mina griglia wrap" id="mina" aria-labelledby="t-mina">
+  <div class="mina-testo">
+    <h2 id="t-mina">MINA</h2>
+    <p><strong>La lampada da tavolo ricaricabile di 247LAB.</strong> Circa <span class="num">4,5</span> ore di batteria alla massima potenza.</p>
+    <form class="mina-scelta" action="#" onsubmit="return false">
+      <fieldset>
+        <legend>Scegli la finitura</legend>
+        <label class="finitura"><input type="radio" name="finitura" value="ottone" checked data-prezzo="135" data-sku="247M.001" data-link="shop/mina.html" data-alt="MINA in ottone su un piano di cemento"><span><i style="background:#B8924A"></i>Ottone</span></label>
+        <label class="finitura"><input type="radio" name="finitura" value="marrone" data-prezzo="155" data-sku="247M.002" data-link="shop/mina-marrone-brunito.html" data-alt="MINA in ottone brunito marrone su un piano di cemento"><span><i style="background:#5A4130"></i>Brunito marrone</span></label>
+        <label class="finitura"><input type="radio" name="finitura" value="antracite" data-prezzo="155" data-sku="247M.003" data-link="shop/mina-antracite.html" data-alt="MINA in ottone brunito antracite su un piano di cemento"><span><i style="background:#3A3D40"></i>Brunito antracite</span></label>
+      </fieldset>
+      <div class="prezzo"><output id="mina-prezzo" aria-live="polite">135&nbsp;€</output><span class="sku">codice <span id="mina-sku">247M.001</span></span></div>
+      <p class="note">Spedizione gratuita in tutta Italia.</p>
+      <a class="bottone" id="mina-link" href="shop/mina.html">Acquista nello shop</a>
+    </form>
+  </div>
+  <figure class="mina-foto">
+    <img id="mina-img" src="img/mina-ottone-780.webp" srcset="img/mina-ottone-520.webp 520w, img/mina-ottone-780.webp 780w, img/mina-ottone-1040.webp 1040w, img/mina-ottone-1300.webp 1300w" sizes="(max-width:600px) 100vw, 42vw" alt="MINA in ottone su un piano di cemento" loading="lazy">
+  </figure>
+</section>
+
+<section class="progetti wrap" id="progetti" aria-labelledby="t-progetti">
+  <h2 id="t-progetti" class="num">41 progetti dal 2006 al 2025</h2>
+  <p class="studi">Negozi, alberghi, ristoranti e case, con studi come Marco Costanzi Architects, Parisotto + Formenton Architetti e Zanon Architetti Associati.</p>
+  <div class="griglia progetto">
+    <figure>
+      <picture>
+        <source media="(max-width:600px)" srcset="img/progetto-casa-g-v-600.webp 600w, img/progetto-casa-g-v-900.webp 900w" sizes="100vw">
+        <img src="img/progetto-casa-g-1240.webp" srcset="img/progetto-casa-g-820.webp 820w, img/progetto-casa-g-1240.webp 1240w, img/progetto-casa-g-1640.webp 1640w, img/progetto-casa-g-2000.webp 2000w" sizes="(max-width:900px) 100vw, 58vw" alt="KYLE terra in ottone accesa accanto a una poltrona e a un pouf in pelle cuoio, contro una parete chiara" loading="lazy">
+      </picture>
+      <figcaption class="didascalia"><b>Casa G</b>, Venezia <span class="num">2024</span>. KYLE terra in ottone. Progetto MIDE architetti, foto Alessandro Cusano. <a class="vai" href="progetti.html">Tutti i progetti</a></figcaption>
+    </figure>
+    <ul class="nomi" aria-label="Alcuni committenti">
+      <li><span>Ferragamo</span> <small>Firenze 2006</small></li>
+      <li><span>10&nbsp;Corso Como</span> <small>Milano 2012</small></li>
+      <li><span>Hotel Mediterraneo</span> <small>Jesolo 2012</small></li>
+      <li><span>Fendi</span> <small>Milano 2013</small></li>
+      <li><span>Casadei</span> <small>Londra 2013</small></li>
+      <li><span>Tiziana Fausti</span> <small>Lugano 2014</small></li>
+      <li><span>Palazzo Vendramin</span> <small>Venezia 2017</small></li>
+      <li><span>H-Farm</span> <small>Roncade 2020</small></li>
+      <li><span>Hotel Coast</span> <small>Milano Marittima 2020</small></li>
+      <li><span>Dolce&amp;Gabbana</span> <small>Londra 2022</small></li>
+      <li><span>Enoteca S.&nbsp;Lucia</span> <small>Padova 2023</small></li>
+      <li><span>Casa G</span> <small>Venezia 2024</small></li>
+      <li><span>Harry's Piccolo</span> <small>Trieste 2025</small></li>
+    </ul>
+  </div>
+</section>
+
+<section class="persone" id="su-misura" aria-labelledby="t-misura">
+  <div class="persone-testo">
+    <h2 id="t-misura">...ma siamo sempre aperti a nuove idee</h2>
+    <p>Se a catalogo non c'è esattamente quello che cerchi, valutiamo insieme un modello su misura, disegnato sulle tue esigenze.</p>
+    <p class="chi-sono">Roberto e Marco Bertelli, padre e figlio. Roberto lavora nell'illuminazione da quasi due decenni.</p>
+    <a class="vai" href="#contatti">Parliamo del tuo progetto</a>
+  </div>
+  <picture>
+    <source media="(max-width:600px)" srcset="img/persone-f018-v-600.webp 600w, img/persone-f018-v-900.webp 900w, img/persone-f018-v-1200.webp 1200w" sizes="100vw">
+    <source media="(max-width:900px)" srcset="img/persone-f018-m-900.webp 900w, img/persone-f018-m-1600.webp 1600w" sizes="100vw">
+    <img src="img/persone-f018-1440.webp" srcset="img/persone-f018-1440.webp 1440w, img/persone-f018-2000.webp 2000w, img/persone-f018-2880.webp 2880w" sizes="100vw" alt="Roberto Bertelli al banco con un corpo in ottone in mano" loading="lazy">
+  </picture>
+</section>
+
+<section id="contatti" aria-labelledby="t-contatti">
+  <div class="chiusura">
+    <div class="chiusura-testo">
+      <h2 id="t-contatti">Sempre a tua disposizione, <span class="num">24/7</span></h2>
+      <address class="recapiti">
+        <a class="tel" href="tel:+39049644600">049&nbsp;644600</a>
+        <p><a href="mailto:info@247lab.it">info@247lab.it</a><br><a href="https://wa.me/message/VTJJOI4ARHOUE1">Scrivici su WhatsApp</a></p>
+        <p class="sec">Via Emilia Romagna 31, 35020 Saonara (PD)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Emilia%20Romagna%2031%2C%2035020%20Saonara%20PD">Apri la mappa</a></p>
+      </address>
+      <p class="didascalia"><b>CIUCCIO</b>, applique da esterni in ottone naturale e vetro, 1xE27 LED <span class="num">6&nbsp;W</span>, <span class="num">3000K</span>, IP44, alta <span class="num">700&nbsp;mm</span></p>
+    </div>
+    <figure>
+      <picture>
+        <source media="(min-width:601px) and (max-width:900px)" srcset="img/chiusura-ciuccio-h-900.webp 900w, img/chiusura-ciuccio-h-1440.webp 1440w" sizes="100vw">
+        <img src="img/chiusura-ciuccio-900.webp" srcset="img/chiusura-ciuccio-600.webp 600w, img/chiusura-ciuccio-900.webp 900w, img/chiusura-ciuccio-1280.webp 1280w" sizes="(max-width:600px) 100vw, 50vw" alt="L'applique CIUCCIO in ottone e vetro, accesa su una parete chiara" loading="lazy">
+      </picture>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer class="piede wrap" aria-labelledby="t-piede">
+  <h2 class="vh" id="t-piede">247LAB, informazioni e link</h2>
+  <div class="griglia piede-alto">
+    <div class="piede-chi">
+      <a class="logo" href="#" aria-label="247LAB, torna su"><svg viewBox="0 0 2246 455" role="img" aria-label="247LAB"><use href="#logo-247"/></svg></a>
+      <p>Lampade in ottone, apparecchi tecnici e sistemi a binario, progettati con architetti e progettisti. Saonara, Padova, dal <span class="num">2021</span>.</p>
+    </div>
+    <form class="newsletter" id="newsletter" action="#" novalidate>
+      <h2>I cataloghi nuovi, quando escono</h2>
+      <p class="i">Una mail per ogni catalogo e ogni nuova collezione. Niente altro.</p>
+      <div class="campo">
+        <label class="vh" for="nl-email">Indirizzo email</label>
+        <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="La tua email" required>
+        <button type="submit">Iscriviti</button>
+      </div>
+      <label class="consenso"><input type="checkbox" name="consenso" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e voglio ricevere la newsletter di 247LAB.</span></label>
+      <p class="esito" id="nl-esito" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="griglia colonne">
+    <nav class="colonna" aria-labelledby="c1"><h3 id="c1">Collezioni</h3><ul>
+      <li><a href="collezione-rb.html">RB decorativa</a></li>
+      <li><a href="collezione-tecnica.html">Twentyfour7 tecnica</a></li>
+      <li><a href="g-label.html">G-label</a></li>
+      <li><a href="su-misura.html">Su misura</a></li>
+      <li><a href="shop.html">MINA</a></li>
+    </ul></nav>
+    <nav class="colonna" aria-labelledby="c2"><h3 id="c2">Azienda</h3><ul>
+      <li><a href="progetti.html">Progetti</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="cataloghi.html">Cataloghi <span class="num">2026</span></a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul></nav>
+    <div class="colonna"><h3>Contatti</h3><ul>
+      <li><a class="num" href="tel:+39049644600">+39 049&nbsp;644600</a></li>
+      <li><a href="mailto:info@247lab.it">info@247lab.it</a></li>
+      <li><a href="https://wa.me/message/VTJJOI4ARHOUE1">WhatsApp</a></li>
+      <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Via%20Emilia%20Romagna%2031%2C%2035020%20Saonara%20PD">Via Emilia Romagna 31<br>35020 Saonara (PD)</a></li>
+    </ul></div>
+    <nav class="colonna" aria-labelledby="c4"><h3 id="c4">Seguici</h3><ul>
+      <li><a href="https://www.instagram.com/247.lab/">Instagram</a></li>
+      <li><a href="https://www.facebook.com/247lab.luce">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/company/247lab-luce/">LinkedIn</a></li>
+      <li><a href="https://www.pinterest.it/247labluce/">Pinterest</a></li>
+      <li><a href="https://www.archiproducts.com/en/247lab">Archiproducts</a></li>
+    </ul></nav>
+  </div>
+  <div class="legale">
+    <span>© <span class="num">2026</span> 247LAB di Marco Bertelli, ditta individuale</span>
+    <span class="num">P.IVA 05375130282</span>
+    <span class="dx"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a><a href="https://www.247lab.it/" lang="en">English</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // MINA: la finitura cambia foto, prezzo, codice e link allo shop
+  var img=document.getElementById('mina-img'),prezzo=document.getElementById('mina-prezzo'),sku=document.getElementById('mina-sku'),link=document.getElementById('mina-link');
+  document.querySelectorAll('input[name=finitura]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var v=r.value;
+      img.srcset='img/mina-'+v+'-520.webp 520w, img/mina-'+v+'-780.webp 780w, img/mina-'+v+'-1040.webp 1040w, img/mina-'+v+'-1300.webp 1300w';
+      img.src='img/mina-'+v+'-780.webp';
+      img.alt=r.dataset.alt;
+      prezzo.textContent=r.dataset.prezzo+' €';
+      sku.textContent=r.dataset.sku;
+      link.href=r.dataset.link;
+    });
+  });
+  // precarica le altre due finiture nella misura che la pagina usa, cosi' il cambio e' immediato
+  var mina=document.querySelector('.mina-foto');
+  function precarica(){var w=mina.getBoundingClientRect().width*(window.devicePixelRatio||1),m=[520,780,1040,1300].find(function(x){return x>=w;})||1300;
+    ['ottone','marrone','antracite'].forEach(function(v){var i=new Image();i.src='img/mina-'+v+'-'+m+'.webp';});}
+  if('IntersectionObserver' in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){precarica();o.disconnect();}},{rootMargin:'600px'});o.observe(mina);}else{precarica();}
+})();
+</script>
+<script src="js/base.js"></script>
+</body>
+</html>

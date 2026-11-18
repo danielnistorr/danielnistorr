@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serenissima Service, carrozzeria, officina e soccorso stradale a Padova</title>
+<meta name="description" content="Carrozzeria, officina e soccorso stradale in Corso Stati Uniti 19, zona industriale di Padova. Sinistri senza anticipi, auto sostitutiva gratuita, denunce dei noleggi, prenotazione del tagliando.">
+<style>
+/* Barlow e Barlow Condensed (Jeremy Tribby, The Barlow Project), SIL Open Font License 1.1: testo in fonts/OFL.txt.
+   Solo il sottoinsieme latin, che copre tutto l'italiano della pagina. */
+@font-face{font-family:"Barlow Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-600-latin.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-700-latin.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-800-latin.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/barlow-400-latin.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/barlow-500-latin.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-600-latin.woff2) format("woff2")}
+
+/* Colori dal logo, dall'insegna e dal carro attrezzi. Tre fondi oltre al piede: bianco, grigio chiaro, verde. */
+:root{
+  --verde:#076633;        /* logo e insegna: bianco sopra 7,1:1 */
+  --verde-scuro:#054D26;  /* bottone al passaggio del mouse */
+  --blu:#16306E;          /* il blu del carro "Il Socio", solo sul numero del soccorso */
+  --bianco:#FFFFFF;
+  --grigio:#F1F2F0;       /* una sola sezione: compagnie e noleggi */
+  --inchiostro:#141815;
+  --nota:#575C58;         /* solo note: 6,6:1 sul bianco */
+  --linea:#D3D8D4;
+  --sui-verde:#DCEBE2;    /* testo secondario sul verde: 5,9:1 */
+  --chiuso:#B3261E;
+  --m:64px;               /* margine laterale, uguale in tutte le sezioni */
+  --gap:32px;             /* una griglia sola: 12 colonne, 32 px tra le colonne */
+  --testata:72px;
+  --barra:0px;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:80px;--s8:128px;
+  --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --testo:"Barlow",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+/* niente legature: con la ffi di Barlow a densita' 1x "officina" si leggeva "otticina" */
+body{background:var(--bianco);color:var(--inchiostro);font-family:var(--testo);font-size:19px;line-height:30px;font-weight:400;font-synthesis:none;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0;-webkit-font-smoothing:antialiased;padding-top:var(--testata);padding-bottom:var(--barra)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+.verde-pieno :focus-visible,.ap :focus-visible,.fissa :focus-visible{outline-color:#fff}
+ul,ol{list-style:none}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nw{white-space:nowrap}
+.w{max-width:calc(1312px + 2*var(--m));margin:0 auto;padding:0 var(--m)}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+.salta{position:absolute;left:-9999px;top:0}
+.salta:focus{left:16px;top:8px;z-index:60;background:#fff;padding:8px 16px}
+
+/* titoli: nessun filetto sopra, la pausa la danno gli spazi */
+h2{font-family:var(--cond);font-weight:600;font-size:48px;line-height:52px;letter-spacing:0;text-wrap:balance}
+h3{font-family:var(--cond);font-weight:600;font-size:26px;line-height:30px}
+p,li,figcaption{text-wrap:pretty}
+.sotto{font-size:21px;line-height:32px;max-width:40ch}
+/* la testa di ogni sezione: titolo sulle colonne 1-6, testo sulle colonne 7-12 */
+.testa{align-items:start}
+.testa h2{grid-column:1/7}
+.testa .intro{grid-column:7/13;padding-top:10px}
+.riga-link{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:48px;border-top:1px solid var(--linea);font-weight:600;font-size:17px;line-height:24px;text-decoration:none}
+.riga-link:last-child{border-bottom:1px solid var(--linea)}
+.riga-link::after{content:"\2192";font-weight:500}
+.riga-link:hover{text-decoration:underline;text-decoration-thickness:2px}
+.azioni{margin-top:var(--s4)}
+.azioni .piccola{font-size:17px;line-height:26px;color:var(--nota);padding:10px 0 12px}
+
+/* testata */
+.testata{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--testata);background:var(--bianco);border-bottom:1px solid var(--linea)}
+.testata .w{height:100%;display:flex;align-items:center;gap:var(--s5)}
+.marchio{display:block;flex:none}
+.marchio img{height:52px;width:auto}
+.menu{display:flex;gap:var(--s4);margin-left:auto}
+.menu a{font-size:17px;line-height:24px;font-weight:500;text-decoration:none;padding:12px 0}
+.menu a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35em;min-height:48px;padding:0 24px;background:var(--verde);color:#fff;font-family:var(--testo);font-size:17px;font-weight:600;line-height:24px;text-decoration:none;border:0;border-radius:2px;cursor:pointer}
+.btn:hover{background:var(--verde-scuro);text-decoration:none}
+/* il soccorso in testata: testo blu del carro, senza riquadro */
+.soc{flex:none;margin-right:calc(-1 * var(--s3));font-family:var(--cond);font-weight:700;font-size:22px;line-height:28px;color:var(--blu);text-decoration:none;padding:10px 0;white-space:nowrap}
+.soc:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}
+.apri-menu{display:none}
+/* lo stato in testata, solo sotto i 1024 px: testo, non un link */
+.stato-breve{display:none}
+.pallino{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--verde);margin-right:6px;vertical-align:1px}
+[data-aperta="no"] .pallino{background:var(--chiuso)}
+
+/* apertura: la cabina vuota in asse. Nessun velo su tutta la foto: solo una sfumatura locale dietro le lettere. */
+.ap{position:relative;max-width:1920px;margin:0 auto;height:66.667vw;height:min(66.667vw,calc(100vh - var(--testata)),1276px);height:min(66.667vw,calc(100svh - var(--testata)),1276px);min-height:480px;overflow:hidden;background:#3b3f3c;color:#fff}
+.ap picture,.ap img{position:absolute;inset:0;width:100%;height:100%}
+.ap img{object-fit:cover;object-position:50% 100%}
+.ap::after{content:"";position:absolute;left:0;bottom:0;width:min(100%,calc(50% + 560px));height:52%;background:radial-gradient(ellipse 84% 96% at 6% 100%,rgba(0,0,0,.66) 0%,rgba(0,0,0,.6) 45%,rgba(0,0,0,.28) 74%,rgba(0,0,0,0) 100%);pointer-events:none}
+.ap-testo{position:absolute;z-index:1;left:0;right:0;bottom:var(--s5);max-width:calc(1312px + 2*var(--m));margin:0 auto;padding:0 var(--m)}
+h1{font-family:var(--cond);font-weight:800;text-transform:uppercase;font-size:146px;line-height:.88;letter-spacing:0;margin-left:-.04em;white-space:nowrap}
+.mestiere{font-size:24px;line-height:32px;margin-top:var(--s3)}
+.didascalia{font-size:16px;line-height:24px;font-weight:500;margin-top:var(--s2);color:rgba(255,255,255,.94)}
+
+/* barra fissa in basso, solo sotto i 1024 px */
+.fissa{display:none}
+
+/* sezioni */
+.sez{padding:var(--s7) 0}
+.grigio{background:var(--grigio)}
+.verde-pieno{background:var(--verde);color:#fff}
+
+/* 1. culmine: una foto sola che domina, con la sua didascalia; sotto, i quattro tempi in quarti */
+.culmine{padding:var(--s8) 0}
+.grande{margin-top:var(--s5)}
+.grande img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.grande figcaption{grid-column:1/13;display:flex;flex-wrap:wrap;gap:0 var(--s3);margin-top:var(--s2);font-size:16px;line-height:24px}
+.grande figcaption b{font-weight:600}
+.grande figcaption span{color:var(--nota)}
+.tempi{margin-top:var(--s5);row-gap:var(--s4)}
+.tempi li{grid-column:span 3;border-top:1px solid var(--inchiostro);padding-top:var(--s2)}
+.tempi p{font-size:17px;line-height:26px;margin-top:var(--s1)}
+
+/* 2. compagnie e noleggi: due blocchi sulle due meta' della griglia */
+.blocchi{margin-top:var(--s6);row-gap:var(--s6)}
+.blocchi .sx{grid-column:1/7}
+.blocchi .dx{grid-column:7/13}
+.blocchi .frase{font-size:17px;line-height:26px;margin-top:var(--s1);max-width:52ch}
+.compagnie{columns:3;column-gap:var(--gap);margin-top:var(--s3);font-size:17px;line-height:28px}
+.compagnie li{break-inside:avoid}
+.blocchi .nota{font-size:17px;line-height:26px;color:var(--nota);margin-top:var(--s3)}
+.noleggi{margin-top:var(--s3);border-bottom:1px solid var(--linea)}
+.noleggi li{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--gap);align-items:baseline;padding:12px 0;border-top:1px solid var(--linea)}
+.noleggi .chi{grid-column:1/3}
+.noleggi .nome{font-family:var(--cond);font-weight:600;font-size:22px;line-height:26px}
+.noleggi .quando{display:block;font-size:16px;line-height:22px;font-weight:600;color:var(--verde)}
+.noleggi .quando.grigia{color:var(--nota);font-weight:400}
+.noleggi .link{grid-column:3/7;display:flex;flex-wrap:wrap;gap:0 var(--s3);font-weight:500;font-size:17px;line-height:26px}
+.noleggi .link a{display:inline-flex;align-items:center;min-height:44px}
+
+/* 3. tutto nella stessa sede: tre foto sui terzi, poi l'indice dei reparti */
+.rep-foto{margin-top:var(--s6)}
+.rep-foto figure{grid-column:span 4}
+.rep-foto img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.rep-foto figcaption{font-size:16px;line-height:24px;color:var(--nota);margin-top:var(--s1)}
+.indice{margin-top:var(--s5);border-top:1px solid var(--linea)}
+.indice a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:baseline;min-height:72px;padding:20px 0 18px;border-bottom:1px solid var(--linea);text-decoration:none}
+.indice h3{grid-column:1/5}
+.indice p{grid-column:5/12;font-size:17px;line-height:26px}
+.indice a::after{content:"\2192";grid-column:12/13;justify-self:end;font-size:22px;line-height:26px}
+.indice a:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}
+
+/* 4. tagliando */
+.tag .sx{grid-column:1/7}
+.tag .dx{grid-column:7/13}
+.tag .frase{margin-top:var(--s3);max-width:40ch}
+.orari{margin-top:var(--s4);border-collapse:collapse;font-size:17px;line-height:26px}
+.orari th{text-align:left;font-weight:600;padding:8px 32px 8px 0;border-top:1px solid var(--linea)}
+.orari td{padding:8px 0;border-top:1px solid var(--linea)}
+.orari tr:last-child th,.orari tr:last-child td{border-bottom:1px solid var(--linea)}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3) var(--gap)}
+label{display:block;font-size:17px;line-height:24px;font-weight:500;margin-bottom:var(--s1)}
+input,textarea{display:block;width:100%;font:inherit;font-size:17px;line-height:24px;color:var(--inchiostro);background:#fff;border:1px solid #8A918C;border-radius:2px;padding:11px 12px;min-height:48px}
+textarea{resize:vertical}
+input:focus-visible,textarea:focus-visible{outline:3px solid var(--verde);outline-offset:0;border-color:var(--verde)}
+input[aria-invalid=true]{border-color:var(--chiuso);border-width:2px}
+.avviso{margin-top:var(--s2);font-size:17px;line-height:26px;color:var(--chiuso);font-weight:500}
+.invia{display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap;margin-top:var(--s4)}
+.invia .interf{font-size:14px;line-height:20px;color:var(--nota);max-width:30ch}
+
+/* 5. chiusura, verde pieno: il gesto dell'apertura torna una volta, poi le strade e la sede */
+.gesto{font-family:var(--cond);font-weight:800;text-transform:uppercase;font-size:96px;line-height:.9;letter-spacing:0;margin-left:-.03em}
+.dove .sotto{margin-top:var(--s3)}
+.dove .corpo{margin-top:var(--s6);row-gap:var(--s5)}
+.dove .strade{grid-column:1/7;display:grid;grid-template-columns:1fr 1fr;gap:var(--s5) var(--gap);align-content:start}
+.dove .lato{grid-column:7/13}
+.strade li{border-top:1px solid rgba(255,255,255,.35);padding-top:var(--s2)}
+.strade .k{font-weight:600;font-size:17px;line-height:24px}
+.strade .n{font-family:var(--cond);font-weight:700;font-size:28px;line-height:32px;text-decoration:none;display:inline-block;margin-top:4px}
+.strade .n:hover{text-decoration:underline;text-decoration-thickness:2px}
+.strade p{font-size:17px;line-height:26px;color:var(--sui-verde)}
+.strade .mail{font-size:23px}
+.dove figcaption{font-size:16px;line-height:24px;margin-top:var(--s1);color:var(--sui-verde)}
+.qui .ind{margin-top:4px;font-size:19px;line-height:28px}
+.stato{margin-top:var(--s1);font-size:17px;line-height:26px}
+.stato b{font-weight:600}
+.dove .vai{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+
+/* piede, sulle stesse colonne */
+.piede{border-top:1px solid var(--linea);padding:var(--s5) 0 var(--s5);font-size:16px;line-height:26px}
+.piede .c1{grid-column:1/7}
+.piede .c2{grid-column:7/10}
+.piede .c3{grid-column:10/13}
+.piede img{height:64px;width:auto;margin-bottom:var(--s2)}
+.piede .tit{font-weight:600;margin-bottom:var(--s1)}
+.piede .legale{margin-top:var(--s4);display:flex;gap:var(--s4);flex-wrap:wrap;color:var(--nota);font-size:16px}
+.piede .legale .dx{margin-left:auto;display:flex;gap:var(--s3)}
+
+/* pannello del menu (telefono e tablet) */
+.pannello{display:none}
+
+/* 1024-1240 */
+@media (max-width:1240px){
+  :root{--m:48px}
+  h1{font-size:10.1vw}
+  .gesto{font-size:7.7vw}
+  .testata .w{gap:var(--s4)}
+  .menu{gap:20px}
+  .menu a{white-space:nowrap}
+  /* sotto i 1240 px il soccorso va su due righe, come sulla fiancata: etichetta piccola e numero */
+  .soc{display:flex;flex-direction:column;margin-right:calc(-1 * var(--s2));padding:6px 0;font-size:21px;line-height:24px}
+  .soc .k{font-family:var(--testo);font-weight:600;font-size:14px;line-height:16px}
+  .tel-testata{padding:0 16px}
+  .tempi li{grid-column:span 6}
+  .compagnie{columns:2}
+}
+/* tablet e telefono (fino a 1023 px): menu nel pannello, stato in testata, chiamata e soccorso nella barra fissa in basso */
+@media (max-width:1023px){
+  :root{--m:32px;--testata:64px;--barra:64px}
+  .menu,.tel-testata,.soc{display:none}
+  .marchio img{height:44px}
+  .stato-breve{display:block;margin-left:var(--s3);font-size:14px;line-height:18px;font-weight:500;color:var(--inchiostro)}
+  .stato-breve b{font-weight:600}
+  .apri-menu{display:block;margin-left:auto;font-size:17px;line-height:24px;font-weight:600;text-decoration:none;padding:12px 0 12px 16px}
+  .ap{height:calc(100vh - var(--testata) - var(--barra));height:calc(100svh - var(--testata) - var(--barra));min-height:440px;max-height:1100px}
+  .ap img{object-position:48% 100%}
+  .ap::after{width:100%;height:58%;background:radial-gradient(ellipse 120% 90% at 10% 100%,rgba(0,0,0,.66) 0%,rgba(0,0,0,.52) 45%,rgba(0,0,0,.18) 78%,rgba(0,0,0,0) 100%)}
+  h1{font-size:11vw;line-height:.9}
+  .fissa{position:fixed;z-index:45;left:0;right:0;bottom:0;display:flex;height:var(--barra)}
+  .f-chiama{display:flex;flex-direction:column;flex:0 0 60%;align-items:center;justify-content:center;background:var(--verde);color:#fff;text-decoration:none;border-radius:0;padding:0 8px}
+  .f-chiama .a{font-weight:600;font-size:17px;line-height:22px}
+  .f-chiama .b{font-weight:500;font-size:14px;line-height:18px;color:var(--sui-verde)}
+  .f-soccorso{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8px;background:var(--blu);color:#fff;text-decoration:none}
+  .f-soccorso .k{font-size:14px;line-height:18px;font-weight:500}
+  .f-soccorso .n{font-family:var(--cond);font-weight:700;font-size:21px;line-height:24px}
+  .pannello{position:fixed;z-index:39;top:var(--testata);left:0;right:0;bottom:var(--barra);background:#fff;overflow:auto;padding:var(--s2) var(--m) var(--s4)}
+  .testata.aperta ~ .pannello{display:block}
+  .pannello .info{margin:0 0 var(--s2);font-size:17px;line-height:26px}
+  .pannello .info .grigia{color:var(--nota)}
+  .pannello .info b{font-weight:600}
+  .pannello nav a{display:block;font-family:var(--cond);font-weight:600;font-size:26px;line-height:32px;padding:8px 0;border-top:1px solid var(--linea);text-decoration:none}
+  .pannello .extra{margin-top:var(--s2)}
+  .testa h2,.testa .intro,.blocchi .sx,.blocchi .dx,.tag .sx,.tag .dx,.dove .strade,.dove .lato,.piede .c1,.piede .c2,.piede .c3{grid-column:1/-1}
+  .testa .intro{padding-top:0;margin-top:var(--s3)}
+  .tag .dx{margin-top:var(--s5)}
+  .piede .c2,.piede .c3{margin-top:var(--s4)}
+  .piede{padding-bottom:var(--s4)}
+  .compagnie{columns:3}
+}
+@media (max-width:640px){
+  :root{--m:16px;--gap:16px;--s7:64px;--s8:96px}
+  body{font-size:17px;line-height:27px}
+  h2{font-size:34px;line-height:38px}
+  h3{font-size:22px;line-height:26px}
+  .sotto{font-size:19px;line-height:28px}
+  h1{font-size:min(64px,18vw);white-space:normal}
+  .gesto{font-size:min(54px,14.5vw)}
+  .ap-testo{bottom:var(--s3)}
+  .mestiere{font-size:17px;line-height:25px;margin-top:12px;max-width:24ch}
+  .didascalia{font-size:14px;line-height:20px;margin-top:10px}
+  .grande{margin-top:var(--s5)}
+  .grande figcaption{font-size:15px;line-height:22px;display:block}
+  .grande figcaption span{display:block}
+  .tempi li{grid-column:1/-1}
+  /* le compagnie in un testo solo, separate da virgole: nessun nome che va a capo e sembra due */
+  .compagnie{columns:auto;font-size:16px;line-height:26px}
+  .compagnie li{display:inline-block;white-space:nowrap;margin-right:.3em}
+  .compagnie li:not(:last-child)::after{content:","}
+  .noleggi li{display:block;padding:12px 0 4px}
+  .noleggi .chi{display:flex;flex-wrap:wrap;gap:0 var(--s2);align-items:baseline}
+  .noleggi .link{gap:0 var(--s3)}
+  .noleggi .link a{min-height:48px}
+  .rep-foto{grid-template-columns:1fr 1fr;row-gap:var(--s3)}
+  .rep-foto figure{grid-column:span 1}
+  .rep-foto figure:first-child{grid-column:1/-1}
+  .rep-foto figcaption{font-size:14px;line-height:20px}
+  .indice a{grid-template-columns:1fr 24px;row-gap:4px;padding:14px 0 12px}
+  .indice h3,.indice p{grid-column:1}
+  .indice a::after{grid-column:2;grid-row:1}
+  .campi{grid-template-columns:1fr}
+  .dove .strade{grid-template-columns:1fr}
+  .dove .qui{order:-1}
+  .piede .legale .dx{margin-left:0}
+}
+@media (max-width:359px){
+  .stato-breve{display:none}
+  .f-chiama{flex-basis:56%}
+  .f-chiama .a{font-size:16px}
+  .f-chiama .lungo,.f-soccorso .lungo{display:none}
+}
+@media (min-width:1921px){
+  .ap{height:1276px}
+}
+@media print{.testata,.fissa,.pannello{position:static}body{padding:0}}
+</style>
+</head>
+<body>
+<a class="salta" href="#incidente">Vai al contenuto</a>
+
+<header class="testata" id="testata">
+  <div class="w">
+    <a class="marchio" href="#top" aria-label="Serenissima Service, torna all'inizio"><img src="img/logo-52.png" srcset="img/logo-52.png 1x, img/logo-104.png 2x, img/logo-156.png 3x" width="98" height="52" alt="Serenissima Service, Botta? Risposta!"></a>
+    <p class="stato-breve num" data-stato-breve>Lun-ven 8-12, 14-18<br>sabato 8-12</p>
+    <nav class="menu" aria-label="Menu principale">
+      <a href="#incidente">Incidente</a>
+      <a href="#compagnie">Compagnie e noleggi</a>
+      <a href="#tagliando">Tagliando</a>
+      <a href="#dove">Dove siamo</a>
+    </nav>
+    <a class="soc" href="tel:+393355639355" data-ruolo="emergenza"><span class="k">Soccorso</span> <span class="num">335&nbsp;5639355</span></a>
+    <a class="btn tel-testata" href="tel:+39049760655">Chiama <span class="num">049&nbsp;760655</span></a>
+    <a class="apri-menu" href="#piede" role="button" aria-controls="pannello" aria-expanded="false">Menu</a>
+  </div>
+</header>
+<div class="pannello" id="pannello">
+  <div class="info">
+    <p><span data-stato>Orari della sede</span></p>
+    <p class="grigia num">Lunedì-venerdì 8-12 e 14-18, sabato 8-12</p>
+    <p>Per i sinistri scegli l'interno Carrozzeria.</p>
+  </div>
+  <nav aria-label="Menu">
+    <a href="#incidente">Ho avuto un incidente</a>
+    <a href="#noleggi">Auto a noleggio: denuncia il danno</a>
+    <a href="#assicurazioni">Compagnie assicurative</a>
+    <a href="#tagliando">Prenota il tagliando</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#storia">Chi siamo</a>
+    <a href="#indirizzo">Dove siamo e contatti</a>
+  </nav>
+  <div class="extra">
+    <a class="riga-link" href="doc/Modulo_Constatazione_amichevole.pdf">Modulo CID (PDF)</a>
+    <a class="riga-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Serenissima+Service%2C+Corso+Stati+Uniti+19%2C+35127+Padova">Corso Stati Uniti 19/19-A: apri la mappa</a>
+  </div>
+</div>
+
+<main id="top">
+<section class="ap" aria-labelledby="t-ap">
+  <picture>
+    <source media="(max-width:640px)" srcset="img/cabina-tel-480.webp 480w, img/cabina-tel-720.webp 720w" sizes="100vw" width="720" height="1276">
+    <img src="img/cabina-1440.webp" srcset="img/cabina-1440.webp 1440w, img/cabina-1920.webp 1920w" sizes="(min-width:1920px) 1920px, 100vw" width="1920" height="1276" alt="Una cabina di verniciatura vuota vista in asse: pareti bianche con le lampade, il metro giallo lungo i fianchi, il pavimento a griglia e a destra il carrello verde con i rotoli di carta per la mascheratura" fetchpriority="high">
+  </picture>
+  <div class="ap-testo">
+    <h1 id="t-ap">Botta? Risposta!</h1>
+    <p class="mestiere">Carrozzeria, officina e soccorso stradale, Padova</p>
+    <p class="didascalia">Una delle nostre cabine / Corso Stati Uniti 19/19-A</p>
+  </div>
+</section>
+
+<div class="fissa">
+  <a class="f-chiama btn" href="tel:+39049760655"><span class="a">Chiama <span class="num">049&nbsp;760655</span></span><span class="b"><span class="lungo">Sinistri: </span>interno Carrozzeria</span></a>
+  <a class="f-soccorso" href="tel:+393355639355" data-ruolo="emergenza"><span class="k">Soccorso<span class="lungo"> stradale</span></span><span class="n num">335&nbsp;5639355</span></a>
+</div>
+
+<section class="culmine" id="incidente" aria-labelledby="t-inc">
+  <div class="w">
+    <div class="testa g12">
+      <h2 id="t-inc">Hai avuto un incidente? Pensiamo a tutto noi</h2>
+      <div class="intro">
+        <p class="sotto">Non anticipi nulla: con il sinistro l'indennizzo va direttamente alla carrozzeria. Intanto hai l'auto sostitutiva gratuita, con la Kasko e senza limiti di chilometri.</p>
+        <div class="azioni">
+          <a class="riga-link" href="doc/Modulo_Constatazione_amichevole.pdf">Scarica il modulo CID (PDF)</a>
+          <a class="riga-link" href="#noleggi">Auto a noleggio o aziendale? Denuncia il danno</a>
+          <p class="piccola">Al telefono scegli l'interno Carrozzeria.</p>
+        </div>
+      </div>
+    </div>
+    <figure class="grande">
+      <img loading="lazy" src="img/passo-carro-1312.webp" srcset="img/passo-carro-720.webp 720w, img/passo-carro-1312.webp 1312w, img/passo-carro-1920.webp 1920w" sizes="(max-width:640px) calc(100vw - 32px), (max-width:1023px) calc(100vw - 64px), (max-width:1408px) calc(100vw - 96px), 1312px" width="1920" height="1080" alt="Il carro attrezzi blu Soccorso stradale Serenissima Service, con la targa Il Socio sul lampeggiante, davanti al capannone con l'insegna">
+      <figcaption><b>Il Socio, il nostro carro attrezzi, davanti alla sede</b><span>Corso Stati Uniti, Padova, marzo 2016</span></figcaption>
+    </figure>
+    <ol class="tempi g12">
+      <li><h3>Il soccorso</h3><p>A disposizione, con il nostro carro: l'auto arriva direttamente in carrozzeria.</p></li>
+      <li><h3>La pratica</h3><p>Ti aiutiamo a compilare il modulo CAI&nbsp;/&nbsp;CID, teniamo noi i rapporti con l'assicurazione e incontriamo il perito.</p></li>
+      <li><h3>La riparazione</h3><p>L'incidente non è solo carrozzeria: officina, elettrauto e cristalli sono nella stessa sede.</p></li>
+      <li><h3>La verniciatura</h3><p>Verniciature all'acqua, con l'intero processo di essiccazione in cabina.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sez grigio" id="compagnie" aria-labelledby="t-comp">
+  <div class="w">
+    <div class="testa g12">
+      <h2 id="t-comp">La tua compagnia, il tuo noleggio</h2>
+      <p class="intro">L'indennizzo diretto alla carrozzeria vale con tutte le compagnie.</p>
+    </div>
+    <div class="blocchi g12">
+      <div class="sx" id="assicurazioni">
+        <h3>Compagnie assicurative</h3>
+        <p class="frase">Con queste siamo carrozzeria fiduciaria:</p>
+        <ul class="compagnie">
+          <li>Allianz</li><li>Amissima (ex Carige)</li><li>Assimoco</li><li>Cariparma Crédit Agricole</li><li>Cattolica Assicurazioni</li><li>Crédit Agricole</li><li>Credit Ras Assicurazioni</li><li>Direct Line</li><li>Europ Assistance</li><li>Fata Assicurazioni</li><li>FCA Bank</li><li>Generali</li><li>Genertel</li><li>Genialloyd</li><li>Global Assistance</li><li>Groupama</li><li>HDI</li><li>Helvetia</li><li>Intesa Sanpaolo</li><li>MSA Multiserass</li><li>Prima.it</li><li>TUA Assicurazioni</li><li>UnipolSai</li><li>Verti</li><li>Vittoria Assicurazioni</li><li>Zurich</li><li>Zurich Connect</li>
+        </ul>
+        <p class="nota">Non trovi la tua? <a href="tel:+39049760655">Chiamaci</a> per verificare i nuovi accordi.</p>
+      </div>
+      <div class="dx" id="noleggi">
+        <h3>Auto a noleggio o aziendale: denuncia il danno</h3>
+        <p class="frase">Apri qui sotto la denuncia del tuo noleggio, poi chiamaci: pensiamo noi a fare le foto dei danni, chiedere l'autorizzazione al noleggio, prenotarti l'auto sostitutiva, se prevista, e fare la riparazione.</p>
+        <ul class="noleggi" aria-label="Denuncia del danno per le auto a noleggio">
+          <li><p class="chi"><span class="nome">Ayvens</span><span class="quando grigia">ALD e LeasePlan</span></p><p class="link"><a href="https://nemo.aldautomotive.it/static/claims_public.html">Apri la denuncia online</a></p></li>
+          <li><p class="chi"><span class="nome">Alphabet</span><span class="quando">Entro 3 giorni</span></p><p class="link"><a href="doc/ALPHABET_denunciasinistrosenzacontroparte-it-it.pdf">Senza controparte (PDF)</a><a href="https://www.alphabet.com/it-it/area-drivers-gestione-sinistri-e-furti.html">Con controparte o furto</a></p></li>
+          <li><p class="chi"><span class="nome">Athlon</span><span class="quando grigia">Area driver</span></p><p class="link"><a href="https://athlonweb.sdmain.com/driver/">Apri la denuncia online</a></p></li>
+          <li><p class="chi"><span class="nome">Sifà</span><span class="quando">Subito, 8-19</span></p><p class="link"><a class="num" href="tel:+39800037631">800&nbsp;037631</a><a href="https://www.sifa.it/assistenza-clienti">Apri l'assistenza</a></p></li>
+          <li><p class="chi"><span class="nome">Leasys</span><span class="quando">Entro 3 giorni</span></p><p class="link"><a href="http://www.leasysdenunciasinistri.com/denuncia1.php?step=2&amp;c=1&amp;nocontro=no">Senza controparte</a><a href="http://www.leasysdenunciasinistri.com/denuncia2.php?step=2&amp;c=1">Con controparte</a></p></li>
+          <li><p class="chi"><span class="nome">Volkswagen Lease</span><span class="quando grigia">Poi conferma l'email</span></p><p class="link"><a href="https://accessoclienti.vwfs.it/vwldriver/page/DenunciaSinistri.aspx">Apri la denuncia online</a></p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sez" id="servizi" aria-labelledby="t-serv">
+  <div class="w">
+    <div class="testa g12">
+      <h2 id="t-serv">Tutto nella stessa sede</h2>
+      <p class="intro sotto" id="storia">Siamo nati da un ramo di una storica carrozzeria di Padova degli anni Sessanta: dal 1993 siamo Serenissima Service, dal 2001 su 3000&nbsp;mq in zona industriale.</p>
+    </div>
+    <div class="rep-foto g12">
+      <figure><img loading="lazy" src="img/rep-officina-416.webp" srcset="img/rep-officina-416.webp 416w, img/rep-officina-832.webp 832w" sizes="(max-width:640px) calc(100vw - 32px), (max-width:1023px) calc(33.3vw - 32px), (max-width:1408px) calc(33.3vw - 53px), 416px" width="832" height="555" alt="Un furgone bianco sollevato sul ponte in officina, con altre auto in lavorazione sui ponti dietro"><figcaption>Un furgone sul ponte, in officina</figcaption></figure>
+      <figure><img loading="lazy" src="img/rep-cabine-416.webp" srcset="img/rep-cabine-416.webp 416w, img/rep-cabine-832.webp 832w" sizes="(max-width:640px) calc(50vw - 24px), (max-width:1023px) calc(33.3vw - 32px), (max-width:1408px) calc(33.3vw - 53px), 416px" width="832" height="555" alt="Le cabine di verniciatura gialle in fila nel capannone, con la scritta Serenissima Service colorimetria sulla parete"><figcaption>Le cabine, con il nostro nome sulla parete</figcaption></figure>
+      <figure><img loading="lazy" src="img/rep-grandine-416.webp" srcset="img/rep-grandine-416.webp 416w, img/rep-grandine-832.webp 832w" sizes="(max-width:640px) calc(50vw - 24px), (max-width:1023px) calc(33.3vw - 32px), (max-width:1408px) calc(33.3vw - 53px), 416px" width="832" height="555" alt="Un tecnico regola la lampada a righe del levabolli sopra il tetto di un'auto scura"><figcaption>La lampada del levabolli sul tetto</figcaption></figure>
+    </div>
+    <ul class="indice">
+      <li><a href="servizi/officina-meccatronica/"><h3>Officina, meccatronica ed elettrauto</h3><p>Diagnosi per tutte le marche, aria condizionata, antifurto anche satellitare.</p></a></li>
+      <li><a href="servizi/carrozzeria/"><h3>Carrozzeria e verniciatura</h3><p>Smart repair da 1 a 4 ore, verniciature opache, cerchi in lega.</p></a></li>
+      <li><a href="servizi/grandine-levabolli/"><h3>Grandine e levabolli</h3><p>Spesso la riparazione avviene anche in giornata.</p></a></li>
+      <li><a href="servizi/centro-cristalli/"><h3>Centro cristalli</h3><p>Non tutte le scheggiature richiedono la sostituzione del vetro.</p></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sez" id="tagliando" aria-labelledby="t-tag">
+  <div class="w tag g12">
+    <div class="sx">
+      <h2 id="t-tag">Prenota il tagliando</h2>
+      <p class="frase">Tagliandi completi su qualsiasi chilometraggio, per tutte le marche, auto e furgoni fino a 35&nbsp;quintali. Ti confermiamo la data via email o telefono.</p>
+      <table class="orari num" aria-label="Orari della sede">
+        <tr><th scope="row">Lunedì-venerdì</th><td>8-12 e 14-18</td></tr>
+        <tr><th scope="row">Sabato</th><td>8-12</td></tr>
+        <tr><th scope="row">Domenica</th><td>chiuso</td></tr>
+      </table>
+    </div>
+    <div class="dx">
+      <form class="modulo" id="modulo" action="mailto:info@serenissimaservice.it?subject=Prenotazione%20tagliando" method="post" enctype="text/plain" novalidate>
+        <div class="campi">
+          <div><label for="f-nome">Nome e cognome</label><input id="f-nome" name="Nome" type="text" autocomplete="name" required></div>
+          <div><label for="f-tel">Telefono</label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="f-targa">Targa</label><input id="f-targa" name="Targa" type="text" autocapitalize="characters" spellcheck="false" required></div>
+          <div><label for="f-auto">Marca, modello e km</label><input id="f-auto" name="Auto" type="text"></div>
+          <div><label for="f-data">Data preferita</label><input id="f-data" name="Data" type="date"></div>
+          <div><label for="f-note">Note</label><textarea id="f-note" name="Note" rows="1"></textarea></div>
+        </div>
+        <p class="avviso" id="avviso" hidden role="alert"></p>
+        <div class="invia">
+          <button type="submit" class="btn">Prepara l'email</button>
+          <p class="interf">Si apre il tuo programma di posta, con i dati già scritti.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sez verde-pieno" id="dove" aria-labelledby="t-dove">
+  <div class="w dove">
+    <h2 class="gesto" id="t-dove">Pensiamo a tutto noi</h2>
+    <p class="sotto">Chiamaci o passa in sede.</p>
+    <div class="corpo g12">
+      <ul class="strade">
+        <li><p class="k">Incidente e carrozzeria</p><a class="n num" href="tel:+39049760655">049&nbsp;760655</a><p>Scegli l'interno Carrozzeria.</p></li>
+        <li><p class="k">Soccorso stradale</p><a class="n num" href="tel:+393355639355">335&nbsp;5639355</a><p>Con il nostro carro attrezzi.</p></li>
+        <li><p class="k">Officina e tagliando</p><a class="n mail" href="mailto:info@serenissimaservice.it?subject=Richiesta%20dal%20sito&amp;body=Nome%3A%20%0D%0ATelefono%3A%20%0D%0ATarga%3A%20%0D%0ADi%20che%20cosa%20hai%20bisogno%3A%20%0D%0A">info@serenissimaservice.it</a><p>Per il tagliando c'è anche il modulo qui sopra.</p></li>
+        <li class="qui" id="indirizzo"><p class="k">In sede</p><p class="ind">Corso Stati Uniti 19/19-A<br>zona industriale, 35127 Padova</p><p class="stato"><span data-stato>Lunedì-venerdì 8-12 e 14-18, sabato 8-12</span></p><a class="vai" href="https://www.google.com/maps/dir/?api=1&amp;destination=Serenissima+Service%2C+Corso+Stati+Uniti+19%2C+35127+Padova">Indicazioni</a></li>
+      </ul>
+      <figure class="lato">
+        <img loading="lazy" src="img/sede-1248.webp" srcset="img/sede-624.webp 624w, img/sede-1248.webp 1248w" sizes="(max-width:640px) calc(100vw - 32px), (max-width:1023px) calc(100vw - 64px), (max-width:1408px) calc(50vw - 64px), 640px" width="1248" height="624" alt="La sede vista dalla strada: il capannone chiaro con l'insegna verde Serenissima Service, l'ingresso giallo e le auto in fila davanti">
+        <figcaption>La sede vista dalla strada / zona industriale, Padova</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piede" id="piede">
+  <div class="w">
+    <div class="g12">
+      <div class="c1">
+        <img loading="lazy" src="img/logo-64.png" srcset="img/logo-64.png 1x, img/logo-128.png 2x" width="120" height="64" alt="Serenissima Service, Botta? Risposta!">
+        <p>Serenissima Service S.r.l.<br>Corso Stati Uniti 19/19-A, 35127 Padova</p>
+      </div>
+      <div class="c2">
+        <p class="tit">Recapiti</p>
+        <ul class="num">
+          <li><a href="tel:+39049760655">Tel. 049&nbsp;760655</a></li>
+          <li>Fax 049&nbsp;8703037</li>
+          <li><a href="mailto:info@serenissimaservice.it?subject=Richiesta%20dal%20sito">info@serenissimaservice.it</a></li>
+        </ul>
+      </div>
+      <nav class="c3" aria-labelledby="p-pag">
+        <p class="tit" id="p-pag">Pagine</p>
+        <ul class="pagine">
+          <li><a href="servizi/gestione-sinistri/">Gestione sinistri</a></li>
+          <li><a href="servizi/flotte-noleggio-lungo-termine/">Flotte e noleggio</a></li>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#tagliando">Tagliando</a></li>
+          <li><a href="https://www.facebook.com/Serenissima-Service-1667868210177791/" rel="noopener">Facebook</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="legale">
+      <span>© Serenissima Service S.r.l.</span>
+      <span>P.IVA e C.F. 00019100288</span>
+      <span class="dx"><a href="privacy-policy/">Privacy</a><a href="cookie-policy/">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var MAIL='info@serenissimaservice.it';
+  // menu: senza JavaScript il link porta al piede; con JavaScript apre il pannello
+  var t=document.getElementById('testata'), b=t.querySelector('.apri-menu'), pn=document.getElementById('pannello');
+  function chiudi(){t.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';}
+  b.addEventListener('click',function(e){e.preventDefault();var a=t.classList.toggle('aperta');b.setAttribute('aria-expanded',a?'true':'false');b.textContent=a?'Chiudi':'Menu';if(a){var p=pn.querySelector('a');if(p)p.focus();}});
+  pn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',chiudi);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&t.classList.contains('aperta')){chiudi();b.focus();}});
+
+  // aperto o chiuso adesso, sull'ora di Padova. Orari dal loro sito: lunedi'-venerdi' 8-12 e 14-18, sabato 8-12.
+  // Festivi nazionali e Pasquetta: chiuso. Patrono (13 giugno) e chiusure estive da confermare (LEGGIMI 3).
+  var ORARI={1:[[8,12],[14,18]],2:[[8,12],[14,18]],3:[[8,12],[14,18]],4:[[8,12],[14,18]],5:[[8,12],[14,18]],6:[[8,12]]};
+  var FESTIVI=['01-01','01-06','04-25','05-01','06-02','08-15','11-01','12-08','12-25','12-26'];
+  var GIORNI=['','lunedì','martedì','mercoledì','giovedì','venerdì','sabato','domenica'];
+  function pad(n){return (n<10?'0':'')+n;}
+  function pasquetta(a){
+    var c=Math.floor(a/100),n=a-19*Math.floor(a/19),k=Math.floor((c-17)/25),i=c-Math.floor(c/4)-Math.floor((c-k)/3)+19*n+15;
+    i=i-30*Math.floor(i/30);i=i-Math.floor(i/28)*(1-Math.floor(i/28)*Math.floor(29/(i+1))*Math.floor((21-n)/11));
+    var j=a+Math.floor(a/4)+i+2-c+Math.floor(c/4);j=j-7*Math.floor(j/7);var l=i-j,m=3+Math.floor((l+40)/44),d=l+28-31*Math.floor(m/4);
+    var x=new Date(Date.UTC(a,m-1,d+1));return pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate());
+  }
+  function adesso(){
+    var q=/[?&]ora=(\d)-(\d+(?:\.\d+)?)-(\d\d-\d\d)/.exec(location.search); // solo per le prove: ?ora=giorno-ore-mm-gg
+    if(q)return {g:+q[1],h:+q[2],a:2026,md:q[3]};
+    try{
+      var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});
+      var g={Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6,Sun:7}[p.weekday];
+      if(g)return {g:g,h:(+p.hour)+(+p.minute)/60,a:+p.year,md:p.month+'-'+p.day};
+    }catch(e){}
+    var d=new Date();return {g:d.getDay()||7,h:d.getHours()+d.getMinutes()/60,a:d.getFullYear(),md:pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+  }
+  var ad=adesso();
+  function festivo(md){return FESTIVI.indexOf(md)>-1||md===pasquetta(ad.a);}
+  function mdTra(s){var x=new Date(Date.UTC(ad.a,+ad.md.slice(0,2)-1,+ad.md.slice(3)+s));return pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate());}
+  var aperta=false,quando='',oggiFesta=festivo(ad.md),fa=oggiFesta?[]:(ORARI[ad.g]||[]);
+  for(var f=0;f<fa.length;f++){
+    if(ad.h>=fa[f][0]&&ad.h<fa[f][1]){aperta=true;quando='fino alle '+fa[f][1];break;}
+    if(ad.h<fa[f][0]){quando='riapre alle '+fa[f][0];break;}
+  }
+  if(!aperta&&!quando){for(var s=1;s<=10;s++){var gg=(ad.g-1+s)%7+1;if(ORARI[gg]&&!festivo(mdTra(s))){quando='riapre '+(s===1?'domani':GIORNI[gg])+' alle '+ORARI[gg][0][0];break;}}}
+  if(quando){
+    var lungo='<b>Sede '+(aperta?'aperta ora':(oggiFesta?'chiusa oggi, festivo':'chiusa ora'))+'</b>, '+quando;
+    var breve='<span class="pallino" aria-hidden="true"></span><b>'+(aperta?'Aperta ora':(oggiFesta?'Chiusa, festivo':'Chiusa ora'))+'</b><br>'+quando;
+    document.querySelectorAll('[data-stato]').forEach(function(x){x.innerHTML=lungo;});
+    document.querySelectorAll('[data-stato-breve]').forEach(function(x){x.innerHTML=breve;x.setAttribute('data-aperta',aperta?'si':'no');});
+  }
+
+  // modulo: compone l'email con oggetto e campi e la apre nel programma di posta. Va collegato a un servizio (LEGGIMI).
+  var fm=document.getElementById('modulo'), avv=document.getElementById('avviso');
+  fm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return (document.getElementById(id).value||'').trim();};
+    var manca=[['f-nome','il nome'],['f-tel','il telefono'],['f-targa','la targa']].filter(function(c){var el=document.getElementById(c[0]);var no=!v(c[0]);el.setAttribute('aria-invalid',no?'true':'false');return no;});
+    if(manca.length){var n=manca.map(function(c){return c[1];});avv.textContent=(n.length>1?'Mancano ':'Manca ')+(n.length>1?n.slice(0,-1).join(', ')+' e '+n[n.length-1]:n[0])+', così ti richiamiamo.';avv.hidden=false;document.getElementById(manca[0][0]).focus();return;}
+    avv.hidden=true;
+    var targa=v('f-targa').toUpperCase();
+    var righe=['Richiesta: tagliando','Data preferita: '+(v('f-data')||'da concordare'),'',
+      'Nome e cognome: '+v('f-nome'),'Telefono: '+v('f-tel'),'',
+      'Targa: '+targa,'Marca, modello e km: '+v('f-auto'),'','Note:',v('f-note')];
+    var url='mailto:'+MAIL+'?subject='+encodeURIComponent('Prenotazione tagliando, targa '+targa)+'&body='+encodeURIComponent(righe.join('\r\n'));
+    fm.setAttribute('data-email',url);   // per le prove: l'ultima email composta
+    window.location.href=url;
+  });
+})();
+</script>
+</body>
+</html>

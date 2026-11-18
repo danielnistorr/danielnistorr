@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hambro, Vigonovo</title>
+<meta name="description" content="Hambro srl, Vigonovo (Venezia): minuteria in zama, ferro e ottone, lacci in pelle da mm2 a mm60, nastri, fodere e rinforzi per borse, cinture, calzature e abbigliamento. Fibbie e bottoni ricoperti con il vostro materiale.">
+<style>
+/* Mona Sans, SIL Open Font License 1.1 (fonts/OFL.txt), servito dalla pagina */
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-latin.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-latin-ext.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* scala dei corpi: 13, 15, 17, 22, 32, 60, 136, piu' la lettura del banco */
+:root{
+  --carta:#F2EDE4;
+  --carta-2:#E8E1D5;
+  --inchiostro:#1B1714;
+  --grigio:#5E554C;
+  --filo:rgba(27,23,20,.18);
+  --cuoio:#7B4524;
+  --campo:#6E3519;
+  --campo-testo:#F2EDE4;
+  --campo-tenue:#DCC4AE;
+  --taglio:#3A2012;
+  --oro:#E2B866;
+  --m:clamp(20px,5vw,72px);
+  --gap:24px;
+  --k:1;
+  --u:calc(1mm * var(--k));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--carta);color:var(--inchiostro);font-family:"Mona Sans",system-ui,sans-serif;font-size:17px;line-height:1.55;font-weight:400;font-stretch:100%;font-synthesis:none;font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--cuoio)}
+:focus-visible{outline:2px solid var(--cuoio);outline-offset:3px}
+.nascosto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-inline:var(--m)}
+h1,h2,h3,h4{font-weight:400;text-wrap:balance}
+p,li,dd,td{text-wrap:pretty}
+.didascalia{font-size:13px;line-height:1.45;color:var(--grigio)}
+.didascalia b{font-weight:600;color:var(--inchiostro);margin-right:.35em}
+.h2{font-size:clamp(34px,4.3vw,60px);line-height:1;letter-spacing:-.03em}
+.bottone{display:inline-flex;align-items:center;min-height:44px;background:var(--cuoio);color:var(--carta);text-decoration:none;padding:0 22px;font-weight:540;font-size:15px;line-height:1;transition:background-color .18s,color .18s}
+.bottone:hover{background:var(--inchiostro);color:var(--carta)}
+
+/* testata */
+.testa{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:0 24px;padding:16px var(--m) 0}
+.marchio{font-stretch:125%;font-weight:640;font-size:22px;letter-spacing:.14em;color:var(--cuoio);text-decoration:none;line-height:1;padding:11px 0}
+.marchio:hover{color:var(--inchiostro)}
+.menu{display:flex;gap:28px;list-style:none;font-size:15px}
+.menu a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
+.menu a:hover{text-decoration:underline;color:var(--inchiostro)}
+.testa .tel{font-size:15px;text-decoration:none;font-weight:520;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
+
+/* apertura */
+.apertura{position:relative;height:900px;max-height:100svh;min-height:680px;overflow:hidden}
+@media (min-height:1000px){.apertura{height:1000px;max-height:none}}
+.apertura .foto,.apertura .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 70%}
+.apertura .testo{position:relative;z-index:2;padding:clamp(120px,17vh,170px) var(--m) 0}
+.apertura h1{font-size:clamp(46px,9.45vw,136px);line-height:.92;letter-spacing:-.04em;font-weight:380;max-width:7.4em}
+.apertura .lede{margin-top:34px;max-width:27em;font-size:17px;line-height:1.5;color:#2D2622}
+.apertura .azione{margin-top:26px;display:flex;gap:6px 28px;flex-wrap:wrap;align-items:center;font-size:15px}
+.apertura .azione a:not(.bottone){display:inline-flex;align-items:center;min-height:44px}
+.didascalie{position:absolute;z-index:3;left:var(--m);right:var(--m);bottom:128px;display:flex;justify-content:space-between;align-items:last baseline;gap:40px}
+.didascalie p{max-width:18em}
+.didascalie p+p{text-align:right;max-width:17em}
+.righello{position:absolute;left:0;right:0;bottom:32px;height:76px;z-index:3}
+.righello svg{display:block;width:100%;height:100%}
+.rt{font-family:"Mona Sans",sans-serif;font-size:13px;font-weight:500;font-stretch:112%}
+.rt.c{font-weight:620}
+
+/* banco di misura */
+.banco{background:var(--campo);color:var(--campo-testo);padding-top:104px;padding-bottom:48px;position:relative}
+.banco a:hover{color:var(--oro)}
+.banco h2{grid-column:1/7}
+.banco .intro{grid-column:1/6;margin-top:24px;color:var(--campo-tenue);max-width:30em}
+.lettura{grid-column:7/13;grid-row:1/3;align-self:end;justify-self:end;text-align:right}
+.lettura .valore{display:flex;align-items:flex-start;justify-content:flex-end;gap:10px;font-stretch:125%;font-weight:250;font-size:clamp(104px,15.5vw,232px);line-height:.8;letter-spacing:-.04em}
+.lettura .valore small{font-size:32px;font-weight:500;letter-spacing:.02em;margin-top:.35em}
+.lettura .cosa{margin-top:18px;font-size:15px;color:var(--campo-tenue);max-width:24em;margin-left:auto}
+.comandi{grid-column:1/13;margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 48px}
+.scelte{display:flex;flex-wrap:wrap;border:1px solid rgba(242,237,228,.45)}
+.scelte label{position:relative;cursor:pointer}
+.scelte input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer;width:100%;height:100%}
+.scelte span{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;font-size:15px;line-height:1.1;transition:background-color .18s,color .18s}
+.scelte label+label span{border-left:1px solid rgba(242,237,228,.45)}
+.scelte label:hover span{background:#7E4223}
+.scelte input:checked+span{background:var(--carta);color:var(--inchiostro)}
+.scelte input:focus-visible+span{outline:2px solid var(--oro);outline-offset:2px}
+.colori{display:flex;gap:12px;border:0}
+.colori label{position:relative;width:36px;height:36px;cursor:pointer;margin:4px 0}
+.colori input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.colori span{position:absolute;inset:0;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);transition:box-shadow .15s}
+.colori label:hover span{box-shadow:inset 0 0 0 1px rgba(0,0,0,.2),0 0 0 2px rgba(242,237,228,.5)}
+.colori input:checked+span{box-shadow:inset 0 0 0 1px rgba(0,0,0,.2),0 0 0 2px var(--campo),0 0 0 4px var(--carta)}
+.colori input:focus-visible+span{outline:2px solid var(--oro);outline-offset:5px}
+[hidden]{display:none!important}
+
+/* cursore disegnato: traccia in carta al 30 %, tacche ogni 10 mm o sulle misure a catalogo, pomello carta */
+.regolo{display:flex;align-items:center;gap:16px;font-size:15px;flex:1 1 360px;max-width:560px;min-width:0}
+.pista{position:relative;flex:1;height:44px}
+.tacche{position:absolute;left:12px;right:12px;top:50%;height:0;pointer-events:none}
+.tacche i{position:absolute;top:-7px;width:1px;height:14px;background:rgba(242,237,228,.55)}
+.regolo input{-webkit-appearance:none;appearance:none;position:relative;display:block;width:100%;height:44px;margin:0;background:transparent;cursor:pointer}
+.regolo input::-webkit-slider-runnable-track{height:2px;background:rgba(242,237,228,.3);border:0}
+.regolo input::-moz-range-track{height:2px;background:rgba(242,237,228,.3);border:0}
+.regolo input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-11px;border-radius:50%;background:var(--carta);border:0;box-shadow:0 2px 0 var(--taglio);transition:background-color .15s}
+.regolo input::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--carta);border:0;box-shadow:0 2px 0 var(--taglio)}
+.regolo input:hover::-webkit-slider-thumb{background:#fff}
+.regolo input:focus{outline:none}
+.regolo input:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--campo),0 0 0 5px var(--oro)}
+.regolo input:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--campo),0 0 0 5px var(--oro)}
+
+/* il tavolo e' alto quanto la striscia piu' 48 px: nessun campo vuoto sopra e sotto */
+.tavolo{position:relative;margin-top:32px;height:calc(var(--n) * var(--u) + 48px);display:flex;align-items:center;transition:height .2s ease-out}
+.striscia{position:relative;width:100%;height:calc(var(--n) * var(--u));transition:height .2s ease-out;border-top:1px solid var(--taglio);border-bottom:1px solid var(--taglio);box-shadow:0 6px 8px rgba(28,10,0,.38)}
+.striscia.vivo{background:url(img/banco-cuoio.jpg) 30% 50%/cover no-repeat}
+.striscia.tubo{background:linear-gradient(180deg,rgba(30,12,2,.7) 0%,rgba(30,12,2,.15) 20%,rgba(255,232,205,.22) 38%,rgba(255,232,205,0) 54%,rgba(30,12,2,.22) 78%,rgba(30,12,2,.75) 100%),url(img/banco-cuoio.jpg) 60% 50%/cover no-repeat}
+.striscia.nastro{background:repeating-linear-gradient(90deg,rgba(0,0,0,.09) 0 1px,transparent 1px 3px),repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 2px),var(--c);border-color:rgba(0,0,0,.35)}
+.sotto{grid-column:1/13;margin-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 40px;font-size:13px;color:var(--campo-tenue)}
+.sotto>p{padding:12px 0}
+.taratura summary{cursor:pointer;text-decoration:underline;text-underline-offset:.22em;list-style:none;padding:12px 0}
+.taratura summary::-webkit-details-marker{display:none}
+.taratura summary:hover{color:var(--carta)}
+.taratura[open]{flex-basis:100%}
+.taratura .corpo{margin-top:14px;display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center}
+.tessera{width:calc(85.6 * var(--u));height:calc(53.98 * var(--u));border:1px dashed var(--carta);border-radius:calc(3.2 * var(--u));display:flex;align-items:flex-end;padding:10px;font-size:13px;color:var(--carta);flex:none;max-width:100%}
+.taratura .regolo{max-width:380px}
+
+/* cassetto: una fila per famiglia, il nome della famiglia sul bordo come l'etichetta di uno scomparto */
+.campionario{padding-top:132px;padding-bottom:120px}
+.campionario .capo{grid-column:1/13;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-bottom:56px}
+.campionario h2{max-width:9em}
+.campionario .capo p{max-width:29em;color:var(--grigio)}
+.cassetto{grid-column:1/13}
+.fila{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);border-top:1px solid var(--inchiostro);padding:16px 0 32px}
+.fila>h3{grid-column:1/4;font-size:22px;line-height:1.2;letter-spacing:-.01em}
+.fila>h3 small{display:block;font-size:15px;letter-spacing:0;color:var(--grigio);margin-top:6px}
+.vano{grid-column:span 3;display:flex;flex-direction:column}
+.vano .n{font-size:13px;color:var(--grigio)}
+.vano img{width:100%;aspect-ratio:560/360;object-fit:cover;margin:0 0 8px;mix-blend-mode:multiply}
+.vano h4{font-size:17px;line-height:1.25;font-weight:500}
+.vano p{font-size:15px;color:var(--grigio);margin-top:2px}
+.fila.fuori{padding-bottom:0}
+.fuori ul{grid-column:4/13;list-style:none;font-size:15px;line-height:1.45;columns:2;column-gap:var(--gap)}
+.fuori li{padding:0 0 10px;break-inside:avoid}
+.fuori .chiedi{grid-column:4/13;margin-top:20px;font-size:15px}
+.fuori .chiedi a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Tav. 2: due ritagli stretti di bobina, piccoli perche' restino nitidi */
+.tav2{padding-top:24px;padding-bottom:132px;align-items:start}
+.tav2 .b1{grid-column:4/7}
+.tav2 .b2{grid-column:7/10}
+.tav2 img{width:100%;max-width:360px;aspect-ratio:2/3;object-fit:cover}
+.tav2 .b1{justify-self:end}
+.tav2 figcaption{grid-column:4/10;margin-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 24px}
+
+/* ricopertura */
+.ricopertura{padding-top:0}
+.ricopertura .titolo{grid-column:1/8;margin-bottom:48px}
+.ricopertura .intro{margin-top:20px;max-width:30em;color:var(--grigio)}
+.dittico{display:grid;grid-template-columns:1fr 1fr;position:relative}
+.dittico img{width:100%;height:100%;object-fit:cover}
+.prova{height:min(820px,62vw)}
+.prova>.metallo,.prova>.pelle{height:100%;overflow:hidden}
+.prova .filo{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:var(--cuoio);z-index:2}
+.prova .metallo img{object-position:30% 45%}
+.sagome{position:absolute;left:50%;bottom:clamp(40px,7vw,96px);z-index:3;width:0;height:0}
+.sagoma{position:absolute;bottom:0;left:calc(var(--w) * var(--u) / -2);width:calc(var(--w) * var(--u));height:calc(var(--w) * .62 * var(--u));border-radius:calc(7 * var(--u))}
+.sagoma .l{position:absolute;inset:0;border:2px solid;border-radius:inherit}
+.sagoma .l.sx{color:var(--inchiostro);clip-path:inset(-2px 50% -2px -2px)}
+.sagoma .l.dx{color:var(--carta);clip-path:inset(-2px -2px -2px 50%)}
+.sagoma b{position:absolute;right:calc(3 * var(--u));top:calc(1.4 * var(--u));font-size:13px;font-weight:600;font-stretch:112%;color:var(--carta);line-height:1}
+.ricopertura .dida{padding:14px var(--m) 0;max-width:none}
+.ricopertura .testo{grid-column:1/7;margin-top:56px}
+.misure{grid-column:8/13;margin-top:56px;align-self:start}
+.misure dl{display:grid;grid-template-columns:auto 1fr;gap:0 28px;font-size:15px}
+.misure dt,.misure dd{padding:7px 0}
+.misure dt{color:var(--grigio)}
+.semilavorati{padding-top:80px}
+.semilavorati .testo{grid-column:1/7;margin-bottom:40px}
+.semilavorati h3{font-size:clamp(22px,2.3vw,32px);line-height:1.1;letter-spacing:-.02em;font-stretch:112%;font-weight:340;margin-bottom:16px}
+.semilavorati figure img{width:100%}
+
+/* campionario delle misure: un elenco per settore, con la quota di ogni articolo sullo stesso righello 1:1 */
+.mestieri{padding-top:132px;padding-bottom:132px}
+.mestieri h2{grid-column:1/9;margin-bottom:20px}
+.mestieri .intro{grid-column:1/7;color:var(--grigio);margin-bottom:48px}
+.settori{grid-column:1/13}
+.settori .nome{min-width:0}
+.testata-quote,.settore li{display:grid;grid-template-columns:minmax(0,1fr) 220px calc(60 * var(--u) + 12px);column-gap:24px;align-items:center}
+.testata-quote{font-size:13px;color:var(--grigio);padding-bottom:10px}
+.testata-quote .mis,.settore .mis{text-align:right;white-space:nowrap}
+.settore{border-top:1px solid var(--inchiostro);padding:14px 0 36px}
+.settore h3{font-size:22px;letter-spacing:-.01em;margin-bottom:6px}
+.settore ul{list-style:none;font-size:15px}
+.settore li{padding:9px 0}
+.settore li+li{background:linear-gradient(var(--filo),var(--filo)) top/100% 1px no-repeat}
+.settore .mis{color:var(--grigio)}
+.settore .anche{font-size:15px;color:var(--grigio);padding-top:9px;background:linear-gradient(var(--filo),var(--filo)) top/100% 1px no-repeat}
+.asse{position:relative;display:block;width:calc(60 * var(--u));height:18px;background:linear-gradient(rgba(27,23,20,.35),rgba(27,23,20,.35)) left bottom/100% 1px no-repeat,repeating-linear-gradient(90deg,rgba(27,23,20,.35) 0 1px,transparent 1px calc(10 * var(--u))) left bottom/calc(100% + 1px) 5px no-repeat}
+.asse i{position:absolute;bottom:0;background:var(--cuoio)}
+.asse .da{left:calc(var(--a) * var(--u));width:calc((var(--b) - var(--a)) * var(--u));height:8px}
+.asse .pt{left:calc(var(--a) * var(--u) - 1px);width:2px;height:16px}
+.quote{position:relative;display:block;width:calc(60 * var(--u));height:16px}
+.quote span{position:absolute;bottom:0;transform:translateX(-50%);line-height:1}
+.quote span:first-child{transform:none}
+
+/* storia */
+.storia{padding-bottom:132px}
+.storia .anno{grid-column:1/7;align-self:end}
+.storia .anno span{display:block;font-stretch:125%;font-weight:240;font-size:clamp(96px,9.45vw,136px);line-height:.8;letter-spacing:-.045em;color:var(--cuoio)}
+.storia .anno b{display:block;margin-top:18px;font-weight:540;font-size:15px}
+.storia .testo{grid-column:7/12;align-self:end;font-size:22px;line-height:1.45;letter-spacing:-.005em}
+
+/* chiusura (stile B "con foto", scelto il 20 ottobre): la frase, i recapiti e una foto grande che esce dal bordo destro */
+.chiusa{padding-top:clamp(96px,10vw,144px);padding-bottom:clamp(88px,9vw,128px)}
+.chiusa .testo{grid-column:1/6;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.chiusa h2{font-size:clamp(34px,4.17vw,60px);line-height:1;letter-spacing:-.035em;font-weight:380}
+.chiusa .rec{font-size:17px;line-height:1.55}
+.chiusa .rec p+p{margin-top:10px}
+.chiusa .rec .numero{margin-bottom:6px}
+.chiusa .rec a:not(.numero){display:inline-block;padding:2px 0}
+.chiusa .rec .grigio{color:var(--grigio)}
+.chiusa .nb{white-space:nowrap}
+.chiusa .foto{grid-column:7/13;grid-row:1;margin-right:calc(-1 * var(--m))}
+.chiusa .foto img{width:100%;height:clamp(560px,53vw,780px);object-fit:cover;object-position:100% 40%}
+@media (max-width:900px){
+  .chiusa{padding-top:0}
+  .chiusa .foto{grid-column:1/13;margin-left:calc(-1 * var(--m))}
+  .chiusa .foto img{height:auto;aspect-ratio:1/1;max-height:640px;object-position:100% 50%}
+  .chiusa .testo{grid-column:1/13;grid-row:2;margin-top:48px;gap:40px}
+  .chiusa h2{font-size:clamp(40px,5.6vw,50px);max-width:14em}
+}
+@media (max-width:700px){
+  .chiusa{padding-bottom:72px}
+  .chiusa .testo{margin-top:36px;gap:32px}
+  .chiusa h2{font-size:clamp(32px,9.2vw,40px);line-height:1.02}
+}
+
+/* piede: una riga sola, nel tono della pagina; l'unico filetto della chiusura */
+.piede{padding-bottom:28px;font-size:15px;line-height:1.5;color:var(--grigio)}
+.piede .riga{display:flex;flex-wrap:wrap;gap:6px 28px;padding-top:18px;border-top:1px solid var(--filo);grid-column:1/13}
+.piede .riga>*{display:inline-flex;align-items:center;min-height:24px}
+.piede .fb{margin-left:auto}
+.piede a{color:var(--grigio)}
+.piede a:hover{color:var(--inchiostro)}
+.numero{display:inline-flex;align-items:center;min-height:44px;font-stretch:112%;font-weight:400;font-size:clamp(28px,2.23vw,32px);line-height:1.1;letter-spacing:-.02em;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+.numero:hover{text-decoration-thickness:2px}
+@media (max-width:700px){.piede .fb{margin-left:0}}
+
+/* navigazione compatta: sotto i 1000 px le voci passano su una riga sotto il marchio, che scorre di lato */
+@media (max-width:1000px){
+  .testa{flex-wrap:wrap}
+  .testa nav{order:3;flex:0 0 calc(100% + 2 * var(--m));margin:0 calc(-1 * var(--m));padding:0 var(--m);overflow-x:auto;scrollbar-width:none}
+  .testa nav::-webkit-scrollbar{display:none}
+  .menu{gap:22px;width:max-content}
+}
+/* tablet: la stessa composizione del 1440, titolo sopra la carta, fibbia a destra che esce dal bordo */
+@media (max-width:1100px){
+  .apertura .foto img{object-position:100% 50%}
+  .apertura .lede{max-width:22em}
+  .didascalie{display:none}
+  .ricopertura .titolo{grid-column:1/13;margin-bottom:24px}
+  .tav2 .b1{grid-column:3/7}
+  .tav2 .b2{grid-column:7/11}
+  .tav2 figcaption{grid-column:3/11}
+}
+@media (max-width:900px){
+  .apertura .azione{flex-direction:column;align-items:flex-start}
+  .righello{bottom:12px}
+  .banco h2,.banco .intro{grid-column:1/13}
+  .lettura{grid-column:1/13;grid-row:auto;justify-self:start;text-align:left;margin-top:40px}
+  .lettura .valore{justify-content:flex-start}
+  .lettura .valore small{font-size:22px}
+  .lettura .cosa{margin-left:0}
+  .ricopertura .testo,.misure,.semilavorati .testo{grid-column:1/13}
+  .storia .anno,.storia .testo{grid-column:1/13}
+  .storia .testo{margin-top:32px}
+  .prova{height:auto;aspect-ratio:390/330}
+  .mestieri h2,.mestieri .intro{grid-column:1/13}
+  .testata-quote,.settore li{grid-template-columns:minmax(0,1fr) 150px calc(60 * var(--u) + 12px)}
+}
+/* telefono */
+@media (max-width:700px){
+  :root{--gap:16px}
+  .testa{padding-top:4px}
+  .marchio{font-size:22px}
+  .apertura{height:auto;min-height:0;max-height:none;overflow:visible;display:flex;flex-direction:column}
+  .apertura .testo{padding-top:112px;order:1}
+  .apertura h1{font-size:clamp(40px,13.6vw,60px);line-height:.92;letter-spacing:-.04em}
+  .apertura .lungo{display:none}
+  .apertura .lede{margin-top:16px}
+  .apertura .azione{margin-top:14px;flex-direction:row;align-items:center;gap:0 20px}
+  .apertura .bottone{padding:0 18px}
+  .apertura .foto{position:relative;order:2;display:block;margin-top:16px;height:auto;inset:auto}
+  .apertura .foto img{position:relative;inset:auto;height:auto;aspect-ratio:1460/1360;object-position:50% 50%}
+  .righello{position:relative;order:3;bottom:auto;height:48px;background:var(--carta)}
+  .banco{padding-top:80px}
+  .comandi{margin-top:36px;gap:20px}
+  .scelte{width:100%}
+  .scelte label{flex:1 1 auto}
+  .scelte span{padding:0 10px}
+  .regolo{flex-basis:100%}
+  .campionario,.mestieri{padding-top:88px}
+  .campionario{padding-bottom:72px}
+  .mestieri{padding-bottom:88px}
+  .storia{padding-bottom:88px}
+  .fila{padding:12px 0 24px}
+  .fila>h3{grid-column:1/13;margin-bottom:12px}
+  .vano{grid-column:span 4}
+  .vano h4{font-size:15px}
+  .vano p{font-size:13px}
+  .fuori ul,.fuori .chiedi{grid-column:1/13}
+  .fuori ul{columns:1}
+  .tav2{padding-bottom:88px}
+  .tav2 .b1{grid-column:1/7}
+  .tav2 .b2{grid-column:7/13}
+  .tav2 figcaption{grid-column:1/13;flex-direction:column}
+  .prova{aspect-ratio:390/360}
+  .semilavorati{padding-top:72px}
+  /* misure per settore: nome e misura sopra, quota sotto */
+  .testata-quote{display:flex;justify-content:flex-end}
+  .testata-quote .nome,.testata-quote .mis{display:none}
+  .settore li{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}
+  .settore li .sc{grid-column:1/3;justify-self:end}
+  .settore li .sc:empty{display:none}
+}
+@media (max-width:360px){
+  .scelte span{padding:0 6px;font-size:13px}
+  .colori{gap:8px}
+  .colori label{width:32px;height:32px}
+}
+</style>
+</head>
+<body>
+
+<header class="testa">
+  <a class="marchio" href="#" aria-label="Hambro, inizio pagina">HAMBRO</a>
+  <nav aria-label="Sezioni">
+    <ul class="menu">
+      <li><a href="#lacci">Lacci e nastri</a></li>
+      <li><a href="#minuteria">Minuteria</a></li>
+      <li><a href="#ricopertura">Ricopertura</a></li>
+      <li><a href="#misure">Misure per settore</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+  <a class="tel" href="tel:+390499802326">049&nbsp;980&nbsp;2326</a>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <picture class="foto">
+    <source media="(max-width:700px)" srcset="img/apertura-m-780.jpg 780w, img/apertura-m-1170.jpg 1170w" sizes="100vw">
+    <source media="(max-width:1100px)" srcset="img/apertura-t-1100.jpg 1100w, img/apertura-t-1600.jpg 1600w" sizes="100vw">
+    <img src="img/apertura-1440.jpg" srcset="img/apertura-1440.jpg 1440w, img/apertura-1920.jpg 1920w, img/apertura-2400.jpg 2400w" sizes="100vw" width="1440" height="900" fetchpriority="high" alt="Fibbia dorata ad ardiglione con borchie a piramide, smontata su carta bianca, in pieno sole">
+  </picture>
+  <div class="testo">
+    <h1 id="titolo">Fibbie, lacci e rinforzi</h1>
+    <p class="lede">Minuteria in zama, ferro e ottone, lacci in pelle da&nbsp;mm2 a&nbsp;mm60, nastri, fodere e rinforzi per borse, cinture, calzature e&nbsp;capi.<span class="lungo"> Da&nbsp;Vigonovo, Venezia.</span></p>
+    <p class="azione"><a class="bottone" href="#lacci">Prova le misure<span class="lungo">, mm&nbsp;2&#8288;-&#8288;60</span></a> <a href="mailto:commerciale@hambro.it">commerciale@hambro.it</a></p>
+  </div>
+  <div class="didascalie">
+    <p class="didascalia"><b>Scala 1:1</b>Righello in millimetri. In cuoio le misure a catalogo: lacci e tondini da&nbsp;2 a&nbsp;4, tubolari fino a&nbsp;16, nastri da&nbsp;20 a&nbsp;50, strisce e fibbie fino a&nbsp;60.</p>
+    <p class="didascalia"><b>Tav. 1</b>Fibbia ad ardiglione con borchie a&nbsp;piramide, finitura oro.</p>
+  </div>
+  <div class="righello" data-righello aria-hidden="true"></div>
+</section>
+
+<section class="banco" id="lacci" aria-labelledby="t-lacci" style="--n:30">
+  <div class="griglia">
+    <h2 class="h2" id="t-lacci">Lacci e nastri in scala 1:1</h2>
+    <p class="intro">Scegli il materiale e la misura: la striscia qui sotto prende la larghezza vera. Il laccio in pelle lo facciamo tubolare, piatto, cucito o a taglio vivo, e su richiesta anche a campione.</p>
+    <div class="lettura" aria-live="polite">
+      <p class="valore"><small>mm</small><span data-valore>30</span></p>
+      <p class="cosa" data-cosa>Striscia in pelle a taglio vivo, da mm2 a mm60</p>
+    </div>
+    <div class="comandi">
+      <fieldset class="scelte">
+        <legend class="nascosto">Materiale</legend>
+        <label><input type="radio" name="mat" value="vivo" checked><span>Taglio vivo</span></label>
+        <label><input type="radio" name="mat" value="tubo"><span>Tubolare</span></label>
+        <label><input type="radio" name="mat" value="nastro"><span>Nastro</span></label>
+      </fieldset>
+      <div class="regolo" data-regolo>
+        <span data-min>2</span>
+        <div class="pista"><div class="tacche" data-tacche></div><input type="range" min="2" max="60" step="1" value="30" aria-label="Larghezza in millimetri" aria-valuetext="30 millimetri" data-range></div>
+        <span data-max>60</span>
+      </div>
+      <fieldset class="scelte" data-misure-nastro hidden>
+        <legend class="nascosto">Larghezza del nastro in millimetri</legend>
+        <label><input type="radio" name="mn" value="20"><span>20</span></label>
+        <label><input type="radio" name="mn" value="25"><span>25</span></label>
+        <label><input type="radio" name="mn" value="30" checked><span>30</span></label>
+        <label><input type="radio" name="mn" value="40"><span>40</span></label>
+        <label><input type="radio" name="mn" value="50"><span>50</span></label>
+      </fieldset>
+      <fieldset class="colori" data-colori hidden>
+        <legend class="nascosto">Colore del nastro</legend>
+        <label title="Rosso"><input type="radio" name="col" value="#C9433E" aria-label="Rosso" checked><span style="--c:#C9433E"></span></label>
+        <label title="Giallo"><input type="radio" name="col" value="#E9BC2A" aria-label="Giallo"><span style="--c:#E9BC2A"></span></label>
+        <label title="Salvia"><input type="radio" name="col" value="#AEB887" aria-label="Salvia"><span style="--c:#AEB887"></span></label>
+        <label title="Viola"><input type="radio" name="col" value="#6A4378" aria-label="Viola"><span style="--c:#6A4378"></span></label>
+        <label title="Grigio"><input type="radio" name="col" value="#8C8780" aria-label="Grigio"><span style="--c:#8C8780"></span></label>
+        <label title="Nero"><input type="radio" name="col" value="#25221D" aria-label="Nero"><span style="--c:#25221D"></span></label>
+      </fieldset>
+    </div>
+  </div>
+  <div class="tavolo">
+    <div class="striscia vivo" data-striscia style="--c:#C9433E" role="img" aria-label="Striscia in pelle a taglio vivo: 30 millimetri"></div>
+  </div>
+  <div class="griglia">
+    <div class="sotto">
+      <p>Nastri in cotone e poliestere per tracolle e cinture: mm20, 25, 30, 40 e&nbsp;50.</p>
+      <details class="taratura">
+        <summary>La misura non torna? Tara lo schermo</summary>
+        <div class="corpo">
+          <div class="tessera">Appoggia qui una tessera sanitaria o un bancomat</div>
+          <div class="regolo"><span>più piccola</span><div class="pista"><input type="range" min="0.5" max="1.8" step="0.005" value="1" aria-label="Taratura della scala" data-k></div><span>più grande</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="campionario" id="minuteria" aria-labelledby="t-min">
+  <div class="griglia">
+    <div class="capo">
+      <h2 class="h2" id="t-min">Minuteria metallica</h2>
+      <p>Undici famiglie dal cassetto, in zama, ferro e ottone. Su ordinazione si possono avere varie finiture; qui c'è solo una parte di quello che è disponibile.</p>
+    </div>
+    <div class="cassetto">
+      <div class="fila">
+        <h3>Moschettoni</h3>
+        <div class="vano"><span class="n">01</span><img src="img/cat/moschettoni-tondo.jpg" alt="" width="560" height="440" loading="lazy"><h4>Anello tondo</h4><p>Zama</p></div>
+        <div class="vano"><span class="n">02</span><img src="img/cat/moschettoni-ovale.jpg" alt="" width="560" height="440" loading="lazy"><h4>Anello ovale</h4><p>Zama, ferro, ottone</p></div>
+        <div class="vano"><span class="n">03</span><img src="img/cat/moschettoni-rettangolare.jpg" alt="" width="560" height="440" loading="lazy"><h4>Anello rettangolare</h4><p>Zama</p></div>
+      </div>
+      <div class="fila">
+        <h3>Anelli e fibbie</h3>
+        <div class="vano"><span class="n">04</span><img src="img/cat/mezzi-anelli.jpg" alt="" width="560" height="440" loading="lazy"><h4>Mezzi anelli</h4><p>Ferro, zama</p></div>
+        <div class="vano"><span class="n">05</span><img src="img/cat/anelli.jpg" alt="" width="560" height="440" loading="lazy"><h4>Anelli tondi e rettangolari</h4><p>Varie forme e materiali</p></div>
+        <div class="vano"><span class="n">06</span><img src="img/cat/fibbie-doppie.jpg" alt="" width="560" height="440" loading="lazy"><h4>Fibbie doppie</h4><p>Anche per calzature</p></div>
+      </div>
+      <div class="fila">
+        <h3>Attacchi</h3>
+        <div class="vano"><span class="n">07</span><img src="img/cat/attacchi-spinetta.jpg" alt="" width="560" height="440" loading="lazy"><h4>Con spinetta</h4><p>Zama</p></div>
+        <div class="vano"><span class="n">08</span><img src="img/cat/attacco-alette.jpg" alt="" width="560" height="440" loading="lazy"><h4>Con alette</h4><p>Zama</p></div>
+      </div>
+      <div class="fila">
+        <h3>Chiusure</h3>
+        <div class="vano"><span class="n">09</span><img src="img/cat/chiusure-pulsante.jpg" alt="" width="560" height="440" loading="lazy"><h4>A pulsante</h4><p>Zama</p></div>
+        <div class="vano"><span class="n">10</span><img src="img/cat/chiusure-girello.jpg" alt="" width="560" height="440" loading="lazy"><h4>A girello</h4><p>Zama</p></div>
+        <div class="vano"><span class="n">11</span><img src="img/cat/chiusure-battente.jpg" alt="" width="560" height="440" loading="lazy"><h4>A battente</h4><p>Zama</p></div>
+      </div>
+      <div class="fila fuori">
+        <h3>Fuori dal cassetto</h3>
+        <ul>
+          <li>Cerniere dorate o nichelate</li>
+          <li>Scheletri, salpe e rinforzi per borse</li>
+          <li>Fodere tinta unita e stampate</li>
+          <li>Nappe e vitelli lavabili, sp.&nbsp;0,7 e&nbsp;1,1</li>
+          <li>Accessori in legno e bambù, in plastica e metallo nichel free, con strass</li>
+        </ul>
+        <p class="chiedi"><a href="mailto:commerciale@hambro.it?subject=Richiesta%20campioni%20di%20minuteria">Chiedi un campione</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="tav2 griglia">
+  <img class="b1" src="img/bobina-laccio-360.jpg" srcset="img/bobina-laccio-360.jpg 360w, img/bobina-laccio-720.jpg 720w" sizes="(max-width:700px) 44vw, 360px" width="360" height="540" loading="lazy" alt="Bobina di laccio in cuoio a taglio vivo: il fiore scuro e il taglio chiaro in giri fitti">
+  <img class="b2" src="img/bobina-tondino-360.jpg" srcset="img/bobina-tondino-360.jpg 360w, img/bobina-tondino-720.jpg 720w" sizes="(max-width:700px) 44vw, 360px" width="360" height="540" loading="lazy" alt="Bobina di tondino in pelle color cipria, giri affiancati">
+  <figcaption class="didascalia"><span><b>Tav. 2</b>In bobina, dal magazzino Hambro: laccio in cuoio a taglio vivo e tondino in pelle.</span><span>Per i nastri siamo rappresentanti Satab: organza e vichy.</span></figcaption>
+</figure>
+
+<section class="ricopertura" id="ricopertura" aria-labelledby="t-ric">
+  <div class="griglia">
+    <div class="titolo"><h2 class="h2" id="t-ric">Ricoperte con il vostro materiale</h2>
+    <p class="intro">Fibbie e bottoni rivestiti in pelle o in tessuto, anche con quello che ci mandate.</p></div>
+  </div>
+  <figure>
+    <div class="dittico prova">
+      <div class="metallo"><img src="img/metallo-960.jpg" srcset="img/metallo-600.jpg 600w, img/metallo-960.jpg 960w, img/metallo-1170.jpg 1170w" sizes="50vw" width="1170" height="1460" loading="lazy" alt="Fibbia in metallo dorato, senza rivestimento"></div>
+      <div class="pelle"><img src="img/pelle-960.jpg" srcset="img/pelle-600.jpg 600w, img/pelle-960.jpg 960w, img/pelle-1072.jpg 1072w" sizes="50vw" width="1072" height="1340" loading="lazy" alt="Pelle color cuoio con la grana in evidenza"></div>
+      <span class="filo" aria-hidden="true"></span>
+      <div class="sagome" role="img" aria-label="Sagome delle fibbie da ricoprire da 60, 50 e 40 millimetri, in scala reale">
+        <div class="sagoma" style="--w:60"><span class="l sx"></span><span class="l dx"></span><b>60</b></div>
+        <div class="sagoma" style="--w:50"><span class="l sx"></span><span class="l dx"></span><b>50</b></div>
+        <div class="sagoma" style="--w:40"><span class="l sx"></span><span class="l dx"></span><b>40</b></div>
+      </div>
+    </div>
+    <figcaption class="didascalia dida"><b>Tav. 3</b>A sinistra il metallo, a destra la pelle. Le sagome sono le fibbie da ricoprire da mm40, 50 e&nbsp;60, in scala reale.</figcaption>
+  </figure>
+  <div class="griglia">
+    <div class="testo">
+      <p>Nel laboratorio ricopriamo fibbie e bottoni con il tessuto o la pelle che ci mandate. Sulla pelle facciamo anche lavorazioni particolari, dal camouflage al floreale alla stampa cocco.</p>
+    </div>
+    <div class="misure">
+      <dl>
+        <dt>Fibbie da ricoprire</dt><dd>mm40, mm50, mm60</dd>
+        <dt>Bottoni</dt><dd>Yvette, a pressione e altri da ricoprire</dd>
+        <dt>Rivestimento</dt><dd>tessuto o pelle, anche vostri</dd>
+        <dt>Lavorazioni sulla pelle</dt><dd>camouflage, floreale, stampa cocco</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="semilavorati">
+    <div class="griglia">
+      <div class="testo">
+        <h3>Semilavorati in pelle e tessuto</h3>
+        <p>In laboratorio facciamo componenti semilavorati in pelle e tessuto. Se un articolo non c'è, lo creiamo su vostra richiesta.</p>
+      </div>
+    </div>
+    <figure>
+      <picture>
+        <source media="(max-width:700px)" srcset="img/semilavorati-m-780.jpg 780w, img/semilavorati-m-1170.jpg 1170w" sizes="100vw">
+        <img src="img/semilavorati-1440.jpg" srcset="img/semilavorati-1440.jpg 1440w, img/semilavorati-1920.jpg 1920w, img/semilavorati-2400.jpg 2400w" sizes="100vw" width="1440" height="852" alt="Mani che tracciano un cartamodello su una pelle scamosciata, sul banco di legno" loading="lazy">
+      </picture>
+      <figcaption class="didascalia dida"><b>Tav. 4</b>Il banco del taglio: cartamodello e pelle scamosciata.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="mestieri" id="misure" aria-labelledby="t-mes">
+  <div class="griglia">
+    <h2 class="h2" id="t-mes">Per chi fa borse, scarpe e capi</h2>
+    <p class="intro">Le misure a catalogo, settore per settore. Ogni quota è in scala reale sullo stesso righello da 0 a 60&nbsp;mm.</p>
+    <div class="settori">
+      <p class="testata-quote" aria-hidden="true"><span class="nome">Articolo</span><span class="mis">mm</span><span class="sc"><span class="quote"><span style="left:0">0</span><span style="left:calc(10 * var(--u))">10</span><span style="left:calc(20 * var(--u))">20</span><span style="left:calc(30 * var(--u))">30</span><span style="left:calc(40 * var(--u))">40</span><span style="left:calc(50 * var(--u))">50</span><span style="left:calc(60 * var(--u))">60</span></span></span></p>
+      <div class="settore">
+        <h3>Pelletteria</h3>
+        <ul>
+          <li><span class="nome">Nastri per tracolla e cinture, cotone e poliestere</span><span class="mis">20, 25, 30, 40, 50</span><span class="sc"><span class="asse" aria-hidden="true"><i class="pt" style="--a:20"></i><i class="pt" style="--a:25"></i><i class="pt" style="--a:30"></i><i class="pt" style="--a:40"></i><i class="pt" style="--a:50"></i></span></span></li>
+          <li><span class="nome">Laccio tubolare in pelle</span><span class="mis">da 2 a 16</span><span class="sc"><span class="asse" aria-hidden="true"><i class="da" style="--a:2;--b:16"></i></span></span></li>
+          <li><span class="nome">Laccio in cuoio a taglio vivo</span><span class="mis">4</span><span class="sc"><span class="asse" aria-hidden="true"><i class="pt" style="--a:4"></i></span></span></li>
+        </ul>
+        <p class="anche">E poi nastro intrecciato, scheletri, salpe e rinforzi.</p>
+      </div>
+      <div class="settore">
+        <h3>Calzatura</h3>
+        <ul>
+          <li><span class="nome">Laccio tubolare: corda cerata, elastico, pelle</span><span class="mis">2, 3, 4</span><span class="sc"><span class="asse" aria-hidden="true"><i class="pt" style="--a:2"></i><i class="pt" style="--a:3"></i><i class="pt" style="--a:4"></i></span></span></li>
+          <li><span class="nome">Tondino in pelle</span><span class="mis">da 2 a 3,5</span><span class="sc"><span class="asse" aria-hidden="true"><i class="da" style="--a:2;--b:3.5"></i></span></span></li>
+          <li><span class="nome">Rivetti</span><span class="mis">00, 033, 034, 036</span><span class="sc"></span></li>
+        </ul>
+        <p class="anche">E poi occhielli piatti e bombati, lampo in plastica e metallo, fibbie doppie.</p>
+      </div>
+      <div class="settore">
+        <h3>Abbigliamento</h3>
+        <ul>
+          <li><span class="nome">Strisce in pelle a taglio vivo</span><span class="mis">da 2 a 60</span><span class="sc"><span class="asse" aria-hidden="true"><i class="da" style="--a:2;--b:60"></i></span></span></li>
+          <li><span class="nome">Cordoncino in poliestere</span><span class="mis">3, 4</span><span class="sc"><span class="asse" aria-hidden="true"><i class="pt" style="--a:3"></i><i class="pt" style="--a:4"></i></span></span></li>
+          <li><span class="nome">Tondino in pelle</span><span class="mis">2, 3</span><span class="sc"><span class="asse" aria-hidden="true"><i class="pt" style="--a:2"></i><i class="pt" style="--a:3"></i></span></span></li>
+          <li><span class="nome">Alcantara, vari colori</span><span class="mis">h. 1,40</span><span class="sc"></span></li>
+        </ul>
+        <p class="anche">E poi corda juta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="storia" aria-label="Da dove viene Hambro">
+  <div class="griglia">
+    <p class="anno"><span>1979</span><b>Giorgio Gastaldello, nella pelletteria dal 1979</b></p>
+    <div class="testo">
+      <p>Hambro nasce da un'idea di Giorgio Gastaldello: interni, rinforzi e minuteria per chi produce borse, cinture, calzature e abbigliamento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chiusa" id="contatti" aria-labelledby="t-con">
+  <div class="griglia">
+    <div class="testo">
+      <h2 id="t-con">Sul sito c'è solo una parte: il resto si chiede al telefono o per posta</h2>
+      <div class="rec">
+        <p><a class="numero" href="tel:+390499802326">049&nbsp;980&nbsp;2326</a></p>
+        <p><a href="mailto:commerciale@hambro.it">commerciale@hambro.it</a></p>
+        <p>via dell'Artigianato, 30, 30030&nbsp;Vigonovo (Venezia)<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Hambro%20srl%2C%20via%20dell%27Artigianato%2030%2C%2030030%20Vigonovo%20VE">Apri la mappa</a></p>
+        <p class="grigio">Lunedì a giovedì <span class="nb">8:00&#8288;-&#8288;12:00 e 13:30&#8288;-&#8288;17:30</span><br>Venerdì <span class="nb">8:00&#8288;-&#8288;12:00</span>, sabato e domenica chiuso</p>
+      </div>
+    </div>
+    <figure class="foto">
+      <picture>
+        <source media="(max-width:900px)" srcset="img/chiusa-m-390.jpg 390w, img/chiusa-m-780.jpg 780w, img/chiusa-m-1170.jpg 1170w" sizes="100vw">
+        <img src="img/chiusa-720.jpg" srcset="img/chiusa-720.jpg 720w, img/chiusa-1440.jpg 1440w" sizes="50vw" width="720" height="773" loading="lazy" alt="Fibbia ad ardiglione in metallo dorato su un piano lucido">
+      </picture>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="griglia">
+    <p class="riga"><span>Hambro srl</span><span>P.IVA 00967020280</span><a href="#">Informativa privacy</a><a class="fb" href="https://www.facebook.com/profile.php?id=100057503796900">Facebook</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var k=1;
+  try{var s=localStorage.getItem('hambro-k');if(s){k=parseFloat(s)||1}}catch(e){}
+  if(!(k>=0.5&&k<=1.8))k=1;
+  root.style.setProperty('--k',k);
+  var kIn=document.querySelector('[data-k]');if(kIn)kIn.value=k;
+  function fmt(v){return String(v).replace('.',',');}
+
+  /* righello in millimetri, in scala reale (taratura inclusa).
+     In cuoio le misure a catalogo: 2-4 (lacci, tondini, cordoncino) come una sola quota, poi 16, 20, 25, 30, 40, 50, 60.
+     Due righe di numeri: dove un numero non sta nella riga bassa sale in quella alta e la sua tacca si allunga in verticale. */
+  var CAT=[2,3,3.5,4,16,20,25,30,40,50,60];
+  var INK='#1B1714',CU='#7B4524';
+  function largo(t){var w=0;for(var i=0;i<t.length;i++){var c=t[i];w+=(c===','?3.6:(c==='-'?5:7.6));}return w;}
+  function disegna(){
+    var el=document.querySelector('[data-righello]');if(!el)return;
+    var w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;
+    var compatto=h<60;
+    var px=96/25.4*k;
+    var rif=document.querySelector('.apertura h1');
+    var start=Math.round(rif?rif.getBoundingClientRect().left:20);
+    var fine=Math.min(100,Math.floor((w-start-(compatto?48:44))/px));
+    if(!compatto&&w<=900)fine=Math.min(fine,60);   /* tablet stretto: il righello si ferma prima del ramo della fibbia */
+    var Lc=compatto?11:16, L10=compatto?8:11, L5=compatto?6:8, L1=compatto?3:5;
+    var y0=compatto?h-Lc-5:h-Lc-7, y1=y0-(compatto?16:18);
+    var o='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">';
+    o+='<defs><linearGradient id="sf" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="'+INK+'" stop-opacity=".55"/><stop offset="1" stop-color="'+INK+'" stop-opacity="0"/></linearGradient></defs>';
+    var xEnd=start+fine*px;
+    o+='<rect x="'+start+'" y="'+(h-1)+'" width="'+(fine*px).toFixed(1)+'" height="1" fill="'+INK+'" fill-opacity=".55"/>';
+    if(!compatto){o+='<rect x="'+xEnd.toFixed(1)+'" y="'+(h-1)+'" width="'+Math.max(0,Math.min(280,w-xEnd)).toFixed(1)+'" height="1" fill="url(#sf)"/>';}
+    for(var i=0;i<=fine;i++){
+      if(CAT.indexOf(i)>-1)continue;
+      var x=start+i*px;
+      var L=i%10===0?L10:(i%5===0?L5:L1);
+      o+='<rect x="'+(x-0.5).toFixed(2)+'" y="'+(h-L)+'" width="1" height="'+L+'" fill="'+INK+'" fill-opacity=".4"/>';
+    }
+    CAT.forEach(function(v){
+      if(v>fine)return;
+      o+='<rect x="'+(start+v*px-0.5).toFixed(2)+'" y="'+(h-Lc)+'" width="1" height="'+Lc+'" fill="'+CU+'"/>';
+    });
+    /* la quota 2-4: un filo cuoio sopra le tacche 2, 3, 3,5 e 4 */
+    o+='<rect x="'+(start+2*px-0.5).toFixed(2)+'" y="'+(h-Lc)+'" width="'+(2*px+1).toFixed(2)+'" height="1" fill="'+CU+'"/>';
+    var et=[{x:start+2*px,t:'2-4',c:1,sx:1}];
+    [16,20,25,30,40,50,60].forEach(function(v){if(v<=fine)et.push({x:start+v*px,t:String(v),c:1});});
+    for(var d=70;d<=fine;d+=10)et.push({x:start+d*px,t:String(d),c:0});
+    var fr=[-1e9,-1e9],gap=5,dest=-1e9;
+    et.forEach(function(e){
+      var lw=largo(e.t), l=e.sx?e.x-1:e.x-lw/2, r=l+lw, q=-1;
+      if(l>=fr[0]+gap)q=0;else if(l>=fr[1]+gap)q=1;
+      if(q<0)return;
+      fr[q]=r;dest=Math.max(dest,r);
+      var y=q?y1:y0;
+      o+='<text x="'+l.toFixed(1)+'" y="'+y+'" class="rt'+(e.c?' c':'')+'" fill="'+(e.c?CU:INK)+'" fill-opacity="'+(e.c?1:.6)+'">'+e.t+'</text>';
+      if(q){o+='<rect x="'+(e.x-0.5).toFixed(2)+'" y="'+(y1+4)+'" width="1" height="'+(h-Lc-(y1+4))+'" fill="'+CU+'"/>';}
+    });
+    o+='<text x="'+(dest+8).toFixed(1)+'" y="'+y0+'" class="rt" fill="'+INK+'" fill-opacity=".6">mm</text>';
+    o+='</svg>';
+    el.innerHTML=o;
+  }
+  disegna();
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(disegna,60);});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(disegna);
+
+  /* banco di misura */
+  var banco=document.querySelector('.banco');
+  var str=document.querySelector('[data-striscia]');
+  var val=document.querySelector('[data-valore]');
+  var cosa=document.querySelector('[data-cosa]');
+  var rng=document.querySelector('[data-range]');
+  var reg=document.querySelector('[data-regolo]');
+  var tac=document.querySelector('[data-tacche]');
+  var mn=document.querySelector('[data-misure-nastro]');
+  var col=document.querySelector('[data-colori]');
+  var vivo=[];for(var m=2;m<=60;m++)vivo.push(m);
+  /* taglio vivo: ogni millimetro da 2 a 60 (frecce 1 mm, pagina su e giu' 10 mm); tubolare: le misure a catalogo */
+  var MIS={vivo:vivo,tubo:[2,3,4,16]};
+  var TAC={vivo:[2,10,20,30,40,50,60],tubo:[2,3,4,16]};
+  var memo={vivo:30,tubo:4};
+  var testi={vivo:'Striscia in pelle a taglio vivo, da mm2 a mm60',tubo:'Laccio tubolare in pelle: mm2, 3, 4 e 16',nastro:'Nastro in cotone o poliestere per tracolle e cinture'};
+  var mat='vivo';
+  function imposta(n){
+    banco.style.setProperty('--n',n);
+    val.textContent=fmt(n);
+    str.setAttribute('aria-label',testi[mat]+': '+fmt(n)+' millimetri');
+    rng.setAttribute('aria-valuetext',fmt(n)+' millimetri');
+  }
+  function vicina(v){var l=MIS[mat],b=l[0];l.forEach(function(x){if(Math.abs(x-v)<Math.abs(b-v))b=x;});return b;}
+  function tacche(){
+    var l=MIS[mat],t=TAC[mat],mi=l[0],ma=l[l.length-1],o='';
+    t.forEach(function(v){o+='<i style="left:'+((v-mi)/(ma-mi)*100).toFixed(3)+'%"></i>';});
+    tac.innerHTML=o;
+    rng.min=mi;rng.max=ma;
+    document.querySelector('[data-min]').textContent=fmt(mi);
+    document.querySelector('[data-max]').textContent=fmt(ma);
+  }
+  function scegli(v){memo[mat]=v;rng.value=v;imposta(v);}
+  rng.addEventListener('input',function(){scegli(vicina(parseFloat(rng.value)));});
+  rng.addEventListener('keydown',function(e){
+    var l=MIS[mat],i=l.indexOf(memo[mat]),j=i,salto=mat==='vivo'?10:1;
+    if(e.key==='ArrowRight'||e.key==='ArrowUp')j=Math.min(l.length-1,i+1);
+    else if(e.key==='ArrowLeft'||e.key==='ArrowDown')j=Math.max(0,i-1);
+    else if(e.key==='PageUp')j=Math.min(l.length-1,i+salto);
+    else if(e.key==='PageDown')j=Math.max(0,i-salto);
+    else if(e.key==='Home')j=0;else if(e.key==='End')j=l.length-1;else return;
+    e.preventDefault();scegli(l[j]);
+  });
+  document.querySelectorAll('input[name=mat]').forEach(function(r){
+    r.addEventListener('change',function(){
+      mat=r.value;
+      str.className='striscia '+mat;
+      cosa.textContent=testi[mat];
+      var nastro=mat==='nastro';
+      reg.hidden=nastro;mn.hidden=!nastro;col.hidden=!nastro;
+      if(nastro){imposta(parseInt(document.querySelector('input[name=mn]:checked').value,10));}
+      else{tacche();scegli(memo[mat]);}
+    });
+  });
+  document.querySelectorAll('input[name=mn]').forEach(function(r){r.addEventListener('change',function(){imposta(parseInt(r.value,10));});});
+  document.querySelectorAll('input[name=col]').forEach(function(r){r.addEventListener('change',function(){str.style.setProperty('--c',r.value);});});
+  tacche();scegli(30);
+  if(kIn){kIn.addEventListener('input',function(){
+    k=parseFloat(kIn.value)||1;root.style.setProperty('--k',k);disegna();
+    try{localStorage.setItem('hambro-k',String(k))}catch(e){}
+  });}
+})();
+</script>
+</body>
+</html>

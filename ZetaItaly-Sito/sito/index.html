@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeta S.r.l. · Articoli su misura in PVC e polipropilene, Padova</title>
+<meta name="description" content="Zeta S.r.l., Padova, dal 1969: raccoglitori ad anelli, buste, cartelle, copertine e portadocumenti su misura in PVC, polipropilene, plastica riciclata e compostabile, elettrosaldati, con la vostra stampa. Preventivi a info@zetaitaly.com, 049 774299.">
+<style>
+/* carattere: Instrument Sans 400 e 500 (SIL OFL 1.1, licenza in fonts/OFL-InstrumentSans.txt), una sola famiglia */
+@font-face{font-family:"Instrument Sans";src:url(fonts/InstrumentSans-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(fonts/InstrumentSans-500.woff2) format("woff2");font-weight:500;font-display:swap}
+
+/* colori: carta per la pagina, il verde del logo pieno su un blocco solo (il preventivo), bianco solo per il modulo, il piede scuro */
+:root{
+  --carta:#F3F2EE;
+  --bianco:#FFFFFF;
+  --inchiostro:#15201B;
+  --nota:#4D5752;
+  --verde:#0A6B42;
+  --verde-buio:#07502F;
+  --scuro:#101B16;
+  --su-scuro:#D9DED9;
+  --aperto:#0A6B42;
+  --chiuso:#8A5A00;
+  --aperto-chiaro:#8FD3B0;
+  --chiuso-chiaro:#F2C46B;
+  --filo:rgba(21,32,27,.2);
+  --luce:rgba(255,255,255,.95);
+  --filo-chiaro:rgba(255,255,255,.28);
+  --m:48px;          /* margine laterale, lo stesso per tutta la pagina */
+  --g:24px;          /* spazio tra le colonne della griglia a 12 */
+  --max:1680px;      /* larghezza massima del contenuto */
+  --col:calc((min(100vw, calc(var(--max) + 2 * var(--m))) - 2 * var(--m) - 11 * var(--g)) / 12); /* una colonna della griglia */
+  --sez:120px;       /* spazio tra le sezioni */
+  --sez-corta:88px;  /* dopo l'apertura */
+  --sez-lunga:176px; /* la pausa prima del culmine */
+  --testata:72px;
+  --font:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--testata) + 16px)}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font:400 18px/28px var(--font);font-kerning:normal;overflow-x:hidden}
+/* registro: 52/56 solo per la frase-firma (h1 e piede, lo stesso trattamento), 32/40 per i titoli di sezione,
+   18/28 per il testo e i nomi, 15/22 per interfaccia, didascalie e note; 14 solo per le righe d'istruzione accanto al comando (D7) */
+.firma{font:400 52px/56px var(--font);letter-spacing:-.02em;text-wrap:balance}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:4px;text-decoration-thickness:1px}
+h1,h2,h3,h4{font-weight:400;margin:0;text-wrap:balance}
+p,ul,ol,dl,dd,figure{margin:0}
+p{text-wrap:pretty}
+ul,ol{padding:0;list-style:none}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.nw{white-space:nowrap}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.salta{position:absolute;left:-999px;top:8px;background:var(--inchiostro);color:#fff;padding:12px 16px;z-index:30;font-size:15px}
+.salta:focus{left:8px}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.pieno :focus-visible,.piede :focus-visible{outline-color:#fff}
+
+/* la griglia: 12 colonne, stessi margini, bordo destro comune */
+.wrap{width:100%;max-width:calc(var(--max) + 2 * var(--m));margin:0 auto;padding-left:var(--m);padding-right:var(--m)}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+
+/* il cordone: il filetto della pagina, chiaro e scuro come una saldatura */
+.cordone{--scuro-c:var(--filo);--chiaro-c:var(--luce);background-image:linear-gradient(var(--scuro-c),var(--scuro-c)),linear-gradient(var(--chiaro-c),var(--chiaro-c));background-size:100% 1px,100% 1px;background-position:0 0,0 1px;background-repeat:no-repeat}
+.pieno .cordone,.piede .cordone{--scuro-c:rgba(0,0,0,.28);--chiaro-c:var(--filo-chiaro)}
+
+/* il cartellino: il nome sul campione, come l'etichetta di un campionario (apertura e culmine) */
+.cartellino{position:absolute;left:12px;bottom:12px;background:var(--carta);color:var(--inchiostro);font:500 15px/20px var(--font);padding:5px 10px 6px;border-radius:2px;max-width:calc(100% - 24px)}
+
+/* bottone: uno solo, pieno */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border-radius:2px;border:0;background:var(--verde);color:#fff;font:500 15px/22px var(--font);text-decoration:none;white-space:nowrap;cursor:pointer}
+.btn:hover{background:var(--verde-buio)}
+.freccia{font-weight:500;text-decoration:underline;text-decoration-color:var(--filo);text-underline-offset:6px}
+.freccia::after{content:"\00a0\2192"}
+.freccia:hover{color:var(--verde);text-decoration-color:currentColor}
+.copia{appearance:none;background:none;border:0;padding:0;font:500 15px/22px var(--font);color:inherit;text-decoration:underline;text-underline-offset:5px;cursor:pointer}
+.copia:hover{color:var(--verde)}
+.copia.bordato{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid currentColor;border-radius:2px;text-decoration:none}
+.piede .copia:hover,.pieno .copia:hover{color:#fff;text-decoration-thickness:2px}
+.aiuto{font-size:14px;line-height:20px;color:var(--nota)}
+
+/* stato aperto o chiuso, con il pallino: una sola forma, "Aperti ora, fino alle 12.30" */
+.aperto{color:var(--aperto)}
+.chiuso{color:var(--chiuso)}
+.piede .aperto{color:var(--aperto-chiaro)}
+.piede .chiuso{color:var(--chiuso-chiaro)}
+.aperto::before,.chiuso::before{content:"";display:inline-block;width:.55em;height:.55em;border-radius:50%;background:currentColor;margin-right:.4em;vertical-align:.04em}
+
+/* testata fissa */
+.testata{position:sticky;top:0;z-index:20;background:var(--carta)}
+.testata .riga{height:var(--testata);display:flex;align-items:center;gap:32px}
+.logo{flex:none;width:96px}
+.cerca{position:relative;flex:0 1 300px}
+.cerca input{width:100%;height:44px;border:0;border-bottom:1px solid rgba(21,32,27,.45);border-radius:0;background:transparent;padding:0 2px;font:400 18px/1 var(--font);color:var(--inchiostro)}
+.cerca input::placeholder{color:var(--nota)}
+.cerca input:focus{outline:2px solid var(--verde);outline-offset:0;background:var(--bianco);border-bottom-color:var(--verde)}
+.risultati{position:absolute;left:0;right:0;min-width:300px;top:calc(100% + 6px);background:var(--bianco);border:1px solid var(--filo);border-radius:2px;box-shadow:0 12px 32px rgba(21,32,27,.14);z-index:25}
+.risultati[hidden]{display:none}
+.risultati a{display:block;padding:10px 14px;font-size:15px;line-height:22px;text-decoration:none;border-top:1px solid rgba(21,32,27,.08)}
+.risultati a:first-child{border-top:0}
+.risultati a span{display:block;font-size:15px;color:var(--nota)}
+.risultati a:hover,.risultati a.attivo{background:var(--carta)}
+.risultati p{padding:10px 14px 4px;font-size:15px;line-height:22px;color:var(--nota)}
+.risultati .vuoto a{font-weight:500;color:var(--verde);border-top:0;padding-top:6px;padding-bottom:6px}
+.testata nav{display:flex;gap:28px;margin-left:auto}
+.testata nav a,.lingua summary{font:500 15px/1 var(--font);text-decoration:none;display:inline-flex;align-items:center;min-height:48px}
+.testata nav a:hover,.lingua summary:hover{color:var(--verde)}
+/* "Su misura" e "Preventivo" compaiono in testata solo quando l'apertura è uscita dalla vista (nessuna transizione) */
+.testata .riga nav .dopo{display:none}
+.testata.scesa .riga nav .dopo{display:inline-flex}
+.lingua{position:relative}
+.lingua summary{list-style:none;cursor:pointer;color:var(--nota);gap:0}
+.lingua summary::-webkit-details-marker{display:none}
+.lingua summary b{font-weight:500;color:var(--inchiostro)}
+.lingua summary::after{content:"";width:0;height:0;margin-left:8px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor}
+.lingua[open] summary::after{border-top:0;border-bottom:5px solid currentColor}
+.lingua:not([open]) ul{display:none}
+.lingua ul{position:absolute;right:0;top:100%;background:var(--bianco);border:1px solid var(--filo);border-radius:2px;padding:6px 0;min-width:150px;box-shadow:0 12px 32px rgba(21,32,27,.14)}
+.lingua li a{display:block;padding:8px 16px;font-size:15px;text-decoration:none}
+.lingua li a:hover{background:var(--carta)}
+.chiama{display:flex;align-items:center;gap:20px;font-size:15px;line-height:22px;white-space:nowrap}
+.chiama .stato-t{min-width:19em;text-align:right;color:var(--nota)}
+.chiama .stato-t.aperto{color:var(--aperto)}
+.chiama .stato-t.chiuso{color:var(--chiuso)}
+.tel-t{font-weight:500;display:inline-flex;flex-direction:column;justify-content:center;align-items:flex-end;min-height:48px;text-decoration:none}
+.tel-t .lungo,.tel-t .corto{text-decoration:underline;text-decoration-color:var(--filo);text-underline-offset:6px}
+.tel-t:hover{color:var(--verde)}
+.tel-t:hover .lungo,.tel-t:hover .corto{text-decoration-color:currentColor}
+.tel-t .corto{display:none}
+.stato-mini{display:none;font:400 14px/18px var(--font);text-decoration:none;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.chiama,.tel-t{min-width:0}
+.stato-mini:empty{display:none!important}
+.menu-btn{display:none;appearance:none;background:none;border:0;border-radius:0;min-height:48px;padding:0 4px 0 12px;text-decoration:underline;text-decoration-color:var(--filo);text-underline-offset:6px;font:500 15px/1 var(--font);color:var(--inchiostro);cursor:pointer}
+.pannello{display:none}
+.testata::after{content:"";display:block;height:0;border-top:1px solid var(--filo);box-shadow:0 1px 0 var(--luce)}
+
+/* apertura: la frase-firma e il mestiere sopra, le quattro tessere fino al bordo della finestra, il nome su ciascuna */
+.apertura .quadro{display:flex;flex-direction:column;min-height:calc(100vh - var(--testata) - 1px);min-height:calc(100svh - var(--testata) - 1px)}
+.apertura .capo{align-items:end;padding-top:48px;padding-bottom:40px}
+.apertura .manifesto{grid-column:1 / span 8}
+.apertura .mestiere{margin-top:10px}
+.apertura .agire{grid-column:9 / -1;justify-self:end;display:flex;align-items:center;gap:24px}
+.apertura .scrivi{display:none}
+.tessere{flex:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);min-height:420px}
+.tessere li,.tessere figure{position:relative;height:100%}
+.tessere .ft{position:absolute;inset:0;overflow:hidden;background:#2A2D2C}
+.tessere img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.didascalia{font-size:15px;line-height:22px;color:var(--nota)}
+.didascalia b{display:block;font-weight:500;color:var(--inchiostro)}
+
+/* sezioni */
+.sezione{padding-top:var(--sez);padding-bottom:0}
+.sezione h2{font-size:32px;line-height:40px;letter-spacing:-.015em}
+.lead{max-width:34em;color:var(--nota)}
+
+/* articoli: l'indice delle famiglie, a righe, con la miniatura */
+.articoli{padding-top:var(--sez-corta)}
+.articoli .testa{align-items:baseline}
+.indice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);margin-top:40px}
+.indice li{padding:16px 0}
+.indice li:nth-last-child(-n+2){border-bottom:1px solid var(--filo);box-shadow:0 1px 0 var(--luce)}
+.indice a{display:grid;grid-template-columns:calc(2 * var(--col) + var(--g)) minmax(0,1fr) auto;column-gap:var(--g);align-items:center;text-decoration:none}
+.indice img{width:100%;aspect-ratio:3/2;object-fit:cover;background:#2A2D2C}
+.indice h3{font-size:18px;line-height:28px;font-weight:500}
+.indice p{font-size:15px;line-height:22px;color:var(--nota);margin-top:2px;max-width:24em}
+.indice .fr{color:var(--verde);font-weight:500;padding-right:4px}
+.indice a:hover h3{color:var(--verde)}
+.anche{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline}
+.anche .et{font-size:15px;color:var(--nota)}
+.anche ul{display:flex;flex-wrap:wrap;gap:12px 28px}
+.anche a{font-size:15px;font-weight:500}
+.anche a:hover{color:var(--verde)}
+.anche .freccia{margin-left:auto;font-size:15px}
+
+/* azienda */
+.azienda .corpo{align-items:start}
+.azienda .lato{grid-column:1 / span 5}
+.azienda figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.azienda figure .didascalia{margin-top:12px}
+.azienda .testo{grid-column:7 / -1}
+.azienda .testo h2{max-width:16em}
+.azienda .testo > p{margin-top:16px;max-width:36em}
+.materiali{margin-top:28px;padding-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--g);row-gap:20px}
+.materiali h3{font-size:18px;font-weight:500}
+.materiali p{font-size:15px;line-height:22px;color:var(--nota);margin-top:4px}
+.sost{margin-top:64px;padding-top:24px}
+.sost h3{font-size:18px;font-weight:500}
+.sost p{margin-top:8px;max-width:36em}
+.sost .link{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:16px;font-size:15px}
+
+/* su misura, il culmine: la saldatura a tutta griglia con il cartellino, poi il titolo e le quattro voci */
+.culmine{padding-top:var(--sez-lunga)}
+.culmine .grande .ft{position:relative}
+.culmine .grande img{width:100%;aspect-ratio:12/5;object-fit:cover;background:#2A2D2C}
+.culmine .grande .didascalia{margin-top:12px}
+.culmine .testa{margin-top:72px;align-items:baseline}
+.culmine .testa h2,.articoli .testa h2{grid-column:1 / span 6}
+.culmine .testa .lead,.articoli .testa .lead{grid-column:7 / -1}
+/* le quattro voci in quattro colonne di tre, con il cordone sopra e sotto */
+.voci{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);margin-top:40px;border-bottom:1px solid var(--filo);box-shadow:0 1px 0 var(--luce)}
+.voci li{padding:20px 0 28px}
+.voci h3{font-size:18px;line-height:28px;font-weight:500}
+.voci .n{display:block;font-size:15px;line-height:22px;font-weight:400;color:var(--nota);margin-bottom:8px}
+.voci p{margin-top:6px;max-width:22em}
+
+/* preventivo: il verde del logo, una volta */
+.pieno{background:var(--verde);color:#fff}
+.preventivo{padding-bottom:var(--sez);margin-top:var(--sez)}
+.preventivo .corpo{align-items:start}
+.preventivo .sx{grid-column:1 / span 5}
+.passi{margin-top:32px;counter-reset:p}
+/* il numero in una colonna della griglia, il testo dalla colonna 2 */
+.passi li{counter-increment:p;display:grid;grid-template-columns:var(--col) 1fr;column-gap:var(--g);padding:20px 0}
+.passi li::before{content:"0" counter(p);font-size:15px;line-height:28px;color:rgba(255,255,255,.85)}
+.passi h3{font-size:18px;font-weight:500}
+.passi p{margin-top:4px;color:rgba(255,255,255,.92)}
+.passi li:last-child{border-bottom:1px solid rgba(0,0,0,.28);box-shadow:0 1px 0 var(--filo-chiaro)}
+.titoletto{margin-top:48px;font-size:15px;line-height:22px;font-weight:500;color:rgba(255,255,255,.85)}
+/* il contatto per bisogno: due strade, ognuna con l'email o l'indirizzo, e l'orario */
+.strade{margin-top:8px}
+.strade li{padding:20px 0}
+.strade li:last-child{border-bottom:1px solid rgba(0,0,0,.28);box-shadow:0 1px 0 var(--filo-chiaro)}
+.strade h3{font-size:18px;font-weight:500}
+.strade p{color:rgba(255,255,255,.92);margin-top:4px}
+.strade a{color:#fff;font-weight:500}
+.strade .aiuto{color:rgba(255,255,255,.85);margin-left:8px}
+.strade .comandi{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:8px;font-size:15px}
+.strade .stato-s{display:block;font-size:15px;line-height:22px;font-weight:500;margin-top:2px}
+.pieno .aperto{color:#fff}
+.pieno .chiuso{color:var(--chiuso-chiaro)}
+.modulo{grid-column:7 / -1;background:var(--bianco);color:var(--inchiostro);border-radius:2px;padding:40px}
+.modulo h3{font-size:18px;line-height:28px;font-weight:500}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:18px var(--g);margin-top:24px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.largo{grid-column:1 / -1}
+.campo label,.campo .lab{font:500 15px/22px var(--font)}
+.campo label span,.campo .lab span{font-weight:400;color:var(--nota)}
+.campo input,.campo select,.campo textarea{font:400 18px/28px var(--font);color:var(--inchiostro);background:#fff;border:1px solid rgba(21,32,27,.4);border-radius:2px;padding:12px 14px;min-height:48px;width:100%}
+.campo textarea{min-height:112px;resize:vertical}
+.campo input.vh{width:1px;height:1px;min-height:0;padding:0;border:0}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--verde);outline-offset:0;border-color:var(--verde)}
+.file{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.file label.scegli{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid rgba(21,32,27,.4);border-radius:2px;font:500 15px/1 var(--font);cursor:pointer}
+.file label.scegli:hover{border-color:var(--inchiostro)}
+.file input:focus-visible + label{outline:2px solid var(--verde);outline-offset:3px}
+.file .nome{font-size:15px;color:var(--nota);overflow-wrap:anywhere;min-width:0}
+.invio{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
+.invio .aiuto{max-width:26em}
+.pronta{margin-top:24px;padding:24px;border:1px solid var(--verde);border-radius:2px;background:#F4F8F5}
+.pronta:focus{outline:none}
+.pronta h4{font-size:18px;font-weight:500}
+.pronta p{font-size:15px;line-height:22px;margin-top:6px}
+.pronta textarea{width:100%;min-height:176px;margin-top:14px;font:400 15px/22px var(--font);color:var(--inchiostro);background:#fff;border:1px solid rgba(21,32,27,.4);border-radius:2px;padding:12px 14px;resize:vertical}
+.pronta .comandi{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.pronta .copia{color:var(--verde)}
+
+/* piede: la frase-firma, poi il biglietto da visita, la sede con gli orari e i dati legali */
+.piede{background:var(--scuro);color:var(--su-scuro);padding-top:96px;padding-bottom:40px}
+.piede a{color:#fff}
+.piede .firma{color:#fff;grid-column:1 / span 8}
+.piede .alto{margin-top:56px;padding-top:40px;row-gap:48px}
+.piede .bv{grid-column:1 / span 4}
+.piede .bv img{width:120px;filter:brightness(0) invert(1)}
+.piede .sede{grid-column:5 / span 4}
+.piede h2{font:500 15px/22px var(--font);color:#fff;margin-bottom:14px}
+.piede .ind{color:#fff}
+.orari{display:grid;grid-template-columns:auto 1fr;gap:4px 20px;font-size:15px;line-height:22px;margin-top:16px}
+.orari dt{color:var(--su-scuro)}
+.orari dd{color:#fff}
+.stato-p{font-size:15px;font-weight:500;margin-top:10px}
+.piede .tel{display:inline-flex;align-items:center;min-height:48px;font-size:32px;line-height:40px;letter-spacing:-.015em;text-decoration:none;margin-top:20px;font-weight:400}
+.piede .tel:hover,.piede li a:hover{text-decoration:underline}
+.piede .mail{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;font-size:15px;margin-top:4px}
+.piede .mail .copia{color:var(--su-scuro)}
+.piede nav{grid-column:9 / span 2}
+.piede li{font-size:15px;line-height:22px;margin-bottom:10px}
+.piede li a{text-decoration:none}
+.piede .basso{margin-top:72px;padding-top:24px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px;line-height:22px}
+.piede .basso .dx{margin-left:auto;display:flex;gap:20px}
+
+/* 1280 e meno: lo stato va sotto il telefono, nello stesso link */
+@media (max-width:1280px){
+  .testata .riga{gap:24px}
+  .chiama .stato-t{display:none}
+  .stato-mini{display:block}
+}
+@media (max-width:1200px){
+  :root{--m:40px;--sez:104px;--sez-lunga:152px}
+  .apertura .manifesto{grid-column:1 / span 8}
+  .modulo{padding:28px}
+  .campi{grid-template-columns:1fr}
+  .piede .bv{grid-column:1 / span 6}
+  .piede .sede{grid-column:7 / -1}
+  .piede nav{grid-column:1 / span 4}
+}
+/* testata a pannello sotto i 1100 */
+@media (max-width:1100px){
+  .firma{font-size:44px;line-height:48px}
+  .testata .riga > .cerca,.testata .riga > nav,.testata .riga > .lingua{display:none}
+  .chiama{margin-left:auto}
+  .menu-btn{display:inline-flex;align-items:center}
+  .menu-btn:hover{color:var(--verde);text-decoration-color:currentColor}
+  .testata.aperta .pannello{display:block}
+  .pannello{padding-top:16px;padding-bottom:32px;min-height:calc(100vh - var(--testata));min-height:calc(100svh - var(--testata));max-height:calc(100vh - var(--testata));max-height:calc(100svh - var(--testata));overflow-y:auto;background:var(--carta)}
+  .pannello .ufficio{padding-bottom:16px}
+  .pannello .stato-menu{font-size:18px;line-height:28px;font-weight:500}
+  .pannello .stato-menu:empty{display:none}
+  .pannello .comandi{display:flex;flex-wrap:wrap;align-items:center;gap:4px 20px;margin-top:6px}
+  .pannello .comandi a{font-weight:500}
+  .pannello .comandi a,.pannello .comandi .copia{display:inline-flex;align-items:center;min-height:48px}
+  .pannello .cerca{max-width:none;margin-top:8px}
+  .pannello nav{display:flex;flex-direction:column;margin:12px 0 0;gap:0}
+  .pannello nav a{font-size:28px;line-height:36px;font-weight:400;padding:8px 0;border-bottom:1px solid var(--filo)}
+  .pannello .dove{margin-top:20px}
+  .pannello .dove .ind{font-weight:500}
+  .pannello .lingue{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:12px;font-size:15px}
+  .pannello .lingue a,.pannello .lingue span{display:inline-flex;align-items:center;min-height:44px}
+  .articoli .testa h2,.articoli .testa .lead{grid-column:1 / -1}
+  .articoli .testa .lead{margin-top:12px}
+  .indice{grid-template-columns:1fr}
+  .indice li:nth-last-child(2){border-bottom:0;box-shadow:none}
+  .indice a{grid-template-columns:calc(2 * var(--col) + var(--g)) minmax(0,1fr) auto}
+  .culmine .testa h2,.culmine .testa .lead{grid-column:1 / -1}
+  .culmine .testa .lead{margin-top:12px}
+  .voci{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .azienda .lato{grid-column:1 / span 6}
+  .azienda .testo{grid-column:7 / -1}
+  .materiali{grid-template-columns:1fr}
+  .preventivo .sx,.modulo{grid-column:1 / -1}
+  .modulo{margin-top:48px}
+  .campi{grid-template-columns:1fr 1fr}
+  .passi li{grid-template-columns:48px 1fr}
+}
+@media (max-width:900px){
+  :root{--m:32px;--g:16px;--sez:88px;--sez-corta:72px;--sez-lunga:120px}
+  .apertura .manifesto,.apertura .agire{grid-column:1 / -1;justify-self:start}
+  .apertura .agire{margin-top:20px}
+  .apertura .capo{padding-top:32px;padding-bottom:28px}
+  /* sotto i 900 le tessere vanno due per due */
+  .tessere{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:var(--g)}
+  .tessere li,.tessere figure{min-height:120px}
+  .azienda .lato,.azienda .testo{grid-column:1 / -1}
+  .azienda .testo{order:-1}
+  .azienda .lato{margin-top:40px}
+  .piede .firma{grid-column:1 / -1}
+  .piede .bv,.piede .sede{grid-column:1 / -1}
+  .piede nav{grid-column:1 / -1}
+}
+/* telefono */
+@media (max-width:600px){
+  :root{--m:16px;--g:12px;--sez:72px;--sez-corta:48px;--sez-lunga:88px;--testata:64px}
+  .firma{font-size:34px;line-height:38px}
+  .logo{width:76px}
+  .testata .riga{gap:8px}
+  .tel-t{padding:0 4px;font-size:15px;line-height:18px}
+  .apertura .capo{padding-top:24px;padding-bottom:20px}
+  .sezione h2,.piede .tel{font-size:28px;line-height:36px}
+  .apertura .agire{justify-self:stretch;justify-content:space-between;gap:12px;margin-top:16px}
+  .apertura .scrivi{display:inline-flex;align-items:center;min-height:48px;font-size:15px;font-weight:500}
+  .tessere{min-height:300px}
+  .cartellino{left:6px;bottom:6px;padding:3px 8px 4px;max-width:calc(100% - 12px)}
+  .indice{margin-top:20px}
+  .indice li{padding:10px 0}
+  .indice a{grid-template-columns:112px minmax(0,1fr);column-gap:14px}
+  .indice .fr{display:none}
+  .anche{margin-top:20px;gap:0 24px}
+  .anche ul{gap:0 24px}
+  .anche a{display:inline-flex;align-items:center;min-height:44px}
+  .anche .freccia{margin-left:0;width:100%}
+  .culmine .grande img{aspect-ratio:3/2}
+  .culmine .testa{margin-top:40px}
+  .voci{grid-template-columns:1fr;margin-top:24px;border-bottom:0;box-shadow:none}
+  .voci li{padding:16px 0 20px}
+  .voci li:last-child{border-bottom:1px solid var(--filo);box-shadow:0 1px 0 var(--luce)}
+  .voci .n{display:inline;margin:0 10px 0 0}
+  .passi li{grid-template-columns:36px 1fr;column-gap:8px;padding:16px 0}
+  .strade li{padding:16px 0}
+  .strade .aiuto{display:block;margin:4px 0 0}
+  .copia{display:inline-flex;align-items:center;min-height:48px}
+  .strade .comandi{gap:0 24px}
+  .strade .comandi a{display:inline-flex;align-items:center;min-height:48px}
+  .modulo{padding:20px;margin-top:40px}
+  .campi{grid-template-columns:1fr;gap:16px}
+  .invio .btn{width:100%}
+  .pronta{padding:16px}
+  .piede{padding-top:64px}
+  .piede .alto{margin-top:32px}
+  .piede .basso{margin-top:48px}
+  .piede .basso .dx{margin-left:0}
+}
+@media (max-width:360px){
+  .tel-t .lungo{display:none}
+  .tel-t .corto{display:inline}
+  .stato-mini .sr{display:none}
+  .apertura .agire{flex-wrap:wrap;row-gap:4px}
+  .logo{width:68px}
+  .indice a{grid-template-columns:96px minmax(0,1fr)}
+  .orari dd{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ZETA S.r.l.","url":"https://www.zetaitaly.com/","telephone":"+39 049 774299","email":"info@zetaitaly.com","vatID":"IT00220030282","slogan":"Diamo forma alle vostre idee","address":{"@type":"PostalAddress","streetAddress":"Viale della Navigazione Interna 55","postalCode":"35129","addressLocality":"Padova","addressRegion":"PD","addressCountry":"IT"},"contactPoint":{"@type":"ContactPoint","telephone":"+39 049 774299","email":"info@zetaitaly.com","contactType":"sales","hoursAvailable":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:30","closes":"12:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:00","closes":"18:00"}]},"sameAs":["https://www.linkedin.com/company/zeta-srl---articoli-in-plastica/"]}
+</script>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="riga wrap">
+    <img class="logo" src="img/logo-zeta-300.webp" srcset="img/logo-zeta-300.webp 300w, img/logo-zeta-600.webp 600w" sizes="96px" width="300" height="145" alt="Zeta s.r.l.">
+    <form class="cerca" action="https://www.zetaitaly.com/" method="get" role="search">
+      <label class="vh" for="cerca-t">Cercate un articolo</label>
+      <input id="cerca-t" name="s" type="search" placeholder="Cercate un articolo, es. vinile" autocomplete="off" aria-controls="risultati-t" aria-describedby="conta-t">
+      <input type="hidden" name="post_type" value="product">
+      <div class="risultati" id="risultati-t" hidden></div>
+      <span class="vh" id="conta-t" aria-live="polite"></span>
+    </form>
+    <nav aria-label="Menu principale">
+      <a href="#articoli">Articoli</a>
+      <a href="#azienda">Azienda</a>
+      <a class="dopo" href="#su-misura">Su misura</a>
+      <a class="dopo" href="#preventivo">Preventivo</a>
+    </nav>
+    <details class="lingua">
+      <summary><b>IT</b>&nbsp;/&nbsp;EN DE FR ES<span class="vh">: scegliete la lingua</span></summary>
+      <ul>
+        <li><a href="https://www.zetaitaly.co.uk/" hreflang="en" lang="en">English</a></li>
+        <li><a href="https://www.zetaitaly.de/" hreflang="de" lang="de">Deutsch</a></li>
+        <li><a href="https://www.zetaitaly.fr/" hreflang="fr" lang="fr">Français</a></li>
+        <li><a href="https://www.zetaitaly.es/" hreflang="es" lang="es">Español</a></li>
+      </ul>
+    </details>
+    <p class="chiama"><span class="stato-t js-stato-t num">Lun-ven 8.30-12.30, 14.00-18.00</span><a class="tel-t num" href="tel:+39049774299"><span class="lungo">Chiama 049&nbsp;774299</span><span class="corto">049&nbsp;774299</span><span class="stato-mini js-stato-mini"></span></a></p>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="pannello">Menu</button>
+  </div>
+  <div class="pannello wrap" id="pannello">
+    <div class="ufficio">
+      <p class="stato-menu js-stato-m num"></p>
+      <p class="num">Lunedì-venerdì <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></p>
+      <p class="comandi"><a href="mailto:info@zetaitaly.com?subject=Ordine%20o%20file%20di%20stampa&amp;body=Azienda%3A%20%0ARiferimento%20ordine%20o%20articolo%3A%20%0AQuantit%C3%A0%3A%20%0A">Ordini e file: info@zetaitaly.com</a><button class="copia" type="button" data-copia="info@zetaitaly.com">Copia l'indirizzo</button></p>
+    </div>
+    <form class="cerca" action="https://www.zetaitaly.com/" method="get" role="search">
+      <label class="vh" for="cerca-p">Cercate un articolo</label>
+      <input id="cerca-p" name="s" type="search" placeholder="Cercate un articolo" autocomplete="off" aria-controls="risultati-p" aria-describedby="conta-p">
+      <input type="hidden" name="post_type" value="product">
+      <div class="risultati" id="risultati-p" hidden></div>
+      <span class="vh" id="conta-p" aria-live="polite"></span>
+    </form>
+    <nav aria-label="Menu">
+      <a href="#articoli">Articoli</a>
+      <a href="#azienda">Azienda</a>
+      <a href="#su-misura">Su misura</a>
+      <a href="#preventivo">Preventivo</a>
+    </nav>
+    <div class="dove">
+      <p class="ind">Zeta S.r.l., Viale della Navigazione Interna 55, 35129 Padova</p>
+      <p class="comandi"><a href="https://www.google.com/maps/search/?api=1&amp;query=Zeta+S.r.l.+Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Apri nelle mappe</a><button class="copia" type="button" data-copia="Zeta S.r.l., Viale della Navigazione Interna 55, 35129 Padova">Copia l'indirizzo</button></p>
+      <p class="lingue" aria-label="Lingua"><span aria-current="true">Italiano</span><a href="https://www.zetaitaly.co.uk/" hreflang="en" lang="en">English</a><a href="https://www.zetaitaly.de/" hreflang="de" lang="de">Deutsch</a><a href="https://www.zetaitaly.fr/" hreflang="fr" lang="fr">Français</a><a href="https://www.zetaitaly.es/" hreflang="es" lang="es">Español</a></p>
+    </div>
+  </div>
+</header>
+
+<main id="contenuto">
+<section class="apertura wrap" aria-labelledby="titolo">
+  <div class="quadro">
+  <div class="capo g12">
+    <div class="manifesto">
+      <h1 class="firma" id="titolo">Diamo forma alle vostre idee.</h1>
+      <p class="mestiere">PVC e polipropilene saldati su misura. Padova, dal&nbsp;1969.</p>
+    </div>
+    <p class="agire"><a class="btn" href="#preventivo">Chiedete un preventivo</a><a class="scrivi" href="mailto:info@zetaitaly.com?subject=Ordine%20o%20file%20di%20stampa&amp;body=Azienda%3A%20%0ARiferimento%20ordine%20o%20articolo%3A%20%0AQuantit%C3%A0%3A%20%0A">Scriveteci</a></p>
+  </div>
+  <ul class="tessere">
+    <li><figure>
+      <div class="ft"><img src="img/tessera-raccoglitori-480.webp" srcset="img/tessera-raccoglitori-480.webp 480w, img/tessera-raccoglitori-720.webp 720w, img/tessera-raccoglitori-960.webp 960w" sizes="(max-width:900px) 50vw, 25vw" width="480" height="960" fetchpriority="high"
+           alt="Un raccoglitore nero aperto: i quattro anelli e le buste trasparenti a spazi, con le saldature tra le tasche."></div>
+      <figcaption class="cartellino">Raccoglitori</figcaption></figure></li>
+    <li><figure>
+      <div class="ft"><img src="img/tessera-cartelline-480.webp" srcset="img/tessera-cartelline-480.webp 480w, img/tessera-cartelline-699.webp 699w" sizes="(max-width:900px) 50vw, 25vw" width="480" height="960" fetchpriority="high"
+           alt="Tre cartelline a L sovrapposte, in plastica trasparente colorata: fumé, blu e azzurro."></div>
+      <figcaption class="cartellino">Cartelline</figcaption></figure></li>
+    <li><figure>
+      <div class="ft"><img src="img/tessera-buste-480.webp" srcset="img/tessera-buste-480.webp 480w, img/tessera-buste-720.webp 720w, img/tessera-buste-960.webp 960w" sizes="(max-width:900px) 50vw, 25vw" width="480" height="960"
+           alt="Una busta bianca a dodici spazi, con i fori per il raccoglitore e la griglia delle saldature."></div>
+      <figcaption class="cartellino">Buste</figcaption></figure></li>
+    <li><figure>
+      <div class="ft"><img src="img/tessera-campionari-480.webp" srcset="img/tessera-campionari-480.webp 480w, img/tessera-campionari-720.webp 720w, img/tessera-campionari-960.webp 960w" sizes="(max-width:900px) 50vw, 25vw" width="480" height="960"
+           alt="Da vicino, l'angolo di una cartella blu per campionari, con il bordo saldato e l'interno bianco."></div>
+      <figcaption class="cartellino">Campionari</figcaption></figure></li>
+  </ul>
+  </div>
+</section>
+
+<section class="sezione articoli wrap" id="articoli" aria-labelledby="t-articoli">
+  <div class="testa g12">
+    <h2 id="t-articoli">I nostri articoli</h2>
+    <p class="lead">Di qualsiasi formato, con la vostra stampa. Per il preventivo bastano misure e quantità, con una foto, un disegno o il campione da rifare.</p>
+  </div>
+  <ul class="indice">
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/raccoglitori-ad-anelli/">
+      <img src="img/articolo-raccoglitori-400.webp" srcset="img/articolo-raccoglitori-400.webp 400w, img/articolo-raccoglitori-640.webp 640w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Gli anelli di un raccoglitore nero, con un foglio stampato con il logo di Zeta.">
+      <span><h3>Raccoglitori ad anelli</h3><p>Personalizzati, in polipropilene o stampati in quadricromia offset.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/buste-pvc/">
+      <img src="img/articolo-buste-400.webp" srcset="img/articolo-buste-400.webp 400w, img/articolo-buste-640.webp 640w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Una busta trasparente porta garanzia, con il bordo saldato in alto e il foro per appenderla.">
+      <span><h3>Buste in PVC</h3><p>Trasparenti, adesive, a perforazione universale, porta garanzia.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/cartelle-cartelline/">
+      <img src="img/articolo-cartelle-400.webp" srcset="img/articolo-cartelle-400.webp 400w, img/articolo-cartelle-640.webp 640w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Cartelline portadocumenti rosse e blu, una con la scritta stampata Day Hospital.">
+      <span><h3>Cartelle e cartelline</h3><p>Con molla, a L, in polipropilene e portablocco con pinza.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/copertine-e-sovraccoperte/">
+      <img src="img/articolo-copertine-400.webp" srcset="img/articolo-copertine-400.webp 400w, img/articolo-copertine-600.webp 600w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Una copertina trasparente aperta, con il dorso saldato, su fondo grigio scuro.">
+      <span><h3>Copertine e sovraccoperte</h3><p>Per libri, dizionari, Bibbie e agende.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/portadocumenti/">
+      <img src="img/articolo-portadocumenti-400.webp" srcset="img/articolo-portadocumenti-400.webp 400w, img/articolo-portadocumenti-640.webp 640w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Un portadocumenti a tre ante grigio, aperto, e un porta libretto nero chiuso, su fondo grigio scuro.">
+      <span><h3>Portadocumenti</h3><p>Per auto e moto, porta libretto, portatessere e disco orario.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+    <li class="cordone"><a href="https://www.zetaitaly.com/categoria-prodotto/custodie-buste-accessori/">
+      <img src="img/articolo-accessori-400.webp" srcset="img/articolo-accessori-400.webp 400w, img/articolo-accessori-640.webp 640w" sizes="(max-width:600px) 112px, 220px" width="400" height="267" loading="lazy" alt="Due cartelle per campionari a dieci spazi, una nera con le tasche trasparenti e due campioni, una bianca sotto.">
+      <span><h3>Custodie e accessori</h3><p>Cartelle per campionari, custodie per dischi in vinile, couvette per orologi e gioielli.</p></span><span class="fr" aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+  <div class="anche">
+    <span class="et">Anche:</span>
+    <ul>
+      <li><a href="https://www.zetaitaly.com/prodotto/custodie-protettive-per-dischi-in-vinile/">Custodie per dischi in vinile</a></li>
+      <li><a href="https://www.zetaitaly.com/categoria-prodotto/album-fotografici/">Album e albumini fotografici</a></li>
+      <li><a href="https://www.zetaitaly.com/categoria-prodotto/portaprezzi-e-promostop/">Portaprezzi e promostop</a></li>
+      <li><a href="https://www.zetaitaly.com/categoria-prodotto/articoli-promozionali-pet-food/">Pet food e veterinari</a></li>
+      <li><a href="https://www.zetaitaly.com/categoria-prodotto/articoli-promozionali-medicali/">Articoli medicali</a></li>
+    </ul>
+    <a class="freccia" href="https://www.zetaitaly.com/prodotti/">Tutto il catalogo</a>
+  </div>
+</section>
+
+<section class="sezione azienda wrap" id="azienda" aria-labelledby="t-azienda">
+  <div class="corpo g12">
+    <div class="lato">
+    <figure>
+      <img src="img/reparto-linea-1024.webp" srcset="img/reparto-linea-640.webp 640w, img/reparto-linea-1024.webp 1024w" sizes="(max-width:900px) calc(100vw - 32px), (max-width:1100px) 46vw, min(38vw, 680px)" width="1024" height="683" loading="lazy"
+           alt="Nel reparto di Zeta un operatore al quadro comandi della linea, tra bobine di film rosse e blu.">
+      <figcaption class="didascalia"><b>Alla linea, tra le bobine di film</b>reparto Zeta</figcaption>
+    </figure>
+    <div class="materiali cordone">
+      <div><h3>OK Compost</h3><p>La bioplastica compostabile certificata dei nostri articoli.</p></div>
+      <div><h3>ISCC PLUS</h3><p>Il PVC di origine vegetale che saldiamo, con la certificazione del fornitore.</p></div>
+    </div>
+    </div>
+    <div class="testo">
+      <h2 id="t-azienda">Una famiglia di Padova, dalla cancelleria alla plastica saldata</h2>
+      <p>Nel 1969 Fulvio Sacerdoti, di una famiglia che a Padova vendeva cancelleria, rileva la Zeta e comincia a produrre in proprio articoli in plastica elettrosaldata. Oggi l'azienda è guidata da Gavriel Sacerdoti, la terza generazione.</p>
+      <p>Nel 1986 abbiamo avviato la prima linea al mondo completamente automatizzata per le cartelle con molla; nel 1994 il primo albumino fotografico ecologico d'Europa, con il nostro brevetto. Lavoriamo in Italia e all'estero con legatorie, editori, agenzie di comunicazione e aziende.</p>
+      <div class="sost cordone">
+        <h3>Contro la plastica usa e getta</h3>
+        <p>Progettiamo articoli durevoli e totalmente riciclabili, e gli scarti di lavorazione li recuperiamo noi.</p>
+        <p class="link"><a class="freccia" href="https://www.zetaitaly.com/ecosostenibilita/">Ecosostenibilità</a><a class="freccia" href="https://www.zetaitaly.com/pvc-bio-origine-100-vegetale/">PVC Bio</a><a class="freccia" href="https://www.zetaitaly.com/storia/">La nostra storia</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione culmine wrap" id="su-misura" aria-labelledby="t-misura">
+  <figure class="grande">
+    <div class="ft">
+    <picture>
+      <source media="(max-width:600px)" srcset="img/culmine-saldatura-720.webp 720w, img/culmine-saldatura-1080.webp 1080w" sizes="calc(100vw - 32px)" width="1080" height="720">
+      <img src="img/culmine-saldatura-largo-1344.webp" srcset="img/culmine-saldatura-largo-1344.webp 1344w, img/culmine-saldatura-largo-2016.webp 2016w, img/culmine-saldatura-largo-2688.webp 2688w" sizes="(max-width:900px) calc(100vw - 64px), (max-width:1200px) calc(100vw - 80px), min(calc(100vw - 96px), 1680px)" width="1344" height="560" loading="lazy"
+           alt="Da vicino, una busta trasparente a quattro spazi: le due saldature che si incrociano, con il bordo dentellato, e il dorso bianco a sinistra.">
+    </picture>
+    <span class="cartellino" aria-hidden="true">PVC elettrosaldato</span>
+    </div>
+    <figcaption class="didascalia"><b>Le saldature di una busta a quattro spazi</b>Buste in PVC</figcaption>
+  </figure>
+  <div class="testa g12">
+    <h2 id="t-misura">Progettiamo l'articolo insieme a voi</h2>
+    <p class="lead">Se avete già un originale, ci bastano le dimensioni e il campione. Se avete un'idea, la sviluppiamo con voi.</p>
+  </div>
+  <ol class="voci">
+      <li class="cordone"><h3><span class="n num">01</span>Formati</h3><p>Qualsiasi formato, dalle vostre misure o da un disegno.</p></li>
+      <li class="cordone"><h3><span class="n num">02</span>Materiali</h3><p>PVC, polipropilene, plastica riciclata, bioplastica compostabile e PVC di origine vegetale.</p></li>
+      <li class="cordone"><h3><span class="n num">03</span>Finiture e colori</h3><p>Opaco o cristal, trasparente come il vetro; goffratura liscia, buccia d'arancia o similpelle; palette colore standard o Pantone.</p></li>
+      <li class="cordone"><h3><span class="n num">04</span>Stampe</h3><p>A caldo, serigrafica o in quadricromia offset.</p></li>
+  </ol>
+</section>
+
+<section class="sezione preventivo pieno" id="preventivo" aria-labelledby="t-prev">
+  <div class="corpo g12 wrap">
+    <div class="sx">
+      <h2 id="t-prev">Mandateci le misure, o il campione</h2>
+      <ol class="passi">
+        <li class="cordone"><div><h3>Diteci che cosa vi serve</h3><p>L'articolo, le misure, le quantità, il materiale e i colori di stampa.</p></div></li>
+        <li class="cordone"><div><h3>Mandateci una foto o un disegno</h3><p>Con il modulo qui accanto, o per email.</p></div></li>
+        <li class="cordone"><div><h3>Vi ricontattiamo</h3><p>Studiamo con voi forma, materiale e stampa e vi mandiamo il preventivo.</p></div></li>
+      </ol>
+      <p class="titoletto">Ordini e campioni</p>
+      <ul class="strade">
+        <li class="cordone"><h3>Ordine o file di stampa</h3><p><a href="mailto:info@zetaitaly.com?subject=Ordine%20o%20file%20di%20stampa&amp;body=Azienda%3A%20%0ARiferimento%20ordine%20o%20articolo%3A%20%0AQuantit%C3%A0%3A%20%0A">Scriveteci a info@zetaitaly.com</a><span class="aiuto">L'oggetto è già scritto.</span></p><p class="comandi"><button class="copia" type="button" data-copia="info@zetaitaly.com">Copia l'indirizzo email</button></p></li>
+        <li class="cordone"><h3>Campione da rifare</h3><p>Speditelo o portatelo a Zeta S.r.l., Viale della Navigazione Interna 55, 35129 Padova: ve lo rendiamo.</p><p class="num">Lunedì-venerdì <span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span> <span class="stato-s js-stato-s"></span></p><p class="comandi"><a href="https://www.google.com/maps/search/?api=1&amp;query=Zeta+S.r.l.+Viale+della+Navigazione+Interna+55+35129+Padova" rel="noopener">Apri nelle mappe</a><button class="copia" type="button" data-copia="Zeta S.r.l., Viale della Navigazione Interna 55, 35129 Padova">Copia l'indirizzo</button></p></li>
+      </ul>
+    </div>
+    <form class="modulo" id="modulo" action="mailto:info@zetaitaly.com" method="post" enctype="text/plain">
+      <h3>La vostra richiesta</h3>
+      <div class="campi">
+        <div class="campo"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="Nome" autocomplete="name" required></div>
+        <div class="campo"><label for="f-azienda">Azienda</label><input id="f-azienda" name="Azienda" autocomplete="organization" required></div>
+        <div class="campo"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" autocomplete="email" required></div>
+        <div class="campo"><label for="f-tel">Telefono <span>(facoltativo)</span></label><input id="f-tel" name="Telefono" type="tel" autocomplete="tel"></div>
+        <div class="campo"><label for="f-art">Articolo</label><input id="f-art" name="Articolo" list="l-art" autocomplete="off" placeholder="es. Buste in PVC">
+          <datalist id="l-art"><option value="Raccoglitori ad anelli"><option value="Buste in PVC"><option value="Cartelle e cartelline"><option value="Copertine e sovraccoperte"><option value="Portadocumenti"><option value="Custodie per dischi in vinile"><option value="Custodie e accessori"><option value="Album e albumini fotografici"><option value="Portaprezzi e promostop"><option value="Pet food e veterinari"><option value="Articoli medicali"><option value="Un'idea da sviluppare"></datalist></div>
+        <div class="campo"><label for="f-mat">Materiale</label>
+          <select id="f-mat" name="Materiale">
+            <option>Da consigliare</option><option>PVC</option><option>Polipropilene (PP)</option><option>Plastica riciclata</option><option>Bioplastica compostabile</option><option>PVC di origine vegetale</option>
+          </select></div>
+        <div class="campo"><label for="f-mis">Misure <span>(mm o cm)</span></label><input id="f-mis" name="Misure" placeholder="es. 230 x 310 mm"></div>
+        <div class="campo"><label for="f-qta">Quantità</label><input id="f-qta" name="Quantità" inputmode="numeric" placeholder="es. 2.000 pezzi"></div>
+        <div class="campo largo"><span class="lab" id="l-file">Disegno o foto <span>(PDF, DXF, DWG, AI, EPS, JPG o PNG)</span></span>
+          <div class="file"><input class="vh" id="f-file" name="Allegato" type="file" accept=".pdf,.dxf,.dwg,.ai,.eps,.jpg,.jpeg,.png" aria-labelledby="l-file" aria-describedby="nome-file"><label class="scegli" for="f-file">Scegli il file</label><span class="nome" id="nome-file">Nessun file scelto</span></div></div>
+        <div class="campo largo"><label for="f-msg">Messaggio <span>(stampa, colori, finiture, tempi)</span></label><textarea id="f-msg" name="Messaggio"></textarea></div>
+      </div>
+      <div class="invio">
+        <button class="btn" type="submit">Prepara l'email della richiesta</button>
+        <p class="aiuto" id="aiuto-invio">Si apre il programma di posta con la richiesta scritta; il file lo allegate voi.</p>
+      </div>
+      <div class="pronta" id="pronta" tabindex="-1" hidden>
+        <h4>La richiesta è pronta</h4>
+        <p>Se il programma di posta non si è aperto, copiate il testo e mandatelo a info@zetaitaly.com con il file in allegato.</p>
+        <label class="vh" for="testo-pronto">Testo della richiesta</label>
+        <textarea id="testo-pronto" readonly></textarea>
+        <p class="comandi"><button class="copia bordato" type="button" data-copia-da="testo-pronto">Copia il testo</button><button class="copia bordato" type="button" data-copia="info@zetaitaly.com">Copia l'indirizzo</button></p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="piede" id="sede">
+  <div class="g12 wrap">
+    <p class="firma">Diamo forma alle vostre idee.</p>
+  </div>
+  <div class="wrap"><div class="alto g12 cordone">
+    <div class="bv">
+      <img src="img/logo-zeta-300.webp" srcset="img/logo-zeta-300.webp 300w, img/logo-zeta-600.webp 600w" sizes="120px" width="300" height="145" alt="Zeta s.r.l." loading="lazy">
+      <a class="tel num" href="tel:+39049774299">049&nbsp;774299</a>
+      <p class="mail"><a href="mailto:info@zetaitaly.com">info@zetaitaly.com</a><button class="copia" type="button" data-copia="info@zetaitaly.com">Copia l'indirizzo</button></p>
+    </div>
+    <div class="sede">
+      <h2>Sede</h2>
+      <p class="ind">Viale della Navigazione Interna 55, 35129 Padova</p>
+      <dl class="orari num"><dt>Lunedì-venerdì</dt><dd><span class="nw">8.30-12.30</span> e <span class="nw">14.00-18.00</span></dd></dl>
+      <p class="stato-p js-stato-p num" aria-live="polite"></p>
+    </div>
+    <nav aria-labelledby="p-azienda">
+      <h2 id="p-azienda">Azienda</h2>
+      <ul>
+        <li><a href="https://www.zetaitaly.com/chi-siamo/">Chi siamo</a></li>
+        <li><a href="https://www.zetaitaly.com/storia/">Storia</a></li>
+        <li><a href="https://www.zetaitaly.com/contatti/">Contatti</a></li>
+        <li><a href="https://www.linkedin.com/company/zeta-srl---articoli-in-plastica/" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </div></div>
+  <div class="wrap">
+    <div class="basso cordone num">
+      <span>ZETA S.r.l.</span>
+      <span>P.IVA e C.F. 00220030282</span>
+      <span>Registro Imprese di Padova n. 00220030282</span>
+      <span>Capitale sociale 51.480 euro i.v.</span>
+      <span class="dx"><a href="https://www.zetaitaly.com/privacy/">Privacy</a><a href="https://www.zetaitaly.com/cookies/">Cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* menu a pannello (sotto i 1100 px) e voci in testata dopo l'apertura */
+(function(){
+  var t=document.querySelector('.testata'),b=t.querySelector('.menu-btn');
+  function chiudi(){t.classList.remove('aperta');b.setAttribute('aria-expanded','false');b.textContent='Menu';}
+  b.addEventListener('click',function(){var o=t.classList.toggle('aperta');b.setAttribute('aria-expanded',o);b.textContent=o?'Chiudi':'Menu';});
+  t.querySelectorAll('.pannello nav a').forEach(function(a){a.addEventListener('click',chiudi);});
+  window.chiudiMenu=chiudi;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(t.classList.contains('aperta')){chiudi();b.focus();}var d=t.querySelector('.lingua[open]');if(d)d.removeAttribute('open');}});
+  document.addEventListener('click',function(e){var d=t.querySelector('.lingua[open]');if(d&&!d.contains(e.target))d.removeAttribute('open');});
+  /* "Su misura" e "Preventivo" in testata quando l'apertura non si vede più: nessuna transizione, cambia solo la classe */
+  var ap=document.querySelector('.apertura');
+  if(ap&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(v){t.classList.toggle('scesa',!v[0].isIntersecting);},{rootMargin:'-'+(t.offsetHeight+1)+'px 0px 0px 0px',threshold:0}).observe(ap);
+  }
+})();
+
+/* ricerca degli articoli: i 45 prodotti e le 10 categorie del loro catalogo (sitemap del 3/11/2026). Senza script il modulo cerca sul loro sito. */
+(function(){
+  var B='https://www.zetaitaly.com/',P=B+'prodotto/',C=B+'categoria-prodotto/';
+  var A=[
+    ['Raccoglitori ad anelli','categoria',C+'raccoglitori-ad-anelli/'],['Buste in plastica PVC','categoria',C+'buste-pvc/'],['Cartelle e cartelline','categoria',C+'cartelle-cartelline/'],['Copertine e sovraccoperte','categoria',C+'copertine-e-sovraccoperte/'],['Portadocumenti e portacarte','categoria',C+'portadocumenti/'],['Custodie e buste per accessori','categoria',C+'custodie-buste-accessori/'],['Album fotografici','categoria',C+'album-fotografici/'],['Portaprezzi e promostop','categoria',C+'portaprezzi-e-promostop/'],['Articoli promozionali pet food','categoria',C+'articoli-promozionali-pet-food/'],['Articoli promozionali medicali','categoria',C+'articoli-promozionali-medicali/'],
+    ['Custodie protettive per dischi in vinile','Buste in PVC, custodie',P+'custodie-protettive-per-dischi-in-vinile/'],['Porta ricette mediche e copertine per libretto sanitario','Medicali',P+'porta-ricette-mediche-e-copertine-per-libretto-sanitario/'],['Salva taschino camice','Medicali',P+'salva-taschino-camice/'],['Salva taschino veterinario','Pet food',P+'salva-taschino-veterinario/'],['Tappetino veterinario antiscivolo','Pet food',P+'tappetino-veterinario-antiscivolo/'],['Porta libretto sanitario per cane e gatto','Pet food',P+'porta-libretto-sanitario-per-cane-e-gatto/'],['Pagine trasparenti in plastica','Copertine',P+'pagine-trasparenti-in-plastica/'],['Copertine per agende','Copertine',P+'copertine-per-agende/'],['Copertine per libri','Copertine',P+'copertine-per-libri/'],['Cartella portablocco con pinza','Cartelle',P+'cartella-portablocco-con-pinza/'],['Buste porta garanzia','Buste in PVC',P+'buste-porta-garanzia/'],['Bustine porta bottoni e hang tags','Custodie',P+'bustine-porta-bottoni-e-hang-tags/'],['Cartelle espositive per campionari','Custodie',P+'cartelle-espositive-per-campionari/'],['Portadocumenti auto e porta documenti moto','Portadocumenti',P+'portadocumenti-auto-porta-documenti-moto/'],['Bustine portarosario','Buste in PVC',P+'bustine-portarosario/'],['Buste per blister diamanti e certificazione','Buste in PVC',P+'buste-diamanti-e-certificazione/'],['Buste porta mappa','Buste in PVC',P+'buste-porta-mappa/'],['Buste a L','Buste in PVC',P+'buste-a-l/'],['Buste trasparenti con fori','Buste in PVC, raccoglitori',P+'buste-per-raccoglitori-ad-anelli/'],['Copertine per Bibbia, libri di preghiera e cantici','Copertine',P+'copertine-bibbia-libri-preghiera-cantici/'],['Shopper bag personalizzate','Custodie',P+'shopper-bag-personalizzate/'],['Evidenziatori promozionali','Portaprezzi',P+'evidenziatori-promozionali/'],['Portalibretto delle qualifiche ENCI','Pet food, portadocumenti',P+'portalibretto-delle-qualifiche-enci/'],['Raccoglitori ad anelli personalizzabili','Raccoglitori',P+'raccoglitore-ad-anelli-personalizzabili/'],['Disco orario, portabollo e portapolizza','Portadocumenti',P+'disco-orario-portabollo/'],['Cartelline in polipropilene','Cartelle',P+'cartelline-in-polipropilene/'],['Raccoglitori ad anelli personalizzati','Raccoglitori',P+'raccoglitore-ad-anelli-personalizzato/'],['Buste per esposizione alla vendita','Buste in PVC',P+'buste-esposizione-vendita/'],['Portatessere, portadocumenti, porta licenza caccia e pesca','Portadocumenti',P+'portatessere-e-portadocumenti-personalizzati/'],['Custodie portalibretto','Portadocumenti',P+'custodia-porta-libretto/'],['Portalistini, ricerche e documenti','Cartelle',P+'portalistini-ricerche-documenti/'],['Portaprezzi e promostop','Portaprezzi',P+'portaprezzi-e-promostop/'],['Couvette per orologi e gioielli','Custodie',P+'porta-cinturini-orologi/'],['Portanome valigia, porta badge e portabiglietti viaggio','Portadocumenti',P+'portabiglietti-viaggio/'],['Raccoglitori ad anelli in polipropilene','Raccoglitori',P+'raccoglitore-in-polipropilene/'],['Buste porta chiavetta USB e CD / DVD','Buste in PVC',P+'buste-porta-cd-dvd/'],['Cartelline con molla','Cartelle',P+'cartella-con-molla/'],['Buste adesive e tasche adesive trasparenti','Buste in PVC',P+'busta-adesiva-tasca/'],['Buste in plastica trasparente','Buste in PVC',P+'busta-in-plastica/'],['Sovraccoperte per libri','Copertine',P+'sovraccoperte-libri/'],['Copertine per vocabolari e dizionari','Copertine',P+'copertine-pvc-vocabolari-dizionari/'],['Album foto personalizzati','Album',P+'album-foto-personalizzato/'],['Albumini fotografici','Album',P+'albumino-fotografico/'],['Raccoglitori ad anelli stampati in quadricromia offset','Raccoglitori',P+'raccoglitore-anelli-offset/'],['Album portfolio','Album',P+'album-portfolio/']
+  ];
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ');}
+  function radice(w){return w.length>4?w.replace(/(i|e|a|o)$/,''):w;}
+  var IDX=A.map(function(a){return norm(a[0]+' '+a[1]);});
+  function link(href,testo,f){var l=document.createElement('a');l.href=href;l.textContent=testo;if(f)l.addEventListener('click',f);return l;}
+  document.querySelectorAll('.cerca').forEach(function(f){
+    var inp=f.querySelector('input[type=search]'),box=f.querySelector('.risultati'),conta=f.querySelector('[aria-live]'),sel=-1;
+    function chiudi(){box.hidden=true;box.innerHTML='';sel=-1;}
+    function mostra(){
+      var q=norm(inp.value).trim();if(q.length<2){chiudi();conta.textContent='';return;}
+      var parole=q.split(/\s+/).map(radice);
+      /* le cifre sole ("4 anelli") non stanno nei nomi: si cercano solo se sono l'unica parola */
+      var conLettere=parole.filter(function(p){return !/^\d{1,2}$/.test(p);});
+      if(conLettere.length)parole=conLettere;
+      var r=[];A.forEach(function(a,i){if(parole.every(function(p){return IDX[i].indexOf(p)>=0;}))r.push(a);});
+      box.innerHTML='';sel=-1;
+      r.slice(0,7).forEach(function(a){var l=link(a[2],a[0]);var s=document.createElement('span');s.textContent=a[1]==='categoria'?'Categoria':a[1];l.appendChild(s);box.appendChild(l);});
+      if(!r.length){
+        var d=document.createElement('div');d.className='vuoto';
+        var p=document.createElement('p');p.textContent='Nessun articolo con questo nome: lo facciamo su misura.';d.appendChild(p);
+        d.appendChild(link('#preventivo','Chiedete un preventivo',function(){chiudi();if(window.chiudiMenu)window.chiudiMenu();}));
+        d.appendChild(link(B+'prodotti/','Tutto il catalogo'));
+        box.appendChild(d);
+      }
+      box.hidden=false;conta.textContent=r.length?r.length+' articoli trovati':'Nessun articolo trovato';
+    }
+    inp.addEventListener('input',mostra);
+    inp.addEventListener('keydown',function(e){
+      var ls=box.querySelectorAll('a');
+      if(e.key==='ArrowDown'&&ls.length){e.preventDefault();sel=Math.min(ls.length-1,sel+1);}
+      else if(e.key==='ArrowUp'&&ls.length){e.preventDefault();sel=Math.max(0,sel-1);}
+      else if(e.key==='Escape'){chiudi();return;}
+      else return;
+      ls.forEach(function(l,i){l.classList.toggle('attivo',i===sel);});
+    });
+    f.addEventListener('submit',function(e){var ls=box.querySelectorAll('a');if(ls.length){e.preventDefault();var l=ls[Math.max(0,sel)];if(l.getAttribute('href')==='#preventivo'){l.click();location.hash='preventivo';}else location.href=l.href;}});
+    document.addEventListener('click',function(e){if(!f.contains(e.target))chiudi();});
+  });
+})();
+
+/* aperti o chiusi adesso, con l'ora di Padova; si ricalcola ogni minuto. Per le prove: ?ora=2026-11-02T10:00 */
+(function(){
+  var FASCE=[[510,750],[840,1080]]; /* 8.30-12.30, 14.00-18.00 */
+  /* chiusure aziendali (ferie, ponti): coppie di date 'AAAA-MM-GG' comprese, da aggiornare ogni anno.
+     Oggi sono vuote: le date vanno chieste a Zeta (LEGGIMI). Esempio: ['2026-08-10','2026-08-21'] */
+  var CHIUSURE=[];
+  var GIORNI=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var MESI=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+  function pasqua(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),n=Math.floor((h+l-7*m+114)/31),p=(h+l-7*m+114)%31+1;return [n,p];}
+  function festivo(y,mo,d){
+    var f=['1-1','1-6','4-25','5-1','6-2','6-13','8-15','11-1','12-8','12-25','12-26'];
+    if(f.indexOf(mo+'-'+d)>=0)return true;
+    var p=pasqua(y),dt=new Date(Date.UTC(y,p[0]-1,p[1]+1));
+    return dt.getUTCMonth()+1===mo&&dt.getUTCDate()===d;
+  }
+  function iso(y,mo,d){return y+'-'+(mo<10?'0':'')+mo+'-'+(d<10?'0':'')+d;}
+  function inFerie(y,mo,d){var s=iso(y,mo,d);return CHIUSURE.some(function(c){return s>=c[0]&&s<=c[1];});}
+  function adesso(){
+    var q=(location.search.match(/[?&]ora=([0-9T:\-]+)/)||[])[1];
+    if(q){var m=q.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/);if(m)return {y:+m[1],mo:+m[2],d:+m[3],min:(+m[4])*60+(+m[5])};}
+    try{
+      var parti=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()),o={};
+      parti.forEach(function(p){o[p.type]=p.value;});
+      return {y:+o.year,mo:+o.month,d:+o.day,min:(+o.hour%24)*60+(+o.minute)};
+    }catch(e){var n=new Date();return {y:n.getFullYear(),mo:n.getMonth()+1,d:n.getDate(),min:n.getHours()*60+n.getMinutes()};}
+  }
+  function hm(x){var h=Math.floor(x/60),m=x%60;return h+'.'+(m<10?'0':'')+m;}
+  function lavorativo(y,mo,d){var w=new Date(Date.UTC(y,mo-1,d)).getUTCDay();return w>=1&&w<=5&&!festivo(y,mo,d)&&!inFerie(y,mo,d);}
+  function calcola(){
+    var n=adesso(),oggiLav=lavorativo(n.y,n.mo,n.d),ferie=inFerie(n.y,n.mo,n.d),aperto=false,fine=0,prossima=null;
+    if(oggiLav){
+      FASCE.forEach(function(f){if(n.min>=f[0]&&n.min<f[1]){aperto=true;fine=f[1];}});
+      if(!aperto){FASCE.forEach(function(f){if(prossima===null&&n.min<f[0])prossima={quando:'oggi',ora:f[0]};});}
+    }
+    if(!aperto&&prossima===null){
+      for(var i=1;i<60;i++){
+        var dt=new Date(Date.UTC(n.y,n.mo-1,n.d+i)),y=dt.getUTCFullYear(),mo=dt.getUTCMonth()+1,d=dt.getUTCDate();
+        if(lavorativo(y,mo,d)){prossima={quando:i===1?'domani':(i<7?GIORNI[dt.getUTCDay()]:GIORNI[dt.getUTCDay()]+' '+d+' '+MESI[mo-1]),ora:FASCE[0][0]};break;}
+      }
+    }
+    var cls=aperto?'aperto':'chiuso',breve,resto;
+    /* una sola forma in testata, menu, strade e piede: "Aperti ora, fino alle 12.30" / "Chiusi ora, riapriamo oggi alle 14.00" */
+    if(aperto){breve='Aperti ora';resto='fino alle '+hm(fine);}
+    else{breve=ferie?'Chiusi per ferie':'Chiusi ora';resto=prossima?'riapriamo '+prossima.quando+' alle '+hm(prossima.ora):'';}
+    var frase=breve+(resto?', '+resto:'');
+    [['.js-stato-t','stato-t js-stato-t num '],['.js-stato-m','stato-menu js-stato-m num '],['.js-stato-s','stato-s js-stato-s '],['.js-stato-p','stato-p js-stato-p num ']].forEach(function(x){
+      var e=document.querySelector(x[0]);if(e){e.textContent=frase;e.className=x[1]+cls;}
+    });
+    /* nel link del telefono (sotto i 1280 px): sotto i 360 resta solo "Aperti ora" */
+    var mi=document.querySelector('.js-stato-mini');
+    if(mi){mi.innerHTML='';var sb=document.createElement('span');sb.className='sb';sb.textContent=breve;mi.appendChild(sb);var rm=aperto?resto:(!prossima?'':(prossima.quando==='oggi'?'riapriamo alle '+hm(prossima.ora):(prossima.quando.indexOf(' ')<0?'riapriamo '+prossima.quando:'')));
+    /* nella testata del telefono la forma corta: "Chiusi ora, riapriamo domani", l'ora intera sta nel menu */
+    if(rm){var sr=document.createElement('span');sr.className='sr';sr.textContent=', '+rm;mi.appendChild(sr);}mi.className='stato-mini js-stato-mini '+cls;}
+  }
+  calcola();
+  if(!/[?&]ora=/.test(location.search)){
+    setInterval(calcola,60000);
+    document.addEventListener('visibilitychange',function(){if(!document.hidden)calcola();});
+  }
+})();
+
+/* copia negli appunti, con un ripiego se il browser non lo permette */
+function copiaTesto(testo,btn){
+  function fatto(){var t=btn.textContent;btn.textContent='Copiato';setTimeout(function(){btn.textContent=t;},2000);}
+  function ripiego(){var a=document.createElement('textarea');a.value=testo;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');fatto();}catch(e){}document.body.removeChild(a);}
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(testo).then(fatto,ripiego);}else{ripiego();}
+}
+document.querySelectorAll('[data-copia]').forEach(function(b){b.addEventListener('click',function(){copiaTesto(b.dataset.copia,b);});});
+document.querySelectorAll('[data-copia-da]').forEach(function(b){b.addEventListener('click',function(){copiaTesto(document.getElementById(b.dataset.copiaDa).value,b);});});
+
+/* il modulo compone l'email con oggetto e campi e mostra il testo da copiare (va collegato a un servizio: vedi LEGGIMI) */
+(function(){
+  var f=document.getElementById('modulo'),inp=document.getElementById('f-file'),nome=document.getElementById('nome-file');
+  inp.addEventListener('change',function(){nome.textContent=inp.files[0]?inp.files[0].name+' (da allegare all\'email)':'Nessun file scelto';});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.reportValidity())return;
+    var v=function(id){return (document.getElementById(id).value||'').trim();};
+    var file=inp.files[0];
+    var righe=['Nome: '+v('f-nome'),'Azienda: '+v('f-azienda'),'Email: '+v('f-email'),'Telefono: '+v('f-tel'),'Articolo: '+v('f-art'),'Materiale: '+v('f-mat'),'Misure: '+v('f-mis'),'Quantità: '+v('f-qta')];
+    if(file)righe.push('Allegato da aggiungere: '+file.name);
+    righe.push('','Messaggio:',v('f-msg'));
+    var ogg='Richiesta di preventivo: '+(v('f-art')?v('f-art')+', ':'')+v('f-azienda');
+    var p=document.getElementById('pronta');
+    document.getElementById('testo-pronto').value='A: info@zetaitaly.com\nOggetto: '+ogg+'\n\n'+righe.join('\n');
+    p.hidden=false;p.focus({preventScroll:true});p.scrollIntoView({block:'nearest'});
+    location.href='mailto:info@zetaitaly.com?subject='+encodeURIComponent(ogg)+'&body='+encodeURIComponent(righe.join('\n'));
+  });
+})();
+</script>
+</body>
+</html>

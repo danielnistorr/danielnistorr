@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F.lli Regazzon, ingranaggi e lavorazioni meccaniche a Padova</title>
+<meta name="description" content="Ingranaggi su disegno da modulo 0,75 a modulo 25, da Ø 20 a Ø 2000 mm, e lavorazioni meccaniche conto terzi a Padova. ISO 9001:2015 RINA.">
+<link rel="preload" href="fonts/GeneralSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* General Sans, Indian Type Foundry, da Fontshare: ITF Free Font License (uso commerciale consentito) */
+@font-face{font-family:"General Sans";src:url(fonts/GeneralSans-Regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"General Sans";src:url(fonts/GeneralSans-Medium.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"General Sans";src:url(fonts/GeneralSans-Semibold.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+:root{
+  --acciaio:#E9EBEC;     /* fondo: il fondale delle loro still life, campionato dalle foto */
+  --copertina:#D0D2D3;   /* il fondale della copertina della brochure, a sinistra (dietro al titolo) */
+  --piede:#DCDFE1;
+  --inchiostro:#1B1C20;  /* il nero del logo */
+  --grigio:#53565B;      /* testo secondario: 6,1:1 sull'acciaio */
+  --sabbia:#807062;      /* gli ingranaggi del logo: filetti */
+  --sabbia-testo:#685A4C;/* sabbia per il testo piccolo: 5,5:1 sull'acciaio */
+  --filetto:#C6CACD;
+  --g:24px;
+  --m:max(clamp(20px,5vw,72px),calc((100vw - 1296px) / 2));
+  --col:calc((100vw - 2 * var(--m) - 11 * var(--g)) / 12);
+  --testata:96px;
+  /* copertina: alta quanto resta della prima schermata; la foto è alta quanto la copertina (max 1,134 volte) */
+  --h:clamp(600px,calc(100svh - var(--testata)),804px);
+  --F:clamp(64px,7.25vw,104px);                 /* corpo del titolo */
+  --ax:calc(var(--m) + 6.32 * var(--F) + 96px); /* dove cadono le punte dei denti, a destra del titolo */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--acciaio);color:var(--inchiostro);font-family:"General Sans",system-ui,sans-serif;font-size:18px;line-height:1.55;font-kerning:normal;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.nb{white-space:nowrap}
+:focus-visible{outline:2px solid var(--inchiostro);outline-offset:3px}
+.sez{padding-left:var(--m);padding-right:var(--m)}
+.griglia{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+
+/* ---------- testata ---------- */
+.testata{position:relative;z-index:3;height:var(--testata);display:flex;align-items:center;gap:40px;padding:0 var(--m)}
+.testata .casa{margin-right:auto;flex:none}
+.testata .logo{width:220px}
+.menu{display:flex;gap:30px;font-size:16px;font-weight:500}
+.menu a,.testata .tel{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .12s}
+.menu a:hover,.testata .tel:hover{border-bottom-color:var(--inchiostro)}
+.menu .lingue-m{display:none}
+.testata .tel{font-weight:600;font-size:16px;letter-spacing:.01em}
+.lingue{display:flex;gap:12px;font-size:14px;color:var(--grigio)}
+.lingue a{text-decoration:none}
+.lingue a:hover{color:var(--inchiostro)}
+.lingue a[aria-current]{color:var(--inchiostro);font-weight:500}
+.apri{display:none}
+
+/* ---------- apertura: la copertina della brochure ---------- */
+.apertura{position:relative;height:var(--h);overflow:hidden;background:var(--copertina)}
+.apertura .tela{position:absolute;top:0;left:calc(var(--ax) - var(--h) * 1300 / 709);height:100%;width:auto;max-width:none}
+.apertura .testo{position:relative;z-index:2;height:100%;padding:calc(var(--h) * .15) var(--m) 0;display:flex;flex-direction:column}
+h1{font-weight:500;font-size:var(--F);line-height:.92;letter-spacing:-.04em}
+h1 span{display:block}
+.attacco{margin-top:clamp(30px,3vw,44px);max-width:25em}
+.attacco p{font-size:18px;line-height:1.5;color:#26282C;text-wrap:pretty}
+.azioni{display:flex;align-items:center;gap:28px;margin-top:28px;flex-wrap:wrap}
+.bottone{display:inline-block;background:var(--inchiostro);color:#fff;text-decoration:none;font-weight:500;font-size:16px;padding:15px 24px;border:1px solid var(--inchiostro);transition:background-color .15s,color .15s}
+.bottone:hover{background:transparent;color:var(--inchiostro)}
+.legame{font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;font-size:16px;transition:color .12s}
+.legame:hover{color:var(--sabbia-testo)}
+.apertura .dida{position:absolute;z-index:2;left:var(--m);bottom:30px;font-size:14px;line-height:1.45;color:#3D4045;max-width:22em}
+.apertura .dida b{font-weight:500;color:var(--inchiostro)}
+
+/* ---------- testi comuni ---------- */
+.h2{font-weight:500;font-size:clamp(34px,3.06vw,44px);line-height:1.08;letter-spacing:-.026em;text-wrap:balance}
+.piccolo{font-size:15px;line-height:1.5;color:var(--grigio)}
+.didascalia{font-size:14px;line-height:1.45;color:var(--grigio)}
+.didascalia b{font-weight:500;color:var(--inchiostro);margin-right:10px}
+
+/* ---------- chi siamo ---------- */
+.chi{padding-top:clamp(104px,12.2vw,176px)}
+.chi .lead,.chi .settori-r,.chi figure{grid-column:3/13}
+.lead{font-size:clamp(26px,2.5vw,36px);line-height:1.25;letter-spacing:-.018em;font-weight:400;max-width:27em;text-wrap:pretty}
+.chi .settori-r{margin-top:30px;font-size:18px;line-height:1.55;color:#33363A;max-width:40em;text-wrap:pretty}
+.chi .settori-r b{font-weight:500;color:var(--inchiostro)}
+.chi figure{margin-top:clamp(64px,7.8vw,112px);max-width:982px}
+.chi figure img{width:100%}
+.chi figcaption{margin-top:14px}
+
+/* ---------- reparti (gesto) ---------- */
+.reparti{padding-top:clamp(120px,13.9vw,200px)}
+.reparti .testa{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--g);margin-bottom:44px}
+.reparti .testa p{max-width:27em}
+.schede{display:flex;gap:0 34px;margin-bottom:24px;border-bottom:1px solid var(--filetto)}
+.schede button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin:0 0 -1px;padding:10px 0 11px;font:inherit;font-size:clamp(17px,1.46vw,21px);font-weight:500;letter-spacing:-.005em;color:#5B5E63;cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.schede button:hover{color:var(--inchiostro)}
+.schede button[aria-selected="true"]{color:var(--inchiostro);border-bottom-color:var(--sabbia)}
+.scheda picture img{width:100%;aspect-ratio:1296/420;object-fit:cover;background:#D2D5D7}
+.dati{padding-top:30px}
+.dati .num{grid-column:1/3;font-size:15px;color:var(--sabbia-testo);font-weight:500;padding-top:5px}
+.dati .cap{grid-column:3/9;font-size:24px;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty}
+.dati .mac{grid-column:9/13;padding-top:5px}
+.dati .mac h3{font-size:15px;font-weight:500;color:var(--grigio);margin-bottom:4px}
+.dati .mac p{font-size:17px;line-height:1.5}
+
+/* ---------- qualità ---------- */
+.qualita{padding-top:clamp(112px,12.2vw,176px)}
+.qualita .riga{padding-top:30px;border-top:1px solid var(--filetto);align-items:start}
+.qualita .h2{grid-column:1/13;margin-bottom:34px}
+.qualita .corpo{grid-column:1/13;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:start}
+.qualita .corpo > p:first-child{grid-column:1/7;padding-right:var(--g)}
+.qualita .corpo .cert{grid-column:7/13;margin-top:4px}
+.qualita .corpo .legame{grid-column:7/13;justify-self:start}
+.qualita .corpo > p{font-size:22px;line-height:1.42;letter-spacing:-.008em;color:#2A2C30;text-wrap:pretty}
+.qualita .cert{margin-top:30px;font-size:17px;line-height:1.55;color:#33363A}
+.qualita .cert b{font-weight:500;color:var(--inchiostro)}
+.qualita .legame{display:inline-block;margin-top:14px;font-size:15px}
+
+/* ---------- chiusura: testo a sinistra, il pezzo a destra fino al bordo ---------- */
+.chiusura{padding-top:clamp(112px,11.1vw,160px);display:grid;grid-template-columns:var(--m) repeat(12,minmax(0,1fr)) var(--m);column-gap:0}
+.chiusura .alto{grid-column:2/8;align-self:center;padding-right:var(--g)}
+.chiusura .frase{font-weight:500;font-size:clamp(48px,6.6vw,96px);line-height:.95;letter-spacing:-.036em}
+.recapiti{margin-top:clamp(40px,4.4vw,64px);font-size:17px;line-height:1.5}
+.recapiti .tel-grande{display:inline-block;font-size:clamp(36px,3.2vw,46px);line-height:1.1;font-weight:500;letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid transparent;margin-bottom:18px;transition:border-color .12s}
+.recapiti .tel-grande:hover{border-bottom-color:currentColor}
+.recapiti li{padding:3px 0}
+.recapiti .et{color:var(--grigio)}
+.recapiti li a{text-decoration:none;border-bottom:1px solid #8E9196;transition:border-color .12s}
+.recapiti li a:hover{border-bottom-color:var(--inchiostro)}
+.chiusura figure{grid-column:9/15;justify-self:end;width:min(626px,100%);align-self:end}
+.chiusura figure img{width:100%}
+
+/* ---------- piede ---------- */
+.piede{background:var(--piede);padding:clamp(64px,8.3vw,120px) var(--m) 36px;font-size:15px;line-height:1.55}
+.piede .marchio{grid-column:1/5}
+.piede .marchio img{width:220px}
+.piede .marchio p{margin-top:20px;max-width:21em;color:#404348}
+.piede .lingue{margin-top:22px;font-size:15px;color:#4A4D52}
+.piede nav{grid-column:5/13;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.3fr);gap:var(--g)}
+.piede h2{font-size:15px;font-weight:600;margin-bottom:12px;letter-spacing:.005em}
+.piede h2 button{all:unset;display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 0;cursor:pointer}
+.piede h2 button:focus-visible{outline:2px solid var(--inchiostro);outline-offset:2px}
+.piede h2 button::after{content:"+";font-weight:400;font-size:20px;line-height:1}
+.piede h2 button[aria-expanded="true"]::after{content:"\2212"}
+.piede nav li{padding:3px 0}
+.piede nav a{text-decoration:none;color:#36393E}
+.piede nav a:hover{color:var(--inchiostro);text-decoration:underline;text-underline-offset:3px}
+.piede .giu{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 32px;margin-top:clamp(56px,6.1vw,88px);padding-top:22px;border-top:1px solid #BEC2C5;font-size:14px;color:#4A4D52}
+.piede .giu p{max-width:52em}
+.piede .giu ul{display:flex;flex-wrap:wrap;gap:6px 22px}
+.piede .giu a{text-decoration:none}
+.piede .giu a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- da 1100 in giù ---------- */
+@media (max-width:1100px){
+  .menu{gap:22px}
+  .testata .lingue{display:none}
+  .dati .cap{grid-column:3/10}.dati .mac{grid-column:10/13}
+  .piede .marchio{grid-column:1/13}
+  .piede nav{grid-column:1/13;margin-top:44px}
+  .chi .lead,.chi .settori-r,.chi figure{grid-column:2/13}
+  .qualita .h2{margin-bottom:26px}.qualita .corpo{display:block;max-width:40em}.qualita .corpo .cert{margin-top:28px}
+}
+/* ---------- telefono e tablet ---------- */
+@media (max-width:900px){
+  :root{--testata:auto}
+  .testata{padding:18px var(--m);gap:16px}
+  .testata .logo{width:168px}
+  .menu{display:none}
+  .menu.aperto{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--acciaio);padding:8px var(--m) 20px;border-bottom:1px solid var(--filetto);z-index:4}
+  .menu.aperto a{padding:12px 0;font-size:18px}
+  .menu.aperto .lingue-m{display:flex;gap:22px;margin-top:10px;padding-top:14px;border-top:1px solid var(--filetto);font-size:16px;color:var(--grigio)}
+  .menu.aperto .lingue-m a{padding:4px 0;font-size:16px}
+  .menu .lingue-m a[aria-current]{color:var(--inchiostro)}
+  .apri{display:inline-block;appearance:none;background:none;border:1px solid var(--inchiostro);font:inherit;font-size:15px;font-weight:500;padding:7px 12px;color:var(--inchiostro);cursor:pointer;min-width:74px}
+  .testata .tel{font-size:15px}
+  .apertura{height:auto;background:none;overflow:visible}
+  .apertura .tela{position:static;width:100%;height:auto}
+  .apertura .testo{height:auto;padding:clamp(18px,4vw,40px) var(--m) 0}
+  h1{font-size:min(14.2vw,92px)}
+  .attacco{max-width:540px;margin-top:22px}
+  .attacco p{font-size:17px}
+  .azioni{margin-top:22px;gap:22px}
+  .apertura .testo{padding-top:30px}
+  .apertura .dida{position:static;padding:12px var(--m) 0;max-width:34em;color:var(--grigio)}
+  .chi{padding-top:80px}
+  .chi .lead,.chi .settori-r,.chi figure{grid-column:1/13}
+  .chi figure{margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m));max-width:none}
+  .chi figcaption{padding:0 var(--m)}
+  .reparti .testa{display:block}
+  .reparti .testa p{margin-top:14px}
+  .schede{gap:0 26px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--m)) 20px;padding:0 var(--m)}
+  .schede::-webkit-scrollbar{display:none}
+  .schede button{flex:none}
+  .scheda picture{display:block;margin:0 calc(-1 * var(--m))}
+  .dati{grid-template-columns:1fr;row-gap:12px;align-content:start}
+  .dati .num,.dati .cap,.dati .mac{grid-column:1}
+  .dati .num{padding-top:0}
+  .dati .cap{font-size:21px}
+  .qualita{padding-top:112px}
+  .qualita .corpo > p{font-size:19px}
+  .chiusura{display:block;padding-top:112px}
+  .chiusura .alto{padding:0 var(--m)}
+  .chiusura figure{width:auto;max-width:626px;margin:48px 0 0 auto}
+  .piede nav{column-gap:16px}
+}
+@media (max-width:600px){
+  .scheda picture img{aspect-ratio:4/3}
+  .chiusura figure{margin-left:calc(var(--m) * 2)}
+  .piede nav{display:block}
+  .piede nav > div{border-top:1px solid #BEC2C5}
+  .piede nav > div > h2{margin:0;padding:16px 0}
+  .piede nav > div > h2:has(button){padding:0}
+  .piede nav ul{padding-bottom:18px}
+  .piede nav ul[hidden]{display:none}
+  .piede .giu{flex-direction:column;margin-top:24px}
+}
+@media (max-width:370px){
+  .testata .tel{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <a class="casa" href="#" aria-label="F.lli Regazzon, home"><img class="logo" src="img/logo-regazzon-720.webp" width="220" height="54" alt="F.lli Regazzon officine meccaniche"></a>
+  <nav class="menu" id="menu" aria-label="Principale">
+    <a href="#chi">Azienda</a>
+    <a href="#reparti" data-scheda="dentatura">Ingranaggi</a>
+    <a href="#reparti" data-scheda="tornitura">Lavorazioni</a>
+    <a href="#qualita">Qualità</a>
+    <a href="#contatti">Contatti</a>
+    <span class="lingue-m" aria-label="Lingua"><a href="#" aria-current="true" lang="it">Italiano</a><a href="en/" lang="en">English</a><a href="de/" lang="de">Deutsch</a></span>
+  </nav>
+  <a class="tel" href="tel:+39049760969">049&nbsp;760969</a>
+  <div class="lingue" aria-label="Lingua"><a href="#" aria-current="true" lang="it">IT</a><a href="en/" lang="en">EN</a><a href="de/" lang="de">DE</a></div>
+  <button class="apri" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<main>
+<section class="apertura" aria-labelledby="titolo">
+  <div class="fig">
+    <picture>
+      <source media="(max-width:600px)" srcset="img/apertura-780.jpg 780w" sizes="100vw" width="780" height="662">
+      <source media="(max-width:900px)" srcset="img/apertura-1024.jpg 1024w" sizes="100vw" width="1024" height="709">
+      <img class="tela" src="img/apertura-804.jpg" srcset="img/apertura-520.jpg 1778w, img/apertura-709.jpg 2424w, img/apertura-804.jpg 2749w" sizes="2749px" width="2749" height="804" fetchpriority="high" alt="Corona a dentatura interna in acciaio, con le marcature incise sul fianco, su fondale grigio">
+    </picture>
+    <p class="dida"><b>Corona a dentatura interna</b>, con le marcature incise sul fianco. È la foto della copertina della nostra brochure.</p>
+  </div>
+  <div class="testo">
+    <h1 id="titolo"><span>Trasmettiamo</span> <span>potenza</span></h1>
+    <div class="attacco">
+      <p>Ingranaggi su disegno da modulo&nbsp;0,75 a modulo&nbsp;25, da Ø&nbsp;20 a Ø&nbsp;2000&nbsp;mm. Tornitura, fresatura, alesatura, rettifica e saldatura per conto terzi, a&nbsp;Padova.</p>
+      <div class="azioni">
+        <a class="bottone" href="mailto:info@regazzon.it?subject=Richiesta%20di%20offerta%20su%20disegno">Inviateci il disegno</a>
+        <a class="legame" href="tel:+39049760969">049&nbsp;760969</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chi sez" id="chi" aria-label="Chi siamo">
+  <div class="griglia">
+    <p class="lead">Lavoriamo sul disegno del cliente, con o senza campionatura: ingranaggi dal piccolo al medio pesante, cremagliere speciali, riduttori in piccole serie.</p>
+    <p class="settori-r"><b>Per chi.</b> Siderurgia, energia e chimica, macchine operatrici per cementifici e per il consolidamento del terreno, costruttori di impianti di perforazione offshore e onshore. Via Lussemburgo&nbsp;17, zona industriale di Padova.</p>
+    <figure>
+      <picture><source media="(max-width:600px)" srcset="img/scala-780.jpg 780w" sizes="100vw"><img src="img/scala-982.jpg" width="982" height="342" loading="lazy" alt="Un operaio regge in verticale una corona dentata più alta di lui, nel reparto dentatura"></picture>
+      <figcaption class="didascalia">Corona dentata in reparto, più alta di chi la regge.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="reparti sez" id="reparti" aria-labelledby="rep-t">
+  <div class="testa">
+    <h2 class="h2" id="rep-t">Otto reparti, le loro misure</h2>
+    <p class="piccolo">Scegliete un reparto: foto, capacità massime e macchine sono quelle dichiarate da Regazzon.</p>
+  </div>
+  <div class="schede" role="tablist" aria-label="Reparti">
+    <button role="tab" id="t-dentatura" aria-controls="pannello" aria-selected="true" data-k="dentatura">Dentatura</button>
+    <button role="tab" id="t-rettifica-ingranaggi" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="rettifica-ingranaggi">Rettifica ingranaggi</button>
+    <button role="tab" id="t-tornitura" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="tornitura">Tornitura</button>
+    <button role="tab" id="t-fresatura" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="fresatura">Fresatura</button>
+    <button role="tab" id="t-alesatura" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="alesatura">Alesatura</button>
+    <button role="tab" id="t-rettifica" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="rettifica">Rettifica</button>
+    <button role="tab" id="t-saldatura" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="saldatura">Saldatura</button>
+    <button role="tab" id="t-controllo" aria-controls="pannello" aria-selected="false" tabindex="-1" data-k="controllo">Controllo</button>
+  </div>
+  <div class="scheda" id="pannello" role="tabpanel" aria-labelledby="t-dentatura" tabindex="0">
+    <picture>
+      <source id="r-src" media="(max-width:600px)" srcset="img/rep-dentatura-780.jpg 780w" sizes="100vw">
+      <img id="r-img" src="img/rep-dentatura-1296.jpg" srcset="img/rep-dentatura-982.jpg 982w, img/rep-dentatura-1296.jpg 1296w" sizes="(min-width:1440px) 1296px, 90vw" width="1296" height="420" alt="Creatore al lavoro in una dentatrice">
+    </picture>
+    <div class="dati griglia" id="r-dati">
+      <p class="num" id="r-num">01 di 08</p>
+      <p class="cap" id="r-cap">Da modulo 0,75 (Ø&nbsp;20&nbsp;mm) a modulo 25 (Ø&nbsp;2000&nbsp;mm), e cremagliere speciali.</p>
+      <div class="mac"><h3>Macchine</h3><p id="r-mac">Lorenz, Pfauter, Modul, Starrag</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="qualita sez" id="qualita" aria-labelledby="qu-t">
+  <div class="riga griglia">
+    <h2 class="h2" id="qu-t">Trasmettiamo qualità</h2>
+    <div class="corpo">
+      <p>Materiali di prima qualità, impianti di livello tecnologico elevato e controlli rigorosi durante le varie fasi di lavorazione.</p>
+      <p class="cert"><b>ISO 9001:2015, RINA.</b> Certificato n.&nbsp;25580/12/S, prima emissione 25&nbsp;maggio&nbsp;2012, valido fino al 21&nbsp;maggio&nbsp;2027, per la produzione di particolari dentati e lavorazioni meccaniche su specifica del cliente.</p>
+      <a class="legame" href="https://www.regazzon.it/assets/Uploads/RINA-CERTIFICATO-2024-2027.pdf">Scarica il certificato in PDF</a>
+    </div>
+  </div>
+</section>
+
+<section class="chiusura" id="contatti" aria-labelledby="ch-t">
+  <div class="alto">
+    <h2 class="frase" id="ch-t">Trasmettiamo esperienza</h2>
+    <div class="recapiti">
+      <a class="tel-grande" href="tel:+39049760969">049&nbsp;760969</a>
+      <ul>
+        <li><span class="et">Il disegno, anche senza campione:</span> <a href="mailto:info@regazzon.it?subject=Richiesta%20di%20offerta%20su%20disegno">info@regazzon.it</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=F.lli+Regazzon+Via+Lussemburgo+17+35127+Padova">Via Lussemburgo&nbsp;17, 35127 Padova (Camin)</a></li>
+      </ul>
+    </div>
+  </div>
+  <figure>
+    <img src="img/chiusura-626.jpg" srcset="img/chiusura-626.jpg 626w, img/chiusura-814.jpg 814w" sizes="(min-width:901px) min(626px, 44vw), calc(100vw - 40px)" width="626" height="674" loading="lazy" alt="Pignone con mozzo scanalato che ingrana con una corona dentata, riflessi sul piano">
+  </figure>
+</section>
+</main>
+
+<footer class="piede">
+  <div class="griglia">
+    <div class="marchio">
+      <img src="img/logo-regazzon-720.webp" width="220" height="54" alt="F.lli Regazzon officine meccaniche" loading="lazy">
+      <p>Ingranaggi su disegno e lavorazioni meccaniche conto terzi, nella zona industriale di Padova.</p>
+      <div class="lingue" aria-label="Lingua"><a href="#" aria-current="true" lang="it">Italiano</a><a href="en/" lang="en">English</a><a href="de/" lang="de">Deutsch</a></div>
+    </div>
+    <nav aria-label="Piede">
+      <div>
+        <h2 data-f="f-az">Azienda</h2>
+        <ul id="f-az">
+          <li><a href="azienda/">Chi siamo</a></li>
+          <li><a href="qualita/">Controllo e qualità</a></li>
+          <li><a href="settori/">Settori</a></li>
+          <li><a href="download/">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-f="f-in">Ingranaggi</h2>
+        <ul id="f-in">
+          <li><a href="ingranaggi/dentatura/">Dentatura</a></li>
+          <li><a href="ingranaggi/rettifica/">Rettifica ingranaggi</a></li>
+          <li><a href="ingranaggi/cremagliere/">Cremagliere speciali</a></li>
+          <li><a href="ingranaggi/riduttori/">Riduttori</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-f="f-la">Lavorazioni</h2>
+        <ul id="f-la">
+          <li><a href="lavorazioni/tornitura/">Tornitura</a></li>
+          <li><a href="lavorazioni/fresatura/">Fresatura</a></li>
+          <li><a href="lavorazioni/alesatura/">Alesatura</a></li>
+          <li><a href="lavorazioni/rettifica/">Rettifica</a></li>
+          <li><a href="lavorazioni/saldatura/">Saldatura</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contatti</h2>
+        <ul>
+          <li><a href="tel:+39049760969">049&nbsp;760969</a></li>
+          <li><a href="mailto:info@regazzon.it">info@regazzon.it</a></li>
+          <li><a href="mailto:regazzon@internetpec.it">PEC regazzon@internetpec.it</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=F.lli+Regazzon+Via+Lussemburgo+17+35127+Padova">Via Lussemburgo&nbsp;17<br>35127 Padova (Camin)</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="giu">
+    <p>F.lli Regazzon Officine Meccaniche S.r.l., P.IVA e C.F. 00665680286, REA PD&nbsp;123452, capitale sociale 118.800,00&nbsp;euro&nbsp;i.v., PEC regazzon@internetpec.it</p>
+    <ul><li><a href="privacy/">Privacy</a></li><li><a href="cookie/">Cookie</a></li><li><a href="dati-legali/">Dati legali</a></li></ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var N=' ';
+  var R={
+    'dentatura':{alt:'Creatore al lavoro in una dentatrice',cap:'Da modulo 0,75 (Ø'+N+'20'+N+'mm) a modulo 25 (Ø'+N+'2000'+N+'mm), e cremagliere speciali.',mac:'Lorenz, Pfauter, Modul, Starrag'},
+    'rettifica-ingranaggi':{alt:'Ingranaggio elicoidale in una rettificatrice Niles',cap:'Rettifica delle dentature fino a modulo'+N+'25.',mac:'Niles'},
+    'tornitura':{alt:'Gole tornite su un pezzo al tornio verticale, con l’utensile in presa',cap:'Torni paralleli da Ø'+N+'50 a Ø'+N+'1050'+N+'mm, lunghezza fino a 5000'+N+'mm. Torni verticali da Ø'+N+'250'+N+'mm, altezza fino a 1500'+N+'mm.',mac:'TOS, Doosan, OMG, PBR, Poreba, Pietro Carnaghi, Mazak'},
+    'fresatura':{alt:'Blocco fresato con tasche e fori',cap:'Centri di lavoro 1000'+N+'×'+N+'1000'+N+'×'+N+'1300'+N+'mm. Fresatrice a banco mobile 5000'+N+'×'+N+'1800'+N+'×'+N+'1000'+N+'mm.',mac:'Tiger, Novar, Doosan'},
+    'alesatura':{alt:'Alesatura di un grande pezzo cilindrico',cap:'Pezzi fino a 8000'+N+'×'+N+'3000'+N+'mm.',mac:'Skoda, Pama'},
+    'rettifica':{alt:'Un operaio al lavoro su una puleggia a gole',cap:'Piani 400'+N+'×'+N+'1000'+N+'×'+N+'250'+N+'mm. Esterni da Ø'+N+'30 a Ø'+N+'500'+N+'mm per 2000'+N+'mm di lunghezza, interni da Ø'+N+'50 a Ø'+N+'650'+N+'mm per 1000'+N+'mm.',mac:'BWF, Morara, Zocca, Naxos Union, Grisetti, WMW'},
+    'saldatura':{alt:'Un saldatore con la maschera al lavoro sul mozzo di una ruota, tra le scintille',cap:'Ruote, pulegge e particolari meccanici medi e grandi, con saldatori patentati.',mac:'Selco, Fronius'},
+    'controllo':{alt:'Il tastatore della macchina di misura Zeiss sui denti di una corona',cap:'Macchina di misura a coordinate Zeiss con software per ingranaggi, area di lavoro 1800'+N+'×'+N+'1200'+N+'×'+N+'1000'+N+'mm.',mac:'Zeiss'}
+  };
+  var tabs=[].slice.call(document.querySelectorAll('.schede [role=tab]'));
+  var img=document.getElementById('r-img'),src=document.getElementById('r-src'),cap=document.getElementById('r-cap'),mac=document.getElementById('r-mac'),num=document.getElementById('r-num'),pan=document.getElementById('pannello'),dati=document.getElementById('r-dati');
+  function scegli(t,fuoco){
+    var k=t.dataset.k,d=R[k],i=tabs.indexOf(t)+1;
+    tabs.forEach(function(x){var s=x===t;x.setAttribute('aria-selected',s);x.tabIndex=s?0:-1;});
+    src.srcset='img/rep-'+k+'-780.jpg 780w';
+    img.srcset='img/rep-'+k+'-982.jpg 982w, img/rep-'+k+'-1296.jpg 1296w';
+    img.src='img/rep-'+k+'-1296.jpg';img.alt=d.alt;
+    cap.textContent=d.cap;mac.textContent=d.mac;num.textContent='0'+i+' di 08';
+    pan.setAttribute('aria-labelledby',t.id);
+    if(fuoco){t.focus();}
+    var s=t.parentNode;if(s.scrollWidth>s.clientWidth){var l=t.offsetLeft-s.offsetLeft;if(l<s.scrollLeft||l+t.offsetWidth>s.scrollLeft+s.clientWidth)s.scrollLeft=l-20;}
+  }
+  // l'altezza dei dati è quella del reparto con il testo più lungo: cambiando scheda la pagina non salta
+  function fissa(){
+    dati.style.minHeight='';
+    var c=cap.textContent,mm=mac.textContent,max=0;
+    Object.keys(R).forEach(function(k){cap.textContent=R[k].cap;mac.textContent=R[k].mac;max=Math.max(max,dati.offsetHeight);});
+    cap.textContent=c;mac.textContent=mm;dati.style.minHeight=max+'px';
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){scegli(t,false);});
+    t.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight')j=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();scegli(tabs[j],true);}
+    });
+  });
+  // sul telefono la striscia delle schede scorre: lo spazio tra le voci si regola perché l'ultima voce visibile
+  // resti tagliata a metà (si capisce che continua), senza sfumature
+  function taglia(){
+    var c=document.querySelector('.schede');c.style.columnGap='';
+    if(!matchMedia('(max-width:900px)').matches)return;
+    var W=c.clientWidth,x0=parseFloat(getComputedStyle(c).paddingLeft),w=tabs.map(function(t){return t.offsetWidth;}),som=0,best=null;
+    for(var k=1;k<w.length;k++){som+=w[k-1];var g=(W-x0-som-w[k]/2)/k;if(g>=22&&g<=50&&(best===null||Math.abs(g-32)<Math.abs(best-32)))best=g;}
+    if(best!==null)c.style.columnGap=best.toFixed(1)+'px';
+  }
+  function misura(){taglia();fissa();}
+  misura();addEventListener('resize',misura);if(document.fonts)document.fonts.ready.then(misura);
+  // il menu porta alla scheda giusta: Ingranaggi apre Dentatura, Lavorazioni apre Tornitura
+  [].forEach.call(document.querySelectorAll('[data-scheda]'),function(a){a.addEventListener('click',function(){scegli(document.getElementById('t-'+a.dataset.scheda),false);});});
+  // precarica le foto dei reparti al primo contatto con le schede
+  var pre=false;function precarica(){if(pre)return;pre=true;var m=matchMedia('(max-width:600px)').matches;Object.keys(R).forEach(function(k){var x=new Image();x.src='img/rep-'+k+(m?'-780':'-1296')+'.jpg';});}
+  var sc=document.querySelector('.schede');sc.addEventListener('pointerenter',precarica);sc.addEventListener('touchstart',precarica,{passive:true});sc.addEventListener('focusin',precarica);
+  // menu sul telefono: il bottone dice Chiudi quando è aperto; si chiude con Esc, con un tocco fuori o scegliendo una voce
+  var b=document.querySelector('.apri'),m=document.getElementById('menu');
+  function menu(apri){b.setAttribute('aria-expanded',apri);b.textContent=apri?'Chiudi':'Menu';m.classList.toggle('aperto',apri);}
+  b.addEventListener('click',function(){menu(b.getAttribute('aria-expanded')!=='true');});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A')menu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){menu(false);b.focus();}});
+  document.addEventListener('pointerdown',function(e){if(b.getAttribute('aria-expanded')==='true'&&!m.contains(e.target)&&!b.contains(e.target))menu(false);});
+  // piede a fisarmonica sotto i 600 px: bottoni veri con aria-expanded; Contatti resta sempre aperta
+  var mq=matchMedia('(max-width:600px)');
+  var heads=[].slice.call(document.querySelectorAll('.piede h2[data-f]'));
+  function piede(){
+    heads.forEach(function(h){
+      var ul=document.getElementById(h.dataset.f),nome=h.dataset.nome||(h.dataset.nome=h.textContent);
+      if(mq.matches){
+        if(!h.querySelector('button')){h.innerHTML='';var bt=document.createElement('button');bt.type='button';bt.textContent=nome;bt.setAttribute('aria-expanded','false');bt.setAttribute('aria-controls',h.dataset.f);
+          bt.addEventListener('click',function(){var a=bt.getAttribute('aria-expanded')==='true';bt.setAttribute('aria-expanded',!a);ul.hidden=a;});h.appendChild(bt);ul.hidden=true;}
+      }else{h.textContent=nome;ul.hidden=false;}
+    });
+  }
+  piede();(mq.addEventListener?mq.addEventListener('change',piede):mq.addListener(piede));
+})();
+</script>
+</body>
+</html>
